@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>text_properties</TITLE>
@@ -14,74 +14,74 @@
 
 
   
-   <DESCRIPTION_ITEM label='visible: '>  
+   <DESCRIPTION_ITEM label="visible: ">  
    This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should  be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .By default, 
-   the text is visible, the value's property is  <VERB>"on"
-   </VERB>. If <VERB>"off"</VERB> the text is not to display on the screen.
+   for the entity . It should  be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  .By default, 
+   the text is visible, the value's property is  <VERB>&quot;on&quot;
+   </VERB>. If <VERB>&quot;off&quot;</VERB> the text is not to display on the screen.
    </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label='text: '>
+   <DESCRIPTION_ITEM label="text: ">
     This field is the character string vector which contains the text.
    </DESCRIPTION_ITEM>
 
 
-   <DESCRIPTION_ITEM label='data: '>
-    This field is the vector  <VERB>[x,y]</VERB> of the origin
+   <DESCRIPTION_ITEM label="data: ">
+    This field is the vector  <VERB>[x,y,[z]]</VERB> of the origin
     of the text in the data units of the axes.
    </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='font_size: '>
+     <DESCRIPTION_ITEM label="font_size: ">
      The <VERB>font_size</VERB> property  is used to select the
        type of size of the text. Its value should be an integer in between 0 and 5
        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
      </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM label='font_style: '>
+     <DESCRIPTION_ITEM label="font_style: ">
      Seven differents fonts are available :
-     "Courrier", "Symbol", "Times", "Times Italic", "Times Bold",
-     "User defined". The font_size property is an index in [0 6] which
+     &quot;Courrier&quot;, &quot;Symbol&quot;, &quot;Times&quot;, &quot;Times Italic&quot;, &quot;Times Bold&quot;,
+     &quot;User defined&quot;. The font_size property is an index in [0 6] which
      is associated to the previous font names.
 
      </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM label='font_angle: '>
+     <DESCRIPTION_ITEM label="font_angle: ">
      This property determines the orientation of the text string. 
      Specify value of rotation in degrees.
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='foreground: '>
+     <DESCRIPTION_ITEM label="foreground: ">
       This field contains the color used to display the text.
       Its value should be a color index (relative to the current colormap).
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_state: '>
+     <DESCRIPTION_ITEM label="clip_state: ">
       This field contains the <VERB>clip_state</VERB> property
       value for the text.  Its value should be :
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the text is not clipped.
+         <VERB>&quot;off&quot;</VERB> this means that the text is not clipped.
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that the
+         <VERB>&quot;cliprf&quot;</VERB> this means that the
          text is clipped outside the Axes box.
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that the
+         <VERB>&quot;on&quot;</VERB> this means that the
          text is clipped outside the rectangle given by the property  <VERB>clip_box</VERB>.
          </DESCRIPTION_ITEM>
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_box: '>
+     <DESCRIPTION_ITEM label="clip_box: ">
       This field contains the  <VERB>clip_box</VERB> property.
-      Its value should be an empty matrix if clip_state is "off" 
+      Its value should be an empty matrix if clip_state is &quot;off&quot; 
       or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height).
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='parent: '> 
+     <DESCRIPTION_ITEM label="parent: "> 
       This property contains the handle of the parent. The parent of the text
-      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.
      </DESCRIPTION_ITEM>
 
   </DESCRIPTION>
@@ -89,7 +89,7 @@
 
   set("figure_style","new") //create a figure
    a=get("current_axes");
-   a.data_bounds=[0,0,1,1];
+   a.data_bounds=[0,0;1,1];
 
    xstring(0.5,0.6,"Scilab is not esilaB",0,0)
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>patch_properties</TITLE>
@@ -14,75 +14,76 @@
   hierarchy. This entity defines the parameters for patchs.
 
   
-   <DESCRIPTION_ITEM label='visible: '>
-    This field contains the  <VERB>visible</VERB> property value
+   <DESCRIPTION_ITEM label="visible: ">
+    <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .By default, 
-   the patch is visible, the value's property is  <VERB>"on"
-   </VERB>. If <VERB>"off"</VERB> the patch is not drawn on the screen.
+   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  .By default, 
+   the patch is visible, the value's property is  <VERB>&quot;on&quot;
+   </VERB>. If <VERB>&quot;off&quot;</VERB> the patch is not drawn on the screen.</SP>
    </DESCRIPTION_ITEM>
 
 
-   <DESCRIPTION_ITEM label='data: '>
-    This field contains the boundary values for the x and y
-    coordinates. It is a two column matrix <VERB>[x,y]</VERB> of points.
+   <DESCRIPTION_ITEM label="data: ">
+    <SP>This field contains the boundary values for the x and y coordinates. 
+    Component Z is to be added in the case of three-dimensional axes. 
+    It is a two column matrix <VERB>[x,y,[z]]</VERB> of points.</SP>
    </DESCRIPTION_ITEM>
 
 
-     <DESCRIPTION_ITEM label='foreground: '> 
-     This field contains the default <VERB>foreground</VERB> property
+     <DESCRIPTION_ITEM label="foreground: "> 
+     <SP>This field contains the default <VERB>foreground</VERB> property
       used to draw of the patch. Its value should be a color index
-      (relative to the current colormap).
+      (relative to the current colormap).</SP>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_state: '>
-      This field contains the <VERB>clip_state</VERB> property
-      value for the patch.  Its value should be :
+     <DESCRIPTION_ITEM label="clip_state: ">
+      <SP>This field contains the <VERB>clip_state</VERB> property
+      value for the patch.  Its value should be :</SP>
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the patch is not clipped.
+          <SP><VERB>&quot;off&quot;</VERB> this means that the patch is not clipped.</SP>
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that the
-         portion of the patch outside the axes box is not displayed.
+         <SP><VERB>&quot;cliprf&quot;</VERB> this means that the
+         portion of the patch outside the axes box is not displayed.</SP>
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that the
-         patch is clipped outside the rectangle given by property clip_box.
+          <SP><VERB>&quot;on&quot;</VERB> this means that the
+         patch is clipped outside the rectangle given by property clip_box.</SP>
          </DESCRIPTION_ITEM>
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_box: '>  
-     This field is to determinate  the  <VERB>clip_box</VERB> property.
-      Its value should be an empty matrix if clip_state is "off".
+     <DESCRIPTION_ITEM label="clip_box: ">  
+     <SP>This field is to determinate  the  <VERB>clip_box</VERB> property.
+      Its value should be an empty matrix if clip_state is &quot;off&quot;.
        Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height) 
        defines the portions  of the patch to display, however <VERB>clip_state</VERB> property 
-       value will be changed.
+       value will be changed.</SP>
     </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM label='parent: '> 
-      This property contains the handle of the parent. The parent of the patch
-      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+    <DESCRIPTION_ITEM label="parent: "> 
+      <SP>This property contains the handle of the parent. The parent of the patch
+      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
      </DESCRIPTION_ITEM>
   
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[             
   
-  set("figure_style","new") //create a figure
+   set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-2,-2,2,2];
+   a.data_bounds=[-2,2,-2,2];
 
    xfpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5))
    p=get("hdl"); //get handle on current entity (here the pacth entity)
    p.foreground=14;
-   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
-   p.clip_box=[-2, .5, 4,1]
+   p.clip_box=[-2, .5, 4,1];
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'];
    p.clip_state
-   p.clip_state="off";
+   p.clip_state="off"
 
 
  ]]></EXAMPLE>

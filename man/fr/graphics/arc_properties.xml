@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>arc_properties</TITLE>
@@ -14,80 +14,80 @@
   of ellipses and the filled ones.
 
   
-   <DESCRIPTION_ITEM label='visible: '>
-    This field contains the  <VERB>visible</VERB> property value
+   <DESCRIPTION_ITEM label="visible: ">
+    <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . If <VERB>&quot;on&quot;
    </VERB> the arc is drawn, If
-   <VERB>"off"</VERB> the arc is not displayed on the screen.
+   <VERB>&quot;off&quot;</VERB> the arc is not displayed on the screen.</SP>
    </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label='data: '>
-    This property is to return the coordinates of the upper-left point, the
+   <DESCRIPTION_ITEM label="data: ">
+    <SP>This property is to return the coordinates of the upper-left point, the
     width and the height of the inclosing rectangle as well as the
     boundary angles of the sector. It is the matrix 
-    <VERB>[xleft,yup;width,height;a1,a2]</VERB> where <VERB>a1/64</VERB>
-    and <VERB>a2/64</VERB> are the sector boundary angles in degree.
+    <VERB>[xleft,yup,[zup],width,height,a1,a2]</VERB> where <VERB>a1/64</VERB>
+    and <VERB>a2/64</VERB> are the sector boundary angles in degree.</SP>
    </DESCRIPTION_ITEM>
 
 
-    <DESCRIPTION_ITEM label='line_style: '>
-      The  <VERB>line_style</VERB> property value should be an integer in [0 9].
+    <DESCRIPTION_ITEM label="line_style: ">
+     <SP> The  <VERB>line_style</VERB> property value should be an integer in [0 9].
        0 stands for solid the other value stands for a selection of
-       dashes.
+       dashes.</SP>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='thickness: '>
-       This field contains the line <VERB>thickness</VERB> property. Its value should
-       be positive integer.
+     <DESCRIPTION_ITEM label="thickness: ">
+       <SP> This field contains the line <VERB>thickness</VERB> property. Its value should
+       be positive integer.</SP>
      </DESCRIPTION_ITEM>
 
 
-     <DESCRIPTION_ITEM label='foreground: '>
-      This field contains the default <VERB>foreground</VERB> property
+     <DESCRIPTION_ITEM label="foreground: ">
+      <SP>This field contains the default <VERB>foreground</VERB> property
       value used to draw or to fill arc.  It should be a color index
-      (relative to the current colormap).
+      (relative to the current colormap).</SP>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='fill_mode: '>  
-     If <VERB>fill_mode</VERB> property value is <VERB>"on" </VERB>,
+     <DESCRIPTION_ITEM label="fill_mode: ">  
+     <SP>If <VERB>fill_mode</VERB> property value is <VERB>&quot;on&quot; </VERB>,
       the rectangle is filled with the foreground color, 
-       if its value is <VERB>"off"</VERB> only the 
-       shape of the arc is drawn using the foreground color.
+       if its value is <VERB>&quot;off&quot;</VERB> only the 
+       shape of the arc is drawn using the foreground color.</SP>
      </DESCRIPTION_ITEM>
 
 
-     <DESCRIPTION_ITEM label='clip_state: '>
-      This field contains the <VERB>clip_state</VERB> property
-      value for the arc.  Clip_state value should be :
+     <DESCRIPTION_ITEM label="clip_state: ">
+      <SP>This field contains the <VERB>clip_state</VERB> property
+      value for the arc.  Clip_state value should be :</SP>
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the arc is not clipped
+         <SP><VERB>&quot;off&quot;</VERB> this means that the arc is not clipped</SP>
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that the
-         arc is clipped outside the Axes box.
+         <SP><VERB>&quot;cliprf&quot;</VERB> this means that the
+         arc is clipped outside the Axes box.</SP>
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that the
-         arc is clipped outside the arc given by property clip_box.
+         <SP><VERB>&quot;on&quot;</VERB> this means that the
+         arc is clipped outside the arc given by property clip_box.</SP>
          </DESCRIPTION_ITEM>
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_box: '>    
-     This field is to determinate  the  <VERB>clip_box</VERB> property.
-      By Default its value should be an empty matrix if clip_state is "off".
+     <DESCRIPTION_ITEM label="clip_box: ">    
+     <SP>This field is to determinate  the  <VERB>clip_box</VERB> property.
+      By Default its value should be an empty matrix if clip_state is &quot;off&quot;.
        Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height)
        defines the portions of the arc to display, however <VERB>clip_state</VERB> property 
-       value will be changed.
+       value will be changed.</SP>
      </DESCRIPTION_ITEM> 
 
-     <DESCRIPTION_ITEM label='parent: '> 
-      This field contains the handle of the parent. The parent of the arc
-      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+     <DESCRIPTION_ITEM label="parent: "> 
+      <SP>This field contains the handle of the parent. The parent of the arc
+      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
      </DESCRIPTION_ITEM>
   
 
@@ -95,14 +95,15 @@
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-2,-2,2,2];
+   a.data_bounds=[-2,-2;2,2];
 
    xarc(-1.5,1.5,3,3,0,360*64)
 
    arc=get("hdl"); //get handle on current entity (here the arc entity)
    arc.fill_mode="on";
    arc.foreground=5;
-   arc.data(3,:)=[2 270*64];
+   arc.data(:,[3 6])=[2 270*64];  
+   xfarc(-.5,1,.4,.6,0,360*64);
    arc.visible="off";
 
  ]]></EXAMPLE>
