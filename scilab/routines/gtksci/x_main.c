@@ -61,6 +61,13 @@ static char ** create_argv(int *argc);
 static void strip_blank(char *source);
 static void nsp_create_gtk_toplevel(gint argc, gchar *argv[]);
 
+
+static gtk_menu_force_ref(int x) 
+{  
+  if (x) gtk_menu_popdown(NULL);
+}
+
+
 /* global var */
 
 int  sci_show_banner=1;
@@ -74,8 +81,7 @@ void C2F(realmain)()
   /* to be sure that gtkmenu.c patched  (for gtk < 1.3.5 ) 
    * is loaded 
    */
-  if (x) gtk_menu_popdown(NULL);
-
+  gtk_menu_force_ref(x);
   /* floating point exceptions */
   C2F(nofpex)(); 
   /* create argv */
