@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.7  2002/07/31 11:35:08  chanceli
+     scilex-> scilab for gtk
+
      Revision 1.6  2002/07/31 06:58:39  chanceli
      changes to spawn scilab and not scilex + fprintf -> sciprint
 
@@ -243,11 +246,11 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 		if (stat(path, &buf) == 0){
 		  argc = 1;
 		  argv[0] = path;
-		  sciprint("The configuration file\n %s\nis used.\n", path);
+		  sciprint_nd("The configuration file\n %s\nis used.\n", path);
 		} else {
-		  sciprint("Warning: PVM_ROOT is set to %s\r\n",ro);
-		  sciprint("\tbut there exists no configuration file:\r\n");
-		  sciprint("\t%s\r\n", path);
+		  sciprint_nd("Warning: PVM_ROOT is set to %s\r\n",ro);
+		  sciprint_nd("\tbut there exists no configuration file:\r\n");
+		  sciprint_nd("\t%s\r\n", path);
 		  free(path);
 		}
       } /* PVM_ROOT + HOME */
@@ -260,17 +263,17 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 		strcpy(path, rd);
 		strcat(path, "/.pvmd.conf"); 
 		if (stat(path, &buf) == 0){
-	  	  sciprint("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
-		  sciprint("\tWith SCI=%s\r\n",rd);
-		  sciprint("\tSCI will have to be set on remote hosts \r\n");
-		  sciprint("\tin order to spawn scilab\r\n",rd);
+	  	  sciprint_nd("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
+		  sciprint_nd("\tWith SCI=%s\r\n",rd);
+		  sciprint_nd("\tSCI will have to be set on remote hosts \r\n");
+		  sciprint_nd("\tin order to spawn scilab\r\n",rd);
 		  argc = 1;
 		  argv[0] = path;
 		} else {
 		  free(path);
-		  sciprint("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
-		  sciprint("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
-		  sciprint("\t (Cf. man pvmd3)\r\n");
+		  sciprint_nd("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
+		  sciprint_nd("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
+		  sciprint_nd("\t (Cf. man pvmd3)\r\n");
 		}
       } /* SCI */
     } else {
@@ -353,7 +356,7 @@ void C2F(scipvmspawn)(char *task,  int *l1,
   int flag = PvmTaskDefault;
   char cmd[256];
   char *arg[4];
-  int nargs= 0;
+  int nargs= -1,i;
     
   arg[0] = NULL;
    
@@ -393,7 +396,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
     }
   
   if ( strcmp(win, "nw") == 0 )  arg[++nargs] = "-nw";
-  arg[nargs]=NULL;
+  arg[++nargs]=NULL;
+  /* 
+  sciprint("cmd=[%s]\r\n",cmd) ;
+  nargs = 0; 
+  for ( i = 0 ; arg[i] != NULL ; i++) 
+    sciprint("arg %d =[%s]\r\n",i,arg[i]) ;
+  */
   *res = pvm_spawn(cmd, arg, flag, where, *ntask, tids);
 }
 
