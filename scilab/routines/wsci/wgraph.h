@@ -73,6 +73,7 @@ extern void   set_no_delete_win_mode() ;
 extern void DebugGW (char *fmt,...);
 extern void DebugGW1 (char *fmt,...);
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
+extern void delete_sgwin_entities(int win_num,int v_flag);
 
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
 
