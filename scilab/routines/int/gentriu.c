@@ -35,7 +35,7 @@ integer *k;
 integer *typ;
 int *dx;
 {
-  static integer kk, l, ls, ll, j, i, nn, c0=0, c1=1;
+  static integer kk, l, ls, ll, j, i, nn;
 
   switch (*typ) {
   case 1:
