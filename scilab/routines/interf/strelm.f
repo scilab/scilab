@@ -1438,8 +1438,8 @@ c     sort(a,'r')  <=>  sort(a,1)
 c
       integer id(nsiz),tops,vol,sel,eol
       logical ref
-      external strord,getcode
-      integer strord,getcode
+      external strord,getfastcode
+      integer strord,getfastcode
       character*1 c
       integer iadr,sadr
       data eol/99/
@@ -1489,7 +1489,7 @@ c     argument is a vector of ascii codes return a scilab string
          lr=ilr+6
          do 20 i=0,n-1
             c=char(int(stk(l+i)))
-            istk(lr+i)=getcode(c)
+            istk(lr+i)=getfastcode(c)
  20      continue
          lstk(top+1)=sadr(lr+n)
       elseif(istk(il).eq.10) then
