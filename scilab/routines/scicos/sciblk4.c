@@ -22,8 +22,8 @@ extern int *listentry(int *header, int i);
 void 
 sciblk4(Blocks,flag)
 
-scicos_block *Blocks; 
-integer flag;
+     scicos_block *Blocks; 
+     integer flag;
 
 {
   int k,j,i,topsave;
@@ -174,21 +174,21 @@ integer flag;
     break;
   case 0 :
     /*  x'  computation */
-      /* 9 ieme element de la tlist xd */
-      if (Blocks[0].nx != 0){
-	le4=(int*) listentry(header,10);
-	le44=(double *) listentry(header,10);
-	ne4=le4[1];
-	le444=((double *) (le4+4));
-	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
-	/* 10 ieme element de la tlist res */
-      	le6=(int*) listentry(header,11);
-	le66=(double *) listentry(header,11);
-	ne6=le6[1];
-	le666=((double *) (le6+4));
-	C2F(unsfdcopy)(&ne6,le666,&moinsun,Blocks[0].res,&moinsun);
-      }
-      break;
+    /* 9 ieme element de la tlist xd */
+    if (Blocks[0].nx != 0){
+      le4=(int*) listentry(header,10);
+      le44=(double *) listentry(header,10);
+      ne4=le4[1];
+      le444=((double *) (le4+4));
+      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+      /* 10 ieme element de la tlist res */
+      le6=(int*) listentry(header,11);
+      le66=(double *) listentry(header,11);
+      ne6=le6[1];
+      le666=((double *) (le6+4));
+      C2F(unsfdcopy)(&ne6,le666,&moinsun,Blocks[0].res,&moinsun);
+    }
+    break;
   case 2 :
     {
       /* 6ieme element de la tlist z */
@@ -236,8 +236,13 @@ integer flag;
   case 4 :
     if (Blocks[0].nz != 0){
       le1=(int*) listentry(header,7);
-      le111=(double*) listentry(header,7);
-      ne1=header[7+2]-header[7+1];
+      if(Blocks[0].scsptr<0){
+	le111=(double*) listentry(header,7);
+	ne1=header[7+2]-header[7+1];
+      } else{
+	ne1=le1[1];
+	le111=((double *) (le1+4));
+      }
       C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
     }
     /* 8ieme element de la tlist x */
@@ -258,8 +263,13 @@ integer flag;
   case 5 :
     if (Blocks[0].nz != 0){
       le1=(int*) listentry(header,7);
-      le111=(double*) listentry(header,7);
-      ne1=header[7+2]-header[7+1];
+      if(Blocks[0].scsptr<0){
+	le111=(double*) listentry(header,7);
+	ne1=header[7+2]-header[7+1];
+      } else{
+	ne1=le1[1];
+	le111=((double *) (le1+4));
+      }
       C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
     }
     /* 8ieme element de la tlist x */
@@ -278,11 +288,16 @@ integer flag;
     }
     break;
   case 6 :
+    /* 6ieme element de la tlist z */
     if (Blocks[0].nz != 0){
-      /* 6ieme element de la tlist z */
       le1=(int*) listentry(header,7);
-      le111=(double*) listentry(header,7);
-      ne1=header[7+2]-header[7+1];
+      if(Blocks[0].scsptr<0){
+	le111=(double*) listentry(header,7);
+	ne1=header[7+2]-header[7+1];
+	} else{
+	  ne1=le1[1];
+	  le111=((double *) (le1+4));
+	}
       C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
     }
     /* 8ieme element de la tlist x */
@@ -354,7 +369,3 @@ integer flag;
   Top=topsave;
   set_block_error(-1);
 }
-
-
-
-
