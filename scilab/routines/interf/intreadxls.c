@@ -79,8 +79,9 @@ int C2F(intreadxls)(char *fname, long lfn)
 
   return 0;
 }
-
+#ifndef WIN32
 #include <libgen.h>
+#endif
 #include "../sound/ole.h"
 
 int C2F(intopenxls)(char *fname, long lfn)

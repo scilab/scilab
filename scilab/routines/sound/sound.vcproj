@@ -679,6 +679,12 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\bt-int.c">
+			</File>
+			<File
+				RelativePath=".\bytedecoders.c">
+			</File>
+			<File
 				RelativePath="fileio.c">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -1344,6 +1350,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\sprintf_ptr.c">
+			</File>
+			<File
 				RelativePath="wav.c">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -1443,7 +1452,16 @@ cd .. &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath=".\bt-int.h">
+			</File>
+			<File
+				RelativePath=".\bytedecoders.h">
+			</File>
+			<File
 				RelativePath="libst.h">
+			</File>
+			<File
+				RelativePath=".\pldstr.h">
 			</File>
 			<File
 				RelativePath="sox.h">
