@@ -8,10 +8,10 @@ for k=1:Rhs
     break,
   end
 end
+C=varargin(Rhs)'
 if Rhs==3 then
-  grayplot(varargin(1:3))
+  grayplot(varargin(1:2),C)
 else
-  C=varargin(Rhs)
   grayplot(1:size(C,1),1:size(C,2),C)
 end
 endfunction
