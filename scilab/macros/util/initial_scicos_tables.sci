@@ -22,7 +22,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
   Edit     = ['Edit','Palettes','Context','Smart Move','Move','Copy',..
 	      'Copy Region','Replace','Align','Link','Delete','Delete Region',..
 	      'Add new block','Flip','Undo','Pal editor'];
-  Simulate = ['Simulate','Setup','Compile','Eval','Run'];
+  Simulate = ['Simulate','Setup','Compile','Eval','Debug Level','Run'];
   Object   = ['Object','Open/Set','Resize','Icon','Icon Editor','Color',..
 	      'Label','Get Info','Identification','Documentation',...
 	      'Code Generation'];
@@ -56,7 +56,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		      'ID fonts','Aspect','Add color','Focus','Shift','Zoom in','Zoom out',..
 		      'Help','Calc','Palettes','Context','Smart Move','Move','Copy',..
 		      'Copy Region','Replace','Align','Link','Delete','Delete Region',..
-		      'Add new block','Flip','Undo','Setup','Compile','Eval','Run',..
+		      'Add new block','Flip','Undo','Setup','Compile','Eval','Debug Level','Run',..
 		      'Replot','New','Region to Super Block','Purge','Rename','Save',..
 		      'Save As','Load','Load as Palette','Save as Palette','Save as Interf Func',..
 		      'Set Diagram Info','Navigator','Quit','Open/Set','Resize','Icon',..
@@ -250,6 +250,9 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		      ' These underlying Scilab variables may be user global variables';
 		      ' defined before Scicos was launch, They may also be defined in';
 		      ' by the Scicos context (see Context menu item).'],..
+		     [' Set the debug level: 0 (no debugging), 1 (light';
+		      ' debugging information printout), 2 (more information';
+		      ' printout and execution of Debug Block if any in diagram)'],..
 		     [' Select the Run menu item to start the simulation.';
 		      ' If the system has already been simulated, a';
 		      ' dialog box appears where you can choose to Continue,';

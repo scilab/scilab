@@ -57,7 +57,8 @@ function routines=create_palette(bidon)
 	      'SELECT_f.sci'; 'ISELECT_f.sci';     
 	      'RELAY_f.sci';'SWITCH2.sci';'IFTHEL_f.sci';
 	      'ESELECT_f.sci';   'M_SWITCH.sci';  
-	      'SCALAR2VECTOR.sci';  'SWITCH_f.sci']
+	      'SCALAR2VECTOR.sci';  'SWITCH_f.sci';'EDGE_TRIGGER.sci';
+	      'Extract_Activation.sci']
 	
       elseif txt=='Non_linear' then
 	lisf=['ABS_VALUE.sci'; 'TrigFun.sci'; 
