@@ -83,14 +83,6 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
       }
     else 
       {
-#if WIN32
-		#define MAX_PATH 260
-		char ShortPath[MAX_PATH+1];
-		GetShortPathName(cur_dir ,ShortPath,MAX_PATH);
-		strcpy(cur_dir ,ShortPath);
-		*path= cur_dir;
-		*lpath=strlen(cur_dir);
-#else
 	#ifndef __ABSC__
 		*path= cur_dir;
 		*lpath=strlen(cur_dir);
@@ -98,7 +90,6 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
 		*path=strtok(cur_dir,"  ");
 		*lpath=strlen(*path);	
 	#endif
-#endif
 	*err=0;
       }
     return 0;

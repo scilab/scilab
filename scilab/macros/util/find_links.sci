@@ -79,7 +79,9 @@ endfunction
 function p=relative_path(path,relative)
   // path here are html path thus the 
   // correct sep is always '/' 
+  path=getshortpathname(path);
   path=strsubst(path,'\','/');
+  relative=getshortpathname(relative);
   relative=strsubst(relative,'\','/');
   cpath=str2code(path)
   crelative=str2code(relative)
