@@ -20200,12 +20200,12 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
     xmoy=0.0;ymoy=0.0;zmoy=0.0;
     if (z != (double *)NULL) {
       for ( j= 0 ; j < p ; j++) {
-	xmoy += x[j];  ymoy += x[j];  zmoy += z[j];
+	xmoy += x[j];  ymoy += y[j];  zmoy += z[j];
       }
     }
     else {
       for ( j= 0 ; j < p ; j++) {
-	xmoy += x[j];  ymoy += x[j];
+	xmoy += x[j];  ymoy += y[j];
       }
     }
     /* Compute the distance from the observer */
