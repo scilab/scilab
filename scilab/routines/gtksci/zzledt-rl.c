@@ -203,6 +203,12 @@ hchar commands[] = {
    (char *)NULL,
 };
 
+
+static char * void_command_generator ( const char *text,  int state)
+{
+  return ((char *)NULL);
+}
+
 static char *command_generator (const char *, int);
 static char **scilab_completion (const char *, int, int);
 
@@ -214,13 +220,20 @@ static void initialize_readline ()
   /* I remove the completion since it troubles the cut and paste 
    * of data with tabs jpc 2003 
    */
-  /*  rl_attempted_completion_function = scilab_completion; */
+  rl_attempted_completion_function = scilab_completion;
+  rl_completion_entry_function = void_command_generator;
 }
 
 static char **scilab_completion (const char * text,int start,int end)
 {
-  char **matches ; 
-  matches = rl_completion_matches (text, command_generator);
+  char **matches = NULL ; 
+
+  if (start != 0)
+    {
+      matches = rl_completion_matches (text, command_generator);
+      if (matches == NULL) 
+	matches = rl_completion_matches (text, rl_filename_completion_function );
+    }
   return (matches);
 }
 
