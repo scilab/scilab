@@ -200,7 +200,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)
 	]
       case "Plot3d1" 
       t=[t;
@@ -210,7 +211,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)
 	]
       case "Fac3d" 
       d=sci2exp(h.surface_color,0)
@@ -222,7 +224,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)
 	 "surface_color: "+d
 	]
       case "Fac3d1" 
@@ -235,7 +238,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)	 
 	 "surface_color: "+d
 	]
       case "Fac3d2" 
@@ -246,7 +250,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)
 	]
       case "Fac3d3" 
       t=[t;
@@ -256,7 +261,8 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "rotation_angles: "+sci2exp(h.rotation_angles,0)
-	 "bounds: "+sci2exp(matrix(h.bounds,2,-1),0)
+	 "data_bounds: "+sci2exp(matrix(h.data_bounds,2,-1),0)
+	 "flag: "+sci2exp(h.flag,0)
 	]
     end
   end

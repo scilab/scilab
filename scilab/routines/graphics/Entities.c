@@ -13116,7 +13116,7 @@ int sciType (marker)
   else if (strncmp(marker,"log_flags", 9) == 0)   {return 10;}
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
-  else if (strcmp(marker,"bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"flag") == 0)    {return 1;}
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
