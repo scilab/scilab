@@ -85,9 +85,7 @@ end
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
-global %scipad_language
-LANGUAGE="fr"
-%scipad_language=LANGUAGE
+LANGUAGE="eng"
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
@@ -154,6 +152,12 @@ clear LCC
 // Protect variable previously defined  ================================
 predef('all') 
 
+// Set LANGUAGE for Scipad ============================================
+global LANGUAGE
+global %scipad_language
+%scipad_language=LANGUAGE
+clear %scipad_language
+clear  LANGUAGE
 
 // Graphic mode and Startup info ======================================
 set old_style off
