@@ -99,7 +99,7 @@ demolist=initial_demos_tables()
 clear initial_demos_tables
 
 // Menu for Help and editor ===========================================
-if grep(args,'scilex') <>[] then
+if grep(args,'scilex')<>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
     delmenu("Help")
     if ~MSDOS then 
@@ -118,7 +118,7 @@ predef('all')
 
 // Set the preferred browser  ==========================================
 global %browsehelp
-if with_tk()
+if with_tk()& ~with_gtk()
   %browsehelp="Scilab Browser";
 elseif with_gtk()
   %browsehelp="help widget";
