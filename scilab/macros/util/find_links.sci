@@ -52,7 +52,11 @@ function t=getlink(name,absolute_path)
 	    ok=%F
 	    if ii==name then
 	      i=strindex(w,"HREF="""); j=strindex(w,""">")
-	      man=%helps(k,1)+sep+part(w,[i+6:j-1])
+	      if part(%helps(k,1),length(%helps(k,1)))==sep then
+		man=%helps(k,1)+part(w,[i+6:j-1])
+	      else
+		man=%helps(k,1)+sep+part(w,[i+6:j-1])
+	      end
 	    end
 	    if man<>[] then break; end
 	  end

@@ -7,6 +7,10 @@ function xmltohtml(dirs,titles,xsl,step)
 // if dirs is not specified or [] then 
 // standard scilab man are assumed and titles 
 // are searched in %helps 
+  help=utillib.help; //to load the subfunction change_old_man
+  change_old_man() //this is required to produce the whatis.htm files
+                   //associated with old style manuals
+  
   global LANGUAGE 
   select LANGUAGE 
    case 'eng' then H= 'Help chapter' 
