@@ -70,9 +70,6 @@ menu $pad.filemenu.edit -tearoff 0 -font $menuFont
                -command \"IndentSel\" -accelerator Ctrl+d"
     eval "$pad.filemenu.edit add command [me "Unin&dent selection"] \
                -command \"UnIndentSel\" -accelerator Ctrl+D"
-    $pad.filemenu.edit add separator
-    eval "$pad.filemenu.edit add check [me "Word &Wrap"] \
-               -command \"wraptext\" "
 
 #search menu
 menu $pad.filemenu.search -tearoff 0 -font $menuFont
@@ -145,48 +142,41 @@ menu $pad.filemenu.debug -tearoff 1 -font $menuFont
                -command \"canceldebug_bp\" \
                -image menubutcancelimage -compound left "
 
-# options menu
+# scheme menu
+menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
+    eval "$pad.filemenu add cascade [me "S&cheme"] \
+               -menu $pad.filemenu.scheme "
+    eval "$pad.filemenu.scheme add radiobutton [me "S&cilab"] \
+               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
+    eval "$pad.filemenu.scheme add radiobutton [me "&XML"] \
+               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
+    eval "$pad.filemenu.scheme add radiobutton [me "&none"] \
+               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
+
+#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
 menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "
-    eval "$pad.filemenu.options add command [me "font size"] -foreground red "
-    eval "$pad.filemenu.options add radiobutton [me "&micro"] -value 10 \
+    menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
+    eval "$pad.filemenu.options add cascade [me "&font size"] -menu $pad.filemenu.options.fontsize "
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] -value 10 \
                -variable FontSize -command \"setfontscipad 10\" "
-    eval "$pad.filemenu.options add radiobutton [me "&small"] -value 12 \
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"] -value 12 \
                -variable FontSize -command \"setfontscipad 12\" "
-    eval "$pad.filemenu.options add radiobutton [me "m&edium"] -value 14 \
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] -value 14 \
                -variable FontSize -command \"setfontscipad 14\" "
-    eval "$pad.filemenu.options add radiobutton [me "&large"] -value 18\
+    eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] -value 18\
                -variable FontSize -command \"setfontscipad 18\" "
-    eval "$pad.filemenu.options add command [me "language scheme"] -foreground red "
-    eval "$pad.filemenu.options add radiobutton [me "S&cilab"] \
-               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
-    eval "$pad.filemenu.options add radiobutton [me "&XML"] \
-               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
-    eval "$pad.filemenu.options add radiobutton [me "&none"] \
-               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
-#menu $pad.filemenu.options -tearoff 1 -font $menuFont
-#    eval "$pad.filemenu add cascade [me "&Options"] \
-#               -menu $pad.filemenu.options "
-#    menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
-#    eval "$pad.filemenu.options add cascade [me "font size"] -menu $pad.filemenu.options.fontsize "
-#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] -value 10 \
-#               -variable FontSize -command \"setfontscipad 10\" "
-#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"] -value 12 \
-#               -variable FontSize -command \"setfontscipad 12\" "
-#    eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] -value 14 \
-#               -variable FontSize -command \"setfontscipad 14\" "
-#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] -value 18\
-#               -variable FontSize -command \"setfontscipad 18\" "
-#    menu $pad.filemenu.options.scheme -tearoff 0 -font $menuFont
-#    eval "$pad.filemenu.options add cascade [me "language scheme"] -menu $pad.filemenu.options.scheme "
-#    eval "$pad.filemenu.options.scheme add radiobutton [me "Scilab"] \
-#               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
-#    eval "$pad.filemenu.options.scheme add radiobutton [me "XML"] \
-#               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
-#    eval "$pad.filemenu.options.scheme add radiobutton [me "none"] \
-#               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
+    eval "$pad.filemenu.options add cascade [me "&Colors"] \
+         -menu $pad.filemenu.options.colors -foreground red"
+    menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
+    foreach c $colorpref {
+          eval "$pad.filemenu.options.colors add command [me "$c"] \
+            -command {colormenuoption $c} -foreground \[set $c\]"
+           }
+    eval "$pad.filemenu.options add check [me "Word &Wrap"] \
+               -command \"wraptext\" "
+
 
 # window menu
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
