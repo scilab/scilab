@@ -49,6 +49,13 @@ extern WCScaleList Cscale;
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #endif 
 
+/* extern int XScale(double x); */
+/* extern int XLogScale(double x); */
+
+/* extern int YScale(double y); */
+/* extern int YLogScale(double y); */
+
+
 #define XScale(x)    inint( Min(Cscale.Wscx1*((x) -Cscale.frect[0]) + Cscale.Wxofset1,2147483647))
 #define XLogScale(x) inint( Cscale.Wscx1*(log10(x) -Cscale.frect[0]) + Cscale.Wxofset1)
 #define YScale(y)    inint(  Min(Cscale.Wscy1*(-(y)+Cscale.frect[3]) + Cscale.Wyofset1,2147483647))
