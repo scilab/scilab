@@ -486,8 +486,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
         Nx=x[3]+1;}
       /**********************/
       /** loop on the ticks **/
+      if (Nx==1) break; /*D.Abdemouche 16/12/2003*/
       for (i=0 ; i < Nx ; i++)
-	{ 
+	{  
 	  char foo[100];
 	  vxx = x_convert(xy_type,x,i);
 	  if ( str != NULL)  
@@ -633,6 +634,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
         Ny=y[3]+1;}
       /**********************/
       /** loop on the ticks **/
+       if (Ny==1) break; /*D.Abdemouche 16/12/2003*/
       for (i=0 ; i < Ny ; i++)
 	{ 
 	  char foo[100];
