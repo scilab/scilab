@@ -27,6 +27,9 @@ static int  use_prompt=1;
 static int hist = 1; /* flag to add to history */
 static int interrupt=1; 
 
+
+int NumberOfCommands=0; /* for compatibility with console/dynamic_menus.c */
+
 /***********************************************************************
  * line editor
  **********************************************************************/
