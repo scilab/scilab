@@ -1,12 +1,11 @@
-// Mon Mar 19 10:52:10 CET 2001
+// lun jan 20 11:04:36 CET 2003
 
 //====================================================
-// ../man/arma/arma.man
+// ../man/eng/arma/arma.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/arma2p.man
+// ../man/eng/arma/arma2p.xml
 //====================================================
 clear;lines(0);
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
@@ -19,7 +18,7 @@ ar=armac(a,b,d,2,1,sig)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/armac.man
+// ../man/eng/arma/armac.xml
 //====================================================
 clear;lines(0);
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
@@ -32,7 +31,7 @@ ar=armac(a,b,d,2,1,sig)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/armax.man
+// ../man/eng/arma/armax.xml
 //====================================================
 clear;lines(0);
 //-Ex1- Arma model : y(t) = 0.2*u(t-1)+0.01*e(t-1)
@@ -63,22 +62,19 @@ Arma1est=armax(2,-1,y,[]);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/armax1.man
+// ../man/eng/arma/armax1.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/arsimul.man
+// ../man/eng/arma/arsimul.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/narsimul.man
+// ../man/eng/arma/narsimul.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/noisegen.man
+// ../man/eng/arma/noisegen.xml
 //====================================================
 clear;lines(0);
 noisegen(0.5,30,1.0);
@@ -88,12 +84,11 @@ plot(x,y);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/odedi.man
+// ../man/eng/arma/odedi.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/prbs_a.man
+// ../man/eng/arma/prbs_a.xml
 //====================================================
 clear;lines(0);
 u=prbs_a(50,10);
@@ -101,63 +96,11 @@ plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/arma/reglin.man
+// ../man/eng/arma/reglin.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/comm/Communications.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/CreateLink.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/DestroyLink.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/ExecAppli.man
-//====================================================
-clear;lines(0);
-h=unix_g("hostname")
-ExecAppli(SCI+"/bin/scilex",h,"Scilab2")
-CreateLink("SELF","Scilab2")
-ExecAppli(SCI+"/bin/scilex -ns",h,"Scilab3")
-DestroyLink("SELF","Scilab2")
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/ExecScilab.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/ExeclScilab.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/GetMsg.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/SendMsg.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/comm/WaitMsg.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/control/abcd.man
+// ../man/eng/control/abcd.xml
 //====================================================
 clear;lines(0);
 A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
@@ -174,7 +117,7 @@ c*a*b-C*A*B
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/abinv.man
+// ../man/eng/control/abinv.xml
 //====================================================
 clear;lines(0);
 nu=3;ny=4;nx=7;
@@ -231,7 +174,7 @@ spec(closed('A'))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/arhnk.man
+// ../man/eng/control/arhnk.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,1);C=rand(1,5);
@@ -242,7 +185,7 @@ slapprox=arhnk(sl,2);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/arl2.man
+// ../man/eng/control/arl2.xml
 //====================================================
 clear;lines(0);
 v=ones(1,20);
@@ -261,7 +204,7 @@ plot2d1('enn',0,ldiv(n(1),d(1),100),10,'000')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/balreal.man
+// ../man/eng/control/balreal.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
@@ -272,7 +215,7 @@ W0=clean(obs_gram(slb))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/bilin.man
+// ../man/eng/control/bilin.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');z=poly(0,'z');
@@ -283,12 +226,11 @@ clean(ss2tf(bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a]))-wtf)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/cainv.man
+// ../man/eng/control/cainv.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/calfrq.man
+// ../man/eng/control/calfrq.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -300,7 +242,7 @@ plot2d(real(rf)',imag(rf)')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/canon.man
+// ../man/eng/control/canon.xml
 //====================================================
 clear;lines(0);
 A=[1,2,3,4,5;
@@ -329,7 +271,7 @@ spec(A+B*F/U)   // F/U is the gain matrix in original basis.
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/cls2dls.man
+// ../man/eng/control/cls2dls.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');z=poly(0,'z');
@@ -341,12 +283,11 @@ sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/colregul.man
+// ../man/eng/control/colregul.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/cont_frm.man
+// ../man/eng/control/cont_frm.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');NUM=[1+s,s];den=s^2-5*s+1;
@@ -355,12 +296,11 @@ slss=ss2tf(sl);       //Compare with NUM/den
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/cont_mat.man
+// ../man/eng/control/cont_mat.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/contr.man
+// ../man/eng/control/contr.xml
 //====================================================
 clear;lines(0);
 W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
@@ -372,7 +312,7 @@ spec(A+B*rand(3,5))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/contrss.man
+// ../man/eng/control/contrss.xml
 //====================================================
 clear;lines(0);
 A=[1,1;0,2];B=[1;0];C=[1,1];sl=syslin('c',A,B,C);  //Non minimal
@@ -381,7 +321,7 @@ sl1=ss2tf(sl);sl2=ss2tf(slc);      //Compare sl1 and sl2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/csim.man
+// ../man/eng/control/csim.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');rand('seed',0);w=ssrand(1,1,3);w('A')=w('A')-2*eye();
@@ -404,7 +344,7 @@ xbasc();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ctr_gram.man
+// ../man/eng/control/ctr_gram.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2,-3]);B=rand(3,2);
@@ -414,12 +354,11 @@ Wc1=ctr_gram(A1,B1)    //Not invariant!
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/dbphi.man
+// ../man/eng/control/dbphi.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ddp.man
+// ../man/eng/control/ddp.xml
 //====================================================
 clear;lines(0);
 rand('seed',0);nx=6;nz=3;nu=2;ny=1;
@@ -447,7 +386,7 @@ ss2tf(closed)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/des2tf.man
+// ../man/eng/control/des2tf.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -458,7 +397,7 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/dscr.man
+// ../man/eng/control/dscr.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -467,7 +406,7 @@ ss2tf(dscr(tf2ss(Sys),0.1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/dsimul.man
+// ../man/eng/control/dsimul.xml
 //====================================================
 clear;lines(0);
 z=poly(0,'z');
@@ -480,7 +419,7 @@ x2=dsimul(sl,u);  //Step response
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/dt_ility.man
+// ../man/eng/control/dt_ility.xml
 //====================================================
 clear;lines(0);
 A=[2,1,1;0,-2,1;0,0,3];
@@ -493,7 +432,7 @@ W1("C")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/equil.man
+// ../man/eng/control/equil.xml
 //====================================================
 clear;lines(0);
 P=rand(4,4);P=P*P';
@@ -504,7 +443,7 @@ clean(inv(T)'*Q*inv(T))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/equil1.man
+// ../man/eng/control/equil1.xml
 //====================================================
 clear;lines(0);
 S1=rand(2,2);S1=S1*S1';
@@ -520,7 +459,7 @@ Q1=clean(inv(T)'*Q*inv(T))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/feedback.man
+// ../man/eng/control/feedback.xml
 //====================================================
 clear;lines(0);
 S1=ssrand(2,2,3);S2=ssrand(2,2,2);
@@ -538,7 +477,7 @@ ss2tf(S1*inv(eye()+S2*S1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/flts.man
+// ../man/eng/control/flts.xml
 //====================================================
 clear;lines(0);
 sl=syslin('d',1,1,1);u=1:10;
@@ -593,7 +532,7 @@ norm([yh1,yh2]-rh)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/frep2tf.man
+// ../man/eng/control/frep2tf.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -621,7 +560,7 @@ xbasc();plot2d1("onn",frq',abs([repf;rep2])');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/freq.man
+// ../man/eng/control/freq.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -635,7 +574,7 @@ freq(A,B,C,[0,0.9,1.1,2,3,10,20])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/freson.man
+// ../man/eng/control/freson.xml
 //====================================================
 clear;lines(0);
 h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
@@ -645,7 +584,7 @@ g=20*log(abs(repfreq(h,fr)))/log(10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/g_margin.man
+// ../man/eng/control/g_margin.xml
 //====================================================
 clear;lines(0);
 h=syslin('c',-1+%s,3+2*%s+%s^2)
@@ -655,7 +594,7 @@ nyquist(h-10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/gfrancis.man
+// ../man/eng/control/gfrancis.xml
 //====================================================
 clear;lines(0);
 Plant=ssrand(1,3,5);
@@ -672,7 +611,7 @@ norm(J*M-D,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/imrep2ss.man
+// ../man/eng/control/imrep2ss.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -691,12 +630,11 @@ H2=ss2tf(w);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/invsyslin.man
+// ../man/eng/control/invsyslin.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/kpure.man
+// ../man/eng/control/kpure.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -708,7 +646,7 @@ roots(denom(hf))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/krac2.man
+// ../man/eng/control/krac2.xml
 //====================================================
 clear;lines(0);
 h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
@@ -719,7 +657,7 @@ hf2=h/.g(2);roots(denom(hf2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/lin.man
+// ../man/eng/control/lin.xml
 //====================================================
 clear;lines(0);
 deff('[y,xdot]=sim(x,u)','xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)')
@@ -727,17 +665,55 @@ sl=lin(sim,1,2);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/lqe.man
+// ../man/eng/control/linmeq.xml
 //====================================================
+clear;lines(0);
+//(1a)
+n=40;m=30;
+A=rand(n,n);C=rand(n,m);B=rand(m,m);
+X = linmeq(1,A,B,C);
+norm(A*X+X*B-C,1)
+//(1b)
+flag=[1,0,0]
+X = linmeq(1,A,B,C,flag);
+norm(A*X*B+X-C,1)
+//(2a)
+A=rand(n,n);C=rand(A);C=C+C';
+X = linmeq(2,A,C);
+norm(A'*X + X*A -C,1)
+//(2b)
+X = linmeq(2,A,C,[1 0]);
+norm(A'*X*A -X-C,1)
+//(3a)
+A=rand(n,n);
+A=A-(max(real(spec(A)))+1)*eye(); //shift eigenvalues
+C=rand(A);
+X=linmeq(3,A,C);
+norm(A'*X'*X+X'*X*A +C'*C,1)
+//(3b)
+A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
+      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;     
+     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;     
+      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;      
+     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;   
+      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]    
+
+C=rand(A);
+X=linmeq(3,A,C,[1 0]);
+norm(A'*X'*X*A - X'*X +C'*C,1)
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/lqg.man
+// ../man/eng/control/lqe.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/lqg2stan.man
+// ../man/eng/control/lqg.xml
+//====================================================
+
+//====================================================
+// ../man/eng/control/lqg2stan.xml
 //====================================================
 clear;lines(0);
 ny=2;nu=3;nx=4;
@@ -752,13 +728,13 @@ lqg2stan(1/(s+2),eye(2,2),eye(2,2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/lqr.man
+// ../man/eng/control/lqr.xml
 //====================================================
 clear;lines(0);
 A=rand(2,2);B=rand(2,1);   //two states, one input
 Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
 Big=sysdiag(Q,R);    //Now we calculate C1 and D12
-[w,wp]=fullrf(Big);C1=w(:,1:2);D12=w(:,3);   //[C1,D12]'*[C1,D12]=Big
+[w,wp]=fullrf(Big);C1=wp(:,1:2);D12=wp(:,3:$);   //[C1,D12]'*[C1,D12]=Big
 P=syslin('c',A,B,C1,D12);    //The plant (continuous-time)
 [K,X]=lqr(P)
 spec(A+B*K)    //check stability
@@ -770,7 +746,7 @@ norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ltitr.man
+// ../man/eng/control/ltitr.xml
 //====================================================
 clear;lines(0);
 A=eye(2,2);B=[1;1];
@@ -783,7 +759,7 @@ x3=A*x2+B*u(3) //....
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/markp2ss.man
+// ../man/eng/control/markp2ss.xml
 //====================================================
 clear;lines(0);
 W=ssrand(2,3,4);   //random system with 2 outputs and 3 inputs
@@ -797,7 +773,7 @@ norm(markpar-Markpar,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/minreal.man
+// ../man/eng/control/minreal.xml
 //====================================================
 clear;lines(0);
 A=[-eye(2,2),rand(2,2);zeros(2,2),-2*eye(2,2)];
@@ -812,7 +788,7 @@ clean(obs_gram(slb))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/minss.man
+// ../man/eng/control/minss.xml
 //====================================================
 clear;lines(0);
 sl=syslin('c',[1 0;0 2],[1;0],[2 1]);
@@ -821,7 +797,7 @@ ssprint(minss(sl))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/obs_gram.man
+// ../man/eng/control/obs_gram.xml
 //====================================================
 clear;lines(0);
 A=-diag(1:3);C=rand(2,3);
@@ -833,7 +809,7 @@ norm(lyap(A,-C'*C,'d')-Go,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/obscont.man
+// ../man/eng/control/obscont.xml
 //====================================================
 clear;lines(0);
 ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
@@ -848,7 +824,7 @@ spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/observer.man
+// ../man/eng/control/observer.xml
 //====================================================
 clear;lines(0);
 nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
@@ -863,17 +839,15 @@ Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/obsv_mat.man
+// ../man/eng/control/obsv_mat.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/obsvss.man
+// ../man/eng/control/obsvss.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/p_margin.man
+// ../man/eng/control/p_margin.xml
 //====================================================
 clear;lines(0);
 h=syslin('c',-1+%s,3+2*%s+%s^2)
@@ -884,7 +858,7 @@ t=(0:0.1:2*%pi)';plot2d(sin(t),cos(t),-3,'000')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/pfss.man
+// ../man/eng/control/pfss.xml
 //====================================================
 clear;lines(0);
 W=ssrand(1,1,6);
@@ -894,7 +868,7 @@ clean(ss2tf(W)-W1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/phasemag.man
+// ../man/eng/control/phasemag.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -907,7 +881,7 @@ plot2d(frq',phasemag(rf,'m')');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ppol.man
+// ../man/eng/control/ppol.xml
 //====================================================
 clear;lines(0);
 A=rand(3,3);B=rand(3,2);
@@ -916,7 +890,7 @@ spec(A-B*F)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/projsl.man
+// ../man/eng/control/projsl.xml
 //====================================================
 clear;lines(0);
 rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
@@ -937,7 +911,7 @@ hankelsv(slr)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/repfreq.man
+// ../man/eng/control/repfreq.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2]);B=[1;1];C=[1,1];
@@ -957,7 +931,7 @@ repf(2)-x
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ricc.man
+// ../man/eng/control/ricc.xml
 //====================================================
 clear;lines(0);
 //Standard formulas to compute Riccati solutions
@@ -966,7 +940,7 @@ B=B*inv(R)*B';
 X=ricc(A,B,C,'cont');
 norm(A'*X+X*A-X*B*X+C,1)
 H=[A -B;-C -A'];
-[T,d]=gschur(eye(H),H,'cont');T=T(:,1:d);
+[T,d]=schur(eye(H),H,'cont');T=T(:,1:d);
 X1=T(4:6,:)/T(1:3,:);
 norm(X1-X,1)
 [T,d]=schur(H,'cont');T=T(:,1:d);
@@ -978,7 +952,7 @@ X=ricc(F,G,H,'disc');
 norm(F'*X*F-(F'*X*G1/(G2+G1'*X*G1))*(G1'*X*F)+H-X)
 H1=[eye(3,3) G;zeros(3,3) F'];
 H2=[F zeros(3,3);-H eye(3,3)];
-[T,d]=gschur(H2,H1,'disc');T=T(:,1:d);X1=T(4:6,:)/T(1:3,:);
+[T,d]=schur(H2,H1,'disc');T=T(:,1:d);X1=T(4:6,:)/T(1:3,:);
 norm(X1-X,1)
 Fi=inv(F);
 Hami=[Fi Fi*G;H*Fi F'+H*Fi*G];
@@ -990,7 +964,11 @@ norm(X2-X,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/rowregul.man
+// ../man/eng/control/riccsl.xml
+//====================================================
+
+//====================================================
+// ../man/eng/control/rowregul.xml
 //====================================================
 clear;lines(0);
 s=%s;
@@ -1002,7 +980,7 @@ clean(ss2tf(Stmp))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/rtitr.man
+// ../man/eng/control/rtitr.xml
 //====================================================
 clear;lines(0);
 z=poly(0,'z');
@@ -1064,17 +1042,15 @@ r=rtitr(num,den,u);norm(r3-r,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/sm2des.man
+// ../man/eng/control/sm2des.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/sm2ss.man
+// ../man/eng/control/sm2ss.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/specfact.man
+// ../man/eng/control/specfact.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
@@ -1090,7 +1066,7 @@ horner(Ws,-s)*Ws
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ss2des.man
+// ../man/eng/control/ss2des.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -1102,7 +1078,7 @@ Des1=des2ss(S1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ss2ss.man
+// ../man/eng/control/ss2ss.xml
 //====================================================
 clear;lines(0);
 Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
@@ -1138,7 +1114,7 @@ res=clean(ss2tf(sys2)-ss2tf(sys1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ss2tf.man
+// ../man/eng/control/ss2tf.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -1149,7 +1125,7 @@ h=clean(ss2tf(sl))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/st_ility.man
+// ../man/eng/control/st_ility.xml
 //====================================================
 clear;lines(0);
 A=diag([0.9,-2,3]);B=[0;0;1];Sl=syslin('c',A,B,[]);
@@ -1162,7 +1138,7 @@ U'*B
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/stabil.man
+// ../man/eng/control/stabil.xml
 //====================================================
 clear;lines(0);
 // Gain:
@@ -1180,7 +1156,7 @@ spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/svplot.man
+// ../man/eng/control/svplot.xml
 //====================================================
 clear;lines(0);
 x=logspace(-3,3);
@@ -1191,7 +1167,7 @@ xtitle("Singular values plot","(Rd/sec)", "Db");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/sysfact.man
+// ../man/eng/control/sysfact.xml
 //====================================================
 clear;lines(0);
 //Kalman filter
@@ -1207,12 +1183,11 @@ ss2tf(Sys*sysfact(Sys,F,'post')*U)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/syssize.man
+// ../man/eng/control/syssize.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/tf2ss.man
+// ../man/eng/control/tf2ss.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -1222,7 +1197,7 @@ clean(ss2tf(Sys))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/time_id.man
+// ../man/eng/control/time_id.xml
 //====================================================
 clear;lines(0);
 z=poly(0,'z');
@@ -1241,7 +1216,7 @@ H=time_id(3,u,rep)    //with u as input and too high order required
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/trzeros.man
+// ../man/eng/control/trzeros.xml
 //====================================================
 clear;lines(0);
 W1=ssrand(2,2,5);trzeros(W1)    //call trzeros
@@ -1254,7 +1229,7 @@ roots(St1(rowf,colf)), nt./dt     //By Kronecker form
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/ui_observer.man
+// ../man/eng/control/ui_observer.xml
 //====================================================
 clear;lines(0);
 A=diag([3,-3,7,4,-4,8]);
@@ -1283,7 +1258,7 @@ UIobs=ui_observer(Sys,1,C1,D1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/unobs.man
+// ../man/eng/control/unobs.xml
 //====================================================
 clear;lines(0);
 A=diag([1,2,3]);C=[1,0,0];
@@ -1291,79 +1266,66 @@ unobs(A,C)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/control/zeropen.man
+// ../man/eng/control/zeropen.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfbet.man
+// ../man/eng/dcd/cdfbet.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfbin.man
+// ../man/eng/dcd/cdfbin.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfchi.man
+// ../man/eng/dcd/cdfchi.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfchn.man
+// ../man/eng/dcd/cdfchn.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdff.man
+// ../man/eng/dcd/cdff.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdffnc.man
+// ../man/eng/dcd/cdffnc.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfgam.man
+// ../man/eng/dcd/cdfgam.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfnbn.man
+// ../man/eng/dcd/cdfnbn.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfnor.man
+// ../man/eng/dcd/cdfnor.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdfpoi.man
+// ../man/eng/dcd/cdfpoi.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/cdft.man
+// ../man/eng/dcd/cdft.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/dcd/grand.man
+// ../man/eng/dcd/grand.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/abs.man
+// ../man/eng/elementary/abs.xml
 //====================================================
 clear;lines(0);
 abs([1,%i,-1,-%i,1+%i])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/acos.man
+// ../man/eng/elementary/acos.xml
 //====================================================
 clear;lines(0);
 x=[1,%i,-1,-%i]
@@ -1371,7 +1333,7 @@ cos(acos(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/acosh.man
+// ../man/eng/elementary/acosh.xml
 //====================================================
 clear;lines(0);
 x=[0,1,%i];
@@ -1379,7 +1341,7 @@ cosh(acosh(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/acoshm.man
+// ../man/eng/elementary/acoshm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1389,7 +1351,7 @@ coshm(acoshm(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/acosm.man
+// ../man/eng/elementary/acosm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1397,7 +1359,7 @@ cosm(acosm(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/addf.man
+// ../man/eng/elementary/addf.xml
 //====================================================
 clear;lines(0);
 addf('0','1')
@@ -1407,7 +1369,7 @@ addf('1','2')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/adj2sp.man
+// ../man/eng/elementary/adj2sp.xml
 //====================================================
 clear;lines(0);
 A = sprand(100,50,.05);
@@ -1418,17 +1380,15 @@ A-p,
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/amell.man
+// ../man/eng/elementary/amell.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/and.man
+// ../man/eng/elementary/and.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/asin.man
+// ../man/eng/elementary/asin.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4]
@@ -1436,7 +1396,7 @@ sin(asin(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/asinh.man
+// ../man/eng/elementary/asinh.xml
 //====================================================
 clear;lines(0);
 A=[1,2;2,3]
@@ -1444,7 +1404,7 @@ sinh(asinh(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/asinhm.man
+// ../man/eng/elementary/asinhm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;2,3]
@@ -1452,7 +1412,7 @@ sinhm(asinhm(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/asinm.man
+// ../man/eng/elementary/asinm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4]
@@ -1461,15 +1421,11 @@ asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/atan.man
+// ../man/eng/elementary/atan.xml
 //====================================================
-clear;lines(0);
-x=[1,%i,-1,%i]
-phasex=atan(imag(x),real(x))
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/atanh.man
+// ../man/eng/elementary/atanh.xml
 //====================================================
 clear;lines(0);
 x=[0,%i,-%i]
@@ -1477,7 +1433,7 @@ tanh(atanh(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/atanhm.man
+// ../man/eng/elementary/atanhm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1485,14 +1441,14 @@ tanhm(atanhm(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/atanm.man
+// ../man/eng/elementary/atanm.xml
 //====================================================
 clear;lines(0);
 tanm(atanm([1,2;3,4]))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/besseli.man
+// ../man/eng/elementary/besseli.xml
 //====================================================
 clear;lines(0);
 besseli(0.5:3,1:4)
@@ -1500,7 +1456,7 @@ besseli(0.5:3,1:4,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/besselj.man
+// ../man/eng/elementary/besselj.xml
 //====================================================
 clear;lines(0);
 besselj(0.5:3,1:4)
@@ -1508,7 +1464,7 @@ besselj(0.5:3,1:4)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/besselk.man
+// ../man/eng/elementary/besselk.xml
 //====================================================
 clear;lines(0);
 besselk(0.5:3,1:4)
@@ -1516,14 +1472,14 @@ besselk(0.5:3,1:4,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/bessely.man
+// ../man/eng/elementary/bessely.xml
 //====================================================
 clear;lines(0);
 bessely(0.5:3,1:4)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/binomial.man
+// ../man/eng/elementary/binomial.xml
 //====================================================
 clear;lines(0);
 n=10;p=0.3;plot2d3(0:n,binomial(p,n));
@@ -1536,17 +1492,15 @@ plot2d(x,Gauss(x));
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/bloc2exp.man
+// ../man/eng/elementary/bloc2exp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/bloc2ss.man
+// ../man/eng/elementary/bloc2ss.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/calerf.man
+// ../man/eng/elementary/calerf.xml
 //====================================================
 clear;lines(0);
 deff('y=f(t)','y=exp(-t^2)');
@@ -1555,7 +1509,7 @@ calerf(1,0)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/ceil.man
+// ../man/eng/elementary/ceil.xml
 //====================================================
 clear;lines(0);
 ceil([1.9 -2.5])-[2,-2]
@@ -1564,12 +1518,11 @@ x=rand()*10^20;ceil(x)-x
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cmb_lin.man
+// ../man/eng/elementary/cmb_lin.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/conj.man
+// ../man/eng/elementary/conj.xml
 //====================================================
 clear;lines(0);
 x=[1+%i,-%i;%i,2*%i];
@@ -1578,7 +1531,7 @@ x'-conj(x)  //x'  is conjugate transpose
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cos.man
+// ../man/eng/elementary/cos.xml
 //====================================================
 clear;lines(0);
 x=[0,1,%i]
@@ -1586,7 +1539,7 @@ acos(cos(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cosh.man
+// ../man/eng/elementary/cosh.xml
 //====================================================
 clear;lines(0);
 x=[0,1,%i]
@@ -1594,7 +1547,7 @@ acosh(cosh(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/coshm.man
+// ../man/eng/elementary/coshm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;2,4]
@@ -1602,7 +1555,7 @@ acoshm(coshm(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cosm.man
+// ../man/eng/elementary/cosm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4]
@@ -1610,7 +1563,7 @@ cosm(A)-0.5*(expm(%i*A)+expm(-%i*A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cotg.man
+// ../man/eng/elementary/cotg.xml
 //====================================================
 clear;lines(0);
 x=[1,%i];
@@ -1618,7 +1571,7 @@ cotg(x)-cos(x)./sin(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/coth.man
+// ../man/eng/elementary/coth.xml
 //====================================================
 clear;lines(0);
 x=[1,2*%i]
@@ -1628,7 +1581,7 @@ coth(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cothm.man
+// ../man/eng/elementary/cothm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1636,7 +1589,7 @@ cothm(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cumprod.man
+// ../man/eng/elementary/cumprod.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1652,7 +1605,7 @@ for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/cumsum.man
+// ../man/eng/elementary/cumsum.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1667,7 +1620,7 @@ for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/delip.man
+// ../man/eng/elementary/delip.xml
 //====================================================
 clear;lines(0);
 ck=0.5;
@@ -1677,7 +1630,7 @@ intg(0,1,f)    //OK since real solution!
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/diag.man
+// ../man/eng/elementary/diag.xml
 //====================================================
 clear;lines(0);
 diag([1,2])
@@ -1693,7 +1646,29 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/dlgamma.man
+// ../man/eng/elementary/diff.xml
+//====================================================
+clear;lines(0);
+v=(1:8)^3;
+diff(v)
+diff(v,3)
+
+A=[(1:8)^2
+   (1:8)^3
+   (1:8)^4];
+
+diff(A,3,2)
+
+//approximate differentiation
+step=0.001
+t=0:step:10;
+y=sin(t);
+dy=diff(sin(t))/step; //approximate differentiation of sine function
+norm(dy-cos(t(1:$-1)),%inf)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/dlgamma.xml
 //====================================================
 clear;lines(0);
 dlgamma(0.5)
@@ -1701,7 +1676,7 @@ dlgamma(0.5)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/double.man
+// ../man/eng/elementary/double.xml
 //====================================================
 clear;lines(0);
 x=int8([0 12 140])
@@ -1709,7 +1684,11 @@ double(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/erf.man
+// ../man/eng/elementary/dsearch.xml
+//====================================================
+
+//====================================================
+// ../man/eng/elementary/erf.xml
 //====================================================
 clear;lines(0);
 deff('y=f(t)','y=exp(-t^2)');
@@ -1717,26 +1696,25 @@ erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/erfc.man
+// ../man/eng/elementary/erfc.xml
 //====================================================
 clear;lines(0);
 erf([0.5,0.2])+erfc([0.5,0.2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/erfcx.man
+// ../man/eng/elementary/erfcx.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/eval.man
+// ../man/eng/elementary/eval.xml
 //====================================================
 clear;lines(0);
 a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //returns the matrix [1,0.909];
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/eye.man
+// ../man/eng/elementary/eye.xml
 //====================================================
 clear;lines(0);
 eye(2,3)
@@ -1748,12 +1726,11 @@ A=ssrand(2,2,3);eye(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/fix.man
+// ../man/eng/elementary/fix.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/floor.man
+// ../man/eng/elementary/floor.xml
 //====================================================
 clear;lines(0);
 floor([1.9 -2.5])-[1,-3]
@@ -1762,14 +1739,14 @@ x=rand()*10^20;floor(x)-x
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/frexp.man
+// ../man/eng/elementary/frexp.xml
 //====================================================
 clear;lines(0);
 [f,e]=frexp([1,%pi,-3,%eps])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/full.man
+// ../man/eng/elementary/full.xml
 //====================================================
 clear;lines(0);
 sp=sparse([1,2;5,4;3,1],[1,2,3]);
@@ -1777,7 +1754,7 @@ A=full(sp)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/gamma.man
+// ../man/eng/elementary/gamma.xml
 //====================================================
 clear;lines(0);
 gamma(0.5)
@@ -1785,7 +1762,7 @@ gamma(6)-prod(1:5)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/gammaln.man
+// ../man/eng/elementary/gammaln.xml
 //====================================================
 clear;lines(0);
 gammaln(0.5)
@@ -1793,7 +1770,7 @@ gammaln(0.5)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/gsort.man
+// ../man/eng/elementary/gsort.xml
 //====================================================
 clear;lines(0);
 alr=[1,2,2;
@@ -1805,17 +1782,23 @@ alr=[1,2,2;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/imag.man
+// ../man/eng/elementary/imag.xml
 //====================================================
+
+//====================================================
+// ../man/eng/elementary/imult.xml
+//====================================================
+clear;lines(0);
+z1 = imult(%inf)
+z2 = %i * %inf
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/int.man
+// ../man/eng/elementary/int.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/int8.man
+// ../man/eng/elementary/int8.xml
 //====================================================
 clear;lines(0);
 int8([1 -120 127 312])
@@ -1826,7 +1809,7 @@ int8(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/integrate.man
+// ../man/eng/elementary/integrate.xml
 //====================================================
 clear;lines(0);
 integrate('sin(x)','x',0,%pi)
@@ -1835,12 +1818,11 @@ integrate(['if x==0 then 1,';
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/interp.man
+// ../man/eng/elementary/interp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/interpln.man
+// ../man/eng/elementary/interpln.xml
 //====================================================
 clear;lines(0);
 x=[1 10 20 30 40];
@@ -1851,7 +1833,7 @@ plot2d((-4:45)',yi',[3],"000");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/intersect.man
+// ../man/eng/elementary/intersect.xml
 //====================================================
 clear;lines(0);
 A=round(5*rand(10,1));
@@ -1865,7 +1847,7 @@ intersect('a'+string(A),'a'+string(B))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/intsplin.man
+// ../man/eng/elementary/intsplin.xml
 //====================================================
 clear;lines(0);
 t=0:0.1:%pi
@@ -1873,7 +1855,7 @@ intsplin(t,sin(t))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/inttrap.man
+// ../man/eng/elementary/inttrap.xml
 //====================================================
 clear;lines(0);
 t=0:0.1:%pi
@@ -1881,7 +1863,7 @@ inttrap(t,sin(t))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/isdef.man
+// ../man/eng/elementary/isdef.xml
 //====================================================
 clear;lines(0);
 A=1;
@@ -1891,21 +1873,25 @@ isdef('A')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/isinf.man
+// ../man/eng/elementary/isequal.xml
+//====================================================
+
+//====================================================
+// ../man/eng/elementary/isinf.xml
 //====================================================
 clear;lines(0);
 isinf([1 0.01 -%inf %inf])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/isnan.man
+// ../man/eng/elementary/isnan.xml
 //====================================================
 clear;lines(0);
 isnan([1 0.01 -%nan %inf-%inf])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/isreal.man
+// ../man/eng/elementary/isreal.xml
 //====================================================
 clear;lines(0);
 isreal([1 2])
@@ -1916,7 +1902,7 @@ isreal(sprand(3,3,0.1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/kron.man
+// ../man/eng/elementary/kron.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1928,7 +1914,7 @@ kron(A,A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/ldivf.man
+// ../man/eng/elementary/ldivf.xml
 //====================================================
 clear;lines(0);
 ldivf('1','1')
@@ -1938,7 +1924,7 @@ ldivf('2','4')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/lex_sort.man
+// ../man/eng/elementary/lex_sort.xml
 //====================================================
 clear;lines(0);
 M=round(2*rand(20,3));
@@ -1950,35 +1936,39 @@ lex_sort(M,'unique')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/linspace.man
+// ../man/eng/elementary/linspace.xml
 //====================================================
 clear;lines(0);
 linspace(1,2,10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/log.man
+// ../man/eng/elementary/log.xml
 //====================================================
 clear;lines(0);
 exp(log([1,%i,-1,-%i]))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/log10.man
+// ../man/eng/elementary/log10.xml
 //====================================================
 clear;lines(0);
 10.^log10([1,%i,-1,-%i])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/log2.man
+// ../man/eng/elementary/log1p.xml
+//====================================================
+
+//====================================================
+// ../man/eng/elementary/log2.xml
 //====================================================
 clear;lines(0);
 2.^log2([1,%i,-1,-%i])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/logm.man
+// ../man/eng/elementary/logm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -1992,14 +1982,24 @@ expm(logm(A1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/logspace.man
+// ../man/eng/elementary/logspace.xml
 //====================================================
 clear;lines(0);
 logspace(1,2,10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/max.man
+// ../man/eng/elementary/lstsize.xml
+//====================================================
+clear;lines(0);
+lstsize(list(1,'aqsdf'))
+x=ssrand(3,2,4);
+[ny,nu]=size(x)
+lstsize(x)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/max.xml
 //====================================================
 clear;lines(0);
 [m,n]=max([1,3,1])
@@ -2010,7 +2010,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/maxi.man
+// ../man/eng/elementary/maxi.xml
 //====================================================
 clear;lines(0);
 [m,n]=maxi([1,3,1])
@@ -2021,27 +2021,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/mean.man
-//====================================================
-clear;lines(0);
-A=[1,2,10;7,7.1,7.01];
-mean(A)
-mean(A,'r')
-mean(A,'c')
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/elementary/median.man
-//====================================================
-clear;lines(0);
-A=[1,2,10;7,7.1,7.01];
-median(A)
-median(A,'r')
-median(A,'c')
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/elementary/min.man
+// ../man/eng/elementary/min.xml
 //====================================================
 clear;lines(0);
 [m,n]=min([1,3,1])
@@ -2051,7 +2031,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/mini.man
+// ../man/eng/elementary/mini.xml
 //====================================================
 clear;lines(0);
 [m,n]=mini([1,3,1])
@@ -2061,7 +2041,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/minus.man
+// ../man/eng/elementary/minus.xml
 //====================================================
 clear;lines(0);
 [1,2]-1
@@ -2073,7 +2053,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/modulo.man
+// ../man/eng/elementary/modulo.xml
 //====================================================
 clear;lines(0);
 n=[1,2,10,15];m=[2,2,3,5];
@@ -2084,12 +2064,11 @@ pmodulo(-3,9)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/mps2linpro.man
+// ../man/eng/elementary/mps2linpro.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/mtlb_sparse.man
+// ../man/eng/elementary/mtlb_sparse.xml
 //====================================================
 clear;lines(0);
 X=sparse(rand(2,2)); Y=mtlb_sparse(X);
@@ -2097,7 +2076,7 @@ Y, full(Y), [ij,v,mn]=spget(Y)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/mulf.man
+// ../man/eng/elementary/mulf.xml
 //====================================================
 clear;lines(0);
 mulf('1','a')
@@ -2106,7 +2085,34 @@ mulf('0','a')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/nnz.man
+// ../man/eng/elementary/ndims.xml
+//====================================================
+clear;lines(0);
+A=rand(2,3);
+ndims(A)
+
+A=rand(2,3,2);
+size(A),ndims(A)
+
+H=[1/%s,1/(%s+1)]
+ndims(H)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/nearfloat.xml
+//====================================================
+
+//====================================================
+// ../man/eng/elementary/nextpow2.xml
+//====================================================
+clear;lines(0);
+nextpow2(127)
+nextpow2(128)
+nextpow2(0:10)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/nnz.xml
 //====================================================
 clear;lines(0);
 sp=sparse([1,2;4,5;3,10],[1,2,3]);
@@ -2116,7 +2122,7 @@ nnz(a)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/norm.man
+// ../man/eng/elementary/norm.xml
 //====================================================
 clear;lines(0);
 A=[1,2,3];
@@ -2131,14 +2137,22 @@ norm(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/not.man
+// ../man/eng/elementary/not.xml
 //====================================================
 clear;lines(0);
 ~[%t %t %f]
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/ones.man
+// ../man/eng/elementary/number_properties.xml
+//====================================================
+clear;lines(0);
+b = number_properties("radix")
+eps = number_properties("eps")
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/ones.xml
 //====================================================
 clear;lines(0);
 ones(3)
@@ -2147,7 +2161,7 @@ ones(2,3,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/or.man
+// ../man/eng/elementary/or.xml
 //====================================================
 clear;lines(0);
 or([%t %t %f])
@@ -2156,7 +2170,7 @@ or([%t %t %f])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/pen2ea.man
+// ../man/eng/elementary/pen2ea.xml
 //====================================================
 clear;lines(0);
 E=[1,0];A=[1,2];s=poly(0,'s');
@@ -2164,7 +2178,7 @@ E=[1,0];A=[1,2];s=poly(0,'s');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/pertrans.man
+// ../man/eng/elementary/pertrans.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4]
@@ -2172,7 +2186,7 @@ pertrans(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/prod.man
+// ../man/eng/elementary/prod.xml
 //====================================================
 clear;lines(0);
 A=[1,2;0,100];
@@ -2182,7 +2196,7 @@ prod(A,'r')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/rand.man
+// ../man/eng/elementary/rand.xml
 //====================================================
 clear;lines(0);
 x=rand(10,10,'uniform')
@@ -2193,7 +2207,7 @@ x=rand(2,2,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/rat.man
+// ../man/eng/elementary/rat.xml
 //====================================================
 clear;lines(0);
 [n,d]=rat(%pi)
@@ -2202,7 +2216,7 @@ n/d-%pi
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/rdivf.man
+// ../man/eng/elementary/rdivf.xml
 //====================================================
 clear;lines(0);
 ldivf('c','d')
@@ -2211,12 +2225,11 @@ ldivf('a','0')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/real.man
+// ../man/eng/elementary/real.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/round.man
+// ../man/eng/elementary/round.xml
 //====================================================
 clear;lines(0);
 round([1.9 -2.5])-[2,-3]
@@ -2226,7 +2239,7 @@ x=rand()*10^20;round(x)-x
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sign.man
+// ../man/eng/elementary/sign.xml
 //====================================================
 clear;lines(0);
 sign(rand(2,3))
@@ -2234,28 +2247,36 @@ sign(1+%i)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/signm.man
+// ../man/eng/elementary/signm.xml
 //====================================================
 clear;lines(0);
-A=rand(4,4);B=A+A';X=sign(B);spec(X)
+A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sin.man
+// ../man/eng/elementary/sin.xml
 //====================================================
 clear;lines(0);
 asin(sin([1,0,%i]))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sinh.man
+// ../man/eng/elementary/sinc.xml
+//====================================================
+clear;lines(0);
+x=linspace(-10,10,3000);
+plot2d(x,sinc(x))
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/elementary/sinh.xml
 //====================================================
 clear;lines(0);
 asinh(sinh([0,1,%i]))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sinhm.man
+// ../man/eng/elementary/sinhm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;2,3]
@@ -2264,7 +2285,7 @@ A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Complex case
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sinm.man
+// ../man/eng/elementary/sinm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;2,4];
@@ -2272,7 +2293,7 @@ sinm(A)+0.5*%i*(expm(%i*A)-expm(-%i*A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/size.man
+// ../man/eng/elementary/size.xml
 //====================================================
 clear;lines(0);
 [n,m]=size(rand(3,2))
@@ -2283,7 +2304,7 @@ x=ssrand(3,2,4);[ny,nu]=size(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/smooth.man
+// ../man/eng/elementary/smooth.xml
 //====================================================
 clear;lines(0);
 x=[1 10 20 30 40];
@@ -2294,7 +2315,7 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/solve.man
+// ../man/eng/elementary/solve.xml
 //====================================================
 clear;lines(0);
 A=['1','a';'0','2'];   //Upper triangular 
@@ -2306,7 +2327,7 @@ inv([1,1;0,2])*[2;5]
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sort.man
+// ../man/eng/elementary/sort.xml
 //====================================================
 clear;lines(0);
 [s,p]=sort(rand(1,10));
@@ -2321,7 +2342,7 @@ sort(v,'c')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sp2adj.man
+// ../man/eng/elementary/sp2adj.xml
 //====================================================
 clear;lines(0);
 A = sprand(100,50,.05);
@@ -2332,7 +2353,7 @@ A-p,
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sparse.man
+// ../man/eng/elementary/sparse.xml
 //====================================================
 clear;lines(0);
 sp=sparse([1,2;4,5;3,10],[1,2,3])
@@ -2341,7 +2362,7 @@ x=rand(2,2);abs(x)-full(abs(sparse(x)))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/spcompack.man
+// ../man/eng/elementary/spcompack.xml
 //====================================================
 clear;lines(0);
 // A is the sparse matrix:
@@ -2381,14 +2402,14 @@ adjncy -  spcompack(xadj,xlindx,lindx)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/speye.man
+// ../man/eng/elementary/speye.xml
 //====================================================
 clear;lines(0);
 eye(3,3)-full(speye(3,3))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/spget.man
+// ../man/eng/elementary/spget.xml
 //====================================================
 clear;lines(0);
 sp=sparse([1,2;4,5;3,10],[1,2,3])
@@ -2396,7 +2417,7 @@ sp=sparse([1,2;4,5;3,10],[1,2,3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/splin.man
+// ../man/eng/elementary/splin.xml
 //====================================================
 clear;lines(0);
 x=0:0.5:10;f=sin(x);
@@ -2407,7 +2428,7 @@ plot2d((0:0.1:10)',S',2,'000')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/spones.man
+// ../man/eng/elementary/spones.xml
 //====================================================
 clear;lines(0);
 A=sprand(10,12,0.1);
@@ -2417,21 +2438,21 @@ bool2s(B)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sprand.man
+// ../man/eng/elementary/sprand.xml
 //====================================================
 clear;lines(0);
 W=sprand(100,1000,0.001);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/spzeros.man
+// ../man/eng/elementary/spzeros.xml
 //====================================================
 clear;lines(0);
 sum(spzeros(1000,1000))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sqrt.man
+// ../man/eng/elementary/sqrt.xml
 //====================================================
 clear;lines(0);
 sqrt([2,4])
@@ -2439,7 +2460,7 @@ sqrt(-1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sqrtm.man
+// ../man/eng/elementary/sqrtm.xml
 //====================================================
 clear;lines(0);
 x=[0 1;2 4]
@@ -2450,7 +2471,7 @@ w=sqrtm(x);norm(w*w-x,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/squarewave.man
+// ../man/eng/elementary/squarewave.xml
 //====================================================
 clear;lines(0);
 t=(0:0.1:5*%pi)';
@@ -2458,7 +2479,7 @@ plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/ssprint.man
+// ../man/eng/elementary/ssprint.xml
 //====================================================
 clear;lines(0);
  a=[1 1;0 1];b=[0 1;1 0];c=[1,1];d=[3,2];
@@ -2467,7 +2488,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/ssrand.man
+// ../man/eng/elementary/ssrand.xml
 //====================================================
 clear;lines(0);
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
@@ -2485,17 +2506,7 @@ w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/st_deviation.man
-//====================================================
-clear;lines(0);
-A=[1,2,10;7,7.1,7.01];
-st_deviation(A)
-st_deviation(A,'r')
-st_deviation(A,'c')
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/elementary/subf.man
+// ../man/eng/elementary/subf.xml
 //====================================================
 clear;lines(0);
 subf('0','a')
@@ -2504,7 +2515,7 @@ subf('a','0')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sum.man
+// ../man/eng/elementary/sum.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -2518,7 +2529,7 @@ sum(M),sum(M,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sysconv.man
+// ../man/eng/elementary/sysconv.xml
 //====================================================
 clear;lines(0);
 s1=ssrand(1,1,2);
@@ -2527,7 +2538,7 @@ s2=ss2tf(s1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/sysdiag.man
+// ../man/eng/elementary/sysdiag.xml
 //====================================================
 clear;lines(0);
  s=poly(0,'s')
@@ -2540,7 +2551,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/syslin.man
+// ../man/eng/elementary/syslin.xml
 //====================================================
 clear;lines(0);
 A=[0,1;0,0];B=[1;1];C=[1,1];
@@ -2561,7 +2572,7 @@ size(S1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/tan.man
+// ../man/eng/elementary/tan.xml
 //====================================================
 clear;lines(0);
 x=[1,%i,-1,-%i]
@@ -2570,7 +2581,7 @@ sin(x)./cos(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/tanh.man
+// ../man/eng/elementary/tanh.xml
 //====================================================
 clear;lines(0);
 x=[1,%i,-1,-%i]
@@ -2579,12 +2590,11 @@ sinh(x)./cosh(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/tanhm.man
+// ../man/eng/elementary/tanhm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/tanm.man
+// ../man/eng/elementary/tanm.xml
 //====================================================
 clear;lines(0);
 A=[1,2;3,4];
@@ -2592,7 +2602,7 @@ tanm(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/toeplitz.man
+// ../man/eng/elementary/toeplitz.xml
 //====================================================
 clear;lines(0);
 A=toeplitz(1:5);
@@ -2610,12 +2620,11 @@ t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/trfmod.man
+// ../man/eng/elementary/trfmod.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/trianfml.man
+// ../man/eng/elementary/trianfml.xml
 //====================================================
 clear;lines(0);
 A=['1','2';'a','b']
@@ -2629,7 +2638,7 @@ evstr(W(:,1:2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/tril.man
+// ../man/eng/elementary/tril.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -2638,7 +2647,7 @@ tril([1/s,1/s;1/s,1])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/trisolve.man
+// ../man/eng/elementary/trisolve.xml
 //====================================================
 clear;lines(0);
 A=['x','y';'0','z'];b=['0';'1'];
@@ -2649,27 +2658,32 @@ inv(evstr(A))*evstr(b)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/triu.man
+// ../man/eng/elementary/triu.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/typeof.man
+// ../man/eng/elementary/typeof.xml
 //====================================================
 clear;lines(0);
 typeof(1)
 typeof(poly(0,'x'))
+
 typeof(1/poly(0,'x'))
 typeof(%t)
+
 w=sprand(100,100,0.001);
 typeof(w)
 typeof(w==w)
+
 deff('y=f(x)','y=2*x');
 typeof(f)
+
+L=tlist(['V','a','b'],18,'Scilab');
+typeof(L)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/union.man
+// ../man/eng/elementary/union.xml
 //====================================================
 clear;lines(0);
 A=round(5*rand(10,1));
@@ -2683,7 +2697,7 @@ union('a'+string(A),'b'+string(B))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/unique.man
+// ../man/eng/elementary/unique.xml
 //====================================================
 clear;lines(0);
 M=round(2*rand(20,1));
@@ -2697,7 +2711,7 @@ unique(string(M))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/elementary/zeros.man
+// ../man/eng/elementary/zeros.xml
 //====================================================
 clear;lines(0);
 zeros(3)
@@ -2706,12 +2720,11 @@ zeros(2,3,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/diary.man
+// ../man/eng/fileio/diary.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/disp.man
+// ../man/eng/fileio/disp.xml
 //====================================================
 clear;lines(0);
 disp([1 2],3)
@@ -2720,14 +2733,14 @@ disp(tlist('t',1,2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/dispfiles.man
+// ../man/eng/fileio/dispfiles.xml
 //====================================================
 clear;lines(0);
 dispfiles()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/file.man
+// ../man/eng/fileio/file.xml
 //====================================================
 clear;lines(0);
 u=file('open',TMPDIR+'/foo','unknown')
@@ -2745,7 +2758,7 @@ u2=mopen(TMPDIR+'/foo1','wb')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/fileinfo.man
+// ../man/eng/fileio/fileinfo.xml
 //====================================================
 clear;lines(0);
 w=fileinfo(SCI+'/scilab.star')
@@ -2754,7 +2767,7 @@ getdate(w(6))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/fprintf.man
+// ../man/eng/fileio/fprintf.xml
 //====================================================
 clear;lines(0);
 u=file('open','results','unknown') //open the result file
@@ -2766,7 +2779,7 @@ file('close',u) //close the result file
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/fprintfMat.man
+// ../man/eng/fileio/fprintfMat.xml
 //====================================================
 clear;lines(0);
 n=50;
@@ -2776,12 +2789,11 @@ a1=fscanfMat(TMPDIR+'/Mat');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/fscanf.man
+// ../man/eng/fileio/fscanf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/fscanfMat.man
+// ../man/eng/fileio/fscanfMat.xml
 //====================================================
 clear;lines(0);
 fd=mopen(TMPDIR+'/Mat','w');
@@ -2789,20 +2801,19 @@ mfprintf(fd,'Some text.....\n');
 mfprintf(fd,'Some text again\n');
 a=rand(6,6);
 for i=1:6 ,
-	for j=1:6, mfprintf(fd,'%5.2f ',a(i,j));end;
-	mfprintf(fd,'\n');	
+ for j=1:6, mfprintf(fd,'%5.2f ',a(i,j));end;
+ mfprintf(fd,'\n'); 
 end
 mclose(fd);
 a1=fscanfMat(TMPDIR+'/Mat')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/getio.man
+// ../man/eng/fileio/getio.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/input.man
+// ../man/eng/fileio/input.xml
 //====================================================
 clear;lines(0);
 //x=input("How many iterations?")
@@ -2810,12 +2821,19 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/lines.man
+// ../man/eng/fileio/isdir.xml
 //====================================================
+clear;lines(0);
+isdir(TMPDIR)
+isdir SCI/scilab.star
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/load.man
+// ../man/eng/fileio/lines.xml
+//====================================================
+
+//====================================================
+// ../man/eng/fileio/load.xml
 //====================================================
 clear;lines(0);
 a=eye(2,2);b=ones(a);
@@ -2826,57 +2844,78 @@ load('vals.dat','a','b');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/manedit.man
+// ../man/eng/fileio/loadmatfile.xml
+//====================================================
+
+//====================================================
+// ../man/eng/fileio/manedit.xml
 //====================================================
 clear;lines(0);
 //manedit('lqg')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mclearerr.man
+// ../man/eng/fileio/matfile2sci.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mclose.man
+// ../man/eng/fileio/mclearerr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/meof.man
+// ../man/eng/fileio/mclose.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mfscanf.man
+// ../man/eng/fileio/meof.xml
+//====================================================
+
+//====================================================
+// ../man/eng/fileio/mfscanf.xml
 //====================================================
 clear;lines(0);
 s='1 1.3'
 [n,a,b]=msscanf(s,"%i %e")
 msscanf(s,"%i %e")
 
-
 msscanf(" 12\n",'%c%c%c%c') //scan characters
 
 msscanf('0xabc','%x') //scan with hexadecimal format
-
 
 msscanf('012345abczoo','%[0-9abc]%s')  //[] notation
 
 //create a file with data
 u=mopen(TMPDIR+'/foo','w');
-t=0.5;mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
-t=0.6;mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
+t=(0:0.1:%pi)';mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
 mclose(u);
-//read the file
+
+//read the file line by line
 u=mopen(TMPDIR+'/foo','r');
 [n,a,b]=mfscanf(u,'%e %e')
 l=mfscanf(u,'%e %e')
 mclose(u);
+
+//use niter
+[n,Names,Ages]=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+D=msscanf(-1,["Alain 19";"Pierre 15";"Tom 12"],'%s %d')
+typeof(D)
+Names=D(:,1) //strings
+Age=D(:,2)  //numerical values
+
+
+u=mopen(TMPDIR+'/foo','w');
+mfprintf(u,"%s\n",["Alain 19";"Pierre 15";"Tom 12"])
+mclose(u);
+
+u=mopen(TMPDIR+'/foo','r');
+[n,Names,Ages]=mfscanf(2,u,'%s %d')
+mclose(u);
+
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mget.man
+// ../man/eng/fileio/mget.xml
 //====================================================
 clear;lines(0);
 file1 = 'test1.bin';
@@ -2897,12 +2936,12 @@ mclose(fd2);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mgetl.man
+// ../man/eng/fileio/mgetl.xml
 //====================================================
 clear;lines(0);
 mgetl('SCI/scilab.star',5)
 
-mgetl SCI/macros/elem/and.sci
+mgetl SCI/macros/elem/erf.sci
 
 fd=mopen('SCI/scilab.star','r')
 mgetl(fd,10)
@@ -2910,17 +2949,15 @@ mclose(fd)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mgetstr.man
+// ../man/eng/fileio/mgetstr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mopen.man
+// ../man/eng/fileio/mopen.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mprintf.man
+// ../man/eng/fileio/mprintf.xml
 //====================================================
 clear;lines(0);
 mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
@@ -2932,16 +2969,16 @@ A=rand(5,2);
 // vectorized forms: the format directive needs 
 // two operand, each column of A is used as an operand. 
 // and the mprintf function is applied on each row of A 
-mprintf('%5.3f\t%5.3f\\n',A)
+mprintf('%5.3f\t%5.3f\n',A)
 
 colors=['red';'green';'blue';'pink';'black'];
 RGB=[1 0 0;0 1 0;0 0 1;1 0.75 0.75;0 0 0];
-mprintf('%d\t%s\\t%f\\t%f\\t%f\\n',(1:5)',colors,RGB)
+mprintf('%d\t%s\t%f\t%f\t%f\n',(1:5)',colors,RGB)
 
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mput.man
+// ../man/eng/fileio/mput.xml
 //====================================================
 clear;lines(0);
   filen = 'test.bin';
@@ -2973,31 +3010,15 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mputl.man
+// ../man/eng/fileio/mputl.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mputstr.man
+// ../man/eng/fileio/mputstr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mscanf.man
-//====================================================
-clear;lines(0);
-[n,a1,a2]=msscanf('123 456','%i %s')
-[n,a1,a2,a3]=msscanf('123 456','%i %s')
-data=msscanf('123 456','%i %s')
-
-fd=mopen(SCI+'/scilab.star','r')
-mfscanf(fd,'%s %s %s')
-mclose(fd)
-
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/fileio/mseek.man
+// ../man/eng/fileio/mseek.xml
 //====================================================
 clear;lines(0);
 file3='test3.bin'
@@ -3022,12 +3043,11 @@ mclose(fd1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/mtell.man
+// ../man/eng/fileio/mtell.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/newest.man
+// ../man/eng/fileio/newest.xml
 //====================================================
 clear;lines(0);
 newest('SCI/macros/xdess/bode.sci','SCI/macros/xdess/bode.bin')
@@ -3035,7 +3055,7 @@ newest('SCI/macros/xdess/bode.'+['sci','bin'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/oldload.man
+// ../man/eng/fileio/oldload.xml
 //====================================================
 clear;lines(0);
 a=eye(2,2);b=ones(a);
@@ -3046,7 +3066,7 @@ oldload('TMPDIR/vals.dat','a','b');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/oldsave.man
+// ../man/eng/fileio/oldsave.xml
 //====================================================
 clear;lines(0);
 a=eye(2,2);b=ones(a);
@@ -3058,7 +3078,7 @@ oldload('TMPDIR/val.dat','a','b');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/print.man
+// ../man/eng/fileio/print.xml
 //====================================================
 clear;lines(0);
 a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
@@ -3067,19 +3087,18 @@ write(%io(2),a)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/printf.man
+// ../man/eng/fileio/printf.xml
 //====================================================
 clear;lines(0);
 printf('Result is:\nalpha=%f",0.535)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/printf_conversion.man
+// ../man/eng/fileio/printf_conversion.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/read.man
+// ../man/eng/fileio/read.xml
 //====================================================
 clear;lines(0);
 if MSDOS then unix('del foo');
@@ -3091,22 +3110,19 @@ read(%io(1),1,1,'(a)')  // waits for user's input
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/read4b.man
+// ../man/eng/fileio/read4b.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/readb.man
+// ../man/eng/fileio/readb.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/readc_.man
+// ../man/eng/fileio/readc_.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/readmps.man
+// ../man/eng/fileio/readmps.xml
 //====================================================
 clear;lines(0);
 
@@ -3154,7 +3170,7 @@ LP=mps2linpro(P)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/save.man
+// ../man/eng/fileio/save.xml
 //====================================================
 clear;lines(0);
 a=eye(2,2);b=ones(a);
@@ -3181,17 +3197,15 @@ mclose(fd)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/scanf.man
+// ../man/eng/fileio/scanf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/scanf_conversion.man
+// ../man/eng/fileio/scanf_conversion.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/sprintf.man
+// ../man/eng/fileio/sprintf.xml
 //====================================================
 clear;lines(0);
 fahr=120
@@ -3200,27 +3214,41 @@ sprintf('%3d Fahrenheit = %6.1f Celsius',fahr,(5/9)*(fahr-32))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/sscanf.man
+// ../man/eng/fileio/sscanf.xml
 //====================================================
+
+//====================================================
+// ../man/eng/fileio/startup.xml
+//====================================================
+
+//====================================================
+// ../man/eng/fileio/tk_getdir.xml
+//====================================================
+clear;lines(0);
+tk_getdir()
+tk_getdir('SCI/macros/xdess')
+tk_getdir(title='Choose a directory name ')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/startup.man
+// ../man/eng/fileio/tk_getfile.xml
 //====================================================
+clear;lines(0);
+tk_getfile()
+tk_getfile('*.sci','SCI/macros/xdess')
+tk_getfile(title='Choose a file name ')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/warning.man
+// ../man/eng/fileio/warning.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/writb.man
+// ../man/eng/fileio/writb.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/write.man
+// ../man/eng/fileio/write.xml
 //====================================================
 clear;lines(0);
 if MSDOS then unix('del asave');
@@ -3237,12 +3265,11 @@ write('foo',A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/write4b.man
+// ../man/eng/fileio/write4b.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/fileio/xgetfile.man
+// ../man/eng/fileio/xgetfile.xml
 //====================================================
 clear;lines(0);
 xgetfile()
@@ -3251,27 +3278,23 @@ xgetfile(title='Choose a file name ')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/addinter.man
+// ../man/eng/functions/addinter.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/argn.man
+// ../man/eng/functions/argn.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/clearfun.man
+// ../man/eng/functions/clearfun.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/comp.man
+// ../man/eng/functions/comp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/deff.man
+// ../man/eng/functions/deff.xml
 //====================================================
 clear;lines(0);
 deff('[x]=myplus(y,z)','x=y+z')
@@ -3280,7 +3303,7 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/delbpt.man
+// ../man/eng/functions/delbpt.xml
 //====================================================
 clear;lines(0);
 setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
@@ -3288,12 +3311,11 @@ delbpt('foo',1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/dispbpt.man
+// ../man/eng/functions/dispbpt.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/edit.man
+// ../man/eng/functions/edit.xml
 //====================================================
 clear;lines(0);
 //newedit=edit('edit')  //opens editor with text of this function
@@ -3301,7 +3323,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/funcprot.man
+// ../man/eng/functions/funcprot.xml
 //====================================================
 clear;lines(0);
 funcprot(1)
@@ -3315,7 +3337,7 @@ foo=33
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/function.man
+// ../man/eng/functions/function.xml
 //====================================================
 clear;lines(0);
 //inline definition (see function)
@@ -3348,7 +3370,7 @@ exec SCI/macros/elem/asin.sci;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/functions.man
+// ../man/eng/functions/functions.xml
 //====================================================
 clear;lines(0);
 //inline definition (see function)
@@ -3371,26 +3393,25 @@ getf SCI/macros/elem/asin.sci;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/genlib.man
+// ../man/eng/functions/genlib.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/get_function_path.man
+// ../man/eng/functions/get_function_path.xml
 //====================================================
 clear;lines(0);
 get_function_path('median')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/getd.man
+// ../man/eng/functions/getd.xml
 //====================================================
 clear;lines(0);
 getd('SCI/macros/auto')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/getf.man
+// ../man/eng/functions/getf.xml
 //====================================================
 clear;lines(0);
 getf('SCI/macros/xdess/plot.sci')
@@ -3399,22 +3420,61 @@ getf SCI/macros/xdess/plot.sci
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/lib.man
+// ../man/eng/functions/lib.xml
 //====================================================
+clear;lines(0);
+//define some variables
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+A=1:10;
+
+//create the *.bin files in libdir
+libdir=TMPDIR
+save(libdir + '/myplus.bin', myplus);
+save(libdir + '/yourplus.bin', yourplus);
+save(libdir + '/A.bin', A);
+
+//create the name file
+mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
+
+//build the library containing myplus and yourplus
+xlib = lib(libdir+'/')
+
+//erase the variables
+clear myplus yourplus A
+
+//Automatic loading and execution
+myplus(1,2)
+
+A
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/macr2lst.man
+// ../man/eng/functions/library.xml
 //====================================================
+clear;lines(0);
+// elemlib is a predefined library
+elemlib //displays the contents of the library
+A=rand(3,3);
+cosm(A) //loads cosm and executes it
+
+who // now cosm is a variable
+
+elemlib.sinm //loads sinm from the library
+
+elemlib.cosm(A) //reloads cosm and executes it
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/macro.man
+// ../man/eng/functions/macr2lst.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/macrovar.man
+// ../man/eng/functions/macro.xml
+//====================================================
+
+//====================================================
+// ../man/eng/functions/macrovar.xml
 //====================================================
 clear;lines(0);
 deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
@@ -3422,12 +3482,11 @@ vars=macrovar(f)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/newfun.man
+// ../man/eng/functions/newfun.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/plotprofile.man
+// ../man/eng/functions/plotprofile.xml
 //====================================================
 clear;lines(0);
 //define function and prepare it for profiling
@@ -3447,7 +3506,7 @@ plotprofile(foo) // click on Exit to exit
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/profile.man
+// ../man/eng/functions/profile.xml
 //====================================================
 clear;lines(0);
 //define function and prepare it for profiling
@@ -3470,12 +3529,11 @@ profile(foo) //execution profiles are cumulated
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/setbpt.man
+// ../man/eng/functions/setbpt.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/showprofile.man
+// ../man/eng/functions/showprofile.xml
 //====================================================
 clear;lines(0);
 //define function and prepare it for profiling
@@ -3495,7 +3553,7 @@ showprofile(foo)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/varargin.man
+// ../man/eng/functions/varargin.xml
 //====================================================
 clear;lines(0);
 deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
@@ -3508,7 +3566,7 @@ exampl(1,l(2:3))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/functions/varargout.man
+// ../man/eng/functions/varargout.xml
 //====================================================
 clear;lines(0);
 deff('varargout=exampl()','varargout=list(1,2,3,4)')
@@ -3519,12 +3577,11 @@ x=exampl()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/Graphics.man
+// ../man/eng/graphics/Graphics.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/Matplot.man
+// ../man/eng/graphics/Matplot.xml
 //====================================================
 clear;lines(0);
 Matplot([1 2 3;4 5 6])
@@ -3533,7 +3590,7 @@ Matplot((1:xget("lastpattern")))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/Matplot1.man
+// ../man/eng/graphics/Matplot1.xml
 //====================================================
 clear;lines(0);
 //--- first example
@@ -3569,7 +3626,7 @@ xbasc()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/Sfgrayplot.man
+// ../man/eng/graphics/Sfgrayplot.xml
 //====================================================
 clear;lines(0);
 t=-1:0.1:1;
@@ -3578,7 +3635,7 @@ Sfgrayplot(t,t,surf,"111",[-2,-2,2,2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/Sgrayplot.man
+// ../man/eng/graphics/Sgrayplot.xml
 //====================================================
 clear;lines(0);
 x=-10:10; y=-10:10;m =rand(21,21);
@@ -3589,17 +3646,45 @@ Sgrayplot(t,t,m)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/addcolor.man
+// ../man/eng/graphics/addcolor.xml
 //====================================================
+
+//====================================================
+// ../man/eng/graphics/alufunctions.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/arc_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xarc(-1.5,1.5,3,3,0,360*64)
+
+   p=a.children
+   p.fill_mode="on";
+   p.foreground=5;
+   p.data(3,:)=[0 90*64];
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/alufunctions.man
+// ../man/eng/graphics/axes_properties.xml
 //====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes")//get the handle of the newly created axes
+   a.axes_visible="on"; // makes the axes visible
+   a.tics_textsize=3; //set the tics label font size
+   a.x_location="top"; //set the x axis position
+   a.sub_tics=[0,5];
+   a.grid=3;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/black.man
+// ../man/eng/graphics/black.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -3613,7 +3698,7 @@ black([h1;h],0.01,100,['h1';'h'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/bode.man
+// ../man/eng/graphics/bode.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -3626,7 +3711,7 @@ bode([h1;h],0.01,100,['h1';'h'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/champ.man
+// ../man/eng/graphics/champ.xml
 //====================================================
 clear;lines(0);
 // using rect as plot boundaries 
@@ -3637,7 +3722,7 @@ champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/champ1.man
+// ../man/eng/graphics/champ1.xml
 //====================================================
 clear;lines(0);
 xset("use color",1)
@@ -3645,17 +3730,40 @@ champ1(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/chart.man
+// ../man/eng/graphics/champ_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-10,-10,10,10];
+   champ(-5:5,-5:5,rand(11,11),rand(11,11))
+
+   p=a.children
+
+   p.colored="on";
+   p.thickness=2;
+
+  
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/chart.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
 chart(list(1,0,2,3));
+
+xbasc()
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+black([h1;h],0.01,100,['h1';'h'])
+chart([-8 -6 -4],[80 120],list(1,0));
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/colormap.man
+// ../man/eng/graphics/colormap.xml
 //====================================================
 clear;lines(0);
 m=228;
@@ -3670,7 +3778,7 @@ xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/contour.man
+// ../man/eng/graphics/contour.xml
 //====================================================
 clear;lines(0);
 t=%pi*[-10:10]/10;
@@ -3684,7 +3792,7 @@ contour(t,t,z,10,flag=[0,1,0],ebox=rect)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/contour2d.man
+// ../man/eng/graphics/contour2d.xml
 //====================================================
 clear;lines(0);
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
@@ -3695,7 +3803,7 @@ contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/contour2di.man
+// ../man/eng/graphics/contour2di.xml
 //====================================================
 clear;lines(0);
 [xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
@@ -3710,14 +3818,41 @@ end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/contourf.man
+// ../man/eng/graphics/contourf.xml
 //====================================================
 clear;lines(0);
 contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/dragrect.man
+// ../man/eng/graphics/copy.xml
+//====================================================
+clear;lines(0);
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.axes
+
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/delete.xml
+//====================================================
+clear;lines(0);
+revoir l'interface dans matdes RHS...
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.axes
+  delete(a.children)
+  delete(a)
+  delete(h)
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/dragrect.xml
 //====================================================
 clear;lines(0);
 xsetech(frect=[0,0,100,100])
@@ -3726,7 +3861,22 @@ xrect(r)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/drawaxis.man
+// ../man/eng/graphics/draw.xml
+//====================================================
+clear;lines(0);
+revoir l'interface dans matdes VARTYPE(1°==1...
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.axes
+  draw (a.children)
+  delete(a)
+  delete(h)
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/drawaxis.xml
 //====================================================
 clear;lines(0);
 plot2d(1:10,1:10,1,"020")
@@ -3760,17 +3910,45 @@ drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,su
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/driver.man
+// ../man/eng/graphics/drawlater.xml
 //====================================================
+clear;lines(0);
+revoir l'interface dans matdes VARTYPE(1°==1...
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.axes
+  drawlater (a.children)
+  delete(a)
+  delete(h)
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/edit_curv.man
+// ../man/eng/graphics/drawnow.xml
 //====================================================
+clear;lines(0);
+revoir l'interface dans matdes VARTYPE(1°==1...
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  a=h.axes
+  drawnow(a.children)
+  delete(a)
+  delete(h)
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/errbar.man
+// ../man/eng/graphics/driver.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/edit_curv.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/errbar.xml
 //====================================================
 clear;lines(0);
 t=[0:0.1:2*%pi]';
@@ -3780,7 +3958,7 @@ errbar(x,y,0.05*ones(x),0.03*ones(x))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/eval3d.man
+// ../man/eng/graphics/eval3d.xml
 //====================================================
 clear;lines(0);
   x=-5:5;y=x;
@@ -3794,7 +3972,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/eval3dp.man
+// ../man/eng/graphics/eval3dp.xml
 //====================================================
 clear;lines(0);
 p1=linspace(0,2*%pi,10);
@@ -3802,12 +3980,12 @@ p2=linspace(0,2*%pi,10);
 deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
                             "y=p1.*cos(p1).*cos(p2)";..
                             "z=p1.*sin(p2)"])
-[x,y,z]=eval3dp(scp,p1,p2);
-plot3d(x,y,z)
+[Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+plot3d(Xf,Yf,Zf)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/evans.man
+// ../man/eng/graphics/evans.xml
 //====================================================
 clear;lines(0);
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
@@ -3826,12 +4004,11 @@ evans(n,d,80);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fac3d.man
+// ../man/eng/graphics/fac3d.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fchamp.man
+// ../man/eng/graphics/fchamp.xml
 //====================================================
 clear;lines(0);
 deff("[xdot] = derpol(t,x)",..
@@ -3846,7 +4023,7 @@ fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fcontour.man
+// ../man/eng/graphics/fcontour.xml
 //====================================================
 clear;lines(0);
 deff("[z]=surf(x,y)","z=sin(x)*cos(y)");
@@ -3858,7 +4035,7 @@ xbasc();fcontour(t,t,surf,10,ebox=[-4 4 -4 4 -1 1],zlev=-1,flag=[0 1 4])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fcontour2d.man
+// ../man/eng/graphics/fcontour2d.xml
 //====================================================
 clear;lines(0);
 deff('z=surf(x,y)','z=x^4-y^4')
@@ -3868,12 +4045,26 @@ fcontour2d(x,y,surf,10);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fec.man
+// ../man/eng/graphics/fec.xml
 //====================================================
+
+//====================================================
+// ../man/eng/graphics/fec_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+
+   x=-10:10; y=-10:10;m =rand(21,21);
+   Sgrayplot(x,y,m)
+   a=get("current_axes");
+   f=a.children.children(2)
+   f.data(:,3)=(1:size(f.data,1))'
+ 
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fgrayplot.man
+// ../man/eng/graphics/fgrayplot.xml
 //====================================================
 clear;lines(0);
 t=-1:0.1:1;
@@ -3882,7 +4073,20 @@ fgrayplot(t,t,surf,rect=[-2,-2,2,2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fplot2d.man
+// ../man/eng/graphics/figure_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   f=get("current_figure") //get the handle of the newly created figure
+   f.figure_position
+   f.figure_size=[200,200]
+   f.background=2
+
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/fplot2d.xml
 //====================================================
 clear;lines(0);
 deff("[y]=f(x)","y=sin(x)+cos(x)")
@@ -3893,7 +4097,7 @@ fplot2d(1:10,'parab')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fplot3d.man
+// ../man/eng/graphics/fplot3d.xml
 //====================================================
 clear;lines(0);
 deff('z=f(x,y)','z=x^4-y^4')
@@ -3902,7 +4106,7 @@ xbasc() ;fplot3d(x,y,f,alpha=5,theta=31)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/fplot3d1.man
+// ../man/eng/graphics/fplot3d1.xml
 //====================================================
 clear;lines(0);
 deff('z=f(x,y)','z=x^4-y^4')
@@ -3911,7 +4115,7 @@ xbasc() ;fplot3d1(x,y,f,alpha=5,theta=31)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/gainplot.man
+// ../man/eng/graphics/gainplot.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -3923,7 +4127,7 @@ gainplot([h1;h],0.01,100,['h1';'h'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/genfac3d.man
+// ../man/eng/graphics/genfac3d.xml
 //====================================================
 clear;lines(0);
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
@@ -3932,7 +4136,7 @@ plot3d(xx,yy,zz)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/geom3d.man
+// ../man/eng/graphics/geom3d.xml
 //====================================================
 clear;lines(0);
 deff("[z]=surf(x,y)","z=sin(x)*cos(y)")
@@ -3950,37 +4154,56 @@ xstring(x(1),y(1),"point (0,0,0)")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/getcolor.man
+// ../man/eng/graphics/get.xml
 //====================================================
+clear;lines(0);
+  // for graphics entities
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  get(h,"figure_size")
+  h.children.foreground
+
+  // for  User Interface objects
+
+   h=uicontrol('string', 'Button'); // Opens a window with a  button.
+   p=get(h,'position'); // get the geometric qspect of the button
+   disp('Button width: ' + string(p(3))); // print the width of the button
+   close(); // close figure
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/getfont.man
+// ../man/eng/graphics/getcolor.xml
 //====================================================
+
+//====================================================
+// ../man/eng/graphics/getfont.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/getlinestyle.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/getmark.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/getsymbol.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/glue.xml
+//====================================================
+clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/getlinestyle.man
+// ../man/eng/graphics/gr_menu.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/getmark.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/graphics/getsymbol.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/graphics/gr_menu.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/graphics/graduate.man
+// ../man/eng/graphics/graduate.xml
 //====================================================
 clear;lines(0);
   y=(0:0.33:145.78)';
@@ -3991,7 +4214,40 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/graycolormap.man
+// ../man/eng/graphics/graphics_entities.xml
+//====================================================
+clear;lines(0);
+  //Play this example line per line
+
+  set("figure_style","new") //create a figure in entity mode
+
+  //get the handle on the Figure entity and display its properties
+  f=get("current_figure") 
+  a=f.children // the handle on the Axes child
+  x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+  e=a.children //Agregation of 2 polylines
+
+  p1=e.children(1) //the last drawn polyline properties
+  p1.foreground=5  // change the polyline color
+  e.children.thickness=5 // change the thickness of the two polylines
+
+  delete(e.children(2))
+
+  move(e.children,[0,30]) //translate the polyline
+
+  a.axes_bounds=[0 0 0.5 0.5]; 
+
+  subplot(222) //create a new Axes entity
+  a1=f.children(1); //get its handle
+  copy(e.children,a1); //copy the polyline of the first plot in the new Axes
+  a1.data_bounds=[1 0 10 10]; //change the Axes bounds
+  a1.axes_visible='on'; //make them visible
+
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/graycolormap.xml
 //====================================================
 clear;lines(0);
 xset("colormap",graycolormap(32))
@@ -3999,7 +4255,7 @@ plot3d1()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/grayplot.man
+// ../man/eng/graphics/grayplot.xml
 //====================================================
 clear;lines(0);
 x=-10:10; y=-10:10;m =rand(21,21);
@@ -4010,7 +4266,32 @@ grayplot(t,t,m)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/graypolarplot.man
+// ../man/eng/graphics/grayplot_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+
+   m=5;n=7;
+   M=round(32*rand(m,n));
+   grayplot(1:m,1:n,M)
+
+   a=get("current_axes");
+   h=a.children
+
+   xbasc()
+   Matplot()
+   a=get("current_axes");
+   h=a.children;
+
+   m=5,n=7;
+   h.data=round(32*rand(m,n));
+   a.data_bounds=[0,n;0,m]+0.5;
+
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/graypolarplot.xml
 //====================================================
 clear;lines(0);
 
@@ -4022,17 +4303,15 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/hist3d.man
+// ../man/eng/graphics/hist3d.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/histplot.man
+// ../man/eng/graphics/histplot.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/hotcolormap.man
+// ../man/eng/graphics/hotcolormap.xml
 //====================================================
 clear;lines(0);
 xset("colormap",hotcolormap(32))
@@ -4040,7 +4319,7 @@ plot3d1()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/isoview.man
+// ../man/eng/graphics/isoview.xml
 //====================================================
 clear;lines(0);
 t=[0:0.1:2*%pi]';
@@ -4054,7 +4333,11 @@ plot2d(sin(t),cos(t),frameflag=4)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/legends.man
+// ../man/eng/graphics/legend_properties.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/legends.xml
 //====================================================
 clear;lines(0);
 t=0:0.1:2*%pi;
@@ -4066,12 +4349,30 @@ legends(["sin(t)";"cos(t)"],[[5;2],[3;4]])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/locate.man
+// ../man/eng/graphics/loadplots.xml
 //====================================================
+clear;lines(0);
+xbasc();plot2d([0 1.5 4]) //make a plot
+xsave(TMPDIR+'/foo.scg') //save it in a binary file
+
+rec=loadplots(TMPDIR+'/foo.scg'); //get the associated data structure
+//here rec(9) is the data structure associated with the plot2d instruction
+rec(9).x //the x vector
+rec(9).y //the y vector
+
+string(rec) //the scilab instructions producing the same plot
+
+mputl(string(rec),TMPDIR+'/foo.sce') //creates a script file
+xbasc();exec(TMPDIR+'/foo.sce',-1) //execute it to re-create the plot
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/m_circle.man
+// ../man/eng/graphics/locate.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/m_circle.xml
 //====================================================
 clear;lines(0);
 //Example 1 :
@@ -4087,7 +4388,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/milk_drop.man
+// ../man/eng/graphics/milk_drop.xml
 //====================================================
 clear;lines(0);
 x=-2:0.1:2; y=x;
@@ -4096,7 +4397,13 @@ plot3d(x,y,z)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/nf3d.man
+// ../man/eng/graphics/move.xml
+//====================================================
+clear;lines(0);
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/nf3d.xml
 //====================================================
 clear;lines(0);
 //A sphere...
@@ -4110,7 +4417,7 @@ z= sin(u)'*ones(v);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/nyquist.man
+// ../man/eng/graphics/nyquist.xml
 //====================================================
 clear;lines(0);
 xbasc();
@@ -4125,7 +4432,7 @@ xbasc();nyquist([h1;h])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/param3d.man
+// ../man/eng/graphics/param3d.xml
 //====================================================
 clear;lines(0);
 t=0:0.1:5*%pi;
@@ -4133,16 +4440,39 @@ param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/param3d1.man
+// ../man/eng/graphics/param3d1.xml
 //====================================================
 clear;lines(0);
 t=[0:0.1:5*%pi]';
 param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],..
-	 list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
+  list([t/10,sin(t)],[3,2]),35,45,"X@Y@Z",[2,3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/paramfplot2d.man
+// ../man/eng/graphics/param3d_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+
+   t=[0:0.1:5*%pi]';
+   param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+
+   h=get("hdl") //get handle on current entity (here the param3d)
+
+   h.rotation_angles=[30,70];
+   h.surface_color=[3 5];
+   h.flag=[1 1 0];
+   h.flag=[1,2,4];
+
+
+   h.flag=[2 5 4]; //boundaries given by data_bounds
+   h.data_bounds=[-1,-1,-1;1,1,2]       
+   
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/paramfplot2d.xml
 //====================================================
 clear;lines(0);
 deff('y=f(x,t)','y=t*sin(x)')
@@ -4151,7 +4481,23 @@ paramfplot2d(f,x,theta);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot.man
+// ../man/eng/graphics/patch_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xfpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5))
+   p=a.children
+   p.foreground=5;
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'] 
+
+
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/plot.xml
 //====================================================
 clear;lines(0);
 x=0:0.1:2*%pi;
@@ -4166,7 +4512,7 @@ plot([sin(x);cos(x)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot2d.man
+// ../man/eng/graphics/plot2d.xml
 //====================================================
 clear;lines(0);
 //simple plot
@@ -4214,7 +4560,7 @@ plot2d(x-4,sin(x),1,"185","sin(x)")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot2d1.man
+// ../man/eng/graphics/plot2d1.xml
 //====================================================
 clear;lines(0);
 // multiple plot without giving x
@@ -4229,7 +4575,7 @@ plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot2d2.man
+// ../man/eng/graphics/plot2d2.xml
 //====================================================
 clear;lines(0);
 // plots a step function of value i on the segment [i,i+1]
@@ -4242,7 +4588,7 @@ plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot2d3.man
+// ../man/eng/graphics/plot2d3.xml
 //====================================================
 clear;lines(0);
 // compare the following with plot2d1
@@ -4251,7 +4597,7 @@ plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot2d4.man
+// ../man/eng/graphics/plot2d4.xml
 //====================================================
 clear;lines(0);
 // compare the following with plot2d1
@@ -4260,7 +4606,7 @@ plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot3d.man
+// ../man/eng/graphics/plot3d.xml
 //====================================================
 clear;lines(0);
 // simple plot using z=f(x,y)
@@ -4297,7 +4643,7 @@ xbasc();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot3d1.man
+// ../man/eng/graphics/plot3d1.xml
 //====================================================
 clear;lines(0);
 // simple plot using z=f(x,y)
@@ -4327,7 +4673,7 @@ plot3d1(xx,yy,zz)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot3d2.man
+// ../man/eng/graphics/plot3d2.xml
 //====================================================
 clear;lines(0);
 u = linspace(-%pi/2,%pi/2,40);
@@ -4339,7 +4685,7 @@ plot3d2(X,Y,Z);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plot3d3.man
+// ../man/eng/graphics/plot3d3.xml
 //====================================================
 clear;lines(0);
 u = linspace(-%pi/2,%pi/2,40);
@@ -4351,7 +4697,7 @@ plot3d3(X,Y,Z);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plotframe.man
+// ../man/eng/graphics/plotframe.xml
 //====================================================
 clear;lines(0);
 x=[-0.3:0.8:27.3]';
@@ -4366,14 +4712,14 @@ plotframe(rect,tics,[%t,%t],..
 ["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
 plot2d(x,y,4,"000")
 plotframe(rect,tics,[%f,%t],..
-	["My plot without grids but with automatic bounds","x","y"],..
-	[0.5,0.5,0.5,0.5])
+ ["My plot without grids but with automatic bounds","x","y"],..
+ [0.5,0.5,0.5,0.5])
 plot2d(x,y,5,"000")
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/plzr.man
+// ../man/eng/graphics/plzr.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -4384,7 +4730,7 @@ plzr(h);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/polarplot.man
+// ../man/eng/graphics/polarplot.xml
 //====================================================
 clear;lines(0);
 t= 0:.01:2*%pi;
@@ -4395,12 +4741,50 @@ xbasc();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/printing.man
+// ../man/eng/graphics/polyline_properties.xml
 //====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes")//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",1)
+   p=a.children
+   p.foreground=5;
+   p.mark_style=9; //
+   p.mark_mode="off";
+   p.line_style=3;
+   d=p.data;d(1,:)=[0 0];p.data=d;
+
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'] 
+   p.polyline_style=3
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/replot.man
+// ../man/eng/graphics/printing.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/rectangle_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xrect(-1,1,2,2)
+
+   p=a.children
+   p.fill_mode="on";
+   p.foreground=5;
+   p.clip_box=[-1 1;1 1];
+   p.clip_state="off"
+   p.data(2,:)=[-1 1 1/2 1/2];    
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/replot.xml
 //====================================================
 clear;lines(0);
 x=[0:0.1:2*%pi]';
@@ -4409,7 +4793,7 @@ replot([-1,-1,10,2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/rotate.man
+// ../man/eng/graphics/rotate.xml
 //====================================================
 clear;lines(0);
 xsetech([0,0,1,1],[-1,-1,1,1])
@@ -4421,22 +4805,66 @@ end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/scaling.man
+// ../man/eng/graphics/rubberbox.xml
 //====================================================
+clear;lines(0);
+xsetech(frect=[0,0,100,100])
+[x,y]=xclick();r=rubberbox([x;y;30;10])
+xrect(r)
+r=rubberbox()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/sd2sci.man
+// ../man/eng/graphics/scaling.xml
 //====================================================
+
+//====================================================
+// ../man/eng/graphics/sd2sci.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/secto3d.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/segs_properties.xml
+//====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-10,-10,10,10];
+   x=2*%pi*(0:7)/8;
+   xv=[sin(x);9*sin(x)];
+   yv=[cos(x);9*cos(x)];
+   xsegs(xv,yv,1:8)
+
+   p=a.children
+
+
+   p.segs_color=9:16;
+   p.arrow_size=1;
+   p.segs_color=5; //set all the colors to 5
+
+   p.clip_box=[-4,4,8,8];
+   xrect(p.clip_box)
+   a.children(1).thickness=2;
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/secto3d.man
+// ../man/eng/graphics/set.xml
 //====================================================
+clear;lines(0);
+  set("figure_style","new") // select entity based graphics
+  t=1:10;plot2d(t,t.^2),
+  h=get("current_figure") //gets handle on the current figure
+  set(h,"figure_size",[300,200])
+  set(h,"background",addcolor([0.3,0.3,0.3]))
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/sgrid.man
+// ../man/eng/graphics/sgrid.xml
 //====================================================
 clear;lines(0);
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
@@ -4446,7 +4874,7 @@ sgrid(0.6,2,7)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/square.man
+// ../man/eng/graphics/square.xml
 //====================================================
 clear;lines(0);
 t=[0:0.1:2*%pi]';
@@ -4458,7 +4886,7 @@ xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/subplot.man
+// ../man/eng/graphics/subplot.xml
 //====================================================
 clear;lines(0);
 subplot(221)
@@ -4472,28 +4900,85 @@ hist3d()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/titlepage.man
+// ../man/eng/graphics/surface_properties.xml
 //====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+
+
+   t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');[xx,yy,zz]=genfac3d(t,t,z);
+   plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+
+   h=get("hdl") //get handle on current entity (here the surface)
+
+   h.rotation_angles=[30,70];
+   h.flag=[2 2 0];
+   h.flag=[2 2 4];
+
+   h.flag=[2 5 4]; //boundaries given by data_bounds
+   h.data_bounds=[-6,6;6,-0.9961646;0,4.997495];
+
+   //change the figure colormap
+   f=get("current_figure");f.color_map=hotcolormap(64); 
+   
+   h.color_flag=1; //color according to z
+   h.flag=[-2 5 4]; //remove the facets boundary 
+
+   h.color_flag=2; //color according to given colors
+   h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
+
+   f.color_map=hotcolormap(404); 
+   h.color_flag=3; //shaded 
+   c=[1:400,1:400];
+   h.surface_color=[c;c+1;c+2;c+3];
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/winsid.man
+// ../man/eng/graphics/text_properties.xml
 //====================================================
+clear;lines(0);
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[0,0,1,1];
+
+   xstring(0.5,0.5,"Scilab is not esilaB",0,1)
+
+   p=a.children
+
+   p.foreground=9;
+   p.font_size=3;
+
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xarc.man
+// ../man/eng/graphics/titlepage.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/unglue.xml
+//====================================================
+clear;lines(0);
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/graphics/winsid.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/xarc.xml
 //====================================================
 clear;lines(0);
 // isoview scaling 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
-xset("dashes",3)
+xset("color",3)
 xarc(-1,1,2,2,0,90*64)
 xarc(-1.5,1.5,3,3,0,360*64)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xarcs.man
+// ../man/eng/graphics/xarcs.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
@@ -4507,7 +4992,7 @@ xarcs(arcs,[1,2,3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xarrows.man
+// ../man/eng/graphics/xarrows.xml
 //====================================================
 clear;lines(0);
 x=2*%pi*(0:9)/8;
@@ -4520,7 +5005,7 @@ xset("clipoff")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xaxis.man
+// ../man/eng/graphics/xaxis.xml
 //====================================================
 clear;lines(0);
 x=[-%pi:0.1:%pi]';
@@ -4537,22 +5022,19 @@ xstring(-0.5,-1.05,"-1"); xstring(-0.35,0.95,"1")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xbasc.man
+// ../man/eng/graphics/xbasc.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xbasimp.man
+// ../man/eng/graphics/xbasimp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xbasr.man
+// ../man/eng/graphics/xbasr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xchange.man
+// ../man/eng/graphics/xchange.xml
 //====================================================
 clear;lines(0);
 t=[0:0.1:2*%pi]';
@@ -4562,7 +5044,7 @@ plot2d(t,sin(t))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xclea.man
+// ../man/eng/graphics/xclea.xml
 //====================================================
 clear;lines(0);
 x=[0:0.1:2*%pi]';
@@ -4571,17 +5053,15 @@ xclea(1,1,1,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xclear.man
+// ../man/eng/graphics/xclear.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xclick.man
+// ../man/eng/graphics/xclick.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xclip.man
+// ../man/eng/graphics/xclip.xml
 //====================================================
 clear;lines(0);
 x=0:0.2:2*%pi;
@@ -4605,12 +5085,11 @@ xclip()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xdel.man
+// ../man/eng/graphics/xdel.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xend.man
+// ../man/eng/graphics/xend.xml
 //====================================================
 clear;lines(0);
 driver("Pos")
@@ -4621,18 +5100,18 @@ driver("X11")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xfarc.man
+// ../man/eng/graphics/xfarc.xml
 //====================================================
 clear;lines(0);
 // isoview scaling 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xfarc(-0.5,0.5,1,1,0,90*64)
-xset("pattern",2)
+xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xfarcs.man
+// ../man/eng/graphics/xfarcs.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
@@ -4646,19 +5125,19 @@ xfarcs(arcs,[1,2,3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xfpoly.man
+// ../man/eng/graphics/xfpoly.xml
 //====================================================
 clear;lines(0);
 x=sin(2*%pi*(0:5)/5);
 y=cos(2*%pi*(0:5)/5);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("pattern",5)
+xset("color",5)
 xfpoly(x,y)
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xfpolys.man
+// ../man/eng/graphics/xfpolys.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,[-1],"012"," ",[0,-10,210,40])
@@ -4667,28 +5146,27 @@ y1=[15,30,30,15,0,0,15]';
 xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
 ypols=[y1 y1 y1 y1];
 // setting the current dash (or line color)
-xset("dashes",5)
+xset("color",5)
 xfpolys(xpols,ypols,[-1,0,1,2])
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xfrect.man
+// ../man/eng/graphics/xfrect.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("pattern",5)
+xset("color",5)
 xfrect(-1,1,2,2)
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xget.man
+// ../man/eng/graphics/xget.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xgetech.man
+// ../man/eng/graphics/xgetech.xml
 //====================================================
 clear;lines(0);
 // first subwindow 
@@ -4708,7 +5186,7 @@ xset('default')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xgetmouse.man
+// ../man/eng/graphics/xgetmouse.xml
 //====================================================
 clear;lines(0);
 xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
@@ -4726,14 +5204,14 @@ xset("alufunction",3)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xgraduate.man
+// ../man/eng/graphics/xgraduate.xml
 //====================================================
 clear;lines(0);
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xgrid.man
+// ../man/eng/graphics/xgrid.xml
 //====================================================
 clear;lines(0);
 x=[0:0.1:2*%pi]';
@@ -4742,12 +5220,11 @@ xgrid(2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xinfo.man
+// ../man/eng/graphics/xinfo.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xinit.man
+// ../man/eng/graphics/xinit.xml
 //====================================================
 clear;lines(0);
 driver("Pos")
@@ -4758,22 +5235,19 @@ driver("X11")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xlfont.man
+// ../man/eng/graphics/xlfont.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xload.man
+// ../man/eng/graphics/xload.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xname.man
+// ../man/eng/graphics/xname.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xnumb.man
+// ../man/eng/graphics/xnumb.xml
 //====================================================
 clear;lines(0);
 plot2d([-100,500],[-100,600],[-1,-1],"022")
@@ -4782,45 +5256,44 @@ xnumb(x,500*ones(x),[10,20,35],1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xpause.man
+// ../man/eng/graphics/xpause.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xpoly.man
+// ../man/eng/graphics/xpoly.xml
 //====================================================
 clear;lines(0);
 x=sin(2*%pi*(0:5)/5);
 y=cos(2*%pi*(0:5)/5);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("dashes",5)
+xset("color",5)
 xpoly(x,y,"lines",1)
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xpolys.man
+// ../man/eng/graphics/xpolys.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
-xset("pattern",3)
+xset("color",3)
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xrect.man
+// ../man/eng/graphics/xrect.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("pattern",5)
+xset("color",5)
 xrect(-1,1,2,2)
 xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xrects.man
+// ../man/eng/graphics/xrects.xml
 //====================================================
 clear;lines(0);
 plot2d([-100,500],[-50,50],[-1,-1],"022")
@@ -4832,7 +5305,7 @@ xnumb(x,15*ones(x),cols)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xrpoly.man
+// ../man/eng/graphics/xrpoly.xml
 //====================================================
 clear;lines(0);
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
@@ -4840,17 +5313,19 @@ xrpoly([5,5],5,5)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xs2fig.man
+// ../man/eng/graphics/xs2fig.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xsave.man
+// ../man/eng/graphics/xs2gif.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xsegs.man
+// ../man/eng/graphics/xsave.xml
+//====================================================
+
+//====================================================
+// ../man/eng/graphics/xsegs.xml
 //====================================================
 clear;lines(0);
 x=2*%pi*(0:9)/8;
@@ -4861,17 +5336,15 @@ xsegs(xv,yv,1:10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xselect.man
+// ../man/eng/graphics/xselect.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xset.man
+// ../man/eng/graphics/xset.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xsetech.man
+// ../man/eng/graphics/xsetech.xml
 //====================================================
 clear;lines(0);
 // To get a graphical explanation of xsetech parameters enter:
@@ -4912,12 +5385,11 @@ xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xsetm.man
+// ../man/eng/graphics/xsetm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xstring.man
+// ../man/eng/graphics/xstring.xml
 //====================================================
 clear;lines(0);
 plot2d([0;1],[0;1],0)
@@ -4941,7 +5413,7 @@ xset("default")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xstringb.man
+// ../man/eng/graphics/xstringb.xml
 //====================================================
 clear;lines(0);
 str=["Scilab" "is";"not" "elisaB"];
@@ -4958,7 +5430,7 @@ xstringb(r(1),r(2),str,r(3),r(4),"fill");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xstringl.man
+// ../man/eng/graphics/xstringl.xml
 //====================================================
 clear;lines(0);
 plot2d([0;1],[0;1],0)
@@ -4969,22 +5441,19 @@ xstring(r(1),r(2),str)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xtape.man
+// ../man/eng/graphics/xtape.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/xtitle.man
+// ../man/eng/graphics/xtitle.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/graphics/zgrid.man
+// ../man/eng/graphics/zgrid.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/addmenu.man
+// ../man/eng/gui/addmenu.xml
 //====================================================
 clear;lines(0);
 addmenu('foo')
@@ -5001,30 +5470,27 @@ French_Bye='disp(''Au revoir'')'
 
 //C defined Callback
 // creating Callback code
-code=[
- '#include ""'+SCI+'/routines/machine.h""'
- 'void C2F(foo)(name,win,entry)'
- '     char *name;'
- '     int * win,*entry;'
+code=[ '#include ""machine.h""'
+ 'void foo(char *name,int *win,int *entry)'
  '{'
  '  if (*win==-1) '
- '    sciprint(""menu %s(%i) in Scilab window selected\r\\n"",name,*entry+1);'
+ '    sciprint(""menu %s(%i) in Scilab window selected\r\n"",name,*entry+1);'
  '  else'
- '    sciprint(""menu %s(%i) in window %i selected\r\\n"",name,*entry+1,*win);'
- '}']
+ '    sciprint(""menu %s(%i) in window %i selected\r\n"",name,*entry+1,*win);'
+ '}'];
 //creating foo.c file
+dir=getcwd(); chdir(TMPDIR)
 mputl(code,TMPDIR+'/foo.c');
 //reating Makefile
-ilib_gen_Make('foo','foo','',TMPDIR+'/Makefile',%f)
-// Compiling and linking
-link(ilib_compile('foo',TMPDIR+'/Makefile'),'foo')
+ilib_for_link('foo','foo.o',[],'c');
+exec('loader.sce');
+chdir(dir);
 //add menu
 addmenu('foo',['a','b','c'],list(1,'foo'))
-
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/delmenu.man
+// ../man/eng/gui/delmenu.xml
 //====================================================
 clear;lines(0);
 addmenu('foo')
@@ -5032,7 +5498,7 @@ delmenu('foo')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/getvalue.man
+// ../man/eng/gui/getvalue.xml
 //====================================================
 clear;lines(0);
 labels=["magnitude";"frequency";"phase    "];
@@ -5041,22 +5507,35 @@ labels=["magnitude";"frequency";"phase    "];
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/halt.man
+// ../man/eng/gui/halt.xml
 //====================================================
+
+//====================================================
+// ../man/eng/gui/havewindow.xml
+//====================================================
+
+//====================================================
+// ../man/eng/gui/keyboard.xml
+//====================================================
+
+//====================================================
+// ../man/eng/gui/seteventhandler.xml
+//====================================================
+clear;lines(0);
+   function my_eventhandler(win,x,y,ibut)
+       if ibut==-1 then 
+         [x,y]=xchange(x,y,'i2f')
+         xinfo('Mouse position is ('+string(x)+','+string(y)+')')
+       end
+   endfunction
+   plot2d()
+   seteventhandler('my_eventhandler')
+   //now move the mouse over the graphic window/
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/havewindow.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/gui/keyboard.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/gui/setmenu.man
+// ../man/eng/gui/setmenu.xml
 //====================================================
 clear;lines(0);
 addmenu('foo')   //New button made in main scilab window
@@ -5065,7 +5544,7 @@ setmenu('foo')     //button foo can be activated (black string)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/unsetmenu.man
+// ../man/eng/gui/unsetmenu.xml
 //====================================================
 clear;lines(0);
 //addmenu('foo')
@@ -5074,7 +5553,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_choices.man
+// ../man/eng/gui/x_choices.xml
 //====================================================
 clear;lines(0);
 l1=list('choice 1',1,['toggle c1','toggle c2','toggle c3']);
@@ -5084,7 +5563,7 @@ rep=x_choices('Toggle Menu',list(l1,l2,l3));
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_choose.man
+// ../man/eng/gui/x_choose.xml
 //====================================================
 clear;lines(0);
 n=x_choose(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
@@ -5092,23 +5571,23 @@ n=x_choose(['item1';'item2';'item3'],['that is a comment'],'Return')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_dialog.man
+// ../man/eng/gui/x_dialog.xml
 //====================================================
 clear;lines(0);
-//gain=evstr(x_dialog('value of gain ?','0.235'))
-//x_dialog(['Method';'enter sampling period'],'1')
-//m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))
+gain=evstr(x_dialog('value of gain ?','0.235'))
+x_dialog(['Method';'enter sampling period'],'1')
+m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_matrix.man
+// ../man/eng/gui/x_matrix.xml
 //====================================================
 clear;lines(0);
 //m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_mdialog.man
+// ../man/eng/gui/x_mdialog.xml
 //====================================================
 clear;lines(0);
  txt=['magnitude';'frequency';'phase    '];
@@ -5129,7 +5608,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_message.man
+// ../man/eng/gui/x_message.xml
 //====================================================
 clear;lines(0);
  gain=0.235;x_message('value of gain is :'+string(gain))
@@ -5140,7 +5619,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/gui/x_message_modeless.man
+// ../man/eng/gui/x_message_modeless.xml
 //====================================================
 clear;lines(0);
  x_message_modeless(['This is a modeless message'
@@ -5151,7 +5630,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/aff2ab.man
+// ../man/eng/linear/aff2ab.xml
 //====================================================
 clear;lines(0);
 // Lyapunov equation solver (one unknown variable, one constraint)
@@ -5191,7 +5670,7 @@ C=Xsol(:); A*C-C*A
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/balanc.man
+// ../man/eng/linear/balanc.xml
 //====================================================
 clear;lines(0);
 A=[1/2^10,1/2^10;2^10,2^10];
@@ -5201,7 +5680,7 @@ norm(Ab(1,:))/norm(Ab(2,:))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/bdiag.man
+// ../man/eng/linear/bdiag.xml
 //====================================================
 clear;lines(0);
 //Real case: 1x1 and 2x2 blocks
@@ -5211,12 +5690,11 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/chfact.man
+// ../man/eng/linear/chfact.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/chol.man
+// ../man/eng/linear/chol.xml
 //====================================================
 clear;lines(0);
 W=rand(5,5)+%i*rand(5,5);
@@ -5226,7 +5704,7 @@ norm(R'*R-X)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/chsolve.man
+// ../man/eng/linear/chsolve.xml
 //====================================================
 clear;lines(0);
 A=sprand(20,20,0.1);
@@ -5238,7 +5716,7 @@ chsolve(spcho,rhs)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/classmarkov.man
+// ../man/eng/linear/classmarkov.xml
 //====================================================
 clear;lines(0);
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
@@ -5248,7 +5726,7 @@ P(perm,perm)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/coff.man
+// ../man/eng/linear/coff.xml
 //====================================================
 clear;lines(0);
 M=[1,2;0,3];
@@ -5258,7 +5736,7 @@ inv(%s*eye()-M)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/colcomp.man
+// ../man/eng/linear/colcomp.xml
 //====================================================
 clear;lines(0);
 A=rand(5,2)*rand(2,5);
@@ -5267,7 +5745,7 @@ norm(A*X(:,1:$-r),1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/companion.man
+// ../man/eng/linear/companion.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -5278,7 +5756,7 @@ spec(companion(p))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/cond.man
+// ../man/eng/linear/cond.xml
 //====================================================
 clear;lines(0);
 A=testmatrix('hilb',6);
@@ -5286,7 +5764,7 @@ cond(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/det.man
+// ../man/eng/linear/det.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -5297,7 +5775,7 @@ det(A), prod(spec(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/eigenmarkov.man
+// ../man/eng/linear/eigenmarkov.xml
 //====================================================
 clear;lines(0);
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
@@ -5308,7 +5786,7 @@ Q*M-P^20
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/ereduc.man
+// ../man/eng/linear/ereduc.xml
 //====================================================
 clear;lines(0);
 X=[1 2 3;4 5 6]
@@ -5316,7 +5794,7 @@ X=[1 2 3;4 5 6]
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/exp.man
+// ../man/eng/linear/exp.xml
 //====================================================
 clear;lines(0);
 x=[1,2,3+%i];
@@ -5327,7 +5805,7 @@ exp(x*log(2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/expm.man
+// ../man/eng/linear/expm.xml
 //====================================================
 clear;lines(0);
 X=[1 2;3 4]
@@ -5336,12 +5814,11 @@ logm(expm(X))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/fstair.man
+// ../man/eng/linear/fstair.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/fullrf.man
+// ../man/eng/linear/fullrf.xml
 //====================================================
 clear;lines(0);
 A=rand(5,2)*rand(2,5);
@@ -5352,7 +5829,7 @@ svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/fullrfk.man
+// ../man/eng/linear/fullrfk.xml
 //====================================================
 clear;lines(0);
 A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
@@ -5360,7 +5837,7 @@ norm(Bk*Ck-A^3,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/genmarkov.man
+// ../man/eng/linear/genmarkov.xml
 //====================================================
 clear;lines(0);
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
@@ -5370,7 +5847,7 @@ P(perm,perm)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/givens.man
+// ../man/eng/linear/givens.xml
 //====================================================
 clear;lines(0);
 A=[3,4;5,6];
@@ -5379,7 +5856,7 @@ U*A
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/glever.man
+// ../man/eng/linear/glever.xml
 //====================================================
 clear;lines(0);
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
@@ -5388,40 +5865,15 @@ inv(F)-((Bfs/chis) - Bis)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/gschur.man
+// ../man/eng/linear/gschur.xml
 //====================================================
-clear;lines(0);
-s=%s;
-F=[-1,s,0,0;0,-1,0,0;0,0,2+s,0;0,0,0,-2+s];
-roots(det(F))
-[E,A]=pen2ea(F);
-[As,Es,Z,dim] = gschur(A,E,'c')
-// Other example
-a=rand(4,4);b=rand(4,4);[as,bs,qs,zs]=gschur(a,b);
-norm(qs*a*zs-as)
-norm(qs*b*zs-bs )
-clear a;
-a(8,8)=2;a(1,8)=1;a(2,[2,3,4,5])=[0.3,0.2,4,6];a(3,[2,3])=[-0.2,.3];
-a(3,7)=.5;
-a(4,4)=.5;a(4,6)=2;a(5,5)=1;a(6,6)=4;a(6,7)=2.5;a(7,6)=-10;a(7,7)=4;
-b=eye(8,8);b(5,5)=0;
-[al,be]=gspec(a,b);
-[bs,as,q,n]=gschur(b,a,'disc');n-4
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/gspec.man
+// ../man/eng/linear/gspec.xml
 //====================================================
-clear;lines(0);
-A=rand(3,3);
-[al,be,Z] = gspec(A,eye(A));al./be
-clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
-A=A+%i*rand(A);E=rand(A);
-roots(det(%s*E-A))   //complex case
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/hess.man
+// ../man/eng/linear/hess.xml
 //====================================================
 clear;lines(0);
 A=rand(3,3);[U,H]=hess(A);
@@ -5429,12 +5881,11 @@ and( abs(U*H*U'-A)<1.d-10 )
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/householder.man
+// ../man/eng/linear/householder.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/im_inv.man
+// ../man/eng/linear/im_inv.xml
 //====================================================
 clear;lines(0);
 A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
@@ -5445,7 +5896,7 @@ svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/inv.man
+// ../man/eng/linear/inv.xml
 //====================================================
 clear;lines(0);
 A=rand(3,3);inv(A)*A
@@ -5462,7 +5913,7 @@ clean(ss2tf(W))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/kernel.man
+// ../man/eng/linear/kernel.xml
 //====================================================
 clear;lines(0);
 A=rand(3,1)*rand(1,3);
@@ -5472,7 +5923,7 @@ clean(A*kernel(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/kroneck.man
+// ../man/eng/linear/kroneck.xml
 //====================================================
 clear;lines(0);
 F=randpencil([1,1,2],[2,3],[-1,3,1],[0,3]);
@@ -5490,7 +5941,11 @@ numbeta
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/linsolve.man
+// ../man/eng/linear/linmeq.xml
+//====================================================
+
+//====================================================
+// ../man/eng/linear/linsolve.xml
 //====================================================
 clear;lines(0);
 A=rand(5,3)*rand(3,8);
@@ -5500,17 +5955,19 @@ A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x is unique
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/lu.man
+// ../man/eng/linear/lsq.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/ludel.man
+// ../man/eng/linear/lu.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/lufact.man
+// ../man/eng/linear/ludel.xml
+//====================================================
+
+//====================================================
+// ../man/eng/linear/lufact.xml
 //====================================================
 clear;lines(0);
 a=rand(5,5);b=rand(5,1);A=sparse(a);
@@ -5520,18 +5977,18 @@ ludel(h)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/luget.man
+// ../man/eng/linear/luget.xml
 //====================================================
 clear;lines(0);
 a=rand(5,2)*rand(2,5);A=sparse(a);
-[ptr,rk]=lufact(A);[P,L,U,Q]=luget(ptr);
+[hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
 full(L), P*L*U*Q-A
 clean(P*L*U*Q-A)
-ludel(ptr)
+ludel(hand)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/lusolve.man
+// ../man/eng/linear/lusolve.xml
 //====================================================
 clear;lines(0);
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
@@ -5548,7 +6005,7 @@ sp*x
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/lyap.man
+// ../man/eng/linear/lyap.xml
 //====================================================
 clear;lines(0);
 A=rand(4,4);C=rand(A);C=C+C';
@@ -5559,7 +6016,7 @@ A'*X*A - X -C
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/nlev.man
+// ../man/eng/linear/nlev.xml
 //====================================================
 clear;lines(0);
 A=rand(3,3);x=poly(0,'x');
@@ -5569,7 +6026,7 @@ clean(NUM/den-inv(x*eye()-A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/orth.man
+// ../man/eng/linear/orth.xml
 //====================================================
 clear;lines(0);
 A=rand(5,3)*rand(3,4);
@@ -5578,7 +6035,7 @@ svd([orth(A),X(:,1:dim)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/pbig.man
+// ../man/eng/linear/pbig.xml
 //====================================================
 clear;lines(0);
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
@@ -5589,7 +6046,7 @@ spec(M1*A*Q1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/pencan.man
+// ../man/eng/linear/pencan.xml
 //====================================================
 clear;lines(0);
 F=randpencil([],[1,2],[1,2,3],[]);
@@ -5601,7 +6058,7 @@ det(W($-2:$,$-2:$))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/penlaur.man
+// ../man/eng/linear/penlaur.xml
 //====================================================
 clear;lines(0);
 F=randpencil([],[1,2],[1,2,3],[]);
@@ -5612,7 +6069,7 @@ norm(coeff(Bis,1)-Di,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/pinv.man
+// ../man/eng/linear/pinv.xml
 //====================================================
 clear;lines(0);
 A=rand(5,2)*rand(2,4);
@@ -5620,7 +6077,7 @@ norm(A*pinv(A)*A-A,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/polar.man
+// ../man/eng/linear/polar.xml
 //====================================================
 clear;lines(0);
 A=rand(5,5);
@@ -5629,7 +6086,7 @@ norm(A-Ro*expm(%i*Theta),1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/proj.man
+// ../man/eng/linear/proj.xml
 //====================================================
 clear;lines(0);
 X1=rand(5,2);X2=rand(5,3);
@@ -5641,7 +6098,7 @@ svd([Q,X2])   // span(Q) = span(X2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/projspec.man
+// ../man/eng/linear/projspec.xml
 //====================================================
 clear;lines(0);
 deff('j=jdrn(n)','j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end')
@@ -5655,7 +6112,7 @@ norm(D^index,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/psmall.man
+// ../man/eng/linear/psmall.xml
 //====================================================
 clear;lines(0);
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
@@ -5666,9 +6123,20 @@ spec(M1*A*Q1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/qr.man
+// ../man/eng/linear/qr.xml
 //====================================================
 clear;lines(0);
+// QR factorization, generic case
+// X is tall (full rank)
+X=rand(5,2);[Q,R]=qr(X); [Q'*X R]
+//X is fat (full rank)
+X=rand(2,3);[Q,R]=qr(X); [Q'*X R]
+//Column 4 of X is a linear combination of columns 1 and 2:
+X=rand(8,5);X(:,4)=X(:,1)+X(:,2); [Q,R]=qr(X); R, R(:,4)
+//X has rank 2, rows 3 to $ of R are zero:
+X=rand(8,2)*rand(2,5);[Q,R]=qr(X); R
+//Evaluating the rank rk: column pivoting ==> rk first
+//diagonal entries of R are non zero :
 A=rand(5,2)*rand(2,5);
 [Q,R,rk,E] = qr(A,1.d-10);
 norm(Q'*A-R)
@@ -5676,12 +6144,11 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/quaskro.man
+// ../man/eng/linear/quaskro.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/randpencil.man
+// ../man/eng/linear/randpencil.xml
 //====================================================
 clear;lines(0);
 F=randpencil([0,1],[2],[-1,0,1],[3]);
@@ -5693,12 +6160,11 @@ det(F)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/range.man
+// ../man/eng/linear/range.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/rank.man
+// ../man/eng/linear/rank.xml
 //====================================================
 clear;lines(0);
 rank([1.d-80,0;0,1.d-80])
@@ -5706,7 +6172,15 @@ rank([1,0;0,1.d-80])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/rcond.man
+// ../man/eng/linear/rankqr.xml
+//====================================================
+clear;lines(0);
+A=rand(5,3)*rand(3,7);
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/linear/rcond.xml
 //====================================================
 clear;lines(0);
 A=diag([1:10]);
@@ -5716,7 +6190,7 @@ rcond(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/rowcomp.man
+// ../man/eng/linear/rowcomp.xml
 //====================================================
 clear;lines(0);
 A=rand(5,2)*rand(2,4);   // 4 col. vectors, 2 independent.
@@ -5728,7 +6202,7 @@ norm(y(dim+1:$))/norm(y(1:dim))    // small
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/rowshuff.man
+// ../man/eng/linear/rowshuff.xml
 //====================================================
 clear;lines(0);
 F=randpencil([],[2],[1,2,3],[]);
@@ -5741,7 +6215,7 @@ clean(inv(F)-inv(F1)*Ws,1.d-7)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/rref.man
+// ../man/eng/linear/rref.xml
 //====================================================
 clear;lines(0);
 A=[1 2;3 4;5 6];
@@ -5751,20 +6225,57 @@ L=X(:,3:5);L*A
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/schur.man
+// ../man/eng/linear/schur.xml
 //====================================================
 clear;lines(0);
+//SCHUR FORM OF A MATRIX
+//----------------------
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
-[U,d]=schur(A,'c');
-A1=U'*A*U;
-spec(A1(1:d,1:d))      //stable cont. eigenvalues
-[U,d]=schur(A,'c');
-A1=U'*A*U;
-spec(A1(1:d,1:d))      //stable disc. eigenvalues
+[U,T]=schur(A);T
+
+[U,dim,T]=schur(A,'c');
+T(1:dim,1:dim)      //stable cont. eigenvalues
+
+function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
+[U,dim,T]=schur(A,mytest);
+T(1:dim,1:dim)  
+
+// The same function in C (a Compiler is required)
+C=['int mytest(double *EvR, double *EvI) {' //the C code
+   'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
+   'else return 0; }';]
+mputl(C,TMPDIR+'/mytest.c')
+link(G_make(TMPDIR+'/mytest.o','c'), 'mytest',"C")
+[U,dim,T]=schur(A,'mytest');
+//SCHUR FORM OF A PENCIL
+//----------------------
+F=[-1,%s, 0,   1;
+    0,-1,5-%s, 0;
+    0, 0,2+%s, 0;
+    1, 0, 0, -2+%s];
+A=coeff(F,0);E=coeff(F,1);
+[As,Es,Q,Z]=schur(A,E);
+Q'*F*Z //It is As+%s*Es
+
+
+[As,Es,Z,dim] = schur(A,E,'c')
+function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
+[As,Es,Z,dim] = schur(A,E,mytest)
+
+//the same function in Fortran (a Compiler is required)
+ftn=['integer function mytest(ar,ai,b)' //the fortran code
+      'double precision ar,ai,b'
+      'mytest=0'
+      'if(ar.lt.0.0d0) mytest=1'
+      'end']
+mputl('      '+ftn,TMPDIR+'/mytest.f')
+link(G_make(TMPDIR+'/mytest.o'), 'mytest',"F")
+
+[As,Es,Z,dim] = schur(A,E,'mytest')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/spaninter.man
+// ../man/eng/linear/spaninter.xml
 //====================================================
 clear;lines(0);
 A=rand(5,3)*rand(3,4);     // A is 5 x 4, rank=3
@@ -5776,7 +6287,7 @@ svd(B),svd([B,X1])   // X1 in span(B)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/spanplus.man
+// ../man/eng/linear/spanplus.xml
 //====================================================
 clear;lines(0);
 A=rand(6,2)*rand(2,5);      // rank(A)=2
@@ -5787,7 +6298,7 @@ dim
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/spantwo.man
+// ../man/eng/linear/spantwo.xml
 //====================================================
 clear;lines(0);
 A=[1,0,0,4;
@@ -5803,7 +6314,7 @@ Slcan=ss2ss(Sl,inv(Xp));
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/spchol.man
+// ../man/eng/linear/spchol.xml
 //====================================================
 clear;lines(0);
 X=[
@@ -5823,9 +6334,10 @@ max(P*R*R'*P'-X)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/spec.man
+// ../man/eng/linear/spec.xml
 //====================================================
 clear;lines(0);
+// MATRIX EIGENVALUES
 A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
 spec(A)
 //
@@ -5833,13 +6345,21 @@ x=poly(0,'x');
 pol=det(x*eye()-A)
 roots(pol)
 //
-[Ab,X,bs]=bdiag(A);
-Ab
+[S,X]=bdiag(A);
 clean(inv(X)*A*X)
+
+// PENCIL EIGENVALUES
+A=rand(3,3);
+[al,be,Z] = spec(A,eye(A));al./be
+clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
+A=A+%i*rand(A);E=rand(A);
+roots(det(%s*E-A))   //complex case
+
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/sqroot.man
+// ../man/eng/linear/sqroot.xml
 //====================================================
 clear;lines(0);
 X=rand(5,2)*rand(2,5);X=X*X';
@@ -5852,7 +6372,7 @@ norm(W*W'-X,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/sva.man
+// ../man/eng/linear/sva.xml
 //====================================================
 clear;lines(0);
 A=rand(5,4)*rand(4,5);
@@ -5864,7 +6384,7 @@ clean(svd(A-B))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/svd.man
+// ../man/eng/linear/svd.xml
 //====================================================
 clear;lines(0);
 X=rand(4,2)*rand(2,4)
@@ -5873,7 +6393,7 @@ sqrt(spec(X*X'))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/sylv.man
+// ../man/eng/linear/sylv.xml
 //====================================================
 clear;lines(0);
 A=rand(4,4);C=rand(4,3);B=rand(3,3);
@@ -5884,7 +6404,7 @@ norm(A*X*B-X-C)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/linear/trace.man
+// ../man/eng/linear/trace.xml
 //====================================================
 clear;lines(0);
 A=rand(3,3);
@@ -5892,7 +6412,7 @@ trace(A)-sum(spec(A))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/add_edge.man
+// ../man/eng/metanet/add_edge.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -5907,7 +6427,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/add_node.man
+// ../man/eng/metanet/add_node.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -5923,7 +6443,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/adj_lists.man
+// ../man/eng/metanet/adj_lists.xml
 //====================================================
 clear;lines(0);
 ta=[2 3 3 5 3 4 4 5 8];
@@ -5937,7 +6457,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/arc_graph.man
+// ../man/eng/metanet/arc_graph.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
@@ -5951,12 +6471,11 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/arc_number.man
+// ../man/eng/metanet/arc_number.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/articul.man
+// ../man/eng/metanet/articul.xml
 //====================================================
 clear;lines(0);
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 14 15 16 17 17];
@@ -5971,7 +6490,7 @@ show_nodes(nart);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/bandwr.man
+// ../man/eng/metanet/bandwr.xml
 //====================================================
 clear;lines(0);
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -5984,7 +6503,7 @@ show_graph(g);
 a=graph_2_mat(g,'node-node');
 ww=tril(a)'+eye();
 ww1=full(ww);
-xset('window',0)
+xset('window',1)
 hist3d((ww1+tril(ww1',-1)+tril(ww1,-1)'),52,85); 
 // BANDWIDTH REDUCTION FOR THE MATRIX
 [iperm,mrepi,prof,ierr]=bandwr(ww);
@@ -5995,7 +6514,7 @@ show_graph(g2,'new')
 // NEW MATRIX
 n=g('node_number');
 yy=ww1(mrepi,mrepi);
-xset('window',1)
+xset('window',3)
 hist3d((yy+tril(yy',-1)+tril(yy,-1)'),52,85); 
 // STARTING WITH THE SAME MATRIX
 [ij,v,mn]=spget(ww);
@@ -6010,7 +6529,7 @@ show_graph(g2,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/best_match.man
+// ../man/eng/metanet/best_match.xml
 //====================================================
 clear;lines(0);
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
@@ -6043,7 +6562,7 @@ show_arcs(v');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/chain_struct.man
+// ../man/eng/metanet/chain_struct.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
@@ -6056,12 +6575,11 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/check_graph.man
+// ../man/eng/metanet/check_graph.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/circuit.man
+// ../man/eng/metanet/circuit.xml
 //====================================================
 clear;lines(0);
 // graph with circuit
@@ -6079,7 +6597,7 @@ g=make_graph('foo',1,4,[1 2 2 3],[2 3 4 4]);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/con_nodes.man
+// ../man/eng/metanet/con_nodes.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 7 7 9 10 12 12 13 13 14 15];
@@ -6101,7 +6619,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/connex.man
+// ../man/eng/metanet/connex.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 7 7 7 8 9 10 12 12 13 13 14 15];
@@ -6118,7 +6636,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/contract_edge.man
+// ../man/eng/metanet/contract_edge.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6132,7 +6650,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/convex_hull.man
+// ../man/eng/metanet/convex_hull.xml
 //====================================================
 clear;lines(0);
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
@@ -6151,7 +6669,7 @@ show_nodes(ind);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/cycle_basis.man
+// ../man/eng/metanet/cycle_basis.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6175,7 +6693,7 @@ end;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/delete_arcs.man
+// ../man/eng/metanet/delete_arcs.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6193,7 +6711,7 @@ show_graph(gt,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/delete_nodes.man
+// ../man/eng/metanet/delete_nodes.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6208,12 +6726,28 @@ show_graph(gt,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/edge_number.man
+// ../man/eng/metanet/edge_number.xml
 //====================================================
+
+//====================================================
+// ../man/eng/metanet/edit_graph.xml
+//====================================================
+clear;lines(0);
+ ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
+ he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
+ g=make_graph('foo',1,17,ta,he);
+ g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
+ g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+ edit_graph(g)
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/find_path.man
+// ../man/eng/metanet/edit_graph_menus.xml
+//====================================================
+
+//====================================================
+// ../man/eng/metanet/find_path.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6228,7 +6762,7 @@ show_graph(g); show_arcs(p);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/gen_net.man
+// ../man/eng/metanet/gen_net.xml
 //====================================================
 clear;lines(0);
 v=[1,10,2,1,0,10,100,100,0,100,50,50];
@@ -6240,7 +6774,7 @@ show_graph(g)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/girth.man
+// ../man/eng/metanet/girth.xml
 //====================================================
 clear;lines(0);
 ta=[1 6 2 4 7 5 6 8 4 3 5 1];
@@ -6253,12 +6787,11 @@ d=girth(g)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/glist.man
+// ../man/eng/metanet/glist.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph-list.man
+// ../man/eng/metanet/graph-list.xml
 //====================================================
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/mesh100');
@@ -6268,7 +6801,7 @@ show_graph(g)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_2_mat.man
+// ../man/eng/metanet/graph_2_mat.xml
 //====================================================
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/colored');
@@ -6277,7 +6810,7 @@ a=graph_2_mat(g,'node-node')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_center.man
+// ../man/eng/metanet/graph_center.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -6292,7 +6825,7 @@ show_nodes(no);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_complement.man
+// ../man/eng/metanet/graph_complement.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 13 14 15 17 17 16 16];
@@ -6310,7 +6843,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_diameter.man
+// ../man/eng/metanet/graph_diameter.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -6325,7 +6858,7 @@ show_arcs(p);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_power.man
+// ../man/eng/metanet/graph_power.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
@@ -6339,7 +6872,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_simp.man
+// ../man/eng/metanet/graph_simp.xml
 //====================================================
 clear;lines(0);
 ta=[1 1  1 2 2 2 3 4 4 4 5 5 6 7 7 8 8 9 9 10 10 10 10 10 11 12 12 13 13 13 14 15 16 16 17 17];
@@ -6353,7 +6886,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_sum.man
+// ../man/eng/metanet/graph_sum.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6381,7 +6914,7 @@ show_graph(g2,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/graph_union.man
+// ../man/eng/metanet/graph_union.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6393,13 +6926,12 @@ g('edge_color')=modulo([1:(edge_number(g))],15)+1;
 g('node_diam')=[1:(g('node_number'))]+20;
 g('node_name')=['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q'];
 show_graph(g);
-l=netwindows(); nw=l(2);
 v=[7 8 9 10 11 12 13];
 show_nodes(v);
 g1=subgraph(v,'nodes',g);
 show_graph(g1,'new');
 v=[1 2 5 6 7 8 9 10];
-netwindow(nw);
+xset('window',0);
 show_nodes(v);
 g2=subgraph(v,'nodes',g);
 show_graph(g2,'new');
@@ -6408,7 +6940,7 @@ show_graph(g,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/hamilton.man
+// ../man/eng/metanet/hamilton.xml
 //====================================================
 clear;lines(0);
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -6423,7 +6955,7 @@ show_arcs(cir);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/is_connex.man
+// ../man/eng/metanet/is_connex.xml
 //====================================================
 clear;lines(0);
 g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
@@ -6433,7 +6965,7 @@ is_connex(g)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/knapsack.man
+// ../man/eng/metanet/knapsack.xml
 //====================================================
 clear;lines(0);
 weight=ones(1,15).*.[1:4];
@@ -6443,7 +6975,7 @@ capa=[15 45 30 60];
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/line_graph.man
+// ../man/eng/metanet/line_graph.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
@@ -6457,7 +6989,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/load_graph.man
+// ../man/eng/metanet/load_graph.xml
 //====================================================
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/mesh100.graph');
@@ -6467,7 +6999,7 @@ show_graph(g,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/make_graph.man
+// ../man/eng/metanet/make_graph.xml
 //====================================================
 clear;lines(0);
 // creating a directed graph with 3 nodes and 4 arcs.
@@ -6487,7 +7019,7 @@ show_graph(g,'new')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/mat_2_graph.man
+// ../man/eng/metanet/mat_2_graph.xml
 //====================================================
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/colored');
@@ -6503,7 +7035,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/max_cap_path.man
+// ../man/eng/metanet/max_cap_path.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6522,7 +7054,7 @@ show_graph(g); show_arcs(p);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/max_clique.man
+// ../man/eng/metanet/max_clique.xml
 //====================================================
 clear;lines(0);
 ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
@@ -6540,7 +7072,7 @@ show_nodes(no);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/max_flow.man
+// ../man/eng/metanet/max_flow.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
@@ -6570,10 +7102,10 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/mesh2d.man
+// ../man/eng/metanet/mesh2d.xml
 //====================================================
 clear;lines(0);
-//	FIRST CASE
+// FIRST CASE
 theta=0.025*[1:40]*2.*%pi;
 x=1+cos(theta);
 y=1.+sin(theta);
@@ -6598,7 +7130,7 @@ g('node_x')=300*x;
 g('node_y')=300*y;
 g('default_node_diam')=10;
 show_graph(g)
-//	SECOND CASE !!! NEEDS x,y FROM FIRST CASE
+// SECOND CASE !!! NEEDS x,y FROM FIRST CASE
 x3=2.*rand(1:200);
 y3=2.*rand(1:200);
 wai=((x3-1).*(x3-1)+(y3-1).*(y3-1));
@@ -6627,7 +7159,7 @@ g('node_x')=300*xnew;
 g('node_y')=300*ynew;
 g('default_node_diam')=10;
 show_graph(g)
-//	REGULAR CASE !!! NEEDS PREVIOUS CASES FOR x,y,front
+// REGULAR CASE !!! NEEDS PREVIOUS CASES FOR x,y,front
 xx=0.1*[1:20];
 yy=xx.*.ones(1,20);
 zz= ones(1,20).*.xx;
@@ -6654,20 +7186,26 @@ g('node_x')=300*xnew;
 g('node_y')=300*ynew;
 g('default_node_diam')=3;
 show_graph(g)
+
+//An example with a random set of points
+function []=test(X,Y)
+  Tr=mesh2d(X,Y);
+  plot2d(X,Y,[-1,-2,3]);
+  [m,n]=size(Tr);
+  xpols= matrix(X(Tr),m,n); 
+  ypols= matrix(Y(Tr),m,n);
+  xset("colormap",rand(2*n,3)); 
+  xfpolys(xpols,ypols,[n/4:n/4+n-1]);
+endfunction 
+N=1000;xbasc();X=rand(1,N); Y=rand(1,N);
+xset("wdim",700,700);
+test(X,Y);
+xset('default');
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/metanet.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/metanet/metanet_sync.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/metanet/min_lcost_cflow.man
+// ../man/eng/metanet/min_lcost_cflow.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
@@ -6698,7 +7236,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/min_lcost_flow1.man
+// ../man/eng/metanet/min_lcost_flow1.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10 1 8];
@@ -6727,7 +7265,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/min_lcost_flow2.man
+// ../man/eng/metanet/min_lcost_flow2.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10 1 8];
@@ -6764,7 +7302,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/min_qcost_flow.man
+// ../man/eng/metanet/min_qcost_flow.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10 1 8];
@@ -6794,7 +7332,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/min_weight_tree.man
+// ../man/eng/metanet/min_weight_tree.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6813,7 +7351,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/neighbors.man
+// ../man/eng/metanet/neighbors.xml
 //====================================================
 clear;lines(0);
 ta=[1  6  2  4  7  5  6  8  4  3  5  1];
@@ -6827,27 +7365,23 @@ show_nodes(a);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/netclose.man
+// ../man/eng/metanet/netclose.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/netwindow.man
+// ../man/eng/metanet/netwindow.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/netwindows.man
+// ../man/eng/metanet/netwindows.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/node_number.man
+// ../man/eng/metanet/node_number.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/nodes_2_path.man
+// ../man/eng/metanet/nodes_2_path.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6868,7 +7402,7 @@ show_nodes(ns,'sup');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/nodes_degrees.man
+// ../man/eng/metanet/nodes_degrees.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6881,7 +7415,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/path_2_nodes.man
+// ../man/eng/metanet/path_2_nodes.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -6902,7 +7436,7 @@ show_arcs(p,'sup');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/perfect_match.man
+// ../man/eng/metanet/perfect_match.xml
 //====================================================
 clear;lines(0);
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
@@ -6925,7 +7459,7 @@ show_arcs(v');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/pipe_network.man
+// ../man/eng/metanet/pipe_network.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
@@ -6944,7 +7478,7 @@ g('edge_weight')=[w, 6 4 3 5 6];
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/plot_graph.man
+// ../man/eng/metanet/plot_graph.xml
 //====================================================
 clear;lines(0);
 // simple graph with different choices for the plot
@@ -6971,7 +7505,7 @@ xset('default');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/predecessors.man
+// ../man/eng/metanet/predecessors.xml
 //====================================================
 clear;lines(0);
 ta=[1  6  2  4  7  5  6  8  4  3  5 1];
@@ -6985,7 +7519,7 @@ show_nodes(a);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/qassign.man
+// ../man/eng/metanet/qassign.xml
 //====================================================
 clear;lines(0);
 n=15;
@@ -6997,7 +7531,7 @@ f(2:n,1)=ones(1:n-1)';
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/salesman.man
+// ../man/eng/metanet/salesman.xml
 //====================================================
 clear;lines(0);
 ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
@@ -7017,7 +7551,7 @@ show_arcs(cir);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/save_graph.man
+// ../man/eng/metanet/save_graph.xml
 //====================================================
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/mesh100');
@@ -7029,7 +7563,7 @@ show_graph(g,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/shortest_path.man
+// ../man/eng/metanet/shortest_path.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
@@ -7054,7 +7588,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/show_arcs.man
+// ../man/eng/metanet/show_arcs.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7074,7 +7608,7 @@ end;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/show_graph.man
+// ../man/eng/metanet/show_graph.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7088,7 +7622,7 @@ show_graph(g,1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/show_nodes.man
+// ../man/eng/metanet/show_nodes.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7102,7 +7636,7 @@ for i=1:3:g('node_number'), show_nodes([i],'sup'); end;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/split_edge.man
+// ../man/eng/metanet/split_edge.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7116,7 +7650,7 @@ show_graph(gt,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/strong_con_nodes.man
+// ../man/eng/metanet/strong_con_nodes.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15];
@@ -7136,7 +7670,7 @@ show_graph(g);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/strong_connex.man
+// ../man/eng/metanet/strong_connex.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15];
@@ -7152,7 +7686,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/subgraph.man
+// ../man/eng/metanet/subgraph.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7175,7 +7709,7 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/successors.man
+// ../man/eng/metanet/successors.xml
 //====================================================
 clear;lines(0);
 ta=[1  6  2  4  7  5  6  8  4  3  5  1];
@@ -7189,7 +7723,7 @@ show_nodes(a);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/supernode.man
+// ../man/eng/metanet/supernode.xml
 //====================================================
 clear;lines(0);
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -7207,7 +7741,7 @@ show_graph(g1,'new');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/metanet/trans_closure.man
+// ../man/eng/metanet/trans_closure.xml
 //====================================================
 clear;lines(0);
 ta=[2 3 3 5 3 4 4 5 8];
@@ -7230,7 +7764,21 @@ show_graph(g1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/bvode.man
+// ../man/eng/nonlinear/NDcost.xml
+//====================================================
+clear;lines(0);
+   //function to minimize
+   function f=rosenbrock(x,varagin)
+     p=varargin(1)
+     f=1+sum( p*(x(2:$)-x(1:$-1)^2)^2 + (1-x(2:$))^2)
+   endfunction
+
+   x0=[1;2;3;4];
+   [f,xopt,gopt]=optim(list(NDcost,rosenbrock,200),x0)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/nonlinear/bvode.xml
 //====================================================
 clear;lines(0);
 deff('df=dfsub(x,z)','df=[0,0,-6/x**2,-6/x]')
@@ -7255,19 +7803,17 @@ ipar(3)=1;ipar(4)=2;ipar(5)=2000;ipar(6)=200;ipar(7)=1;
 ltol=[1,3];tol=[1.e-11,1.e-11];
 res=aleft:0.1:aright;
 z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
-	fsub,dfsub,gsub,dgsub,guess)
+ fsub,dfsub,gsub,dgsub,guess)
 z1=[];for x=res,z1=[z1,trusol(x)]; end;  
 z-z1
-
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/colnew.man
+// ../man/eng/nonlinear/colnew.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/dasrt.man
+// ../man/eng/nonlinear/dasrt.xml
 //====================================================
 clear;lines(0);
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
@@ -7284,7 +7830,7 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/dassl.man
+// ../man/eng/nonlinear/dassl.xml
 //====================================================
 clear;lines(0);
  deff('[r,ires]=chemres(t,y,yd)',[
@@ -7311,7 +7857,7 @@ y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/datafit.man
+// ../man/eng/nonlinear/datafit.xml
 //====================================================
 clear;lines(0);
 deff('y=FF(x)','y=a*(x-b)+c*x.*x')
@@ -7341,17 +7887,61 @@ a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/derivative.man
+// ../man/eng/nonlinear/derivative.xml
 //====================================================
 clear;lines(0);
-deff('y=f(x)','y=[sin(x(1))*cos(x(2));x(1)^2*x(2)^2;1+x(1)*x(2)^2]')
-x0=[1;2];eps=0.001;h=eps*[2;5];
-[J,J2]=derivative(f,x0);
-[f(x0+h)-f(x0)-J*h ,0.5*J2*(h.*.h)]
+  function y=F(x)
+   y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+ endfunction
+ function y=G(x,p) 
+   y=[sin(x(1)*x(2)*p)+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
+ endfunction
+
+ x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat');
+ disp(J)
+ disp(H)
+
+ n=3;
+ // form an orthogonal matrix :   
+ nu=0; while nu<n, [Q,nu]=colcomp(rand(n,n)); end  
+ for i=[1,2,4]
+    [J,H]=derivative(F,x,order=i,H_form='blockmat',Q=Q);
+    mprintf("order= %d \n",i);
+    disp(H);
+ end
+
+ p=1;h=1e-3;
+ [J,H]=derivative(list(G,p),x,h,2,H_form='hypermat');
+ disp(H);
+ [J,H]=derivative(list(G,p),x,h,4,Q=Q);
+ disp(H)
+
+ // Taylor series example:
+ dx=1e-3*[1;1;-1];
+ [J,H]=derivative(F,x);
+ F(x+dx)
+ F(x+dx)-F(x)
+ F(x+dx)-F(x)-J*dx
+ F(x+dx)-F(x)-J*dx-1/2*H*(dx .*. dx)
+
+ // A trivial example
+ function y=f(x,A,p,w), y=x'*A*x+p'*x+w; endfunction
+ // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
+ A = rand(3,3); p = rand(3,1); w = 1;
+ x = rand(3,1);
+ [J,H]=derivative(list(f,A,p,w),x,h=1,H_form='blockmat')
+ // Since f(x) is quadratic in x, approximate derivatives of order=2 or 4 by finite
+ // differences should be exact for all h~=0. The apparent errors are caused by
+ // cancellation in the floating point operations, so a "big" h is choosen.
+ // Comparison with the exact matrices:
+ Je = x'*(A+A')+p'
+ He = A+A'
+ clean(Je - J)
+ clean(He - H)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/fit_dat.man
+// ../man/eng/nonlinear/fit_dat.xml
 //====================================================
 clear;lines(0);
 deff('y=FF(x)','y=a*(x-b)+c*x.*x')
@@ -7377,7 +7967,7 @@ a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/fsolve.man
+// ../man/eng/nonlinear/fsolve.xml
 //====================================================
 clear;lines(0);
 // A simple example with fsolve 
@@ -7394,7 +7984,7 @@ a*xres+b
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/impl.man
+// ../man/eng/nonlinear/impl.xml
 //====================================================
 clear;lines(0);
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
@@ -7406,7 +7996,7 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/int2d.man
+// ../man/eng/nonlinear/int2d.xml
 //====================================================
 clear;lines(0);
 X=[0,0;1,1;1,0];
@@ -7417,25 +8007,47 @@ deff('z=f(x,y)','z=cos(x+y)')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/int3d.man
+// ../man/eng/nonlinear/int3d.xml
 //====================================================
 clear;lines(0);
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
-deff('v=f(xyz,numfun)','v=exp(xyz''*xyz)')
 [RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
 // computes the integrand exp(x*x+y*y+z*z) over the 
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
+
+
+//integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
+
+//  bottom  -top-     right    -left-   front   -rear- 
+X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
+   -1,-1,   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1,-1; 
+    1,-1,    1,-1,    1, 1,   -1,-1,    1,-1,    1,-1;     
+    1, 1,    1, 1,    1, 1,   -1,-1,    1, 1,    1, 1];         
+Y=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0; 
+   -1,-1,   -1,-1,   -1, 1,   -1, 1,   -1,-1,    1, 1;
+   -1, 1,   -1, 1,    1, 1,    1, 1,   -1,-1,    1, 1;   
+    1, 1,    1, 1,   -1,-1,   -1,-1,   -1,-1,    1, 1]; 
+Z=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
+   -1,-1,    1, 1,   -1, 1,   -1, 1,   -1,-1,   -1,-1; 
+   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;  
+   -1,-1,    1, 1,    1,-1,    1,-1,    1, 1,    1, 1];      
+
+function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
+[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
+
+function v=f(xyz,numfun),v=1,endfunction
+[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/intc.man
+// ../man/eng/nonlinear/intc.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/intg.man
+// ../man/eng/nonlinear/intg.xml
 //====================================================
 clear;lines(0);
 deff('[y]=f(x)','y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2))')
@@ -7446,12 +8058,11 @@ abs(exact-intg(0,2*%pi,'intgex'))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/intl.man
+// ../man/eng/nonlinear/intl.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/karmarkar.man
+// ../man/eng/nonlinear/karmarkar.xml
 //====================================================
 clear;lines(0);
 // n=10;p=20;
@@ -7459,10 +8070,9 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/leastsq.man
+// ../man/eng/nonlinear/leastsq.xml
 //====================================================
 clear;lines(0);
-
 a=rand(3,2);b=[1;1;1];x0=[1;-1];
 deff('f=fun(x,a,b)','f=a*x-b');
 deff('g=dfun(x,a,b)','g=a');
@@ -7478,10 +8088,11 @@ deff('f=fun(x,a,b)','f=exp(a*x)-b');
 deff('g=dfun(x,a,b)','g=a.*(exp(a*x)*ones(1,size(a,2)))');
 
 [f,xopt]=leastsq(list(fun,[1 2;3 4],[1;2]),x0)  
+  
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/linpro.man
+// ../man/eng/nonlinear/linpro.xml
 //====================================================
 clear;lines(0);
 //Find x in R^6 such that:
@@ -7507,7 +8118,7 @@ C=[C1;C2]; b=[b1;b2] ; me=3; x0='v';
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/lmisolver.man
+// ../man/eng/nonlinear/lmisolver.xml
 //====================================================
 clear;lines(0);
 //Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that
@@ -7522,12 +8133,26 @@ X=lmisolver(list(zeros(A1)),evalf);X=X(1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/lmitool.man
+// ../man/eng/nonlinear/lmitool.xml
 //====================================================
+
+//====================================================
+// ../man/eng/nonlinear/numdiff.xml
+//====================================================
+clear;lines(0);
+function  f=myfun(x,y,z,t)
+f=(x+y)^t+z
+endfunction
+
+y=3;z=4;t=2;
+g=numdiff(list(myfun,3,4,2),1)
+
+x=1;
+exact=t*(x+y)^(t-1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/ode.man
+// ../man/eng/nonlinear/ode.xml
 //====================================================
 clear;lines(0);
 // Simple one dimension ODE
@@ -7568,7 +8193,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/ode_discrete.man
+// ../man/eng/nonlinear/ode_discrete.xml
 //====================================================
 clear;lines(0);
 y1=[1;2;3]; deff("yp=a_function(k,y)","yp=A*y+B*u(k)")
@@ -7580,7 +8205,7 @@ y=ode("discrete",y1,1,3:2:9,a_function)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/ode_root.man
+// ../man/eng/nonlinear/ode_root.xml
 //====================================================
 clear;lines(0);
 // Integration of the differential equation
@@ -7598,7 +8223,7 @@ deff("[z]=g(t,y)","z=y-[2;2;33]")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/odedc.man
+// ../man/eng/nonlinear/odedc.xml
 //====================================================
 clear;lines(0);
 //Linear system with switching input
@@ -7613,14 +8238,14 @@ norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
 
 //Sampled feedback 
 //
-//	       |     xcdot=fc(t,xc,u)
+//        |     xcdot=fc(t,xc,u)
 //  (system)   |
-//	       |     y=hc(t,xc)
+//        |     y=hc(t,xc)
 //
 //
-//	       |     xd+=fd(xd,y)
+//        |     xd+=fd(xd,y)
 //  (feedback) |
-//	       |     u=hd(t,xd)
+//        |     u=hd(t,xd)
 //
 deff('xcd=f(t,xc,xd,iflag)',...
   ['if iflag==0 then '
@@ -7645,12 +8270,11 @@ xset("window",0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/odeoptions.man
+// ../man/eng/nonlinear/odeoptions.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/optim.man
+// ../man/eng/nonlinear/optim.xml
 //====================================================
 clear;lines(0);
 xref=[1;2;3];x0=[1;-1;1]
@@ -7668,7 +8292,7 @@ deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/quapro.man
+// ../man/eng/nonlinear/quapro.xml
 //====================================================
 clear;lines(0);
 //Find x in R^6 such that:
@@ -7695,7 +8319,7 @@ me=3;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/nonlinear/semidef.man
+// ../man/eng/nonlinear/semidef.xml
 //====================================================
 clear;lines(0);
 F0=[2,1,0,0;
@@ -7730,7 +8354,7 @@ trace(F2*Z)-c(2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/bezout.man
+// ../man/eng/polynomials/bezout.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -7743,7 +8367,7 @@ lcm([p1,p2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/clean.man
+// ../man/eng/polynomials/clean.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -7753,17 +8377,15 @@ clean(w*inv(w))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/cmndred.man
+// ../man/eng/polynomials/cmndred.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/coeff.man
+// ../man/eng/polynomials/coeff.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/coffg.man
+// ../man/eng/polynomials/coffg.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -7773,7 +8395,7 @@ a=[ s, s^2+1; s  s^2-1];
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/colcompr.man
+// ../man/eng/polynomials/colcompr.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7783,17 +8405,15 @@ p*p'*Y
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/degree.man
+// ../man/eng/polynomials/degree.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/denom.man
+// ../man/eng/polynomials/denom.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/derivat.man
+// ../man/eng/polynomials/derivat.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7801,7 +8421,7 @@ derivat(1/s)  // -1/s^2;
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/determ.man
+// ../man/eng/polynomials/determ.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7811,12 +8431,11 @@ det(coeff(w,1))*s^10
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/detr.man
+// ../man/eng/polynomials/detr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/diophant.man
+// ../man/eng/polynomials/diophant.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
@@ -7826,7 +8445,7 @@ p1*x1+p2*x2-p1*x(1)-p2*x(2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/factors.man
+// ../man/eng/polynomials/factors.xml
 //====================================================
 clear;lines(0);
 n=poly([0.2,2,5],'z');
@@ -7840,7 +8459,7 @@ norm(abs(horner(R1,w))-abs(horner(R,w)))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/gcd.man
+// ../man/eng/polynomials/gcd.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7850,7 +8469,7 @@ p*u
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/hermit.man
+// ../man/eng/polynomials/hermit.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7860,7 +8479,7 @@ clean(p'*p*U), det(U)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/horner.man
+// ../man/eng/polynomials/horner.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');M=[s,1/s];
@@ -7870,7 +8489,7 @@ horner(M,1/s)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/hrmt.man
+// ../man/eng/polynomials/hrmt.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -7880,7 +8499,7 @@ det(U)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/htrianr.man
+// ../man/eng/polynomials/htrianr.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -7891,7 +8510,7 @@ M*U(:,1:2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/invr.man
+// ../man/eng/polynomials/invr.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s')
@@ -7901,7 +8520,7 @@ H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/lcm.man
+// ../man/eng/polynomials/lcm.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7911,7 +8530,7 @@ p.*fact, pp
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/lcmdiag.man
+// ../man/eng/polynomials/lcmdiag.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7921,7 +8540,7 @@ N/D-H
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/ldiv.man
+// ../man/eng/polynomials/ldiv.xml
 //====================================================
 clear;lines(0);
 wss=ssrand(1,1,3);[a,b,c,d]=abcd(wss);
@@ -7934,12 +8553,11 @@ x3=ldiv(numer(wtfbis),denom(wtfbis),5)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/numer.man
+// ../man/eng/polynomials/numer.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/pdiv.man
+// ../man/eng/polynomials/pdiv.xml
 //====================================================
 clear;lines(0);
 x=poly(0,'x');
@@ -7952,7 +8570,7 @@ p2*q+r-p1
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/pol2des.man
+// ../man/eng/polynomials/pol2des.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7961,17 +8579,15 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/pol2str.man
+// ../man/eng/polynomials/pol2str.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/polfact.man
+// ../man/eng/polynomials/polfact.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/residu.man
+// ../man/eng/polynomials/residu.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -7991,7 +8607,7 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/roots.man
+// ../man/eng/polynomials/roots.xml
 //====================================================
 clear;lines(0);
 p=poly([0,10,1+%i,1-%i],'x');
@@ -8001,17 +8617,15 @@ spec(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/routh_t.man
+// ../man/eng/polynomials/routh_t.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/rowcompr.man
+// ../man/eng/polynomials/rowcompr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/sfact.man
+// ../man/eng/polynomials/sfact.xml
 //====================================================
 clear;lines(0);
 //Simple polynomial example
@@ -8040,7 +8654,7 @@ clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/simp.man
+// ../man/eng/polynomials/simp.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -8052,7 +8666,7 @@ simp_mode(%T);hns=s/s
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/simp_mode.man
+// ../man/eng/polynomials/simp_mode.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -8064,36 +8678,23 @@ simp_mode(mod);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/sylm.man
+// ../man/eng/polynomials/sylm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/polynomials/systmat.man
+// ../man/eng/polynomials/systmat.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/abort.man
+// ../man/eng/programming/abort.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/ans.man
+// ../man/eng/programming/ans.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/apropos.man
-//====================================================
-clear;lines(0);
-apropos '+'
-apropos ode 
-apropos 'list of'
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/programming/backslash.man
+// ../man/eng/programming/backslash.xml
 //====================================================
 clear;lines(0);
 A=rand(3,2);b=[1;1;1]; x=A\b; y=pinv(A)*b;  x-y
@@ -8103,7 +8704,7 @@ A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/bool2s.man
+// ../man/eng/programming/bool2s.xml
 //====================================================
 clear;lines(0);
 bool2s([%t %t %f %t])
@@ -8111,7 +8712,7 @@ bool2s([2.3 0 10 -1])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/boolean.man
+// ../man/eng/programming/boolean.xml
 //====================================================
 clear;lines(0);
 [1,2]==[1,3]
@@ -8120,7 +8721,7 @@ a=1:5; a(a>2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/brackets.man
+// ../man/eng/programming/brackets.xml
 //====================================================
 clear;lines(0);
 [6.9,9.64; sqrt(-1) 0]
@@ -8134,29 +8735,26 @@ s=poly(0,'s');[1/s,2/s]
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/break.man
+// ../man/eng/programming/break.xml
 //====================================================
 clear;lines(0);
 k=0; while 1==1, k=k+1; if k > 100 then  break,end; end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/call.man
+// ../man/eng/programming/call.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/case.man
+// ../man/eng/programming/case.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/clear.man
+// ../man/eng/programming/clear.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/clearglobal.man
+// ../man/eng/programming/clearglobal.xml
 //====================================================
 clear;lines(0);
 global a b c
@@ -8167,12 +8765,11 @@ who('global')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/colon.man
+// ../man/eng/programming/colon.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/comma.man
+// ../man/eng/programming/comma.xml
 //====================================================
 clear;lines(0);
 a=[1,2,3;4,5,6];
@@ -8180,24 +8777,22 @@ a=1,b=1;c=2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/comments.man
+// ../man/eng/programming/comments.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/date.man
+// ../man/eng/programming/date.xml
 //====================================================
 clear;lines(0);
 date()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/debug.man
+// ../man/eng/programming/debug.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/dot.man
+// ../man/eng/programming/dot.xml
 //====================================================
 clear;lines(0);
 1.345
@@ -8207,17 +8802,15 @@ x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/else.man
+// ../man/eng/programming/else.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/elseif.man
+// ../man/eng/programming/elseif.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/empty.man
+// ../man/eng/programming/empty.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s'); A = [s, s+1]; 
@@ -8228,37 +8821,27 @@ w=ssrand(2,2,2); wr=[]*w; size(wr), w1=ss2tf(wr), size(w1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/end.man
+// ../man/eng/programming/end.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/equal.man
+// ../man/eng/programming/equal.xml
 //====================================================
-clear;lines(0);
-a=sin(3.2)
-[u,s]=schur(rand(3,3))
-[1:10]==4
-1~=2
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/errcatch.man
+// ../man/eng/programming/errcatch.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/errclear.man
+// ../man/eng/programming/errclear.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/error.man
+// ../man/eng/programming/error.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/evstr.man
+// ../man/eng/programming/evstr.xml
 //====================================================
 clear;lines(0);
 a=1; b=2; Z=['a','b'] ; evstr(Z) 
@@ -8268,7 +8851,7 @@ evstr(Z)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/exec.man
+// ../man/eng/programming/exec.xml
 //====================================================
 clear;lines(0);
 // create a script file
@@ -8277,10 +8860,10 @@ write(TMPDIR+'/myscript','a=1;b=2')
 exec(TMPDIR+'/myscript')
 who
 
-//create a function
+// create a function
 deff('y=foo(x)','a=x+1;y=a^2')
 clear a b
-//execute the function
+// call the function
 foo(1)
 // a is a variable created in the environment of the function foo
 //    it is destroyed when foo returns
@@ -8293,7 +8876,7 @@ who
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/execstr.man
+// ../man/eng/programming/execstr.xml
 //====================================================
 clear;lines(0);
 execstr('a=1') // sets a=1.
@@ -8311,7 +8894,7 @@ execstr('a=zzzzzzz','errcatch','m')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/exists.man
+// ../man/eng/programming/exists.xml
 //====================================================
 clear;lines(0);
 deff('foo(x)',..
@@ -8322,17 +8905,15 @@ a12=[];foo(1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/exit.man
+// ../man/eng/programming/exit.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/external.man
+// ../man/eng/programming/external.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/extraction.man
+// ../man/eng/programming/extraction.xml
 //====================================================
 clear;lines(0);
 // MATRIX CASE
@@ -8372,7 +8953,7 @@ dts(2)('b')(1,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/feval.man
+// ../man/eng/programming/feval.xml
 //====================================================
 clear;lines(0);
 deff('[z]=f(x,y)','z=x^2+y^2');
@@ -8387,17 +8968,25 @@ feval(1:10,'parab')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/find.man
+// ../man/eng/programming/find.xml
 //====================================================
 clear;lines(0);
 A=rand(1,20);
-w=find(A<0.5);
+w=find(A<0.4)
 A(w)
-w=find(A>100);
+w=find(A>100) 
+
+B=rand(1,20);
+w=find(B<0.4,2) //at most 2 returned values
+
+H=rand(4,3,5); //an hypermatrix
+[i,j,k]=find(H>0.9)  
+
+H(i(1),j(1),k(1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/for.man
+// ../man/eng/programming/for.xml
 //====================================================
 clear;lines(0);
 n=5;
@@ -8410,7 +8999,7 @@ for l=list(1,2,'example'); l,end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/format.man
+// ../man/eng/programming/format.xml
 //====================================================
 clear;lines(0);
 x=rand(1,5);
@@ -8423,21 +9012,19 @@ x=[100 %eps];
 format('e',10);x
 format('v',10);x
 
-format()
+format("v")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/fort.man
+// ../man/eng/programming/fort.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/funptr.man
+// ../man/eng/programming/funptr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/getdate.man
+// ../man/eng/programming/getdate.xml
 //====================================================
 clear;lines(0);
 w=getdate()
@@ -8449,15 +9036,15 @@ getdate(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/getenv.man
+// ../man/eng/programming/getenv.xml
 //====================================================
 clear;lines(0);
-	getenv('SCI')
-	getenv('FOO','foo') 
+ getenv('SCI')
+ getenv('FOO','foo') 
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/getfield.man
+// ../man/eng/programming/getfield.xml
 //====================================================
 clear;lines(0);
 l=list(1,'qwerw',%s)
@@ -8469,21 +9056,21 @@ getfield(1,a) // the mlist first field
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/getpid.man
+// ../man/eng/programming/getpid.xml
 //====================================================
 clear;lines(0);
 d='SD_'+string(getpid())+'_'
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/getversion.man
+// ../man/eng/programming/getversion.xml
 //====================================================
 clear;lines(0);
 getversion()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/global.man
+// ../man/eng/programming/global.xml
 //====================================================
 clear;lines(0);
 //first: calling environnment and a function share a variable
@@ -8503,12 +9090,11 @@ letsgo1()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/gstacksize.man
+// ../man/eng/programming/gstacksize.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/hat.man
+// ../man/eng/programming/hat.xml
 //====================================================
 clear;lines(0);
 2^4
@@ -8519,7 +9105,7 @@ s=poly(0,"s");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/host.man
+// ../man/eng/programming/host.xml
 //====================================================
 clear;lines(0);
 host("ls $SCI/demos");
@@ -8531,14 +9117,14 @@ wd=getdir()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/hypermat.man
+// ../man/eng/programming/hypermat.xml
 //====================================================
 clear;lines(0);
 M=hypermat([2 3 2 2],1:24)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/hypermatrices.man
+// ../man/eng/programming/hypermatrices.xml
 //====================================================
 clear;lines(0);
 a(1,1,1,1:2)=[1 2]
@@ -8548,7 +9134,7 @@ a(1,1,:)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/iconvert.man
+// ../man/eng/programming/iconvert.xml
 //====================================================
 clear;lines(0);
 b=int32([1 -120 127 312])
@@ -8557,7 +9143,7 @@ y=iconvert(b,8)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/ieee.man
+// ../man/eng/programming/ieee.xml
 //====================================================
 clear;lines(0);
 ieee(1);1/0
@@ -8565,7 +9151,7 @@ ieee(2);1/0,log(0)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/if.man
+// ../man/eng/programming/if.xml
 //====================================================
 clear;lines(0);
    i=2
@@ -8580,7 +9166,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/insertion.man
+// ../man/eng/programming/insertion.xml
 //====================================================
 clear;lines(0);
 // MATRIX CASE
@@ -8617,12 +9203,29 @@ dts(2)('b')(1,2)=-100
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/intppty.man
+// ../man/eng/programming/intppty.xml
 //====================================================
+clear;lines(0);
+// Suppose you want to load some codes via the dynamic 
+// loading facilities offers by addinter. By default 
+// arguments are passed by values but if you want to 
+// pass them by reference you can do the following 
+// (name being the scilab name of one of the interfaced 
+// routines) :
+//
+// addinter(files,spnames,fcts)  // args passed by values
+// num_interface = floor(funptr(name)/100)
+// intppty(num_interface)  // args now passed by reference
+//
+// Note that if you enter the following
+//
+// intppty()                
+//
+// you will see all the interfaces working by reference
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/inttype.man
+// ../man/eng/programming/inttype.xml
 //====================================================
 clear;lines(0);
 x=uint16(1:10);
@@ -8630,7 +9233,7 @@ inttype(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/inv_coeff.man
+// ../man/eng/programming/inv_coeff.xml
 //====================================================
 clear;lines(0);
 A=int(10*rand(2,6))
@@ -8643,12 +9246,11 @@ norm(coeff(P1)-A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/iserror.man
+// ../man/eng/programming/iserror.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/isglobal.man
+// ../man/eng/programming/isglobal.xml
 //====================================================
 clear;lines(0);
 isglobal(1)
@@ -8657,7 +9259,7 @@ isglobal(a)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/lasterror.man
+// ../man/eng/programming/lasterror.xml
 //====================================================
 clear;lines(0);
 ierr=execstr('a=zzzzzzz','errcatch')
@@ -8665,7 +9267,7 @@ if ierr>0 then disp(lasterror()),end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/left.man
+// ../man/eng/programming/left.xml
 //====================================================
 clear;lines(0);
 [6.9,9.64; sqrt(-1) 0]
@@ -8677,12 +9279,11 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/less.man
+// ../man/eng/programming/less.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/list.man
+// ../man/eng/programming/list.xml
 //====================================================
 clear;lines(0);
 x=list(1,2,3);
@@ -8691,12 +9292,11 @@ x(10)='a'
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/lsslist.man
+// ../man/eng/programming/lsslist.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/lstcat.man
+// ../man/eng/programming/lstcat.xml
 //====================================================
 clear;lines(0);
 lstcat(list(1,2,3),33,list('foo',%s))
@@ -8704,7 +9304,7 @@ lstcat(1,2,3)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/matrices.man
+// ../man/eng/programming/matrices.xml
 //====================================================
 clear;lines(0);
 E=[1,2;3,4]
@@ -8715,7 +9315,7 @@ E=['A11','A12';'A21','A22']
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/matrix.man
+// ../man/eng/programming/matrix.xml
 //====================================================
 clear;lines(0);
 a=[1 2 3;4 5 6]
@@ -8725,7 +9325,7 @@ matrix(a,3,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/mlist.man
+// ../man/eng/programming/mlist.xml
 //====================================================
 clear;lines(0);
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
@@ -8760,17 +9360,15 @@ M(1,1:2,2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/mode.man
+// ../man/eng/programming/mode.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/mtlb_mode.man
+// ../man/eng/programming/mtlb_mode.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/names.man
+// ../man/eng/programming/names.xml
 //====================================================
 clear;lines(0);
 //Valid names
@@ -8783,7 +9381,7 @@ My_Special_Color_Table=rand(10,3)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/null.man
+// ../man/eng/programming/null.xml
 //====================================================
 clear;lines(0);
 l=list(1,2,3);
@@ -8791,7 +9389,7 @@ l(2)=null() // get list(1,3)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/overloading.man
+// ../man/eng/programming/overloading.xml
 //====================================================
 clear;lines(0);
 //DISPLAY
@@ -8808,7 +9406,7 @@ sin('2*x')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/parents.man
+// ../man/eng/programming/parents.xml
 //====================================================
 clear;lines(0);
 3^(-1)
@@ -8837,12 +9435,11 @@ v=%t([1 1 1 1 1])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/pause.man
+// ../man/eng/programming/pause.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/percent.man
+// ../man/eng/programming/percent.xml
 //====================================================
 clear;lines(0);
 x1=tlist('x',1,2);
@@ -8852,7 +9449,7 @@ x1*x2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/plus.man
+// ../man/eng/programming/plus.xml
 //====================================================
 clear;lines(0);
 [1,2]+1
@@ -8864,7 +9461,7 @@ s+2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/poly.man
+// ../man/eng/programming/poly.xml
 //====================================================
 clear;lines(0);
 s=poly(0,"s");p=1+s+2*s^2;
@@ -8872,7 +9469,7 @@ A=rand(2,2);poly(A,"x")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/power.man
+// ../man/eng/programming/power.xml
 //====================================================
 clear;lines(0);
 A=[1 2;3 4];
@@ -8886,12 +9483,11 @@ s^(1:10)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/predef.man
+// ../man/eng/programming/predef.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/pwd.man
+// ../man/eng/programming/pwd.xml
 //====================================================
 clear;lines(0);
 pwd
@@ -8899,12 +9495,11 @@ x=pwd()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/quit.man
+// ../man/eng/programming/quit.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/quote.man
+// ../man/eng/programming/quote.xml
 //====================================================
 clear;lines(0);
 [1+%i, 2]'
@@ -8914,7 +9509,7 @@ x='This is a character string'
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/rational.man
+// ../man/eng/programming/rational.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -8929,32 +9524,41 @@ syslin('c',H)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/resume.man
+// ../man/eng/programming/resume.xml
 //====================================================
+
+//====================================================
+// ../man/eng/programming/return.xml
+//====================================================
+
+//====================================================
+// ../man/eng/programming/rlist.xml
+//====================================================
+
+//====================================================
+// ../man/eng/programming/sciargs.xml
+//====================================================
+
+//====================================================
+// ../man/eng/programming/select.xml
+//====================================================
+clear;lines(0);
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+  
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/return.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/programming/rlist.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/programming/sciargs.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/programming/select.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/programming/semi.man
+// ../man/eng/programming/semi.xml
 //====================================================
 clear;lines(0);
 a=[1,2,3;4,5,6];
@@ -8962,15 +9566,11 @@ a=1;b=1,c=2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/semicolumn.man
+// ../man/eng/programming/semicolon.xml
 //====================================================
-clear;lines(0);
-sin(%pi);
-a=[1,2;3 4]
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/setfield.man
+// ../man/eng/programming/setfield.xml
 //====================================================
 clear;lines(0);
 l=list(1,'qwerw',%s)
@@ -8984,79 +9584,69 @@ setfield(3,1:8,a);a // set the field value to 1:8
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/slash.man
+// ../man/eng/programming/slash.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/stacksize.man
+// ../man/eng/programming/stacksize.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/star.man
+// ../man/eng/programming/star.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/symbols.man
+// ../man/eng/programming/symbols.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/testmatrix.man
+// ../man/eng/programming/testmatrix.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/then.man
+// ../man/eng/programming/then.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/tilda.man
+// ../man/eng/programming/tilda.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/tlist.man
+// ../man/eng/programming/tlist.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/type.man
+// ../man/eng/programming/type.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/typename.man
+// ../man/eng/programming/typename.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/user.man
+// ../man/eng/programming/user.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/varn.man
+// ../man/eng/programming/varn.xml
 //====================================================
 clear;lines(0);
+// 
 s=poly(0,'s');p=[s^2+1,s];
+varn(p)
+varn(p,'x')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/what.man
+// ../man/eng/programming/what.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/where.man
+// ../man/eng/programming/where.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/whereami.man
+// ../man/eng/programming/whereami.xml
 //====================================================
 clear;lines(0);
 deff('y=test(a)',['y=sin(a)+1';
@@ -9067,12 +9657,11 @@ test(1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/whereis.man
+// ../man/eng/programming/whereis.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/while.man
+// ../man/eng/programming/while.xml
 //====================================================
 clear;lines(0);
 e=1; a=1; k=1;
@@ -9081,12 +9670,15 @@ e,k
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/who.man
+// ../man/eng/programming/who.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/programming/whos.man
+// ../man/eng/programming/who_user.xml
+//====================================================
+
+//====================================================
+// ../man/eng/programming/whos.xml
 //====================================================
 clear;lines(0);
 whos()
@@ -9098,7 +9690,7 @@ whos -name %
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/augment.man
+// ../man/eng/robust/augment.xml
 //====================================================
 clear;lines(0);
 G=ssrand(2,3,2); //Plant
@@ -9119,32 +9711,27 @@ clean(T1tf(1,1)-T1n(1,1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/bstap.man
+// ../man/eng/robust/bstap.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/ccontrg.man
+// ../man/eng/robust/ccontrg.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/colinout.man
+// ../man/eng/robust/colinout.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/copfac.man
+// ../man/eng/robust/copfac.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/dcf.man
+// ../man/eng/robust/dcf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/des2ss.man
+// ../man/eng/robust/des2ss.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
@@ -9155,27 +9742,58 @@ clean(ss2tf(W2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/dhnorm.man
+// ../man/eng/robust/dhinf.xml
 //====================================================
+clear;lines(0);
+//example from Niconet report SLWN1999-12
+//Hinf
+A=[-0.7  0    0.3  0   -0.5 -0.1
+   -0.6  0.2 -0.4 -0.3  0    0
+   -0.5  0.7 -0.1  0    0   -0.8
+   -0.7  0    0   -0.5 -1    0
+    0    0.3  0.6 -0.9  0.1 -0.4
+    0.5 -0.8  0    0    0.2 -0.9];
+B=[-1 -2 -2  1  0
+    1  0  1 -2  1
+   -3 -4  0  2 -2
+    1 -2  1  0 -1
+    0  1 -2  0  3
+    1  0  3 -1 -2];
+C=[ 1 -1  2 -2  0 -3
+   -3  0  1 -1  1  0
+    0  2  0 -4  0 -2
+    1 -3  0  0  3  1
+    0  1 -2  1  0 -2];
+D=[1 -1 -2  0  0
+   0  1  0  1  0
+   2 -1 -3  0  1
+   0  1  0  1 -1
+   0  0  1  2  1];
+
+ncon=2
+nmeas=2
+gam=111.30;
+[AK,BK,CK,DK] = dhinf(A,B,C,D,ncon,nmeas,gam)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/dtsi.man
+// ../man/eng/robust/dhnorm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/fourplan.man
+// ../man/eng/robust/dtsi.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/fspecg.man
+// ../man/eng/robust/fourplan.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/fstabst.man
+// ../man/eng/robust/fspecg.xml
+//====================================================
+
+//====================================================
+// ../man/eng/robust/fstabst.xml
 //====================================================
 clear;lines(0);
 ny=2;nu=3;nx=4;
@@ -9190,22 +9808,19 @@ A=h_cl(P,r,K); spec(A)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/gamitg.man
+// ../man/eng/robust/gamitg.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/gcare.man
+// ../man/eng/robust/gcare.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/gfare.man
+// ../man/eng/robust/gfare.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/gtild.man
+// ../man/eng/robust/gtild.xml
 //====================================================
 clear;lines(0);
 //Continuous time
@@ -9233,32 +9848,27 @@ Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/h2norm.man
+// ../man/eng/robust/h2norm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/h_cl.man
+// ../man/eng/robust/h_cl.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/h_inf.man
+// ../man/eng/robust/h_inf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/h_inf_st.man
+// ../man/eng/robust/h_inf_st.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/h_norm.man
+// ../man/eng/robust/h_norm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/hankelsv.man
+// ../man/eng/robust/hankelsv.xml
 //====================================================
 clear;lines(0);
 A=diag([-1,-2,-3]);
@@ -9268,17 +9878,50 @@ slr=projsl(sl,Q,M);hankelsv(slr)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/lcf.man
+// ../man/eng/robust/hinf.xml
 //====================================================
+clear;lines(0);
+//example from Niconet report SLWN1999-12
+//Hinf
+A=[-1  0  4  5 -3 -2
+   -2  4 -7 -2  0  3
+   -6  9 -5  0  2 -1
+   -8  4  7 -1 -3  0
+    2  5  8 -9  1 -4
+    3 -5  8  0  2 -6];
+
+B=[-3 -4 -2  1  0
+    2  0  1 -5  2
+   -5 -7  0  7 -2
+    4 -6  1  1 -2
+   -3  9 -8  0  5
+    1 -2  3 -6 -2];
+
+C=[ 1 -1  2 -4  0 -3
+   -3  0  5 -1  1  1
+   -7  5  0 -8  2 -2
+    9 -3  4  0  3  7
+    0  1 -2  1 -6 -2];
+
+D=[ 1 -2 -3  0  0
+    0  4  0  1  0
+    5 -3 -4  0  1
+    0  1  0  1 -3
+    0  0  1  7  1];
+Gamma=10.18425636157899;
+[AK,BK,CK,DK] = hinf(A,B,C,D,2,2,Gamma)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/leqr.man
+// ../man/eng/robust/lcf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/lft.man
+// ../man/eng/robust/leqr.xml
+//====================================================
+
+//====================================================
+// ../man/eng/robust/lft.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -9295,52 +9938,47 @@ lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/linf.man
+// ../man/eng/robust/linf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/linfn.man
+// ../man/eng/robust/linfn.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/lqg_ltr.man
+// ../man/eng/robust/lqg_ltr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/macglov.man
+// ../man/eng/robust/macglov.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/nehari.man
+// ../man/eng/robust/mucomp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/parrot.man
+// ../man/eng/robust/nehari.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/ric_desc.man
+// ../man/eng/robust/parrot.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/riccati.man
+// ../man/eng/robust/ric_desc.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/rowinout.man
+// ../man/eng/robust/riccati.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/sensi.man
+// ../man/eng/robust/rowinout.xml
+//====================================================
+
+//====================================================
+// ../man/eng/robust/sensi.xml
 //====================================================
 clear;lines(0);
 G=ssrand(1,1,3);K=ssrand(1,1,3);
@@ -9357,7 +9995,7 @@ clean(w1-w2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/robust/tf2des.man
+// ../man/eng/robust/tf2des.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -9367,573 +10005,430 @@ S2=tf2des(G,"withD");des2tf(S2)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/ABSBLK_f.man
+// ../man/eng/scicos/ABSBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/AFFICH_f.man
+// ../man/eng/scicos/AFFICH_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/ANDLOG_f.man
+// ../man/eng/scicos/ANDLOG_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/ANIMXY_f.man
+// ../man/eng/scicos/ANIMXY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/BIGSOM_f.man
+// ../man/eng/scicos/BIGSOM_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLINDUMMY_f.man
+// ../man/eng/scicos/CLINDUMMY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKINV_f.man
+// ../man/eng/scicos/CLKINV_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKIN_f.man
+// ../man/eng/scicos/CLKIN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKOUTV_f.man
+// ../man/eng/scicos/CLKOUTV_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKOUT_f.man
+// ../man/eng/scicos/CLKOUT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKSOMV_f.man
+// ../man/eng/scicos/CLKSOMV_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKSOM_f.man
+// ../man/eng/scicos/CLKSOM_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLKSPLIT_f.man
+// ../man/eng/scicos/CLKSPLIT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLOCK_f.man
+// ../man/eng/scicos/CLOCK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLR_f.man
+// ../man/eng/scicos/CLR_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CLSS_f.man
+// ../man/eng/scicos/CLSS_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CONST_f.man
+// ../man/eng/scicos/CONST_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/COSBLK_f.man
+// ../man/eng/scicos/COSBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/CURV_f.man
+// ../man/eng/scicos/CURV_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DELAYV_f.man
+// ../man/eng/scicos/DELAYV_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DELAY_f.man
+// ../man/eng/scicos/DELAY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DEMUX_f.man
+// ../man/eng/scicos/DEMUX_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DLRADAPT_f.man
+// ../man/eng/scicos/DLRADAPT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DLR_f.man
+// ../man/eng/scicos/DLR_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/DLSS_f.man
+// ../man/eng/scicos/DLSS_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/EVENTSCOPE_f.man
+// ../man/eng/scicos/EVENTSCOPE_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/EVTDLY_f.man
+// ../man/eng/scicos/EVTDLY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/EVTGEN_f.man
+// ../man/eng/scicos/EVTGEN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/EXPBLK_f.man
+// ../man/eng/scicos/EXPBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GAINBLK_f.man
+// ../man/eng/scicos/GAINBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GAIN_f.man
+// ../man/eng/scicos/GAIN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GENERAL_f.man
+// ../man/eng/scicos/GENERAL_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GENERIC_f.man
+// ../man/eng/scicos/GENERIC_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GENSIN_f.man
+// ../man/eng/scicos/GENSIN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/GENSQR_f.man
+// ../man/eng/scicos/GENSQR_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/HALT_f.man
+// ../man/eng/scicos/HALT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/IFTHEL_f.man
+// ../man/eng/scicos/IFTHEL_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/INTEGRAL_f.man
+// ../man/eng/scicos/INTEGRAL_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/INTRP2BLK_f.man
+// ../man/eng/scicos/INTRP2BLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/INTRPLBLK_f.man
+// ../man/eng/scicos/INTRPLBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/INVBLK_f.man
+// ../man/eng/scicos/INVBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/IN_f.man
+// ../man/eng/scicos/IN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/LOGBLK_f.man
+// ../man/eng/scicos/LOGBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/LOOKUP_f.man
+// ../man/eng/scicos/LOOKUP_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/MAX_f.man
+// ../man/eng/scicos/MAX_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/MCLOCK_f.man
+// ../man/eng/scicos/MCLOCK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/MFCLCK_f.man
+// ../man/eng/scicos/MFCLCK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/MIN_f.man
+// ../man/eng/scicos/MIN_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/MUX_f.man
+// ../man/eng/scicos/MUX_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/NEGTOPOS_f.man
+// ../man/eng/scicos/NEGTOPOS_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/OUT_f.man
+// ../man/eng/scicos/OUT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/POSTONEG_f.man
+// ../man/eng/scicos/POSTONEG_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/POWBLK_f.man
+// ../man/eng/scicos/POWBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/PROD_f.man
+// ../man/eng/scicos/PROD_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/QUANT_f.man
+// ../man/eng/scicos/QUANT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/RAND_f.man
+// ../man/eng/scicos/RAND_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/READC_f.man
+// ../man/eng/scicos/READC_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/REGISTER_f.man
+// ../man/eng/scicos/REGISTER_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/RELAY_f.man
+// ../man/eng/scicos/RELAY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/RFILE_f.man
+// ../man/eng/scicos/RFILE_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SAMPLEHOLD_f.man
+// ../man/eng/scicos/SAMPLEHOLD_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SAT_f.man
+// ../man/eng/scicos/SAT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SAWTOOTH_f.man
+// ../man/eng/scicos/SAWTOOTH_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SCOPE_f.man
+// ../man/eng/scicos/SCOPE_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SCOPXY_f.man
+// ../man/eng/scicos/SCOPXY_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SELECT_f.man
+// ../man/eng/scicos/SELECT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SINBLK_f.man
+// ../man/eng/scicos/SINBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SOM_f.man
+// ../man/eng/scicos/SOM_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SPLIT_f.man
+// ../man/eng/scicos/SPLIT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/STOP_f.man
+// ../man/eng/scicos/STOP_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/SUPER_f.man
+// ../man/eng/scicos/SUPER_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/TANBLK_f.man
+// ../man/eng/scicos/TANBLK_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/TCLSS_f.man
+// ../man/eng/scicos/TCLSS_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/TEXT_f.man
+// ../man/eng/scicos/TEXT_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/TIME_f.man
+// ../man/eng/scicos/TIME_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/TRASH_f.man
+// ../man/eng/scicos/TRASH_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/WFILE_f.man
+// ../man/eng/scicos/WFILE_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/WRITEC_f.man
+// ../man/eng/scicos/WRITEC_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/ZCROSS_f.man
+// ../man/eng/scicos/ZCROSS_f.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/check_io.man
+// ../man/eng/scicos/check_io.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/curblock.man
+// ../man/eng/scicos/curblock.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/getblocklabel.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/scicos/getcurblock.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/scicos/getscicosvars.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/scicos/icon_edit.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/scicos/lincos.man
+// ../man/eng/scicos/duplicate.xml
 //====================================================
 clear;lines(0);
+v=duplicate([1,%pi,-%e],[2 0 3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos.man
+// ../man/eng/scicos/getblocklabel.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_block.man
+// ../man/eng/scicos/getcurblock.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_cpr.man
+// ../man/eng/scicos/getscicosvars.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_graphics.man
+// ../man/eng/scicos/icon_edit.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_link.man
+// ../man/eng/scicos/lincos.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_main.man
+// ../man/eng/scicos/scicos.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_menus.man
+// ../man/eng/scicos/scicos_block.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicos_model.man
+// ../man/eng/scicos/scicos_cpr.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scicosim.man
+// ../man/eng/scicos/scicos_graphics.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/scifunc_block.man
+// ../man/eng/scicos/scicos_link.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/setscicosvars.man
+// ../man/eng/scicos/scicos_main.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/standard_define.man
+// ../man/eng/scicos/scicos_menus.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/standard_draw.man
+// ../man/eng/scicos/scicos_model.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/standard_input.man
+// ../man/eng/scicos/scicosim.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/standard_origin.man
+// ../man/eng/scicos/scifunc_block.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/standard_output.man
+// ../man/eng/scicos/setscicosvars.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/scicos/steadycos.man
+// ../man/eng/scicos/standard_define.xml
 //====================================================
-clear;lines(0);
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/%asn.man
+// ../man/eng/scicos/standard_draw.xml
 //====================================================
-clear;lines(0);
-m=0.8;z=%asn(1/sqrt(m),m);K=real(z);Ktilde=imag(z);
-x2max=1/sqrt(m);
-x1=0:0.05:1;x2=1:((x2max-1)/20):x2max;x3=x2max:0.05:10;
-x=[x1,x2,x3];
-y=%asn(x,m);
-rect=[0,-Ktilde,1.1*K,2*Ktilde];
-plot2d(real(y)',imag(y)',1,'011',' ',rect)
-//
-deff('y=f(t)','y=1/sqrt((1-t^2)*(1-m*t^2))');
-intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/%k.man
+// ../man/eng/scicos/standard_input.xml
 //====================================================
-clear;lines(0);
-m=0.4;
-%asn(1,m)
-%k(m)
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/%sn.man
+// ../man/eng/scicos/standard_origin.xml
 //====================================================
-clear;lines(0);
-m=0.36;
-K=%k(m);
-P=4*K; //Real period
-real_val=0:(P/50):P;
-plot(real_val,real(%sn(real_val,m)))
-xbasc();
-KK=%k(1-m);
-Ip=2*KK;
-ima_val1=0:(Ip/50):KK-0.001;
-ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
-z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
-plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
-xgrid(3)
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/Signal.man
+// ../man/eng/scicos/standard_output.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/analpf.man
+// ../man/eng/scicos/steadycos.xml
+//====================================================
+
+//====================================================
+// ../man/eng/signal/Signal.xml
+//====================================================
+
+//====================================================
+// ../man/eng/signal/analpf.xml
 //====================================================
 clear;lines(0);
 //Evaluate magnitude response of continuous-time system 
@@ -9945,7 +10440,7 @@ plot(fr,hm)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/buttmag.man
+// ../man/eng/signal/buttmag.xml
 //====================================================
 clear;lines(0);
 //squared magnitude response of Butterworth filter
@@ -9955,7 +10450,7 @@ plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/casc.man
+// ../man/eng/signal/casc.xml
 //====================================================
 clear;lines(0);
 x=[1,2,3;4,5,6;7,8,9;10,11,12]
@@ -9963,7 +10458,7 @@ cels=casc(x,'z')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/cepstrum.man
+// ../man/eng/signal/cepstrum.xml
 //====================================================
 clear;lines(0);
 w=0.1:0.1:5;mag=1+abs(sin(w));
@@ -9972,7 +10467,7 @@ plot2d([w',w'],[mag(:),abs(fresp)])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/cheb1mag.man
+// ../man/eng/signal/cheb1mag.xml
 //====================================================
 clear;lines(0);
 //Chebyshev; ripple in the passband
@@ -9982,7 +10477,7 @@ plot(sample,h,'frequencies','magnitude')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/cheb2mag.man
+// ../man/eng/signal/cheb2mag.xml
 //====================================================
 clear;lines(0);
 //Chebyshev; ripple in the stopband
@@ -9998,14 +10493,14 @@ plot2d(sample',attenuation*ones(sample)',[5],"000")
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/chepol.man
+// ../man/eng/signal/chepol.xml
 //====================================================
 clear;lines(0);
 chepol(4,'x')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/convol.man
+// ../man/eng/signal/convol.xml
 //====================================================
 clear;lines(0);
 x=1:3;
@@ -10018,7 +10513,7 @@ p1*p2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/corr.man
+// ../man/eng/signal/corr.xml
 //====================================================
 clear;lines(0);
 x=%pi/10:%pi/10:102.4*%pi;
@@ -10071,7 +10566,7 @@ y=ymacro(100,1);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/cspect.man
+// ../man/eng/signal/cspect.xml
 //====================================================
 clear;lines(0);
 rand('normal');rand('seed',0);
@@ -10089,7 +10584,7 @@ plot(fr,log(sm))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/czt.man
+// ../man/eng/signal/czt.xml
 //====================================================
 clear;lines(0);
 a=.7*exp(%i*%pi/6);
@@ -10113,7 +10608,7 @@ xsetech(ffr,bds); //restore context
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/dft.man
+// ../man/eng/signal/dft.xml
 //====================================================
 clear;lines(0);
 n=8;omega = exp(-2*%pi*%i/n);
@@ -10128,7 +10623,7 @@ dft(x,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/ell1mag.man
+// ../man/eng/signal/ell1mag.xml
 //====================================================
 clear;lines(0);
 deff('[alpha,beta]=alpha_beta(n,m,m1)',...
@@ -10147,7 +10642,7 @@ plot(sample,ell1mag(epsilon,m1,z))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/eqfir.man
+// ../man/eng/signal/eqfir.xml
 //====================================================
 clear;lines(0);
 hn=eqfir(33,[0 .2;.25 .35;.4 .5],[0 1 0],[1 1 1]);
@@ -10156,7 +10651,7 @@ plot(fr,hm),
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/eqiir.man
+// ../man/eng/signal/eqiir.xml
 //====================================================
 clear;lines(0);
 [cells,fact,zzeros,zpoles]=...
@@ -10165,17 +10660,15 @@ transfer=fact*poly(zzeros,'z')/poly(zpoles,'z')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/faurre.man
+// ../man/eng/signal/faurre.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/ffilt.man
+// ../man/eng/signal/ffilt.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/fft.man
+// ../man/eng/signal/fft.xml
 //====================================================
 clear;lines(0);
 a=[1;2;3];n=size(a,'*');
@@ -10184,22 +10677,47 @@ norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/filter.man
+// ../man/eng/signal/fftshift.xml
 //====================================================
+clear;lines(0);
+//make a signal
+t=0:0.1:1000;
+x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+//compute the fft
+y=fft(x,-1);
+//display 
+xbasc();
+subplot(2,1,1);plot2d(abs(y))
+subplot(2,1,2);plot2d(fftshift(abs(y)))
+
+//make a 2D image
+t=0:0.1:30;
+x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+//compute the fft
+y=fft(x,-1);
+//display 
+xbasc();
+xset('colormap',hotcolormap(256))
+subplot(2,1,1);Matplot(abs(y))
+subplot(2,1,2);Matplot(fftshift(abs(y)))
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/find_freq.man
+// ../man/eng/signal/filter.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/findm.man
+// ../man/eng/signal/find_freq.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/frfit.man
+// ../man/eng/signal/findm.xml
+//====================================================
+
+//====================================================
+// ../man/eng/signal/frfit.xml
 //====================================================
 clear;lines(0);
 w=0.01:0.01:2;s=poly(0,'s');
@@ -10211,12 +10729,11 @@ bode(w,[fresp;frespfit])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/frmag.man
+// ../man/eng/signal/frmag.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/fsfirlin.man
+// ../man/eng/signal/fsfirlin.xml
 //====================================================
 clear;lines(0);
 //
@@ -10248,7 +10765,7 @@ plot2d(fg(1:n)',hst2',[3],"000");
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/group.man
+// ../man/eng/signal/group.xml
 //====================================================
 clear;lines(0);
 z=poly(0,'z');
@@ -10258,7 +10775,7 @@ plot(fr,tg)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/hank.man
+// ../man/eng/signal/hank.xml
 //====================================================
 clear;lines(0);
 //Example of how to use the hank macro for 
@@ -10286,14 +10803,14 @@ H=hank(4,5,c);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/hilb.man
+// ../man/eng/signal/hilb.xml
 //====================================================
 clear;lines(0);
 plot(hilb(51))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/iir.man
+// ../man/eng/signal/iir.xml
 //====================================================
 clear;lines(0);
 hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
@@ -10305,47 +10822,39 @@ hzd=horner(hz,1/q) //delay operator q=z^-1
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/iirgroup.man
+// ../man/eng/signal/iirgroup.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/iirlp.man
+// ../man/eng/signal/iirlp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/intdec.man
+// ../man/eng/signal/intdec.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/jmat.man
+// ../man/eng/signal/jmat.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/kalm.man
+// ../man/eng/signal/kalm.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/lattn.man
+// ../man/eng/signal/lattn.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/lattp.man
+// ../man/eng/signal/lattp.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/lev.man
+// ../man/eng/signal/lev.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/levin.man
+// ../man/eng/signal/levin.xml
 //====================================================
 clear;lines(0);
 //We use the 'levin' macro for solving the normal equations 
@@ -10434,27 +10943,23 @@ s2=sort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/lgfft.man
+// ../man/eng/signal/lgfft.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/lindquist.man
+// ../man/eng/signal/lindquist.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/mese.man
+// ../man/eng/signal/mese.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/mfft.man
+// ../man/eng/signal/mfft.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/mrfit.man
+// ../man/eng/signal/mrfit.xml
 //====================================================
 clear;lines(0);
 w=0.01:0.01:2;s=poly(0,'s');
@@ -10467,7 +10972,51 @@ plot2d([w',w'],[mag(:),abs(frespfit(:))])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/phc.man
+// ../man/eng/signal/percentasn.xml
+//====================================================
+clear;lines(0);
+m=0.8;z=%asn(1/sqrt(m),m);K=real(z);Ktilde=imag(z);
+x2max=1/sqrt(m);
+x1=0:0.05:1;x2=1:((x2max-1)/20):x2max;x3=x2max:0.05:10;
+x=[x1,x2,x3];
+y=%asn(x,m);
+rect=[0,-Ktilde,1.1*K,2*Ktilde];
+plot2d(real(y)',imag(y)',1,'011',' ',rect)
+//
+deff('y=f(t)','y=1/sqrt((1-t^2)*(1-m*t^2))');
+intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/signal/percentk.xml
+//====================================================
+clear;lines(0);
+m=0.4;
+%asn(1,m)
+%k(m)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/signal/percentsn.xml
+//====================================================
+clear;lines(0);
+m=0.36;
+K=%k(m);
+P=4*K; //Real period
+real_val=0:(P/50):P;
+plot(real_val,real(%sn(real_val,m)))
+xbasc();
+KK=%k(1-m);
+Ip=2*KK;
+ima_val1=0:(Ip/50):KK-0.001;
+ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
+xgrid(3)
+for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/signal/phc.xml
 //====================================================
 clear;lines(0);
 //
@@ -10517,7 +11066,7 @@ imag(s),
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/pspect.man
+// ../man/eng/signal/pspect.xml
 //====================================================
 clear;lines(0);
 rand('normal');rand('seed',0);
@@ -10539,12 +11088,11 @@ rand('unif');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/remez.man
+// ../man/eng/signal/remez.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/remezb.man
+// ../man/eng/signal/remezb.xml
 //====================================================
 clear;lines(0);
 // Choose the number of cosine functions and create a dense grid 
@@ -10585,26 +11133,25 @@ plot(.5*(0:255)/256,frmag(hn,256));
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/rpem.man
+// ../man/eng/signal/rpem.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/sinc.man
+// ../man/eng/signal/sinc.xml
 //====================================================
 clear;lines(0);
 plot(sinc(100,0.1))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/sincd.man
+// ../man/eng/signal/sincd.xml
 //====================================================
 clear;lines(0);
 plot(sincd(10,1)) 
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/srfaur.man
+// ../man/eng/signal/srfaur.xml
 //====================================================
 clear;lines(0);
 //GENERATE SIGNAL
@@ -10625,47 +11172,39 @@ Rt=(Rt+Rt')/2
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/srkf.man
+// ../man/eng/signal/srkf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/sskf.man
+// ../man/eng/signal/sskf.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/system.man
+// ../man/eng/signal/system.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/trans.man
+// ../man/eng/signal/trans.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/wfir.man
+// ../man/eng/signal/wfir.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/wiener.man
+// ../man/eng/signal/wiener.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/wigner.man
+// ../man/eng/signal/wigner.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/window.man
+// ../man/eng/signal/window.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/yulewalk.man
+// ../man/eng/signal/yulewalk.xml
 //====================================================
 clear;lines(0);
 f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
@@ -10678,27 +11217,23 @@ xtitle('Obtained Frequency Response (Magnitude)')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/zpbutt.man
+// ../man/eng/signal/zpbutt.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/zpch1.man
+// ../man/eng/signal/zpch1.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/zpch2.man
+// ../man/eng/signal/zpch2.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/signal/zpell.man
+// ../man/eng/signal/zpell.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/analyze.man
+// ../man/eng/sound/analyze.xml
 //====================================================
 clear;lines(0);
 // At first we create 0.5 seconds of sound parameters.
@@ -10711,27 +11246,23 @@ analyze(s);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/auread.man
+// ../man/eng/sound/auread.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/auwrite.man
+// ../man/eng/sound/auwrite.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/lin2mu.man
+// ../man/eng/sound/lin2mu.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/loadwave.man
+// ../man/eng/sound/loadwave.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/mapsound.man
+// ../man/eng/sound/mapsound.xml
 //====================================================
 clear;lines(0);
 // At first we create 0.5 seconds of sound parameters.
@@ -10744,17 +11275,15 @@ mapsound(s);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/mu2lin.man
+// ../man/eng/sound/mu2lin.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/playsnd.man
+// ../man/eng/sound/playsnd.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/savewave.man
+// ../man/eng/sound/savewave.xml
 //====================================================
 clear;lines(0);
 // At first we create 0.5 seconds of sound parameters.
@@ -10767,29 +11296,26 @@ savewave(TMPDIR+'/foo.wav',s);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/sound.man
+// ../man/eng/sound/sound.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/wavread.man
+// ../man/eng/sound/wavread.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/sound/wavwrite.man
+// ../man/eng/sound/wavwrite.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/code2str.man
+// ../man/eng/strings/code2str.xml
 //====================================================
 clear;lines(0);
 code2str([-28 12 18 21 10 11])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/convstr.man
+// ../man/eng/strings/convstr.xml
 //====================================================
 clear;lines(0);
 A=['this','is';'my','matrix'];
@@ -10797,14 +11323,14 @@ convstr(A,'u')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/emptystr.man
+// ../man/eng/strings/emptystr.xml
 //====================================================
 clear;lines(0);
 x=emptystr();for k=1:10, x=x+','+string(k);end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/grep.man
+// ../man/eng/strings/grep.xml
 //====================================================
 clear;lines(0);
 txt=['find matches of a string in a vector of strings'
@@ -10819,33 +11345,45 @@ grep(txt,['strings' 'Strings'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/length.man
+// ../man/eng/strings/justify.xml
 //====================================================
+clear;lines(0);
+t=['1234','x','adfdfgdfghfgj'
+   '1','354556','dgf'
+   'sdfgd','','sdfsf'];
+
+justify(t,'l')
+justify(t,'c')
+
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/part.man
+// ../man/eng/strings/length.xml
+//====================================================
+
+//====================================================
+// ../man/eng/strings/part.xml
 //====================================================
 clear;lines(0);
 c=part(['a','abc','abcd'],[1,1,2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/str2code.man
+// ../man/eng/strings/str2code.xml
 //====================================================
 clear;lines(0);
 str2code('Scilab')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/strcat.man
+// ../man/eng/strings/strcat.xml
 //====================================================
 clear;lines(0);
 strcat(string(1:10),',')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/strindex.man
+// ../man/eng/strings/strindex.xml
 //====================================================
 clear;lines(0);
 k=strindex('SCI/demos/scicos','/')
@@ -10856,7 +11394,7 @@ k=strindex('SCI/demos/scicos',['SCI','sci'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/string.man
+// ../man/eng/strings/string.xml
 //====================================================
 clear;lines(0);
 string(rand(2,2))
@@ -10866,7 +11404,7 @@ x=123.356; 'Result is '+string(x)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/strings.man
+// ../man/eng/strings/strings.xml
 //====================================================
 clear;lines(0);
 ['this','is'; 'a 2x2','matrix']
@@ -10874,7 +11412,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/stripblanks.man
+// ../man/eng/strings/stripblanks.xml
 //====================================================
 clear;lines(0);
 a='  123   ';
@@ -10885,7 +11423,7 @@ strcat(stripblanks(a))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/strings/strsubst.man
+// ../man/eng/strings/strsubst.xml
 //====================================================
 clear;lines(0);
 strsubst('SCI/demos/scicos','SCI','.')
@@ -10893,57 +11431,67 @@ strsubst('SCI/demos/scicos','/',' ')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/artest.man
+// ../man/eng/strings/tokenpos.xml
 //====================================================
+clear;lines(0);
+str='This is a character string';
+kdf=tokenpos(str)
+first=part(str,kdf(1,1):kdf(1,2))
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/bifish.man
+// ../man/eng/strings/tokens.xml
 //====================================================
+clear;lines(0);
+tokens('This is a character string')
+
+tokens('SCI/demos/scicos','/')
+
+tokens('y=a+b*2',['=','+','*'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/boucle.man
+// ../man/eng/tdcs/artest.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/chaintest.man
+// ../man/eng/tdcs/bifish.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/fishing.man
+// ../man/eng/tdcs/boucle.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/fusee.man
+// ../man/eng/tdcs/chaintest.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/lotest.man
+// ../man/eng/tdcs/fishing.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/mine.man
+// ../man/eng/tdcs/fusee.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/obscont1.man
+// ../man/eng/tdcs/lotest.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/portr3d.man
+// ../man/eng/tdcs/mine.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/portrait.man
+// ../man/eng/tdcs/obscont1.xml
+//====================================================
+
+//====================================================
+// ../man/eng/tdcs/portr3d.xml
+//====================================================
+
+//====================================================
+// ../man/eng/tdcs/portrait.xml
 //====================================================
 clear;lines(0);
 a=rand(2,2)
@@ -10952,42 +11500,35 @@ portrait(l_s)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/recur.man
+// ../man/eng/tdcs/recur.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/systems.man
+// ../man/eng/tdcs/systems.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/tangent.man
+// ../man/eng/tdcs/tangent.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tdcs/tdinit.man
+// ../man/eng/tdcs/tdinit.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/ascii.man
+// ../man/eng/translation/ascii.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/excel2sci.man
+// ../man/eng/translation/excel2sci.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/formatman.man
+// ../man/eng/translation/formatman.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/fun2string.man
+// ../man/eng/translation/fun2string.xml
 //====================================================
 clear;lines(0);
 txt=fun2string(asinh,'foo');
@@ -10995,11 +11536,11 @@ write(%io(2),txt,'(a)')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/mfile2sci.man
+// ../man/eng/translation/mfile2sci.xml
 //====================================================
 clear;lines(0);
 //create a simple m_file
-write(TMPDIR+'rot90.m',['function B = rot90(A,k)'
+write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  '[m,n] = size(A);'
  'if nargin == 1'
  '    k = 1;'
@@ -11021,20 +11562,25 @@ write(TMPDIR+'rot90.m',['function B = rot90(A,k)'
  '    B = A;'
  'end']);
 // translate it dor scilab
+mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
+// show the new code
+write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
+// get it into scilab
+getf(TMPDIR+'/rot90.sci')
+//execute it
+m=rand(4,2);rot90(m,1)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/mtlb_load.man
+// ../man/eng/translation/mtlb_load.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/mtlb_save.man
+// ../man/eng/translation/mtlb_save.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/pol2tex.man
+// ../man/eng/translation/pol2tex.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -11043,12 +11589,11 @@ pol2tex(p)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/sci2for.man
+// ../man/eng/translation/sci2for.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/texprint.man
+// ../man/eng/translation/texprint.xml
 //====================================================
 clear;lines(0);
 s=poly(0,'s');
@@ -11056,12 +11601,11 @@ texprint([1/s,s^2])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/translation/translatepaths.man
+// ../man/eng/translation/translatepaths.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/ScilabEval.man
+// ../man/eng/tksci/ScilabEval.xml
 //====================================================
 clear;lines(0);
 //Create a Tcl script using ScilabEval
@@ -11075,15 +11619,14 @@ TK_EvalFile(TMPDIR+'/test.tcl')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/TK_EvalFile.man
+// ../man/eng/tksci/TK_EvalFile.xml
 //====================================================
 clear;lines(0);
-
 TK_EvalFile(SCI+'/demos/tk/puzzle')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/TK_EvalStr.man
+// ../man/eng/tksci/TK_EvalStr.xml
 //====================================================
 clear;lines(0);
 //with one call
@@ -11106,7 +11649,7 @@ TK_EvalStr('pack .foo2.b');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/TK_GetVar.man
+// ../man/eng/tksci/TK_GetVar.xml
 //====================================================
 clear;lines(0);
 TK_EvalStr('toplevel .tst1');
@@ -11123,7 +11666,7 @@ text=TK_GetVar('tvar')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/TK_SetVar.man
+// ../man/eng/tksci/TK_SetVar.xml
 //====================================================
 clear;lines(0);
 TK_EvalStr('toplevel .tst2');
@@ -11136,7 +11679,7 @@ TK_SetVar('tvar','This text has been set directly within scilab');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/close.man
+// ../man/eng/tksci/close.xml
 //====================================================
 clear;lines(0);
 h=figure();
@@ -11158,7 +11701,7 @@ close(h);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/figure.man
+// ../man/eng/tksci/figure.xml
 //====================================================
 clear;lines(0);
 h=figure(3);
@@ -11182,7 +11725,7 @@ close(h);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/findobj.man
+// ../man/eng/tksci/findobj.xml
 //====================================================
 clear;lines(0);
 h=figure();
@@ -11200,7 +11743,7 @@ close();
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/gcf.man
+// ../man/eng/tksci/gcf.xml
 //====================================================
 clear;lines(0);
 figure(5);
@@ -11219,33 +11762,7 @@ close(5);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/get.man
-//====================================================
-clear;lines(0);
-h=uicontrol('string', 'Button');
-// Opens a window with a  button.
-p=get(h,'position');
-// get the geometric qspect of the button
-disp('Button width: ' + string(p(3)));
-// print the width of the button
-close();
-// close figure
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/tksci/set.man
-//====================================================
-clear;lines(0);
-h=uicontrol('string', 'Button');
-// Opens a window with a  button.
-set(h,'position',[ 50 50 100 100]);
-// set the geometric aspect of the button
-close();
-// close figure
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/tksci/uicontrol.man
+// ../man/eng/tksci/uicontrol.xml
 //====================================================
 clear;lines(0);
 f=figure();
@@ -11273,7 +11790,7 @@ close();
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/tksci/uimenu.man
+// ../man/eng/tksci/uimenu.xml
 //====================================================
 clear;lines(0);
 f=figure('position', [10 10 300 200]);
@@ -11291,17 +11808,29 @@ close(f);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/%helps.man
+// ../man/eng/utilities/G_make.xml
 //====================================================
+
+//====================================================
+// ../man/eng/utilities/apropos.xml
+//====================================================
+clear;lines(0);
+apropos "+"
+apropos ode 
+apropos "list of"
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/G_make.man
+// ../man/eng/utilities/basename.xml
 //====================================================
+clear;lines(0);
+files=basename('SCI/macros/util/poo.sci')
+files=basename('SCI/macros\util/poo.sci')
+files=basename('SCI/macros\util/poo.sci.k')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/c_link.man
+// ../man/eng/utilities/c_link.xml
 //====================================================
 clear;lines(0);
 if c_link('foo') then link('foo.o','foo');end
@@ -11310,7 +11839,7 @@ a=%t; while a ;[a,b]=c_link('foo'); ulink(b);end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/chdir.man
+// ../man/eng/utilities/chdir.xml
 //====================================================
 clear;lines(0);
 chdir(TMPDIR);
@@ -11322,31 +11851,38 @@ end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/dec2hex.man
+// ../man/eng/utilities/dec2hex.xml
 //====================================================
 clear;lines(0);
 dec2hex([2748 10;11 3])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/demos.man
+// ../man/eng/utilities/demos.xml
 //====================================================
+
+//====================================================
+// ../man/eng/utilities/dirname.xml
+//====================================================
+clear;lines(0);
+files=dirname('SCI/macros/util/poo.sci')
+files=dirname('SCI/macros\util/poo.sci')
+files=dirname('SCI/macros\util/poo.sci.k')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/help.man
+// ../man/eng/utilities/help.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/hex2dec.man
+// ../man/eng/utilities/hex2dec.xml
 //====================================================
 clear;lines(0);
 hex2dec(['ABC','0','A'])
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_build.man
+// ../man/eng/utilities/ilib_build.xml
 //====================================================
 clear;lines(0);
 //Here with give a complete example on adding new primitive to Scilab
@@ -11395,12 +11931,11 @@ scifun1(33)
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_compile.man
+// ../man/eng/utilities/ilib_compile.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_for_link.man
+// ../man/eng/utilities/ilib_for_link.xml
 //====================================================
 clear;lines(0);
 
@@ -11430,37 +11965,62 @@ if norm(c-(a+b)) > %eps then pause,end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_gen_Make.man
+// ../man/eng/utilities/ilib_gen_Make.xml
 //====================================================
+
+//====================================================
+// ../man/eng/utilities/ilib_gen_gateway.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/ilib_gen_loader.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/intersci.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/language.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/link.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/listfiles.xml
+//====================================================
+clear;lines(0);
+files=listfiles(['SCI/macros/util/*.sci';'SCI/macros/util/*.bin']);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_gen_gateway.man
+// ../man/eng/utilities/make_index.xml
 //====================================================
+
+//====================================================
+// ../man/eng/utilities/man.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/pathconvert.xml
+//====================================================
+clear;lines(0);
+pathconvert('SCI/macros\util/foo.sci',%f,%f,'u')
+pathconvert('SCI/macros\util/foo.sci',%f,%f,'w')
+pathconvert('SCI/macros/util/foo.sci',%f,%t,'w')
+pathconvert('HOME/macros/util/foo.sci',%t,%t,'w')
+pathconvert('c:/tmp',%f,%t,'u')
+pathconvert('/cygdrive/c/tmp',%f,%f,'w')
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ilib_gen_loader.man
+// ../man/eng/utilities/percenthelps.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/intersci.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/utilities/link.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/utilities/man.man
-//====================================================
-for k=winsid(),xdel(k);end
-
-//====================================================
-// ../man/utilities/sci2exp.man
+// ../man/eng/utilities/sci2exp.xml
 //====================================================
 clear;lines(0);
   a=[1 2;3 4]
@@ -11471,7 +12031,7 @@ clear;lines(0);
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/sci2map.man
+// ../man/eng/utilities/sci2map.xml
 //====================================================
 clear;lines(0);
 txt=[sci2map([1 2;3 4],'a');
@@ -11479,29 +12039,26 @@ txt=[sci2map([1 2;3 4],'a');
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/scilab.man
+// ../man/eng/utilities/scilab.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/scilink.man
+// ../man/eng/utilities/scilink.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/timer.man
+// ../man/eng/utilities/timer.xml
 //====================================================
 clear;lines(0);
 timer();A=rand(100,100);timer()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/ulink.man
+// ../man/eng/utilities/ulink.xml
 //====================================================
-for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/unix.man
+// ../man/eng/utilities/unix.xml
 //====================================================
 clear;lines(0);
 unix("ls $SCI/demos");
@@ -11512,7 +12069,7 @@ wd=dir()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/unix_g.man
+// ../man/eng/utilities/unix_g.xml
 //====================================================
 clear;lines(0);
 if MSDOS then unix_g('dir '+WSCI+'\demos');
@@ -11523,7 +12080,7 @@ wd=pwd()
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/unix_s.man
+// ../man/eng/utilities/unix_s.xml
 //====================================================
 clear;lines(0);
 if MSDOS then 
@@ -11534,7 +12091,7 @@ end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/unix_w.man
+// ../man/eng/utilities/unix_w.xml
 //====================================================
 clear;lines(0);
 if MSDOS then unix_w("dir "+WSCI+"\demos");
@@ -11542,10 +12099,26 @@ else unix_w("ls $SCI/demos"); end
 for k=winsid(),xdel(k);end
 
 //====================================================
-// ../man/utilities/unix_x.man
+// ../man/eng/utilities/unix_x.xml
 //====================================================
 clear;lines(0);
 if MSDOS then unix_x("dir "+WSCI+"\demos");
 else unix_x("ls $SCI/demos"); end
 for k=winsid(),xdel(k);end
+
+//====================================================
+// ../man/eng/utilities/with_gtk.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/with_pvm.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/with_texmacs.xml
+//====================================================
+
+//====================================================
+// ../man/eng/utilities/with_tk.xml
+//====================================================
 
