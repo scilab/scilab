@@ -16,16 +16,18 @@
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the rectangle is drawn, If
-   <VERB>"off"</VERB> the rectangle is not drawn on the screen.
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . 
+   By default, the rectangle is visible, the value's property is  
+   <VERB>"on"</VERB>. If <VERB>"off"</VERB> the rectangle  is not drawn 
+   on the screen.
    </DESCRIPTION_ITEM>
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This field contains the coordinates of the upper-left point of the
-    rectangle and its width and height. It is the matrix <VERB>[xleft,yup;width,height]</VERB>
+    This property is to return the coordinates of the upper-left point of the
+    rectangle and its width and height in the data units of the axes.
+    The result is the matrix <VERB>[xleft,yup;width,height]</VERB>
    </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label='line_style: '>
@@ -35,15 +37,14 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='thickness: '>
-       This field contains the line <VERB>thickness</VERB> property. It's value should
-       be a non negative integer..
+       This field contains the line <VERB>thickness</VERB> property. Its value should
+       be a positif integer.
      </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label='mark_mode: '>
-      If   <VERB>mark_mode</VERB> property is  <VERB>"on"</VERB> and
-      <VERB>fill_mode</VERB> is <VERB>"off"</VERB> the
-      rectangle  is represented by a mark drawn at each corners.
-      points. If   <VERB>mark_mode</VERB> property is
+      If <VERB>mark_mode</VERB> property is  <VERB>"on"</VERB> and
+      the rectangle  is represented by a mark drawn at each corners.
+      points. If the property property is to 
       <VERB>"off"</VERB> the rectangle is represented using lines or
       paint surface.
      </DESCRIPTION_ITEM>
@@ -59,36 +60,37 @@
      <DESCRIPTION_ITEM label='mark_size: '>
       The <VERB>mark_size</VERB> property  is used to select the
        type of size of the marks when <VERB>mark_mode</VERB> property is
-       <VERB>"on" </VERB>. It's value should be an integer in [0 5]
+       <VERB>"on" </VERB>. Its value should be an integer in [0 5]
        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
      </DESCRIPTION_ITEM>
 
 
      <DESCRIPTION_ITEM label='foreground: '>
-      This field contains the color index used to draw or fill the
-      rectangle.  It's value should be a color index 
-      (relative to the current colormap)
+      This field contains the default <VERB>foreground</VERB> property
+       used to draw or to fill the rectangle.  Its value should be a color index 
+      (relative to the current colormap).
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='fill_mode: '>
       If <VERB>fill_mode</VERB> property value is <VERB>"on" </VERB>,
-      the rectangle is filled with the foreground color. If property
-      value is <VERB>"on"</VERB> only the shape of the rectangle is
-      drawn using the foreground color.
+      the rectangle is filled with the foreground color, 
+      the <VERB>mark_mode</VERB> must also have the value <VERB>"off"</VERB>.
+       if not and the value's property  is <VERB>"off"</VERB> only the 
+       shape of the rectangle is drawn using the foreground color.
      </DESCRIPTION_ITEM>
 
 
      <DESCRIPTION_ITEM label='clip_state: '>
       This field contains the <VERB>clip_state</VERB> property
-      value for the rectangle.  It's value should be :
+      value for the rectangle. It should be :
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the rectangle is not clipped
+         <VERB>"off"</VERB> this means that the rectangle is not clipped.
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
          <VERB>"cliprf"</VERB> this means that the
-         rectangle is clipped outside the Axes rectangle.
+         rectangle is clipped outside the Axes box.
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
@@ -98,11 +100,19 @@
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label='clip_box: '>
-      This field contains the  <VERB>clip_box</VERB> property.
-      It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+     <DESCRIPTION_ITEM label='clip_box: '> 
+     This field is to determinate  the  <VERB>clip_box</VERB> property.
+      By Default its value should be an empty matrix if clip_state is "off".
+       Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height) 
+       defines the portions  of the rectangle to display, however <VERB>clip_state</VERB> property 
+       value will be changed.
+      </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='parent: '> 
+      This field contains the handle of the parent. The parent of the rectancle
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
      </DESCRIPTION_ITEM>
+   
   
 
   </DESCRIPTION>
@@ -113,12 +123,17 @@
 
    xrect(-1,1,2,2)
 
-   p=a.children
-   p.fill_mode="on";
-   p.foreground=5;
-   p.clip_box=[-1 1;1 1];
-   p.clip_state="off"
-   p.data(:,2)=[1/2;1/2];    
+   r=get("hdl");//get handle on current entity (here the rectangle entity)
+   r.type
+   r.parent.type
+   r.foreground=13;
+   r.line_style=2;
+   r.fill_mode="on";
+   r.clip_box=[-1 1;1 1];
+   r.clip_state="off"
+   r.data(:,2)=[1/2;1/2];
+   r.data(:,1)=[1/2;1/2];
+      
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
@@ -130,6 +145,6 @@
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

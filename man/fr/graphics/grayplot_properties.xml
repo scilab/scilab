@@ -11,81 +11,68 @@
   <DESCRIPTION>
   The Grayplot entity is a leaf of the graphics entities hierarchy. It
   represents 2D plots of surface using colors and images (see
-  <VERB>grayplot</VERB>, <VERB>Matplot</VERB> and
+  <VERB>Xgrayplot</VERB>, <VERB>Matplot</VERB> and
   <VERB>Matplot1</VERB>).
 
 
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the plot is drawn, If
-   <VERB>"off"</VERB> the  plot is  not drawn on the screen.
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB> . By default, 
+   the plot is visible, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the plot is not drawn on the screen.
    </DESCRIPTION_ITEM>
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This filed is not yet available.
+    This is a matrix (n1,n2) which constitue the coordinates of a 2D 
+    plots of surface. 
    </DESCRIPTION_ITEM>
-
-      <DESCRIPTION_ITEM label='clip_state: '>
-      This field contains the <VERB>clip_state</VERB> property
-      value for the polyline.  It's value should be :
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the plot is not clipped
-         </DESCRIPTION_ITEM>
-
-         <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that the
-         plot is clipped outside the Axes rectangle.
-         </DESCRIPTION_ITEM>
-
-        <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that the
-         plot is clipped outside the rectangle given by property clip_box.
-         </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label='clip_box: '>
-      This field contains the  <VERB>clip_box</VERB> property.
-      It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
-     </DESCRIPTION_ITEM>
   
 
      <DESCRIPTION_ITEM label='data_mapping: '>
-     If this property value is <VERB>"scaled"</VERB> the indices of
+     By default the value of this property <VERB>"scaled"</VERB>, the indices of
      painting colors are proportional to the value <VERB>z</VERB>
-     coordinates. If this property value is <VERB>"direct"</VERB> and
-     if the plot is a grayplot, the indices of painting colors are
+     coordinates. In another case the property take as value <VERB>"direct"</VERB> 
+     where the plot is a grayplot and the indices of painting colors are
      given by the data.
      </DESCRIPTION_ITEM>
 
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the grayplot (Matplot)
+      entity should be of the type <VERB>"Axes"</VERB>.
+     </DESCRIPTION_ITEM>
   
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
 
-   m=5;n=7;
+  set("old_style","off") // set new graphics style as default creating figure
+   m=5;n=5;
    M=round(32*rand(m,n));
    grayplot(1:m,1:n,M)
 
    a=get("current_axes");
+   a.data_bounds=  [-1,-1,7,7]
    h=a.children
 
+   h.data_mapping="direct";
+   
+   // A 2D ploting of a matrix using colors 
    xbasc()
-   Matplot()
    a=get("current_axes");
-   h=a.children;
-
-   m=5,n=7;
-   h.data=round(32*rand(m,n));
-   a.data_bounds=[0,n;0,m]+0.5;
-
+   a.data_bounds=  [0,0,4,4];
+  
+   b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
+   Matplot1(b,[1,1,3,3])  ;
+  
+   h=a.children
+   for i=1:7
+    xclick(); // click the mouse to sets Matplot data
+    h.data=h.data+4;
+   end
+   
 
  ]]></EXAMPLE>
   <SEE_ALSO>
@@ -99,6 +86,6 @@
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>axis_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="axis_properties"> description of the
+   axis entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Axis entity is a leaf of the graphics entities hierarchy.
+  This entity defines the parameters for axis scaling and appearance.
+
+
+  <DESCRIPTION_ITEM label='Axis properties'>
+  <DESCRIPTION_INDENT>
+  
+     <DESCRIPTION_ITEM label='visible: '> 
+     This field contains the  <VERB>visible</VERB> property value
+     for the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .
+     By default, the axis entity  is visible, the value's property is  
+     <VERB>"on"</VERB>. If <VERB>"off"</VERB>, the axis is not drawn on the screen.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='tics_direction: '> 
+     Specify the direction of the tics drawn under the horizontal axis and
+     the vertical axis. 
+     The possible values of this property are: 
+      <DESCRIPTION_INDENT>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"top"</VERB>. In this case, tics are drawn at
+         the top of the horizontal axis.
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"bottom"</VERB>. In this case, tics are drawn  at
+         the bottom of the horizantal axis.
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"left"</VERB>. In this case, tics are going left on
+	  the vertical axis.
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"right"</VERB>. In this case, tics are going right on 
+	 the vertical axis.
+         </DESCRIPTION_ITEM>
+
+     </DESCRIPTION_INDENT>
+
+     <P></P>
+     The defaults values are <VERB>"top"</VERB> for the horizontal axis and
+     <VERB>"right"</VERB> for vertical axis.
+     </DESCRIPTION_ITEM>
+  
+      <DESCRIPTION_ITEM label='xtics_coord: '>
+      This field represent the x-coordinate of the axis. It is a row vector 
+      containing values increasing from left to right which give tics positions 
+      for a horizontal axis. Other case, the entity is a vertical axis, this 
+      property contain a scale which defines the x-origin of the axis. 
+     </DESCRIPTION_ITEM>
+  
+     <DESCRIPTION_ITEM label='ytics_coord: '>
+     This field represent the y-coordinate of the axis. It is a row vector 
+      containing values increasing from bottom to top which give tics positions 
+      for a vertical axis. Other case, the entity is a horizantal axis, this 
+      property contain a scale which defines the y-origin of the axis. 
+     </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='tics_color: '>
+      The value of this properties is index of the color used to draw the axis'lines and tics.
+     </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label='sub_tics: '>
+      This field sets the number of tics to draw between two main
+      tics. 
+     </DESCRIPTION_ITEM> 
+     
+     <DESCRIPTION_ITEM label='tics_segement: '>
+     This field contains a flag which controls the display of the base segment of 
+     the axis. The default is <VERB>"on"</VERB>, else if to not display it, the property
+     takes <VERB>"off"</VERB> as value.
+     </DESCRIPTION_ITEM>  
+
+     <DESCRIPTION_ITEM label='tics_style: '>
+     This property describes how the tics are given. It is a string flag 
+     which can have these possible values:
+     <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM>
+         <VERB>"v"</VERB>. It's the default value, In this case, tics positions
+	 are given by the row factor <VERB>xtics_coord</VERB> for horizontal 
+	 axis (<VERB>ytics_coord</VERB> for the vertical one).
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"r"</VERB>. In this case, tics positions are given by the 
+	 vector <VERB>[min,max,n] </VERB> where n is the number of intervals.
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM>
+         <VERB>"i"</VERB>. In this case the vector given tics positions is of 
+	 size 4, <VERB>[k1,k2,a,n]</VERB> then values are increasing between
+	  <VERB>k1*10^a</VERB> and  <VERB>k2*10^a </VERB>, n is the number of intervals.
+         </DESCRIPTION_ITEM>
+
+     </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM> 
+     
+      <DESCRIPTION_ITEM label='tics_labels: '>
+      This filed is a string matrix, which contains the strings to be drawn along
+      the axis at tics positions.      
+     </DESCRIPTION_ITEM> 
+     
+     <DESCRIPTION_ITEM label='labels_font_color: '>
+      This property determines the color of the tics labels.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='labels_font_size: '>
+      An integer specifying the font size used to draw the tics labels.
+     </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='clip_state: '>
+      This field contains the <VERB>clip_state</VERB> property
+      value for the arc.  Clip_state value should be :
+      <DESCRIPTION_INDENT>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"off"</VERB> this means that the axis is not clipped
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"cliprf"</VERB> this means that the
+         axis is clipped outside the Axes box.
+         </DESCRIPTION_ITEM>
+
+        <DESCRIPTION_ITEM > 
+         <VERB>"on"</VERB> this means that the
+         axis is clipped outside the arc given by property clip_box.
+         </DESCRIPTION_ITEM>
+
+      </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_box: '>    
+      This field is to determinate  the  <VERB>clip_box</VERB> property.
+       By Default its value should be an empty matrix if clip_state is "off".
+       Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height)
+       defines the portions of the axis to display, however <VERB>clip_state</VERB> property 
+       value will be changed.
+     </DESCRIPTION_ITEM> 
+    
+    <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the axis
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+     </DESCRIPTION_ITEM>
+
+
+  </DESCRIPTION_INDENT>
+    </DESCRIPTION_ITEM>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+
+  set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-1,-1,10,10];
+
+  drawaxis(x=2:7,y=4,dir='u');
+  a1=a.children(1)
+  a1.xtics_coord=[1 4 5  8 10];
+  a1.tics_color=2;
+  a1.labels_font_size=3;
+  a1.tics_direction="bottom";
+  a1.tics_labels= [" February" "May"  "june" "August"  "October"];
+  
+  drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
+  a2=get("hdl")
+  a2.sub_tics=0;
+  a2.tics_segments="off";
+  a2.ytics_coord=4;
+  
+  drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
+  a3=get("hdl");
+  a3.tics_labels= 'B'  +string(0:7);
+  a3.tics_direction="left";
+
+   
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+   <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>drawaxis</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
+</MAN>
+
+
+
+

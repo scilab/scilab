@@ -12,67 +12,50 @@
 
   The Fec entity is a leaf of the graphics entities hierarchy. It
   represents 2D finite elements plots  (see
-  <VERB>fec</VERB>, <VERB>Sgrayplot</VERB>.
+  <VERB>fec</VERB>, <VERB>Sgrayplot</VERB>).
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the plot is drawn, If
-   <VERB>"off"</VERB> the  plot is  not drawn on the screen.
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . By default, 
+   the plot is visible, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the plot is not drawn on the screen.
    </DESCRIPTION_ITEM>
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This is a three column matrix <VERB>[x,y,f]</VERB>. <VERB>x(i)</VERB>
-    and <VERB>y(i)</VERB> are the coordinates of the  <VERB>i</VERB>th
+    This is a three column matrix <VERB>[x,y,f]</VERB>, where <VERB>x(i)</VERB>
+    and <VERB>y(i)</VERB> are the coordinates of the  <VERB>i</VERB>'th
     node. <VERB>f(i)</VERB> is the value associated to the node <VERB>i</VERB>.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='triangles: '>
     This is a five column matrix
     <VERB>[tn,n1,n2,n3,flag]</VERB>. <VERB>tn(j)</VERB> is the
-    triangle number, <VERB>n1(j)</VERB>, <VERB>n2(j)</VERB>,
-    <VERB>n3(j)</VERB>, are the index of the nodes which constitutes
-    the triangle.  <VERB>flag(j)</VERB> is not used.
-   </DESCRIPTION_ITEM>
+    triangle number. <VERB>n1(j)</VERB>, <VERB>n2(j)</VERB> and
+    <VERB>n3(j)</VERB> are the index of the nodes which constitute
+    the triangle.
+    <p></p> 
+    (<VERB>flag(j)</VERB> is not used).
+   </DESCRIPTION_ITEM> 
 
-   <DESCRIPTION_ITEM label='clip_state: '>
-   This field contains the <VERB>clip_state</VERB> property
-   value for the polyline.  It's value should be :
-   <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that the plot is not clipped
-         </DESCRIPTION_ITEM>
-
-         <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that the
-         plot is clipped outside the Axes rectangle.
-         </DESCRIPTION_ITEM>
-
-        <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that the
-         plot is clipped outside the rectangle given by property clip_box.
-         </DESCRIPTION_ITEM>
-
-   </DESCRIPTION_INDENT>
-   </DESCRIPTION_ITEM>
-
-     <DESCRIPTION_ITEM label='clip_box: '>
-      This field contains the  <VERB>clip_box</VERB> property.
-      It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height)
+   <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the fec
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
      </DESCRIPTION_ITEM>
-  
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
+
+   set("figure_style","new"); //create a figure
 
    x=-10:10; y=-10:10;m =rand(21,21);
-   Sgrayplot(x,y,m)
+   Sgrayplot(x,y,m);
    a=get("current_axes");
    f=a.children.children(2)
-   f.data(:,3)=(1:size(f.data,1))'
+   f.data(:,3)=(1:size(f.data,1))';
+   a.parent.color_map=hotcolormap(64);
+
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
@@ -82,6 +65,6 @@
     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

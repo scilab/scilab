@@ -19,98 +19,113 @@
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
-   for the entity . It's value should
-   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
-   </VERB> the curves are drawn, If
-   <VERB>"off"</VERB> the  curves are  not drawn on the screen.
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . By default, 
+   the curves are visibles, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the curves are not drawn on the screen.
    </DESCRIPTION_ITEM>
 
 
    <DESCRIPTION_ITEM label='data: '>
     This field contains the coordinates of the 3d curves. it is the
     matrix <VERB>[X,Y,Z]</VERB> such as  <VERB>X(:,i)</VERB>,
-    <VERB>Y(:,i)</VERB>, <VERB>Z(:,i)</VERB> contains the 3D
-    coordinates of the <VERB>i</VERB>th curve.
+    <VERB>Y(:,i)</VERB>, <VERB>Z(:,i)</VERB> contain the 3D
+    coordinates of the <VERB>i</VERB>'th curve.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='data_bounds: '>
     This field contains the boundary values for the x, y and z
-    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>
+    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>.
    </DESCRIPTION_ITEM>
 
    <DESCRIPTION_ITEM label='flags: '>
-    a real vector of size three <VERB>flag=[type,box,unused]</VERB>.
+    A real vector of size three <VERB>flag=[type,box,unused]</VERB>.  
+    <P></P>
+    <VERB>type</VERB>is an integer (scaling) where:
       <DESCRIPTION_INDENT>
-       <DESCRIPTION_ITEM label='type'>
-        an integer (scaling).
+       <DESCRIPTION_ITEM >
         if type=0  the plot is made using the current 3D scaling (set
-        by a previous call to <VERB>param3d</VERB>,
-        <VERB>plot3d</VERB>
-        <P></P>
-         if type=1  rescales automatically 3d boxes with extreme
+        by a previous call to <VERB>param3d</VERB>,<VERB>plot3d</VERB>
+        <VERB>plot3d</VERB> 
+	</DESCRIPTION_ITEM > 
+        
+	<DESCRIPTION_ITEM>
+        type=1 :rescales automatically 3d boxes with extreme
         aspect ratios, the boundaries are specified by the value of
         the property  <VERB>data_bounds</VERB>. 
-        <P></P>
-         if type=2  rescales automatically 3d boxes with extreme
+        </DESCRIPTION_ITEM > 
+        
+	<DESCRIPTION_ITEM>
+         type=2 :rescales automatically 3d boxes with extreme
         aspect ratios, the boundaries are computed using the given
         data. 
-        <P></P>
-         if  type=3 3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
+        </DESCRIPTION_ITEM > 
         
-        <P></P>
-        if type=4  3d isometric bounds  derived from the data
-       <P></P>
-        if type=5  3d expanded isometric bounds  with box bounds given
+	<DESCRIPTION_ITEM>
+         type=3 :3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
+	 </DESCRIPTION_ITEM > 
+	
+	<DESCRIPTION_ITEM>
+        type=4 :3d isometric bounds  derived from the data.
+	</DESCRIPTION_ITEM > 
+	
+	<DESCRIPTION_ITEM>
+	type=5 :3d expanded isometric bounds  with box bounds given
         by the property <VERB>data_bounds</VERB>. 
-     </DESCRIPTION_ITEM>
+	</DESCRIPTION_ITEM>
+     
      </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='thickness: '>
-       This field contains the  <VERB>thickness</VERB> of the lines
-       used to draw the axes and the curves. It's value should
-       be a non negative integer..
+       This field contains the default  <VERB>thickness</VERB> value 
+       of the lines used to draw the axes and the curves. It should
+       be a positive integer.
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='foreground: '>
       This field contains the color index used to draw the axes and
-       the curves.  It's value should be a color index (relative to
-       the current colormap)
+       the curves.  Its value should be a color index (relative to
+       the current colormap).
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='rotation_angles: '>
       This field is the vector <VERB>[theta,alpha]</VERB>. These two
-      values give  the spherical coordinates of the observation point (in degree).  
+      values give  the spherical coordinates of the observation points (in degree).  
      </DESCRIPTION_ITEM>
 
  
 
      <DESCRIPTION_ITEM label='surface_color: '>
-     This property contains the vector of color indices used for  each
+     This property contains the vector of color indices used to draw each
       curve.
+     </DESCRIPTION_ITEM> 
+
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the 3D curves
+      entity should be of the type <VERB>"Axes"</VERB> .
      </DESCRIPTION_ITEM>
+  
+
 
   
 
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
-   set("figure_style","new") //create a figure
+  <EXAMPLE><![CDATA[   
 
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
-
-   h=get("hdl") //get handle on current entity (here the param3d)
-
-   h.rotation_angles=[30,70];
+ 
+   h=a.children //get the handle of the param3d entity
+   h.rotation_angles=[65,75];
    h.surface_color=[3 5];
-   h.flag=[1 1 0];
-   h.flag=[1,2,4];
-
-
-   h.flag=[2 5 4]; //boundaries given by data_bounds
-   h.data_bounds=[-1,-1,-1;1,1,2]       
-   
-
+   h.flag=[1,2,3];
+   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   h.flag=[2 5 0];
+   h.thickness = 2;
+  
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
@@ -121,6 +136,6 @@
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 

@@ -10,17 +10,19 @@
  
   <DESCRIPTION>
   The figure entity is the top level of the graphics entities
-  hierarchy. This entity defines the parameters for the figure itself
-  as well as the  parameter's defaut values for the children creation
+  hierarchy. This entity contain a number of properties designed to control 
+  many aspects of displaying Scilab graphics objects.
+  These properties fall into two categories. Properties that contain information 
+  about figure itself and others related to set default values for the children creation.
 
 
-  <DESCRIPTION_ITEM label='Figure parameters: '>
+  <DESCRIPTION_ITEM label='Figure properties: '>
   <DESCRIPTION_INDENT>
      <DESCRIPTION_ITEM label='figure_style: '>
-     This field contains the figure style. The value of this field
+     The value of this field difines the figure style, it
       should be <VERB>"old"</VERB> or <VERB>"new"</VERB>.  The
       <VERB>"new"</VERB> value sets the entity based style. The
-      <VERB>"old"</VERB> value sets the old Scilab graphic mode. In
+      <VERB>"old"</VERB> value represents the old Scilab graphic mode. In
       this case <VERB>figure_style</VERB> is the only defined property.
      </DESCRIPTION_ITEM>
 
@@ -32,24 +34,24 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='figure_size: '>
-     This field contains the size in pixel of the screen's graphics
+     This property controls the size in pixel of the screen's graphics
      window. The size is the vector <VERB>[width,height] </VERB>.
      </DESCRIPTION_ITEM>
     
      <DESCRIPTION_ITEM label='axes_size: '>
-     This field contains the size in pixel of the virtual graphics
+     Used to Specifies  the size in pixel of the virtual graphics
      window. The size is the vector <VERB>[width,height] </VERB>.
      The  virtual graphic window should be bigger than the part really
      visible on the screen.
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='auto_resize: '>
-     This field  defines what happen when the graphics window
-     is resized. If the value is <VERB>"on"</VERB> then the
-     <VERB>axes_size</VERB> property is equaled to the
-     <VERB>figure_size</VERB> and the axes children are zoomed
-     accordingly. If the value is <VERB>"off"</VERB> then the
-     <VERB>axes_size</VERB> does not change with <VERB>figure_size</VERB>.
+     This property determines if graphics window is resized.
+     If the value is <VERB>"on"</VERB> then the <VERB>axes_size</VERB> 
+     property is equaled to the <VERB>figure_size</VERB> and the axes 
+     children are zoomed accordingly. If the value is <VERB>"off"</VERB> that indicate 
+     that <VERB>axes_size</VERB> cannot be resized when <VERB>figure_size</VERB>
+     is changed.
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='figure_name: '>
@@ -59,12 +61,12 @@
 
      <DESCRIPTION_ITEM label='figure_id: '>
      This field contains the identifier of the figure. This  is a
-     integer number. This number is set at figure creation and cannot
-     be changed after that.
+     integer number which is prefexed to the figure_window, set at 
+     figure creation and cannot be changed after .
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='color_map: '>
-     This field contains the colormap used by this figure. The
+     Property which defines the colormap used by this figure. The
      colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.
      <VERB>m</VERB> is the number of colors. Color number i is given
      as a 3-uple <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
@@ -72,15 +74,15 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='background: '>
-     This field contains the index (relative to the current colormap) 
-     of the figure's background color.
+     This property controls the figure window background color. IT takes as value
+     an index relative to the current colormap. 
      </DESCRIPTION_ITEM>
 
   
      <DESCRIPTION_ITEM label='pixel_drawing_mode: '>
-     This fieds defines the bitwise operation used to draw the pixel
+     This field defines the bitwise operation used to draw the pixel
      on the screen. The default mode is <VERB>copy</VERB> what is to
-     say the pixel is drawn as required. More generally the a bitwise
+     say the pixel is drawn as required. More generally the bitwise
      operation is performed between the color of the source pixel and
      the color of the pixel already present on the screen. 
      operations are :    
@@ -104,13 +106,13 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='children: '>
-     This field contains a vector of handles. the children of the
-     figure. All these children are of type  <VERB>"Axes"</VERB>
+     This field is a vector of <LINK>handle_graphics</LINK>. this handles represent 
+     the children of the figure. Note that all figure children are of type <VERB>"Axes"</VERB>
      </DESCRIPTION_ITEM>
 
    </DESCRIPTION_INDENT>
 
-   <DESCRIPTION_ITEM label='Children default values: '>
+   <DESCRIPTION_ITEM label='Children s default values: '>
      <DESCRIPTION_INDENT>
 
      <DESCRIPTION_ITEM label='auto_scale: '>
@@ -177,7 +179,7 @@
      <DESCRIPTION_ITEM label='foreground: '>
       This field contains the default <VERB>foreground</VERB> property
       value for all objects.  It's value should be a color index
-      (relative to the current colormap)
+      (relative to the current colormap).
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_state: '>
@@ -185,33 +187,31 @@
       value for all objects.  It's value should be :
       <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
-         <VERB>"off"</VERB> this means that all  objects created after
-         that are not clipped
+         <VERB>"off"</VERB> under this state all objects created are not clipped
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
-         <VERB>"cliprf"</VERB> this means that all  objects created after
+         <VERB>"cliprf"</VERB> this means that all objects created after
          that are clipped outside the Axes rectangle.
          </DESCRIPTION_ITEM>
 
         <DESCRIPTION_ITEM > 
-         <VERB>"on"</VERB> this means that all  objects created after
-         that are clipped outside the rectangle given by property clip_box.
+         <VERB>"on"</VERB> objects created are clipped outside the rectangle given 
+	 by the determinate property clip_box.
          </DESCRIPTION_ITEM>
       </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_box: '>
       This field contains the default <VERB>clip_box</VERB> property
-      value for all objects.  It's value should be an empty matrix if
-      clip_state is <VERB>"off"</VERB> or the vector
-      <VERB>[x,y,w,h]</VERB> (upper-left point, width, height) 
+      value for all objects.  Its value should be an empty matrix if
+      clip_state is <VERB>"off"</VERB>. If not objects are clipped to 
+      the bounding box <VERB>[x,y,w,h]</VERB> (upper-left point, width, height) 
      </DESCRIPTION_ITEM>
      <DESCRIPTION_ITEM label='rotation_style: '>
-      This field is related to the "3D Rot" button. If its value is
-      <VERB>unary</VERB> (default) and there is many sub_windows
-      containing 3D plots only selected  3D plot is rotated.  If its value is
-      <VERB>multiple</VERB> all 3D plots are rotated.
+      This field is related to the "3D Rot" button. It takes  <VERB>unary</VERB> 
+      as value (default) in the aim to rotate only selected 3D plot.
+      In the other case its value ca be <VERB>multiple</VERB> all 3D plots are rotated.
      </DESCRIPTION_ITEM>
 
   </DESCRIPTION_INDENT>
@@ -237,6 +237,6 @@
    <SEE_ALSO_ITEM> <LINK>axes_properties</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>
-<AUTHOR>Djamel Abdemouche  </AUTHOR>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
 </MAN>
 
