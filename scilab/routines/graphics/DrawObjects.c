@@ -449,7 +449,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 
       /* Until here we have computed + reset the 3d scale*/
       
-      if (!sciGetVisibility(pobj)) return; /* END HERE if nothing to display */
+/*       if (!sciGetVisibility(pobj)) return; /\* END HERE if nothing to display *\/ */
       
       flag = pSUBWIN_FEATURE (pobj)->axes.flag[2];
 	  
@@ -5293,9 +5293,10 @@ int Merge3dDimension(sciPointObj *pparent)
       if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
 	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
 	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
+	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
+	  N=N+1;
       }
-      else/* patch */
+      else /* patch */
 	N = 1; 
       break;
     case  SCI_SEGS: 
@@ -5337,9 +5338,10 @@ void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_en
       if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
 	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
 	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
+	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1))
+	  N=N+1;
       }
-      else/* patch */
+      else /* patch */
 	N = 1; 
       break;
     case  SCI_SEGS: 
@@ -5604,8 +5606,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
     case  SCI_POLYLINE:
       n1= pPOLYLINE_FEATURE (pobj)->n1;
       p=2;
-      if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
-
+      if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1; /* F.Leray 20.01.05 A REVOIR ICI*/
+      
       if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
       if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
       if(ztmp != NULL) sciprint("ztmp NOT freed before RE allocating!\n");
@@ -5979,7 +5981,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       case  SCI_POLYLINE:
 	n1= pPOLYLINE_FEATURE (pobj)->n1;
 	p=2;
-	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
+ 	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;  /* F.Leray 20.01.05 A REVOIR ICI*/
 
 	if(xtmp != NULL) sciprint("xtmp NOT freed before RE allocating!\n");
 	if(ytmp != NULL) sciprint("ytmp NOT freed before RE allocating!\n");
@@ -6368,7 +6370,6 @@ sciDrawObj (sciPointObj * pobj)
   double **zvect = (double **) NULL;
   int result_trans3d = 1;
 
-
   BOOL isaxes = FALSE;
 
   subwin[0]    = 0;
@@ -6428,8 +6429,9 @@ sciDrawObj (sciPointObj * pobj)
      }
      break;
    case SCI_SUBWIN: 
+     if (sciGetVisibility(pobj) == FALSE) break;
+
      ppsubwin = pSUBWIN_FEATURE (pobj);
-     
      isaxes = GetIsAxes(pobj);
      
      sciSetSelectedSubWin(pobj); 
@@ -6465,7 +6467,7 @@ sciDrawObj (sciPointObj * pobj)
 	     pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2; 
 	 }
 	 
-	 axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside */
+	 axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); /* TEST on sciGetVisibility inside : REMOVED F.Leray 21.01.05 */
 	 /* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! */
 
 	 psonstmp = sciGetLastSons (pobj);
@@ -6473,9 +6475,9 @@ sciDrawObj (sciPointObj * pobj)
 	   sciDrawObj (psonstmp->pointobj);
 	   psonstmp = psonstmp->pprev;
 	 }
-
-	 if (sciGetVisibility(pobj))
-	   triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
+	 
+	 /* 	 if (sciGetVisibility(pobj)) */
+	 triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
 	 
 	 wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
        }/***/
@@ -6497,8 +6499,8 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	 sci_update_frame_bounds_2d(pobj);
 	 
-	 if (sciGetVisibility(pobj))
-	   DrawAxesBackground();
+	 /* 	 if (sciGetVisibility(pobj)) */
+	 DrawAxesBackground();
 	   
 	 /** walk subtree **/
 	 psonstmp = sciGetLastSons (pobj);
@@ -6520,16 +6522,16 @@ sciDrawObj (sciPointObj * pobj)
 	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 
-	 if (sciGetVisibility(pobj))
-	   {
-	     labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
+	 /* 	 if (sciGetVisibility(pobj)) */
+	 /* 	   { */
+	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
 	     
-	     if (isaxes) {
-	       char STRFLAG[4];
-	       rebuild_strflag(pobj,STRFLAG);
-	       axis_draw2 (STRFLAG);
-	     }
-	   }
+	 if (isaxes) {
+	   char STRFLAG[4];
+	   rebuild_strflag(pobj,STRFLAG);
+	   axis_draw2 (STRFLAG);
+	 }
+	 /* 	   } */
 	 /* END */
 	 
 	 
@@ -6542,7 +6544,7 @@ sciDrawObj (sciPointObj * pobj)
      /******************/
 	  
    case SCI_AGREG: 
-/*       if (!sciGetVisibility(pobj)) break; */ /* NOT REPLACED anywhere */
+     if (!sciGetVisibility(pobj)) break; /* RE-PUT F.Leray 21.01.05 */
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
@@ -6596,12 +6598,12 @@ sciDrawObj (sciPointObj * pobj)
       /*permet la mise a jour des legendes correspondantes aux entites associees */
       for (i = 0; i < pLEGEND_FEATURE (pobj)->nblegends; i++)
 	{
-	  if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
+ 	  if (sciGetIsMark(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]))
 	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
 	      - sciGetMarkStyle (pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
-	  else
-	    pLEGEND_FEATURE (pobj)->pstyle[i] = 
-	      sciGetForeground(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
+ 	  else 
+ 	    pLEGEND_FEATURE (pobj)->pstyle[i] =  
+ 	      sciGetForeground(pLEGEND_FEATURE (pobj)->pptabofpointobj[i]);
 	}
       /*sciSetCurrentObj(pobj); F.Leray 25.03.04*/
       Legends(pLEGEND_FEATURE (pobj)->pstyle, &(pLEGEND_FEATURE (pobj)->nblegends), sciGetText(pobj));
@@ -7278,8 +7280,10 @@ sciDrawObj (sciPointObj * pobj)
      x[0] = sciGetForeground (pobj);	
      x[2] = sciGetLineWidth (pobj);
      x[3] = sciGetLineStyle (pobj);
+     
      markidsizenew[0] = sciGetMarkStyle(pobj);
      markidsizenew[1] = sciGetLineWidth (pobj);
+     
      x[4] = 0;
      v = 0;
      dv = 0;
@@ -7287,6 +7291,8 @@ sciDrawObj (sciPointObj * pobj)
      logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0]; /* F.Leray 26.10.04 Pb when logscale on and data is <= 0 for clipping */
      logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
      logflags[3]='\0';
+     
+    
 
      /* //////////////////////////////////////////////////////////////// */
      BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
@@ -7476,15 +7482,16 @@ sciDrawObj (sciPointObj * pobj)
 #endif  
 	     break;     
 	   }
-      
+	 
 	 if(result_trans3d == 1)
 	   {
-	     if (! sciGetIsMark(pobj))
+ 	     if (sciGetIsLine(pobj) == TRUE)
 	       C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	     else
+	     
+	     if (sciGetIsMark(pobj) == TRUE)
 	       C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
 	   }
-
+	 
 	 FREE(xzz); xzz = (double *) NULL;
 	 FREE(yzz); yzz = (double *) NULL;
 	 FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
@@ -7659,6 +7666,7 @@ sciDrawObj (sciPointObj * pobj)
      x[2] = sciGetLineWidth (pobj);
      x[3] = sciGetLineStyle (pobj);
      x[4] = 0;
+
      markidsizenew[0] =  sciGetMarkStyle(pobj);
      markidsizenew[1] =  sciGetLineWidth (pobj);
      
@@ -7720,7 +7728,7 @@ sciDrawObj (sciPointObj * pobj)
 	 flag_DO = MaybeSetWinhdc ();
 #endif
 	 sciClip(sciGetIsClipping(pobj));
-	 if (! sciGetIsMark(pobj))
+ 	 if (! sciGetIsMark(pobj))
 	   if (pRECTANGLE_FEATURE (pobj)->str == 1)
 	     {
 	       yy1 -= hstr;
@@ -7746,7 +7754,7 @@ sciDrawObj (sciPointObj * pobj)
 	   ytmp[3] = yy1+height;
 
 	   C2F (dr) ("xmarks", str, &n, xtmp, ytmp, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
-	 }
+ 	 }
 	 sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
 	 if ( flag_DO == 1)  ReleaseWinHdc ();
@@ -7772,7 +7780,7 @@ sciDrawObj (sciPointObj * pobj)
 	 flag_DO = MaybeSetWinhdc ();
 #endif
 	 sciClip(sciGetIsClipping(pobj));
-	 if (! sciGetIsMark(pobj))
+ 	 if (! sciGetIsMark(pobj)) 
 	   if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
 	     C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
 	   else
@@ -7780,7 +7788,7 @@ sciDrawObj (sciPointObj * pobj)
 	       C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	     else
 	       sciprint("  The value must be 1  or 0\r\n");
-	 else 
+	 else
 	   {
 	     n=4;
 	     C2F (dr) ("xmarks", str, &n, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
