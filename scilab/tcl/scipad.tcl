@@ -1254,8 +1254,9 @@ proc FindIt {w} {
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
-	    tkTextSetCursor [gettextareacur] $SearchPos
-#	    [gettextareacur] mark set insert $SearchPos
+#	    tkTextSetCursor [gettextareacur] $SearchPos
+	    [gettextareacur] mark set insert $SearchPos
+	    [gettextareacur] tag remove sel 0.0 end
 	    [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
 	    
 	    if {$SearchDir == "forwards"} {
