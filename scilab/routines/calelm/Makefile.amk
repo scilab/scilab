@@ -23,7 +23,7 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	wwdiv.obj wddiv.obj dwdiv.obj ddrdiv.obj wwrdiv.obj dwrdiv.obj wdrdiv.obj\
 	ivimp.obj intp.obj cusum.obj cupro.obj cuproi.obj rcsort.obj wsort.obj vpythag.obj\
 	calerf.obj gamma.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj\
-	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj
+	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj dsearch.obj
 
 include ../../Makefile.incl.amk
 
