@@ -53,7 +53,10 @@
   <PARAM_ITEM>
   <PARAM_NAME>L  </PARAM_NAME>
   <PARAM_DESCRIPTION>
-    : a matrix of strings or numbers if data read are homogeous or an mlist of type (cblock) containing a sequence of homogeneous matrices
+    : if all data are homogeneous they are stored in a unique vector 
+    which is returned else subsequences of same date type are 
+    stored in matrices and an mlist containing all the 
+    built matrices is returned. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
