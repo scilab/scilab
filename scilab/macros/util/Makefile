@@ -41,6 +41,7 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
 	dirname.sci \
 	apropos.sci help.sci find_links.sci editor.sci \
-	xmltohtml.sci
+	xmltohtml.sci\
+	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci
 
 include ../Make.lib
