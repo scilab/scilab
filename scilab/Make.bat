@@ -17,6 +17,8 @@ if "%1" == "clean" goto clean
 if "%1" == "distclean" goto distclean
 if "%1" == "modelicac" goto modelicac
 if "%1" == "check" goto check
+if "%1" == "tests" goto tests
+if "%1" == "tests-clean" goto tests-clean
 goto all
 rem /**********************************************************/
 :min
@@ -53,6 +55,14 @@ goto Make
 rem /**********************************************************/
 :check
 set PARAMS_COMPILE=check
+goto Make
+rem /**********************************************************/
+:tests
+set PARAMS_COMPILE=scitests
+goto Make
+rem /**********************************************************/
+:tests-clean
+set PARAMS_COMPILE=scitests-clean
 goto Make
 rem /**********************************************************/
 :clean
@@ -115,6 +125,8 @@ echo     edit scilab/ocaml/makefile.mak
 echo     change OCAMLPATH=C:\Program Files\Objective Caml with a correct path 
 echo "%0 clean" clean Scilab for rebuild
 echo "%0 distclean" clean Scilab for distribution
+echo "%0 tests-clean" clean Scilab tests and prepare for %0 tests
+echo "%0 tests" perform Scilab tests (execute %0 tests-clean before)
 rem /**********************************************************/
 :end
 @echo on

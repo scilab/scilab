@@ -53,6 +53,12 @@ MakeMexLib::
 Javasci:
 	Makesubdirs.bat Javasci
 
+scitests:
+	Makesubdirs.bat scitests
+
+scitests-clean:
+	Makesubdirs.bat scitests-clean
+
 clean::
 	Makesubdirs.bat routines-clean
 	Makesubdirs.bat macros-clean
@@ -62,7 +68,7 @@ clean::
 	Makesubdirs.bat intersci-clean
 	Makesubdirs.bat imp-clean
 	Makesubdirs.bat xmlint-clean
-  Makesubdirs.bat dumpexts-clean
+	Makesubdirs.bat dumpexts-clean
   
 distclean::
 	Makesubdirs.bat routines-distclean 

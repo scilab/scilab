@@ -33,6 +33,8 @@ if "%1" == "modelicac-clean" goto modelicac-clean
 if "%1" == "modelicac" goto modelicac
 if "%1" == "dumpexts-clean" goto dumpexts-clean
 if "%1" == "dumpexts-distclean" goto dumpexts-distclean
+if "%1" == "scitests" goto scitests
+if "%1" == "scitests-clean" goto scitests-clean
 echo Unknown target %1 
 goto end
 
@@ -248,6 +250,20 @@ cd Win-util\Nm
 echo making clean in Nm
 nmake /C /f Makefile.mak clean /a
 cd ..\..
+goto end
+
+:scitests
+cd tests
+echo making Scilab tests
+nmake /C /f Makefile.mak tests
+cd ..
+goto end
+
+:scitests-clean
+cd tests
+echo cleaning Scilab tests
+nmake /C /f Makefile.mak tests-clean
+cd ..
 goto end
 
 :end 
