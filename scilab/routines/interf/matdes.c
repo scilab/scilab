@@ -24,9 +24,7 @@ extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *
 extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
 				  char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
-
-extern void C2F(seteventhandler) __PARAMS((int *win_num,char *name,int *ierr));
-
+extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
 static integer one = 1, zero = 0;
 
 /*-----------------------------------------------------------
@@ -2959,7 +2957,7 @@ int scifec(fname,fname_len)
 }
 
 /*-----------------------------------------------------------
- * rep = xgetmouse([flag])
+ * rep = xgetmouse([flag],[sel])
  *-----------------------------------------------------------*/
 
 int scixgetmouse(fname,fname_len)
@@ -2967,14 +2965,36 @@ int scixgetmouse(fname,fname_len)
      unsigned long fname_len;
 {
   integer  m1=1,n1=3,l1,button,v;
-  integer iflag =  (Rhs >= 1) ? 1 : 0;
+  integer iflag;
+  integer sel[3],m,n;
   double x,y,dv;
 
-  CheckRhs(0,1);
+  CheckRhs(0,2);
   CheckLhs(1,1);
+  if (Rhs<=0) {
+    iflag=0;sel[0]=1;sel[1]=0;sel[2]=0;
+  }
+  else {
+    if (GetType(1)==4) {
+      iflag=0;
+      GetRhsVar(1, "b", &m, &n, &l1);
+      CheckDims(1,m*n,1,3,1);
+      sel[0]=*istk(l1);sel[1]=*istk(l1+1);sel[2]=*istk(l1+2);}
+    else {
+      iflag=1;
+      sel[0]=1;sel[1]=0;sel[2]=0;
+    }
+    if (Rhs==2) {
+      if (iflag==1) {
+	GetRhsVar(2, "b", &m, &n, &l1);
+	CheckDims(2,m*n,1,3,1);
+	sel[0]=*istk(l1);sel[1]=*istk(l1+1);sel[2]=*istk(l1+2);}
+    }
+  }
 
   C2F(sciwin)();
-  C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,&v,&v,&x,&y,&dv,&dv,10L,3L);
+  sciprint("%d,%d,%d\n",sel[0],sel[1],sel[2]);
+  C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v,&x,&y,&dv,&dv,10L,3L);
 
   CreateVar(Rhs+1,"d",&m1,&n1,&l1);
   *stk(l1) = x;  *stk(l1+1) = y;  *stk(l1+2) = (double) button;

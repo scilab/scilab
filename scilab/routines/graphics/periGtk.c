@@ -556,7 +556,7 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1,
 		    double *dv3, double *dv4)
 {
   integer lstr ;
-  SciClick(ibutton,x1, yy1,iflag,1,0,0,(char *) 0,&lstr);
+  SciClick(ibutton,x1, yy1,iflag,v6[0],v6[1],v6[2],(char *) 0,&lstr);
 }
 
 /*------------------------------------------------------------------------------
