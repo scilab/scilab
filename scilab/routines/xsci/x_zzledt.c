@@ -1,10 +1,13 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: x_zzledt.c,v 1.1 2001/04/26 07:48:34 scilab Exp $
+ * $Id: x_zzledt.c,v 1.2 2002/08/08 14:49:46 steer Exp $
  * $Log: x_zzledt.c,v $
- * Revision 1.1  2001/04/26 07:48:34  scilab
- * Initial revision
+ * Revision 1.2  2002/08/08 14:49:46  steer
+ *  pour que les menus dynamiques ne provoque pas l'impression de l'instruction
+ *
+ * Revision 1.1.1.1  2001/04/26 07:48:34  scilab
+ * Imported sources
  *
  *
  * Revision 10.1  1993/02/11  14:34:03  mga
@@ -108,6 +111,7 @@ static int  search_line_backward(),search_line_forward();
 void  set_echo_mode(),set_is_reading();
 int   get_echo_mode();
 
+static int sendprompt=1;
 extern char Sci_Prompt[10];
 
 #include "x_VTparse.h" 
@@ -135,8 +139,9 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
    int character_count;
    char wk_buf[WK_BUF_SIZE + 1];
 
-   sciprint(Sci_Prompt);
+   if(sendprompt) sciprint(Sci_Prompt);
                             /* empty work buffer */
+   sendprompt=1;
    set_is_reading(TRUE);
 
    wk_buf[0] = NUL;
@@ -145,6 +150,13 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
    while(1) {
                             /* get next keystroke (no echo) */
      keystroke = gchar_no_echo();
+     if (C2F (ismenu) () == 1) {/* abort current line aquisition*/
+       sendprompt=0;
+       backspace(cursor);
+       cursor = 0;
+       *eof=-1;
+       return;
+     }
      if ( keystroke ==  CTRL_C )
        {
 	 int j = SIGINT;

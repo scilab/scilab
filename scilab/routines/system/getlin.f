@@ -67,6 +67,7 @@ c        check if getlin is call in a macro or an exec
       if(info.ne.0) goto 50 
       if(ltype.eq.1) then
          call basin(ierr,rio,buf(1:lrecl),'*')
+         if(ierr.lt.0) goto 90
          if(ierr.ne.0) goto 50
          n=lnblnk(buf(1:lrecl))
       else
@@ -247,6 +248,10 @@ c%%
       l2=l2+n1+1
       if(l2.lt.l) goto 84
       goto 45
+ 90   continue
+c     interrupted line acquisition (callbacks)
+      fin=-3
+      return
       end
 
       logical function isinstring(lin,l)

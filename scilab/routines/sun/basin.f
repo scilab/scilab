@@ -50,9 +50,11 @@ c
          endif
       endif
       return
-c
+c     ierr=1 : eof, ierr=-1 :read interrupted (callbacks),
  10   ierr=1
+      if(status.lt.0) ierr=-1
       return
+C     ierr=2:erroneous string read
  20   ierr=2
       return
       end

@@ -96,7 +96,11 @@ c-------------------
  13   continue
       call getlin(job)
       call tksynchro(-1)
-      if(fin .eq. -1) then
+      if(fin .eq. -3) then
+c     interrupted line acquisition
+         iret=2
+         goto 96
+      elseif(fin .eq. -1) then
 c     Continuation line handling when scilab is called as a routine
          fun=99
          return
@@ -118,7 +122,10 @@ c------------------------------------------------------------
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if(ismenu().eq.1) goto 96
+            if(ismenu().eq.1) then
+               iret=1
+               goto 96
+            endif
          endif
       endif
       r = 0
@@ -749,12 +756,17 @@ c     asynchronous events handling
       if ( eptover(1,psiz)) goto 98
       pstk(pt)=top
       rstk(pt)=706
-
+      ids(1,pt)=iret
 c     *call* macro
       goto 88
  97   top=pstk(pt)-1
+      iret=ids(1,pt)
       pt=pt-1
-      goto 15
+      if(iret.eq.1) then
+         goto 15
+      else
+         goto 13
+      endif
       
  98   continue
 c     error recovery

@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.5 2001/09/19 08:32:29 chanceli Exp $
+ * $Id: zzledt.c,v 1.6 2002/08/08 14:49:24 steer Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.6  2002/08/08 14:49:24  steer
+ *  pour que les menus dynamiques ne provoque pas l'impression de l'instruction
+ *
  * Revision 1.5  2001/09/19 08:32:29  chanceli
  * update
  *
@@ -223,6 +226,7 @@ static void enable_keypad_mode(void );
 static void disable_keypad_mode(void );
 static int search_line_backward(char *source);
 static int search_line_forward(char *source);
+static int sendprompt=1;
 
 #include "x_VTparse.h" 
 extern int groundtable[]; /* character table */ 
@@ -270,14 +274,21 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
 #endif
 
                             /* write prompt */
-   printf(Sci_Prompt);
+   if(sendprompt) printf(Sci_Prompt);
                             /* empty work buffer */
     wk_buf[0] = NUL;
-
+    sendprompt=1;
                             /* main loop to read keyboard input */
    while(1) {
                             /* get next keystroke (no echo) */
       keystroke = gchar_no_echo();
+      if (C2F (ismenu) () == 1) {/* abort current line aquisition*/
+	sendprompt=0;
+	backspace(cursor);
+	cursor = 0;
+	*eof=-1;
+	return;
+      }
       /* jpc: 2000 added CASE_PRINT to check for ascii extended characters */
       if( ( iscntrl(keystroke) && groundtable[keystroke] != CASE_PRINT)
 	  || keystroke > 0x0100 )
