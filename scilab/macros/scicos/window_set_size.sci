@@ -1,15 +1,16 @@
 function window_set_size()
   [lhs,rhs]=argn(0)
 
+   r=xget('wpdim');
   rect=dig_bound(scs_m);
   if rect<>[] then
     w=rect(3)-rect(1);
     h=rect(4)-rect(2);
    j=1.5;
-   ax=max(600/(j*w),j);
-   ay=max(400/(j*h),j);
+   ax=max(r(1)/(j*w),j);
+   ay=max(r(2)/(j*h),j);
   else
-    w=600;h=400;rect=[0,0,w,h];
+    w=r(1);h=r(2);rect=[0,0,w,h];
     ax=1.5;ay=ax;
   end
 

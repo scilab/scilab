@@ -1,13 +1,7 @@
 function [edited,options]=do_options(opt,flag)
 //
 // Copyright INRIA
-//if xget('use color')==1
   colors=string(1:xget("lastpattern")+2);
-//else
-//  colors=['black','pat 1','pat 2','pat 3','pat 4','pat 5','pat 6','pat 7',...
-//	  'pat 8','pat 9','pat 10','pat 11','pat 12','pat 13','pat 14',..
-//	  'pat 15','white'];
-//end
 fontsSiz=['08','10','12','14','18','24'];
 fontsIds=[ 'Courrier','Symbol','Times','Times Italic','Times Bold',..
 	'Times B. It.'];
@@ -26,14 +20,19 @@ if flag=='3D' then
   else
     with3d=With3D
   end
-  Color3D=options('3D')(2)
-  l3d=list('3D Shape',with3d+1,['No','Yes']);
-  lcol_3d=list('colors 3D shape color',Color3D,colors);
-  rep=x_choices('3D shape settings',list(l3d,lcol_3d));
-  if rep<>[] then
+  [ok,rep1]=getvalue('Use 3D aspect?','yes (1) or no (0)',list('vec',1),string(with3d))
+  if ok then
+    if rep1<>0 then rep1=1;end
+    if rep1 then
+      Color3D=options('3D')(2)
+      rep2=getcolor('3D color',Color3D)
+      if rep2==[] then rep2=Color3D,end
+    else
+      rep2=options('3D')(2)
+    end
     ok=%t
-    options('3D')(1)=rep(1)==2
-    options('3D')(2)=rep(2)
+    options('3D')(1)=rep1==1
+    options('3D')(2)=rep2
   end
 elseif flag=='Background' then
   bac=options('Background')
@@ -41,7 +40,7 @@ elseif flag=='Background' then
   if size(bac,'*')<2 then bac(2)=1,end //compatibility
   lcols_bg=list('colors Background',bac(1),colors);
   lcols_fg=list('colors Foreground',bac(2),colors);
-  //rep=x_choices('Background/Foreground color settings',list(lcols_bg,lcols_fg));
+
   rep=[bac(1),bac(2)]
   rep1=getcolor('Background color',bac(1))
   if rep1<>[] then rep(1)=rep1;end

@@ -10,6 +10,7 @@ function Replot_()
 //*****************************************
 
     window_set_size()
+    set_background()
     drawobjs(scs_m),
     if pixmap then xset('wshow'),end
     enablemenus()

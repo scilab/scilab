@@ -53,13 +53,15 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
       return
     end
     
-  elseif btn==0&(Cmenu==[]|Cmenu=='Open/Set')&(win<>curwin) then
+  elseif btn==0&(win<>curwin) then
     jj=find(windows(:,2)==win)
     if jj <> [] then
       Cmenu='Copy' //btn=99  //mode copy
       if or(windows(jj,1)==100000) then
 	Cmenu='Open/Set'//btn=111  //mode open-set (cliquer dans navigator)
       end
+    else
+      %pt=[]
     end
   elseif btn>31 then
     Cmenu=%tableau(min(100,btn-31));
