@@ -44,8 +44,14 @@ function xmltohtml(dirs,titles,xsl)
     gener_whatis(titles(k))
     chdir('../')
   end
-  // the perform the make-links 
-  // and html generation 
+  
+  
+  // then perform the make-links 
+  // and html generation
+ 	 
+  // sabcmd does not like c:/.. path 
+  xslprefix="";
+  if MSDOS then  xslprefix= "file://" ; end
 
   for k=1:size(dirs,'*');
     mprintf('Processing chapter %s\n",dirs(k));
@@ -59,7 +65,8 @@ function xmltohtml(dirs,titles,xsl)
 	for k1=1:size(xml2,'*')  // loop on .xml2 files 
 	  fb=basename(xml2(k1))
 	  mprintf('Processing file %s.xml\n",fb);
-	  xslpath=pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
+	  xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
+	  //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
 	  unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
 	end
       end
