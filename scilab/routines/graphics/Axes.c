@@ -45,7 +45,7 @@ void axis_draw(strflag)
     color=pSUBWIN_FEATURE (psubwin)->cubecolor;
     
     /* F.Leray test on color here*/
-    color=sciGetBackground(psubwin);
+    /*color=sciGetBackground(psubwin);*/
     
 
     ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1];
