@@ -2755,7 +2755,7 @@ int scixset(fname,fname_len)
            sciSetAddPlot(sciGetParent(subwin), FALSE);  
           } 
       } 
-     else if ( strncmp(cstk(l1),"auto scale",10) == 0) {
+      else if ( strncmp(cstk(l1),"auto scale",10) == 0) {
         if ( x[0] == 1 )
 	  {
            sciSetAutoScale(subwin, TRUE); 
@@ -2767,7 +2767,7 @@ int scixset(fname,fname_len)
            sciSetAutoScale(sciGetParent(subwin), FALSE);  
           } 
       }
-     else if ( strncmp(cstk(l1),"wresize",6) == 0) {
+      else if ( strncmp(cstk(l1),"wresize",6) == 0) {
         if ( x[0] == 1 )
 	  {
            sciSetResize(subwin, TRUE); 
@@ -2778,23 +2778,36 @@ int scixset(fname,fname_len)
            sciSetResize(subwin, FALSE); 
            sciSetResize(sciGetParent(subwin), FALSE);  
           }
-     }
-    else if ( strncmp(cstk(l1),"wpos",4) == 0) {
+      }
+      else if ( strncmp(cstk(l1),"wpos",4) == 0) {
         sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
 	 
       }
-    else if ( strncmp(cstk(l1),"wdim",4) == 0) {
-      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
-      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
-	 
+      else if ( strncmp(cstk(l1),"wdim",4) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
+	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
+	
       } 
-   else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
-     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
-     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
-	 
+      else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
+	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
       }
-  
-  
+      /*Ajout D.Abdemouche */
+      else if ( strncmp(cstk(l1),"pixmap",6) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
+	if(x[0] == 1) 
+	  sciSetVisibility (sciGetParent(subwin), FALSE);
+	else{
+	  sciSetVisibility (sciGetParent(subwin), TRUE);
+	  pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}
+      }  
+      else if ( strncmp(cstk(l1),"wshow",5) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
+	sciSetVisibility (subwin, TRUE); 
+      }
+      sciRedrawFigure();  
+      
+      
     }
   /* NG end */    
   LhsVar(1)=0;
@@ -4904,6 +4917,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
       else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
     }
+  /*Ajout D.Abdemouche */
+  else if (strncmp(marker,"pixmap", 6) == 0){
+    if (strncmp(cstk(*value),"on",2)==0 ){
+      pFIGURE_FEATURE(pobj)->pixmap =1;
+      sciSetVisibility (pobj, FALSE);}
+    else if (strncmp(cstk(*value),"off",3)==0 ){
+      pFIGURE_FEATURE(pobj)->pixmap =0;
+      sciSetVisibility (pobj, TRUE);
+      pFIGURE_FEATURE(pobj)->wshow=0;}
+    else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+  }
   /********************** context graphique ******************************/
   else if (strncmp(marker,"background", 10) == 0)
     {
@@ -5761,6 +5785,16 @@ int sciGet(sciPointObj *pobj,char *marker)
 	strncpy(cstk(outindex),"unary", numrow*(numcol-3));
       else
 	strncpy(cstk(outindex),"multiple",numrow*numcol);
+    }
+  /*Ajout D.Abdemouche */
+  else if (strncmp(marker,"pixmap", 6) == 0) 
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (pFIGURE_FEATURE(pobj)->pixmap==1)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off", numrow*numcol);
     }
   /********** Handles Properties *********************************************/       
   else if (strncmp(marker,"type", 4) == 0)
