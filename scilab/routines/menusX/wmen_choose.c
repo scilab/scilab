@@ -40,7 +40,17 @@ ChooseDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 		Ch->choice = (UINT)SendDlgItemMessage(hdlg,CHOOSE_LINENUM,LB_GETCURSEL,0,0L);
 		switch (LOWORD(wparam)) 
 		{
+
 			case CHOOSE_LINENUM:
+				/* Ajout Gestion double-click */
+				if ( HIWORD( wparam ) == LBN_DBLCLK )
+				{
+					GetWindowRect(hdlg,&SciMenusRect);
+					DestroyWindow(hdlg);
+					ChooseModeless = (HWND)0;
+					Ch->status = TRUE;
+					return TRUE;
+				}
 			return FALSE;
 			case IDOK:
 				GetWindowRect(hdlg,&SciMenusRect);
