@@ -54,7 +54,7 @@ case 'define' then
   gr_i=['xfpolys(orig(1)+[0;5;7;3;5;10;10;0;0]*sz(1)/10,orig(2)+[4;2;7;7;2;0;4;0;4]*sz(2)/10,scs_color(15))'
   				'xfarcs([orig(1)+3*sz(1)/10;orig(2)+sz(2);4*sz(1)/10;6*sz(2)/10;0;180*64],scs_color(15))'
   				'xarcs([orig(1)+3*sz(1)/10;orig(2)+sz(2);4*sz(1)/10;6*sz(2)/10;0;180*64],scs_color(1))'];
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([2 2],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I';'E']
   x.graphics.out_implicit=['I']
 end

@@ -59,7 +59,7 @@ case 'define' then
   model.out=ones(size(mo.outputs,'*'),1)
   exprs=[string(L);string(D);string(lambda);string(z1);string(z2);string(p_rho)]
   gr_i=['xrects([orig(1);orig(2)+sz(2);sz(1);sz(2)],scs_color(15))'];
-  x=standard_define([2 0.5],model,exprs,gr_i)
+  x=standard_define([2 0.5],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

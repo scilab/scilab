@@ -67,7 +67,7 @@ case 'define' then
   gr_i=['xfpolys(orig(1)+x1+[0;4;4;0]*sz(1)/7,orig(2)+[0;0;4;4]*sz(2)/4,scs_color(15))'
   				'xsegs(orig(1)+x2+(2*orient-1)*[0;3;2;3;2;3]*sz(1)/7,orig(2)+[2;2;1.5;2;2.5;2]*sz(2)/4)'
   				'xstringb(orig(1)+x1,orig(2),''S'',4*sz(1)/7,sz(2),''fill'')'];
-  x=standard_define([7/5 4/5],model,exprs,gr_i)
+  x=standard_define([7/5 4/5],model,exprs,list(gr_i,0))
   x.graphics.out_implicit=['I']
 end
 endfunction

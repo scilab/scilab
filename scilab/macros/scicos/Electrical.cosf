@@ -12,7 +12,8 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "gr_i","id","in_implicit","out_implicit"],[0,0],[40,22],%t,..
               ["0.01";"0"],0,0,[],[],..
               list(..
-              ["xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);";
+              ["xset(''thickness'',2)";
+              "xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);";
               "yy=orig(2)+[1/2 1/2 1 0]*sz(2);";
               "xpoly(xx,yy);";
               "xsegs(orig(1)+ sz(1)*2/3*[1 1 1 3/2],orig(2)+(sz(2)*1/2)*[2 0 1 1],0);";
@@ -27,7 +28,7 @@ scs_m.objs(1)=mlist(["Block","graphics","model","gui","doc"],..
               "end";
               "rect=xstringl(0,0,''C=''+C)";
               "xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''C= ''+C);"],..
-              8),"","I","I"),..
+              []),"","I","I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -46,8 +47,8 @@ scs_m.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
               "xsegs(orig(1)+sz(1)*[1/2 1/2],orig(2)+sz(2)*[1 1/2],0);";
               "xsegs(orig(1)+sz(1)*[0 1],orig(2)+sz(2)*[1/2 1/2],0);";
               "xsegs(orig(1)+sz(1)*[2/8 6/8],orig(2)+sz(2)*[1/4 1/4],0);";
-              "xsegs(orig(1)+sz(1)*[3/8 5/8],orig(2)+sz(2)*[0 0],0);"],8),"","I",..
-              "I"),..
+              "xsegs(orig(1)+sz(1)*[3/8 5/8],orig(2)+sz(2)*[0 0],0);"],[]),"",..
+              "I","I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -66,7 +67,7 @@ scs_m.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
               "V=string(model.rpar(1));";
               "xstringb(orig(1),orig(2)+sz(2)*0.2,''~'',sz(1),sz(2)*0.3,''fill'')";
               "xstringb(orig(1),orig(2)+sz(2)*0.5,V,sz(1),sz(2)*0.3,''fill'')"],..
-              8),"",["I","E"],"I"),..
+              []),"",["I","E"],"I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -81,12 +82,13 @@ scs_m.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
               "gr_i","id","in_implicit","out_implicit"],[210,0],[30,22],%t,..
               "0.01",0,0,[],[],..
               list(..
-              ["xx=[0 5 5 5]/12;";
+              ["xset(''thickness'',2)";
+              "xx=[0 5 5 5]/12;";
               "if orient then yy=[1 1 2 0]/2;else yy=[2,2,3,1]/4,end";
               "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));";
               "xx=[2 2 2 3]/3;";
               "if orient then yy=[1,3,2,2]/4;else yy=[0 2 1 1]/2;end";
-              "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));"],8),"","I","I"),..
+              "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));"],[]),"","I","I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -111,7 +113,7 @@ scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
               "xpoly(xx,yy) ";
               "rect=xstringl(0,0,''L=''+L)";
               "xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''L=''+L)"],..
-              8),"","I","I"),..
+              []),"","I","I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -138,7 +140,7 @@ scs_m.objs(6)=mlist(["Block","graphics","model","gui","doc"],..
               "xfarc(orig(1)+sz(1)*0.93/2,orig(2)+sz(2)*1/2,sz(1)*0.2/4,sz(2)*0.2/4,0,360*64);";
               " xx=orig(1)+sz(1)*4.2/8+[.9 1 0 .9]*sz(1)/12;";
               "yy=orig(2)+sz(2)*1.27/2+[0.1 1 0.3 0.1]*sz(2)/7;";
-              "xfpoly(xx,yy);"],8),"","I","E"),..
+              "xfpoly(xx,yy);"],[]),"","I","E"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -155,7 +157,7 @@ scs_m.objs(7)=mlist(["Block","graphics","model","gui","doc"],..
               list(..
               ["xx=[0,1,1,7,7,8,7,7,1,1]/8;";
               "yy=[1,1,0,0,1,1,1,2,2,1]/2;";
-              "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); "],8),"",["I","E"],"I"),..
+              "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); "],[]),"",["I","E"],"I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -184,7 +186,7 @@ scs_m.objs(8)=mlist(["Block","graphics","model","gui","doc"],..
               " xx=orig(1)+sz(1)*4.2/8+[.9 1 0 .9]*sz(1)/12;";
               "yy=orig(2)+sz(2)*1.27/2+[0.1 1 0.3 0.1]*sz(2)/7;";
               "xfpoly(xx,yy);";
-              "xstring(orig(1)+sz(1)/2,orig(2)+sz(2)/5,''A'')"],8),"","I",..
+              "xstring(orig(1)+sz(1)/2,orig(2)+sz(2)/5,''A'')"],[]),"","I",..
               ["I";"E"]),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
@@ -205,7 +207,7 @@ scs_m.objs(9)=mlist(["Block","graphics","model","gui","doc"],..
               "xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); ";
               "rect=xstringl(0,0,''R=''+R)";
               "xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''R=''+R);"],..
-              8),"","I","I"),..
+              []),"","I","I"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -234,7 +236,7 @@ scs_m.objs(10)=mlist(["Block","graphics","model","gui","doc"],..
                " xx=orig(1)+sz(1)*4.2/8+[.9 1 0 .9]*sz(1)/12;";
                "yy=orig(2)+sz(2)*1.27/2+[0.1 1 0.3 0.1]*sz(2)/7;";
                "xfpoly(xx,yy);";
-               "xstring(orig(1)+sz(1)/2,orig(2)+sz(2)/5,''V'')"],8),"","I",..
+               "xstring(orig(1)+sz(1)/2,orig(2)+sz(2)/5,''V'')"],[]),"","I",..
                ["I";"E"]),..
                mlist(..
                ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
@@ -250,14 +252,15 @@ scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
                "gr_i","id","in_implicit","out_implicit"],[280,70],[40,20],%t,..
                ["1.000E-06";"0.04";"15";"1.000E+08"],0,0,[],[],..
                list(..
-               ["if orient then";
+               ["xset(''thickness'',2)";
+               "if orient then";
                "  xx=orig(1)+[0,1,1,2,2,2,2,3,2,1,1,2]*(sz(1)/3);";
                "  yy=orig(2)+[2,2,3,2,3,1,2,2,2,1,2,2]*(sz(2)/4);";
                "else";
                "  xx=orig(1)+[0,1,1,1,1,2,2,3.06,2,2,1,2]*(sz(1)/3);";
                "  yy=orig(2)+[2,2,3,1,2,3,2,2,2,1,2,2]*(sz(2)/4);";
                "end";
-               "xpoly(xx,yy);"],8),"","I","I"),..
+               "xpoly(xx,yy);"],[]),"","I","I"),..
                mlist(..
                ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
@@ -279,7 +282,7 @@ scs_m.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
                "V=string(model.rpar(1));";
                "xstringb(orig(1),orig(2)+sz(2)*0.2,''~'',sz(1),sz(2)*0.3,''fill'')";
                "xstringb(orig(1),orig(2)+sz(2)*0.5,V,sz(1),sz(2)*0.3,''fill'')"],..
-               8),"","I","I"),..
+               []),"","I","I"),..
                mlist(..
                ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
                "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..

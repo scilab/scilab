@@ -18,6 +18,7 @@ function o=standard_define(sz,model,label,gr_i)
   
   if type(gr_i)<>15 then gr_i=list(gr_i,8),end
   if gr_i(2)==[] then gr_i(2)=8,end
+  if gr_i(2)==0 then gr_i(2)=[],end
 
   graphics=scicos_graphics(sz=sz,pin=pin,pout=pout,pein=pein,peout=peout, ...
 			   gr_i=gr_i,exprs=label) 

@@ -54,7 +54,7 @@ case 'define' then
 	'xstringb(orig(1),orig(2)+sz(2)*0.2,''~'',sz(1),sz(2)*0.3,''fill'')'
 	'xstringb(orig(1),orig(2)+sz(2)*0.5,V,sz(1),sz(2)*0.3,''fill'')']
  
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([2 2],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I','E']
   x.graphics.out_implicit=['I']
 end

@@ -39,7 +39,7 @@ case 'define' then
 	'yy=orig(2)+sz(2)*1.27/2+[0.1 1 0.3 0.1]*sz(2)/7;';
 	'xfpoly(xx,yy);'
          'xstring(orig(1)+sz(1)/2,orig(2)+sz(2)/5,''A'')']
-  x=standard_define([2 2],model,exprs,gr_i)
+  x=standard_define([2 2],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I';'E']
 end

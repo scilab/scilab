@@ -42,14 +42,15 @@ case 'define' then
   model.equations=mo
   exprs=string(V)
 
-  gr_i=['xx=[0 5 5 5]/12;';
+  gr_i=['xset(''thickness'',2)'
+	'xx=[0 5 5 5]/12;';
 	'if orient then yy=[1 1 2 0]/2;else yy=[2,2,3,1]/4,end'
 	'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));';
 	'xx=[2 2 2 3]/3;';
 	'if orient then yy=[1,3,2,2]/4;else yy=[0 2 1 1]/2;end'
 	'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2));']
   
-  x=standard_define([1.5 1.1],model,exprs,gr_i)
+  x=standard_define([1.5 1.1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']  
 end

@@ -46,7 +46,8 @@ case 'define' then
   model.out=ones(size(mo.outputs,'*'),1)
 
   exprs=string([C;v])
-  gr_i=['xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);';
+  gr_i=['xset(''thickness'',2)'
+	'xx=orig(1)+[0 1/3 1/3 1/3 ]*sz(1);';
 	'yy=orig(2)+[1/2 1/2 1 0]*sz(2);';
 	'xpoly(xx,yy);'
 	'xsegs(orig(1)+ sz(1)*2/3*[1 1 1 3/2],orig(2)+(sz(2)*1/2)*[2 0 1 1],0);';
@@ -61,8 +62,8 @@ case 'define' then
 	'end'
 	'rect=xstringl(0,0,''C=''+C)'
         'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''C= ''+C);'
-       ];
-  x=standard_define([2 1.1],model,exprs,gr_i)
+	];
+  x=standard_define([2 1.1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

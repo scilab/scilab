@@ -53,7 +53,7 @@ case 'define' then
 	'rect=xstringl(0,0,''L=''+L)'
 	'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''L=''+L)' ] 
  
-  x=standard_define([2 0.9],model,exprs,gr_i)
+  x=standard_define([2 0.9],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

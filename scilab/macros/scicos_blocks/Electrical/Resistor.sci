@@ -50,7 +50,7 @@ case 'define' then
 	 'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); '
 	 'rect=xstringl(0,0,''R=''+R)'
 	 'xstring(orig(1)+(sz(1)-rect(3))/2,orig(2)-rect(4)*1.2,''R=''+R);']  
-  x=standard_define([2 0.18],model,exprs,gr_i)
+  x=standard_define([2 0.18],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']
 end

@@ -33,7 +33,7 @@ case 'define' then
   gr_i=[ 'xx=[0,1,1,7,7,8,7,7,1,1]/8;';
 	 'yy=[1,1,0,0,1,1,1,2,2,1]/2;';
 	 'xpoly(orig(1)+xx*sz(1),orig(2)+yy*sz(2)); ']  
-  x=standard_define([2 0.18],model,exprs,gr_i)
+  x=standard_define([2 0.18],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I','E']
   x.graphics.out_implicit=['I']
 end

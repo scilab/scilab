@@ -85,16 +85,19 @@ function standard_draw(o,frame,draw_ports,up)
     else 
 	coli=[]
     end
-    if coli<>[] then
-      gr_i=['pcoli=xget(''pattern'')';..
-	    'xset(''pattern'',coli)';
-	    'xfrect(orig(1),orig(2)+sz(2),sz(1),sz(2))';
-	    'flag=''background'';'
-	    gr_i;
-	    'xset(''pattern'',pcoli)'
-	    'flag=''foreground'';';
-	    gr_i]
+
+    if coli==[] then
+      coli=xget('background')
     end
+    gr_i=['pcoli=xget(''pattern'')';..
+	  'xset(''pattern'',coli)';
+	  'xfrect(orig(1),orig(2)+sz(2),sz(1),sz(2))';
+	  'flag=''background'';'
+	  gr_i;
+	  'xset(''pattern'',pcoli)'
+	  'flag=''foreground'';';
+	  gr_i]
+
 
   model=o.model
   if With3D&frame then

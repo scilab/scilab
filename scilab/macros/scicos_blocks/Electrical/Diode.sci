@@ -45,7 +45,8 @@ case 'define' then
 
   model.equations=mo
   exprs=string([Ids;Vt;Maxexp;R])
-  gr_i=['if orient then'
+  gr_i=['xset(''thickness'',2)'
+	'if orient then'
 	'  xx=orig(1)+[0,1,1,2,2,2,2,3,2,1,1,2]*(sz(1)/3);';
 	'  yy=orig(2)+[2,2,3,2,3,1,2,2,2,1,2,2]*(sz(2)/4);';
 	'else'     
@@ -53,7 +54,7 @@ case 'define' then
 	'  yy=orig(2)+[2,2,3,1,2,3,2,2,2,1,2,2]*(sz(2)/4);';
 	'end'
 	'xpoly(xx,yy);'] 
-  x=standard_define([2 1],model,exprs,gr_i)
+  x=standard_define([2 1],model,exprs,list(gr_i,0))
   x.graphics.in_implicit=['I']
   x.graphics.out_implicit=['I']  
 end
