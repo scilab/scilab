@@ -415,12 +415,12 @@ c
 c     set output variable
       ilrs=iadr(lstk(top))
       istk(ilrs)=10
-      if(mmode.eq.0) then
-         istk(ilrs+1)=mr
-         istk(ilrs+2)=nr
-      else
+      if(mmode.eq.1.and.nr.eq.1) then
          istk(ilrs+1)=nr
          istk(ilrs+2)=mr
+      else
+         istk(ilrs+1)=mr
+         istk(ilrs+2)=nr
       endif
       istk(ilrs+3)=0
       call icopy(mnr+1+volr,istk(idr),1,istk(ilrs+4),1)

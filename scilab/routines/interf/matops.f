@@ -2559,12 +2559,12 @@ c
          l1=sadr(ilrs+4)
          call unsfdcopy(mnr*(itr+1),stk(lr),1,stk(l1),1)
          istk(ilrs)=1
-         if(mmode.eq.0) then
-         istk(ilrs+1)=mr
-         istk(ilrs+2)=nr
-         else
+         if(mmode.eq.1.and.nr.eq.1) then
          istk(ilrs+1)=nr
          istk(ilrs+2)=mr
+         else
+         istk(ilrs+1)=mr
+         istk(ilrs+2)=nr
          endif
          istk(ilrs+3)=itr
          lstk(top+1)=l1+mnr*(itr+1)
