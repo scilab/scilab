@@ -20,7 +20,7 @@
 # |                          /   /       \-------<--------|
 # |               |---->----/   /
 # |   -----------------        /tonextbreakpoint_bp
-# |-<-|DebugInProgress|---<---/
+# |-<-|DebugInProgress|---<---/|runtocursor_bp
 #     -----------------
 #        \     \
 #         \     \
@@ -28,8 +28,11 @@
 #           \           removeall_bp        |
 #            \          tonextbreakpoint_bp |
 #             \         showwatch_bp        |
-#              \              |
-#               \----<--------|
+#              \        runtocursor_bp      |
+#               \       break_bp
+#                \              |
+#                 \----<--------|
+#
 ####################################################################
 
 proc setdbstate {state} {
@@ -61,56 +64,68 @@ proc setdbmenuentriesstates_bp {} {
 
     set dm $pad.filemenu.debug
     if {[getdbstate] == "NoDebug"} {
-        $dm entryconfigure 1 -state normal
+        $dm entryconfigure  1 -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure 2 -state normal
+        $dm entryconfigure  2 -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure 4 -state normal
+        $dm entryconfigure  4 -state normal
         bind all <F10> {configurefoo_bp}
-        $dm entryconfigure 6 -state disabled
+        $dm entryconfigure  6 -state disabled
         bind all <F11> {}
-        $dm entryconfigure 7 -state disabled
-        bind all <F12> {}
-        $dm entryconfigure 8 -state disabled
+        $dm entryconfigure  7 -state disabled
+        bind all <F8> {}
+        $dm entryconfigure  8 -state disabled
+        bind all <Control-F11> {}
+        $dm entryconfigure  9 -state disabled
         bind all <Shift-F12> {}
-        $dm entryconfigure 10 -state disabled
+        $dm entryconfigure 11 -state disabled
+        bind all <F12> {}
+        $dm entryconfigure 13 -state disabled
         bind all <Control-F12> {}
-        $dm entryconfigure 12 -state disabled
+        $dm entryconfigure 14 -state disabled
 
     } elseif {[getdbstate] == "ReadyForDebug"} {
-        $dm entryconfigure 1 -state normal
+        $dm entryconfigure  1 -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure 2 -state normal
+        $dm entryconfigure  2 -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure 4 -state normal
+        $dm entryconfigure  4 -state normal
         bind all <F10> {configurefoo_bp}
-        $dm entryconfigure 6 -state normal
+        $dm entryconfigure  6 -state normal
         bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure 7 -state disabled
-        bind all <F12> {}
-        $dm entryconfigure 8 -state disabled
+        $dm entryconfigure  7 -state disabled
+        bind all <F8> {}
+        $dm entryconfigure  8 -state normal
+        bind all <Control-F11> {runtocursor_bp}
+        $dm entryconfigure  9 -state disabled
         bind all <Shift-F12> {}
-        $dm entryconfigure 10 -state normal
+        $dm entryconfigure 11 -state normal
+        bind all <F12> {}
+        $dm entryconfigure 13 -state disabled
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 12 -state disabled
+        $dm entryconfigure 14 -state disabled
 
     } elseif {[getdbstate] == "DebugInProgress"} {
-        $dm entryconfigure 1 -state normal
+        $dm entryconfigure  1 -state normal
         bind all <F9> {insertremove_bp}
-        $dm entryconfigure 2 -state normal
+        $dm entryconfigure  2 -state normal
         bind all <Control-F9> {removeall_bp}
-        $dm entryconfigure 4 -state disabled
+        $dm entryconfigure  4 -state disabled
         bind all <F10> {}
-        $dm entryconfigure 6 -state normal
+        $dm entryconfigure  6 -state normal
         bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure 7 -state disabled
-#        bind all <F12> {stepbystep_bp}
-        bind all <F12> {}
-        $dm entryconfigure 8 -state normal
+        $dm entryconfigure  7 -state disabled
+#        bind all <F8> {stepbystep_bp}
+        bind all <F8> {}
+        $dm entryconfigure  8 -state normal
+        bind all <Control-F11> {runtocursor_bp}
+        $dm entryconfigure  9 -state normal
         bind all <Shift-F12> {goonwo_bp}
-        $dm entryconfigure 10 -state normal
+        $dm entryconfigure 11 -state normal
+        bind all <F12> {break_bp}
+        $dm entryconfigure 13 -state normal
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 12 -state normal
+        $dm entryconfigure 14 -state normal
 
     } else {
         tk_messageBox -message $errmess
@@ -120,20 +135,26 @@ proc setdbmenuentriesstates_bp {} {
         if {[winfo exists $watch]} {
             set wi $watchwinicons
             if {[getdbstate] == "NoDebug"} {
-                [lindex $wi 4] configure -state normal
-                [lindex $wi 6] configure -state disabled
-                [lindex $wi 8] configure -state disabled
-                [lindex $wi 12] configure -state disabled
+                [lindex $wi  4] configure -state normal
+                [lindex $wi  6] configure -state disabled
+                [lindex $wi  8] configure -state disabled
+                [lindex $wi  9] configure -state disabled
+                [lindex $wi 13] configure -state disabled
+                [lindex $wi 14] configure -state disabled
             } elseif {[getdbstate] == "ReadyForDebug"} {
-                [lindex $wi 4] configure -state normal
-                [lindex $wi 6] configure -state normal
-                [lindex $wi 8] configure -state disabled
-                [lindex $wi 12] configure -state disabled
+                [lindex $wi  4] configure -state normal
+                [lindex $wi  6] configure -state normal
+                [lindex $wi  8] configure -state normal
+                [lindex $wi  9] configure -state disabled
+                [lindex $wi 13] configure -state disabled
+                [lindex $wi 14] configure -state disabled
             } elseif {[getdbstate] == "DebugInProgress"} {
-                [lindex $wi 4] configure -state disabled
-                [lindex $wi 6] configure -state normal
-                [lindex $wi 8] configure -state normal
-                [lindex $wi 12] configure -state normal
+                [lindex $wi  4] configure -state disabled
+                [lindex $wi  6] configure -state normal
+                [lindex $wi  8] configure -state normal
+                [lindex $wi  9] configure -state normal
+                [lindex $wi 13] configure -state normal
+                [lindex $wi 14] configure -state normal
             } else {
                 tk_messageBox -message $errmess
             }

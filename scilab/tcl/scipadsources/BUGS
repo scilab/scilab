@@ -27,7 +27,7 @@ Bugs:
  active. Instead of debugging the current code, the best fix would probably be to make
  profit of the undo/redo mechanism embedded in text widgets since tcl/tk 8.4. But this
  supposes that the minimal version is 8.4, which is true only for the binary distribution
- of Scilab.
+ of Scilab. The latest changes in the configure files require now 8.4 however.
 
 -Control-k deletes from the insertion cursor to the end of its line; if the insertion
  cursor is already at the end of a line, then Control-k deletes the newline character.
@@ -77,10 +77,10 @@ Note: this is continuously changing and platform dependent. scilab 3.0RC1 has
 ~4000 chars for linux and ~500 for windows. This has to do with the mechanics
 of ScilabEval and the command queue space.
 A workaround could be to via execstr(TK_GetVar), but then scipad has to be
-launched inside the master tk interpreted (perhaps in a namespace) and not 
+launched inside the master tk interpreter (perhaps in a namespace) and not 
 in a slave interpreter.
 
--after a succesful find the match is highlighted in green. This remains the 
+-after a successful find the match is highlighted in green. This remains the 
  selection color until one switches to another buffer. Hacked - now the text 
  found gets selected normally, period.
 
@@ -128,9 +128,9 @@ Wishes:
 
 -highlighting of for--end, while--end, select--end blocks while
  typing, like for parentheses; scope background remains highlighted in a
-  background tint (choose a suitable scheme for nested structures), OR,
-  block keywords are highlighted in different colors than standard keywords.
- 
+ background tint (choose a suitable scheme for nested structures), OR,
+ block keywords are highlighted in different colors than standard keywords.
+
 -a taylored 3rd-button popup menu (currently it is just the edit menu) - i.e.
  it includes execute selection, comment/uncomment this line, insert/delete
  breakpoints
@@ -142,6 +142,9 @@ Wishes:
 
 -smart indentation (i.e., for automatically indents the next line, end
  automatically indents back, etc)
+ 
+-"auto smart wrap on": lines exceeding a margin could be truncated at
+ word boundaries with .. dots and \n
  
 -(customizable?) tool bar
  Note: a first step to this has been implemented in the debugger watch window.
@@ -165,9 +168,6 @@ Wishes:
 
 -subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
  should inherit the current font size
-
--Outside of scipad: bulletproof a function for opening the script which 
- produced the lasterror(): edit_error() (aka editoffendingline())
 
 -"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it
  has now been implemented by Scilab Team
@@ -230,3 +230,9 @@ Wishes:
  Possible references for implementation on a Windows box are:
  http://wiki.tcl.tk/11319
  http://wiki.tcl.tk/9846
+
+-Highlight wrapped lines so that they can be more easily identified.
+ Could make use of indentation or other suitable scheme TBD, or add
+ some sort of left grey band in which some more information could be
+ put (breakpoint pink dot, yellow arrow to show the next instruction
+ to be executed like in Visual C++ or Matlab, or wrapped lines sign).

@@ -117,3 +117,6 @@ bind $pad <F4> {importmatlab}
 
 #ES 10/11/04
 bind $pad <Control-R> {revertsaved}
+
+bind Text <Control-a> ""
+bind $pad <Control-a> {selectall}

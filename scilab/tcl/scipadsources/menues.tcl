@@ -195,9 +195,22 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add command -label "Go to next breakpoint" \
       -underline 12 -command "tonextbreakpoint_bp" -accelerator F11 \
       -image menubutnextimage -compound left
-    $pad.filemenu.debug add command -label "Step by step" \
-      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled \
-      -image menubutstepimage -compound left
+
+    menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
+    $pad.filemenu.debug add cascade -label "Step by step" -menu $pad.filemenu.debug.step
+        $pad.filemenu.debug.step add command -label "Step into" \
+          -underline 5 -command "stepbystep_bp" -accelerator Shift+F8 \
+          -image menubutstepimage -compound left
+        $pad.filemenu.debug.step add command -label "Step over" \
+          -underline 5 -command "stepbystep_bp" -accelerator F8 \
+          -image menubutstepimage -compound left
+        $pad.filemenu.debug.step add command -label "Step out" \
+          -underline 5 -command "stepbystep_bp" -accelerator Ctrl+F8 \
+          -image menubutstepimage -compound left
+
+    $pad.filemenu.debug add command -label "Run to cursor" \
+      -underline 8 -command "runtocursor_bp" -accelerator Ctrl+F11 \
+      -image menubutruntocursorimage -compound left
     $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
       -underline 1 -command "goonwo_bp" -accelerator Shift+F12 \
       -image menubutgoonignorimage -compound left
@@ -206,6 +219,9 @@ if {$lang == "eng"} {
       -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12 \
       -image menubutwatchimage -compound left
     $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Break" \
+      -underline 0 -command "break_bp" -accelerator F12 \
+      -image menubutbreakimage -compound left
     $pad.filemenu.debug add command -label "Cancel debug" \
       -underline 5 -command "canceldebug_bp" \
       -image menubutcancelimage -compound left
@@ -226,9 +242,22 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add command -label "Aller jusqu'au prochain point d'arrêt" \
       -underline 10 -command "tonextbreakpoint_bp" -accelerator F11 \
       -image menubutnextimage -compound left
-    $pad.filemenu.debug add command -label "Pas à pas" \
-      -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled \
-      -image menubutstepimage -compound left
+
+    menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
+    $pad.filemenu.debug add cascade -label "Pas à pas" -menu $pad.filemenu.debug.step
+        $pad.filemenu.debug.step add command -label "Pas à pas détaillé" \
+          -underline 10 -command "stepbystep_bp" -accelerator Shift+F8 \
+          -image menubutstepimage -compound left
+        $pad.filemenu.debug.step add command -label "Pas à pas principal" \
+          -underline 10 -command "stepbystep_bp" -accelerator F8 \
+          -image menubutstepimage -compound left
+        $pad.filemenu.debug.step add command -label "Pas à pas sortant" \
+          -underline 10 -command "stepbystep_bp" -accelerator Ctrl+F8 \
+          -image menubutstepimage -compound left
+
+    $pad.filemenu.debug add command -label "Executer jusqu'au curseur" \
+      -underline 21 -command "runtocursor_bp" -accelerator Ctrl+F11 \
+      -image menubutruntocursorimage -compound left
     $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
       -underline 0 -command "goonwo_bp" -accelerator Shift+F12 \
       -image menubutgoonignorimage -compound left
@@ -237,6 +266,9 @@ if {$lang == "eng"} {
       -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12 \
       -image menubutwatchimage -compound left
     $pad.filemenu.debug add separator
+    $pad.filemenu.debug add command -label "Stop" \
+      -underline 0 -command "break_bp" -accelerator F12 \
+      -image menubutbreakimage -compound left
     $pad.filemenu.debug add command -label "Annuler le débug" \
       -underline 0 -command "canceldebug_bp" \
       -image menubutcancelimage -compound left

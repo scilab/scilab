@@ -1,4 +1,4 @@
-function txt = FormatWhereForDebugWatch()
+function txt = FormatWhereForDebugWatch(startitem)
 // Converts input information (provided by where()) into a single string that
 // mimics the output of whereami()
 // This is used for the watch window of the debugger in Scipad.
@@ -39,12 +39,13 @@ for k = 2:nn-1    // The last one is omitted since it is the execstr from the Sc
     end
 end
 
-// Remove the first two lines (not relevant since they list the stack content for the current
-// function (FormatWhereForDebugWatch), and for the pause level at the breakpoint)
+// Remove the first startitem-1 lines (not relevant since they list the stack content
+// for the current function (FormatWhereForDebugWatch), and for the pause level(s) at
+// the breakpoint)
 pos = strindex(txt,"\n")
 if pos ~= [] then
     if size(pos,'c') > 1 then
-        txt = part(txt,pos(2)+2:length(txt))
+        txt = part(txt,pos(startitem-1)+2:length(txt))
         txt = str0 + part(txt,length(str0)+1:length(txt))
     else
         txt = emptystr();

@@ -24,18 +24,38 @@ proc showwatch_bp {} {
     set buttonToNextBpt $watch.f.f1.toNextBpt
     button $buttonToNextBpt -command "tonextbreakpoint_bp" -image [lindex $db_butimages 6] \
            -relief flat -overrelief raised
+    set buttonRunToCursor $watch.f.f1.runToCursor
+    button $buttonRunToCursor -command "runtocursor_bp" -image [lindex $db_butimages 8] \
+           -relief flat -overrelief raised
     set buttonGoOnIgnor $watch.f.f1.goOnIgnor
-    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 8] \
+    button $buttonGoOnIgnor -command "goonwo_bp" -image [lindex $db_butimages 9] \
+           -relief flat -overrelief raised
+    set buttonBreakDebug $watch.f.f1.breakDebug
+    button $buttonBreakDebug -command "break_bp" -image [lindex $db_butimages 13] \
            -relief flat -overrelief raised
     set buttonCancelDebug $watch.f.f1.cancelDebug
-    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 12] \
+    button $buttonCancelDebug -command "canceldebug_bp" -image [lindex $db_butimages 14] \
            -relief flat -overrelief raised
-    pack $buttonConfigure $buttonToNextBpt $buttonGoOnIgnor $buttonCancelDebug \
+    pack $buttonConfigure $buttonToNextBpt $buttonRunToCursor \
+         $buttonGoOnIgnor $buttonBreakDebug $buttonCancelDebug \
          -padx 2 -pady 2 -side left
     pack $watch.f.f1 -anchor w
     set watchwinicons [list "sep" "" "" "sep" $buttonConfigure "sep" $buttonToNextBpt \
-                            "" $buttonGoOnIgnor "sep" "" "sep" $buttonCancelDebug ]
+                            "" $buttonRunToCursor $buttonGoOnIgnor "sep" "" "sep"\
+                            $buttonBreakDebug $buttonCancelDebug ]
     setdbmenuentriesstates_bp
+    bind $buttonConfigure   <Enter> {update_bubble enter  4 [winfo pointerxy $watch]}
+    bind $buttonConfigure   <Leave> {update_bubble leave  4 [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Enter> {update_bubble enter  6 [winfo pointerxy $watch]}
+    bind $buttonToNextBpt   <Leave> {update_bubble leave  6 [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Enter> {update_bubble enter  8 [winfo pointerxy $watch]}
+    bind $buttonRunToCursor <Leave> {update_bubble leave  8 [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Enter> {update_bubble enter  9 [winfo pointerxy $watch]}
+    bind $buttonGoOnIgnor   <Leave> {update_bubble leave  9 [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Enter> {update_bubble enter 13 [winfo pointerxy $watch]}
+    bind $buttonBreakDebug  <Leave> {update_bubble leave 13 [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Enter> {update_bubble enter 14 [winfo pointerxy $watch]}
+    bind $buttonCancelDebug <Leave> {update_bubble leave 14 [winfo pointerxy $watch]}
 
     frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
     frame $watch.f.f2.f2l
@@ -155,11 +175,11 @@ proc updatewatch_bp {} {
                 }
                 $lbvarname selection set 0
                 $lbvarname see 0
-                $callstackwidget configure -state normal
-                $callstackwidget delete 1.0 end
-                $callstackwidget insert 1.0 $callstackcontent
-                $callstackwidget configure -state disabled
             }
+            $callstackwidget configure -state normal
+            $callstackwidget delete 1.0 end
+            $callstackwidget insert 1.0 $callstackcontent
+            $callstackwidget configure -state disabled
         }
     }
 }
@@ -178,7 +198,7 @@ proc closewatch_bp {w {dest "destroy"}} {
     if {$dest == "destroy"} {destroy $w}
 }
 
-proc getfromshell {} {
+proc getfromshell { {startitem 3} } {
     global watchvars watchvarsvals unklabel callstackcontent
     set fullcomm ""
     foreach var $watchvars {
@@ -190,7 +210,7 @@ proc getfromshell {} {
         set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
         ScilabEval $fullcomm "seq"
     }
-    set fullcomm "TK_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch()+\"\"\"}\");"
+    set fullcomm "TK_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch($startitem)+\"\"\"}\");"
     ScilabEval $fullcomm "seq"
     set fullcomm "TK_EvalStr(\"scipad eval {updatewatch_bp}\");"
     ScilabEval $fullcomm "seq"
@@ -221,11 +241,56 @@ proc createsetinscishellcomm {} {
 }
 
 proc duplicatechars {st ch} {
-# warning: $ch must be a single character string (but it works for the string "\"")
+# warning: $ch must be a single character string (but it works also for the string "\"")
     set indquot [string first $ch $st 0]
     while {$indquot != -1} {
         set st [string replace $st $indquot $indquot "$ch$ch"]
         set indquot [string first $ch $st [expr $indquot + 2]]
     }
     return $st
+}
+
+proc update_bubble {type butnum mousexy} {
+    global pad watchwinicons
+    set butname [lindex $watchwinicons $butnum]
+    set txt [$pad.filemenu.debug entrycget $butnum -label]
+    set bubble $butname.bubble
+    catch {destroy $bubble}
+    if {$type=="enter"} {
+        update idletasks
+        after 200
+        toplevel $bubble -relief solid -bg PaleGoldenrod -bd 1
+        wm overrideredirect $bubble 1
+        wm transient $bubble
+        wm withdraw $bubble
+        catch {wm attributes $bubble -topmost 1}
+        label $bubble.txt -text $txt -relief flat -bd 0 -highlightthickness 0 -bg PaleGoldenrod
+        if {[$butname cget -state] == "disabled"} {
+            $bubble.txt configure -state disabled
+        }
+        pack $bubble.txt -side left
+        update idletasks
+        if {![winfo exists $bubble]} {return}
+        set  scrwidth  [winfo vrootwidth  .]
+        set  scrheight [winfo vrootheight .]
+        set  width     [winfo reqwidth  $bubble]
+        set  height    [winfo reqheight $bubble]
+        set x [lindex $mousexy 0]
+        set y [lindex $mousexy 1]
+        incr y 12
+        incr x 8
+        if { $x+$width > $scrwidth } {
+            set x [expr {$scrwidth - $width}]
+        }
+        if { $y+$height > $scrheight } {
+            set y [expr {$y - 12 - $height}]
+        }
+        wm geometry  $bubble "+$x+$y"
+        update idletasks
+        if {![winfo exists $bubble]} {return}
+        wm deiconify $bubble
+        raise $bubble
+        set cmd [list destroy $bubble]
+        after 1000 $cmd
+    }
 }

@@ -115,8 +115,21 @@ proc execselection {} {
 #            if {"$tcl_platform(platform)" == "unix"} {    }
     #           		ScilabEval "disp(\"$dispcomm1\")" # {  }
 # Changed for mprintf and with \n on ES request
-            ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
-	          ScilabEval $comm
+#
+# FV 01/01/05, added test to cope with string length limits in C language using %s
+# The hardwired limit in character length is 509-13 since (quote from the MSDN
+# Library - Oct 2001):
+# ANSI compatibility requires a compiler to accept up to 509 characters in a string
+# literal after concatenation. The maximum length of a string literal allowed in
+# Microsoft C is approximately 2,048 bytes.
+# (end of quote)
+# Because I don't know the limit for other compilers, I keep 509 as the maximum
+# above which the string is not displayed. Anyway, more than this is very hard
+# to read in the Scilab shell.
+            if {[string length $dispcomm1] < 496} {
+                ScilabEval "mprintf(\"%s\\n\",\"$dispcomm1\")"
+            }
+	        ScilabEval $comm
           }
         }
      }

@@ -582,10 +582,9 @@ Francois VOGEL, 10/11/04
  * Added ES' changes for addition of the Revert to saved command in the file menu.
  * version --> 3.12
 
-
 ES 15/11/04:
  * added support for user preference file $env(HOME)/.SciPadPreferences.tcl,
-   loaded  at startup by defaults.tcl and saved on exit
+   loaded at startup by defaults.tcl and saved on exit
  * wm geometry in strict pixels (avoids cross-session shrinking due to wm decorations
  * outside of Scipad: removed %scipad_fontsize from SCI/scilab.star and 
    SCI/macros/util/scipad.sci: overridden by the user preferences file
@@ -595,3 +594,20 @@ ES 16/11/04
  * button-2 bound to the new proc button2copypaste - [almost] fixes
    the issue of importing external X selections into scipad
  * version --> 3.14 (and I resist from calling it pi)
+
+Francois VOGEL, 01/01/05
+ * Improved proc scilaberror since I fixed bug 1091
+ * Added automatic popup bubbles (balloons) displaying a help text when the mouse is
+   over an icon of the watch window
+ * Added Ctrl+a binding to select all the text in the current buffer (more common
+   in Windows than Ctrl+/)
+ * Added test in proc scilabexec, to cope with string length limits in C language
+   (related to bug 885 correction I made in the Scilab core code). Now the selection
+   to execute is displayed in the shell if and only if its length is less than 509
+   characters. The full string is however passed for execution in the shell. If its
+   length is greater than bsiz (currently 4096 chars), it is truncated in
+   TK_ScilabCallback.c to avoid internal buffer overflow. In that case, the
+   truncated string is executed and a warning is printed in the shell.
+ * Added two new debug commands: "Run to cursor" and "Break". They are not yet
+   working correctly due to bugs 1086 and 1120, and they should not be used.
+ * version --> 3.15

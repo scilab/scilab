@@ -1,5 +1,7 @@
 proc checkscilabbusy {{mb "message"}} {
     global sciprompt lang
+# <TODO> Remove the bypass of this proc
+#return "OK"
     if [ expr [string compare $sciprompt -1] == 0 ] {
         if {$mb != "nomessage"} {
             if {$lang == "eng"} {
@@ -16,6 +18,67 @@ proc checkscilabbusy {{mb "message"}} {
         return "busy"
     } else {
         return "OK"
+    }
+}
+
+proc runtocursor_bp {} {
+    global lang
+    if {[checkscilabbusy] == "OK"} {
+        set textarea [gettextareacur]
+        set infun [whichfun [$textarea index insert] $textarea]
+        if {$infun!=""} {
+            set cursorfunname [lindex $infun 0]
+            set cursorfunline [lindex $infun 1]
+            set rfn $cursorfunname
+            set rfl $cursorfunline
+            insertremove_bp
+            tonextbreakpoint_bp
+            set comm1 "\[db_l,db_m\]=where();"
+            set comm2 "if size(db_l,1)>=3 then"
+            set comm3 "TK_EvalStr(\"scipad eval {set checklist \[ list \"+string(db_l(3))+\" \"+string(db_m(3))+\" $rfl $rfn \] }\");"
+            set comm4 "else"
+            set comm5 "TK_EvalStr(\"scipad eval {set checklist \[ list 0 \"\"\"\" $rfl $rfn \] }\");"
+            set comm6 "end;"
+            set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6]
+            ScilabEval "$fullcomm" "seq"
+            ScilabEval "TK_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+            ScilabEval "flush"
+            while {$bptcheckresult == "WrongBpt" && [getdbstate] == "DebugInProgress"} {
+                tonextbreakpoint_bp
+                ScilabEval "$fullcomm" "seq"
+                ScilabEval "TK_EvalStr(\"scipad eval {set bptcheckresult \[makelinecheck_bp \$checklist\] }\");" "seq"
+                ScilabEval "flush"
+            }
+            if {[getdbstate] != "DebugInProgress"} {
+                if {$lang == "eng"} {
+                    tk_messageBox -message "Cursor position is out of reach!" -icon info
+                } else {
+                    tk_messageBox -message "Position du curseur hors d'atteinte!" -icon info
+                }
+            }
+            insertremove_bp
+        } else {
+            # <TODO> .sce case
+            if {$lang == "eng"} {
+                showinfo "Cursor must be in a function"
+            } else {
+                showinfo "Le curseur doit être dans une fonction"
+            }
+        }
+    }
+}
+
+proc makelinecheck_bp {cl} {
+    set fl  [lindex $cl 0]
+    set fn  [lindex $cl 1]
+    set rfl [lindex $cl 2]
+    set rfn [lindex $cl 3]
+    if {$fn==$rfn && $fl== $rfl} {
+#tk_messageBox -message "RightBpt\n$fl    $fn\n$rfl    $rfn"
+        return "RightBpt"
+    } else {
+#tk_messageBox -message "WrongBpt\n$fl    $fn\n$rfl    $rfn"
+        return "WrongBpt"
     }
 }
 
@@ -155,6 +218,25 @@ proc goonwo_bp {} {
     }
 }
 
+proc break_bp {} {
+    global lang
+    if {[checkscilabbusy "nomessage"] != "OK"} {
+        ScilabEval "flush"
+        ScilabEval "pause" "seq"
+        updateactivebreakpoint 4
+        getfromshell 4
+# <TODO> Remove next line and allow to continue debug
+# Problem: Scilab does not stop at breakpoints located after the break command point!
+        setdbstate "NoDebug"
+    } else {
+        if {$lang == "eng"} {
+            showinfo "No effect - The debugged file is not stuck"
+        } else {
+            showinfo "Aucun effet - Le fichier en débug n'est pas bloqué"
+        }
+    }
+}
+
 proc canceldebug_bp {} {
     global funnameargs waitmessage
     if {[checkscilabbusy] == "OK"} {
@@ -175,20 +257,20 @@ proc scilaberror {funnameargs} {
                 TK_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
                                            set errnum  \"+string(db_n)+\"; \
                                            set errline \"+string(db_l)+\"; \
-                                           set errfunc \"\"\"+db_func+\"\"\"; \
-                                           set errmsg \"\"\"+db_str+\"\"\"}\")" \
+                                           set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
+                                           set errmsg  \"\"\"+db_str+\"\"\"}\")" \
                "sync" "seq"
     if {$lang == "eng"} {
         tk_messageBox -title "Scilab execution error" \
           -message [concat "The shell reported an error while trying to execute "\
           $funnameargs ": error " $errnum ", " $errmsg " at line "\
-          $errline " of function " $errfunc]
+          $errline " of " $errfunc]
         showinfo "Execution aborted!"
     } else {
         tk_messageBox -title "Erreur Scilab durant l'exécution" \
           -message [concat "Le shell a rencontré une erreur en tentant d'exécuter "\
           $funnameargs ": erreur " $errnum ", " $errmsg " ligne "\
-          $errline " de la fonction " $errfunc]
+          $errline " de " $errfunc]
         showinfo "Exécution arrêtée!"
     }
     if {[getdbstate] == "DebugInProgress"} {

@@ -39,19 +39,11 @@ proc insertremovedebug_bp {{buf "current"}} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm " setbpt(\"$funname\",$lineinfun);"
-                ScilabEval $setbpcomm  "seq"
+                ScilabEval $setbpcomm "seq"
             } else {
                 # <TODO> .sce case
             }
         } else {
-            # There was bug(s) in scilab routines/interf/matsys.f file
-            # on this one: in -1-> mode, setbpt("foo",linenum) worked, but
-            # delbpt("foo",linenum) did not (bp was removed from dispbpt
-            # list but execution still stopped at linenum)
-            # The correction has been submitted to Scilab team (see
-            # bugzilla #718), is part of Scilab CVS and is included
-            # in Scilab 3.0. If the fix is not installed, the following
-            # will fail.
             set infun [whichfun [$textarea index $i1] $textarea]
             if {$infun !={} } {
                 $textarea tag remove breakpoint $i1 $i2
