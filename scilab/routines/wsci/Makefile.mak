@@ -3,7 +3,7 @@ SCIDIR=../..
 SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/wsci.lib
 
-OBJSC1 = clipboard.obj wmcopydata.obj wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
+OBJSC1 = FindScilab.obj clipboard.obj wmcopydata.obj wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
 	wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
@@ -64,7 +64,8 @@ lpr.obj : gvwprn.c
 
 #=================== runscilab========================
 
-#================== dependencies 
+#================== dependencies
+FindScilab.obj : FindScilab.c
 clipboard.obj : clipboard.c
 wmcopydata.obj: wmcopydata.c
 abs_main.obj: abs_main.c
