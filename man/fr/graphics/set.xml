@@ -61,7 +61,6 @@
     For graphics entities handle it is possible to use equivalently a dot notation
     like <VERB>h.background</VERB> instead of <VERB>set</VERB>.
 
-
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
