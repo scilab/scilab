@@ -145,6 +145,7 @@ clear fd ierr
 loadhistory()
 
 // LCC initialization =========================================
+global LCC
 if MSDOS then
 	LCC=%f;
 else
