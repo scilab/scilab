@@ -1,4 +1,4 @@
-function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
+function ninnout=under_connection(path_out,path_in)
 // alert for badly connected blocks
 // path_out : Path of the "from block" in scs_m
 // path_in  : Path of the "to block" in scs_m
@@ -35,3 +35,5 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
     unhilite_obj(scs_m.objs(path(1)))
   end
 endfunction
+
+
