@@ -61,7 +61,8 @@ clean::
 	Makesubdirs.bat intersci-clean
 	Makesubdirs.bat imp-clean
 	Makesubdirs.bat xmlint-clean
-
+  Makesubdirs.bat dumpexts-clean
+  
 distclean::
 	Makesubdirs.bat routines-distclean 
 	Makesubdirs.bat macros-distclean 
@@ -71,6 +72,7 @@ distclean::
 	Makesubdirs.bat intersci-distclean
 	Makesubdirs.bat imp-distclean
 	Makesubdirs.bat xmlint-distclean
+	Makesubdirs.bat dumpexts-distclean
 
 # win32 
 LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \

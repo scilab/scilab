@@ -31,7 +31,8 @@ if "%1" == "libs-clean" goto libs-clean
 if "%1" == "modelicac-distclean" goto modelicac-distclean
 if "%1" == "modelicac-clean" goto modelicac-clean
 if "%1" == "modelicac" goto modelicac
-
+if "%1" == "dumpexts-clean" goto dumpexts-clean
+if "%1" == "dumpexts-distclean" goto dumpexts-distclean
 echo Unknown target %1 
 goto end
 
@@ -232,6 +233,20 @@ goto end
 cd Win-util\xmlint
 echo making clean in xmlint
 nmake /C /f Makefile.mak distclean /a
+cd ..\..
+goto end
+
+:dumpexts-distclean
+cd Win-util\Nm
+echo making clean in Nm
+nmake /C /f Makefile.mak distclean /a
+cd ..\..
+goto end
+
+:dumpexts-clean
+cd Win-util\Nm
+echo making clean in Nm
+nmake /C /f Makefile.mak clean /a
 cd ..\..
 goto end
 

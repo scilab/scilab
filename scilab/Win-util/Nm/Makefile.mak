@@ -18,9 +18,12 @@ all:: ../../bin/dumpexts.exe
 ../../bin/dumpexts.exe 	:  winDumpExts.obj 
 	$(LINKER) $(LINKER_FLAGS) -SUBSYSTEM:console -OUT:"../../bin/dumpexts.exe" winDumpExts.obj \
 	$(RESOURCES) $(GUILIBS)
-
+	
+clean::
+  del *.obj
+  del ..\..\bin\dumpexts.exe
 distclean::
-	del ..\..\bin\dumpexts.exe 
-
+	del *.obj
+  
 
 
