@@ -3,8 +3,10 @@ function setlanguage(language)
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
+global %scipad_language
 if (language=='fr' | language=='eng') & ~(LANGUAGE==language) then
 	LANGUAGE=language;
+	%scipad_language=language;
 //Scilab Help Chapters, ===============================================
 //%helps is a two column matrix of strings
 	global %helps

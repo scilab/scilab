@@ -86,11 +86,13 @@ end
 // used mainly for on-line help
 global LANGUAGE
 LANGUAGE="eng"
+%scipad_language=LANGUAGE
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
   if L=="eng" | L=="fr" then
     LANGUAGE=L
+    %scipad_language=L
   else
     write(%io(2),[" "
 		  "Unsupported language """+L+"""."+..
