@@ -3,7 +3,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 //K and all other relevant objects (link, splits,..)
 // if gr==%t objects are also graphicaly erased.
 //
-// deleted objects are replaced by the value : mlist('Deleted') not to 
+// deleted objects are replaced by the value : tlist('Deleted') not to 
 // change the indexing use do_purge to suppress them and to renumber objects 
 //!
 // Copyright INRIA
@@ -93,5 +93,5 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   if gr==%t then 
     if pixmap then xset('wshow'),end,
   end
-  for k=DEL,scs_m(k)=mlist('Deleted'),end
+  for k=DEL,scs_m(k)=tlist('Deleted'),end
 endfunction
