@@ -727,6 +727,9 @@ cd .. &gt;nul
 				RelativePath=".\intTclUnsetVar.c">
 			</File>
 			<File
+				RelativePath=".\intTclUpVar.c">
+			</File>
+			<File
 				RelativePath=".\ScilabEval.c">
 			</File>
 			<File
@@ -792,6 +795,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclUnsetVar.h">
+			</File>
+			<File
+				RelativePath=".\intTclUpVar.h">
 			</File>
 			<File
 				RelativePath=".\intUIMenu.h">
