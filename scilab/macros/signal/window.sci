@@ -34,12 +34,12 @@ function [win_l,cwp]=window(wtype,n,par)
    case 'hn' then           //Hanning window.
       win_l=.5*un+.5*cos(2*%pi*xt/(n-1));
    case 'kr' then           //Kaiser window with parameter beta (n,beta)
-      beta=par(1);
-      if beta>0 then
+      Beta=par(1);
+      if Beta>0 then
          xt=2*xt/(n-1);
-         xt=beta*sqrt(un-xt.*xt);
+         xt=Beta*sqrt(un-xt.*xt);
          y=xt/2;
-         yb=beta/2;
+         yb=Beta/2;
          e=un;
          eb=1.;
          de=un;
@@ -92,13 +92,13 @@ function [win_l,cwp]=window(wtype,n,par)
       fnf=n;
       x0=(3-cos(2*%pi*df))/(1+cos(2*%pi*df));
       alpha=(x0+1)/2;
-      beta=(x0-1)/2;
+      Beta=(x0-1)/2;
       c2=xn/2;
  
 //Obtain the frequency values of the Chebyshev window
  
       f=(0:n-1)/fnf;
-      xarg=alpha*cos(2*%pi*f)+beta*un;
+      xarg=alpha*cos(2*%pi*f)+Beta*un;
       pm1=dp*cos(c2*imag(log(xarg+%i*sqrt(un-xarg.*xarg))));
       arg=c2*log(xarg+sqrt(xarg.*xarg-un));
       pp1=dp*.5*(exp(arg)+exp(-arg));

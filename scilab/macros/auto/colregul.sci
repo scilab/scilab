@@ -1,13 +1,13 @@
-function [Stmp,Ws]=colregul(Sl,alfa,beta);
+function [Stmp,Ws]=colregul(Sl,Alfa,Beta);
 // [Stmp,Ws]=regul(Sl) computes a polynomial-state-space prefilter 
 // Ws such that Stmp=Sl*Ws is proper and non singular.
-// Poles at infinity of Sl are moved to alfa;
-// Zeros at infinity of Sl are moved to beta;
+// Poles at infinity of Sl are moved to Alfa;
+// Zeros at infinity of Sl are moved to Beta;
 // Sl is asummed left invertible i.e. ss2tf(Sl) full column rank
 //!
 // Copyright INRIA
 [LHS,RHS]=argn(0);
-if RHS==1 then alfa=0;beta=0;end
+if RHS==1 then Alfa=0;Beta=0;end
 flag=0;
 Sl1=Sl(1)
 if Sl1(1)=='r' then
@@ -19,13 +19,13 @@ n=size(D);n1=n(1);n2=n(2);
 Ws=syslin([],[],[],[],eye(n2,n2));
 Stmp=Sl;
 m=maxi(degree(D));
-//     moving poles @ infinity to poles @ alfa
+//     moving poles @ infinity to poles @ Alfa
 while m>0
   Dm=coeff(D,m);
   [W,r]=colcomp(Dm);
   if r==0 then Wstmp=W; else
      dim=n2-r;Wstmp=W*[eye(dim,dim),zeros(dim,r);
-                       zeros(r,dim),tf2ss(1/(s-alfa)*eye(r,r))];end
+                       zeros(r,dim),tf2ss(1/(s-Alfa)*eye(r,r))];end
   Ws=Ws*Wstmp;
   Stmp=Stmp*Wstmp;
   D=clean(Stmp(5));
@@ -40,13 +40,13 @@ if r==n1 then
   return;
 end
 [nx,nx]=size(Stmp(2));
-//      moving zeros @ infinity to zeros @ beta
+//      moving zeros @ infinity to zeros @ Beta
 i=0;
 while r < n2,
 i=i+1;
   if r==n2 then Wstmp=W; 
           else
-       dim=n2-r;Wstmp=W*[(s-beta)*eye(dim,dim),zeros(dim,r);
+       dim=n2-r;Wstmp=W*[(s-Beta)*eye(dim,dim),zeros(dim,r);
                          zeros(r,dim),eye(r,r)];
   end
   Wstmp=syslin([],[],[],[],Wstmp);

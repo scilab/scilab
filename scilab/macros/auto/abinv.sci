@@ -1,4 +1,4 @@
-function [X,dims,F,U,k,Z]=abinv(Sl,alfa,beta,flag)
+function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 //Output nulling subspace (maximal unobservable subspace) for
 // Sl = linear system defined by [A,B,C,D];
 // The dimV first columns of X i.e V=X(:,1:dimV), spans this subspace
@@ -11,8 +11,8 @@ function [X,dims,F,U,k,Z]=abinv(Sl,alfa,beta,flag)
 // For X=[V,X2] (X2=X(:,dimV+1:nx)) one has X2'*(A+B*F)*V=0 and (C+D*F)*V=0
 // The zeros (transmission zeros for minimal Sl) are given by :
 // X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0) i.e. dimV-dimR closed-loop fixed modes
-// If optional real parameter alfa is given as input, the dimR controllable 
-// modes of (A+BF) are set to alfa.
+// If optional real parameter Alfa is given as input, the dimR controllable 
+// modes of (A+BF) are set to Alfa.
 // Generically, for strictly proper systems one has:
 // Fat plants (ny<nu): dimV=dimR=nx-nu --> no zeros
 // Tall plants (ny>nu): dimV=dimR=0 --> no zeros
@@ -37,10 +37,10 @@ function [X,dims,F,U,k,Z]=abinv(Sl,alfa,beta,flag)
 //     Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
 //F.D.
 // Copyright INRIA
-//function [X,dims,F,U,k,Z]=abinv(Sl,alfa,beta,flag)
+//function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
 [LHS,RHS]=argn(0);
-if RHS==1 then alfa=-1;beta=-1;flag='ge';end
-if RHS==2 then beta=alfa;flag='ge';end
+if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
+if RHS==2 then Beta=Alfa;flag='ge';end
 if RHS==3 then flag='ge';end
 if RHS==4 then 
 if type(flag)~=10 then error('abinv: flag must be a string');end
@@ -64,7 +64,7 @@ if dimV==0 then
 	dimR=0;dimVg=0;
 	[U,k]=colcomp([B;D]);
 	[ns,nc,X]=st_ility(Sl);
-	F=stabil(Sl('A'),Sl('B'),beta);
+	F=stabil(Sl('A'),Sl('B'),Beta);
 	if flag=='ge' then dims=[0,0,0,nc,ns];end
 	if flag=='st' then dims=[0,0,nc,ns];end
 	if flag=='pp' then dims=[0,nc,ns];end
@@ -113,8 +113,8 @@ A11=A11+B1bar*F1bar;  //add B1bar*F1bar is not necessary.
 if B1t ~= [] then
 	voidB1t=%f;
        if RHS==1 then
-         warning('abinv: needs alfa =>use default value alfa=-1')
-         alfa=-1;
+         warning('abinv: needs Alfa =>use default value Alfa=-1')
+         Alfa=-1;
        end
 	F1t_tmp=0*sl1('B')'; //nu-k rows, dimV columns
 else
@@ -130,16 +130,16 @@ end
 sl2=syslin(timedomain,A22,B2*Urange,0*(B2*Urange)');
 [ns2,nc2,U2,sl3]=st_ility(sl2);
 if (nc2~=0)&(RHS==1|RHS==2) then
-  warning('abinv: needs beta => use default value beta=-1');
+  warning('abinv: needs Beta => use default value Beta=-1');
 end
-F2=Urange*stabil(sl2('A'),sl2('B'),beta);
+F2=Urange*stabil(sl2('A'),sl2('B'),Beta);
 
 //final patch
 Ftmp=[U*[F1t_tmp;F1bar],F2]*X';
 An=X'*(A+B*Ftmp)*X;Bn=X'*B*U;
 [m,n]=size(F1t_tmp);
 A11=An(1:n,1:n);B11=Bn(1:n,1:m);
-F1t=stabil(A11,B11,alfa);
+F1t=stabil(A11,B11,Alfa);
 
 F=[U*[F1t;F1bar],F2]*X';
 X=X*sysdiag(eye(Ur),U2);

@@ -27,9 +27,9 @@ else,
 end,
 Gamma=(A+sqrt(A*A-1))**(1/n);
 alpha=-((Gamma-1/Gamma)/2)*sine;
-beta=((Gamma+1/Gamma)/2)*cosine;
-normal=alpha.*alpha+beta.*beta;
-pols=omegar*(alpha-%i*beta)./normal;
+Beta=((Gamma+1/Gamma)/2)*cosine;
+normal=alpha.*alpha+Beta.*Beta;
+pols=omegar*(alpha-%i*Beta)./normal;
 gain=abs(real(prod(pols)/prod(zers)));
  
 endfunction

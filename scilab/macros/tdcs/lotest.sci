@@ -22,31 +22,31 @@ function [y]=lorenz(t,x)
 //!
 y(1)=sig*(x(2)-x(1));
 y(2)=ro*x(1) -x(2)-x(1)*x(3);
-y(3)=-beta*x(3)+x(1)*x(2);
+y(3)=-Beta*x(3)+x(1)*x(2);
 
 
 
 endfunction
-function []=ilo(sig,ro,beta)
-//[]=ilo([sig,ro,beta])
-// Initialisation des parametres sig ro et beta
+function []=ilo(sig,ro,Beta)
+//[]=ilo([sig,ro,Beta])
+// Initialisation des parametres sig ro et Beta
 // si aucun des arguments n'est fourni on utilise des valeurs
 // par defaut
 //!
 [lhs,rhs]=argn(0)
-if rhs==0,sig=10,ro=28,beta=8/3;end
-[sig,ro,beta]=resume(sig,ro,beta)
+if rhs==0,sig=10,ro=28,Beta=8/3;end
+[sig,ro,Beta]=resume(sig,ro,Beta)
 
 
 
 endfunction
-function []=ilof(sig,ro,beta)
-//[]=ilof([sig,ro,beta])
-// Initialisation des parametres sig ro et beta
+function []=ilof(sig,ro,Beta)
+//[]=ilof([sig,ro,Beta])
+// Initialisation des parametres sig ro et Beta
 // si aucun des arguments n'est fourni on utilise des valeurs
 // par defaut
 //!
 [lhs,rhs]=argn(0)
-if rhs==0,sig=10,ro=28,beta=8/3;end;
-fort('loset',sig,1,'r',ro,2,'r',beta,3,'r','sort');
+if rhs==0,sig=10,ro=28,Beta=8/3;end;
+fort('loset',sig,1,'r',ro,2,'r',Beta,3,'r','sort');
 endfunction

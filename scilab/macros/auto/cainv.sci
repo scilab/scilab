@@ -1,4 +1,4 @@
-function [X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)
+function [X,dims,J,Y,k,Z]=cainv(Sl,Alfa,Beta,flag)
 //CA invariant subspace: dual of abinv
 //Finds orthogonal bases X and Y and output injection J
 //such that the abcd matrices of Sl in bases (X,Y) are displayed as:
@@ -17,10 +17,10 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)
 // of [C,D] matrix.
 // eigenvalues of A11 (nd1 x nd1) are unstable
 // eigenvalues of A22 (nu1-nd1 x nu1-nd1) are stable
-// pair (A33, C13) (dimS-nu1 x dimS-nu1, k x dimS-nu1) is observable, eigenvalues of A33 set to alfa
+// pair (A33, C13) (dimS-nu1 x dimS-nu1, k x dimS-nu1) is observable, eigenvalues of A33 set to Alfa
 // A44 (dimSg-dimS x dimSg-dimS) is unstable
 // A55 (dimN-dimSg,dimN-dimSg) is stable
-// pair (A66,C26) (nx-dimN x nx-dimN, ) is observable, eigenvalues of A66 set to beta.
+// pair (A66,C26) (nx-dimN x nx-dimN, ) is observable, eigenvalues of A66 set to Beta.
 //
 // dimS first columns of X span S= smallest (C,A) invariant
 // subspace which contains Im(B).
@@ -42,13 +42,13 @@ function [X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)
 // H*W = [0 | *]  (with at least as many columns as above).
 // Copyright INRIA
 [LHS,RHS]=argn(0);
-if RHS==1 then alfa=-1;beta=-1;flag='ge';end
-if RHS==2 then beta=alfa;flag='ge';end
+if RHS==1 then Alfa=-1;Beta=-1;flag='ge';end
+if RHS==2 then Beta=Alfa;flag='ge';end
 if RHS==3 then flag='ge';end
 if RHS==4 then 
 if type(flag)~=10 then error('abinv: flag must be a string');end
 end
-[X,ddims,F,U,k,Z]=abinv(Sl',beta,alfa,flag);
+[X,ddims,F,U,k,Z]=abinv(Sl',Beta,Alfa,flag);
 [nx,nx]=size(X);
 select flag
 case 'ge'

@@ -1,4 +1,4 @@
-function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
+function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,Alfa,Beta)
 //--------------Exact disturbance decoupling----------
 // Given a linear system, and a subset of outputs, z, which are to
 // be zeroed, characterize the inputs w of Sys such that the 
@@ -27,7 +27,7 @@ function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
 //
 // flag='ge' : no stability constraints
 //     ='st' : look for stable closed loop system (A+B2*F stable)
-//     ='pp' : eigenvalues of A+B2*F are assigned to alfa and beta
+//     ='pp' : eigenvalues of A+B2*F are assigned to Alfa and Beta
 //
 // Closed = w-->y closed loop system
 //
@@ -39,16 +39,16 @@ function [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
 // Author: F.D.
 //
 [LHS,RHS]=argn(0);
-if RHS==5 then beta=-1;end
-if RHS==4 then beta=-1;alfa=-1;end
-if RHS==3 then beta=-1;alfa=-1;flag='st';end
-if RHS==2 then beta=-1;alfa=-1;flag='st';D1=zeros(size(Sys('C'),1),size(B1,2));
+if RHS==5 then Beta=-1;end
+if RHS==4 then Beta=-1;Alfa=-1;end
+if RHS==3 then Beta=-1;Alfa=-1;flag='st';end
+if RHS==2 then Beta=-1;Alfa=-1;flag='st';D1=zeros(size(Sys('C'),1),size(B1,2));
 end
 if size(B1,1) ~= size(Sys('A'),1) then error('dims of B1 and A are not compatible');end
 if size(D1,2) ~= size(B1,2) then error('dims of D1 and B1 are not compatible');end
 Sys1=Sys(zeroed,:);
 not_zeroed=1:size(Sys,1);not_zeroed(zeroed)=[];
-[X,dims,F,U,k,Z]=abinv(Sys1,alfa,beta,flag);nv=dims(3);
+[X,dims,F,U,k,Z]=abinv(Sys1,Alfa,Beta,flag);nv=dims(3);
 Sys_new=ss2ss(Sys,X);Fnew=F*X;
 B1new=X'*B1;B2new=Sys_new('B');
 D11=D1(zeroed,:);D12=Sys1('D');

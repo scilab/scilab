@@ -1,4 +1,4 @@
-function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
+function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
 // ------------Unknown input observer------------------
 // Sys: (w,u) --> y  = (A,B,C2,D2) syslin linear system with two inputs
 // w and u, w being the unknown input.
@@ -20,7 +20,7 @@ function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
 // flag='ge' no stability constraints
 //     ='st' stable observer    (default) 
 //     ='pp' observer with pole placement
-//     alfa,beta = desired location of closed loop poles  (default -1, -2)
+//     Alfa,Beta = desired location of closed loop poles  (default -1, -2)
 // UIobs = linear system (u,y) --> zhat such that:
 // The transfer function: (w,u) --> z  equals the composed transfer function:
 //            [0,I;        UIobs
@@ -54,15 +54,15 @@ function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
 //        C1=rand(1,nx);D1=[0,1];
 //        UIobs=ui_observer(Sys,1,C1,D1);
 [LHS,RHS]=argn(0);
-if RHS==6 then beta=-1;end
-if RHS==5 then beta=-1;alfa=-1;end
-if RHS==4 then beta=-1;alfa=-1;flag='st';end
-if RHS==3 then beta=-1;alfa=-1;flag='st';D1=[];end
+if RHS==6 then Beta=-1;end
+if RHS==5 then Beta=-1;Alfa=-1;end
+if RHS==4 then Beta=-1;Alfa=-1;flag='st';end
+if RHS==3 then Beta=-1;Alfa=-1;flag='st';D1=[];end
 if size(C1,2) ~= size(Sys('A'),1) then error('dims of C1 and A are not compatible');end
 if size(D1,2) ~= size(Sys('B'),2) then error('dims of D1 and B are not compatible');end
 not_reject=1:size(Sys,'c');not_reject(reject)=[];
 Sys1=Sys(:,reject);      //A,B1,C2,D21
-[X,dims,J,Y,k,Z]=cainv(Sys1,alfa,beta,flag);
+[X,dims,J,Y,k,Z]=cainv(Sys1,Alfa,Beta,flag);
 Sys_new=ss2ss(Sys,X);
 ns=dims(3);Jnew=X'*J;J2=Jnew(ns+1:$,:);
 [Anew,Bnew,Cnew,Dnew]=abcd(Sys_new);

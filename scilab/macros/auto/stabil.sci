@@ -6,12 +6,12 @@ function F=stabil(A,B,alfa)
 //and assignable poles are set to alfa(1),alfa(2),...
 // Default value for alfa is -1.
 //
-//K=stabil(Sys,alfa,beta) returns K, a compensentor for Sys
+//K=stabil(Sys,alfa,Beta) returns K, a compensentor for Sys
 //such that (A,B)-controllable eigenvalues are set to 
-//alfa and (C,A)-observable eigenvalues are set to beta.
+//alfa and (C,A)-observable eigenvalues are set to Beta.
 // All assignable closed loop poles (which are given by the 
 //eigenvalues of Aclosed=h_cl(Sys,K) are set to alfa(i)'s
-//and beta(j)'s.
+//and Beta(j)'s.
 //
 //Example:
 // Sys=ssrand(2,2,5,list('st',2,3,3));
@@ -44,7 +44,7 @@ end
 F=-ppol(An(1:nc,1:nc),Bn(1:nc,:),alfa(1:nc));
 F=[F,zeros(nu,nx-nc)]*U';
 else
-  //F=stabil(Sys,alfa,beta);
+  //F=stabil(Sys,alfa,Beta);
 Sys=A;[A1,B1,C1,D1]=abcd(Sys);
 if RHS==1 then al=-1;be=-1;end
 if RHS==2 then al=B;be=-1;end

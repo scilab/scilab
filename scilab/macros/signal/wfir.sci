@@ -87,9 +87,9 @@ if rhs<=0 then,
   select nc
   case 1 then
     wtype='kr'
-    [ok,beta]=getvalue('Input window characteristics',..
+    [ok,Beta]=getvalue('Input window characteristics',..
                      ['beta>0'],list('vec',1),' ')
-    fpar(1)=beta
+    fpar(1)=Beta
     fpar(2)=0;
   case 2 then
     wtype='ch' 
