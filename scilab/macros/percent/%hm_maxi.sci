@@ -23,9 +23,8 @@ else
   end
   x=hypermat(dims,x)
 end
-
-
 endfunction
+
 function x=%hm_oriented_max(m,d)
 if d=='r' then 
   d=1
@@ -33,6 +32,7 @@ elseif d=='c' then
   d=2
 end
 dims=m.dims;
+if type(dims==8) then flag=1; dims=double(dims); else flag=0;end
 N=size(dims,'*');
 p1=prod(dims(1:d-1));// step for one max
 p2=p1*dims(d);//step for beginning of vector to max 
@@ -52,8 +52,10 @@ else
   dims(d)=1
 end
 if size(dims,'*')==2 then 
+  if flag==1 then dims=int32(dims);return;end
   x=matrix(x,dims(1),dims(2))
 else
+  if flag==1 then dims=int32(dims);return;end
   x=hypermat(dims,x(:))
 end
 endfunction

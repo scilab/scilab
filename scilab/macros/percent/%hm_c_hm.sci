@@ -13,9 +13,8 @@ if kd<>[] then
   error('inconsistent dimensions')
 end
 
-
-v=[matrix(M1('entries'),d1(1)*d1(2),-1);
-   matrix(M2('entries'),d2(1)*d2(2),-1)]
+v=[matrix(M1('entries'),double(d1(1)*d1(2)),-1);
+   matrix(M2('entries'),double(d2(1)*d2(2)),-1)]
 
 
 M1('entries')=v(:)

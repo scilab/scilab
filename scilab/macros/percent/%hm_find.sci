@@ -1,6 +1,6 @@
 function varargout=%hm_find(Mb,nmax)
   if argn(2)==1 then nmax=-1,end
-  N=Mb.dims; n=length(N) 
+  N=double(Mb.dims); n=length(N) 
   
   i=find(Mb.entries,nmax)
   if argn(1)==1 then 

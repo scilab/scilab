@@ -10,7 +10,7 @@ if nv==1 then
   else
     dims=M('dims')
   end
-  M=hypermat(dims,zeros(prod(dims),1))
+  M=hypermat(dims,zeros(prod(double(dims)),1))
 else
   dims=ones(1,nv)
   for k=1:nv,dims(k)=varargin(k),end

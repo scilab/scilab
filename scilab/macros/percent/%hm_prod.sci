@@ -4,6 +4,7 @@ if argn(2)==1 then
   return
 end
 dims=m.dims;
+if type(dims==8) then flag=1; dims=double(dims); else flag=0;end
 N=size(dims,'*');
 p1=prod(dims(1:d-1));//product step
 p2=p1*dims(d);//step for next to prod
@@ -24,6 +25,7 @@ end
 if size(dims,'*')==2 then 
   x=matrix(x,dims(1),dims(2))
 else
+  if flag==1 then dims=int32(dims);end
   x=hypermat(dims,x(:))
 end
 endfunction

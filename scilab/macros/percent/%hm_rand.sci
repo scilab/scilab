@@ -4,12 +4,13 @@ function M=%hm_rand(varargin)
 //hypermatrix
 nv=size(varargin)
 if nv==1 then
+M=varargin(1)
   if type(M)==1 then
     dims=M
   else
     dims=M('dims')
   end
-  M=hypermat(dims,rand(prod(dims),1))
+  M=hypermat(dims,rand(prod(double(dims)),1))
 else
   dims=ones(1,nv)
   if type(varargin($))==10 then 

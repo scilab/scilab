@@ -1,7 +1,5 @@
 function M=%hm_ones(varargin)
 // Copyright INRIA
-//creates a random hypermatrix with shape given by vector of dimensions or an
-//hypermatrix
 nv=size(varargin)
 if nv==1 then
   M=varargin(1)
@@ -10,7 +8,7 @@ if nv==1 then
   else
     dims=M('dims')
   end
-  M=hypermat(dims,ones(prod(dims),1))
+  M=hypermat(dims,ones(prod(double(dims)),1))
 else
   dims=ones(1,nv)
   for k=1:nv,dims(k)=varargin(k),end
