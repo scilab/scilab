@@ -10,6 +10,20 @@ function plot(varargin)
 
 [lhs,rhs]=argn(0);
 
+isold=get('figure_style')=='old'
+
+if isold
+  T = varargin
+  str = [];
+  for i=1:size(varargin)-1
+    str = str+sci2exp(T(i))+','
+  end
+  str = str+sci2exp(T($))
+  execstr("oldplot("+str+")");
+  return;
+end
+
+
 if ~rhs
   clf();
   //LineSpec and PropertySpec examples:
