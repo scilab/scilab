@@ -26,7 +26,9 @@ c
       it1=istk(il1+3)
       l1=il1+4
       mn1=m1*n1
-      if(it1.ne.it2.and.mn1.ne.0.and.mn2.ne.0) then
+
+      if(((istk(il1).ne.8.or.istk(il2).ne.8).or.(it1.ne.it2)).and.
+     $        mn1.ne.0.and.mn2.ne.0) then
          top=top+1
          fin=-fin
          return
