@@ -175,13 +175,28 @@ c     all nodes are collinear
  13   iero = 3
       return
  14   continue
+c commented lines below replaced by the following
+c last triangle forgotten during processing adjacency lists
+c MG 28 May 2002
       nbt=0
       iee=0
       do 15 i=1,n
          is=iee+1
          iee=iend(i)
          ie=iee
-         if (iadj(ie).eq.0) ie=ie-1
+         ie=ie-1
+         if (iadj(ie).eq.0) go to 17
+         ie=iee
+         itr1=i
+         itr2=iadj(is)
+         if(itr2.lt.itr1) goto 17
+         itr3=iadj(ie)
+         if(itr3.lt.itr1) goto 17
+         nbt=nbt+1
+         nu(1,nbt)=itr1
+         nu(2,nbt)=itr2
+         nu(3,nbt)=itr3
+ 17      continue
          itr1=i
          do 16 i2=is,(ie-1)
             itr2=iadj(i2)
@@ -194,6 +209,25 @@ c     all nodes are collinear
             nu(3,nbt)=itr3
  16      continue
  15   continue
+c      nbt=0
+c      iee=0
+c      do 15 i=1,n
+c         is=iee+1
+c         iee=iend(i)
+c         ie=iee
+c         if (iadj(ie).eq.0) ie=ie-1
+c         itr1=i
+c         do 16 i2=is,(ie-1)
+c            itr2=iadj(i2)
+c            if(itr2.lt.itr1) goto 16
+c            itr3=iadj(i2+1)
+c            if(itr3.lt.itr1) goto 16
+c            nbt=nbt+1
+c            nu(1,nbt)=itr1
+c            nu(2,nbt)=itr2
+c            nu(3,nbt)=itr3
+c 16      continue
+c 15   continue
       return
       end
 c***********************************************************
