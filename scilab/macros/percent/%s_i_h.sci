@@ -10,7 +10,6 @@ function h=%s_i_h(i,v,h)
     i($+1)=: 
   end
   n=lstsize(i)
-  
   hdl=h;hind=[]
   for k=1:lstsize(i)// walk down in the handle tree
     p=i(k)
@@ -41,7 +40,7 @@ function h=%s_i_h(i,v,h)
     if type(index)==15 & and(type(property)<>[15 16 17]) then
       property(index(:))=v
     else
-      if index<>: then
+      if or(size(index)<>[-1 1]) then
 	property(index)=v
       else
 	property=v
