@@ -498,7 +498,8 @@ c     .    22+ncst*max(16,ncst + 9)+3*ng is for lsodar RWORK
            lw42=lw
            lw=lw+nn42
 c     .    lsodar IWORK 20 + neq
-           nn43= 20 + ncst + 2*ng
+           nn43= 20 + ncst + 2*ng +ng
+c     .    last ng is for the zcross mask
            lw43=lw
            lw=lw+nn43
            nn44=istk(iadr(l4e15)+n4e15-1)
@@ -511,7 +512,8 @@ c     .    daskr
            nn42=nout+60+max(MAXORD+4,7)*ncst+ncst**2+3*ng
            lw42=lw
            lw=lw+nn42
-           nn43=40 +ncst+ ncst + 2*ng
+           nn43=40 +ncst+ ncst + 2*ng +ng
+c     .    last ng is for the zcross mask
            lw43=lw
            lw=lw+nn43
            nn44=istk(iadr(l4e15)+n4e15-1)

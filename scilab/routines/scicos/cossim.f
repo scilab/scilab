@@ -87,6 +87,10 @@ c    .  saving zcross block number in jroot(ng+xx)
 c     . Il fault:  ng >= jj
       if (jj .ne. ng)  jroot(ng+jj+1)=-1
 c     .  saving zcross block number in jroot(ng+xx)
+
+c     Initializing the zero crossing mask
+            call iset(ng,0,jroot(2*ng+1),1)
+c
       
 c     initialisation (propagation of constant blocks outputs)
       if(niord.eq.0) goto 10
@@ -201,17 +205,29 @@ c
             if (istate .le. 0) then
                if (istate .eq. -3) then
                   if(stuck) then
+c
+                     call grblk(neq,told,x,ng,w)
+                     do 32, ib=1,ng
+                        if(w(ib).eq.0d0) then
+                           jroot(2*ng+ib)=1
+                        endif
+ 32                  continue
+                     hot=.false.
+                     goto 39
+c
                      ierr= 2
                      return
                   endif
                   itask = 2
+                  rhot(5)=ttol
                   istate = 1
                   call lsoda(simblk,neq,x,told,t,
      &                 1,rtol,atol,itask,
-     &                 istate,iopt,rhot,nrwp,ihot,niwp,jdum,jt)
+     &                 istate,1,rhot,nrwp,ihot,niwp,jdum,jt)
+                  rhot(5)=0.0
                   hot = .false.
                   stuck=.true.
-                  if (istate .gt. 0) goto 38
+                  if (istate .gt. 0) goto 39
                endif
 C     !        integration problem
                ierr = 100-istate
@@ -220,6 +236,20 @@ C     !        integration problem
             hot = .true.
             stuck=.false.
  38         continue
+
+c     Initializing the zero crossing mask
+               call grblk(neq,told,x,-1,w)
+               do 385, ib=1,ng
+                  if((w(ib).ne.0d0).and.(jroot(2*ng+ib).eq.1)) then
+                     hot=.false.
+                     jroot(2*ng+ib)=0
+c                  elseif ((w(ib).eq.0d0).and.(jroot(2*ng+ib).ne.1)) then
+c                     hot=.false.
+c                     jroot(2*ng+ib)=1
+c                  else
+                  endif
+ 385           continue
+ 39         continue
 c     .     update outputs of 'c' type  blocks
             nclock = 0
             ntvec=0
@@ -237,9 +267,9 @@ c                  if(ierr.ne.0) return
                endif
             endif
             if (istate .eq. 3) then
-               
+               hot = .false.
 c     ......... update inputs to zcross blocks .......
-               call grblk(neq,told,x,ng,w)
+               call grblk(neq,told,x,-1,w)
 c     .  now the sign of jroot is saved in w(i) like the following example
 c     do 39 jj = 1,ng
 c     if (jroot(jj) .eq. 0 ) jroot(jj)=sign(2.0,w(jj))

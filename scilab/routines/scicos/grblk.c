@@ -77,13 +77,13 @@ int C2F(grblk)(neq, t, xc, ng1, g)
 	t     : current time 
 	xc    : double precision vector contains the continuous state
 	g     : computed zero crossing surface (see lsodar) 
-	ng1   : size ng 
+	ng1   : size ng or -1 if without mask 
 	!
 	*/
 
      /* Local variables */
 
-    { integer nordclk,i1,klink, kport, ig,n,i2;
+    { integer nordclk,i1,klink, kport, ig,n,i2,iig;
 	C2F(ierode).iero = 0;
 	nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
 	C2F(zdoit)(neq, xc, xc, scicos_imp.xptr, scicos_imp.z, scicos_imp.zptr, scicos_imp.iz, 
@@ -110,8 +110,21 @@ int C2F(grblk)(neq, t, xc, ng1, g)
 		  klink = scicos_imp.inplnk[kport-1]-1;
 		  n = scicos_imp.lnkptr[klink + 1] - scicos_imp.lnkptr[klink];
 		  /* copy vector valued link in g */
-		  F2C(dcopy)(&n, &(scicos_imp.outtb[scicos_imp.lnkptr[klink]-1]), &c1, &g[ig], &c1);
-		  ig += n;
+		  if(*ng1==-1){
+		    F2C(dcopy)(&n, &(scicos_imp.outtb[scicos_imp.lnkptr[klink]-1]), &c1, &g[ig], &c1);
+		    ig += n;
+		  }
+		  else{
+		    for (iig=0;iig<n;++iig){
+		      if (scicos_imp.mask[iig+ig]==0){
+			g[iig+ig]=scicos_imp.outtb[scicos_imp.lnkptr[klink]-1+iig];
+		      }
+		      else {
+			g[iig+ig]=1;
+		      }
+		    }
+		    ig += n;
+		  }
 	      }
 	  }
       }

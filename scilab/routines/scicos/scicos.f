@@ -94,6 +94,9 @@ c
       liw = lihot + niwp
       ljroot = liw
       liw = ljroot + ng*2
+      lmask = liw
+      liw = lmask + ng
+c     . lmask is the zero-crossing mask
 c
       call getscsmax(maxsz,maxtb)
       do 10 i=1,nblk
@@ -152,7 +155,7 @@ c
      $     rpar,rpptr,ipar,ipptr,
      $     nblk,outtb,nout,subscr,nsubs,tevts,evtspt,nevts,pointi,
      $     oord,zord,funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,
-     $     critev,iwa)
+     $     critev,iwa,iw(lmask))
 
       if(flag.eq.1) then
 c     initialisation des blocks

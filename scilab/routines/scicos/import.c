@@ -45,7 +45,8 @@ ScicosImport  scicos_imp={
 (integer *) NULL,   /* clkptr */
 (integer *) NULL,   /* ordptr */
 (integer *) NULL,   /* critev */
-(integer *) NULL    /* iwa */
+(integer *) NULL,    /* iwa */
+(integer *) NULL    /* mask */
 };
 
 void  
@@ -53,12 +54,12 @@ C2F(makescicosimport)(x,xptr,z,zptr,iz,izptr,
      inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
      rpar,rpptr,ipar,ipptr,nblk,outtb,nout,subs,nsubs,
      tevts,evtspt,nevts,pointi,oord,zord,
-     funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa)
+     funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa,mask)
      
 double *x ,*z,*outtb,*rpar,*tevts;
 integer *xptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr;
 integer *nlnkptr,*rpptr,*ipar,*ipptr,*nblk,*nout,*subs,*nsubs;
-integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*clkptr,*ordptr,*critev, *iwa;
+integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*clkptr,*ordptr,*critev, *iwa,*mask;
      
 {
     scicos_imp.x=x;
@@ -104,6 +105,7 @@ integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*
     scicos_imp.ordptr=ordptr;
     scicos_imp.critev=critev;
     scicos_imp.iwa=iwa;
+    scicos_imp.mask=mask;
 }
 
 void
@@ -152,6 +154,7 @@ C2F(clearscicosimport)()
     scicos_imp.critev=(integer *) NULL;
 
     scicos_imp.iwa=(integer *) NULL;
+    scicos_imp.mask=(integer *) NULL;
 }
 
 integer  
