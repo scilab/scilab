@@ -9,7 +9,7 @@ int C2F(banier)(integer *flag)
     sciprint("                    ==========\r\n");
     sciprint("                      Scilab\r\n");
     sciprint("                    ==========\r\n\r\n");
-    sciprint("                    %s",VERSION);
+    sciprint("                    %s\r\n",VERSION);
     sciprint("                    Copyright (C) 1989-2002 INRIA/ENPC\r\n");
   }
   return 0;

@@ -5,7 +5,7 @@ include $(SCIDIR)/Makefile.incl
 # XXXX a finir 
 
 CC=gcc
-CFLAGS =  -mno-cygwin -DMSDOS
+# CFLAGS =  -mno-cygwin -DMSDOS
 SHELL = /bin/sh
 
 OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
@@ -15,12 +15,12 @@ OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
 OBJECTS = $(OBJECTSd) 
 #OBJECTS = $(OBJECTSd) malloc.o
 
-all::  $(SCIDIR)/bin/f2c.exe
+all::  $(SCIDIR)/bin/f2c
 
-$(SCIDIR)/bin/f2c.exe: $(OBJECTS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c.exe
+$(SCIDIR)/bin/f2c: $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c
 
-#	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c.exe -lmmalloc
+#	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c -lmmalloc
 
 $(OBJECTSd): defs.h ftypes.h defines.h machdefs.h sysdep.h
 

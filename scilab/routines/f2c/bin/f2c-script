@@ -18,7 +18,7 @@ sed -e "s+..\/stack.h+../f2c/bin/f2c-stack.h+g"  \
     -e "s/if(\.not\.getrhscvar\([a-zA-Z0-9,\' +-\*\._() &]*\))[ ]*return/call GetRhsCVarH\1/g" \
     -e "s/^[ ]*cadr(l)=/c     cadr(l)=/g" $name.f >! $name-n.f 
 echo "First step"
-../f2c/src/f2c -a -P  $name-n.f
+../../bin/f2c -A -P  $name-n.f
 sed -e "s/9963/csiz/g" \
     -e "s/994096/bsiz/g" \
     -e "s/991200/isizt/g" \
