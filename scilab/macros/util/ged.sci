@@ -112,9 +112,9 @@ function ged_eventhandler(win,x,y,ibut)
   end
 //  seteventhandler("")  
   global ged_handle;ged_handle=[]
-//  [x,y]=xchange(x,y,'i2f')
+  cur=gcf();scf(win)
   ged_handle=ged_getobject([x,y])
-
+  scf(cur)
 
   if ged_handle~=[] then
     if ibut==0 then
@@ -247,7 +247,7 @@ function tkged()
     TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
   end
 
-  select ged_handle.type
+  select h.type
     case "Polyline"
     TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
     TK_SetVar("curcolor",string(h.foreground))
