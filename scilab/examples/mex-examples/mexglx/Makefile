@@ -13,14 +13,13 @@ Makelib : builder.sce
 job	: 
 	make -f Makelib
 
-tests	: all
-
-#	make -f Makelib tests 
+tests	: 
+	@$(SCIDIR)/util/scidem $(SCIDIR) test.sce test.dia
 
 clean	::
 	@echo Cleaning 
 	@$(RM) -f -r *.o *.lo *.la *.so *.dll *.sl *.a *.dia so_locations
-	@$(RM) -f -r .libs 
+	@$(RM) -f -r .libs foo.mexglx Makelib 
 
 distclean:: clean 
 	@$(RM) -f *.dia  *_gateway.c 
