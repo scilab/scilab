@@ -10,8 +10,8 @@ include ../../Makefile.incl
 NAME = alglib
 NAM = SCI/macros/algebre
 
-MACROS = coff.sci colcomp.sci companion.sci \
-	givens.sci im_inv.sci randpencil.sci \
+MACROS = coff.sci colcomp.sci companion.sci rref.sci cond.sci pinv.sci sva.sci\
+	rank.sci givens.sci im_inv.sci randpencil.sci \
 	proj.sci rowcomp.sci pen2ea.sci kroneck.sci quaskro.sci \
 	spaninter.sci spanplus.sci sqroot.sci trace.sci kernel.sci \
 	fullrf.sci fullrfk.sci projspec.sci penlaur.sci glever.sci \
