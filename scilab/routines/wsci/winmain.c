@@ -1642,37 +1642,3 @@ BOOL IsWindowInterface()
 	return WindowMode;
 }
 /*-----------------------------------------------------------------------------------*/
-void PrintFileText(char *fichier)
-{
-	
-	PRINTDLG pd;
-	// Initialize PRINTDLG
-	ZeroMemory(&pd, sizeof(pd));
-	pd.lStructSize = sizeof(pd);
-	pd.hwndOwner   = NULL;
-	pd.hDevMode    = NULL;     // Don't forget to free or store hDevMode
-	pd.hDevNames   = NULL;     // Don't forget to free or store hDevNames
-	pd.Flags       = PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC; 
-	pd.nCopies     = 1;
-	pd.nFromPage   = 0xFFFF; 
-	pd.nToPage     = 0xFFFF; 
-	pd.nMinPage    = 1; 
-	pd.nMaxPage    = 0xFFFF; 
-
-	if (PrintDlg(&pd)==TRUE) 
-	{
-    		// GDI calls to render output. 
-    		int i=0;
-    		int error;
-		for (i=0;i<pd.nCopies;i++)
-		{
-			error =(int)ShellExecute(NULL, "print",fichier,NULL,NULL,SW_SHOWMINIMIZED);
-	    		if (error<= 32) MessageBox(NULL,"Couldn't print via notepad","Warning",MB_ICONWARNING);
-		}
-
-    		// Delete DC when done.
-    		DeleteDC(pd.hDC);
-	}
-	
-}
-/*-----------------------------------------------------------------------------------*/

@@ -190,8 +190,6 @@ void RenameConsole(void);
 /* Suivant la commande Via menu ouvre, edit, imprime ...*/
 extern void ReplaceSlash(char *pathout,char *pathin);
 int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
-/* Imprime le fichier sur l'imprimante par défaut */
-void PrintFileText(char *fichier);
 
 BOOL IsWindowInterface();
 
