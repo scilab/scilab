@@ -9,7 +9,7 @@ OBJSF = bashos.obj basin.obj basout.obj \
 	clunit.obj ctrlc.obj dbasin.obj  \
 	fgetarg.obj getpro.obj inibrk.obj sigbas.obj 
 
-OBJSC  = getenvc.obj link.obj systemc.obj zzledt.obj  csignal.obj getpidc.obj timer.obj \
+OBJSC  = getenvc.obj link.obj systemc.obj  csignal.obj getpidc.obj timer.obj \
 	flags.obj men_Sutils.obj addinter.obj tmpdir.obj cluni0.obj \
 	inffic.obj isanan.obj texmacs.obj getarg.obj
 
@@ -30,7 +30,6 @@ sync.obj: ../stack.h
 getenvc.obj: ../machine.h
 link.obj: ../machine.h link_linux.c link_SYSV.c link_std.c link_W95.c
 systemc.obj: ../machine.h
-zzledt.obj: ../machine.h
 csignal.obj: ../machine.h
 getpidc.obj: ../machine.h
 timer.obj: ../machine.h
