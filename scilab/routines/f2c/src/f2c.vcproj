@@ -72,8 +72,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			OutputDirectory=".\$(IntDir)"
+			IntermediateDirectory=".\$(IntDir)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -88,10 +88,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\Release/f2c.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/f2c.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -102,12 +102,12 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
-				ProgramDatabaseFile=".\Release/f2c.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/f2c.tlb"
+				TypeLibraryName=".\$(IntDir)/f2c.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -148,10 +148,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\Release/f2c.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/f2c.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -162,12 +162,12 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
-				ProgramDatabaseFile=".\Release/f2c.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/f2c.tlb"
+				TypeLibraryName=".\$(IntDir)/f2c.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -208,10 +208,10 @@
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
-				PrecompiledHeaderFile=".\Release/f2c.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/f2c.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -222,12 +222,12 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
-				ProgramDatabaseFile=".\Release/f2c.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/f2c.tlb"
+				TypeLibraryName=".\$(IntDir)/f2c.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>

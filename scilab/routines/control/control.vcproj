@@ -13,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			OutputDirectory=".\$(IntDir)"
+			IntermediateDirectory=".\$(IntDir)"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -29,10 +29,10 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release/control.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/control.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>

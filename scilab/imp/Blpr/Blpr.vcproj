@@ -71,8 +71,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			OutputDirectory=".\$(IntDir)"
+			IntermediateDirectory=".\$(IntDir)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -88,10 +88,10 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release/Blpr.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/Blpr.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -101,12 +101,12 @@
 				OutputFile="../../bin/Blpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile=".\Release/Blpr.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/Blpr.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/Blpr.tlb"
+				TypeLibraryName=".\$(IntDir)/Blpr.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -148,10 +148,10 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release/Blpr.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/Blpr.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -161,12 +161,12 @@
 				OutputFile="../../bin/Blpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile=".\Release/Blpr.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/Blpr.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/Blpr.tlb"
+				TypeLibraryName=".\$(IntDir)/Blpr.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
@@ -208,10 +208,10 @@
 				RuntimeLibrary="4"
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderFile=".\Release/Blpr.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				PrecompiledHeaderFile=".\$(IntDir)/Blpr.pch"
+				AssemblerListingLocation=".\$(IntDir)/"
+				ObjectFile=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\$(IntDir)/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
@@ -221,12 +221,12 @@
 				OutputFile="../../bin/Blpr.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ProgramDatabaseFile=".\Release/Blpr.pdb"
+				ProgramDatabaseFile=".\$(IntDir)/Blpr.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/Blpr.tlb"
+				TypeLibraryName=".\$(IntDir)/Blpr.tlb"
 				HeaderFileName=""/>
 			<Tool
 				Name="VCPostBuildEventTool"/>
