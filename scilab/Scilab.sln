@@ -403,6 +403,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "routines\console
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "man\BuildHelp.vcproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -983,6 +987,10 @@ Global
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release.Build.0 = PIV_Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release.ActiveCfg = Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release.Build.0 = Release|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug.ActiveCfg = Debug|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Pentium_Release.ActiveCfg = Release|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release.ActiveCfg = Release|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
