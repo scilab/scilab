@@ -10,7 +10,12 @@ if argn(2)<=2 then
 elseif type(extern)==10 then
   if convstr(extern)=='c'|convstr(extern)=='d' then
     warning('Obsolete function gschur. Please, replace gschur by schur')
-    [As,Es,Z,dim]= schur(A,E,extern) 
+    if argn(1)==4 then
+      [As,Es,Z,dim]= schur(A,E,extern) 
+    elseif argn(1)==2 then
+      [As,Es,Z,dim]= schur(A,E,extern) 
+      Es=dim;As=Z;
+    end
   else // hard coded
     error('Obsolete function gschur, the old external cannot be used. See help')
     
