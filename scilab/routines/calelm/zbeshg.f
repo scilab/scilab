@@ -25,7 +25,7 @@ c     .  NaN case
          if (ierr.eq.2) then
             call dset(n,inf,yr,1)
             call dset(n,inf,yi,1)
-         elseif(ierr.ge.4) then
+         elseif(ierr.eq.1.or.ierr.ge.4) then
             call dset(n,inf-inf,yr,1)
             call dset(n,inf-inf,yi,1)
          endif
@@ -44,6 +44,9 @@ c     .     0 is between alpha and alpha+n
          if (ierr.eq.2) then
             call dset(n,inf,yr,1)
             call dset(n,inf,yi,1)
+         elseif (ierr.eq.1) then
+            call dset(n,inf-inf,yr,1)
+            call dset(n,inf-inf,yi,1)
          else
             if(n.gt.nn) then
 c     .        0 is between alpha and alpha+n
@@ -94,7 +97,7 @@ C     .     changes sign with k
          elseif (ierr.eq.2) then
             call dset(nn,inf,wr,1)
             call dset(nn,inf,wi,1)
-         elseif(ierr.ge.4) then
+         elseif(ierr.eq.1.or.ierr.ge.4) then
             call dset(nn,inf-inf,wr,1)
             call dset(nn,inf-inf,wi,1)
          endif
@@ -108,7 +111,7 @@ c     .  compute for positive value of alpha+k is any
             if (ier.eq.2) then
                call dset(n-nn,inf,yr(nn+1),1)
                call dset(n-nn,inf,yi(nn+1),1)
-            elseif(ier.ge.4) then
+            elseif(ier.eq.1.or.ier.ge.4) then
                call dset(n-nn,inf-inf,yr(nn+1),1)
                call dset(n-nn,inf-inf,yi(nn+1),1)
             endif
