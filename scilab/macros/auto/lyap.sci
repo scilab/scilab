@@ -7,7 +7,7 @@ function X = lyap(A,C,flag)
   elseif flag=='d' then
     flag=[1 0],
   else
-    error(36)
+    error(36,3)
   end
   X=linmeq(2,A,C,flag)
 endfunction

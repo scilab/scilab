@@ -6,7 +6,7 @@ function X = sylv(A,B,C,flag)
   elseif flag=='d' then
     flag=[1 0 0],
   else
-    error(36)
+    error(36,3)
   end
   X=linmeq(1,A,B,C,flag)
 endfunction
