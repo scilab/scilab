@@ -1,5 +1,5 @@
 #include "../stack-c.h"
-
+#include "../graphics/Math.h"
 #define TRUE_ 1
 #define FALSE_ 0
 
@@ -7,6 +7,8 @@
 
 static integer cx1 = 1;
 static integer c_n1 = -1;
+
+integer C2F(getfastcode)(unsigned char *c, unsigned long c_len) ;
 
 /*------------------------------------------------
  *   converts from ascii to Scilab internal coding 
@@ -62,7 +64,7 @@ int C2F(codetoascii)(integer *n,integer * line,char * str,
       {
 	str[j] = '!';
       } 
-    else if (abs(m) > csiz) 
+    else if (Abs(m) > csiz) 
       {
 	if (m > eol) {
 	  str[j] = (m - (eol + 1));
@@ -72,7 +74,7 @@ int C2F(codetoascii)(integer *n,integer * line,char * str,
       } 
     else if (m < 0) 
       {
-	str[j] = C2F(cha1).alfb[abs(m)];
+	str[j] = C2F(cha1).alfb[Abs(m)];
       } 
     else
       {
