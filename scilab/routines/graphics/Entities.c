@@ -933,11 +933,11 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
     pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
 
   
-  sciSetNumColors (pobj,old_m); /* F.Leray */
+/*   sciSetNumColors (pobj,old_m); /\* F.Leray *\/ */
 
   sciRecursiveUpdateBaW(pobj,old_m, m);
 
-  sciSetNumColors (pobj,m);
+/*   sciSetNumColors (pobj,m); */
 
   return 0;
   
@@ -1008,6 +1008,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
     }
   }
 
+  sciSetNumColors (pobj,m); /* Add F.Leray 25.06.04 */
+  
   psonstmp = sciGetLastSons (pobj);
   while (psonstmp != (sciSons *) NULL)
     {
@@ -6216,7 +6218,7 @@ sciGetFontBackground (sciPointObj * pobj)
     case SCI_SUBWIN: /* F.Leray 08.04.04 */
     case SCI_FIGURE: /* F.Leray 08.04.04 */
     case SCI_LABEL:  /* F.Leray 28.05.04 */
-      colorindex = (sciGetFontContext(pobj))->backgroundcolor;
+      colorindex = (sciGetFontContext(pobj))->backgroundcolor+1; /* +1 added by F.Leray 25.06.04 */
       break;
     case SCI_ARC:
     case SCI_SEGS: 
@@ -7112,6 +7114,7 @@ sciInitFontContext (sciPointObj * pobj)
 
   /*  sciPointObj * psubwin = NULL;*/
   
+
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -7122,8 +7125,8 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
     case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
-      (sciGetFontContext(pobj))->backgroundcolor = sciGetFontBackground (sciGetParent (pobj)) - 1;
-      (sciGetFontContext(pobj))->foregroundcolor = sciGetFontForeground (sciGetParent (pobj)) - 1;
+      (sciGetFontContext(pobj))->backgroundcolor = sciGetFontBackground (sciGetParent (pobj)) -1;
+      (sciGetFontContext(pobj))->foregroundcolor = sciGetFontForeground (sciGetParent (pobj)) -1;
       (sciGetFontContext(pobj))->fonttype        = (sciGetFontContext(sciGetParent(pobj)))->fonttype; 
       (sciGetFontContext(pobj))->fontdeciwidth   = (sciGetFontContext(sciGetParent(pobj)))->fontdeciwidth;
       (sciGetFontContext(pobj))->textorientation = (sciGetFontContext(sciGetParent(pobj)))->textorientation;
@@ -7906,6 +7909,9 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      
+      ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
+
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
       pSUBWIN_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pSUBWIN_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
@@ -8042,7 +8048,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	FREE(pobj);
 	return (sciPointObj *) NULL;
       }
-      
+
       if (sciInitFontContext (ppsubwin->mon_title) == -1)
 	{
 	  DestroyLabel(ppsubwin->mon_title);
@@ -8055,7 +8061,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       sciSetText(ppsubwin->mon_title, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_title)->text.textlen);
-      sciSetForeground(ppsubwin->mon_title, sciGetForeground(pSUBWIN_FEATURE(paxesmdl)->mon_title));
       sciSetFontStyle(ppsubwin->mon_title, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_title));
       sciSetFontDeciWidth(ppsubwin->mon_title,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_title));
       sciSetVisibility(ppsubwin->mon_title, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_title));
@@ -8082,7 +8087,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	}
       sciSetText(ppsubwin->mon_x_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)->text.textlen);
-      sciSetForeground(ppsubwin->mon_x_label, sciGetForeground(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
       sciSetFontStyle(ppsubwin->mon_x_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
       sciSetFontDeciWidth(ppsubwin->mon_x_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
       sciSetVisibility(ppsubwin->mon_x_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_x_label));
@@ -8112,7 +8116,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       sciSetText(ppsubwin->mon_y_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_y_label)->text.textlen);
-      sciSetForeground(ppsubwin->mon_y_label, sciGetForeground(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
       sciSetFontStyle(ppsubwin->mon_y_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
       sciSetFontDeciWidth(ppsubwin->mon_y_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
       sciSetVisibility(ppsubwin->mon_y_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_y_label));
@@ -8145,7 +8148,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
       sciSetText(ppsubwin->mon_z_label, pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.ptextstring,  
 		 pLABEL_FEATURE(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)->text.textlen);
-      sciSetForeground(ppsubwin->mon_z_label, sciGetForeground(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
       sciSetFontStyle(ppsubwin->mon_z_label, sciGetFontStyle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
       sciSetFontDeciWidth(ppsubwin->mon_z_label,sciGetFontDeciWidth(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
       sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
@@ -17179,7 +17181,7 @@ sciPointObj *sciGetMerge(sciPointObj *psubwin)
 int InitFigureModel()
 { 
   int i, m = NUMCOLORS_SCI;
-  /*sciPointObj *pfiguremdl = (sciPointObj *) NULL;*//* DJ.A 08/01/04 */
+  /*sciPointObj *pfiguremdl = (sciPointObj *) NULL;*/ /* DJ.A 08/01/04 */
 
   sciInitGraphicContext (pfiguremdl);
   sciInitGraphicMode (pfiguremdl);
@@ -18367,7 +18369,8 @@ sciPointObj *
 ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
-  
+
+
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
       if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)
