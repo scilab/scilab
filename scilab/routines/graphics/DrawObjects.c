@@ -8402,10 +8402,23 @@ void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym)
 /*   GTKDrawLine(x1,y1,x2,y2)  TWO pixels lit */
 /* for now (and only for marks), I make a trick using a pixel_offset set to 0 or 1 */
 /* depending on the driver. */
+
+/* slight modif from Bruno : if fact GetDriverId return also 0 */
+/* if gtk is enable so I have added a call to withgtk to get the */
+/* the good pixel_offset */
+extern int C2F(withgtk)(int *rep);
+
 int CheckPixelStatus(void)
 {
-  if(GetDriverId() == 0) /* X11 or Win32 driver */
-    return 1;
+  if(GetDriverId() == 0) /* X11 or Win32 driver or Gtk driver */
+    { 
+      int irep;
+      C2F(withgtk)(&irep);
+      if (irep)
+	return 0;
+      else
+	return 1;
+    }
   else
     return 0;
 }
