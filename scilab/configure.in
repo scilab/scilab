@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.64 $)dnl
+AC_REVISION($Revision: 1.65 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -579,7 +579,7 @@ case "$host" in
     LIEEELIB=
     AC_CHECK_LIB(ieee,main,
       [LIEEELIB=-lieee])
-    MALLOC= malloc.o
+    MALLOC=malloc.o
     GCC=yes
     CC=cc
     CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
