@@ -170,6 +170,9 @@ c
       lunit=wte
       errtyp=0
 c
+c Bug 1069 corrected - Francois VOGEL November 2004
+      call linestore(0)
+      call funnamestore('',0)
       call freemsgtable()
       call errstore(n)
       goto (
