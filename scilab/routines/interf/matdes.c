@@ -6296,18 +6296,11 @@ int sciGet(sciPointObj *pobj,char *marker)
   else if (strcmp(marker,"surface_color") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) { 
       if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1) {
-	if (pSURFACE_FEATURE (pobj)->izcol==0){
-	  numrow = 1;numcol = 1; 
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  *stk(outindex)=(double)pSURFACE_FEATURE (pobj)->zcol[0];
-	}
-	else {
-	  numrow=1;
-	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  for (i=0;i<numcol*numrow;i++) 
-	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
-	}
+	numrow=1;
+	numcol=pSURFACE_FEATURE (pobj)->dimzy;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	for (i=0;i<numcol*numrow;i++) 
+	  stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D) {
 	if (pSURFACE_FEATURE (pobj)->flagcolor==2) {

@@ -9009,7 +9009,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   int i=0, j=0;
-  int nx,ny,nz,nc;
+  int nx,ny,nz,nc,izc=izcol;
 
   if (typeof3d == SCI_PLOT3D) {
     nx=dimzx;
@@ -9027,6 +9027,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     ny=dimzx*dimzy;
     nz=dimzx*dimzy;
     nc=dimzy;
+    izc=1;
   }
   else {
     nx=dimzx*dimzy;
@@ -9118,7 +9119,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	    pSURFACE_FEATURE (pobj)->pvecz[j] = pvecz[j];
 	}
 
-      if (izcol !=0&&nc>0 ) {
+      if (izc !=0&&nc>0 ) {
 	if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
 	  {
 	    FREE(pSURFACE_FEATURE (pobj)->pvecy);
@@ -9132,14 +9133,18 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  }
 	else
 	  {
-	    for (j = 0;j < nc; j++)  
-	      pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j];
+	    if (izcol !=0)
+	      for (j = 0;j < nc; j++)  
+		pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j];
+	    else /*param3d case */
+	      for (j = 0;j < nc; j++)  
+		pSURFACE_FEATURE (pobj)->zcol[j]= 1;
 	  }
       }
 
       pSURFACE_FEATURE (pobj)->dimzx = dimzx;
       pSURFACE_FEATURE (pobj)->dimzy = dimzy; 
-      pSURFACE_FEATURE (pobj)->izcol = izcol;
+      pSURFACE_FEATURE (pobj)->izcol = izc;
       pSURFACE_FEATURE (pobj)->pproj = NULL;	/* Les projections ne sont pas encore calculees */
       pSURFACE_FEATURE (pobj)->isselected = TRUE;
 
@@ -11822,7 +11827,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 
     case SCI_SURFACE:
       if (pSURFACE_FEATURE (pthis)->typeof3d == SCI_PARAM3D1)  {
-	int ncurv,N;
+	int ncurv,N,*zcol;
 	double *pvecx, *pvecy, *pvecz;
 	ncurv=*numcol/3;
 	if (3*ncurv != *numcol) {
