@@ -46,7 +46,7 @@ edgecolor=1*ones(1,ma); g1('edge_color')=edgecolor;
 edgewidth=1*ones(1,ma); edgewidth(t)=4*ones(t); g1('edge_width')=edgewidth;
 for i=8:12,
  edgecolor(t)=i*ones(t); g1('edge_color')=edgecolor;
- unix('sleep 2'); show_graph(g1);
+ xpause(3d5); show_graph(g1);
  show_arcs(t);
 end;
  ]]></EXAMPLE>
