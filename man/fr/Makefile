@@ -8,9 +8,10 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 	scicos signal sound strings tdcs tksci translation utilities
 
 QUIET= > /dev/null 
+LANGUAGE=fr
 
 XSLFILE=../html-jpc.xsl
-XSLFILE=../html.xsl
+#XSLFILE=../html.xsl
 
 man: whatis html index contents
 
@@ -28,11 +29,11 @@ html:
 	do \
 		(cd $$i ;\
 		echo "Processing chapter $$i"; \
-		$(SCIDIR)/bin/scilab -nw -l eng -f ../make-links.sce  $(QUIET); \
+		$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f ../make-links.sce  $(QUIET); \
 		for j in *.xml2; \
 		do if [ $$j != "*.xml2" ]; then \
 			echo "   processing $${j%.*}.xml"; \
-			sabcmd $(XSLFILE) $$j $${j%.*}.html 2> sabcmd.tmp; \
+			sabcmd $(XSLFILE) $$j $${j%.*}.htm 2> sabcmd.tmp; \
 			if (grep Error sabcmd.tmp $(QUIET)) then \
 				echo "   bad syntax in file: $$j"; \
 			fi; \
@@ -43,12 +44,12 @@ html:
 
 index:
 	@echo "Creating index.html"
-	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-index.sce" $(QUIET)
+	@$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f "make-index.sce" $(QUIET)
 
 
 contents: 
 	@echo "Creating contents.html"
-	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-contents.sce" $(QUIET)
+	@$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f "make-contents.sce" $(QUIET)
 
 check:
 	@for i in $(DIRS) ;\
@@ -67,4 +68,5 @@ distclean::
 	$(RM)  $(FILES_TO_CLEAN)
 
 manclean:
-	$(RM)  $(FILES_TO_CLEAN) */whatis */*.html index.html
+	$(RM)  $(FILES_TO_CLEAN) */whatis */*.htm index.htm contents.htm
+
