@@ -28,7 +28,7 @@ integer *from;
 integer *to;
 {
   integer i1, i2;
-  static integer i, j, l, ljj,jj;
+  static integer i, j, ljj,jj;
 
   --indxi;
   --indxj;
@@ -53,5 +53,6 @@ integer *to;
     INSERT2(unsigned int);
     break;
   }
+  return 0;
 }
 
