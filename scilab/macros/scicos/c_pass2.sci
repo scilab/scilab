@@ -1401,7 +1401,7 @@ function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
       end
     end
   end
-  pause
+
 
   critev=zeros(clkptr($)-1,1);
   for bb=1:size(clkptr,1)-1
