@@ -1599,7 +1599,7 @@ void C2F(setabsourel)(num, v2, v3, v4)
      integer *v3;
      integer *v4;
 {
-  if (*num == 0 )
+  if (*num == CoordModeOrigin )
     ScilabXgc->CurVectorStyle =  CoordModeOrigin;
   else 
     ScilabXgc->CurVectorStyle =  CoordModePrevious ;

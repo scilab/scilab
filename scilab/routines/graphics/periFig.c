@@ -20,8 +20,8 @@
 #endif
 
 #if defined(THINK_C)|| defined(WIN32)
-#define CoordModePrevious 0
-#define CoordModeOrigin 1
+#define CoordModePrevious 1
+#define CoordModeOrigin 0
 #define GXclear 0
 #define GXand 1
 #define GXandReverse 2

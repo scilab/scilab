@@ -42,8 +42,8 @@
 extern  char  *getenv();
 #endif
 #if defined(THINK_C) || defined (__MWERKS__)|| defined(WIN32)
-#define CoordModePrevious 0
-#define CoordModeOrigin 1
+#define CoordModePrevious 1
+#define CoordModeOrigin 0
 #define GXclear 0
 #define GXand 1
 #define GXandReverse 2
@@ -371,7 +371,7 @@ void C2F(getclipGif)(integer *verbose, integer *x, integer *narg, double *dummy)
 
 void C2F(setabsourelGif)(integer *num, integer *v2, integer *v3, integer *v4)
 {
-  if (*num == 0 )
+  if (*num == CoordModeOrigin )
     ScilabGCGif.CurVectorStyle =  CoordModeOrigin;
   else 
     ScilabGCGif.CurVectorStyle =  CoordModePrevious ;

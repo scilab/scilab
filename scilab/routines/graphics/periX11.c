@@ -993,7 +993,7 @@ static void xget_clip(integer *verbose, integer *x, integer *narg, double *dummy
 
 static void xset_absourel(integer *num, integer *v2, integer *v3, integer *v4)
 {
-  if (*num == 0 )
+  if (*num == CoordModeOrigin )
     ScilabXgc->CurVectorStyle =  CoordModeOrigin;
   else 
     ScilabXgc->CurVectorStyle =  CoordModePrevious ;
