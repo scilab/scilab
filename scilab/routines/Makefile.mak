@@ -11,6 +11,7 @@ SUBDIRS = $(XAW_LOCAL_SUBDIR) $(DLD_SUBDIR) $(SCIDIRS)
 
 all::
 	copy machine-h.vc machine.h
+	copy version-h.vc version.h
 	Makesubdirs.bat all
 
 
