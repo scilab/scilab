@@ -35,12 +35,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <VERBATIM>
-<![CDATA[
+    <P>
 Utility fonction spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
-   ]]>
-    </VERBATIM>
+    </P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

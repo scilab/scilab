@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>edit_curv  </TITLE>
@@ -18,19 +18,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de coordonnées x
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de coordonnées y 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>job  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères composée d&apos;un à trois des caractères &apos;a&apos;,&apos;x&apos;,&apos;y&apos;
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
@@ -53,13 +59,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>tit  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un vecteur de 3 chaînes de caractères donnant les légendes de la courbe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>gc  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une liste de paramètres pour la fenêtre graphique : <VERB>gc=list(rect,nax)</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
@@ -77,7 +87,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>ok  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : si ok==%t l&apos;utilisateur a quitté avec le menu &apos;ok&apos; sinon l&apos;utilisateur a quitté avec le menu &apos;abort&apos;. : list (objets graphiques créés avec <VERB>edit_curv</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

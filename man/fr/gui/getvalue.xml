@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>getvalue  </TITLE>
@@ -14,89 +14,117 @@
   <PARAM_ITEM>
   <PARAM_NAME>desc  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur colonne de chaînes de caractères, 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>labels  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur colonne de n chaînes de caractères, <VERB>labels(i)</VERB> est l&apos;entête du i-ème paramètre
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>typ  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : <VERB>list(typ_1,dim_1,..,typ_n,dim_n)</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>typ_i  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit le type de la ième valeur. typ_i peut prendre l&apos;une des valeurs :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;mat&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;col&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur colonne
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;row&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;vec&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;str&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&quot;lis&quot;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : liste
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>dim_i  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit les dimensions de la i-ème valeur. Ce doit être un entier ou un vecteur de deux entiers. -1 signifie que les dimensions ne sont pas définies
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>ini  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur colonne de n chaînes de caractères, <VERB>ini(i)</VERB> donne la valeur par défaut du i-ème paramètre
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ok  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : booléen, %t (vrai) si le bouton &quot;Ok&quot; a été pressé, %f (faux) pour le bouton &quot;Cancel&quot;
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>xi  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : contient le i-ème paramètre si ok=%t. Si la liste des arguments de sortie contient un <VERB>xi</VERB> de plus que nécessaire, la valeur du dernier <VERB>xi</VERB> contient le vecteur des chaînes de caractères correspondant aux paramètres choisis.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

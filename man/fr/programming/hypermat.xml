@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>hypermat  </TITLE>
@@ -14,13 +14,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>dims  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur des dimensions de l&apos;hypermatrice
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>v  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur des termes de l&apos;hypermatrice (valeur par défaut <VERB>zeros(prod(dims),1)</VERB>)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>xsetech  </TITLE>
@@ -16,25 +16,33 @@
   <PARAM_ITEM>
   <PARAM_NAME>wrect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de taille 4, définition de la sous-fenêtre
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>frect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de taille 4.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>logflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères de taille 2 &quot;xy&quot;, où x et y peuvent être &quot;n&quot; ou &quot;l&quot;. &quot;n&quot; pour échelle normale  et &quot;l&quot; pour échelle logarithmique. x  pour axe des x et y pour axe des y.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>arect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de taille 4.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

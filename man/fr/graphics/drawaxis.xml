@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>drawaxis  </TITLE>
@@ -15,61 +15,81 @@
   <PARAM_ITEM>
   <PARAM_NAME>dir=chaîne  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : utilisé pour spécifier la direction des graduations. <VERB>chaîne</VERB> peut être choisi parmi  &apos;u&apos;,&apos;r&apos;,&apos;d&apos;,&apos;l&apos; (&apos;l&apos; est la valeur par défaut). Les valeurs &apos;u&apos;,&apos;r&apos;,&apos;d&apos;,&apos;l&apos; signifient up (en haut), right (à droite) , down (en bas) , left (à gauche).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>tics=chaîne  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeur décrivant comment sont données les graduations.   <VERB>chaîne</VERB> peut être choisi parmi &apos;v&apos;,&apos;r&apos;, et &apos;i&apos; (&apos;v&apos; est la valeur par défaut).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux vecteurs donnant les positions des graduations.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>val=chaîne  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une matrice de chaînes de caractères donnant les labels à dessiner en face des graduations.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>fontsize=int  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie la taille de la police utilisée pour dessiner les labels des graduations. La valeur par défaut est  <VERB>-1</VERB> (taille courante de police).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>format_n=chaîne  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : format utilisé pour afficher les nombres au dessus des graduations.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>seg= 1 ou 0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeur contrôlant l&apos;affichage du segment de base de l&apos;axe (1 par défaut).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>sub_int=entier  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier donnant le nombre de sous-graduations
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>textcolor=entier  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie la couleur à utiliser pour afficher les valeurs sur l&apos;axe. La valeur par défaut est <VERB>-1</VERB> (couleur courante).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ticscolor=entier  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie la couleur à utiliser pour dessiner les graduations. La valeur par défaut est <VERB>-1</VERB> (couleur courante).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

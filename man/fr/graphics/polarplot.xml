@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>polarplot  </TITLE>
@@ -15,43 +15,57 @@
   <PARAM_ITEM>
   <PARAM_NAME>rho  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur, valeurs du rayon
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de même taille que rho, valeurs de l&apos;angle
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une suite d&apos;affectations <VERB>key1=value1</VERB>, <VERB>key2=value2</VERB>, ... où key1, key2, ... peuvent prendre les valeurs <VERB>style</VERB>,<VERB>leg</VERB>,<VERB>rect</VERB>,<VERB>strf</VERB> ou <VERB>frameflag</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>style  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot2d</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>strf  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : est une chaîne de caractères de longueur 3 <VERB>&quot;xyz&quot;</VERB>. Par défaut : <VERB>&quot;030&quot;</VERB>. Voir <VERB>plot2d</VERB> pour la signification des caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot2d</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot2d</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

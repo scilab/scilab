@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>x_choices  </TITLE>
@@ -14,19 +14,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>title  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères. Titre général
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>items  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une liste d&apos;articles <VERB>items=list(item1,...,itemn)</VERB>, où chaque <VERB>item</VERB> est aussi une liste du type suivant : <VERB>item=list(&apos;label&apos;,default_choice,choices)</VERB>. <VERB>default_choice</VERB> est un entier donnant le numéro du choix par défaut et <VERB>choices</VERB> est un vecteur ligne de chaînes de caractères donnant les choix possibles.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rep  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier donnant le numéro du choix pour chaque article. Si le bouton &quot;Cancel&quot; est pressé  <VERB>rep</VERB> vaut <VERB>[]</VERB> en sortie.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

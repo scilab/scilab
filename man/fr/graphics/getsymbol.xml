@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>getsymbol  </TITLE>
@@ -14,13 +14,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>title  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères, titre de la boîte
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>c  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de taille 2 <VERB>[n,sz]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>hist3d  </TITLE>
@@ -15,19 +15,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>f  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de taille (m,n) définissant l&apos;histogramme <VERB>f(i,j)=F(x(i),y(j))</VERB>,  où <VERB>x</VERB> et <VERB>y</VERB> sont considérés égaux à <VERB>0:m</VERB> et <VERB>0:n</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>list(f,x,y)  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : où f est une matrice de taille (m,n) définissant l&apos;histogramme  <VERB>f(i,j)=F(x(i),y(j))</VERB>, avec <VERB>x</VERB> et <VERB>y</VERB> deux vecteurs de tailles respectives (1,n+1)  et (1,m+1).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta,alpha,leg,flag,ebox  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot3d</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

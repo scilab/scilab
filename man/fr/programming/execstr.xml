@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>execstr  </TITLE>
@@ -15,19 +15,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>instr  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ierr  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, 0 ou numéro de l&apos;erreur
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>msg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères (<VERB>&apos;m&apos;</VERB> ou <VERB>&apos;n&apos;</VERB>). La valeur par défaut est <VERB>&apos;n&apos;</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -44,16 +50,22 @@
     ne produit aucun message d&apos;erreur, mais stoppe l&apos;exécution des instructions stockées dans <VERB>instr</VERB> (au point où l&apos;erreur s&apos;est produite), et renvoie dans
     <VERB>ierr</VERB> le numéro de l&apos;erreur. Dans ce cas l&apos;affichage du message d&apos;erreur est contrôlé par l&apos;option <VERB>msg</VERB> :
   </P>
- 
+  <DESCRIPTION_INDENT>
 
-  <DESCRIPTION_ITEM  label='&quot;m&quot;'> 
+
+  <DESCRIPTION_ITEM label='&quot;m&quot;'> 
+  <SP>
     : le message d&apos;erreur est affiché et enregistré
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;n&quot;'> 
+  <SP>
     : le message d&apos;erreur n&apos;est pas affiché mais il est enregistré (voir <VERB>lasterror</VERB>). Il s&apos;agit du comportement par défaut. 
+</SP>
   </DESCRIPTION_ITEM>
- 
+  </DESCRIPTION_INDENT>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 execstr('a=1') // affecte a=1.
@@ -70,6 +82,9 @@ execstr('a=zzzzzzz','errcatch')
 execstr('a=zzzzzzz','errcatch','m')
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>error</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM>
+      <LINK>lasterror</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM>
+      <LINK>error</LINK> </SEE_ALSO_ITEM>
+
   </SEE_ALSO>
 </MAN>

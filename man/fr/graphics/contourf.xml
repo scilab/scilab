@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>contourf  </TITLE>
@@ -14,26 +14,34 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux vecteurs lignes de taille n1 et n2.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice réelle de taille (n1,n2), les valeurs de la fonction.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nz  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs des niveaux ou nombre de niveaux
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Si <VERB>nz</VERB> est un entier, sa valeur définit le nombre de courbes de niveaux espacées régulièrement entre zmin et zmax :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <VERBATIM><![CDATA[
@@ -49,14 +57,18 @@
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Si <VERB>nz</VERB> est un vecteur, <VERB>nz(i)</VERB> donne la valeur du ième niveau.  Noter qu&apos;il peut être utile pour voir les niveaux <VERB>zmin</VERB> et   <VERB>zmax</VERB> d&apos;ajouter une tolérance de l&apos;ordre de %eps : <VERB>nz=[ zmin+%eps,..,zmax-%eps]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot2d</VERB>. L&apos;argument <VERB>style</VERB> définit les styles de pointillés ou les couleurs utilisés pour dessiner les courbes. Il doit être de même taille que le nombre de niveaux.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

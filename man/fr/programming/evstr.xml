@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>evstr  </TITLE>
@@ -15,33 +15,43 @@
   <PARAM_ITEM>
   <PARAM_NAME>Z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de chaînes de caractères <VERB>M</VERB> ou <VERB>list(M,Subexp)</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>M  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de chaînes de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>Subexp  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>H  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ierr  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, 0 ou numéro de l&apos;erreur
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>while  </TITLE>
@@ -24,15 +24,21 @@
     Notes:
     <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM> 
+  <SP>
     La seule contrainte est que chaque mot-clé <VERB>then</VERB> ou <VERB>do</VERB> soit sur la même ligne que le <VERB>hile</VERB> correspondant.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM> 
+  <SP>
     Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent être remplacés par un passage à la ligne ou une virgule.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM> 
+  <SP>
     La construction <VERB>,else instructions</VERB> permet de spécifier des instructions à exécuter si l&apos;expression <VERB>expr</VERB> est fausse. 
+</SP>
   </DESCRIPTION_ITEM>
  </DESCRIPTION_INDENT>
   <P>

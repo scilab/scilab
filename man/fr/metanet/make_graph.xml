@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>make_graph  </TITLE>
@@ -14,37 +14,49 @@
   <PARAM_ITEM>
   <PARAM_NAME>name  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères, le nom du graphe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>oriented  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, 0 (graphe non-orienté graph) ou 1 (graphe orienté)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>n  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, le nombre de sommets du graphe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>tail  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne des numéros des sommets origines (sa taille est  le nombre d&apos;arêtes du graphe)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>head  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne des numéros des sommets destinations (sa taille est le nombre d&apos;arêtes du graphe)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>g  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : graphe (liste)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>x_message_modeless  </TITLE>
@@ -14,7 +14,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>strings  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères à afficher 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

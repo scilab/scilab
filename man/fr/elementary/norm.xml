@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>norm  </TITLE>
@@ -14,13 +14,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ou matrice (réelle ou complexe, pleine ou creuse)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères (type de la norme, 2 par défaut)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -29,41 +33,40 @@
   <P>
     Pour les matrices
   </P>
- 
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='norm(x)'> 
-    : où <VERB>norm(x,2)</VERB> est la plus grande valeur singulière de <VERB>x</VERB> (<VERB>max(svd(x))</VERB>). 
+    <SP>: où <VERB>norm(x,2)</VERB> est la plus grande valeur singulière de <VERB>x</VERB> (<VERB>max(svd(x))</VERB>). </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='norm(x,1) renvoie'> 
-    : la norme l_1 de <VERB>x</VERB> (la plus grande somme suivant les colonnes :  <VERB>maxi(sum(abs(x),&apos;r&apos;))</VERB>  ).
+    <SP>: la norme l_1 de <VERB>x</VERB> (la plus grande somme suivant les colonnes :  <VERB>maxi(sum(abs(x),&apos;r&apos;))</VERB>  ). </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='norm(x,&apos;inf&apos;),norm(x,%inf)'> 
-    : la norme infinie de <VERB>x</VERB> (la plus grande somme suivant les lignes :  <VERB>maxi(sum(abs(x),&apos;c&apos;))</VERB>  ).
+    <SP>: la norme infinie de <VERB>x</VERB> (la plus grande somme suivant les lignes :  <VERB>maxi(sum(abs(x),&apos;c&apos;))</VERB>  ). </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='norm(x,&apos;fro&apos;)'> 
-    : la norme de Frobenius de <VERB>x</VERB> c&apos;est à dire <VERB>sqrt(sum(diag(x&apos;*x)))</VERB>
+    <SP>: la norme de Frobenius de <VERB>x</VERB> c&apos;est à dire <VERB>sqrt(sum(diag(x&apos;*x)))</VERB> </SP>
   </DESCRIPTION_ITEM>
- 
+  </DESCRIPTION_INDENT>
   <P>
     Pour les vecteurs
   </P>
  
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='norm(v,p)'> 
-    : norme l_p (<VERB>sum(v(i)^p))^(1/p)</VERB> .
+    <SP>: norme l_p (<VERB>sum(v(i)^p))^(1/p)</VERB> .</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='norm(v)'> 
-    : <VERB>=norm(v,2)</VERB> : norme euclidienne
+    <SP>: <VERB>=norm(v,2)</VERB> : norme euclidienne</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='norm(v,&apos;inf&apos;)'> 
-    : <VERB>max(abs(v(i)))</VERB>.
+    <SP>: <VERB>max(abs(v(i)))</VERB>.</SP>
   </DESCRIPTION_ITEM>
- 
+   </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 A=[1,2,3];

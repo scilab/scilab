@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>grayplot  </TITLE>
@@ -15,25 +15,33 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteurs lignes de taille n1 et n2.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice réelle de taille (n1,n2). <VERB>z(i,j)</VERB> est la hauteur de la  surface au point (x(i),y(j)).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une séquence d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB> peuvent prendre les valeurs : rect, nax, strf ou axesflag et frameflag (voir <VERB>plot2d</VERB>).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>strf,rect,nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir <VERB>plot2d</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

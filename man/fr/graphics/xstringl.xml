@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>xstringl  </TITLE>
@@ -14,19 +14,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de 4 scalaires définissant la boîte
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : scalaires réels, coordonnées du point en bas à gauche des chaînes de caractères.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>str  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de chaînes de caractères.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

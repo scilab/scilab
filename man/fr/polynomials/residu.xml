@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>RESIDU  </TITLE>
@@ -14,7 +14,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>P, Q1, Q2  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : polynômes ou matrice de polynômes à coefficients réels ou complexes.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

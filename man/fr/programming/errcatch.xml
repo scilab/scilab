@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>errcatch  </TITLE>
@@ -14,13 +14,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>n  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>action, option  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaînes de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -40,23 +44,31 @@
     <VERB>action</VERB> est une des chaînes de caractères suivantes :
   </P>
  
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='&quot;pause&quot;'> 
+  <SP>
     : l&apos;interception de l&apos;erreur conduit à une pause. Cette option est utile en phase de mise au point. On peut utiliser <VERB>whereami()</VERB> pour obtenir des informations sur le contexte courant.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;continue&quot;'> 
+  <SP>
     : l&apos;exécution de la fonction ou du script continue, l&apos;instruction courante est tout simplement ignorée. Il est possible de vérifier si une erreur s&apos;est produite avec la fonction <VERB>iserror</VERB>. Ne pas oublier d&apos;effacer l&apos;erreur avec la fonction <VERB>errclear</VERB> le plus tôt possible. Cette option est utile pour remédier aux erreurs. Dans la plupart des cas, l&apos;usage de <VERB> errcatch(n,&quot;continue&quot;,..)</VERB> peut être remplacé par l&apos;usage de la fonction <VERB>execstr</VERB>.  
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;kill&quot;'> 
+  <SP>
     : mode par défaut, tous les niveaux intermédiaires sont abandonnés, et Scilab revient à l&apos;invite de commande de niveau 0.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;stop&quot;'> 
+  <SP>
     : interrompt la session Scilab courante (très utile quand Scilab est exécuté à partir d&apos;un programme externe).
+</SP>
   </DESCRIPTION_ITEM>
- 
+  </DESCRIPTION_INDENT>
  
   <P>
     <VERB>option</VERB> est la chaîne de caractères <VERB>&apos;nomessage&apos;</VERB> pour supprimer les messages d&apos;erreurs.

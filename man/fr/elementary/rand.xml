@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>rand  </TITLE>
@@ -21,19 +21,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>mi  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entiers
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>key  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères,  <VERB>&quot;uniform&quot;</VERB> ou <VERB>&quot;normal&quot;</VERB> (&quot;uniform&quot; par défaut)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une matrice, dont uniquement les dimensions sont prises en compte. 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -45,55 +51,51 @@
   <P>
     Sans l&apos;argument <VERB>key</VERB> la syntaxe ci-dessous produit une matrice aléatoire dont chaque élément est la réalisation d&apos;une variable aléatoire suivant une loi donnée (par défaut uniforme sur [0,1]).
   </P>
- 
+   <DESCRIPTION_INDENT>
 
   <DESCRIPTION_ITEM  label='rand(m1,m2)'> 
-    est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>.
+    <SP>est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(m1,m2,..,mn)'> 
-    est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>,.. x <VERB>mn</VERB>.
+    <SP>est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>,.. x <VERB>mn</VERB>.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(a)'> 
-    est une matrice aléatoire de mêmes dimensions que a. <VERB>rand(a)</VERB> est complexe si <VERB>a</VERB> est une matrice complexe.
+    <SP>est une matrice aléatoire de mêmes dimensions que a. <VERB>rand(a)</VERB> est complexe si <VERB>a</VERB> est une matrice complexe.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand() : sans argument, renvoie un scalaire aléatoire.'> 
   </DESCRIPTION_ITEM>
- 
+   </DESCRIPTION_INDENT>
   <P>
     S&apos;il est présent, l&apos;argument <VERB>key</VERB> permet de spécifier la loi suivie par défaut par la variable aléatoire.
   </P>
-
+  <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='rand(&apos;uniform&apos;)'> 
-    La loi par défaut est uniforme sur l&apos;intervalle [0,1].
+    <SP>La loi par défaut est uniforme sur l&apos;intervalle [0,1].</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(&apos;normal&apos;)'> 
-    La loi par défaut est une loi normale centrée réduite (moyenne 0, variance 1).
+   <SP> La loi par défaut est une loi normale centrée réduite (moyenne 0, variance 1).</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='str=rand(&apos;info&apos;)'> 
-    renvoie &apos;uniform&apos; ou &apos;normal&apos; suivant la loi définie par défaut (voir ci-dessus).
+    <SP>renvoie &apos;uniform&apos; ou &apos;normal&apos; suivant la loi définie par défaut (voir ci-dessus).</SP>
   </DESCRIPTION_ITEM>
- 
+   </DESCRIPTION_INDENT>
   <P>
     Il est possible de réinitialiser la graine du générateur aléatoire :
   </P>
-
+  <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;)'> 
-    Renvoie la valeur courante de la graine.
+    <SP>Renvoie la valeur courante de la graine.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;,n)'> 
-    Donne la valeur <VERB>n</VERB> à la graine (<VERB>n=0</VERB> au premier appel).
+    <SP>Donne la valeur <VERB>n</VERB> à la graine (<VERB>n=0</VERB> au premier appel).</SP>
   </DESCRIPTION_ITEM>
- 
-  <P>
-  </P>
-  <P>
-  </P>
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 x=rand(10,10,'uniform')

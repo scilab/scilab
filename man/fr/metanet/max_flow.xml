@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>max_flow  </TITLE>
@@ -14,37 +14,49 @@
   <PARAM_ITEM>
   <PARAM_NAME>i  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, numéro du sommet de départ
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>j  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier,  numéro du sommet d&apos;arrivée
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>g  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : graphe (liste)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>v  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeur du flot maximum, si elle existe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>phi  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne des valeurs des flots sur les arcs
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : problème soluble ou non (0 ou 1)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>whos  </TITLE>
@@ -16,13 +16,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>typ  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : nom du type des variables sélectionnées (voir <VERB>typeof</VERB>)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nam  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : premiers caractères des noms des variables recherchées
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

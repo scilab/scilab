@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>syslin  </TITLE>
@@ -16,37 +16,49 @@
   <PARAM_ITEM>
   <PARAM_NAME>dom  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères (<VERB>&apos;c&apos;</VERB>, <VERB>&apos;d&apos;</VERB>), ou <VERB>[]</VERB> ou un scalaire.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>A,B,C,D  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrices de la représentation d&apos;état (<VERB>D</VERB> est optionnelle, matrice nulle par défaut). Pour les systèmes impropres <VERB>D</VERB> est une matrice polynomiale.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur (état initial, vecteur nul par défaut)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>N, D  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrices polynomiales
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>H  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice rationnelle
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>sl  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : tlist (liste de type &quot;<VERB>syslin</VERB>&quot;) représentant le système dynamique
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>legends  </TITLE>
@@ -16,13 +16,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>strings  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères, strings(i) est la légende de la ième courbe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>style :  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     vecteur ligne entier de taille n (les styles de dessin de chaque courbe, troisième paramètre de plot2d) ou une matrice d&apos;entiers 2 x n, style(1,k) contenant le style pour la k-ième courbe et style(2,k) contient le style de ligne (si style(1,k)&gt;0) ou la couleur du marqueur (si style(1,k)&lt;0).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
@@ -34,32 +38,42 @@
   <PARAM_ITEM>
   <PARAM_NAME>1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     = coin en haut à droite  2  = coin en haut à gauche
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>3  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     = coin en bas à gauche
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>4  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     = coin en bas à droite
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>5  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     = placement interactif avec la souris (par défaut)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>xy  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un vecteur [x,y] donnant les coordonnées du coin en haut à gauche de la boîte contenant la légende 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>gamma  </TITLE>
@@ -14,13 +14,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ou matrice de nombres réels. 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ou matrice de nombre réels de même taille que x.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

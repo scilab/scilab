@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>size  </TITLE>
@@ -15,62 +15,70 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice, liste ou liste de type <VERB>syslin</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  un entier ou un vecteur d&apos;entiers <VERB> 1x2 </VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>sel  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier ou une chaîne de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nr,nc  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux entiers
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
- 
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='Appliquée à :'> 
-    une matrice (constante, polynomiale, de chaînes de caractères, booléenne, rationnelle) <VERB>x</VERB>, avec un seul argument en sortie, <VERB>size</VERB> renvoie un vecteur <VERB>1</VERB>x<VERB>2</VERB> [nombre de lignes, nombre de colonnes].  Appelée avec deux arguments en sortie, size renvoie <VERB>nr,nc</VERB> = [nombre de lignes, nombre de colonnes].  <VERB>sel</VERB> peut être utilisé pour indiquer la dimension désirée
-  </DESCRIPTION_ITEM>
- 
+     <SP>une matrice (constante, polynomiale, de chaînes de caractères, booléenne, rationnelle) <VERB>x</VERB>, avec un seul argument en sortie, <VERB>size</VERB> renvoie un vecteur <VERB>1</VERB>x<VERB>2</VERB> [nombre de lignes, nombre de colonnes].  Appelée avec deux arguments en sortie, size renvoie <VERB>nr,nc</VERB> = [nombre de lignes, nombre de colonnes].  <VERB>sel</VERB> peut être utilisé pour indiquer la dimension désirée</SP>
+  
+ <DESCRIPTION_INDENT>
 
   <DESCRIPTION_ITEM  label='1 ou &apos;r&apos;'> 
-    : pour obtenir le nombre de lignes
+    <SP>: pour obtenir le nombre de lignes </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='2 ou &apos;c&apos;'> 
-    : pour obtenir le nombre de colonnes
+     <SP>: pour obtenir le nombre de colonnes</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&apos;*&apos;'> 
-    : pour obtenir le produit du nombre de lignes et de colonnes
+     <SP>: pour obtenir le produit du nombre de lignes et de colonnes</SP>
   </DESCRIPTION_ITEM>
  
-
+  </DESCRIPTION_INDENT>
+ </DESCRIPTION_ITEM>
   <DESCRIPTION_ITEM  label='Appliquée à :'> 
-    une liste, size en renvoie le nombre d&apos;éléments. Dans ce cas seule la syntaxe <VERB>y=size(x)</VERB> peut être utilisée.
+     <SP>une liste, size en renvoie le nombre d&apos;éléments. Dans ce cas seule la syntaxe <VERB>y=size(x)</VERB> peut être utilisée.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='Appliquée à :'> 
-    un système dynamique linéaire, <VERB>y=size(x)</VERB> renvoie le vecteur ligne <VERB>y</VERB> = [nombre de sorties, nombre d&apos;entrées] c&apos;est à dire les dimensions de la matrice de transfert correspondante. La syntaxe <VERB>[nr,nc]=size(x)</VERB> est aussi valide (avec <VERB>(nr,nc)=(y(1),y(2)</VERB>).  Si <VERB>x</VERB> est un système dynamique linéaire donnée par sa représentation d&apos;état, alors <VERB> [nr,nc,nx]=size(x) </VERB> renvoie de plus <VERB>nx</VERB> la dimension de la matrice <VERB>A</VERB> de <VERB>x</VERB> (la dimension de l&apos;état).
+     <SP>un système dynamique linéaire, <VERB>y=size(x)</VERB> renvoie le vecteur ligne <VERB>y</VERB> = [nombre de sorties, nombre d&apos;entrées] c&apos;est à dire les dimensions de la matrice de transfert correspondante. La syntaxe <VERB>[nr,nc]=size(x)</VERB> est aussi valide (avec <VERB>(nr,nc)=(y(1),y(2)</VERB>).  Si <VERB>x</VERB> est un système dynamique linéaire donnée par sa représentation d&apos;état, alors <VERB> [nr,nc,nx]=size(x) </VERB> renvoie de plus <VERB>nx</VERB> la dimension de la matrice <VERB>A</VERB> de <VERB>x</VERB> (la dimension de l&apos;état).</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='Appliquée à :'> 
-    une hypermatrice, <VERB> y=size(x) </VERB> renvoie le vecteur de ses dimensions. La syntaxe <VERB> [n1,n2,...nn]=size(x) </VERB> est aussi acceptée. <VERB> ni=size(x,i) </VERB> renvoie la ième dimension et <VERB>size(x,&apos;*&apos;) </VERB> renvoie le produit des dimensions.
+     <SP>une hypermatrice, <VERB> y=size(x) </VERB> renvoie le vecteur de ses dimensions. La syntaxe <VERB> [n1,n2,...nn]=size(x) </VERB> est aussi acceptée. <VERB> ni=size(x,i) </VERB> renvoie la ième dimension et <VERB>size(x,&apos;*&apos;) </VERB> renvoie le produit des dimensions.</SP>
   </DESCRIPTION_ITEM>
- 
+ </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 [n,m]=size(rand(3,2))

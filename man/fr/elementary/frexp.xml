@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>frexp  </TITLE>
@@ -14,19 +14,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice ou vecteur réel
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>f  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice ou vecteur réel, habituellement dans l&apos;intervalle 0.5 &lt;= abs(f) &lt; 1.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>e  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice ou vecteur d&apos;entiers satisfaisant l&apos;équation: x = f.*2.^e
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>histplot  </TITLE>
@@ -15,34 +15,43 @@
   <PARAM_ITEM>
   <PARAM_NAME>npoint  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier ou vecteur ligne de valeurs croissantes
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>data  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur réel
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : voir plot2d.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : Représente une séquence
   d'instructions de la forme :<VERB>key1=value1,
   key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB>
   peuvent être :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>normalization  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : Si sa valeur est <VERB>%f</VERB> les valeurs inscrites le long
   de l'axe des <VERB>y</VERB> sont les nombres d'elements
   <VERB>Ni</VERB> dans chaque
@@ -50,64 +59,79 @@
   <VERB>N</VERB> est le nombre total d'éléments et <VERB>lbi</VERB> la
   longueur du <VERB>lbi</VERB>ème intervalle.
 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>style  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : donne le style de chaque courbe (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : donne la légende de chaque courbe. Si ce paramètre est spécifié et que <VERB>strf</VERB> n&apos;est pas donné alors le caractère <VERB>x</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB> (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit les bornes du dessin. Si ce paramètre est donné et que ni <VERB>frameflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>y</VERB> de <VERB>strf</VERB> est supposé être <VERB>7</VERB> (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définition des graduations. Si ce paramètre est donné et que ni <VERB>axesflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>z</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB>  (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>logflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit le type d&apos;échelle (linéaire ou logarithmique) des axes (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>frameflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie comment est calculé le cadre du dessin. Cette valeur est un entier entre 0 et 8. Il correspond au caractère <VERB>y</VERB> de <VERB>strf</VERB> (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>axesflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie le type d&apos;axe dessiné autour du dessin. Cette valeur est un entier entre 0 et 5. Il correspond au caractère <VERB>z</VERB> de <VERB>strf</VERB> (voir plot2d)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
- 
+  <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='-'> 
-    Si <VERB>npoint</VERB> est un entier, <VERB>histplot</VERB> dessine un histograme des valeurs stockées dans <VERB>data</VERB> en utilisant <VERB>npoint</VERB> classes équiréparties.
+    <SP>Si <VERB>npoint</VERB> est un entier, <VERB>histplot</VERB> dessine un histograme des valeurs stockées dans <VERB>data</VERB> en utilisant <VERB>npoint</VERB> classes équiréparties.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='-'> 
-    Si <VERB>npoint</VERB> est un vecteur <VERB>histplot</VERB> dessine un histograme des valeurs stockées dans <VERB>data</VERB> en utilisant les classes <VERB>]npoint(k),npoint(k+1)]</VERB>.
+    <SP>Si <VERB>npoint</VERB> est un vecteur <VERB>histplot</VERB> dessine un histograme des valeurs stockées dans <VERB>data</VERB> en utilisant les classes <VERB>]npoint(k),npoint(k+1)]</VERB>.</SP>
 
   </DESCRIPTION_ITEM>
- 
+  </DESCRIPTION_INDENT> 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 histplot()

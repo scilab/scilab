@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>param3d1  </TITLE>
@@ -15,7 +15,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y,z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrices de même taille (nl,nc). Chaque colonne i des matrices  correspond aux coordonnées des points de la courbe numéro i.  On peut donner une couleur à chaque courbe en utilisant <VERB>list(z,colors)</VERB> au lieu de l&apos;argument <VERB>z</VERB>, où <VERB>colors</VERB> est un vecteur de taille <VERB>nc</VERB>. Si <VERB>color(i)</VERB> est négatif la courbe est dessinée en utilisant le marqueur de numéro  <VERB>abs(style(i))+1</VERB>; si <VERB>style(i)</VERB> est strictement positif, une ligne de couleur <VERB>style(i)</VERB> ou de code de pointillé <VERB>style(i)</VERB> est  utilisée. Utiliser <VERB>xset()</VERB> pour voir les codes de couleurs et de marqueurs.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>

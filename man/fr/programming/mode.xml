@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mode  </TITLE>
@@ -15,22 +15,32 @@
     Utilisé <VERB>uniquement</VERB> dans un script ou une fonction, <VERB>mode(k)</VERB> permet de choisir le mode d&apos;affichage utilisé pendant l&apos;exécution, suivant la valeur de <VERB>k</VERB> :
   </P>
  
+<DESCRIPTION_INDENT>
 
   <DESCRIPTION_ITEM  label='k=0'> 
+  <SP>
     : les nouvelles valeurs des variables sont affichées (voir semi ou comma).
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='k=-1'> 
+  <SP>
     : l&apos;exécution est silencieuse (rien n&apos;est affiché : mode par défaut pour les fonctions)
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='k=1 ou k=3'> 
+  <SP>
     : les nouvelles valeurs des variables sont affichées, chaque ligne de commande est affichée et précédée de l&apos;invite de commande (mode par défaut pour les scripts lancés par &quot;exec&quot;)
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='k=7'> 
+  <SP>
     : les nouvelles valeurs des variables sont affichées, chaque ligne de commande est affichée et précédée de l&apos;invite de commande. L&apos;exécution est interrompue après chaque ligne et reprend après un appui sur la touche entrée/return. 
+</SP>
   </DESCRIPTION_ITEM>
+</DESCRIPTION_INDENT>
   <P>
     L&apos;affichage est supprimé dans les fonctions compilées (voir getf ou comp).
   </P>

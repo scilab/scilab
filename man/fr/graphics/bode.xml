@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>bode  </TITLE>
@@ -17,49 +17,65 @@
   <PARAM_ITEM>
   <PARAM_NAME>sl  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : liste de type <VERB>syslin</VERB> (SISO ou SIMO) à temps continu ou discret.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>fmin,fmax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : réels (bornes fréquentielles en Hz) 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>step  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : réel (pas logarithmique)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>comments  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de chaînes de caractères (légendes).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>frq  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne ou matrice (fréquences en Hz, une ligne pour chaque sous-système SISO).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>db  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne ou matrice (modules en dB, une ligne pour chaque sous-système SISO).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>phi  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne ou matrice ( phases en degrés, une ligne pour chaque sous-système SISO).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>repf  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne ou matrice de nombres complexes (réponse fréquentielle complexe).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>ieee  </TITLE>
@@ -15,7 +15,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>mod  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier valant 0,1 ou 2
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -24,30 +26,34 @@
   <P>
     <VERB>ieee()</VERB> renvoie le mode d&apos;exception IEEE courant pour les calculs en virgule flottante.
   </P>
- 
+ <DESCRIPTION_INDENT>
 
   <DESCRIPTION_ITEM  label='0'> 
+  <SP>
     : les exceptions produisent une erreur
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='1'> 
+  <SP>
     : les exceptions produisent un warning
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='2'> 
+  <SP>
     :  les exceptions produisent Inf ou Nan
+</SP>
   </DESCRIPTION_ITEM>
- 
-  <P>
-  </P>
+ </DESCRIPTION_INDENT>
+
   <P>
     <VERB>ieee(mod)</VERB> choisit le mode d&apos;exception ieee courant pour les calculs en virgule flottante.
   </P>
   <P>
     La valeur initiale au lancement de Scilab est 0.
   </P>
-  <P>
-  </P>
+
   </DESCRIPTION>
   <ITEMIZE label='REMARQUES'>
   <P>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>rotate  </TITLE>
@@ -14,25 +14,33 @@
   <PARAM_ITEM>
   <PARAM_NAME>xy  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de taille (2,n).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>xy1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de taille (2,n).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : réel, angle en radian (0 par défaut).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>orig  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : centre de la rotation ([0;0] par défaut)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

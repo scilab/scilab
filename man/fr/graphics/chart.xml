@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>chart  </TITLE>
@@ -16,44 +16,58 @@
   <PARAM_ITEM>
   <PARAM_NAME>gain  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles ( gains (en DB))
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>phase  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles (phases (en degrés))
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flags  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une liste de 4 termes list(sup [,leg [,cm [,cphi]]])
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>sup  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : 1 -&gt; superposition sur le dessin précédent   0 -&gt; pas de superposition
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : 1 indique que les légendes sont dessinées, 0 : pas de légendes
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>cm  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : numéro de couleur (voir plot2d) pour les courbes de gain
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>cphi  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : numéro de couleur (voir plot2d) pour les courbes de phase
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

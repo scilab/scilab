@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>hrmt  </TITLE>
@@ -14,19 +14,25 @@
   <PARAM_ITEM>
   <PARAM_NAME>v  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne de polynômes
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>pg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : polynôme
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>U  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice unimodulaire de polynômes
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

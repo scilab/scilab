@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>paramfplot2d  </TITLE>
@@ -16,31 +16,41 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>f  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : fonction <VERB>y=f(x,t)</VERB>. f est une fonction Scilab ou une routine externe liée dynamiquement (sous forme d&apos;une chaîne de caractères).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles (ensemble des paramètres).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères <VERB>&apos;no&apos;</VERB> ou <VERB>&apos;yes&apos;</VERB>: si &quot;yes&quot; l&apos;écran est effacé entre deux dessins consécutifs.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : &quot;rectangle&quot; [xmin, xmax, ymin, ymax] (vecteur 1 x 4 de valeurs réelles),
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

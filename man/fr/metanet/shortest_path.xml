@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>shortest_path  </TITLE>
@@ -14,37 +14,49 @@
   <PARAM_ITEM>
   <PARAM_NAME>i  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, numéro du sommet de départ
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>j  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier, numéro du sommet d&apos;arrivée
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>g  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : graphe (liste)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>typ  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères, type du chemin le plus court
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>p  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ligne des numéros des arcs du chemin s&apos;il existe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>lp  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : longueur du chemin
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

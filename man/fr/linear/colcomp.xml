@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>colcomp  </TITLE>
@@ -14,31 +14,41 @@
   <PARAM_ITEM>
   <PARAM_NAME>A  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice réelle ou complexe
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>tol  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : nombre réel
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>W  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice carré régulière (matrice de changement de base)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rk  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier (rang de&quot;<VERB>A</VERB>)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>champ1  </TITLE>
@@ -14,37 +14,49 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux vecteurs définissant la grille
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>fx  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une matrice décrivant la composante x du champ de vecteurs. <VERB>fx(i,j)</VERB> est la composante x du champ de vecteurs au point <VERB>(x(i),y(j))</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>fy  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une matrice décrivant la composante y du champ de vecteurs. <VERB>fy(i,j)</VERB> est la composante y du champ de vecteurs au point <VERB>(x(i),y(j))</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>arfact  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un argument optionnel de type réel donnant le facteur d&apos;échelle pour l&apos;affichage des flèches (1.0 par défaut).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un vecteur <VERB>rect=[xmin,ymin,xmax,ymax]</VERB> les limites du dessin
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>strf  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une chaîne de caractères de longueur 3 &quot;xyz&quot; ayant la même signification que le paramètre <VERB>strf</VERB> de <VERB>plot2d</VERB>. Le premier caractère x n&apos;a pas d&apos;effet avec <VERB>champ1</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

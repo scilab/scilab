@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>plotframe  </TITLE>
@@ -14,38 +14,50 @@
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur du type <VERB>[xmin,ymin,xmax,ymax]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>tics  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur du type <VERB>[nx,mx,ny,my]</VERB> où <VERB>mx, nx</VERB> (resp. <VERB>my, ny</VERB>) sont le nombre d&apos;intervalles et de sous-intervalle pour les graduations de l&apos;axe Ox (resp. Oy).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>arg_optX  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : arguments optionnels choisi parmi :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>flags  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur booléen <VERB>[wantgrids,findbounds]</VERB> (<VERB>%t</VERB> ou <VERB>%f</VERB>) indiquant si l&apos;on désire une grille. Si <VERB>findbounds</VERB> vaut <VERB>%t</VERB>, les bornes données dans <VERB>rect</VERB> sont éventuellement modifiées  (en fait légèrement augmentées) pour simplifier les graduations : dans ce cas <VERB>tics(2)</VERB> et  <VERB>tics(4)</VERB> sont ignorés.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>captions  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de 3 chaînes de caractères <VERB>[title,x-leg,y-leg]</VERB> correspondant au titre du dessin et aux légendes des axes x et y.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>subwin  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur de taille 4 définissant la sous-fenêtre. La sous-fenêtre est spécifiée avec le paramètre <VERB>subwin=[x,y,w,h]</VERB> (point en haut à gauche, largeur, hauteur).  Les valeurs dans <VERB>subwin</VERB> sont spécifiées sous la forme d&apos;une proportion de la largeur ou de la hauteur de la fenêtre graphique courante (voir <VERB>xsetech</VERB>).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

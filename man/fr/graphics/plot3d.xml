@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>plot3d  </TITLE>
@@ -21,163 +21,215 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteurs lignes de taille n1 et n2 (coordonnées sur les axes x et y). Ces coordonnées doivent être monotones.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de taille (n1,n2). <VERB>z(i,j)</VERB> est la hauteur d&apos;une surface non paramétrique au point (x(i),y(j)).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>xf,yf,zf  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrices de taille (nf,n).  Elles définissent les facettes utilisées pour dessiner la surface. Chaque facette <VERB>i</VERB> est définie par un polygone à <VERB>nf</VERB> points.  Les coordonnées x, y et z des points de la facette numéro i sont donnés par <VERB>xf(:,i)</VERB>, <VERB>yf(:,i)</VERB> et <VERB>zf(:,i)</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>colors  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un vecteur de taille n donnant la couleur de chaque facette ou une matrice de taille (nf,n) donnant la couleur de chaque point de la facette (dans ce cas la couleur est interpolée dans la facette) 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>, ... où key1,key2, ... peuvent prendre les valeurs <VERB>theta</VERB>,<VERB>alpha</VERB>,<VERB>leg</VERB>,<VERB> flag</VERB>, <VERB>ebox</VERB>,<VERB>zlev</VERB> (voir ci-dessous). Dans ce cas, l&apos;ordre n&apos;a pas de signification particulière.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta, alpha  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles donnant (en degrés) les coordonnées sphériques du point d&apos;observation.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères définissant la légende pour chaque axe avec @ comme séparateur, par exemple &quot;X@Y@Z&quot;.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un vecteur réel de taille 3 <VERB>flag=[mode,type,box]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>mode  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères (traitement des parties cachées).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>mode&gt;0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Les parties cachées de la surface sont enlevées et le &quot;dessous&quot; de la surface est d&apos;une couleur uniforme d&apos;indice <VERB>mode</VERB> dans la table de couleurs courante.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>mode=0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Les parties cachées de la surface sont dessinées.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>mode&lt;0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Uniquement le &quot;dessous&quot; de la surface est dessiné et rempli avec une couleur ou un motif uniforme d&apos;indice <VERB>-mode</VERB>. Voir xset() pour la signification des indices. 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>type  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier (type d&apos;échelle).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>type=0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Le dessin est fait avec l&apos;échelle 3D courante (définie par un appel précédent à <VERB>param3d</VERB>, <VERB>plot3d</VERB>, <VERB>contour</VERB> ou <VERB>plot3d1</VERB>).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle où la boîte 3D est utilisée en totalité, les limites sont éventuellement spécifiées par l&apos;argument optionnel <VERB>ebox</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=2  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle où la boîte 3D est utilisée en totalité, les limites sont calculées à partir des données.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=3  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle isométrique 3D où les bornes de la boîte 3D sont données par l&apos;argument <VERB>ebox</VERB>, mode similaire à <VERB>type=1</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=4  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle isométrique 3D où les bornes de la boîte 3D sont calculées à partir des données, mode similaire à <VERB>type=2</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=5  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle isométrique 3D &quot;étendue&quot; (occupation maximum de l&apos;espace), les bornes de la boîte 3D sont données par l&apos;argument <VERB>ebox</VERB>, mode similaire à <VERB>type=1</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type=6  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Échelle isométrique 3D &quot;étendue&quot; (occupation maximum de l&apos;espace), les bornes de la boîte 3D sont calculées à partir des données, mode similaire à <VERB>type=2</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>box  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : un entier (cadre autour du dessin).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>box=0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Pas de cadre autour du dessin.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>box=1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Pas implémenté pour l&apos;instant (identique à box=0).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>box=2  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Uniquement les axes (trièdre i,j,k) sont dessinés derrière la surface
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>box=3  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Une boîte est dessinée autour du dessin et les légendes des axes sont ajoutées.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>box=4  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Sont dessinés, une boîte autour du dessin, les légendes des axes et le trièdre derrière la surface (identique à mode=3 + mode=2) 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -185,7 +237,9 @@
   <PARAM_ITEM>
   <PARAM_NAME>ebox  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : utilisé quand <VERB>type</VERB> dans <VERB>flag</VERB> vaut 1. Spécifie les limites de la boîte 3D du dessin sous forme du vecteur <VERB>[xmin,xmax,ymin,ymax,zmin,zmax]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>int8  </TITLE>
@@ -24,13 +24,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>X  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice de flottants ou d&apos;entiers
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : matrice d&apos;entiers codés sur 1,2 ou 4 octets.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -40,31 +44,31 @@
     Convertit et stocke sous forme d&apos;entiers. Ces types de données sont particulièrement intéressants pour stocker des images, de longs signaux, ...
   </P>
  
-
+<DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='y=int8(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [-128,127] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [-128,127] </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='y=uint8(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [0,255] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [0,255] </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='y=int16(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [-32768,32767] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [-32768,32767] </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='y=uint16(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [0, 65535] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [0, 65535] </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='y=int32(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [-2147483648,2147483647] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [-2147483648,2147483647] </SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='y=uint32(X)'> 
-    : renvoie et stocke dans y des entiers dans l&apos;intervalle [0, 4294967295] 
+    <SP>: renvoie et stocke dans y des entiers dans l&apos;intervalle [0, 4294967295] </SP>
   </DESCRIPTION_ITEM>
- 
+ </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 int8([1 -120 127 312])

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>plot2d  </TITLE>
@@ -16,39 +16,51 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux matrices ou vecteurs.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Si <VERB>y</VERB> est un vecteur, <VERB>x</VERB> doit être un vecteur de même taille. Si <VERB>x</VERB> n&apos;est pas donné, il est supposé être égal au vecteur 1:&lt;taille de <VERB>y</VERB>&gt;.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Si <VERB>y</VERB> est une matrice, <VERB>x</VERB> peut être :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>+  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     un vecteur de taille égale au nombre de lignes de <VERB>y</VERB> (chaque colonne de <VERB>y</VERB> est représentée par rapport à <VERB>x</VERB>)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>+  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     une matrice de mêmes dimensions que <VERB>y</VERB> (chaque colonne de <VERB>y</VERB> est représentée par rapport à la colonne correspondante de <VERB>x</VERB>)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>+  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Si <VERB>x</VERB> n&apos;est pas donné, il est supposé être égal au vecteur  1:&lt;nombre de lignes de <VERB>y</VERB>&gt;
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -56,83 +68,109 @@
   <PARAM_ITEM>
   <PARAM_NAME>&lt;opt_args&gt;  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : Représente une suite d&apos;affectations <VERB>key1=value1, key2=value2</VERB>,... où <VERB>key1</VERB>, <VERB>key2,...</VERB> peut prendre les valeurs :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>style  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : donne le style de chaque courbe (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : donne la légende de chaque courbe. Si ce paramètre est spécifié et que <VERB>strf</VERB> n&apos;est pas donné alors le caractère <VERB>x</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB> (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit les bornes du dessin. Si ce paramètre est donné et que ni <VERB>frameflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>y</VERB> de <VERB>strf</VERB> est supposé être <VERB>7</VERB> (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définition des graduations. Si ce paramètre est donné et que ni <VERB>axesflag</VERB> ni <VERB>strf</VERB> ne sont donnés alors le caractère <VERB>z</VERB> de <VERB>strf</VERB> est supposé être <VERB>1</VERB> (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>logflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : définit le type d&apos;échelle (linéaire ou logarithmique) des axes (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>frameflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie comment est calculé le cadre du dessin. Cette valeur est un entier entre 0 et 8. Il correspond au caractère <VERB>y</VERB> de <VERB>strf</VERB> (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>axesflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : spécifie le type d&apos;axe dessiné autour du dessin. Cette valeur est un entier entre 0 et 5. Il correspond au caractère <VERB>z</VERB> de <VERB>strf</VERB> (voir ci-dessous)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>style  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : est un vecteur ligne de taille nc. Le style à utiliser pour la courbe <VERB>i</VERB> est défini par <VERB>style(i)</VERB>.  Le style par défaut est <VERB>1:nc</VERB> (1 pour la première courbe, 2 pour la deuxième ...)
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     si <VERB>style(i)</VERB> est négatif ou nul, la courbe est dessinée en utilisant le marqueur de code  <VERB>abs(style(i))</VERB>; utiliser <VERB>xset()</VERB> pour voir les codes des marqueurs et xget(&apos;mark&apos;) pour avoir le code du marqueur courant.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     si <VERB>style(i)</VERB> &gt; 0, une ligne de couleur d&apos;indice <VERB>style(i)</VERB> ou en pointillés de code <VERB>style(i)</VERB> est utilisée;  utiliser <VERB>xset()</VERB> pour voir les indices des couleurs.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>-  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Quand une seule courbe est dessinée, <VERB>style</VERB> peut être le vecteur ligne  de taille 2 <VERB>[sty,pos]</VERB> où <VERB>sty</VERB> est utilisé pour spécifier le style et <VERB>pos</VERB> est un entier entre 1 et 6 spécifiant la position à utiliser pour les légendes.  Cela peut être utile si l&apos;utilisateur veut dessiner des courbes multiples en  appelant la fonction <VERB>plot2d</VERB> plusieurs fois et veut avoir une légende différente à chaque fois.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>strf  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : est une chaîne de caractères de longueur 3 <VERB>&quot;xyz&quot;</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
@@ -144,27 +182,35 @@
   <PARAM_ITEM>
   <PARAM_NAME>x  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : contrôle l&apos;affichage des légendes
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>x=0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : pas de légende.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>x=1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : Les légendes sont affichées. Elles sont données par l&apos;argument optionnel <VERB>leg</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : Contrôle le calcul des bornes du dessin :
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <P>  </P>
@@ -311,44 +357,58 @@
   <PARAM_ITEM>
   <PARAM_NAME>z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : contrôle l&apos;affichage des informations sur le cadre autour du dessin. Si les axes sont requis, le nombre de graduations peut être spécifié par le paramètre optionnel <VERB>nax</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  <PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>z=0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  rien n&apos;est dessiné autour du dessin
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z=1  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  les axes sont dessinés, l&apos;axe y est dessiné à gauche. 
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z=2  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  le dessin est entouré d&apos;une boîte sans graduations.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z=3  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  les axes sont dessinés, l&apos;axe y est dessiné à droite
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z=4  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  les axes sont dessinés au milieu du cadre
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>z=5  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  les axes sont dessinés de manière à se croiser au point <VERB>(0,0)</VERB>.  Si ce point <VERB>(0,0)</VERB> ne se situe pas dans le cadre, les axes n&apos;apparaissent pas.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -356,25 +416,33 @@
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  une chaîne de caractères. Elle est utilisée quand le caractère x de l&apos;argument <VERB>strf</VERB> vaut 1. <VERB>leg</VERB> a la forme <VERB>&quot;leg1@leg2@....&quot;</VERB> où <VERB>leg1</VERB>, <VERB>leg2</VERB>,  etc. sont respectivement la légende de la première courbe, de la deuxième, etc.  La valeur par défaut est <VERB>&quot; &quot;</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  Cet argument est utilisé quand le caractère y de l&apos;argument <VERB>strf</VERB> vaut 1, 3 ou 5. C&apos;est un vecteur ligne de taille 4 donnant les bornes du cadre :  <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>nax  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  Cet argument est utilisé quand le caractère z de l&apos;argument <VERB>strf</VERB> vaut 1. C&apos;est un vecteur ligne de taille 4 donnant les graduations <VERB>[nx,Nx,ny,Ny]</VERB> où <VERB>nx</VERB> (<VERB>ny</VERB>) est le nombre de sous-graduations sur l&apos;axe x (y) et <VERB>Nx</VERB> (<VERB>Ny</VERB>) est le nombre de graduations sur l&apos;axe x (y).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>logflag  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     :  une chaîne de caractères formée par deux caractères h (pour horizontal) et v (pour vertical). Chacun de ces deux caractères peut prendre les valeurs &quot;n&quot; ou &quot;l&quot;. &quot;l&quot;  pour avoir une échelle logarithmique et  &quot;n&quot; pour une échelle linéaire. Par exemple &quot;ll&quot; sera utilisé pour un graphe en échelle log-log. La valeur par défaut est &quot;nn&quot;.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

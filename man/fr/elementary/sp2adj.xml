@@ -35,14 +35,12 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <VERBATIM>
-<![CDATA[
+    <P>
 sp2adj converts a sparse matrix into its adjacency form (utility
 fonction).
 A =  n x m sparse matrix. xadj, adjncy, anz = adjacency 
 representation of A i.e:
-   ]]>
-    </VERBATIM>
+    </P>
     <P><VERB>xadj(j+1)-xadj(j)</VERB> = number of non zero entries in row j.
     <VERB>adjncy</VERB> = column index of the non zeros entries 
     in row 1, row 2,..., row n.

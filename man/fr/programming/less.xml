@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>less  </TITLE>
@@ -11,27 +11,37 @@
     Symbole de comparaison logique
   </P>
  
-
+<DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='&lt;&gt;'> 
+  <SP>
     signifie &quot;différent de&quot; (identique à <VERB>~=</VERB>)
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&lt;'> 
+  <SP>
     signifie &quot;inférieur à&quot;
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&gt;'> 
+  <SP>
     signifie &quot;supérieur à&quot;
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&lt;='> 
+  <SP>
     signifie &quot;inférieur ou égal à&quot;
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&gt;='> 
+  <SP>
     signifie &quot;supérieur ou égal à&quot;
+</SP>
   </DESCRIPTION_ITEM>
- 
+</DESCRIPTION_INDENT> 
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>if</LINK> </SEE_ALSO_ITEM>

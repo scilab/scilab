@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>cdft  </TITLE>
@@ -16,25 +16,33 @@
   <PARAM_ITEM>
   <PARAM_NAME>P,Q,T,Df  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : six vecteurs réels de même taille.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>P,Q (Q=1-P)  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : l&apos;intégrale de -infini à T de la densité de Student. comprise entre : (0,1].
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>T  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : borne d&apos;intégration supérieure. En entrée : ( -infini, +infini). En recherche : [ -1E150, 1E150 ]
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>DF:  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     Degrés de libertés de la distribution. En entrée : (0 , +infini). En recherche : [1e-300, 1E10]
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>param3d  </TITLE>
@@ -14,31 +14,41 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y,z  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : trois vecteurs de même taille (points de la courbe paramétrique).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>theta, alpha  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : valeurs réelles donnant (en degrés) les coordonnées sphériques du point d&apos;observation.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>leg  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : chaîne de caractères définissant la légende pour chaque axe avec @ comme séparateur, par exemple &quot;X@Y@Z&quot;.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>flag=[type,box]  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : <VERB>type</VERB> et <VERB>box</VERB> ont la même signification que dans <VERB>plot3d</VERB>:
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ebox  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : utilisé quand <VERB>type</VERB> dans <VERB>flag</VERB> vaut 1. Spécifie les limites de la boîte 3D du dessin sous forme du vecteur <VERB>[xmin,xmax,ymin,ymax,zmin,zmax]</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>

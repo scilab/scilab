@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>boolean  </TITLE>
@@ -12,23 +12,31 @@
     Ces variables permettent de définir des matrices de booléens avec la syntaxe habituelle. Ces matrices booléennes peuvent être manipulées comme des matrices ordinaires pour les opérations d&apos;extraction/insertion et de concaténation. Notez que les autres opérations usuelles (<VERB>+, *, -, ^,</VERB> etc.) ne sont pas définies pour les matrices booléennes. Les seuls opérateurs valides sont les suivants :
   </P>
  
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='~b'> 
+  <SP>
     : est la négation logique élément par élément de la matrice booléenne <VERB>b</VERB>.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='b1&amp;b2'> 
+  <SP>
     : est la conjonction (et) logique élément par élément de <VERB>b1</VERB> et <VERB>b2</VERB> (matrices).
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='b1|b2'> 
+  <SP>
     : est la disjonction (ou) logique élément par élément de <VERB>b1</VERB> et <VERB>b2</VERB> (matrices).
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='Les variables booléennes peuvent être utilisées comme indice pour les matrices et les vecteurs.'> 
+  <SP>
     Par exemple <VERB>a([%T,%F,%T],:)</VERB> renvoie la sous-matrice composée des lignes <VERB>1</VERB> et <VERB>3</VERB> de <VERB>a</VERB>. Les matrices booléennes peuvent être creuses.
+</SP>
   </DESCRIPTION_ITEM>
- 
+  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 [1,2]==[1,3]

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>ode  </TITLE>
@@ -17,67 +17,89 @@
   <PARAM_ITEM>
   <PARAM_NAME>y0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur ou matrice réelle (conditions initiales).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>t0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : réel (instant initial).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>t  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteur réel (instants où la solution est renvoyée).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>f  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>type  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : une des chaînes de caractères : <VERB>&quot;adams&quot; &quot;stiff&quot; &quot;rk&quot; &quot;rkf&quot; &quot;fix&quot; &quot;discrete&quot; &quot;roots&quot;</VERB>
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>rtol,atol  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : constantes ou vecteurs réels de même taille que <VERB>y</VERB>.
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>jac  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : fonction externe (fonction Scilab, chaîne de caractères ou liste).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>w,iw  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : vecteurs réels
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>ng  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>g  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : fonction externe (fonction Scilab, chaîne de caractères ou liste).
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>k0  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : entier (instant initial). kvect : vecteur d&apos;entiers
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -95,39 +117,55 @@
     premier argument optionnel <VERB>type</VERB> qui peut être égal à :
   </P>
  
-
+<DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='&lt;aucun&gt; :'> 
+  <SP>
     le solveur <VERB>lsoda</VERB> du package ODEPACK est utilisé par défaut. Il choisit automatiquement entre un schéma prédicteur-correcteur d&apos;Adams et un schéma adapté au systèmes raides (stiff) de type &quot;Backward Differentiation Formula&quot; (BDF). Initialement le schéma adapté aux système non raides est choisi puis la méthode adaptée est ensuite choisie dynamiquement. 
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;adams&quot; :'> 
+  <SP>
     Problèmes non raides. Le solveur <VERB>lsode</VERB> du package ODEPACK est utilisé (schéma d&apos;Adams).
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;stiff&quot; :'> 
+  <SP>
     Pour les systèmes raides. Le solveur <VERB>lsode</VERB> du package ODEPACK est utilisé avec le schéma BDF.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;rk&quot; :'> 
+  <SP>
     Schéma de Runge-Kutta adaptatif d&apos;ordre 4 (RK4).
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;rkf&quot; :'> 
+  <SP>
     Formules de Shampine et Watts basées sur les paires de Runge-Kutta Fehlberg d&apos;ordre 4 et 5 (RKF45). Bien pour les problèmes non raides ou moyennement raides, lorsque le calcul du second membre n&apos;est pas trop coûteux. Cette méthode est à éviter si l&apos;on recherche une très grande précision.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;fix&quot;:'> 
+  <SP>
     Identique à &quot;rkf&quot;, mais l&apos;interface est simplifiée, i.e. uniquement <VERB>rtol</VERB> et <VERB>atol</VERB>  sont communiqués au solveur. 
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;root&quot;:'> 
+  <SP>
     Solveur d&apos;EDO avec recherche de racines.  Le solveur <VERB>lsodar</VERB> du package ODEPACK est utilisé. C&apos;est une variante de <VERB>lsoda</VERB> permettant la recherche d&apos;une racine d&apos;une fonction vectorielle donnée. Voir ode_root pour plus de détails.
+</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='&quot;discrete&quot;:'> 
+  <SP>
     Simulation en temps discret. Voir ode_discrete pour plus de détails.
+</SP>
   </DESCRIPTION_ITEM>
- 
+ </DESCRIPTION_INDENT>
   <P>
     Ici on ne décrit l&apos;usage de <VERB>ode</VERB> que pour des EDO explicites.
   </P>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
-<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>feval  </TITLE>
@@ -15,13 +15,17 @@
   <PARAM_ITEM>
   <PARAM_NAME>x,y  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : deux vecteurs
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
   <PARAM_NAME>f  </PARAM_NAME>
   <PARAM_DESCRIPTION>
+  <SP>
     : fonction, ou chaîne de caractères pour les appels Fortran ou C
+</SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
  </PARAM_INDENT>
@@ -31,18 +35,21 @@
     Evaluation multiple d&apos;une fonction pour un ou deux arguments de type vecteur.
   </P>
  
-
+ <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='z=feval(x,f)'> 
-    renvoie le vecteur <VERB>z</VERB> défini par <VERB>z(i)=f(x(i)
-</VERB>  </DESCRIPTION_ITEM>
+  <SP>
+    renvoie le vecteur <VERB>z</VERB> défini par <VERB>z(i)=f(x(i)</VERB>
+</SP>
+  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='z=feval(x,y,f)'> 
+  <SP>
     renvoie la matrice <VERB>z</VERB> telle que  <VERB>z(i,j)=f(x(i),y(j))
-</VERB>  </DESCRIPTION_ITEM>
-  <P>
-  </P>
-  <P>
-  </P>
+</VERB>  
+</SP>
+</DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
+
   <P>
     <VERB>f</VERB> est un &quot;external&quot; (fonction ou routine Fortran ou C) acceptant un ou deux arguments d&apos;entrée supposés réels.
     Le résultat renvoyé par <VERB>f</VERB> peut par contre être réel ou complexe. 
