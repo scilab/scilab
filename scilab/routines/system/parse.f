@@ -435,7 +435,6 @@ c     .  go to rhs analysis
       else
 c     . this should never happen. this case has been detected above 
 c     . when lookin for equal sign
-         print *, 'SHOULD NOT APPEAR'
 c     .  name(...) syntax ==> really an rhs
          if ( eptover(1,psiz))  goto 98
          call putid(ids(1,pt),ans)

@@ -5830,14 +5830,12 @@ int sciGet(sciPointObj *pobj,char *marker)
 	numcol   = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
 	*stk(outindex) = (double )sciGetHandle(sciGetCurrentFigure());
-	printf("cf_type %d %f\n",cf_type,*stk(outindex));
       }
       else {
 	numrow   = 1;
 	numcol   = 1;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	*stk(outindex) = (double )LAB_gcf();
-	printf("cf_type %d %f\n",cf_type,*stk(outindex));
       }
     }
   else if (strncmp(marker,"current_obj", 11) == 0)

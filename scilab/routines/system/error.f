@@ -10,7 +10,6 @@ c     Copyright INRIA
       integer num,imess,imode,errtyp,lct1
       logical trace
 c
-      print *,'error ',n,pt
       call errmds(num,imess,imode)
       trace=.not.((num.lt.0.or.num.eq.n).and.imess.ne.0)
 c
@@ -1330,7 +1329,6 @@ c
          endif
          callback=rstk(pt-1).eq.706.or.rstk(pt-1).eq.606
          if(callback) then
-            print *,pt
             buf(1:26)='While executing a callback'
             m=26
          else
