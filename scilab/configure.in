@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.35 $)dnl
+AC_REVISION($Revision: 1.36 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1264,15 +1264,14 @@ AC_CHECK_HEADERS(values.h)
 ##################
 
 TERMCAPLIB=no
-AC_CHECK_LIB(termcap,main,
-  [TERMCAPLIB=-ltermcap])
+AC_CHECK_LIB(curses,main,
+  [TERMCAPLIB=-lcurses])
 if test "$TERMCAPLIB" = no; then
+  AC_CHECK_LIB(termcap,main,
+  [TERMCAPLIB=-ltermcap])
+fi
   AC_CHECK_LIB(termlib,main,
   [TERMCAPLIB=-ltermlib])
-fi
-if test "$TERMCAPLIB" = no; then
-  AC_CHECK_LIB(curses,main,
-  [TERMCAPLIB=-lcurses])
 fi
 if test "$TERMCAPLIB" != no; then
   AC_DEFINE(HAVE_TERMCAP)
