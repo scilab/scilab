@@ -435,7 +435,7 @@ C     gestion des clause sur plusieurs lignes
           call error(47)
           return
         endif
-        if (rio.eq.rte .and. macr.eq.0.and.kcmd.eq.kbrk) goto 998
+c        if (rio.eq.rte .and. macr.eq.0.and.kcmd.eq.kbrk) goto 998
         if (lpt(4) .eq. lpt(6)) then
           call getlin(1,0)
         else
