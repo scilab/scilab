@@ -1,14 +1,28 @@
 /**@name Header for newGraph Library  */
 
-/*en fait il n'y a essentiellement besion que de Math.h
-  sauf pour les callback (il faudrait creer une fonction et l'appeler) */
 
+#ifdef WIN32
+#include <windows.h>
+#include <windowsx.h>
+#ifndef __GNUC__XXX
+#include <commctrl.h>
+#endif
+#include <winuser.h>
+#include "../wsci/wgnuplib.h"
+#endif
+
+/*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
+  sauf pour les callback (il faudrait creer une fonction et l'appeler) */
 #include "../stack-c.h" 
 
+#ifndef FALSE
+#define FALSE 0
+#endif
+#ifndef TRUE
+#define TRUE 1
+#endif
 
 #ifndef WIN32
-#define FALSE 0
-#define TRUE 1
 #define PS_SOLID 0
 #define HS_HORIZONTAL 0
 #define PLANES 0
@@ -58,20 +72,21 @@
 #define pAGREG_FEATURE(pointobj)       ((sciAgreg         *)pointobj->pfeatures)/** */
 #define pSEGS_FEATURE(pointobj)        ((sciSegs          *)pointobj->pfeatures)/** */
 
-typedef long BOOL;
+#ifndef WIN32
+typedef unsigned short HMENU;
+typedef void *HFONT;                                         
+#endif
+typedef long BOOL;                                       
 
-typedef struct tagPOINT
+
+typedef struct tagPOINT2D
 {
   long x;
   long y;
 }
-POINT;
+POINT2D;
 
-typedef unsigned long DWORD;
-                               
-typedef void *HFONT;                                         
-typedef unsigned short HMENU;                                              
-                                       
+typedef unsigned long DWORD;                           
 
 typedef struct tagPOINT3D
 {/** */
@@ -490,7 +505,7 @@ typedef struct
   /** */
   sciText text;
   /** */
-  POINT pos;
+  POINT2D pos;
   /** specifies the frame's width */
   int width;		     
   /** specifies the frame's height */
@@ -534,7 +549,7 @@ typedef struct
   /** */
   sciText text;
   /** absolut position in subindow*/
-  POINT pos;		   
+  POINT2D pos;		   
   /** up, down */
   sciTitlePlace titleplace; 
   /** */
@@ -690,7 +705,7 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   /* listPoints     points; */
-  POINT *pvector;		// vecteur de points redondant, for future developpement
+  POINT2D *pvector;		// vecteur de points redondant, for future developpement
   double *pvx;			// vecteur des points x doublon avec pvector je les garde pour compatiblite
   double *pvy;			// vecteur des points y doublon avec pvector
   int n1;                               /** number of point */
@@ -721,7 +736,7 @@ typedef struct
   sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   /* listPoints     points; */
-  POINT *pvector;		// vecteur de points redondant, for future developpement
+  POINT2D *pvector;		// vecteur de points redondant, for future developpement
   double *pvx;			// vecteur des points x doublon avec pvector je les garde pour compatiblite
   double *pvy;			// vecteur des points y doublon avec pvector
   int n;				/** number of point */
@@ -799,7 +814,7 @@ typedef struct
   integer izcol;  
   integer dimzx;
   integer dimzy;
-  POINT *pproj;			/* projections on 2d */
+  POINT2D *pproj;			/* projections on 2d */
   double theta;
   double alpha;
   char *legend;
@@ -889,7 +904,7 @@ typedef struct
   //sciFont fontcontext;
   char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
-  POINT *vector;		// vecteur de points redondant, for future developpement
+  POINT2D *vector;		// vecteur de points redondant, for future developpement
   double *vx;  /** vx vector of size nx **/
   double *vy;  /** vy vector of size ny **/  
   int nx;
@@ -919,17 +934,23 @@ sciAxes;
  * @return 
  * @see 
  */
- 
+  
 typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   double *vx;  /** vx vector of size Nbr **/
   double *vy;  /** vy vector of size Nbr **/
-  integer Nbr;   
+  double *vfx;
+  double *vfy;
+  integer Nbr1;   
+  integer Nbr2;
   integer *pstyle;
   integer iflag;      /**0 or 1, flag which control the drawing of the segment  **/
   double arrowsize;
+  integer pcolored;
+  double parfact;
+  integer ptype;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -939,7 +960,8 @@ typedef struct
   int isclip;
 
 }
-sciSegs;  
+sciSegs; 
+ 
 
 
 
@@ -1067,7 +1089,7 @@ typedef struct
   sciGraphicContext graphiccontext;
   sciText text;
   sciLabelMenu *plabelmenu;
-  HMENU hPopMenu;			/** specifie the handle of the popup menu */
+  HMENU  hPopMenu;			/** specifie the handle of the popup menu */
 }
 sciMenu /** */ , sciMenuContext;/** */
 
@@ -1189,7 +1211,7 @@ extern double sciGetTextPosHeight (sciPointObj * pobj);
 
 /*Title Functions */
 extern int sciSetTitlePos (sciPointObj * pobj, int x, int y);
-extern POINT sciGetTitlePos (sciPointObj * pobj);
+extern POINT2D sciGetTitlePos (sciPointObj * pobj);
 extern int sciSetTitlePlace (sciPointObj * pobj, sciTitlePlace place);
 extern sciTitlePlace sciGetTitlePlace (sciPointObj * pobj);
 extern unsigned int sciGetSizeofText (sciPointObj * pobj);
@@ -1239,18 +1261,18 @@ extern void sciSetDefaultValues ();
 extern void sciSetName (sciPointObj * pobj, char *pvalue, int length);
 extern char *sciGetName (sciPointObj * pobj);
 extern int sciGetNameLength (sciPointObj * pobj);
-//&extern void sciSetNum (sciPointObj * pobj, int *pvalue);   
+
 extern void sciSetNum (sciPointObj * pobj, int *pvalue);
 extern int sciGetNum (sciPointObj * pobj);
 extern void sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight);
-extern int sciGetWidth (sciPointObj * pobj);
-extern int sciGetHeight (sciPointObj * pobj);
+extern double sciGetWidth (sciPointObj * pobj); /* ???? */
+extern double sciGetHeight (sciPointObj * pobj);/* ???? */
 extern int sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy);
 extern int sciGetFigurePosX (sciPointObj * pobj);
 extern int sciGetFigurePosY (sciPointObj * pobj);
 extern void sciSetFigureIconify (sciPointObj * pobj, BOOL value);
 extern BOOL sciGetIsFigureIconified (sciPointObj * pobj);
-//&extern int sciSetSubWindowPos (sciPointObj * pobj, int x, int y);
+
 extern int sciSetSubWindowPos (sciPointObj * pobj, int *x, int *y);
 extern int sciGetSubwindowPosX (sciPointObj * pobj);
 extern int sciGetSubwindowPosY (sciPointObj * pobj);
@@ -1327,39 +1349,37 @@ extern int DestroyAxes (sciPointObj * pthis);
 extern sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double *pnoeud, 
 				  double *pfun, int Nnode, int Ntr, double *zminmax, integer *colminmax);
 extern int DestroyFec (sciPointObj * pthis);
-
-extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, double *vx, double *vy, integer Nbr, 
-                                     integer flag, integer *style, double arsize);
+extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, integer Nbr1, 
+               integer Nbr2, double *vfx, double *vfy, integer flag, 
+              integer *style, double arsize1,  integer colored, double arfact); 
 extern int DestroySegs (sciPointObj * pthis);
 /**/
 extern int sciAddLabelMenu (sciPointObj * pthis, char plabel[], int n);
 extern int sciDelLabelsMenu (sciPointObj * pthis);
 extern sciPointObj *ConstructMenuContext (sciPointObj * pparentfigure);
-//& extern sciPointObj *ConstructMenuContext (sciPointObj * pparentfigure,
-//					  char plabel[], int n);
+
 extern int DestroyMenuContext (sciPointObj * pthis);
 extern sciPointObj *ConstructMenu (sciPointObj * pparentfigure,
 				      char plabel[], int n);
 extern int DestroySciMenu (sciPointObj * pthis);
 extern sciPointObj *ConstructAgregation (long *tabpointobj, int number);
-//&extern sciPointObj *ConstructAgregation (long **tabpointobj, int number);
+
 extern sciPointObj *sciCloneObj (sciPointObj * pobj);
 extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget );
-///extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,                /* HDC ? "periWin-bgc"*/
-///			    int iDeciPtWidth, int iAttributes, BOOL fLogRes);
+
 extern int sciSet (sciPointObj * pobj, char *marker, int *value, int *numrow,
 		   int *numcol);
 extern int sciGet (sciPointObj * pobj, char *marker);
 extern long sciGetCurrentHandle ();
 extern sciPointObj *sciGetCurrentObj ();
 extern sciPointObj *sciGetCurrentFigure ();
-/// extern HDC sciGetDC (sciPointObj * pobj);                                              /* HDC ? "periWin-bgc"*/
+
 struct BCG *sciGetCurrentScilabXgc ();
 extern int sciSetCurrentObj (sciPointObj * pobj);
 extern int sciSetReplay (BOOL value);
 extern BOOL sciGetReplay ();
 extern int sciSetHDC (sciPointObj * pobj);
-/// extern HDC sciGetHDC (sciPointObj * pobj);                                              /* HDC ? "periWin-bgc"*/
+
 extern int sciSetPosX (sciPointObj * pthis, double x);
 extern int sciSetPosY (sciPointObj * pthis, double y);
 extern double sciGetPosX (sciPointObj * pthis);
@@ -1401,3 +1421,9 @@ extern int version_flag();
 extern int sciDelGraphicObj (sciPointObj * pthis);
 extern unsigned int sciGetFontNameLength (sciPointObj * pobj);
 extern struct BCG *sciGetCurrentScilabXgc ();
+/* Specific function for Windows */
+#ifdef WIN32
+extern HFONT sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight, int iDeciPtWidth, int iAttributes, BOOL fLogRes);
+extern HDC sciGetDC (sciPointObj * pobj);                                  
+extern HDC sciGetHDC (sciPointObj * pobj);   
+#endif

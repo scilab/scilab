@@ -3,22 +3,35 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
-#ifdef WIN32
-#ifndef PERIWIN_BCG 
-#define PERIWIN_BCG 
-#endif 
-#include <winuser.h>
-#define Window HWND
+#ifndef WIN32
+#ifdef WITH_GTK
+#include <gtk/gtk.h>
 #else
-#ifndef WITH_GTK
 #include <X11/Xlib.h>
 #include <X11/Intrinsic.h>
 #endif 
 #endif 
 
 #ifdef WITH_GTK
-#ifndef PERIGTK_BCG 
-#define PERIGTK_BCG 
+#define CoordModePrevious 0
+#define CoordModeOrigin 1
+#define GXclear 0
+#define GXand 1
+#define GXandReverse 2
+#define GXcopy 3
+#define GXandInverted 4
+#define GXnoop 5
+#define GXxor 6
+#define GXor 7
+#define GXnor 8
+#define GXequiv 9
+#define GXinvert 10
+#define GXorReverse 11
+#define GXcopyInverted 12
+#define GXorInverted 13
+#define GXnand 14
+#define GXset 15
+#endif 
 
 /** Structure to keep the graphic state  **/
 
@@ -35,15 +48,16 @@ typedef struct _menu_entry {
   struct _menu_entry *menu; /* point to the father for sub_menus */
   struct _menu_entry *next; /* next one .... */
 } menu_entry;
-#endif
-#endif
 
 
 #include "Entities.h"
+#ifdef WIN32
+#define Window HWND
+#endif
 
 typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 
-struct BCG 
+typedef struct BCG 
 { 
   int CurWindow ;   /** Id of window **/
   int CWindowWidth ; /** graphic window width **/
@@ -99,11 +113,8 @@ struct BCG
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
 #else 
-#ifdef WITH_GTK
+#ifdef __G_LIB_H__
 /** GTK specific objects **/
-  guchar *Red;   /* vector of red value: between 0 and 255 */
-  guchar *Green; /* vector of green value: between 0 and 255 */
-  guchar *Blue;  /* vector of blue value: between 0 and 255 */
   gint bg;				/* Background */
   gint fg;                              /* Foreground */
   GtkWidget *window;			/* Graphics frame */
@@ -144,7 +155,7 @@ struct BCG
 		    ie black and white at the end of this vector */
 #endif
 #endif
-}  ;
+} BCG ;
 
 
 extern struct BCG *GetWindowXgcNumber  (int i);

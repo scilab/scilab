@@ -93,37 +93,24 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   /*---- Drawing the axes ----*/
   /** Check if an other axis exist in the selected subwindow **/
-  //axistmp = sciGetAxis(sciGetSelectedSubWin (sciGetCurrentFigure ()));
-  //if (axistmp != (sciPointObj *) NULL)
-  //  DestroyAxis(axistmp); 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   sciSetIsClipping (psubwin,0); 
   if ((realloc (pSUBWIN_FEATURE (psubwin)->strflag,(strlen(strflag)+1)*sizeof (char)))== NULL)
-	  {
-		  sciprint("No more Memory allocation for axes !\n");
-		  return (0);
-	  }
-        else
-	  { 
-          strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-          pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
-          }
-  //pobjaxis = ConstructAxis(psubwin, strflag,
-  //                         2, pSUBWIN_FEATURE (psubwin)->FRect[0],
-  //                         pSUBWIN_FEATURE (psubwin)->FRect[1],   
-  //                         0, 
-  //                         pSUBWIN_FEATURE (psubwin)->FRect[2],
-  //                         pSUBWIN_FEATURE (psubwin)->FRect[3],
-  //                         0);
-  //pAXIS_FEATURE(pobjaxis)->aaint[0] = aaint[0];
-  //pAXIS_FEATURE(pobjaxis)->aaint[1] = aaint[1];
-  //pAXIS_FEATURE(pobjaxis)->aaint[2] = aaint[2];
-  //pAXIS_FEATURE(pobjaxis)->aaint[3] = aaint[3];  
+    {
+      sciprint("No more Memory allocation for axes !\n");
+      return (0);
+    }
+  else
+    { 
+      strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+      pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+    }
+
   sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
 
 
   /*---- Drawing the curves and the legengs ----*/
-  if ( n != 0 ) {
+  if ( *n1 != 0 ) {
     frame_clip_on ();
     if ((hdltab = malloc ((*n1+2) * sizeof (long))) == NULL) {
       sciprint ("Running out of memory for plot2d\n");

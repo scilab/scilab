@@ -1,6 +1,3 @@
-#ifndef __GNUC__
-#include <commctrl.h>
-#endif
 #include <stdio.h> 
 #include <string.h>
 #include <math.h>
@@ -24,6 +21,9 @@ extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, in
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d3RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
 extern void Plo2d4RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
+extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,integer *na,
+					 integer *arsize,integer *colored,double *x,double *y,
+                                         double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 int DestroyAgregation (sciPointObj * pthis);
 
 /*************************************************************************************************/
@@ -190,7 +190,7 @@ sciGetCharEntityType (sciPointObj * pobj)
       return "Polyline";
       break;
     case SCI_SEGS:
-      return "Segs";
+      return (pSEGS_FEATURE (pobj)->ptype == 0) ?  "Segs": "champ";
       break; 
     case SCI_FEC: 
       return "Fec";
@@ -1010,14 +1010,6 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),
 	      PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,11L);
-#ifdef WIN32 
-      {
-	COLORREF px;                               /* COLORREF ? "periWin-bgc"*/     	
-	px = (sciGetScilabXgc (pobj)->Colors ==  NULL) ? 
-	  DefaultForeground : 
-	  sciGetScilabXgc (pobj)->Colors[sciGetScilabXgc (pobj)->NumForeground]; 
-      }
-#endif
     }
   switch (sciGetEntityType (pobj))
     {
@@ -2574,16 +2566,16 @@ sciGetDC (sciPointObj * pobj)
     {
     case SCI_FIGURE:
     case SCI_SUBWIN:
-      if (sciGetPixmapStatus () == 1)
- 	return GetDC (sciGetScilabXgc (pobj)->hdcCompat);
-      else
+      //if (sciGetPixmapStatus () == 1)
+ //	return GetDC (sciGetScilabXgc (pobj)->hdcCompat);
+      //else
  	return GetDC (sciGetScilabXgc (pobj)->CWindow);
       break;
     default:
       return sciGetDC (sciGetParent (pobj));
       break;
     }
-  return (HDC *) NULL;        /* Type HDC ! "periWin-bgc"*/
+  return (HDC ) NULL;        /* Type HDC ! "periWin-bgc"*/
 }
 #endif
 
@@ -3839,7 +3831,7 @@ sciSetResize (sciPointObj * pobj, BOOL value)
       ///      if (sciGetPixmapStatus () == 0)                                          /* y'a pas une fonction pour X11 qui retourne
       //	         InvalidateRect (sciGetScilabXgc (pobj)->CWindow, NULL, TRUE);    /*    "return ScilabXgc->CurPixmapStatus;
       ///      UpdateWindow (sciGetScilabXgc (pobj)->CWindow);  /* dependent function MacWinOther.c"*/
-*
+
 #endif
     }
   switch (sciGetEntityType (pobj))
@@ -4089,7 +4081,7 @@ sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
  * @return the width of the dimension of the window or figure 
  * (the visibility dimension) in pixel dimension
  */
-int
+double /* ????? */
 sciGetWidth (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
@@ -4111,7 +4103,7 @@ sciGetWidth (sciPointObj * pobj)
  * @param sciPointObj * pobj: the pointer to the entity
  * @return the height of the dimension of the window or figure (the visibility dimension) in pixel dimension
  */
-int
+double /* ????? */
 sciGetHeight (sciPointObj * pobj)
 {
   switch (sciGetEntityType (pobj))
@@ -6099,10 +6091,10 @@ sciSetLegendPos (sciPointObj * pobj, int x, int y)
 /**sciGetLegendPos
  * @memo Returns the Title Position
  */
-POINT
+POINT2D
 sciGetLegendPos (sciPointObj * pobj)
 {
-  POINT tmppoint;
+  POINT2D tmppoint;
   if (sciGetEntityType (pobj) == SCI_TITLE)
     return pLEGEND_FEATURE (pobj)->pos;
   else
@@ -6205,10 +6197,10 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
 /**sciGetTitlePos
  * @memo Returns the Title Position in the graphique window. This function is actualy reserved for internal use, not for scilab users
  */
-POINT
+POINT2D
 sciGetTitlePos (sciPointObj * pobj)
 {
-  POINT tmppoint;
+  POINT2D tmppoint;
   if (sciGetEntityType (pobj) == SCI_TITLE)
     return pTITLE_FEATURE (pobj)->pos;
   else
@@ -7891,7 +7883,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
       pPOLYLINE_FEATURE (pobj)->isselected = TRUE;
       ppoly = pPOLYLINE_FEATURE (pobj);
-      if ((ppoly->pvector = MALLOC (n1 * sizeof (POINT))) == NULL)
+      if ((ppoly->pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -7899,7 +7891,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /* pour le moment je garde les vecteurs separes, et non en POINT */
+      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
       if ((ppoly->pvx = MALLOC (n1 * sizeof (double))) == NULL)
 	{
 	  FREE(pPOLYLINE_FEATURE (pobj)->pvector);
@@ -7954,7 +7946,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       ppoly->n2 = n2;		// memorisation du nombre de points
       ppoly->closed = closed;
       ppoly->plot = plot; 
-      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT)) == NULL)
+      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT2D)) == NULL)
 			return (sciPointObj *)NULL;*/
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -8357,8 +8349,9 @@ DestroyFec (sciPointObj * pthis)
  * @see sciSetCurrentObj
  */
 sciPointObj *
-ConstructSegs (sciPointObj * pparentsubwin, double *vx, double *vy, integer Nbr, 
-	       integer flag, integer *style, double arsize)
+ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, 
+               integer Nbr1,integer Nbr2, double *vfx, double *vfy, integer flag,
+              integer *style, double arsize, integer colored, double arfact) 
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSegs *psegs = (sciSegs *) NULL;
@@ -8395,25 +8388,25 @@ ConstructSegs (sciPointObj * pparentsubwin, double *vx, double *vy, integer Nbr,
       pSEGS_FEATURE (pobj)->callback = (char *)NULL;
       pSEGS_FEATURE (pobj)->callbacklen = 0;
       pSEGS_FEATURE (pobj)->callbackevent = 100;
-      
-      pSEGS_FEATURE (pobj)->arrowsize = arsize;     
+       
       pSEGS_FEATURE (pobj)->isselected = TRUE;  
       pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
       pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
      
    
-      psegs = pSEGS_FEATURE (pobj);
-      
-      if ((psegs->vx = MALLOC (Nbr * sizeof (double))) == NULL)
-	{
+      psegs = pSEGS_FEATURE (pobj); 
+      psegs->ptype = type;
+          
+      if ((psegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
+	{ 
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pSEGS_FEATURE(pobj));
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      if ((psegs->vy = MALLOC (Nbr * sizeof (double))) == NULL)
-	{
+      if ((psegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
+	{ 
 	  FREE(pSEGS_FEATURE (pobj)->vx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -8421,40 +8414,83 @@ ConstructSegs (sciPointObj * pparentsubwin, double *vx, double *vy, integer Nbr,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}  
-
-      if (flag == 1)
-	{
-	  if ((psegs->pstyle = MALLOC (Nbr * sizeof (integer))) == NULL)
-	    {
-	      FREE(pSEGS_FEATURE (pobj)->vx); 
-	      FREE(pSEGS_FEATURE (pobj)->vy); 
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(pSEGS_FEATURE(pobj));
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-          for (i = 0; i < Nbr; i++)
-	    psegs->pstyle[i] = style[i];
-	}
-      else
-	psegs->pstyle= style; 
-     
-
-      for (i = 0; i < Nbr; i++)
+       for (i = 0; i < Nbr1; i++)
 	{
 	  psegs->vx[i] = vx[i];
+	} 
+       for (i = 0; i < Nbr2; i++)
+	{
 	  psegs->vy[i] = vy[i];
 	}
-  	   
-      psegs->iflag = flag;	      
-      psegs->Nbr = Nbr;		
+      psegs->ptype = type;
+      if (type == 0)
+      {   
+	psegs->arrowsize = arsize;     
+	if (flag == 1)
+	  {
+	    if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
+	      {
+		FREE(pSEGS_FEATURE (pobj)->vx); 
+		FREE(pSEGS_FEATURE (pobj)->vy); 
+		sciDelThisToItsParent (pobj, sciGetParent (pobj));
+		sciDelHandle (pobj);
+		FREE(pSEGS_FEATURE(pobj));
+		FREE(pobj);
+		return (sciPointObj *) NULL;
+	      }
+	    for (i = 0; i < Nbr1; i++)
+	      psegs->pstyle[i] = style[i];
+	  }
+	else
+	  psegs->pstyle= style;   	   
+	psegs->iflag = flag; 
+        psegs->Nbr1 = Nbr1;
+      }	
+      else
+	{ 
+        psegs->Nbr1 = Nbr1;   
+        psegs->Nbr2 = Nbr2;	 
+        psegs->pcolored = colored;
+        psegs->parfact = arfact;
+        if ((psegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+	      {
+		FREE(pSEGS_FEATURE (pobj)->vx); 
+		FREE(pSEGS_FEATURE (pobj)->vy); 
+		sciDelThisToItsParent (pobj, sciGetParent (pobj));
+		sciDelHandle (pobj);
+		FREE(pSEGS_FEATURE(pobj));
+		FREE(pobj);
+		return (sciPointObj *) NULL;
+	      }
+	if ((psegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+	      {
+		FREE(pSEGS_FEATURE (pobj)->vx); 
+		FREE(pSEGS_FEATURE (pobj)->vy); 
+		sciDelThisToItsParent (pobj, sciGetParent (pobj));
+		sciDelHandle (pobj);
+		FREE(pSEGS_FEATURE(pobj));
+		FREE(pobj);
+		return (sciPointObj *) NULL;
+	      }  
+	for (i = 0; i < (Nbr1*Nbr2); i++)
+	{
+	  psegs->vfx[i] = vfx[i];
+	  psegs->vfy[i] = vfy[i];
+	}
+	}	
       if (sciInitGraphicContext (pobj) == -1)
 	{
 	  FREE(pSEGS_FEATURE (pobj)->vx);
-	  FREE(pSEGS_FEATURE (pobj)->vy); 
-	  FREE(pSEGS_FEATURE (pobj)->pstyle);  
-	  FREE(pFEC_FEATURE (pobj)->pnoeud);
+	  FREE(pSEGS_FEATURE (pobj)->vy);     
+          if (type ==0)
+            {
+	    FREE(pSEGS_FEATURE (pobj)->pstyle);
+            }
+          else
+	    {
+	      FREE(pSEGS_FEATURE (pobj)->vfx);  
+               FREE(pSEGS_FEATURE (pobj)->vfy); 
+            }         
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
 	  FREE(pSEGS_FEATURE(pobj));
@@ -8481,7 +8517,16 @@ DestroySegs (sciPointObj * pthis)
 {  
   
   FREE (pSEGS_FEATURE (pthis)->vx);
-  FREE (pSEGS_FEATURE (pthis)->vy);
+  FREE (pSEGS_FEATURE (pthis)->vy);  
+  if (pSEGS_FEATURE (pthis)->ptype ==0) 
+   {
+  FREE(pSEGS_FEATURE (pthis)->pstyle);
+   } 
+  else 
+    {
+      FREE(pSEGS_FEATURE (pthis)->vfx);  
+      FREE(pSEGS_FEATURE (pthis)->vfy); 
+    } 
   sciDelThisToItsParent (pthis, sciGetParent (pthis)); 
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -8490,6 +8535,7 @@ DestroySegs (sciPointObj * pthis)
   /* on peut alors destroyer le parent */
   return 0;
 }
+
 
 /**ConstructPatch
  * This function creates
@@ -8538,7 +8584,7 @@ ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pPATCH_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
       pPATCH_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       ppoly = (sciPolyline *) pPATCH_FEATURE (pobj);
-      if ((ppoly->pvector = MALLOC (n * sizeof (POINT))) == NULL)
+      if ((ppoly->pvector = MALLOC (n * sizeof (POINT2D))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -8546,7 +8592,7 @@ ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /* pour le moment je garde les vecteurs separes, et non en POINT */
+      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
       if ((ppoly->pvx = MALLOC (n * sizeof (double))) == NULL)
 	{
 	  FREE(pPATCH_FEATURE (pobj)->pvector);
@@ -8593,7 +8639,7 @@ ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 
       ppoly->n1 = n;		// memorisation du nombre de points
       ppoly->closed = 1;
-      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT)) == NULL)
+      /*		if (memcpy( ppoly->pvector, pvec, n*sizeof(POINT2D)) == NULL)
 			return (sciPointObj *)NULL;*/
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -9334,7 +9380,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->tics =tics;
   
       paxes = pAXES_FEATURE (pobj);
-      if ((paxes->vector = MALLOC (Max(nx,ny) * sizeof (POINT))) == NULL)
+      if ((paxes->vector = MALLOC (Max(nx,ny) * sizeof (POINT2D))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
@@ -9342,7 +9388,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      /* pour le moment je garde les vecteurs separes, et non en POINT */
+      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
       if ((paxes->vx = MALLOC (nx * sizeof (double))) == NULL)
 	{
 	  FREE(pAXES_FEATURE (pobj)->vector);
@@ -9419,34 +9465,35 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
  * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
  * @param sciPointObj * pthis: the pointer to the entity
  */
+
+/*
 sciPointObj *
 CloneAxes (sciPointObj * pthis)
 {
   sciPointObj * pobj, *subwinparent;
   subwinparent = pthis;
 
-  //	while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-  //		&& (sciGetEntityType(subwinparent) != -1));
-  //	if (sciGetEntityType(subwinparent) == -1)
-  //		return (sciPointObj *)NULL;
-  //	if (!(pobj = ConstructAxes (subwinparent,pAXES_FEATURE(pthis)->strflag, pAXES_FEATURE(pthis)->styledimension,       /*  too few arguments to function */
-  //	pAXES_FEATURE(pthis)->minx, pAXES_FEATURE(pthis)->miny, pAXES_FEATURE(pthis)->minz,  
-  //	pAXES_FEATURE(pthis)->maxx, pAXES_FEATURE(pthis)->maxy, pAXES_FEATURE(pthis)->maxz)))
-  //		return (sciPointObj *)NULL;
-  //	if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-  //		return (sciPointObj *)NULL;
-  //	if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-  //		return (sciPointObj *)NULL;
-  //	if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-  //		return (sciPointObj *)NULL;
-  //	if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
-  //		return (sciPointObj *)NULL;
-  //	if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
-  //		return (sciPointObj *)NULL;
+  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
+	 && (sciGetEntityType(subwinparent) != -1));
+  if (sciGetEntityType(subwinparent) == -1)
+    return (sciPointObj *)NULL;
+    if (!(pobj = ConstructAxes (subwinparent,pAXES_FEATURE(pthis)->strflag, pAXES_FEATURE(pthis)->styledimension,      			      pAXES_FEATURE(pthis)->minx, pAXES_FEATURE(pthis)->miny, pAXES_FEATURE(pthis)->minz,  
+			      pAXES_FEATURE(pthis)->maxx, pAXES_FEATURE(pthis)->maxy, pAXES_FEATURE(pthis)->maxz)))
+    return (sciPointObj *)NULL;
+  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
+    return (sciPointObj *)NULL;
+  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
+    return (sciPointObj *)NULL;
+  if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
+    return (sciPointObj *)NULL;
+  if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
+    return (sciPointObj *)NULL;
+  if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
+    return (sciPointObj *)NULL;
 
   return (sciPointObj *)pobj;
 }
-
+*/
 
 /**DestroyAxes
  * @memo This function destroies axes and the elementaries structures and only this to destroy all sons use DelGraphicsSon
@@ -9682,6 +9729,7 @@ sciCloneObj (sciPointObj * pobj)
       return CloneRectangle(pobj);
       break;
     case SCI_AGREG:
+
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -9735,13 +9783,12 @@ sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget )
 int
 sciDrawObj (sciPointObj * pobj)
 {
-
-  //     HFONT hfont;
+ //     HFONT hfont;
   ///  LOGFONT logfont;           /* Unknown type !! (non utilise ?!)*/
   ///  HDC hdc;                   /* Structure BCG "Win" */
   char str[2] = "xv";
-  integer n,n1;
-  integer *xm, *ym,n2 = 1, xtmp[4], ytmp[4],style[1];
+  integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0;
+  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4],style[1];
   integer closeflag = 0;
   integer width, height;
   /* 12/01/2002 */
@@ -9774,6 +9821,8 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[2] = 1;
   framevalues[3] = 1;
 
+ 
+
   //if (!sciGetdrawmode())
   //  return 0;
 
@@ -9805,14 +9854,14 @@ sciDrawObj (sciPointObj * pobj)
 	  sciSetCurrentObj (pobj);	// place l'objet comme objet courant*/     
 	  /* load the object foreground and dashes color */
 	  x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-	  x[1] = sciGetBackground (pobj);
+	  //	  x[1] = sciGetBackground (pobj);
 	  x[2] = sciGetLineWidth (pobj);
 	  x[3] = sciGetLineStyle (pobj);
 	  markidsizenew[0] = sciGetMarkStyle(pobj);
 	  markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
 	  C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
-	  C2F (dr) ("xset","background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+	  //	  C2F (dr) ("xset","background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    
@@ -9831,8 +9880,8 @@ sciDrawObj (sciPointObj * pobj)
 	return 0;
       /** xclear will properly upgrade background if necessary **/
       //C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L); 
-      x[1] = sciGetBackground (pobj);x[4] = 0; 
-      C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+      //      x[1] = sciGetBackground (pobj);x[4] = 0; 
+      //C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL)
@@ -9851,8 +9900,8 @@ sciDrawObj (sciPointObj * pobj)
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xget", "foreground", &flagx, &xold[1], &vold, &vold, &vold,
 		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr1) ("xget", "background", &flagx, &xold[2], &vold, &vold, &vold,
-		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr1) ("xget", "background", &flagx, &xold[2], &vold, &vold, &vold,
+      //		 &vold, &dv, &dv, &dv, &dv, 5L, 4096);
 
       itmp[0] = 0;		// verbose
       itmp[1] = 0;		// thickness value
@@ -9864,7 +9913,7 @@ sciDrawObj (sciPointObj * pobj)
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //      x[1] = sciGetBackground (pobj);
       x[4] = 0;
       v = 0;
       dv = 0;
@@ -9875,8 +9924,8 @@ sciDrawObj (sciPointObj * pobj)
 		 &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		 &dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr1) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-		 &dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr1) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
+      //		 &dv, &dv, &dv, &dv, 5L, 4096);
 #ifdef WIN32 
       ReleaseWinHdc ();
       SetWinhdc ();
@@ -9908,8 +9957,8 @@ sciDrawObj (sciPointObj * pobj)
 		 &dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr1) ("xset", "foreground", &xold[1], &vold, &vold, &vold, &vold,
 		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr1) ("xset", "background", &xold[2], &vold, &vold, &vold, &vold,
-		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
+      //      C2F (dr1) ("xset", "background", &xold[2], &vold, &vold, &vold, &vold,
+      //		 &v, &dv, &dv, &dv, &dv, 5L, 10L);
 #ifdef WIN32 
       ReleaseWinHdc ();
 #endif
@@ -9932,27 +9981,59 @@ sciDrawObj (sciPointObj * pobj)
 	     pFEC_FEATURE (pobj)->zminmax,pFEC_FEATURE (pobj)->colminmax);
       break;      
       /******************************** 22/05/2002 ***************************/    
-    case SCI_SEGS:    
+     case SCI_SEGS:    
       if (!sciGetVisibility(pobj))
 	return 0;
       
-      n=pSEGS_FEATURE (pobj)->Nbr; 
-      arsize = pSEGS_FEATURE (pobj)->arrowsize; 
-     
-      if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-      if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-      for ( i =0 ; i <n ; i++) {
-	xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
-	ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);} 
-      
-      sciClip(sciGetIsClipping(pobj));   
-      if (pSEGS_FEATURE (pobj)->arrowsize == 0)
-	C2F(dr)("xsegs","v",xm,ym,&n,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,
-		PI0,PD0,PD0,PD0,PD0,0L,0L);
-      else 
-	C2F(dr1)("xarrow","v",pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag
-		 ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
-	        
+     sciClip(sciGetIsClipping(pobj));   
+      if (pSEGS_FEATURE (pobj)->ptype == 0)
+        { 
+	  n=pSEGS_FEATURE (pobj)->Nbr1; 
+	  arsize = pSEGS_FEATURE (pobj)->arrowsize; 
+	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+	  for ( i =0 ; i <n ; i++) {
+	    xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
+	    ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);} 
+	  if (pSEGS_FEATURE (pobj)->arrowsize == 0)
+	    C2F(dr)("xsegs","v",xm,ym,&n,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,
+		    PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  else 
+	    C2F(dr1)("xarrow","v",pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag
+		     ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
+	}
+      else
+        {
+        C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+        if (uc)
+	  C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+	else
+	  C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); 
+	xm = graphic_alloc(0,n,sizeof(int));
+	ym = graphic_alloc(1,n,sizeof(int));
+	if ( xm == 0 || ym == 0) 
+	  {
+	    sciprint("Running out of memory \n");
+	    return -1;
+	  }      
+	if ( pSEGS_FEATURE (pobj)->pcolored != 0) {
+	  zm = graphic_alloc(2,n/2,sizeof(int));
+	  if (  zm == 0 ) 
+	    {
+	      sciprint("Running out of memory \n");
+	      return -1;
+	    }      
+	}
+	Champ2DRealToPixel(xm,ym,zm,&na,&arssize,&(pSEGS_FEATURE (pobj)->pcolored),
+           pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
+           pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
+           &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact));
+	if ( pSEGS_FEATURE (pobj)->pcolored ==0) 
+          C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,&sflag,&dv,&dv,&dv,&dv,0L,0L); 
+	else
+	  C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);   
+        }  
       sciUnClip(sciGetIsClipping(pobj));
       break;
       /******************************** 14/04/2002 ***************************/  
@@ -10015,36 +10096,19 @@ sciDrawObj (sciPointObj * pobj)
 	  break;
 	}
       break; 
-      /******************************** 31/01/2002 ***************************/
     case SCI_POLYLINE: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      /*
-       * ici je peux avoir plusieurs facon de dessiner les objets graphiques
-       * Dependant de la maniere dont sera gere l'affichage
-       * dans Xcall1.c.
-       * En effet si je supprime le sciSetCurentObj() de Xcall1
-       * et que je le place ici, l'appel d'un raffraichissement 
-       * de la fenêtre sera different du codage actuel.
-       * l'appelle a sciDrawObj(pobjsubwindow) supplenterait scig_replay !!!!
-       * 
-       * Il me semble que ce serait drawpolyline_1() qu'il faudrait appeler !!!
-       */
 
-      sciSetCurrentObj (pobj);	            // place l'objet comme objet courant ce qui permet de travailler avec un objet par defaut
-      //sciSetReplay (TRUE);
+      sciSetCurrentObj (pobj);	  
       
       itmp[0] = 0;		// verbose
       itmp[1] = 0;		// thickness value
       itmp[2] = 1;		// narg
-      //C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
-      //		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-      //C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,
-      //    	    PD0, PD0, PD0, PD0, 0L, 0L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);	
+      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10061,8 +10125,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -10124,13 +10188,9 @@ sciDrawObj (sciPointObj * pobj)
             
      
       if (! sciGetIsMark(pobj))
-	//C2F (drawpolyline) (str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0,PD0, PD0);
 	C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      //C2F (dr) ("xlines", str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,0L,0L);
       else
-	//C2F (drawpolymark) (str, &n, xm, ym, PI0, PI0, PI0, PD0, PD0,PD0, PD0);
 	C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
-      //C2F (dr) ("xmarks", str, &n, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, PD0, PD0);
       sciUnClip(sciGetIsClipping(pobj));
      
 
@@ -10139,7 +10199,6 @@ sciDrawObj (sciPointObj * pobj)
      
       return 0;
       break;
-      /******************************** 15/02/2002 **************************************/
     case SCI_PATCH: 
       if (!sciGetVisibility(pobj))
 	return 0;
@@ -10154,7 +10213,7 @@ sciDrawObj (sciPointObj * pobj)
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10167,8 +10226,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-		&dv, &dv, &dv, &dv, 5L, 10L);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 4L, 9L);
 #ifdef WIN32 
@@ -10189,7 +10248,6 @@ sciDrawObj (sciPointObj * pobj)
       SetWinhdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
-      //C2F (fillpolyline) (str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0);
       C2F (dr) ("xarea", str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 #ifdef WIN32 
       ReleaseWinHdc ();
@@ -10201,7 +10259,6 @@ sciDrawObj (sciPointObj * pobj)
      
       /**/ return 0;
       break;
-      //********************************* 30/01/2002 ********************************/
     case SCI_ARC: 
       if (!sciGetVisibility(pobj))
 	return 0;
@@ -10218,7 +10275,7 @@ sciDrawObj (sciPointObj * pobj)
       /* load the object foreground and dashes color */
       
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10234,8 +10291,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3,&v, 
 		&dv, &dv, &dv, &dv, 5L, 10L );
-      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 10L);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, 
 		PD0, PD0, PD0, PD0, 4L, 9L);   
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
@@ -10297,7 +10354,7 @@ sciDrawObj (sciPointObj * pobj)
 	}
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);
-      x[1] = sciGetBackground (pobj); 
+      //     x[1] = sciGetBackground (pobj); 
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10314,8 +10371,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);    
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
@@ -10385,7 +10442,7 @@ sciDrawObj (sciPointObj * pobj)
       n = 1;
       /* load the object foreground and dashes color */
       x[0] = sciGetFontForeground (pobj);//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (sciGetParent (sciGetParent(pobj))); 
+      //      x[1] = sciGetBackground (sciGetParent (sciGetParent(pobj))); 
       x[2] = sciGetFontDeciWidth (pobj)/100;
       x[3] = 0;
       x[4] = 0; sciGetFontStyle(pobj);
@@ -10396,7 +10453,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 #ifdef WIN32 
       ReleaseWinHdc ();
@@ -10439,7 +10496,7 @@ sciDrawObj (sciPointObj * pobj)
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10456,8 +10513,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -10500,7 +10557,7 @@ sciDrawObj (sciPointObj * pobj)
       /* load the object foreground and dashes color */
       
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = 0;
       x[4] = 0;
@@ -10516,8 +10573,8 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,
+      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       sciClip(sciGetIsClipping(pobj));
@@ -10548,7 +10605,7 @@ sciDrawObj (sciPointObj * pobj)
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      x[1] = sciGetBackground (pobj);
+      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10556,7 +10613,7 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;v = 0;dv = 0; 
       C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
 		
@@ -10654,6 +10711,7 @@ sciDrawObj (sciPointObj * pobj)
  * @return  HFONT structure
  */
 #ifdef WIN32 
+/*
 HFONT
 sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,
 	       int iDeciPtWidth, int iAttributes, BOOL fLogRes)
@@ -10661,7 +10719,7 @@ sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,
   FLOAT cxDpi, cyDpi;
   HFONT hFont;
   LOGFONT lf;
-  POINT pt;
+  POINT2D pt;
   TEXTMETRIC tm;
 
   SaveDC (hdc);
@@ -10725,6 +10783,7 @@ sciCreateFont (HDC hdc, char *szFaceName, int iDeciPtHeight,
   RestoreDC (hdc, -1);
   return hFont;
 }
+*/
 #endif
 
 
@@ -11216,9 +11275,7 @@ double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
       for (i=0;i < *numrow;i++)
 	{
 	  tab[2*i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
-	  //pPOLYLINE_FEATURE (pthis)->pvector[i].x = pvecx[i];
 	  tab[2*i+1]= pPOLYLINE_FEATURE (pthis)->pvy[i];  
-	  //pPOLYLINE_FEATURE (pthis)->pvector[i].x = pvecx[i];
 	}
       return (double*)tab;
       break;
@@ -11273,6 +11330,17 @@ double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
       return (double*)NULL;			/* les coordonnees sont (x,0) */
     case SCI_TITLE:
     case SCI_SEGS: 
+      *numrow = pSEGS_FEATURE (pthis)->Nbr1;
+      *numcol = 2;
+      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	return (double*)NULL;
+      for (i=0;i < *numrow;i++)
+	{
+	  tab[2*i] = pSEGS_FEATURE (pthis)->vx[i];	
+	  tab[2*i+1]= pSEGS_FEATURE (pthis)->vy[i];  
+	}
+      return (double*)tab;
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_LEGEND:
@@ -11394,6 +11462,24 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_SEGS: 
+      if (*numrow != pSEGS_FEATURE (pthis)->Nbr1)
+	{
+	  sciprint("The size of row must be %d\n",*numrow);
+	  return -1;
+	}
+      if (*numcol != 2)
+	{
+	  sciprint("The size of row must be %d\n",*numcol);
+	  return -1;
+	}
+      for (i=0;i < *numrow;i++)
+	{
+	  pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+	  pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+	}
+      return 0;
+      break;
+
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_SBV:
@@ -12578,6 +12664,7 @@ int Objmove (hdl,x,y,opt)
   long tmphdl;
   sciPointObj *pobj;  
   sciSons *psonstmp;
+  int i;
 
   pobj = (sciPointObj *)sciGetPointerFromHandle(*hdl);
   sciSetCurrentObj (pobj);
@@ -12610,13 +12697,38 @@ int Objmove (hdl,x,y,opt)
       pTEXT_FEATURE(pobj)->x += x; 
       pTEXT_FEATURE(pobj)->y += y;
       break;
+    case SCI_SEGS:   
+      for (i=0;i<pSEGS_FEATURE(pobj)->Nbr1;i++) {
+	pSEGS_FEATURE(pobj)->vx[i] += x; 
+	pSEGS_FEATURE(pobj)->vy[i] += y;
+      }
+      break;
+    case SCI_POLYLINE: 
+      for (i=0;i<pPOLYLINE_FEATURE(pobj)->n1;i++) {
+	pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
+	pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
+      }
+      break;
+    case SCI_PATCH:
+      for (i=0;i<pPATCH_FEATURE(pobj)->n;i++) {
+	pPATCH_FEATURE(pobj)->pvx[i] += x; 
+	pPATCH_FEATURE(pobj)->pvy[i] += y;
+      }
+      break;
+    case SCI_FEC: 
+      for (i=0;i<pFEC_FEATURE(pobj)->Nnode;i++) {
+	pFEC_FEATURE(pobj)->pvecx[i] += x; 
+	pFEC_FEATURE(pobj)->pvecy[i] += y;
+      }
+	break;
+    case SCI_GRAYPLOT:   
+      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->nx;i++)
+	pGRAYPLOT_FEATURE(pobj)->pvecx[i] += x; 
+      for (i=0;i<pGRAYPLOT_FEATURE(pobj)->ny;i++)
+	pGRAYPLOT_FEATURE(pobj)->pvecy[i] += y;
+      break;
     case SCI_FIGURE:
     case SCI_AXIS:        
-    case SCI_SEGS:   
-    case SCI_POLYLINE: 
-    case SCI_PATCH:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:   
     case SCI_SURFACE:    
     case SCI_AXES:
     case SCI_LIGHT:
@@ -12651,7 +12763,8 @@ int sciType (marker)
   else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}		
   else if (strncmp(marker,"mark_mode", 9) == 0)   {return 10;}	
   else if (strncmp(marker,"figure_position", 15) == 0) {return 1;}	 
-  else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}	
+  else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}
+  else if (strncmp(marker,"axes_visible", 12) == 0)   {return 10;}	
   else if (strncmp(marker,"figure_size", 11) == 0){return 1;}	
   else if (strncmp(marker,"figure_id", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"figure_name", 11) == 0){return 10;}   
