@@ -22,6 +22,7 @@ c
          call basout(io,wte,' matric '//buf(1:4))
       endif
 c
+c      if(fin.eq.4) call intricc("ricc")
       eps=stk(leps)
       lz=lstk(top+1)
 c
