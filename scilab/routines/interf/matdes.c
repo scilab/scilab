@@ -4806,7 +4806,11 @@ int gset(fname,fname_len)
       /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/
       CheckRhs(3,3);
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
-      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
+      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	{
 	  if (m1!=1||n1!=1) { 
 	    lw = 1 + Top - Rhs;
@@ -4828,7 +4832,11 @@ int gset(fname,fname_len)
 	}
       
       GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
-      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
+      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
@@ -4948,7 +4956,11 @@ int gset(fname,fname_len)
 	  (strncmp(cstk(l2),"current_axes",12) !=0) &&
 	  (strncmp(cstk(l2),"default_figure",14) !=0) && 
 	  (strncmp(cstk(l2),"default_axes",12) !=0) &&
-	  (pobj != pfiguremdl) && (pobj != paxesmdl)) { 
+	  (pobj != pfiguremdl) && (pobj != paxesmdl)
+	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
+	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
+	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
+	  && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ){ /* Addings F.Leray 10.06.04 */
 	num= sciGetNumFigure (pobj);    
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
@@ -4999,7 +5011,11 @@ int gget(fname,fname_len)
       C2F(overload)(&lw,"get",3);return 0;
     }
     GetRhsVar(2,"c",&numrow2,&numcol2,&l2);
-    if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
+    if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
+	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
       {
 	if ((strncmp(cstk(l2),"old_style",9) !=0)
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
@@ -5016,6 +5032,7 @@ int gget(fname,fname_len)
     CheckRhs(1,1);
     GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
     if (strncmp(cstk(l2),"default_figure",14) !=0 && strncmp(cstk(l2),"default_axes",12) !=0 )
+
       {
 	if (strncmp(cstk(l2),"old_style",9) !=0&&strncmp(cstk(l2),"current_figure",14) !=0) C2F(sciwin)();
 	if (version_flag() == 0)
@@ -5095,7 +5112,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /* sciSubWindow * ppsubwin = NULL;*/
   
   if ((strncmp(marker,"figure_model",12) !=0) && (strncmp(marker,"axes_model",10) !=0)
-      && (pobj  != pfiguremdl)  && (pobj  != paxesmdl))
+      && (pobj  != pfiguremdl)  && (pobj  != paxesmdl)
+      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
+      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
+      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
+      && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ) /* Addings F.Leray 10.06.04 */
     {
       if (pobj != (sciPointObj *)NULL) {
 	psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
@@ -6338,7 +6359,11 @@ char **str;
 sciPointObj *psubwin;
 int Etype,ids,iflag=0;
 
-if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl){
+if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl
+    && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_title
+    && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_x_label
+    && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_y_label
+    && pobj != pSUBWIN_FEATURE(paxesmdl)->mon_z_label ){ /* Addings F.Leray 10.06.04 */
 psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
 Etype=sciGetEntityType (pobj);}
   
