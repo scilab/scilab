@@ -54,8 +54,8 @@ proc colorize {w cpos iend} {
     remalltags $w begin ende
 
     # TAGS:
-    # order matters here - for instance textquoted has to be after operator, so 
-    # operators are not colorized within strings
+    # order matters here - for instance textquoted has to be after operator, 
+    # so operators are not colorized within strings
 
     # punctuation
     if {$schema=="scilab"} {
@@ -321,4 +321,44 @@ proc colormenuoption {c} {
            TextStyles $i; update
            }
    }
+}
+
+
+proc refreshQuotedStrings {} {
+    global listoftextarea scilabSingleQuotedStrings
+    showinfo [mc "Wait seconds while recolorizing file"]
+    foreach w $listoftextarea {
+        $w mark set begin 1.0
+        $w mark set ende end
+        $w mark set last begin
+        if {$scilabSingleQuotedStrings=="yes"} {
+#this is taken directly from proc colorize
+          while { [set ind [$w search -count num -regexp \
+                              {'[^']*('|$)} last ende]] != {}} {
+            if {[$w compare $ind >= last]} {
+                set res ""
+                $w mark set endetext "$ind lineend"
+                regexp {'[^']*'} [$w get last endetext] res
+                set num [string length $res]
+                if {$num <= 0} {
+                    $w mark set last "$ind + 1c"
+                } else {
+                    $w mark set last "$ind + $num c"
+                    # textquoted deletes any other tag
+                    remalltags $w $ind last
+                    $w tag add textquoted $ind last
+                }          
+            } else break
+          }
+        } else {
+            while {[set ind [$w tag nextrange textquoted last end]] !={} } {
+              set i1 [lindex $ind 0]
+              set i2 [lindex $ind 1]
+              if {[$w get $i1] == "\'" } {
+                   colorize $w $i1 $i2
+                  }
+              $w mark set last $i2+1c
+            }
+        }
+    }
 }
