@@ -26,7 +26,7 @@ for k1=1:size(xml,'*')  // loop on .xml files
       l=l+1; fname=part(path,[1:length(path)-4])+".html";
       line(l)="<BR><A HREF="""+fname+""">"+name+"</A> - "+desc;
     end
-    mputl(sort(line),"whatis.html");
   end
 end
+mputl(sort(line),"whatis.html");
 quit
