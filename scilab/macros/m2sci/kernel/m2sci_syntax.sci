@@ -73,20 +73,23 @@ for k=1:n
   // Parenthesize expressions like 1+-2, 1*-2... which becomes 1+(-2), 1*(-2)...
   // Parentheses are deleted by comp() and will be added one more time by %?2sci function
   kop=strindex(tk,["+","-","*","/","\","^"])
-  kminus=strindex(tk,"-")
   kcom=isacomment(tk)
   if kcom<>0 then
-    kminus=kminus(kminus<kcom)
+    kop=kop(kop<kcom)
   end
   offset=0
-  for l=1:size(kminus,"*")
-    if find(kop==kminus(l)-1)<>[] then
-      endoftk=part(tk,kminus(l)+1+offset:length(tk))
+  for l=1:size(kop,"*")
+    ksym=kop(l)+offset+1
+    while part(tk,ksym)==" "
+      ksym=ksym+1
+    end
+    if part(tk,ksym)=="-" then
+      endoftk=part(tk,ksym+1+offset:length(tk))
       m=min(strindex(endoftk,[ops(:,1)',",",";"]))
       if m<>[] then
-	tk=part(tk,1:kminus(l)+offset-1)+"("+part(tk,kminus(l)+offset:kminus(l)+offset+m-1)+")"+part(tk,kminus(l)+offset+m:length(tk))
+	tk=part(tk,1:ksym-1)+"("+part(tk,ksym+offset:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
       else
-	tk=part(tk,1:kminus(l)+offset-1)+"("+part(tk,kminus(l)+offset:length(tk))+")"
+	tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
       end
       offset=offset+2
     end
@@ -94,10 +97,15 @@ for k=1:n
 
   // Modify expressions like 1++2, 1*+2... which become 1+2, 1*2...
   kop=strindex(tk,["+","-","*","/","\","^"])
-  kplus=strindex(tk,"+")
-  for l=size(kplus,"*"):-1:1
-    if find(kop==kplus(l)-1)<>[] then
-      tk=part(tk,1:kplus(l)+offset-1)+part(tk,kplus(l)+1+offset:length(tk))
+  offset=0
+  for l=1:size(kop,"*")
+    ksym=kop(l)+offset+1
+    while part(tk,ksym)==" "
+      ksym=ksym+1
+    end
+    if part(tk,ksym)=="+" then
+      tk=part(tk,1:ksym-1)+part(tk,ksym+1:length(tk))
+      offset=offset-1
     end
   end
 
