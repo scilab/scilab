@@ -371,7 +371,7 @@ c     .     abort dans un exec
       if (niv .gt. 0) err = 9999999
       goto 999
 C     
-C     break
+C     break, continue
 C------
  130  continue
       kcmd=k
@@ -383,7 +383,7 @@ c     if special compilation mode skip  comands
       endif
       if(kcmd.eq.kcont) then
 C     compilation de continue:<13>
-         if(compil(13,0,0,0,0)) return
+         if(compil(28,0,0,0,0)) return
       else
 C     compilation de break:<13>
          if (compil(13,0,0,0,0)) return
@@ -417,6 +417,7 @@ C     .  break or continue in a for loop
       elseif(eqid(ids(1,pt),sel)) then
 c     .  discard select variable
          top = top - 1
+         goto 131
       elseif (eqid(ids(1,pt),while)) then
 C     .  break or continue in a  while
          if (kcmd.eq.kbrk) pt = pt - 1
@@ -434,7 +435,7 @@ C     gestion des clause sur plusieurs lignes
           call error(47)
           return
         endif
-        if (rio.eq.rte .and. macr.eq.0) goto 998
+        if (rio.eq.rte .and. macr.eq.0.and.kcmd.eq.kbrk) goto 998
         if (lpt(4) .eq. lpt(6)) then
           call getlin(1)
         else
@@ -453,7 +454,7 @@ C      char1=blank
       if (kcmd.eq.kbrk) then
          fin = 1
       else
-         fin = -1
+         fin = -10
       endif
       return
       
