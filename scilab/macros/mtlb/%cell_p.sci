@@ -14,7 +14,6 @@ end
 if size(dims,'*')>2 then
   str=hypermat(dims,str)
 else
-  pause
   str=matrix(str,dims(1),-1)
 end
 disp(str)
