@@ -1284,7 +1284,7 @@ c     depile une macro pu un execstr
       include '../stack.h'
       integer lunit
       logical trace,first,callback
-      integer sadr,ll
+      integer sadr,ll,leng
 
 c
       sadr(l)=(l/2)+1
@@ -1327,9 +1327,16 @@ c
             m=m+13
             if (km.le.isiz) then
                call cvname(idstk(1,km),buf(m+1:m+nlgh),1)
-               call funnamestore(buf(m+1:m+nlgh),nlgh) 
+c Francois VOGEL, August 2004 - Bug 803
+c function name is now limited to the useful length
+c instead of being the full nlgh size with trailing spaces
+c               call funnamestore(buf(m+1:m+nlgh),nlgh) 
+               leng=lnblnk(buf(m+1:m+nlgh))
+               call funnamestore(buf(m+1:m+nlgh),leng) 
             endif
-            m=m+nlgh
+c Francois VOGEL, August 2004 - Bug 803
+c            m=m+nlgh
+            m=m+leng
          else
             buf='in  execstr instruction'
             m=26

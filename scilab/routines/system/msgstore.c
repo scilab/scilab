@@ -7,7 +7,7 @@
 #define MAX_MSG_LINES  20
 
 static char* msg_buff[MAX_MSG_LINES];
-static char funname[24];
+static char funname[27];    // Francois VOGEL August 2004 - Replaced 24 by 27 (bug 803)
 static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
