@@ -150,21 +150,6 @@ scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
 scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-               'gr_i','id'],[0,140],[60,40],%t,..
-               ['[]';'1';'foo';'d  ';'1';'20';'1';'0'],[],0,0,0,..
-               list(..
-               ['txt=[''read from'';''C binary file''];';
-               'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')'],8),..
-               emptystr()),..
-               mlist(..
-               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
-               'ipar','blocktype','firing','dep_ut','label'],list('readc',2),[],..
-               1,1,1,[],[1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[],..
-               [3;13;40;40;0;20;1;0;1;15;24;24;0;1],'d',-1,[%f,%f],emptystr()),..
-               'READC_f',list())
-scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
-               mlist(..
-               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
                'gr_i','id'],[90,140],[20,30],%t,'1',[],[],[],0,..
                list(..
                ['xo=orig(1);yo=orig(2)+sz(2)/3';
@@ -173,7 +158,7 @@ scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
                'ipar','blocktype','firing','dep_ut','label'],'input',[],[],[],1,..
                [],[],[],1,'d',-1,[%f,%f],emptystr()),'CLKINV_f',list())
-scs_m.objs(13)=mlist(['Block','graphics','model','gui','doc'],..
+scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
                'gr_i','id'],[140,140],[20,20],%t,'1',[],[],[],0,list(' ',8),..
@@ -231,7 +216,7 @@ scs_m_1.objs(5)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
 scs_m_1.objs(6)=mlist(['Link','xx','yy','id','thick','ct','from','to'],..
                 [380.71;380.71;340;340],[172;302;302;277.71],'drawlink',[0,0],..
                 [5,-1],[4,2],[2,1])
-scs_m.objs(14)=mlist(..
+scs_m.objs(13)=mlist(..
                ['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout','gr_i','id'],..
@@ -257,3 +242,18 @@ scs_m.objs(14)=mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar','ipar',..
                'blocktype','firing','dep_ut','label'],'csuper',[],[],[],1,[],[],..
 scs_m_1,[],'h',%f,[%f,%f],emptystr()),'CLOCK_f',list())
+scs_m.objs(14)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id'],[11.666667,161.11111],[60,40],%t,..
+               ['[]';'1';'foo';'d  ';'1';'20';'1';'0'],[],0,0,[],..
+               list(..
+               ['txt=[''read from'';''C binary file''];';
+               'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')'],8),..
+               emptystr()),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label'],list('readc',2),[],..
+               1,1,[],[],[1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0],[],..
+               [3;13;40;40;0;20;1;0;1;15;24;24;0;1],'d',-1,[%f,%f],emptystr()),..
+               'READC_f',list())

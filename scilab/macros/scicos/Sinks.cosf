@@ -121,7 +121,7 @@ scs_m.objs(6)=mlist(['Block','graphics','model','gui','doc'],..
 scs_m.objs(7)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-              'gr_i','id'],[90,70],[60,40],%t,['1';'foo';'c  ';'2';'0'],0,[],0,..
+              'gr_i','id'],[90,70],[60,40],%t,['1';'foo';'d  ';'2';'0'],0,[],0,..
               [],..
               list(..
               ['txt=[''write to'';''C binary file''];';
@@ -130,7 +130,7 @@ scs_m.objs(7)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label'],list('writec',2),1,..
-              [],1,[],[],[-1;0;0;0;0;0],[],[3;12;40;40;2;0;15;24;24],'d',[],..
+              [],1,[],[],[-1;0;0;0;0;0],[],[3;13;40;40;2;0;15;24;24],'d',[],..
               [%t,%f],emptystr()),'WRITEC_f',list())
 scs_m.objs(8)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
