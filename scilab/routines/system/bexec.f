@@ -8,6 +8,7 @@ c     Copyright INRIA
       include '../stack.h'
       integer sadr,iadr
       character*(*) str
+      character*5 tmp
       integer retu(6),comma,eol
 c
       data retu/27,14,29,30,27,23/,comma/52/,eol/99/
@@ -17,8 +18,8 @@ c
 c
       ierr=0
       if (ddt .eq. 4) then
-         write(buf(1:12),'(i4)') top
-         call basout(io,wte,' bexec2  top:'//buf(1:4))
+         write(tmp,'(i4)') top
+         call basout(io,wte,' bexec2  top:'//tmp(1:4))
       endif
 c
       mrhs=0
