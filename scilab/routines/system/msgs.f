@@ -58,9 +58,10 @@ c---------------------- message de matlu et matnew---------------------
  105  continue
       call basout(io,wte,' warning')
       call basout(io,wte,
-     +     ' matrix is close to singular or badly scaled.')
+     $     ' matrix is close to singular or badly scaled. rcond = '//
+     $     buf(1:13))
       call basout(io,wte,
-     +              ' results may be inaccurate. rcond ='//buf(1:13))
+     +              'computing least squares solution. (see lsq)')
       goto 9999
  106  continue
       call basout(io,wte,'  Warning.')
@@ -68,8 +69,6 @@ c---------------------- message de matlu et matnew---------------------
       call basout(io,wte,
      +     ' results may be inaccurate. rcond ='//buf(1:13))
       goto 9999
-c----------------------------------------------------------------------
-c---------------------- message d'obsolescence -----------------------------
  107  continue
       call basout(io,wte,' Warning: obsolete use of = instead of ==')
       call showstack()
@@ -79,6 +78,8 @@ c---------------------- message d'obsolescence -----------------------------
       call showstack()
       goto 9999
  109  continue
+      write(buf(1:5),'(1pI5)') ierr
+      call basout(io, wte, 'rank defficient. rank = '//buf(1:5))
       goto 9999
  110  continue
       goto 9999
@@ -411,8 +412,21 @@ c
       call basout(io,wte,'Undefined display for this data type')
       goto 9999
  201  continue
+      
+      call cvname(ids(1,pt+1),line(1:nlgh),1)
+      nl=lnblnk(line(1:nlgh))
+      call basout(io,wte,' Warning: primitive function '//line(1:nl)//
+     &    ' has moved')
+      call basout(io,wte,' rebuild  your function libraries')
+c      call showstack()
       goto 9999
  202  continue
+      call cvname(ids(1,pt+1),line(1:nlgh),1)
+      nl=lnblnk(line(1:nlgh))
+      call basout(io,wte,' Warning: primitive function '//line(1:nl)//
+     &    ' is now a Scilab function') 
+      call basout(io,wte,' rebuild  your function libraries')
+c      call showstack()
       goto 9999
  203  continue
       goto 9999
