@@ -252,7 +252,8 @@ void scig_2dzoom(integer win_num)
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if ( (GetDriver()) !='R'&&version_flag !=0) 
+  // if ( (GetDriver()) !='R'&&version_flag !=0) // F.Leray 03.03.04
+  if ( (GetDriver()) !='R'&&versionflag !=0)
     {
       wininfo("Zoom works only with the Rec driver");
     }
@@ -280,7 +281,8 @@ void   scig_unzoom(integer win_num)
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if ( (GetDriver()) !='R'&&version_flag !=0) 
+  // if ( (GetDriver()) !='R'&&version_flag !=0) // F.Leray 03.03.04
+  if ( (GetDriver()) !='R'&&versionflag !=0)
     {
       wininfo("UnZoom works only with the Rec driver ");
     }
@@ -306,7 +308,8 @@ void scig_3drot(integer win_num)
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
   GetDriver1(name,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if ( (GetDriver()) !='R'&&version_flag !=0) 
+  //  if ( (GetDriver()) !='R'&&version_flag !=0) // F.Leray 03.03.04
+  if ( (GetDriver()) !='R'&&versionflag !=0)
     {
       wininfo("Rot3D works only with the Rec driver");
     }
