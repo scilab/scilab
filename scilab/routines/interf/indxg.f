@@ -132,7 +132,7 @@ c     .  Index is an implicit polynomial vector (beg:step:end)
          ipas=v(2)
          ifin=v(3)
 c     sign used to avoid integer overflow
-         if(ipas.eq.0.or.sign(1,ifin-ideb)*sign(1,ipas).lt.0) then
+         if(ipas.eq.0.or.(ifin-ideb)*sign(1,ipas).lt.0) then
             mi=0
             mx=0
          else
