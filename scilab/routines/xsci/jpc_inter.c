@@ -26,7 +26,15 @@
 #include <errno.h>
 #include <stdio.h>
 
+/**
+ added by HUYNH Olivier on the 10/06/2004 09:55
+ hpux uses time.h instead of select.h
+**/
+#ifdef hpux 
+	#include <sys/time.h>
+#else 
 #include <sys/select.h>
+#endif 
 
 #ifdef aix
 #include <sys/select.h>
