@@ -23,5 +23,5 @@ clean	:
 
 distclean : 
 	@rm -f $(PROG) $(OBJS) callsci.sh .init 
- 	@rm -f libodeex.* Makelib 
+	@rm -f libodeex.* Makelib my_ode.o my_ode.lo 
 
