@@ -59,12 +59,12 @@ while %t do
   %str=%ini;
   if %str==[] then ok=%f,break,end
   for %kk=1:%nn
-    %cod=str2code(%str(%kk))
-    %spe=find(%cod==99)
+    %cod=ascii(%str(%kk))
+    %spe=find(%cod==10)
     if %spe<>[] then
-      %semi=str2code(';')
+      %semi=ascii(';')
       %cod(%spe)=%semi*ones(%spe')
-      %str(%kk)=code2str(%cod)
+      %str(%kk)=ascii(%cod)
     end
   end
   %noooo=0
