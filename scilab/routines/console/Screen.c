@@ -6,7 +6,7 @@ void HomeFunction(void)
 	sciprint("\nNot yet implemented. \n");
 }
 
-void ClearScreenConsole _PARAMS((char *fname))
+void ClearScreenConsole(char *fname)
 {
 	sciprint("\nNot yet implemented. \n");
 }
