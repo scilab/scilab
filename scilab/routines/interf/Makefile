@@ -9,7 +9,7 @@ OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
 	intlapack.o intslicot.o matdes.o intorand.o 
 
 
-OBJSF = lstelm.o lstelmi.o matdsc.o matdsr.o matelm.o\
+OBJSF = lstelm.o lstelmi.o matdsc.o matdsr.o matelm.o matold.o\
 	lstops.o intl_e.o intl_i.o intnorm.o\
 	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o intgetf.o \
 	intgetpid.o inthost.o intlib.o intprint.o intrat.o intread.o intread4b.o \
