@@ -175,8 +175,8 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
             -command {colormenuoption $c} -foreground \[set $c\]"
            }
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
-        -command {\[gettextareacur\] configure -wrap \$wordWrap}  \
-        -offvalue none -onvalue word -variable wordWrap"
+      -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
+      -offvalue none -onvalue word -variable wordWrap"
 
 # window menu
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
