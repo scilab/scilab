@@ -55,6 +55,7 @@ int C2F(scichdir)(path,err)
   /** a rajouter en XWindow ? pour transmettre l'info au menu 
     if (get_directory()==0) 
     *err=1; **/
+  /* scilab_status_show(path); XXXX en attente */ 
   return 0;
 }
 
