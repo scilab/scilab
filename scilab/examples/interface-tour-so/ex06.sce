@@ -7,7 +7,7 @@ W=int(10*sprand(10,10,0.1));
 
 if norm(full(W1-2*W)) > %eps  then pause,end
 [I,J]=find(W<>0) ;
-if J<>icol then pause,end 
+if or(J<>gsort(icol,'g','i')) then pause,end 
 
 mnel1=[];
 [m,n]=size(W);
@@ -22,11 +22,11 @@ W = W +%i*int(10*sprand(10,10,0.1));
 
 if norm(full(W1- (2*real(W)+%i*3*imag(W)))) > %eps  then pause,end
 [I,J]=find(W<>(0+%i*0)) ;
-if J<>icol then pause,end 
+if or(J<>gsort(icol,'g','i')) then pause,end 
 
 mnel1=[];
 [m,n]=size(W);
-for x=1:m , mnel1(x) = size(find(W(x,:)),'*');end 
+for x=1:m , mnel1(x) = size(find(full(W(x,:))<>0),'*');end 
 if mnel<>mnel1' then pause,end
 
 // a sparse created in the interface 
