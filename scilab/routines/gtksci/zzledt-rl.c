@@ -11,6 +11,10 @@
 
 #include "../machine.h" 
 
+extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
+			int * eof,long int  dummy1);
+
+
 #define TRUE 1 
 #define FALSE 0
 static int fd=0;              /* file number for standard in */

@@ -6,12 +6,16 @@
 #include <stdio.h>			/* For the Syntax message */
 #include <signal.h>
 #include <string.h>
-#include "../graphics/Math.h"
 #include "../sun/men_Sutils.h"
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"
+#include "../graphics/Math.h"
+#include "../graphics/bcg.h"
+
 #include <gtk/gtk.h>
-#include "../graphics/periGtk-bcg.h"
+
+
+/* #include "../graphics/periGtk-bcg.h" */
 
 int demo_menu_activate=0; /* add a demo menu in the graphic Window */
 
