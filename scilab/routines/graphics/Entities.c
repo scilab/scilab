@@ -11549,14 +11549,17 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj));
+      sciClip(sciGetIsClipping(pobj)); /* F.Leray 26.03.04: pb comes from clipping*/
 
-      C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
-      			   PI0, &anglestr, PD0, PD0, PD0);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
+	  C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); /* Correction bug F.Leray 29.03.04*/
+ /*     C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
+      			   PI0, &anglestr, PD0, PD0, PD0); */ /*F.Leray : DO NOT USE displaystring function instead of (dr)("xstring")*/
+
       sciUnClip(sciGetIsClipping(pobj));
+#ifdef WIN32 
+      if ( flag_DO == 1) ReleaseWinHdc (); /* F.Leray 26.03.04: pb comes from clipping?? 
+										   NO!!! It comes from using of displaystring function instead of (dr)("xstring")*/
+#endif
       break;
       /*   case SCI_AXIS 
       break; */
