@@ -14,6 +14,6 @@ else
   if e=='2'|e=='3'|part(s1,1)=='-' then 
     s1='('+s1+')',
   end
-  stk=list(s1+'.* 2 .^'+s2,'?','?','1')
+  stk=list(s1+'.* 2 .^'+s2,2,'?','?','1')
 end
 endfunction
