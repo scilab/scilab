@@ -7,22 +7,32 @@
   <DATE>April 2000  </DATE>
   <SHORT_DESCRIPTION name="dragrect"> Drag rectangle(s) with mouse  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>final_rect=dragrect(initial_rect)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>[final_rect,btn]=dragrect(initial_rect)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
+
   <PARAM_ITEM>
   <PARAM_NAME>initial_rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : 4 4xn matrix containing the initial rectangles definition. Each column contains [x_left; y_top; width; height]. If only one rectangle is present the initial_rect may also be a vector. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>final_rect  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     :a rectangle defined by [x_left, y_top, width, height] 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>btn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :an integer, the number of the mouse button clicked
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
