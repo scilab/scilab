@@ -7,7 +7,7 @@ include ../../Version.incl
 LIBRARY = $(SCIDIR)/libs/system.a
 
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o helpap.o \
-	scicurdir.o readline.o msgstore.o storeversion.o
+	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o
 
 OBJSF = allops.o  banier.o diary.o\
 	clause.o comand.o compcl.o   \
@@ -19,7 +19,7 @@ OBJSF = allops.o  banier.o diary.o\
 	ref2val.o stackp.o terme.o  scirun.o \
 	majmin.o apropo.o whatln.o \
 	seteol.o setlnb.o skpins.o msgs.o prntid.o \
-	cvname.o cvstr.o compil.o ptover.o ptrback.o \
+	cvname.o  compil.o ptover.o ptrback.o \
 	isbrk.o  bexec.o scilines.o \
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
