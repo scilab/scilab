@@ -1,8 +1,15 @@
 function r=mtlb_ones(a)
 // Copyright INRIA
-if size(a)==[1 1] then
+// Emulation function for ones() Matlab function
+// V.C.
+
+if and(size(a)==[1 1]) then
   r=ones(a,a)
 else
-  r=ones(a(1),a(2))
+  tmp=list()
+  for k=1:size(a,"*")
+    tmp(k)=a(k)
+  end
+  r=ones(tmp(1:$))
 end
 endfunction

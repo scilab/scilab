@@ -1,8 +1,15 @@
 function r=mtlb_zeros(a)
 // Copyright INRIA
-if size(a)==[1 1] then
+// Emulation function for zeros() Matlab function
+// V.C.
+
+if and(size(a)==[1 1]) then
   r=zeros(a,a)
 else
-  r=zeros(a(1),a(2))
+  tmp=list()
+  for k=1:size(a,"*")
+    tmp(k)=a(k)
+  end
+  r=zeros(tmp(1:$))
 end
 endfunction
