@@ -19,5 +19,9 @@ if vvv==0 then
        set(win,'visible','off') ;end
     xset('window',yyy);
 else
+  if rhs==1 then
     oldxclear(win_num)
+  else
+    oldxclear()
+  end
 end
