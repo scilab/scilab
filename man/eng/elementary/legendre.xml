@@ -20,25 +20,25 @@
   <PARAM>
     <PARAM_INDENT>
      <PARAM_ITEM>
-        <PARAM_NAME>n </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
 	 <SP>: non negative integer or vector of non negative integers regularly spaced with increment equal to 1</SP>
 	</PARAM_DESCRIPTION> 
      </PARAM_ITEM>
      <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
          <SP>: non negative integer or vector of non negative integers regularly spaced with increment equal to 1</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>
      <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
          <SP>: real (row) vector (elements of <VERB>x</VERB> must be in the <VERB>(-1,1)</VERB> interval)</SP>
         </PARAM_DESCRIPTION> 
      </PARAM_ITEM>
      <PARAM_ITEM>
-        <PARAM_NAME>normflag </PARAM_NAME>
+        <PARAM_NAME>normflag</PARAM_NAME>
         <PARAM_DESCRIPTION>
         <SP>: (optional) scalar string</SP>
         </PARAM_DESCRIPTION> 
@@ -80,7 +80,7 @@
      which is useful to compute spherical harmonic functions (see Example 3):
   </P>
   <P>
-     For efficiently, one of the two first arguments may be a vector, for instance
+     For efficiency, one of the two first arguments may be a vector, for instance
      <VERB>legendre(n1:n2,0,x)</VERB> evaluates all the Legendre polynomials of
      degree <EM>n1, n1+1, ..., n2</EM> at the elements of <VERB>x</VERB> and
      <VERB>legendre(n,m1:m2,x)</VERB> evaluates all the Legendre associated 

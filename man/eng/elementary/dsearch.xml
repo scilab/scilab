@@ -3,9 +3,9 @@
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>dsearch</TITLE>
-  <TYPE>  </TYPE>
-  <DATE>matelm</DATE>
-  <SHORT_DESCRIPTION name="dsearch"> dichotomic (binary) search</SHORT_DESCRIPTION>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="dsearch">binary search (aka dichotomous search in french)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[ind, occ, info]  = dsearch(X, val [, ch ])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -14,7 +14,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a real (row or column) vector (1,m) or (m,1)</SP>
+          <SP>: a real vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -33,7 +33,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a real vector with the same dimensions than X</SP>
+          <SP>: a real vector or matrix with the same dimensions than X</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -51,45 +51,45 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="case ch=&quot;c&quot;">
-        <SP>this is the interval case, for each X(i) search in which of the 
-         n-1 intervals it falls, the intervals being defined by :</SP>
+    <P>This function is useful to search in an ordered table and/or to count the number of components
+       of a vector falling in some classes (a class being an interval or a value).
+    </P>
+    <P>By default or when <VERB>ch=&quot;c&quot;</VERB>, this is the interval case, that is, for 
+       each X(i) search in which of the n-1 intervals it falls, the intervals being defined by:
+    </P>
         <VERBATIM>
-<![CDATA[
-            I1 = [val(1), val(2)]
-            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ;
-         ]]>
-        </VERBATIM>
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="ind(i)">
-            <SP>is the interval number of X(i) (0 if X(i) is not in
+<![CDATA[            I1 = [val(1), val(2)]
+            Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; ]]>
+</VERBATIM>
+    <P>and:
+    </P>
+    <ITEMIZE>
+       <ITEM label="ind(i)">
+            <SP>: is the interval number of X(i) (0 if X(i) is not in
               [val(1),val(n)])</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="occ(k)">
-            <SP>is the number of components of X which are in Ik</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="info">
-            <SP>is the number of components of X which are not in [val(1),val(n)]</SP>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="case ch=&quot;d&quot;">
-        <SP>this is the discrete case, for each X(i) search if it is equal to one val(k)</SP>
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM label="ind(i)">
-            <SP>is equal to the index of the component of val which matches X(i) 
+       </ITEM>
+       <ITEM label="occ(k)">
+            <SP>: is the number of components of X which are in Ik</SP>
+       </ITEM>
+       <ITEM label="info">
+            <SP>: is the number of components of X which are not in [val(1),val(n)]</SP>
+       </ITEM>
+    </ITEMIZE>
+    <P>When <VERB>ch=&quot;d&quot;</VERB> case, this is the discrete case, that is, for 
+       each X(i)  search if it is equal to one val(k) and:
+    </P>
+    <ITEMIZE>
+       <ITEM label="ind(i)">
+            <SP>: is equal to the index of the component of val which matches X(i) 
                (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="occ(k)">
-            <SP>is the number of components of X equal to val(k)</SP>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="info">
-            <SP>is the number of components of X which are not in val</SP>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
+       </ITEM>
+       <ITEM label="occ(k)">
+            <SP>: is the number of components of X equal to val(k)</SP>
+       </ITEM>
+       <ITEM label="info">
+            <SP>: is the number of components of X which are not in the set {val(1),...,val(n)}</SP>
+       </ITEM>
+     </ITEMIZE>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -109,7 +109,7 @@ Pexp = occ/m; Pexa = binomial(p,N);
 xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
 plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
         "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
-xtitle(  "binomial law B("+string(N)+","+string(p)+") :" ...
+xtitle(  "binomial distribution B("+string(N)+","+string(p)+") :" ...
         +" exact probability versus experimental ones")
 
 
@@ -137,6 +137,9 @@ xtitle("an Hermite piecewise polynomial")
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>find</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>tabul</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>B.P.   </AUTHOR>
