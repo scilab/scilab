@@ -10,14 +10,14 @@
 int OR(int* Vect)
 {
   int i=1;  
-  int next=true;  
+  int next=false;  
 
-  while((next) && (i<Vect[0]+1))
+  while(!(next) && (i<Vect[0]+1))
     {
-      next=(Vect[i]==1)? false :true;
+      next=(Vect[i]!=0)? true:false ;
       i++;
     }
-  return !next;
+  return next;
 }
 /************************************************* fin du OR *******************************/
 
