@@ -728,10 +728,6 @@ proc setMarkBackground {w index} {
 }
 
 
-proc setMarkSize {w marks} {
-ScilabEval "global ged_handle;ged_handle.mark_size=$marks;"
-}
-
 proc toggleMarkmode {} {
 global curmarkmode
 ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
