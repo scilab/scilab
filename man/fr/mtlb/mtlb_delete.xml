@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_delete</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mai 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_delete">Fonction d'émulation de la fonction Matlab delete</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>
+    La fonction <VERB>mtlb_delete(A)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>delete(A)</VERB> quand il n'était pas
+    possible de savoir ce qu'était le paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_delete</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> est une chaîne de caractères
+        <VERB>mtlb_delete(A)</VERB> peut être remplacé par <VERB>mdelete(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> est un handle graphique
+        <VERB>mtlb_delete(A)</VERB> peut être remplacé par <VERB>delete(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_delete</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mdelete</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_isa</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mai 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_isa">Fonction d'émulation de la fonction Matlab isa</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Il n'y a pas de fonction Scilab équivalente à la fonction Matlab <VERB>isa</VERB> mais quand la "classe" d'objet recherchée existe dans Scilab, des expressions équivalentes existent.</P>
+
+    <P>
+    La fonction <VERB>mtlb_isa(OBJ,class)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>isa(OBJ,class)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_isa</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "logical",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==4</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "char",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==10</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "numeric",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>or(type(OBJ)==[1,5,8])</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "intX" (X valant 8, 16 ou 32),
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>typeof(OBJ)=="intX"</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "uintX" (X valant 8, 16 ou 32),
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>typeof(OBJ)=="uintX"</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "single",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==1</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "double",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==1</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "cell",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>typeof(OBJ)=="ce"</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "struct",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>typeof(OBJ)=="st"</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "function_handle",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==13</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "sparse",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>type(OBJ)==5</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>class</VERB> est égal à "lti",
+        <VERB>mtlb_isa(OBJ,class)</VERB> peut être remplacé par <VERB>typeof(OBJ)=="state-space"</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_isa</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>typeof</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
