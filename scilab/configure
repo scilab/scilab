@@ -468,7 +468,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LN_S ECHO RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP EGREP LIBTOOL F77 F2C FFLAGS ac_ct_F77 FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG RM AR AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT LN_S ECHO RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP EGREP LIBTOOL F77 F2C FFLAGS ac_ct_F77 FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS GTK_CONFIG GNOME_CONFIG RM AR AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINCLUDE PVMHOSTERFILES PVMHOSTER TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_USE_CDEC FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -14767,6 +14767,7 @@ fi
 #################
 
 ZZLEDT=zzledt
+GTKPLUGBUG=
 
 if test "$with_gtk" = yes; then
   # Extract the first word of "gtk-config", so it can be a program name with args.
@@ -15058,21 +15059,19 @@ echo "$as_me: WARNING: gnome-config not found: I will not use -with-gtk" >&2;}
 echo $ECHO_N "checking if gtk is version 2.1 or later... $ECHO_C" >&6
     GTK_VER=`pkg-config --modversion gtk+-2.0`
     case $GTK_VER in
-      #  2.1.* )
-      #  AC_MSG_ERROR([you need at least version 1.2 of gtk])
-      #  ;;
-      * )
-      # we have cheched above that gtk-config is in the
-      # path, then we don't want to generate a full path
-      # for gtk-config or to directly generate the
-      # result of `gtk-config --cflags`. Idem for gnome
-      echo "$as_me:$LINENO: result: $GTK_VER" >&5
-echo "${ECHO_T}$GTK_VER" >&6
-      GTKCFLAGS='`pkg-config gtk+-2.0 --cflags`'
-      GTKLIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
-      GNOMECFLAGS='`pkg-config gtk+-2.0 --cflags`'
-      ;;
+      2.* )
+        GTKPLUGBUG=gtkplug.o
+	;;
     esac
+    echo "$as_me:$LINENO: result: $GTK_VER" >&5
+echo "${ECHO_T}$GTK_VER" >&6
+    # we have cheched above that gtk-config is in the
+    # path, then we don't want to generate a full path
+    # for gtk-config or to directly generate the
+    # result of `gtk-config --cflags`. Idem for gnome
+    GTKCFLAGS='`pkg-config gtk+-2.0 --cflags`'
+    GTKLIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
+    GNOMECFLAGS='`pkg-config gtk+-2.0 --cflags`'
     cat >>confdefs.h <<\_ACEOF
 #define WITH_GTK 1
 _ACEOF
@@ -15081,6 +15080,7 @@ _ACEOF
     # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
     # gzvt2 works again with a gtk patch
     GZVT='gzvt2'
+    # we need a patched version
     SCILABSCRIPT=scilab-gtk.g
     MENUSOBJS=GOBJS
     PERIFILE=periGtk.o
@@ -16011,6 +16011,7 @@ fi
 
 
 
+
                                                                                                                                                                                                                                                                                                                       ac_config_files="$ac_config_files Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci routines/stack.h"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -16773,6 +16774,7 @@ s,@IMPPREF@,$IMPPREF,;t t
 s,@IMPENV@,$IMPENV,;t t
 s,@ZZLEDT@,$ZZLEDT,;t t
 s,@HTMLFLAGS@,$HTMLFLAGS,;t t
+s,@GTKPLUGBUG@,$GTKPLUGBUG,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF

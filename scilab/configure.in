@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.70 $)dnl
+AC_REVISION($Revision: 1.71 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1523,6 +1523,7 @@ fi
 #################
 
 ZZLEDT=zzledt
+GTKPLUGBUG=
 
 if test "$with_gtk" = yes; then
   AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
@@ -1600,25 +1601,24 @@ if test "$with_gtk2" = yes; then
     AC_MSG_CHECKING([if gtk is version 2.1 or later])
     GTK_VER=`pkg-config --modversion gtk+-2.0`
     case $GTK_VER in
-      #  2.1.* )
-      #  AC_MSG_ERROR([you need at least version 1.2 of gtk])
-      #  ;;
-      * )
-      # we have cheched above that gtk-config is in the 
-      # path, then we don't want to generate a full path 
-      # for gtk-config or to directly generate the 
-      # result of `gtk-config --cflags`. Idem for gnome
-      AC_MSG_RESULT([$GTK_VER])
-      GTKCFLAGS='`pkg-config gtk+-2.0 --cflags`'
-      GTKLIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
-      GNOMECFLAGS='`pkg-config gtk+-2.0 --cflags`'
-      ;;
+      2.* )
+        GTKPLUGBUG=gtkplug.o
+	;;
     esac    
+    AC_MSG_RESULT([$GTK_VER])
+    # we have cheched above that gtk-config is in the 
+    # path, then we don't want to generate a full path 
+    # for gtk-config or to directly generate the 
+    # result of `gtk-config --cflags`. Idem for gnome
+    GTKCFLAGS='`pkg-config gtk+-2.0 --cflags`'
+    GTKLIBS='`pkg-config gtk+-2.0 libgtkhtml-2.0 --libs`'
+    GNOMECFLAGS='`pkg-config gtk+-2.0 --cflags`'
     AC_DEFINE(WITH_GTK)
     GUILIB='gtksci'
     # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
     # gzvt2 works again with a gtk patch 
     GZVT='gzvt2'
+    # we need a patched version 
     SCILABSCRIPT=scilab-gtk.g
     MENUSOBJS=GOBJS
     PERIFILE=periGtk.o
@@ -1821,6 +1821,7 @@ AC_SUBST(IMPENV)
 AC_SUBST(ZZLEDT)
 AC_SUBST(STRIP)
 AC_SUBST(HTMLFLAGS)
+AC_SUBST(GTKPLUGBUG)
 
 AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci routines/stack.h) 
  
