@@ -1593,10 +1593,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					/* A mettre en place plus precisément*/
 					/* Pour le moment l'impression a lieu par l'editeur de fichier .txt défini par défaut */
 					/* c-a-d notepad ou autre */
-
-				MessageBox(NULL,"En cours de Dév.","Impression fichier",MB_OK);
-									
-				/*	PrintFileText(fichier);*/
+				PrintFile(fichier);
 				strcpy(Cmd," ");
 				exit(0);
 

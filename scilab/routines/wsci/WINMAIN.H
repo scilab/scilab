@@ -99,6 +99,7 @@ char ScilexConsoleName[MAX_PATH];
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
 /*-----------------------------------------------------------------------------------*/
+extern void PrintFile(char *filename);
 extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
 //extern void C2F (diary) (char *, int *, int);
