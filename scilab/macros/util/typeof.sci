@@ -15,7 +15,7 @@ case 8 then
     it=modulo(it,10)
   end
   tf=tf+'int'+string(8*it)
-case 7 then tf='handle';
+case 9 then tf='handle';
 case 10 then tf='string';
 case 11 then tf='function';
 case 13 then tf='function';

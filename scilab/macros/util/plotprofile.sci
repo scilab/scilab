@@ -84,6 +84,7 @@ while ok
   if cw==win then
     k=min(n,max(1,round(c_x)))
     // show source code in another window
+    xinfo('ligne : '+string(k))
     [h,M]=dispfuntxt(txt,k,h,M)
   end
 end
