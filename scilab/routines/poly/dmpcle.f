@@ -59,21 +59,21 @@ c
          if (d1(2).le.d1(1)) d1(2)=d1(1)+1
          return
       endif
-      do 100 k=1,ld1
+      do 30 k=1,ld1
          d2(k)=d1(k)
- 100  continue
-      do 1 k=1,mn
+ 30   continue
+      do 70 k=1,mn
          lmin=d2(k)
          lmax=d2(k+1)-1
          norm=0.d0
-         do 2 l=lmin,lmax
+         do 40 l=lmin,lmax
             norm=norm+abs(pm1(l))
- 2       continue
+ 40      continue
          eps=max(epsa,epsr*norm)
          ll=lmax+1
          count=0
          ok=.false.
-         do 3 l=lmin,lmax
+         do 50 l=lmin,lmax
             ll=ll-1
             if (abs(pm1(ll)).le.eps) then
                if (ll.eq.lmax) ok=.true.
@@ -82,16 +82,18 @@ c
             else
                ok=.false.
             endif
- 3       continue
+ 50      continue
          d1(k+1)=d1(k)+d2(k+1)-d2(k)-count
          if (d1(k+1).le.d1(k)) d1(k+1)=d1(k)+1
- 1    continue
+ 70   continue
       l1=d1(2)
-      do 4 k=2,mn
+      do 90 k=2,mn
          lmin=d2(k)
          ivol=d1(k+1)-d1(k)
-         call dcopy(ivol,pm1(lmin),1,pm1(l1),1)
+         do 80 l=0,ivol-1
+            pm1(l1+l)=pm1(lmin+l)
+ 80      continue
          l1=l1+ivol
- 4    continue
+ 90   continue
       return
       end
