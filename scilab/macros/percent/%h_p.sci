@@ -139,6 +139,7 @@ function %h_p(h)
 	 "foreground: "+sci2exp(h.foreground,0)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
+	 "rotation_style: "+h.rotation_style
 	 ]
       case "Grayplot"
       d=sci2exp(h.data,0)
