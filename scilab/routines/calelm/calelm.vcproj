@@ -530,9 +530,6 @@ cd .. &gt;nul
 				RelativePath="calelm.h">
 			</File>
 			<File
-				RelativePath=".\resource.h">
-			</File>
-			<File
 				RelativePath="sci_tools.h">
 			</File>
 		</Filter>
