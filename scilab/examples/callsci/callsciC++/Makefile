@@ -19,8 +19,9 @@ all	: .init
 	touch .init 
 
 clean	: 
-	rm -f $(PROG) $(OBJS)
+	@rm -f $(PROG) $(OBJS)
 
 distclean : 
-	rm -f $(PROG) $(OBJS) callsci.sh .init 
- 
+	@rm -f $(PROG) $(OBJS) callsci.sh .init 
+ 	@rm -f libodeex.* Makelib 
+

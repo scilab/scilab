@@ -1,4 +1,5 @@
 # Copyright INRIA
+
 FFLAGS = $(FC_OPTIONS)
 
 myprog: $(OBJS) 
@@ -9,15 +10,13 @@ myprog: $(OBJS)
 	if test $$x -ne 0; then \
 		$(RM) $@; \
 		echo "linking"; \
-		$(FC)  $(FFLAGS) -o $@ $(OBJS) $(DEFAULTS) $(FC_LDFLAGS) \
-			$(LIBR) $(TCLTK_LIBS) \
-			$(XLIBS) $(TERMCAPLIB); \
+		$(FC) $(FFLAGS) -o $@ $(OBJS) $(DEFAULTS) $(FC_LDFLAGS) $(LIBR)\
+			$(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB); \
 	else \
 		echo myprog is up to date ; \
 	fi
 
 
 show	:
-	@echo $(FC)  $(FFLAGS) -o $@ $(OBJS) $(DEFAULTS) $(FC_LDFLAGS) \
-		$(LIBR) $(TCLTK_LIBS) \
-		$(XLIBS) $(TERMCAPLIB);
+	@echo $(FC) $(FFLAGS) -o $@ $(OBJS) $(DEFAULTS) $(FC_LDFLAGS) $(LIBR)\
+		$(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);

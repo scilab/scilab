@@ -1,7 +1,6 @@
-# Generated automatically from Makefile.incl.in by configure.
 RM = rm -f
-AR = ar cq
-FILES_TO_CLEAN = *.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos
+AR = ar cru
+FILES_TO_CLEAN = *.CKP *.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.cos *.obj
 
 all::
 
@@ -13,7 +12,7 @@ distclean::
 
 RANLIB = ranlib
 
-TERMCAPLIB = -ltermcap
+TERMCAPLIB = -lncurses
 
 ##################################################################
 # NOTE: the following schemes for compiling and linking are not  #
@@ -27,8 +26,9 @@ TERMCAPLIB = -ltermcap
 # and for linking: $(CC) -o $(PROGRAM) $(OBJS) $(CC_LDFLAGS)
 ###########
 CC = cc
-CC_OPTIONS = -g -ieee_with_inexact
-CC_LDFLAGS = -ieee_with_inexact
+#CC_OPTIONS = -O -Dlinux -fwritable-strings -DNARROWPROTO  
+CC_OPTIONS = -O -Dlinux -fwritable-strings -DNARROWPROTO 
+CC_LDFLAGS = -lieee 
 CC_PICFLAGS = 
 
 ##################
@@ -36,18 +36,17 @@ CC_PICFLAGS =
 # typically, for compiling use: FFLAGS = $(FC_OPTIONS)
 # and for linking: $(FC) -o $(PROGRAM) $(OBJS) $(FC_LDFLAGS)
 ##################
-FC = f77
-FC_OPTIONS = -g -fpe3
-FC_LDFLAGS = 
+FC = g77
+FC_OPTIONS = -O
+FC_LDFLAGS = -lieee -ldl -rdynamic
 FC_PICFLAGS = 
-
 
 ########
 # Linker
 # typically, for linking: $(LD) -o $(PROGRAM) $(OBJS) $(LD_LDFLAGS)
 ########
 LD = ld
-LD_LDFLAGS = 
+LD_LDFLAGS = -lieee
 
 ##########
 # X Window: use $(XFLAGS) for compilation and $(XLIBS) for linking
@@ -59,38 +58,32 @@ LD_LDFLAGS =
 ##########
 DLDLIB = 
 DLD_SUBDIR = 
-PVMLIB = /usr/local/lib/scilab-2.5.1/pvm3/lib/ALPHA/libpvm3.a
-PVMGLIB = /usr/local/lib/scilab-2.5.1/pvm3/lib/ALPHA/libgpvm3.a
-PVMROOT = /usr/local/lib/scilab-2.5.1/pvm3
-XAWLIB = -lXaw
+PVMLIB = /usr/local/scilab-cvs/pvm3/lib/LINUX/libpvm3.a
+PVMGLIB = /usr/local/scilab-cvs/pvm3/lib/LINUX/libgpvm3.a
+PVMROOT = /usr/local/scilab-cvs/pvm3
+PVMINCLUDE = /usr/local/scilab-cvs/pvm3/include
+XAWLIB = -lXaw3d
 XMULIB = -lXmu
 XAW_LOCAL_SUBDIR = 
 XAW_LOCAL_LIB = 
-XFLAGS =  
-X_EXTRA_LIBS =  -ldnet_stub
-XLIBS =  $(XAWLIB) $(XMULIB) -lXt -lXext  -lSM -lICE -lX11 $(X_EXTRA_LIBS)
+XFLAGS =  -I/usr/X11R6/include 
+X_EXTRA_LIBS = 
+XLIBS =   -L/usr/X11R6/lib $(XAWLIB) $(XMULIB) -lXt -lXext  -lSM -lICE -lX11 $(X_EXTRA_LIBS)
 
 #####################
 # TCL/TK
 #####################
-TK_INC_PATH = -I/usr/local/include
-TCL_INC_PATH = -I/usr/local/include
-TCLTK_LIBS =   -ltk8.0    -ltcl8.0 
+TK_INC_PATH = -I/usr/include
+TCL_INC_PATH = -I/usr/include
+TCLTK_LIBS =  -L/usr/lib -ltk8.3   -L/usr/lib -ltcl8.3  -ldl
 
 #####################
 # for WIN32 version 
 # win32 libraries for gcwin32 
 WIN32LIBS=-mwindows -lwsock32 -lshell32 -lcomctl32  -lwinspool -lm 
-WINLIBS = -lf2c $(WIN32LIBS)
+WINLIBS = $(TCLTK_LIBS) $(WIN32LIBS)
+LINKEROPT= $(LD_LDFLAGS)
 # Ressource compiler 
-#
-RC=/msdev/bin/rc.exe
-RCVARS=-r -DWIN32
-# an other free resource compiler 
-#
-#RC=/softs/lccpub/bin/lrc 
-#RCVARS=/iC:/softs/lccpub/include
-# from .res to .o  
-CVTRES= /SOFTS/gnuwin32/b18/H-i386-cygwin32/bin/cvtres.exe
-# link options 
-LINKEROPT=-Wl,-subsystem,console
+RC=windres 
+RCVARS=-O coff 
+

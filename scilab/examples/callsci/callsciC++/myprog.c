@@ -140,10 +140,12 @@ void C2F(banier)(int *x)
 
 int MAIN__(void) 
 {
+#if (defined __MSC__ ) || (defined __MINGW32__) 
   static char nw[]="-nw";
   static char nb[]="-nb";
   add_sci_argv(nw);
   add_sci_argv(nb);
+#endif 
   Initialize();
   my_ode_job();
   my_job();
