@@ -182,6 +182,7 @@ void C2F(xendgraphicGif)(void)
       gdImagePPM(GifIm, file);
     fclose(file);
     gdImageDestroy(GifIm);
+	GifIm = (gdImagePtr)0; /* F.Leray 25.08.04 */
     file=stdout;
   }
 }
@@ -1740,7 +1741,10 @@ initgraphicGif)(char *string, integer *v2, integer *v3, integer *v4, integer *v5
   integer  x[2],verbose=0,narg;
   double dummy;
 
-  if (EntryCounter >= 1) C2F(xendgraphicGif)();
+  if (EntryCounter >= 1) 
+  {
+      C2F(xendgraphicGif)();
+  }
   strncpy(string1,string,256);
 
   file=fopen(string1,"wb");
