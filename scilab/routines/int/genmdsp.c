@@ -1,6 +1,7 @@
 #include "../machine.h"
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
 
 typedef signed char integer1;
 typedef short integer2;
@@ -10,6 +11,7 @@ typedef short integer2;
 #define DSP(Type,Fmt) {\
 Type *X;\
 Type a;\
+double aa;\
 X=(Type *)x;\
     --iw;\
     --X;\
@@ -22,11 +24,11 @@ X=(Type *)x;\
 	iw[k] = 0;\
 	lp += *nx;\
 	for (l = 1; l <= m; ++l) {\
-	    a = Abs(X[lp + l]);\
-	    if (a == 0) {\
+	    aa = Abs((double)X[lp + l]);\
+	    if (aa == 0) {\
 		fl = 1;\
 	    } else {\
-	      fl = (int)(log((float)a)/log(10.));\
+	      fl = (int)(log(aa)/log(10.));\
 	    }\
 	    iw[k] = Max(iw[k],fl + 3);\
 	}\
@@ -74,7 +76,7 @@ integer *nx, *mm, *nn, *ll, *lunit,*iw;
 char cw[];
 int cw_len;
 {
-  static integer k, l, m, n, s, lbloc, nbloc, k1, l1, k2, l0, ib;
+  static integer k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
   static char dl;
   static integer fl, io, lp;
   extern  int C2F(blktit)(), C2F(basout)();
@@ -99,4 +101,5 @@ int cw_len;
     DSP(unsigned int,"%-*u");
     break;
   }
+  return 0;
 }
