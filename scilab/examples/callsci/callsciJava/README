@@ -41,6 +41,8 @@ Then type
 	java TestMatrix3
 	java TestMatrix4
 	java TestMatrix
+	
+	java Test
 
 That's all 
 
