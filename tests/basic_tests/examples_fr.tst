@@ -1,4 +1,4 @@
-// lun fév 3 17:49:08 CET 2003
+// mer fév 5 15:26:08 CET 2003
 
 //====================================================
 // ../man/fr/arma/arma.xml
@@ -3268,7 +3268,7 @@ txt=['NAME          TESTPROB'
      ' LO BND1      YTWO                -1'
      ' UP BND1      YTWO                 1'
      'ENDATA'];
-mputl(txt,TMPDIR+'/test.mps)
+mputl(txt,TMPDIR+'/test.mps')
 //Read the MPS file
 P=readmps(TMPDIR+'/test.mps',[0 10^30])
 //Convert it to linpro format
