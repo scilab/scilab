@@ -36,7 +36,7 @@ extern Tcl_Interp *TKinterp;
 extern Tk_Window TKmainWindow;
 #endif
 
-
+double t=0.; /*for xclick_any */
 extern int XRotDrawString();
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
@@ -58,9 +58,6 @@ extern int IsCloseSGWindow __PARAMS((XEvent *));
 extern void SciViewportMove __PARAMS((struct BCG *,int,int));
 extern void SciViewportGet __PARAMS((struct BCG *,int *,int*));
 extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
-extern  int C2F(realtime)  __PARAMS((double *t));
-extern  int C2F(realtimeinit) __PARAMS( (double *t,double *scale));
-
 #ifdef WITH_TK
 extern void flushTKEvents();
 #endif
@@ -463,7 +460,9 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   integer lstr ;
   KeySym keysym;
   static XComposeStatus compose_status = {NULL, 0};
-  double t=0.,scale=0.00001;
+  struct timeval delay; /* usec, to slow down event loop */
+  delay.tv_sec = 0; delay.tv_usec = 10;
+
   wincount =  GetWinsMaxId()+1;
   if (wincount == 0) 
     {
@@ -491,8 +490,6 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   /* ignore the first event if it is a ClientMessage */ 
 
   set_client_message_on();
-  t=0.;
-  C2F(realtimeinit)(&t,&scale);C2F(realtime)(&t);
   while (buttons == 0) {
     wincount =  GetWinsMaxId()+1;
     if ( wincount == 0) 
@@ -585,7 +582,8 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 	  break;
 	}
     }
-    t=t+1.;C2F(realtime)(&t);
+    /* to slow down event loop not to use all cpu when nothing happen*/
+    select(0, 0, 0, 0, &delay);
   }
   set_client_message_off();
 
@@ -641,7 +639,9 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 {
   XEvent event;
   integer buttons = 0,win;
-  double t,scale=0.00001;
+  struct timeval delay; /* usec, to slow down event loop */
+  delay.tv_sec = 0; delay.tv_usec = 10;
+
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
       *ibutton = -100;     return;
@@ -654,8 +654,6 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
-  t=0.;  C2F(realtimeinit)(&t,&scale);C2F(realtime)(&t); /* used to slow down the loop */
-
   while (buttons == 0) 
     {
       /** maybe someone decided to destroy scilab Graphic window **/
@@ -712,7 +710,8 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	    break;
 	  }
       }
-      t=t+1.;C2F(realtime)(&t);/* wait a little not to use all the CPU*/
+      /* to slow down event loop not to use all cpu when nothing happen*/
+      select(0, 0, 0, 0, &delay);
     }
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
@@ -3532,6 +3531,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   integer ne=7, menutyp=2, ierr;
   char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties",
 		     "Start Entity Picker","Stop  Entity Picker"};
+  char *FileMenus[]={"Clear","Select","Print","Export","Save","Load","Close"};
   GC XCreateGC(Display *, Drawable, long unsigned int, XGCValues *);
   static int screen;
   static XGCValues gcvalues;
