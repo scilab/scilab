@@ -20,7 +20,7 @@ OTHERS IMPROVEMENTS
 - Graphic windows refresh improved under Windows
 - Scilab has been adapated to IA64 architecture
 - Helvetica (Arial on Windows) fonts added (corresponding font identifiers are
-  from 6 to 9)
+  from 6 to 9) (thanks to B Pincon)
 
 INCOMPATIBLITIES
 ================
