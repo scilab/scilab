@@ -1,14 +1,14 @@
 
-SOURCES=BadDataArgumentException.java Matrix.java MatrixUtilities.java
+SOURCES=BadDataArgumentException.java Scilab.java SciReal.java
 
 SCIDIR=../../..
-CLASSREP=$(SCIDIR)/bin/Javasci/javasci/
+CLASSREP=$(SCIDIR)/bin/Javasci/javasci
 
 JAVAC=javac -d $(SCIDIR)/bin/Javasci -classpath $(SCIDIR)/bin/Javasci -g 
 
-all: $(CLASSREP)/Matrix.class
+all: $(CLASSREP)
 
-$(CLASSREP)/Matrix.class: $(SOURCES) 
+$(CLASSREP): $(SOURCES) 
 	$(JAVAC)  $(SOURCES)
 
 clean:

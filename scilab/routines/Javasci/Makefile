@@ -12,7 +12,7 @@ JAVAINC= -I/usr/lib/SunJava2-1.4.1/include -I/usr/lib/SunJava2-1.4.1/include/lin
 LIBRARY= $(SCIDIR)/bin/libjavasci.so 
 JAVAC=javac
 SOURCESJ=*.java
-OBJSC= javasci_Matrix.o fix.o
+OBJSC= javasci_globals.o javasci_Scilab.o javasci_SciReal.o
 
 OBJSF = 
 
