@@ -4,10 +4,16 @@ function M=%st_i_st(varargin)
 //at position varargin(1), varargin(2),varargin(3),...
 //insert the struct varargin($-1) as the field varargin(1)
 //of the struct varargin($)
+
   [lhs,rhs]=argn(0)
   M=varargin($)
   N=varargin($-1)//inserted matrix
   dims=double(matrix(M.dims,1,-1));
+  
+  // Dimensions modified so that convertindex works correctly
+  if mtlb_mode() then 
+    dims=[dims(2) dims(1) dims(3:$)];
+  end  
   
   if type(varargin(1))==10 //addind a new field
     flds=getfield(1,M);flds=[flds,varargin(1)];
