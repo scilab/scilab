@@ -281,6 +281,26 @@ function %h_p(h)
 	 "flag: "+sci2exp(h.flag,0)
 	 "surface_color: "+c
 	 ]
+      case "Axis"
+      T=sci2exp(h.tics_labels,0)
+      if length(T)>70 then T="string array'+strcat(string(size(h.text)),'x'),end
+      t=[t;
+	 "parent: "+h.parent.type
+	 "visible: "+string(h.visible)
+	 "tics_direction: "+h.tics_direction
+	 "xtics_coord:"+sci2exp(h.xtics_coord,0)
+	 "ytics_coord:"+sci2exp(h.ytics_coord,0)
+	 "tics_color: "+string(h.tics_color)
+	 "tics_segment: "+string(h.tics_segment)
+	 "tics_style: "+h.tics_style
+	 "sub_tics: "+string(h.sub_tics)
+	 "tics_labels: "+T
+	 "labels_font_size: "+string(h.labels_font_size)
+	 "labels_font_color: "+string(h.labels_font_color)
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)
+	]
+
     end
   end
   write(%io(2),t)
