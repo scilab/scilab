@@ -14,37 +14,38 @@ function [rep,stat]=unix_g(cmd)
 // host unix_x unix_s
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0)
-if prod(size(cmd))<>1 then   error(55,1),end
 
-if MSDOS then
-  tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-  cmd1= cmd + ' > '+ tmp;
-else
-  tmp=TMPDIR+'/unix.out';
-  cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
-end 
-stat=host(cmd1);
-select stat
-case 0 then
-  rep=read(tmp,-1,1,'(a)')
-  if size(rep,'*')==0 then rep=[],end
-case -1 then // host failed
-  disp('host does not answer...')
-  rep=emptystr()
-else
-  if MSDOS then 
-	write(%io(2),'unix_g: shell error');
-        rep=emptystr()
-  else 
+  [lhs,rhs]=argn(0)
+  if prod(size(cmd))<>1 then   error(55,1),end
+
+  if MSDOS then
+    tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
+    cmd1= cmd + ' > '+ tmp;
+  else
+     tmp=TMPDIR+'/unix.out';
+     cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
+  end 
+  stat=host(cmd1);
+  select stat
+   case 0 then
+    rep=read(tmp,-1,1,'(a)')
+    if size(rep,'*')==0 then rep=[],end
+   case -1 then // host failed
+    disp('host does not answer...')
+    rep=emptystr()
+  else
+     if MSDOS then 
+       write(%io(2),'unix_g: shell error');
+       rep=emptystr()
+     else 
         msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
         disp(msg(1))
         rep=emptystr()
   end 
-end
-if MSDOS then
-  host('del '+tmp);
-else
-  host('rm -f '+tmp);
-end
+  end
+  if MSDOS then
+    host('del '+tmp);
+  else
+     host('rm -f '+tmp);
+  end
 endfunction
