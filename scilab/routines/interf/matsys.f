@@ -2593,6 +2593,16 @@ c     copy the bottom of the stack
  40   continue
 
       call freemem()
+c     update reference variables
+      do 41 i=1,top
+         il=iadr(lstk(i))
+         if(istk(il).lt.0) istk(il+1)=istk(il+1)+kd1
+ 41   continue
+      do 42 i=bot,isiz-1
+         il=iadr(lstk(i))
+         if(istk(il).lt.0) istk(il+1)=istk(il+1)+kd2
+ 42   continue
+
 c     rebuild asolute pointers if necessary see macro.f  and run.f
       if(macr.gt.0) then
          lpt1=lpt(1)
