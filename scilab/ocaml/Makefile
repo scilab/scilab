@@ -26,7 +26,8 @@ DOCS=parseTree.mli\
 	optimizingCompiler.mli\
 	scicosCodeGeneration.mli 
 PLATFORM=$(shell uname -s)
-EXE=modelicac
+
+EXE=../bin/modelicac
 
 
 .SUFFIXES: .ml .mli .cmo .cmi .cmx .mlp .mpi
@@ -73,25 +74,22 @@ EXE=modelicac
 
 
 
-all : depend opt
+all : depend $(EXE)
 
-
-opt:  $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
+$(EXE): $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
 	@$(OCAMLOPT) -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
-	@cp -p $(EXE) ../bin/
-
 
 bytecode: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
 	@$(OCAMLC) $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
 
+opt:
+	make all
 
-debug: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
-	@$(OCAMLC) $(OCAMLFLAGS) -g  -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
+debug:  
+	make all OCAMLFLAGS="-g $(OCAMLFLAGS)" 
 
-prof:  $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
-	@$(OCAMLOPT) -p  -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
-	@cp -p $(EXE) ../bin/
-
+prof:  
+	make all OCAMLFLAGS="-p $(OCAMLFLAGS)" 
 
 doc:    $(DOCS)
 	@mkdir -p doc
