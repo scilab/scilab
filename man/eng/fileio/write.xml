@@ -62,7 +62,7 @@
     <VERB>write(%io(2),....)</VERB> writes on Scilab&apos;s
     window. Note that in this case <VERB>format</VERB> should produce
     one output line per matrix row. If this contraint is not verified
-    unpredictable results could happen.
+    unpredictable behavior could happen.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
