@@ -10,7 +10,7 @@
  *
  *	$Source: /usr/local/cvsroot_tmp/scilab/routines/xsci/wf_w_dir.c,v $
  *
- *	COPYRIGHT 1990  DIGITAL EQUIPMENT CORPORATION, MAYNARD, MASSACHUSETTS
+ *	COPYRIGHT 1990  DIGITAL EQUIPMENT CORPORATION, MAlYNARD, MASSACHUSETTS
  *	  ALL RIGHTS RESERVED.
  *
  * THE INFORMATION IN THIS SOFTWARE IS SUBJECT TO CHANGE WITHOUT NOTICE AND
@@ -55,7 +55,9 @@
 #include <sys/dir.h>
 #endif
 
-#if !defined(freebsd)
+#ifdef __STDC__ 
+#include <stdlib.h>
+#else 
 #include <malloc.h>
 #endif
 

@@ -29,9 +29,10 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <malloc.h>
 #ifdef __STDC__
 #include <stdlib.h>
+#else 
+#include <malloc.h>
 #endif
 
 #include <X11/Xatom.h>

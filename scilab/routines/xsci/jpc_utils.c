@@ -44,7 +44,12 @@
 
 #include "jpc_global.h"
 #include <string.h> /* in case of dmalloc */ 
-#include <malloc.h>  /* in case of dmalloc */ 
+
+#ifdef __STDC__
+#include <stdlib.h>
+#else
+#include <malloc.h>
+#endif
 
 void DisableWindowResize(w)
 Widget w;

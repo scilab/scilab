@@ -2,8 +2,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.2 2001/07/25 14:00:11 chanceli Exp $
+ * $Id: zzledt.c,v 1.3 2001/10/16 09:27:09 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.3  2001/10/16 09:27:09  chanceli
+ * includes
+ *
  * Revision 1.2  2001/07/25 14:00:11  chanceli
  * declarations
  *
@@ -597,14 +600,15 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
  exit:
    /* copy to return buffer */
    if(get_echo_mode()==0)  
-	   {
-	     *len_line=cursor;
-	     strncpy(buffer,wk_buf,*buf_size);
-	     set_echo_mode(TRUE);
-	     wk_buf[0] = NUL;
-	   }
+     {
+       *len_line=cursor;
+       strncpy(buffer,wk_buf,*buf_size);
+       set_echo_mode(TRUE);
+       wk_buf[0] = NUL;
+     }
    else {
      strcpy(buffer, wk_buf);
+     /* fprintf(stderr,"[%s]\r\n",buffer); */
      *len_line = strlen(wk_buf);
      putchar('\r'); /** jpc avril 97 **/
      putchar('\n');

@@ -51,7 +51,7 @@
 #if !defined(__bsdi__) && !defined(__NetBSD__)
 extern int	errno;
 extern int	sys_nerr;
-#if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)
+#if (! (defined(BSD) && (BSD >= 199306))) && !defined(freebsd)  && !defined(__APPLE__)
 extern char    *sys_errlist[];
 #endif
 #endif

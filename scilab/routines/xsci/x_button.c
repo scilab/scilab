@@ -44,8 +44,11 @@ button.c	Handles button events in the terminal emulator.
 #include "All-extern-x.h"
 
 #include <string.h> /* in case of dbmalloc */
-#include <malloc.h> 
-
+#ifdef __STDC__
+#include <stdlib.h>
+#else
+#include <malloc.h>
+#endif
 
 #define KeyState(x) (((x) & (ShiftMask|ControlMask)) + (((x) & Mod1Mask) ? 2 : 0))
 /* adds together the bits:

@@ -24,7 +24,11 @@ char     cur_filename[FSIZE];
 #include "wf_w_util.h"
 #include "wf_w_setup.h"
 
+#ifdef __STDC__ 
+#include <stdlib.h> 
+#else 
 #include <malloc.h>
+#endif 
 
 #include "../machine.h"
 #include "All-extern.h"
