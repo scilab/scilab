@@ -13,8 +13,8 @@
 #endif 
 
 #ifndef CoordModePrevious 
-#define CoordModePrevious 0
-#define CoordModeOrigin 1
+#define CoordModePrevious 1
+#define CoordModeOrigin 0
 #endif 
 
 #ifndef GXclear 
