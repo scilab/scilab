@@ -491,7 +491,7 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
     Scistring ("plot3dg_ : malloc No more Place\n");
     return;
   }
-/** Allocation  **/
+  /** Allocation  **/
   polyx = graphic_alloc (0, (*p) + 1L, sizeof (int));
   polyy = graphic_alloc (1, (*p) + 1L, sizeof (int));
   locindex = graphic_alloc (2, (*q), sizeof (int));
@@ -512,7 +512,7 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
   
   ReverseDataFor3D(psubwin,xtmp,ytmp,ztmp,(*p)*(*q));
 
-/** Painter's Algorithm : the facets are sorted  **/
+  /** Painter's Algorithm : the facets are sorted  **/
 
   for (i = 0; i < *q; i++) {
     double zdmin1, zdmin, xmoy = 0.00, ymoy = 0.00, zmoy = 0.00;
@@ -542,7 +542,7 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
   C2F (dr) ("xget", "lastpattern", &verbose, &whiteid, &narg, PI0, PI0, PI0,
             PD0, PD0, PD0, PD0, 0L, 0L);
 
-/* facteur is used below */
+  /* facteur is used below */
   if (ppsubwin->axes.reverse[0] == TRUE)
     facteur = -facteur;
   if (ppsubwin->axes.reverse[1] == TRUE)
@@ -569,100 +569,100 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
       polyx[(*p)] = polyx[0];
       polyy[(*p)] = polyy[0];
 
-     /* Preparation of the color vector. In the case color_flag==1,
+      /* Preparation of the color vector. In the case color_flag==1,
          the color is proportional to the Z-level. */
 
       front_size=*p;  /* initial size of the front facing facet */
 	  
-	  if (color_flag==3) { 
+      if (color_flag==3) { 
 	  
-	      /* interpolated shading */
+	/* interpolated shading */
       
-	      for (k = 0; k < *p; k++)
-            col[k] = cvect[(*p) * locindex[i] + k];	  
+	for (k = 0; k < *p; k++)
+	  col[k] = cvect[(*p) * locindex[i] + k];	  
 
-	  } else if (color_flag==2) { 
+      } else if (color_flag==2) { 
 
-          /* flat shading */
+	/* flat shading */
 
-          for (k = 0; k < *p; k++)
-	        col[k] = cvect[locindex[i]];			
+	for (k = 0; k < *p; k++)
+	  col[k] = cvect[locindex[i]];			
 
-	  } else if (color_flag==1) { 
+      } else if (color_flag==1) { 
 
-         /* Z-level flat shading. Computing of color has been moved here for clarity. */
+	/* Z-level flat shading. Computing of color has been moved here for clarity. */
 
-           double zl = 0;
-           for (k = 0; k < *p; k++)
-              zl += z[(*p) * locindex[i] + k];      /* F.Leray 29.11.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
-           fill[0] = inint ((whiteid - 1) * ((zl / (*p)) - zmin) / (zmax - zmin)) + 1;
-           for (k = 0; k < *p; k++)
-	          col[k] = -fill[0];			
-	  } else {
+	double zl = 0;
+	for (k = 0; k < *p; k++)
+	  zl += z[(*p) * locindex[i] + k];      /* F.Leray 29.11.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
+	fill[0] = inint ((whiteid - 1) * ((zl / (*p)) - zmin) / (zmax - zmin)) + 1;
+	for (k = 0; k < *p; k++)
+	  col[k] = -fill[0];			
+      } else {
 	  
         /* No shading at all, fixed facecolor */
 	  
-          for (k = 0; k < *p; k++)
-	        col[k] = 0;			
-	  }
+	for (k = 0; k < *p; k++)
+	  col[k] = 0;			
+      }
 
-	  /* The following call processes the case where the rear of the facet
-	      is facing the view point and hiddencolor is positive (the rear
-          of the surface is painted with a uniform color). When hiddencolor=-1
-          then the rear facets are processed for each specific value
-          of color_flag (see below). */
+      /* The following call processes the case where the rear of the facet
+	 is facing the view point and hiddencolor is positive (the rear
+	 of the surface is painted with a uniform color). When hiddencolor=-1
+	 then the rear facets are processed for each specific value
+	 of color_flag (see below). */
 		
-   	  rear=facet_facing_rear(facteur,polyx,polyy,col,&front_size,rear_x,rear_y,rear_col,&rear_size);
+      rear=facet_facing_rear(facteur,polyx,polyy,col,&front_size,rear_x,rear_y,rear_col,&rear_size);
 
       if (hiddencolor > 0 && rear) {
         if (color_flag != 0)
           fill[0] = (color_mode < 0) ? -hiddencolor : hiddencolor;
         else {
           if (color_mode==0)
-		     fill[0]=0;
-		  else if (color_mode > 0)
-		     fill[0]=hiddencolor;
-	      else
-		     fill[0]=-hiddencolor;
-		}
+	    fill[0]=0;
+	  else if (color_mode > 0)
+	    fill[0]=hiddencolor;
+	  else
+	    fill[0]=-hiddencolor;
+	}
         
-		if(sciGetIsLine(pobj))
-		   C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
+	if(sciGetIsLine(pobj))
+	  C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
                     &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
         if(sciGetIsMark(pobj)) 
-		    DrawMarks3D(pobj,rear_size,rear_x,rear_y);
+	  DrawMarks3D(pobj,rear_size,rear_x,rear_y);
 		
-		/* If the polygon is a triangle or a "butterfly" there is nothing left to draw */
+	/* If the polygon is a triangle or a "butterfly" there is nothing left to draw */
 		
-		if (rear_size == *p) continue; 
+	if (rear_size == *p) continue; 
       }
       
-	  if (color_flag == 1 || color_flag == 2) {
+      if (color_flag == 1 || color_flag == 2) {
 	  
         /* Flat shading. This is the case where the color index is constant for a facet */
 	  	  		
-		  if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
-		     integer rear_fill=col[0];
-             if (color_mode>=0) 		/* The edge of the facet is forcibly drawn if color_mode >= 0 */
-                rear_fill=Abs(col[0]);
-             if(sciGetIsLine(pobj))
-                C2F (dr) ("xliness", "str", rear_x, rear_y, &rear_fill, &npoly,
-                  &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);             
-             if(sciGetIsMark(pobj)) 
-		        DrawMarks3D(pobj,rear_size,rear_x,rear_y);
-				
-		     if (rear_size==*p) continue;
-		  } 
+	if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
+	  integer rear_fill=col[0];
+	  if (color_mode>=0) 		/* The edge of the facet is forcibly drawn if color_mode >= 0 */
+	    rear_fill=Abs(col[0]);
+	  if(sciGetIsLine(pobj))
+	    C2F (dr) ("xliness", "str", rear_x, rear_y, &rear_fill, &npoly,
+		      &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);             
+	  if(sciGetIsMark(pobj)) 
+	    DrawMarks3D(pobj,rear_size,rear_x,rear_y);
+	     
+	  if (rear_size==*p) continue;
+	} 
 
-          /* Draw the remaining (front) part of the facet if applicable */
+	/* Draw the remaining (front) part of the facet if applicable */
 
-          if (color_mode>0) /* Force the drawing of the mesh */
-               col[0]=Abs(col[0]);
-          if(sciGetIsLine(pobj))
-             C2F (dr) ("xliness", "str", polyx, polyy, col, &npoly,
-                  &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-		  if(sciGetIsMark(pobj)) 
-  	    	  DrawMarks3D(pobj,front_size,polyx,polyy);
+	if (color_mode>0) /* Force the drawing of the mesh */
+	  col[0]=Abs(col[0]);
+	if(sciGetIsLine(pobj))
+	  C2F (dr) ("xliness", "str", polyx, polyy, col, &npoly,
+		    &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	if(sciGetIsMark(pobj)) 
+	  DrawMarks3D(pobj,front_size,polyx,polyy);
         
       }
       else if (color_flag == 3) {
@@ -676,49 +676,49 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
         }
         else {
          
-		  if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
+	  if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
 
-          if(sciGetIsLine(pobj)) {
+	    if(sciGetIsLine(pobj)) {
            
-		   /* The edge of the facet is forcibly drawn if color_mode >= 0 */
+	      /* The edge of the facet is forcibly drawn if color_mode >= 0 */
 
-		     if (color_mode>=0) 
-               shade (rear_x, rear_y, rear_col, rear_size, 1);
-             else
-			   shade (rear_x, rear_y, rear_col, rear_size, -1);
-		  }
-		  if(sciGetIsMark(pobj)) 
-  	    	  DrawMarks3D(pobj,rear_size,rear_x,rear_y);	  		 
-		     if (rear_size==*p) continue;
-		  } 
+	      if (color_mode>=0) 
+		shade (rear_x, rear_y, rear_col, rear_size, 1);
+	      else
+		shade (rear_x, rear_y, rear_col, rear_size, -1);
+	    }
+	    if(sciGetIsMark(pobj)) 
+	      DrawMarks3D(pobj,rear_size,rear_x,rear_y);	  		 
+	    if (rear_size==*p) continue;
+	  } 
 
           /* Draw the remaining (front) part of the facet if applicable */
 
           if(sciGetIsLine(pobj))
-    		  shade (polyx, polyy, col, front_size, color_mode);
-		  if(sciGetIsMark(pobj)) 
-  	    	  DrawMarks3D(pobj,front_size,polyx,polyy);	  		 
+	    shade (polyx, polyy, col, front_size, color_mode);
+	  if(sciGetIsMark(pobj)) 
+	    DrawMarks3D(pobj,front_size,polyx,polyy);	  		 
         }
-	  }
+      }
       else { 
 	  
         /* color_flag == 0, the facet is drawn with default facecolor and edgecolor (foreground) */
 
-	    fill[0] = color_mode;
+	fill[0] = color_mode;
 		
-		if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
+	if (hiddencolor<0 && rear) { /* draw the rear facing part of the facet */
           if(sciGetIsLine(pobj))
-             C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly, &rear_size,
-                  PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-		  if(sciGetIsMark(pobj)) 
-  	    	  DrawMarks3D(pobj,rear_size,rear_x,rear_y);	  		 
-		  if (rear_size==*p) continue;
+	    C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly, &rear_size,
+		      PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	  if(sciGetIsMark(pobj)) 
+	    DrawMarks3D(pobj,rear_size,rear_x,rear_y);	  		 
+	  if (rear_size==*p) continue;
         }	      
         if(sciGetIsLine(pobj))
-           C2F (dr) ("xliness", "str", polyx, polyy, fill, &npoly, &front_size,
-                  PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-		if(sciGetIsMark(pobj)) 
-  	    	  DrawMarks3D(pobj,front_size,polyx,polyy);	  		 
+	  C2F (dr) ("xliness", "str", polyx, polyy, fill, &npoly, &front_size,
+		    PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	if(sciGetIsMark(pobj)) 
+	  DrawMarks3D(pobj,front_size,polyx,polyy);	  		 
 
       }
     }
@@ -733,132 +733,132 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
 
 int facet_facing_rear(integer facteur,integer *x,integer *y,integer *c,integer *size,integer *xr,integer *yr,integer *cr,integer *rsize)
 {
-double determ,determ0,determ1,determ2,determ3;
-integer  i,p,swp,flag_det,flag_det0,flag_det1,flag_det2,flag_det3;
-double t_param;
+  double determ,determ0,determ1,determ2,determ3;
+  integer  i,p,swp,flag_det,flag_det0,flag_det1,flag_det2,flag_det3;
+  double t_param;
 
-        p=(*size);
+  p=(*size);
 
-        for (i=0;i<p;i++) {
-		   xr[i]=x[i];yr[i]=y[i];cr[i]=c[i];
-		}
+  for (i=0;i<p;i++) {
+    xr[i]=x[i];yr[i]=y[i];cr[i]=c[i];
+  }
 		
-		(*rsize)=p;
+  (*rsize)=p;
 
-        determ1 =  
-          ((x[1] - x[0]) * (y[2] - y[0]) -
-           (y[1] - y[0]) * (x[2] - x[0]))*facteur;
-        flag_det1 = (determ1 < 0); 
-        if (p > 3) { /* further tests for the quadrilateral case */
-          determ3 =
-            ((x[2] - x[0]) * (y[3] - y[0]) -
-             (y[2] - y[0]) * (x[3] - x[0]))*facteur;
-          flag_det3 = (determ3 < 0);
-          determ2 =
-            ((x[2] - x[1]) * (y[3] - y[1]) -
-             (y[2] - y[1]) * (x[3] - x[1]))*facteur;
-          flag_det2 = (determ2 < 0);
-          determ0 =
-            ((x[3] - x[1]) * (y[0] - y[1]) -
-             (y[3] - y[1]) * (x[0] - x[1]))*facteur;
-          flag_det0 = (determ0 < 0);
-        } else 
-		   return (flag_det1);
+  determ1 =  
+    ((x[1] - x[0]) * (y[2] - y[0]) -
+     (y[1] - y[0]) * (x[2] - x[0]))*facteur;
+  flag_det1 = (determ1 < 0); 
+  if (p > 3) { /* further tests for the quadrilateral case */
+    determ3 =
+      ((x[2] - x[0]) * (y[3] - y[0]) -
+       (y[2] - y[0]) * (x[3] - x[0]))*facteur;
+    flag_det3 = (determ3 < 0);
+    determ2 =
+      ((x[2] - x[1]) * (y[3] - y[1]) -
+       (y[2] - y[1]) * (x[3] - x[1]))*facteur;
+    flag_det2 = (determ2 < 0);
+    determ0 =
+      ((x[3] - x[1]) * (y[0] - y[1]) -
+       (y[3] - y[1]) * (x[0] - x[1]))*facteur;
+    flag_det0 = (determ0 < 0);
+  } else 
+    return (flag_det1);
 
-      /* flag_det allows to precisely detect the orientation of the facet
-           for the case of the quadrilateral. If flag_det==2, then the
-           quadrilateral is projected as a butterfly, and both the rear and
-           the top of the facet are facing the vewpoint. This needs a different
-           processing which has to be implemented */ 
+  /* flag_det allows to precisely detect the orientation of the facet
+     for the case of the quadrilateral. If flag_det==2, then the
+     quadrilateral is projected as a butterfly, and both the rear and
+     the top of the facet are facing the vewpoint. This needs a different
+     processing which has to be implemented */ 
 
-	  flag_det=flag_det0+flag_det1+flag_det2+flag_det3;
+  flag_det=flag_det0+flag_det1+flag_det2+flag_det3;
     
-	  if (flag_det==0)
-	     return 0;
-	  else if (flag_det==4)
-	     return 1;
-      else if (flag_det==2) {
+  if (flag_det==0)
+    return 0;
+  else if (flag_det==4)
+    return 1;
+  else if (flag_det==2) {
 	  
-	    /* Butterfly case */
+    /* Butterfly case */
 	  
-	    (*rsize)=3;
-		(*size)=3;
+    (*rsize)=3;
+    (*size)=3;
 		
-		if ((flag_det2 && flag_det3) || (flag_det0 && flag_det1)) {
+    if ((flag_det2 && flag_det3) || (flag_det0 && flag_det1)) {
 		
-		  /* the (1,2) and (0,3) segments are crossing */ 
+      /* the (1,2) and (0,3) segments are crossing */ 
 		
-          determ=((x[2] - x[1]) * (y[0] - y[3]) -
+      determ=((x[2] - x[1]) * (y[0] - y[3]) -
               (y[2] - y[1]) * (x[0] - x[3]))*facteur;
-          t_param=determ0/determ;
+      t_param=determ0/determ;
 		  
-		  /* Computation of the intersection point (i) */
+      /* Computation of the intersection point (i) */
 		  
-		  xr[0]=linint(x[1]+t_param*(x[2] - x[1]));
-		  yr[0]=linint(y[1]+t_param*(y[2] - y[1]));
-		  cr[0]=linint(c[1]+t_param*(c[2] - c[1]));
-          if (flag_det2) {
+      xr[0]=linint(x[1]+t_param*(x[2] - x[1]));
+      yr[0]=linint(y[1]+t_param*(y[2] - y[1]));
+      cr[0]=linint(c[1]+t_param*(c[2] - c[1]));
+      if (flag_det2) {
 		  
-		     /* This is the case where the triangle (0,1,i) is front and (i,2,3) is rear */
+	/* This is the case where the triangle (0,1,i) is front and (i,2,3) is rear */
 		  
-		     xr[1]=x[3];yr[1]=y[3];cr[1]=c[3];
-             x[2]=xr[0];y[2]=yr[0];c[2]=cr[0];
+	xr[1]=x[3];yr[1]=y[3];cr[1]=c[3];
+	x[2]=xr[0];y[2]=yr[0];c[2]=cr[0];
 		  
-		  } else {
+      } else {
 		  
-		     /* This is the case where the triangle (0,1,i) is rear and (i,2,3) is front */
+	/* This is the case where the triangle (0,1,i) is rear and (i,2,3) is front */
 		     
-             xr[2]=x[0];yr[2]=y[0];cr[2]=c[0];
-			 x[0]=xr[0];y[0]=yr[0];c[0]=cr[0];
-			 x[1]=x[3];y[1]=y[3];c[1]=c[3];
-		  }         
-		} else {
+	xr[2]=x[0];yr[2]=y[0];cr[2]=c[0];
+	x[0]=xr[0];y[0]=yr[0];c[0]=cr[0];
+	x[1]=x[3];y[1]=y[3];c[1]=c[3];
+      }         
+    } else {
 
-		  /* the (0,1) and (2,3) segments are crossing */ 
+      /* the (0,1) and (2,3) segments are crossing */ 
 
-          determ=((x[1] - x[0]) * (y[3] - y[2]) -
+      determ=((x[1] - x[0]) * (y[3] - y[2]) -
               (y[1] - y[0]) * (x[3] - x[2]))*facteur;
-		  t_param=determ3/determ;
+      t_param=determ3/determ;
 
-		  /* Computation of the intersection point (i) */
+      /* Computation of the intersection point (i) */
 
 
-		  xr[1]=linint(x[0]+t_param*(x[1] - x[0]));
-		  yr[1]=linint(y[0]+t_param*(y[1] - y[0]));		  
-		  cr[1]=linint(c[0]+t_param*(c[1] - c[0]));
-		  if (flag_det0) {
+      xr[1]=linint(x[0]+t_param*(x[1] - x[0]));
+      yr[1]=linint(y[0]+t_param*(y[1] - y[0]));		  
+      cr[1]=linint(c[0]+t_param*(c[1] - c[0]));
+      if (flag_det0) {
 
-             /* This is the case where the triangle (0,i,3) is rear and (i,1,2) is front */
+	/* This is the case where the triangle (0,i,3) is rear and (i,1,2) is front */
 
-             xr[2]=x[3];yr[2]=y[3];cr[2]=c[3];
-             x[0]=xr[1];y[0]=yr[1];c[0]=cr[1];
-		  } else {
+	xr[2]=x[3];yr[2]=y[3];cr[2]=c[3];
+	x[0]=xr[1];y[0]=yr[1];c[0]=cr[1];
+      } else {
 
-             /* This is the case where the triangle (0,i,3) is front and (i,1,2) is back */
+	/* This is the case where the triangle (0,i,3) is front and (i,1,2) is back */
 
-             xr[0]=x[1];yr[0]=y[1];cr[0]=c[1];
-			 x[1]=xr[1];y[1]=yr[1];c[1]=cr[1];
-			 x[2]=x[3];y[2]=y[3];c[2]=c[3];
-		  }
-		}
-        return 1;
-	  } else {
-	     if (flag_det0 == flag_det2) {
-		 
-		  /* If the quadrilateral is not convex, then the vertices must be
-		        correctly numbered, if interpolated shading is to be used, because
-				a (0,1,2,3) quadrilateral is splitted in triangles (0,1,2) and (0,2,3). */
-		 
-			 swp=x[0];x[0]=x[1];x[1]=x[2];x[2]=x[3];x[3]=swp;
-			 swp=y[0];y[0]=y[1];y[1]=y[2];y[2]=y[3];y[3]=swp;
-			 swp=c[0];c[0]=c[1];c[1]=c[2];c[2]=c[3];c[3]=swp;
-			 swp=xr[0];xr[0]=xr[1];xr[1]=xr[2];xr[2]=xr[3];xr[3]=swp;
-			 swp=yr[0];yr[0]=yr[1];yr[1]=yr[2];yr[2]=yr[3];yr[3]=swp;
-			 swp=cr[0];cr[0]=cr[1];cr[1]=cr[2];cr[2]=cr[3];cr[3]=swp;
-	     }
-		 if (flag_det==3) 
-		   return 1;
-		 else
-		   return 0;
+	xr[0]=x[1];yr[0]=y[1];cr[0]=c[1];
+	x[1]=xr[1];y[1]=yr[1];c[1]=cr[1];
+	x[2]=x[3];y[2]=y[3];c[2]=c[3];
       }
+    }
+    return 1;
+  } else {
+    if (flag_det0 == flag_det2) {
+		 
+      /* If the quadrilateral is not convex, then the vertices must be
+	 correctly numbered, if interpolated shading is to be used, because
+	 a (0,1,2,3) quadrilateral is splitted in triangles (0,1,2) and (0,2,3). */
+		 
+      swp=x[0];x[0]=x[1];x[1]=x[2];x[2]=x[3];x[3]=swp;
+      swp=y[0];y[0]=y[1];y[1]=y[2];y[2]=y[3];y[3]=swp;
+      swp=c[0];c[0]=c[1];c[1]=c[2];c[2]=c[3];c[3]=swp;
+      swp=xr[0];xr[0]=xr[1];xr[1]=xr[2];xr[2]=xr[3];xr[3]=swp;
+      swp=yr[0];yr[0]=yr[1];yr[1]=yr[2];yr[2]=yr[3];yr[3]=swp;
+      swp=cr[0];cr[0]=cr[1];cr[1]=cr[2];cr[2]=cr[3];cr[3]=swp;
+    }
+    if (flag_det==3) 
+      return 1;
+    else
+      return 0;
+  }
 }
