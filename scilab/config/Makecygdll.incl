@@ -44,7 +44,7 @@ $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).dll  $(LIBRARY_NAME).tst
 $(LIBRARY_NAME).dll : $(LIBRARY_NAME).def  
 	@$(ECHO) ------- Building $@  --------
 	@$(CC) --shared -s -o $(LIBRARY_NAME).dll $(LIBRARY_NAME).def \
-		$(OBJS) $(OTHERLIBS) $(SCIDIR)/bin/libsci.a  -lg2c  $(WINLIBS);\
+		$(OBJS) $(OTHERLIBS) $(SCIDIR)/bin/LibScilab.a  -lg2c  $(WINLIBS);\
 	dlltool -k --as as --dllname $(LIBRARY_NAME).dll --def $(LIBRARY_NAME).def --output-lib $(LIBRARY_NAME).a ;
 
 # here we could also use dumpexts XXXX 

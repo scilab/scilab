@@ -4,41 +4,38 @@ FFLAGS = $(FC_OPTIONS)
 CFLAGS = $(CC_OPTIONS)
 
 RESOURCES= routines/wsci/Rscilab.o
-DLL_NAME =libsci
+DLL_NAME =LibScilab
+DLL_NAME1 =bin/LibScilab
 
 # scilex-lib
 
-bin/scilex : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME).dll 
-	gcc -mconsole -o $@.exe libs/main.o  -L./bin -lsci $(WINLIBS) 
+bin/scilex bin/scilex.exe : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME1).dll 
+	@$(ECHO) ------- Building $@ --------
+	@$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
+		$(RESOURCES) $(DLL_NAME1).a $(WINLIBS)  --enable-stdcall-fixup
 
 # with gcc -mno-cygwin et  f2c 
-# g77 -mno-cygwin -Wl,-subsystem,console --shared 
-#  -mno-cygwin  \
-# -------------------------------------
-#			-Wl,--whole-archive \
-#			libs/*.a \
-#			-Wl,--no-whole-archive -lg2c \
 
-$(DLL_NAME).dll : $(DLL_NAME).def  
-	@x=1;if test -f $(DLL_NAME).dll; then  \
+$(DLL_NAME1).dll : $(DLL_NAME1).def  
+	@x=1;if test -f $(DLL_NAME1).dll; then  \
 		x=`find $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
-		-newer $(DLL_NAME).dll  -print | wc -l `; \
+		-newer $(DLL_NAME1).dll  -print | wc -l `; \
 	fi;\
 	if test $$x -ne 0; then \
 		$(RM) $@; \
-		echo "linking"; \
-		$(LD) --shared -s -o $(DLL_NAME).dll $(DLL_NAME).def \
+		$(ECHO) ------- Building $@ --------; \
+		$(LD) --shared -s -o $(DLL_NAME1).dll $(DLL_NAME1).def \
 			$(DEFAULTS) $(RESOURCES) \
 			$(LIBR) -lg2c $(WINLIBS)  ; \
 	else \
-		echo $(DLL_NAME) is up to date ; \
+		echo $(DLL_NAME1) is up to date ; \
 	fi
 
 ECHO=echo
 NM=nm 
 SED=sed
 
-$(DLL_NAME).def : $(DEFAULTS) $(RESOURCES) $(LIBR) 
+$(DLL_NAME1).def : $(DEFAULTS) $(RESOURCES) $(LIBR) 
 	@$(ECHO) ------- Building $@ --------
 	@$(ECHO) LIBRARY $(DLL_NAME) > $*.def
 	@$(ECHO) EXPORTS >> $*.def
@@ -47,14 +44,16 @@ $(DLL_NAME).def : $(DEFAULTS) $(RESOURCES) $(LIBR)
 	@$(SED) -n '/^........ [BCDRT] _/s/^........ [BCDRT] _/ /p' Defs >> $*.def
 	@$(RM) Defs
 
-$(DLL_NAME).a : $(DLL_NAME).dll $(DLL_NAME).def 
-	dlltool -k --as as --dllname $(DLL_NAME).dll --def $(DLL_NAME).def --output-lib $(DLL_NAME).a ;
+$(DLL_NAME1).a : $(DLL_NAME1).dll $(DLL_NAME1).def 
+	@$(ECHO) ------- Building $@ --------
+	@dlltool -k --as as --dllname $(DLL_NAME).dll \
+		--def $(DLL_NAME1).def --output-lib $(DLL_NAME1).a ;
 
 # XXXXX attention on veut un --whole-archive pour lg2c 
 
 scilex-force : 
 	$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
-	$(RESOURCES) bin/libsci.a $(WINLIBS)  --enable-stdcall-fixup
+	$(RESOURCES) $(DLL_NAME1).a $(WINLIBS)  --enable-stdcall-fixup
 
 bin/sci.exe : 
 	$(CC) -mconsole -o bin/sci.exe  \
