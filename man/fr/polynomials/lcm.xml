@@ -44,7 +44,7 @@
   <DESCRIPTION>
   <P>
     <VERB>pp=lcm(p)</VERB> calcule le PPCM <VERB>pp</VERB>  du vecteur
-      <VERB>p</VERB> au sens des polynŽômes ou des entiers.
+      <VERB>p</VERB> au sens des polynômes ou des entiers.
   </P>
   <P>
     <VERB>[pp,fact]=lcm(p)</VERB> calcule de plus le vecteur <VERB>fact</VERB> tel que :

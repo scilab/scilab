@@ -44,9 +44,9 @@
     Cette fonction renvoie une matrice de taille <VERB>m</VERB>-par-<VERB>n</VERB> avec <VERB>m = size(x,&apos;*&apos;)</VERB>,
     <VERB>n = size(alpha,&apos;*&apos;)</VERB> dont la composante <VERB>(i,j)</VERB> vaut
     <VERB>besselk(alpha(j),x(i))</VERB>. </P>
-    <P>les fonctions de Bessel modifiŽée  K_alpha et  I_alpha (voir
-      <LINK>besseli</LINK>) sont deux solutions indŽépendantes de l'Žéquation de
-      Bessel modifiŽée :</P>
+    <P>les fonctions de Bessel modifiée  K_alpha et  I_alpha (voir
+      <LINK>besseli</LINK>) sont deux solutions indépendantes de l'équation de
+      Bessel modifiée :</P>
     <VERBATIM>
 <![CDATA[
           2               2        2
@@ -70,7 +70,7 @@ subplot(2,1,1)
    xtitle("Quelques fonctions de Bessel du second type")
 subplot(2,1,2)
    plot2d(x,ys, style=2:6, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
-   xtitle("Quelques fonctions normalisŽées de Bessel du second type")
+   xtitle("Quelques fonctions normalisées de Bessel du second type")
 
  ]]></EXAMPLE>
   <SEE_ALSO>

@@ -44,7 +44,7 @@
     <VERB>besselj(alpha(j),x(i))</VERB>.  </P>
 
      <P>Les fonctions de Bessel J_alpha et Y_alpha (voir <LINK>bessely</LINK>)
-      sont 2 solutions indŽépendantes de l'Žéquation diffŽérentielle de Bessel  :</P>
+      sont 2 solutions indépendantes de l'équation différentielle de Bessel  :</P>
     <VERBATIM>
 <![CDATA[
           2               2        2

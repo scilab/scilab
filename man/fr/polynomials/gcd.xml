@@ -15,7 +15,7 @@
   <PARAM_NAME>p  </PARAM_NAME>
   <PARAM_DESCRIPTION>
   <SP>
-    : vecteur ligne de polynômes <VERB>p=[p1,..,pn] ou d'entiers (type Žégal Žà 8)</VERB>
+    : vecteur ligne de polynômes <VERB>p=[p1,..,pn] ou d'entiers (type égal à 8)</VERB>
 </SP>
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
@@ -30,7 +30,7 @@
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-//cas des polynŽômes
+//cas des polynômes
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
 [pgcd,u]=gcd(p);

@@ -17,14 +17,14 @@
       <PARAM_ITEM>
 	<PARAM_NAME>path  </PARAM_NAME>
 	<PARAM_DESCRIPTION>
-	  <SP>: une chaîne de caractères fournissant le chemin du répertoire.</SP>
+	  <SP>: une chaîne de caractères fournissant le chemin du répertoire.</SP>
 	</PARAM_DESCRIPTION> 
       </PARAM_ITEM>
 
       <PARAM_ITEM>
         <PARAM_NAME>realpath</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: une chaîne de caractères, le chemin effectif après conversion
+          <SP>: une chaîne de caractères, le chemin effectif après conversion
 	    (voir ci-dessous)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -32,7 +32,7 @@
   </PARAM>
   <DESCRIPTION>
     <SP>
-      Change le répertoire courrant de Scilab par celui donné par la variable
+      Change le répertoire courrant de Scilab par celui donné par la variable
       <VERB>path</VERB>. Notez que le chemin fourni est converti. Ainsi
       <VERB>SCI/macros/util</VERB> est un chemin valide pour Unix et Windows.
     </SP>

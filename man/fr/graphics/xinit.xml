@@ -35,7 +35,7 @@
   <P>
     Pour les pilotes Postscript, Xfig ou Gif, <VERB>driver-name</VERB> est le nom d&apos;un fichier où tous les ordres graphiques sont enregistrés.
   </P>
-    <P>Dans le cas  Postscript case le fichier gŽénŽérŽé n'est pas un fichier
+    <P>Dans le cas  Postscript case le fichier généré n'est pas un fichier
       postscript complet. Il doit etre converti en utilisant les programmes
       shell  BEpsf ou Blatexpr  (voir printing)</P>
 
