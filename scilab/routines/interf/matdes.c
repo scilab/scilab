@@ -5536,8 +5536,20 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *) NULL)
 	{strcpy(error_message,"Object is not valid");return -1;}
-      if (sciGetEntityType (tmpobj) == SCI_SUBWIN)
+      if (sciGetEntityType (tmpobj) == SCI_SUBWIN){
+	sciPointObj * pfigure = NULL;
 	sciSetSelectedSubWin(tmpobj);
+	/* F.Leray 11.02.05 : if the new selected subwin is not inside the current figure, */
+	/* we must also set the current figure to subwin->parent */
+	pfigure = sciGetParentFigure(tmpobj);
+	
+	num=pFIGURE_FEATURE(pfigure)->number;
+	C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
+	if (sciSwitchWindow(&num) != 0){
+	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
+	}
+	/* End modif. on the 11.02.05 */
+      }
       else
 	{strcpy(error_message,"Object is not an Axes Entity");return -1;}
     }
