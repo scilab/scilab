@@ -3,7 +3,7 @@ function R=legend(varargin)
     error('This function cannot be used with old style graphics, see legends')
   end
   f=gcf()
-  vis=f.visible;
+  vis=f.immediate_drawing;
   narg=size(varargin)
   k0=1
   H=[]
@@ -152,7 +152,7 @@ function R=legend(varargin)
   draw(R)
   set('current_axes',Acur),
   drawnow()
-  f.visible=vis;
+  f.immediate_drawing=vis; // doublon ?
 endfunction
 function h=getvalidchildren(A)
   h=[]

@@ -35,8 +35,8 @@ if fstyle=='new' then
   a=gca();
   //autoc=stripblanks(a.auto_clear)
   //if autoc=="on" then %h_delete(a.children);a=gca(),end
-  v=fig.visible
-  fig.visible="off"
+  v=fig.immediate_drawing;
+  fig.immediate_drawing="off"
   fig.auto_clear="off"
   cnt=0
 end
@@ -63,5 +63,8 @@ end
 if fstyle=='new' then 
   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
 end
-if fstyle=='new' then fig.visible=v, fig.auto_clear=autoc;end
+if fstyle=='new' then
+ fig.immediate_drawing=v;
+ fig.auto_clear=autoc;
+end
 endfunction

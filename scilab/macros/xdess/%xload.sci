@@ -7,6 +7,7 @@ function %xload(fil,num)
   xload_mode=%t
   load(fil)
   f.visible='on'
-  draw(f)
+  f.immediate_drawing='on';
+//  draw(f)
 
 endfunction
