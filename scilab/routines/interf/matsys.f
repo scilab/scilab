@@ -2592,6 +2592,11 @@ c
       if(.not.getscalar('stacksize',top,top,l)) return
       top=top-1
 c
+      if (stk(l).lt.1000.or.stk(l).gt.2.0d0**31) then
+         buf='Out of bounds value for stacksize argument'
+         call error(1504)
+         return
+      endif
       mem=stk(l)
       memold=lstk(isiz)-lstk(1)
       if (mem.eq.memold) goto 50
