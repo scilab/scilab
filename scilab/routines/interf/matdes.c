@@ -5510,9 +5510,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /***********************************************/
   else if (strncmp(marker,"clip_box", 8) == 0)  { 
     /* On doit avoir avoir une matrice 4x1 */
-   /*  if (*numcol * *numrow == 4) */
-    sciSetClipping((sciPointObj *)pobj, stk(*value)); 
- /*    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;} */
+    if (*numcol * *numrow == 4)
+      sciSetClipping((sciPointObj *)pobj, stk(*value)); 
+    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
 	      
   } 
   else if (strncmp(marker,"clip_state", 9) == 0) {
