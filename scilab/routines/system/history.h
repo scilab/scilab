@@ -48,7 +48,7 @@ BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
 /*-----------------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr);
 void GetCommentDateSession(char *line,int BeginSession);
-void add_history_sci (char *line);
+void AddHistory (char *line);
 struct hist * SearchBackwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 struct hist * SearchForwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 /*-----------------------------------------------------------------------------------*/
