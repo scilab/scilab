@@ -16,9 +16,7 @@ end
 // f=gcf()
 if tree.lhs(1).name<>"ans" then
   f=tree.lhs(1)
-else
-  f=gettempvar()
+insert(Equal(list(f),Funcall("gcf",1,list(),list())),1)
 end
-insert(Equal(list(f),Funcall("gcf",1,list(),list())))
 tree.lhs(1).name="ans"
 endfunction
