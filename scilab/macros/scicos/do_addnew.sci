@@ -40,8 +40,9 @@ function [scs_m,fct]=do_addnew(scs_m)
     return
   end
   if ierror==4 then
-    irr=message(['Error in GUI function--could be an old GUI';
-	     'Should I try to translate (no garantee)?'],['yes','no'])
+    irr=message(['Error in GUI function--The error was:';
+		lasterror();'It could be an old GUI';
+	     'Should I try to translate (no guarantee)?'],['yes','no'])
     if irr==2 then fct=[];return
     else
       funcprot_val=funcprot()
