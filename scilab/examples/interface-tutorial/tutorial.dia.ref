@@ -10,7 +10,6 @@ files=G_make(["tutorial_gateway.o","tutorial.a", auxiliary],"void(Win)");
  
 addinter(files,"tutorial_gateway",scilab_functions);
 shared archive loaded
-
  
  
 //same as "exec tutorial.sce"
