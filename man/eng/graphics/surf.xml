@@ -206,7 +206,7 @@
     <P>Enter the command <VERB>surf</VERB> to see a demo.</P>
   </SECTION>
 
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
 // Z initialisation 
 
 Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
@@ -264,7 +264,7 @@ Z(1,4) = -2;
 surf(X,Y,Z)
 
 // example 3
-// X and Y are vectors => same behavior as sample 1
+// X and Y are vectors =&gt; same behavior as sample 1
 // With vectors, the grid is inevitably rectangular
 scf(5)// new figure number 5
 X=[ -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000];
@@ -290,12 +290,12 @@ surf(Z,'facecol','interp') // interpolated shading mode (color_flag == 3)
 scf(10)
 axfig10=gca();
 scf(11);
-surf(axfig10,Z,zdat',[100:109],'marker','d','markerfac','green','markeredg','yel') // draw onto the axe of figure 10
+surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','yel') // draw onto the axe of figure 10
 
 xdel(winsid())
 
  
-]]></EXAMPLE>
+</EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
