@@ -4,13 +4,13 @@ function []=velpic_build_and_load()
 // who has no write access in this directory 
 // we use TMPDIR 
   if ~c_link('testpt') then
-    cd = getcwd(); 
+    curdir = getcwd(); 
     chdir(TMPDIR); 
     unix_s('cp '+SCI+'/demos/velpic/*.f .'); 
     files = ['id_rgn.o','testpt.o' ];
     ilib_for_link(['testpt';'idrgn'],files,[],"f");
     exec loader.sce 
-    chdir(cd) 
+    chdir(curdir) 
   end
 endfunction 
 velpic_build_and_load() 
