@@ -8,9 +8,13 @@
 In this directory we provide a small example of a java class 
 which use the Scilab interpreter to perform matrix computation 
 
-This example was only tested under linux: Red Hat 7.0 linux and 
-Java(TM) 2 Runtime Environment, Standard Edition (build 1.3.0)
-Java HotSpot(TM) Client VM (build 1.3.0, mixed mode). 
+This example was only tested under linux: 
+
+	Red Hat 7.0 linux and 
+	Java(TM) 2 Runtime Environment, Standard Edition (build 1.3.0)
+	Java HotSpot(TM) Client VM (build 1.3.0, mixed mode). 
+	Red Hat 7.1 linux and 
+	Java(TM) 2 Runtime Environment, Standard Edition (build 1.3.1)
 
 To make it run you have to edit the Makefile 
 and change the SCIDIR variable to fit your local Scilab installation 
@@ -20,13 +24,18 @@ and change in CFLAGS the include path associated to java
 (on my local installation it was 
  -I/usr/local/jdk1.3/include -I/usr/local/jdk1.3/include/linux ) 
 
+If you intend to just build the librairie  libjavasci.so 
+and use it from an other directory then take care to 
+change the SCIDIR pathname in the Makefile to an absolute 
+pathname. 
+
 Then type 
 	make distclean 
 	javac JavaSciMatrix.java 
 	make all 
 
 	setenv LD_LIBRARY_PATH `pwd`
-	java JavaciMatrix 
+	java JavaSciMatrix 
 
 That's all 
 
