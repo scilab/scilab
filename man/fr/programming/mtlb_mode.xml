@@ -27,29 +27,29 @@
     Les additions et soustractions fonctionnent différemment dans Scilab et Matlab quand un des opérandes est une matrice vide :
   </P>
  <DESCRIPTION_INDENT>
-
-  <DESCRIPTION_ITEM  label='Scilab'> 
-  <SP>
-    :
-</SP>
-  </DESCRIPTION_ITEM>
-  <VERBATIM><![CDATA[
+      <DESCRIPTION_ITEM label="Scilab">
+        <SP>:</SP>
+        <VERBATIM>
+<![CDATA[
 a+[] -->a
 a-[] -->a
 []+a -->a
 []-a -->-a
-   ]]></VERBATIM>
-
-  <DESCRIPTION_ITEM  label='Matlab'> 
-  </DESCRIPTION_ITEM>
-</DESCRIPTION_INDENT>
-  <VERBATIM><![CDATA[
+   ]]>
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="Matlab">
+        <VERBATIM>
+<![CDATA[
 a+[] -->[]
 a-[] -->[]
 []+a -->[]
 []-a -->[]
-   ]]></VERBATIM>
+   ]]>
 
+        </VERBATIM>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   <P>
     <VERB> mtlb_mode(%t)</VERB> passe au mode de compatibilité Matlab pour les additions et les soustractions. <VERB> mtlb_mode(%f)</VERB> retourne au mode Scilab.
   </P>
