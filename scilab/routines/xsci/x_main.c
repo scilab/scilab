@@ -115,6 +115,7 @@ static int  no_startup_flag=0;
 static int  memory = MIN_STACKSIZE;
 static int  no_window = 0;
 static char * initial_script = NULL;
+static int  initial_script_type = 0; /* 0 means filename 1 means code */
 extern void settexmacs();
 void C2F(realmain)()
 {
@@ -142,6 +143,11 @@ void C2F(realmain)()
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
+      else if ( strcmp(argv[i],"-e") == 0) 
+	{
+	  initial_script = argv[++i];
+	  initial_script_type = 1;
+	} 
       else if ( strcmp(argv[i],"-pipes") == 0) 
 	{
 	  int p1,p2;
@@ -167,8 +173,19 @@ void C2F(realmain)()
     {
       /* execute a startup */
       if ( initial_script != NULL ) 
-	sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
-		initial_script);
+	{
+	  switch ( initial_script_type ) 
+	    {
+	    case 0 : 
+	      sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
+		      initial_script);
+	      break;
+	    case 1 : 
+	      sprintf(startup,"%s;%s;",get_sci_data_strings(1),
+		      initial_script);
+	      break;
+	    }
+	}
       else 
 	sprintf(startup,"%s;",get_sci_data_strings(1));
     }
@@ -176,7 +193,13 @@ void C2F(realmain)()
     {
       /* No startup but maybe an initial script  */
       if ( initial_script != NULL ) 
-	sprintf(startup,"exec('%s',-1)",initial_script);
+	  switch ( initial_script_type ) 
+	    {
+	    case 0 : 
+	      sprintf(startup,"exec('%s',-1)",initial_script); break;
+	    case 1 : 
+	      sprintf(startup,"%s;",initial_script);   break;
+	    }
       else 
 	sprintf(startup," ");
     }

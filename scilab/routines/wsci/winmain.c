@@ -290,7 +290,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 #endif
 {
   LPSTR tail;
-  int nowin = 0, argcount = 0, lpath = 0;
+  int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
   char *path = NULL;
   OSVERSIONINFO os;
 #if (defined __GNUC__) || (defined __ABSC__)	/* arguments are in szCmdline */
@@ -407,6 +407,12 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	  path = _argv[argcount + 1];
 	  lpath = strlen (_argv[argcount + 1]);
 	}
+      else if (strcmp (_argv[argcount], "-e") == 0 && argcount + 1 < _argc)
+	{
+	  path = _argv[argcount + 1];
+	  lpath = strlen (_argv[argcount + 1]);
+	  pathtype=1;
+	}
       else if ( strcmp(_argv[argcount],"-mem") == 0 && argcount + 1 < _argc)
 	{ memory = Max(atoi( _argv[argcount + 1]),MIN_STACKSIZE );} 
     }
@@ -420,7 +426,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
   if (nowin == 1)
     {
 /** XXXX AllocConsole(); **/
-      sci_windows_main (nowin, &startupf, path, &lpath,memory);
+      sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
     }
   else
     {
@@ -431,7 +437,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
       SetXsciOn ();
 /** XXX **/
       ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
-      sci_windows_main (nowin, &startupf, path, &lpath,memory);
+      sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
     }
   return 0;
 }

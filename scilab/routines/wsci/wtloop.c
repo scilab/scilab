@@ -56,7 +56,8 @@ extern void C2F (tmpdirc) (void);
 extern void C2F (getenvc) (int *ierr, char *var, char *buf, int *buflen, int *iflag);
 extern char *get_sci_data_strings (int n);
 static void interrupt_setup ();
-static void realmain (int nos,char *initial_script, int lpath,int memory);
+static void realmain (int nos,char *initial_script,int pathtype,
+		      int lpath,int memory);
 static int sci_exit(int n) ;
 extern int C2F(sciquit)(void );
 extern int C2F(scirun)(char * startup, int lstartup);
@@ -107,7 +108,8 @@ interrupt_setup (void)
 }
 
 void 
-sci_windows_main (int nowin, int *nos, char *path, int *lpath,int memory)
+sci_windows_main (int nowin, int *nos, char *path,int pathtype,
+		  int *lpath,int memory)
 {
 #ifdef XPG3_LOCALE
   (void) setlocale (LC_CTYPE, "");
@@ -128,13 +130,14 @@ sci_windows_main (int nowin, int *nos, char *path, int *lpath,int memory)
 #ifdef TEST
   testloop ();
 #else
-  realmain (*nos, path,*lpath,memory);
+  realmain (*nos, path,pathtype,*lpath,memory);
 #endif
 }
 
 static int  no_startup_flag=0;
 
-static void realmain(int nos,char *initial_script, int lpath,int memory)
+static void realmain(int nos,char *initial_script,int initial_script_type,
+		     int lpath,int memory)
 {
   int ierr;
   static int ini=-1;
@@ -156,8 +159,19 @@ static void realmain(int nos,char *initial_script, int lpath,int memory)
       /* execute a startup */
       no_startup_flag = 0;
       if ( initial_script != NULL ) 
-	sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
-		initial_script);
+	{
+	  switch ( initial_script_type ) 
+	    {
+	    case 0 : 
+	      sprintf(startup,"%s;exec('%s',-1)",get_sci_data_strings(1),
+		      initial_script);
+	      break;
+	    case 1 : 
+	      sprintf(startup,"%s;%s;",get_sci_data_strings(1),
+		      initial_script);
+	      break;
+	    }
+	}
       else 
 	sprintf(startup,"%s;",get_sci_data_strings(1));
     }
@@ -166,7 +180,13 @@ static void realmain(int nos,char *initial_script, int lpath,int memory)
       /* No startup but maybe an initial script  */
       no_startup_flag = 1;
       if ( initial_script != NULL ) 
-	sprintf(startup,"exec('%s',-1)",initial_script);
+	  switch ( initial_script_type ) 
+	    {
+	    case 0 : 
+	      sprintf(startup,"exec('%s',-1)",initial_script); break;
+	    case 1 : 
+	      sprintf(startup,"%s;",initial_script);   break;
+	    }
       else 
 	sprintf(startup," ");
     }
