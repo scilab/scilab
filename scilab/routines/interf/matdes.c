@@ -4823,8 +4823,13 @@ int gset(fname,fname_len)
       return 0;
       break;
     }
+
   if ( (hdl != (unsigned long)0) ) { /* F.Leray 16.03.04*/
     pobj = sciGetPointerFromHandle(hdl);
+    if (pobj == (sciPointObj *)NULL) {
+      Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+      return 0;
+    }
     vis_save=sciGetVisibility(pobj); /*used not to redraw the figure is object remains invisible SS 20.04.04*/
     /* make a test on SCI_SURFACE here*/
     if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
@@ -4997,6 +5002,8 @@ int gget(fname,fname_len)
 	    return 0;
 	}
     }
+    else
+      Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
   }
   LhsVar(1)=Rhs+1;
   return 0;
@@ -5148,7 +5155,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*************************** Handles Properties ********/
   else if (strncmp(marker,"current_obj", 11) == 0) 
     {
-      sciSetCurrentObj((sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]));
+      tmpobj=(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
+      if (tmpobj == (sciPointObj *)NULL) 
+	{strcpy(error_message,"Object is not valid");return -1;}
+      sciSetCurrentObj(tmpobj);
     }
   else if (strncmp(marker,"current_axes", 12) == 0) 
     {
@@ -7393,8 +7403,12 @@ int addcb(fname,fname_len)
                 break;
      
          }
-	  if ((pobj = sciGetPointerFromHandle(hdl)) != NULL );
-	       sciAddCallback((sciPointObj *)pobj, cstk(l1),m1*n1,*istk(l2));
+	  if ((pobj = sciGetPointerFromHandle(hdl)) != NULL )
+	    sciAddCallback((sciPointObj *)pobj, cstk(l1),m1*n1,*istk(l2));
+	  else {
+	    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	    return 0;
+	  }
         LhsVar(1)=0;
 	return 0;
 }
@@ -7421,6 +7435,10 @@ int copy(fname,fname_len)
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
       hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
+      if (pobj == NULL) {
+	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	return 0;
+      }
       psubwinparenttarget = sciGetParentSubwin(sciGetPointerFromHandle(hdl));
     }
   else
@@ -7428,9 +7446,17 @@ int copy(fname,fname_len)
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
       hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
+      if (pobj == NULL) {
+	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	return 0;
+      }
       GetRhsVar(2,"h",&m1,&n1,&l2); /* Gets the command name */
       hdlparent = (unsigned long)*stk(l2); /* on recupere le pointeur d'objet par le handle*/
       psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
+      if ( psubwinparenttarget == NULL) {
+	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	return 0;
+      }
     }
   numrow   = 1;numcol   = 1;
   CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
@@ -7504,6 +7530,10 @@ int glue(fname,fname_len)
     {
       handelsvalue[i] = (long) (stk(l1))[i];
       pobj = sciGetPointerFromHandle(handelsvalue[i]);
+      if (pobj == NULL) {
+	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	return 0;
+      }
       parenthdl = (unsigned long ) sciGetHandle(sciGetParent (pobj));
       if (i == 0)
 	hdl=parenthdl;
@@ -7542,6 +7572,10 @@ int unglue(fname,fname_len)
   GetRhsVar(1,"h",&m1,&n1,&l1);
   hdl = (unsigned long)*stk(l1);
   pobj = sciGetPointerFromHandle(hdl);
+  if (pobj == NULL) {
+    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+    return 0;
+  }
   if (sciGetEntityType (pobj) == SCI_AGREG)
     {
       psonstmp = sciGetLastSons (pobj);
@@ -7601,6 +7635,10 @@ int drawnow(fname,fname_len)
 	    for (i = 0; i < n*m; i++)
 	      {
 		subwin = (sciPointObj*) sciGetPointerFromHandle((long)*stk(l+i)); 
+		if (subwin == NULL) {
+		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+		  return 0;
+		}
 		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
 		  return 0;
@@ -7675,7 +7713,11 @@ int scixclearsubwin(fname,fname_len)
 	GetRhsVar(1,"h",&m,&n,&l); 
 	for (i = 0; i < n*m; i++) {
 	  hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
-	  subwin = sciGetPointerFromHandle(hdl);   
+	  subwin = sciGetPointerFromHandle(hdl);  
+	  if (subwin == NULL) {
+	    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	    return 0;
+	  } 
 	  if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 	    Scierror(999,"%s:  handle does not reference a sub_window",fname);
 	    return 0;
@@ -7749,6 +7791,10 @@ int scixbascsubwin(fname,fname_len)
 	  {
             hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
             subwin = sciGetPointerFromHandle(hdl);   
+	    if (subwin == NULL) {
+	      Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+	      return 0;
+	    }
             if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 	      Scierror(999,"%s:  handle does not reference a sub_window",fname);
 	      return 0;
