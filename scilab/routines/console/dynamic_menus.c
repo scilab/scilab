@@ -226,8 +226,9 @@ int C2F(openbrowser) _PARAMS((char *fname))
 	int m1,n1,l1;
 	int out_n;
 	long int lout;
+	#ifdef WIN32
 	HINSTANCE error=NULL;
-
+	#endif
 	CheckRhs(1,1);
   
 	/*  checking variable file */
