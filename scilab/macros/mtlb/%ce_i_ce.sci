@@ -4,9 +4,9 @@ function M=%ce_i_ce(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
-dims=M('dims')(:);
+dims=double(M.dims(:));
 
-v=M('entries');
+v=M.entries;
 
 Ndims=rhs-2
 nd=size(dims,'*')
