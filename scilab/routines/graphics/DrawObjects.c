@@ -8319,13 +8319,13 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
   case 1:
     /* represents a plus with editable foreground */
     for(i=0;i<n1;i++)
-      DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
+      DrawMark_Plus(xm[i], ym[i], (int)(size/2), foreground, pixel_offset);
     
     break;
   case 2:
     /* represents a cross with editable foreground */
     for(i=0;i<n1;i++)
-	DrawMark_Cross(xm[i], ym[i], size/2, foreground, pixel_offset);
+	DrawMark_Cross(xm[i], ym[i], (int)(size/2), foreground, pixel_offset);
     
     break;
   case 3:
@@ -8334,39 +8334,39 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
     for(i=0;i<n1;i++)
       {
 	DrawMark_FullDot(xm[i], ym[i], size_minus_one, foreground, background, pixel_offset);
-	DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
+	DrawMark_Plus(xm[i], ym[i], (int)(size/2), foreground, pixel_offset);
       }
     break;
   case 4:
     /* represents a diamond with background == foreground  */
     for(i=0;i<n1;i++)
-      DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, foreground);
+      DrawMark_FullDiamond(xm[i], ym[i], (int)(size/2), foreground, foreground);
 
     break;
   case 5:
     /* represents a diamond with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, background);
+      DrawMark_FullDiamond(xm[i], ym[i], (int)(size/2), foreground, background);
     
     break;
   case 6:
     /* represents an upward-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullTriangleUp(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullTriangleUp(xm[i], ym[i], (int)size, foreground, background);
     
     break;
   case 7:
     /* represents a downward-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullTriangleDown(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullTriangleDown(xm[i], ym[i], (int)size, foreground, background);
     
     break;
   case 8:
     /* represents a diamond with a plus inside with both editable foreground and background  */
     for(i=0;i<n1;i++)
       {	
-	DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, background);
-	DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
+	DrawMark_FullDiamond(xm[i], ym[i], (int)(size/2), foreground, background);
+	DrawMark_Plus(xm[i], ym[i], (int)(size/2), foreground, pixel_offset);
       }
     break;
   case 9:
@@ -8378,31 +8378,31 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym, int *DPI)
   case 10:
     /* Asterix case : we can modify only the foreground (background changes have no impact) */
     for(i=0;i<n1;i++)
-      DrawMark_Asterisk(xm[i], ym[i], size/2, foreground, pixel_offset);
+      DrawMark_Asterisk(xm[i], ym[i],(int) (size/2), foreground, pixel_offset);
     
     break;
   case 11:
     /* represents a square with editable foreground and background */
     for(i=0;i<n1;i++)
-      DrawMark_FullSquare(xm[i], ym[i], size_minus_one, foreground, background, pixel_offset);
+      DrawMark_FullSquare(xm[i], ym[i],(int) size_minus_one, foreground, background, pixel_offset);
 
     break;
   case 12:
     /* represents a right-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullTriangleRight(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullTriangleRight(xm[i], ym[i],(int) size, foreground, background);
     
     break;
   case 13:
     /* represents a left-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullTriangleLeft(xm[i], ym[i], size, foreground, background);
+      DrawMark_FullTriangleLeft(xm[i], ym[i],(int) size, foreground, background);
 
     break;
   case 14:
     /* represents a pentagram with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      DrawMark_FullPentagram(xm[i], ym[i], size/2, foreground, background);
+      DrawMark_FullPentagram(xm[i], ym[i], (int)(size/2), foreground, background);
 
     break;
   default:
@@ -8698,7 +8698,7 @@ int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offs
   int deux = 2;
   int xmasterix[2];
   int ymasterix[2];
-  int sizecross = 0.8*size;
+  int sizecross = (int)(0.8*size);
   int x[4],v,closeflag=0;
   double dv;
   
@@ -8720,18 +8720,18 @@ int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offs
   /* end */
 
   /* the "/" */
-  xmasterix[0] = xmi - ceil(sizecross);
-  xmasterix[1] = xmi + ceil(sizecross)+pixel_offset;
-  ymasterix[0] = ymi + ceil(sizecross);
-  ymasterix[1] = ymi - ceil(sizecross)-pixel_offset;
+  xmasterix[0] =(int)( xmi - ceil(sizecross));
+  xmasterix[1] =(int)( xmi + ceil(sizecross)+pixel_offset);
+  ymasterix[0] = (int)(ymi + ceil(sizecross));
+  ymasterix[1] = (int)(ymi - ceil(sizecross)-pixel_offset);
   C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
   /* end */
 	
   /* the "\" */
-  xmasterix[0] = xmi - ceil(sizecross);
-  xmasterix[1] = xmi + ceil(sizecross)+pixel_offset;
-  ymasterix[0] = ymi - ceil(sizecross);
-  ymasterix[1] = ymi + ceil(sizecross)+pixel_offset;
+  xmasterix[0] = (int)(xmi - ceil(sizecross));
+  xmasterix[1] = (int)(xmi + ceil(sizecross)+pixel_offset);
+  ymasterix[0] = (int)(ymi - ceil(sizecross));
+  ymasterix[1] = (int)(ymi + ceil(sizecross)+pixel_offset);
   C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
   /* end */
 
@@ -8849,36 +8849,36 @@ int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int backg
 	
   double r2 = size*cos(72*M_PI/180)/cos(36*M_PI/180);
 
-  xmpoints1[0] = xmi - size*cos(54*M_PI/180);
-  ympoints1[0] = ymi + size*sin(54*M_PI/180);
+  xmpoints1[0] = (int)(xmi - size*cos(54*M_PI/180));
+  ympoints1[0] = (int)(ymi + size*sin(54*M_PI/180));
 	
-  xmpoints1[1] = xmi + size*cos(54*M_PI/180);
-  ympoints1[1] = ymi + size*sin(54*M_PI/180);
+  xmpoints1[1] = (int)(xmi + size*cos(54*M_PI/180));
+  ympoints1[1] = (int)(ymi + size*sin(54*M_PI/180));
 	
-  xmpoints1[2] = xmi + (xmpoints1[1] - xmi) *cos(72*M_PI/180) + (ympoints1[1] - ymi) *sin(72*M_PI/180);
-  ympoints1[2] = ymi - (xmpoints1[1] - xmi) *sin(72*M_PI/180) + (ympoints1[1] - ymi) *cos(72*M_PI/180);
+  xmpoints1[2] = (int)(xmi + (xmpoints1[1] - xmi) *cos(72*M_PI/180) + (ympoints1[1] - ymi) *sin(72*M_PI/180));
+  ympoints1[2] = (int)(ymi - (xmpoints1[1] - xmi) *sin(72*M_PI/180) + (ympoints1[1] - ymi) *cos(72*M_PI/180));
 
   xmpoints1[3] = xmi;
   ympoints1[3] = ymi - size;
 
-  xmpoints1[4] = xmi + (xmpoints1[0] - xmi) *cos(-72*M_PI/180) + (ympoints1[0] - ymi) *sin(-72*M_PI/180);
-  ympoints1[4] = ymi - (xmpoints1[0] - xmi) *sin(-72*M_PI/180) + (ympoints1[0] - ymi) *cos(-72*M_PI/180);
+  xmpoints1[4] = (int)(xmi + (xmpoints1[0] - xmi) *cos(-72*M_PI/180) + (ympoints1[0] - ymi) *sin(-72*M_PI/180));
+  ympoints1[4] = (int)(ymi - (xmpoints1[0] - xmi) *sin(-72*M_PI/180) + (ympoints1[0] - ymi) *cos(-72*M_PI/180));
 
 	
-  xmpoints2[0] = xmi - r2*sin(36*M_PI/180);
-  ympoints2[0] = ymi - size*cos(72*M_PI/180);
+  xmpoints2[0] = (int)( xmi - r2*sin(36*M_PI/180));
+  ympoints2[0] = (int)(ymi - size*cos(72*M_PI/180));
 
-  xmpoints2[1] = xmi + r2*sin(36*M_PI/180);
-  ympoints2[1] = ymi - size*cos(72*M_PI/180);
+  xmpoints2[1] = (int)(xmi + r2*sin(36*M_PI/180));
+  ympoints2[1] = (int)(ymi - size*cos(72*M_PI/180));
 
-  xmpoints2[2] = xmi + (xmpoints2[1] - xmi)*cos(-72*M_PI/180) + (ympoints2[1] - ymi) *sin(-72*M_PI/180);
-  ympoints2[2] = ymi - (xmpoints2[1] - xmi)*sin(-72*M_PI/180) + (ympoints2[1] - ymi) *cos(-72*M_PI/180);
+  xmpoints2[2] = (int)(xmi + (xmpoints2[1] - xmi)*cos(-72*M_PI/180) + (ympoints2[1] - ymi) *sin(-72*M_PI/180));
+  ympoints2[2] = (int)(ymi - (xmpoints2[1] - xmi)*sin(-72*M_PI/180) + (ympoints2[1] - ymi) *cos(-72*M_PI/180));
 
   xmpoints2[3] = xmi;
-  ympoints2[3] = ymi + r2;
+  ympoints2[3] = (int)(ymi + r2);
 
-  xmpoints2[4] = xmi + (xmpoints2[0] - xmi)*cos(72*M_PI/180) + (ympoints2[0] - ymi) *sin(72*M_PI/180);
-  ympoints2[4] = ymi - (xmpoints2[0] - xmi)*sin(72*M_PI/180) + (ympoints2[0] - ymi) *cos(72*M_PI/180);
+  xmpoints2[4] = (int)(xmi + (xmpoints2[0] - xmi)*cos(72*M_PI/180) + (ympoints2[0] - ymi) *sin(72*M_PI/180));
+  ympoints2[4] = (int)(ymi - (xmpoints2[0] - xmi)*sin(72*M_PI/180) + (ympoints2[0] - ymi) *cos(72*M_PI/180));
 
 	
   xmpoints[0] = xmpoints2[4];
@@ -8944,31 +8944,31 @@ int GetDPIFromDriver(int * DPI)
       succeed = GetScreenDPI(&ixres,&iyres);
       if(succeed == -1){
 	/* gtk version <2 enabled */
-	ixres = 72.; /* default value*/
-	iyres = 72.; /* default value*/
+	ixres = (int)72.; /* default value*/
+	iyres = (int)72.; /* default value*/
       }
       break;
     case 1: /* Pos */
       /*       printf("DRIVERS POS enabled -- -- -- --\n"); */
       /* when using Pos driver, the output file is 6000x4240 pixels */
       /* computed DPI: height : 6000/(30cm/2.54) = 508 ; width: 4240/(21.20/2.54) = 508 */
-      ixres = 524.*1.5;
-      iyres = 524.*1.5;
+      ixres = (int)(524.*1.5);
+      iyres = (int)(524.*1.5);
       break;
     case 2: /* Fig. */
       /*       printf("DRIVERS FIG enabled -- -- -- --\n"); */
       /* when using Pos driver, the output file is 6000x4240 pixels */
       /* computed DPI: height : 9600/(8inches) = 1200 ; width: 6784/(5.7inches) = 1190 */
-      ixres = 1200.;
-      iyres = 1190.;
+      ixres = (int)1200.;
+      iyres = (int)1190.;
       break;
     case 3: /* Gif & PPM driver */ /* NOT SURE: may be 72. avery time... */
     default:
       succeed = GetScreenDPI(&ixres,&iyres);
       if(succeed == -1){
 	/* gtk version <2 enabled */
-	ixres = 72.; /* default value*/	
-	iyres = 72.; /* default value*/
+	ixres = (int)72.; /* default value*/	
+	iyres = (int)72.; /* default value*/
       }
       break;
     }
