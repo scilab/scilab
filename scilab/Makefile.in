@@ -57,8 +57,7 @@ distclean::
 
 distclean::
 	@cd pvm3; echo "making distclean in pvm3..."; \
-	$(MAKE) $(MFLAGS) distclean;
-
+	$(MAKE) $(MFLAGS) super_distclean;
 
 clean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \

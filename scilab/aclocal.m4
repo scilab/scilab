@@ -148,16 +148,21 @@ for e in $libexts; do
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
 				saved_cppflags="$CPPFLAGS"
-				CFLAGS=$CFLAGS" $TCL_INC_PATH"
-				CPPFLAGS=$CPPFLAGS" $TCL_INC_PATH"
+				CFLAGS="$CFLAGS $TCL_INC_PATH"
+				CPPFLAGS="$CPPFLAGS $TCL_INC_PATH"
 				LDFLAGS=$LDFLAGS
-				TCL_LDFLAGS=$X_LIBS" $X_EXTRA_LIBS $TCLTK_LIBS"
+				TCL_LDFLAGS="$X_LIBS $X_EXTRA_LIBS $TCLTK_LIBS"
+				TCL_LIB_OK=1
 				# Check for Tcl lib
 				if test "$USER_TCL_LIB_PATH" = ""
-				then AC_CHECK_LIB([$NAME_LIB_TCL], Tcl_DoOneEvent, TCL_LIB_OK=1,TCL_LIB_OK=0,
-						  [ -L$PATH_LIB_TCL -l$NAME_LIB_TCL $TCL_LDFLAGS])
-				else AC_CHECK_LIB([$NAME_LIB_TCL], Tcl_DoOneEvent, TCL_LIB_OK=1,TCL_LIB_OK=0,
-						  [ -L$USER_TCL_LIB_PATH -l$NAME_LIB_TCL $TCL_LDFLAGS])
+				then 
+					LDFLAGS="$LDFLAGS -L$PATH_LIB_TCL"
+					AC_CHECK_LIB([$NAME_LIB_TCL], Tcl_DoOneEvent, TCL_LIB_OK=1,TCL_LIB_OK=0,
+						  [-l$NAME_LIB_TCL $TCL_LDFLAGS])
+				else 
+					LDFLAGS="$LDFLAGS -L$USER_TCL_LIB_PATH"
+					AC_CHECK_LIB([$NAME_LIB_TCL], Tcl_DoOneEvent, TCL_LIB_OK=1,TCL_LIB_OK=0,
+						  [-l$NAME_LIB_TCL $TCL_LDFLAGS])
 				fi
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
@@ -202,7 +207,7 @@ CHK_TK_MINOR=$3
 CHK_TK_INC_NAME=$4
 saved_cflags="$CFLAGS"
 saved_cppflags="$CPPFLAGS"
-CFLAGS="$CFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
+CFLAGS="$CFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 CPPFLAGS="$CPPFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
 AC_GREP_CPP(TK_VERSION_OK,
@@ -306,16 +311,20 @@ for e in $libexts; do
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
 				saved_cppflags="$CPPFLAGS"
-				CFLAGS=$CFLAGS" $TK_INC_PATH"
-				CPPFLAGS=$CPPFLAGS" $TK_INC_PATH"
+				CFLAGS="$CFLAGS $TK_INC_PATH"
+				CPPFLAGS="$CPPFLAGS $TK_INC_PATH"
 				LDFLAGS=$LDFLAGS
-				TK_LDFLAGS=$X_LIBS" $X_EXTRA_LIBS $TCLTK_LIBS"
+				TK_LDFLAGS="$X_LIBS $X_EXTRA_LIBS $TCLTK_LIBS"
 				# Check for Tcl lib
 				if test "$USER_TK_LIB_PATH" = ""
-				then AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [ -L$PATH_LIB_TK -l$NAME_LIB_TK $TK_LDFLAGS $TK_PLUS])
-				else AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
-						  [ -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS $TK_PLUS])
+				then
+					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$PATH_LIB_TK"
+					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
+						  [-l$NAME_LIB_TK $TK_PLUS])
+				else
+					LDFLAGS="$LDFLAGS $TK_LDFLAGS -L$USER_TK_LIB_PATH" 
+					AC_CHECK_LIB([$NAME_LIB_TK], Tk_BindEvent, TK_LIB_OK=1,TK_LIB_OK=0,
+						  [-l$NAME_LIB_TK $TK_PLUS])
 				fi
 				CFLAGS="$saved_cflags"
 				CPPFLAGS="$saved_cppflags"
