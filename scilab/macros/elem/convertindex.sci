@@ -28,12 +28,13 @@ function [Newdims,I]=convertindex(dims,varargin)
     if size(ik,'*')>1 then
       ik=ik(:)
       if size(I,'*')>1 then
-	I=(Newdims(k)*I).*.ones(ik)+ones(I).*.(ik-1)+1   //add +1
+	I=(Newdims(k)*I).*.ones(ik)+ones(I).*.(ik-1);
       else
-	I=Newdims(k)*I+ik;   //was ik-1;
+	I=Newdims(k)*I+ik-1;
       end
     else
-      I=Newdims(k)*I+ik     //was ik-1;
+      I=Newdims(k)*I+ik-1;
     end
   end
+I=I+1
 endfunction
