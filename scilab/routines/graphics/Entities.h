@@ -788,14 +788,10 @@ sciRectangle;  /** */
 typedef enum
 {
 	SCI_FAC3D,
-	SCI_FAC3D1,
-	SCI_FAC3D2,
-	SCI_FAC3D3,
 	SCI_CONTOUR,
 	SCI_PARAM3D,
 	SCI_PARAM3D1,
 	SCI_PLOT3D,
-	SCI_PLOT3D1
 }
 sciTypeOf3D;
 
@@ -824,6 +820,7 @@ typedef struct
                         0: uniformed color
                        1: facet's color are computed with z*/ 
   sciTypeOf3D typeof3d;
+
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  
@@ -1329,7 +1326,7 @@ extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D t
 				  double * pvecx, double * pvecy, double * pvecz,
 				  integer *zcol, integer izcol, integer dimzx, integer dimzy, 
                                   double theta, double alpha, 
-                                  char *legend, integer *flag, double *ebox);
+                                  char *legend, integer *flag, double *ebox, integer flagcolor);
 extern int DestroySurface (sciPointObj * pthis);
 extern sciPointObj *ConstructAxis (sciPointObj * pparentfigure,char *strflag,int style,
 				   double minx, double miny, double minz,

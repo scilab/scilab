@@ -5372,38 +5372,126 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
       if (*numrow * *numcol != 3)
 	{strcpy(error_message,"Second argument must have 3 elements ");return -1;}
-      for (i=0;i<6;i++) {
+      for (i=0;i<3;i++) {
 	pSURFACE_FEATURE (pobj)->flag[i]= stk(*value)[i];
       }
     }
     else
-      {strcpy(error_message,"flags property does not exist for this handle");return -1;}
+      {strcpy(error_message,"flag property does not exist for this handle");return -1;}
   }
-  else if (strcmp(marker,"surface_color") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE && 
-	pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1)  {
-      if (*numrow * *numcol ==1 ){
-	pSURFACE_FEATURE (pobj)->izcol=0;
-	pSURFACE_FEATURE (pobj)->zcol[0]= (int)*stk(*value);
+  else if (strcmp(marker,"color_flag") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      if (*numrow * *numcol != 1)
+	{strcpy(error_message,"Second argument must have 1 elements ");return -1;}
+      if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_PLOT3D) {
+	if ((*stk(*value)<0)||(*stk(*value)>1))
+	  {strcpy(error_message,"Second argument must be equal to 0 or 1");return -1;}
+	pSURFACE_FEATURE (pobj)->flagcolor= stk(*value)[0];
       }
-      else if (*numrow == pSURFACE_FEATURE (pobj)->dimzx && 
-	       *numcol == pSURFACE_FEATURE (pobj)->dimzy ){
-	pSURFACE_FEATURE (pobj)->izcol=1;
-	for (i=0;i<(*numcol* *numrow);i++) {
-	  pSURFACE_FEATURE (pobj)->zcol[i] = (int)stk(*value)[i];;
+      else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
+	int oldflagcolor,N,j,flagcolor=stk(*value)[0];
+	int *zcol;
+	if ((*stk(*value)<0)||(*stk(*value)>3))
+	  {strcpy(error_message,"Second argument must be 0 1 2 or 3");return -1;}
+
+	if (pSURFACE_FEATURE (pobj)->flagcolor == stk(*value)[0])
+	  return 0;
+	oldflagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
+        if (oldflagcolor < 2  && flagcolor < 2) {}
+        else if (flagcolor < 2) {
+	  FREE(pSURFACE_FEATURE(pobj)->zcol);
+	}
+
+	else if (oldflagcolor < 2 && flagcolor ==3) {
+	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+	    strcpy(error_message,"Not enough memory");
+	    return -1;
+	  }
+	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
+	  for (i=0;i<N;i++) 
+	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
+	  pSURFACE_FEATURE (pobj)->izcol=1;
+	}
+	else if (oldflagcolor < 2 && flagcolor ==2) {
+	  N=pSURFACE_FEATURE (pobj)->dimzy;
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL) {
+	    strcpy(error_message,"Not enough memory");
+	    return -1;
+	  }
+	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
+	  for (i=0;i<N;i++) 
+	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
+	  pSURFACE_FEATURE (pobj)->izcol=1;
+	}
+	else if (oldflagcolor == 2 && flagcolor ==3) {
+	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
+	  zcol=pSURFACE_FEATURE(pobj)->zcol;
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+	    strcpy(error_message,"Not enough memory");
+	    pSURFACE_FEATURE(pobj)->zcol=zcol;
+	    return -1;
+	  }
+	  for (i=0;i<pSURFACE_FEATURE(pobj)->dimzy;i++) {
+	    for (j=0;j<pSURFACE_FEATURE(pobj)->dimzx;j++) 
+	      pSURFACE_FEATURE(pobj)->zcol[(pSURFACE_FEATURE (pobj)->dimzx)*i+j]=zcol[i];
+	  }
+	}
+	else if (oldflagcolor == 3 && flagcolor ==2) {
+	  N=pSURFACE_FEATURE (pobj)->dimzy;
+	  zcol=pSURFACE_FEATURE(pobj)->zcol;
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+	    strcpy(error_message,"Not enough memory");
+	    pSURFACE_FEATURE(pobj)->zcol=zcol;
+	    return -1;
+	  }
+	  for (i=0;i<N;i++) {
+	    dtmp=0.0;
+	    for (j=0;j<pSURFACE_FEATURE(pobj)->dimzx;j++) 
+	      dtmp=dtmp+zcol[(pSURFACE_FEATURE (pobj)->dimzx)*i+j];
+	    pSURFACE_FEATURE(pobj)->zcol[i]= (int)(dtmp/pSURFACE_FEATURE(pobj)->dimzx);
+	  }
+	}
+	pSURFACE_FEATURE (pobj)->flagcolor= flagcolor;
+      }
+    }
+    else
+      {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
+  }
+
+  else if (strcmp(marker,"surface_color") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) { 
+      if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1)  {
+	strcpy(error_message,"surface_color cannot be set in this case");
+	return -1;
+      }
+      else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)  {
+	strcpy(error_message,"surface_color cannot be set in this case");
+	return -1;
+      }
+      else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)  {
+	if (pSURFACE_FEATURE (pobj)->flagcolor<2){
+	  strcpy(error_message,"surface_color cannot be set in this case");
+	  return -1;
+	} 
+	else {
+	  int N;
+	  if (pSURFACE_FEATURE (pobj)->flagcolor==2)
+	    N=pSURFACE_FEATURE (pobj)->dimzy;
+	  else
+	    N=pSURFACE_FEATURE (pobj)->dimzy * pSURFACE_FEATURE (pobj)->dimzx;
+	  if (*numrow * *numcol != N)
+	    {sprintf(error_message,"Second argument must have %d elements ",N);return -1;}
+	  for (i=0;i<N;i++) 
+	    pSURFACE_FEATURE (pobj)->zcol[i]= stk(*value)[i];
 	}
       }
-      else {
-	strcpy(error_message,"Second argument has incorrect dimensions");
-	return -1;
-      } 
     }
     else {
       strcpy(error_message,"surface_color property does not exist for this handle");
       return -1;
     } 
   }
- 
   else 
     {sprintf(error_message,"Unknown  property %s",marker);return -1;}
   return 0;
@@ -6193,21 +6281,51 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"flag property does not exist for this handle");return -1;}
   } 
+  else if (strcmp(marker,"color_flag") == 0) {
+    if (sciGetEntityType (pobj) == SCI_SURFACE) {
+      numrow = 1;numcol = 1;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      stk(outindex)[0] = pSURFACE_FEATURE (pobj)->flagcolor;
+    }
+    else
+      {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
+  } 
   else if (strcmp(marker,"surface_color") == 0) {
-    if (sciGetEntityType (pobj) == SCI_SURFACE && 
-	pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1) {
-      if (pSURFACE_FEATURE (pobj)->izcol==0){
-	numrow = 1;numcol = 1; 
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	*stk(outindex)=(double)pSURFACE_FEATURE (pobj)->zcol[0];
-      }
-      else {
-	numrow=pSURFACE_FEATURE (pobj)->dimzx;
-	numcol=pSURFACE_FEATURE (pobj)->dimzy;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	for (i=0;i<numcol*numrow;i++) {
-	  stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
+    if (sciGetEntityType (pobj) == SCI_SURFACE) { 
+      if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1) {
+	if (pSURFACE_FEATURE (pobj)->izcol==0){
+	  numrow = 1;numcol = 1; 
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  *stk(outindex)=(double)pSURFACE_FEATURE (pobj)->zcol[0];
 	}
+	else {
+	  numrow=pSURFACE_FEATURE (pobj)->dimzx;
+	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol*numrow;i++) 
+	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
+	}
+      }
+      else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D) {
+	if (pSURFACE_FEATURE (pobj)->flagcolor==2) {
+	  numrow=1;
+	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol*numrow;i++) 
+	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
+	}
+	else if  (pSURFACE_FEATURE (pobj)->flagcolor==3) {
+	  numrow=pSURFACE_FEATURE (pobj)->dimzx;
+	  numcol=pSURFACE_FEATURE (pobj)->dimzy;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	  for (i=0;i<numcol*numrow;i++) 
+	    stk(outindex)[i] = (double)pSURFACE_FEATURE (pobj)->zcol[i];
+	}
+	else {
+	  numrow=0; numcol=0;
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	}
+
       }
     }
     else

@@ -244,35 +244,51 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
      char *fname,*legend;
 {  
     sciTypeOf3D typeof3d;
+    integer flagcolor;
      
       
-     if (*isfac== 1) 
-       { 
-       if (*izcol == 0) 
-	 { if (strncmp(fname,"plot3d1",7)==0)
-	   typeof3d = SCI_FAC3D1;
-           else
-             typeof3d = SCI_FAC3D;
-         } 
-       else if (*izcol == 2) 
-	 typeof3d = SCI_FAC3D3 ;
-       else 
-	 typeof3d = SCI_FAC3D2; 
-      } 
-     else  if  (*isfac== 0) 
-      { if (strncmp(fname,"plot3d1",7)==0)
-	  typeof3d = SCI_PLOT3D1;
-        else
-	  typeof3d = SCI_PLOT3D;
+    if (*isfac== 1) { 
+      if (*izcol == 0) { 
+	if (strncmp(fname,"plot3d1",7)==0) {
+	  typeof3d = SCI_FAC3D;
+	  flagcolor=1;
+	}
+	else {
+	  typeof3d = SCI_FAC3D;
+	  flagcolor=0;
+	}
       }
-          else
-          typeof3d = SCI_PARAM3D1 ;
-
-       sciSetCurrentObj (ConstructSurface
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()), typeof3d,
-	                      x, y, z, zcol, *izcol, *m, *n, *theta, *alpha, legend,iflag,ebox));
-       sciDrawObj(sciGetCurrentObj ());
+      else if (*izcol == 2) {
+	 typeof3d = SCI_FAC3D;
+	 flagcolor=3;
+      }
+      
+      else { 
+	typeof3d = SCI_FAC3D; 
+	 flagcolor=2;
+      }
+      
+    } 
+    else  if  (*isfac== 0) {
+      if (strncmp(fname,"plot3d1",7)==0) {
+	typeof3d = SCI_PLOT3D;
+	flagcolor=1;
+      }
+      else {
+	typeof3d = SCI_PLOT3D;
+	flagcolor=0;
+      }
+    }
+    else {
+      typeof3d = SCI_PARAM3D1 ;
+      flagcolor=1;
+    }
+    
+    sciSetCurrentObj (ConstructSurface
+		       ((sciPointObj *)
+			sciGetSelectedSubWin (sciGetCurrentFigure ()), typeof3d,
+			x, y, z, zcol, *izcol, *m, *n, *theta, *alpha, legend,iflag,ebox,flagcolor));
+     sciDrawObj(sciGetCurrentObj ());
      
        
 }

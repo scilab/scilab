@@ -210,24 +210,15 @@ sciGetCharEntityType (sciPointObj * pobj)
 	case SCI_FAC3D:
 	  return "Fac3d";
 	  break;
-	case SCI_FAC3D1:
-	  return "Fac3d1";
-	  break;
-	case SCI_FAC3D2:
-	  return "Fac3d2";
-	  break;
-	case SCI_FAC3D3:
-	  return "Fac3d3";
-	  break;
 	case SCI_PLOT3D:
 	  return "Plot3d";
 	  break;
-	case SCI_PLOT3D1:
-	  return "Plot3d1";
-	  break;
-	case SCI_CONTOUR:
 	case SCI_PARAM3D:
 	case SCI_PARAM3D1:
+	  return "Param3d";
+	  break;
+	case SCI_CONTOUR:
+
 	  break;
 	}
       break;
@@ -9014,17 +9005,22 @@ sciPointObj *
 ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 		  double * pvecx, double * pvecy, double * pvecz,integer *zcol, 
 		  integer izcol, integer dimzx, integer dimzy, double theta, double alpha, 
-		  char *legend, integer *flag, double *ebox)
+		  char *legend, integer *flag, double *ebox,integer flagcolor)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   int i=0, j=0;
   int nx,ny,nz,nc;
 
-  if (typeof3d == SCI_PLOT3D1 ||typeof3d == SCI_PLOT3D) {
+  if (typeof3d == SCI_PLOT3D) {
     nx=dimzx;
     ny=dimzy;
     nz=dimzx*dimzy;
-    nc=nz;
+    if (flagcolor == 2)
+      nc=nz; /* one color per facet */
+    else if (flagcolor == 3)
+      nc=nz*4; /*one color per edge */
+    else 
+      nc=0;
   }
   else if (typeof3d == SCI_PARAM3D1) {
     nx=dimzx*dimzy;
@@ -9036,7 +9032,12 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     nx=dimzx*dimzy;
     ny=dimzx*dimzy;
     nz=dimzx*dimzy;
-    nc=nz;
+    if (flagcolor == 2)
+      nc=dimzy; /* one color per facet */
+    else if (flagcolor == 3)
+      nc=nz; /*one color per edge */
+    else 
+      nc=0;
   }
 
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
@@ -9117,7 +9118,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	    pSURFACE_FEATURE (pobj)->pvecz[j] = pvecz[j];
 	}
 
-      if (izcol !=0 ) {
+      if (izcol !=0&&nc>0 ) {
 	if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
 	  {
 	    FREE(pSURFACE_FEATURE (pobj)->pvecy);
@@ -9166,7 +9167,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->ebox[3] = ebox[3];
       pSURFACE_FEATURE (pobj)->ebox[4] = ebox[4];
       pSURFACE_FEATURE (pobj)->ebox[5] = ebox[5];
-
+      pSURFACE_FEATURE (pobj)->flagcolor =flagcolor;
       pSURFACE_FEATURE (pobj)->typeof3d = typeof3d;
 
       if (sciInitGraphicContext (pobj) == -1)
@@ -10777,54 +10778,69 @@ sciDrawObj (sciPointObj * pobj)
      
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
 	{
-	case SCI_FAC3D1:
-	  C2F(fac3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		      pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
-		      &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
-		      pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
-		      pSURFACE_FEATURE (pobj)->ebox,n);
-	  break;
 	case SCI_FAC3D:
-	  C2F(fac3d)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		     pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
-		     &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
-		     pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
-		     pSURFACE_FEATURE (pobj)->ebox,n);
-	  break;
-	  break; 
-	case SCI_FAC3D3:
-	  C2F(fac3d3)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		      pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
-		      &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
-		      pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
-		      pSURFACE_FEATURE (pobj)->ebox,n);
-	  break; 
-	  break;
-	case SCI_FAC3D2:
-	  C2F(fac3d2)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		      pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
-		      &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
-		      pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
-		      pSURFACE_FEATURE (pobj)->ebox,n);
-	  break; 
-	  break;
-	case SCI_PLOT3D1:
-	  C2F(plot3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		       &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
+	  switch(pSURFACE_FEATURE (pobj)->flagcolor) {
+	  case 1 :
+	    C2F(fac3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			pSURFACE_FEATURE (pobj)->pvecz,
+			pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
+			&pSURFACE_FEATURE (pobj)->dimzy,
+			&pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
+			pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
+			pSURFACE_FEATURE (pobj)->ebox,n);
+	    break;
+	  case 0:
+	    C2F(fac3d)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+		       pSURFACE_FEATURE (pobj)->pvecz,
+		       pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
+		       &pSURFACE_FEATURE (pobj)->dimzy,
 		       &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
 		       pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
 		       pSURFACE_FEATURE (pobj)->ebox,n);
-	  break;
+	    break;
+	  case 3:
+	    C2F(fac3d3)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			pSURFACE_FEATURE (pobj)->pvecz,
+			pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
+			&pSURFACE_FEATURE (pobj)->dimzy,
+			&pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
+			pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
+			pSURFACE_FEATURE (pobj)->ebox,n);
+	    break; 
+	  case 2:
+	    C2F(fac3d2)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			pSURFACE_FEATURE (pobj)->pvecz,
+			pSURFACE_FEATURE (pobj)->zcol,&pSURFACE_FEATURE (pobj)->dimzx,
+			&pSURFACE_FEATURE (pobj)->dimzy,
+			&pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
+			pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
+			pSURFACE_FEATURE (pobj)->ebox,n);
+	    break; 
+	  }
 	  break;
 	case SCI_PLOT3D:
-	  C2F(plot3d)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
-		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
-		      &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
-		      pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
-		      pSURFACE_FEATURE (pobj)->ebox,n);
+	  switch(pSURFACE_FEATURE (pobj)->flagcolor) {
+	  case 1 :
+	    C2F(plot3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			 pSURFACE_FEATURE (pobj)->pvecz,
+			 &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
+			 &pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
+			 pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
+			 pSURFACE_FEATURE (pobj)->ebox,n);
+	    break;
+	  case 0:
+	    C2F(plot3d)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			pSURFACE_FEATURE (pobj)->pvecz,
+			&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
+			&pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
+			pSURFACE_FEATURE (pobj)->legend,pSURFACE_FEATURE (pobj)->flag,
+			pSURFACE_FEATURE (pobj)->ebox,n);
+	    break;
+	  }
 	  break;
 	case SCI_PARAM3D1:
-	  C2F(param3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,pSURFACE_FEATURE (pobj)->pvecz,
+	  C2F(param3d1)(pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+			pSURFACE_FEATURE (pobj)->pvecz,
 			&pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy,
 			&pSURFACE_FEATURE (pobj)->izcol,pSURFACE_FEATURE (pobj)->zcol,
 			&pSURFACE_FEATURE (pobj)->theta,&pSURFACE_FEATURE (pobj)->alpha,
@@ -13115,8 +13131,10 @@ int sciType (marker)
   else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 	
   else if (strncmp(marker,"log_flags", 9) == 0)   {return 10;}
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
+  else if (strcmp(marker,"surface_color") == 0)    {return 1;}
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
   else if (strcmp(marker,"flag") == 0)    {return 1;}
+  else if (strcmp(marker,"color_flag") == 0)    {return 1;}
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
