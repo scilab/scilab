@@ -146,9 +146,23 @@ if txt~=[] then
   // Define Scilab function
   fprot=funcprot();
   funcprot(0);
-  // Blanks in file name are replaced by _
+  
+  // Blanks in file name are replaced by _ for batch
   // kc+9 because 'function '
-  deff(strsubst(part(txt(1),kc+9:length(txt(1)))," ","_"),txt(2:$),"n")
+  func_proto=part(txt(1),kc+9:length(txt(1)))
+  keq=strindex(func_proto,"=")
+  kpar=strindex(func_proto,"(")
+  if isempty(keq) then
+    keq=1
+  end
+  if isempty(kpar) then
+    kpar=length(func_proto)+1
+  end
+  func_proto=part(func_proto,1:keq)+..
+      strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+..
+      part(func_proto,kpar:length(func_proto))
+
+  deff(func_proto,txt(2:$),"n")
   w=who("get");
   mname=w(1);
   nametbl=[nametbl;mname]
