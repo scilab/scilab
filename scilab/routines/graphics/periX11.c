@@ -3105,6 +3105,7 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
 	}
       else  if (fillvect[i] == 0 )
 	{
+	  /** boundaries ONLY **/
 	  xset_line_style(Dvalue,PI0,PI0,PI0);
 	  xset_pattern(&cpat,PI0,PI0,PI0);
 	  C2F(drawpolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
@@ -3112,6 +3113,7 @@ void C2F(fillpolylines)(char *str, integer *vectsx, integer *vectsy, integer *fi
 	}
       else 
 	{
+	   /** fill ONLY **/
 	  pattern = -fillvect[i] ;
 	  xset_pattern(&pattern,PI0,PI0,PI0);
 	  C2F(fillpolyline)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,(close=1,&close)
