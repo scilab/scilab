@@ -1048,5 +1048,12 @@ void C2F(setprlev)( int *pause)
     sprintf(Sci_Prompt,">>");
 }
 
+void GetCurrentPrompt(char *CurrentPrompt)
+{
+	if (CurrentPrompt)
+	{
+		strcpy(CurrentPrompt,Sci_Prompt);
+	}
+}
 
 #endif /* the gtk readline version is in gtk */ 

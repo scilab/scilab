@@ -30,7 +30,7 @@ char save_prompt[10];
 
 
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
-
+extern void GetCurrentPrompt(char *CurrentPrompt);
 
 /**** Warning here : eof can be true  ***/
 #ifdef __STDC__
@@ -47,6 +47,8 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 #endif
 {
   int i;
+ 
+  GetCurrentPrompt(save_prompt);
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
   i = read_line (save_prompt,*interrupt);
@@ -63,7 +65,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
 
-  
+
 
   return;
 }
