@@ -5204,7 +5204,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if (Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny) != *numcol)
 	    {sprintf(error_message,"Value must have %d elements",Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny));return -1;}
 	  else
-	    pAXES_FEATURE(pobj)->str =ptr; 
+	    {
+	      FREE(pAXES_FEATURE(pobj)->str);
+	      if ((pAXES_FEATURE(pobj)->str= malloc
+		   (Max(pAXES_FEATURE(pobj)->nx,pAXES_FEATURE(pobj)->ny) * sizeof (char*)))== NULL)
+		{strcpy(error_message,"No enough memory to allocate tics labels string !!");return -1;}
+	      pAXES_FEATURE(pobj)->str =ptr;
+            }
 	}
     }
   else if (strncmp(marker,"xtics_coord", 11) == 0) 
@@ -6931,6 +6937,7 @@ int draw(fname,fname_len)
 	sciSetSelectedSubWin(psubwin); 
 	tmpmode = pSUBWIN_FEATURE(psubwin)->visible;
 	pSUBWIN_FEATURE(psubwin)->visible = TRUE ;
+	sciSetVisibility(pobj,TRUE) ;
 	sciDrawObj(pobj);
 	pSUBWIN_FEATURE(psubwin)->visible = tmpmode;
 	sciSetSelectedSubWin(tmpsubwin);
