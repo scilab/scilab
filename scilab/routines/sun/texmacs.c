@@ -56,5 +56,6 @@ C2F(texmacsin)(buffer, buf_size, len_line, eof, dummy1)
 
   info=LineRead(stdin,buffer,*buf_size,len_line,&nr);
   fprintf(stdout,"%cverbatim:",DATA_BEGIN);
+  *len_line=*len_line-1;
 }
 
