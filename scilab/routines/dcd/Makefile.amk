@@ -22,7 +22,7 @@ OBJSF = algdiv.obj alngam.obj alnrel.obj apser.obj \
 	ipmpar.obj psi.obj \
 	rcomp.obj rexp.obj rlog.obj rlog1.obj \
 	spmpar.obj \
-	stvaln.obj 
+	stvaln.obj dlngam.obj
 
 
 include ../../Makefile.incl.amk

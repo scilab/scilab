@@ -19,8 +19,7 @@ OBJSF = algdiv.o alngam.o alnrel.o apser.o \
 	ipmpar.o psi.o \
 	rcomp.o rexp.o rlog.o rlog1.o \
 	spmpar.o \
-	stvaln.o 
-
+	stvaln.o dlngam.o
 
 include ../../Makefile.incl
 
