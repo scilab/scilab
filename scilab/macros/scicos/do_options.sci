@@ -5,9 +5,9 @@ function [edited,options]=do_options(opt,flag)
 fontsSiz=['08','10','12','14','18','24'];
 fontsIds=[ 'Courrier','Symbol','Times','Times Italic','Times Bold',..
 	'Times B. It.'];
-marksIds=['.','+','x','*','filled diamond','diamond','triangle up',..
-	'triangle down','diamond plus','circle','asterisk',.. 
-	'square','triangle right','triangle left','pentagram'];
+marksIds=['.','+','x','*','diamond fill.','diamond','triangle up',..
+	'triangle down','trefle','circle'];
+
 DashesIds=['Solid','-2-  -2-','-5-  -5-','-5-  -2-','-8-  -2-',..
 	'-11- -2-','-11- -5-'];
 //
