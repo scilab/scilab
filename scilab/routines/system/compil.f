@@ -122,6 +122,20 @@ c     affectation <29,n,print,name1,rhs1,...,name,rhsn>
             li=li+(nsiz+1)
          enddo
          comp(1)=li
+      elseif(code.eq.30) then
+c     affectation <30,it,n>
+         if (val2.eq.0) then
+            err=sadr(l+3)-lstk(bot)
+            if(err.gt.0) goto 90
+            istk(l)=code  
+            istk(l+1)=val1(1)
+            istk(l+2)=l+3
+            comp(1)=l+3
+         else
+c     .     istk(l+2) value affectation at the end of term evaluation
+            istk(val2)=comp(1)-istk(val2)
+         endif
+
       elseif(code.ge.100) then
 c     appel des fonctions <100*fun rhs lhs fin>
          err=sadr(l+(nsiz+3))-lstk(bot)

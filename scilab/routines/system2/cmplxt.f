@@ -133,6 +133,11 @@ c     affectation
             n=istk(lc+1)
             lc=lc+3+n*(nsiz+1)
             goto 10
+        elseif(op.eq.30) then
+c     skip logical ops (not reported by tradsl)
+            lc=lc+3
+            icount=icount-1
+            goto 10
          elseif(op.ge.100) then
 c     matfns
             lc=lc+4
