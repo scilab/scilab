@@ -65,10 +65,10 @@ endfunction
 deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])
 // definition in an ascii file (see exec)
-exec SCI/macros/elem/asin.sci;
+exec SCI/macros/elem/asinh.sci;
 
 // definition in an ascii file (see getf)
-getf SCI/macros/elem/asin.sci;
+getf SCI/macros/elem/asinh.sci;
 
  ]]>
   </EXAMPLE>
