@@ -48,7 +48,7 @@ case 'define' then
   model.evtout=ones(out,1);
   model.blocktype='l'
   model.firing=-ones(out,1);
-  model.dep_ut=[%f %f]
+  model.dep_ut=[%t %f]
   model.nmode=0
   model.nzcross=0
    

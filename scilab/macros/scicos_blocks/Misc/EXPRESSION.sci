@@ -46,7 +46,18 @@ case 'getorigin' then
       end
       if ok then
 	%ok1=%t
-	ok=execstr('[%ok1,ipar,rpar,%nz]=compile_expr(%foo)','errcatch')==0
+	
+	if exists('%scicos_context') then
+	  %mm=getfield(1,%scicos_context)
+	  for %mi=%mm(3:$)
+	    if execstr(%mi+'=%scicos_context(%mi)','errcatch')<>0 then
+	      ok=%f
+	    end
+	  end
+	end 
+	if ok then
+	  ok=execstr('[%ok1,ipar,rpar,%nz]=compile_expr(%foo)','errcatch')==0
+	end
 	if ~ok then
 	  message(['Erroneous expression';lasterror()])
 	else
