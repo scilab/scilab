@@ -38,7 +38,9 @@ String=10;
 Cell=17;
 Struct=16;
 Void=0;
-Unknown=-1;
+Unknown=-1; // Unknown type or dimension
+SupToOne=-2; // Dimension >1
+NotNull=-3; // Dimension >0
 Complex="Complex"
 Real="Real"
 Units=["pixels","centimeters","points","inches","normalized"]
@@ -56,7 +58,7 @@ varslist=list()
 for k=1:macrhs
   if funptr(mtlbtree.inputs(k).name)<>0 then // Matlab variable name corresponding to a Scilab function name
     varslist($+1)=M2scivar("%"+mtlbtree.inputs(k).name,mtlbtree.inputs(k).name,Infer())
-    inputs(k)="%"+inputs(k),
+    mtlbtree.inputs(k).name="%"+mtlbtree.inputs(k).name,
   elseif mtlbtree.inputs(k).name=="varargin" then
     varslist($+1)=M2scivar("varargin","varargin",Infer(list(Unknown,Unknown),Type(Cell,Unknown)))
   else
