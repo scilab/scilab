@@ -54,6 +54,9 @@ function ilib_gen_gateway(name,tables)
       else
 	 mputl(t,path+tname+'.c')    
       end
+    else
+       // file does not exists we create it 
+       mputl(t,path+tname+'.c')    
     end
   end
 endfunction
