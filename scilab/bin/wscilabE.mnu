@@ -35,7 +35,9 @@
 
 [Menu]
  &Edit
- 	
+		Select &All
+			[SELECTALL]
+		-- 	
         	&Copy	Ctrl+INS
 			[MCOPY]
 		&Paste	Shift+INS
@@ -212,7 +214,8 @@
 	|Choose Font ...|FONT_ICON|
 		[CHOOSETHEFONT]
 [Button]
+	|Print|PRINT_ICON|
+		[PRINT]
+[Button]
 	|Scilab Help|HELP_ICON|
 		[HELP]
-
-

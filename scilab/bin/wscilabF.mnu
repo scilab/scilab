@@ -34,10 +34,14 @@
 
 [Menu]
 	&Edition
+		Sélectio&nner tout
+			[SELECTALL]
+		--
 		&Copier	Ctrl+INS
 			[MCOPY]
 		C&oller	Shift+INS
 			[PASTE]
+		--	
 		[Menu]
 		&Historique
 			Commande Précédente	Ctrl+P
@@ -204,11 +208,11 @@ E&diteur
 	|Changer la police|FONT_ICON|
 		[CHOOSETHEFONT]
 [Button]
+	|Imprimer|PRINT_ICON|
+		[PRINT]
+[Button]
 	|Aide|HELP_ICON|
-		[HELP]
-;[Button]
-;	|Imprimer|PRINT_ICON|
-;		[PRINT]
+		[HELP]		
 ;[Button]
 ;	|Scicos|SCICOS_ICON|
 ;		scicos();		

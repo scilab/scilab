@@ -1779,9 +1779,16 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  case M_PRINTSELECTION:
 	  {
 		 TextCopyClip (lptw);
-	  	 PrintSelection(lptw,"Scilab Console");
+		 if (lptw->lpmw->CodeLanguage == 0)
+			{
+				PrintSelection(lptw,"Scilab Command Window");
+			}
+		else
+			{
+				PrintSelection(lptw,"Console Scilab");
+			}
 	  }
-	  return 0;
+	   return 0;
 	  
 	  case M_OPENSELECTION:
 	  {
