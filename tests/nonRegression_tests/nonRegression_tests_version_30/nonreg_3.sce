@@ -19,3 +19,5 @@ end
 disp("") 
 disp("Tests de non-régression pour Scilab-3.0 : fin");
 disp("")
+
+quit;
