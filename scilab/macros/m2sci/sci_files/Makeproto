@@ -5,7 +5,7 @@ PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci\
 PROTO1 = sci_max.sci sci_min.sci
 PROTO2 = sci_cumprod.sci sci_cumsum.sci 
 PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci 
-PROTO4 = sci_acosh.sci sci_asinh.sci sci_atan.sci sci_conj.sci sci_cot.sci sci_coth.sci sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci sci_sign.sci sci_sin.sci sci_sinh.sci sci_sqrt.sci sci_tan.sci sci_tanh.sci
+PROTO4 = sci_acosh.sci sci_asinh.sci sci_atan.sci sci_conj.sci sci_cot.sci sci_coth.sci sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci sci_log10.sci sci_sign.sci sci_sin.sci sci_sinh.sci sci_sqrt.sci sci_tan.sci sci_tanh.sci
 PROTO5 = sci_asin.sci sci_atanh.sci
 PROTO6 = sci_ceil.sci sci_fix.sci sci_floor.sci sci_round.sci
 PROTO7 = sci_tril.sci sci_triu.sci 
@@ -91,6 +91,8 @@ sci_inv.sci: sci_PROTO4.g
 	@./GEN $? inv inv > $@
 sci_log.sci: sci_PROTO4.g
 	@./GEN $? log log > $@
+sci_log10.sci: sci_PROTO4.g
+	@./GEN $? log10 log10 > $@
 sci_sign.sci: sci_PROTO4.g
 	@./GEN $? sign sign > $@
 sci_sin.sci: sci_PROTO4.g
