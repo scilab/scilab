@@ -5,7 +5,7 @@
   <TITLE>head_comments</TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>7-Nov-2003</DATE>
-  <SHORT_DESCRIPTION name="comments">display scilab function header comments</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="head_comments">display scilab function header comments</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>head_comments(name)</CALLING_SEQUENCE_ITEM>   
