@@ -1,80 +1,203 @@
-/* Copyright Enpc/Cergrene */
-
-#include "../../routines/stack-c.h"
-#include "grand.h"
+/*------------------------------------------------------------------------
+ *    Interface for grand 
+ *    Copyright Enpc/Cermics 
+ *    jpc@cermics.enpc.fr 
+ *    stuff to deal with several generators added 
+ *         by Bruno Pincon (12/11/2001) 
+ *    
+ --------------------------------------------------------------------------*/
+#include <string.h>
+#include "../stack-c.h"
 
 /** external functions to be called through this interface **/
 
-#ifdef __STDC__
-void  sciprint(char *fmt,...);
-#else
-/*VARARGS0*/
-void sciprint();
-#endif
+#include "grand.h"
+#include "clcg4.h"
+#include "others_generators.h"
+#include <math.h>
+
+enum {MT, KISS, CLCG4, CLCG2};
+
+static int current_gen = MT;   /* the current generator */
+static int current_clcg4 = 0;  /* for clcg4 : the current virtual gen */
+                               /* 0 <= current_clcg4 <= Maxgen = 100 defined in clcg4.h */ 
+double clcg4_with_gen();
+
+#define NbGenInScilab 4
+
+double  (*gen[NbGenInScilab])() = { randmt, kiss, clcg4_with_gen, clcg2 };
+static char *names_gen[]= { "mt", "kiss","clcg4", "clcg2"};
+
+double  clcg4_with_gen(void)
+{
+  return ( clcg4(current_clcg4) );
+}
+
+double C2F(ranf)(void)
+{
+  return ( gen[current_gen]() );
+}
+
+double ignlgi(void)
+{
+  /* pour compatibilite avec l'ancien systeme... 
+   *  => donne des entiers sur [1, 2147483562]
+   */
+  return ( 1.0 + floor( 2147483563.0* gen[current_gen]() ) );
+}
+
+double C2F(ignuin)(double a, double b)
+{
+  /* genere une realisation de U[a,b] (intervalle d'entiers!)
+   *  => on suppose qu'au niveau appelant les verifs ont ete
+   *     faites : a et b sont des entiers (mais stockes en
+   *     double) et b-a+1 n'est pas trop grand (<= 2147483562
+   *     cette contrainte provenant de clcg2 mais voir aussi
+   *     pour clcg4)
+   */
+  return ( a + floor((b-a+1.0)*gen[current_gen]()));
+}
 
 /**************************************************
  *  hand written interface for the randlib 
  ***********************************************************************/
 
-int RandI(fname)
-     char* fname;
+int RandI( char* fname)
 { 
-  int pipo;
   int minrhs = 1,maxrhs = 10,minlhs=1,maxlhs=2;
   int ResL,ResC,suite,m2,n2,l2,m1,n1,l1,ls,ms,ns,la,lr,lb,lc;
-  int which,status,ierr,i;
+  int l3,l4;
+  int i;
+
   Nbvars = 0;
   CheckRhs(minrhs,maxrhs);
   CheckLhs(minlhs,maxlhs);
   if ( GetType(1) != 1) 
     {
-      int un=1,deux=2;
+      int un=1,deux=2, dim_state_mt=624, dim_state_4=4;
       GetRhsVar(1,"c",&ms,&ns,&ls);
       if ( strcmp(cstk(ls),"getsd")==0) 
 	{
 	  if ( Rhs != 1) 
 	    {
-	      sciprint("Rhs should be 1 for 'getsd' option");
+	      sciprint("Rhs should be 1 for 'getsd' option\n\r");
 	      Error(999);return 0;
 	    }
-	  CreateVar(2,"i",&un,&deux,&lr);
-	  C2F(getsd)(istk(lr),istk(lr+1));
+	  switch(current_gen)
+	    {
+	    case(MT) :
+	      CreateVar(2,"d",&dim_state_mt,&un,&lr);
+	      get_state_mt(stk(lr));
+	      break;
+	    case(KISS) :
+	      CreateVar(2,"d",&dim_state_4,&un,&lr);
+	      get_state_kiss(stk(lr));
+	      break;
+	    case(CLCG4) :
+	      CreateVar(2,"d",&dim_state_4,&un,&lr);
+	      get_state_clcg4(current_clcg4, stk(lr));
+	      break;
+	    case(CLCG2) :
+	      CreateVar(2,"d",&deux,&un,&lr);
+	      get_state_clcg2(stk(lr));
+	      break;
+	    };
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
 	}
       else if ( strcmp(cstk(ls),"setall")==0 ) 
 	{
-	  if ( Rhs != 3 ) 
+	  if ( current_gen != CLCG4 )
+	    sciprint("the setall option affect only the clcg4 generator !\n\r");
+	  if ( Rhs != 5 ) 
 	    {
-	      sciprint("Rhs should be 3 for 'setall'  option");
+	      sciprint("Rhs should be 5 for 'setall'  option\n\r");
 	      Error(999);return 0;
 	    }
-	  GetRhsVar(2,"i",&m1,&n1,&l1);
+	  GetRhsVar(2,"d",&m1,&n1,&l1);
 	  if ( m1*n1 != 1) { sciprint("second argument must be scalar\r\n");
 	  Error(999);return 0;}
-	  GetRhsVar(3,"i",&m1,&n1,&l2);
+	  GetRhsVar(3,"d",&m1,&n1,&l2);
 	  if ( m1*n1 != 1) { sciprint("third argument must be scalar\r\n");
 	  Error(999);return 0;}
-	  C2F(setall)(istk(l1),istk(l2));
+	  GetRhsVar(4,"d",&m1,&n1,&l3);
+	  if ( m1*n1 != 1) { sciprint("fourth argument must be scalar\r\n");
+	  Error(999);return 0;}
+	  GetRhsVar(5,"d",&m1,&n1,&l4);
+	  if ( m1*n1 != 1) { sciprint("fifth argument must be scalar\r\n");
+	  Error(999);return 0;}
+
+	  if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
+	    {   /* => seeds were not good  (info is display by the function) */
+	      Error(999);return 0;
+	    }
 	  LhsVar(1) = 1;
 	  PutLhsVar();
 	  return(0);
 	}
       else if ( strcmp(cstk(ls),"setsd")==0 ) 
 	{
-	  if ( Rhs != 3 ) 
+	  switch(current_gen)
 	    {
-	      sciprint("Rhs should be 3 for  'setsd' option");
-	      Error(999);return 0;
-	    }
-	  GetRhsVar(2,"i",&m1,&n1,&l1);
-	  if ( m1*n1 != 1) { sciprint("second argument must be scalar\r\n");
-	  Error(999);return 0;}
-	  GetRhsVar(3,"i",&m1,&n1,&l2);
-	  if ( m1*n1 != 1) { sciprint("third argument must be scalar\r\n");
-	  Error(999);return 0;}
-	  C2F(setsd)(istk(l1),istk(l2));
+	    case(MT) :
+	      if ( Rhs != 2 ) 
+		{
+		  sciprint("Rhs should be 2 for 'setsd' option with the mt generator\n\r");
+		  Error(999);return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      if ( m1*n1 == 1)  /* simple init of mt */
+		{ if (! set_state_mt_simple(*stk(l1)) ) {Error(999); return(0);}; }
+	      else if ( m1*n1 == 624 )  /* init of all the state */
+		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
+	      else
+		{
+		  sciprint("for mt you must init the state with a vector of 1 or 624 values !\n\r");
+		  Error(999);return 0;
+		};
+	      break;
+	    case(KISS) :
+	    case(CLCG4) :
+	      if ( Rhs != 5 ) 
+		{
+		  sciprint("Rhs should be 5 for 'setsd'  option with the kiss or clcg4 generator\n\r");
+		  Error(999);return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      if ( m1*n1 != 1) 
+		{ sciprint("second argument must be scalar\r\n"); Error(999);return 0;}
+	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      if ( m1*n1 != 1) 
+		{ sciprint("third argument must be scalar\r\n"); Error(999);return 0;}
+	      GetRhsVar(4,"d",&m1,&n1,&l3);
+	      if ( m1*n1 != 1) 
+		{ sciprint("fourth argument must be scalar\r\n"); Error(999);return 0;}
+	      GetRhsVar(5,"d",&m1,&n1,&l4);
+	      if ( m1*n1 != 1) 
+		{ sciprint("fifth argument must be scalar\r\n"); Error(999);return 0;}
+	      if (current_gen == KISS) 
+		{if (! set_state_kiss(*stk(l1),*stk(l2),*stk(l3),*stk(l4))) {Error(999); return 0;};}
+	      else
+		{if (! set_seed_clcg4(current_clcg4,*stk(l1),*stk(l2),*stk(l3),*stk(l4)))
+		  {Error(999); return 0;};}
+	      break;
+	    case(CLCG2) :
+	      if ( Rhs != 3 ) 
+		{
+		  sciprint("Rhs should be 3 for 'setsd'  option with the clcg2 generator\n\r");
+		  Error(999);return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      if ( m1*n1 != 1) 
+		{ sciprint("second argument must be scalar\r\n"); Error(999);return 0;};
+	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      if ( m1*n1 != 1) 
+		{ sciprint("third argument must be scalar\r\n"); Error(999);return 0;};
+	      if (! set_state_clcg2(*stk(l1),*stk(l2))) 
+		{Error(999); return 0;};
+	      break;
+	    };
 	  LhsVar(1) = 1;
 	  PutLhsVar();
 	  return(0);
@@ -83,7 +206,7 @@ int RandI(fname)
 	{
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'phr2sd' option");
+	      sciprint("Rhs should be 2 for 'phr2sd' option\n\r");
 	      Error(999);return 0;
 	    }
 	  GetRhsVar(2,"c",&m1,&n1,&l1);
@@ -94,11 +217,15 @@ int RandI(fname)
 	  PutLhsVar();
 	  return 0;
 	}
+
       else if (strcmp("initgn",cstk(ls))==0) 
 	{
+	  SeedType Where;
+	  if ( current_gen != CLCG4 )
+	    sciprint("this option affect only the clcg4 generator\n\r");
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'initgn' option");
+	      sciprint("Rhs should be 2 for 'initgn' option\n\r");
 	      Error(999);return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
@@ -107,33 +234,42 @@ int RandI(fname)
 	      sciprint("for initgn option argument must be -1,0 or 1\r\n");
 	      Error(999);return 0;
 	    }
-	  C2F(initgn)(istk(l1));
+	  Where = (SeedType) (*istk(l1) + 1);
+	  init_generator_clcg4(current_clcg4, Where);	  
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
 	}
       else if (strcmp("setcgn",cstk(ls))==0) 
 	{
+	  if ( current_gen != CLCG4 )
+	    sciprint("the setcgn option affect only the clcg4 generator\n\r");
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'setcgn' option");
+	      sciprint("Rhs should be 2 for 'setcgn' option\n\r");
 	      Error(999);return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
-	  C2F(setcgn)(istk(l1));
+	  if ( *istk(l1) < 0 || *istk(l1) > Maxgen )
+	    {
+	      sciprint("bad virtual number generator (must be in [0,%d])\n\r",Maxgen);
+	      Error(999);return 0;
+	    }
+	  current_clcg4 = *istk(l1);
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
 	}
       else if (strcmp("advnst",cstk(ls))==0) 
 	{
+	  /* A VOIR ca fait rien pour le moment */
 	  if ( Rhs != 2) 
 	    {
-	      sciprint("Rhs should be 2 for 'advnst' option");
+	      sciprint("Rhs should be 2 for 'advnst' option\n\r");
 	      Error(999);return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
-	  C2F(advnst)(istk(l1));
+	  sciprint(" grand('advnst',k) ne fait rien pour le moment ... \n\r");
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
@@ -142,11 +278,52 @@ int RandI(fname)
 	{
 	  if ( Rhs != 1) 
 	    {
-	      sciprint("Rhs should be 1 for 'getcgn' option");
+	      sciprint("Rhs should be 1 for 'getcgn' option\n\r");
 	      Error(999);return 0;
 	    }
+	  if ( current_gen != CLCG4 )
+	    sciprint("this information concerns only the clcg4 generator\n\r");
 	  CreateVar(2,"i",&un,&un,&l1);
-	  C2F(getcgn)(istk(l1));
+	  *istk(l1) = current_clcg4; 
+	  LhsVar(1) = 2;
+	  PutLhsVar();
+	  return 0;
+	}
+      else if (strcmp("setgen",cstk(ls))==0) 
+	{
+	  int msb, nsb, lsb;
+	  if ( Rhs != 2) 
+	    {
+	      sciprint("Rhs should be 2 for 'setgen' option\n\r");
+	      Error(999);return 0;
+	    }
+	  GetRhsVar(2,"c",&msb,&nsb,&lsb);
+	  if (strcmp("mt",cstk(lsb))==0) 	  
+	    current_gen = MT;
+	  else if (strcmp("kiss",cstk(lsb))==0)
+	    current_gen = KISS;
+	  else if (strcmp("clcg4",cstk(lsb))==0)
+	    current_gen = CLCG4;
+	  else if (strcmp("clcg2",cstk(lsb))==0)
+	    current_gen = CLCG2;
+	  else
+	    {
+	      sciprint("this generator is unknown (possible generators are : mt,kiss,clcg4,clcg2)\n\r");
+	      Error(999);return 0;
+	    }
+	  LhsVar(1) = 2;
+	  PutLhsVar();
+	  return 0;
+	}
+      else if (strcmp("getgen",cstk(ls))==0) 
+	{
+	  int un=1;
+	  if ( Rhs != 1) 
+	    {
+	      sciprint("Rhs should be 1 for 'getgen' option\n\r");
+	      Error(999);return 0;
+	    }
+	  CreateVarFromPtr( 2, "S", &un, &un, &names_gen[current_gen]);
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
@@ -330,6 +507,7 @@ int RandI(fname)
     }
   else if ( strcmp(cstk(ls),"unf")==0) 
     {
+      int low, high;
       if ( Rhs != suite + 1) 
 	{ sciprint("Missing Low and High for Uniform Real law\r\n");Error(999);return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
@@ -337,37 +515,36 @@ int RandI(fname)
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
       if ( m1*n1 != 1) { sciprint("High must be scalar\r\n");Error(999);return 0;}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
-      if ( *stk(la) > *stk(lb) ) 
+      low = *stk(la) ; high =  *stk(lb);
+      if ( low > high ) 
 	{
 	  sciprint("Low > High \r\n");
 	  Error(999);return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
-	{	
-	  *stk(lr+i)= C2F(genunf)(stk(la),stk(lb));
-	}
+	*stk(lr+i)= low + (high - low)*gen[current_gen](); /* to avoid a call ... */
       LhsVar(1) = suite+2;
       PutLhsVar();
       return 0;
     }
   else if ( strcmp(cstk(ls),"uin")==0) 
     {
+      double a, b;
       if ( Rhs != suite + 1) 
 	{ sciprint("Missing Low and High for Uniform integer law\r\n");Error(999);return 0;}
-      GetRhsVar(suite, "i", &m1, &n1, &la);
+      GetRhsVar(suite, "d", &m1, &n1, &la);
       if ( m1*n1 != 1) { sciprint("Low must be scalar\r\n");Error(999);return 0;}
-      GetRhsVar(suite+1, "i", &m1, &n1, &lb);
+      GetRhsVar(suite+1, "d", &m1, &n1, &lb);
       if ( m1*n1 != 1) { sciprint("High must be scalar\r\n");Error(999);return 0;}
+      a = *stk(la) ; b = *stk(lb);
+      if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483562 )
+	{
+	  sciprint(" a and b must integers with (b-a+1) <= 2147483562");
+	  Error(999);return 0;
+	}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
-	{
-	  *stk(lr+i)= C2F(ignuin)(istk(la),istk(lb),&ierr);
-	  if (ierr > 0 ) 
-	    {
-	     Error(999);return 0;
-	    } 
-	}
-      
+	*stk(lr+i)= C2F(ignuin)(a,b);
       LhsVar(1) = suite+2;
       PutLhsVar();
       return 0;
@@ -381,9 +558,7 @@ int RandI(fname)
 	}
       CreateVar(suite,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
-	{
-	  *stk(lr+i)= (double) C2F(ignlgi)();
-	}
+	*stk(lr+i)= ignlgi();
       LhsVar(1) = suite;
       PutLhsVar();
       return 0;
@@ -509,7 +684,7 @@ int RandI(fname)
     }
   else if ( strcmp(cstk(ls),"markov")==0) 
     {
-      int nn,un=1,work,mp,parm,ierr,n1p1,lr1,j,icur,mm,jj;
+      int nn,n1p1,lr1,j,icur,mm,jj;
       if ( suite != 3 || ResL*ResC != 1)
 	{ sciprint("First argument for 'markov' option must be the number of random simulation \r\n");Error(999);return 0;
 	}
@@ -595,7 +770,7 @@ int RandI(fname)
       CreateVar(suite,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
-	  *stk(lr+i)= (double) C2F(ranf)();
+	  *stk(lr+i)= C2F(ranf)();
 	}
       LhsVar(1) = suite;
       PutLhsVar();
@@ -726,7 +901,7 @@ static TabF Tab[]={
   {RandI, "Rand"},
 };
 
-int C2F(randlib)()
+int C2F(randlib)(void)
 {
 #ifdef DEBUG 
   sciprint("Inside randlib Fin == %d  %s\r\n",Fin,Tab[Fin-1].name);

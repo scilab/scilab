@@ -46,7 +46,6 @@ C                P+2 : P*(P+3)/2 + 1  - Cholesky decomposition of COVM
 C                                             DOUBLE PRECISION PARM(P*(P+3)/2 + 1)
 C
 C**********************************************************************
-      include '../stack.h'
 C     .. Scalar Arguments ..
 C      INTEGER p
       INTEGER p, ldcovm
