@@ -895,10 +895,7 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
   /*  double *pc;*/
   int k,old_m;
-  /*sciSons *psonstmp;*/
-  /*sciHandleTab *hdl;
-    sciPointObj * pobj2;*/
-
+  
   old_m = sciGetNumColors(pobj); /* F.Leray*/
 
 
@@ -930,18 +927,6 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 
   sciRecursiveUpdateBaW(pobj,old_m, m);
 
-
-  /*
-  hdl=pendofhandletab;
-  while (hdl != NULL)
-    {
-      pobj2=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-     
-
-
-      hdl=hdl->pprev;
-    }
-  */
   sciSetNumColors (pobj,m);
 
   /* sciSetBackground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+2 the bg is always STORED at m+2*/
@@ -955,6 +940,10 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   /* sciSetForeground ((sciPointObj *) pobj, -1); */ /* F.Leray 30.03.04*/
   /*  sciSetBackground ((sciPointObj *) pobj, -2);*/ /* F.Leray 30.03.04*/
   
+  /*** F.Leray 02.04.04 */
+  /* I force the re-set the Background on current Figure  (pobj here) and the subwins of the current figure*/
+  /* sciSetBackground ((sciPointObj *) pobj,sciGetBackground(pobj));*/
+
   return 0;
   
 }
@@ -15557,7 +15546,12 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	    InsideD[3]=InsideD[0]+4;
 	  xind[5]=ind2;
 	  /****Ajout A.Djalel ***/
-	  background=pSUBWIN_FEATURE (pobj)->cubecolor;
+	  /*background=pSUBWIN_FEATURE (pobj)->cubecolor;*/
+
+	  /** F.Leray Rajout 02.04.04: I delete background=pSUBWIN_FEATURE (pobj)->cubecolor*/
+	  /*Replaced by :*/
+	  background=sciGetBackground(pobj);
+	  
 	  for (i=0; i < 6 ; i++)
 	    {
 	      ixbox[i]=XScale(xbox[xind[i]]);
