@@ -84,8 +84,8 @@ char *ProgramName;
 
 extern void sci_clear_and_exit (int);
 extern int C2F(nofpex) (void);
-extern int C2F(getarg) (int *,char *,long int l);
-extern int C2F(iargc) (void);
+extern int C2F(scigetarg) (int *,char *,long int l);
+extern int C2F(sciiargc) (void);
 extern void C2F(settmpdir) (void);
 extern char *get_sci_data_strings (int n);
 extern void C2F(tmpdirc)();
@@ -611,12 +611,12 @@ static char ** create_argv(int *argc)
 {
   int i;
   char **argv;
-  *argc = C2F(iargc)() + 1;
+  *argc = C2F(sciiargc)() + 1;
   if ( ( argv = malloc((*argc)*sizeof(char *))) == NULL) return NULL;
   for ( i=0 ; i < *argc ; i++) 
     {
       char buf[BSIZE];
-      C2F(getarg)(&i,buf,BSIZE);
+      C2F(scigetarg)(&i,buf,BSIZE);
       buf[BSIZE-1]='\0';
       strip_blank(buf);
       argv[i] = malloc((strlen(buf)+1)*sizeof(char));
