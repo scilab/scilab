@@ -1,14 +1,18 @@
 function [helppart,txt,batch]=m2sci_syntax(txt)
 // Copyright INRIA
+// Scilab Project - V. Couvert
 // Make minor changes on M-file data syntax to have it readable by Scilab
-// If m-file contains only comments returned txt is []
-// batch boolean variable indicates if it is a batch file
+// Input arguments:
+//  - txt: the contents of an M-file
+// Output:
+//  - helppart: Matlab help contained in M-file
+//  - txt: input txt modified (If M-file contains only comments returned txt is[])
+//  - batch: boolean flag indicates if it is a batch file
 
 // m2sci kernel functions called :
 //  - isacomment
 //  - isinstring
 //  - replace_brackets
-//  - i_notation
 
 sciparam();
 
@@ -157,7 +161,7 @@ for k=1:n
       end
     end
   end
-
+  
   // Looking for comments
   kc=isacomment(tk)
   if kc<>0 then // Current line has or is a comment
@@ -172,7 +176,31 @@ for k=1:n
     else
       com=';comment('+quote+com+quote+')'
     end
-    txt(k)=part(tk,1:kc-1)+com
+    tkbeg=part(tk,1:kc-1)
+    
+    // Short circuiting operators
+    tkbeg=strsubst(tkbeg,"  ","")
+    tkbeg=strsubst(tkbeg," |","|")
+    tkbeg=strsubst(tkbeg,"| ","|")
+    tkbeg=strsubst(tkbeg," &","&")
+    tkbeg=strsubst(tkbeg,"& ","&")
+    symbs=[" ",",",";","=",")","]"]
+    ksymbs=gsort(strindex(tkbeg,symbs),"r","i")
+    ksymbs=[ksymbs length(tkbeg)+1]
+    tmptkbeg=part(tkbeg,1:ksymbs(1)-1)
+    for kk=1:size(ksymbs,"*")-1
+      kop1=strindex(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"||")
+      kop2=strindex(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"&&")
+      tmptkbeg=tmptkbeg+strsubst(strsubst(part(tkbeg,ksymbs(kk):ksymbs(kk+1)-1),"&&","&"),"||","|")
+      if kop1<>[] then
+	tmptkbeg=tmptkbeg+"|%shortcircuit"
+      elseif kop2<>[] then
+	tmptkbeg=tmptkbeg+"&%shortcircuit"
+      end
+    end
+    tkbeg=tmptkbeg
+
+    txt(k)=tkbeg+com
   
   else // Current line has not and is not a comment line
     if first then // Function keyword not yet found
@@ -193,7 +221,33 @@ for k=1:n
       endofhelp=%t
       txt(k)=tk
     end
+    
+    // Short circuiting operators
+    tk=strsubst(tk,"  ","")
+    tk=strsubst(tk," |","|")
+    tk=strsubst(tk,"| ","|")
+    tk=strsubst(tk," &","&")
+    tk=strsubst(tk,"& ","&")
+    symbs=[" ",",",";","=",")","]"]
+    ksymbs=gsort(strindex(tk,symbs),"r","i")
+    ksymbs=[ksymbs length(tk)+1]
+    tmptk=part(tk,1:ksymbs(1)-1)
+    for kk=1:size(ksymbs,"*")-1
+      kop1=strindex(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"||")
+      kop2=strindex(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"&&")
+      tmptk=tmptk+strsubst(strsubst(part(tk,ksymbs(kk):ksymbs(kk+1)-1),"&&","&"),"||","|")
+      if kop1<>[] then
+	tmptk=tmptk+"|%shortcircuit"
+      elseif kop2<>[] then
+	tmptk=tmptk+"&%shortcircuit"
+      end
+    end
+    tk=tmptk
+
+    txt(k)=tk
+  
   end
+
 end
 
 // When there is just help line in txt
@@ -217,10 +271,6 @@ txt=strsubst(txt,"otherwise","else")
 // Replace {..} by (..) or [..] : useful for cells translation
 txt=replace_brackets(txt)
   
-// Deal with complex notation : replace 1i by 1*i ...
-// No more used after Scilab CVS 16/01/2004
-//txt=i_notation(txt)
-
 // Place function definition line at first line
 kc=strindex(txt(first_ncl),"function")
 if kc==[] then
