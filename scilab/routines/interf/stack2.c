@@ -2218,8 +2218,7 @@ int C2F(scibuiltin)(number, ifun, ifin, mlhs, mrhs)
     goto L9999;
   }
   if (Top - Lhs + 1 > 0) {
-    C2F(iset)(&Lhs, &cx0, &C2F(vstk).Infstk[Top - Lhs], &
-	      cx1);
+    C2F(iset)(&Rhs, &cx0, &C2F(vstk).Infstk[Top - Lhs], &cx1);
   }
  L91:
   k = C2F(com).fun;
