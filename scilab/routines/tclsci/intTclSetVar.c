@@ -24,7 +24,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 		GetRhsVar(2,"c",&m1,&n1,&l1);
 		VarValue=cstk(l1);
 
-		if ( !Tcl_SetVar(TCLinterp, VarName, VarValue, 0) )
+		if ( !Tcl_SetVar(TCLinterp, VarName, VarValue, TCL_GLOBAL_ONLY) )
 		{
 			*paramoutINT=(int)(FALSE);
 		}
@@ -42,7 +42,7 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 	else
 	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_matrix) )
 	{
-		char *VarName=NULL,*VarValue=NULL;
+		char *VarName=NULL;
 		char *VarNameWithIndice=NULL;
 		int *paramoutINT=(int*)malloc(sizeof(int));
 		int i=0;
@@ -60,7 +60,12 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 			char buffer[2048];
 
 			sprintf(buffer,"%.10lf",*stk(l1));
-			if (!Tcl_SetVar(TCLinterp,VarName,buffer,0))
+			if (TCLinterp == NULL)
+			{
+				Scierror(999,"TCL_SetVar : Error TCLinterp not Initialize\r\n");
+				return 0;
+			}
+			if (!Tcl_SetVar(TCLinterp,VarName,buffer,TCL_GLOBAL_ONLY))
 			{
 				bTestTCL_SetVar=(int)(FALSE);
 			}
@@ -84,6 +89,12 @@ int C2F(intTclSetVar) _PARAMS((char *fname))
 				VarNameWithIndice=(char*)malloc(len*sizeof(char));
 				sprintf(VarNameWithIndice,"%s(%d,%d)",VarName,i,j);
 				sprintf(buffer,"%.10lf",*stk(l1++));
+
+				if (TCLinterp == NULL)
+				{
+					Scierror(999,"TCL_SetVar : Error TCLinterp not Initialize\r\n");
+					return 0;
+				}
 				if (!Tcl_SetVar(TCLinterp,VarNameWithIndice,buffer,0))
 				{
 					bTestTCL_SetVar=(int)(FALSE);

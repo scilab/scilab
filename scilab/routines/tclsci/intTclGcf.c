@@ -32,7 +32,11 @@ int GetTclCurrentFigure(void)
 	char *StrHandle;
 
 	sprintf(MyTclCommand, "set TclScilabTmpVar [GetGcf];"); 
-	Tcl_Eval(TCLinterp,MyTclCommand);
+	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+    {
+		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		return 0;
+	}
 	StrHandle = (char *) Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
 
 	ValRet=(int)atoi(StrHandle);

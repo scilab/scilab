@@ -44,14 +44,14 @@ int OpenTCLsci(void)
   #ifdef TCL_MINOR_VERSION
     #if TCL_MAJOR_VERSION >= 8
       #if TCL_MINOR_VERSION > 0
-        Tcl_FindExecutable(" ");
+         Tcl_FindExecutable(" ");
       #endif
     #endif
   #endif
 #endif
   SciPath=getenv("SCI");
   
-  /* test SCI validity) */
+  /* test SCI validity */
   if (SciPath==NULL)
     {
       sciprint("\nThe SCI environment variable is not set.\nTCL initialisation failed !\n");
@@ -61,6 +61,7 @@ int OpenTCLsci(void)
 #ifdef WIN32
   strcpy(TkScriptpath, SciPath);
   strcat(TkScriptpath, "/tcl/TK_Scilab.tcl");
+
 
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 
@@ -96,7 +97,12 @@ int OpenTCLsci(void)
       Tk_Init(TCLinterp);
 
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
-      Tcl_Eval(TCLinterp,MyCommand);
+      
+	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
+	  {
+		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		return 0;
+	  }
       
 	  Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
     }
@@ -108,7 +114,13 @@ int OpenTCLsci(void)
       XTKsocket = ConnectionNumber(XTKdisplay);
       
       Tk_GeometryRequest(TKmainWindow,2,2);
-      Tcl_EvalFile(TCLinterp,TkScriptpath);
+
+  	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
+	  {
+		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		return 0;
+	  }
+
       flushTKEvents();
     }
 

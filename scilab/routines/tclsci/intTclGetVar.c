@@ -15,10 +15,16 @@ int C2F(intTclGetVar) _PARAMS((char *fname))
 	if (TypeVar1 == sci_strings)
 	{
 		char *VarName=NULL;
-		char *RetStr;
+		char *RetStr=NULL;
 
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
+
+		if (TCLinterp == NULL)
+		{
+			Scierror(999,"TCL_GetVar : Error TCLinterp not Initialize\r\n");
+			return 0;
+		}
 
 		RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, 0);
 

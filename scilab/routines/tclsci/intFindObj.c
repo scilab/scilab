@@ -30,7 +30,11 @@ int C2F(intFindObj) _PARAMS((char *fname))
 		nocase(value);
 
 		sprintf(MyTclCommand, "set TclScilabTmpVar [FindObj \"%s\" \"%s\"];", field, value);
-		Tcl_Eval(TCLinterp,MyTclCommand);
+		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		{
+			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			return 0;
+		}
 		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
 
 		Handle = (int)atoi(StrHandle);

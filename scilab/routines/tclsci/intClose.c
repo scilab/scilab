@@ -52,6 +52,12 @@ int C2F(intClose) _PARAMS((char *fname))
 	}
 	
 	Tcl_Eval(TCLinterp,MyTclCommand);
+    if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+    {
+		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+		return 0;
+	}
+
 	
 	LhsVar(1) = 0;
 	C2F(putlhsvar)();	

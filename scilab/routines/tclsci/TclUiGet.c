@@ -54,7 +54,6 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
    	{
 		char *StrField=NULL;
 		char *StrValue=NULL;
-		double *MatrixOut=NULL;
 
 		GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
 		StrField=cstk(l1);
@@ -63,7 +62,11 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 		sprintf(MyTclCommand,"set TclScilabTmpVar [GetField %d \"%s\"]", Handle, StrField);
 		
-		Tcl_Eval(TCLinterp,MyTclCommand);
+		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		{
+			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			return 0;
+		}
 		StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
 
 		if (StrValue)
