@@ -20,7 +20,7 @@ int intrankqr(fname)
     ret = C2F(intmb03od)("rankqr",6L);
     return; } else
       {
-	/*	ret = C2F(intzb03od)("rankqr",6L); */
+	ret = C2F(intzb03od)("rankqr",6L);
 	return; } 
 }
 
