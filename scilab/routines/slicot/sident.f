@@ -1,3 +1,0 @@
-      subroutine sident()
-      return
-      end
