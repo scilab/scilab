@@ -24,10 +24,11 @@ all	:: .init
 	touch .init 
 
 clean	::
-	rm  -f $(PROG) $(OBJS)
+	@rm  -f $(PROG) $(OBJS)
 
 distclean ::
-	rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile 
-	rm -f config/Makefile.Top
-	rm -f JavaSciMatrix.class
+	@rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile 
+	@rm -f config/Makefile.Top
+	@find classes -name '*.class' -exec \rm -f {} \;
+
  
