@@ -1,7 +1,11 @@
 function [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,%scicos_display_mode]=...
     initial_scicos_tables()
   
-%scicos_display_mode=0  // =1 if pixmap to be used for display
+if MSDOS then 
+  %scicos_display_mode=0  // =1 if pixmap to be used for display under X11
+else
+  %scicos_display_mode=1
+end
 
 // Define scicos palettes of blocks
 scicos_pal=['Sources','SCI/macros/scicos/Sources.cosf'
@@ -24,20 +28,25 @@ scicos_pal=['Sources','SCI/macros/scicos/Sources.cosf'
 ['Simulate','Setup','Compile','Eval','Run'],..
 ['Object','Open/Set','Resize','Icon','Icon Editor','Color','Label','Get Info','Identification','Documentation','Code Generation'],..
 ['Misc','Background color','Default link colors','ID fonts','Aspect',..
-	'Add color','Shortcuts','Zoom in','Zoom out','Help','Calc']);
+	'Add color','Shortcuts','Display mode','Zoom in','Zoom out','Help','Calc']);
 
 %scicos_short=[['d','c','m','u','f','o','s','i','r','l','q'];
 ['Delete','Copy','Move','Undo','Flip','Open/Set',..
     'Save','Get Info','Replot','Link','Quit']]'
 
 %scicos_help=tlist(..
- ['sch','Window','Background color','Default link colors','ID font','3D aspect','Add color',..
+ ['sch','Display mode','Window','Background color','Default link colors','ID font','3D aspect','Add color',..
  'Focus','Shift','Zoom in','Zoom out','Help','Calc','Palettes','Context','Smart Move',..
  'Move','Copy','Copy Region','Replace','Align','Link','Delete','Delete Region',..
  'Add new block','Flip','Undo','Setup','Compile','Eval','Run','Replot','New',..
  'Region to Super Block','Purge','Rename','Save','Save As','Load','Load as Palette',..
  'Save as Palette','Save as Interf. Func.','Set Diagram Info','Navigator','Quit','Open/Set',..
  'Resize','Icon','Color','Label','Get Info','Identification','Documentation','Code Generation'],..
+ ["Display mode can be 0 or 1. In mode 1, scicos editor uses the";
+  "pixmap option of Scilab graphics to create   a backing";
+  "store for the graphics used for displying scicos diagrams. ";
+  "By default, Display mode is 1 under X and 0 under Windows where ";
+  "the backing store is handled in a different way. "],..
  [' In the active editor Scicos window, clicking on the ';
  ' Window menu item invokes a dialog box that allows you to change ';
  ' window dimensions'],..

@@ -24,7 +24,7 @@ MENU=	Documentation_.sci Addcolor_.sci Addnewblock_.sci Aspect_.sci \
 	SaveAs_.sci Save_.sci SaveasInterfFunc_.sci SaveasPalette_.sci \
 	SetDiagramInfo_.sci Setup_.sci Shortcuts_.sci SmartMove_.sci \
 	Undo_.sci Window_.sci Zoomin_.sci Zoomout_.sci  CodeGeneration_.sci \
-	menu_stuff.sci 
+	menu_stuff.sci Displaymode_.sci
 
 COMPAT= %Block_e.sci %graphics_e.sci %model_e.sci %model_e.sci \
 	%b_i_graphics.sci %s_i_graphics.sci %c_i_graphics.sci \
@@ -90,7 +90,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
         %model_p.sci  %graphics_p.sci \
 	%Block_p.sci  %params_p.sci %diagram_p.sci\
 	tk_mpopup.sci tk_mpopupX.sci tk_getcolor.sci tk_choose.sci tk_getvalue.sci \
-	sci2tcl.sci \
+	sci2tcl.sci do_Displaymode.sci\
 	$(MENU) $(COMPAT) $(CONSTRUCTORS) $(SIMPA)
 
 include ../Make.lib

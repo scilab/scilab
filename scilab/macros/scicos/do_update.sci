@@ -11,7 +11,7 @@ case 0 then  // only parameter changes
     [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
     %cpr.state=state,%cpr.sim=sim
   end
-case 1 then // parameter changes and/or port sizes changes
+case 1 then // parameter changes and/or port sizes change
   if size(newparameters)<>0 then
     // update parameters or states
     cor=%cpr.cor
