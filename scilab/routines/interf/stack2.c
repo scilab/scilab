@@ -1611,6 +1611,10 @@ int C2F(createvarfromptr)(number, typex, m, n, iptr, type_len)
       Nbvars = Max(*number,Nbvars);
       if ( !cre_smat_from_str(fname,&lw1, m, n, (char **) iptr, nlgh)) 
 	return FALSE_;
+      C2F(intersci).iwhere[*number - 1] = *lstk(lw1);
+      C2F(intersci).nbrows[*number - 1] = *m;
+      C2F(intersci).nbcols[*number - 1] = *n;
+
       C2F(intersci).ntypes[*number - 1] = '$';
       break;
     case 's' :
@@ -1618,6 +1622,9 @@ int C2F(createvarfromptr)(number, typex, m, n, iptr, type_len)
       Nbvars = Max(*number,Nbvars);
       if ( !cre_sparse_from_ptr(fname,&lw1, m, n, (SciSparse *) iptr, nlgh))
 	return FALSE_;
+      C2F(intersci).iwhere[*number - 1] = *lstk(lw1);
+      C2F(intersci).nbrows[*number - 1] = *m;
+      C2F(intersci).nbcols[*number - 1] = *n;
       C2F(intersci).ntypes[*number - 1] = '$';
       break;
     default :
@@ -2423,17 +2430,21 @@ static int C2F(mvfromto)(itopl, ix)
   int iwh;
   int izpos,spos;
 /*   FD modif 
-was:
-  m = C2F(intersci).nbrows[*ix - 1];
-  n = C2F(intersci).nbcols[*ix - 1];
-  it = C2F(intersci).itflag[*ix - 1];
-  Type = C2F(intersci).ntypes[*ix - 1];  */
+     was:
+     m = C2F(intersci).nbrows[*ix - 1];
+     n = C2F(intersci).nbcols[*ix - 1];
+     it = C2F(intersci).itflag[*ix - 1];
+     Type = C2F(intersci).ntypes[*ix - 1];  
+*/
 
-  iwh = C2F(intersci).iwhere[*ix - 1];
-  m =*istk( iadr(iwh) +1);
-  n =*istk( iadr(iwh) +2);
-  it = *istk( iadr(iwh) +3);
   Type = C2F(intersci).ntypes[*ix - 1];
+  if ( Type != '$') 
+    {
+      iwh = C2F(intersci).iwhere[*ix - 1];
+      m =*istk( iadr(iwh) +1);
+      n =*istk( iadr(iwh) +2);
+      it = *istk( iadr(iwh) +3);
+    }
 
   switch ( Type ) {
   case 'i' : 
@@ -2480,10 +2491,9 @@ was:
     break;
   case 'c' : 
     /*  FD added  next 3 */
-  il = iadr(iwh);
-  m = *istk(il + 4  +1) - *istk(il + 4 );
-  n = 1;
-
+    il = iadr(iwh);
+    m = *istk(il + 4  +1) - *istk(il + 4 );
+    n = 1;
     ix1 = m * n;
     if (! C2F(cresmat2)("mvfromto", itopl, &ix1, &lrs, 8L)) {
       return FALSE_;

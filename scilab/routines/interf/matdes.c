@@ -247,8 +247,6 @@ static int get_nax(pos,opts)
     }
     else
       {
-	/** global value can be modified  **/
-	def_nax[0]=2;def_nax[1]=10;def_nax[2]=2;def_nax[3]=10; 
 	Nax=def_nax;
       }
   }
@@ -260,8 +258,6 @@ static int get_nax(pos,opts)
   }
   else 
     {
-      /** global value can be modified  **/
-      def_nax[0]=2;def_nax[1]=10;def_nax[2]=2;def_nax[3]=10; 
       Nax=def_nax;
     } 
   return 1;
@@ -3185,15 +3181,23 @@ int scixsort(fname,fname_len)
 	    CreateVar(Rhs+1,"i",&m1,&n1,&lex);
 	    C2F(gsorts)(S,istk(lex),&iflag,&m1,&n1,typex,iord);
 	  }
+	CreateVarFromPtr(Rhs+2,"S", &m1, &n1, S);
       } else {
 	iflag = 0;
 	C2F(gsorts)(S,&v,&iflag,&m1,&n1,typex,iord);
+	CreateVarFromPtr(Rhs+1,"S", &m1, &n1, S);
       }
-      CreateVarFromPtr(Rhs+2,"S", &m1, &n1, S);
       /* we must free Str2 memory */ 
       FreeRhsSVar(S);
-      LhsVar(1)=Rhs+2;
-      if ( Lhs == 2 ) LhsVar(2)=Rhs+1;
+      if ( Lhs == 2 ) 
+	{
+	  LhsVar(1)=Rhs+2;
+	  LhsVar(2)=Rhs+1;
+	}
+      else 
+	{
+	  LhsVar(1)=Rhs+1;
+	}
     }
   return 0;
 } 
@@ -3805,7 +3809,9 @@ static MatdesTable Tab[]={
 
 int C2F(matdes)()
 {  
+  int ifin;
   Rhs = Max(0, Rhs);
+  ifin=Fin;
   (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   C2F(putlhsvar)();
   return 0;
