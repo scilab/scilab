@@ -8,14 +8,14 @@ OBJSC = periX11.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	Contour.o Plo3d.o Math.o Axes.o Champ.o Plo2d.o \
 	Plo2d1.o Plo2d2.o Plo2d3.o Plo2d4.o Plo2dEch.o Rec.o Gray.o \
 	Alloc.o FeC.o RecLoad.o RecSave.o Tests.o Actions.o \
-	gsort.o qsort.o nues1.o Format.o \
+	gsort.o qsort.o nues1.o Format.o w_rottext.o\
 	Entities.o dr1Call.o sciCall.o Plo2dn.o Plo3dn.o
 
 OBJSF = 
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) $(XFLAGS) 
+CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH) 
 
 FFLAGS = $(FC_OPTIONS)
 
@@ -25,6 +25,11 @@ include ../Make.lib
 
 Format.o: Format.c
 	$(CC) $(CFLAGS)  -c $< -o $@
+
+# do not optimize periX11.c on darwin 
+
+periX11darwin.o: periX11darwin.c
+	$(CC) `echo $(CFLAGS) | sed -e "s/-O2//"`  -c $< -o $@
 
 #--- dependencies generated with gcc -MM  ----
 Actions.o: Actions.c Math.h ../machine.h Graphics.h Entities.h \
@@ -107,4 +112,4 @@ qsort.o: qsort.c
 sciCall.o: sciCall.c Entities.h ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h PloEch.h
-
+w_rottext.o: w_rottext.h resources.h
