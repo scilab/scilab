@@ -23,38 +23,25 @@ if ~boolval then
     scinam="%"+varname
   end
 
-  if varname=="nargin" then
-    varslist($+1)=M2scivar("nargin","nargin",Infer(list(1,1),Type(Double,Real)))
-    sci_equiv=Variable("nargin",Infer(list(1,1),Type(Double,Real)))
+  // Undefined variable may be a M-file or a global variable
+  // Check if a corresponding M-file exists here
+  if isanmfile(varname) then
+    // A M-file without parameter
     if verbose_mode<0 then
-      m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a Matlab variable !",-1);
+      m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a M-file !",-1);
     end
-  elseif varname=="nargout" then
-    varslist($+1)=M2scivar("nargout","nargout",Infer(list(1,1),Type(Double,Real)))
-    sci_equiv=Variable("nargout",Infer(list(1,1),Type(Double,Real)))
+    sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
+  elseif exists("sci_"+varname)==1 then
+    // A translated function without parameter
     if verbose_mode<0 then
-      m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a Matlab variable !",-1);
+      m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a M-file (sci_"+varname+" exists) !",-1);
     end
-  else  // Undefined variable may be a M-file or a global variable
-    // Check if a corresponding M-file exists here
-    if isanmfile(varname) then
-      // A M-file without parameter
-      if verbose_mode<0 then
-	m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a M-file !",-1);
-      end
-      sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
-    elseif exists("sci_"+varname)==1 then
-      // A translated function without parameter
-      if verbose_mode<0 then
-	m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" is a M-file (sci_"+varname+" exists) !",-1);
-      end
-      sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
-    else
-      // Try to find what is 'varname'
-      sci_equiv=get_unknown(varname)
-      if verbose_mode<0 then
-	m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" !",-1);
-      end
+    sci_equiv=Funcall(varname,size(lhslist),list(),lhslist)
+  else
+    // Try to find what is 'varname'
+    sci_equiv=get_unknown(varname)
+    if verbose_mode<0 then
+      m2sci_info("L."+string(nblines)+": Unknown variable "+varname+" !",-1);
     end
   end
 else
