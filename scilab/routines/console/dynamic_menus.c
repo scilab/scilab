@@ -88,7 +88,7 @@ static Scig_command_handler scig_command_handler = scig_command_handler_none;
  * changing the default command handler 
  *-------------------------------------------------*/
 
-int  scig_command_handler_none (char *command) {return 0;};
+int  scig_command_handler_none (char *command) {return 0;}
 
 Scig_command_handler set_scig_command_handler (Scig_command_handler f)
 {
@@ -584,8 +584,6 @@ int C2F(intgetos) _PARAMS((char *fname))
 			break;
 	}
 #else
-	
-
 	uname(&uname_pointer);
 	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
 	sprintf(Release,"%s",uname_pointer.release);
