@@ -4,6 +4,28 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TclUiSet.h"
 /*-----------------------------------------------------------------------------------*/
+#define NBRSTYLE 9
+char *UiStyleInternalName[NBRSTYLE] = {"button",
+					           "checkbutton",
+					           "checkbutton",
+					           "entry",
+					           "label",
+		                       "scale",
+					           "frame",
+					           "scrolllistbox",
+					           "popupmenu"};
+char *UiStyleExternalName[NBRSTYLE] = {"pushbutton",
+                               "radiobutton",
+                               "checkbox",
+                               "edit",
+                               "text",
+                               "slider",
+                               "frame",
+                               "listbox",
+				               "popupmenu"};
+/*-----------------------------------------------------------------------------------*/
+char* GetStyleInternalName(char *StyleStr);
+/*-----------------------------------------------------------------------------------*/
 int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 {
 	#define CommandLenMax 2048	
@@ -23,13 +45,34 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	}
 	nocase(PropertieField);
 
+
 	if (strcmp(PropertieField,"userdata")==0)
 	{
 		sciprint("Not yet implemented\n");
 	}
 	else
 	{
-		sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
+		if (strcmp(PropertieField,"style")==0)
+		{
+			char *StyleValue=NULL;
+
+			StyleValue=GetStyleInternalName(PropertieValue);
+			if (StyleValue)
+			{
+				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,StyleValue);
+				free(StyleValue);
+				StyleValue=NULL;
+			}
+			else
+			{
+				Scierror(999,"Invalid parameter(s) type (Style).\n");
+				return 0;
+			}
+		}
+		else
+		{
+		   sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
+		}
 
 		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
 		{
@@ -92,5 +135,21 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 	}
 
 	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+char* GetStyleInternalName(char *StyleStr)
+{
+	char *InternalName=NULL;
+	int i=0;
+	for(i=0;i<NBRSTYLE;i++)
+	{
+		if ( strcmp(StyleStr,UiStyleExternalName[i])==0 )
+		{
+			InternalName=(char*)malloc((strlen(UiStyleInternalName[i])+1)*sizeof(char));
+			sprintf(InternalName,"%s",UiStyleInternalName[i]);
+			return InternalName;
+		}
+	}
+	return InternalName;
 }
 /*-----------------------------------------------------------------------------------*/
