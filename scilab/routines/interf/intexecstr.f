@@ -125,6 +125,7 @@ c     *call*  macro
  24   continue
       if(ids(1,pt).eq.1) then
 c     .  error recovery required: return error number
+         top=pstk(pt)
          il=iadr(lstk(top))
          istk(il)=1
          istk(il+1)=1
