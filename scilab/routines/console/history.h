@@ -33,7 +33,6 @@
 
 extern void write_scilab  __PARAMS((char *s));
 /*-----------------------------------------------------------------------------------*/
-#define HistoryFileName "history.scilab"
 #define MAXBUF	1024
 /*-----------------------------------------------------------------------------------*/
 typedef struct hist_
@@ -66,7 +65,7 @@ int C2F(resethistory) _PARAMS((char *fname));
 int C2F(loadhistory) _PARAMS((char *fname));
 int C2F(savehistory) _PARAMS((char *fname));
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
-
+int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
 /*-----------------------------------------------------------------------------------*/
 
 #endif 

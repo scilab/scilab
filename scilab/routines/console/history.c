@@ -5,6 +5,15 @@ sci_hist *cur_entry = NULL;
 /* Use for SearchInHistory --> ! */
 sci_hist *research_knot_last = NULL;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
+static char *HistoryFileNamePath = "~/history.scilab";
+
+#include  "../stack-c.h"
+#ifndef Max 
+#define Max(x,y)	(((x)>(y))?(x):(y))
+#endif 
+
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,
+			        long int nams_len));  
 
 /*-----------------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr)
@@ -174,132 +183,127 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 /*interface routine for Scilab function savehistory  */
 int C2F(savehistory) _PARAMS((char *fname))
 {
-	FILE * pFile;
-  	char *Home;
-  	char *HistoryFileNamePath;
-	sci_hist *Parcours = history;
-	
-	Home = getenv ("HOME");
-	if (Home)
-	{
-	
-	HistoryFileNamePath=(char*)malloc( (strlen(Home)+2+strlen(HistoryFileName) )*sizeof(char)) ;
-	
-	strcpy(HistoryFileNamePath,Home);
-  	strcat(HistoryFileNamePath,"/");
-  	strcat(HistoryFileNamePath,HistoryFileName);
+  FILE * pFile;
+  char  line[MAXBUF];
+  char *Path;
+  int l1, m1, n1, out_n, lout;
+  sci_hist *Parcours = history;
 
-  	if (history)
-  		{
-  		pFile = fopen (HistoryFileNamePath,"wt");
-  		if (pFile)
-  			{
-  			char Commentline[MAXBUF];
-  			
-  			Parcours=GoFirstKnot(Parcours);
-  			
-  			while(Parcours->next)
-  				{
-  				fputs(Parcours->line,pFile );
-  				fputs("\n",pFile );
-  				Parcours=GoNextKnot(Parcours);  
-  				}
-  			
-  			GetCommentDateSession(Commentline,FALSE);
-  			
-			fputs(Commentline,pFile );
-  			
-  			fclose(pFile);
-  			}
-  		
-        	free(HistoryFileNamePath);	
-   		}
-	}
-	else
-	{
-		sciprint("\nHOME variable error \n");
-	}
-	C2F(objvide)(fname,&(Top),strlen(fname));
-	return 0;
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,1) ;
+  CheckLhs(0,1) ;
+
+	
+  if (Rhs == 0) {
+    Path=HistoryFileNamePath;
+  }
+  else {
+    GetRhsVar(1,"c",&m1,&n1,&l1);
+    Path=cstk(l1);
+  }
+  if (history) {
+    lout=MAXBUF;
+    C2F(cluni0)(Path, line, &out_n,strlen(Path),lout);
+    pFile = fopen (line,"wt");
+    if (pFile)
+      {
+	Parcours=GoFirstKnot(Parcours);
+	while(Parcours->next)
+	  {
+	    fputs(Parcours->line,pFile );
+	    fputs("\n",pFile );
+	    Parcours=GoNextKnot(Parcours);  
+	  }
+	GetCommentDateSession(line,FALSE);
+	fputs(line,pFile );
+	fclose(pFile);
+      }
+  }
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */
 int C2F(resethistory) _PARAMS((char *fname))
 {
-	if (history)
-	{
-		sci_hist *Parcours = history;
-		sci_hist *PrevParcours=NULL;
-		char Commentline[MAXBUF];
-	
-		Parcours=GoFirstKnot(Parcours);
-				
-		while(Parcours->next)
-		{
-			PrevParcours=Parcours;
-			free(Parcours->line);
-			Parcours->line=NULL;
-			Parcours=GoNextKnot(Parcours); 
-			PrevParcours->next=NULL;
-			PrevParcours->prev=NULL;
-		}
-		history=NULL;
-		cur_entry=NULL;
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,0) ;
+  CheckLhs(0,1) ;
+  if (history)
+    {
+      sci_hist *Parcours = history;
+      sci_hist *PrevParcours=NULL;
+      char Commentline[MAXBUF];
 
-		GetCommentDateSession(Commentline,TRUE);		
-		AddHistory (Commentline);
+      Parcours=GoFirstKnot(Parcours);
+				
+      while(Parcours->next)
+	{
+	  PrevParcours=Parcours;
+	  free(Parcours->line);
+	  Parcours->line=NULL;
+	  Parcours=GoNextKnot(Parcours); 
+	  PrevParcours->next=NULL;
+	  PrevParcours->prev=NULL;
 	}
-	C2F(objvide)(fname,&(Top),strlen(fname));
-	return 0;
+      history=NULL;
+      cur_entry=NULL;
+
+      GetCommentDateSession(Commentline,TRUE);		
+      AddHistory (Commentline);
+    }
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function loadhistory  */
 int C2F(loadhistory) _PARAMS((char *fname))
 {
-	FILE * pFile;
-	char  line[MAXBUF];
-	char *Home;
-	char *HistoryFileNamePath;
-		
-	Home = getenv ("HOME");
-	if (Home)
-	{
-	HistoryFileNamePath=(char*)malloc( (strlen(Home)+2+strlen(HistoryFileName) )*sizeof(char)) ;
+  FILE * pFile;
+  char  line[MAXBUF];
+  char  *Path;
+  int l1, m1, n1, out_n, lout;
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,1) ;
+  CheckLhs(0,1) ;
 	
-	strcpy(HistoryFileNamePath,Home);
-	strcat(HistoryFileNamePath,"/");
-	strcat(HistoryFileNamePath,HistoryFileName);
-	
-  	pFile = fopen (HistoryFileNamePath,"rt");
-  	if (pFile)
-  		{
-  		sci_hist *Parcours = history;
-  		if (Parcours) Parcours=GoLastKnot(Parcours);
-  			
-  		while(fgets (line,sizeof(line),pFile) != NULL)
-			{
-				line[strlen(line)-1]='\0'; /* enleve le retour chariot */
-				AddHistory(line);
-			}
-		
-		cur_entry=history;
-		fclose(pFile);
-  		}
 
-  	free(HistoryFileNamePath);
-	}
-	else
+  if (Rhs == 0) {
+    Path=HistoryFileNamePath;
+  }
+  else {
+    GetRhsVar(1,"c",&m1,&n1,&l1);
+    Path=cstk(l1);
+  }
+
+  lout=MAXBUF;
+  C2F(cluni0)(Path, line, &out_n,strlen(Path),lout);
+  pFile = fopen (line,"rt");
+
+  if (pFile)
+    {
+      sci_hist *Parcours = history;
+      if (Parcours) Parcours=GoLastKnot(Parcours);
+	
+      while(fgets (line,sizeof(line),pFile) != NULL)
 	{
-		sciprint("\nHOME variable error \n");
+	  line[strlen(line)-1]='\0'; /* enleve le retour chariot */
+	  AddHistory(line);
 	}
-	// Ajout date & heure debut session
-	{
-		char Commentline[MAXBUF];
-		GetCommentDateSession(Commentline,TRUE);		
-		AddHistory (Commentline);  	
-	}
-	C2F(objvide)(fname,&(Top),strlen(fname));
-	return 0;
+		
+      cur_entry=history;
+      fclose(pFile);
+    }
+  // Ajout date & heure debut session
+
+  GetCommentDateSession(line,TRUE);		
+  AddHistory (line);  
+	
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function gethistory  */
@@ -307,82 +311,105 @@ int C2F(gethistory) _PARAMS((char *fname))
 {
 
   static int l1, m1, n1;	
-  int indice=0;
+  int indice=1,GotoLine;
   sci_hist *Parcours = history;
 
 
-   if (Rhs <= 0) /* aucun parametre --> affichage de la liste de l'historique */
-    {
-  	
-    	if (history)
-        {
-        	
-  		if (Parcours) Parcours=GoFirstKnot(Parcours);
-  				
-  		/* Parcours la liste jusqu'au dernier element */
-  		while(Parcours->next)
-  		{
-  			
-  			sciprint("%d : %s\n",indice,Parcours->line);
-  			Parcours=GoNextKnot(Parcours);
-  			indice++;
-  		}
-  	
-     	}	
-  	else
-    	{
-  		sciprint("No history\n");
-    	}
-     }
-  else
-  {
-  	/* Affichage d'une ligne en particulier */
-  	int GotoLine=0;	
-        int IndiceMax=0;	
-        
-        if (history)
-        {
-        	if (Parcours) Parcours=GoFirstKnot(Parcours);
-        	
-        	while(Parcours->next)
-  		{
-  			Parcours=GoNextKnot(Parcours);
-  			IndiceMax++;
-  		}
-  		
-  		if (Parcours) Parcours=GoFirstKnot(Parcours);
-  		
-  		CheckRhs(1,1);
-  		CheckLhs(1,1);
-  		GetRhsVar(1,"i",&m1,&n1,&l1);
-  		GotoLine=*istk(l1);
-  		LhsVar(1)=0;
-  	
-  		if ( (GotoLine>=0) && (GotoLine<=IndiceMax) )
-  		{
-  			while  ( Parcours->next )
-  			{	
-  				if ( indice == GotoLine ) break;
-  				Parcours=GoNextKnot(Parcours);
-  				indice++;
-  			}
-  			
-  			write_scilab(Parcours->line);
-  			
-  		}
-  		else
-  		{
-  			sciprint("Error with param. %d not in [0,%d]\n",GotoLine,IndiceMax);
-  		}
-        }
-        else
-        {
-  		sciprint("No history\n");
-    	}
-   	
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,1) ;
+  CheckLhs(1,1) ;
+
+  if (!history)   goto empty;
+
+  if (Rhs == 1) {
+    GetRhsVar(1,"i",&m1,&n1,&l1);
+    GotoLine=Max(1,*istk(l1)); 
   }
-   C2F(objvide)(fname,&(Top),strlen(fname));
-   return 0;
- }	
+  else {
+    GotoLine=1; 
+  }
+
+  /* looking for the top of the hystory */
+  if (Parcours) Parcours=GoFirstKnot(Parcours);
+
+  /* get the first requested record */
+  while  ( Parcours->next ) {	
+    if ( indice == GotoLine ) break;
+    Parcours=GoNextKnot(Parcours);
+    indice++;
+  }
+  if (!Parcours->next) goto empty;
+
+  if(!CreSmatFromHist(fname, Rhs+1, Parcours)) return 0;
+  LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
+  return 0;
+
+ empty:
+  m1=0;
+  n1=0;
+  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+  LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
+  return 0;
+}	
  
 /*-----------------------------------------------------------------------------------*/
+int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
+{
+  int ix1, il, nnchar, kij, ilp, lw;
+  int pos;
+  int indice;
+  static int  cx0 = 0;
+  sci_hist *Htop;
+
+  Nbvars = Max(number,Nbvars);
+  lw = number + Top - Rhs;
+
+  /* preserve the top of history adress */
+  Htop=Parcours;
+
+  /* get the number of history lines and total number of characters */
+  indice=0;nnchar = 0;
+  while  ( Parcours->next ) {	
+    indice++;
+    nnchar =nnchar + strlen(Parcours->line);
+    Parcours=GoNextKnot(Parcours);
+  }
+  
+  /* Check for available memory */
+  il = iadr(*lstk(lw));
+  ix1 = il + 4 + (nnchar + 1) + (indice + 1);
+  Err = sadr(ix1) - *lstk(Bot );
+  if (Err > 0) {
+    Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
+	     fname);
+    return  FALSE_;
+  } ;
+  /* create the variable header */
+  *istk(il ) = 10;
+  *istk(il + 1) = indice;
+  *istk(il + 2) = 1;
+  *istk(il + 3) = 0;
+  ilp = il + 4;
+  *istk(ilp ) = 1;
+  pos = ilp + indice + 1;
+
+  /* fill in the variable */
+  Parcours=Htop;
+  kij = ilp + 1;
+  while  ( Parcours->next ) {
+    int l = strlen(Parcours->line);
+     *istk(kij ) = *istk(kij - 1) + l;
+     C2F(cvstr)(&l, istk(pos), Parcours->line, &cx0, l);
+    Parcours=GoNextKnot(Parcours);
+    kij++;
+    pos = pos + l;
+  }
+  /* close the variable */
+  *lstk(lw+1) = sadr(pos);
+
+  C2F(intersci).iwhere[number - 1] = *lstk(lw);
+  C2F(intersci).ntypes[number - 1] = '$';
+  return TRUE_;
+} 
