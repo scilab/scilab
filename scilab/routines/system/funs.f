@@ -47,9 +47,12 @@ c     is a scilab code function already loaded in the variables stack
       if(k.gt.isiz) goto 35
       if(.not.eqid(idstk(1,k),id)) goto 31
       il=iadr(lstk(k))
-c The instruction below erases a variable whose name is one of the
-c      library's function (SS)!
-c      if(istk(il).ne.11.and.istk(il).ne.13) goto 35
+c     modif 1.3 SS
+      if(istk(il).ne.11.and.istk(il).ne.13) then
+         fin=0
+         fun=0
+         return
+      endif
       fin=k
       fun=-1
       return
