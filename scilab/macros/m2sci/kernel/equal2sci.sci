@@ -107,15 +107,24 @@ else
       if ~bval then
 	// Variable added to varslist before insertion
 	if funptr(inservar.name)<>0 then
-	  varslist($+1)=M2scivar("%"+inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
-	  // Variable is initialized to [] in converted script is does not already exist
-	  m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
+	  matname="%"+inservar.name
 	else
-	  varslist($+1)=M2scivar(inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
+	  matname=inservar.name
+	end
+	if sci_instr.expression.vtype==Struct then
+	  // Variable is initialized to struct() in converted script is does not already exist
+	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Struct,Unknown)))
+	  m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("struct",1,list(),list()))
+	elseif sci_instr.expression.vtype==Cell then
+	  // Variable is initialized to cell() in converted script is does not already exist
+	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Cell,Unknown)))
+	  m2sci_to_insert_b($+1)=Equal(list(inservar),Funcall("cell",1,list(),list()))
+	else
 	  // Variable is initialized to [] in converted script is does not already exist
+	  varslist($+1)=M2scivar(matname,inservar.name,Infer(list(0,0),Type(Double,Real)))
 	  m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
 	end
-	sci_instr.lhs(k).out(1).infer=Infer()
+	sci_instr.lhs(k).out(1).infer=varslist($).infer
       else
 	sci_instr.lhs(k).out(1).infer=varslist(index).infer
       end
@@ -139,30 +148,6 @@ else
   // Update varslist
   updatevarslist(sci_instr.lhs);
 
-end
-
-if sci_instr<>list() then 
-  // Result is displayed or not ?
-  if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
-    if typeof(sci_instr.lhs(1))=="variable" & sci_instr.lhs(1).name=="ans" then // Variable to display
-      if typeof(sci_instr.expression)<>"funcall" | sci_instr.expression.name<>"%comment" then
-	sci_instr.expression=Funcall("disp",1,list(sci_instr.expression,Cste("ans  =")),list())
-      end
-    else // Instruction lhs to display
-      sci_instr.endsymbol=","
-      displhs=list()
-      for klhs=size(sci_instr.lhs):-1:1
-	if typeof(sci_instr.lhs(klhs))=="variable" then
-	  displhs($+1)=sci_instr.lhs(klhs)
-	  displhs($+1)=Cste(sci_instr.lhs(klhs).name+"  =")
-	else
-	  displhs($+1)=sci_instr.lhs(klhs).operands(1)
-	  displhs($+1)=Cste(sci_instr.lhs(klhs).operands(1).name+"  =")
-	end
-      end
-      m2sci_to_insert_a($+1)=Equal(list(Variable("ans",Infer())),Funcall("disp",1,displhs,list()))
-    end
-  end
 end
 endfunction
 
