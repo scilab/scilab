@@ -68,8 +68,6 @@ static CommandRec *commandQueue = NULL;
 static Scig_command_handler scig_command_handler = scig_command_handler_none;
 
 
-#define SPARSEMAXLINELIMIT 512
-
 /*-------------------------------------------------*
  * changing the default command handler 
  *-------------------------------------------------*/
@@ -119,11 +117,6 @@ int StoreCommand1 (char *command,int flag)
 	case 0: default : // the command is not shown in Scilab
 		{
 			  CommandRec *p, *q, *r;
-			  
-			  char *CommandLines[SPARSEMAXLINELIMIT];
-			  int SizeArrayCommandLines=0;
-
-			  CutOutLine(command,CommandLines,&SizeArrayCommandLines);
 
 			  /** first check if we have a special handler set for commands **/
 			  if (scig_command_handler (command) == 1)  return 0;
@@ -325,43 +318,3 @@ int C2F(setlanguagemenu) _PARAMS((char *fname))
 	return 0;
 }
  /*-----------------------------------------------------------------------------------*/
-BOOL CutOutLine(char *commandline,char *CommandLineArray[SPARSEMAXLINELIMIT],int *SizeArray)
-// commandline IN
-// CommandLineArray OUT
-// SizeArray OUT
-// Cut Out a command to multiple lines of 512 characters with '..'
-// by default sparse is limited to 512 characters
-// return FALSE if is not necessary to cut line.
-{
-	
-	BOOL retour=FALSE;
-	if ( (int)strlen(commandline) < SPARSEMAXLINELIMIT )
-	{
-		retour=FALSE;
-		*CommandLineArray=NULL;
-		*SizeArray=0;
-	}
-	else
-	{
-		int SizeArrayLocal=0;
-		int i=0;
-		
-		SizeArrayLocal=(int)strlen(commandline) / SPARSEMAXLINELIMIT ;
-		if ( (int)strlen(commandline) % SPARSEMAXLINELIMIT ) (SizeArrayLocal)++;
-		if ( (SizeArrayLocal * strlen(" ..") )> SPARSEMAXLINELIMIT ) (SizeArrayLocal)++;
-
-		
-		CommandLineArray=malloc((SizeArrayLocal)*sizeof(char * ));
-		for (i=0;i<SizeArrayLocal;i++)
-		{
-			strncpy(CommandLineArray[i],&commandline[(SPARSEMAXLINELIMIT-strlen(" .."))*i],SPARSEMAXLINELIMIT-strlen(" .."));
-			strcat(CommandLineArray[i]," ..");
-			MessageBox(NULL,CommandLineArray[i],"Test",MB_OK);
-		}
-
-		retour=TRUE;
-		
-	}
-	return retour;
-
-}

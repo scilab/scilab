@@ -112,7 +112,6 @@ void Callback_EXEC(void)
 {
 	char Fichier[MAX_PATH];
 	char command[MAX_PATH];
-	char commandOUT[MAX_PATH];
 	
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
@@ -122,12 +121,8 @@ void Callback_EXEC(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-
-		wsprintf(commandOUT,"printf('exec(''%s'');disp(''exec done'');');quit;",Fichier);
-		//StoreCommand1 (command,1);
-		C2F(scirun)(commandOUT,strlen(commandOUT));
-		wsprintf(command,"exec('%s');disp('exec done');quit;",Fichier);
-		C2F(scirun)(command,strlen(command));
+		wsprintf(command,"exec('%s');disp('exec done');",Fichier);
+		StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -423,28 +418,24 @@ void Callback_SCIPAD(void)
 {
 	char Command[512];
 	extern BOOL PutLineInBuffer;
-	wsprintf(Command,"scipad();quit;");
+	wsprintf(Command,"%cscipad();",CTRLU);
 
-   /* PutLineInBuffer=FALSE;
+    PutLineInBuffer=FALSE;
 	if (IsToThePrompt ()) StoreCommand1(Command,1);
 	else StoreCommand("scipad();");
-	PutLineInBuffer=FALSE;*/
-
-	C2F(scirun)(Command,strlen(Command));
+	PutLineInBuffer=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
 {
 	char Command[512];
 	extern BOOL PutLineInBuffer;
-	wsprintf(Command,"help();quit;");
+	wsprintf(Command,"%chelp();",CTRLU);
 
-	/*PutLineInBuffer=FALSE;
+	PutLineInBuffer=FALSE;
 	if (IsToThePrompt ()) StoreCommand1(Command,1);
 	else StoreCommand("help();");
-	PutLineInBuffer=FALSE;*/
-	C2F(scirun)(Command,strlen(Command));
-
+	PutLineInBuffer=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
