@@ -1,5 +1,5 @@
-                         Scilab version 2.7
-                         ******************
+                         Scilab version 3.0 RC1
+                         **********************
  
  ******************************************************************************
   		         INSTALLATION GUIDE
@@ -15,7 +15,7 @@
  ******************************************************************************
  
  In the following, all the paths are relative to the Scilab directory 
- (scilab-2.7 directory).
+ (scilab-3.0 directory).
  
  I - TO INSTALL SCILAB
  *********************
@@ -29,7 +29,7 @@
   --------------------------------
     This distribution has been tested on the following machines:
     SUN Sparcstation (Solaris 5.6), DEC alpha (OSF1 V4.0) and PC linux
-    (Mandrake 8.2, 9.0, Red Hat 8.0, Suse 8.0). But it should work on
+    (Mandrake 9.2, Red Hat 9.0, Suse 9.0). But it should work on
     other UNIXes.
  
     You need X Window (X11R4, X11R5 or X11R6), Athena Widgets libraries, 
@@ -102,7 +102,7 @@
 
         --with-atlas-library=DIR: use the optimized version of BLAS (ATLAS)
 
-        --prefix=DIR: scilab will install itself in DIR/scilab-2.7
+        --prefix=DIR: scilab will install itself in DIR/scilab-3.0
            and create 3 symlinks in DIR/bin
         By default prefix=/usr
         	 
@@ -119,9 +119,9 @@
         * If you wish to use Tk (--with-tk), you must set the tcl/tk library
         and include directories accordingly. Usually:
         --with-tk-library=$PREFIX/lib
-        --with-tk-include=$PREFIX/include/tk8.3
+        --with-tk-include=$PREFIX/include/tk8.4
         --with-tcl-library=$PREFIX/lib
-        --with-tcl-include=$PREFIX/include/tcl8.3
+        --with-tcl-include=$PREFIX/include/tcl8.4
         * You should set the CFLAGS variable before running configure to set
         specific compilation options. Usually: CFLAGS="-O -pipe"
         * You should set the correct prefix. Usually: --prefix=$PREFIX
@@ -136,9 +136,9 @@
          * If you wish to use Tk (--with-tk), you must set the tcl/tk library
          and include directories accordingly. Usually:
          --with-tk-library=$PREFIX/lib
-         --with-tk-include=$PREFIX/include/tk8.3
+         --with-tk-include=$PREFIX/include/tk8.4
          --with-tcl-library=$PREFIX/lib
-         --with-tcl-include=$PREFIX/include/tcl8.3
+         --with-tcl-include=$PREFIX/include/tcl8.4
          * You should set the CFLAGS variable before running configure to set
          specific compilation options. Usually: CFLAGS="-O2 -pipe"
          * You should set the correct prefix. Usually: --prefix=$PREFIX
@@ -203,7 +203,7 @@
         color resources in your personal resource file (home directory).
  
  ******************************************************************************
- II - KNOWN PROBLEMS AND REMARKS
+ II - REMARKS
  *******************************
     0 - Note that C routines are not all ANSI.
  
