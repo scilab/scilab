@@ -15,6 +15,7 @@ function xmltohtml(dirs,titles,xsl)
   // get man_dirs 
   std= grep(%helps(:,1),SCI)
   man_dirs = basename(%helps(std,1));
+  man_titles= %helps(std,2);
   if man_dirs == [] then 
     error('I cannot find man dirs');
     return 
@@ -27,7 +28,10 @@ function xmltohtml(dirs,titles,xsl)
   if rhs <= 1 then titles= H + emptystr(dirs);end 
   if rhs <= 0 then dirs = man_dirs ;end 
   if titles==[] then titles= H+ emptystr(dirs);end 
-  if dirs == [] then dirs = man_dirs ;end 
+  if dirs == [] then 
+    dirs = man_dirs ;
+    titles= man_titles;
+  end 
   
   // first build all the whatis 
   // ---------------------------
@@ -46,24 +50,28 @@ function xmltohtml(dirs,titles,xsl)
   for k=1:size(dirs,'*');
     mprintf('Processing chapter %s\n",dirs(k));
     chdir(dirs(k));
-    gener_links();
-    xml2 = listfiles('*.xml2');
-    if xml2 <> "" then 
-      for k1=1:size(xml2,'*')  // loop on .xml2 files 
-	fb=basename(xml2(k1))
-	mprintf('Processing file %s.xml\n",fb);
-	xslpath=pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
-	unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+    rep=gener_links();
+    if rep then 
+      // if rep is %t then new xml2 files have been 
+      // generated
+      xml2 = listfiles('*.xml2');
+      if xml2 <> "" then 
+	for k1=1:size(xml2,'*')  // loop on .xml2 files 
+	  fb=basename(xml2(k1))
+	  mprintf('Processing file %s.xml\n",fb);
+	  xslpath=pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
+	  unix_s('sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	end
       end
-    end
-    if MSDOS then 
-      unix_s('del *.xml2')
-    else
-       unix_s('rm -f *.xml2')
+      if MSDOS then 
+	unix_s('del *.xml2')
+      else
+	 unix_s('rm -f *.xml2')
+      end
     end
     chdir('../')
   end
-  
+    
   // now the index 
   mprintf('Creating index.htm \n");
   if rhs <= 0 then 
@@ -107,14 +115,14 @@ function gener_whatis(title)
      end
   end
   
-  line=["<html>"
+  head=["<html>"
 	"<head>"
 	"  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 	"    <title>"+whatis_title+"</title>"
 	"</head>"
 	"<body bgcolor=""FFFFFF"">"];
-
-  l=size(line,'*')  
+  
+  l=0;
   for k1=1:size(xml,'*')  // loop on .xml files
     path=xml(k1);
     txt=mgetl(path);
@@ -136,8 +144,8 @@ function gener_whatis(title)
       end
     end
   end
-  line = [line;"</body></html>"]
-  mputl(sort(line),"whatis.htm");
+  text = [head;gsort(line,'g','i');"</body></html>"];
+  mputl(text,"whatis.htm");
 endfunction
 
 function gener_index(dirs,txt) 
@@ -150,7 +158,7 @@ function gener_index(dirs,txt)
   path=get_absolute_file_path("html.xsl")+"html.xsl"
   [lhs,rhs]=argn(0) 
   if rhs <= 0 then 
-    dirs=%helps(:,1)
+    dirs=basename(%helps(:,1))
     txt=%helps(:,2)
   end
        
@@ -161,9 +169,14 @@ function gener_index(dirs,txt)
 	"</head>"
 	"<body bgcolor=""FFFFFF"">"];
   l=size(line,'*')  
+  // check for whatis 
+
   for k=1:size(dirs,'*')
-    d=dirs(k)
-    w=relative_path(d+sep+"whatis.htm",path)
+    w=dirs(k)+sep+"whatis.htm";
+    if fileinfo(w)==[] then 
+      error('file '+w+' not found');
+      return 
+    end 
     l=l+1;
     line(l)="<BR><A HREF="""+w+""">"+txt(k)+"</A>"
   end
@@ -171,9 +184,11 @@ function gener_index(dirs,txt)
   mputl(line,"index.htm")
 endfunction 
 
-function gener_links()
+function flag = gener_links()
 //-------------------------------------
+// returns %t if new files were created 
   lines(0);
+  flag=%f
   // look for .xml files
   // look for .xml files
   xml = listfiles('*.xml');
@@ -181,11 +196,11 @@ function gener_links()
     path=xml(k1)
     write(%io(2),path)
     if newest(path,strsubst(path,".xml",".htm"))==1 then
-      find_links(path,path+"2")
+      flag1= find_links(path,path+"2")
+      flag = flag1 | flag
     end
   end
 endfunction 
-
 
 function gener_contents(dirs1)
 // contents.htm 
@@ -246,7 +261,12 @@ function gener_contents(dirs1)
 	   lkey=part(lwhatis,i(2)+1:j-1);
 	   full_whatis_name=[full_whatis_name;lkey];
 	 end
-	 whatis=strsubst(whatis,"HREF=""","HREF"""+dirs(k)+"/");
+	 if dirs(k)<>'.' then 
+	   d=dirs(k)+'/'+base(k)+"/";
+	 else 
+	    d=base(k)+"/";
+	 end
+	 whatis=strsubst(whatis,"HREF=""","HREF="""+d);
 	 full_whatis=[full_whatis;whatis];
       end 
     end
@@ -255,14 +275,19 @@ function gener_contents(dirs1)
   [sv,sk]=sort(full_whatis_name);
   full_whatis=full_whatis(sk);
 
+  select LANGUAGE 
+   case 'fr' then title =  "<H2>Fonctions Scilab</H2>";
+   case 'eng' then title =  "<H2>Scilab functions</H2>";
+  end
+  
   full_whatis=["<html>"
 	       "<head>"
 	       "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 	       "  <title>Scilab General Index</title>"
 	       "</head>"
 	       "<body bgcolor=""FFFFFF"">";
+	       title;
 	       full_whatis;
-	       "<H2>Scilab General Index</H2>";
 	       "</body></html>"
 	      ];
   
