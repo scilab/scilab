@@ -90,7 +90,7 @@ clear  larg L
 //Scilab Help Chapters, ===============================================
 global %helps
 %helps=initial_help_chapters(LANGUAGE)
-clear initial_help_chapters %helps
+clear initial_help_chapters //%helps
 
 // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
