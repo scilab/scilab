@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>clc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="clc">Clear Command Window</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>clc([nblines])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>nblines</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a double value</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+    <P><VERB>clc()</VERB> clears all input and output from the Command Window.</P>
+    <P>After using <VERB>clc()</VERB>, you cannot use the scroll bar to see the history of functions, but still can use the up arrow to recall statements from the command history.</P>
+    <P><VERB>clc(nblines)</VERB> clears <VERB>nblines</VERB> above cursor current line and move cursor up to this line.</P>
+    <P>Note that <VERB>clc([nblines])</VERB> cannot be used under Unix/Linux platforms when Scilab used in no window mode.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM><LINK>tohome</LINK></SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
