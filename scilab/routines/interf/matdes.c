@@ -2966,29 +2966,29 @@ int scixgetmouse(fname,fname_len)
 {
   integer  m1=1,n1=3,l1,button,v;
   integer iflag;
-  integer sel[3],m,n;
+  integer sel[2],m,n;
   double x,y,dv;
 
   CheckRhs(0,2);
   CheckLhs(1,1);
   if (Rhs<=0) {
-    iflag=0;sel[0]=1;sel[1]=0;sel[2]=0;
+    iflag=0;sel[0]=1;sel[1]=0;
   }
   else {
     if (GetType(1)==4) {
       iflag=0;
       GetRhsVar(1, "b", &m, &n, &l1);
-      CheckDims(1,m*n,1,3,1);
-      sel[0]=*istk(l1);sel[1]=*istk(l1+1);sel[2]=*istk(l1+2);}
+      CheckDims(1,m*n,1,2,1);
+      sel[0]=*istk(l1);sel[1]=*istk(l1+1);}
     else {
       iflag=1;
-      sel[0]=1;sel[1]=0;sel[2]=0;
+      sel[0]=1;sel[1]=0;
     }
     if (Rhs==2) {
       if (iflag==1) {
 	GetRhsVar(2, "b", &m, &n, &l1);
-	CheckDims(2,m*n,1,3,1);
-	sel[0]=*istk(l1);sel[1]=*istk(l1+1);sel[2]=*istk(l1+2);}
+	CheckDims(2,m*n,1,2,1);
+	sel[0]=*istk(l1);sel[1]=*istk(l1+1);}
     }
   }
 
