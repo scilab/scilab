@@ -11,7 +11,7 @@ LIBRARY = $(SCIDIR)/libs/interf.lib
 OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj \
 	intlapack.obj intslicot.obj intarpack.obj matdes.obj intorand.obj stcreate.obj \
 	intfilestat.obj strelm-c.obj  matdsr.obj otherspecfun.obj hmops.obj \
-	intinterp.obj
+	intinterp.obj intsetenv.obj
 
 OBJSF = lstelm.obj lstelmi.obj matelm.obj matold.obj lstops.obj intl_e.obj intl_i.obj \
 	matio.obj intdeff.obj intdiary.obj intdisp.obj intexec.obj intexecstr.obj \

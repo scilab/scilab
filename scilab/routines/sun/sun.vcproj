@@ -650,6 +650,9 @@ cd .. &gt;nul
 				RelativePath=".\men_Sutils.c">
 			</File>
 			<File
+				RelativePath=".\setenvc.c">
+			</File>
+			<File
 				RelativePath=".\systemc.c">
 			</File>
 			<File

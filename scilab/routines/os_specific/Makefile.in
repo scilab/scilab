@@ -8,7 +8,7 @@ OBJSF = bashos.o basin.o basout.o \
 	@FGETARG@.o getpro.o inibrk.o sigbas.o 
 
 OBJSC  = getenvc.o link.o systemc.o   csignal.o getpidc.o timer.o \
-	flags.o men_Sutils.o addinter.o  tmpdir.o cluni0.o \
+	flags.o men_Sutils.o addinter.o  tmpdir.o cluni0.o setenvc.o \
 	inffic.o isanan.o  texmacs.o @GETARG@.o @MALLOC@ 
 
 include ../../Makefile.incl

@@ -30,6 +30,7 @@
 {"mgetl",     	        IN_matio,       26,	1},
 {"fileinfo",     	IN_matio,       27,	1},
 {"getio",       	IN_matio,       28,	1},
+{"setenv",       	IN_matio,       29,	1},
 #define  IN_matelm  6  
 {"abs",			IN_matelm,	1,	0},	
 {"atan",		IN_matelm,	25,	0},	

@@ -24,11 +24,11 @@ c     load read  getf exec lib   diary save write print mac  deff rat
 c     1    2     3    4     5     6    7     8     9    10   11   12
 c     file hosts readb writb execstr  disp  getpid getenv read4b write4b
 c     13   14    15    16     17      18     19     20     22      23
-c     Save Load mgetl fileinfo getio
-c     24   25    26     27      28
+c     Save Load mgetl fileinfo getio setenv
+c     24   25    26     27      28   29
  01   goto ( 35, 120, 54,10, 130,27, 30,60, 25, 160,
      +       50, 45, 140,170,190,180,20,200,205,210,
-     +       170,220,230,240,250,260,270,280),fin
+     +       170,220,230,240,250,260,270,280,290),fin
 c     
 c     exec
  10   continue
@@ -160,7 +160,9 @@ c     fileinfo
 c     getio
  280  call intgetio('getio')
       return
-
+c     setenv
+ 290  call intsetenv('setenv')
+      return
 
  999  return
       end

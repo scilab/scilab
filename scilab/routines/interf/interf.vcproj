@@ -647,6 +647,9 @@ cd .. &gt;nul
 				RelativePath=".\intorand.c">
 			</File>
 			<File
+				RelativePath=".\intsetenv.c">
+			</File>
+			<File
 				RelativePath=".\intslicot.c">
 			</File>
 			<File
