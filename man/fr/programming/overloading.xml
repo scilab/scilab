@@ -221,8 +221,8 @@
     insertion algorithm like <VERB>x.b(2)=33</VERB> where <VERB>b</VERB> field is
     not defined in the structure <VERB>x</VERB>. The insertion is
     automatically decomposed into <VERB>temp=x.b;</VERB>
-    <VERB>temp(2)=33;</VERB> <VERB>x.b=temp</VERB>. The <VERB>E</VERB>
-    char code is used for the first step of this algorithm. The <VERB>E</VERB>
+    <VERB>temp(2)=33;</VERB> <VERB>x.b=temp</VERB>. The <VERB>6</VERB>
+    char code is used for the first step of this algorithm. The <VERB>6</VERB>
     overloading function is very similar to the <VERB>e</VERB>'s one.
    </P>
     <DESCRIPTION_INDENT>
