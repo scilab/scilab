@@ -143,7 +143,7 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wy,hdl)
                		 sciGetSelectedSubWin (sciGetCurrentFigure ()), fname,
 			 strlen (fname), x, y,wy));
      *hdl= sciGetHandle(sciGetCurrentObj ());
-     sciSetFontOrientation (sciGetCurrentObj (), *angle *  10); 
+     sciSetFontOrientation (sciGetCurrentObj (), (int) (*angle *  10)); 
      sciDrawObj(sciGetCurrentObj ());
           
 

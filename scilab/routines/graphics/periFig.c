@@ -1315,11 +1315,11 @@ void C2F(drawarcXfig_old)(char *str, integer *x, integer *y, integer *width, int
 void C2F(drawarcXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer vx[365],vy[365],k,n;
-  float alpha,fact=0.01745329251994330,w,h;
+  float alpha,fact= (float) 0.01745329251994330,w,h;
   integer close = 0;
 
-  w = (*width)/2.0;
-  h = (*height)/2.0;
+  w = (float) ((*width)/2.0);
+  h = (float) ((*height)/2.0);
   n=Min((*angle2/64),360);
   for (k = 0; k < n; ++k) {
     alpha=((*angle1/64)+k)*fact;
@@ -1348,13 +1348,13 @@ void C2F(fillarcXfig_old)(char *str, integer *x, integer *y, integer *width, int
 void C2F(fillarcXfig)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4)
 { 
   integer vx[365],vy[365],k,k0,kmax,n;
-  float alpha,fact=0.01745329251994330,w,h;
+  float alpha,fact= (float) 0.01745329251994330,w,h;
   integer close = 1;
 
   n=Min((*angle2/64),360);
 
-  w = (*width)/2.0;
-  h = (*height)/2.0;
+  w = (float) ((*width)/2.0);
+  h = (float) ((*height)/2.0);
   k0 = 0;
   kmax = n-1;
 

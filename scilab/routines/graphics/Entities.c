@@ -10656,7 +10656,7 @@ sciDrawObj (sciPointObj * pobj)
       if (pSEGS_FEATURE (pobj)->ptype == 0)
         { 
 	  n=pSEGS_FEATURE (pobj)->Nbr1; 
-	  arsize = pSEGS_FEATURE (pobj)->arrowsize; 
+	  arsize = (integer) (pSEGS_FEATURE (pobj)->arrowsize); 
 	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
 	  /**DJ.Abdemouche 2003**/
@@ -11092,8 +11092,8 @@ sciDrawObj (sciPointObj * pobj)
       /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
       w1 = WScale(w2);
       h1 = HScale(h2);
-      angle1 = pARC_FEATURE (pobj)->alphabegin;
-      angle2 = pARC_FEATURE (pobj)->alphaend;   
+      angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
+      angle2 = (integer) (pARC_FEATURE (pobj)->alphaend);   
      
       
 #ifdef WIN32 
@@ -13591,7 +13591,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
   sciSons *sons, *sonsnext;
   sciPointObj *pobj, *prevpparent;
   int i;
-  double xtmp,xtmp1;
+  double xtmp1; long xtmp; //double xtmp,xtmp1;
 
   prevpparent = sciGetParent(sciGetPointerFromHandle((long) handelsvalue[0]));
 
@@ -14943,7 +14943,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	yy[i]=pSUBWIN_FEATURE (psubwin)->axes.ylim[i];
 	zz[i]=pSUBWIN_FEATURE (psubwin)->axes.zlim[i];
       } 
-    size = xz[0]>=xz[1] ? (integer) xz[1]/50.0 : (integer) xz[0]/50.0; 
+    size = xz[0]>=xz[1] ? (integer) (xz[1]/50.0) : (integer) (xz[0]/50.0); 
     
     /*** le z scaling ***/
     if ( pSUBWIN_FEATURE (psubwin)->project[2]==1)
