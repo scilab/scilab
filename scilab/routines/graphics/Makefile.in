@@ -26,6 +26,11 @@ include ../Make.lib
 Format.o: Format.c
 	$(CC) $(CFLAGS) @NOINLINE@ -c $< -o $@
 
+# do not optimize periX11.c on darwin 
+
+@PERIX11NOPT@.o: @PERIX11NOPT@.c
+	$(CC) `echo $(CFLAGS) | sed -e "s/-O2//"`  -c $< -o $@
+
 #--- dependencies generated with gcc -MM  ----
 Actions.o: Actions.c Math.h ../machine.h Graphics.h Entities.h \
   ../stack-c.h ../graphics/Math.h ../stack-def.h ../interf/stack1.h \
