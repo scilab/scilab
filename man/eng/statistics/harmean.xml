@@ -33,8 +33,7 @@
     x</VERB>.</P>
     <P><VERB>   hm=harmean(x,'c')   </VERB>   (or,   equivalently,   <VERB>
     hm=harmean(x,2) </VERB> ) returns  in each entry of the column
-    vector <VERB> hm</VERB> the harmonic mean of each  row of <VERB> x
-    </VERB>.</P>
+    vector <VERB> hm</VERB> the harmonic mean of each  row of <VERB> x </VERB>.</P>
   </DESCRIPTION>
   <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>

@@ -24,13 +24,11 @@
   <DESCRIPTION>
     <P>
     This function returns in scalar <VERB> m</VERB> the mean of the
-    values (ignoring  the NANs) of a  vector or matrix <VERB> val
-    </VERB>.</P>
+    values (ignoring  the NANs) of a  vector or matrix <VERB>val</VERB>.</P>
     <P>
     For a vector or matrix <VERB> val</VERB> , <VERB> m=nanmean(val) </VERB>
     or <VERB> m=nanmean(val,'*') </VERB> returns  in scalar <VERB> m</VERB>
-    the mean of all the entries (ignoring the NANs) of <VERB> val
-    </VERB>.</P>
+    the mean of all the entries (ignoring the NANs) of <VERB> val</VERB>.</P>
     <P><VERB>m=nanmean(val,'r')</VERB>    (or,    equivalently,    <VERB>
     m=nanmean(val,1)  </VERB>)  returns in each   entry of the row
     vector <VERB> m</VERB> of type  1xsize(val,'c') the mean of each

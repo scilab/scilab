@@ -67,7 +67,7 @@
   </P>
   <P>
      When the normflag is equal to &quot;norm&quot; you get a normalized version (without
-    the (-1)^m factor), precisely :
+    the <VERB>(-1)^m</VERB> factor), precisely :
   </P>
      <VERBATIM><![CDATA[
                      _____________                m

@@ -31,8 +31,8 @@
     <P>
     cmoment<VERB>(x,ord)</VERB> is the central moment or order ord of
     the elements of <VERB>x</VERB>.
-    If a  third argument  of type string  <VERB>'r'</VERB> (or  <VERB> 1
-    </VERB>) or  <VERB>'c'</VERB> (or <VERB> 2</VERB>)  is used, we  get  in the
+    If a  third argument  of type string  <VERB>'r'</VERB> (or  
+    <VERB>1</VERB>) or  <VERB>'c'</VERB> (or <VERB> 2</VERB>)  is used, we  get  in the
     first   case,   a  row   vector   <VERB> mom</VERB>  such   that
     <VERB>mom(j)</VERB>   contains  the   central  moment   of  order
     <VERB>ord</VERB>     of     the     <VERB>j</VERB>     column     of

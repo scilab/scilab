@@ -41,7 +41,7 @@
     <P>
     Computation of</P>
     <P>
-    (s*E-A)^-1</P>
+    <VERB>(s*E-A)^-1</VERB></P>
     <P>
      by generalized Leverrier's algorithm for a matrix pencil.</P>
     <VERBATIM>

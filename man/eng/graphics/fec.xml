@@ -41,8 +41,7 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
           <VERB>key2,...</VERB> can be one of the following: strf, leg, rect, nax, zminmax, colminmax, colout, mesh
           (see <LINK>plot2d</LINK> for the 4 first ones).</SP>
         </PARAM_DESCRIPTION>

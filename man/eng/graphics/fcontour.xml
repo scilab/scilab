@@ -71,8 +71,7 @@
     <VERB>f</VERB>. See <VERB>contour</VERB>.</P>
 
     <P>The optional arguments <VERB>theta,alpha,leg ,flag,ebox, zlev</VERB>,
-    can be passed by a sequence of statements <VERB>key1=value1,
-    key2=value2</VERB>,</P>
+    can be passed by a sequence of statements <VERB>key1=value1, key2=value2</VERB>,</P>
 
     <P><VERB>flag</VERB>,<VERB>ebox</VERB>,<VERB>zlev</VERB>. In this case,
     the order has no special meaning.</P>

@@ -77,8 +77,7 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
           <VERB>key2,...</VERB> can be one of the following: theta, alpha
           ,leg,flag,ebox (see definition below)</SP>
         </PARAM_DESCRIPTION>
@@ -300,8 +299,8 @@
     <P><VERB>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</VERB> draws a
     surface defined by a set of facets. You can draw multiple plots by
     replacing <VERB>xf</VERB>, <VERB>yf</VERB> and <VERB>zf</VERB> by multiple
-    matrices assembled by rows as <VERB>[xf1 xf2 ...]</VERB>, <VERB>[yf1 yf2
-    ...]</VERB> and <VERB>[zf1 zf2 ...]</VERB>.</P>
+    matrices assembled by rows as <VERB>[xf1 xf2 ...]</VERB>, 
+    <VERB>[yf1 yf2 ...]</VERB> and <VERB>[zf1 zf2 ...]</VERB>.</P>
 
     <P>You can give a specific color for each facet by using
     <VERB>list(zf,colors)</VERB> instead of <VERB>zf</VERB>, where

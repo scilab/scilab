@@ -43,7 +43,7 @@
     that <VERB>A = Q*M</VERB>
     with range(<VERB>Q</VERB>)=range(<VERB>A</VERB>) and ker(<VERB>M</VERB>)=ker(<VERB>A</VERB>),
     <VERB>Q</VERB> full column rank , <VERB>M</VERB> full row rank,
-    <VERB>rk</VERB> = rank(<VERB>A</VERB>) = #columns(<VERB>Q</VERB>) = #rows(<VERB>M</VERB>).</P>
+    <VERB>rk = rank(A) = #columns(Q) = #rows(M)</VERB>.</P>
     <P><VERB>tol</VERB> is an optional real parameter (default value is <VERB>sqrt(%eps)</VERB>).
     The rank <VERB>rk</VERB> of <VERB>A</VERB> is defined as the number of singular values
     larger than <VERB>norm(A)*tol</VERB>.</P>

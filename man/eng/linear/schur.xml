@@ -160,8 +160,7 @@
           <DESCRIPTION_ITEM label="Usual Pencil Schur form">
             <SP><VERB>[As,Es] = schur(A,E)</VERB> produces a quasi triangular
       <VERB>As</VERB> matrix and a triangular <VERB>Es</VERB> matrix
-      which are the generalized Schur form of the pair <VERB>A,
-      E</VERB>.</SP>
+      which are the generalized Schur form of the pair <VERB>A, E</VERB>.</SP>
             <P><VERB>[As,Es,Q,Z] = schur(A,E)</VERB>
       returns in addition two unitary matrices
       <VERB>Q</VERB> and <VERB>Z</VERB> such that

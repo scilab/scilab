@@ -7,7 +7,7 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="contour"> level curves on a 3D surface</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>contour(x,y,z,nz,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -58,8 +58,7 @@
               <VERB>nz(i)</VERB> gives the value of the ith level
               curve. Note that it can be useful in order to see
               <VERB>zmin</VERB> and   <VERB>zmax</VERB> level curves
-              to add an epsilon tolerance: <VERB>nz=[
-              zmin+%eps,..,zmax-%eps]</VERB>.</SP>
+              to add an epsilon tolerance: <VERB>nz=[zmin+%eps,..,zmax-%eps]</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
@@ -70,8 +69,7 @@
         <PARAM_DESCRIPTION>
           <SP>: a sequence of statements <VERB>key1=value1, key2=value2</VERB>,
   ... where keys may be
-  <VERB>theta</VERB>,<VERB>alpha</VERB>,<VERB>leg</VERB>,<VERB>
-  flag</VERB>, <VERB>ebox</VERB>,<VERB>zlev</VERB> (see below). In
+  <VERB>theta</VERB>,<VERB>alpha</VERB>,<VERB>leg</VERB>,<VERB>flag</VERB>, <VERB>ebox</VERB>,<VERB>zlev</VERB> (see below). In
   this case, the order has no special meaning.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>

@@ -5,7 +5,7 @@
   <TITLE>sd2sci</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="sd2sci"> gr_menu structure to scilab instruction convertor</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="sd2sci"> <VERB>gr_menu</VERB> structure to scilab instruction convertor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>txt=sd2sci(sd [,sz [,orig]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

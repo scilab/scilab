@@ -53,8 +53,8 @@
                       <SP>: means "one". If there are many curves, they all
                       have the same x-values: <VERB>x</VERB> is a column
                       vector of size nl and <VERB>y</VERB> is a matrix of size
-                      (nl,nc). For example : <VERB>x=[0:0.1:2*%pi]';
-                      plot2d1("onn",x,[sin(x) cos(x)])</VERB>.</SP>
+                      (nl,nc). For example : 
+                       <VERB>x=[0:0.1:2*%pi]';plot2d1("onn",x,[sin(x) cos(x)])</VERB>.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 

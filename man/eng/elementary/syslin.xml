@@ -22,7 +22,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>A,B,C,D</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrices of the state-space representation (<VERB>D</VERB> optional with default value zero matrix). For improper systems <VERB>D</VERB> is a polynomial matrix.</SP>
+          <SP>: matrices of the state-space representation (<VERB>D</VERB> optional with default value zero matrix). 
+          For improper systems <VERB>D</VERB> is a polynomial matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -75,9 +76,7 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
     </VERBATIM>
     <P>
     The output of <VERB>syslin</VERB> is a list of the following form: 
-    <VERB>
-    sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)
-    </VERB>
+    <VERB>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</VERB>
     Note that <VERB>D</VERB> is allowed to be a polynomial matrix (improper systems).</P>
     <P>
     Transfer matrix representation:</P>

@@ -68,8 +68,7 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
           <VERB>key2,...</VERB> can be one of the following:</SP>
 
           <PARAM_INDENT>
@@ -399,8 +398,7 @@
           <VERB>strf</VERB> is 1. <VERB>leg</VERB> has the form
           <VERB>"leg1@leg2@...."</VERB> where <VERB>leg1</VERB>,
           <VERB>leg2</VERB>, etc. are respectively the captions of the first
-          curve, of the second curve, etc. The default is <VERB>"
-          "</VERB>.</SP>
+          curve, of the second curve, etc. The default is <VERB>""</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 

@@ -41,8 +41,7 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
           <VERB>key2,...</VERB> can be one of the following: rect, nax, strf
           or axesflag and frameflag (see <VERB>plot2d</VERB>).</SP>
         </PARAM_DESCRIPTION>

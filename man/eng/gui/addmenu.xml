@@ -99,8 +99,7 @@
     designes a C or Fortran procedure, this procedure may be
     interfaced in Fortran subroutine default/fbutn.f or dynamically
     linked with scilab using the <VERB>link</VERB> function. The C
-    calling sequence is: <VERB>(char* button_name, int* gwin,int
-    *k)</VERB></SP>
+    calling sequence is: <VERB>(char* button_name, int* gwin,int *k)</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="If">
         <SP><VERB>action</VERB> argument is set to 2 <VERB>proc_name</VERB>

@@ -33,8 +33,7 @@
     x</VERB>.</P>
     <P><VERB>   gm=geomean(x,'c')    </VERB>  (or,    equivalently,  <VERB>
     gm=gmean(x,2) </VERB>  ) returns in each  entry  of the column
-    vector <VERB> gm</VERB> the geometric mean of  each row of <VERB> x
-    </VERB>.</P>
+    vector <VERB> gm</VERB> the geometric mean of  each row of <VERB> x </VERB>.</P>
   </DESCRIPTION>
   <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>

@@ -231,8 +231,8 @@
     <P>
     selects a logical unit <VERB>unit</VERB> and manages the file
     <VERB>file-name</VERB>.</P>
-    <P><VERB>[unit [,err]]=file('open', file-name [,status] [,access [,recl]]
-    [,format])</VERB> allows to open a file with specified properties and to
+    <P><VERB>[unit [,err]]=file('open', file-name [,status] [,access [,recl]][,format])</VERB> 
+    allows to open a file with specified properties and to
     get the associated unit number <VERB>unit</VERB>. This unit number may be
     used for further actions on this file or as file descriptor in
     <VERB>read</VERB>, <VERB>write</VERB>, <VERB>readb</VERB>, <VERB>writb</VERB>,<VERB>save</VERB>,

@@ -118,13 +118,13 @@
     <P>From an accuracy point of view use essentially the <BD>clamped</BD> type if you know the
        end point derivatives, else use <BD>not_a_knot</BD>. But if the underlying approximated
        function is periodic use the <BD>periodic</BD> type. Under the good assumptions these
-       kind of splines got an O(h^4) asymptotic behavior of the error. Don't use the 
+       kind of splines got an <VERB>O(h^4)</VERB> asymptotic behavior of the error. Don't use the 
        <BD>natural</BD> type unless the underlying function have zero second end points 
        derivatives.
     </P>
     <P>The <BD>monotone</BD>, <BD>fast</BD> (or <BD>fast_periodic</BD>) type may
        be useful in some cases, for instance to limit oscillations (these kind of
-       sub-splines have an O(h^3) asymptotic behavior of the error).
+       sub-splines have an <VERB>O(h^3)</VERB> asymptotic behavior of the error).
     </P>
     <P>If <EM>n=2</EM> (and <VERB>spline_type</VERB> is not <BD>clamped</BD>) linear interpolation
        is used. If <EM>n=3</EM> and <VERB>spline_type</VERB> is <BD>not_a_knot</BD>, then

@@ -19,8 +19,8 @@
         <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
    be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB> . By default, 
-   the plot is visible, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the plot is not drawn on the screen.</SP>
+   the plot is visible, the value's property is  <VERB>&quot;on&quot;</VERB>. 
+   If <VERB>&quot;off&quot;</VERB> the plot is not drawn on the screen.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="data: ">
         <SP>This is a matrix (n1,n2) which constitue the coordinates of a 2D 

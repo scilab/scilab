@@ -31,8 +31,8 @@ val</SP>
   <DESCRIPTION>
     <P>
     This function returns in scalar <VERB> m</VERB> the mean of the
-    values (ignoring  the NANs) of a vector  or matrix <VERB> val
-    </VERB>,   each counted  with   a  frequency signaled  by  the
+    values (ignoring  the NANs) of a vector  or matrix 
+    <VERB>val</VERB>,   each counted  with   a  frequency signaled  by  the
     corresponding values of the  integer vector or matrix  <VERB>
     fre</VERB> with the same type of <VERB>val</VERB>.</P>
     <P>

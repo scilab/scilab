@@ -67,8 +67,8 @@
      dimension of the corresponding transfer matrix. The syntax
      <VERB>[nr,nc]=size(x)</VERB> is also valid (with
      <VERB>(nr,nc)=(y(1),y(2)</VERB>).  If <VERB>x</VERB> is a linear
-     system in state-space form, then <VERB> [nr,nc,nx]=size(x)
-     </VERB> returns in addition the dimension <VERB>nx</VERB> of the
+     system in state-space form, then <VERB>[nr,nc,nx]=size(x)</VERB> 
+     returns in addition the dimension <VERB>nx</VERB> of the
      <VERB>A</VERB> matrix of <VERB>x</VERB>.</P>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM>

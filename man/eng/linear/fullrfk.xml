@@ -5,7 +5,7 @@
   <TITLE>fullrfk</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="fullrfk"> full rank factorization of A^k</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="fullrfk"> full rank factorization of <VERB>A^k</VERB></SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Bk,Ck]=fullrfk(A,k)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

@@ -52,8 +52,8 @@
     <P>
     performs the block-diagonalization of matrix <VERB>A</VERB>.  bs
     gives the structure of the blocks (respective sizes of the
-    blocks).  <VERB>X</VERB> is the change of basis i.e <VERB>Ab =
-    inv(X)*A*X</VERB>is block diagonal.</P>
+    blocks).  <VERB>X</VERB> is the change of basis i.e 
+    <VERB>Ab = inv(X)*A*X</VERB>is block diagonal.</P>
     <P><VERB>rmax</VERB> controls the conditioning of <VERB>X</VERB>; the
     default value is the l1 norm of <VERB>A</VERB>.</P>
     <P>

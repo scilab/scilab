@@ -16,8 +16,7 @@
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This properties contains the  <VERB>visible</VERB> property value
    for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . If <VERB>&quot;on&quot;
-   </VERB> the vector field is drawn, If
+   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . If <VERB>&quot;on&quot;</VERB> the vector field is drawn, If
    <VERB>&quot;off&quot;</VERB> the vector field is not displayed on the screen.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="data: ">

@@ -194,8 +194,7 @@
           <VERB>strf</VERB> is 1. <VERB>leg</VERB> has the form
           <VERB>"leg1@leg2@...."</VERB> where <VERB>leg1</VERB>,
           <VERB>leg2</VERB>, etc. are respectively the captions of the first
-          curve, of the second curve, etc. The default is <VERB>"
-          "</VERB>.</SP>
+          curve, of the second curve, etc. The default is <VERB>""</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 

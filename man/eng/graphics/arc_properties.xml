@@ -18,8 +18,8 @@
    <DESCRIPTION_ITEM label="visible: ">
     <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . If <VERB>&quot;on&quot;
-   </VERB> the arc is drawn, If
+   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>. 
+   If <VERB>&quot;on&quot;</VERB> the arc is drawn, If
    <VERB>&quot;off&quot;</VERB> the arc is not displayed on the screen.</SP>
    </DESCRIPTION_ITEM>
 

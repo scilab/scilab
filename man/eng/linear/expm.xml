@@ -22,7 +22,7 @@
   <DESCRIPTION>
     <P><VERB>X</VERB> is a square matrix <VERB>expm(X)</VERB> is the matrix</P>
     <P>
-    expm(X) = I + X + X^2 /2 + ...</P>
+    <VERB>expm(X) = I + X + X^2 /2 + ...</VERB></P>
     <P>
     The computation is performed by first 
     block-diagonalizing <VERB>X</VERB> and then applying a Pade approximation 

@@ -50,7 +50,7 @@
     Animated plot of the function x--&gt;f(x,t) for t=theta(1),theta(2),etc.
     f can be a either Scilab function or a dynamically linked routine since
     y=f(x,t) is evaluated as y=feval(x(:),t,f). See feval.
-    f: mapping x,t -&gt; f(x,t) = R^N valued function for x= vector of R^N
+    f: mapping x,t -&gt; f(x,t) = <VERB>R^N</VERB>  valued function for x= vector of <VERB>R^N</VERB>
     and t=real number. x is a N-vector of x-values and for each t in theta, f(x,t)=N-vector of y-values.</P>
   </DESCRIPTION>
   <EXAMPLE>

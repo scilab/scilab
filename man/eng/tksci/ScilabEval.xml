@@ -58,8 +58,9 @@
         used to associate Scilab actions to tcl/tk widgets but not into a tcl
         script executed by <LINK>TK_EvalFile</LINK> or <LINK>TK_EvalStr</LINK>
         because in this situation the Scilab interpreter is blocked up to the
-        end of the script. Note that with the<VERB>ScilabEval
-        instruction</VERB> syntax, if there are many <VERB>ScilabEval</VERB>
+        end of the script. Note that with the 
+       <VERB>ScilabEval instruction</VERB> syntax, if there are many 
+       <VERB>ScilabEval</VERB>
         commands stored in the queue the execution of the second one can be
         started in the middle of the execution of the first one (in particular
         if the first one contains more than a simple expression).</P>
@@ -76,8 +77,8 @@
       <ITEM label="ScilabEval instruction &quot;sync&quot;">
         <P>If the <VERB>ScilabEval instruction "sync"</VERB> syntax is used,
         the instruction is executed immediately (not queued) and the
-        <VERB>ScilabEval</VERB>returns when the <VERB>instruction
-        </VERB>evaluation is finished. The scilab <VERB>instruction</VERB>
+        <VERB>ScilabEval</VERB>returns when the <VERB>instruction</VERB> 
+        evaluation is finished. The scilab <VERB>instruction</VERB>
         evaluation may be interrupted by new or queued commands.</P>
 
         <P>If the <VERB>"seq"</VERB> option is added, the associated

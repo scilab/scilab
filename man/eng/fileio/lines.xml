@@ -34,7 +34,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>lines</VERB> handles Scilab display paging.</P>
-    <P><VERB>lines()</VERB> returns the vector [# columns, # rows] currently
+    <P><VERB>lines()</VERB> returns the vector <VERB>[# columns, # rows]</VERB> currently
     used by Scilab for displaying the results.</P>
     <P><VERB>lines(nl)</VERB> sets the number of displayed lines (before user is asked
     for more) to <VERB>nl</VERB>.</P>

@@ -19,8 +19,8 @@
     <SP>This field contains the  <VERB>visible</VERB> property value
    for the entity . It should
    be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . By default, 
-   the segments are visibles, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the segments are not drawn on the screen.</SP>
+   the segments are visibles, the value's property is  <VERB>&quot;on&quot;</VERB>. 
+   If <VERB>&quot;off&quot;</VERB> the segments are not drawn on the screen.</SP>
    </DESCRIPTION_ITEM>
 
 

@@ -77,8 +77,8 @@
     intensity between 0 and 1.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="xset(&quot;dashes&quot;,i)">
-        <SP>: In black and white mode (<VERB>xset(&quot;use
-    color&quot;,0)</VERB>), set the dash style to style i (0 for solid
+        <SP>: In black and white mode (<VERB>xset(&quot;use color&quot;,0)</VERB>), 
+    set the dash style to style i (0 for solid
     line). In color mode (<VERB>xset(&quot;use color&quot;,1 )</VERB>)
     this is used to set line, mark and text color. This keyword is
     obsolete, please use <VERB>xset('color',i)</VERB> or

@@ -51,8 +51,7 @@
     <P><VERB>[U,S,V] = svd(X)</VERB> produces a diagonal matrix
     <VERB>S</VERB> , of the same dimension as <VERB>X</VERB> and with
     nonnegative diagonal elements in decreasing order, and unitary
-    matrices <VERB>U</VERB> and <VERB>V</VERB> so that <VERB>X =
-    U*S*V'</VERB>.</P>
+    matrices <VERB>U</VERB> and <VERB>V</VERB> so that <VERB>X = U*S*V'</VERB>.</P>
     <P><VERB>[U,S,V] = svd(X,0)</VERB> produces the &quot;economy
     size&quot; decomposition. If <VERB>X</VERB> is m-by-n with m &gt;
     n, then only the first n columns of <VERB>U</VERB> are computed

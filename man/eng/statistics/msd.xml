@@ -27,12 +27,10 @@
     vector or matrix <VERB> x</VERB>.</P>
     <P>
     For  a vector or a matrix  <VERB> x</VERB>, <VERB>  y=msd(x) </VERB> returns in the
-    scalar <VERB> y</VERB> the mean squared deviation of all the entries of <VERB> V
-    x</VERB>.</P>
+    scalar <VERB> y</VERB> the mean squared deviation of all the entries of <VERB> x</VERB>.</P>
     <P><VERB> y=msd(x,'r') </VERB>   (or, equivalently, <VERB>  y=msd(x,1) </VERB>)  is the
     rowwise mean squared  deviation. It returns  in each entry of the  row
-    vector  <VERB> y</VERB> the  mean squared deviation  of each column of <VERB> x
-    </VERB>.</P>
+    vector  <VERB> y</VERB> the  mean squared deviation  of each column of <VERB> x </VERB>.</P>
     <P><VERB> y=msd(x,'c')  </VERB> (or,  equivalently,  <VERB> m=msd(x,2)  </VERB>) is the
     columnwise mean squared  deviation.  It returns in  each entry  of the
     column vector <VERB> y</VERB> the mean squared deviation of  each row of <VERB>

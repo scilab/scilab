@@ -26,8 +26,7 @@
   <DESCRIPTION>
     <P>
     This function computes  the interquartile range IQR= upper
-    quartile - lower  quartile of a  vector or a  matrix <VERB> x
-    </VERB>.</P>
+    quartile - lower  quartile of a  vector or a  matrix <VERB> x </VERB>.</P>
     <P>
     For a vector  or  a matrix <VERB>  x</VERB>  , <VERB>  q=iqr(x)</VERB>
     returns in the scalar <VERB> q</VERB> the interquartile range of

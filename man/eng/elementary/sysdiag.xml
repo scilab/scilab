@@ -7,7 +7,7 @@
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="sysdiag"> block diagonal system connection</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>r=sysdiag(a1,a2,...,an)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>r=sysdiag(a1,a2,...,an)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <P>

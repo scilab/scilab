@@ -76,8 +76,7 @@
         <PARAM_NAME>&lt;opt_args&gt;</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: This represents a sequence of statements <VERB>key1=value1,
-          key2=value2</VERB>,... where <VERB>key1</VERB>,
+          <SP>: This represents a sequence of statements <VERB>key1=value1, key2=value2</VERB>,... where <VERB>key1</VERB>,
           <VERB>key2,...</VERB> can be one of the following: theta, alpha
           ,leg,flag,ebox (see definition below).</SP>
         </PARAM_DESCRIPTION>
@@ -321,8 +320,8 @@
     <P><VERB>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</VERB> draws a
     surface defined by a set of facets. You can draw multiple plots by
     replacing <VERB>xf</VERB>, <VERB>yf</VERB> and <VERB>zf</VERB> by multiple
-    matrices assembled by rows as <VERB>[xf1 xf2 ...]</VERB>, <VERB>[yf1 yf2
-    ...]</VERB> and <VERB>[zf1 zf2 ...]</VERB>. Note that data can also be set
+    matrices assembled by rows as <VERB>[xf1 xf2 ...]</VERB>,
+    <VERB>[yf1 yf2 ...]</VERB> and <VERB>[zf1 zf2 ...]</VERB>. Note that data can also be set
     or get through the surface entity properties (see
     <LINK>surface_properties</LINK>).</P>
 
@@ -350,8 +349,8 @@
     <P></P>
 
     <P>The optional arguments <VERB>theta, alpha, leg ,flag, ebox</VERB>, can
-    be passed by a sequence of statements <VERB>key1=value1,
-    key2=value2</VERB>, ... In this case, the order has no special meaning.
+    be passed by a sequence of statements <VERB>key1=value1, key2=value2</VERB>,
+    ... In this case, the order has no special meaning.
     Note that all these optional arguments except <VERB>flag</VERB> can be
     customized through the axes entity properties (see
     <LINK>axes_properties</LINK>). As described before, the <VERB>flag</VERB>

@@ -25,8 +25,7 @@
     <P>
     For   a   vector    or   a  matrix   <VERB>    x</VERB>,   <VERB>
     [m]=nanmedian(x)</VERB>  returns in the vector  <VERB>  m</VERB> the
-    median of the  values (ignoring the NANs)  of vector <VERB> x
-    </VERB>.</P>
+    median of the  values (ignoring the NANs)  of vector <VERB>x</VERB>.</P>
     <P><VERB>[m]=nanmedian(x,'r')</VERB>       (or,        equivalently,
     <VERB>[m]=nanmedian(x,1)</VERB>) are  the  rowwise  medians.   It
     returns in each position of  the row vector  <VERB> m</VERB> the

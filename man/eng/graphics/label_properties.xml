@@ -20,8 +20,8 @@
       <DESCRIPTION_ITEM label="visible: ">
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
-        default, the label is visible, the value's property is <VERB>"on"
-        </VERB>. If <VERB>"off"</VERB> the label is not displayed on the
+        default, the label is visible, the value's property is 
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the label is not displayed on the
         screen.</SP>
       </DESCRIPTION_ITEM>
 
