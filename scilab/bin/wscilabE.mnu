@@ -136,13 +136,13 @@
 [Menu]
 	 &Applications
 	 	&Scicos
-	 		scicos()
+	 		scicos();
 	 	--	
 	 	&EditGraph
-	 		edit_graph()
+	 		edit_graph();
 	 	--	
 	 	m&2sci
-	 		mfile2sci()	
+	 		mfile2sci();
 [EndMenu]
 
 [Menu]
