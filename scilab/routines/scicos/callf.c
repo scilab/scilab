@@ -347,7 +347,7 @@ integer C2F(funnum)(fname)
 	i++;
     }
   ln=strlen(fname);
-  C2F(iislink)(fname,&loc);
+  C2F(iislink)(fname,&loc);C2F(iislink)(fname,&loc);
   if (loc >= 0) return(ntabsim+(int)loc+1);
   return(0);
 }
