@@ -12,6 +12,8 @@
 
 extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 extern void GetenvB( char *name,char *env, int len);
+extern void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
+extern int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout);
 
 /*Prototype*/
 void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int *M, int *err);
@@ -80,8 +82,20 @@ int C2F(intreadxls)(char *fname, long lfn)
   return 0;
 }
 
-#include <libgen.h>
 #include "../sound/ole.h"
+static char *xls_basename (name)
+char *name;
+{
+  char *base;
+#ifdef WIN32
+  base = strrchr (name, '\\');
+#else
+  base = strrchr (name, '/');
+#endif
+
+  return base ? base + 1 : name;
+}
+
 int C2F(intopenxls)(char *fname, long lfn)
 {
   int i,k,m1,n1,l1,l2,one=1,fd,f_swap=0;
@@ -91,7 +105,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   char **Sheetnames;
   int *Abspos;
   int nsheets;
-  char in[256],TMP[256];
+  char IN[256],TMP[256];
   char sep[2];
 #ifdef WIN32
   sep[0]='\\';
@@ -105,24 +119,24 @@ int C2F(intopenxls)(char *fname, long lfn)
 
   /*  checking variable file */
   GetRhsVar(1,"c",&m1,&n1,&l1);
+  C2F(cluni0)(cstk(l1), IN, &ns,(long int) (m1*n1),256L);
 
-  strcpy(in,cstk(l1));/* copy cstk(l1) because basename can modify it's input */
   strcpy(TMP,getenv("TMPDIR"));
   
   strcat(TMP,sep);
-  strcat(TMP,basename(in));
-  result=ripole(cstk(l1), TMP, 0, 0);
+  strcat(TMP,xls_basename(IN));
+  result=ripole(IN, TMP, 0, 0);
   if (result != OLE_OK) {
     if (result == OLEER_NO_INPUT_FILE)
-      Scierror(999,"%s :There is no  file %s \r\n",fname,cstk(l1));
+      Scierror(999,"%s :There is no  file %s \r\n",fname,IN);
     else if(result == OLEER_NOT_OLE_FILE || 
 	    result == OLEER_INSANE_OLE_FILE || 
 	    result == OLEER_LOADFAT_BAD_BOUNDARY || 
 	    result == OLEER_MINIFAT_READ_FAIL || 
 	    result == OLEER_PROPERTIES_READ_FAIL)
-      Scierror(999,"%s :file %s is not an ole2 file\r\n",fname,cstk(l1));
+      Scierror(999,"%s :file %s is not an ole2 file\r\n",fname,IN);
     else if(result == -1)
-      Scierror(999,"%s :file %s exists but cannot be opened\r\n",fname,cstk(l1));
+      Scierror(999,"%s :file %s exists but cannot be opened\r\n",fname,IN);
 
     return 0;
   }
@@ -131,7 +145,7 @@ int C2F(intopenxls)(char *fname, long lfn)
   C2F(mopen)(&fd, TMP,"rb", &f_swap, &res, &ierr);
   if (ierr != 0)
     {
-      Scierror(999,"%s :There is no xls stream in the ole2 file %s \r\n",fname,cstk(l1));
+      Scierror(999,"%s :There is no xls stream in the ole2 file %s \r\n",fname,IN);
       return 0;
     }
   CreateVar(Rhs+1,"i",&one,&one,&l2);
