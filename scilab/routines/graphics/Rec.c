@@ -1431,7 +1431,7 @@ void SCPlots(char *unused, integer *winnumber, integer *flag, double *bbox, inte
   while (list)
     {
       if (list->window == *winnumber && list->theplot != NULL) 
-	    SCPlot(list->type,list->theplot,flag,bbox,aaint,undo,bbox1,subwin,*winnumber);
+	SCPlot(list->type,list->theplot,flag,bbox,aaint,undo,bbox1,subwin,*winnumber);
       list =list->ptrplot;
     }
 }
@@ -1439,7 +1439,8 @@ void SCPlots(char *unused, integer *winnumber, integer *flag, double *bbox, inte
 /** change the plot flag in order to use bbox **/ 
 
 static void SC2DChangeFlag(char *str)
-{return; /* Added by POLPOTH09042001 on Apr  9 08:59:10 MET DST 2001 */
+{
+  return; /* Added by POLPOTH09042001 on Apr  9 08:59:10 MET DST 2001 */
   if ( str[1] == '2' ||  str[1] == '1'  || str[1] == '6' ) 
     str[1] = '5';
   else if ( str[1] == '4' ) 
@@ -1641,20 +1642,22 @@ static void SCNEch(char *plot, integer *flag, double *bbox, integer *aaint, inte
   else if ( subwin != NULL) 
     {
       /* check if subwin is the same as theplot->Wrect */
-      if ( theplot->flag[1] == 't' )
-	if( Abs(theplot->Wrect[0] - subwin[0]) < 1.e-8
-	    && Abs(theplot->Wrect[1] - subwin[1]) < 1.e-8
-	    && Abs(theplot->Wrect[2] - subwin[2]) < 1.e-8
-	    && Abs(theplot->Wrect[3] - subwin[3]) < 1.e-8 )
-	  {
-	    /* we are switching to the good subwindow */
-	    /* sciprint("Nech : je suis ds la bonne subwin [%f,%f,%f,%f]\r\n",
-		   subwin[0],subwin[1],subwin[2],subwin[3]);
-	  */
-	    flag[0] = 1;
-	  }
-	else
-	  flag[0] = 1;
+      if ( theplot->flag[1] == 't' ) 
+	{ 
+	  if( Abs(theplot->Wrect[0] - subwin[0]) < 1.e-8
+	      && Abs(theplot->Wrect[1] - subwin[1]) < 1.e-8
+	      && Abs(theplot->Wrect[2] - subwin[2]) < 1.e-8
+	      && Abs(theplot->Wrect[3] - subwin[3]) < 1.e-8 )
+	    {
+	      /* we are switching to the good subwindow */
+	      /* sciprint("Nech : je suis ds la bonne subwin [%f,%f,%f,%f]\r\n",
+		 subwin[0],subwin[1],subwin[2],subwin[3]);
+	      */
+	      flag[0] = 1;
+	    }
+	  else
+	    flag[0] = 0;
+	}
       else 
 	{
 	  flag[0] = 0;
