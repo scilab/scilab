@@ -376,6 +376,81 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Atlas|Win32"
+			OutputDirectory=".\Release with Atlas"
+			IntermediateDirectory=".\Release with Atlas"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\Release with Atlas/LibScilab.pch"
+				AssemblerListingLocation=".\Release with Atlas/"
+				ObjectFile=".\Release with Atlas/"
+				ProgramDataBaseFileName=".\Release with Atlas/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib wsock32.lib oldnames.lib libcpmt.lib"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				IgnoreDefaultLibraryNames="libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib,msvcrtd.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				ProgramDatabaseFile=".\Release with Atlas/LibScilab.pdb"
+				SubSystem="2"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Release/LibScilab.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
+copy ..\*.def ..\LibScilab.def &gt;nul
+copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -426,6 +501,14 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;_MBCS;__MSC__;STRICT;WITH_TK;WITH_PVM;$(NoInherit)"
 						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM;$(NoInherit)"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -547,6 +630,13 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Sav.ico">
@@ -645,6 +735,11 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			<FileConfiguration
 				Name="Pentium_Release|Win32"
 				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release with Atlas|Win32">
 				<Tool
 					Name="VCCustomBuildTool"/>
 			</FileConfiguration>

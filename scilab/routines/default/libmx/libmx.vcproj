@@ -55,7 +55,8 @@ copy *.def ..\libmxtemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul"/>
+del libmxtemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -112,7 +113,8 @@ copy *.def ..\libmxtemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul"/>
+del libmxtemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -173,7 +175,8 @@ copy *.def ..\libmxtemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul"/>
+del libmxtemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -230,7 +233,8 @@ copy *.def ..\libmxtemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul"/>
+del libmxtemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -287,7 +291,68 @@ copy *.def ..\libmxtemp.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 copy *.def libmx.def &gt;nul
-del libmxtemp.def &gt;nul"/>
+del libmxtemp.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release with Atlas|Win32"
+			OutputDirectory=".\Release with Atlas"
+			IntermediateDirectory=".\Release with Atlas"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				ObjectFile=".\Release with Atlas/"
+				ProgramDataBaseFileName=".\Release with Atlas/vc70.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/libmx.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmx.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmx.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmxtemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmx.def &gt;nul
+del libmxtemp.def &gt;nul
+"/>
 			<Tool
 				Name="VCResourceCompilerTool"/>
 			<Tool
@@ -373,6 +438,11 @@ del libmxtemp.def &gt;nul"/>
 			<FileConfiguration
 				Name="Pentium_Release|Win32"
 				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release with Atlas|Win32">
 				<Tool
 					Name="VCCustomBuildTool"/>
 			</FileConfiguration>
