@@ -22,6 +22,8 @@ c
      &     181,182,183,184,185,186,187,188,189,190,
      &     191,192,193,194,195,196,197,198,199,200,
      &     201,202,203,204,205,206,207,208,209,210) n
+      call basout(io,wte,' Warning:')
+      call basout(io,wte,buf(1:lnblnk(buf)))
  101  continue
       call  basout(io,wte,' Warning:')
       call basout(io,wte,'  Non convergence in the QZ algorithm.')
@@ -429,6 +431,9 @@ c      call showstack()
 c      call showstack()
       goto 9999
  203  continue
+      call basout(io,wte,' roundoff errors make leading eigenvalues ')
+      call basout(io,wte,
+     &     ' in the Schur form no longer satisfy criterion')
       goto 9999
  204  continue
       goto 9999
