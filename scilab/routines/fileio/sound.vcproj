@@ -875,6 +875,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\logger.c">
+			</File>
+			<File
 				RelativePath="misc.c">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -970,6 +973,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\ole.c">
+			</File>
+			<File
+				RelativePath=".\olestream-unwrap.c">
+			</File>
+			<File
+				RelativePath=".\pldstr.c">
+			</File>
+			<File
 				RelativePath="raw.c">
 				<FileConfiguration
 					Name="Release|Win32">
@@ -1063,6 +1075,9 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\ripole.c">
 			</File>
 			<File
 				RelativePath="sound.c">
@@ -1447,6 +1462,9 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\xls.c">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1459,6 +1477,15 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath="libst.h">
+			</File>
+			<File
+				RelativePath=".\logger.h">
+			</File>
+			<File
+				RelativePath=".\ole.h">
+			</File>
+			<File
+				RelativePath=".\olestream-unwrap.h">
 			</File>
 			<File
 				RelativePath=".\pldstr.h">

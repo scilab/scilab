@@ -1,3 +1,6 @@
+#if WIN32
+ #include <Windows.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -1311,7 +1314,14 @@ int OLE_open_directory( struct OLE_object *ole, char *directory )
 {
   int result=0;
 
+#ifndef WIN32
   result = mkdir( directory, S_IRWXU );
+#else
+  result = CreateDirectory( directory,NULL);
+  /* If the function succeeds, the return value is nonzero.
+	If the function fails, the return value is zero. */
+  if (result) result=0;
+#endif
   if ((result != 0)&&(errno != EEXIST))
     {
       LOGGER_log("%s:%d:OLE_open_directory:ERROR: %s",FL,strerror(errno));

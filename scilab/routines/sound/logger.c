@@ -300,7 +300,12 @@ int LOGGER_log( char *format, ...)
 #ifdef NO_SNPRINTF
 	vsprintf(tmpoutput, format, ptr);
 #else
-	vsnprintf(tmpoutput,10240,format,ptr);
+	#if WIN32
+	  vsprintf(tmpoutput, format, ptr);
+	#else
+	  vsnprintf(tmpoutput,10240,format,ptr);
+    #endif
+	
 #endif
 
 	LOGGER_clean_output( tmpoutput, &output );
@@ -320,7 +325,9 @@ int LOGGER_log( char *format, ...)
 			fprintf(stderr,"%s%s",output, lineend );
 			break;
 		case _LOGGER_SYSLOG:
+			#ifndef WIN32
 			syslog(_LOGGER_syslog_mode,output);
+			#endif
 			break;
 		case _LOGGER_STDOUT:
 			fprintf(stdout,"%s%s",output, lineend);

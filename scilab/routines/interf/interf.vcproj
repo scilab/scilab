@@ -709,6 +709,9 @@ cd .. &gt;nul
 				RelativePath=".\intorand.c">
 			</File>
 			<File
+				RelativePath=".\intreadxls.c">
+			</File>
+			<File
 				RelativePath=".\intsetenv.c">
 			</File>
 			<File

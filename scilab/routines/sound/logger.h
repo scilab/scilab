@@ -7,9 +7,9 @@
 #define _LOGGER_STDERR 1
 #define _LOGGER_STDOUT 2
 #define _LOGGER_FILE   3
-#ifndef WIN32
+//#ifndef WIN32
 #define _LOGGER_SYSLOG 4
-#endif
+//#endif
 
 #ifndef FL
 #define FL __FILE__,__LINE__

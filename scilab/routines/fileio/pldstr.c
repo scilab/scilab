@@ -1,4 +1,6 @@
-
+#if WIN32
+#include <stdarg.h>
+#endif
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -730,7 +732,12 @@ char *PLD_dprintf(const char *format, ...)
 	{
 	  /* Attempt to print out string out into the allocated space*/
 		va_start(ap, format);
-		n = vsnprintf (p, size, format, ap);
+		#if WIN32
+		n = _snprintf (p, size, format, ap); 
+		#else
+		n = vsnprintf (p, size, format, ap); 
+		#endif
+
 		va_end(ap);
 
 		/* If things went well, then return the new string*/
