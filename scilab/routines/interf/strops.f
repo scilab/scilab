@@ -7,6 +7,7 @@ c ====================================================================
 c
 c     Copyright INRIA
       include '../stack.h'
+      common /mtlbc/ mmode
 c
       integer plus,quote,equal,less,great,insert,extrac
       integer top0,iadr,sadr,op,vol,volr,rhs1
@@ -414,8 +415,13 @@ c
 c     set output variable
       ilrs=iadr(lstk(top))
       istk(ilrs)=10
-      istk(ilrs+1)=mr
-      istk(ilrs+2)=nr
+      if(mmode.eq.0) then
+         istk(ilrs+1)=mr
+         istk(ilrs+2)=nr
+      else
+         istk(ilrs+1)=nr
+         istk(ilrs+2)=mr
+      endif
       istk(ilrs+3)=0
       call icopy(mnr+1+volr,istk(idr),1,istk(ilrs+4),1)
       lstk(top+1)=sadr(ilrs+5+mnr+volr)
