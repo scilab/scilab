@@ -27,9 +27,9 @@ all:: $(LIBRARY)
 
 $(LIBRARY): $(OBJS)
 	@echo Creation of $(LIBRARY)
-	$(RM) $@;
-	echo "linking";
-	$(FC) -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
+	@$(RM) $@;
+	@echo "linking";
+	@$(FC) -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
 
 clean::
 	$(RM) *.o
