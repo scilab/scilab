@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.111 $)dnl
+AC_REVISION($Revision: 1.112 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -231,13 +231,13 @@ case "$host" in
     # C compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
     else
       CC=cc
-      CC_OPTIONS='-std -O -ieee_with_inexact'
+      CC_OPTIONS='-std -O -DNDEBUG -ieee_with_inexact'
       CC_LDFLAGS='-ieee_with_inexact'
     fi
     #fortran compiler
@@ -272,7 +272,7 @@ case "$host" in
   alpha*-dec-osf*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -ieee_with_inexact'
+    CC_OPTIONS='-O -DNDEBUG -ieee_with_inexact'
     CC_LDFLAGS='-ieee_with_inexact'
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,f77,yes,no)
@@ -296,7 +296,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -338,7 +338,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -360,7 +360,7 @@ case "$host" in
       [LIEEELIB=-lieee])
     GCC=yes
     CC=gcc
-    CC_OPTIONS='-O -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings'
     CC_LDFLAGS=$LIEEELIB
     # find Fortran compiler
     # g77 already asked and found: good
@@ -405,7 +405,7 @@ case "$host" in
   sparc-*-sunos*)
     # standard compilers
     CC=cc
-    CC_OPTIONS=-O
+    CC_OPTIONS=-O -DNDEBUG
     CC_LDFLAGS=
     CC_PICFLAGS=-PIC
     if test "$WITH_G77" != yes; then    
@@ -430,7 +430,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       CC_PICFLAGS=
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
@@ -452,7 +452,7 @@ case "$host" in
   *-*-solaris*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -DSVR4 -DSYSV -Dsolaris'
+    CC_OPTIONS='-O -DNDEBUG -DSVR4 -DSYSV -Dsolaris'
     CC_LDFLAGS=
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,f77,yes,no)
@@ -475,7 +475,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS='-O2 -DSVR4 -DSYSV -Dsolaris'
+      CC_OPTIONS='-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris'
       if test "$enable_debug" = yes; then 
         CC_OPTIONS='-g -DSVR4 -DSYSV -Dsolaris'
       fi
@@ -502,7 +502,7 @@ case "$host" in
       [LIEEELIB=-lieee])
     GCC=yes
     CC=cc
-    CC_OPTIONS='-O -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings'
     CC_LDFLAGS=$LIEEELIB
     # find Fortran compiler
     # g77 already asked and found: good
@@ -554,7 +554,7 @@ case "$host" in
        GCC=no
        CC=$ICC
        FC=$IFC
-       CC_OPTIONS='-O -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
+       CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp -pc64 -ffnalias -falias '
        CC_PICFLAGS="-fPIC"
 # -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
        FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64 -ffnalias -falias"
@@ -571,7 +571,7 @@ case "$host" in
        GCC=yes
        GCCFIX=fix.o
        CC=gcc
-       CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
+       CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings -DNARROWPROTO'
        CC_LDFLAGS=$LIEEELIB
        CC_PICFLAGS=-fPIC
        # find Fortran compiler
@@ -626,7 +626,7 @@ case "$host" in
        GCC=no
        CC=$ICC
        FC=$IFC
-       CC_OPTIONS='-O -Dlinux -DNARROWPROTO -mp'
+       CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp'
        CC_PICFLAGS="-fPIC"
 # -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
        FC_OPTIONS="-O -cm -w90 -w95 -mp "
@@ -642,7 +642,7 @@ case "$host" in
     else
        GCC=yes
        CC=cc
-       CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
+       CC_OPTIONS='-O -DNDEBUG -Dlinux -fwritable-strings -DNARROWPROTO'
        CC_LDFLAGS=$LIEEELIB
        CC_PICFLAGS=-fPIC
        # find Fortran compiler
@@ -697,7 +697,7 @@ case "$host" in
        GCC=no
        CC=$ICC
        FC=$IFC
-       CC_OPTIONS='-O -Dlinux -DNARROWPROTO -mp'
+       CC_OPTIONS='-O -DNDEBUG -Dlinux -DNARROWPROTO -mp'
        CC_PICFLAGS="-fPIC"
 # -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
        FC_OPTIONS="-O -cm -w90 -w95 -mp "
@@ -715,7 +715,7 @@ case "$host" in
        CC=cc
        # CC_PLAT_OPTIONS is optional, and is used to add CPU specific code generation tuning for Athlon64 presumably Opteron could benefit too but these are not optimized for the Opteron
        CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 '
-       CC_OPTIONS="-O2 -Dlinux -fwritable-strings -DNARROWPROTO $CC_PLAT_OPTIONS"
+       CC_OPTIONS="-O2 -DNDEBUG -Dlinux -fwritable-strings -DNARROWPROTO $CC_PLAT_OPTIONS"
        CC_LDFLAGS=$LIEEELIB
        CC_PICFLAGS=-fPIC
        # find Fortran compiler
@@ -767,7 +767,7 @@ case "$host" in
     MALLOC=malloc.o
     GCC=yes
     CC=cc
-    CC_OPTIONS='-O -mieee-with-inexact -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -mieee-with-inexact -Dlinux -fwritable-strings'
     CC_LDFLAGS='-ldl -rdynamic -mieee-with-inexact'
     CC_PICFLAGS=-fPIC
     # find Fortran compiler
@@ -816,7 +816,7 @@ case "$host" in
       [LIEEELIB=-lieee])
     GCC=yes
     CC=cc
-    CC_OPTIONS='-O -D_GNU_SOURCE -Dlinux -fwritable-strings'
+    CC_OPTIONS='-O -DNDEBUG -D_GNU_SOURCE -Dlinux -fwritable-strings'
     CC_LDFLAGS=$LIEEELIB
     CC_PICFLAGS=-fPIC
     # find Fortran compiler
@@ -863,7 +863,7 @@ case "$host" in
   mips-*-ultrix*)
     # standard compilers
     CC=cc
-    CC_OPTIONS=-O0
+    CC_OPTIONS=-O0 -DNDEBUG
     CC_LDFLAGS=
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,f77,yes,no)
@@ -887,7 +887,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -906,7 +906,7 @@ case "$host" in
   mips-sgi-irix*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O  -DSYSV -DSVR4'
+    CC_OPTIONS='-O -DNDEBUG -DSYSV -DSVR4'
     CC_LDFLAGS=
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,f77,yes,no)
@@ -930,7 +930,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -951,7 +951,7 @@ case "$host" in
     # standard compilers
     HPPA_OLD=-Dhppa_old
     CC=cc
-    CC_OPTIONS='-O -DSYSV -Dhpux'
+    CC_OPTIONS='-O -DNDEBUG -DSYSV -Dhpux'
     CC_LDFLAGS='-Wl,-a,archive'
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,fort77,yes,no)
@@ -974,7 +974,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -994,7 +994,7 @@ case "$host" in
   *-*-hpux10.*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -DSYSV -Dhpux +Z +DAportable'
+    CC_OPTIONS='-O -DNDEBUG -DSYSV -Dhpux +Z +DAportable'
     CC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     if test "$WITH_G77" != yes; then    
       #AC_CHECK_PROG(F77,fort77,yes,no)
@@ -1018,7 +1018,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -1039,7 +1039,7 @@ case "$host" in
     SONAME=sl
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -DSYSV -Dhpux -Dhppa +Z +DAportable'
+    CC_OPTIONS='-O -DNDEBUG -DSYSV -Dhpux -Dhppa +Z +DAportable'
     CC_LDFLAGS='-Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl'
     if test "$WITH_G77" != yes; then    
       AC_CHECK_PROGS(F77,fort77 f77 f90 f2c-f77,no)
@@ -1062,7 +1062,7 @@ case "$host" in
     # GNU compilers
     if test "$WITH_GCC" = yes; then
       CC=gcc
-      CC_OPTIONS=-O
+      CC_OPTIONS=-O -DNDEBUG
       if test "$enable_debug" = yes; then 
         CC_OPTIONS=-g
       fi
@@ -1104,7 +1104,7 @@ case "$host" in
     EXAMPLES_TESTS='$(SUBDIRS1)'
     GCC=yes
     CC=gcc 
-    CC_OPTIONS='-mno-cygwin -mieee-fp -O -fwritable-strings  -Wall'
+    CC_OPTIONS='-mno-cygwin -mieee-fp -O -DNDEBUG -fwritable-strings  -Wall'
       if test "$enable_debug" = yes; then 
 	CC_OPTIONS='-mno-cygwin -g -fwritable-strings  -Wall'
       fi
@@ -1218,7 +1218,7 @@ case "$host" in
      PERIX11NOPT=periX11
      GCC=yes
      CC=gcc
-     CC_OPTIONS='-no-cpp-precomp -O2 -I/sw/include -L/sw/lib'
+     CC_OPTIONS='-no-cpp-precomp -O2 -DNDEBUG -I/sw/include -L/sw/lib'
      CC_LDFLAGS=
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
