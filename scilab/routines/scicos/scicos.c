@@ -1711,7 +1711,7 @@ int C2F(scicos)
 		    nclock = -kev;
 		    pointer_xproperty=
 		      &scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
-		    n_pointer_xproperty=xptr[C2F(curblk).kfun];
+		    n_pointer_xproperty=Blocks[C2F(curblk).kfun-1].nx;
 		    callf(told, xd, x, x,W,&flag__);
 		    if (flag__ < 0) {
 		      *ierr = 5 - flag__;
@@ -2296,7 +2296,7 @@ int C2F(scicos)
       flag__ = 7;
       nclock = oord[ii + noord];
       pointer_xproperty=&scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
-      n_pointer_xproperty=xptr[C2F(curblk).kfun];
+      n_pointer_xproperty=Blocks[C2F(curblk).kfun-1].nx;
       callf(told, xd, x, xd,x,&flag__);
 
       if (flag__ < 0) {
@@ -2313,7 +2313,7 @@ int C2F(scicos)
       if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].mode > 0) {
 	flag__ = 7;
 	nclock = abs(ordclk[ii + nordclk]);
-	n_pointer_xproperty=xptr[C2F(curblk).kfun];
+	n_pointer_xproperty=Blocks[C2F(curblk).kfun-1].nx;
 	pointer_xproperty=&scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
 	callf(told, xd, x, xd,x,&flag__);
 
