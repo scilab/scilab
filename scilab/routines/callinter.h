@@ -51,19 +51,19 @@ c
  91   k=fun
       fun=0
       if(k.eq.krec) then
-        call error(22)
-        goto 9999
+         krec=-1
+         call error(22)
+         goto 9999
       endif
+      krec=-1
       if (k.eq.0 ) goto 60 
-      if (k.eq.2 ) then 
-         il=iadr(lstk(top+1-rhs))
-         iflagint=istk(il+3)
-      endif 
  95   continue
 
       if (.not.allowptr(k)) call ref2val
+      krec=k
       call callinterf(k,iflagint)
-      if (k.eq.krec) krec=99999
+C      if (k.eq.krec) krec=99999
+      krec=-1
       if(fun.ge.0) then
          if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
          goto 90
