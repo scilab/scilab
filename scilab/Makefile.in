@@ -29,7 +29,7 @@ distclean::
 	$(RM) bin/scilex
 
 SUBDIRS = scripts maple macros imp intersci  \
-	tests   examples
+	tests tcl  examples
 
 scilex-lib::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
