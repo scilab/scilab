@@ -763,6 +763,10 @@ function txt=%xcall1_string(rec)
     txt='xrect('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+    case 'xfrect' then
+    txt='xfrect('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
+	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
     case 'xpolys' then
     dr=sci2exp(rec.x3)
     m=rec.ndx1
@@ -772,12 +776,18 @@ function txt=%xcall1_string(rec)
     case 'xstring' then
     txt='xstring('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
 	sci2exp(rec.string)+','+sci2exp(rec.dx3)+')'
+    case 'xstringb' then
+    txt='xstringb('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
+	sci2exp(rec.string)+','+sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+')'
+
     case 'xsegs' then
     m=rec.ndx1
     style=sci2exp(rec.x1)
     txt=[sci2exp(matrix(rec.dx1,m,-1),'x')
 	 sci2exp(matrix(rec.dx2,m,-1),'y')
 	 'xsegs(x,y,'+style+')']
+    case 'xarrow' then
+    txt=[]
     case 'xarc' then
     txt='xarc('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+','+..
 	sci2exp(rec.dx3)+','+sci2exp(rec.dx4)+','+..
