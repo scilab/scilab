@@ -22,5 +22,3 @@ disp("Tests de non-régression pour Scilab-3.0 : fin");
 disp("")
 
 quit;
-
-cd ../../Dev-Tools/testNonReg/nonreg_3
