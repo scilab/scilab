@@ -11591,47 +11591,8 @@ sciDrawObj (sciPointObj * pobj)
     return -1;
   }
 
-  /* START implement drawlater / drawnow functions effect here */
- /*  if(sciGetVisibility(sciGetParentFigure(pobj)) == FALSE) /\* <=> 1/2 drawlater or f=gcf(); f.visible='off'; *\/ */
-/*     return -1;                                            /\* see below at SCI_SUBWIN for visibility on axes case *\/ */
-
-/*   if(sciGetEntityType(pobj) != SCI_FIGURE) */
-/*     if(sciGetVisibility(sciGetParentSubwin(pobj)) == FALSE) /\* for every objects except Figure, we must take into *\/ */
-/*       return -1;                                            /\* account the parent subwin visibility too *\/ */
-
-
-
-
-
-
-
-  
-/*   if(sciGetDrawLater(pobj) == -1) */
-/*     return -1; */
-/*   /\*   else if(sciGetDrawLater(pobj) == 1) *\/ */
-/*   /\*     continue; *\/ */
-/*   else if (sciGetEntityType(pobj) != SCI_FIGURE){ */
-/*     int dlpobj = sciGetDrawLater(pobj); */
-/*     int dlfigure = sciGetDrawLater(sciGetParentFigure(pobj)); */
-/*     int dlsubwin = sciGetDrawLater(sciGetParentSubwin(pobj)); */
-/*     if((sciGetDrawLater(pobj) == 0) &&  */
-/*        ((sciGetDrawLater(sciGetParentFigure(pobj)) == -1) || */
-/* 	(sciGetDrawLater(sciGetParentSubwin(pobj)) == -1))) /\* case where sciGetDrawLater(pobj) == 0 AND *\/ */
-/*       return -1;                                               /\* sciGetDrawLater(sciGetParentFigure(pobj)) == -1) ||(sciGetDrawLater(sciGetParentSubwin(pobj)) == -1) *\/ */
-/*   } */
-
-
-
-
-
-/* END */
-
-
-  /*pfigure = sciGetCurrentFigure ();
-    psubwin = sciGetSelectedSubWin (pfigure);*/ /*  printf("before currentsubwin init.\n"); */
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-  /*  printf("currentsubwin = %d\n\n",currentsubwin); */ /* debug F.Leray 23.07.04 */
-  /*   fflush(NULL); */
+
  switch (sciGetEntityType (pobj))
    {
    case SCI_FIGURE: 
@@ -11669,11 +11630,6 @@ sciDrawObj (sciPointObj * pobj)
      
      isaxes = GetIsAxes(pobj);
      
-/*      if (!sciGetVisibility(pobj)) break; /\* <=> 2/2 a=gca(); or a another axes handle, a.visible='off'; *\/ */
-/* /\*      /\\* In case we directly draw the subwin, we must have a look to the parent figure visibility; indeed the figure can be set *\\/ *\/ */
-/* /\*      /\\* to visible off so we can not draw any children of this figure (i.e. its subwin(s)) *\\/ *\/ */
-/* /\*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; *\/ */
-
      sciSetSelectedSubWin(pobj); 
      
      set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
@@ -11784,11 +11740,6 @@ sciDrawObj (sciPointObj * pobj)
      /******************/
 	  
    case SCI_AGREG: 
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-
 /*       if (!sciGetVisibility(pobj)) break; */ /* NOT REPLACED anywhere */
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
@@ -11802,11 +11753,6 @@ sciDrawObj (sciPointObj * pobj)
       /************ 30/04/2001 **************************************************/
       
     case SCI_LEGEND: 
-/*       /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*       /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-      
       if (!sciIsVisibleAndDrawable(pobj)) break;
       /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
@@ -11872,12 +11818,7 @@ sciDrawObj (sciPointObj * pobj)
       break; 
       /******************************** 22/05/2002 ***************************/    
     case SCI_FEC:  
-/*       /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*       /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-      
-      if (!sciIsVisibleAndDrawable(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
       
       n1=1;
       if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
@@ -11933,12 +11874,7 @@ sciDrawObj (sciPointObj * pobj)
       break;      
       /******************************** 22/05/2002 ***************************/    
     case SCI_SEGS:    
-/*       /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*       /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*       if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*       if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-      
-      if (!sciIsVisibleAndDrawable(pobj)) break;
+     if (!sciIsVisibleAndDrawable(pobj)) break;
       
       sciClip(sciGetIsClipping(pobj)); 
 
@@ -12177,11 +12113,6 @@ sciDrawObj (sciPointObj * pobj)
       sciUnClip(sciGetIsClipping(pobj));
       break;
    case SCI_GRAYPLOT:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      n1 = pGRAYPLOT_FEATURE (pobj)->nx;
      n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
@@ -12533,11 +12464,6 @@ sciDrawObj (sciPointObj * pobj)
        }
      break;
    case SCI_POLYLINE:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      
      /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
@@ -12794,11 +12720,6 @@ sciDrawObj (sciPointObj * pobj)
       
      break;
    case SCI_ARC:
- /*     /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
      n = 1;
@@ -12909,11 +12830,6 @@ sciDrawObj (sciPointObj * pobj)
 #endif
      break;
    case SCI_RECTANGLE:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      
      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
@@ -13074,11 +12990,6 @@ sciDrawObj (sciPointObj * pobj)
        }
      break;
    case SCI_TEXT:
- /*     /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
      n = 1;
@@ -13146,11 +13057,6 @@ sciDrawObj (sciPointObj * pobj)
 #endif
      break;
    case SCI_AXES:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!sciIsVisibleAndDrawable(pobj)) break;
      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
     
@@ -13194,11 +13100,6 @@ sciDrawObj (sciPointObj * pobj)
 			  
      break;
    case SCI_MERGE:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-     
      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
      
  /*     if (!sciIsVisibleAndDrawable(pobj)) break; */
@@ -13206,11 +13107,7 @@ sciDrawObj (sciPointObj * pobj)
      DrawMerge3d(sciGetParentSubwin(pobj), pobj);  /* TEST on sciIsVisibleAndDrawable inside */
      break;
    case SCI_SURFACE:
-/*      /\* In case of direct object drawing, we must look at Parent Figure + Parent Subwin visibility *\/  */
-/*      /\* set by drawlater / drawnow to decide wether or not to continue the drawing *\/ */
-/*      if (!sciGetVisibility(sciGetParentFigure(pobj))) break; */
-/*      if (!sciGetVisibility(sciGetParentSubwin(pobj))) break; */
-
+     
      ppsurface = pSURFACE_FEATURE (pobj);
 
      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
