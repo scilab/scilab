@@ -19,8 +19,7 @@ end
 	end	
   end
 
-if MSDOS then
- 	savehistory();
-end
+ savehistory();
+
 
 

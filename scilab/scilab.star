@@ -186,6 +186,4 @@ if  home<>PWD then
 end
 clear startup ierr
 
-if MSDOS then
- 	loadhistory()
-end
+loadhistory()
