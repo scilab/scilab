@@ -59,7 +59,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   GetCurrentPrompt(save_prompt);
 
   ChangeCursorWhenScilabIsReady();
-  TextMessage();
+  C2F (sxevents) ();
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
   if (PutLineInBuffer)
@@ -83,7 +83,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
-  TextMessage();
+  C2F (sxevents) ();
 
 
   return;

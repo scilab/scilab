@@ -743,8 +743,14 @@ static char msdos_getch ()
 {
   char c ;
   
-  c = getch ();
+  while( !_kbhit() )
+  {
+	  C2F (sxevents) ();
+	  Sleep(1);
+  }
 
+  c = getch ();
+  
   Sleep(1);
 
   if (c == 3)

@@ -196,7 +196,7 @@ int Console_Main(int argc, char **argv)
   SciEnv ();
   if (nowin == 1)
     {
-	  
+	  start_sci_gtk() ;
       sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
     }
   else
