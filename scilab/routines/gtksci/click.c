@@ -172,13 +172,12 @@ int ClearClickQueue(int win)
   lastc=0;
   return(0);
 }
-void C2F(seteventhandler)(win_num,name,ierr)
-     int *win_num;
-     int *ierr;
-     char *name;
+
+
+
+void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
 {  
   struct BCG *SciGc;
-
   /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
   *ierr = 0;
   SciGc = GetWindowXgcNumber(*win_num);
