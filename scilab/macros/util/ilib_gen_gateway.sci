@@ -33,7 +33,7 @@ for itable=1:L
   if nt<>3 then error('second argument has wrong size ');end 
   [gate,names]=new_names(table); 
   t=[ '#include <mex.h> ';
-      'static int direct_gateway(char *fname,void F(void)) { F();};'
+      'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
       'extern Gatefunc ' + names(:) + ';';
       'static GenericTable Tab[]={';
       '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
