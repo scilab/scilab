@@ -21,7 +21,7 @@ MACROS = sysconv.sci readc_.sci lin.sci halt.sci bloc2exp.sci \
 	whereami.sci projaff.sci derivative.sci \
 	printf.sci fprintf.sci sprintf.sci scanf.sci fscanf.sci sscanf.sci \
 	unix_g.sci unix_s.sci unix_x.sci unix_w.sci \
-	x_choices.sci odeoptions.sci whos.sci newest.sci\
+	x_choices.sci odeoptions.sci whos.sci who_user.sci newest.sci\
 	excel2sci.sci dec2hex.sci hex2dec.sci getd.sci genlib.sci\
 	G_make.sci hypermat.sci menubar.sci \
 	getclick.sci stripblanks.sci define.sci\
