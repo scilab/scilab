@@ -99,8 +99,17 @@ int OpenTCLsci(void)
 		return (1);
 	  }
 
-      Tcl_Init(TCLinterp);
-      Tk_Init(TCLinterp);
+      if ( Tcl_Init(TCLinterp) == TCL_ERROR)
+	  {
+		Scierror(999,"Tcl Error  : Tcl_Init\r\n");
+		return (1);
+	  }
+
+      if ( Tk_Init(TCLinterp) == TCL_ERROR)
+	  {
+		Scierror(999,"Tcl Error  : Tk_Init\r\n");
+		return (1);
+	  }
 
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
       
