@@ -24,5 +24,5 @@ clean	:
 	rm -f $(PROG) $(OBJS)
 
 distclean : 
-	rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile 
-	rm -f config/Makefile.Top
+	rm -f $(PROG) $(OBJS) $(PROG).sh .init config/Makefile *.so *.a *.la *.lo
+	rm -f config/Makefile.Top 
