@@ -1752,11 +1752,11 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
     Scierror(998,"Error:\ttoo many directive in scanf\r\n");
     return RET_BUG;
   }
+  iarg=Rhs;
   if (Lhs > 1) {
-    CreateVar(1, "d", &one, &one, &l);
+    CreateVar(++iarg, "d", &one, &one, &l);
     *stk(l) = (double) retval_s;
-    iarg=2;
-    LhsVar(1)=1;
+    LhsVar(1)=iarg;
     if (ncol==0) goto Complete;
 
     for ( i=0 ; i < ncol ; i++) { 
@@ -1764,30 +1764,31 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	if( (temp = (char **) malloc(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (j=0;j<nrow;j++) temp[k++]=data[i+ncol*j].s;
-	CreateVarFromPtr(iarg+i, "S", &nrow, &one, temp);
+	CreateVarFromPtr(++iarg, "S", &nrow, &one, temp);
 	free(temp);
 	for (j=0;j<nrow;j++) free(data[i+ncol*j].s);
       }
       else {
-	CreateVar(iarg+i, "d", &nrow, &one, &l);
+	CreateVar(++iarg, "d", &nrow, &one, &l);
 	for ( j=0 ; j < nrow ; j++) 
 	  *stk(l+j)= data[i+ncol*j].d;
       }
 
-      LhsVar(iarg+i)=iarg+i;
+      LhsVar(i+2)=iarg;
     }
     free(data);
     /** we must complete the returned arguments up to Lhs **/
   Complete:
     for ( i = ncol+2; i <= Lhs ; i++) 
       {
-	CreateVar(i,"d",&zero,&zero,&l);
-	LhsVar(i) = i;
+	iarg++;
+	CreateVar(iarg,"d",&zero,&zero,&l);
+	LhsVar(i) = iarg;
       }
   }
   else {/* Lhs==1 */
     char *ltype="cblock";
-    int multi=0,endblk,ii;
+    int multi=0,endblk,ii,n;
 
     cur_type=type[0];
     
@@ -1798,10 +1799,11 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
       }
     if (multi) {
       i=strlen(ltype);
-      CreateVarFromPtr(1, "c", &one, &i, &ltype);
-      iarg=1;
+      iarg=Rhs;
+      CreateVarFromPtr(++iarg, "c", &one, &i, &ltype); /* the mlist type field */
       cur_type=type[0];
       i=0;cur_i=i;
+
       while (1) {
 	if (i < ncol)  
 	  endblk=(type[i] != cur_type);
@@ -1837,25 +1839,28 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	}
 	i++;
       }
-      i = 1;
-      C2F(mkmlistfromvars)(&i,&iarg);
-      LhsVar(1)=1;
+      n=iarg-Rhs; /* number of list fields*/
+      
+      iarg++;
+      i=Rhs+1;
+      C2F(mkmlistfromvars)(&i,&n);
+      LhsVar(1)=i;
     }
     else {
       if (nrow==0) {
-	CreateVar(1, "d", &zero, &zero, &l);}
+	CreateVar(Rhs+1, "d", &zero, &zero, &l);}
       else if ( (cur_type == SF_C) || (cur_type == SF_S) ) {
 	if( (temp = (char **) malloc(nrow*ncol*sizeof(char **)))==NULL) return MEM_LACK;
 	k=0;
 	for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) temp[k++]=data[i1+ncol*j].s;
-	CreateVarFromPtr(1, "S", &nrow, &ncol, temp);
+	CreateVarFromPtr(Rhs+1, "S", &nrow, &ncol, temp);
 	free(temp);
 	for (i1=0;i1<ncol;i1++)
 	  for (j=0;j<nrow;j++) free(data[i1+ncol*j].s);
       }
       else {
-	CreateVar(1, "d", &nrow, &ncol, &l);
+	CreateVar(Rhs+1, "d", &nrow, &ncol, &l);
 	ii=0;
 	for (i1=0;i1<ncol;i1++) {
 	  for ( j=0 ; j < nrow ; j++) 
@@ -1864,7 +1869,7 @@ static int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 	}
       }
     }
-    LhsVar(1)=1;
+    LhsVar(1)=Rhs+1;
   }
   PutLhsVar();
   return 0;
