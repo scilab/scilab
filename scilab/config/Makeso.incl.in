@@ -16,7 +16,7 @@ OBJDUMP = @OBJDUMP@
 STATIC = @STATIC@
 LN_S = @LN_S@
 NM = @NM@
-LDFLAGS = @LDFLAGS@ $(OTHERLIBS)
+LDFLAGS = @LDFLAGS@ $(EXTRA_LDFLAGS) 
 LIBS = @LIBS@
 
 #******************************************************************* 
