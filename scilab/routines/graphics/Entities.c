@@ -9738,17 +9738,14 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 
       pRECTANGLE_FEATURE (pobj)->x = x;
       pRECTANGLE_FEATURE (pobj)->y = y;
-      pRECTANGLE_FEATURE (pobj)->z = 0; /**DJ.Abdemouche 2003**/
+      pRECTANGLE_FEATURE (pobj)->z = 0; 
       pRECTANGLE_FEATURE (pobj)->height = height;
       pRECTANGLE_FEATURE (pobj)->width = width;
-      /** 15/02/2002 **/
       pRECTANGLE_FEATURE (pobj)->fillflag = fillflag; 
       pRECTANGLE_FEATURE (pobj)->fillcolor = fillcolor; 
-      /** 06/02/2002 **/
       pRECTANGLE_FEATURE (pobj)->str = str;
       pRECTANGLE_FEATURE (pobj)->strheight = 0;
       pRECTANGLE_FEATURE (pobj)->strwidth = 0;
-      /**************/
       pRECTANGLE_FEATURE (pobj)->horzcurvature = horzcurvature;
       pRECTANGLE_FEATURE (pobj)->vertcurvature = vertcurvature;
       pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
@@ -10149,156 +10146,16 @@ DestroySurface (sciPointObj * pthis)
 	cmpt=cmpt+1;
       psonstmp = psonstmp->pnext;
     }
-  if (cmpt < 2)
-    {
-      if ((pobj= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
-	DestroyMerge(pobj); 
-    }
+  if (cmpt < 2){
+    if ((pobj= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
+      DestroyMerge(pobj); 
+  }
   else
-    MergeFac3d(psubwin);
+    Merge3d(psubwin);
   /* on peut alors detruire l'entite merge */
 
   return 0;
 }
-
-/* DJ.A 30/12 */
-
-/**ConstructMerge
- * @memo This function creates Merge Structure
- */
-sciPointObj *
-ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
-		integer dimzx, integer dimzy,long *tab)
-
-{
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  int i=0, j=0, n;
- 
-  n=dimzx*dimzy;
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_MERGE);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciMerge)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pSURFACE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pSURFACE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-
-      if (((pMERGE_FEATURE (pobj)->pvecx = MALLOC ((n * sizeof (double)))) == NULL))
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (i = 0;i <n ; i++)
-	    pMERGE_FEATURE (pobj)->pvecx[i] = pvecx[i];
-	}
-      if (((pMERGE_FEATURE (pobj)->pvecy = MALLOC ((n * sizeof (double)))) == NULL))
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pMERGE_FEATURE (pobj)->pvecx);
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (j = 0;j < n; j++)
-	    pMERGE_FEATURE (pobj)->pvecy[j] = pvecy[j];
-	}
-
-      if (((pMERGE_FEATURE (pobj)->pvecz = MALLOC ((n * sizeof (double)))) == NULL))
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pMERGE_FEATURE (pobj)->pvecy);
-	  FREE(pMERGE_FEATURE (pobj)->pvecx);
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (j = 0;j < n; j++)
-	    pMERGE_FEATURE (pobj)->pvecz[j] = pvecz[j];
-	}
-
-      
-      
-      
-      if (((pMERGE_FEATURE (pobj)->tab = MALLOC ((n * sizeof (long)))) == NULL))
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pMERGE_FEATURE (pobj)->pvecy);
-	  FREE(pMERGE_FEATURE (pobj)->pvecx); 
-	  FREE(pMERGE_FEATURE (pobj)->pvecz);
-	  FREE(pMERGE_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      else
-	{
-	  for (j = 0;j < n; j++)  
-	    pMERGE_FEATURE (pobj)->tab[j]= tab[j];
-	}
-      
-      pMERGE_FEATURE (pobj)->dimzx = dimzx;
-      pMERGE_FEATURE (pobj)->dimzy = dimzy;
-      return pobj;
-    }
-  else
-    return (sciPointObj *) NULL;
-}
-
-
-/**DestroyMerge
- * @memo This function destroies Merge structures
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyMerge (sciPointObj * pthis)
-{
-  pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
-  FREE(pMERGE_FEATURE (pthis)->pvecz);
-  FREE(pMERGE_FEATURE (pthis)->pvecy);
-  FREE(pMERGE_FEATURE (pthis)->pvecx);
-  FREE(pMERGE_FEATURE (pthis)->tab);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  return 0;
-}
-
-
-
-
 
 
 
@@ -12056,9 +11913,8 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       break;
     case SCI_MERGE: 
       if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
-      DrawFac3d(sciGetParentSubwin(pobj),pMERGE_FEATURE (pobj)->pvecx, pMERGE_FEATURE (pobj)->pvecy, 
-		pMERGE_FEATURE (pobj)->pvecz, pMERGE_FEATURE (pobj)->dimzx, 
-		pMERGE_FEATURE (pobj)->dimzy,pMERGE_FEATURE (pobj)->tab);
+
+      DrawMerge3d(sciGetParentSubwin(pobj), pobj);
       break;
     case SCI_SURFACE:
       
@@ -13127,61 +12983,61 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       break;
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype == 0) {
-	if ((*numcol != 3)&&(*numcol != 2))
-	  {
-	    sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
+	if ((*numcol != 3)&&(*numcol != 2)) {
+	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
+	  return -1;
+	}
+	n1=pSEGS_FEATURE (pthis)->Nbr1;
+	if (*numrow != n1) {
+	  n1=*numrow;
+	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	    FREE(pvx); pvx = (double *) NULL;
 	    return -1;
 	  }
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) /* SS 30/1/02 */
-	  {
-	    n1=*numrow;
-	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      return -1;
-	    }
-	    if (*numcol == 3)
-	      if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		FREE(pvx); pvx = (double *) NULL;
-		FREE(pvy); pvy = (double *) NULL;
-		return -1;
-	      }
-	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+	  if (*numcol == 3)
+	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
 	      FREE(pvx); pvx = (double *) NULL;
 	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
 	      return -1;
 	    }
-	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
-	    if (*numcol == 3)
-	      FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-	    /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
-	    FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
-	    for (i=0;i < *numrow;i++)
-	      {
-		pvx[i] = tab[i];
-		pvy[i] = tab[i+ (*numrow)];
-		if (*numcol == 3)
-		  pvz[i] = tab[i+ 2*(*numrow)];
-		pstyle[i] = 0;
-	      }
-	    pSEGS_FEATURE (pthis)->vx=pvx;
-	    pSEGS_FEATURE (pthis)->vy=pvy;
-	    if (*numcol == 3)
-	      pSEGS_FEATURE (pthis)->vz=pvz;
-	    pSEGS_FEATURE (pthis)->Nbr1=n1;
-	    pSEGS_FEATURE (pthis)->pstyle=pstyle;
+	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+	    FREE(pvx); pvx = (double *) NULL;
+	    FREE(pvy); pvy = (double *) NULL;
+	    FREE(pvz); pvz = (double *) NULL;
+	    return -1;
 	  }
-	else
+	  FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
+	  FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
+	  if (*numcol == 3)
+	    FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
+	  /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
+	  FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
 	  for (i=0;i < *numrow;i++)
 	    {
-	      pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	      pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+	      pvx[i] = tab[i];
+	      pvy[i] = tab[i+ (*numrow)];
 	      if (*numcol == 3)
-		pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
+		pvz[i] = tab[i+ 2*(*numrow)];
+	      pstyle[i] = 0;
 	    }
+	  pSEGS_FEATURE (pthis)->vx=pvx;
+	  pSEGS_FEATURE (pthis)->vy=pvy;
+	  if (*numcol == 3)
+	    pSEGS_FEATURE (pthis)->vz=pvz;
+	  pSEGS_FEATURE (pthis)->Nbr1=n1;
+	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
+	}
+	else {
+	  if ((*numcol == 3) && (pSEGS_FEATURE (pthis)->vz == NULL)) 
+	    if ((pSEGS_FEATURE (pthis)->vz = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+
+	  for (i=0;i < *numrow;i++) {
+	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+	    pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
+	  }
+	}
       }
       else {
 	if ((*numcol != 3 +3*(*numrow * *numrow))&&(*numcol != 2 +2*(*numrow * *numrow)))
@@ -16613,322 +16469,8 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   
 }
 
-void MergeFac3d(sciPointObj *psubwin)
-{
-  integer i,q,p,k,tmp; 
-  sciSons *psonstmp;
-  double *x, *y, *z,*xf, *yf, *zf;
-  long *hdl;
-  sciPointObj *pobj, *pmerge; 
-  
-  /*#ifdef WIN32
-    int flag;
-    #endif*/
-
-  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
-  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
-    DestroyMerge(pmerge); 
-  /** Nbr de facettes **/
-  q=0;p=0;
-  psonstmp = sciGetSons (psubwin);
-  while (psonstmp != (sciSons *) NULL)	
-    {   
-      if(sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
-	{ 
-	  if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D)
-	    {
-	      p= 4;
-	      q = q + ((pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1));
-	    }
-	  else
-	    {
-	      p= pSURFACE_FEATURE (psonstmp->pointobj)->dimzx;
-	      q = q + pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
-	    }
-	}
-      psonstmp = psonstmp->pnext;
-    }
-  /** Allocation  **/  
-  x = graphic_alloc(6,(p*q)+1L,sizeof(double));
-  y = graphic_alloc(7,(p*q)+1L,sizeof(double));
-  z = graphic_alloc(8,(p*q)+1L,sizeof(double)); 
-  if (( x == NULL) ||  ( y== NULL) || ( z== NULL)) 
-       
-    {
-      Scistring("plot3dg_ : malloc No more Place\n");
-      return;
-    }
-  if ((hdl = MALLOC (p * q * sizeof (long))) == NULL)
-    { 
-      Scistring(" No more Place\n");
-      return ;
-    }  
- 
-  /** merge des facettes  **/
-  psonstmp = sciGetSons (psubwin);
-  k=0;
-  while (psonstmp != (sciSons *) NULL)	
-    {   
-      if (sciGetEntityType (psonstmp->pointobj) == SCI_SURFACE) 
-	{  
-	  if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
-	    {
-	      tmp=4*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
-	      if ((xf = MALLOC (tmp * sizeof (double))) == NULL)
-		{ 
-		  Scistring(" No more Place\n");
-		  return ;
-		} 
-	      if ((yf = MALLOC (tmp * sizeof (double))) == NULL)
-		{ 
-		  Scistring(" No more Place\n");
-		  FREE(xf);return ;
-		} 
-	      if ((zf = MALLOC (tmp * sizeof (double))) == NULL)
-		{ 
-		  Scistring(" No more Place\n");
-		  FREE(yf); FREE(zf);return ;
-		} 
-	      Genfac3d(psonstmp->pointobj,xf,yf,zf);
-	      for (i=0 ; i<tmp; i++)
-		{
-		  x[k]=xf[i];
-		  y[k]=yf[i];
-		  z[k]=zf[i];
-		  hdl[k]=(long) sciGetHandle (psonstmp->pointobj);
-		  k=k+1;
-		}
-	      FREE(xf); FREE(yf); FREE(zf); 
-	      
-	    }
-	  else
-	    {
-	      tmp = pSURFACE_FEATURE (psonstmp->pointobj)->dimzx*pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
-	      for (i=0 ; i<tmp; i++)
-		{
-		  x[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecx[i];
-		  y[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecy[i];
-		  z[k]=pSURFACE_FEATURE (psonstmp->pointobj)->pvecz[i];
-		  hdl[k]=(long) sciGetHandle (psonstmp->pointobj);
-		  k=k+1;
-		}  
-	    }
-	}
-      psonstmp = psonstmp->pnext;
-    }
-  if ((pobj=ConstructMerge ((sciPointObj *) psubwin,x,y,z,p,q,hdl)) == (sciPointObj *) NULL) /* Need a sciSetCurrentObj ??? F.Leray 26.03.04*/
-    sciprint ("\r\n No merge supported");
-  else
-    pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
-  FREE(hdl);
-}
 
 
-/**Genfac3d
- * @author Djalel Abdemouche 12/2003
- * transforms  standard 3d data to four sides facets representation
- * Should be in Plo3dn.c file
- */
-
-void Genfac3d(sciPointObj *pobj,double *x, double *y,double *z)
-{
-  integer n1, n2, i, j, k; 
-  if (sciGetEntityType (pobj) != SCI_SURFACE) return;
-  n1= pSURFACE_FEATURE (pobj)->dimzx -1;
-  n2= pSURFACE_FEATURE (pobj)->dimzy -1;
-  
-  k=0;
-  for (i=0 ; i<n2 ; i++)
-    for (j=0 ; j<n1 ; j++)
-      {
-	x[k]=x[k+1]=j+1;
-	x[k+2]=x[k+3]=j+2;
-	k=k+4;
-      }
-  k=0;
-  for (i=0 ; i<n2 ; i++)
-    for (j=0 ; j<n1 ; j++)
-      {
-	z[k]=z[k+3]=i*(n1+1);
-	z[k+1]=z[k+2]=(i+1)*(n1+1);
-	y[k]=y[k+3]=i+1;
-	y[k+1]=y[k+2]=i+2;
-	k=k+4;
-      } 
-  for (k=0 ; k<(n1*n2*4) ; k++)
-    {
-      z[k]=z[k]+x[k];
-      x[k]=pSURFACE_FEATURE (pobj)->pvecx[(int)(x[k]-1)];
-      y[k]=pSURFACE_FEATURE (pobj)->pvecy[(int)(y[k]-1)];
-      z[k]=pSURFACE_FEATURE (pobj)->pvecz[(int)(z[k]-1)];
-    }
-
-}
-/*DJ.A merge*/ 
-void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z, 
-	       integer p, integer q, long *hdl )
-{
-  integer polysize,npoly,whiteid,verbose=0,narg;
-  integer *polyx,*polyy,fill[4],*locindex; 
-  static double zmin,zmax,*polyz;
-  integer i; 
-  sciPointObj *pobj; 
-  integer context[6];
-  /* F.Leray debug*/
-  /* sciSurface * psurf = pSURFACE_FEATURE (pobj);*/
-#ifdef WIN32 
-  int flag; /* Allan.C 19/01/04 */
-#endif
-
-  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
-  
-  polyz = graphic_alloc(5,(q),sizeof(double));
-  if ( (polyz == NULL) && (q) != 0)
-    {
-      Scistring("plot3dg_ : malloc No more Place\n");
-      return;
-    }
-  polyx = graphic_alloc(0,(p)+1L,sizeof(int));
-  polyy = graphic_alloc(1,(p)+1L,sizeof(int));
-  locindex = graphic_alloc(2,(q),sizeof(int)); 
-  if (( polyx == NULL) ||  ( polyy== NULL) || ( locindex== NULL))
-       
-    {
-      Scistring("plot3dg_ : malloc No more Place\n");
-      return;
-    }
-  /** tri des facettes **/
-  for ( i =0 ; i < q ; i++)
-    {
-      double zdmin1, zdmin,xmoy=0.00,ymoy=0.00,zmoy=0.00;
-      int j=0 ;
-      zdmin1=  TRZ(x[ p*i]  ,y[p*i]  ,z[p*i]);
-      for ( j= 0 ; j < p ; j++) 
-	{
-	  xmoy += x[ j +p*i];  ymoy += y[ j +p*i];  zmoy += z[ j +p*i];
-	  zdmin =  TRZ(x[ j +p*i]  ,y[ j +p*i]  ,z[ j +p*i]);
-	  if ( zdmin1 < zdmin ) zdmin1= zdmin;
-	}
-      polyz[i]=  TRZ(xmoy,ymoy,zmoy);
-    }
-  C2F(dsort)(polyz,&q,locindex); 
-  for ( i =0 ; i < q ; i++)
-    {
-      locindex[i] -= 1;  
-      if ( locindex[i] >= q) 
-	sciprint (" index[%d]=%d\r\n",i,locindex[i]);
-      locindex[i] = Min(Max(0,locindex[i]),q-1);
-    }
-  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
-  zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
-  
-  polysize=4+1;
-  npoly=1; 
-  for ( i = q-1 ; i>= 0 ; i--)
-    {
-      int j,nok=0;
-      for ( j =0 ; j < p ; j++)
-	{ 
-	  if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[p*locindex[i]+j]),
-		  &(y[p*locindex[i]+j]),&(z[p*locindex[i]+j]))==0) 
-	    {
-	      nok=1;break; 
-	    }
-	}
-      pobj=(sciPointObj *) sciGetPointerFromHandle (hdl[p*locindex[i]+1]);
-      if (sciGetEntityType (pobj) == SCI_SURFACE) 
-	{ 
-	  context[0] = sciGetForeground (pobj);	
-	  context[1] = sciGetLineWidth (pobj);
-	  context[2] = sciGetLineStyle (pobj); 
-	  context[3] = 0;
-	  context[4] = sciGetMarkStyle(pobj);
-	  context[5] = sciGetLineWidth (pobj);
-#ifdef WIN32
-	  flag=MaybeSetWinhdc();
-#endif
-	  C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
-	  C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
-	  C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
-	  C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
-	  C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
-#ifdef WIN32
-	  if ( flag == 1) ReleaseWinHdc ();
-#endif	  
-      
-	}
-      if (pSURFACE_FEATURE (pobj)->visible)
-	if ( nok == 0) 
-	  {
-	    polyx[4]=polyx[0];
-	    polyy[4]=polyy[0];
-	    if ( p >= 2 && ((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-
-			    (polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) 
-	      {  
-		if (( pSURFACE_FEATURE (pobj)->flagcolor == 1) && (pSUBWIN_FEATURE (psubwin)->hiddencolor<=0))
-		  {
-		    double zl=0;
-		    int k1;
-		    for ( k1= 0 ; k1 < p ; k1++) 
-		      zl+= z[p*locindex[i]+k1];
-		    fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
-		    if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
-		    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }
-		else if ((pSURFACE_FEATURE (pobj)->flagcolor ==3) && (pSUBWIN_FEATURE (psubwin)->hiddencolor<=0))
-		  { 
-		    int k1;
-		    if ( (p) != 3 && (p) !=4 ) 
-		      {Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");return;} 
-		    else 
-		      {
-			for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[p*locindex[i]+k1];
-			shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
-		      }
-		  }
-		else
-		  {
-		    fill[0]= (pSUBWIN_FEATURE (psubwin)->hiddencolor>0)?
-		      pSUBWIN_FEATURE (psubwin)->hiddencolor:pSURFACE_FEATURE (pobj)->flag[0] ;
-		    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
-			    PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }
-	      }
-	    else if ( pSURFACE_FEATURE (pobj)->flagcolor == 1) 
-	      {
-		double zl=0;
-		int k1;
-		for ( k1= 0 ; k1 < p ; k1++) 
-		  zl+= z[p*locindex[i]+k1];
-		fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
-		if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
-		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	    else if ( pSURFACE_FEATURE (pobj)->flagcolor == 2) 
-	      {
-		fill[0]= pSURFACE_FEATURE (pobj)->zcol[locindex[i]];
-		if ( pSURFACE_FEATURE (pobj)->flag[0] < 0 ) fill[0]=-fill[0];
-		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	    else if (pSURFACE_FEATURE (pobj)->flagcolor ==3) { 
-	      int k1;
-	      if ( (p) != 3 && (p) !=4 ) {
-                Scistring("plot3d1 : interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
- 		return;
-	      } else {
-       	        for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[p*locindex[i]+k1];
-		shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
-	      }
-	    }
-	    else
-	      {
-		fill[0]= pSURFACE_FEATURE (pobj)->flag[0];
-		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	  }
-    }
-}
 sciPointObj *sciGetMerge(sciPointObj *psubwin)
 {
   sciSons *psonstmp;
@@ -17120,4 +16662,575 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
     }
 
   STRFLAG[3] = '\0';
+}
+
+
+sciPointObj *
+ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *from_entity)
+{
+  sciPointObj *pobj = (sciPointObj *) NULL;
+ 
+  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
+    {
+      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL) return (sciPointObj *) NULL;
+  
+      sciSetEntityType (pobj, SCI_MERGE);
+      if ((pobj->pfeatures = MALLOC ((sizeof (sciMerge)))) == NULL) {
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+      if (sciAddNewHandle (pobj) == -1) {
+	FREE(pMERGE_FEATURE (pobj));
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+      if (!(sciAddThisToItsParent (pobj, pparentsubwin))){
+	sciDelHandle (pobj);
+	FREE(pMERGE_FEATURE (pobj));
+	FREE(pobj);
+	return (sciPointObj *) NULL;
+      }
+
+      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+      pMERGE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
+      pMERGE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+      pMERGE_FEATURE (pobj)->index_in_entity=index_in_entity;
+      pMERGE_FEATURE (pobj)->from_entity=from_entity;
+      pMERGE_FEATURE (pobj)->N=N;
+      return pobj;
+    }
+  else
+    return (sciPointObj *) NULL;
+}
+
+int DestroyMerge (sciPointObj * pthis)
+{
+  pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->facetmerge = FALSE;
+  FREE(pMERGE_FEATURE (pthis)->index_in_entity);
+  FREE(pMERGE_FEATURE (pthis)->from_entity);
+  sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1)
+    return -1;
+  FREE (sciGetPointerToFeature (pthis));
+  FREE (pthis);
+  return 0;
+}
+
+void Merge3d(sciPointObj *psubwin)
+{
+  integer i,q,k,N; 
+  sciSons *psonstmp;
+  sciPointObj *pmerge; 
+  int *index_in_entity;
+  long *from_entity;
+
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
+  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
+    DestroyMerge(pmerge); 
+
+  /* ========================================================================
+   * Compute the number of facets, segments,... included in all the subwin 
+   * children
+   * Each entities to merge; is decomposed in a set of basic elements 
+   *  (facet, segment, point,...)
+   * Each basic element is represented in the Merge structure by the handle of its entity and an 
+   *   index within this entity
+   * ========================================================================*/
+
+  q=0;
+  psonstmp = sciGetSons (psubwin);
+  while (psonstmp != (sciSons *) NULL) {   
+    switch (sciGetEntityType (psonstmp->pointobj)) {  
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
+	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
+      else
+	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
+      break;
+
+    case  SCI_POLYLINE:
+      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
+	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
+	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
+	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
+      }
+      else/* patch */
+	N = 1; 
+      break;
+    case  SCI_SEGS: 
+      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
+      break;
+    case  SCI_RECTANGLE: 
+      N = 4;
+      break;
+    default:
+      N=0;
+    }
+    q+=N;
+    psonstmp = psonstmp->pnext;
+  }
+
+  /* ========================================================================
+   * allocate tables for index and handles
+   * ========================================================================*/
+
+  /* q now contains the total number of elements */
+  if ((index_in_entity = (int *) malloc (q * sizeof (int))) == (int *)NULL) {
+    Scistring("Merge3d : not enough memory to allocate \n");
+    return;
+  }
+  if ((from_entity   = (long *) malloc (q * sizeof (long))) == (long *) NULL) {
+    Scistring("Merge3d : not enough memory to allocate \n");
+    free(index_in_entity);
+  }
+ 
+  /* ========================================================================
+   * fill the index and handles tables
+   * ========================================================================*/
+  psonstmp = sciGetSons (psubwin);
+  k=0; /*current table index */
+  while (psonstmp != (sciSons *) NULL) {   
+    switch (sciGetEntityType (psonstmp->pointobj)) {  
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
+	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
+      else
+	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
+      break;
+    case  SCI_POLYLINE:
+      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
+	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
+	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
+	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
+      }
+      else/* patch */
+	N = 1; 
+      break;
+    case  SCI_SEGS: 
+      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
+      break;
+    case  SCI_RECTANGLE: 
+      N = 4;
+      break;
+    default:
+      N = 0;
+    }
+    for (i=0 ; i<N; i++) {
+      index_in_entity[k]=i;
+      from_entity[k]=(long) sciGetHandle (psonstmp->pointobj);
+      k=k+1;
+    }
+    
+    psonstmp = psonstmp->pnext;
+  }
+  /* ========================================================================
+   * create the Merge data structure
+   * ========================================================================*/
+
+  if ((pmerge=ConstructMerge ((sciPointObj *) psubwin,q,index_in_entity,from_entity)) == (sciPointObj *) NULL) {
+    free(index_in_entity);
+    free(from_entity);
+    sciprint ("\r\n No merge supported");}
+  else /* inform the subwindow to display Merge instead of individual children */
+    pSUBWIN_FEATURE (psubwin)->facetmerge = TRUE;
+
+}
+
+void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
+{
+  int N,i,j,index,p,max_p,n1,npoly;
+  double * dist;
+  double X[4],Y[4],Z[4];
+  double *x,*y,*z;
+  sciPointObj *pobj; 
+  int *locindex;
+  int *polyx,*polyy,fill[20];/* here we suppose there is no more than 20 edge in a facet */
+  int k1, pstyle,iflag;
+  int whiteid,verbose=0,narg;
+  static double zmin,zmax,xmoy,ymoy,zmoy,zl;
+  int context[6];
+#ifdef WIN32 
+  int flag;
+#endif
+
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
+  N=pMERGE_FEATURE (pmerge)->N; /* total number of elements */
+
+  if ((dist=(double *)MALLOC(N*sizeof(double)))==(double *) NULL) {
+    Scistring("DrawMerge3d : malloc No more Place\n");
+    return;
+  }
+  if ((locindex=(int *)MALLOC(N*sizeof(int)))==(int *) NULL) {
+    Scistring("DrawMerge3d : malloc No more Place\n");
+    return;
+  }
+
+  /* ========================================================================
+   * compute drawing order (painter algorithm) *
+   may be moved into Merge3d
+   * ========================================================================*/
+  max_p=0; /* the maximum number of edge in a facet */
+  for ( i =0 ; i < N ; i++) { /* loop on element*/
+    pobj=(sciPointObj *) sciGetPointerFromHandle (pMERGE_FEATURE (pmerge)->from_entity[i]);
+    index=pMERGE_FEATURE (pmerge)->index_in_entity[i];
+
+    /*compute element coordinates */
+    switch (sciGetEntityType (pobj)) {  
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
+	int l,k,n1,n2;
+	n1= pSURFACE_FEATURE (pobj)->dimzx;
+	n2= pSURFACE_FEATURE (pobj)->dimzy;
+	l=(int)(index/(n1-1));
+	k=index-l*(n1-1);
+
+	n2= pSURFACE_FEATURE (pobj)->dimzy;
+	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k];
+	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1];
+	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
+	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
+	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
+	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l];
+	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1];
+	p=4;
+	x=X;y=Y;z=Z;
+      }
+      else{ /* facets */
+	p=pSURFACE_FEATURE (pobj)->dimzx;
+	x=&(pSURFACE_FEATURE (pobj)->pvecx[index*p]);
+	y=&(pSURFACE_FEATURE (pobj)->pvecy[index*p]);
+	z=&(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+      }
+      break;
+    case  SCI_POLYLINE:
+      n1= pPOLYLINE_FEATURE (pobj)->n1;
+      p=2;
+      if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
+      switch (pPOLYLINE_FEATURE (pobj)->plot) {
+      case 0: case 1: case 4: /*linear interpolation */
+	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]);
+	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]);
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
+	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]);
+	else
+	  z=(double *)NULL;
+	break;
+      case 2: /* staircase */ /* just for completion  */
+	p=2;
+	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1];
+	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  z=Z;
+	}
+	else 
+	  z=(double *)NULL;
+	x=X;y=Y;
+	break;
+      case 3 : /* vertical bar */ /* just for completion  */
+	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	Y[0]=0.0;
+	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	  z=Z;
+	}
+	else 
+	  z=(double *)NULL;
+	x=X;y=Y;
+	break;
+      case 5: /* patch*/
+	x=pPOLYLINE_FEATURE (pobj)->pvx;
+	y=pPOLYLINE_FEATURE (pobj)->pvy;
+	z=pPOLYLINE_FEATURE (pobj)->pvz;
+	p=n1;
+	break;
+      }
+      break;
+    case  SCI_SEGS: 
+      p = 2;
+      X[0]=pSEGS_FEATURE (pobj)->vx[2*index];
+      X[1]=pSEGS_FEATURE (pobj)->vx[2*index+1];
+      Y[0]=pSEGS_FEATURE (pobj)->vy[2*index];
+      Y[1]=pSEGS_FEATURE (pobj)->vy[2*index+1];
+      if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
+	Z[0]=pSEGS_FEATURE (pobj)->vz[2*index];
+	Z[1]=pSEGS_FEATURE (pobj)->vz[2*index+1];
+	z=Z;
+      }
+      else
+	z=(double *)NULL;
+      x=X;y=Y;
+      break;
+    case  SCI_RECTANGLE: 
+      p = 5;
+      pstyle=0; /* arevoir */
+      iflag=0; /* arevoir */
+      X[0]=X[1]=X[4]=pRECTANGLE_FEATURE (pobj)->x;
+      Y[0]=Y[3]=Y[4]=pRECTANGLE_FEATURE (pobj)->y;
+      X[2]=X[3]=pRECTANGLE_FEATURE (pobj)->x + pRECTANGLE_FEATURE (pobj)->width;
+      Y[1]=Y[2]=pRECTANGLE_FEATURE (pobj)->y - pRECTANGLE_FEATURE (pobj)->height;
+      Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=pRECTANGLE_FEATURE (pobj)->z;
+      x=X;y=Y;z=Z; 
+      break;
+    default:
+      p = 0;
+    }
+    /* each element is represented by its barycenter */
+    xmoy=0.0;ymoy=0.0;zmoy=0.0;
+    if (z != (double *)NULL) {
+      for ( j= 0 ; j < p ; j++) {
+	xmoy += x[j];  ymoy += x[j];  zmoy += z[j];
+      }
+    }
+    else {
+      for ( j= 0 ; j < p ; j++) {
+	xmoy += x[j];  ymoy += x[j];
+      }
+    }
+    /* Compute the distance from the observer */
+    dist[i]=  TRZ(xmoy/p,ymoy/p,zmoy/p);
+    max_p=Max(max_p,p);
+  }
+
+  /* sort the distance in decreasing order */
+  C2F(dsort)(dist,&N,locindex); 
+
+  /* ========================================================================
+   * draw each element in the order given by locindex
+   * ========================================================================*/
+  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  zmin=  pSUBWIN_FEATURE (psubwin)->SRect[4];
+  zmax= pSUBWIN_FEATURE (psubwin)->SRect[5];
+  if ((polyx=(int *)MALLOC(max_p*sizeof(int)))==(int *) NULL) {
+    FREE(dist);FREE(locindex);
+    Scistring("DrawMerge3d : malloc No more Place\n");
+
+    return;
+  }
+  if ((polyy=(int *)MALLOC(max_p*sizeof(int)))==(int *) NULL) {
+    FREE(dist);FREE(locindex);
+    Scistring("DrawMerge3d : malloc No more Place\n");
+    return;
+  }
+  npoly=1; 
+  for ( i = N ; i>0 ; i--) { /* loop on elements */
+    int j,nok=0;
+    j=locindex[i-1]-1;
+    index=pMERGE_FEATURE (pmerge)->index_in_entity[j];
+    pobj=(sciPointObj *) sciGetPointerFromHandle (pMERGE_FEATURE (pmerge)->from_entity[j]);
+    if (sciGetVisibility (pobj)) {
+      
+      /* build the element coordinates */
+      switch (sciGetEntityType (pobj)) {  
+      case SCI_SURFACE:
+	if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D) { /* x,y,Z */
+	  int l,k,n1,n2;
+	  n1= pSURFACE_FEATURE (pobj)->dimzx;
+	  l=(int)(index/(n1-1));
+	  k=index-l*(n1-1);
+	  n2= pSURFACE_FEATURE (pobj)->dimzy;
+	  X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k];
+	  X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1];
+	  Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1];
+	  Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1];
+	  Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1];
+	  Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1];
+	  Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l];
+	  Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1];
+	  p=4;
+	  x=X;y=Y;z=Z;
+ 	}
+	else{ /* facets */
+	  p=pSURFACE_FEATURE (pobj)->dimzx;
+	  x=&(pSURFACE_FEATURE (pobj)->pvecx[index*p]);
+	  y=&(pSURFACE_FEATURE (pobj)->pvecy[index*p]);
+	  z=&(pSURFACE_FEATURE (pobj)->pvecz[index*p]);
+	}
+	break;
+      case  SCI_POLYLINE:
+	n1= pPOLYLINE_FEATURE (pobj)->n1;
+	p=2;
+	if (sciGetIsMark((sciPointObj *)pobj) == 1) p=1;
+	pstyle=0; /* arevoir */
+	iflag=0; /* arevoir */
+	switch (pPOLYLINE_FEATURE (pobj)->plot) {
+	case 0: case 1: case 4: /*linear interpolation */
+	  x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]);
+	  y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]);
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) 
+	    z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]);
+	  else
+	    z=(double *)NULL;
+	  break;
+	case 2: /* staircase */ /* just for completion  */
+	  X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	  X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1];
+	  Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	  Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	    Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	    Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	    z=Z;
+	  }
+	  else 
+	    z=(double *) NULL;
+	  x=X;y=Y;z=Z;
+	  break;
+	case 3 : /* vertical bar */ /* just for completion  */
+	  X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	  X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index];
+	  Y[0]=0.0;
+	  Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index];
+	  if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) {
+	    Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	    Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index];
+	    z=Z;
+	  }
+	  else 
+	    z=(double *) NULL;
+	  x=X;y=Y;z=Z;
+	  break;
+	case 5: /* patch*/
+	  x=pPOLYLINE_FEATURE (pobj)->pvx;
+	  y=pPOLYLINE_FEATURE (pobj)->pvy;
+	  z=pPOLYLINE_FEATURE (pobj)->pvz;
+	  p=n1;
+	break;
+	}
+	break;
+      case  SCI_SEGS: 
+	if (pSEGS_FEATURE (pobj)->iflag == 1) 
+	  pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[index]);
+	else
+	  pstyle=sciGetGoodIndex(pobj, pSEGS_FEATURE (pobj)->pstyle[0]);
+	iflag=pSEGS_FEATURE (pobj)->iflag;
+	p = 2;
+	X[0]=pSEGS_FEATURE (pobj)->vx[2*index];
+	X[1]=pSEGS_FEATURE (pobj)->vx[2*index+1];
+	Y[0]=pSEGS_FEATURE (pobj)->vy[2*index];
+	Y[1]=pSEGS_FEATURE (pobj)->vy[2*index+1];
+	if (pSEGS_FEATURE (pobj)->vz != (double *) NULL) {
+	  Z[0]=pSEGS_FEATURE (pobj)->vz[2*index];
+	  Z[1]=pSEGS_FEATURE (pobj)->vz[2*index+1];
+	  z=Z;
+	}
+	else 
+	  z=(double *) NULL;
+	x=X;y=Y;
+	break;
+      case  SCI_RECTANGLE: 
+	p = 5;
+	pstyle=0; /* arevoir */
+	iflag=0; /* arevoir */
+	X[0]=X[1]=X[4]=pRECTANGLE_FEATURE (pobj)->x;
+	Y[0]=Y[3]=Y[4]=pRECTANGLE_FEATURE (pobj)->y;
+	X[2]=X[3]=pRECTANGLE_FEATURE (pobj)->x + pRECTANGLE_FEATURE (pobj)->width;
+	Y[1]=Y[2]=pRECTANGLE_FEATURE (pobj)->y - pRECTANGLE_FEATURE (pobj)->height;
+	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=pRECTANGLE_FEATURE (pobj)->z;
+	x=X;y=Y;z=Z; 
+	break;
+      default:
+	p = 0;
+      }
+      if (p > 0) {
+	/* project 3D on 2D coordinates */
+	if (z != (double *)NULL) {
+	  for ( j =0 ; j < p ; j++) { 
+	    if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[j]),&(y[j]),&(z[j]))==0) {
+	      nok=1;break; 
+	    }
+	  }
+	}
+	else {
+	  double zz=0.0;
+	  for ( j =0 ; j < p ; j++) { 
+	    if (trans3d(psubwin ,1, &(polyx[j]),&(polyy[j]),&(x[j]),&(y[j]),&zz)==0) {
+	      nok=1;break; 
+	    }
+	  }
+	}
+
+
+	/* draw element */
+	context[0] = sciGetForeground (pobj);	
+	context[1] = sciGetLineWidth (pobj);
+	context[2] = sciGetLineStyle (pobj); 
+	context[3] = 0;
+	context[4] = sciGetMarkStyle(pobj);
+	context[5] = sciGetLineWidth (pobj);
+#ifdef WIN32
+	flag=MaybeSetWinhdc();
+#endif
+	C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		  PD0, PD0, PD0, 5L, 6L);
+	C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
+		  PD0, PD0, PD0, 5L, 10L);
+	C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
+	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
+#ifdef WIN32
+	if ( flag == 1) ReleaseWinHdc ();
+#endif	  
+
+	if (sciGetEntityType (pobj)==SCI_SURFACE) {  
+	  polyx[p]=polyx[0];polyy[p]=polyy[0];p++; /*close the facet*/
+
+	  if ((((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-(polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) &&
+	      (pSUBWIN_FEATURE (psubwin)->hiddencolor>0)) { /* hidden face */
+	    fill[0]= pSUBWIN_FEATURE (psubwin)->hiddencolor;
+	    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  }
+	  else {
+	    switch ( pSURFACE_FEATURE (pobj)->flagcolor) {
+	    case 0:
+	      fill[0]= pSURFACE_FEATURE (pobj)->flag[0] ;
+	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p, PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      break;
+	    case 1:
+	      zl=0;
+	      for ( k1= 0 ; k1 < p ; k1++) zl+= Z[k1];
+	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
+	      if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
+	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      break;
+	    case 2:
+	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
+	      if ( pSURFACE_FEATURE (pobj)->flag[0] < 0 ) fill[0]=-fill[0];
+	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      break;
+	    case 3:
+	      if ( (p) != 3 && (p) !=4 ) {
+		Scistring("Interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
+		return;
+	      } 
+	      else  {
+		for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];
+		shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
+	      }
+	      break;
+	    }
+	  }
+	} /* end SCI_SURFACE*/
+	else { 
+	  if (p == 1)/*point */
+	    C2F (dr) ("xmarks", "str", &p, polyx,polyy, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
+	  else if (p==2) /*segment*/
+	    C2F(dr)("xsegs","v",polyx,polyy,&p,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  else {/*patch*/
+	    int close=1;
+	    C2F (dr) ("xarea", "v", &p, polyx, polyy, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	  }
+	}
+      }
+    }
+  }
+  FREE(dist);FREE(locindex);FREE(polyx);FREE(polyy);
 }

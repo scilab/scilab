@@ -860,15 +860,13 @@ sciSurface;  /** */
 /**@name merge DJ.A 30/12
  * Structure used to specify 
  */
+
 typedef struct
 {
   sciRelationShip relationship;
-  double * pvecx;
-  double * pvecy;
-  double * pvecz; 
-  long *tab;
-  integer dimzx;
-  integer dimzy;
+  long *from_entity; /* vector of handles on the facet or segment entity*/
+  int *index_in_entity;/*index of facet or segment in its entity*/
+  int N; /* number of facets or segments */
 }
 sciMerge;  /** */
 
@@ -1390,8 +1388,10 @@ extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D t
 				      integer *m1, integer *n1, integer *m2, integer *n2, 
 				      integer *m3, integer *n3, integer *m3n, integer *n3n);
 extern int DestroySurface (sciPointObj * pthis);
-extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
-				  integer dimzx, integer dimzy, long *tab);/*DJ.A*/
+
+extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin,int N,int *index_in_entity,long *from_entity);
+
+
 extern int DestroyMerge (sciPointObj * pthis);
 /*extern sciPointObj *ConstructAxis (sciPointObj * pparentfigure,char *strflag,int style,
 				   double minx, double miny, double minz,
@@ -1515,9 +1515,8 @@ extern void update_graduation(sciPointObj *pobj);
 /***/
 extern void initsubwin();
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg); 
-extern void MergeFac3d(sciPointObj *psubwin);/*DJ.A merge*/ 
-extern void Genfac3d(sciPointObj *pobj,double *x, double *y,double *z);
-extern void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z, integer p, integer q, long *hdl );
+extern void Merge3d(sciPointObj *psubwin);/*DJ.A merge*/ 
+extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge);
 extern sciPointObj *sciGetMerge(sciPointObj *psubwin);
 /* DJ.A 08/01/04 */
 extern int C2F(CreateModels) ();

@@ -25,11 +25,14 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl)
     int fillflag, fillcolor,n;
     long *hdl;
 { 
-   sciSetCurrentObj (ConstructRectangle
-         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),*x,*y,
-                     *height, *width, 0, 0,fillflag, fillcolor ,n));
+  sciPointObj *psubwin;
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  sciSetCurrentObj (ConstructRectangle
+		    (psubwin ,*x,*y,*height, *width, 0, 0,fillflag, fillcolor ,n));
      
    *hdl=sciGetHandle(sciGetCurrentObj ()); 
+   if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
    sciDrawObj(sciGetCurrentObj ());
    
 }
@@ -63,9 +66,10 @@ void Objpoly (x,y,n,closed,mark,hdl)
     long *hdl;
     int mark;
 { 
-  sciSetCurrentObj (ConstructPolyline
-		    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
-                     closed,n,1,0)); 
+  sciPointObj *psubwin;
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,closed,n,1,0)); 
   if (mark <= 0)
     { 
       sciSetIsMark(sciGetCurrentObj(), TRUE);
@@ -77,6 +81,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
       sciSetForeground (sciGetCurrentObj(), mark);
      }
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
   sciDrawObj(sciGetCurrentObj ());
  
 }
@@ -92,20 +97,19 @@ void Objfpoly (x,y,n,style,hdl)
     long * hdl;
 { 
   long hdltab[2];
-
-    sciSetCurrentObj (ConstructPolyline
-		      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
-		       1,n,1,5)); 
+  sciPointObj *psubwin;
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  
+    sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,5)); 
     sciSetForeground (sciGetCurrentObj(), abs(style));
     hdltab[0]=sciGetHandle(sciGetCurrentObj ()); 
  
     if (style > 0) {
-      sciSetCurrentObj (ConstructPolyline
-			((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
-			 1,n,1,0)); 
+      sciSetCurrentObj (ConstructPolyline(psubwin,x,y,PD0,1,n,1,0)); 
       hdltab[1]=sciGetHandle(sciGetCurrentObj ()); 
       sciSetCurrentObj(ConstructAgregation (hdltab, 2)); }
 
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
   sciDrawObj(sciGetCurrentObj ());
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
  
@@ -122,14 +126,15 @@ void Objsegs (style,flag,n1,x,y,arsize)
 { 
   integer type=0,n2, colored=0;
   double *fx,*fy,arfact=1.0;
+  sciPointObj *psubwin;
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   n2=n1;
   fx=x;fy=y;
-    sciSetCurrentObj (ConstructSegs
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),type,
-	                x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
-     sciDrawObj(sciGetCurrentObj ());  
+  sciSetCurrentObj (ConstructSegs(psubwin,type,
+				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);
+  sciDrawObj(sciGetCurrentObj ());  
     
 }
 /*-----------------------------------------------------------
@@ -394,7 +399,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * Merge with previous 3D plots (build a set of facets)
    * ================================================= */
 
-  if (ok==1) MergeFac3d(psubwin);
+  if (ok==1) Merge3d(psubwin);
 
   /* =================================================
    * Redraw Figure
