@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.47 $)dnl
+AC_REVISION($Revision: 1.48 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1341,7 +1341,8 @@ else
 
   case "$host" in
       *-*-mingw32*)
-        PVMARCH=MINGW
+        ac_cv_PVM_arch=MINGW
+        PVMARCH="$ac_cv_PVM_arch"
     ;;
   esac
 
