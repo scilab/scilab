@@ -16,6 +16,7 @@ global("varslist")
 // - string: scalar/vector/matrix/hypermatrix containing character strings
 // - boolean: scalar/vector/matrix/hypermatrix containing boolean values
 // - int: scalar/vector/matrix/hypermatrix containing integer values
+// - handle: matrix of graphics handles or graphics handle
 // - sparse: sparse scalar/vector/matrix/hypermatrix
 // - cell: cell array
 // - struct: struct array
@@ -24,7 +25,7 @@ global("varslist")
 //property:
 // - real/complex/? for double and int datatype
 // - real for string and boolean datatype (ignored if not)
-// - NOT USED for struct/cell datatype
+// - NOT USED for struct/cell/handle datatype
 
 // def is the comment added by the user
 userdata=def.rhs(1).value
@@ -45,7 +46,7 @@ elseif nbsep>4 then
   error("m2scideclare: too much data");
 end
 
-name=part(userdata,1:seppos(1)-1)
+name=stripblanks(part(userdata,1:seppos(1)-1))
 
 dimstxt=part(userdata,seppos(1)+1:seppos(2)-1)
 
@@ -71,8 +72,8 @@ end
 // Datatype
 datatypetxt=strsubst(datatypetxt,"?","Unknown")
 datatype=convstr(datatypetxt,"l")
-if or(datatype==["double","boolean","string","int","sparse","cell","struct","unknown"]) then
-  datatype=convstr(part(datatype,1),"u")+part(datatype,2:length(datatype))
+if or(datatype==["double","boolean","string","int","handle","sparse","cell","struct","unknown"]) then
+  datatype=convstr(part(datatype,1),"u")+convstr(part(datatype,2:length(datatype)),"l")
   vtype=evstr(datatype)
 else
   error("m2scideclare: Unknown datatype "+datatypetxt);
@@ -248,6 +249,8 @@ elseif tp==6 then
   str="Sparse"
 elseif tp==8 then
   str="Int"
+elseif tp==9 then
+  str="Handle"
 elseif tp==10 then
   str="String"
 elseif tp==16 then
