@@ -592,16 +592,15 @@ c     ---------max of each row of a
          top=topk-rhs+lhs            
 c     ----- general maxi or mini 
       else if ( type(1:1).eq.'g') then 
-         k=lr1
-         ki=lr1
-         x1=stk(k)
+         x1=stk(lr1)
+         k=1
          if(fin.eq.17) then 
 c     mini
             do 41 i=2,m*n
                lr1=lr1+1
                if(stk(lr1).lt.x1.or.isanan(stk(lr1)).eq.1) then 
-                  k=lr1
-                  x1=stk(k)
+                  k=i
+                  x1=stk(lr1)
                endif
  41         continue
 c     maxi
@@ -609,8 +608,8 @@ c     maxi
             do 42 i=2,m*n
                lr1=lr1+1
                if(stk(lr1).gt.x1.or.isanan(stk(lr1)).eq.1) then 
-                  k=lr1
-                  x1=stk(k)
+                  k=i
+                  x1=stk(lr1)
                endif
  42         continue
          endif
@@ -621,7 +620,6 @@ C     return indices of max or min ([k] for vectors  or [kl,kc]
 c     for matrices 
          if(lhs.eq.2) then 
             top=topk+1
-            k=k-ki+1
             if(m.eq.1.or.n.eq.1) then 
                if (.not.cremat(fname,top,0,1,1,lr1,lc1)) return
                stk(lr1)=dble(k)
