@@ -20,7 +20,7 @@ OBJSF = lstelm.o lstelmi.o  matdes.o matdsc.o matdsr.o matelm.o\
 	where.o indxg.o defint.o\
 	matodc.o dasrti.o\
 	intg.o int2d.o int3d.o feval.o bva.o comm.o specfun.o\
-	isany.o intdzgeqpf.o \
+	isany.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
 	hmcreate.o
 
