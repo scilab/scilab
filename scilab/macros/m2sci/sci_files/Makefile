@@ -16,7 +16,7 @@ PROTO1 = sci_max.sci sci_min.sci
 PROTO2 = sci_cumprod.sci sci_cumsum.sci
 PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci
 PROTO4 = sci_acosh.sci sci_asinh.sci sci_atan.sci sci_conj.sci sci_cot.sci sci_coth.sci \
-	 sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci \
+	 sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci sci_log10.sci\
 	 sci_sign.sci sci_sin.sci sci_sinh.sci sci_sqrt.sci sci_tan.sci sci_tanh.sci
 PROTO5 = sci_asin.sci sci_atanh.sci
 PROTO6 = sci_ceil.sci sci_fix.sci sci_floor.sci sci_round.sci
@@ -32,7 +32,8 @@ PROTO15 = sci_nargin.sci sci_nargout.sci
 
 OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_asec.sci sci_asech.sci \
-	 sci_atan2.sci sci_balance.sci sci_beta.sci sci_blanks.sci sci_break.sci \
+	 sci_atan2.sci sci_balance.sci sci_beep.sci \
+	 sci_beta.sci sci_blanks.sci sci_break.sci \
 	 sci_cd.sci \
 	 sci_cell.sci \
 	 sci_chol.sci sci_clc.sci sci_clear.sci sci_clock.sci sci_continue.sci \
@@ -59,7 +60,8 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_isspace.sci sci_issparse.sci sci_isstr.sci sci_isstruct.sci sci_isunix.sci \
 	 sci_isvector.sci sci_keyboard.sci sci_kron.sci \
 	 sci_length.sci sci_linspace.sci sci_load.sci sci_log2.sci \
-         sci_logical.sci sci_lookfor.sci sci_lu.sci sci_makecell.sci sci_mod.sci \
+         sci_logical.sci sci_lookfor.sci sci_lu.sci sci_makecell.sci sci_mkdir.sci \
+	 sci_mod.sci \
 	 sci_more.sci \
          sci_ndims.sci sci_norm.sci sci_num2str.sci \
 	 sci_pause.sci sci_pow2.sci sci_qr.sci \
@@ -69,7 +71,7 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
          sci_strcmpi.sci sci_strcmp.sci sci_strfind.sci sci_strrep.sci sci_struct.sci \
 	 sci_svd.sci sci_tic.sci sci_toc.sci sci_toeplitz.sci \
          sci_home.sci sci_type.sci sci_uigetdir.sci sci_vertcat.sci \
-	 sci_waitforbuttonpress.sci sci_warning.sci
+	 sci_waitforbuttonpress.sci sci_warning.sci sci_winqueryreg.sci
 
 PLOT =  sci_axis.sci sci_box.sci sci_cla.sci sci_clf.sci sci_close.sci \
 	sci_closereq.sci sci_colordef.sci \
