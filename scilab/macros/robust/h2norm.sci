@@ -16,7 +16,7 @@ if g1(1)=='lss' then
   if maxi(real(sp))>=-tol then
     error('unstable system!'),
   end,
-  w=obs_gram(g(2),g(4),'cont'),
+  w=obs_gram(g(2),g(4),'c'),
   nh=abs(sqrt(sum(diag(g(3)'*w*g(3))))),return,
 else,
   num=g(2),den=g(3),
