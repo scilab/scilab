@@ -23,7 +23,7 @@
 #endif
 
 /* limits */
-#define MAXSTR 255
+//#define MAXSTR 255
 #define MAXPRINTF 1024
 
 #define MENUNAME "wscilabE.mnu"
@@ -96,7 +96,7 @@ char ScilexConsoleName[MAX_PATH];
 /*-----------------------------------------------------------------------------------*/
 extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
-extern void C2F (diary) (char *, int *, int);
+//extern void C2F (diary) (char *, int *, int);
 extern void set_sci_env(char *p, char *wsci) ;
 
 

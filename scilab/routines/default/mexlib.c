@@ -2172,6 +2172,7 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
   mexPrintf("Routine mxSetDimensions  not implemented \r\n");
   exit(1);  /* TO BE DONE */
+  return 0;
 }
 
 const char *mxGetClassName(const mxArray *ptr)

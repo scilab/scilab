@@ -1025,12 +1025,12 @@ void HomeFunction(void)
   sciprint("\nNot yet implemented. \n");
 }
 
-void ClearScreenConsole(char *fname)
+int ClearScreenConsole(char *fname)
 {
   sciprint("\nNot yet implemented. \n");
 }
 
-void ShowWindowFunction _PARAMS((char *fname))
+int ShowWindowFunction _PARAMS((char *fname))
 {
  sciprint("\nNot yet implemented. \n");	
 }

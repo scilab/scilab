@@ -29,6 +29,7 @@ char save_prompt[10];
 /* Fonction Récuperant la ligne à executer par Scilab */
 
 
+
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 

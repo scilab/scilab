@@ -1134,46 +1134,46 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                         else                      
                         if ( strcmp(PathIconButton,"SCICOS_ICON")==0 )
                         {
-                          IconButton=LoadIcon(hdllInstance, IDI_SCICOS);
+                          IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_SCICOS);
                         }
                         else
                         if ( strcmp(PathIconButton,"METANET_ICON")==0 )
                         {
-                          IconButton=LoadIcon(hdllInstance, IDI_METANET);
+                          IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_METANET);
                         }
                         if ( strcmp(PathIconButton,"PRINT_ICON")==0 )
                         {
-                        	IconButton=LoadIcon(hdllInstance, IDI_XPPRINT);
+                        	IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPPRINT);
                         }
                         else
                      	if ( strcmp(PathIconButton,"CONSOLE_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_XPCONSOLE);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPCONSOLE);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"DIRECTORY_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_XPDIR);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPDIR);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"EXIT_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_XPEXIT);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPEXIT);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"FONT_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_XPFONT);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPFONT);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"HELP_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_XPHELP);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_XPHELP);
                      	}
                      	else
                      	if ( strcmp(PathIconButton,"SCILAB_ICON")==0 )
                      	{
-                     		IconButton=LoadIcon(hdllInstance, IDI_SCILAB);
+                     		IconButton=LoadIcon(hdllInstance, (LPCSTR)IDI_SCILAB);
                      	}
                         
 						lpmw->IsAIcon[index]=TRUE;
@@ -1191,7 +1191,7 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                         SetWindowLong(lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);
         
                         /*Associe icone */
-                        SendMessage(lpmw->hButton[index],BM_SETIMAGE, IMAGE_ICON, IconButton);
+                        SendMessage(lpmw->hButton[index],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
 			
                 }
                 else
@@ -1415,7 +1415,7 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 void ReplaceSlash(char *pathout,char *pathin)
 {
 	int i=0;
-	for (i=0;i < strlen(pathin);i++)
+	for (i=0;i < (int)strlen(pathin);i++)
 		{
 
 			if (pathin[i]=='\\')
@@ -1533,10 +1533,10 @@ void PrintCommandWindow(LPTW lptw)
 	DOCINFO dc;  
 	TEXTMETRIC tm;
 	int NombredeCaracteresparLignes=0;
-	POINT SizeChar;
+//	POINT SizeChar;
 	HFONT hfont;
-	int fontSizeX;
-	int fontSizeY;
+//	int fontSizeX;
+//	int fontSizeY;
 	char szFaceName[40];
 	LOGFONT lf;
 	
@@ -1544,7 +1544,7 @@ void PrintCommandWindow(LPTW lptw)
 	int iCharsPerLine=0;
 	int iLinesPerPage=0;
 	
-	TCHAR szBuffer [100] ;
+//	TCHAR szBuffer [100] ;
 	int y=0;
 	
 	NombredeCaracteresAImprimer=lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
@@ -1825,7 +1825,7 @@ void ReLoadMenus(LPTW lptw,BOOL ToolbarON)
 {
 	int i=0;	      		
 	LPMW lpmw;      		
-	RECT rect;
+
 	lpmw = lptw->lpmw;
 	
 	/* Destruction des menus */

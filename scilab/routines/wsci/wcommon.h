@@ -103,7 +103,7 @@ extern void do_shell();
 extern void do_system();
 extern int com_line(void);
 extern void switch_rlgets(int);
-extern int read_line(char *);
+extern int read_line (char *prompt, int interrupt);
 extern int winsystem(char *,int );
 
 /* winmain.c */
@@ -136,12 +136,12 @@ extern int TestMessage();
 /* readline-nowin */
 
 extern void add_history_nw();
-extern char *readline_nw(char *prompt);
+extern char * readline_nw (char *prompt, int interrupt);
 
 /* readline */
 
 extern void add_history_win();
-extern char *readline_win(char *prompt);
+extern char * readline_win (char *prompt,int interrupt);
 
 /* wgmenu */
 

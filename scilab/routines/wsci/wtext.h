@@ -237,8 +237,13 @@ void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
 
+extern BOOL IsWindowInterface(void);
+extern void ReplaceSlash(char *pathout,char *pathin);
+extern BOOL IsAFile(char *chainefichier);
+extern void ToolBarOnOff(LPTW lptw,BOOL ON);
+extern void ReLoadMenus(LPTW lptw,BOOL ToolbarON);
 extern void ResetMenu(void);
-void ClearScreenConsole _PARAMS((char *fname));
+int ClearScreenConsole _PARAMS((char *fname));
 void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 void HideScilex(void);
 void ShowScilex(void);
@@ -277,5 +282,5 @@ void ExitWindow(void);
 void write_scilab_synchro(char *line);
 DWORD WINAPI WriteTextThread(LPVOID lpParam);
 /*--------------------------*/
-void ShowWindowFunction _PARAMS((char *fname));
+int ShowWindowFunction _PARAMS((char *fname));
 /*--------------------------*/

@@ -99,6 +99,12 @@ static void SciDelMenu (LPMW lpmw, char *name);
 static void SavePs (struct BCG *ScilabGC);
 static void PrintPs (struct BCG *ScilabGC);
 
+
+extern BOOL IsWindowInterface();
+extern void Write_Scilab_Console (char *buf);
+extern void Write_Scilab_Window (char *buf);
+extern void ResetMenu(void);
+
 /*********************************
  * Send a macro to the text window 
  *********************************/

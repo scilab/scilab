@@ -1177,7 +1177,7 @@ void CreateThreadSplashscreen(void)
 {
 	HANDLE hThread;
 	DWORD IdThread;
-	hThread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)ThreadSplashscreen,(LPVOID)NULL,0,(LPWORD)&IdThread);
+	hThread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)ThreadSplashscreen,(LPVOID)NULL,0,(LPDWORD)&IdThread);
 	CloseHandle( hThread );
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1252,7 +1252,7 @@ BOOL IsABinOrSavFile(char *chainefichier)
 		lastdot=buffer;
 	}
 	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<strlen(lastdot);i++)
+	for (i=0;i<(int)strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
@@ -1315,7 +1315,7 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 		lastdot=buffer;
 	}
 	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<strlen(lastdot);i++)
+	for (i=0;i<(int)strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
@@ -1351,7 +1351,7 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 		lastdot=buffer;
 	}
 	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<strlen(lastdot);i++)
+	for (i=0;i<(int)strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
@@ -1378,7 +1378,7 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 		lastdot=buffer;
 	}
 	/* Mise en majuscule de l'extension du fichier*/
-	for (i=0;i<strlen(lastdot);i++)
+	for (i=0;i<(int)strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
 	}
@@ -1405,9 +1405,9 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 		{
 			buffertemp[i-1]=fichier[i];
 			i++;
-			if (i>strlen(fichier))
+			if (i> (int)strlen(fichier))
 			{
-				i=strlen(fichier);
+				i=(int)strlen(fichier);
 				break;
 			}
 		}

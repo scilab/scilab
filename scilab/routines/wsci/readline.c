@@ -84,19 +84,19 @@
 #define SPACE	' '
 #define isterm(f) ((f==stdin && InteractiveMode()==0)|| f==stdout || f==stderr)
 /*-----------------------------------------------------------------------------------*/
-struct hist
+struct sci_hist
 {
     		char *line;
-    		struct hist *prev;
-    		struct hist *next;
+    		struct sci_hist *prev;
+    		struct sci_hist *next;
 };
 /*-----------------------------------------------------------------------------------*/
 extern int MyGetCh (void);
 extern LPTW Backuplptw;	
 extern TW textwin;
 
-extern struct hist *history;	/* voir history.c */
-extern struct hist *cur_entry;
+extern struct sci_hist *history;	/* voir history.c */
+extern struct sci_hist *cur_entry;
 
 static char cur_line[MAXBUF];	/* current contents of the line */
 static int cur_pos = 0;		/* current position of the cursor */
@@ -114,6 +114,7 @@ static int sendprompt=1;
 #define SV_BUF_SIZE 5000
 static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
 
+extern struct sci_hist * SearchBackwardInHistory(char *line);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 /*-----------------------------------------------------------------------------------*/
 /************************************
@@ -421,7 +422,7 @@ char * readline_nw (char *prompt, int interrupt)
 			cur_line[max_pos + 1] = '\0';
 	      	if (cur_line[0]=='!')
 			{ 
-				struct hist *P=NULL;
+				struct sci_hist *P=NULL;
 				P=SearchBackwardInHistory(&cur_line[1]);
 				clear_line (prompt);
 				if (P != NULL) copy_line (P->line);
@@ -623,7 +624,7 @@ char * readline_win (char *prompt,int interrupt)
 			cur_line[max_pos + 1] = '\0';
 	      	if (cur_line[0]=='!')
 			{ 
-				struct hist *P=NULL;
+				struct sci_hist *P=NULL;
 				P=SearchBackwardInHistory(&cur_line[1]);
 				clear_line (prompt);
 				if (P != NULL) copy_line (P->line);

@@ -1200,7 +1200,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
            /* Sortie Meme durant l'execution d'un script */
            /* 28/11/03 */
            ExitWindow();
-           return;
+           return (0);
       break;
       
       
@@ -1717,12 +1717,12 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     	
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
 		if (count < 0) count = count+ lptw->KeyBufSize;
-		if (count < lptw->KeyBufSize-2) 
+		if (count < (long)lptw->KeyBufSize-2) 
 			{
 				if (wParam==10) wParam=13;
 				*lptw->KeyBufIn++ = wParam;
 				
-				if (lptw->KeyBufIn - lptw->KeyBuf >= lptw->KeyBufSize)
+				if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
 				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 				
 			}
@@ -1732,7 +1732,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     case WM_SETTEXT :  
     	{
     		
-   		CreateThreadPaste((LPCTSTR)lParam); 
+   		CreateThreadPaste((char *)lParam); 
      	}
       return (0);
       
@@ -2388,7 +2388,7 @@ void PasteFunction(LPTW lptw,BOOL special)
 	if (hGMem)
 		{
 			lpMem  = GlobalLock( hGMem );
-			if (!ThreadPasteRunning) SendMessage(lptw->hWndText, WM_SETTEXT, 0, lpMem);
+			if (!ThreadPasteRunning) SendMessage(lptw->hWndText, WM_SETTEXT, 0,(LPARAM) lpMem);
 			GlobalUnlock (hGMem);
 		}
 	CloseClipboard ();
@@ -2554,10 +2554,6 @@ void EvaluateSelection(LPTW lptw)
 	UINT type;
 	LPSTR lpMem; /* Pointeur sur la chaine du clipboard */
 	char *MessagePaste=NULL;
-	char FileName[MAX_PATH];
-	char FileNameSCE[MAX_PATH];	
-	char FileNameSCI[MAX_PATH];	
-	char Command[MAX_PATH];
 	
 	
 	/* Copie dans le presse papier */
@@ -2731,7 +2727,7 @@ BOOL HasAZoneTextSelected(LPTW lptw)
 	return ValRetour;
 }
 /*-----------------------------------------------------------------------------------*/
-void ClearScreenConsole _PARAMS((char *fname))
+int ClearScreenConsole _PARAMS((char *fname))
 {
 	
 	
@@ -2754,8 +2750,7 @@ void ClearScreenConsole _PARAMS((char *fname))
 		{
 			int X=0,Y=0;
 			int cx=0,cy=0;
-			char MSG[255];
-			LPTW lptw;
+
 			static int l1, m1, n1;
 			int NbrLineToRemove=0;
 					
@@ -2798,7 +2793,7 @@ void ClearScreenConsole _PARAMS((char *fname))
 			sciprint("\n Not in console mode \n");
 		}
 	}
-	
+return 0;	
 }
 /*-----------------------------------------------------------------------------------*/
 /* Efface la fenetre de commandes */
@@ -2890,7 +2885,7 @@ void CreateThreadPaste(char *Text)
 	PasteForThread=(char*)malloc( (strlen(Text)+1)*sizeof(char));
 	strcpy(PasteForThread,Text);
 	/* PasteForThread défini en global car passage via CreateThread plante sous Win98 */
-	hThreadPaste=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)SendInputText,NULL,0,(LPWORD)&IdThreadPaste);
+	hThreadPaste=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)SendInputText,NULL,0,(LPDWORD)&IdThreadPaste);
 	
 }
 /*-----------------------------------------------------------------------------------*/	
@@ -2945,10 +2940,10 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
 			
 		if (count < 0) count = count+lptw->KeyBufSize;
-		if (count < lptw->KeyBufSize-1) 
+		if (count < (long) (lptw->KeyBufSize-1)) 
 			{
 				*lptw->KeyBufIn++ = TextToSend[i];
-				if (lptw->KeyBufIn - lptw->KeyBuf >= lptw->KeyBufSize)
+				if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
 				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 			}
 		if (TextToSend[i]==13) 
@@ -3038,7 +3033,7 @@ int ReplacePrompt(char *Text,char *prompt)
 		int j=0;
 		if (OccurenceDebutPrompt)
 		{
-			for(j=0;j< (  strlen(OccurenceDebutPrompt)- strlen(prompt) );j++)		
+			for(j=0;j< (signed)(  strlen(OccurenceDebutPrompt)- strlen(prompt) );j++)		
 			{
 				OccurenceDebutPrompt[j]=OccurenceDebutPrompt[j+strlen(prompt)];
 			}
@@ -3297,7 +3292,7 @@ void write_scilab_synchro(char *line)
 	DWORD IdThreadWrite;
 		
 	InitializeCriticalSection(&Sync);
-	hThreadWrite=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)WriteTextThread,line,0,(LPWORD)&IdThreadWrite);
+	hThreadWrite=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)WriteTextThread,line,0,(LPDWORD)&IdThreadWrite);
 	CloseHandle(hThreadWrite);
 	
 }
@@ -3322,7 +3317,7 @@ DWORD WINAPI WriteTextThread(LPVOID lpParam)
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-void ShowWindowFunction _PARAMS((char *fname))
+int ShowWindowFunction _PARAMS((char *fname))
 {
   static int l1, m1, n1;	
   if (IsWindowInterface())
@@ -3381,6 +3376,7 @@ void ShowWindowFunction _PARAMS((char *fname))
  	{
  		sciprint("Not in Console mode\n");
  	}
+return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 

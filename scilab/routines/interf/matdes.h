@@ -8,12 +8,12 @@
 //extern void ResetHistoryFunction(void); /*voir history.c (wsci) */
 //extern void HistoryFunction _PARAMS((char *fname)); /* voir history.c (wsci)*/
 /* Minimize or Restore a window */
-extern void ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
+extern int ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
 /* Allan CORNET le 20/08/03 */
 /* voir wsci\wtext.c */
 /* & voir xsc/x_screen.c */
 extern void HomeFunction(void);
-extern void ClearScreenConsole _PARAMS((char *fname));
+extern int ClearScreenConsole _PARAMS((char *fname));
 extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
 int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
