@@ -1771,7 +1771,7 @@ BOOL HwndToBmpFile(HWND hwnd, char *pszflname)
     HGDIOBJ hret;
     RECT rct;
 
-    hdc = GetWindowDC(hwnd);
+    hdc = GetDC(hwnd);
 
     if(!hdc) return 0;
 
@@ -1840,9 +1840,9 @@ void ExportBMP(struct BCG *ScilabGC,char *pszflname)
   hwnd = ScilabGC->CWindow;
   
   /* view the window */
-  if (IsIconic (hwnd)) ShowWindow (hwnd, SW_SHOWNORMAL);
-  BringWindowToTop (hwnd);
-  UpdateWindow (hwnd);
+  if (IsIconic (hwnd)) ShowWindow (ScilabGC->hWndParent, SW_SHOWNORMAL);
+  BringWindowToTop (ScilabGC->hWndParent);
+  UpdateWindow (ScilabGC->hWndParent);
   
 
   GetClientRect (hwnd, &rect);
@@ -1939,3 +1939,100 @@ int GetScreenProperty(char *prop, char *value)
     }
   return 0;
 }
+/*-----------------------------------------------------------------------------------*/
+static int NumBMP=0;
+
+/*-----------------------------------------------------------------------------------*/
+int XSaveNative _PARAMS((char *fname))
+{
+	static int l1, m1, n1;	
+	if (Rhs == 0)
+    	{
+			char FilenameBMP[MAX_PATH];
+			integer iflag =0,ids,num,un=1,l1;
+			int *ArrayWGraph=NULL;
+			int i=0;
+
+			LhsVar(1)=0;
+
+			if (version_flag() == 0) /* New Graphic mode */
+			{
+				sciGetIdFigure (&ids,&num,&iflag);
+				iflag = 1;
+				ArrayWGraph=(int*)malloc(sizeof(int)*num);
+				sciGetIdFigure (ArrayWGraph,&num,&iflag);	
+			}
+			else
+			{
+				C2F(getwins)(&num,&ids ,&iflag);
+				iflag = 1; 
+				ArrayWGraph=(int*)malloc(sizeof(int)*num);
+				C2F(getwins)(&num,ArrayWGraph,&iflag);
+			} 
+			
+			for (i=0;i<num;i++)
+			{
+				struct BCG *ScilabGC=NULL;
+				
+				wsprintf(FilenameBMP,"IMG%d.bmp",NumBMP);
+				
+				ScilabGC = GetWindowXgcNumber (ArrayWGraph[i]);
+
+				if (ScilabGC != (struct BCG *) 0)
+				{
+					ExportBMP(ScilabGC,FilenameBMP);
+					NumBMP++;
+				}
+				
+			}
+			if ( IsWindowInterface() )
+			{
+				extern char ScilexWindowName[MAX_PATH];
+				LPTW lptw;
+
+				wsprintf(FilenameBMP,"IMG%d.bmp",NumBMP);
+				NumBMP++;
+
+				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+				BringWindowToTop (lptw->hWndParent);
+				UpdateWindow (lptw->hWndParent);
+				HwndToBmpFile(lptw->hWndText,FilenameBMP);
+
+			}
+
+    		free(ArrayWGraph);
+			ArrayWGraph=NULL;
+    	}
+  	else
+	{
+		struct BCG *ScilabGC=NULL;
+  		int num_win=-2;
+  		CheckLhs(1,1);
+  		GetRhsVar(1,"i",&m1,&n1,&l1);
+  		num_win=*istk(l1);
+        LhsVar(1)=0;
+		if (num_win == -1)
+		{
+			if (IsWindowInterface())
+			{
+				extern char ScilexWindowName[MAX_PATH];
+				LPTW lptw;
+				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+				HwndToBmpFile(lptw->hWndText,"d:\\Test.bmp");
+			}
+		}
+		else
+		{
+			ScilabGC = GetWindowXgcNumber (num_win);
+
+			if (ScilabGC != (struct BCG *) 0)
+			{
+			}
+
+		}
+
+  		
+	}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/

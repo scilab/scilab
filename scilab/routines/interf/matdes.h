@@ -1,12 +1,7 @@
 #ifndef MATDES_SCI 
 #define MATDES_SCI 
 
-/* Allan CORNET 18/01/2004 */
-/* Gestion historique */
-/*extern void LoadHistoryFunction(void); */ /*voir history.c (wsci) */
-/*extern void SaveHistoryFunction(void); */ /*voir history.c (wsci) */
-/*extern void ResetHistoryFunction(void); */ /*voir history.c (wsci) */
-/*extern void HistoryFunction _PARAMS((char *fname)); */ /* voir history.c (wsci)*/
+extern int XSaveNative _PARAMS((char *fname));
 /* Minimize or Restore a window */
 extern int ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
 /* Allan CORNET le 20/08/03 */

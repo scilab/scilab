@@ -4690,7 +4690,8 @@ static MatdesTable Tab[]={
   {ClearScreenConsole,"clc"},
   {HomeFunction,"tohome"},
   {scisetposfig,"set_posfig_dim"},
-  {ShowWindowFunction,"show_window"}
+  {ShowWindowFunction,"show_window"},
+  {XSaveNative,"xsnative"}
 };
   
 
