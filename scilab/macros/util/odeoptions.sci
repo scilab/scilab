@@ -63,6 +63,11 @@ labels=["itask (1,2,3,4,5) ","tcrit (assumes itask=4 or 5)",...
 [ok,itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,mlmu]=..
     tk_getvalue(chapeau,labels,dims,lab_);
 ml=mlmu(1);mu=mlmu(2);
-%ODEOPTIONS=[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr, ...
+ODEOPTIONS=[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr, ...
 	 ml,mu];
+if ODEOPTIONS<>[] then
+  %ODEOPTIONS=ODEOPTIONS
+else
+  %ODEOPTIONS=options
+end
 endfunction
