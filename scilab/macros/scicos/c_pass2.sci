@@ -260,32 +260,22 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 endfunction
 
 //donne les sources d'activation du schéma
+
 function [vec_clk]=get_clocks(clkconnect,clkptr)
-  vec_clk=[]
-  k=1
-  for blk=[0,[1:size(clkptr,1)-1]]
-    
-    if  blk==0 then
-      //activation continue
-      vec_clk=[blk 1]
-      k=k+1
-    else
-      if ~typ_l(blk) then
-	//type horloge
-	for port=clkptr(blk):clkptr(blk+1)-1
-	  
-	  if k==1 then
-	    vec_clk=[blk port]
-	    k=k+1
-	  else
-	    vec_clk(k,:)=[blk port]
-	    k=k+1
-	  end
-	end
-      end
-    end
-  end
+ vec_clk=[]
+ if (find(clkconnect(:,1)==0) ~=[]) then
+    //activation continue
+    vec_clk=[vec_clk;0 0];
+ end
+ for blk=1:size(clkptr,1)-1       
+   if ~typ_l(blk) then
+     for port=1:clkptr(blk+1)-clkptr(blk)
+       vec_clk=[vec_clk; blk port];           
+     end
+   end
+ end
 endfunction
+
 
 //donne l'horloge dont dépend blk
 function [act_clk]=get_actclk(blk,vec_clk)
