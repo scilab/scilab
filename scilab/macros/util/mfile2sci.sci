@@ -146,12 +146,13 @@ if txt~=[] then
   // Define Scilab function
   fprot=funcprot();
   funcprot(0);
-
-  deff(part(txt(1),kc+8:length(txt(1))),txt(2:$),"n")
+  // Blanks in file name are replaced by _
+  // kc+9 because 'function '
+  deff(strsubst(part(txt(1),kc+9:length(txt(1)))," ","_"),txt(2:$),"n")
   w=who("get");
   mname=w(1);
   nametbl=[nametbl;mname]
-  if fnam<>mname then
+  if fnam<>mname & ~batch then // warning is not displayed for a batch file
     mss=["Warning: file "+fil+" defines function "+mname+" instead of "+fnam;
 	"         "+mname+".sci, "+mname+".cat and sci_"+mname+".sci will be generated !"]
     m2sci_info(mss,-1);
