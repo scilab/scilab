@@ -94,7 +94,17 @@ if test -s conftest && (./conftest; exit) 2>/dev/null; then
 else
   TCL_VERSION="can't happen"
 fi
-TCL_INC_PATH=-I$i
+
+
+case $host in
+  darwin*) 
+# already added to CFLAGS 
+  ;;
+  *)
+ TCL_INC_PATH=-I$i 
+  ;;
+esac
+
 TCL_LIB=tcl$TCL_VERSION
 if test $TCL_VERSION_OK = 1; then 
 	AC_MSG_RESULT([($TCL_VERSION) yes])
@@ -124,7 +134,7 @@ CHK_TCL_MIN=$2
 TCL_LIB_OK=0
   AC_MSG_CHECKING([for tcl library tcl$1.$2])
 dirs="$USER_TCL_LIB_PATH /lib /usr/lib /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib ."
-libexts="so so.1.0 dylib sl a"
+libexts="so so.1.0 sl a"
 libnames="tcl$CHK_TCL_MAJ.$CHK_TCL_MIN tcl.$CHK_TCL_MAJ.$CHK_TCL_MIN tcl$CHK_TCL_MAJ$CHK_TCL_MIN tcl.$CHK_TCL_MAJ$CHK_TCL_MIN"
 for e in $libexts; do
 	for j in $dirs; do
@@ -233,7 +243,15 @@ else
   TK_VERSION="can't happen"
 fi
 
-TK_INC_PATH=-I$i
+case $host in
+  darwin*) 
+# already added to CFLAGS 
+  ;;
+  *)
+ TK_INC_PATH=-I$i 
+  ;;
+esac
+
 TK_LIB=tk$TK_VERSION
 if test $TK_VERSION_OK = 1; then 
 	AC_MSG_RESULT([($TK_VERSION) yes])
@@ -265,7 +283,7 @@ TK_LIB_OK=0
 
 AC_MSG_CHECKING([for tk library tk$1.$2])
 dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib"
-libexts="so so.1.0 dylib sl a"
+libexts="so so.1.0 sl a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 for e in $libexts; do
 	for j in $dirs; do

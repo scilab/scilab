@@ -11676,20 +11676,29 @@ if test -s conftest && (./conftest; exit) 2>/dev/null; then
 else
   TCL_VERSION="can't happen"
 fi
-TCL_INC_PATH=-I$i
+
+case $host in
+  darwin*)
+# already added to CFLAGS
+  ;;
+  *)
+ TCL_INC_PATH=-I$i
+  ;;
+esac
+
 TCL_LIB=tcl$TCL_VERSION
 if test $TCL_VERSION_OK = 1; then
-	echo "$as_me:11682: result: ($TCL_VERSION) yes" >&5
+	echo "$as_me:11691: result: ($TCL_VERSION) yes" >&5
 echo "${ECHO_T}($TCL_VERSION) yes" >&6
 else
-	echo "$as_me:11685: result: ($TCL_VERSION) no" >&5
+	echo "$as_me:11694: result: ($TCL_VERSION) no" >&5
 echo "${ECHO_T}($TCL_VERSION) no" >&6
 	if $TCL_VERSION = "can't happen"; then
-		{ { echo "$as_me:11688: error: can(t happen" >&5
+		{ { echo "$as_me:11697: error: can(t happen" >&5
 echo "$as_me: error: can(t happen" >&2;}
    { (exit 1); exit 1; }; }
         else
-	   { { echo "$as_me:11692: error: you need at least version 8.0 of tcl" >&5
+	   { { echo "$as_me:11701: error: you need at least version 8.0 of tcl" >&5
 echo "$as_me: error: you need at least version 8.0 of tcl" >&2;}
    { (exit 1); exit 1; }; }
 	fi
@@ -11702,10 +11711,10 @@ CPPFLAGS=$saved_cppflags
 CHK_TCL_MAJ=$TCL_MAJOR_VERSION
 CHK_TCL_MIN=$TCL_MINOR_VERSION
 TCL_LIB_OK=0
-  echo "$as_me:11705: checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION" >&5
+  echo "$as_me:11714: checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION" >&5
 echo $ECHO_N "checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION... $ECHO_C" >&6
 dirs="$USER_TCL_LIB_PATH /lib /usr/lib /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib ."
-libexts="so so.1.0 dylib sl a"
+libexts="so so.1.0 sl a"
 libnames="tcl$CHK_TCL_MAJ.$CHK_TCL_MIN tcl.$CHK_TCL_MAJ.$CHK_TCL_MIN tcl$CHK_TCL_MAJ$CHK_TCL_MIN tcl.$CHK_TCL_MAJ$CHK_TCL_MIN"
 for e in $libexts; do
 	for j in $dirs; do
@@ -11715,7 +11724,7 @@ for e in $libexts; do
 				PATH_LIB_TCL=$j
 				EXT_LIB_TCL=$e
 				NAME_LIB_TCL=$n
-				echo "$as_me:11718: result: found $m using -L$PATH_LIB_TCL -l$NAME_LIB_TCL" >&5
+				echo "$as_me:11727: result: found $m using -L$PATH_LIB_TCL -l$NAME_LIB_TCL" >&5
 echo "${ECHO_T}found $m using -L$PATH_LIB_TCL -l$NAME_LIB_TCL" >&6
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
@@ -11727,7 +11736,7 @@ echo "${ECHO_T}found $m using -L$PATH_LIB_TCL -l$NAME_LIB_TCL" >&6
 				# Check for Tcl lib
 				if test "$USER_TCL_LIB_PATH" = ""
 				then as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TCL''_Tcl_DoOneEvent" | $as_tr_sh`
-echo "$as_me:11730: checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL" >&5
+echo "$as_me:11739: checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL" >&5
 echo $ECHO_N "checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -11735,7 +11744,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TCL  -L$PATH_LIB_TCL -l$NAME_LIB_TCL $TCL_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 11738 "configure"
+#line 11747 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -11754,16 +11763,16 @@ Tcl_DoOneEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:11757: \"$ac_link\"") >&5
+if { (eval echo "$as_me:11766: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:11760: \$? = $ac_status" >&5
+  echo "$as_me:11769: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:11763: \"$ac_try\"") >&5
+  { (eval echo "$as_me:11772: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:11766: \$? = $ac_status" >&5
+  echo "$as_me:11775: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -11774,7 +11783,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:11777: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:11786: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TCL_LIB_OK=1
@@ -11783,7 +11792,7 @@ else
 fi
 
 				else as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TCL''_Tcl_DoOneEvent" | $as_tr_sh`
-echo "$as_me:11786: checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL" >&5
+echo "$as_me:11795: checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL" >&5
 echo $ECHO_N "checking for Tcl_DoOneEvent in -l$NAME_LIB_TCL... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -11791,7 +11800,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TCL  -L$USER_TCL_LIB_PATH -l$NAME_LIB_TCL $TCL_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 11794 "configure"
+#line 11803 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -11810,16 +11819,16 @@ Tcl_DoOneEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:11813: \"$ac_link\"") >&5
+if { (eval echo "$as_me:11822: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:11816: \$? = $ac_status" >&5
+  echo "$as_me:11825: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:11819: \"$ac_try\"") >&5
+  { (eval echo "$as_me:11828: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:11822: \$? = $ac_status" >&5
+  echo "$as_me:11831: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -11830,7 +11839,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:11833: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:11842: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TCL_LIB_OK=1
@@ -11864,18 +11873,18 @@ done
 
   #perform tk tests if tcl test passed
   if test $TCL_LIB_OK = 0; then
-        { { echo "$as_me:11867: error: tcl library not found" >&5
+        { { echo "$as_me:11876: error: tcl library not found" >&5
 echo "$as_me: error: tcl library not found" >&2;}
    { (exit 1); exit 1; }; }
   fi
 
   # Check for tk header file
-  echo "$as_me:11873: checking for header file tk.h" >&5
+  echo "$as_me:11882: checking for header file tk.h" >&5
 echo $ECHO_N "checking for header file tk.h... $ECHO_C" >&6
   dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include"
   for i in $dirs ; do
 	if test -r $i/tk.h; then
-		echo "$as_me:11878: result: found in $i " >&5
+		echo "$as_me:11887: result: found in $i " >&5
 echo "${ECHO_T}found in $i " >&6
 
 CHK_TK_INCLUDE_PATH=$i
@@ -11886,10 +11895,10 @@ saved_cflags="$CFLAGS"
 saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 CPPFLAGS="$CPPFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
-echo "$as_me:11889: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
+echo "$as_me:11898: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 11892 "configure"
+#line 11901 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -11938,20 +11947,28 @@ else
   TK_VERSION="can't happen"
 fi
 
-TK_INC_PATH=-I$i
+case $host in
+  darwin*)
+# already added to CFLAGS
+  ;;
+  *)
+ TK_INC_PATH=-I$i
+  ;;
+esac
+
 TK_LIB=tk$TK_VERSION
 if test $TK_VERSION_OK = 1; then
-	echo "$as_me:11944: result: ($TK_VERSION) yes" >&5
+	echo "$as_me:11961: result: ($TK_VERSION) yes" >&5
 echo "${ECHO_T}($TK_VERSION) yes" >&6
 else
-	echo "$as_me:11947: result: ($TK_VERSION) no" >&5
+	echo "$as_me:11964: result: ($TK_VERSION) no" >&5
 echo "${ECHO_T}($TK_VERSION) no" >&6
 	if $TK_VERSION = "can't happen"; then
-		{ { echo "$as_me:11950: error: can(t happen" >&5
+		{ { echo "$as_me:11967: error: can(t happen" >&5
 echo "$as_me: error: can(t happen" >&2;}
    { (exit 1); exit 1; }; }
         else
-	   { { echo "$as_me:11954: error: you need at least version 8.0 of tk" >&5
+	   { { echo "$as_me:11971: error: you need at least version 8.0 of tk" >&5
 echo "$as_me: error: you need at least version 8.0 of tk" >&2;}
    { (exit 1); exit 1; }; }
 	fi
@@ -11965,10 +11982,10 @@ CHK_TK_MAJ=$TK_MAJOR_VERSION
 CHK_TK_MIN=$TK_MINOR_VERSION
 TK_LIB_OK=0
 
-echo "$as_me:11968: checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION" >&5
+echo "$as_me:11985: checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION" >&5
 echo $ECHO_N "checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION... $ECHO_C" >&6
 dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib"
-libexts="so so.1.0 dylib sl a"
+libexts="so so.1.0 sl a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 for e in $libexts; do
 	for j in $dirs; do
@@ -11978,7 +11995,7 @@ for e in $libexts; do
 				PATH_LIB_TK=$j
 				EXT_LIB_TK=$e
 				NAME_LIB_TK=$n
-				echo "$as_me:11981: result: found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&5
+				echo "$as_me:11998: result: found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&5
 echo "${ECHO_T}found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&6
 				saved_cflags="$CFLAGS"
 				saved_ldflags="$LDFLAGS"
@@ -11990,7 +12007,7 @@ echo "${ECHO_T}found $m using -L$PATH_LIB_TK -l$NAME_LIB_TK" >&6
 				# Check for Tcl lib
 				if test "$USER_TK_LIB_PATH" = ""
 				then as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TK''_Tk_BindEvent" | $as_tr_sh`
-echo "$as_me:11993: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
+echo "$as_me:12010: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
 echo $ECHO_N "checking for Tk_BindEvent in -l$NAME_LIB_TK... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -11998,7 +12015,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TK  -L$PATH_LIB_TK -l$NAME_LIB_TK $TK_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 12001 "configure"
+#line 12018 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -12017,16 +12034,16 @@ Tk_BindEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:12020: \"$ac_link\"") >&5
+if { (eval echo "$as_me:12037: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:12023: \$? = $ac_status" >&5
+  echo "$as_me:12040: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:12026: \"$ac_try\"") >&5
+  { (eval echo "$as_me:12043: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:12029: \$? = $ac_status" >&5
+  echo "$as_me:12046: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -12037,7 +12054,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:12040: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:12057: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TK_LIB_OK=1
@@ -12046,7 +12063,7 @@ else
 fi
 
 				else as_ac_Lib=`echo "ac_cv_lib_$NAME_LIB_TK''_Tk_BindEvent" | $as_tr_sh`
-echo "$as_me:12049: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
+echo "$as_me:12066: checking for Tk_BindEvent in -l$NAME_LIB_TK" >&5
 echo $ECHO_N "checking for Tk_BindEvent in -l$NAME_LIB_TK... $ECHO_C" >&6
 if eval "test \"\${$as_ac_Lib+set}\" = set"; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
@@ -12054,7 +12071,7 @@ else
   ac_check_lib_save_LIBS=$LIBS
 LIBS="-l$NAME_LIB_TK  -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
-#line 12057 "configure"
+#line 12074 "configure"
 #include "confdefs.h"
 
 /* Override any gcc2 internal prototype to avoid an error.  */
@@ -12073,16 +12090,16 @@ Tk_BindEvent ();
 }
 _ACEOF
 rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:12076: \"$ac_link\"") >&5
+if { (eval echo "$as_me:12093: \"$ac_link\"") >&5
   (eval $ac_link) 2>&5
   ac_status=$?
-  echo "$as_me:12079: \$? = $ac_status" >&5
+  echo "$as_me:12096: \$? = $ac_status" >&5
   (exit $ac_status); } &&
          { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:12082: \"$ac_try\"") >&5
+  { (eval echo "$as_me:12099: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
-  echo "$as_me:12085: \$? = $ac_status" >&5
+  echo "$as_me:12102: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
   eval "$as_ac_Lib=yes"
 else
@@ -12093,7 +12110,7 @@ fi
 rm -f conftest.$ac_objext conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-echo "$as_me:12096: result: `eval echo '${'$as_ac_Lib'}'`" >&5
+echo "$as_me:12113: result: `eval echo '${'$as_ac_Lib'}'`" >&5
 echo "${ECHO_T}`eval echo '${'$as_ac_Lib'}'`" >&6
 if test `eval echo '${'$as_ac_Lib'}'` = yes; then
   TK_LIB_OK=1
@@ -12126,7 +12143,7 @@ done
   done
 
   if test $TK_LIB_OK = 0; then
-        { { echo "$as_me:12129: error: tk library not found" >&5
+        { { echo "$as_me:12146: error: tk library not found" >&5
 echo "$as_me: error: tk library not found" >&2;}
    { (exit 1); exit 1; }; }
   else
@@ -12143,7 +12160,7 @@ EOF
   TKSCILIB="\$(SCIDIR)/libs/tksci.a"
   TKSCIDIR=tksci
 else
-  { { echo "$as_me:12146: error: TCL/TK not found. Use --without-tk" >&5
+  { { echo "$as_me:12163: error: TCL/TK not found. Use --without-tk" >&5
 echo "$as_me: error: TCL/TK not found. Use --without-tk" >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -12266,7 +12283,7 @@ DEFS=-DHAVE_CONFIG_H
 : ${CONFIG_STATUS=./config.status}
 ac_clean_files_save=$ac_clean_files
 ac_clean_files="$ac_clean_files $CONFIG_STATUS"
-{ echo "$as_me:12269: creating $CONFIG_STATUS" >&5
+{ echo "$as_me:12286: creating $CONFIG_STATUS" >&5
 echo "$as_me: creating $CONFIG_STATUS" >&6;}
 cat >$CONFIG_STATUS <<_ACEOF
 #! $SHELL
@@ -12438,7 +12455,7 @@ cat >>$CONFIG_STATUS <<\EOF
     echo "$ac_cs_version"; exit 0 ;;
   --he | --h)
     # Conflict between --help and --header
-    { { echo "$as_me:12441: error: ambiguous option: $1
+    { { echo "$as_me:12458: error: ambiguous option: $1
 Try \`$0 --help' for more information." >&5
 echo "$as_me: error: ambiguous option: $1
 Try \`$0 --help' for more information." >&2;}
@@ -12457,7 +12474,7 @@ Try \`$0 --help' for more information." >&2;}
     ac_need_defaults=false;;
 
   # This is an error.
-  -*) { { echo "$as_me:12460: error: unrecognized option: $1
+  -*) { { echo "$as_me:12477: error: unrecognized option: $1
 Try \`$0 --help' for more information." >&5
 echo "$as_me: error: unrecognized option: $1
 Try \`$0 --help' for more information." >&2;}
@@ -12519,7 +12536,7 @@ do
   "imp/Makefile" ) CONFIG_FILES="$CONFIG_FILES imp/Makefile" ;;
   "routines/gtksci/Makefile" ) CONFIG_FILES="$CONFIG_FILES routines/gtksci/Makefile" ;;
   "routines/machine.h" ) CONFIG_HEADERS="$CONFIG_HEADERS routines/machine.h" ;;
-  *) { { echo "$as_me:12522: error: invalid argument: $ac_config_target" >&5
+  *) { { echo "$as_me:12539: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
    { (exit 1); exit 1; }; };;
   esac
@@ -12822,7 +12839,7 @@ done; }
   esac
 
   if test x"$ac_file" != x-; then
-    { echo "$as_me:12825: creating $ac_file" >&5
+    { echo "$as_me:12842: creating $ac_file" >&5
 echo "$as_me: creating $ac_file" >&6;}
     rm -f "$ac_file"
   fi
@@ -12840,7 +12857,7 @@ echo "$as_me: creating $ac_file" >&6;}
       -) echo $tmp/stdin ;;
       [\\/$]*)
          # Absolute (can't be DOS-style, as IFS=:)
-         test -f "$f" || { { echo "$as_me:12843: error: cannot find input file: $f" >&5
+         test -f "$f" || { { echo "$as_me:12860: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          echo $f;;
@@ -12853,7 +12870,7 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
            echo $srcdir/$f
          else
            # /dev/null tree
-           { { echo "$as_me:12856: error: cannot find input file: $f" >&5
+           { { echo "$as_me:12873: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          fi;;
@@ -12913,7 +12930,7 @@ for ac_file in : $CONFIG_HEADERS; do test "x$ac_file" = x: && continue
   * )   ac_file_in=$ac_file.in ;;
   esac
 
-  test x"$ac_file" != x- && { echo "$as_me:12916: creating $ac_file" >&5
+  test x"$ac_file" != x- && { echo "$as_me:12933: creating $ac_file" >&5
 echo "$as_me: creating $ac_file" >&6;}
 
   # First look for the input files in the build tree, otherwise in the
@@ -12924,7 +12941,7 @@ echo "$as_me: creating $ac_file" >&6;}
       -) echo $tmp/stdin ;;
       [\\/$]*)
          # Absolute (can't be DOS-style, as IFS=:)
-         test -f "$f" || { { echo "$as_me:12927: error: cannot find input file: $f" >&5
+         test -f "$f" || { { echo "$as_me:12944: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          echo $f;;
@@ -12937,7 +12954,7 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
            echo $srcdir/$f
          else
            # /dev/null tree
-           { { echo "$as_me:12940: error: cannot find input file: $f" >&5
+           { { echo "$as_me:12957: error: cannot find input file: $f" >&5
 echo "$as_me: error: cannot find input file: $f" >&2;}
    { (exit 1); exit 1; }; }
          fi;;
@@ -13054,7 +13071,7 @@ cat >>$CONFIG_STATUS <<\EOF
   rm -f $tmp/in
   if test x"$ac_file" != x-; then
     if cmp -s $ac_file $tmp/config.h 2>/dev/null; then
-      { echo "$as_me:13057: $ac_file is unchanged" >&5
+      { echo "$as_me:13074: $ac_file is unchanged" >&5
 echo "$as_me: $ac_file is unchanged" >&6;}
     else
       ac_dir=`$as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
