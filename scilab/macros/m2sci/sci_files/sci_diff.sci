@@ -41,11 +41,7 @@ elseif rhs==2 then
   tree.rhs=Rhs(X,n)
   
   if ~is_a_vector(X) then
-    scitree=tree
-    scitree.name="mtlb_diff"
-    repl_poss(scitree,..
-	tree,X,"is a scalar or a vector")
-    tree=scitree
+    tree.name="mtlb_diff"
   end
   tree.lhs(1).dims=allunknown(X.dims)
   tree.lhs(1).type=Type(Double,Unknown)
@@ -57,7 +53,7 @@ else
   n = convert2double(n)
   dim = convert2double(dim)
   tree.rhs=Rhs(X,n,dim)
-
+  
   tree.lhs(1).dims=allunknown(X.dims)
   tree.lhs(1).type=Type(Double,Unknown)
 end

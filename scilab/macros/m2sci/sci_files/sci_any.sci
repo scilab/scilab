@@ -1,4 +1,5 @@
 function [tree]=sci_any(tree)
+// File generated from sci_PROTO13.g: PLEASE DO NOT EDIT !
 // Copyright INRIA
 // M2SCI function
 // Conversion function for Matlab any()
@@ -20,8 +21,7 @@ if rhs==1 then
     A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
     newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
-    repl_poss(newA,..
-	A,A,"is real")
+    repl_poss(newA,A,A,"is real")
     A=newA
   end
   tree.rhs=Rhs(A)
@@ -34,14 +34,7 @@ if rhs==1 then
       tree.rhs=Rhs(A,1)
       tree.lhs(1).dims=list(1,A.dims(2))
     else
-      scitree=tree
-      scitree.name="mtlb_any"
-      repl1=tree
-      repl1.rhs=Rhs(A,1)
-      repl_poss(scitree,..
-	  tree,A,"is a vector",..
-	  repl1,A,"is a matrix");
-      tree=scitree
+      tree.name="mtlb_any"
       tree.lhs(1).dims=list(Unknown,Unknown)
     end
   // if A is a multidimensional array
@@ -70,8 +63,7 @@ else
     A = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
   elseif ~is_real(A) then
     newA = Funcall("abs",1,Rhs(A),list(Variable("",A.infer)))
-    repl_poss(newA,..
-	A,A,"is real")
+    repl_poss(newA,A,A,"is real")
     A=newA
   end
   tree.rhs=Rhs(A,dim)
@@ -85,24 +77,14 @@ else
       if not_empty(A) then
 	tree=Operation("<>",list(A,Cste(0)),tree.lhs)
 	tree.out(1).dims=A.dims
+	tree.lhs(1).type=Type(Boolean,Real)
       else
-	scitree=tree
-	scitree.name="mtlb_any"
-	repl1=Operation("<>",list(A,Cste(0)),tree.lhs)
-	repl_poss(scitree,..
-	    repl1,A,"is not an empty matrix")
-	tree=scitree
+	tree.name="mtlb_any"
 	tree.lhs(1).dims=A.dims
       end
     end
   else
-    scitree=tree
-    scitree.name="mtlb_any"
-    repl1=Operation("<>",list(A,Cste(0)),tree.lhs)
-    repl_poss(scitree,..
-	tree,dim,"is <= number of dimensions of "+rhs2code(A),..
-	repl1,dim,"is >  number of dimensions of "+rhs2code(A)+" and "+rhs2code(A)+" is not an empty matrix")
-    tree=scitree
+    tree.name="mtlb_any"
     tree.lhs(1).dims=allunknwon(A.dims)
   end
 end

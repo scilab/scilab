@@ -17,15 +17,13 @@ if is_complex(Y) then
   tree.rhs(1)=Funcall("real",1,list(Y),list())
 elseif ~is_real(Y) then
   tree.rhs(1)=Funcall("real",1,list(Y),list())
-  repl_poss(tree.rhs(1),..
-      Y,Y,"is real")
+  repl_poss(tree.rhs(1),Y,Y,"is real")
 end
 if is_complex(X) then
   tree.rhs(2)=Funcall("real",1,list(X),list())
 elseif ~is_real(X) then
   tree.rhs(2)=Funcall("real",1,list(X),list())
-  repl_poss(tree.rhs(2),..
-      X,X,"is real")
+  repl_poss(tree.rhs(2),X,X,"is real")
 end
 
 tree.name="atan"

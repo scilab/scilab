@@ -1,8 +1,7 @@
 function [dble]=convert2double(A)
 // Copyright INRIA
-// M2SCI function
-
-// V.C.
+// Scilab Project - V. Couvert
+// This function converts input parameters to double to avoid to write overloading functions in Scilab
 
 lhs=argn(1)
 
@@ -27,12 +26,8 @@ else
     lhslist=list();
     lhslist($+1)=Variable("ans",Infer(A.dims,Type(Double,Unknown)))
     dble=Funcall("mtlb_double",1,Rhs(A),lhslist)
-    repl_poss(dble,..
-	Funcall("asciimat",1,Rhs(A),list(Variable("ans",(Infer())))),A,"is a String",..
-	Funcall("bool2s",1,Rhs(A),list(Variable("ans",Infer()))),A,"is a Boolean",..
-	A,A,"is a Double")
   else
-    error("convert2double(): "+string(A.vtype)+"is not implemented !")
+    error("convert2double(): "+string(A.vtype)+" is not implemented !")
   end
 end
 endfunction

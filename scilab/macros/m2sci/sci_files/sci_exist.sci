@@ -11,15 +11,8 @@ no_equiv("Matlab exist(), mtlb_exist() is called")
 
 set_infos("mtlb_exist() is just a partial emulation of Matlab exist() function !",2)
 
-if rhs==1 then
-  scitree=tree
-  scitree.name="mtlb_exist"
-  repl_poss(scitree,..
-      tree,tree.rhs(1),"is a variable name")
-  tree=scitree
-else
-  tree.name="mtlb_exist"
-end
+scitree.name="mtlb_exist"
+
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(Double,Real)
 
