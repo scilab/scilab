@@ -2,9 +2,15 @@ function new=addcolor(c)
 // add colors to the current colormap
 //!
 // Copyright INRIA
-if size(c,'c')<>3 then
-  error('addcolor : argument is not a color table')
-end
+
+//if size(c,'c')<>3 then
+//  error('addcolor : argument is not a color table')
+//end
+
+//Modif. to accept 3x1 column vector
+c=c(:);
+c=c';
+
 if maxi(c)>1|mini(c)<0 then
   error('addcolor : argument is not a color table')
 end
