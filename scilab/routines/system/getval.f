@@ -228,6 +228,7 @@
 *        must be recorded, now detect the exponent
       expo = 0
       ndgexp = 0
+      sgnexp = plus
       if (abs(char1).eq.d .or. abs(char1).eq.e) then
 *        the string have an exponent part (which, in Scilab, may be empty or
 *        may had only a sign ! => expo = 0)
