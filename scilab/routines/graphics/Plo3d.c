@@ -415,6 +415,15 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	      } else {
        	        for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
                 shade(polyx,polyy,fill,*p,flag[0]);
+		/** draw if requested but just check on the first color **/ 
+		if ( cvect[(*p)*locindex[i]] <= 0 ) 
+		  {
+		    fill[0]=0;
+		    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+
+
+
 	      }
 	  }
 	  else C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1675,7 +1684,7 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
 
           psize=3;
           col=fills[0];
-          C2F(dr)("xliness","str",polyxs,polyys,(cols=-col,&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          C2F(dr)("xliness","str",polyxs,polyys,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
           return(0);
      }
      
@@ -1685,7 +1694,7 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
           for(i=0;i<=n[0];i++) {
 	     px[0]=x[2][i]; px[1]=x[0][i]; px[2]=x[0][i+1]; px[3]=x[2][i+1];
 	     py[0]=y[2][i]; py[1]=y[0][i]; py[2]=y[0][i+1]; py[3]=y[2][i+1];
-	     C2F(dr)("xliness","str",px,py,(cols=-col,&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
              col--;
 	  }
 	  free(x[0]);
@@ -1698,7 +1707,7 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
           for(i=0;i<=n[1];i++) {
 	     px[0]=x[2][n[0]+i]; px[1]=x[1][i]; px[2]=x[1][i+1]; px[3]=x[2][n[0]+i+1];
 	     py[0]=y[2][n[0]+i]; py[1]=y[1][i]; py[2]=y[1][i+1]; py[3]=y[2][n[0]+i+1];
-	     C2F(dr)("xliness","str",px,py,(cols=-col,&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     C2F(dr)("xliness","str",px,py,(cols=-Abs(col),&cols),&npoly,&psize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
              col--;
 	  }
           free(x[1]);

@@ -254,7 +254,13 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
  		return;
 	      } else {
        	        for ( k= 0 ; k < *p ; k++) fill[k]= cvect[(*p)*locindex[i]+k];
-		 shade(polyx,polyy,fill,*p,flag);
+		shade(polyx,polyy,fill,*p,flag);
+		/** draw if requested but just check on the first color **/ 
+		if ( cvect[(*p)*locindex[i]] <= 0 ) 
+		  {
+		    fill[0]=0;
+		    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
 	      }
 	  }
 	  else C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,PI0,PD0,PD0,PD0,PD0,0L,0L);
