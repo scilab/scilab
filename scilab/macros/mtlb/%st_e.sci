@@ -53,6 +53,7 @@ end
 s=mlist(getfield(1,w),int32(v));
 for k=3:sz
     ww=getfield(k,w);
+    if type(ww)~=15 then ww=list(ww);end
 //S(2,3).f1=12  -> k=3;I=6;ww(I)=12;s=mlist(["st","dims","f1"],int32([1;1]));
     if prod(v)==1
        setfield(k,ww(I),s); else setfield(k,list(ww(I)),s);
