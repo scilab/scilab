@@ -1,6 +1,7 @@
 function Compile_()
     nc_save=4
     Cmenu='Open/Set'
+    needcompile=4,
     [%cpr,ok]=do_compile(scs_m)
     if ok then
       newparameters=list()
@@ -8,7 +9,5 @@ function Compile_()
       alreadyran=%f
       %state0=%cpr.state;
       needcompile=0;
-    else
-      needcompile=4,
     end
 endfunction
