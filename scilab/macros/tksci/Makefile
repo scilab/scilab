@@ -10,6 +10,6 @@ include ../../Makefile.incl
 NAME = tkscilib
 NAM = SCI/macros/tksci
 
-MACROS = tk_getfile.sci tk_getdir.sci
+MACROS = tk_getfile.sci tk_getdir.sci tk_savefile.sci 
 
 include ../Make.lib
