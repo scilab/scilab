@@ -5,6 +5,7 @@ if "%1" == "routines-clean" goto routines-clean
 if "%1" == "routines-distclean" goto routines-distclean 
 if "%1" == "macros" goto macros
 if "%1" == "MakeMexLib" goto MakeMexLib
+if "%1" == "Javasci" goto Javasci
 if "%1" == "macros-clean" goto macros-clean 
 if "%1" == "macros-distclean" goto macros-distclean 
 if "%1" == "imp" goto imp
@@ -92,7 +93,7 @@ goto end
 :man
 cd man
  echo making all in man
- nmake /C /f Makefile.mak 
+ nmake /C /f makehelp.mak /a
 cd ..
 goto end
 
@@ -102,6 +103,14 @@ cd routines/default
  nmake /C /f makemexlib.mak all /a
 cd ../.. 
 goto end
+
+:Javasci
+cd routines/javasci
+ echo making all Javasci
+ nmake /C /f makefile.mak all /a
+cd ../.. 
+goto end
+
 
 :tcl
 cd tcl
@@ -113,14 +122,14 @@ goto end
 :man-clean
 cd man
  echo making all in man
- nmake /C /f Makefile.mak clean 
+ nmake /C /f makehelp.mak clean 
 cd ..
 goto end
 
 :man-distclean
 cd man
  echo making all in man
- nmake /C /f Makefile.mak distclean 
+ nmake /C /f makehelp.mak distclean 
 cd ..
 goto end
 
