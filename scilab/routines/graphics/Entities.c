@@ -6322,7 +6322,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontstrikeout   = FALSE;	/*d'utilisation sur les differents OS */
       (sciGetFontContext(pobj))->textorientation = 0;
       /**/
-      sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       if (((sciGetFontContext(pobj))->pfontname =
 	   calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 		   sizeof (char))) == NULL)
@@ -6366,7 +6366,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
-      sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*     (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);     */
       if (
