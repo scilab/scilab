@@ -7,59 +7,15 @@
              \marginparwidth=60pt
 \def\vector#1{\left( \begin{array}{c} #1  \end{array}\right)}
 \def\matrixq#1{\left( \begin{array}{cc} #1  \end{array}\right)}
-
+\def\sciverb#1{\mbox{\tt #1}}   
 \makeindex 
-\includeonly{Chap1,Chap2,Chap3,Chap4,Chap5,Chap5-1,Chap5-2,Chap5-3,Chap6,Chap7,Chap8,Chap9,Chap10,Chap11,Chap12,Chap13,Chap14,Chap15,Chap16,Chap17,Chap19,Chap20,Chap21}
-\includeonly{Chap3}
+\includeonly{Chap1,Chap2,Chap3,Chap4,Chap5,Chap5-1,Chap5-2,Chap5-3,Chap5-4,Chap6,Chap7,Chap8,Chap9,Chap10,Chap11,Chap12,Chap13,Chap14,Chap15,Chap16,Chap17,Chap19,Chap20,Chap21}
+%\includeonly{Chap3}
 
 \begin{document}
 
 \input{couvert.tex}
-
-\chapter{Programming}
-        \include{Chap1} 
-\chapter{Graphic Library }
-        \include{Chap2} 
-\chapter{Utilities and Elementary Functions}
-        \include{Chap3} 
-\chapter{Input/Output functions}
-        \include{Chap4} 
-\chapter{Handling of function and libraries}
-        \include{Chap5}
-\chapter{Strings manipulations}
-        \include{Chap5-1}
-\chapter{Dialogs}
-        \include{Chap5-2}
-\chapter{Utilities}
-        \include{Chap5-3}
-\chapter{General System and Control macros}
-        \include{Chap6} 
-\chapter{Robust control toolbox}
-        \include{Chap7} 
-\chapter{Non-linear tools (optimization and simulation) }
-        \include{Chap8}
-\chapter{Signal Processing toolbox}
-        \include{Chap9}
-        \include{Chap14}
-\chapter{Polynomial calculations}
-        \include{Chap10}
-\chapter{Linear Algebra}
-        \include{Chap11}
-\chapter{Metanet}
-        \include{Chap12}
-\chapter{Scicos} 
-        \include{Chap15}
-\chapter{Sound} 
-        \include{Chap16}
-\chapter{Cumulative Distribution Functions, Inverses, Random variables}
-        \include{Chap17}
-\chapter{Tools for dynamical systems}
-        \include{Chap13}
-\chapter{TCL/Tk interface}
-        \include{Chap19}
-\chapter{Language and data translation tools}
-        \include{Chap20}
-\chapter{Interprocess communication toolbox}
-        \include{Chap21}
+\tableofcontents
+\input{Chapters}
 \printindex
 \end{document}

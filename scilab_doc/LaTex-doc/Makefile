@@ -2,14 +2,14 @@ SHELL = /bin/sh
 
 include ../../Version.incl
 SCIDIR=../..
-SCIDOC=$(SCIDIR)/../$(SCIVERSION)/doc
+SCIDOC=$(SCIDIR)/doc
 include ../../Makefile.incl
 
 FILES = Chap1.tex Chap2.tex Chap3.tex Chap4.tex Chap5.tex \
 	Chap6.tex Chap7.tex Chap8.tex Chap9.tex Chap10.tex \
 	Chap11.tex Chap12.tex Chap13.tex Chap14.tex Chap15.tex \
 	Chap16.tex Chap17.tex  Chap19.tex Chap20.tex \
-	Chap21.tex Chap5-1.tex Chap5-2.tex  Chap5-3.tex  
+	Chap21.tex Chap5-1.tex Chap5-2.tex  Chap5-3.tex  Chap5-4.tex  
 
 MAN = $(SCIDIR)/man/
 
@@ -41,7 +41,7 @@ $(SCIDOC)/Manual.ps: Tr2tex chapters couvert.tex couv2.ps
 	$(LATEX) Docu.tex
 	$(LATEX) Docu.tex
 	$(LATEX) Docu.tex
-	makeindex -s Docu.isty Docu
+	makeindex -s Docu.isty Docu.idx
 	$(LATEX) Docu.tex
 	$(RM) $@
 	dvips -o $@ Docu.dvi
@@ -53,11 +53,13 @@ pdf: Tr2tex chapters couvert.tex couv2.ps
 	$(LATEX) Docu_pdf.tex
 	$(LATEX) Docu_pdf.tex
 	$(LATEX) Docu_pdf.tex
-	makeindex -s Docu.isty Docu_pdf
+	makeindex -s Docu.isty Docu_pdf.idx
 	$(LATEX) Docu_pdf.tex
 	dvips -z -o Manual_pdf.ps Docu_pdf.dvi
 	ps2pdf Manual_pdf.ps
 	mv  Manual_pdf.pdf ../Manual.pdf
+html: 
+	build-html
 
 couv2.ps: couv2.tex
 	$(LATEX) couv2
@@ -107,6 +109,11 @@ Chap5-3.tex : $(TR2TEX) $(MAN)/utilities/?*.man
 	$(TR2TEX)  -m $(MAN)/utilities/?*.man > /tmp/Chap5-3.tex
 	@sed -e 's/\\documentstyle/%\\documentstyle/' 			-e 's/\\end{document}//' -e 's/\\begin{document}//' /tmp/Chap5-3.tex > Chap5-3.tex
 	$(RM) /tmp/Chap5-3.tex
+
+Chap5-4.tex : $(TR2TEX) $(MAN)/time-date/?*.man
+	$(TR2TEX)  -m $(MAN)/time-date/?*.man > /tmp/Chap5-4.tex
+	@sed -e 's/\\documentstyle/%\\documentstyle/' 			-e 's/\\end{document}//' -e 's/\\begin{document}//' /tmp/Chap5-4.tex > Chap5-4.tex
+	$(RM) /tmp/Chap5-4.tex
 
 Chap6.tex : $(TR2TEX) $(MAN)/control/?*.man
 	$(TR2TEX)  -m $(MAN)/control/?*.man > /tmp/Chap6.tex

@@ -65,9 +65,11 @@
 % since we want to use #1 as an index entry we must 
 \def\Sdoc#1#2{
         \typeout{[#1]}% maybe temporary, but nice for progress report
-	%\smallskip\noindent\fbox{\hbox to \textwidth{#1 \hfill #2}}
-	%\subsection{{\tt #1} \hrulefill {\small\sl #2}}
 	\subsection{{ #1} \hrulefill { #2}}
+}
+\def\SSdoc#1#2{
+        \typeout{[#1]}% maybe temporary, but nice for progress report
+	\subsubsection{{ #1} \hrulefill { #2}}
 }
 
 %  \def\index{\@bsphack\begingroup

@@ -1,0 +1,91 @@
+\documentstyle[verbatim,tr2latex/troffman,makeidx,hyperref,times]{book}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+\def\vector#1{\left( \begin{array}{c} #1  \end{array}\right)}
+\def\matrixq#1{\left( \begin{array}{cc} #1  \end{array}\right)}
+\def\sciverb#1{\mbox{\tt #1}}   
+\makeindex 
+\includeonly{Chap1,Chap2,Chap3,Chap4,Chap5,Chap5-1,Chap5-2,Chap5-3,Chap5-4,Chap6,Chap7,Chap8,Chap9,Chap10,Chap11,Chap12,Chap13,Chap14,Chap15,Chap16,Chap17,Chap19,Chap20,Chap21}
+%\includeonly{Chap3}
+
+\begin{document}
+
+\input{couvert.tex}
+\tableofcontents
+\part{Basic functions}
+\chapter{Programming}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap1} 
+\chapter{Graphic Library }
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap2} 
+\chapter{Utilities and Elementary Functions}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap3} 
+\chapter{Input/Output functions}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap4} 
+\chapter{Handling of functions and libraries}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap5}
+\chapter{Strings manipulations}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap5-1}
+\chapter{Dialogs}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap5-2}
+\chapter{Utilities}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap5-3}
+\chapter{Time and date}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap5-4}
+\part{Specialized Toolboxes}
+\chapter{General System and Control macros}
+\section{Basic functions}
+        \include{Chap6} 
+\section{Robust control toolbox}
+        \include{Chap7} 
+\section{Tools for dynamical systems}
+        \include{Chap13}
+\section{Examples}
+        \include{Chap14}
+\chapter{Non-linear tools (optimization and simulation) }
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap8}
+\chapter{Signal Processing toolbox}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap9}
+\chapter{Polynomial calculations}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap10}
+\chapter{Linear Algebra}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap11}
+\chapter{Metanet}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap12}
+\chapter{Scicos} 
+        \include{Chap15}
+\chapter{Sound}
+ \setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap16}
+\chapter{Cumulative Distribution Functions, Inverses, Random
+        variables}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap17}
+\chapter{TCL/Tk interface}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap19}
+\chapter{Language and data translation tools}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap20}
+\chapter{Interprocess communication toolbox}
+\setcounter{section}{1}\setcounter{subsection}{0}
+        \include{Chap21}
+\printindex
+\end{document}
