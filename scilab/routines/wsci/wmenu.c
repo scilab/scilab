@@ -96,7 +96,7 @@ void Callback_OPEN(void)
 	{
 		GetShortPathName(File,ShortFile,MAX_PATH);
 		wsprintf(command,"scipad('%s');",ShortFile);
-		StoreCommand1(command,2);
+		StoreCommand1(command,0);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -235,7 +235,7 @@ void Callback_CHDIR(void)
 	 	SHGetPathFromIDList(pidl, Path); 
 	 	SendCTRLandAKey(CTRLU);
 		wsprintf(command,"chdir('%s');",Path);
-		StoreCommand (command);
+		StoreCommand1 (command,1);
 		//WriteIntoScilab(lptw,command);
 	}
 
@@ -249,7 +249,7 @@ void Callback_GETCWD(void)
 	SendCTRLandAKey(CTRLU);
 	GetCurrentPrompt(save_prompt);
 	wsprintf(command,"printf('\n\n %%s\n\n%s',getcwd())",save_prompt);
-	StoreCommand1 (command, 2);
+	StoreCommand1 (command, 0);
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -420,7 +420,7 @@ void Callback_SCIPAD(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-	StoreCommand1 ("scipad()",2);
+	StoreCommand1 ("scipad()",0);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
@@ -429,7 +429,7 @@ void Callback_HELP(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
-	StoreCommand1 ("help();", 2);
+	StoreCommand1 ("help();", 0);
   		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1873,18 +1873,18 @@ void SwitchLanguage(LPTW lptw)
 	strcpy(commandline,"%");
 	strcat(commandline,"helps=initial_help_chapters(LANGUAGE);");
 
-	StoreCommand1 (commandline, 2);
+	StoreCommand1 (commandline, 0);
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
-			StoreCommand1 ("LANGUAGE=\"fr\";", 2);
+			StoreCommand1 ("LANGUAGE=\"fr\";", 0);
 		break;
 		
 		default: case 0:
-			StoreCommand1 ("LANGUAGE=\"eng\";", 2);
+			StoreCommand1 ("LANGUAGE=\"eng\";", 0);
 		break;
 	}
-	StoreCommand1 (commandline, 2);
+	StoreCommand1 (commandline, 0);
     
 	ReLoadMenus(lptw);
 	ToolBarOnOff(lptw);

@@ -35,6 +35,7 @@
 
 #ifdef WIN32
 extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
+extern BOOL IsToThePrompt(void);
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
@@ -90,68 +91,68 @@ void reset_scig_command_handler ()
 /* problem with windows and events */
 int StoreCommand ( char *command)
 {
-  #ifdef WIN32
-	return (StoreCommand1 (command, 1)); 
-  #else
 	return (StoreCommand1 (command, 0)); /* jpc 1->0 */
-  #endif
 }
 
 /*---------------------------------------------------------------
  * try to execute a command or add it to the end of command queue
- * flag = 1 : the command is shown in scilab window (if at prompt)
- * flag = 2 : only a new line is send in scilab window (if at prompt) 
+ * flag = 0 : the command is not shown in scilab window
+ * flag = 1 : the command is shown in scilab window (if at prompt) 
  *----------------------------------------------------------------*/
 
 int StoreCommand1 (char *command,int flag)
 {
-  CommandRec *p, *q, *r;
-
-  /** first check if we have a special handler set for commands **/
-  if (scig_command_handler (command) == 1)  return 0;
-
-  if (flag==1 && get_is_reading ())
-    {
-      write_scilab (command);
-		#ifdef WIN32
-			if (flag == 1) 	write_scilab ("\n");
-		#endif
-      return 0;
-    }
-
-  p = (CommandRec *) malloc (sizeof (CommandRec));
-  if (p == (CommandRec *) 0)
-    {
-      sciprint ("send_command : No more memory \r\n");
-      return (1);
-    }
-  p->command = (char *) malloc ((strlen (command) + 1) * sizeof (char));
-  if (p->command == (char *) 0)
-    {
-      sciprint ("send_command : No more memory \r\n");
-      return (1);
-    }
-  strcpy (p->command, command);
-  p->next = NULL;
-  if (!commandQueue)
-    commandQueue = p;
-  else
-    {
-      q = commandQueue;
-      while ((r = q->next))
-	q = r;
-      q->next = p;
-    }
-  if (get_is_reading ())
-    { 
-	#ifdef WIN32
-		if (flag==2&& get_is_reading ()) write_scilab ("\n");
-	#endif
-    }
 #ifdef WIN32
-	if (flag==0 ) write_scilab ("\n");
+ if ( (flag == 1) && ( !IsToThePrompt () ) ) flag=0;
 #endif
-  return (0);
+ switch (flag)
+ {
+	case 1: // the command is shown in scilab window (if at prompt)
+		{
+			write_scilab (command);
+			#ifdef WIN32
+				if ( ( command[strlen(command)-1] != '\n' ) && ( command[strlen(command)-1] != '\r' ) ) write_scilab ("\n");
+			#endif
+			return (0);
+		}
+		break;
+	case 0: default : // the command is not shown in Scilab
+		{
+			  CommandRec *p, *q, *r;
+
+			  /** first check if we have a special handler set for commands **/
+			  if (scig_command_handler (command) == 1)  return 0;
+
+			  p = (CommandRec *) malloc (sizeof (CommandRec));
+			  if (p == (CommandRec *) 0)
+				{
+					sciprint ("send_command : No more memory \r\n");
+					return (1);
+				}
+			  p->command = (char *) malloc ((strlen (command) + 1) * sizeof (char));
+			 if (p->command == (char *) 0)
+				{
+					sciprint ("send_command : No more memory \r\n");
+					return (1);
+				}
+			strcpy (p->command, command);
+			p->next = NULL;
+            if (!commandQueue) commandQueue = p;
+			else
+				{
+					q = commandQueue;
+					while ((r = q->next))	q = r;
+					q->next = p;
+				}
+#ifdef WIN32
+			if (IsToThePrompt ()) write_scilab ("\n");
+#endif
+			return (0);
+			
+		break;
+		}
+ }
+return (0);
 }
 
 /*-------------------------------------------------

@@ -2,7 +2,11 @@
 /* scilab-tk link main module */
 /* Bertrand Guiheneuf INRIA 1997 */
 
+#if WIN32
+#include <windows.h>
+#endif
 
+#include <stdio.h>
 #include "tksci.h"
 #include "TK_ScilabCallback.h"
 #include <stdio.h>
@@ -36,7 +40,12 @@ int TK_Started=0;
 
 void flushTKEvents()
 {
-  while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1) {}
+  while (Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT)==1)
+  {
+	  #if WIN32
+	  Sleep(1);
+	  #endif
+  }
 }
 
 

@@ -506,6 +506,7 @@ void UpdateText (LPTW lptw, int count)
       SetTextColor (hdc, TextFore (lptw->Attr));
       SetBkColor (hdc, TextBack (lptw->Attr));
     }
+
   SelectFont (hdc, lptw->hfont);
   TextOut (hdc, xpos, ypos,
       (LPSTR) (lptw->ScreenBuffer + lptw->CursorPos.y * lptw->ScreenSize.x +
@@ -519,6 +520,7 @@ void UpdateText (LPTW lptw, int count)
 EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch)
 {
   int pos;
+
   switch (ch)
     {
     case '\r':
@@ -553,6 +555,7 @@ EXPORT int WINAPI TextPutCh (LPTW lptw, BYTE ch)
 	lptw->CursorPos.y = 0;
       break;
     default:
+	
       pos = lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
       lptw->ScreenBuffer[pos] = ch;
       lptw->AttrBuffer[pos] = lptw->Attr;
@@ -1118,7 +1121,7 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 			ReceiveFromAnotherScilab(wParam,lParam);
 
 			if ( GetCommandFromAnotherScilab(TitleWndSend,Command) )
-				StoreCommand1 (Command, 2);
+				StoreCommand1 (Command, 0);
 			return (0);
 		}
 		break;
@@ -1412,7 +1415,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		/* Appel l'aide */	      
       		case VK_F1:
       		{
-      			StoreCommand1 ("help()", 2);
+      			StoreCommand1 ("help()", 0);
       		}
       		break;
       		/* Efface la fenetre de commandes */
@@ -1636,7 +1639,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       break;
     case WM_CHAR:
     {
-    	long count=0;
+	  	long count=0;
     	
     	
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
@@ -2450,7 +2453,7 @@ void HelpOn(LPTW lptw)
 			wsprintf(Command,"help \"%s\"",MessagePaste);
 		}
 		
-		if (strcmp (Command,"help \"\"")!=0 ) StoreCommand1 (Command,2);
+		if (strcmp (Command,"help \"\"")!=0 ) StoreCommand1 (Command,0);
 		free(MessagePaste);
 	}
 	
@@ -2624,7 +2627,7 @@ void OpenSelection(LPTW lptw)
 		ReplaceSlash(FileNameSCI,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCI);
 		
-		StoreCommand1 (Command, 2);
+		StoreCommand1 (Command, 0);
 		return ;			
 	}
 	
@@ -2634,7 +2637,7 @@ void OpenSelection(LPTW lptw)
 		GetShortPathName(FileNameSCE,Fichier,MAX_PATH);
 		ReplaceSlash(FileNameSCE,Fichier);
 		wsprintf(Command,"scipad('%s')",FileNameSCE);
-		StoreCommand1 (Command, 2);
+		StoreCommand1 (Command, 0);
 		return ;			
 	}
 	
@@ -2645,7 +2648,7 @@ void OpenSelection(LPTW lptw)
 		ReplaceSlash(FileName,Fichier);
 		//MessageBox(NULL,FileName,Fichier,MB_OK);
 		wsprintf(Command,"scipad('%s')",FileName);
-		StoreCommand1 (Command, 2);
+		StoreCommand1 (Command, 0);
 		return ;			
 	}
 	else
@@ -2666,7 +2669,7 @@ void OpenSelection(LPTW lptw)
 				GetShortPathName(FileNameSCI,Fichier,MAX_PATH);
 				ReplaceSlash(FileNameSCI,Fichier);
 				wsprintf(Command,"scipad('%s')",FileNameSCI);
-				StoreCommand1 (Command, 2);			
+				StoreCommand1 (Command, 0);			
 			}
 			else
 			{
@@ -3144,7 +3147,7 @@ void ExitWindow(void)
         }
         WriteTextIni (lptw);
            				           				
-        StoreCommand1 ("abort;", 2);
+        StoreCommand1 ("abort;", 0);
         SendCTRLandAKey(CTRLU);
    		StoreCommand1 ("quit;",1);
    					
@@ -3159,9 +3162,9 @@ void ExitWindow(void)
    else
    {
    	WriteTextIni (lptw);
-   	StoreCommand1 ("abort;", 2);
+   	StoreCommand1 ("abort;", 0);
    	SendCTRLandAKey(CTRLU);
-   	StoreCommand1 ("quit;", 1);
+   	StoreCommand1 ("quit;", 0);
    }
 	   	
 }
@@ -3504,3 +3507,15 @@ void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand)
 	WriteInKeyBuf=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
+BOOL IsToThePrompt(void)
+{
+	BOOL retour=FALSE;
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	if  (( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) ) retour=FALSE;
+	else retour=TRUE;
+
+	return retour;
+}
