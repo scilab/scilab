@@ -67,7 +67,7 @@ endfunction
 function [bOK,k]=TestParamUiMenu(ArgsIn,IndiceStart)
   bOK=%F;
   k=-1;
-  for i=IndiceStart:length(ArgsIn):2 do
+  for i=IndiceStart:2:length(ArgsIn) do
     PropertyName=GetUiControlPropertyName(ArgsIn(i));
     if (PropertyName=='') then
     	bOK=%F;
