@@ -82,8 +82,8 @@ show_comment=%f
     n_clkco=size(clkconnecttmp,1)
     for i=1:n_clkco
       if typ_l(clkconnecttmp(i,1)) & clkconnecttmp(i,1)==clkconnecttmp(i,3) then
-	message(['Algebrique loop detected';'on activation links']);
-	cpr=list();return
+	       message(['Algebrique loop detected';'on activation links']);
+	       cpr=list();return
       end
     end 
     
@@ -96,23 +96,24 @@ show_comment=%f
     blocs_traites=[]
     //on ordonnance les blocs
     ordoclk=get_clocks(clkconnect,clkptr);
-    ordoclk=gsort(ordoclk,'g','i')
+    ordoclk=gsort(ordoclk,'lr','i')
     //existe le temps continu?
     temps_continu=%f
     if ordoclk(1)==0 then
       temps_continu=%t
       ordoclk(1,:)=[]
     end
-    //on ajoute les ports des horloges de vec_clk
     nblock=size(typ_l,1);
-    ordoclk(:,2)=1
     ordptr=1;
-
     ordclk=[];
     cord=[];
     k=1
     if temps_continu then
       [bouclalg,vec,primary]=ordo3(0,0,clkconnect,connectmat);
+      //
+      // discardprimary duplicate calls to the same block port
+      // and group calls to different ports of the same block
+      // to compute execution table and its pointer.
       primary=discardprimary(primary)
       primary=gsort(primary,'lr','i')
       vecordo=vec(primary(:,1))
@@ -124,40 +125,38 @@ show_comment=%f
     while k<=size(ordoclk,1) 
       n_out=clkptr(ordoclk(k,1)+1)-clkptr(ordoclk(k,1))
       if n_out>0 then
-	for j=1:n_out
-	  [bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat);
-	  if bouclalg then
-	    message('Algebrique  loop detected; cannot be compiled.');
-	    cpr=list()
-	    return,
-	  end
-	  //primary=gsort(primary,'lr','i')
-	  primary=discardprimary(primary)	
-	  primary=gsort(primary,'lr','i')
-	  vecordo=vec(primary(:,1))
-	  ordoclk0=ordo_vecport(primary,vecordo)	  
-	  [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,..
-                                   ordoclk(k),j,ordptr,blocs_traites)
-          ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
-	end      
+	      for j=1:n_out
+	  				[bouclalg,vec,primary]=ordo3(ordoclk(k,1),j,clkconnect,connectmat);
+	  					if bouclalg then
+	    						message('Algebrique  loop detected; cannot be compiled.');
+	    						cpr=list()
+	    						return,
+	  					end
+	  	   	  primary=discardprimary(primary)	
+	         primary=gsort(primary,'lr','i')
+	         vecordo=vec(primary(:,1))
+	         ordoclk0=ordo_vecport(primary,vecordo)	  
+	         [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,..
+                                         ordoclk(k),j,ordptr,blocs_traites)
+           ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
+	      end      
       end
-      k=k+1
-      
+      k=k+1      
     end
   end
   
   if show_pause then 
-    disp('fin de my paksazi')
+    disp('fin de paksazi1')
     pause
   end
    
   if show_trace then disp('c_pass31:'+string(timer())),end
   
   //extract various info from bllst
-  [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-   xptr,zptr,typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
-   typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
-   bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
+  [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
+   typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,typ_z,..
+   typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,bexe,boptr,blnk,..
+   blptr,ok]=extract_info(bllst,connectmat,clkconnect);
   typ_z0=typ_z;
 
   if ~ok then
@@ -173,12 +172,7 @@ show_comment=%f
   [evoutoin,evoutoinptr]=synch_clkconnect(typ_s,clkconnect)
   //
   if show_trace then disp('c_pass50:'+string(timer())),end
-  //
-  // discard duplicate calls to the same block port
-  // and group calls to different ports of the same block
-  // to compute execution table and its pointer.
-
-  
+    
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
@@ -186,25 +180,18 @@ show_comment=%f
   if show_trace then disp('c_pass501:'+string(timer())),end
 
   // Set execution scheduling tables 
-  [ordclk,iord,oord,zord,..
-   typ_z,ok]=scheduler(inpptr,outptr,clkptr,..
-			execlk_cons,outoin,outoinptr,..
-			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
-			bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
-		    
-		    
-  	
-  
+  [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,..
+   execlk_cons,outoin,outoinptr,evoutoin,evoutoinptr,typ_z,typ_x,..
+   typ_s,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+	 
 //  critev=zeros(critev);
 //  critev(1:size(critev_p,1))=critev_p;
   
-
   if ~ok then 
     cpr=list()
     return,
   end
-  
-
+ 
   if show_trace then disp('c_pass51:'+string(timer())),end
   //form scicos arguments
 
@@ -242,9 +229,9 @@ show_comment=%f
   if show_trace then disp('c_pass61:'+string(timer())),end
 
   outtb=0*ones(lnkptr($)-1,1)
-//mod=0*ones(modptr($)-1,1)
+  //mod=0*ones(modptr($)-1,1)
   iz0=zeros(nb,1);
-
+ 
   if max(funtyp)>10000 &%scicos_solver==0 then
     message(['Diagram contains implicit blocks,'
 	     'compiling for implicit Solver'])
@@ -267,7 +254,7 @@ show_comment=%f
   clearglobal need_newblk
 endfunction
 
-//donne les horloges d'activation du schéma
+//donne les sources d'activation du schéma
 function [vec_clk]=get_clocks(clkconnect,clkptr)
   vec_clk=[]
   n_clkco=size(clkconnect,1);
@@ -275,15 +262,20 @@ function [vec_clk]=get_clocks(clkconnect,clkptr)
   for i=1:n_clkco
     blk=clkconnect(i,1)
     port=clkconnect(i,2)
-    if find(blk==vec_clk)==[] & blk==0 then
+    if find(blk==vec_clk(:,1))==[] & blk==0 then
       //activation continue
-      vec_clk(k,1)=blk
+      vec_clk=[blk port]
       k=k+1
     end
-    if blk~=0 & find(clkconnect(i,1)==vec_clk)==[] & clkptr(blk+1)-clkptr(blk)~=0 & ~typ_l(blk) then
+    if blk~=0 & find(blk==vec_clk(:,1))==[] & clkptr(blk+1)-clkptr(blk)~=0 & ~typ_l(blk) then
       //type horloge
-      vec_clk(k,1)=blk
-      k=k+1
+      if k==1 then
+        vec_clk=[blk port]
+        k=k+1
+      else
+       vec_clk(k,:)=[blk port]
+        k=k+1
+      end 
     end
   end
 endfunction
@@ -310,12 +302,12 @@ function vec_clk0=set_primary_clk(vec_clk,primary,i)
     vec_clk1=vec_clk(n_vc0+1:size(vec_clk,1))
     for k=1:size(primary,1)
       if find(primary(k)==vec_clk0)==[] then
-	vec_clk0($+1)=primary(k)
+	       vec_clk0($+1)=primary(k)
       end
     end
     for k=1:size(vec_clk1,1)
       if find(vec_clk1(k)==vec_clk0)==[] then
-	vec_clk0($+1)=vec_clk1(k)
+	       vec_clk0($+1)=vec_clk1(k)
       end
     end
   else
@@ -333,16 +325,16 @@ function vec_clk0=set_primary_clkport(vec_clk,primary,i)
     for k=1:size(primary,1)
       f=find(primary(k,1)==vec_clk0(:,1))
       if f==[] then
-	vec_clk0=[vec_clk0;primary(k,:)]
+	       vec_clk0=[vec_clk0;primary(k,:)]
       end
     end
     n_vc1=size(vec_clk1,1)
     if n_vc1>0 then
       for k=1:n_vc1
-	f=find(vec_clk1(k,1)==vec_clk0(:,1))
-	if f==[] then
-	  vec_clk0=[vec_clk0;vec_clk1(k,:)]
-	end
+	       f=find(vec_clk1(k,1)==vec_clk0(:,1))
+	       if f==[] then
+	          vec_clk0=[vec_clk0;vec_clk1(k,:)]
+	       end
       end
     end
   else
@@ -356,34 +348,34 @@ function [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,..
                          ordoclk0,k,j,ordptr,blocs_traites)
   if ordoclk0~=[] then
     if ordclk==[] then
-      ordclk=[ordclk;ordoclk0];
-      ordptr($+1)=ordptr($)+size(ordoclk0,1);
-      blocs_traites=k
+       ordclk=[ordclk;ordoclk0];
+       ordptr($+1)=ordptr($)+size(ordoclk0,1);
+       blocs_traites=k
     else
-      m=max(find(blocs_traites==k))
-      if j>1 & m~=[] then
-	ordclk=[ordclk(1:ordptr(m+1)-1,:);ordoclk0;ordclk(ordptr(m+1):$,:)]
-	ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
-	blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
-      else
-	ind=find(blocs_traites <k)
-	m=max(ind)
-	if m==size(blocs_traites,1) then
-	  ordclk=[ordclk;ordoclk0]
-	  ordptr($+1)=ordptr($)+size(ordoclk0,1);
-	  blocs_traites=[blocs_traites;k]
-	else
-	  if m~=[] then
-	    ordclk=[ordclk(1:ordptr(m+1)-1,:);ordoclk0;ordclk(ordptr(m+1):$,:)]
-	    ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
-	    blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
-	  else
-	    ordclk=[ordoclk0;ordclk]
-	    ordptr=[1;ordptr+size(ordoclk0,1)]
-	    blocs_traites=[k;blocs_traites]
-	  end
-	end
-      end
+       m=max(find(blocs_traites==k))
+       if j>1 & m~=[] then
+	    		 	ordclk=[ordclk(1:ordptr(m+1)-1,:);ordoclk0;ordclk(ordptr(m+1):$,:)]
+          ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
+					 blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
+       else
+				  ind=find(blocs_traites <k)
+				  m=max(ind)
+				  if m==size(blocs_traites,1) then
+	  		  		  ordclk=[ordclk;ordoclk0]
+	  		     	ordptr($+1)=ordptr($)+size(ordoclk0,1);
+	  					 blocs_traites=[blocs_traites;k]
+				  else
+	  		   		 if m~=[] then
+	    			  	 	 ordclk=[ordclk(1:ordptr(m+1)-1,:);ordoclk0;ordclk(ordptr(m+1):$,:)]
+	    						  ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
+	    						  blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
+	  					 else
+	            ordclk=[ordoclk0;ordclk]
+	            ordptr=[1;ordptr+size(ordoclk0,1)]
+	            blocs_traites=[k;blocs_traites]
+	  				  end
+			 	 end
+       end
     end
   else
     if j>1 & find((blocs_traites==k))~=[] then
@@ -394,23 +386,20 @@ function [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,..
       ind=find(blocs_traites <k)
       m=max(ind)
       if m==size(blocs_traites,1) then
-	ordptr($+1)=ordptr($)+size(ordoclk0,1);
-	blocs_traites=[blocs_traites;k]
+	       ordptr($+1)=ordptr($)+size(ordoclk0,1);
+	       blocs_traites=[blocs_traites;k]
       else
-	if m~=[] then
-	  ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
-	  blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
-	else
-	  ordptr=[1;ordptr+size(ordoclk0,1)]
-	  blocs_traites=[k;blocs_traites]
-	end
+	       if m~=[] then
+	          ordptr=[ordptr(1:m+1);ordptr(m+1:$)+size(ordoclk0,1)]
+	          blocs_traites=[blocs_traites(1:m);k;blocs_traites(m+1:$)]
+	       else
+	          ordptr=[1;ordptr+size(ordoclk0,1)]
+	          blocs_traites=[k;blocs_traites]
+	       end
       end
     end
   end
 endfunction
-
-
-
 
 //donne les blocs activés par blk port
 //le 1er argument permet d'ajouter des blocs aux blocs déjà trouvés
@@ -423,8 +412,8 @@ function [children]=get_children(children,blk,port)
     for i=1:n_f
       clki3=clkconnect(f(i),3)
       if clkconnect(f(i),2)==port & find(clki3==children)==[] then
-	children(k,1)=clki3
-	k=k+1
+	       children(k,1)=clki3
+	       k=k+1
       end
     end
   end
@@ -437,19 +426,18 @@ function [children]=get_childrenport(children,blk,port)
   if n_f>0 then
     for i=1:n_f
       if clkconnect(f(i),2)==port then
-	clki3=clkconnect(f(i),3)
-	clki4=clkconnect(f(i),4)
-	g=find(clki3==children(:,1))
-	if g==[] | (g~=[] & children(g,2)~=clki4)
-	  children(k,1)=clki3
-	  children(k,2)=clki4
-	  k=k+1
-	end
+	       clki3=clkconnect(f(i),3)
+	       clki4=clkconnect(f(i),4)
+	       g=find(clki3==children(:,1))
+	       if g==[] | (g~=[] & children(g,2)~=clki4) then
+	          children(k,1)=clki3
+	          children(k,2)=clki4
+	          k=k+1
+	       end
       end
     end
   end
 endfunction
-
 
 //donne les blocs activés par blk, quel que soit le port d'activation.
 function [children]=get_children2(children,blk)
@@ -460,8 +448,8 @@ function [children]=get_children2(children,blk)
     for i=1:n_f
       clki3=clkconnect(f(i),3)
       if find(clki3==children)==[] then
-	children(k,1)=clki3
-	k=k+1
+        	children(k,1)=clki3
+	       k=k+1
       end
     end
   end
@@ -478,14 +466,13 @@ function [children]=get_children2port(children,blk)
       clki4=clkconnect(f(i),4)
       g=find(clki3==children(:,1))
       if g==[] | (g~=[] & children(g,2)~=clki4)
-	children(k,1)=clki3
-	children(k,2)=clki4
-	k=k+1
+	       children(k,1)=clki3
+	       children(k,2)=clki4
+	       k=k+1
       end
     end
   end
 endfunction
-
 
 //donne les blocs activés par blk port, et leur descendance (récursif) 
 function [local_children]=get_allchildren(blk,port)
@@ -522,7 +509,6 @@ function [local_children]=get_allchildren2(block)
   end
 endfunction
 
-
 function [local_children]=get_allchildren2port(block)
   local_children=get_children2port([],block)
   i=1
@@ -544,7 +530,7 @@ function [parents]=get_parents(parents,blk)
       clki2=clkconnect(f(i),2)
       g=find(clki1==parents(:,1))
       if g==[] | (g~=[] & parents(g,2)~=clki2) then
-	parents=[parents;clki1,clki2]
+	       parents=[parents;clki1,clki2]
       end
     end
   end
@@ -575,8 +561,8 @@ function [source]=get_from(source,destination)
     for i=1:n_f
       cmat1=connectmat(f(i),1)
       if find(cmat1==source)==[] then
-	source(k,1)=cmat1
-	k=k+1
+	       source(k,1)=cmat1
+	       k=k+1
       end
     end
   end
@@ -592,10 +578,9 @@ function [allpar,allparptr]=ini_allpar(clkconnect,vec)
     allparptr=[allparptr;allparptr($)+size(allpar_tmp,1)]
   end
 endfunction
-//appelé par allpar(allparptr(blk):allparptr(blk+1)-1,:)
 
+//appelé par allpar(allparptr(blk):allparptr(blk+1)-1,:)
 function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,amaj)
-  
   children=[]
   for i=1:size(amaj,1)
     children=[children;get_allchildren2(amaj(i));amaj(i)]
@@ -616,22 +601,22 @@ function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,am
       allparold=allpar(allparptr(veci):allparptr(veci+1)-1,:)
       allparnew=get_allparents(newless(i))
       if size(allparold,1)==size(allparnew,1) then
-	allparold=gsort(allparold,'lr','i')
-	allparnew=gsort(allparnew,'lr','i')
-	if allparold==allparnew then
-	  if show_comment then
-	    disp('pas besoin de màj les parents du bloc '+string(newless(i)))
-	  end
-	  dontmaj=[dontmaj;newless(i)]
-	else
-	  allparmaj=[allparmaj;allparnew]
-	  allparmajptr=[allparmajptr;allparmajptr($)+size(allparnew,1)]
-	  vecmaj=[vecmaj;newless(i)]
-	end
+	       allparold=gsort(allparold,'lr','i')
+	       allparnew=gsort(allparnew,'lr','i')
+	       if allparold==allparnew then
+	          if show_comment then
+	             disp('pas besoin de màj les parents du bloc '+string(newless(i)))
+	          end
+	          dontmaj=[dontmaj;newless(i)]
+	       else
+	          allparmaj=[allparmaj;allparnew]
+	          allparmajptr=[allparmajptr;allparmajptr($)+size(allparnew,1)]
+	          vecmaj=[vecmaj;newless(i)]
+	       end
       else
-	allparmaj=[allparmaj;allparnew]
-	allparmajptr=[allparmajptr;allparmajptr($)+size(allparnew,1)]
-	vecmaj=[vecmaj;newless(i)]
+	       allparmaj=[allparmaj;allparnew]
+	       allparmajptr=[allparmajptr;allparmajptr($)+size(allparnew,1)]
+	       vecmaj=[vecmaj;newless(i)]
       end
     end
     newless=my_setdiff(newless,dontmaj)
@@ -645,29 +630,28 @@ function [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec,am
   newplus=my_setdiff(newplus,dontmaj)
   if newplus~=[] then
     [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
-                                newplus,allparmaj,allparmajptr,vecmaj)
+                            newplus,allparmaj,allparmajptr,vecmaj)
   end
   
 endfunction
-
 
 function [allpar,allparptr,oldvec]=maj_del(allpar,allparptr,oldvec,newless)
   
   for i=1:size(newless,1)
     f=find(newless(i)==oldvec)
     if f==size(oldvec,1) then
-      allpar=[allpar(1:allparptr(f)-1,:)]
-      allparptr($)=[]
+       allpar=[allpar(1:allparptr(f)-1,:)]
+       allparptr($)=[]
     else
       if f==1 then
-	allpar=[allpar(allparptr(f+1):$,:)]
-	allparptr(1)=[]
-	allparptr=allparptr-allparptr(1)+1
+	       allpar=[allpar(allparptr(f+1):$,:)]
+	       allparptr(1)=[]
+	       allparptr=allparptr-allparptr(1)+1
       else
-	allpar=[allpar(1:allparptr(f)-1,:);allpar(allparptr(f+1):$,:)]
-	allparptr=[allparptr(1:f);allparptr(f+2:$)-(allparptr(f+1)-allparptr(f))]
-	g=find(allparptr<0)
-	allparptr(g)=[]
+	       allpar=[allpar(1:allparptr(f)-1,:);allpar(allparptr(f+1):$,:)]
+	       allparptr=[allparptr(1:f);allparptr(f+2:$)-(allparptr(f+1)-allparptr(f))]
+	       g=find(allparptr<0)
+	       allparptr(g)=[]
       end
     end
     oldvec(f)=[]
@@ -682,33 +666,32 @@ function [allpar,allparptr,oldvec]=maj_add(allpar,allparptr,oldvec,vec,..
     if f~=[] then
       g=find(newplus(i)==vecmaj)
       if g~=[] then
-	allpar_tmp=allparmaj(allparmajptr(g):allparmajptr(g+1)-1,:)
+	       allpar_tmp=allparmaj(allparmajptr(g):allparmajptr(g+1)-1,:)
       else
-	allpar_tmp=get_allparents(vec(f))
+	       allpar_tmp=get_allparents(vec(f))
       end
       if allpar==[] then
-	allpar=allpar_tmp
-	allparptr=[1;1+size(allpar_tmp,1)]
+	       allpar=allpar_tmp
+	       allparptr=[1;1+size(allpar_tmp,1)]
       else	
-	if f==1 then
-	  allpar=[allpar_tmp;allpar]
-	  allparptr=[1;allparptr+size(allpar_tmp,1)]
-	else
-	  if f==size(vec,1) | f==size(oldvec,1)+1 then
-	    allpar=[allpar;allpar_tmp]
-	    allparptr=[allparptr(1:f);allparptr(f)+size(allpar_tmp,1)]
-	  else
-	    allpar=[allpar(1:allparptr(f)-1,:);allpar_tmp;allpar(allparptr(f):$,:)]
-	    allparptr=[allparptr(1:f);allparptr(f)+size(allpar_tmp,1);allparptr(f+1:$)+size(allpar_tmp,1)]
-	  end
-	end
+	      if f==1 then
+	         allpar=[allpar_tmp;allpar]
+	         allparptr=[1;allparptr+size(allpar_tmp,1)]
+	      else
+	         if f==size(vec,1) | f==size(oldvec,1)+1 then
+	            allpar=[allpar;allpar_tmp]
+	            allparptr=[allparptr(1:f);allparptr(f)+size(allpar_tmp,1)]
+	         else
+	            allpar=[allpar(1:allparptr(f)-1,:);allpar_tmp;allpar(allparptr(f):$,:)]
+	            allparptr=[allparptr(1:f);allparptr(f)+size(allpar_tmp,1);allparptr(f+1:$)+size(allpar_tmp,1)]
+	         end
+	      end
       end
       oldvec=[oldvec;newplus(i)]
       oldvec=gsort(oldvec,'g','i')
     end
   end
 endfunction
-
 
 //donne tous les blocs dont vient le signal arrivant au bloc destination
 function [sourc]=get_from_all(sourc,dest)
@@ -731,13 +714,13 @@ function [direct]=get_direct(direct,blk)
       clki1=clkconnect(i,1)
       clki3=clkconnect(i,3)
       if clki3==blk & find(clki1==direct)==[] & find(clki1==vec_clk0)==[] then
-	direct(k)=clki1
-	k=k+1
+	       direct(k)=clki1
+	       k=k+1
       end
       
       if clki1==blk & find(clki3==direct)==[] then
-	direct(k)=clki3
-	k=k+1
+	       direct(k)=clki3
+	       k=k+1
       end
     end
 endfunction
@@ -768,214 +751,201 @@ function [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,..
     i=1
     while ~done & i<=n_p 
       if typ_l(primary(i)) then
-	n_out=clkptr(primary(i,1)+1)-clkptr(primary(i,1))
-	l=1
-	while ~done & l<=n_out 
-	  children=get_allchildren(primary(i),l)
-	  if children~=[] then
-	    childplus=intersection(children,vec_plus)
-	    if childplus~=[] then
-	      //penser à mettre à jour vec_plus quand on fait union ou duplique
-	      n_cp=size(childplus,1)
-	      j=1
-	      while ~done & j<=n_cp
-		childj=childplus(j)
-		if find(childj==primary)~=[] & ~done then
-		  //si le bloc à dupliquer est fils direct du primary et de blk 
-		  //on remplace l'activation de blk par l'union des sorties du primary
-		  //on teste si le(s) lien(s) activant childj est (sont) les mêmes que ceux activant primary(i) 
-		  p1=get_parents([],primary(i))
-		  p2=get_parents([],childj)
-		  p12=[]
-		  n_p1=size(p1,1)
-		  p12=is_matinmat(p1,p2)
+	       n_out=clkptr(primary(i,1)+1)-clkptr(primary(i,1))
+	       l=1
+	       while ~done & l<=n_out 
+	          children=get_allchildren(primary(i),l)
+	          if children~=[] then
+	             childplus=intersection(children,vec_plus)
+	             if childplus~=[] then
+	                //penser à mettre à jour vec_plus quand on fait union ou duplique
+	                n_cp=size(childplus,1)
+	                j=1
+	                while ~done & j<=n_cp
+		                 childj=childplus(j)
+		                 if find(childj==primary)~=[] & ~done then
+		                    //si le bloc à dupliquer est fils direct du primary et de blk 
+		                    //on remplace l'activation de blk par l'union des sorties 
+		                    //du primary on teste si le(s) lien(s) activant childj est
+		                    //(sont) les mêmes que ceux activant primary(i) 
+		  											p1=get_parents([],primary(i))
+		  											p2=get_parents([],childj)
+		  											p12=[]
+		  											n_p1=size(p1,1)
+		  											p12=is_matinmat(p1,p2)
+		  										  children=[primary(i);children]
+		  											blkp=intersection(children,p2(:,1))
+		  											if p12==p1 then
+		    												 ind2=sameport(clkconnect,blkp,childj,blk,port)
+		    												 if ind2~=[] then
+		     													  if show_comment then 
+																   disp('del_union:')
+																   disp('on enleve le lien entre '+string(blkp)+' et '+string(childj)+'  avec clk port = '+string(blk)+' '+string(port))
+		      													  end
+		      												 if blkp==[] then
+			                        disp('pb: le lien n existe pas')		
+		                       end
+		               		      [clkconnect]=del_union(ind2,clkconnect)
+		                       done=%t  
+		                       blk_duplicated=[]
+		                       oldvec=vec_plus
+		                       newparents=get_parents([],childj)
+		                       if size(newparents,1)==size(p2,1) then
+			                        newparents=gsort(newparents,'lr','i')
+			                        p2=gsort(p2,'lr','i')
+			                        if newparents~=p2 then
+			                           amaj=childj
+			                        end
+		                       end
+		                       majplus=childj
+		                       //sortir de toute les boucles et refaire le wire de primary
+		                    else
+		                       //si childplus est activé par un port différent du lien direct
+		                       if show_comment then 
+			                        disp('do_union:')
+			                        disp('bloc '+string(childj)+' reçoit en entrée l union des sorties du bloc '+string(primary(i))+' avec clk port = '+string(blk)+' '+string(port))
+		                       end
+		                       [clkconnect]=do_union(childj,primary(i),blk,port,p12,clkconnect,connectmat,bllst)
+		      												 done=%t  
+		         												 blk_duplicated=[]
+		                       oldvec=vec_plus
+		                       newparents=get_parents([],childj)
+		                       if size(newparents,1)==size(p2,1) then
+			                        newparents=gsort(newparents,'lr','i')
+			                        p2=gsort(p2,'lr','i')
+			                        if newparents~=p2 then
+			                           amaj=childj
+						                   end
+		                       end
+		                       majplus=childj
+		                    end
+		                  else
+		                     if show_comment then 
+		                        disp('duplique1:')
+		                        disp('pas équivalence de l union des sorties du bloc '+string(primary(i)))
+		                     end
+		                     [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev]=duplique1(primary(i),..
+		                      typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
+		                     blk_duplicated=[blk_duplicated;size(typ_l,1)]
+		                     done=%t
+		                     oldvec=vec_plus
+		                     newparents=get_parents([],primary(i))
+		                     if size(newparents,1)==size(p2,1) then
+		                        newparents=gsort(newparents,'lr','i')
+		                        p2=gsort(p2,'lr','i')
+		                        if newparents~=p2 then
+			                         amaj=primary(i)
+		                        end
+		                     end
+		                     amaj=[amaj;blk_duplicated]
+		                     majplus=[childj;get_children2([],primary(i));primary(i);blk_duplicated]
+		                  end
 		  
-		  children=[primary(i);children]
-		  blkp=intersection(children,p2(:,1))
-		  if p12==p1 then
-		    ind2=sameport(clkconnect,blkp,childj,blk,port)
-		    if ind2~=[] then
-		      if show_comment then 
-			disp('del_union:')
-			disp('on enleve le lien entre '+string(blkp)+' et '+string(childj)+'  avec clk port = '+string(blk)+' '+string(port))
-		      end
-		      if blkp==[] then
-			disp('pb: le lien n existe pas')		
-		      end
-		      
-		      [clkconnect]=del_union(ind2,clkconnect)
-		      done=%t  
-		      blk_duplicated=[]
-		      oldvec=vec_plus
-		      newparents=get_parents([],childj)
-		      if size(newparents,1)==size(p2,1) then
-			newparents=gsort(newparents,'lr','i')
-			p2=gsort(p2,'lr','i')
-			if newparents~=p2 then
-			  amaj=childj
-			end
-		      end
-		      majplus=childj
-		      //sortir de toute les boucles et refaire le wire de primary
-		    else
-		      //si childplus est activé par un port différent du lien direct
-		      if show_comment then 
-			disp('do_union:')
-			disp('bloc '+string(childj)+' reçoit en entrée l union des sorties du bloc '+string(primary(i))+' avec clk port = '+string(blk)+' '+string(port))
-		      end
-		      [clkconnect]=do_union(childj,primary(i),blk,port,p12,clkconnect,connectmat,bllst)
-		      done=%t  
-		      blk_duplicated=[]
-		      oldvec=vec_plus
-		      newparents=get_parents([],childj)
-		      if size(newparents,1)==size(p2,1) then
-			newparents=gsort(newparents,'lr','i')
-			p2=gsort(p2,'lr','i')
-			if newparents~=p2 then
-			  amaj=childj
-			end
-		      end
-		      majplus=childj
-		    end
-		  else
-		    if show_comment then 
-		      disp('duplique1:')
-		      disp('pas équivalence de l union des sorties du bloc '+string(primary(i)))
-		    end
-		    [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,..
-                     critev]=duplique1(primary(i),typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
-		    blk_duplicated=[blk_duplicated;size(typ_l,1)]
-		    done=%t
-		    oldvec=vec_plus
-		    newparents=get_parents([],primary(i))
-		    if size(newparents,1)==size(p2,1) then
-		      newparents=gsort(newparents,'lr','i')
-		      p2=gsort(p2,'lr','i')
-		      if newparents~=p2 then
-			amaj=primary(i)
-		      end
-		    end
-		    amaj=[amaj;blk_duplicated]
-		    majplus=[childj;get_children2([],primary(i));primary(i);blk_duplicated]
-		  end
-		  
-		else
-		  
-		  
-		  blk1=[]
-		  primary1=my_setdiff(primary,primary(i))
-		  if or(typ_l(primary1)) then
-		    veci=find(childj==vec_plus)
-		    parents=allpar(allparptr(veci):allparptr(veci+1)-1,:)
-		    n_p1=size(primary1,1)
-		    for k=1:n_p1
-		      if find(primary1(k)==parents(:,1))~=[] then
-			blk1=primary1(k)
-		      end
-		    end
-		    
-		    
-		    if blk1~=[] & ~done then
-		      blk1=blk1(1)
-		      if show_comment then 
-			disp('il existe un primary different dans le wire')
-		      end
-		      
-		      if ~done & typ_l(blk1) then 
-			//non exclusif:
-			//on teste si les 2 sorties du if sont utilisées
-			double_if=find(blk1==clkconnect(:,1))
-			n_if=size(double_if,2)
-			outif=[]
-			k=1
-			for j1=1:n_if
-			  outif(k)=clkconnect(double_if(j1),2)
-			  k=k+1
-			end
-			//on cherche le fils direct de blk1 appartenant à parents
-			child2=get_children2([],blk1)
-			parentsj=[childj;parents(:,1)]
-			blk2=[]
-			for j2=1:size(child2,1)
-			  if find(child2(j2)==parentsj)~=[] then
-			    blk2=child2(j2)
-			  end
-			end
-			if blk2==[] then
-			  disp('pb: blk2 n existe pas') 			  
-			end
-			if find(1==outif)~=[] & find(2==outif)~=[] then
-			  //les 2 sorties du bloc if sont utilisées
-			  if show_pause then 
-			    disp('duplique_2:')
-			    disp('duplique bloc '+string(blk1)+' qui active le bloc '+string(blk2))
-			  end
-			  parentsdirect=get_parents([],blk2)
-			  [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,..
-                           cliptr,critev]=duplique_2(blk1,primary(i),blk,port,blk2,clkconnect,..
-                           connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev)
-			  done=%t
-			  oldvec=vec_plus
-			  
-			  newparents=get_parents([],blk2)
-			  if size(newparents,1)==size(parentsdirect,1) then
-			    newparents=gsort(newparents,'lr','i')
-			    p2=gsort(p2,'lr','i')
-			    if newparents~=parentsdirect then
-			      amaj=blk2
-			    end
-			  end
-			  amaj=[amaj;blk_duplicated]	
-			  majplus=[childj;blk_duplicated]
-			  
-			  //sortir de toute les boucles et refaire le wire de primary
-			else
-			  if show_comment then
-			    disp('duplique_union:')
-			    disp('bloc '+string(blk1)+' est dupliqué. Il reçoit en entrée une sortie du bloc '+string(primary(i))+'. Le bloc dupliqué active le bloc '+string(blk2))
-			    //disp('bloc '+string(blk1)+' reçoit en entrée l union des sorties du bloc '+string(primary(i)))
-			    if ~typ_l(blk1) then
-			      disp('pb: le bloc '+string(blk1)+' n est pas typ_l')			      
-			    end
-			  end
-			  parentsdirect=get_parents([],blk2)  
-			  [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,..
-                           cliptr,critev]=duplique_union(blk1,primary(i),blk,port,blk2,clkconnect,..
-                           connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev)
-			  done=%t  
-			  oldvec=vec_plus
-			  
-			  newparents=get_parents([],blk2)
-			  if size(newparents,1)==size(parentsdirect,1) then
-			    newparents=gsort(newparents,'lr','i')
-			    p2=gsort(p2,'lr','i')
-			    if newparents~=parentsdirect then
-			      amaj=blk2
-			    end
-			  end
-			  amaj=[amaj;blk_duplicated]
-			  majplus=[childj;blk2;get_children2([],blk1);blk_duplicated]
-			  
-			  //sortir de toute les boucles et refaire le wire de primary
-			end
-		      end
-		  
-		  
-		    end
-		  end
-		end
-		j=j+1
-	      end 
-	    end
-	  end
-	  l=l+1
-	end
+		               else
+		              		  blk1=[]
+		                  primary1=my_setdiff(primary,primary(i))
+		                  if or(typ_l(primary1)) then
+		                     veci=find(childj==vec_plus)
+		                     parents=allpar(allparptr(veci):allparptr(veci+1)-1,:)
+		                     n_p1=size(primary1,1)
+		                     for k=1:n_p1
+		                       if find(primary1(k)==parents(:,1))~=[] then
+			                        blk1=primary1(k)
+		                       end
+		                     end
+		               		    if blk1~=[] & ~done then
+		                        blk1=blk1(1)
+		                        if show_comment then 
+			                         disp('il existe un primary different dans le wire')
+		                        end
+		                		      if ~done & typ_l(blk1) then 
+			                         //non exclusif:
+			                         //on teste si les 2 sorties du if sont utilisées
+			                         double_if=find(blk1==clkconnect(:,1))
+			                         n_if=size(double_if,2)
+			                         outif=[]
+			                         k=1
+			                         for j1=1:n_if
+			                           outif(k)=clkconnect(double_if(j1),2)
+			                           k=k+1
+			                         end
+			                         //on cherche le fils direct de blk1 appartenant à parents
+			                         child2=get_children2([],blk1)
+			                         parentsj=[childj;parents(:,1)]
+			                         blk2=[]
+			                         for j2=1:size(child2,1)
+			                           if find(child2(j2)==parentsj)~=[] then
+			                              blk2=child2(j2)
+			                           end
+			                         end
+			                         if blk2==[] then
+			                            disp('pb: blk2 n existe pas') 			  
+			                         end
+			                         if find(1==outif)~=[] & find(2==outif)~=[] then
+			                            //les 2 sorties du bloc if sont utilisées
+			                            if show_pause then 
+			                               disp('duplique_2:')
+			                               disp('duplique bloc '+string(blk1)+' qui active le bloc '+string(blk2))
+			                            end
+			                            parentsdirect=get_parents([],blk2)
+			                            [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,..
+                                   cliptr,critev]=duplique_2(blk1,primary(i),blk,port,blk2,clkconnect,..
+                                   connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev)
+			                            done=%t
+			                            oldvec=vec_plus
+			                       			  newparents=get_parents([],blk2)
+			                            if size(newparents,1)==size(parentsdirect,1) then
+			                               newparents=gsort(newparents,'lr','i')
+			                               p2=gsort(p2,'lr','i')
+			                               if newparents~=parentsdirect then
+			                                  amaj=blk2
+			                               end
+			                            end
+			                            amaj=[amaj;blk_duplicated]	
+			                            majplus=[childj;blk_duplicated]
+			                      			  //sortir de toute les boucles et refaire le wire de primary
+			                         else
+			                            if show_comment then
+			                               disp('duplique_union:')
+			                               disp('bloc '+string(blk1)+' est dupliqué. Il reçoit en entrée une sortie du bloc '+string(primary(i))+'. Le bloc dupliqué active le bloc '+string(blk2))
+			                               //disp('bloc '+string(blk1)+' reçoit en entrée l union des sorties du bloc '+string(primary(i)))
+			                               if ~typ_l(blk1) then
+			                                  disp('pb: le bloc '+string(blk1)+' n est pas typ_l')			      
+			                               end
+			                            end
+			                            parentsdirect=get_parents([],blk2)  
+			                            [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,..
+                                   cliptr,critev]=duplique_union(blk1,primary(i),blk,port,blk2,clkconnect,..
+                                   connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev)
+			                            done=%t  
+			                            oldvec=vec_plus
+			                       			  newparents=get_parents([],blk2)
+			                            if size(newparents,1)==size(parentsdirect,1) then
+			                               newparents=gsort(newparents,'lr','i')
+			                               p2=gsort(p2,'lr','i')
+			                               if newparents~=parentsdirect then
+			                                  amaj=blk2
+			                               end
+			                            end
+			                            amaj=[amaj;blk_duplicated]
+			                            majplus=[childj;blk2;get_children2([],blk1);blk_duplicated]			  
+			                           //sortir de toute les boucles et refaire le wire de primary
+			                         end
+		                        end
+		               		    end
+		                   end
+		                 end
+		                 j=j+1
+	                end 
+	             end
+	          end
+	          l=l+1
+	       end
       end
       i=i+1
     end
   end
 endfunction
-
 
 function [ind2]=sameport(clkconnect,blkp,childj,blk,port)
   ind=[]
@@ -984,50 +954,39 @@ function [ind2]=sameport(clkconnect,blkp,childj,blk,port)
   if g~=[] then
     for m=1:size(g,2)
       if clkconnect(g(m),1)==blkp & clkconnect(g(m),3)==childj then
-	ind=[ind;g(m)]
+	       ind=[ind;g(m)]
       end
     end
     if ind~=[] then
       for m=1:size(ind,1)
-	for mm=1:size(g,2)
-	  if clkconnect(g(mm),1)==blk & clkconnect(g(mm),2)==port & clkconnect(g(mm),4)==clkconnect(ind(m),4) then
-	    ind2=[ind2;ind(m)]
-	  end
-	end
+	      for mm=1:size(g,2)
+	        if clkconnect(g(mm),1)==blk & clkconnect(g(mm),2)==port & clkconnect(g(mm),4)==clkconnect(ind(m),4) then
+	           ind2=[ind2;ind(m)]
+	        end
+	      end
       end
     end
   end
-  
 endfunction
-
-
-
 
 //enlève l'activation entre clk0 port0 et blk
 //et la remplace par l'union des sorties du bloc blk0
 function [clkconnect]=del_union(ind2,clkconnect)
-
   //on enlève les lignes de clkconnect liant blk0 et blk
-  clkconnect(ind2,:)=[]
-  
+  clkconnect(ind2,:)=[]  
 endfunction
 
 //enlève l'activation entre blk port et blk2
 function [clkconnect]=del_union2(blk,port,blk2,clkconnect)
-
-ind=[]
-f=find(clkconnect(:,3)==blk2)
-for i=1:size(f,2)
-  if clkconnect(f(i),1)==blk & clkconnect(f(i),2)==port then
-    ind=[ind;f(i)]
+  ind=[]
+  f=find(clkconnect(:,3)==blk2)
+  for i=1:size(f,2)
+    if clkconnect(f(i),1)==blk & clkconnect(f(i),2)==port then
+       ind=[ind;f(i)]
+    end
   end
-end
-
-clkconnect(ind,:)=[]
-
+  clkconnect(ind,:)=[]
 endfunction
-
-
 
 //enlève l'activation entre clk0 port0 et blk
 //et la remplace par l'union des sorties du bloc blk0
@@ -1060,23 +1019,20 @@ function [clkconnect]=do_union(blk,blk0,clk0,port0,p12,clkconnect,connectmat,bll
     f1=find(p12(:,1)==clk0)
     for k=1:size(f1,2)
       if p12(f1(k),2)==port0 then
-	p12(f1,:)=[]
-	n_p=n_p-1
+        	p12(f1,:)=[]
+	       n_p=n_p-1
       end
     end
     for k=1:n_p
       f2=find(p12(k,1)==clkconnect(:,1))
       for l=1:size(f2,2)
-	if clkconnect(f2(l),:)==[p12(k,1),p12(k,2),blk,clkco4] then
-	  clkconnect(f2(l),:)=[]
-	end
+	      if clkconnect(f2(l),:)==[p12(k,1),p12(k,2),blk,clkco4] then
+	         clkconnect(f2(l),:)=[]
+	      end
       end
     end
   end
-  
-    
 endfunction
-
 
 //on enlève le lien entre blk et blk2
 //pour le remplacer, au lieu de dupliquer blk puis de lui donner l'union des sorties de blk0,
@@ -1130,16 +1086,14 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
       connectmat(n_cmat,:)=connectmat(f(j),:)
       connectmat(n_cmat,3)=blk_duplicated(k)
     end
-  end 
-  
-  g=find(clkconnect(:,3)==blk)
-  
+  end   
+  g=find(clkconnect(:,3)==blk)  
   for k=1:n_bd
     for j=1:size(g,2)
       if clkconnect(g(j),:)~=[clk0,port0,blk,1] then
-	n_clkco=n_clkco+1
-	clkconnect(n_clkco,:)=clkconnect(g(j),:)
-	clkconnect(n_clkco,3)=blk_duplicated(k)
+	       n_clkco=n_clkco+1
+	       clkconnect(n_clkco,:)=clkconnect(g(j),:)
+	       clkconnect(n_clkco,3)=blk_duplicated(k)
       end
     end
     critev=[critev;critev(clkptr(blk):clkptr(blk+1)-1)]
@@ -1149,10 +1103,8 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
     corinv(blk_duplicated(k))=corinv(blk)
     clkptr(blk_duplicated(k)+1)=clkptr(blk_duplicated(k))+clkptr(blk+1)-clkptr(blk)
     cliptr(blk_duplicated(k)+1)=cliptr(blk_duplicated(k))+cliptr(blk+1)-cliptr(blk)
-  end
-  
+  end  
 endfunction
-
 
 //idem duplique_2, mais comme le bloc à dupliquer n'à qu'un port de connecté,
 //au lieu de le dupliquer deux fois, on ne le duplique qu'une fois,
@@ -1212,10 +1164,10 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
     end
     for j=1:n_g
       if j~=ind then
-	clkco_tmp=clkconnect(g(j),:)
-	clkco12=clkco_tmp(1,1:2)
-	clkco4=clkco_tmp(1,4)
-	clkconnect=[clkconnect;clkco12,blk_duplicated(k),clkco4]
+	       clkco_tmp=clkconnect(g(j),:)
+	       clkco12=clkco_tmp(1,1:2)
+	       clkco4=clkco_tmp(1,4)
+	       clkconnect=[clkconnect;clkco12,blk_duplicated(k),clkco4]
       end
     end
     critev=[critev;critev(clkptr(blk):clkptr(blk+1)-1)]
@@ -1225,8 +1177,7 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
     corinv(blk_duplicated(k))=corinv(blk)
     clkptr(blk_duplicated(k)+1)=clkptr(blk_duplicated(k))+clkptr(blk+1)-clkptr(blk)
     cliptr(blk_duplicated(k)+1)=cliptr(blk_duplicated(k))+cliptr(blk+1)-cliptr(blk)
-  end
-  
+  end  
 endfunction
 
 function [clkconnect]=del_4(blk,clk0,port0,clkconnect)
@@ -1305,8 +1256,7 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
   n_clkco0=n_clkco;
   nblock=size(typ_l,1);
   nblock0=nblock;
-  n_cmat=size(connectmat,1);
-  
+  n_cmat=size(connectmat,1);  
   nblock=nblock+1
   f=find(clkconnect(:,3)==blk2)
   n_f=size(f,2)
@@ -1314,13 +1264,11 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
     if clkconnect(f(k),1)==blk & clkconnect(f(k),2)==port then
       clkconnect(f(k),1)=nblock
     end
-  end
-      
+  end      
   for i=1:size(p,1)
     n_clkco=n_clkco+1
     clkconnect(n_clkco,:)=[p(i,1),p(i,2),nblock,1]
-  end
-  
+  end  
   f=find(connectmat(:,3)==blk)
   n_f=size(f,2)
   for j=1:n_f
@@ -1337,10 +1285,8 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
   dep_ut(blk_duplicated,:)=dep_ut(blk,:)
   corinv(blk_duplicated)=corinv(blk)
   clkptr(blk_duplicated+1)=clkptr(blk_duplicated)+clkptr(blk+1)-clkptr(blk)
-  cliptr(blk_duplicated+1)=cliptr(blk_duplicated)+cliptr(blk+1)-cliptr(blk)
-  
+  cliptr(blk_duplicated+1)=cliptr(blk_duplicated)+cliptr(blk+1)-cliptr(blk)  
 endfunction 
-
 
 function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,..
           cliptr,critev]=duplique_5(clk0,port0,blk,port,blk2,p,clkconnect,..
@@ -1382,50 +1328,44 @@ function [blk_duplicated,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,
   for k=1:n_f
     for i=1:size(p,1)
       if clkconnect(f(k),1)==p(i,1) & clkconnect(f(k),2)==p(i,2) then
-	clkconnect(f(k),3)=nblock
-	clkconnect(f(k),4)=1
+	       clkconnect(f(k),3)=nblock
+	       clkconnect(f(k),4)=1
       end
     end
-  end
-      
+  end      
   f=find(connectmat(:,3)==blk)
   n_f=size(f,2)
   for j=1:n_f
     n_cmat=n_cmat+1
     connectmat(n_cmat,:)=connectmat(f(j),:)
     connectmat(n_cmat,3)=nblock
-  end
-    
-  blk_duplicated=nblock
-  
-  h=find(clkconnect(:,1)==blk)
-  
+  end    
+  blk_duplicated=nblock  
+  h=find(clkconnect(:,1)==blk)  
   for j=1:size(h,2)
     n_clkco=n_clkco+1
     clkconnect(n_clkco,:)=clkconnect(h(j),:)
     clkconnect(n_clkco,1)=blk_duplicated
-  end
-  
+  end  
   critev=[critev;critev(clkptr(blk):clkptr(blk+1)-1)]
   bllst(blk_duplicated)=bllst(blk)
   typ_l(blk_duplicated)=%t
   dep_ut(blk_duplicated,:)=dep_ut(blk,:)
   corinv(blk_duplicated)=corinv(blk)
   clkptr(blk_duplicated+1)=clkptr(blk_duplicated)+clkptr(blk+1)-clkptr(blk)
-  cliptr(blk_duplicated+1)=cliptr(blk_duplicated)+cliptr(blk+1)-cliptr(blk)
-  
+  cliptr(blk_duplicated+1)=cliptr(blk_duplicated)+cliptr(blk+1)-cliptr(blk)  
 endfunction 
 
 function bloknul=bloknull()
-bloknul=[]
-f=find(typ_l==%t)
-n_f=size(f,2)
-for i=1:n_f
-  g=find(clkconnect(:,3)==f(i))
-  if g==[] then
-    bloknul=[bloknul;f(i)]
+  bloknul=[]
+  f=find(typ_l==%t)
+  n_f=size(f,2)
+  for i=1:n_f
+    g=find(clkconnect(:,3)==f(i))
+    if g==[] then
+       bloknul=[bloknul;f(i)]
+    end
   end
-end
 endfunction
 
 function [parents]=get_parents2(parents,blk,port)
@@ -1435,21 +1375,20 @@ function [parents]=get_parents2(parents,blk,port)
   if n_f>0 then
     for i=1:n_f
       if clkconnect(f(i),4)==port then
-	clki1=clkconnect(f(i),1)
-	clki2=clkconnect(f(i),2)
-	g=find(clki1==parents(:,1))
-	if g==[] | (g~=[] & parents(g,2)~=clki2) then
-	  parents(k,1)=clki1
-	  parents(k,2)=clki2
-	  k=k+1
-	end
+	       clki1=clkconnect(f(i),1)
+	       clki2=clkconnect(f(i),2)
+	       g=find(clki1==parents(:,1))
+	       if g==[] | (g~=[] & parents(g,2)~=clki2) then
+	          parents(k,1)=clki1
+	          parents(k,2)=clki2
+	          k=k+1
+	       end
       end
     end
   end
 endfunction
 
 //suppression des liens inutiles
-
 function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
   amaj=[]
   for i=1:size(vec_plus,1)
@@ -1462,17 +1401,17 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
     while j<=n_p & ~done
       par1=parents(j,1)
       if par1~=0 & typ_l(par1) then
-	n_out=clkptr(par1+1)-clkptr(par1)
-	f=find(par1==parents)
-	if size(f,2)==n_out then
-	  if show_comment then
-	    disp('del_inutile:')
-	    disp('les liens entre les blocs '+string(par1)+' et '+string(blk)+' sont supprimés')
-	  end
-	  [clkconnect]=del_inutile(clkconnect,par1,n_out,blk,port)
-	  done=%t
-	  amaj=[amaj;par1;blk]
-	end
+	       n_out=clkptr(par1+1)-clkptr(par1)
+	       f=find(par1==parents)
+	       if size(f,2)==n_out then
+	          if show_comment then
+	             disp('del_inutile:')
+	             disp('les liens entre les blocs '+string(par1)+' et '+string(blk)+' sont supprimés')
+	          end
+	          [clkconnect]=del_inutile(clkconnect,par1,n_out,blk,port)
+	          done=%t
+	          amaj=[amaj;par1;blk]
+	       end
       end
       j=j+1
     end
@@ -1494,8 +1433,6 @@ function [clkconnect]=del_inutile(clkconnect,blk0,n_out,blk,port)
     clkconnect($+1,:)=[p(i,1),p(i,2),blk,port]
   end
 endfunction
-
-
       
 //on cherche les if activés 2 fois
 function [done,blk_duplicated,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
@@ -1512,29 +1449,27 @@ function [done,blk_duplicated,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,cl
       double_if=find(i==clkconnect(:,3))
       n_if=size(double_if,2)
       if n_if>1 then
-	act_clk1=get_actclk(clkconnect(double_if(1),1),vec_clk)
-	act_clk2=get_actclk(clkconnect(double_if(2),1),vec_clk)
-	if act_clk1==act_clk2 then
-	  if show_comment then
-	    disp('duplique1')
-	    disp('bloc if '+string(i)+' activé 2 fois => on le duplique')
-	  end
-	  [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,..
-           critev]=duplique1(i,typ_l,clkconnect,connectmat,bllst,dep_ut,..
-           corinv,clkptr,cliptr,critev) 
-	  amaj=[amaj;i;get_children2([],i);nblock]
-	  n_clkco=size(clkconnect,1);
-	  nblock=length(bllst);
-	  n_cmat=size(connectmat,1);
-	  blk_duplicated=[blk_duplicated;nblock]
-	  done=%t
-	end
+	       act_clk1=get_actclk(clkconnect(double_if(1),1),vec_clk)
+	       act_clk2=get_actclk(clkconnect(double_if(2),1),vec_clk)
+	       if act_clk1==act_clk2 then
+	          if show_comment then
+	             disp('duplique1')
+	             disp('bloc if '+string(i)+' activé 2 fois => on le duplique')
+	          end
+	          [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,..
+             critev]=duplique1(i,typ_l,clkconnect,connectmat,bllst,dep_ut,..
+             corinv,clkptr,cliptr,critev) 
+	          amaj=[amaj;i;get_children2([],i);nblock]
+	          n_clkco=size(clkconnect,1);
+	          nblock=length(bllst);
+	          n_cmat=size(connectmat,1);
+	          blk_duplicated=[blk_duplicated;nblock]
+	          done=%t
+	       end
       end
     end
   end
 endfunction
-
-
 
 //on duplique les blocs if activés 2x par une horloge commune
 function [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
@@ -1604,10 +1539,10 @@ function [allchildren2,allchildren2ptr,children2,children2ptr,..
     n_out=clkptr(i+1)-clkptr(i)
     if n_out>0 then
       for j=1:n_out
-	k=k+1
-	children_tmp=get_children([],i,j)
-	children=[children;children_tmp]
-	childrenptr(k)=size(children_tmp,1)+childrenptr(k-1)
+	      k=k+1
+	      children_tmp=get_children([],i,j)
+	      children=[children;children_tmp]
+	      childrenptr(k)=size(children_tmp,1)+childrenptr(k-1)
       end
     else
       k=k+1
@@ -1616,8 +1551,7 @@ function [allchildren2,allchildren2ptr,children2,children2ptr,..
     
     //appelé par:
     //clkgap=get_gap(clkptr)
-    //children(childrenptr(i+j-1+clkgap(i)):childrenptr(i+j+clkgap(i))-1)
-  
+    //children(childrenptr(i+j-1+clkgap(i)):childrenptr(i+j+clkgap(i))-1)  
   end
 endfunction
 
@@ -1665,51 +1599,47 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,primary)
   if n_f1>0 then
     for i1=1:n_f1
       if primary(f1(i1),2)==port then
-	primary(f1(i1),:)=[]
+	       primary(f1(i1),:)=[]
       end
     end
   end
   n_p=size(primary,1)
-
   if n_p>0 then
-
-
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
-	primary1=primary(i,1)
-if typ_l(primary1) then   //RN
-	  w=get_allchildren2port(primary1)
-	else
-	  w=[]
-end
-	w=[primary(i,:);w]
-	//on cherche d'où vient l'entrée des blocs: g
-	if dep_ut(primary1,1) then
-	  g=connectmat(find(connectmat(:,3)==primary1),1)
-	  //on garde dans g les termes >-1
-	  //i.e. les blocs activés par l'horloge clk
-	  g=g(find(vec(g)>-1))
-	  if g~=[] then
-	    vec(primary1)=max(vec(primary1),max(vec(g))+1)
-	  end
-	end
-	vec(w(:,1))=vec(primary1)
+	      primary1=primary(i,1)
+        if typ_l(primary1) then   //RN
+	         w=get_allchildren2port(primary1)
+	      else
+	         w=[]
+        end
+	      w=[primary(i,:);w]
+	      //on cherche d'où vient l'entrée des blocs: g
+	      if dep_ut(primary1,1) then
+	         g=connectmat(find(connectmat(:,3)==primary1),1)
+	         //on garde dans g les termes >-1
+	         //i.e. les blocs activés par l'horloge clk
+	         g=g(find(vec(g)>-1))
+	         if g~=[] then
+	            vec(primary1)=max(vec(primary1),max(vec(g))+1)
+	         end
+	      end
+	      vec(w(:,1))=vec(primary1)
       end
       if vec==oldvec2 then
-	fromfixe=%t
+	       fromfixe=%t
       else
-	oldvec2=vec
+	       oldvec2=vec
       end
       counter2=counter2+1
       if counter2>2*nblock then
-	//améliorer la borne inf!?
-	bouclalg=%t
-	disp('boucle algébrique détectée dans ordo2')
-	disp('le vec ne converge pas...')
+	       //améliorer la borne inf!?
+	       bouclalg=%t
+	       disp('boucle algébrique détectée dans ordo2')
+	       disp('le vec ne converge pas...')
       end
     end
   end
-
 endfunction
 
 function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
@@ -1736,40 +1666,34 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
   //on met les enfants à 1
   vec(primary(:,1))=1
 
-  n_p=size(primary,1)
-  
+  n_p=size(primary,1)  
   if n_p>1 then
-
-
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
-	w=primary(i)
-	if dep_ut(w,1) then
-	    g=connectmat(find(connectmat(:,3)==w),1)
-	    if (g ~= []) then
-	      vec(w)=vec(w)-1
-	      vec(w)=max(vec(w),max(vec(g)))+1
-	    end
-	end
+	      w=primary(i)
+	      if dep_ut(w,1) then
+	         g=connectmat(find(connectmat(:,3)==w),1)
+	         if (g ~= []) then
+	            vec(w)=vec(w)-1
+	            vec(w)=max(vec(w),max(vec(g)))+1
+	         end
+	      end
       end
       if vec==oldvec2 then
-	fromfixe=%t
+	       fromfixe=%t
       else
-	oldvec2=vec
+	       oldvec2=vec
       end
       counter2=counter2+1
       if counter2>2*nblock then
-	//améliorer la borne inf!?
-	bouclalg=%t
-	disp('boucle algébrique détectée')
-	disp('le vec ne converge pas...')
+	       //améliorer la borne inf!?
+	       bouclalg=%t
+	       disp('boucle algébrique détectée')
+	       disp('le vec ne converge pas...')
       end
     end
   end
-
 endfunction
-
-
 
 function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,..
           blk_duplicated,clkptr,cliptr,critev]=ini_ordo(blk,port,clkconnect,..
@@ -1786,7 +1710,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,.
   if n_f1>0 then
     for i1=1:n_f1
       if primary(f1(i1),2)==port then
-	primary(f1(i1),:)=[]
+	       primary(f1(i1),:)=[]
       end
     end
   end
@@ -1796,7 +1720,7 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,.
     logic=0
     for i=1:n_p
       if typ_l(primary(i)) then
-	logic=logic+1
+	       logic=logic+1
       end
     end
     if logic<2 then
@@ -1809,7 +1733,6 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,.
   end
   primary=get_childrenport([],blk,port)
 endfunction
-
 
 //On cherche les blocs à dupliquer qui empêche l'ordonnancement du 1er niveau
 //le vec de sortie nous permet de l'ordancer
@@ -1840,34 +1763,32 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,b
   //on met les enfants à 1
   vec(primary(:,1))=1
   
-  
   while ~pointfixe & ~bouclalg
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
-	w0=primary(i,:)
-if typ_l(primary(i,1)) then //RN	
-	w=get_allchildren2port(primary(i,1))
-else
-  w=[]
-end
-	//on enleve les blocs du primary qui se trouve dans w
-	n_w=size(w,1)
-	if n_w>0 then
-	  del1=[]
-	  for k1=1:n_p
-	    f=find(primary(k1,1)==w(:,1))
-	    del1=[del1,f]
-	  end
-	  w(del1',:)=[]
-	end
-	w=[w0;w]
-        
+       	w0=primary(i,:)
+        if typ_l(primary(i,1)) then //RN	
+	         w=get_allchildren2port(primary(i,1))
+        else
+           w=[]
+        end
+	      //on enleve les blocs du primary qui se trouve dans w
+	      n_w=size(w,1)
+	      if n_w>0 then
+	         del1=[]
+	         for k1=1:n_p
+	           f=find(primary(k1,1)==w(:,1))
+	           del1=[del1,f]
+	         end
+	         w(del1',:)=[]
+	      end
+	      w=[w0;w]
         wu=unique(w(find(dep_ut(w(:,1),1)),1))        
         //on cherche d'où vient l'entrée des blocs: g
         if (wu ~=[]) then
            ind=dsearch(connectmat(:,3),wu,'d')
            h=connectmat(find(ind),1)
-	   h=h(find(vec(h)>-1))
+	         h=h(find(vec(h)>-1))
            if h ~= [] then
               vec(w(:,1))=vec(w(:,1))-1
               vec(w(:,1))=max([vec(w(:,1));vec(h)])+1
@@ -1878,21 +1799,19 @@ end
       end
 
       if vec==oldvec2 then
-	fromfixe=%t
+	       fromfixe=%t
       else
-	oldvec2=vec
+	       oldvec2=vec
       end
       counter2=counter2+1
       if counter2>2*nblock then
-	//améliorer la borne inf!?
-	bouclalg=%t
-	disp('boucle algébrique détectée dans ordo1')
-	disp('le vec ne converge pas...')
+	       //améliorer la borne inf!?
+	       bouclalg=%t
+	       disp('boucle algébrique détectée dans ordo1')
+	       disp('le vec ne converge pas...')
       end
     end
-   
     gap=find_gap(vec(primary(:,1)))
-
     if gap then
       counter2=0  
       oldvec2=[]
@@ -1903,146 +1822,133 @@ end
       vec(primary(:,1))=1
       while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
         for i=1:n_p
-	  w0=primary(i,:)
+       	  w0=primary(i,:)
           if typ_l(primary(i,1)) then //RN	
-	    w=get_allchildren2port(primary(i,1))
+	           w=get_allchildren2port(primary(i,1))
           else
-            w=[]
-	  end
-	  //on enleve les blocs du primary qui se trouve dans w
-	  n_w=size(w,1)
-	  if n_w>0 then
-	    del1=[]
-	    for k1=1:n_p
-	      f=find(primary(k1,1)==w(:,1))
-	      del1=[del1,f]
-	    end
-	    w(del1',:)=[]
-	  end
-	  w=[w0;w]
-
-	  //on cherche d'où vient l'entrée des blocs: g
-	  n_w=size(w,1)
-	  for k=1:n_w
-	    if dep_ut(w(k,1),1) then
-	      g=connectmat(find(connectmat(:,3)==w(k,1)),1)
-	      if g==[] then
-	        if show_comment then
-		  disp('pb: le bloc '+string(w(k,1))+' est dep_ut mais ne provient d aucun bloc!')
+             w=[]
 	        end
-	      else
-	        //on garde les blocs de g qui ne sont pas dans w  
-	        h=my_setdiff(g,w(:,1))
-	        if h==[] then
-		  //si aucun bloc ne vient d'en dehors du faisceau
-		  vec(w(k,1))=max(vec(g))
-	        else 
-		  //on garde dans h les termes >-1
-		  //i.e. les blocs activés par l'horloge clk
-		  h=h(find(vec(h)>-1))
-		  if h~=[] then
-		    vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
-		  else 
-		    vec(w(k,1))=max(vec(w(:,1)))
-		  end
+	        //on enleve les blocs du primary qui se trouve dans w
+	        n_w=size(w,1)
+	        if n_w>0 then
+	           del1=[]
+	           for k1=1:n_p
+	             f=find(primary(k1,1)==w(:,1))
+	             del1=[del1,f]
+	           end
+	           w(del1',:)=[]
 	        end
-	      end
-	    else
-	      //si le bloc w(k) n'est pas dep_ut
-	      vec(w(k,1))=vec(primary(i,1))
-	    end
-	    //if k==1 & counter2==0 then
-	    if k==1 then
-	      //si w(k) est primary(i) on descend son n° à ses enfants
-	      vec(w(:,1))=vec(w(k,1))
-	    end
-	  end
-        end
+	        w=[w0;w]
+      	   //on cherche d'où vient l'entrée des blocs: g
+	        n_w=size(w,1)
+	        for k=1:n_w
+	          if dep_ut(w(k,1),1) then
+	             g=connectmat(find(connectmat(:,3)==w(k,1)),1)
+	             if g==[] then
+	                if show_comment then
+		                 disp('pb: le bloc '+string(w(k,1))+' est dep_ut mais ne provient d aucun bloc!')
+	                end
+	             else
+	                //on garde les blocs de g qui ne sont pas dans w  
+	                h=my_setdiff(g,w(:,1))
+	                if h==[] then
+		                 //si aucun bloc ne vient d'en dehors du faisceau
+		                 vec(w(k,1))=max(vec(g))
+	                else 
+		                 //on garde dans h les termes >-1
+		                 //i.e. les blocs activés par l'horloge clk
+		                 h=h(find(vec(h)>-1))
+		                 if h~=[] then
+		                    vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
+		                 else 
+		                    vec(w(k,1))=max(vec(w(:,1)))
+		                 end
+	                end
+	             end
+	          else
+	             //si le bloc w(k) n'est pas dep_ut
+	             vec(w(k,1))=vec(primary(i,1))
+	          end
+	          //if k==1 & counter2==0 then
+	          if k==1 then
+	             //si w(k) est primary(i) on descend son n° à ses enfants
+	             vec(w(:,1))=vec(w(k,1))
+	          end
+	        end
+       end
+       if vec==oldvec2 then
+	        fromfixe=%t
+       else
+	        oldvec2=vec
+       end
+       counter2=counter2+1
+       if counter2>2*nblock then
+	        //améliorer la borne inf!?
+	        bouclalg=%t
+	        disp('boucle algébrique détectée dans ordo1')
+	        disp('le vec ne converge pas...')
+       end
+     end    
+     for i=1:n_p
+       if typ_l(primary(i,1)) then
+	        w=get_allchildren2port(primary(i,1))
+	        //on met le primary au max de ses enfants
+	        if w~=[] then
+	           vec(primary(i,1))=max(vec(w(:,1)))
+	        end
+       end
+     end
+   end
 
-        if vec==oldvec2 then
-	  fromfixe=%t
-        else
-	  oldvec2=vec
-        end
-        counter2=counter2+1
-        if counter2>2*nblock then
-	  //améliorer la borne inf!?
-	  bouclalg=%t
-	  disp('boucle algébrique détectée dans ordo1')
-	  disp('le vec ne converge pas...')
-        end
-      end
-    
-      for i=1:n_p
-        if typ_l(primary(i,1)) then
-	  w=get_allchildren2port(primary(i,1))
-	  //on met le primary au max de ses enfants
-	  if w~=[] then
-	    vec(primary(i,1))=max(vec(w(:,1)))
-	  end
-        end
-      end
-    end
-
-    if (gap | oldvec1==vec | counter1>=n_p) & ~bouclalg then
+   if (gap | oldvec1==vec | counter1>=n_p) & ~bouclalg then
       children=get_allchildrenport(blk,port)
-      //if blk=0 then
-      //children=get_allchildren2(blk)
-      //else
-      //end
-      
       n_c=size(children,1)
       for i=1:n_c
-	if typ_l(children(i,1)) then
-	  //w=children2(children2ptr(children(i)):children2ptr(children(i)+1)-1)
-	  w=get_children2port([],children(i,1))
-	  dupl=find(vec(w(:,1))==max(vec(w(:,1))))
-	  n_w=size(w,1)
-	  if size(dupl,2)<n_w then
-	    //si tous les enfants d'un même bloc n'ont pas le même n°, on duplique le parent
-
-	    blk0=children(i,1)
-	    port0=children(i,2)
-	    blk1=w(dupl(1),1)
-	    port1=w(dupl(1),2)
-	    //rq: blk1 peut être un vecteur
-	    if show_comment then
-	      disp('duplique le bloc '+string(blk0)+' qui active le bloc '+string(blk1))
-	      disp('trouvé au bout de la '+string(counter1+1)+ 'ème boucle')
-	    end
-	    [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev]=duplique3(blk0,blk1,..
-             port1,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
-	    n_clkco=size(clkconnect,1);
-	    nblock=size(typ_l,1);
-	    blk_duplicated=[blk_duplicated;nblock];
-	    n_cmat=size(connectmat,1);
-	    vec(nblock)=max(vec(w(:,1)))
-	    vec(blk0)=max(vec(get_allchildren2(blk0)))
-	    primary=[primary;nblock,port0]
-	    n_p=n_p+1
-	    done=%t
-	  end
-	end
+	      if typ_l(children(i,1)) then
+	     	   w=get_children2port([],children(i,1))
+	         dupl=find(vec(w(:,1))==max(vec(w(:,1))))
+	         n_w=size(w,1)
+	         if size(dupl,2)<n_w then
+	            //si tous les enfants d'un même bloc n'ont pas le même n°, on duplique le parent
+        	     blk0=children(i,1)
+	            port0=children(i,2)
+	            blk1=w(dupl(1),1)
+	            port1=w(dupl(1),2)
+	            //rq: blk1 peut être un vecteur
+	            if show_comment then
+	               disp('duplique le bloc '+string(blk0)+' qui active le bloc '+string(blk1))
+	               disp('trouvé au bout de la '+string(counter1+1)+ 'ème boucle')
+	            end
+	            [typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev]=duplique3(blk0,blk1,..
+               port1,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
+	            n_clkco=size(clkconnect,1);
+	            nblock=size(typ_l,1);
+	            blk_duplicated=[blk_duplicated;nblock];
+	            n_cmat=size(connectmat,1);
+	            vec(nblock)=max(vec(w(:,1)))
+	            vec(blk0)=max(vec(get_allchildren2(blk0)))
+	            primary=[primary;nblock,port0]
+	            n_p=n_p+1
+	            done=%t
+	         end
+	      end
       end
-    end
-    
-    if ~done & oldvec1==vec then
+   end
+   if ~done & oldvec1==vec then
       //disp('point fixe atteint au bout de la '+string(counter1+1)+ 'ème boucle')
       pointfixe=%t
-    end
-      
-    done=%f
-    fromfixe=%f
-    oldvec1=vec
-    counter1=counter1+1
-    counter2=0
-  end //fin du while
+   end
+   done=%f
+   fromfixe=%f
+   oldvec1=vec
+   counter1=counter1+1
+   counter2=0
+ end //fin du while
   
 endfunction
 
 //On cherche les blocs à dupliquer qui empêche l'ordonnancement du 1er niveau
 //le vec de sortie nous permet de l'ordancer
-
 //détermine s'il existe un trou dans le vec
 //exemple: vec=[1;3;5;4] il manque un 2
 function [gap]=find_gap(vec)
@@ -2053,7 +1959,7 @@ function [gap]=find_gap(vec)
   if n_vs>1 then
     while ~gap & i<n_vs
       if vec_sort(i+1)-vec_sort(i)>1 then
-	gap=%t;
+	       gap=%t;
       end
       i=i+1
     end
@@ -2118,20 +2024,6 @@ endfunction
 
 //donne l'ordre de compilation des blocs du primary
 //convertit le numéro de ligne de vecordo en numéro de bloc
-function ordoclk=ordo_vec(primary,vecordo)
-  ordoclk=[]
-  while vecordo~=[]
-    minim=find(min(vecordo)==vecordo)
-    n_m=size(minim,1)
-    for i=1:n_m
-      ordoclk=[ordoclk;primary(minim(i))]
-      vecordo(minim(i))=[]
-      primary(minim(i))=[]
-    end
-  end
-endfunction
-
-
 function ordoclk=ordo_vecport(primary,vecordo)
   ordoclk=[]
   while vecordo~=[]
@@ -2173,7 +2065,7 @@ function [vec_plus]=update_vec_plus(vec_plus,blk)
       vec_plus(g')=[]
     else
       if find(vec_plus==blk(i))==[]
-	vec_plus=[vec_plus;blk(i)]
+	       vec_plus=[vec_plus;blk(i)]
       end
     end
   end
@@ -2189,59 +2081,49 @@ function [vec_plus]=get_plus2()
     if size(f,2)>1 then
       n_in=cliptr(i+1)-cliptr(i)
       for j=1:n_in
-	g=find(clkconnect(f,4)==j)
-	if size(g,2)>1 then
-	  h=find(i==vec_plus(:,1))
-	  if h==[] | (h~=[] & vec_plus(h,2)~=j) then
-	    vec_plus=[vec_plus;i,j]
-	  end
-	end
+	      g=find(clkconnect(f,4)==j)
+	      if size(g,2)>1 then
+	         h=find(i==vec_plus(:,1))
+	         if h==[] | (h~=[] & vec_plus(h,2)~=j) then
+	            vec_plus=[vec_plus;i,j]
+	         end
+	      end
       end
     end
   end
 endfunction
 
-
 function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
           cliptr,critev]=paksazi1(typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev)
 
   vec_clk=get_clocks(clkconnect,clkptr);
-  //vec_clk=[0; find(~typ_l&(clkptr(2:$)-clkptr(1:$-1))>0)'];
-  vec_clk=gsort(vec_clk,'g','i')
-  //on enlève le temps continu
-  //vec_clk=setdiff(vec_clk,0)
-  vec_clk0=vec_clk
-  
+  vec_clk=gsort(vec_clk,'lr','i')
+  vec_clk0=vec_clk(:,1)
   //suppression des liens inutiles
   [vec_plus]=get_plus2()
   if show_comment then
     disp('avant del_inutile')
   end
   [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
-  
-  
   //on duplique les if du primary activés 2 fois, ayant pour ancetre une horloge commune
   done=%t
   while done
     [done,blk_duplicated,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
-     cliptr,critev,amaj]=if_double_activated(vec_clk,typ_l,clkconnect,connectmat,..
+     cliptr,critev,amaj]=if_double_activated(vec_clk0,typ_l,clkconnect,connectmat,..
      bllst,dep_ut,corinv,clkptr,cliptr,critev);
     if (blk_duplicated ~=[]) then
-      vec_clk=set_primary_clk(vec_clk,blk_duplicated,vec_clk($))
+      vec_clk0=set_primary_clk(vec_clk0,blk_duplicated,vec_clk0($))
     end
   end
-  
-  
   if show_pause then 
     disp('fin de duplique les if activés 2 fois')
     pause
   end
   
   //On fait une boucle while, au cas où des doubles activations de bloc if seraient créées lors de la duplication
-  
   //existe le temps continu?
   temps_continu=%f
-  if vec_clk(1)==0 then
+  if vec_clk0(1)==0 then
     temps_continu=%t
   end
   
@@ -2261,68 +2143,57 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
       duplicated=%f
       counter=counter+1
       i=1
-      while i<=size(vec_clk,1)
-	if vec_clk(i)==0 then
-	  //disp('avant get_wire continu')
-	  [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
+      while i<=size(vec_clk0,1)
+	      if vec_clk0(i)==0 then
+	        [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
            cliptr,critev,vec_plus,allpar,allparptr,amaj,oldvec,majplus]=get_wire2([],0,0,typ_l,clkconnect,..
            connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev,vec_plus,allpar,allparptr);
-	  //disp('après get_wire continu')
-	  if done==%t then
-	    if blk_duplicated~=[] then
-	      vec_clk=set_primary_clk(vec_clk,blk_duplicated,vec_clk($))
-	      [clkconnect]=cleanup(clkconnect)
-	    else
-	      [clkconnect]=cleanup(clkconnect)
-	    end
-	    vec_plus=update_vec_plus(vec_plus,majplus)
-	    [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec_plus,amaj)
-	    //disp('après maj continu')
-	    disp(i)
-	    duplicated=%t
-	  end
-	  vec_clk=set_primary_clk(vec_clk,primary,vec_clk(i))
-	else
-	  n_out=clkptr(vec_clk(i)+1)-clkptr(vec_clk(i))
-	  //n_out=size(bllst(vec_clk(i)).evtout,1)
-	  if n_out>0 then
-	    j=1
-	    while j<=n_out
-	      //parcours des wire avec duplication éventuelle d'un if au primary
-	      //disp('avant get_wire2 discret')
-	      [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
-               cliptr,critev,vec_plus,allpar,allparptr,amaj,oldvec,majplus]=get_wire2([],vec_clk(i),j,..
+	  	     if done==%t then
+	          if blk_duplicated~=[] then
+	            vec_clk0=set_primary_clk(vec_clk0,blk_duplicated,vec_clk0($))
+	            [clkconnect]=cleanup(clkconnect)
+	          else
+	            [clkconnect]=cleanup(clkconnect)
+	          end
+	          vec_plus=update_vec_plus(vec_plus,majplus)
+	          [allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec_plus,amaj)
+	          duplicated=%t
+	        end
+	        vec_clk0=set_primary_clk(vec_clk0,primary,vec_clk0(i))
+	      else
+	        n_out=clkptr(vec_clk0(i)+1)-clkptr(vec_clk0(i))
+	        if n_out>0 then
+	          j=1
+	          while j<=n_out
+	            //parcours des wire avec duplication éventuelle d'un if au primary
+	            //disp('avant get_wire2 discret')
+	            [done,blk_duplicated,primary,wire,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,..
+               cliptr,critev,vec_plus,allpar,allparptr,amaj,oldvec,majplus]=get_wire2([],vec_clk0(i),j,..
                typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,clkptr,cliptr,critev,vec_plus,allpar,allparptr);
-	      //disp('après get_wire2 discret')
-	      if done==%t then
-		if blk_duplicated~=[] then
-		  vec_clk=set_primary_clk(vec_clk,blk_duplicated,vec_clk($))
-		  [clkconnect]=cleanup(clkconnect)
-		else
-		  [clkconnect]=cleanup(clkconnect)
-		end
-		vec_plus=update_vec_plus(vec_plus,majplus)
-		
-		[allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec_plus,amaj)
-		//disp('apres maj discret')
-		duplicated=%t
+	            //disp('après get_wire2 discret')
+	            if done==%t then
+		            if blk_duplicated~=[] then
+		              vec_clk0=set_primary_clk(vec_clk0,blk_duplicated,vec_clk0($))
+		              [clkconnect]=cleanup(clkconnect)
+		            else
+		              [clkconnect]=cleanup(clkconnect)
+		            end
+		            vec_plus=update_vec_plus(vec_plus,majplus)
+		          		[allpar,allparptr]=maj_allpar(allpar,allparptr,clkconnect,oldvec,vec_plus,amaj)
+		          		duplicated=%t
+	            end
+	            vec_clk0=set_primary_clk(vec_clk0,primary,vec_clk0(i))
+	            if ~done then
+		            j=j+1
+	            end
+	          end
+	        end
 	      end
-	      vec_clk=set_primary_clk(vec_clk,primary,vec_clk(i))
 	      if ~done then
-		j=j+1
+	        i=i+1
 	      end
-	    end
-	  end
-	end
-	if ~done then
-	  i=i+1
-	end
       end
     end
-    //disp('nombre de boucles')
-    //disp(counter)
-    
-    
   end
 
   if show_pause then 
@@ -2332,7 +2203,7 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
 
   //On cherche les blocs à dupliquer et on ordonnance le 1er niveau
   nblock=size(typ_l,1)
-  ordoclk=vec_clk0
+  ordoclk=vec_clk
   if temps_continu then
     ordoclk(1,:)=[]
   end
@@ -2344,8 +2215,6 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
   cord=[];
   blk_duplicated=[]
   k=1
-  //[allchildren2,allchildren2ptr,children2,children2ptr]=inivec_allchildren2()
-  
   if temps_continu then
     [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,blk_duplicated,clkptr,..
      cliptr,critev]=ini_ordo(0,0,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
@@ -2362,10 +2231,10 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
       //on les ajoute à la liste des blocs à traiter
       n_bd=size(blk_duplicated,1)
       for k1=1:n_bd
-	n_in=cliptr(blk_duplicated(k1)+1)-cliptr(blk_duplicated(k1))
-	for k2=1:n_in
-	  blk_dupl=[blk_dupl;blk_duplicated(k1),k2]
-	end
+	      n_in=cliptr(blk_duplicated(k1)+1)-cliptr(blk_duplicated(k1))
+	      for k2=1:n_in
+	        blk_dupl=[blk_dupl;blk_duplicated(k1),k2]
+	      end
       end
       ordoclk0=set_primary_clkport(ordoclk,blk_duplicated,size(ordoclk,1))
       duplicated=%t
@@ -2381,46 +2250,43 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
     ordoclk=[ordoclk0;ordoclk]
   end
   
-  
   while k<=size(ordoclk,1) 
     n_out=clkptr(ordoclk(k,1)+1)-clkptr(ordoclk(k,1))
-    //n_out=size(bllst(ordoclk(k)).evtout,1)
     if n_out>0 then
       for j=1:n_out
-	[bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,blk_duplicated,clkptr,..
+	      [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,blk_duplicated,clkptr,..
          cliptr,critev]=ini_ordo(ordoclk(k,1),j,clkconnect,connectmat,bllst,typ_l,dep_ut,corinv,clkptr,cliptr,critev);
-	if bouclalg then
-	  message('Algebrique  loop detected; cannot be compiled.');
-	  cpr=list()
-	  disp('activation traitée: bloc '+string(ordoclk(k,1))+' - port '+string(j))
-	  return,
-	end
-	if blk_duplicated~=[] then
-	  //on met les blocs dupliqués dans l'ordre parent-enfants
-	  blk_duplicated=sort(blk_duplicated)
-	  blk_dupl=[]
-	  //on les ajoute à la liste des blocs à traiter
-	  n_bd=size(blk_duplicated,1)
-	  for k1=1:n_bd
-	    n_in=cliptr(blk_duplicated(k1)+1)-cliptr(blk_duplicated(k1))
-	    for k2=1:n_in
-	      blk_dupl=[blk_dupl;blk_duplicated(k1),k2]
-	    end
-	  end
-	  ordoclk=set_primary_clkport(ordoclk,blk_dupl,size(ordoclk,1))
-	  duplicated=%t
-	else
-	  duplicated=%f
-	end
-	//primary=gsort(primary,'lr','i')
-	primary=discardprimary(primary)
-	primary=gsort(primary,'lr','i')
-	vecordo=vec(primary(:,1))
-	ordoclk0=ordo_vecport(primary,vecordo) 
-
-	//ordptr($+1)=ordptr($)+size(ordoclk0,1)
-	[ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,ordoclk(k),j,ordptr,blocs_traites)
-        ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
+	      if bouclalg then
+	        message('Algebrique  loop detected; cannot be compiled.');
+	        cpr=list()
+	        disp('activation traitée: bloc '+string(ordoclk(k,1))+' - port '+string(j))
+	        return,
+	      end
+	      if blk_duplicated~=[] then
+	        //on met les blocs dupliqués dans l'ordre parent-enfants
+	        blk_duplicated=sort(blk_duplicated)
+	        blk_dupl=[]
+	        //on les ajoute à la liste des blocs à traiter
+	        n_bd=size(blk_duplicated,1)
+	        for k1=1:n_bd
+	          n_in=cliptr(blk_duplicated(k1)+1)-cliptr(blk_duplicated(k1))
+	          for k2=1:n_in
+	            blk_dupl=[blk_dupl;blk_duplicated(k1),k2]
+	          end
+	        end
+	        ordoclk=set_primary_clkport(ordoclk,blk_dupl,size(ordoclk,1))
+	        duplicated=%t
+	      else
+	        duplicated=%f
+	      end
+	      //primary=gsort(primary,'lr','i')
+	      primary=discardprimary(primary)
+	      primary=gsort(primary,'lr','i')
+	      vecordo=vec(primary(:,1))
+	      ordoclk0=ordo_vecport(primary,vecordo) 
+       	//ordptr($+1)=ordptr($)+size(ordoclk0,1)
+	      [ordptr,ordclk,blocs_traites]=set_ordclk(ordclk,ordoclk0,ordoclk(k),j,ordptr,blocs_traites)
+         ordoclk=set_primary_clkport(ordoclk,ordoclk0,k)
       end
     end
     k=k+1
@@ -2429,7 +2295,6 @@ function [ordclk,ordptr,cord,ordoclk,typ_l,clkconnect,connectmat,bllst,dep_ut,co
   if show_pause then
     disp('fin de paksazi1')
     pause
-
   end
   
 endfunction
@@ -2459,18 +2324,12 @@ function primary=discardprimary(primary)
 	     mysum(primary(find(primary(:,1)==primary(ii,1)),2))]]
   end
   primary=clkconnectjj
-
 endfunction
 
-function [ordclk,iord,oord,zord,typ_z,ok]=..
-      scheduler(inpptr,..
-		outptr,clkptr,execlk_cons,outoin,outoinptr,..
-		evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,..
-                blnk,blptr,ordclk,ordptr,cord);
-  //
+function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,outoin,outoinptr,..
+		      evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr,ordclk,ordptr,cord);
+
   nblk=size(typ_x,1)
-  
-  //
   //compute iord
   if execlk_cons<>[] then
     vec=-ones(1,nblk)
@@ -2489,17 +2348,11 @@ function [ordclk,iord,oord,zord,typ_z,ok]=..
     iord=[],oord=[],zord=[],critev=[]
     return,
   end
-
     
   n=size(cord,1)
-
   vec=-ones(1,nblk);
   vec(cord(:,1))=0;
-  
   typp=zeros(typ_s);typp(typ_s)=1
-  
-  
- 
 
   ext_cord1=cord;
   j=1
@@ -2513,15 +2366,11 @@ function [ordclk,iord,oord,zord,typ_z,ok]=..
     j=j+1
     if j>size(ext_cord1,1) then break;end
   end
-  
   // code to replace faulty unique which reorders
   yy=ext_cord1(:,1)'
   [xx,kkn]=unique(yy);
   ext_cord=yy(-sort(-kkn))
-  
- 
   //ext_cord=unique(ext_cord1(:,1)');
-  
   //for i=ext_cord
   //  if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
   //end  // adding zero crossing surfaces to cont. time synchros
@@ -2546,26 +2395,24 @@ function [ordclk,iord,oord,zord,typ_z,ok]=..
     for i=ext_cord($:-1:1)
       for ii=[outoin(outoinptr(i):outoinptr(i+1)-1,1)',..
 	      evoutoin(evoutoinptr(i):evoutoinptr(i+1)-1,1)']
-	//ii est un block affecte par changement de sortie du 
-	//i-eme block de oord
-	if typ_z(ii) then 
-	  if typ_z(i)==0 then typ_z(i)=1;fin=0;end
-	end
-	if typ_x(ii) then 
-	  if ~typ_x(i) then typ_x(i)=%t;fin=0;end
-	end
-	if typ_z(i)&typ_x(i) then break,end
+	      //ii est un block affecte par changement de sortie du 
+	      //i-eme block de oord
+	      if typ_z(ii) then 
+	        if typ_z(i)==0 then typ_z(i)=1;fin=0;end
+	      end
+	      if typ_x(ii) then 
+	        if ~typ_x(i) then typ_x(i)=%t;fin=0;end
+	      end
+	      if typ_z(i)&typ_x(i) then break,end
       end
     end
   end
   //supprimer les blocks a supprimer
-
   ind=find(typ_z(cord(:,1)));
   zord=cord(ind,:)
   ind=find(typ_x(cord(:,1)));
-  oord=cord(ind,:)
-  
-typ_z=typ_z_save
+  oord=cord(ind,:)  
+  typ_z=typ_z_save
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
   //des discontinuites quand l'evenement se produit
@@ -2582,7 +2429,7 @@ typ_z=typ_z_save
       jj= ordclk(hh,1) //block excite par evenement i
       //Following line is not correct because of ever active synchros
       if or(jj*maX+ordclk(hh,2)==cordX) then
-	ordclk(hh,2)=-ordclk(hh,2)
+	       ordclk(hh,2)=-ordclk(hh,2)
       end
     end
   end
@@ -2649,13 +2496,10 @@ function [clkconnectj_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
   else
     clkconnectj_cons=[]
   end
-
 endfunction
 
 function a=mysum(b)
   if b<>[] then a=sum(b), else a=[], end
-
-
 endfunction
 
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
@@ -2679,9 +2523,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   funs=list();
   funtyp=zeros(typ_z)
   labels=[]
-  //
-  //
-  
+   
   [ok,bllst]=adjust_inout(bllst,connectmat)
   
   // placed here to make sure nzcross and nmode correctly updated
@@ -2704,9 +2546,9 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     end
     if funtyp(i,1)>999&funtyp(i,1)<10000 then
       if ~c_link(funs(i)) then
-	x_message(['A C or Fortran block is used but not linked';
-		   'You can save your compiled diagram and load it';
-		   'This will automatically link the C or Fortran function'])
+	      x_message(['A C or Fortran block is used but not linked';
+		               'You can save your compiled diagram and load it';
+		               'This will automatically link the C or Fortran function'])
       end
     end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -2716,7 +2558,6 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     cliptr(i+1)=cliptr(i)+size(cinpnum,'*')
     clkptr(i+1)=clkptr(i)+size(coutnum,'*')
     //
-    
     X0=ll.state(:)
     if funtyp(i,1)<10000 then
       xcd0=[xcd0;0*X0]
@@ -2813,14 +2654,6 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   end  
   //
 
-//  [ok,bllst]=adjust_inout(bllst,connectmat)
-//  if ~ok then 
-//    lnkptr=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
-//	  xptr=[],zptr=[],rpptr=[],ipptr=[],xc0=[],xcd0=[],xd0=[],rpar=[],ipar=[],dep_ut=[],..
-//	  typ_z=[],typ_s=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],labels=[],..
-//	  bexe=[],boptr=[],blnk=[],blptr=[],
-//    return;
-//  end
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
   lnkbsz=[]
@@ -2829,21 +2662,20 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     ki=inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)
     if ko<>0 & ki<>0 then
       if ko>ki then 
-	outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
-	outlnk(outlnk==ko)=ki
-	inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
-	inplnk(inplnk==ko)=ki
-	ptlnk=-1+ptlnk
-	lnkbsz(ko)=[]
+	      outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
+	      outlnk(outlnk==ko)=ki
+	      inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
+	      inplnk(inplnk==ko)=ki
+	      ptlnk=-1+ptlnk
+	      lnkbsz(ko)=[]
       elseif ki>ko
-	outlnk(outlnk>ki)=outlnk(outlnk>ki)-1
-	outlnk(outlnk==ki)=ko
-	inplnk(inplnk>ki)=inplnk(inplnk>ki)-1
-	inplnk(inplnk==ki)=ko
-	ptlnk=-1+ptlnk
-	lnkbsz(ki)=[]
+	      outlnk(outlnk>ki)=outlnk(outlnk>ki)-1
+	      outlnk(outlnk==ki)=ko
+	      inplnk(inplnk>ki)=inplnk(inplnk>ki)-1
+	      inplnk(inplnk==ki)=ko
+	      ptlnk=-1+ptlnk
+	      lnkbsz(ki)=[]
       end
-      
     elseif ko<>0 then
       inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)=ko
     elseif ki<>0 then
@@ -2856,8 +2688,6 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     end
   end
   lnkptr=cumsum([1;lnkbsz])
-
-
   //store unconnected outputs, if any, at the end of outtb
   unco=find(outlnk==0);
   for j=unco
@@ -2901,16 +2731,16 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
     fini=%t
     for i=1:nb
       if vec(i)==j-1 then 
-	if j==nb+2 then 
-	  message('algebrique loop detected');ok=%f;ord=[];return;
-	end
-	for k=outoinptr(i):outoinptr(i+1)-1
-	  ii=outoin(k,1);
-	  if dep_ut(ii,1)&vec(ii)>-1 then
-	    fini=%f;
-	    vec(ii)=j;   
-	  end
-	end
+	      if j==nb+2 then 
+	        message('algebrique loop detected');ok=%f;ord=[];return;
+	      end
+	      for k=outoinptr(i):outoinptr(i+1)-1
+	        ii=outoin(k,1);
+	        if dep_ut(ii,1)&vec(ii)>-1 then
+	          fini=%f;
+	          vec(ii)=j;   
+	        end
+	      end
       end
     end
     if fini then break;end
@@ -2926,178 +2756,167 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
     for hh=1:length(bllst)+1
       ok=%t
       for jj=1:nlnk
-	nout=bllst(connectmat(jj,1)).out(connectmat(jj,2))
-	nin=bllst(connectmat(jj,3)).in(connectmat(jj,4))
-	if (nout>0&nin>0) then
-	  if nin<>nout then
-	    bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
-			   corinv(connectmat(jj,3)),connectmat(jj,4),nin)
-	    ok=%f;return
-	  end
-	elseif (nout>0&nin<0) then 
-	  ww=find(bllst(connectmat(jj,3)).in==nin)
-	  bllst(connectmat(jj,3)).in(ww)=nout
-	  ww=find(bllst(connectmat(jj,3)).out==nin)
-	  bllst(connectmat(jj,3)).out(ww)=nout
-	  ww=find(bllst(connectmat(jj,3)).out==0)
-	  if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
-	    bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
-	  end
-	  if bllst(connectmat(jj,3)).nzcross==nin then
-	    bllst(connectmat(jj,3)).nzcross=nout
-	  end
-	  if bllst(connectmat(jj,3)).nmode==nin then
-	    bllst(connectmat(jj,3)).nmode=nout
-	  end
-	  
-	  
-	elseif (nin>0&nout<0) then 
-	  ww=find(bllst(connectmat(jj,1)).out==nout)
-	  bllst(connectmat(jj,1)).out(ww)=nin
-
-	  ww=find(bllst(connectmat(jj,1)).in==nout)
-	  bllst(connectmat(jj,1)).in(ww)=nin
-	  
-	  ww=find(bllst(connectmat(jj,1)).in==0)
-	  if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
-	    bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
-	  end
-	  
-	  if bllst(connectmat(jj,1)).nzcross==nout then
-	    bllst(connectmat(jj,1)).nzcross=nin
-	  end
-	  if bllst(connectmat(jj,1)).nmode==nout then
-	    bllst(connectmat(jj,1)).nmode=nin
-	  end
-
-	elseif (nin==0) then
-	  ww=bllst(connectmat(jj,3)).out(:)
-	  if mini(ww)>0 then 
-	    if nout>0 then
-	      if sum(ww)==nout then
-		bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
-	      else
-		bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
-		ok=%f;return
+	      nout=bllst(connectmat(jj,1)).out(connectmat(jj,2))
+	      nin=bllst(connectmat(jj,3)).in(connectmat(jj,4))
+	      if (nout>0&nin>0) then
+	        if nin<>nout then
+	          bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
+			      corinv(connectmat(jj,3)),connectmat(jj,4),nin)
+	          ok=%f;return
+	        end
+	      elseif (nout>0&nin<0) then 
+	        ww=find(bllst(connectmat(jj,3)).in==nin)
+	        bllst(connectmat(jj,3)).in(ww)=nout
+	        ww=find(bllst(connectmat(jj,3)).out==nin)
+	        bllst(connectmat(jj,3)).out(ww)=nout
+	        ww=find(bllst(connectmat(jj,3)).out==0)
+	        if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
+	          bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
+	        end
+	        if bllst(connectmat(jj,3)).nzcross==nin then
+	          bllst(connectmat(jj,3)).nzcross=nout
+	        end
+	        if bllst(connectmat(jj,3)).nmode==nin then
+	          bllst(connectmat(jj,3)).nmode=nout
+	        end
+	   	  elseif (nin>0&nout<0) then 
+	        ww=find(bllst(connectmat(jj,1)).out==nout)
+	        bllst(connectmat(jj,1)).out(ww)=nin
+          ww=find(bllst(connectmat(jj,1)).in==nout)
+	        bllst(connectmat(jj,1)).in(ww)=nin
+	        ww=find(bllst(connectmat(jj,1)).in==0)
+	        if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
+	          bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
+	        end
+	     	  if bllst(connectmat(jj,1)).nzcross==nout then
+	          bllst(connectmat(jj,1)).nzcross=nin
+	        end
+	        if bllst(connectmat(jj,1)).nmode==nout then
+	          bllst(connectmat(jj,1)).nmode=nin
+	        end
+       	elseif (nin==0) then
+	        ww=bllst(connectmat(jj,3)).out(:)
+	        if mini(ww)>0 then 
+	          if nout>0 then
+	            if sum(ww)==nout then
+		            bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
+	            else
+		            bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
+		            ok=%f;return
+	            end
+	          else
+	            bllst(connectmat(jj,3)).in(connectmat(jj,4))=sum(ww)
+	            ok=%f
+	          end
+	        else      
+	          nww=ww(find(ww<0))
+            if norm(nww-nww(1),1)==0 & nout>0 then
+	            bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
+	            k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+              if k==int(k)&k>0 then
+		            bllst(connectmat(jj,3)).out(find(ww<0))=k
+	            else
+		            bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
+		            ok=%f;return
+	            end
+	          else
+	            ok=%f
+	          end
+	        end
+        elseif (nout==0) then
+	        ww=bllst(connectmat(jj,1)).in(:)
+	        if mini(ww)>0 then 
+	          if nin>0 then
+	            if sum(ww)==nin then
+		            bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
+	            else
+		            bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
+		            ok=%f;return
+	            end
+	          else
+	            bllst(connectmat(jj,1)).out(connectmat(jj,2))=sum(ww)
+	            ok=%f
+	          end
+	        else      
+	          nww=ww(find(ww<0))
+	          if norm(nww-nww(1),1)==0 & nin>0 then
+	            bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
+	            k=(nin-sum(ww(find(ww>0))))/size(nww,'*')
+	            if k==int(k)&k>0 then
+		            bllst(connectmat(jj,1)).in(find(ww<0))=k
+	            else
+		            bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
+		            ok=%f;return
+	            end
+	          else
+	            ok=%f
+	          end
+	        end	
+        else
+	        //case where both are negative
+	        ok=%f
 	      end
-	    else
-	      bllst(connectmat(jj,3)).in(connectmat(jj,4))=sum(ww)
-	      ok=%f
-	    end
-	  else      
-	    nww=ww(find(ww<0))
-
-	    if norm(nww-nww(1),1)==0 & nout>0 then
-	      bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
-	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-
-	      if k==int(k)&k>0 then
-		bllst(connectmat(jj,3)).out(find(ww<0))=k
-	      else
-		bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
-		ok=%f;return
-	      end
-	    else
-	      ok=%f
-	    end
-	  end
-
-	elseif (nout==0) then
-	  ww=bllst(connectmat(jj,1)).in(:)
-	  if mini(ww)>0 then 
-	    if nin>0 then
-	      if sum(ww)==nin then
-		bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
-	      else
-		bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
-		ok=%f;return
-	      end
-	    else
-	      bllst(connectmat(jj,1)).out(connectmat(jj,2))=sum(ww)
-	      ok=%f
-	    end
-	  else      
-	    nww=ww(find(ww<0))
-	    if norm(nww-nww(1),1)==0 & nin>0 then
-	      bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
-	      k=(nin-sum(ww(find(ww>0))))/size(nww,'*')
-	      if k==int(k)&k>0 then
-		bllst(connectmat(jj,1)).in(find(ww<0))=k
-	      else
-		bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
-		ok=%f;return
-	      end
-	    else
-	      ok=%f
-	    end
-	  end	
-
-	else
-	  //case where both are negative
-	  ok=%f
-	end
       end
       if ok then return, end
     end
     message(['Not enough information to find port sizes';
-	     'I try to find the problem']);  
+	           'I try to find the problem']);  
     findflag=%f
     for jj=1:nlnk
       nout=bllst(connectmat(jj,1)).out(connectmat(jj,2))
       nin=bllst(connectmat(jj,3)).in(connectmat(jj,4))
       if nout<=0&nin<=0 then
-	findflag=%t;
-      	ninnout=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
-				 corinv(connectmat(jj,3)),connectmat(jj,4),nin)
-	if ninnout==[] then ok=%f;return;end
-	if ninnout<=0  then ok=%f;return;end
-	ww=find(bllst(connectmat(jj,1)).out==nout)
-	bllst(connectmat(jj,1)).out(ww)=ninnout
-	//
-	if bllst(connectmat(jj,1)).nzcross==nout then
-	    bllst(connectmat(jj,1)).nzcross=ninnout
-	end
-	if bllst(connectmat(jj,1)).nmode==nout then
-	  bllst(connectmat(jj,1)).nmode=ninnout
-	end
-	//
-	ww=find(bllst(connectmat(jj,1)).in==nout)
-	bllst(connectmat(jj,1)).in(ww)=ninnout
+	      findflag=%t;
+      	 ninnout=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
+				corinv(connectmat(jj,3)),connectmat(jj,4),nin)
+	     if ninnout==[] then ok=%f;return;end
+	     if ninnout<=0  then ok=%f;return;end
+	     ww=find(bllst(connectmat(jj,1)).out==nout)
+	     bllst(connectmat(jj,1)).out(ww)=ninnout
+	     //
+	     if bllst(connectmat(jj,1)).nzcross==nout then
+	       bllst(connectmat(jj,1)).nzcross=ninnout
+	     end
+	     if bllst(connectmat(jj,1)).nmode==nout then
+	       bllst(connectmat(jj,1)).nmode=ninnout
+	     end
+	     //
+	     ww=find(bllst(connectmat(jj,1)).in==nout)
+	     bllst(connectmat(jj,1)).in(ww)=ninnout
 	
-	ww=find(bllst(connectmat(jj,1)).in==0)
-	if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
-	  bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
-	end
-	//
-	ww=find(bllst(connectmat(jj,3)).in==nin)
-	bllst(connectmat(jj,3)).in(ww)=ninnout
-	//
-	if bllst(connectmat(jj,3)).nzcross==nin then
-	  bllst(connectmat(jj,3)).nzcross=ninnout
-	end
-	if bllst(connectmat(jj,3)).nmode==nin then
-	  bllst(connectmat(jj,3)).nmode=ninnout
-	end
-
-	//
-	ww=find(bllst(connectmat(jj,3)).out==nin)
-	bllst(connectmat(jj,3)).out(ww)=ninnout
-	ww=find(bllst(connectmat(jj,3)).out==0)
-	if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
-	  bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
-	end
-	//bllst(connectmat(jj,1)).out(connectmat(jj,2))=ninnout
-	//bllst(connectmat(jj,3)).in(connectmat(jj,4))=ninnout
-      end
-    end
-
-    if ~findflag then 
-      message(['I cannot find a link with undetermined size';
-	       'My guess is that you have a block with unconnected';
-	       'undetermined  output ports']);
-      ok=%f;return;
+       ww=find(bllst(connectmat(jj,1)).in==0)
+	     if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
+	       bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
+	     end
+	     //
+	     ww=find(bllst(connectmat(jj,3)).in==nin)
+	     bllst(connectmat(jj,3)).in(ww)=ninnout
+	     //
+	     if bllst(connectmat(jj,3)).nzcross==nin then
+	       bllst(connectmat(jj,3)).nzcross=ninnout
+	     end
+	     if bllst(connectmat(jj,3)).nmode==nin then
+	       bllst(connectmat(jj,3)).nmode=ninnout
+	     end
+     	//
+	    ww=find(bllst(connectmat(jj,3)).out==nin)
+	    bllst(connectmat(jj,3)).out(ww)=ninnout
+	    ww=find(bllst(connectmat(jj,3)).out==0)
+	    if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
+	      bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
+	    end
+	    //bllst(connectmat(jj,1)).out(connectmat(jj,2))=ninnout
+	    //bllst(connectmat(jj,3)).in(connectmat(jj,4))=ninnout
     end
   end
+
+  if ~findflag then 
+    message(['I cannot find a link with undetermined size';
+	           'My guess is that you have a block with unconnected';
+	           'undetermined  output ports']);
+    ok=%f;return;
+  end
+end
 endfunction
 
 function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
@@ -3206,7 +3025,6 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   cll=[-1;-cll;mm];
   ii=find(cll(2:$)-cll(1:$-1)<>0)
 
-
   for k=1:size(ii,'*')-1
     oo=[ii(k):ii(k+1)-1]
     vec=-ones(1,nblk);
@@ -3218,12 +3036,9 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     clkconnect=[clkconnect;r]
   end
 
-
-
-
   if show_trace then disp('c_pass4446:'+string(timer())),end 
-
 endfunction
+
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
 //compute blocks which inherit
   ok=%t;
@@ -3233,16 +3048,16 @@ function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
     fini=%t
     for i=1:nb
       if vec(i)==j-1 then 
-	for k=outoinptr(i):outoinptr(i+1)-1
-	  ii=outoin(k,1);
-	  if (vec(ii)>-1)|typ_r(ii) then
-	    fini=%f;
-	    vec(ii)=j;   
-	  end
-	  if typ_r(ii) then 
-	    r=[r;outoin(k,:)]
-	  end
-	end
+	      for k=outoinptr(i):outoinptr(i+1)-1
+	        ii=outoin(k,1);
+	        if (vec(ii)>-1)|typ_r(ii) then
+	          fini=%f;
+	          vec(ii)=j;   
+	        end
+	        if typ_r(ii) then 
+	          r=[r;outoin(k,:)]
+	        end
+	      end
       end
     end
     if fini then break;end
@@ -3273,9 +3088,9 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
       tblock(i)=ll.dep_ut(2)
       //if block depends on time but has no event input port
       if ~ll.dep_ut(2) then 
-	//inherits from the inputs
-	cinpnum=ones(inpnum)
-	bllst(i).evtin=cinpnum  //XXXXXXXXXXXXXXXXXXXXX
+	      //inherits from the inputs
+	      cinpnum=ones(inpnum)
+	      bllst(i).evtin=cinpnum  //XXXXXXXXXXXXXXXXXXXXX
       end
       //
     else
@@ -3299,19 +3114,18 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     ki=inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)
     if ko<>0 & ki<>0 then
       if ko>ki then 
-	outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
-	outlnk(outlnk==ko)=ki
-	inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
-	inplnk(inplnk==ko)=ki
-	ptlnk=-1+ptlnk
+	      outlnk(outlnk>ko)=outlnk(outlnk>ko)-1
+	      outlnk(outlnk==ko)=ki
+	      inplnk(inplnk>ko)=inplnk(inplnk>ko)-1
+	      inplnk(inplnk==ko)=ki
+	      ptlnk=-1+ptlnk
       elseif ki>ko
-	outlnk(outlnk>ki)=outlnk(outlnk>ki)-1
-	outlnk(outlnk==ki)=ko
-	inplnk(inplnk>ki)=inplnk(inplnk>ki)-1
-	inplnk(inplnk==ki)=ko
-	ptlnk=-1+ptlnk
+	      outlnk(outlnk>ki)=outlnk(outlnk>ki)-1
+	      outlnk(outlnk==ki)=ko
+	      inplnk(inplnk>ki)=inplnk(inplnk>ki)-1
+	      inplnk(inplnk==ki)=ko
+	      ptlnk=-1+ptlnk
       end
-      
     elseif ko<>0 then
       inplnk(inpptr(connectmat(jj,3))+connectmat(jj,4)-1)=ko
     elseif ki<>0 then
@@ -3353,15 +3167,6 @@ function   clkconnect=cleanup(clkconnect)
   clkconnect(ind,:)=[]
 endfunction
 
-function mat=cleanup2(mat)
-  mm=maxi(mat)+1
-  cc=mat(:,2)*mm+mat(:,1)*mm^2
-  [cc1,ind]=sort(-cc)
-  mat=mat(ind,:)
-  ind=find(cc1(2:$)-cc1(1:$-1)==0)
-  mat(ind,:)=[]
-endfunction
-
 function mat=cleanup1(mat)
   mm=maxi(mat)+1
   cc=mat(:,1)*mm
@@ -3379,7 +3184,6 @@ function vec=intersection(vec1,vec2)
     end
   end
 endfunction
-
 
 function  [r,ok]=new_tree2(vec,outoin,outoinptr,dep_ut)
   dd=zeros(dep_ut);dd(dep_ut)=1;
@@ -3402,8 +3206,6 @@ function  [r,ok]=new_tree4(vec,outoin,outoinptr,typ_r)
   ok=%t
 endfunction
 
-
-
 function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,typ_zx,outoin,outoinptr,clkptr)
 
@@ -3422,7 +3224,6 @@ function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
     cll=[-1;-cll;mm];
     ii=find(cll(2:$)-cll(1:$-1)<>0)
     
-    
     for k=1:size(ii,'*')-1
       oo=[ii(k):ii(k+1)-1]
       vec=-ones(1,nblk);
@@ -3437,29 +3238,25 @@ function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
     done=%f;
     while ~done
       done=%t;
-
       for jj=find(typ_l&(~typ_c));
-	if ~or(jj==clkconnect(:,3)) then
-	  typ_r(clkconnect(find(jj==clkconnect(:,1)),3))=%t
-	  clkconnect(find(jj==clkconnect(:,1)),:)=[];
-	  typ_c(jj)=%t;
-	  done1=%f
-	  done=%f
-	end
+	      if ~or(jj==clkconnect(:,3)) then
+	        typ_r(clkconnect(find(jj==clkconnect(:,1)),3))=%t
+	        clkconnect(find(jj==clkconnect(:,1)),:)=[];
+	        typ_c(jj)=%t;
+	        done1=%f
+	        done=%f
+	      end
       end
     end
-  end
-
- 
+  end 
   critev=zeros(clkptr($)-1,1);
   for bb=1:size(clkptr,1)-1
     for i=clkptr(bb):clkptr(bb+1)-1
-     if or(typ_zx(clkconnect(find((clkconnect(:,1)==bb)&..
-	  (clkconnect(:,2)==i-clkptr(bb)+1)),3))) then
-	critev(i)=1
+      if or(typ_zx(clkconnect(find((clkconnect(:,1)==bb)&..
+	         (clkconnect(:,2)==i-clkptr(bb)+1)),3))) then
+	      critev(i)=1
       end
     end
-  end
- 
+  end 
 endfunction
 
