@@ -1,6 +1,6 @@
 
 let sccs_id =
-  "@(#)Modelica Compiler 1.3.3 - Copyright (C) 2003-2004 Tni-Valiosys"
+  "@(#)Modelica Compiler 1.3.5 - Copyright (C) 2003-2004 Tni-Valiosys"
 
 let name = Sys.argv.(0)
 
@@ -20,6 +20,8 @@ let output = ref ""
 
 let input = ref ""
 
+let max_simplifs = ref max_int
+
 let add_lib_path s =
   directories := !directories @ [s]
 
@@ -38,6 +40,9 @@ let set_output s =
 let set_input s =
   if !input <> "" then failwith "set_input: More than one input specified";
   input := s
+
+let set_max_simplifs i =
+  max_simplifs := i
 
 let construct_output_filename () =
   if !output = "" then begin
@@ -79,15 +84,28 @@ let run () =
           " OK\n%d variables in model.\n"
           (Array.length model.Optimization.variables);
         if not !keep_variables then begin
-          Printf.printf "Optimizing..."; flush stdout;
-          Optimization.perform_simplifications model;
+          Printf.printf "Removing trivial relations..."; flush stdout;
+          max_simplifs :=
+            Optimization.eliminate_trivial_relations !max_simplifs model;
           Printf.printf
             " OK\n%d variables remaining."
             (Array.fold_left
               (fun n variable ->
                 if not variable.Optimization.solved then n + 1 else n)
               0
-              model.Optimization.equations);
+              model.Optimization.equations); flush stdout;
+          Printf.printf "\nOptimizing remaining equations..."; flush stdout;
+          Optimization.perform_simplifications !max_simplifs model;
+          Printf.printf
+            " OK\n%d variables remaining."
+            (Array.fold_left
+              (fun n variable ->
+                if not variable.Optimization.solved then n + 1 else n)
+              0
+              model.Optimization.equations); flush stdout;
+          (*Printf.printf "\nComputing structural index...\n"; flush stdout;
+          let strct_index = Optimization.compute_structural_index model in
+          Printf.printf "Structural index = %d" strct_index; flush stdout;*)
           Printf.printf "\nFinding subsystems...\n"; flush stdout;
           let compnts = Optimization.find_submodels model in
           Printf.printf "%d subsystems found.\n" (List.length compnts);
@@ -115,7 +133,9 @@ let () = Arg.parse
    ("-hpath", Arg.String set_path,
     "<path>  Specify a path to be added to #include directives");
    ("-keep-all-variables", Arg.Set keep_variables,
-    "Don\'t remove alias variables");]
+    "Don\'t remove alias variables");
+   ("-max-simplifs", Arg.Int set_max_simplifs,
+  "<passes> Max number of simplifications")]
   set_input
   ("usage: modelicac [-c] [-o <outputfile>] <inputfile> [other options]")
 

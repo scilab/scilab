@@ -77,20 +77,36 @@ and when_expression =
   | Assign of SymbolicExpression.t * SymbolicExpression.t
   | Reinit of SymbolicExpression.t * SymbolicExpression.t
 
-val create_model : Instantiation.typed_expression -> model
+val create_model: Instantiation.typed_expression -> model
 (** [create_model iexpr] builds a model given the instantiated Modelica model
 [iexpr]. The resulting data structure can be used to perform various
 optimization passes over it. *)
 
-val perform_simplifications : model -> unit
-(** [perform_simplifications model] simplifies [model] by making the appropriate
-substitutions in order to eliminate auxiliary variables from the system. *)
+val eliminate_trivial_relations: int -> model -> int
+(** [eliminate_trivial_relations max_simplifs model] eliminates at most
+[max_simplifs] trivial relations from the model (i.e. relations involving linear
+relations between at most two variables). Returns the number of remaining
+simplifications that was allowed. *)
 
-val find_submodels : model -> int list list
+val perform_simplifications: int -> model -> unit
+(** [perform_simplifications max_simplifs model] simplifies [model] by making the
+appropriate substitutions in order to eliminate at most [max_simplifs] auxiliary
+variables from the model. *)
+
+val compute_structural_index: model -> int
+(** [compute_structural_index model] computes the structural index of the DAE
+system. *)
+
+val find_submodels: model -> int list list
 (** [find_submodels model] splits [model] in dependent submodels such that there
 is no cyclic dependency between them. The result is given as a list of index
 lists (each index corresponding to a variable index). *)
 
-val print_model : out_channel -> model -> unit
+val print_model: out_channel -> model -> unit
 (** [print_model oc model] prints [model] in an implementation-dependent format
 to [oc]. *)
+
+val is_greater_equal: SymbolicExpression.t -> bool
+(** [is_greater_equal expr] returns [true] if [expr] denotes a greater or equal
+construct, regardless "noEvents" encapsulations. This function is exported by
+Optimization as a utility for convenience. *)

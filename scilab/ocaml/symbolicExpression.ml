@@ -627,6 +627,12 @@ and symbolic_cosh node =
   if node == zero then one
   else create_arcHyperbolicCosine node
 
+and symbolic_derive node' num = match num with
+  | Int 0 -> node'
+  | Int n when n > 0 ->
+      symbolic_derive (symbolic_derivative node') (pred_num num)
+  | _ -> assert false
+
 and symbolic_derivative node' =
   let ( + ) = symbolic_add
   and ( - ) = symbolic_sub
@@ -1449,19 +1455,20 @@ let rec exists_except_in_conditions p node =
       Or nodes -> List.exists (exists_except_in_conditions p) nodes
 
 let inversion_difficulty node left right =
-  let includes_derivative_of_node node' =
-    let is_derivative_of_node node' = match node'.nature with
-      | Derivative (node', _) when node' == node -> true
-      | _ -> false
-    in exists_except_in_conditions is_derivative_of_node node'
-  in
-  if includes_derivative_of_node left then 0
-  else
-    try match invert_if_possible_with_respect_to node left right with
-      | Some _ -> 1
-      | None -> 2
-    with
-      | Invalid_argument _ -> 3
+  let is_derivative_of_node node' = match node'.nature with
+    | Derivative (node', _) -> node' == node
+    | _ -> false
+  in match derivatives_of left with
+    | ders when List.exists is_derivative_of_node ders -> 0
+    | [] ->
+        begin
+          try match invert_if_possible_with_respect_to node left right with
+            | Some _ -> 1
+            | None -> 2
+          with
+            | Invalid_argument _ -> 3
+        end
+    | _ -> 2
 
 let replace node node' node'' =
   let rec rewrite node =
@@ -1483,7 +1490,7 @@ let replace node node' node'' =
     | ArcTangent node -> symbolic_atan (rewrite node)
     | BlackBox (s, nodes) -> apply_blackBox s (List.rev_map rewrite nodes)
     | Cosine node -> symbolic_cos (rewrite node)
-    | Derivative (node, num) -> create_derivative (rewrite node) num
+    | Derivative (node, num) -> symbolic_derive (rewrite node) num
     | Equality (node, node') -> symbolic_eq (rewrite node) (rewrite node')
     | Exponential node -> symbolic_exp (rewrite node)
     | Floor node -> symbolic_floor (rewrite node)

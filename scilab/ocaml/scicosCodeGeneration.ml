@@ -49,124 +49,6 @@ let final_index_of_parameters model =
 let final_index_of_variables model =
   create_index_array model.equations (fun equation -> not equation.solved)
 
-let rec is_greater_equal expr = match nature expr with
-  | BlackBox ("noEvent", [expr']) -> is_greater_equal expr'
-  | Or [expr1; expr2] ->
-      begin match nature expr1, nature expr2 with
-        | Equality (expr11, expr12), Greater (expr21, expr22)
-          when expr11 == expr21 && expr12 == expr22 ||
-          expr11 == expr22 && expr12 == expr21 -> true
-        | Greater (expr11, expr12), Equality (expr21, expr22)
-          when expr11 == expr21 && expr12 == expr22 ||
-          expr11 == expr22 && expr12 == expr21 -> true
-        | _ -> false
-      end
-  | _ -> false
-
-let rec rewrite_conditions_in expr =
-  let rec rewrite_if expr expr' expr'' = match nature expr with
-    | BlackBox ("noEvent", _) ->
-        create_if
-          expr
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | Equality (expr1, expr2) ->
-        create_if
-          (create_equality
-            (rewrite_conditions_in expr1)
-            (rewrite_conditions_in expr2))
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | Greater (expr1, expr2) ->
-        create_if
-          (create_greater
-            (rewrite_conditions_in expr1)
-            (rewrite_conditions_in expr2))
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | And [] -> rewrite_conditions_in expr'
-    | And [expr] ->
-        create_if
-          expr
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | And (expr :: exprs) ->
-        rewrite_if expr (create_if (create_and exprs) expr' expr'') expr''
-    | Or [] -> rewrite_conditions_in expr''
-    | Or [expr] ->
-        create_if
-          expr
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | Or [expr1; expr2] when is_greater_equal expr ->
-        begin match nature expr1, nature expr2 with
-          | Greater (expr1, expr2), _ | _, Greater (expr1, expr2) ->
-              let expr1' = rewrite_conditions_in expr1
-              and expr2' = rewrite_conditions_in expr2 in
-              create_if
-                (create_or
-                  [create_greater expr1' expr2'; create_equality expr1' expr2'])
-                (rewrite_conditions_in expr')
-                (rewrite_conditions_in expr'')
-          | _ -> assert false
-        end
-    | Or (expr :: exprs) ->
-        rewrite_if expr expr' (create_if (create_or exprs) expr' expr'')
-    | Not expr ->
-        create_if
-          expr
-          (rewrite_conditions_in expr'')
-          (rewrite_conditions_in expr')
-    | _ -> assert false
-  in match nature expr with
-    | ArcCosine expr' -> create_arcCosine (rewrite_conditions_in expr')
-    | ArcHyperbolicCosine expr' ->
-        create_arcHyperbolicCosine (rewrite_conditions_in expr')
-    | ArcHyperbolicSine expr' ->
-        create_arcHyperbolicSine (rewrite_conditions_in expr')
-    | ArcHyperbolicTangent expr' ->
-        create_arcHyperbolicTangent (rewrite_conditions_in expr')
-    | ArcSine expr' -> create_arcSine (rewrite_conditions_in expr')
-    | ArcTangent expr' -> create_arcTangent (rewrite_conditions_in expr')
-    | Cosine expr' -> create_cosine (rewrite_conditions_in expr')
-    | Derivative (expr', num) ->
-        create_derivative (rewrite_conditions_in expr') num
-    | Exponential expr' -> create_exponential (rewrite_conditions_in expr')
-    | Floor expr' -> create_floor (rewrite_conditions_in expr')
-    | HyperbolicCosine expr' ->
-        create_hyperbolicCosine (rewrite_conditions_in expr')
-    | HyperbolicSine expr' ->
-        create_hyperbolicSine (rewrite_conditions_in expr')
-    | HyperbolicTangent expr' ->
-        create_hyperbolicTangent (rewrite_conditions_in expr')
-    | Logarithm expr' -> create_logarithm (rewrite_conditions_in expr')
-    | RationalPower (expr', num) ->
-        create_rationalPower (rewrite_conditions_in expr') num
-    | Sign expr' -> create_sign (rewrite_conditions_in expr')
-    | Sine expr' -> create_sine (rewrite_conditions_in expr')
-    | Tangent expr' -> create_tangent (rewrite_conditions_in expr')
-    | Addition exprs' ->
-        create_addition (sort (List.map rewrite_conditions_in exprs'))
-    | BlackBox ("noEvent", _) -> assert false
-    | BlackBox (name, exprs') ->
-        create_blackBox name (List.map rewrite_conditions_in exprs')
-    | Multiplication exprs' ->
-        create_multiplication (sort (List.map rewrite_conditions_in exprs'))
-    | PartialDerivative (expr', expr'') ->
-        create_partialDerivative
-          (rewrite_conditions_in expr')
-          (rewrite_conditions_in expr'')
-    | If (expr', expr'', expr''') -> rewrite_if expr' expr'' expr'''
-    | Constant _ | DiscreteVariable _ | Number _ | Parameter _ | TimeVariable |
-      Variable _ -> expr
-    | _ -> assert false
-
-let postprocess_model model =
-  Array.iter
-    (fun equation ->
-      equation.expression <- rewrite_conditions_in equation.expression)
-    model.equations
-
 let collect_surfaces model =
   let rec union xs ys =
     List.fold_left (fun xs y -> if List.memq y xs then xs else y :: xs) xs ys
@@ -177,7 +59,7 @@ let collect_surfaces model =
       HyperbolicCosine expr' | HyperbolicSine expr' | HyperbolicTangent expr' |
       Logarithm expr' | Not expr' | RationalPower (expr', _) | Sign expr' |
       Sine expr' | Tangent expr' -> surfaces_of expr'
-    | BlackBox ("noEvent", _) -> assert false
+    | BlackBox ("noEvent", _) -> []
     | Addition exprs' | And exprs' | BlackBox (_, exprs') |
       Multiplication exprs' | Or exprs' ->
         List.fold_left
@@ -205,16 +87,15 @@ let collect_surfaces model =
     []
     model.equations
 
-let rec not_atomic expr = match nature expr with
-  | BlackBox ("noEvent", [expr']) -> not_atomic expr'
+let rec is_atomic expr = match nature expr with
   | BooleanValue _ | Constant _ | Derivative _ | DiscreteVariable _ | Number _ |
-    Parameter _ | Variable _ -> false
-  | _ -> true
+    Parameter _ | Variable _ -> true
+  | _ -> false
 
 let add_to_occurrence_table modes_on expr table =
   let rec add_if_necessary modes_on expr = match nature expr with
-    | BlackBox ("noEvent", [expr']) ->
-        (* special case for 'noEvent' *) add_if_necessary false expr'
+    | BlackBox ("noEvent", [expr']) -> add_if_necessary modes_on expr'
+    | _ when is_atomic expr -> ()
     | Or [expr1; expr2] when is_greater_equal expr ->
         begin match nature expr1, nature expr2 with
           | Greater (expr', expr''), _ | _, Greater (expr', expr'') ->
@@ -227,7 +108,7 @@ let add_to_occurrence_table modes_on expr table =
           let record = ExpressionTable.find table expr in
           record.occurrences <- record.occurrences + 1
         with
-          | Not_found -> if not_atomic expr then add modes_on expr
+          | Not_found -> add modes_on expr
   and add modes_on expr =
     ExpressionTable.add table expr { occurrences = 1; label = None };
     match nature expr with
@@ -244,11 +125,7 @@ let add_to_occurrence_table modes_on expr table =
       | Equality (expr', expr'') | Greater (expr', expr'') ->
           add_if_necessary modes_on expr'; add_if_necessary modes_on expr''
       | If (expr', expr'', expr''') ->
-          begin match nature expr' with
-            | BlackBox ("noEvent", [expr']) -> add_if_necessary false expr'
-            | _ when not modes_on -> add_if_necessary modes_on expr'
-            | _ -> ()
-          end;
+          add_if_necessary false expr';
           add_if_necessary modes_on expr''; add_if_necessary modes_on expr'''
       | TimeVariable -> ()
       | _ -> assert false
@@ -261,12 +138,14 @@ let has_multiple_occurrences expr model_info =
   with
     | Not_found -> false
 
-let has_alias_binding expr model_info =
-  try
-    let record = ExpressionTable.find model_info.occurrence_table expr in
-    record.label <> None
-  with
-    | Not_found -> false
+let rec has_alias_binding expr model_info = match nature expr with
+  | BlackBox ("noEvent", [expr']) -> has_alias_binding expr' model_info
+  | _ ->
+      try
+        let record = ExpressionTable.find model_info.occurrence_table expr in
+        record.label <> None
+      with
+        | Not_found -> false
 
 let bufferize_float f model_info =
   let s = Printf.sprintf "%.16g" f in
@@ -568,6 +447,7 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
   and bufferize_partial_derivative expr expr' expr'' = assert false
   and bufferize_intermediate_variables_if_necessary expr =
     let rec bufferize_children_if_necessary expr = match nature expr with
+      | BlackBox ("noEvent", [expr']) -> bufferize_children_if_necessary expr'
       | ArcCosine expr' | ArcHyperbolicCosine expr' | ArcHyperbolicSine expr' |
         ArcHyperbolicTangent expr' | ArcSine expr' | ArcTangent expr' |
         Cosine expr' | Exponential expr' | Floor expr' |
@@ -575,7 +455,6 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
         HyperbolicTangent expr' | Logarithm expr' | Not expr' |
         RationalPower (expr', _) | Sign expr' | Sine expr' | Tangent expr' ->
           bufferize_intermediate_variables_if_necessary expr'
-      | BlackBox ("noEvent", [expr']) -> bufferize_children_if_necessary expr'
       | Addition exprs' | And exprs' | BlackBox (_, exprs') |
         Multiplication exprs' | Or exprs' ->
           List.iter bufferize_intermediate_variables_if_necessary exprs'
@@ -588,23 +467,25 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
           bufferize_intermediate_variables_if_necessary expr3
       | TimeVariable -> ()
       | _ -> assert false
-    in
-    try
-      let record = ExpressionTable.find model_info.occurrence_table expr in
-      match record.label with
-        | None when record.occurrences > 1 ->
-            let i = next_index model_info in
-            bufferize_children_if_necessary expr;
-            for i = 1 to tabs do
-              Printf.bprintf model_info.code_buffer "\t"
-            done;
-            Printf.bprintf model_info.code_buffer "v%d = " i;
-            bufferize_expression expr;
-            Printf.bprintf model_info.code_buffer ";\n";
-            record.label <- Some i
-        | _ -> bufferize_children_if_necessary expr
-    with
-      | Not_found -> ()
+    in match nature expr with
+      | BlackBox ("noEvent", [expr']) -> bufferize_intermediate_variables_if_necessary expr'
+      | _ ->
+          try
+            let record = ExpressionTable.find model_info.occurrence_table expr in
+            match record.label with
+              | None when record.occurrences > 1 ->
+                  let i = next_index model_info in
+                  bufferize_children_if_necessary expr;
+                  for i = 1 to tabs do
+                    Printf.bprintf model_info.code_buffer "\t"
+                  done;
+                  Printf.bprintf model_info.code_buffer "v%d = " i;
+                  bufferize_expression expr;
+                  Printf.bprintf model_info.code_buffer ";\n";
+                  record.label <- Some i
+              | _ -> bufferize_children_if_necessary expr
+          with
+            | Not_found -> ()
   in
   bufferize_intermediate_variables_if_necessary expr;
   for i = 1 to tabs do
@@ -864,7 +745,6 @@ let generate_code path filename fun_name model =
     | [s] -> s
     | s :: ss -> s ^ "/" ^ to_filename ss
   in
-  postprocess_model model;
   let oc = open_out filename in
   let model_info =
     {

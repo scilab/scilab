@@ -333,6 +333,10 @@ val symbolic_cosh: t -> t
 applying the hyperbolic cosine function to the expression represented by [expr].
 *)
 
+val symbolic_derive: t -> num -> t
+(** [symbolic_derive expr num] returns the [num]-th derivative of [expr] with
+respect to the implicit time variable. *)
+
 val symbolic_derivative: t -> t
 (** [symbolic_derivative expr] returns an object that represents the result of
 applying the derivative function with respect to the implicit time variable to

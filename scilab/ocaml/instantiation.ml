@@ -1265,7 +1265,7 @@ and search_into_parameter ctx s cs level path ipar =
         tex_type = RealType dims;
         tex_expression = ParameterValue (level, [(s, ics)])
       }
-  | _ -> failwith "find_parameter: parameter not found"
+  | (s, cs) :: _, _ -> failwith ("find_parameter: parameter not found: " ^ s)
 
 and search_into_variable ctx s cs level path ivar =
   let ics = Array.map (compute_subscript ctx) cs in

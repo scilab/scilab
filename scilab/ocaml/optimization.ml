@@ -509,6 +509,80 @@ let symbolic_surfaces maps when_clauses =
         surfaces)
     when_clauses
 
+let propagate_noEvent expr =
+  (* such that 'noEvent' only appears in conditions *)
+  let rec propagate_noEvent' no_event expr = match nature expr with
+    | And exprs' ->
+        create_and (sort (List.map (propagate_noEvent' no_event) exprs'))
+    | ArcCosine expr' -> create_arcCosine (propagate_noEvent' no_event expr')
+    | ArcHyperbolicCosine expr' ->
+        create_arcHyperbolicCosine (propagate_noEvent' no_event expr')
+    | ArcHyperbolicSine expr' ->
+        create_arcHyperbolicSine (propagate_noEvent' no_event expr')
+    | ArcHyperbolicTangent expr' ->
+        create_arcHyperbolicTangent (propagate_noEvent' no_event expr')
+    | ArcSine expr' -> create_arcSine (propagate_noEvent' no_event expr')
+    | ArcTangent expr' -> create_arcTangent (propagate_noEvent' no_event expr')
+    | Cosine expr' -> create_cosine (propagate_noEvent' no_event expr')
+    | Derivative (expr', num) ->
+        create_derivative (propagate_noEvent' no_event expr') num
+    | Equality (expr', expr'') ->
+        create_equality
+          (propagate_noEvent' no_event expr')
+          (propagate_noEvent' no_event expr'')
+    | Exponential expr' ->
+        create_exponential (propagate_noEvent' no_event expr')
+    | Floor expr' -> create_floor (propagate_noEvent' no_event expr')
+    | Greater (expr', expr'') ->
+        create_greater
+          (propagate_noEvent' no_event expr')
+          (propagate_noEvent' no_event expr'')
+    | HyperbolicCosine expr' ->
+        create_hyperbolicCosine (propagate_noEvent' no_event expr')
+    | HyperbolicSine expr' ->
+        create_hyperbolicSine (propagate_noEvent' no_event expr')
+    | HyperbolicTangent expr' ->
+        create_hyperbolicTangent (propagate_noEvent' no_event expr')
+    | Logarithm expr' -> create_logarithm (propagate_noEvent' no_event expr')
+    | RationalPower (expr', num) ->
+        create_rationalPower (propagate_noEvent' no_event expr') num
+    | Sign expr' -> create_sign (propagate_noEvent' no_event expr')
+    | Sine expr' -> create_sine (propagate_noEvent' no_event expr')
+    | Tangent expr' -> create_tangent (propagate_noEvent' no_event expr')
+    | Addition exprs' ->
+        create_addition (sort (List.map (propagate_noEvent' no_event) exprs'))
+    | BlackBox ("noEvent", [expr']) -> propagate_noEvent' true expr'
+    | BlackBox (name, exprs') ->
+        create_blackBox name (List.map (propagate_noEvent' no_event) exprs')
+    | Multiplication exprs' ->
+        create_multiplication
+          (sort (List.map (propagate_noEvent' no_event) exprs'))
+    | Not expr' -> create_not (propagate_noEvent' no_event expr')
+    | Or exprs' ->
+        create_or (sort (List.map (propagate_noEvent' no_event) exprs'))
+    | PartialDerivative (expr', expr'') ->
+        create_partialDerivative
+          (propagate_noEvent' no_event expr')
+          (propagate_noEvent' no_event expr'')
+    | If (expr', expr'', expr''') ->
+        propagate_noEvent_into_if no_event expr' expr'' expr'''
+    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
+      Parameter _ | TimeVariable | Variable _ -> expr
+  and propagate_noEvent_into_if no_event expr expr' expr'' =
+    let cond =
+      if no_event then create_blackBox "noEvent" [propagate_noEvent' false expr]
+      else begin match nature expr with
+        | BlackBox ("noEvent", [expr']) ->
+            create_blackBox "noEvent" [propagate_noEvent' false expr]
+        | _ -> propagate_noEvent' false expr
+      end
+    in
+    create_if
+      cond
+      (propagate_noEvent' no_event expr')
+      (propagate_noEvent' no_event expr'')
+  in propagate_noEvent' false expr
+
 let create_model iexpr =
   let get_parameter_info maps s i = function
     | Instantiation.InstantiatedParameter (
@@ -705,6 +779,10 @@ let create_model iexpr =
         []
         when_clauses_list
     in
+    Array.iter
+      (fun equation ->
+        equation.expression <- propagate_noEvent equation.expression)
+      equations_array;
     {
       parameters = parameters_array;
       inputs = inputs_array;
@@ -753,80 +831,6 @@ let print_model oc model =
       output oc equation.expression;
       Printf.fprintf oc "\n")
     model.equations
-
-let propagate_noEvent expr =
-  (* such that 'noEvent' only appears in conditions *)
-  let rec propagate_noEvent' no_event expr = match nature expr with
-    | And exprs' ->
-        create_and (sort (List.map (propagate_noEvent' no_event) exprs'))
-    | ArcCosine expr' -> create_arcCosine (propagate_noEvent' no_event expr')
-    | ArcHyperbolicCosine expr' ->
-        create_arcHyperbolicCosine (propagate_noEvent' no_event expr')
-    | ArcHyperbolicSine expr' ->
-        create_arcHyperbolicSine (propagate_noEvent' no_event expr')
-    | ArcHyperbolicTangent expr' ->
-        create_arcHyperbolicTangent (propagate_noEvent' no_event expr')
-    | ArcSine expr' -> create_arcSine (propagate_noEvent' no_event expr')
-    | ArcTangent expr' -> create_arcTangent (propagate_noEvent' no_event expr')
-    | Cosine expr' -> create_cosine (propagate_noEvent' no_event expr')
-    | Derivative (expr', num) ->
-        create_derivative (propagate_noEvent' no_event expr') num
-    | Equality (expr', expr'') ->
-        create_equality
-          (propagate_noEvent' no_event expr')
-          (propagate_noEvent' no_event expr'')
-    | Exponential expr' ->
-        create_exponential (propagate_noEvent' no_event expr')
-    | Floor expr' -> create_floor (propagate_noEvent' no_event expr')
-    | Greater (expr', expr'') ->
-        create_greater
-          (propagate_noEvent' no_event expr')
-          (propagate_noEvent' no_event expr'')
-    | HyperbolicCosine expr' ->
-        create_hyperbolicCosine (propagate_noEvent' no_event expr')
-    | HyperbolicSine expr' ->
-        create_hyperbolicSine (propagate_noEvent' no_event expr')
-    | HyperbolicTangent expr' ->
-        create_hyperbolicTangent (propagate_noEvent' no_event expr')
-    | Logarithm expr' -> create_logarithm (propagate_noEvent' no_event expr')
-    | RationalPower (expr', num) ->
-        create_rationalPower (propagate_noEvent' no_event expr') num
-    | Sign expr' -> create_sign (propagate_noEvent' no_event expr')
-    | Sine expr' -> create_sine (propagate_noEvent' no_event expr')
-    | Tangent expr' -> create_tangent (propagate_noEvent' no_event expr')
-    | Addition exprs' ->
-        create_addition (sort (List.map (propagate_noEvent' no_event) exprs'))
-    | BlackBox ("noEvent", [expr']) -> propagate_noEvent' true expr'
-    | BlackBox (name, exprs') ->
-        create_blackBox name (List.map (propagate_noEvent' no_event) exprs')
-    | Multiplication exprs' ->
-        create_multiplication
-          (sort (List.map (propagate_noEvent' no_event) exprs'))
-    | Not expr' -> create_not (propagate_noEvent' no_event expr')
-    | Or exprs' ->
-        create_or (sort (List.map (propagate_noEvent' no_event) exprs'))
-    | PartialDerivative (expr', expr'') ->
-        create_partialDerivative
-          (propagate_noEvent' no_event expr')
-          (propagate_noEvent' no_event expr'')
-    | If (expr', expr'', expr''') ->
-        propagate_noEvent_into_if no_event expr' expr'' expr'''
-    | BooleanValue _ | Constant _ | DiscreteVariable _ | Number _ |
-      Parameter _ | TimeVariable | Variable _ -> expr
-  and propagate_noEvent_into_if no_event expr expr' expr'' =
-    let cond =
-      if no_event then create_blackBox "noEvent" [propagate_noEvent' false expr]
-      else begin match nature expr with
-        | BlackBox ("noEvent", [expr']) ->
-            create_blackBox "noEvent" [propagate_noEvent' false expr]
-        | _ -> propagate_noEvent' false expr
-      end
-    in
-    create_if
-      cond
-      (propagate_noEvent' no_event expr')
-      (propagate_noEvent' no_event expr'')
-  in propagate_noEvent' false expr
 
 let create_index_array a p =
   let size = Array.length a in
@@ -902,16 +906,19 @@ let compute_io_dependency model =
 let perform_hungarian_method model =
   let size =
     Array.fold_left
-      (fun acc equation ->
-        if equation.solved then acc
-        else begin
+      (fun acc equation -> if equation.solved then acc else acc + 1)
+      0
+      model.equations
+  in
+  let () =
+    Array.iter
+      (fun equation ->
+        if not equation.solved then begin
           equation.inner_variables <- variables_of equation.expression;
           equation.inner_derivatives <- derivatives_of equation.expression;
           equation.assignable_variables <-
-            assignable_variables_of equation.expression;
-          acc + 1
+            assignable_variables_of equation.expression
         end)
-      0
       model.equations
   in
   let table = Array.make size 0 in
@@ -938,11 +945,9 @@ let perform_hungarian_method model =
   let assocs' =
     List.map
       (function
-        | (i, Some j) -> table.(i), Some table.(j)
-        | (_, None) ->
-            failwith
-              "perform_simplifications: jacobian matrix is \
-              structurally singular")
+        | i, Some j -> table.(i), Some table.(j)
+        | _, None ->
+            failwith "perform_hungarian_method: jacobian is structurally singular")
       assocs
   in
   assert (
@@ -960,32 +965,217 @@ let perform_hungarian_method model =
     in check_results2 assocs');
   assocs'
 
-let rec eliminate_explicit_variables model =
-  let assocs = perform_hungarian_method model in
-  permute_equations model assocs;
-  let bad_variable_choice, success =
-    List.fold_left
-      (fun (bad_variable_choice, success) assoc ->
-        match assoc with
-          | (_, None) -> assert false
-          | i, Some j ->
-              try
-                if not model.variables.(i).state then
-                  perform_then_propagate_inversion model i;
-                bad_variable_choice, model.equations.(i).solved
-              with
-                | Can't_perform_inversion -> true, success)
-      (false, false)
-      assocs
-  in if bad_variable_choice || success then eliminate_explicit_variables model
+let eliminate_trivial_relations max_simplifs model =
+  let max_simplifs_ref = ref max_simplifs in
+  let choose_variable i j =
+    let svi = model.variables.(i).start_value
+    and svj = model.variables.(j).start_value in
+    match nature svi, nature svj with
+      | _, Number (Num.Int 0) -> i
+      | _ -> j
+  in
+  let permute_equations i j =
+    let equation = model.equations.(i) in
+    model.equations.(i) <- model.equations.(j);
+    model.equations.(j) <- equation
+  in
+  let simplify_trivial_relation n =
+    match nature model.equations.(n).expression with
+      | Addition [node; node'] when !max_simplifs_ref >= 0 ->
+          begin match nature node, nature node' with
+            | Variable i, Number _ | Number _, Variable i ->
+                permute_equations i n;
+                perform_then_propagate_inversion model i
+            | Variable i, Variable j ->
+                let k = choose_variable i j in
+                permute_equations k n;
+                perform_then_propagate_inversion model k;
+                decr max_simplifs_ref
+            | Variable i, Multiplication [node; node'] |
+              Multiplication [node; node'], Variable i ->
+                begin match nature node, nature node' with
+                  | Number _, Variable j | Variable j, Number _ ->
+                      let k = choose_variable i j in
+                      permute_equations k n;
+                      perform_then_propagate_inversion model k;
+                      decr max_simplifs_ref
+                  | _ -> ()
+                end
+            | _ -> ()
+          end
+      | _ -> ()
+  in
+  for i = 0 to Array.length model.equations - 1 do
+    simplify_trivial_relation i
+  done;
+  !max_simplifs_ref
 
-let perform_simplifications model =
+let eliminate_explicit_variables max_simplifs model =
+  let rec eliminate_explicit_variables' simplifs =
+    let assocs = perform_hungarian_method model in
+    permute_equations model assocs;
+    let bad_variable_choice, success, simplifs =
+      List.fold_left
+        (fun (bad_variable_choice, success, simplifs) assoc ->
+          match assoc with
+            | (_, None) -> assert false
+            | i, Some j when simplifs >= 0 ->
+                begin try
+                  if not model.variables.(i).state then
+                    perform_then_propagate_inversion model i;
+                  bad_variable_choice, model.equations.(i).solved, simplifs - 1
+                with
+                  | Can't_perform_inversion -> true, success, simplifs
+                end
+            | _ -> bad_variable_choice, success, simplifs)
+        (false, false, simplifs)
+        assocs
+    in
+    if bad_variable_choice || success then
+      eliminate_explicit_variables' simplifs
+  in eliminate_explicit_variables' max_simplifs
+
+let rec is_greater_equal expr = match nature expr with
+  | BlackBox ("noEvent", [expr']) -> is_greater_equal expr'
+  | Or [expr1; expr2] ->
+      begin match nature expr1, nature expr2 with
+        | Equality (expr11, expr12), Greater (expr21, expr22)
+          when expr11 == expr21 && expr12 == expr22 ||
+          expr11 == expr22 && expr12 == expr21 -> true
+        | Greater (expr11, expr12), Equality (expr21, expr22)
+          when expr11 == expr21 && expr12 == expr22 ||
+          expr11 == expr22 && expr12 == expr21 -> true
+        | _ -> false
+      end
+  | _ -> false
+
+let rec rewrite_conditions_in no_event expr =
+  let rec rewrite_if no_event expr expr' expr'' =
+    let no_event_if_necessary expr =
+      if no_event then create_blackBox "noEvent" [expr] else expr
+    in match nature expr with
+    | BlackBox ("noEvent", [expr1]) ->
+        create_if
+          (create_blackBox "noEvent" [rewrite_conditions_in true expr1])
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | Equality (expr1, expr2) ->
+        create_if
+          (no_event_if_necessary
+            (create_equality
+              (rewrite_conditions_in no_event expr1)
+              (rewrite_conditions_in no_event expr2)))
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | Greater (expr1, expr2) ->
+        create_if
+          (no_event_if_necessary
+            (create_greater
+              (rewrite_conditions_in no_event expr1)
+              (rewrite_conditions_in no_event expr2)))
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | And [] -> rewrite_conditions_in no_event expr'
+    | And [expr] ->
+        create_if
+          (no_event_if_necessary expr)
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | And (expr :: exprs) ->
+        rewrite_if no_event expr (create_if (create_and exprs) expr' expr'') expr''
+    | Or [] -> rewrite_conditions_in no_event expr''
+    | Or [expr] ->
+        create_if
+          (no_event_if_necessary expr)
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | Or [expr1; expr2] when is_greater_equal expr ->
+        begin match nature expr1, nature expr2 with
+          | Greater (expr1, expr2), _ | _, Greater (expr1, expr2) ->
+              let expr1' = rewrite_conditions_in no_event expr1
+              and expr2' = rewrite_conditions_in no_event expr2 in
+              create_if
+                (no_event_if_necessary
+                  (create_or
+                    [create_greater expr1' expr2'; create_equality expr1' expr2']))
+                (rewrite_conditions_in no_event expr')
+                (rewrite_conditions_in no_event expr'')
+          | _ -> assert false
+        end
+    | Or (expr :: exprs) ->
+        rewrite_if no_event expr expr' (create_if (create_or exprs) expr' expr'')
+    | Not expr ->
+        create_if
+          (no_event_if_necessary expr)
+          (rewrite_conditions_in no_event expr'')
+          (rewrite_conditions_in no_event expr')
+    | _ -> assert false
+  in match nature expr with
+    | ArcCosine expr' -> create_arcCosine (rewrite_conditions_in no_event expr')
+    | ArcHyperbolicCosine expr' ->
+        create_arcHyperbolicCosine (rewrite_conditions_in no_event expr')
+    | ArcHyperbolicSine expr' ->
+        create_arcHyperbolicSine (rewrite_conditions_in no_event expr')
+    | ArcHyperbolicTangent expr' ->
+        create_arcHyperbolicTangent (rewrite_conditions_in no_event expr')
+    | ArcSine expr' -> create_arcSine (rewrite_conditions_in no_event expr')
+    | ArcTangent expr' -> create_arcTangent (rewrite_conditions_in no_event expr')
+    | Cosine expr' -> create_cosine (rewrite_conditions_in no_event expr')
+    | Derivative (expr', num) ->
+        create_derivative (rewrite_conditions_in no_event expr') num
+    | Exponential expr' -> create_exponential (rewrite_conditions_in no_event expr')
+    | Floor expr' -> create_floor (rewrite_conditions_in no_event expr')
+    | HyperbolicCosine expr' ->
+        create_hyperbolicCosine (rewrite_conditions_in no_event expr')
+    | HyperbolicSine expr' ->
+        create_hyperbolicSine (rewrite_conditions_in no_event expr')
+    | HyperbolicTangent expr' ->
+        create_hyperbolicTangent (rewrite_conditions_in no_event expr')
+    | Logarithm expr' -> create_logarithm (rewrite_conditions_in no_event expr')
+    | Not expr' -> create_not (rewrite_conditions_in no_event expr')    
+    | RationalPower (expr', num) ->
+        create_rationalPower (rewrite_conditions_in no_event expr') num
+    | Sign expr' -> create_sign (rewrite_conditions_in no_event expr')
+    | Sine expr' -> create_sine (rewrite_conditions_in no_event expr')
+    | Tangent expr' -> create_tangent (rewrite_conditions_in no_event expr')
+    | Equality (expr1, expr2) ->
+        create_equality
+          (rewrite_conditions_in no_event expr1)
+          (rewrite_conditions_in no_event expr2)
+    | Greater (expr1, expr2) ->
+        create_greater
+          (rewrite_conditions_in no_event expr1)
+          (rewrite_conditions_in no_event expr2)
+    | Addition exprs' ->
+        create_addition (sort (List.map (rewrite_conditions_in no_event) exprs'))
+    | And exprs' ->
+        create_and (sort (List.map (rewrite_conditions_in no_event) exprs'))
+    | BlackBox ("noEvent", [expr']) -> rewrite_conditions_in true expr'
+    | BlackBox (name, exprs') ->
+        create_blackBox name (List.map (rewrite_conditions_in no_event) exprs')
+    | Multiplication exprs' ->
+        create_multiplication (sort (List.map (rewrite_conditions_in no_event) exprs'))
+    | Or exprs' ->
+        create_or (sort (List.map (rewrite_conditions_in no_event) exprs'))
+    | PartialDerivative (expr', expr'') ->
+        create_partialDerivative
+          (rewrite_conditions_in no_event expr')
+          (rewrite_conditions_in no_event expr'')
+    | If (expr', expr'', expr''') -> rewrite_if no_event expr' expr'' expr'''
+    | Constant _ | DiscreteVariable _ | Number _ | Parameter _ | TimeVariable |
+      Variable _ -> expr
+    | _ -> assert false
+
+let perform_simplifications max_simplifs model =
   Array.iter
     (fun equation ->
-      equation.expression <- propagate_noEvent equation.expression)
+      equation.expression <- rewrite_conditions_in false equation.expression)
     model.equations;
-  eliminate_explicit_variables model;
+  eliminate_explicit_variables max_simplifs model;
   compute_io_dependency model
+
+let compute_structural_index model =
+  failwith "compute_structural_index: not yet implemented"
 
 let find_submodels model =
   let final_index_of_variables = final_index_of_variables model in
