@@ -51,7 +51,7 @@
   </P>
 
   <P>
-  Some useful functions have been written to help to write this conversion function:
+  Some useful functions have been written to help to create M2SCI tlists while writing this conversion function:
   </P>
 
   <DESCRIPTION_INDENT>
@@ -77,6 +77,86 @@
       </ITEM>
       <ITEM label="Equal">
       <SP>: create a tree representing an instruction</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
+  Some other functions have been designed to get properties of operands/inputs. Considering A is tlist used in macro tree, you can use the following functions:
+  </P>
+
+  <TABLE>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>Function</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>returns %T if...</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_empty(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are 0</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_empty(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are known and at least one dimension of A is not 0</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_a_scalar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_a_scalar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are known and at least one dimension of A is not 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_a_vector(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are known and all dimensions of A but one are equal to 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_a_vector(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are known and at least two dimensions of A are greater than one</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_real(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A is real</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_complex(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A is complex</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>isdefinedvar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A is a variable already created in M-file currently converted</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>allunknown(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>all dimensions of A are unknown</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+  </TABLE>
+
+  <P>
+  Some other functions have been written for specific needs while writing conversion files:
+  </P>
+
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="first_non_singleton">
+      <SP>: is an equivalent to <LINK>firstnonsingleton</LINK> for an M2SCI tlist. Calling sequence: dim = first_non_singleton(A)</SP>
+      </ITEM>
+      <ITEM label="gettempvar">
+      <SP>: generates a temporary variable having a name which does not already exist. Calling sequence: v = gettempvar()</SP>
+      </ITEM>
+      <ITEM label="insert">
+      <SP>: allows to insert instructions. Calling sequence: insert(Equal(...),opt) with opt~=1 to insert before current instruction and opt=1 to insert after it.</SP>
+      </ITEM>
+      <ITEM label="getoperands">
+      <SP>: can be used to get each operand as a variable. Calling sequence: [A,B] = getoperands(operation_tlist)</SP>
+      </ITEM>
+      <ITEM label="getrhs">
+      <SP>: can be used to get each parameter as a variable. Calling sequence: [A,...] = getrhs(funcall_tlist)</SP>
+      </ITEM>
+      <ITEM label="convert2double">
+      <SP>: change type of input when this type is not implemented for a particular function is Scilab. Calling sequence: A = convert2double(A)</SP>
       </ITEM>
     </ITEMIZE>
   </DESCRIPTION_ITEM>

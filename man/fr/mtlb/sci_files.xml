@@ -83,6 +83,86 @@
   </DESCRIPTION_INDENT>
 
   <P>
+  Quelques fonctions ont été écrites pour récupérer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+  </P>
+
+  <TABLE>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>La fonction</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>renvoie %T si...</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_empty(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sont égales à 0</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_empty(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 0</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_a_scalar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sont égales 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_a_scalar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_a_vector(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont égales à 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>not_a_vector(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supérieures à 1</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_real(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A est réel</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>is_complex(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A est complexe</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>isdefinedvar(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>A est une variable déjà définie dans le M-file en cours de conversion</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+    <TABLE_NEW_ROW>
+      <TABLE_NEW_COLUMN>allunknown(A)</TABLE_NEW_COLUMN>
+      <TABLE_NEW_COLUMN>Toutes les dimensions de A sont inconnues</TABLE_NEW_COLUMN>
+    </TABLE_NEW_ROW>
+  </TABLE>
+
+  <P>
+  D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
+  </P>
+
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="first_non_singleton">
+      <SP>: est équivalente à <LINK>firstnonsingleton</LINK> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)</SP>
+      </ITEM>
+      <ITEM label="gettempvar">
+      <SP>: génère une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</SP>
+      </ITEM>
+      <ITEM label="insert">
+      <SP>: permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</SP>
+      </ITEM>
+      <ITEM label="getoperands">
+      <SP>: peut être utilisée pour extraire chaque opérande comme une variable. Séquence d'appel : [A,B] = getoperands(operation_tlist)</SP>
+      </ITEM>
+      <ITEM label="getrhs">
+      <SP>: peut être utilisée pour extraire chaque paramètre comme une variable. Séquence d'appel : [A,...] = getrhs(funcall_tlist)</SP>
+      </ITEM>
+      <ITEM label="convert2double">
+      <SP>: change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particulière de Scilab. Séquence d'appel : A = convert2double(A)</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
   Pour plus d'informations sur la fçon d'écrire ces fichiers, consulter le répertoire
   SCI/macros/m2sci/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
   aux plus compliqués (e.g. sci_zeros.sci).
