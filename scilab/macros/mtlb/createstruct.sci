@@ -42,6 +42,31 @@ if type(index)==15 then
    return;
    end
  else
+   if type(index($-1))==10 then
+   M=mlist(["st","dims",index($)],int32([1,1]),N);
+   index($)=null();
+   else
+   dims=[];
+   I=index($-1);
+   for K=1:lstsize(I)
+   dims=[dims,I(K)]
+   end
+   Li=list();
+   Kmax=prod(dims);
+   for kl=1:Kmax;
+    Li(kl)=[];
+   end
+   Li($)=N;
+   if Kmax>1 then
+   M=mlist(["st","dims",index($)],int32(dims),Li);
+   else
+   M=mlist(["st","dims",index($)],int32(dims),N);
+   end
+   index($)=null();index($)=null();
+
+   end
+   M=createstruct(index,M);
+   return;
 // pause
  if type(index($))==1 then
  w(index($)(:))=N;index($)=null();
@@ -53,6 +78,7 @@ if type(index)==15 then
  for k=1:2
  dims=index($-k)(:);
  
+
  tmp=mlist(["st","dims",index($-k-1)],int32(dims));
  error("not implemented"); 
  end
