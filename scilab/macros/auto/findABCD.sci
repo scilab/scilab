@@ -75,7 +75,7 @@ if nin<7 then tol = 0;end
 if tol==[] then tol = 0;end
 
 if nin<6 then nsmpl = 0;end
-if nsmpl==[]then nsmpl = 0;end
+if nsmpl==[] then nsmpl = 0;end
 
 if nin<5 then meth = 3;end
 if meth==[] then meth = 3;end

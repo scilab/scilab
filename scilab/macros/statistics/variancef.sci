@@ -48,7 +48,7 @@ function [s]=variancef(x,fre,orien)
       (sumfre-1)
   elseif orien=='c'|orien==2,
     sumfre=sum(fre,'c')
-    if or(sumfre==0)then error('Frequencies must be greater than 1'),end
+    if or(sumfre==0) then error('Frequencies must be greater than 1'),end
     s=(sum((x-(meanf(x,fre,'c')*ones(1,size(x,'c')))).^2,'c'))./..
       (sumfre-1)
   else error('3rd argument of variancef must be equal to *, c, r, 1 or 2'),

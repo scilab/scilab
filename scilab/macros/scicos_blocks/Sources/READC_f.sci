@@ -42,7 +42,7 @@ case 'set' then
 	   'dl','fl','ll','sl','db','fb','lb','sb']
     if prod(size(tmask1))>1 then
       message('Time record selection must be a scalar or an empty matrix')
-    elseif and(frmt1<>fmts)then
+    elseif and(frmt1<>fmts) then
       message(['Incorrect format, valid formats are:'
 	      strcat(fmts,', ')])
     elseif alreadyran&fname1<>fname then

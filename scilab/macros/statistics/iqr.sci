@@ -21,7 +21,7 @@ function [q]=iqr(x,orien)
 //
 //date: 1999-05-12
 //
-  if x==[]then q=%nan, return, end
+  if x==[] then q=%nan, return, end
   [lhs,rhs]=argn(0)
   if rhs==0 then error('iqr requires at least one input.'), end
   if rhs==1 then

@@ -38,7 +38,7 @@ case 'set' then
     fmts=['s','l','d','f','c','us','ul','uc','ull','uls','ubl','ubs',..
 	    'dl','fl','ll','sl','db','fb','lb','sb']
     mess=[]
-    if and(frmt1<>fmts)then
+    if and(frmt1<>fmts) then
       mess=[mess;'Incorrect format, valid formats are:'
 	  strcat(fmts,', ')];
       ok=%f
