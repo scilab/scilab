@@ -1,17 +1,9 @@
 #include "wgraph.h"
 #include "resource.h"
+#include "../graphics/Events.h"
+
 /*-----------------------------------------------------------------------------------*/
-static int sci_graphic_protect = 0;
 static int scig_buzy = 0;
-/*-----------------------------------------------------------------------------------*/
-extern Scig_deletegwin_handler scig_deletegwin_handler;
-/*-----------------------------------------------------------------------------------*/
-void   set_delete_win_mode()
-{ 
-	sci_graphic_protect = 0 ;
-}
-/*-----------------------------------------------------------------------------------*/
-extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
 /*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {

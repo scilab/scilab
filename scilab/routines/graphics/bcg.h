@@ -97,6 +97,7 @@ typedef struct BCG
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
   char EventHandler[25]; /* name of window event handler */
+  int EventHandlerType; /* does the event handler removes the normal event handling*/
   /* NG beg */
   int CWindowWidthView;	 /** graphic window width **/
   int CWindowHeightView;  /** graphic window height **/

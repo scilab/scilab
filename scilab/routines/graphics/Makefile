@@ -12,7 +12,7 @@ OBJSC = periX11.o periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	Plo2d1.o Plo2d2.o Plo2d3.o Plo2d4.o Plo2dEch.o Rec.o Gray.o \
 	Alloc.o FeC.o RecLoad.o RecSave.o Tests.o Actions.o \
 	gsort.o qsort.o nues1.o Format.o w_rottext.o\
-	dr1Call.o sciCall.o Plo2dn.o Plo3dn.o
+	dr1Call.o sciCall.o Plo2dn.o Plo3dn.o Events.o
 
 OBJSF = 
 
