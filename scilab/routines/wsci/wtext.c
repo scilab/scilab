@@ -2009,7 +2009,7 @@ EXPORT int WINAPI TextGetCh (LPTW lptw)
   **/
 
   do {
-    Sleep(1);
+    if (!ThreadPasteRunning) Sleep(1);
     TextMessage();
   } while (!TextKBHit(lptw));
 
@@ -3032,8 +3032,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	{
 		long count;
 		
-		while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
-	    while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
+		
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
 			
 		if (count < 0) count = count+lptw->KeyBufSize;
@@ -3049,6 +3048,8 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 			{
 				SetReadyOrNotForAnewLign(FALSE);
 				while ( IsReadyForAnewLign() == FALSE ) {Sleep(TEMPOTOUCHE);}
+				while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+				while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 				i++;
 			}
 		i++;	
