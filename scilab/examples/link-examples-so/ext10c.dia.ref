@@ -22,6 +22,7 @@ ilib_for_link(link_name,files,libs,flag);
    generate a loader file
    generate a Makefile: Makelib
    running the makefile
+   compilation of ext10c
  
  
 // load new function code in the scope of call
