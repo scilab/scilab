@@ -10,12 +10,8 @@ to=tree.operands(1)
 ind=tree.operands(2)
 
 tree.operands(2)=list(Cste(1),ind)
-if is_a_scalar(from) then
-elseif from.dims(1)==1 then
-elseif from.dims(1)<>Unknown & froms.dims(2)<>Unknown then
-  tree.operands($)=Funcall("matrix",1,Rhs(from,1,Operation("-",list(Cste(1)),list())))
-else
-  tree.operands($)=Funcall("matrix",1,Rhs(from,1,Operation("-",list(Cste(1)),list())))
+if ~is_a_scalar(from) & from.dims(1)<>1 then
+  tree.operands($)=Funcall("matrix",1,Rhs(from,1,Operation("-",list(Cste(1)),list())),list())
 end
 
 // Data inference
