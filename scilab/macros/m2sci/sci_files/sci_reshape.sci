@@ -13,7 +13,7 @@ for k=1:rhs
     elseif tree.rhs(k).vtype==Unknown then
       scitree=tree
       scitree.rhs(k)=Funcall("mtlb_double",1,list(tree.rhs(k)),list(Variable("",tree.rhs(k).infer)))
-      repl_poss(scitree,tree,X,"is not a character string matrix")
+      repl_poss(scitree,tree,tree.rhs(k),"is not a character string matrix")
       tree=scitree
     end
   end
