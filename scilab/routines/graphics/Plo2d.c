@@ -122,6 +122,8 @@ int C2F(xgrid)(style)
       sciPointObj *psubwin;
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       pSUBWIN_FEATURE (psubwin)->grid = *style;
+      Cscale.Waaint1[1]= Cscale.xtics[3];
+      Cscale.Waaint1[3]= Cscale.ytics[3];
     }
   else
     if (GetDriver()=='R') StoreGrid("xgrid",style);
