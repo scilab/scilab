@@ -34,7 +34,10 @@ c
       endif
       lstk(lw+1)=l0+iii
       retval=1
-c
+      ntypes(lw-top+rhs) = 36
+      iwhere(lw-top+rhs)= lstk(lw)
+c      lad(lw-top+rhs) = should point to numeric data
+
 c     create the mlist header
       
       il=iadr(l0)
