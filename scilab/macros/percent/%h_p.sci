@@ -92,7 +92,6 @@ function %h_p(h)
 	 "z_ticks.labels = "+labz
 	 "box = "+sci2exp(h.box)
 	 "sub_ticks = "+sci2exp(h.sub_ticks,0)
-	 "tics_color = "+string(h.tics_color)
          "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)
 	 "font_color = "+string(h.font_color)
