@@ -20,14 +20,9 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
-
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
-#ifdef __MSC__
+#if defined (__MSC__) || defined(__MINGW32__)
 #define putenv(x) _putenv(x)
 #endif
 
