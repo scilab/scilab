@@ -1,4 +1,5 @@
 @echo off
+REM Allan CORNET 2005 INRIA
 REM Makesubdirs.bat all
 if "%1" == "routines" goto routines
 if "%1" == "routines-clean" goto routines-clean 
@@ -51,12 +52,12 @@ cd ocaml
  nmake /C /f Makefile.mak clean
 cd ..
 goto end
+
 :dumpexts
 cd Win95-util\Nm
  nmake /C /f Makefile.mak 
 cd ..\..
 goto end 
-
 
 :pvm 
 cd pvm3
@@ -160,7 +161,7 @@ goto end
 :man
 cd man
  echo making all in man
- nmake /C /f makefile.mak all /a
+ nmake /C /f makefile.mak build /a
 cd ..
 goto end
 
@@ -195,14 +196,14 @@ goto end
 :man-clean
 cd man
  echo making clean in man
- nmake /C /f makehelp.mak clean 
+ nmake /C /f makefile.mak clean 
 cd ..
 goto end
 
 :man-distclean
 cd man
  echo making distclean in man
- nmake /C /f makehelp.mak distclean 
+ nmake /C /f makefile.mak distclean 
 cd ..
 goto end
 

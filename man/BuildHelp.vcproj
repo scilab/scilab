@@ -17,8 +17,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
@@ -28,8 +28,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
@@ -40,8 +40,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
@@ -51,8 +51,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
@@ -63,8 +63,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
@@ -75,8 +75,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
@@ -86,8 +86,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
@@ -97,8 +97,8 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>

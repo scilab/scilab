@@ -1,4 +1,6 @@
-all:: eng fr
+all:: check eng fr
+
+build:: eng fr
 
 check:
   @Makesubdirs.bat
