@@ -122,6 +122,6 @@ xbasc();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>hist3d</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>gsearch</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>dsearch</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
