@@ -1,39 +1,58 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
-  <TITLE>replot  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 1993  </DATE>
-  <SHORT_DESCRIPTION name="replot"> redessine la fenêtre graphique courante en changeant les bornes  </SHORT_DESCRIPTION>
+
+  <TITLE>replot</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993</DATE>
+
+  <SHORT_DESCRIPTION name="replot">redessine la fenÃªtre graphique courante en
+  changeant les bornes</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>replot(rect)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>replot(rect)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>rect  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-  <SP>
-    : vecteur ligne de taille 4.
-</SP>
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>rect</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: vecteur ligne de taille 4.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
-  <P>
-    <VERB>replot</VERB> est utilisée pour redessiner la fenêtre graphique courante en changeant les bornes, données sous la forme
-    <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>. Fonctionne uniquement avec le pilote <VERB>&quot;Rec&quot;</VERB>.
-  </P>
+    <P><VERB>replot</VERB> est utilisÃ©e pour redessiner la fenÃªtre graphique
+    courante en changeant les bornes, donnÃ©es sous la forme
+    <VERB>rect=[xmin,ymin,xmax,ymax]</VERB>. Fonctionne uniquement avec le
+    pilote <VERB>"Rec"</VERB>.</P>
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[
+backupstyle='?'
+if (get('old_style')=='off') then
+  set('old_style','on');
+  backupstyle='off'
+end
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x))
 replot([-1,-1,10,2])
+if (backupstyle =='off') then set('old_style',backupstyle);end;
+
  ]]></EXAMPLE>
+
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>xbasr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xbasr</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+
+  <AUTHOR>J.Ph.C.</AUTHOR>
 </MAN>
