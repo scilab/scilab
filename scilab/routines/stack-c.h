@@ -95,7 +95,8 @@ static int c_local;
 #define sstk(x) (((float *) C2F(stack).Stk) + x-1 )
 #define cstk(x) (((char *) C2F(stack).Stk) + x-1 )
 typedef struct { double r, i; } doublecomplex;
-#define zstk(x) (doublecomplex *) (C2F(stack).Stk + x-1 )
+/* #define zstk(x) (doublecomplex *) (C2F(stack).Stk + x-1 )  */
+#define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
 
 #define lstk(x) (((integer *) C2F(vstk).Lstk) + x-1 )
 #define infstk(x) (((integer *) C2F(vstk).Infstk) + x-1 )
