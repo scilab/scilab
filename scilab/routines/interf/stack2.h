@@ -5,6 +5,8 @@
 
 void SciToF77 __PARAMS((double *ptr, int size, int lda));
 void F77ToSci __PARAMS((double *ptr, int size, int lda));
+void double2z __PARAMS((double *ptr,  double *ptr77z, int size, int lda));
+void z2double __PARAMS((double *ptrz, double *ptrsci, int size, int lda));
 
 /* from int */
 
