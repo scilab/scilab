@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_size</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_size">Matlab size emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>size</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With two inputs: Matlab <VERB>size</VERB> can be used with second parameter giving
+	a not-existing dimension of first parameter (returns 1 in this case) but not Scilab one.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With more than one output: if number of output is lesser than number of dimensions,
+	last output is the product of all remaining dimensions in Matlab but not in Scilab.
+	If number of output is greater than number of dimensions, outputs corresponding to a
+	not-existing dimension are set to 1 in Matlab but Scilab gives an error in this case.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>[d1,[d2,...]] = mtlb_size(X[,dim])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>[d1,[d2,...]] = size(X[,dim])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_size</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With two inputs: if <VERB>dim</VERB> gives an existing dimension of <VERB>X</VERB>
+        <VERB>mtlb_size(X,dim)</VERB> may be replaced by <VERB>size(X,dim)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With more than one outputs: if the number of outputs is equal to the number of dimensions of <VERB>X</VERB>
+        <VERB>[d1,[d2,...]] = mtlb_size(X)</VERB> may be replaced by <VERB>[d1,[d2,...]] = size(X)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_size</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

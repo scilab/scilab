@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_tril.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_triu</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_triu">Matlab triu emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>triu</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With complex input: Matlab <VERB>triu</VERB> can be used with complex data but not Scilab one.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With character strings inputs: due to the fact the Matlab and Scilab do not consider character
+	strings in the same way, Scilab and Matlab <VERB>triu</VERB> do not give the same results
+	for this type of input.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With boolean inputs: Matlab <VERB>triu</VERB> can be used with boobean data but not Scilab one.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_triu(x,k)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>triu(x,k)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_triu</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>X</VERB> contains real double values
+        <VERB>mtlb_triu(x,k)</VERB> may be replaced by <VERB>triu(x,k)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>X</VERB> contains boolean values
+        <VERB>mtlb_triu(x,k)</VERB> may be replaced by <VERB>triu(bool2s(x),k)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_triu</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Matlab-Scilab_character_strings</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

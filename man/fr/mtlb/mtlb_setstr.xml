@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_setstr</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_setstr">Fonction d'émulation de la fonction Matlab setstr</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>setstr</VERB> et la fonction Scilab
+    <VERB>ascii</VERB> se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec les chaînes de charactères : la fonction Matlab <VERB>setstr</VERB> retourne une chaîne de caractères
+	alors que la fonction Scilab <VERB>ascii</VERB> retourne uen matrice de doubles.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Avec les matrices de doubles : la fonction Matlab <VERB>setstr</VERB> retourne une matrice
+	de caractères alors que la fonction Scilab <VERB>ascii</VERB> retourne une chaine de caractères.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_setstr(A)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>setstr(A)</VERB> quand il n'était pas
+    possible de savoir ce qu'était le paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_setstr</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>A</VERB> est une chaîne de caratères ou une matrice de chaînes
+        <VERB>mtlb_setstr(A)</VERB> peut être remplacé par <VERB>A</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+         Si <VERB>A</VERB> est un vecteur ligne de doubles
+        <VERB>mtlb_setstr(A)</VERB> peut être remplacé par <VERB>ascii(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_setstr</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

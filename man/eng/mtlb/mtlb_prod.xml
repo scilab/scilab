@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_sum.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_prod</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_prod">Matlab prod emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>prod</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called with one input: Matlab <VERB>prod</VERB> threts the values along the first
+	non-singleton dimension of input while Scilab <VERB>prod</VERB> threats all values of input.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two inputs: Matlab <VERB>prod</VERB> can be used with second input giving
+	a non-existing dimension of first input while Scilab <VERB>prod</VERB> returns an error message.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_prod(A[,dim])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>prod(A[,dim])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_prod</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>A</VERB> is an empty matrix, a scalar or a vector,
+        <VERB>mtlb_prod(A)</VERB> may be replaced by <VERB>prod(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>A</VERB> is a not-empty matrix,
+        <VERB>mtlb_prod(A)</VERB> may be replaced by <VERB>prod(A,1)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>A</VERB> is a multidimensional array,
+        <VERB>mtlb_prod(A)</VERB> may be replaced by <VERB>prod(A,firstnonsingleton(A))</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two inputs, if <VERB>dim</VERB> is lesser than the number of dimensions of <VERB>A</VERB>
+        <VERB>mtlb_prod(A,dim)</VERB> may be replaced by <VERB>prod(A,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_prod</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

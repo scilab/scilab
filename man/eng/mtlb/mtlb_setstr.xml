@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_setstr</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_setstr">Matlab setstr emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>setstr</VERB> and Scilab <VERB>ascii</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character string input: Matlab <VERB>setstr</VERB> returns a character string
+	while Scilab <VERB>ascii</VERB> returns ASCII codes.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With double matrix input: Matlab <VERB>setstr</VERB> returns a character matrix
+	having the same size as input while Scilab <VERB>ascii</VERB> returns a single character string
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_setstr(A)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>setstr(A)</VERB> when it was not
+    possible to know what was the input while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_setstr</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is a character string or a character string matrix
+        <VERB>mtlb_setstr(A)</VERB> may be replaced by <VERB>A</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>A</VERB> is a double row vector
+        <VERB>mtlb_setstr(A)</VERB> may be replaced by <VERB>ascii(A)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_setstr</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
