@@ -1402,7 +1402,6 @@ c     d = spec(A)
       parameter ( DZERO=0.0D0 )
       complex*16 ZERO
       parameter ( ZERO=(0.0D0,0.0D0) )
-      complex*16 complex
 
        minrhs=1
        maxrhs=1
@@ -1471,7 +1470,7 @@ c     $     WORK, INFO )
 c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 
         do 5 i = 1, N
-           zstk(lD+i-1) = complex(stk(lWR+i-1),stk(lWI+i-1))
+           zstk(lD+i-1) = cmplx(stk(lWR+i-1),stk(lWI+i-1))
   5     continue     
       else 
         call ZLASET( 'F', N, N, ZERO, ZERO, zstk(lD), N ) 
@@ -1479,7 +1478,7 @@ c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 
         do 10 i = 1, N
            ii = i+(i-1)*N
-           zstk(lD+ii-1) = complex(stk(lWR+i-1),stk(lWI+i-1))
+           zstk(lD+ii-1) = cmplx(stk(lWR+i-1),stk(lWI+i-1))
  10     continue   
       
         j = 0
@@ -1493,8 +1492,8 @@ c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
               do 40 i = 1, N
                  ij = i+(j-1)*N
                  ij1 = i+j*N
-                 zstk(lV+ij-1) = complex(stk(lVR+ij-1),stk(lVR+ij1-1))
-                 zstk(lV+ij1-1) = complex(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
+                 zstk(lV+ij-1) = cmplx(stk(lVR+ij-1),stk(lVR+ij1-1))
+                 zstk(lV+ij1-1) = cmplx(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
  40           continue
               j = j+1
            endif
@@ -2739,7 +2738,6 @@ c     type is r or c
       logical  voiddummy, WANTD, WANTZ
       double precision ZERO
       parameter (ZERO = 0.0D0)
-      complex*16 complex
       external voiddummy
 
        minrhs=2
@@ -2836,7 +2834,7 @@ c     $    VS, LDVS, WORK, LWORK, INFO )
          do 20 i = 1, N
             do 10 j = 1, N
                ij = i+(j-1)*N
-               zstk(lT+ij-1) = complex(stk(lA+ij-1),ZERO)
+               zstk(lT+ij-1) = cmplx(stk(lA+ij-1),ZERO)
    10       continue
    20    continue     
          call ZGEES( JOBVS, SORT, voiddummy, N, zstk(lT), N, SDIM,

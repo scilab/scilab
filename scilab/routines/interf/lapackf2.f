@@ -383,7 +383,6 @@ c     [al,be] = gspec(A,B)
       character JOBVL, JOBVR
       double precision DZERO
       parameter ( DZERO=0.0D0 )
-      complex*16 complex
 
        minrhs=2
        maxrhs=2
@@ -460,7 +459,7 @@ c    $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
        endif
 
        do 10 i = 1, N
-           zstk(lALPHA+i-1) = complex(stk(lALPHAR+i-1),stk(lALPHAI+i-1))
+           zstk(lALPHA+i-1) = cmplx(stk(lALPHAR+i-1),stk(lALPHAI+i-1))
  10    continue      
       
       if(lhs.eq.3) then
@@ -475,8 +474,8 @@ c    $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
               do 40 i = 1, N
                  ij = i+(j-1)*N
                  ij1 = i+j*N
-                 zstk(lV+ij-1) = complex(stk(lVR+ij-1),stk(lVR+ij1-1))
-                 zstk(lV+ij1-1) = complex(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
+                 zstk(lV+ij-1) = cmplx(stk(lVR+ij-1),stk(lVR+ij1-1))
+                 zstk(lV+ij1-1) = cmplx(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
  40           continue
               j = j+1
            endif
