@@ -39,7 +39,7 @@ void axis_draw(strflag)
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  if (version_flag() == 0){/**DJ.Abdmouche 2003**/
+  if (version_flag() == 0){/**DJ.Abdemouche 2003**/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     color=pSUBWIN_FEATURE (psubwin)->cubecolor;
     ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1];
@@ -394,7 +394,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   double angle=0.0,vxx,vxx1;
   int vx[2],vy[2],xm[2],ym[2];
   char c_format[5];
-  integer flag=0,xx=0,yy=0,posi[2],rect[4],dash[6],trois=3;/**DJ.Abdmouche 2003**/
+  integer flag=0,xx=0,yy=0,posi[2],rect[4],dash[6],trois=3;/**DJ.Abdemouche 2003**/
   integer i,barlength;
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
@@ -538,7 +538,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0) 
 	    if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) /**DJ.Abdmouche 2003**/
+	      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) /**DJ.Abdemouche 2003**/
 		{
 		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[0] ;
 		  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -685,7 +685,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0)
             if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1) /**DJ.Abdmouche 2003**/
+	      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1) /**DJ.Abdemouche 2003**/
 		{
 		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[1] ;
 		  vx[0]=Cscale.WIRect1[0];
