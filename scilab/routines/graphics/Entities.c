@@ -10529,6 +10529,7 @@ sciDrawObj (sciPointObj * pobj)
 	      psonstmp = psonstmp->pprev;
 	    }/***/
 #ifdef WIN32
+	//	flag = 1 // leray
 	  if ( flag == 1) ReleaseWinHdc();
 #endif
 	  wininfo("");  
