@@ -78,7 +78,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int cmpt=0,i;
   int with_leg;
   double drect[6];
-  char dataflag;
+  char dataflag,frameflag;
 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
 
@@ -120,7 +120,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       break;
     }
     if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
-	(strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+	(strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
