@@ -40,9 +40,9 @@ while %T ,
       end
       
       // 5 following lines added 25/02/2003 (it seemed to work before...)
-      if ksym+1<pos then // Added by VC 17/03/2003 because didn't work for following string 'a'.^[1+1i] (pb in i_notation())
-	qcount=qcount+1
-      end // Added by VC 17/03/2003
+//      if ksym+1<pos then // Added by VC 17/03/2003 because didn't work for following string 'a'.^[1+1i] (pb in i_notation())
+//	qcount=qcount+1
+//      end // Added by VC 17/03/2003
       while part(str,ksym+1)==quote&ksym+1<pos then // Searching for a sequence of quotes
 	ksym=ksym+1
 	qcount=qcount+1
