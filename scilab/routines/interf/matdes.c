@@ -5162,13 +5162,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /********************** context graphique ******************************/
   else if (strncmp(marker,"background", 10) == 0)
     {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) {/**DJ.Abdemouche 2003**/
-	pSUBWIN_FEATURE (pobj)->cubecolor=(integer)stk(*value)[0];
-	/* I add this line under:*/
-	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
-      }
-      else  
-	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
+      /* I add this line under:*/
+      sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
+      
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) /**DJ.Abdemouche 2003**/
+	pSUBWIN_FEATURE (pobj)->cubecolor=sciGetBackground(pobj);
     }
   else if (strncmp(marker,"foreground", 10) == 0)
     {
@@ -6366,13 +6364,15 @@ if ((pobj == (sciPointObj *)NULL) &&
       /*  if (sciGetEntityType (pobj) == SCI_SUBWIN)
 	*stk(outindex) = pSUBWIN_FEATURE (pobj)->cubecolor;
 	else*/
-	*stk(outindex) = sciGetBackground((sciPointObj *) pobj);
+      /*	*stk(outindex) = sciGetBackground((sciPointObj *) pobj);*/
+	*stk(outindex) = sciGetBackgroundToDisplay((sciPointObj *) pobj);
     }
   else if (strncmp(marker,"foreground", 10) == 0) 
     {
       numrow   = 1;numcol   = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      *stk(outindex) = sciGetForeground((sciPointObj *) pobj);
+      /* *stk(outindex) = sciGetForeground((sciPointObj *) pobj);*/
+      *stk(outindex) = sciGetForegroundToDisplay((sciPointObj *) pobj);
     }
   else if (strncmp(marker,"fill_mode", 9) == 0) 
     {
