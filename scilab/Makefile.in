@@ -161,10 +161,10 @@ BINDISTFILES = \
 
 tarbindist:
 	touch .binary
-	strip $(SCIDIR)/bin/scilex
+	strip bin/scilex
 	cd tests; make distclean
 	cd examples; make distclean
-	cd .. ; tar cvf $(SCIDIR)/$(SCIBASE)-bin.tar $(BINDISTFILES) @PVMINST@
+	cd .. ; tar cvf $(SCIBASE)/$(SCIBASE)-bin.tar $(BINDISTFILES) $(PVMBINDISTFILES)
 	$(RM) .binary
 
 LIBPREFIX = @prefix@
