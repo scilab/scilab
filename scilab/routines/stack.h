@@ -15,11 +15,11 @@ c intersiz used in interfaces
 c*-------------------------------------------------------------------
 C     The next lines are used by visual Fortran 
 C     when building dll's which share common data with Scilab.dll
-cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
-cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/ 
-cDEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/
-cDEC$ ENDIF
+c DEC$ IF DEFINED (FORDLL)
+c DEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
+c DEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/ 
+c DEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/
+c DEC$ ENDIF
 C     ---------------------------------------------------------------
       integer   csiz,bsiz,isizt,psiz,nsiz,lsiz
       parameter (csiz=63,bsiz=4096,isizt=4096,psiz=4096,nsiz=6)

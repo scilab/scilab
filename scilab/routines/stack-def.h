@@ -17,7 +17,7 @@
 
 #define csiz 63  
 #define bsiz 4096  
-#define isizt 4096
+#define isizt 10000
 #define psiz 4096  
 #define nsiz 6  
 #define lsiz 65536
