@@ -92,10 +92,12 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
     end
   end
   
-  
+  if Pars<>[] then
+    Pars='  parameter Real '+Pars+';'
+  end
   txt=[txt;
        'class '+name
-       '  parameter Real '+Pars+';'
+       Pars
        models
        'equation'
        eqns
