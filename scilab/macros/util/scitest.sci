@@ -1,6 +1,13 @@
-function scitest(tstfile,force)
+function scitest(tstfile,force,error_check,keep_prompt)
+// if error_check is %t then execution errors are reported 
+// if error_check is %f then only test checked error are detected 
+// (see examples in tests directory) 
+// if keep_prompt is %t the the prompt is kept in the dia file 
+// this can be useful for producing demos 
   [lhs,rhs]=argn(0);
   if rhs <= 1 then force = %f ; end 
+  if rhs <= 2 then error_check = %f ; end 
+  if rhs <= 3 then keep_prompt = %f ; end 
   // check suffix in tstfile 
   ind=strindex(tstfile,"."); 
   if ind==[] then 
@@ -55,7 +62,10 @@ function scitest(tstfile,force)
   dia(grep(dia,'diary(0)'))=[];
 
   //suppress the prompts
-  dia=strsubst(strsubst(dia,'-->',''),'@#>','-->')
+  if keep_prompt == %f then 
+    dia=strsubst(dia,'-->','') 
+  end
+  dia=strsubst(dia,'@#>','-->')
   dia=strsubst(dia,'-1->','')
   
   //standardise  number display   
@@ -67,6 +77,14 @@ function scitest(tstfile,force)
   mputl(dia,diafile)
   //Check for execution errors
   // -------------------------
+  
+  if  error_check == %t then 
+    if grep(dia,'!--error')<>[] then 
+      mydisp("Test failed ERROR DETECTED  while executing "+tstfile)
+      return 
+    end
+  end   
+  
   if grep(dia,'error on test')<>[] then
     mydisp("Test failed ERROR DETECTED  while executing "+tstfile)
     return
