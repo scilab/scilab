@@ -753,7 +753,8 @@ void C2F(sethidden3dXfig)(integer *num, integer *v2, integer *v3, integer *v4)
   if (ScilabGCXfig.CurColorStatus == 1) 
     {
       /* es: Max(0,... -> Max(-1,... */
-      ScilabGCXfig.NumHidden3d = Max(-1,Min(*num - 1,ScilabGCXfig.Numcolors + 1));
+      /* S Mottelet: Max(-1,... -> Max(-2,...  to take into account the value -1 */
+      ScilabGCXfig.NumHidden3d = Max(-2,Min(*num - 1,ScilabGCXfig.Numcolors + 1));
     }
 }
 

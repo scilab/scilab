@@ -841,7 +841,8 @@ void drawpolyline_1(char *fname, char *str, integer *n, integer *v1, integer *v2
 
 void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *fillvect, integer *n, integer *p, integer *x8, double *vx, double *vy, double *dx3, double *dx4, integer lx0, integer lx1)
 {
-  integer *xm,*ym,err=0,i;
+  integer *xm,*ym,err=0,i,j;
+  integer px[*p+1],py[*p+1];
   Myalloc(&xm,&ym,(*n)*(*p),&err);
   if (err ==  1) return;
   C2F(echelle2d)(vx,vy,xm,ym,n,p,"f2i",3L);
@@ -859,11 +860,15 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   }
   if (*v1==2) {
-
      for (i=0 ; i< (*n) ;i++) {
-     	 shade(&xm[(*p)*i],&ym[(*p)*i],&fillvect[(*p)*i],*p,-(fillvect[(*p)*i]));
+        for (j=0; j<(*p); j++) {
+        	px[j]=xm[(*p)*i+j];
+        	py[j]=ym[(*p)*i+j];
+		}
+        px[*p]=px[0];     	         
+        py[*p]=py[0];     	 
+        shade(px,py,&fillvect[(*p)*i],*p,-(fillvect[(*p)*i]));
      }
-
   }
   else C2F(dr)(fname,str,xm,ym,fillvect,n,p,x8,PD0,PD0,dx3,dx4,lx0,lx1);
 

@@ -847,7 +847,8 @@ void C2F(sethidden3dPos)(integer *num, integer *v2, integer *v3, integer *v4)
   if (ScilabGCPos.CurColorStatus == 1) 
     {
       /* es: Max(0,... -> Max(-1,... */
-      ScilabGCPos.NumHidden3d = Max(-1,Min(*num - 1,ScilabGCPos.Numcolors + 1));
+      /* S Mottelet: Max(-1,... -> Max(-2,...  to take into account the value -1 */
+      ScilabGCPos.NumHidden3d = Max(-2,Min(*num - 1,ScilabGCPos.Numcolors + 1));
     }
 }
 

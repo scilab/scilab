@@ -2683,7 +2683,8 @@ void C2F(sethidden3d)(num, v2, v3, v4)
 {
   if (ScilabXgc->CurColorStatus == 1)
     {
-      ScilabXgc->NumHidden3d = Max(0,Min(*num - 1,ScilabXgc->Numcolors + 1));
+      /* S Mottelet: Max(-1,... -> Max(-2,...  to take into account the value -1 */
+      ScilabXgc->NumHidden3d = Max(-2,Min(*num - 1,ScilabXgc->Numcolors + 1));
     }
 }
 /*-----------------------------------------------------------------------------------*/

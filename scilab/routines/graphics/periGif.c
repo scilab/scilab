@@ -1063,7 +1063,8 @@ void C2F(sethidden3dGif)(integer *num, integer *v2, integer *v3, integer *v4)
   if (ScilabGCGif.CurColorStatus == 1) 
     {
       /* e Segre: Max(0,... -> Max(-1,... */
-      ScilabGCGif.NumHidden3d = Max(-1,Min(*num - 1,ScilabGCGif.Numcolors + 1));
+      /* S Mottelet: Max(-1,... -> Max(-2,...  to take into account the value -1 */
+      ScilabGCGif.NumHidden3d = Max(-2,Min(*num - 1,ScilabGCGif.Numcolors + 1));
     }
 }
 

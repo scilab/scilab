@@ -1703,7 +1703,8 @@ static void xset_hidden3d(integer *num, integer *v2, integer *v3, integer *v4)
   if (ScilabXgc->CurColorStatus == 1) 
     {
       /* e Segre: Max(0,... -> Max(-1,... */
-      ScilabXgc->NumHidden3d = Max(-1,Min(*num - 1,ScilabXgc->Numcolors + 1));
+      /* S Mottelet: Max(-1,... -> Max(-2,...  to take into account the value -1 */
+      ScilabXgc->NumHidden3d = Max(-2,Min(*num - 1,ScilabXgc->Numcolors + 1));
     }
 }
 
@@ -1712,7 +1713,7 @@ static void xget_hidden3d(integer *verbose, integer *num, integer *narg, double 
   *narg=1;
   if ( ScilabXgc->CurColorStatus == 1 ) 
     {
-      *num = ScilabXgc->NumHidden3d + 1;
+      *num = ScilabXgc->NumHidden3d + 1;     
     }
   else 
     {
