@@ -48,7 +48,7 @@ case 'define' then
   nin=1
   z0=zeros(11,1);zz0=z0(1:$-1);
   T=1
-  model=list(list('delayv',1),[nin;1],nin,1,[1;1],[],z0,T,[],'d',[0 -1],[%t %t],..
+  model=list(list('delayv',1),[nin;1],nin,1,[1;1],[],z0,T,[],'d',[0 -1],[%t %f],..
       ' ',list())
   label=[string(nin);strcat(string(zz0),';');string(T)];
   gr_i=['txt=[''Variable'';''delay''];';
