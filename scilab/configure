@@ -11659,8 +11659,8 @@ else
 fi
 
       if test "$XAthena3d" = no; then
-        { { echo "$as_me:11662: error: Xaw3d missing. Use Xaw instead" >&5
-echo "$as_me: error: Xaw3d missing. Use Xaw instead" >&2;}
+        { { echo "$as_me:11662: error: Xaw3d missing. Use configure with option: --without-xaw3d" >&5
+echo "$as_me: error: Xaw3d missing. Use configure with option: --without-xaw3d" >&2;}
    { (exit 1); exit 1; }; }
       else
         XAW3D=yes

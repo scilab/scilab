@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.58 $)dnl
+AC_REVISION($Revision: 1.59 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1183,7 +1183,7 @@ if test "$PERIFILE" = periX11.o; then
     if test "$with_xaw3d" != no; then
       AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
       if test "$XAthena3d" = no; then
-        AC_MSG_ERROR([Xaw3d missing. Use Xaw instead])
+        AC_MSG_ERROR([Xaw3d missing. Use configure with option: --without-xaw3d])
       else
         XAW3D=yes
         XAthena=yes
