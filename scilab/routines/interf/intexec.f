@@ -96,8 +96,9 @@ c     set error recovery modes
       if(icheck.eq.0) then
          ids(1,pt)=0
       else
+         ids(1,pt)=1+toperr
+         toperr=top
          errpt=pt
-         ids(1,pt)=1
          imode=1
          imess=1
          num=-1
@@ -125,7 +126,7 @@ c     *call*  macro
       rio=pstk(pt)
       top=top+1
       lhs=1
-      if(ids(1,pt).eq.1) then
+      if(ids(1,pt).gt.0) then
 c     return error number
          il=iadr(lstk(top))
          istk(il)=1
@@ -136,6 +137,7 @@ c     return error number
          stk(l)=max(err1,err2)
          lstk(top+1)=l+1
          fun=0
+         toperr=ids(1,pt)-1
       else
          il=iadr(lstk(top))
          istk(il)=0

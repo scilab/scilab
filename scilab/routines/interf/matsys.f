@@ -1680,11 +1680,11 @@ c
       rhs=max(0,rhs)
       if(.not.checklhs('errcatch',1,1)) return
       if(.not.checkrhs('errcatch',0,3)) return
+      catch=0
 
       if(rhs.eq.0) then
          errct=0
          errpt=0
-         catch=0
          top=top+1
          call objvide('errcatch',top)
          return

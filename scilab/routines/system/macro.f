@@ -244,7 +244,18 @@ c     handle errcatch
          errpt=0
          err1=0
          err2=0
+         catch=0
       endif
+
+      lhsr=lhs
+c     
+      lct(4)=pstk(pt)
+      rhs=ids(1,pt)
+      lhs=ids(2,pt)
+      lct(4)=pstk(pt)
+      vargout=ids(4,pt).eq.1
+
+
 
 c     restaure  pointers
       k = lpt(1) - (13+nsiz)
@@ -252,15 +263,16 @@ c     restaure  pointers
       char1=lin(k+10)
       sym=lin(k+11)
       call putid(syn,lin(k+12))
-c     
-      lhsr=lhs
-c     
-      rhs=ids(1,pt)
-      lhs=ids(2,pt)
-      lct(4)=pstk(pt)
-      vargout=ids(4,pt).eq.1
-      toperr=ids(6,pt)
+c
+      if (err1.gt.0.and.catch.eq.0) then
+         toperr=ids(6,pt)
+         top=toperr
+         macr=macr-1
+         goto 48
+      endif
 
+      toperr=ids(6,pt)
+   
 c     
       if(comp(1).ne.0) then
          comp(2)=comp(1)
@@ -268,6 +280,8 @@ c
          macr=macr-1
          goto 47
       endif
+
+
       if(istk(ilk).ne.10.and..not.exec) then
 c     .  copy output variables at the top of the stack
          l0=ilk+1
@@ -445,6 +459,7 @@ c      ids(5,pt)=errpt
       if(r.eq.701.or.r.eq.604) then 
 c     .  disable error recovery mode , for pause only
          err1=0
+         catch=0
          errct=-1
       endif
       wmac=0

@@ -132,7 +132,13 @@ c     sont chargee (pb des matrices sur plusieurs lignes)
       icall=7
 c     *call* parse
       return
- 15   if(comp(1).eq.0) goto 10
+ 15   continue
+      if(err1.gt.0.and.catch.eq.0) then
+c     .  skip to the end
+         top=top-1
+         goto 20
+      endif
+      if(comp(1).eq.0) goto 10
       call compcl
       if(err.gt.0) return
 c     

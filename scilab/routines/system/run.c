@@ -82,6 +82,8 @@ logical Istrue(int n)
   return C2F(istrue)(&n);
 }
 
+
+
 int C2F(run)()
 {
   /* Initialized data */
@@ -166,10 +168,12 @@ int C2F(run)()
     C2F(basbrk).iflag = FALSE_;
     goto L91;
   }
-  if (C2F(errgst).err1 != 0) {
-    /* errcatch in exec(function,'errcatch') 
+  if (C2F(errgst).err1 != 0 ) {
+   /* errcatch in exec(function,'errcatch') 
      * or catched error in an external 
      * or errcatch in execstr('foo()','errcatch') */
+    if (C2F(errgst).catch == 0) goto L999;
+    /* error under errcatch(....,'continue') */
     if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001) {
       return 0;
     }
@@ -270,7 +274,7 @@ int C2F(run)()
   lname = lc + 1;
  L26: 
   C2F(stackg)(&Istk[lname]);
-  if (Err > 0) { 
+  if (Err > 0||C2F(errgst).err1 > 0) { 
     lc += 9;
     goto L10;
   }
@@ -278,16 +282,18 @@ int C2F(run)()
     goto L28;
   }
   C2F(funs)(&Istk[1 + lc]); /* check if it is a function */
-  if (Err > 0) {
-    return 0;
+  if (Err > 0||C2F(errgst).err1 > 0) {
+    lc += 9;
+    goto L10;
   }
   if (C2F(com).fun != -2) {
     C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], &Istk[1 + lc]);
     if (C2F(com).fun == 0) {
       --Top;
       SciError(4);
-      if (Err > 0) {
-	return 0;
+      if (Err > 0||C2F(errgst).err1 > 0) {
+	lc += 9;
+	goto L10;
       }
     } else {
       /* referenced name was function at compile time it is now a 
@@ -343,8 +349,8 @@ int C2F(run)()
     Rhs = 1;
     C2F(ref2val)();
     C2F(stackp)(&Istk[lname], &c__0);
-    if (Err > 0) {
-      return 0;
+    if (Err > 0 ||C2F(errgst).err1 > 0) {
+      goto L10;
     }
     goto L10;
   }
@@ -458,7 +464,7 @@ int C2F(run)()
   lc = l0;
   if (Top != Ids[3 + Pt * nsiz]) {
     SciError(115);
-    return 0;
+    goto L48;
   }
   C2F(nextj)(&Istk[1 + l0 - 7], &Pstk[Pt]);
   if (Pstk[Pt] != 0) {
@@ -476,6 +482,7 @@ int C2F(run)()
     goto L10;
   }
   /*     fin for */
+ L48:
   lc += nc;
   C2F(errgst).toperr = Ids[4 + Pt * nsiz];
   --Pt;
@@ -544,8 +551,8 @@ int C2F(run)()
     goto L59;
   } else if (Istk[Pstk[Pt]] != 10) {
     ok = Istrue(1);
-    if (Err > 0) {
-      return 0;
+    if (Err > 0 || C2F(errgst).err1 > 0) {
+      goto L10;
     }
     goto L59;
   }
@@ -565,8 +572,8 @@ int C2F(run)()
   tref = Ids[1 + Pt * nsiz];
   --Pt;
   ok = Istrue(1);
-  if (Err > 0) {
-    return 0;
+  if (Err > 0 || C2F(errgst).err1 > 0) {
+    goto L10;
   }
  L59:
   nc = Istk[lc];
@@ -858,7 +865,11 @@ int C2F(run)()
     if (C2F(errgst).err2 == 0) {
       C2F(errgst).err2 = C2F(errgst).err1;
     }
-    C2F(errgst).err1 = 0;
+    if (C2F(errgst).catch == 1) {
+      /* running under errcatch(num,....) */
+      C2F(errgst).err1 = 0;
+      if (Pt<C2F(errgst).errpt) C2F(errgst).catch = 0;
+    }
     imode = (i2 = C2F(errgst).errct / 100000, abs(i2));
     if (imode - (imode / 8 << 3) == 2) {
       C2F(basbrk).iflag = TRUE_;
@@ -1035,9 +1046,10 @@ int C2F(run)()
     il = Lstk[Top] + Lstk[Top] - 1;
     i2 = il + 5 + n + nc;
     Err = i2 / 2 + 1 - Lstk[Bot];
-    if (Err > 0) {
+    if (Err > 0 || C2F(errgst).err1 > 0) {
       SciError(17);
-      return 0;
+      lc = lc + 5 + n + nc;
+      goto L10;
     }
     i2 = n + 5 + nc;
     C2F(icopy)(&i2, &Istk[lc], &c__1, &Istk[il], &c__1);
@@ -1069,8 +1081,8 @@ int C2F(run)()
   if (Rhs == 0) {
     /* goto simple affectation */
     C2F(stackp)(&Istk[li], &c__0);
-    if (Err > 0) {
-      return 0;
+    if (Err > 0 || C2F(errgst).err1 > 0) {
+      goto L10;
     }
     if (C2F(errgst).err1 > 0) {
       goto L233;
@@ -1102,8 +1114,8 @@ int C2F(run)()
   /*     put a reference to the lhs variable */
   C2F(com).fin = -3;
   C2F(stackg)(&Istk[li]);
-  if (Err > 0) {
-    return 0;
+  if (Err > 0 || C2F(errgst).err1 > 0) {
+    goto L10;
   }
   /*     perform insertion operation */
   /*     index1,...,indexn, value ==> updated lhs value (or pointer to) */
@@ -1136,8 +1148,8 @@ int C2F(run)()
   --Pt;
   /*     store the updated value */
   C2F(stackp)(&Istk[li], &c__0);
-  if (Err > 0) {
-    return 0;
+  if (Err > 0 || C2F(errgst).err1 > 0) {
+    goto L10;
   }
   if (C2F(errgst).err1 > 0) {
     goto L233;
@@ -1179,6 +1191,7 @@ int C2F(run)()
  L998:
   Lhs = 0;
  L999:
+  /*remove context down to current running macro */
   if (Rstk[Pt] != 501) {
     --Pt;
     goto L999;

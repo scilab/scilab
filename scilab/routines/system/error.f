@@ -78,8 +78,16 @@ c        . looking if error has occurred in execstr deff getf or comp
 c     .     error has occurred in an external
             errtyp=0
             pt0=p
+         elseif(rstk(p).eq.501.and.catch.eq.0) then
+            if (rstk(p-1).eq.909) then
+c     .        exec of a function
+               goto 20
+            endif
+c     .     error has occurred in a compiled macro
+            errtyp=0
+            pt0=p
          elseif(rstk(p).eq.502) then 
-            if(rstk(p-1).eq.903) then
+            if(rstk(p-1).eq.903.and.catch.eq.0) then
 c     .     error has occurred in execstr
                errtyp=0
                pt0=p
