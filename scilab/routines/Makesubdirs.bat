@@ -22,6 +22,11 @@ cd xdr
 echo Making %1 in directory  xdr
  nmake /C /f Makefile.mak %1
 cd ..
+cd arpack
+echo Making %1 in directory  arpack
+ nmake /C /f Makefile.mak %1
+cd ..
+
 cd graphics
 echo Making %1 in directory  graphics
  nmake /C /f Makefile.mak %1
