@@ -8,18 +8,21 @@ function demo_datafit()
   Z=[Y;X];
   //show the data points
   xbasc();set figure_style old;xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);xselect()
-  plot2d(X',Y',style=-1,leg='Données expérimentales') 
-  realtimeinit(0.1);for k=1:30,realtime(k),end
+  plot2d(X',Y',style=-1,leg='Experimental data') 
+  realtimeinit(0.1);for k=1:20,realtime(k),end
   // solve the non linear data fitting
   [p,err]=datafit(G,Z,[3;5;10])
   // show the fitting curve
-  plot2d(X',FF(X)',[5,2],'002','Fonction approximante')
+  plot2d(X',FF(X)',[5,2],'002','Fitting function')
+  ;;
   realtimeinit(0.1);for k=1:30,realtime(k),end
 endfunction
+
 function y=FF(x)
 //parametric function model
   y=a*(x-b)+c*x.*x,
 endfunction
+
 function e=G(p,z)
 //datafit external computes the error
   a=p(1),

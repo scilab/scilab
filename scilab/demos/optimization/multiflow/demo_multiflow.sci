@@ -39,7 +39,7 @@ function demo_multiflow(gfile)
   show_graph(G)
 
   //add a title
-  xstringb(50,600,'Le graphe orienté avec les sources et les puits',600, ...
+  xstringb(50,600,'Oriented graph with sources and sinks',600, ...
 	   80,'fill')
   realtimeinit(0.1);for k=1:50,realtime(k),end // wait a little
   //              Definition of the LP problem (As,B,c,U)
@@ -117,9 +117,9 @@ function demo_multiflow(gfile)
   G.edge_label=G.edge_label';
   ge_set_arcs_id('Label')
   show_graph(G);
-  xstringb(50,600,'Les flots calculé sur les arcs',600, ...
-	   80,'fill')
-  realtimeinit(0.1);for k=1:60,realtime(k),end // wait a little
+  xstringb(50,600,'Computed flows',600,  80,'fill');
+  ;;
+  realtimeinit(0.1);for k=1:30,realtime(k),end // wait a little
   ge_do_quit(%f)
   xdel(win)
  
