@@ -23,10 +23,9 @@
   set("figure_style","new") // select entity based graphics
 
   h=get("current_figure") //gets handle on the current figure
-  a=h.children
-  drawlater(a.children)
+  drawlater()
   t=1:10;plot2d(t,t.^2)
-  drawnow(a.children)
+  drawnow()
 
  ]]></EXAMPLE>
   <SEE_ALSO>
