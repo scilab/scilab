@@ -3015,7 +3015,7 @@ int scixtitle(fname,fname_len)
   CheckRhs(1,3);
   C2F(sciwin)();
   if (version_flag() == 0){
-    if (Rhs > 1)
+    if (Rhs >= 1)
       {
 	if ((hdltab = malloc (Rhs * sizeof (long))) == NULL)
 	  return 0;
