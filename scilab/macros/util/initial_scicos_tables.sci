@@ -18,7 +18,7 @@ scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
 	'Flip','Undo','Pal editor'],..
 ['Simulate','Setup','Compile','Eval','Run'],..
 ['Object','Open/Set','Resize','Icon','Icon Editor','Color','Label','Get Info','Identification','Documentation'],..
-['Misc','Window','Background color','Default link colors','ID fonts','Aspect',..
+['Misc','Background color','Default link colors','ID fonts','Aspect',..
 	'Add color','Shortcuts','Zoom in','Zoom out','Help','Calc']);
 
 %scicos_short=[['d','c','m','u','f','o','s','i','r','l','q'];
