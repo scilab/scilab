@@ -15129,8 +15129,8 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"z_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"current_axes") == 0)    {return 9;}
   else if (strcmp(marker,"current_figure") == 0)    {return 9;}
-  else if (strcmp(marker,"default_axes") == 12)    {return 9;}/* DJ.A 08/01/04 */
-  else if (strcmp(marker,"default_figure") == 14)    {return 9;}/* DJ.A 08/01/04 */
+  else if (strcmp(marker,"default_axes") == 0)    {return 9;}/* DJ.A 08/01/04 */
+  else if (strcmp(marker,"default_figure") == 0)    {return 9;}/* DJ.A 08/01/04 */
   else if (strcmp(marker,"children") == 0)    {return 9;}
   else if (strcmp(marker,"cube_scaling") == 0)    {return 10;} /* F.Leray 22.04.04 */
   else if (strcmp(marker,"x_label") == 0)    {return 9;}  /* F.Leray 27.05.04 */
