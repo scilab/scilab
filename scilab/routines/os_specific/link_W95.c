@@ -169,7 +169,7 @@ int Sci_dlsym(ename,ishared,strf)
   else 
     {
       /* we don't add the _ in the table */
-      sciprint_nd("Linking %s \r\n",ename);
+      sciprint("Linking %s \r\n",ename);
       strncpy(EP[NEpoints].name,ename,MAXNAME);
       EP[NEpoints].Nshared = ish;
       NEpoints++;
