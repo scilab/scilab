@@ -227,7 +227,23 @@ void Callback_PASTE(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_PRINT(void)
 {
-	MessageBox(NULL,"En cours de dév.","",MB_OK);
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	SelectAll(lptw,FALSE);
+	TextCopyClip (lptw);
+	UnSelect(lptw);
+
+	if (lptw->lpmw->CodeLanguage == 0)
+	{
+		PrintSelection(lptw,"Scilab Console");
+	}
+	else
+	{
+		PrintSelection(lptw,"Console Scilab");
+	}
+	
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_TOOLBAR(void)
@@ -422,15 +438,6 @@ void Callback_CLEARCOMMANDWINDOW(void)
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	ClearCommandWindow(lptw,TRUE);
-}
-/*-----------------------------------------------------------------------------------*/
-void Callback_PRINTWINDOW(void)
-{
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-
-	PrintCommandWindow(lptw);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CONFIGUREBROWSER(void)
@@ -712,10 +719,7 @@ void SendMacro (LPTW lptw, UINT m)
 	    	}
 	    	return;
 	    	break;	
-		case PRINTWINDOW:
-		{
-			Callback_PRINTWINDOW();
-		}
+		
 		return;
 	    	break;	
 	    	case EOS:		/* [EOS] - End Of String - do nothing */
@@ -1625,125 +1629,170 @@ void SendCTRLandAKey(int code)
 	write_scilab(command);
 }
 /*-----------------------------------------------------------------------------------*/
-
-void PrintCommandWindow(LPTW lptw)
+HDC GetPrinterDC(void)
 {
-	int NombredeCaracteresAImprimer=0;
-	char *CopyOfScreenBuffer=NULL;
-	HDC hDC;     /* HDC imprimante */     	
-	HDC hWTDC;   /* HDC Fenetre Windows */
-	DOCINFO dc;  
-	TEXTMETRIC tm;
-	int NombredeCaracteresparLignes=0;
-//	POINT SizeChar;
-	HFONT hfont;
-//	int fontSizeX;
-//	int fontSizeY;
-	char szFaceName[40];
-	LOGFONT lf;
-	
-	int yChar=0;
-	int iCharsPerLine=0;
-	int iLinesPerPage=0;
-	
-//	TCHAR szBuffer [100] ;
-	int y=0;
-	
-	NombredeCaracteresAImprimer=lptw->CursorPos.y * lptw->ScreenSize.x + lptw->CursorPos.x;
-	CopyOfScreenBuffer=(char*)malloc( (NombredeCaracteresAImprimer+1)* sizeof(char));
-	strncpy(CopyOfScreenBuffer,(LPSTR)lptw->ScreenBuffer,NombredeCaracteresAImprimer);
-	
-		
-        hWTDC = GetDC( lptw->hWndText );
-        /* recupere le nom de la fonte utilisée dans la fenetre de commande */
-	GetTextFace(hWTDC, 39, szFaceName ); 
-	
-	hDC = GetPrinterDC();
-	if( !hDC )
-       	{
-           MessageBox(NULL, "Error creating DC", "Error", MB_APPLMODAL | MB_OK );
-           return;
-       	}
-	
-	
-	
-	
-       	ZeroMemory(&dc, sizeof(DOCINFO));
-	dc.cbSize = sizeof(DOCINFO);
-	dc.lpszDocName = "Scilab Command Window"; /* Nom du document affiché dans la queue d'impression */
-	
-	
-	SetMapMode (hDC, MM_ANISOTROPIC) ;
-	SetWindowExtEx (hDC, 1440, 1440, NULL) ;
-	SetViewportExtEx (hDC, GetDeviceCaps (hDC, LOGPIXELSX),	GetDeviceCaps (hDC, LOGPIXELSY), NULL) ;
-	
-	hfont = EzCreateFont (hDC, TEXT ("Courier"),120, 0, 0, TRUE) ;
-		
-	GetObject (hfont, sizeof (LOGFONT), &lf) ;
-	SelectObject (hDC, hfont) ;
-	GetTextMetrics (hDC, &tm) ;
-	
-	
-	NombredeCaracteresparLignes=tm.tmMaxCharWidth+23; /* Fonte fixe */
-	yChar = tm.tmHeight + tm.tmExternalLeading ;
-	
-	MessageBox(NULL,"En cours de Dév.","Impression",MB_OK);
-	/*
-	StartDoc(hDC, &dc);
-	{
-		char *Ligne=NULL;
-		
-		int NumeroDeLigne=0;
-		int numerodepage=1;
-		int NombredeLignesEntetes=0;
-	
-		int y=0;
-		
-		int k=0;
-		int reste=0;
-		
-		Ligne=(char*)malloc( (NombredeCaracteresparLignes + 1)* sizeof(char));
+  PRINTDLG pdlg;
 
-		
-		StartPage(hDC);
-		NombredeLignesEntetes=EntetePage(hDC,"Scilab Command Window",numerodepage);
-		NumeroDeLigne=NombredeLignesEntetes;
-		y = yChar *NumeroDeLigne;
-	/*	
-		for(k=0;k<(NombredeCaracteresAImprimer/NombredeCaracteresparLignes);k++)
-		{
-			strncpy(Ligne,&CopyOfScreenBuffer[k*(NombredeCaracteresparLignes+1)],NombredeCaracteresparLignes+1);
-			TextOut(hDC,0,y,Ligne,NombredeCaracteresparLignes+1);
-			NumeroDeLigne++;
-			y = yChar *NumeroDeLigne;
-		}
-		
-		reste=NombredeCaracteresAImprimer%NombredeCaracteresparLignes;
-		strncpy(Ligne,&CopyOfScreenBuffer[k*(NombredeCaracteresparLignes+1)],reste);
-		TextOut(hDC,0,y,Ligne,strlen(Ligne));
-		NumeroDeLigne++;
-		y = yChar *NumeroDeLigne;
-	*/
-   	/*	EndPage(hDC);
-   		free(Ligne);     
-   		
-		numerodepage++;
+  // Initialize the PRINTDLG structure.
+  memset( &pdlg, 0, sizeof( PRINTDLG ) );
+  pdlg.lStructSize = sizeof( PRINTDLG );
+  // Set the flag to return printer DC.
+  pdlg.hwndOwner   = NULL;
+  pdlg.hDevMode    = NULL;     // Don't forget to free or store hDevMode
+  pdlg.hDevNames   = NULL;     // Don't forget to free or store hDevNames
+  pdlg.Flags       = PD_NOPAGENUMS|PD_NOSELECTION|PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC; 
+  pdlg.nCopies     = 1;
+  pdlg.nFromPage   = 0xFFFF; 
+  pdlg.nToPage     = 0xFFFF; 
+  pdlg.nMinPage    = 1; 
+  pdlg.nMaxPage    = 0xFFFF; 
 
-	}
-	EndDoc(hDC);
-	*/
-	free(CopyOfScreenBuffer);	
-	DeleteObject (SelectObject (hDC, GetStockObject (SYSTEM_FONT))) ;
-		
-
-	
-	
-}
-
+  // Invoke the printer dialog box.
+  PrintDlg( &pdlg );
+  // hDC member of the PRINTDLG structure contains
+  // the printer DC.
+  return pdlg.hDC;
+   }
 /*-----------------------------------------------------------------------------------*/
-int EntetePage(HDC hdc,LPSTR Entete,int numero)
+void PrintString(char *lines,char *Entete)
 {
+	HDC PrintDC;
+	HDC hDCmem;
+	DOCINFO di;
+	int TextLength=0;
+	char LignePrint[100];
+	int i =0;
+    int Index1 = 0;
+    int Index2 = 2;
+    int numero=1;
+
+	PrintDC=GetPrinterDC();
+	hDCmem = CreateCompatibleDC(PrintDC);
+	memset( &di, 0, sizeof( DOCINFO ) );
+	di.cbSize      = sizeof( DOCINFO );
+	di.lpszDocName = "Scilab Document";
+
+	TextLength = strlen(lines);
+    if (TextLength > 0)
+      {
+		if ( StartDoc( PrintDC, &di ) > 0 )
+			{
+				StartPage(PrintDC);
+				PageHeader(PrintDC,Entete);
+				for (i=0;i < TextLength;i++)
+					{
+						LignePrint[Index1] =    lines[i];
+						if (lines[i] == '\n')
+							{
+								Index2 ++;
+								LignePrint[Index1] = '\0';
+								if (LignePrint[Index1-1]== '\r') LignePrint[Index1-1] = '\0';
+								TextOut (PrintDC,100, Index2*INTERLINEPRINT, LignePrint, strlen(LignePrint));
+								Index1 = 0;
+							}
+						else Index1 ++;
+						if (Index2 == 60)
+							{
+								Footer(PrintDC,numero);
+								EndPage (PrintDC);
+								EndDoc (PrintDC);
+								StartDoc (PrintDC, &di);
+								numero++;
+								PageHeader(PrintDC,Entete);
+								Index2 = 2;
+							}
+					}
+				Index2 ++;
+				LignePrint[Index1] = '\0';
+				TextOut (PrintDC,100, Index2*INTERLINEPRINT, LignePrint, strlen(LignePrint));
+				Footer(PrintDC,numero);
+				EndPage (PrintDC);
+				EndDoc (PrintDC);
+			}
+	  }
+}
+/*-----------------------------------------------------------------------------------*/
+void PrintFile(char *filename)
+{
+}
+/*-----------------------------------------------------------------------------------*/
+void PrintSelection(LPTW lptw,char *Entete)
+{
+	HDC hdc;
+	HGLOBAL hGMem;
+	
+	TEXTMETRIC tm;
+	UINT type;
+	LPSTR lpMem; /* Pointeur sur la chaine du clipboard */
+	char *MessagePaste=NULL;
+	
+	/*Récupere ce qu'il y a dans le presse papier*/
+	hdc = GetDC (lptw->hWndText);
+	SelectFont (hdc, lptw->hfont);
+	GetTextMetrics (hdc, (TEXTMETRIC *) & tm);
+	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;
+	else type = CF_TEXT;
+	ReleaseDC (lptw->hWndText, hdc);
+	/* now get it from clipboard */
+	OpenClipboard (lptw->hWndText);
+	hGMem = GetClipboardData (type);
+	if (hGMem)
+	{
+		int i=0;
+		int l=0;
 		
+		lpMem= GlobalLock (hGMem);
+		l=strlen(lpMem);
+		MessagePaste=(char*)malloc( (l+1)*sizeof(char));
+		strcpy(MessagePaste,lpMem);
+		MessagePaste[l]='\0';
+		GlobalUnlock (hGMem);
+		
+		
+	}
+	CloseClipboard ();
+	
+	PrintString(MessagePaste,Entete);
+}
+/*-----------------------------------------------------------------------------------*/
+void Footer(HDC hdc,int number)
+{
+	HPEN hPen, hPenOld; 
+	LOGBRUSH lb; 
+	int NombredeLignesOccupeesparEntete=0;
+	int NombredeCaracteresparLignes=0;
+	TEXTMETRIC tm;
+	int yChar=0;
+	char *ptrLine=NULL;
+
+	int CxSize=GetDeviceCaps(hdc,HORZRES);
+	int CySize=GetDeviceCaps(hdc,VERTRES);
+	// Initialize the pen's brush.
+    lb.lbStyle = BS_SOLID; 
+    lb.lbColor = RGB(0,0,0); 
+    lb.lbHatch = 0;
+
+	GetTextMetrics (hdc, (TEXTMETRIC *) & tm);
+	NombredeCaracteresparLignes=tm.tmMaxCharWidth+10;
+	yChar = tm.tmHeight + tm.tmExternalLeading ;
+	ptrLine=(char*)malloc( (NombredeCaracteresparLignes + 1)* sizeof(char));
+
+	hPen = ExtCreatePen(PS_SOLID, 1, &lb, 0, NULL); 
+    hPenOld = SelectObject(hdc, hPen);
+	MoveToEx(hdc,0,CySize-(INTERLINEPRINT*2),NULL);
+  	LineTo(hdc,NombredeCaracteresparLignes*tm.tmWeight,CySize-(INTERLINEPRINT*2));
+	SelectObject(hdc, hPenOld); 
+    DeleteObject(hPen); 
+
+	wsprintf(ptrLine,"Page : %d",number);
+	TextOut(hdc,0,CySize-(INTERLINEPRINT),ptrLine,strlen(ptrLine));
+	free(ptrLine); 
+}
+/*-----------------------------------------------------------------------------------*/
+void PageHeader(HDC hdc,LPSTR Entete)
+{
+	HPEN hPen, hPenOld; 
+	LOGBRUSH lb; 
 	int NombredeLignesOccupeesparEntete=0;
 	int NombredeCaracteresparLignes=0;
 	TEXTMETRIC tm;
@@ -1752,126 +1801,40 @@ int EntetePage(HDC hdc,LPSTR Entete,int numero)
 	char dbuffer [9];
 	char tbuffer [9];
 	char *ptrLine=NULL;
-	char StrNumeropage[128];
-	
-	int j=0;
-	int l=0;
-	int w=0;
-	
+
+	// Initialize the pen's brush.
+    lb.lbStyle = BS_SOLID; 
+    lb.lbColor = RGB(0,0,0); 
+    lb.lbHatch = 0;
+		
 	_strdate( dbuffer );
 	_strtime( tbuffer );
 
 	GetTextMetrics (hdc, (TEXTMETRIC *) & tm);
 	NombredeCaracteresparLignes=tm.tmMaxCharWidth+10; /* Fonte fixe */
 	yChar = tm.tmHeight + tm.tmExternalLeading ;
+		
 	
-	
-	TextOut(hdc,0,NombredeLignesOccupeesparEntete*yChar,Entete,strlen(Entete));
-	NombredeLignesOccupeesparEntete++;
-	
-	
+
 	ptrLine=(char*)malloc( (NombredeCaracteresparLignes + 1)* sizeof(char));
+	wsprintf(ptrLine,"%s %s %s",dbuffer,tbuffer,Entete);
 	
-	wsprintf(ptrLine,"%s %s",dbuffer,tbuffer);
-	wsprintf(StrNumeropage,"Page %d",numero);
-	l=NombredeCaracteresparLignes-strlen(ptrLine)-strlen(StrNumeropage);
-	for(j=0;j<l;j++) strcat(ptrLine," ");
-	strcat(ptrLine,StrNumeropage);
-	
-	TextOut(hdc,0,NombredeLignesOccupeesparEntete*yChar,ptrLine,NombredeCaracteresparLignes);		
+	TextOut(hdc,0,NombredeLignesOccupeesparEntete*yChar,ptrLine,strlen(ptrLine));		
 	NombredeLignesOccupeesparEntete++;
 	
+	hPen = ExtCreatePen(PS_SOLID, 1, &lb, 0, NULL); 
+    hPenOld = SelectObject(hdc, hPen);
 	MoveToEx(hdc,0,NombredeLignesOccupeesparEntete*yChar,NULL);
   	LineTo(hdc,NombredeCaracteresparLignes*tm.tmWeight,NombredeLignesOccupeesparEntete*yChar);
-	NombredeLignesOccupeesparEntete++;
+	SelectObject(hdc, hPenOld); 
+    DeleteObject(hPen); 
+
 	
 	free(ptrLine);     
-	
-	return (NombredeLignesOccupeesparEntete);
 
 }
 /*-----------------------------------------------------------------------------------*/
-HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes)
-{
-	FLOAT cxDpi, cyDpi ;
-	HFONT hFont ;
-	LOGFONT lf ;
-	POINT pt ;
-	TEXTMETRIC tm ;
-	SaveDC (hdc) ;
-	SetGraphicsMode (hdc, GM_ADVANCED) ;
-	ModifyWorldTransform (hdc, NULL, MWT_IDENTITY) ;
-	SetViewportOrgEx (hdc, 0, 0, NULL) ;
-	SetWindowOrgEx (hdc, 0, 0, NULL) ;
-	if (fLogRes)
-	{
-		cxDpi = (FLOAT) GetDeviceCaps (hdc, LOGPIXELSX) ;
-		cyDpi = (FLOAT) GetDeviceCaps (hdc, LOGPIXELSY) ;
-	}
-	else
-	{
-		cxDpi = (FLOAT) (25.4 * GetDeviceCaps (hdc, HORZRES) /
-		GetDeviceCaps (hdc, HORZSIZE)) ;
-		cyDpi = (FLOAT) (25.4 * GetDeviceCaps (hdc, VERTRES) /
-		GetDeviceCaps (hdc, VERTSIZE)) ;
-	}
-	pt.x = (int) (iDeciPtWidth * cxDpi / 72) ;
-	pt.y = (int) (iDeciPtHeight * cyDpi / 72) ;
-	DPtoLP (hdc, &pt, 1) ;
-
-	lf.lfHeight = - (int) (fabs (pt.y) / 10.0 + 0.5) ;
-	lf.lfWidth = 0 ;
-	lf.lfEscapement = 0 ;
-	lf.lfOrientation = 0 ;
-	lf.lfWeight = iAttributes & EZ_ATTR_BOLD ? 700 : 0 ;
-	lf.lfItalic = iAttributes & EZ_ATTR_ITALIC ? 1 : 0 ;
-	lf.lfUnderline = iAttributes & EZ_ATTR_UNDERLINE ? 1 : 0 ;
-	lf.lfStrikeOut = iAttributes & EZ_ATTR_STRIKEOUT ? 1 : 0 ;
-	lf.lfCharSet = DEFAULT_CHARSET ;
-	lf.lfOutPrecision = 0 ;
-	lf.lfClipPrecision = 0 ;
-	lf.lfQuality = 0 ;
-	lf.lfPitchAndFamily = 0 ;
-	lstrcpy (lf.lfFaceName, szFaceName) ;
-	hFont = CreateFontIndirect (&lf) ;
-	if (iDeciPtWidth != 0)
-	{
-		hFont = (HFONT) SelectObject (hdc, hFont) ;
-		GetTextMetrics (hdc, &tm) ;
-		DeleteObject (SelectObject (hdc, hFont)) ;
-		lf.lfWidth = (int) (tm.tmAveCharWidth *
-		fabs (pt.x) / fabs (pt.y) + 0.5) ;
-		hFont = CreateFontIndirect (&lf) ;
-	}
-	RestoreDC (hdc, -1) ;
-	return hFont ;
-}
-/*-----------------------------------------------------------------------------------*/
-HDC GetPrinterDC(void)
-   {
-       PRINTDLG pdlg;
-
-       // Initialize the PRINTDLG structure.
-       memset( &pdlg, 0, sizeof( PRINTDLG ) );
-       pdlg.lStructSize = sizeof( PRINTDLG );
-       // Set the flag to return printer DC.
-       	pdlg.hwndOwner   = NULL;
-	pdlg.hDevMode    = NULL;     // Don't forget to free or store hDevMode
-	pdlg.hDevNames   = NULL;     // Don't forget to free or store hDevNames
-	pdlg.Flags       = PD_NOPAGENUMS|PD_NOSELECTION|PD_USEDEVMODECOPIESANDCOLLATE | PD_RETURNDC; 
-	pdlg.nCopies     = 1;
-	pdlg.nFromPage   = 0xFFFF; 
-	pdlg.nToPage     = 0xFFFF; 
-	pdlg.nMinPage    = 1; 
-	pdlg.nMaxPage    = 0xFFFF; 
-
-       // Invoke the printer dialog box.
-       PrintDlg( &pdlg );
-       // hDC member of the PRINTDLG structure contains
-       // the printer DC.
-       return pdlg.hDC;
-   }
-/*-----------------------------------------------------------------------------------*/   
+  
 void ShowToolBar(LPTW lptw)
 {
 	int i=0;	      		

@@ -1602,7 +1602,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  if  ( HasAZoneTextSelected(lptw) )
 	  {
 	  	/* Zone Selectionnée --> Activation Menus */
-	  	EnableMenuItem(lptw->hPopMenu,M_COPY_CLIP,MF_ENABLED);
+	  		EnableMenuItem(lptw->hPopMenu,M_COPY_CLIP,MF_ENABLED);
 	    	EnableMenuItem(lptw->hPopMenu,M_HELPON,MF_ENABLED);
 	    	EnableMenuItem(lptw->hPopMenu,M_PRINTSELECTION,MF_ENABLED);
 	    	EnableMenuItem(lptw->hPopMenu,M_OPENSELECTION,MF_ENABLED);
@@ -1778,7 +1778,8 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  
 	  case M_PRINTSELECTION:
 	  {
-	  	PrintSelection(lptw);
+		 TextCopyClip (lptw);
+	  	 PrintSelection(lptw,"Scilab Console");
 	  }
 	  return 0;
 	  
@@ -1800,7 +1801,13 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	  	EvaluateSelection(lptw);
 	  }
 	  return 0;
-	   
+
+	  case M_SELECT_ALL: 
+	  {
+		  SelectAll(lptw,TRUE);
+	  }
+	  return 0;
+
 	  }
       return (0);
     case WM_SYSCOLORCHANGE:
@@ -2568,9 +2575,11 @@ void OnRightClickMenu(LPTW lptw)
   	case 1: /* French */
   	{
   		/*AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_CUT, "&Couper	Ctrl+X");*/
+		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, "Sélection&ner Tout");
+		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, "Co&pier	Ctrl+C");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, "C&oller	Ctrl+V");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "Coller &Special	Shft+V");
+  		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "Coller &Special	Shft+V");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Imprimer Selection...");
   		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, "&Evaluer Selection");
@@ -2581,10 +2590,12 @@ void OnRightClickMenu(LPTW lptw)
   	default: case 0: /*English */
   	{
   		/*AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_CUT, "C&ut	Ctrl+X");*/
+		AppendMenu (lptw->hPopMenu, MF_STRING|MF_ENABLED, M_SELECT_ALL, "Select &All");
+		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, "&Copy	Ctrl+C");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, "&Paste	Ctrl+V");
   		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "&Special Paste	Shft+V");
-  		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Print Selection...");
+  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Print Selection...");
   		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, "&Evaluate Selection");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, "&Open Selection");
@@ -2691,8 +2702,8 @@ void OpenSelection(LPTW lptw)
 		l=strlen(MessagePaste);
 		for (i=0;i<l;i++)
 		{
-			if (MessagePaste[i]=='\n') MessagePaste[i]=' ';
-			if (MessagePaste[i]=='\r') MessagePaste[i]=' ';
+			if (MessagePaste[i]=='\n') MessagePaste[i]='\0';
+			if (MessagePaste[i]=='\r') MessagePaste[i]='\0';
 		}	
 	}
 	CloseClipboard ();
@@ -3116,11 +3127,6 @@ int ReplacePrompt(char *Text,char *prompt)
 	free(LocalPrompt);
 	return Retour;
 	
-}
-/*-----------------------------------------------------------------------------------*/
-void PrintSelection(LPTW lptw)
-{
-	MessageBox(NULL," Impression "," En cours de dév.",MB_OK);
 }
 /*-----------------------------------------------------------------------------------*/
 void HomeFunction(void)
@@ -3568,3 +3574,72 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
    return FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
+void SelectAll(LPTW lptw,BOOL DoAMark)
+{
+	POINT pt;
+	pt.x = 0;
+	pt.y = 0;
+	pt.x = (pt.x + lptw->ScrollPos.x)/lptw->CharSize.x;
+	pt.y = (pt.y + lptw->ScrollPos.y)/lptw->CharSize.y;
+	ClearMark(lptw, pt);
+
+	lptw->MarkBegin.x=0;
+	lptw->MarkBegin.y=0;
+	lptw->MarkEnd.x=lptw->CursorPos.x;
+	lptw->MarkEnd.y=lptw->CursorPos.y;
+
+	SendMessage (lptw->hWndText, WM_HSCROLL,SB_LEFT, (LPARAM) 0);
+	SendMessage (lptw->hWndText, WM_VSCROLL, SB_TOP, (LPARAM) 0);
+		  
+
+	if (DoAMark)
+	{
+		DoMark (lptw, lptw->MarkBegin,lptw->MarkEnd, TRUE);
+	
+	
+	if ((lptw->ScreenSize.x * lptw->MarkBegin.y + lptw->MarkBegin.x) >
+	    		(lptw->ScreenSize.x * lptw->MarkEnd.y + lptw->MarkEnd.x))
+	{
+		POINT tmp;
+		tmp.x = lptw->MarkBegin.x;
+		tmp.y = lptw->MarkBegin.y;
+		lptw->MarkBegin.x = lptw->MarkEnd.x;
+		lptw->MarkBegin.y = lptw->MarkEnd.y;
+		lptw->MarkEnd.x = tmp.x;
+		lptw->MarkEnd.y = tmp.y;
+   	}
+}
+   if  ( HasAZoneTextSelected(lptw) )
+  {
+	  	/* Zone Selectionnée --> Activation Menus */
+	  	EnableMenuItem(lptw->hPopMenu,M_COPY_CLIP,MF_ENABLED);
+	    EnableMenuItem(lptw->hPopMenu,M_HELPON,MF_ENABLED);
+	   	EnableMenuItem(lptw->hPopMenu,M_PRINTSELECTION,MF_ENABLED);
+	   	EnableMenuItem(lptw->hPopMenu,M_OPENSELECTION,MF_ENABLED);
+	   	EnableMenuItem(lptw->hPopMenu,M_EVALSELECTION,MF_ENABLED);
+	   	/* EnableMenuItem(lptw->hPopMenu,M_CUT,MF_ENABLED); */
+	    	
+	  }
+
+}
+/*-----------------------------------------------------------------------------------*/
+void UnSelect(LPTW lptw)
+{
+	POINT pt;
+	pt=lptw->CursorPos;
+
+	ClearMark(lptw, pt);
+	if  ( !HasAZoneTextSelected(lptw) )
+	  {
+	  	/* Zone Selectionnée --> Activation Menus */
+	  	EnableMenuItem(lptw->hPopMenu,M_COPY_CLIP,MF_GRAYED);
+	    EnableMenuItem(lptw->hPopMenu,M_HELPON,MF_GRAYED);
+	   	EnableMenuItem(lptw->hPopMenu,M_PRINTSELECTION,MF_GRAYED);
+	   	EnableMenuItem(lptw->hPopMenu,M_OPENSELECTION,MF_GRAYED);
+	   	EnableMenuItem(lptw->hPopMenu,M_EVALSELECTION,MF_GRAYED);
+	   	/* EnableMenuItem(lptw->hPopMenu,M_CUT,MF_ENABLED); */
+	    	
+	  }
+}
+/*-----------------------------------------------------------------------------------*/
+

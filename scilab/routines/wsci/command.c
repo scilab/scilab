@@ -72,7 +72,7 @@ static char * rlgets (char *s, int n, char *prompt, int interrupt)
   /* If it's not an EOF */
   if (line)
     {
-      if (*line>=0) AddHistory (line);
+      if ( (*line>=0) && (strlen(line)>0) )AddHistory (line);
       strncpy (s, line, n);
       return s;
     }

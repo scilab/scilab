@@ -28,7 +28,7 @@
 #define EZ_ATTR_ITALIC 2
 #define EZ_ATTR_UNDERLINE 4
 #define EZ_ATTR_STRIKEOUT 8
-
+#define INTERLINEPRINT 50
 
 /* limits */
 /* #define MAXSTR 255 : already in wtext.h */ 
@@ -43,12 +43,11 @@
 #define EXEC 			CMDMIN+1
 #define OPEN 			CMDMIN+2
 #define GETF 			CMDMIN+3
-#define PRINTWINDOW		CMDMIN+4
-#define LOAD 			CMDMIN+5
-#define SAVE 			CMDMIN+6
-#define GETCWD 			CMDMIN+7
-#define CHDIR 			CMDMIN+8
-#define EXIT   			CMDMIN+9
+#define LOAD 			CMDMIN+4
+#define SAVE 			CMDMIN+5
+#define GETCWD 			CMDMIN+6
+#define CHDIR 			CMDMIN+7
+#define EXIT   			CMDMIN+8
 /**********************/
 #define MCOPY 			EXIT+1
 #define PASTE 			MCOPY+1
@@ -131,7 +130,7 @@
 char *keyword[] =
 {
   "[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
-  "[TOOLBAR]","[NEWSGROUP]","[PRINTWINDOW]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
+  "[TOOLBAR]","[NEWSGROUP]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
   "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
   "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
@@ -146,7 +145,7 @@ char *keyword[] =
 
 BYTE keyeq[] =
 {
-  CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
+  CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
   MCOPY,PASTE,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
@@ -207,7 +206,6 @@ void Callback_EMAIL(void);
 void Callback_NEWSGROUP(void);
 void Callback_ABOUT(void);
 void Callback_CLEARCOMMANDWINDOW(void);
-void Callback_PRINTWINDOW(void);
 void Callback_CONFIGUREBROWSER(void);
 void Callback_CLEARHISTORY(void);
 /*--------------------------------*/
@@ -237,11 +235,14 @@ void SendCTRLandAKey(int code);
 /* Efface la fenetre de "commandes" */
 extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 /*--------------------------------*/
+void PrintString(char *lines,char *Entete);
+void PrintFile(char *filename);
 /* Imprime la fenetre courante */
-void PrintCommandWindow(LPTW lptw);
+void PrintSelection(LPTW lptw,char *Entete);
 
-int EntetePage(HDC hdc,LPSTR Entete,int numero);
-HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
+void PageHeader(HDC hdc,LPSTR Entete);
+void Footer(HDC hdc,int number);
+
 HDC GetPrinterDC(void);
 /*--------------------------------*/
 void ResetMenu(void);

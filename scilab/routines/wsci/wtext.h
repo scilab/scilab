@@ -253,6 +253,8 @@ void SwitchConsole(void);
 void PasteFunction(LPTW lptw,BOOL special);
 BOOL IsEmptyClipboard(LPTW lptw);
 /*--------------------------*/
+void SelectAll(LPTW lptw,BOOL DoAMark);
+void UnSelect(LPTW lptw);
 void HelpOn(LPTW lptw);
 void OpenSelection(LPTW lptw);
 void CutSelection(LPTW lptw);
@@ -277,7 +279,7 @@ void SetReadyOrNotForAnewLign(BOOL Ready);
 /*--------------------------*/
 void ForceToActiveWindowParent(void);
 /*--------------------------*/
-void PrintSelection(LPTW lptw);
+void PrintSelection(LPTW lptw,char *Entete);
 /*--------------------------*/
 void ExitWindow(void);
 /*--------------------------*/
