@@ -1121,6 +1121,7 @@ c
       if (nexp.le.0) then
          rhs=1
          call intinv('pow')
+         call putlhsvar()
 c         call matlu
          if(err.gt.0.or.err1.gt.0) return
          nexp=-nexp
