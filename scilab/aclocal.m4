@@ -70,7 +70,7 @@ cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 #include <stdio.h>
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
-main() {
+int main(int argc,char **argv) {
         FILE *maj = fopen("tclmajor","w");
         FILE *min = fopen("tclminor","w");
         fprintf(maj,"%d",TCL_MAJOR_VERSION);
@@ -263,7 +263,7 @@ cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 #include <stdio.h>
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
-main() {
+int main(int argc,char **argv) {
         FILE *maj = fopen("tkmajor","w");
         FILE *min = fopen("tkminor","w");
         fprintf(maj,"%d",TK_MAJOR_VERSION);
