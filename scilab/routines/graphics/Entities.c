@@ -7791,7 +7791,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
   char dir;
   int i;
 
-  /*char strflag[] = "081";*/ /*F.Leray 16.04.04: Correction Bug HERE since 8 april */
+  /* sciSubWindow * ppsubwin = NULL; */ /* debug */
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
@@ -7921,6 +7921,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->FRect[5]   = pSUBWIN_FEATURE (paxesmdl)->FRect[5];
      
 
+      /* ppsubwin =  pSUBWIN_FEATURE (pobj); */ /* debug */
       /* Adding F.Leray 21.04.04 */
       pSUBWIN_FEATURE (pobj)->brect[0] = pSUBWIN_FEATURE (paxesmdl)->brect[0];
       pSUBWIN_FEATURE (pobj)->brect[1] = pSUBWIN_FEATURE (paxesmdl)->brect[1];
@@ -7950,8 +7951,6 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       
       pSUBWIN_FEATURE (pobj)->cube_scaling = pSUBWIN_FEATURE (paxesmdl)->cube_scaling;
 
-      /*strncpy(pSUBWIN_FEATURE (pobj)->strflag, strflag, strlen(strflag)); */ /*F.Leray 16.04.04: Correction Bug HERE since 8 april */
-      
       if (sciSetSelectedSubWin(pobj) != 1) 
 	return (sciPointObj *)NULL; 
       pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
@@ -8196,6 +8195,14 @@ int C2F(graphicsmodels) ()
   for (i=0 ; i<7 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
   
+  /* Adding F.Leray 28.04.04 */
+  pSUBWIN_FEATURE (paxesmdl)->brect[0]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[1]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[2]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[3]   = 0.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[4]   = -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[5]   = 1.0;  
+
 
   pSUBWIN_FEATURE (paxesmdl)->cube_scaling = FALSE;
 
@@ -11101,6 +11108,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
    
       /**DJ.Abdemouche 2003**/
 
+
+      /*  sciprint("3D AVANT : pSUBWIN_FEATURE (pobj)->axes.flag[1] =%d\n",pSUBWIN_FEATURE (pobj)->axes.flag[1]);*/
       
 
       if (pSUBWIN_FEATURE (pobj)->is3d)
@@ -11119,16 +11128,23 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		}
 	      else
 		{
-		  pSUBWIN_FEATURE (pobj)->axes.flag[1] = 4; /* The default isoview mode is type=4 3d isometric bounds derived from the data, to similarily type=2  */
+		  if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 0)
+		     || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 2))
+		    pSUBWIN_FEATURE (pobj)->axes.flag[1] = 4; /* The default isoview mode is type=4 3d isometric bounds derived from the data, to similarily type=2  */
+		  else if(pSUBWIN_FEATURE (pobj)->axes.flag[1] == 1)
+		    pSUBWIN_FEATURE (pobj)->axes.flag[1] = 3;
 		}
 	    }
 	  
 	  
 	  if(pSUBWIN_FEATURE (pobj)->isoview == FALSE)
 	    {
-	      /*if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))*/
-	      if(isoflag ==2 || isoflag == 3)
-		pSUBWIN_FEATURE (pobj)->axes.flag[1] =2;/* The default NON-isoview mode is 2 */
+	      if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 3) 
+		 || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 5))
+		pSUBWIN_FEATURE (pobj)->axes.flag[1] = 1; /* computed from ebox*/
+	      else if((pSUBWIN_FEATURE (pobj)->axes.flag[1] == 4) 
+		      || (pSUBWIN_FEATURE (pobj)->axes.flag[1] == 6))
+		pSUBWIN_FEATURE (pobj)->axes.flag[1] = 2; /* The default NON-isoview mode is 2 computed from data*/
 	      else
 		{
 		  /* Nothing to do !! F.Leray 07.04.04 */
@@ -11137,6 +11153,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		}
 	    }
 	  
+	  /*  sciprint("3D APRES : pSUBWIN_FEATURE (pobj)->axes.flag[1] =%d\n\n",pSUBWIN_FEATURE (pobj)->axes.flag[1]);*/
+      	  
 	  
 	  axis_3ddraw(pobj,xbox,ybox,zbox,InsideU,InsideD); 
 	  psonstmp = sciGetLastSons (pobj);
@@ -11175,6 +11193,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	      
 	      /*------------------------------------------------------------------------------------------------------------------*/
 	      
+	      /*   sciprint("2D AVANT : pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
+      
 	      
 	      if(pSUBWIN_FEATURE (pobj)->isoview == TRUE)
 		{
@@ -11186,14 +11206,25 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		    }
 		  else
 		    {
-		      pSUBWIN_FEATURE (pobj)->strflag[1] ='4'; /* 3 ou 4 ??  3 selon Serge mais je crois que frameflag=3 marche mal (test: resize fenetre plusieurs fois)*/
+		      if((pSUBWIN_FEATURE (pobj)->strflag[1]=='0') 
+			 || (pSUBWIN_FEATURE (pobj)->strflag[1]=='1') 
+			 || (pSUBWIN_FEATURE (pobj)->strflag[1]=='5') 
+			 || (pSUBWIN_FEATURE (pobj)->strflag[1]=='7'))
+			pSUBWIN_FEATURE (pobj)->strflag[1] ='3';
+		      else if((pSUBWIN_FEATURE (pobj)->strflag[1]=='2') 
+			      || (pSUBWIN_FEATURE (pobj)->strflag[1]=='6')
+			      || (pSUBWIN_FEATURE (pobj)->strflag[1]=='8'))
+			pSUBWIN_FEATURE (pobj)->strflag[1] ='4';
+		      
 		    }
 		}
 	      
 	      
 	      if(pSUBWIN_FEATURE (pobj)->isoview == FALSE)
 		{
-		  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3') || (pSUBWIN_FEATURE (pobj)->strflag[1]=='4'))
+		  if((pSUBWIN_FEATURE (pobj)->strflag[1]=='3'))
+		    pSUBWIN_FEATURE (pobj)->strflag[1] ='7';
+		  else if(pSUBWIN_FEATURE (pobj)->strflag[1]=='4')
 		    pSUBWIN_FEATURE (pobj)->strflag[1] ='8';
 		  else
 		    {
@@ -11210,6 +11241,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	      
 		/* TEST debug F.Leray 26.04.04*/
 
+	      /*  sciprint("2D APRES : pSUBWIN_FEATURE (pobj)->strflag[1]= %c\n",pSUBWIN_FEATURE (pobj)->strflag[1]);*/
+      
 	      sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min,
 				      pSUBWIN_FEATURE (pobj)->value_max,pSUBWIN_FEATURE (pobj)->axes.aaint,
 				      pSUBWIN_FEATURE (pobj)->strflag);
@@ -15315,8 +15348,9 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	     dbox[0] =  pSURFACE_FEATURE (pobj)->ebox[0]... */
 	  /* so temporarily I put the default ebox here */
 	  if( ((pSUBWIN_FEATURE (pobj)->brect[0] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[2] != 0.)) &&
-	      ((pSUBWIN_FEATURE (pobj)->brect[1] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[3] != 0.)) &&
-	      ((pSUBWIN_FEATURE (pobj)->brect[4] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[5] != 0.)))
+	      ((pSUBWIN_FEATURE (pobj)->brect[1] != 0.) || (pSUBWIN_FEATURE (pobj)->brect[3] != 0.)))
+	      /* &&
+		 ((pSUBWIN_FEATURE (pobj)->brect[4] != -1.) || (pSUBWIN_FEATURE (pobj)->brect[5] != 1.)))*/
 	    {
 	      dbox[0] =  pSUBWIN_FEATURE (pobj)->brect[0]; 
 	      dbox[1] =  pSUBWIN_FEATURE (pobj)->brect[2];
@@ -15344,8 +15378,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  dbox[1] =  1.;
 	  dbox[2] =  0.;
 	  dbox[3] =  1.;
-	  /*	  dbox[4] =  -1.;
-		  dbox[5] =  1.;*/
+	  dbox[4] =  0.;
+	  dbox[5] =  1.;
 	}
 
       /*else
@@ -16262,7 +16296,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z)
 {
   integer i;
-  double tmpx,tmpy;
+  double tmpx,tmpy,tmpz;
   /* TEST F.Leray 20.04.04: I fix HERE temporarily BOOL cube_scaling = FALSE; */
   BOOL cube_scaling;
 
@@ -16304,8 +16338,9 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	    {
 	      tmpx=(x[i]-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	      tmpy= (y[i]-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
-	      xm[i]= TX3D(tmpx,tmpy,z[i]);
-	      ym[i]= TY3D(tmpx,tmpy,z[i]);
+	      tmpz= (z[i]-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /* Adding F.Leray 28.04.04 */
+	      xm[i]= TX3D(tmpx,tmpy,tmpz);
+	      ym[i]= TY3D(tmpx,tmpy,tmpz);
 	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
       }
@@ -17541,8 +17576,8 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->brect[1]   = 0.0;
   pSUBWIN_FEATURE (paxesmdl)->brect[2]   = 0.0;
   pSUBWIN_FEATURE (paxesmdl)->brect[3]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[4]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[5]   = 0.0;  
+  pSUBWIN_FEATURE (paxesmdl)->brect[4]   = -1.0;
+  pSUBWIN_FEATURE (paxesmdl)->brect[5]   = 1.0;  
 
   return 1;
 }
@@ -17576,6 +17611,9 @@ int update_2dbounds(sciPointObj *pobj, int cflag, double * x, double *y, integer
   integer min,max,puiss,deux=2,dix=10;
   char logflags[2];
 
+  /* debug F.Leray 28.04.04 */
+  /*  sciSubWindow * ppsubwin = NULL;*/
+  
  /* cflag is used when using contour */
   int size_x = (cflag == 1) ? (*n1) : (*n1)*(*n2) ;
   int size_y = (cflag == 1) ? (*n2) : (*n1)*(*n2) ;
@@ -17592,7 +17630,7 @@ int update_2dbounds(sciPointObj *pobj, int cflag, double * x, double *y, integer
     pobj = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   }
   
-
+  /* ppsubwin = pSUBWIN_FEATURE(pobj);*/
  /* Adding F.Leray 21.04.04 */
   pSUBWIN_FEATURE (pobj)->brect[0] = brect[0];
   pSUBWIN_FEATURE (pobj)->brect[1] = brect[1];
