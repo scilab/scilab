@@ -6194,10 +6194,22 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      if ( (p) != 3 && (p) !=4 ) {
 		Scistring("Interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
 		return;
-	      } 
+	      }
 	      else  {
 		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]= (int) pSURFACE_FEATURE (pobj)->color[index];*/
-		shade(polyx,polyy,(int *) &(pSURFACE_FEATURE (pobj)->color[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
+
+		/* shade needs (int*) color */
+		integer *cvect = NULL,ik;
+		if((cvect=MALLOC((pSURFACE_FEATURE (pobj)->m3n)*(pSURFACE_FEATURE (pobj)->n3n)*sizeof(integer)))==NULL){
+		  sciprint("Allocation failed in merge for color matrix\n");
+		  return;
+		}    
+		
+		for(ik=0;ik<(pSURFACE_FEATURE (pobj)->m3n)*(pSURFACE_FEATURE (pobj)->n3n);ik++) 
+		  cvect[ik] = (int) pSURFACE_FEATURE (pobj)->color[ik];
+		
+		shade(polyx,polyy,&(cvect[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
+		FREE(cvect); cvect = NULL;
 		if (sciGetIsMark (pobj))
 		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
 	      }
