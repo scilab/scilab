@@ -2275,6 +2275,7 @@ int scixend(fname,fname_len)
   struct BCG *Xgc;
 
   SciWin();
+
   CheckRhs(-1,0);
  /* printf("Type de Driver: %c\n",GetDriver());
   printf("Type d'ID     : %d\n\n",GetDriverId());
@@ -2282,6 +2283,7 @@ int scixend(fname,fname_len)
   if(version_flag() == 0) {
     xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
     sciDrawObj(sciGetCurrentFigure());
+	xinitxend_flag = 1;
   }
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
   if(version_flag() == 0) {
@@ -2541,15 +2543,17 @@ int scixinit(fname,fname_len)
   integer m1,n1,l1,v,v1=-1;
   double dv;
   CheckRhs(-1,1);
-  if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
+ // if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
   if (Rhs <= 0 )
     {
       C2F(dr1)("xinit"," ",&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,2L);
+	  if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
     } 
   else 
     {
       GetRhsVar(1,"c",&m1,&n1,&l1);
       C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
+	  if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
     }
   LhsVar(1)=0; return 0;
 }
