@@ -14,8 +14,9 @@ extern integer C2F (ismenu)(void);
 int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char ** argv)
 {
   int ns,ierr,seq;
-  char *comm[20];  /* what's the max number of commands in the queue ??*/
-  int   seqf[20];  /* what's the max number of commands in the queue ??*/
+#define arbitrary_max_queued_callbacks 20     /* what's the max number of commands in the queue ??*/
+  char *comm[arbitrary_max_queued_callbacks];
+  int   seqf[arbitrary_max_queued_callbacks];
   int nc,ncomm=-1;
   if (C2F(iop).ddt==-1) {/* trace for debugging */
     int argc=1;
@@ -41,7 +42,7 @@ int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char 
       if (C2F(iop).ddt==-1) {
         sciprint(" Flushing starts for queued commands\r\n");
       }
-      while (C2F(ismenu)()) {
+      while (C2F(ismenu)() && ncomm<arbitrary_max_queued_callbacks-1) {
         ncomm++;
         comm[ncomm] = (char *) malloc (bsiz+1);
 			  if (comm[ncomm] == (char *) 0)
@@ -50,6 +51,9 @@ int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char 
 					return TCL_ERROR;
 				}
         seqf[ncomm]=GetCommand (comm[ncomm]);
+      }
+      if (C2F(ismenu)()) {
+          sciprint("Warning: Too many callbacks in queue!\r\n");
       }
       for (nc = 0 ; nc <= ncomm ; nc++ ) {
         if (C2F(iop).ddt==-1) {
