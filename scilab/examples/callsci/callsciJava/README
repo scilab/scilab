@@ -22,7 +22,7 @@ To make it run you have to:
 
     On some Linux distributions you will have to add fix.c 
     in the Makefile (it is here by default) 
-
+    see file bug.txt 
 
  2) You also have to edit the file config/Makefile.all 
     and change in CFLAGS the include path associated to java 
