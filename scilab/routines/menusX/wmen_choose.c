@@ -20,46 +20,50 @@ ChooseDlgProc(HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
   int i;
   /** Ch = (ChooseMenu * )GetWindowLong(GetParent(hdlg), 4); **/
-  switch (wmsg) {
+  switch (wmsg) 
+  {
   case WM_INITDIALOG:
-    if ( SciMenusRect.left != -1) 
-      SetWindowPos(hdlg,HWND_TOP,SciMenusRect.left,SciMenusRect.top,0,0,
-		   SWP_NOSIZE | SWP_NOZORDER );
-    for (i=0; i < Ch->nstrings  ; i++) {
-      SendDlgItemMessage(hdlg, CHOOSE_LINENUM, LB_ADDSTRING, 0, 
-			 (LPARAM)((LPSTR) Ch->strings[i]));
-    }
-    SendDlgItemMessage(hdlg, CHOOSE_LINENUM, LB_SETCURSEL,Ch->choice, 0L);
-    SetDlgItemText(hdlg, CHOOSE_TEXT, Ch->description);
-    return TRUE;
+		if ( SciMenusRect.left != -1) 
+			SetWindowPos(hdlg,HWND_TOP,SciMenusRect.left,SciMenusRect.top,0,0,
+				         SWP_NOSIZE | SWP_NOZORDER );
+		for (i=0; i < Ch->nstrings  ; i++)
+		{
+			SendDlgItemMessage(hdlg, CHOOSE_LINENUM, LB_ADDSTRING, 0, 
+								(LPARAM)((LPSTR) Ch->strings[i]));
+		}
+		SendDlgItemMessage(hdlg, CHOOSE_LINENUM, LB_SETCURSEL,Ch->choice, 0L);
+		SetDlgItemText(hdlg, CHOOSE_TEXT, Ch->description);
+		/* Change le nom du bouton */
+		SetDlgItemText(hdlg, IDCANCEL,Ch->buttonname[0]);
+  return TRUE;
   case WM_COMMAND:
-    Ch->choice = (UINT)SendDlgItemMessage(hdlg,CHOOSE_LINENUM,LB_GETCURSEL,0,0L);
-    switch (LOWORD(wparam)) 
-      {
-      case CHOOSE_LINENUM:
-	return FALSE;
-      case IDOK:
-	GetWindowRect(hdlg,&SciMenusRect);
-	DestroyWindow(hdlg);
-	ChooseModeless = (HWND)0;
-	Ch->status = TRUE;
-	return TRUE;
-      case IDCANCEL:
-	GetWindowRect(hdlg,&SciMenusRect);
-	DestroyWindow(hdlg);
-	ChooseModeless = (HWND)0;
-	Ch->status = FALSE;
-	return TRUE;
-      }
-    break;
+		Ch->choice = (UINT)SendDlgItemMessage(hdlg,CHOOSE_LINENUM,LB_GETCURSEL,0,0L);
+		switch (LOWORD(wparam)) 
+		{
+			case CHOOSE_LINENUM:
+			return FALSE;
+			case IDOK:
+				GetWindowRect(hdlg,&SciMenusRect);
+				DestroyWindow(hdlg);
+				ChooseModeless = (HWND)0;
+				Ch->status = TRUE;
+			return TRUE;
+			case IDCANCEL:
+				GetWindowRect(hdlg,&SciMenusRect);
+				DestroyWindow(hdlg);
+				ChooseModeless = (HWND)0;
+				Ch->status = FALSE;
+			return TRUE;
+		}
+  break;
   case WM_CLOSE:
-    /** sciprint("OK fini sur close : \r\n");**/
-    GetWindowRect(hdlg,&SciMenusRect);
-    DestroyWindow(hdlg);
-    ChooseModeless = (HWND)0;
-    Ch->status = FALSE;
-    return TRUE;
-    break ;
+		/** sciprint("OK fini sur close : \r\n");**/
+		GetWindowRect(hdlg,&SciMenusRect);
+		DestroyWindow(hdlg);
+		ChooseModeless = (HWND)0;
+		Ch->status = FALSE;
+		return TRUE;
+  break ;
   case WM_DRAWITEM:
     {
       LPDRAWITEMSTRUCT lpdis = (LPDRAWITEMSTRUCT)lparam;
