@@ -43,18 +43,19 @@ if ta==[] then
   error('Cannot delete, a graph must have at least one edge')
 end;
 g1('tail')=ta;
-a=g('head');g1('head')=a(ii);
-a=g('edge_name');g1('edge_name')=a(ii);
-a=g('edge_color');g1('edge_color')=a(ii);
-a=g('edge_width');g1('edge_width')=a(ii);
-a=g('edge_hi_width');g1('edge_hi_width')=a(ii);
-a=g('edge_font_size');g1('edge_font_size')=a(ii);
-a=g('edge_length');g1('edge_length')=a(ii);
-a=g('edge_cost');g1('edge_cost')=a(ii);
-a=g('edge_min_cap');g1('edge_min_cap')=a(ii);
-a=g('edge_max_cap');g1('edge_max_cap')=a(ii);
-a=g('edge_q_weight');g1('edge_q_weight')=a(ii);
-a=g('edge_q_orig');g1('edge_q_orig')=a(ii);
-a=g('edge_weight');g1('edge_weight')=a(ii);
-a=g('edge_label');g1('edge_label')=a(ii);
+a=g('head');if a<>[] then g1('head')=a(ii);end
+a=g('edge_name');if a<>[] then g1('edge_name')=a(ii);end
+a=g('edge_color');if a<>[] then g1('edge_color')=a(ii);end
+a=g('edge_width');if a<>[] then g1('edge_width')=a(ii);end
+a=g('edge_hi_width');if a<>[] then g1('edge_hi_width')=a(ii);end
+a=g('edge_font_size');if a<>[] then g1('edge_font_size')=a(ii);end
+a=g('edge_length');if a<>[] then g1('edge_length')=a(ii);end
+a=g('edge_cost');if a<>[] then g1('edge_cost')=a(ii);end
+a=g('edge_min_cap');if a<>[] then g1('edge_min_cap')=a(ii);end
+a=g('edge_max_cap');if a<>[] then g1('edge_max_cap')=a(ii);end
+a=g('edge_q_weight');if a<>[] then g1('edge_q_weight')=a(ii);end
+a=g('edge_q_orig');if a<>[] then g1('edge_q_orig')=a(ii);end
+a=g('edge_weight');if a<>[] then g1('edge_weight')=a(ii);end
+a=g('edge_label');if a<>[] then g1('edge_label')=a(ii);end
+
 endfunction
