@@ -13,8 +13,11 @@
 <body bgcolor="FFFFFF">
   <CENTER><xsl:value-of select="./TYPE"/></CENTER>
 <xsl:for-each select="./SHORT_DESCRIPTION">
-  <p><H2><xsl:value-of select="@name"/> - <xsl:value-of select="text()"/></H2></p>
+  <p>
+  <b><xsl:value-of select="@name"/> - <xsl:value-of select="text()"/></b>
+</p>
 </xsl:for-each>
+
 
 <xsl:if test="./CALLING_SEQUENCE">
 	<H3><font color="blue">Calling Sequence</font></H3>
@@ -37,7 +40,7 @@
 
 
 <xsl:if test="./EXAMPLE">
-<H3>EXAMPLES</H3>
+<H3><font color="blue">Examples</font></H3>
 
 <ul>
 <pre><xsl:value-of select="./EXAMPLE/self::node()"/>
