@@ -461,9 +461,6 @@ function %h_p(h)
 	 "tics_labels = "+T
 	 "labels_font_size = "+string(h.labels_font_size)
 	 "labels_font_color = "+string(h.labels_font_color)
-	 "mark_mode = "+sci2exp(h.mark_mode)
-	 "mark_foreground = "+string(h.mark_foreground)
-	 "mark_background = "+string(h.mark_background)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	]
