@@ -46,7 +46,8 @@ c     .  specified number of lines
          istk(ili)=1
          mr=m
          do 10 i=1,m
-            call readnextline(lunit,buf,bsiz,mn,nr,info)
+            mnt=0
+ 09         call readnextline(lunit,buf,bsiz,mn,nr,info)
             if(info.eq.-1) then
                mr=i-1
                goto 10
@@ -55,6 +56,7 @@ c               call error(62)
 c               if(.not.opened) call clunit(-lunit,buf,mode)
 c               return
             endif
+
             mn=max(0,mn-1)
             err=sadr(li+mn)-lstk(bot)
             if(err.gt.0) then
@@ -63,8 +65,13 @@ c               return
             endif
             call cvstr(mn,istk(li),buf(1:mn),0)
             li=li+mn
+            mnt=mnt+mn
+            if(info.eq.2) then
+c     .        buffer too small for this line
+               goto 09
+            endif
             ili=ili+1
-            istk(ili)=istk(ili-1)+mn
+            istk(ili)=istk(ili-1)+mnt
  10      continue
          if(mr.eq.0) then
             istk(il)=1
@@ -94,21 +101,32 @@ c     .  unspecified number of lines
          li=ili
          i=-1
  12      i=i+1
-         call readnextline(lunit,buf,bsiz,mn,nr,info)
+
+         mnt=0
+         lic=li+1
+ 13      call readnextline(lunit,buf,bsiz,mn,nr,info)
          if(info.eq.-1) goto 20
+
          mn=max(0,mn-1)
          if(mn.gt.0) then
-            err=sadr(li+mn+1)-lstk(bot)
+            err=sadr(lic+mn+1)-lstk(bot)
             if(err.gt.0) then
                call error(17)
                goto 996
             endif
-            call cvstr(mn,istk(li+1),buf(1:mn),0)
+            call cvstr(mn,istk(lic),buf(1:mn),0)
+            lic=lic+mn
          endif
-         istk(li)=mn
-         li=li+mn+1
+         mnt=mnt+mn
+         if(info.eq.2) then
+c     .     buffer too small for this line
+            goto 13
+         endif
+         istk(li)=mnt
+         li=li+mnt+1
+         
          if(info.eq.-1) then
-            if(mn.gt.0) i=i+1
+            if(mnt.gt.0) i=i+1
             goto 20
          endif
          goto 12
