@@ -415,7 +415,7 @@ c
 c     set output variable
       ilrs=iadr(lstk(top))
       istk(ilrs)=10
-      if(mmode.eq.1.and.nr.eq.1) then
+      if(mmode.eq.1.and.nr.eq.1.and.m3.eq.0) then
          istk(ilrs+1)=nr
          istk(ilrs+2)=mr
       else
