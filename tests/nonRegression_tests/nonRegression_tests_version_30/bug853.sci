@@ -2,6 +2,10 @@
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
+// Modified by Pierre MARECHAL
+// Copyright INRIA
+// Date : 18 Mar 2005
+
 mode(-1);
 clear;
 
@@ -14,35 +18,29 @@ MFILECONTENTS=["dir_name=''path'';";
 MFILE=TMPDIR+"/bug853.m"
 SCIFILE=TMPDIR+"/bug853.sci"
 
-fd=mopen(MFILE,"w");
-mputl(MFILECONTENTS,fd);
-mclose(fd);
-
+mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
-
-fd=mopen(SCIFILE,"r");
-SCIFILECONTENTS=mgetl(fd,-1);
-mclose(fd);
+SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"dir_name = ""path"";";
-"dir_target = mtlb_dir(dir_name);";
-"RC = [];";
-"for i = 1:10";
-"  RC(1,i) = dir_name+""\""+dir_target(i).name;";
-"end"]
+		"// Display mode";
+		"mode(0);";
+		"";
+		"// Display warning for floating point exception";
+		"ieee(1);";
+		"";
+		"dir_name = ""path"";";
+		"dir_target = mtlb_dir(dir_name);";
+		"RC = [];";
+		"for i = 1:10";
+		"  RC(1,i) = dir_name+""\""+dir_target(i).name;";
+		"end"]
 
-correct=%T
+
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+	affich_result(%F,853);
+else
+	affich_result(%T,853);
 end
-
-affich_result(correct,853);
 
 clear
