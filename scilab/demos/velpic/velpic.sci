@@ -658,18 +658,18 @@ function [line,linelist,yec]=drawline(nz,nx,linelist,yec,bnames,buttons)
                [i_i,x1,x2]=xclick();
                hflag='on';
             case 'undo' then,//undo last line
-               ls=size(linelist);
-               if ls>1 then,//remove a line
+               lls=size(linelist);
+               if lls>1 then,//remove a line
                   [yer,yecc]=size(yec);
                   yf=yec(1,yecc);
                   yl=yec(2,yecc);
-                  lk=linelist(ls);
+                  lk=linelist(lls);
                   [lkr,lkc]=size(lk);
                   xset("alufunction",6);
                   plot2d(lk(1,yf+1:lkc-yl)',lk(2,yf+1:lkc-yl)',[1],"000"),
                   xset("alufunction",3);
                   ltemp=list();
-                  for k=1:ls-1,
+                  for k=1:lls-1,
                      ltemp(k)=linelist(k);
                   end,
                   linelist=ltemp;
