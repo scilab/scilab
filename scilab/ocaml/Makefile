@@ -109,3 +109,5 @@ clean:
 
 distclean : clean
 	@$(RM) -rf doc
+super_distclean : distclean
+
