@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "../machine.h"
+#include "Sun.h"
 
 #ifdef WIN32 
 #ifndef __CYGWIN32__
@@ -40,4 +41,8 @@ int main()
 }
 			
 #endif 
+
+
+
+
 
