@@ -925,36 +925,35 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   for (k=0;k<m*n;k++) 
     pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
 
-
   
-  sciSetNumColors (pobj,m);
-  /* sciSetBackground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+2 the bg is always STORED at m+2*/
-  sciSetBackground ((sciPointObj *) pobj, -2); /* F.Leray 30.03.04*/
-  if (pobj == pfiguremdl) 
-    pSUBWIN_FEATURE (paxesmdl)->cubecolor= m;
-  else
-    pSUBWIN_FEATURE (sciGetSelectedSubWin (pobj))->cubecolor= m;
-  /*sciSetForeground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+1 the fg is always STORED at m+2*/
-  sciSetForeground ((sciPointObj *) pobj, -1); /* F.Leray 30.03.04*/
+  sciSetNumColors (pobj,old_m); /* F.Leray */
 
-  /* F.Leray 31.03.04*/ /* ne fait rien... car pobj est une figure*/
-  /*sciSetFontForeground((sciPointObj *) pobj, -1);
-    sciSetFontBackground((sciPointObj *) pobj, -2);*/
-
-  
   hdl=pendofhandletab;
   while (hdl != NULL)
     {
       pobj2=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
       
-      if(old_m +1 == sciGetForeground(pobj2))         /* 0 => deals with Foreground */
-	sciUpdateBaW (pobj2,0,-1);      
-      else  if(old_m +2 == sciGetForeground(pobj2))   
-	sciUpdateBaW (pobj2,0,-2);
-      else if(old_m +1 == sciGetBackground(pobj2))    /* 1 => deals with Background */
+      if(old_m +1 == sciGetForeground(pobj2)){         /* 0 => deals with Foreground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj2,0,-1); /* Black */
+	sciSetNumColors (pobj,old_m);
+      }
+      else  if(old_m +2 == sciGetForeground(pobj2)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj2,0,-2); /* White */
+	sciSetNumColors (pobj,old_m);
+      }
+      else if(old_m +1 == sciGetBackground(pobj2)) {   /* 1 => deals with Background */
+	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj2,1,-1);
-      else if(old_m +2 == sciGetBackground(pobj2)) 
+	sciSetNumColors (pobj,old_m);
+      }
+      else if(old_m +2 == sciGetBackground(pobj2)) {
+	sciSetNumColors (pobj,m);
 	sciUpdateBaW (pobj2,1,-2);
+	sciSetNumColors (pobj,old_m);
+      }
+
       
       if((sciGetEntityType(pobj2) == SCI_TEXT)        ||
 	 (sciGetEntityType(pobj2) == SCI_TITLE)       ||
@@ -963,18 +962,47 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 	 (sciGetEntityType(pobj2) == SCI_MENU)        ||
 	 (sciGetEntityType(pobj2) == SCI_MENUCONTEXT) ||
 	 (sciGetEntityType(pobj2) == SCI_STATUSB)){
-	if(old_m +1 == sciGetForeground(pobj2))         /* 2 => deals with FontForeground */
-	  sciUpdateBaW (pobj2,2,-1);     
-	else  if(old_m +2 == sciGetForeground(pobj2))   
+	if(old_m +1 == sciGetForeground(pobj2))   {      /* 2 => deals with FontForeground */
+	  sciSetNumColors (pobj2,m);
+	  sciUpdateBaW (pobj2,2,-1);   
+	  sciSetNumColors (pobj2,old_m);
+	}
+	else  if(old_m +2 == sciGetForeground(pobj2)) {
+	  sciSetNumColors (pobj2,m);
 	  sciUpdateBaW (pobj2,2,-2);
-	else if(old_m +1 == sciGetBackground(pobj2))    /* 3 => deals with FontBackground */
+	  sciSetNumColors (pobj2,old_m);
+	}
+	else if(old_m +1 == sciGetBackground(pobj2))  {  /* 3 => deals with FontBackground */
+	  sciSetNumColors (pobj2,m);
 	  sciUpdateBaW (pobj2,3,-1);
-	else if(old_m +2 == sciGetBackground(pobj2)) 
+	  sciSetNumColors (pobj2,old_m);
+	}
+	else if(old_m +2 == sciGetBackground(pobj2)) {
+	  sciSetNumColors (pobj2,m);
 	  sciUpdateBaW (pobj2,3,-2);
+	  sciSetNumColors (pobj2,old_m);
+	}
       }
       hdl=hdl->pprev;
     }
   
+  
+  sciSetNumColors (pobj,m);
+  /* sciSetBackground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+2 the bg is always STORED at m+2*/
+  
+  if (pobj == pfiguremdl) 
+    pSUBWIN_FEATURE (paxesmdl)->cubecolor= m;
+  else
+    pSUBWIN_FEATURE (sciGetSelectedSubWin (pobj))->cubecolor= m;
+  /*sciSetForeground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+1 the fg is always STORED at m+2*/
+ 
+  /* F.Leray 31.03.04*/ /* ne fait rien... car pobj est une figure*/
+  /*sciSetFontForeground((sciPointObj *) pobj, -1);
+    sciSetFontBackground((sciPointObj *) pobj, -2);*/
+
+  
+  sciSetForeground ((sciPointObj *) pobj, -1); /* F.Leray 30.03.04*/
+  sciSetBackground ((sciPointObj *) pobj, -2); /* F.Leray 30.03.04*/
   
   return 0;
   
