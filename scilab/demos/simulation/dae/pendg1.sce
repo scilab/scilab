@@ -22,34 +22,14 @@ rtol=atol;
 
 sol=dassl([y0,yd0],t0,T,rtol,atol,pendg,info);
 
-x=sol(2,:); y=sol(3,:); teta=sol(4,:); n=size(x,"*");
-r=0.05;
-xp=x+l*sin(teta); yp=y-l*cos(teta);
-xp1=x+(l-r)*sin(teta); yp1=y-(l-r)*cos(teta);
+H=build_sliding_pendulum ()
+draw_sliding_pendulum(H,y0(1:3))
 
-xbasc()
-xset("pixmap",1)
-
-xmin=-1.5; xmax=1.5; ymin=-1.1; ymax=0.9;
-vx=[xmin:0.1:xmax]'; vy=vx^2;
-plot2d(vx,vy,5,"032"," ",[xmin,ymin,xmax,ymax])
-xset("wshow")
-
-xset("alufunction",6); driver("X11")
-xset("thickness",2)
-for i=1:n
-  plot2d([x(i);xp1(i)],[y(i);yp1(i)],1,"000")
-  xfarc(xp(i)-r,yp(i)+r,2*r,2*r,0,360*64)
-  xset("wshow")
-  xpause(30000)
-  plot2d([x(i);xp1(i)],[y(i);yp1(i)],1,"000")
-  xfarc(xp(i)-r,yp(i)+r,2*r,2*r,0,360*64)
-  ifin=i;
+//visualization of the result
+realtimeinit(0.05);realtime(0) 
+for i=1:size(sol,2)
+  realtime(i)
+  draw_sliding_pendulum(H,sol(2:4,i))
 end
-xset("alufunction",1); driver("Rec")
-plot2d([x(ifin);xp(ifin)],[y(ifin);yp(ifin)],1,"000")
-xfarc(xp(ifin)-r,yp(ifin)+r,2*r,2*r,0,360*64)
-xset("wshow")
+xdel()
 
-xset("pixmap",0)
-xset("default")
