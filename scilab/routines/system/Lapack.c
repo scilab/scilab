@@ -140,5 +140,6 @@ Lapack_contents(x)
 	C2F(dgegs)();
 	C2F(dgesvd)();
 	C2F(dormhr)();
+	C2F(zlacpy)();
 }
 }
