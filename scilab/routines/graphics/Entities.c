@@ -560,7 +560,7 @@ sciGetPointerFromHandle (long handle)
       
       if (phandletab == NULL)
 	{
-	  sciprint ("this is not or no more a valid handle !!\n"); /* F.Leray Adding 'or no more' */
+	  /* sciprint ("this is not or no more a valid handle !!\n");  F.Leray Adding 'or no more' */
 	  return (sciPointObj *) NULL;
 	}  
       return (sciPointObj *) phandletab->pointobj;
@@ -571,7 +571,7 @@ sciGetPointerFromHandle (long handle)
     return (sciPointObj *) paxesmdl;
   else
     {
-      sciprint ("this is not or no more a valid handle !!\n"); /* F.Leray Adding 'or no more' */
+      /* sciprint ("this is not or no more a valid handle !!\n");  F.Leray Adding 'or no more' */
       return (sciPointObj *) NULL;
     }
     
