@@ -114,33 +114,40 @@ int RandI( char* fname)
 	    }
 	  else if ( strcmp(cstk(ls),"setall")==0 ) 
 	    {
-	      if ( current_gen != CLCG4 )
-		sciprint("the setall option affect only the clcg4 generator !\n\r");
-	      if ( Rhs != 5 ) 
+	      if ( current_gen == CLCG4 )
 		{
-		  Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
-		  return 0;
-		}
-	      GetRhsVar(2,"d",&m1,&n1,&l1);
-	      if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
-	      return 0;}
-	      GetRhsVar(3,"d",&m1,&n1,&l2);
-	      if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
-	      return 0;}
-	      GetRhsVar(4,"d",&m1,&n1,&l3);
-	      if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
-	      return 0;}
-	      GetRhsVar(5,"d",&m1,&n1,&l4);
-	      if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
-	      return 0;}
+		  if ( Rhs != 5 ) 
+		    {
+		      Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
+		      return 0;
+		    }
+		  GetRhsVar(2,"d",&m1,&n1,&l1);
+		  if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
+		  return 0;}
+		  GetRhsVar(3,"d",&m1,&n1,&l2);
+		  if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
+		  return 0;}
+		  GetRhsVar(4,"d",&m1,&n1,&l3);
+		  if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
+		  return 0;}
+		  GetRhsVar(5,"d",&m1,&n1,&l4);
+		  if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
+		  return 0;}
 
-	      if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
-		{   /* => seeds were not good  (info is display by the function) */
-		  Error(999);return 0;
+		  if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
+		    {   /* => seeds were not good  (info is display by the function) */
+		      Error(999);return 0;
+		    }
+		  LhsVar(1) = 1;
+		  PutLhsVar();
+		  return(0);
 		}
-	      LhsVar(1) = 1;
-	      PutLhsVar();
-	      return(0);
+	      else {
+		sciprint("the setall option affect only the clcg4 generator !\n\r");
+		LhsVar(1) = 0;
+		PutLhsVar();
+		return(0);
+	      }
 	    }
       else if ( strcmp(cstk(ls),"setsd")==0 ) 
 	{

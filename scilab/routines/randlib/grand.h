@@ -24,10 +24,7 @@ extern int C2F(ignpoi) __PARAMS((double *mu));
 extern int C2F(phrtsd) __PARAMS((char *phrase, int *phrasel, int *seed1, int *seed2, int phrase_len));
 extern int C2F(spofa) __PARAMS((double *a, int *lda, int *n, int *info));
 
-extern void get_state_mt(double state[]);
-extern int set_state_mt_simple(double s);
-extern int set_state_mt(double seed_array[]);
-
+double C2F(ignuin)(double a, double b);
 
 #endif /** SCI_GRAND   **/
 
