@@ -7,7 +7,7 @@ all	: Makelib.mak  message
 
 Makelib.mak : builder.sce
 	@echo running builder BE PATIENT
-	cat builder.sce > job.sce
+	type builder.sce > job.sce
 	echo quit >> job.sce 
 	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
@@ -38,7 +38,7 @@ message:
 	@echo ------------------------------------------;
 	@echo At Scilab prompt, enter
 	@echo "-->exec exXX.sce" to test one example 
-	@echo "-->exec libexamples.tst" to test all examples
+	@echo "-->exec libtutorial.tst" to test all examples
 	@echo ------------------------------------------;
 	@echo Type nmake /nologo /f Makefile.mak tests 
 	@echo to run all tests 

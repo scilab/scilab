@@ -6,7 +6,7 @@ all	: Makelib.mak job message
 
 Makelib.mak : builder.sce
 	@echo running builder 
-	cat builder.sce > job.sce
+	type builder.sce > job.sce
 	echo quit >> job.sce 
 	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 

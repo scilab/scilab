@@ -10,7 +10,7 @@ lib	:
 
 Makelib.mak : builder.sce
 	@echo running builder BE PATIENT
-	cat builder.sce > job.sce
+	type builder.sce > job.sce
 	echo quit >> job.sce 
 	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
@@ -42,8 +42,7 @@ tests	: Makelib.mak
 message:
 	@echo ------------------------------------------;
 	@echo At Scilab prompt, enter
-	@echo "-->exec loader.sce " to load the shared libraries
-	@echo Type nmake /f Makefile.mak tests 
+	@echo "-->exec libmex.tst 
 	@echo to run a test
 	@echo ------------------------------------------;
 
