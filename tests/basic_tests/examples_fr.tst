@@ -1,4 +1,4 @@
-// lun jan 20 16:59:40 CET 2003
+// ven jan 24 12:53:03 CET 2003
 
 //====================================================
 // ../man/fr/arma/arma.xml
@@ -1485,13 +1485,17 @@ xdel(winsid())
 // ../man/fr/elementary/binomial.xml
 //====================================================
 clear;lines(0);
-n=10;p=0.3;plot2d3(0:n,binomial(p,n));
-n=100;p=0.3;
-mea=n*p;sigma=sqrt(n*p*(1-p));
+// first example
+n=10;p=0.3; xbasc(); plot2d3(0:n,binomial(p,n));
+
+// second example 
+n=50;p=0.4;
+mea=n*p; sigma=sqrt(n*p*(1-p));
 x=( (0:n)-mea )/sigma;
-plot2d(x,sigma*binomial(p,n));
+xbasc()
+plot2d(x, sigma*binomial(p,n));
 deff('y=Gauss(x)','y=1/sqrt(2*%pi)*exp(-(x.^2)/2)')
-plot2d(x,Gauss(x));
+plot2d(x, Gauss(x), style=2);
 xdel(winsid())
 
 //====================================================
@@ -1689,6 +1693,47 @@ xdel(winsid())
 //====================================================
 // ../man/fr/elementary/dsearch.xml
 //====================================================
+clear;lines(0);
+// example #1 (elementary stat for U(0,1))
+m = 50000 ; n = 10;
+X = grand(m,1,"def");
+val = linspace(0,1,n+1)';
+[ind, occ] = dsearch(X, val);
+xbasc() ; plot2d2(val, [occ/m;0])  // no normalisation : y must be near 1/n
+
+
+// example #2 (elementary stat for B(N,p))
+N = 8 ; p = 0.5; m = 50000;
+X = grand(m,1,"bin",N,p); val = (0:N)';
+[ind, occ] = dsearch(X, val, "d");
+Pexp = occ/m; Pexa = binomial(p,N); 
+xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
+plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
+        "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
+xtitle(  "binomial law B("+string(N)+","+string(p)+") :" ...
+        +" exact probability versus experimental ones")
+
+
+// example #3 (piecewise Hermite polynomial)
+x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+X = linspace(0, 1, 200)';
+ind = dsearch(X, x);
+// define Hermite base functions
+deff("y=Ll(t,k,x)","y=(t-x(k+1))./(x(k)-x(k+1))")   // Lagrange left on Ik
+deff("y=Lr(t,k,x)","y=(t-x(k))./(x(k+1)-x(k))")     // Lagrange right on Ik
+deff("y=Hl(t,k,x)","y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2")
+deff("y=Hr(t,k,x)","y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2")
+deff("y=Kl(t,k,x)","y=(t-x(k)).*Ll(t,k,x).^2")
+deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
+// plot the curve
+Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+xtitle("an Hermite piecewise polynomial")
+// NOTE : you can verify by adding these ones : 
+// YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
+xdel(winsid())
 
 //====================================================
 // ../man/fr/elementary/erf.xml
@@ -1760,8 +1805,24 @@ xdel(winsid())
 // ../man/fr/elementary/gamma.xml
 //====================================================
 clear;lines(0);
+// simple examples
 gamma(0.5)
 gamma(6)-prod(1:5)
+// the graph of the Gamma function on [a,b]
+a = -3; b = 5;
+x = linspace(a,b,40000)';
+y = gamma(x);
+xbasc()
+c=xget("color")
+xset("color",2)
+plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
+xset("color",c)
+fs=xget("font")
+xset("font",4,2)
+xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
+xset("font",fs(1),fs(2))
+xselect()
+
 xdel(winsid())
 
 //====================================================
@@ -2104,6 +2165,12 @@ xdel(winsid())
 //====================================================
 // ../man/fr/elementary/nearfloat.xml
 //====================================================
+clear;lines(0);
+format("e",22)
+nearfloat("succ",1) - 1
+1 - nearfloat("pred",1)
+format("v") //reset default format
+xdel(winsid())
 
 //====================================================
 // ../man/fr/elementary/nextpow2.xml
@@ -4067,8 +4134,6 @@ clear;lines(0);
    a=get("current_axes");
    f=a.children.children(2)
    f.data(:,3)=(1:size(f.data,1))'
- 
-
 xdel(winsid())
 
 //====================================================
@@ -5339,6 +5404,14 @@ xdel(winsid())
 //====================================================
 
 //====================================================
+// ../man/fr/graphics/xs2ppm.xml
+//====================================================
+
+//====================================================
+// ../man/fr/graphics/xs2ps.xml
+//====================================================
+
+//====================================================
 // ../man/fr/graphics/xsave.xml
 //====================================================
 
@@ -5959,10 +6032,6 @@ numbeta
 xdel(winsid())
 
 //====================================================
-// ../man/fr/linear/linmeq.xml
-//====================================================
-
-//====================================================
 // ../man/fr/linear/linsolve.xml
 //====================================================
 clear;lines(0);
@@ -6263,7 +6332,13 @@ C=['int mytest(double *EvR, double *EvI) {' //the C code
    'if (*EvR * *EvR + *EvI * *EvI < 0.9025) return 1;'
    'else return 0; }';]
 mputl(C,TMPDIR+'/mytest.c')
-link(G_make(TMPDIR+'/mytest.o','c'), 'mytest',"C")
+
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+link(lp,'mytest','c'); 
+
+//run it
 [U,dim,T]=schur(A,'mytest');
 //SCHUR FORM OF A PENCIL
 //----------------------
@@ -6287,7 +6362,12 @@ ftn=['integer function mytest(ar,ai,b)' //the fortran code
       'if(ar.lt.0.0d0) mytest=1'
       'end']
 mputl('      '+ftn,TMPDIR+'/mytest.f')
-link(G_make(TMPDIR+'/mytest.o'), 'mytest',"F")
+
+//build and link
+lp=ilib_for_link('mytest','mytest.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytest','f'); 
+
+//run it
 
 [As,Es,Z,dim] = schur(A,E,'mytest')
 xdel(winsid())
@@ -8809,6 +8889,20 @@ xdel(winsid())
 //====================================================
 
 //====================================================
+// ../man/fr/programming/definedfields.xml
+//====================================================
+clear;lines(0);
+l=list(1);l(3)=5 
+k=definedfields(l)
+
+t=tlist('x');t(5)=4
+definedfields(t)
+
+m=mlist(['m','a','b']);m.b='sdfgfgd' 
+definedfields(m)  
+xdel(winsid())
+
+//====================================================
 // ../man/fr/programming/dot.xml
 //====================================================
 clear;lines(0);
@@ -9039,6 +9133,24 @@ xdel(winsid())
 //====================================================
 // ../man/fr/programming/funptr.xml
 //====================================================
+clear;lines(0);
+// Suppose you want to load some codes via the dynamic 
+// loading facilities offers by addinter. By default 
+// arguments are passed by values but if you want to 
+// pass them by reference you can do the following 
+// (name being the scilab name of one of the interfaced 
+// routines) :
+//
+// addinter(files,spnames,fcts)  // args passed by values
+// num_interface = floor(funptr(name)/100)
+// intppty(num_interface)  // args now passed by reference
+//
+// Note that if you enter the following
+//
+// intppty()                
+//
+// you will see all the interfaces working by reference
+xdel(winsid())
 
 //====================================================
 // ../man/fr/programming/getdate.xml
@@ -9222,24 +9334,6 @@ xdel(winsid())
 //====================================================
 // ../man/fr/programming/intppty.xml
 //====================================================
-clear;lines(0);
-// Suppose you want to load some codes via the dynamic 
-// loading facilities offers by addinter. By default 
-// arguments are passed by values but if you want to 
-// pass them by reference you can do the following 
-// (name being the scilab name of one of the interfaced 
-// routines) :
-//
-// addinter(files,spnames,fcts)  // args passed by values
-// num_interface = floor(funptr(name)/100)
-// intppty(num_interface)  // args now passed by reference
-//
-// Note that if you enter the following
-//
-// intppty()                
-//
-// you will see all the interfaces working by reference
-xdel(winsid())
 
 //====================================================
 // ../man/fr/programming/inttype.xml
@@ -11916,6 +12010,10 @@ files=dirname('SCI/macros/util/poo.sci')
 files=dirname('SCI/macros\util/poo.sci')
 files=dirname('SCI/macros\util/poo.sci.k')
 xdel(winsid())
+
+//====================================================
+// ../man/fr/utilities/foo.xml
+//====================================================
 
 //====================================================
 // ../man/fr/utilities/help.xml
