@@ -1436,8 +1436,13 @@ WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		  cbuf = (BYTE *) GlobalLock (hGMem);
 		  while (*cbuf)
 		    {
-		      if (*cbuf != '\n')
-			SendMessage (lptw->hWndText, WM_CHAR, *cbuf, 1L);
+		      /* 
+			 if (*cbuf != '\n') {
+			SendMessage (lptw->hWndText, WM_CHAR, *cbuf , 1L);
+		      }
+		      cbuf++;
+		      */
+		      SendMessage (lptw->hWndText, WM_CHAR,*cbuf , 1L);
 		      cbuf++;
 		    }
 		  GlobalUnlock (hGMem);
