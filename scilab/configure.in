@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.4 $)dnl
+AC_REVISION($Revision: 1.5 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -137,6 +137,8 @@ PERIFILE=periX11.o
 # specific scilab dirs for graphics: default is "xsci" for X11
 #   different for Win32
 GUILIB=xsci 
+# specific for gnome/gtk version 
+GZVT=
 # specific scilab dirs for xdr:  default is void for X11
 #   xdr for Win32
 XDRLIB=
@@ -1215,7 +1217,8 @@ if test "$with_gtk" = yes; then
   AC_DEFINE(WITH_GTK)
   GTKLIB="\`gtk-config --libs\`"
   GTKINC="\`gtk-config --cflags\`"
-  GUILIB="gtksci gzvt"
+  GUILIB='gtksci'
+  GZVT='gzvt'
   MENUSOBJS=GOBJS
   PERIFILE=periGtk.o
 fi
@@ -1320,6 +1323,7 @@ AC_SUBST(MAIN)
 AC_SUBST(MAKEFILE_TARGET)
 AC_SUBST(PERIFILE)
 AC_SUBST(GUILIB)
+AC_SUBST(GZVT)
 AC_SUBST(XDRLIB)
 AC_SUBST(XDRLIBNAME)
 AC_SUBST(WINXFLAGS)
