@@ -369,9 +369,6 @@ cd .. &gt;nul
 				RelativePath="..\history.c">
 			</File>
 			<File
-				RelativePath="..\history.h">
-			</File>
-			<File
 				RelativePath="..\zzledt.c">
 			</File>
 		</Filter>
@@ -379,6 +376,9 @@ cd .. &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath="..\history.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
