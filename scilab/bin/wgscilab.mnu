@@ -32,7 +32,7 @@
 	&Update Ini 
 		[UPDINI]
 [EndMenu]
-2D &Zoom
+&Zoom
 	[ZOOM]
 
 &UnZoom
