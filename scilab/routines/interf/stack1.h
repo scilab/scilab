@@ -36,7 +36,7 @@ extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *
 extern int C2F(cvstr1)  __PARAMS((integer *n, integer *line, char *str, integer *job, unsigned long str_len));
 extern int C2F(codetoascii)  __PARAMS((integer *n, integer *line, char *str, unsigned long str_len));
 extern int C2F(asciitocode)  __PARAMS((integer *n, integer *line, char *str, integer *flag__, unsigned long str_len));
-extern integer C2F(getcode)  __PARAMS((char *mc, unsigned long mc_len));
+extern integer C2F(getcode)  __PARAMS((unsigned char *mc, unsigned long mc_len));
 
 /* stack1.c */
 
