@@ -228,11 +228,11 @@ void Objmatplot1 (z,n1,n2,xrect)
 /*------------------------------------------------
  *  plot3d 
  *-----------------------------------------------*/   
-void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m1,n1,m2,n2,m3,n3)
+void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m1,n1,m2,n2,m3,n3,m3n,n3n)
      double x[],y[],z[];
      double *theta,*alpha,*ebox;
      integer *isfac,*n,*m,*iflag,*izcol,*zcol;
-     integer * m1, *n1, *m2, *n2, *m3, *n3;//Adding F.Leray 12.03.04
+     integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;//Adding F.Leray 12.03.04 and 19.03.04
      char *fname,*legend; 
 {  
   sciTypeOf3D typeof3d;
@@ -288,7 +288,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     sciSetCurrentObj (ConstructSurface
 		      ((sciPointObj *)
 		       psubwin, typeof3d,
-		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,isfac,m1,n1,m2,n2,m3,n3));
+		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,
+		       isfac,m1,n1,m2,n2,m3,n3,m3n,n3n));
   else
     {
       if ((hdltab = malloc (*n * sizeof (long))) == NULL) {
