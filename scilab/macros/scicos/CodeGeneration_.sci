@@ -97,9 +97,18 @@ function Code=make_ddoit1()
 	 '  /* Function Body */ '; 
 	 '  kiwa = 0; '];
  //////////////////////////////////////////////////
-  
-  pointi=clkptr(howclk)-1;
-  Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
+   if  szclkIN>=1 then
+     pointi=clkptr(howclk)-1;
+     Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
+   else
+     if (size(cap,'*') >1) then
+       pointi=clkptr(howclk)-1;
+       Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
+     else
+       pointi=clkptr(howclk)
+       Code($+1)='  pointi='+string(pointi)+';';
+     end
+   end
   
   Code=[Code;
 	'  tevts[pointi-1]=*told;'];
@@ -269,18 +278,7 @@ function Code=make_edoit1(stalone)
         end 
 	
       end
-    end
-    Code($+1)='    break;';
-  end
-  Code($+1)='  }  ';
-  Code($+1)='  ';
-  Code($+1)='  switch(kever) {';
-  for kever=1:maxkeve
-    Code($+1)='  case '+string(kever)+':';
-
-    for ii=ordptr(kever):ordptr(kever+1)-1
-      //***********************************
-      fun=ordclk(ii,1);      
+       
       nevprt=ordclk(ii,2);
       ntvec=clkptr(fun+1)-clkptr(fun);
       if ntvec >0  & funs(fun) <> 'bidon' then
@@ -388,18 +386,7 @@ function Code=make_doit(stalone)
         end 
 	
       end
-    //end
-    //Code($+1)='    break;';
-  //end
-      Code($+1)='  }  ';
-      Code($+1)='  ';
-      Code($+1)='  switch(kever) {';
-      //for kever=1:maxkeve
-      //Code($+1)='  case '+string(kever)+':';
-
-      //for ii=ordptr(kever):ordptr(kever+1)-1
-        //***********************************
-        //fun=ordclk(ii,1);
+    
       nevprt=ordclk(ii,2);
       ntvec=clkptr(fun+1)-clkptr(fun);
       if ntvec >0  & funs(fun) <> 'bidon' then
@@ -977,12 +964,9 @@ function Code=c_make_doit2(cpr,stalone);
 	  if  is_act then
 	    if stalone then
 	      Code=[Code
-	            '    if (block_'+rdnom+'['+string(fun-1)+'].nx+block_'+rdnom+'['+string(fun-1)+'].nz > 0||'
-	            '        *block_'+rdnom+'['+string(fun-1)+'].work !=NULL) {'
 	            '      flag = 2;';
 	            '      nevprt='+string(ordclk(ii,2))+';';
-	            '     '+wfunclist(fun);
-               	    '     }'];
+	            '     '+wfunclist(fun)];
 	      
             end     
           else
@@ -999,11 +983,9 @@ function Code=c_make_doit2(cpr,stalone);
 	  if  is_act then
 	    if stalone then
 	      Code=[Code
-	            '    if (*block_'+rdnom+'['+string(fun-1)+'].work !=NULL) {'
 	            '      flag = 2;';
 	            '      nevprt=0;';
-	            '     '+wfunclist(fun);
-                    '     }']; 
+	            '     '+wfunclist(fun)]; 
 	    end     
           else
             Code=[Code
@@ -1599,6 +1581,9 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
   elseif szclkIN==[]  then
     //superblock has no Event input, add a fictious clock
     output=ones((2^(size(cap,'*')))-1,1)
+    if (output == []) then 
+       output=0;
+    end
     bllst($+1)=scicos_model(sim=list('bidon',1),evtout=output,..
 			    firing=-output,blocktype='d',dep_ut=[%f %f])
     corinv(size(bllst))=size(bllst)+1;
@@ -2943,7 +2928,8 @@ modptr=cpr.sim.modptr;
 nZ=size(z,'*')+size(outtb,'*')+clkptr($);
 nztotal=size(z,1);
 //Generates simulation routine for standalone simulation
-  iwa=zeros(clkptr($),1),Z=[z;outtb;iwa]';
+  work=zeros(nblk,1)
+  iwa=zeros(clkptr($),1),Z=[z;outtb;iwa;work]';
   Code=[ '/*Main program */'
 	 'int main()'
 	 '{'
@@ -2963,7 +2949,7 @@ nztotal=size(z,1);
 	 ''
 	 '  /*Initial values */';
 	 cformatline('  double z[]={'+strcat(string(Z),',')+'};',70);
-	 '/* Note that z[]=[z_initial_condition;outtb;iwa]';
+	 '/* Note that z[]=[z_initial_condition;outtb;iwa;]';
 	 cformatline('z_initial_condition= {'+strcat(string(z),",")+'};',70);
 	 cformatline('outtb= {'+strcat(string(outtb),"," )+'};',70);
 	 cformatline('iwa= {'+strcat(string(iwa),"," )+'};',70);
