@@ -93,6 +93,7 @@
 {"gsort",		IN_matdes,	57,	1},	
 {"param3d",		IN_matdes,	3,	2},	
 {"param3d1",		IN_matdes,	59,	2},	
+{"xxs",			IN_matdes,	60,	2},	
 {"plot2d",		IN_matdes,	6,	2},	
 {"plot2d1",		IN_matdes,	7,	2},	
 {"plot2d2",		IN_matdes,	8,	2},	
