@@ -31,10 +31,11 @@
 #ifdef WITH_TK
 #include <tcl.h>
 #include <tk.h>
-#endif
 
 extern Tcl_Interp *TKinterp;
 extern Tk_Window TKmainWindow;
+#endif
+
 
 extern int XRotDrawString();
 /** jpc_SGraph.c **/
