@@ -27,8 +27,9 @@ if rhs==7 then
   Indxp=[ ];param=list(1.d-6,0)
 elseif rhs==8 then
   param=list(1.d-6,0)
+elseif rhs==9 then
 else
-  error('wrong number of arguments. 7 or 8 expected.')
+  error('wrong number of arguments. 7, 8 or 9 expected.')
 end
 
 
