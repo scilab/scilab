@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "../wsci/wgnuplib.h"
+/* #include "../wsci/wgnuplib.h"*/
 #include "../wsci/wresource.h"
 #include "../wsci/wcommon.h"
 #include "../sun/men_Sutils.h"
