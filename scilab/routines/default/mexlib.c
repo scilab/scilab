@@ -488,6 +488,7 @@ double *mxGetPi(const mxArray *ptr)
     case DOUBLEMATRIX: case INTMATRIX:
       m=header[debut+1];n=header[debut+2];
       it=header[debut+3];  /* it should be 1 */
+      if (it==0) return NULL;
       return (double *) &header[debut+4+2*m*n];
     default:
       return 0;
@@ -794,10 +795,8 @@ bool mxIsSingle(const mxArray *ptr)
 bool mxIsEmpty(const mxArray *ptr)
 {
   int *header = Header(ptr);
-  if ( (header[0] == DOUBLEMATRIX) | (header[0] == SPARSEMATRIX) ) 
-    return 1-header[1]*header[2];
-  else 
-    return 0;
+  if (header[1]*header[2]==0) return 1;
+  return 0;
 }
 
 bool mxIsFull(const mxArray *ptr)
