@@ -20,8 +20,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Rectangle Editor"
 wm iconname $ww "RE"
-wm geometry $ww 650x400
-
+wm geometry $ww 650x700
 
 set w $ww
 frame $w.frame -borderwidth 0
@@ -42,7 +41,7 @@ set curgedobject $SELOBJECT($curgedindex)
 frame $w.frame.view  -borderwidth 0
 pack $w.frame.view  -in $w.frame  -side top  -fill x
 
-label $w.frame.selgedobjectlabel  -height 0 -text "Edit Properties for:    " -width 0 
+label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
 combobox $w.frame.selgedobject \
     -borderwidth 2 \
     -highlightthickness 3 \
@@ -83,7 +82,7 @@ pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
 frame $w.frame.rectst  -borderwidth 0
 pack $w.frame.rectst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Line_style:   " -width 0 
+label $w.frame.stylelabel  -height 0 -text " Line style:   " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -101,7 +100,7 @@ pack $w.frame.style   -in $w.frame.rectst   -fill x
 frame $w.frame.rectmarkst  -borderwidth 0
 pack $w.frame.rectmarkst  -in $w.frame  -side top  -fill x
 
-label $w.frame.markstylelabel  -height 0 -text "Mark_style: " -width 0 
+label $w.frame.markstylelabel  -height 0 -text "Mark style: " -width 0 
 combobox $w.frame.markstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -120,7 +119,7 @@ pack $w.frame.markstyle   -in $w.frame.rectmarkst   -fill x
 frame $w.frame.rectmarkmode  -borderwidth 0
 pack $w.frame.rectmarkmode  -in $w.frame  -side top  -fill x
 
-label $w.frame.markmodelabel -height 0 -text "Mark_mode: " -width 0 
+label $w.frame.markmodelabel -height 0 -text "Mark mode: " -width 0 
 checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
     -command "toggleMarkmode" 
@@ -133,7 +132,7 @@ pack $w.frame.markmode   -in $w.frame.rectmarkmode   -side left -fill x
 frame $w.frame.fil  -borderwidth 0
 pack $w.frame.fil  -in $w.frame  -side top  -fill x
 
-label $w.frame.filledlabel -height 0 -text "        Filled: " -width 0 
+label $w.frame.filledlabel -height 0 -text "         Filled: " -width 0 
 checkbutton $w.frame.filled  -textvariable filToggle -indicatoron 1 \
     -variable filToggle  -onvalue "on" -offvalue "off" \
     -command "toggleFilled" 
@@ -145,21 +144,20 @@ pack $w.frame.filled  -in $w.frame.fil   -side left -fill x
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "        Color: " -width 0 
+label $w.frame.colorlabel -height 0 -text "         Color: " -width 0 
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0 
-frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
-pack $w.frame.color  $w.frame.sample -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.color -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.color set $curcolor
 
 
 #Thickness scale
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x
-label $w.frame.scalelabel -height 0 -text "Thickness:" -width 0 
+label $w.frame.scalelabel -height 0 -text "  Thickness: " -width 0 
 scale $w.frame.thickness -orient horizontal -from 1 -to 20 \
 	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
@@ -249,32 +247,30 @@ proc setColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f0.frame.sample config -background $color
-	
+	$w config  -activebackground $color -troughcolor $color
     }
 }
 

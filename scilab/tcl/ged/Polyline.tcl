@@ -65,7 +65,7 @@ set curgedobject $SELOBJECT($curgedindex)
 frame $w.frame.view  -borderwidth 0
 pack $w.frame.view  -in $w.frame  -side top  -fill x
 
-label $w.frame.selgedobjectlabel  -height 0 -text "Edit Properties for:    " -width 0 
+label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
 combobox $w.frame.selgedobject \
     -borderwidth 2 \
     -highlightthickness 3 \
@@ -106,7 +106,7 @@ pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
 frame $w.frame.curvst  -borderwidth 0
 pack $w.frame.curvst  -in $w.frame  -side top  -fill x
 
-label $w.frame.polystylelabel  -height 0 -text "Polyline_style:    " -width 0 
+label $w.frame.polystylelabel  -height 0 -text "Polyline style:    " -width 0 
 combobox $w.frame.polystyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -123,7 +123,7 @@ pack $w.frame.polystyle   -in $w.frame.curvst   -fill x
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "     Line_style:    " -width 0 
+label $w.frame.stylelabel  -height 0 -text "     Line style:    " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -140,7 +140,7 @@ pack $w.frame.style   -in $w.frame.linest   -fill x
 frame $w.frame.linemarkst  -borderwidth 0
 pack $w.frame.linemarkst  -in $w.frame  -side top  -fill x
 
-label $w.frame.markstylelabel  -height 0 -text "    Mark_style:    " -width 0 
+label $w.frame.markstylelabel  -height 0 -text "    Mark style:    " -width 0 
 combobox $w.frame.markstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -159,7 +159,7 @@ pack $w.frame.markstyle   -in $w.frame.linemarkst   -fill x
 frame $w.frame.linemarkmode  -borderwidth 0
 pack $w.frame.linemarkmode  -in $w.frame  -side top  -fill x
 
-label $w.frame.markmodelabel -height 0 -text "    Mark_mode:   " -width 0 
+label $w.frame.markmodelabel -height 0 -text "    Mark mode:   " -width 0 
 checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
     -command "toggleMarkmode" 
@@ -176,10 +176,9 @@ label $w.frame.colorlabel -height 0 -text "Color:       " -width 0
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0 
-frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
-pack $w.frame.color  $w.frame.sample -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.color  -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.color set $curcolor
 
 
@@ -219,8 +218,6 @@ $w.frame.c create text 310 10 -anchor c -text "Y"
 if { $nbcol == 3 } {
     $w.frame.c create text 460 10 -anchor c -text "Z"
 }
-
-set j 1
 
 for {set i 1} {$i<=$nbrow} {incr i} {
     set bb [expr 10+(25*$i)]
@@ -278,21 +275,22 @@ proc setColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
+		
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
@@ -300,9 +298,9 @@ proc setColor {w index} {
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }

@@ -81,7 +81,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 450x450
+wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
 
@@ -104,7 +104,7 @@ set curgedobject $SELOBJECT($curgedindex)
 frame $w.frame.view  -borderwidth 0
 pack $w.frame.view  -in $w.frame  -side top  -fill x
 
-label $w.frame.selgedobjectlabel  -height 0 -text "Edit Properties for:    " -width 0 
+label $w.frame.selgedobjectlabel  -height 0 -text "Edit properties for:    " -width 0 
 combobox $w.frame.selgedobject \
     -borderwidth 2 \
     -highlightthickness 3 \
@@ -134,7 +134,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x
 
-label $w.frame.xlabel -text "     Label: "
+label $w.frame.xlabel -text "     Label:  "
 entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel 
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx -fill x
@@ -147,10 +147,9 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0 
-frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $xlabel_foreground
 
 
@@ -158,7 +157,7 @@ $w.frame.fontcolor set $xlabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.fontsizlabel -height 0 -text "      Size: " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setXFontLabelSize $w.frame.fontsize" -tickinterval 0 
 
@@ -171,7 +170,7 @@ $w.frame.fontsize set $xlabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -190,7 +189,7 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 frame $w.frame.px  -borderwidth 0
 pack $w.frame.px  -in $w.frame -side top   -fill x
 
-label $w.frame.xposlabel  -height 0 -text "   Location: " -width 0 
+label $w.frame.xposlabel  -height 0 -text "   Location:" -width 0 
 combobox $w.frame.xpos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -208,13 +207,12 @@ pack $w.frame.xpos  -in  $w.frame.px -fill x
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
-frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.gridcolorlabel -in  $w.frame.gridcol -side left 
-pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack  $w.frame.gridcolor  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $xGrid
 
 #X Data bounds
@@ -260,7 +258,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lby -borderwidth 0
 pack $w.frame.lby  -in $w.frame -side top   -fill x
 
-label $w.frame.ylabel -text "     Label: "
+label $w.frame.ylabel -text "     Label:  "
 entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel 
 pack $w.frame.ylabel -in  $w.frame.lby -side left
 pack $w.frame.ylabel1  -in  $w.frame.lby -fill x
@@ -273,10 +271,9 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0 
-frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $ylabel_foreground
 
 
@@ -284,7 +281,7 @@ $w.frame.fontcolor set $ylabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.fontsizlabel -height 0 -text "      Size: " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setYFontLabelSize $w.frame.fontsize" -tickinterval 0 
 
@@ -300,7 +297,7 @@ $w.frame.fontsize set $ylabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -319,7 +316,7 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 frame $w.frame.py  -borderwidth 0
 pack $w.frame.py  -in $w.frame -side top   -fill x
 
-label $w.frame.yposlabel  -height 0 -text "   Location: " -width 0 
+label $w.frame.yposlabel  -height 0 -text "   Location:" -width 0 
 combobox $w.frame.ypos \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -337,13 +334,12 @@ pack $w.frame.ypos  -in  $w.frame.py -fill x
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setYGridColor $w.frame.gridcolor" -tickinterval 0 
-frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $yGrid
 
 #Y Data bounds
@@ -389,7 +385,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbz -borderwidth 0
 pack $w.frame.lbz  -in $w.frame -side top   -fill x
 
-label $w.frame.zlabel -text "     Label: "
+label $w.frame.zlabel -text "     Label:  "
 entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel 
 pack $w.frame.zlabel -in  $w.frame.lbz -side left
 pack $w.frame.zlabel1  -in  $w.frame.lbz -fill x
@@ -402,10 +398,9 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0 
-frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $zlabel_foreground
 
 
@@ -413,7 +408,7 @@ $w.frame.fontcolor set $zlabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.fontsizlabel -height 0 -text "      Size: " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setZFontLabelSize $w.frame.fontsize" -tickinterval 0 
 
@@ -426,7 +421,7 @@ $w.frame.fontsize set $zlabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -444,7 +439,7 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 # frame $w.frame.pz  -borderwidth 0
 # pack $w.frame.pz  -in $w.frame -side top   -fill x
 
-# label $w.frame.zposlabel  -height 0 -text "   Location: " -width 0 
+# label $w.frame.zposlabel  -height 0 -text "   Location:" -width 0 
 # combobox $w.frame.zpos \
 #     -borderwidth 1 \
 #     -highlightthickness 1 \
@@ -463,13 +458,12 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 frame $w.frame.gridcol  -borderwidth 0
 pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 
-label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
+label $w.frame.gridcolorlabel -height 0 -text "Grid color:" -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0 
-frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
+pack  $w.frame.gridcolor -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $zGrid
 
 #Z Data bounds
@@ -515,7 +509,7 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.lbtitle -borderwidth 0
 pack $w.frame.lbtitle  -in $w.frame -side top   -fill x
 
-label $w.frame.titlelabel -text "     Label: "
+label $w.frame.titlelabel -text "     Label:  "
 entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel 
 pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
 pack $w.frame.titlelabel1  -in  $w.frame.lbtitle -fill x
@@ -528,10 +522,9 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0 
-frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $titlelabel_foreground
 
 
@@ -539,7 +532,7 @@ $w.frame.fontcolor set $titlelabel_foreground
 frame $w.frame.fontsiz  -borderwidth 0
 pack $w.frame.fontsiz  -in $w.frame -side top   -fill x
 
-label $w.frame.fontsizlabel -height 0 -text "      Size: " -width 0 
+label $w.frame.fontsizlabel -height 0 -text "      Size:  " -width 0 
 scale $w.frame.fontsize -orient horizontal -from 0 -to 6 \
 	 -resolution 1.0 -command "setTitleFontLabelSize $w.frame.fontsize" -tickinterval 0 
 
@@ -551,7 +544,7 @@ $w.frame.fontsize set $titlelabel_fontsize
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -593,7 +586,7 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
+label $w.frame.stylelabel  -height 0 -text "Font style:" -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -611,13 +604,12 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 #FontColor scale
 frame $w.frame.fontclr  -borderwidth 0
 pack $w.frame.fontclr   -in $w.frame -side top  -fill x
-label $w.frame.fontcolorlabel -height 0 -text "Font Color" -width 0 
+label $w.frame.fontcolorlabel -height 0 -text "Font color" -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0 
-frame $w.frame.samplefont -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel -in $w.frame.fontclr -side left
-pack $w.frame.fontcolor  $w.frame.samplefont -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fontcolor -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $curfontcolor
 
 #Fontsize scale
@@ -635,28 +627,26 @@ $w.frame.fontsize set $curfontsize
 #Color scale foregound
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
-label $w.frame.fcolorlabel -height 0 -text "Foreground\n   Color: " -width 0 
+label $w.frame.fcolorlabel -height 0 -text "Foreground\n   color: " -width 0 
 
 scale $w.frame.fcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setForeColor $w.frame.fcolor" -tickinterval 0 
-frame $w.frame.samplefore -height 1.2c -width 1c
 
 pack $w.frame.fcolorlabel -in $w.frame.clrf -side left
-pack $w.frame.fcolor  $w.frame.samplefore -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.fcolor -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fcolor set $fcolor
 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
 pack $w.frame.clrb  -in $w.frame -side top  -fill x
-label $w.frame.bcolorlabel -height 0 -text "Background\n   Color: " -width 0 
+label $w.frame.bcolorlabel -height 0 -text "Background\n   color: " -width 0 
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0 
-frame $w.frame.sampleback -height 1.2c -width 1c
 
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor  $w.frame.sampleback -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.bcolor -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.bcolor set $bcolor
 
 
@@ -800,21 +790,22 @@ proc setForeColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f4.frame.samplefore config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f4.frame.samplefore config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f4.frame.samplefore config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
@@ -822,9 +813,9 @@ proc setForeColor {w index} {
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	.axes.n.f4.frame.samplefore config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -840,32 +831,34 @@ proc setBackColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f4.frame.sampleback config -background $color
+	$w config  -activebackground $color -troughcolor $color
+
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f4.frame.sampleback config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f4.frame.sampleback config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.background=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f4.frame.sampleback config -background $color
-	
+	$w config  -activebackground $color -troughcolor $color
+
     }
 }
 
@@ -885,12 +878,12 @@ proc setFontColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f4.frame.samplefont config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f4.frame.samplefont config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	#like $index==1: display first color
@@ -898,18 +891,19 @@ proc setFontColor {w index} {
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f4.frame.samplefont config -background $color
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.font_color=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f4.frame.samplefont config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -981,7 +975,7 @@ proc setXGridColor {w index} {
 	} else {
 	    set color [format \#d6d3ce]
 	}
-	.axes.n.f0.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } 
     
     if { $index == 0 } {
@@ -990,9 +984,10 @@ proc setXGridColor {w index} {
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f0.frame.sample config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     }
     
     if { ( $index != -1) && ( $index != 0) } {
@@ -1001,11 +996,10 @@ proc setXGridColor {w index} {
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f0.frame.sample config -background $color
-	
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     }
 }
 
@@ -1030,31 +1024,32 @@ proc setXFontLabelColor {w  index} {
 	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f0.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f0.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f0.frame.samplelabel config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.x_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f0.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -1076,7 +1071,7 @@ proc setYGridColor {w index} {
 	} else {
 	    set color [format \#d6d3ce]
 	}
-	.axes.n.f1.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } 
     
     if { $index == 0 } {
@@ -1086,8 +1081,9 @@ proc setYGridColor {w index} {
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f1.frame.sample config -background $color
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     }
     
     if { ( $index != -1) && ( $index != 0) } {
@@ -1096,10 +1092,10 @@ proc setYGridColor {w index} {
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f1.frame.sample config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -1132,31 +1128,33 @@ proc setYFontLabelColor {w  index} {
 	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f1.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
+
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f1.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f1.frame.samplelabel config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.y_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f1.frame.samplelabel config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -1178,7 +1176,7 @@ proc setZGridColor {w index} {
 	} else {
 	    set color [format \#d6d3ce]
 	}
-	.axes.n.f2.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } 
     
     if { $index == 0 } {
@@ -1187,9 +1185,10 @@ proc setZGridColor {w index} {
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f2.frame.sample config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     }
     
     if { ( $index != -1) && ( $index != 0) } {
@@ -1198,10 +1197,10 @@ proc setZGridColor {w index} {
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f2.frame.sample config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -1228,31 +1227,32 @@ proc setZFontLabelColor {w  index} {
 	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f2.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f2.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f2.frame.samplelabel config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.z_label.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
-	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f2.frame.samplelabel config -background $color
+
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
@@ -1281,12 +1281,12 @@ proc setTitleFontLabelColor {w  index} {
 	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.n.f3.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.n.f3.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	#like $index==1: display first color
@@ -1294,18 +1294,18 @@ proc setTitleFontLabelColor {w  index} {
 	set GRECOL $GREEN(1) 
 	set BLUCOL $BLUE(1) 
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.n.f3.frame.samplelabel config -background $color
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+
+	$w config  -activebackground $color -troughcolor $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.title.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
 	set BLUCOL $BLUE($index) 
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	
-	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	
-	.axes.n.f3.frame.samplelabel config -background $color
+	$w config  -activebackground $color -troughcolor $color
 	
     }
 }
