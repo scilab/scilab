@@ -49,8 +49,7 @@ endfunction
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="if">
         <SP>extern is the name of an external function coded in Fortran or C
-    the new calling sequence should be <VERB>[As,Es,Z,dim]=
-    schur(A,E,'nextern')</VERB> with nextern defined as follow:</SP>
+    the new calling sequence should be <VERB>[As,Es,Z,dim]=    schur(A,E,'nextern')</VERB> with nextern defined as follow:</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <VERBATIM>

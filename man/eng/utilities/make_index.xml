@@ -5,8 +5,7 @@
   <TITLE>help</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>January 2002</DATE>
-  <SHORT_DESCRIPTION name="make_index"> creates a new index file for
-  on-line help</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="make_index"> creates a new index file for on-line help</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>make_index() </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

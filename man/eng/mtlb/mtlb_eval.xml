@@ -45,11 +45,7 @@
         <SP>
         When called with two inputs and no output,
         <VERB>mtlb_eval(str1,str2)</VERB> may be replaced by:
-	<VERB>
-	if execstr(str1,&quot;errcatch&quot;)&lt;&gt;0 then 
-	  execstr(str2);
-	end
-	</VERB>
+	<VERB>if execstr(str1,&quot;errcatch&quot;)&lt;&gt;0 then execstr(str2);end</VERB>
 	if <VERB>str1</VERB> and <VERB>str2</VERB> are valid Scilab instructions.
         </SP>
       </ITEM>
@@ -67,11 +63,13 @@
         <SP>
         When called with two inputs and more than one output,
         <VERB>[val1,val2,...]=mtlb_eval(str1,str2)</VERB> may be replaced by:
-	<VERB>
+        </SP>
+	<VERBATIM>
 	if execstr(&quot;[val1,val2,...]&quot;+str1,&quot;errcatch&quot;)&lt;&gt;0 then
 	  execstr(&quot;[val1,val2,...]&quot;+str2);
 	end	  
-	</VERB>
+	</VERBATIM>
+        <SP>
 	if <VERB>str1</VERB> and <VERB>str2</VERB> are valid Scilab instructions.
         </SP>
       </ITEM>

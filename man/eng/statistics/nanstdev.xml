@@ -30,8 +30,8 @@
     For a vector or a matrix <VERB> x</VERB>, <VERB> s=nanstdev(x)</VERB>
     returns in the scalar  <VERB> s</VERB> the  standard deviation
     of all the entries of <VERB>x</VERB> (ignoring the NANs).</P>
-    <P><VERB>s=nanstdev(x,'r')</VERB>        (or,  equivalently,   <VERB>
-    s=nanstdev(x,1) </VERB>) is  the rowwise standard deviation.
+    <P><VERB>s=nanstdev(x,'r')</VERB>        (or,  equivalently,  
+    <VERB>  s=nanstdev(x,1) </VERB>) is  the rowwise standard deviation.
     It returns in each entry of the row  vector <VERB> s</VERB> the
     standard deviation of each column of <VERB> x</VERB> (ignoring
     the NANs).</P>

@@ -29,11 +29,11 @@
     For  a  vector  or matrix  <VERB>   x</VERB>, <VERB> s2=mad(x)  </VERB>
     returns in scalar <VERB> s2</VERB> the mean absolute  deviation
     of all the entries of <VERB> x</VERB>.</P>
-    <P><VERB> s2=mad(x,'r')  </VERB> (or, equivalently,  <VERB> s2=mad(x,1)
-    </VERB>) returns in each entry of the column vector <VERB> s2</VERB>
+    <P><VERB> s2=mad(x,'r')  </VERB> (or, equivalently,  <VERB> s2=mad(x,1)</VERB>) 
+    returns in each entry of the column vector <VERB> s2</VERB>
     the mean absolute deviation of each column of <VERB> x</VERB>.</P>
-    <P><VERB> s2=mad(x,'c')  </VERB> (or, equivalently,  <VERB> s2=mad(x,2)
-    </VERB>) returns in each entry of the column vector <VERB> s2</VERB>
+    <P><VERB> s2=mad(x,'c')  </VERB> (or, equivalently,  <VERB> s2=mad(x,2)</VERB>) 
+    returns in each entry of the column vector <VERB> s2</VERB>
     the mean absolute deviation of each row of <VERB> x</VERB>.</P>
   </DESCRIPTION>
   <BIBLIO>

@@ -88,13 +88,12 @@
     For a vector or matrix <VERB> x</VERB>, <VERB> m=trimmean(x) </VERB>
     returns in scalar <VERB> m</VERB> the trimmedmean of all the
     entries of <VERB> x</VERB>.</P>
-    <P><VERB>   m=trimmean(x,'r')  </VERB>  (or,   equivalently,  <VERB>
-    m=trimmean(x,1) </VERB>)  returns in each entry  of the row
-    vector <VERB> m</VERB> the trimmed mean of each column of <VERB>
-    x</VERB>.</P>
+    <P><VERB>   m=trimmean(x,'r')  </VERB>  (or,   equivalently,  
+    <VERB> m=trimmean(x,1) </VERB>)  returns in each entry  of the row
+    vector <VERB> m</VERB> the trimmed mean of each column of <VERB> x</VERB>.</P>
     <P>
-    q<VERB>  m=trimmean(x,'c')   </VERB>  (or,  equivalently,  <VERB>
-    m=trimmean(x,2)  </VERB>)  returns  in  each entry  of  the
+    q<VERB>  m=trimmean(x,'c')   </VERB>  (or,  equivalently,  
+    <VERB> m=trimmean(x,2)  </VERB>)  returns  in  each entry  of  the
     column vector <VERB> m</VERB> the trimmed mean of each row of
     <VERB> x</VERB>.</P>
   </DESCRIPTION>

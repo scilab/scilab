@@ -33,8 +33,7 @@
     vector  <VERB> y</VERB> the  mean squared deviation  of each column of <VERB> x </VERB>.</P>
     <P><VERB> y=msd(x,'c')  </VERB> (or,  equivalently,  <VERB> m=msd(x,2)  </VERB>) is the
     columnwise mean squared  deviation.  It returns in  each entry  of the
-    column vector <VERB> y</VERB> the mean squared deviation of  each row of <VERB>
-    x</VERB>.</P>
+    column vector <VERB> y</VERB> the mean squared deviation of  each row of <VERB> x</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

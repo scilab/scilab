@@ -5,7 +5,7 @@
   <TITLE>ilib_compile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>May 2000</DATE>
-  <SHORT_DESCRIPTION name="ilib_compile"> ilib_build utility: executes the makefile produced by ilib_gen_Make</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="ilib_compile"> <VERB>ilib_build</VERB> utility: executes the makefile produced by <VERB>ilib_gen_Make</VERB></SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>libn=ilib_compile(lib_name,makename)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

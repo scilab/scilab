@@ -33,12 +33,10 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="z=feval(x,f)">
-        <SP>returns the vector <VERB>z</VERB> defined by <VERB>z(i)=f(x(i))
-</VERB></SP>
+        <SP>returns the vector <VERB>z</VERB> defined by <VERB>z(i)=f(x(i))</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="z=feval(x,y,f)">
-        <SP>returns the matrix <VERB>z</VERB> such as <VERB>z(i,j)=f(x(i),y(j))
-</VERB></SP>
+        <SP>returns the matrix <VERB>z</VERB> such as <VERB>z(i,j)=f(x(i),y(j))</VERB></SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P><VERB>f</VERB> is an external (function or routine) accepting

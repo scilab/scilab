@@ -23,21 +23,21 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    This function gives for a real or a numerical matrix <VERB>
-    x</VERB> his largest  element <VERB> m</VERB> (but ignoring the
+    This function gives for a real or a numerical matrix 
+    <VERB> x</VERB> his largest  element <VERB> m</VERB> (but ignoring the
     NANs).</P>
     <P>
-    For  <VERB>  x</VERB>,  a   numerical vector  or  matrix, <VERB>
-    m=nanmax(x) </VERB> returns in scalar <VERB>  m</VERB> the largest
-    element  of <VERB> x</VERB>  (ignoring the NANs). The form <VERB>
-    [m,index] =nanmax(x,orient) </VERB> gives in addition of the
+    For  <VERB>  x</VERB>,  a   numerical vector  or  matrix, <VERB> m=nanmax(x) </VERB>
+    returns in scalar <VERB>  m</VERB> the largest
+    element  of <VERB> x</VERB>  (ignoring the NANs). The form 
+    <VERB>[m,index] =nanmax(x,orient) </VERB> gives in addition of the
     value of the largest element  of <VERB> x</VERB> (ignoring the
     NANs) in scalar <VERB> m</VERB>, the index  of this element in
     <VERB> x</VERB>, as a 2-vector.</P>
     <P><VERB>m=nanmax(x,'r')  </VERB> gives  in the 1xsize(x,2) matrix
     <VERB> m</VERB> the largest elements  (ignoring the  NANs) of
-    each  column    of   <VERB>  x</VERB>.    If   the  form  <VERB>
-    [m,index]=nanmax(x,'r') </VERB> is used, the elements of the
+    each  column    of   <VERB>  x</VERB>.    If   the  form 
+    <VERB>[m,index]=nanmax(x,'r') </VERB> is used, the elements of the
     1xsize(x,2) matrix index are the  indexes of the largest
     elements (ignoring the NANs) of each column  of x in the
     corresponding column.</P>

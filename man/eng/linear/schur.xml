@@ -104,8 +104,7 @@
           <DESCRIPTION_ITEM label="Usual schur form:">
             <P><VERB>[U,T] = schur(A)</VERB> produces a Schur matrix
         <VERB>T</VERB> and a unitary matrix <VERB>U</VERB> so that
-        <VERB>A = U*T*U'</VERB> and <VERB>U'*U =
-        eye(U)</VERB>. By itself, schur(<VERB>A</VERB>) returns
+        <VERB>A = U*T*U'</VERB> and <VERB>U'*U =  eye(U)</VERB>. By itself, schur(<VERB>A</VERB>) returns
         <VERB>T</VERB>. If <VERB>A</VERB> is complex, the Complex
         Schur Form is returned in matrix
 	<VERB>T</VERB>. The Complex Schur Form is upper triangular with

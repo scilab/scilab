@@ -23,8 +23,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    This function computes the mean  of a vector or matrix <VERB>
-    x</VERB>.
+    This function computes the mean  of a vector or matrix <VERB> x</VERB>.
     For a vector or matrix <VERB>  x</VERB>, <VERB> m=mn(x) </VERB> returns
     in scalar <VERB> m</VERB>  the mean of  all the entries of <VERB> x </VERB>.
     <VERB> m=mn(x,'r') </VERB> (or,  equivalently, <VERB> m=mn(x,1) </VERB>)

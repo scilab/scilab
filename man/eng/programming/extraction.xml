@@ -124,13 +124,13 @@
      recursive extraction without intermediate copies.  The
      <VERB>[...]=l(k1)...(kn)(i)</VERB> and
      <VERB>[...]=l(list(k1,...,kn,i))</VERB> instructions are
-     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = ..
-     </VERB>  <VERB>lkn   = lkn-1(kn)</VERB>  <VERB>[...] =
-     lkn(i)</VERB>  And the  <VERB>l(k1)...(kn)(i,j)</VERB> and
+     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = .. </VERB>
+     <VERB>lkn   = lkn-1(kn)</VERB>  <VERB>[...] = lkn(i)</VERB>  
+     And the  <VERB>l(k1)...(kn)(i,j)</VERB> and
      <VERB>l(list(k1,...,kn,list(i,j))</VERB> instructions are
-     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = ..
-     </VERB>  <VERB>lkn   = lkn-1(kn)</VERB>  <VERB>
-     lkn(i,j)</VERB> <VERB>i</VERB> and <VERB>j</VERB>, can be:  When
+     interpreted as:  <VERB>lk1   = l(k1)</VERB>  <VERB> ..   = ..  </VERB>  
+     <VERB>lkn   = lkn-1(kn)</VERB>  <VERB> lkn(i,j)</VERB> 
+     <VERB>i</VERB> and <VERB>j</VERB>, can be:  When
      path points on more than one list component the instruction must
      have as many left hand side arguments as selected components. But
      if the extraction syntax is used within a function input calling

@@ -28,20 +28,20 @@
     the numerical matrix <VERB>x</VERB>.
      
     For  a  vector  or  a  matrix  <VERB>x</VERB>,  <VERB>s=center(x)</VERB>
-    returns in  the <VERB>(i,j)</VERB> coefficient of  the matrix <VERB>
-    s</VERB> the  value <VERB>(x(i,j)-xbar)</VERB>, where  <VERB> xbar</VERB> is
+    returns in  the <VERB>(i,j)</VERB> coefficient of  the matrix <VERB>s</VERB> 
+    the  value <VERB>(x(i,j)-xbar)</VERB>, where  <VERB> xbar</VERB> is
     the mean of the values of the coefficients of <VERB>x</VERB>.
      
-    <VERB>s=center(x,'r')</VERB>      (or,      equivalently,     <VERB>
-    s=center(x,1)</VERB>) is  the rowwise center  reduction of the
+    <VERB>s=center(x,'r')</VERB>      (or,      equivalently,     
+    <VERB>s=center(x,1)</VERB>) is  the rowwise center  reduction of the
     values of <VERB>x</VERB>.  It  returns in the entry <VERB> s(i,j)</VERB>
     the  value <VERB>(x(i,j)-xbarv(j))(j)</VERB>  with <VERB>xbarv(j)</VERB>
     the mean of the values of the <VERB>j</VERB> column.
      
-    <VERB>s=center(x,'c')</VERB>      (or,      equivalently,     <VERB>
-    s=center(x,2)</VERB>)  is the  columnwise center  reduction of
-    the  values  of <VERB>x</VERB>.   It  returns  in  the entry  <VERB>
-    s(i,j)</VERB>   the    value   <VERB>(x(i,j)-xbarh(i)))</VERB>   with
+    <VERB>s=center(x,'c')</VERB>      (or,      equivalently,     
+    <VERB>s=center(x,2)</VERB>)  is the  columnwise center  reduction of
+    the  values  of <VERB>x</VERB>.   It  returns  in  the entry  
+    <VERB>s(i,j)</VERB>   the    value   <VERB>(x(i,j)-xbarh(i)))</VERB>   with
     <VERB>xbarh(i)</VERB> the mean of the values of the <VERB>i</VERB> row.</P>
   </DESCRIPTION>
   <EXAMPLE>

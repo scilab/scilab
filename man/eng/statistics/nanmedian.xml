@@ -23,16 +23,16 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    For   a   vector    or   a  matrix   <VERB>    x</VERB>,   <VERB>
-    [m]=nanmedian(x)</VERB>  returns in the vector  <VERB>  m</VERB> the
+    For   a   vector    or   a  matrix   <VERB>    x</VERB>,   
+    <VERB>[m]=nanmedian(x)</VERB>  returns in the vector  <VERB>  m</VERB> the
     median of the  values (ignoring the NANs)  of vector <VERB>x</VERB>.</P>
     <P><VERB>[m]=nanmedian(x,'r')</VERB>       (or,        equivalently,
     <VERB>[m]=nanmedian(x,1)</VERB>) are  the  rowwise  medians.   It
     returns in each position of  the row vector  <VERB> m</VERB> the
     medians of data  (ignoring the NANs) in  the corresponding
     column of <VERB> x</VERB>.</P>
-    <P><VERB>[m]=nanmedian(x,'c')</VERB>      (or,   equivalently,   <VERB>
-    [m]=nanmedian(x,2)</VERB>)  are the  columnwise  madians.   It
+    <P><VERB>[m]=nanmedian(x,'c')</VERB>      (or,   equivalently,   
+    <VERB>[m]=nanmedian(x,2)</VERB>)  are the  columnwise  madians.   It
     returns in each position of the column vector <VERB> m</VERB> the
     medians of data (ignoring  the NANs) in the  corresponding
     row of <VERB> x</VERB>.</P>

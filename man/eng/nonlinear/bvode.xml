@@ -278,8 +278,7 @@
           in tol controls the error in the l-th component of
           <VERB>z(u)</VERB>.  also require that:</SP>
           <P>
-          <VERB>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
-          &lt;= mstar</VERB> 
+          <VERB>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol) &lt;= mstar</VERB> 
           </P>
           
         </PARAM_DESCRIPTION>
@@ -368,8 +367,7 @@
                   <VERB>1&lt;=i&lt;=mstar.</VERB>
                 </SP>
                 <P>
-                it should have the heading<VERB>[g]=gsub (i ,
-                 z)</VERB> where <VERB>z(u)</VERB> is as for
+                it should have the heading<VERB>[g]=gsub (i , z)</VERB> where <VERB>z(u)</VERB> is as for
                  <VERB>fsub</VERB>, and <VERB>i</VERB> and
                  <VERB>g=gi</VERB> are as above. Note that in contrast
                  to <VERB>f</VERB> in <VERB>fsub</VERB> , here only one value per
@@ -381,8 +379,8 @@
               <PARAM_NAME>dgsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating the i-th row of the Jacobian of
-  <VERB>g(x,u(x))</VERB>.  it should have the heading <VERB>[dg]=dgsub
-  (i , z )</VERB> where <VERB>z(u)</VERB> is as for fsub, i as for
+  <VERB>g(x,u(x))</VERB>.  it should have the heading <VERB>[dg]=dgsub (i , z )</VERB> 
+  where <VERB>z(u)</VERB> is as for fsub, i as for
   gsub and the mstar-vector  <VERB>dg</VERB> should be filled with the
   partial derivatives of g, viz, for a particular call one calculates</SP>
               </PARAM_DESCRIPTION>

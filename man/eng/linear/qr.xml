@@ -70,12 +70,12 @@
         <P>
     produces a (column) permutation matrix <VERB>E</VERB>, an upper
     triangular <VERB>R</VERB> with decreasing diagonal elements and an
-    orthogonal (or unitary) <VERB>Q</VERB> so that <VERB>X*E =
-    Q*R</VERB>. If <VERB>rk</VERB> is the rank of <VERB>X</VERB>, the
+    orthogonal (or unitary) <VERB>Q</VERB> so that <VERB>X*E =    Q*R</VERB>. 
+    If <VERB>rk</VERB> is the rank of <VERB>X</VERB>, the
     <VERB>rk</VERB> first  entries along the main diagonal of
     <VERB>R</VERB>, i.e. <VERB>R(1,1), R(2,2), ..., R(rk,rk)</VERB>
-    are all different from zero.  <VERB>[Q,R,E] =
-    qr(X,&quot;e&quot;)</VERB> produces an &quot;economy size&quot;:
+    are all different from zero.  <VERB>[Q,R,E] =  qr(X,&quot;e&quot;)</VERB> 
+    produces an &quot;economy size&quot;:
     If <VERB>X</VERB> is m-by-n with m &gt; n, then only the first n
     columns of <VERB>Q</VERB>  are computed as well as the first n
     rows of <VERB>R</VERB>. 

@@ -24,15 +24,14 @@
   <DESCRIPTION>
     <P>
     This  function computes the  geometric mean of a vector or
-    matrix <VERB> x</VERB>.  For a  vector or matrix  <VERB> x</VERB>, <VERB>
-    gm=geomean(x) </VERB>   returns  in  scalar  <VERB>   gm</VERB> the
+    matrix <VERB> x</VERB>.  For a  vector or matrix  <VERB> x</VERB>, 
+    <VERB>gm=geomean(x) </VERB>   returns  in  scalar  <VERB>   gm</VERB> the
     geometric mean of all the entries of <VERB> x</VERB>.</P>
-    <P><VERB>   gm=geomean(x,'r')    </VERB>   (or,   equivalently,  <VERB>
-    gm=gmean(x,1)  </VERB>  )  returns in  each   entry of the row
-    vector <VERB> gm</VERB> the geometric mean of each column of <VERB>
-    x</VERB>.</P>
-    <P><VERB>   gm=geomean(x,'c')    </VERB>  (or,    equivalently,  <VERB>
-    gm=gmean(x,2) </VERB>  ) returns in each  entry  of the column
+    <P><VERB>   gm=geomean(x,'r')    </VERB>   (or,   equivalently, 
+    <VERB>gm=gmean(x,1)  </VERB>  )  returns in  each   entry of the row
+    vector <VERB> gm</VERB> the geometric mean of each column of <VERB> x</VERB>.</P>
+    <P><VERB>   gm=geomean(x,'c')    </VERB>  (or,    equivalently,  
+    <VERB>gm=gmean(x,2) </VERB>  ) returns in each  entry  of the column
     vector <VERB> gm</VERB> the geometric mean of  each row of <VERB> x </VERB>.</P>
   </DESCRIPTION>
   <AUTHOR> Carlos Klimann</AUTHOR>

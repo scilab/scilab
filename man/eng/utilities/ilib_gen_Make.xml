@@ -5,7 +5,7 @@
   <TITLE>ilib_gen_Make</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>May 2000</DATE>
-  <SHORT_DESCRIPTION name="ilib_gen_Make"> utility for ilib_build: produces a makefile for building shared libraries</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="ilib_gen_Make"> utility for  <VERB>ilib_build</VERB>: produces a makefile for building shared libraries</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Makename=ilib_gen_Make(name,files,libs,makename [,with_gateway])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

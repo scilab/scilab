@@ -50,8 +50,7 @@
     <P>
     For a index-one pencil (order=0),<VERB>Di</VERB> =0.</P>
     <P>
-    For higher-index pencils, the terms <VERB> -s^2 Di(2), -s^3
-    Di(3),... </VERB> are given by:</P>
+    For higher-index pencils, the terms <VERB> -s^2 Di(2), -s^3    Di(3),... </VERB> are given by:</P>
     <P><VERB> Di(2)=Di*A*Di</VERB>, <VERB> Di(3)=Di*A*Di*A*Di</VERB> (up
     to <VERB>Di(order)</VERB>).</P>
   </DESCRIPTION>

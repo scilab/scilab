@@ -31,12 +31,12 @@
     For a vector  or  a matrix <VERB>  x</VERB>  , <VERB>  q=iqr(x)</VERB>
     returns in the scalar <VERB> q</VERB> the interquartile range of
     all the entries of <VERB> x</VERB>.</P>
-    <P><VERB> q=iqr(x,'r') </VERB>   (or, equivalently,  <VERB>  q=iqr(x,1)
-    </VERB>) is  the  rowwise interquartile range.  It  returns in
+    <P><VERB> q=iqr(x,'r') </VERB>   (or, equivalently, 
+    <VERB>q=iqr(x,1)</VERB>) is  the  rowwise interquartile range.  It  returns in
     each entry  of the row vector  <VERB> q</VERB> the interquartile
     range of each column of <VERB> x</VERB>.</P>
-    <P><VERB>  q=iqr(x,'c')  </VERB> (or,  equivalently, <VERB>  q=iqr(x,2)
-    </VERB>) is the columnwise  interquartile range. It returns in
+    <P><VERB>  q=iqr(x,'c')  </VERB> (or,  equivalently, 
+    <VERB>q=iqr(x,2)</VERB>) is the columnwise  interquartile range. It returns in
     each     entry of  the    column  vector  <VERB>   q</VERB> the
     interquartile range of each row of <VERB> x</VERB>.</P>
   </DESCRIPTION>

@@ -5,7 +5,7 @@
   <TITLE>ilib_gen_gateway</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>May 2000</DATE>
-  <SHORT_DESCRIPTION name="ilib_gen_gateway"> utility for ilib_build, generates a gateway file.  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="ilib_gen_gateway"> utility for <VERB>ilib_build</VERB>, generates a gateway file.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ilib_gen_gateway(name,table)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
