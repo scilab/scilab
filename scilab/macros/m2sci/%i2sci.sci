@@ -16,13 +16,18 @@ if rhs==1 then
   if type(s2(1))==1 then // recursive insertion
     [stk,t1,top]=%i2sci_rec()
     txt=[txt;t1];
-  elseif sto(5)=='10'|sfrom(5)=='10' then //insertion of strings
+  elseif sto(5)=='10'&sfrom(5)=='10' then //insertion of strings
     txt=[txt;sto(1)+' = mtlb_is'+rhsargs([sto(1),sfrom(1),s2(1)])]
     stk=list(op(2),'-1','?','?',sto(5))
   else
     if s2(5)=='10' then //x('i')=y
-      txt=[txt;sto(1)+'('+s2(1)+') = '+sfrom(1)]
-      stk=list(op(2),'-1','?','1','?') 
+      ind=part(s2(1),2:length(s2(1))-1)
+      if s2(2)=='0' then
+	txt=[txt;sto(1)+'.'+ind+' = '+sfrom(1)]
+      else
+	txt=[txt;sto(1)+'('+s2(1)+') = '+sfrom(1)]
+      end
+      stk=list(op(2),'-1','?','1',sto(5)) 
     elseif s2(1)<>':' then // x(i)=y
       if sto(3)=='0'|sto(4)=='0' then // insertion in an empty matrix
 	txt=[txt;sto(1)+'(1,'+s2(1)+') = '+sfrom(1)+';']
