@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.88 $)dnl
+AC_REVISION($Revision: 1.89 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -32,7 +32,7 @@ AC_ARG_WITH(gnu,
     [  --with-gnu              use gcc C compiler and g77 Fortran compiler ])
 
 AC_ARG_WITH(intelcompilers,
-    [  --with-intelcompilers   use intel ecc and efc Fortran compiler ])
+    [  --with-intelcompilers   use intel icc and ifort Fortran compiler ])
 
 AC_ARG_WITH(f2c,
     [  --with-f2c              use f2c C compiler on Linux systems ])
@@ -123,11 +123,11 @@ if test "$with_gnu" = yes; then
   fi
 elif test "$with_intelcompilers" = yes; then
 # intel C and Fortran compilers required
-  AC_CHECK_PROGS(ICC,ecc icc,no)
+  AC_CHECK_PROGS(ICC,icc ecc,no)
   if test "$ICC" = no; then
     AC_MSG_ERROR([Unable to configure: icc nor ecc  compiler found])
   fi
-  AC_CHECK_PROGS(IFC,efc ifc,no)
+  AC_CHECK_PROGS(IFC,ifort ifc efc,no)
   if test "$IFC" = no; then
     AC_MSG_ERROR([Unable to configure: ifc nor efc compiler  found])
   fi
@@ -205,7 +205,7 @@ IMPENV=
 STRIP=strip
 # periX11.c must be compiled without optimization on Darwin
 PERIX11NOPT=periX11darwin
-
+NMOPT=
 
 #########################
 ## libtool 
@@ -562,7 +562,7 @@ case "$host" in
          FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64 -ffnalias -falias"
        fi
        CC_LDFLAGS=$LIEEELIB
-       FC_LDFLAGS="$LIEEELIB -ldl  -lPEPCF90"
+       FC_LDFLAGS="$LIEEELIB -ldl"
        LD=xild
        LD_LDFLAGS="$LIEEELIB"
     else
@@ -633,9 +633,9 @@ case "$host" in
          FC_OPTIONS="-g -cm  -w90 -w95 -mp "
        fi
        CC_LDFLAGS="$LIEEELIB  -Wl,-relax"
-       FC_LDFLAGS="$LIEEELIB -ldl  -lPEPCF90 -Wl,-relax "
+       FC_LDFLAGS="$LIEEELIB -ldl -Wl,-relax "
        LD=xild
-       LD_LDFLAGS="$LIEEELIB -lPEPCF90 -Wl,-relax "
+       LD_LDFLAGS="$LIEEELIB  -Wl,-relax "
     else
        GCC=yes
        CC=cc
@@ -1378,19 +1378,19 @@ eval "$FC1 -c pipof.f > /dev/null 2>&1"
 FC_LEADING_UNDERSCORE=no
 FC_TRAILING_UNDERSCORE=no
 
-output=`nm pipof.o|grep _pipof 2>&1`
+output=`nm $NMOPT pipof.o|grep _pipof 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=yes
   FC_TRAILING_UNDERSCORE=no
 fi
 
-output=`nm pipof.o|grep pipof_ 2>&1`
+output=`nm $NMOPT pipof.o|grep pipof_ 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=no
   FC_TRAILING_UNDERSCORE=yes
 fi
 
-output=`nm pipof.o|grep _pipof_ 2>&1`
+output=`nm $NMOPT pipof.o|grep _pipof_ 2>&1`
 if test ! -z "$output"; then
   FC_LEADING_UNDERSCORE=yes
   FC_TRAILING_UNDERSCORE=yes
@@ -1949,7 +1949,7 @@ AC_SUBST(PERIX11NOPT)
 AC_SUBST(GETLIBTK)
 AC_SUBST(MANGENERATOR)
 
-AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci routines/stack.h macros/util/xmltohtml.sci) 
+AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex  config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci routines/stack.h macros/util/xmlfiletohtml.sci) 
  
 
 
