@@ -16,6 +16,12 @@ c     Copyright INRIA
 c     
 c      integer         nunit,unit(50)
 c      common /units / nunit,unit
+c
+c     common for scicos debug mode
+
+      common /cosdebug/ cosd
+      integer cosd
+
 c     common for Control-C interruptions
       logical         iflag
       common /basbrk/ iflag
@@ -185,6 +191,10 @@ c
 c     .  initial debug mode
 c     .  ------------------
       ddt = 0
+
+c
+c     .  scicos initial debug mode
+      cosd = 0
 c     
 c     .  character set
 c     .  -------------
