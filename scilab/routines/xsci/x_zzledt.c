@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: x_zzledt.c,v 1.2 2002/08/08 14:49:46 steer Exp $
+ * $Id: x_zzledt.c,v 1.3 2002/08/08 14:59:47 steer Exp $
  * $Log: x_zzledt.c,v $
+ * Revision 1.3  2002/08/08 14:59:47  steer
+ * ajout de déclaration de ismenu et sciprint
+ *
  * Revision 1.2  2002/08/08 14:49:46  steer
  *  pour que les menus dynamiques ne provoque pas l'impression de l'instruction
  *
@@ -110,6 +113,8 @@ static int  translate();
 static int  search_line_backward(),search_line_forward();
 void  set_echo_mode(),set_is_reading();
 int   get_echo_mode();
+extern int C2F(ismenu) ();
+extern void sciprint __PARAMS((char *fmt,...));
 
 static int sendprompt=1;
 extern char Sci_Prompt[10];
@@ -150,7 +155,7 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
    while(1) {
                             /* get next keystroke (no echo) */
      keystroke = gchar_no_echo();
-     if (C2F (ismenu) () == 1) {/* abort current line aquisition*/
+     if (C2F(ismenu) () == 1) {/* abort current line aquisition*/
        sendprompt=0;
        backspace(cursor);
        cursor = 0;
