@@ -280,6 +280,9 @@ end
 
 // Syntax modification
 
+// Complex variable
+txt=i_notation(txt)
+
 // Replace double quotes
 txt=strsubst(txt,dquote,dquote+dquote)
 
