@@ -102,5 +102,5 @@ grblk.obj: ../machine.h import.h
 scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h
 coselm.obj : ../stack.h
 intcos.obj : ../stack.h
-cpass2.obj: ../machine.h
+cpass2.obj: ../machine.h cc_pass2.h
 

@@ -99,5 +99,5 @@ grblk.o: ../machine.h import.h
 scicos.o: ../machine.h import.h blocks.h ../sun/link.h scicos.h
 coselm.o : ../stack.h
 intcos.o : ../stack.h
-cpass2.o: ../machine.h
+cpass2.o: ../machine.h cc_pass2.h
 
