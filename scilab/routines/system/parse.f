@@ -2,7 +2,7 @@
 c     ====================================================================
 c     Scilab parsing function
 c     ====================================================================
-c     Copyright INRIA
+c     Copyright INRIA, S. Steer
       include '../stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
       logical compil,eptover,eqid
@@ -918,6 +918,8 @@ c     .      go ahead with interrupted continuation line
       elseif(iret.eq.3) then
          job=0
          goto 12
+      elseif(iret.eq.4) then
+         return
       endif
       
  98   continue
@@ -965,7 +967,7 @@ c     where = 0 : no implicit execution is required
 c     where = 1 : implicit execution is a primitive
 c     where = 2 : implicit execution is a Scilab function
 
-c     Copyright INRIA
+c     Copyright INRIA, S.Steer
       include '../stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
 
@@ -1007,7 +1009,51 @@ c     .  %onprompt is a Scilab function *call*  macro
       return
       end
 c     
+      subroutine syncexec(str,ns,ierr)
+c     Copyright INRIA, S. Steer
+      include '../stack.h'
 
+      character *(*)str
+      integer ns
+      integer ierr,iret
+      logical eptover
+      external eptover
+      integer tops,rhss,lhss,krecs,errcts
+c
+      if (rstk(pt).ne.309.and.rstk(pt).ne.603.and.krec.eq.40) then
+c     .  here we test that we are currently in a tksci interface (so out of parse)
+         call basout(io,wte
+     $        ,'Synchronous execution is impossible in this context')
+         goto 10
+      endif
+      tops=top
+      rhss=rhs
+      lhss=lhs
+     
+      call bexec(str(1:ns),ns,ierr)
+      if(ierr.ne.0) goto 10
+      if ( eptover(1,psiz)) goto 10
+c     ids(1,pt)=4 make parse return at the end of execution
+      ids(1,pt)=4
+      pstk(pt)=top
+      rstk(pt)=706
+      icall=5
+c     set error control to force parse return on error
+      num=-1
+      imode=3
+      imess=0
+      errct=(8*imess+imode)*100000+abs(num)
+c
+      call parse
+      top=tops
+      rhs=rhss
+      lhs=lhss
+      errct=errcts
+      if (err.gt.0) goto 10
+      ierr=0
+      return
+ 10   ierr=1
+      end
 
 
 

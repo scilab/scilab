@@ -24,7 +24,10 @@ static int LAB_TK_EvalStr1()
   for (i = 0; i<m1*n1 ;i++) {
     RET=Tcl_Eval(TKinterp,Str[i]);
     if (RET==TCL_ERROR) {
-      Scierror(999,"%s, %s at line %i \r\n",fname,TKinterp->result,i+1);
+      if(C2F(iop).err>0)
+	Scierror(999,"%s, ScilabEval error at line %i \r\n",fname,i+1);
+      else
+	Scierror(999,"%s, %s at line %i \r\n",fname,TKinterp->result,i+1);
       FreeRhsSVar(Str);
       return 0;
     }
