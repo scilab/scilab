@@ -19,10 +19,6 @@ Shared libs : [
  
 if lktest==1 then
 	link(files,routines);
-linking files 
-externals.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext1f 
