@@ -269,6 +269,108 @@ int intlu(fname)
   }
 }
 
+int intslash(fname)
+  char *fname;
+{
+  int *header1;int *header2;
+  int CmplxA;int CmplxB;int ret;
+
+  /*   X = slash(A,B) <=> X = B / A */
+  header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
+  CmplxA=header1[3];   CmplxB=header2[3];
+  switch (CmplxA) {
+  case 0:   
+    switch (CmplxB) {
+    case 0 :
+      /* A real, Breal */
+      ret = C2F(intdgesv4)("slash",5L);
+      return;
+      break;
+    case 1 :
+      /* A real, B complex : to be done */
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+  case 1 :
+    switch (CmplxB) {
+    case 0 :
+      /* A complex, B real : to be done */
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      return;
+      break;
+    case 1 :
+      /* A complex, B complex */
+      ret = C2F(intzgesv4)("slash",5L);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+    break;
+  default :
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return;
+    break;
+  }
+}
+
+
+int intbackslash(fname)
+  char *fname;
+{
+  int *header1;int *header2;
+  int CmplxA;int CmplxB;int ret;
+
+  /*   lsq(A,b)  */
+  header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
+  CmplxA=header1[3];   CmplxB=header2[3];
+  switch (CmplxA) {
+  case 0:   
+    switch (CmplxB) {
+    case 0 :
+      /* A real, B real */
+      ret = C2F(intdgesv3)("lsq",3L);
+      return;
+      break;
+    case 1 :
+      /* A real, B complex : to be done */
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+  case 1 :
+    switch (CmplxB) {
+    case 0 :
+      /* A complex, B real : to be done */
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      return;
+      break;
+    case 1 :
+      /* A complex, B complex */
+      ret = C2F(intzgesv3)("lsq",3L);
+      return;
+      break;
+    default:
+      return;
+      break;
+    }
+    break;
+  default :
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return;
+    break;
+  }
+}
+
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -286,6 +388,8 @@ static LapackTable Tab[]={
   {intrcond,"lap_rcond"},
   {intchol,"lap_chol"},
   {intlu,"lap_lu"},
+  {intslash,"lap_slash"},
+  {intbackslash,"lap_backslash"},
 };
 
 int C2F(intlapack)()
