@@ -75,6 +75,7 @@ int C2F(timer)(double *etime)
 
 		if (init_clock == 1) {init_clock = 0; Tick1 = Tick2;}
 		*etime=(double) ( (double) (Tick2.QuadPart - Tick1.QuadPart) / (double)(freq.QuadPart));
+		Tick1 = Tick2;
 	}
 	else
 	if (GetPlatform() == UNKNOWN)
