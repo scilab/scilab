@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libf2c", "libf2c.vcproj", "{6E3F62A4-409D-42FE-BC49-423C4D00463A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6E3F62A4-409D-42FE-BC49-423C4D00463A}.Debug.ActiveCfg = Debug|Win32
+		{6E3F62A4-409D-42FE-BC49-423C4D00463A}.Debug.Build.0 = Debug|Win32
+		{6E3F62A4-409D-42FE-BC49-423C4D00463A}.Release.ActiveCfg = Release|Win32
+		{6E3F62A4-409D-42FE-BC49-423C4D00463A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
