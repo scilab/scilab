@@ -45,7 +45,6 @@ if { [info exists pad] } {
 
     load_words
 
-    #tkTextSetCursor $textareacur "1.0"
     keyposn $textareacur
 
     update idletasks
