@@ -860,6 +860,8 @@ c--------------------
                call rkf45(bydot,ny,stk(ly),t0,tout,itol,rtol,
      1              atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
      2              liw,bjac,meth)
+               istk(ilc)=0
+               istk(ilc+1)=0
             elseif(meth.eq.7) then
                call rksimp(bydot,ny,stk(ly),t0,tout,itol,rtol,
      1              atol,itask,istate,iopt,stk(lc),lrw,istk(ilc),
