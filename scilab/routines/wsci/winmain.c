@@ -78,8 +78,6 @@ int Console_Main(int argc, char **argv)
 
   szModuleName = (LPSTR) malloc (MAXSTR + 1);
   CheckMemory (szModuleName);
-  szModuleName = (LPSTR) malloc (MAXSTR + 1);
-  CheckMemory (szModuleName);
 
   /* get path to EXE */
   GetModuleFileName (GetModuleHandle (0), (LPSTR) szModuleName, MAXSTR);
@@ -126,8 +124,8 @@ int Console_Main(int argc, char **argv)
   textwin.shutdown = (DLGPROC) ShutDown;
   textwin.AboutText = (LPSTR) malloc (1024);
   CheckMemory (textwin.AboutText);
-  strcat (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
-  strcpy (textwin.AboutText, "developed by Scilab Group (Inria/Enpc)\n\t");
+  strcpy (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
+  strcat (textwin.AboutText, "developed by Scilab Group (Inria/Enpc)\n\t");
   strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
   textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
   CheckMemory (textwin.AboutText);
@@ -212,8 +210,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	
 	szModuleName = (LPSTR) malloc (MAXSTR + 1);
 	CheckMemory (szModuleName);
-	szModuleName = (LPSTR) malloc (MAXSTR + 1);
-	CheckMemory (szModuleName);
 
 	/* get path to EXE */
 	GetModuleFileName (hInstance, (LPSTR) szModuleName, MAXSTR);
@@ -261,8 +257,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	textwin.shutdown = (DLGPROC) ShutDown;
 	textwin.AboutText = (LPSTR) malloc (1024);
 	CheckMemory (textwin.AboutText);
-	strcat (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
-	strcpy (textwin.AboutText, "developed by Scilab Consortium (Inria/Enpc)\n\t");
+	strcpy (textwin.AboutText, "Scilab is a free copyrighted software.\n\t");
+	strcat (textwin.AboutText, "developed by Scilab Consortium (Inria/Enpc)\n\t");
 	strcat (textwin.AboutText, "\n\t email: scilab@inria.fr\n\t");
 	textwin.AboutText = realloc (textwin.AboutText, strlen (textwin.AboutText) + 1);
 	CheckMemory (textwin.AboutText);

@@ -2884,6 +2884,7 @@ void CreateThreadPaste(char *Text)
 	DWORD IdThreadPaste;
 	PasteForThread=(char*)malloc( (strlen(Text)+1)*sizeof(char));
 	strcpy(PasteForThread,Text);
+	PasteForThread[strlen(PasteForThread)]='\0';
 	/* PasteForThread défini en global car passage via CreateThread plante sous Win98 */
 	hThreadPaste=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)SendInputText,NULL,0,(LPDWORD)&IdThreadPaste);
 	
@@ -2906,7 +2907,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	int i=0;
 	
 	DWORD IdParentThread=0;
-	char *TextToSend;
+	char *TextToSend=NULL;
 	
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
@@ -2916,27 +2917,30 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 	GetWindowThreadProcessId(lptw->hWndText,&IdParentThread);
 	AttachThreadInput(GetCurrentThreadId(),IdParentThread,TRUE);
 	
-	lg=strlen((LPSTR)PasteForThread);
+	lg=strlen((char*)PasteForThread)+1;
 	TextToSend=(char*)malloc(lg*sizeof(char));
-	strcpy(TextToSend,(LPSTR)PasteForThread);
+	strcpy(TextToSend,(char*)PasteForThread);
+	TextToSend[strlen(TextToSend)]='\0';
+
 	free(PasteForThread);
-	
-	if (SpecialPaste==TRUE)CleanPromptFromText(TextToSend);
+	PasteForThread=NULL;
+
+	//if (SpecialPaste==TRUE)CleanPromptFromText(TextToSend); /* Desactiver pour le moment */
 		
-	lg=strlen(TextToSend);
 	while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
 	/* Il n'y a plus rien dans la queue des commandes */
 	while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 	/* Nous sommes au prompt */
 	
 	
-	
+	lg=strlen(TextToSend);
 	i=0;
 	while(i<lg)
 	{
 		long count;
 		
-	        while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
+		while ( C2F (ismenu) () == 1 ) {Sleep(TEMPOTOUCHE);}
+	    while ( lptw->bGetCh == FALSE ) {Sleep(TEMPOTOUCHE);}
 		count = lptw->KeyBufIn - lptw->KeyBufOut;
 			
 		if (count < 0) count = count+lptw->KeyBufSize;
@@ -2946,6 +2950,8 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 				if (lptw->KeyBufIn - lptw->KeyBuf >= (signed)lptw->KeyBufSize)
 				lptw->KeyBufIn = lptw->KeyBuf;	/* wrap around */
 			}
+	
+		if (TextToSend[i]==10) i++;
 		if (TextToSend[i]==13) 
 			{
 				SetReadyOrNotForAnewLign(FALSE);
@@ -2958,6 +2964,7 @@ DWORD WINAPI SendInputText(LPVOID lpParam )
 
 	
 	free(TextToSend);
+	TextToSend=NULL;
 	ThreadPasteRunning=FALSE;
 	CloseHandle( hThreadPaste );
 	
