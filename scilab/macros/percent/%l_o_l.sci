@@ -2,10 +2,10 @@ function [r]=%l_o_l(l1,l2)
 //l1==l2
 //!
 // Copyright INRIA
-n1=size(l1)
+n1=length(l1)
 
 
-r=n1==size(l2)
+r=n1==length(l2)
 if r&n1>0 then
   r=%f(ones(1,n1))
   sel=%f(ones(1,n1))
