@@ -14,7 +14,7 @@ case 'getorigin' then
 case 'set' then
  x=arg1;
   model=arg1.model;graphics=arg1.graphics;
-  label=model.label;
+  label=graphics.exprs;
   while %t do
     [ok,i,o,rpar,funam,lab]=..
         getvalue('Set fortran_block parameters',..
@@ -62,9 +62,9 @@ case 'define' then
   model.firing=[]
   model.dep_ut=[%t %f]
   funam='forty'
-  model.label=list([sci2exp(model.in);sci2exp(model.out);..
+  label=list([sci2exp(model.in);sci2exp(model.out);..
   strcat(sci2exp(model.rpar));funam],list([]))
   gr_i=['xstringb(orig(1),orig(2),''Fortran'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,model.label,gr_i)
+  x=standard_define([2 2],model,label,gr_i)
 end
 endfunction
