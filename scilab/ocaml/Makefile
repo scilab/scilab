@@ -2,6 +2,7 @@ OCAMLC=ocamlc
 OCAMLOPT=ocamlopt
 OCAMLDEP=ocamldep
 CAMLP4=camlp4
+RM=rm
 
 OCAMLFLAGS=
 OCAMLOPTFLAGS=
@@ -27,45 +28,45 @@ EXE=modelicac
 
 
 .mlp.cmo:
-	$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -impl $(<) > $(@:.cmo=.tmp)
-	$(OCAMLC) $(OCAMLFLAGS) -c -impl $(@:.cmo=.tmp)
-	rm -f $(@:.cmo=.tmp)
+	@$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -impl $(<) > $(@:.cmo=.tmp)
+	@$(OCAMLC) $(OCAMLFLAGS) -c -impl $(@:.cmo=.tmp)
+	@$(RM) -f $(@:.cmo=.tmp)
 
 .mpi.cmi:
-	$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -intf $(<) > $(@:.cmi=.tmp)
-	$(OCAMLC) $(OCAMLFLAGS) -c -intf $(@:.cmi=.tmp)
-	rm -f $(@:.cmi=.tmp)
+	@$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -intf $(<) > $(@:.cmi=.tmp)
+	@$(OCAMLC) $(OCAMLFLAGS) -c -intf $(@:.cmi=.tmp)
+	@$(RM) -f $(@:.cmi=.tmp)
 
 .mlp.cmx:
-	$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -impl $(<) > $(@:.cmx=.tmp)
-	$(OCAMLOPT) $(OCAMLOPTFLAGS) -c -impl $(@:.cmx=.tmp)
-	rm -f $(@:.cmx=.tmp)
+	@$(CAMLP4) pa_o.cmo pa_op.cmo pr_o.cmo -impl $(<) > $(@:.cmx=.tmp)
+	@$(OCAMLOPT) $(OCAMLOPTFLAGS) -c -impl $(@:.cmx=.tmp)
+	@$(RM) -f $(@:.cmx=.tmp)
 
 .ml.cmo:
-	$(OCAMLC) $(OCAMLFLAGS) -c $(<)
+	@$(OCAMLC) $(OCAMLFLAGS) -c $(<)
 
 .mli.cmi:
-	$(OCAMLC) $(OCAMLFLAGS) -c $(<)
+	@$(OCAMLC) $(OCAMLFLAGS) -c $(<)
 
 .ml.cmx:
-	$(OCAMLOPT) $(OCAMLOPTFLAGS) -c $(<)
+	@$(OCAMLOPT) $(OCAMLOPTFLAGS) -c $(<)
 
 %.ml %.mli: %.mly
-	ocamlyacc $(<)
-	rm -f $(<:.mly=.mli)
+	@ocamlyacc $(<)
+	@$(RM) -f $(<:.mly=.mli)
 
 %.ml: %.mll
-	ocamllex $(<)
+	@ocamllex $(<)
 
 
 all : opt doc
 
 opt: bytecode $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
-	ocamlopt -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
-	cp -p $(EXE) ../bin/
+	@$(OCAMLOPT) -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+	@cp -p $(EXE) ../bin/
 
 bytecode: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
-	ocamlc $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
+	@$(OCAMLC) $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
 
 debug: OCAMLFLAGS+=-g
 debug: bytecode
@@ -74,37 +75,37 @@ prof: OCAMLOPTFLAGS+=-p
 prof: opt
 
 doc:	$(DOCS)
-	mkdir -p doc
-	ocamlc -c $(DOCS)
-	ocamldoc -html -d doc $(DOCS)
+	@mkdir -p doc
+	@$(OCAMLC) -c $(DOCS)
+	@ocamldoc -html -d doc $(DOCS)
 
 archive: $(DOCS) $(DOCS:.mli=.ml) optimizingCompiler.ml lexer.mll parser.mly\
 README.txt Makefile
-	mkdir -p sources
-	for f in $(DOCS) $(DOCS:.mli=.ml) optimizingCompiler.ml lexer.mll\
-	parser.mly README.txt Makefile;\
-	do\
+	@mkdir -p sources
+	@for f in $(DOCS) $(DOCS:.mli=.ml) optimizingCompiler.ml lexer.mll\
+	@parser.mly README.txt Makefile;\
+	@do\
 		cp $$f sources/$$f;\
 	done
-	tar cvf - sources | gzip > archive.tar.gz
+	@tar cvf - sources | gzip > archive.tar.gz
 
 depend: $(MLS) $(MLIS)
-	touch .depend
-	ocamldep $(MLS) $(MLIS) > .depend
+	@touch .depend
+	@$(OCAMLDEP) $(MLS) $(MLIS) > .depend
 
 -include .depend
 
 clean:
-	rm -f *.cmxa
-	rm -f *.cm[aiox]
-	rm -f *.tmp
-	rm -f *.obj
-	rm -f *.o
-	rm -f parser.mli
-	rm -f lexer.mli
-	rm -f parser.ml
-	rm -f lexer.ml
-	rm -f $(EXE)
+	@$(RM) -f *.cmxa
+	@$(RM) -f *.cm[aiox]
+	@$(RM) -f *.tmp
+	@$(RM) -f *.obj
+	@$(RM) -f *.o
+	@$(RM) -f parser.mli
+	@$(RM) -f lexer.mli
+	@$(RM) -f parser.ml
+	@$(RM) -f lexer.ml
+	@$(RM) -f $(EXE)
 
 distclean : clean
-	rm -rf doc
+	@$(RM) -rf doc
