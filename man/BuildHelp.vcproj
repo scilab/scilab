@@ -17,9 +17,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
@@ -28,9 +28,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
 		<Configuration
@@ -40,9 +40,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
 			Name="Release with Atlas|Win32"
@@ -51,9 +51,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
 		<Configuration
@@ -63,9 +63,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
 		<Configuration
@@ -75,9 +75,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
 			Name="Debug with Atlas without Java|Win32"
@@ -86,9 +86,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"/>
 		</Configuration>
 		<Configuration
 			Name="Release with Atlas without Java|Win32"
@@ -97,9 +97,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
-				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
-				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
 	</Configurations>
@@ -111,7 +111,7 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\makehelp.mak">
+				RelativePath=".\makefile.mak">
 			</File>
 		</Filter>
 		<Filter

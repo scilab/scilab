@@ -144,7 +144,7 @@ goto end
 :man
 cd man
  echo making all in man
- nmake /C /f makehelp.mak /a
+ nmake /C /f makefile.mak /a
 cd ..
 goto end
 

@@ -446,6 +446,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xmlint", "Win95-util\xmlint
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheckHelp", "man\CheckHelp\CheckHelp.vcproj", "{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA} = {DE0A9A62-5A35-4F99-86CE-69B0C36792BA}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -2042,6 +2047,26 @@ Global
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas.Build.0 = Release|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas without Java.ActiveCfg = Release|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas without Java.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug.ActiveCfg = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug.Build.0 = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas.ActiveCfg = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas.Build.0 = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas without Java.ActiveCfg = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas without Java.Build.0 = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug without Java.ActiveCfg = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug without Java.Build.0 = Debug|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Pentium_Release.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Pentium_Release.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.PIV_Release.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.PIV_Release.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.PIV_Release with Atlas.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.PIV_Release with Atlas.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas.Build.0 = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas without Java.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas without Java.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
