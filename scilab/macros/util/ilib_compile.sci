@@ -84,7 +84,7 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
      if files <> [] then 
        files = files + '.o';
      end
-     lib_name_make=lib_name+'.so';
+     lib_name_make=lib_name+'.'+ilib_unix_soname();
      lib_name = lib_name+'.la'; 
      make_command = 'make -f ';
   end
