@@ -6,31 +6,43 @@
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="chdir"> changes Scilab current directory</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="cd"> changes Scilab current directory</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ierr=chdir('path-name')  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>chdir(path)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>realpath=cd(path)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>cd path  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>ierr</PARAM_NAME>
+     <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: an integer, 1 if <VERB>chdir</VERB> failed to change directory and <VERB>0</VERB> elsewhere.</SP>
+          <SP>: a character string</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+     <PARAM_ITEM>
+        <PARAM_NAME>realpath</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a character string, the real path name after pathname
+	    conversion (see below) </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    Change the current Scilab directory to <VERB>'path-name'</VERB></P>
+    <SP>
+      Change the current Scilab directory to those given by <VERB>path</VERB>. Note that path conversion is
+      performed and for example <VERB>SCI/macros/util</VERB> is a valid 
+      pattern for both unix and windows.
+    </SP>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
 chdir(TMPDIR);
-if MSDOS then
-  unix_w("dir");
-else
-  unix_w("ls");
-end
+pwd
+cd 
+cd SCI
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
