@@ -1,30 +1,29 @@
-SHELL = /bin/sh
-
 SCIDIR =../..
-
 SCIDIR1 =..\..
 
 #LIBRARY = name of the dll (without .dll postfix)..
-LIBRARY = lapackscilab
+LIBRARY=lapackscilab
 
 #########################################################################
 #    To each .obj interface (C or Fortran) associate one scilab function
 #    
-CINTERFACES = intdgemm.obj intdlassq.obj intdgetrf.obj  intdsyev.obj intdgeesx.obj intzgemm.obj intdgesvd.obj 
-CFUNCTIONS = dgemm dlassq dgetrf dsyev dgeesx zgemm dgesvd
+CINTERFACES = intdgemm.obj intdlassq.obj intdgetrf.obj intdsyev.obj intdgeesx.obj intzgemm.obj intdgesvd.obj #intzgeesx.obj
+
+CFUNCTIONS = dgemm dlassq dgetrf  dsyev dgeesx zgemm dgesvd #zgeesx
 
 OTHERCOBJS = 
 
-FORTRANINTERFACES = intfdgemm.obj intdgebal.obj intdgebak.obj intdgels.obj intdgeqrf.obj 
+FORTRANINTERFACES = intfdgemm.obj inttestdgebal.obj intdgebak.obj intdgels.obj intdgeqrf.obj
 
-FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf 
+FFUNCTIONS = fdgemm xxdgebal dgebak dgels dgeqrf 
+
 
 OTHERFOBJS = 
 ################ do not edit below this line #############################
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
-SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
+SCIIMPLIB="$(SCIDIR1)\bin\LibScilab.lib"
 
-!include "$(SCIDIR1)\Makefile.incl.mak"
+!include ..\..\Makefile.incl.mak
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
@@ -125,5 +124,7 @@ $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
+	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
 	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
+	
 

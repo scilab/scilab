@@ -9,6 +9,13 @@
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))
 
+#ifdef WIN32
+int select()
+{
+	return 1;
+}
+#endif
+
 int intzgeesx(fname)
      char* fname;
 { 
@@ -21,7 +28,11 @@ int intzgeesx(fname)
   int INFO, SDIM, BWORK;
   double RCONDE,RCONDV;
   char *JOBVS;
+
+#ifndef WIN32
   extern select();
+#endif
+
   int IT=1;
 
   CheckRhs(1,1) ;  CheckLhs(1,3) ;
