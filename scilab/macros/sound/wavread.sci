@@ -32,7 +32,7 @@ function [y,Fs,bits]=wavread(wavfile,ext)
     end
   elseif type(ext)==1 then
     exts = size(ext,'*');
-    if exts>2|exts<1 then
+    if exts>2 then
       error('Index range must be specified as a scalar or 2-element vector.');
     end
     if exts==1 then
