@@ -147,26 +147,30 @@ menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
     eval "$pad.filemenu add cascade [me "S&cheme"] \
                -menu $pad.filemenu.scheme "
     eval "$pad.filemenu.scheme add radiobutton [me "S&cilab"] \
-               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
+               -command {changelanguage \"scilab\"} -variable Scheme \
+               -value \"scilab\" "
     eval "$pad.filemenu.scheme add radiobutton [me "&XML"] \
-               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
+               -command {changelanguage \"xml\"} -variable Scheme \
+               -value \"xml\" "
     eval "$pad.filemenu.scheme add radiobutton [me "&none"] \
-               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
+               -command {changelanguage \"none\"} -variable Scheme \
+               -value \"none\" "
 
 # options menu
 menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "
     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
-    eval "$pad.filemenu.options add cascade [me "&Font size"] -menu $pad.filemenu.options.fontsize "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] -value 10 \
-                   -variable FontSize -command \"setfontscipad 10\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"] -value 12 \
-                   -variable FontSize -command \"setfontscipad 12\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] -value 14 \
-                   -variable FontSize -command \"setfontscipad 14\" "
-        eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] -value 18\
-                   -variable FontSize -command \"setfontscipad 18\" "
+    eval "$pad.filemenu.options add cascade [me "&Font size"]\
+      -menu $pad.filemenu.options.fontsize "
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] \
+              -value 10 -variable FontSize -command \"setfontscipad 10\" "
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"]\
+              -value 12 -variable FontSize -command \"setfontscipad 12\" "
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] \
+              -value 14 -variable FontSize -command \"setfontscipad 14\" "
+        eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] \
+              -value 18 -variable FontSize -command \"setfontscipad 18\" "
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
                -menu $pad.filemenu.options.colors"
         menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
@@ -174,33 +178,40 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
               eval "$pad.filemenu.options.colors add command [me "$c"] \
                 -command {colormenuoption $c} -foreground \[set $c\]"
                }
+    eval "$pad.filemenu.options add check [me "Colorize \'&strings\'"] \
+      -command {refreshQuotedStrings}\
+      -offvalue no -onvalue yes -variable scilabSingleQuotedStrings"
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
-                -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
-                -offvalue none -onvalue word -variable wordWrap"
+      -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
+      -offvalue none -onvalue word -variable wordWrap"
     eval "$pad.filemenu.options add cascade [me "&Tabs and indentation"] \
                -menu $pad.filemenu.options.tabs"
         menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
         eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
                     -offvalue tabs -onvalue spaces -variable tabinserts"
-        eval "$pad.filemenu.options.tabs add cascade  [me "&Indentation spaces"]\
-                    -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
+        eval "$pad.filemenu.options.tabs add cascade  \
+                [me "&Indentation spaces"]\
+                -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
                         indentspaces 1 2 3 4 5 6 7 8 9 10]"
     menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
-    eval "$pad.filemenu.options add cascade [me "File&names"] -menu $pad.filemenu.options.filenames "
-        eval "$pad.filemenu.options.filenames add radiobutton [me "&Full path"]\
-                    -command {RefreshWindowsMenuLabels}\
-                    -value full -variable filenamesdisplaytype"
-        eval "$pad.filemenu.options.filenames add radiobutton [me "Full path if &ambiguous"]\
-                    -command {RefreshWindowsMenuLabels}\
-                    -value fullifambig -variable filenamesdisplaytype"
-        eval "$pad.filemenu.options.filenames add radiobutton [me "&Unambiguous pruned path"]\
-                    -command {RefreshWindowsMenuLabels}\
-                    -value pruned -variable filenamesdisplaytype"
+    eval "$pad.filemenu.options add cascade [me "File&names"] \
+           -menu $pad.filemenu.options.filenames "
+        eval "$pad.filemenu.options.filenames add radiobutton \
+            [me "&Full path"] -command {RefreshWindowsMenuLabels}\
+             -value full -variable filenamesdisplaytype"
+        eval "$pad.filemenu.options.filenames add radiobutton \
+            [me "Full path if &ambiguous"] -command {RefreshWindowsMenuLabels}\
+             -value fullifambig -variable filenamesdisplaytype"
+        eval "$pad.filemenu.options.filenames add radiobutton \
+                 [me "&Unambiguous pruned path"]\
+                 -command {RefreshWindowsMenuLabels}\
+                 -value pruned -variable filenamesdisplaytype"
     eval "$pad.filemenu.options add cascade  [me "&Recent files"]\
                -menu [tk_optionMenu $pad.filemenu.options.recent \
                     maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10]"
     for {set i 0} {$i<=10} {incr i} {
-        $pad.filemenu.options.recent.menu entryconfigure $i -command {UpdateRecentFilesList}
+        $pad.filemenu.options.recent.menu entryconfigure $i \
+           -command {UpdateRecentFilesList}
     }
 
 # window menu

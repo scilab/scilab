@@ -863,3 +863,7 @@ Francois VOGEL, 13/03/05
      - Tab key inserts spaces or tabs
      - Max number of recent files in the file menu (possibly zero)
  * version --> 3.48
+
+ES 15/03/05
+ * new option available: single quoted strings colorized as strings/not
+ * version --> 3.49
