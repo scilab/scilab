@@ -159,10 +159,12 @@ void C2F(realmain)()
 
   /* initialize scilab interp  */
   C2F(inisci)(&ini, &memory, &ierr);
-  /* set up terminal size */
+  /* try to get terminal size 
+   */
   sci_winch_signal(0);
   {
-    /* sci_winch_signal(0) does not work at this point of the pg
+    /* sci_winch_signal(0) does not work at this point 
+     * thus we give default values
      */ 
     int r=22,c=60;
     C2F(scilines)(&r,&c);

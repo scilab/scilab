@@ -281,8 +281,13 @@ int Xorgetchar(int interrupt)
   static int c_count = -1;
   static int GtkXsocket,fd_in,fd_out,fd_err;
   static int first = 0,max_plus1;
+  static int size_first=0;
   fd_set select_mask,write_mask;
   static struct timeval select_timeout;
+
+  /* try to get terminal size */
+  if ( size_first==0 ) { sci_winch_signal(0);size_first++;}
+
 
   if ( BasicScilab) return(getchar());
 
@@ -417,10 +422,11 @@ int C2F(sxevents)(void)
 void sci_winch_signal(int n) 
 {
   int rows,cols;
-  sci_get_screen_size (&rows,&cols);
-  if ( rows != 0 && cols != 0 )     C2F(scilines)(&rows,&cols);
-#ifdef DEBUG
-  fprintf(stderr,"windows size changed %d %d\r\n",rows,cols);
-#endif 
+  /* should not be usefull here since it is supposed to be automatically called */
+  sci_get_screen_size (&rows,&cols); 
+  if ( rows != 0 && cols != 0 )     C2F(scilines)(&rows,&cols); 
+#ifdef DEBUG 
+  fprintf(stderr,"windows size changed %d %d\r\n",rows,cols); 
+#endif  
 }
 
