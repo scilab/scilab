@@ -365,33 +365,48 @@
 
           <DESCRIPTION_ITEM label="line_mode: ">
             <SP>This field contains the default <VERB>line_mode</VERB>
-            property value for Segs Rectangle Legend Axis and Polyline
-            objects. Its value should be <VERB>"on" </VERB>(default) or
-            <VERB>"off"</VERB>.</SP>
+            property value for Segs Rectangle Legend Axis Plot3d Fac3d and
+            Polyline objects. Its value should be <VERB>"on" </VERB>(default)
+            or <VERB>"off"</VERB>.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="mark_mode: ">
             <SP>This field contains the default <VERB>mark_mode</VERB>
-            property value for Segs Rectangle Legend Axis and Polyline
-            objects. Its value should be <VERB>"on" </VERB> or
+            property value for Segs Rectangle Legend Axis Plot3d Fac3d and
+            Polyline objects. Its value should be <VERB>"on" </VERB> or
             <VERB>"off"</VERB> (default).</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="mark_style: ">
             <SP>This field contains the default <VERB>mark_style</VERB>
-            property value for Segs Rectangle and Polyline objects.
-            <VERB>mark_style</VERB> selects the type of mark to be displayed.
-            Its value should be an integer in [0 9] which stands for: dot,
-            plus, cross, star, filled diamond, diamond, triangle up, triangle
-            down, trefle and circle.</SP>
+            property value for Segs Rectangle Legend Axis Plot3d Fac3d and
+            Polyline objects. <VERB>mark_style</VERB> selects the type of mark
+            to be displayed. Its value should be an integer in [0 9] which
+            stands for: dot, plus, cross, star, filled diamond, diamond,
+            triangle up, triangle down, trefle and circle.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="mark_size_unit: ">
+            <SP>This field contains the default <VERB>mark_size_unit</VERB>
+            property value for Segs Rectangle Legend Axis Plot3d Fac3d and
+            Polyline objects. If <VERB>mark_size_unit</VERB> is set to
+            <VERB>"point"</VERB>, then the <VERB>mark_size</VERB> value is
+            directly given in points. When <VERB>mark_size_unit</VERB> is set
+            to <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed
+            relative to the font size array: therefore, its value should be an
+            integer in [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and
+            24pt. Note that <LINK>plot2d</LINK> and pure scilab functions use
+            <VERB>tabulated</VERB> mode as default ; when using
+            <LINK>plot</LINK> function, the <VERB>point</VERB> mode is
+            automatically enabled.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="mark_size: ">
             <SP>This field contains the default <VERB>mark_size</VERB>
-            property value for Segs Rectangle and Polyline objects.
-            <VERB>mark_size</VERB> selects the font size of mark to be
-            displayed. Its value should be an integer in [0 5] whith stands
-            for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
+            property value for Segs Rectangle Legend Axis Plot3d Fac3d and
+            Polyline objects. <VERB>mark_size</VERB> selects the font size of
+            mark to be displayed. Its value should be an integer in [0 5]
+            whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
             <LINK>getmark</LINK>).</SP>
           </DESCRIPTION_ITEM>
 

@@ -46,7 +46,7 @@
   <DESCRIPTION>
     <P>Here is a complete list of the <VERB>PropertyName</VERB> you can
     specify (using <LINK>plot</LINK>) and their available associated
-    <VERB>PropertyValue</VERB>. </P>
+    <VERB>PropertyValue</VERB>.</P>
 
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM></DESCRIPTION_ITEM>
@@ -66,8 +66,8 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Color or Foreground: ">
-        <SP> a string defining a known color (see <LINK>color_list</LINK>) or
-        a <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
+        <SP>a string defining a known color (see <LINK>color_list</LINK>) or a
+        <VERB>1</VERB>x<VERB>3</VERB> (or <VERB>3</VERB>x<VERB>1</VERB>) RGB
         vector definig a color number. Color number is given as a 3-uple
         <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
         respectively to red, green and blue intensity between 0 and 1. This
@@ -258,10 +258,9 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="MarkerSize or MarkSize: ">
-        <SP>a scalar defining the marker size. For now, it is an integer based
-        on the <VERB>font_size</VERB> table. Setting marker size by points
-        will be allowed soon. This property is linked to the object's
-        <VERB>mark_size</VERB> property (see
+        <SP>a scalar defining the marker size in <VERB>point</VERB> unit. This
+        property is linked to the object's <VERB>mark_size</VERB> property
+        with <VERB>mark_size_unit</VERB> enabled to <VERB>"point"</VERB> (see
         <LINK>polyline_properties</LINK>).</SP>
 
         <DESCRIPTION_INDENT>
@@ -309,7 +308,7 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="Z data: ">
-        <SP> a real vector or matrix adding a <VERB>Z</VERB> data for all the
+        <SP>a real vector or matrix adding a <VERB>Z</VERB> data for all the
         plotted lines. Concerning dimensions, note that this new data must
         match all the previous specified <VERB>X</VERB> and <VERB>Y</VERB>
         data. This property is linked to the object's <VERB>data</VERB>

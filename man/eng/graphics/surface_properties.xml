@@ -24,8 +24,8 @@
         <SP>This field contains the <VERB>visible</VERB> property value for
         the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
         By default, surfaces are visibles, the value's property is
-        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the 3D graphics are not displayed on
-        the screen.</SP>
+        <VERB>"on"</VERB>. If <VERB>"off"</VERB> the 3D graphics are not
+        displayed on the screen.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="data: ">
@@ -41,7 +41,8 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="color_mode: ">
-        <SP>an integer for surface color treatment (see below in the <VERB>color_flag</VERB> item) :</SP>
+        <SP>an integer for surface color treatment (see below in the
+        <VERB>color_flag</VERB> item) :</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="color_flag: ">
@@ -50,66 +51,74 @@
 
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
-            <P><VERB>color_flag==0</VERB> </P>
-        		<DESCRIPTION_INDENT>
-        		  <DESCRIPTION_ITEM><P>All facets are painted using
-            the color index and method defined by <VERB>color_mode</VERB> : </P> </DESCRIPTION_ITEM>				
-        		  <DESCRIPTION_ITEM>
-            		<P>If <VERB>color_mode&gt;0</VERB> 
-            		the surface is painted with color <VERB>"color_mode"</VERB> ; the
-            		boundary of the facet is drawn with current line style and
-            		color.</P>
-        		  </DESCRIPTION_ITEM>
+            <P><VERB>color_flag==0</VERB></P>
 
-        		  <DESCRIPTION_ITEM>
-            		<P>if <VERB>color_mode==0</VERB>  a
-            		mesh of the surface is drawn.</P>
-        		  </DESCRIPTION_ITEM>
-
-        		  <DESCRIPTION_ITEM>
-            		<P>if <VERB>color_mode&lt;0 </VERB> 
-            		the surface is painted with color
-            		<VERB>"-color_mode"</VERB> ; the boundary of the facet is not
-            		drawn.</P>
-        		  </DESCRIPTION_ITEM>
-        		</DESCRIPTION_INDENT>
-
-          </DESCRIPTION_ITEM>
-
-          <DESCRIPTION_ITEM>
-            <P><VERB>color_flag==1</VERB></P> 
             <DESCRIPTION_INDENT>
               <DESCRIPTION_ITEM>
-            <P>All facets are painted using
-            the color index proportional to <VERB>z</VERB>. The minimum
-            <VERB>z</VERB> value is painted using the index 1 color while the
-            maximum <VERB>z</VERB> value is painted using highest color
-            index.The mesh of the surface can be additionnaly
-			drawn depending on the value of <VERB>color_mode</VERB> (available only with <VERB>Fac3d</VERB> entity
-            type) : </P>
+                <P>All facets are painted using the color index and method
+                defined by <VERB>color_mode</VERB> :</P>
               </DESCRIPTION_ITEM>
-   
+
               <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&lt;0</VERB> : no mesh.</P>
+                <P>If <VERB>color_mode&gt;0</VERB> the surface is painted with
+                color <VERB>"color_mode"</VERB> ; the boundary of the facet is
+                drawn with current line style and color.</P>
               </DESCRIPTION_ITEM>
+
               <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode=0</VERB> : the mesh is drawn on the rear side of the surface.</P>
+                <P>if <VERB>color_mode==0</VERB> a mesh of the surface is
+                drawn.</P>
               </DESCRIPTION_ITEM>
+
               <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on both faces of the surface.</P>
+                <P>if <VERB>color_mode&lt;0 </VERB> the surface is painted
+                with color <VERB>"-color_mode"</VERB> ; the boundary of the
+                facet is not drawn.</P>
               </DESCRIPTION_ITEM>
             </DESCRIPTION_INDENT>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM>
-		  <P><VERB>color_flag==2</VERB> (available only with <VERB>Fac3d</VERB> entity
-            type)</P> 
+            <P><VERB>color_flag==1</VERB></P>
+
             <DESCRIPTION_INDENT>
               <DESCRIPTION_ITEM>
-           <P>All facets are painted using
-            the color index given in the <VERB>data.color</VERB> property (one
-            color per facet is needed). Two cases are then possible :</P>
+                <P>All facets are painted using the color index proportional
+                to <VERB>z</VERB>. The minimum <VERB>z</VERB> value is painted
+                using the index 1 color while the maximum <VERB>z</VERB> value
+                is painted using highest color index.The mesh of the surface
+                can be additionnaly drawn depending on the value of
+                <VERB>color_mode</VERB> (available only with
+                <VERB>Fac3d</VERB> entity type) :</P>
               </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <P>If <VERB>color_mode&lt;0</VERB> : no mesh.</P>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <P>If <VERB>color_mode=0</VERB> : the mesh is drawn on the
+                rear side of the surface.</P>
+              </DESCRIPTION_ITEM>
+
+              <DESCRIPTION_ITEM>
+                <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on both
+                faces of the surface.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM>
+            <P><VERB>color_flag==2</VERB> (available only with
+            <VERB>Fac3d</VERB> entity type)</P>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P>All facets are painted using the color index given in the
+                <VERB>data.color</VERB> property (one color per facet is
+                needed). Two cases are then possible :</P>
+              </DESCRIPTION_ITEM>
+
               <DESCRIPTION_ITEM>
                 <P><VERB>data.color</VERB> contains a <VERB>color</VERB>
                 vector : if <VERB>color(i)</VERB> is positive it gives the
@@ -127,42 +136,45 @@
                 color index (from the matrix color index) : the
                 <VERB>nf</VERB> vertices of the same facet will have the same
                 color index value.</P>
-            <P>The mesh of the surface can be additionnaly
-			drawn depending on the value of <VERB>color_mode</VERB> : </P>
-            <DESCRIPTION_INDENT>
-			
-              <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&lt;0</VERB> : on the front facing parts the mesh is drawn accordingly to the signs of <VERB>data.color</VERB>. On the back facing parts no mesh is drawn. </P>
-              </DESCRIPTION_ITEM>
-            
-			  <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode=0</VERB> : on the front facing parts the mesh is drawn accordingly to the signs of <VERB>data.color</VERB>. The mesh is drawn on the back facing parts.</P>
-              </DESCRIPTION_ITEM>
-            
-			  <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on both faces of the surface.</P>
-              </DESCRIPTION_ITEM>
-            
-			</DESCRIPTION_INDENT>
-              </DESCRIPTION_ITEM>
- 
-            </DESCRIPTION_INDENT>
 
-  
+                <P>The mesh of the surface can be additionnaly drawn depending
+                on the value of <VERB>color_mode</VERB> :</P>
+
+                <DESCRIPTION_INDENT>
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode&lt;0</VERB> : on the front facing
+                    parts the mesh is drawn accordingly to the signs of
+                    <VERB>data.color</VERB>. On the back facing parts no mesh
+                    is drawn.</P>
+                  </DESCRIPTION_ITEM>
+
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode=0</VERB> : on the front facing
+                    parts the mesh is drawn accordingly to the signs of
+                    <VERB>data.color</VERB>. The mesh is drawn on the back
+                    facing parts.</P>
+                  </DESCRIPTION_ITEM>
+
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on
+                    both faces of the surface.</P>
+                  </DESCRIPTION_ITEM>
+                </DESCRIPTION_INDENT>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
           </DESCRIPTION_ITEM>
 
-
-
           <DESCRIPTION_ITEM>
-            <P><VERB>color_flag==3</VERB> (available only with <VERB>Fac3d</VERB> entity
-            type)</P>
+            <P><VERB>color_flag==3</VERB> (available only with
+            <VERB>Fac3d</VERB> entity type)</P>
 
             <DESCRIPTION_INDENT>
               <DESCRIPTION_ITEM>
-            <P>Facets painting results of
-            interpolation of vertices colors. The indices of vertices
-           color are given in the <VERB>data.color</VERB> property (one
-            color per vertex is needed). Two cases are possible :</P>              </DESCRIPTION_ITEM>
+                <P>Facets painting results of interpolation of vertices
+                colors. The indices of vertices color are given in the
+                <VERB>data.color</VERB> property (one color per vertex is
+                needed). Two cases are possible :</P>
+              </DESCRIPTION_ITEM>
 
               <DESCRIPTION_ITEM>
                 <P><VERB>data.color</VERB> contains a <VERB>colors</VERB>
@@ -179,28 +191,33 @@
                 (nf,n) (see upper for <VERB>nf</VERB> and <VERB>n</VERB>
                 definitions), the interpolated shading mode can be completed
                 normally using those color indexes.</P>
-            <P>The mesh of the surface can be additionnaly
-			drawn depending on the value of <VERB>color_mode</VERB> : </P>
-            <DESCRIPTION_INDENT>
-			
-              <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&lt;0</VERB> : on the front facing parts the mesh is drawn accordingly to the signs of <VERB>data.color</VERB>. On the back facing parts no mesh is drawn. </P>
+
+                <P>The mesh of the surface can be additionnaly drawn depending
+                on the value of <VERB>color_mode</VERB> :</P>
+
+                <DESCRIPTION_INDENT>
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode&lt;0</VERB> : on the front facing
+                    parts the mesh is drawn accordingly to the signs of
+                    <VERB>data.color</VERB>. On the back facing parts no mesh
+                    is drawn.</P>
+                  </DESCRIPTION_ITEM>
+
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode=0</VERB> : on the front facing
+                    parts the mesh is drawn accordingly to the signs of
+                    <VERB>data.color</VERB>. The mesh is drawn on the back
+                    facing parts.</P>
+                  </DESCRIPTION_ITEM>
+
+                  <DESCRIPTION_ITEM>
+                    <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on
+                    both faces of the surface.</P>
+                  </DESCRIPTION_ITEM>
+                </DESCRIPTION_INDENT>
               </DESCRIPTION_ITEM>
-            
-			  <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode=0</VERB> : on the front facing parts the mesh is drawn accordingly to the signs of <VERB>data.color</VERB>. The mesh is drawn on the back facing parts.</P>
-              </DESCRIPTION_ITEM>
-            
-			  <DESCRIPTION_ITEM>
-                 <P>If <VERB>color_mode&gt;0</VERB> : the mesh is drawn on both faces of the surface.</P>
-              </DESCRIPTION_ITEM>
-            
-			</DESCRIPTION_INDENT>              
-		</DESCRIPTION_ITEM>
             </DESCRIPTION_INDENT>
-
           </DESCRIPTION_ITEM>
-
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
@@ -217,21 +234,72 @@
         integer.</SP>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the color index used to draw the
-        facets contours. Its value should be a color index (relative to the
-        current colormap).</SP>
+      <DESCRIPTION_ITEM label="surface_mode: ">
+        <SP>This field contains the default <VERB>surface_mode</VERB> property
+        value for the surface. Its value should be <VERB>"on" </VERB>(surface
+        drawn) or <VERB>"off"</VERB> (no surface drawn).</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="mark_mode: ">
+        <SP>This field contains the default <VERB>mark_mode</VERB> property
+        value for the surface. Its value should be <VERB>"on"</VERB> (marks
+        drawn) or <VERB>"off"</VERB> (no marks drawn).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_style: ">
+        <SP>The <VERB>mark_style</VERB> property value is used to select the
+        type of mark to use when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. The value should be an integer in [0 14] which
+        stands for: dot, plus, cross, star, filled diamond, diamond, triangle
+        up, triangle down, diamond plus, circle, asterisk, square, triangle
+        right, triangle left and pentagram.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_size_unit: ">
+        <SP>This field contains the default <VERB>mark_size_unit</VERB>
+        property value. If <VERB>mark_size_unit</VERB> is set to
+        <VERB>"point"</VERB>, then the <VERB>mark_size</VERB> value is
+        directly given in points. When <VERB>mark_size_unit</VERB> is set to
+        <VERB>"tabulated"</VERB>, <VERB>mark_size</VERB> is computed relative
+        to the font size array: therefore, its value should be an integer in
+        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+        <LINK>plot3d</LINK> and pure scilab functions use
+        <VERB>tabulated</VERB> mode as default ; when using surf (LINK WHEN
+        CREATED) or <LINK>plot</LINK> functions, the <VERB>point</VERB> mode
+        is automatically enabled.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_size: ">
+        <SP>The <VERB>mark_size</VERB> property is used to select the type of
+        size of the marks when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
+        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_foreground: ">
+        <SP>This field contains the <VERB>mark_foreground</VERB> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_background: ">
+        <SP>This field contains the <VERB>mark_background</VERB> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color index used to draw the facets
+        contours. Its value should be a color index (relative to the current
+        colormap).</SP>
+      </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
         surface entity should be of type <VERB>"Axes"</VERB> or
         <VERB>"Agregation"</VERB>.</SP>
       </DESCRIPTION_ITEM>
- 
     </DESCRIPTION_INDENT>
- 
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[set("figure_style","new") 

@@ -132,25 +132,6 @@
             labels.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="mark_mode: ">
-            <SP>This field contains the default <VERB>mark_mode</VERB>
-            property value for Segs Rectangle Legend Axis and Polyline
-            objects. Its value should be <VERB>"on" </VERB> or
-            <VERB>"off"</VERB> (default).</SP>
-          </DESCRIPTION_ITEM>
-
-          <DESCRIPTION_ITEM label="mark_foreground: ">
-            <SP>This field contains the <VERB>mark_foreground</VERB> property
-            value which is the marks' edge color. Its value should be a color
-            index (relative to the current color_map).</SP>
-          </DESCRIPTION_ITEM>
-
-          <DESCRIPTION_ITEM label="mark_background: ">
-            <SP>This field contains the <VERB>mark_background</VERB> property
-            value which is the marks' face color. Its value should be a color
-            index (relative to the current color_map).</SP>
-          </DESCRIPTION_ITEM>
-
           <DESCRIPTION_ITEM label="clip_state: ">
             <SP>This field contains the <VERB>clip_state</VERB> property value
             for the arc. Clip_state value should be :</SP>
