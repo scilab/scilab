@@ -5,11 +5,16 @@ function []=xbasr(win_num)
 // Copyright Enpc
 [lhs,rhs]=argn(0);
 if rhs==0,
-   win_num=xget("window");
-   xclear(win_num);xtape('replay',win_num);
+  if get('figure_style')=='old' then
+    win_num=xget("window");
+    xclear(win_num);xtape('replay',win_num);
+  end
 else 
    cw=xget("window");
-   xset("window",win_num);xclear(win_num);xtape('replay',win_num);
+   xset("window",win_num);
+   if get('figure_style')=='old' then
+     xclear(win_num);xtape('replay',win_num);
+   end
    xset("window",cw);
 end 
 endfunction
