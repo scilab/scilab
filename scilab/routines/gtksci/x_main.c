@@ -639,6 +639,11 @@ void ShowWindowFunction (char *fname)
 int GetScreenProperty(char *prop, char *value)
 { 
   /* be sure a gtk_init is started */
+
+#if GTK_MAJOR_VERSION == 1 
+  sciprint("GetScreenProperty not implemented in gtk 1\r\n");
+  return -1;
+#else 
   start_sci_gtk();
   GdkScreen *screen =  gdk_screen_get_default();
   
@@ -682,5 +687,6 @@ int GetScreenProperty(char *prop, char *value)
       return -1;
     }
   return 0;
+#endif
 }
 
