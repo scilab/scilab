@@ -14,7 +14,8 @@ function do_export(scs_m,fname)
   // remove blanks
   if num<>2 then
     fname=stripblanks(fname)
-    if fname==emptystr() then return;end
+    ff=str2code(fname);ff(find(ff==40|ff==53))=36;fname=code2str(ff)
+    if fname==emptystr() then return;end   
   end
   //
   disablemenus()
@@ -42,7 +43,7 @@ function do_export(scs_m,fname)
   ha=(rect(4)-rect(2))
   
   if num<>2 then
-    set_posfig_dim(wa,ha)
+    set_posfig_dim(wa*%zoom/1.8,ha*%zoom/1.8)
     //xset('wdim',wa,ha)
     xinit(fname),
     xsetech(wrect=[0 0 1 1],frect=rect,arect=[0,0,0,0])
@@ -95,7 +96,7 @@ function do_export(scs_m,fname)
   driver(dr)
   xset('window',winc)
   
-  if ~exists('%scicos_landscape') then %scicos_landscape=0;end
+  if ~exists('%scicos_landscape') then %scicos_landscape=1;end
   opt=""
   if %scicos_landscape then opt=" -landscape ";end
   
