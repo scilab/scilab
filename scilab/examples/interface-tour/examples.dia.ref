@@ -1,6 +1,5 @@
  
 shared archive loaded
-
  
 a=1:10;b=a+1;c=ones(2,3)+2;
  
@@ -158,7 +157,6 @@ if w<>y3 then bugmes();quit;end
  
 x=ex9c('gaad');
 character string length 4
-
  
 if x<>'good' then bugmes();quit;end
  
@@ -217,7 +215,6 @@ Mystr='My string';
  
 ex15c()
 Mystr= "My string", length 9 
-
  
  
 ex16c();
@@ -372,9 +369,7 @@ if ~c_link('f3c') then
   files=G_make(['f3c.o'],'f3c.dll');
   link(files,'f3c','C') ;
 shared archive loaded
-
 Link done
-
 end
  
  
@@ -666,9 +661,7 @@ if ~c_link('f3f') then
   files=G_make(['f3f.o'],'f3f.dll');
   link(files,'f3f','f') ;
 shared archive loaded
-
 Link done
-
 end
  
  
