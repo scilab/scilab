@@ -3,9 +3,12 @@
 #ifndef STACK_DEF 
 #define STACK_DEF 
 
+/* XXXXX pour gcc -3.1 il faut un extern devant le 
+ * __declspec(dllimport) 
+ */ 
 
 #ifdef FORDLL 
-#define IMPORT  __declspec (dllimport)
+#define IMPORT extern  __declspec (dllimport)
 #else 
 #define IMPORT extern
 #endif
