@@ -411,14 +411,20 @@ mxArray *mxCreateData(int m)
 
 int mxGetNumberOfElements(const mxArray *ptr)
 {
-  int m, commonlength;
+  int m, commonlength, k, proddims;
+  int *headerdims;
   int *header=Header(ptr);
   switch (header[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return header[1]*header[2];
   case MLIST:   /* TO BE DONE */
-    return header[6+2*(header[4]-1)+1];
-    /* debut=listentry(header,3); (debut)... */
+  headerdims = listentry(header,2);
+  proddims=1;
+  for (k=0; k<headerdims[1]*headerdims[2]; k++) {
+    proddims=proddims*headerdims[4+k];
+  }
+  return proddims;
+  /*  return header[6+2*(header[4]-1)+1];  */
   case STRINGMATRIX:
     m=header[1];
     commonlength=header[5]-header[4];
@@ -1173,14 +1179,15 @@ mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
 
 mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
 {
-  int kk,lw,isize,fieldnum;  /* maxfieldnum, maxindex; */
+  int kk,lw,isize,fieldnum; 
+  int maxfieldnum, maxindex;
   int *headerlist, *headerobj, *headerobjcopy;
   int *header = Header(ptr);
   fieldnum = field_number;
-  /* maxfieldnum = mxGetNumberOfFields(ptr);
-   * maxindex = mxGetM(ptr)*mxGetN(ptr);
-   * if (maxfieldnum < fieldnum) return (mxArray *) NULL;
-   * if (maxindex < index) return (mxArray *) NULL;  */
+  maxfieldnum = mxGetNumberOfFields(ptr)-1;
+  maxindex = mxGetNumberOfElements(ptr)-1;
+  if (maxfieldnum < fieldnum) return (mxArray *) NULL;
+  if (maxindex < index) return (mxArray *) NULL; 
 
 
   if (Is1x1(ptr)) {
@@ -1192,7 +1199,7 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
     headerobj = listentry(headerlist,index+1);
     isize=headerlist[index+3]-headerlist[index+2];
   }
-
+  if (isize==2) return (mxArray *) NULL; /* empty field */
   Nbvars++; lw=Nbvars;
   CreateData(lw,isize*sizeof(double));
   headerobjcopy=GetData(lw);
@@ -1215,7 +1222,16 @@ int mxGetNumberOfFields(const mxArray *ptr)
  * we initialize to zero for double and int data types 
  *----------------------------------------------------*/
 
-/*  void *mxRealloc(void *ptr, size_t size);  */
+
+void *mxRealloc(void *ptr, size_t nsize)
+{
+  int m;  vraiptrst lrd; 
+  m = (nsize) /sizeof(double) + 1;
+  mxFree((void *) lrd);
+  if (! C2F(createstkptr)( &m, &lrd)) return 0;
+  memcpy((void *) lrd, ptr, nsize);
+  return (void *) lrd;
+}
 
 void *mxCalloc(size_t n, size_t size)
 {
