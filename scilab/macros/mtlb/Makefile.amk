@@ -15,7 +15,7 @@ NAM = SCI/macros/mtlb
 
 MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_max.sci mtlb_min.sci \
-	mtlb_ones.sci mtlb_zeros.sci mtlb_eye.sci mtlb_rand.sci mtlb_length.sci\
+	mtlb_ones.sci mtlb_zeros.sci mtlb_eye.sci mtlb_rand.sci \
 	mtlb_fscanf.sci \
 	mtlb_all.sci mtlb_any.sci mtlb_sum.sci mtlb_cumsum.sci \
 	mtlb_prod.sci mtlb_cumprod.sci mtlb_median.sci mtlb_std.sci mtlb_mean.sci\
@@ -23,7 +23,7 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_findstr.sci mtlb_exist.sci  mtlb_qz.sci \
 	mtlb_load.sci mtlb_save.sci mtlb_fread.sci mtlb_fwrite.sci\
 	fseek_origin.sci mtlb_sscanf.sci mtlb_fprintf.sci mtlb_sprintf.sci \
-	mtlb_diff.sci mtlb_fliplr.sci mtlb_isreal.sci \
+	mtlb_diff.sci mtlb_fliplr.sci \
         mtlb_find.sci mtlb_isa.sci\
 	%s_m_b.sci %b_m_s.sci %s_x_b.sci %b_x_s.sci %b_g_s.sci %b_h_s.sci \
 	%s_a_b.sci %b_a_s.sci %s_s_b.sci %b_s_s.sci \
@@ -32,9 +32,10 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_0.sci mtlb_a.sci mtlb_diag.sci mtlb_double.sci mtlb_diag.sci \
 	mtlb_dir.sci mtlb_e.sci mtlb_eig.sci mtlb_false.sci mtlb_fopen.sci mtlb_format.sci \
 	mtlb_full.sci mtlb_imp.sci mtlb_int8.sci mtlb_int16.sci mtlb_int32.sci \
-	mtlb_isfield.sci mtlb_isletter.sci mtlb_isspace.sci mtlb_logical.sci mtlb_logic.sci \
+	mtlb_isfield.sci mtlb_isletter.sci mtlb_isspace.sci mtlb_linspace.sci \
+	mtlb_logical.sci mtlb_logic.sci \
 	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_norm.sci mtlb_num2str.sci mtlb_qr.sci \
-	mtlb_randn.sci mtlb_rcond.sci mtlb_setstr.sci mtlb_size.sci \
+	mtlb_randn.sci mtlb_rcond.sci mtlb_repmat.sci mtlb_setstr.sci mtlb_size.sci \
 	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
 	mtlb_strfind.sci mtlb_strrep.sci mtlb_toeplitz.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
 	mtlb_type.sci mtlb_uint8.sci mtlb_uint16.sci mtlb_uint32.sci mtlb_upper.sci \
@@ -63,7 +64,7 @@ M5 =    cell.sci struct.sci  \
 	%s_p_b.sci %s_r_b.sci	
 
 
-PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_grid.sci \
+PLOT=   mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_grid.sci \
 	mtlb_hold.sci mtlb_mesh.sci mtlb_meshdom.sci \
 	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
 	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci mtlb_box.sci mtlb_colordef.sci \
