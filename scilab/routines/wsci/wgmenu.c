@@ -1061,11 +1061,15 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 	HWND hWndTmpScilex=FindWindow(NULL,ScilexWindowName);
 	int LangCode=0; /*English*/
 
+	if (IsWindowInterface())
+	{
 	if (hWndTmpScilex)
 		{
 			lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 			LangCode=lptw->lpmw->CodeLanguage;
 		}
+		else LangCode=0;
+	}
 	else LangCode=0;
 	
 
