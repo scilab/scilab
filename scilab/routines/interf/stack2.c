@@ -2537,6 +2537,7 @@ int C2F(putlhsvar)()
       ibufprec = LhsVar(ix );
     }
   }
+
   if (! lcres) {
     /* First pass if output variables are not 
      * in increasing order 
@@ -2557,6 +2558,7 @@ int C2F(putlhsvar)()
       C2F(intersci).ntypes[nbvars1 + ivar - 1] = '$';
     }
   }
+
   /*  Second pass */
   for (ivar = 1; ivar <= Lhs ; ++ivar) 
     {
@@ -2597,7 +2599,7 @@ int C2F(putlhsvar)()
 static int C2F(mvfromto)(itopl, ix)
      integer *itopl, *ix;
 {
-  integer ix1, m,n,it,lcs,lrs,l,ilp;
+  integer ix1, m,n,it,lcs,lrs,l,ilp,size,pointed;
   unsigned char Type ;
   double wsave;
 
@@ -2684,6 +2686,17 @@ static int C2F(mvfromto)(itopl, ix)
     ix1 = m * n;
     C2F(icopy)(&ix1, istk(C2F(intersci).lad[*ix - 1]), &cx1,istk(lrs), &cx1);
     C2F(intersci).lad[*ix - 1] = lrs;
+    break;
+  case '-' :
+    /*    reference  '-' = ascii(45) */
+    ilp = iadr(*lstk(*ix));
+    size = *istk(ilp+3);
+    pointed = *istk(ilp+2);
+    if (! C2F(cremat)("mvfromto", itopl, (it=0 ,&it), (m=1, &m), &size, &lrs, &lcs, 8L)) {
+      return FALSE_;
+    }
+	if ( C2F(vcopyobj)("mvfromto", &pointed, itopl, 8L) == FALSE_) 
+	  return FALSE_;
     break;
   case 'p' :   case '$' :
     /*     special case */
