@@ -1,6 +1,8 @@
 Edit Makefile
 modify SCIDIR=/home/cornet/compil/scilab by your current scilab path
 
+Make
+
 go to bin directory
 cd /home/cornet/compil/scilab/bin
 
