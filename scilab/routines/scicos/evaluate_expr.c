@@ -499,7 +499,7 @@ void evaluate_expr(scicos_block *block,int flag)
       }
     }
     #if WIN32
-    if(_finite(stack[bottom])||_isnan(stack[bottom])){
+    if(!_finite(stack[bottom])||_isnan(stack[bottom])){
     #else
      if(isinf(stack[bottom])||isnan(stack[bottom])){
     #endif
