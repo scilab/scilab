@@ -1444,7 +1444,11 @@ c     *call* parse  macro
          istk(il)=0
          lhs=0
          err2=err1
-         err1=0
+         if(errct.eq.0) then
+            err1=0
+         else
+            top=top-1
+         endif
          return
       endif
       il=iadr(lstk(top))
