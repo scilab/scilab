@@ -168,7 +168,7 @@ else
 end
 
 //initialize graphics
-xdel(curwin)
+//xdel(curwin)
 xset('window',curwin);
 
 xset('default')
