@@ -3317,8 +3317,9 @@ static int X_error_handler(Display *d, XErrorEvent *err_ev)
   char            err_msg[MAXERRMSGLEN];
 
   XGetErrorText(dpy, (int) (err_ev->error_code), err_msg, MAXERRMSGLEN - 1);
-  (void) sciprint(
-		  "Scilab : X error trapped - error message follows:\r\n%s\r\n", err_msg);
+  /*  (void) sciprint( */
+      printf(
+	     "Scilab : X error trapped - error message follows:\r\n%s\r\n", err_msg);
   return(0);
 }
 
