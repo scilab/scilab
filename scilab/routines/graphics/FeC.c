@@ -32,9 +32,9 @@ void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,int
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
-extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
 void get_frame_in_pixel(integer WIRect[]);
@@ -67,149 +67,160 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 	     integer *colminmax, integer *colout, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2)
 {
   integer *xm,*ym,n1=1/*,i*/;
-
-  /* Fec code */
-
-  /* NG  beg */
-   if (version_flag() == 0){
-     long hdltab[2];
-     int cmpt=0,styl[2];
-     sciPointObj *pptabofpointobj;
-     sciPointObj  *psubwin;
-     double drect[6];
-
-     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
-       sciXbasc(); 
-       initsubwin();
-       sciRedrawFigure();
-       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
-     } 
-     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-     
-     /* Force psubwin->is3d to FALSE: we are in 2D mode */
-     if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-       {
-	 pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-	 pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-       }
-     else
-	{
-	  pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-	  pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-	}
-
-     pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-     pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
-          
-     /* Force psubwin->axes.aaint to those given by argument aaint*/
-     /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
- 
-     /* Force "cligrf" clipping */
-     sciSetIsClipping (psubwin,0); 
- 
-     /* Force  axes_visible property */
-     /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
-
-     if (sciGetGraphicMode (psubwin)->autoscaling) {
-       /* compute and merge new specified bounds with psubwin->Srect */
-       switch (strflag[1])  {
-       case '0': 
-	 /* do not change psubwin->Srect */
-	 break;
-       case '1' : case '3' : case '5' : case '7':
-	 /* Force psubwin->Srect=brect */
-	 re_index_brect(brect, drect);
-	 break;
-       case '2' : case '4' : case '6' : case '8':case '9':
-	 /* Force psubwin->Srect to the x and y bounds */
-	 /* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
-	 compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
-	 break;
-       }
-       if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
-	   (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-	 drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-	 drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-	 drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-	 drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
-       }
-       if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
-
-     } 
-     strflag2axes_properties(psubwin, strflag);
- 
-     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
-	u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
-     
-     pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
-     
-     if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
-       if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
-	 {
-	   pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
-	   pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
-	   
-	   CreatePrettyGradsFromNax(psubwin,aaint);
-	 }
-       else{
-	 sciprint("Warning : Nax does not work with logarithmic scaling\n");}
-     }
-     
-     sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* ???? */
-     
-     sciSetCurrentObj (ConstructFec 
-		       ((sciPointObj *)
-	                sciGetSelectedSubWin (sciGetCurrentFigure ()),
-	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
-     pptabofpointobj = sciGetCurrentObj();
-     hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
-     cmpt++;   
-     sciDrawObj(sciGetCurrentObj ());  
-     /** Drawing the Legends **/
-     if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
-       n1=1; styl[0]=1;styl[1]=0;
-       sciSetCurrentObj (ConstructLegend
-			 ((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			  legend, strlen(legend), n1, styl, &pptabofpointobj)); 
-       sciSetIsMark(pptabofpointobj, TRUE);
-       sciSetMarkStyle (pptabofpointobj, *styl);
-       sciDrawObj(sciGetCurrentObj ()); 
-       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
-       cmpt++;
-     } 
-     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
-   }
-   else { /* NG end */
-     /** Boundaries of the frame **/
-     update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
-
-     /* Storing values if using the Record driver */
-     if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
-       /* added zminmax and colminmax (bruno) then colout, then with_mesh */
-       StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,
-		zminmax,colminmax,colout,with_mesh);
-
-     /** Allocation **/
-     xm = graphic_alloc(0,*Nnode,sizeof(int));
-     ym = graphic_alloc(1,*Nnode,sizeof(int));
-     if ( xm == 0 || ym == 0) {
-       sciprint("Running out of memory \n"); return 0;}      
   
-     C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
+  /* Fec code */
+  
+  /* NG  beg */
+  if (version_flag() == 0){
+    long hdltab[2];
+    int cmpt=0,styl[2];
+    sciPointObj *pptabofpointobj;
+    sciPointObj  *psubwin;
+    double drect[6];
+    
+    BOOL bounds_changed = FALSE;
+    BOOL axes_properties_changed = FALSE;
+    
+    if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+      sciXbasc(); 
+      initsubwin();
+      sciRedrawFigure();
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
+    } 
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+     
+    /* Force psubwin->is3d to FALSE: we are in 2D mode */
+    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+      {
+	pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+	pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+      }
+    else
+      {
+	pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+	pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
+      }
 
-     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,colout,with_mesh);
-     axis_draw(strflag); 
+    pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
+    pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+          
+    /* Force psubwin->axes.aaint to those given by argument aaint*/
+    /*****TO CHANGE F.Leray 10.09.04     for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; */
+ 
+    /* Force "cligrf" clipping */
+    sciSetIsClipping (psubwin,0); 
+ 
+    /* Force  axes_visible property */
+    /* pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;*/
 
-     /** Drawing the Legends **/
-     if ((int)strlen(strflag) >=1  && strflag[0] == '1')
-       {
-	 integer styl[2] = {-1,0}; 
-	 n1=1;
-	 Legends(styl,&n1,legend);
-       }        
-   } /** version_flag ***/
+    if (sciGetGraphicMode (psubwin)->autoscaling) {
+      /* compute and merge new specified bounds with psubwin->Srect */
+      switch (strflag[1])  {
+      case '0': 
+	/* do not change psubwin->Srect */
+	break;
+      case '1' : case '3' : case '5' : case '7':
+	/* Force psubwin->Srect=brect */
+	re_index_brect(brect, drect);
+	break;
+      case '2' : case '4' : case '6' : case '8':case '9':
+	/* Force psubwin->Srect to the x and y bounds */
+	/* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
+	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
+	break;
+      }
+      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
+	  (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
+	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
+	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
+	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      }
+      if (strflag[1] != '0') 
+	bounds_changed = update_specification_bounds(psubwin, drect,2);
+    } 
+
+    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+     
+    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+     
+    /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
+       u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
+     
+    pSUBWIN_FEATURE(psubwin)->flagNax = flagNax; /* store new value for flagNax */
+     
+    if(pSUBWIN_FEATURE(psubwin)->flagNax == TRUE){
+      if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n' && pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+	{
+	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[0] = FALSE; /* x and y graduations are imposed by Nax */
+	  pSUBWIN_FEATURE(psubwin)->axes.auto_ticks[1] = FALSE;
+	   
+	  CreatePrettyGradsFromNax(psubwin,aaint);
+	}
+      else{
+	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
+    }
+
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      sciDrawObj(sciGetCurrentFigure ());
+    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
+    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
+    /* because of the tics graduation that are outside the axes refresh area */
+     
+    sciSetCurrentObj (ConstructFec 
+		      ((sciPointObj *)
+		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
+		       x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
+    pptabofpointobj = sciGetCurrentObj();
+    hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
+    cmpt++;   
+    sciDrawObj(sciGetCurrentObj ());  
+    /** Drawing the Legends **/
+    if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
+      n1=1; styl[0]=1;styl[1]=0;
+      sciSetCurrentObj (ConstructLegend
+			((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+      sciSetIsMark(pptabofpointobj, TRUE);
+      sciSetMarkStyle (pptabofpointobj, *styl);
+      sciDrawObj(sciGetCurrentObj ()); 
+      hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
+      cmpt++;
+    } 
+    sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
+  }
+  else { /* NG end */
+    /** Boundaries of the frame **/
+    update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
+
+    /* Storing values if using the Record driver */
+    if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
+      /* added zminmax and colminmax (bruno) then colout, then with_mesh */
+      StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,
+	       zminmax,colminmax,colout,with_mesh);
+
+    /** Allocation **/
+    xm = graphic_alloc(0,*Nnode,sizeof(int));
+    ym = graphic_alloc(1,*Nnode,sizeof(int));
+    if ( xm == 0 || ym == 0) {
+      sciprint("Running out of memory \n"); return 0;}      
+  
+    C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
+
+    newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,colout,with_mesh);
+    axis_draw(strflag); 
+
+    /** Drawing the Legends **/
+    if ((int)strlen(strflag) >=1  && strflag[0] == '1')
+      {
+	integer styl[2] = {-1,0}; 
+	n1=1;
+	Legends(styl,&n1,legend);
+      }        
+  } /** version_flag ***/
    
-   return(0);
+  return(0);
    
 }
 
@@ -282,12 +293,12 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
     } 
 
   if ( colout[0] == -1 )  /* automatic choice */
-     col_under_min = color_min;
+    col_under_min = color_min;
   else
     col_under_min =  colout[0];
 
   if ( colout[1] == -1 )  /* automatic choice */
-     col_upper_max = color_max;
+    col_upper_max = color_max;
   else
     col_upper_max =  colout[1];
 
@@ -443,9 +454,9 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
      
      purpose : this function decompose the triangle into its different
      -------   zones (which gives polygones) and send them to the
-               graphic driver. This is something like the shade function
-               (see Plo3d.c) but a little different as in shade
-               a color is directly associated with each vertex.
+     graphic driver. This is something like the shade function
+     (see Plo3d.c) but a little different as in shade
+     a color is directly associated with each vertex.
   */
 
   int nb0, edge, izone, color;
@@ -470,14 +481,14 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
      at least 2 colors for painting the triangle : it is divided in elementary
      polygons. The number of polygons is npolys = zxy[2]-zxy[0]+1.
 
-                             P2           as zxy[0] <= zxy[1] <  zxy[2] or 
+     P2           as zxy[0] <= zxy[1] <  zxy[2] or 
      Notations/Hints :       /\              zxy[0] <  zxy[1] <= zxy[2]
-                     edge2  /  \ edge1    from a previus sort. All the polygons
-                           /    \         have 2 points on edge2, the others points
-                          /______\        are on edge0 and/or edge1. I name the 2 ends
-                        P0        P1      points on each poly PEdge2 and Pedge, they are 
-                            edge0         the 2 first points of the next poly. I start
-                                          from P0 to form the first poly (a triangle or
+     edge2  /  \ edge1    from a previus sort. All the polygons
+     /    \         have 2 points on edge2, the others points
+     /______\        are on edge0 and/or edge1. I name the 2 ends
+     P0        P1      points on each poly PEdge2 and Pedge, they are 
+     edge0         the 2 first points of the next poly. I start
+     from P0 to form the first poly (a triangle or
      a 4 sides depending if zxy[0]=zxy[1]), then the 2, 3, .., npolys - 1 (if they exist)
      and finally the last one which comprise the P2 vertex.  In some special cases
      we can have a degenerate poly but it doesn't matter ! 				  
@@ -486,8 +497,8 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
   nb0 = zxy[1]-zxy[0]; /* number of intersection points on edge 0 */
 
   /*----------------------------+
-  |   compute the first poly    |
-  +----------------------------*/
+    |   compute the first poly    |
+    +----------------------------*/
   
   resx[0]=inint(sx[0]); resy[0]=inint(sy[0]); nr = 1; edge = 0;
   if ( nb0 == 0 )  /* the intersection point is on Edge1 but */
@@ -509,8 +520,8 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
 	    PI0,PD0,PD0,PD0,PD0,0L,0L);
 
   /*------------------------------------+ 
-  | compute the intermediary polygon(s) |
-  +------------------------------------*/
+    | compute the intermediary polygon(s) |
+    +------------------------------------*/
 
   for ( izone = zxy[0]+1 ; izone < zxy[2] ; izone++ ) 
     {
@@ -539,8 +550,8 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
     };
 
   /*-----------------------+ 
-  | compute the last poly  |
-  +-----------------------*/
+    | compute the last poly  |
+    +-----------------------*/
   resx[0] = xEdge2; resy[0] = yEdge2;         /* the 2 first points are known */
   resx[1] = xEdge;  resy[1] = yEdge; nr = 2;
   if ( edge == 0 )  /* the next point of the poly is P1 */

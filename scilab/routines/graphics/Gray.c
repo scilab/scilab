@@ -28,9 +28,9 @@ extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern void update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
+extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
 extern int re_index_brect(double * brect, double * drect);
-extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern int CreatePrettyGradsFromNax(sciPointObj * psubwin,int * Nax);
 
 /*------------------------------------------------------------
@@ -56,6 +56,9 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
   xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
   yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
 
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
+  
   /* NG beg */
   if (version_flag() == 0){
    
@@ -115,9 +118,13 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
 	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       }
-      if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+      if (strflag[1] != '0') 
+	bounds_changed = update_specification_bounds(psubwin, drect,2);
     } 
-    strflag2axes_properties(psubwin, strflag);
+
+    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+    
+    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
    
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
        u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -135,9 +142,13 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
       else{
 	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
     }
-        
-
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
+    
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      sciDrawObj(sciGetCurrentFigure ());
+    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
+    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
+    /* because of the tics graduation that are outside the axes refresh area */
+  
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
@@ -239,7 +250,10 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
- 
+
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
+
   if (version_flag() == 0){
     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
       sciXbasc(); 
@@ -291,9 +305,13 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
 	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       }
-      if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+      if (strflag[1] != '0') 
+	bounds_changed = update_specification_bounds(psubwin, drect,2);
     } 
-    strflag2axes_properties(psubwin, strflag);
+  
+    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+    
+    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
  
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
        u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -313,7 +331,14 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
     }
     
 
-    sciDrawObj(psubwin); /* ???? */
+  /*   sciDrawObj(psubwin); /\* ???? *\/ */
+    
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      sciDrawObj(sciGetCurrentFigure ());
+    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
+    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
+    /* because of the tics graduation that are outside the axes refresh area */
+    
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
@@ -360,15 +385,12 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
   /* NG beg */
   if (version_flag() == 0){
     double y; /* void for ConstructGrayplot */ 
-    sciPointObj *psubwin;
+    sciPointObj *psubwin = NULL;
     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
       sciXbasc(); 
       initsubwin();
       sciRedrawFigure();
-      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
     } 
-  
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
   
     /*---- Boundaries of the frame ----*/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
