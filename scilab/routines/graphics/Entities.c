@@ -9460,20 +9460,25 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  /* Indeed, some modes require pvz knowledge. */
 
 	  /*ppoly->pvz = (double *) NULL;*/
-	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
-	    {
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvector);
-	      FREE(pPOLYLINE_FEATURE (pobj)->pvy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(pPOLYLINE_FEATURE(pobj));
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    } 
-	  for (i = 0; i < n1; i++)
-	    ppoly->pvz[i] = 0.;
-	  
+/* 	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL) */
+/* 	    { */
+/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvx); */
+/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvector); */
+/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvy); */
+/* 	      sciDelThisToItsParent (pobj, sciGetParent (pobj)); */
+/* 	      sciDelHandle (pobj); */
+/* 	      FREE(pPOLYLINE_FEATURE(pobj)); */
+/* 	      FREE(pobj); */
+/* 	      return (sciPointObj *) NULL; */
+/* 	    }  */
+/* 	  for (i = 0; i < n1; i++) */
+/* 	    ppoly->pvz[i] = 0.; */
+
+	  /* F.Leray 02.090.04: FINALLY not to prevent allocating useless memory
+	   in case we always deal with 2d objects 
+	   pPOLYLINE_FEATURE (pobj)->pvz will be allowed in sciSetPoints if necesseray */
+	  pPOLYLINE_FEATURE (pobj)->pvz=NULL;
+
 	  ppoly->zmin   = 0.;
 	  ppoly->zmax   = 0.;
 	}
@@ -12825,17 +12830,34 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       break;
     case SCI_POLYLINE:
       *numrow = pPOLYLINE_FEATURE (pthis)->n1;
-      *numcol=((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	       && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))? 3:2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
-      for (i=0;i < *numrow;i++)
+      /*   *numcol=((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) */
+      /* 	       && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))? 3:2; */
+      *numcol=(pPOLYLINE_FEATURE (pthis)->pvz != NULL)? 3:2;
+    /*   sciprint("numcol vaut: %d et ...->pvz = %d",*numcol,pPOLYLINE_FEATURE (pthis)->pvz);  */
+
+      if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
 	{
-	  tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
-	  tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
-	  if (*numcol== 3)
-	    tab[(2*(*numrow))+i]= pPOLYLINE_FEATURE (pthis)->pvz[i]; 
+	  *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
+	  if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL) 
+	    return (double*)NULL;
+	  for (i=0;i < *numrow;i++)
+	    {
+	      tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
+	      tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
+	      tab[(2*(*numrow))+i]= 0.;
+	    }
 	}
+      else{
+	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	  return (double*)NULL;
+	for (i=0;i < *numrow;i++)
+	  {
+	    tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
+	    tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
+	    if (*numcol== 3)
+	      tab[(2*(*numrow))+i]= pPOLYLINE_FEATURE (pthis)->pvz[i]; 
+	  }
+      }
       return (double*)tab;
       break;
     case SCI_RECTANGLE:
@@ -13039,10 +13061,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   int *pstyle = NULL;
   POINT2D *pvector;
 
-  /* Adding F.Leray 07.04.04 for value_min -max update for isoview*/
-  /*sciPointObj *psubwin = ( sciPointObj *) NULL;*/
-  double xmin,xmax,ymin,ymax,zmin,zmax;
-
   switch (sciGetEntityType (pthis))
     {
     case SCI_POLYLINE:
@@ -13073,18 +13091,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      return -1;
 	    }
 	  
+/* 	  for (i = 0; i < *numrow; i++) /\* Init. to 0. if no z is specified *\/ */
+/* 	    pvz[i] = 0.; */
+	  
+
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvector); pPOLYLINE_FEATURE (pthis)->pvector = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
 	  
-	  /* Adding F.Leray 07.04.04 : Init. phase*/
-	  xmin=xmax=tab[0];
-	  ymin=ymax=tab[0+ (*numrow)];
-	  if (*numcol == 3)
-	    zmin=zmax=tab[0+ 2*(*numrow)];
-	    /* END Adding */
-
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pvx[i] = tab[i];
@@ -13093,65 +13108,59 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	      pvector[i].y =  tab[i+ (*numrow)];
 	      if (*numcol == 3)
 		pvz[i] = tab[i+ 2*(*numrow)];
-
-	      /* Adding F.Leray 07.04.04 */
-	      xmin=Min(pvx[i],xmin);
-	      xmax=Max(pvx[i],xmax);
-	      ymin=Min(pvy[i],ymin);
-	      ymax=Max(pvy[i],ymax);
-	      if (*numcol == 3){
-		zmin=Min(pvz[i],zmin);
-		zmax=Max(pvz[i],zmax);
-	      }
-		 /* END Adding */
 	    }
+
 	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
 	  pPOLYLINE_FEATURE (pthis)->pvy=pvy; 
 	  pPOLYLINE_FEATURE (pthis)->pvector=pvector;
 	  pPOLYLINE_FEATURE (pthis)->n1=n1;
-	  if (*numcol == 3)
-	    pPOLYLINE_FEATURE (pthis)->pvz=pvz;
+
+
+	  //	  if (*numcol == 3)
+	  pPOLYLINE_FEATURE (pthis)->pvz=pvz;
 	}
       else
 	{
-	  if (*numcol == 3){
-	    if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) 
-	      return -1;
-	  }
-	  else{
-	    /* same number of row but numcol==2 (case where z value is not specified) */
-	    for (i = 0; i < *numrow; i++)
-	      pPOLYLINE_FEATURE (pthis)->pvz[i] = 0.;
-	  }
+/* 	  //	  if (*numcol == 3){ */
+/* 	  if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL)  */
+/* 	    return -1; */
+/* 	  for (i = 0; i < *numrow; i++)  /\* Init. to 0. if no z is specified *\/ */
+/* 	    pvz[i] = 0.; */
+/* 	    // } */
+
+
+/* 	  else{ */
+/* 	    /\* same number of row but numcol==2 (case where z value is not specified) *\/ */
+/* 	    //    if(pPOLYLINE_FEATURE (pthis)->pvz != NULL){ */
 	  
-	  
-	  /* Adding F.Leray 07.04.04 : Init. phase*/
-	  xmin=xmax=tab[0];
-	  ymin=ymax=tab[0+ (*numrow)];
-	  if (*numcol == 3)
-	    zmin=zmax=tab[0+ 2*(*numrow)];
-	  /* END Adding */
+/* 	    pPOLYLINE_FEATURE (pthis)->pvz = pvz; */
+/* 	    //	    } */
+/* 	  } */
 	  
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
 	      pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	      
-	      /* Adding F.Leray 07.04.04 */
-	      xmin=Min(pPOLYLINE_FEATURE (pthis)->pvx[i],xmin);
-	      xmax=Max(pPOLYLINE_FEATURE (pthis)->pvx[i],xmax);
-	      ymin=Min(pPOLYLINE_FEATURE (pthis)->pvy[i],ymin);
-	      ymax=Max(pPOLYLINE_FEATURE (pthis)->pvy[i],ymax);
-	      if (*numcol == 3){
-		zmin=Min(pvz[i],zmin); /* F.Leray 07.04.04: Strange: different management with z (use pvz and not pPOLYLINE_FEATURE (pthis)->pvz) */
-		zmax=Max(pvz[i],zmax); /* Why not but it is not consistant...*/
-	      }
-	      /* END Adding */
 	    }
 	  if (*numcol == 3)
-	    pPOLYLINE_FEATURE (pthis)->pvz = pvz; /* ..and here we put pvz...*/
+	    {
+	      if(pPOLYLINE_FEATURE (pthis)->pvz==NULL)
+		if ((pPOLYLINE_FEATURE (pthis)->pvz = MALLOC ((*numrow) * sizeof (double))) == NULL)
+		  return -1;
+	      
+	      for (i=0;i < *numrow;i++)
+		pPOLYLINE_FEATURE (pthis)->pvz[i] = tab[i+ 2*(*numrow)];
+	    }
+	  else
+	    {
+	      FREE(pPOLYLINE_FEATURE (pthis)->pvz);
+	      pPOLYLINE_FEATURE (pthis)->pvz=NULL;
+	    }
+	  
+	  
+	    
+	    //	  if (*numcol == 3)
+	    //	  pPOLYLINE_FEATURE (pthis)->pvz = pvz; /* ..and here we put pvz...*/
 	}
       
 
