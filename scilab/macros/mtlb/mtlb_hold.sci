@@ -1,15 +1,23 @@
 function mtlb_hold(flag)
-[lhs,rhs]=argn(0)
-global('%MTLBHOLD')
-if rhs==0 then
-  if ~%MTLBHOLD|%MTLBHOLD==[] then
-    %MTLBHOLD=%t
+// Copyright INRIA
+// Emulation function for Matlab hold()
+// V.C.
+
+rhs=argn(2)
+if rhs<=0 then
+  a=gca();
+  if a.auto_clear=="off" then
+    a.auto_clear="on"
   else
-    %MTLBHOLD=~%MTLBHOLD
+    a.auto_clear="off"
   end
-elseif convstr(flag)=='on' then
-  %MTLBHOLD=%t
 else
-  %MTLBHOLD=%f
+  if flag=="on" then
+    a=gca();a.auto_clear="off"
+  elseif flag=="off" then
+    a=gca();a.auto_clear="on"
+  else
+    error("Not implemented")
+  end
 end
 endfunction
