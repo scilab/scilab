@@ -619,8 +619,10 @@ c     .  matrix*matrix
             return
          endif
          lr=l2+mn2*(it2+1)
-         err=lr+m1*n2*(itr+1)-lstk(bot)
-         if(err.gt.0) then
+c     .  m1*n2 may overflow
+         temp=float(lr)+float(m1)*n2*(itr+1)-lstk(bot)
+         if(temp.gt.0.0d0) then
+            err=int(temp)
             call error(17)
             return
          endif
