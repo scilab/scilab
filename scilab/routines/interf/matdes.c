@@ -2240,8 +2240,8 @@ int scixfpolys(fname,fname_len)
      unsigned long fname_len;
 {
 
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2;
-
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; // v2 = 0 F.leray 24.02.04 unused flag
+  // v1 is the flag used for flat (v1==1)/interpolated (v1==2) shading
 
   /* NG beg */
   int i,color;
@@ -2311,7 +2311,7 @@ int scixfpolys(fname,fname_len)
 
   /* end of Code modified by polpoth 7/7/2000 */
 
-  LhsVar(1)=0;
+  LhsVar(1)=0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
   return 0;  
 } 
 
@@ -2474,6 +2474,8 @@ int scixlfont(fname,fname_len)
 	  return 0;
 	}
       count =0;
+ // Pb here due to fonttab again: its size is 10 and NUMBERFONT is 11 (=m) so...
+// By-pass here for the moment: FONTNUMBER set to FONTNUMBER-- in queryfamily (file periWin.c)
       for ( i = 0 ; i < m ; i++) {
 	if ((S[i]= (char *) MALLOC((sz[i]+1)*sizeof(char))) == NULL) 
 	{
