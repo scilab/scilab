@@ -13,7 +13,7 @@ c
 
 c     
 c     fin    1       2     3        4
-c                        ereduc  fstair
+c          gschur   gspec ereduc  fstair
 c     
       sadr(l)=(l/2)+1
       iadr(l)=l+l-1
@@ -25,27 +25,36 @@ c
 c     
       tops=top
       eps=stk(leps)
-c     
-      if (fin .eq.3) then
-         call intereduc
+
+      if(fin.eq.1) then
+c     obsolete 
+c     call macro for emulation
+         call cvname(ids(1,pt+1),'gschur',0)
+         fun=-1
+         return
+      elseif(fin.eq.2) then
+c     osolete
+c     call macro for emulation
+         call cvname(ids(1,pt+1),'gspec',0)
+         fun=-1
+         return
+      elseif (fin .eq.3) then
+         call intereduc('ereduc')
       elseif (fin .eq. 4) then
-         call intfstair
-      else
-         buf='some primitive functions has moved,'//
-     &        'recompile your scilab functions'
-         call error(1111)
+         call intfstair('fstair')
       endif
       return
 c     
       end
 
-      subroutine intereduc
+      subroutine intereduc(fname)
 c     Copyright INRIA
 c     SCILAB function : ereduc
 c     --------------------------
 
       INCLUDE '../stack.h'
 c     
+      character*(*) fname
       double precision t,eps
       integer iadr,sadr,tops
 
@@ -232,10 +241,11 @@ c
 
       end
 
-      subroutine intfstair
+      subroutine intfstair(fname)
 c     Copyright INRIA
       INCLUDE '../stack.h'
 c     
+      character*(*) fname
       double precision t,eps
       integer iadr,sadr,tops
 
