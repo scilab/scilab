@@ -283,3 +283,184 @@ void SetThreadPasteRunning(BOOL Running)
 	ThreadPasteRunning=Running;
 }
 /*-----------------------------------------------------------------------------------*/
+int	InterfaceWindowsClipboard _PARAMS((char *fname))
+{
+  static int l1,n1,m1;
+
+  char *param1=NULL,*param2=NULL,*param3=NULL;
+
+  Rhs=Max(0,Rhs);
+  CheckRhs(0,2);
+  CheckLhs(0,1);
+
+  if ( IsWindowInterface() )
+  {
+	if (Rhs == 1)
+	{
+	  GetRhsVar(1,"c",&m1,&n1,&l1);
+	  param1=cstk(l1);
+
+	  if ( ( strcmp(param1,"paste") == 0 ) || ( strcmp(param1,"pastespecial") == 0 ) )
+	  {
+		  char *output=NULL ;
+		  extern char ScilexWindowName[MAX_PATH];
+		  LPTW lptw;
+
+		  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		  output=GetTextFromClipboard(lptw);
+
+		  if (output)
+		  {
+			  CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+			  free(output);
+			  LhsVar(1)=1;
+		  }
+		  else
+		  {
+			  m1=0;
+			  n1=0;
+			  l1=0;
+			  CreateVar(1,"d",  &m1, &n1, &l1);
+			  LhsVar(1)=1;
+		  }
+	  }
+	  else
+	  {
+		  Scierror(999,"unknown first parameter.\r\n");
+		  LhsVar(1)=0;
+	  }
+	}
+	else
+	if (Rhs == 2)
+	{
+	  GetRhsVar(1,"c",&m1,&n1,&l1);
+	  param1=cstk(l1);
+
+	  if ( strcmp(param1,"do") == 0 )
+	  {
+		  GetRhsVar(2,"c",&m1,&n1,&l1);
+		  param2=cstk(l1);
+
+		  if ( strcmp(param2,"paste") == 0 )
+			{
+				Callback_PASTE();
+			}
+
+     	  if ( strcmp(param2,"copy") == 0 )
+			{
+				Callback_MCOPY();
+			}
+
+		  if ( strcmp(param2,"empty") == 0 )
+			{
+				Callback_EMPTYCLIPBOARD();
+			}
+	  }
+	  else
+	  if ( strcmp(param1,"copy") == 0 )
+	  {
+		  extern char ScilexWindowName[MAX_PATH];
+		  LPTW lptw;
+			
+		  char *TextToPutInClipboard=NULL;
+		  int TypeVar=GetType(2);
+
+		  lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);  
+
+		  if (TypeVar == sci_strings)
+		  {
+			  GetRhsVar(2,"c",&m1,&n1,&l1);
+			  TextToPutInClipboard=cstk(l1);
+
+			  PutTextInClipboard(lptw,TextToPutInClipboard);
+		  }
+		  else
+		  {
+			  Scierror(999,"type of second parameter incorrect.\r\n");
+		  }
+	   }
+	  else
+	   {
+		  Scierror(999,"unknown first parameter.\r\n");
+	   }
+      LhsVar(1)=0;
+	}
+  }
+  else
+  {
+	  Scierror(999,"Only on Windows mode.\r\n");
+	  LhsVar(1)=0;
+  }
+  
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+char * GetTextFromClipboard(LPTW lptw)
+{
+	char *Text=NULL;
+
+	HDC hdc;
+	HGLOBAL hGMem;
+	TEXTMETRIC tm;
+	UINT type;
+	LPSTR lpMem; /* Pointeur sur la chaine du clipboard */
+	
+	
+	/* find out what type to get from clipboard */
+	hdc = GetDC (lptw->hWndText);
+	SelectObject(hdc, lptw->hfont);
+	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
+	if (tm.tmCharSet == OEM_CHARSET) type = CF_OEMTEXT;
+	else type = CF_TEXT;
+	ReleaseDC (lptw->hWndText, hdc);
+	
+	/* now get it from clipboard */
+	OpenClipboard (lptw->hWndText);
+	hGMem = GetClipboardData (type);
+	
+	if (hGMem)
+		{
+			lpMem  = GlobalLock( hGMem );
+			Text= (char*) malloc (sizeof(char)*strlen(lpMem));
+			strcpy(Text,lpMem);
+			GlobalUnlock (hGMem);
+		}
+	CloseClipboard ();
+
+	return Text;
+}
+/*-----------------------------------------------------------------------------------*/
+void PutTextInClipboard(LPTW lptw,char *Text)
+{
+	int size;
+	HGLOBAL hGMem;
+	LPSTR cbuf;
+	
+	TEXTMETRIC tm;
+	UINT type;
+	HDC hdc;
+
+	size=strlen(Text)+1;
+
+	hGMem = GlobalAlloc(GMEM_MOVEABLE, (DWORD)size);
+	cbuf = (LPSTR)GlobalLock(hGMem);
+	if (cbuf == (LPSTR)NULL) return;
+	strcpy(cbuf,Text);
+
+	/* find out what type to put into clipboard */
+	hdc = GetDC(lptw->hWndText);
+	SelectObject(hdc, lptw->hfont);
+	GetTextMetrics(hdc,(TEXTMETRIC FAR *)&tm);
+	if (tm.tmCharSet == OEM_CHARSET)
+		type = CF_OEMTEXT;
+	else
+		type = CF_TEXT;
+	ReleaseDC(lptw->hWndText, hdc);
+
+	/* give buffer to clipboard */
+	OpenClipboard(lptw->hWndParent);
+	EmptyClipboard();
+	SetClipboardData(type, hGMem);
+	CloseClipboard();
+}
+/*-----------------------------------------------------------------------------------*/

@@ -5,6 +5,7 @@
 
 #include <Windows.h>
 #include "wcommon.h"
+#include "../stack-c.h"
 
 extern char ScilexWindowName[MAX_PATH];
 
@@ -16,6 +17,8 @@ void PasteFunction(LPTW lptw,BOOL special);
 BOOL IsEmptyClipboard(LPTW lptw);
 void TextCopyClip(LPTW lptw);
 void CleanClipboard(LPTW lptw);
+char *GetTextFromClipboard(LPTW lptw);
+void PutTextInClipboard(LPTW lptw,char *Text);
 HANDLE GetHandleThreadPaste(void);
 BOOL GetThreadPasteRunning(void);
 void SetThreadPasteRunning(BOOL Running);

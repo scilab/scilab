@@ -374,3 +374,15 @@ int C2F(winqueryreg) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+int C2F(clipboard) _PARAMS((char *fname))
+{
+#ifdef WIN32
+	InterfaceWindowsClipboard(fname);
+#else
+	Scierror(999,"Only for Windows\r\n");
+	LhsVar(1)=0;
+#endif
+	C2F(putlhsvar)();
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
