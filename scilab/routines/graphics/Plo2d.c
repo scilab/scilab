@@ -439,13 +439,14 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	  }
 	  else
 	  {
-		sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+	//	sciprint("JE SUIS LA  1 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 	    sciDrawObj(subwindowtmp);
-		sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+	//	sciprint("JE SUIS LA  2 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
       } 
 
       C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
     }
+	//sciprint("Sortie de Fonction ----> update_frame_bounds");
 }
  
 

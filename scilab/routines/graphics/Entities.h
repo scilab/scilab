@@ -980,8 +980,8 @@ typedef struct
 {
   sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
-  double *vx;  /** vx vector of size Nbr **/
-  double *vy;  /** vy vector of size Nbr **/
+  double *vx;  /** vx vector of size Nbr **/ //F.Leray 18.02.04 ...of size Nbr1 
+  double *vy;  /** vy vector of size Nbr **/ //F.Leray 18.02.04 ...of size Nbr2 
   double *vfx;
   double *vfy;
   integer Nbr1;   

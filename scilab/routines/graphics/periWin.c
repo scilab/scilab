@@ -4934,16 +4934,29 @@ void set_clip_box(xxleft,xxright,yybot,yytop)
   ytop=yytop;
 }
 
+// Prototype de clip_line : cf. Graphics.h F.Leray 18.02.04
+/*
+  extern void clip_line  __PARAMS((integer,integer,integer ,integer,integer *,integer *,integer *,integer *, integer *));  
+*/
+
 void
 clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
      integer x1, yy1, x2, y2, *flag, *x1n, *yy1n, *x2n, *y2n;
 {
-    integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2;
-    *x1n=x1;*yy1n=yy1;*x2n=x2;*y2n=y2;*flag=4;
+    //integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2; F.Leray pb dimension 18.02.04
+	// de x_intr et y_intr. count peut aller jusqu'a 3 apparemment...
+
+	integer x, y, dx, dy, x_intr[5], y_intr[5], count, pos1, pos2;
+
+
+	// Ou sont les allocations memoires de *x1n, yy1n etc... ???  F.Leray 18.02.04
+	// Je le fais maitenant: NON c'est OK car x1n, yy1n, x2n, y2n sont sur la pile cf. Champ.c->Champ2DRealToPixel.
+
+    *x1n=x1; *yy1n=yy1; *x2n=x2; *y2n=y2; *flag=4;
     pos1 = clip_point(x1, yy1);
     pos2 = clip_point(x2, y2);
     if (pos1 || pos2) {
-	if (pos1 & pos2) { *flag=0;return;}	  
+		if (pos1 & pos2) { *flag=0;return;}	  
 	/* segment is totally out. */
 
 	/* Here part of the segment MAy be inside. test the intersection
@@ -4951,6 +4964,7 @@ clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
 	 * in. If non found segment is totaly out.
 	 */
 	count = 0;
+	sciprint("DANS Periwin.c -> count = %d\n",count);
 	dx = x2 - x1;
 	dy = y2 - yy1;
 
@@ -4961,12 +4975,14 @@ clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
 	    if (x >= xleft && x <= xright) {
 		x_intr[count] = x;
 		y_intr[count++] = ybot;
+		sciprint("DANS Periwin.c -> count = %d\n",count);
 	    }
 	    x = (int) ((ytop - y2) * ((double) dx / (double) dy) + x2); 
 	    /* Test for ytop boundary. */
 	    if (x >= xleft && x <= xright) {
 		x_intr[count] = x;
 		y_intr[count++] = ytop;
+		sciprint("DANS Periwin.c -> count = %d\n",count);
 	    }
 	}
 
@@ -4977,12 +4993,14 @@ clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
 	    if (y >= ybot && y <= ytop) {
 		x_intr[count] = xleft;
 		y_intr[count++] = y;
+		sciprint("DANS Periwin.c -> count = %d\n",count);
 	    }
 	    y = (int) ((xright - x2) * ((double) dy / (double) dx) + y2);  
 	    /* Test for xright boundary. */
 	    if (y >= ybot && y <= ytop) {
 		x_intr[count] = xright;
 		y_intr[count++] = y;
+		sciprint("DANS Periwin.c -> count = %d\n",count);
 	    }
 	}
 

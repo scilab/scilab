@@ -37,7 +37,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 char *strflag, double *brect, double *arfact, integer lstr)
 {
   static integer aaint[]={2,10,2,10};
-  integer *xm,*ym,*zm,na,n;
+  integer *xm = NULL,*ym = NULL,*zm = NULL,na,n,i;
   double  xx[2],yy[2];
   integer arsize,nn1=1,nn2=2,iflag=0;  
   /* NG */
@@ -54,7 +54,7 @@ char *strflag, double *brect, double *arfact, integer lstr)
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
-  n=2*(*n1)*(*n2); 
+  n=2*(*n1)*((*n2)+1); //F.Leray 17.02.04
   xx[0]=x[0];xx[1]=x[*n1-1];
   yy[0]=y[0];yy[1]=y[*n2-1];
   /** Boundaries of the frame **/ 
@@ -89,6 +89,25 @@ char *strflag, double *brect, double *arfact, integer lstr)
 
   sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
 
+/* prototype de ConstructSegs : F.Leray 17.02.04
+extern sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy, integer Nbr1, 
+               integer Nbr2, double *vfx, double *vfy, integer flag, 
+              integer *style, double arsize1,  integer colored, double arfact); */
+
+  if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
+	  {
+	  sciprint("No more memory available\n");
+	  return;
+	  }
+
+	for(i=0;i<(*n1);i++)
+		style[i]=0;
+
+  flag = 0;
+  arsize1 = 0.5;
+
+
+  // ici (dans void champg(...)) type = 1 
   sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
                        type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
@@ -110,6 +129,28 @@ char *strflag, double *brect, double *arfact, integer lstr)
 	return ;
       }      
   }
+
+  //F.Leray
+  //Prototype de Champ2DRealToPixel:
+  /*
+extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
+
+  integer *xm,*ym,*zm;
+  integer *na,*arsize,*colored;
+  integer *n1,*n2;
+  double *x, *y, *fx, *fy;
+  double *arfact;
+
+  PS: les variables na,arsize seront remplies par Champ2DRealToPixel !!
+  
+  PAR CONTRE les mallocs de na et arsize ne sont PAS fait dans cette fonction !!!
+  JE vais le faire maintenant : NON car ce sont des entiers declares sur la pile.
+  pas besoin de faire de malloc par consequent...
+
+	je les mets juste a 0.
+  */
+  na = 0;
+  arsize = 0;
 
   Champ2DRealToPixel(xm,ym,zm,&na,&arsize,&colored,x,y,fx,fy,n1,n2,arfact);
   
@@ -176,6 +217,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   for ( i = 0 ; i < *n1 ; i++)
     for ( j =0 ; j < *n2 ; j++)
       {
+		sciprint("Indice = %d\n",2*(i +(*n1)*j));
 	xm[2*(i +(*n1)*j)]= XScale(x[i]);
 	ym[2*(i +(*n1)*j)]= YScale(y[j]);
       }
@@ -212,7 +254,11 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       int j=0;
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
-	  integer x1n,y1n,x2n,y2n,flag1=0;
+	  integer x1n = 0;
+	  integer y1n = 0;
+	  integer x2n = 0;
+	  integer y2n = 0;
+	  integer flag1=0;
 /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
 /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
 /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
@@ -221,7 +267,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  xm[2*j]  = (int)(xm[2*i]);
  	  ym[1+2*j]= (int)(-sfy*fy[i]+ym[2*i]);
 	  ym[2*j]  = (int)(ym[2*i]);
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1); // F.Leray: voir utilité...
 	  if (flag1 !=0)
 	    {
 	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};
@@ -263,7 +309,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  ym[2*j]  = (int)(ym[2*i]);
  /* end of the modif */
 
-	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
+	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1); // F.Leray: voir utilité...
 	  if (flag1 !=0)
 	    {
 	      if (flag1==1||flag1==3) { xm[2*j]=x1n;ym[2*j]=y1n;};

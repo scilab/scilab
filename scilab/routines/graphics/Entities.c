@@ -8869,7 +8869,9 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	} 
        pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
       psegs->ptype = type;
-      if (type == 0)
+
+	  // F.Leray Test imprortant sur type ici
+      if (type == 0) // attention ici type = 0 donc...
       {   
 	psegs->arrowsize = arsize;     
 	if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
@@ -8895,8 +8897,10 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
 	psegs->iflag = flag; 
         psegs->Nbr1 = Nbr1;
       }	
-      else
+      else // attention ici type = 1 donc...
 	{ 
+		// Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04
+		psegs->arrowsize = arsize;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
 	  psegs->pcolored = colored;
@@ -8978,7 +8982,10 @@ DestroySegs (sciPointObj * pthis)
     } 
   else 
     {
+		// F.Leray 18.02.04 Rajout de 2 if pour voir...
+if (pSEGS_FEATURE (pthis)->vfx != (double *)NULL) 
       FREE(pSEGS_FEATURE (pthis)->vfx);  
+if (pSEGS_FEATURE (pthis)->vfy != (double *)NULL) 
       FREE(pSEGS_FEATURE (pthis)->vfy);
       if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL) 
 	FREE(pSEGS_FEATURE (pthis)->vfz);  
@@ -10750,7 +10757,8 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-      FREE(xm);FREE(ym);FREE(zm);/* SS 02/04 */
+      FREE(xm);FREE(ym); /* SS 02/04 */
+	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) FREE(zm); // F.Leray 1802.04 modif ici
         }  
 
       sciUnClip(sciGetIsClipping(pobj));
