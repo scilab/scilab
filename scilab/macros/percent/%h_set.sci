@@ -10,6 +10,7 @@ function hdl=%h_set(varargin)
   elseif (lstsize(varargin) == 2)
     str = varargin(1)
     val = varargin(2)
+    hdl=[]
     set(str,val)
   end,
 endfunction
