@@ -147,7 +147,7 @@ proc importmatlab {} {
                       \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
 	 set impcomm \
 	      "if $convcomm==0 then \
-                 TK_EvalStr(\"scipad eval {delinfo; openfile $destfile} \"); \
+                 TK_EvalStr(\"scipad eval {delinfo; openfile \"\"$destfile\"\"} \"); \
                else; \
                  TK_EvalStr(\"scipad eval {failmatlabimp} \");\
                end"
