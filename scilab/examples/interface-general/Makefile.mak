@@ -1,29 +1,43 @@
 SCIDIR=../../
 SCIDIR1=..\..\
 
-all	: Makelib.mak job message 
-	nmake -f Makelib.mak
+MAKE=nmake /nologo
+
+all	: lib Makelib.mak  message 
+
+lib	: 
+	Makesubdirs.bat lib
 
 Makelib.mak : builder.sce
-	@echo running builder 
+	@echo running builder BE PATIENT
 	cat builder.sce > job.sce
 	echo quit >> job.sce 
 	"$(SCIDIR1)\bin\scilex.exe" -nwni -f job.sce 
 	del job.sce 
 
-job	: 
-	Makesubdirs.bat lib
-	nmake -f Makelib.mak
-
 clean  	: 
-	nmake -f Makelib.mak clean 
+	$(MAKE) -f Makelib.mak clean 
+	del Makelib.mak 
 	Makesubdirs.bat lib-clean 
 
-distclean:: clean 
+distclean::
+	del libf3c*
+	del libf3f*
+	del f3cloader.sce 
+	del f3floader.sce 
+	del f3cmake.mak 
+	del f3fmake.mak 
+	del make.exe.stackdump
+	del libexamples.ilk
+	del libexamples.pdb
+
+distclean::
+	$(MAKE) -f Makelib.mak distclean
+	del Makelib.mak 
 	Makesubdirs.bat lib-distclean 
 
-tests	: all
-	nmake -f Makelib.mak tests 
+tests	: Makelib.mak 
+	$(MAKE) -f Makelib.mak tests 
 
 message:
 	@echo ------------------------------------------;

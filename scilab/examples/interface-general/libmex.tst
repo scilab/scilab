@@ -1,6 +1,6 @@
 // load the shared library 
 
-exec loader.sce 
+exec loader.sce ;
 
 if f1(89)<>89+2 then pause,end
 if f2(89)<>89+3 then pause,end

@@ -9,24 +9,24 @@ echo Unknown target %1
 goto end
 
 :def 
- nmake /C /f Makefile.mak 
+ nmake /nologo /C /f Makefile.mak 
 goto end 
 
 :lib 
 cd lib 
- nmake /C /f Makefile.mak 
+ nmake /nologo /C /f Makefile.mak 
 cd ..
 goto end 
 
 :lib-distclean 
 cd lib 
- nmake /C /f Makefile.mak distclean 
+ nmake /nologo /C /f Makefile.mak distclean 
 cd ..
 goto end 
 
 :lib-clean 
 cd lib
- nmake /C /f Makefile.mak clean 
+ nmake /nologo /C /f Makefile.mak clean 
 cd ..
 goto end 
 

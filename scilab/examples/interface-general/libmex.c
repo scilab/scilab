@@ -1,5 +1,5 @@
 #include <mex.h> 
-static int direct_gateway(char *fname,void F(void)) { F();};
+static int direct_gateway(char *fname,void F(void)) { F();return 0;};
 extern Gatefunc mex_fmex1;
 extern Gatefunc mex_fmex2;
 extern Gatefunc C2F(mexfoof);
