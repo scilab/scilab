@@ -2089,7 +2089,7 @@ function ok=gen_gui();
 
   for i=1:length(bllst)
     deput=[%t,%f]
-    if (bllst(i).dep_ut(2) == %t)then	
+    if (bllst(i).dep_ut(2) == %t) then	
       deput(1,2)=%t;      
       break;
     end
