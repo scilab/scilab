@@ -8,7 +8,9 @@ function [x,dim,dima]=spanplus(a,b,tol)
 //!
 // Copyright INRIA
 [na,ma]=size(a);[nb,mb]=size(b);
-if na*ma==0 then [x,dima]=rowcomp(b);dim=dima;x=x';return;end
+if na*ma==0 then 
+dima=0;[x,dim]=rowcomp(b);x=x';return;
+end
 if nb*mb==0 then [x,dima]=rowcomp(a);dim=dima;x=x';return;end
 [lhs,rhs]=argn(0);
 if rhs==2 then tol=%eps*na*nb*ma*mb;end
