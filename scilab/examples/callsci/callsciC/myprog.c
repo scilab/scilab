@@ -1,43 +1,100 @@
+/*------------------------------------------------------------*/
+/* Modified by Allan CORNET INRIA Novembre 2004 */
+/*------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h> 
+#ifdef WIN32
+  #include <windows.h> 
+#endif
+
+#include <string.h> 
+
 #include "machine.h"
 #include "stack-c.h"
 
+/*------------------------------------------------------------*/
 /* 
  * Initialisation de Scilab 
  * avec execution de la startup 
  * pour ne pas avoir a ecrire un script 
- * de lancement je fixe SCI en dur qui est passe par le 
- * Makefile 
- */
-
+  */
+/*------------------------------------------------------------*/
 #ifndef SCI 
 #define SCI "../.."
 #endif 
-
-
-#include <string.h> 
-
+/*------------------------------------------------------------*/
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void set_sci_env(char *p, char *wsci);
+#ifdef WIN32
+extern void add_sci_argv(char *p);
+#endif
+/*------------------------------------------------------------*/
+#ifdef WIN32
+static void SetEnv(void)
+{
+  #define MAXSTR 4096
+  LPSTR tail;
+  int i=0;
+  char szModuleName[MAXSTR];
+  char SCIPATH[MAXSTR];
+  char WSCIPATH[MAXSTR];
 
+  /* Get full name of this program */
+  /* ex : c:\Program Files\scilab-3.0\bin\prog.exe */  
+  GetModuleFileName ((HANDLE)GetModuleHandle(NULL),  (LPSTR) szModuleName, MAXSTR);
+  
+  /* remove prog.exe from szModuleName */ 	
+  /* szModuleName --> c:\Program Files\scilab-3.0\bin\ */  	
+  if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+  {
+	tail++;
+	*tail = '\0';
+  }
+  
+  szModuleName[strlen(szModuleName)-1]='\0';
+  /* copy szModuleName in WSCIPATH */
+  wsprintf(WSCIPATH,"%s",szModuleName);
+  /* remove bin in WSCIPATH */
+  /* WSCIPATH --> c:\Program Files\scilab-3.0\ */  		
+  if ((tail = strrchr (WSCIPATH, '\\')) != (LPSTR) NULL)
+  {
+	tail++;
+	*tail = '\0';
+  }
+  
+  /* copy WSCIPATH in SCIPATH */
+  wsprintf(SCIPATH,"%s",WSCIPATH);
+	
+  /* convert \ on / in SCIPATH*/	
+  for (i=0;i<(int)strlen(SCIPATH);i++)
+  {
+	if (SCIPATH[i]=='\\') SCIPATH[i]='/';
+  }
+	
+  /* WSCIPATH --> c:\Program Files\scilab-3.0 */  			
+  /* SCIPATH -->  c:/Program Files/scilab-3.0 */  			
+  WSCIPATH[strlen(WSCIPATH)-1]='\0';
+  SCIPATH[strlen(SCIPATH)-1]='\0';
+	
+  /* set scilab variables environment */
+  set_sci_env(SCIPATH,WSCIPATH);
+}
+#endif
+/*------------------------------------------------------------*/
 static void Initialize() 
 {
 
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
-  /* je fixe des variables d'environement
-   * ici pour pas avoir de callsci a ecrire  */
+  /* set scilab variables environment */
    #ifdef WIN32
-   set_sci_env("d:/scilab-2.7.2","d:\\scilab-2.7.2");
+     SetEnv();
    #else
-   setenv("SCI",SCI,1);
+     setenv("SCI",SCI,1);
    #endif
- 
-
 
   /* Scilab Initialization */ 
   C2F(inisci)(&iflag,&stacksize,&ierr);
@@ -51,7 +108,7 @@ static void Initialize()
 
   C2F(scirun)(initstr,strlen(initstr));
 }
-
+/*------------------------------------------------------------*/
 int send_scilab_job(char *job) 
 {
   static char buf[1024],
@@ -62,7 +119,7 @@ int send_scilab_job(char *job)
   GetMatrixptr("Err", &m, &n, &lp);
   return (int) *stk(lp);
 }
-
+/*------------------------------------------------------------*/
 static int premier_exemple()
 {
   static double A[]={1,2,3,4};  int mA=2,nA=2;
@@ -83,7 +140,7 @@ static int premier_exemple()
     }
   return 1;
 } 
-
+/*------------------------------------------------------------*/
 static int deuxieme_exemple() 
 {
   int m,n,lx,ly,i;
@@ -102,19 +159,18 @@ static int deuxieme_exemple()
   send_scilab_job("plot(x,y);xclick();quit");
   return 1;
 }
-
-
+/*------------------------------------------------------------*/
 int troisieme_exemple() 
 {
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
-  fprintf(stdout,"je linke \n");
+  fprintf(stdout,"linking ... \n");
   #ifdef WIN32
-  send_scilab_job("ilib_for_link(''odeex'',''../examples/callsci/callsciC/my_ode.o'',[],''c'');");
+  send_scilab_job("ilib_for_link(''odeex'',SCI+''/examples/callsci/callsciC/my_ode.o'',[],''c'');");
   #else
   send_scilab_job("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
   #endif
-  fprintf(stdout,"fin du link  \n");
+  fprintf(stdout,"end of link  \n");
   send_scilab_job("link(''show'')");
   WriteMatrix("x", &mx, &nx, x);
   WriteMatrix("time", &mt, &nt,time);
@@ -123,19 +179,7 @@ int troisieme_exemple()
   send_scilab_job("y=ode(x,0,time,''mon_ode''),");
   return 0;
 }
-
-
-
-/* I do not want to see the Scilab banier */ 
-
-void C2F(banier)(int *x) 
-{
-  /* fprintf(stdout,"Ourf ....\n");
-     C2F(storeversion)("scilab-2.5.1",12L);
-  */
-}
-
-
+/*------------------------------------------------------------*/
 int MAIN__(void) 
 {
 #ifdef WIN32
@@ -145,13 +189,12 @@ int MAIN__(void)
   add_sci_argv(nb);
 #endif 	
   Initialize();
+  
   premier_exemple();
   deuxieme_exemple() ;
   troisieme_exemple() ;
+  
   C2F(sciquit)();
   return 0;
 }
-
-
-
-
+/*------------------------------------------------------------*/
