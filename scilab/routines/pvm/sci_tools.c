@@ -10,8 +10,11 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
-     Revision 1.1  2001/04/26 07:49:01  scilab
-     Initial revision
+     Revision 1.2  2001/10/16 08:32:55  chanceli
+     includes
+
+     Revision 1.1.1.1  2001/04/26 07:49:01  scilab
+     Imported sources
 
      Revision 1.5  1998/03/27 12:20:22  fleury
      Version pvm OK.
@@ -42,10 +45,10 @@
 
 ***/
 #include "../machine.h"
-#ifndef __ABSC__
-#include <malloc.h>
-#else
+#ifdef __STDC__
 #include <stdlib.h>
+#else
+#include <malloc.h>
 #endif
 #include <stdio.h>
 #include <string.h>
