@@ -64,6 +64,9 @@ include ../Make.lib
 
 all:: Makefile.mak Makefile.amk
 
+dlamch.o: dlamch.f
+	$(FC) @FC_OPTIONS1@ -c dlamch.f -o dlamch.o
+
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
 
