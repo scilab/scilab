@@ -310,10 +310,10 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		</Filter>
 		<File
-			RelativePath="..\..\TCLLIB\LIB\TCL83.LIB">
+			RelativePath="..\..\TCLLIB\LIB\TCL84.LIB">
 		</File>
 		<File
-			RelativePath="..\..\TCLLIB\LIB\TK83.LIB">
+			RelativePath="..\..\TCLLIB\LIB\TK84.LIB">
 		</File>
 	</Files>
 	<Globals>

@@ -29,11 +29,11 @@ goto end
 
 :MAKE_TCL_TK
 if "%COMPILE_PVM%" == "yes" goto MAKE_PVM_TCL_TK
-%MAKE% TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl80.lib" ".\bin\tk80.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
+%MAKE% TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl84.lib" ".\bin\tk84.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
 goto end
 
 :MAKE_PVM_TCL_TK
-%MAKE% PVM=libs/pvm.lib PVM_ROOT=%PVM_ROOT% PVM_ARCH=WIN32 PVMLIB=%PVM_ROOT%\lib\WIN32\libpvm3.lib %PVM_ROOT%\lib\WIN32\libgpvm3.lib PVM_INCLUDES=-I%PVM_ROOT%\src DPVM=-DWITH_PVM TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl80.lib" ".\bin\tk80.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
+%MAKE% PVM=libs/pvm.lib PVM_ROOT=%PVM_ROOT% PVM_ARCH=WIN32 PVMLIB=%PVM_ROOT%\lib\WIN32\libpvm3.lib %PVM_ROOT%\lib\WIN32\libgpvm3.lib PVM_INCLUDES=-I%PVM_ROOT%\src DPVM=-DWITH_PVM TKSCI=libs/tksci.lib TKLIBS=%TKLIBS% TKLIBSBIN=".\bin\tcl84.lib" ".\bin\tk84.lib" TCL_INCLUDES=%TCL_INCLUDES% DTK=-DWITH_TK
 goto end
 
 :TCL_INCLUDES_ERROR

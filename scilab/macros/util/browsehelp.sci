@@ -101,7 +101,7 @@ function tcltk_help(path,key,key1)
     TK_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
     if TK_GetVar("isbrowsehelpinterp")=='0' then    
       TK_EvalStr("interp create browsehelp")
-      TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
+      TK_EvalStr("load {"+SCI+"/bin/tk84.dll} Tk browsehelp")
       TK_EvalStr("browsehelp eval {wm withdraw .}")
     end
     TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")

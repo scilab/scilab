@@ -3294,7 +3294,7 @@ void ExitWindow(void)
            				           				
         StoreCommand1 ("abort;", 2);
         SendCTRLandAKey(CTRLU);
-   	StoreCommand1 ("quit;", 1);
+   		StoreCommand1 ("quit;\n", 1);
    					
   
         Kill_Scilex();
@@ -3309,7 +3309,7 @@ void ExitWindow(void)
    	WriteTextIni (lptw);
    	StoreCommand1 ("abort;", 2);
    	SendCTRLandAKey(CTRLU);
-   	StoreCommand1 ("quit;", 1);
+   	StoreCommand1 ("quit;\n", 1);
    }
 	   	
 }

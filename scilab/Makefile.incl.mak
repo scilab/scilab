@@ -26,8 +26,8 @@ TCLTK=$(SCIDIR1)\tcllib
 
 TKSCI=libs/tksci.lib 
 
-TKLIBS="$(SCIDIR1)\bin\tcl83.lib" "$(SCIDIR1)\bin\tk83.lib"
-# TKLIBS="$(TCLTK)\lib\tcl83.lib" "$(TCLTK)\lib\tk83.lib"
+TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
+# TKLIBS="$(TCLTK)\lib\tcl84.lib" "$(TCLTK)\lib\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF

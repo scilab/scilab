@@ -316,7 +316,7 @@ void Callback_HELP(void)
 void Callback_DEMOS(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1 ("exec('SCI/demos/alldems.dem');", 1);
+	StoreCommand1 ("exec('SCI/demos/alldems.dem');\n", 1);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_WEB(void)

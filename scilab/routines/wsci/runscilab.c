@@ -74,12 +74,12 @@ SciEnv ()
 #endif
       if ((p1 = getenv ("TCL_LIBRARY")) == (char *) 0)
 	{
-	  sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.3", p);
+	  sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
 	  putenv (env);
 	}
       if ((p1 = getenv ("TK_LIBRARY")) == (char *) 0)
 	{
-	  sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.3", p);
+	  sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
 	  putenv (env);
 	}
     }

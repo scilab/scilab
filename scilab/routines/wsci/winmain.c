@@ -1038,13 +1038,13 @@ static void SciEnv ()
 
 		if ((p1 = getenv ("TCL_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.3", p);
+			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
 			putenv (env);
 		}
 
 		if ((p1 = getenv ("TK_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.3", p);
+			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
 			putenv (env);
 		}
 

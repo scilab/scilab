@@ -1,6 +1,6 @@
 function tklib=gettklib()
   if MSDOS then 
-    tklib='tk83.dll', 
+    tklib='tk84.dll', 
   else 
     tklib='libtk@TK_MAJOR_VERSION@.@TK_MINOR_VERSION@.so',
   end
