@@ -10069,29 +10069,29 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->ny =ny;
      
 
-     /* pAXES_FEATURE(pobj)->str = str;*/ // Pb here, F.Leray : Weird init.: can not copy a string using '='
-	 if(str != (char **) NULL)
-	  {
-		   if ((pAXES_FEATURE(pobj)->str= malloc (Max(nx,ny) * sizeof (char*))) == NULL)
-			return (sciPointObj *) NULL;
+      /* pAXES_FEATURE(pobj)->str = str;*/ // Pb here, F.Leray : Weird init.: can not copy a string using '='
+      if(str != (char **) NULL)
+	{
+	  if ((pAXES_FEATURE(pobj)->str= malloc (Max(nx,ny) * sizeof (char*))) == NULL)
+	    return (sciPointObj *) NULL;
 
-		   for(i=0;i<Max(nx,ny);i++) 
-		   {
-			   if(str[i] != (char *) NULL)
-			   {
-                   if((pAXES_FEATURE (pobj)->str[i] = malloc( (strlen(str[i])+1) * sizeof(char))) == NULL)
-                       return (sciPointObj *) NULL;
-				   else
-				       strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
-			   }
-			   else
-                   pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
-		   }
-	  }
-	  else
-	  {
-		pAXES_FEATURE (pobj)->str = (char **) NULL;
-	  }
+	  for(i=0;i<Max(nx,ny);i++) 
+	    {
+	      if(str[i] != (char *) NULL)
+		{
+		  if((pAXES_FEATURE (pobj)->str[i] = malloc( (strlen(str[i])+1) * sizeof(char))) == NULL)
+		    return (sciPointObj *) NULL;
+		  else
+		    strcpy(pAXES_FEATURE (pobj)->str[i],str[i]);
+		}
+	      else
+		pAXES_FEATURE (pobj)->str[i] = (char *) NULL;
+	    }
+	}
+      else
+	{
+	  pAXES_FEATURE (pobj)->str = (char **) NULL;
+	}
 
       pAXES_FEATURE (pobj)->subint = subint;
       pAXES_FEATURE (pobj)->fontsize =fontsize; 
