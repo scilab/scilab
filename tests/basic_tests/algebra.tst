@@ -1891,7 +1891,7 @@ if Err(Ab-inv(X)*A*Y)>1000*%eps then pause,end
 function r=Err(x),r=norm(x,1),endfunction
 if bdiag([])<>[] then pause,end
 [ab,x]=bdiag([]);
-if ab<>[]|x<[] then pause,end
+if ab<>[]|x<>[] then pause,end
 [ab,x,bs]=bdiag([]);
 if ab<>[]|x<>[]|bs<>[] then pause,end
 if execstr('bdiag([1 2;3 4;5 6])','errcatch')==0 then pause,end

@@ -3453,10 +3453,7 @@ if bdiag([])<>[] then bugmes();quit;end
  
 [ab,x]=bdiag([]);
  
-if ab<>[]|x<[] then bugmes();quit;end
-               !--error    60 
-argument with incompatible dimensions
- 
+if ab<>[]|x<>[] then bugmes();quit;end
  
 [ab,x,bs]=bdiag([]);
  
