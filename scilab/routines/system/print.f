@@ -32,8 +32,9 @@ c
       lineln=lct(5)
       mode=lct(6)
       ndgt=lct(7)
-      lkeep0=lstk(lk)
+
       if(rstk(pt).eq.1101) goto 96
+      lkeep0=lstk(lk)
       call putid(dname,id)
 c     
       if (lct(1) .lt. 0) then
