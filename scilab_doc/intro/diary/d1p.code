@@ -20,6 +20,10 @@ p=poly([1 2 3],'z','coeff')
 //p can also be defined by :
 s=poly(0,'s');p=1+2*s+s^2
 diary(0)
+diary('d1p41.dia')
+Params.tol=[0.01,0.002]; Params.errmsg='error message';
+Params.tol(2)
+diary(0)
 diary('d1p5.dia')
 M=[p, p-1; p+1 ,2]
 det(M)
