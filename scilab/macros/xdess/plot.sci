@@ -80,7 +80,7 @@ Ttmp=T;
 
 for i=1:nv-1
   e=[];
-  e=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,11,13,15]))
+  e=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
 
   if (e<>[]) then
     d=[d i];
@@ -126,7 +126,8 @@ else
   
   // Some test to check wrong inputs
   //
-  // 1. Test if 2 data couples (type==1) are at least separated by 2 indices
+  // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130]) 
+  // are at least separated by 2 indices
   if (d(2:$)-d(1:$-1)<2)
     disp("Error inside input argument !");
     return;
@@ -232,6 +233,21 @@ for i=1:numplot
   Marker = %F;
 
   if (provided_data == 2) then
+    
+    if (type(ListArg(P(i,2))) == 13 | type(ListArg(P(i,2))) == 130)
+      // A function (macro or primitive) is given. We need to build the vector or matrix.
+      sizefirstarg = size(ListArg(P(i,1)));
+      fonction = ListArg(P(i,2));
+      firstarg = ListArg(P(i,1));
+      tmp = [];
+      for ii=1:sizefirstarg(1,2)
+	for jj=1:sizefirstarg(1,1)
+	  tmp(jj,ii) = fonction(firstarg(jj,ii));
+	end
+      end
+      ListArg(P(i,2)) = tmp;
+    end
+
     [X,Y] = checkXYPair(typeOfPlot,ListArg(P(i,1)),ListArg(P(i,2)))
   else
     if or(size(ListArg(P(1,2)))==1)  // If this is a vector
