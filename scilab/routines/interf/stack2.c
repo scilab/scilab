@@ -346,7 +346,7 @@ int rhs_opt_find(name,opts)
 	{
 	  rep = i ; break;
 	}
-      else if ( cmp < 0 ) 
+      else if ( cmp < 0 )
 	{
 	  break;
 	}
@@ -986,17 +986,17 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
 	     fname);
     return FALSE_;
   }
+
+  ix1 = *lnumber + Top - Rhs;  /* factorization of this term (Bruno 9 march 2005, bugfix ) */
   switch ( Type ) {
   case 'c' :
     *n = 1;
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcrestring)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1], m, &lr, nlgh)) {
       return FALSE_;
     }
     C2F(cchar)(m,(char **) iptr, istk(lr));
     break;
   case 'd' :
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcremat)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1],
 			  &it, m, n, &lr, &lc, nlgh)) {
       return FALSE_;
@@ -1005,7 +1005,6 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
     C2F(cdouble) (&ix1,(double **) iptr, stk(lr));
     break;
   case 'r' :
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcremat)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1],
 			  &it, m, n, &lr, &lc, nlgh)) {
       return FALSE_;
@@ -1014,7 +1013,6 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
     C2F(cfloat) (&ix1,(float **) iptr, stk(lr));
     break;
   case 'i' :
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcremat)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1],
 			  &it, m, n, &lr, &lc, nlgh)) {
       return FALSE_;
@@ -1023,7 +1021,6 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
     C2F(cint)(&ix1,(int **) iptr, stk(lr));
     break;
   case 'b' :
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcrebmat)(fname, &ix1, number, &C2F(intersci).lad[*lnumber - 1]
 			   , m, n, &lr, nlgh)) {
       return FALSE_;
@@ -1032,13 +1029,11 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
     C2F(cbool)(&ix1,(int **) iptr, istk(lr));
     break;
   case 'S' : 
-    ix1 = *lnumber + Top - Rhs;
     if ( !cre_listsmat_from_str(fname,&ix1, number, &C2F(intersci).lad[*lnumber - 1]
 				, m, n, (char **) iptr, nlgh)) /* XXX */
       return FALSE_;
     break;
   case 's' :
-    ix1 = *lnumber + Top - Rhs;
     if ( !cre_listsparse_from_ptr(fname,&ix1,number,
 			      &C2F(intersci).lad[*lnumber - 1]
 			      , m, n, (SciSparse *) iptr, nlgh))
@@ -1054,7 +1049,6 @@ int C2F(createlistvarfromptr)(lnumber, number, typex, m, n, iptr, type_len)
     C2F(tpconv)(&it,&it,&ix1,((SciIntMat *) iptr)->D, &inc,istk(lr), &inc);
     break;
   case 'p' :
-    ix1 = *lnumber + Top - Rhs;
     if (! C2F(listcrepointer)(fname, &ix1, number, 
 			      &C2F(intersci).lad[*lnumber - 1],&lr,nlgh)) 
       {
