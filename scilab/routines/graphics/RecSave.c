@@ -278,7 +278,7 @@ static int SaveFec(char *plot)
   if ( SaveVectF((lplot->brect_kp),4L) == 0) return(0);
   if ( SaveVectF((lplot->zminmax),2L) == 0) return(0);   /* added by bruno */
   if ( SaveVectLI((lplot->colminmax),2L) == 0) return(0);/* ============== */
-  if ( SaveVectLI((lplot->extremes_col),2L) == 0) return(0);/* ============== */
+  if ( SaveVectLI((lplot->colout),2L) == 0) return(0);/* ============== */
   if ( SaveLI(lplot->with_mesh)== 0) return(0);             /* ============== */
   if ( SaveVectLI((lplot->aaint),4L) == 0) return(0);
   if ( SaveVectLI((lplot->aaint_kp),4L) == 0) return(0);

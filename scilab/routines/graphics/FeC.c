@@ -28,7 +28,7 @@ static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 				       double z, int inda, int indb, 
 				       integer *xint, integer *yint));
 void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-		      integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col, BOOL with_mesh));
+		      integer *Ntr,double *zminmax,integer *colminmax, integer *colout, BOOL with_mesh));
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -64,7 +64,7 @@ void get_frame_in_pixel(integer WIRect[]);
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, 
 	     char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, 
-	     integer *colminmax, integer *extremes_col, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2)
+	     integer *colminmax, integer *colout, BOOL with_mesh, BOOL flagNax, integer lstr1, integer lstr2)
 {
   integer *xm,*ym,n1=1/*,i*/;
 
@@ -160,7 +160,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      sciSetCurrentObj (ConstructFec 
 		       ((sciPointObj *)
 	                sciGetSelectedSubWin (sciGetCurrentFigure ()),
-	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,extremes_col, with_mesh)); 
+	                x,y,triangles,func,*Nnode,*Ntr,zminmax,colminmax,colout, with_mesh)); 
      pptabofpointobj = sciGetCurrentObj();
      hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
      cmpt++;   
@@ -185,9 +185,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 
      /* Storing values if using the Record driver */
      if ((GetDriver()=='R') && (version_flag() != 0)) /* NG */
-       /* added zminmax and colminmax (bruno) then extremes_col, then with_mesh */
+       /* added zminmax and colminmax (bruno) then colout, then with_mesh */
        StoreFec("fec_n",x,y,triangles,func,Nnode,Ntr,strflag,legend,brect,aaint,
-		zminmax,colminmax,extremes_col,with_mesh);
+		zminmax,colminmax,colout,with_mesh);
 
      /** Allocation **/
      xm = graphic_alloc(0,*Nnode,sizeof(int));
@@ -197,7 +197,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   
      C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
 
-     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,extremes_col,with_mesh);
+     newfec(xm,ym,triangles,func,Nnode,Ntr,zminmax,colminmax,colout,with_mesh);
      axis_draw(strflag); 
 
      /** Drawing the Legends **/
@@ -214,11 +214,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 }
 
 void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
-	    integer *Ntr,double *zminmax,integer *colminmax, integer *extremes_col, BOOL with_mesh)
+	    integer *Ntr,double *zminmax,integer *colminmax, integer *colout, BOOL with_mesh)
 {
   /*   code modified by Bruno 01/02/2001
    *   a new modif (Bruno 04 nov 2004 from an idea of Jpc): adding the 
-   *   extremes_col to choose the colors when the zminmax levels are 
+   *   colout to choose the colors when the zminmax levels are 
    *   crossed (and the color 0 correspond to no painting at all these zones)
    *   a new modif (Bruno 08 nov 2004 from an idea of Jpc): adding with_mesh to see or not the mesh  
    */
@@ -273,23 +273,23 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
       color_max = colminmax[1];
     };
 
-  /*   choice for the extreme colors (for the automatic choice I have
-   *   put extremes_col[0]= extremes_col[1]=-1 in matdes.c)  
+  /*   choice for the "out" colors (for the automatic choice I have
+   *   put colout[0]= colout[1]=-1 in matdes.c)  
    */
-  if ( extremes_col[0] < -1 || extremes_col[0] > nz || extremes_col[1] < -1 || extremes_col[1] > nz )
+  if ( colout[0] < -1 || colout[0] > nz || colout[1] < -1 || colout[1] > nz )
     {
-      sciprint("\n\r fec : extremes_col badly choosen ! "); return;
+      sciprint("\n\r fec : colout badly choosen ! "); return;
     } 
 
-  if ( extremes_col[0] == -1 )  /* automatic choice */
+  if ( colout[0] == -1 )  /* automatic choice */
      col_under_min = color_min;
   else
-    col_under_min =  extremes_col[0];
+    col_under_min =  colout[0];
 
-  if ( extremes_col[1] == -1 )  /* automatic choice */
+  if ( colout[1] == -1 )  /* automatic choice */
      col_upper_max = color_max;
   else
-    col_upper_max =  extremes_col[1];
+    col_upper_max =  colout[1];
 
   /* 
    *  1/ the purpose of the first part is to to compute the "zone" of each point :
@@ -449,7 +449,7 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy,
   */
 
   int nb0, edge, izone, color;
-  integer ncont,nr, zero, resx[5],resy[5];
+  integer ncont,nr, zero=0, resx[5],resy[5];
   integer xEdge2, yEdge2, xEdge, yEdge; 
 
   if ( zxy[0] == zxy[2] )   /*  case of only one color for the triangle : */
