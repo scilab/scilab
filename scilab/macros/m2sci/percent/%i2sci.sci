@@ -160,10 +160,15 @@ else
 	end
       end
     end
-    // a(1,:)=b(1,:) with a==[] is converted by a(1,1:length(b(1,:)))=b(1,:)
+    // a(k,:)=b with a==[] is converted by a(1,1:length(b))=b
     if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
       length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
       tree.operands($-1)=Operation(":",list(Cste(1),length_funcall),list())
+    end
+    // a(:,k)=b with a==[] is converted by a(1:length(b),1)=b
+    if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-2))=="cste" & tree.operands($-2).value==":" then
+      length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
+      tree.operands($-2)=Operation(":",list(Cste(1),length_funcall),list())
     end
     tree.out(1).type=from.type
   end
