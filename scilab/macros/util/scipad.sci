@@ -21,7 +21,13 @@ function scipad(varargin)
         if type(f)==10 then
             onevalidfile=%t 
 // caveat: this fails for eval(f)=integer, though
-            TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}')
+            // For Windows
+	    if MSDOS then
+      		f=strsubst(f,'\','/'); 
+      		if type(f)==10 then TK_EvalStr('scipad eval {openfile '+ f +'}'),end
+      		else
+      		if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}'),end
+      		end
         end
       end
 // close "Untitled.sce" opened as default when scipad is started anew
