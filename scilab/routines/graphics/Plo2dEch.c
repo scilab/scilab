@@ -1392,6 +1392,38 @@ extern void unzoom()
     }
 }
 
+extern void unzoom_one_axes(sciPointObj *psousfen)
+{
+  double fmin,fmax,lmin,lmax;
+  integer min,max,puiss,deux=2,dix=10;
+
+  if (sciGetEntityType (psousfen) == SCI_SUBWIN) {
+      if (sciGetZooming(psousfen)) 	{
+	  sciSetZooming(psousfen, 0);
+	  pSUBWIN_FEATURE (psousfen)->FRect[0]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[0];
+	  pSUBWIN_FEATURE (psousfen)->FRect[1]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[1];
+	  pSUBWIN_FEATURE (psousfen)->FRect[2]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[2];
+	  pSUBWIN_FEATURE (psousfen)->FRect[3]   = pSUBWIN_FEATURE (psousfen)->FRect_kp[3];
+	}
+
+      /** regraduation de l'axe des axes ***/
+      fmin= pSUBWIN_FEATURE (psousfen)->FRect[0];
+      fmax= pSUBWIN_FEATURE (psousfen)->FRect[2];
+      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+      pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+
+      fmin= pSUBWIN_FEATURE (psousfen)->FRect[1];
+      fmax= pSUBWIN_FEATURE (psousfen)->FRect[3];
+      C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+      pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+
+      sciSetReplay(1);
+      sciDrawObj(sciGetCurrentFigure());
+      sciSetReplay(0);
+    }
+}
+
+
 /**
   Win32, warning when using xor mode
   colors are changed and black is turned to white

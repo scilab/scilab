@@ -38,6 +38,7 @@ extern void  C2F(msgs)(int *i, int *v);
 extern int zoom();
 extern int zoom_box(double *bbox);
 extern void unzoom();
+extern void unzoom_one_axes(sciPointObj *psousfen);
 
 #define NUMSETFONC 38
 static char *KeyTab_[] = {
@@ -4789,11 +4790,17 @@ int sciunzoom(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  CheckRhs(0,0) ;
+  CheckRhs(0,1) ;
   CheckLhs(0,1) ;
   
+  if ( Rhs == 0 )
     unzoom();
- 
+  else {
+    int m,n,l,i;
+    GetRhsVar(1,"h",&m,&n,&l); 
+    for (i=0;i<m*n;i++)
+      unzoom_one_axes(*hstk(l+i));
+  }
   LhsVar(1)=0; 
   return 0;
 } 
@@ -5731,8 +5738,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     /* On doit avoir avoir une matrice 4x1 */
     if (*numcol * *numrow == 4)
       scizoom(stk(*value));  
-    else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
-	      
+    else if (*numcol * *numrow == 0)
+      unzoom();
+    else
+      {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
+    
   } 
   else if ((strncmp(marker,"zoom_state", 9) == 0)  && (sciGetEntityType (pobj) == SCI_SUBWIN)){
     if ((strncmp(cstk(*value),"on", 3) == 0))
@@ -6383,25 +6393,34 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	     negative boundaries and send an error message to the user */
 
 	  if( (pSUBWIN_FEATURE (pobj)->SRect[0] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[1] <= 0.) 
-	      && flags[0] == 'l')
-	    {strcpy(error_message,"Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode");return -1;}
+	      && flags[0] == 'l') {
+	    strcpy(error_message,
+		   "Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode");
+	    return -1;
+	  }
 	  else
 	    {
-	      sciSubWindow * pppsubwin = pSUBWIN_FEATURE (pobj);
-	      pSUBWIN_FEATURE (pobj)->axes.u_xlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],  pSUBWIN_FEATURE (pobj)->axes.u_xgrads, 
-				&pSUBWIN_FEATURE (pobj)->axes.u_nxgrads, pSUBWIN_FEATURE (pobj)->axes.u_xlabels);
+	      pSUBWIN_FEATURE (pobj)->axes.u_xlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],
+									 pSUBWIN_FEATURE (pobj)->axes.u_xgrads, 
+									 &pSUBWIN_FEATURE (pobj)->axes.u_nxgrads, 
+									 pSUBWIN_FEATURE (pobj)->axes.u_xlabels);
 	      
 	     /*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
 	      pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
 	    }
 	  
 	  if((pSUBWIN_FEATURE (pobj)->SRect[2] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[3] <= 0.) 
-	     && flags[1] == 'l')
-	    {strcpy(error_message,"Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode");return -1;}
+	     && flags[1] == 'l'){ 
+	    strcpy(error_message,
+		   "Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode");
+	    return -1;
+	  }
 	  else
 	    {
-	      pSUBWIN_FEATURE (pobj)->axes.u_ylabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],  pSUBWIN_FEATURE (pobj)->axes.u_ygrads, 
-				&pSUBWIN_FEATURE (pobj)->axes.u_nygrads, pSUBWIN_FEATURE (pobj)->axes.u_ylabels);
+	      pSUBWIN_FEATURE (pobj)->axes.u_ylabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],  
+									 pSUBWIN_FEATURE (pobj)->axes.u_ygrads, 
+									 &pSUBWIN_FEATURE (pobj)->axes.u_nygrads, 
+									 pSUBWIN_FEATURE (pobj)->axes.u_ylabels);
 	      
 /* 	      ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],'y'); */
 	      pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
@@ -6415,9 +6434,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      {strcpy(error_message,"Error: data_bounds on z axis must be strictly positive to switch to logarithmic mode");return -1;}
 	    else
 	      {
-		sciSubWindow * pppsubwin = pSUBWIN_FEATURE (pobj);
-		pSUBWIN_FEATURE (pobj)->axes.u_zlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[2], flags[2],  pSUBWIN_FEATURE (pobj)->axes.u_zgrads, 
-									   &pSUBWIN_FEATURE (pobj)->axes.u_nzgrads, pSUBWIN_FEATURE (pobj)->axes.u_zlabels);
+		pSUBWIN_FEATURE (pobj)->axes.u_zlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[2], flags[2],  
+									   pSUBWIN_FEATURE (pobj)->axes.u_zgrads, 
+									   &pSUBWIN_FEATURE (pobj)->axes.u_nzgrads, 
+									   pSUBWIN_FEATURE (pobj)->axes.u_zlabels);
 		
 		/*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
 		pSUBWIN_FEATURE (pobj)->logflags[2]=flags[2];
@@ -7031,11 +7051,9 @@ if ((pobj == (sciPointObj *)NULL) &&
   else if (strncmp(marker,"current_axes", 12) == 0)
     {
       sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      	  
       *hstk(outindex) = sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
     }
   
@@ -7576,12 +7594,10 @@ if ((pobj == (sciPointObj *)NULL) &&
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	char ** foo = (char **) NULL;
 	int i;
-	sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
+
 	numrow   = 1;numcol   = 3;
-	
 	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary auto_ticks");return -1;}
-	
 	
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i] == TRUE)
@@ -7608,12 +7624,10 @@ if ((pobj == (sciPointObj *)NULL) &&
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	char ** foo = (char **) NULL;
 	int i;
-	sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
+
 	numrow   = 1;numcol   = 3;
-	
 	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
-	
 	
 	for(i=0;i<numcol;i++)
 	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
@@ -7898,13 +7912,10 @@ if ((pobj == (sciPointObj *)NULL) &&
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       char ** foo = (char **) NULL;
       int i;
-      sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
+
       numrow   = 1;numcol   = 3;
-	
       if((foo=malloc(numcol*(sizeof(char *))))==NULL){
 	strcpy(error_message,"No memory left for allocating temporary axes_visible");return -1;}
-	
-	
       for(i=0;i<numcol;i++)
 	if( pSUBWIN_FEATURE (pobj)->axes.axes_visible[i] == TRUE)
 	  {
