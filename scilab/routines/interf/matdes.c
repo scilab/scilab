@@ -844,10 +844,9 @@ int sciparam3d(fname, fname_len)
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
 
- /*  if (version_flag() == 0) iflag_def[1]=8; */
+  if (version_flag() == 0) iflag_def[1]=8;
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
-  if(version_flag() == 0) iflag_def[0]=0;
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
 
@@ -951,10 +950,9 @@ int sciparam3d1(fname, fname_len)
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
-  /* if (version_flag() == 0) iflag_def[1]=8; */
+  if (version_flag() == 0) iflag_def[1]=8;
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
-  if(version_flag() == 0) iflag_def[0]=0;
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
 
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
@@ -1141,7 +1139,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
       }
   }
   C2F(sciwin)();
-  /* if (version_flag() == 0) iflag_def[1]=8;*/
+  if (version_flag() == 0) iflag_def[1]=8;
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
@@ -3115,8 +3113,10 @@ int scixtitle(fname,fname_len)
      unsigned long fname_len;
 {
   int narg;
-  long hdl;
-  long *hdltab;
+ /*  long hdl; */
+/*   long *hdltab; */
+ /*  sciSubWindow * ppsubwin = NULL; */
+  sciPointObj * psubwin = NULL;
 
   if (Rhs <= 0) {
     sci_demo(fname,"x=(1:10)';plot2d(x,x);xtitle(['Titre';'Principal'],'x','y');",&one);
@@ -3124,13 +3124,17 @@ int scixtitle(fname,fname_len)
   }
   CheckRhs(1,3);
   C2F(sciwin)();
-  if (version_flag() == 0){
-    if (Rhs >= 1)
-      {
-	if ((hdltab = malloc (Rhs * sizeof (long))) == NULL)
-	  return 0;
-      }
-  }
+/*   if (version_flag() == 0){ */
+/*     if (Rhs >= 1) */
+/*       { */
+/* 	if ((hdltab = malloc (Rhs * sizeof (long))) == NULL) */
+/* 	  return 0; */
+/*       } */
+/*   } */
+
+  if (version_flag() == 0) 
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  /*   ppsubwin = pSUBWIN_FEATURE( sciGetSelectedSubWin (sciGetCurrentFigure ())); */
 
   for ( narg = 1 ; narg <= Rhs ; narg++) 
     {
@@ -3147,17 +3151,31 @@ int scixtitle(fname,fname_len)
       FreeRhsSVar(Str);
       if (version_flag() == 0)
 	{
-	  Objtitle(C2F(cha1).buf,narg,&hdl);
-	  hdltab[narg-1]=hdl;
+	  /*   Objtitle(C2F(cha1).buf,narg,&hdl); */
+	  /* 	  hdltab[narg-1]=hdl; */
+
+	  switch(narg){
+	  case 1:
+	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_title, C2F(cha1).buf , strlen(C2F(cha1).buf));
+	    break;
+	  case 2:
+	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_x_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
+	    break;
+	  case 3:
+	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_y_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
+	    break;
+	  }
+	  sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ()));
+	  sciRedrawFigure();
 	}
       else
 	Xtitle (C2F(cha1).buf,narg);
     }
-  if (version_flag() == 0) {
-    if (Rhs > 1){
-      sciSetCurrentObj (ConstructAgregation (hdltab, Rhs));
-      FREE(hdltab); }
-  }
+ /*  if (version_flag() == 0) { */
+/*     if (Rhs > 1){ */
+/*       sciSetCurrentObj (ConstructAgregation (hdltab, Rhs)); */
+/*       FREE(hdltab); } */
+/*   } */
   LhsVar(1)=0;
   return 0;
 }
@@ -5477,9 +5495,43 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     sciAddCallback((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow),1);
   }
 	   
-        
+       
+
 
   /******** AXES *******************************/
+  else if (strncmp(marker,"x_label", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"x_label property undefined for this object");return -1;}
+      else{
+	{strcpy(error_message,"can not set directly a label object");return -1;}
+      }
+    }
+ else if (strncmp(marker,"y_label", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"y_label property undefined for this object");return -1;}
+      else{
+	{strcpy(error_message,"can not set directly a label object");return -1;}
+      }
+    }
+ else if (strncmp(marker,"z_label", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"z_label property undefined for this object");return -1;}
+      else{
+	{strcpy(error_message,"can not set directly a label object");return -1;}
+      }
+    }
+ else if (strncmp(marker,"title", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"title property undefined for this object");return -1;}
+      else{
+	{strcpy(error_message,"can not set directly a label object");return -1;}
+      }
+    }
+
   else if (strncmp(marker,"tics_direction", 14) == 0)
     {   
       if (pAXES_FEATURE (pobj)->ny == 1)
@@ -6510,7 +6562,8 @@ if ((pobj == (sciPointObj *)NULL) &&
       while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
 	{
 	  /* DJ.A 30/12 */
-	  if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE)
+	  if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
+	     && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL) /* F.Leray 28.05.04 */
 	    i++;
 	  toto = toto->pnext;
 	}
@@ -6525,7 +6578,8 @@ if ((pobj == (sciPointObj *)NULL) &&
 	i = 0;
 	while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
 	  { /* DJ.A 30/12 */
-	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE)
+	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
+	       && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL) /* F.Leray 28.05.04 */
 	      {
 		stk(outindex)[i] = 
 		  (double )sciGetHandle((sciPointObj *)toto->pointobj);
@@ -6740,7 +6794,11 @@ if ((pobj == (sciPointObj *)NULL) &&
      numrow = 1;
      numcol = sciGetTextLength((sciPointObj *)pobj);
      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+     /*  if(sciGetEntityType(pobj) != SCI_LABEL) */
      strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
+   /*   else */
+/*        strncpy(cstk(outindex), sciGetLabel(sciGetSelectedSubWin (sciGetCurrentFigure ()), */
+/* 	       pLABEL_FEATURE(pobj)->ptype), numrow*numcol); */
    }
 
  else if (strncmp(marker,"auto_clear", 10) == 0)
@@ -6851,7 +6909,58 @@ if ((pobj == (sciPointObj *)NULL) &&
       strncpy(cstk(outindex), sciGetCallback((sciPointObj *)pobj), numrow*numcol);
     }
 	
+
+
   /**************************** AXES *************/
+  else if (strncmp(marker,"x_label", 7) == 0) /* we send back a handle on the x_label object */
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"x_label property undefined for this object");return -1;}
+      else{
+	numrow = 1;
+	numcol = 1;
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	stk(outindex)[0] = (double ) 
+	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_x_label);
+	
+      }
+    }
+ else if (strncmp(marker,"y_label", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"y_label property undefined for this object");return -1;}
+      else{
+	numrow = 1;
+	numcol = 1;
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	stk(outindex)[0] = (double ) 
+	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_y_label);
+      }
+    }
+ else if (strncmp(marker,"z_label", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"z_label property undefined for this object");return -1;}
+      else{
+	numrow = 1;
+	numcol = 1;
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	stk(outindex)[0] = (double ) 
+	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
+      }
+    }
+ else if (strncmp(marker,"title", 7) == 0)
+    {
+      if (sciGetEntityType (pobj) != SCI_SUBWIN)
+	{strcpy(error_message,"title property undefined for this object");return -1;}
+      else{
+	numrow = 1;
+	numcol = 1;
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	stk(outindex)[0] = (double ) 
+	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_title);
+      }
+    }
   else if (strncmp(marker,"log_flags", 9) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -7647,8 +7756,9 @@ int glue(fname,fname_len)
 	}
                             
     }
+
   sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, n));
-	      
+  
   numrow = 1;
   numcol = 1;
   CreateVar(Rhs+3,"h",&numrow,&numcol,&outindex);
