@@ -1,4 +1,9 @@
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/*------------------------------------------------------------------------
+ *    X11 interface 
+ *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ --------------------------------------------------------------------------*/
+
 #include <stdio.h>			/* For the Syntax message */
 #include <signal.h>
 
@@ -21,6 +26,7 @@
 #include <X11/Xaw/Panner.h>	
 #include <X11/IntrinsicP.h>
 #include <X11/@XAW@/ViewportP.h>
+
 
 #include <string.h>
 #include <malloc.h>
@@ -898,8 +904,7 @@ Select(w, number, client_data)
  * deleted a graphic window ( used in xclick_any)
  */
 
-void SendSGDeleteMessage(win_num)
-     int win_num;
+static void SendSGDeleteMessage(int win_num)
 {
   Window Win;
   Widget toplevel;
@@ -937,16 +942,18 @@ void reset_scig_deletegwin_handler()
 }
 
 
-/*
+/*------------------------------------------------------------------
  * Delete Window 
+ *------------------------------------------------------------------*/
+
+/* this is used to prevent the user from destroying a graphic window 
+ * when acquiring for example a zoom rectangle (see Plo2dEch 
  */
-
-
-
 static int sci_graphic_protect = 0;
+void   set_delete_win_mode(void) {  sci_graphic_protect = 0 ;}
+extern void   set_no_delete_win_mode(void)  {  sci_graphic_protect = 1 ;}
 
-void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
-extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
+extern int  get_xclick_client_message_flag(void);
  
 static void
 Delete(w, number, client_data)
@@ -955,8 +962,18 @@ Delete(w, number, client_data)
      XtPointer client_data;
 {
   integer win_num = (integer) number ;
-  /** Warning : this is not valid here dpy = XtDisplay(w); **/
-  SendSGDeleteMessage(win_num);
+  if (  sci_graphic_protect == 1 )
+    {
+      wininfo("Cannot destroy window while acquiring zoom rectangle ");
+      return;
+    }
+  if ( get_xclick_client_message_flag() == 1 ) 
+    {
+      /* the client message is only used while waiting for 
+       * a mouse click 
+       */
+      SendSGDeleteMessage(win_num);
+    }
   /** Delete the graphic window **/
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
   DeleteSGWin(win_num);
