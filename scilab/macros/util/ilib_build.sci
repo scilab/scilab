@@ -16,5 +16,5 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags)
   ilib_gen_Make(ilib_name,table,files,libs,makename,%t,ldflags,cflags,fflags);
   // we call make
   if info==1 then write(%io(2),'   running the makefile');end
-  ilib_compile(ilib_name,makename);
+  ilib_compile(ilib_name,makename,files);
 endfunction

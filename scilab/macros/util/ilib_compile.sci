@@ -1,35 +1,76 @@
-function libn=ilib_compile(lib_name,makename)
+function libn=ilib_compile(lib_name,makename,files)
 // Copyright ENPC
 // call make for target files or objects depending
 // on OS and compilers
 // very similar to G_make
+// if files is given the make is performed on each 
+// target contained in files then a whole make is performed 
 //-------------------------------------------------
-if typeof(lib_name)<>'string' then
-  error('ilib_compile: first argument must be a string');
-  return ;
-end
-oldpath=getcwd();
-k=strindex(makename,['/','\'])
-if k~=[] then
-  path=part(makename,1:k($))
-  makename=part(makename,k($)+1:length(makename))
-  chdir(path)
-else
-  path=''
-end
-comp_target = getenv('COMPILER','NO');
-if getenv('WIN32','NO')=='OK' then
-  libn=lib_name+'.dll'
-  select comp_target
-  case 'VC++' then unix_s('nmake /f '+ makename +'.mak '+libn);
-  case 'ABSOFT' then unix_s('amake /f '+ makename +'.amk '+libn);
-  else // gnuwin32 ?
-    unix_s('make -f ' + makename+' '+libn);
+  [lhs,rhs]=argn(0);
+  if rhs < 3 then files=[]; end 
+  if typeof(lib_name)<>'string' then
+    error('ilib_compile: first argument must be a string');
+    return ;
   end
-else
-  unix_s('make -f '+ makename+' '+lib_name+'.la');
-  libn=lib_name+'.so'
-end
-libn=path+libn
-chdir(oldpath)
+  oldpath=getcwd();
+  [make_command,lib_name_make,lib_name,path,makename,files]= ...
+      ilib_compile_get_names(lib_name,makename,files)  
+  if path<> '';  chdir(path);  end 
+
+  // first try to build each file step by step 
+  if files<>[] then 
+    for x = files(:)'; 
+      unix_w(make_command+makename + ' '+ x); 
+    end
+  end
+  // then the shared library 
+  unix_s(make_command+makename + ' '+ lib_name); 
+  // a revoir 
+  libn=path+lib_name_make ; 
+  chdir(oldpath)
 endfunction
+
+function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_get_names(lib_name,makename,files) 
+// return is res the correct name for 
+// makefile, libname, files 
+  files=strsubst(strsubst(files,'.obj','') ,'.o',''); //compat
+  k=strindex(makename,['/','\'])
+  if k~=[] then
+    path=part(makename,1:k($))
+    makename=part(makename,k($)+1:length(makename))
+  else
+     path=''
+  end
+  comp_target = getenv('COMPILER','NO');
+  if getenv('WIN32','NO')=='OK' then
+    lib_name=lib_name+'.dll'
+    lib_name_make=lib_name;
+    if files<>[] then 
+      files = files + '.obj' ;
+    end
+    select comp_target
+     case 'VC++' then 
+      makename = makename + '.mak' ; 
+      make_command = 'nmake /f '
+     case 'ABSOFT' then 
+      makename = makename + '.amk ';
+      make_command = 'amake /f '
+    else // gnuwin32 ? 
+       makename = makename;
+       make_command = 'make -f '
+    end
+  else
+     if files <> [] then 
+       files = files + '.o';
+     end
+     lib_name_make=lib_name+'.so';
+     lib_name = lib_name+'.la'; 
+     make_command = 'make -f ';
+  end
+endfunction 
+
+  
+
+
+
+
