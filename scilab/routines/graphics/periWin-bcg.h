@@ -4,6 +4,8 @@
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
 
+#ifndef PERIWIN_BCG 
+#define PERIWIN_BCG 
 #include <winuser.h>
 #define Window HWND
 typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
@@ -61,3 +63,9 @@ struct BCG
   int CWindowWidthView ; /** graphic window width **/
   int CWindowHeightView ; /** graphic window height **/
 }  ;
+
+
+extern struct BCG *GetWindowXgcNumber  (int i);
+
+#endif /* PERIWIN_BCG  */
+

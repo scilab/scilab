@@ -649,9 +649,6 @@ extern void ReleaseWinHdc  __PARAMS((void));
 /**  extern struct BCG *AddNewWindow  __PARAMS((WindowList **listptr));  **/
   extern void DeleteSGWin  __PARAMS((integer intnum));  
   extern void DeleteWindowToList  __PARAMS((integer num));  
-/**  extern HWND GetWindowNumber  __PARAMS((int wincount));  **/
-/**  extern struct BCG *GetWindowXgcNumber  __PARAMS((integer i));  **/
-/**  extern struct BCG *GetWinXgc  __PARAMS((WindowList *listptr,integer i));  **/
   extern void C2F(getwins) __PARAMS((integer *,integer *,integer *));  
   extern void set_c  __PARAMS((integer i));  
   extern void C2F(initgraphic) __PARAMS((char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *));  
