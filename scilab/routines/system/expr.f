@@ -145,15 +145,15 @@ c     .     evaluation shortcut
                   ids(1,pt)=comp(1)
                endif
             else
-           temp=abs(istk(iadr(lstk(top))))
-                 if (temp .ne.8 ) then
-                   if ( istrue(0)) then
-c     .             first term is true there is no use to evaluate the other
-                    ids(1,pt)=1
-c     .             err1 <>0 sets interpretation without evaluation
-                    err1=1
-                    endif
-                 endif
+               temp=abs(istk(iadr(lstk(top))))
+               if (temp .ne.8 ) then
+                  if ( istrue(0)) then
+c     .              first term is true there is no use to evaluate the other
+                     ids(1,pt)=1
+c     .              err1 <>0 sets interpretation without evaluation
+                     err1=1
+                  endif
+               endif
             endif
          endif
       else
