@@ -53,9 +53,9 @@
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 xsetech(frect=[0,0,100,100])
-rubberbox([x;y;30;10])
-rubberbox()
+[x,y]=xclick();r=rubberbox([x;y;30;10])
 xrect(r)
+r=rubberbox()
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>     

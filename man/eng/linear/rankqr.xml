@@ -78,7 +78,7 @@ number of R(1:RANK,1:RANK).
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 A=rand(5,3)*rand(3,7);
-[Q,R,JPVT,RANK,SVAL]=mb03od(A,%eps)
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
  ]]></EXAMPLE>
   <ITEMIZE label='REFERENCE'>
   <P>
