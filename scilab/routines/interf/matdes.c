@@ -5019,11 +5019,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      C2F(dr)("xstart","v",&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      XGC=(struct BCG *) sciGetCurrentScilabXgc ();
 	      if ((figure = ConstructFigure (XGC)) != NULL) {
+		/* Adding F.Leray 25.03.04*/
+		sciSetCurrentObj(figure);
 		XGC->mafigure = (sciPointObj *) figure;
 		XGC->graphicsversion=1;   
 		cf_type=1;
-		if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL)
-		  sciSetOriginalSubWin (figure, psubwin);
+		if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL){
+		  sciSetCurrentObj(psubwin);
+		  sciSetOriginalSubWin (figure, psubwin);}
 	      }
 	    }
 	  }
