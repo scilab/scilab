@@ -334,6 +334,7 @@ c     error indicators
       errct   =   -1
       err1    =   0
       err2    =   0
+      catch   =   0 
 c     recursion
       fun     =   0
       macr    =   0

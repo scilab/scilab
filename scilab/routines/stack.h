@@ -56,8 +56,8 @@ c
       integer ddt,err,lct(8),lin(lsiz),lpt(6),hio,rio,wio,rte,wte
       common /iop/ ddt,err,lct,lin,lpt,hio,rio,wio,rte,wte
 
-      integer err1,err2,errct,toperr,errpt,ieee
-      common /errgst/ err1,err2,errct,toperr,errpt,ieee
+      integer err1,err2,errct,toperr,errpt,ieee,catch
+      common /errgst/ err1,err2,errct,toperr,errpt,ieee,catch
 
       integer sym,syn(nsiz),char1,fin,fun,lhs,rhs,ran(2),comp(3)
       common /com/ sym,syn,char1,fin,fun,lhs,rhs,ran,comp

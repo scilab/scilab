@@ -953,7 +953,11 @@ int C2F(parse)()
     if (C2F(errgst).err2 == 0) {
       C2F(errgst).err2 = C2F(errgst).err1;
     }
-    C2F(errgst).err1 = 0;
+    if (C2F(errgst).catch == 1) {
+      /* running under errcatch(num,....) */
+      C2F(errgst).err1 = 0;
+    }
+
     imode = (i__2 = C2F(errgst).errct / 100000, abs(i__2));
     if (imode - (imode / 8 << 3) == 2) {
       C2F(basbrk).iflag = TRUE_;
