@@ -32,7 +32,7 @@ distclean::
 	del Makelib.mak 
 
 tests	: Makelib.mak 
-	@"$(SCIDIR1)\bin\scilex.exe" -nwni  -e scitest('libexamples.tst',%t);quit;
+	$(MAKE) -f Makelib.mak tests 
 
 message:
 	@echo ------------------------------------------;

@@ -22,5 +22,7 @@ clean	::
 distclean:: 	clean
 
 tests	: $(LIBRARY).dll $(LIBRARY).tst
-	"$(SCIDIR1)\bin\scilex.exe" -f $(LIBRARY).tst 
+	@"$(SCIDIR1)\bin\scilex.exe" -nwni  -e scitest('$(LIBRARY).tst',%t);quit;
+
+#	@"$(SCIDIR1)\bin\scilex.exe" -f $(LIBRARY).tst 
 
