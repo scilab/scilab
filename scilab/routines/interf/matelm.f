@@ -26,7 +26,7 @@ c     eye  rand ones maxi mini sort kron matr sin  cos  atan exp
 c      13   14   15   16   17   18  19-21 22   23   24   25   26
 c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
-c     isreal frexp zeross tan  log1p imult  asin acos number_properties
+c     isreal frexp zeros tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
 c     nearfloat dsearch
 c       47        48
@@ -2690,7 +2690,7 @@ c
          return
       endif
       if(rhs.gt.2) then
-         call setfunnam(ids(1,pt+1),'%hm_zeros',8)
+         call setfunnam(ids(1,pt+1),'%hm_zeros',9)
          fun=-1
 c         call error(42)
          return
