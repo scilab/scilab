@@ -525,6 +525,9 @@ end:
 		if p < 70 then `scilab/write`(`(`) fi;
 		`scilab/alg`(op(1,e)^(-op(2,e)));
 		if p < 70 then `scilab/write`(`)`) fi;
+	elif type(op(1,e),'indexed') and type(op(2,e),'integer') then
+		`scilab/alg`(op(1,e));
+		`scilab/write`(cat(`**`,op(2,e)));
 	elif type(op(1,e),'name') and type(op(2,e),'integer') then
 		`scilab/write`(cat(convert(op(1,e),string),`**`,op(2,e)) )
 	elif type(op(2,e),'fraction') and op(2,op(2,e))=2 then
