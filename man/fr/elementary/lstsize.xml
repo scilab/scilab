@@ -11,27 +11,30 @@
   <CALLING_SEQUENCE_ITEM>n=lstsize(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
- <PARAM_INDENT>
+   <PARAM_INDENT>
+
   <PARAM_ITEM>
   <PARAM_NAME>l  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : un object de type list, tlist ou mlist
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
-  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_NAME>n </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : un entier, le nombre d'éléments de la liste
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
- </PARAM_INDENT>
+
+   </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
    <VERB>lstsize(x)</VERB> retourne le nombre d'élément d'un objet de type list, tlist ou mlist.
    Cette fonction est plus efficace que la fonction <VERB>size</VERB>
    et à la même signification pour tous les objets de type  list
-   tandis que <VERB>size</VERB> est surcharge pour les objets de type <VERRB>mlist</VERB>.
-  </DESCRIPTION_ITEM>
+   tandis que <VERB>size</VERB> est surcharge pour les objets de type <VERB>mlist</VERB>.
  
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
