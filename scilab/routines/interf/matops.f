@@ -2124,13 +2124,19 @@ c     implied polynomials vector extraction
 
       if(mn2.eq.0) then 
 c     .  arg2=[]
-         il1=iadr(lstk(top))
-         istk(il1)=1
-         istk(il1+1)=0
-         istk(il1+2)=0
-         istk(il1+3)=0
-         lstk(top+1)=sadr(il1+4)
+         if(m1.eq.-1) then
+c            arg2(:)
+            il1=iadr(lstk(top))
+            istk(il1)=1
+            istk(il1+1)=0
+            istk(il1+2)=0
+            istk(il1+3)=0
+            lstk(top+1)=sadr(il1+4)
+         else
+            call error(21)
+         endif
          return
+
       elseif(m2.lt.0) then
 c     .  arg2=eye
          call error(14)
