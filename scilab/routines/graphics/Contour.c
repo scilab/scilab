@@ -9,6 +9,7 @@
 #include <math.h>
 #include "Math.h"
 #include "PloEch.h"
+#include "Entities.h" /* F.Leray 21.04.04 : for update_2dbounds call*/
 
 typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
@@ -256,9 +257,20 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
   double zmin,zmax;
   integer N[3],i;
 
-  /** Boundaries of the frame **/
-  update_frame_bounds(1,"gnn",x,y,n1,n2,aaint,strflag,brect);
+  sciPointObj * psubwin = NULL;  /* Adding F.Leray 22.04.04 */
 
+  /** Boundaries of the frame **/
+  if(version_flag() != 0)
+    update_frame_bounds(1,"gnn",x,y,n1,n2,aaint,strflag,brect);
+  else /* F.Leray 21.04.04 */
+    {
+      /* Adding F.Leray 22.04.04 */
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      for (i=0;i<4;i++)
+	pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+      update_2dbounds(psubwin,1,x,y,n1,n2,brect);
+    }
+  
   /** If Record is on **/
   if (GetDriver()=='R' && strcmp(name,"contour2")==0 ) 
     StoreContour2D("contour2",x,y,z,n1,n2,flagnz,nz,zz,style,strflag,legend,brect,aaint);

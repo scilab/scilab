@@ -143,6 +143,7 @@ extern void zoom_get_rectangle    __PARAMS((double bbox[]));
 
 extern void unzoom  __PARAMS((void)); 
 extern void Gr_Rescale  __PARAMS((char *,double *,integer *,integer *,integer *,integer *)); 
+extern void Gr_Rescale2  __PARAMS((char *,double *,integer *,integer *,integer *,integer *)); /* F.Leray 20.04.04 */
 extern void C2F(aplot1)  __PARAMS((double *,integer *,integer *,integer *,integer *npx,integer *npy,char *logflag,double scx,double scy,double xofset,double yofset)); 
 
 	/* Plo3d.c */

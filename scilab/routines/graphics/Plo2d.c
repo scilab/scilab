@@ -230,6 +230,39 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       break;
     }
 
+  
+  /* BLOCK that moved is HERE F.Leray 20.04.04 */
+  /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
+  if (version_flag() == 0) 
+    {/*update A.Djalel for new graphics auto scaling*/
+      subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
+
+      
+      if ((pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1] !=0 )  || (pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3] !=0 ))
+	{  
+	  xmin=(double) Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
+	  xmax=(double) Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
+	}
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
+      
+      if ((pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2] !=0 )  || (pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4] !=0 ))
+	{  
+	  ymin=(double) Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
+	  ymax=(double) Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
+	}
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
+
+      /* Some prints*/
+    /*   sciprint("Passing through once IN Plo2dn.c AFTER having computed min,max if isoview requested\n"); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]); */
+/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
+    }
+
+
   /*
    * modify computed min,max if isoview requested 
    */
@@ -312,35 +345,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       aaint[2]=1;aaint[3]=inint(ymax-ymin);
     }
   
-  /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
-  if (version_flag() == 0) 
-    {/*update A.Djalel for new graphics auto scaling*/
-      subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
+  /* MOVE OF THE BLOCK on axes.limits affectation */
 
-      if(pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag != 0) /* means : already set at least once*/
-	{
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
-
-	}
-      else
-	{
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin;
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax;
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin;
-	  pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax;
-	  
-	  pSUBWIN_FEATURE (subwindowtmp)->update_axes_flag = 1; /* F.Leray 01.04.04*/
-	}
-      /* Some prints*/
-    /*   sciprint("Passing through once IN Plo2dn.c AFTER having computed min,max if isoview requested\n"); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]); */
-/*       sciprint("pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=  %.3f\r\n", pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]); */
-    }
 /*   sciprint("BEFORE FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; AFFECTATION\n"); */
 /*   sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
 /*   sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
@@ -385,11 +391,16 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
 		FRect[3] = Max(FRect[3],pSUBWIN_FEATURE (subwindowtmp)->FRect[3]);
 	      }
-	       if ( FRect[0] < Cscale.frect[0] 
+	      if ( FRect[0] < Cscale.frect[0] 
 		   || FRect[1] < Cscale.frect[1] 
 		   || FRect[2] > Cscale.frect[2] 
 		   || FRect[3] > Cscale.frect[3] )
-		redraw = 1;
+		redraw = 1; 
+	      /* F.Leray 15.04.04 */
+	      /* Here the redraw and the computed FRect will be used below */
+	      /* in Tape_ReplayNewScale1(" ",&ww,flag,PI0,aaint,PI0,PI0,FRect,PD0,PD0,PD0);*/
+	      /* in this case (if (strflag[1] == '7' || strflag[1] == '8' )), */
+	      /* we also recomput FRect */
 	    }
 	}
       /* and we force flag back to 5  */
@@ -408,7 +419,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     if ( (int)strlen(strflag) >=2 && ( strflag[1]=='5' || strflag[1]=='6' ))
     {
       /* recherche automatique des bornes et graduations */
-      Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2]));
+      Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2])); /* F.Leray 15.04.04 Here we change the value of FRect */
     }
     else {
       Xdec[0]=inint(FRect[0]);Xdec[1]=inint(FRect[2]);Xdec[2]=0;
@@ -450,7 +461,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       } 
     }
   /* NG end */ 
-  /* Changing back min,max and aaint if using log scaling X axis */
+  /* Changing back min,max and aaint if using log scaling X axis */  /* F.Leray 15.04.04 WHY NOT MAKE set_scale after this change ??? */
   if ((int)strlen(xf) >= 2 && xf[1]=='l' && (int)strlen(strflag) >= 2 && strflag[1] != '0')
     {
       FRect[0]=exp10(xmin);FRect[2]=exp10(xmax);
@@ -460,6 +471,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     {
       FRect[1]= exp10(ymin);FRect[3]= exp10(ymax);
     }
+
+
   /* Redraw other graphics */
   if ( redraw )
     {

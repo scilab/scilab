@@ -44,24 +44,33 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 {
   int N = Max((*n1),(*n2));
   double xx[2],yy[2];
-  integer *xm,*ym,j,nn1=1,nn2=2;   
+  integer *xm,*ym,j,nn1=1,nn2=2,i;   
 
   xx[0]=Mini(x,*n1);xx[1]=Maxi(x,*n1);
   yy[0]=Mini(y,*n2);yy[1]=Maxi(y,*n2);
- 
+  sciPointObj  *psubwin = NULL;
+
   /* NG beg */
   if (version_flag() == 0){
-    sciPointObj  *psubwin;
+   
     if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
       sciXbasc(); 
       initsubwin();
       sciRedrawFigure();
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
     } 
+
+    /* Adding F.Leray 22.04.04 */
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    for (i=0;i<4;i++)
+      pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+    
+    
     /*---- Boundaries of the frame ----*/
-    if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
-      update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+    if (sciGetGraphicMode (psubwin)->autoscaling)
+      update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect); /* F.Leray 21.04.04 : replaces what follows IN COMMENT: */
+      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
+
     sciSetIsClipping (psubwin,0); 
 
     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
@@ -160,9 +169,10 @@ extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2
 
 int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brect, integer *aaint, long int l1)
 {
-  int N = Max((*n1+1),(*n2+1));
+  int N = Max((*n1+1),(*n2+1)),i;
   double xx[2],yy[2];
   static integer *xm,*ym,j, nn1=1,nn2=2;
+  sciPointObj  *psubwin = NULL;
 
   xx[0]=0.5;xx[1]= *n2+0.5;
   yy[0]=0.5;yy[1]= *n1+0.5;
@@ -175,11 +185,17 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
       initsubwin();
       sciRedrawFigure();
     } 
-  
+
+    /* Adding F.Leray 22.04.04 */
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    for (i=0;i<4;i++)
+      pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+    
     /*---- Boundaries of the frame ----*/
-    if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
-      update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
+    if (sciGetGraphicMode (psubwin)->autoscaling)
+      update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect);
+      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
+    sciDrawObj(psubwin); /* ???? */
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
@@ -233,6 +249,13 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
     } 
   
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
+    /* Adding F.Leray 22.04.04 */
+    pSUBWIN_FEATURE (psubwin)->brect[0] = xrect[0];
+    pSUBWIN_FEATURE (psubwin)->brect[1] = xrect[1];
+    pSUBWIN_FEATURE (psubwin)->brect[2] = xrect[2];
+    pSUBWIN_FEATURE (psubwin)->brect[3] = xrect[3];
+    
     /*---- Boundaries of the frame ----*/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
     sciSetIsClipping (psubwin,0); 

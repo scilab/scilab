@@ -40,6 +40,9 @@ void axis_draw(strflag)
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+
+  /* sciprint("Dans Axes.c, strflag = %c%c%c\n\n",strflag[0],strflag[1],strflag[2]); */
+
   if (version_flag() == 0){/**DJ.Abdemouche 2003**/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
      
@@ -103,7 +106,7 @@ static void aplotv2(strflag)
   /*** Ajout D.ABDEMOUCHE ****/
   char xstr,ystr;  
   char dirx = 'd';
-  int i;
+  /*int i;*/
   
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
@@ -119,8 +122,8 @@ static void aplotv2(strflag)
   if (version_flag() == 0) {
     Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
     Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2]; 
-    for(i=0 ; i<4 ; i++ )
-      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+   /*  for(i=0 ; i<4 ; i++ ) */
+/*       Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ; */
     Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ; 
     Cscale.xtics[0]  = (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
     Cscale.xtics[3]=inint(Cscale.xtics[1]-Cscale.xtics[0]);
@@ -231,7 +234,7 @@ static void aplotv1(strflag)
 {
   char dir = 'l';
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int nx,ny,seg=0,i;
+  int nx,ny,seg=0/*,i*/;
   int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
   int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
   double  x1,y1;
@@ -244,8 +247,8 @@ static void aplotv1(strflag)
   if (version_flag() == 0){    
     Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
     Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2];
-    for(i=0 ; i<4 ; i++ )
-      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
+   /*  for(i=0 ; i<4 ; i++ ) */
+/*       Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ; */
     /*** parceque c'est pas la subwin selectionnee mais celle en cours ***/
     Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ;
     Cscale.xtics[0]= (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;

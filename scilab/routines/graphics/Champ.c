@@ -69,9 +69,17 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
           initsubwin();
           sciRedrawFigure();
         }  
+
+      /* Adding F.Leray 22.04.04 */
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      for (i=0;i<4;i++)
+	pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+      
       /** Boundaries of the frame **/ 
-      if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
-	update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
+      if (sciGetGraphicMode (psubwin)->autoscaling)
+	update_2dbounds(psubwin,0,xx,yy,&nn1,&nn2,brect); /* replaces what follows IN COMMENT: */
+      /*update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);*/
+
     }
   else
     update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);

@@ -1333,6 +1333,8 @@ void I3dRotation(void)
   /*  sciPointObj *psurface; */
   integer xr, yr;
 
+  BOOL cube_scaling; /* TEST F.Leray 22.04.04 */
+
 
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (version_flag() != 0) {
@@ -1342,6 +1344,7 @@ void I3dRotation(void)
 	return;
       }
   }
+
   /**DJ.Abdemouche 2003**/
   xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
   yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
@@ -1406,22 +1409,78 @@ void I3dRotation(void)
 		  alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
 		  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
 		  Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
-		  if (pSUBWIN_FEATURE (psubwin)->isoview)
+
+		  /* Modification HERE: F.Leray 21.04.04 */
+		  if ( pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=0 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=1 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=3 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=5) /* means we uses computed data bounds */
 		    {
-		      Cscale.bbox1[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0]; 
-		      Cscale.bbox1[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2];
-		      Cscale.bbox1[2] =  pSUBWIN_FEATURE (psubwin)->FRect[1];
-		      Cscale.bbox1[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3];
-		      Cscale.bbox1[4] =  pSUBWIN_FEATURE (psubwin)->FRect[4];
-		      Cscale.bbox1[5] =  pSUBWIN_FEATURE (psubwin)->FRect[5];
+		      Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
+		      Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
+		      Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
+		      Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
+		      Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
+		      Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
 		    }
 		  else
-		    { Cscale.bbox1[0] =  0.0; 
-		      Cscale.bbox1[1] =  1.0;
-		      Cscale.bbox1[2] =  0.0;
-		      Cscale.bbox1[3] =  1.0;
-		      Cscale.bbox1[4] =  -1.0;
-		      Cscale.bbox1[5] =  1.0;}
+		    {
+		      /* F.Leray 19.04.04 : Normally means we use ebox HERE !! */
+		      /* But I don't know the surface object yet to do:
+			 dbox[0] =  pSURFACE_FEATURE (psubwin)->ebox[0]... */
+		      /* so temporarily I put the default ebox here */
+		      
+		      /* F.Leray 21.04.04 : Now I do better by storing the brect (dim = 4 in 2D and 6 in 3D)
+		        inside the field brect[6] in sciSubWindow Object*/
+
+		      if( ((pSUBWIN_FEATURE (psubwin)->brect[0] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[2] != 0.)) &&
+			  ((pSUBWIN_FEATURE (psubwin)->brect[1] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[3] != 0.)) &&
+			  ((pSUBWIN_FEATURE (psubwin)->brect[4] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[5] != 0.)))
+			{
+			  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->brect[0]; 
+			  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->brect[2]; 
+			  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->brect[1]; 
+			  Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->brect[3]; 
+			  Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->brect[4]; 
+			  Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->brect[5]; 
+			}
+		      else
+			{
+			  Cscale.bbox1[0] =  0.0;
+			  Cscale.bbox1[1] =  1.0;
+			  Cscale.bbox1[2] =  0.0;
+			  Cscale.bbox1[3] =  1.0;
+			  Cscale.bbox1[4] =  -1.0;
+			  Cscale.bbox1[5] =  1.0;
+			}
+		    }
+		
+		  cube_scaling =  pSUBWIN_FEATURE (psubwin)->cube_scaling;
+		  if(cube_scaling == TRUE)
+		    {
+		      Cscale.bbox1[0] =  0.; 
+		      Cscale.bbox1[1] =  1.;
+		      Cscale.bbox1[2] =  0.;
+		      Cscale.bbox1[3] =  1.;
+		      /*  dbox[4] =  -1.;
+			  dbox[5] =  1.;*/
+		    }
+		  
+		  /*  if (pSUBWIN_FEATURE (psubwin)->isoview) */
+		  /* 		    { */
+/* 		      Cscale.bbox1[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];  */
+/* 		      Cscale.bbox1[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2]; */
+/* 		      Cscale.bbox1[2] =  pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 		      Cscale.bbox1[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3]; */
+/* 		      Cscale.bbox1[4] =  pSUBWIN_FEATURE (psubwin)->FRect[4]; */
+/* 		      Cscale.bbox1[5] =  pSUBWIN_FEATURE (psubwin)->FRect[5]; */
+/* 		    } */
+/* 		  else */
+/* 		    { Cscale.bbox1[0] =  0.0;  */
+/* 		      Cscale.bbox1[1] =  1.0; */
+/* 		      Cscale.bbox1[2] =  0.0; */
+/* 		      Cscale.bbox1[3] =  1.0; */
+/* 		      Cscale.bbox1[4] =  -1.0; */
+/* 		      Cscale.bbox1[5] =  1.0;} */
+
+
 		}
 	      else
               {

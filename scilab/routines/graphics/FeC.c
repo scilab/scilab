@@ -58,7 +58,7 @@ void get_frame_in_pixel(integer WIRect[]);
 
 int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nnode, integer *Ntr, char *strflag, char *legend, double *brect, integer *aaint, double *zminmax, integer *colminmax, integer lstr1, integer lstr2)
 {
-  integer *xm,*ym,n1=1;
+  integer *xm,*ym,n1=1,i;
 
   /* Fec code */
 
@@ -76,10 +76,16 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
        psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
      } 
   
+     /* Adding F.Leray 22.04.04 */
+     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+     for (i=0;i<4;i++)
+       pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; /* Adding F.Leray 22.04.04 */
+     
     /*---- Boundaries of the frame ----*/
-     if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
-       update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);
-     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+     if (sciGetGraphicMode (psubwin)->autoscaling)
+       update_2dbounds(psubwin,0,x,y,&n1,Nnode,brect); /* F.Leray 21.04.04 : replaces what follows IN COMMENT: */
+     /*update_frame_bounds(0,"gnn",x,y,&n1,Nnode,aaint,strflag,brect);*/
+     
      sciSetIsClipping (psubwin,0); 
  
      strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
