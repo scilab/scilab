@@ -1,9 +1,9 @@
-function save_graph(g,data)
+function save_graph(g,path)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 select rhs
 case 1 then
-  data=" "
+  path=" "
 else
   if rhs<>2 then error(39), end
 end
@@ -117,13 +117,10 @@ end
 if size(g('default_font_size'))==0 then
   g('default_font_size')=0
 end
-// data
-if type(data)<>10|prod(size(data))<>1 then
+// path
+if type(path)<>10|prod(size(path))<>1 then
   error('Second argument must be a string')
 end
-m6saveg(g,g('name'),ma,data)
+path=strsubst(path,"\","/")
+m6saveg(g,g('name'),ma,path)
 endfunction
-
-
-    
-  

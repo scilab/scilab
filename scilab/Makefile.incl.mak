@@ -18,12 +18,12 @@ DTK=-DWITH_TK
 # -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
 # for compilation 
-TCLTK=C:\Tcl\lib
+#TCLTK=c:\tcl
 # for binary distribution version after compilation 
-#TCLTK=$(SCIDIR1)\tcl\lib
+TCLTK=$(SCIDIR1)\tcl
 TKSCI=libs/tksci.lib 
 
-TKLIBS="$(TCLTK)\lib\tcl83.lib" "$(TCLTK)\lib\tk83.lib"
+TKLIBS="$(SCIDIR1)\bin\tcl83.lib" "$(SCIDIR1)\bin\tk83.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
@@ -41,9 +41,9 @@ DPVM=-DWITH_PVM
 USE_MT=
 PVM=libs/pvm.lib 
 #for compilation
-PVM_ROOT=c:\softs\scilab\scilab-cvs\pvm3
+#PVM_ROOT=c:\temp\scilab2.7\pvm3
 # for binary distribution version after compilation 
-#PVM_ROOT=$(SCIDIR1)\pvm3
+PVM_ROOT=$(SCIDIR1)\pvm3
 
 PVM_ARCH=WIN32
 PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 

@@ -135,6 +135,7 @@ function tcltk_help(path,key)
   global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
+  INDEX=strsubst(INDEX,"\","/")
   key1=key //for temp file and widget name
   K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
   for k=K,key1=strsubst(key1,k,'_'),end
@@ -282,6 +283,7 @@ function tcltk_apropos(path)
   global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
+  INDEX=strsubst(INDEX,"\","/")
   if MSDOS then
     TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
     TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")

@@ -6,6 +6,7 @@ if rhs<>1 then error(39),end
 if type(path)<>10|prod(size(path))<>1 then
   error('Argument must be a string')
 end
+path=strsubst(path,"\","/")
 g=m6loadg(path)
 g=glist(g(:))
 g($+1)=[]; g($+1)=[]

@@ -461,10 +461,20 @@ cir = salesman(g1)
 
 // save_graph
 g=load_graph(SCI+'/demos/metanet/mesh100');
-unix('rm -f mymesh100.graph');
+if MSDOS then
+  if fileinfo('mymesh100.graph')<>[] then
+    unix_s('del '+'mymesh100.graph');
+  end
+else
+  unix('rm -f mymesh100.graph');
+end
 save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100')
-unix('rm -f mymesh100.graph');
+if MSDOS then
+  unix_s('del '+'mymesh100.graph');
+else
+  unix('rm -f mymesh100.graph');
+end
 
 // shortest_path
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
