@@ -52,7 +52,9 @@ extern int C2F(isref) __PARAMS((integer *lw));
 extern integer C2F(vartype) __PARAMS((integer *number));
 extern int C2F(createvar) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len));
 
-extern int C2F(creatework)  __PARAMS((    integer *number,integer *m,integer  *lr));
+extern int C2F(creatework)  __PARAMS((integer *number,integer *m,integer  *lr));
+
+extern int C2F(setworksize)  __PARAMS((integer *number,integer *size));
 
 extern int C2F(createcvar) __PARAMS((integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
 extern int C2F(createlist) __PARAMS((integer *lw, integer *nel));

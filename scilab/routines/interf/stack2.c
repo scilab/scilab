@@ -1146,6 +1146,39 @@ int C2F(creatework)(number,m,lr)
   return TRUE_; 
 }
 
+
+/*---------------------------------------------------------------------
+ * This can be used with creatework to 
+ * set the size of object which was intialy sized to the whole 
+ * remaining space with creatework 
+ * Moreover informations the objet is recorded 
+ *---------------------------------------------------------------------*/
+
+int C2F(setworksize)(number,size)
+     integer *number,*size;
+{
+  int lw1;
+  char *fname = Get_Iname();
+  if (*number > intersiz) {
+    Scierror(999,"%s: (creatework) too many arguments in the stack edit stack.h and enlarge intersiz\r\n",
+	     fname);
+    return FALSE_ ;
+  }
+  Nbvars = Max(*number,Nbvars);
+  lw1 = *number + Top - Rhs;
+  if (lw1 < 0) {
+    Scierror(999,"%s: bad call to setworksize! (1rst argument)\r\n",
+	     fname);
+    return FALSE_ ;
+  }
+  *lstk(lw1+1) = *lstk(lw1) + *size ;
+  C2F(intersci).ntypes[lw1 - 1] = '$';
+  C2F(intersci).iwhere[lw1 - 1] = *lstk(lw1);
+  C2F(intersci).lad[lw1 - 1] = 0; /* not to be used XXXX */ 
+  return TRUE_; 
+}
+
+
 /*---------------------------------------------------------------------
  * getmatdims :
  *     check if argument number <<number>> is a matrix and 

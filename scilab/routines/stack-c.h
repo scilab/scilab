@@ -14,6 +14,24 @@
 
 #include "stack-def.h"
 
+/*-------------------------------------------------
+ * types 
+ * -------------------------------------------------*/
+
+typedef enum {
+  sci_matrix= 1 ,
+  sci_poly= 2 ,
+  sci_boolean= 4 ,
+  sci_sparse= 5  ,
+  sci_boolean_sparse= 6,
+  sci_strings= 10,
+  sci_u_function= 11,
+  sci_c_function= 13 ,
+  sci_lib=  14,
+  sci_list= 15,
+  sci_tlist= 16,
+  sci_mlist= 17,
+} sci_types; 
 
 /*-------------------------------------------------
  * structure used for sparse matrix 
@@ -65,9 +83,10 @@ typedef struct sciintmat {
 #include "interf/stack2.h" 
 #include "interf/stack3.h" 
 
-/*********************************
- * to simplify interface design 
- *********************************/
+
+/*-------------------------------------------------
+ * set of defines for interface simplication 
+ * -------------------------------------------------*/
 
 static int c1_local;
 static int c_local;
@@ -142,6 +161,9 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 
 #define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx))\
+        { return 0;  }
+
+#define SetWorkSize(n,mx) if(! C2F(setworksize)((c_local=n,&c_local),mx))\
         { return 0;  }
 
 #define CreateData(n,nx) if(! C2F(createdata)((c_local=n,&c_local),nx))\
