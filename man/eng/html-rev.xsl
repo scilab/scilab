@@ -130,7 +130,7 @@
 
 <xsl:template match="AUTHOR">
   <h3><font color="blue">Author</font></h3>
-  <p><xsl:value-of select="./AUTHOR"/></p>
+  <p><xsl:value-of select="self::node()"/></p>
 </xsl:template>
 
 <xsl:template match="AUTHORS">
@@ -151,7 +151,7 @@
 
 <!-- ?  -->
 
-<xsl:template match="USED_FUNCTION">
+<xsl:template match="USED_FUNCTIONS">
   <h3><font color="blue">Used Function</font></h3>
   <xsl:apply-templates/>
 </xsl:template>
