@@ -37,6 +37,7 @@ case 'set' then
     else
       rpar=[maxp;lowp]
       model.rpar=rpar
+      model.state=x0
       if satur<>0 then 
 	model.nzcross=size(x0,1)
 	model.nmode=1
@@ -79,3 +80,4 @@ case 'define' then
   x.graphics.id="1/s"
 end
 endfunction
+
