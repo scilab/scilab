@@ -362,7 +362,7 @@ wr_globals(FILE *outfile)
 		margin_printf(outfile, "/* Table of constant values */\n\n");
 		did_one = 1;
 		}
-	cb.vtype = litp->littype;
+	cb.vtype = (field)litp->littype;
 	if (litp->littype == TYCHAR) {
 		x = litp->litval.litival2[0] + litp->litval.litival2[1];
 		if (y = x % hsize)

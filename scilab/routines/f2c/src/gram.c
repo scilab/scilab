@@ -965,7 +965,7 @@ case 10:
 				execerr("label %s already defined",
 					convic(thislabel->stateno) );
 			else	{
-				if(thislabel->blklevel!=0 && thislabel->blklevel<blklevel
+				if(thislabel->blklevel!=0 && thislabel->blklevel<(unsigned) blklevel
 				    && thislabel->labtype!=LABFORMAT)
 					warn1("there is a branch to label %s from outside block",
 					      convic( (ftnint) (thislabel->stateno) ) );

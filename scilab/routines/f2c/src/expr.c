@@ -153,7 +153,7 @@ mkbitcon(int shift, int leng, char *s)
 	register Constp p;
 	register long x, y, z;
 	int len;
-	char buff[100], *fmt, *s0 = s;
+	char buff[100], /* *fmt,*/ *s0 = s;
 	static char *kind[3] = { "Binary", "Hex", "Octal" };
 
 	p = mkconst(TYLONG);
@@ -2783,7 +2783,7 @@ consconv(int lt, register Constp lc, register Constp rc)
    bytes into a new 1 character string.  This is weird. */
 
 	case TYCHAR:
-		*(lv->ccp = (char *) ckalloc(1)) = rv->ci;
+		*(lv->ccp = (char *) ckalloc(1)) = (char)rv->ci;
 		lv->ccp1.blanks = 0;
 		break;
 
@@ -2797,7 +2797,7 @@ consconv(int lt, register Constp lc, register Constp rc)
 			lv->ci = rv->ccp[0];
 		else if( ISINT(rt) )
 			lv->ci = rv->ci;
-		else	lv->ci = rc->vstg ? atof(rv->cds[0]) : rv->cd[0];
+		else	lv->ci = (ftnint) (rc->vstg ? atof(rv->cds[0]) : rv->cd[0]);
 
 		break;
 

@@ -442,7 +442,7 @@ addrlit(Addrp addrp)
 	lastlit = litpool + nliterals;
 	for (litp = litpool; litp < lastlit; litp++)
 	    if (litp->litnum == memno) {
-		addrp->vtype = litp->littype;
+		addrp->vtype = (field) litp->littype;
 		*((union Constant *) &(addrp->user)) =
 			*((union Constant *) &(litp->litval));
 		addrp->vstg = STGMEMNO;
@@ -797,7 +797,7 @@ do_p1_expr(FILE *infile, FILE *outfile)
 	    result = ALLOC (Exprblock);
 
 	    result -> tag = TEXPR;
-	    result -> vtype = type;
+	    result -> vtype = (field) type;
 	    result -> opcode = opcode;
 	    result -> vleng = do_format (infile, outfile);
 
@@ -836,7 +836,7 @@ do_p1_ident(FILE *infile)
 	else if (status == 0 || vtype < 0 || vtype >= NTYPES)
 	    errl("do_p1_ident:  Bad type in intermediate file: %ld\n", vtype);
 	else
-	    addrp -> vtype = vtype;
+	    addrp -> vtype = (field)vtype;
 
 	status = p1getd (infile, &vstg);
 	if (status == EOF)
@@ -844,7 +844,7 @@ do_p1_ident(FILE *infile)
 	else if (status == 0 || vstg < 0 || vstg > STGNULL)
 	    errl("do_p1_ident:  Bad storage in intermediate file: %ld\n", vtype);
 	else
-	    addrp -> vstg = vstg;
+	    addrp -> vstg = (field)vstg;
 
 	status = p1gets(infile, addrp->user.ident, IDENT_LEN);
 
@@ -878,7 +878,7 @@ do_p1_charp(FILE *infile)
 	else if (status == 0 || vtype < 0 || vtype >= NTYPES)
 	    errl("do_p1_ident:  Bad type in intermediate file: %ld\n", vtype);
 	else
-	    addrp -> vtype = vtype;
+	    addrp -> vtype = (field) vtype;
 
 	status = p1getd (infile, &vstg);
 	if (status == EOF)
@@ -886,7 +886,7 @@ do_p1_charp(FILE *infile)
 	else if (status == 0 || vstg < 0 || vstg > STGNULL)
 	    errl("do_p1_ident:  Bad storage in intermediate file: %ld\n", vtype);
 	else
-	    addrp -> vstg = vstg;
+	    addrp -> vstg = (field)vstg;
 
 	status = p1gets(infile, buf, (int)sizeof(buf));
 
@@ -1029,8 +1029,8 @@ do_p1_list(FILE *infile, FILE *outfile)
     if (result) {
 	chainp pointer;
 
-	result -> tag = tag;
-	result -> listblock.vtype = type;
+	result -> tag = (field)tag;
+	result -> listblock.vtype = (field)type;
 
 /* Assume there will be enough data */
 

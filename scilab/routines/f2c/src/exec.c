@@ -158,10 +158,10 @@ poplab(Void)
 		if(lp->labdefined)
 		{
 			/* mark all labels in inner blocks unreachable */
-			if(lp->blklevel > blklevel)
+			if( (int) lp->blklevel > blklevel)
 				lp->labinacc = YES;
 		}
-		else if(lp->blklevel > blklevel)
+		else if( (int) lp->blklevel > blklevel)
 		{
 			/* move all labels referred to in inner blocks out a level */
 			lp->blklevel = blklevel;

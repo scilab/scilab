@@ -396,7 +396,7 @@ convic(ftnint n)
 	t = s+19;
 
 	do	{
-		*--t = '0' + n%10;
+		*--t =(char) ('0' + n%10);
 		n /= 10;
 	} while(n > 0);
 

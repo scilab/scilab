@@ -158,7 +158,7 @@ parse_args(int argc, char **argv, arg_info *table, int entries, char **others, i
 
 /* A match was found */
 
-		if (length >= strlen (*argv)) {
+		if (length >= (int)strlen (*argv)) {
 		    argc--;
 		    argv0 = *++argv;
 		    use_prefix = TRUE;
@@ -176,7 +176,7 @@ parse_args(int argc, char **argv, arg_info *table, int entries, char **others, i
 		    length = arg_parse(*argv, &table[index]);
 		    if (*argv == NULL)
 			argc = 0;
-		    else if (length >= strlen (*argv)) {
+		    else if (length >= (int)strlen (*argv)) {
 			argc--;
 			argv0 = *++argv;
 			use_prefix = TRUE;

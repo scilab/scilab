@@ -52,7 +52,7 @@ doequiv(Void)
 	int k, k1, ns, pref, t;
 	chainp cp;
 	extern int type_pref[];
-	char *s;
+	/*char *s;*/
 
 	for(i = 0 ; i < nequiv ; ++i)
 	{
