@@ -1737,6 +1737,7 @@ void InitScilabGCPos(integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
     to force usecolorPos to perform initialisations 
     **/
+  ScilabGCPos.mafigure = (sciPointObj *)NULL;
   ScilabGCPos.graphicsversion = (versionflag==1) ? 0:1;/* NG */ 
 
   ScilabGCPos.CurColorStatus = (col == 1) ? 0: 1;
