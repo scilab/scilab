@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>june 2004</DATE>
+  <SHORT_DESCRIPTION name="dir"> get file list </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>dir path</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>S=dir([path]) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string matrix giving a directory pathname (eventually  ended
+	    by a pattern built with <VERB>*</VERB>). Default value is <VERB>.</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>S</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a <VERB>tlist</VERB> of type <VERB>dir</VERB> with fields :
+	    <VERB>name</VERB>, <VERB>date</VERB> and <VERB>isdir</VERB></SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P>
+      <VERB>dir</VERB> can be used to get the files which match 
+      the patterns given by the path argument. 
+      Patterns are given to the unix <VERB>ls</VERB> or to the windows
+      <VERB>dir</VERB> commands in order to get information on files. 
+      Thus in order to write portable Scilab script valid wildcard patterns 
+      for both os are to be given. Note that Pathname conversion is
+      performed and for example <VERB>SCI/macros/util/*.sci</VERB> is a valid 
+      pattern for both unix and windows.
+    </P>
+    <P>
+      The <VERB>name</VERB> field of the returned variable is the column vector
+      of the file names.
+    </P>
+
+    <P>
+      The <VERB>date</VERB> field of the returned variable is the column vector
+      of integers containing a last modification date coded in second from 1 Jan 1970).
+    </P>
+    <P>
+      The <VERB>isdir</VERB> field of the returned variable is the column vector
+      of boolean true if the corresponding name is a directory.
+    </P>
+   <P>
+      The  default display of the returned structure is a column formatted list
+      of files. It can be changed redefining the function <VERB>%dir_p</VERB>
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+    <![CDATA[
+    dir
+    dir SCI/macros/util/*.sci
+    x=dir('SCI/macros/util/f*.sci')
+    dt=getdate(x.date);
+    mprintf("%s: %d-%d-%d %d:%d:%d\n",x.name,dt(:,[3 2 1 7:9]))
+    ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>listfiles</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>ls</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>fileinfo</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>date</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
