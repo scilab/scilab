@@ -62,6 +62,11 @@ IMPORT struct {
   int cosd;
 } C2F(cosdebug);
 
+
+IMPORT struct {
+  int counter;
+} C2F(cosdebugcounter);
+
 struct {
   int solver;
 } C2F(cmsolver);
@@ -321,6 +326,7 @@ int C2F(scicos)
     }
   }
   debug_block=-1; /* no debug block for start */
+  C2F(cosdebugcounter).counter=0;
 
   for (kf = 0; kf < nblk; ++kf) {
     C2F(curblk).kfun = kf+1;
@@ -559,7 +565,7 @@ int C2F(scicos)
   C2F(dset)(&jj, &c_b14, W, &c__1);
   nclock = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
-    if (funtyp[C2F(curblk).kfun] >= 0 & (C2F(curblk).kfun!= (debug_block+1))) { /* debug_block is not called here */
+    if (funtyp[C2F(curblk).kfun] >= 0) { /* debug_block is not called here */
       flag__ = 4;
       callf(told, xd, x, x,W,&flag__);
       if (flag__ < 0 && *ierr == 0) {
@@ -579,7 +585,7 @@ int C2F(scicos)
   for (jj = 1; jj <= ncord; ++jj) {
     C2F(curblk).kfun = cord[jj];
     flag__ = 6;
-    if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
+    if (funtyp[C2F(curblk).kfun] >= 0) {
       callf(told, xd, x, x,W,&flag__);
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
@@ -594,7 +600,7 @@ int C2F(scicos)
     /*     loop on blocks */
     for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
       flag__ = 6;
-      if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
+      if (funtyp[C2F(curblk).kfun] >= 0) {
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
@@ -609,7 +615,7 @@ int C2F(scicos)
     for (jj = 1; jj <= ncord; ++jj) {
       C2F(curblk).kfun = cord[jj];
       flag__ = 6;
-      if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
+      if (funtyp[C2F(curblk).kfun] >= 0) {
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
@@ -1505,7 +1511,7 @@ int C2F(scicos)
   nclock=0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
     flag__ = 5;
-    if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
+    if (funtyp[C2F(curblk).kfun] >= 0) {
       callf(told, xd, x, x,x,&flag__);
       if (flag__ < 0 && *ierr == 0) {
 	*ierr = 5 - flag__;
@@ -2238,6 +2244,9 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosF4 loc4;
   
   kf=C2F(curblk).kfun;
+
+  if (kf==(debug_block+1)) return; /* debug block is never called */
+
   block_error=flag;  /* to return error from blocks of type 4 */
 
   flagi=*flag; /* flag 7 implicit initialization */
@@ -2603,8 +2612,8 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
   voidf loc ; 
   int solver=C2F(cmsolver).solver,k;
   ScicosF4 loc4;
+  C2F(cosdebugcounter).counter=C2F(cosdebugcounter).counter+1;
 
-  if (Blocks[kf-1].type<0) return; /* no synchro block debugging */
   C2F(scsptr).ptr=Blocks[deb_blk].scsptr;
   loc=Blocks[deb_blk].funpt;
   scicos_time=*t;

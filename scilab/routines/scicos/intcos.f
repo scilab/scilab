@@ -697,7 +697,7 @@ c
       logical putlhsvar,checkrhs,checklhs
       character*(nlgh) fname
 c
-      goto (1,2,3,4,5,6,7,8) fin 
+      goto (1,2,3,4,5,6,7,8,9) fin 
       return
  1    call intsscicos
       return
@@ -736,6 +736,10 @@ c     [r1,r2,ok]=tree4(vec,outoin,outoinptr,dep_ut,typ_r)
 c     scicos_debug(i)
       fname='scicos_debug' 
       call scicosdebug(fname)
+      goto 9988
+ 9    continue
+      fname='scicos_debug_count'
+      call scicosdebugcount(fname)
       goto 9988
  9988 if(.not.putlhsvar())return
       end
@@ -854,4 +858,23 @@ c
          lhsvar(1)=1 
       endif
 
+      end
+
+
+c     ********************
+      subroutine scicosdebugcount(fname)
+c     
+      include '../stack.h'
+c     
+      common /cosdebugcounter/ counter 
+      logical getrhsvar, createvar,checklhs,checkrhs
+      integer counter
+      character*(*) fname
+c      
+      rhs = max(0,rhs)
+      if(.not.checklhs(fname,1,1)) return
+      if(.not.checkrhs(fname,-1,0)) return
+      if(.not.createvar(1,'d',1,1,ipr1)) return
+      stk(ipr1)=counter
+      lhsvar(1)=1 
       end
