@@ -121,41 +121,42 @@ proc colorize {w cpos iend} {
         }
 # Scilab keywords
        if {$schema=="scilab"} {
-#          set sciChset "(\[^A-Za-z0-9_\%\]|^)\[$chset(scilab.col1)\]"
-	   set sciChset {[A-Za-z_\%]}
+	   set sciChset {[A-Za-z0-9_\%\#\!\$\?]}
            $w mark set last begin
-           while {[set ind [$w search -count num -regexp $sciChset last ende]]\
-                   != {}} {
+           set displ 0
+           while {[set ind [$w search -count displ -regexp $sciChset \
+                  last ende]] != {}} {
              if {[$w compare $ind >= last]} {
                 set res ""
-                regexp $sciChset [$w get $ind "$ind wordend+1c"] res
+                regexp $sciChset+ [$w get $ind "$ind lineend"] res
                 if {$res != ""} {
                    set num [string length $res]
-                   $w mark set last "$ind + $num c"
-                   $w mark set next {last wordend}
-                   set word [$w get last-1c next]
+                   $w mark set last "$ind +$displ c -1c"
+                   $w mark set next "$ind + $num c"
+                   set word $res
+#		 tk_messageBox -message "$ind $displ $num *$res*"
                    set initial [string range $word 0 0]
                    if {[string first $initial $chset(scilab.col1)]>=0} {
                         if {[lsearch -exact $words(scilab.col1.$initial) \
                               $word] != -1} {
-                            $w tag add keywords last-1c next
+                            $w tag add keywords last next
                         }
 		   }
                    if {[string first $initial $chset(scilab.predef)]>=0} {
                         if {[lsearch -exact $words(scilab.predef.$initial) \
                               $word] != -1} {
-                            $w tag add predef last-1c next
+                            $w tag add predef last next
                         }
 		   }
                    if {[string first $initial $chset(scilab.libfun)]>=0} {
                         if {[lsearch -exact $words(scilab.libfun.$initial) \
                               $word] != -1} {
-                            $w tag add libfun last-1c next
+                            $w tag add libfun last next
                         }
                    }
-                   $w mark set last next-1c
+                   $w mark set last next+1c
                } else {
-                     $w mark set last last+1c
+                   $w mark set last last+1c
                }
              } else break
            }

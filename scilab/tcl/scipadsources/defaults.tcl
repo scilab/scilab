@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.21"
+set version "Version 3.22"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below

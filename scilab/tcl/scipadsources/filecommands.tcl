@@ -581,8 +581,8 @@ proc openlibfunsource {ind} {
     global textareacur
 #exit if the cursor is not by a libfun keyword
     if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set curterm [$textareacur get [$textareacur index "$ind wordstart"] \
-		     [$textareacur index "$ind wordend"]]
+    set lrange [$textareacur tag prevrange libfun $ind]
+    set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
           set curterm [string trim $curterm]
           if {$curterm!=""} {

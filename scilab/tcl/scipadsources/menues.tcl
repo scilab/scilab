@@ -22,6 +22,10 @@ if {$lang == "eng"} {
     $pad.filemenu.files add command -label "Compile as help page" \
 	-underline 11 -command "xmlhelpfile" -state disabled
     $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Open function source" \
+         -command {openlibfunsource [[gettextareacur] index insert]}\
+         -accelerator F8 -state disabled -underline 5 
+    $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Print Setup" -underline 8 \
                    -command "printseupselection" -accelerator Ctrl+P
@@ -54,6 +58,10 @@ if {$lang == "eng"} {
 	-underline 9 -command "helpskeleton" -state disabled
     $pad.filemenu.files add command -label "Compiler comme fichier d'aide" \
 	-underline 25 -command "xmlhelpfile" -state disabled
+    $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Ouvrir le source de la fonction" \
+         -command {openlibfunsource [[gettextareacur] index insert]}\
+         -accelerator F8 -state disabled -underline 17 
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Mise en page" -underline 8 \

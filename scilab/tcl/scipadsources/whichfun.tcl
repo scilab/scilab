@@ -45,7 +45,8 @@ proc whichfun {indexin {buf "current"}} {
       set i2 [$textarea index "$precfun lineend"]
       set funline [$textarea get $i1 $i2]
       set funname ""
-      set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
+#      set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
+      set funpat {[\%\#\!\$\?]*\m[\w\#\!\$\?]*\M[\#\!\$\?]*}
       if {[set i3 [string first "=" $funline]] !={}} {
 	  regexp -start [expr $i3+1] $funpat $funline funname  
       } else {

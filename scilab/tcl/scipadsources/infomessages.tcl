@@ -15,7 +15,7 @@ proc showinfo {message} {
     after 5000 catch delinfo
 }
 
-# this proc gets the posn and sets the statusbar
+# this proc gets the posn and sets the statusbar, enables context menues, etc.
 proc keyposn {textarea} {
     global pad lang listoffile
     $pad.statusind configure -state normal
@@ -49,6 +49,12 @@ proc keyposn {textarea} {
 	    $pad.statusind2 configure -text " "
             $pad.filemenu.files entryconfigure 8 -state disabled
 	}
+    }
+#ES 27/1/05
+    if {[lsearch [$textarea tag names $indexin] "libfun"]!=-1} {
+            $pad.filemenu.files entryconfigure 11 -state normal
+    } else {
+            $pad.filemenu.files entryconfigure 11 -state disabled
     }
 }
 
