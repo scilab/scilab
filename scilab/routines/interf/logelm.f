@@ -379,6 +379,12 @@ c
          istk(ilr+4)=nel1
          lstk(top+1)=lj+nel1
       elseif(istk(il1).eq.1) then
+         if(istk(il1+3).ne.0) then
+            call putfunnam('bool2s',top)
+            fun=-1
+            return
+         endif
+         
          if(mn1.eq.0) then
             istk(ilr)=1
             istk(ilr+1)=0
@@ -413,6 +419,11 @@ c     argument is a sparse matrix
          m1=istk(il1+1)
          n1=istk(il1+2)
          nel1=istk(il1+4)
+         if(istk(il1+3).ne.0) then
+            call putfunnam('bool2s',top)
+            fun=-1
+            return
+         endif
 c
          if(ref) then
             err=sadr(ilr+5+m1+nel1)+nel1-lstk(bot)
