@@ -9,8 +9,13 @@
 
 static int send_scilab_job(char *job) ;
 static void Initialize() ;
-void C2F(banier)(int *x) ;
 
+extern void C2F(banier)(int *x) ;
+extern int C2F(inisci)(int *,int *,int *);
+extern int C2F (sciquit) (void);
+extern void C2F(settmpdir) (void);
+extern int C2F(scirun)(char * startup, int lstartup);
+extern void C2F(storeversion)(char *str,int n);
 
 static int init = 0;
 
@@ -233,7 +238,7 @@ void C2F(banier)(int *x)
 
 /* sert a rien sinon a satisfaire le linker */
 
-int MAIN__() {};
+int MAIN__() {return 0;};
 
 
 

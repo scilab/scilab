@@ -3,7 +3,7 @@
 #--------------------------------------------------------
 
 SCIDIR=../../../
-SCIDIR=/home/jpc/scilab-2.6
+#SCIDIR=/home/jpc/scilab-2.6
 
 PROG= libjavasci.so 
 OBJS= javasci_Matrix.o
