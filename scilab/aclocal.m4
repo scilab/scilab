@@ -412,7 +412,7 @@ AC_REQUIRE([AC_ENABLE_STATIC])dnl
 AC_REQUIRE([AC_ENABLE_FAST_INSTALL])dnl
 AC_REQUIRE([AC_CANONICAL_HOST])dnl
 AC_REQUIRE([AC_CANONICAL_BUILD])dnl
-AC_REQUIRE([AC_PROG_CC])dnl
+#AC_REQUIRE([AC_PROG_CC])dnl
 AC_REQUIRE([AC_PROG_LD])dnl
 AC_REQUIRE([AC_PROG_LD_RELOAD_FLAG])dnl
 AC_REQUIRE([AC_PROG_NM])dnl
@@ -2420,7 +2420,7 @@ darwin* | rhapsody*)
   need_version=no
   # FIXME: Relying on posixy $() will cause problems for
   #        cross-compilation, but unfortunately the echo tests do not
-  #        yet detect zsh echo's removal of \ escapes.
+  #        yet detect zsh echo's removal of \ escapes. 
   library_names_spec='${libname}${release}${versuffix}.$(test .$module = .yes && echo so || echo dylib) ${libname}${release}${major}.$(test .$module = .yes && echo so || echo dylib) ${libname}.$(test .$module = .yes && echo so || echo dylib)'
   soname_spec='${libname}${release}${major}.$(test .$module = .yes && echo so || echo dylib)'
   shlibpath_overrides_runpath=yes
@@ -2914,7 +2914,10 @@ AR=$lt_AR
 AR_FLAGS=$lt_AR_FLAGS
 
 # The default C compiler.
-CC=$lt_CC
+
+if test "X\$CC" = "X" ; then 
+  CC=$lt_CC
+fi
 
 # Is the compiler the GNU C compiler?
 with_gcc=$GCC
