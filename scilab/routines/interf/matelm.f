@@ -3803,7 +3803,7 @@ c     argument is passed by reference
          do 10 i=0,mn-1
             if(stk(l+i).lt.0.0d+0) then
                itr=1
-               goto 20
+c               goto 20
             elseif(stk(l+i).eq.0.0d+0) then
                if(ieee.eq.0) then
                   call error(32)
@@ -3811,7 +3811,7 @@ c     argument is passed by reference
                elseif(ieee.eq.1) then
                   call msgs(64)
                endif
-               goto 20
+c               goto 20
             endif
  10      continue
 
