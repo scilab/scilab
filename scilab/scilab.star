@@ -156,15 +156,22 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
   if MSDOS then
     if funptr("TK_EvalStr")<>0 then
       // Create Scipad TCL interpretor
-      TK_EvalStr("interp create scipad")
-      TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk scipad")
-      TK_EvalStr("scipad eval {wm withdraw .}")
-      TK_EvalStr("scipad alias ScilabEval ScilabEval")
-      
+      TK_EvalStr('set a [interp exists scipad]');
+      a=TK_GetVar('a');
+      if a <> 1 then 
+	TK_EvalStr("interp create scipad")
+	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk scipad")
+	TK_EvalStr("scipad eval {wm withdraw .}")
+	TK_EvalStr("scipad alias ScilabEval ScilabEval")
+      end
       // Create Browsehelp TCL interpretor
-      TK_EvalStr("interp create browsehelp")
-      TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
-      TK_EvalStr("browsehelp eval {wm withdraw .}")
+      TK_EvalStr('set a [interp exists browsehelp]');
+      a=TK_GetVar('a');
+      if a <> 1 then 
+	TK_EvalStr("interp create browsehelp")
+	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
+	TK_EvalStr("browsehelp eval {wm withdraw .}")
+      end
     end
   end
 end
