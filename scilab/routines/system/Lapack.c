@@ -179,6 +179,22 @@ Lapack_contents(x)
 	C2F(zlange)();
 	C2F(zlascl)();
 	C2F(zlaset)();
+	C2F(zbdsqr)();
+        C2F(zgebak)(); 
+	C2F(zgebal)();
+	C2F(zgebrd)();
+	C2F(zgehrd)();
+	C2F(zgelqf)();
+	C2F(zgetf2)();
+	C2F(zhseqr)();
+	C2F(zlassq)();
+	C2F(zlaswp)();
+	C2F(ztrsen)();
+	C2F(ztrtri)();
+	C2F(zungbr)();
+	C2F(zunghr)();
+	C2F(zunglq)();
+	C2F(zunmbr)();
 }
 }
 
