@@ -6,7 +6,9 @@ if getenv('WIN32','NO')=='OK' then
   if typeof(objects_or_dll)<>'string' then error('G_make: objects must be a string');
     return;
   end 
-  if COMPILER=='VC++' then 
+  if with_lcc() ==%T then
+  	host('make -f Makefile.lcc '+objects_or_dll);
+ else if COMPILER=='VC++' then 
     // scilab was build with VC++ 
     host('nmake /nologo /f Makefile.mak '+objects_or_dll);
   else if COMPILER=='ABSOFT' then 
@@ -17,6 +19,7 @@ if getenv('WIN32','NO')=='OK' then
       host('make '+objects_or_dll);
     end
   end
+  end
   res=[objects_or_dll];
 else 
   mk=[]
@@ -24,4 +27,5 @@ else
   host('make '+ mk);
   res=files ;
 end 
+
 endfunction

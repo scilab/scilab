@@ -44,7 +44,14 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
      path=''
   end
   comp_target = COMPILER;
-  if getenv('WIN32','NO')=='OK' then
+  if with_lcc()==%T then
+  	lib_name=lib_name+'.dll'
+    	lib_name_make=lib_name;
+    	makename = makename + '.lcc' ; 
+      	make_command = 'make -f '
+      	if files<>[] then files = files + '.obj' ;
+      	end
+  else if getenv('WIN32','NO')=='OK' then
     lib_name=lib_name+'.dll'
     lib_name_make=lib_name;
     select comp_target
@@ -81,6 +88,8 @@ function [make_command,lib_name_make,lib_name,path,makename,files]=ilib_compile_
      lib_name = lib_name+'.la'; 
      make_command = 'make -f ';
   end
+  end
+  
 endfunction 
 
   
