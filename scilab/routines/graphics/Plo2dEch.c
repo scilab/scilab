@@ -1276,7 +1276,8 @@ int zoom_box(double *bbox)
 		}
 
 
-		fmin= bbox[1]; fmax= bbox[3];
+		fmin= bbox[1]; 
+		fmax= bbox[3];
 		if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
 		  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
 		  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
