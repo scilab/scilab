@@ -2735,7 +2735,7 @@ static int check_prop(mes,pos,m)
 {
   if ( m ) 
     { 
-      Scierror(999,"%s: %s %s\r\n",
+      Scierror(20,"%s: %s %s\r\n",
 	       Get_Iname(),
 	       ArgPosition(pos),
 	       mes);
