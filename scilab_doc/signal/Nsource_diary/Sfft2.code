@@ -1,0 +1,5 @@
+//Simple use of fft
+x=0:63;y=cos(2*%pi*x/16);
+yf=fft(y,-1);
+plot(x,real(yf)');
+xend(),

@@ -1,0 +1,102 @@
+% Copyright INRIA
+
+
+\def\Figdir{Nfigs_source/}
+\def\Diary{Nsource_diary/}
+\def\MACROSSIGLIB{../../macros/signal/}
+\def\SRCDiary{Nsource_diary}\documentstyle{article}
+
+\begin{document}
+
+\def\verbatok#1{\expandafter \begin{verbatim}
+\input{#1}}
+\label{fir}
+\section{Frequency sampling technique}
+\index{frequency sampling!FIR filters}
+
+This technique is based on specification of a set of samples
+of the desired frequency response at $N$ uniformly spaced points around the unit circle, where $N$ is the filter length.
+The z-transform of an FIR filter is easily shown to be :
+%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H(z)=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1}\frac{H(k)}{(1-z^{-1}e^{j(2\pi/N)k})}
+\label{e1}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%
+This means that one way of approximating any continuous frequency
+response is to {\em sample in frequency}, at $N$ equispaced points around the 
+unit circle (the frequency samples), and interpolate between them to obtain
+the continuous frequency response. Thus, the approximation error will
+be exactly zero at the sampling frequencies and finite between them.
+This fact has to be related to the reconstruction of a continuous
+function from its samples, as exposed in section~\ref{2.2} for example
+for the case of a continuous-time signal.
+
+	The interpolation formula for an FIR filter, that is its frequency response, is obtained by evaluating (\ref{e1}) on the unit circle:
+%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H(e^{j\omega}) &=& \frac{e^{-j\omega(N-1)/2}}{N}\sum_{k=0}^{N-1}\frac{H(k)e^{-jk\pi/N}\sin(N\omega/2)}{\sin(\omega/2-k\pi/N)}\nonumber\\
+&=& \frac{e^{-j\omega(N-1)/2}}{N}\sum_{k=0}^{N-1}H(k)S(\omega,k)
+\end{eqnarray}
+%%%%%%%%%%%%%%%
+where
+%%%%%%%%%%%%%%%
+\begin{eqnarray}
+S(\omega,k) &=& e^{-jk\pi/N}\frac{\sin(N\omega/2)}{\sin(\omega/2-k\pi/N)}\nonumber\\
+&=&\pm e^{-jk\pi/N}\frac{\sin(N(\omega/2)-k\pi/N)}{\sin(\omega/2-k\pi/N)}
+\end{eqnarray}
+%%%%%%%%%%%%%%
+are the interpolating functions.
+Thus, the contribution of every frequency sample to the continuous
+frequency response is proportional to \(\sin(N\omega/2)/\sin(\omega/2)\) 
+shifted by \(k\pi/N\) in frequency.
+	The main drawback of this technique is the lack of flexibility
+in specifying the transition band width, which is equal to the number of samples the user decides to put in times \(\pi/N\), and thus is 
+strongly related to $N$.
+Moreover, the specification of frequency samples in transition bands, giving minimum ripple near the band edges, is not immediate.
+Nevertheless, it will be seen, in a later chapter on filter optimization
+techniques, that simple linear programming techniques can be used to drastically reduce the error approximation by optimizing only those samples located in the transition bands. To illustrate this point, Figure~\ref{f1} shows the response obtained for a type 1 band pass filter with length 65 : 
+first with no sample in the transition bands and second (dashed curve) with one sample 
+of magnitude .5 in each of these bands. It is worth noting at this point 
+that the linear-FIR design problem with arbitrary frequency response 
+specification is more efficiently solved using a minmax approximation 
+approach, which is exposed in the next section. \\
+%%%%%%%%%%%
+\input{\Figdir fstyp12.1.tex}
+\dessin{picture Type 1 band pass filter with no sample or one sample in each transition band}{f1}
+%%%%%%%%%%
+Finally, depending on where the initial frequency sample occurs, two distinct sets of frequency samples can be given, corresponding to the so-called
+ type 1 and type 2 FIR filters :\\
+ \\
+\begin{eqnarray}
+f_k&=&\frac{k}{N} \; \; k=0, \ldots ,N-1 \mbox{ for type 1 filters}\nonumber\\
+f_k&=&\frac{k+1/2}{N}\; \; k=0,\ldots ,N-1 \mbox{ for type 2 filters}\nonumber
+\end{eqnarray}
+The type of design is at user's will and depends on the application:
+for example, a band edge may be closer to a type 1 than to a type 2 frequency
+sampling point. This point is illustrated in Figure~\ref{f2}
+for the case of a low pass filter with length 64 and no sample in 
+the transition band.
+%%%%%%%%%%%
+\input{\Figdir fstyp12.2.tex}
+\dessin{picture Type 1 and type 2 low pass filter}{f2}
+%%%%%%%%%%
+The full line (resp. the dashed line) gives the approximated response
+for the type 1 (resp. type 2) FIR linear filter.
+	We give now the way the two previous examples have been 
+generated and the code of the macro {\tt fsfir} which calculates 
+the approximated response.
+Figure~\ref{f1} was obtained with the following set of instructions :\\
+\verbatok{\Diary fstyp12.1.dia}
+\end{verbatim}
+and Figure~\ref{f2} with :
+\verbatok{\Diary fstyp12.2.dia}
+\end{verbatim}
+Finally, the code of the macro {\tt fsfir} is as follows :
+%\verbatok{\MACROSSIGLIB fsfirlin.sci}
+%\end{verbatim}
+%\verbatok{\MACROSSIGLIB sincd.sci}
+%\end{verbatim}
+%%%%%%%%%%%%%
+\end{document}
+

@@ -1,0 +1,29 @@
+//multiple Postscript files for Latex
+driver('Pos')
+
+t=%pi*(-10:10)/10;
+
+xinit('fig1.ps')
+plot3d1(t,t,sin(t)'*cos(t),theta=35,alpha=45,flag=[2,2,4]);
+xend()
+
+xinit('fig2.ps')
+contour(1:5,1:10,rand(5,10),5);
+xend()
+
+xinit('fig3.ps')
+champ(1:10,1:10,rand(10,10),rand(10,10));
+xend()
+
+xinit('fig4.ps')
+t=%pi*(-10:10)/10;
+function z=surf(x,y),z=sin(x)*cos(y),endfunction
+rect=[-%pi,%pi,-%pi,%pi,-5,1];
+z=feval(t,t,surf);
+contour(t,t,z,10,35,45,'X@Y@Z',[1,1,0],rect,-5);
+plot3d(t,t,z,theta=35,alpha=45,flag=[2,1,3],ebox=rect);
+title=['plot3d and contour '];
+xtitle(title,' ',' ');
+xend()
+
+driver('Rec')

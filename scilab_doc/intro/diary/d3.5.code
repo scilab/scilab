@@ -1,0 +1,2 @@
+ s=poly(0,'s')
+ derivat(s/(1+s))

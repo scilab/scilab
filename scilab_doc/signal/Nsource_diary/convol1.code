@@ -1,0 +1,9 @@
+//exec('convol1.code')
+x1=getx(xlen_1,xstart_1);
+[y,y1]=convol(h,x1);
+for k=2:nsecs-1,
+   xk=getx(xlen_k,xstart_k);
+   [y,y1]=convol(h,xk,y1);
+end,
+xn=getx(xlen_n,xstart_n);
+y=convol(h,xn,y1);

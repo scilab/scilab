@@ -1,0 +1,44 @@
+% Copyright INRIA
+
+\documentclass[11pt]{report}
+
+\usepackage{makeidx}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+
+\def\Figdir{figures/}
+
+\makeindex
+
+\begin{document}
+
+\include{chap0}
+
+\pagenumbering{roman}
+\tableofcontents
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+\include{chap1} %introduction
+
+\include{chap2} %datatypes
+
+\include{chap3} %programming
+
+\include{chap4} %basicprimitives
+
+\include{chap5} %graphics
+
+\include{chap6} %interfacing
+
+%\include{appendices}
+
+\listoffigures
+
+\printindex
+
+\end{document}

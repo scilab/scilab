@@ -1,0 +1,5 @@
+//exec('iir6.code')
+[pols,gn]=zpch1(3,.22942,2);
+gn
+pols'
+hs=gn/real(poly(pols,'s'))

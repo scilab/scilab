@@ -1,0 +1,11 @@
+ s=poly(0,'s')
+ ft=1/(s-1)
+ gt=1/(s-2)
+ ft=syslin('c',ft);
+ gt=syslin('c',gt);
+ gs=tf2ss(gt)
+ ssprint(gs)
+ hs=gs*ft;
+ ssprint(hs)
+ ht=ss2tf(hs)
+ gt*ft

@@ -1,0 +1,3 @@
+xinit('kf1.ps')
+exec('SCI/doc/signal/Nsource_diary/Skf1.code')
+xend(),

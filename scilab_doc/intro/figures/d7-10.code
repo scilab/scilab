@@ -1,0 +1,11 @@
+xinit('d7-10.ps');
+   r=(%pi):-0.01:0;x=r.*cos(10*r);y=r.*sin(10*r);
+   function z=surf(x,y),z=sin(x)*cos(y);endfunction
+   t=%pi*(-10:10)/10;
+   fplot3d(t,t,surf,theta=35,alpha=45,leg="X@Y@Z",flag=[-3,2,3]);
+   z=sin(x).*cos(y);
+   [x1,y1]=geom3d(x,y,z);
+   xpoly(x1,y1,"lines");
+   [x1,y1]=geom3d([0,0],[0,0],[5,0]);
+   xsegs(x1,y1);
+   xstring(x1(1),y1(1),' The point (0,0,0)');

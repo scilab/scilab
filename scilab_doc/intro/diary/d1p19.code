@@ -1,0 +1,5 @@
+function y=calcul(x,method),z=method(x),y=poly(z,'x'),endfunction
+function z=meth1(x),z=x,endfunction
+function z=meth2(x),z=2*x,endfunction
+calcul([1,2,3],meth1)
+calcul([1,2,3],meth2)

@@ -1,0 +1,11 @@
+x=-%pi:0.3:%pi;
+y1=sin(x);y2=cos(x);y3=x;
+X=[x;x;x]; Y=[y1;y2;y3];
+plot2d2("g00",X',Y');
+xbasc();
+plot2d1("g00",X',Y',[1 2 3]',"101","caption1@caption2@caption3");
+xtitle(["General";"Title"],"x-axis title","y-axis title");
+xgrid([10,20]);
+xclea(0.5,-0.5,1.5,1.5);
+titlepage("titlepage");
+xstring(0.65,0.3,["xstring after";"xclear"],0,1);

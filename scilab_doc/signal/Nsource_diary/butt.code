@@ -1,0 +1,5 @@
+//exec('butt.code')
+n=7;
+omegac=3;
+[pols,gain]=zpbutt(n,omegac);
+h=poly(gain,'s','coeff')/real(poly(pols,'s'))

@@ -1,0 +1,9 @@
+//exec('fstyp12.2.ex')
+    hd=ones(1,32);hd(65)=0;//definition of samples
+    hst1=fsfirlin(hd,1);//type 1 filter
+    hst2=fsfirlin(hd,2);//type 2 filter
+    pas=1/prod(size(hst1))*.5;
+    fg=0:pas:.5;//normalized frequencies grid
+    plot(fg,hst1);
+    dess(54:55)=[1;2];
+    plot(fg,hst2);

@@ -1,0 +1,6 @@
+exec('da.1.code');
+s=poly(0,'s');
+ff=1;sensor=1;model=1;
+proc=s/(s^2+3*s+2);
+reg=[1/s 1/s];
+sys=evstr(sysf)

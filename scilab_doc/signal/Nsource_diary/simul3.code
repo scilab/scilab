@@ -1,0 +1,26 @@
+//     Simulation of a two-dimensional time-series (3 sinusoids)
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed',0);rand('normal');sx=sin(x);
+y=[sx+sin(2*x);sx+sin(1.9*x)]+rand(2,1024);
+//     computation of correlations (64 delays)
+c=[];
+for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end;
+c=matrix(c,2,128);cov=[];r0=c(1:2,1:2);
+//     hankel matrix H20,20 (i.e. square with 20 bloc-rows)
+hk=hank(20,20,c);
+//     finding H,F,G by the PHC method
+[h,f,g]=phc(hk,2,6);
+//     solving the algebraic Riccati equation
+[p,s1,t1,l1,rT,tT]=srfaur(h,f,g,r0,200);
+r12=sqrt(.5*(rT+rT'));
+r12=real(r12);f=real(f);tT=real(tT);
+spec(l1'*l1)
+//     simulation of the filter
+rand('seed',0);rand('normal');
+xest=ltitr(f,tT*r12,rand(2,1024));
+rand('seed',0);rand('normal');
+yest=h*xest+r12*rand(2,1024);
+//     correlations of the filter model output
+cest=[];
+for k=1:2,for j=1:2,cest=[cest;corr(yest(j,:),yest(k,:),64)];end;end
+cest=matrix(cest,2,128);

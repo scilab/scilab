@@ -1,0 +1,7 @@
+//exec('remez3.code')
+nc=21;
+ngrid=nc*250;
+fg=.5*(0:(ngrid-1))/(ngrid-1);
+ds(1:ngrid/2)=ones(1:ngrid/2);
+ds(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+wt=ones(fg);

@@ -1,0 +1,5 @@
+//exec('remez2.code')
+hn(1)=.25*an(nc);
+hn(2:nc-1)=.25*(an(nc:-1:3)+an(nc-1:-1:2));
+hn(nc)=.5*an(1)+.25*an(2);
+hn(nc+1:2*nc)=hn(nc:-1:1);

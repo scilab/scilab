@@ -1,0 +1,7 @@
+ s=poly(0,'s')
+ h=1/((s+.5)*(s+2));h=syslin('c',h)
+ ht=tf2ss(h);
+ ssprint(ht)
+ a=ht(2);b=ht(3);
+ k=ppol(a,b,[-1 -1])
+ spec(a-b*k)

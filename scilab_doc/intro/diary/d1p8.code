@@ -1,0 +1,5 @@
+exec('d1p6.code',-1);
+F21=F(2,1);v=0:0.01:%pi;frequencies=exp(%i*v);
+response=freq(F21.num,F21.den,frequencies);
+plot2d(v,abs(response),style=-1,rect=[0,0,3.5,0.7],nax=[5,4,5,7]);
+xtitle(' ','radians','magnitude');

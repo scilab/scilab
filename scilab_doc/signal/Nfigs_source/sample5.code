@@ -1,0 +1,9 @@
+   exec('sample4.code')
+   xinit('sample5.ps')
+   plot([0 0 48],[1.5 -1.5 -1.5]);
+   n=prod(size(y))
+   plot2d((1:n)',y',[1],"000"),
+   n=prod(size(yn))
+   plot2d((1:n)',yn',[2],"000"),
+   plot2d((1:n)',-yn',[2],"000"),
+   xend(), 

@@ -1,0 +1,73 @@
+\documentstyle[11pt,verbatim,../tr2latex/troffman]{article}
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{Tr2Tex for Scilab} 
+             \author{J.Ph. Chancelier\thanks{Cergrene. Ecole Nationale des Ponts et Chauss\'ees, La Courtine  93167 Noisy le Grand C\'{e}dex }}
+	
+\begin{document}\maketitle
+\def\verbatok#1{\expandafter\begin{verbatim}
+\input{#1}}
+	
+\section{Modifications from the original tr2tex}
+I've slightly modified the tr2tex program as follows~:
+\begin{itemize}
+\item The translation for \verb+.TH+ and \verb+.SH+ have been modified.
+\verb+.SH NAME+ has a special translation, the line following this
+statement must be of type 
+\begin{verbatim}
+<one-word> - <sentence>
+\end{verbatim}
+\item \verb+.TP+ and \verb+.IP+ are translated so as to obtain
+description or itemize list in \LaTeX. The tag for \verb+.TP+ 
+is by default in verb mode (tt font). One can't mix \verb+.TP+ and
+\verb+.IP+ in the same enumeration ( the resulting code would not be 
+properly indented )
+\item \verb+.RS+ and \verb+.RE+ are used to produce indented sequences
+of description or itemize~:
+\begin{verbatim}
+	.TP
+	x
+	1234567890
+	.TP
+	x
+	1234567890
+	.RS
+	.IP x
+	1234567890
+	.IP y
+	1234567890
+	.RE
+	.TP
+	z
+	1234567890
+\end{verbatim}
+\item troff Comments beginning with \verb+\"LaTeX+ are recognized and the
+rest of the line is transmitted verbatim to \LaTeX. This allows the 
+ writer to provide his own translations for the \LaTeX version of
+the documentation and to add whatever statement he wants to the LaTeX 
+documentation. \verb+.LA+ behaves like \verb+\"LaTeX+~:
+\begin{verbatim}
+	\"LaTeX \[ x=\sum_{k=0}^n \alpha_k^2 \]
+	.LA \[ x=\sum_{k=0}^n \alpha_k^2 \]
+\end{verbatim}
+\item lines between \verb+.nf+ and \verb+.ni+ are supposed to be verbatim
+statements and are translated as such. If the region surrounded with 
+\verb+.nf+ and \verb+.ni+ is too large tr2tex can fail,
+just cut your region into pieces.
+\item \verb+.HR.+ is ignored in nroff and will produce an horizontal
+line in \LaTeX
+\item \verb+\fV+ will switch to \verb+tt+ font inside text \verb+.Vb+
+will put is argument in \verb+tt+ font.
+\end{itemize}
+\section{An example : \LaTeX translation}
+\input{example}
+\section{An example : Troff code}
+\verbatok{example.1}
+\end{verbatim}
+
+
+\end{document}

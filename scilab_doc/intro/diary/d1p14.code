@@ -1,0 +1,5 @@
+exec('d1p13.code',-1);
+A=[1,1 ;0,1];B=[0;1];C=[1,0];Sl=syslin('c',A,B,C);
+Cl=compen(Sl,ppol(A,B,[-1,-1]),...
+                     ppol(A',C',[-1+%i,-1-%i])');
+Aclosed=Cl.A,spec(Aclosed)

@@ -1,0 +1,175 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: foo1.pstex
+%%Creator: fig2dev Version 3.2 Patchlevel 0-beta3
+%%CreationDate: Wed Jun 10 18:12:22 1998
+%%For: gomez@fantome (Claude Gomez)
+%%Orientation: Portrait
+%%BoundingBox: 0 0 127 79
+%%Pages: 0
+%%BeginSetup
+%%EndSetup
+%%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+-45.0 98.0 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+ /DrawEllipse {
+	/endangle exch def
+	/startangle exch def
+	/yrad exch def
+	/xrad exch def
+	/y exch def
+	/x exch def
+	/savematrix mtrx currentmatrix def
+	x y tr xrad yrad sc 0 0 1 startangle endangle arc
+	closepath
+	savematrix setmatrix
+	} def
+
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+%%EndProlog
+
+$F2psBegin
+10 setmiterlimit
+n -1000 2626 m -1000 -1000 l 3857 -1000 l 3857 2626 l cp clip
+ 0.06000 0.06000 sc
+/Times-Roman ff 165.00 scf sf
+869 622 m
+gs 1 -1 sc (1) col-1 sh gr
+15.000 slw
+% Ellipse
+n 2702 577 140 140 0 360 DrawEllipse gs col-1 s gr
+
+% Ellipse
+n 1497 1472 140 140 0 360 DrawEllipse gs col-1 s gr
+
+% Polyline
+n 985 685 m 1410 1365 l gs col-1 s gr 
+% Polyline
+n 1055 575 m 2565 575 l gs col-1 s gr 
+% Polyline
+n 1710 450 m 1835 560 l 1715 670 l gs col-1 s gr 
+% Polyline
+n 1882 697 m 1757 807 l 1877 917 l gs col-1 s gr 
+% Polyline
+n 1275 952 m 1260 1121 l 1110 1065 l gs col-1 s gr 
+% Ellipse
+n 907 577 140 140 0 360 DrawEllipse gs col-1 s gr
+
+% Polyline
+n 1806 1211 m 1676 1196 l 1676 1316 l gs col-1 s gr 
+/Times-Roman ff 165.00 scf sf
+1710 1130 m
+gs 1 -1 sc (4) col-1 sh gr
+% Polyline
+n 1057 577 m 1059 578 l 1063 581 l 1071 587 l 1082 595 l 1098 605 l
+ 1118 618 l 1140 634 l 1166 650 l 1194 668 l 1223 686 l
+ 1252 704 l 1281 721 l 1309 736 l 1337 750 l 1364 762 l
+ 1390 773 l 1416 782 l 1443 789 l 1470 795 l 1492 799 l
+ 1515 802 l 1539 804 l 1564 807 l 1590 808 l 1616 810 l
+ 1644 811 l 1673 811 l 1702 812 l 1732 812 l 1762 812 l
+ 1793 812 l 1824 812 l 1854 811 l 1885 811 l 1915 810 l
+ 1945 809 l 1974 808 l 2003 806 l 2030 805 l 2057 803 l
+ 2083 801 l 2107 798 l 2131 795 l 2153 791 l 2175 787 l
+ 2202 781 l 2227 773 l 2253 763 l 2278 752 l 2304 740 l
+ 2330 725 l 2356 709 l 2384 692 l 2411 674 l 2438 655 l
+ 2464 637 l 2487 620 l 2509 604 l 2527 591 l 2541 580 l
+ 2552 572 l 2559 566 l 2563 563 l 2565 562 l gs col0 s gr 
+% Polyline
+n 1642 1481 m 1645 1479 l 1653 1475 l 1665 1468 l 1681 1459 l 1701 1447 l
+ 1724 1434 l 1745 1420 l 1766 1405 l 1783 1392 l 1796 1378 l
+ 1804 1366 l 1808 1354 l 1807 1341 l 1803 1331 l 1797 1320 l
+ 1788 1307 l 1776 1294 l 1762 1280 l 1746 1264 l 1729 1248 l
+ 1711 1232 l 1691 1215 l 1672 1198 l 1653 1183 l 1635 1168 l
+ 1617 1155 l 1601 1143 l 1587 1134 l 1574 1127 l 1562 1123 l
+ 1552 1121 l 1540 1123 l 1530 1129 l 1521 1141 l 1512 1158 l
+ 1503 1179 l 1495 1203 l 1487 1230 l 1479 1256 l 1473 1280 l
+ 1468 1299 l 1465 1314 l 1463 1322 l 1462 1325 l 1462 1326 l gs col-1 s gr 
+/Times-Roman ff 165.00 scf sf
+1939 749 m
+gs 1 -1 sc (1) col-1 sh gr
+/Times-Roman ff 165.00 scf sf
+1810 436 m
+gs 1 -1 sc (3) col-1 sh gr
+/Times-Roman ff 165.00 scf sf
+1471 1522 m
+gs 1 -1 sc (3) col-1 sh gr
+/Times-Roman ff 165.00 scf sf
+2665 626 m
+gs 1 -1 sc (4) col-1 sh gr
+/Times-Roman ff 165.00 scf sf
+1332 1080 m
+gs 1 -1 sc (2) col-1 sh gr
+$F2psEnd
+rs

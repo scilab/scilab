@@ -1,0 +1,10 @@
+//Elliptic bandpass filter
+om=[0.251463,1*%pi/10,2*%pi/10,0.773302];
+deltap=0.022763;
+deltas=0.01;
+[cells,fact,zers,pols]=eqiir('bp','el',om,deltap,deltas);
+n=prod(cells(2));d=prod(cells(3));
+rep=freq(n,d,exp(%i*(0:0.01:%pi)));
+rep=fact*abs(rep);
+n=prod(size(rep))
+plot(20*log(rep(2:n))/log(10))

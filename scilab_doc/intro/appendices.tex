@@ -1,0 +1,286 @@
+% Copyright INRIA
+
+\appendix
+\chapter{Demo session}
+We give here the Scilab session corresponding to the first demo.
+
+\input{diary/demo1.dia}
+
+\chapter{System interconnexion}
+
+%\section{System Interconnection}
+	The purpose of this appendix is to illustrate some
+of the more sophisticated aspects of Scilab by the way of an example.
+The example shows how Scilab can be used to symbolically represent
+the inter-connection of multiple systems which in turn can 
+then be used to numerically evaluate the performance of the
+inter-connected systems.  The symbolic representation of the
+inter-connected systems is done with a function called {\tt bloc2exp}
+\index{bloc2exp@{\tt bloc2exp}}
+and the evaluation of the resulting system is done with
+{\tt evstr}\index{evstr@{\tt evstr}}.
+
+	The example illustrates the symbolic inter-connection of the 
+systems shown in Figure~\ref{fa.1}\index{linear systems!inter-connection of}.  
+%
+\begin{figure}
+\begin{center}
+\begin{picture}(360,204)
+
+\put(80,85){\framebox(40,30){\tt Model}}
+\put(150,85){\framebox(40,30){\tt Reg}}
+\put(240,85){\framebox(40,30){\tt Proc}}
+\put(120,140){\framebox(40,30){\tt FF}}
+\put(190,30){\framebox(40,30){\tt Sensor}}
+\put(210,100){\framebox(0,0){\tt +}}
+
+\put(35,95){\tt U}
+\put(315,95){\tt Y}
+\put(315,125){\tt UP}
+
+\put(50,100){\vector(1,0){30}}
+\put(120,100){\vector(1,0){30}}
+\put(190,100){\vector(1,0){15}}
+\put(215,100){\vector(1,0){25}}
+\put(210,155){\vector(0,-1){50}}
+\put(295,45){\vector(-1,0){65}}
+\put(65,155){\vector(1,0){55}}
+\put(170,45){\vector(0,1){40}}
+\put(225,130){\vector(1,0){85}}
+\put(280,100){\vector(1,0){30}}
+
+\put(65,100){\line(0,1){55}}
+\put(160,155){\line(1,0){50}}
+\put(170,45){\line(1,0){20}}
+\put(225,100){\line(0,1){30}}
+\put(295,100){\line(0,-1){55}}
+
+\put(210,100){\circle{10}}
+\put(48,100){\circle{2}}
+\put(310,100){\circle{2}}
+\put(310,130){\circle{2}}
+\put(65,100){\circle*{2}}
+\put(225,100){\circle*{2}}
+\put(295,100){\circle*{2}}
+
+\end{picture}
+\end{center}
+\caption{Inter-Connected Systems}
+\label{fa.1}
+\end{figure}
+%
+Figure~\ref{fa.1} illustrates the classic regulator problem\index{regulator}
+where the block labeled {\tt Proc} is to be controlled
+using feedback from the {\tt Sensor} block and {\tt Reg} block.
+The {\tt Reg} block compares the output from the {\tt Model}
+block to the output from the {\tt Sensor} block to decide how to
+regulate the {\tt Proc} block.  There is also a feed-forward
+block which filters the input signal {\tt U} to the {\tt Proc}
+block.  The outputs of the system are {\tt Y} and {\tt UP}.
+
+	The system illustrated in Figure~\ref{fa.1} can
+be represented in Scilab by using the function {\tt bloc2exp}.
+The use of {\tt bloc2exp} is illustrated in the following Scilab
+session.
+There a two kinds of objects: ``transfer'' and ``links''. The example
+considered here admits 5 transfers and 7 links.
+First the transfer are defined in a symbolic manner. Then links
+are defined and an ``interconnected system'' is defined as
+a specific list. The function {\tt bloc2exp} evaluates symbolically
+the global transfer and {\tt evstr} evaluates numerically
+the global transfer function once the systems are given ``values'', i.e.
+are defined as Scilab linear systems.
+%
+\begin{verbatim}
+ 
+-->model=2;reg=3;proc=4;sensor=5;ff=6;somm=7;
+ 
+-->tm=list('transfer','model');tr=list('transfer',['reg(:,1)','reg(:,2)']);
+ 
+-->tp=list('transfer','proc');ts=list('transfer','s
+ensor');
+ 
+-->tf=list('transfer','ff');tsum=list('transfer',['1','1']);
+ 
+-->lum=list('link','input',[-1],[model,1],[ff,1]);
+ 
+-->lmr=list('link','model output',[model,1],[reg,1]);
+ 
+-->lrs=list('link','regulator output',[reg,1],[somm,1]);
+ 
+-->lfs=list('link','feed-forward output',[ff,1],[somm,2]);
+ 
+-->lsp=list('link','proc input',[somm,1],[proc,1],[-2]);
+ 
+-->lpy=list('link','proc output',[proc,1],[sensor,1],[-1]);
+ 
+-->lsup=list('link','sensor output',[sensor,1],[reg,2]);
+ 
+-->syst=...
+ list('blocd',tm,tr,tp,ts,tf,tsum,lum,lmr,lrs,lfs,lsp,lpy,lsup);
+ 
+-->[sysf,names]=bloc2exp(syst)
+ names     =
+ 
+ 
+       names>1
+ 
+ input   
+ 
+       names>2
+ 
+!proc output  !
+!             !
+!proc input   !
+ sysf      =
+ 
+!proc*((eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model)))  !
+!                                                           !
+!(eye()-reg(:,2)*sensor*proc)\(-(-ff-reg(:,1)*model))         !
+\end{verbatim}
+%
+Note that the argument to {\tt bloc2exp} is a list of lists.  The 
+first element of the list {\tt syst} is (actually) the character string
+{\tt 'blocd'} which indicates that the list represents a block-diagram
+inter-connection of systems.  Each list entry in the list {\tt syst}
+represents a block or an inter-connection in Figure~\ref{fa.1}.
+The form of a list which represents a block begins with a character
+string {\tt 'transfer'} followed by a matrix of character strings
+which gives the symbolic name of the block.  If the block is multi-input
+multi-output the matrix of character strings must be represented as
+is illustrated by the block {\tt Reg}.  
+
+	The inter-connections between blocks is also represented by lists.  
+The first element of the list is the character string {\tt 'link'}.
+The second element of the inter-connection is its symbolic name.
+The third element of the inter-connection is the input to the connection.
+The remaining elements are all the outputs of the connection.
+Each input and output to an inter-connection is a vector which
+contains as its first element the block number (for instance the {\tt model}
+block is assigned the number $2$).  The second element of the vector
+is the port number for the block (for the case of multi-input multi-output
+blocks).  If an inter-connection is not attached to anything the value
+of the block number is negative (as for example the inter-connection
+labeled {\tt 'input'} or is omitted.
+
+	The result of the {\tt bloc2exp} function is a list of names
+which give the unassigned inputs and outputs of the system and
+the symbolic transfer function of the system given by {\tt sysf}.
+The symbolic names in {\tt sysf} can be associated to polynomials
+and evaluated using the function {\tt evstr}.  This is illustrated in the
+following Scilab session.
+%
+\begin{verbatim}
+ 
+-->s=poly(0,'s');ff=1;sensor=1;model=1;proc=s/(s^2+3*s+2);
+ 
+-->reg=[1/s 1/s];sys=evstr(sysf)
+ sys       =
+ 
+!     1 + s          !
+!   ----------       !
+!             2      !
+!   1 + 3s + s       !
+!                    !
+!              2   3 !
+!   2 + 5s + 4s + s  !
+!   ---------------- !
+!           2   3    !
+!     s + 3s + s     !
+
+\end{verbatim}
+%
+The resulting polynomial transfer function links the input
+of the block system to the two outputs.  Note that the output
+of {\tt evstr} is the rational polynomial matrix {\tt sys}
+whereas the output of {\tt bloc2exp} is a matrix of character strings.
+
+The symbolic evaluation which is given here is not very efficient
+with large interconnected systems. The function {\tt bloc2ss}
+performs the previous calculation in state-space format.
+Each system is given now in state-space 
+as a {\tt syslin} list or simply as a gain (constant matrix). 
+Note {\tt bloc2ss} performs the necessary conversions if this 
+is not done by the user. Each system must be given a value before
+bloc2ss is called. All the calculations are made in state-space
+representation even if the linear systems are given in transfer form.
+
+\chapter{Converting Scilab functions to Fortran}
+
+\section{Converting Scilab Functions to Fortran Routines}
+
+Scilab provides a compiler (under development) to transform some Scilab 
+functions
+into Fortran subroutines. The routines which are thus obtained
+make use of the routines which are in the Fortran libraries.
+All the basic matrix operations are available.
+
+Let us consider the following Scilab function:
+\begin{verbatim}
+
+function [x]=macr(a,b,n)
+z=n+m+n,
+c(1,1)=z,
+c(2,1)=z+1,
+c(1,2)=2,
+c(2,2)=0,
+if n=1 then,
+ x=a+b+a,
+else,
+x=a+b-a'+b,
+end,
+y=a(3,z+1)-x(z,5),
+x=2*x*x*2.21,
+sel=1:5,
+t=a*b,
+for k=1:n,
+ z1=z*a(k+1,k)+3,
+end,
+t(sel,5)=a(2:4,7),
+x=[a b;-b' a']
+
+\end{verbatim}
+
+which can be translated into Fortran by using the function {\tt mac2for}.
+Each input parameter of the subroutine is described by a list
+which contains its type and its dimensions. Here, we have three
+input variables {\tt a,b,c} which are, say, {\tt 
+double precision, double precision, integer} with dimensions
+{\tt (m,m), (m,m), (1,1)}. This information is gathered
+in the following list:
+\begin{verbatim}
+l=list();
+l(1)=list('1','m','m');
+l(2)=list('1','m','m');
+l(3)=list('0','1','1');
+\end{verbatim}
+The call to {\tt mac2for} is made as follows:
+\begin{verbatim}
+comp(macr);
+mac2for(macr2lst(macr),l)
+\end{verbatim}
+The output of this command is a string containing a stand-alone Fortran 
+subroutine.
+\begin{verbatim}
+       subroutine macr(a,b,n,x,m,work,iwork)
+c!
+c  automatic translation
+.
+.
+.
+       double precision a(m,m),b(m,m),x(m+m,m+m),y,z1,24(m,m),work(*)
+       integer n,m,z,c(2,2),sel(5),k,iwork(*)
+.
+.
+.      
+       call dmcopy(b,m,x(1,m+1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,1),m+m,m,m)
+       call dmcopy(work(iw1),m,x(m+1,m+1),m+m,m,m)
+       return
+c
+       end
+
+
+\end{verbatim}
+This routine can be linked to Scilab and interactively called.
+

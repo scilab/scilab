@@ -1,0 +1,117 @@
+//exec('remez2_4.code')
+   xinit('remez2.ps');
+//set up data for fortran subroutine remez
+
+   nc=21;
+   ngrid=nc*250;
+
+//frequency grid with no unspecified band
+
+   fg=.5*(0:(ngrid-1))/(ngrid-1);
+
+//desired function (low-pass filter)
+
+   ds(1:ngrid/2)=ones(1:ngrid/2);
+   ds(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+
+//weight function
+
+   wt=ones(fg);
+
+//call remez
+
+   an=remezb(nc,fg,ds,wt);
+
+//obtain other half of filter coefficients (by symmetry)
+
+   h=an(nc:-1:2)/2;
+   h(nc)=an(1);
+   h(nc+1:2*nc-1)=h(nc-1:-1:1);
+
+//plot output
+   z=poly(0,'z');
+   hz=poly(h,'z','c');
+   fr=(0:.5:.5*155)/156;
+   rep=abs(freq(hz,1,exp(%i*2*%pi*fr)));
+   hm=rep';
+   plot(fr,hm),
+
+   xend(),
+   xinit('remez3.ps');
+   clear fg ds wt nc an
+////////////////////////////////////////////////////
+
+   nc=21;
+   ngrid=nc*16;
+
+//frequency grid with unspecified band
+
+   fg=(0:-1+ngrid/2)*.24*2/(ngrid-2);
+   fg(ngrid/2+1:ngrid)=fg(1:ngrid/2)+.26*ones(1:ngrid/2);
+
+//desired function (low-pass filter)
+
+   ds(1:ngrid/2)=ones(1:ngrid/2);
+   ds(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+
+//weight function
+
+   wt=ones(fg);
+
+//call remez
+
+   an=remezb(nc,fg,ds,wt);
+
+//obtain other half of filter coefficients (by symmetry)
+
+   h=an(nc:-1:2)/2;
+   h(nc)=an(1);
+   h(nc+1:2*nc-1)=h(nc-1:-1:1);
+
+//plot output
+
+   hz=poly(h,'z','c');
+   fr=(0:.5:.5*155)/156;
+   rep=abs(freq(hz,1,exp(%i*2*%pi*fr)));
+   hm=rep';
+   plot(fr,hm),
+   xend(),
+   xinit('remez4.ps');
+///////////////////////////////////////////////////
+
+   clear nc ngrid fg ds wt;
+   nc=21;
+   ngrid=nc*16;
+
+//frequency grid with no unspecified band
+
+   fg=.5*(0:(ngrid-1))/(ngrid-1);
+
+//desired function (triangular)
+
+   ds(1:ngrid/2)=(0:-1+ngrid/2)*2/(ngrid-2);
+   ds(ngrid/2+1:ngrid)=ds(ngrid/2:-1:1);
+
+//weight function
+
+   wt=ones(fg);
+//call remez
+
+   an=remezb(nc,fg,ds,wt);
+
+//obtain other half of filter coefficients (by symmetry)
+
+   h=an(nc:-1:2)/2;
+   h(nc)=an(1);
+   h(nc+1:2*nc-1)=h(nc-1:-1:1);
+
+//plot output
+
+   hz=poly(h,'z','c');
+   fr=(0:.5:.5*155)/156;
+   rep=abs(freq(hz,1,exp(%i*2*%pi*fr)));
+   hm=rep';
+   plot(fr,hm),
+   xend(),
+
+

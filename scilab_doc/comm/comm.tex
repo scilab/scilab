@@ -1,0 +1,720 @@
+% Copyright INRIA
+
+\documentclass[11pt]{article}
+
+\textheight=23cm \textwidth=16cm
+\topmargin=-1cm
+\oddsidemargin=0pt \evensidemargin=0pt \marginparwidth=2cm
+
+\newcommand{\func}[1]{\texttt{#1}}
+\newcommand{\T}[1]{\texttt{#1}}
+
+\title{Communication Toolbox}
+\author{Claude Gomez}
+\date{Manual Version 1.0 for Scilab 2.4}
+
+\begin{document}
+
+\maketitle
+
+\small\textbf{
+This is a beta version of the Communication Toolbox. It lacks security
+problems when using remote communications (see~\ref{remote}). A good
+error trapping is also under development, so you can ``block'' Scilab
+when doing mistakes in the names of the linked applications.
+}
+
+\bigskip
+
+GeCI is an interactive communication manager created in order to
+manage remote executions of programs and allow exchanges of messages
+between those programs. It offers the possibility to exploit numerous
+machines on a network, as a virtual computer, by creating a
+distributed group of independent softwares.
+
+It has been originally developed in the CalICo Project (LaBRI-
+Universit\'e Bordeaux I, France) by Nadine Rouillon.
+
+In Scilab, GeCI manages communications between Scilab itself and other
+applications (included Scilab itself). In fact, the \T{scilab}
+command is a shell script which at last executes the command:
+
+\begin{verbatim}
+<Scilab directory>/bin/geci -local <Scilab directory>/bin/scilex
+\end{verbatim}
+
+where \verb|<Scilab directory>| is the main directory of Scilab.
+We will use  \verb|<Scilab directory>| to denote this directory in
+this manual.
+This means that Scilab is ready to communicate with others
+applications. In particular, this is the way Metanet Windows are
+executed in the Metanet toolbox.
+
+In section~\ref{functions}, we explain how to use the Scilab functions of the
+Communication Toolbox and in section~\ref{internal} we describe the
+way to make an application able to communicate with Scilab.
+
+\section{Functions of the Communication Toolbox}\label{functions}
+
+There are six functions in the Communication Toolbox to make
+communications. They are 
+\func{CreateLink}, \func{DestroyLink}, \func{ExecAppli},
+\func{GetMsg}, \func{SendMsg} and \func{WaitMsg}. They are described
+in the on-line manual. We are only going here to describe how to use
+them for exchanging messages between two Scilab programs. You will find
+in section~\ref{examples} how to communicate between Scilab and other
+programs.
+
+After executing Scilab, you can execute another Scilab on the same
+computer from the first one and create a link to it and from it by
+issuing the commands:
+ 
+\begin{verbatim}
+-->h=unix_g("hostname");
+-->ExecAppli(SCI+"/bin/scilex",h,"Scilab2")
+-->CreateLink("SELF","Scilab2")
+-->CreateLink("Scilab2","SELF")
+\end{verbatim}
+
+Each application linked to GeCI has a name. Two special names are defined,
+\T{"SELF"} always stands for the name of the Scilab program where you
+are and \T{"XGeCI"} stands for the first Scilab program.
+
+Now, another Scilab named \T{Scilab2} appears and you can send a
+message to it from the first Scilab:
+
+\begin{verbatim}
+-->SendMsg("Hi!","How are you?");
+\end{verbatim}
+
+And in \T{Scilab2}, you can get it:
+
+\begin{verbatim}
+-->[type,msg,apply] = GetMsg()
+ apply  =
+ 
+ XGeCI   
+ msg  =
+ 
+ How are you?   
+ type  =
+ 
+ Hi!   
+\end{verbatim}
+
+You do not have to tell to which application you want to send the
+message: you send it to all applications linked to you.
+
+You can also send a message from \T{Scilab2} to first Scilab:
+
+\begin{verbatim}
+-->SendMsg("Answer","Fine and you?");
+\end{verbatim}
+
+and you get it in Scilab:
+
+\begin{verbatim}
+-->[type,msg,apply] = GetMsg()
+ apply  =
+ 
+ Scilab2   
+ msg  =
+ 
+ Fine and you?   
+ type  =
+ 
+ Answer   
+\end{verbatim}
+
+You can even open a new Scilab, named \T{Scilab3} for instance, link it
+to Scilab and/or \T{Scilab2} and exchange messages between them after
+having created links. Use the \func{DestroyLink} function to destroy a
+link.
+
+Note that there is no notion of client and server. The server is the
+GeCI program and all the applications which communicate are at the
+same level. That means that the \func{CreateLink}, \func{DestroyLink}
+and \func{ExecAppli} functions can be used in any Scilab instance.
+
+\section{Creating applications to communicate with Scilab}\label{internal}
+
+To communicate with Scilab, an application must have been prepared
+for, by including a communication library in it. 
+The way to do this is described in this section.
+
+Suppose you have a C or fortran program and you want to add in it the
+functionalities to communicate using GeCI. For this you need to add
+new C functions in the code. For instance, you can create a new C file
+which you are going to link with your existing C or fortran
+program. You also need to link the program with the following library:
+
+\begin{verbatim}
+<Scilab directory>/libs/libcomm.a
+\end{verbatim}
+
+At the beginning of the C code, you must include the following header
+files:
+ 
+\begin{verbatim}
+#include "<Scilab directory>/routines/libcomm/libCalCom.h"
+#include "<Scilab directory>/routines/libcomm/libCom.h"
+\end{verbatim}
+
+Then you define the messages known by the application, usually:
+
+\begin{verbatim}
+static void QuitAppli();
+static void EndAppli();
+static void ParseMessage();
+static void MsgError();
+
+static actions_messages tb_messages[]={
+    {ID_GeCI,MSG_QUITTER_APPLI,NBP_QUITTER_APPLI,QuitAppli},
+    {ID_GeCI,MSG_FIN_APPLI,NBP_FIN_APPLI,EndAppli},
+    {NULL,MSG_DISTRIB_LISTE_ELMNT,NBP_DISTRIB_LISTE_ELMNT,ParseMessage},
+    {NULL,NULL,0,MsgError}};
+\end{verbatim}
+
+All these functions have one argument of type \T{message}.
+
+\T{QuitAppli} is executed when THIS application terminates.
+
+\T{EndAppli} is executed when an application executed by THIS
+application terminates.
+
+\T{MsgError} is executed when there is an error in a message.
+
+\T{ParseMessage} is executed to get the received messages.
+For instance, you can write \T{ParseMessage} the following way:
+
+\begin{verbatim}
+static char *TheAppli;
+static char *TheType;
+static char *TheMsg;    
+
+static void ParseMessage(message)
+Message message;
+{
+  int lappli, ltype, lmsg;
+
+  lappli = strlen(message.tableau[0]);
+  if ((TheAppli = (char *)malloc((unsigned)sizeof(char)*(lappli + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheAppli,message.tableau[0]);
+
+  ltype = strlen(message.tableau[3]);
+  if ((TheType = (char *)malloc((unsigned)sizeof(char)*(ltype + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheType,message.tableau[3]);
+
+  lmsg = strlen(message.tableau[4]);
+  if ((TheMsg = (char *)malloc((unsigned)sizeof(char)*(lmsg + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheMsg,message.tableau[4]);
+}
+\end{verbatim}
+
+and you get:
+
+\begin{itemize}
+\item in \T{TheAppli} the name of the application which has sent the message
+\item in \T{TheType} the type of the message (an ASCII string)
+\item in \T{TheMsg} the message (an ASCII string)
+\end{itemize}
+
+Then you must initialize the communications. 
+
+For this, the main function of the 
+application must understand the arguments \T{-pipes <pipe1> <pipe2>} which
+are automatically given by GeCI when executing it by:
+
+\begin{verbatim}
+geci -local <my application>
+\end{verbatim}
+
+A simple way to do this is to use the \T{find} function:
+\begin{verbatim}
+static int find(s,n,t)
+char *s;
+int n;
+char **t;
+{
+  int i;
+  for (i=0; i<n; i++)
+    if (!strcmp(s,t[i])) return(i);
+  return(-1);
+}
+
+int main(argc, argv)
+unsigned int argc;
+char **argv;
+{
+  int igeci;
+  int p1, p2;
+  igeci = find("-pipes",argc,argv);
+  if (igeci == -1) exit(1);
+
+  p1 = atoi(argv[igeci+1]); p2 = atoi(argv[igeci+2]);
+\end{verbatim}
+
+And you initialize the communications:
+
+\begin{verbatim}
+  init_messages(tb_messages,p1,p2);
+\end{verbatim}
+
+Then it is possible to use the functions of GeCI. For this, you have
+to send messages to GeCI.
+
+\begin{itemize}
+\item You can execute an application from your program:
+
+\begin{verbatim} 
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_LANCER_APPLI,
+                                 <appli>,
+                                 <host>,
+                                 <path appli>,
+                                 INS_ID_PIPES,
+                                 NULL);
+\end{verbatim}
+
+where \T{<appli>} is the name you give to the application you execute,
+\T{<host>}
+is the name of the host where you want to execute the application and 
+\T{<path appli>} is the path of the program of the application on the
+host. If you want to execute an application locally on the same host,
+you give the name of your host. You can also execute the application
+on a remote host on Internet, see \ref{remote}.
+
+Every application has a name. The name of your program has also a name
+given automatically. When you have to use it (to link applications for
+instance), you can get it by \T{identificateur\_appli()}.
+
+\item To create a (directed) link from the application named \T{<appli1>} to
+the application named \T{<appli2>}:
+
+\begin{verbatim} 
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_CREER_LIAISON, 
+                                 <appli1>,
+                                 <appli2>,
+                                 NULL);
+\end{verbatim}
+
+Then you are able to send messages from \T{<appli1>} to \T{<appli2>}.
+
+Note that the two applications must have been executed first by the
+preceding message.
+
+\item To destroy a link from \T{<appli1>} to \T{<appli2>}:
+
+\begin{verbatim} 
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_DETRUIRE_LIAISON, 
+                                 <appli1>,
+                                 <appli2>,
+                                 NULL);
+\end{verbatim}
+
+\item To send a message to all linked applications:
+
+\begin{verbatim} 
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_POSTER_LISTE_ELMNT,
+                                 <type>,
+                                 <msg>,
+                                 NULL);
+\end{verbatim}
+
+where \T{<type>} is a string corresponding to the type of the message
+and \T{<msg>} is the string corresponding to the message.
+
+Note that before being able to exchange messages, applications must
+have been linked.
+
+\item To get a message in an asynchronous way:
+
+\begin{verbatim}
+  scanner_messages();
+\end{verbatim}
+ 
+\item To wait for a message from \T{<appli>} in a synchronous way:
+\begin{verbatim}
+
+  attendre_reponse(<appli>,
+                   MSG_DISTRIB_LISTE_ELMNT,
+                   NBP_DISTRIB_LISTE_ELMNT);
+\end{verbatim}
+\end{itemize}
+
+\subsection{Communication between remote hosts}\label{remote}
+
+\emph{\textbf{
+CAUTION: With this beta version of the Communication Toolbox, nothing
+has been done for adressing possibly security holes and problems when
+using the \T{gecid} daemon and remote \T{geci} programs. So use them
+very carefully.
+}}
+
+\medskip
+
+With GeCI you can also have communications between programs on remote
+hosts.
+
+Suppose you are on host \T{h1}, have a local application \T{a1} and
+you want to execute an application \T{a2} on host \T{h2} and open a
+communication between \T{a1} and \T{a2}.
+
+First, you must have a \T{geci} program on both hosts. Second you must
+have a daemon, called \T{gecid}, on the remote host. The C source code
+of this daemon is given in the \T{geci} directory of Scilab
+distribution.
+
+You have to give the good path of \T{geci} program in the source code
+of program \T{gecid} in variable \T{GECI}.
+
+Then, you first start the daemon \T{gecid} on host \T{h2}. 
+After, you execute application \T{a1}, Scilab for instance, on host
+\T{h1} and use GeCI functions to execute application \T{a2} on host \T{h2}:
+you have to give the complete Internet name of host \T{h2} in these
+functions.
+
+If application \T{a2} is another Scilab, do not forget to give the
+good \T{-display} argument to the \T{scilex} command.
+
+In fact the \T{gecid} daemon will wait for a socket connection on port
+2001 and then start \T{geci} on host \T{h2}.
+
+\subsection{Examples}\label{examples}
+
+You will find below two complete C programs as examples.
+
+The first program opens Scilab,
+wait for messages and print them. We call the file of this program 
+\T{alpha.c}
+and we suppose that the main directory of Scilab, 
+\verb|<Scilab directory>| is \T{/usr/local/lib/scilab-2.4}.
+
+Compile this program with:
+ 
+\begin{verbatim}
+cc -o alpha alpha.c /usr/local/lib/scilab-2.4/libs/libcomm.a
+\end{verbatim}
+
+and execute it with (if shell is csh):
+
+\begin{verbatim}
+setenv SCI /usr/local/lib/scilab-2.4
+/usr/local/lib/scilab-2.4/bin/geci -local alpha
+\end{verbatim} 
+
+Then a new Scilab is executed and you can execute in it commands of the form
+\T{SendMsg("Hi","How are you?")}. On the console you must see:
+\begin{verbatim}
+Message received from Scilab
+    type: Hi
+    message: How are you?
+\end{verbatim}
+
+"alpha.c" is given below and in the directory \T{docs/comm} of Scilab
+distribution.
+
+\begin{verbatim}
+/***************************************************************************/
+#include <stdio.h>
+#include <string.h>
+
+/* Communications headers */
+#include "/usr/local/lib/scilab-2.4/routines/libcomm/libCalCom.h"
+#include "/usr/local/lib/scilab-2.4/routines/libcomm/libCom.h"
+
+static void QuitAppli();  
+static void EndAppli();
+static void ParseMessage();
+static void MsgError();
+
+/* Known messages */
+static actions_messages tb_messages[]={
+  {ID_GeCI,MSG_QUITTER_APPLI,NBP_QUITTER_APPLI,QuitAppli},
+  {ID_GeCI,MSG_FIN_APPLI,NBP_FIN_APPLI,EndAppli},
+  {NULL,MSG_DISTRIB_LISTE_ELMNT,NBP_DISTRIB_LISTE_ELMNT,ParseMessage},
+  {NULL,NULL,0,MsgError}};
+
+static void QuitAppli(message)
+     Message message;
+{  
+  printf("Quit application\n");
+  exit(0);
+}
+
+static void EndAppli(message) 
+     Message message;
+{
+  printf("End application\n");
+}
+
+static void MsgError(message)
+     Message message;
+{
+  printf("Bad received message\n");
+}
+
+static char *TheAppli;
+static char *TheType;
+static char *TheMsg;
+
+/* ParseMessage is executed when a message is received */
+static void ParseMessage(message)
+     Message message;
+{
+  int lappli, ltype, lmsg;
+
+  lappli = strlen(message.tableau[0]);
+  if ((TheAppli = (char *)malloc((unsigned)sizeof(char)*(lappli + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheAppli,message.tableau[0]);
+
+  ltype = strlen(message.tableau[3]);
+  if ((TheType = (char *)malloc((unsigned)sizeof(char)*(ltype + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheType,message.tableau[3]);
+
+  lmsg = strlen(message.tableau[4]);
+  if ((TheMsg = (char *)malloc((unsigned)sizeof(char)*(lmsg + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheMsg,message.tableau[4]);
+}
+
+static int find(s,n,t)
+     char *s;
+     int n;
+     char **t;
+{
+  int i;
+  for (i=0; i<n; i++)
+    if (!strcmp(s,t[i])) return(i);
+  return(-1);
+}
+
+int main(argc, argv)
+     unsigned int argc;
+     char **argv;
+{
+  int igeci;
+  int p1, p2;
+  char myhost[128];
+  /* Scilab application to execute */
+  char *scilex = "/usr/local/lib/scilab-2.4/bin/scilex";
+
+  igeci = find("-pipes",argc,argv);
+  if (igeci == -1) exit(1);
+
+  p1 = atoi(argv[igeci+1]); p2 = atoi(argv[igeci+2]);
+
+  /* Intialization of communications */
+  init_messages(tb_messages,p1,p2);
+
+  /* Get the name of my computer */
+  gethostname(myhost,128);
+
+  /* Execute Scilab with name "Scilab" on my local host */
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_LANCER_APPLI,
+                                 "Scilab",
+                                 myhost,
+                                 scilex,
+                                 INS_ID_PIPES,
+                                 NULL);
+
+  /* Link THIS application with "Scilab" */
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_CREER_LIAISON, 
+                                 identificateur_appli(),
+                                 "Scilab",NULL);
+  
+  /* Link "Scilab" with THIS application  */
+  envoyer_message_parametres_var(ID_GeCI,
+                                 MSG_CREER_LIAISON, 
+                                 "Scilab",
+                                 identificateur_appli(),NULL);
+
+  /* Loop waiting for messages */
+  while (1) {
+    scanner_messages();
+    if (TheType != NULL) {
+      printf("Message received from %s\n",TheAppli);
+      printf("    type: %s\n",TheType);
+      printf("    message: %s\n",TheMsg);
+      TheAppli = NULL; TheType = NULL; TheMsg = NULL;
+    }
+  }
+}
+/***************************************************************************/
+\end{verbatim} 
+
+\bigskip
+ 
+The second program has everything to communicate with another
+application linked to GeCI, Scilab for instance.
+It waits for messages and print them. We call the file of this program 
+\T{beta.c}
+and we suppose that the main directory of Scilab, 
+\verb|<Scilab directory>| is \T{/usr/local/lib/scilab-2.4}.
+
+Compile this program with:
+ 
+\begin{verbatim}
+cc -o beta beta.c /usr/local/lib/scilab-2.4/libs/libcomm.a
+\end{verbatim}
+
+Then, being in the directory where \T{beta} lies, execute Scilab and
+issue the following Scilab command:
+\begin{verbatim}
+// get host name of my computer
+h=unix_g("hostname")
+// execute program beta from Scilab and give it "Beta" as a name
+ExecAppli("beta",h,"Beta")
+// create a link from Scilab to 
+CreateLink("SELF","Beta")
+// send a message to "Beta"
+SendMsg("Hi","How are you?")
+\end{verbatim}
+
+On the console you must seen (written by \T{beta}):
+\begin{verbatim}
+Message received from Scilab
+    type: Hi
+    message: How are you?
+\end{verbatim}
+
+"beta.c" is given below and in the directory \T{docs/comm} of Scilab
+distribution.
+
+\begin{verbatim}
+/***************************************************************************/
+#include <stdio.h>
+#include <string.h>
+
+/* Communications headers */
+#include "/usr/local/lib/scilab-2.4/routines/libcomm/libCalCom.h"
+#include "/usr/local/lib/scilab-2.4/routines/libcomm/libCom.h"
+
+static void QuitAppli();  
+static void EndAppli();
+static void ParseMessage();
+static void MsgError();
+
+/* Known messages */
+static actions_messages tb_messages[]={
+  {ID_GeCI,MSG_QUITTER_APPLI,NBP_QUITTER_APPLI,QuitAppli},
+  {ID_GeCI,MSG_FIN_APPLI,NBP_FIN_APPLI,EndAppli},
+  {NULL,MSG_DISTRIB_LISTE_ELMNT,NBP_DISTRIB_LISTE_ELMNT,ParseMessage},
+  {NULL,NULL,0,MsgError}};
+
+static void QuitAppli(message)
+     Message message;
+{  
+  printf("Quit application\n");
+  exit(0);
+}
+
+static void EndAppli(message) 
+     Message message;
+{
+  printf("End application\n");
+}
+
+static void MsgError(message)
+     Message message;
+{
+    printf("Bad received message\n");
+}
+
+static char *TheAppli;
+static char *TheType;
+static char *TheMsg;
+
+/* ParseMessage is executed when a message is received */
+static void ParseMessage(message)
+     Message message;
+{
+  int lappli, ltype, lmsg;
+
+  lappli = strlen(message.tableau[0]);
+  if ((TheAppli = (char *)malloc((unsigned)sizeof(char)*(lappli + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheAppli,message.tableau[0]);
+
+  ltype = strlen(message.tableau[3]);
+  if ((TheType = (char *)malloc((unsigned)sizeof(char)*(ltype + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheType,message.tableau[3]);
+
+  lmsg = strlen(message.tableau[4]);
+  if ((TheMsg = (char *)malloc((unsigned)sizeof(char)*(lmsg + 1)))
+      == NULL) {
+    return;
+  }
+  strcpy(TheMsg,message.tableau[4]);
+}
+
+static int find(s,n,t)
+     char *s;
+     int n;
+     char **t;
+{
+  int i;
+  for (i=0; i<n; i++)
+    if (!strcmp(s,t[i])) return(i);
+  return(-1);
+}
+
+int main(argc, argv)
+     unsigned int argc;
+     char **argv;
+{
+  int igeci;
+  int p1, p2;
+
+  igeci = find("-pipes",argc,argv);
+  if (igeci == -1) exit(1);
+
+  p1 = atoi(argv[igeci+1]); p2 = atoi(argv[igeci+2]);
+
+  /* Intialization of communications */
+  init_messages(tb_messages,p1,p2);
+
+  /* Loop waiting for messages */
+  while (1) {
+    scanner_messages();
+    if (TheType != NULL) {
+      printf("Message received from %s\n",TheAppli);
+      printf("    type: %s\n",TheType);
+      printf("    message: %s\n",TheMsg);
+      TheAppli = NULL; TheType = NULL; TheMsg = NULL;
+    }
+  }
+}
+/***************************************************************************/
+\end{verbatim}
+\newpage
+\tableofcontents
+
+\end{document}

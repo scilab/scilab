@@ -1,0 +1,1035 @@
+% Copyright INRIA
+
+\chapter[FIR Filters]{Design of Finite Impulse Response Filters}
+\label{fir}
+\index{FIR filters}
+\section{Windowing Techniques} 
+\index{windowing!FIR filters}
+\index{FIR filter design!windowing technique}
+\label{s1}
+
+In theory,  the design of FIR filters is straightforward.
+One takes the inverse Fourier transform of the desired frequency response
+and obtains the discrete time impulse response of the
+filter according to (\ref{e1})
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\begin{array}{cc}
+h(n)=\displaystyle{\frac{1}{2\pi}\int_{-\pi}^{\pi}
+H(\omega)e^{j\omega n}d\omega} 
+&  -\infty<n<\infty
+\end{array}
+\label{e1}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+The problem, in practice, is that for many filters of interest
+the resulting impulse response is infinite and non-causal.
+An example of this is the low pass filter which, given its cut-off
+frequency, $\omega_c$,  is defined by
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+H(\omega|\omega_c)=\left\{ \begin{array}{ll}
+                     1, & \mbox{$|\omega|\leq\omega_c$}\\
+                     0, & \mbox{otherwise}
+                \end{array}
+       \right.
+\label{e2}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+The associated impulse response is obtained by applying (\ref{e1}) to 
+(\ref{e2})
+which yields
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\begin{array}{cc}
+h(n|\omega_c)={\displaystyle{\frac{1}{\pi n}\sin(\omega_cn)}} &  
+-\infty<n<\infty
+\end{array}
+\label{e3}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+A technique for obtaining a finite length
+implementation to (\ref{e3}) is to take the N elements of
+$h(n)$ which are centered around $n=0$ and to discard 
+all the remaining elements.  This operation can
+be represented by multiplying the sequence in (\ref{e3}) by an 
+appropriately shifted version of a rectangular window of the form
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+R_N(n)=\left\{ \begin{array}{ll}
+                     1, & \mbox{$0 \leq n \leq N-1$}\\
+                     0, & \mbox{otherwise}
+                \end{array}
+       \right.
+\label{e4}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+The magnitude of the resulting windowed sequence frequency response 
+is depicted in Figure~\ref{f1} superimposed on the ideal frequency
+response (the dotted curve).  The filter illustrated in Figure~\ref{f1} 
+has length $N=33$ and
+a cut-off frequency of $\omega_c=.2$.  As can be seen, the 
+%
+\input{\Figdir fir1.tex}
+\dessin{{\tt exec('fir1.code')} Rectangularly windowed low-pass filter}{f1}
+%
+approximation is marked by a ripple in both the pass
+and stop bands.  This ripple finds its greatest deviations near the discontinuity
+at $\omega_c$.  The observed ripple is due to the convolution of the
+ideal frequency response given by (\ref{e2}) with the frequency response
+of the rectangular window.  For many applications the ripples in the frequency 
+response of Figure~\ref{f1} are unacceptable.
+
+It is possible to decrease the amount of rippling by using different 
+types of windows.
+The performance of a window is governed by its frequency response.
+Since the
+frequency response of the window is convolved with the 
+desired frequency response the 
+objective is to find a window which has a frequency response which
+is as impulsive as possible.  That is,  the frequency response 
+should have a narrow main lobe with most of the energy
+in this lobe and side lobes which are as small as possible.
+The width of the main lobe governs, for example, the width
+of the transition band between the pass and stop 
+bands of a low pass filter.  The side lobes govern the amount 
+ripple in the pass and stop bands.  The area under the main lobe
+governs the amount of rejection available in
+the stop bands. 
+
+The choice of window in the design process is a matter
+of trading off, on one hand, the effects of 
+transition band width, ripple, and rejection in the stop band with,
+on the other hand, the filter length and the window type.
+
+\subsection{Filter Types}
+\label{s2}
+
+The Scilab function {\tt wfir} designs four different types
+of FIR linear phase filters: low pass, high pass,
+band pass, and stop band filters.  The impulse response of the three
+latter filters can be obtained from the low pass filter by
+simple relations and the impulse response of the
+low pass filter is given in (\ref{e3}).
+
+To show the relationship between the four filter types we
+first examine Figure~\ref{f2} which illustrates the frequency
+response of a low pass filter with cut off frequency denoted
+by $\omega_l$.
+%
+\input{\Figdir fir2.tex}
+\dessin{{\tt exec('fir2\_5.code')} Frequency response of a low pass filter}
+{f2}
+%
+The frequency response of a 
+high pass filter is illustrated in Figure~\ref{f3}
+%
+\input{\Figdir fir3.tex}
+\dessin{{\tt exec('fir2\_5.code')} Frequency response of a high pass filter}
+{f3}
+%
+where $\omega_h$ denotes, also, the cut off frequency.
+Taking the functional form of the low pass filter to be
+$H(\omega|\omega_l)$ and that of the high pass filter
+to be $G(\omega|\omega_h)$, the relationship between
+these two frequency responses is 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+G(\omega|\omega_h)=1-H(\omega|\omega_h).
+\label{e5}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Using the result in (\ref{e3}), the impulse response of the high pass
+filter is given by
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+g(n|\omega_h) &=& \delta(n)-h(n|\omega_h) \\
+              &=& \delta(n)-\frac{1}{n\pi}\sin(\omega_hn)
+\label{e6}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+where $\delta(n)=1$ when $n=0$ and is zero otherwise.
+
+For a band pass filter, as illustrated in 
+Figure~\ref{f4},
+%
+\input{\Figdir fir4.tex}
+\dessin{{\tt exec('fir2\_5.code')} Frequency response of a band pass filter}
+{f4}
+%
+the functional form of the frequency response,
+$F(\omega|\omega_l,\omega_h)$ can be obtained by shifting the
+low pass filter two times as follows
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+F(\omega|\omega_l,\omega_h) &=& H(\omega-\omega_1|\omega_2)+H(\omega+\omega_1|\omega_2)\\
+                  \omega_1  &=& \frac{1}{2}(\omega_l+\omega_h)\\
+                  \omega_2  &=& \frac{1}{2}(\omega_l-\omega_h).
+\label{e7}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Thus, the impulse response of the band pass filter is
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+f(n|\omega_l,\omega_h) &=& e^{j\omega_1n}h(n|\omega_2)+e^{-j\omega_1n}h(n|\omega_2) \\
+                       &=& \frac{2}{n\pi}\cos(\omega_1n)\sin(\omega_2n).
+\label{e8}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+	Finally, the stop band filter illustrated in Figure~\ref{f5}
+%
+\input{\Figdir fir5.tex}
+\dessin{{\tt exec('fir2\_5.code')} Frequency response of a stop band filter}
+{f5}
+%
+can be obtained from the band pass filter by the relation
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+D(\omega|\omega_l,\omega_h)=1-F(\omega|\omega_l,\omega_h)
+\label{e9}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+where $D(\omega|\omega_l,\omega_h)$ is the frequency response of the stop
+band filter.  The impulse response of this filter is
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+d(n|\omega_l,\omega_h) &=& \delta(n)-f(n|\omega_l,\omega_h) \\
+                       &=& \delta(n)-\frac{2}{n\pi}\cos(\omega_1n)\sin(\omega_2n).
+\label{e10}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\subsection{Choice of Windows}
+\label{s3}
+
+Four types of windows are discussed
+here.  They are the triangular, generalized Hamming,
+Kaiser, and Chebyshev windows.  As was noted in the introduction it is the
+frequency response of  a window
+which governs its efficacy in filter design.  Consequently, for
+each window type, we try to give its frequency response and a
+qualitative analysis of its features with respect to the frequency 
+response of the rectangular window.
+
+	The frequency response of the rectangular window
+\index{windows!rectangular} is obtained
+by taking the Fourier transform of (\ref{e4})
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+R_N(\omega) &=& \sum_{n=0}^{N-1}e^{-j\omega n} \\
+            &=& \frac{\sin(\omega N/2)}{\sin(\omega/2)}e^{-j(N-1)\omega/2}.
+\label{e11}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+The magnitude of (\ref{e11}) is plotted as the solid line in Figure~\ref{f6}.
+Evaluating (\ref{e11}) at $\omega=0$ yields the height of the 
+main lobe which is $R_N(0)=N$.  The zeros of $R_N(\omega)$ are
+located at $\omega=\pm2\pi n/N$, $n=1,2,\ldots$, and, consequently,
+the base of the main lobe has width $4\pi/N$.  The area
+under the main lobe can be bounded from above by the area of a
+rectangle (depicted by a dotted curve in Figure~\ref{f6})
+of area $4\pi$ and from
+below by that of a triangle (also shown in Figure~\ref{f6}) of area $2\pi$.
+Thus, the area under the main lobe is essentially independent
+of the value of $N$ and the percentage area under the 
+main lobe decreases with increasing $N$.  This fact is
+important  because it illustrates 
+that the rectangular window is limited
+in its ability to perform like an impulse.
+
+%
+\input{\Figdir fir6.tex}
+\dessin{{\tt exec('fir6.code')} Magnitude of rectangular window}
+{f6}
+%
+
+
+	By comparison the percentage area under the main lobe of 
+the triangular window
+\index{windows!triangular} is
+approximately constant as the value of $N$ increases.  
+The impulse response of the triangular window is
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+T_{2N-1}(n)=
+               \left\{ \begin{array}{ll}
+                     (n+1)/N, & \mbox{$0\le n\le N-1$}\\
+                     (2N-1-n)/N, & \mbox{$N\le n\le 2N-2$}\\
+                     0, & \mbox{otherwise}.
+                \end{array}
+       \right.
+\label{e12}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Since the impulse response for the triangular window
+can be obtained by scaling the rectangular window by $1/\sqrt{N}$
+and convolving it with itself, the frequency response, $T_{2N-1}(\omega)$,
+is the square of $R_N(\omega)/N$ or
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+T_{2N-1}(\omega)=\frac{\sin^2(\omega N/2)}{N\sin^2(\omega/2)}e^{-j(N-1)\omega}.
+\label{e13}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+As can be seen from (\ref{e13}), the width of the main
+lobe of the triangular window is the same width as that
+of the rectangular window (i.e. $4\pi/N$).  However, the impulse response
+of the triangular window is twice as long as that of the 
+rectangular window.  Consequently, the triangularly
+windowed filter shows less ripple but broader transition bands than
+the rectangularly windowed filter.  
+
+	The Hamming window
+\index{windows!Hamming} is like the triangular window
+in that its main lobe is about twice as wide as that of
+a rectangular window for an equal length impulse response.
+All but $.04\%$ of the Hamming windows energy is in the
+main lobe.  The Hamming window is defined by
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+H_N(n)=
+        \left\{ \begin{array}{ll}
+ \alpha+(1-\alpha)\cos(\frac{2\pi n}{N}), & \mbox{$-(N-1)/2\le n\le (N-1)/2$}\\
+             0, & \mbox{otherwise}.
+                \end{array}
+       \right.
+\label{e14}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+where $\alpha=.54$.  Other values for $\alpha$ are possible.
+For example when $\alpha=.5$ then  (\ref{e14}) is known as the
+Hanning window.. The frequency response of (\ref{e14})
+can be obtained by noting that $H_N(n)$ is a
+rectangularly windowed version of the constant $\alpha$ and an
+infinite length cosine.  Thus
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H_N(\omega) &=&
+R_N(\omega)*\\
+&&[\alpha\delta(\omega)+\frac{1}{2}(1-\alpha)\delta(\omega
+-\frac{2\pi}{N})+\frac{1}{2}(1-\alpha)\delta(\omega+\frac{2\pi}{N})]\\
+&=& \alpha R_N(\omega)+(\frac{1-\alpha}{2})R_N(\omega+\frac{2\pi}{N})+
+(\frac{1-\alpha}{2})R_N(\omega-\frac{2\pi}{N}).
+\label{e15}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+where the ``$*$'' symbol denotes convolution.
+
+	The Kaiser window
+\index{windows!Kaiser} is defined as
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+K_N(n)=
+        \left\{ \begin{array}{ll}
+             \frac{I_o(\beta\sqrt{1-[2n/(N-1)]^2})}{I_o(\beta)},
+                &  \mbox{$-(N-1)/2\le n\le(N-1)/2$}\\
+             0, &  \mbox{otherwise}.
+                \end{array}
+       \right.
+\label{e16}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+where $I_o(x)$ is the modified zeroth-order Bessel function and
+$\beta$ is a constant which controls the trade-off of the side-lobe
+heights and the width of the main lobe.  The Kaiser 
+window yields an optimal window in the sense that
+the side lobe ripple is minimized in the least squares
+sense for a certain main lobe width.
+A closed form for the frequency response of the Kaiser window
+is not available.
+
+	The Chebyshev window\index{windows!Chebyshev}
+is obtained as the inverse DFT of
+a Chebyshev polynomial evaluated at equally spaced intervals
+on the unit circle.  The Chebyshev window uniformly minimizes the amount
+of ripple in the side lobes for a given main lobe width and filter
+length.  A useful aspect of the design procedure for the Chebyshev
+window is that given any two of the three parameters: the
+window length, $N$; half the main lobe width, $\delta_f$; the side lobe
+height, $\delta_p$, the third can be determined analytically using the formulas
+which follow.	For $\delta_f$ and $\delta_p$ known, $N$ is obtained from
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+N \ge  1+\frac{\cosh^{-1}((1+\delta_p)/(\delta_p))}{\cosh^{-1}(1/(\cos(\pi\delta_f)))}.
+\label{e17}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+For $N$ and $\delta_p$ known, $\delta_f$ is obtained from
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\delta_f=\frac{1}{\pi}\cos^{-1}(1/\cosh(\cosh^{-1}((1+\delta_p)/\delta_p)/(N-1))).
+\label{e18}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Finally, for $N$ and $\delta_f$ known, $\delta_p$ is obtained from
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\delta_p=[\cosh((N-1)\cosh^{-1}(1/\cos(\pi\delta_f)))-1]^{-1}.
+\label{e19}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\subsection{How to use {\tt wfir}}
+\index{FIR filter design!function syntax}
+\index{function syntax!wfir@{\tt wfir}}
+\label{s4}
+
+	The syntax for the function {\tt wfir} is as follows can take 
+two formats.  The first format is as follows:
+\begin{verbatim}
+--> [wft,wfm,fr]=wfir()
+\end{verbatim}
+where the parentheses are a required part of the name.  
+This format of the function is interactive and will prompt the user for 
+required input parameters such as the filter type (lp='low pass',
+hp='high pass', bp='band pass', sb='stop band'),
+filter length (an integer $n>2$), window type (re='rectangular',
+tr='triangular', hm='hamming', kr='kaiser', ch='chebyshev')
+and other special parameters such as $\alpha$ for the
+the generalized Hamming window ($0<\alpha<1$) and $\beta$
+for the Kaiser window ($\beta>0$).
+The three returned arguments are:
+%
+\begin{itemize}
+\item{wft:}
+  A vector containing the windowed filter coefficients for a filter of length n.
+\item{wfm:}
+  A vector of length 256 containing the frequency response of the windowed 
+  filter.
+\item{fr:}
+  A vector of length 256  containing the frequency axis values 
+  ($0\le$ fr$\le .5$) associated to the values contained in wfm.
+\end{itemize}
+%
+The second format of the function is as follows:
+\begin{verbatim}
+--> [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
+\end{verbatim}
+This format of the function is not interactive and, consequently, all
+the input parameters must be passed as arguments to the function.  
+The first argument {\tt ftype} indicates the type of filter to
+be constructed and can take the values {\tt 'lp'}, {\tt 'hp'},
+{\tt 'bp'}, and {\tt sb'} representing, respectively the filters
+low-pass, high-pass, band-pass, and stop-band.  
+The argument {\tt forder} is a positive
+integer giving the order of the desired filter.  The argument
+{\tt cfreq} is a two-vector for which only the first element is
+used in the case of low-pass and high-pass filters.  Under these
+circumstances {\tt cfreq(1)} is the cut-off frequency (in normalized
+Hertz) of the desired filter. For band-pass and stop-band filters
+both elements of {\tt cfreq} are used, the first being the low
+frequency cut-off and the second being the high frequency cut-off
+of the filter.  Both values of {\tt cfreq} must be in the range
+$[0,.5)$ corresponding to the possible values of a discrete
+frequency response.  The argument {\tt wtype} indicates the type
+of window desired and can take the values {\tt 're'}, {\tt 'tr'},
+{\tt 'hm'}, {\tt 'hn'}, {\tt 'kr'}, and {\tt 'ch'} representing,
+respectively, the windows rectangular, triangular, Hamming, Hanning,
+Kaiser, and Chebyshev.  Finally, the argument {\tt fpar} is a two-vector
+for which only the first element is used in the case of Kaiser window
+and for which both elements are used in the case of a Chebyshev window.
+In the case of a Kaiser window the first element of {\tt fpar} 
+indicates the relative trade-off between the main lobe of the window
+frequency response and the side-lobe height and must be a positive integer.
+For more on this parameter see \cite{rabiner}.  For the case of the
+Chebyshev window one can specify either the width of the window's main
+lobe or the height of the window sidelobes.  The first element of
+{\tt fpar} indicates the side-lobe height and must take a value
+in the range $[0,1)$ and the second element 
+gives the main-lobe width and must take a value in the range $[0,.5)$.
+The unspecified element of the {\tt fpar}-vector is indicated by
+assigning it a negative value.  Thus, {\tt fpar=[.01,-1]} means
+that the Chebyshev window will have side-lobes of height $.01$ and
+the main-lobe width is left unspecified.
+
+	Note: Because of the properties of FIR linear phase filters it is
+not possible to design an even length high pass or stop band filter.
+ 
+\subsection{Examples}
+\index{FIR filter design!examples}
+\label{s5}
+
+	This section gives several examples of windowed filter design.
+In the first example we choose a low pass filter of length $n=33$
+using a Kaiser window with parameter $\beta=5.6$.  The resulting magnitude
+of the windowed filter is 
+plotted in Figure~\ref{f7} where the magnitude axis is given on a log scale.
+%
+\input{\Figdir fir7.tex}
+\dessin{{\tt exec('fir7.code')} Low pass filter with Kaiser window, $n=33$, $\beta=5.6$}
+{f7}
+%
+
+	The second example is a stop band filter of length 127
+using a Hamming window with parameter $\alpha=.54$.  The resulting
+magnitude of the windowed filter is plotted in Figure~\ref{f8} where
+the magnitude is given on a log scale.
+%
+\input{\Figdir fir8.tex}
+\dessin{{\tt exec('fir8.code')} Stop band filter with Hamming window, $n=127$, $\alpha=.54$}
+{f8}
+%
+
+	The third example is a band pass filter of length 55
+using a Chebyshev window with parameter $dp=.001$ and $df=.0446622$.  The resulting
+magnitude of the windowed filter is plotted in Figure~\ref{f9} where
+the magnitude is given on a log scale.
+%
+\input{\Figdir fir9.tex}
+\dessin{{\tt exec('fir9.code')} Band pass filter with Chebyshev window, $n=55$, $dp=.001$, $df=.0446622$}
+{f9}
+%
+
+
+\section{Frequency Sampling Technique}
+\index{FIR filter design!frequency sampling}
+
+This technique is based on specification of a set of samples
+of the desired frequency response at $N$ uniformly spaced points around the unit circle, where $N$ is the filter length.
+The z-transform of an FIR filter is easily shown to be :
+%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H(z)=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1}\frac{H(k)}{(1-z^{-1}e^{j(2\pi/N)k})}
+\label{e.fs.1}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%
+This means that one way of approximating any continuous frequency
+response is to {\em sample in frequency}, at $N$ equi-spaced points around the 
+unit circle (the frequency samples), and interpolate between them to obtain
+the continuous frequency response. Thus, the approximation error will
+be exactly zero at the sampling frequencies and finite between them.
+This fact has to be related to the reconstruction of a continuous
+function from its samples, as exposed in section~\ref{c2.sampling} 
+for the case of a continuous-time signal.
+
+	The interpolation formula for an FIR filter, that is its frequency response, is obtained by evaluating (\ref{e.fs.1}) on the unit circle:
+%%%%%%%%%%%%%%%
+\begin{eqnarray}
+H(e^{j\omega}) &=& \frac{e^{-j\omega(N-1)/2}}{N}\sum_{k=0}^{N-1}\frac{H(k)e^{-jk\pi/N}\sin(N\omega/2)}{\sin(\omega/2-k\pi/N)}\nonumber\\
+&=& \frac{e^{-j\omega(N-1)/2}}{N}\sum_{k=0}^{N-1}H(k)S(\omega,k)
+\end{eqnarray}
+%%%%%%%%%%%%%%%
+where
+%%%%%%%%%%%%%%%
+\begin{eqnarray}
+S(\omega,k) &=& e^{-jk\pi/N}\frac{\sin(N\omega/2)}{\sin(\omega/2-k\pi/N)}\nonumber\\
+&=&\pm e^{-jk\pi/N}\frac{\sin(N(\omega/2)-k\pi/N)}{\sin(\omega/2-k\pi/N)}
+\end{eqnarray}
+%%%%%%%%%%%%%%
+are the interpolating functions.
+Thus, the contribution of every frequency sample to the continuous
+frequency response is proportional to the interpolating function
+$\sin(N\omega/2)/\sin(\omega/2)$
+shifted by \(k\pi/N\) in frequency.
+	The main drawback of this technique is the lack of flexibility
+in specifying the transition band width, which is equal to the number of samples the user decides to put in times \(\pi/N\), and thus is 
+strongly related to $N$.
+Moreover, the specification of frequency samples in transition bands, giving minimum ripple near the band edges, is not immediate.
+Nevertheless, it will be seen, in a later chapter on filter optimization
+techniques, that simple linear programming techniques can be used to drastically reduce the error approximation by optimizing only those samples located in the transition bands. To illustrate this point, Figure~\ref{f.fs1} shows the response obtained for a type 1 band pass filter with length 65 : 
+first with no sample in the transition bands and second (dashed curve) with one sample 
+of magnitude .5 in each of these bands. It is worth noting at this point 
+that the linear-FIR design problem with arbitrary frequency response 
+specification is more efficiently solved using a minmax approximation 
+approach, which is exposed in the next section. \\
+%%%%%%%%%%%
+\input{\Figdir fstyp121.tex}
+\dessin{{\tt exec('fstyp121.code')}Type 1 band pass filter with no sample or one sample in each transition band}{f.fs1}
+%%%%%%%%%%
+Finally, depending on where the initial frequency sample occurs, two distinct sets of frequency samples can be given, corresponding to the so-called
+ type 1 and type 2 FIR filters :\\
+
+\begin{eqnarray}
+f_k&=&\frac{k}{N} \; \; k=0, \ldots ,N-1 \mbox{ for type 1 filters}\nonumber\\
+f_k&=&\frac{k+1/2}{N}\; \; k=0,\ldots ,N-1 \mbox{ for type 2 filters}\nonumber
+\end{eqnarray}
+The type of design is at user's will and depends on the application:
+for example, a band edge may be closer to a type 1 than to a type 2 frequency
+sampling point. This point is illustrated in Figure~\ref{f.fs2}
+for the case of a low pass filter with length 64 and no sample in 
+the transition band.
+%%%%%%%%%%%
+\input{\Figdir fstyp122.tex}
+\dessin{{\tt exec('fstyp122.code')}Type 1 and type 2 low pass filter}{f.fs2}
+%%%%%%%%%%
+The full line (resp. the dashed line) gives the approximated response
+for the type 1 (resp. type 2) FIR linear filter.
+	We give now the way the two previous examples have been 
+generated and the code of the function {\tt fsfir} which calculates 
+the approximated response.
+Figure~\ref{f.fs1} was obtained with the following set of instructions :\\
+\verbatok{\Diary fstyp121.dia}
+\end{verbatim}
+and Figure~\ref{f.fs2} with :
+\verbatok{\Diary fstyp122.dia}
+\end{verbatim}
+
+\section{Optimal filters}
+\index{FIR filter design!minimax optimization}
+
+     The design of FIR linear phase filters
+is a topic addressed in some detail in the section on windowed
+filter design.  The essential idea behind the
+techniques of windowed filter design is to obtain
+a filter which is close to a minimum squared error 
+approximation to the desired filter.  
+ This section is devoted to the description of a filter
+design function which seeks to
+optimize such an alternative  criterion : the  minimax or Chebyshev 
+error approximation.
+
+
+\subsection{Minimax Approximation}
+\index{minimax approximation}
+\index{Chebyshev approximation}
+\index{optimal FIR filter design}
+
+   To illustrate 
+the problem of minimax approximation
+we propose an overspecified system of $N$ linear equations
+in $M$ unknowns where $N>M$.  If $x$ represents the
+unknown $M$-vector then the system of equations can be written
+as
+%
+\begin{equation}
+Ax=b
+\label{e5.01}
+\end{equation}
+%
+where $A$ is an $N\times M$ matrix and $b$ is an $N$-vector.
+In general, no solution will exist for (\ref{e5.01}) and,
+consequently, it is reasonable to seek an approximation
+to $x$ such that the error vector
+%
+\begin{equation}
+r(x)=Ax-b
+\label{e5.02}
+\end{equation}
+%
+is in some way minimized with respect to $x$.
+
+     Representing the $N$ components of $r(x)$ as
+$r_k(x)$, $k=1,2,\ldots,N$ the minimax approximation
+problem for the system of linear equations in (\ref{e5.01}) can
+be posed as follows.  The minimax approximation, $\hat{x}_{\infty}$,
+is obtained by finding the solution to
+%
+\begin{equation}
+\hat{x}_{\infty}=\arg\min_x ||r_k(x)||_{\infty}
+\label{e5.03}
+\end{equation}
+%
+where
+%
+\begin{equation}
+||r_k(x)||_{\infty}=\max_k |r_k(x)|.
+\label{e5.04}
+\end{equation}
+%
+Equation (\ref{e5.04}) defines the supremum norm of the vector 
+$r(x)$.  The supremum norm of $r(x)$ for a particular
+value of $x$ is the component of $r(x)$ (i.e., the $r_k(x)$)
+which is the largest.  The minimax approximation
+in (\ref{e5.03}) is the value of $x$ which, out of all possible
+values for $x$, makes (\ref{e5.04}) the smallest.
+
+     The minimax approximation can be 
+contrasted by the minimum squared error approximation,
+$\hat{x}_2$, as defined by
+%
+\begin{equation}
+\hat{x}_2=\arg\min_x ||r(x)||_2
+\label{e5.05}
+\end{equation}
+%
+where
+%
+\begin{equation}
+||r(x)||_2=[\sum_{k=1}^{N}{r_k}^2(x)]^{1/2}.
+\label{e5.06}
+\end{equation}
+%
+There is a relationship between (\ref{e5.04}) and (\ref{e5.06}) which
+can be seen by examining the class of norms defined on $r(x)$ by
+%
+\begin{equation}
+||r(x)||_n=[\sum_{k=1}^{N}{r_k}^n(x)]^{1/n}.
+\label{e5.07}
+\end{equation}
+%
+For $n=2$ the expression in (\ref{e5.07}) is the squared error
+norm in (\ref{e5.06}) and for $n\rightarrow \infty$ the norm in (\ref{e5.07})
+becomes the supremum norm in (\ref{e5.04}) (which explains the 
+notation $||\cdot||_{\infty}$).  If
+$r(x)$ was a continuous function instead of a discrete
+component vector then the sum in (\ref{e5.06}) would become an
+integral and the interpretation of the approximation in 
+(\ref{e5.05}) would be that
+the best approximation was the one which minimized
+the area under the magnitude of the error function $r(x)$.
+By contrast the interpretation of the approximation in (\ref{e5.03})
+would be that the best approximation is the one which minimizes the maximum
+magnitude of $r(x)$.
+
+	As an example, consider the system of four linear
+equations in one unknown:
+%
+\begin{eqnarray}
+x&=&2\nonumber\\
+\frac{1}{3}x&=&1\nonumber\\
+x&=&4\nonumber\\
+\frac{6}{15}x&=&3
+\label{e5.08}
+\end{eqnarray}
+%
+The plot of the magnitude of the four error functions
+$|r_k(x)|$, $k=1,2,3,4$ is shown in Figure~\ref{f5.01}.
+%
+\input{\Figdir remez1.tex}
+\dessin{{\tt exec('remez1.code')} Minimax Approximation for Linear Equations}
+{f5.01}
+%
+Also shown in Figure~\ref{f5.01} is a piece-wise continuous
+function denoted by the cross-hatched segments of the $r_k(x)$.  This
+is the function which represents $||r(x)||_{\infty}$ as a function
+of $x$.  Consequently, it is easy to see which value
+of $x$ minimizes $||r(x)||_{\infty}$ for this problem.  It is
+the value of $x$ which lies at the cross-hatched intersection of the
+functions $|x-2|$ and $|\frac{6}{15}x-3|$,  that is 
+$\hat{x}_{\infty}=3.571$.  The maximum error at this value is 
+$1.571$.
+
+	By comparison the mean squared error
+approximation for a system of linear equations as in 
+(\ref{e5.01}) is
+%
+\begin{equation}
+\hat{x}_2=(A^TA)^{-1}A^Tb
+\label{e5.09}
+\end{equation}
+%
+where $T$ denotes the transpose  (and assuming that $A^TA$ is
+invertible).  Consequently, for the example in (\ref{e5.08})
+we have that $A=[1, \frac{1}{3}, 1, \frac{6}{15}]^T$ and
+that $b=[2, 1, 4, 3]^T$ and thus $\hat{x}_2=3.317$.  The maximum 
+error here is $1.673$.  As expected the maximum error for
+the approximation $\hat{x}_2$ is bigger than that for the
+approximation $\hat{x}_{\infty}$.
+
+\subsection{The Remez Algorithm}
+\index{Remez algorithm}
+
+
+	The Remez algorithm seeks to uniformly minimize
+the magnitude of an error function $E(f)$ on an interval $[f_0,f_1]$.
+In the following discussion
+the function $E(f)$ takes the form of a weighted difference of two functions
+%
+\begin{equation}
+E(f)=W(f)(D(f)-H(f))
+\label{e5.1}
+\end{equation}
+%
+where $D(f)$ is a single-valued function
+which is to be approximated by $H(f)$, and $W(f)$ is a 
+positive weighting function.  The Remez algorithm iteratively searches 
+for the $H^*(f)$ such that
+%
+\begin{equation}
+H^*(f)=\arg \min_{H(f)}\|E(f)\|_{\infty}
+\label{e5.2}
+\end{equation}
+%
+where
+%
+\begin{equation}
+\|E(f)\|_{\infty}=\max_{f_0\le f\le f_1}|E(f)|
+\label{e5.3}
+\end{equation}
+%
+is known as both the Chebyshev and the minimax norm of $E(f)$.
+The details of the Remez algorithm can be found in \cite{cheney}.
+
+	The function $H(f)$ is 
+constrained, for our purposes, to the class of 
+functions
+%
+\begin{equation}
+H(f)=\sum_{n=0}^{N}a_n\cos(2\pi fn).
+\label{e5.4}
+\end{equation}
+%
+Furthermore, we take the interval of approximation to
+be $[0,.5]$.  Under these conditions the posed problem
+corresponds to digital filter design where the functions
+$H(f)$ represent the discrete Fourier transform of an
+FIR, linear phase filter of odd length and even symmetry.
+Consequently, the function $H(f)$ can be written
+%
+\begin{equation}
+H(f)=\sum_{n=-N}^{N}h_n e^{-j2\pi fn}
+\label{e5.5}
+\end{equation}
+%
+The relationship between the 
+coefficients in (\ref{e5.4}) and (\ref{e5.5})
+is $a_n=2h_n$ for $n=1,2,\ldots,N$ and $a_0=h_0$.
+
+   With respect to the discussion in the previous section the problem
+posed here can be viewed as an overspecified system
+of linear equations in the  $N+1$ unknowns, $a_n$, where the
+number of equations is uncountably infinite.  The Remez
+algorithm seeks to solve this overspecified system of linear equations
+in the minimax sense.  The next section describes the Scilab
+function {\tt remezb} and how it can be used to design FIR filters.
+
+\subsection{Function {\tt remezb}}
+\index{function syntax!remezb@{\tt remezb}}
+\index{optimal FIR filter design!function syntax}
+
+	The syntax for the function {\tt remezb} is as 
+follows:
+{\tt
+\begin{verbatim}
+--> an=remezb(nc,fg,df,wf)
+\end{verbatim}}
+\noindent where {\tt df} and {\tt wf} are vectors which are sampled values
+of the functions $D(f)$ and $W(f)$ (see the previous section for definition
+of notation), respectively.  The sampled
+values of $D(f)$ and $W(f)$ are taken on a grid of points
+along the $f$-axis in the interval $[0,.5]$.
+The values of the frequency grid are in the vector 
+{\tt fg}.  
+The values of {\tt fg} are not obliged to be equi-spaced in the interval
+$[0,.5]$.  In fact,
+it is very useful, for certain problems, to specify an
+{\tt fg} which has elements which are equi-spaced in only certain
+sub-intervals of $[0,.5]$ (see the examples in the following section).
+The value of {\tt nc} is the number
+of cosine functions to be used in the
+evaluation of the approximating function
+$H(f)$ (see (\ref{e5.4})).  
+The value of the variable {\tt nc} must be a positive, odd integer
+if the problem is to correspond to an FIR filter.
+The {\tt an} are the values of the
+coefficients in (\ref{e5.4}) which correspond to the optimal
+$H(f)$.
+
+	To obtain the coefficients of the corresponding
+FIR filter it suffices to create a vector {\tt hn}
+using the Scilab commands:
+\verbatok{\Diary remez8.code}
+\end{verbatim}
+
+Even length filters can be implemented as follows.
+For an even length filter to have linear phase the 
+filter must have even symmetry about the origin.  Consequently,
+it follows that the filter must take values at the points
+$n=\pm\frac{1}{2},\pm\frac{3}{2},\ldots,\pm\frac{N-1}{2}$ 
+and that the frequency
+response of the filter has the form
+%
+\begin{equation}
+H(f)=\sum_{n=-N-\frac{1}{2}}^{N+\frac{1}{2}}h_ne^{-j2\pi fn}.
+\label{e5.001}
+\end{equation}
+%
+Due to the even symmetry of the frequency response, $H(f)$, 
+(\ref{e5.001}) can be put into the form
+%
+\begin{equation}
+H(f)=\sum_{n=1}^{N}b_n\cos[2\pi(n-\frac{1}{2})f]
+\label{e5.002}
+\end{equation}
+%
+where the relationship between the $h_n$ in (\ref{e5.001}) and the 
+$b_n$ in (\ref{e5.002}) is $h(n)=\frac{1}{2}b(N-n)$ for
+$n=1,2,\ldots,N$.
+
+	The expression for $H(f)$ in (\ref{e5.002}) can be rewritten
+so that
+%
+\begin{equation}
+H(f)=\cos(\pi f)\sum_{n=0}^{N-1}\tilde{b}_n\cos(2\pi nf).
+\label{e5.003}
+\end{equation}
+%   	
+where $b(n)=\frac{1}{2}[\tilde{b}(n-1)+\tilde{b}(n)]$
+for $n=2,3,\ldots,N-1$ and $b(1)=\tilde{b}(0)+\frac{1}{2}\tilde{b}(1)$ and
+$b(N)=\frac{1}{2}\tilde{b}(N-1)$.
+Since the expression in (\ref{e5.003}) is identical to that in
+(\ref{e5.4}) all that is required to make the function {\tt remezb}
+work is a change in the values of the desired and weight vectors
+by the factor $\cos^{-1}(\pi f)$.  That is, the arguments given
+to the function {\tt remezb} are {\tt ddf} and {\tt wwf} where
+$\mtt{ ddf}=\mtt{ df}/\cos(\pi f)$ and $\mtt{ wwf}=\mtt{ wf}\cos(\pi f)$.
+Caution must be used in choosing the values of {\tt fg} since
+for $f=.5$ the division of {\tt df} by $\cos(\pi f)=0$ is not acceptable.
+The output, {\tt an}, of the function can be converted to the filter coefficients
+{\tt hn} by using the Scilab commands
+\verbatok{\Diary remez2.code}
+\end{verbatim}
+
+     Noting that the form of (\ref{e5.003}) has the term
+$\cos(\pi f)$ as a factor, it can be seen that $H(.5)=0$ regardless
+of the choice of filter coefficients.  Consequently, the user should
+not attempt to design filters which are of even length and which 
+have non-zero magnitude at $f=.5$.
+
+
+\subsection{Examples Using the function {\tt remezb}}
+\index{optimal FIR filter design!examples}
+
+     Several examples are presented in this section.  These 
+examples show the capabilities and properties of the function
+{\tt remezb}.  The first example is that of a low-pass filter
+with cut-off frequency .25.  The number of cosine functions used
+is 21.  The input data to the function are first created and then 
+passed to the function {\tt remezb}. The subsequent output of cosine
+coefficients is displayed below.
+
+     Notice that the frequency grid {\tt fg} is a vector 
+of frequency values which are equally spaced in the interval $[0,.5]$.
+The desired function {\tt ds} is a vector of the same length as
+{\tt fg} and which takes the value $1$ in the interval $[0,.25]$
+and the value $0$ in $(.25,.5]$.  The weight function {\tt wt}
+is unity for all values in the interval. 
+
+\verbatok{\Diary remez4.dia}
+\end{verbatim}
+As described in the previous section the cosine coefficients {\tt an}
+are converted into the coefficients for a even symmetry FIR filter
+which has frequency response as illustrated in Figure~\ref{f5.1}.
+%
+\input{\Figdir remez2.tex}
+\dessin{{\tt exec('remez2\_4.code')} Low Pass Filter with No Transition Band}
+{f5.1}
+%
+
+The error of the solution illustrated in Figure 3.13 is very large;
+it can become reasonable by 
+leaving a transition band when giving the specification of the 
+frequency grid.  The following example shows how this is done; 
+{\tt remezb} is specified as follows :
+\verbatok{\Diary remez5.dia}
+\end{verbatim}
+Here the frequency grid {\tt fg} is specified in the intervals
+$[0,.24]$ and $[.26,.5]$ leaving the interval $[.24,.26]$
+as an unconstrained transition band.  The frequency magnitude 
+response of the resulting filter is illustrated in Figure~\ref{f5.2}.
+As can be seen the response in Figure~\ref{f5.2} is much more
+acceptable than that in Figure~\ref{f5.1}.
+%
+\input{\Figdir remez3.tex}
+\dessin{{\tt exec('remez2\_4.code')} Low Pass Filter with Transition Band $[.24,.26]$}
+{f5.2}
+%
+
+     A third and final example using the function {\tt remezb}
+is illustrated below.  In this example the desired function
+is triangular in shape.  The input data was created using 
+the following Scilab commands
+\verbatok{\Diary remez6.dia}
+\end{verbatim}
+The resulting frequency magnitude response  is illustrated 
+in Figure~\ref{f5.3}.This example illustrates the strength of the 
+function {\tt remezb}.
+The function is not constrained to standard filter design problems
+such as the class of band pass filters.  The function is capable
+of designing linear phase FIR filters of any desired magnitude 
+response.
+
+%
+\input{\Figdir remez4.tex}
+\dessin{{\tt exec('remez2\_4.code')} Triangular Shaped Filter}
+{f5.3}
+%
+
+\subsection{Scilab function {\tt eqfir}}
+\index{function syntax!eqfir@{\tt eqfir}}
+\index{optimal FIR filter design!function syntax}
+
+ For the design of piece-wise constant filters (such as
+band pass, low pass, high pass, and stop band filters) with
+even or odd length the user may use the function {\tt eqfir} which
+is of simpler manipulation.
+	Three examples are presented here.  The first two
+examples are designs for a stopband filter.  The third example is for
+a design of a high pass filter.
+
+	The first design for the stop band filter uses the following
+Scilab commands to create the input to the function {\tt eqfir}:
+\verbatok{\Diary eqfir1.dia}
+\end{verbatim}
+\noindent The resulting magnitude response  of the filter
+coefficients is shown in Figure~\ref{f5.5}.
+As can be seen the design is very bad.  This is due to the fact that
+the design is made with an even length filter and at the same time
+requires that the frequency response at $f=.5$ be non-zero.
+
+%
+\input{\Figdir remez5.tex}
+\dessin{{\tt exec('remez5\_7.code')} Stop Band Filter of Even Length}
+{f5.5}
+%
+
+	The same example with $\mtt{nf}=33$ is run with the result
+shown in Figure~\ref{f5.6}.
+%
+\input{\Figdir remez6.tex}
+\dessin{{\tt exec('remez5\_7.code')} Stop Band Filter of Odd Length}
+{f5.6}
+%
+
+      The final example is that of a high pass filter whose
+input parameters were created as follows:
+\verbatok{\Diary eqfir2.dia}
+\end{verbatim}
+The result is displayed in Figure~\ref{f5.7}.
+%
+\input{\Figdir remez7.tex}
+\dessin{{\tt exec('remez5\_7.code')} High Pass Filter Design}
+{f5.7}
+%
+
+%\section{Linear Programming Design of FIR filters}
+%\section{Hilbert Transform}
+%\end{document}

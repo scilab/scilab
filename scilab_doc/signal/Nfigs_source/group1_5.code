@@ -1,0 +1,79 @@
+//exec('group1_5.code')
+//create carrier and narrow band signal
+   xinit('group1.ps');
+   wc=1/4;
+   x=sin(2*%pi*(0:54)*wc);
+   y=exp(-abs(-27:27)/5);
+   f=x.*y;
+   plot([1 1 55],[1 -1 -1]),
+   nn=prod(size(f))
+   plot2d((1:nn)',f',[2],"000"),
+   nn=prod(size(y))
+   plot2d((1:nn)',y',[3],"000"),
+   plot2d((1:nn)',-y',[3],"000"),
+   xend(),
+   xinit('group2.ps');
+//make band pass filter
+
+   [h w]=wfir('bp',55,[maxi([wc-.15,0]),mini([wc+.15,.5])],'kr',60.);
+
+//create new phase function with only phase delay
+
+   hf=fft(h,-1);
+   hm=abs(hf);
+   hp=%pi*ones(1:28);//tg is zero
+   hp(29:55)=-hp(28:-1:2);
+   hr=hm.*cos(hp);
+   hi=hm.*sin(hp);
+   hn=hr+%i*hi;
+   plot([1 1 55],[4 -4 -4]),
+   plot2d([1 55]',[0 0]',[1],"000"),
+   nn=prod(size(hp))
+   plot2d((1:nn)',hp',[2],"000"),
+   nn=prod(size(hm))
+   plot2d((1:nn)',2.5*hm',[1],"000"),
+   xend(),
+   xinit('group3.ps');
+//filter signal with band pass filter
+
+   ff=fft(f,-1);
+   gf=hn.*ff;
+   g=fft(gf,1);
+   plot([1 1 55],[1 -1 -1]),
+   nn=prod(size(g))
+   plot2d((1:nn)',real(g)',[2],"000"),
+   nn=prod(size(f))
+   plot2d((1:nn)',f',[1],"000"),
+
+   xend(),
+
+//create new phase function with only group delay
+   xinit('group4.ps');
+   tg=-1;
+   hp=tg*(0:27)-tg*12.*ones(1:28)/abs(tg);//tp is zero
+   hp(29:55)=-hp(28:-1:2);
+   hr=hm.*cos(hp);
+   hi=hm.*sin(hp);
+   hn=hr+%i*hi;
+   plot([1 1 55],[15 -15 -15]),
+   plot2d([1 55]',[0 0]',[1],"000"),
+   nn=prod(size(hp))
+   plot2d((1:nn)',hp',[2],"000"),
+   nn=prod(size(hm))
+   plot2d((1:nn)',10*hm',[1],"000"),
+
+   xend(),
+   xinit('group5.ps');
+//filter signal with band pass filter
+
+   ff=fft(f,-1);
+   gf=hn.*ff;
+   g=fft(gf,1);
+   plot([1 1 55],[1 -1 -1]),
+   nn=prod(size(g))
+   plot2d((1:nn)',real(g)',[2],"000"),
+   nn=prod(size(f))
+   plot2d((1:nn)',f',[1],"000"),
+   xend(),
+
+

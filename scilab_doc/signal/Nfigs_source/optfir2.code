@@ -1,0 +1,12 @@
+//exec('optfir2.code')
+exec('optfir1.code');
+xinit('optfir2.ps');
+plot2d([1:64;1:64]',[20*log(abs(Hres)) 20*log(abs(B))]);
+//plot(20*log(abs(Hres)));
+xend();
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+//exec('convol2.code')
+x=1:3
+h=ones(1,4)
+y=convol(h,x)

@@ -1,0 +1,7 @@
+xinit('iir4.ps')
+hz=iir(5,'lp','cheb1',[.2 0],[.05 .05]);
+fr=0:.002:.5;
+hzm=abs(freq(hz(2),hz(3),exp(2*%pi*%i*fr)));
+plot(fr,hzm)
+xend()
+

@@ -1,0 +1,8 @@
+//exec('simul1.code')
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed');rand('normal');
+y=[.8*sin(x)+.8*sin(2*x)+rand(x);.8*sin(x)+.8*sin(1.99*x)+rand(x)];
+c=[];
+for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end;
+c=matrix(c,2,128);cov=[];
+for j=1:64,cov=[cov;c(:,(j-1)*2+1:2*j)];end;

@@ -1,0 +1,1747 @@
+% Copyright INRIA
+
+\chapter[Representation of Signals]{Time and Frequency Representation of Signals}
+
+\section{Frequency Response}
+\subsection{Bode Plots}
+\index{Bode plot}
+\label{bode}
+
+	The Bode plot is used to plot the phase
+and log-magnitude response of functions of a single
+complex variable. The log-scale characteristics
+of the Bode plot permitted a rapid, ``back-of-the-envelope''
+calculation of a system's magnitude and
+phase response.  In the  following discussion of Bode plots
+we consider only real, causal systems.
+Consequently, any poles and zeros of the system occur
+in complex conjugate pairs (or are strictly real) and
+the poles are all located in the left-half $s$-plane.
+
+	For $H(s)$ a transfer function 
+of the complex variable $s$, the 
+log-magnitude of $H(s)$ is defined by
+%
+\begin{equation}
+M(\omega)=20\log_{10}|H(s)_{s=j\omega}|
+\label{e.bode1}
+\end{equation}
+%
+and the phase of $H(s)$ is defined by
+%
+\begin{equation}
+\Theta(\omega)=\tan^{-1}[\frac{Im(H(s)_{s=j\omega})}{Re(H(s)_{s=j\omega})}]
+\label{e.bode2}
+\end{equation}
+%
+The magnitude, $M(\omega)$, is plotted on a log-linear scale
+where the independent axis is marked in decades (sometimes
+in octaves) of degrees or radians and the dependent axis is marked
+in decibels.  The phase, $\Theta(\omega)$, is also plotted on a log-linear
+scale where, again, the independent axis is marked as is the magnitude plot
+and the dependent axis is marked in degrees (and sometimes radians).
+
+	When $H(s)$ is a rational polynomial
+it can be expressed as
+%
+\begin{equation}
+H(s)=C\frac{\prod_{n=1}^{N}(s-a_n)}{\prod_{m=1}^{M}(s-b_m)}
+\label{e.bode3}
+\end{equation}
+%
+where the $a_n$ and $b_m$ are real or complex constants
+representing the zeros and poles, respectively, of $H(s)$,
+and $C$ is a real scale factor.
+For the moment let us assume that the $a_n$ and $b_m$ are
+strictly real.  Evaluating (\ref{e.bode3}) on the $j\omega$-axis
+we obtain
+%
+\begin{eqnarray}
+H(j\omega)&=&C\frac{\prod_{n=1}^{N}(j\omega-a_n)}{\prod_{m=1}^{M}(j\omega-b_m)}\nonumber\\
+&=&C\frac{\prod_{n=1}^{N}\sqrt{\omega^2+a_n^2}e^{j\tan^{-1}\omega/(-a_n)}}{\prod_{m=1}^{M}\sqrt{\omega^2+b_m^2}e^{j\tan^{-1}\omega/(-b_m)}}
+\label{e.bode4}
+\end{eqnarray}
+%
+and for the log-magnitude and phase response 
+%
+\begin{equation}
+M(\omega)=20(\log_{10}C+(\sum_{n=1}^{N}\log_{10}\sqrt{\omega^2+a_n^2}-\sum_{m=1}^M\log_{10}\sqrt{\omega^2+b_m^2}
+\label{e.bode5}
+\end{equation}
+%
+and
+%
+\begin{equation}
+\Theta(\omega)=\sum_{n=1}^{N}\tan^{-1}(\omega/(-a_n))-\sum_{m=1}^M\tan^{-1}(\omega/(-b_m)).
+\label{e.bode6}
+\end{equation}
+%
+
+	To see how the Bode plot is
+constructed assume that both (\ref{e.bode5}) and (\ref{e.bode6}) consist
+of single terms corresponding to a pole of $H(s)$.  Consequently, the 
+magnitude and phase become
+%
+\begin{equation}
+M(\omega)=-20\log\sqrt{\omega^2+a^2}
+\label{e.bode7}
+\end{equation}
+%
+and
+%
+\begin{equation}
+\Theta(\omega)=-j\tan^{-1}(\omega/(-a)).
+\label{e.bode8}
+\end{equation}
+%
+We plot the magnitude in (\ref{e.bode7}) using two straight line
+approximations.  That is, for $|\omega|\ll|a|$ we have that $M(\omega)\approx
+-20\log|a|$ which is a constant (i.e., a straight line with zero slope).
+For $|\omega|\gg|a|$ we have that $M(\omega)\approx-20\log|\omega|$ which
+is a straight line on a log scale which has a slope of -20 db/decade.
+The intersection of these two straight lines is  at $w=a$.  
+Figure~\ref{f.bode1} illustrates these two straight line approximations
+for $a=10$.
+%
+\input{\Figdir bode1.tex}
+\dessin{{\tt exec('bode1.code')} Log-Magnitude Plot of $H(s)=1/(s-a)$}{f.bode1}
+%
+
+When $\omega=a$ we have that $M(\omega)=-20\log\sqrt{2}a=-20\log a
+-20\log\sqrt{2}$.  Since $20\log\sqrt{2}=3.0$ we have that at $\omega=a$
+the correction to the straight line approximation is $-3$db.
+Figure~\ref{f.bode1} illustrates the true magnitude response of 
+$H(s)=(s-a)^{-1}$ for $a=10$
+and it can be seen that the straight line approximations
+with the 3db correction at $\omega=a$ yields very satisfactory results.
+The phase in (\ref{e.bode8}) can also be approximated.  For $\omega\ll a$
+we have $\Theta(\omega)\approx 0$ and for $\omega\gg a$ we have
+$\Theta(\omega)\approx -90^{\circ}$.  At $\omega=a$ we have $\Theta(\omega)
+=-45^{\circ}$.  Figure~\ref{f.bode2} illustrates the straight line 
+approximation to $\Theta(\omega)$ as well as the actual phase response.
+%
+\input{\Figdir bode2.tex}
+\dessin{{\tt exec('bode2.code')} Phase Plot of $H(s)=1/(s-a)$}{f.bode2}
+%
+
+  In the case where the  poles and zeros of $H(s)$ are not all real
+but occur in conjugate pairs (which is always the case
+for real systems) we must consider the term 
+%
+\begin{eqnarray}
+H(s)&=&\frac{1}{[s-(a+jb)][s-(a-jb)]}\nonumber\\
+    &=&\frac{1}{s^2-2as+(a^2+b^2)}
+\label{e.bode9}
+\end{eqnarray}
+%
+where $a$ and $b$ are real.  Evaluating (\ref{e.bode9}) for $s=j\omega$
+yields
+%
+\begin{eqnarray}
+H(s)&=&\frac{1}{(a^2+b^2-\omega^2)-2aj\omega}\nonumber\\
+    &=&\frac{1}{\sqrt{\omega^4+2(a^2-b^2)\omega^2+(a^2+b^2)}\exp(j\tan^{-1}[\frac{-2a\omega}{a^2+b^2-\omega^2}])}.
+\label{e.bode10}
+\end{eqnarray}
+%
+For $\omega$ very small, the magnitude component in (\ref{e.bode10}) is
+approximately $1/(a^2+b^2)$ and for $\omega$ very large the magnitude
+becomes approximately $1/\omega^2$.  Consequently, for small $\omega$
+the magnitude response can be approximated by the straight line 
+$M(\omega)\approx-20\log_{10}|a^2+b^2|$ and for $\omega$ large we have
+$M(\omega)\approx-20\log|\omega^2|$ which is a 
+straight line with a slope of -40db/decade.  These two straight lines
+intersect at $\omega=\sqrt{a^2+b^2}$.  Figure~\ref{f.bode3} illustrates
+%
+\input{\Figdir bode3.tex}
+\dessin{{\tt exec('bode3.code')} Log-Magnitude Plot of $H(s)=(s^2-2as+(a^2+b^2))^{-1}$}
+{f.bode3}
+
+%
+the straight line approximations for $a=10$ and $b=25$.  The behavior of
+the magnitude plot when $\omega$ is neither small nor large with
+respect to $a$ and $b$ depends on whether $b$ is greater than
+$a$ or not.  In the case where $b$ is less than $a$, the
+magnitude plot is similar to the case where the roots of the transfer
+function are strictly real, and consequently, the magnitude varies 
+monotonically between the two straight line approximations
+shown in Figure~\ref{f.bode3}.  The correction at $\omega=\sqrt{a^2+b^2}$
+is -6db plus $-20\log|a/(\sqrt{a^2+b^2})|$.  For $b$ greater than $a$,
+however, the term in (\ref{e.bode10}) exhibits resonance.  This 
+resonance is manifested as a local maximum of the magnitude response
+which occurs at $\omega=\sqrt{b^2-a^2}$.  The value of the magnitude
+response at this maximum is $-20\log|2ab|$.  The effect of resonance
+is illustrated in Figure~\ref{f.bode3} as the upper dotted curve. 
+Non-resonant behavior is illustrated in Figure~\ref{f.bode3} by the
+lower dotted curve.
+
+	The phase curve for the expression in (\ref{e.bode10})
+is approximated as follows.  For $\omega$ very small the imaginary
+component of (\ref{e.bode10}) is small and the real part
+is non-zero.  Thus, the phase is approximately zero.
+For $\omega$ very large the real part of (\ref{e.bode10}) dominates the
+imaginary part and, consequently, the phase is approximately
+$-180^{\circ}$.  At $\omega=\sqrt{a^2+b^2}$ the real part of (\ref{e.bode10})
+is zero and the imaginary part is negative so that the phase is exactly
+$-90^{\circ}$.  The phase curve is shown in Figure~\ref{f.bode4}.
+%
+\input{\Figdir bode4.tex}
+\dessin{{\tt exec('bode4.code')} Phase Plot of $H(s)=(s^2-2as+(a^2+b^2))^{-1}$}
+{f.bode4}
+
+%
+
+\subsubsection{How to Use the Function {\tt bode}}
+\index{Bode plot,function syntax}
+\index{function syntax!bode@{\tt bode}}
+
+	 The description of the transfer function can take
+two forms: a rational polynomial or a state-space description .
+
+	For a transfer function given by a polynomial {\tt h}
+the syntax of the call to {\tt bode} is as follows
+\begin{verbatim}
+-->bode(h,fmin,fmax[,step][,comments])
+\end{verbatim}
+
+	When using a state-space system representation {\tt sl}
+of the transfer function
+the syntax of the call to {\tt bode} is as follows
+\begin{verbatim}
+-->bode(sl,fmin,fmax[,pas][,comments])
+\end{verbatim}
+where 
+\begin{verbatim}
+-->sl=syslin(domain,a,b,c[,d][,x0])
+\end{verbatim}
+ The continuous time state-space system assumes the following
+form
+%
+\begin{eqnarray}
+\dot{x}(t)&=&\mtt{a}x(t)+\mtt{b}u(t)\nonumber\\
+y(t)&=&\mtt{c}x(t)+\mtt{d}w(t)\nonumber
+\end{eqnarray}
+%
+and {\tt x0} is the initial condition.  
+The discrete time system takes the form
+%
+\begin{eqnarray}
+x(n+1)&=&\mtt{a}x(n)+\mtt{b}u(n)\nonumber\\
+y(n)&=&\mtt{c}x(n)+\mtt{d}w(n)\nonumber
+\end{eqnarray}
+%
+
+\subsubsection{Examples Using {\tt bode}}
+\index{Bode plot!examples}
+
+	Here are presented examples illustrating 
+ the state-space description, the rational polynomial case. These two previous
+systems connected in series forms the third example.
+
+	In the first example, the system is defined by the
+state-space description below
+%
+\begin{eqnarray}
+\dot{x}&=&-2\pi x+u\nonumber\\
+y&=&18\pi x+u.\nonumber
+\end{eqnarray}
+%
+The initial condition is not important since the Bode plot is of
+the steady state behavior of the system. 
+\verbatok{\Diary Sbode5.dia}
+\end{verbatim}
+The result of the call to {\tt bode} for this example is illustrated
+in Figure~\ref{f.bode5}.
+%
+\input{\Figdir bode5.tex}
+\dessin{{\tt exec('bode5.code')} Bode Plot of State-Space System Representation}
+{f.bode5}
+
+%
+
+	The following example illustrates the use of the {\tt bode}
+function when the user has an explicit rational polynomial representation
+of the system.  
+\verbatok{\Diary Sbode6.dia}
+\end{verbatim}
+The result of the call to {\tt bode} for this example is illustrated
+in Figure~\ref{f.bode6}.
+%
+\input{\Figdir bode6.tex}
+\dessin{{\tt exec('bode6.code')} Bode Plot of Rational Polynomial System Representation}
+{f.bode6}
+
+%
+
+	The final example combines the systems used in the two previous
+examples by attaching them together in series.  The state-space description
+is converted to a rational polynomial description using the {\tt ss2tf}
+function.
+\verbatok{\Diary Sbode7.dia}
+\end{verbatim}
+Notice that the rational polynomial which results from the call to
+the function {\tt ss2tf} automatically has its fourth argument set to
+the value {\tt 'c'}.
+The result of the call to {\tt bode} for this example is illustrated
+in Figure~\ref{f.bode7}.
+%
+\input{\Figdir bode7.tex}
+\dessin{{\tt exec('bode7.code')} Bode Plot Combined Systems}
+{f.bode7}
+
+%
+
+\subsection{Phase and Group Delay}
+\label{group}
+\index{group delay}
+\index{phase delay}
+
+	In the theory of narrow band filtering
+there are two parameters which characterize the 
+effect that band pass filters have on narrow band
+signals: the phase delay and the group delay.  
+
+	Let $H(\omega)$ denote the Fourier transform of
+a system
+%
+\begin{equation}
+H(\omega)=A(\omega)e^{j\theta(\omega)}
+\label{e0.1.1}
+\end{equation}
+%
+where $A(\omega)$ is the magnitude of $H(\omega)$ and
+$\theta(\omega)$ is the phase of $H(\omega)$.  Then the phase delay, 
+$t_p(\omega)$, and the group delay, $t_g(\omega)$, are defined by
+%
+\begin{equation}
+t_p(\omega)=\theta(\omega)/\omega
+\label{e0.1.2}
+\end{equation}
+%
+and
+%
+\begin{equation}
+t_g(\omega)=d\theta(\omega)/d\omega.
+\label{e0.1.3}
+\end{equation}
+%
+Now assume that $H(\omega)$ represents an ideal
+band pass filter.  By ideal we mean that
+the magnitude of $H(\omega)$ is a non-zero constant for
+$\omega_0-\omega_c<|\omega|<\omega_0+\omega_c$
+and zero otherwise, and that the phase of 
+$H(\omega)$ is linear plus a constant in these regions.
+Furthermore, the impulse response of $H(\omega)$
+is real.  Consequently, the magnitude of $H(\omega)$
+has even symmetry and the phase of $H(\omega)$ has odd
+symmetry.  
+
+
+	Since the phase of $H(\omega)$ is linear plus
+a constant it can be expressed as
+%
+\begin{equation}
+\theta(\omega)=\left\{\begin{array}{ll}
+ \theta(\omega_0)+\theta'(\omega_0)(\omega-\omega_0),&\mbox{$\omega>0$}\\
+ -\theta(\omega_0)+\theta'(\omega_0)(\omega+\omega_0),&\mbox{$\omega<0$}
+\end{array}\right.
+\label{e0.1.4}
+\end{equation}
+%
+where $\omega_0$ represents the center frequency of the band pass
+filter.  The possible discontinuity of the phase at
+$\omega=0$ is necessary due to the fact that $\theta(\omega)$ must be an
+odd function.  The expression in (\ref{e0.1.4}) can be rewritten
+using the definitions for phase and group delay in (\ref{e0.1.2})
+and (\ref{e0.1.3}).  This yields
+%
+\begin{equation}
+\theta(\omega)=\left\{\begin{array}{ll}
+ \omega_0t_p+(\omega-\omega_0)t_g,&\mbox{$\omega>0$}\\
+ -\omega_0t_p+(\omega+\omega_0)t_g,&\mbox{$\omega<0$}
+\end{array}\right.
+\label{e0.1.5}
+\end{equation}
+%
+where, now, we take $t_p=t_p(\omega_0)$ and $t_g=t_g(\omega_0)$.
+
+	Now assume that a signal, $f(t)$, is to 
+be filtered by $H(\omega)$ where $f(t)$ is composed
+of a modulated band-limited signal.  That is,
+%
+\begin{equation}
+f(t)=f_l(t)\cos(\omega_0t)
+\label{e0.1.6}
+\end{equation}
+%
+where $\omega_0$ is the center frequency of the
+band pass filter and $F_l(\omega)$ is the Fourier transform
+a the bandlimited signal $f_l(t)$
+($F_l(\omega)=0$ for $|\omega|>\omega_c$).  It is now
+shown that the output of the filter due to the input in 
+(\ref{e0.1.6}) takes the following form
+%
+\begin{equation}
+g(t)=f_l(t+t_g)\cos[\omega_0(t+t_p)].
+\label{e0.1.7}
+\end{equation}
+%
+
+	To demonstrate the validity of (\ref{e0.1.7}) the Fourier transform
+of the input in (\ref{e0.1.6}) is written as
+%
+\begin{equation}
+F(\omega)=\frac{1}{2}[F_l(\omega-\omega_0)+F_l(\omega+\omega_0)]
+\label{e0.1.8}
+\end{equation}
+%
+where 
+(\ref{e0.1.8}) represents the convolution of $F_l(\omega)$ with
+the Fourier transform of $\cos(\omega_0t)$.
+The Fourier transform of the filter, $H(\omega)$, can be written
+%
+\begin{equation}
+H(\omega)=\left\{\begin{array}{ll}
+ e^{\omega_0t_p+(\omega-\omega_0)t_g},
+	&\mbox{$\omega_0-\omega_c<\omega<\omega_0+\omega_c$}\\
+ e^{-\omega_0t_p+(\omega+\omega_0)t_g},
+	&\mbox{$-\omega_0-\omega_c<\omega<-\omega_0+\omega_c$}\\
+ 0,
+	&\mbox{otherwise}\\
+\end{array}\right.
+\label{e0.1.9}
+\end{equation}
+%
+Thus, since $G(\omega)=F(\omega)H(\omega)$,
+%
+\begin{equation}
+G(\omega)=\left\{\begin{array}{ll}
+\frac{1}{2}F_l(\omega-\omega_0) e^{\omega_0t_p+(\omega-\omega_0)t_g},
+	&\mbox{$\omega_0-\omega_c<\omega<\omega_0+\omega_c$}\\
+\frac{1}{2}F_l(\omega+\omega_0) e^{-\omega_0t_p+(\omega+\omega_0)t_g},
+	&\mbox{$-\omega_0-\omega_c<\omega<-\omega_0+\omega_c$}
+\end{array}\right.
+\label{e0.1.10}
+\end{equation}
+%
+Calculating $g(t)$ using the inverse Fourier transform
+%
+\begin{eqnarray}
+g(t)&=&\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)H(\omega)\nonumber\\
+    &=&\frac{1}{2}\frac{1}{2\pi}[\int_{\omega_0-\omega_c}^{\omega_0+\omega_c}
+       F_l(\omega-\omega_0)e^{j[(\omega-\omega_0)t_g+\omega_0t_p]}e^{j\omega t}d\omega\nonumber\\
+    && +\int_{-\omega_0-\omega_c}^{-\omega_0+\omega_c}
+F_l(\omega+\omega_0)e^{j[(\omega+\omega_0)t_g-\omega_0t_p]}e^{j\omega t}d\omega]
+\label{e0.1.11}
+\end{eqnarray}
+%
+Making the change in variables $u=\omega-\omega_0$ and $v=\omega+\omega_0$yields
+%
+\begin{eqnarray}
+g(t)&=&\frac{1}{2}\frac{1}{2\pi}[\int_{-\omega_c}^{\omega_c}
+       F_l(u)e^{j[ut_g+\omega_0t_p]}e^{jut}e^{j\omega_0t}du\nonumber\\
+    && +\int_{-\omega_c}^{\omega_c}
+F_l(v)e^{j[vt_g-\omega_0t_p]}e^{jvt}e^{-j\omega_0 t}dv]
+\label{e0.1.12}
+\end{eqnarray}
+%
+Combining the integrals and performing some algebra gives
+%
+\begin{eqnarray}
+g(t)&=&\frac{1}{2}\frac{1}{2\pi}\int_{-\omega_c}^{\omega_c}
+       F_l(\omega)e^{j\omega t_g}e^{j\omega t}[e^{j\omega_0t_p}e^{j\omega_0t}
+      +e^{-j\omega_0t_p}e^{-j\omega_0t}]d\omega\nonumber\\
+    &=&\frac{1}{2\pi}\int_{-\omega_c}^{\omega_c}
+       F_l(\omega)\cos[\omega_0(t+t_p)]
+      e^{j\omega(t+t_g)}d\omega\nonumber\\
+    &=&\cos[\omega_0(t+t_p)]\frac{1}{2\pi}\int_{-\omega_c}^{\omega_c}
+       F_l(\omega)e^{j\omega(t+t_g)}d\omega\nonumber\\
+    &=&\cos[\omega_0(t+t_p)]f_l(t+t_g)
+\label{e0.1.13}
+\end{eqnarray}
+%
+which is the desired result.
+
+	The significance of the result in (\ref{e0.1.13}) is clear.
+The shape of the signal envelope due to $f_l(t)$
+is unchanged and shifted in time by $t_g$.  The carrier,
+however, is shifted in time by $t_p$ (which in general
+is not equal to $t_g$).  Consequently, the overall appearance of
+the ouput signal is changed with respect to that of the input
+due to the difference in phase shift between the carrier and
+the envelope.  This phenomenon is illustrated in 
+Figures~\ref{f0.1.1}-\ref{f0.1.5}.  Figure~\ref{f0.1.1} illustrates
+%
+\input{\Figdir group1.tex}
+\dessin{{\tt exec('group1\_5.code')} Modulated Exponential Signal}
+{f0.1.1}
+
+%
+a narrowband signal which consists of a sinusoid modulated by an envelope.
+The envelope is an decaying exponential and is displayed in the figure
+as the dotted curve.  
+
+	Figure~\ref{f0.1.2} shows the band pass filter
+used to filter the signal in Figure~\ref{f0.1.1}.  The filter magnitude
+is plotted as the solid curve and the filter phase is plotted as the 
+dotted curve.  
+%
+\input{\Figdir group2.tex}
+\dessin{{\tt exec('group1\_5.code')} Constant Phase Band Pass Filter}
+{f0.1.2}
+
+%
+Notice that since the phase is a constant function that $t_g=0$.
+The value of the phase delay is $t_p=\pi/2$.  As is expected, the
+filtered output of the filter consists of the same signal as the 
+input except that the sinusoidal carrier is now phase shifted by $\pi/2$.
+This output signal is displayed in Figure~\ref{f0.1.3} as the solid
+curve.  For reference the input signal is plotted as the dotted curve.
+%
+\input{\Figdir group3.tex}
+\dessin{{\tt exec('group1\_5.code')} Carrier Phase Shift by $t_p=\pi/2$}
+{f0.1.3}
+
+%
+
+	To illustrate the effect of the group delay on the filtering
+process a new filter is constructed as is displayed in Figure~\ref{f0.1.4}.
+%
+\input{\Figdir group4.tex}
+\dessin{{\tt exec('group1\_5.code')} Linear Phase Band Pass Filter}
+{f0.1.4}
+
+%
+Here the phase is again displayed as the dotted curve.  The group
+delay is the slope of the phase curve as it passes through zero in
+the pass band region of the filter.  Here $t_g=-1$ and $t_p=0$.
+The result of filtering with this phase curve is display in
+Figure~\ref{f0.1.5}.  As expected, the envelope is shifted 
+but the sinusoid is not shifted within the reference frame of the 
+window.  The original input signal is again plotted as the dotted 
+curve for reference.
+%
+\input{\Figdir group5.tex}
+\dessin{{\tt exec('group1\_5.code')} Envelope Phase Shift by $t_g=-1$}
+{f0.1.5}
+
+%
+\subsubsection{The Function {\tt group}}
+\index{function syntax!group@{\tt group}}
+\index{group delay!function syntax}
+
+	As can be seen from the explanation given
+in this section, it is preferable that the group delay of a filter 
+be constant.  A non-constant group delay tends to cause signal
+deformation.  This is due to the fact that the different frequencies which
+compose the signal are time shifted by different amounts according
+to the value of the group delay at that frequency.  Consequently, it
+is valuable to examine the group delay of filters during the design
+procedure.  The function {\tt group} accepts filter parameters in several
+formats as input and returns the group delay as output.  The syntax 
+of the function is as follows:
+\begin{verbatim}
+-->[tg,fr]=group(npts,h)
+\end{verbatim}
+The group delay {\tt tg} is evaluated in the interval [0,.5) at equally
+spaced samples contained in {\tt fr}.   The number of samples is
+governed by {\tt npts}.  Three formats can be used for the specification
+of the filter.  The filter {\tt h} can be specified
+by a vector of real numbers, by a rational polynomial representing 
+the z-transform of the filter, or by a matrix polynomial representing a
+cascade decomposition of the filter.  The three cases are illustrated below.
+
+	The first example is for a linear-phase filter designed
+using the function {\tt wfir}
+\verbatok{\Diary group1.dia}
+\end{verbatim}
+as can be seen in Figure~\ref{f0.1.6}
+%
+\input{\Figdir group6.tex}
+\dessin{{\tt exec('group6\_8.code')} Group Delay of Linear-Phase Filter}
+{f0.1.6}
+
+%
+the group delay is a constant, as is to be expected for a linear
+phase filter.  The second example specifies a rational polynomial
+for the filter transfer function:
+\verbatok{\Diary group2.dia}
+\end{verbatim}
+The plot in Figure~\ref{f0.1.7} gives the result of this calculation.
+%
+\input{\Figdir group7.tex}
+\dessin{{\tt exec('group6\_8.code')} Group Delay of Filter (Rational Polynomial)}
+{f0.1.7}
+
+%
+Finally, the third example gives the transfer function of the
+filter in cascade form.
+\verbatok{\Diary group3.dia}
+\end{verbatim}
+The result is shown in Figure~\ref{f0.1.8}.  The cascade
+realization is known for numerical stability.
+%
+\input{\Figdir group8.tex}
+\dessin{{\tt exec('group6\_8.code')} Group Delay of Filter (Cascade Realization)}
+{f0.1.8}
+
+%
+
+\subsection{Appendix: Scilab Code Used to Generate Examples}
+
+	The following listing of Scilab code was used to
+generate the examples of the this section.
+
+\verbatok{\Figdir group1_5.code}
+\end{verbatim}
+
+\section{Sampling}
+\label{c2.sampling}
+\index{sampling}
+
+The remainder of this section explains in detail the
+relationship between continuous and discrete signals.
+
+	To begin, it is useful to examine the 
+Fourier transform pairs for continuous and discrete
+time signals.  For $x(t)$ and $X(\Omega)$ a continuous time signal and
+its Fourier transform, respectively, we have that
+%
+\begin{equation}
+X(\Omega)=\int_{-\infty}^{\infty}x(t)e^{-j\Omega t}dt
+\label{e0.1}
+\end{equation}
+%
+%
+\begin{equation}
+x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\Omega)e^{j\Omega t}d\Omega.
+\label{e0.2}
+\end{equation}
+%
+For $x(n)$ and $X(\omega)$ a discrete time signal and
+its Fourier transform, respectively, we have that
+%
+\begin{equation}
+X(\omega)=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}
+\label{e0.3}
+\end{equation}
+%
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(\omega)e^{j\omega n}d\omega.
+\label{e0.4}
+\end{equation}
+%
+The discrete time signal, $x(n)$, is obtained by
+sampling the continuous time signal, $x(t)$, at regular
+intervals of length $T$ called the sampling period.  
+That is,
+%
+\begin{equation}
+x(n)=x(t)|_{t=nT}
+\label{e0.5}
+\end{equation}
+%
+We now derive the relationship between the Fourier
+transforms of the continuous and discrete time signals.
+The discussion follows \cite{oppen}.
+
+	Using (\ref{e0.5}) in (\ref{e0.2}) we have that
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\Omega)e^{j\Omega nT}d\Omega.
+\label{e0.6}
+\end{equation}
+%
+Rewriting the integral in (\ref{e0.6}) as a sum of integrals
+over intervals of length $2\pi/T$ we have that
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\sum_{r=-\infty}^{\infty}
+     \int_{(2\pi r -\pi)/T}^{(2\pi r +\pi)/T}
+         X(\Omega)e^{j\Omega nT}d\Omega
+\label{e0.7}
+\end{equation}
+%
+or, by a change of variables
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\sum_{r=-\infty}^{\infty}
+     \int_{-\pi/T}^{\pi/T}
+         X(\Omega+\frac{2\pi r}{T})e^{j\Omega nT}e^{j2\pi nr}d\Omega.
+\label{e0.8}
+\end{equation}
+%
+Interchanging the sum and the integral in (\ref{e0.8}) and 
+noting that $e^{j2\pi nr}=1$ due to the fact that $n$ and $r$
+are always integers yields
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\int_{-\pi/T}^{\pi/T}
+      [\sum_{r=-\infty}^{\infty}
+         X(\Omega+\frac{2\pi r}{T})]e^{j\Omega nT}d\Omega.
+\label{e0.9}
+\end{equation}
+%
+Finally, the change of variables $\omega=\Omega T$ gives
+%
+\begin{equation}
+x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+      [\frac{1}{T}\sum_{r=-\infty}^{\infty}
+         X(\frac{\omega}{T}+\frac{2\pi r}{T})]e^{j\omega n}d\omega
+\label{e0.10}
+\end{equation}
+%
+which is identical in form to (\ref{e0.4}).  Consequently,
+the following relationship exists between the
+Fourier transforms of the continuous and discrete
+time signals:
+%
+\begin{eqnarray}
+X(\omega)&=&\frac{1}{T}\sum_{r=-\infty}^{\infty}
+         X(\frac{\omega}{T}+\frac{2\pi r}{T})\nonumber\\
+         &=&\frac{1}{T}\sum_{r=-\infty}^{\infty}
+         X(\Omega+\frac{2\pi r}{T}).
+\label{e0.11}
+\end{eqnarray}
+%
+
+	From (\ref{e0.11}) it can be seen that
+the Fourier transform of $x(n)$, $X(\omega)$, is 
+periodic with period $2\pi/T$.  The form of $X(\omega)$ consists of
+repetitively shifting and superimposing the Fourier transform of 
+$x(t)$, $X(\Omega)$, scaled by the factor $1/T$.  For example,
+if $X(\Omega)$ is as depicted in Figure~\ref{f00.1}, where the
+highest non-zero frequency of $X(\Omega)$ is denoted by $\Omega_c=2\pi f_c$,
+then there are two possibilities for $X(\omega)$.  If
+$\pi/T>\Omega_c=2\pi f_c$ then $X(\omega)$ is as in Figure~\ref{f0.2},
+ and, if $\pi/T<\Omega_c=2\pi f_c$, then $X(\omega)$ is as in
+Figure~\ref{f0.3}.  That is to say that if the sampling frequency 
+$f_s=1/T$ is greater
+than twice the highest frequency in $x(t)$ then there is
+no overlap in the shifted versions of $X(\Omega)$
+in (\ref{e0.11}).  However, if $f_s<2f_c$ then the resulting 
+$X(\omega)$ is composed of overlapping versions of $X(\Omega)$.
+
+
+%
+\input{\Figdir sample1.tex}
+\dessin{{\tt exec('sample1.code')} Frequency Response $X(\Omega)$}
+{f00.1}
+
+%
+
+%
+\input{\Figdir sample2.tex}
+\dessin{{\tt exec('sample2.code')} Frequency Response $x(\omega)$ With No Aliasing}
+{f0.2}
+
+%
+%
+\input{\Figdir sample3.tex}
+\dessin{{\tt exec('sample3.code')} Frequency Response $x(\omega)$ With Aliasing}
+{f0.3}
+
+%
+to say that if the sampling frequency $f_s=1/T$ is greater
+than twice the highest frequency in $x(t)$ then there is
+no overlap in the shifted versions of $X(\Omega)$
+in (\ref{e0.11}).  However, if $f_s<2f_c$ then the resulting 
+$X(\omega)$ is composed of overlapping versions of $X(\Omega)$.
+
+	The sampling rate $T=1/(2f_c)$ is the well known
+Nyquist sampling rate and any signal sampled at a rate higher 
+than the Nyquist rate retains all of the information
+that was contained in the original unsampled signal.
+It can be concluded that sampling can retain
+or alter the character of the original continuous time signal.
+If sampling is performed at more than twice the highest frequency
+in $x(t)$ then the signal nature is retained.  Indeed, the
+original signal can be recuperated from the sampled signal
+by low pass filtering (as is demonstrated below).  However,
+if  the signal is undersampled this results in a signal
+distortion known as aliasing.
+
+	To recuperate the original analog signal from
+the sampled signal it is assumed that $\Omega_c<\pi/T$ (i.e., that
+the signal is sampled at more than twice its highest 
+frequency).  Then from (\ref{e0.11})
+%
+\begin{equation}
+X(\Omega)=TX(\omega)
+\label{e0.12}
+\end{equation}
+%
+in the interval $-\pi/T\le\Omega\le\pi/T$.  Plugging (\ref{e0.12})
+into (\ref{e0.2}) yields
+%
+\begin{equation}
+x(t)=\frac{1}{2\pi}\int_{-\pi/T}^{\pi/T}TX(\omega)e^{j\Omega t}d\Omega.
+\label{e0.13}
+\end{equation}
+%
+Replacing $X(\omega)$ by (\ref{e0.3}) and using (\ref{e0.5}) we have that
+%
+\begin{equation}
+x(t)=\frac{T}{2\pi}\int_{-\pi/T}^{\pi/T}[
+      \sum_{-\infty}^{\infty}x(nT)e^{-j\Omega nT}]e^{j\Omega t}d\Omega.
+\label{e0.14}
+\end{equation}
+%
+Interchanging the sum and the integral gives
+%
+\begin{equation}
+x(t)=\sum_{-\infty}^{\infty}x(nT)
+     [\frac{T}{2\pi}\int_{-\pi/T}^{\pi/T}
+    e^{j\Omega(t- nT)}d\Omega].
+\label{e0.15}
+\end{equation}
+%
+The expression in brackets in (\ref{e0.15}) can be recognized as
+a time shifted inverse Fourier transform of a low pass filter with
+cut-off frequency $\pi/T$.  Consequently, (\ref{e0.15}) is a
+convolution between the sampled signal and a low pass filter,
+as was stated above.
+
+	We now illustrate the effects of aliasing.
+Since square integrable functions can always be decomposed as a sum
+of sinusoids the discussion is limited to a signal which is 
+a cosine function.  The results of  what happens to a cosine signal
+when it is undersampled is directly extensible to more complicated 
+signals.
+
+	We begin with a cosine signal as is illustrated in 
+Figure~\ref{f0.4}.
+%
+\input{\Figdir sample4.tex}
+\dessin{{\tt exec('sample4.code')} Cosine Signal}
+{f0.4}
+
+%
+The cosine in Figure~\ref{f0.4} is actually a sampled signal which
+consists of 5000 samples.  One period of the cosine in the figure
+is 200 samples long, consequently, the Nyquist sampling rate requires
+that we retain one sample in every 100 to retain the character of the
+signal.  By sampling the signal at a rate less than the Nyquist rate
+it would be expected that aliasing would occur.  That is, it would
+be expected that the sum of two cosines would be evident in the 
+resampled data.  Figure~\ref{f0.5} illustrates the data resulting
+from sampling the cosine in Figure~\ref{f0.4} at a rate of ones every
+105 samples.
+%
+\input{\Figdir sample5.tex}
+\dessin{{\tt exec('sample5.code')} Aliased Cosine Signal}
+{f0.5}
+
+%
+As can be seen in Figure~\ref{f0.5}, the signal is now the sum
+of two cosines which is illustrated by the beat signal illustrated
+by the dotted curves.
+
+\section{Decimation and Interpolation}
+\index{decimation}
+\index{interpolation}
+
+\subsection{Introduction}
+
+	There often arises a need to change the sampling
+rate of a digital signal. The Fourier transform of a continuous-time signal, 
+$x(t)$, and the Fourier transform of the discrete-time signal, $x(nT)$,
+obtained by sampling $x(t)$ with frequency $1/T$. are defined, respectively, 
+in (\ref{e1a})
+and (\ref{e1b}) below
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+\hat{X}(\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt
+\label{e1a}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+X(e^{j\omega T})=\sum_{n=-\infty}^{\infty}x(nT)e^{-j\omega T}.
+\label{e1b}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+The relationship between these two transforms is (see \cite{oppen}) :
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+X(e^{j\omega T})=\frac{1}{T}\sum_{r=-\infty}^{\infty}
+\hat{X}(\frac{j\omega}{T}+\frac{j2\pi r}{T}).
+\label{e1c}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Figure~\ref{f0.1}
+illustrates the magnitude of the Fourier 
+transform $\hat{X}(\omega)$ of a signal $x(t)$. 
+Figure~\ref{f1.1} shows two periods of the associated Fourier 
+transform $X(e^{jwT})$
+of $x(nT)$ where the sampling frequency was taken
+to be the Nyquist rate.  As indicated by (\ref{e1c}), 
+the magnitude of $X(e^{jwT})$ with
+respect to the magnitude of $\hat{X}(\omega)$ is scaled by $1/T$.
+%
+\input{\Figdir intdec1.tex}
+\dessin{{\tt exec('intdec1\_4.code')} Fourier Transform of a Continuous Time Signal}
+{f0.1}
+
+%
+%
+\input{\Figdir intdec2.tex}
+\dessin{{\tt exec('intdec1\_4.code')} Fourier Transform of the Discrete Time Signal}
+{f1.1}
+
+
+%
+Furthermore, $X(e^{jwT})$ is periodic with period $2\pi/T$.  If
+we take $1/T\ge\pi/\Omega$, where $\Omega$ is the highest
+non-zero frequency of $X(\omega)$, then no aliasing occurs in sampling the 
+continuous-time signal.  When this is the case one can, in principle,
+perfectly reconstruct the original continuous-time signal $x(t)$
+from its samples $x(nT)$ using
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+x(t)=\sum_{n=-\infty}^{\infty}
+x(nT)\frac{\sin[(\pi/T)(t-nT)]}{(\pi/T)(t-nT)}.
+\label{e1d}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Consequently, one could obtain $x(t)$ sampled at a different sampling
+rate $T'$ from the sampled signal $x(nT)$ by using (\ref{e1d}) 
+to reconstruct $x(t)$ and
+then resampling.  In practice, however, this is impractical.  It is
+much more convenient to keep all operations in the digital domain
+once one already has a discrete-time signal.
+
+	The Scilab function {\tt intdec} accomplishes
+a sampling rate change by interpolation and decimation.
+The interpolation takes the input signal and produces an 
+output signal which is sampled at a rate $L$ (an integer) times more 
+frequently than the input. Then  decimation takes the input signal and 
+produces an output signal which 
+is sampled at a rate $M$ (also an integer) times less frequently than the 
+input.  
+
+\subsection{Interpolation}
+\index{interpolation}
+
+	In interpolating the input signal by the integer $L$
+we wish to obtain a new signal $x(nT')$ where $x(nT')$ would
+be the signal obtained if we had originally 
+sampled the continuous-time signal $x(t)$ at the rate $1/T'=L/T$.
+If the original signal is bandlimited and the sampling rate 
+$f=1/T$ is greater than twice the
+highest frequency of $x(t)$ then it can be expected that
+the new sampled signal $x(nT')$ (sampled at a rate of
+$f'=1/T'=L/T=Lf$) could be obtained directly from the discrete
+signal $x(nT)$.
+
+	An interpolation of $x(nT)$ to $x(nT')$ where $T'=T/L$
+can be found by inserting $L-1$ zeros between each element of the
+sequence $x(nT)$ and then low pass filtering.  To see this we construct
+the new sequence $v(nT')$ by putting $L-1$ zeros between the 
+elements of $x(nT)$
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}
+v(nT')=\left\{ \begin{array}{ll}
+                     x(nT/L), & \mbox{$n=0,\pm L,\pm 2L,\ldots$}\\
+                     0, & \mbox{otherwise}.
+                \end{array}
+       \right.
+\label{e2.1}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+Since $T'=T/L$, $v(nT')$ is sampled $L$ times more frequently than 
+$x(nT)$.  The Fourier transform of (\ref{e2.1}) yields
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{eqnarray}
+V(e^{j\omega T'}) 
+         &=& \sum_{n=-\infty}^{\infty}v(nT')e^{-j\omega nT'}\nonumber\\
+         &=& \sum_{n=-\infty}^{\infty}x(nT)e^{-j\omega nLT'}\nonumber\\
+         &=& \sum_{n=-\infty}^{\infty}x(nT)e^{-j\omega nT}\nonumber\\
+                  &=& X(e^{j\omega T}).
+\label{e3.1}
+\end{eqnarray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+From (\ref{e3.1}) it can be seen that $V(e^{j\omega T'})$ is periodic with
+period $2\pi/T$ and, also, period $2\pi/T'=2\pi L/T$.  This fact is 
+illustrated in Figure~\ref{f2.1} where $L=3$.  Since the sampling frequency of 
+$V$ is $1/T'$ we see that by filtering $v(nT')$ with a low
+%
+\input{\Figdir intdec3.tex}
+\dessin{{\tt exec('intdec1\_4.code')} Fourier Transform of $v(nT')$}
+{f2.1}
+
+%
+pass filter with cut-off frequency at $\pi/T$ we obtain
+exactly the interpolated sequence, $x(nT')$, which we seek
+(see Figure~\ref{f3.1}), except for a scale factor of $L$ (see (\ref{e1c})).
+%
+\input{\Figdir intdec4.tex}
+\dessin{{\tt exec('intdec1\_4.code')} Fourier Transform of $x(nT')$}
+{f3.1}
+
+%
+
+\subsection{Decimation}
+\index{decimation}
+
+	Where the object of interpolation is to obtain $x(nT')$
+from $x(nT)$ where $T'=L/T$, the object of decimation is
+to find $x(nT'')$ from $x(nT)$ where $T''=MT$, $M$ an integer.
+That is, $x(nT'')$ should be equivalent to a sequence obtained
+by sampling $x(t)$ $M$ times less frequently than that for $x(nT)$.
+Obviously this can be accomplished by keeping only every $M^{th}$
+sample of $x(nT)$.  However, if the sampling frequency $1/T$ is
+close to the Nyquist rate then keeping only every $M^{th}$
+sample results in aliasing.  Consequently, low pass filtering
+the sequence $x(nT)$ before discarding $M-1$ of each $M$ points is 
+advisable.  Assuming that the signal $x(nT)$ is
+sampled at the Nyquist rate, the cut-off frequency of the low pass filter
+must be at $\pi/(MT)$.
+
+\subsection{Interpolation and Decimation}
+
+	To change the sampling rate of a signal by a non-integer
+quantity it suffices to perform a combination of the interpolation
+and decimation operations.  Since both operations use a low-pass filter they
+can be combined as illustrated in the block diagram of Figure~\ref{f44.1}.
+The Scilab function {\tt intdec} begins by designing a low-pass filter for the 
+diagram illustrated in the figure.  It accomplishes this by using
+the {\tt wfir} filter design function.  This is followed by taking the
+Fourier transform of both the input signal and the low-pass filter
+(whose magnitude is first scaled by $L$)
+by using the {\tt fft} function.  Care must be taken to obtain a linear
+convolution between the two sequences by adding on an appropriate number
+of zeros to each sequence before the FFT is performed.  After multiplying
+the two transformed sequences together an inverse Fourier transform
+is performed.  Finally, the output is obtained by discarding $M-1$
+of each $M$ points.
+%
+\begin{figure}[tb]
+\center{
+\begin{picture}(360,54)
+
+\put(10,40){\makebox(0,0){$x(nT)$}}
+\put(25,40){\vector(1,0){10}}
+\put(35,20){\framebox(65,40){\shortstack{Put\\L-1 Zeros\\Between\\Each Sample}}}
+\put(100,40){\vector(1,0){15}}
+
+\put(115,20){\framebox(65,40){LPF}}
+\put(180,40){\vector(1,0){15}}
+
+\put(195,20){\framebox(65,40){\shortstack{Discard\\M-1 of Every\\M Samples}}}
+\put(260,40){\vector(1,0){10}}
+\put(300,40){\makebox(0,0){$x(nMT/L)$}}
+
+\end{picture}}
+\caption{ Block Diagram of Interpolation and Decimation}
+\label{f44.1}
+\end{figure}
+%
+The cut-off frequency of the low pass filter is $\pi/T$
+if $L>M$ and is $(L\pi)/(MT)$ if $L<M$.
+
+	The practical implementation of the interpolation and decimation
+procedure is as follows.
+If the length of the input is $N$ then after putting $L-1$ zeros
+between each element of $x$ the resulting sequence will be of length
+$(N-1)L+1$.  This new sequence is then lengthened by $K-1$ zeros
+where $K$ is the length of the low pass filter.  This lengthening is
+to obtain a linear convolution between the input and the low pass
+filter with the use of the FFT.  The cut-off frequency
+of the low pass filter is chosen to be $(.5N)/[(N-1)L+K]$ if $L>M$
+and $(.5NL)/(M[(N-1)L+K])$ if $L<M$.  
+The FFT's of the two modified sequences are multiplied
+element by element and then are inverse Fourier transformed.
+The resulting sequence is of length $(N-1)L+K$.  To obtain a
+sequence of length of $(N-1)L+1$ elements, $(K-1)/2$ elements
+are discarded off of each end.  Finally, $M-1$ out of every
+$M$ elements are discarded to form the output sequence.
+
+\subsection{Examples using {\tt intdec}}
+\index{interpolation-decimation!example}
+
+	Here we take a 50-point sequence assumed to be sampled at
+a 10kHz rate and change it to a sequence sampled at 16kHz.  Under
+these conditions we take $L=8$ and $M=5$.
+The sequence, $x(nT)$, is illustrated
+in Figure~\ref{f55.1}.  The discrete Fourier transform of x(nT) is shown in
+%
+\input{\Figdir intdec5.tex}
+\dessin{{\tt exec('intdec5\_10.code')} The Sequence $x(nT)$}
+{f55.1}
+
+%
+%
+\input{\Figdir intdec6.tex}
+\dessin{{\tt exec('intdec5\_10.code')} The DFT of $x(nT)$}
+{f6.1}
+
+%
+Figure~\ref{f6.1}.  As can be seen, $x(nT)$ is a bandlimited sequence.
+A new sequence $v(nT')$ is created by putting 7 zeros 
+between each element of $x(nT)$.
+We use a Hamming windowed lowpass filter of length 33 (Figure~\ref{f7.1})
+%
+\input{\Figdir intdec7.tex}
+\dessin{{\tt exec('intdec5\_10.code')} Low Pass Filter}
+{f7.1}
+
+%
+to filter $v(nT')$.  The discrete Fourier transform of $v(nT')$ is
+illustrated in
+Figure~\ref{f8.1}.  As is to be expected, the Fourier transform of $v(nT')$
+looks like the Fourier transform of $x(nT)$ repeated 8 times.
+%
+\input{\Figdir intdec8.tex}
+\dessin{{\tt exec('intdec5\_10.code')} DFT of $v(nT')$}
+{f8.1}
+
+%
+The result of multiplying the magnitude response 
+of the filter with that of the
+sequence $v(nT')$ is shown in Figure~\ref{f9.1}.  Since the low pass filter
+is not ideal the resulting filtered sequence has some additional high frequency
+energy in it (i.e., the small lobes seen in Figure~\ref{f9.1}).
+%
+\input{\Figdir intdec9.tex}
+\dessin{{\tt exec('intdec5\_10.code')} Filtered Version of $V$}
+{f9.1}
+
+%
+Finally, after taking the inverse discrete Fourier transform and discarding
+4 out of every 5 samples we obtain the sequence illustrated in
+Figure~\ref{f10.1}.
+%
+\input{\Figdir intdec10.tex}
+\dessin{{\tt exec('intdec5\_10.code')} Sequence $x(nMT/L)$}
+{f10.1}
+
+%
+
+\section{The DFT and the FFT}
+\index{DFT}
+\index{FFT}
+
+\subsection{Introduction}
+
+	The FFT (``Fast Fourier Transform'') is a computationally 
+efficient algorithm for calculating the DFT (''Discrete Fourier Transform'')
+of finite length discrete time sequences.
+  Calculation of the DFT from its definition
+requires order $N^2$ multiplications whereas the FFT requires
+order $N\log_2N$ multiplications.
+In this section we discuss several uses of the DFT and some examples
+of its calculation using the FFT primitive in Scilab.
+
+	We begin with the definition of the DFT
+for a finite length sequence, $x(n)$, of length $N$,
+%
+\begin{equation}
+X(k)=\sum_{n=0}^{N-1}x(n)e^{-j\frac{2\pi}{N}nk}.
+\label{e.fft1}
+\end{equation}
+%
+A careful examination of (\ref{e.fft1}) reveals that
+$X(k)$, the DFT of $x(n)$, is periodic with period $N$ (due to the fact
+that for fixed $n$ the term $\exp(-j2\pi nk/N)$ is periodic
+with period $N$).  That $X(k)$ is periodic
+also follows from the fact that (\ref{e.fft1}) can be interpreted
+as samples of the $z$-transform of $x(n)$ at $N$ equally spaced
+spaced samples on the unit circle.
+For reasons of symmetry, the DFT is defined to consist of the $N$
+distinct points of $X(k)$ for $k=0,1,\ldots,N-1$.
+
+	The $N$ points of the sequence $x(n)$ can be recovered from
+$N$ points of $X(k)$.  This recovery is called the inverse
+DFT and takes the form
+%
+\begin{equation}
+x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)e^{j\frac{2\pi}{N}nk}.
+\label{e.fft2}
+\end{equation}
+%
+It should be noted that (\ref{e.fft2}) yields a periodic sequence in $n$ 
+of period $N$ and that it is the $N$
+values of $x(n)$, $n=0,1,\ldots,N-1$ which yield
+the desired finite length sequence.
+
+	In order to better understand the DFT, one can think of 
+(\ref{e.fft1}) as being represented by a matrix computation
+%
+\begin{equation}
+\left[\begin{array}{c}
+X(1)\\X(2)\\\vdots\\X(N-1)\end{array}\right]
+=
+\left[\begin{array}{ccccc}
+1&1&1&\cdots&1\\
+1&e^{-j\frac{2\pi}{N}}&e^{-j\frac{4\pi}{N}}&\cdots&e^{-j\frac{2(N-1)\pi}{N}}\\
+1&e^{-j\frac{4\pi}{N}}&e^{-j\frac{8\pi}{N}}&\cdots&e^{-j\frac{4(N-1)\pi}{N}}\\
+\vdots&\vdots&\vdots&&\vdots\\
+1&e^{-j\frac{2(N-1)\pi}{N}}&e^{-j\frac{4(N-1)\pi}{N}}&\cdots&e^{-j\frac{(N-1)^2\pi}{N}}\\
+\end{array}\right]
+\left[\begin{array}{c}
+x(1)\\x(2)\\\vdots\\x(N-1)\end{array}\right].
+\label{e.fft3}
+\end{equation}
+%
+The inverse DFT can be calculated in a similar fashion, where the
+matrix used is the Hermitian transpose of that in (\ref{e.fft3})
+times a factor of $1/N$.
+From (\ref{e.fft3}) it can be seen that the DFT requires order
+$N^2$ multiplications.  
+The most direct application of the DFT is
+the calculation of the spectrum of finite
+length discrete signals.  In fact, the DFT 
+is a projection of $x(n)$ onto the orthogonal
+basis consisting of the $N$ complex
+exponentials $\exp(-j2\pi nk/N)$ indexed by $k$.
+	Another important property of the DFT has to do with the
+inverse DFT of the product of two transformed sequences.
+Taking $x(n)$ and $h(n)$ to be two sequences of length $N$
+the DFT's of these two sequences are
+%
+\begin{equation}
+X(k)=\sum_{n=0}^{N-1}x(n)e^{-j\frac{2\pi}{N}nk}
+\label{e.fft4}
+\end{equation}
+%
+and
+%
+\begin{equation}
+H(k)=\sum_{n=0}^{N-1}h(n)e^{-j\frac{2\pi}{N}nk}.
+\label{e.fft5}
+\end{equation}
+%
+Taking the inverse DFT of the product $Y(k)=H(k)X(k)$ yields
+%
+\begin{eqnarray}
+y(n)&=&\frac{1}{N}\sum_{k=0}^{N-1}H(k)X(k)e^{j\frac{2\pi}{N}nk}\nonumber\\
+    &=&\sum_{m=0}^{N-1}h(m)\sum_{r=0}^{N-1}x(r)\frac{1}{N}\sum_{k=0}^{N-1}e^{j\frac{2\pi}{N}(n-m-r)k}\nonumber\\
+    &=&\sum_{m=0}^{N-1}h(m)x(n-m)
+\label{e.fft6}
+\end{eqnarray}
+%
+where the last equality follows from the fact that
+%
+\begin{equation}
+\frac{1}{N}\sum_{k=0}^{N-1}e^{j\frac{2\pi}{N}(n-m-r)k}=\left\{
+   \begin{array}{cc}
+                1,&r=n-m\\
+                0,&\mbox{otherwise}\end{array}\right..
+\label{e.fft7}
+\end{equation}
+%
+In (\ref{e.fft6}) it should be noted that when the argument of
+$x$ is outside of the the range $[0,N-1]$ that the value of $x$
+is obtained from evaluating the argument modulo $N$ (which follows
+from the periodicity of the $x$ obtained by using the inverse DFT).
+	A very important application of the DFT
+is for calculating the interaction of discrete
+signals and discrete linear systems.  When a
+discrete signal is introduced to the input of a
+linear system, the resulting output is a convolution
+of the input signal with the impulse response of
+the linear system.  The convolution operation, which
+is discussed in more detail in the section
+on convolution, requires order $N^2$ multiplications where
+the signal and system impulse response are both of length $N$.
+Calculating the convolution by FFT requires order
+$N\log_2N$ multiplications.
+
+	It is equally possible to compute a multi-dimensional DFT.
+For a multi-dimensional sequence $x(n_1,n_2,\ldots,n_M)$ the multi-dimensional
+DFT is defined by
+%
+\begin{eqnarray}
+X(k_1,k_2,\ldots,k_M)&=&\nonumber\\
+\sum_{n_1=1}^{N_1-1}e^{-j\frac{2\pi}{N_1}n_1k_1}\sum_{n_2=1}^{N_2-1}e^{-j\frac{2\pi}{N_2}n_2k_2}&\cdots&\sum_{n_M=1}^{N_M-1}e^{-j\frac{2\pi}{N_M}n_Mk_M}x(n_1,n_2,\ldots,n_M).
+\end{eqnarray}
+%
+The inverse multi-dimensional DFT is analogous to the calculation above
+ with a change of sign for the complex exponentials
+and a factor of $1/(N_1N_2\cdots N_M)$.
+
+	The FFT algorithm is a computationally
+efficient way of calculating the DFT.  The computational
+savings realized by the FFT are obtained by
+exploiting certain symmetries and periodicities which exist in the
+calculation of the DFT.  To show how the FFT
+exploits these properties of the DFT we assume that $N=2^{\gamma}$
+for $\gamma$ a positive integer and we calculate
+the DFT of $x(n)$ as follows
+%
+\begin{eqnarray}
+X(k)&=&\sum_{n=0}^{N-1}x(n)e^{-j\frac{2\pi}{N}nk}\nonumber\\
+    &=&\sum_{n=even}x(n)e^{-j\frac{2\pi}{N}nk}+\sum_{n=odd}x(n)e^{-j\frac{2\pi}{N}nk}\nonumber\\
+    &=&\sum_{r=0}^{\frac{N}{2}-1}x(2r)e^{-j\frac{2\pi}{N/2}rk}+e^{j\frac{2\pi}{N}k}\sum_{r=0}^{\frac{N}{2}-1}x(2r+1)e^{-j\frac{2\pi}{N/2}rk}
+\label{e.fft8}
+\end{eqnarray}
+%
+where the final equality is obtained by making
+the change of variables $n=2r$.  The expression in (\ref{e.fft8})
+is composed of a sum of two $N/2$ point DFT's, 
+one for the $N/2$ point sequence $x(0)$, $x(2)$, $\ldots$, $x(N-2)$,
+and the other for the $N/2$ point sequence $x(1)$, $x(3)$, $\ldots$, $x(N-1)$.
+An addition to the two $N/2$ point DFT's in (\ref{e.fft8}), the
+calculation also requires $N$ additional multiplications
+for the $N$ terms $\exp(j2\pi k/N)$, $k=0,1,\ldots,N-1$.
+
+	The purpose of calculating the DFT as in 
+(\ref{e.fft8}) is that a computational savings has been realized.
+As has already been shown the calculation of the $N$ point DFT
+from (\ref{e.fft1}) requires order $N^2$ multiplications.  Since
+(\ref{e.fft8}) requires the calculation of two $N/2$ point DFT's
+plus $N$ additional multiplications, the computational load
+is of order $2(N/2)^2+N=N^2/2+N$.  For $\gamma>1$ 
+(i.e., for $N\ge4$) we have realized a computational savings
+by using (\ref{e.fft8}).  Furthermore, the operation in (\ref{e.fft8})
+can be repeated in that each of the $N/2$ point
+DFT's can be split into two $N/4$ point DFT's
+plus $N$ additional multiplications.
+This yields a computational complexity of $4(N/4)^2+2N$ multiplications.
+Continuing in this way $\gamma=\log_2N$ times, the final result
+is an algorithm with computational complexity of $N\log_2N$ multiplications.
+
+	The above discussion of the computational advantages of the FFT
+is based on the assumption that $N=2^{\gamma}$.  Similar developments
+of the FFT can be derived based on any prime factorization of $N$.
+The more prime factors $N$ has the greater computational efficiency
+can be obtained in using the FFT.  In fact, it may be useful in some
+applications to artificially extend the length of a sequence (by adding on
+zeros) in order that the length of the sequence will be more factorable.
+The FFT primitive in Scilab automatically accounts for the prime
+factorization of the sequence length. 
+
+\subsection{Examples Using the {\tt fft} Primitive}
+\index{FFT!examples}
+
+	Two examples are presented in this section.  The first 
+example illustrates how to use the {\tt fft} primitive to calculate
+a one-dimensional DFT.  The second example calculates a three-dimensional
+DFT.  
+
+	For the first example, data from a cosine function is passed
+to the {\tt fft} primitive. 
+\verbatok{\Diary Sfft2.dia}
+\end{verbatim}
+The cosine data is displayed in Figure~\ref{f.fft1}.
+resulting output from the {\tt fft} primitive is displayed
+in Figure~\ref{f.fft2}.  Figure~\ref{f.fft2} displays the magnitude
+of the DFT.
+%
+\input{\Figdir fft1.tex}
+\dessin{{\tt exec('fft1.code')} Cosine Signal}{f.fft1}
+
+%
+\input{\Figdir fft2.tex}
+\dessin{{\tt exec('fft2.code')} DFT of Cosine Signal}{f.fft2}
+
+ Note, however, that since the cosine function is
+an even symmetric function, the DFT of the cosine is strictly real
+and, thus, the magnitude and the real part of the DFT are the
+same.
+Furthermore, since we are calculating a 64-point DFT of a cosine
+with frequency $2\pi/16$ it is expected that the DFT should have
+peaks at $k=4$ and $k=60$.  This follows from the fact that 
+the value $k=64$ of the DFT corresponds to  a frequency of $2\pi$ 
+and, consequently, the value $k=4$ must correspond to the frequency
+$2\pi/16$, which is the frequency of the signal under examination.
+
+	The second example calculates the DFT of a three-dimensional
+signal.  The calculation proceeds as follows.
+\verbatok{\Diary fft1.dia}
+\end{verbatim}
+In the above series of calculations the signal $y$ is three-dimensional
+and is represented by the two matrices {\tt y1} and {\tt y2}.  The first
+dimension of $y$ are the rows of the matrices, the second dimension
+of $y$ are the columns of the matrices, and the third dimension of $y$
+are the sequence of matrices represented by {\tt y1} and {\tt y2}.
+The signal $y$ is represented by the vector {\tt y} which is in
+vector form.  The DFT of $y$ is calculated using the function {\tt mfft}
+where $\mtt{flag}=-1$ and $\mtt{dim}=[2\ 3\ 2]$.  Naturally, the DFT
+of the three-dimensional signal is itself three-dimensional.  The result
+of the DFT calculation is represented by the two matrices {\tt yf1}
+and {\tt yf2}.
+
+\section{Convolution}
+\index{convolution}
+
+\subsection{Introduction}
+
+	Given two continuous time functions $x(t)$ and $h(t)$,
+a new continuous time function can be obtained by
+convolving $x(t)$ with $h(t)$. 
+%
+\begin{equation}
+y(t)=\int_{-\infty}^{\infty}h(t-u)x(u)du.
+\label{e.conv.1}
+\end{equation}
+%
+
+	An analogous convolution operation
+can be defined for discrete time functions.  Letting
+$x(n)$ and $h(n)$ represent discrete time functions,
+by the discrete time convolution gives $y(n)$ is :
+
+%
+\begin{equation}
+y(n)=\sum_{k=-\infty}^{\infty}h(n-k)x(k).
+\label{e.conv.2}
+\end{equation}
+%
+
+ If $h(t)$ represents the
+impulse response of a linear, time-invariant system and if $x(t)$ 
+is an input to this system then the output of the system, $y(t)$,
+can be calculated as the convolution
+between $x(t)$ and $h(t)$ (i.e., as in (\ref{e.conv.1}).
+Figure~\ref{f.conv.1} illustrates how convolution is related to 
+linear systems.
+%
+\begin{figure}[tb]
+\center{
+\begin{picture}(360,54)
+
+\put(65,40){\makebox(0,0){$x(t)$}}
+\put(80,40){\vector(1,0){35}}
+
+\put(115,20){\framebox(65,40){$h(t)$}}
+\put(180,40){\vector(1,0){35}}
+
+\put(270,40){\makebox(0,0){$y(t)=\int h(t-u)x(u)du$}}
+
+\end{picture}}
+\caption{ Convolution Performed by Linear System}
+\label{f.conv.1}
+\end{figure}
+%
+If the system, $h(t)$ is causal (i.e., $h(t)=0$ for $t<0$)
+and, in addition, the signal $x(t)$ is applied to the system at
+time $t=0$, then (\ref{e.conv.1}) becomes
+%
+\begin{equation}
+y(t)=\int_{0}^{t}h(t-u)x(u)du.
+\label{e.conv.3}
+\end{equation}
+%
+Similarly, for $h(n)$ a time invariant, causal, discrete linear
+system
+with input $x(n)$ starting at time $n=0$, 
+the output $y(n)$ is the convolution
+%
+\begin{equation}
+y(n)=\sum_{k=0}^{n}h(n-k)x(k).
+\label{e.conv.4}
+\end{equation}
+%
+
+	An important property of the convolution operation is that
+the calculation can be effected by using Fourier transforms.
+This is due to the fact that convolution in the time domain is equivalent
+to multiplication in the frequency domain.  
+Let $X(\omega)$, $H(\omega)$, and $Y(\omega)$ represent
+the Fourier transforms of $x(t)$, $h(t)$, and $y(t)$, respectively, where
+%
+\begin{equation}
+Y(\omega)=\int_{-\infty}^{\infty}y(t)e^{-j\omega t}dt.
+\label{e.conv.6}
+\end{equation}
+%
+If the relationship in (\ref{e.conv.1}) is valid, then it also follows that
+%
+\begin{equation}
+Y(\omega)=H(\omega)X(\omega).
+\label{e.conv.5}
+\end{equation}
+%
+
+	There is an analogous relationship between the Fourier transform
+and convolution for discrete time signals.  
+Letting
+$X(e^{j\omega})$, $H(e^{j\omega})$, and $Y(e^{j\omega})$ be the 
+Fourier transforms of $x(n)$, $h(n)$, and $y(n)$, respectively, where,
+for example
+%
+\begin{equation}
+Y(e^{j\omega})=\sum_{n=-\infty}^{\infty}y(n)e^{-j\omega n}
+\label{e.conv.8}
+\end{equation}
+%
+we have that
+the discrete time convolution operation can be represented in the
+Fourier domain as
+%
+\begin{equation}
+Y(e^{j\omega})=H(e^{j\omega})X(e^{j\omega}).
+\label{e.conv.7}
+\end{equation}
+%
+
+	
+	The fact that convolution in the time domain is equivalent to
+multiplication in the frequency domain means that the 
+calculations in (\ref{e.conv.1}) and (\ref{e.conv.2}) can be
+calculated (at least approximately) by a computationally efficient
+algorithm, the FFT.
+This is accomplished by calculating the inverse DFT 
+of the product of the DFT's of $x(n)$ and $h(n)$. 
+Care must be taken to ensure that the resulting calculation is
+a linear convolution (see the section on the DFT and the FFT).  
+The linear convolution is accomplished by adding enough zeros onto
+the two sequences so that the circular convolution accomplished by
+the DFT is equivalent to a linear convolution.
+
+	The convolution of two finite length sequences can be
+calculated by the Scilab function {\tt convol}.
+
+\subsection{Use of the {\tt convol} function}
+\index{function syntax!convol@{\tt convol}}
+\index{convolution!function syntax}
+
+	The {\tt convol} function can be used following two formats.
+The first format calculates a convolution based on two discrete
+length sequences which are passed in their entirety to the function.
+The second format performs updated convolutions using the overlap-add
+method described in \cite{oppen}.  It is used when one of the sequences
+is very long and, consequently, cannot be passed directly to the function.
+
+	The syntax used for the function under the first format is
+\begin{verbatim}
+-->y=convol(h,x)
+\end{verbatim}
+where both {\tt h} and {\tt x} are finite length vectors and {\tt y}
+is a vector representing the resulting convolution of the inputs.
+An example of the use of the function under the first format is as follows.
+\verbatok{\Diary convol2.dia}
+\end{verbatim}
+
+	The syntax used for the function under the second format is
+\begin{verbatim}
+-->[y,y1]=convol(h,x,y0)
+\end{verbatim}
+where {\tt y0} and {\tt y1} are required to update the calculations
+of the convolution at each iteration and 
+where the use of the second format requires the following function
+supplied by the user.
+\verbatok{\Diary convol1.code}
+\end{verbatim}
+where, {\tt nsecs} is the number of sections of $x$ to be used
+in the convolution calculation and, in addition, 
+the user must supply a function {\tt getx} which
+obtains segments of the data $x$ following the format.
+\begin{verbatim}
+function [xv]=getx(xlen,xstart)
+   .
+   .
+   .
+
+\end{verbatim}
+where {\tt xlen} is the length of data requested and {\tt xstart}
+is the length of the data vector to be used.
+
+\section{The Chirp Z-Transform}
+\index{chirp z-transform}
+
+\subsection{Introduction}
+
+	The discrete Fourier transform (DFT) of a finite length,
+discrete time signal, $x(n)$, is defined by
+%
+\begin{eqnarray}
+X(k) &=& \sum_{n=0}^{N-1}x(n)e^{-j(2\pi nk)/N}\\
+k&=&0,1,\ldots,N-1\nonumber
+\label{e4.1}
+\end{eqnarray}
+%
+and the z-transform of $x(n)$ is given by
+%
+\begin{eqnarray}
+X(z) &=& \sum_{n=-\infty}^{\infty}x(n)z^{-n}\nonumber\\
+     &=& \sum_{n=0}^{N-1}x(n)z^{-n}
+\label{e4.2}
+\end{eqnarray}
+%
+The $N-1$ points of the DFT
+of $x(n)$ are related to the z-transform of $x(n)$ in that
+they are samples of the z-transform taken at equally spaced
+intervals on the unit circle in the z-plane.
+
+	There are applications \cite{czt} where it is desired to calculate
+samples of the z-transform at locations either off the unit circle or at
+unequally spaced angles on the unit circle.  The chirp
+z-transform (CZT) is an efficient algorithm which can be used
+for calculating samples of some of these z-transforms.  In particular,
+the CZT can be used to efficiently calculate the values of the
+z-transform of a finite-length, discrete-time sequence if the
+z-transform points are of the form
+%
+\begin{equation}
+z_k = AW^{-k}
+\label{e4.3a}
+\end{equation}
+%
+where
+%
+\begin{eqnarray}
+A   &=& A_0e^{j\theta}\nonumber\\
+W   &=& W_0e^{-j\phi}
+\label{e4.3}
+\end{eqnarray}
+%
+and where $A_0$ and $W_0$ are real valued constants and $\theta$ and $\phi$
+are angles.
+%
+\input{\Figdir czt1.tex}
+\dessin{{\tt exec('czt1.code')} Samples of the z-transform on Spirals}{f4.1}
+The set of points $\{z_k\}$ lie on a spiral where
+$z_0$ is at distance $A_0$ from the origin and at angle
+$\theta$ from the x-axis.  The remaining points are located
+at equally spaced angles, $\phi$, and approach the origin for
+$W_0>1$, move away from the origin for $W_0<1$, and remain
+on a circle of radius $A_0$ for $W_0=1$.  Figure~\ref{f4.1}
+shows the location of samples of the z-transform for $W_0< 1$
+on the left hand side of the figure and of
+$W_0<1$ on the right hand side of the figure. In both parts of the
+figure the position of 
+$z_0$ is indicated by the sample connected to the origin by a straight
+line.
+\subsection{Calculating the CZT}
+
+	Calculating samples of the z-transform
+of $x(n)$ at the $M$ points designated in (\ref{e4.3})
+requires that
+%
+\begin{equation}
+\begin{array}{cc}
+{\displaystyle X(z_k)=\sum_{n=0}^{N-1}x(n)A^{-n}W^{nk}}, & k=0,1,\ldots,M-1
+\end{array}
+\label{e4.4}
+\end{equation}
+%
+where $N$ is the length of $x(n)$.  Using the identity
+%
+\begin{equation}
+nk=\frac{1}{2}[n^2+k^2-(k-n)^2]
+\label{e4.5}
+\end{equation}
+%
+in (\ref{e4.4}) yields
+%
+\begin{eqnarray}
+X(z_k)&=&\sum_{n=0}^{N-1}x(n)A^{-n}W^{\frac{1}{2}n^2}W^{\frac{1}{2}k^2}
+W^{-\frac{1}{2}(k-n)^2}\nonumber\\
+      &=& W^{\frac{1}{2}k^2}\sum_{n=0}^{N-1}[x(n)A^{-n}W^{\frac{1}{2}n^2}
+W^{-\frac{1}{2}(k-n)^2}].
+\label{e4.6}
+\end{eqnarray}
+%
+It can be seen that imbedded in (\ref{e4.6}) is a convolution of two
+sequences $g(n)$ and $h(n)$ where
+%
+\begin{equation}
+g(n)=x(n)A^{-n}W^{\frac{1}{2}n^2}
+\label{e4.7}
+\end{equation}
+%
+and
+%
+\begin{equation}
+h(n)=W^{-\frac{1}{2}n^2}.
+\label{e4.8}
+\end{equation}
+%
+Consequently, (\ref{e4.6}) can be represented by the block
+diagram in Figure~\ref{f4.2}.  (The circular junctions in
+Figure~\ref{f4.2} represent multiplication of the two incoming
+signals).
+%
+\begin{figure}[tb]
+\center{
+\begin{picture}(360,204)
+
+\put(95,120){\makebox(0,0){$x(n)$}}
+\put(110,120){\vector(1,0){10}}
+\put(125,120){\circle{10}}
+\put(130,120){\vector(1,0){15}}
+
+\put(145,100){\framebox(65,40){$h(n)$}}
+\put(210,120){\vector(1,0){15}}
+
+\put(230,120){\circle{10}}
+\put(235,120){\vector(1,0){10}}
+\put(260,120){\makebox(0,0){$X(k)$}}
+
+\put(230,85){\vector(0,1){30}}
+\put(230,75){\makebox(0,0){$1/h(k)$}}
+\put(125,85){\vector(0,1){30}}
+\put(125,75){\makebox(0,0){$A^{-n}/h(n)$}}
+
+\end{picture}
+}
+\caption{Filter Realization of CZT}
+\label{f4.2}
+\end{figure}
+%
+
+	The convolution in (\ref{e4.6}) can be efficiently
+implemented using an FFT.  Since the input sequence
+is of length $N$ and the output sequence is of length $M$, it is 
+necessary to use $N+M-1$ elements from $h(n)$.
+These $N+M-1$ elements are $h(-N+1), h(-N+2),\ldots,h(n),\ldots,
+h(M-2),h(M-1)$.  After taking the product of the $N+M-1$ point
+FFT of $h(n)$ and of $g(n)$
+(where $M-1$ zero points have been added to the end of $g(n)$),
+the inverse FFT yields a circular 
+convolution of $h(n)$ and $g(n)$.  Care must be taken to
+choose the correct $M$ points corresponding to the linear
+convolution desired.
+	The function {\tt czt} implements the
+chirp z-transform.	
+
+\subsection{Examples}
+\index{chirp z-transform!examples}
+
+	The first example presented here calculates the 
+CZT of the sequence $x(n)=n$ for $n=0,1,\ldots,9$ where
+ten points are calculated in the z-plane and the parameter values
+are $W0=1$, $\phi=2\pi/10$, $A0=1$, and $\theta=0$.  This
+example should yield results identical to those obtained by
+taking the FFT of the sequence $x(n)$.  The sequence of commands is 
+as follows,
+\verbatok{\Diary czt2.dia}
+\end{verbatim}
+As can be verified using the function {\tt fft}, the above result is
+identical to that obtained by taking the FFT of the sequence $x(n)$
+which is shown below,
+\verbatok{\Diary czt3.dia}
+\end{verbatim}
+
+	The second example calculates the DFT of the same sequence,
+$x(n)$, above, however, just at five equally spaced points in $[-\pi/4,\pi/4]$
+on the unit circle in the z-plane.  The spacing between the points is
+$\pi/8$ for five points in $[-\pi/4,\pi/4]$.  The result is
+\verbatok{\Diary czt4.dia}
+\end{verbatim}
+Now taking a sixteen point FFT of the sequence $x(n)$ (accomplished
+by adding six zeros to the end of the sequence $x(n)$) it can be
+seen that the CZT computed above yields exactly the desired points
+on the unit circle in the z-plane.  That is to say that the last
+three points of {\tt czx} correspond to the first three points
+of the FFT of $x(n)$ and the first two points of {\tt czx} correspond
+to the last two points of the FFT.
+\verbatok{\Diary czt5.dia}
+\end{verbatim}
+
+%\end{document}

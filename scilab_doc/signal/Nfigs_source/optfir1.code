@@ -1,0 +1,117 @@
+xinit('optfir1.ps');
+//An example of design of a low-pass filter using frequency-sampling
+//design and linear programming optimization
+//cut-off frequency=.3 and 3 samples in the transition band
+forder=64;//    filter length
+Nf=64;//    filter length
+Nf2=Nf/2;tol=0.05;N=128;N2=N/2;
+
+//simple rectangular filter
+Hsimp=0*ones(N,1);
+for i=1:20
+Hsimp(i)=1.;
+Hsimp(N+1-i)=1;
+end;
+
+FF=fft(Hsimp,1);
+//plot(real(FF));
+FFF=0*ones(N,1);
+for i=1:Nf2
+FFF(i)=FF(i);
+FFF(N+1-i)=FF(N+1-i);
+end;
+FF1=fft(FFF,-1);
+RR1=real(FF1);
+//plot(abs(RR1));
+
+//Bounds for the design
+Hd=0*ones(Nf,1);
+for i=1:20
+Hd(i)=1.;
+end;
+for i=24:Nf
+Hd(i)=.006;
+end;
+
+//Matrix of the interpolating functions
+S=0*ones(N2,Nf);
+for ii=1:N2
+for kk=1:Nf
+i=ii-1;
+k=kk-1;
+omega=2.*%pi*i/N;
+omega2=%pi*i/N;
+coe=exp(-%i*(omega2-k*%pi/Nf))*(Nf-1)/2;
+ccc=(omega2-%pi*k/Nf);
+cc1=sin(Nf*ccc);
+cc2=sin(ccc);
+if cc2 = 0 then cc12=Nf;else cc12=cc1/cc2;end;
+S(ii,kk)=real(coe*cc12);
+end;
+end;
+for ii=1:N2
+for kk=1:Nf2
+Y(ii,kk)=S(ii,kk)+S(ii,Nf+1-kk);
+end;
+end;
+
+
+HU=0*ones(Nf2,1);
+for i=1:10
+HU(i)=1.;
+end;
+
+B=Y*HU/Nf;
+B=B/Nf2;
+//plot(B)
+
+A1=Y(:,11);
+A2=Y(:,12);
+A3=Y(:,13);
+A=[A1 A2 A3];
+T=[0.75 ; 0.50 ; 0.25; 0.1];
+A4=0*A1;
+for i=26:64
+A4(i)=-1.;
+end;
+
+bsup=Hd-B;
+binf=Hd-B;
+for i=1:19
+bsup(i)=bsup(i)+tol;
+binf(i)=binf(i)-tol;
+end;
+for i=1:6
+bsup(19+i)=2.;
+binf(19+i)=-2.;
+end;
+for i=26:64
+bsup(i)=0.02;
+binf(i)=-0.02;
+end;
+
+//Linear programming problem : CC*T <= bound; min p'*T
+//T=transition coefficients and cut-off bound
+p=[0;0;0;1];
+CC=[A A4; -A A4];
+CC=CC/32;
+CC=CC/128;
+bound=[bsup; -binf];
+ci=[0;0;0;0];
+cs=[1;1;1;0.05];
+[xx,yy,zz]=linpro(p,CC,bound,ci,cs);
+
+Hbest=HU;
+Hbest(11)=xx(1);
+Hbest(12)=xx(2);
+Hbest(13)=xx(3);
+
+Hres=Y*Hbest/Nf;
+Hres=Hres/32;
+xend();
+//plot(abs(Hres));
+xinit('optfir1.ps');
+plot2d([1:64;1:64]',[abs(Hres) abs(B)])
+xend()
+
+

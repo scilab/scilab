@@ -1,0 +1,16 @@
+//exec('fir6.code')
+xinit('fir6.ps')
+n=33;
+w=8*%pi*(-1:.01:1)/n;
+rn=sin(w*n/2);
+rn(101)=n;
+rd=sin(w/2);
+rd(101)=1;
+rw=abs(rn./rd);
+dess(31)=1;
+plot(w,rw)
+plot2d([-2*%pi/n 0 2*%pi/n]',[0 n 0]',[3],"000")
+plot2d([-2*%pi/n .01-2*%pi/n -.01+2*%pi/n 2*%pi/n]',[0 n n 0]',[3],"000")
+xend(),
+
+          

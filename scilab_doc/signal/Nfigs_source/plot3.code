@@ -1,0 +1,4 @@
+//demonstrate Scilab function frmag
+xinit('plot3.ps')
+exec('SCI/doc/signal/Nsource_diary/Splot3.code')
+xend(),

@@ -1,0 +1,10 @@
+//exec('poly.2.ex')
+//illustrate some operations on polynomials
+   x=poly(0,'x')
+   q1=3*x+1
+   q2=x**2-2*x+4
+   q2+q1
+   q2-q1
+   q2*q1
+   q2/q1
+   q2./q1

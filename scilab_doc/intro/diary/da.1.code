@@ -1,0 +1,17 @@
+model=2;reg=3;proc=4;sensor=5;ff=6;somm=7;
+tm=list('transfer','model');
+tr=list('transfer',['reg(:,1)','reg(:,2)']);
+tp=list('transfer','proc');
+ts=list('transfer','sensor');
+tf=list('transfer','ff');
+tsum=list('transfer',['1','1']);
+lum=list('link','input',[-1],[model,1],[ff,1]);
+lmr=list('link','model output',[model,1],[reg,1]);
+lrs=list('link','regulator output',[reg,1],[somm,1]);
+lfs=list('link','feed-forward output',[ff,1],[somm,1]);
+lsp=list('link','proc input',[somm,1],[proc,1],[-2]);
+lpy=list('link','proc output',[proc,1],[sensor,1],[-1]);
+lsup=list('link','sensor output',[sensor,1],[reg,2]);
+syst=...
+ list('blocd',tm,tr,tp,ts,tf,tsum,lum,lmr,lrs,lfs,lsp,lpy,lsup);
+[sysf,names]=bloc2exp(syst)

@@ -1,0 +1,12 @@
+This is the repository for Scilab documentation source files (LaTeX)
+
+The given tar files must be extracted in the <SCIDIR>/doc directory
+(<SCIDIR> stands for the main Scilab directory)
+
+Building the dcumentation files only work on Unix systems. The following tools are required 
+- scilab
+- latex
+- hevea  or latex2html for html generation
+- ps2pdf (Aladin Ghostscript) for pdf generation
+
+

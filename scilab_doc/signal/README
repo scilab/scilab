@@ -1,0 +1,16 @@
+
+The file Toolbox.ps.Z is the Postscript ( in compressed format) 
+version of the document 'The Signal Processing Toolbox'.
+
+To print a copy of if 
+
+	uncompress -c Toolbox.ps.Z | lpr 
+
+To View the document (needs postscript previewer) 
+
+	uncompress -c Toolbox.ps.Z | ghostview -
+
+You can latex the file Toolbox.tex to get a dvi document.
+
+
+

@@ -1,0 +1,2 @@
+//exec('iir10.code')
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03])

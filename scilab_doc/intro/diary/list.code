@@ -1,0 +1,35 @@
+a=33;b=11;c=0;
+l=list();l(0)=a
+l=list();l(1)=a
+l=list(a);l(2)=b
+l=list(a);l(0)=b
+l=list(a);l(1)=c
+l=list();l(0)=null()
+l=list();l(1)=null()
+//
+i='i';
+l=list(a,list(c,b),i);l(1)=null()
+l=list(a,list(c,list(a,c,b),b),'h');
+l(2)(2)(3)=null()
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a
+dts(2).b(1,2)
+[a,b]=dts(2)(['a','b'])
+//
+l=list(1,'qwerw',%s)
+l(1)='Changed'
+l(0)='Added'
+l(6)=['one more';'added']
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a=33
+dts(2).b(1,2)=-100
+//
+l=list(1,'qwerw',%s);
+l(1)
+[a,b]=l([3 2])
+l($)
+//
+L=list(33,list(l,33))
+

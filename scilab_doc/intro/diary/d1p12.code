@@ -1,0 +1,5 @@
+exec('d1p10.code',-1);
+exec('d1p11.code',-1);
+sl1=[Sl;2*Sl+eye()]
+size(sl1)
+size(tf2ss(sl1))

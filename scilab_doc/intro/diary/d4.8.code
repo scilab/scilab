@@ -1,0 +1,8 @@
+a1=[1 2;3 4];b1=[1;1];c1=[0 1;1 0];
+a2=[1 -1;0 1];b2=[1 0;2 1];c2=[1 1];d2=[1,1];
+s1=syslin('c',a1,b1,c1);
+s2=syslin('c',a2,b2,c2,d2);
+ssprint(s1)
+ssprint(s2)
+s12=s1*s2;
+ssprint(s12)

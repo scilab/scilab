@@ -1,0 +1,4 @@
+xinit('fft1.ps')
+exec('Sfft1.code')
+xend(),
+

@@ -1,0 +1,5 @@
+  host("cd ../fort; make fibb.o");
+  link('../fort/fibb.o','fibb')
+  n=6
+  fn=fort('fibb',n,2,'i','sort',[1,1],1,'r')
+  host("cd ../fort; rm fibb.o");

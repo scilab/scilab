@@ -1,0 +1,3 @@
+exec('d1p4.code',-1);
+M=[p, p-1; p+1 ,2]
+det(M)

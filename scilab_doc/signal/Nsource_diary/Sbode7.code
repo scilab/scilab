@@ -1,0 +1,8 @@
+//Bode plot; two systems in series
+a=-2*%pi;b=1;c=18*%pi;d=1;
+sl=syslin('c',a,b,c,d);
+s=poly(0,'s');
+h1=1/real((s+2*%pi*(15+100*%i))*(s+2*%pi*(15-100*%i)));
+h1=syslin('c',h1);
+h2=ss2tf(sl)
+bode(h1*h2,.1,1000,.01);
