@@ -48,11 +48,7 @@
     <VERB>ilib</VERB> (when <VERB>test</VERB> is true).
   </P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
-if c_link('foo') then link('foo.o','foo');end
-// to unlink all the shared libarries which contain foo
-a=%t; while a ;[a,b]=c_link('foo'); ulink(b);end
- ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fort</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
