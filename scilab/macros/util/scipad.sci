@@ -11,12 +11,10 @@ global TMPDIR
       TCL_EvalStr("scipad eval {wm withdraw .}")
       TCL_EvalStr("scipad alias ScilabEval ScilabEval")
     end
-    if exists("home") then
+    if exists("SCIHOME") then
       if MSDOS then
-        TCL_EvalStr("scipad eval { set env(HOME) """+strsubst(home,"\","/")+""" }")
         TCL_EvalStr("scipad eval { set env(SCIHOME) """+strsubst(SCIHOME,"\","/")+""" }")
       else
-        TCL_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
         TCL_EvalStr("scipad eval { set env(SCIHOME) """+pathconvert(SCIHOME,%f,%t)+""" }")
       end
     end
