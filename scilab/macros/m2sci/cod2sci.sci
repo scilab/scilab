@@ -105,7 +105,6 @@ while ilst<nlst then
   case '18' then   
   
   case '29' then
-    pause
     ip=','//code2str(evstr(op(2)))
     op=matrix(op(3:$),2,-1)
     lhs=size(op,2)
