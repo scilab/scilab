@@ -204,9 +204,13 @@ case $# in
         ;;
 esac
 
+
 # really calling Scilab with arguments
+
+sci_args=
+
 if test "$rest" = "yes"; then
-  nos=
+  debug=
   now=
   display=
   start_file=
@@ -222,28 +226,35 @@ if test "$rest" = "yes"; then
     fi
     case $sciarg in
       -ns)
-          nos="yes"
+	  sci_args="$sci_args -ns"
+          ;;
+      -nb)
+	  sci_args="$sci_args -nb"
+          ;;
+      -debug) 
+          debug="-debug"
           ;;
       -nw)
-          now="yes"
+          now="-nw"
+	  sci_args="$sci_args -nw"
           ;;
       -nwni)
-          now="yes"
+          now="-nw"
+	  sci_args="$sci_args -nw"
           ;;
       -display|-d)
           prevarg="display"
           ;;
-      -f)
+       -f)
           prevarg="start_file"
           ;;
-      -l)
+       -l)
           prevarg="language"
           ;;
-      -e)
+       -e)
           prevarg="start_exp"
           ;;
-
-      -args)
+       -args)
            prevarg="arguments"
           ;;
 
@@ -254,34 +265,30 @@ if test "$rest" = "yes"; then
   done
 
   if test -n "$display"; then
-    display="-display $display"
+    sci_args="$sci_args -display $display"
   fi
 
   if test -n "$start_file"; then
-    start_file="-f $start_file"
+    sci_args="$sci_args -f $start_file"
   fi
 
   if test -n "$start_exp"; then
-    start_file="-e $start_exp"
+    sci_args="$sci_args -e $start_exp"
   fi
 
   if test -n "$language"; then
-    language="-l $language"
+    sci_args="$sci_args -l $language"
   fi
 
-
-  if test -n "$nos"; then
-     if test -n "$now"; then
-       do_scilex_now -ns -nw $start_file $language $arguments
-     else
-       do_scilex -ns $display $start_file  $language $arguments&
-     fi
+  if test -n "$now"; then
+      sci_exe="do_scilex_now"
   else
-     if test -n "$now"; then
-       do_scilex_now -nw $start_file $language $arguments
-     else
-       do_scilex $display $start_file  $language $arguments&
-     fi
-  fi    
+      sci_exe="do_scilex"
+  fi
 
+  if test -n "$debug"; then 
+     gdb -e $SCI/bin/scilex
+  else	
+      $sci_exe $sci_args 
+  fi 
 fi
