@@ -1806,6 +1806,27 @@ int GetScreenProperty(char *prop, char *value)
     }
   return 0;
 }
+
+
+
+/* Scilab get the DPI (root properties) */
+/* F.Leray 08.03.05 */
+/* return the x/y DPI */
+int GetScreenDPI(int *ixres, int *iyres)
+{
+  POINT Ecran = {GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN)} ;
+  HDC hdc=GetDC(NULL);
+
+  *ixres = GetDeviceCaps(hdc, LOGPIXELSX);
+  *iyres = GetDeviceCaps(hdc, LOGPIXELSY);
+  
+  return 0;
+}
+
+
+
+
+
 /*-----------------------------------------------------------------------------------*/
 static int NumBMP=0;
 static char DefaultFilenameTests[MAX_PATH]="IMG";

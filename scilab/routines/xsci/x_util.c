@@ -1120,3 +1120,31 @@ int GetScreenProperty(char *prop, char *value)
   return 0;
 }
 
+
+/* Scilab get the DPI (root properties) */
+/* F.Leray 08.03.05 */
+/* return the x/y DPI */
+int GetScreenDPI(int *ixres, int *iyres)
+{
+  TScreen *screen = &term->screen;
+  double xres, yres;
+  
+  /*
+   * there are 2.54 centimeters to an inch; so there are 25.4 millimeters.
+   *
+   *     dpi = N pixels / (M millimeters / (25.4 millimeters / 1 inch))
+   *         = N pixels / (M inch / 25.4)
+   *         = N * 25.4 pixels / M inch
+   */
+  
+  xres = ((((double) DisplayWidth(screen->display,DefaultScreen(screen->display))) * 25.4) / 
+	  ((double) DisplayWidthMM(screen->display,DefaultScreen(screen->display))));
+  yres = ((((double) DisplayHeight(screen->display,DefaultScreen(screen->display))) * 25.4) / 
+	  ((double) DisplayHeightMM(screen->display,DefaultScreen(screen->display))));
+  
+  *ixres = (int) (xres + 0.5);
+  *iyres = (int) (yres + 0.5);
+  
+  return 0;
+}
+
