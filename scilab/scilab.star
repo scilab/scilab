@@ -98,10 +98,6 @@ if larg<>[] & larg<=size(args,"*") then
 end
 clear args larg L
 
-// INDEX file index.html
-global INDEX
-INDEX=SCI+"/man/"+LANGUAGE+"/index.htm"
-
 //Scilab Help Chapters, %helps is a two column matrix of strings
 global %helps
 %helps=initial_help_chapters(LANGUAGE)
@@ -112,21 +108,13 @@ global demolist
 demolist=initial_demos_tables()
 clear initial_demos_tables
 
-// Menu for Help 
+// Menu for Help and editor
 if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
-  if MSDOS then
-    delmenu("Help")
-    addmenu("Help",list(0,"helpcommand"))
-    helpcommand="help()"
-    if funptr("TK_EvalStr")<>0 then
-      delmenu("Editor")
-      addmenu("Editor",list(0,"editcommand"))
-      editcommand="editor()"
-    end
-  else
-    delmenu("Help")
-    addmenu("Help",list(0,"helpcommand"))
-    helpcommand="help()"
+  delmenu("Help")
+  addmenu("Help",list(2,"help"))
+  if with_tk() then
+    delmenu("Editor")
+    addmenu("Editor",list(2,"scipad"))
   end
 end
 
@@ -142,7 +130,7 @@ if with_tk()
 		      //the user startup file
 end
 if with_gtk()
-  %browsehelp="gtk";//set scilab  browser by default. may be changed in
+  %browsehelp="help widget";//set scilab  browser by default. may be changed in
 		      //the user startup file
 end
 
@@ -155,30 +143,6 @@ clear %browsehelp //remove the local variable
 
 clear initial_scicos_tables
 
-//Start TCL interpretor if required
-if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
-  if MSDOS then
-    if funptr("TK_EvalStr")<>0 then
-      // Create Scipad TCL interpretor
-      TK_EvalStr('set a [interp exists scipad]');
-      a=TK_GetVar('a');
-      if a <> "1" then 
-	TK_EvalStr("interp create scipad")
-	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk scipad")
-	TK_EvalStr("scipad eval {wm withdraw .}")
-	TK_EvalStr("scipad alias ScilabEval ScilabEval")
-      end
-      // Create Browsehelp TCL interpretor
-      TK_EvalStr('set a [interp exists browsehelp]');
-      a=TK_GetVar('a');
-      if a <> "1" then 
-	TK_EvalStr("interp create browsehelp")
-	TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
-	TK_EvalStr("browsehelp eval {wm withdraw .}")
-      end
-    end
-  end
-end
 
 // load contrib menu if present 
 //=================================
