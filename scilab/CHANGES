@@ -6,6 +6,8 @@ NEW FUNCTIONALITIES
 Slicot based control routines have been introduced
 Interface with TeXmacs 
 text editor for Windows.
+Code generation from Scicos discrete models
+Blocks defining DAE are now usage in Scicos.
 
 OTHERS IMPROVEMENTS
 ===================
@@ -13,6 +15,7 @@ Linear algebra primitives now based on Lapack instead of Linpack/Eispack
 Basic functions revised (thanks to B Pincon)
 stacksize use is no more restricted.
 Hypertext online help instead of the old help browser. 
+Binary Matlab file .mat loader added
 
 INCOMPATIBLITY
 ==============
