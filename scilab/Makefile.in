@@ -5,7 +5,6 @@ binary:
 		echo "Humm... this is a binary version"; \
 		config/findpath; \
 		(cd scripts; make); \
-                (cd maple; make); \
 		echo "Installation done"; \
 	else \
 		echo "***************************************"; \
@@ -28,8 +27,7 @@ include config/@MAKEFILE_TARGET@
 distclean::
 	$(RM) bin/scilex
 
-SUBDIRS = scripts maple macros imp intersci  \
-	tests tcl  examples
+SUBDIRS = scripts macros imp intersci tcl examples tests
 
 scilex-lib::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
@@ -58,6 +56,10 @@ distclean::
 distclean::
 	@cd pvm3; echo "making distclean in pvm3..."; \
 	$(MAKE) $(MFLAGS) super_distclean;
+
+distclean::
+	@cd maple; echo "making distclean in maple..."; \
+	$(MAKE) $(MFLAGS) distclean;
 
 clean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
