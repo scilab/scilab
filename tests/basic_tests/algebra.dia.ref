@@ -853,6 +853,8 @@ function A=testmat1(a,n)
 A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
 A(1,n)=1/a;A(n,1)=a
 endfunction
+Warning :redefining function: testmat1                
+ 
  
 function r=Err(x),r=norm(x,1),endfunction
  
