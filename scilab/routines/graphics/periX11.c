@@ -2047,7 +2047,7 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
   if(Xgc->Blue != (float *) NULL)
     b = Xgc->Blue;
 
-  if (!XgcAllocColors(ScilabXgc,m)) {
+  if (!XgcAllocColors(ScilabXgc,m)) { /* Why ScilabXgc and not Xgc ?? F.Leray 26.08.04 */
     Xgc->Colors = c;
     Xgc->Red = r;
     Xgc->Green = g;
