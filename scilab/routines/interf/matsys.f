@@ -1682,6 +1682,7 @@ c
       if(rhs.eq.0) then
          errct=0
          errpt=0
+         catch=0
          top=top+1
          call objvide('errcatch',top)
          return
@@ -1712,12 +1713,13 @@ c
          top=top-1
  201  continue
       errct=(8*imess+imode)*100000+abs(num)
+      catch=max(imode,1)
       if(num.lt.0) errct=-errct
       p=pt+1
  202  p=p-1
       if(p.eq.0) goto 203
       if(int(rstk(p)/100).ne.5) goto 202
- 203  errpt=pt
+ 203  errpt=p
       top=top+1
       call objvide('errcatch',top)
       return

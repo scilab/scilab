@@ -438,10 +438,10 @@ c
       pstk(pt)=wmac
       
 c     preserve current error recovery modes
-      ids(2,pt)=errct
-      ids(3,pt)=err2
-      ids(4,pt)=err1
-      ids(5,pt)=errpt
+c      ids(2,pt)=errct
+c      ids(3,pt)=err2
+c      ids(4,pt)=err1
+c      ids(5,pt)=errpt
       if(r.eq.701.or.r.eq.604) then 
 c     .  disable error recovery mode , for pause only
          err1=0
@@ -472,10 +472,13 @@ c     fin exec
       r=rstk(pt-1)
 
 c     restore current error recovery modes
-      errct=ids(2,pt)
-      err2=ids(3,pt)
-      err1=ids(4,pt)
-      errpt=ids(5,pt)
+c      print *,'macro ',top,err,err1,err2,errct,ids(2,pt),ids(3,pt),
+c     $     ids(4,pt),ids(5,pt),pt
+
+c      errct=ids(2,pt)
+c      err2=ids(3,pt)
+c      if (rstk(pt-1).ne.902) err1=ids(4,pt)
+c     errpt=ids(5,pt)
 
       pt=pt-1
       go to 99

@@ -86,8 +86,13 @@ c     .  exec of a function
          return
       endif
 c
-c     set error recovery flags
       pt=pt+1
+c     preserve current error recovery modes
+      ids(2,pt)=errct
+      ids(3,pt)=err2
+      ids(4,pt)=err1
+      ids(5,pt)=errpt
+c     set error recovery modes
       if(icheck.eq.0) then
          ids(1,pt)=0
       else
@@ -100,7 +105,6 @@ c     set error recovery flags
          if(num.lt.0) errct=-errct
       endif
 
-
       if(typ.eq.0) goto 15
 
 c     exec of a file
@@ -108,6 +112,7 @@ c     ---------------
       pstk(pt)=rio
       rio = lunit
       rstk(pt)=902
+
       ids(6,pt)=0
       if(opened) ids(6,pt)=1
       icall=5
@@ -119,6 +124,7 @@ c     *call*  macro
       if(.not.opened) call clunit(-rio,buf,mode)
       rio=pstk(pt)
       top=top+1
+      lhs=1
       if(ids(1,pt).eq.1) then
 c     return error number
          il=iadr(lstk(top))
@@ -127,15 +133,19 @@ c     return error number
          istk(il+2)=1
          istk(il+3)=0
          l=sadr(il+4)
-         stk(l)=err1
+         stk(l)=max(err1,err2)
          lstk(top+1)=l+1
          fun=0
       else
          il=iadr(lstk(top))
          istk(il)=0
          lstk(top+1)=lstk(top)+1
-         err1=0
       endif
+c     restore error recovery modes
+      errct=ids(2,pt)
+      err2=ids(3,pt)
+      err1=ids(4,pt)
+      errpt=ids(5,pt)
       pt=pt-1
       goto 999
 
@@ -145,11 +155,7 @@ c     ------------------
  15   continue
       fin=lstk(top)
       pstk(pt)=flag
-c     preserve error recovery flags (for exec(file) it is done inside macro)
-      ids(2,pt)=errct
-      ids(3,pt)=err2
-      ids(4,pt)=err1
-      ids(5,pt)=errpt
+
       rstk(pt)=909
       icall=5
 c     *call*  macro
@@ -163,19 +169,19 @@ c     return error number
          istk(il+2)=1
          istk(il+3)=0
          l=sadr(il+4)
-         stk(l)=err1
+         stk(l)=max(err1,err2)
          lstk(top+1)=l+1
-         errct=ids(2,pt)
-         err2=ids(3,pt)
-         err1=ids(4,pt)
          fun=0
       else
-         errpt=ids(5,pt)
          il=iadr(lstk(top))
          istk(il)=0
          lstk(top+1)=lstk(top)+1
-         err1=0
       endif
+c     restore error recovery modes
+      errct=ids(2,pt)
+      err2=ids(3,pt)
+      err1=ids(4,pt)
+      errpt=ids(5,pt)
       pt=pt-1
       goto 999
 c
