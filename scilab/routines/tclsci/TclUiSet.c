@@ -23,15 +23,22 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	}
 	nocase(PropertieField);
 
-	sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
-
-	if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+	if (strcmp(PropertieField,"userdata")==0)
 	{
-		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-		return 0;
+		sciprint("Not yet implemented\n");
 	}
+	else
+	{
+		sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
 
-	bOK=1;
+		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+		{
+			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+			return 0;
+		}
+
+		bOK=1;
+	}
 
 	
 	return bOK;

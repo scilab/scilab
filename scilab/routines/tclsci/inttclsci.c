@@ -46,7 +46,7 @@ int C2F(inttclsci)()
   return 0;
 }
 /*-----------------------------------------------------------------------------------*/
-void ReInitTCL(void)
+int ReInitTCL(void)
 {
   if (TK_Started != 1 )
   {
@@ -56,10 +56,11 @@ void ReInitTCL(void)
 		first++;
 	    if ( TK_Started != 1 ) 
 	    {
-	      Scierror(999,"You have started Scilab in a mode in which TK not initialized.\n");
+	      Scierror(999,"You have started Scilab in a mode in which TCL/TK not initialized.\n");
 	      return 0;
 	    }
 	  }
   }
+  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -147,7 +147,8 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"fontangle") == 0) ||
 		 (strcmp(Propertie,"fontunits") == 0) ||
 		 (strcmp(Propertie,"fontweight") == 0) ||
-		 (strcmp(Propertie,"string") == 0) ) bOK=1;
+		 (strcmp(Propertie,"string") == 0) ||
+		 (strcmp(Propertie,"label") == 0) ) bOK=1;
 
 	return bOK;
 }
