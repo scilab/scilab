@@ -795,3 +795,14 @@ ES, 6/3/05
  * preference added scilabSingleQuotedStrings=yes/no
  * removed the unnecessary input argument to proc showopenwin
  * version --> 3.40
+
+Francois VOGEL, 06/03/05
+ * Request 168 fixed:
+     - focus stays in Find/replace dialog (the new tag foundtext is used
+       instead of the (special) sel tag)
+     - Find Next button added in the Replace dialog
+     - Intelligent move of the dialog occurs in case the text found would
+       have been hidden behind the dialog
+ * In case of opening a precendently opened file from the recent file list,
+   the corresponding entry is moved at the top of the list.
+ * version --> 3.41

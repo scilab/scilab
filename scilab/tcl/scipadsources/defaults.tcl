@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.40"
+set version "Version 3.41"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -11,7 +11,7 @@ set version "Version 3.40"
 # those are the preferences which are going to be saved
 set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
-       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
+       REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FOUNDTEXTCOLOR FontSize \
        LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces \
        filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings}
 set listofpref_list { listofrecent }
@@ -36,6 +36,7 @@ set XMLCOLOR "orange"
 set NUMCOLOR "yellow4"
 set SELCOLOR "PaleGreen"
 set BREAKPOINTCOLOR "pink"
+set FOUNDTEXTCOLOR "green2"
 set FontSize 12 
 set WMGEOMETRY 600x480
 set printCommand lpr

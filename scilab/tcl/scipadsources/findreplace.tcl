@@ -1,6 +1,7 @@
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase regexpcase
-    global textareacur pad SearchEnd SearchPosI
+    global pad SearchEnd SearchPosI
+    set textareacur [gettextareacur]
     if {[winfo exists $w]} {
         set pw $w
     } else {
@@ -14,27 +15,28 @@ proc FindIt {w} {
         }
         if {$regexpcase != "1"} {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -- $SearchString $SearchPos $SearchEnd]
             }
         } else {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos $SearchEnd]
             }
         }
         set len [string length $SearchString]
         if {$SearchPos != ""} {
-            [gettextareacur] see $SearchPos
-            [gettextareacur] mark set insert $SearchPos
-            [gettextareacur] tag remove sel 0.0 end
-            [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
+            $textareacur see $SearchPos
+            $textareacur mark set insert $SearchPos
+            $textareacur tag remove foundtext 0.0 end
+            $textareacur tag add foundtext $SearchPos  "$SearchPos + $len char"
+            MoveDialogIfFoundHidden
             if {$SearchDir == "forwards"} {
                 set SearchPos "$SearchPos + $len char"
             }         
@@ -64,12 +66,12 @@ proc FindIt {w} {
         tk_messageBox -message [mc "You are searching for an empty string!"] \
                       -parent $pw -title [mc "Find"]
     }
-    focus [gettextareacur]
 }
 
 proc ReplaceIt {once_or_all} {
     global SearchString SearchDir ReplaceString SearchPos findcase regexpcase
-    global textareacur find SearchEnd
+    global find SearchEnd
+    set textareacur [gettextareacur]
     if {$SearchString != ""} {
         if {$findcase=="1"} {
             set caset "-exact"
@@ -78,45 +80,45 @@ proc ReplaceIt {once_or_all} {
         }
         if {$regexpcase != "1"} {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -- $SearchString $SearchPos $SearchEnd]
             }
         } else {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos $SearchEnd]
             }
         }
         set len [string length $SearchString]
         if {$SearchPos != ""} {
-            [gettextareacur] see $SearchPos
-            [gettextareacur] delete $SearchPos "$SearchPos+$len char"
-            [gettextareacur] insert $SearchPos $ReplaceString
-            colorize [gettextareacur] \
-              [[gettextareacur] index "$SearchPos linestart"] \
-              [[gettextareacur] index "$SearchPos lineend"]
-            [gettextareacur] mark set insert $SearchPos
-            [gettextareacur] tag remove sel 0.0 end
+            $textareacur see $SearchPos
+            $textareacur delete $SearchPos "$SearchPos+$len char"
+            $textareacur insert $SearchPos $ReplaceString
+            colorize $textareacur \
+              [$textareacur index "$SearchPos linestart"] \
+              [$textareacur index "$SearchPos lineend"]
+            $textareacur mark set insert $SearchPos
+            $textareacur tag remove foundtext 0.0 end
             set lenR [string length $ReplaceString]
-            [gettextareacur] tag add sel $SearchPos  "$SearchPos + $lenR char"
+            $textareacur tag add foundtext $SearchPos  "$SearchPos + $lenR char"
+            MoveDialogIfFoundHidden
             if {$SearchDir == "forwards"} {
                 set SearchPos "$SearchPos+$lenR char"
                 # $SearchEnd must be adjusted for the search to occur in the new selection
                 if {$SearchEnd != "No_end" } {
-                    if {int([[gettextareacur] index $SearchEnd])==int([[gettextareacur] index $SearchPos]) } {
+                    if {int([$textareacur index $SearchEnd])==int([$textareacur index $SearchPos]) } {
                         set SearchEnd "$SearchEnd+[expr $lenR - $len] char"
                     }
                 }
             }         
-            setmodified [gettextareacur]
+            setmodified $textareacur
             reshape_bp
-            focus [gettextareacur]
             return [list "Done" $SearchPos]
         } else {
             set SearchPos insert
@@ -158,7 +160,7 @@ proc ReplaceAll {} {
 
 proc CancelFind {w} {
     global textareacur pad
-    [gettextareacur] tag delete tg1
+    [gettextareacur] tag remove foundtext 0.0 end
     bind $pad <Expose> {};
     destroy $w
 }
@@ -221,7 +223,7 @@ proc findtext {typ} {
     if {$typ=="replace"} {
         eval "button $find.f2.button3 [bl "Re&place"] -command \"ReplaceIt once\" -height 1 -width 15"
         eval "button $find.f2.button4 [bl "Replace &All"] -command ReplaceAll -height 1 -width 15"
-        pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
+        pack $find.f2.button1 $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
     } else {
         pack $find.f2.button1 $find.f2.button2  -pady 4
     }
@@ -242,7 +244,7 @@ proc findtext {typ} {
     pack $find.l $find.f2 -side left -padx 1
     bind $find <Escape> "CancelFind $find"
 
-     # each widget must be bound to the events of the other widgets
+    # each widget must be bound to the events of the other widgets
     proc bindevnt {widgetnm types find} {
         if {$types=="replace"} {
             bind $widgetnm <Return> "ReplaceIt once"
@@ -283,5 +285,51 @@ proc findnext {typof} {
         findtext $typof
     } else {
         FindIt $find
+    }
+}
+
+proc MoveDialogIfFoundHidden {} {
+    global pad find
+    # offsets in pixels to take into account the window border and title bar sizes
+    # <TODO>: values are probably platform-dependent
+    set bordsize  3
+    set titlsize 29
+    set filemenusize [$pad.filemenu yposition 1]
+    # coordinates of the find dialog - left, right, top, bottom - screen coordinate system
+    set ld [expr [winfo rootx $find] - $bordsize]
+    set rd [expr $ld + [winfo width $find] + 2*$bordsize]
+    set td [expr [winfo rooty $find] - $titlsize]
+    set bd [expr $td + [winfo height $find] + $titlsize + $bordsize]
+
+    # coordinates of the main window - screen coordinate system
+    set lt [expr [winfo rootx $pad] - $bordsize]
+    set rt [expr $lt + [winfo width $pad] + 2*$bordsize]
+    set tt [expr [winfo rooty $pad] - $titlsize - $filemenusize]
+    set bt [expr $tt + [winfo height $pad] + $titlsize + $filemenusize + $bordsize]
+    # get found text area coordinates relative to the main window coordinate system
+    set textareacur [gettextareacur]
+    set foundlcoord [$textareacur dlineinfo foundtext.first]
+    set lf1 [lindex $foundlcoord 0]
+    set rf1 [expr $lf1 + [lindex $foundlcoord 2]]
+    set tf1 [lindex $foundlcoord 1]
+    set bf1 [expr $tf1 + [lindex $foundlcoord 3]]
+    # convert found text coordinates to screen coordinate system
+    set lf [expr $lt + $bordsize + $lf1]
+    set rf [expr $lt + $bordsize + $rf1]
+    set tf [expr $tt + $titlsize + $filemenusize + $bordsize + $tf1]
+    set bf [expr $tt + $titlsize + $filemenusize + $bordsize + $bf1]
+    # check if the dialog overlaps the text found (intersection of two rectangles)
+    if { ! ( ($ld > $rf) || ($lf > $rd) || ($td > $bf) || ($tf > $bd) ) } {
+        # the two rectangles intersect, move the dialog
+        scan [wm geometry $find] "%dx%d+%d+%d" cw ch cx cy
+        set newx [expr $cx - ($rd - $ld)]
+        if {$newx < 1} {
+            set newx [expr [winfo screenwidth $find] - ($rd - $ld)]
+        }
+        set newy [expr $cy - ($bd - $td)]
+        if {$newy < 1} {
+            set newy [expr [winfo screenheight $find] - ($bd - $td)]
+        }
+        wm geometry $find "+$newx+$newy"
     }
 }

@@ -731,10 +731,12 @@ proc AddRecentFile {filename} {
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         if {[lindex $listofrecent $i] == $filename} {
             set present "true"
+            set pospresent $i
         }
     }
+    set rec1ind [GetFirstRecentInd]
     if {$present == "false"} {
-        set rec1ind [GetFirstRecentInd]
+        # add the new entry
         if {$nbrecentfiles == 0} {
             incr rec1ind
             $pad.filemenu.files insert $rec1ind separator
@@ -756,6 +758,11 @@ proc AddRecentFile {filename} {
             # update menu entries
             UpdateRecentLabels $rec1ind
         }
+    } else {
+        # move the existing entry to the top of the list
+        set listofrecent [lreplace $listofrecent $pospresent $pospresent]
+        set listofrecent [linsert $listofrecent 0 $filename]
+        UpdateRecentLabels $rec1ind
     }
 }
 
