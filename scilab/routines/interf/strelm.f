@@ -398,7 +398,7 @@ c     a match found
          endif
       endif
       stk(lpos+mc-1)=ll1-l1+1
-      ll1=ll1+k-1
+c      ll1=ll1+k-1
       goto 10
  35   continue
 c     end of string str1 reached
