@@ -1,10 +1,9 @@
 function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags)
 //------------------------------------
 // generate a Makefile for gateway
-  if argn(2)<6 then with_gateway=%t,end
+  if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='';end
   files=strsubst(strsubst(files,'.obj','') ,'.o',''); //compat
   // change table if necessary 
-  
   if typeof(tables)<>'list' then 
     tables= list(tables)
   end
