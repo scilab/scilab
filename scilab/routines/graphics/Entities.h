@@ -588,6 +588,9 @@ typedef struct
   double  zlim[4];  /* [zmin,zmax,ar,nint]         */  /**DJ.Abdemouche 2003**/
   double    limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
   integer flag[3]; /* 3d options */
+  
+  /* F.Leray To keep the logic on aaint:*/
+  integer aaint[4];
 }
 AXES; 
 
@@ -659,10 +662,10 @@ typedef struct
   int hiddenstate;
   BOOL facetmerge; /* DJ.A 30/12 */
 
-  /* I think I have to add the field :
-     double value_xmax, value_ymax, value_zmax;
-     double value_xmin, value_ymin, value_zmin;
-  */
+  /* I think I have to add the field : F.Leray 02.04.04 previous thinking...*/
+  double value_min[3]; /* Contain the x,y and z min data */
+  double value_max[3]; /* Contain the x,y and z max data */
+  int flag_min_max;
 
 }/** */
 sciSubWindow;  
@@ -748,6 +751,8 @@ typedef struct
   int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   double xmin;				/** xmin */
   double ymin;				/** ymin */
+  double xmax;				/** xmax Adding  F.Leray  02.04.04 */
+  double ymax;	                        /** ymax Adding  F.Leray  02.04.04 */
   double width;			/** width */
   double height;		/** height */
   BOOL isselected;
@@ -987,6 +992,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
+
+
 }
 sciAxes;  
 
@@ -1453,6 +1460,7 @@ extern int sciGet (sciPointObj * pobj, char *marker);
 extern long sciGetCurrentHandle ();
 extern sciPointObj *sciGetCurrentObj ();
 extern sciPointObj *sciGetCurrentFigure ();
+extern void sciSetCurrentFigure (sciPointObj * mafigure);
 
 struct BCG *sciGetCurrentScilabXgc ();
 extern int sciSetCurrentObj (sciPointObj * pobj);
@@ -1525,6 +1533,7 @@ extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
 extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta);/* DJ.A 2003 */
+extern void  sci_update_frame_bounds(int cflag, char* xf,double *value_min,double *value_max, integer *aaint, char *strflag, double *FRect); /* F.Leray 02.04.04*/
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/
