@@ -47,5 +47,6 @@ int *dx;
     SCAL(unsigned int);
     break;
   }
+  return 0;
 }
 

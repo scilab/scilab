@@ -55,5 +55,6 @@ int *dx;
     TRIL(unsigned int);
     break;
   }
+  return 0;
 }
 

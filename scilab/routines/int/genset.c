@@ -47,5 +47,6 @@ int *dy;
     SET(unsigned int);
     break;
   }
+  return 0;
 }
 

@@ -59,5 +59,6 @@ int *dy;
     SUBST(unsigned int);
     break;
   }
+  return 0;
 }
 
