@@ -60,8 +60,12 @@ function res=edit(macroname,editor)
 
   // call the editor with the filename
   if rhs<=1, editor =default_editor ;end
-  unix_s(editor+' '+fname);
-
+  if MSDOS then 
+     // white spaces in path 
+     unix_s(editor+' ""'+fname+'""');
+  else
+     unix_s(editor+' '+fname);
+  end
   //load the macro in scilab
   if tmp then write(%io(2),'modified file may be found in '+fname),end 
   getf(fname,'c')
