@@ -542,3 +542,4 @@
 {"sorder",		IN_intslicot,	2,	3},
 {"findbd",		IN_intslicot,	3,	3},
 {"rankqr",		IN_intslicot,	4,	3},
+{"ab01od",		IN_intslicot,	5,	3},
