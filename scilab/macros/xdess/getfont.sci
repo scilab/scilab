@@ -128,7 +128,6 @@ function Hdl=drawchart()
   for k=-(0:nf)
     Hdll=[]
     for x=1:6
-      xset("font",-k,x-1);
       xstringb(W1+(x-1)*W,-H*k,S,W,H)
       t=gce();t.font_size=x-1;t.font_style=-k
       Hdll=[Hdll t]
