@@ -12,12 +12,12 @@ int C2F(intTclGet) _PARAMS((char *fname))
 	if ( IsAScalar(Rhs-1) && (GetType(Rhs)==sci_strings) )
 	{
 		static int l1,n1,m1;
-		int *Handle=NULL;
+		int Handle=0;
 
 		GetRhsVar(Rhs-1,"i",&m1,&n1,&l1);
-		Handle=istk(l1);
+		Handle=*istk(l1);
 
-		TCL_UiGet(*Handle,Rhs);
+		TCL_UiGet(Handle,Rhs);
 	}
 	else
 	{

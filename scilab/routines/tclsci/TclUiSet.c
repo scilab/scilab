@@ -24,7 +24,7 @@ char *UiStyleExternalName[NBRSTYLE] = {"pushbutton",
                                "listbox",
 				               "popupmenu"};
 /*-----------------------------------------------------------------------------------*/
-char* GetStyleInternalName(char *StyleStr);
+int GetStyleInternalName(char *StyleStr);
 /*-----------------------------------------------------------------------------------*/
 int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 {
@@ -36,7 +36,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	
 	sciprint("TCL_UiSet handle %d propertie %s value %s\n",Handle,PropertieField,PropertieValue);
 
-	LenStr=(strlen(PropertieField)+strlen(PropertieValue)+strlen("SetField    ")+1);
+	LenStr=(strlen(PropertieField)+strlen(PropertieValue)+strlen("SetField              ")+1);
 
 	if (LenStr >= CommandLenMax)
 	{
@@ -54,14 +54,12 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	{
 		if (strcmp(PropertieField,"style")==0)
 		{
-			char *StyleValue=NULL;
+			int StyleValue=-1;
 
 			StyleValue=GetStyleInternalName(PropertieValue);
-			if (StyleValue)
+			if (StyleValue!=-1)
 			{
-				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,StyleValue);
-				free(StyleValue);
-				StyleValue=NULL;
+				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,UiStyleExternalName[StyleValue]);
 			}
 			else
 			{
@@ -97,16 +95,27 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 		char *PropertieField=NULL;
 		char *PropertieValue=NULL;
 
+		char *TmpPropertieField=NULL;
+
 		GetRhsVar(RhsPropertieField,"c",&m1,&n1,&l1);
-		PropertieField=cstk(l1);
+		TmpPropertieField=cstk(l1);
+
+		PropertieField=(char*)malloc((strlen(TmpPropertieField)+1)*sizeof(char));
+		sprintf(PropertieField,"%s",TmpPropertieField);
 
 		if (GetType(RhsPropertieValue) == sci_strings)
 		{
+			char *TmpCharValue=NULL;
+
 			GetRhsVar(RhsPropertieValue,"c",&m1,&n1,&l1);
-			PropertieValue=cstk(l1);
+			TmpCharValue=cstk(l1);
+
+            PropertieValue=(char*)malloc((strlen(TmpCharValue)+1)*sizeof(char));
+			sprintf(PropertieValue,"%s",TmpCharValue);
 		}
 		else if (GetType(RhsPropertieValue) == sci_matrix)
 		{
+			if (PropertieValue){free(PropertieValue);PropertieValue=NULL;}
 			PropertieValue=Matrix2String(RhsPropertieValue);
 		}
 		else
@@ -127,6 +136,7 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 			Scierror(999,"Invalid Handle. it must be > 0.\n");
 			return 0;
 		}
+
 		if (GetType(RhsPropertieField) != sci_strings)
 		{
 			Scierror(999,"Invalid parameter(s) type.\n");
@@ -137,19 +147,18 @@ int InterfaceScilabToUiSet(int  Handle,int RhsPropertieField,int RhsPropertieVal
 	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
-char* GetStyleInternalName(char *StyleStr)
+int GetStyleInternalName(char *StyleStr)
 {
-	char *InternalName=NULL;
+	int IndexInternalName=-1;
 	int i=0;
 	for(i=0;i<NBRSTYLE;i++)
 	{
 		if ( strcmp(StyleStr,UiStyleExternalName[i])==0 )
 		{
-			InternalName=(char*)malloc((strlen(UiStyleInternalName[i])+1)*sizeof(char));
-			sprintf(InternalName,"%s",UiStyleInternalName[i]);
-			return InternalName;
+			IndexInternalName=i;
+			return IndexInternalName;
 		}
 	}
-	return InternalName;
+	return IndexInternalName;
 }
 /*-----------------------------------------------------------------------------------*/
