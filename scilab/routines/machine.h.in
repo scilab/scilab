@@ -41,6 +41,9 @@
 /* Define if have and use PVM */
 #undef WITH_PVM
 
+/* Define if have and use GTK */
+#undef WITH_GTK
+
 /* CNAME(x,y) ==> xy **/
 
 #if defined(USE_SHARP_SIGN)
