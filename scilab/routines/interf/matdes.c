@@ -1206,6 +1206,12 @@ int sciplot2d(fname, fname_len)
   int axes_def=1;
   int *axes=&axes_def;
 
+  /* F.Leray 18.05.04 : log. case test*/
+  int size_x,size_y;
+  double xd[2];
+  double *x1;
+  char dataflag;
+
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
                             {-1,"frameflag","?",0,0,0},
                             {-1,"leg","?",0,0,0},
@@ -1335,8 +1341,63 @@ int sciplot2d(fname, fname_len)
   }
   C2F(sciwin)();
   C2F(scigerase)();
+
   /* NG beg */
   if (version_flag() == 0){
+    /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
+    Rect case :
+     - if the min bound is strictly posivite, we can use log. mode
+     - if not, send error message 
+    x/y min/max case:
+     - we find the first strictly positive min bound in Plo2dn.c ?? */
+
+    switch (Strf[1])  {
+    case '0': 
+      /* no computation, the plot use the previous (or default) scale */
+      break;
+    case '1' : case '3' : case '5' : case '7':
+      /* based on Rect arg */ 
+      if(Rect[0] > Rect[2] || Rect[1] > Rect[3])
+  	{sciprint("Error:  Impossible status min > max in x or y rect data\n");return -1;}
+
+      if(Rect[0] < 0. && Logflags[1] =='l') /* xmin */
+	{sciprint("Error: bounds on x axis must be strictly positive to use logarithmic mode\n");return -1;}
+	  
+      if(Rect[1] < 0. && Logflags[2] =='l') /* ymin */
+	{sciprint("Error: bounds on y axis must be strictly positive to use logarithmic mode\n");return -1;}
+	  
+      break;
+    case '2' : case '4' : case '6' : case '8': case '9':
+      /* computed from the x/y min/max */
+      if ( (int)strlen(Logflags) < 1) dataflag='g' ; else dataflag=Logflags[0];
+      
+      switch ( dataflag ) {
+      case 'e' : 
+	xd[0] = 1.0; xd[1] = (double)m1;
+	x1 = xd;size_x = (m1 != 0) ? 2 : 0 ;
+	break; 
+      case 'o' : 
+	x1 = stk(l1);size_x = m1;
+	break;
+      case 'g' : 
+      default  : 
+	x1 = stk(l1);size_x = (n1*m1) ;
+	break; 
+      }
+      
+      if (size_x != 0) 
+	if(Logflags[1] == 'l' && sciFindLogMinSPos(stk(l1),size_x) < 0.)
+	  {sciprint("Error: at least one x data must be strictly positive to compute the bounds and use logarithmic mode\n");return -1;}
+      
+      size_y = (n1*m1) ;
+      
+      if (size_y != 0) 
+	if(Logflags[2] == 'l' && sciFindLogMinSPos(stk(l2),size_y) < 0.)
+	  {sciprint("Error: at least one y data must be strictly positive to compute the bounds and use logarithmic mode\n");return -1;}
+      
+      break;
+    }
+
     Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax);
     /*sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure())); F.Leray 25.03.04 */
   } 
@@ -5524,10 +5585,54 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       /**DJ.Abdemouche 2003**/
       if ((*numrow * *numcol != 4) && (*numrow * *numcol != 6)) 
 	{strcpy(error_message,"Second argument must have 4 elements (6 if 3d view)");return -1;}
-      pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
-      pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
-      pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2];
-      pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3];
+
+      if(pSUBWIN_FEATURE (psubwin)->logflags[0] != 'l'){ /* General case for x : logflag='n' */
+	pSUBWIN_FEATURE (pobj)->SRect[0]=stk(*value)[0];
+	pSUBWIN_FEATURE (pobj)->SRect[1]=stk(*value)[1];
+      }
+      else{/* log. case */
+	/*xmin*/
+	if(stk(*value)[0] <= 0.){
+	  if(stk(*value)[1] > 0. && stk(*value)[1] < 1.)
+	    pSUBWIN_FEATURE (psubwin)->SRect[0]= stk(*value)[1] / 10. ;
+	  else 
+	    pSUBWIN_FEATURE (psubwin)->SRect[0]= 1.;
+	}
+	else
+	  pSUBWIN_FEATURE (psubwin)->SRect[0]= stk(*value)[0];
+        
+	/*xmax*/
+	if(stk(*value)[1] <=0.)
+	  pSUBWIN_FEATURE (psubwin)->SRect[1]= 10.;  
+	else
+	  pSUBWIN_FEATURE (psubwin)->SRect[1]=stk(*value)[1];
+      }
+      
+      if(pSUBWIN_FEATURE (psubwin)->logflags[1] != 'l'){  /* General case for y : logflag='n' */
+	pSUBWIN_FEATURE (psubwin)->SRect[2]=stk(*value)[2];
+	pSUBWIN_FEATURE (psubwin)->SRect[3]=stk(*value)[3];
+      }
+      else{/* log. case */
+	/*ymin*/
+	if(stk(*value)[2] <= 0.){
+	  if(stk(*value)[3] > 0. && stk(*value)[3] < 1.)
+	    pSUBWIN_FEATURE (psubwin)->SRect[2]= stk(*value)[3] / 10. ;
+	  else 
+	    pSUBWIN_FEATURE (psubwin)->SRect[2]= 1.;
+	}
+	else
+	  pSUBWIN_FEATURE (psubwin)->SRect[2]= stk(*value)[2];
+	
+	/*ymax*/
+	if(stk(*value)[3] <=0.)
+	  pSUBWIN_FEATURE (psubwin)->SRect[3]= 10.;  
+	else
+	  pSUBWIN_FEATURE (psubwin)->SRect[3]=stk(*value)[3];
+      }
+
+      /* pSUBWIN_FEATURE (pobj)->SRect[2]=stk(*value)[2]; */
+      /* pSUBWIN_FEATURE (pobj)->SRect[3]=stk(*value)[3]; */
+      
       if (*numrow * *numcol == 6)
 	{
 	  pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
@@ -5535,7 +5640,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	}
       /* to inform plotxx function to take this boundary into account */
       pSUBWIN_FEATURE (pobj)->FirstPlot = FALSE;
-
+      
     }
    else if (sciGetEntityType (pobj) == SCI_SURFACE) {
      if (*numrow * *numcol != 6) 
@@ -5803,8 +5908,21 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	if ((*numrow * *numcol ==2 )&& 
 	    (flags[0]=='n'||flags[0]=='l')&&
 	    (flags[1]=='n'||flags[1]=='l')) {
-	  pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
-	  pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
+	 
+	  /* Update the data_bounds values ?? NO we will see if data_bounds contains
+	     negative boundaries and send an error message to the user */
+
+	  if( (pSUBWIN_FEATURE (pobj)->SRect[0] < 0. || pSUBWIN_FEATURE (pobj)->SRect[1] < 0.) 
+	      && flags[0] == 'l')
+	    {strcpy(error_message,"Error: data_bounds on x axis must be strictly positive to switch to logarithmic mode");return -1;}
+	  else
+	    pSUBWIN_FEATURE (pobj)->logflags[0]=flags[0];
+
+	  if((pSUBWIN_FEATURE (pobj)->SRect[2] < 0. || pSUBWIN_FEATURE (pobj)->SRect[3] < 0.) 
+	      && flags[1] == 'l')
+	    {strcpy(error_message,"Error: data_bounds on y axis must be strictly positive to switch to logarithmic mode");return -1;}
+	  else
+	    pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
 	}
 	else 
 	  {strcpy(error_message,"incorrect log_flags value");return -1;}
@@ -8254,4 +8372,43 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       
 
   return 0;
+}
+
+
+
+
+/* In case of a Logarithmic scale, we pick up the Min Strictly Positive */
+double  sciFindLogMinSPos(double *x, int n) 
+{
+  int i;
+  double XMIN;
+  double * xtmp;
+  int compteur = 0;  
+
+  if ( (xtmp = MALLOC(n*sizeof(double))) == NULL)
+    { 
+      Scistring(" xtmp allocation failed \n");
+      return -1;
+    }  
+  
+  /* sort and pick up the positive value inside x */
+   for(i=0;i<n;i++)
+     if(x[i] > 0.){
+       xtmp[compteur] = x[i];
+       compteur++;
+     }
+
+   if(compteur != 0){
+     XMIN = xtmp[0];
+     for(i=0;i<compteur;i++)
+       if(XMIN > xtmp[i]) XMIN = xtmp[i];
+     
+     FREE(xtmp);
+     return XMIN;
+   }
+   else{
+     FREE(xtmp);
+     
+     return -1.;
+   }
 }
