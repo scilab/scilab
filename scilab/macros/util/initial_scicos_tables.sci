@@ -1,12 +1,13 @@
 function [scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
 // Define scicos palettes of blocks
-scicos_pal=['Inputs_Outputs','SCI/macros/scicos/Inputs_Outputs.cosf'
-      'Linear','SCI/macros/scicos/Linear.cosf';
-      'Non_linear','SCI/macros/scicos/Non_linear.cosf';
-      'Events','SCI/macros/scicos/Events.cosf';
-      'Treshold','SCI/macros/scicos/Treshold.cosf';
-      'Others','SCI/macros/scicos/Others.cosf';
-      'Branching','SCI/macros/scicos/Branching.cosf'];
+scicos_pal=['Sources','SCI/macros/scicos/Sources.cos'
+      'Sinks','SCI/macros/scicos/Sinks.cos';
+      'Linear','SCI/macros/scicos/Linear.cos';
+      'Non_linear','SCI/macros/scicos/Non_linear.cos';
+      'Events','SCI/macros/scicos/Events.cos';
+      'Treshold','SCI/macros/scicos/Treshold.cos';
+      'Others','SCI/macros/scicos/Others.cos';
+      'Branching','SCI/macros/scicos/Branching.cos'];
 // define graphics mode for Scicos (with or without scroll bar) 
 
 //Scicos Menu definitions
