@@ -12,9 +12,9 @@ fi
 #                       DO NOT MODIFY BELOW THIS LINE                       #
 #                                                                           #
 #############################################################################
-if test "$SCI" = ""; then
+# if test "$SCI" = ""; then
   SCI="SCILAB_DIRECTORY"
-fi
+# fi
 export SCI
 if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"

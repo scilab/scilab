@@ -19,9 +19,9 @@ if test "$HOME" = ""; then
   HOME="SCILAB_DIRECTORY"
 fi
 export HOME
-if test "$SCI" = ""; then
+# if test "$SCI" = ""; then
   SCI="SCILAB_DIRECTORY"
-fi
+# fi
 export SCI
 if test "$WSCI" = ""; then
   WSCI="SCILAB_DIRECTORY"
