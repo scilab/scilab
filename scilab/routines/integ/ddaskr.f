@@ -5583,10 +5583,6 @@ c     if (h .eq. zero) h = eps
          DELINV=1.0D0/DEL
          DO 220 L=1,NEQ  
             WM(NROW+L)=(E(L)-DELTA(L))*DELINV
-            RS= WM(NROW+L)
-            IF (RS .ne. 0)  THEN
-c               write(6,'(''j('',i2,'','',i2,'')='',e20.10,'';'')')L,I,RS
-            endif
  220     CONTINUE    
          NROW=NROW+NEQ
          Y(I)=YSAVE
