@@ -21,13 +21,12 @@ USE_MT=-MT
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
-# TCLTK=d:\softs\scilab\scilab-cvs\tcllib
-TCLTK=$(SCIDIR1)\tcllib
+#TCLTK=d:\scilab\tcl
+TCLTK=$(SCIDIR1)\tcl
 
 TKSCI=libs/tksci.lib 
 
 TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
-# TKLIBS="$(TCLTK)\lib\tcl84.lib" "$(TCLTK)\lib\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
@@ -47,6 +46,7 @@ PVM=libs/pvm.lib
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
+#PVM_ROOT=d:\scilab\pvm3
 PVM_ROOT=$(SCIDIR1)\pvm3
 PVM_ARCH=WIN32
 PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
