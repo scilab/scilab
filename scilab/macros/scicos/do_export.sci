@@ -97,7 +97,7 @@ function do_export(scs_m,fname)
     if MSDOS then
       fname=pathconvert(fname,%f,%t,'w')
       comm=pathconvert(SCI+'\bin\BEpsf',%f,%f,'w')
-      rep=unix_g(''"'+com+''" -landscape '+fname)
+      rep=unix_g(''"'+comm+''" -landscape '+fname)
     else
       rep=unix_g(SCI+'/bin/BEpsf -landscape '+fname)
     end

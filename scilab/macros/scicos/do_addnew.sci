@@ -78,12 +78,12 @@ function [scs_m,fct]=do_addnew(scs_m)
   dr=driver()
   if dr=='Rec' then driver('X11'),end
 %xc=%pt(1);%yc=%pt(2);
-  xrect(%xc,%yc+sz(2),sz(1),sz(2))
+  xrect(%xc+0,%yc+sz(2),sz(1),sz(2))
   if pixmap then xset('wshow'),end
   while rep(3)==-1 , //move loop
     
     // clear block shape
-    xrect(%xc,%yc+sz(2),sz(1),sz(2))
+    xrect(%xc+0,%yc+sz(2),sz(1),sz(2))
     if pixmap then xset('wshow'),end
     // get new position
     rep=xgetmouse(0)

@@ -43,9 +43,9 @@ elseif flag=='Background' then
   lcols_fg=list('colors Foreground',bac(2),colors);
   //rep=x_choices('Background/Foreground color settings',list(lcols_bg,lcols_fg));
   rep=[bac(1),bac(2)]
-  rep1=getcolor('Backgroundcolorsetting',bac(1))
+  rep1=getcolor('Background color',bac(1))
   if rep1<>[] then rep(1)=rep1;end
-  rep2=getcolor('Foregroundoloretting',bac(2))
+  rep2=getcolor('Foreground color',bac(2))
   if rep2<>[] then rep(2)=rep2;end
   if or(rep<>[bac(1) bac(2)]) then
     ok=%t
