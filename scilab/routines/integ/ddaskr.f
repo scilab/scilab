@@ -1755,18 +1755,19 @@ C
 C
 C     Compute unit roundoff and HMIN.
 C
-      UROUND = D1MACH(4)
-      RWORK(LROUND) = UROUND
-      HMIN = 4.0D0*UROUND*MAX(ABS(T),ABS(TOUT))
+C     UROUND = D1MACH(4)
+        UROUND = DLAMCH('p')
+        RWORK(LROUND) = UROUND
+        HMIN = 4.0D0*UROUND*MAX(ABS(T),ABS(TOUT))
 C
 C     Set/check STPTOL control for initial condition calculation.
 C     
-      IF (INFO(11) .NE. 0) THEN
-        IF( INFO(17) .EQ. 0) THEN
-          RWORK(LSTOL) = UROUND**.6667D0
-        ELSE
-          IF (RWORK(LSTOL) .LE. 0.0D0) GO TO 725
-          ENDIF
+        IF (INFO(11) .NE. 0) THEN
+           IF( INFO(17) .EQ. 0) THEN
+              RWORK(LSTOL) = UROUND**.6667D0
+           ELSE
+              IF (RWORK(LSTOL) .LE. 0.0D0) GO TO 725
+           ENDIF
         ENDIF
 C
 C     Compute EPCON and square root of NEQ and its reciprocal, used
