@@ -25,6 +25,10 @@ extern void GraySquare __PARAMS((integer *x,integer *y,double *z,
 				integer n1,integer n2));
 extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
 				 integer n1,integer n2));
+
+extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, 
+				  integer n1, integer n2, sciPointObj * psubwin);
+
 extern void initsubwin();
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
@@ -470,12 +474,68 @@ static void GraySquare1_base(integer *x, integer *y, double *z, integer n1, inte
 
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2)
 {
+ 
   if ( GetDriverId() == 0 ) 
     /** accelerated version for X11 or Windows **/
     fill_grid_rectangles1(x, y, z, n1, n2);
   else 
     GraySquare1_base(x, y, z, n1, n2);
 }
+
+
+
+/* Only for new graphics */
+/* NG: New Graphics */
+/* reverse means reverse case on X and/or Y axis */
+extern void GraySquare1_NGreverse(integer * x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin)
+{
+  int i,j;
+  integer verbose=0,narg,fill[1],cpat,xz[2];
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  integer *tmpx = MALLOC(n2*sizeof(integer));
+  integer *tmpy = MALLOC(n1*sizeof(integer));
+
+  for (i = 0 ; i < (n2) ; i++) tmpx[i] = x[i];
+  for (i = 0 ; i < (n1) ; i++) tmpy[i] = y[i];
+  
+  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  for (i = 0 ; i < (n1)-1 ; i++)
+    for (j = 0 ; j < (n2)-1 ; j++)
+      {
+	integer w,h;
+	int xx,yy;
+	fill[0]= (integer) (z[i+(n1-1)*j]);
+	C2F(dr)("xset","pattern",&(fill[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+	
+	w=Abs(tmpx[j+1]-tmpx[j]);
+	h=Abs(tmpy[i+1]-tmpy[i]);
+	/* We don't trace rectangle which are totally out **/
+	if ( w != 0 && h != 0 && x[j] < xz[0] && y[i] < xz[1] && x[j]+w > 0 && y[i]+h > 0 )
+	  if ( Abs(x[j]) < int16max && Abs(y[i+1]) < int16max && w < uns16max && h < uns16max)
+	    {
+	      if(ppsubwin->axes.reverse[0] == TRUE)
+		xx = x[j] -w;
+	      else
+		xx = x[j];
+	      
+	      if(ppsubwin->axes.reverse[1] == TRUE)
+		yy = y[i] -h;
+	      else
+		yy = y[i];
+	      
+	      C2F(dr)("xfrect","v",&xx,&yy,&w,&h,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	C2F(dr)("xset","pattern",&cpat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
+  
+  
+  FREE(tmpx); tmpx = NULL;
+  FREE(tmpy); tmpy = NULL;
+  
+}
+
+
 
 
 

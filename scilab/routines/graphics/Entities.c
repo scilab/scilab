@@ -54,6 +54,8 @@ int xinitxend_flag;
 extern void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 			     integer *Ntr,double *zminmax, integer *colminmax, integer *colout, BOOL with_mesh));
 extern void GraySquare1(integer *x, integer *y, double *z, integer n1, integer n2);
+extern void GraySquare1_NGreverse(integer *x, integer *y, double *z, integer n1, integer n2, sciPointObj * psubwin);
+
 extern void GraySquare(integer *x, integer *y, double *z, integer n1, integer n2);
 extern void Plo2d1RealToPixel(integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf);
 extern void Plo2d2RealToPixel __PARAMS((integer *n1, integer *n2, double *x, double *y, integer *xm, integer *ym, char *xf));
@@ -12060,14 +12062,13 @@ sciDrawObj (sciPointObj * pobj)
       sciUnClip(sciGetIsClipping(pobj));
       break;
    case SCI_GRAYPLOT:  
-     
      if (!sciGetVisibility(pobj)) break;
      n1 = pGRAYPLOT_FEATURE (pobj)->nx;
      n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
-
+     
      switch (pGRAYPLOT_FEATURE (pobj)->type )
        {
-       case 0:
+       case 0:  /* Grayplot case */
 	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	   if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
 	   if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
@@ -12187,106 +12188,114 @@ sciDrawObj (sciPointObj * pobj)
 	   FREE(yvect); yvect = (double *) NULL;
 	 }
 	 break;
-       case 1:
-	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
-	   if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
-	     return -1;
-	   if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	     FREE(xm);xm = (integer *) NULL; return -1;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
-	   }
+       case 1: /* Matplot case */
+	 {
+	   sciPointObj * psubwin = sciGetParentSubwin(pobj);
+	   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
 
-	   for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
-	   for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
+	   if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
+	     if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
+	       return -1;
+	     if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
+	       FREE(xm);xm = (integer *) NULL; return -1;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+	     }
+	     
+	     for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
+	     for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
 #ifdef WIN32
-	   flag_DO = MaybeSetWinhdc();
+	     flag_DO = MaybeSetWinhdc();
 #endif
-	   frame_clip_on(); 
-	   GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
-	   frame_clip_off();  
-	   C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-		   &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     frame_clip_on(); 
+	     if(ppsubwin->axes.reverse[0] == TRUE || ppsubwin->axes.reverse[1] == TRUE)
+	       GraySquare1_NGreverse(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2,psubwin);  
+	     else
+	       GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
+	     frame_clip_off();  
+	     C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+		     &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
-	   if ( flag_DO == 1) ReleaseWinHdc();
+	     if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-
-	   /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
-	   FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
-	   FREE(ym); ym = (integer *) NULL;
-	 }
-	 else{
-	   /* 3D version */
-	   double * xvect = NULL;
-	   double * yvect = NULL;
-	    
-	   /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
-	   if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
-	   if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
-	     FREE(xvect); xvect = (double *) NULL; return -1;
+	     
+	     /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
+	     FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
+	     FREE(ym); ym = (integer *) NULL;
 	   }
+	   else{
+	     /* 3D version */
+	     double * xvect = NULL;
+	     double * yvect = NULL;
+	   
+	     /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
+	     if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	     if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
+	       FREE(xvect); xvect = (double *) NULL; return -1;
+	     }
 	    
-	   for(i=0;i<n2;i++) xvect[i] = i+0.5;
-	   for(i=0;i<n1;i++) yvect[i] = n1-1-i+0.5;
+	     for(i=0;i<n2;i++) xvect[i] = i+0.5;
+	     for(i=0;i<n1;i++) yvect[i] = n1-1-i+0.5;
 	    
 
-	   if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
-	   if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
-	     FREE(xm); xm = (integer *) NULL; return -1; 
-	   }
+	     if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
+	     if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
+	       FREE(xm); xm = (integer *) NULL; return -1; 
+	     }
 	    
-	   ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
-	   ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
+	     ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
+	     ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
 
 	    
-	   for ( i =0 ; i < n2 ; i++)  /* on x*/
-	     for ( j =0 ; j < n1 ; j++)  /* on y */
-	       trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
-		       &xvect[i],&yvect[j],NULL);
+	     for ( i =0 ; i < n2 ; i++)  /* on x*/
+	       for ( j =0 ; j < n1 ; j++)  /* on y */
+		 trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
+			 &xvect[i],&yvect[j],NULL);
 	    
 #ifdef WIN32
-	   flag_DO = MaybeSetWinhdc();
+	     flag_DO = MaybeSetWinhdc();
 #endif
-	   frame_clip_on(); 
+	     frame_clip_on(); 
 	    
-	   /* draw the filled projected rectangle */
-	   /*   for(i=0;i<(n1-1)*(n2-1);i++) */
-	   /* 	      { */
-	   for (i = 0 ; i < (n2)-1 ; i++)
-	     for (j = 0 ; j < (n1)-1 ; j++)
-	       {
-		 integer vertexx[5], vertexy[5];
-		 int cinq = 5, un = 1;
-		 integer fill;
+	     /* draw the filled projected rectangle */
+	     /*   for(i=0;i<(n1-1)*(n2-1);i++) */
+	     /* 	      { */
+	     for (i = 0 ; i < (n2)-1 ; i++)
+	       for (j = 0 ; j < (n1)-1 ; j++)
+		 {
+		   integer vertexx[5], vertexy[5];
+		   int cinq = 5, un = 1;
+		   integer fill;
 
-		 fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
+		   fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
 
-		 vertexx[0] = xm[i+n2*j];
-		 vertexx[1] = xm[i+n2*(j+1)];
-		 vertexx[2] = xm[i+1+n2*(j+1)];
-		 vertexx[3] = xm[i+1+n2*j];
-		 vertexx[4] = xm[i+n2*j];
+		   vertexx[0] = xm[i+n2*j];
+		   vertexx[1] = xm[i+n2*(j+1)];
+		   vertexx[2] = xm[i+1+n2*(j+1)];
+		   vertexx[3] = xm[i+1+n2*j];
+		   vertexx[4] = xm[i+n2*j];
 		  
-		 vertexy[0] = ym[j+n1*i];
-		 vertexy[1] = ym[j+1+n1*i];
-		 vertexy[2] = ym[j+1+n1*(i+1)];
-		 vertexy[3] = ym[j+n1*(i+1)];
-		 vertexy[4] = ym[j+n1*i];
+		   vertexy[0] = ym[j+n1*i];
+		   vertexy[1] = ym[j+1+n1*i];
+		   vertexy[2] = ym[j+1+n1*(i+1)];
+		   vertexy[3] = ym[j+n1*(i+1)];
+		   vertexy[4] = ym[j+n1*i];
 		  
-		 C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
-			 PI0,PD0,PD0,PD0,PD0,0L,0L);
-	       }
+		   C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+			   PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }
 	    
-	   frame_clip_off();  
+	     frame_clip_off();  
 #ifdef WIN32
-	   if ( flag_DO == 1) ReleaseWinHdc();
+	     if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 	    
-	   FREE(xm); xm = (integer *) NULL;
-	   FREE(ym); ym = (integer *) NULL;
-	   FREE(xvect); xvect = (double *) NULL;
-	   FREE(yvect); yvect = (double *) NULL;
+	     FREE(xm); xm = (integer *) NULL;
+	     FREE(ym); ym = (integer *) NULL;
+	     FREE(xvect); xvect = (double *) NULL;
+	     FREE(yvect); yvect = (double *) NULL;
+	   }
 	 }
 	 break;
-       case 2:
+       case 2: /* Matplot1 case */
 	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
 	   if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
 	     return -1;
@@ -12773,22 +12782,23 @@ sciDrawObj (sciPointObj * pobj)
    case SCI_RECTANGLE:
      
      if (!sciGetVisibility(pobj)) break;
-
+     
      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
      n = 1;
      if (sciGetFillStyle(pobj) != 0)
-       {       x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
-       x[1] = 1;
-       x[2] = 0;
-       x[3] = 0;
-       x[4] = 0;
-       x[5] = sciGetFillColor(pobj);
+       {      
+	 x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
+	 x[1] = 1;
+	 x[2] = 0;
+	 x[3] = 0;
+	 x[4] = 0;
+	 x[5] = sciGetFillColor(pobj);
 #ifdef WIN32 
-       flag_DO = MaybeSetWinhdc ();
+	 flag_DO = MaybeSetWinhdc ();
 #endif
-		 
-       C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
-		  &dv, &dv, &dv, 5L, 4096);
+	 
+	 C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
+		    &dv, &dv, &dv, 5L, 4096);
 #ifdef WIN32 
        if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
