@@ -1363,6 +1363,7 @@ c
       include '../stack.h'
       integer id(nsiz),top0,tops
       integer iadr, sadr
+      double precisionx sz, szr
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -1448,8 +1449,11 @@ c     checking variable sp
       m=istk(il1+1)
       n=istk(il1+2)
 
-
-      if(m*n.ne.mr*nr) then
+C     to avoid integer overflow
+      sz=dfloat(m)*dfloat(n)
+      szr=dfloat(mr)*dfloat(nr)
+      
+      if(sz.ne.szr) then
          call error(60)
          return
       endif
