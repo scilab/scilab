@@ -79,4 +79,8 @@ cd ..
 cd int
 echo Macros compilation int
 nmake /C /f Makefile.mak %1 
+cd ..
+cd statistics
+echo Macros compilation statistics
+nmake /C /f Makefile.mak %1 
 cd ..\..
