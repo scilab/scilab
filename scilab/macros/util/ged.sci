@@ -289,10 +289,6 @@ function ged_axes(h)
   TK_SetVar("axes_boundsW",string(h.axes_bounds(1,3)))
   TK_SetVar("axes_boundsH",string(h.axes_bounds(1,4)))
 
-  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
-  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
-  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
-
  // forgotten visibilty info.
   TK_SetVar("xlabel_visibility",string(h.x_label.visible))
   TK_SetVar("ylabel_visibility",string(h.y_label.visible))
@@ -735,12 +731,10 @@ function ged_segs(h)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   TK_SetVar("nbrow",string(size(h.data,1)))
-  for i=1:size(h.data,1)
-    val= "segsVAL("+string(i)+",1)";
-    TK_EvalStr('set '+val+" "+string(h.data(i,1)));
-    val= "segsVAL("+string(i)+",2)";
-    TK_EvalStr('set '+val+" "+string(h.data(i,2)));
-  end
+  
+   d="["+strcat(string(size(h.data)),'x')+" double array]"
+  TK_SetVar("curdata",d);
+  
   TK_SetVar("nbcolsegscolor",string(size(h.segs_color,2)))
   for i=1:size(h.segs_color,2)
     val= "segscolorVAL("+string(i)+")";
@@ -1682,10 +1676,14 @@ end
 endfunction
 
 
-// Is called by ged_axes and when clicking on Ticks button
+// Is called by ged_axes 
 
 function LoadTicks2TCL(h)
   global ged_handle;ged_handle=h;
+
+  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
 
   TK_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
   TK_GetVar("SubticksEntryX")
@@ -1716,7 +1714,7 @@ function LoadTicks2TCL(h)
     val= "LOCATIONS_X("+string(i)+")";
       TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_X("+string(i)+")";
-      TK_EvalStr('set '+val+" "+ticks.labels(i));
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
   //ticks value: Y axis
@@ -1727,7 +1725,7 @@ function LoadTicks2TCL(h)
     val= "LOCATIONS_Y("+string(i)+")";
       TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Y("+string(i)+")";
-      TK_EvalStr('set '+val+" "+ticks.labels(i));
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
  //ticks value: Z axis
@@ -1738,7 +1736,7 @@ function LoadTicks2TCL(h)
     val= "LOCATIONS_Z("+string(i)+")";
       TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Z("+string(i)+")";
-      TK_EvalStr('set '+val+" "+ticks.labels(i));
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
 endfunction
@@ -1756,4 +1754,92 @@ function Subtickstoggle( tog, index)
  h.sub_ticks = subticks;
 endfunction
 
+
+// when clicking on Ticks button : REload ticks is called
+
+function ReLoadTicks2TCL(h)
+  global ged_handle;ged_handle=h;
+
+  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
+
+  ticks = h.x_ticks;
+  sizeticks = size(ticks.locations,1);
+  if (sizeticks <> 0)
+   TK_EvalStr("unset LOCATIONS_X");
+   TK_EvalStr("unset LABELS_X");
+  end
+  
+  ticks = h.y_ticks;
+  sizeticks = size(ticks.locations,1);
+  if (sizeticks <> 0)
+   TK_EvalStr("unset LOCATIONS_Y");
+   TK_EvalStr("unset LABELS_Y");
+  end
+  
+  ticks = h.z_ticks;
+  sizeticks = size(ticks.locations,1);
+  if (sizeticks <> 0)
+   TK_EvalStr("unset LOCATIONS_Z");
+   TK_EvalStr("unset LABELS_Z");
+  end
+  
+  TK_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
+  TK_GetVar("SubticksEntryX")
+ 
+ // disp("h.sub_ticks(1) =")
+ // disp(h.sub_ticks(1));
+
+  TK_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
+
+  select h.view
+   case "2d" 
+    h.view='3d'
+    TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+    h.view='2d'
+   case "3d"
+     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+   end
+
+  TK_SetVar("XautoticksToggle",h.auto_ticks(1))
+  TK_SetVar("YautoticksToggle",h.auto_ticks(2))
+  TK_SetVar("ZautoticksToggle",h.auto_ticks(3))
+
+  //ticks value: X axis
+  ticks = h.x_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_x",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_X("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+//      disp("i vaut:");
+//      disp(i);
+    val= "LABELS_X("+string(i)+")";
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
+
+  //ticks value: Y axis
+  ticks = h.y_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_y",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Y("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+     val= "LABELS_Y("+string(i)+")";
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
+
+ //ticks value: Z axis
+  ticks = h.z_ticks;
+  sizeticks = size(ticks.locations,1);
+  TK_SetVar("nbticks_z",string(sizeticks));
+  for i=1:sizeticks
+    val= "LOCATIONS_Z("+string(i)+")";
+      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+    val= "LABELS_Z("+string(i)+")";
+      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+  end
+
+endfunction
 
