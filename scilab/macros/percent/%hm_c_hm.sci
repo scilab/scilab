@@ -14,10 +14,10 @@ if kd<>[] then
 end
 
 
-v=[matrix(M1('entries'),d1(1)*d1(2),prod(d1)/(d1(1)*d1(2)));
-    matrix(M2('entries'),d2(1)*d2(2),prod(d2)/(d2(1)*d2(2)))]
+v=[matrix(M1('entries'),d1(1)*d1(2),-1);
+   matrix(M2('entries'),d2(1)*d2(2),-1)]
 
 
 M1('entries')=v(:)
-M1('dims')(2)=M1('dims')(2)+M1('dims')(2)
+M1('dims')(2)=d1(2)+d2(2)
 endfunction

@@ -11,8 +11,7 @@ kd=find(d1(2:$)<>d2(2:$))
 if kd<>[] then
   error('inconsistent dimensions')
 end
-nr=d1(1)
-v=[matrix(M1('entries'),nr,prod(d1)/nr);matrix(M2('entries'),nr,prod(d2)/nr)]
+v=[matrix(M1('entries'),d1(1),-1);matrix(M2('entries'),d2(1),-1)]
 M1('entries')=v(:)
-M1('dims')(1)=M1('dims')(1)+M1('dims')(1)
+M1('dims')(1)=d1(1)+d2(1);
 endfunction
