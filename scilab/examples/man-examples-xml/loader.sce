@@ -1,15 +1,11 @@
-mode(-1)
-path=get_absolute_file_path('loader.sce');
+mode(-1) //force silent execution
 
-myhelps=[path+'helpdir1', "Title1";
-	 path+'helpdir2', "Title2"]
+path=get_absolute_file_path('loader.sce');//get the absolute path of this file
 
-for n=1:size(myhelps,'r'); 
-  if grep(%helps(:,1),myhelps(n,1))== [] then 
-    %helps=[%helps;myhelps(n,:)];
-  end
-end
-clear path myhelps  get_absolute_file_path
+add_help_chapter("Title1",path+'helpdir1');//add first help chapter
+add_help_chapter("Title2",path+'helpdir2');//add second help chapter
+//clear the variable stack
+clear path add_help_chapter get_absolute_file_path
 
 
 
