@@ -117,6 +117,9 @@ if rhs==1 then
       end
     end
   end
+// No rhs: for example variable display  
+elseif rhs==0 then
+  
 // More than one index value
 else 
   dims=list()
