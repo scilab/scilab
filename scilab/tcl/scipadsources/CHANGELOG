@@ -769,3 +769,13 @@ Francois VOGEL, 26/02/05
 Francois VOGEL, 27/02/05
  * Added a number in front of the recent files names.
  * version --> 3.37
+
+ES, 1/3/2005
+ * $winopened starts from 1 (i.e the first new buffer is Untitled1.sce)
+ * scipad.sci takes care to close $pad.new1, not $pad.new0, when needed
+ * found where to drop a magic update (top of mainwindow.tcl) which makes
+   the initial buffer reactive to drag&drop under linux (and possibly 
+   solves old obscure geometry problems related to the initial buffer)
+ * proc openlistoffiles in filecommands.tcl removes the eventual
+   prefix "file://" - needed for d&d in linux
+ * version -->3.38

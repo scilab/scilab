@@ -76,7 +76,7 @@ global TMPDIR
       end
   // close "Untitled.sce" opened as default when scipad is started anew
       if TK_GetVar("isscipadopen")=="0" & onevalidfile then
-          TK_EvalStr("scipad eval {closefile $pad.new0}")
+          TK_EvalStr("scipad eval {closefile $pad.new1}")
       end
     end
   else

@@ -1,7 +1,9 @@
 toplevel $pad
+# the following update makes the initial textarea reactive to dnd!
+update
 
-set winopened 0
-set radiobuttonvalue 0
+set winopened 1
+set radiobuttonvalue 1
 set textareacur $pad.new$winopened
 set listoftextarea $pad.new$winopened
 
@@ -29,7 +31,8 @@ wm protocol $pad WM_DELETE_WINDOW exitapp
 #wm geometry $pad 65x24 
 wm minsize $pad 1 1 
 # strange: this on corrects reopen size when in setgrid 1 mode
-# tk_messageBox -message $WMGEOMETRY;
+#  and also, makes the initial buffer too reactive to dnd. 
+#tk_messageBox -message $WMGEOMETRY;
 wm geometry $pad $WMGEOMETRY
 
 #create main menu
@@ -111,7 +114,7 @@ if {![info exists classNewId]} {
 set undo_id [new textUndoer $textareacur]
 set listundo_id("$textareacur") $undo_id
 
-# Drad and drop feature using TkDnD
+# Drag and drop feature using TkDnD
 if {$TkDnDloaded == "true"} {
     dnd bindtarget $pad.new$winopened text/uri-list <Drop> {openlistoffiles %D}
 }

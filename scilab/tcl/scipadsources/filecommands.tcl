@@ -4,7 +4,7 @@
 #
 #   $pad.new$winopened
 #       Opened buffers (textareas)
-#       $winopened starts from 0 (zero is the first buffer opened)
+#       $winopened starts from 1 (1 is the first buffer opened)
 #       It is never decreased. It is increased each time a new
 #       file is opened.
 #
@@ -180,6 +180,7 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
     foreach f $filelist {
+        regsub "^file://" $f "" f
         openfile $f
     }
 }
@@ -584,6 +585,9 @@ proc RefreshWindowsMenuLabels {} {
     }
     foreach {i pn} $ind {
         $pad.filemenu.wind entryconfigure $i -label $pn
+#numbers in front of the labels (needs further work)
+#        $pad.filemenu.wind entryconfigure $i -label "$i $pn"
+#        if {$i<10} {$pad.filemenu.wind entryconfigure $i -underline 0}
     }
     # Detect duplicates and remove ambiguities
     foreach ta $listoftextarea {
