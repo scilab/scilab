@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_toeplitz</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>July 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_toeplitz">Matlab toeplitz emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>toeplitz</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With one input parameter: if this parameter is complex or is a matrix, output value of
+	Matlab and Scilab <VERB>toeplitz</VERB> can be different.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With two input parameters: if they are vectors and their first elements are not equal, 
+	Scilab returns an error but Matlab gives priority to the column element. If they are matrices, output value of
+	Matlab and Scilab <VERB>toeplitz</VERB> are different.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_toeplitz(c[,r])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>toeplitz(c[,r])</VERB> when it was not
+    possible to know what were the operands/inputs[CUSTOM] while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_toeplitz</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>c</VERB> is a real scalar or vector 
+        <VERB>mtlb_toeplitz(c)</VERB> may be replaced by <VERB>toeplitz(c)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two inputs, if <VERB>c</VERB> and <VERB>r</VERB> are scalars or vectors and their first elements are equal
+        <VERB>mtlb_toeplitz(c,r)</VERB> may be replaced by <VERB>toeplitz(c,r)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_toeplitz</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
