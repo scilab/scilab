@@ -6,18 +6,46 @@
 		<Configuration Name="Debug|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" OpenMPDiagLevel="openMPDiagLevel0" WarnUnalignedData="false" WarnUncalled="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
 for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
 copy *.def blas_f.def &gt;nul
 copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" OpenMPDiagLevel="openMPDiagLevel0" WarnUnalignedData="false" WarnUncalled="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def blas_f.def &gt;nul
+copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def blas_f.def &gt;nul
+copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
-		<Configuration Name="Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
@@ -27,82 +55,54 @@ copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
 del *.def &gt;nul
 cd .."/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="Debug with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def blas_f.def &gt;nul
+copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" OpenMPDiagLevel="openMPDiagLevel0" WarnUnalignedData="false" WarnUncalled="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
-		<Configuration Name="PIV_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def blas_f.def &gt;nul
-copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Pentium_Release|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def blas_f.def &gt;nul
-copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" MustRebuild="true" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="Debug with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" OpenMPDiagLevel="openMPDiagLevel0" WarnUnalignedData="false" WarnUncalled="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" OutputCarriageControl="outputCCNone" RuntimeChecks="rtChecksNone" RuntimeLibrary="rtSingleThreadedDebug" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def blas_f.def &gt;nul
-copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def blas_f.def &gt;nul
+copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentium" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def blas_f.def &gt;nul
-copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
-				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration>
-		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
-				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
-				<Tool Name="VFPreBuildEventTool"/>
-				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
-for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def blas_f.def &gt;nul
-copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
-del *.def &gt;nul
-cd .."/>
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
 				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/>
 				<Tool Name="VFPreLinkEventTool"/>
-				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration></Configurations>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/></Configuration>
+		<Configuration Name="PIV_Release with Atlas|Win32" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.lib;$(TargetPath)" ConfigurationType="typeStaticLibrary">
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/iface:cref,nomixed_str_len_arg /compile_only" SuppressStartupBanner="true" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" ExternalNameInterpretation="extNameLowerCase" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true" CompileOnly="true"/>
+				<Tool Name="VFPostBuildEventTool" CommandLine="cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def blas_f.def &gt;nul
+copy blas_f.def ..\..\..\..\libs\blas_f.def &gt;nul
+del *.def &gt;nul
+cd .."/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFLinkerTool" MustRebuild="true" OutputFile="$(OutDir)/$(ProjectName)" SuppressStartupBanner="true"/>
+				<Tool Name="VFResourceCompilerTool" ResourceOutputFileName="$(IntDir)/$(InputName).res"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFLibrarianTool" OutputFile="../../../libs/blas_f.lib" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\dasum.f">
@@ -110,636 +110,623 @@ cd .."/>
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\daxpy.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dcopy.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ddot.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgemm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dgemv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dger.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dnrm2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\drot.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\drotg.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dscal.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dspmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dspr.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dspr2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dswap.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsymm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsymv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsyr.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsyr2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsyr2k.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dsyrk.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtbsv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtpmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtpsv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtrmm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtrmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtrsm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dtrsv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dzasum.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\dznrm2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
-		<File RelativePath="empty.f">
-			<FileConfiguration Name="Pentium_Release|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Release with Atlas|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Release|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\idamax.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\izamax.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zaxpy.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zcopy.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zdotc.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zdotu.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zdscal.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zgbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zgemm.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zgemv.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zgerc.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zgeru.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhemm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhemv.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zher.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zher2.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zher2k.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zherk.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhpmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhpr.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zhpr2.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zrotg.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zscal.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zswap.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zsymm.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zsyr2k.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\zsyrk.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztbmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztbsv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztpmv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztpsv.f">
 			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
-				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztrmm.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztrmv.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztrsm.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Pentium_Release|Win32">
+				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File>
 		<File RelativePath="..\ztrsv.f">
-			<FileConfiguration Name="Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
 			<FileConfiguration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="Debug with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="PIV_Release with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration>
-			<FileConfiguration Name="PIV_Release with Atlas|Win32" ExcludedFromBuild="true">
+			<FileConfiguration Name="Debug with Atlas|Win32">
 				<Tool Name="VFFortranCompilerTool"/></FileConfiguration></File></Filter>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/></Files>
