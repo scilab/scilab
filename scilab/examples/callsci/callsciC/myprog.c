@@ -4,11 +4,8 @@
 #include "stack-c.h"
 
 /* 
- * Initialisation de Scilab 
- * avec execution de la startup 
- * pour ne pas avoir a ecrire un script 
- * de lancement je fixe SCI en dur qui est passe par le 
- * Makefile 
+ * Scilab Initialization including Scilab startup execution
+ * The Scilab path SCI has to be customized or passed by the makefile
  */
 
 #ifndef SCI 
@@ -26,9 +23,7 @@ static void Initialize()
 {
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
-  /* je fixe des variables d'environement
-   * ici pour pas avoir de callsci a ecrire 
-   */ 
+
   setenv("SCI",SCI,1);
   /* Scilab Initialization */ 
   C2F(inisci)(&iflag,&stacksize,&ierr);
@@ -54,11 +49,14 @@ int send_scilab_job(char *job)
   return (int) *stk(lp);
 }
 
+/* first example */
 static int premier_exemple()
 {
   static double A[]={1,2,3,4};  int mA=2,nA=2;
   static double b[]={4,5};  int mb=2,nb=1;
   int m,n,lp,i;
+
+  /* Create Scilab matrices A and b using C arrays A and b */
   WriteMatrix("A", &mA, &nA, A);
   WriteMatrix("b", &mb, &nb, b);
 
@@ -68,46 +66,49 @@ static int premier_exemple()
     }
   else 
     {
-      GetMatrixptr("x", &m, &n, &lp);
+      /* get the "pointer" on the scilab matrix x 
+	 the ith x entry can be adressed as *stk(i+lp) */
+      GetMatrixptr("x", &m, &n, &lp); 
       for ( i=0 ; i < m*n ; i++) 
 	fprintf(stdout,"x[%d] = %5.2f\n",i,*stk(i+lp));
     }
   return 1;
 } 
-
+/* second example */
 static int deuxieme_exemple() 
 {
   int m,n,lx,ly,i;
-  /* j'utilise scilab pour creer les abscisses 
-   * et reserver de la place pour les ordonnees 
-   */ 
+  /* Scilab is called to compute the abscissae and allocate memory for y */
   send_scilab_job("x=1:0.1:10;y=x;");
+  /* get the "pointer" on the scilab matrix x and y */
   GetMatrixptr("x", &m, &n, &lx);  
-  GetMatrixptr("y", &m, &n, &ly);  
+  GetMatrixptr("y", &m, &n, &ly); 
+  /* compute the y entry values */ 
   for ( i=0; i < m*n ; i++) 
     { 
       double xi = *stk(lx+i);
       *stk(ly+i) = xi*sin(xi);
     }
-  /* plot(x,y);  */
+  /* call Scilab to do the plot */
   send_scilab_job("plot(x,y);xclick();quit");
   return 1;
 }
 
-
+/* third example */
 int troisieme_exemple() 
 {
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
-  fprintf(stdout,"je linke \n");
-  // send_scilab_job("TMPDIR,link(''./my_ode.o'',''odeex'',''c'');");
+  fprintf(stdout,"Incremental linking \n");
+  /* call scilab to link my_ode with itself */
   send_scilab_job("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
-  fprintf(stdout,"fin du link  \n");
+  fprintf(stdout,"link done \n");
   send_scilab_job("link(''show'')");
+
+ /* Create Scilab matrices x and time using C arrays x and time */
   WriteMatrix("x", &mx, &nx, x);
   WriteMatrix("time", &mt, &nt,time);
-  /* pour que scilab <<linke>> mon_edo */
-  /* appel de ode */
+  /* call scilab to solve the ODE */
   send_scilab_job("y=ode(x,0,time,''mon_ode''),");
   return 0;
 }
@@ -126,11 +127,11 @@ void C2F(banier)(int *x)
 
 int MAIN__(void) 
 {
-  Initialize();
-  premier_exemple();
-  deuxieme_exemple() ;
-  troisieme_exemple() ;
-  C2F(sciquit)();
+  Initialize(); /* initialize Scilab */
+  premier_exemple(); /* execute the first example */
+  deuxieme_exemple() ;/* execute the second example */
+  troisieme_exemple() ; /* execute the third example */
+  C2F(sciquit)(); /* terminate Scilab */
   return 0;
 }
 
