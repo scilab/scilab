@@ -64,29 +64,6 @@ lpr.obj : gvwprn.c
 
 #=================== runscilab========================
 
-RUNRESOURCES= Rrunscilab.res
-
-all:: ../../bin/runscilab.exe
-
-../../bin/runscilab.exe: runscilab.c  $(RUNRESOURCES) 
-	@echo Creation of $*.exe 
-	-del runscilab.obj 
-	@$(CC) $(CFLAGS) -DTEST runscilab.c 	
-	@$(LINKER) -SUBSYSTEM:windows -OUT:"../../bin/runscilab.exe" \
-	runscilab.obj $(RESOURCES) $(GUILIBS) 
-
-# resources 
-
-all	:: $(RUNRESOURCES) 
-
-Rrunscilab.res: Rrunscilab.rc 
-	$(RC) $(RCVARS) /foRrunscilab.res Rrunscilab.rc
-
-readcons.obj	: readline.c wtextc.h 
-readgcwin.obj	: readline.c 
-readwin.obj 	: readline.c
-
-
 #================== dependencies 
 
 abs_main.obj: abs_main.c
