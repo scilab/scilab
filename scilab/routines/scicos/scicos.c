@@ -54,7 +54,6 @@ struct {
 
 extern void  F2C(sciblk)();
 extern void  sciblk2();
-extern void  sciblk2i();
 extern void  sciblk4();
 extern void  GetDynFunc();
 extern void  sciprint();
@@ -316,10 +315,6 @@ int C2F(scicos)
       case 5:
 	Blocks[kf].funpt=sciblk4;
 	Blocks[kf].type=4;
-	break;
-      case 10003:
-	Blocks[kf].funpt=sciblk2i;
-	Blocks[kf].type=2;
 	break;
       case 10005:
 	Blocks[kf].funpt=sciblk4;
