@@ -2530,7 +2530,7 @@ int C2F(scicos)
     if (Blocks[C2F(curblk).kfun-1].ng > 0) {
       if (funtyp[C2F(curblk).kfun] > 0) {
 	flag__ = 9;
-	nclock = oord[ii +nzord];
+	nclock = zord[ii +nzord];
 	mode_save=Blocks[C2F(curblk).kfun - 1].mode;
 
 	callf(told, xtd, xt, xtd,g,&flag__);
@@ -3031,6 +3031,7 @@ int C2F(simblk)(neq1, t, xc, xcdot)
 { 
   C2F(dset)(neq, &c_b14,xcdot , &c__1);
   C2F(ierode).iero = 0;
+  *ierr= 0;
   odoit(xcdot, xc,xcdot,t); 
   C2F(ierode).iero = *ierr;
   return 0;
@@ -3053,6 +3054,7 @@ int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
 { 
   C2F(dcopy)(neq, xcdot, &c__1, residual, &c__1);
   *ires=0;
+  *ierr= 0;
   C2F(ierode).iero = 0;
   odoit(residual, xc, xcdot,t);
   C2F(ierode).iero = *ierr;
@@ -3069,7 +3071,7 @@ int C2F(grblkdaskr)(neq1, t, xc, xtd,ng1, g,rpar1,ipar1)
 {
   integer iig;
 
- 
+  *ierr= 0;
   C2F(ierode).iero = 0;
   zdoit(g, xtd, xc,t);
   C2F(ierode).iero = *ierr;
@@ -3108,6 +3110,7 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
      
 { integer iig;
  C2F(ierode).iero = 0;
+ *ierr= 0;
  zdoit(g,xc, xc,t);
  C2F(ierode).iero = *ierr;
 
