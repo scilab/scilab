@@ -11,3 +11,4 @@ if type(a)==10 then
 else
   r=max(size(a))
 end
+endfunction

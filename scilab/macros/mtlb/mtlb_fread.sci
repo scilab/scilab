@@ -61,3 +61,4 @@ else
   count=size(a,'*')
 end
     
+endfunction

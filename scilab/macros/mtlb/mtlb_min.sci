@@ -21,3 +21,4 @@ if rhs==1 then //min(A)
 elseif rhs==3 then //min(A,[],num) with num>2
   error('not yet implemented') 
 end
+endfunction

@@ -6,3 +6,4 @@ if or(size(x)==1) then
 else
   y=x(1+N:$,:)-x(1:$-N,:)
 end
+endfunction

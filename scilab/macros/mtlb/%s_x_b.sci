@@ -3,4 +3,4 @@ function r=%s_x_b(a,b)
 B=zeros(b)
 B(b)=1
 r=a.*B
-
+endfunction

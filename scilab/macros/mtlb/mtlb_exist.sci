@@ -35,3 +35,4 @@ else
   case 'dir' then
   end
 end
+endfunction

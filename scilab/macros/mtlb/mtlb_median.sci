@@ -5,3 +5,4 @@ if or(size(a)==1) then
 else
   r=median(a,'r')
 end
+endfunction

@@ -5,4 +5,4 @@ if or(size(x)==1) then
 else
   m=mean(x,'r')
 end
-
+endfunction

@@ -15,3 +15,4 @@ case '1' then
 else
   error('mseek : Unknown reference flag')
 end
+endfunction

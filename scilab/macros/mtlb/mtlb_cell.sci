@@ -14,4 +14,4 @@ end
 for k=1:prod(c(2))
   c($+1)=[]
 end
-
+endfunction

@@ -5,3 +5,4 @@ if size(a)==[1 1] then
 else
   r=eye(a(1),a(2))
 end
+endfunction

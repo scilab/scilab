@@ -31,3 +31,4 @@ case 'lti'
 else
   error('unhandled class :'+class)
 end
+endfunction

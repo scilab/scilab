@@ -74,6 +74,7 @@ else
 end
 mtlb_log_mod=[]
 
+endfunction
 function mtlb_plt1(X1,mtlb_style)
 [lhs,rhs]=argn(0)
 p=xget('pattern')
@@ -104,6 +105,7 @@ else
 end
 xset('pattern',p)
 
+endfunction
 function mtlb_plt2(X1,Y1,mtlb_style)
 [lhs,rhs]=argn(0)
 p=xget('pattern')
@@ -153,3 +155,4 @@ else
   end
 end
 xset('pattern',p)
+endfunction

@@ -4,3 +4,4 @@ setfield(1,T,out)
 setfield($+1,in,out)
 
   
+endfunction

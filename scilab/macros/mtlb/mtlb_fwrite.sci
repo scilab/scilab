@@ -33,3 +33,4 @@ end
 mput(a,Prec,fid)
 count=size(a,'*')
     
+endfunction

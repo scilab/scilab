@@ -14,3 +14,4 @@ else
     r=rand(a(1),a(2),opt)
   end
 end
+endfunction

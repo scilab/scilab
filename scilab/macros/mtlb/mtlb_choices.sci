@@ -5,3 +5,4 @@ while %t
   if num==0 then break,end
   execstr(callbacks(num))
 end
+endfunction

@@ -122,4 +122,4 @@ else
   mat=evstr(mgetl(thefile))
   execstr(name+'= resume(mat)')
 end
-
+endfunction

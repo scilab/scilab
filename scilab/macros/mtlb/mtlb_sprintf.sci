@@ -43,3 +43,4 @@ if K<>[] then
     s=[s;part(w,K($)+2:length(w))]
   end
 end
+endfunction

@@ -45,6 +45,7 @@ else
   execstr(lhsargs(nams)+'=resume'+rhsargs(nams))
 end
 
+endfunction
 function [vnms,vtps]=m2sci_init()
 
 vnms=[],vtps=list()
@@ -63,4 +64,4 @@ vtps($+1)=list('1','1','1',0)
 vnms=[vnms;['%pi','pi']],
 vtps($+1)=list('1','1','1',0)
 vnms=[vnms;['%eps','eps']],
-
+endfunction

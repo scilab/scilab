@@ -5,3 +5,4 @@ else
   s=strindex(b,a)
 end
  
+endfunction

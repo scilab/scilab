@@ -57,3 +57,4 @@ case 4 then //mesh(X,Y,Z,C) or mesh(x,y,Z,C)  or mesh(X,Y,Z,view) or mesh(x,y,Z,
     plot3d(X,Y,Z,view(1),view(2),' ',[8,2,4])
   end
 end
+endfunction

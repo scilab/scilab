@@ -14,3 +14,4 @@ for k=2:size(f,'*')
   end
   write(%io(2),txt,'(a)')
 end
+endfunction

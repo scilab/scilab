@@ -13,4 +13,4 @@ end
 if flag==1 then
   m=m*sqrt(1-1/n)
 end
-
+endfunction

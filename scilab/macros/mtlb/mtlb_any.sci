@@ -5,3 +5,4 @@ if size(a,1)==1|size(a,2)==1 then
 else
   r=or(a,1)
 end
+endfunction

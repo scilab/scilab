@@ -44,3 +44,4 @@ if typeout==10 then
     str=[str;ascii(sto(k,:))]
   end
 end
+endfunction

@@ -7,4 +7,4 @@ elseif size(a,2)==1 then
 else
   a(i)=b
 end
-
+endfunction

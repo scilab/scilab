@@ -58,3 +58,4 @@ else //mtlb_fprintf(fid,fmt,...)
     end
   end
 end
+endfunction
