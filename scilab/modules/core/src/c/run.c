@@ -884,9 +884,10 @@ int C2F(run)()
 	Bot = Lin[5 + k];}
       else {
 	int mode[3];
+	int lunit = -C2F(iop).rio;
 	/*  abort in an exec*/
 	mode[0]=0;
-	C2F(clunit)(-C2F(iop).rio,C2F(cha1).buf,mode);
+	C2F(clunit)(&lunit,C2F(cha1).buf,mode);
 	C2F(iop).rio = Pstk[Pt-1];
       }
     }
