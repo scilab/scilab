@@ -9,7 +9,7 @@ if type(A)==1 then
   case 1 then
     [kerA,rk]=colcomp(A);
   case 2 then
-    [kerA,rk]=colcomp(A,flag)
+    [kerA,rk]=colcomp(A,'svd',tol)
   case 3 then
     [kerA,rk]=colcomp(A,flag,tol)
   end
