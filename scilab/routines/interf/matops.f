@@ -2124,8 +2124,8 @@ c     implied polynomials vector extraction
 
       if(mn2.eq.0) then 
 c     .  arg2=[]
-         if(m1.eq.-1) then
-c            arg2(:)
+         if(m1.le.0) then
+c            arg2(:) or arg2([])
             il1=iadr(lstk(top))
             istk(il1)=1
             istk(il1+1)=0
@@ -2259,7 +2259,7 @@ c     arg3(arg1,arg2)
       endif
       if(mn3.eq.0) then 
 c     .  arg3=[]
-         if(m1.eq.-1.and.m2.eq.-1) then
+         if(m1.le.0.or.m2.le.0) then
             il1=iadr(lstk(top))
             istk(il1)=1
             istk(il1+1)=0
