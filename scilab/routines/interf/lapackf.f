@@ -1762,7 +1762,7 @@ c
       endif
       if(.not.createvar(4,'d',1,LWORK,lDWORK)) return
 
-
+      ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
 
       call DGETRF( N, N, stk(lA), N, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
@@ -1773,7 +1773,6 @@ c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
          return
       endif
       RCOND = 0.0d0
-      ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
       call DGECON( '1', N, stk(lA), N, ANORM, RCOND, stk(lDWORK),
      $     istk(lIWORK), INFO )
       if(RCOND.le.sqrt(dlamch('eps'))) then
@@ -1838,6 +1837,8 @@ c
       endif
       if(.not.createvar(4,'z',1,LWORK,lDWORK)) return
 
+      ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
+
       call ZGETRF( N, N, zstk(lA), N, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.gt.0) then
@@ -1847,8 +1848,6 @@ c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
          return
       endif
       RCOND = 0.0d0
-      ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
-
    
       call ZGECON( '1', N, zstk(lA), N, ANORM, RCOND, zstk(lDWORK),
      $     stk(lRWORK), INFO )
