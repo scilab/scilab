@@ -2230,7 +2230,7 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
   char c_format[5];
   integer xx=0,yy=0;
   integer barlength;
-  integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
+  integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize=0,color_kp; 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   double xminval, yminval, xmaxval, ymaxval;
   
