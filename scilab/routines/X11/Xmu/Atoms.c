@@ -1,25 +1,31 @@
-/* $XConsortium: Atoms.c,v 1.15 91/06/30 17:49:57 rws Exp $
- *
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- */
+/* $Xorg: Atoms.c,v 1.4 2001/02/09 02:03:51 xorgcvs Exp $ */
+ 
+/* 
+
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/Atoms.c,v 3.7 2001/07/25 15:04:50 dawes Exp $ */
 
 /*
  * This file contains routines to cache atoms, avoiding multiple
@@ -54,7 +60,7 @@ struct _AtomRec {
 #define STATIC static
 #endif
 
-#if __STDC__ && !defined(UNIXCPP)
+#if !defined(UNIXCPP) || defined(ANSICPP)
 #define DeclareAtom(atom,text) \
 STATIC struct _AtomRec __##atom = { text, NULL }; \
 AtomPtr _##atom = &__##atom;
@@ -86,6 +92,7 @@ DeclareAtom(XA_TARGETS,			"TARGETS"		)
 DeclareAtom(XA_TEXT,			"TEXT"			)
 DeclareAtom(XA_TIMESTAMP,		"TIMESTAMP"		)
 DeclareAtom(XA_USER,			"USER"			)
+DeclareAtom(XA_UTF8_STRING,		"UTF8_STRING"		)
 
 /******************************************************************
 
@@ -94,12 +101,8 @@ DeclareAtom(XA_USER,			"USER"			)
  ******************************************************************/
 
 
-#if NeedFunctionPrototypes
-AtomPtr XmuMakeAtom(_Xconst char *name)
-#else
-AtomPtr XmuMakeAtom(name)
-    char* name;
-#endif
+AtomPtr
+XmuMakeAtom(_Xconst char *name)
 {
     AtomPtr ptr = XtNew(struct _AtomRec);
     ptr->name = (char *) name;
@@ -107,16 +110,15 @@ AtomPtr XmuMakeAtom(name)
     return ptr;
 }
 
-char* XmuNameOfAtom(atom_ptr)
-    AtomPtr atom_ptr;
+char *
+XmuNameOfAtom(AtomPtr atom_ptr)
 {
     return atom_ptr->name;
 }
 
 
-Atom XmuInternAtom(d, atom_ptr)
-    Display *d;
-    AtomPtr atom_ptr;
+Atom
+XmuInternAtom(Display *d, AtomPtr atom_ptr)
 {
     DisplayRec* display_rec;
     for (display_rec = atom_ptr->head; display_rec != NULL;
@@ -133,25 +135,17 @@ Atom XmuInternAtom(d, atom_ptr)
 }
 
 
-char *XmuGetAtomName(d, atom)
-    Display *d;
-    Atom atom;
+char *
+XmuGetAtomName(Display *d, Atom atom)
 {
-    if (atom == 0) return "(BadAtom)";
+    if (atom == 0) return (NULL);
     return XGetAtomName(d, atom);
 }
 
 /* convert (names, count) to a list of atoms. Caller allocates list */
-void XmuInternStrings(d, names, count, atoms)
-    Display *d;
-    register String *names;
-    register Cardinal count;
-    register Atom *atoms;		/* return */
+void
+XmuInternStrings(Display *d, register String *names,
+		 register Cardinal count, register Atom *atoms)
 {
-    register int i;
-
-    for (i = 0; i < count; i++) {
-	atoms[i] = XInternAtom(d, names[i], False);
-    }
-    return;
+    (void) XInternAtoms(d, (char**)names, (int)count, FALSE, atoms);
 }

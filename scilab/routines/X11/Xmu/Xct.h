@@ -1,20 +1,34 @@
+/* $Xorg: Xct.h,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
+/*
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/Xct.h,v 1.6 2001/01/17 19:42:58 dawes Exp $ */
+
 #ifndef _Xct_h
 #define _Xct_h
-
-/* 
- * $XConsortium: Xct.h,v 1.6 91/07/22 23:46:25 converse Exp $
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- */
 
 #include <X11/Xfuncproto.h>
 
@@ -105,12 +119,12 @@ typedef struct _XctRec {
     int			can_ignore_exts;/* non-zero if ignoring extensions is
 					 * acceptable, else zero */
     XctString		item;		/* item returned from XctNextItem */
-    int			item_length;	/* length of item in bytes */
+    unsigned		item_length;	/* length of item in bytes */
     int			char_size;	/* number of bytes per character in
 					 * item, with zero meaning variable */
     char		*encoding;	/* Encoding name for item */
     XctHDirection	horizontal;	/* direction of item */
-    int			horz_depth;	/* current direction nesting depth */
+    unsigned		horz_depth;	/* current direction nesting depth */
     char		*GL;		/* "{I} F" string for current GL */
     char		*GL_encoding;	/* Encoding name for current GL */
     int			GL_set_size;	/* 94 or 96 */
@@ -127,31 +141,27 @@ typedef struct _XctRec {
 /* these are the external routines */
 _XFUNCPROTOBEGIN
 
-extern XctData XctCreate(
-#if NeedFunctionPrototypes
-    _Xconst unsigned char *	/* string */,
-    int			/* length */,
-    XctFlags		/* flags */
-#endif
+XctData XctCreate
+(
+ _Xconst unsigned char	*string,
+ int			length,
+ XctFlags		flags
 );
 
-extern XctResult XctNextItem(
-#if NeedFunctionPrototypes
-    XctData	/* data */
-#endif
+XctResult XctNextItem
+(
+ XctData		data
 );
 
-extern void XctFree(
-#if NeedFunctionPrototypes
-    XctData	/* data */
-#endif
-);
+void XctFree
+(
+ XctData		data
+ );
 
-extern void XctReset(
-#if NeedFunctionPrototypes
-    XctData	/* data */
-#endif
-);
+void XctReset
+(
+ XctData		data
+ );
 
 _XFUNCPROTOEND
 

@@ -1,59 +1,127 @@
-/* $XConsortium: StrToOrnt.c,v 1.6 90/12/20 13:33:20 converse Exp $ */
+/* $Xorg: StrToOrnt.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+
+/* $XFree86: xc/lib/Xmu/StrToOrnt.c,v 1.6 2001/01/17 19:42:57 dawes Exp $ */
 
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
 #include "Converters.h"
 #include "CharSet.h"
 
+/*
+ * Prototypes
+ */
+static void InitializeQuarks(void);
 
-#define	done(address, type) \
-	{ (*toVal).size = sizeof(type); (*toVal).addr = (caddr_t) address; }
+/*
+ * Initialization
+ */
+static	XrmQuark Qhorizontal, Qvertical;
+static Boolean haveQuarks;
 
-/* ARGSUSED */
+/*
+ * Implementation
+ */
+static void
+InitializeQuarks(void)
+{
+  if (!haveQuarks)
+    {
+      Qhorizontal = XrmPermStringToQuark(XtEhorizontal);
+      Qvertical = XrmPermStringToQuark(XtEvertical);
+      haveQuarks = True;
+    }
+}
+
+/*ARGSUSED*/
 void
-XmuCvtStringToOrientation(args, num_args, fromVal, toVal)
-    XrmValuePtr args;		/* unused */
-    Cardinal	*num_args;	/* unused */
-    XrmValuePtr	fromVal;
-    XrmValuePtr	toVal;
+XmuCvtStringToOrientation(XrmValuePtr args, Cardinal *num_args,
+			  XrmValuePtr fromVal, XrmValuePtr toVal)
 {
     static XtOrientation orient;
-    static	XrmQuark  XtQEhorizontal;
-    static	XrmQuark  XtQEvertical;
-    static	int	  haveQuarks = 0;
     XrmQuark	q;
-    char	lowerName[1000];
+  char name[11];
 
-    if (!haveQuarks) {
-	XtQEhorizontal = XrmPermStringToQuark(XtEhorizontal);
-	XtQEvertical   = XrmPermStringToQuark(XtEvertical);
-	haveQuarks = 1;
-    }
-    XmuCopyISOLatin1Lowered(lowerName, (char *) fromVal->addr);
-    q = XrmStringToQuark(lowerName);
-    if (q == XtQEhorizontal) {
+  InitializeQuarks();
+  XmuNCopyISOLatin1Lowered(name, (char *)fromVal->addr, sizeof(name));
+  q = XrmStringToQuark(name);
+
+  toVal->size = sizeof(XtJustify);
+  toVal->addr = (XPointer)&orient;
+
+  if (q == Qhorizontal)
     	orient = XtorientHorizontal;
-	done(&orient, XtOrientation);
-	return;
-    }
-    if (q == XtQEvertical) {
+  else if (q == Qvertical)
     	orient = XtorientVertical;
-	done(&orient, XtOrientation);
-	return;
+  else
+    {
+      toVal->addr = NULL;
+      XtStringConversionWarning((char *)fromVal->addr, XtROrientation);
     }
+}
+
+/*ARGSUSED*/
+Boolean
+XmuCvtOrientationToString(Display *dpy, XrmValuePtr args, Cardinal *num_args,
+			  XrmValuePtr fromVal, XrmValuePtr toVal,
+			  XtPointer *data)
+{
+  static String buffer;
+  Cardinal size;
+
+  switch (*(XtOrientation *)fromVal->addr)
+    {
+    case XtorientVertical:
+      buffer = XtEvertical;
+      break;
+    case XtorientHorizontal:
+      buffer = XtEhorizontal;
+      break;
+    default:
+      XtWarning("Cannot convert Orientation to String");
+      toVal->addr = NULL;
+      toVal->size = 0;
+      return (False);
+    }
+
+  size = strlen(buffer) + 1;
+  if (toVal->addr != NULL)
+    {
+      if (toVal->size < size)
+	{
+	  toVal->size = size;
+	  return (False);
+	}
+      strcpy((char *)toVal->addr, buffer);
+    }
+  else
+    toVal->addr = (XPointer)buffer;
+  toVal->size = sizeof(String);
+
+  return (True);
 }

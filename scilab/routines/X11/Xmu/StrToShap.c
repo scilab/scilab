@@ -1,20 +1,33 @@
-/* $XConsortium: StrToShap.c,v 1.3 90/12/20 13:36:01 converse Exp $ */
+/* $Xorg: StrToShap.c,v 1.5 2001/02/09 02:03:53 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988, 1998  The Open Group
 
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/StrToShap.c,v 1.6 2001/01/17 19:42:57 dawes Exp $ */
+
+#include <string.h>
 #include <X11/Intrinsic.h>
 #include "Converters.h"
 #include "CharSet.h"
@@ -32,46 +45,78 @@
 	    else {						\
 		static type static_val;				\
 		static_val = (value);				\
-		toVal->size = sizeof(type);			\
 		toVal->addr = (XtPointer)&static_val;		\
 	    }							\
+	    toVal->size = sizeof(type);				\
 	    return True;					\
 	}
 
 
-Boolean XmuCvtStringToShapeStyle(dpy, args, num_args, from, toVal, data)
-    Display *dpy;
-    XrmValue *args;		/* unused */
-    Cardinal *num_args;		/* unused */
-    XrmValue *from;
-    XrmValue *toVal;
-    XtPointer *data;		/* unused */
+/*ARGSUSED*/
+Boolean
+XmuCvtStringToShapeStyle(Display *dpy, XrmValue *args, Cardinal *num_args,
+			 XrmValue *from, XrmValue *toVal, XtPointer *data)
 {
-    if (   XmuCompareISOLatin1((char*)from->addr, XtERectangle) == 0
-	|| XmuCompareISOLatin1((char*)from->addr, "ShapeRectangle") == 0)
-	done( int, XmuShapeRectangle );
-    if (   XmuCompareISOLatin1((char*)from->addr, XtEOval) == 0
-	|| XmuCompareISOLatin1((char*)from->addr, "ShapeOval") == 0)
-	done( int, XmuShapeOval );
-    if (   XmuCompareISOLatin1((char*)from->addr, XtEEllipse) == 0
-	|| XmuCompareISOLatin1((char*)from->addr, "ShapeEllipse") == 0)
-	done( int, XmuShapeEllipse );
-    if (   XmuCompareISOLatin1((char*)from->addr, XtERoundedRectangle) == 0
-	|| XmuCompareISOLatin1((char*)from->addr, "ShapeRoundedRectangle") == 0)
-	done( int, XmuShapeRoundedRectangle );
+  String name = (String)from->addr;
+
+  if (XmuCompareISOLatin1(name, XtERectangle) == 0)
+    done(int, XmuShapeRectangle);
+  if (XmuCompareISOLatin1(name, XtEOval) == 0)
+    done(int, XmuShapeOval);
+  if (XmuCompareISOLatin1(name, XtEEllipse) == 0)
+    done(int, XmuShapeEllipse);
+  if (XmuCompareISOLatin1(name, XtERoundedRectangle) == 0)
+    done(int, XmuShapeRoundedRectangle);
+
+  XtDisplayStringConversionWarning(dpy, name, XtRShapeStyle);
+
+  return (False);
+}
+
+/*ARGSUSED*/
+Boolean
+XmuCvtShapeStyleToString(Display *dpy, XrmValue *args, Cardinal *num_args,
+			 XrmValue *fromVal, XrmValue *toVal, XtPointer *data)
+{
+  static char *buffer;
+  Cardinal size;
+
+  switch (*(int *)fromVal->addr)
     {
-	int style = 0;
-	char ch, *p = (char*)from->addr;
-	while (ch = *p++) {
-	    if (ch >= '0' && ch <= '9') {
-		style *= 10;
-		style += ch - '0';
+    case XmuShapeRectangle:
+      buffer = XtERectangle;
+      break;
+    case XmuShapeOval:
+      buffer = XtEOval;
+      break;
+    case XmuShapeEllipse:
+      buffer = XtEEllipse;
+      break;
+    case XmuShapeRoundedRectangle:
+      buffer = XtERoundedRectangle;
+      break;
+    default:
+      XtAppWarning(XtDisplayToApplicationContext(dpy),
+		   "Cannot convert ShapeStyle to String");
+      toVal->addr = NULL;
+      toVal->size = 0;
+
+      return (False);
 	    }
-	    else break;
+
+  size = strlen(buffer) + 1;
+  if (toVal->addr != NULL)
+    {
+      if (toVal->size <= size)
+	{
+	  toVal->size = size;
+	  return (False);
 	}
-	if (ch == '\0' && style <= XmuShapeRoundedRectangle)
-	    done( int, style );
+      strcpy((char *)toVal->addr, buffer);
     }
-    XtDisplayStringConversionWarning( dpy, (char*)from->addr, XtRShapeStyle );
-    return False;
+  else
+    toVal->addr = (XPointer)buffer;
+  toVal->size = size;
+
+  return (True);
 }

@@ -1,31 +1,40 @@
+/* $Xorg: WidgetNode.h,v 1.5 2001/02/09 02:03:53 xorgcvs Exp $ */
+
 /*
- * $XConsortium: WidgetNode.h,v 1.7 91/07/22 23:46:16 converse Exp $
- *
- * Copyright 1990 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+
+Copyright 1990, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/WidgetNode.h,v 1.5 2001/01/17 19:42:57 dawes Exp $ */
+
+/*
  * Author:  Jim Fulton, MIT X Consortium
  */
 
 #ifndef _XmuWidgetNode_h
 #define _XmuWidgetNode_h
 
+#include <X11/Intrinsic.h>
 #include <X11/Xfuncproto.h>
 
 /*
@@ -56,36 +65,32 @@ typedef struct _XmuWidgetNode {
 					/* external interfaces */
 _XFUNCPROTOBEGIN
 
-extern void XmuWnInitializeNodes (
-#if NeedFunctionPrototypes
-    XmuWidgetNode *	/* nodearray */,
-    int			/* nnodes */
-#endif
-);
+void XmuWnInitializeNodes
+(
+ XmuWidgetNode		*nodearray,
+ int			nnodes
+ );
 
-extern void XmuWnFetchResources (
-#if NeedFunctionPrototypes
-    XmuWidgetNode *	/* node */,
-    Widget		/* toplevel */,
-    XmuWidgetNode *	/* topnode */
-#endif
-);
+void XmuWnFetchResources
+(
+ XmuWidgetNode		*node,
+ Widget			toplevel,
+ XmuWidgetNode		*topnode
+ );
 
-extern int XmuWnCountOwnedResources (
-#if NeedFunctionPrototypes
-    XmuWidgetNode *	/* node */,
-    XmuWidgetNode *	/* ownernode */,
-    Bool		/* constraints */
-#endif
-);
+int XmuWnCountOwnedResources
+(
+ XmuWidgetNode		*node,
+ XmuWidgetNode		*ownernode,
+ Bool			constraints
+ );
 
-extern XmuWidgetNode *XmuWnNameToNode (
-#if NeedFunctionPrototypes
-    XmuWidgetNode *	/* nodelist */,
-    int			/* nnodes */,
-    _Xconst char *	/* name */
-#endif
-);
+XmuWidgetNode *XmuWnNameToNode
+(
+ XmuWidgetNode		*nodelist,
+ int			nnodes,
+ _Xconst char		*name
+ );
 
 _XFUNCPROTOEND
 

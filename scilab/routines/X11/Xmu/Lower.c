@@ -1,110 +1,161 @@
-/* $XConsortium: Lower.c,v 1.6 91/01/05 17:38:12 converse Exp $ */
+/* $Xorg: Lower.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+
+/* $XFree86: xc/lib/Xmu/Lower.c,v 1.11 2001/07/25 15:04:50 dawes Exp $ */
 
 #define  XK_LATIN1
 #include <X11/keysymdef.h>
 #include <X11/Xmu/CharSet.h>
+#include <X11/Xmu/SysUtil.h>
+
+#include <stdio.h>
+
+#ifndef HAS_SNPRINTF
+#undef SCOPE
+#define SCOPE static
+#include "snprintf.c"
+#endif
+
+#include <stdarg.h>
 
 /*
  * ISO Latin-1 case conversion routine
  */
+#define XmuTolower(c)							 \
+((c) >= XK_a && (c) <= XK_z ?						 \
+ (c) : (c) >= XK_A && (c) <= XK_Z ?					 \
+ (c) + (XK_a - XK_A) : (c) >= XK_Agrave && (c) <= XK_Odiaeresis ?	 \
+ (c) + (XK_agrave - XK_Agrave) : (c) >= XK_Ooblique && (c) <= XK_Thorn ? \
+ (c) + (XK_oslash - XK_Ooblique) :					 \
+ (c))
 
-#if NeedFunctionPrototypes
-void XmuCopyISOLatin1Lowered(char *dst, _Xconst char *src)
-#else
-void XmuCopyISOLatin1Lowered(dst, src)
-    char *dst, *src;
-#endif
+#define XmuToupper(c)							 \
+((c) >= XK_A && (c) <= XK_Z ?						 \
+ (c) : (c) >= XK_a && (c) <= XK_z ?					 \
+ (c) - (XK_a - XK_A) : (c) >= XK_agrave && (c) <= XK_odiaeresis ?	 \
+ (c) - (XK_agrave - XK_Agrave) : (c) >= XK_oslash && (c) <= XK_thorn ?	 \
+ (c) - (XK_oslash - XK_Ooblique) :					 \
+ (c))
+
+/*
+ * Implementation
+ */
+void
+XmuCopyISOLatin1Lowered(char *dst, _Xconst char *src)
 {
-    register unsigned char *dest, *source;
+  register unsigned char *dest, *source;
 
-    for (dest = (unsigned char *)dst, source = (unsigned char *)src;
-	 *source;
-	 source++, dest++)
-    {
-	if ((*source >= XK_A) && (*source <= XK_Z))
-	    *dest = *source + (XK_a - XK_A);
-	else if ((*source >= XK_Agrave) && (*source <= XK_Odiaeresis))
-	    *dest = *source + (XK_agrave - XK_Agrave);
-	else if ((*source >= XK_Ooblique) && (*source <= XK_Thorn))
-	    *dest = *source + (XK_oslash - XK_Ooblique);
-	else
-	    *dest = *source;
-    }
-    *dest = '\0';
+  for (dest = (unsigned char *)dst, source = (unsigned char *)src;
+       *source;
+       source++, dest++)
+    *dest = XmuTolower(*source);
+  *dest = '\0';
 }
 
-#if NeedFunctionPrototypes
-void XmuCopyISOLatin1Uppered(char *dst, _Xconst char *src)
-#else
-void XmuCopyISOLatin1Uppered(dst, src)
-    char *dst, *src;
-#endif
+void
+XmuCopyISOLatin1Uppered(char *dst, _Xconst char *src)
 {
-    register unsigned char *dest, *source;
+  register unsigned char *dest, *source;
 
-    for (dest = (unsigned char *)dst, source = (unsigned char *)src;
-	 *source;
-	 source++, dest++)
-    {
-	if ((*source >= XK_a) && (*source <= XK_z))
-	    *dest = *source - (XK_a - XK_A);
-	else if ((*source >= XK_agrave) && (*source <= XK_odiaeresis))
-	    *dest = *source - (XK_agrave - XK_Agrave);
-	else if ((*source >= XK_slash) && (*source <= XK_thorn))
-	    *dest = *source - (XK_oslash - XK_Ooblique);
-	else
-	    *dest = *source;
-    }
-    *dest = '\0';
+  for (dest = (unsigned char *)dst, source = (unsigned char *)src;
+       *source;
+       source++, dest++)
+    *dest = XmuToupper(*source);
+  *dest = '\0';
 }
 
-#if NeedFunctionPrototypes
-int XmuCompareISOLatin1 (_Xconst char *first, _Xconst char *second)
-#else
-int XmuCompareISOLatin1 (first, second)
-    char *first, *second;
-#endif
+int
+XmuCompareISOLatin1(_Xconst char *first, _Xconst char *second)
 {
-    register unsigned char *ap, *bp;
+  register unsigned char *ap, *bp;
 
-    for (ap = (unsigned char *) first, bp = (unsigned char *) second;
-	 *ap && *bp; ap++, bp++) {
-	register unsigned char a, b;
+  for (ap = (unsigned char *)first, bp = (unsigned char *)second;
+       *ap && *bp && XmuTolower(*ap) == XmuTolower(*bp);
+       ap++, bp++)
+    ;
 
-	if ((a = *ap) != (b = *bp)) {
-	    /* try lowercasing and try again */
+  return ((int)XmuTolower(*ap) - (int)XmuTolower(*bp));
+}
 
-	    if ((a >= XK_A) && (a <= XK_Z))
-	      a += (XK_a - XK_A);
-	    else if ((a >= XK_Agrave) && (a <= XK_Odiaeresis))
-	      a += (XK_agrave - XK_Agrave);
-	    else if ((a >= XK_Ooblique) && (a <= XK_Thorn))
-	      a += (XK_oslash - XK_Ooblique);
+void
+XmuNCopyISOLatin1Lowered(char *dst, _Xconst char *src, register int size)
+{
+  register unsigned char *dest, *source;
 
-	    if ((b >= XK_A) && (b <= XK_Z))
-	      b += (XK_a - XK_A);
-	    else if ((b >= XK_Agrave) && (b <= XK_Odiaeresis))
-	      b += (XK_agrave - XK_Agrave);
-	    else if ((b >= XK_Ooblique) && (b <= XK_Thorn))
-	      b += (XK_oslash - XK_Ooblique);
-
-	    if (a != b) return (((int) a) - ((int) b));
-	}
+  if (size > 0)
+    {
+      for (dest = (unsigned char *)dst, source = (unsigned char *)src;
+	   *source && size > 1;
+	   source++, dest++, size--)
+	*dest = XmuTolower(*source);
+      *dest = '\0';
     }
-    return (((int) *ap) - ((int) *bp));
+}
+
+void
+XmuNCopyISOLatin1Uppered(char *dst, _Xconst char *src, register int size)
+{
+  register unsigned char *dest, *source;
+
+  if (size > 0)
+    {
+      for (dest = (unsigned char *)dst, source = (unsigned char *)src;
+	   *source && size > 1;
+	   source++, dest++, size--)
+	*dest = XmuToupper(*source);
+      *dest = '\0';
+    }
+}
+
+int
+XmuSnprintf(char *str, int size, _Xconst char *fmt, ...)
+{
+  va_list ap;
+  int retval;
+
+  if (size <= 0)
+    return (size);
+
+  va_start(ap, fmt);
+
+#if 0
+  retval = vsprintf(str, fmt, ap);
+  if (retval >= size)
+    {
+      fprintf(stderr, "WARNING: buffer overflow detected!\n");
+      fflush(stderr);
+      abort();
+    }
+#else
+  retval = vsnprintf(str, size, fmt, ap);
+#endif
+
+  va_end(ap);
+
+  return (retval);
 }

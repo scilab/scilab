@@ -1,8 +1,34 @@
-/* $XConsortium: StrToCurs.c,v 1.16 91/07/25 17:48:36 converse Exp $ */
+/* $Xorg: StrToCurs.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
+/*
+
+Copyright 1987, 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
 
 /***********************************************************
-Copyright 1987, 1988 by Digital Equipment Corporation, Maynard, Massachusetts,
-and the Massachusetts Institute of Technology, Cambridge, Massachusetts.
+
+Copyright 1987, 1988 by Digital Equipment Corporation, Maynard, Massachusetts.
 
                         All Rights Reserved
 
@@ -10,7 +36,7 @@ Permission to use, copy, modify, and distribute this software and its
 documentation for any purpose and without fee is hereby granted, 
 provided that the above copyright notice appear in all copies and that
 both that copyright notice and this permission notice appear in 
-supporting documentation, and that the names of Digital or MIT not be
+supporting documentation, and that the name of Digital not be
 used in advertising or publicity pertaining to distribution of the
 software without specific, written prior permission.  
 
@@ -24,13 +50,17 @@ SOFTWARE.
 
 ******************************************************************/
 
-#include	<X11/IntrinsicP.h>	/* 'cause CoreP.h needs it */
-#include	<X11/CoreP.h>		/* just to do XtConvert() */
+/* $XFree86: xc/lib/Xmu/StrToCurs.c,v 1.11 2002/09/19 13:21:58 tsi Exp $ */
+
+#include	<X11/Intrinsic.h>
 #include	<X11/StringDefs.h>
 #include	<X11/Xmu/Converters.h>
 #include	<X11/Xmu/Drawing.h>
+#include	<X11/Xmu/CurUtil.h>
+#include	<X11/Xmu/CharSet.h>
 
 #ifndef X_NOT_POSIX
+#include <stdlib.h>
 #ifdef _POSIX_SOURCE
 #include <limits.h>
 #else
@@ -40,13 +70,28 @@ SOFTWARE.
 #endif
 #endif /* X_NOT_POSIX */
 #ifndef PATH_MAX
+#ifdef WIN32
+#define PATH_MAX 512
+#else
 #include <sys/param.h>
+#endif
+#ifndef PATH_MAX
 #ifdef MAXPATHLEN
 #define PATH_MAX MAXPATHLEN
 #else
 #define PATH_MAX 1024
 #endif
+#endif
 #endif /* PATH_MAX */
+
+/* Kludge source to avoid encountering broken shared library linkers
+   which insist on resolving references unused by the application,
+   and broken object file formats that don't correctly distinguish
+   references to procedures from references to data.
+ */
+#if defined(SUNSHLIB) || defined(SVR4)
+#define XMU_KLUDGE
+#endif
 
 /*
  * XmuConvertStringToCursor:
@@ -78,18 +123,16 @@ static XtConvertArgRec screenConvertArg[] = {
 #define FONTSPECIFIER		"FONT "
 
 /*ARGSUSED*/
-void XmuCvtStringToCursor(args, num_args, fromVal, toVal)
-    XrmValuePtr args;
-    Cardinal    *num_args;
-    XrmValuePtr	fromVal;
-    XrmValuePtr	toVal;
+void
+XmuCvtStringToCursor(XrmValuePtr args, Cardinal *num_args,
+		     XrmValuePtr fromVal, XrmValuePtr toVal)
 {
     static Cursor cursor;		/* static for cvt magic */
     char *name = (char *)fromVal->addr;
     Screen *screen;
     register int i;
     char maskname[PATH_MAX];
-    Pixmap source, mask;
+    Pixmap source, mask = 0;
     /* XXX - make fg/bg resources */
     static XColor bgColor = {0, 0xffff, 0xffff, 0xffff};
     static XColor fgColor = {0, 0, 0, 0};
@@ -102,34 +145,61 @@ void XmuCvtStringToCursor(args, num_args, fromVal, toVal)
              "String to cursor conversion needs screen argument",
               (String *)NULL, (Cardinal *)NULL);
 
+    if (XmuCompareISOLatin1(name, "None") == 0)
+      {
+	cursor = None;
+	done(&cursor, Cursor);
+	return;
+      }
+
     screen = *((Screen **) args[0].addr);
 
     if (0 == strncmp(FONTSPECIFIER, name, strlen(FONTSPECIFIER))) {
 	char source_name[PATH_MAX], mask_name[PATH_MAX];
 	int source_char, mask_char, fields;
-	WidgetRec widgetRec;
 	Font source_font, mask_font;
 	XrmValue fromString, toFont;
+	XrmValue cvtArg;
+	Boolean success;
+	Display *dpy = DisplayOfScreen(screen);
+        char *strspec = NULL;
+#ifdef XMU_KLUDGE
+	Cardinal num;
+#endif
 
-	fields = sscanf(name, "FONT %s %d %s %d",
+	strspec = XtMalloc(strlen("FONT %s %d %s %d") + 21);
+	sprintf(strspec, "FONT %%%lds %%d %%%lds %%d",
+		(unsigned long)sizeof(source_name) - 1,
+		(unsigned long)sizeof(mask_name) - 1);
+	fields = sscanf(name, strspec,
 			source_name, &source_char,
 			mask_name, &mask_char);
+	XtFree(strspec);
 	if (fields < 2) {
 	    XtStringConversionWarning(name, XtRCursor);
 	    return;
 	}
 
-	/* widgetRec is stupid; we should just use XtDirectConvert,
-	 * but the names in Xt/Converters aren't public. */
-	widgetRec.core.screen = screen;
 	fromString.addr = source_name;
-	fromString.size = strlen(source_name);
-	XtConvert(&widgetRec, XtRString, &fromString, XtRFont, &toFont);
-	if (toFont.addr == NULL) {
+	fromString.size = strlen(source_name) + 1;
+	toFont.addr = (XPointer) &source_font;
+	toFont.size = sizeof(Font);
+	cvtArg.addr = (XPointer) &dpy;
+	cvtArg.size = sizeof(Display *);
+	/* XXX using display of screen argument as message display */
+#ifdef XMU_KLUDGE
+	/* XXX Sacrifice caching */
+	num = 1;
+	success = XtCvtStringToFont(dpy, &cvtArg, &num, &fromString, &toFont,
+				    NULL);
+#else
+	success = XtCallConverter(dpy, XtCvtStringToFont, &cvtArg,
+				  (Cardinal)1, &fromString, &toFont, NULL);
+#endif
+	if (!success) {
 	    XtStringConversionWarning(name, XtRCursor);
 	    return;
 	}
-	source_font = *(Font*)toFont.addr;
 
 	switch (fields) {
 	  case 2:		/* defaulted mask font & char */
@@ -144,13 +214,23 @@ void XmuCvtStringToCursor(args, num_args, fromVal, toVal)
 
 	  case 4:		/* specified mask font & char */
 	    fromString.addr = mask_name;
-	    fromString.size = strlen(mask_name);
-	    XtConvert(&widgetRec, XtRString, &fromString, XtRFont, &toFont);
-	    if (toFont.addr == NULL) {
+	    fromString.size = strlen(mask_name) + 1;
+	    toFont.addr = (XPointer) &mask_font;
+	    toFont.size = sizeof(Font);
+	    /* XXX using display of screen argument as message display */
+#ifdef XMU_KLUDGE
+	    /* XXX Sacrifice caching */
+	    num = 1;
+	    success = XtCvtStringToFont(dpy, &cvtArg, &num, &fromString,
+					&toFont, NULL);
+#else
+	    success = XtCallConverter(dpy, XtCvtStringToFont, &cvtArg,
+				      (Cardinal)1, &fromString, &toFont, NULL);
+#endif
+	    if (!success) {
 		XtStringConversionWarning(name, XtRCursor);
 		return;
 	    }
-	    mask_font = *(Font*)toFont.addr;
 	}
 
 	cursor = XCreateGlyphCursor( DisplayOfScreen(screen), source_font,
@@ -171,6 +251,9 @@ void XmuCvtStringToCursor(args, num_args, fromVal, toVal)
 				       maskname, (sizeof maskname) - 4,
 				       NULL, NULL, &xhot, &yhot)) == None) {
 	XtStringConversionWarning (name, XtRCursor);
+	cursor = None;
+	done(&cursor, Cursor);
+	return;
     }
     len = strlen (maskname);
     for (i = 0; i < 2; i++) {
@@ -219,15 +302,12 @@ void XmuCvtStringToCursor(args, num_args, fromVal, toVal)
 
 /*ARGSUSED*/
 Boolean
-XmuCvtStringToColorCursor(dpy, args, num_args, fromVal, toVal, converter_data)
-    Display     *dpy;
-    XrmValuePtr args;
-    Cardinal    *num_args;
-    XrmValuePtr	fromVal;
-    XrmValuePtr	toVal;
-    XtPointer   *converter_data;	/* unused */
+XmuCvtStringToColorCursor(Display *dpy, XrmValuePtr args, Cardinal *num_args,
+			  XrmValuePtr fromVal, XrmValuePtr toVal,
+			  XtPointer *converter_data)
 {
     Cursor cursor;
+    Screen *screen;
     Pixel fg, bg;
     Colormap c_map;
     XColor colors[2];
@@ -242,6 +322,7 @@ XmuCvtStringToColorCursor(dpy, args, num_args, fromVal, toVal, converter_data)
 	return False;
     }
 
+    screen = *((Screen **) args[0].addr);
     fg = *((Pixel *) args[1].addr);
     bg = *((Pixel *) args[2].addr);
     c_map = *((Colormap *) args[3].addr);
@@ -251,7 +332,8 @@ XmuCvtStringToColorCursor(dpy, args, num_args, fromVal, toVal, converter_data)
     
     cursor = *((Cursor *) ret_val.addr);
 
-    if (cursor == None)
+    if (cursor == None || (fg == BlackPixelOfScreen(screen)
+			   && bg == WhitePixelOfScreen(screen)))
 	new_done(Cursor, cursor);
 
     colors[0].pixel = fg;

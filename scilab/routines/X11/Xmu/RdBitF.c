@@ -1,26 +1,33 @@
+/* $Xorg: RdBitF.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
 /*
- * $XConsortium: RdBitF.c,v 1.8 91/03/09 16:27:55 rws Exp $
- *
- * Copyright 1988 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- *
+
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/RdBitF.c,v 3.12 2001/12/14 19:55:48 dawes Exp $ */
+
+/*
  * This file contains miscellaneous utility routines and is not part of the
  * Xlib standard.
  *
@@ -43,11 +50,18 @@
 #include <X11/Xos.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/Xlibint.h>
 #include <stdio.h>
 #include <ctype.h>
-
+#include <X11/Xmu/Drawing.h>
 
 #define MAX_SIZE 255
+
+/*
+ * Prototypes
+ */
+static void initHexTable(void);
+static int NextInt(FILE*);
 
 /* shared data for the image read/parse logic */
 static short hexTable[256];		/* conversion value */
@@ -58,7 +72,8 @@ static Bool initialized = False;	/* easier to fill in at run time */
  *	Table index for the hex values. Initialized once, first time.
  *	Used for translation value or delimiter significance lookup.
  */
-static void initHexTable()
+static void
+initHexTable(void)
 {
     /*
      * We build the table at run time for several reasons:
@@ -91,8 +106,8 @@ static void initHexTable()
 /*
  *	read next hex value in the input stream, return -1 if EOF
  */
-static NextInt (fstream)
-    FILE *fstream;
+static int
+NextInt(FILE *fstream)
 {
     int	ch;
     int	value = 0;
@@ -127,11 +142,9 @@ static NextInt (fstream)
  * its arguments won't have been touched.  This routine should look as much
  * like the Xlib routine XReadBitmapfile as possible.
  */
-int XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot)
-    FILE *fstream;			/* handle on file  */
-    unsigned int *width, *height;	/* RETURNED */
-    unsigned char **datap;		/* RETURNED */
-    int *x_hot, *y_hot;			/* RETURNED */
+int
+XmuReadBitmapData(FILE *fstream, unsigned int *width, unsigned int *height,
+		  unsigned char **datap, int *x_hot, int *y_hot)
 {
     unsigned char *data = NULL;		/* working variable */
     char line[MAX_SIZE];		/* input line from file */
@@ -147,6 +160,7 @@ int XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot)
     int hx = -1;			/* x hotspot */
     int hy = -1;			/* y hotspot */
 
+#undef  Xmalloc /* see MALLOC_0_RETURNS_NULL in Xlibint.h */
 #define Xmalloc(size) malloc(size)
 
     /* first time initialization */
@@ -160,7 +174,7 @@ int XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot)
 	    RETURN (BitmapFileInvalid);
 	}
 	if (sscanf(line,"#define %s %d",name_and_type,&value) == 2) {
-	    if (!(type = rindex(name_and_type, '_')))
+	    if (!(type = strrchr(name_and_type, '_')))
 	      type = name_and_type;
 	    else
 	      type++;
@@ -189,7 +203,7 @@ int XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot)
 	else
 	  continue;
 
-	if (!(type = rindex(name_and_type, '_')))
+	if (!(type = strrchr(name_and_type, '_')))
 	  type = name_and_type;
 	else
 	  type++;
@@ -250,26 +264,135 @@ int XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot)
     RETURN (BitmapSuccess);
 }
 
+#if defined(WIN32)
+static int
+access_file(char *path, char *pathbuf, int len_pathbuf, char **pathret)
+{
+    if (access (path, F_OK) == 0) {
+	if (strlen (path) < len_pathbuf)
+	    *pathret = pathbuf;
+	else
+	    *pathret = malloc (strlen (path) + 1);
+	if (*pathret) {
+	    strcpy (*pathret, path);
+	    return 1;
+	}
+    }
+    return 0;
+}
 
-#if NeedFunctionPrototypes
-int XmuReadBitmapDataFromFile (_Xconst char *filename, unsigned int *width, 
+static int
+AccessFile(char *path, char *pathbuf, int len_pathbuf, char **pathret)
+{
+#ifndef MAX_PATH
+#define MAX_PATH 512
+#endif
+
+    unsigned long drives;
+    int i, len;
+    char* drive;
+    char buf[MAX_PATH];
+    char* bufp;
+
+    /* just try the "raw" name first and see if it works */
+    if (access_file (path, pathbuf, len_pathbuf, pathret))
+	return 1;
+
+    /* try the places set in the environment */
+    drive = getenv ("_XBASEDRIVE");
+#ifdef __UNIXOS2__
+    if (!drive)
+	drive = getenv ("X11ROOT");
+#endif
+    if (!drive)
+	drive = "C:";
+    len = strlen (drive) + strlen (path);
+    if (len < MAX_PATH) bufp = buf;
+    else bufp = malloc (len + 1);
+    strcpy (bufp, drive);
+    strcat (bufp, path);
+    if (access_file (bufp, pathbuf, len_pathbuf, pathret)) {
+	if (bufp != buf) free (bufp);
+	return 1;
+    }
+
+#ifndef __UNIXOS2__ 
+    /* one last place to look */
+    drive = getenv ("HOMEDRIVE");
+    if (drive) {
+	len = strlen (drive) + strlen (path);
+	if (len < MAX_PATH) bufp = buf;
+	else bufp = malloc (len + 1);
+	strcpy (bufp, drive);
+	strcat (bufp, path);
+	if (access_file (bufp, pathbuf, len_pathbuf, pathret)) {
+	    if (bufp != buf) free (bufp);
+	    return 1;
+	}
+    }
+
+    /* does OS/2 (with or with gcc-emx) have getdrives? */
+    /* tried everywhere else, go fishing */
+#define C_DRIVE ('C' - 'A')
+#define Z_DRIVE ('Z' - 'A')
+    drives = _getdrives ();
+    for (i = C_DRIVE; i <= Z_DRIVE; i++) { /* don't check on A: or B: */
+	if ((1 << i) & drives) {
+	    len = 2 + strlen (path);
+	    if (len < MAX_PATH) bufp = buf;
+	    else bufp = malloc (len + 1);
+	    *bufp = 'A' + i;
+	    *(bufp + 1) = ':';
+	    *(bufp + 2) = '\0';
+	    strcat (bufp, path);
+	    if (access_file (bufp, pathbuf, len_pathbuf, pathret)) {
+		if (bufp != buf) free (bufp);
+		return 1;
+	    }
+	}
+    }
+#endif
+    return 0;
+}
+
+FILE *
+fopen_file(char *path, char *mode)
+{
+    char buf[MAX_PATH];
+    char* bufp;
+    void* ret = NULL;
+    UINT olderror = SetErrorMode (SEM_FAILCRITICALERRORS);
+
+    if (AccessFile (path, buf, MAX_PATH, &bufp))
+	ret = fopen (bufp, mode);
+
+    (void) SetErrorMode (olderror);
+
+    if (bufp != buf) free (bufp);
+
+    return ret;
+}
+
+#else
+#define fopen_file fopen
+#endif
+
+
+int
+XmuReadBitmapDataFromFile(_Xconst char *filename, unsigned int *width, 
 			       unsigned int *height, unsigned char **datap,
 			       int *x_hot, int *y_hot)
-#else
-int XmuReadBitmapDataFromFile (filename, width, height, datap, x_hot, y_hot)
-    char *filename;
-    unsigned int *width, *height;	/* RETURNED */
-    unsigned char **datap;		/* RETURNED */
-    int *x_hot, *y_hot;			/* RETURNED */
-#endif
 {
     FILE *fstream;
     int status;
 
-    if ((fstream = fopen (filename, "r")) == NULL) {
+#ifdef __UNIXOS2__
+    filename = __XOS2RedirRoot(filename);
+#endif
+    if ((fstream = fopen_file (filename, "r")) == NULL) {
 	return BitmapOpenFailed;
     }
-    status = XmuReadBitmapData (fstream, width, height, datap, x_hot, y_hot);
+    status = XmuReadBitmapData(fstream, width, height, datap, x_hot, y_hot);
     fclose (fstream);
     return status;
 }

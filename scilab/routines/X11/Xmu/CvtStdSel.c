@@ -1,25 +1,33 @@
-/* $XConsortium: CvtStdSel.c,v 1.23 91/04/11 09:04:08 rws Exp $
- *
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- *
+/* $Xorg: CvtStdSel.c,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
+
+/*
+ 
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/CvtStdSel.c,v 3.19 2001/11/21 16:22:59 tsi Exp $ */
+
+/*
  * This file contains routines to handle common selection targets.
  *
  * Public entry points:
@@ -37,18 +45,34 @@
 #include <X11/IntrinsicP.h>
 #include <X11/Xatom.h>
 #include <X11/ShellP.h>
+#ifdef XTHREADS
+#include <X11/Xthreads.h>
+#endif
 #include <stdio.h>
 
 #ifndef SYSVNET
-#include <netdb.h>
+#ifdef WIN32
+#include <X11/Xwinsock.h>
+#define XOS_USE_MTSAFE_NETDBAPI
+#else
+#ifndef Lynx
 #include <sys/socket.h>
+#else
+#include <sys/types.h>
+#include <socket.h>
+#endif
+#define XOS_USE_XT_LOCKING
+#endif
+#define X_INCLUDE_NETDB_H
+#include <X11/Xos_r.h>
 #endif
 
+#include <X11/Xos.h>
+#include <stdlib.h>
 #include "Atoms.h"
 #include "StdSel.h"
 #include "SysUtil.h"
 #include <X11/Xfuncs.h>
-#include <X11/Xos.h>
 
 #ifndef OS_NAME
 #ifndef X_OS_FILE
@@ -61,18 +85,26 @@
 #ifdef ultrix
 #define USE_UNAME
 #endif
+#ifdef CSRG_BASED
+#define USE_UNAME
+#endif
 #endif /*X_OS_FILE*/
 #ifdef USE_UNAME
-#ifdef ultrix
-#ifndef __STDC__
-#include <limits.h>		/* fixed in Ultrix 3.0 */
-#endif
-#endif
 #include <sys/utsname.h>
 #endif
 #endif
 
-static char *get_os_name ()
+/*
+ * Prototypes
+ */
+static char *get_os_name(void);
+static Bool isApplicationShell(Widget);
+
+/*
+ * Implementation
+ */
+static char *
+get_os_name(void)
 {
 #ifdef OS_NAME
 	return XtNewString(OS_NAME);
@@ -80,19 +112,19 @@ static char *get_os_name ()
 	FILE *f = NULL;
 
 #ifdef USE_UNAME
-	struct utsname uts;
+	struct utsname utss;
 
-	if (uname (&uts) == 0) {
+	if (uname (&utss) == 0) {
 	    char *os_name;
-	    int len = strlen(uts.sysname);
+	    int len = strlen(utss.sysname) + 1;
 #ifndef hpux				/* because of hostname length crock */
-	    len += 1 + strlen(uts.release);
+	    len += 2 + strlen(utss.release);
 #endif
 	    os_name = XtMalloc (len);
-	    strcpy (os_name, uts.sysname);
+	    strcpy (os_name, utss.sysname);
 #ifndef hpux
 	    strcat (os_name, " ");
-	    strcat (os_name, uts.release);
+	    strcat (os_name, utss.release);
 #endif
 	    return os_name;
 	}
@@ -122,7 +154,7 @@ static char *get_os_name ()
 #ifdef sun
 	return XtNewString("SunOS");
 #else
-# if !defined(SYSV) && defined(unix)
+# if !defined(SYSV) && (defined(CSRG_BASED) || defined(unix))
 	return XtNewString("BSD");
 # else
 	return NULL;
@@ -140,8 +172,8 @@ static char *get_os_name ()
  * go that far.  Then, we test whether it is an applicationShellWidget
  * class by looking for an explicit class name.  Seems pretty safe.
  */
-static Bool isApplicationShell(w)
-    Widget w;
+static Bool
+isApplicationShell(Widget w)
 {
     register WidgetClass c;
 
@@ -154,14 +186,10 @@ static Bool isApplicationShell(w)
     return False;
 }
 
-Boolean XmuConvertStandardSelection(w, time, selection, target,
-				    type, value, length, format)
-    Widget w;
-    Time time;
-    Atom *selection, *target, *type;
-    caddr_t *value;
-    unsigned long *length;
-    int *format;
+Boolean
+XmuConvertStandardSelection(Widget w, Time time, Atom *selection, Atom *target,
+			    Atom *type, XPointer *value,
+			    unsigned long *length, int *format)
 {
     Display *d = XtDisplay(w);
     if (*target == XA_TIMESTAMP(d)) {
@@ -170,7 +198,7 @@ Boolean XmuConvertStandardSelection(w, time, selection, target,
 	    *(long*)*value = time;
 	else {
 	    long temp = time;
-	    bcopy( ((char*)&temp)+sizeof(long)-4, (char*)*value, 4);
+	    (void) memmove((char*)*value, ((char*)&temp)+sizeof(long)-4, 4);
 	}
 	*type = XA_INTEGER;
 	*length = 1;
@@ -186,18 +214,24 @@ Boolean XmuConvertStandardSelection(w, time, selection, target,
 	*format = 8;
 	return True;
     }
-#ifdef TCPCONN
+#if defined(TCPCONN)
     if (*target == XA_IP_ADDRESS(d)) {
 	char hostname[1024];
+#ifdef XTHREADS_NEEDS_BYNAMEPARAMS
+	_Xgethostbynameparams hparams;
+#endif
+	struct hostent *hostp;
 
-	struct hostent *hostent;
 	hostname[0] = '\0';
 	(void) XmuGetHostname (hostname, sizeof hostname);
-	hostent = gethostbyname (hostname);
-	if (hostent->h_addrtype != AF_INET) return False;
-	*length = hostent->h_length;
+
+	if ((hostp = _XGethostbyname (hostname,hparams)) == NULL)
+	    return False;
+
+	if (hostp->h_addrtype != AF_INET) return False;
+	*length = hostp->h_length;
 	*value = XtMalloc(*length);
-	bcopy (hostent->h_addr, *value, *length);
+	(void) memmove (*value, hostp->h_addr, *length);
 	*type = XA_NET_ADDRESS(d);
 	*format = 8;
 	return True;
@@ -297,7 +331,7 @@ Boolean XmuConvertStandardSelection(w, time, selection, target,
 #ifdef DNETCONN
 	std_targets[i++] = XA_DECNET_ADDRESS(d);
 #endif
-	*value = (caddr_t)std_targets;
+	*value = (XPointer)std_targets;
 	*type = XA_ATOM;
 	*length = NUM_TARGETS;
 	*format = 32;

@@ -1,25 +1,33 @@
+/* $Xorg: EditresP.h,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
+
 /*
- * $XConsortium: EditresP.h,v 1.11 91/07/30 15:28:28 rws Exp $
- *
- * Copyright 1989 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/EditresP.h,v 1.5 2001/01/17 19:42:55 dawes Exp $ */
+
+/*
  * Author:  Chris D. Peterson, MIT X Consortium
  */
 
@@ -36,8 +44,8 @@
 
   l[0] = timestamp
   l[1] = command atom name
-  l[2] = ident of command.
-  l[3] = protocol version number to use.
+  l[2] = ident of command
+  l[3] = protocol version number to use
 
 
 
@@ -74,7 +82,8 @@
 				  SetValues = 1,
 				  GetResources = 2,
 				  GetGeometry = 3,
-				  FindChild = 4 }
+				  FindChild = 4,
+				  GetValues = 5 }
 	Length:		Card32
 	Data:		
 
@@ -120,10 +129,11 @@
 		name:		String8
 		class:		String8
 		window:		Card32
+         	toolkit:        String8
 
-	Send Widget Tree returns the fully specified list of widgets
-	for each widget in the tree.  This is enough information to completely
-	reconstruct the entire widget heirarchy.
+	Send Widget Tree returns the toolkit type, and a fuly specified list
+        of widgets for each widget in the tree.  This is enough information
+        to completely reconstruct the entire widget heirarchy.
 
 	The window return value contains the Xid of the window currently 
 	used by this widget.  If the widget is unrealized then 0 is returned,
@@ -149,6 +159,23 @@
 	widgets.  This function will return an error message if the SetValues
 	request caused an Xt error.
 	
+  GetValues:
+
+        names:                ListOfString8       
+        widget:               Widget
+
+        --->
+	novalues:             ListOfCard16
+	values:               ListOfString8
+                   
+        GetValues will allow a number of resource values to be read 
+        on a particular widget.  The request specifies the names of
+	the resources wanted and the widget id these resources are
+	from.  The reply returns a list of indices from the requests
+	name list of resources for which a value can not be returned.
+	It also returns a list of returned values, in the order of the
+        requests names list, skipping those indices present in novalues.
+
    GetResources:
 
 	Number of Entries:	Card16
@@ -221,6 +248,24 @@
 	The returned widget is undefined if the point is contained in
 	two or more mapped widgets, or in two overlapping Rect objs.
 
+  GetValues:
+
+        names:                ListOfString8       
+        widget:               Widget
+
+        --->
+	
+	values:               ListOfString8
+
+        GetValues will allow a number of resource values to be read 
+        on a particular widget.  Currently only InterViews 3.0.1 Styles 
+	and their attributes are supported.  In addition, the current
+	user interface  only supports the return of 1 resource.  The ability
+	to specify and return multiple resources is defined for future editres
+	interfaces where some or all of a widgets resource values are returned
+	and displayed at once. 
+
+
 ************************************************************/
 
 #include <X11/Intrinsic.h>
@@ -235,38 +280,48 @@
 #define EDITRES_IS_UNREALIZED 0
 
 /*
- * Format for atoms.
+ * Format for atoms
  */
-
 #define EDITRES_FORMAT             8
 #define EDITRES_SEND_EVENT_FORMAT 32
 
 /*
  * Atoms
  */
-
 #define EDITRES_NAME         "Editres"
 #define EDITRES_COMMAND_ATOM "EditresCommand"
 #define EDITRES_COMM_ATOM    "EditresComm"
 #define EDITRES_CLIENT_VALUE "EditresClientVal"
 #define EDITRES_PROTOCOL_ATOM "EditresProtocol"
 
-typedef enum { SendWidgetTree = 0, SetValues = 1, GetResources = 2,
-	       GetGeometry = 3, FindChild = 4 } EditresCommand;
+typedef enum {
+  SendWidgetTree = 0,
+	       SetValues      = 1,
+	       GetResources   = 2,
+	       GetGeometry    = 3, 
+	       FindChild      = 4,
+	       GetValues      = 5
+} EditresCommand;
 
-typedef enum {NormalResource = 0, ConstraintResource = 1} ResourceType;
+typedef enum {
+  NormalResource     = 0,
+  ConstraintResource = 1
+} ResourceType;
 
 /*
- * The type of a resource identifier.
+ * The type of a resource identifier
  */
-
 typedef unsigned char ResIdent;
 
-typedef enum {PartialSuccess= 0, Failure= 1, ProtocolMismatch= 2} EditResError;
+typedef enum {
+  PartialSuccess   = 0,
+  Failure	   = 1,
+  ProtocolMismatch = 2
+} EditResError;
 
 typedef struct _WidgetInfo {
     unsigned short num_widgets;
-    unsigned long * ids;
+  unsigned long *ids;
     Widget real_widget;
 } WidgetInfo;
 
@@ -276,18 +331,79 @@ typedef struct _ProtocolStream {
 } ProtocolStream;
 
 /************************************************************
- *
- * Function definitions for reading and writing protocol requests.
- *
+ * Function definitions for reading and writing protocol requests
  ************************************************************/
-
 _XFUNCPROTOBEGIN
 
-void _XEditResPutString8(), _XEditResPut8(), _XEditResPut16();
-void _XEditResPut32(), _XEditResPutWidgetInfo(), _XEditResPutWidget();
-void _XEditResResetStream();
+void _XEditResPutString8
+(
+ ProtocolStream		*stream,
+ char			*str
+ );
 
-Boolean _XEditResGet8(), _XEditResGet16(), _XEditResGetSigned16();
-Boolean _XEditResGet32(), _XEditResGetString8(), _XEditResGetWidgetInfo();
+void _XEditResPut8
+(
+ ProtocolStream		*stream,
+ unsigned int		value
+ );
+
+void _XEditResPut16
+(
+ ProtocolStream		*stream,
+ unsigned int		value
+ );
+
+void _XEditResPut32
+(
+ ProtocolStream		*stream,
+ unsigned long		value
+ );
+
+void _XEditResPutWidgetInfo
+(
+ ProtocolStream		*stream,
+ WidgetInfo		*info
+ );
+
+void _XEditResResetStream
+(
+ ProtocolStream		*stream
+ );
+
+Bool _XEditResGet8
+(
+ ProtocolStream		*stream,
+ unsigned char		*value
+ );
+
+Bool _XEditResGet16
+(
+ ProtocolStream		*stream,
+ unsigned short		*value
+ );
+
+Bool _XEditResGetSigned16
+(
+ ProtocolStream		*stream,
+ short			*value
+ );
+
+Bool _XEditResGet32
+(
+ ProtocolStream		*stream,
+ unsigned long		*value
+ );
+
+Bool _XEditResGetString8
+(
+ ProtocolStream		*stream,
+ char			**str
+ );
+
+Bool _XEditResGetWidgetInfo
+(
+ ProtocolStream		*stream,
+ WidgetInfo		*info
+ );
 
 _XFUNCPROTOEND

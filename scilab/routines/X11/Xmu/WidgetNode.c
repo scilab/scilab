@@ -1,44 +1,67 @@
+/* $Xorg: WidgetNode.c,v 1.5 2001/02/09 02:03:53 xorgcvs Exp $ */
+
 /*
- * $XConsortium: WidgetNode.c,v 1.4 90/12/19 18:16:32 converse Exp $
- *
- * Copyright 1989 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided
- * that the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+ 
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+
+/* $XFree86: xc/lib/Xmu/WidgetNode.c,v 1.12 2002/09/19 13:21:58 tsi Exp $ */
+
+/*
  * Author:  Jim Fulton, MIT X Consortium
  */
 
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <X11/Xos.h>
 #include <X11/IntrinsicP.h>
-#include <X11/Xaw/Cardinals.h>
 #include <X11/Xmu/CharSet.h>
 #include <X11/Xmu/WidgetNode.h>
 
-
-static char *binsearch (key, base, nelems, elemsize, compar)
-    char *key;				/* template of object to find */
-    char *base;				/* beginning of array */
-    int nelems;				/* number of elements in array */
-    int elemsize;			/* sizeof an element */
-    int (*compar)();			/* qsort-style compare function */
+/*
+ * Prototypes
+ */
+static char *binsearch(char*, char*, int, int,
+		       int (*__compar)(_Xconst void*, _Xconst void*));
+static int compare_resource_entries(_Xconst void *a,  _Xconst void *b);
+static XmuWidgetNode *find_resource(XmuWidgetNode*, char*, Bool);
+static void mark_resource_owner(XmuWidgetNode*);
+/*
+ * Implementation
+ */
+static char *
+binsearch(char *key, char *base, int nelems, int elemsize,
+	  int compar(_Xconst void*, _Xconst void*))
+     /*
+      * key		- template of object to find
+      * base		- beginning of array
+      * nelems		- number of elements in array
+      * elemsize	- sizeof an element
+      * compar		- qsort-style compare function
+      */
 {
     int lower = 0, upper = nelems - 1;
 
@@ -60,18 +83,17 @@ static char *binsearch (key, base, nelems, elemsize, compar)
 }
 
 
-static int compare_resource_entries (a, b)
-    register char *a, *b;
+static int
+compare_resource_entries(register _Xconst void *a,
+			 register _Xconst void *b)
 {
     return strcmp (((XtResourceList)a)->resource_name,
 		   ((XtResourceList)b)->resource_name);
 }
 
 
-static XmuWidgetNode *find_resource (node, name, cons)
-    XmuWidgetNode *node;
-    char *name;
-    Bool cons;
+static XmuWidgetNode *
+find_resource(XmuWidgetNode *node, char *name, Bool cons)
 {
     register XmuWidgetNode *sup;
     XtResource res;
@@ -94,10 +116,10 @@ static XmuWidgetNode *find_resource (node, name, cons)
 }
 
 
-static void mark_resource_owner (node)
-    register XmuWidgetNode *node;
+static void
+mark_resource_owner(register XmuWidgetNode *node)
 {
-    register int i;
+    register Cardinal i;
     XtResourceList childres;
 
     childres = node->resources;
@@ -118,9 +140,8 @@ static void mark_resource_owner (node)
  * 			       Public Interfaces
  */
 
-void XmuWnInitializeNodes (nodearray, nnodes)
-    XmuWidgetNode *nodearray;
-    int nnodes;
+void
+XmuWnInitializeNodes(XmuWidgetNode *nodearray, int nnodes)
 {
     int i;
     XmuWidgetNode *wn;
@@ -137,12 +158,15 @@ void XmuWnInitializeNodes (nodearray, nnodes)
 	int namelen = strlen (XmuWnClassname(wn));
 
 	wn->lowered_label = XtMalloc (lablen + namelen + 2);
+#if 0
+	/* XtMalloc exits if failed */
 	if (!wn->lowered_label) {
 	    fprintf (stderr,
 		     "%s:  unable to allocate %d bytes for widget name\n",
-		     "XmuWnInitializeNodes");
+		     "XmuWnInitializeNodes", lablen + namelen + 2);
 	    exit (1);
 	}
+#endif
 	wn->lowered_classname = wn->lowered_label + (lablen + 1);
 	XmuCopyISOLatin1Lowered (wn->lowered_label, wn->label);
 	XmuCopyISOLatin1Lowered (wn->lowered_classname, XmuWnClassname(wn));
@@ -183,10 +207,9 @@ void XmuWnInitializeNodes (nodearray, nnodes)
 }
 
 
-void XmuWnFetchResources (node, toplevel, topnode)
-    XmuWidgetNode *node;
-    Widget toplevel;
-    XmuWidgetNode *topnode;
+void
+XmuWnFetchResources(XmuWidgetNode *node, Widget toplevel,
+		    XmuWidgetNode *topnode)
 {
     Widget dummy;
     XmuWidgetNode *wn;
@@ -194,7 +217,7 @@ void XmuWnFetchResources (node, toplevel, topnode)
     if (node->have_resources) return;
 
     dummy = XtCreateWidget (node->label, XmuWnClass(node), toplevel,
-			    NULL, ZERO);
+			    NULL, 0);
     if (dummy) XtDestroyWidget (dummy);
 
 
@@ -212,9 +235,9 @@ void XmuWnFetchResources (node, toplevel, topnode)
 						  sizeof (XmuWidgetNode *));
 	if (!wn->resourcewn) {
 	    fprintf (stderr,
-		     "%s:  unable to calloc %d %d byte widget node ptrs\n",
-		     "XmuWnFetchResources",wn->nresources,
-		     sizeof (XmuWidgetNode *));
+		     "%s:  unable to calloc %d %ld byte widget node ptrs\n",
+		     "XmuWnFetchResources", wn->nresources,
+		     (unsigned long)sizeof (XmuWidgetNode *));
 	    exit (1);
 	}
 
@@ -228,9 +251,9 @@ void XmuWnFetchResources (node, toplevel, topnode)
 	  XtCalloc (wn->nconstraints, sizeof (XmuWidgetNode *));
 	if (!wn->constraintwn) {
 	    fprintf (stderr,
-		     "%s:  unable to calloc %d %d byte widget node ptrs\n",
+		     "%s:  unable to calloc %d %ld byte widget node ptrs\n",
 		     "XmuWnFetchResources", wn->nconstraints,
-		     sizeof (XmuWidgetNode *));
+		     (unsigned long)sizeof (XmuWidgetNode *));
 	    exit (1);
 	}
 
@@ -252,9 +275,9 @@ void XmuWnFetchResources (node, toplevel, topnode)
 }
 
 
-int XmuWnCountOwnedResources (node, ownernode, cons)
-    XmuWidgetNode *node, *ownernode;
-    Bool cons;
+int
+XmuWnCountOwnedResources(XmuWidgetNode *node, XmuWidgetNode *ownernode,
+			 Bool cons)
 {
     register int i;
     XmuWidgetNode **wn = (cons ? node->constraintwn : node->resourcewn);
@@ -266,25 +289,19 @@ int XmuWnCountOwnedResources (node, ownernode, cons)
 }
 
 
-#if NeedFunctionPrototypes
-XmuWidgetNode *XmuWnNameToNode (XmuWidgetNode *nodelist, int nnodes, 
-				_Xconst char *name)
-#else
-XmuWidgetNode *XmuWnNameToNode (nodelist, nnodes, name)
-    XmuWidgetNode *nodelist;
-    int nnodes;
-    char *name;
-#endif
+XmuWidgetNode *
+XmuWnNameToNode(XmuWidgetNode *nodelist, int nnodes, _Xconst char *name)
 {
     int i;
     XmuWidgetNode *wn;
     char tmp[1024];
 
-    XmuCopyISOLatin1Lowered (tmp, name);
+    XmuNCopyISOLatin1Lowered(tmp, name, sizeof(tmp));
     for (i = 0, wn = nodelist; i < nnodes; i++, wn++) {
 	if (strcmp (tmp, wn->lowered_label) == 0 ||
-	    strcmp (tmp, wn->lowered_classname) == 0)
+	    strcmp (tmp, wn->lowered_classname) == 0) {
 	  return wn;
+	}
     }
     return NULL;
 }

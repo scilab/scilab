@@ -1,19 +1,31 @@
+/* $Xorg: sharedlib.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
 /*
- * $XConsortium: sharedlib.c,v 1.6 91/07/31 21:12:30 keith Exp $
- * 
- * Copyright 1991 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+
+Copyright 1991, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/sharedlib.c,v 3.4 2001/07/25 15:04:51 dawes Exp $ */
 
 #if defined(SUNSHLIB) && !defined(SHAREDCODE)
 
@@ -24,7 +36,7 @@ struct _AtomRec {
     struct _DisplayRec* head;
 };
 
-#if __STDC__ && !defined(UNIXCPP)
+#if !defined(UNIXCPP) || defined(ANSICPP)
 #define DeclareAtom(atom) \
 extern struct _AtomRec __##atom; \
 AtomPtr _##atom = &__##atom;
@@ -56,5 +68,6 @@ DeclareAtom(XA_TARGETS)
 DeclareAtom(XA_TEXT)
 DeclareAtom(XA_TIMESTAMP)
 DeclareAtom(XA_USER)
+DeclareAtom(XA_UTF8_STRING)
 
 #endif /* SUNSHLIB */

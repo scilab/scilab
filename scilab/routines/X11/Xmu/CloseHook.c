@@ -1,27 +1,35 @@
+/* $Xorg: CloseHook.c,v 1.4 2001/02/09 02:03:51 xorgcvs Exp $ */
+
+/* 
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/CloseHook.c,v 3.5 2001/07/25 15:04:50 dawes Exp $ */
+
 /*
- * $XConsortium: CloseHook.c,v 1.7 91/05/28 16:15:34 converse Exp $
- *
  * CloseDisplayHook package - provide callback on XCloseDisplay
  *
- * Copyright 1989 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided
- * that the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+ * *
  * Author:  Jim Fulton, MIT X Consortium
  * 
  * 
@@ -30,19 +38,19 @@
  * CloseHook XmuAddCloseDisplayHook (dpy, func, arg)
  *     Display *dpy;
  *     XmuCloseHookProc func;
- *     caddr_t arg;
+ *     XPointer arg;
  * 
  * Bool XmuRemoveCloseDisplayHook (dpy, hook, func, arg)
  *     Display *dpy;
  *     CloseHook hook;
  *     XmuCloseHookProc func;
- *     caddr_t arg;
+ *     XPointer arg;
  * 
  * Bool XmuLookupCloseDisplayHook (dpy, hook, func, arg)
  *     Display *dpy;
  *     CloseHook hook;
  *     XmuCloseHookProc func;
- *     caddr_t arg;
+ *     XPointer arg;
  * 
  */
 
@@ -50,8 +58,7 @@
 #include <X11/Xos.h>
 #include <X11/Xlib.h>
 #include <X11/Xmu/CloseHook.h>
-
-extern char *malloc();					/* should be void * */
+#include <stdlib.h>
 
 /*
  *				 Private data
@@ -63,7 +70,7 @@ extern char *malloc();					/* should be void * */
 typedef struct _CallbackRec {
     struct _CallbackRec *next;		/* next link in chain */
     XmuCloseHookProc func;		/* function to call */
-    caddr_t arg;			/* argument to pass with function */
+    XPointer arg;			/* argument to pass with function */
 } CallbackRec;
 
 
@@ -75,10 +82,13 @@ typedef struct _DisplayEntry {
     struct _CallbackRec *calling;	/* currently being called back */
 } DisplayEntry;
 
+/*
+ * Prototypes
+ */
+static DisplayEntry *_FindDisplayEntry(Display*, DisplayEntry**);
+static Bool _MakeExtension(Display*, int*);
 
 static DisplayEntry *elist = NULL;
-static Bool _MakeExtension();
-static DisplayEntry *_FindDisplayEntry();
 
 
 /*
@@ -100,17 +110,15 @@ static DisplayEntry *_FindDisplayEntry();
  * it returns an untyped pointer that can be used with Remove or Lookup, but
  * not dereferenced.
  */
-CloseHook XmuAddCloseDisplayHook (dpy, func, arg)
-    Display *dpy;
-    XmuCloseHookProc func;		/* function to call on close display */
-    caddr_t arg;			/* arg to pass */
+CloseHook
+XmuAddCloseDisplayHook(Display *dpy, XmuCloseHookProc func, XPointer arg)
 {
     DisplayEntry *de;
     CallbackRec *cb;
 
     /* allocate ahead of time so that we can fail atomically */
     cb = (CallbackRec *) malloc (sizeof (CallbackRec));
-    if (!cb) return ((caddr_t) NULL);
+    if (!cb) return ((XPointer) NULL);
 
     de = _FindDisplayEntry (dpy, NULL);
     if (!de) {
@@ -146,11 +154,9 @@ CloseHook XmuAddCloseDisplayHook (dpy, func, arg)
  * Remove - get rid of a callback.  If handle is non-null, use that to compare
  * entries.  Otherwise, remove first instance of the function/argument pair.
  */
-Bool XmuRemoveCloseDisplayHook (dpy, handle, func, arg)
-    Display *dpy;
-    CloseHook handle;			/* value from XmuAddCloseDisplayHook */
-    XmuCloseHookProc func;		/* function to call on close display */
-    caddr_t arg;			/* arg to pass */
+Bool
+XmuRemoveCloseDisplayHook(Display *dpy, CloseHook handle,
+			  XmuCloseHookProc func, XPointer arg)
 {
     DisplayEntry *de = _FindDisplayEntry (dpy, NULL);
     register CallbackRec *h, *prev;
@@ -186,11 +192,9 @@ Bool XmuRemoveCloseDisplayHook (dpy, handle, func, arg)
  * non-NULL, look for an entry that matches it; otherwise look for an entry 
  * with the same function/argument pair.
  */
-Bool XmuLookupCloseDisplayHook (dpy, handle, func, arg)
-    Display *dpy;
-    CloseHook handle;			/* value from XmuAddCloseDisplayHook */
-    XmuCloseHookProc func;		/* function to call on close display */
-    caddr_t arg;			/* arg to pass */
+Bool
+XmuLookupCloseDisplayHook(Display *dpy, CloseHook handle,
+			  XmuCloseHookProc func, XPointer arg)
 {
     DisplayEntry *de = _FindDisplayEntry (dpy, NULL);
     register CallbackRec *h;
@@ -220,9 +224,8 @@ Bool XmuLookupCloseDisplayHook (dpy, handle, func, arg)
  * the preceeding link so that the display can be unlinked without having
  * back pointers.
  */
-static DisplayEntry *_FindDisplayEntry (dpy, prevp)
-    register Display *dpy;
-    DisplayEntry **prevp;
+static DisplayEntry *
+_FindDisplayEntry(register Display *dpy, DisplayEntry **prevp)
 {
     register DisplayEntry *d, *prev;
 
@@ -243,9 +246,8 @@ static DisplayEntry *_FindDisplayEntry (dpy, prevp)
  * the associated callback data (callback records and display entries).
  */
 /* ARGSUSED */
-static int _DoCallbacks (dpy, codes)
-    Display *dpy;
-    XExtCodes *codes;
+static int
+_DoCallbacks(Display *dpy, XExtCodes *codes)
 {
     register CallbackRec *h;
     DisplayEntry *prev;
@@ -277,9 +279,8 @@ static int _DoCallbacks (dpy, codes)
 /*
  * _MakeExtension - create an extension for this display; done once per display
  */
-static Bool _MakeExtension (dpy, extensionp)
-    Display *dpy;
-    int *extensionp;
+static Bool
+_MakeExtension(Display *dpy, int *extensionp)
 {
     XExtCodes *codes;
 

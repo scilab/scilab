@@ -1,30 +1,39 @@
-/* static char rcsid[] =
-	"$XConsortium: FToCback.c,v 1.2 90/07/15 16:18:34 rws Exp $"; */
+/* $Xorg: FToCback.c,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988,1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/FToCback.c,v 1.6 2001/01/17 19:42:55 dawes Exp $ */
 
 #include	<X11/Intrinsic.h>
+#include <X11/Xmu/Converters.h>
 
 /* ARGSUSED */
 void
-XmuCvtFunctionToCallback(args, num_args, fromVal, toVal)
-    XrmValue	*args;		/* unused */
-    Cardinal	*num_args;	/* unused */
-    XrmValuePtr fromVal;
-    XrmValuePtr toVal;
+XmuCvtFunctionToCallback(XrmValue *args, Cardinal *num_args,
+			 XrmValuePtr fromVal, XrmValuePtr toVal)
 {
     static XtCallbackRec callback[2]; /* K&R: initialized to NULL */
     static XtCallbackList callback_list = callback;
@@ -32,5 +41,5 @@ XmuCvtFunctionToCallback(args, num_args, fromVal, toVal)
     callback[0].callback = *(XtCallbackProc *)fromVal->addr;
 
     toVal->size = sizeof(XtCallbackList);
-    toVal->addr = (caddr_t)&callback_list;
+    toVal->addr = (XPointer)&callback_list;
 }

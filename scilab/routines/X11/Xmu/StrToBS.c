@@ -1,69 +1,146 @@
-/* $XConsortium: StrToBS.c,v 1.2 90/12/20 13:27:50 converse Exp $ */
+/* $Xorg: StrToBS.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+
+/* $XFree86: xc/lib/Xmu/StrToBS.c,v 1.6 2001/01/17 19:42:56 dawes Exp $ */
 
 #include <X11/Intrinsic.h>
 #include "Converters.h"
 #include "CharSet.h"
 
-#define	done(address, type) \
-	{ (*toVal).size = sizeof(type); (*toVal).addr = (caddr_t) address; }
+/*
+ * Prototypes
+ */
+static void InitializeQuarks(void);
 
-/* ARGSUSED */
-void
-XmuCvtStringToBackingStore (args, num_args, fromVal, toVal)
-    XrmValue	*args;		/* unused */
-    Cardinal	*num_args;	/* unused */
-    XrmValuePtr fromVal;
-    XrmValuePtr toVal;
+/*
+ * Initialization
+ */
+static XrmQuark QnotUseful, QwhenMapped, Qalways, Qdefault;
+static Boolean haveQuarks;
+
+/*
+ * Implementation
+ */
+static void
+InitializeQuarks(void)
 {
-    char	lowerString[1024];
+  if (!haveQuarks)
+    {
+      char name[11];
+
+      XmuNCopyISOLatin1Lowered(name, XtEnotUseful, sizeof(name));
+      QnotUseful = XrmStringToQuark(name);
+      XmuNCopyISOLatin1Lowered(name, XtEwhenMapped, sizeof(name));
+      QwhenMapped = XrmStringToQuark(name);
+      XmuNCopyISOLatin1Lowered(name, XtEalways, sizeof(name));
+      Qalways = XrmStringToQuark(name);
+      XmuNCopyISOLatin1Lowered(name, XtEdefault, sizeof(name));
+      Qdefault = XrmStringToQuark(name);
+      haveQuarks = True;
+    }
+}
+
+/*ARGSUSED*/
+void
+XmuCvtStringToBackingStore(XrmValue *args, Cardinal *num_args,
+			   XrmValuePtr fromVal, XrmValuePtr toVal)
+{
     XrmQuark	q;
+  char name[11];
     static int	backingStoreType;
-    static XrmQuark XtQEnotUseful, XtQEwhenMapped, XtQEalways, XtQEdefault;
-    static int haveQuarks = 0;
 
     if (*num_args != 0)
         XtWarning("String to BackingStore conversion needs no extra arguments");
-    if (!haveQuarks) {
-	XmuCopyISOLatin1Lowered (lowerString, XtEnotUseful);
-	XtQEnotUseful = XrmStringToQuark(lowerString);
-	XmuCopyISOLatin1Lowered (lowerString, XtEwhenMapped);
-	XtQEwhenMapped = XrmStringToQuark(lowerString);
-	XmuCopyISOLatin1Lowered (lowerString, XtEalways);
-	XtQEalways = XrmStringToQuark(lowerString);
-	XmuCopyISOLatin1Lowered (lowerString, XtEdefault);
-	XtQEdefault = XrmStringToQuark(lowerString);
-	haveQuarks = 1;
-    }
-    XmuCopyISOLatin1Lowered (lowerString, (char *) fromVal->addr);
-    q = XrmStringToQuark (lowerString);
-    if (q == XtQEnotUseful) {
+
+  InitializeQuarks();
+  XmuNCopyISOLatin1Lowered(name, (char *)fromVal->addr, sizeof(name));
+
+  q = XrmStringToQuark (name);
+  if (q == QnotUseful)
 	backingStoreType = NotUseful;
-	done (&backingStoreType, int);
-    } else if (q == XtQEwhenMapped) {
+  else if (q == QwhenMapped)
     	backingStoreType = WhenMapped;
-	done (&backingStoreType, int);
-    } else if (q == XtQEalways) {
+  else if (q == Qalways)
 	backingStoreType = Always;
-	done (&backingStoreType, int);
-    } else if (q == XtQEdefault) {
+  else if (q == Qdefault)
     	backingStoreType = Always + WhenMapped + NotUseful;
-	done (&backingStoreType, int);
-    } else {
-        XtStringConversionWarning((char *) fromVal->addr, "BackingStore");
+  else
+    {
+      XtStringConversionWarning((char *)fromVal->addr, XtRBackingStore);
+      return;
     }
+  toVal->size = sizeof(int);
+  toVal->addr = (XPointer)&backingStoreType;
+}
+
+/*ARGSUSED*/
+Boolean
+XmuCvtBackingStoreToString(Display *dpy, XrmValuePtr args, Cardinal *num_args,
+			   XrmValuePtr fromVal, XrmValuePtr toVal,
+			   XtPointer *data)
+{
+  static String buffer;
+  Cardinal size;
+
+  switch (*(int *)fromVal->addr)
+    {
+    case NotUseful:
+      buffer = XtEnotUseful;
+      break;
+    case WhenMapped:
+      buffer = XtEwhenMapped;
+      break;
+    case Always:
+      buffer = XtEalways;
+      break;
+    case (Always + WhenMapped + NotUseful):
+      buffer = XtEdefault;
+      break;
+    default:
+      XtWarning("Cannot convert BackingStore to String");
+      toVal->addr = NULL;
+      toVal->size = 0;
+      return (False);
+    }
+
+  size = strlen(buffer) + 1;
+  if (toVal->addr != NULL)
+    {
+      if (toVal->size < size)
+	{
+	  toVal->size = size;
+	  return (False);
+	}
+      strcpy((char *)toVal->addr, buffer);
+    }
+  else
+    toVal->addr = (XPointer)buffer;
+  toVal->size = sizeof(String);
+
+  return (True);
 }

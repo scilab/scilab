@@ -1,8 +1,8 @@
-/* $Xorg: WinUtil.h,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+/* $Xorg: ExtAgent.c,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
 
 /*
- 
-Copyright 1988, 1998  The Open Group
+
+Copyright 1994, 1998  The Open Group
 
 Permission to use, copy, modify, distribute, and sell this software and its
 documentation for any purpose is hereby granted without fee, provided that
@@ -25,40 +25,19 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
 
 */
-/* $XFree86: xc/lib/Xmu/WinUtil.h,v 1.6 2001/01/17 19:42:57 dawes Exp $ */
+/* $XFree86: xc/lib/Xmu/ExtAgent.c,v 1.6 2001/01/17 19:42:55 dawes Exp $ */
 
-/*
- * The interfaces described by this header file are for miscellaneous utilities
- * and are not part of the Xlib standard.
- */
+#include <X11/Intrinsic.h>
+#include <X11/Xmu/ExtAgent.h>
 
-#ifndef _XMU_WINDOWUTIL_H_
-#define _XMU_WINDOWUTIL_H_
-
-#include <X11/Xutil.h>
-#include <X11/Xfuncproto.h>
-
-_XFUNCPROTOBEGIN
-
-Window XmuClientWindow
-(
- Display	*dpy,
- Window 	win
- );
-
-Bool XmuUpdateMapHints
-(
- Display	*dpy,
- Window		win,
- XSizeHints	*hints
- );
-
-Screen *XmuScreenOfWindow
-(
- Display	*dpy,
- Window 	w
-);
-
-_XFUNCPROTOEND
-
-#endif /* _XMU_WINDOWUTIL_H_ */
+/* ARGSUSED */
+void
+XmuRegisterExternalAgent(Widget w, XtPointer data,
+			 XEvent *event, Boolean *cont)
+{
+/* 
+* This is a stub.  Writers of protocol libraries
+* that want to add protocol to Xaw, such as RAP, will reimplement this
+* procedure in their own libraries.
+*/
+}

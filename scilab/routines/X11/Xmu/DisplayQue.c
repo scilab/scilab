@@ -1,34 +1,45 @@
+/* $Xorg: DisplayQue.c,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
+
 /*
- * $XConsortium: DisplayQue.c,v 1.4 91/05/28 16:16:46 converse Exp $
- *
- * Copyright 1989 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided
- * that the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+ 
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/DisplayQue.c,v 3.4 2001/07/25 15:04:50 dawes Exp $ */
+
+/*
  * Author:  Jim Fulton, MIT X Consortium
  */
 
 #include <stdio.h>
-#include <X11/Xos.h>
 #include <X11/Xlib.h>
+#include <stdlib.h>
 #include <X11/Xmu/DisplayQue.h>
 
-static int _DQCloseDisplay();
+/*
+ * Prototypes
+ */
+static int _DQCloseDisplay(Display*, XPointer);
 
 #define CallCloseCallback(q,e) (void) (*((q)->closefunc)) ((q), (e))
 #define CallFreeCallback(q) (void) (*((q)->freefunc)) ((q))
@@ -36,10 +47,10 @@ static int _DQCloseDisplay();
 /*
  * XmuDQCreate - create a display queue
  */
-XmuDisplayQueue *XmuDQCreate (closefunc, freefunc, data)
-    XmuCloseDisplayQueueProc closefunc;
-    XmuFreeDisplayQueueProc freefunc;
-    caddr_t data;
+XmuDisplayQueue *
+XmuDQCreate(XmuCloseDisplayQueueProc closefunc,
+	    XmuFreeDisplayQueueProc freefunc,
+	    XPointer data)
 {
     XmuDisplayQueue *q = (XmuDisplayQueue *) malloc (sizeof (XmuDisplayQueue));
     if (q) {
@@ -58,9 +69,8 @@ XmuDisplayQueue *XmuDQCreate (closefunc, freefunc, data)
  * optionally invoking the close callbacks.
  */
 
-Bool XmuDQDestroy (q, docallbacks)
-    XmuDisplayQueue *q;
-    Bool docallbacks;
+Bool
+XmuDQDestroy(XmuDisplayQueue *q, Bool docallbacks)
 {
     XmuDisplayQueueEntry *e = q->head;
 
@@ -78,9 +88,8 @@ Bool XmuDQDestroy (q, docallbacks)
 /*
  * XmuDQLookupDisplay - finds the indicated display on the given queue
  */
-XmuDisplayQueueEntry *XmuDQLookupDisplay (q, dpy)
-    XmuDisplayQueue *q;
-    Display *dpy;
+XmuDisplayQueueEntry *
+XmuDQLookupDisplay(XmuDisplayQueue *q, Display *dpy)
 {
     XmuDisplayQueueEntry *e;
 
@@ -95,10 +104,8 @@ XmuDisplayQueueEntry *XmuDQLookupDisplay (q, dpy)
  * XmuDQAddDisplay - add the specified display to the queue; set data as a
  * convenience.  Does not ensure that dpy hasn't already been added.
  */
-XmuDisplayQueueEntry *XmuDQAddDisplay (q, dpy, data)
-    XmuDisplayQueue *q;
-    Display *dpy;
-    caddr_t data;
+XmuDisplayQueueEntry *
+XmuDQAddDisplay(XmuDisplayQueue *q, Display *dpy, XPointer data)
 {
     XmuDisplayQueueEntry *e;
 
@@ -106,7 +113,7 @@ XmuDisplayQueueEntry *XmuDQAddDisplay (q, dpy, data)
 	return NULL;
     }
     if (!(e->closehook = XmuAddCloseDisplayHook (dpy, _DQCloseDisplay,
-						 (caddr_t) q))) {
+						 (XPointer) q))) {
 	free ((char *) e);
 	return NULL;
     }
@@ -131,9 +138,8 @@ XmuDisplayQueueEntry *XmuDQAddDisplay (q, dpy, data)
 /*
  * XmuDQRemoveDisplay - remove the specified display from the queue
  */
-Bool XmuDQRemoveDisplay (q, dpy)
-    XmuDisplayQueue *q;
-    Display *dpy;
+Bool
+XmuDQRemoveDisplay(XmuDisplayQueue *q, Display *dpy)
 {
     XmuDisplayQueueEntry *e;
 
@@ -148,7 +154,7 @@ Bool XmuDQRemoveDisplay (q, dpy)
 	    else
 	      e->next->prev = e->prev;	/* else splice out */
 	    (void) XmuRemoveCloseDisplayHook (dpy, e->closehook,
-					      _DQCloseDisplay, (caddr_t) q);
+					      _DQCloseDisplay, (XPointer) q);
 	    free ((char *) e);
 	    q->nentries--;
 	    return True;
@@ -166,9 +172,8 @@ Bool XmuDQRemoveDisplay (q, dpy)
  * _DQCloseDisplay - upcalled from CloseHook to notify this queue; remove the
  * display when finished
  */
-static int _DQCloseDisplay (dpy, arg)
-    Display *dpy;
-    caddr_t arg;
+static int
+_DQCloseDisplay(Display *dpy, XPointer arg)
 {
     XmuDisplayQueue *q = (XmuDisplayQueue *) arg;
     XmuDisplayQueueEntry *e;

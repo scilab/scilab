@@ -1,39 +1,56 @@
+/* $Xorg: CmapAlloc.c,v 1.4 2001/02/09 02:03:51 xorgcvs Exp $ */
+
+/* 
+
+Copyright 1989, 1994, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/CmapAlloc.c,v 1.6 2001/01/17 19:42:53 dawes Exp $ */
+
 /*
- * $XConsortium: CmapAlloc.c,v 1.4 91/07/19 16:36:50 gildea Exp $
- * 
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
  * Author:  Donna Converse, MIT X Consortium
  */
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
+#include <X11/Xmu/StdCmap.h>
 #include <stdio.h>
 
-static int default_allocation();
-static void best_allocation();
-static void gray_allocation();
-static int icbrt();
-static int icbrt_with_bits();
-static int icbrt_with_guess();
+#define lowbit(x) ((x) & (~(x) + 1))
+
+/*
+ * Prototypes
+ */
+static void best_allocation(XVisualInfo*, unsigned long*, unsigned long*,
+			    unsigned long*);
+static int default_allocation(XVisualInfo*, unsigned long*,
+			      unsigned long*, unsigned long*);
+static void gray_allocation(int, unsigned long*, unsigned long*,
+			    unsigned long*);
+static int icbrt(int);
+static int icbrt_with_bits(int, int);
+static int icbrt_with_guess(int, int);
 
 /* To determine the best allocation of reds, greens, and blues in a 
  * standard colormap, use XmuGetColormapAllocation.
@@ -47,10 +64,11 @@ static int icbrt_with_guess();
  * It is assumed that the visual is appropriate for the colormap property.
  */
 
-Status XmuGetColormapAllocation(vinfo, property, red_max, green_max, blue_max)
-    XVisualInfo		*vinfo;
-    Atom		property;
-    unsigned long	*red_max, *green_max, *blue_max;
+Status
+XmuGetColormapAllocation(XVisualInfo *vinfo, Atom property,
+			 unsigned long *red_max,
+			 unsigned long *green_max,
+			 unsigned long *blue_max)
 {
     Status 	status = 1;
 
@@ -92,9 +110,9 @@ Status XmuGetColormapAllocation(vinfo, property, red_max, green_max, blue_max)
  * Keith Packard, MIT X Consortium
  */
 
-static void gray_allocation(n, red_max, green_max, blue_max)
-    int		n;	/* the number of cells of the gray scale */
-    unsigned long *red_max, *green_max, *blue_max;
+static void
+gray_allocation(int n, unsigned long *red_max, unsigned long *green_max,
+		unsigned long *blue_max)
 {
     *red_max = (n * 30) / 100;
     *green_max = (n * 59) / 100; 
@@ -107,8 +125,8 @@ static void gray_allocation(n, red_max, green_max, blue_max)
  * If a map has less than a minimum number of definable entries, we do not
  * produce an allocation for an RGB_DEFAULT_MAP.  
  *
- * For 24 planes, the default colormap will have 64 reds, 64 greens, and 64
- * blues.  For 8 planes, let n = the number of colormap entries, which may
+ * For 16 planes, the default colormap will have 27 each RGB; for 12 planes,
+ * 12 each.  For 8 planes, let n = the number of colormap entries, which may
  * be 256 or 254.  Then, maximum red value = floor(cube_root(n - 125)) - 1.
  * Maximum green and maximum blue values are identical to maximum red.
  * This leaves at least 125 cells which clients can allocate.
@@ -116,37 +134,51 @@ static void gray_allocation(n, red_max, green_max, blue_max)
  * Return 0 if an allocation has been determined, non-zero otherwise.
  */
 
-static int default_allocation(vinfo, red, green, blue)
-    XVisualInfo		*vinfo;
-    unsigned long	*red, *green, *blue;
+static int
+default_allocation(XVisualInfo *vinfo, unsigned long *red,
+		   unsigned long *green, unsigned long *blue)
 {
     int			ngrays;		/* number of gray cells */
 
-    if (vinfo->colormap_size < 250)	/* skip it */
-	return 0;
-
     switch (vinfo->class) {
       case PseudoColor:
-      case DirectColor:
 
-	if (vinfo->colormap_size > 500000)
-	    /* intended for displays with 24 planes */
-	    *red = *green = *blue = (unsigned long) 63;
+	if (vinfo->colormap_size > 65000)
+	    /* intended for displays with 16 planes */
+	    *red = *green = *blue = (unsigned long) 27;
 	else if (vinfo->colormap_size > 4000)
 	    /* intended for displays with 12 planes */
 	    *red = *green = *blue = (unsigned long) 12;
+	else if (vinfo->colormap_size < 250)
+	    return 0;
 	else
 	    /* intended for displays with 8 planes */
 	    *red = *green = *blue = (unsigned long)
 		(icbrt(vinfo->colormap_size - 125) - 1);
 	break;
 
+      case DirectColor:
+
+	if (vinfo->colormap_size < 10)
+	    return 0;
+	*red = *green = *blue = vinfo->colormap_size / 2 - 1;
+	break;
+
+      case TrueColor:
+
+	*red = vinfo->red_mask / lowbit(vinfo->red_mask);
+	*green = vinfo->green_mask / lowbit(vinfo->green_mask);
+	*blue = vinfo->blue_mask / lowbit(vinfo->blue_mask);
+	break;
+
       case GrayScale:
 
-	if (vinfo->colormap_size > 5000000)
+	if (vinfo->colormap_size > 65000)
 	    ngrays = 4096;
 	else if (vinfo->colormap_size > 4000)
 	    ngrays = 512;
+	else if (vinfo->colormap_size < 250)
+	    return 0;
 	else
 	    ngrays = 12;
 	gray_allocation(ngrays, red, green, blue);
@@ -176,9 +208,9 @@ static int default_allocation(vinfo, red, green, blue)
  * defineable colormap entries.
  */
  
-static void best_allocation(vinfo, red, green, blue)
-    XVisualInfo		*vinfo;
-    unsigned long	*red, *green, *blue;
+static void
+best_allocation(XVisualInfo *vinfo, unsigned long *red, unsigned long *green,
+		unsigned long *blue)
 {
 
     if (vinfo->class == DirectColor ||	vinfo->class == TrueColor)
@@ -244,8 +276,8 @@ static void best_allocation(vinfo, red, green, blue)
  * Stephen Gildea, MIT X Consortium, July 1991
  */
 
-static int icbrt(a)		/* integer cube root */
-    int a;
+static int
+icbrt(int a)
 {
     register int bits = 0;
     register unsigned n = a;
@@ -259,9 +291,9 @@ static int icbrt(a)		/* integer cube root */
 }
 
 
-static int icbrt_with_bits(a, bits)
-    int a;
-    int bits;			/* log 2 of a */
+static int
+icbrt_with_bits(int a, int bits)
+     /* bits - log 2 of a */
 {
     return icbrt_with_guess(a, a>>2*bits/3);
 }
@@ -280,8 +312,8 @@ int icbrt_loopcount;
  * We actually return floor(cbrt(a)) because that's what we need here, too.
  */
 
-static int icbrt_with_guess(a, guess)
-    int a, guess;
+static int
+icbrt_with_guess(int a, int guess)
 {
     register int delta;
 

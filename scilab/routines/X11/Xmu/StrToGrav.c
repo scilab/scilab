@@ -1,33 +1,42 @@
-/*
- * $XConsortium: StrToGrav.c,v 1.4 90/11/30 17:00:50 rws Exp $
- *
- * Copyright 1989 Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided
- * that the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific,
- * written prior permission.  M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN 
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
+/* $Xorg: StrToGrav.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
 
+/* 
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/StrToGrav.c,v 1.6 2001/01/17 19:42:57 dawes Exp $ */
 
 #include <X11/Intrinsic.h>
 #include <X11/Xmu/Converters.h>
+#include <X11/Xmu/CharSet.h>
 
 #define done(address, type) \
-        { (*toVal).size = sizeof(type); (*toVal).addr = (caddr_t) address; }
+{ (*toVal).size = sizeof(type); (*toVal).addr = (XPointer) address; }
 
+/*
+ * Initialization
+ */
 static struct _namepair {
     XrmQuark quark;
     char *name;
@@ -52,41 +61,88 @@ static struct _namepair {
     { NULLQUARK, NULL, ForgetGravity }
 };
 
-void XmuCvtStringToGravity (args, num_args, fromVal, toVal)
-    XrmValuePtr args;
-    Cardinal    *num_args;
-    XrmValuePtr fromVal;
-    XrmValuePtr toVal;
+/*
+ * This function is deprecated as of the addition of 
+ * XtCvtStringToGravity in R6
+ */
+void
+XmuCvtStringToGravity(XrmValuePtr args, Cardinal *num_args,
+		      XrmValuePtr fromVal, XrmValuePtr toVal)
 {
-    static Boolean haveQuarks = FALSE;
-    char lowerName[40];
+  static Boolean haveQuarks = False;
+  char name[10];
     XrmQuark q;
-    char *s;
     struct _namepair *np;
 
     if (*num_args != 0)
         XtWarningMsg("wrongParameters","cvtStringToGravity","XtToolkitError",
                   "String to Gravity conversion needs no extra arguments",
-                  (String *) NULL, (Cardinal *)NULL);
+		 (String *)NULL, (Cardinal *)NULL);
 
-    if (!haveQuarks) {
-	for (np = names; np->name; np++) {
-	    np->quark = XrmPermStringToQuark (np->name);
-	}
-	haveQuarks = TRUE;
+  if (!haveQuarks)
+    {
+      for (np = names; np->name; np++)
+	np->quark = XrmPermStringToQuark(np->name);
+      haveQuarks = True;
     }
 
-    s = (char *) fromVal->addr;
-    if (strlen(s) < sizeof lowerName) {
-	XmuCopyISOLatin1Lowered (lowerName, s);
-	q = XrmStringToQuark (lowerName);
+  XmuNCopyISOLatin1Lowered(name, (char *)fromVal->addr, sizeof(name));
+  q = XrmStringToQuark(name);
 
-	for (np = names; np->name; np++) {
-	    if (np->quark == q) {
-		done (&np->gravity, XtGravity);
+  for (np = names; np->name; np++)
+    {
+      if (np->quark == q)
+	{
+	  done(&np->gravity, XtGravity);
 		return;
 	    }
 	}
+
+  XtStringConversionWarning((char *)fromVal->addr, XtRGravity);
+}
+
+/*ARGSUSED*/
+Boolean
+XmuCvtGravityToString(Display *dpy, XrmValue *args, Cardinal *num_args,
+		      XrmValue *fromVal, XrmValue *toVal, XtPointer *data)
+{
+  static char *buffer;
+  Cardinal size;
+  struct _namepair *np;
+  XtGravity gravity;
+
+  gravity = *(XtGravity *)fromVal->addr;
+  buffer = NULL;
+  for (np = names; np->name; np++)
+    if (np->gravity == gravity)
+      {
+	buffer = np->name;
+	break;
+      }
+
+  if (!buffer)
+    {
+      XtAppWarning(XtDisplayToApplicationContext(dpy),
+		   "Cannot convert Gravity to String");
+      toVal->addr = NULL;
+      toVal->size = 0;
+
+      return (False);
     }
-    XtStringConversionWarning((char *) fromVal->addr, XtRGravity);
+
+  size = strlen(buffer) + 1;
+  if (toVal->addr != NULL)
+    {
+      if (toVal->size <= size)
+	{
+	  toVal->size = size;
+	  return (False);
+	}
+      strcpy((char *)toVal->addr, buffer);
+    }
+  else
+    toVal->addr = (XPointer)buffer;
+  toVal->size = size;
+
+  return (True);
 }

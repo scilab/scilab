@@ -1,43 +1,78 @@
-/* $XConsortium: CrCmap.c,v 1.3 91/04/10 16:45:46 converse Exp $
- *
- * CreateCmap.c - given a standard colormap description, make the map.
- * 
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+/* $Xorg: CrCmap.c,v 1.4 2001/02/09 02:03:51 xorgcvs Exp $ */
+
+/* 
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/CrCmap.c,v 3.6 2001/01/17 19:42:53 dawes Exp $ */
+
+/*
  * Author:  Donna Converse, MIT X Consortium
  */
 
+/*
+ * CreateCmap.c - given a standard colormap description, make the map.
+ */
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/Xmu/StdCmap.h>
 
-extern char	*calloc();
+/*
+ * Prototypes
+ */
+/* allocate entire map Read Only */
+static int ROmap(Display*, Colormap, unsigned long[], int, int);
 
-static int	ROmap();		/* allocate entire map Read Only */
-static Status	ROorRWcell();		/* allocate a cell, prefer Read Only */
-static Status	RWcell();		/* allocate a cell Read Write */
-static int	compare();		/* for quicksort */
-static Status 	contiguous();		/* find contiguous sequence of cells */
-static void	free_cells();		/* frees resources before quitting */
-static Status	readonly_map();		/* create a map in a RO visual type */
-static Status	readwrite_map();	/* create a map in a RW visual type */
+/* allocate a cell, prefer Read Only */
+static Status ROorRWcell(Display*, Colormap, unsigned long[], int,
+			 XColor*, unsigned long);
+
+/* allocate a cell Read Write */
+static Status RWcell(Display*, Colormap, XColor*, XColor*, unsigned long*);
+
+/* for quicksort */
+static int compare(_Xconst void*, _Xconst void*);
+
+/* find contiguous sequence of cells */
+static Status contiguous(unsigned long[], int, int, unsigned long, int*, int*);
+
+/* frees resources before quitting */
+static void free_cells(Display*, Colormap, unsigned long[], int, int);
+
+/* create a map in a RO visual type */
+static Status readonly_map(Display*, XVisualInfo*, XStandardColormap*);
+
+/* create a map in a RW visual type */
+static Status readwrite_map(Display*, XVisualInfo*, XStandardColormap*);
+
+#define lowbit(x) ((x) & (~(x) + 1))
+#define TRUEMATCH(mult,max,mask) \
+    (colormap->max * colormap->mult <= vinfo->mask && \
+     lowbit(vinfo->mask) == colormap->mult)
 
 /*
  * To create any one colormap which is described by an XStandardColormap
@@ -59,14 +94,12 @@ static Status	readwrite_map();	/* create a map in a RW visual type */
  * standard colormap structure.
  */
    
-Status XmuCreateColormap(dpy, colormap)
-    Display		*dpy;		/* specifies the connection under 
-					 * which the map is created */
-    XStandardColormap	*colormap;	/* specifies the map to be created,
-					 * and returns, particularly if the
-					 * map is created as a subset of the
-					 * default colormap of the screen,
-					 * the base_pixel of the map.
+Status
+XmuCreateColormap(Display *dpy, XStandardColormap *colormap)
+     /* dpy	 - specifies the connection under which the map is created
+      * colormap - specifies the map to be created, and returns, particularly
+      *		   if the map is created as a subset of the default colormap
+      *		   of the screen, the base_pixel of the map.
 					 */
 {
     XVisualInfo		vinfo_template;	/* template visual information */
@@ -106,8 +139,8 @@ Status XmuCreateColormap(dpy, colormap)
 			break;
 	    }
 	} else {
-	    unsigned int	maxdepth = 0;
-	    XVisualInfo		*v;
+	    int			maxdepth = 0;
+	    XVisualInfo		*v = NULL;
 
 	    for (i=0; i < n; i++, vinfo++)
 		if (vinfo->depth > maxdepth) {
@@ -121,6 +154,10 @@ Status XmuCreateColormap(dpy, colormap)
     if (vinfo->class == PseudoColor || vinfo->class == DirectColor ||
 	vinfo->class == GrayScale)
 	status = readwrite_map(dpy, vinfo, colormap);
+    else if (vinfo->class == TrueColor)
+	status = TRUEMATCH(red_mult, red_max, red_mask) &&
+	         TRUEMATCH(green_mult, green_max, green_mask) &&
+		 TRUEMATCH(blue_mult, blue_max, blue_mask);
     else 
 	status = readonly_map(dpy, vinfo, colormap);
     
@@ -129,27 +166,39 @@ Status XmuCreateColormap(dpy, colormap)
 }
 
 /****************************************************************************/
-static Status readwrite_map(dpy, vinfo, colormap)
-    Display		*dpy;
-    XVisualInfo		*vinfo;
-    XStandardColormap	*colormap;
+static Status
+readwrite_map(Display *dpy, XVisualInfo *vinfo, XStandardColormap *colormap)
 {
-    register int	i, n;		/* index counters */
-    int			ncolors;	/* number of colors to be defined */
+    register unsigned long i, n;	/* index counters */
+    unsigned long	ncolors;	/* number of colors to be defined */
     int			npixels;	/* number of pixels allocated R/W */
     int			first_index;	/* first index of pixels to use */
     int			remainder;	/* first index of remainder */
     XColor		color;		/* the definition of a color */
     unsigned long	*pixels;	/* array of colormap pixels */
+    unsigned long	delta;
 
     
     /* Determine ncolors, the number of colors to be defined.
      * Insure that 1 < ncolors <= the colormap size.
      */
-    ncolors = colormap->red_max * colormap->red_mult +
-	      colormap->green_max * colormap->green_mult +
-	      colormap->blue_max * colormap->blue_mult + 1;
-    if (ncolors <= 1 || ncolors > vinfo->colormap_size)	return 0;
+    if (vinfo->class == DirectColor) {
+	ncolors = colormap->red_max;
+	if (colormap->green_max > ncolors)
+	    ncolors = colormap->green_max;
+	if (colormap->blue_max > ncolors)
+	    ncolors = colormap->blue_max;
+	ncolors++;
+	delta = lowbit(vinfo->red_mask) +
+	        lowbit(vinfo->green_mask) +
+		lowbit(vinfo->blue_mask);
+    } else {
+	ncolors = colormap->red_max * colormap->red_mult +
+		  colormap->green_max * colormap->green_mult +
+		  colormap->blue_max * colormap->blue_mult + 1;
+	delta = 1;
+    }
+    if (ncolors <= 1 || (int) ncolors > vinfo->colormap_size)	return 0;
 
     /* Allocate Read/Write as much of the colormap as we can possibly get.
      * Then insure that the pixels we were allocated are given in 
@@ -181,7 +230,7 @@ static Status readwrite_map(dpy, vinfo, colormap)
 
     qsort((char *) pixels, npixels, sizeof(unsigned long), compare);
 
-    if (! contiguous(pixels, npixels, ncolors, &first_index, &remainder))
+    if (!contiguous(pixels, npixels, ncolors, delta, &first_index, &remainder))
     {
 	/* can't find enough contiguous cells, give up */
 	XFreeColors(dpy, colormap->colormap, pixels, npixels,
@@ -194,77 +243,75 @@ static Status readwrite_map(dpy, vinfo, colormap)
     /* construct a gray map */
     if (colormap->red_mult == 1 && colormap->green_mult == 1 &&
 	colormap->blue_mult == 1)
-	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n++)
+	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n += delta)
 	{
-	    color.pixel = (unsigned long) n;
+	    color.pixel = n;
 	    color.blue = color.green = color.red =
 		(unsigned short) ((i * 65535) / (colormap->red_max +
 						 colormap->green_max +
 						 colormap->blue_max));
 
 	    if (! ROorRWcell(dpy, colormap->colormap, pixels, npixels, &color,
-			     first_index + i, n))
+			     first_index + i))
 		return 0;
 	}
 
     /* construct a red ramp map */
     else if (colormap->green_max == 0 && colormap->blue_max == 0)
-    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n++)
+    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n += delta)
 	{
-	    color.pixel = (unsigned long) n;
+	    color.pixel = n;
 	    color.red = (unsigned short) ((i * 65535) / colormap->red_max);
 	    color.green = color.blue = 0;
 
 	    if (! ROorRWcell(dpy, colormap->colormap, pixels, npixels, &color,
-			     first_index + i, n))
+			     first_index + i))
 		return 0;
 	}
 
     /* construct a green ramp map */
     else if (colormap->red_max == 0 && colormap->blue_max == 0)
-    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n++)
+    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n += delta)
 	{
-	    color.pixel = (unsigned long) n;
+	    color.pixel = n;
 	    color.green = (unsigned short) ((i * 65535) / colormap->green_max);
 	    color.red = color.blue = 0;
 
 	    if (! ROorRWcell(dpy, colormap->colormap, pixels, npixels, &color,
-			     first_index + i, n))
+			     first_index + i))
 		return 0;
 	}
 
     /* construct a blue ramp map */
     else if (colormap->red_max == 0 && colormap->green_max == 0)
-    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n++)
+    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n += delta)
 	{
-	    color.pixel = (unsigned long) n;
+	    color.pixel = n;
 	    color.blue = (unsigned short) ((i * 65535) / colormap->blue_max);
 	    color.red = color.green = 0;
 
 	    if (! ROorRWcell(dpy, colormap->colormap, pixels, npixels, &color,
-			     first_index + i, n))
+			     first_index + i))
 		return 0;
 	}
 
     /* construct a standard red green blue cube map */
     else
     {
-	int r = colormap->red_mult;
-	int g = colormap->green_mult;
-	int gg = colormap->green_max + 1;
+#define calc(max,mult) (((n / colormap->mult) % \
+			 (colormap->max + 1)) * 65535) / colormap->max
 
-    	for (n=colormap->base_pixel, i=0; i < ncolors; i++, n++)
+    	for (n=0, i=0; i < ncolors; i++, n += delta)
 	{
-	    color.pixel = (unsigned long) n;
-	    color.red = (unsigned short) (((i/r) * 65535) / colormap->red_max);
-	    color.green = (unsigned short) ((((i/g)%gg) * 65535) /
-					    colormap->green_max);
-	    color.blue = (unsigned short) (((i%g) * 65535) /
-					   colormap->blue_max);
+	    color.pixel = n + colormap->base_pixel;
+	    color.red = calc(red_max, red_mult);
+	    color.green = calc(green_max, green_mult);
+	    color.blue = calc(blue_max, blue_mult);
 	    if (! ROorRWcell(dpy, colormap->colormap, pixels, npixels, &color,
-			     first_index + i, n))
+			     first_index + i))
 		return 0;
 	}
+#undef calc
     }
     /* We have a read-only map defined.  Now free unused cells,
      * first those occuring before the contiguous sequence begins,
@@ -285,12 +332,15 @@ static Status readwrite_map(dpy, vinfo, colormap)
 
 
 /****************************************************************************/
-static int ROmap(dpy, cmap, pixels, m, n)
-    Display		*dpy;		/* the X server connection */
-    Colormap		cmap;		/* specifies colormap ID */
-    unsigned long	pixels[];	/* returns pixel allocations */
-    int			m;		/* specifies colormap size */
-    int			n;		/* specifies number of colors */
+static int
+ROmap(Display *dpy, Colormap cmap, unsigned long pixels[], int m, int n)
+     /*
+      * dpy	- the X server connection
+      * cmap	- specifies colormap ID
+      * pixels	- returns pixel allocations
+      * m	- specifies colormap size
+      * n	- specifies number of colors
+      */
 {
     register int	p;
 
@@ -322,22 +372,29 @@ static int ROmap(dpy, cmap, pixels, m, n)
       
 
 /****************************************************************************/
-static Status contiguous(pixels, npixels, ncolors, first, rem)
-    unsigned long	pixels[];	/* specifies allocated pixels */
-    int			npixels;	/* specifies count of alloc'd pixels */
-    int			ncolors;	/* specifies needed sequence length */
-    int			*first;		/* returns first index of sequence */
-    int			*rem;		/* returns first index after sequence,
-					 * or 0, if none follow */
+static Status
+contiguous(unsigned long pixels[], int npixels, int ncolors,
+	   unsigned long delta, int *first, int *rem)
+     /* pixels	- specifies allocated pixels
+      * npixels	- specifies count of alloc'd pixels
+      * ncolors - specifies needed sequence length
+      * delta	- between pixels
+      * first	- returns first index of sequence
+      * rem	- returns first index after sequence, or 0, if none follow
+      */
 {
     register int i = 1;		/* walking index into the pixel array */
     register int count = 1;	/* length of sequence discovered so far */
 
-    *rem = npixels - 1;
     *first = 0;
+    if (npixels == ncolors) {
+	*rem = 0;
+	return 1;
+    }
+    *rem = npixels - 1;
     while (count < ncolors && ncolors - count <= *rem)
     {
-	if (pixels[i-1] + 1 == pixels[i])
+	if (pixels[i-1] + delta == pixels[i])
 	    count++;
 	else {
 	    count = 1;
@@ -353,14 +410,9 @@ static Status contiguous(pixels, npixels, ncolors, first, rem)
 
 
 /****************************************************************************/
-static Status ROorRWcell(dpy, cmap, pixels, npixels, color, p, n)
-    Display		*dpy;
-    Colormap		cmap;
-    unsigned long	pixels[];
-    int			npixels;
-    XColor		*color;
-    int			p;
-    int			n;
+static Status
+ROorRWcell(Display *dpy, Colormap cmap, unsigned long pixels[],
+	   int npixels, XColor *color, unsigned long p)
 {
     unsigned long	pixel;
     XColor		request;
@@ -377,7 +429,7 @@ static Status ROorRWcell(dpy, cmap, pixels, npixels, color, p, n)
      * because we want contiguous cells for image processing algorithms.
      */
      
-    pixel = (unsigned long) n;
+    pixel = color->pixel;
     request.red = color->red;
     request.green = color->green;
     request.blue = color->blue;
@@ -385,9 +437,9 @@ static Status ROorRWcell(dpy, cmap, pixels, npixels, color, p, n)
     XFreeColors(dpy, cmap, &pixel, 1, (unsigned long) 0);
     if (! XAllocColor(dpy, cmap, color) 
 	|| (color->pixel != pixel &&
-	    (!RWcell(dpy, cmap, color, &request, &pixel, n)))) 
+	    (!RWcell(dpy, cmap, color, &request, &pixel)))) 
     {
-	free_cells(dpy, cmap, pixels, npixels, p);
+	free_cells(dpy, cmap, pixels, npixels, (int)p);
 	return 0;
     }
     return 1;
@@ -395,12 +447,13 @@ static Status ROorRWcell(dpy, cmap, pixels, npixels, color, p, n)
 
 
 /****************************************************************************/
-static void free_cells(dpy, cmap, pixels, npixels,  p)
-    Display		*dpy;
-    Colormap		cmap;
-    unsigned long	pixels[];	/* to be freed */
-    int			npixels;        /* original number allocated */
-    int			p;	  
+static void
+free_cells(Display *dpy, Colormap cmap, unsigned long pixels[],
+	   int npixels, int p)
+     /*
+      * pixels	- to be freed
+      *	npixels	- original number allocated
+      */
 {
     /* One of the npixels allocated has already been freed.
      * p is the index of the freed pixel.
@@ -414,14 +467,12 @@ static void free_cells(dpy, cmap, pixels, npixels,  p)
 
 
 /****************************************************************************/
-static Status RWcell(dpy, cmap, color, request, pixel, n)
-    Display		*dpy;
-    Colormap		cmap;
-    XColor		*color;
-    XColor		*request;
-    unsigned long	*pixel;
-    int			n;
+static Status
+RWcell(Display *dpy, Colormap cmap, XColor *color, XColor *request,
+       unsigned long *pixel)
 {
+    unsigned long	n = *pixel;
+
     XFreeColors(dpy, cmap, &(color->pixel), 1, (unsigned long)0);
     if (! XAllocColorCells(dpy, cmap, (Bool) 0, (unsigned long *) NULL,
 			   (unsigned) 0, pixel, (unsigned) 1))
@@ -442,20 +493,16 @@ static Status RWcell(dpy, cmap, color, request, pixel, n)
 
 
 /****************************************************************************/
-static int compare(e1, e2)
-    unsigned long	*e1, *e2;
+static int
+compare(_Xconst void *e1, _Xconst void *e2)
 {
-    if (*e1 < *e2)	return -1;
-    if (*e1 > *e2)	return 1;
-    return 0;
+  return ((int)(*(long *)e1 - *(long *)e2));
 }
 
 
 /****************************************************************************/
-static Status readonly_map(dpy, vinfo, colormap)
-    Display		*dpy;
-    XVisualInfo		*vinfo;
-    XStandardColormap	*colormap;
+static Status
+readonly_map(Display *dpy, XVisualInfo *vinfo, XStandardColormap *colormap)
 {
     int			i, last_pixel;
     XColor		color;
@@ -469,7 +516,7 @@ static Status readonly_map(dpy, vinfo, colormap)
 	color.red = (unsigned short)
 	    (((i/colormap->red_mult) * 65535) / colormap->red_max);
 
-	if (vinfo->class == StaticColor || vinfo->class == TrueColor) {
+	if (vinfo->class == StaticColor) {
 	    color.green = (unsigned short)
 		((((i/colormap->green_mult) % (colormap->green_max + 1)) *
 		  65535) / colormap->green_max);

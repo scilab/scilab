@@ -1,34 +1,40 @@
-/* "$XConsortium: Lookup.c,v 1.12 90/12/11 13:19:10 rws Exp $"; */
+/* $Xorg: Lookup.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
 
 /* 
- * Copyright 1988, 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+ 
+Copyright 1988, 1989, 1998  The Open Group
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/Lookup.c,v 3.7 2001/01/17 19:42:56 dawes Exp $ */
+
+#include <X11/Xmu/Lookup.h>
+
 #define XK_LATIN1
 #define XK_PUBLISHING
 #include <X11/keysymdef.h>
 
-#if __STDC__
-#define Const const
-#else
-#define Const /**/
-#endif
-
 /* bit (1<<i) means character is in codeset i */
-static unsigned short Const latin1[128] =
+static unsigned short _Xconst latin1[128] =
   {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
@@ -47,7 +53,7 @@ static unsigned short Const latin1[128] =
    0x0008, 0x0004, 0x000e, 0x000c, 0x000e, 0x0002, 0x0000, 0x0000};
 
 /* bit (1<<i) means character is in codeset i */
-static unsigned short Const latin2[128] =
+static unsigned short _Xconst latin2[128] =
   {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
@@ -66,7 +72,7 @@ static unsigned short Const latin2[128] =
    0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x000c};
 
 /* maps Cyrillic keysyms to 8859-5 */
-static unsigned char Const cyrillic[128] =
+static unsigned char _Xconst cyrillic[128] =
    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -85,7 +91,7 @@ static unsigned char Const cyrillic[128] =
     0xcc, 0xcb, 0xb7, 0xc8, 0xcd, 0xc9, 0xc7, 0xca};
 
 /* maps Greek keysyms to 8859-7 */
-static unsigned char Const greek[128] =
+static unsigned char _Xconst greek[128] =
    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -103,32 +109,29 @@ static unsigned char Const greek[128] =
     0xf0, 0xf1, 0xf3, 0xf2, 0xf4, 0xf5, 0xf6, 0xf7, /* 15 */
     0xf8, 0xf9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-#define sLatin1		0
-#define sLatin2		1
-#define sLatin3		2
-#define sLatin4		3
-#define sKana		4
-#define sX0201		0x01000004
-#define sArabic		5
-#define sCyrillic	6
-#define sGreek		7
-#define sAPL		11
-#define sHebrew		12
+#define sLatin1		(unsigned long)0
+#define sLatin2		(unsigned long)1
+#define sLatin3		(unsigned long)2
+#define sLatin4		(unsigned long)3
+#define sKana		(unsigned long)4
+#define sX0201		(unsigned long)0x01000004
+#define sArabic		(unsigned long)5
+#define sCyrillic	(unsigned long)6
+#define sGreek		(unsigned long)7
+#define sAPL		(unsigned long)11
+#define sHebrew		(unsigned long)12
 
-int XmuLookupString (event, buffer, nbytes, keysym, status, keysymSet)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
-    unsigned long keysymSet;
+int
+XmuLookupString(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status,
+		unsigned long keysymSet)
 {
     int count;
     KeySym symbol;
     unsigned long kset;
 
     kset = keysymSet & 0xffffff;
-    count = XLookupString(event, buffer, nbytes, &symbol, status);
+    count = XLookupString(event, (char *)buffer, nbytes, &symbol, status);
     if (keysym) *keysym = symbol;
     if ((nbytes == 0) || (symbol == NoSymbol)) {
 	/* nothing */
@@ -184,123 +187,90 @@ int XmuLookupString (event, buffer, nbytes, keysym, status, keysymSet)
 }
 
 /* produces ISO 8859-1 encoding plus ASCII control */
-int XmuLookupLatin1 (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupLatin1(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
-    return XLookupString(event, buffer, nbytes, keysym, status);
+    return XLookupString(event, (char *)buffer, nbytes, keysym, status);
 }
 
 /* produces ISO 8859-2 encoding plus ASCII control */
-int XmuLookupLatin2 (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupLatin2(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sLatin2);
 }
 
 /* produces ISO 8859-3 encoding plus ASCII control */
-int XmuLookupLatin3 (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupLatin3(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sLatin3);
 }
 
 /* produces ISO 8859-4 encoding plus ASCII control */
-int XmuLookupLatin4 (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupLatin4(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sLatin4);
 }
 
 /* produces ISO 8859-1 GL plus Katakana plus ASCII control */
-int XmuLookupKana (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupKana(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+	      KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sKana);
 }
 
 /* produces JIS X0201-1976 (8-bit) */
-int XmuLookupJISX0201 (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupJISX0201(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		  KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sX0201);
 }
 
 /* produces ISO 8859-6 encoding plus ASCII control */
-int XmuLookupArabic (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupArabic(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sArabic);
 }
 
 /* produces ISO/IEC 8859-5 encoding plus ASCII control */
-int XmuLookupCyrillic (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupCyrillic(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		  KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sCyrillic);
 }
 
 /* produces ISO 8859-7 encoding plus ASCII control */
-int XmuLookupGreek (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupGreek(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+	       KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sGreek);
 }
 
 /* XXX this character set needs work */
 
-int XmuLookupAPL (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupAPL(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+	     KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sAPL);
 }
 
 /* produces ISO 8859-8 encoding plus ASCII control */
-int XmuLookupHebrew (event, buffer, nbytes, keysym, status)
-    register XKeyEvent *event;
-    char *buffer;
-    int nbytes;
-    KeySym *keysym;
-    XComposeStatus *status;
+int
+XmuLookupHebrew(register XKeyEvent *event, unsigned char *buffer, int nbytes,
+		KeySym *keysym, XComposeStatus *status)
 {
     return XmuLookupString(event, buffer, nbytes, keysym, status, sHebrew);
 }

@@ -1,24 +1,33 @@
-/* $XConsortium: StdCmap.c,v 1.11 89/10/08 15:04:52 rws Exp $ 
- * 
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
+/* $Xorg: StdCmap.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
+/* 
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/StdCmap.c,v 1.5 2001/01/17 19:42:56 dawes Exp $ */
+
+/*
  * Author:  Donna Converse, MIT X Consortium
  */
 
@@ -28,7 +37,14 @@
 #include <X11/Xutil.h>
 #include <X11/Xmu/StdCmap.h>
 
-static Status valid_args();		/* argument restrictions */
+#define lowbit(x) ((x) & (~(x) + 1))
+
+/*
+ * Prototypes
+ */
+/* argument restrictions */
+static Status valid_args(XVisualInfo*, unsigned long, unsigned long,
+			 unsigned long, Atom);
 
 /*
  * To create any one standard colormap, use XmuStandardColormap().
@@ -45,15 +61,20 @@ static Status valid_args();		/* argument restrictions */
  * caller's responsibility.
  */
 
-XStandardColormap *XmuStandardColormap(dpy, screen, visualid, depth, property,
-				       cmap, red_max, green_max, blue_max)
-    Display		*dpy;		/* specifies X server connection */
-    int			screen; 	/* specifies display screen */
-    VisualID		visualid;	/* identifies the visual type */
-    unsigned int	depth;		/* identifies the visual type */
-    Atom		property;	/* a standard colormap property */
-    Colormap		cmap;		/* specifies colormap ID or None */
-    unsigned long	red_max, green_max, blue_max;	/* allocations */
+XStandardColormap *
+XmuStandardColormap(Display *dpy, int screen, VisualID visualid,
+		    unsigned int depth, Atom property, Colormap cmap,
+		    unsigned long red_max, unsigned long green_max,
+		    unsigned long blue_max)
+     /*
+      * dpy				- specifies X server connection
+      * screen				- specifies display screen
+      * visualid			- identifies the visual type
+      * depth				- identifies the visual type
+      * property			- a standard colormap property
+      * cmap				- specifies colormap ID or None
+      * red_max, green_max, blue_max	- allocations
+      */
 {
     XStandardColormap	*stdcmap;
     Status		status;
@@ -101,7 +122,11 @@ XStandardColormap *XmuStandardColormap(dpy, screen, visualid, depth, property,
     stdcmap->blue_max = blue_max;
     if (property == XA_RGB_GRAY_MAP) 
 	stdcmap->red_mult = stdcmap->green_mult = stdcmap->blue_mult = 1;
-    else {
+    else if (vinfo->class == TrueColor || vinfo->class == DirectColor) {
+	stdcmap->red_mult = lowbit(vinfo->red_mask);
+	stdcmap->green_mult = lowbit(vinfo->green_mask);
+	stdcmap->blue_mult = lowbit(vinfo->blue_mask);
+    } else {
 	stdcmap->red_mult = (red_max > 0)
 	    ? (green_max + 1) * (blue_max + 1) : 0;
 	stdcmap->green_mult = (green_max > 0) ? blue_max + 1 : 0;
@@ -132,10 +157,14 @@ XStandardColormap *XmuStandardColormap(dpy, screen, visualid, depth, property,
 }
 
 /****************************************************************************/
-static Status valid_args(vinfo, red_max, green_max, blue_max, property)
-    XVisualInfo		*vinfo;		/* specifies visual */
-    unsigned long	red_max, green_max, blue_max;	/* specifies alloc */
-    Atom		property;	/* specifies property name */
+static Status
+valid_args(XVisualInfo *vinfo, unsigned long red_max, unsigned long green_max,
+	   unsigned long blue_max, Atom property)
+     /*
+      * vinfo				- specifies visual
+      * red_max, green_max, blue_max	- specifies alloc
+      * property			- specifies property name
+      */
 {
     unsigned long	ncolors;	/* number of colors requested */
 
@@ -174,34 +203,27 @@ static Status valid_args(vinfo, red_max, green_max, blue_max, property)
     switch (property)
     {
       case XA_RGB_DEFAULT_MAP:
-	if ((red_max == 0 || green_max == 0 || blue_max == 0) ||
-	    (vinfo->class != PseudoColor && vinfo->class != DirectColor &&
-	     vinfo->class != GrayScale))
+	if (red_max == 0 || green_max == 0 || blue_max == 0)
 	    return 0;
 	break;
       case XA_RGB_RED_MAP:
-	if ((vinfo->class != PseudoColor && vinfo->class != DirectColor) ||
-	    (red_max == 0))
+	if (red_max == 0)
 	    return 0;
 	break;
       case XA_RGB_GREEN_MAP:
-	if ((vinfo->class != PseudoColor && vinfo->class != DirectColor) ||
-	    (green_max == 0))
+	if (green_max == 0)
 	    return 0;
 	break;
       case XA_RGB_BLUE_MAP:	
-	if ((vinfo->class != PseudoColor && vinfo->class != DirectColor) ||
-	    blue_max == 0)
+	if (blue_max == 0)
 	    return 0;
 	break;
       case XA_RGB_BEST_MAP:
-	if (vinfo->class == GrayScale || vinfo->class == StaticGray ||
-	    red_max == 0 || green_max == 0 || blue_max == 0)
+	if (red_max == 0 || green_max == 0 || blue_max == 0)
 	    return 0;
 	break;
       case XA_RGB_GRAY_MAP:
-	if (vinfo->class == StaticColor || vinfo->class == TrueColor ||
-	    red_max == 0 || blue_max == 0 || green_max == 0)
+	if (red_max == 0 || blue_max == 0 || green_max == 0)
 	    return 0;
 	break;
       default:

@@ -1,18 +1,31 @@
+/* $Xorg: Xct.c,v 1.4 2001/02/09 02:03:53 xorgcvs Exp $ */
+
 /* 
- * $XConsortium: Xct.c,v 1.17 91/07/22 23:47:13 rws Exp $
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/Xct.c,v 1.8 2001/07/25 15:04:50 dawes Exp $ */
 
 #include <X11/Xfuncs.h>
 #include "Xct.h"
@@ -36,8 +49,7 @@ typedef struct _XctPriv {
 #define IsMore(priv) ((priv)->ptr != (priv)->ptrend)
 #define AmountLeft(priv) ((priv)->ptrend - (priv)->ptr)
 
-extern char *malloc();
-extern char *realloc();
+#include <stdlib.h>
 
 #define HT	0x09
 #define NL	0x0a
@@ -65,9 +77,23 @@ extern char *realloc();
 #define HasGR 4
 #define ToGL  8
 
+/*
+ * Prototypes
+ */
+static void ComputeGLGR(XctData);
+static int Handle94GR(XctData, int);
+static int Handle96GR(XctData, int);
+static int HandleExtended(XctData data, int);
+static int HandleGL(XctData, int);
+static int HandleMultiGL(XctData, int);
+static int HandleMultiGR(XctData data, int);
+static void ShiftGRToGL(XctData, int);
+
+/*
+ * Implementation
+ */
 static void
-ComputeGLGR(data)
-    register XctData data;
+ComputeGLGR(register XctData data)
 {
     /* XXX this will need more work if more sets are registered */
     if ((data->GL_set_size == 94) && (data->GL_char_size == 1) &&
@@ -83,9 +109,7 @@ ComputeGLGR(data)
 }
 
 static int
-HandleGL(data, c)
-    register XctData data;
-    unsigned char c;
+HandleGL(register XctData data, int c)
 {
     switch (c) {
     case 0x42:
@@ -106,9 +130,7 @@ HandleGL(data, c)
 }
 
 static int
-HandleMultiGL(data, c)
-    register XctData data;
-    unsigned char c;
+HandleMultiGL(register XctData data, int c)
 {
     switch (c) {
     case 0x41:
@@ -141,9 +163,7 @@ HandleMultiGL(data, c)
 }
 
 static int
-Handle94GR(data, c)
-    register XctData data;
-    unsigned char c;
+Handle94GR(register XctData data, int c)
 {
     switch (c) {
     case 0x49:
@@ -161,9 +181,7 @@ Handle94GR(data, c)
 }
 
 static int
-Handle96GR(data, c)
-    register XctData data;
-    unsigned char c;
+Handle96GR(register XctData data, int c)
 {
     switch (c) {
     case 0x41:
@@ -213,9 +231,7 @@ Handle96GR(data, c)
 }
 
 static int
-HandleMultiGR(data, c)
-    register XctData data;
-    unsigned char c;
+HandleMultiGR(register XctData data, int c)
 {
     switch (c) {
     case 0x41:
@@ -261,14 +277,12 @@ HandleMultiGR(data, c)
 }
 
 static int
-HandleExtended(data, c)
-    register XctData data;
-    unsigned char c;
+HandleExtended(register XctData data, int c)
 {
     register XctPriv priv = data->priv;
     XctString enc = data->item + 6;
     register XctString ptr = enc;
-    int i, len;
+    unsigned i, len;
 
     while (*ptr != 0x02) {
 	if (!*ptr || (++ptr == priv->ptr))
@@ -290,7 +304,7 @@ HandleExtended(data, c)
 		return 0;
 	}
 	ptr = (XctString)malloc((unsigned)len + 1);
-	bcopy((char *)enc, (char *)ptr, len);
+	(void) memmove((char *)ptr, (char *)enc, len);
 	ptr[len] = 0x00;
 	priv->enc_count++;
 	if (priv->encodings)
@@ -307,9 +321,7 @@ HandleExtended(data, c)
 }
 
 static void
-ShiftGRToGL(data, hasCdata)
-    register XctData data;
-    int hasCdata;
+ShiftGRToGL(register XctData data, int hasCdata)
 {
     register XctPriv priv = data->priv;
     register int i;
@@ -322,7 +334,8 @@ ShiftGRToGL(data, hasCdata)
 	else
 	    priv->itembuf = (XctString)malloc(priv->buf_count);
     }
-    bcopy((char *)data->item, (char *)priv->itembuf, data->item_length);
+    (void) memmove((char *)priv->itembuf, (char *)data->item, 
+		   data->item_length);
     data->item = priv->itembuf;
     if (hasCdata) {
 	for (i = data->item_length; --i >= 0; ) {
@@ -336,16 +349,8 @@ ShiftGRToGL(data, hasCdata)
 }
 
 /* Create an XctData structure for parsing a Compound Text string. */
-#if NeedFunctionPrototypes
 XctData
 XctCreate(_Xconst unsigned char *string, int length, XctFlags flags)
-#else
-XctData
-XctCreate(string, length, flags)
-    XctString string;
-    int length;
-    XctFlags flags;
-#endif
 {
     register XctData data;
     register XctPriv priv;
@@ -369,8 +374,7 @@ XctCreate(string, length, flags)
 
 /* Reset the XctData structure to re-parse the string from the beginning. */
 void
-XctReset(data)
-    register XctData data;
+XctReset(register XctData data)
 {
     register XctPriv priv = data->priv;
 
@@ -405,8 +409,7 @@ XctReset(data)
  * contextual state, are reported as components of the XctData structure.
  */
 XctResult
-XctNextItem(data)
-    register XctData data;
+XctNextItem(register XctData data)
 {
     register XctPriv priv = data->priv;
     unsigned char c;
@@ -662,10 +665,9 @@ XctNextItem(data)
 
 /* Free all data associated with an XctDataStructure. */
 void
-XctFree(data)
-    register XctData data;
+XctFree(register XctData data)
 {
-    int i;
+    unsigned i;
     register XctPriv priv = data->priv;
 
     if (priv->dirstack)

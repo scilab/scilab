@@ -1,39 +1,52 @@
+/* $Xorg: DefErrMsg.c,v 1.4 2001/02/09 02:03:52 xorgcvs Exp $ */
+
 /*
- * $XConsortium: DefErrMsg.c,v 1.8 90/12/09 18:05:14 rws Exp $
- *
- * Copyright 1988 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided
- * that the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific,
- * written prior permission. M.I.T. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- */
+
+Copyright 1988, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/DefErrMsg.c,v 1.7 2001/01/17 19:42:54 dawes Exp $ */
 
 #include <stdio.h>
 #define NEED_EVENTS
 #include <X11/Xlibint.h>
 #include <X11/Xproto.h>
+#include <X11/Xmu/Error.h>
+#include <X11/Xmu/SysUtil.h>
 
 /*
  * XmuPrintDefaultErrorMessage - print a nice error that looks like the usual 
  * message.  Returns 1 if the caller should consider exitting else 0.
  */
-int XmuPrintDefaultErrorMessage (dpy, event, fp)
-    Display *dpy;
-    XErrorEvent *event;
-    FILE *fp;
+int
+XmuPrintDefaultErrorMessage(Display *dpy, XErrorEvent *event, FILE *fp)
 {
     char buffer[BUFSIZ];
     char mesg[BUFSIZ];
     char number[32];
     char *mtype = "XlibMessage";
     register _XExtension *ext = (_XExtension *)NULL;
+    _XExtension *bext = (_XExtension *)NULL;
     XGetErrorText(dpy, event->error_code, buffer, BUFSIZ);
     XGetErrorDatabaseText(dpy, mtype, "XError", "X Error", mesg, BUFSIZ);
     (void) fprintf(fp, "%s:  %s\n  ", mesg, buffer);
@@ -41,7 +54,7 @@ int XmuPrintDefaultErrorMessage (dpy, event, fp)
 	mesg, BUFSIZ);
     (void) fprintf(fp, mesg, event->request_code);
     if (event->request_code < 128) {
-	sprintf(number, "%d", event->request_code);
+	XmuSnprintf(number, sizeof(number), "%d", event->request_code);
 	XGetErrorDatabaseText(dpy, "XRequest", number, "", buffer, BUFSIZ);
     } else {
 	/* XXX this is non-portable */
@@ -50,7 +63,7 @@ int XmuPrintDefaultErrorMessage (dpy, event, fp)
 	     ext = ext->next)
 	  ;
 	if (ext)
-	    strcpy(buffer, ext->name);
+	  XmuSnprintf(buffer, sizeof(buffer), "%s", ext->name);
 	else
 	    buffer[0] = '\0';
     }
@@ -61,38 +74,44 @@ int XmuPrintDefaultErrorMessage (dpy, event, fp)
 			      mesg, BUFSIZ);
 	(void) fprintf(fp, mesg, event->minor_code);
 	if (ext) {
-	    sprintf(mesg, "%s.%d", ext->name, event->minor_code);
+	    XmuSnprintf(mesg, sizeof(mesg),
+			"%s.%d", ext->name, event->minor_code);
 	    XGetErrorDatabaseText(dpy, "XRequest", mesg, "", buffer, BUFSIZ);
 	    (void) fprintf(fp, " (%s)", buffer);
 	}
 	fputs("\n  ", fp);
     }
     if (event->error_code >= 128) {
-	/* let extensions try to print the values */
-	/* XXX this is non-portable code */
-	for (ext = dpy->ext_procs; ext; ext = ext->next) {
-	    if (ext->error_values)
-		(*ext->error_values)(dpy, event, fp);
-	}
-	/* the rest is a fallback, providing a simple default */
 	/* kludge, try to find the extension that caused it */
 	buffer[0] = '\0';
 	for (ext = dpy->ext_procs; ext; ext = ext->next) {
 	    if (ext->error_string) 
 		(*ext->error_string)(dpy, event->error_code, &ext->codes,
 				     buffer, BUFSIZ);
-	    if (buffer[0])
+	    if (buffer[0]) {
+		bext = ext;
 		break;
+	    }
+	    if (ext->codes.first_error &&
+		ext->codes.first_error < event->error_code &&
+		(!bext || ext->codes.first_error > bext->codes.first_error))
+		bext = ext;
 	}    
-	if (buffer[0])
-	    sprintf(buffer, "%s.%d", ext->name,
-		    event->error_code - ext->codes.first_error);
+	if (bext)
+	    XmuSnprintf(buffer, sizeof(buffer), "%s.%d", bext->name,
+			event->error_code - bext->codes.first_error);
 	else
 	    strcpy(buffer, "Value");
 	XGetErrorDatabaseText(dpy, mtype, buffer, "", mesg, BUFSIZ);
-	if (*mesg) {
+	if (mesg[0]) {
+	    fputs("  ", fp);
 	    (void) fprintf(fp, mesg, event->resourceid);
-	    fputs("\n  ", fp);
+	    fputs("\n", fp);
+	}
+	/* let extensions try to print the values */
+	for (ext = dpy->ext_procs; ext; ext = ext->next) {
+	    if (ext->error_values)
+		(*ext->error_values)(dpy, event, fp);
 	}
     } else if ((event->error_code == BadWindow) ||
 	       (event->error_code == BadPixmap) ||
@@ -134,9 +153,8 @@ int XmuPrintDefaultErrorMessage (dpy, event, fp)
  * and XGetGeometry; print a message for everything else.  In all case, do
  * not exit.
  */
-int XmuSimpleErrorHandler (dpy, errorp)
-    Display *dpy;
-    XErrorEvent *errorp;
+int
+XmuSimpleErrorHandler(Display *dpy, XErrorEvent *errorp)
 {
     switch (errorp->request_code) {
       case X_QueryTree:

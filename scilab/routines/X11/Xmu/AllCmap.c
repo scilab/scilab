@@ -1,26 +1,31 @@
-/* $XConsortium: AllCmap.c,v 1.6 89/10/08 14:52:32 rws Exp $
- * 
- * Copyright 1989 by the Massachusetts Institute of Technology
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that the above copyright notice appear in all copies and that both that 
- * copyright notice and this permission notice appear in supporting 
- * documentation, and that the name of M.I.T. not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission. M.I.T. makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * M.I.T. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL M.I.T.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- * Author:  Donna Converse, MIT X Consortium
- */
+/* $Xorg: AllCmap.c,v 1.4 2001/02/09 02:03:51 xorgcvs Exp $ */
+
+/* 
+ 
+Copyright 1989, 1998  The Open Group
+
+Permission to use, copy, modify, distribute, and sell this software and its
+documentation for any purpose is hereby granted without fee, provided that
+the above copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+OPEN GROUP BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of The Open Group shall not be
+used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from The Open Group.
+
+*/
+/* $XFree86: xc/lib/Xmu/AllCmap.c,v 1.7 2001/01/17 19:42:53 dawes Exp $ */
 
 #include <stdio.h>
 #include <X11/Xlib.h>
@@ -28,7 +33,7 @@
 #include <X11/Xutil.h>
 #include <X11/Xmu/StdCmap.h>
  
-static XVisualInfo *getDeepestVisual();
+static XVisualInfo *getDeepestVisual(int, XVisualInfo*, int);
 
 /*
  * To create all of the appropriate standard colormaps for every visual of
@@ -83,14 +88,15 @@ static XVisualInfo *getDeepestVisual();
  * standard colormaps are meaningful under these classes of visuals.
  */
 
-Status XmuAllStandardColormaps(dpy)
-    Display	*dpy;		/* Specifies the connection to the X server */
+Status
+XmuAllStandardColormaps(Display *dpy)
 {
     int 	nvisuals, scr;
     Status	status;
     long	vinfo_mask;
     XVisualInfo	template, *vinfo, *v1, *v2;
-    
+
+    status = 0;
     /* for each screen, determine all visuals of this server */
     for (scr=0; scr < ScreenCount(dpy); scr++)
     {
@@ -131,13 +137,11 @@ Status XmuAllStandardColormaps(dpy)
     return status;
 }
 
-static XVisualInfo *getDeepestVisual(visual_class, vinfo, nvisuals)
-    int		visual_class;	/* specifies the visual class */
-    XVisualInfo	*vinfo;		/* specifies all visuals for a screen */
-    int		nvisuals;	/* specifies number of visuals in the list */
+static XVisualInfo *
+getDeepestVisual(int visual_class, XVisualInfo *vinfo, int nvisuals)
 {
     register int	i;
-    unsigned int	maxdepth = 0;
+    register int	maxdepth = 0;
     XVisualInfo		*v = NULL;
     
     for (i=0; i < nvisuals; i++, vinfo++)
