@@ -28,7 +28,7 @@
   <DESCRIPTION>
   <P>
     <VERB>show_nodes</VERB> highlights the set of nodes <VERB>nodes</VERB> of the
-    displayed graph in the current Editgraph window.
+    displayed graph in the current edit_graph window.
     If the optional argument <VERB>sup</VERB> is equal to the string &apos;sup&apos;,
     the highlighting is superposed on the previous one.
  
@@ -45,7 +45,7 @@ for i=2:3:g('node_number'), show_nodes([i]); end;
 for i=1:3:g('node_number'), show_nodes([i],'sup'); end;
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>editgraph</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edit_graph</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>show_arcs</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindow</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindows</LINK> </SEE_ALSO_ITEM>

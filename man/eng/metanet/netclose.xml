@@ -5,7 +5,7 @@
   <TITLE>netclose</TITLE>
   <TYPE> Scilab Function </TYPE>
   <DATE>September 1998   </DATE>
-  <SHORT_DESCRIPTION name="netclose"> closes an editgraph window  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="netclose"> closes an edit_graph window  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>netclose(window)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -21,13 +21,13 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Each <VERB>editgraph</VERB> window has a window number returned by <VERB>editgraph</VERB>
-    and <VERB>show_graph</VERB> functions. This function is used to close the
-    Metanet window with number <VERB>window</VERB>.
+    Each <VERB>editgraph</VERB> window has a window number returned by <VERB>edit_graph</VERB>
+    and <VERB>show_graph</VERB> functions. This function is used to
+    close the <VERB>edit_graph</VERB> window with number <VERB>window</VERB>.
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>editgraph</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>edit_graph</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindow</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindows</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>show_graph</LINK> </SEE_ALSO_ITEM>
