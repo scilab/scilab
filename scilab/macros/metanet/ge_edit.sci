@@ -14,7 +14,7 @@ function r=ge_edit(kmen,win)
 	' ']
   mens=['NewNode','NewArc','Move','Move Region',..
 	"Copy Region To ClipBoard",'Paste','Delete',..
-	'Delete Region','Properties','Set default names','Undo']
+	'Delete Region','Properties','Give default names','Undo']
   execstr('global EGdata_'+w+'; EGdata_'+w+'.Cmenu='''+mens(kmen)+'''')
   if mens(kmen)=='Undo' then
     old=xget('window');xset('window',win);seteventhandler("")
@@ -22,7 +22,7 @@ function r=ge_edit(kmen,win)
     execstr('global EGdata_'+w+'; EGdata_'+w+'.Edited=%t')
     execstr('EGdata_'+w+'.Cmenu=[]')
     seteventhandler("ge_eventhandler") ;xset('window',old)
-  elseif mens(kmen)=='Set default names' then
+  elseif mens(kmen)=='Give default names' then
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_default_names()
     execstr('global EGdata_'+w+'; EGdata_'+w+'.Edited=%t')
