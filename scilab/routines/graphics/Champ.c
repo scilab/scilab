@@ -128,6 +128,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
+      sciDrawObj(sciGetCurrentFigure ()); /* Adding F.Leray 13.05.04 to insure the drawing */
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
       pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
