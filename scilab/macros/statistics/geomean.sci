@@ -22,9 +22,9 @@ function gm=geomean(x,orien)
   [lhs,rhs]=argn(0)
   if rhs==0 then error('geomean requires at least one input.'), end
   if rhs==1 then
-    gm=prod(x)^(1/length(a))
+    gm=prod(x)^(1/length(x))
   elseif rhs==2
-    gm=prod(x,orien).^(1/size(a,orien))
+    gm=prod(x,orien).^(1/size(x,orien))
   else 
     error('The number of input parameters must be 1 or 2')
   end
