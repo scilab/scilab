@@ -1,45 +1,6 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.9 2003/01/03 13:24:38 steer Exp $
- * $Log: zzledt.c,v $
- * Revision 1.9  2003/01/03 13:24:38  steer
- * ajout de la definition de get_one_char
- *
- * Revision 1.8  2002/12/12 16:10:13  chanceli
- * update
- *
- * Revision 1.7  2002/09/02 08:17:58  chanceli
- * readline
- *
- * Revision 1.6  2002/08/08 14:49:24  steer
- *  pour que les menus dynamiques ne provoque pas l'impression de l'instruction
- *
- * Revision 1.5  2001/09/19 08:32:29  chanceli
- * update
- *
- * Revision 1.4  2001/06/27 08:56:12  chanceli
- * updates
- *
- * Revision 1.3  2001/06/23 16:29:09  chanceli
- * updates
- *
- * Revision 1.2  2001/06/18 12:41:41  chanceli
- * upgrade
- *
- * Revision 1.1  2001/06/18 11:44:24  chanceli
- *  update du help
- *
- * Revision 1.2  2001/05/25 13:43:12  chanceli
- * commentaires
- *
- * Revision 1.1.1.1  2001/04/26 07:48:09  scilab
- * Imported sources
- *
- *
- * Revision 10.1  1993/02/11  14:34:03  mga
- * Initial Version
- *
  * Copyright (c) mitchell and gauthier assoc, inc 1990
  * All rights reserved
  * Modified for Scilab 
