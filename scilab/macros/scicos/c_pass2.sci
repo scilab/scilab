@@ -145,9 +145,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     message(['No continuous-time state. Tresholds are ignored. If not';
 	     'you need a block with continuous-time state in your diagram.';
 	     'You can include DUMMY CLSS block (linear palette).']);
-    //cpr=list()
-    //ok=%f;
-    //return
+
   end
 
 
@@ -275,6 +273,9 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   
   typp=zeros(typ_s);typp(typ_s)=1
   
+  
+  
+
   ext_cord1=cord;
   j=1
   while %t
@@ -289,6 +290,11 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   end
 
   ext_cord=unique(ext_cord1(:,1)');
+  
+  for i=ext_cord
+    if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
+  end  // adding zero crossing surfaces to cont. time synchros
+  
   //a supprimer
   [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
   if or(sort(ext_cord_old)<>sort(ext_cord)) then pause,end
