@@ -2387,6 +2387,56 @@ integer C2F(maxvol)(lw, lw_type, type_len)
 }
 
 
+/*---------------------------------------------
+ * This function checks all the variables which 
+ * where references and restore their contents 
+ * to Scilab value. 
+ *---------------------------------------------*/ 
+
+static int Check_references()
+{
+  int ivar ; 
+  for (ivar = 1; ivar <= Rhs ; ++ivar) 
+    {
+      unsigned char Type = C2F(intersci).ntypes[ivar - 1];
+      if ( Type != '$') 
+	{
+	  int lw = ivar + Top - Rhs;
+	  int il = iadr(*lstk(lw));
+	  if ( *istk(il) < 0) 
+	    {
+	      int m,n,it,size;
+	      /* back conversion if necessary of a reference */ 
+	      /* sciprint("%d: is a reference\r\n",ivar);  */
+	      if ( *istk(il) < 0)  il = iadr(*istk(il +1));
+	      m =*istk(il +1);
+	      n =*istk(il +2);
+	      it = *istk(il +3);
+	      switch ( Type ) {
+	      case 'i' : 
+	      case 'r' : 
+	      case 'd' :
+		size  = m * n * (it + 1); break; 
+	      case 'z' :
+		size  = 0;break; /* size is unsued for 'z' in ConvertData;*/
+	      case 'c' : 
+		size =*istk(il + 4  +1) - *istk(il + 4 ); break;
+	      case 'b' :
+		size = m*n ; break;
+	      }
+	      ConvertData(&Type,size,C2F(intersci).lad[ivar - 1]);
+	      C2F(intersci).ntypes[ivar - 1] = '$';
+	    }
+	}
+      else 
+	{
+	  /* sciprint("%d: is of type $ \n",ivar);  */
+	}
+    }
+  return TRUE_; 
+}
+
+
 
 
 /*---------------------------------------------------------------------
@@ -2401,6 +2451,7 @@ integer C2F(maxvol)(lw, lw_type, type_len)
 int C2F(putlhsvar)()
 {
   integer ix2, ivar, ibufprec, ix, k, lcres, nbvars1;
+  Check_references();
   if (C2F(iop).err > 0||C2F(errgst).err1> 0)  return TRUE_ ; 
   if (C2F(com).fun== -1 ) return TRUE_ ; /* execution continue with an 
 					    overloaded function */
@@ -2458,6 +2509,7 @@ int C2F(putlhsvar)()
   return TRUE_;
 } 
 
+
 /*---------------------------------------------------------------------
  * mvfromto : 
  *     this routines copies the variable number i
@@ -2483,17 +2535,19 @@ int C2F(putlhsvar)()
 static int C2F(mvfromto)(itopl, ix)
      integer *itopl, *ix;
 {
-  integer ix1, m,n,it,lcs,lrs ,il,l; 
+  integer ix1, m,n,it,lcs,lrs ,il,l,ilp;
   unsigned char Type ;
-  int iwh; double wsave;
+  double wsave;
 
   Type = C2F(intersci).ntypes[*ix - 1];
   if ( Type != '$') 
     {
-      iwh = C2F(intersci).iwhere[*ix - 1];
-      m =*istk( iadr(iwh) +1);
-      n =*istk( iadr(iwh) +2);
-      it = *istk( iadr(iwh) +3);
+      int iwh = *ix + Top - Rhs;
+      ilp = iadr(*lstk(iwh));
+      if ( *istk(ilp) < 0)  ilp = iadr(*istk(ilp +1));
+      m =*istk(ilp +1);
+      n =*istk(ilp +2);
+      it = *istk(ilp +3);
     }
 
   switch ( Type ) {
@@ -2531,7 +2585,7 @@ static int C2F(mvfromto)(itopl, ix)
     }
     break;
   case 'z' :
-    if ( *istk( iadr(iwh)) == 133 ) {
+    if ( *istk(ilp) == 133 ) {
       wsave=*stk(C2F(intersci).lad[*ix - 1]); 
       n=*istk(m+1);m=*istk(m);it=1;
       if (! C2F(cremat)("mvfromto", itopl, &it, &m, &n, &lrs, &lcs, 8L)) {
@@ -2549,8 +2603,7 @@ static int C2F(mvfromto)(itopl, ix)
     }
     break;
   case 'c' : 
-    il = iadr(iwh);
-    m = *istk(il + 4  +1) - *istk(il + 4 );
+    m = *istk(ilp + 4  +1) - *istk(ilp + 4 );
     n = 1;
     ix1 = m * n;
     if (! C2F(cresmat2)("mvfromto", itopl, &ix1, &lrs, 8L)) {
