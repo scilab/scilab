@@ -123,7 +123,7 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 endfunction
 
 function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
-				  cflags,fflags)
+				  cflags,fflags,cc)
   
   if libname=="" then libname = names(1);end 
   fd=mopen(Makename,"w");
