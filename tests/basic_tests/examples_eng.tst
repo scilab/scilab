@@ -5761,7 +5761,7 @@ clear;lines(0);
    x=-10:10; y=-10:10;m =rand(21,21);
    Sgrayplot(x,y,m);
    a=get("current_axes");
-   f=a.children.children(2)
+   f=a.children.children(1)
    f.data(:,3)=(1:size(f.data,1))';
    a.parent.color_map=hotcolormap(64);
 
