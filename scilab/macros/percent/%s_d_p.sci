@@ -7,5 +7,5 @@ if size(p1,'*')==1 then
 elseif size(p2,'*')==1 then
   p2=p2*ones(p1)
 end
-f=tlist(['r','num','den','dt'],p1,p2,[])
+f=rlist(p1*poly(1,varn(p2),'c'),p2,[])
 endfunction

@@ -10,9 +10,9 @@ else
   [l,c]=size(m)
   if m<>[] then m=m+poly(0,varn(p),'c'),end
   if mp==-1&l*c==1|l==-1 then
-    f=tlist(['r','num','den','dt'],m,p*eye(),[])
+    f=rlist(m,p*eye(),[])
   else
-    f=simp(tlist(['r','num','den','dt'],m,p*ones(l,c),[]))
+    f=simp(rlist(m,p*ones(l,c),[]))
   end
 end
 endfunction
