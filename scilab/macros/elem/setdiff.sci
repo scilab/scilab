@@ -1,10 +1,11 @@
 function [a,ka]=setdiff(a,b)
 //Copyrigth INRIA
 // returns a values which are not in b
-na=size(a,'*');
 
 [lhs,rhs]=argn()
 [a,ka]=unique(a);
+na=size(a,'*');
+
 b=unique(b(:));
 
 [x,k]=sort([a(:);b]);
