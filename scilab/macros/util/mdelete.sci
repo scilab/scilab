@@ -10,10 +10,32 @@ if type(filename)<>10 | size(filename,"*")<>1 then
   error("Wrong type argument, expecting a character string");
 end
 
+// Handle file path
 if MSDOS then
-  cmd="del """+pathconvert(filename,%F)+"""";
+  filename=strsubst(filename,"\","/")
+end
+// File path
+k=strindex(filename,"/")
+if k==[] then
+  file_path="./"
 else
-  cmd="rm -f """+pathconvert(filename,%F)+"""";
+  file_path=part(filename,1:k($))
+  filename=part(filename,k($)+1:length(filename))
+end
+
+if strindex(filename," ") then
+  filename=""""+filename+""""
+end
+
+if strindex(file_path," ") then
+  file_path=""""+file_path+""""
+end
+  
+
+if MSDOS then
+  cmd="del "+file_path+filename;
+else
+  cmd="rm -f "+file_path+filename;
 end
 unix_w(cmd);
 endfunction
