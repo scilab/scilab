@@ -11,7 +11,8 @@ EXAMPLES= Ex-colnew.o Ex-corr.o  Ex-feval.o  Ex-fsolve.o  Ex-impl.o  \
 	Ex-intg.o \
 	Ex-ode-more.o  Ex-ode.o  Ex-odedc.o  Ex-optim.o  Ex-schur.o  \
 	Ex-fort.o \
-	Ex-dasrt.o  Ex-dassl.o  Ex-fbutn.o Ex-int2d.o Ex-int3d.o
+	Ex-dasrt.o  Ex-dassl.o  Ex-fbutn.o Ex-int2d.o Ex-int3d.o \
+	Ex-lsqrsolve.o 
 
 OBJSC=  FTables.o  Funtab.o  scimem.o callinterf.o mexlib.o
 OBJSF=  $(EXAMPLES)  matusr.o matus2.o  msgstxt.o   @MAIN@
