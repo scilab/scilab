@@ -1,23 +1,19 @@
 function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
 // Serge Steer 2003, Copyright INRIA
-  ng=0
-  if exists('modelica_libs')==0 then 
-    message('Variable modelica_libs which gives path of modelica library i"+...
-	    " s not set')
-    ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0
-    return
-  end
-  if exists('modelicac_path')==0 then 
-    message('Variable modelicac_path which gives path of modelica compiler is not set')
+  
+  if ~with_ocaml() then
+    message('Scilab has not been built with Ocaml, Modelica compiler unavailable')
     ok=%f,name='',nx=0,nin=0,nout=0,ng=0,nm=0
     return
   end
   
+  ng=0
+
   mlibs=pathconvert(modelica_libs,%f,%t)
   if MSDOS then
-    modelicac=pathconvert(modelicac_path+'/modelicac.exe',%f,%t)
+    modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
   else
-     modelicac=pathconvert(modelicac_path+'/modelicac',%f,%t)
+     modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
   end
   modelicac=modelicac+strcat(' -L '+mlibs)
   
