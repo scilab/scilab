@@ -186,8 +186,8 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        capacite=hauteur*longueur;
 	
        /*Déclaration des tableaux de synthèse*/
-       if ((valeur=(void*) malloc(capacite*sizeof(double)))==NULL)  goto ErrL;
-       if ((*chainesind=(int *) malloc(capacite*sizeof(int)))==NULL)  goto ErrL;
+       if ((valeur=(void*) malloc((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
+       if ((*chainesind=(int *) malloc((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
 	 (*chainesind)[i]=0;
 	 valeur[i]=NaN;
@@ -507,9 +507,10 @@ static void getString(int *fd, int flag,char **str,int *err)
   }
   else if(rich!=0 && fareast==0)  {
     short rt;/*number of rich Text formatting runs*/
-    int listlength=4*rt;/*list of rt formatting runs*/
+    int listlength;
     C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
     if (*err > 0) goto ErrL;
+    listlength=4*rt;
     /*Enregistrement du character array*/
     if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
     C2F(mgetnc) (fd, (void*)*str, &longueur, typ_char, err);
@@ -540,9 +541,10 @@ static void getString(int *fd, int flag,char **str,int *err)
     short rt;
     int sz; /* fareast data size */
     char *asian;
-    int listlength=4*rt;/*list of rt formatting runs*/
+    int listlength;/*list of rt formatting runs*/
     C2F(mgetnc) (fd, (void*)&rt, &one, typ_short, err);
     if (*err > 0) goto ErrL;
+    listlength=4*rt;
     C2F(mgetnc) (fd, (void*)&sz, &one, typ_int, err);
     if (*err > 0) goto ErrL;
     if ((*str= (char*) malloc((longueur+1)*sizeof(char)))==NULL)  goto ErrL;
