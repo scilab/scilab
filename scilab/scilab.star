@@ -96,7 +96,7 @@ if larg<>[] & larg<=size(args,"*") then
    	         " Choosing default language """+LANGUAGE+""".")
   end
 end
-clear args larg L
+clear  larg L
 
 //Scilab Help Chapters, %helps is a two column matrix of strings
 global %helps
@@ -109,21 +109,23 @@ demolist=initial_demos_tables()
 clear initial_demos_tables
 
 // Menu for Help and editor
-if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
-  delmenu("Help")
-  addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu"))
-  if with_tk() then
-    delmenu("Editor")
-//retricted to Windows version because of problems on some unix platform	
-    if MSDOS then  
-      addmenu("Editor",list(2,"scipad")),
+if grep(args,'scilex') <>[] then
+  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
+    delmenu("Help")
+    addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu"))
+    if with_tk() then
+      delmenu("Editor")
+      //retricted to Windows version because of problems on some unix platform	
+      if MSDOS then  
+	addmenu("Editor",list(2,"scipad")),
+      end
     end
   end
 end
 
 
 // Protect variable previously defined 
-clear ans  %b_h_s
+clear ans  %b_h_s args
 predef('all') 
 
 // this variable is used to store the preferred browser 
