@@ -18,7 +18,7 @@ elseif A.vtype<>Unknown & B.vtype<>Unknown then
   tree = Cste(0)
 else
   tree.name="mtlb_strcmp"
-  tree.out(1).dims=list(1,1)
-  tree.out(1).type=Type(Boolean,Real)
+  tree.lhs(1).dims=list(1,1)
+  tree.lhs(1).type=Type(Boolean,Real)
 end
 endfunction
