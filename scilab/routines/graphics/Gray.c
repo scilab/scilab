@@ -26,7 +26,8 @@ extern void GraySquare __PARAMS((integer *x,integer *y,double *z,
 extern void GraySquare1 __PARAMS((integer *x,integer *y,double *z,
 				 integer n1,integer n2));
 extern void initsubwin();
-extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
+extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect, int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -88,7 +89,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	break;
       case '2' : case '4' : case '6' : case '8': case '9':
 	/* Force psubwin->Srect to the x and y bounds */
-	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+	/* compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
+	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
 	break;
       }
       if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
@@ -231,7 +233,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 	break;
       case '2' : case '4' : case '6' : case '8': case '9':
 	/* Force psubwin->Srect to the x and y bounds */
-	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+/* 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
+	compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,xx,yy,nn1,nn2,drect);
 	break;
       }
       if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 

@@ -30,7 +30,8 @@ static void FindIntersection __PARAMS((double sx[], double sy[], double fxy[],
 void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,integer *Nnode,
 		      integer *Ntr,double *zminmax,integer *colminmax));
 extern void initsubwin();
-extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
+extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -104,7 +105,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 	 break;
        case '2' : case '4' : case '6' : case '8':case '9':
 	 /* Force psubwin->Srect to the x and y bounds */
-	 compute_data_bounds(0,'g',x,y,n1,*Nnode,drect);
+	 /* compute_data_bounds(0,'g',x,y,n1,*Nnode,drect); */
+	 compute_data_bounds2(0,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,n1,*Nnode,drect);
 	 break;
        }
        if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&

@@ -16,7 +16,8 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 					 integer *arsize,integer *colored,double *x,double *y,
                                          double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 extern void initsubwin();
-extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+/* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
+extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -96,7 +97,8 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	  break;
 	case '2' : case '4' : case '6' : case '8': case '9':
 	  /* Force psubwin->Srect to the x and y bounds */
-	  compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
+	/*   compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect); */
+	  compute_data_bounds2(0,'g',pSUBWIN_FEATURE (psubwin)->logflags,xx,yy,nn1,nn2,drect);
 	  break;
 	}
 	if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&

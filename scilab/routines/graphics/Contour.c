@@ -10,7 +10,8 @@
 #include "Math.h"
 #include "PloEch.h"
 #include "Entities.h" /* F.Leray 21.04.04 : for update_2dbounds call*/
-extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+/*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
+extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -283,7 +284,8 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
 	  break;
 	case '2' : case '4' : case '6' : case '8':
 	  /* Force psubwin->Srect to the x and y bounds */
-	  compute_data_bounds(1,'g',x,y,*n1,*n2,drect);
+	 /*  compute_data_bounds(1,'g',x,y,*n1,*n2,drect); */
+	  compute_data_bounds2(1,'g',pSUBWIN_FEATURE(psubwin)->logflags,x,y,*n1,*n2,drect);
 	  break;
 	}
 	if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */

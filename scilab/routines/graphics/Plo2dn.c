@@ -18,6 +18,8 @@
 #include "Entities.h"
 extern void initsubwin();
 void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
+extern double  sciFindLogMinSPos(double *x, int n);
+void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
 void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
 extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
@@ -78,7 +80,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int cmpt=0,i;
   int with_leg;
   double drect[6];
-  char dataflag,frameflag;
+  char dataflag/*,frameflag*/;
 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
 
@@ -94,8 +96,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   for (i=0;i<4;i++) pSUBWIN_FEATURE(psubwin)->axes.aaint[i] = aaint[i]; 
 
   /* Force psubwin->logflags to those given by argument*/
-  pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
-  pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
+  if (pSUBWIN_FEATURE(psubwin)->FirstPlot == TRUE){
+    pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
+    pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
+  }
 
   /* Force "cligrf" clipping */
   sciSetIsClipping (psubwin,0); 
@@ -116,15 +120,44 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     case '2' : case '4' : case '6' : case '8': case '9':
       /* Force psubwin->Srect to the x and y bounds */
       if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
-      compute_data_bounds(0,dataflag,x,y,*n1,*n2,drect);
+      compute_data_bounds2(0,dataflag,pSUBWIN_FEATURE (psubwin)->logflags,x,y,*n1,*n2,drect);
       break;
     }
     if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
 	(strflag[1] == '5' || strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
+      
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
       drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+      
+    /*   if(pSUBWIN_FEATURE(psubwin)->logflags[0] != 'l'){ */
+/* 	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /\*xmin*\/ */
+/* 	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /\*xmax*\/ */
+/*       } */
+/*       else { */
+/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[0] > 0.) */
+/* 	  drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /\*xmin*\/ */
+/* 	/\*else drect[0] = drect[0] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
+
+/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[1] > 0.) */
+/* 	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /\*xmax*\/ */
+/* 	/\*else drect[1] = drect[1] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
+/*       } */
+      
+/*       if(pSUBWIN_FEATURE(psubwin)->logflags[1] != 'l'){ */
+/* 	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /\*ymin*\/ */
+/* 	drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /\*ymax*\/ */
+/*       } */
+/*       else{ */
+/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[2] > 0.) */
+/* 	  drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /\*ymin*\/ */
+/* 	/\*else drect[2] = drect[2] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
+	
+/* 	if(pSUBWIN_FEATURE(psubwin)->SRect[3] > 0.) */
+/* 	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /\*ymax*\/ */
+/* 	/\*else drect[3] = drect[3] PAS de changement/extension de drect en fonction des donnees precedentes*\/ */
+/*       } */
     }
     if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
 
@@ -194,6 +227,88 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   }
   sciDrawObj(sciGetCurrentFigure ());
   return(0);
+}
+
+
+
+
+/* Given two set of coordinates x and y this routine computes the corresponding 
+ *  data bounds rectangle drect=[xmin,ymin,xmax,ymax] taking into account the logflag
+ *  -> means we have to find among the data the min > 0.
+ */
+void compute_data_bounds2(cflag,dataflag,logflags,x,y,n1,n2,drect)
+     int cflag;/* cflag is non zero when called by contour */
+     char dataflag; /* 'e','o' or 'g'*/
+     char * logflags; /* for log. case x/ymin control */
+     integer n1, n2;
+     double *x, *y; 
+     double *drect;
+{
+  int size_x,size_y;
+  double xd[2];
+  double *x1;
+  switch ( dataflag ) {
+  case 'e' : 
+    xd[0] = 1.0; xd[1] = (double)n2;
+    x1 = xd;size_x = (n2 != 0) ? 2 : 0 ;
+    break; 
+  case 'o' : 
+    x1 = x;size_x = n2;
+    break;
+  case 'g' : 
+  default  : 
+    x1 = x;size_x = (cflag == 1) ? n1 : (n1*n2) ;
+    break; 
+  }
+
+  if (size_x != 0) {
+    if(logflags[0] != 'l'){
+      drect[0] =  Mini(x1, size_x); 
+      drect[1] =  Maxi(x1,size_x); 
+    }
+    else { /* log. case */
+      drect[0] =  sciFindLogMinSPos(x1,size_x); 
+      drect[1] =  Maxi(x1,size_x); 
+    }
+    
+  }
+  else {
+    if(logflags[0] != 'l'){
+      drect[0] = 0.0;
+      drect[1] = 10.0;
+    }
+    else{/* log. case */
+      drect[0] = 1.0;
+      drect[1] = 10.0;
+    }
+  }
+
+  size_y = (cflag == 1) ? n2 : (n1*n2) ;
+  if (size_y != 0) {
+    if(logflags[1] != 'l'){
+      drect[2] =  Mini(y, size_y); 
+      drect[3] =  Maxi(y,size_y); 
+    }
+    else{/* log. case */
+      drect[2] =  sciFindLogMinSPos(y,size_y); 
+      drect[3] =  Maxi(y,size_y); 
+    }
+
+  }
+  else {
+    if(logflags[1] != 'l'){
+      drect[2] = 0.0;
+      drect[3] = 10.0;
+    }
+    else{/* log. case */
+      drect[2] = 1.0;
+      drect[3] = 10.0;
+    }
+  }
+  /* back to default values for  x=[] and y = [] */
+  if ( drect[2] == LARGEST_REAL ) { drect[2] = 0.0; drect[3] = 10.0 ;} 
+  if ( drect[0] == LARGEST_REAL ) { drect[0] = 0.0; drect[1] = 10.0 ;} 
+
 }
 
 
@@ -339,3 +454,4 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
   }
 }
+
