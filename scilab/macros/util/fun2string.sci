@@ -37,7 +37,7 @@ end
 
 hdr='function '+outputs+'='+nam+inputs;
 txt=[hdr;crp(2:$-2)]
-
+endfunction
 
 function txt=ins2sci(lst,ilst)
 // traduit un ensemble d'instructions debutant a l'adresse ilst de la
@@ -57,7 +57,7 @@ while ilst<=nlst then
   end
   txt=catcode(txt,t1)
 end
-
+endfunction
 function txt=cla2sci(clause)
 // traduit une clause (if while for select)
 //!
@@ -131,7 +131,7 @@ case 'select' then
   end
   txt=catcode(tg,catcode(txt,'end'))
 end
-
+endfunction
 function [txt,ilst]=cod2sci(lst,ilst)
 //
 //!
@@ -207,7 +207,7 @@ while ilst<nlst then
   end
 end
 ilst=ilst+1
-
+endfunction
 function [stk,txt,ilst]=exp2sci(lst,ilst)
 // Copyright INRIA
 nlst=size(lst)
@@ -356,7 +356,7 @@ while ilst<nlst&ok then
 
 end
 lst=resume(lst)
-
+endfunction
 function [stk,top]=func2sci(op,stk)
 // translate all functions calls
 //!parameters
@@ -387,7 +387,7 @@ else
   top=top+1
   stk(top)=stkr
 end
-
+endfunction
 function [stk,txt,top]=_m2sci()
 txt=[]
 s1=stk(top-1)
@@ -400,7 +400,7 @@ if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
 if te1=='2'|te1=='3' then e1='('+e1+')',end
 stk=list(e1+' * '+e2,'1')
 top=top-1
-
+endfunction
 function [stk,txt,top]=_a2sci()
 //
 //!
@@ -411,7 +411,7 @@ if s2(2)=='3' then s2(1)='('+s2(1)+')',end
 if s1(2)=='3' then s1(1)='('+s1(1)+')',end
 stk=list(s1(1)+' + '+s2(1),'2')
 top=top-1
-
+endfunction
 function [stk,top,txt]=get2sci(nam,stk,top)
 // Translate the named variable acquisition
 //!
@@ -419,12 +419,14 @@ function [stk,top,txt]=get2sci(nam,stk,top)
 txt=[]
 top=top+1
 stk(top)=list(nam,'0')
-
+endfunction
 
 function [stk,top]=sci_gener(nam)
 RHS=[]
 for k=1:rhs
-  RHS=[stk(top)(1),RHS]
+  arg=stk(top)(1);
+  if arg=='eye()' then arg=':',end
+  RHS=[arg,RHS]
   top=top-1
 end
 if RHS==[] then RHS='',end
@@ -437,7 +439,7 @@ else
     stk(k)=list(nam+rhsargs(RHS),'-1')
   end
 end
-
+endfunction
 function [stk,txt,top]=_c2sci()
 // Copyright INRIA
 txt=[]
@@ -497,7 +499,7 @@ else
   end
 end
 top=top1+1
-
+endfunction
 function opstable()
 // Copyright INRIA
 quote=''''
@@ -538,14 +540,14 @@ ops     =['+',   'a';
      
 
 [logics,ops]=resume(logics,ops)
- 
+ endfunction
 function [stk,top]=num2sci(val,stk)
 // traduit la definition d'un nombre
 //!
 // Copyright INRIA
 top=top+1
 stk(top)=list(val,'0')
-
+endfunction
 function [stk,txt,top]=_log2sci()
 txt=[]
 iop=evstr(op(2))
@@ -555,17 +557,17 @@ s2=stk(top);s1=stk(top-1);top=top-1
 if s2(2)=='2'|s2(2)=='3' then s2(1)='('+s2(1)+')',end
 if s1(2)=='2'|s1(2)=='3' then s1(1)='('+s1(1)+')',end
 stk=list(s1(1)+' '+ops(iop,1)+' '+s2(1),'3')
-
+endfunction
 function txt=rhsargs(args)
 //!
 // Copyright INRIA
 txt='('+strcat(args,', ')+')'
-
+endfunction
 function txt=lhsargs(args)
 //!
 // Copyright INRIA
 txt='['+strcat(args,', ')+']'
-
+endfunction
 function [stk,txt,top]=_p2sci()
 // ^
 //!
@@ -580,7 +582,7 @@ if te1=='2'|te1=='3' then s1='('+s1+')',end
 if part(s2,1)=='-' then s2='('+s2+')',end
 stk=list(s1+'^'+s2,'2')
 top=top-1
-
+endfunction
 function [txt]=indentsci(txt)
 //
 //!
@@ -590,7 +592,7 @@ if k<>[] then
   bl='  '
   txt(k)=bl(ones(prod(size(k)),1))+txt(k)
 end
-
+endfunction
 
 function lst=mmodlst(lst)
 // mmodlst is used to reduce mutiple concatenations, obtained by the 
@@ -690,7 +692,7 @@ to_kill=sort(to_kill)
 for k=1:prod(size(to_kill))
   lst(to_kill(k))=null();
 end
-
+endfunction
 function [stk,txt,top]=_02sci()
 // translate .'
 //!
@@ -699,7 +701,7 @@ txt=[]
 s2=stk(top)
 if s2(2)=='2'|s2(2)=='3' then s2(1)='('+s2(1)+')',end
 stk=list(s2(1)+'.'+quote,'3')
-
+endfunction
 function [stk,txt,top]=_52sci()
 // genere le code relatif a la negation
 //!
@@ -708,7 +710,7 @@ txt=[]
 s2=stk(top)
 if s2(2)=='2'|s2(2)=='3' then s2(1)='('+s2(1)+')',end
 stk=list('~'+s2(1),'3')
-
+endfunction
 function [stk,txt,top]=_d2sci()
 // ./
 //!
@@ -720,7 +722,7 @@ if  s2(2)=='3'|s2(2)=='2'|s2(2)=='1' then s2(1)='('+s2(1)+')',end
 if s1(2)=='3'|s1(2)=='2' then s1(1)='('+s1(1)+')',end
 
 stk=list(s1(1)+' ./ '+s2(1),'1')
-
+endfunction
 function [stk,txt,top]=_e2sci()
 // genere le code relatif a l'extraction d'une sous matrice
 //!
@@ -743,19 +745,23 @@ if rhs==1 then
          if ik(2)=='0'&part(ik(1),1)=='''' then
            ex=ex+'.'+part(ik(1),2:length(ik(1))-1)
          else
+	   if ik(1)=='eye()' then ik(1)=':',end 
            ex=ex+'('+ik(1)+')'
          end
       end
     end
     stk=list(ex,'0')
   else
+    if s2(1)=='eye()' then s2(1)=':',end
     stk=list(sn(1)+'('+s2(1)+')','0')
   end
 else
   s1=stk(top-1);top=top-1
+  if s2(1)=='eye()' then s2(1)=':',end
+  if s1(1)=='eye()' then s1(1)=':',end
   stk=list(sn(1)+rhsargs([s1(1),s2(1)]),'0')
 end
-
+endfunction
 function [stk,txt,top]=_g2sci()
 //
 //!
@@ -766,6 +772,7 @@ s2=stk(top);s1=stk(top-1);
 [e2,te2]=s2(1:2);
 stk=list(e1+' | '+e2,'2')
 top=top-1
+endfunction
 function [stk,txt,top]=_h2sci()
 //  &
 // Copyright INRIA
@@ -778,6 +785,7 @@ if te2=='2'|te2=='3' then e2='('+e2+')',end
 if te1=='2'|te1=='3' then e1='('+e1+')',end
 stk=list(e1+' & '+e2,'2')
 top=top-1
+endfunction
 
 function [stk,txt,top]=_i2sci()
 //
@@ -804,6 +812,7 @@ if rhs==1 then
          if ik(2)=='0'&part(ik(1),1)=='''' then
            ex=ex+'.'+part(ik(1),2:length(ik(1))-1)
          else
+	   if ik(1)=='eye()' then ik(1)=':',end  
            ex=ex+'('+ik(1)+')'
          end
       end
@@ -811,16 +820,18 @@ if rhs==1 then
     txt=ex+'='+sfrom(1)+';'
     stk=list(' ','-1')
   else
+    if s2(1)=='eye()' then s2(1)=':',end  
     txt=sto(1)+'('+s2(1)+')='+sfrom(1)+';'
     stk=list(op(2),'-1') 
   end
 else // x(i,j)=y
   s1=stk(top+1)
   if s1(1)=='eye()' then s1(1)=':',end
+  if s2(1)=='eye()' then s2(1)=':',end  
   txt=sto(1)+'('+s2(1)+','+s1(1)+') = '+sfrom(1)+';'
   stk=list(op(2),'-1')
 end
-
+endfunction
 function [stk,txt,top]=_imp2sci()
 //code for 1:n
 //!
@@ -833,6 +844,7 @@ else
   stk=list(stk(top-2)(1)+':'+stk(top-1)(1)+':'+stk(top)(1),'3')
   top=top-2
 end
+endfunction
 function [stk,txt,top]=_j2sci()
 // 
 //!
@@ -849,6 +861,7 @@ if te1=='1'|te1=='2'|te1=='3' then ss1='('+ss1+')',end
 if part(ss2,1)=='-' then ss2='('+ss2+')',end
 stk=list(ss1+'.^'+ss2,'1')
 top=top-1
+endfunction
 function [stk,txt,top]=_l2sci()
 //  \
 //!
@@ -861,7 +874,7 @@ if  s1(2)=='3'|s1(2)=='2' then s1(1)='('+s1(1)+')',end
 
 if part(s1(1),1)=='-' then s1(1)='('+s1(1)+')',end
 stk=list(s1(1)+'\'+s2(1),'1')
-
+endfunction
 function [stk,txt,top]=_q2sci()
 //  .\
 //!
@@ -872,7 +885,7 @@ if s2(2)=='3'|s2(2)=='2'|s2(2)=='1' then s2(1)='('+s2(1)+')',end
 if s1(2)=='3'|s1(2)=='2' then s1(1)='('+s1(1)+')',end
 
 stk=list(s1(1)+' .\ '+s2(1),'1')
-
+endfunction
 function [stk,txt,top]=_r2sci()
 // genere le code relatif a la division a droite
 //!
@@ -885,7 +898,7 @@ if s1(2)=='3'|s1(2)=='2' then s1(1)='('+s1(1)+')',end
 
 if part(s2(1),1)=='-' then s2(1)='('+s2(1)+')',end
 stk=list(s1(1)+'/'+s2(1),'1')
-
+endfunction
 function [stk,txt,top]=_s2sci()
 // genere le code relatif a la soustraction et au changement de signe
 //!
@@ -901,6 +914,7 @@ if op(3)=='2' then
 else
   stk=list('-'+s2(1),'2')
 end
+endfunction
 function [stk,txt,top]=_t2sci()
 // genere le code relatif a la transposition
 //!
@@ -909,7 +923,7 @@ txt=[]
 s2=stk(top)
 if s2(2)=='1'|s2(2)=='2'|s2(2)=='3' then s2(1)='('+s2(1)+')',end
 stk=list(s2(1)+quote,s2(2))
-
+endfunction
 function [stk,txt,top]=_x2sci()
 // Copyright INRIA
 txt=[]
@@ -924,7 +938,7 @@ if te1=='2'|te1=='3' then e1='('+e1+')',end
 stk=list(e1+' .* '+e2,'1')
 top=top-1
 
-
+endfunction
 function t=catcode(a,b)
 if a==[] then 
   t=b
@@ -933,7 +947,7 @@ elseif b==[]
 else
   t=[a(1:$-1);a($)+b(1);b(2:$)]
 end
-
+endfunction
 function t=splitexp(t)
 t=strsubst(t,CR+';',';'+CR)
 ks=strindex(t,CR)
@@ -947,3 +961,17 @@ for kf=ks
   ind='  '
 end
 t=[t;ind+part(to,kd:length(to))]
+endfunction
+function [stk,txt,top]=_u2sci()
+  txt=[]
+s1=stk(top-1)
+s2=stk(top)
+[e1,te1]=s1(1:2);
+[e2,te2]=s2(1:2);
+//
+if te2=='1'|te2=='2'|te2=='3' then e2='('+e2+')',end
+if te1=='2'|te1=='3' then e1='('+e1+')',end
+
+stk=list(e1+' *. '+e2,'1')
+top=top-1
+endfunction
