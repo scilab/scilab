@@ -37,12 +37,15 @@ function h=%s_i_h(i,v,h)
       break
     end
   end
-
   if hind<>[] then // a property found
     if type(index)==15 & and(type(property)<>[15 16 17]) then
       property(index(:))=v
     else
-      property(index)=v
+      if index<>: then
+	property(index)=v
+      else
+	property=v
+      end
     end
     if size(hdl,'*')==1 then //a single handle
       hdl(hind)=property
