@@ -3096,6 +3096,7 @@ int C2F(createdata)(lw, n)
 
 
 void *GetData(lw)
+     /* Usage: header = (int *) GetData(lw); header[0] = type of variable lw etc */
      int lw;
 {
   int lw1 = lw + Top - Rhs ;
@@ -3109,6 +3110,17 @@ void *GetData(lw)
   C2F(intersci).ntypes[lw - 1] = '$';
   C2F(intersci).iwhere[lw - 1] = l1;
   C2F(intersci).lad[lw - 1] = l1;
+  return loci;
+}
+
+void *GetRawData(int lw)
+     /* same as GetData BUT does not go to the pointed variable if lw is a reference */
+{
+  int lw1 = lw + Top - Rhs ;
+  int l1 = *lstk(lw1);
+  int *loci = (int *) stk(l1);
+  C2F(intersci).ntypes[lw - 1] = '$';
+  C2F(intersci).iwhere[lw - 1] = l1;
   return loci;
 }
 
@@ -3185,3 +3197,4 @@ static void intersci_show()
 }
 
 */
+
