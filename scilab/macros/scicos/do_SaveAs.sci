@@ -24,7 +24,7 @@ function [scs_m,edited]=do_SaveAs()
     if needcompile==4 then
       %cpr=list()
     else
-      [%cpr,%state0,needcompile,ok]=do_update(%cpr,%state0,needcompile)
+      [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
       if ~ok then return,end
       %cpr.state=%state0
     end
