@@ -4,7 +4,6 @@ function conflicts=ge_check_names(g)
   re=find(names=='');ne=size(re,'*');
   [names,k1]=gsort(names,'g','i');
   [N,k2]=unique(names(ne+1:$));
-  pause
   k2=[0 k2];
   conflicts=list(re);
   k3=find(k2(2:$)-k2(1:$-1)>1);
