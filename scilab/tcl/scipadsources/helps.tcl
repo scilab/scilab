@@ -6,12 +6,11 @@ proc helpme {} {
 # about menu
 proc aboutme {} {
     global winTitle version
-	tk_messageBox -title [mc "About"] -type ok \
-	    -message [concat $winTitle $version\
-            [mc "\nOriginated by Joseph Acosta, joeja@mindspring.com.\n\
-                 Modified by Scilab Consortium.\n\
-                 Revised by Enrico Segre 2003-2005.\n\
-                 Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005."] ]
+    set mess [mc "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
+                  Modified by Scilab Consortium.\n\
+                  Revised by Enrico Segre 2003-2005.\n\
+                  Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005."]
+    tk_messageBox -title [mc "About"] -type ok -message " $winTitle $version $mess"
 }
 
 #ES:

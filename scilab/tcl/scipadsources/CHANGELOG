@@ -706,4 +706,8 @@ ES 15/2/05
  * moved a few toplevel code lines from scipad.tcl to mainwindow.tcl and
    slighly reedited the latter
  * version --> 3.28
-  
+
+Francois VOGEL, 16/02/05
+ * Cosmetic: Aligned strings in the About box
+             Translated message for fake ScilabEval
+ * version --> 3.29

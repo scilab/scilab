@@ -39,7 +39,7 @@ if { [info exists pad] } {
 #define ScilabEval to a void function, if it is unknown. This is
 # useful in order to run scipad outside of scilab (e.g. to debug it)
     if {[catch {ScilabEval ";"}] != 0} {
-	proc ScilabEval args { showinfo "NOT CONNECTED TO SCILAB" }
+        proc ScilabEval args { showinfo [mc "NOT CONNECTED TO SCILAB"] }
         set sciprompt 0
     }
 

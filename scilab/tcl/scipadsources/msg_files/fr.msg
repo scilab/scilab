@@ -124,11 +124,11 @@
 
 # helps.tcl
 ::msgcat::mcset fr "About" "A propos"
-::msgcat::mcset fr "\nOriginated by Joseph Acosta, joeja@mindspring.com.\n\
+::msgcat::mcset fr "\n Originated by Joseph Acosta, joeja@mindspring.com.\n\
                     Modified by Scilab Consortium.\n\
                     Revised by Enrico Segre 2003-2005.\n\
                     Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005." \
-                   "\nCréé par Joseph Acosta, joeja@mindspring.com.\n\
+                   "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2005.\n\
                     Améliorations diverses, dont outils de débug, par François Vogel 2004-2005."
@@ -265,6 +265,10 @@
 ::msgcat::mcset fr "Existing file" "Fichier existant"
 ::msgcat::mcset fr "New skeleton" "Nouveau squelette d'aide"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to compile the help file." "Scilab est occupé, attendez le prompt pour compiler la page d'aide."
+
+
+# scipad.tcl
+::msgcat::mcset fr "NOT CONNECTED TO SCILAB" "PAS DE CONNEXION A SCILAB"
 
 
 # textarea.tcl
