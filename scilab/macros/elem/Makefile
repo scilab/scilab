@@ -10,10 +10,10 @@ include ../../Makefile.incl
 NAME = elemlib
 NAM = SCI/macros/elem
 
-MACROS = acos.sci acosm.sci acosh.sci acoshm.sci asin.sci asinm.sci \
+MACROS = acosm.sci acosh.sci acoshm.sci asinm.sci \
 	asinh.sci asinhm.sci atanh.sci atanhm.sci cosh.sci coshm.sci\
 	cotg.sci coth.sci cothm.sci log10.sci sinh.sci sinhm.sci \
-	tan.sci tanm.sci tanh.sci tanhm.sci log2.sci\
+	tanm.sci tanh.sci tanhm.sci log2.sci\
 	logm.sci  atanm.sci cosm.sci signm.sci sinm.sci sqrtm.sci\
 	null.sci fix.sci smooth.sci squarewave.sci sinc.sci\
 	toeplitz.sci pertrans.sci \
