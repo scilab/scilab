@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -23,7 +23,7 @@
         <PARAM_NAME>f</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chemin du fichier Ã  charger</SP>
+          <SP>: chemin du fichier à charger</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -32,7 +32,7 @@
   <DESCRIPTION>
     <P>charge un fichier contenant l'historique</P>
 
-    <P>Par dÃ©faut, le nom du fichier contenant l'historique est home+'/history.scilab'</P>
+    <P>Par défaut, le nom du fichier contenant l'historique est home+'/history.scilab'</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[loadhistory(SCI+'/session.scilab')]]></EXAMPLE>

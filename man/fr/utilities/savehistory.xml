@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -23,7 +23,7 @@
         <PARAM_NAME>f</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: chemin du fichier dans lequel sera sauvegardÃ© l'historique de scilab</SP>
+          <SP>: chemin du fichier dans lequel sera sauvegardé l'historique de scilab</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -32,7 +32,7 @@
   <DESCRIPTION>
     <P>sauvegarde l'historique de scilab dans un fichier.</P>
 
-    <P>Par dÃ©faut, l'historique est sauvegardÃ© dans home+'/history.scilab'</P>
+    <P>Par défaut, l'historique est sauvegardé dans home+'/history.scilab'</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[savehistory(SCI+'/session.scilab')]]></EXAMPLE>

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -25,16 +26,16 @@
 
   <DESCRIPTION>
     <P>La fonction datenum convertie une date en un nombre lui correspondant.
-    Ce nombre correspond au nombre de jours passé depuis une date référence.
-    Par défaut, cette date es est le 1-Jan-0000.</P>
+    Ce nombre correspond au nombre de jours passe depuis une date reference.
+    Par defaut, cette date est le 1-Jan-0000.</P>
 
-    <P>N = datenum() retourne le nombre correspondant à la date courante.</P>
+    <P>N = datenum() retourne le nombre correspondant a la date courante.</P>
 
     <P>N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
-    M, D (année, mois, jour).</P>
+    M, D (annee, mois, jour).</P>
 
     <P>N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
-    elements Y, M, D, H, MI, et S (année, mois, jour, heure, minute, and
+    elements Y, M, D, H, MI, et S (annee, mois, jour, heure, minute, et
     seconde).</P>
   </DESCRIPTION>
 

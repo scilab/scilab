@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
@@ -23,7 +23,7 @@
     <P>perl('perlfile') appelle le script Perl perlfile.</P>
 
     <P>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
-    les arguments arg1, arg2, ..., à perlfile.</P>
+    les arguments arg1, arg2, ..., � perlfile.</P>
 
     <P>result = perl(...) retourne le resultat du script Perl.</P>
   </DESCRIPTION>
