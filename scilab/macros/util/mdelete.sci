@@ -11,9 +11,9 @@ if type(filename)<>10 | size(filename,"*")<>1 then
 end
 
 if MSDOS then
-  cmd="del """+filename+"""";
+  cmd="del """+pathconvert(filename,%F)+"""";
 else
-  cmd="rm -f """+filename+"""";
+  cmd="rm -f """+pathconvert(filename,%F)+"""";
 end
 unix_w(cmd);
 endfunction
