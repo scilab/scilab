@@ -6,7 +6,7 @@
 
 
 # A Notebook widget for Tcl/Tk
-# $Revision: 1.5 $
+# $Revision: 1.6 $
 #
 # Copyright (C) 1996,1997,1998 D. Richard Hipp
 #
@@ -300,7 +300,7 @@ global visToggle
 global xGrif yGrid zGrid
 
 global viewToggle isoToggle cubToggle
-
+global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
 
 # add for XF init only : to remove after...
 
@@ -347,7 +347,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 450x560
+wm geometry $ww 450x580
 #wm maxsize  $ww 450 560
 
 Notebook:create .axes.n -pages {X Y Z Title Style Axes_Aspect} -pad 20 
@@ -441,11 +441,24 @@ pack $w.frame.gridcolorlabel -in  $w.frame.gridcol -side left
 pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $xGrid
 
+#X Data bounds
+frame $w.frame.datab  -borderwidth 0
+pack $w.frame.datab  -in $w.frame -side top   -fill x
+
+label $w.frame.datalabel -text "Data bounds:"
+entry $w.frame.databmin -relief sunken  -textvariable dbxmin 
+entry $w.frame.databmax -relief sunken  -textvariable dbxmax
+pack $w.frame.datalabel -in  $w.frame.datab -side left
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+bind  $w.frame.databmin <Return> {setXdb} 
+bind  $w.frame.databmax <Return> {setXdb} 
+
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x
 
-label $w.frame.scalesw.label -height 0 -text "     Scale: " -width 0 
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX" 
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
 
@@ -545,11 +558,24 @@ pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left
 pack $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $yGrid
 
+#Y Data bounds
+frame $w.frame.datab  -borderwidth 0
+pack $w.frame.datab  -in $w.frame -side top   -fill x
+
+label $w.frame.datalabel -text "Data bounds:"
+entry $w.frame.databmin -relief sunken  -textvariable dbymin 
+entry $w.frame.databmax -relief sunken  -textvariable dbymax
+pack $w.frame.datalabel -in  $w.frame.datab -side left
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+bind  $w.frame.databmin <Return> {setYdb} 
+bind  $w.frame.databmax <Return> {setYdb} 
+
 #Scale log or linear
 frame $w.frame.scalesw  -borderwidth 0
 pack $w.frame.scalesw  -in $w.frame -side top   -fill x
 
-label $w.frame.scalesw.label -height 0 -text "     Scale: " -width 0 
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n"    -command "toggleY" 
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable yToggle -value "l" 	  -command "toggleY" 	   
 
@@ -649,11 +675,24 @@ pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left
 pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $zGrid
 
+#Z Data bounds
+frame $w.frame.datab  -borderwidth 0
+pack $w.frame.datab  -in $w.frame -side top   -fill x
+
+label $w.frame.datalabel -text "Data bounds:"
+entry $w.frame.databmin -relief sunken  -textvariable dbzmin 
+entry $w.frame.databmax -relief sunken  -textvariable dbzmax
+pack $w.frame.datalabel -in  $w.frame.datab -side left
+pack $w.frame.databmin -in  $w.frame.datab   -side left -expand 1 -fill x 
+pack $w.frame.databmax -in  $w.frame.datab   -side left -expand 1 -fill x 
+bind  $w.frame.databmin <Return> {setZdb} 
+bind  $w.frame.databmax <Return> {setZdb} 
+
 #Scale log or linear
 #frame $w.frame.scalesw  -borderwidth 0
 #pack $w.frame.scalesw  -in $w.frame -side top   -fill x
 #
-#label $w.frame.scalesw.label -height 0 -text "     Scale: " -width 0 
+#label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
 #radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n"    -command "toggleZ" 
 #radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable zToggle -value "l" 	  -command "toggleZ" 	   
 #
@@ -912,25 +951,43 @@ pack $w.b -side bottom
 
 
 # les proc associes:
+proc setXdb {} {
+global dbxmin dbxmax
+ScilabEval "setXdb($dbxmin, $dbxmax);"
+}
+
+proc setYdb {} {
+global dbymin dbymax
+ScilabEval "setYdb($dbymin, $dbymax);"
+}
+
+
+proc setZdb {} {
+global dbzmin dbzmax
+ScilabEval "setZdb($dbzmin, $dbzmax);"
+}
+
+
+
 proc setForeColor {w index} {  
     global RED BLUE GREEN
     variable REDCOL 
     variable GRECOL 
     variable BLUCOL
     
-    #ScilabEval "global h;"
+    #ScilabEval "global ged_handle;"
     if { $index == -2 } {
-	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
 	.axes.n.f4.frame.samplefore config -background $color
     } elseif { $index == -1 } {
-	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
 	.axes.n.f4.frame.samplefore config -background $color
     } elseif { $index == 0 } {
-	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
 	set REDCOL $RED(1) 
 	set GRECOL $GREEN(1) 
@@ -939,7 +996,7 @@ proc setForeColor {w index} {
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	.axes.n.f4.frame.samplefore config -background $color
     } else { 
-	ScilabEval "global ged_handle;  ged_handle.foreground=$index;"
+	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
 	set REDCOL $RED($index) 
 	set GRECOL $GREEN($index) 
@@ -1076,11 +1133,11 @@ ScilabEval "global ged_handle;ged_handle.box='$boxToggle'"
 }
 proc toggleX {} {
 global xToggle
-ScilabEval "global ged_handle;ged_handle.log_flags='$xToggle'+part(ged_handle.log_flags,2)"
+ScilabEval "LogtoggleX('$xToggle')"
 }
 proc toggleY {} {
 global yToggle
-ScilabEval "global ged_handle;ged_handle.log_flags=part(ged_handle.log_flags,1)+'$yToggle'"
+ScilabEval "LogtoggleY('$yToggle')"
 }
 proc toggleLimits {} {
 global limToggle
