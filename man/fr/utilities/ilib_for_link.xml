@@ -62,8 +62,13 @@
     into Scilab with the <VERB>link</VERB> function. New entry points 
     given by <VERB>names</VERB> are then accessible through the <VERB>call</VERB> 
     function or with non linear tools <VERB>ode</VERB>, <VERB>optim</VERB>,...
-  </P>
-  <P>
+  </P><P>
+    The file to compile are supposed to be located given by
+    <VERB>makename</VERB>. If <VERB>makename</VERB> sets a path different to the
+    current directory, <VERB>loader</VERB> script must be located in
+    the same directory using the <VERB>loadername</VERB> variable.
+
+  </P><P>
     Many examples are provided in <VERB>examples/link-examples-so</VERB>
     directory. 
   </P>
@@ -97,6 +102,12 @@ if norm(c-(a+b)) > %eps then pause,end
 
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>addinter</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ilib_compile</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ilib_gen_Make</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ilib_gen_gateway</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ilib_gen_loader</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ilib_for_link</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>addinter</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>link</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ilib_compile</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ilib_gen_Make</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ilib_gen_gateway</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ilib_gen_loader</LINK></SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM><LINK>ilib_for_link</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
