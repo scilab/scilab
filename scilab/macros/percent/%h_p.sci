@@ -174,6 +174,7 @@ function %h_p(h)
 	 " "
 	 "visible = "+sci2exp(h.visible)
 	 "rotation_style = "+sci2exp(h.rotation_style)
+	 "complete_redraw = "+sci2exp(h.complete_redraw)
 	 ]
       case "Grayplot"
       d=sci2exp(h.data,0)

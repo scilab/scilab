@@ -3317,9 +3317,9 @@ int scixtitle(fname,fname_len)
     }
 
   if (version_flag() == 0){
-    sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ()));
-    CleanRectangle(psubwin);
-    sciDrawObj(psubwin);
+    /*     sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ())); */
+    sciSetCurrentObj(psubwin);
+    EraseAndOrRedraw(psubwin);
   }
   
   LhsVar(1)=0;
@@ -5198,6 +5198,9 @@ int gset(fname,fname_len)
 	C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
 	sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
+/* 	EraseAndOrRedraw(pobj); */
+	
+
 	C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       }
     }
@@ -5625,7 +5628,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
     }
-
+  else if (strncmp(marker,"complete_redraw", 15) == 0) 
+    {
+      if (sciGetEntityType (pobj) == SCI_FIGURE){
+	if (strncmp(cstk(*value),"on",2)==0 )
+	  pFIGURE_FEATURE(pobj)->allredraw = TRUE;
+	else if (strncmp(cstk(*value),"off",3)==0 )
+	  pFIGURE_FEATURE(pobj)->allredraw = FALSE;
+	else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+      }
+      else
+	{ strcpy(error_message,"complete_redraw property does not exist for this handle"); return -1;}
+    }
   else if (strncmp(marker,"fill_mode", 9) == 0)
     { 
       if (strncmp(cstk(*value),"on",2)==0 )
@@ -7064,7 +7078,7 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
   else if (strncmp(marker,"current_axes", 12) == 0)
     {
-      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure());
+/*       sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure()); */
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
@@ -7203,6 +7217,19 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       /* *stk(outindex) = sciGetForeground((sciPointObj *) pobj);*/
       *stk(outindex) = sciGetForegroundToDisplay((sciPointObj *) pobj);
+    }
+  else if (strncmp(marker,"complete_redraw", 15) == 0) 
+    {
+      if (sciGetEntityType (pobj) == SCI_FIGURE){
+	numrow = 1;numcol = 3;
+	CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	if (pFIGURE_FEATURE(pobj)->allredraw == TRUE)
+	  strncpy(cstk(outindex),"on", numrow*(numcol-1));
+	else
+	  strncpy(cstk(outindex),"off", numrow*numcol);
+      }
+      else
+	{ strcpy(error_message,"complete_redraw property does not exist for this handle"); return -1;}
     }
   else if (strncmp(marker,"fill_mode", 9) == 0) 
     {
