@@ -69,14 +69,14 @@ int C2F(createlistcvarfrom)();
 static int get_length(int num)
 {
   int il;
-  il = iadr(*lstk( num + Top - Rhs ));
+  il = iadr(*Lstk( num + Top - Rhs ));
   return(*istk(il+1));
 }
 
 static void get_length_and_pointer(int num, int *n, int **t)
 {
   int il;
-  il = iadr(*lstk( num + Top - Rhs ));
+  il = iadr(*Lstk( num + Top - Rhs ));
   *n = *istk(il+1);
   *t = istk(il+4);
 }
@@ -88,7 +88,7 @@ static int get_hmat(int num, HyperMat *H)
   int il, il1, il2, il3,/* it,*/ lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*lstk( lw )); 
+  il = iadr(*Lstk( lw )); 
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 	  
@@ -134,7 +134,7 @@ static int get_hmat(int num, HyperMat *H)
   /* needed for Jpc stuff (putlhsvar) */
   Nbvars = Max(Nbvars,num);
   C2F(intersci).ntypes[num-1] = '$';
-  C2F(intersci).iwhere[num-1] = *lstk(lw);
+  C2F(intersci).iwhere[num-1] = *Lstk(lw);
   C2F(intersci).lad[num-1] = 0;  /* a voir ? */
 
   /*  get the 3d field */
@@ -175,7 +175,7 @@ int C2F(ishm)()
 {
   /* teste si l'argument en Top est une hypermatrice */
   int il, il1, il2;
-  il = iadr(*lstk( Top )); 
+  il = iadr(*Lstk( Top )); 
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 	  
@@ -208,7 +208,7 @@ static int get_mat_as_hmat(int num, HyperMat *H)
   static int dims[2];
 
   lw = num + Top - Rhs;
-  il = iadr(*lstk( lw )); 
+  il = iadr(*Lstk( lw )); 
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 	
@@ -220,7 +220,7 @@ static int get_mat_as_hmat(int num, HyperMat *H)
       /* needed for Jpc stuff (putlhsvar) ? */
       Nbvars = Max(Nbvars,num);
       C2F(intersci).ntypes[num-1] = '$';
-      C2F(intersci).iwhere[num-1] = *lstk(lw);
+      C2F(intersci).iwhere[num-1] = *Lstk(lw);
       C2F(intersci).lad[num-1] = 0;  /* a voir ? */
 
       H->type = type;
@@ -306,7 +306,7 @@ static int get_sci_bool_sparse(int num, SciBoolSparse *M)
   int il, lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*lstk(lw));
+  il = iadr(*Lstk(lw));
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 
@@ -316,7 +316,7 @@ static int get_sci_bool_sparse(int num, SciBoolSparse *M)
   /* needed for Jpc stuff (putlhsvar) */
   Nbvars = Max(Nbvars,num);
   C2F(intersci).ntypes[num-1] = '$';
-  C2F(intersci).iwhere[num-1] = *lstk(lw);
+  C2F(intersci).iwhere[num-1] = *Lstk(lw);
   C2F(intersci).lad[num-1] = 0;  /* a voir ? */
 
   M->m  = *istk(il+1);
@@ -431,7 +431,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 
     case (SCI_POLYNOMIAL):
 
-      il = iadr( *lstk( pos + Top - Rhs ) );
+      il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
       m = *istk(il+1); n = *istk(il+2);
       if ( *istk(il+3) != 0 )
@@ -446,7 +446,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 
     case (SCI_IMPLICIT_POLY):         /* p1:p2:p3 */
 
-      il = iadr( *lstk( pos + Top - Rhs ) );
+      il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
       l = sadr( il+12 );
       x = (double) nmax; 
@@ -963,18 +963,18 @@ int C2F(intihm)()
  *  de putlhsvar.
  */
  the_end:
-  il = iadr(*lstk(Top));
+  il = iadr(*Lstk(Top));
   topk = *istk(il + 2);
   Top = Top - Rhs + 1;
-  ilp = iadr(*lstk(Top));
+  ilp = iadr(*Lstk(Top));
   *istk(ilp) = -1;
   *istk(ilp+1) = -1;
   *istk(ilp+2) = topk;
   if ( topk > 0 )
-    *istk(ilp+3) = *lstk(topk+1) - *lstk(topk);
+    *istk(ilp+3) = *Lstk(topk+1) - *Lstk(topk);
   else
     *istk(ilp+3) = 0;
-  *lstk(Top+1) = sadr(ilp+4);
+  *Lstk(Top+1) = sadr(ilp+4);
 
   LhsVar(1) = 0;
   Nbvars = 0;

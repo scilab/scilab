@@ -82,7 +82,7 @@ int C2F(getmat)(fname, topk, lw, it, m, n, lr, lc, fname_len)
      integer *topk, *lw, *it, *m, *n, *lr, *lc;
      unsigned long fname_len;
 {
-  return C2F(getmati)(fname, topk, lw,lstk(*lw), it, m, n, lr, lc, &c_false, &cx0, fname_len);
+  return C2F(getmati)(fname, topk, lw,Lstk(*lw), it, m, n, lr, lc, &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------
@@ -186,7 +186,7 @@ int C2F(getmati)(fname, topk, spos, lw, it, m, n, lr, lc, inlistx, nel, fname_le
 /*---------------------------------------------------------- 
  *  listcremat(top,numero,lw,....) 
  *      le numero ieme element de la liste en top doit etre un matrice 
- *      stockee a partir de lstk(lw) 
+ *      stockee a partir de Lstk(lw) 
  *      doit mettre a jour les pointeurs de la liste 
  *      ainsi que stk(top+1) 
  *      si l'element a creer est le dernier 
@@ -204,10 +204,10 @@ int C2F(listcremat)(fname, lw, numi, stlw, it, m, n, lrs, lcs, fname_len)
     return FALSE_ ;
 
   *stlw = *lrs + *m * *n * (*it + 1);
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -238,9 +238,9 @@ int C2F(cremat)(fname, lw, it, m, n, lr, lc, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  if ( C2F(cremati)(fname, lstk(*lw ), it, m, n, lr, lc, &c_true, fname_len) == FALSE_)
+  if ( C2F(cremati)(fname, Lstk(*lw ), it, m, n, lr, lc, &c_true, fname_len) == FALSE_)
     return FALSE_ ;
-  *lstk(*lw +1) = *lr + *m * *n * (*it + 1);
+  *Lstk(*lw +1) = *lr + *m * *n * (*it + 1);
   return TRUE_;
 } 
 
@@ -253,9 +253,9 @@ int C2F(fakecremat)(lw, it, m, n, lr, lc)
      integer *lw, *it, *m, *n, *lr, *lc;
 {
   if (*lw + 1 >= Bot) return FALSE_;
-  if (C2F(cremati)("cremat", lstk(*lw ), it, m, n, lr, lc, &c_false, 6L) == FALSE_) 
+  if (C2F(cremati)("cremat", Lstk(*lw ), it, m, n, lr, lc, &c_false, 6L) == FALSE_) 
     return FALSE_;
-  *lstk(*lw +1) = *lr + *m * *n * (*it + 1);
+  *Lstk(*lw +1) = *lr + *m * *n * (*it + 1);
   return TRUE_;
 } 
 
@@ -275,7 +275,7 @@ int C2F(cremati)(fname, stlw, it, m, n, lr, lc, flagx, fname_len)
   double size = ((double) *m) * ((double) *n) * ((double) (*it + 1));
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if ( (double) Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -354,7 +354,7 @@ int C2F(getimat)(fname, topk, lw,it, m, n, lr,  fname_len)
      integer *topk, *lw, *m, *n, *lr,*it;
      unsigned long fname_len;
 {
-  return C2F(getimati)(fname, topk, lw,lstk(*lw),it,m, n, lr,&c_false, &cx0, fname_len);
+  return C2F(getimati)(fname, topk, lw,Lstk(*lw),it,m, n, lr,&c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------- 
@@ -391,7 +391,7 @@ int C2F(getimati)(fname, topk, spos, lw, it,m, n, lr, inlistx, nel, fname_len)
 /*---------------------------------------------------------- 
  *  listcreimat(top,numero,lw,....) 
  *      le numero ieme element de la liste en top doit etre un matrice 
- *      stockee a partir de lstk(lw) 
+ *      stockee a partir de Lstk(lw) 
  *      doit mettre a jour les pointeurs de la liste 
  *      ainsi que stk(top+1) 
  *      si l'element a creer est le dernier 
@@ -408,10 +408,10 @@ int C2F(listcreimat)(fname, lw, numi, stlw,it, m, n, lrs, fname_len)
   if (C2F(creimati)(fname, stlw,it, m, n, lrs, &c_true, fname_len)==FALSE_)
     return FALSE_ ;
   *stlw = sadr(*lrs + memused(*it,*m * *n));
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -441,9 +441,9 @@ int C2F(creimat)(fname, lw, it, m, n, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  if ( C2F(creimati)(fname, lstk(*lw ), it, m, n, lr,&c_true, fname_len) == FALSE_)
+  if ( C2F(creimati)(fname, Lstk(*lw ), it, m, n, lr,&c_true, fname_len) == FALSE_)
     return FALSE_ ;
-  *lstk(*lw +1) = sadr(*lr + memused(*it,*m * *n));
+  *Lstk(*lw +1) = sadr(*lr + memused(*it,*m * *n));
   return TRUE_;
 } 
 
@@ -462,7 +462,7 @@ int C2F(creimati)(fname, stlw, it, m, n, lr, flagx, fname_len)
   double size =  memused(*it,((double)*m)*((double) *n));
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -527,7 +527,7 @@ int C2F(getbmat)(fname, topk, lw, m, n, lr, fname_len)
      integer *topk, *lw, *m, *n, *lr;
      unsigned long fname_len;
 {
-  return C2F(getbmati)(fname, topk, lw, lstk(*lw ), m, n, lr, &c_false, &cx0, fname_len);
+  return C2F(getbmati)(fname, topk, lw, Lstk(*lw ), m, n, lr, &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------ 
@@ -586,7 +586,7 @@ int C2F(getbmati)(fname, topk, spos, lw, m, n, lr, inlistx, nel, fname_len)
 /*------------------------------------------------== 
  *      listcrebmat(top,numero,lw,....) 
  *      le numero ieme element de la liste en top doit etre un bmatrice 
- *      stockee a partir de lstk(lw) 
+ *      stockee a partir de Lstk(lw) 
  *      doit mettre a jour les pointeurs de la liste 
  *      ainsi que stk(top+1) 
  *      si l'element a creer est le dernier 
@@ -606,10 +606,10 @@ int C2F(listcrebmat)(fname, lw, numi, stlw, m, n, lrs, fname_len)
 
   ix1 = *lrs + *m * *n + 2;
   *stlw = sadr(ix1);
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 }
 
@@ -640,11 +640,11 @@ int C2F(crebmat)(fname, lw, m, n, lr, fname_len)
     return FALSE_ ;
   }
 
-  if ( C2F(crebmati)(fname, lstk(*lw ), m, n, lr, &c_true, fname_len)== FALSE_)
+  if ( C2F(crebmati)(fname, Lstk(*lw ), m, n, lr, &c_true, fname_len)== FALSE_)
     return FALSE_ ;
 
   ix1 = *lr + *m * *n + 2;
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   return TRUE_;
 } 
 
@@ -660,9 +660,9 @@ int C2F(fakecrebmat)( lw, m, n, lr)
     Scierror(18,"fakecrebmat: too many names\r\n");
     return FALSE_;
   }
-  if ( C2F(crebmati)("crebmat", lstk(*lw ), m, n, lr, &c_false, 7L)== FALSE_)
+  if ( C2F(crebmati)("crebmat", Lstk(*lw ), m, n, lr, &c_false, 7L)== FALSE_)
     return FALSE_ ;
-  *lstk(*lw +1) = sadr( *lr + *m * *n + 2);
+  *Lstk(*lw +1) = sadr( *lr + *m * *n + 2);
   return TRUE_;
 } 
 
@@ -679,7 +679,7 @@ int C2F(crebmati)(fname, stlw, m, n, lr, flagx, fname_len)
   double size = ((double) *m) * ((double) *n) ;
   integer il;
   il = iadr(*stlw);
-  Err = il + 3  - iadr(*lstk(Bot ));
+  Err = il + 3  - iadr(*Lstk(Bot ));
   if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -749,7 +749,7 @@ int C2F(getsparse)(fname, topk, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len
      integer *topk, *lw, *it, *m, *n, *nel, *mnel, *icol, *lr, *lc;
      unsigned long fname_len;
 {
-  return C2F(getsparsei)(fname, topk, lw, lstk(*lw ), it, m, n, nel, mnel, icol, lr, lc, &c_false, &cx0, fname_len);
+  return C2F(getsparsei)(fname, topk, lw, Lstk(*lw ), it, m, n, nel, mnel, icol, lr, lc, &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------- 
@@ -811,7 +811,7 @@ int C2F(getsparsei)(fname, topk, spos, lw, it, m, n, nel, mnel, icol, lr, lc, in
 
 /*---------------------------------------------------------- 
  *      le numero ieme element de la liste en top doit etre une matrice 
- *      sparse stockee a partir de lstk(lw) 
+ *      sparse stockee a partir de Lstk(lw) 
  *      doit mettre a jour les pointeurs de la liste 
  *      ainsi que stk(top+1) 
  *      si l'element a creer est le dernier 
@@ -831,11 +831,11 @@ int C2F(listcresparse)(fname, lw, numi, stlw, it, m, n, nel, mnel, icol, lrs, lc
     return FALSE_ ;
 
   *stlw = *lrs + *nel * (*it + 1);
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
   if (*numi == *istk(il +1)) {
-    *lstk(*lw +1) = *stlw;
+    *Lstk(*lw +1) = *stlw;
   }
   return TRUE_;
 } 
@@ -866,10 +866,10 @@ int C2F(cresparse)(fname, lw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
     return FALSE_ ;
   }
   
-  if ( C2F(cresparsei)(fname, lstk(*lw ), it, m, n, nel, mnel, icol, lr, lc, fname_len)
+  if ( C2F(cresparsei)(fname, Lstk(*lw ), it, m, n, nel, mnel, icol, lr, lc, fname_len)
        == FALSE_) 
     return FALSE_ ;
-  *lstk(*lw +1) = *lr + *nel * (*it + 1);
+  *Lstk(*lw +1) = *lr + *nel * (*it + 1);
   return TRUE_;
 } 
 
@@ -887,7 +887,7 @@ int C2F(cresparsei)(fname, stlw, it, m, n, nel, mnel, icol, lr, lc, fname_len)
 
   il = iadr(*stlw);
   ix1 = il + 5 + *m + *nel;
-  Err = sadr(ix1) + *nel * (*it + 1) - *lstk(Bot );
+  Err = sadr(ix1) + *nel * (*it + 1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -1131,7 +1131,7 @@ int C2F(getsmat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
      integer *topk, *lw, *m, *n, *ix, *j, *lr, *nlr;
      unsigned long fname_len;
 {
-  return C2F(getsmati)(fname, topk, lw, lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
+  return C2F(getsmati)(fname, topk, lw, Lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------ 
@@ -1152,7 +1152,7 @@ int C2F(getsimat)(fname, topk, lw, m, n, ix, j, lr, nlr, fname_len)
      integer *topk, *lw, *m, *n, *ix, *j, *lr, *nlr;
      unsigned long fname_len;
 {
-  return C2F(getsimati)(fname, topk, lw, lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
+  return C2F(getsimati)(fname, topk, lw, Lstk(*lw), m, n, ix,j , lr ,nlr,  &c_false, &cx0, fname_len);
 }
 
 /*--------------------------------------------------------------------------
@@ -1194,7 +1194,7 @@ int C2F(getwsmat)(fname, topk, lw, m, n, ilr, ilrd, fname_len)
      integer *topk, *lw, *m, *n, *ilr, *ilrd;
      unsigned long fname_len;
 {
-  return C2F(getwsmati)(fname, topk, lw,lstk(*lw), m, n, ilr, ilrd, &c_false, &cx0, fname_len);
+  return C2F(getwsmati)(fname, topk, lw,Lstk(*lw), m, n, ilr, ilrd, &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------- 
@@ -1272,9 +1272,9 @@ int C2F(getsimati)(fname, topk, spos, lw, m, n, ix,j , lr ,nlr, inlistx, nel, fn
 /*---------------------------------------------------------- 
  *     listcresmat(top,numero,lw,....) 
  *     le  ieme element de la liste en top doit etre une 
- *     matrice stockee a partir de lstk(lw) 
+ *     matrice stockee a partir de Lstk(lw) 
  *     doit mettre a jour les pointeurs de la liste 
- *     ainsi que lstk(top+1) si l'element a creer est le dernier 
+ *     ainsi que Lstk(top+1) si l'element a creer est le dernier 
  *     lw est aussi mis a jour 
  *     job==1: nchar est la taille de chaque chaine de la  matrice 
  *     job==2: nchar est le vecteur des tailles des chaines de la 
@@ -1295,10 +1295,10 @@ int C2F(listcresmat)(fname, lw, numi, stlw, m, n, nchar, job, ilrs, fname_len)
     return FALSE_;
   ix1 = *ilrs + sz;
   *stlw = sadr(ix1);
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -1321,13 +1321,13 @@ int C2F(cresmat)(fname, lw, m, n, nchar, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return  FALSE_;
   }
-  if ( C2F(cresmati)(fname,lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
+  if ( C2F(cresmati)(fname,Lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
     return FALSE_ ;
   ilast = lr - 1;
   ix1 = ilast + *istk(ilast );
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   /* empty strings */
-  if ( *nchar == 0)   *lstk(*lw +1) += 1;
+  if ( *nchar == 0)   *Lstk(*lw +1) += 1;
   return TRUE_;
 }
 
@@ -1350,11 +1350,11 @@ int C2F(cresmat1)(fname, lw, m, nchar, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return  FALSE_;
   }
-  if ( C2F(cresmati)(fname,lstk(*lw), m, &n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
+  if ( C2F(cresmati)(fname,Lstk(*lw), m, &n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
     return FALSE_ ;
   ilast = lr - 1;
   ix1 = ilast + *istk(ilast );
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   return TRUE_;
 }
 
@@ -1377,14 +1377,14 @@ int C2F(cresmat2)(fname, lw, nchar, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return  FALSE_;
   }
-  if ( C2F(cresmati)(fname,lstk(*lw), &m, &n, nchar, &job, lr, &sz, fname_len) == FALSE_ )
+  if ( C2F(cresmati)(fname,Lstk(*lw), &m, &n, nchar, &job, lr, &sz, fname_len) == FALSE_ )
     return FALSE_ ;
 
   ilast = *lr - 1;
   ix1 = ilast + *istk(ilast );
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   /* empty strings */
-  if ( *nchar == 0)   *lstk(*lw +1) += 1;
+  if ( *nchar == 0)   *Lstk(*lw +1) += 1;
   *lr = ilast + *istk(ilast - 1);
   return TRUE_;
 } 
@@ -1411,11 +1411,11 @@ int C2F(cresmat3)(fname, lw, m, n, nchar, buffer, fname_len, buffer_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return  FALSE_;
   }
-  if ( C2F(cresmati)(fname,lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
+  if ( C2F(cresmati)(fname,Lstk(*lw), m, n, nchar, &job, &lr, &sz, fname_len) == FALSE_ )
     return FALSE_ ;
   ilast = lr - 1;
   ix1 = ilast + *istk(ilast );
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
 
   lr1 = ilast + *istk(ilast - (*m)*(*n) );
   C2F(cvstr)(&sz, istk(lr1), buffer, &cx0, buffer_len);
@@ -1442,9 +1442,9 @@ int C2F(cresmat4)(fname, lw, m, nchar, lr, fname_len)
   nnchar = 0;
   ix1 = *m;
   for (ix = 1; ix <= ix1; ++ix) nnchar += *nchar;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + 4 + (nnchar + 1) * *m;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -1461,7 +1461,7 @@ int C2F(cresmat4)(fname, lw, m, nchar, lr, fname_len)
   }
   ilast = ilp + *m;
   ix1 = ilast + *istk(ilast );
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   *lr = ilast + 1;
   return TRUE_;
 }
@@ -1492,7 +1492,7 @@ int C2F(cresmati)(fname, stlw, m, n, nchar, job, lr, sz, fname_len)
     }
   /* check the stack for space */
   ix1 = il + 4 + mn + 1 + *sz;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -1555,7 +1555,7 @@ int cre_smat_from_str_i(fname, lw, m, n, Str, fname_len ,rep)
   
   il = iadr(*lw);
   ix1 = il + 4 + (nnchar + 1) + (*m * *n + 1);
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -1601,9 +1601,9 @@ int cre_smat_from_str(fname, lw, m, n, Str, fname_len )
     return FALSE_;
   }
 
-  if ( cre_smat_from_str_i(fname, lstk(*lw ), m, n, Str, fname_len,&rep)== FALSE_ )
+  if ( cre_smat_from_str_i(fname, Lstk(*lw ), m, n, Str, fname_len,&rep)== FALSE_ )
     return FALSE_;
-  *lstk(*lw+1) = rep;
+  *Lstk(*lw+1) = rep;
   return TRUE_;
 } 
 
@@ -1618,10 +1618,10 @@ int cre_listsmat_from_str(fname, lw, numi, stlw,  m, n, Str, fname_len )
   if ( cre_smat_from_str_i(fname, stlw, m, n, Str, fname_len,&rep)== FALSE_ )
     return FALSE_;
   *stlw = rep;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -1649,7 +1649,7 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
   il = iadr(*lw);
 
   ix1 = il + 5 + *m + S->nel;
-  Err = sadr(ix1)  - *lstk(Bot );
+  Err = sadr(ix1)  - *Lstk(Bot );
   if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -1686,9 +1686,9 @@ int cre_sparse_from_ptr(fname, lw, m, n, Str, fname_len )
     return FALSE_;
   }
 
-  if ( cre_sparse_from_ptr_i(fname, lstk(*lw ), m, n, Str, fname_len,&rep)== FALSE_ )
+  if ( cre_sparse_from_ptr_i(fname, Lstk(*lw ), m, n, Str, fname_len,&rep)== FALSE_ )
     return FALSE_;
-  *lstk(*lw+1) = rep;
+  *Lstk(*lw+1) = rep;
   return TRUE_;
 } 
 
@@ -1703,10 +1703,10 @@ int cre_listsparse_from_ptr(fname, lw, numi, stlw,  m, n, Str, fname_len )
   if ( cre_sparse_from_ptr_i(fname, stlw, m, n, Str, fname_len,&rep)== FALSE_ )
     return FALSE_;
   *stlw = rep;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -1729,11 +1729,11 @@ int C2F(listcrestring)(fname, lw, numi, stlw, nch, ilrs, fname_len)
 
   ix1 = *ilrs - 1 + *istk(*ilrs - 2 +1);
   *stlw = sadr(ix1);
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
   if (*numi == *istk(il +1)) {
-    *lstk(*lw +1) = *stlw;
+    *Lstk(*lw +1) = *stlw;
   }
   return TRUE_;
 }
@@ -1755,12 +1755,12 @@ int C2F(crestring)(fname, spos, nchar, ilrs, fname_len)
      unsigned long fname_len;
 {
   integer ix1;
-  if ( C2F(crestringi)(fname, lstk(*spos ), nchar, ilrs, fname_len) == FALSE_) 
+  if ( C2F(crestringi)(fname, Lstk(*spos ), nchar, ilrs, fname_len) == FALSE_) 
     return FALSE_;
   ix1 = *ilrs + *nchar;
-  *lstk(*spos +1) = sadr(ix1);
+  *Lstk(*spos +1) = sadr(ix1);
   /* empty strings */
-  if ( *nchar == 0)   *lstk(*spos +1) += 1;
+  if ( *nchar == 0)   *Lstk(*spos +1) += 1;
   return TRUE_;
 }
 
@@ -1786,7 +1786,7 @@ int C2F(crestringi)(fname, stlw, nchar, ilrs, fname_len)
 
   il = iadr(*stlw);
   ix1 = il + 4 + (*nchar + 1);
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -1815,14 +1815,14 @@ int C2F(fakecresmat2)(lw, nchar, lr)
   int retval;
   static integer ilast;
   static integer il;
-  il = iadr((*lstk(*lw)));
-  Err = sadr(il + 4 + (*nchar + 1)) - *lstk(Bot);
+  il = iadr((*Lstk(*lw)));
+  Err = sadr(il + 4 + (*nchar + 1)) - *Lstk(Bot);
   if (Err > 0) {
     C2F(error)(&cx17);
     retval = FALSE_;
   } else {
     ilast = il + 5;
-    *lstk(*lw+1) = sadr(ilast + *istk(ilast));
+    *Lstk(*lw+1) = sadr(ilast + *istk(ilast));
     *lr = ilast + *istk(ilast - 1);
     retval = TRUE_;
   }
@@ -1860,14 +1860,14 @@ int C2F(smatj)(fname, lw, j, fname_len)
     return FALSE_;
   if (*j > n) return FALSE_;
   
-  il1 = iadr(*lstk(*lw - 2 +1));
-  il2 = iadr(*lstk(*lw ));
+  il1 = iadr(*Lstk(*lw - 2 +1));
+  il2 = iadr(*Lstk(*lw ));
   /*     nombre de caracteres de la jieme colonne */
   incj = (*j - 1) * m;
   nj = *istk(il1 + 4 + incj + m ) - *istk(il1 + 4 + incj );
   /*     test de place */
   ix1 = il2 + 4 + m + nj + 1;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -1886,7 +1886,7 @@ int C2F(smatj)(fname, lw, j, fname_len)
   lj = *istk(il1 + 4 + incj ) + il1 + 4 + m * n;
   C2F(icopy)(&nj, istk(lj ), &cx1, istk(il2 + 4 + m +1), &cx1);
   ix1 = il2 + 4 + m + nj + 1;
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   return TRUE_;
 } 
 
@@ -1895,7 +1895,7 @@ int C2F(smatj)(fname, lw, j, fname_len)
  *     copie la matrice de chaine de caracteres stockee en flw 
  *     en tlw, les verifications de dimensions 
  *     ne sont pas faites 
- *     lstk(tlw+1) est modifie si necessaire 
+ *     Lstk(tlw+1) est modifie si necessaire 
  *------------------------------------------------------------------ */
 
 int C2F(copysmat)(fname, flw, tlw, fname_len)
@@ -1906,12 +1906,12 @@ int C2F(copysmat)(fname, flw, tlw, fname_len)
   integer ix1;
   integer dflw, fflw;
   integer dtlw;
-  dflw = iadr(*lstk(*flw ));
-  fflw = iadr(*lstk(*flw +1));
-  dtlw = iadr(*lstk(*tlw ));
+  dflw = iadr(*Lstk(*flw ));
+  fflw = iadr(*Lstk(*flw +1));
+  dtlw = iadr(*Lstk(*tlw ));
   ix1 = fflw - dflw;
   C2F(icopy)(&ix1, istk(dflw ), &cx1, istk(dtlw ), &cx1);
-  *lstk(*tlw +1) = *lstk(*tlw ) + *lstk(*flw +1) - *lstk(*flw );
+  *Lstk(*tlw +1) = *Lstk(*tlw ) + *Lstk(*flw +1) - *Lstk(*flw );
   return 0;
 }
 
@@ -1938,7 +1938,7 @@ int C2F(setsimat)(fname, lw, ix, j, nlr, fname_len)
      unsigned long fname_len;
 {
   integer k, m, il;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   m = *istk(il +1);
   k = *ix - 1 + (*j - 1) * m;
   *istk(il + 4 + k +1) = *istk(il + 4 + k ) + *nlr;
@@ -1964,13 +1964,13 @@ int crelist_G(slw, ilen, lw, type)
 {
   integer ix1;
   integer il;
-  il = iadr(*lstk(*slw ));
+  il = iadr(*Lstk(*slw ));
   *istk(il ) = type;
   *istk(il + 1) = *ilen;
   *istk(il + 2) = 1;
   ix1 = il + *ilen + 3;
   *lw = sadr(ix1);
-  if (*ilen == 0) *lstk(*lw +1) = *lw;
+  if (*ilen == 0) *Lstk(*lw +1) = *lw;
   return 0;
 } 
 
@@ -2021,14 +2021,14 @@ int C2F(lmatj)(fname, lw, j, fname_len)
     return FALSE_;
   if (*j > n)       return FALSE_;
   /*     a ameliorer */
-  il = iadr(*lstk(*lw - 2 +1));
+  il = iadr(*Lstk(*lw - 2 +1));
   ix1 = il + 3 + n;
   slj = sadr(ix1) + *istk(il + 2 + (*j - 1) ) - 1;
   n = *istk(il + 2 + *j ) - *istk(il + 2 + (*j - 1) );
-  Err = *lstk(*lw ) + n - *lstk(Bot );
+  Err = *Lstk(*lw ) + n - *Lstk(Bot );
   if (Err > 0) return FALSE_;
-  C2F(dcopy)(&n, stk(slj ), &cx1, stk(*lstk(*lw ) ), &cx1);
-  *lstk(*lw +1) = *lstk(*lw ) + n;
+  C2F(dcopy)(&n, stk(slj ), &cx1, stk(*Lstk(*lw ) ), &cx1);
+  *Lstk(*lw +1) = *Lstk(*lw ) + n;
   return TRUE_;
 } 
 
@@ -2043,7 +2043,7 @@ int C2F(lmatj)(fname, lw, j, fname_len)
  *      n  : nombre d'elements ds la liste 
  *      ili : le ieme element commence en istk(iadr(ili)) 
  *     ==> pour recuperer un argument il suffit 
- *     de faire un lk=lstk(top);lstk(top)=ili; getmat(...,top,...);stk(top)=lk 
+ *     de faire un lk=Lstk(top);Lstk(top)=ili; getmat(...,top,...);stk(top)=lk 
  *------------------------------------------------*/
 
 int C2F(getilist)(fname, topk, lw, n, ix, ili, fname_len)
@@ -2054,7 +2054,7 @@ int C2F(getilist)(fname, topk, lw, n, ix, ili, fname_len)
   integer ix1;
   integer itype, il;
 
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
@@ -2108,7 +2108,7 @@ int C2F(getpoly)(fname, topk, lw, it, m, n, namex, namel, ilp, lr, lc, fname_len
   integer ix1;
 
   integer il;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) != 2) {
     Scierror(212,"%s: Argument %d: wrong type argument, expecting a polynomial matrix\r\n",
 	     get_fname(fname,fname_len), Rhs + (*lw - *topk));
@@ -2200,9 +2200,9 @@ int C2F(pmatj)(fname, lw, j, fname_len)
   if (*j > n)     return FALSE_;
 
   /*     a ameliorer */
-  il = iadr(*lstk(*lw - 2 +1));
+  il = iadr(*Lstk(*lw - 2 +1));
   incj = (*j - 1) * m;
-  il2 = iadr(*lstk(*lw ));
+  il2 = iadr(*Lstk(*lw ));
   ix1 = il2 + 4;
   l2 = sadr(ix1);
   m2 = Max(m,1);
@@ -2212,7 +2212,7 @@ int C2F(pmatj)(fname, lw, j, fname_len)
   ix1 = il2 + 9 + m2;
   l2 = sadr(ix1);
   n2 = *istk(il + 8 + incj + m ) - *istk(il + 8 + incj );
-  Err = l2 + n2 * (it + 1) - *lstk(Bot );
+  Err = l2 + n2 * (it + 1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -2230,7 +2230,7 @@ int C2F(pmatj)(fname, lw, j, fname_len)
   if (it == 1) {
     C2F(dcopy)(&n2, stk(lj + n ), &cx1, stk(l2 + n2 ), &cx1);
   }
-  *lstk(Top +1) = l2 + n2 * (it + 1);
+  *Lstk(Top +1) = l2 + n2 * (it + 1);
   il2 += -8;
   *istk(il2 ) = 2;
   *istk(il2 +1) = m2;
@@ -2262,15 +2262,15 @@ int C2F(crewmat)(fname, lw, m, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  il = iadr(*lstk(*lw ));
-  *m = *lstk(Bot ) - sadr(il+4);
+  il = iadr(*Lstk(*lw ));
+  *m = *Lstk(Bot ) - sadr(il+4);
   *istk(il ) = 1;
   *istk(il + 1) = 1;
   *istk(il + 2) = *m;
   *istk(il + 3) = 0;
   ix1 = il + 4;
   *lr = sadr(il+4);
-  *lstk(*lw +1) = sadr(il+4) + *m;
+  *Lstk(*lw +1) = sadr(il+4) + *m;
   return TRUE_;
 }
 
@@ -2294,8 +2294,8 @@ int C2F(crewimat)(fname, lw, m, n, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  il = iadr(*lstk(*lw ));
-  Err = il + 3  - iadr(*lstk(Bot ));
+  il = iadr(*Lstk(*lw ));
+  Err = il + 3  - iadr(*Lstk(Bot ));
   if (Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -2306,7 +2306,7 @@ int C2F(crewimat)(fname, lw, m, n, lr, fname_len)
   *istk(il + 2) = *n;
   *lr = il + 3;
   ix1 = il + 3 + *m * *n + 2;
-  *lstk(*lw +1) = sadr(ix1);
+  *Lstk(*lw +1) = sadr(ix1);
   return TRUE_;
 }
 
@@ -2326,7 +2326,7 @@ int C2F(getwimat)(fname, topk, lw, m, n, lr, fname_len)
      unsigned long fname_len;
 {
   integer il;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
@@ -2382,10 +2382,10 @@ int C2F(listcrepointer)(fname, lw, numi, stlw, lrs, fname_len)
   if (C2F(crepointeri)(fname, stlw,  lrs, &c_true, fname_len)==FALSE_)
     return FALSE_ ;
   *stlw = *lrs + 2;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -2403,9 +2403,9 @@ int C2F(crepointer)(fname, lw, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  if ( C2F(crepointeri)(fname, lstk(*lw ), lr, &c_true, fname_len) == FALSE_)
+  if ( C2F(crepointeri)(fname, Lstk(*lw ), lr, &c_true, fname_len) == FALSE_)
     return FALSE_ ;
-  *lstk(*lw +1) = *lr + 2;
+  *Lstk(*lw +1) = *lr + 2;
   return TRUE_;
 } 
 
@@ -2423,7 +2423,7 @@ int C2F(crepointeri)(fname, stlw, lr,  flagx, fname_len)
   integer il;
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) + 2 - *lstk(Bot );
+  Err = sadr(ix1) + 2 - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -2456,7 +2456,7 @@ int C2F(lcrestringmatfromc)(fname, spos, numi, stlw, lorig, m, n, fname_len)
   integer ierr;
   integer il, ilw;
   ilw = iadr(*stlw);
-  ix1 = *lstk(Bot ) - *stlw;
+  ix1 = *Lstk(Bot ) - *stlw;
   C2F(cstringf)(stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
     Scierror(999,"Not enough memory\r\n");
@@ -2464,11 +2464,11 @@ int C2F(lcrestringmatfromc)(fname, spos, numi, stlw, lorig, m, n, fname_len)
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
   *stlw = sadr(ix1);
-  il = iadr(*lstk(*spos ));
+  il = iadr(*Lstk(*spos ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
   if (*numi == *istk(il +1)) {
-    *lstk(*spos +1) = *stlw;
+    *Lstk(*spos +1) = *stlw;
   }
   return TRUE_;
 }
@@ -2489,15 +2489,15 @@ int C2F(crestringmatfromc)(fname, spos, lorig, m, n, fname_len)
   integer ix1;
   integer ierr;
   integer ilw;
-  ilw = iadr(*lstk(*spos ));
-  ix1 = *lstk(Bot ) - *lstk(*spos );
+  ilw = iadr(*Lstk(*spos ));
+  ix1 = *Lstk(Bot ) - *Lstk(*spos );
   C2F(cstringf)(stk(*lorig ), istk(ilw ), m, n, &ix1, &ierr);
   if (ierr > 0) {
     Scierror(999,"Not enough memory\r\n");
     return FALSE_;
   }
   ix1 = ilw + 5 + *m * *n + *istk(ilw + 4 + *m * *n ) - 1;
-  *lstk(*spos +1) = sadr(ix1);
+  *Lstk(*spos +1) = sadr(ix1);
   return  TRUE_;
 }
 
@@ -2557,7 +2557,7 @@ int C2F(getvectrow)(fname, topk, spos, it, m, n, lr, lc, fname_len)
      integer *topk, *spos, *it, *m, *n, *lr, *lc;
      unsigned long fname_len;
 {
-  if (C2F(getmati)(fname, topk, spos, lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len) == FALSE_) 
+  if (C2F(getmati)(fname, topk, spos, Lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len) == FALSE_) 
     return FALSE_;
 
   if (*m != 1) {
@@ -2623,7 +2623,7 @@ int C2F(getvectcol)(fname, topk, spos, it, m, n, lr, lc, fname_len)
      unsigned long fname_len;
 {
 
-  if ( C2F(getmati)(fname, topk, spos, lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len)
+  if ( C2F(getmati)(fname, topk, spos, Lstk(*spos ), it, m, n, lr, lc, &c_false, &cx0, fname_len)
        == FALSE_ ) 
     return FALSE_;
 
@@ -2664,7 +2664,7 @@ int C2F(getpointer)(fname, topk, lw, lr, fname_len)
      integer *topk, *lw, *lr;
      unsigned long fname_len;
 {
-  return C2F(getpointeri)(fname, topk, lw,lstk(*lw), lr, &c_false, &cx0, fname_len);
+  return C2F(getpointeri)(fname, topk, lw,Lstk(*lw), lr, &c_false, &cx0, fname_len);
 } 
 
 /*------------------------------------------------------------------ 
@@ -2741,10 +2741,10 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
     return FALSE_;
   }
 
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + 4 + (*n + 1) + *nzMax;
   size = (*it + 1) * *nzMax ;
-  Err = sadr(ix1)  - *lstk(Bot );
+  Err = sadr(ix1)  - *Lstk(Bot );
   if (Err > -size ) {
     Scierror(17,"stack size exceeded (Use stacksize function to increase it)\r\n");
     return FALSE_;
@@ -2760,9 +2760,9 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
   jc = il + 5;
   ir = jc + *n + 1;
   ix1 = il + 4 + (*n + 1) + *nzMax;
-  *lstk(*lw +1) = sadr(ix1) + (*it + 1) * *nzMax + 1;
+  *Lstk(*lw +1) = sadr(ix1) + (*it + 1) * *nzMax + 1;
   C2F(intersci).ntypes[*lw-Top+Rhs-1] = '$';
-  C2F(intersci).iwhere[*lw-Top+Rhs-1] = *lstk(*lw);
+  C2F(intersci).iwhere[*lw-Top+Rhs-1] = *Lstk(*lw);
   /* C2F(intersci).lad[*lw-Top+Rhs-1] = should point to numeric data */
   return TRUE_;
 }
@@ -2888,13 +2888,13 @@ int C2F(realmat)()
   integer ix1;
   integer m, n, il;
 
-  il = iadr(*lstk(Top ));
+  il = iadr(*Lstk(Top ));
   if (*istk(il + 3 ) == 0) return 0;
   m = *istk(il + 1);
   n = *istk(il + 2);
   *istk(il + 3) = 0;
   ix1 = il + 4;
-  *lstk(Top +1) = sadr(ix1) + m * n;
+  *Lstk(Top +1) = sadr(ix1) + m * n;
   return 0;
 }
 
@@ -2915,16 +2915,16 @@ int C2F(copyobj)(fname, lw, lwd, fname_len)
      unsigned long fname_len;
 {
   integer ix1,l,ld;
-  l=*lstk(*lw );
-  ld=*lstk(*lwd );
+  l=*Lstk(*lw );
+  ld=*Lstk(*lwd );
 
-  ix1 = *lstk(*lw +1) - l;
+  ix1 = *Lstk(*lw +1) - l;
   /* check for overlaping region */
   if (l+ix1>ld||ld+ix1>l) 
     C2F(unsfdcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
   else
     C2F(dcopy)(&ix1, stk(l), &cx1, stk(ld), &cx1);
-  *lstk(*lwd +1) = ld + ix1;
+  *Lstk(*lwd +1) = ld + ix1;
   return 0;
 }
 
@@ -2944,14 +2944,14 @@ int C2F(vcopyobj)(fname, lw, lwd, fname_len)
 {
   integer l;
   integer l1, lv;
-  l = *lstk(*lw );
-  lv = *lstk(*lw +1) - *lstk(*lw );
-  l1 = *lstk(*lwd );
+  l = *Lstk(*lw );
+  lv = *Lstk(*lw +1) - *Lstk(*lw );
+  l1 = *Lstk(*lwd );
   if (*lwd + 1 >= Bot) {
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  Err = *lstk(*lwd ) + lv - *lstk(Bot );
+  Err = *Lstk(*lwd ) + lv - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     get_fname(fname,fname_len));
@@ -2963,7 +2963,7 @@ int C2F(vcopyobj)(fname, lw, lwd, fname_len)
   else
     C2F(dcopy)(&lv, stk(l), &cx1, stk(l1), &cx1);
 
-  *lstk(*lwd +1) = *lstk(*lwd ) + lv;
+  *Lstk(*lwd +1) = *Lstk(*lwd ) + lv;
   return TRUE_;
 } 
 
@@ -3077,7 +3077,7 @@ int C2F(stackinfo)(lw, typ)
   if (*lw == 0) {
     return 0;
   }
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
@@ -3086,7 +3086,7 @@ int C2F(stackinfo)(lw, typ)
 
   sciprint("-----------------stack-info-----------------\r\n");
   sciprint("lw=%d -[istk]-> il lw+1 -[istk]-> %d \r\n",
-	   *lw,iadr(*lstk(*lw+1)));
+	   *lw,iadr(*Lstk(*lw+1)));
   sciprint("istk(%d:..) ->[%d %d %d %d ....]\r\n",
 	   il, istk(il),istk(il+1),istk(il+2),istk(il+3) );
   if (*typ == 1) {
@@ -3124,7 +3124,7 @@ int C2F(allmat)(fname, topk, lw, m, n, fname_len)
      unsigned long fname_len;
 {
   integer itype, il;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   itype = *istk(il );
   if (itype != 1 && itype != 2 && itype != 10) {
@@ -3148,7 +3148,7 @@ int C2F(allmatset)(fname, lw, m, n, fname_len)
      unsigned long fname_len;
 {
   integer il;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
   *istk(il + 1) = *m;
   *istk(il + 2) = *n;
@@ -3171,8 +3171,8 @@ int C2F(objvide)(fname, lw, fname_len)
   if (*lw == 0 || Rhs < 0) {
     ++(*lw);
   }
-  *istk(iadr(*lstk(*lw )) ) = 0;
-  *lstk(*lw +1) = *lstk(*lw ) + 2;
+  *istk(iadr(*Lstk(*lw )) ) = 0;
+  *Lstk(*lw +1) = *Lstk(*lw ) + 2;
   return 0;
 }
 
@@ -3328,19 +3328,19 @@ int C2F(credata)(fname, lw, m, fname_len)
      unsigned long fname_len;
 {
   integer lr;
-  lr = *lstk(*lw );
+  lr = *Lstk(*lw );
   if (*lw + 1 >= Bot) {
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
   
-  Err = lr   - *lstk(Bot);
+  Err = lr   - *Lstk(Bot);
   if (Err > -m ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
   };
-  /*  *lstk(*lw +1) = lr + 1 + m/sizeof(double);  */
-  *lstk(*lw +1) = lr + (m+sizeof(double)-1)/sizeof(double);
+  /*  *Lstk(*lw +1) = lr + 1 + m/sizeof(double);  */
+  *Lstk(*lw +1) = lr + (m+sizeof(double)-1)/sizeof(double);
   return TRUE_;
 } 
 /* ==============================================================
@@ -3361,7 +3361,7 @@ int C2F(crehmati)(fname, stlw, m, n, lr, flagx, fname_len)
   double size = ((double) *m) * ((double) *n);
   il = iadr(*stlw);
   ix1 = il + 4;
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if ( (double) Err > -size ) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",get_fname(fname,fname_len));
     return FALSE_;
@@ -3381,7 +3381,7 @@ int C2F(crehmati)(fname, stlw, m, n, lr, flagx, fname_len)
 /*---------------------------------------------------------- 
  *  listcrehmat(top,numero,lw,....) 
  *      le numero ieme element de la liste en top doit etre un matrice 
- *      stockee a partir de lstk(lw) 
+ *      stockee a partir de Lstk(lw) 
  *      doit mettre a jour les pointeurs de la liste 
  *      ainsi que stk(top+1) 
  *      si l'element a creer est le dernier 
@@ -3399,10 +3399,10 @@ int C2F(listcrehmat)(fname, lw, numi, stlw, m, n, lrs,fname_len)
     return FALSE_ ;
 
   *stlw = *lrs + *m * *n;
-  il = iadr(*lstk(*lw ));
+  il = iadr(*Lstk(*lw ));
   ix1 = il + *istk(il +1) + 3;
   *istk(il + 2 + *numi ) = *stlw - sadr(ix1) + 1;
-  if (*numi == *istk(il +1))  *lstk(*lw +1) = *stlw;
+  if (*numi == *istk(il +1))  *Lstk(*lw +1) = *stlw;
   return TRUE_;
 } 
 
@@ -3430,9 +3430,9 @@ int C2F(crehmat)(fname, lw, m, n, lr, fname_len)
     Scierror(18,"%s: too many names\r\n",get_fname(fname,fname_len));
     return FALSE_;
   }
-  if ( C2F(crehmati)(fname, lstk(*lw ), m, n, lr, &c_true, fname_len) == FALSE_)
+  if ( C2F(crehmati)(fname, Lstk(*lw ), m, n, lr, &c_true, fname_len) == FALSE_)
     return FALSE_ ;
-  *lstk(*lw +1) = *lr + *m * *n;
+  *Lstk(*lw +1) = *lr + *m * *n;
   return TRUE_;
 } 
 /*------------------------------------------------------------------ 
@@ -3484,7 +3484,7 @@ int C2F(gethmat)(fname, topk, lw, m, n, lr, fname_len)
      integer *topk, *lw, *m, *n, *lr;
      unsigned long fname_len;
 {
-  return C2F(gethmati)(fname, topk, lw,lstk(*lw), m, n, lr, &c_false, &cx0, fname_len);
+  return C2F(gethmati)(fname, topk, lw,Lstk(*lw), m, n, lr, &c_false, &cx0, fname_len);
 }
 
 /*------------------------------------------------------------------- 

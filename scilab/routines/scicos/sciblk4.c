@@ -135,7 +135,7 @@ integer flag;
   if (C2F(scierr)()!=0) goto err;
   
   l5=Top;
-  l = *lstk(l5);
+  l = *Lstk(l5);
   header = (int *) stk(l);
  
   switch (flag) {

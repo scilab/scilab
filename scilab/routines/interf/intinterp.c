@@ -99,7 +99,7 @@ static int get_rhs_real_hmat(int num, RealHyperMat *H)
   int il, il1, il2, il3,/* it, */lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*lstk( lw )); 
+  il = iadr(*Lstk( lw )); 
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 	  
@@ -140,7 +140,7 @@ static int get_rhs_real_hmat(int num, RealHyperMat *H)
   /* needed for Jpc stuff (putlhsvar) */
   Nbvars = Max(Nbvars,num);
   C2F(intersci).ntypes[num-1] = '$';
-  C2F(intersci).iwhere[num-1] = *lstk(lw);
+  C2F(intersci).iwhere[num-1] = *Lstk(lw);
   C2F(intersci).lad[num-1] = 0;  /* a voir ? */
   return 1;
 
@@ -154,7 +154,7 @@ static int get_rhs_scalar_string(int num, int *length, int **tabchar)
   int il, lw;
 
   lw = num + Top - Rhs;
-  il = iadr(*lstk( lw )); 
+  il = iadr(*Lstk( lw )); 
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 	  
@@ -169,7 +169,7 @@ static int get_rhs_scalar_string(int num, int *length, int **tabchar)
 
   Nbvars = Max(Nbvars,num);
   C2F(intersci).ntypes[num-1] = '$';
-  C2F(intersci).iwhere[num-1] = *lstk(lw);
+  C2F(intersci).iwhere[num-1] = *Lstk(lw);
   C2F(intersci).lad[num-1] = 0;
   return 1;
 }

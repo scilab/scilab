@@ -39,10 +39,10 @@ char *fnames[];
     static integer l0, n1, il;
 
     *retval = 0;
-    l0 = *lstk(*lw);
+    l0 = *Lstk(*lw);
 
     C2F(intersci).ntypes[*lw -Top + Rhs - 1] = '$';
-    C2F(intersci).iwhere[*lw -Top + Rhs - 1] = *lstk(*lw);
+    C2F(intersci).iwhere[*lw -Top + Rhs - 1] = *Lstk(*lw);
 
     if (*lw > intersiz) {
       Scierror(998,"Too many arguments in the stack edit stack.h and enlarge intersiz\r\n");
@@ -55,7 +55,7 @@ char *fnames[];
 
 /*     create the mlist header */
     il = iadr(l0);
-    Err = sadr(il+6) + n1 - *lstk(Bot);
+    Err = sadr(il+6) + n1 - *Lstk(Bot);
     if (Err > 0) {
 	C2F(error)(&c17);
 	return 1;
@@ -88,7 +88,7 @@ char *fnames[];
 	l += n1;
 	*istk(il + 6 + k) = *istk(il + 5 + k) + n1;
       }
-    *lstk(*lw+1)=l;
+    *Lstk(*lw+1)=l;
 } 
 
 

@@ -15,11 +15,11 @@ void str2sci(char** x,int n,int m)
     C2F(error)(&i);
   } else {
     Top = Top + 1;
-    il = iadr(*lstk(Top));
+    il = iadr(*Lstk(Top));
     l = sadr(il+6);
   }
   
-  err = l + n*m - *lstk(Bot);
+  err = l + n*m - *Lstk(Bot);
   if (err > 0) {
     i=17;
     C2F(error)(&i);
@@ -36,7 +36,7 @@ void str2sci(char** x,int n,int m)
   if (n1 > 0) C2F(cvstr)(&n1,istk(il+m*n+5 -1 + *istk(il+3+i)),x[i-1],&zero,(unsigned long) n1);
   m1=m1+n1;
   }
-  *lstk(Top+1) = l + m1;      
+  *Lstk(Top+1) = l + m1;      
                 
 } 
       

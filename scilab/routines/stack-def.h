@@ -24,6 +24,8 @@
 #define nlgh nsiz*4  
 #define vsiz 2 
 #define intersiz 1024
+#define maxdb 100
+#define maxbpt 1000
 
 IMPORT struct {
     double Stk[vsiz];
@@ -31,13 +33,13 @@ IMPORT struct {
 
 
 IMPORT struct {
-    int bot, top, idstk[nsiz*isizt], Lstk[isizt], leps, 
-	    bbot, bot0, Infstk[isizt], gbot, gtop, isiz;
+    int bot, top, idstk[nsiz*isizt], lstk[isizt], leps, 
+	    bbot, bot0, infstk[isizt], gbot, gtop, isiz;
 } C2F(vstk);
 
 
 IMPORT struct {
-    int ids[nsiz*psiz], Pstk[psiz], rstk[psiz], pt, niv, 
+    int ids[nsiz*psiz], pstk[psiz], rstk[psiz], pt, niv, 
 	    macr, paus, icall, krec;
 } C2F(recu);
 
@@ -68,6 +70,9 @@ IMPORT struct {
   char alfa[csiz], alfb[csiz], buf[bsiz];
 } C2F(cha1);
 
+struct {
+    int wmac, lcntr, nmacs, macnms[nsiz*maxdb]	, lgptrs[maxdb+1], bptlg[maxbpt];
+} C2F(dbg);
 
 #endif /** STACK_DEF  **/
 

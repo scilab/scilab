@@ -74,7 +74,7 @@ int C2F(creadmat)(namex, m, n, scimat, name_len)
       Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
       return FALSE_;
     }
-    if ( *infstk(Fin ) == 2)  Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     /* get matrix data pointer */
     if (! C2F(getrmat)("creadmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE_;
 
@@ -127,7 +127,7 @@ int C2F(creadcmat)(namex, m, n, scimat, name_len)
       Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
       return FALSE_;
     }
-    if ( *infstk(Fin ) == 2)  Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if ( *Infstk(Fin ) == 2)  Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     /* get matrix data pointer */
     if (! C2F(getcmat)("creadcmat", &Fin, &Fin, m, n, &l, 8L)) 	return FALSE_;
     ix1 = *m * *n;
@@ -250,8 +250,8 @@ int C2F(creadchain)(namex, itslen, chai, name_len, chai_len)
       Scierror(4,"Undefined variable %s\r\n",get_fname(namex,name_len));
       return FALSE_ ;
     }
-    if (*infstk(Fin ) == 2) {
-	Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if (*Infstk(Fin ) == 2) {
+	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getsmat)("creadchain", &Fin, &Fin, &m1, &n1, &cx1, &cx1, &lr1, &nlr1, 10L)) {
 	return FALSE_;
@@ -313,8 +313,8 @@ int C2F(creadchains)(namex, ir, ic, itslen, chai, name_len, chai_len)
       return FALSE_ ;
     }
 
-    if (*infstk(Fin ) == 2) {
-	Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if (*Infstk(Fin ) == 2) {
+	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (*ir == -1 && *ic == -1) {
 	if (! C2F(getsmat)("creadchain", &Fin, &Fin, ir, ic, &cx1, &cx1, &lr1, &nlr1, 10L)) 
@@ -426,8 +426,8 @@ int C2F(cmatptr)(namex, m, n, lp, name_len)
       return FALSE_;
     }
     /* get data */
-    if (*infstk(Fin ) == 2) {
-	Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if (*Infstk(Fin ) == 2) {
+	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getrmat)("creadmat", &Fin, &Fin, m, n, lp, 8L)) {
 	return FALSE_;
@@ -481,8 +481,8 @@ int C2F(cmatcptr)(namex, m, n, lp, name_len)
       return FALSE_;
     }
     /* get data */
-    if (*infstk(Fin ) == 2) {
-	Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if (*Infstk(Fin ) == 2) {
+	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getcmat)("creadmat", &Fin, &Fin, m, n, lp, 8L)) {
 	return FALSE_;
@@ -530,8 +530,8 @@ int C2F(cmatsptr)(namex, m, n, ix, j, lp, nlr, name_len)
       return FALSE_;
     }
     /* get data */
-    if (*infstk(Fin ) == 2) {
-	Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+    if (*Infstk(Fin ) == 2) {
+	Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
     }
     if (! C2F(getsmat)("creadmat", &Fin, &Fin, m, n, ix, j, lp, nlr, 8L)) {
 	return FALSE_;
@@ -558,10 +558,10 @@ void *Name2ptr(namex)
     return 0;
   }
   /* get data */
-  if (*infstk(Fin ) == 2) {
-    Fin = *istk(iadr(*lstk(Fin )) + 1 +1);
+  if (*Infstk(Fin ) == 2) {
+    Fin = *istk(iadr(*Lstk(Fin )) + 1 +1);
   }
-  loci = (int *) stk(*lstk(Fin));
+  loci = (int *) stk(*Lstk(Fin));
   if (loci[0] < 0) 
     {
       l1 = loci[1];
@@ -595,7 +595,7 @@ int Name2where(namex)
     Scierror(4,"Undefined variable %s\r\n",get_fname(namex,strlen(namex)));
     return 0;
   }
-  loci = *lstk(Fin);
+  loci = *Lstk(Fin);
   return loci;
 }
 
@@ -647,9 +647,9 @@ int C2F(objptr)(namex, lp, fin, name_len)
       return FALSE_;
     }
     *fin = Fin;
-    *lp = *lstk(Fin );
-    if (*infstk(Fin ) == 2) {
-	*lp = *lstk(*istk(iadr(*lp) + 1 +1) );
+    *lp = *Lstk(Fin );
+    if (*Infstk(Fin ) == 2) {
+	*lp = *Lstk(*istk(iadr(*lp) + 1 +1) );
     }
     return  TRUE_;
 }

@@ -32,7 +32,7 @@ int connection(int* path_out,int* path_in)
   ibegin=1;  mlhs=1; mrhs=2 ;  
   SciString(&ibegin,name,&mlhs,&mrhs);
   l5=Top - Rhs + ibegin;
-  il=iadr(*lstk(l5));
+  il=iadr(*Lstk(l5));
   l=sadr(il+4);
   ninnout=(int) *stk(l);  
   return ninnout;

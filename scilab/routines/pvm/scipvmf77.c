@@ -11,6 +11,9 @@
  *   HISTORY 
  *     fleury - Jun 29, 1999: Created. 
  *     $Log: scipvmf77.c,v $
+ *     Revision 1.2  2004/09/16 13:11:40  steer
+ *     name changes in C version of fortran stack commons
+ *
  *     Revision 1.1  2002/07/25 08:08:07  chanceli
  *     C translation and simplifications
  * 
@@ -169,7 +172,7 @@ static void f77_to_sci(double *tab, int *size)
  *        its il position 
  *        I.e the object is at position istk(il)+.... 
  *   if stk_pos==1 the object is given by its k 
- *        position in lstk(k) 
+ *        position in Lstk(k) 
  * 
  * During the walk fm is applied on some data structures 
  * 
@@ -182,7 +185,7 @@ static void sci_object_walk(int ilk,Fm fm,int stk_pos)
   if ( stk_pos == 1 ) 
     {
       /* object given by its stk position */ 
-      il = iadr(*lstk(ilk));
+      il = iadr(*Lstk(ilk));
       if (*istk(il ) < 0) {
 	il = iadr(*istk(il +1));
       }

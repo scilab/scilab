@@ -15,11 +15,11 @@
 /* ----------------------------------------------------------- */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-/* 	$Id: C-LAB_Interf.c,v 1.5 2002/10/14 09:26:42 chanceli Exp $	 */
+/* 	$Id: C-LAB_Interf.c,v 1.6 2004/09/16 13:11:40 steer Exp $	 */
 
 /*
   #ifndef lint
-  static char vcid[] = "$Id: C-LAB_Interf.c,v 1.5 2002/10/14 09:26:42 chanceli Exp $";
+  static char vcid[] = "$Id: C-LAB_Interf.c,v 1.6 2004/09/16 13:11:40 steer Exp $";
   #endif 
 */
 
@@ -662,7 +662,7 @@ void MatrixCopy( m_source, m_dest )
 
 int StkAvail()
 {
-  return( ((C2F(vstk).Lstk)[(C2F(vstk).bot)-1]-(C2F(vstk).Lstk)[(C2F(vstk).top)]-1) * sizeof(double) );
+  return( ((C2F(vstk).lstk)[(C2F(vstk).bot)-1]-(C2F(vstk).lstk)[(C2F(vstk).top)]-1) * sizeof(double) );
 }
 
 
@@ -692,7 +692,7 @@ void InterfInit()
       Interf.Param = (Matrix **)malloc(Interf.NbParamIn * sizeof(Matrix *));
       
       for (i=0; i<Interf.NbParamIn; i++) /* be carefull stack_.stk became stack_Stk in stack-c.h */
-	(Interf.Param)[i] = (Matrix *)( &( (C2F(stack).Stk)[ ( (C2F(vstk).Lstk)[C2F(vstk).top-C2F(com).rhs+i] ) -1] ) ); 
+	(Interf.Param)[i] = (Matrix *)( &( (C2F(stack).Stk)[ ( (C2F(vstk).lstk)[C2F(vstk).top-C2F(com).rhs+i] ) -1] ) ); 
       /* in fact, it's stk(top-1 -rhs +1) to correct the C/FORTRAN problem */
     }
 }
@@ -707,7 +707,7 @@ void ReturnParam(m)
   int CurrIndex;
   if (Interf.ReturnCounter < Interf.NbParamOut)
     {
-      CurrIndex =(C2F(vstk).Lstk)[Interf.ReturnIndex-1];
+      CurrIndex =(C2F(vstk).lstk)[Interf.ReturnIndex-1];
       /* Gets the index of the first free cell in the return stack */
       if ( MatrixMemSize(m)>StkAvail() )
 	{
@@ -721,7 +721,7 @@ void ReturnParam(m)
       
       Interf.ReturnIndex++;
       
-      (C2F(vstk).Lstk)[Interf.ReturnIndex-1] = CurrIndex + MatrixMemSize( m ) / sizeof(Matrix);
+      (C2F(vstk).lstk)[Interf.ReturnIndex-1] = CurrIndex + MatrixMemSize( m ) / sizeof(Matrix);
       /* We must divide by sizeof(Matrix) because we work in bytes */
       /* not in "stack elements" */
       /* it's far from neatness */

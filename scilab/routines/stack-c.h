@@ -117,12 +117,11 @@ static int c_local;
 #define sstk(x) (((float *) C2F(stack).Stk) + x-1 )
 #define cstk(x) (((char *) C2F(stack).Stk) + x-1 )
 typedef struct { double r, i; } doublecomplex;
-/* #define zstk(x) (doublecomplex *) (C2F(stack).Stk + x-1 )  */
 #define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
 
-#define lstk(x) (((integer *) C2F(vstk).Lstk) + x-1 )
-#define infstk(x) (((integer *) C2F(vstk).Infstk) + x-1 )
-#define pstk(x) (((integer *) C2F(recu).Pstk) + x-1 )
+
+#define Lstk(x) (((integer *) C2F(vstk).lstk) + x-1 )
+#define Infstk(x) (((integer *) C2F(vstk).infstk) + x-1 )
 
 #ifndef FTable_H
 extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int*));  

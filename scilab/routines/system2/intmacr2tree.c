@@ -71,7 +71,7 @@ int C2F(macr2tree) _PARAMS((char *fname))
   CheckLhs(minLhs,maxLhs);
 
   /* Read all data */
-  stkdata = (int *) stk(*lstk(Top));
+  stkdata = (int *) stk(*Lstk(Top));
 
   if (stkdata[0] > 0) /* Not a reference to variable */
     {
@@ -164,15 +164,15 @@ int C2F(macr2tree) _PARAMS((char *fname))
 
   Top++; /* First free place */
    
-  il = iadr(*lstk(Top));
+  il = iadr(*Lstk(Top));
   *istk(il) = 15;
   *istk(il+1) = nbstat;
   *istk(il+2) = 1;
 
-  *lstk(Top+1) = sadr(il+3+nbstat);
+  *Lstk(Top+1) = sadr(il+3+nbstat);
   
   /* Error handling (S. Steer */
-  if (*lstk(Top+1) >= *lstk(Bot)) {
+  if (*Lstk(Top+1) >= *Lstk(Bot)) {
     Scierror(17,"macr2tree: stack size exceeded (Use stacksize function to increase it)\r\n");
 
     /* Free memory */
@@ -253,13 +253,13 @@ int C2F(macr2tree) _PARAMS((char *fname))
 	return 0;
       }
 
-      sz = *lstk(Top+1) - *lstk(Top);
+      sz = *Lstk(Top+1) - *Lstk(Top);
 
       *istk(il+2+k) = *istk(il+1+k) + sz ;
 
       Top--;
       
-      *lstk(Top+1) = *lstk(Top+2);
+      *Lstk(Top+1) = *Lstk(Top+2);
     }
 
   /* Number of lines */

@@ -120,8 +120,8 @@ int intdiffobjs(fname,fname_len)
   header2 = GetData(2);
   CreateVar(3,"d",(un=1,&un),(un=1,&un),&l3);
   LhsVar(1) = 3;
-  size1=2*(*lstk(Top-Rhs+2)-*lstk(Top-Rhs+1)); 
-  size2=2*(*lstk(Top-Rhs+3)-*lstk(Top-Rhs+2));
+  size1=2*(*Lstk(Top-Rhs+2)-*Lstk(Top-Rhs+1)); 
+  size2=2*(*Lstk(Top-Rhs+3)-*Lstk(Top-Rhs+2));
 
   if (size1 != size2) {
     *stk(l3)=1;

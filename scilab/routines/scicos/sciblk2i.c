@@ -81,7 +81,7 @@ double *inptr[],*outptr[],*t;
 	  C2F(scitod)(y,&ny,&one);
 	  if (C2F(scierr)()!=0) goto err;
 	}
-	/* list2vars has changed the lstk(top+1) value. 
+	/* list2vars has changed the Lstk(top+1) value. 
 	   reset the correct value */
 	C2F(ltopadj)(&ltop);  
       }
@@ -148,7 +148,7 @@ double *inptr[],*outptr[],*t;
 		C2F(scitod)(y,&ny,&one);
 		if (C2F(scierr)()!=0) goto err;
 	    }
-	    /* list2vars has changed the lstk(top+1) value. 
+	    /* list2vars has changed the Lstk(top+1) value. 
 	       reset the correct value */
 	   C2F(ltopadj)(&ltop);  
 	}

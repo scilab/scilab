@@ -512,9 +512,9 @@ static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   }
   
   /* Check for available memory */
-  il = iadr(*lstk(lw));
+  il = iadr(*Lstk(lw));
   ix1 = il + 4 + (nnchar + 1) + (indice + 1);
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     fname);
@@ -541,9 +541,9 @@ static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
     pos = pos + l;
   }
   /* close the variable */
-  *lstk(lw+1) = sadr(pos);
+  *Lstk(lw+1) = sadr(pos);
 
-  C2F(intersci).iwhere[number - 1] = *lstk(lw);
+  C2F(intersci).iwhere[number - 1] = *Lstk(lw);
   C2F(intersci).ntypes[number - 1] = '$';
   return TRUE_;
 } 
@@ -613,9 +613,9 @@ static int CreSmatFromHist(char *fname, int number, int from_line, int count)
   
   /* Check for available memory */
 
-  il = iadr(*lstk(lw));
+  il = iadr(*Lstk(lw));
   ix1 = il + 4 + (nnchar + 1) + (indice + 1);
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
 	     fname);
@@ -642,9 +642,9 @@ static int CreSmatFromHist(char *fname, int number, int from_line, int count)
       pos = pos + l;
     }
   /* close the variable */
-  *lstk(lw+1) = sadr(pos);
+  *Lstk(lw+1) = sadr(pos);
 
-  C2F(intersci).iwhere[number - 1] = *lstk(lw);
+  C2F(intersci).iwhere[number - 1] = *Lstk(lw);
   C2F(intersci).ntypes[number - 1] = '$';
   return TRUE_;
 } 

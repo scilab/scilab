@@ -790,7 +790,7 @@ static int intsort(char* fname)
     if (sel == 2) {
 	Top = tops;
 	C2F(com).fun = -1;
-	ix1 = iadr(*lstk(Top + 1 - Rhs ));
+	ix1 = iadr(*Lstk(Top + 1 - Rhs ));
 	C2F(funnam)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], "sort", &ix1, 4L);
 	return 0;
     }
@@ -799,7 +799,7 @@ static int intsort(char* fname)
     }
     C2F(ref2val)();
 
-    il1 = iadr(*lstk(Top ));
+    il1 = iadr(*Lstk(Top ));
     ilr = il1;
     m = *istk(il1 +1);
     n = *istk(il1 + 1 +1);
@@ -809,11 +809,11 @@ static int intsort(char* fname)
     vol = *istk(id1 + mn ) - 1;
 
     id1r = id1;
-    ls = iadr(*lstk(Top +1));
+    ls = iadr(*Lstk(Top +1));
     lsz = ls + vol;
     lind = lsz + mn;
     lw = lind + mn;
-    Err = sadr(lw) - *lstk(Bot );
+    Err = sadr(lw) - *Lstk(Bot );
     if (Err > 0) {
 	Error(17);
 	return 0;
@@ -849,7 +849,7 @@ static int intsort(char* fname)
       l2 += *istk(lsz + ix );
       /* L93: */
     }
-    *lstk(Top +1) = sadr(l2);
+    *Lstk(Top +1) = sadr(l2);
     *istk(id1 ) = 1;
     ix1 = mn - 1;
     for (ix = 0; ix <= ix1; ++ix) {
@@ -860,7 +860,7 @@ static int intsort(char* fname)
       goto L999;
     }
     ++Top;
-    il = iadr(*lstk(Top ));
+    il = iadr(*Lstk(Top ));
     ix1 = il + 4;
     l = sadr(ix1);
     inc = -1;
@@ -872,7 +872,7 @@ static int intsort(char* fname)
     *istk(il +1) = m;
     *istk(il + 1 +1) = n;
     *istk(il + 2 +1) = 0;
-    *lstk(Top +1) = l + mn;
+    *Lstk(Top +1) = l + mn;
     goto L999;
  L999:
     return 0;
@@ -985,7 +985,7 @@ static int intmacrostring(void)
   integer ltxt, l, n;
   integer il, nl, lw, nch, ilm, ilt, ilp;
   /*     argument on top */
-  il = iadr(*lstk(Top ));
+  il = iadr(*Lstk(Top ));
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
@@ -996,7 +996,7 @@ static int intmacrostring(void)
   /*     first extract lin */
   C2F(listnames)(Top + 2, &il);
   /*     now extract function body */
-  lw = *lstk(Top + 3);
+  lw = *Lstk(Top + 3);
   if (*istk(ilm ) == 13) {
     ltxt = lw;
     ilt = iadr(ltxt);
@@ -1005,7 +1005,7 @@ static int intmacrostring(void)
     *istk(ilt + 2 +1) = 0;
     *istk(ilt + 3 +1) = 1;
     ilt += 4;
-    *lstk(Top + 4) = sadr( ilt + 1);
+    *Lstk(Top + 4) = sadr( ilt + 1);
     return 0;
   }
   ltxt = lw;
@@ -1033,7 +1033,7 @@ static int intmacrostring(void)
   if (nl == 0) {
     *istk(ilt ) = 1;
     *istk(ilt + 2) = 0;
-    *lstk(Top + 4) = sadr( ilt + 4);
+    *Lstk(Top + 4) = sadr( ilt + 4);
     return 0;
   }
   
@@ -1044,7 +1044,7 @@ static int intmacrostring(void)
     {
       if (*istk(l) != eol) { ++l; continue;} 
       if (*istk(l+1) == eol) {
-	*lstk(Top + 4) = sadr(ilt + 1);
+	*Lstk(Top + 4) = sadr(ilt + 1);
 	return 0;
       }
       n = l - il;
@@ -1070,12 +1070,12 @@ static int intlibstring(void)
   integer l1, n1, il, nn, lw;
   integer ilr;
 
-  il = iadr(*lstk(Top ));
+  il = iadr(*Lstk(Top ));
   ilr = il;
   if (*istk(il ) < 0) {
     il = iadr(*istk(il +1));
   }
-  lw = iadr(*lstk(Top +1));
+  lw = iadr(*Lstk(Top +1));
   
   n1 = *istk(il +1);
   l1 = il + 2;
@@ -1084,7 +1084,7 @@ static int intlibstring(void)
   il = il + nclas + 2;
   ilr = lw;
   ix1 = ilr + 6 + n1 + n * (nlgh+1);
-  Err = sadr(ix1) - *lstk(Bot );
+  Err = sadr(ix1) - *Lstk(Bot );
   if (Err > 0) {
     Error(17);
     return 0;
@@ -1107,7 +1107,7 @@ static int intlibstring(void)
     /* L49: */
   }
   ix1 = ilr + l - ilr;
-  *lstk(Top + 1 +1) = sadr(ix1);
+  *Lstk(Top + 1 +1) = sadr(ix1);
   return 0;
 } 
 
@@ -1116,7 +1116,7 @@ static int intlibstring(void)
  *  utility 
  *  extract a set of names coded in istk(il+...) 
  *  and store the result in the stack as a
- *  string matrix store at position lstk(pos) 
+ *  string matrix store at position Lstk(pos) 
  *  Note: the value of il is changed by this funtion 
  *-------------------------------------------------------------*/
 
@@ -1129,7 +1129,7 @@ static int C2F(listnames)(integer pos,integer *il)
 
   n = *istk(*il );
   ++(*il);
-  ilio = iadr(*lstk(pos ));
+  ilio = iadr(*Lstk(pos ));
   *istk(ilio ) = 10;
   if (n == 0) {
     *istk(ilio ) = 1;
@@ -1151,7 +1151,7 @@ static int C2F(listnames)(integer pos,integer *il)
     }
   }
   ix1 = l + 1;
-  *lstk(pos +1) = sadr(ix1);
+  *Lstk(pos +1) = sadr(ix1);
   return 0;
 } 
 

@@ -52,7 +52,7 @@ int C2F(intmsparse)(integer *id)
     top0 = Top + 1 - Rhs;
     tops = Top;
 
-    lw = C2F(vstk).Lstk[Top];
+    lw = C2F(vstk).lstk[Top];
     if (Lhs != 1) {
 	C2F(error)(&c41);
 	return 0;
@@ -61,7 +61,7 @@ int C2F(intmsparse)(integer *id)
 	C2F(error)(&c39);
 	return 0;
     }
-    il = C2F(vstk).Lstk[Top-1] + C2F(vstk).Lstk[Top-1] - 1;
+    il = C2F(vstk).lstk[Top-1] + C2F(vstk).lstk[Top-1] - 1;
     if (*istk(il) == 5) {
 	nel = *istk(il + 4);
 	m = *istk(il+1);
@@ -78,7 +78,7 @@ int C2F(intmsparse)(integer *id)
 	I1 = irc + n + nel;
 	lat = I1 / 2 + 1;
 	lw = lat + nel * (it + 1);
-	Err = lw - C2F(vstk).Lstk[Bot-1];
+	Err = lw - C2F(vstk).lstk[Bot-1];
 	if (Err > 0) {
 	    C2F(error)(&c17);
 	    return 0;
@@ -108,7 +108,7 @@ int C2F(intmsparse)(integer *id)
 	I1 = nel * (it + 1);
 	C2F(unsfdcopy)(&I1, stk(lat ), &c1, stk(lr ), &
 		c1);
-	C2F(vstk).Lstk[Top] = lr + nel * (it + 1);
+	C2F(vstk).lstk[Top] = lr + nel * (it + 1);
     } else if (*istk(il ) == 7) {
     } else {
 	C2F(error)(&c44);
@@ -140,7 +140,7 @@ int C2F(intmspget)(integer *id)
     /* Function Body */
     Rhs = Max(0,Rhs);
     top0 = Top + 1 - Rhs;
-    lw = C2F(vstk).Lstk[Top];
+    lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
 	C2F(error)(&c39);
 	return 0;
@@ -149,7 +149,7 @@ int C2F(intmspget)(integer *id)
 	C2F(error)(&c41);
 	return 0;
     }
-    il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 1;
+    il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
     ityp = *istk(il );
     nelmax = *istk(il + 4);
     m = *istk(il+1);
@@ -167,21 +167,21 @@ int C2F(intmspget)(integer *id)
 	*istk(il + 2) = 0;
 	*istk(il + 3) = 0;
 	I1 = il + 4;
-	C2F(vstk).Lstk[Top] = I1 / 2 + 1;
+	C2F(vstk).lstk[Top] = I1 / 2 + 1;
 	if (Lhs >= 2) {
 	    ++Top;
-	    il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 
+	    il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 
 		    1;
 	    *istk(il ) = 1;
 	    *istk(il+1) = 0;
 	    *istk(il + 2) = 0;
 	    *istk(il + 3) = 0;
 	    I1 = il + 4;
-	    C2F(vstk).Lstk[Top] = I1 / 2 + 1;
+	    C2F(vstk).lstk[Top] = I1 / 2 + 1;
 	}
 	if (Lhs == 3) {
 	    ++Top;
-	    il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 1;
+	    il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
 	    *istk(il ) = 1;
 	    *istk(il+1) = 1;
 	    *istk(il + 2) = 2;
@@ -190,7 +190,7 @@ int C2F(intmspget)(integer *id)
 	    l = I1 / 2 + 1;
 	    *stk(l ) = (double) m;
 	    *stk(l+1) = (double) n;
-	    C2F(vstk).Lstk[Top] = l + 2;
+	    C2F(vstk).lstk[Top] = l + 2;
 	}
 	return 0;
     }
@@ -205,7 +205,7 @@ int C2F(intmspget)(integer *id)
     ilrs = I1 + I1 - 1;
     I1 = ilrs + n + 1 + nel;
     lw = I1 / 2 + 1;
-    Err = lw - C2F(vstk).Lstk[Bot -1];
+    Err = lw - C2F(vstk).lstk[Bot -1];
     if (Err > 0) {
 	C2F(error)(&c17);
 	return 0;
@@ -249,21 +249,21 @@ int C2F(intmspget)(integer *id)
     *istk(il+1) = nel;
     *istk(il + 2) = 2;
     *istk(il + 3) = 0;
-    C2F(vstk).Lstk[Top] = lij + (nel << 1);
+    C2F(vstk).lstk[Top] = lij + (nel << 1);
     if (Lhs >= 2) {
       /*           V              */
 	++Top;
-	il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 1;
+	il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
 	*istk(il ) = 1;
 	*istk(il+1) = nel;
 	*istk(il + 2) = 1;
 	*istk(il + 3) = it;
-	C2F(vstk).Lstk[Top] = lv + nel * (it + 1);
+	C2F(vstk).lstk[Top] = lv + nel * (it + 1);
     }
     if (Lhs == 3) {
       /*            mn             */
 	++Top;
-	il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 1;
+	il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
 	*istk(il ) = 1;
 	*istk(il+1) = 1;
 	*istk(il + 2) = 2;
@@ -272,7 +272,7 @@ int C2F(intmspget)(integer *id)
 	l = I1 / 2 + 1;
 	*stk(l ) = (double) m;
 	*stk(l+1) = (double) n;
-	C2F(vstk).Lstk[Top] = l + 2;
+	C2F(vstk).lstk[Top] = l + 2;
     }
     return 0;
 } 
@@ -296,7 +296,7 @@ int C2F(intmfull)(integer *id)
     /* Function Body */
     Rhs = Max(0,Rhs);
     top0 = Top + 1 - Rhs;
-    lw = C2F(vstk).Lstk[Top];
+    lw = C2F(vstk).lstk[Top];
     if (Rhs != 1) {
 	C2F(error)(&c39);
 	return 0;
@@ -305,7 +305,7 @@ int C2F(intmfull)(integer *id)
 	C2F(error)(&c41);
 	return 0;
     }
-    il = C2F(vstk).Lstk[Top -1] + C2F(vstk).Lstk[Top -1] - 1;
+    il = C2F(vstk).lstk[Top -1] + C2F(vstk).lstk[Top -1] - 1;
     nel = *istk(il + 4);
     m = *istk(il+1);
     n = *istk(il + 2);
@@ -322,7 +322,7 @@ int C2F(intmfull)(integer *id)
     I1 = ils + n + 1 + nel;
     ls = I1 / 2 + 1;
     lw = ls + nel * (it + 1);
-    Err = lw - C2F(vstk).Lstk[Bot-1];
+    Err = lw - C2F(vstk).lstk[Bot-1];
     if (Err > 0) {
 	C2F(error)(&c17);
 	return 0;
@@ -342,7 +342,7 @@ int C2F(intmfull)(integer *id)
       wmspful(&m, &n, stk(ls ), stk(ls + nel ), &nel,istk(ils ), 
 	      stk(l ), stk(l + m *n )); 
     }
-    C2F(vstk).Lstk[Top] = l + m * n * (it + 1);
+    C2F(vstk).lstk[Top] = l + m * n * (it + 1);
     return 0;
 }
 

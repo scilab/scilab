@@ -67,7 +67,7 @@ static int  pak_object_info(int ilk,int stk_pos, int *pack, int *np, int *nMax)
   if ( stk_pos == 1 ) 
     {
       /* object given by its stk position */ 
-      il = iadr(*lstk(ilk));
+      il = iadr(*Lstk(ilk));
       if (*istk(il ) < 0) {
 	il = iadr(*istk(il +1));
       }
