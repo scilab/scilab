@@ -83,8 +83,10 @@ varslist($+1)=M2scivar("%shortcircuit","%shortcircuit",Infer(list(1,1),Type(Doub
 maclhs=size(mtlbtree.outputs)
 for k=1:maclhs
   if funptr(mtlbtree.outputs(k).name)<>0 then
-    varslist($+1)=M2scivar("%"+mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer())
+    varslist($+1)=M2scivar("%"+mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer(list(0,0),Type(Double,Real)))
     outputs(k)="%"+mtlbtree.outputs(k).name
+  else
+    varslist($+1)=M2scivar(mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer(list(0,0),Type(Double,Real)))
   end
 end
 
