@@ -20,9 +20,12 @@ if version=='scicos2.5.1' then
   disp('Save the diagram (under a different name just in case)')
   lines(ncl(2))
 end
-if version=='scicos2.7' then scs_m=do_version271(scs_m),version='scicos2.7.1';end
-if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version= ...
-	   'scicos2.7.2';end
+if version=='scicos2.7' then 
+  disp('This is an old scicos diagram. I have to translate. Be patient.')
+  scs_m=do_version271(scs_m),
+  version='scicos2.7.1';
+end
+if version=='scicos2.7.1' then scs_m=do_version272(scs_m),version='scicos2.7.2';end
   if version=='scicos2.7.2' then scs_m=do_version273(scs_m),version='scicos2.7.3';end
 endfunction
 
@@ -1341,5 +1344,6 @@ function scs_m_new=do_versionxx(scs_m)
   end
   edited=resume(%t)
 endfunction
+
 
 
