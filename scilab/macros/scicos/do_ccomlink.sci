@@ -3,42 +3,25 @@ function [ok]=do_ccomlink(funam,txt)
   if stripblanks(funam)==emptystr() then 
     ok=%f;x_message('sorry C file name not defined');return
   end
-  if MSDOS then 
-    out_f = strsubst(TMPDIR,'/','\')+'\'+funam+'.c';
-    host('del '+ out_f);
-  else 
-    unix_s('\rm -f '+TMPDIR+'/'+funam+'.c');
+  cur_wd = getcwd();
+  chdir(TMPDIR);
+   mputl(txt,funam+'.c');
+  ilib_for_link;
+  ilib_link_gen_loader(funam,'c','loader.sce',[],"");
+  ilib_link_gen_Make(funam,funam+'.o',"",'Makelib',"",...
+		     "","","","");
+  ierr= execstr('ilib_compile(''lib''+funam,''Makelib'',funam+''.o'')', ...
+		'errcatch');
+  if ierr<> 0 then 
+    chdir(cur_wd)
+    x_message('Sorry compilation problem');ok=%f;return;
   end
-  write(TMPDIR+'/'+funam+'.c',txt,'(a)')
-  if MSDOS then 
-    [a,b]=c_link(funam); while a ; ulink(b);[a,b]=c_link(funam);end  
-    cur_wd = getcwd();
-    chdir(TMPDIR);
-    if (COMPILER=='ABSOFT')
-      cmd_win='amake /f '"'+SCI+'\util\MakeC.amk'" TARGET=';
-    else
-      cmd_win='nmake /f '"'+SCI+'\util\MakeC.mak'" TARGET=';
-    end
-    cmd_win=cmd_win+funam+' SCIDIR1='"'+strsubst(SCI,'/','\')+''"';
-    ww=unix_g(cmd_win);
-    chdir(cur_wd);
-  else
-    ww=unix_g('cd '+TMPDIR+'; make -f '+SCI+'/util/Make.unx '+funam+'.o SCIDIR='+SCI);
-  end 
-
-  if ww==emptystr() then 
-    ok=%f;message('sorry compilation problem');return
-  else
-    if MSDOS then 
-      instr='junk=link(TMPDIR+''/''+funam+''.dll'',funam,''c'');'
-    else
-      instr=['[a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end'
-	     'junk=link(TMPDIR+''/''+funam+''.o'',funam,''c'');']
-    end 
-    if execstr(instr,'errcatch')<>0 then
-      ok=%f;message('sorry link problem');
-      return;
-    end
+  [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
+  ierr= exec('loader.sce','errcatch')
+  if ierr<> 0 then     
+    chdir(cur_wd)
+    x_message('Sorry link problem');ok=%f;return;
   end
+  chdir(cur_wd)
   ok=%t
 endfunction
