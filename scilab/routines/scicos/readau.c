@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h> 
+#include <string.h> 
 #include "../machine.h"
-
-
+extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+extern void sciprint __PARAMS((char *fmt,...));
+extern void mget2 __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
 void 
 readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
@@ -39,7 +40,6 @@ double *inptr[],*outptr[],*t;
   int e;
   int f;
 /*  double ff;*/
-  double two=2.0;
 
   ETAB[0]=0; ETAB[1]=132; ETAB[2]= 396; ETAB[3]=924; ETAB[4]=1980;
   ETAB[5]=4092; ETAB[6]=8316; ETAB[7]=16764;
@@ -94,7 +94,7 @@ double *inptr[],*outptr[],*t;
       if (k>=kmax&&kmax==n) {
 	/*     read a new buffer */
 	m=ipar[6]*ipar[7];
-	F2C(cvstr)(&three,&(ipar[2]),type,&job);
+	F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
 	for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
 	ierr=0;
@@ -120,7 +120,7 @@ double *inptr[],*outptr[],*t;
     }
   }
   else if (*flag==4) {
-    F2C(cvstr)(&(ipar[1]),&(ipar[10]),str,&job);
+    F2C(cvstr)(&(ipar[1]),&(ipar[10]),str,&job,strlen(str));
     str[ipar[1]] = '\0';
     fd = fopen(str,"rb");
     if (!fd ) {
@@ -131,7 +131,7 @@ double *inptr[],*outptr[],*t;
     z[3]=(long)fd;
     /* skip first records */
     if (ipar[9]>1) {
-      F2C(cvstr)(&three,&(ipar[2]),type,&job);
+      F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
       for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
       offset=(ipar[9]-1)*ipar[7]*sizeof(char);
@@ -147,7 +147,7 @@ double *inptr[],*outptr[],*t;
     }
     /* read first buffer */
     m=ipar[6]*ipar[7];
-    F2C(cvstr)(&three,&(ipar[2]),type,&job);
+    F2C(cvstr)(&three,&(ipar[2]),type,&job,strlen(type));
     for (i=2;i>=0;i--)
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
     mget2(fd,ipar[8],buffer,m,type,&ierr);

@@ -1,7 +1,7 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
 #include "../machine.h"
+extern void C2F(dmmul)();
 
 void gainblk(scicos_block *block,int flag)
 {

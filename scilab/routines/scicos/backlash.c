@@ -1,12 +1,10 @@
 
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
+
 void backlash(scicos_block *block,int flag)
 { 
   double* rw,t;
-  int i,j,k;
   if (flag == 4){/* the workspace is used to store previous values */
     if ((*block->work=	 scicos_malloc(sizeof(double)* 4))== NULL ) {
       set_block_error(-16);

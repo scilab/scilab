@@ -108,12 +108,18 @@ extern void multiplex __PARAMS((ARGS_scicos));
 extern void gainblk __PARAMS((ARGS_scicos));
 extern void relationalop __PARAMS((ARGS_scicos));
 extern void modulo_count __PARAMS((ARGS_scicos));
+extern void hystheresis __PARAMS((ARGS_scicos));
+extern void ratelimiter __PARAMS((ARGS_scicos));
+extern void backlash __PARAMS((ARGS_scicos));
+extern void deadband __PARAMS((ARGS_scicos));
+extern void ramp __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
 {"absolute_value",(ScicosF) absolute_value},
 {"affich",(ScicosF) F2C(affich)},
 {"andlog",(ScicosF) F2C(andlog)},
+{"backlash",(ScicosF) backlash},
 {"bidon",(ScicosF) F2C(bidon)},
 {"bounce_ball",(ScicosF) bounce_ball},
 {"bouncexy",(ScicosF) bouncexy},
@@ -125,6 +131,7 @@ OpTab tabsim[] ={
 {"csslti",(ScicosF) F2C(csslti)},
 {"cstblk",(ScicosF) F2C(cstblk)},
 {"dband",(ScicosF) F2C(dband)},
+{"deadband",(ScicosF) deadband},
 {"delay",(ScicosF) F2C(delay)},
 {"delayv",(ScicosF) F2C(delayv)},
 {"demux",(ScicosF) F2C(demux)},
@@ -145,6 +152,7 @@ OpTab tabsim[] ={
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
+{"hystheresis",(ScicosF) hystheresis},
 {"ifthel",(ScicosF) F2C(ifthel)},
 {"integr",(ScicosF) F2C(integr)},
 {"integral_func",(ScicosF) integral_func},
@@ -178,6 +186,8 @@ OpTab tabsim[] ={
 {"qzflr",(ScicosF) F2C(qzflr)},
 {"qzrnd",(ScicosF) F2C(qzrnd)},
 {"qztrn",(ScicosF) F2C(qztrn)},
+{"ramp",(ScicosF) ramp},
+{"ratelimiter",(ScicosF) ratelimiter},
 {"readau",(ScicosF) readau},
 {"readc",(ScicosF) readc},
 {"readf",(ScicosF) F2C(readf)},
@@ -218,6 +228,6 @@ OpTab tabsim[] ={
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 106 ;
+int ntabsim= 111 ;
 #endif 
 /***********************************/

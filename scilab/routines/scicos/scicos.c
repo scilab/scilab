@@ -694,10 +694,10 @@ int C2F(scicos)
   static integer iopt;
   
   static integer ierr1;
-  static integer i,j, k;
-  static double t,ttmp;
+  static integer j, k;
+  static double t;
   static integer itask;
-  static integer ib, jj, jt;
+  static integer jj, jt;
   static integer istate, ntimer;
 
   static double rhotmp;
@@ -1023,9 +1023,9 @@ int C2F(scicos)
   static integer iopt, info[20];
 
   static integer ierr1;
-  static integer i,j, k;
+  static integer j, k;
   static double t;
-  static integer ib, jj, jt;
+  static integer jj, jt;
   static integer istate, ntimer;
   static double rhotmp;
   static integer inxsci;
@@ -2062,7 +2062,6 @@ int C2F(scicos)
   static integer ierr1, i,j;
   static integer ii, jj;
   static integer urg;
-  static integer mode_save;
 
   /* Function Body */
   C2F(dset)(&ng, &c_b14,g , &c__1);

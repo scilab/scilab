@@ -1,13 +1,11 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
 #include "../machine.h"
 
 static int c__1 = 1;
 static int c__0 = 0;
 static int c_n1 = -1;
 static int c__3 = 3;
-static double c_b84 = 0.;
 static double c_b103 = 0.;
 
 void cmscope(scicos_block *block,int flag)
@@ -26,11 +24,9 @@ void cmscope(scicos_block *block,int flag)
   
   int kfun;  
   
-  static char name__[4];
   static double rect[4];
   static int kwid;
   extern int C2F(getlabel)();
-  static int nfwid;
   extern int C2F(dset)();
   static char strf[40];
   static int i__, k, n, v;

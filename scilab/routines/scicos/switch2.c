@@ -1,7 +1,5 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
 
 void  switch2(scicos_block *block,int flag)
 {

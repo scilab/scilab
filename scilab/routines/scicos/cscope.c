@@ -1,9 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
 #include "../machine.h"
-
-
 
 static int c__1 = 1;
 static int c__0 = 0;

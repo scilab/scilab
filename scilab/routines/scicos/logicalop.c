@@ -1,8 +1,5 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
-
 
 void logicalop(scicos_block *block,int flag)
 {

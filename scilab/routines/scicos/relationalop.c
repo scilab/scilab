@@ -1,15 +1,13 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
 
 
 void relationalop(scicos_block *block,int flag)
 {
-  int i,j,k,l;
+  int i;
   i=block->ipar[0];
   if(flag==1){
-    if ((block->ng!=0)&get_phase_simulation()==2)
+    if ((block->ng!=0)&(get_phase_simulation()==2))
       {
 	block->outptr[0][0]=block->mode[0]-1.0;
       }

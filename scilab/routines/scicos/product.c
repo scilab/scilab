@@ -1,11 +1,9 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
 
 void product(scicos_block *block,int flag)
 {
-  int i,j,k,l;
+  int j,k;
   if(flag==1){
     if (block->nin==1){
       block->outptr[0][0]=1.0;

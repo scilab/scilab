@@ -1,7 +1,9 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
 #include "../machine.h"
+
+extern void sciprint __PARAMS((char *fmt,...));
+
 void variable_delay(scicos_block *block,int flag)
 {/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */
   double* pw,del,t,td;
@@ -22,14 +24,14 @@ void variable_delay(scicos_block *block,int flag)
 	pw[i+block->ipar[0]*j]=block->rpar[1];
       }
     }
-    iw=pw+block->ipar[0]*(1+block->insz[0]);
+    iw=(int *) (pw+block->ipar[0]*(1+block->insz[0]));
     *iw=0;
   }else  if (flag == 5){
     scicos_free(*block->work);
   } else if (flag==1) {
     if (get_phase_simulation()==1) do_cold_restart();
     pw=*block->work; 
-    iw=pw+block->ipar[0]*(1+block->insz[0]);
+    iw=(int *) (pw+block->ipar[0]*(1+block->insz[0]));
     t=get_scicos_time();
     del=min(max(0,block->inptr[1][0]),block->rpar[0]);
     td=t-del;

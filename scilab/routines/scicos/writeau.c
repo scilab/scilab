@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
+
 #include "../machine.h"
-#include <math.h> 
+
+extern void sciprint __PARAMS((char *fmt,...));
+void mput2  __PARAMS((FILE *fa, integer swap, double *res, integer n, char *type, integer *ierr));
+
 void 
 writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
@@ -15,8 +21,6 @@ double *inptr[],*outptr[],*t;
      ipar[7:6+lfil] = character codes for file name
      */
 {
-/*  char str[100],type[4];*/
-  int job = 1,three=3;
   FILE *fd;
   int n, k,/* m,*/ i, ierr;
   double *buffer,*record;

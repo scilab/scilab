@@ -2,6 +2,9 @@
 #include "../machine.h"
 #include <string.h>
 #include "import.h"
+
+extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
+
 extern struct {
   integer kfun;
 } C2F(curblk);
@@ -49,7 +52,6 @@ ScicosImport  scicos_imp={
 (integer *) NULL,   /* ordptr */
 (integer *) NULL,   /* critev */
 (integer *) NULL,    /* iwa */
-(integer *) NULL    /* mask */
 };
 
 void  
@@ -57,12 +59,13 @@ C2F(makescicosimport)(x,xptr,zcptr,z,zptr,mod,modptr,iz,izptr,
      inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
      rpar,rpptr,ipar,ipptr,nblk,outtb,nout,subs,nsubs,
      tevts,evtspt,nevts,pointi,oord,zord,
-     funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa,mask)
+     funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa)
      
 double *x ,*z,*outtb,*rpar,*tevts;
 integer *xptr,*zcptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr;
 integer *nlnkptr,*rpptr,*ipar,*ipptr,*nblk,*nout,*subs,*nsubs;
-integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*clkptr,*ordptr,*critev, *iwa,*mask;
+integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk;
+integer *clkptr,*ordptr,*critev, *iwa, *mod,*modptr;
      
 {
     scicos_imp.x=x;
@@ -111,7 +114,6 @@ integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*
     scicos_imp.ordptr=ordptr;
     scicos_imp.critev=critev;
     scicos_imp.iwa=iwa;
-    scicos_imp.mask=mask;
 }
 
 void
@@ -122,7 +124,7 @@ C2F(clearscicosimport)()
     scicos_imp.zcptr=(integer *) NULL;
     scicos_imp.z=(double *) NULL;
     scicos_imp.zptr=(integer *) NULL;
-    scicos_imp.mod=(double *) NULL;
+    scicos_imp.mod=(integer *) NULL;
     scicos_imp.modptr=(integer *) NULL;
     scicos_imp.iz=(integer *) NULL;
     scicos_imp.izptr=(integer *) NULL;
@@ -163,7 +165,6 @@ C2F(clearscicosimport)()
     scicos_imp.critev=(integer *) NULL;
 
     scicos_imp.iwa=(integer *) NULL;
-    scicos_imp.mask=(integer *) NULL;
 }
 
 integer  
@@ -286,7 +287,7 @@ char **label;
     int lab[40];
 
     nblk=(integer)(scicos_imp.nblk);
-    F2C(cvstr)(n,label,lab,&job,*n);
+    F2C(cvstr)(n,lab,*label,&job,*n);
 
     *kfun=0;
     for (k=0;k<nblk;k++) {
@@ -294,7 +295,7 @@ char **label;
       if (n1==*n) {
 	i0=scicos_imp.izptr[k-1]-1;
 	i=0;
-	while (lab[i]==scicos_imp.iz[i0+i]&i<n1) i++;
+	while ((lab[i]==scicos_imp.iz[i0+i])&(i<n1)) i++;
 	if (i==n1) {
 	  *kfun=k+1;
 	  return;
@@ -308,7 +309,6 @@ integer *n, *kfun;  /* length of the label */
 integer label[];    
 {
     int k,i,i0,nblk,n1;
-    int job=0;
     if (scicos_imp.x==(double *)NULL){
 	return(2); /* undefined import table scicos is not running */
     }
@@ -320,13 +320,14 @@ integer label[];
       if (n1==*n) {
 	i0=scicos_imp.izptr[k-1]-1;
 	i=0;
-	while (label[i]==scicos_imp.iz[i0+i]&i<n1) i++;
+	while ((label[i]==scicos_imp.iz[i0+i])&(i<n1)) i++;
 	if (i==n1) {
 	  *kfun=k+1;
-	  return;
+	  return 0;
 	}
       }
     }
+    return 0;
 }
 
 integer

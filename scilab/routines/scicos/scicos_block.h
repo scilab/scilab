@@ -1,3 +1,9 @@
+#ifdef __STDC__
+#include <stdlib.h>
+#else 
+#include <malloc.h>
+#endif 
+
 typedef void (*voidg)();
 
 typedef struct {

@@ -1,7 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
-#include <stdlib.h>
-#include "../machine.h"
+
 void  hystheresis(scicos_block *block,int flag)
 {
   if (flag==1){
