@@ -15,7 +15,7 @@ C
       integer neq(*)
 C     neq must contain after #states all integer data for simblk and grblk
       double precision x(*),z(*),told,tf,tevts(*),rpar(*),outtb(*)
-      double precision w(*),rhot(*)
+      double precision w(*),rhot(*),rhotmp
       integer iwa(*)
 C     X must contain after state values all real data for simblk and grblk
       integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts,pointi
@@ -144,17 +144,28 @@ C     integrate
             endif
             itask = 4
 C     Compute tcrit (rhot(1))
-            rhot(1)=tf+ttol
+c            rhot(1)=tf+ttol
+c            kpo=pointi
+c 20         if(critev(kpo).eq.1) then
+c               rhot(1)=tevts(kpo)
+c               goto 30
+c            endif
+c            kpo=evtspt(kpo)
+c            if(kpo.ne.0) goto 20
+c 30         continue
+c
+            rhotmp=tf+ttol
             kpo=pointi
  20         if(critev(kpo).eq.1) then
-               rhot(1)=tevts(kpo)
+               rhotmp=tevts(kpo)
                goto 30
             endif
             kpo=evtspt(kpo)
             if(kpo.ne.0) goto 20
  30         continue
-c     
-            
+            if (rhotmp.lt.rhot(1)) istate=1
+            rhot(1)=rhotmp
+c
 c     .     form initial zero crossing input signs
             ig=1
             if (ng.gt.0) then
@@ -315,7 +326,7 @@ C
       integer neq(*)
 C     neq must contain after #states all integer data for simblk and grblk
       double precision x(*),z(*),told,tf,tevts(*),rpar(*),outtb(*)
-      double precision w(*),rhot(*)
+      double precision w(*),rhot(*),rhotmp
       integer iwa(*)
 C     X must contain after state values all real data for simblk and grblk
       integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts,pointi
@@ -458,16 +469,19 @@ C
             info(4)=1
             info(3)=0
 C     Compute tcrit (rhot(1))
-            rhot(1)=tf+ttol
+c            rhot(1)=tf+ttol
+            rhotmp=tf+ttol
             
             kpo=pointi
  20         if(critev(kpo).eq.1) then
-               rhot(1)=tevts(kpo)
+               rhotmp=tevts(kpo)
                goto 30
             endif
             kpo=evtspt(kpo)
             if(kpo.ne.0) goto 20
  30         continue
+            if (rhotmp.lt.rhot(1)) info(1)=0
+            rhot(1)=rhotmp
 c     
 c     .     form initial zero crossing input signs
             ig=1
