@@ -309,6 +309,27 @@ cd.. &gt;nul
 			</File>
 			<File
 				RelativePath=".\periWin.c">
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						FavorSizeOrSpeed="2"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						FavorSizeOrSpeed="2"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Pentium_Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						FavorSizeOrSpeed="2"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Plo2d.c">
