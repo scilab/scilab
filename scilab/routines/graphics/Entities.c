@@ -15311,14 +15311,15 @@ void DeleteObjs(integer win_num)
     }
 }
 
-void scizoom(bbox)
+void scizoom(bbox,pobj)
      double bbox[4];
+     sciPointObj * pobj;
 {
   sciPointObj *psousfen;
   double fmin,fmax,lmin,lmax;
   integer min,max,puiss,deux=2,dix=10;
  
-  psousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
+  psousfen= pobj;
 
 
   if (!(sciGetZooming(psousfen)))
@@ -15332,26 +15333,38 @@ void scizoom(bbox)
   /** regraduation de l'axe des axes ***/
   fmin=  bbox[0];
   fmax=  bbox[2];
-  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-  pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
-  pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
-  pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;
-
-
-  fmin= bbox[1]; fmax= bbox[3];
-  C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
-  pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
-  pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
-  pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;
+  if(pSUBWIN_FEATURE (psousfen)->logflags[0] == 'n') {
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=puiss;
+    pSUBWIN_FEATURE (psousfen)->ZRect[0]=lmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[2]=lmax;}
+  else {
+    pSUBWIN_FEATURE(psousfen)->axes.xlim[2]=0;
+    pSUBWIN_FEATURE (psousfen)->ZRect[0]=fmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[2]=fmax;
+  }
+  
+  fmin= bbox[1]; 
+  fmax= bbox[3];
+  if(pSUBWIN_FEATURE (psousfen)->logflags[1] == 'n') {
+    C2F(graduate)(&fmin, &fmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ;
+    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=puiss;
+    pSUBWIN_FEATURE (psousfen)->ZRect[1]=lmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[3]=lmax;}
+  else {
+    pSUBWIN_FEATURE(psousfen)->axes.ylim[2]=0;
+    pSUBWIN_FEATURE (psousfen)->ZRect[1]=fmin;
+    pSUBWIN_FEATURE (psousfen)->ZRect[3]=fmax;
+  }
   /*****/
-
+  
   /* sciprint("DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");
-  sciprint(" ppsubwin->ZRect[0] = xmin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[0]);
-  sciprint(" ppsubwin->ZRect[1] = ymin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[1]);
-  sciprint(" ppsubwin->ZRect[2] = xmax = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[2]);
-  sciprint(" ppsubwin->ZRect[3] = ymax = %f\n\n",pSUBWIN_FEATURE (psousfen)->ZRect[3]);
-  sciprint("fin DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");*/
-
+     sciprint(" ppsubwin->ZRect[0] = xmin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[0]);
+     sciprint(" ppsubwin->ZRect[1] = ymin = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[1]);
+     sciprint(" ppsubwin->ZRect[2] = xmax = %f\n",pSUBWIN_FEATURE (psousfen)->ZRect[2]);
+     sciprint(" ppsubwin->ZRect[3] = ymax = %f\n\n",pSUBWIN_FEATURE (psousfen)->ZRect[3]);
+     sciprint("fin DANS scizoom: *+*+*+*+*+*+*+*+*+*\n");*/
+  
 }
 
 /* void Zoom_Subwin(bbox) */

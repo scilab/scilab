@@ -1525,7 +1525,7 @@ extern int Objmove (long *hdl, double x,double y, BOOL opt);
 extern int sciUndelete (long *hdl);
 extern BOOL sciIsAreaZoom(integer *box, integer *box1 ,integer *section);
 extern void DeleteObjs(int win);
-extern void scizoom(double bbox[]);
+extern void scizoom(double bbox[], sciPointObj * pobj);
 /* extern void Zoom_Subwin(double bbox[]); */
 /* extern void Unzoom_Subwin(); */
 extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin);
