@@ -33,7 +33,7 @@ include ../../Makefile.incl
 
 #CFLAGS = $(CC_OPTIONS) -DNODCD -DNOMETANET -DNOSCICOS -DNOSIGNAL -DNOSOUND -DNOSPARSE
 
-CFLAGS = $(CC_OPTIONS)
+CFLAGS = $(CC_OPTIONS) $(XFLAGS) 
 
 FFLAGS = $(FC_OPTIONS)
 
@@ -112,7 +112,6 @@ intwrite4b.o : ../stack.h
 oldloadsave.o : ../stack.h
 intfile.o : ../stack.h
 intgetenv.o : ../stack.h
-intmgetl.o: ../stack.h
 stack0.o stack1.o stack2.o: ../stack.h
 getdate.o: ../machine.h
 intlapack.o: ../machine.h ../stack-c.h
@@ -125,3 +124,8 @@ Makefile.mak	: Makefile
 
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+# some versions of g77 on sparc will compile intmgetl.f
+# but the code does not execute properly.
+intmgetl.o: intmgetl.f ../stack.h
+	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.o
