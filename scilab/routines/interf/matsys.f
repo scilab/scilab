@@ -62,8 +62,8 @@ c     lasterror version loadhistory savehistory gethistory resethistory sendtobr
 c     53         54        55          56         57          58        59            60
 c     hidetoolbar use_as_command  setlanguagemenu  winqueryreg ClipBoard ddeopen ddeclose
 c     61             62           63               64           65       66     67
-c     ddeexec   ddepoke ddereq ddeisopen sleep getos
-c     68        69      70      71      72      73
+c     ddeexec   ddepoke ddereq ddeisopen sleep getos getlongpathname getshortpathname
+c     68        69      70      71      72      73   74              75
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -79,7 +79,7 @@ c
      +      670,680,681,682,683,684,690,691,692,693,
      +      694,695,697,698,699,700,701,702,703,704,
      +      705,706,707,708,709,710,711,712,713,714,
-     +      715,716,717),fin
+     +      715,716,717,718,719),fin
 c     
 c     debug
  10   call intdebug()
@@ -292,6 +292,10 @@ c     mtlb_mode
       goto 999 
  717  call intgetos('getos')
       goto 999 
+ 718  call intgetlongpathname('getlongpathname')
+      goto 999 
+ 719  call intgetshortpathname('getshortpathname')
+      goto 999           
  998  continue
 c     fake calls : only to force the 
 c     linker to load the following functions

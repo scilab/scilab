@@ -632,6 +632,9 @@ cd .. &gt;nul
 				RelativePath=".\diary.c">
 			</File>
 			<File
+				RelativePath=".\getpathname.c">
+			</File>
+			<File
 				RelativePath=".\inisci-c.c">
 			</File>
 			<File
