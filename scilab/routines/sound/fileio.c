@@ -196,6 +196,10 @@ int int_objsprintf(char *fname)
   char ** strs;
   char *str,*str1;
   int n,nmax,cat_to_last,ll;
+  char *ptrFormat=NULL;
+  int i=0;
+  int NumberPercent=0;
+
   Nbvars = 0;
   CheckRhs(1,1000);
   CheckLhs(0,1);
@@ -208,6 +212,19 @@ int int_objsprintf(char *fname)
     if (VarType(k) !=1 && VarType(k) !=10) {OverLoad(k);return 0;}
   }
   GetRhsVar(1,"c",&m1,&n1,&l1);
+  ptrFormat=cstk(l1);
+
+  for(i=0;i<strlen(ptrFormat);i++)
+  {
+    if (ptrFormat[i]=='%') NumberPercent++;
+  }
+
+  if (NumberPercent==0)
+  {
+	Scierror(999,"sprintf: Invalid format.\r\n");
+	return 0;
+  }
+
   n=0; /* output line counter */
   nmax=0;
   strs=NULL;
