@@ -1,10 +1,25 @@
-function t=cosh(x)
-//Syntax : t=cosh(x)
-//
-//t hyperbolic cosine of x
-//!
-// Copyright INRIA
-if type(x)<>1 then error(53),end
-t=exp(x);
-t=(t+ones(x)./t)/2
-endfunction
+function [t] = cosh(z)
+  // 
+  //  PURPOSE 
+  //     element wise hyperbolic cosinus
+  //
+  //  METHOD 
+  //     1/ in the real case use
+  //
+  //         cosh(z) = 0.5 (exp(|z|) + exp(-|z|))
+  //                 = 0.5 ( y + 1/y ) with y = exp(|z|)
+  //
+  //         The absolute value avoids the problem of a 
+  //         division by zero arising with the formula  
+  //           "cosh(z) = 0.5 ( y + 1/y ), y=exp(z)"
+  //         when ieee = 0 for z such that exp(z) equal 0 
+  //         in floating point arithmetic ( approximatly z < -745 ) 
+  //
+  //     2/ in the complex case use :   cosh(z) = cos(i z)
+  //
+  if type(z)<>1 then error(53),end
+  if isreal(z) then
+    y = exp(abs(z)) ; t = 0.5*(y + 1 ./y)
+  else
+    t = cos(imult(z))
+  end

@@ -1,6 +1,7 @@
-function t=cotg(x)
-//Eelemt wise cotangent of x
-// Copyright INRIA
-if type(x)<>1 then error(53),end
-t=sin(x).\cos(x)
-endfunction
+function [t] = cotg(z)
+  // 
+  //  PURPOSE 
+  //     element wise cotangent
+  //
+  if type(z)<>1 then error(53),end
+  t = 1 ./tan(z)

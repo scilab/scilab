@@ -1,6 +1,7 @@
 #-----------------------------
 # generated from Makefile: DO NOT EDIT
 # -----------------------------
+# Generated automatically from Makefile.in by configure.
 SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
@@ -23,7 +24,8 @@ OBJSF = coshin.obj arcosh.obj  dad.obj dadd.obj  ccopy.obj  rcopy.obj ddif.obj \
 	wwdiv.obj wddiv.obj dwdiv.obj ddrdiv.obj wwrdiv.obj dwrdiv.obj wdrdiv.obj\
 	ivimp.obj intp.obj cusum.obj cupro.obj cuproi.obj rcsort.obj wsort.obj vpythag.obj\
 	calerf.obj gamma.obj ribesl.obj rkbesl.obj rjbesl.obj rybesl.obj psi.obj dlgama.obj\
-	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj unsfdcopy.obj
+	dmsum.obj wmsum.obj dmprod.obj wmprod.obj drdiv.obj dcabs1.obj infinity.obj \
+	unsfdcopy.obj idmax.obj idmin.obj
 
 include ../../Makefile.incl.mak
 
@@ -40,6 +42,15 @@ Makefile.mak	: Makefile
 
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
+
+# according to compiler, do not optimize the following files
+
+icopy.obj: icopy.f
+	$(FC) -g -c icopy.f -o icopy.obj
+
+unsfdcopy.obj: unsfdcopy.f
+	$(FC) -g -c unsfdcopy.f -o unsfdcopy.obj
+
 
 finite.obj: ../machine.h
 

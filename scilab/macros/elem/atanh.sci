@@ -1,12 +1,21 @@
-function t=atanh(x)
-//Element wise Hyperbolic tangent inverse 
-//Entries of x must be in ]-1,1[
-//Entries of T are in          ] inf,inf[ x ]-pi/2,pi/2[
-//                             ]-inf, 0 [ x [-pi/2]
-//                      and    ]  0 ,inf[ x [pi/2]
-//!
-// Copyright INRIA
-if type(x)<>1 then error(53),end
-[m,n]=size(x)
-t=log((ones(m,n)+x).*sqrt(ones(m,n)./(ones(m,n)-(x.*x))))
-endfunction
+function [t] = atanh(z)
+  // 
+  //  PURPOSE 
+  //     element wise hyperbolic arctangent
+  //
+  //  METHOD 
+  //     based on the formula  atanh(z) = i atan(-i z)
+  //
+  if type(z)<>1 then error(53),end
+  if isreal(z) then 
+    if max(abs(z)) > 1 then  // il faut faire le test ds ce sens pour
+                             // les Nan (sinon on obtient NaN + i NaN ! )
+      // result is complex 
+      t = imult(atan(-imult(z)))
+    else
+      // result is real
+      t= -imag(atan(-imult(z)))
+    end
+  else
+    t = imult(atan(-imult(z)))
+  end

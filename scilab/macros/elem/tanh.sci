@@ -1,9 +1,14 @@
-function t=tanh(x)
-//Element wise Hyperbolic tangent
-// Copyright INRIA
-if type(x)<>1 then error(53),end
-t1=exp(x);t2=exp(-x);
-t=(t1-t2)./(t1+t2);
-k=find(isnan(t))
-t(k)=sign(real(x(k)))
-endfunction
+function [t]=tanh(z)
+  // 
+  //  PURPOSE 
+  //    element wise hyperbolic tangent
+  //
+  //  METHOD 
+  //    based on the formula  tanh(z) = -i tan(i z)
+  //
+  if type(z)<>1 then error(53),end
+  if isreal(z) then
+     t = imag(tan(imult(z)))
+  else
+     t = -imult(tan(imult(z)))
+  end

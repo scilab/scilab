@@ -1,10 +1,14 @@
-function t=sinh(x)
-//Syntax : t=sinh(x)
-//
-//element wise hyperbolic sine 
-//!
-// Copyright INRIA
-if type(x)<>1 then error(53),end
-t=exp(x)
-t=(t-ones(t)./t)/2
-endfunction
+function [t] = sinh(z)
+  // 
+  //  PURPOSE 
+  //     element wise hyperbolic sinus
+  //
+  //  METHOD 
+  //     based on the formula  sinh(z) = -i sin(i z)
+  //
+  if type(z)<>1 then error(53),end
+  if isreal(z) then 
+     t = imag(sin(imult(z)))
+  else
+     t = -imult(sin(imult(z)))
+  end

@@ -1,21 +1,96 @@
       subroutine wlog(xr,xi,yr,yi)
-c!but
-c     calcule une determination du log du complexe x
-c!liste d'appel
-c     subroutine wlog(xr,xi,yr,yi)
-c     double precision xr,xi,yr,yi
-c     xr,xi: parties reelles et imaginaire de l'argument
-c     yr,yi:parties reelles et imaginaires du resultat
-c!sous programmes appeles
-c     pythag (blas.extension)
-c     atan2,log (fortran)
-c!
-c     Copyright INRIA
-      double precision xr,xi,yr,yi,t,r,pythag
-      r = pythag(xr,xi)
-      t = atan2(xi,xr)
-      if (xi.eq.0.0d+0 .and. xr.lt.0.0d+0) t = abs(t)
-      yr = log(r)
-      yi = t
-      return
+*
+*     PURPOSE
+*        wlog compute the logarithm of a complex number
+*        y = yr + i yi = log(x), x = xr + i xi 
+*
+*     CALLING LIST / PARAMETERS
+*        subroutine wlog(xr,xi,yr,yi)
+*        double precision xr,xi,yr,yi
+*
+*        xr,xi: real and imaginary parts of the complex number
+*        yr,yi: real and imaginary parts of the result
+*               yr,yi may have the same memory cases than xr et xi
+*         
+*     METHOD 
+*        adapted with some modifications from Hull, 
+*        Fairgrieve, Tang, "Implementing Complex 
+*        Elementary Functions Using Exception Handling", 
+*        ACM TOMS, Vol. 20 (1994), pp 215-244
+*
+*        y = yr + i yi = log(x)
+*        yr = log(|x|) = various formulae depending where x is ...
+*        yi = Arg(x) = atan2(xi, xr)
+*        
+*     AUTHOR
+*        Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+*
+      implicit none
+
+*     PARAMETER
+      double precision xr, xi, yr, yi
+
+*     LOCAL VAR
+      double precision a, b, t, r
+
+*     STATIC VAR
+      logical first
+      save    first
+      data    first /.true./
+      double precision RMAX, LSUP, LINF
+      save             RMAX, LSUP, LINF
+      
+*     CONSTANTS
+      double precision R2
+      parameter (R2 =  1.41421356237309504d0)
+
+*     EXTERNAL
+      double precision dlamch, logp1, pythag
+      external         dlamch, logp1, pythag
+
+      if (first) then
+         RMAX = dlamch('O')
+         LINF = sqrt(dlamch('U'))
+         LSUP = sqrt(0.5d0*RMAX)
+         first = .false.
+      endif
+
+*     (0) avoid memory pb ...
+      a = xr
+      b = xi
+
+*     (1) compute the imaginary part
+      yi = atan2(b, a)
+
+*     (2) compute the real part
+      a = abs(a)
+      b = abs(b)
+
+*     Order a and b such that 0 <= b <= a
+      if (b .gt. a) then
+         t = b
+         b = a
+         a = t
+      endif
+
+      if ( (0.5d0 .le. a) .and. (a .le. R2) ) then
+         yr = 0.5d0*logp1((a-1.d0)*(a+1.d0) + b*b)
+      elseif (LINF .lt. b .and. a .lt. LSUP) then
+*        no overflow or underflow can occur in computing a*a + b*b 
+         yr = 0.5d0*log(a*a + b*b)
+      elseif (a .gt. RMAX) then
+*        overflow
+         yr = a
+      else
+         t = pythag(a,b)
+         if (t .le. RMAX) then
+            yr = log(t)
+         else
+*           handle rare spurious overflow with :
+            r = b/a
+            yr = log(a) + 0.5d0*logp1(r*r)
+         endif
+      endif
+
       end
+
