@@ -194,11 +194,17 @@ end
 
 // calling user initialization =========================================
 // Home dir startup (if any)
-[startup,ierr]=mopen('home/.scilab','r')
+if MSDOS then
+  startup_path='home\Scilab\'+getversion()+'\'
+else
+  startup_path='home/.Scilab/'+getversion()+'/'
+end
+
+[startup,ierr]=mopen(startup_path+'.scilab','r')
 if ierr==0 then
   exec(startup,-1);mclose(startup)
 else
-  [startup,ierr]=mopen('home/scilab.ini','r')
+  [startup,ierr]=mopen(startup_path+'scilab.ini','r')
   if ierr==0 then
     exec(startup,-1);mclose(startup)
   end
