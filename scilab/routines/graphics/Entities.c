@@ -15140,7 +15140,7 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;}
   else if (strncmp(marker,"axes_reverse",12) == 0){return 10;}
 
-  else { sciprint("\r\n Unknown property \r");return 0;}
+  else {return -1;}
 }
 /**sciGetAxes
  * @memo Gets SUBWIN of this Scilab graphic figure
