@@ -17,7 +17,7 @@ extern char *strchr();
 
 
 static void Sci_Delsym __PARAMS((int ));
-static int Sci_dlopen __PARAMS((char *loaded_files[]));
+static int Sci_dlopen __PARAMS((char *loaded_files[]),int global);
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
 
 /*************************************
@@ -35,7 +35,11 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
   int i;
   if ( iflag == 0 )
     {
-      *ilib  = Sci_dlopen(files);
+      if ( * rhs == 1 ) 
+	/* if no entry names are given we try a dl_open with global option*/
+	*ilib  = Sci_dlopen(files,1);
+      else 
+	*ilib  = Sci_dlopen(files,0);
     }
   if (*ilib  == -1 ) return;
 
@@ -77,10 +81,11 @@ void C2F(isciulink)(i)
  *   load a shared archive and call dlopen (here LoadLibrary)
  *   the shared lib handler is stored in a Table 
  *   The return value is == -1 if the dlopen failed 
+ * 
+ *  How to  deal with global On Windows ? XXXXXX
  *************************************/
 
-int Sci_dlopen(loaded_files)
-     char *loaded_files[];
+int Sci_dlopen( char *loaded_files[], int global)
 {
   static HINSTANCE  hd1 = NULL;
   int   i;

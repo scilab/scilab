@@ -74,7 +74,7 @@ extern char * Use_c_cpp;
 extern char * get_sci_tmp_dir();
 
 static void Sci_Delsym __PARAMS((int ));
-static int Sci_dlopen __PARAMS((char *loaded_files[]));
+static int Sci_dlopen __PARAMS((char *loaded_files[],int global));
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
 static int SetArgv  __PARAMS((char *argv[], char *files[],int first,int max,int *err));
 static int SetArgv1  __PARAMS((char *argv[], char *files,int first,int max,int *err));
@@ -100,7 +100,11 @@ void SciLink(int iflag, int *rhs, int *ilib, char **files, char **en_names, char
   int i;
   if ( iflag == 0 )
     {
-      *ilib  = Sci_dlopen(files);
+      if ( * rhs == 1 ) 
+	/* if no entry names are given we try a dl_open with global option*/
+	*ilib  = Sci_dlopen(files,1);
+      else 
+	*ilib  = Sci_dlopen(files,0);
     }
   if (*ilib  == -1 ) return;
   sciprint("shared archive loaded\r\n");
@@ -197,7 +201,7 @@ void call_ctor_dtor(handle,loading)
 
 
 
-static int Sci_dlopen(char **loaded_files)
+static int Sci_dlopen(char **loaded_files,int global)
 {
   int i=0;
 #ifndef hppa
@@ -229,7 +233,10 @@ static int Sci_dlopen(char **loaded_files)
       /* this will load the shared library */
 #ifndef hppa
       Call_shl_load = 0;
-      hd1 = dlopen(tmp_file, RTLD_NOW ); /* | RTLD_GLOBAL ); */
+      if ( global == 1) 
+	hd1 = dlopen(tmp_file, RTLD_NOW | RTLD_GLOBAL );
+      else 
+	hd1 = dlopen(tmp_file, RTLD_NOW  );
 #else
       Call_shl_load = 1;
       hd1 = shl_load(tmp_file, BIND_IMMEDIATE | BIND_VERBOSE,0L);
