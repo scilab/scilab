@@ -44,7 +44,8 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 	
 	//get links connected to the split block
 	connected=get_connected(scs_m,from(1))
-	if size(connected,'*')==2 then
+	if size(setdiff(connected,K),'*')==2 then
+	  //RN: 22-7-2004 setdiff added above
 	  //create a unique link with the split input and remaining 
 	  //output link and suppress the split block
 	  if find(connected(2)==DEL)<>[] then // delete split
@@ -161,7 +162,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
     else
       message('This object can''t be deleted')
     end 
- end
+  end
 
   if gr==%t then 
     if pixmap then xset('wshow'),end,
