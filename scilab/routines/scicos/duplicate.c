@@ -328,12 +328,12 @@ int C2F(intcpass2)(fname)
 	}
       if ( ne6 != 0 ) typ_x[k]=1;
       /* 7ieme element de la list dstate et le 8ieme element de la list rpar*/
-      le71=listentry(li,8);
+      le71=(double *) listentry(li,8);
       le7=(int*) listentry(li,8);
       ne7= le7[1];
       le77=((double *) (le7+4));
       
-      le81=listentry(li,9);
+      le81=(double *) listentry(li,9);
       le8=(int*) listentry(li,9);
       ne8=le8[1];
       le88=((double *) (le8+4));
