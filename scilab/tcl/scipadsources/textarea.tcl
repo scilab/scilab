@@ -116,9 +116,11 @@ proc setfontscipad {FontSize} {
     $pad.filemenu.options configure -font $menuFont
     $pad.filemenu.options.fontsize configure -font $menuFont
     $pad.filemenu.options.colors configure -font $menuFont
+    $pad.filemenu.options.tabs configure -font $menuFont
     # warning! tk_optionMenu added ".menu" to the menu name given on creation!
-    $pad.filemenu.options.indentspaces.menu configure -font $menuFont
+    $pad.filemenu.options.tabs.indentspaces.menu configure -font $menuFont
     $pad.filemenu.options.filenames configure -font $menuFont
+    $pad.filemenu.options.recent.menu configure -font $menuFont
     $pad.filemenu.exec configure -font $menuFont
     $pad.filemenu.debug configure -font $menuFont
     $pad.filemenu.debug.step configure -font $menuFont

@@ -168,7 +168,7 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
         eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] -value 18\
                    -variable FontSize -command \"setfontscipad 18\" "
     eval "$pad.filemenu.options add cascade [me "&Colors"] \
-               -menu $pad.filemenu.options.colors -foreground red"
+               -menu $pad.filemenu.options.colors"
         menu $pad.filemenu.options.colors -tearoff 1 -font $menuFont
         foreach c $colorpref {
               eval "$pad.filemenu.options.colors add command [me "$c"] \
@@ -177,9 +177,14 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
                 -command {foreach l \$listoftextarea \{\$l configure -wrap \$wordWrap\}}\
                 -offvalue none -onvalue word -variable wordWrap"
-    eval "$pad.filemenu.options add cascade  [me "&Indentation spaces"]\
-                -menu [tk_optionMenu $pad.filemenu.options.indentspaces \
-                    indentspaces 1 2 3 4 5 6 7 8 9 10]"
+    eval "$pad.filemenu.options add cascade [me "&Tabs and indentation"] \
+               -menu $pad.filemenu.options.tabs"
+        menu $pad.filemenu.options.tabs -tearoff 0 -font $menuFont
+        eval "$pad.filemenu.options.tabs add check [me "Tab inserts &spaces"] \
+                    -offvalue tabs -onvalue spaces -variable tabinserts"
+        eval "$pad.filemenu.options.tabs add cascade  [me "&Indentation spaces"]\
+                    -menu [tk_optionMenu $pad.filemenu.options.tabs.indentspaces \
+                        indentspaces 1 2 3 4 5 6 7 8 9 10]"
     menu $pad.filemenu.options.filenames -tearoff 0 -font $menuFont
     eval "$pad.filemenu.options add cascade [me "File&names"] -menu $pad.filemenu.options.filenames "
         eval "$pad.filemenu.options.filenames add radiobutton [me "&Full path"]\
@@ -191,6 +196,12 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
         eval "$pad.filemenu.options.filenames add radiobutton [me "&Unambiguous pruned path"]\
                     -command {RefreshWindowsMenuLabels}\
                     -value pruned -variable filenamesdisplaytype"
+    eval "$pad.filemenu.options add cascade  [me "&Recent files"]\
+               -menu [tk_optionMenu $pad.filemenu.options.recent \
+                    maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10]"
+    for {set i 0} {$i<=10} {incr i} {
+        $pad.filemenu.options.recent.menu entryconfigure $i -command {UpdateRecentFilesList}
+    }
 
 # window menu
 menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont

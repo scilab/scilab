@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync with v3.44
+# in sync with v3.48
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -240,12 +240,15 @@
         ::msgcat::mcset fr "m&edium" "m&oyen"
         ::msgcat::mcset fr "&large" "&grand"
     ::msgcat::mcset fr "&Colors" "&Couleurs"
+    ::msgcat::mcset fr "&Tabs and indentation" "Tabs et &indentation"
+        ::msgcat::mcset fr "Tab inserts &spaces" "Tab insère des &espaces"
+        ::msgcat::mcset fr "&Indentation spaces" "&Dimension de l'indentation"
     ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
-    ::msgcat::mcset fr "&Indentation spaces" "Dimension de l'&indentation"
     ::msgcat::mcset fr "File&names" "&Noms de fichiers"
         ::msgcat::mcset fr "&Full path" "&Complets"
         ::msgcat::mcset fr "Full path if &ambiguous" "Complets si &ambigus"
         ::msgcat::mcset fr "&Unambiguous pruned path" "&Raccourcis non ambigus"
+    ::msgcat::mcset fr "&Recent files" "&Fichiers récents"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"

@@ -76,7 +76,7 @@ proc insertnewline {w} {
 }
 
 proc inserttab {w} {
-    global indentspaces
+    global indentspaces tabinserts
     set textarea [gettextareacur]
     if {[IsBufferEditable] == "No"} {return}
     set selstart [lindex [$textarea tag nextrange sel 0.0] 0]
@@ -91,16 +91,21 @@ proc inserttab {w} {
         # there is a selection starting at the 1st column
         IndentSel
     } else {
-        # insert spaces up to the next tab stop
-        set curpos [$textarea index insert]
-        scan $curpos "%d.%d" curline curcol
-        set nexttabstop [expr ($curcol / $indentspaces + 1) * $indentspaces]
-        set nbtoinsert [expr $nexttabstop - $curcol]
-        set toinsert ""
-        for {set x 0} {$x<$nbtoinsert} {incr x} {
-            append toinsert " "
+        if {$tabinserts == "spaces"} {
+            # insert spaces up to the next tab stop
+            set curpos [$textarea index insert]
+            scan $curpos "%d.%d" curline curcol
+            set nexttabstop [expr ($curcol / $indentspaces + 1) * $indentspaces]
+            set nbtoinsert [expr $nexttabstop - $curcol]
+            set toinsert ""
+            for {set x 0} {$x<$nbtoinsert} {incr x} {
+                append toinsert " "
+            }
+            puttext $w $toinsert
+        } else {
+            # insert a tab character
+            puttext $w "\x9"
         }
-        puttext $w $toinsert
     }
 }
 

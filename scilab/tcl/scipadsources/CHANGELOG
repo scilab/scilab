@@ -857,3 +857,9 @@ Francois VOGEL, 12/03/05
        quickly reindenting code parts newly enclosed in ifs for example
  * Fixed: some menues did not have the same fonts than the others
  * version --> 3.47
+
+Francois VOGEL, 13/03/05
+ * New options made available:
+     - Tab key inserts spaces or tabs
+     - Max number of recent files in the file menu (possibly zero)
+ * version --> 3.48

@@ -843,3 +843,25 @@ proc showinfo_menu {w} {
         }
     }
 }
+
+proc UpdateRecentFilesList {} {
+    global pad listofrecent maxrecentfiles nbrecentfiles
+    if {$maxrecentfiles >= [llength $listofrecent]} {
+        # nothing to do, maxrecentfiles was just increased
+        # this is handled by AddRecentFile
+        return
+    } else {
+        # maxrecentfiles was decreased
+        # forget the entries in listofrecent, and update the file menu
+        set rec1ind [GetFirstRecentInd]
+        set firstind [expr $rec1ind + $maxrecentfiles]
+        set lastind  [expr $rec1ind + [llength $listofrecent] - 1]
+        $pad.filemenu.files delete $firstind $lastind
+        set listofrecent [lreplace $listofrecent $maxrecentfiles end]
+        incr nbrecentfiles [expr - ($lastind - $firstind + 1)]
+        if {$maxrecentfiles == 0} {
+            # remove the separator
+            $pad.filemenu.files delete $firstind
+        }
+    }
+}

@@ -262,7 +262,9 @@
         ::msgcat::mcset it "m&edium" "m&edio"
         ::msgcat::mcset it "&large" "&grande"
     ::msgcat::mcset it "&Colors" "&Colori"
-    ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
+    ::msgcat::mcset it "&Tabs and indentation" "&Tabs and indentation"
+        ::msgcat::mcset it "Tab inserts &spaces" "Tab inserts &spaces"
+        ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
     ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
     ::msgcat::mcset it "File&names" "&Nomi dei files"
         ::msgcat::mcset it "&Full path" "&Percorso completo"
@@ -270,6 +272,7 @@
                            "Percorso completo se &ambiguo"
         ::msgcat::mcset it "&Unambiguous pruned path" \
                            "Percorso &ridotto univoco"
+    ::msgcat::mcset it "&Recent files" "&Recent files"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset it "Opened Files" "Files aperti"

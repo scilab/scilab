@@ -17,7 +17,8 @@ set colorpref {BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
 # those are the preferences which are going to be saved
 set listofpref "$colorpref wordWrap FontSize \
        WMGEOMETRY printCommand actbptextFont indentspaces \
-       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings"
+       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
+       tabinserts"
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -49,6 +50,7 @@ set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
 set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
+set tabinserts "spaces"    ;# "spaces" or "tabs"
 
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }

@@ -172,11 +172,6 @@ Wishes:
 
 -Improve the aesthetics of Scipad (see sciGUI)
 
--Among the Scipad preferences, the user should be able to set the number
- of recent files that he wants to see in the file menu. This number is
- already taken into account and saved in the preferences, it is just a
- matter of adding an option dialog box with that setting.
-
 -Blink (single or double) quotes. Must find a way to distinguish between 
  opening and closing quotes in proc blinkbrace. This is not that easy since
  these are the same character, therefore the direction to search is difficult
