@@ -92,6 +92,12 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       *ok=false;
       return 0;
     }
+  if ((*connectmat)[0] == 0 && (*connectmat)[0] == 0) 
+    {
+      Message("Any connection existing");
+      *ok=false;
+      return 0;
+    }
   adjust_inout(*bllst2,*bllst3,*bllst2ptr,*bllst3ptr,*connectmat,ok,*corinvec,*corinvptr,nblk1);
   mini_extract_info(*bllst2,bllst4,*bllst10,*bllst12,*bllst2ptr,*bllst3ptr,bllst4ptr,*connectmat,
 		    *clkconnect,inplnk,outlnk,&typ_l,&typ_r,&typ_m,&tblock,&typ_cons,ok);
@@ -1702,25 +1708,25 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
       free(clkconnectjind);
       clkconnectjind=NULL;
       free(ind);ind=NULL;
-    }
-  if (((*ordptr1)=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
-  (*ordptr1)[0]=bllst5ptr[bllst5ptr[0]];
-  (*ordptr1)[1]=1;
-  for (j=1;j<bllst5ptr[bllst5ptr[0]];j++)
-    {
-      con1=FindInfEg(con,j);
-      if ((con1 == NULL) || (con1[0] == 0 ))
-	{         
-	  (*ordptr1)[j+1]=(*ordptr1)[j];
+    } //fin de if (clkconnect[0]!=0) 
+      if (((*ordptr1)=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
+      (*ordptr1)[0]=bllst5ptr[bllst5ptr[0]];
+      (*ordptr1)[1]=1;
+      for (j=1;j<bllst5ptr[bllst5ptr[0]];j++)
+	{
+	  con1=FindInfEg(con,j);
+	  if ((con1 == NULL) || (con1[0] == 0 ))
+	    {         
+	      (*ordptr1)[j+1]=(*ordptr1)[j];
+	    }
+	  else
+	    {
+	      (*ordptr1)[j+1]=Max1(con1)+1;
+	      free(con1);con1=NULL;
+	    }
+	  
 	}
-      else
-       {
-         (*ordptr1)[j+1]=Max1(con1)+1;
-	 free(con1);con1=NULL;
-       }
-      
-    }
-
+  
   if ((new_ordptr1=(int*)malloc(sizeof(int)*(bllst5ptr[bllst5ptr[0]]+1))) == NULL) return 0;
  new_ordptr1[0]=bllst5ptr[bllst5ptr[0]];
  new_ordptr1[1]=1;
@@ -4034,4 +4040,3 @@ void Incr1(int* vect,int j)
     }
   vect[0]--;
 }
-
