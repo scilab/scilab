@@ -3409,15 +3409,30 @@ int scixstringl(fname,fname_len)
      unsigned long fname_len;
 {
   double rect[4],wc,dv,x,y,yi;
-  integer i,j,v,un=1,quatre=4,l4,m1,n1,l1,m2,n2,l2,m3,n3;
+  integer i,j,v,verb,un=1,quatre=4,m4,n4,l4,m1,n1,l1,m2,n2,l2,m3,n3;
+  integer m5,n5,l5;
+  int font_[2], cur_font_[2];
   char **Str;
 
-  CheckRhs(3,3);
+  /*   CheckRhs(3,3); */ /* Add font_Id, font_size */
+  
+  CheckRhs(3,5);
   CheckLhs(0,1);
   
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); x = *stk(l1);
   GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); yi = y = *stk(l2);
   GetRhsVar(3,"S",&m3,&n3,&Str);
+  
+  C2F(dr1)("xget","font",&verb,font_,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
+  
+  cur_font_[0] = font_[0];
+  cur_font_[1] = font_[1];
+ 
+  if (Rhs >= 4) { GetRhsVar(4,"i",&m4,&n4,&l4); font_[0]  = *istk(l4);}
+  if (Rhs >= 5) { GetRhsVar(5,"i",&m5,&n5,&l5); font_[1] = *istk(l5);}
+  
+  C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
   if ( m3*n3 == 0 ) { LhsVar(1)=0; return 0;} 
   SciWin();
   /*     to keep the size of the largest line */
@@ -3444,6 +3459,9 @@ int scixstringl(fname,fname_len)
   *stk(l4+1) = y;
   *stk(l4+2) = wc ;
   *stk(l4+3) = y-yi;
+
+  C2F(dr1)("xset","font",&cur_font_[0],&cur_font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
   LhsVar(1)=4;
   return 0;
 }
