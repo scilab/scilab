@@ -4603,7 +4603,7 @@ int gset(fname,fname_len)
       break;
     }
 
-  if ( (hdl =! (unsigned long)0) ) {
+  if ( (hdl != (unsigned long)0) ) {
     if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
       Scierror(999,"%s: %s\r\n",fname,error_message);
       return 0;
