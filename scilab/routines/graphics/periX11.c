@@ -241,7 +241,7 @@ static void xset_pixmapclear(integer *v1, integer *v2, integer *v3, integer *v4)
 int WithBackingStore()
 
 {
-  return (ScilabXgc->Cdrawable != (Drawable) 0)&&(ScilabXgc->CurPixmapStatus == 0) ;
+  return (ScilabXgc->Cdrawable != (Drawable) 0) ;
 }
 
 static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
@@ -685,7 +685,7 @@ void C2F(cleararea)(char *str, integer *x, integer *y, integer *w, integer *h, i
   if (ScilabXgc->Cdrawable != (Drawable) 0 ) 
       PixmapClear(*x,*y,*w,*h);
   if (ScilabXgc->CurPixmapStatus != 1) 
-    XClearArea(dpy,ScilabXgc->Cdrawable,(int)*x,(int) *y,(unsigned) *w,
+    XClearArea(dpy,ScilabXgc->CWindow,(int)*x,(int) *y,(unsigned) *w,
 	       (unsigned) *h,False);
   XFlush(dpy);
 }
@@ -2552,7 +2552,7 @@ void C2F(MissileGCGetorSet)(char *str, integer flag, integer *verbose, integer *
       j = strcmp(str,MissileGCTab_[i].name);
       if ( j == 0 ) 
 	{ if (*verbose == 1)
-	  sciprint("\nGettting Info on %s\r\n",str);
+	  sciprint("\nGetting Info on %s\r\n",str);
 	if (flag == 1)
 	  (MissileGCTab_[i].getfonc)(verbose,x1,x2,dv1);
 	else 
