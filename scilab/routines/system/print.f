@@ -4,7 +4,7 @@ c     print object of id id(nsiz) stored at position lk in the stack
 c     ==================================================================
 c     Copyright INRIA
       include '../stack.h'
-      integer id(nsiz),lk,id1(nsiz)
+      integer id(nsiz),lk,id1(nsiz),dname(nsiz)
 c     
       common / ptkeep / lwk
       integer itype,itypel,gettype
@@ -22,6 +22,8 @@ c
       data left/54/,right/55/,rparen/42/,lparen/41/,equal/50/
       data eol/99/,nclas/29/
       data percen/56/,under/36/,pchar/25/
+      save ligne
+
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -30,15 +32,16 @@ c
       lineln=lct(5)
       mode=lct(6)
       ndgt=lct(7)
-      if(rstk(pt).eq.1101) goto 96
       lkeep0=lstk(lk)
+      if(rstk(pt).eq.1101) goto 96
+      call putid(dname,id)
 c     
       if (lct(1) .lt. 0) then
          lk=0
          return
       endif
 c     
-      if(id(1).ne.0) call prntid(id,-1,lunit)
+      if(id(1).ne.0) call prntid(dname,-1,lunit)
  01   nlist=0
 C     topk : free stack zone for working areas 
       topk=top+1
@@ -150,7 +153,6 @@ c     -------lists
          if (lunit.eq.wte.and.intexmacs().ne.0) goto 41
          goto 45
       endif
-c      if(islss.or.itype.eq.15) goto 45
 
  41   continue
       ilw=iadr(lstk(lk))
@@ -164,7 +166,6 @@ c     look for the function
  42   fin=0
       tops=top
       top=topk
-      
       llk=lstk(lk)
       lstk(lk)=lkeep0
       call funs(id1)
@@ -210,8 +211,8 @@ c     check for typed lists
 C     list ( we must deal with recursion ) 
       nlist=nlist+1
       if(nlist.le.1) then
-         if(id(1).ne.0) then
-            call cvnamel(id,ligne,1,li1)
+         if(dname(1).ne.0) then
+            call cvnamel(dname,ligne,1,li1)
          else
             li1=li2
             ligne(li1:li1)=' '
@@ -220,7 +221,6 @@ C     list ( we must deal with recursion )
          li1=li2
       endif
       ligne(li1+1:li1+1)='('  
-      if(islss) ligne(li1+1:li1+1)='('
       li1=li1+2
       kl=0
  47   continue
@@ -357,7 +357,7 @@ c     denominateur (3ieme elt )
 
 C     --wrong type argument or not same size 
       if (typer.or.m1.ne.m.or.n1.ne.n) then 
-         call cvname(id,buf(1:nlgh),1)
+         call cvname(dname,buf(1:nlgh),1)
          call error(103)
          return 
       endif 
@@ -536,11 +536,14 @@ c     overloaded print
 
 c     preserve data for recursion
 
-      if ( eptover(2,psiz)) return
+      if ( eptover(3,psiz)) return
+      rstk(pt-2)= 0
+      call putid(ids(1,pt-2),dname)
       rstk(pt-1)= 0
       ids(1,pt-1)= lhs
       ids(2,pt-1)= rhs
       ids(3,pt-1)= lstk(lk)
+      ids(4,pt-1)= li1
       lstk(lk)   = lkeep
       pstk(pt)   = lk
       ids(1,pt)  = nlist
@@ -564,19 +567,20 @@ c     *call* matfn
 
  96   continue
 c     set back preserved data
+      call putid(dname,ids(1,pt-2))
       lhs     = ids(1,pt-1)
       rhs     = ids(2,pt-1)
       lk      = pstk(pt)
-      lkeep  = lstk(lk)
+      lkeep   = lstk(lk)
       lstk(lk)= ids(3,pt-1)
+      li1     = ids(4,pt-1)
       nlist   = ids(1,pt)
       kl      = ids(2,pt)
       nl      = ids(3,pt)
       illist  = ids(4,pt)
       topk    = ids(5,pt)
       top     = ids(6,pt)
-      pt=pt-2
-c      if(lk.ne.top) top=top-1
+      pt=pt-3
       goto 48
 
 
