@@ -1118,6 +1118,9 @@ void C2F(drawsegmentsXfig)(char *str, integer *vx, integer *vy, integer *n, inte
   integer verbose=0,Dnarg,Dvalue[10],Dvalue1[10];
   /* store the current values */
 
+  // F.Leray 08.03.04 Init. here for Dvalue[0]: Pb here what is the correct value for Dvalue[0] ?? 
+  Dvalue[0] = 1;
+
   for ( i =0 ; i < *n/2 ; i++)
     {
       if ( (int) *iflag == 0) 
@@ -1428,7 +1431,8 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 	{ /** on utilise la marque de numero associ\'ee **/
 	  NDvalue = - drawvect[i] ;
 	  C2F(setcursymbolXfig)(&NDvalue,symb+1,PI0,PI0);
-          C2F(setdashXfig)(Dvalue,PI0,PI0,PI0);
+	  // C2F(setdashXfig)(Dvalue,PI0,PI0,PI0);// F.Leray Correction here to have the right color
+	  C2F(setdashXfig)(&NDvalue,PI0,PI0,PI0);
 	  C2F(drawpolymarkXfig)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else 
