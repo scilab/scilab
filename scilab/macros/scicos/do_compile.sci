@@ -47,8 +47,8 @@ if ~ok then
   return,
 end
 
-%cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
-
+//%cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
+%cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 if %cpr==list() then ok=%f,end 
 
 enablemenus()

@@ -272,11 +272,6 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
   typ_z(ext_cord)=-typ_z(ext_cord)
   typ_z=-min(typ_z,0)
   
-//  tmp=typ_z
-//  typ_z=zeros(typ_z)
-//  typ_z(ext_cord)=tmp(ext_cord)
-
-  
   if ~ok then disp('serious bug, report.');pause;end
   ext_cord=ext_cord(n+1:$);
 
@@ -333,15 +328,17 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
       //Following line is not correct because of ever active synchros
       if ~or(jj*maX+ordclk(hh,2)==cordX)
 	// if a bloc with internal state is excited then it is critical
-	if typ_x(jj)  then fl=%t;break; end
-	for ii=[outoin(outoinptr(jj):outoinptr(jj+1)-1,1)',..
-		evoutoin(evoutoinptr(jj):evoutoinptr(jj+1)-1,1)']
+	if typ_x(jj)| typ_z(jj)  then fl=%t; end
+	for ii=[outoin(outoinptr(jj):outoinptr(jj+1)-1,1)'],..
+//		evoutoin(evoutoinptr(jj):evoutoinptr(jj+1)-1,1)']
 	  //block excite par block excite par evenement i
 	  //si il est integre, i est important
-	  if typ_x(ii) | typ_z(ii) then fl=%t;break; end
+	  if typ_x(ii) | typ_z(ii) then fl=%t; end
 	end
+      else
+	ordclk(hh,2)=-ordclk(hh,2)
       end
-      if fl then break;end
+//      if fl then break;end
     end
     if fl then critev(i,1)=1; end
   end
