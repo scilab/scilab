@@ -1,6 +1,7 @@
 // Copyright INRIA
 //MESH Creation and visualisation of a linear on triangles function 
-getf('SCI/demos/fec/macros.sci')
+path=get_absolute_file_path('fec.ex4');
+getf(path+'macros.sci')
 xbasc()
 // compute the mesh
 N=20;n=1:N;
@@ -30,8 +31,3 @@ xsetech([0,3/4,1,1/5]) ; // use the lower part of graphic window
 
 Matplot((1:xget("lastpattern")),"011",[0,0.5,N+2,1.5],[1,N+2,1,1]);
 
-halt()
-xbasc()
-xset('default') 
-
-xsetech([0,0,1,1])

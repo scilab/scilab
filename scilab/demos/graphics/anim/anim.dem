@@ -1,8 +1,8 @@
 mode(0);
 // Copyright Enpc
 xbasc();
-path='SCI/demos/anim/';
-deff('[]=demoexc(fil)','exec(path+fil)')
+path=get_absolute_file_path('anim.dem');
+
 demolist=['Rotation of a 3D Surface (plot3d1)';
           '3D curve (param3d)';
 	  'Lorentz curve (param3d) ';
@@ -11,7 +11,7 @@ demolist=['Rotation of a 3D Surface (plot3d1)';
 	  'N link pendulum movement';
 	  'plot3d1 with xtape';
           'Shell'];
-
+deff('[]=demoexc(fil)','exec(path+fil)')
 while %t then
   num=x_choose(demolist(:,1),'Choose a demo');
   if num==0 then break;

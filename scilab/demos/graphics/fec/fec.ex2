@@ -1,10 +1,12 @@
 // A small example of MESH Creation 
 // and visualisation of a linear on triangles function 
-getf('SCI/demos/fec/macros.sci')
 // An more complex example from NSCK2E  (Inria)
 // With a Mesh of amdba type 
 // Copyright INRIA
-path='SCI/demos/fec/';
+
+path=get_absolute_file_path('fec.ex2');
+getf(path+'macros.sci')
+
 amdbaR(path+'MESH')
 meshvisu()
 halt()

@@ -1,7 +1,8 @@
 // A small example of MESH Creation 
 // and visualisation of a linear on triangles function 
 // Copyright INRIA
-getf('SCI/demos/fec/macros.sci')
+path=get_absolute_file_path('fec.ex1');
+getf(path+'macros.sci')
 xbasc();
 N=20;
 n=1:N;
