@@ -64,14 +64,13 @@ PWD = getcwd()
 home= getenv('HOME','ndef');
 if home=='ndef',home=unix_g('cd; pwd');end 
 // use MSDOS syntax?
-MSDOS = getenv('WIN32','NO')=='OK' & ..
-	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
+MSDOS = (getos() == "Windows")
 
 SCI=getenv('SCI')  // path of scilab main directory
-if getenv('WIN32','NO')=='OK' then
-  WSCI=getenv('WSCI')  // path of scilab main directory for Windows
+if MSDOS then
+  // path of scilab main directory for Windows
+  WSCI=getshortpathname(pathconvert(SCI,%f,%f,'w'))
 end
-
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
