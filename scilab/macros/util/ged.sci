@@ -289,6 +289,7 @@ function tkged()
     TK_SetVar("curstyle",string(h.line_style))
     TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
     case "Axes"
+    TK_SetVar("msdos",string(MSDOS))
     TK_SetVar("xlabel",h.x_label.text)
     TK_SetVar("ylabel",h.y_label.text)
     TK_SetVar("zlabel",h.z_label.text)
