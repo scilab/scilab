@@ -1,9 +1,12 @@
+#-----------------------------
+# generated from Makefile: DO NOT EDIT
+# -----------------------------
 SHELL = /bin/sh
 
 SCIDIR=../..
 SCIDIR1=..\..
 
-include ../../Makefile.incl
+include ../../Makefile.incl.mak
 
 .SUFFIXES: .sci .bin $(SUFFIXES)
 
@@ -190,4 +193,4 @@ MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
 	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) 
 
-include ../Make.lib
+include ../Make.lib.mak
