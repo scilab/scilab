@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.6  2002/07/31 06:58:39  chanceli
+     changes to spawn scilab and not scilex + fprintf -> sciprint
+
      Revision 1.5  2002/07/29 14:37:49  chanceli
      vc++
 
@@ -209,10 +212,12 @@ char *scipvm_error_msg(int err)
  * start pvm 
  *------------------------------------------------------------------------*/
 
+
 void C2F(scipvmstart)(int *res, char *hostfile, int *l)
 {
   struct stat buf;
   char *rd = 0;
+  char *ro = 0;
   char *path = NULL;
   int argc = 0;
   char *argv[2];
@@ -220,49 +225,57 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *l)
   argv[0] = "";
   argv[1] = (char*)0;
   if (!strcmp(hostfile, "null")) 
-    {/* on ne spécifie pas de hostfile */
+    {
+	  /* on ne spécifie pas de hostfile */
       /* on essaye de prendre
-	 $HOME/.pvmd.conf, puis
-	 $SCI/.pvmd.conf sinon on laisse
-	 faire pvmd... */ 
-      if (!argc && (rd = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
-	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
-	  *res = PvmNoMem;
-	  return;
-	}
-	strcpy(path, rd);
-	strcat(path, "/.pvmd.conf"); 
-	if (stat(path, &buf) == 0){
-	  argc = 1;
-	  argv[0] = path;
-	  (void) fprintf(stderr, "The configuration file\n %s\nis used.\n", path);
-	} else {
-	  (void) fprintf(stderr, "Warning: PVM_ROOT is set, but there exists no\n %s\n", path);
-	  free(path);
-	}
+	   * $HOME/.pvmd.conf, puis
+	   * $SCI/.pvmd.conf sinon on laisse
+	   *	 faire pvmd...
+	   */ 
+      if (!argc && (ro = getenv("PVM_ROOT")) && (rd = getenv("HOME"))){
+		if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+		  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+		  *res = PvmNoMem;
+		  return;
+		}
+		strcpy(path, rd);
+		strcat(path, "/.pvmd.conf"); 
+		if (stat(path, &buf) == 0){
+		  argc = 1;
+		  argv[0] = path;
+		  sciprint("The configuration file\n %s\nis used.\n", path);
+		} else {
+		  sciprint("Warning: PVM_ROOT is set to %s\r\n",ro);
+		  sciprint("\tbut there exists no configuration file:\r\n");
+		  sciprint("\t%s\r\n", path);
+		  free(path);
+		}
       } /* PVM_ROOT + HOME */
       if (!argc && (rd = getenv("SCI"))){
-	if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
-	  (void) fprintf(stderr, "Error malloc in pvm_error\n");
-	  *res = PvmNoMem;
-	  return;
-	}
-	strcpy(path, rd);
-	strcat(path, "/.pvmd.conf"); 
-	if (stat(path, &buf) == 0){
-	  
-	  (void) fprintf(stderr, "The standard configuration file\n %s\nis used.\n", path);
-	  argc = 1;
-	  argv[0] = path;
-	} else {
-	  free(path);
-	  (void) fprintf(stderr, "Warning: The standard configuration file $SCI/.pvmd.conf was not found.\n We supposed that PVM and scilab are in standard place on your net. (Cf. man pvmd3)\n");
-	}
+		if ((path = (char *) malloc(strlen(rd)+12)) == NULL) {
+		  (void) fprintf(stderr, "Error malloc in pvm_error\n");
+		  *res = PvmNoMem;
+		  return;
+		}
+		strcpy(path, rd);
+		strcat(path, "/.pvmd.conf"); 
+		if (stat(path, &buf) == 0){
+	  	  sciprint("The standard configuration file $SCI/.pvmd.conf will be used.\r\n");
+		  sciprint("\tWith SCI=%s\r\n",rd);
+		  sciprint("\tSCI will have to be set on remote hosts \r\n");
+		  sciprint("\tin order to spawn scilab\r\n",rd);
+		  argc = 1;
+		  argv[0] = path;
+		} else {
+		  free(path);
+		  sciprint("Warning: The standard configuration file $SCI/.pvmd.conf was not found.\r\n");
+		  sciprint("\tWe supposed that PVM and scilab are in standard place on your net\r\n");
+		  sciprint("\t (Cf. man pvmd3)\r\n");
+		}
       } /* SCI */
     } else {
       if (stat(hostfile, &buf) == -1){
-	(void) fprintf(stderr, "%s: No such file or directory\n", hostfile);
+		sciprint("%s: No such file or directory\r\n", hostfile);
       } else {
 	argv[0] = hostfile;
 	argc = 1;
@@ -336,17 +349,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
 		      char *where, int *l3, 
 		      int *ntask,  int *tids, int *res)
 {
-#if (defined __MSC__) || defined(__MINGW32__) 
   char *path ;
-#endif
   int flag = PvmTaskDefault;
   char cmd[256];
   char *arg[4];
-  
-  arg[0] = "";
-  arg[1] = "";
-  arg[2] = "";
-  arg[3] = (char*)0;
+  int nargs= 0;
+    
+  arg[0] = NULL;
    
   cmd[0] = 0;
 
@@ -369,8 +378,9 @@ void C2F(scipvmspawn)(char *task,  int *l1,
       strcpy(cmd, "scilex");
     }
   }
-#else 
-  strcpy(cmd, "scilex");
+#else
+  /* I really need scilab here for gtk -version */
+  strcpy(cmd, "scilab");
 #endif 
 #if (defined __MSC__) || (defined __ABSC__)
   if ( _stricmp(task,"null") != 0) 
@@ -378,13 +388,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
   if (strcasecmp(task, "null")) 
 #endif
     {
-      arg[0] = "-f";
-      arg[1] = task;
+      arg[++nargs] = "-f";
+      arg[++nargs] = task;
     }
   
-  if ( strcmp(win, "nw") == 0 )  arg[2] = "-nw";
+  if ( strcmp(win, "nw") == 0 )  arg[++nargs] = "-nw";
+  arg[nargs]=NULL;
   *res = pvm_spawn(cmd, arg, flag, where, *ntask, tids);
-
 }
 
 /*------------------------------------------------------------------------
