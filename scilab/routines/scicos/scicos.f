@@ -81,6 +81,8 @@ c     split working areas into pieces
 c     lx must be equal to one
       louttb = lw
       lw = louttb + nout
+c     louttb used both in cosini for fixed-point and in cossim
+c     for temporary storage
       lrhot = lw
       lw = lrhot + nrwp
 c     reserved for futher use
@@ -181,7 +183,7 @@ c     integration
      $           cord,iord,niord,oord,zord,critev,
      $           rpar,rpptr,ipar,ipptr,funptr,
      $           funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
-     $           w(lww),iwa,ierr)
+     $           w(louttb),iwa,ierr)
          elseif (solver.eq.100) then
            call cossimdassl(nx,x,xptr,z,zptr,
      $           iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
@@ -191,7 +193,7 @@ c     integration
      $           cord,iord,niord,oord,zord,critev,
      $           rpar,rpptr,ipar,ipptr,funptr,
      $           funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
-     $           w(lww),iwa,ierr)
+     $           w(louttb),iwa,ierr)
          else
 c     add a warning message please
          endif

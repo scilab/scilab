@@ -491,7 +491,8 @@ c        ilclk=iadr(l4e11)
     
         if(solver.eq.0) then 
 c     .    see also paragraph f below.
-c     .    nout is for flag 6 point fix iteration
+c     .    nout is for flag 6 point fix iteration and
+c     .    temp storage in cossim
 c     .    22+ncst*max(16,ncst + 9)+3*ng is for lsodar RWORK
            nn42=nout+22+ncst*max(16,ncst + 9)+3*ng 
            lw42=lw

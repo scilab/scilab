@@ -231,7 +231,7 @@ c                  if(ierr.ne.0) return
             if (istate .eq. 3) then
                
 c     ......... update inputs to zcross blocks .......
-c               call grblk(neq,told,x,ng,w)
+               call grblk(neq,told,x,ng,w)
 c     .  now the sign of jroot is saved in w(i) like the following example
 c     do 39 jj = 1,ng
 c     if (jroot(jj) .eq. 0 ) jroot(jj)=sign(2.0,w(jj))
@@ -578,9 +578,9 @@ c                  if(.NOT.hot) info(1)=0
                endif
             endif
             if (istate .eq. 5) then
-               info(1)=0
+c               info(1)=0
 c     ......... update inputs to zcross blocks .............
-c               call grblkdassl(neq,told,x,x(neq(1)+1),ng,w,rpar,ipar)
+               call grblkdassl(neq,told,x,x(neq(1)+1),ng,w,rpar,ipar)
 c     .  now the sign of jroot is saved in w(i) like the following example
 c     do 39 jj = 1,ng
 c     if (jroot(jj) .eq. 0 ) jroot(jj)=sign(2.0,w(jj))
