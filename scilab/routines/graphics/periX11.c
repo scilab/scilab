@@ -2759,6 +2759,7 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
   for (i=0 ; i < *n/2 ; i++)
     { 
       double dx,dy,norm;
+      NDvalue = 0;
       if ( (int) *iflag == 1) {
 	NDvalue = style[i];
 	xset_line_style(&NDvalue,PI0,PI0,PI0);}
@@ -3784,7 +3785,6 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   xset_font((i=2,&i),(j=1,&j),PI0,PI0);
   xset_mark((i=0,&i),(j=0,&j),PI0,PI0);
   ScilabXgc->CurResizeStatus = 1 ;
-  xset_pixmapOn((i=0,&i),PI0,PI0,PI0);
   /** trace absolu **/
   i= CoordModeOrigin;
   xset_absourel(&i,PI0,PI0,PI0);
@@ -3797,6 +3797,8 @@ InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   ScilabXgc->CurColorStatus = 1;
   set_default_colormap();
   xset_alufunction1((i=3,&i),PI0,PI0,PI0);
+  xset_pixmapOn((i=0,&i),PI0,PI0,PI0);
+
   xset_pattern((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
   /*** XXXXX a faire aussi pour le n&b plus haut ***/
   xset_foreground((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
