@@ -7,7 +7,7 @@ function xmltohtml(dirs,titles,xsl,step)
 // titles are associated title strings (optional or [])
 // if dirs is not specified or [] then 
 // standard scilab man are assumed and titles 
-// are searched in %helps 
+// are searched in %helps .
   help=utillib.help; //to load the subfunction change_old_man
   change_old_man() //this is required to produce the whatis.htm files
                    //associated with old style manuals
@@ -88,8 +88,8 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n",fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 	    //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
-	    //ierr=execstr('unix_s(''sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
-	    ierr=execstr('unix_s(''xsltproc -o ''+fb+''.htm ''+xslpath+'' ''+fb+''.xml2 '');','errcatch')
+	    ierr=execstr('unix_s(''sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
+	    //ierr=execstr('unix_s(''xsltproc -o ''+fb+''.htm ''+xslpath+'' ''+fb+''.xml2 '');','errcatch')
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
 	    end
@@ -229,6 +229,7 @@ function gener_index(dirs,txt)
     end 
     l=l+1;
     w=strsubst(w,'//','/');
+    w=strsubst(w,'\\','/');
     line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"
   end
   line = [line;"</dl></body></html>"]
@@ -317,6 +318,8 @@ function gener_contents(dirs1)
 	 else 
 	    d=base(k)+"/";
 	 end
+	 d=strsubst(d,'//','/');
+	 d=strsubst(d,'\\','/');
 	 whatis=strsubst(whatis,"HREF=""","HREF="""+d);
 	 full_whatis=[full_whatis;whatis];
       end 
@@ -366,10 +369,12 @@ function gener_hh(dirs,titles)
     // look for .xml files
     files = listfiles(base(k)+'/*.xml');
     fbase = basename(files);
+    w= base(k)+"\"+fbase;
+    w=strsubst(w,'//','/');
+    w=strsubst(w,'\\','/');
     items=[items;
 	   "<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-	   + base(k)+"\"+fbase+ ...
-	 ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
+	   + w + ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
     names=[names;files];
   end
 
@@ -390,9 +395,11 @@ function gener_hh(dirs,titles)
   // produce a scilab.hhc file 
   // (contents) 
   //--------------------------------------
-
+  w =  base+"\";
+  w=strsubst(w,'//','/');
+  w=strsubst(w,'\\','/');
   items="<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-      + base+"\whatis.htm""><param name=""Name"" value=""" ...
+      + w + "whatis.htm""><param name=""Name"" value=""" ...
       + titles+"""></OBJECT>";
 
   contents=["<UL><LI><OBJECT type=""text/sitemap"">";
