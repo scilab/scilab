@@ -4,7 +4,7 @@ include ../Makefile.incl.mak
 all :: ..\bin\LibScilab.def 
 
 
-FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+sound.def+sparse.def+sun.def+system.def+system2.def+wsci.def+xdr.def+wintools.def
+FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+sound.def+sparse.def+sun.def+system.def+system2.def+wsci.def+xdr.def+wintools.def+tclsci.def
 
 
 !IF "$(DTK)" == "-DWITH_TK"
