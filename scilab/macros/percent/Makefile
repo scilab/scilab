@@ -47,7 +47,7 @@ G =      %b_g_s.sci %b_g_spb.sci %s_g_s.sci %spb_g_spb.sci \
 	 %i_g_i.sci
 
 H =      %b_h_s.sci %b_h_spb.sci %s_h_s.sci %spb_h_spb.sci \
-	 %i_h_i.sci
+	 %i_h_i.sci 
 
 I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %c_i_r.sci %hm_i_hm.sci %lss_i_lss.sci %lss_i_p.sci \
@@ -91,16 +91,12 @@ O =      %hm_o_hm.sci %hm_o_s.sci %ip_o_ip.sci %l_o_p.sci \
 	 %r_o_lss.sci %r_o_p.sci %r_o_r.sci %r_o_s.sci \
 	 %s_o_hm.sci %s_o_lss.sci %s_o_r.sci
 
-P =      %ar_p.sci %hm_p.sci %ip_p.sci %lss_r_p.sci %lss_s_p.sci \
-	 %lss_v_p.sci %msp_p.sci %p_p_s.sci %p_q_p.sci \
-	 %p_r_p.sci %p_v_p.sci %p_y_p.sci %p_z_p.sci %r_p.sci \
-	 %r_p_s.sci %r_q_p.sci %r_r_p.sci %r_s_p.sci %r_v_p.sci \
-	 %r_x_p.sci %r_y_p.sci %r_z_p.sci %s_q_p.sci %s_r_p.sci \
-	 %s_v_p.sci %s_y_p.sci %s_z_p.sci
+P =      %ar_p.sci %hm_p.sci %ip_p.sci %msp_p.sci  %r_p.sci  %h_p.sci\
+	 %p_p_s.sci %r_p_s.sci   \
 
 Q =      %hm_q_hm.sci %p_q_r.sci %p_q_s.sci %r_q_r.sci \
 	 %r_q_s.sci %s_q_hm.sci %s_q_r.sci %s_q_sp.sci \
-	 %sp_q_s.sci %sp_q_sp.sci
+	 %sp_q_s.sci %sp_q_sp.sci %p_q_p.sci %r_q_p.sci %s_q_p.sci 
 
 R =      %hm_r_s.sci %lss_r_lss.sci %lss_r_r.sci %lss_r_s.sci \
 	 %lss_s_r.sci %lss_v_r.sci %p_r_lss.sci %p_r_r.sci \
@@ -109,7 +105,8 @@ R =      %hm_r_s.sci %lss_r_lss.sci %lss_r_r.sci %lss_r_s.sci \
 	 %r_s_r.sci %r_v_r.sci %r_x_r.sci %r_y_r.sci %r_z_r.sci \
 	 %s_r_s.sci %s_r_lss.sci %s_r_r.sci %s_r_sp.sci %s_s_r.sci \
 	 %s_v_r.sci %s_x_r.sci %s_y_r.sci %s_z_r.sci %sp_r_s.sci \
-	 %sp_r_sp.sci %i_r_i.sci
+	 %sp_r_sp.sci %i_r_i.sci %lss_r_p.sci %p_r_p.sci %r_r_p.sci \
+	 %s_r_p.sci
 
 S =      %hm_1_s.sci %hm_2_s.sci %hm_3_s.sci %hm_4_s.sci \
 	 %hm_s.sci %hm_s_hm.sci %hm_s_s.sci %hm_x_s.sci \
@@ -119,21 +116,22 @@ S =      %hm_1_s.sci %hm_2_s.sci %hm_3_s.sci %hm_4_s.sci \
 	 %r_x_s.sci %r_y_s.sci %r_z_s.sci %s_s_hm.sci \
 	 %s_s_ip.sci %s_s_lss.sci %s_s_sp.sci %s_v_s.sci \
 	 %sp_s_s.sci %sp_s_sp.sci %sp_y_s.sci %sp_z_s.sci \
-	 %i_s_i.sci
+	 %i_s_i.sci %lss_s_p.sci %r_s_p.sci  
 
 T =      %lss_t.sci %r_t.sci
 
 U =     
 
-V =      %lss_v_lss.sci %p_v_lss.sci %r_v_lss.sci %s_v_lss.sci
+V =      %lss_v_lss.sci %p_v_lss.sci %r_v_lss.sci %s_v_lss.sci \
+	 %lss_v_p.sci %p_v_p.sci %r_v_p.sci %s_v_p.sci 
 
 W =     
 
-X =      %hm_x_hm.sci %s_x_hm.sci %i_x_i.sci
+X =      %hm_x_hm.sci %s_x_hm.sci %i_x_i.sci %r_x_p.sci
 
-Y =      %s_y_sp.sci %sp_y_sp.sci
+Y =      %s_y_sp.sci %sp_y_sp.sci %p_y_p.sci %r_y_p.sci %s_y_p.sci
 
-Z =      %s_z_sp.sci %sp_z_sp.sci
+Z =      %s_z_sp.sci %sp_z_sp.sci %r_z_p.sci %s_z_p.sci %p_z_p.sci 
 
 O0 =     
 
