@@ -1,7 +1,7 @@
 include ../Path.incl
 
 #
-# $Id: Makefile,v 1.4 2002/10/14 15:18:14 chanceli Exp $
+# $Id: Makefile.in,v 1.1 2002/10/15 15:57:00 chanceli Exp $
 #
 # top-level PVM3 makefile
 #
@@ -13,10 +13,14 @@ AIMKSTR	=	-here -f ./conf/`./lib/pvmtmparch`.def -f ./Makefile.aimk
 all: default 
 
 default:
-	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT; ./lib/aimk $(AIMKSTR) default
+	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT;\
+		PVM_ARCH=@PVMARCH@; export PVM_ARCH \
+		./lib/aimk $(AIMKSTR) default
 
 clean:
-	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT; ./lib/aimk $(AIMKSTR) clean
+	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT;\
+		PVM_ARCH=@PVMARCH@; export PVM_ARCH \
+		./lib/aimk $(AIMKSTR) clean
 
 # distclean clean removes *.o and other remaining executables 
 # 
