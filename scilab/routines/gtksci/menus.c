@@ -549,6 +549,7 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
       while (loc->next != NULL) loc=loc->next;
       loc->next = top;
     }
+  if(entry != NULL) free(entry);
   return 0;
 }
 
@@ -972,11 +973,7 @@ static void scig_menu_load(int winid)
   rep=sci_get_file_window(init,&filename,".",0,0,&ierr,"Load Graphic File");
   if ( ierr == 0 && rep == TRUE )
     {
-      integer verb=0,cur,na;
-      C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      C2F(dr)("xset","window",&winid,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      C2F(xloadplots)(filename,0L);
-      C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      scig_loadsg(winid, filename);
     }
 }
 
