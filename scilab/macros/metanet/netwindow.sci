@@ -6,7 +6,7 @@ function  netwindow(win)
   w=string(win)
   execstr('global  EGdata_'+w+',ok=typeof(EGdata_'+w+')==''egdata''')
   if ~ok then
-    error('Bad editgraph window number: '+string(win))
+    error('Bad edit_graph window number: '+string(win))
   end
   EGcurrent=win 
 endfunction

@@ -13,7 +13,7 @@ include ../../Makefile.incl.mak
 NAME = metalib
 NAM = SCI/macros/metanet
 
-EG = dist2polylines.sci editgraph.sci editgraph_arc.sci editgraph_diagram.sci editgraph_node.sci \
+EG = dist2polylines.sci edit_graph.sci editgraph_arc.sci editgraph_diagram.sci editgraph_node.sci \
 	editgraph_ver.sci ge_add_arc.sci ge_add_history.sci ge_add_node.sci ge_add_node_copy.sci \
 	ge_arc_coordinates.sci ge_arc_fields.sci ge_clear_history.sci ge_complete_defaults.sci \
 	ge_compute.sci ge_copy_region_to_cb.sci ge_create_menus.sci ge_delete_arc.sci \

@@ -37,9 +37,8 @@ function win=show_graph(GraphList,smode,scale,winsize)
     end
   end
 
-
   if smode=='new' then
-    win=editgraph(GraphList)//,scale,winsize)
+    win=edit_graph(GraphList,scale,winsize)
   else //replace
     old=[];if winsid()<>[] then old=xget('window'),end
     win=EGcurrent;
@@ -54,6 +53,3 @@ function win=show_graph(GraphList,smode,scale,winsize)
   end
   funcprot(p)
 endfunction
-function r=%graph_i_s(varargin),
-  pause,
-endfunction 

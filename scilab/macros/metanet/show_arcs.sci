@@ -6,7 +6,7 @@ function show_arcs(p,sup)
   //get current editgraph window
   global EGcurrent
   if type(EGcurrent)<>1|size(EGcurrent,'*')<>1 then
-    error('No current editgraph window defined, use netwindow')
+    error('No current edit_graph window defined, use netwindow')
   end
   win=EGcurrent;w=string(win)
   execstr(['global EGdata_'+w

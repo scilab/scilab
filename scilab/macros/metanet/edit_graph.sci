@@ -1,9 +1,9 @@
-function win=editgraph(GraphList,%zoom,%wsiz)
-// editgraph - graph editor
+function win=edit_graph(GraphList,%zoom,%wsiz)
+// edit_graph - graph editor
 //%SYNTAX
-// editgraph(GraphList)
+// edit_graph(GraphList)
 //%PARAMETERS
-// GraphList    : scilab list, editgraph main data structure
+// GraphList    : scilab list, edit_graph main data structure
 //!
 //Copyright INRIA
 //Author : Serge Steer 2002
@@ -61,7 +61,7 @@ xset('wpdim',%wsiz(1),%wsiz(2))
 
 selection=tlist(['Sel','Nodes','Arcs'],[],[])
 EGdata=tlist(['egdata','GraphList','Cmenu','Win','Zoom', ...
-	     'Wsize','Menus','Edited','ArcId','NodeId','ShortCuts','Sel'],GraphList,'NewNode', ...
+	     'Wsize','Menus','Edited','ArcId','NodeId','ShortCuts','Sel'],GraphList,[], ...
 	    win,%zoom,%wsiz,[],edited,0,0,[],selection)
 ge_set_winsize()
 
