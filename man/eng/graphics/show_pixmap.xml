@@ -22,7 +22,7 @@
   <EXAMPLE><![CDATA[
    set figure_style new
    f=gcf();f.pixmap='on'; //set the pixmap mode
-   a=gca();a.data_bounds=[0 10 0 10];
+   a=gca();a.data_bounds=[0 0; 10 10];
    //construct two rectangles
    xrects([0;10;1;1],5);r1=gce();r1=r1.children;
    xrects([0;1;1;1],13);r2=gce();r2=r2.children;
