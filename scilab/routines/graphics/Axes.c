@@ -78,13 +78,25 @@ void axis_draw(strflag)
 /* 	  isoflag = 10; */
 /*       } */
 
-      if ( strflag[1] == '5' || strflag[1] =='6' )
-	/* using auto rescale */
-	aplotv1(strflag); /* use 'i' xy_type */
+      if (version_flag() == 0)
+	{
+	  aplotv1(strflag); /* use 'i' xy_type */
+	  break;
+	}
       else
-	aplotv2(strflag); /* use 'r' xy_type */
-      break;
+	{
+	  if ( strflag[1] == '5' || strflag[1] =='6' )
+	    /* using auto rescale */
+	    aplotv1(strflag); /* use 'i' xy_type */
+	  else
+	    aplotv2(strflag); /* use 'r' xy_type */
+	  break;
+	}
+    
     }
+
+
+
   C2F(dr)("xset","line style",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",xz+1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
@@ -742,12 +754,13 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
 
+      /***   01/07/2002 -> 11 and 12.05.04 ****/
       if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       if ((version_flag() == 0) 
 	  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
 	  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
-	ymax=Cscale.frect[2];
-	ymin=Cscale.frect[0];
+	ymax=Cscale.frect[3];
+	ymin=Cscale.frect[1];
 
 	if(xy_type == 'i')
 	  {
@@ -755,7 +768,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    y[0] =  ceil(Cscale.frect[1]  / (exp10( y[2]))) ; 
 	    y[3]=inint(y[1]-y[0]);
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
-	    Nx=y[3]+1;
+	    Ny=y[3]+1;
 	  }
 	else if (xy_type == 'r')
 	  {
@@ -763,7 +776,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    y[0] =  ceil(Cscale.frect[1]) ; 
 	    y[2]=inint(y[1]-y[0]);
 	    while (y[2]>10)  y[2]=floor(y[2]/2);
-	    Nx=y[2]+1; 
+	    Ny=y[2]+1; 
 	  }
 	else if(xy_type == 'v')
 	  {
@@ -864,7 +877,44 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	    }
-
+	  /***   01/07/2002 -> 12.05.04 ****/
+	  if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+	  if ((version_flag() == 0) 
+	      && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+	      && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+	    if ( i == 0 )  
+	      {
+		int j;
+		double dy ; 
+		vxx1= y_convert(xy_type,y,i+1);
+		dy = (vxx1-vxx)/subtics;
+		for ( j = 1 ; j < subtics; j++) {  
+		  if ( vxx-dy*j > ymin){
+		    vy[0] = vy[1] = YScale(vxx-dy*j);
+		    if ( pos == 'r' ) 
+		      { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		    else 
+		      { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }}
+	      }
+	    if ( i == Ny-1 )
+	      {
+		int j;
+		double dy ; 
+		vxx1= y_convert(xy_type,y,i+1);
+		dy = (vxx1-vxx)/subtics;
+		for ( j = 1 ; j < subtics; j++) {  
+		  if ( vxx+dy*j < ymax){
+		    vy[0] = vy[1] = YScale(vxx+dy*j);
+		    if ( pos == 'r' ) 
+		      { vx[0]= xm[0];vx[1]= xm[0] + barlength/2.0 ; }
+		    else 
+		      { vx[0]= xm[0];vx[1]= xm[0] - barlength/2.0; }
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }}
+	      }  
+	  }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
