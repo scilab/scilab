@@ -34,7 +34,11 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
-	readau.o plusblk.o slider.o  zcross2.o
+	readau.o plusblk.o slider.o  zcross2.o mswitch.o logicalop.o \
+	switch2.o variable_delay.o time_delay.o cscope.o cmscope.o \
+	satur.o step_func.o integral_func.o absolute_value.o bounce_ball.o \
+	bouncexy.o extractor.o scalar2vector.o minmax.o signum.o product.o \
+	summation.o multiplex.o gainblk.o 
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
@@ -43,7 +47,8 @@ OBJSF=intcos.o coselm.o sciblk.o  \
 
 OBJSC=scicos.o import.o sciblk2.o sciblk2i.o  realtime.o \
 	intrealtime.o intcscicos.o blocks.o cpass2.o scicosclip.o \
-	sciblk4.o str2sci.o intconnection.o $(BLOCKSC)
+	sciblk4.o str2sci.o intconnection.o scicos_malloc.o \
+	scicos_free.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
@@ -96,3 +101,24 @@ intcos.o : ../stack.h
 cpass2.o: ../machine.h cc_pass2.h
 intconnection.o: ../machine.h ../stack-c.h
 intcscicos.o: intcscicos.h ../stack-c.h ../machine.h
+mswitch.o: scicos_block.h ../machine.h
+logicalop.o : scicos_block.h ../machine.h
+switch2.o : scicos_block.h ../machine.h
+variable_delay.o : scicos_block.h ../machine.h
+time_delay.o : scicos_block.h ../machine.h
+cscope.o : scicos_block.h ../machine.h
+cmscope.o : scicos_block.h ../machine.h
+satur.o: scicos_block.h ../machine.h
+step_func.o: scicos_block.h ../machine.h
+integral_func.o: scicos_block.h ../machine.h
+absolute_value.o : scicos_block.h ../machine.h
+bounce_ball.o : scicos_block.h ../machine.h
+bouncexy.o : scicos_block.h ../machine.h
+extractor.o : scicos_block.h ../machine.h
+scalar2vector.o : scicos_block.h ../machine.h
+minmax.o : scicos_block.h ../machine.h
+signum.o : scicos_block.h ../machine.h
+product.o : scicos_block.h ../machine.h
+summation.o : scicos_block.h ../machine.h
+multiplex.o : scicos_block.h ../machine.h
+gainblk.o: scicos_block.h ../machine.h

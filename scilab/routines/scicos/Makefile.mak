@@ -37,7 +37,11 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
-	readau.obj plusblk.obj slider.obj  zcross2.obj
+	readau.obj plusblk.obj slider.obj  zcross2.obj mswitch.obj logicalop.obj \
+	switch2.obj variable_delay.obj time_delay.obj cscope.obj cmscope.obj \
+	satur.obj step_func.obj integral_func.obj absolute_value.obj bounce_ball.obj \
+	bouncexy.obj extractor.obj scalar2vector.obj minmax.obj signum.obj product.obj \
+	summation.obj multiplex.obj gainblk.obj 
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
@@ -46,7 +50,8 @@ OBJSF=intcos.obj coselm.obj sciblk.obj  \
 
 OBJSC=scicos.obj import.obj sciblk2.obj sciblk2i.obj  realtime.obj \
 	intrealtime.obj intcscicos.obj blocks.obj cpass2.obj scicosclip.obj \
-	sciblk4.obj str2sci.obj intconnection.obj $(BLOCKSC)
+	sciblk4.obj str2sci.obj intconnection.obj scicos_malloc.obj \
+	scicos_free.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
@@ -99,3 +104,24 @@ intcos.obj : ../stack.h
 cpass2.obj: ../machine.h cc_pass2.h
 intconnection.obj: ../machine.h ../stack-c.h
 intcscicos.obj: intcscicos.h ../stack-c.h ../machine.h
+mswitch.obj: scicos_block.h ../machine.h
+logicalop.obj : scicos_block.h ../machine.h
+switch2.obj : scicos_block.h ../machine.h
+variable_delay.obj : scicos_block.h ../machine.h
+time_delay.obj : scicos_block.h ../machine.h
+cscope.obj : scicos_block.h ../machine.h
+cmscope.obj : scicos_block.h ../machine.h
+satur.obj: scicos_block.h ../machine.h
+step_func.obj: scicos_block.h ../machine.h
+integral_func.obj: scicos_block.h ../machine.h
+absolute_value.obj : scicos_block.h ../machine.h
+bounce_ball.obj : scicos_block.h ../machine.h
+bouncexy.obj : scicos_block.h ../machine.h
+extractor.obj : scicos_block.h ../machine.h
+scalar2vector.obj : scicos_block.h ../machine.h
+minmax.obj : scicos_block.h ../machine.h
+signum.obj : scicos_block.h ../machine.h
+product.obj : scicos_block.h ../machine.h
+summation.obj : scicos_block.h ../machine.h
+multiplex.obj : scicos_block.h ../machine.h
+gainblk.obj: scicos_block.h ../machine.h

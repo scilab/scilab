@@ -85,15 +85,41 @@ extern void readau __PARAMS((ARGS_scicos));
 extern void plusblk __PARAMS((ARGS_scicos));
 extern void slider __PARAMS((ARGS_scicos));
 extern void zcross2 __PARAMS((ARGS_scicos));
+extern void mswitch __PARAMS((ARGS_scicos));
+extern void logicalop __PARAMS((ARGS_scicos));
+extern void switch2 __PARAMS((ARGS_scicos));
+extern void variable_delay __PARAMS((ARGS_scicos));
+extern void time_delay __PARAMS((ARGS_scicos));
+extern void cscope __PARAMS((ARGS_scicos));
+extern void cmscope __PARAMS((ARGS_scicos));
+extern void satur __PARAMS((ARGS_scicos));
+extern void step_func __PARAMS((ARGS_scicos));
+extern void integral_func __PARAMS((ARGS_scicos));
+extern void absolute_value __PARAMS((ARGS_scicos));
+extern void bounce_ball __PARAMS((ARGS_scicos));
+extern void bouncexy __PARAMS((ARGS_scicos));
+extern void extractor __PARAMS((ARGS_scicos));
+extern void scalar2vector __PARAMS((ARGS_scicos));
+extern void minmax __PARAMS((ARGS_scicos));
+extern void signum __PARAMS((ARGS_scicos));
+extern void product __PARAMS((ARGS_scicos));
+extern void summation __PARAMS((ARGS_scicos));
+extern void multiplex __PARAMS((ARGS_scicos));
+extern void gainblk __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
+{"absolute_value",(ScicosF) absolute_value},
 {"affich",(ScicosF) F2C(affich)},
 {"andlog",(ScicosF) F2C(andlog)},
 {"bidon",(ScicosF) F2C(bidon)},
+{"bounce_ball",(ScicosF) bounce_ball},
+{"bouncexy",(ScicosF) bouncexy},
 {"cdummy",(ScicosF) F2C(cdummy)},
+{"cmscope",(ScicosF) cmscope},
 {"constraint",(ScicosF) F2C(constraint)},
 {"cosblk",(ScicosF) F2C(cosblk)},
+{"cscope",(ScicosF) cscope},
 {"csslti",(ScicosF) F2C(csslti)},
 {"cstblk",(ScicosF) F2C(cstblk)},
 {"dband",(ScicosF) F2C(dband)},
@@ -108,15 +134,18 @@ OpTab tabsim[] ={
 {"evscpe",(ScicosF) F2C(evscpe)},
 {"evtdly",(ScicosF) F2C(evtdly)},
 {"expblk",(ScicosF) F2C(expblk)},
+{"extractor",(ScicosF) extractor},
 {"forblk",(ScicosF) F2C(forblk)},
 {"fscope",(ScicosF) F2C(fscope)},
 {"fsv",(ScicosF) F2C(fsv)},
 {"gain",(ScicosF) F2C(gain)},
+{"gainblk",(ScicosF) gainblk},
 {"gensin",(ScicosF) F2C(gensin)},
 {"gensqr",(ScicosF) F2C(gensqr)},
 {"hltblk",(ScicosF) F2C(hltblk)},
 {"ifthel",(ScicosF) F2C(ifthel)},
 {"integr",(ScicosF) F2C(integr)},
+{"integral_func",(ScicosF) integral_func},
 {"intplt",(ScicosF) F2C(intplt)},
 {"intpol",(ScicosF) F2C(intpol)},
 {"intrp2",(ScicosF) F2C(intrp2)},
@@ -124,6 +153,7 @@ OpTab tabsim[] ={
 {"invblk",(ScicosF) F2C(invblk)},
 {"iocopy",(ScicosF) F2C(iocopy)},
 {"logblk",(ScicosF) F2C(logblk)},
+{"logicalop",(ScicosF) logicalop},
 {"lookup",(ScicosF) F2C(lookup)},
 {"lsplit",(ScicosF) F2C(lsplit)},
 {"lusat",(ScicosF) F2C(lusat)},
@@ -131,12 +161,16 @@ OpTab tabsim[] ={
 {"memo",(ScicosF) F2C(memo)},
 {"mfclck",(ScicosF) F2C(mfclck)},
 {"minblk",(ScicosF) F2C(minblk)},
+{"minmax",(ScicosF) minmax},
 {"mscope",(ScicosF) F2C(mscope)},
+{"mswitch",(ScicosF) mswitch},
+{"multiplex",(ScicosF) multiplex},
 {"mux",(ScicosF) F2C(mux)},
 {"pload",(ScicosF) F2C(pload)},
 {"plusblk",(ScicosF) plusblk},
 {"powblk",(ScicosF) F2C(powblk)},
 {"prod",(ScicosF) prod},
+{"product",(ScicosF) product},
 {"qzcel",(ScicosF) F2C(qzcel)},
 {"qzflr",(ScicosF) F2C(qzflr)},
 {"qzrnd",(ScicosF) F2C(qzrnd)},
@@ -147,24 +181,32 @@ OpTab tabsim[] ={
 {"relay",(ScicosF) relay},
 {"rndblk",(ScicosF) F2C(rndblk)},
 {"samphold",(ScicosF) F2C(samphold)},
+{"satur",(ScicosF) satur},
 {"sawtth",(ScicosF) F2C(sawtth)},
+{"scalar2vector",(ScicosF) scalar2vector},
 {"scope",(ScicosF) F2C(scope)},
 {"scopxy",(ScicosF) F2C(scopxy)},
 {"scoxy",(ScicosF) F2C(scoxy)},
 {"selblk",(ScicosF) F2C(selblk)},
 {"selector",(ScicosF) selector},
+{"signum",(ScicosF) signum},
 {"sinblk",(ScicosF) F2C(sinblk)},
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
+{"step_func",(ScicosF) step_func},
 {"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
+{"summation",(ScicosF) summation},
+{"switch2",(ScicosF) switch2},
 {"switchn",(ScicosF) switchn},
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tcslti",(ScicosF) F2C(tcslti)},
 {"tcsltj",(ScicosF) F2C(tcsltj)},
 {"timblk",(ScicosF) F2C(timblk)},
+{"time_delay",(ScicosF) time_delay},
 {"trash",(ScicosF) F2C(trash)},
+{"variable_delay",(ScicosF) variable_delay},
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
@@ -172,6 +214,6 @@ OpTab tabsim[] ={
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 83 ;
+int ntabsim= 104 ;
 #endif 
 /***********************************/
