@@ -5,8 +5,8 @@ function M=%b_i_hm(varargin)
   M=varargin(rhs)// destination matrix
   N=varargin(rhs-1)//inserted matrix
   
-  dims=M('dims')(:);
-  v=M('entries');v=v(:)
+  dims=matrix(M.dims,-1,1)
+  v=matrix(M.entries,-1,1)
 
   nd=size(dims,'*')
   if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
@@ -36,7 +36,7 @@ function M=%b_i_hm(varargin)
   end
 
   //insert the elements
-  v(I)=N(:)
+  v(I)=matrix(N,-1,1)
 
   //reduce the dimensionality if possible
   while  ndims($)==1 then ndims($)=[],end

@@ -26,7 +26,7 @@ if size(dims,'*')==2 then
   x=matrix(x,dims(1),dims(2))
 else
   if flag==1 then dims=int32(dims);end
-  x=hypermat(dims,x(:))
+  x=hypermat(dims,x)
 end
 
 endfunction

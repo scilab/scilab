@@ -4,9 +4,9 @@ function M=%hm_i_hm(varargin)
   [lhs,rhs]=argn(0)
   M=varargin(rhs)
   N=varargin(rhs-1)//inserted matrix
-  dims=M.dims(:);
+  dims=matrix(M.dims,-1,1);
 
-  v=M.entries;v=v(:)
+  v=matrix(M.entries,-1,1);
 
 
   nd=size(dims,'*')
@@ -47,7 +47,7 @@ function M=%hm_i_hm(varargin)
     v1(I1+1)=v;v=v1
   end
 
-  v(I)=N.entries(:)
+  v(I)=matrix(N.entries,-1,1)
 
   while  ndims($)==1 then ndims($)=[],end
   select size(ndims,'*')

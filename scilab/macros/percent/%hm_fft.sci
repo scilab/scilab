@@ -1,6 +1,6 @@
 function x=%hm_fft(x,flag)
-dims=x('dims')(:);
-v=x('entries')(:);
+dims=matrix(x.dims,-1,1)
+v=matrix(x.entries,-1,1);
 n=size(dims,'*')
 incr=1
 for k=1:n
@@ -8,5 +8,5 @@ for k=1:n
   v=fft(v ,flag,dk,incr)
   incr=incr*dk
 end
-x('entries')=v
+x.entries=v
 endfunction

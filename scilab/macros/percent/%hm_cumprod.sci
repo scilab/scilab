@@ -16,7 +16,7 @@ I=deb*ones(ind)+ones(deb)*ind
 ind=(0:p2:prod(dims)-1)';
 I=ones(ind).*.I+ind.*.ones(I)
 x=cumprod(matrix(m.entries(I),-1,dims(d)),2)
-x(I)=x(:)
+x(I)=matrix(x,-1,1)
 if flag==1 then dims=int32(dims);end
 x=hypermat(dims,x)
 endfunction

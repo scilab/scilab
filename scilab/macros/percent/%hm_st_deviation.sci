@@ -24,6 +24,6 @@ end
 if size(dims,'*')==2 then 
   x=matrix(x,dims(1),dims(2))
 else
-  x=hypermat(dims,x(:))
+  x=hypermat(dims,x)
 end
 endfunction

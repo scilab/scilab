@@ -4,9 +4,10 @@ function M=%s_i_hm(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
-dims=M('dims')(:);
+dims=matrix(M.dims,-1,1)
 
-v=M('entries');v=v(:)
+v=matrix(M.entries,-1,1)
+
 if type(v)==4 then
   z=%f
   N=N<>0
@@ -77,7 +78,7 @@ if ~del&or(dims1>dims) then
   v1(I1+1)=v;v=v1
 end
 //if prod(dims1)>size(v,'*') then v(prod(dims1))=z,end
-v(I+1)=N(:)
+v(I+1)=matrix(N,-1,1)
 if del then
   if size(count,'*')>1 then
     error('A null assignment can have only one non-colon index')

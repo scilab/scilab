@@ -16,12 +16,12 @@ if type(a)<>17 then
   a=hypermat(sz,a)
   return
 end
-if prod(a('dims'))<>prod(sz) then
+if prod(a.dims)<>prod(sz) then
   error('MATRIX: input and output matrices  must have the same number of elements')
 end
 if size(sz,'*')==2 then
-  a=matrix(a('entries'),sz(1),sz(2))
+  a=matrix(a.entries,sz(1),sz(2))
 else
-  a('dims')=sz(:)
+  a.dims=matrix(sz,-1,1);
 end
 endfunction

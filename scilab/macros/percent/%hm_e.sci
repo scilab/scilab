@@ -3,9 +3,7 @@ function M=%hm_e(varargin)
 //extract an sub_hypermatrix
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
-dims=M('dims')
-//v=M('entries')(:)
-
+dims=M.dims
 
 if rhs-1>size(dims,'*') then
   dims(rhs-1)=1
@@ -22,7 +20,7 @@ for k=rhs-1:-1:1
     ik=find(ik)
   elseif mini(size(ik))<0 then // :
     if rhs==2 then
-      M=M('entries')(:)
+      M=matrix(M.entries,-1,1)
       return
     end
     ik=1:dims(k)
@@ -53,12 +51,12 @@ dims1(max(find(dims1>1))+1:$)=[]
 while  dims1($)==1 then dims1($)=[],end
 select size(dims1,'*')
 case 0
-  M=M('entries')(I+1)
+  M=M.entries(I+1)
 case 1
-  M=M('entries')(I+1)
+  M=M.entries(I+1)
 case 2
-  M=matrix(M('entries')(I+1),dims1(1),dims1(2))
+  M=matrix(M.entries(I+1),dims1(1),dims1(2))
 else
-  M=mlist(['hm','dims','entries'],dims1,M('entries')(I+1))
+  M=mlist(['hm','dims','entries'],dims1,M.entries(I+1))
 end
 endfunction

@@ -5,8 +5,8 @@ function M=%i_i_hm(varargin)
   M=varargin(rhs)// destination matrix
   N=varargin(rhs-1)//inserted matrix
   
-  dims=M('dims')(:);
-  v=M('entries');v=v(:)
+  dims=matrix(M.dims,-1,1)
+  v=matrix(M.entries,-1,1);
 
   nd=size(dims,'*')
   if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
