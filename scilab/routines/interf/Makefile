@@ -8,7 +8,7 @@ LIBRARY = $(SCIDIR)/libs/interf.a
 OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
 	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o \
 	intfilestat.o strelm-c.o  matdsr.o otherspecfun.o hmops.o \
-	intinterp.o intsetenv.o
+	intinterp.o intsetenv.o intreadxls.o
 
 OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
 	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o \
@@ -187,3 +187,4 @@ strelm-c.o: strelm-c.c ../stack-c.h ../graphics/Math.h ../machine.h \
 structcreate.o: structcreate.c ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h
+intreadxls.o: ../machine.h ../stack-c.h

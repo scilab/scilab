@@ -28,8 +28,8 @@ c     Save Load mgetl fileinfo getio  setenv xls_open xls_read
 c     24   25    26     27      28     29       30      31
  01   goto ( 35, 120, 54,10, 130,27, 30,60, 25, 160,
      +       50, 45, 140,170,190,180,20,200,205,210,
-     +       170,220,230,240,250,260,270,280,290),fin
-c     300,310
+     +       170,220,230,240,250,260,270,280,290,300,310),fin
+c     
 c     exec
  10   continue
       call intexec
@@ -164,11 +164,11 @@ c     setenv
  290  call intsetenv('setenv')
       return
 c     xls_open
-c 300  call intopenxls('xls_open')
-c      return
+ 300  call intopenxls('xls_open')
+      return
 c     xls_open
-c 310  call intreadxls('xls_read')
-c      return
+ 310  call intreadxls('xls_read')
+      return
 
 
  999  return
