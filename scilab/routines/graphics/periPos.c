@@ -1517,7 +1517,7 @@ must check size and cut into pieces big objects}
 /** WARNING  MAXSIZE must be a multiple of  2 4 8 et 6  **/
 /** 432=8*6*9 **/
 
-#define MAXSIZE 432
+#define MAXSIZE 8320
 #define PERLINE 20
 #define FORMATNUM "%d "
 
