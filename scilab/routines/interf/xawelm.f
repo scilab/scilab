@@ -63,11 +63,11 @@ c      implicit undefined (a-z)
       sadr(l)=(l/2)+1
 
       call xscion(inxsci)
-      if (inxsci.eq.0) then
-         buf='synchronous actions are not supported with -nw option'
-         call error(1020)
-         return
-      endif
+c      if (inxsci.eq.0) then
+c         buf='synchronous actions are not supported with -nw option'
+c         call error(1020)
+c         return
+c      endif
       if (.not.checkrhs(fname,1,4)) return
       if (.not.checklhs(fname,1,1)) return
 c     checking last variable
@@ -112,7 +112,13 @@ c     in a graphic window
          if(.not.getscalar(fname,topk,top-rhs+1,lr))return
          iwin = int(stk(lr))
          iskip = 0
-      elseif (istk(il1).eq.10) then
+         elseif (istk(il1).eq.10) then
+c      if -nw mode main window does not exists - error
+        if (inxsci.eq.0) then
+         buf='No main graphic window in -nw mode, specify 1-th arg...'
+          call error(1020)
+          return
+         endif
 c     in main window
          iskip =1
          iwin =-1
@@ -195,9 +201,9 @@ c      implicit undefined (a-z)
       logical checkrhs,getsmat,getscalar
       integer topk,m,n,lr,nlr
       call xscion(inxsci)
-      if (inxsci.eq.0) then
-         return
-      endif
+c      if (inxsci.eq.0) then
+c         return
+c      endif
       if (.not.checkrhs(fname,1,2)) return
       topk = top
       if (.not.getsmat(fname,topk,top,m,n,1,1,lr,nlr)) return
@@ -208,7 +214,13 @@ c      implicit undefined (a-z)
          if(.not.getscalar(fname,topk,top,lr))return
          iwin=int(stk(lr))
       else
-         iwin=-1
+c      if -nw mode main window does not exists - error
+        if (inxsci.eq.0) then
+         buf='No main graphic window in -nw mode, specify 1-th arg...'
+          call error(1020)
+          return
+         endif
+       iwin=-1
       endif
       call delbtn(iwin,buf)
       call objvide(fname,top)
@@ -226,9 +238,9 @@ c      implicit undefined (a-z)
       integer topk,m,n,lr,nlr,gettype
       external func
       call xscion(inxsci)
-      if (inxsci.eq.0) then
-         return
-      endif
+c      if (inxsci.eq.0) then
+c         return
+c      endif
       if (.not.checkrhs(fname,1,3)) return
       topk = top
       nsub=0
@@ -248,6 +260,12 @@ c      implicit undefined (a-z)
          iwin = int(stk(lr))
       else
          if (.not.checkrhs(fname,1,2)) return
+c      if -nw mode main window does not exists - error
+        if (inxsci.eq.0) then
+         buf='No main graphic window in -nw mode, specify 1-th arg...'
+          call error(1020)
+          return
+         endif
          iwin = -1
          if ( rhs.eq.2 ) then 
             if(.not.getscalar(fname,topk,top,lr))return

@@ -23,7 +23,7 @@
 #include "../graphics/Math.h"
 #include "../sun/Sun.h"
 #include "All-extern.h"
-
+#define LF                    0x000a
 extern int Xscilab  __PARAMS((Display **dpy, Widget *topwid));  
 extern void xevents1  __PARAMS((void));  
 
@@ -33,6 +33,7 @@ extern void xevents1  __PARAMS((void));
  *************************************/
 
 static int INXscilab=0;
+static int intoemacs;
 
 void SetXsciOn()
 {
@@ -40,6 +41,11 @@ void SetXsciOn()
   inittk();
 #endif
   INXscilab=1;
+}
+
+int IntoEmacs(void )
+{
+  return(strcmp(getenv("TERM"),"dumb")==0);
 }
 
 int C2F(xscion)(i)
@@ -61,6 +67,9 @@ int C2F(xscion)(i)
 Display *the_dpy = (Display *) NULL;
 int BasicScilab = 1;
 XtAppContext app_con;
+int IsClick_menu(void);
+void Click_menu(int n);
+int charfromclick(void);
 
 static String bgfallback_resources[] = {
 #include "../xsci/Xscilab.ad.h"
@@ -112,6 +121,7 @@ void DisplayInit(string, dpy, toplevel)
       Select_mask = pty_mask | X_mask;  
       Write_mask = 1 << fileno(stdout);
       max_plus1 = (fd < Xsocket) ? (1 + Xsocket) : (1 + fd);
+      intoemacs=IntoEmacs();
     }
   XSync(dpy1,0);
 }
@@ -127,12 +137,17 @@ void DisplayInit(string, dpy, toplevel)
  *      stdin is supposed to be changed 
  *      so as not to wait for <cr> this is done inside zzledt 
  *      (in the following code  the key function is select )
+ *
+ *  Additionally, the case of emacs-shell is added
+ *                the case of calling from user graphical menu is added
+ *                now it is possible to run scicos from -nw mode
  *******************************************************/
 
 int Xorgetchar()
 {
   register int i;
   static struct timeval select_timeout;
+  static int state=0;
   if ( BasicScilab) return(getchar());
   for( ; ; ) {
 	XFlush(the_dpy); /* always flush writes before waiting */
@@ -157,10 +172,19 @@ int Xorgetchar()
 	if (write_mask & Write_mask) {	  fflush(stdout);}
 
 	/* if there's something to read */
+        if ((select_mask & pty_mask) || IsClick_menu()) 
+           state=1;
+        else
+           if (QLength(the_dpy) || (select_mask & X_mask) ||!(intoemacs))
+             state=0;
 
-	if (select_mask & pty_mask ) {
-	  return(getchar());
-	  break;
+	if (state) {
+         if(IsClick_menu())
+            i=charfromclick();
+         else
+            i=getchar();
+         if (i==LF) state=0;
+     	  return(i);
 	}
 	
 	/* if there are X events already in our queue, it
@@ -243,12 +267,14 @@ int StoreCommand(command)
      char *command;
 {
   CommandRec *p, *q, *r;
+  int i;
   /** first check if we have a special handler set for commands **/
   if ( scig_command_handler(command) == 1) return 0;
   if (get_is_reading()) 
     { 
       write_scilab(command);
-      write_scilab("\n");
+      C2F(xscion)(&i);
+       if (i) write_scilab("\n");
       return 0;
     }
   p = (CommandRec *) malloc( sizeof(CommandRec));
