@@ -5,7 +5,6 @@
 #include "DDE.h"
 /**********************************************************************************/
 static DWORD idInst=0;
-static UINT iReturn=0;
 static HCONV  hConv=NULL;
 static BOOL DDEInUse=FALSE;
 /**********************************************************************************/
@@ -112,6 +111,8 @@ BOOL DDECloseConnection(void)
 		DdeDisconnect(hConv);
 		DdeUninitialize(idInst);
 		DDEInUse=FALSE;
+		idInst=0;
+		hConv=NULL;
 		bOK=TRUE;
 	}
 	else
