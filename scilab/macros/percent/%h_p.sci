@@ -372,53 +372,54 @@ function %h_p(h)
       if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
 
       if size(Data) == 5 then // There is a color
-	 dcolor=sci2exp(Data.color,0)
-	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
-
+	dcolor=sci2exp(Data.color,0)
+	if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
+	
 	t=[t;
-	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible) 
-	 "surface_mode = "+sci2exp(h.surface_mode)
-	 "foreground = "+string(h.foreground)
-	 "thickness = "+string(h.thickness)
-	 "mark_mode = "+sci2exp(h.mark_mode)
-	 "mark_style = "+sci2exp(h.mark_style)
-	 "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	 "mark_size = "+string(h.mark_size)
-	 "mark_foreground = "+string(h.mark_foreground)
-	 "mark_background = "+string(h.mark_background)
-	 "data.x = "+dx
-	 "data.y = "+dy
-	 "data.z = "+dz  
-	 "data.color = "+dcolor
-	 "color_mode = "+string(h.color_mode)
-	 "color_flag = "+sci2exp(h.color_flag,0)
-	 "hiddencolor = "+string(h.hiddencolor)
-	]
-        else
-	  t=[t;
-	 "parent: "+h.parent.type
-	 "children: "+fmtchildren(h.children)
-	 "visible = "+sci2exp(h.visible) 
-	 "surface_mode = "+sci2exp(h.surface_mode)
-	 "foreground = "+string(h.foreground)
-	 "thickness = "+string(h.thickness)
-	 "mark_mode = "+sci2exp(h.mark_mode)
-	 "mark_style = "+sci2exp(h.mark_style)
-	 "mark_size_unit = "+sci2exp(h.mark_size_unit)
-	 "mark_size = "+string(h.mark_size)
-	 "mark_foreground = "+string(h.mark_foreground)
-	 "mark_background = "+string(h.mark_background)
-	 "data.x = "+dx
-	 "data.y = "+dy
-	 "data.z = "+dz
-	 "color_mode = "+string(h.color_mode)
-	 "color_flag = "+sci2exp(h.color_flag,0)
-	 "hiddencolor = "+string(h.hiddencolor)
-	]
+	    "parent: "+h.parent.type
+	    "children: "+fmtchildren(h.children)
+	    "visible = "+sci2exp(h.visible) 
+	    "surface_mode = "+sci2exp(h.surface_mode)
+	    "foreground = "+string(h.foreground)
+	    "thickness = "+string(h.thickness)
+	    "mark_mode = "+sci2exp(h.mark_mode)
+	    "mark_style = "+sci2exp(h.mark_style)
+	    "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	    "mark_size = "+string(h.mark_size)
+	    "mark_foreground = "+string(h.mark_foreground)
+	    "mark_background = "+string(h.mark_background)
+	    "data.x = "+dx
+	    "data.y = "+dy
+	    "data.z = "+dz  
+	    "data.color = "+dcolor
+	    "color_mode = "+string(h.color_mode)
+	    "color_flag = "+sci2exp(h.color_flag,0)
+	    "cdata_mapping = "+sci2exp(h.cdata_mapping)
+	    "hiddencolor = "+string(h.hiddencolor)
+	    ]
+      else
+	t=[t;
+	    "parent: "+h.parent.type
+	    "children: "+fmtchildren(h.children)
+	    "visible = "+sci2exp(h.visible) 
+	    "surface_mode = "+sci2exp(h.surface_mode)
+	    "foreground = "+string(h.foreground)
+	    "thickness = "+string(h.thickness)
+	    "mark_mode = "+sci2exp(h.mark_mode)
+	    "mark_style = "+sci2exp(h.mark_style)
+	    "mark_size_unit = "+sci2exp(h.mark_size_unit)
+	    "mark_size = "+string(h.mark_size)
+	    "mark_foreground = "+string(h.mark_foreground)
+	    "mark_background = "+string(h.mark_background)
+	    "data.x = "+dx
+	    "data.y = "+dy
+	    "data.z = "+dz
+	    "color_mode = "+string(h.color_mode)
+	    "color_flag = "+sci2exp(h.color_flag,0)
+	    "hiddencolor = "+string(h.hiddencolor)
+	    ]
       end
-
+      
       case "Param3d" 
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
