@@ -836,7 +836,7 @@ typedef struct
   double * pvecy;
   double * pvecz;
   integer *zcol;
-  integer *inputCMoV; /* Affing here in order to always have the input data*/
+  integer *inputCMoV; /* Adding here in order to always have the input data*/
   /* We will determinate if it is a vector or matrix data with m3n and n3n values*/
 
   integer izcol;  
