@@ -16,7 +16,7 @@
 #define USE_SHARP_SIGN 1
 
 /* Define if have exp10 */
-/* #undef HAVE_EXP10 */
+#define HAVE_EXP10 1
 
 /* Define if have getwd */
 #define HAVE_GETWD 1
