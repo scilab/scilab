@@ -7,6 +7,8 @@ function [scs_m,fct]=do_addnew(scs_m)
 		     ['Name'],list('str',1),emptystr())
 
   if ~ok then return,end
+  name=stripblanks(name);
+  if name=emptystr() then message('No block name specified');return,end
   to_get=%f
   if exists(name)==0 then 
     to_get=%t
@@ -30,6 +32,7 @@ function [scs_m,fct]=do_addnew(scs_m)
     end 
     file('close',u)
     fct=path
+    if ~exists(name) then message(name+' is not defined in this file'),return,end
   end
 
   //define the block
