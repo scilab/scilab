@@ -17,11 +17,9 @@
     <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x,ice)    </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> y = oldbesselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbesselj(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> y = oldbesselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> y = oldbessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = oldbessely(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
 
   </CALLING_SEQUENCE>
   <PARAM>
@@ -48,73 +46,107 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>these functions  are obsolete, use <VERB>besseli</VERB>,
-      <VERB>besselj</VERB>, <VERB>besselk</VERB>, <VERB>bessely</VERB>
-      instead. Note however that the semantics of these two functions are
+    <P>These functions  are obsolete, use <LINK>besseli</LINK>,
+      <LINK>besselj</LINK>, <LINK>besselk</LINK>, <LINK>bessely</LINK>
+      instead. Note however that the semantics of these two sets of functions are
       different.</P>
 
     <P><VERB>oldbesseli(alpha,x)</VERB> computes modified Bessel functions of the
     first kind (I sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real  argument <VERB>x</VERB>. <VERB>oldbesseli(alpha,x,2)</VERB> computes 
-      <VERB>oldbesseli(alpha,x).*exp(-abs(real(x)))</VERB>.</P> 
+    and real non negative argument <VERB>x</VERB>.  <VERB>besseli(alpha,x,2)</VERB> computes 
+	  <VERB>besseli(alpha,x).*exp(-x)</VERB>.</P> 
 
     <P><VERB>oldbesselj(alpha,x)</VERB> computes Bessel functions of the
     first kind (J sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>. <VERB>oldbesselj(alpha,x,2)</VERB> computes
-	  <VERB>oldbesselj(alpha,x).*exp(-abs(imag(x)))</VERB>.</P> 
+    and real non negative argument <VERB>x</VERB>. </P> 
 
     <P><VERB>oldbesselk(alpha,x)</VERB> computes modified Bessel functions of the
     second kind (K sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>.   <VERB>oldbesselk(alpha,x,1)</VERB> computes
-	  <VERB>oldbesselk(alpha,x).*exp(x)</VERB></P> 
+    and real non negative argument <VERB>x</VERB>.  <VERB>besselk(alpha,x,2)</VERB> computes
+    <VERB>besselk(alpha,x).*exp(x)</VERB>.</P> 
 
     <P><VERB>oldbessely(alpha,x)</VERB> computes Bessel functions of the
     second kind (Y sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>. <VERB>oldbessely(alpha,x,1)</VERB> computes
-	  <VERB>oldbessely(alpha,x).*exp(-abs(imag(x)))</VERB>.</P> 
-
-
+    and real non negative argument <VERB>x</VERB>. </P> 
 
     <P><VERB>alpha</VERB>  and <VERB>x</VERB> may be vectors.
     The output is <VERB>m</VERB>-by-<VERB>n</VERB> with <VERB>m = size(x,'*')</VERB>,
     <VERB>n = size(alpha,'*')</VERB> whose <VERB>(i,j)</VERB> entry is
-    <VERB>oldbesseli(alpha(j),x(i))</VERB>.</P>
-
-
-   
-   <P> I_alpha and K_alpha   are 2 independant solutions of the modified Bessel's differential equation :</P>
-    <VERBATIM>
-<![CDATA[
-          2                     2        2
-         x  y(x)" + x y(x)' - (x  + alpha ) y(x) = 0 , 
-     ]]>
-    </VERBATIM>
-
-
-   <P> J_alpha and Y_alpha  are 2 independant 
-        solutions of the  Bessel's differential equation :</P>
-    <VERBATIM>
-<![CDATA[
-          2                     2        2
-         x  y(x)" + x y(x)' + (x  - alpha ) y(x) = 0 , 
-     ]]>
-    </VERBATIM>
-
+    <VERB>oldbessel?(alpha(j),x(i))</VERB>.</P>
 
   </DESCRIPTION>
+   <SECTION  label="Remarks">
+
+    <P> Y_alpha and J_alpha Bessel functions are 2 independant 
+        solutions of the Bessel 's differential equation :</P>
+    <VERBATIM>
+<![CDATA[          2               2        2
+         x  y" + x y' + (x  - alpha ) y = 0 ,  alpha >= 0
+     ]]>
+    </VERBATIM>
+    <P> K_alpha and I_alpha modified Bessel functions are 2 independant 
+        solutions of the modified Bessel 's differential equation :</P>
+    <VERBATIM>
+<![CDATA[          2               2        2
+         x  y" + x y' - (x  + alpha ) y = 0 ,  alpha >= 0
+     ]]>
+    </VERBATIM>
+ </SECTION>
+
   <EXAMPLE>
-<![CDATA[
-// example : display some I bessel functions
+<![CDATA[// example #1: display some I Bessel functions
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
 ys = oldbesseli(0:4,x,2);
 xbasc()
 subplot(2,1,1)
    plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
-   xtitle("Some modified bessel functions of the first kind")
+   xtitle("Some modified Bessel functions of the first kind")
 subplot(2,1,2)
    plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
-   xtitle("Some modified scaled bessel functions of the first kind")
+   xtitle("Some modified scaled Bessel functions of the first kind")
+
+// example #2 : display some J Bessel functions
+x = linspace(0,40,5000)';
+y = besselj(0:4,x);
+xbasc()
+plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
+xtitle("Some Bessel functions of the first kind")
+
+// example #3 : use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
+//              to compare the algorithm of besselj(0.5,x) with
+//              a more direct formula 
+x = linspace(0.1,40,5000)';
+y1 = besselj(0.5, x);
+y2 = sqrt(2 ./(%pi*x)).*sin(x);
+er = abs((y1-y2)./y2);
+ind = find(er > 0 & y2 ~= 0);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y1,style=2)
+   xtitle("besselj(0.5,x)")
+subplot(2,1,2)
+   plot2d(x(ind), er(ind), style=2, logflag="nl")
+   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+
+// example #4: display some K Bessel functions
+x = linspace(0.01,10,5000)';
+y = besselk(0:4,x);
+ys = besselk(0:4,x,2);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y, style=2:6, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
+   xtitle("Some modified Bessel functions of the second kind")
+subplot(2,1,2)
+   plot2d(x,ys, style=2:6, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
+   xtitle("Some modified scaled Bessel functions of the second kind")
+
+// example #5: plot severals Y Bessel functions
+x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
+y = bessely(0:4,x);
+xbasc()
+plot2d(x,y, style=2:6, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
+xtitle("Some Bessel functions of the second kind")
  ]]>
   </EXAMPLE>
 
