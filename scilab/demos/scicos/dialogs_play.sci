@@ -323,7 +323,7 @@ function tk_mpop(ll,but,pos)
   for bb=1:but-1
   [txt,MM]=create_pop(ll,bb,pos)
   ierr=execstr('TK_EvalStr(txt)','continue')
-  xpause(50000)
+  for i=1:10,xpause(5000),end
    txt='catch {destroy .scicoslhb}'
   ierr=execstr('TK_EvalStr(txt)','continue')
   end
