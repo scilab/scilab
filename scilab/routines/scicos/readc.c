@@ -29,7 +29,7 @@ readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
      /*
      ipar[1]   = lfil : file name length
      ipar[2:4] = fmt  : numbers type ascii code
-     ipar[5]   = is it a time record
+     ipar[5]   = is there a time record
      ipar[6]   = n : buffer length in number of records
      ipar[7]   = maxvoie : record size
      ipar[8]   = swap
@@ -56,7 +56,7 @@ double *inptr[],*outptr[],*t;
   --z;
   fd=(FILE *)(long)z[3];
   buffer = (z+4);
-  mask = ipar+11+ipar[1];
+  mask = ipar+11+ipar[1]-ipar[5];
     
   /*
     k    : record counter within the buffer
