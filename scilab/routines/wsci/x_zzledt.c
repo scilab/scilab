@@ -59,7 +59,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   GetCurrentPrompt(save_prompt);
 
   ChangeCursorWhenScilabIsReady();
-
+  TextMessage();
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
   if (PutLineInBuffer)
@@ -68,7 +68,9 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 	  write_scilab(copycur_line);
 	  PutLineInBuffer=FALSE;
   }
+  
   i = read_line (save_prompt,*interrupt);
+  
   if (i==-1) 
   { /* dynamic menu canceled read SS*/
     *len_line = 0;
@@ -81,7 +83,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
-
+  TextMessage();
 
 
   return;

@@ -136,9 +136,20 @@ void Write_Scilab_Window (char *buf)
 	copy_line (buf);
 	#else
 	char *d;
-	if (buf[0] != '\0')
+	char buffer[1024];
+	if ( ( buf[strlen(buf)-1] != '\n' ) && ( buf[strlen(buf)-1] != '\r' ) )
+	{
+		strcpy(buffer,buf);
+		strcat(buffer,"\n");
+	}
+	else
+	{
+		strcpy(buffer,buf);
+	}
+	
+	if (buffer[0] != '\0')
     {
-      d = buf;
+      d = buffer;
       while (*d)
 		{
 			SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
@@ -146,6 +157,7 @@ void Write_Scilab_Window (char *buf)
 		}
 	}
 	#endif
+
 
 }
 

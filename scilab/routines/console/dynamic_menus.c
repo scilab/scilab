@@ -110,9 +110,6 @@ int StoreCommand1 (char *command,int flag)
 	case 1: // the command is shown in scilab window (if at prompt)
 		{
 			write_scilab (command);
-			#ifdef WIN32
-				if ( ( command[strlen(command)-1] != '\n' ) && ( command[strlen(command)-1] != '\r' ) ) write_scilab ("\n");
-			#endif
 			return (0);
 		}
 		break;

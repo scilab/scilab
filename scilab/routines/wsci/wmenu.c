@@ -94,9 +94,17 @@ void Callback_OPEN(void)
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,TitleText,TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",File) == TRUE)
 	{
+		extern BOOL PutLineInBuffer;
+		char CommandBis[512];
 		GetShortPathName(File,ShortFile,MAX_PATH);
-		wsprintf(command,"scipad('%s');",ShortFile);
-		StoreCommand1(command,0);
+		wsprintf(command,"%cscipad('%s');",CTRLU,ShortFile);
+		wsprintf(CommandBis,"scipad('%s');",ShortFile);
+
+		PutLineInBuffer=FALSE;
+		if (IsToThePrompt ()) StoreCommand1(command,1);
+		else StoreCommand(CommandBis);
+		PutLineInBuffer=FALSE;
+		
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -416,21 +424,26 @@ void Callback_CONSOLE(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_SCIPAD(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	char Command[512];
+	extern BOOL PutLineInBuffer;
+	wsprintf(Command,"%cscipad();",CTRLU);
 
-	StoreCommand1 ("scipad()",0);
+    PutLineInBuffer=FALSE;
+	if (IsToThePrompt ()) StoreCommand1(Command,1);
+	else StoreCommand("scipad();");
+	PutLineInBuffer=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_HELP(void)
 {
-	extern char ScilexWindowName[MAX_PATH];
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	char Command[512];
+	extern BOOL PutLineInBuffer;
+	wsprintf(Command,"%chelp();",CTRLU);
 
-	StoreCommand1 ("help();", 0);
-  		
+	PutLineInBuffer=FALSE;
+	if (IsToThePrompt ()) StoreCommand1(Command,1);
+	else StoreCommand("help();");
+	PutLineInBuffer=FALSE;
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_DEMOS(void)
@@ -1691,9 +1704,20 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
 /* Envoye le signal CTRL + le code d'une touche */
 void SendCTRLandAKey(int code)
 {
+	extern TW textwin;
 	char command[MAX_PATH];
+	char *d;
+	
 	wsprintf(command,"%c",(char)code);
-	write_scilab(command);
+	if ( IsToThePrompt ()  && (command[0] != '\0') )
+	{
+		d = command;
+		while (*d)
+			{
+				SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
+				d++;
+			}
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 void ShowToolBar(LPTW lptw)
