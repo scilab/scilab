@@ -40,9 +40,6 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%s_i_ce.sci %spb_i_ce.sci %c_i_ce.sci %hm_i_ce.sci \
 	%lss_i_ce.sci  %r_i_ce.sci  %sp_i_ce.sci \
 	%ce_c_ce.sci %ce_f_ce.sci \
-	%ce_c_s.sci %ce_f_s.sci %s_f_ce.sci %s_c_ce.sci \
-	%c_c_ce.sci %c_f_ce.sci %ce_f_c.sci %ce_c_c.sci \
-	%i_c_ce.sci %i_f_ce.sci %ce_f_i.sci %ce_c_i.sci \
 	createstruct.sci %st_6.sci %ce_6.sci \
 	%st_i_b.sci  %st_i_fptr.sci  %st_i_i.sci   %st_i_msp.sci\
 	%st_i_s.sci %st_i_spb.sci %st_i_c.sci %st_i_h.sci %st_i_ip.sci\
