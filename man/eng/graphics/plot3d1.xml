@@ -88,10 +88,6 @@ plot3d1(xx,yy,zz) // the 2 graphics are similar
     <SEE_ALSO_ITEM>
       <LINK>scf</LINK>
     </SEE_ALSO_ITEM>
-
-    <SEE_ALSO_ITEM>
-      <LINK>sca</LINK>
-    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHOR>J.Ph.C.</AUTHOR>
