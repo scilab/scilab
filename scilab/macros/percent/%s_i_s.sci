@@ -3,11 +3,31 @@ function M=%s_i_s(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
-if type(varargin(1))==10 then
+index=varargin(1) //...
+if type(index)==15 then
+   if type(index(2))==10 then
+      //X(p,q).f = y
+      toinsert=varargin(rhs-1)
+      Dims=list2vec(index(1));
+      M=mlist(["st","dims",index(2)],int32(Dims));
+      nmax=prod(Dims);
+      li=list();
+        for kk=1:nmax-1
+          li(kk)=[];
+        end
+      li(nmax)=toinsert;
+      setfield(3,li,M);
+      return;
+   end
+end
+
+if type(index)==10 then
+//X.f = y
   M=mlist(["st","dims",varargin(1)],int32([1 1]),N);
   return	
 end
 
+//X(i,j,k)=n  hypermatrix
 M=mlist(['hm','dims','entries'],size(M),M(:))
 dims=M('dims')
 v=M('entries');v=v(:)
