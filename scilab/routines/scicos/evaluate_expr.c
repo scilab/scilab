@@ -4,6 +4,11 @@
 #include <float.h>
 #endif
 
+#if defined(solaris)
+#include <ieeefp.h>
+int isinf(double x) { return !finite(x) && x==x; }
+#endif
+
 #if WIN32
 /*
 arcsinh z = log (z+sqrt(1+z2))
