@@ -1718,14 +1718,23 @@ void set_default_colormap3(int m)
   Colormap cmap,dcmap,ocmap;
   XColor color;
   Pixel *pixels, *c;
-  float *r, *g, *b;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   int bp1,wp1;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  if(ScilabXgc->Colors != (Pixel *) NULL) //F.Leray
+    c = ScilabXgc->Colors;
+
+  if(ScilabXgc->Red != (float *) NULL)
+    r = ScilabXgc->Red;
+
+  if(ScilabXgc->Green != (float *) NULL)
+    g = ScilabXgc->Green;
+
+  if(ScilabXgc->Blue != (float *) NULL)
+    b = ScilabXgc->Blue;
 
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
@@ -1954,15 +1963,25 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
 {
   int i;
   Colormap cmap;
-  Pixel *c, pix;
-  float *r, *g, *b;
+  Pixel *c = (Pixel *) NULL;
+  Pixel pix;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   unsigned int red, green, blue;
 
   /* Save old color vectors */
-  c = Xgc->Colors;
-  r = Xgc->Red;
-  g = Xgc->Green;
-  b = Xgc->Blue;
+  if(Xgc->Colors != (Pixel *) NULL) // F.Leray
+    c = Xgc->Colors;
+
+  if(Xgc->Red != (float *) NULL)
+    r = Xgc->Red;
+  
+  if(Xgc->Green != (float *) NULL)
+    g = Xgc->Green;
+
+  if(Xgc->Blue != (float *) NULL)
+    b = Xgc->Blue;
 
   if (!XgcAllocColors(ScilabXgc,m)) {
     Xgc->Colors = c;
@@ -2042,15 +2061,25 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
   int i;
   Colormap cmap,dcmap,ocmap;
   XColor color;
-  Pixel *pixels, *c;
-  float *r, *g, *b;
+  Pixel *pixels = (Pixel *) NULL;
+  Pixel *c = (Pixel *) NULL;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   int bp1,wp1;
 
   /* Save old color vectors */
-  c = Xgc->Colors;
-  r = Xgc->Red;
-  g = Xgc->Green;
-  b = Xgc->Blue;
+  if(Xgc->Colors != (Pixel *) NULL) // F.Leray
+    c = Xgc->Colors;
+
+  if(Xgc->Red != (float *) NULL)
+    r = Xgc->Red;
+  
+  if(Xgc->Green != (float *) NULL)
+    g = Xgc->Green;
+
+  if(Xgc->Blue != (float *) NULL)
+    b = Xgc->Blue;
 
   if (!XgcAllocColors(Xgc,m)) {
     Xgc->Colors = c;

@@ -2327,8 +2327,10 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
 {
   int i,palstatus ,m;
   unsigned long maxcol;
-  COLORREF  *c;
-  float *r, *g, *b;
+  COLORREF  *c = (COLORREF *) NULL;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   /** XXXXX Trouver une doc sur les pallettes **/
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
@@ -2347,10 +2349,17 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
   m = *v1;
 
   /* Save old color vectors */
-  c = Xgc->Colors;
-  r = Xgc->Red;
-  g = Xgc->Green;
-  b = Xgc->Blue;
+  if(Xgc->Colors != (COLORREF *) NULL) // F.Leray
+    c = Xgc->Colors;
+  
+  if(Xgc->Red != (float *) NULL)
+    r = Xgc->Red;
+  
+  if(Xgc->Green != (float *) NULL)
+    g = Xgc->Green;
+
+  if(Xgc->Blue != (float *) NULL)
+    b = Xgc->Blue;
 
   if (!XgcAllocColors(Xgc,m)) {
     Xgc->Colors = c;
@@ -2409,8 +2418,10 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
      double *a;
 {
   int i,m,maxcol;
-  COLORREF  *c;
-  float *r, *g, *b;
+  COLORREF  *c = (COLORREF *) NULL;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
   /** to avoid overflow in maxcol **/
@@ -2425,11 +2436,18 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
   m = *v1;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  if(ScilabXgc->Colors != (COLORREF *) NULL) // F.Leray
+    c = ScilabXgc->Colors;
+  
+  if(ScilabXgc->Red != (float *) NULL)
+    r = ScilabXgc->Red;
+  
+  if(ScilabXgc->Green != (float *) NULL)
+    g = ScilabXgc->Green;
 
+  if(ScilabXgc->Blue != (float *) NULL)
+    b = ScilabXgc->Blue;
+ 
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
     ScilabXgc->Red = r;
