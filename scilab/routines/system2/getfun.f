@@ -195,8 +195,12 @@ c     fin de conversion de la ligne
       if(istk(l).eq.blank) goto 28
       l=l+1
       if(l-1.le.l0) then
-         istk(l)=comma
-         l=l+1
+         if (istk(l-1).ne.comma.and.
+     +        istk(l-1).ne.semi.and.
+     +        istk(l-1).ne.left) then
+            istk(l)=comma
+            l=l+1
+         endif
       endif
       do 29 i=0,icount
 c     la gestion de icount a ete ajoute pour maintenir un compteur de ligne
