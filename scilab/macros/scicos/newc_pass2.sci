@@ -29,22 +29,26 @@ function cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
 //
 // define some constants
 // Copyright INRIA
- show_trace=%f
+
+show_trace=%f
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
-[state,sim,funs,%scicos_solver]=scicos_cpass2(bllst,connectmat,clkconnect,corinv,%scicos_solver);
+[state,sim,funs,%scicos_solver,corinv]=scicos_cpass2(bllst,connectmat,clkconnect,corinv,%scicos_solver);
 if show_trace then disp('c_pass2:'+string(timer())),end
+if (type(sim) == 1) then 
+  cpr=list();
+else
+ 
+  sim.funs=funs;
 
-sim.funs=funs;
-
-for i=1:sim.nb
+  for i=1:sim.nb
 
     if sim.funs(i)=='sciblock' then
       sim.funs(i)=genmac(bllst(i).ipar,size(bllst(i).in,'*'),..
 				size(bllst(i).out,'*'));
       
     end
+  end
+
+ cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 end
-
-cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
-
 endfunction

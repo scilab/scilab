@@ -3,6 +3,15 @@ function ninnout=under_connection(path_out,path_in)
 // path_out : Path of the "from block" in scs_m
 // path_in  : Path of the "to block" in scs_m
 //!
+  if path_in==-1 then
+    hilite_obj(scs_m.objs(path_out));
+    message(['One of this block''s outputs has negative size';
+		    'Please check.'])
+    hilite_obj(scs_m.objs(path_out));
+    ninnout=0
+    return
+  end
+    
   lp=mini(size(path_out,'*'),size(path_in,'*'))
   k=find(path_out(1:lp)<>path_in(1:lp))
   path=path_out(1:k(1)-1) // common superbloc path
