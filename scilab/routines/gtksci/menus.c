@@ -893,40 +893,7 @@ static void scig_menu_select(int winid)
 }
 
 /*----------------------------------------------
- * To delete the graphic window 
- -----------------------------------------------*/
 
-/* add handlers for delete action */
-
-void scig_deletegwin_handler_none (win)int win; {};
-
-void scig_deletegwin_handler_sci (int win)
-
-{
-  static char buf[256];
-  struct BCG *SciGc;
-
-  SciGc = GetWindowXgcNumber(win);
-  if (strlen(SciGc->EventHandler)!=0) {
-    sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
-    StoreCommand(buf);
-    }
-};
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
-/*static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;*/
-
-Scig_deletegwin_handler set_scig_deletegwin_handler(f) 
-     Scig_deletegwin_handler f;
-{
-  Scig_deletegwin_handler old = scig_deletegwin_handler;
-  scig_deletegwin_handler = f;
-  return old;
-}
-
-void reset_scig_deletegwin_handler() 
-{
-  scig_deletegwin_handler = scig_deletegwin_handler_sci;
-}
 
 /* delete action */
 
