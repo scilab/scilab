@@ -1,6 +1,6 @@
 #----------------------
 # version for Visual C++
-#-----------------------
+#------------------------
 
 all::
 
@@ -18,20 +18,23 @@ DTK=-DWITH_TK
 !IF "$(DTK)" == "-DWITH_TK"
 # -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
-# for compilation 
-#TCLTK=c:\tcl
-# for binary distribution version after compilation 
-TCLTK=$(SCIDIR1)\tcl
+# SCIDIR1 is set to . in Makefile.mak for compilation 
+# and to scilab full path when used after compilation 
+# for dynamic linking
+# TCLTK=d:\softs\scilab\scilab-cvs\tcllib
+TCLTK=$(SCIDIR1)\tcllib
+
 TKSCI=libs/tksci.lib 
 
 TKLIBS="$(SCIDIR1)\bin\tcl83.lib" "$(SCIDIR1)\bin\tk83.lib"
+# TKLIBS="$(TCLTK)\lib\tcl83.lib" "$(TCLTK)\lib\tk83.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
 
-#-------------------
+#---------------------
 # Scilab pvm library
-#-------------------
+#---------------------
 # To compile with PVM interface, uncomment the following lines and give
 # the good pathname for PVM_ROOT.
 #
@@ -41,18 +44,16 @@ DPVM=-DWITH_PVM
 # compiler flags: -MT should be removed for pvm 
 USE_MT=
 PVM=libs/pvm.lib 
-#for compilation
-#PVM_ROOT=c:\temp\scilab2.7\pvm3
-# for binary distribution version after compilation 
+# SCIDIR1 is set to . in Makefile.mak for compilation 
+# and to scilab full path when used after compilation 
+# for dynamic linking
 PVM_ROOT=$(SCIDIR1)\pvm3
-
 PVM_ARCH=WIN32
 PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
 PVM_CINCLUDE="."
 PVM_INCLUDES=-I"$(PVM_ROOT)\include" -I"$(PVM_ROOT)\src"
 PVM_CCOMPILER=VISUALC++
 !ENDIF 
-
 
 #
 # YES if we compile the PVM given with Scilab else NO
