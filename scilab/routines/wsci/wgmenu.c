@@ -912,6 +912,7 @@ static char *Print_Formats[] =
   "Postscript-Latex",
   "Xfig",
   "GIF",
+  "PPM",
 };
 
 /****************************************************
@@ -1058,6 +1059,12 @@ static void SavePs (struct BCG *ScilabGC)
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       scig_tops (ScilabGC->CurWindow, ls.colored, filename, "GIF");
       wininfo ("end of GIF file generation");
+      SetCursor (LoadCursor (NULL, IDC_CROSS));
+      break;
+    case 5:
+      SetCursor (LoadCursor (NULL, IDC_WAIT));
+      scig_tops (ScilabGC->CurWindow, ls.colored, filename, "PPM");
+      wininfo ("end of PPM file generation");
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     }

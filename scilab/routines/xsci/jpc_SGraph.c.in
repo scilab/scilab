@@ -1046,6 +1046,11 @@ SavePs(w, number, client_data)
 	  /** Gif file **/
 	  scig_tops(win_num,colored,file,"GIF");
 	}
+      else if (strcmp(printer,"PPM")==0)
+	{
+	  /** PPM file **/
+	  scig_tops(win_num,colored,file,"PPM");
+	}
       if ( strcmp(printer,"Postscript No Preamble") != 0)
 	{
 	  sprintf(bufname,"$SCI/bin/scilab -%s %s %s",
