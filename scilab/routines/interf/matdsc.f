@@ -210,6 +210,10 @@ C fin schur
 C
  44   continue
 C fin spectre et root
+      if (lhs .ne. 1) then
+        call error(41)
+        return
+      endif
       call unsfdcopy(2*n,stk(lsr),1,stk(l),1)
       istk(il+1) = n
       istk(il+2) = 1
