@@ -8,7 +8,8 @@ OBJSC = @PERIFILE@ periPos.o periFig.o  periGif.o Xcall.o Xcall1.o \
 	Contour.o Plo3d.o Math.o Axes.o Champ.o Plo2d.o \
 	Plo2d1.o Plo2d2.o Plo2d3.o Plo2d4.o Plo2dEch.o Rec.o Gray.o \
 	Alloc.o FeC.o RecLoad.o RecSave.o Tests.o Actions.o \
-	gsort.o qsort.o nues1.o Format.o
+	gsort.o qsort.o nues1.o Format.o \
+	Entities.o dr1Call.o sciCall.o Plo2dn.o
 
 OBJSF = 
 
@@ -38,12 +39,12 @@ gsort.o: gsort.c Math.h ../machine.h Graphics.h ../sun/men_Sutils.h \
  gsort-int.h gsort-double.h gsort-string.h
 Math.o: Math.c Math.h ../machine.h Graphics.h ../sparse/spConfig.h
 nues1.o: nues1.c ../machine.h Math.h Graphics.h
-periFig.o: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h
+periFig.o: periFig.c Math.h ../machine.h Graphics.h periFig.h color.h bcg.h
 periGif.o: periGif.c Math.h ../machine.h Graphics.h periGif.h color.h \
- ../gd/gd.h ../gd/../machine.h
-periPos.o: periPos.c Math.h ../machine.h Graphics.h periPos.h color.h
+ bcg.h ../gd/gd.h ../gd/../machine.h
+periPos.o: periPos.c Math.h ../machine.h Graphics.h periPos.h color.h bcg.h
 periX11.o: periX11.c Math.h ../machine.h Graphics.h periX11.h \
- periX11-bcg.h ../version.h color.h ../intersci/cerro.h \
+ bcg.h ../version.h color.h ../intersci/cerro.h \
  ../intersci/../machine.h
 Plo2d1.o: Plo2d1.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2d2.o: Plo2d2.c Math.h ../machine.h Graphics.h PloEch.h

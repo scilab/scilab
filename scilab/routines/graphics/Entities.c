@@ -7186,7 +7186,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
       pSUBWIN_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
       pSUBWIN_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-      pSUBWIN_FEATURE (pobj)->callback = NULL;
+      pSUBWIN_FEATURE (pobj)->callback = (char *)NULL;
       pSUBWIN_FEATURE (pobj)->callbacklen = 0;
       pSUBWIN_FEATURE (pobj)->callbackevent = 100;
 
@@ -7215,14 +7215,20 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  return (sciPointObj *) NULL;
 	}
 
-      /*defines default clipping Area */
-      pSUBWIN_FEATURE (pobj)->islogscale = FALSE;     
-      /** 07/06/2002 **/
+
+       pSUBWIN_FEATURE (pobj)->logflags[0] = 'n';
+       pSUBWIN_FEATURE (pobj)->logflags[1] = 'n';
+  
+     /* axes labelling values*/
       pSUBWIN_FEATURE (pobj)->axes.ticscolor  = -1;
       pSUBWIN_FEATURE (pobj)->axes.textcolor  = -1;
       pSUBWIN_FEATURE (pobj)->axes.fontsize  = -1;  
       pSUBWIN_FEATURE (pobj)->axes.subint[0]  = 1;   
       pSUBWIN_FEATURE (pobj)->axes.subint[1]  = 1; 
+      pSUBWIN_FEATURE (pobj)->axes.xdir='d'; /*SS 02/01/03 */
+      pSUBWIN_FEATURE (pobj)->axes.ydir='l'; /*SS 02/01/03 */
+
+
       pSUBWIN_FEATURE (pobj)->axes.rect  = 1;
       pSUBWIN_FEATURE (pobj)->axes.limits[0]  = 0;
       pSUBWIN_FEATURE (pobj)->grid  = -1;
@@ -7288,7 +7294,8 @@ DestroySubWin (sciPointObj * pthis)
   if (sciDelHandle (pthis) == -1)
     return -1;
   FREE(pSUBWIN_FEATURE(pthis)->strflag);
-  FREE(sciGetCallback(pthis));
+  if ( sciGetCallback(pthis) != (char *)NULL)
+    FREE(sciGetCallback(pthis));
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis); 
   return 0;
@@ -8068,15 +8075,6 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
       pGRAYPLOT_FEATURE (pobj)->type = type;
    
-      if ((pGRAYPLOT_FEATURE (pobj)->datamapping = calloc (8, sizeof (char))) == NULL)
-	{  sciprint("No more place to allocates text string, try a shorter string");
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pGRAYPLOT_FEATURE(pobj));
-	FREE(pobj);
-	return (sciPointObj *) NULL;
-	}
-
       strncpy (pGRAYPLOT_FEATURE (pobj)->datamapping, "scaled", 6);
       pgray = pGRAYPLOT_FEATURE (pobj);
       
@@ -8426,23 +8424,26 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       if (type == 0)
       {   
 	psegs->arrowsize = arsize;     
+	if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
+	  {
+	    FREE(pSEGS_FEATURE (pobj)->vx); 
+	    FREE(pSEGS_FEATURE (pobj)->vy); 
+	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	    sciDelHandle (pobj);
+	    FREE(pSEGS_FEATURE(pobj));
+	    FREE(pobj);
+	    return (sciPointObj *) NULL;
+	  }
 	if (flag == 1)
 	  {
-	    if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
-	      {
-		FREE(pSEGS_FEATURE (pobj)->vx); 
-		FREE(pSEGS_FEATURE (pobj)->vy); 
-		sciDelThisToItsParent (pobj, sciGetParent (pobj));
-		sciDelHandle (pobj);
-		FREE(pSEGS_FEATURE(pobj));
-		FREE(pobj);
-		return (sciPointObj *) NULL;
-	      }
 	    for (i = 0; i < Nbr1; i++)
 	      psegs->pstyle[i] = style[i];
 	  }
-	else
-	  psegs->pstyle= style;   	   
+	else {
+	  for (i = 0; i < Nbr1; i++)
+	    psegs->pstyle[i] =  style[0];
+	}
+	
 	psegs->iflag = flag; 
         psegs->Nbr1 = Nbr1;
       }	
@@ -9844,16 +9845,14 @@ sciDrawObj (sciPointObj * pobj)
 	}
       break;
     case SCI_SUBWIN: 
-      if (!sciGetVisibility(pobj))
-	return 0;      
-      /*** 01/10/2002 ***/           
+      if (!sciGetVisibility(pobj)) 	return 0;      
       sciSetSelectedSubWin(pobj);
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect, NULL, "nn", NULL);      
       if (pSUBWIN_FEATURE (pobj)->isaxes)
 	{
-	  sciSetCurrentObj (pobj);	// place l'objet comme objet courant*/     
+	  sciSetCurrentObj (pobj);
 	  /* load the object foreground and dashes color */
-	  x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
+	  x[0] = sciGetForeground (pobj);
 	  //	  x[1] = sciGetBackground (pobj);
 	  x[2] = sciGetLineWidth (pobj);
 	  x[3] = sciGetLineStyle (pobj);
@@ -9865,7 +9864,10 @@ sciDrawObj (sciPointObj * pobj)
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    
-          
+          /* SS 01/01/03 BEURK*/
+	  Cscale.logflag[0]=pSUBWIN_FEATURE (pobj)->logflags[0];
+	  Cscale.logflag[1]=pSUBWIN_FEATURE (pobj)->logflags[1];
+
 	  axis_draw (pSUBWIN_FEATURE (pobj)->strflag);
 	  if (pSUBWIN_FEATURE (pobj)->grid != -1)
 	    {
@@ -9878,10 +9880,6 @@ sciDrawObj (sciPointObj * pobj)
     case SCI_AGREG: 
       if (!sciGetVisibility(pobj))
 	return 0;
-      /** xclear will properly upgrade background if necessary **/
-      //C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L); 
-      //      x[1] = sciGetBackground (pobj);x[4] = 0; 
-      //C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL)
@@ -10036,48 +10034,59 @@ sciDrawObj (sciPointObj * pobj)
         }  
       sciUnClip(sciGetIsClipping(pobj));
       break;
-      /******************************** 14/04/2002 ***************************/  
     case SCI_GRAYPLOT:  
       if (!sciGetVisibility(pobj))
 	return 0;
-
-
-      
- 
       n1 = pGRAYPLOT_FEATURE (pobj)->nx;
       n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
-      n=Max(n1,n2);
-      if ((xm = MALLOC ((n+1)*sizeof (integer))) == NULL)	return -1;
-      if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-       
+  
       switch (pGRAYPLOT_FEATURE (pobj)->type )
 	{
 	case 0:
+	  if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
+	  if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
+	    FREE(xm);return -1;
+	  }
+ 
 	  for ( i =0 ; i < n1 ; i++)  
 	    xm[i]= XScale(pGRAYPLOT_FEATURE (pobj)->pvecx[i]); 
 	  for ( i =0 ; i < n2 ; i++)  
-	    ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);     
-	  if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
-	    xm[n1] =0;
-	  else  
-	    if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"direct", 6) == 0)
-	      xm[n1] =1;   
+	    ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);   
 	  frame_clip_on(); 
-	  GraySquare(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);   
+  
+	  if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
+	    GraySquare(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); /* SS 03/01/03 */
+	  else  
+	    GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
+
 	  frame_clip_off();  
-	  C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
-		  ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+		  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  FREE(xm);FREE(ym); /* SS 03/01/03 */
 	  break;
 	case 1:
+	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
+	    return -1;
+	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
+	    FREE(xm);return -1;
+	  }
+
           for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
           for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
           frame_clip_on(); 
           GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
           frame_clip_off();  
-          C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
-		  ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+          C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+		  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  FREE(xm);FREE(ym); /* SS 03/01/03 */
           break;
 	case 2:
+	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
+	    return -1;
+	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
+	    FREE(xm);return -1;
+	  }
+
 	  xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
 	  xx[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[2];
 	  yy[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[1];
@@ -10092,6 +10101,8 @@ sciDrawObj (sciPointObj * pobj)
 	  frame_clip_on(); 
 	  GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
 	  frame_clip_off();
+	  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	  break;
 	default:
 	  break;
 	}
@@ -11367,60 +11378,104 @@ double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
 int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
-  int i;
+  int i,n1;
+  double *pvx,*pvy;
+  int *pstyle;
+  POINT2D *pvector;
+
   switch (sciGetEntityType (pthis))
     {
     case SCI_POLYLINE:
-      if (*numrow != pPOLYLINE_FEATURE (pthis)->n1)
-	{
-	  sciprint("The size of row must be %d\n",*numrow);
-	  return -1;
-	}
+      n1=pPOLYLINE_FEATURE (pthis)->n1;
       if (*numcol != 2)
 	{
-	  sciprint("The size of row must be %d\n",*numcol);
+	  sciprint("The number of columns must be %d\n",2);
 	  return -1;
 	}
-      for (i=0;i < *numrow;i++)
+      if (*numrow != n1) /* SS 30/1/02 */
 	{
-	  pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
-	  //pPOLYLINE_FEATURE (pthis)->pvector[i].x = tab[i];
-	  pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	  //pPOLYLINE_FEATURE (pthis)->pvector[i].y = tab[i+ (*numrow)];
+	  n1=*numrow;
+	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	    FREE(pvx);
+	    return -1;
+	  }
+	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
+	    FREE(pvx);FREE(pvy);
+	    return -1;
+	  }
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvx);
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvy);
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvector);
+	  for (i=0;i < *numrow;i++)
+	    {
+	      pvx[i] = tab[i];
+	      pvy[i] = tab[i+ (*numrow)];
+	      pvector[i].x = tab[i];
+	      pvector[i].y = tab[i+ (*numrow)];
+	    }
+	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
+	  pPOLYLINE_FEATURE (pthis)->pvy=pvy;
+	  pPOLYLINE_FEATURE (pthis)->pvector=pvector;
+	  pPOLYLINE_FEATURE (pthis)->n1=n1;
 	}
+      else
+	for (i=0;i < *numrow;i++)
+	  {
+	    pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
+	    pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
+	  }
       return 0;
       break;
     case SCI_PATCH:
-      if (*numrow != pPATCH_FEATURE (pthis)->n)
-	{
-	  sciprint("The size of row must be %d\n",*numrow);
-	  return -1;
-	}
+      n1=pPATCH_FEATURE (pthis)->n;
       if (*numcol != 2)
 	{
-	  sciprint("The size of row must be %d\n",*numcol);
+	  sciprint("The number of columns must be %d\n",2);
 	  return -1;
 	}
-      for (i=0;i < *numrow;i++)
+      if (*numrow != n1) /* SS 30/1/02 */
 	{
-	  pPATCH_FEATURE (pthis)->pvx[i] = tab[i];
-	  //pPATCH_FEATURE (pthis)->pvector[i].x = tab[i];
-	  pPATCH_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	  //pPATCH_FEATURE (pthis)->pvector[i].y = tab[i+ (*numrow)];
+	  n1=*numrow;
+	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	    FREE(pvx);
+	    return -1;
+	  }
+	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
+	    FREE(pvx);FREE(pvy);
+	    return -1;
+	  }
+	  FREE(pPATCH_FEATURE (pthis)->pvx);
+	  FREE(pPATCH_FEATURE (pthis)->pvy);
+	  FREE(pPATCH_FEATURE (pthis)->pvector);
+	  for (i=0;i < *numrow;i++)
+	    {
+	      pvx[i] = tab[i];
+	      pvy[i] = tab[i+ (*numrow)];
+	      pvector[i].x = tab[i];
+	      pvector[i].y = tab[i+ (*numrow)];
+	    }
+	  pPATCH_FEATURE (pthis)->pvx=pvx;
+	  pPATCH_FEATURE (pthis)->pvy=pvy;
+	  pPATCH_FEATURE (pthis)->pvector=pvector;
+	  pPATCH_FEATURE (pthis)->n=n1;
 	}
+      else 
+	for (i=0;i < *numrow;i++)
+	  {
+	    pPATCH_FEATURE (pthis)->pvx[i] = tab[i];
+	    pPATCH_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
+	  }
       return 0;
       break;
     case SCI_RECTANGLE:
-      if (*numrow != 2)
+      if (*numrow * *numcol != 4)
 	{
-	  sciprint("The size of row must be %d\n",*numrow);
+	  sciprint("The number of element must be %d\n",4);
 	  return -1;
 	}
-      if (*numcol != 2)
-	{
-	  sciprint("The size of row must be %d\n",*numcol);
-	  return -1;
-	}
+
       pRECTANGLE_FEATURE (pthis)->x          = tab[0];
       pRECTANGLE_FEATURE (pthis)->width      = tab[1];
       pRECTANGLE_FEATURE (pthis)->y          = tab[2];
@@ -11428,14 +11483,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_ARC:
-      if (*numrow != 3)
+      if (*numrow * *numcol != 6)
 	{
-	  sciprint("The size of row must be %d\n",*numrow);
-	  return -1;
-	}
-      if (*numcol != 2)
-	{
-	  sciprint("The size of row must be %d\n",*numcol);
+	  sciprint("The number of elements must be %d\n",6);
 	  return -1;
 	}
       pARC_FEATURE (pthis)->x          = tab[0];
@@ -11447,14 +11497,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_TEXT:
-      if (*numrow != 1)
+      if (*numrow * *numcol != 2)
 	{
-	  sciprint("The size of row must be %d\n",*numrow);
-	  return -1;
-	}
-      if (*numcol != 2)
-	{
-	  sciprint("The size of row must be %d\n",*numcol);
+	  sciprint("The number of elements must be %d\n",2);
 	  return -1;
 	}
       pTEXT_FEATURE (pthis)->x = tab[0];
@@ -11462,21 +11507,44 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_SEGS: 
-      if (*numrow != pSEGS_FEATURE (pthis)->Nbr1)
-	{
-	  sciprint("The size of row must be %d\n",*numrow);
-	  return -1;
-	}
       if (*numcol != 2)
 	{
-	  sciprint("The size of row must be %d\n",*numcol);
+	  sciprint("The number of columns must be %d\n",2);
 	  return -1;
 	}
-      for (i=0;i < *numrow;i++)
+      n1=pSEGS_FEATURE (pthis)->Nbr1;
+      if (*numrow != n1) /* SS 30/1/02 */
 	{
-	  pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	  pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	}
+	  n1=*numrow;
+	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	    FREE(pvx);
+	    return -1;
+	  }
+	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+	    FREE(pvx);FREE(pvy);
+	    return -1;
+	  }
+	  FREE(pSEGS_FEATURE (pthis)->vx);
+	  FREE(pSEGS_FEATURE (pthis)->vy);
+	  FREE(pSEGS_FEATURE (pthis)->pstyle);
+	  for (i=0;i < *numrow;i++)
+	    {
+	      pvx[i] = tab[i];
+	      pvy[i] = tab[i+ (*numrow)];
+	      pstyle[i] = 0;
+	    }
+	  pSEGS_FEATURE (pthis)->vx=pvx;
+	  pSEGS_FEATURE (pthis)->vy=pvy;
+	  pSEGS_FEATURE (pthis)->Nbr1=n1;
+	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
+	    }
+      else
+	for (i=0;i < *numrow;i++)
+	  {
+	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
+	  }
       return 0;
       break;
 
@@ -12806,11 +12874,12 @@ int sciType (marker)
   else if (strncmp(marker,"auto_clear", 10) == 0) {return 10;}		
   else if (strncmp(marker,"auto_scale", 10) == 0) {return 10;}		  	 
   else if (strncmp(marker,"arrow_size", 10) == 0) {return 1;}	
-  else if (strncmp(marker,"data", 4) == 0)        {return 1;}	
+  else if (strcmp(marker,"data") == 0)            {return 1;}	
   else if (strncmp(marker,"hdl", 3) == 0)         {return 1;}		
   else if (strncmp(marker,"callbackmevent", 14) == 0) {return 1;}
-  else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 		      
-
+  else if (strncmp(marker,"callback", 8) == 0)    {return 10;} 	
+  else if (strncmp(marker,"log_flags", 9) == 0)   {return 10;}
+  else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes

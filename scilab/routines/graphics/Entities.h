@@ -15,14 +15,10 @@
   sauf pour les callback (il faudrait creer une fonction et l'appeler) */
 #include "../stack-c.h" 
 
-#ifndef FALSE
-#define FALSE 0
-#endif
-#ifndef TRUE
-#define TRUE 1
-#endif
 
 #ifndef WIN32
+#define FALSE 0
+#define TRUE 1
 #define PS_SOLID 0
 #define HS_HORIZONTAL 0
 #define PLANES 0
@@ -565,7 +561,7 @@ typedef struct
   int  fontsize;
   int  textcolor;
   int  ticscolor;
-  int  subint[2];
+  int  subint[2]; /* SS 01/01/03 */
   int  rect;
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
@@ -616,8 +612,7 @@ typedef struct
   int zoomy_kp;
   double FRect_kp[4];
   double WRect_kp[4];
-  BOOL islogscale;	  
-  /** */
+  char logflags[2]; /* SS 01/01/03 */
   char *strflag;
   int grid;
   BOOL isaxes;
@@ -985,7 +980,7 @@ typedef struct
   int nx; 
   int ny;
   int type;   /** 0 if a grayplot, 1if a matplot **/  
-  char *datamapping;
+  char datamapping[6];
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */   

@@ -103,17 +103,22 @@ void Objfpoly (x,y,n,style,hdl)
 
 
 /*-----------------------------------------------------------
- *   xsegs :
+ *   Objsegs :
  *-----------------------------------------------------------*/
-void Objsegs (style,flag,n,x,y,arsize)
-     integer *style,flag,n;
+void Objsegs (style,flag,n1,x,y,arsize)
+     integer *style,flag,n1;
      double *x,*y;
      double arsize;
 { 
+  integer type=0,n2, colored=0;
+  double *fx,*fy,arfact=1.0;
 
+  n2=n1;
+  fx=x;fy=y;
     sciSetCurrentObj (ConstructSegs
 		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,n,flag,style,arsize));
+		       sciGetSelectedSubWin (sciGetCurrentFigure ()),type,
+	                x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
      sciDrawObj(sciGetCurrentObj ());  
     
 }
