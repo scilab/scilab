@@ -223,6 +223,7 @@ Lapack_contents(x)
 	C2F(zlarzt)();
 	C2F(zlatrz)();
 	C2F(zunmr3)();
+	C2F(zlarz)();
 }
 }
 
