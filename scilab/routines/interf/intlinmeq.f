@@ -147,7 +147,7 @@ C .. Local variables and constant dimension arrays ..
 C
 C .. External functions ..
       logical lsame, createvar, checkrhs, checklhs, getrhsvar
-      logical getscalar, getrmat
+      logical getscalar, getrmat, iscomplex
       external lsame , createvar, checkrhs, checklhs, getrhsvar
       external getscalar, getrmat
 C
@@ -239,31 +239,54 @@ C
 C   A(NxN), (B(MxM),) C(NxM), or C(NxN), or op(C)(PxN)
 C
       if(.not.getrhsvar(2,'d', MA, NA, lA)) return
+      if(iscomplex(2)) then
+         err=2
+         call error(52)
+         return
+      endif
       if(MA.NE.NA) then
          err=2
          call error(20)
          return
       endif
+
       N=MA
 
       if (TASK.EQ.1) THEN 
          if(.not.getrhsvar(3,'d', MB, NB, lB)) return
+         if(iscomplex(3)) then
+            err=3
+            call error(52)
+            return
+         endif
          if(MB.NE.NB) then
             err=3
             call error(20)
             return
          endif
+ 
          M=Mb
          if(.not.getrhsvar(4,'d', MC, NC, lC)) return
+         if(iscomplex(4)) then
+            err=4
+            call error(52)
+            return
+         endif
          if(MC.NE.N) then
             err=4
             call error(89)
             return
          endif
+
          M=NC
          lhsvar(1)=4
       else
          if(.not.getrhsvar(3,'d', MC, NC, lC)) return
+         if(iscomplex(3)) then
+            err=3
+            call error(52)
+            return
+         endif
 c         if (TASK.EQ.3 )THEN 
          if (TRANS.EQ.0 )THEN 
             P = MC
@@ -722,3 +745,23 @@ C
       RETURN 
 C *** Last line of LINMEQ ***
       end 
+
+      logical function iscomplex(pos)
+      include '../stack.h'
+      integer pos
+c
+      integer iadr,sadr
+c     
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c     
+      il=iadr(lstk(pos + top - rhs))
+      if (istk(il).lt.0)  il=iadr(istk(il+2))
+      
+      if (istk(il+3).eq.1) then
+         iscomplex=.true.
+      else
+         iscomplex=.false.
+      endif
+      return
+      end
