@@ -1,6 +1,6 @@
 #!/bin/sh
 # the next line restarts using wish \
-exec `which wish` "$0" "$@"
+# exec `which wish` "$0" "$@"
 
 # Tk NotePad by Joseph Acosta
 # modified by Matthieu PHILIPPE 01/01/2003
