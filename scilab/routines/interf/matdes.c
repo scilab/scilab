@@ -5085,12 +5085,13 @@ int gset(fname,fname_len)
 	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(2) != t2)
-		  if(strncmp(cstk(l2),"current_figure",14) != 0){  
-			  /* F.Leray : special unique case here set("current_figure", HANDLE);*/
-			  /* HANDLE type is 9 */
-	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
-	return 0;}
-
+	if(strncmp(cstk(l2),"current_figure",14) != 0 && VarType(2) !=1 ){  
+	  /* F.Leray : special unique case here set("current_figure", HANDLE);*/
+	  /* HANDLE type is 9 */
+	  Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
+	  return 0;
+	}
+      
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
@@ -7361,7 +7362,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  numrow=1;numcol=4;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] =  pSUBWIN_FEATURE(pobj)->FRect[i];			
+	    stk(outindex)[i] =  pSUBWIN_FEATURE(pobj)->ZRect[i];			
 	} 
     }
   else if ((strncmp(marker,"zoom_state", 9) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
