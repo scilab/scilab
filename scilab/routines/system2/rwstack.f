@@ -362,7 +362,7 @@ c     =====================
       return
       end
 
-      logical function objptr(name,lp)
+      logical function objptrXXXX(name,lp)
 c     ==========================================
 c     objptr returns the adress of "name"
 c     in scilab's internal stack

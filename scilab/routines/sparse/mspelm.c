@@ -45,7 +45,7 @@ int C2F(intmsparse)(integer *id)
     static integer I, l, m, n;
     static integer ia, il, it, lr, lw, ilc, nel, ilr, iat, irc, lat, top0;
     static integer kkk;
-
+    
     --id;
     /* Function Body */
     Rhs = Max(0,Rhs);

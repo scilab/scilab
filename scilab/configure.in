@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.43 $)dnl
+AC_REVISION($Revision: 1.44 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -87,7 +87,8 @@ fi
 ## get the version 
 ###############################
 
-source Version.incl 
+SCIVERSION=`cat Version.incl | sed -e "s/SCIVERSION=//" `
+
 
 ########################
 ## removing and cleaning

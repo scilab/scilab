@@ -1315,7 +1315,7 @@ fi
 ## get the version
 ###############################
 
-source Version.incl
+SCIVERSION=`cat Version.incl | sed -e "s/SCIVERSION=//" `
 
 ########################
 ## removing and cleaning
