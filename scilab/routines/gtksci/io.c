@@ -254,7 +254,9 @@ int Xorgetchar()
     if (i < 0) {
       if (errno != EINTR)
 	{ 
+#ifdef DEBUG
 	  fprintf(stderr,"error in select\n");
+#endif
 	  exit(0);
 	  continue;
 	} 
@@ -309,6 +311,8 @@ void sci_winch_signal(int n)
   int rows,cols;
   sci_get_screen_size (&rows,&cols);
   C2F(scilines)(&rows,&cols);
+#ifdef DEBUG
   fprintf(stderr,"windows size changed %d %d\r\n",rows,cols);
+#endif 
 }
 

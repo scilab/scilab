@@ -174,7 +174,9 @@ static char ** create_argv(int *argc)
       argv[i] = malloc((strlen(buf)+1)*sizeof(char));
       if ( argv[i] == NULL) return NULL;
       strcpy(argv[i],buf);
+#ifdef DEBUG
       fprintf(stderr,"arg[%d] %s\n",i,argv[i]);
+#endif 
     }
   return argv;
 }

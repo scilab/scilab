@@ -278,7 +278,9 @@ static void sci_apropos_key_pressed (GtkEntry *entry,
   char *entry_text = gtk_entry_get_text(entry);
   if ( strlen(entry_text) >=2 ) 
     {
+#ifdef DEBUG
       fprintf(stderr,"[%s]\n",entry_text);
+#endif
       SciApropos(entry_text);
     }
 }
@@ -696,14 +698,20 @@ static GtkNotebookPage * notebook_search_label(GtkNotebook *notebook,
       label =  ((GtkBoxChild*)
 		(GTK_BOX (page->tab_label)->children->next->data))->widget;
       gtk_label_get(GTK_LABEL(label),&str);
+#ifdef DEBUG
       fprintf(stderr,"label %s \n",str);
+#endif 
       if ( strcmp(str,name) == 0 ) 
 	{
+#ifdef DEBUG
 	  fprintf(stderr,"j'ai trouve un truc \n");
+#endif 
 	  return page;
 	}
     }
+#ifdef DEBUG
   fprintf(stderr,"j'ai pas trouve un truc \n");
+#endif 
   return NULL;
 }  
 

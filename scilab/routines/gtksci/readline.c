@@ -110,7 +110,9 @@ static int sci_readline()
     if (i < 0) {
       if (errno != EINTR)
 	{ 
+#ifdef DEBUG
 	  fprintf(stderr,"error in select\n");
+#endif
 	  exit(0);
 	  continue;
 	} 

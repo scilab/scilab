@@ -87,7 +87,9 @@ jmp_buf env;
 
 void inter(int an_int)
 {
+#ifdef DEBUG
   fprintf(stderr,"Signal Reached");
+#endif
   longjmp(env, 1);		 /* return to prompt  */
 }
 
@@ -103,7 +105,9 @@ void test_interupt()
     } 
   else 
     {	
+#ifdef DEBUG
       fprintf(stderr,"OOOOOps");
+#endif
       return;
     }
   while (1) { printf("%d\r\n",i++);};
@@ -271,7 +275,9 @@ int F2C(scilab)(nostartup)
 void C2F(sigbas)(i)
      int *i;
 {
+#ifdef DEBUG
   fprintf(stderr,"CTRL_C activated \n");
+#endif
 };
 
 
