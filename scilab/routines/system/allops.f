@@ -135,7 +135,7 @@ c     overloadable ops
 c     change rstk(pt) if necessary to avoid bad interpretation in intl_i
       if(rstk(pt).eq.406) rstk(pt)=409
  51   call lstops
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       if(icall.eq.4) goto 02
       goto 81
  60   call misops
@@ -148,7 +148,7 @@ c     change rstk(pt) if necessary to avoid bad interpretation in intl_i
       goto 80
 
 c
- 80   if(err.gt.0) return
+ 80   if(err.gt.0.or.err1.gt.0) return
  81   call iset(rhs,0,infstk(max(top-lhs+1,1)),1)
       if(rstk(pt).eq.409)  rstk(pt)=406
 c

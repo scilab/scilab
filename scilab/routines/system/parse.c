@@ -1195,7 +1195,7 @@ int C2F(parse)()
   case 8:  goto L80;
   case 9:  goto L85;
   }
-  goto L99;
+  goto L98;
 
  L88:
   C2F(recu).icall = 0;
@@ -1298,7 +1298,7 @@ int C2F(parse)()
   case 8:  goto L80;
   case 9:  goto L85;
   }
-  goto L99;
+  goto L98;
 
  L92:
   switch ((int)(Rstk[Pt] - 700)) {
@@ -1407,6 +1407,7 @@ int C2F(parse)()
   }
   /*     error in an external */
   if (C2F(recu).niv > 0) {
+    C2F(com).fun = 99;
     return 0;
   } else {
     /*     error in a  pause */
