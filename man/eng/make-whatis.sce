@@ -7,6 +7,20 @@ else
   xml=unix_g('ls  -t1 *.xml');
 end
 l=0;
+// find the title 
+ind=grep(%helps(:,1),getcwd());
+if ind<>[] then 
+  whatis_title= %helps(ind,2)
+else
+   whatis_title='Help chapter'
+end
+line=["<html>"
+  "<head>"
+  "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
+  "    <title>"+whatis_title+"</title>"
+  "</head>"
+  "<body bgcolor=""FFFFFF"">"];
+l=size(line,'*')  
 for k1=1:size(xml,'*')  // loop on .xml files
   path=xml(k1);
   txt=mgetl(path);
@@ -28,5 +42,7 @@ for k1=1:size(xml,'*')  // loop on .xml files
     end
   end
 end
+line = [line;"</body></html>"]
 mputl(sort(line),"whatis.html");
 quit
+
