@@ -1014,18 +1014,6 @@ int C2F(scicos)
 	      }
 	    }
 	  }
-	  /* if(*pointi!=0){
-	    t=tevts[*pointi];
-	    if(*told<t-ttol){
-	      cdoit(told);
-	      goto L15;
-	    }
-	  }else{
-	    if(*told<*tf){
-	      cdoit(told);
-	      goto L15;
-	    }
-	    }*/
 	}
       }
       C2F(realtime)(told);
@@ -1037,7 +1025,7 @@ int C2F(scicos)
 	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
 	for(kev=0;kev<nblk;kev++){
 	  if (Blocks[kev].nmode>0){
-	    sciprint("modbloc %d=%d, ",kev,Blocks[kev].mode[0]);
+	    sciprint("mode of block %d=%d, ",kev,Blocks[kev].mode[0]);
 	  }
 	}
 	sciprint("**mod**\r\n");
@@ -1770,17 +1758,23 @@ int C2F(scicos)
     i2 = ordptr[keve + 1] - 1;
     for (ii = ordptr[keve]; ii <= i2; ++ii) {
       C2F(curblk).kfun = ordclk[ii];
-      /*     If continuous state jumps, do cold restart */
-      if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz > 0) {
-	/*     Solution not satisfying but... Have to find a better test */
-	/*     to know if state can jump. If we only leave the first test */
-	/*     it sets hot to false at every event! */
-	nclock=ordclk[ii + nordclk];
-	if(nclock> 0) {
-	 /* if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].ng > 0) {
-	    hot = 0;
-	  }*/
+      nclock=ordclk[ii + nordclk];
+      if(nclock> 0) {
+	if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz > 0||
+	    *Blocks[C2F(curblk).kfun-1].work !=NULL) {
+	  /*  if a hidden state exists, must also call (for new scope eg)  */
+	  /*  to avoid calling non-real activations */
 	  flag__ = 2;
+	  callf(told, xd, x, x,x,&flag__);
+	  if (flag__ < 0) {
+	    *ierr = 5 - flag__;
+	    return;
+	  }
+	}
+      }else{
+	if (*Blocks[C2F(curblk).kfun-1].work !=NULL) {
+	  flag__ = 2;
+	  nclock=0;  /* in case some hidden continuous blocks need updating */
 	  callf(told, xd, x, x,x,&flag__);
 	  if (flag__ < 0) {
 	    *ierr = 5 - flag__;
@@ -1956,7 +1950,9 @@ int C2F(scicos)
   /*     .  update states derivatives */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
-    if (Blocks[C2F(curblk).kfun-1].nx > 0) {
+    if (Blocks[C2F(curblk).kfun-1].nx > 0||
+	*Blocks[C2F(curblk).kfun-1].work !=NULL) {
+      /* work tests if a hidden state exists, used for delay block */
       flag__ = 0;
       nclock = oord[ii + noord];
       callf(told, xtd, xt, residual,xt,&flag__);
@@ -1972,7 +1968,9 @@ int C2F(scicos)
     keve = iwa[i];
     for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
       C2F(curblk).kfun = ordclk[ii ];
-      if (Blocks[C2F(curblk).kfun-1].nx > 0) {
+      if (Blocks[C2F(curblk).kfun-1].nx > 0||
+	*Blocks[C2F(curblk).kfun-1].work !=NULL) {
+	/* work tests if a hidden state exists */
 	flag__ = 0;
 	nclock = abs(ordclk[ii + nordclk]);
 	callf(told, xtd, xt, residual,xt,&flag__);
@@ -2716,7 +2714,7 @@ int C2F(simblk)(neq1, t, xc, xcdot)
   C2F(dset)(neq, &c_b14,xcdot , &c__1);
   C2F(ierode).iero = 0;
   *ierr= 0;
-  odoit(xcdot, xc,xcdot,t); 
+  odoit(xcdot, xc,xcdot,t);
   C2F(ierode).iero = *ierr;
   return 0;
 }

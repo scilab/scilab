@@ -81,7 +81,7 @@ void C2F(gain)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
 
 /*------------------------------------------------
  *     Scicos block simulator 
- *     Dummy state space x'=0
+ *     Dummy state space x'=sin(t)
  *------------------------------------------------*/
 
 void C2F(cdummy)(flag, nevprt, t, xd, x, nx, z, nz, tvec, 
@@ -89,7 +89,7 @@ void C2F(cdummy)(flag, nevprt, t, xd, x, nx, z, nz, tvec,
      integer *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
      double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  if ( *flag == 0 ) xd[0]=0.00;
+  if ( *flag == 0 ) xd[0]=sin(*t);
 }
 
 /*------------------------------------------------
