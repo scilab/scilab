@@ -30,7 +30,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   end
   
   
-  if or(%state0_n<>%state0) then //initial state has been changed
+  if ~isequal(%state0_n,%state0) then //initial state has been changed
     %state0=%state0_n
     [alreadyran,%cpr]=do_terminate()
     choix=[]
