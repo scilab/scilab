@@ -6,22 +6,22 @@ SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/interf.a
 
 OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
-	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o intfilestat.o \
-	strelm-c.o  matdsr.o otherspecfun.o
+	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o \
+	intfilestat.o strelm-c.o  matdsr.o otherspecfun.o hmops.c
 
-
-OBJSF = lstelm.o lstelmi.o matelm.o matold.o\
-	lstops.o intl_e.o intl_i.o \
-	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o intgetf.o \
-	intgetpid.o inthost.o intlib.o intprint.o intrat.o intread.o intread4b.o \
+OBJSF = lstelm.o lstelmi.o matelm.o matold.o lstops.o intl_e.o intl_i.o \
+	matio.o intdeff.o intdiary.o intdisp.o intexec.o intexecstr.o \
+	intgetf.o \
+	intgetpid.o inthost.o intlib.o intprint.o intrat.o intread.o \
+	intread4b.o \
 	intreadb.o intwritb.o intwrite.o intwrite4b.o oldloadsave.o intfile.o \
 	intgetenv.o intmgetl.o intgetio.o\
-	matimp.o  matnew.o matode.o matops.o matopt.o intlsqrsolve.o\
+	matimp.o  matnew.o matode.o matops.o matopt.o intlsqrsolve.o \
 	 matqz.o matric.o  matsys.o \
-	polaut.o polelm.o polops.o strelm.o strops.o fmlelm.o\
+	polaut.o polelm.o polops.o strelm.o strops.o fmlelm.o \
 	logic.o logelm.o xawelm.o misops.o stack0.o \
-	where.o indxg.o defint.o\
-	matodc.o dasrti.o\
+	where.o indxg.o defint.o \
+	matodc.o dasrti.o \
 	intg.o int2d.o int3d.o feval.o bva.o comm.o specfun.o\
 	isany.o complexify.o issymmetric.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
