@@ -45,7 +45,11 @@ c        write to diary file if required
          call diary(string,len(string))
       else
 c        sortie sur fichier
-         write(lunit,'(a)') string
+         if (lunit.eq.wio)  then
+            call diary(string,len(string))
+         else
+            write(lunit,'(a)') string
+         endif
       endif
       end
 
