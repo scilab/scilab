@@ -54,7 +54,7 @@ if mtlb_opts==[] then //binary save
     end
   end
   // clear variable wich are no more used to avoid name conflicts
-  clear('rhs','lhs','kk','k','err','mtlb_thefile','or');
+  clear('rhs','lhs','kk','k','err','mtlb_thefile');
 
   for mtlb_k=1:size(mtlb_names,'*')
     // perform changes on variables
