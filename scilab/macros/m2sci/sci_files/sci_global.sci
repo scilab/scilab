@@ -10,8 +10,8 @@ function [tree]=sci_global(tree)
 global("varslist");
 
 for k=1:rhs
-  nam=part(tree.rhs(k).value,2:length(tree.rhs(k).value)-1)
-  if nam<>"""""" then
+  nam=tree.rhs(k).value
+  if nam<>"" then
     exist=%F
     for l=1:size(varslist)
       if varslist(l).matname==nam then
@@ -21,7 +21,7 @@ for k=1:rhs
     end
     if exist==%F then
       varslist($+1)=M2scivar(nam,nam,Infer(list(Unknown,Unknown),Type(Unknown,Unknown)))
-      write(%io(2),"Gloabl variable "+nam+" added to M2SCI variable list.")
+      write(%io(2),"Global variable "+nam+" added to M2SCI variable list.")
     end
   end
 end
