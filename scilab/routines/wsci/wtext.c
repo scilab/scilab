@@ -3447,17 +3447,35 @@ void MessageBoxNewGraphicMode(void)
 /*-----------------------------------------------------------------------------------*/
 BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wParam, LPARAM lParam)
 {
-   /* A modifier Allan pour lire dans B.de reg */
    int LanguageCode=0;
    extern char ScilexWindowName[MAX_PATH];
    LPTW lptw;
+   
+   HKEY key;
+   DWORD result,size=4;
+   int Language;
+   char Clef[MAX_PATH];
    lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+   wsprintf(Clef,"SOFTWARE\\Scilab\\%s\\Settings",VERSION);
+   result=RegOpenKeyEx(HKEY_CURRENT_USER, Clef, 0, KEY_QUERY_VALUE , &key);
+
+   	if ( RegQueryValueEx(key, "Language", 0, NULL, (LPBYTE)&Language, &size) !=  ERROR_SUCCESS )
+  	{
+		LanguageCode = 0; /* English Default*/
+	}
+	else
+	{
+		LanguageCode = Language;
+	}
+
+
+   if ( result == ERROR_SUCCESS ) RegCloseKey(key);
 
    switch(Message)
    {
       case WM_INITDIALOG:
          CheckDlgButton(hwnd, IDC_CHECKNEWGRAPHIC, BST_UNCHECKED);
-		 switch (lptw->lpmw->CodeLanguage)
+		 switch (LanguageCode)
 		{
     		case 1:
 			SetWindowText(hwnd,"Remarque Importante");

@@ -230,6 +230,10 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	strcpy(FileName,"Empty");
 
+	/* New Graphics Mode Warning */
+	MessageBoxNewGraphicMode();
+
+
 	
 	szModuleName = (LPSTR) malloc (MAXSTR + 1);
 	CheckMemory (szModuleName);
@@ -493,8 +497,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	}
 
 	HideScilex(); /* Cache la fenetre Console */
-
-	MessageBoxNewGraphicMode();
+	
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
 
 	fclose(stdout);
