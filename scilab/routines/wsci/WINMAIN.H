@@ -75,8 +75,16 @@
 #undef fwrite
 #undef fread
 
-
-
+/*-----------------------------------------------------------------------------------*/
+#define OS_ERROR                       -1
+#define OS_WIN32_WINDOWS_NT_3_51        0
+#define OS_WIN32_WINDOWS_NT_4_0         1
+#define OS_WIN32_WINDOWS_95			    2
+#define OS_WIN32_WINDOWS_98				3
+#define OS_WIN32_WINDOWS_Me				4
+#define OS_WIN32_WINDOWS_2000			5
+#define OS_WIN32_WINDOWS_XP				6
+#define OS_WIN32_WINDOWS_SERVER_2003_FAMILY 7
 /*-----------------------------------------------------------------------------------*/
 /* Les Variables Globales */
 /*-----------------------------------------------------------------------------------*/
@@ -210,5 +218,6 @@ extern BOOL HaveAnotherWindowScilab(void);
 extern char * ChooseAnotherWindowScilab(void);
 
 extern void sci_tk_activate(void);
+int GetOSVersion(void);
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __WINMAIN_H__ */

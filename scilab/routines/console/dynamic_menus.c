@@ -5,7 +5,9 @@
  *--------------------------------------------------------------------------*/
 #ifdef WIN32
 #include <windows.h>
-
+#include <stdio.h>
+#else
+#include <sys/utsname.h>
 #endif
 
 #include <string.h>
@@ -35,6 +37,7 @@
  *---------------------------------------------------------------------*/
 
 #ifdef WIN32
+extern int GetOSVersion(void);
 extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
 extern BOOL IsToThePrompt(void);
 extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
@@ -369,6 +372,7 @@ int GetSaveHistoryAfterNcommands(void)
 	return SaveHistoryAfterNcommands;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(winqueryreg) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -381,6 +385,7 @@ int C2F(winqueryreg) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(clipboard) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -393,6 +398,7 @@ int C2F(clipboard) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddeopen) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -405,6 +411,7 @@ int C2F(intddeopen) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddeclose) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -417,6 +424,7 @@ int C2F(intddeclose) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddeexec) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -429,6 +437,7 @@ int C2F(intddeexec) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddepoke) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -441,6 +450,7 @@ int C2F(intddepoke) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddereq) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -453,6 +463,7 @@ int C2F(intddereq) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intddeisopen) _PARAMS((char *fname))
 {
 #ifdef WIN32
@@ -465,6 +476,7 @@ int C2F(intddeisopen) _PARAMS((char *fname))
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
 int C2F(intsleep) _PARAMS((char *fname))
 {
 	integer m1,n1,l1,sec=0;
@@ -501,3 +513,92 @@ int C2F(intsleep) _PARAMS((char *fname))
 	 return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+/* Allan CORNET INRIA 2004 */
+int C2F(intgetos) _PARAMS((char *fname))
+{
+	static int l1,n1,m1;
+	char OperatinSystem[256];
+	char Release[256];
+	char *output=NULL;
+
+	Rhs=Max(0,Rhs);
+	CheckRhs(0,0);
+	CheckLhs(1,2);
+
+#if WIN32
+	
+	#define OS_ERROR                       -1
+	#define OS_WIN32_WINDOWS_NT_3_51        0
+	#define OS_WIN32_WINDOWS_NT_4_0         1
+	#define OS_WIN32_WINDOWS_95			    2
+	#define OS_WIN32_WINDOWS_98				3
+	#define OS_WIN32_WINDOWS_Me				4
+	#define OS_WIN32_WINDOWS_2000			5
+	#define OS_WIN32_WINDOWS_XP				6
+	#define OS_WIN32_WINDOWS_SERVER_2003_FAMILY 7
+
+	sprintf(OperatinSystem,"%s","Windows");
+
+	switch (GetOSVersion())
+	{
+		case OS_ERROR : default :
+			sprintf(Release,"%s","Unknow");
+			break;
+		case OS_WIN32_WINDOWS_NT_3_51:
+			sprintf(Release,"%s","NT 3.51");
+			break;
+		case OS_WIN32_WINDOWS_NT_4_0:
+			sprintf(Release,"%s","NT 4.00");
+			break;
+		case OS_WIN32_WINDOWS_95:
+			sprintf(Release,"%s","95");
+			break;
+		case OS_WIN32_WINDOWS_98:
+			sprintf(Release,"%s","98");
+			break;
+		case OS_WIN32_WINDOWS_Me:
+			sprintf(Release,"%s","ME");
+			break;
+		case OS_WIN32_WINDOWS_2000:
+			sprintf(Release,"%s","2000");
+			break;
+		case OS_WIN32_WINDOWS_XP:
+			sprintf(Release,"%s","XP");
+			break;
+		case OS_WIN32_WINDOWS_SERVER_2003_FAMILY:
+			sprintf(Release,"%s","2003");
+			break;
+	}
+#else
+	struct utsname uname_pointer;
+
+	uname(&uname_pointer);
+	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
+	sprintf(Release,"%s",uname_pointer.release);
+#endif
+
+	
+	output=(char*)malloc((strlen(OperatinSystem)+1)*sizeof(char));
+	sprintf(output,"%s",OperatinSystem);
+	n1=1;
+	CreateVarFromPtr( 1, "c",(m1=(int)strlen(output), &m1),&n1,&output);
+	if (output) {free(output);output=NULL;}
+	LhsVar(1)=1;
+
+	if (Lhs==2)
+	{
+		char *output2=NULL;
+		output2=(char*)malloc((strlen(Release)+1)*sizeof(char));
+		sprintf(output2,"%s",Release);
+		n1=1;
+		CreateVarFromPtr( 2, "c",(m1=(int)strlen(output2), &m1),&n1,&output2);
+		if (output2) {free(output2);output2=NULL;}
+		LhsVar(2)=2;
+	}
+	
+	C2F(putlhsvar)();
+	
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+

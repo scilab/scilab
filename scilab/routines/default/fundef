@@ -259,6 +259,7 @@
 {"ddereq",	IN_matsys,	70,	2},
 {"ddeisopen",	IN_matsys,	71,	2},
 {"sleep",	IN_matsys,	72,	2},
+{"getos",	IN_matsys,	73,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  
