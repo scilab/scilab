@@ -4730,7 +4730,8 @@ int gset(fname,fname_len)
 	  pobj = (sciPointObj *) NULL;
 	}
       if (VarType(2) != sciType(cstk(l2))) {
-	Scierror(999,"%s: uncompatible values of proprety type  '%s' \r\n",fname,cstk(l2));
+	Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
+
 	return 0;} 
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
