@@ -10,31 +10,61 @@ function outvar=editvar_get(winId)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
-disp("Please wait...");
-outvar=[];
-base="sciGUITable(win,"+string(winId)+",data";
-varType=evstr(TCL_GetVar(base+',type)'));
-varni=evstr(TCL_GetVar(base+',ni)'));
-varnj=evstr(TCL_GetVar(base+',nj)'));
-for j=1:varnj,
-	ww=[];
-	for i=1:varni,
-		q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
-		if (varType~=10) then
-			if (varType==4) then
-				if ((q=="T")|(q=="t")) then
-					ww=[ww;%t];
-				else
-					ww=[ww;%f];
-				end
-			else
-				ww=[ww;evstr(q)];
-			end
-		else
-			ww=[ww;q];
-		end
+  disp("Please wait...");
+ 
+  base="sciGUITable(win,"+string(winId)+",data";
+  varType=TCL_GetVar(base+',type)');
+  varni=evstr(TCL_GetVar(base+',ni)'));
+  varnj=evstr(TCL_GetVar(base+',nj)'));
+  
+  outvar=[];
+  select varType
+  case "constant" then
+    outvar=zeros(varnj,varni)
+    for j=1:varnj,
+      for i=1:varni,
+	outvar(j,i)=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
+      end
+    end
+  case "boolean" then
+    outvar(varnj,varni)=%f;
+    for j=1:varnj,
+      for i=1:varni,
+	outvar(j,i)=convstr(TCL_GetVar(base+','+string(i)+','+string(j)+')')=='t')
+      end
+    end
+  case "string" then
+    for j=1:varnj,
+      for i=1:varni,
+	outvar(j,i)=TCL_GetVar(base+','+string(i)+','+string(j)+')')
+      end
+    end
+  case "xlssheet" then
+    T=emptystr(varni,varnj)
+    V=%nan*ones(varni,varnj)
+    for j=1:varnj,
+      for i=1:varni,
+	q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
+	if execstr('v='+q,'errcatch')==0 then
+	  V(i,j)=v;
+	else
+	  T(i,j)=q;
 	end
-	outvar=[outvar ww];
-end
+      end
+    end
+    sheetname=TCL_GetVar(base+',sheetname)')
+    outvar=mlist(["xlssheet","name","text","value"],sheetname,T,V)
+  else
+    if or(varType==["int8","int16","int32","uint8","uint16","uint32"]) then
+      execstr('outvar='+varType+'(zeros(varnj,varni))')
+      for j=1:varnj,
+	for i=1:varni,
+	  q=evstr(TCL_GetVar(base+','+string(i)+','+string(j)+')'))
+	  execstr('outvar(j,i)='+varType+'(q)')
+	end
+      end
+    end
+  
+  end
 endfunction
 
