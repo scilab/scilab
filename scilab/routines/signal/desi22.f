@@ -40,6 +40,10 @@ c
 c
 c computation of the factor sfa and the poles
       if (iapro.eq.3) go to 40
+ccccccccccccccccccccccccccccccccccccccccccccc
+c     The next line was missing
+      sfa = 2.0d+0/(ac*2.0d+0 **ndeg)
+ccccccccccccccccccccccccccccccccccccccccccccc
       q = -1.0d+0/ac
       go to 50
   40  sfa = ack
@@ -69,3 +73,4 @@ c computation of the factor sfa and the poles
       spr(nj) = -q
       return
       end
+

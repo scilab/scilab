@@ -55,7 +55,11 @@ c
       nzero(1) = ndeg
 c
       ugc = gd2/adelta
-c
+cccccccccccccccccccccccccccccccccccccc
+c The two lines below were missing
+      ogc = gd1
+      go to 80
+cccccccccccccccccccccccccccccccccccccc
   40  sm(1,1) = 0.0d+0
       nzm(1) = 1
       sm(1,2) = 1.0d+0
@@ -83,3 +87,4 @@ c
       sm(nmaxi-1,4) = 1.0d+0
       return
       end
+
