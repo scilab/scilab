@@ -947,7 +947,11 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, char **field_names)
 {
   static int lw,lw1;
   int ndim; 
-  int retval; int dims[] = {m , n};
+  int retval; 
+  int dims[2];
+
+  dims[0] = m; dims[1] = n;
+
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
@@ -1074,7 +1078,8 @@ mxArray *mxCreateCellArray(int ndim, int *dims)
 
 mxArray *mxCreateCellMatrix(int nrows, int ncols)
 {
-  int two=2;int dims[]={nrows, ncols};
+  int two=2;int dims[2];
+  dims[0] = nrows; dims[1] = ncols;
   return mxCreateCellArray(two, dims);
 }
 
@@ -2072,7 +2077,8 @@ const char *mxGetClassName(const mxArray *ptr)
 
 void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
 {
-  return mxSetFieldByNumber(array_ptr, index, 0 , value);
+  mxSetFieldByNumber(array_ptr, index, 0 , value);
+  return;
 }
 
 /*
