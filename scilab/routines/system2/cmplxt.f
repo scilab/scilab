@@ -91,6 +91,11 @@ c     mark named argument
 c     form recursive extraction list
             lc=lc+3
             goto 10
+         elseif(op.eq.20) then 
+c     exit
+            lc=lc+1
+            goto 10
+
          elseif(op.eq.21) then 
 c     begrhs (ignored)
             lc=lc+1
