@@ -1,5 +1,5 @@
 
-/* $Id: pvmwin.h,v 1.2 2002/10/14 14:37:55 chanceli Exp $ */
+/* $Id: pvmwin.h,v 1.3 2002/10/15 07:40:10 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -56,9 +56,10 @@
 	warnings...  Someone else must then include the varargs.h file
 	or that will then cause error.
 	uggghhhhh... this is ugly coding at its best
+	jpc: 2002 seams not a good idea for mingw 
 */
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(IMA_MINGW)
 #undef va_start
 #undef va_end
 #endif
@@ -73,7 +74,6 @@
 #ifndef SYSVBFUNC
 #define SYSVBFUNC
 #endif
-
 #ifndef SYSVSTR
 #define SYSVSTR
 #endif

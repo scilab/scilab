@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.2 2002/10/14 14:37:44 chanceli Exp $
+# $Id: Makefile.aimk,v 1.3 2002/10/15 07:40:09 chanceli Exp $
 #
 # Generic Makefile body to be concatenated to config header.
 #
@@ -13,6 +13,8 @@
 #  PLOCKFILE  = Page Lock in line code from SUN
 #
 # Compatibility defines (usually in conf/*.def):
+#  ADDEDOBJ	   special objects file to add for specifig architecture (jpc MINGW)
+#  HOSTER_MING	   special objects file to add for specifig architecture (jpc MINGW)
 #  FDSETPATCH      if system includes don't have fd_set stuff
 #  USESTRERROR     if sys_errlist, sys_nerr not public, use strerror()
 #  HASERRORVARS    if errno, sys_nerr, sys_errlist already declared
@@ -95,7 +97,7 @@ REGEXOBJS		=
 DOBJ		= \
 	ddpro.o \
 	host.o \
-	hoster.o \
+	hoster$(HOSTER_MING).o \
 	imalloc.o \
 	msgbox.o \
 	pkt.o \
@@ -113,7 +115,7 @@ DOBJ		= \
 	tdpro.o \
 	waitc.o \
 	global.o \
-	$(REGEXOBJS)
+	$(REGEXOBJS) $(ADDEDOBJ)
 
 SOCKDOBJ	= \
 	pvmdabuf.o \
@@ -287,9 +289,9 @@ pvmd3$(EXESFX):	$(REGEXCONF) $(DOBJ) $(SOCKDOBJ)
 	$(CC) $(CFLAGS) -o pvmd3$(EXESFX) $(DOBJ) $(SOCKDOBJ) \
 		$(LOPT) $(ARCHDLIB)
 
-$(LIBPVM).a:	$(REGEXCONF) $(LOBJ) $(LPVMSOCK) $(SOCKLOBJ)
+$(LIBPVM).a:	$(REGEXCONF) $(LOBJ) $(LPVMSOCK) $(SOCKLOBJ) $(ADDEDOBJ)
 	rm -f $(LIBPVM).a
-	$(AR) cr $(LIBPVM).a $(LOBJ) $(LPVMSOCK) $(SOCKLOBJ)
+	$(AR) cr $(LIBPVM).a $(LOBJ) $(LPVMSOCK) $(SOCKLOBJ) $(ADDEDOBJ)
 	case x$(HASRANLIB) in xt ) echo ranlib; ranlib $(LIBPVM).a ;; esac
 
 # shm pvmd3 & libpvm3*.a

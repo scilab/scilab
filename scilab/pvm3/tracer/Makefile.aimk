@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.2 2002/10/14 15:15:38 chanceli Exp $
+# $Id: Makefile.aimk,v 1.3 2002/10/15 07:40:21 chanceli Exp $
 #
 
 #
@@ -94,8 +94,11 @@ TRCHEADERS	=	$(TRCDIR)/trclib.h $(TRCDIR)/trctype.h \
 				$(TRCDIR)/trcproto.h \
 				$(TRCDIR)/trccompat.h $(TRCDIR)/trccompatrev.h \
 				$(PVMDIR)/include/pvm3.h $(PVMDIR)/include/pvmtev.h
-
+# XXXXX 
+# Attention pas de trcsort sur win32 
 PROGS		=	$(PVMXDIR)/tracer$(EXESFX) $(PVMXDIR)/trcsort$(EXESFX)
+PROGS		=
+
 
 #
 # Targets
@@ -145,9 +148,9 @@ again:
 
 clean:
 	- rm -f *.o
-	- rm -f tracer$(EXESFX) trcsort$(EXESFX) $(LIBPVMTRC)
 
 veryclean:  clean
+	- rm -f tracer$(EXESFX) trcsort$(EXESFX) $(LIBPVMTRC)
 
 
 #

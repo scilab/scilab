@@ -1,6 +1,6 @@
 
 static char rcsid[] =
-	"$Id: lpvm.c,v 1.2 2002/10/14 14:37:46 chanceli Exp $";
+	"$Id: lpvm.c,v 1.3 2002/10/15 07:40:10 chanceli Exp $";
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -36,7 +36,7 @@ static char rcsid[] =
  *	Libpvm core for unix environment.
  *
  * $Log: lpvm.c,v $
- * Revision 1.2  2002/10/14 14:37:46  chanceli
+ * Revision 1.3  2002/10/15 07:40:10  chanceli
  * update
  *
  * Revision 1.64  2001/09/25 21:20:17  pvmsrc
@@ -536,7 +536,9 @@ static char rcsid[] =
 #include "pvmwin.h"
 #include <process.h>
 #include <stdlib.h>
+#if !defined(__MINGW32__)
 #include <search.h>
+#endif
 #endif
 
 #include <stdio.h>
