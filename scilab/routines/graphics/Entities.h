@@ -462,7 +462,8 @@ typedef struct
   /** position in scilab window (not pixel) */
   double y;
   /***/
-  double wy;			    
+  double wh[2];
+  BOOL fill;
   /** */
   double z; /**DJ.Abdemouche 2003**/
   unsigned int textlen;
@@ -1366,7 +1367,7 @@ extern sciPointObj *ConstructScrollH (sciPointObj * pparentfigure);
 extern int DestroyScrollV (sciPointObj * pthis);
 extern int DestroyScrollH (sciPointObj * pthis);
 extern sciPointObj *ConstructText (sciPointObj * pparentfigure, char text[],
-				   int n, double x, double y,double wy);
+				   int n, double x, double y,double *wh);
 extern sciPointObj *CloneText (sciPointObj * pthis);
 extern int DestroyText (sciPointObj * pthis);
 extern sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],

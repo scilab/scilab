@@ -134,31 +134,35 @@ void Objsegs (style,flag,n1,x,y,arsize)
  * Objstring:
  *-----------------------------------------------------------*/
 
-void Objstring(fname,fname_len,str,x,y,angle,box,wy,hdl)
+void Objstring(fname,fname_len,str,x,y,angle,box,wh,fill,hdl)
      char *fname; 
      unsigned long fname_len; 
      integer str;
-     double x,y,*angle,*box,wy;
+     double x,y,*angle,*box,*wh;
+     int fill;
      long *hdl;
 { 
   integer v;
   double dv;
   integer x1,yy1,n=1,rect1[4];
+  sciPointObj *pobj;
    
   sciSetCurrentObj (ConstructText
 			((sciPointObj *)
                		 sciGetSelectedSubWin (sciGetCurrentFigure ()), fname,
-			 strlen (fname), x, y,wy));
-     *hdl= sciGetHandle(sciGetCurrentObj ());
-     sciSetFontOrientation (sciGetCurrentObj (), (int) (*angle *  10)); 
-     sciDrawObj(sciGetCurrentObj ());
+			 strlen (fname), x, y,wh));
+  pobj=sciGetCurrentObj ();
+  *hdl= sciGetHandle(pobj);
+  sciSetFontOrientation (pobj, (int) (*angle *  10)); 
+  pTEXT_FEATURE (pobj)->fill=fill;
+  sciDrawObj(pobj);
           
 
-     x1 = XDouble2Pixel(x);
-     yy1 = YDouble2Pixel(y);
-     C2F(dr)("xstringl",fname,&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,fname_len);
-     C2F(echelle2d)(box,box+1,rect1,rect1+1,&n,&n,"i2f",3L);
-     C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
+  x1 = XDouble2Pixel(x);
+  yy1 = YDouble2Pixel(y);
+  C2F(dr)("xstringl",fname,&x1,&yy1,rect1,&v,&v,&v,&dv,&dv,&dv,&dv,9L,fname_len);
+  C2F(echelle2d)(box,box+1,rect1,rect1+1,&n,&n,"i2f",3L);
+  C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
  
 }
 /*-----------------------------------------------------------

@@ -133,7 +133,7 @@ void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,dou
 void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
 void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl));
 void Objsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
-void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double wy,long *hdl));
+void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double* wh,int fill, long *hdl));
 void Objtitle _PARAMS((char *str,int n,long *hdl));
 
 void Xarc  _PARAMS((char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height));

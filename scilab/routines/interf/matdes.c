@@ -2922,7 +2922,7 @@ int scixstring(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  double rect[4],wc,wy,x,y,yi,angle=0.0;
+  double rect[4],wc,x,y,yi,angle=0.0;
   integer i,j,iv =0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
@@ -2948,7 +2948,6 @@ int scixstring(fname,fname_len)
       Scierror(999,"%s: No more memory available\r\n",fname);
       return 0; 
     }
-    wy = 0.; /* Unused in fact... F.Leray 25.03.04 */ /* old BUG*/
     for (i = m3 -1 ; i >= 0; --i)  {
       int ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
@@ -2956,14 +2955,12 @@ int scixstring(fname,fname_len)
 	ib += strlen(Str[i+ m3*j]);
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
-      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,wy,&hdlstr);
+      Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,0,&hdlstr);
       hdltab[m3-1-i]=hdlstr;   
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
-	/*wy += rect[3] * 1.2;  */ /* old BUG*/
 	y += rect[3] * 1.2; 
       else 
-	/*wy += rect[3]; */ /* old BUG*/
 	y += rect[3];      
     } /* end for(i) */
 
@@ -3074,11 +3071,12 @@ int scixstringb(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  /* Pas de modif pour la nouvelle version ????? */
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5,m6,n6,l6;
   integer fill =0, i,j,v,ib;
   double x,y,w,hx;
   char **Str;
+  double wh[2],rect[4],angle=0;
+  long hdlstr;
 
   C2F(sciwin)();
   CheckRhs(5,6);
@@ -3095,17 +3093,13 @@ int scixstringb(fname,fname_len)
     GetRhsVar(6,"c",&m6,&n6,&l6);
     if ( m6*n6 !=0 && strncmp(cstk(l6),"fill",4) == 0) 
       fill =1;
-    else 
-      {
+    else {
 	Scierror(999,"%s: optional argument has a wrong value 'fill' expected\r\n",
 		 fname);
-	return 0;
-      }
+	return 0;   }
   }
-
   ib = 0;
-  for (i = 0 ; i < m3 ; ++i)
-    {
+  for (i = 0 ; i < m3 ; ++i) {
       for (j = 0 ; j < n3; ++j) 
 	{
 	  strcpy(C2F(cha1).buf + ib,Str[i+ m3*j]);
@@ -3113,13 +3107,20 @@ int scixstringb(fname,fname_len)
 	  if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
 	}
       C2F(cha1).buf[ib]= '\n'; ib++;
-    }
+  }
   C2F(cha1).buf[ib-1]='\0';
-  C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
-  /* we must free Str2 memory */ 
-  FreeRhsSVar(Str);
+
+  if (version_flag() == 0) {
+    wh[0]=w;wh[1]=hx;
+    Objstring (C2F(cha1).buf,bsiz,0,x,y,&angle,rect,wh,fill,&hdlstr);
+  } 
+  else { /* NG end */
+    C2F(dr1)("xstringb",C2F(cha1).buf,&fill,&v,&v,&v,&v,&v,&x,&y,&w,&hx,9L,bsiz);
+  }
+  FreeRhsSVar(Str); /* we must free Str2 memory */ 
   LhsVar(1)=0;
   return 0;
+
 } 
 
 /*-----------------------------------------------------------

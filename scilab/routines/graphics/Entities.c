@@ -8394,7 +8394,7 @@ DestroyScrollH (sciPointObj * pthis)
  */
 sciPointObj *
 ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
-	       double y, double wy)
+	       double y, double *wh)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -8446,7 +8446,10 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->textlen = n;
       pTEXT_FEATURE (pobj)->x = x;
       pTEXT_FEATURE (pobj)->y = y;
-      pTEXT_FEATURE (pobj)->wy = wy;
+      if (wh != (double *)NULL){
+	pTEXT_FEATURE (pobj)->wh[0] = wh[0];
+	pTEXT_FEATURE (pobj)->wh[1] = wh[1];
+      }
       pTEXT_FEATURE (pobj)->z = 0.0; /**DJ.Abdemouche 2003**/
       if (sciInitFontContext (pobj) == -1)
 	{
@@ -8499,7 +8502,8 @@ CloneText (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (sciSetFontName(pobj, sciGetFontName (pthis), sciGetFontNameLength(pthis)) == -1)
     return (sciPointObj *)NULL;
-	
+  pTEXT_FEATURE (pobj)->wh[0] = pTEXT_FEATURE (pthis)->wh[0];
+  pTEXT_FEATURE (pobj)->wh[1] = pTEXT_FEATURE (pthis)->wh[1];	
   return (sciPointObj *)pobj;
 }
 
@@ -11990,18 +11994,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       /**DJ.Abdemouche 2003**/
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	{trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
-      else /***/
-	{
-	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
-	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
-	}
-      /*    hh1 = inint (318.0 * pTEXT_FEATURE (pobj)->wy) ;  
-      if (hh1 != 0)
-      yy1 -=hh1;*/
-        
-      anglestr = (sciGetFontOrientation (pobj)/10); 	/* *10 parce que l'angle est concerve en 1/10eme de degre*/
 
       flagx = 0;
 #ifdef WIN32 
@@ -12009,14 +12001,32 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
       sciClip(sciGetIsClipping(pobj));
 
-	  C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L); /* Correction bug F.Leray 29.03.04*/
- /*     C2F (displaystring) (sciGetText (pobj), &x1, &yy1, PI0, &flagx, PI0,
-      			   PI0, &anglestr, PD0, PD0, PD0); */ /*F.Leray : DO NOT USE displaystring function instead of (dr)("xstring")*/
+      if (pTEXT_FEATURE (pobj)->wh==(double *)NULL) {
+	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	  {trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,
+		   &pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
+	else {
+	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
+	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
+	}
+	anglestr = (sciGetFontOrientation (pobj)/10); 	
+	/* *10 parce que l'angle est concerve en 1/10eme de degre*/
+
+	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
+      }
+      else { /* SS for xstringb should be improved*/
+	integer fill =0;
+	integer w1, h1;
+	w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
+	h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
+        C2F(dr1)("xstringb",sciGetText (pobj),&fill,&v,&v,&v,&v,&v,
+		 &(pTEXT_FEATURE (pobj)->x),&(pTEXT_FEATURE (pobj)->y),
+		 &(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
+      } 
 
       sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc (); /* F.Leray 26.03.04: pb comes from clipping?? 
-										   NO!!! It comes from using displaystring function instead of (dr)("xstring")*/
+      if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
       break;
       /*   case SCI_AXIS 
