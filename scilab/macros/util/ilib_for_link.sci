@@ -59,10 +59,10 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
     if part(libs(i),1)=='/' then
       mfprintf(fd,"link(''%s.%s'');\n",libs(i),lib_suf);
     else
-      mfprintf(fd,"link(%s_path+''/%s.%s'');\n",libname,libs(i),lib_suf);
+      mfprintf(fd,"link(%s_path+''%s.%s'');\n",libname,libs(i),lib_suf);
     end
   end 
-  mfprintf(fd,"link(%s_path+''/lib%s.%s'',[",libname,libname,lib_suf);
+  mfprintf(fd,"link(%s_path+''lib%s.%s'',[",libname,libname,lib_suf);
   names=names(:)';
   n = size(names,'*');
   for i=1:n
