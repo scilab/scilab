@@ -156,7 +156,8 @@ void ScilabMenuAction (char *buf)
       if (buf[1] == '0')
 	{
 	  /* Interpreted mode : we store the action on a queue */
-	  StoreCommand1 (buf + 2, 2);
+	  StoreCommand1 (buf + 2, 0);
+	
 	}
       else
 	{
@@ -1071,7 +1072,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 		else LangCode=0;
 	}
 	else LangCode=0;
-	
+	ScilabGC->lpmw.CodeLanguage=LangCode;
 
 	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
 	
@@ -1109,7 +1110,7 @@ void NewFigure(struct BCG * ScilabGC)
 
 	FreeWindow=FindFreeGraphicWindow(ScilabGC);
 	wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
-	StoreCommand1(Command,2);
+	StoreCommand1(Command,0);
 	
 }
 	
