@@ -690,7 +690,9 @@ int GetScreenProperty(char *prop, char *value)
 #endif
 }
 
-/* no comments .... */
+/* no comments .... should be elsewhere */
+
+#include "../stack-c.h"
 
 int XSaveNative _PARAMS((char *fname))
 {
