@@ -66,12 +66,8 @@ TextMessage1 (int ctrlflag)
       if (Tcl_DoOneEvent (TCL_ALL_EVENTS | TCL_DONT_WAIT) == 1) continue ;
 #endif
       PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
-      /** test if Modeless help exists **/
-      /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	  {**/
       TranslateMessage (&msg);
       DispatchMessage (&msg);
-      /** }**/
     }
   if (ctrlflag == 1) 
     {
@@ -88,9 +84,18 @@ TextMessage2 ()
 #ifdef WITH_TK
   flushTKEvents ();
 #endif
-  GetMessage (&msg, 0, 0, 0);
-  TranslateMessage (&msg);
-  DispatchMessage (&msg);
+#ifdef WITH_TK
+  if (  tcl_check_one_event() == 1) 
+    {
+      //sciprint("tcl event %l\r\n",msg.hwnd);
+    }
+#else 
+  while (  PeekMessage(&msg, 0, 0, 0,PM_REMOVE) != -1) 
+    {
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+    }
+#endif
 }
 
 int C2F (sxevents) ()
