@@ -293,26 +293,27 @@ end
 
 
 endfunction
+
 function [x,y]=addpt(c1,x,y)
 //permet de rajouter un point de cassure
-npt=prod(size(x))
-c1=c1'
-if npt==0 then
-  x=c1(1);y=c1(2)
-  plot2d(x,y,1,'000',' ')
-  return
-end
-//recherche des intervalles en x contenant l'abscisse designee
-kk=[]
-if npt>1 then
-kk=find((x(1:npt-1)-c1(1)*ones(x(1:npt-1)))..
-                       .*(x(2:npt)-c1(1)*ones(x(2:npt)))<=0)
-end
-if  kk<>[] then
-//    recherche du segment sur le quel on a designe un point
+  npt=prod(size(x))
+  c1=c1'
+  if npt==0 then
+    x=c1(1);y=c1(2)
+    plot2d(x,y,1,'000',' ')
+    return
+  end
+  //recherche des intervalles en x contenant l'abscisse designee
+  kk=[]
+  if npt>1 then
+    kk=find((x(1:npt-1)-c1(1)*ones(x(1:npt-1)))..
+	    .*(x(2:npt)-c1(1)*ones(x(2:npt)))<=0)
+  end
+  if  kk<>[] then
+    //    recherche du segment sur le quel on a designe un point
     pp=[];d=[];i=0
     for k=kk
-    i=i+1
+      i=i+1
       pr=projaff(x(k:k+1),y(k:k+1),c1)
       if (x(k)-pr(1))*(x(k+1)-pr(1))<=0 then
         pp=[pp pr]
@@ -326,99 +327,88 @@ if  kk<>[] then
       if m<eps
         k=kk(i)
         pp=pp(:,i)
-//  -- trace du point designe
+	//  -- trace du point designe
         plot2d(pp(1),pp(2),-1,'000',' ')
-//  acquisition du nouveau point
-//        [btn,xc,yc]=xclick();c2=[xc;yc]
+	//  acquisition du nouveau point
+	//        [btn,xc,yc]=xclick();c2=[xc;yc]
 	c2=pp
-//  -- effacage de l'ancien segment
+	//  -- effacage de l'ancien segment
         plot2d(pp(1),pp(2),-1,'000',' ')
         plot2d(x(k:k+1),y(k:k+1),1,'000',' ')
-//  -- mise a jour de x et y
+	//  -- mise a jour de x et y
         x=x([1:k k:npt]);x(k+1)=c2(1);
         y=y([1:k k:npt]);y(k+1)=c2(2);
-//  -- dessin des 2 nouveaux segments
-       plot2d(x(k:k+2),y(k:k+2),1,'000',' ')
-       plot2d(x(k+1),y(k+1),-1,'000',' ')
-       return
+	//  -- dessin des 2 nouveaux segments
+	plot2d(x(k:k+2),y(k:k+2),1,'000',' ')
+	plot2d(x(k+1),y(k+1),-1,'000',' ')
+	return
       end
     end
-end
-d1=rect(3)-rect(1)
-d2=rect(4)-rect(2)
-if norm([d1;d2].\([x(1);y(1)]-c1))<norm([d1;d2].\([x(npt);y(npt)]-c1)) then
-//  -- mise a jour de x et y
+  end
+  d1=rect(3)-rect(1)
+  d2=rect(4)-rect(2)
+  if norm([d1;d2].\([x(1);y(1)]-c1))<norm([d1;d2].\([x(npt);y(npt)]-c1)) then
+    //  -- mise a jour de x et y
     x(2:npt+1)=x;x(1)=c1(1)
     y(2:npt+1)=y;y(1)=c1(2)
-//  -- dessin du nouveau segment
+    //  -- dessin du nouveau segment
     plot2d(x(1),y(1),-1,'000',' ')
     plot2d(x(1:2),y(1:2),1,'000',' ')
-else
-//  -- mise a jour de x et y
+  else
+    //  -- mise a jour de x et y
     x(npt+1)=c1(1)
     y(npt+1)=c1(2)
-//  -- dessin du nouveau segment
+    //  -- dessin du nouveau segment
     plot2d(x(npt+1),y(npt+1),-1,'000',' ')
     plot2d(x(npt:npt+1),y(npt:npt+1),1,'000',' ')
-end
-
-
-
+  end
 endfunction
+
 function [x,y]=movept(x,y)
 //on bouge un point existant
-rep(3)=-1
-while rep(3)==-1 do
-  rep=xgetmouse()
-  xc=rep(1);yc=rep(2);c2=[xc;yc]
-  //[btn,xc,yc]=xclick();c2=[xc;yc]
-  if modx==0 then c2(1)=x(k);end
-  if mody==0 then c2(2)=y(k);end
-  pts=maxi(k-1,1):mini(k+1,npt)
-  // - effacage des deux segments   
-  plot2d(x(pts),y(pts),1,'000',' ')
-  plot2d(x(pts),y(pts),-1,'000',' ')
-  // - trace dans la nouvelle position
-  x(k)=c2(1);y(k)=c2(2)
-  plot2d(x(pts),y(pts),1,'000',' ')
-  plot2d(x(pts),y(pts),-1,'000',' ')
-end
+  rep(3)=-1
+  while rep(3)==-1 do
+    rep=xgetmouse()
+    xc=rep(1);yc=rep(2);c2=[xc;yc]
+    //[btn,xc,yc]=xclick();c2=[xc;yc]
+    if modx==0 then c2(1)=x(k);end
+    if mody==0 then c2(2)=y(k);end
+    pts=maxi(k-1,1):mini(k+1,npt)
+    // - effacage des deux segments   
+    plot2d(x(pts),y(pts),1,'000',' ')
+    plot2d(x(pts),y(pts),-1,'000',' ')
+    // - trace dans la nouvelle position
+    x(k)=c2(1);y(k)=c2(2)
+    plot2d(x(pts),y(pts),1,'000',' ')
+    plot2d(x(pts),y(pts),-1,'000',' ')
+  end
 
 endfunction
 function [x,y]=readxy()
-fn=xgetfile('*.xy')
-if fn<>emptystr() then 
-  errcatch(49,'continue','nomessage')
-  load(fn);
-  errcatch(-1)
-  if iserror(49)==1 then
-    errclear(49)
-    xy=read(fn,-1,2)
-    x=xy(:,1);y=xy(:,2)
+  fn=xgetfile('*.xy')
+  if fn<>emptystr() then 
+    if execstr('load(fn)','errcatch')<>0 then
+      xy=read(fn,-1,2)
+      x=xy(:,1);y=xy(:,2)
+    else
+      x=xy(:,1);y=xy(:,2)
+    end
   else
-    x=xy(:,1);y=xy(:,2)
+    x=x
+    y=y
   end
-else
-  x=x
-  y=y
-end
 
 endfunction
+
 function savexy(x,y)
-fn=xgetfile('*.xy')
-if fn<>emptystr()  then 
-  xy=[x y];
-  fil=fn+'.xy'
-  errcatch(-1,'continue')
-  u=file('open',fil,'unknown','unformatted')
-  errcatch(-1)
-  if iserror(-1) then
-    x_message(['Impossible to save in the selected file';
-      'Check file and directory access'])
-    errclear(-1)
-    return
+  fn=xgetfile('*.xy')
+  if fn<>emptystr()  then 
+    xy=[x y];
+    fil=fn+'.xy'
+    if execstr('save(fil,xy)','errcatch')<>0 then
+      x_message(['Impossible to save in the selected file';
+		 'Check file and directory access'])
+      return
+    end
   end
-  save(u,xy)
-  file('close',u)
-end
 endfunction
