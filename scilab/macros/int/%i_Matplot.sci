@@ -1,5 +1,5 @@
 function %i_Matplot(z,varargin)
-xsetech([0 0 1 1])
+//xsetech([0 0 1 1])
 strf='011'
 [N,M]=size(z)
 rect=[1 1 N M] // je fixe le cadre de l'image complete
