@@ -8,9 +8,13 @@
 #include "../machine.h"
 #include "../sound/st.h"
 
+int SWAP(char type[],integer *fd); /* Defined at the end of this file */
+
 struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
+extern void sciprint __PARAMS ((char *fmt,...));
+extern int islittle_endian(void); /* Defined in SCI/routines/sound/sound.c */
 
 #define MGETI(Type,Fswap) {\
 Type *RES;\

@@ -11,6 +11,9 @@
 struct soundstream ftf;
 extern FILE *GetFile();
 extern int GetSwap();
+extern void sciprint __PARAMS ((char *fmt,...));
+
+extern int SWAP(char type[],integer *fd); /* Defined in mgeti.c */
 
 #define MPUTI(Type,Fswap) {\
 Type *RES;\
