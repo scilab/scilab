@@ -52,7 +52,10 @@ CHK_TCL_MAJOR=$2
 CHK_TCL_MINOR=$3
 CHK_TCL_INC_NAME=$4
 saved_cflags="$CFLAGS"
+saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TCL_INCLUDE_PATH"
+CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
+
 AC_MSG_CHECKING([if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later])
 AC_GREP_CPP(TCL_VERSION_OK,
 [
@@ -104,6 +107,7 @@ else
 	fi
 fi
 CFLAGS=$saved_cflags
+CPPFLAGS=$saved_cppflags
 ]) dnl End of AC_CHECK_TCL_VERSION
 
 
