@@ -31,6 +31,6 @@ MACROS=SPLIT_f.sci  GAIN_f.sci IN_f.sci CLKIN_f.sci OUT_f.sci CLKOUT_f.sci \
 	DOLLAR_f.sci AFFICH_f.sci MSCOPE_f.sci NRMSOM_f.sci ISELECT_f.sci \
 	ESELECT_f.sci BIGSOM_f.sci INTRPLBLK_f.sci INTRP2BLK_f.sci SWITCH_f.sci \
 	RELAY_f.sci FSV_f.sci MEMORY_f.sci FSCOPE_f.sci READC_f.sci WRITEC_f.sci \
-	WRITEAU_f.sci READAU_f.sci SUM_f.sci
+	WRITEAU_f.sci READAU_f.sci SUM_f.sci SLIDER_f.sci
 
 include ../Make.lib.mak
