@@ -32,11 +32,12 @@
     k&gt;0 (diagonale supérieure) et k&lt;0 (diagonale sous la diagonale principale).
   </P>
   </DESCRIPTION>
-  <EXAMPLE><![CDATA
+  <EXAMPLE><![CDATA[
 s=poly(0,'s');
 triu([s,s;s,1])
 triu([1/s,1/s;1/s,1])
  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>tril</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>
     <LINK>ones</LINK> </SEE_ALSO_ITEM> <SEE_ALSO_ITEM>

@@ -9,11 +9,10 @@
    fec entities properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
+
   The Fec entity is a leaf of the graphics entities hierarchy. It
   represents 2D finite elements plots  (see
   <VERB>fec</VERB>, <VERB>Sgrayplot</VERB>.
-
-
   
    <DESCRIPTION_ITEM label='visible: '>
     This field contains the  <VERB>visible</VERB> property value
@@ -29,17 +28,19 @@
     and <VERB>y(i)</VERB> are the coordinates of the  <VERB>i</VERB>th
     node. <VERB>f(i)</VERB> is the value associated to the node <VERB>i</VERB>.
    </DESCRIPTION_ITEM>
+
    <DESCRIPTION_ITEM label='triangles: '>
     This is a five column matrix
     <VERB>[tn,n1,n2,n3,flag]</VERB>. <VERB>tn(j)</VERB> is the
     triangle number, <VERB>n1(j)</VERB>, <VERB>n2(j)</VERB>,
     <VERB>n3(j)</VERB>, are the index of the nodes which constitutes
     the triangle.  <VERB>flag(j)</VERB> is not used.
+   </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label='clip_state: '>
-      This field contains the <VERB>clip_state</VERB> property
-      value for the polyline.  It's value should be :
-      <DESCRIPTION_INDENT>
+   <DESCRIPTION_ITEM label='clip_state: '>
+   This field contains the <VERB>clip_state</VERB> property
+   value for the polyline.  It's value should be :
+   <DESCRIPTION_INDENT>
          <DESCRIPTION_ITEM > 
          <VERB>"off"</VERB> this means that the plot is not clipped
          </DESCRIPTION_ITEM>
@@ -53,19 +54,16 @@
          <VERB>"on"</VERB> this means that the
          plot is clipped outside the rectangle given by property clip_box.
          </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+
+   </DESCRIPTION_INDENT>
+   </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='clip_box: '>
       This field contains the  <VERB>clip_box</VERB> property.
       It's value should be an empty matrix if
-      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+      clip_state is "off" or the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height)
      </DESCRIPTION_ITEM>
   
-
-   
-  
-
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
@@ -75,8 +73,6 @@
    a=get("current_axes");
    f=a.children.children(2)
    f.data(:,3)=(1:size(f.data,1))'
- 
-
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
@@ -85,7 +81,6 @@
     <SEE_ALSO_ITEM> <LINK>fec</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
-
   </SEE_ALSO>
 <AUTHOR>Djamel Abdemouche  </AUTHOR>
 </MAN>

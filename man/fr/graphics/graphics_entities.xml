@@ -25,9 +25,9 @@
   <P></P>
   To set the current graphics window mode  one can use the
   instruction <VERB>set("figure_style","new") </VERB> or
-  <VERB>set("figure_style","old "). The instructions
+  <VERB>set("figure_style","old ")</VERB>. The instructions
   <VERB>set("old_style","off")</VERB>  or
-  <VERB>set("old_style","on")</VERB>o set the
+  <VERB>set("old_style","on")</VERB> set the
   default mode to be used when a new graphics window is created. 
   <P></P>
   The new graphics mode is a beta version. So the "old" mode is set as

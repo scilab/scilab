@@ -24,7 +24,6 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
     Given a handle on an agregation this function unglue the corresponding
     entities in individual parent children and returns a vector of handles.
   </DESCRIPTION>

@@ -139,9 +139,8 @@
          matrix of indices. One column per facet. for each facet one
          color index is given for each boundary.
         </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
-
-  
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
