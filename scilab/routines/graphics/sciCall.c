@@ -228,90 +228,91 @@ void Objmatplot1 (z,n1,n2,xrect)
 /*------------------------------------------------
  *  plot3d 
  *-----------------------------------------------*/   
-void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
+void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m1,n1,m2,n2,m3,n3)
      double x[],y[],z[];
      double *theta,*alpha,*ebox;
      integer *isfac,*n,*m,*iflag,*izcol,*zcol;
+     integer * m1, *n1, *m2, *n2, *m3, *n3;//Adding F.Leray 12.03.04
      char *fname,*legend; 
 {  
-    sciTypeOf3D typeof3d;
-    integer flagcolor;  
-    long *hdltab;
-    int i, ok;
-    sciPointObj *psubwin;
+  sciTypeOf3D typeof3d;
+  integer flagcolor;  
+  long *hdltab;
+  int i, ok;
+  sciPointObj *psubwin;
      
       
-    if (*isfac== 1) { 
-      if (*izcol == 0) { 
-	if (strncmp(fname,"plot3d1",7)==0) {
-	  typeof3d = SCI_FAC3D;
-	  flagcolor=1;
-	}
-	else {
-	  typeof3d = SCI_FAC3D;
-	  flagcolor=0;
-	}
-      }
-      else if (*izcol == 2) {
-	 typeof3d = SCI_FAC3D;
-	 flagcolor=3;
-      }
-      
-      else { 
-	typeof3d = SCI_FAC3D; 
-	 flagcolor=2;
-      }
-      
-    } 
-    else  if  (*isfac== 0) {
+  if (*isfac== 1) { 
+    if (*izcol == 0) { 
       if (strncmp(fname,"plot3d1",7)==0) {
-	typeof3d = SCI_PLOT3D;
+	typeof3d = SCI_FAC3D;
 	flagcolor=1;
       }
       else {
-	typeof3d = SCI_PLOT3D;
+	typeof3d = SCI_FAC3D;
 	flagcolor=0;
       }
     }
-    else {
-      typeof3d = SCI_PARAM3D1 ;
+    else if (*izcol == 2) {
+      typeof3d = SCI_FAC3D;
+      flagcolor=3;
+    }
+      
+    else { 
+      typeof3d = SCI_FAC3D; 
+      flagcolor=2;
+    }
+      
+  } 
+  else  if  (*isfac== 0) {
+    if (strncmp(fname,"plot3d1",7)==0) {
+      typeof3d = SCI_PLOT3D;
       flagcolor=1;
     }
-    ok=0; /* DJ.A 30/12 */
-    psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
-    if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
-      ok=1;
-    if ((sciGetGraphicMode (psubwin)->autoscaling))
-      update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
-    if ( typeof3d != SCI_PARAM3D1 ) //Distinction here between SCI_PARAM3D1 and others
-      sciSetCurrentObj (ConstructSurface
-			((sciPointObj *)
-			 psubwin, typeof3d,
-			 x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor));
-    else
-      {
-	if ((hdltab = malloc (*n * sizeof (long))) == NULL) {
-	  Scierror(999,"%s: No more memory available\r\n",fname);
-	  return; 
-	}
-	for (i = 0; i < *n; ++i) { 
-	  // F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-	  // Pb comes when wanting to access the fields "surface_color" or "flag" for example
-	  // in function sciSet (cf. matdes.c). 
-	  // Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-	  // Question 2: Is "flag" obsolete and replaced by "color_mode"?
-	  sciSetCurrentObj (ConstructPolyline
-			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
-			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
-	  if ((*n > 1) && (zcol != (integer *)NULL)) sciSetForeground (sciGetCurrentObj(), zcol[i]);
-	  hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
-	} 
-	/** construct agregation and make it current object**/
-	if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
-	FREE(hdltab);
+    else {
+      typeof3d = SCI_PLOT3D;
+      flagcolor=0;
+    }
+  }
+  else {
+    typeof3d = SCI_PARAM3D1 ;
+    flagcolor=1;
+  }
+  ok=0; /* DJ.A 30/12 */
+  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
+    ok=1;
+  if ((sciGetGraphicMode (psubwin)->autoscaling))
+    update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
+  if ( typeof3d != SCI_PARAM3D1 ) //Distinction here between SCI_PARAM3D1 and others
+    sciSetCurrentObj (ConstructSurface
+		      ((sciPointObj *)
+		       psubwin, typeof3d,
+		       x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor,isfac,m1,n1,m2,n2,m3,n3));
+  else
+    {
+      if ((hdltab = malloc (*n * sizeof (long))) == NULL) {
+	Scierror(999,"%s: No more memory available\r\n",fname);
+	return; 
       }
-    if (ok==1) MergeFac3d(psubwin);
-    sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
+      for (i = 0; i < *n; ++i) { 
+	// F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
+	// Pb comes when wanting to access the fields "surface_color" or "flag" for example
+	// in function sciSet (cf. matdes.c). 
+	// Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+	// Question 2: Is "flag" obsolete and replaced by "color_mode"?
+	sciSetCurrentObj (ConstructPolyline
+			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
+	if ((*n > 1) && (zcol != (integer *)NULL)) sciSetForeground (sciGetCurrentObj(), zcol[i]);
+	hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
+      } 
+      /** construct agregation and make it current object**/
+      if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
+      FREE(hdltab);
+    }
+  if (ok==1) MergeFac3d(psubwin);
+  sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
      
        
 }
@@ -326,14 +327,14 @@ void Objdrawaxis (dir,tics,x,nx,y,ny,val,subint,format,font,textcol,ticscol,flag
      int subint,font,textcol,ticscol, seg;
 { 
       
-     sciSetCurrentObj (ConstructAxes 
-     			((sciPointObj *)
-                          sciGetSelectedSubWin (sciGetCurrentFigure ()),
-                          dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
-     sciDrawObj(sciGetCurrentObj ());
+  sciSetCurrentObj (ConstructAxes 
+		    ((sciPointObj *)
+		     sciGetSelectedSubWin (sciGetCurrentFigure ()),
+		     dir,tics,x,*nx,y,*ny,val,subint,format,font,textcol,ticscol,flag,seg));  
+  sciDrawObj(sciGetCurrentObj ());
      
-     // F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
-     // one axis. ConstructAxis is apparently unused!!
+  // F.Leray 10.03.04: In fact we use ConstructAxes AND NOT ConstructAxis to draw
+  // one axis. ConstructAxis is apparently unused!!
      
 }
 
@@ -361,6 +362,6 @@ void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax)
      char legend[],strflag[];
      double *fun;
 { 
-     C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-         Zminmax,Colminmax,4L,bsiz);
+  C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
+	   Zminmax,Colminmax,4L,bsiz);
 }
