@@ -39,8 +39,8 @@ SIMPA = Modelica_.sci build_block.sci build_modelica_block.sci  \
 	buildmodelicac.sci compile_modelica.sci create_modelica.sci  \
 	create_modelica1.sci extract_implicit.sci gen_modelica.sci  \
 	genmoc.sci getoutputports.sci hilite_path.sci  \
-	is_modelica_block.sci modelica.sci modelica_libs.sci  \
-	modelicac_path.sci point2pixel.sci scicos_flat.sci  \
+	is_modelica_block.sci modelica.sci  \
+	point2pixel.sci scicos_flat.sci  \
 	scs_full_path.sci standard_draw_ports.sci \
 	standard_draw_ports_up.sci value2modelica.sci  \
 	width2pixel.sci getinputports.sci 
