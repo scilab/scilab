@@ -380,6 +380,8 @@ static char *sci_env,*sci_man_chapters;
 
 static char format[] = "MANCHAPTERS=%s/man/Chapters";
 
+extern int C2F(scigetcwd)( char **path, int *lpath, int *err);
+
 static void set_sci_env ()
 {
   char *p1; 
@@ -401,13 +403,37 @@ static void set_sci_env ()
 		  break;
 		}
 	    }
-	  /* special case when ProgramName = bin/scilex */
-	  if ( strcmp(sci_env,"SCI")==0 )  strcpy(sci_env,"SCI=./");
-					      
-	  /* sciprint("using computed %s\n",sci_env);  */
-	  putenv(sci_env);
+	  if ( strcmp(sci_env,"SCI")==0 )  
+	    {
+	      /* special case when ProgramName = bin/scilex */
+	      char *cwd;
+	      int  lcwd,err;
+	      C2F(scigetcwd)(&cwd,&lcwd,&err);
+	      if ( err == 0 ) 
+		{
+		  free(sci_env);
+		  sci_env = malloc((lcwd+1+4)*sizeof(char));
+		  if ( sci_env != NULL) 
+		    {
+		      strcpy(sci_env,"SCI=");
+		      strcat(sci_env,cwd);
+		      putenv(sci_env);
+		    }
+		  else 
+		    putenv("SCI=./");
+		}
+	      else 
+		{
+		  putenv("SCI=./");
+		}
+	    }
+	  else 
+	    {
+	      putenv(sci_env);
+	    }
 	}
     }    
+  /* 
   if ((p1 = getenv ("MANCHAPTERS")) == (char *) 0)
     {
       if ((p = getenv ("SCI")) == (char *) 0) return ;
@@ -415,6 +441,8 @@ static void set_sci_env ()
       sprintf (sci_man_chapters,format,p);
       putenv (sci_man_chapters);
     }
+  */
+
 }
 
 /*-------------------------------------------------------
