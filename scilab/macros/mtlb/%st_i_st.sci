@@ -19,7 +19,6 @@ function M=%st_i_st(varargin)
     setfield(1,flds,M);setfield($+1,N,M);
     if and(dims==[0 0]) then M.dims=int32([1 1]),end
   else   //Subscripted assignment between structures
-    
     //build resulting struct fields
     FM=getfield(1,M);FM=FM(3:$);nFM=size(FM,'*')
     FN=getfield(1,N);FN=FN(3:$);nFN=size(FN,'*')
@@ -28,11 +27,19 @@ function M=%st_i_st(varargin)
     Nfields=size(FR,'*')
     //computing the dimension of the result
     nd=size(dims,'*')
-    if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
-
+    
+    olddims=dims
+    
+    reduced_index=%f
+    if rhs-2>nd then  //more indices than M number of dims
+      dims(nd+1:rhs-2)=1;
+    elseif rhs-2<nd  then //less indices than M number of dims
+      dims=[dims(1:rhs-3) prod(dims(rhs-2:$))]
+      if prod(dims)>1 then reduced_index=%t,end
+    end
     //convert N-dimensionnal indexes to 1-D and extend dims if necessary
     [Ndims,I]=convertindex(dims,varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
-
+    if reduced_index&or(Ndims<>dims)  then error(21),end
     if or(Ndims>dims) then
       //extend the destination matrix
       I1=0
@@ -99,20 +106,23 @@ function M=%st_i_st(varargin)
     end
     
     //remove trailing unitary dimensions
-    while  Ndims($)==1 then Ndims($)=[],end
-    select size(Ndims,'*')
-      case 0 then
-      Ndims=[1,1]
-      case 1 then
-      if mtlb_mode()|M.dims(1)==1 then
-	Ndims=[1,Ndims]
-      else
-	Ndims=[Ndims,1]
+    if reduced_index then
+      Ndims=olddims
+    else
+      while  Ndims($)==1 then Ndims($)=[],end
+      select size(Ndims,'*')
+	case 0 then
+	Ndims=[1,1]
+	case 1 then
+	if mtlb_mode() then
+	  Ndims=[1,Ndims]
+	else
+	  Ndims=[Ndims,1]
+	end
+      else 
+	Ndims=matrix(Ndims,1,-1)
       end
-    else 
-      Ndims=matrix(Ndims,1,-1)
     end
-    
     R.dims=int32(Ndims)
     M=R
   end
