@@ -1129,11 +1129,11 @@ int GetScreenProperty(char *prop, char *value)
 /* return the x/y DPI */
 int GetScreenDPI(int *ixres, int *iyres)
 {
+  double xres, yres;
+  
   Display *dpy;
   Widget toplevel;
   DisplayInit("",&dpy,&toplevel);
-  
-  double xres, yres;
   
   /*
    * there are 2.54 centimeters to an inch; so there are 25.4 millimeters.
