@@ -4406,7 +4406,8 @@ void C2F(bitmap)(string, w, h)
  * Fonts for the graphic windows 
  ***********************************/
 
-#define FONTNUMBER 11 
+//#define FONTNUMBER 11 // F.Leray Pb here I set FONTNUMBER to 10 instead of 11
+#define FONTNUMBER 10
 #define FONTMAXSIZE 6
 #define SYMBOLNUMBER 10
 
@@ -4612,6 +4613,10 @@ void C2F(queryfamily)(name, j, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 { 
   integer i ;
   name[0]='\0';
+ // for (i=0;i<FONTNUMBER;i++) { //Pb here: fonttab size is 10 and i goes from 0 to 10 included 
+ // fonttab[10] is "{(char *) NULL,( char *) NULL}" F.Leray 24.02.04
+ // By-pass FONTNUMBER set to 10 temporarily
+  
   for (i=0;i<FONTNUMBER;i++) {
     v3[i]=strlen((*FontTab)[i].fname);
     if (v3[i] > 0)
