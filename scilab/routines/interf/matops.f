@@ -2106,8 +2106,9 @@ c     .  arg2(:), just reshape to column vector
          istk(il1+1)=mn2
          istk(il1+2)=1
          istk(il1+3)=istk(il2+3)
+         l1=sadr(il1+4)
          call unsfdcopy(mn2*(it2+1),stk(l2),1,stk(l1),1)
-         lstk(top+1)=sadr(il1+4)+mn2*(it2+1)
+         lstk(top+1)=l1+mn2*(it2+1)
          return
       endif
 c     check and convert indices variable
