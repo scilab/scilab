@@ -334,6 +334,8 @@ extern void C2F(freeptr) __PARAMS((double *ip[]));
 
 extern void *GetData __PARAMS((int lw));
 
+extern void *GetRawData __PARAMS((int lw));
+
 #endif /*  STACK_SCI  */
 
 

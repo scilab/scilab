@@ -3113,8 +3113,9 @@ void *GetData(lw)
   return loci;
 }
 
-void *GetRawData(int lw)
+void *GetRawData(lw)
      /* same as GetData BUT does not go to the pointed variable if lw is a reference */
+     int lw;
 {
   int lw1 = lw + Top - Rhs ;
   int l1 = *lstk(lw1);
