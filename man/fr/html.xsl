@@ -70,7 +70,7 @@
 
 <xsl:if test="./BIBLIO">
 	<H3><font color="blue">Bibliographie</font></H3>
-	<p><xsl:value-of select="./BIBLIO"/></p>
+	<p><xsl:apply-templates select="BIBLIO"/></p>
 </xsl:if>
 
 </body>
@@ -169,6 +169,10 @@
 	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|EM|BD|TT|TABLE|A|text()"/></dl>
 </xsl:template>
 
+<xsl:template match="DESCRIPTION_INDENT">
+      <ul><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|VERB|EM|BD|TT|A|text()"/></ul>
+</xsl:template>
+
 <xsl:template match="DESCRIPTION_ITEM">
 	<li><b><xsl:value-of select="@label"/></b><xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/></li>
 </xsl:template>
@@ -192,6 +196,10 @@
 <b><xsl:value-of select="@label"/>  </b>,
 <xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/>
 </li>
+</xsl:template>
+
+<xsl:template match="BIBLIO">
+      <dl><xsl:apply-templates select="P|VERBATIM|VERB|EM|BD|TT|A|text()"/></dl>
 </xsl:template>
 
 </xsl:stylesheet>
