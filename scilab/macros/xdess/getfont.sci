@@ -33,7 +33,8 @@ else
   // English
   delmenu(win,'&File')
   delmenu(win,'&Edit')
-  delmenu(win,'&Tools')end
+  delmenu(win,'&Tools')
+ end
 
 
 x=2;
