@@ -39,7 +39,8 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
 	mtlb_strfind.sci mtlb_strrep.sci mtlb_toeplitz.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
 	mtlb_type.sci mtlb_uint8.sci mtlb_uint16.sci mtlb_uint32.sci mtlb_upper.sci \
-	mtlb_delete.sci mtlb_beta.sci mtlb_conv.sci mtlb_dec2hex.sci
+	mtlb_delete.sci mtlb_beta.sci mtlb_conv.sci mtlb_dec2hex.sci \
+	mtlb_echo.sci mtlb_realmin.sci mtlb_realmax.sci
 
 M5 =    cell.sci struct.sci  \
 	%ce_string.sci %st_string.sci generic_i_st.sci\
@@ -61,7 +62,9 @@ M5 =    cell.sci struct.sci  \
 	%st_f_st.sci %ce_t.sci %ce_i_s.sci generic_i_ce.sci mtlb_axis.sci \
 	mtlb_box.sci \
 	%b_d_s.sci %b_l_s.sci %b_p_s.sci %b_r_s.sci %s_d_b.sci %s_l_b.sci \
-	%s_p_b.sci %s_r_b.sci	
+	%s_p_b.sci %s_r_b.sci %msp_t.sci %msp_nnz.sci %msp_m_s.sci \
+	%msp_find.sci sci_sparse.sci %msp_e.sci %s_a_msp.sci %msp_a_s.sci \
+	%msp_abs.sci %msp_length.sci	
 
 
 PLOT=   mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_grid.sci \
