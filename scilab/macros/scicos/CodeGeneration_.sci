@@ -955,8 +955,12 @@ function  [ok,XX]=do_compile_superblock(XX)
 
   IN=[];OUT=[];clkIN=[];numa=[];numc=[];
   for i=1:size(scs_m.objs)
-    if typeof(scs_m.objs(i))=='Block' then  
-      if scs_m.objs(i).gui=='IN_f' then
+     if typeof(scs_m.objs(i))=='Block' then  
+      if scs_m.objs(i).gui=='CLKOUT_f' then	
+        ok=%f;%cpr=list()
+	message('Superblock should not have any activation output port.')
+	return
+      elseif scs_m.objs(i).gui=='IN_f' then
 	//replace input ports by sensor blocks
 	numc=numc+1
 	scs_m.objs(i).gui='INPUTPORTEVTS';
@@ -1011,7 +1015,7 @@ function  [ok,XX]=do_compile_superblock(XX)
 
   [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m);
 
-
+if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, end
   a=[];b=[];tt=[];howclk=[];allhowclk=[];cap=[];act=[];
 
   ///**********************************
@@ -1109,8 +1113,7 @@ function  [ok,XX]=do_compile_superblock(XX)
       clkconnect=[clkconnect;[howclk 1 cap(i) 1]];
     end
   end
-
-  cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
+cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   if cpr==list() then ok=%f,return, end
 
@@ -2391,4 +2394,5 @@ function t=filetype(m)
   t=filetypes(find(m==int32(bits)))
 endfunction
   
+
 
