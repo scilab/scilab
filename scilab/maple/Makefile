@@ -1,5 +1,7 @@
 SHELL = /bin/sh
 
+include ../Makefile.incl
+
 # If necessary, change the path of Maple below
 MAPLE = maple
 # If necessary, change the path of Scilab below
