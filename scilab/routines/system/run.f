@@ -74,7 +74,7 @@ c     nouvelle 'operation'
 c     label 49 retains to be able issue a compatibility error message
       goto(20, 25, 40, 42, 30, 41, 45, 49, 49, 55,
      &     15, 90, 95, 100,105,110,120,130,140,150,
-     &     160,170,180,190,200,210,220,97,230) ,op
+     &     160,170,180,190,200,210,220, 97,230,240) ,op
 c     matfns
       if(op.ge.100) goto 80
 c     return
@@ -858,7 +858,18 @@ c     remove variable containing the value if required
       top=top-ndel
       lc=li
       goto 10
-
+c     
+c     logical expression shortcircuit
+ 240  continue
+      if(istk(lc+1).eq.1) then
+c     .  | case
+         if(istrue(0)) lc=lc+istk(lc+2)
+      else
+c     .  & case
+         if(.not.istrue(0)) lc=lc+istk(lc+2)
+      endif
+      lc=lc+3
+      goto 10
 c
  998  continue
       lhs=0
