@@ -854,31 +854,201 @@ endfunction
 function ged_champ(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("curcolored",h.colored)
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curarrowsize",string(h.arrow_size))
+  TK_SetVar("curthick",string(h.thickness))
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+
+//data a mettre
+  TK_SetVar("nbrow",string(size(h.data,1)))
+  TK_SetVar("nbcol",string(size(h.data,2)))
+  winId=waitbar('Loading Champ data...');
+  waitbar(0,winId);
+
+  tmp = 0;
+  for i=1:size(h.data,1) 
+   for j=1:size(h.data,2) 
+      val= "champVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
+   end
+  end
+  waitbar(1,winId);
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+
+  TK_EvalFile(SCI+'/tcl/ged/Champ.tcl')
+   winclose(winId);
 endfunction
 
 function ged_fec(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("zbmin",string(h.z_bounds(1)))
+  TK_SetVar("zbmax",string(h.z_bounds(2)))
+  TK_SetVar("nbrow",string(size(h.data,1)))
+  TK_SetVar("nbcol",string(size(h.data,2)))
+  TK_SetVar("nbrowTri",string(size(h.triangles,1)))
+  TK_SetVar("nbcolTri",string(size(h.triangles,2)))
+
+  winId=waitbar('Loading Fec data...');
+  waitbar(0,winId);
+  tmp = 0;
+  totaldatasize = size(h.data,1)*size(h.data,2) + size(h.triangles,1)*size(h.triangles,2);
+
+  //data
+  for i=1:size(h.data,1) 
+   for j=1:size(h.data,2) 
+      val= "datafecVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
+   end
+  end
+  tmp = tmp +  (size(h.data,1) * size(h.data,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
+
+  for i=1:size(h.triangles,1) 
+   for j=1:size(h.triangles,2) 
+      val= "trianglesfecVAL("+string(i)+","+string(j)+")";
+      TK_EvalStr('set '+val+" "+string(h.triangles(i,j)));
+   end
+  end
+  tmp = tmp +  (size(h.triangles,1) * size(h.triangles,2)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
+
+//  if(h.clip_box==[])
+//    TK_SetVar("old_Xclipbox","")
+//    TK_SetVar("old_Yclipbox","")
+//    TK_SetVar("old_Wclipbox","")
+//    TK_SetVar("old_Hclipbox","")
+//    TK_SetVar("Xclipbox","")
+//    TK_SetVar("Yclipbox","")
+//    TK_SetVar("Wclipbox","")
+//    TK_SetVar("Hclipbox","")
+//   else
+//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//  end
+//  TK_SetVar("curclipstate",h.clip_state);
+
+  TK_EvalFile(SCI+'/tcl/ged/Fec.tcl')
+  winclose(winId);
 endfunction
 
 
 function ged_grayplot(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("curdatamapping",h.data_mapping)
+  TK_SetVar("nbrowX",string(size(h.data,1)-1))
+  TK_SetVar("nbrowY",string(size(h.data,2)-1))
+  TK_SetVar("nbrowZ",string(size(h.data,1)-1))
+  TK_SetVar("nbcolZ",string(size(h.data,2)-1))
+
+  winId=waitbar('Loading Grayplot data...');
+  waitbar(0,winId);
+  tmp = 0;
+  totaldatasize = (size(h.data,1)-1)+ (size(h.data,2)-1) + (size(h.data,1)-1)*(size(h.data,2)-1) 
+
+//data
+// X vector
+  for i=2:size(h.data,1) 
+    val= "grayplotXVAL("+string(i-1)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(i,1)));
+   end
+  tmp = tmp +  (size(h.data,1)-1) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
+
+// Y vector
+  for i=2:size(h.data,2) 
+    val= "grayplotYVAL("+string(i-1)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(1,i)));
+   end
+  tmp = tmp +  (size(h.data,2)-1) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
+
+// Z matrix
+  for i=2:size(h.data,1) 
+   for j=2:size(h.data,2) 
+    val= "grayplotZVAL("+string(i-1)+","+string(j-1)+")";
+      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
+   end
+  end
+  tmp = tmp +  ((size(h.data,1)-1)*(size(h.data,2)-1)) / totaldatasize;
+  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  waitbar(tmp,winId);
+
+  TK_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
+  winclose(winId);
 endfunction
 
 
 function ged_axis(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("curseg",h.tics_segment)
+  TK_SetVar("curcolor",string(h.tics_color))
+  TK_SetVar("curticsstyle",h.tics_style)
+  TK_SetVar("curfontcolor",string(h.labels_font_color))
+  TK_SetVar("curfontsize",string(h.labels_font_size))
+  TK_SetVar("nbcolX",string(size(h.xtics_coord,2)))
+  TK_SetVar("nbcolY",string(size(h.ytics_coord,2)))
+  TK_SetVar("xticscoord",sci2exp(h.xtics_coord,"",lmax=0))
+  TK_SetVar("yticscoord",sci2exp(h.ytics_coord,"",lmax=0))
+  TK_SetVar("cursubtics",string(h.sub_tics))
+  TK_SetVar("curticslabel",str2exp(h.tics_labels,lmax=0))
+  TK_SetVar("curticsdir",string(h.tics_direction))
+
+  if(h.clip_box==[])
+    TK_SetVar("old_Xclipbox","")
+    TK_SetVar("old_Yclipbox","")
+    TK_SetVar("old_Wclipbox","")
+    TK_SetVar("old_Hclipbox","")
+    TK_SetVar("Xclipbox","")
+    TK_SetVar("Yclipbox","")
+    TK_SetVar("Wclipbox","")
+    TK_SetVar("Hclipbox","")
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+
+  TK_EvalFile(SCI+'/tcl/ged/Axis.tcl')
 endfunction
 
 
@@ -1399,4 +1569,71 @@ function setA2val(val)
         disp 'Warning: a2 data must contain double'
       end
      end
+endfunction
+
+
+//Fec
+function setZb(min, max)
+  global ged_handle; h=ged_handle
+  tmp=h.z_bounds;
+  tmp(1,1)=min;
+  tmp(1,2)=max;
+  tst=execstr('h.z_bounds=tmp','errcatch','n');
+  if tst<>0 then
+   disp 'Warning: X data_bounds must contain double'
+  end
+endfunction
+
+
+
+
+function t=str2exp(a,lmax) 
+  [lhs,rhs]=argn(0)
+  if rhs<2 then lmax=0,end
+  [m,n]=size(a),
+  dots='.'+'.'
+  t=[];
+  quote=''''
+
+  a=strsubst(a,quote,quote+quote)
+  dquote='""'
+  a=strsubst(a,dquote,dquote+dquote)
+  a=quote(ones(a))+a+quote(ones(a))
+
+  for i=1:m
+    x=emptystr();
+    for j=1:n,
+      y=a(i,j);
+      y=dquote+part(y,2:length(y))
+      y=part(y,1:length(y)-1)+dquote
+      if y=='''''' then y='emptystr()',end
+      if lmax==0|length(x($))+length(y)<lmax then
+	if j==1 then
+	  x=y
+	else
+	  x($)=x($)+','+y,
+	end
+      else
+	if j>1 then 
+	  x($)=x($)+','+dots;
+	  x($+1)=y
+	else
+	  x=y
+	end
+      end
+    end
+    if i<m then x($)=x($)+';',end
+    if lmax>0 then
+      t=[t;x]
+    else
+      t=t+x
+    end
+  end,
+  if lmax>0&sum(length(t))<lmax then
+    t=strcat(t)
+  end
+  if m*n>1 then
+    t(1)='['+t(1)
+    t($)=t($)+']'
+  end
 endfunction
