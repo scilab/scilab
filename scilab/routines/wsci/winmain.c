@@ -223,6 +223,11 @@ static void SciEnv ()
 	  sprintf (env, "PVM_ROOT=%s\\pvm3", p);
 	  putenv (env);
 	}
+      if ((p1 = getenv ("PVM_ARCH")) == (char *) 0)
+	{
+	  sprintf (env, "PVM_ARCH=WIN32");
+	  putenv (env);
+	}
       if ((p1 = getenv ("PVM_TMP")) == (char *) 0)
 	{
 	  if ((p1 = getenv ("TEMP")) == (char *) 0)
@@ -279,7 +284,7 @@ int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 }
 
 #define MAXCMDTOKENS 128
-static int my_argc = 0;
+static int my_argc = -1;
 static LPSTR my_argv[MAXCMDTOKENS];
 
 /* global var */
@@ -476,6 +481,14 @@ MAIN__ ()
   return (0);
 }
 #endif
+
+
+/* to simulate argv */
+
+void add_sci_argv(char *p)
+{
+  my_argv[++my_argc]=p;
+}
 
 /* Fortran iargc and fgetarg implemented here */
 
