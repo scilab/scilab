@@ -48,6 +48,7 @@ end
 //while  dims1($)==1 then dims1($)=[],end
 
 v=list()
+I=double(I);
 for k=1:size(I,'*'),v(k)=M('entries')(I(k)+1),end
 M=mlist(['ce','dims','entries'],int32(dims1),v)
 
