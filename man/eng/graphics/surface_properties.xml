@@ -33,59 +33,27 @@
     It will be define a  matrix data of a row and column indices of each element 
     as the x- and y-coordinates and the value of each element as the z-coordinate.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="data_bounds: ">
-        <SP>This field contains the boundary values for the x, y and z
-    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="flags: ">
-        <SP>a real vector of size three <VERB>flag=[mode,type,box]</VERB> where:</SP>
+      <DESCRIPTION_ITEM label="mode: ">
+        <SP>a string (treatment of hidden parts).  where:</SP>
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
-            <P><VERB>mode:</VERB> a string (treatment of hidden parts).  
-	 </P>
-            <P>
-	 If  mode&gt;0 
+              <P>
+	 If  <VERB>mode&gt;0</VERB> 
 	 the hidden parts of the surface are removed 
 	 and the surface is painted  with color <VERB>&quot;mode&quot;</VERB>.
          </P>
-            <P>
-         if mode=0  the hidden parts of the surface are drawn.
+	 </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM>
+	     <P>
+	     if <VERB>mode=0</VERB>  the hidden parts of the surface are drawn.
          </P>
+	  </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
             <P>
-         if mode&lt;0 
+         if <VERB>mode&lt;0 </VERB>
          only the backward facing facets are painted with color or
          pattern id <VERB>&quot;-mode&quot;</VERB>.
          </P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P><VERB>type:</VERB> an integer (scaling).
-	</P>
-            <P>
-        if type=0  the plot is made using the current 3D scaling (set
-        by a previous call to <VERB>param3d</VERB>,
-        <VERB>plot3d</VERB>, <VERB>contour</VERB> or
-        <VERB>plot3d1</VERB>). 
-        </P>
-            <P>
-         if type=1  rescales automatically 3d boxes with extreme
-        aspect ratios, the boundaries are specified by the value of
-        the property  <VERB>data_bounds</VERB>. 
-        </P>
-            <P>
-         if type=2  rescales automatically 3d boxes with extreme
-        aspect ratios, the boundaries are computed using the given
-        data. 
-        </P>
-            <P>
-         if  type=3 3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
-        </P>
-            <P>
-        if type=4  3d isometric bounds are derived from the data.
-       </P>
-            <P>
-        if type=5  3d expanded isometric bounds  with box bounds are given
-        by the property <VERB>data_bounds</VERB>. 
-        </P>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
@@ -96,10 +64,6 @@
       <DESCRIPTION_ITEM label="foreground: ">
         <SP>This field contains the color index used to draw the axes and the facets contours.  
       Its value should be a color index (relative to the current colormap).</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="rotation_angles: ">
-        <SP>This field is the vector <VERB>[theta,alpha]</VERB>. These two
-      values give  the spherical coordinates of the observation points (in degree).</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="color_flag: ">
         <SP>This field is used to specify the algorithm used to set facets'
@@ -178,21 +142,22 @@
    plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
 
    h=get("hdl") //get handle on current entity (here the surface)
+   
+   a=gca(); //get current axes
+   
+   a.rotation_angles=[40,70];
+   a.grid=[1 1 1]; //make grids
 
-   h.rotation_angles=[40,70];
-
-
-    h.flag=[2 5 4]; //boundaries given by data_bounds
-    h.data_bounds=[-6,6;6,-1;0,5];
-    h.flag=[2 5 0]; //axes are hidden
+   a.data_bounds=[-6,6;6,-1;0,5];
+   a.axes_visible="off"; //axes are hidden
+   a.axes_bounds=[.2 0 1 1];
 
  
    f=get("current_figure");//get the handle of the parent figure    
    f.color_map=hotcolormap(64); //change the figure colormap
 
    h.color_flag=1; //color according to z
-   h.flag=[-2 5 0]; //remove the facets boundary
-   h.flag=[-2 2 0]; //boundaries computed using the given data 
+   h.mode=-2;  //remove the facets boundary
 
    h.color_flag=2; //color according to given colors
    h.surface_color=[modulo(1:400,64),modulo(1:400,64)];

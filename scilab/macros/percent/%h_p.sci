@@ -70,7 +70,9 @@ function %h_p(h)
 	 "auto_clear= "+h.auto_clear
 	 "auto_scale= "+h.auto_scale
 	 " "
+	 "background= "+string(h.background)
 	 "foreground= "+string(h.foreground)
+	 "hiddencolor= "+string(h.hiddencolor)
 	 "line_style= "+string(h.line_style)
 	 "thickness= "+string(h.thickness)
 	 "fill_mode= "+h.fill_mode
@@ -245,9 +247,7 @@ function %h_p(h)
 	 "visible= "+string(h.visible) 
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "rotation_angles= "+sci2exp(h.rotation_angles,0)
-	 "data_bounds= "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag= "+sci2exp(h.flag,0)
+	 "mode= "+string(h.mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
 	]
       case "Fac3d" 
@@ -262,9 +262,7 @@ function %h_p(h)
 	 "visible= "+string(h.visible) 
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "rotation_angles= "+sci2exp(h.rotation_angles,0)
-	 "data_bounds= "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag= "+sci2exp(h.flag,0)
+	 "mode= "+string(h.mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
 	 "surface_color= "+c
 	 ]
@@ -283,9 +281,7 @@ function %h_p(h)
 	 "data= "+d
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
-	 "rotation_angles= "+sci2exp(h.rotation_angles,0)
-	 "data_bounds= "+sci2exp(matrix(h.data_bounds,2,-1),0)
-	 "flag= "+sci2exp(h.flag,0)
+	 "mode= "+string(h.mode)
 	 "surface_color= "+c
 	 ]
       case "Axis"
