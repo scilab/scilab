@@ -10,6 +10,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.3  2002/03/18 12:15:17  steer
+     modif Jean-Sebastien Roy pour FreeBSD
+
      Revision 1.2  2002/02/08 10:27:33  steer
       modifs de mcmahill@mtl.mit.edu
 
@@ -474,6 +477,8 @@ C2F(scipvmspawn)(task, l1, win, l2, where, l3, ntask, tids, res)
       strcpy(cmd, "scilex");
     }
   }
+#else 
+  strcpy(cmd, "scilex");
 #endif 
 #if (defined __MSC__) || (defined __ABSC__)
   if ( _stricmp(task,"null") != 0) {
