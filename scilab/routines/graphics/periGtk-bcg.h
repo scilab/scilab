@@ -69,7 +69,8 @@ typedef struct BCG
   GdkColor gcol_bg; 
   GdkColor gcol_fg; 
   GdkRectangle clip;
-  GdkCursor *gcursor;
+  GdkCursor *gcursor;                   /* xclick cursor */ 
+  GdkCursor *ccursor;                   /* standard cursor */
   GdkFont *font;
   int resize;				/* Window resized */
 } BCG; 

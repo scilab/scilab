@@ -11,7 +11,7 @@
  * callback ( see jpc_SGraph.c ) for the XWindow version 
  * Nov 1998 : we must be sure that during the evaluation of 
  *            scig_xxx an other function scig_yyy won't be 
- *            run. Thi sis possible since during the execution of 
+ *            run. This is possible since during the execution of 
  *            one scig_xxx function a sciprint can be performed 
  *            and it will lead to an event check which can 
  *            produce a call to an other scig_yyy function 
@@ -25,7 +25,6 @@ static int scig_buzy = 0;
  * A handler which can be dynamically set to custiomize 
  * action of scig_xxx functions 
  ********************************************************/
-
 
 int scig_handler_none(int win_num) {return win_num;};
 
@@ -42,7 +41,6 @@ void reset_scig_handler(void)
 {
   scig_handler = scig_handler_none;
 }
-
 
 /********************************************************
  * Basic Replay : redraw recorded graphics 
