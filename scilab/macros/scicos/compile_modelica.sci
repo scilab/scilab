@@ -34,6 +34,7 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
       ok=%f,nx=0,nin=0,nout=0,ng=0;return
     end
   end
+  mprintf('   C code generated at '+path+name+'.c\n')
    //adding trace info
   txt=mgetl(path+name+'.c')
   [nx,nin,nout,ng,nm]=analyze_c_code(txt) //to get the dimension of the state
