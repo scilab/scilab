@@ -3,7 +3,8 @@ SHELL = /bin/sh
 include ../../Path.incl
 
 # to get FILES_TO_CLEAN
-include $(SCIDIR)/Makefile.incl
+# include $(SCIDIR)/Makefile.incl
+include ../../Makefile.incl 
 
 # provide the list of sub-directories and format request 
 # in format.sci 
