@@ -8069,8 +8069,8 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
   pFIGURE_FEATURE (pfiguremdl)->windowdimwidth = 600;
   pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposx = 197;
-  pFIGURE_FEATURE (pfiguremdl)->inrootposy = 181;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposx = -1;
+  pFIGURE_FEATURE (pfiguremdl)->inrootposy = -1;
   pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
   pFIGURE_FEATURE (pfiguremdl)->isselected = TRUE;
   pFIGURE_FEATURE (pfiguremdl)->rotstyle = 0;
