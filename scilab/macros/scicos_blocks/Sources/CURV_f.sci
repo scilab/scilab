@@ -19,11 +19,17 @@ case 'set' then
   n=ipar(1)
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   curwin=xget('window')
-  win=maxi(windows(:,2))+1
-  xset('window',win);xsetech([0 0 1 1])
+//  win=maxi(windows(:,2))+1
+//  xset('window',win);xsetech([0 0 1 1])
   gc=list(rpar(2*n+1:2*n+4),ipar(2:5))
   while %t do
+    old_win=xget('window')
+    win=maxi(winsid())+1
+    xset('window',win);xsetech([0 0 1 1])
     [xx,yy,ok,gc]=edit_curv(xx,yy,'axy',[' ',' ',' '],gc)
+    xdel(win)
+    xset('window',old_win)
+
     if ~ok then break,end
     n=size(xx,'*')
     if or(xx(2:n)-xx(1:n-1)<0) then
@@ -41,8 +47,8 @@ case 'set' then
       break
     end
   end
-  xdel(win)
-  xset('window',curwin)
+//  xdel(win)
+//  xset('window',curwin)
 case 'define' then
   xx=[0;1;2];yy=[-5;5;0]
   rect=[0,-5,2,5];

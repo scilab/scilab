@@ -16,7 +16,7 @@ case 'set' then
   model=arg1(3);
   while %t do
     [ok,gain,label]=getvalue('Set gain block parameters',..
-	['Gain'],list('mat',[-1,-1]),label(1))
+	['Gain'],list('mat',[-1,-1]),label)
     if ~ok then break,end
     if gain==[] then
       message('Gain must have at least one element')
@@ -35,7 +35,7 @@ case 'set' then
 case 'define' then
   in=1;out=1;gain=1
   model=list('gain',in,out,[],[],[],[],gain,[],'c',[],[%t %f],' ',list())
-  label=[strcat(sci2exp(gain));strcat(sci2exp(in));strcat(sci2exp(out))]
+  label=strcat(sci2exp(gain))
   gr_i=['[nin,nout]=model(2:3);';
       'if nin*nout==1 then gain=string(model(8)),else gain=''Gain'',end';
       'dx=sz(1)/5;';
