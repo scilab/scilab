@@ -65,6 +65,7 @@ case 11 then
   t=func2exp(a,lmax)
   named=%f
 else
+//  execstr('t='+typeof(a)+'2exp(a,lmax)')
   error('Variable translation of type '+string(type(a))+' Non implemented')
 end,
 if named then

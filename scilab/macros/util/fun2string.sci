@@ -36,7 +36,7 @@ function txt=fun2string(fun,nam)
   end
 
   hdr='function '+outputs+'='+nam+inputs;
-  txt=[hdr;crp(2:$-2)]
+  txt=[hdr;crp(2:$-2);'endfunction']
 endfunction
 
 function txt=ins2sci(lst,ilst)

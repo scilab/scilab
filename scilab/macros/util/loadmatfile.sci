@@ -21,7 +21,7 @@ function loadmatfile(fil)
   Name='';Names=[];Matrices=list()
   while %t 
     ierr=execstr('[Matrix,Name]=ReadmiMatrix(fd)','errcatch') //read next variable
-    if ierr<>0 then mclose(fd),return,end 
+    if ierr<>0 then mclose(fd),disp(lasterror()),return,end 
     if meof(fd) then  break,end //EOF reached 
     Names=[Names,Name];Matrices($+1)=Matrix
   end
