@@ -13584,7 +13584,8 @@ extern BOOL Check3DObjs()
 extern sciPointObj *CheckClickedSubwin(integer x, integer y)
 { 
   integer box[4]; 
-  sciSons *psonstmp, *psubwin; 
+  sciSons *psonstmp;
+  sciPointObj *psubwin; 
  
   psonstmp = sciGetSons (sciGetCurrentFigure());  
   while (psonstmp != (sciSons *) NULL)	
