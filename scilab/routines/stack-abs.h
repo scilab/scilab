@@ -14,8 +14,8 @@ c csiz  used for character coding
 c intersiz used in interfaces
 c*-------------------------------------------------------------------
       integer   csiz,bsiz,isizt,psiz,nsiz,lsiz
-      parameter (csiz=63,bsiz=4096,isizt=2048,psiz=256,nsiz=6)
-      parameter (lsiz=16384)
+      parameter (csiz=63,bsiz=4096,isizt=4096,psiz=4096,nsiz=6)
+      parameter (lsiz=65536)
       integer   nlgh,vsiz
       parameter (nlgh=nsiz*4,vsiz=2)
       integer   maxdb,maxbpt
