@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_diff</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_diff">Matlab diff emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>diff</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With two input parameters: Scilab <VERB>diff</VERB> considers all values of first input as a vector
+	what Matlab does not.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With three input parameters: If dimension of first input along dimension given by third parameter
+	reaches 1 before n interations
+	have been made,Matlab switches to next non-singleton dimension what Scilab does not.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_diff(A[,n[,dim]])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>diff(A[,n[,dim]])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_diff</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With two inputs, if <VERB>A</VERB> is a scalar or a vector
+        <VERB>mtlb_diff(A,n)</VERB> may be replaced by <VERB>diff(A,n)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With three inputs, if size of A along dimension given by <VERB>dim</VERB> can not reach 1
+        <VERB>mtlb_diff(A,n,dim)</VERB> may be replaced by <VERB>diff(A,n,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_diff</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

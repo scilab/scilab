@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_eval</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_eval">Fonction d'émulation de la fonction Matlab eval</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>L'équivalent Scilab pour la fonction Matlab <VERB>eval</VERB> est différent suivant ses entrées et sorties.</P>
+
+    <P>
+    La fonction <VERB>mtlb_eval(str1,str2)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>eval</VERB> parce qu'il n'était pas
+    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_eval</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Pour les appels avec une entrée et pas de sortie,
+        <VERB>mtlb_eval(str1)</VERB> peut être remplacé par <VERB>evstr(str1)</VERB>
+	si <VERB>str1</VERB> est une expression Scilab valid
+	ou par <VERB>execstr(str1)</VERB> 
+	si <VERB>str1</VERB> est une instruction Scilab valid.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Pour les appels avec une entrée et une sortie,
+        <VERB>val=mtlb_eval(str1)</VERB> peut être remplacé par <VERB>val=evstr(str1)</VERB>
+	si <VERB>str1</VERB> est une instruction Scilab valid.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Pour les appels avec deux entrées et une sortie,
+        <VERB>mtlb_eval(str1,str2)</VERB> peut être remplacé par:
+	<VERB>
+	if execstr(str1,&quot;errcatch&quot;)&lt;&gt;0 then
+	  execstr(str2);
+	end	  
+	</VERB>
+	si <VERB>str1</VERB> et <VERB>str2</VERB> sont des instructions Scilab valides.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Pour les appels avec une entrée et plus d'une sortie,
+        <VERB>[val1,val2,...]=mtlb_eval(str1)</VERB> peut être remplacé par:
+	<VERB>execstr(&quot;[val1,val2,...]&quot;+str1)</VERB>
+	si <VERB>str1</VERB> est une instruction Scilab valide.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Pour les appels avec deux entrées et plus d'une sortie,
+        <VERB>[val1,val2,...]=mtlb_eval(str1,str2)</VERB> peut être remplacé par:
+	<VERB>
+	if execstr(&quot;[val1,val2,...]&quot;+str1,&quot;errcatch&quot;)&lt;&gt;0 then
+	  execstr(&quot;[val1,val2,...]&quot;+str2);
+	end	  
+	</VERB>
+	si <VERB>str1</VERB> et <VERB>str2</VERB> sont des instructions Scilab valides.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_eval</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
