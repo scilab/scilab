@@ -49,6 +49,12 @@ CRITICAL_SECTION Sync; /* Section Critique pour Write_scilab */
 
 static BOOL ConsoleIsMinimized=FALSE;
 static BOOL WriteInKeyBuf=FALSE;
+
+static DWORD Color_Window;
+static DWORD Color_Window_Text;
+static DWORD Color_Highlight;
+static DWORD Color_Highlight_Text;
+
 /*-----------------------------------------------------------------------------------*/
 /*********************************************
  * message Loop 
@@ -65,6 +71,7 @@ EXPORT void WINAPI TextMessage (void)
 static void CreateTextClass (LPTW lptw)
 {
   WNDCLASS wndclass;
+
   wndclass.style = CS_HREDRAW | CS_VREDRAW;
   wndclass.lpfnWndProc = WndTextProc;
   wndclass.cbClsExtra = 0;
@@ -72,13 +79,12 @@ static void CreateTextClass (LPTW lptw)
   wndclass.hInstance = lptw->hInstance;
   wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
   wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-  wndclass.hbrBackground = NULL;
-  lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
-				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));
+
+  wndclass.hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
+  lptw->hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szTextClass;
   RegisterClass (&wndclass);
-
 
   wndclass.style = CS_HREDRAW | CS_VREDRAW;
   wndclass.lpfnWndProc = WndParentProc;
@@ -93,7 +99,7 @@ static void CreateTextClass (LPTW lptw)
     wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
 
   wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
-  wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH);
+  wndclass.hbrBackground = CreateSolidBrush (GetConsoleColorWindow());
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szParentClass;
   RegisterClass (&wndclass);
@@ -107,7 +113,11 @@ EXPORT int WINAPI TextInit (LPTW lptw)
   RECT rect;
   HMENU sysmenu;
   HGLOBAL hglobal;
-  
+
+  SetConsoleColorWindow(GetSysColor (COLOR_WINDOW));
+  SetConsoleColorWindowText(GetSysColor (COLOR_WINDOWTEXT));
+  SetConsoleColorHighlight(GetSysColor (COLOR_HIGHLIGHT));
+  SetConsoleColorHighlightText(GetSysColor (COLOR_HIGHLIGHTTEXT));
 
   ReadTextIni (lptw);
 
@@ -313,16 +323,9 @@ void UpdateText (LPTW lptw, int count)
   xpos = lptw->CursorPos.x * lptw->CharSize.x - lptw->ScrollPos.x;
   ypos = lptw->CursorPos.y * lptw->CharSize.y - lptw->ScrollPos.y;
   hdc = GetDC (lptw->hWndText);
-  if (lptw->bSysColors)
-    {
-      SetTextColor (hdc, GetSysColor (COLOR_WINDOWTEXT));
-      SetBkColor (hdc, GetSysColor (COLOR_WINDOW));
-    }
-  else
-    {
-      SetTextColor (hdc, TextFore (lptw->Attr));
-      SetBkColor (hdc, TextBack (lptw->Attr));
-    }
+  
+  SetTextColor (hdc, GetConsoleColorWindowText());
+  SetBkColor (hdc, GetConsoleColorWindow());
 
   SelectFont (hdc, lptw->hfont);
   TextOut (hdc, xpos, ypos,
@@ -513,14 +516,11 @@ void DoLine(LPTW lptw, HDC hdc, int xpos, int ypos, int offset, int count)
 			num--;
 			pa++;
 		}
-		if (lptw->bSysColors) {
-		    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-		    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
-		}
-		else {
-		    SetTextColor(hdc, TextFore(attr));
-		    SetBkColor(hdc, TextBack(attr));
-		}
+
+		SetTextColor(hdc, GetConsoleColorWindowText());
+		SetBkColor(hdc, GetConsoleColorWindow());
+		
+
 		TextOut(hdc,xpos,ypos, (LPSTR)(lptw->ScreenBuffer + offset + idx),
 			count-num-idx);
 		xpos += lptw->CharSize.x * (count-num-idx);
@@ -537,16 +537,10 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
   offset = lptw->ScreenSize.x * pt.y + pt.x;
   hdc = GetDC (lptw->hWndText);
   SelectFont (hdc, lptw->hfont);
-  if (lptw->bSysColors)
-    {
-      SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-      SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-    }
-  else
-    {
-      SetTextColor (hdc, MARKFORE);
-      SetBkColor (hdc, MARKBACK);
-    }
+  
+  SetTextColor (hdc, GetConsoleColorHighlightText());
+  SetBkColor (hdc, GetConsoleColorHighlight());
+  
   while (pt.y < end.y)
     {
       /* multiple lines */
@@ -558,16 +552,11 @@ void DoMark (LPTW lptw, POINT pt, POINT end, BOOL mark)
       else
 	{
 	  DoLine (lptw, hdc, xpos, ypos, offset, count);
-	  if (lptw->bSysColors)
-	    {
-	      SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-	      SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-	    }
-	  else
-	    {
-	      SetTextColor (hdc, MARKFORE);
-	      SetBkColor (hdc, MARKBACK);
-	    }
+	  
+	  SetTextColor (hdc,GetConsoleColorHighlightText());
+	  SetBkColor (hdc,GetConsoleColorHighlight());
+	  
+	  
 	}
       offset += count;
       pt.y++;
@@ -846,6 +835,15 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 		case WM_PAINT:
 		{
 			hdc = BeginPaint (hwnd, &ps);
+			{
+				HBRUSH hbrush;
+				GetClientRect (hwnd, &rect);
+				hbrush = CreateSolidBrush (GetConsoleColorWindow());
+				FillRect (hdc, &rect, hbrush);
+				DeleteBrush (hbrush);
+			}
+
+
 			if (lptw->ButtonHeight)
 			{
 				HPEN hPen,hPenOld; 
@@ -1504,10 +1502,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	    return 0;
 	  case M_SYSCOLORS:
 	    lptw->bSysColors = !lptw->bSysColors;
-	    if (lptw->bSysColors)
+	    /*if (lptw->bSysColors)
 	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_CHECKED);
 	    else
-	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_UNCHECKED);
+	      CheckMenuItem (lptw->hPopMenu, M_SYSCOLORS, MF_BYCOMMAND | MF_UNCHECKED);*/
 	    SendMessage (hwnd, WM_SYSCOLORCHANGE, (WPARAM) 0, (LPARAM) 0);
 	    InvalidateRect (hwnd, (LPRECT) NULL, 1);
 	    UpdateWindow (hwnd);
@@ -1571,8 +1569,10 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
       return (0);
     case WM_SYSCOLORCHANGE:
       DeleteBrush (lptw->hbrBackground);
-      lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
+      /*lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
 				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));
+				*/
+	  lptw->hbrBackground =  CreateSolidBrush (GetConsoleColorWindow());
       return (0);
     case WM_ERASEBKGND:
       return (1);		/* we will erase it ourselves */
@@ -1585,7 +1585,15 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 
 	
 	hdc = BeginPaint (hwnd, &ps);
-	if (ps.fErase)  FillRect (hdc, &ps.rcPaint, lptw->hbrBackground);
+	if (ps.fErase)
+	{
+		//FillRect (hdc, &ps.rcPaint, lptw->hbrBackground);
+	//	FillRect (hdc, &ps.rcPaint, CreateSolidBrush (GetSysColor (COLOR_WINDOW));
+		
+	}
+    FillRect (hdc, &ps.rcPaint, CreateSolidBrush (GetConsoleColorWindow())); 
+	
+
 	SelectFont (hdc, lptw->hfont);
 	SetMapMode (hdc, MM_TEXT);
 	SetBkMode (hdc, OPAQUE);
@@ -1646,16 +1654,9 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		count = end - start;
 		if ((count > 0) && (offset < width.x))
 		  {
-		    if (lptw->bSysColors)
-		      {
-			SetTextColor (hdc, GetSysColor (COLOR_HIGHLIGHTTEXT));
-			SetBkColor (hdc, GetSysColor (COLOR_HIGHLIGHT));
-		      }
-		    else
-		      {
-			SetTextColor (hdc, MARKFORE);
-			SetBkColor (hdc, MARKBACK);
-		      }
+			SetTextColor (hdc, GetConsoleColorHighlight());
+			SetBkColor (hdc, GetConsoleColorHighlightText());
+
 		    TextOut (hdc, dest.x + lptw->CharSize.x * offset, dest.y,
 			     (LPSTR) (lptw->ScreenBuffer + source.y * lptw->ScreenSize.x
 				      + source.x + offset), count);
@@ -1896,14 +1897,10 @@ POINT pt;
 	xpos = lptw->CursorPos.x*lptw->CharSize.x - lptw->ScrollPos.x;
 	ypos = lptw->CursorPos.y*lptw->CharSize.y - lptw->ScrollPos.y;
 	hdc = GetDC(lptw->hWndText);
-	if (lptw->bSysColors) {
-	    SetTextColor(hdc, GetSysColor(COLOR_WINDOWTEXT));
-	    SetBkColor(hdc, GetSysColor(COLOR_WINDOW));
-	}
-	else {
-	    SetTextColor(hdc, TextFore(lptw->Attr));
-	    SetBkColor(hdc, TextBack(lptw->Attr));
-	}
+	
+	SetTextColor(hdc,GetConsoleColorWindowText());
+	SetBkColor(hdc, GetConsoleColorWindow());
+	
 	SelectObject(hdc, (lptw->hfont));
 	TextOut(hdc,xpos,ypos,
 		(LPSTR)(lptw->ScreenBuffer + lptw->CursorPos.y*lptw->ScreenSize.x + 
@@ -3340,5 +3337,45 @@ void DisableToolBar(LPTW lptw)
 			ShowWindow( lptw->lpmw->hButton[i] , SW_HIDE );
 		}
 	}
+}
+/*-----------------------------------------------------------------------------------*/
+void SetConsoleColorWindow(DWORD rgb)
+{
+	Color_Window=rgb;
+}
+/*-----------------------------------------------------------------------------------*/
+void SetConsoleColorWindowText(DWORD rgb)
+{
+	Color_Window_Text=rgb;
+}
+/*-----------------------------------------------------------------------------------*/
+void SetConsoleColorHighlight(DWORD rgb)
+{
+	Color_Highlight=rgb;
+}
+/*-----------------------------------------------------------------------------------*/
+void SetConsoleColorHighlightText(DWORD rgb)
+{
+	Color_Highlight_Text=rgb;
+}
+/*-----------------------------------------------------------------------------------*/
+DWORD GetConsoleColorWindow(void)
+{
+	return Color_Window;
+}
+/*-----------------------------------------------------------------------------------*/
+DWORD GetConsoleColorWindowText(void)
+{
+	return Color_Window_Text;
+}
+/*-----------------------------------------------------------------------------------*/
+DWORD GetConsoleColorHighlight(void)
+{
+	return Color_Highlight;
+}
+/*-----------------------------------------------------------------------------------*/
+DWORD GetConsoleColorHighlightText(void)
+{
+	return Color_Highlight_Text;
 }
 /*-----------------------------------------------------------------------------------*/

@@ -75,37 +75,6 @@
 #define MAXSTR 256
 
 #define NOTEXT 0xF0
-#define MARKFORE RGB(255,255,255)
-#define MARKBACK RGB(0,0,128)
-#define TextFore(attr) TextColorTable[(attr) & 15]
-#define TextBack(attr) TextColorTable[(attr>>4) & 15]
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Les Variables Globales */
-/*-----------------------------------------------------------------------------------*/
-
-
-static COLORREF TextColorTable[16] =
-{
-  RGB (0, 0, 0),		/* black */
-  RGB (0, 0, 128),		/* dark blue */
-  RGB (0, 128, 0),		/* dark green */
-  RGB (0, 128, 128),		/* dark cyan */
-  RGB (128, 0, 0),		/* dark red */
-  RGB (128, 0, 128),		/* dark magenta */
-  RGB (128, 128, 0),		/* dark yellow */
-  RGB (128, 128, 128),		/* dark grey */
-  RGB (192, 192, 192),		/* light grey */
-  RGB (0, 0, 255),		/* blue */
-  RGB (0, 255, 0),		/* green */
-  RGB (0, 255, 255),		/* cyan */
-  RGB (255, 0, 0),		/* red */
-  RGB (255, 0, 255),		/* magenta */
-  RGB (255, 255, 0),		/* yellow */
-  RGB (255, 255, 255),		/* white */
-};
-
 
 /*-----------------------------------------------------------------------------------*/
 /* Les Fonctions */
@@ -229,4 +198,16 @@ void EnableMenus(LPTW lptw);
 void DisableMenus(LPTW lptw);
 void EnableToolBar(LPTW lptw);
 void DisableToolBar(LPTW lptw);
+/*--------------------------*/
+void SetConsoleColorWindow(DWORD rgb);
+void SetConsoleColorWindowText(DWORD rgb);
+void SetConsoleColorHighlight(DWORD rgb);
+void SetConsoleColorHighlightText(DWORD rgb);
+/*--------------------------*/
+DWORD GetConsoleColorWindow(void);
+DWORD GetConsoleColorWindowText(void);
+DWORD GetConsoleColorHighlight(void);
+DWORD GetConsoleColorHighlightText(void);
+/*--------------------------*/
+
 #endif /*  __WTEXT_H__ */
