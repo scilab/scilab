@@ -49,7 +49,7 @@ extern void GViewportResize __PARAMS((struct BCG *ScilabXgc, int *width,int *hei
 /** jpc_Xloop.c **/
 extern integer C2F(ismenu) __PARAMS((void));
 extern int C2F(getmen) __PARAMS((char *btn_cmd,integer *lb,integer *entry));
-
+extern  integer C2F(sxevents)();
 extern void DisplayInit __PARAMS((char *string,Display **dpy,Widget *toplevel));
 extern void MenuFixCurrentWin __PARAMS(( int ivalue));
 
@@ -459,15 +459,11 @@ extern void set_wait_click(int val);
 
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
-  int nowin;
   Window CW;
-  XEvent event;
   int buttons = 0;
   integer i,win;
   integer wincount;
   integer lstr ;
-  KeySym keysym;
-  static XComposeStatus compose_status = {NULL, 0};
   struct timeval delay; /* usec, to slow down event loop */
 
   wincount =  GetWinsMaxId()+1;
@@ -585,7 +581,6 @@ void C2F(xgetmouse)(char *str, integer *ibutton, integer *x1, integer *yy1, inte
 
 void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int getmouse, int getrelease, int dyn_men, char *str, integer *lstr)
 {
-  XEvent event;
   integer buttons = 0,win;
   struct timeval delay; /* usec, to slow down event loop */
   delay.tv_sec = 0; delay.tv_usec = 10;
@@ -1911,7 +1906,7 @@ extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a)
 {
   int m;
   /* 2 colors reserved for black and white */
-  if (*v2 != 3 || *v1 < 0 || *v1 > maxcol - 2) {
+  if (*v2 != 3 || *v1 < 0 || *v1 >(int) maxcol - 2) {
     sciprint("Colormap must be a m x 3 array with m <= %ld, previous one kept\r\n",maxcol-2);
     return;
   }
