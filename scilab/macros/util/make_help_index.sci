@@ -10,7 +10,7 @@ function path=make_help_index()
 	 "    <title>Index</title>";
 	 "</head>";
 	 "<body bgcolor=""FFFFFF"">";
-	 "<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
+	 "<BR><A HREF=""file:///"+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
 	 "</body></html>"]
   mputl(i_lines,path)
 endfunction
