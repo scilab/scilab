@@ -253,16 +253,37 @@ function tkged()
     case "Axes"
     TK_SetVar("xlabel",h.x_label.text)
     TK_SetVar("ylabel",h.y_label.text)
+    TK_SetVar("zlabel",h.z_label.text)
+    TK_SetVar("xlabel_foreground",string(h.x_label.foreground))
+    TK_SetVar("ylabel_foreground",string(h.y_label.foreground))
+    TK_SetVar("zlabel_foreground",string(h.z_label.foreground))
+    TK_SetVar("titlelabel_foreground",string(h.title.foreground))
+    TK_SetVar("xlabel_fontsize",string(h.x_label.font_size))
+    TK_SetVar("ylabel_fontsize",string(h.y_label.font_size))
+    TK_SetVar("zlabel_fontsize",string(h.z_label.font_size))
+    TK_SetVar("titlelabel_fontsize",string(h.title.font_size))
     TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
-    TK_SetVar("curcolor",string(h.foreground))
+    TK_SetVar("fcolor",string(h.foreground))
+    TK_SetVar("bcolor",string(h.background))
     TK_SetVar("curthick",string(h.thickness))
     TK_SetVar("curvis",h.visible)
     TK_SetVar("curfontsize",string(h.font_size))
     TK_SetVar("visToggle",h.axes_visible)
     TK_SetVar("limToggle",h.tight_limits)
+    TK_SetVar("isoToggle",h.isoview)
+    TK_SetVar("cubToggle",h.cube_scaling)
+    TK_SetVar("viewToggle",h.view)
     TK_SetVar("boxToggle",h.box)
     TK_SetVar("xToggle",part(h.log_flags,1))
     TK_SetVar("yToggle",part(h.log_flags,2))
+    TK_SetVar("xGrid",string(h.grid(1)))
+    TK_SetVar("yGrid",string(h.grid(2)))
+    select h.view
+     case "2d"
+    TK_SetVar("zGrid","-1")
+     case "3d"
+    TK_SetVar("zGrid",string(h.grid(3)))
+   end
     TK_EvalFile(SCI+'/tcl/ged/Axes.tcl')
   end
 endfunction
@@ -286,3 +307,65 @@ function setFontStyle(ftn)
 		   "Helvetica Bold Italic"])-1
 endfunction
 
+
+function setLabelsFontStyle(label,ftn)
+  
+select label
+case "t"
+  global h;
+  h.title.font_style=find(ftn==["Courier" "Symbol" "Times",..
+		    "Times Italic" "Times Bold" "Times Bold Italic",..
+		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
+		   "Helvetica Bold Italic"])-1
+case "x"
+  global h;
+  h.x_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
+		    "Times Italic" "Times Bold" "Times Bold Italic",..
+		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
+		   "Helvetica Bold Italic"])-1
+case "y"
+  global h;
+  h.y_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
+		    "Times Italic" "Times Bold" "Times Bold Italic",..
+		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
+		   "Helvetica Bold Italic"])-1
+case "z"
+  global h;
+  h.z_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
+		    "Times Italic" "Times Bold" "Times Bold Italic",..
+		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
+		   "Helvetica Bold Italic"])-1
+end;
+endfunction
+
+
+
+
+
+
+function Grid2d3d(axe,h,index)
+
+select axe
+case "x"
+  if h.view == '2d' then 
+   h.grid=[index , h.grid(2) ]; 
+  else 
+   h.grid=[index , h.grid(2) , h.grid(3)]; 
+  end;
+
+case "y"
+  if h.view == '2d' then 
+   h.grid=[h.grid(1), index ]; 
+  else 
+   h.grid=[h.grid(1), index, h.grid(3)]; 
+  end;
+
+case "z"
+  if h.view == '2d' then 
+   disp "Error: Should be in 3D Mode first"
+  else 
+   h.grid=[h.grid(1), h.grid(2), index]; 
+  end;
+end
+
+endfunction
