@@ -18,11 +18,12 @@ extern void  reset_scig_click_handler (void);
 extern void  reset_scig_deletegwin_handler (void);
 extern void  reset_scig_command_handler (void);
 
+/* 
 typedef int (*Scig_click_handler) (int,int,int,int,int,int);
 extern Scig_click_handler set_scig_click_handler (Scig_click_handler f);
-
 typedef void (*Scig_deletegwin_handler) (int);
 extern Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
+*/
 
 extern int PushClickQueue (int,int ,int y,int ibut,int m,int r);
 extern int CheckClickQueue  (integer *,integer *x, integer *y, integer *ibut);  
