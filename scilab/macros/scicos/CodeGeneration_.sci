@@ -97,13 +97,10 @@ function Code=make_ddoit1()
 	 '  /* Function Body */ '; 
 	 '  kiwa = 0; '];
  //////////////////////////////////////////////////
-  if  szclkIN>=1 then
-    pointi=clkptr(howclk)-1;
-    Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
-  else
-    pointi=clkptr(howclk)
-    Code($+1)='  pointi='+string(pointi)+';';
-  end
+  
+  pointi=clkptr(howclk)-1;
+  Code($+1)='  pointi='+string(pointi)+'+ totalnevprt;';
+  
   Code=[Code;
 	'  tevts[pointi-1]=*told;'];
 
@@ -1601,8 +1598,9 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
     end
   elseif szclkIN==[]  then
     //superblock has no Event input, add a fictious clock
-    bllst($+1)=scicos_model(sim=list('bidon',1),evtout=1,..
-			    firing=0,blocktype='d',dep_ut=[%f %f])
+    output=ones((2^(size(cap,'*')))-1,1)
+    bllst($+1)=scicos_model(sim=list('bidon',1),evtout=output,..
+			    firing=-output,blocktype='d',dep_ut=[%f %f])
     corinv(size(bllst))=size(bllst)+1;
     howclk=size(bllst);
   elseif szclkIN==1  then
@@ -1640,16 +1638,27 @@ if ok==%f then message('Sorry: problem in the pre-compilation step.'),return, en
   //**************************************************
   // nouveau clkconnect avec liaisons sur les capteurs
   //**************************************************
-
-  for i=1:size(cap,1)
+  n=size(cap,1)
+  for i=1:n
     if szclkIN>1 then
       for j=1:(2^szclkIN)-1
 	clkconnect=[clkconnect;[howclk j cap(i) 1]];
       end	
-    else
+    elseif szclkIN==1 then
       clkconnect=[clkconnect;[howclk 1 cap(i) 1]];
     end
   end
+  // codage de l'activation des capteurs dans le cas de l'heritage
+  
+  for i=1:2^n-1
+    vec=codebinaire(i,n);
+    for j=1:n
+      if (vec(j)==1) then
+         clkconnect=[clkconnect;[howclk i cap(j) 1]];
+      end
+    end
+  end
+
 Code_gene_run=[];
 %windo=xget('window')
 
