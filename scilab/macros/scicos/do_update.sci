@@ -39,6 +39,8 @@ case 1 then // parameter changes and/or port sizes changes
   if ok then
     %cpr.sim('lnkptr')=lnkptrcomp(bllst,sim('inpptr'),sim('outptr'),..
 	sim('inplnk'),sim('outlnk'))
+    %cpr.state('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
+    %state0('outtb')=0*ones(%cpr.sim('lnkptr')($)-1,1)
     needcompile=0
   end
 case 2 then // partial recompilation

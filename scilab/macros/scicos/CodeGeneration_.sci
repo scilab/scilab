@@ -29,14 +29,11 @@ function  CodeGeneration_()
       edited=%t;
       needcompile=4
       Cmenu='Replot';
-      break
     else
       Cmenu='Open/Set' 
-      break
     end     
   else
     message('Generation Code only work for a Superblock ! ')
-    break
   end
 endfunction
 

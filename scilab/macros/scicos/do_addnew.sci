@@ -32,8 +32,10 @@ function [scs_m,fct]=do_addnew(scs_m)
       return
     end 
     file('close',u)
-    fct=path
     if ~exists(name) then message(name+' is not defined in this file'),return,end
+    fct=path
+  else
+    fct=emptystr()
   end
 
   //define the block
