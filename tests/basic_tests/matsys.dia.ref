@@ -433,11 +433,11 @@ errclear();errcatch()
  
 [typs,nams]=typename();
  
-if or(typs<>[1;2;4;5;6;7;8;10;11;13;14;15;16;17;128;129]) then bugmes();quit;end
+if or(typs<>[1;2;4;5;6;7;8;10;11;13;14;15;16;17;128;129;130]) then bugmes();quit;end
  
  
 if or(nams<>['s';'p';'b';'sp';'spb';'msp';'i';'c';'m';'mc';
-  'f';'l';'tl';'ml';'ptr';'ip'])  then bugmes();quit;end
+  'f';'l';'tl';'ml';'ptr';'ip';'fptr'])  then bugmes();quit;end
  
 typename('mytype',1024)
  

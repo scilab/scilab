@@ -219,10 +219,10 @@ errclear();errcatch()
 
 //typename
 [typs,nams]=typename();
-if or(typs<>[1;2;4;5;6;7;8;10;11;13;14;15;16;17;128;129]) then pause,end
+if or(typs<>[1;2;4;5;6;7;8;10;11;13;14;15;16;17;128;129;130]) then pause,end
 
 if or(nams<>['s';'p';'b';'sp';'spb';'msp';'i';'c';'m';'mc';
-  'f';'l';'tl';'ml';'ptr';'ip'])  then pause,end
+  'f';'l';'tl';'ml';'ptr';'ip';'fptr'])  then pause,end
 typename('mytype',1024)
 [typs,nams]=typename();
 if typs($)<>1024|nams($)<>'mytype'  then pause,end
