@@ -17,7 +17,7 @@ function tests=testslist()
 	   'algebra.tst'
 	   'saveload.tst';
 	   'arma.tst';
-	   'auto.tst';
+	   
 	   'basiclink.tst';
 	   'binary.tst';
 	   'breakpoints.tst';
@@ -59,8 +59,10 @@ function tests=testslist()
 	   'sprintf.tst';
 	   'sscanf.tst';
 	   'slicot.tst';
-	   'scicos.tst' 
-	   'fptr.tst'];
+	   'fptr.tst';
+	   'scicos.tst';
+	   'auto.tst'
+	   ];
 
 if MSDOS then
   comp_target = getenv('COMPILER','NO');
