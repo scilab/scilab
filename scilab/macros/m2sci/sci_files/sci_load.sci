@@ -16,7 +16,7 @@ if rhs<=0 then
 end
 
 for k=1:rhs
-  if tree.rhs(k).value=="-regexp" then
+  if typeof(tree.rhs(k))=="cste" & tree.rhs(k).value=="-regexp" then
     set_infos(["Option -regexp not yet handled: ignored"],2);
   end
 end
