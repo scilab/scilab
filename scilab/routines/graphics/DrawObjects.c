@@ -24,6 +24,7 @@
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 
+extern int GetScreenDPI(int *ixres, int *iyres);
 extern double C2F(dsort)();/*DJ.A merge*/ 
 
 int xinitxend_flag;
@@ -8188,7 +8189,8 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   int tabulated_marksize[] = {8,10,12,14,18,24}; /* {3,5,7,9,11,13}; */
 
   integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
-  
+  int ixres, iyres;
+    
   int pixel_offset = CheckPixelStatus();
   
   linestyle[0] = 1;
@@ -8205,9 +8207,11 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 
   /* size is specified in 'points' */
   /* we draw in pixel */
-  /* Here is a size conversion provided we have dpi == 75 */
-
-  size = size * (75/72);
+  /* We get the DPIs value : only the x DPI is used here : */
+  /* we assum we have a square pixel (i.e. xDPI == yDPI or almost) */
+  GetScreenDPI(&ixres,&iyres);
+  
+  size = size * (ixres/72);
 
   C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
 	    &v, &dv, &dv, &dv, &dv, 5L, 4096);
