@@ -10,7 +10,7 @@ if with_tk() then
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
-    TK_EvalStr("scipad eval {source '+SCI+'/tcl/scipad.tcl}")
+    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
   else
     if TK_GetVar("isscipadinterp")=='0' then   
       TK_EvalStr("interp create scipad")
@@ -18,7 +18,7 @@ if with_tk() then
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
-    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
+    TK_EvalStr("scipad eval {source '+SCI+'/tcl/scipad.tcl}")
 
   end
 else
