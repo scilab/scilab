@@ -9,7 +9,6 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
 	$(SCIDIR)/libs/sun.a $(SCIDIR)/libs/gd.a  \
         $(SCIDIR)/libs/intersci.a  $(SCIDIR)/libs/xsci.a \
 	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
-        $(SCIDIR)/libs/libcomm.a $(SCIDIR)/libs/comm.a \
 	$(SCIDIR)/libs/sound.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \
         $(SCIDIR)/libs/blas.a  $(SCIDIR)/libs/int.a \
 	$(SCIDIR)/libs/pvm.a  $(SCIDIR)/libs/tksci.a

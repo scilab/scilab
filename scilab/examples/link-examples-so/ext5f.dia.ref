@@ -32,8 +32,6 @@ ilib_for_link(link_name,files,libs,flag);
 exec loader.sce;
 shared archive loaded
 
-Linking ext5f 
-
 Link done
 
  

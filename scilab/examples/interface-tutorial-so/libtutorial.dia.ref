@@ -3,10 +3,6 @@ tutorial_path=get_file_path('libtutorial.tst');
  
 shared archive loaded
 
-Linking libtutorial 
-
-Interface 0 libtutorial
-
  
 //same as "exec tutorial.sce"
  

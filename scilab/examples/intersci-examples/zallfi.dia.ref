@@ -102,10 +102,6 @@ files=G_make([ifile,ufiles],'zallfi.dll');
 !calc9        !
 shared archive loaded
 
-Linking zallfi 
-
-Interface 0 zallfi
-
  
 //Run Scilab functions:
  

@@ -1,10 +1,6 @@
  
 shared archive loaded
 
-Linking examples_gateway 
-
-Interface 0 examples_gateway
-
  
 a=1:10;b=a+1;c=ones(2,3)+2;
  
@@ -377,8 +373,6 @@ if ~c_link('f3c') then
   link(files,'f3c','C') ;
 shared archive loaded
 
-Linking f3c 
-
 Link done
 
 end
@@ -672,8 +666,6 @@ if ~c_link('f3f') then
   files=G_make(['f3f.o'],'f3f.dll');
   link(files,'f3f','f') ;
 shared archive loaded
-
-Linking f3f 
 
 Link done
 

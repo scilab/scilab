@@ -9,10 +9,6 @@ Link done
 
 shared archive loaded
 
-Linking libmex 
-
-Interface 0 libmex
-
  
  
 if f1(89)<>89+2 then bugmes();quit;end

@@ -34,10 +34,6 @@ ilib_for_link(link_name,files,libs,flag);
 exec loader.sce;
 shared archive loaded
 
-Linking ext13if 
-
-Linking ext13of 
-
 Link done
 
  

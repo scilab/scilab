@@ -3,10 +3,6 @@ tutorial_path=get_file_path('libtutorial.tst');
  
 shared archive loaded
 
-Linking libexamples 
-
-Interface 0 libexamples
-
  
  
  
@@ -1025,10 +1021,9 @@ if ~c_link('f3c') then
    generate a loader file
    generate a Makefile: Makelib
    running the makefile
+   compilation of f3c
   exec f3cloader.sce;
 shared archive loaded
-
-Linking f3c 
 
 Link done
 
@@ -1108,10 +1103,9 @@ if ~c_link('f3f') then
    generate a loader file
    generate a Makefile: Makelib
    running the makefile
+   compilation of f3f
   exec f3floader.sce;
 shared archive loaded
-
-Linking f3f 
 
 Link done
 

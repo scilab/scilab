@@ -38,7 +38,7 @@ clean::
 		$(MAKE) $(MFLAGS) clean); \
 	done
 
-TEST_SUBDIRS = $(SUBDIRS1) 
+TEST_SUBDIRS = $(SUBDIRS1) $(SUBDIRS2) 
 
 tests::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \

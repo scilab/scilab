@@ -4,4 +4,4 @@ libtutorial_path=get_file_path('loader.sce');
 functions=[ 'view';
             'matmul';
 ];
-addinter(libtutorial_path+'/libtutorial.dll','libtutorial',functions);
+addinter(libtutorial_path+'/libtutorial.so','libtutorial',functions);

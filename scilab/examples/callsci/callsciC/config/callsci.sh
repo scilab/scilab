@@ -1,6 +1,6 @@
 #!/bin/sh
 if test "$PRINTERS" = ""; then
-  PRINTERS="lp:LaserHP:SalleBal:Secretariat:ColorPS:Color12"
+  PRINTERS="lp"
 fi
 #############################################################################
 #                                                                           #
@@ -20,7 +20,7 @@ if test "$MANCHAPTERS" = ""; then
 fi
 export  MANCHAPTERS
 export PRINTERS
-VERSION="Scilab-2.4"
+VERSION="Scilab-2.7"
 export VERSION
 
 PVM_ROOT=$SCI/pvm3
@@ -36,10 +36,6 @@ do_callsci()
     export PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
-    XLESSHELPFILE=$SCI/X11_defaults/xless.help
-    export XLESSHELPFILE
-    NETHELPDIR=$SCI/X11_defaults
-    export NETHELPDIR
     tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
     ./callsci $* 
 }

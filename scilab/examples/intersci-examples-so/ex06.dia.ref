@@ -51,10 +51,6 @@ ilib_build(ilib_name,table,files,libs);
 exec loader.sce;
 shared archive loaded
 
-Linking libex06fi 
-
-Interface 0 libex06fi
-
  
  
  

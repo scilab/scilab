@@ -1,10 +1,6 @@
  
 shared archive loaded
 
-Linking lapackscilab_gateway 
-
-Interface 0 lapackscilab_gateway
-
  
 alfa=2;beta=3;m=3;n=4;C=ones(m,n);k=2;A=ones(m,k);B=ones(k,n);
  

@@ -38,10 +38,6 @@ libs  = [] ;
 exec loader.sce;
 shared archive loaded
 
-Linking libex01fi 
-
-Interface 0 libex01fi
-
  
  
 //[4] test the loaded function

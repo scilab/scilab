@@ -60,10 +60,6 @@ ilib_build(ilib_name,table,files,libs);
 exec loader.sce;
 shared archive loaded
 
-Linking libex15fi 
-
-Interface 0 libex15fi
-
  
  
 //[4] test the loaded function
