@@ -463,7 +463,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC JAVAC_PATH GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep WITH_SABCMD WITH_XSLTPROC RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os WITH_GCC WITH_G77 ICC IFC CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB STRIP ac_ct_STRIP CPP CXX CXXFLAGS ac_ct_CXX CXXCPP F77 FFLAGS ac_ct_F77 LIBTOOL F2C FLIBS X_CFLAGS X_PRE_LIBS X_LIBS X_EXTRA_LIBS WITH_JAVAC _ACJNI_JAVAC GTK_CONFIG GNOME_CONFIG PKG_CONFIG with_ocamlc with_ocamlopt with_ocamldep WITH_SABCMD WITH_XSLTPROC RM AR_FLAGS FILES_TO_CLEAN CC_OPTIONS CC_LDFLAGS CC_PICFLAGS FC FC_OPTIONS FC_OPTIONS1 FC_OPTIONS2 FC_LDFLAGS FC_PICFLAGS LD LD_LDFLAGS SCILAB_GS SCILABSCRIPT FGETARG GETARG HPPA_OLD DLDLIB DLD_SUBDIR XAWLIB XAW XMULIB XAW_LOCAL_SUBDIR XAW_LOCAL_INCLUDES XAW_LOCAL_LIB GTKCFLAGS GTKLIBS GNOMECFLAGS TERMCAPLIB MAIN MAKEFILE_TARGET PERIFILE GUILIB GZVT XDRLIB XDRLIBNAME WINXFLAGS MENUSOBJS MALLOC PVMARCH PVMLIB PVMSCIDIR PVMSCILIB PVMGLIB PVMTARGET PVMROOT PVMROOTR PVMINST PVMINST1 PVMINCLUDE PVMHOSTERFILES PVMHOSTER TKBASE TK_INC_PATH TCL_INC_PATH TCLTK_LIBS TKSCILIB TKSCIDIR TK_MINOR_VERSION TK_MAJOR_VERSION NOINLINE WHICH_BLAS ATLAS_DIR IN_ATLAS OCAMLTARGET WITH_OCAML MANTARGET DLLTOOL LIBM LIBTOOL_DEPS NM OBJDUMP PACKAGE STATIC SCIVERSION FC_SUBDIR BLPR_SCRIPTS SED_CYGDRIVE F2C_SUBDIR EXAMPLES_TESTS IMPPREF IMPENV ZZLEDT HTMLFLAGS GTKPLUGBUG XXTXEXT XX11 PERIX11NOPT GETLIBTK MANGENERATOR TERM_NAME TERM_LDFLAGS JAVASCITARGET JAVA_INCL LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -24288,45 +24288,119 @@ fi
 
  if test "$WITH_JAVAC" = yes; then
     JAVASCITARGET=scilex-lib
-    # Extract the first word of "javac", so it can be a program name with args.
-set dummy javac; ac_word=$2
+    JAVAC=javac
+
+    JAVA_INCL=
+
+
+JNI_INCLUDE_DIRS=""
+
+test "x$JAVAC" = x && { { echo "$as_me:$LINENO: error: '$JAVAC' undefined" >&5
+echo "$as_me: error: '$JAVAC' undefined" >&2;}
+   { (exit 1); exit 1; }; }
+# Extract the first word of "$JAVAC", so it can be a program name with args.
+set dummy $JAVAC; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_JAVAC_PATH+set}" = set; then
+if test "${ac_cv_path__ACJNI_JAVAC+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  case $JAVAC_PATH in
+  case $_ACJNI_JAVAC in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_JAVAC_PATH="$JAVAC_PATH" # Let the user override the test with a path.
+  ac_cv_path__ACJNI_JAVAC="$_ACJNI_JAVAC" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in no
+for as_dir in $PATH
 do
   IFS=$as_save_IFS
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_JAVAC_PATH="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path__ACJNI_JAVAC="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_path_JAVAC_PATH" && ac_cv_path_JAVAC_PATH="yes"
+  test -z "$ac_cv_path__ACJNI_JAVAC" && ac_cv_path__ACJNI_JAVAC="no"
   ;;
 esac
 fi
-JAVAC_PATH=$ac_cv_path_JAVAC_PATH
+_ACJNI_JAVAC=$ac_cv_path__ACJNI_JAVAC
 
-if test -n "$JAVAC_PATH"; then
-  echo "$as_me:$LINENO: result: $JAVAC_PATH" >&5
-echo "${ECHO_T}$JAVAC_PATH" >&6
+if test -n "$_ACJNI_JAVAC"; then
+  echo "$as_me:$LINENO: result: $_ACJNI_JAVAC" >&5
+echo "${ECHO_T}$_ACJNI_JAVAC" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
+
+test "x$_ACJNI_JAVAC" = xno && { { echo "$as_me:$LINENO: error: $JAVAC could not be found in path" >&5
+echo "$as_me: error: $JAVAC could not be found in path" >&2;}
+   { (exit 1); exit 1; }; }
+
+
+# find the include directory relative to the javac executable
+_cur=""$_ACJNI_JAVAC""
+while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+        echo "$as_me:$LINENO: checking symlink for $_cur" >&5
+echo $ECHO_N "checking symlink for $_cur... $ECHO_C" >&6
+        _slink=`ls -ld "$_cur" | sed 's/.* -> //'`
+        case "$_slink" in
+        /*) _cur="$_slink";;
+        # 'X' avoids triggering unwanted echo options.
+        *) _cur=`echo "X$_cur" | sed -e 's/^X//' -e 's:[^/]*$::'`"$_slink";;
+        esac
+        echo "$as_me:$LINENO: result: $_cur" >&5
+echo "${ECHO_T}$_cur" >&6
+done
+_ACJNI_FOLLOWED="$_cur"
+
+_JTOPDIR=`echo "$_ACJNI_FOLLOWED" | sed -e 's://*:/:g' -e 's:/[^/]*$::'`
+case "$host_os" in
+        darwin*)        _JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
+                        _JINC="$_JTOPDIR/Headers";;
+        *)              _JINC="$_JTOPDIR/include";;
+esac
+if test -f "$_JINC/jni.h"; then
+        JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JINC"
+else
+        _JTOPDIR=`echo "$_JTOPDIR" | sed -e 's:/[^/]*$::'`
+        if test -f "$_JTOPDIR/include/jni.h"; then
+                JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include"
+        else
+                { { echo "$as_me:$LINENO: error: cannot find java include files" >&5
+echo "$as_me: error: cannot find java include files" >&2;}
+   { (exit 1); exit 1; }; }
+        fi
+fi
+
+# get the likely subdirectories for system specific java includes
+case "$host_os" in
+bsdi*)          _JNI_INC_SUBDIRS="bsdos";;
+linux*)         _JNI_INC_SUBDIRS="linux genunix";;
+osf*)           _JNI_INC_SUBDIRS="alpha";;
+solaris*)       _JNI_INC_SUBDIRS="solaris";;
+mingw*)			_JNI_INC_SUBDIRS="win32";;
+cygwin*)		_JNI_INC_SUBDIRS="win32";;
+*)              _JNI_INC_SUBDIRS="genunix";;
+esac
+
+# add any subdirectories that are present
+for JINCSUBDIR in $_JNI_INC_SUBDIRS
+do
+        if test -d "$_JTOPDIR/include/$JINCSUBDIR"; then
+                JNI_INCLUDE_DIRS="$JNI_INCLUDE_DIRS $_JTOPDIR/include/$JINCSUBDIR"
+        fi
+done
+
+    for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
+    do
+            JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
+    done
 
  else
     { echo "$as_me:$LINENO: WARNING: javac not found: I will not build the java interface" >&5
@@ -25617,7 +25691,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 25620 "configure"
+#line 25694 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -25907,7 +25981,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo "$as_me:$LINENO: checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later" >&5
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6
 cat > conftest.$ac_ext <<EOF
-#line 25910 "configure"
+#line 25984 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27263,7 +27337,7 @@ echo "$as_me: WARNING: Sablotron \"sabcmd\" or xmlto not found: I will not build
 
 
 
-                                                                                                                                                                                                                                                                                                                                ac_config_files="$ac_config_files Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile"
+                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile pvm3/Makefile.aimk pvm3/hoster/Makefile.aimk config/configuration macros/util/gettklib.sci macros/util/xmlfiletohtml.sci routines/gzvt2/Makefile routines/Javasci/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -27819,6 +27893,7 @@ do
   "macros/util/gettklib.sci" ) CONFIG_FILES="$CONFIG_FILES macros/util/gettklib.sci" ;;
   "macros/util/xmlfiletohtml.sci" ) CONFIG_FILES="$CONFIG_FILES macros/util/xmlfiletohtml.sci" ;;
   "routines/gzvt2/Makefile" ) CONFIG_FILES="$CONFIG_FILES routines/gzvt2/Makefile" ;;
+  "routines/Javasci/Makefile" ) CONFIG_FILES="$CONFIG_FILES routines/Javasci/Makefile" ;;
   "routines/machine.h" ) CONFIG_HEADERS="$CONFIG_HEADERS routines/machine.h" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
@@ -27948,7 +28023,7 @@ s,@X_PRE_LIBS@,$X_PRE_LIBS,;t t
 s,@X_LIBS@,$X_LIBS,;t t
 s,@X_EXTRA_LIBS@,$X_EXTRA_LIBS,;t t
 s,@WITH_JAVAC@,$WITH_JAVAC,;t t
-s,@JAVAC_PATH@,$JAVAC_PATH,;t t
+s,@_ACJNI_JAVAC@,$_ACJNI_JAVAC,;t t
 s,@GTK_CONFIG@,$GTK_CONFIG,;t t
 s,@GNOME_CONFIG@,$GNOME_CONFIG,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
@@ -28052,6 +28127,7 @@ s,@MANGENERATOR@,$MANGENERATOR,;t t
 s,@TERM_NAME@,$TERM_NAME,;t t
 s,@TERM_LDFLAGS@,$TERM_LDFLAGS,;t t
 s,@JAVASCITARGET@,$JAVASCITARGET,;t t
+s,@JAVA_INCL@,$JAVA_INCL,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF
