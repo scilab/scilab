@@ -1,7 +1,7 @@
-SCIDIR=../../
+
+include Path.incl 
 
 include $(SCIDIR)/Makefile.incl
-
 
 all	:: Makelib job 
 	cd lib ; make all
