@@ -1,6 +1,6 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 2001 Enpc/Jean-Philippe Chancelier
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
  --------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------
@@ -444,11 +444,16 @@ static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG 
     {
       info.ok =1 ;  info.win=  gc->CurWindow; info.x = 0 ;  info.y = 0;
       info.button = -100;
-      DeleteSGWin(gc->CurWindow);
+      C2F(deletewin)(&gc->CurWindow);
+      /* DeleteSGWin(gc->CurWindow); */
       gtk_main_quit();
     }
   else 
-    DeleteSGWin(gc->CurWindow);
+    {
+      C2F(deletewin)(&gc->CurWindow);
+      /* DeleteSGWin(gc->CurWindow); */
+    }
+
   return TRUE;
 }
 
