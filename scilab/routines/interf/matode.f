@@ -928,7 +928,13 @@ c form state output
       call icopy(hsize,istk(ils),1,istk(ile),1)
       ly=sadr(ile+hsize)
       nel=istk(ile+1)*istk(ile+2)
-      if(single) then
+      if(nn.eq.0) then
+         istk(ile)=1
+         istk(ile+1)=0
+         istk(ile+2)=0
+         istk(ile+3)=0
+         lstk(top+1)=sadr(ile+4)
+      elseif(single) then
          istk(ile+1)=istk(ile+1)+1
          istk(ile+2)=nn*istk(ile+2)
          inc=1
