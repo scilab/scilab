@@ -193,33 +193,40 @@ l=list(a,1/%s,g);l(2)('num')(1,2)=33;l(2)('den')(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then pause,end
 
 //test with field names not defined in the structure here row1 and row2
-deff('M=%to_e(varargin)',[
-'M=varargin($)'
-'select varargin(1)'
-'case ''row2'''
-'  M.N=M.N(2,:)'
-'  M.V=M.V(2,:)'
-'case ''row1'''
-'  M.N=M.N(1,:)'
-'  M.V=M.V(1,:)'
-'else'
-'  M.N=M.N(varargin(1:$-1))'
-'  M.V=M.V(varargin(1:$-1))'
-'end'])
 
-deff('M=%to_i_to(varargin)',[
-'M=varargin($);N=varargin($-1)'
-'select varargin(1)'
-'case ''row2'''
-'  M.N(2,:)=N.N'
-'  M.V(2,:)=N.V'
-'case ''row1'''
-'  M.N(1,:)=N.N'
-'  M.V(1,:)=N.V'
-'else'
-'  M.N(varargin(1:$-2))=N.N'
-'  M.V(varargin(1:$-2))=N.V'
-'end'])
+function M=%to_e(varargin)
+  M = varargin($),
+  select varargin(1)
+    case 'row2' then
+    M.N = M.N(2, eye())
+    M.V = M.V(2, eye())
+  case 'row1' then
+    M.N = M.N(1, eye())
+    M.V = M.V(1, eye())
+  else
+    M.N = M.N(varargin(1:$ - 1))
+    M.V = M.V(varargin(1:$ - 1))
+  end
+endfunction
+
+
+%to_E=%to_e
+
+function M=%to_i_to(varargin)
+  M=varargin($);N=varargin($-1)
+  select varargin(1)
+    case 'row2'
+    M.N(2,:)=N.N
+    M.V(2,:)=N.V
+    case 'row1'
+    M.N(1,:)=N.N
+    M.V(1,:)=N.V
+  else
+    M.N(varargin(1:$-2))=N.N
+    M.V(varargin(1:$-2))=N.V
+  end
+endfunction
+
 M=mlist(['to','V','N'],[1 2 3;4 5 6],['a','b','c';'d','e','f']);
 M.row1(2)=M.row2(1)
 l=list(1,M,2);
