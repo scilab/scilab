@@ -728,7 +728,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	    sciprint("root found at t=: %f\r\n",*told);
 	  }
 	  /*     .        update outputs affecting ztyp blocks */
-	  zdoit(W, xd, xd,told);
+	  zdoit(W, xd, x,told);
 	  /*     .        initialize mask */
 	  for (ib = 0; ib < ng; ++ib) {
 	    mask[ib] = 0;
@@ -775,19 +775,19 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 		    }
 		  } 
 		}
+	      }
 		/*     .              update state */
-		if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
-		    zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
-		    > 0) {
-		  /*     .              call corresponding block to update state */
-		  flag__ = 2;
-		  nclock = -kev;
-		  callf(told, xd, x, x,W,&flag__);
-			
-		  if (flag__ < 0) {
-		    *ierr = 5 - flag__;
-		    return;
-		  }
+	      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
+		  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
+		  > 0) {
+		/*     .              call corresponding block to update state */
+		flag__ = 2;
+		nclock = -kev;
+		callf(told, xd, x, x,W,&flag__);
+		
+		if (flag__ < 0) {
+		  *ierr = 5 - flag__;
+		  return;
 		}
 	      }
 	    }
@@ -1107,20 +1107,20 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 		    }
 		  }
 		}
-		/*     .              update state */
-		if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
-		    zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
-		    > 0) {
-		  /*     .              call corresponding block to update state */
-		  flag__ = 2;
-		  nclock = -kev;
-		  callf(told, xd, x, x,W,&flag__);
-		  if (flag__ < 0) {
-		    *ierr = 5 - flag__;
-		    return;
-		  }
+	      }
+	      /*     .              update state */
+	      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
+		  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
+		  > 0) {
+		/*     .              call corresponding block to update state */
+		flag__ = 2;
+		nclock = -kev;
+		callf(told, xd, x, x,W,&flag__);
+		if (flag__ < 0) {
+		  *ierr = 5 - flag__;
+		  return;
 		}
-	      }   
+	      }
 	    }
 	  }
 	}
