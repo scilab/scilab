@@ -9,17 +9,17 @@ if nv==0 then // no Argument by default
     if (HomeDirectory == 'ndef') then
       HomeDirectory=unix_g('cd; pwd');
     end
-    hometmp=HomeDirectory+'/.Scilab/'+getversion();
+    hometmp=HomeDirectory//+'/.Scilab/'+getversion();
   else // Windows
     homedrive=getenv('HOMEDRIVE','ndef');
     homepath=getenv('HOMEPATH','ndef');
     if ( (homedrive == 'ndef') | (homedrive == 'ndef') ) then // Windows 9x
       HomeDirectory=SCI;
-      hometmp=HomeDirectory+'\Scilab\'+getversion();
+      hometmp=HomeDirectory//+'\Scilab\'+getversion();
       hometmp=pathconvert(hometmp,%f,%f,'w');
     else
       HomeDirectory=homedrive+homepath; // Windows NT
-      hometmp=HomeDirectory+'\Scilab\'+getversion();
+      hometmp=HomeDirectory//+'\Scilab\'+getversion();
       hometmp=pathconvert(hometmp,%f,%f,'w');
     end
   end
