@@ -1,7 +1,6 @@
 function Type_tlist=Type(vtype,property)
 // Copyright INRIA
 // Create a new 'type' tlist for inference
-
 rhs=argn(2)
 if rhs<2 then
   Type_tlist=tlist(["type","vtype","property"],Unknown,Unknown)
@@ -14,10 +13,8 @@ end
 
 if typeof(property)=="list" then
   error("Type(): list of properties is not yet implemented !")
-else
-  if and(property~=[Real,Complex,Units]) & property~=Unknown then
-    error("Type(): wrong property "+string(property)+"!")
-  end
+elseif and(property~=[Real,Complex,Unknown]) then
+  error("Type(): wrong property "+string(property)+"!")   
 end  
 
 Type_tlist=tlist(["type","vtype","property"],vtype,property)
