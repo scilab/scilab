@@ -14,10 +14,12 @@ extern integer C2F (ismenu)(void);
 int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char ** argv)
 {
   int ns,ierr,seq;
+  char *command;
 #define arbitrary_max_queued_callbacks 20     /* what's the max number of commands in the queue ??*/
   char *comm[arbitrary_max_queued_callbacks];
   int   seqf[arbitrary_max_queued_callbacks];
   int nc,ncomm=-1;
+
   if (C2F(iop).ddt==-1) {/* trace for debugging */
     int argc=1;
     sciprint("TK_EvalScilabCmd %s",argv[1]);
@@ -26,19 +28,43 @@ int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char 
   }
 
   if (argv[1] != (char *)0) {
-    if (argv[2] != (char *)0 && strncmp(argv[2],"sync",4)==0) {
-      seq=(argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0);
-      ns=strlen(argv[1]); 
-      if (C2F(iop).ddt==-1) {
-        sciprint(" Execution starts for %s\r\n",argv[1]);
+
+    if (strlen(argv[1])>=bsiz) {
+      command = (char *) malloc (bsiz * sizeof (char));
+      if (command == (char *) 0)
+      {
+        sciprint ("TK_EvalScilabCmd: No more memory\r\n");
+        return TCL_ERROR;
       }
-      C2F(syncexec)(argv[1],&ns,&ierr,&seq);
+      memset(command,'\0',bsiz);
+      strncpy(command,argv[1],bsiz-1);
+      sciprint("Warning: ScilabEval command is too long and has been truncated to %d characters!\r\n",bsiz-1);
+    } else {
+      command = (char *) malloc ((strlen (argv[1]) + 1) * sizeof (char));
+      if (command == (char *) 0)
+      {
+        sciprint ("TK_EvalScilabCmd: No more memory\r\n");
+        return TCL_ERROR;
+      }
+      strcpy(command,argv[1]);
+    }
+
+    if (argv[2] != (char *)0 && strncmp(argv[2],"sync",4)==0) {
+      /* sync or sync seq */
+      seq=(argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0);
+      ns=strlen(command); 
       if (C2F(iop).ddt==-1) {
-        sciprint(" Execution ends for %s\r\n",argv[1]);
+        sciprint(" Execution starts for %s\r\n",command);
+      }
+      C2F(syncexec)(command,&ns,&ierr,&seq);
+      if (C2F(iop).ddt==-1) {
+        sciprint(" Execution ends for %s\r\n",command);
       }
       if (ierr != 0) return TCL_ERROR;
     }
-    else if (strncmp(argv[1],"flush",5)==0) {
+
+    else if (strncmp(command,"flush",5)==0) {
+      /* flush */
       if (C2F(iop).ddt==-1) {
         sciprint(" Flushing starts for queued commands\r\n");
       }
@@ -72,17 +98,23 @@ int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,char 
         sciprint(" Flushing ends\r\n");
       }
     }
+
     else {
-      StoreCommand(argv[1]); 
+      /* seq or no option */
+      StoreCommand(command); 
       if (argv[2] != (char *)0 && strncmp(argv[2],"seq",3)==0) {
         SetCommandflag(1);
-    }
-    else
+      }
+      else
+      /* unknown option */
       Tcl_SetResult(theinterp,NULL,NULL);
     }
-  } else {
+    free(command);
+
+  } else {    /* ScilabEval called without argument */
     Scierror(999,"ScilabEval: at least one argument is required\r\n");
   }
+
   return TCL_OK;
 }
 
