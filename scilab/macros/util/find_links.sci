@@ -16,7 +16,7 @@ function flag=find_links(filein,fileout)
       name=part(tt,[l1(1)+6:l2(1)-1])
       path=get_absolute_file_path(filein)+filein
       if length(name)<>0 then 
-	l=getlink(name,path)
+	l=getlink(name,path,filein)
       else
 	l="unknown";
       end
@@ -34,7 +34,7 @@ function flag=find_links(filein,fileout)
   flag = %t 
 endfunction
 
-function t=getlink(name,absolute_path)
+function t=getlink(name,absolute_path,path)
   global %helps
   name=stripblanks(name)
   if MSDOS then sep='\',else sep='/',end
@@ -69,7 +69,7 @@ function t=getlink(name,absolute_path)
     if man<>[] then break; end
   end
   if man==[] then
-    write(%io(2),"Bad LINK "+name+""" in this man");
+    write(%io(2),"Bad LINK """+name+""" in file "+path);
     t=[]
     return;
   end

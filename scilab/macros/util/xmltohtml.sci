@@ -167,7 +167,8 @@ function gener_whatis(title)
 	"  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 	"    <title>"+whatis_title+"</title>"
 	"</head>"
-	"<body bgcolor=""FFFFFF"">"];
+	"<body bgcolor=""#FFFFFF"">"
+        "<dl>"];
   
   l=0;
   for k1=1:size(xml,'*')  // loop on .xml files
@@ -187,11 +188,12 @@ function gener_whatis(title)
       i1=strindex(tt,">"); i2=strindex(tt,"<");
       desc=stripblanks(part(tt,i1(1)+1:i2(2)-1));
       l=l+1; fname=part(path,[1:length(path)-4])+".htm";
-      line(l)="<BR><A HREF="""+fname+""">"+name+"</A> - "+desc;
+      fname=strsubst(fname,'//','/');
+      line(l)="<dd><A HREF="""+fname+""">"+name+"</A> - "+desc+"</dd>";
       end
     end
   end
-  text = [head;gsort(line,'g','i');"</body></html>"];
+  text = [head;gsort(line,'g','i');"</dl></body></html>"];
   mputl(text,"whatis.htm");
 endfunction
 
@@ -214,7 +216,8 @@ function gener_index(dirs,txt)
 	"  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 	"    <title>Index</title>"
 	"</head>"
-	"<body bgcolor=""FFFFFF"">"];
+	"<body bgcolor=""#FFFFFF"">"
+        "<dl>"];
   l=size(line,'*')  
   // check for whatis 
 
@@ -225,9 +228,10 @@ function gener_index(dirs,txt)
       return 
     end 
     l=l+1;
-    line(l)="<BR><A HREF="""+w+""">"+txt(k)+"</A>"
+    w=strsubst(w,'//','/');
+    line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"
   end
-  line = [line;"</body></html>"]
+  line = [line;"</dl></body></html>"]
   mputl(line,"index.htm")
 endfunction 
 
@@ -332,7 +336,7 @@ function gener_contents(dirs1)
 	       "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
 	       "  <title>Scilab General Index</title>"
 	       "</head>"
-	       "<body bgcolor=""FFFFFF"">";
+	       "<body bgcolor=""#FFFFFF"">";
 	       title;
 	       full_whatis;
 	       "</body></html>"
