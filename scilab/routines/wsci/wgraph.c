@@ -1173,8 +1173,8 @@ EXPORT LRESULT CALLBACK
       SendMessage (textwin.hWndText, message, wParam, lParam);
       return (0);
     case WM_SETFOCUS:
-/** when focus is set in the graphic window we set it to scilab window **/
-    /*************** Matthieu PHILIPPE
+      /** when focus is set in the graphic window we set it to scilab window **/
+      /*************** Matthieu PHILIPPE
 	je retire cette fonction pour pouvoir recuperer
 	les evevenements clavier et les traiter !!
 	SendMessage(textwin.hWndText, message, wParam, lParam); 
@@ -1182,13 +1182,13 @@ EXPORT LRESULT CALLBACK
       SetFocus (ScilabGC->CWindow);
       return (0);
     case WM_KEYDOWN:
-      /*SendMessage(textwin.hWndText, message, wParam, lParam); */
+      SendMessage (ScilabGC->CWindow, message, wParam, lParam);
       return (0);
     case WM_CHAR:
       SendMessage (ScilabGC->CWindow, message, wParam, lParam);
       return (0);
     case WM_GETMINMAXINFO:
-/*** Eventuellement a changer XXXXXXX  **/
+      /*** Eventuellement a changer XXXXXXX  **/
       hdc = GetDC (hwnd);
       SelectFont (hdc, GetStockFont (OEM_FIXED_FONT));
       GetTextMetrics (hdc, (LPTEXTMETRIC) & tm);
@@ -1201,7 +1201,7 @@ EXPORT LRESULT CALLBACK
 	+ GetSystemMetrics (SM_CYCAPTION);
       return (0);
     case WM_SIZE:
-/** sciprint("Resising Parent"); **/
+      /** sciprint("Resising Parent"); **/
       GetWindowRect (ScilabGC->Statusbar, &rect);
       SetWindowPos (ScilabGC->Statusbar, (HWND) NULL, 0,
 		    HIWORD (lParam) - (rect.bottom - rect.top),
@@ -1223,7 +1223,7 @@ EXPORT LRESULT CALLBACK
 	}
       return (0);
     case WM_COMMAND:
-/** pass on menu commands */
+      /** pass on menu commands */
       if (IsWindow (ScilabGC->CWindow))
 	SetFocus (ScilabGC->CWindow);
       SendMessage (ScilabGC->CWindow, message, wParam, lParam);

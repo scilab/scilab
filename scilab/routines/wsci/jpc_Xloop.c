@@ -23,8 +23,7 @@ extern void flushTKEvents ();
 
 /** do I want a scilab or an xscilab (here it means Windows ) */
 
-int INXscilab = 0;
-		 /**  XXXX just to use zzledt1 **/
+int INXscilab = 0; /**  XXXX just to use zzledt1 **/
 
 void
 SetXsciOn ()
@@ -33,7 +32,6 @@ SetXsciOn ()
   INXscilab = 1;
 #ifdef WITH_TK
   inittk ();
-
 #endif
 }
 
@@ -48,8 +46,11 @@ int C2F (xscion) (int *i)
  * we also try to detect when CTRLC was  activated 
  *************************************************/
 
-extern int INXscilab;
 extern TW textwin;
+
+int  tcl_check_one_event(void) {
+  return Tcl_DoOneEvent ( TCL_DONT_WAIT);
+}
 
 void
 TextMessage1 (int ctrlflag)
@@ -61,21 +62,20 @@ TextMessage1 (int ctrlflag)
   while (PeekMessage (&msg, 0, 0, 0, PM_NOREMOVE))
     {
 #ifdef WITH_TK
-      if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
-	{
+      /* check for a tcl/tk event */
+      if (Tcl_DoOneEvent (TCL_ALL_EVENTS | TCL_DONT_WAIT) == 1) continue ;
 #endif
-	  PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
-	  if (ctrlflag == 1)
-	    CtrlCHit (&textwin);
-	  /** test if Modeless help exists **/
-	  /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	      {**/
-	  TranslateMessage (&msg);
-	  DispatchMessage (&msg);
-	  /** }**/
-#ifdef WITH_TK
-	}
-#endif
+      PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
+      /** test if Modeless help exists **/
+      /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
+	  {**/
+      TranslateMessage (&msg);
+      DispatchMessage (&msg);
+      /** }**/
+    }
+  if (ctrlflag == 1) 
+    {
+      CtrlCHit (&textwin);
     }
 }
 
@@ -89,20 +89,8 @@ TextMessage2 ()
   flushTKEvents ();
 #endif
   GetMessage (&msg, 0, 0, 0);
-  //PeekMessage (&msg, 0, 0, 0, PM_NOREMOVE);
-#ifdef WITH_TK
-  //if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
-  //{
-#endif
-      /** test if Modeless help exists **/
-      /**if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	 {**/
-		  TranslateMessage (&msg);
-		  DispatchMessage (&msg);
-	 /** }**/
-#ifdef WITH_TK
-  //}
-#endif
+  TranslateMessage (&msg);
+  DispatchMessage (&msg);
 }
 
 int C2F (sxevents) ()

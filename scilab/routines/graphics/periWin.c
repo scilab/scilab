@@ -2,7 +2,7 @@
  *    Graphic library
  *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
- --------------------------------------------------------------------------*/
+ *--------------------------------------------------------------------------*/
 
 /***************************************************************** 
  *  Windows driver 
@@ -31,6 +31,11 @@
 #include "color.h" 
 #include "Graphics.h"
 #include "scigraphic.h"
+#include "../machine.h"
+#ifdef WITH_TK
+extern void flushTKEvents ();
+extern int tcl_check_one_event();
+#endif
 
 #define M_PI	3.14159265358979323846
 #define CoordModePrevious 1
@@ -52,9 +57,6 @@
 
 LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndParentGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
-#ifdef WITH_TK
-extern void flushTKEvents();
-#endif
 
 /* Initialization values - Guess Now Scale later */
 
@@ -124,7 +126,7 @@ static integer DashTab[MAXDASH] = { PS_SOLID,PS_DASH,PS_DOT,PS_DASHDOT,PS_DASHDO
   **/
 
 extern GW graphwin; /** keeps information for the current graphic window **/
-extern TW textwin; /** keeps information for the current graphic window **/
+extern TW textwin; /** keeps information for the current scilab window **/
 
 /** XXX a mettre ailleurs **/
 
@@ -648,193 +650,173 @@ extern int  sciPeekMessage(MSG *msg);
    in this case we return i= -1
 ****************************************************************/
 
-void C2F(xclick_any)(str, ibutton, x1, yy1, iwin, iflag, istr, dv1, dv2, dv3, dv4)
-     char *str;
-     integer *ibutton,*x1,*yy1,*iwin,*iflag,*istr;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
+		       int getmouse,int getrelease);
+
+static int check_pointer_win(int *x1,int *yy1,int *win)
 {
-  
-  WindowList *listptr = The_List;
-  /* 
-   * listptr_tmp est utilise pour recuperer les 
-   * events clavier WM_CHAR 
-   */
-  WindowList *listptr_tmp;
-  POINT Point;
-  HWND hwnd_window_pointed;
   RECT lpRect;
+  HWND hwnd_window_pointed;
+  WindowList *listptr = The_List;
+  POINT Point;
+  integer iwin = -1;
+  /* where if the pointer  */
+  GetCursorPos(&Point);
+  /* over which window */
+  hwnd_window_pointed = WindowFromPoint(Point);
+  /* le curseur est bien sur une fenetre */
+  if (hwnd_window_pointed != NULL)
+    {
+      iwin = -1;
+      listptr = The_List;
+      while (listptr != (WindowList  *) 0 )
+	{
+	  if (hwnd_window_pointed == listptr->winxgc.CWindow 
+	      || hwnd_window_pointed == listptr->winxgc.hWndParent)
+	    {
+	      iwin = listptr->winxgc.CurWindow;
+	      break;
+	    }
+	  listptr =  (WindowList *)listptr->next;
+	}
+      /* si la fenetre pointee est une fenetre scilab */
+      if ( iwin != -1 )
+	{
+	  /* quelle est la dimension de la fenetre */
+	  GetWindowRect(listptr->winxgc.CWindow , &lpRect);
+	  /* on calcule la position relative du click */
+	  *x1  = Point.x - lpRect.left + listptr->winxgc.horzsi.nPos;
+	  *yy1 = Point.y - lpRect.top  + listptr->winxgc.vertsi.nPos;
+	  *win = iwin;
+	  return 1;
+	}
+    }
+  return 0;
+}
+
+
+void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
+		     integer *iwin,integer *iflag,integer *istr,
+		     double * dv1, double *dv2,double * dv3,double * dv4)
+{
+  WindowList *listptr = The_List;
   Window CW;
   MSG msg;
   int buttons = 0,win = 0;
-  integer iwin_tmp = -1;
   integer lstr ;
   win = -1;
   if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
   {
-      *iwin = win ;
-      return;
+    /* we already have something stored in the ClickQueue */
+    *iwin = win ; return;
   }
-  if ( *iflag ==0 )  
-		ClearClickQueue(-1);
-
-  
-  while (buttons == 0) 
-  {
-    int ok =0;
+  if ( *iflag ==0 )  ClearClickQueue(-1);
 #ifdef WITH_TK
-    flushTKEvents();
+  flushTKEvents();
 #endif
-
-    if (PeekMessage(&msg, 0, 0, 0,PM_REMOVE) != -1) {
-		/* Attention il faut peut etre prendre PeekMessage mais il y a bug */
-    //if (sciPeekMessage(&msg) != 0) {
-	if (msg.message == WM_QUIT) 
+  while (buttons == 0) 
+    {
+      int ok =0,parent=0;
+      if (PeekMessage(&msg, 0, 0, 0,PM_NOREMOVE) != -1)
 	{
-		*iwin       = deleted_win;/* utile dans le cas ou une fenetre a ete killee */
-		deleted_win = -1;
-		*x1         = 0;
-		*yy1        = 0;
-		*ibutton    = -100;
-		buttons++;
-		break;
-	}
-    if ( CtrlCHit(&textwin) == 1) 
-    {
-		*x1= 0 ;  *yy1= 0;  *ibutton=0; return ;
-    }
-    /** a loop on all the graphics windows **/
-    listptr = The_List;
-    /** special case the list is empty **/
-    if ( listptr == (WindowList *) 0) 
-    {
-		*x1=0;*yy1=0;*ibutton = -100; return ;
-    }
-    while ( (buttons == 0) && ( listptr != (WindowList  *) 0 ) )
-    {
-		CW = listptr->winxgc.CWindow;
-		*iwin = listptr->winxgc.CurWindow;
-		//listptr =  (WindowList *)listptr->next; relegue a la fin
-		if ( msg.hwnd == CW ) 
+	  if ( msg.message == WM_QUIT) 
+	    {
+	      /* just to test if window was killed */
+	      *iwin       = deleted_win;
+	      deleted_win = -1; *x1= 0; *yy1 = 0; *ibutton    = -100;
+	      buttons++;
+	      return ; 
+	    }
+	  if ( CtrlCHit(&textwin) == 1) 
+	    {
+	      *x1= 0 ;  *yy1= 0;  *ibutton=0; return ;
+	    }
+	  /** a loop on all the graphics windows **/
+	  listptr = The_List;
+	  /** special case the list is empty **/
+	  if ( listptr == (WindowList *) 0) 
+	    {
+	      *x1=0;*yy1=0;*ibutton = -100; return ;
+	    }
+	  /* explore the graphic windows */
+	  while ( listptr != (WindowList  *) 0 )
+	    {
+	      CW = listptr->winxgc.CWindow;
+	      *iwin = listptr->winxgc.CurWindow;
+	      if ( msg.hwnd == listptr->winxgc.hWndParent) 
 		{
-		    ok = 1;
-		    if (  msg.message == WM_CHAR)
-			{
-				/* ou est le curseur ? */
-				GetCursorPos(&Point);
-				/* sur quelle fenetre */
-				hwnd_window_pointed = WindowFromPoint(Point);
-				/* le curseur est bien sur une fenetre */
-				if (hwnd_window_pointed != NULL)
-				{
-					iwin_tmp = -1;
-					listptr_tmp = The_List;
-					/* si la liste de fenetre est non vide */
-					while (listptr_tmp != (WindowList  *) 0 )
-					{
-						/* si la fenetre pointee est la fenetre courante liste*/
-						if (hwnd_window_pointed == listptr_tmp->winxgc.CWindow)
-						{
-							iwin_tmp = listptr_tmp->winxgc.CurWindow;
-							break;
-						}
-						/* on regarde la fenetre scilab suivante */
-						listptr_tmp =  (WindowList *)listptr_tmp->next;
-					} /* fin while */
-					/* si la fenetre pointee est une fenetre scilab */
-					if ( iwin_tmp != -1 )
-					{
-						/* quelle est la dimension de la fenetre */
-						GetWindowRect(hwnd_window_pointed, &lpRect);
-						/* on calcule la position relative du click */
-						*x1  = Point.x - lpRect.left + listptr_tmp->winxgc.horzsi.nPos;
-						*yy1 = Point.y - lpRect.top  + listptr_tmp->winxgc.vertsi.nPos;
-						*iwin = iwin_tmp;
-						*ibutton = msg.wParam;
-						buttons++;
-					//	break;
-					} /* fi	*/
-				} /* fi (hwnd_window_pointed != NULL)*/
-				//else 					
-				//*ibutton = msg.wParam;
-				//buttons++;
-				//break;
-			} /* fi WM_CHAR */
-			else if (msg.message == WM_CLOSE)
-			{
-				*x1  = 0;
-				*yy1 = 0;
-				*ibutton = -100;
-				buttons++;
-				//break;
-			}
-		    else if (msg.message == WM_DESTROY)
+		  /* deals with graphic window parent message */
+		  parent=1;
+		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+		  TranslateMessage (&msg);
+		  DispatchMessage (&msg);
+		  break;
+		} 
+	      else if ( msg.hwnd == CW )
+		{
+		  /* check for mouse click, keypressed or menu pressed */
+		  ok = 1;
+		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+		  if (  msg.message == WM_CHAR || msg.message == WM_KEYDOWN ) 
 		    {
-				*x1  = 0;
-				*yy1 = 0;
-				*ibutton = -100;
-				buttons++;
-				//break;
-			}
-		    else if (  msg.message == WM_LBUTTONDOWN )
+		      if ( check_pointer_win(x1,yy1,iwin)==1 )
 			{
-				*x1 = LOWORD(msg.lParam) + listptr->winxgc.horzsi.nPos;
-				*yy1= HIWORD(msg.lParam) + listptr->winxgc.vertsi.nPos;
-				*ibutton = 0;
-				buttons++;
-				//break;
-			}
-		    else if (  msg.message == WM_MBUTTONDOWN )
+			  *ibutton = msg.wParam;
+			  buttons++;
+			} 
+		    } 
+		  else if (msg.message == WM_CLOSE || msg.message == WM_DESTROY)
 		    {
-				*x1 = LOWORD(msg.lParam) + listptr->winxgc.horzsi.nPos;
-				*yy1= HIWORD(msg.lParam) + listptr->winxgc.vertsi.nPos;
-				*ibutton=1;
-				buttons++;
-				//break;
+		      *x1  = 0;*yy1 = 0; *ibutton = -100;  buttons++;
+		      return;
 		    }
-		    else if (  msg.message == WM_RBUTTONDOWN )
+		  else if ( check_mouse(&msg,ibutton,x1,yy1,0,0)==1) 
 		    {
-				*x1 = LOWORD(msg.lParam) + listptr->winxgc.horzsi.nPos;
-				*yy1= HIWORD(msg.lParam) + listptr->winxgc.vertsi.nPos;
-				*ibutton=2; 
-				buttons++;
-				//break;
-			}
-		    else
+		      buttons++;
+		    }
+		  else 
 		    {
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		    if ( *istr==1 && C2F(ismenu)()==1 ) 
+		      TranslateMessage (&msg);
+		      DispatchMessage (&msg);
+		    }
+		  if ( *istr==1 && C2F(ismenu)()==1 ) 
 		    {
-				int entry;
-				C2F(getmen)(str,&lstr,&entry);
-				*ibutton = -2;
-				*istr=lstr;
-				*x1=0;
-				*yy1=0;
-				/*iwin=-1;*/
-				buttons++;
-				//break;
-			}
-		} /* if ( msg.hwnd == CW ) */
-		if (buttons == 0)
-			listptr =  (WindowList *)listptr->next;
-    }/* while ( (buttons == 0) && ( listptr != (WindowList  *) 0 ) ) */
-    if ( ok != 1) 
-    {
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		      int entry;
+		      C2F(getmen)(str,&lstr,&entry);
+		      *ibutton = -2; *istr=lstr; *x1=0; *yy1=0;  buttons++;
+		    }
+		  break;
+		}
+	      listptr =  (WindowList *)listptr->next;
+	    }  /* end of while on graphic windows  */
+	  if ( ok != 1 && parent != 1) 
+	    {
+	      if ( msg.hwnd == textwin.hWndParent || 
+		   msg.hwnd == textwin.hWndText )
+		{
+		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+		  TranslateMessage(&msg);
+		  DispatchMessage(&msg);
+		}
+#ifdef WITH_TK
+	      else if ( tcl_check_one_event() == 1) 
+		{
+		  /* sciprint("tcl event %l\r\n",msg.hwnd); */
+		}
+#else
+	      else 
+		{
+		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+		  TranslateMessage(&msg);
+		  DispatchMessage(&msg);
+		}
+#endif 
+	    }
 	}
-    } else sciprint("erreur peek\n"); /* fin de PeekMessage */
-
-  }/* fin de while (buttons == 0) */
-
-
-  /* SetCursor(LoadCursor(NULL,IDC_ARROW));  */
+      /* SetCursor(LoadCursor(NULL,IDC_ARROW));  */
+    }
 }
+
 
 
 
@@ -894,6 +876,60 @@ void SciMouseRelease()
  *              ( return the buton code in str )
  *****************************************/
 
+
+static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
+		       int getmouse,int getrelease)
+{
+  if (  msg->message == WM_LBUTTONDOWN )
+    {
+      *x1=LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton=0; 
+    }
+  else if (  msg->message == WM_MBUTTONDOWN )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton=1; 
+    }
+  else if (  msg->message == WM_RBUTTONDOWN )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton=2; 
+    }
+  else if ( getmouse == 1 && msg->message == WM_MOUSEMOVE )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton=-1; /** 0 for left button **/
+    }
+  else if ( getrelease == 1 &&  msg->message == WM_LBUTTONUP )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton= -5 ; 
+    }
+  else if (getrelease == 1 &&  msg->message == WM_MBUTTONUP )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton= -4 ;
+    }
+  else if ( getrelease == 1 && msg->message == WM_RBUTTONUP )
+    {
+      *x1 = LOWORD(msg->lParam) + ScilabXgc->horzsi.nPos;
+      *yy1= HIWORD(msg->lParam) + ScilabXgc->vertsi.nPos;
+      *ibutton= -3;
+    }
+  else 
+    {
+      return 0; 
+    }
+  return 1;
+}
+
+
 void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      integer *ibutton,*x1,*yy1, *iflag,*lstr;
      int getmouse,dyn_men,getrelease;
@@ -903,19 +939,13 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   MSG msg;
   /** BOOL flag1= TRUE; **/
   integer buttons = 0;
+
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {
       *ibutton = -100;     return;
     }
   win = ScilabXgc->CurWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1, yy1,ibutton) == 1)
-  {
-    /* this is performed in CheckClickQueue 
-     * *x1  = *x1  + ScilabXgc->horzsi.nPos;
-     * *yy1 = *yy1 + ScilabXgc->vertsi.nPos;
-     */
-     return;
-  }
+  if ( *iflag ==1 && CheckClickQueue(&win,x1, yy1,ibutton) == 1) return ;
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   /** Pas necessaire en fait voir si c'est mieux ou moins bien **/
@@ -930,101 +960,69 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
     **/
   SetCursor(LoadCursor(NULL,IDC_CROSS));
   /*  track a mouse click */
-  while (buttons == 0) {
 #ifdef WITH_TK
-      flushTKEvents();
+  flushTKEvents();
 #endif
-    /* PeekMessage(&msg, ScilabXgc->CWindow, 0, 0, PM_REMOVE); jpc may 2000 */
-       PeekMessage(&msg, 0, 0, 0, PM_REMOVE);
+
+  while (buttons == 0) {
+    if (PeekMessage(&msg, 0, 0, 0,PM_NOREMOVE) != -1) {
       /** maybe someone decided to destroy scilab Graphic window **/
       if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
 	{
-	  *ibutton = -100;     return;
+	  *x1= 0 ;  *yy1= 0;  *ibutton=-100; return;
 	}
       if ( CtrlCHit(&textwin) == 1) 
 	{
-	  *x1= 0 ;  *yy1= 0;  *ibutton=0; return;
+	*x1= 0 ;  *yy1= 0;  *ibutton=0; return;
 	}
       if ( msg.hwnd == ScilabXgc->CWindow ) 
 	{
-		if (  msg.message == WM_LBUTTONDOWN )
-	    {
-	      *x1=LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton=0; 
-	      buttons++;
-	      break;
-	    }
-	  else if (  msg.message == WM_MBUTTONDOWN )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton=1; 
-	      buttons++;
-	      break;
-	    }
-	  else if (  msg.message == WM_RBUTTONDOWN )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton=2; 
-	      buttons++;
-	      break;
-	    }
-	  else if ( getmouse == 1 && msg.message == WM_MOUSEMOVE )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton=-1; /** 0 for left button **/
-	      buttons++;
-	      break;
-	    }
-	  else if ( getrelease == 1 &&  msg.message == WM_LBUTTONUP )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton= -5 ; 
-	      buttons++;
-	      break;
-	    }
-	  else if (getrelease == 1 &&  msg.message == WM_MBUTTONUP )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton= -4 ;
-	      buttons++;
-	      break;
-	    }
-	  else if ( getrelease == 1 && msg.message == WM_RBUTTONUP )
-	    {
-	      *x1 = LOWORD(msg.lParam) + ScilabXgc->horzsi.nPos;
-	      *yy1= HIWORD(msg.lParam) + ScilabXgc->vertsi.nPos;
-	      *ibutton= -3;
-	      buttons++;
-	      break;
-	    }
-	  else
-	    {
-	      TranslateMessage(&msg);
-	      DispatchMessage(&msg);
-	    }
+	  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+	  if ( check_mouse(&msg,ibutton,x1,yy1,getmouse,getrelease)==1)
+	    buttons++;
 	}
-      else 
+      else if ( msg.hwnd == ScilabXgc->hWndParent ) 
 	{
+	  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
 	  TranslateMessage(&msg);
 	  DispatchMessage(&msg);
 	}
+      else if ( msg.hwnd == textwin.hWndParent || 
+		  msg.hwnd == textwin.hWndText )
+	{
+	  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+	  TranslateMessage(&msg);
+	  DispatchMessage(&msg);
+	}
+#ifdef WITH_TK
+      else if ( tcl_check_one_event() == 1) 
+	{
+	  /* sciprint("tcl event %l\r\n",msg.hwnd); */
+	}
+#else
+      else 
+	{
+	  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
+	  TranslateMessage(&msg);
+	  DispatchMessage(&msg);
+	}
+#endif
       if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
 	{
 	  int entry;
 	  C2F(getmen)(str,lstr,&entry);
 	  *ibutton = -2;
-	  break;
+	  buttons++;
 	}
+    }
   }
   /** SetCursor(LoadCursor(NULL,IDC_ARROW)); **/
 }
  
+
+
+
+
 
 
 /*------------------------------------------------
@@ -1432,7 +1430,7 @@ void C2F(getclip)(verbose, x, narg,dummy)
       x[4] =ScilabXgc->CurClipRegion[3];
     }
   else *narg = 1;
-  if (*verbose == 1)
+  if (*verbose == 1) {
     if (ScilabXgc->ClipRegionSet == 1)
       sciprint("\nThere's a Clip Region :x:%d,y:%d,w:%d,h:%d\r\n",
 	      ScilabXgc->CurClipRegion[0],
@@ -1441,6 +1439,7 @@ void C2F(getclip)(verbose, x, narg,dummy)
 	      ScilabXgc->CurClipRegion[3]);
     else 
       Scistring("\nNo Clip Region");
+  }
 }
 
 /*----------------------------------------------------------
@@ -1471,11 +1470,12 @@ void C2F(getabsourel)(verbose, num, narg,dummy)
 {
   *narg = 1;
   *num = ScilabXgc->CurVectorStyle  ;
-  if (*verbose == 1) 
+  if (*verbose == 1) {
     if (ScilabXgc->CurVectorStyle == CoordModeOrigin)
       Scistring("\nTrace Absolu");
     else 
       Scistring("\nTrace Relatif");
+  }
 }
 
 /** The alu function for drawing : Works only with X11 **/
