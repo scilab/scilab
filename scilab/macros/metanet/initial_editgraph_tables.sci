@@ -3,7 +3,7 @@ function [Menus,Shorts]=initial_editgraph_tables()
 //Author : Serge Steer 2002
 
 //Editgraph Menu definitions
-  Menus=list(['Graph','New','Zoom','Replot','SaveAs','Save','Load',..
+  Menus=list(['Graph','New','Zoom','Replot','Find Node','Find Arc','SaveAs','Save','Load',..
 	      'Options','Settings','Information','Export','Quit'],..
 	     ['Edit','NewNode','NewArc','Move Node','Move Region',..
 	      'Copy Region To ClipBoard','Paste','Delete',..

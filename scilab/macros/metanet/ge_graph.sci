@@ -73,8 +73,15 @@ function r=ge_graph(kmen,win)
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_information()
     seteventhandler("ge_eventhandler") ;xset('window',old)
-  case "Information" then
-    
+  case "Find Node" then
+    old=xget('window');xset('window',win);seteventhandler("")  
+    ge_do_find('Node')
+    seteventhandler("ge_eventhandler") ;xset('window',old)
+  case "Find Arc" then
+    old=xget('window');xset('window',win);seteventhandler("")  
+    ge_do_find('Arc')
+    seteventhandler("ge_eventhandler") ;xset('window',old)
+
   case "Quit" then
     old=xget('window');xset('window',win);seteventhandler("")  
     if ge_do_quit() then 
