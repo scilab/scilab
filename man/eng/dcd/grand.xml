@@ -91,90 +91,85 @@
      the beta distribution with parameters <VERB>A</VERB> and <VERB>B</VERB>. 
      The density of the beta is  (<VERB>0 &lt; x &lt; 1</VERB>) :</SP>
         <VERBATIM>
-<![CDATA[
-          A-1    B-1
-         x   (1-x)   / beta(A,B)  ( beta(A,B) = gamma(A+B) / (gamma(A) gamma(B)) )
-     ]]>
+<![CDATA[          A-1    B-1
+         x   (1-x)   / beta(A,B) ]]>
         </VERBATIM>
-        <P><VERB>A</VERB> and <VERB>B</VERB> must be reals &gt; 10^(-37).
+        <SP><VERB>A</VERB> and <VERB>B</VERB> must be reals &gt; 10^(-37).
      Related function(s) : <LINK>cdfbet</LINK>.
-  </P>
+        </SP>
       </ITEM>
       <ITEM label="binomial">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'bin',N,p)</VERB>  generates random variates from the binomial 
      distribution with parameters <VERB>N</VERB> (positive integer) and <VERB>p</VERB>
      (real in [0,1]) : number of successes in <VERB>N</VERB> independant 
      Bernouilli trials with probability <VERB>p</VERB> of success. 
      Related function(s) : <LINK>binomial</LINK>, <LINK>cdfbin</LINK>.
-
-  </P>
+       </SP>
       </ITEM>
       <ITEM label="negative binomial">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'nbn',N,p)</VERB> generates random variates from the negative binomial 
      distribution with parameters <VERB>N</VERB> (positive integer) and <VERB>p</VERB> (real 
      in (0,1)) : number of failures occurring before <VERB>N</VERB> successes 
      in independant Bernouilli trials with probability <VERB>p</VERB> of success.
      Related function(s) : <LINK>cdfnbn</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="chisquare">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'chi', Df)</VERB> generates random variates from the chisquare distribution 
      with <VERB>Df</VERB> (real &gt; 0.0) degrees of freedom. 
      Related function(s) : <LINK>cdfchi</LINK>.  
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="non central chisquare">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'nch',Df,Xnon)</VERB> generates random variates from the non central chisquare
      distribution with <VERB>Df</VERB> degrees of freedom (real &gt;= 1.0) 
      and noncentrality parameter <VERB>Xnonc</VERB> (real &gt;= 0.0).
      Related function(s) : <LINK>cdfchn</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="exponential">
         <SP>: <VERB>Y=grand(m,n,'exp',Av)</VERB> generates random variates from the exponential
      distribution with mean <VERB>Av</VERB> (real &gt;= 0.0).</SP>
       </ITEM>
       <ITEM label="F variance ratio">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'f',Dfn,Dfd)</VERB> generates random variates from the F 
      (variance ratio) distribution with <VERB>Dfn</VERB> (real &gt; 0.0)
      degrees of freedom in the numerator and <VERB>Dfd</VERB> (real &gt; 0.0) 
      degrees of freedom in the denominator. Related function(s) : <LINK>cdff</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="non central F variance ratio">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'nf',Dfn,Dfd,Xnon)</VERB> generates random variates from the noncentral 
      F (variance ratio)  distribution with <VERB>Dfn</VERB> (real &gt;= 1) degrees of freedom 
      in the numerator, and <VERB>Dfd</VERB> (real &gt; 0) degrees of freedom in the denominator, 
      and noncentrality parameter <VERB>Xnonc</VERB> (real &gt;= 0). 
       Related function(s) : <LINK>cdffnc</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="gamma">
         <SP>: <VERB>Y=grand(m,n,'gam',shape,scale)</VERB> generates random variates from the gamma 
      distribution with parameters <VERB>shape</VERB> (real &gt; 0) and <VERB>scale</VERB> 
       (real &gt; 0). The density of the gamma is :</SP>
         <VERBATIM>
-<![CDATA[
-               shape  (shape-1)   -scale x
-          scale       x          e          /  gamma(shape)
-     ]]>
+<![CDATA[               shape  (shape-1)   -scale x
+          scale       x          e          /  gamma(shape) ]]>
         </VERBATIM>
-        <P>
+        <SP>
      Related function(s) : <LINK>gamma</LINK>, <LINK>cdfgam</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="Gauss Laplace (normal)">
-        <P>
+        <SP>
    : <VERB>Y=grand(m,n,'nor',Av,Sd)</VERB> generates random variates from the normal 
      distribution with mean <VERB>Av</VERB> (real)  and standard deviation <VERB>Sd</VERB>
      (real &gt;= 0). Related function(s) : <LINK>cdfnor</LINK>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="multivariate gaussian (multivariate normal)">
         <SP>: <VERB>Y=grand(n,'mn',Mean,Cov)</VERB> generates  <VERB>n</VERB> multivariate normal random variates ; 
@@ -188,16 +183,16 @@
      be in <VERB>[pmin,1]</VERB> (with <VERB>pmin = 1.3 10^(-307)</VERB>).</SP>
       </ITEM>
       <ITEM label="markov">
-        <P>
+        <SP>
    : <VERB>Y=grand(n,'markov',P,x0)</VERB> generate <VERB>n</VERB> successive states of a Markov chain 
      described  by the transition matrix <VERB>P</VERB>. Initial state is  given by 
      <VERB>x0</VERB>. If <VERB>x0</VERB> is a matrix of size <VERB>m=size(x0,'*')</VERB> 
      then <VERB>Y</VERB> is a matrix of size <VERB>m x n</VERB>. <VERB>Y(i,:)</VERB> is the sample 
      path  obtained from initial state <VERB>x0(i)</VERB>.
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="multinomial">
-        <P>
+        <SP>
    : <VERB>Y=grand(n,'mul',nb,P)</VERB> generates <VERB>n</VERB> observations from the Multinomial 
      distribution :  class <VERB>nb</VERB> events in <VERB>m</VERB> categories (put <VERB>nb</VERB>
      &quot;balls&quot; in <VERB>m</VERB> &quot;boxes&quot;). <VERB>P(i)</VERB> is the probability 
@@ -206,7 +201,7 @@
      <VERB>Y</VERB> is of size <VERB>m x n</VERB>, each column <VERB>Y(:,j)</VERB> being an observation 
      from multinomial distribution and <VERB>Y(i,j)</VERB> the number of events falling in category 
      <VERB>i</VERB> (for the <VERB>j</VERB> th observation) (<VERB>sum(Y(:,j)) = nb</VERB>).
-  </P>
+  </SP>
       </ITEM>
       <ITEM label="Poisson">
         <SP>: <VERB>Y=grand(m,n,'poi',mu)</VERB> generates random variates from the Poisson 
@@ -253,7 +248,7 @@
     <P> Since Scilab-2.7 you have the possibility to choose between different base 
       generators (which give random integers following the 'lgi' distribution, the others 
       being gotten from it) :
-  </P>
+    </P>
     <ITEMIZE>
       <ITEM label="mt">
         <SP>: the Mersenne-Twister of M. Matsumoto and T. Nishimura, period about <VERB>2^19937</VERB>, 
@@ -277,20 +272,19 @@
          'Test example for clcg4').</SP>
       </ITEM>
       <ITEM label="urand">
-        <P>
-       : the generator used by the scilab function <LINK>rand</LINK>, state
+        <SP>: the generator used by the scilab function <LINK>rand</LINK>, state
          given by <VERB>1</VERB> integer, period of <VERB>2^31</VERB> (based  on  theory  
          and suggestions  given  in  d.e. knuth (1969),  vol  2. State). This
          is the faster of this list but a little outdated (don't use it for
-         serious simulations).</P>
+         serious simulations).</SP>
       </ITEM>
       <ITEM label="fsultra">
         <SP>: Arif Zaman (arif@stat.fsu.edu) and George Marsaglia
          (geo@stat.fsu.edu). State given by 2 integers.</SP>
       </ITEM>
     </ITEMIZE>
-  </SECTION>
-  <SECTION label="Actions">
+    <P>The differents actions common to all the generators, are:
+    </P>
     <ITEMIZE>
       <ITEM label="action= 'getgen'">
         <SP>: <VERB>S=grand('getgen')</VERB> returns the current base generator ( <VERB>S</VERB> is
@@ -314,20 +308,20 @@
      base generator (the new seeds) :</SP>
         <ITEMIZE>
           <ITEM label="for mt">
-            <SP><VERB>S</VERB> is a vector of integers of dim <VERB>625</VERB> (the first component is an index
+            <SP>: <VERB>S</VERB> is a vector of integers of dim <VERB>625</VERB> (the first component is an index
        and must be in <VERB>[1,624]</VERB>, the <VERB>624</VERB> last ones must be in 
        <VERB>[0,2^32[</VERB>) (but must not be all zeros) ; a simpler initialisation may be done 
        with only one integer <VERB>s1</VERB> (<VERB>s1</VERB> must be in <VERB>[0,2^32[</VERB>) ;</SP>
           </ITEM>
           <ITEM label="for kiss">
-            <SP><VERB>4</VERB> integers <VERB>s1,s2, s3,s4</VERB> in <VERB>[0,2^32[</VERB> must be provided ;</SP>
+            <SP>: <VERB>4</VERB> integers <VERB>s1,s2, s3,s4</VERB> in <VERB>[0,2^32[</VERB> must be provided ;</SP>
           </ITEM>
           <ITEM label="for clcg2">
-            <SP><VERB>2</VERB> integers <VERB>s1</VERB> in <VERB>[1,2147483562]</VERB> and <VERB>s2</VERB> 
+            <SP>: <VERB>2</VERB> integers <VERB>s1</VERB> in <VERB>[1,2147483562]</VERB> and <VERB>s2</VERB> 
        in  <VERB>[1,2147483398]</VERB> must be given ;</SP>
           </ITEM>
           <ITEM label="for clcg4">
-            <P><VERB>4</VERB> integers <VERB>s1</VERB> in <VERB>[1,2147483646]</VERB>, <VERB>s2</VERB> 
+            <SP>: <VERB>4</VERB> integers <VERB>s1</VERB> in <VERB>[1,2147483646]</VERB>, <VERB>s2</VERB> 
        in <VERB>[1,2147483542]</VERB>, <VERB>s3</VERB> in <VERB>[1,2147483422]</VERB>, 
        <VERB>s4</VERB> in  <VERB>[1,2147483322]</VERB> are required ;
        <VERB>CAUTION</VERB> : with clcg4 you set the seeds of the current virtual
@@ -335,13 +329,13 @@
        and the others virtuals generators (ie the sequence generated
        is not warranty to be non over-lapping with a sequence generated
        by another virtual generator)=&gt; use instead the 'setall' option.
-    </P>
+    </SP>
           </ITEM>
           <ITEM label="for urand">
-            <SP><VERB>1</VERB> integer <VERB>s1</VERB> in  <VERB>[0,2^31</VERB>[ must be given.</SP>
+            <SP>: <VERB>1</VERB> integer <VERB>s1</VERB> in  <VERB>[0,2^31</VERB>[ must be given.</SP>
           </ITEM>
           <ITEM label="for fsultra">
-            <SP><VERB>2</VERB> integers <VERB>s1, s2</VERB> in  <VERB>[0,2^32[</VERB> must be provided.</SP>
+            <SP>: <VERB>2</VERB> integers <VERB>s1, s2</VERB> in  <VERB>[0,2^32[</VERB> must be provided.</SP>
           </ITEM>
         </ITEMIZE>
       </ITEM>
