@@ -171,6 +171,11 @@ c
 c
 c     strcat(tr [,ins])
 c
+      if (rhs.eq.3) then 
+         call cstrelm() 
+         return 
+      endif
+
       if(rhs.ne.1.and.rhs.ne.2) then
          call error(39)
          return
