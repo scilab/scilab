@@ -306,9 +306,9 @@ void cmscope(scicos_block *block,int flag)
     /*     loop on input ports */
     i__1 = nwid;
     for (kwid = 1; kwid <= i__1; ++kwid) {
-      rect[0] = per * (n1 + 1);
+      rect[0] = per * (n1 );
       rect[1] = rpar[(kwid << 1) + 1];
-      rect[2] = per * (n1 + 2);
+      rect[2] = per * (n1 + 1);
       rect[3] = rpar[(kwid << 1) + 2];
       frect[0] = 0.;
       frect[1] = (kwid - 1) * (1. / nwid);
