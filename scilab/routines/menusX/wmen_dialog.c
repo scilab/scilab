@@ -86,8 +86,8 @@ int  DialogWindow()
     c="SciBigDialogDlgBox";
   else
     c="SciDialogDlgBox";
-  if ( (hwndOwner = GetActiveWindow()) == NULL) 
-    hwndOwner =  textwin.hWndParent;
+  //if ( (hwndOwner = GetActiveWindow()) == NULL)  hwndOwner =  textwin.hWndParent;
+  hwndOwner=NULL;
   if (DialogBox(hdllInstance,c,hwndOwner,
 		lpfnSciDialogDlgProc)  == IDOK) 
     return(TRUE);
