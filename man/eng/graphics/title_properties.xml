@@ -50,7 +50,7 @@
 
    set("figure_style","new") //create a figure
    a=get("current_axes"); 
-   a.data_bounds=[-2,-4,2,4];
+   a.data_bounds=[-2,-4;2,4];
    a.axes_visible="on"; 
    a.box="off"; 
 
