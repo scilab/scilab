@@ -20,16 +20,17 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
  * ensuite il reste qu'appeler la fonction du dessin de l'objet 
  *-----------------------------------------------*/
 
-void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl)
+void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
     double *x,*y,*width,*height;
     int fillflag, fillcolor,n;
     long *hdl;
+    BOOL flagstring;
 { 
   sciPointObj *psubwin;
   psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
   sciSetCurrentObj (ConstructRectangle
-		    (psubwin ,*x,*y,*height, *width, 0, 0,fillflag, fillcolor ,n));
+		    (psubwin ,*x,*y,*height, *width, 0, 0,fillflag, fillcolor ,n,flagstring));
      
    *hdl=sciGetHandle(sciGetCurrentObj ()); 
    if (sciGetSurface(psubwin) != (sciPointObj *) NULL) Merge3d(psubwin);

@@ -126,7 +126,7 @@ void Objplot2d  _PARAMS((int ptype,char *logflags,double *x,double *y,integer *n
 
 void Objplot3d  _PARAMS((char *fname,integer *isfac,integer *izcol,double *x,double *y,double *z,integer *zcol,integer *m,integer *n,double *theta,double *alpha,char *legend,integer *iflag,double *ebox, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,integer *m3n, integer *n3n));
 void Objpoly  _PARAMS((double *x,double *y,integer n,integer closed,int mark,long *hdl));
-void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl));
+void Objrect  _PARAMS((double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl,BOOL flagxtring));
 void Objsegs  _PARAMS((integer *style,integer flag,integer n,double *x,double *y, double arsize));
 void Objstring _PARAMS((char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double* wh,int fill, long *hdl));
 void Objtitle _PARAMS((char *str,int n,long *hdl));
