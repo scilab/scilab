@@ -9,6 +9,7 @@ function tests=testslist()
 'call.tst';
 'calpol.tst';
 'clause.tst';
+'cmp.tst';
 'dassldasrt.tst';
 'dcd.tst';
 'display.tst';
