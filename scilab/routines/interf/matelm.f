@@ -1512,7 +1512,7 @@ c     -------------------------
                istk(ilr+3)=0
                stk(lr) = n
                lstk(top+1)=lr+1
-            elseif(sel.eq.3) then
+            elseif(sel.eq.0) then
                istk(ilr+2)=1
                istk(ilr+3)=0
                stk(lr) = m*n
@@ -2110,7 +2110,7 @@ c
          elseif(istk(il+6).eq.col) then
             sel=2
          elseif(istk(il+6).eq.star) then
-            sel=3
+            sel=0
          else
             err=2
             call error(44)
