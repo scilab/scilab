@@ -7602,7 +7602,7 @@ int glue(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer numrow,numcol,l1 ;
+  integer numrow,numcol,l1,l2,lind,n,cx1=1 ;
   unsigned long hdl, parenthdl;
   long *handelsvalue;
   int outindex,i;
@@ -7614,9 +7614,22 @@ int glue(fname,fname_len)
   /*  set or create a graphic window */
   C2F(sciwin)();
   GetRhsVar(1,"h",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
+  n=numrow*numcol;
+  CreateVar(Rhs+1,"d",&numrow,&numcol,&l2);
+  CreateVar(Rhs+2,"i",&numrow,&numcol,&lind);
+  if (n>1) {
+    C2F(dcopy)(&n, stk(l1), &cx1, stk(l2), &cx1);
+    C2F(dsort)(stk(l2),&n,istk(lind));
+    for (i = 1; i < n;i++) {
+      if (*stk(l2+i) == *stk(l2+i-1)) {
+	Scierror(999,"%s :each handle should not appear twice\r\n",fname);
+	return 0;
+      }
+    }
+  }
   /* we must change the pobj to the agregation type */
-  handelsvalue = MALLOC(((numcol)*(numrow))*sizeof(long));
-  for (i = 0; i < (numcol)*(numrow);i++)
+  handelsvalue = MALLOC(n*sizeof(long));
+  for (i = 0; i < n;i++)
     {
       handelsvalue[i] = (long) (stk(l1))[i];
       pobj = sciGetPointerFromHandle(handelsvalue[i]);
@@ -7634,13 +7647,13 @@ int glue(fname,fname_len)
 	}
                             
     }
-  sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, (numcol)*(numrow)));
+  sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, n));
 	      
   numrow = 1;
   numcol = 1;
-  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+  CreateVar(Rhs+3,"h",&numrow,&numcol,&outindex);
   stk(outindex)[0] = (double )sciGetHandle((sciPointObj *) sciGetCurrentObj());
-  LhsVar(1) = Rhs+1;
+  LhsVar(1) = Rhs+3;
   FREE(handelsvalue);
   return 0;
 }
