@@ -2895,8 +2895,8 @@ static void InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   /* Choix du mode par defaut (decide dans initgraphic) */
   getcolordef(&i);
   /** we force CurColorStatus to the opposite value of col 
-      to force usecolorPos to perform initialisations 
-  **/
+   * to force usecolorPos to perform initialisations 
+   **/
   ScilabXgc->graphicsversion = 0;/* NG */ /* old */
 
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
