@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.60 $)dnl
+AC_REVISION($Revision: 1.61 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -726,15 +726,15 @@ case "$host" in
       FC="$F77"
     fi
     #FC="$F77"
-    FC_OPTIONS='-O -Nl999 -Nn15000'
-    FC_OPTIONS_O0='-Nl999 -Nn15000'
+    FC_OPTIONS='-O '
+    FC_OPTIONS_O0=
 
     FC_LDFLAGS=
     LD=ld
     LD_LDFLAGS=
     if test "$enable_debug" = yes; then 
       CC_OPTIONS='-g -c -DSYSV -DSVR4'
-      FC_OPTIONS='-g -Nl999 -Nn15000'
+      FC_OPTIONS='-g '
     fi
     # GNU compilers
     if test "$WITH_GCC" = yes; then
