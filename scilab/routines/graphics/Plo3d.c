@@ -1319,8 +1319,10 @@ void I3dRotation(void)
 #endif
       if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
-      if (version_flag() != 0)
+#ifndef WIN32
+      if (version_flag() != 0) /* commente sous windows ???? */
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#endif
       theta=Cscale.theta ;
       alpha=Cscale.alpha ;
 
