@@ -51,6 +51,9 @@ extern int C2F(tryenhaut) __PARAMS((integer *itopl, integer *i__));
 extern int C2F(isref) __PARAMS((integer *lw));
 extern integer C2F(vartype) __PARAMS((integer *number));
 extern int C2F(createvar) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, unsigned long type_len));
+
+extern int C2F(creatework)  __PARAMS((    integer *number,integer *m,integer  *lr));
+
 extern int C2F(createcvar) __PARAMS((integer *lw, char *type__, integer *it, integer *m, integer *n, integer *lr, integer *lc, unsigned long type_len));
 extern int C2F(createlist) __PARAMS((integer *lw, integer *nel));
 extern int C2F(createvarfrom) __PARAMS((integer *lw, char *type__, integer *m, integer *n, integer *lr, integer *lar, unsigned long type_len));
