@@ -1491,7 +1491,15 @@ proc help::init {filename {topic contents} {parent {}} {width 450} {height 400} 
    raise .tophelpwindow
    focus -force .tophelpwindow
   }
-
+  
+# F.Leray modif. here 09.03.05
+# to center the window
+  set height [expr [winfo screenheight .]/2]
+  set width  [expr [winfo screenwidth . ]/2]
+  set ypos   [expr [winfo screenheight .]/4]
+  set xpos   [expr [winfo screenwidth . ]/4]
+  wm geometry [winfo toplevel $w] "${width}x${height}+${xpos}+${ypos}"
+     
   if {[wm protocol [winfo toplevel $w] WM_DELETE_WINDOW]==""} {
    wm protocol [winfo toplevel $w] WM_DELETE_WINDOW "help::destroy 1"
   }
