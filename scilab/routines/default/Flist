@@ -55,6 +55,30 @@ fsolvj_list= fsolj1
 fschur_list=folhp find
 
 # -------------------------------------------------
+# predefined function(s) for schur
+# --------------------------------------------------
+
+schsel_list=sb02mv sb02mw
+
+# -------------------------------------------------
+# predefined function(s) for schur
+# --------------------------------------------------
+
+zchsel_list=zb02mv zb02mw
+
+# -------------------------------------------------
+# predefined function(s) for gschur
+# --------------------------------------------------
+
+gshsel_list=sb02ow sb02ox
+
+# -------------------------------------------------
+# predefined function(s) for gschur
+# --------------------------------------------------
+
+gzhsel_list=zb02ow zb02ox
+
+# -------------------------------------------------
 # predefined function(s) for odedc
 # uses also fjac and fsurf
 # --------------------------------------------------

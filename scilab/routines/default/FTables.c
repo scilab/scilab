@@ -523,6 +523,128 @@ void C2F(setfschur)(name,rep)
     fschurfonc = (fschurf) SetFunction(name,rep,FTab_fschur);
 }
 
+/***********************************
+ * Search Table for schur uses : schsel
+ ***********************************/
+
+/** the current function fixed by setschsel **/
+
+static schself schselfonc ;
+
+/** function call : schsel  **/
+
+integer *C2F(schsel)(alpha,beta)
+     double *alpha,*beta;
+{
+  return((*schselfonc)(alpha,beta));
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setschsel)(name,rep) 
+     char *name;
+     int *rep;
+{
+  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+      schselfonc = (schself) SetFunction("sb02mv",rep,FTab_schsel);
+  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+      schselfonc = (schself) SetFunction("sb02mw",rep,FTab_schsel);
+  else 
+    schselfonc = (schself) SetFunction(name,rep,FTab_schsel);
+}
+
+
+/***********************************
+ * Search Table for schur uses : zchsel
+ ***********************************/
+
+/** the current function fixed by setzschsel **/
+
+static zchself zchselfonc ;
+
+/** function call : zchsel  **/
+
+integer *C2F(zchsel)(alpha)
+     doublecmplx *alpha;
+{
+  return((*zchselfonc)(alpha));
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setzchsel)(name,rep) 
+     char *name;
+     int *rep;
+{
+  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+      zchselfonc = (zchself) SetFunction("zb02mv",rep,FTab_zchsel);
+  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+      zchselfonc = (zchself) SetFunction("zb02mw",rep,FTab_zchsel);
+  else 
+    zchselfonc = (zchself) SetFunction(name,rep,FTab_zchsel);
+}
+
+/***********************************
+ * Search Table for gschur uses : gshsel
+ ***********************************/
+
+/** the current function fixed by setgshsel **/
+
+static gshself gshselfonc ;
+
+/** function call : gshsel  **/
+
+integer *C2F(gshsel)(alphar,alphai,beta)
+     double *alphar,*alphai,*beta;
+{
+  return((*gshselfonc)(alphar,alphai,beta));
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setgshsel)(name,rep) 
+     char *name;
+     int *rep;
+{
+  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+      gshselfonc = (gshself) SetFunction("sb02ow",rep,FTab_gshsel);
+  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+      gshselfonc = (gshself) SetFunction("sb02ox",rep,FTab_gshsel);
+  else 
+    gshselfonc = (gshself) SetFunction(name,rep,FTab_gshsel);
+}
+
+
+/***********************************
+ * Search Table for gschur uses : gzhsel
+ ***********************************/
+
+/** the current function fixed by setgzhsel **/
+
+static gzhself gzhselfonc ;
+
+/** function call : gzhsel  **/
+
+integer *C2F(gzhsel)(alpha,beta)
+     doublecmplx *alpha,*beta;
+{
+  return((*gzhselfonc)(alpha,beta));
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setgzhsel)(name,rep) 
+     char *name;
+     int *rep;
+{
+  if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
+      gzhselfonc = (gzhself) SetFunction("zb02ow",rep,FTab_gzhsel);
+  else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
+      gzhselfonc = (gzhself) SetFunction("zb02ox",rep,FTab_gzhsel);
+  else 
+    gzhselfonc = (gzhself) SetFunction(name,rep,FTab_gzhsel);
+}
+
 
 /***********************************
  * Search Table for fydot2

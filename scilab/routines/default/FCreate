@@ -4,7 +4,7 @@
 # file : the file which contains the list of routines 
 # Output FTables/name.h
 
-links='fydot ffeval fres fadda fj2 fjac dgetx dgety fcoldg fcolg fcolf fcoldf fcolgu fintg fint2d fint3d fsolvf fsolvj foptim fschur fydot2 fresd fjacd fsurf fsurfd fbutn interf'
+links='fydot ffeval fres fadda fj2 fjac dgetx dgety fcoldg fcolg fcolf fcoldf fcolgu fintg fint2d fint3d fsolvf fsolvj foptim fschur schsel zchsel gshsel gzhsel fydot2 fresd fjacd fsurf fsurfd fbutn interf'
 
 fout=FTables.h ; rm -f $fout 
 echo "/******* Please do not edit *************/" >> $fout 
