@@ -1947,7 +1947,7 @@ void  C2F(mexprintf)(va_alist) va_dcl
   va_end(ap);
 }
 */
-
+/*
 void  mexPrintf(char *fmt,...) 
 {
   int i, lstr;
@@ -1968,6 +1968,42 @@ void  mexPrintf(char *fmt,...)
   if (getdiary()) diary_nnl(buf,&lstr);
   va_end(args);
 }
+*/
+
+/* Modification pour Compilation sous Windows */
+/* Allan CORNET 27 avril 2004 */
+#ifdef __STDC__ 
+void  mexPrintf (char *fmt,...) 
+#else 
+void  mexPrintf (va_alist) va_dcl
+#endif
+{
+  int i, lstr;
+  va_list args;
+  char buf[2048];
+
+  #ifdef __STDC__ 
+  va_start(args,fmt);
+  #else
+	char *fmt;
+	va_start(args);
+	fmt = va_arg(args, char *);
+  #endif 
+  (void ) vsprintf(buf, fmt, args );
+  lstr=strlen(buf);
+  C2F(xscion)(&i);
+  if (i == 0) 
+    {
+      printf("%s",buf); 
+    }
+  else 
+    {
+      C2F(xscisrn)(buf,&lstr,0L);
+    }
+  if (getdiary()) diary_nnl(buf,&lstr);
+  va_end(args);
+}
+
 
 void mexWarnMsgTxt(char *error_msg)
 {
