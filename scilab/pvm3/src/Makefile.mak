@@ -1,6 +1,6 @@
 #*************************************************************#
 #
-# $Id: Makefile.mak,v 1.2 2002/10/14 14:37:44 chanceli Exp $
+# $Id: Makefile.mak,v 1.3 2002/10/24 16:29:05 chanceli Exp $
 #
 #  (N)make file for the daemon and pvm library
 #
@@ -66,23 +66,32 @@ LOBJ	=	$(PVM_ARCH)\imalloc.obj $(PVM_ARCH)\lpvm.obj \
 all:	paths libpvm3.lib $(pvmd3exe) $(libpvm3dll)
 
 paths:
-	if not exist "..\lib\$(PVM_ARCH)\$(NULL)" mkdir "..\lib\$(PVM_ARCH)"
-	if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
-	if not exist "$(PVM_ARCH)\$(NULL)"   mkdir "$(PVM_ARCH)"
+	@if not exist "..\lib\$(PVM_ARCH)\$(NULL)" mkdir "..\lib\$(PVM_ARCH)"
+	@if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
+	@if not exist "$(PVM_ARCH)\$(NULL)"   mkdir "$(PVM_ARCH)"
 
-libpvm3.lib:  $(LOBJ)
-	$(linklib) $(conflags) \
+libpvm3.lib:  $(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.lib 
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.lib : $(LOBJ)
+	@echo Creation of $*.lib
+	@$(linklib) $(conflags) \
 		$(OUTLIB)$(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.lib $(LOBJ)
 
-libpvm3.dll:  $(LOBJ)
-	$(linkdll) $(conflags) \
+libpvm3.dll: $(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.dll $(LOBJ) 
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.dll  :  $(LOBJ)
+	@echo Creation of $*.dll
+	@$(linkdll) $(conflags) \
 		$(OUTDLL)$(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.dll $(LOBJ) \
 		$(link_flags)
 
-visual_pvmd3.exe:  $(DOBJ)
-	$(linkexe) $(conflags) \
-		$(OUTBIN)$(PVM_ROOT)\lib\win32\pvmd3.exe \
-		$(FILE) $(BEGIN) $(DOBJ) $(END) $(link_flags)	
+visual_pvmd3.exe: $(PVM_ROOT)\lib\$(PVM_ARCH)\pvmd3.exe 
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\pvmd3.exe : $(DOBJ)
+	@echo Creation of pvmd3.exe
+	@$(linkexe) $(conflags) \
+		$(OUTBIN)$(PVM_ROOT)\lib\$(PVM_ARCH)\pvmd3.exe \
+		$(FILE) $(BEGIN) $(DOBJ) $(END) $(link_flags)
 
 $(PVM_ARCH)\imalloc.obj:  $(SDIR)\imalloc.c
 	$(cc) $(cdebug) $(cflags) $(cvars) \

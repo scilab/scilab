@@ -1,5 +1,5 @@
 #
-# $Id: win32visual.def,v 1.1 2002/10/14 14:08:53 chanceli Exp $
+# $Id: win32visual.def,v 1.2 2002/10/24 16:29:04 chanceli Exp $
 #
 
 #######################################################
@@ -37,45 +37,45 @@ linkexe		=	link
 linklib		=	link -lib
 linkdll		=	link -dll
 
-link_flags	=	$(PVM_CLIBDIR)\wsock32.lib \
-				$(PVM_CLIBDIR)\kernel32.lib\
-				$(PVM_CLIBDIR)\libc.lib \
-				$(PVM_CLIBDIR)\gdi32.lib \
-				$(PVM_CLIBDIR)\winspool.lib \
-				$(PVM_CLIBDIR)\comdlg32.lib \
-				$(PVM_CLIBDIR)\advapi32.lib \
-				$(PVM_CLIBDIR)\shell32.lib \
-				$(PVM_CLIBDIR)\ole32.lib \
-				$(PVM_CLIBDIR)\oleaut32.lib \
-				$(PVM_CLIBDIR)\uuid.lib \
-				$(PVM_CLIBDIR)\oldnames.lib \
+link_flags	=	$(PVM_CLIBDIR)wsock32.lib \
+				$(PVM_CLIBDIR)kernel32.lib\
+				$(PVM_CLIBDIR)libc.lib \
+				$(PVM_CLIBDIR)gdi32.lib \
+				$(PVM_CLIBDIR)winspool.lib \
+				$(PVM_CLIBDIR)comdlg32.lib \
+				$(PVM_CLIBDIR)advapi32.lib \
+				$(PVM_CLIBDIR)shell32.lib \
+				$(PVM_CLIBDIR)ole32.lib \
+				$(PVM_CLIBDIR)oleaut32.lib \
+				$(PVM_CLIBDIR)uuid.lib \
+				$(PVM_CLIBDIR)oldnames.lib \
 				/nodefaultlib:"LIBCMT.LIB"
 
-fl32_link	=	$(PVM_CLIBDIR)\wsock32.lib \
-				$(PVM_CLIBDIR)\kernel32.lib \
-				$(PVM_CLIBDIR)\gdi32.lib \
-				$(PVM_CLIBDIR)\winspool.lib \
-				$(PVM_CLIBDIR)\comdlg32.lib \
-				$(PVM_CLIBDIR)\advapi32.lib \
-				$(PVM_CLIBDIR)\shell32.lib \
-				$(PVM_CLIBDIR)\ole32.lib \
-				$(PVM_CLIBDIR)\oleaut32.lib \
-				$(PVM_CLIBDIR)\uuid.lib \
-				$(PVM_CLIBDIR)\oldnames.lib
+fl32_link	=	$(PVM_CLIBDIR)wsock32.lib \
+				$(PVM_CLIBDIR)kernel32.lib \
+				$(PVM_CLIBDIR)gdi32.lib \
+				$(PVM_CLIBDIR)winspool.lib \
+				$(PVM_CLIBDIR)comdlg32.lib \
+				$(PVM_CLIBDIR)advapi32.lib \
+				$(PVM_CLIBDIR)shell32.lib \
+				$(PVM_CLIBDIR)ole32.lib \
+				$(PVM_CLIBDIR)oleaut32.lib \
+				$(PVM_CLIBDIR)uuid.lib \
+				$(PVM_CLIBDIR)oldnames.lib
 
-link_multithread	=	$(PVM_CLIBDIR)\wsock32.lib \
-					$(PVM_CLIBDIR)\kernel32.lib \
-					$(PVM_CLIBDIR)\libcmt.lib \
-					$(PVM_CLIBDIR)\gdi32.lib \
-					$(PVM_CLIBDIR)\winspool.lib \
-					$(PVM_CLIBDIR)\comdlg32.lib \
-					$(PVM_CLIBDIR)\advapi32.lib \
-					$(PVM_CLIBDIR)\shell32.lib \
-					$(PVM_CLIBDIR)\ole32.lib \
-					$(PVM_CLIBDIR)\oleaut32.lib \
-					$(PVM_CLIBDIR)\uuid.lib \
-					$(PVM_CLIBDIR)\oldnames.lib \
-					$(PVM_CLIBDIR)\libcpmt.lib
+link_multithread	=	$(PVM_CLIBDIR)wsock32.lib \
+					$(PVM_CLIBDIR)kernel32.lib \
+					$(PVM_CLIBDIR)libcmt.lib \
+					$(PVM_CLIBDIR)gdi32.lib \
+					$(PVM_CLIBDIR)winspool.lib \
+					$(PVM_CLIBDIR)comdlg32.lib \
+					$(PVM_CLIBDIR)advapi32.lib \
+					$(PVM_CLIBDIR)shell32.lib \
+					$(PVM_CLIBDIR)ole32.lib \
+					$(PVM_CLIBDIR)oleaut32.lib \
+					$(PVM_CLIBDIR)uuid.lib \
+					$(PVM_CLIBDIR)oldnames.lib \
+					$(PVM_CLIBDIR)libcpmt.lib
 
 conlibs		=	$(libc)
 

@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.mak,v 1.1 2002/10/14 14:17:24 chanceli Exp $
+# $Id: Makefile.mak,v 1.2 2002/10/24 16:29:05 chanceli Exp $
 #
 #  Nmake file for the PVM console: pvm.exe
 #
@@ -27,11 +27,14 @@ all:  paths pvm.exe
 #
 
 paths:
-	if not exist $(PVM_ARCH) mkdir $(PVM_ARCH)
-	if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
+	@if not exist $(PVM_ARCH) mkdir $(PVM_ARCH)
+	@if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
 
-pvm.exe:  $(OBJS)
-	$(linkexe) $(conflags) \
+pvm.exe: $(PVM_ROOT)\lib\$(PVM_ARCH)\pvm.exe
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\pvm.exe : $(OBJS)
+	@echo Creation of $*.exe
+	@$(linkexe) $(conflags) \
 		$(OUTBIN)$(PVM_ROOT)\lib\$(PVM_ARCH)\pvm.exe \
 		$(OBJS) $(LIBS) $(link_flags)
 

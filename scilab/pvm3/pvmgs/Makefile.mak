@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.mak,v 1.2 2002/10/14 14:27:40 chanceli Exp $
+# $Id: Makefile.mak,v 1.3 2002/10/24 16:29:05 chanceli Exp $
 #
 
 #*************************************************************#
@@ -31,22 +31,31 @@ LOBJ	=	$(PVM_ARCH)\pvmgsu_aux.obj \
 all:  paths libgpvm3.lib pvmgs.exe
 
 paths:
-	if not exist "$(PVM_ARCH)\$(NULL)" mkdir "$(PVM_ARCH)"
-	if not exist "..\lib\$(PVM_ARCH)\$(NULL)" mkdir "..\lib\$(PVM_ARCH)"
-	if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
+	@if not exist "$(PVM_ARCH)\$(NULL)" mkdir "$(PVM_ARCH)"
+	@if not exist "..\lib\$(PVM_ARCH)\$(NULL)" mkdir "..\lib\$(PVM_ARCH)"
+	@if not exist "..\bin\$(PVM_ARCH)\$(NULL)" mkdir "..\bin\$(PVM_ARCH)"
 
-pvmgs.exe:  $(PVM_ARCH)\pvmgs_core.obj $(PVM_ARCH)\pvmgs_func.obj
-	$(linkexe) $(conflags) \
+pvmgs.exe:	$(PVM_ROOT)\bin\$(PVM_ARCH)\pvmgs.exe 
+
+$(PVM_ROOT)\bin\$(PVM_ARCH)\pvmgs.exe :  $(PVM_ARCH)\pvmgs_core.obj $(PVM_ARCH)\pvmgs_func.obj
+	@echo Creation of $*.exe
+	@$(linkexe) $(conflags) \
 		$(OUTBIN)$(PVM_ROOT)\bin\$(PVM_ARCH)\pvmgs.exe \
 		$(PVM_ARCH)\pvmgs_core.obj $(PVM_ARCH)\pvmgs_func.obj \
 		$(PVM_ROOT)\lib\$(PVM_ARCH)\libpvm3.lib $(link_flags)
 
-libgpvm3.lib:  $(LOBJ)
-	$(linklib) $(conflags) \
+libgpvm3.lib: $(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.lib 
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.lib : $(LOBJ)
+	@echo Creation of $*.lib
+	@$(linklib) $(conflags) \
 		$(OUTBIN)$(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.lib $(LOBJ)
 
-libgpvm3.dll:  $(LOBJ)
-	$(linkdll) $(conflags) \
+libgpvm3.dll: $(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.dll
+
+$(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.dll : $(LOBJ)
+	@echo Creation of $*.dll
+	@$(linkdll) $(conflags) \
 		$(OUTDLL)$(PVM_ROOT)\lib\$(PVM_ARCH)\libgpvm3.dll $(LOBJ) \
 		$(link_flags)
 

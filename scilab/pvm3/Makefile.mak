@@ -1,10 +1,9 @@
 
-
 SHELL = /bin/sh
 
 include ../Makefile.incl.mak
 
-all	:: message libs  gslib
+all	:: message libs pvmtracer pvmconsole gslib
 
 message	:: 
 	@echo ====================================
@@ -13,23 +12,54 @@ message	::
 	@echo ====================================
 
 libs	:
-	cd $(PVM_ROOT)\src
-	SET PVM_ROOT=$(PVM_ROOT)
-	SET PVM_ARCH=$(PVM_ARCH)
-	nmake /f makefile.mak
-	cd $(PVM_ROOT)
+	@echo making all in src 
+	@cd $(PVM_ROOT)\src
+	@SET PVM_ROOT=$(PVM_ROOT)
+	@SET PVM_ARCH=$(PVM_ARCH)
+	@SET PVM_CCOMPILER=$(PVM_CCOMPILER)
+	@SET PVM_CINCLUDE=.
+	@nmake /C /f makefile.mak
+	@cd $(PVM_ROOT)
+
+pvmtracer: 
+	@echo making all in tracer 
+	@cd $(PVM_ROOT)\tracer
+	@SET PVM_ROOT=$(PVM_ROOT)
+	@SET PVM_ARCH=$(PVM_ARCH)
+	@SET PVM_CCOMPILER=$(PVM_CCOMPILER)
+	@SET PVM_CINCLUDE=.
+	@nmake /C /f makefile.mak
+	@cd $(PVM_ROOT)
+
+pvmconsole:
+	@echo making all in console
+	@cd $(PVM_ROOT)\console
+	@SET PVM_ROOT=$(PVM_ROOT)
+	@SET PVM_ARCH=$(PVM_ARCH)
+	@SET PVM_CCOMPILER=$(PVM_CCOMPILER)
+	@SET PVM_CINCLUDE=.
+	@nmake /C /f makefile.mak
+	@cd $(PVM_ROOT)
 
 gslib	: 
-	cd $(PVM_ROOT)\pvmgs
-	nmake /f makefile.mak
-	cd $(PVM_ROOT)
+	@echo making all in pvmgs
+	@cd $(PVM_ROOT)\pvmgs
+	@SET PVM_ROOT=$(PVM_ROOT)
+	@SET PVM_ARCH=$(PVM_ARCH)
+	@SET PVM_COMPILER=$(PVM_COMPILER)
+	@SET PVM_CINCLUDE=.
+	@nmake /C /f makefile.mak
+	@cd $(PVM_ROOT)
 
 clean ::
-	echo Cleaning Objects ...
+	@echo Cleaning Objects ...
 	cd $(PVM_ROOT)\src\$(PVM_ARCH)
 	erase *.obj
-	echo Cleaning pvmgs objects ...
 	cd $(PVM_ROOT)\pvmgs\$(PVM_ARCH)
+	erase *.obj
+	cd $(PVM_ROOT)\tracer\$(PVM_ARCH)
+	erase *.obj
+	cd $(PVM_ROOT)\console\$(PVM_ARCH)
 	erase *.obj
 
 distclean:: clean
