@@ -169,6 +169,9 @@
 {"set_posfig_dim",	IN_matdes,	86,	2},
 {"show_window",		IN_matdes,	87,	2},
 {"xsnative",		IN_matdes,	88,	2},
+{"zoom_rect",		IN_matdes,	89,	2},
+{"unzoom",		IN_matdes,	90,	2},
+
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	

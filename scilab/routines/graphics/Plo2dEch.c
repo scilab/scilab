@@ -1208,41 +1208,30 @@ int zoom_get_rectangle(bbox)
 
 
 
-int zoom()
+int zoom_box(double *bbox)
 {
   integer min,max,puiss,deux=2,dix=10,box[4],box1[4],section[4];
-  double bbox[4];
-
   if (version_flag() == 0){
     double fmin,fmax,lmin,lmax;
     sciPointObj *psousfen,*tmpsousfen;
     sciSons *psonstmp;
-    sciSubWindow * ppsubwin;
-    
+
+    box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+    box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
+    box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+    box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
+
+
     tmpsousfen= (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure());
-    ppsubwin = pSUBWIN_FEATURE(tmpsousfen);
-
     psonstmp = sciGetSons (sciGetCurrentFigure());
-  
-    
-
-    if (zoom_get_rectangle(bbox)==1) return 1;
- 
-
-      box[0]= Min(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-      box[2]= Max(XDouble2Pixel(bbox[0]),XDouble2Pixel(bbox[2]));
-      box[1]= Min(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
-      box[3]= Max(YDouble2Pixel(bbox[1]),YDouble2Pixel(bbox[3]));
-
     while (psonstmp != (sciSons *) NULL)
       {
 	if(sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
 	  {
 	    psousfen= (sciPointObj *)psonstmp->pointobj;
 	    if ( pSUBWIN_FEATURE (psousfen)->is3d == TRUE) {
-	      sciprint("Warning: this figure contains at least one 3D view : \n3D zoom is not yet implemented for new graphic style\n");
-	      psonstmp = psonstmp->pnext;
-	      continue;
+	      sciprint("3D zoom is not yet implemented for new graphic style\n");
+	      return 0;
 	    }
 	    sciSetSelectedSubWin(psousfen);
 	    box1[0]= Cscale.WIRect1[0];
@@ -1303,6 +1292,25 @@ int zoom()
   }
   else {
     integer aaint[4],flag[2];
+    integer ww;
+
+    C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    flag[0] =1 ; flag[1]=0;
+    Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
+  }
+  return 0;
+}
+
+
+int zoom()
+{
+  double bbox[4];
+
+  if (version_flag() == 0){
+    if (zoom_get_rectangle(bbox)==1) return 1;
+  }
+  else {
+    integer ierr;
     char driver[4];
     integer verbose=0,narg,ww;
 
@@ -1313,13 +1321,11 @@ int zoom()
 	Scistring("\n Use the Rec driver to zoom " );
 	return 0;
       }
-    zoom_get_rectangle(bbox);
+    ierr=zoom_get_rectangle(bbox);
     C2F(SetDriver)(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-
-    C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    flag[0] =1 ; flag[1]=0;
-    Tape_ReplayNewScale(" ",&ww,flag,PI0,aaint,PI0,PI0,bbox,PD0,PD0,PD0);
-  }
+    if (ierr != 0) return 1;
+ }
+    zoom_box(bbox);
   return 0;
 }
 

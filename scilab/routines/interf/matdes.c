@@ -35,6 +35,10 @@ with those defined in the drivers They are used in scixset to check
 for invalid keys ("old_style" has been added). A better way should be to make drivers return an
 error indicator in order to skip recording*/
 extern void  C2F(msgs)(int *i, int *v);
+extern int zoom();
+extern int zoom_box(double *bbox);
+extern void unzoom();
+
 #define NUMSETFONC 38
 static char *KeyTab_[] = {
 	 "alufunction",
@@ -4762,6 +4766,37 @@ int sciseteventhandler(fname, fname_len)
   LhsVar(1)=0;
   return 0;
 } 
+int scizoomrect(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  int m,n,l;
+  CheckRhs(0,1) ;
+  CheckLhs(0,1) ;
+  if (Rhs <= 0) 
+    zoom();
+  else {
+    GetRhsVar(1,"d",&m,&n,&l); 
+    CheckLength(1,4,m*n);
+    zoom_box(stk(l));
+  }
+  
+  LhsVar(1)=0; 
+  return 0;
+} 
+
+int sciunzoom(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  CheckRhs(0,0) ;
+  CheckLhs(0,1) ;
+  
+    unzoom();
+ 
+  LhsVar(1)=0; 
+  return 0;
+} 
 
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
@@ -4860,7 +4895,9 @@ static MatdesTable Tab[]={
   {HomeFunction,"tohome"},
   {scisetposfig,"set_posfig_dim"},
   {ShowWindowFunction,"show_window"},
-  {XSaveNative,"xsnative"}
+  {XSaveNative,"xsnative"},
+  {scizoomrect,"zoom_rect"},
+  {sciunzoom,"unzoom"}
 };
   
 
