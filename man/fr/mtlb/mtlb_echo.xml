@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_echo</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Septembre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_echo">Fonction d'émulation de la fonction Matlab echo</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <VERB>echo</VERB> mais quelques cas particuliers peuvent être remplacés par des appels à la fonction Scilab <VERB>mode</VERB>:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        <VERB>echo</VERB> : est équivalent à <VERB>mode(abs(mode()-1))</VERB> dans Scilab pour les scripts et les fonctions non-compilées
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        <VERB>echo on</VERB> : est équivalent à <VERB>mode(1)</VERB> dans Scilab pour les scripts et les fonctions non-compilées
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        <VERB>echo off</VERB> : est équivalent à <VERB>mode(0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_echo(arg1[,arg2])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>echo arg1 [arg2]</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_echo</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>arg1</VERB> est égal à "on"
+        <VERB>mtlb_echo(arg1)</VERB> peut être remplacé par <VERB>mode(1)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>arg1</VERB> est égal à "off"
+        <VERB>mtlb_echo(arg1)</VERB> peut être remplacé par <VERB>mode(0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_echo</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

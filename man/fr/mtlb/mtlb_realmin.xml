@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_realmin</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Octobre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_realmin">Fonction d'émulation de la fonction Matlab realmin</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>L'équivalent Scilab de la fonction Matlab <VERB>realmin</VERB>
+    est <VERB>number_properties</VERB> mais tous les cas ne sont pas
+    implémentés :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        L'équivalent Scilab de l'expression Matlab
+        <VERB>realmin</VERB> ou <VERB>realmin('double')</VERB> est <VERB>number_properties("tiny")</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Il n'y a pas d'équivalent Scilab pour l'expression Matlab <VERB>realmin('single')</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_realmin(prec)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>realmin(prec)</VERB> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_realmin</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>prec</VERB> est égale à <VERB>"double"</VERB>
+        <VERB>mtlb_realmin(prec)</VERB> peut être remplacé par <VERB>number_properties("tiny")</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_realmin</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>number_properties</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

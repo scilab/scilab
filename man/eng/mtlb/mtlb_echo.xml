@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_echo</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>September 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_echo">Matlab echo emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no equivalent for Matlab <VERB>echo</VERB> in Scilab but some cases can be replaced by calls to Scilab <VERB>mode</VERB>:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        <VERB>echo</VERB>: is equivalent to Scilab <VERB>mode(abs(mode()-1))</VERB> for scripts and non-compiled functions
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        <VERB>echo on</VERB>: is equivalent to Scilab <VERB>mode(1)</VERB> for scripts and non-compiled functions
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        <VERB>echo off</VERB>: is equivalent to Scilab <VERB>mode(0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_echo(arg1[,arg2])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>echo arg1 [arg2]</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_echo</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>arg1</VERB> is equal to "on"
+        <VERB>mtlb_echo(arg1)</VERB> may be replaced by <VERB>mode(1)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>arg1</VERB> is equal to "off"
+        <VERB>mtlb_echo(arg1)</VERB> may be replaced by <VERB>mode(0)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_echo</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mode</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

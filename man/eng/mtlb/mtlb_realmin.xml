@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_realmin</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>October 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_realmin">Matlab realmin emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Scilab equivalent for Matlab <VERB>realmin</VERB> is
+    <VERB>number_properties</VERB> but not all cases are implemented:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Scilab equivalent for Matlab <VERB>realmin</VERB> or
+        <VERB>realmin('double')</VERB> is <VERB>number_properties("tiny")</VERB>.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        There is no Scilab equivalent for Matlab <VERB>realmin('single')</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_realmin(prec)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>realmin(prec)</VERB> when it was not
+    possible to know what was the input while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_realmin</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>prec</VERB> is equal to <VERB>"double"</VERB>
+        <VERB>mtlb_realmin(prec)</VERB> may be replaced by <VERB>number_properties("tiny")</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_realmin</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>number_properties</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
