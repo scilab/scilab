@@ -69,6 +69,9 @@ vnms=[vnms;['%inf','Inf']],
 vtps($+1)=list('1','1','1',0)
 vnms=[vnms;['%inf','inf']],
 vtps($+1)=list('1','1','1',0)
+vnms=[vnms;['$','end']],
+vtps($+1)=list('1','1','1',0)
+
 
 if find(vnms(:,2)=='pi')==[] then
   vnms=[vnms;['%pi','pi']],
