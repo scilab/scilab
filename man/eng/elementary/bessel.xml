@@ -13,16 +13,15 @@
     (K sub alpha).</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="bessely">Modified Bessel functions of the second kind
     (Y sub alpha).</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="besselh">Modified Bessel functions of the third kind.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x,ice)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besseli(alpha,x [,ice])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x [,ice])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselk(alpha,x [,ice])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = bessely(alpha,x [,ice])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselh(alpha,x)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> y = besselh(alpha,K,x [,ice])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -42,6 +41,12 @@
         <PARAM_NAME>ice</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer flag, with default value 0</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>K</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer , with possible values 1 or 2, the Hankel function type.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -82,6 +87,16 @@
 	  second kind (Y sub alpha), for real order <VERB>alpha</VERB>  and argument
 	  <VERB>x</VERB>.   <VERB>bessely(alpha,x,1)</VERB> computes
 	  <VERB>bessely(alpha,x).*exp(-abs(imag(x)))</VERB>.
+	</SP>
+      </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM>
+	<SP>
+	  <VERB>besselh(alpha [,K] ,x)</VERB> computes modified Bessel functions of the
+	  third kind (Hankel function H1 or H2 depending on <VERB>K</VERB>), for real order <VERB>alpha</VERB>  and argument
+	  <VERB>x</VERB>. If omitted  <VERB>K</VERB> is supposed to be equal to
+	  1. <VERB>besselh(alpha,1,x,1)</VERB> computes
+	  <VERB>besselh(alpha,1,x).*exp(-%i*x)</VERB> and <VERB>besselh(alpha,2,x,1)</VERB> computes
+	  <VERB>besselh(alpha,2,x).*exp(%i*x)</VERB>
 	</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
@@ -126,12 +141,12 @@ subplot(2,1,2)
 <USED_FUNCTIONS>
     <SP>The source codes can be found in routines/calelm </SP>
     <P>
-    Slatec : dbesi.f, zbesi.f,  dbesj.f, zbesj.f,  dbesk.f, zbesk.f, dbesy.f, zbesy.f
+    Slatec : dbesi.f, zbesi.f,  dbesj.f, zbesj.f,  dbesk.f, zbesk.f, dbesy.f, zbesy.f, zbesh.f
     </P>
     <P>
     Drivers to extend definition area (Serge Steer INRIA): 
     dbesig.f, zbesig.f,  dbesjg.f, zbesjg.f,  dbeskg.f, zbeskg.f, dbesyg.f,
-      zbesyg.f
+      zbesyg.f,  zbeshg.f
     </P>
 </USED_FUNCTIONS>
 
