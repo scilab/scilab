@@ -37,7 +37,7 @@ void GetCommentDateSession(char *line,int BeginSession)
 
 /*-----------------------------------------------------------------------------------*/
 /* add line to the history at the end of history*/
-void add_history (char *line)
+void add_history_sci (char *line)
 {
   struct hist *entry;
   
@@ -252,7 +252,7 @@ int C2F(resethistory) _PARAMS((char *fname))
 		cur_entry=NULL;
 
 		GetCommentDateSession(Commentline,TRUE);		
-		add_history (Commentline);
+		add_history_sci (Commentline);
 	}
 	C2F(objvide)(fname,&(Top),strlen(fname));
 	return 0;
@@ -284,7 +284,7 @@ int C2F(loadhistory) _PARAMS((char *fname))
   		while(fgets (line,sizeof(line),pFile) != NULL)
 			{
 				line[strlen(line)-1]='\0'; /* enleve le retour chariot */
-				add_history(line);
+				add_history_sci(line);
 			}
 		
 		cur_entry=history;
@@ -301,7 +301,7 @@ int C2F(loadhistory) _PARAMS((char *fname))
 	{
 		char Commentline[MAXBUF];
 		GetCommentDateSession(Commentline,TRUE);		
-		add_history (Commentline);  	
+		add_history_sci (Commentline);  	
 	}
 	C2F(objvide)(fname,&(Top),strlen(fname));
 	return 0;
