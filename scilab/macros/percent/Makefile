@@ -170,7 +170,7 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
 	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci
 
-IFUNS =  %i_and.sci %i_or.sci 
+IFUNS =  %i_and.sci %i_or.sci %i_round.sci
 
 
 FUNS =   %cblock_p.sci %choose.sci    
