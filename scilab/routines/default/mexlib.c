@@ -896,9 +896,6 @@ void *mxCalloc(unsigned int n, unsigned int size)
     return 0;
   }
   if ( size ==  sizeof(double)) C2F(dset)(&n,&zero,(double *) lrd,&one);
-
-  sciprint("mxCalloc %xl [%xl,%xl]\n",(long int) lrd,(long int)C2F(vstk).Lstk[0], (long int)C2F(vstk).Lstk[Bot-1]);
-
   return (void *) lrd;
 }
 
