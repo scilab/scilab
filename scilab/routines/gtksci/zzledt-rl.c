@@ -260,7 +260,8 @@ void HomeFunction(void)
 
 void ClearScreenConsole (char *fname)
 {
-  sciprint("Not yet implemented. \r\n");
+  rl_clear_screen(0,0);
+  /*sciprint("Not yet implemented. \r\n");*/
 }
 
 
