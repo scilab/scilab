@@ -192,3 +192,5 @@ cvsclean::
 	@$(RM) -f -r geci xless wless xmetanet routines/comm routines/libcomm
 	@cd man; $(RM) -f -r arma comm control dcd elementary fileio functions graphics gui identification linear metanet nonlinear polynomials programming pvm robust scicos signal sound strings tdcs time-date tksci translation utilities
 
+setversion : 
+	echo "SCIVERSION=scilab-2.6-CVS-`date --iso`" > Version.incl
