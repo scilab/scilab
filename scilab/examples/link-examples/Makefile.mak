@@ -80,8 +80,8 @@ EXAMPLES=ext1c.sce ext1f.sce ext2c.sce ext2f.sce ext3c.sce \
 	ext13c.sce ext13f.sce
 
 zlink.dia	: $(EXAMPLES)
-	copy *.sce /f zlink.tst 		
-	"$(SCIDIR1)\bin\scilex.exe"  -f zlink.tst 
+	type *.sce > zlink.tst 		
+	"$(SCIDIR1)\bin\scilex.exe"  -e lines(-1);exec('zlink.tst');quit;
 
 clean	::
 	@del zlink.dia 
