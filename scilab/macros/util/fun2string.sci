@@ -195,7 +195,7 @@ while ilst<nlst then
     txt=catcode(txt,'abort,')
   case '15' then ,//eol
     txt($+1)=''
-  case '18' then   
+  case '18' then  
   case '25' then   
   case '99' then //return
     txt=catcode(txt,'return,')
@@ -290,6 +290,8 @@ while ilst<nlst&ok then
       else
 	txt($+1)=''
       end
+    case '18' then  //named variable
+      stk(top)(1)=op(2)+'='+ stk(top)(1)
     case '19' then  // mkindx
       // replace all variables describing path by a single list
       n=evstr(op(2))
