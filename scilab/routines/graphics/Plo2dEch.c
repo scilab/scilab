@@ -629,6 +629,10 @@ void set_scale(flag,subwin,frame_values,aaint,logflag,axis_values)
     {
       for (i=0; i < 4 ; i++ ) 
 	if ( frame_values[i] != Cscale.frect[i]) { frame_values_changed='t' ; break;}
+      /* if no scales were present and the values given are the same as the 
+       * default frect values we must register that we are setting a scale 
+       */
+      if ( Cscale.flag == 0) frame_values_changed='t' ;
     }
   if ( flag[3] == 't' ) 
     {
