@@ -26,11 +26,12 @@ case 1 then // parameter changes and/or port sizes changes
     if size(corinv(k),'*')==1 then
       bllst(k)=scs_m.objs(corinv(k)).model;
     else
-      path=list();
-      for l=corinv(k)(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';end
+      path=list('objs');
+      for l=corinv(k)(1:$-1),path($+1)=l;path($+1)='model';path($+1)= ...
+	    'rpar';path($+1)='objs';end
       path($+1)=corinv(k)($);
       path($+1)='model';
-      bllst(k)=scs_m.objs(path);
+      bllst(k)=scs_m(path);
     end
   end
   [ok,bllst]=adjust(bllst,sim('inpptr'),sim('outptr'),sim('inplnk'),..
