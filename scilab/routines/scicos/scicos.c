@@ -22,7 +22,7 @@
 
 
 void cosini(double *);
-void cosiord(double *);
+void idoit(double *);
 void cosend(double *);
 void cdoit(double *);
 void doit(double *,integer *);
@@ -450,7 +450,7 @@ int C2F(scicos)
     /*     fermeture des blocks */
     cosend(t0);
   } else if (*flag__ == 4) {
-    cosiord(t0);
+    idoit(t0);
     if (*ierr == 0) {
       if((W=malloc(sizeof(double)*nx))== NULL ){
 	free(iwa);
@@ -573,7 +573,7 @@ int C2F(scicos)
   free(W);
 } /* cosini_ */
 
-/* Subroutine */ void cosiord(told)
+/* Subroutine */ void idoit(told)
      double *told;
 {
   static integer flag__;
@@ -641,7 +641,7 @@ int C2F(scicos)
       return;
     }
   }
-} /* cosiord_ */
+} /* idoit_ */
 
 /* Subroutine */ void cossim(told)
      double *told;
@@ -756,6 +756,7 @@ int C2F(scicos)
 	callf(told, xd , x, x,W,&flag__);
 	
 	if (flag__ < 0) {*/
+  idoit(told);
   if (*ierr != 0) {
     free(rhot);
     free(ihot);
@@ -1215,26 +1216,17 @@ int C2F(scicos)
   }
   /*     Initializing the zero crossing mask */
   C2F(iset)(&ng, &c__0, mask, &c__1);
-    
+  
   /*     initialisation (propagation of constant blocks outputs) */
-  for (jj = 1; jj <= niord; ++jj) {
-    C2F(curblk).kfun = iord[jj];
-    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
-      nclock = iord[jj + niord];
-      flag__ = 1;
-      callf(told, xd, x, x,W,&flag__);
-
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	free(rhot);
-	free(ihot);
-	free(jroot);
-	free(mask);
-	free(zcros);
-	free(W);
-	return;
-      }
-    }
+  idoit(told);
+  if (*ierr != 0) {
+    free(rhot);
+    free(ihot);
+    free(jroot);
+    free(mask);
+    free(zcros);
+    free(W);
+    return;
   }
   /*     main loop on time */
   while (*told < *tf) {
