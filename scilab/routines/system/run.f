@@ -326,7 +326,7 @@ c     "select- case"  or  "if elseif else end"
       pstk(pt)=lc
       ids(3,pt)=toperr
 c     
-      if(istk(lc+1).gt.0) then
+ 551  if(istk(lc+1).gt.0) then
 c     premiere expression
          nc=istk(lc+3)
          rstk(pt)=614
@@ -591,8 +591,9 @@ c     .  nc is required for the end of loop
 c     continue in a while 
          l0=pstk(p)
          lc=l0
+         nc=istk(lc)
          pt=p
-         goto 57
+         goto 551
       else
          goto 98
       endif
