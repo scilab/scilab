@@ -126,7 +126,7 @@ do_save()
 rest="no"
 case $# in
     0)
-       $SCI/bin/zterm -e $SCI/bin/geci -local $SCI/bin/scilex $start_file $arguments &
+       $SCI/bin/zterm $SCI/bin/scilex $start_file $arguments &
         ;;
     2)
         case $1 in
