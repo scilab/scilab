@@ -9300,8 +9300,8 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
   /* Adding F.Leray */
   /* sciPointObj *psubwin = ( sciPointObj *) NULL;*/
   double xmax, ymax;
-
   int i = 0;
+
   if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
     {
       if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -9395,7 +9395,30 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	}
       /**DJ.Abdemouche 2003**/
       if (pvecz == (double *) NULL)
-	ppoly->pvz = (double *) NULL;
+	{
+	  /* Change here: F.Leray 25.06.04 */
+	  /* Whenever pvecz == NULL, we create a 0. array of size n1 */
+	  /* in order to better allow 3d switching with all polyline_style modes*/
+	  /* Indeed, some modes require pvz knowledge. */
+
+	  /*ppoly->pvz = (double *) NULL;*/
+	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
+	    {
+	      FREE(pPOLYLINE_FEATURE (pobj)->pvx);
+	      FREE(pPOLYLINE_FEATURE (pobj)->pvector);
+	      FREE(pPOLYLINE_FEATURE (pobj)->pvy);
+	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
+	      sciDelHandle (pobj);
+	      FREE(pPOLYLINE_FEATURE(pobj));
+	      FREE(pobj);
+	      return (sciPointObj *) NULL;
+	    } 
+	  for (i = 0; i < n1; i++)
+	    ppoly->pvz[i] = 0.;
+	  
+	  ppoly->zmin   = 0.;
+	  ppoly->zmax   = 0.;
+	}
       else
 	{
 	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL)
@@ -11892,6 +11915,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
+
       /**DJ.Abdemouche 2003**/
       switch (pPOLYLINE_FEATURE (pobj)->plot)
 	{
