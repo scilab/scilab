@@ -415,15 +415,8 @@ C     .  break or continue in a for loop
             pt = pt - 2
          endif
       elseif(eqid(ids(1,pt),sel)) then
-        if (kcmd.eq.kbrk) then
-c     .    discard select variable
-           top = top - 1
-           goto 131
-        else
-           call putid(ids(1,pt),cmd(1,kcmd))
-           call error(72)
-           return
-        endif
+c     .  discard select variable
+         top = top - 1
       elseif (eqid(ids(1,pt),while)) then
 C     .  break or continue in a  while
          if (kcmd.eq.kbrk) pt = pt - 1
