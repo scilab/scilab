@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="fec"> pseudo-color plot of a function defined on a triangular mesh</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,extremes_col])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -43,7 +43,7 @@
         <PARAM_DESCRIPTION>
           <SP>: This represents a sequence of statements <VERB>key1=value1,
           key2=value2</VERB>,... where <VERB>key1</VERB>,
-          <VERB>key2,...</VERB> can be one of the following: strf, leg, rect, nax, zminmax, colminmax
+          <VERB>key2,...</VERB> can be one of the following: strf, leg, rect, nax, zminmax, colminmax, extremes_col
           (see <LINK>plot2d</LINK> for the 4 first ones).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -56,13 +56,19 @@
       <PARAM_ITEM>
         <PARAM_NAME>zminmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vector with 2 components [zmin zmax] (useful only for animation)</SP>
+          <SP>: vector with 2 components [zmin zmax] (useful in particular for animation)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>colminmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of 2 positives integers [colmin colmax]</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>extremes_col</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of 2 integers [under_min_col upper_max_col]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -82,9 +88,26 @@
     <EM>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</EM> is filled with the color <EM>i</EM>). 
     By default <EM>zmin = min(func)</EM> and <EM>zmax = max(func)</EM>. If you want to do 
     an animation with func values that varie in time, take for zmin and zmax the global 
-    minimum and maximum or something close.  CAUTION : for func values greather than zmax 
-    the last color  is used and for func values less than zmin this is the first color  
-    (so you don't see that the zminmax levels are crossed).
+    minimum and maximum or something close.
+    </P>
+    <P>
+    The <VERB>extremes_col</VERB> argument lets the user choosing the colors for the 2 extremes
+    regions <EM>{func &lt; zmin}</EM> and <EM>{func &gt; zmax}</EM>, <VERB>under_min_col</VERB> and 
+    <VERB>upper_max_col</VERB> may be equal (independantly) to:
+    <ITEMIZE>
+       <ITEM label="-1">
+            <SP>: in this case the same color than in the neighbouring zone is used (CAUTION: 
+                  you don't see that the corresponding limit is crossed), this is the
+                  default case.</SP>
+       </ITEM>
+       <ITEM label="0">
+            <SP>: in this case the extreme region is not painting at all.</SP>
+       </ITEM>
+       <ITEM label="k">
+            <SP>: (k being a valid index to a color of the current colormap) the extreme region
+                  is painting in color k.</SP>
+       </ITEM>
+     </ITEMIZE>
     </P>
     <P>If you don't want to use the complete colormap you may use the <VERB>colminmax</VERB>
     argument with <EM>1 &lt;= colmin &lt; colmax &lt;= nc</EM> (nc being the number of colors 
@@ -118,6 +141,7 @@ colorbar(-1,1)
 fec(x,y,T,z,strf="040")
 xtitle("fec example on a small triangulation")
 xsegs(xx,yy)       // the mesh
+xselect()
 
 
 // this example shows the effect of zminmax and uses the
@@ -128,6 +152,34 @@ colorbar(-0.5,0.5)  // be careful colorbar must be set by hands !
 fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5])
 xtitle("fec example : using zminmax argument")
 xsegs(xx,yy)        // the mesh
+xselect()
+
+
+// this example shows the effect of zminmax and extremes_col. It uses
+// also the datas of the first example (you have to execute the it before)
+xbasc()
+xset("colormap",jetcolormap(64))
+subplot(2,2,1)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], extremes_col=[0 0])
+   xtitle("fec example : using zminmax and extremes_col =[0 0]")
+   xsegs(xx,yy)
+subplot(2,2,2)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], extremes_col=[32 32])
+   xtitle("fec example : using zminmax and extremes_col =[32 32]")
+   xsegs(xx,yy)
+subplot(2,2,3)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], extremes_col=[-1 0])
+   xtitle("fec example : using zminmax and extremes_col =[-1 0]")
+   xsegs(xx,yy)
+subplot(2,2,4)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], extremes_col=[0 -1])
+   xtitle("fec example : using zminmax and extremes_col =[0 -1]")
+   xsegs(xx,yy)
+xselect()
 
 
 // this example shows a feature from colminmax:
@@ -145,6 +197,7 @@ subplot(1,2,2)
    fec(x,y,T,z,strf="040", colminmax=[65 128])
    xtitle("fec using the jet colormap")
    xsegs(xx,yy)
+xselect()
   ]]></EXAMPLE>
 
   <SEE_ALSO>
