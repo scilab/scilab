@@ -41,8 +41,8 @@ Void=0;
 Unknown=-1; // Unknown type or dimension
 SupToOne=-2; // Dimension >1
 NotNull=-3; // Dimension >0
-Complex="Complex"
-Real="Real"
+Complex=1 //"Complex"
+Real=0 //"Real"
 Units=["pixels","centimeters","points","inches","normalized"]
 
 global %graphics
@@ -52,7 +52,6 @@ global %graphics
 
 // Translated function input arguments
 macrhs=size(mtlbtree.inputs) 
-
 global("varslist")
 varslist=list()
 for k=1:macrhs
@@ -65,7 +64,6 @@ for k=1:macrhs
     varslist($+1)=M2scivar(mtlbtree.inputs(k).name,mtlbtree.inputs(k).name,Infer())
   end
 end
-
 // Add predefined variables in the defined variables
 varslist($+1)=M2scivar("%i","%i",Infer(list(1,1),Type(Double,Complex)))
 varslist($+1)=M2scivar("%i","%j",Infer(list(1,1),Type(Double,Complex)))
@@ -84,7 +82,7 @@ maclhs=size(mtlbtree.outputs)
 for k=1:maclhs
   if funptr(mtlbtree.outputs(k).name)<>0 then
     varslist($+1)=M2scivar("%"+mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer(list(0,0),Type(Double,Real)))
-    outputs(k)="%"+mtlbtree.outputs(k).name
+    mtlbtree.outputs(k).name="%"+mtlbtree.outputs(k).name
   else
     varslist($+1)=M2scivar(mtlbtree.outputs(k).name,mtlbtree.outputs(k).name,Infer(list(0,0),Type(Double,Real)))
   end
@@ -217,8 +215,10 @@ else
     
     select prop
     case -1 then prop="Unknown"
+    case  0 then prop="Real"
+    case  1 then prop="Complex"
     end
-    
+ 
     typ="Type("+vtype+","+prop+")"
     
     if mtlbtree.outputs($).name<>"varargout" then
@@ -240,9 +240,7 @@ else
       [boolval,index]=isdefinedvar(M2scivar(mtlbtree.outputs(k).name,strsubst(mtlbtree.outputs(k).name,"%",""),Infer()))
       if boolval then
 	dims(k)=varslist(index).dims
-	
 	vtype=[vtype;varslist(index).vtype]
-	
 	prop=[prop;varslist(index).property]
       else
 	dims(k)=list(Unknown,Unknown)
