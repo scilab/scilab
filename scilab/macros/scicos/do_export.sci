@@ -1,4 +1,7 @@
-function do_export(scs_m,fname) 
+function [wa,ha]=do_export(scs_m,fname,titleflag) 
+// titleflag:0 or 1 (place or not place title in eps file)
+// used only with fname
+  
   [lhs,rhs]=argn(0)
   
     
@@ -77,19 +80,17 @@ function do_export(scs_m,fname)
   
   
   
-
-
-  pat=xget('pattern')
-  xset('pattern',default_color(0));
-  width=(rect(3)-rect(1))/3;
-  height=(rect(4)-rect(2))*%scicos_ud_margin;
-//  alu=xget('alufunction')
-  xset('alufunction',3)
-
-  xstringb(rect(1)+width,rect(4)-height,scs_m.props.title(1),width,height, ...
-	   'fill')
-
-  xset('pattern',pat)
+  if ~(rhs==3&titleflag==0) then
+    pat=xget('pattern')
+    xset('pattern',default_color(0));
+    width=(rect(3)-rect(1))/3;
+    height=(rect(4)-rect(2))*%scicos_ud_margin;
+    xset('alufunction',3)
+    xstringb(rect(1)+width,rect(4)-height,scs_m.props.title(1),width,height, ...
+	     'fill')
+    xset('pattern',pat)
+  end
+  
   scs_m.props.title(1)='Scilab Graphics of '+scs_m.props.title(1)
   drawobjs(scs_m),
   if pixmap then xset('wshow'),end
