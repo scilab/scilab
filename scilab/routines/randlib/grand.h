@@ -17,14 +17,17 @@ extern double C2F(sgamma) __PARAMS((double *a));
 extern double C2F(snorm) __PARAMS((void));
 extern int C2F(genmn) __PARAMS((double *parm, double *x, double *work));
 extern int C2F(genmul) __PARAMS((int *n, double *p, int *ncat, int *ix));
-extern int C2F(genprm) __PARAMS((int *iarray, int *larray));
+extern int C2F(genprm) __PARAMS((double *array, int *larray));
 extern int C2F(ignbin) __PARAMS((int *n, double *pp));
 extern int C2F(ignnbn) __PARAMS((int *n, double *p));
 extern int C2F(ignpoi) __PARAMS((double *mu));
 extern int C2F(phrtsd) __PARAMS((char *phrase, int *phrasel, int *seed1, int *seed2, int phrase_len));
 extern int C2F(spofa) __PARAMS((double *a, int *lda, int *n, int *info));
 
-double C2F(ignuin)(double a, double b);
+extern void get_state_mt(double state[]);
+extern int set_state_mt_simple(double s);
+extern int set_state_mt(double seed_array[]);
+
 
 #endif /** SCI_GRAND   **/
 

@@ -4,7 +4,6 @@
  *    jpc@cermics.enpc.fr 
  *    stuff to deal with several generators added 
  *         by Bruno Pincon (12/11/2001) 
- *    
  --------------------------------------------------------------------------*/
 #include <string.h>
 #include "../stack-c.h"
@@ -48,7 +47,7 @@ double ignlgi(void)
   return ( 1.0 + floor( 2147483563.0* gen[current_gen]() ) );
 }
 
-double C2F(ignuin)(double a, double b)
+double C2F(ignuin)(double *a, double *b)
 {
   /* genere une realisation de U[a,b] (intervalle d'entiers!)
    *  => on suppose qu'au niveau appelant les verifs ont ete
@@ -57,7 +56,7 @@ double C2F(ignuin)(double a, double b)
    *     cette contrainte provenant de clcg2 mais voir aussi
    *     pour clcg4)
    */
-  return ( a + floor((b-a+1.0)*gen[current_gen]()));
+  return ( *a + floor((*b-*a+1.0)*gen[current_gen]()));
 }
 
 /**************************************************
@@ -114,40 +113,33 @@ int RandI( char* fname)
 	    }
 	  else if ( strcmp(cstk(ls),"setall")==0 ) 
 	    {
-	      if ( current_gen == CLCG4 )
-		{
-		  if ( Rhs != 5 ) 
-		    {
-		      Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
-		      return 0;
-		    }
-		  GetRhsVar(2,"d",&m1,&n1,&l1);
-		  if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
-		  return 0;}
-		  GetRhsVar(3,"d",&m1,&n1,&l2);
-		  if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
-		  return 0;}
-		  GetRhsVar(4,"d",&m1,&n1,&l3);
-		  if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
-		  return 0;}
-		  GetRhsVar(5,"d",&m1,&n1,&l4);
-		  if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
-		  return 0;}
-
-		  if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
-		    {   /* => seeds were not good  (info is display by the function) */
-		      Error(999);return 0;
-		    }
-		  LhsVar(1) = 1;
-		  PutLhsVar();
-		  return(0);
-		}
-	      else {
+	      if ( current_gen != CLCG4 )
 		sciprint("the setall option affect only the clcg4 generator !\n\r");
-		LhsVar(1) = 0;
-		PutLhsVar();
-		return(0);
-	      }
+	      if ( Rhs != 5 ) 
+		{
+		  Scierror(999,"Rhs should be 5 for 'setall'  option\n\r");
+		  return 0;
+		}
+	      GetRhsVar(2,"d",&m1,&n1,&l1);
+	      if ( m1*n1 != 1) { Scierror(999,"second argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(3,"d",&m1,&n1,&l2);
+	      if ( m1*n1 != 1) { Scierror(999,"third argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(4,"d",&m1,&n1,&l3);
+	      if ( m1*n1 != 1) { Scierror(999,"fourth argument must be scalar\r\n");
+	      return 0;}
+	      GetRhsVar(5,"d",&m1,&n1,&l4);
+	      if ( m1*n1 != 1) { Scierror(999,"fifth argument must be scalar\r\n");
+	      return 0;}
+
+	      if (! set_initial_seed_clcg4(*stk(l1),*stk(l2), *stk(l3), *stk(l4)) )
+		{   /* => seeds were not good  (info is display by the function) */
+		  Error(999);return 0;
+		}
+	      LhsVar(1) = 1;
+	      PutLhsVar();
+	      return(0);
 	    }
       else if ( strcmp(cstk(ls),"setsd")==0 ) 
 	{
@@ -569,7 +561,7 @@ int RandI( char* fname)
 	}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       for ( i=0 ; i < ResL*ResC ; i++) 
-	*stk(lr+i)= C2F(ignuin)(a,b);
+	*stk(lr+i)= C2F(ignuin)(stk(la),stk(lb));
       LhsVar(1) = suite+2;
       PutLhsVar();
       return 0;
@@ -601,15 +593,15 @@ int RandI( char* fname)
 	{ 
 	  Scierror(999,"Missing vect for random permutation\r\n");
 	  return 0;}
-      GetRhsVar(suite, "i", &m1, &n1, &la);
+      GetRhsVar(suite, "d", &m1, &n1, &la);
       if ( n1 != 1) { Scierror(999,"vect must be column vector\r\n");
       return 0;}
-      CreateVar(suite+1,"i",&m1,&nn,&lr);
+      CreateVar(suite+1,"d",&m1,&nn,&lr);
       for ( i=0 ; i < nn ; i++) 
 	{
 	  int j ; 
-	  for (j=0; j < m1 ; j++ ) *istk(lr+(m1)*i+j)= *istk(la+j);
-	  C2F(genprm)(istk(lr+(m1)*i),&m1);
+	  for (j=0; j < m1 ; j++ ) *stk(lr+(m1)*i+j)= *stk(la+j);
+	  C2F(genprm)(stk(lr+(m1)*i),&m1);
 	}
       LhsVar(1) = suite+1;
       PutLhsVar();
