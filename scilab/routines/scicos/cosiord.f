@@ -52,15 +52,17 @@ c     initialisation (propagation of constant blocks outputs)
       if(niord.eq.0) goto 10
       do 05 jj=1,niord
          kfun=iord(jj)
-         nclock = iord(jj+niord)
-         flag=1
-         call callf(kfun,nclock,funptr,funtyp,told,
-     $        x(xptr(nblk+1)),x,x,xptr,z,zptr,iz,
-     $        izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
-     $        ,outptr,outlnk,lnkptr,outtb,flag) 
-         if (flag .lt. 0) then
-            ierr = 5 - flag
-            return
+         if(outptr(kfun+1)-outptr(kfun).gt.0) then
+            nclock = iord(jj+niord)
+            flag=1
+            call callf(kfun,nclock,funptr,funtyp,told,
+     $           x(xptr(nblk+1)),x,x,xptr,z,zptr,iz,
+     $           izptr,rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk
+     $           ,outptr,outlnk,lnkptr,outtb,flag) 
+            if (flag .lt. 0) then
+               ierr = 5 - flag
+               return
+            endif
          endif
  05   continue
  10   return
