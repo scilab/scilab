@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v 3.43
+# in sync with v3.44
 
 
 # commons
@@ -341,7 +341,7 @@
 ::msgcat::mcset it "FGCOLOR" "Testo semplice"
 ::msgcat::mcset it "CURCOLOR" "Cursore"
 ::msgcat::mcset it "PARCOLOR" "Parentesi tonde ()"
-::msgcat::mcset it "BRAKCOLOR" "Parentesi quadre \[\]"
+::msgcat::mcset it "BRAKCOLOR" "Parentesi quadre \\\[\\\]"
 ::msgcat::mcset it "BRACCOLOR" "Parentesi graffe {}"
 ::msgcat::mcset it "PUNCOLOR"  "Punteggiatura"
 ::msgcat::mcset it "KEYWCOLOR" "Funzioni interne Scilab"

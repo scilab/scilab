@@ -153,7 +153,7 @@ menu $pad.filemenu.scheme -tearoff 0 -font $menuFont
     eval "$pad.filemenu.scheme add radiobutton [me "&none"] \
                -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
 
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
+# options menu
 menu $pad.filemenu.options -tearoff 1 -font $menuFont
     eval "$pad.filemenu add cascade [me "&Options"] \
                -menu $pad.filemenu.options "

@@ -138,7 +138,7 @@ proc ReplaceIt {once_or_all} {
             }         
             setmodified $textareacur
             reshape_bp
-            return [list "Done" $SearchPos]
+            return [list "Done" $SearchPos [expr $lenR - $len]]
         } else {
             set SearchPos insert
             if {$once_or_all == "once"} {
@@ -146,7 +146,7 @@ proc ReplaceIt {once_or_all} {
                     [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
                     -parent $find -title [mc "Replace"]
               }
-            return [list "No_match" $SearchPos]
+            return [list "No_match" $SearchPos 0]
         }
     } else {
         tk_messageBox -message [mc "You are searching for an empty string!"] \
@@ -157,18 +157,25 @@ proc ReplaceIt {once_or_all} {
 proc ReplaceAll {} {
     global SearchPos SearchString find
     if {$SearchString != ""} {
-    # The following has been a little bit reworked to account for the possibility that the user,
-    # without checking the Match case box, tries to replace a string S1 with a string S2 that is
-    # only different from S1 by the character case 
+        # The following has been a little bit reworked to account for the possibility that the user,
+        # without checking the Match case box, tries to replace a string S1 with a string S2 that is
+        # only different from S1 by the character case 
         set ReplaceItResult [ReplaceIt once]
         set anotherone [lindex $ReplaceItResult 0]
-        set RefPos [lindex $ReplaceItResult 1]
+        set RefPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
         while {$anotherone != "No_match"} {
             set ReplaceItResult [ReplaceIt all]
             set anotherone [lindex $ReplaceItResult 0]
-            set NewPos [lindex $ReplaceItResult 1]
+            set NewPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
+            if {int([[gettextareacur] index $RefPos])==int([[gettextareacur] index $NewPos]) && \
+                [[gettextareacur] compare $NewPos < $RefPos] } {
+                set RefPos [[gettextareacur] index "$RefPos+[lindex $ReplaceItResult 2] char"]
+            }
             if {$NewPos == $RefPos} {
                 set anotherone "No_match"
+                # remove the wrong superfluous replace (two calls to undo_menu_proc needed)
+                undo_menu_proc
+                undo_menu_proc
             }
         }
     } else {
@@ -229,7 +236,8 @@ proc findtext {typ} {
     label $find.l.f1.label -text [mc "Find what:"] -width 11
     entry $find.l.f1.entry  -textvariable SearchString -width 30 
     pack $find.l.f1.label $find.l.f1.entry -side left
-    $find.l.f1.entry selection range 0 end
+ # next line commented since it does not sleep with -exportselection 1 on Linux
+ #   $find.l.f1.entry selection range 0 end
 #        bind $find.l.f1.entry <Control-c> {tk_textCopy $find.l.f1.entry}
 #        bind $find.l.f1.entry <Control-v> {tk_textPaste $find.l.f1.entry}
 # this doesn't work?
@@ -274,17 +282,15 @@ proc findtext {typ} {
     pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 10
     pack $find.l.f4 -pady 11
     pack $find.l $find.f2 -side left -padx 1
-    bind $find <Escape> "CancelFind $find"
 
     # each widget must be bound to the events of the other widgets
     proc bindevnt {widgetnm types find} {
+        bind $widgetnm <Return> "FindIt $find"
+        bind $widgetnm <Control-n> "FindIt $find"
+        bind $widgetnm <F3> "FindIt $find"
         if {$types=="replace"} {
-            bind $widgetnm <Return> "ReplaceIt once"
             bind $widgetnm <Control-p> "ReplaceIt once"
             bind $widgetnm <Control-a> "ReplaceAll"
-        } else {
-            bind $widgetnm <Return> "FindIt $find"
-            bind $widgetnm <Control-n> "FindIt $find"
         }
         bind $widgetnm <Control-c> { $find.l.f4.f5.cbox1 invoke }
         bind $widgetnm <Control-r> { $find.l.f4.f5.cbox2 invoke }
@@ -292,6 +298,7 @@ proc findtext {typ} {
         bind $widgetnm <Control-s> { $find.l.f4.f3.down invoke }
     }
     if {$typ == "replace"} {
+        bindevnt $find.l.f2.entry2 $typ $find
         bindevnt $find.f2.button3 $typ $find
         bindevnt $find.f2.button4 $typ $find
     } else {
@@ -303,6 +310,7 @@ proc findtext {typ} {
     bindevnt $find.l.f4.f5.cbox1 $typ $find
     bindevnt $find.l.f4.f5.cbox2 $typ $find
     bindevnt $find.l.f1.entry $typ $find	
+    bind $find <Escape> "CancelFind $find"
     bind $find <Control-l> "CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
     bind $pad <Expose> {catch {raise $find} }
@@ -332,7 +340,6 @@ proc MoveDialogIfFoundHidden {} {
     set rd [expr $ld + [winfo width $find] + 2*$bordsize]
     set td [expr [winfo rooty $find] - $titlsize]
     set bd [expr $td + [winfo height $find] + $titlsize + $bordsize]
-
     # coordinates of the main window - screen coordinate system
     set lt [expr [winfo rootx $pad] - $bordsize]
     set rt [expr $lt + [winfo width $pad] + 2*$bordsize]
@@ -341,7 +348,9 @@ proc MoveDialogIfFoundHidden {} {
     # get found text area coordinates relative to the main window coordinate system
     set textareacur [gettextareacur]
     if {[catch {set foundlcoord [$textareacur dlineinfo foundtext.first]} ]} {
-        set foundlcoord [$textareacur dlineinfo replacedtext.first]
+        if {[catch {set foundlcoord [$textareacur dlineinfo replacedtext.first]} ]} {
+            set foundlcoord [$textareacur dlineinfo insert]
+        }
     }
     set lf1 [lindex $foundlcoord 0]
     set rf1 [expr $lf1 + [lindex $foundlcoord 2]]

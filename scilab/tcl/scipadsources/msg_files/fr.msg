@@ -1,5 +1,5 @@
 # Scipad texts in French
-#in sync with v3.40
+# in sync with v3.44
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -168,7 +168,7 @@
 ::msgcat::mcset fr "&Search" "&Rechercher"
 ::msgcat::mcset fr "E&xecute" "E&xécuter"
 ::msgcat::mcset fr "&Debug" "&Débug"
-::msgcat::mcset fr "S&cheme" "&Schéma"
+::msgcat::mcset fr "S&cheme" "&Langage"
 ::msgcat::mcset fr "&Options" "&Options"
 ::msgcat::mcset fr "&Windows" "Fe&nêtres"
 ::msgcat::mcset fr "&Help" "&Aide"
@@ -234,13 +234,13 @@
     ::msgcat::mcset fr "&none" "&aucun"
 
     # menues.tcl - Options menu
-    ::msgcat::mcset fr "&font size" "&taille de police"
+    ::msgcat::mcset fr "&font size" "&Taille de police"
     ::msgcat::mcset fr "&micro" "&micro"
     ::msgcat::mcset fr "&small" "&petit"
     ::msgcat::mcset fr "m&edium" "m&oyen"
     ::msgcat::mcset fr "&large" "&grand"
-    ::msgcat::mcset fr "&Colors" "&Coleurs"
-    ::msgcat::mcset fr "Word &Wrap" "Ret&our à la ligne automatique"
+    ::msgcat::mcset fr "&Colors" "&Couleurs"
+    ::msgcat::mcset fr "Word &Wrap" "&Retour à la ligne automatique"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"
@@ -306,21 +306,21 @@
 ::msgcat::mcset fr "Which function?" "Quelle fonction ?"
 
 #except for "expanded" text, like preference variables description
-::msgcat::mcset fr "BGCOLOR" "Background"
-::msgcat::mcset fr "FGCOLOR" "Plain text"
-::msgcat::mcset fr "CURCOLOR" "Cursor"
-::msgcat::mcset fr "PARCOLOR" "Parentheses ()"
-::msgcat::mcset fr "BRAKCOLOR" "Brackets \[\]"
-::msgcat::mcset fr "BRACCOLOR" "Braces {}"
-::msgcat::mcset fr "PUNCOLOR"  "Punctuation"
-::msgcat::mcset fr "KEYWCOLOR" "Scilab internals"
-::msgcat::mcset fr "OPCOLOR"   "Operators"
-::msgcat::mcset fr "QTXTCOLOR"  "String text"
-::msgcat::mcset fr "REMCOLOR" "Comments"
-::msgcat::mcset fr "XMLCOLOR" "XML tags"
-::msgcat::mcset fr "NUMCOLOR" "Numbers"
-::msgcat::mcset fr "SELCOLOR" "Selection"
-::msgcat::mcset fr "BREAKPOINTCOLOR" "Breakpoint background"
-::msgcat::mcset fr "LFUNCOLOR" "Library functions"
-::msgcat::mcset fr "PDEFCOLOR" "Predefined variables"
-::msgcat::mcset fr "FOUNDTEXTCOLOR" "Matched text"
+::msgcat::mcset fr "BGCOLOR" "Arrière-plan"
+::msgcat::mcset fr "FGCOLOR" "Texte brut"
+::msgcat::mcset fr "CURCOLOR" "Curseur"
+::msgcat::mcset fr "PARCOLOR" "Parenthèses ()"
+::msgcat::mcset fr "BRAKCOLOR" "Crochets \\\[\\\]"
+::msgcat::mcset fr "BRACCOLOR" "Accolades {}"
+::msgcat::mcset fr "PUNCOLOR"  "Ponctuation"
+::msgcat::mcset fr "KEYWCOLOR" "Mots-clés Scilab"
+::msgcat::mcset fr "OPCOLOR"   "Opérateurs"
+::msgcat::mcset fr "QTXTCOLOR"  "Chaîne de caractères"
+::msgcat::mcset fr "REMCOLOR" "Commentaires"
+::msgcat::mcset fr "XMLCOLOR" "Balises XML"
+::msgcat::mcset fr "NUMCOLOR" "Nombres"
+::msgcat::mcset fr "SELCOLOR" "Sélection"
+::msgcat::mcset fr "BREAKPOINTCOLOR" "Point d'arrêt (arrière-plan)"
+::msgcat::mcset fr "LFUNCOLOR" "Fonctions de librairie"
+::msgcat::mcset fr "PDEFCOLOR" "Variables prédéfinies"
+::msgcat::mcset fr "FOUNDTEXTCOLOR" "Texte trouvé"

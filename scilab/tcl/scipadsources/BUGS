@@ -9,8 +9,6 @@ Bugs:
    e.g. A=A'+B'
  . line-breaks (..) are not handled for quoted strings colorization
 
--Find in selection does not work correctly on unix.
-
 -Ctrl-v copies also inside the find/replace/filename dialogs, but does not
  replace an existing selection. Problem of setting up the proper bindings,
  likely. Note: this happens only on some platforms.
@@ -105,7 +103,7 @@ in a slave interpreter.
 Wishes:
 -------
 
--default colors, fonts, modifiable within the program 
+-default fonts modifiable within the program 
 
 -parentheses and brackets get colorized in colors according to their level
  of nesting
@@ -174,11 +172,6 @@ Wishes:
 
 -Improve the aesthetics of Scipad (see sciGUI)
 
--A preferences menu (sub-menu of the options menu?) that would allow to 
- select the background color of the Scipad from a palette (this has been
- asked for in the ng).
- Could also be done through the config() macro from sciGUI.
-
 -Among the Scipad preferences, the user should be able to select whether
  file names displayed in the title bar and windows menu entries is of
  pruned form or full pathname. The switch for that is already prepared in
@@ -229,3 +222,8 @@ Wishes:
  incrementing over the "Wait seconds for loading..." message.
 
 -Add underlined numbers in the Windows menu, as for the File menu.
+
+-The find/replace entries in the dialog could be comboboxes retaining
+ the strings previously searched or replaced
+
+-Add an eventual "revert to defaults button" (colors option menu)

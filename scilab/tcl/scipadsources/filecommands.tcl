@@ -726,6 +726,7 @@ proc AddRecentFile {filename} {
 # if there is already the max number of entries, then shift them
 # one line down and insert $filename at the top
     global pad listofrecent maxrecentfiles nbrecentfiles
+    if {$maxrecentfiles == 0} {return}
     # first check if the new entry is already present
     set present "false"
     for {set i 0} {$i<$nbrecentfiles} {incr i} {

@@ -822,10 +822,19 @@ Francois VOGEL, 07/03/05
 ES 8/3/2005
  * Options menu splitted in Scheme and Options
  * Word Wrap moved to Options menu
- * all scipad colors are confugurable within scilab with the Option/Colors
+ * all scipad colors are configurable within scilab with the Option/Colors
    submenu, and immediately updated
  * version --> 3.43
 
-TODO: propagate changes to french messagese
-ADD an eventual "revert to defaults button" 
-
+Francois VOGEL, 09/03/05
+ * Again changes related to request 168, and find/replace:
+     - bindings corrected for the replace dialog (still ctrl-key bindings)
+     - trying to replace with an empty string now works correctly
+     - there were tricky cases where replace all could enter an endless loop
+      (e.g. replace d by dd, starting the replace between two matches on
+      the same line) - this is fixed
+ * maxrecentfiles = 0 is now fully supported in case that value is selected
+   in the options menu to come
+ * Find in selection now works correctly on Linux also
+ * Wrt the new Options/colors, propagated changes to french messages
+ * version --> 3.44
