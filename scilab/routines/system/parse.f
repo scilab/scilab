@@ -5,7 +5,7 @@ c     ====================================================================
 c     Copyright INRIA
       include '../stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
-      logical compil,eptover
+      logical compil,eptover,eqid
 c     
       logical iflag
       common /basbrk/ iflag
@@ -14,7 +14,7 @@ c
       integer quote,percen
       integer name,num,insert,extrac
 c     
-      integer id(nsiz),ans(nsiz)
+      integer id(nsiz),ans(nsiz),varargout(nsiz)
       integer pts,psym,excnt,p,r,topk,where
       integer pcount,strcnt,bcount,qcount,pchar,schar
       logical dotsep,found
@@ -31,6 +31,7 @@ c
       data quote/53/,percen/56/,dot/51/
       data name/1/,num/0/,insert/2/,extrac/3/
       data ans/672929546,nz1*673720360/
+      data varargout/169544223,504893467,673720349,nz3*673720360/
 c     
       save job
 
@@ -458,8 +459,11 @@ c     start lhs arguments list
  41   continue
 c     begin analysis of a new lhs argument
       if (sym .ne. name) then
-         buf='lhs: waiting for a variable name'
-         call error(997)
+         call error(274)
+         goto 98
+      endif
+      if (eqid(syn,varargout)) then
+         call error(275)
          goto 98
       endif
 
@@ -473,8 +477,7 @@ c     .  argument followed by a blank, a comma or a ] ==> it is a simple name
          goto 44
       elseif (char1.ne.lparen.and.char1.ne.dot) then
 c     .  invalid lhs
-         buf='invalid lhs'
-         call error(997)
+         call error(273)
          goto 98
       endif
 c     lhs argument is name(..) or name.xx

@@ -1223,10 +1223,16 @@ C     errors from semidef
       call msgout(io,lunit, 'endfunction is missing')
       goto 999
  273  continue
+      call msgout(io,lunit,
+     $     'Instruction left hand side: '//
+     $     'waiting for a dot or a left parenthesis')
       goto 999
  274  continue
+      call msgout(io,lunit, 
+     $     'Instruction left hand side: waiting for a name')
       goto 999
  275  continue
+      call msgout(io,lunit, 'varargout keyword cannot be used here')
       goto 999
  276  continue
       goto 999
