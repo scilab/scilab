@@ -1,7 +1,4 @@
-SHELL = /bin/sh
-
 SCIDIR =../..
-
 SCIDIR1 =..\..
 
 #LIBRARY = name of the dll (without extension).
@@ -26,7 +23,7 @@ OTHERFOBJS = as2osf.obj ex17f.obj
 ################ do not edit below this line ############################
 
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
-SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
+SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 !include $(SCIDIR1)\Makefile.incl.mak
 
