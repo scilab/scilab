@@ -21,7 +21,6 @@ extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
-extern void C2F(storeversion)(char *str,int n);
 
 
 static void Initialize() 
@@ -102,7 +101,8 @@ int troisieme_exemple()
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
   fprintf(stdout,"je linke \n");
-  send_scilab_job("TMPDIR,link(''./mon_edo.o'',''mon_edo'',''c'');");
+  // send_scilab_job("TMPDIR,link(''./my_ode.o'',''odeex'',''c'');");
+  send_scilab_job("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
   fprintf(stdout,"fin du link  \n");
   send_scilab_job("link(''show'')");
   WriteMatrix("x", &mx, &nx, x);
@@ -119,8 +119,9 @@ int troisieme_exemple()
 
 void C2F(banier)(int *x) 
 {
-  fprintf(stdout,"Ourf ....\n");
-  C2F(storeversion)("scilab-2.5.1",12L);
+  /* fprintf(stdout,"Ourf ....\n");
+     C2F(storeversion)("scilab-2.5.1",12L);
+  */
 }
 
 
