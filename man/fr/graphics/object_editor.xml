@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>object_editor</TITLE>
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2004</DATE>
+
+  <SHORT_DESCRIPTION name="object_editor">description of the graphic object
+  editor capacities</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>As explained in the <VERB>graphics_entities</VERB> help file, Scilab
+    graphics is now based on a brent new graphics mode. This mode allows the
+    user to have more interaction with graphics before and after having them
+    drawn. In the <VERB>"new"</VERB> mode, each graphics window and the
+    drawing it contains are represented by hierchical entities. The hierachy
+    top level is the Figure. Each Figure defines at least one child of type
+    Axes. Each Axes entity contains a set of leaf entities which are the basic
+    graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
+    contain an Agregation type which are recursive sets of entities.</P>
+
+    <P>The main interest of the new graphic mode is to make property change
+    easier. This new graphics'mode provides a set of high-level graphing
+    routines (see <LINK>set</LINK>, <LINK>get</LINK>) used to control objects'
+    properties such as data, coordinates and scaling, color and appearences
+    without requiring to replay the initial graphics commands.</P>
+
+    <P>Graphics entities are associated to Scilab variables of type
+    <VERB>handle</VERB>. The handle is a unique identifier which is associated
+    to each instance of a created graphical entity. Using this handle, it will
+    be possible to reach entities' properties through "set" and "get"
+    routines. The handles are also used to manipulate graphics objects, to
+    move them, to make copies or delete them.</P>
+
+    <P>To complete and use the graphics handle capacity at its maximum, a
+    graphic object editor has been created too. It is a set of Tcl/Tk
+    interfaces available for each kind of graphics objects (see
+    <LINK>graphics_entities</LINK> for more details) that can be enabled for
+    each graphic window. To make it work, select the <VERB>Edit</VERB> menu in
+    the graphic window. Seven graphics editing operations are available :</P>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="Select: ">
+        <SP>Make the figure be the current one.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Redraw: ">
+        <SP>Redraw the content of the graphics window (only useful for
+        old_style mode).</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Erase: ">
+        <SP>Erase the content of the graphics window. Its action corresponds
+        to a <VERB>xbasc</VERB> (old graphic style) or <VERB>clf</VERB> (new
+        graphic style) command.</SP>
+
+        <P></P>
+
+        <P></P>
+
+        <P>The last four items are specially dedicated to the graphic editor
+        :</P>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Figure Properties: ">
+        <SP>Launch the Tcl/Tk interface for the Figure object applied to the
+        figure handle of the graphics window.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Current Axes Properties: ">
+        <SP>Launch the Tcl/Tk interface for the Axes object applied to the
+        current axes handle of the graphics window.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Start Entity Picker: ">
+        <SP>Start an event handler on the graphics window to catch the mouse
+        clicks on graphics objects and launch the corresponding Tcl/Tk
+        interface.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="Stop Entity Picker: ">
+        <SP>Stop the action of the Entity Picker by terminating the event
+        handler on the graphics window.</SP>
+
+        <P></P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Once the graphic interface is enabled, two main areas appear :</P>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="A combobox entity selector: ">
+        <SP>Placed in the right-top corner of the Tk interface, a combobox
+        selector specifies which object is currently edited. It can be used to
+        switch from a graphic object to another provided that they are in the
+        same graphic window.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="A notebook: ">
+        <SP>The second area represents a notebook composed with different
+        properties pages (like <VERB>Style</VERB>, <VERB>Data</VERB>,
+        <VERB>Clipping</VERB>...) depending on the selected graphic object.
+        Using this editor, man can edit more easily the whole properties set
+        of each graphic object (like through the <VERB>"set"</VERB> and
+        <VERB>"get"</VERB> commands).</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P></P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[Below is an example of the appearance of such an interface with objects of type Axes.
+
+No images for now
+]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>clf</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>F.Leray INRIA</AUTHOR>
+</MAN>
