@@ -7,9 +7,10 @@ c     Copyright INRIA
       include '../stack.h'
 c
 c
+      logical	ishm
       integer insert,extrac, toto, gettype
       data insert/2/,extrac/3/
-      logical ishm
+      
 
 c     handle recursion
       if(rstk(pt).eq.403.or.rstk(pt).eq.405) goto 10
@@ -74,6 +75,3 @@ c
       strpos=0
       return
       end
-
-
-

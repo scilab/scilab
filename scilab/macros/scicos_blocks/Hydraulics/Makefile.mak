@@ -3,7 +3,7 @@ SHELL = /bin/sh
 SCIDIR=../../..
 SCIDIR1=..\..\..
 
-include ../../../Makefile.incl
+include ../../../Makefile.incl.mak
 
 NAME = scshydraulicslib
 NAM = SCI/macros/scicos_blocks/Hydraulics
