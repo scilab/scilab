@@ -118,7 +118,7 @@ int RandI( char* fname)
   CheckLhs(minlhs,maxlhs);
   if ( GetType(1) != 1) 
     {
-     int un=1,deux=2, dim_state_mt=624, dim_state_4=4;
+     int un=1,deux=2, dim_state_mt=625, dim_state_4=4;
       GetRhsVar(1,"c",&ms,&ns,&ls);
       if ( strcmp(cstk(ls),"getsd")==0) 
 	{
@@ -202,11 +202,11 @@ int RandI( char* fname)
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
 	      if ( m1*n1 == 1)          /* simple init of mt     */
 		{ if (! set_state_mt_simple(*stk(l1)) ) {Error(999); return(0);}; }
-	      else if ( m1*n1 == 624 )  /* init of all the state */
+	      else if ( m1*n1 == 625 )  /* init of all the state */
 		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
 	      else
 		{
-		  Scierror(999,"for mt you must init the state with a vector of 1 or 624 values !\n\r");
+		  Scierror(999,"for mt you must init the state with a vector of 1 or 625 values !\n\r");
 		  return 0;
 		};
 	      break;
@@ -549,6 +549,10 @@ int RandI( char* fname)
   else if ( strcmp(cstk(ls),"gam")==0) 
     {
       if ( Rhs != suite + 1) 
+
+	/*  ETRE PLUS CONSISTANT ICI : choisir entre shape , scale ou
+            bien A et R (idem pour le man)
+	*/
 	{ Scierror(999,"Missing shape and scale for Gamma law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
       if ( m1*n1 != 1) { Scierror(999,"shape must be scalar\r\n");return 0;}
@@ -557,7 +561,7 @@ int RandI( char* fname)
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
       if ( (*stk(la)) <= 0.0 ||  (*stk(lb)) <= 0.0 )
 	{
-	  Scierror(999,"Rand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \r\n"); return 0;
+	  Scierror(999,"grand(..'gam',A,R) : A <= 0.0 or R <= 0.0 \r\n"); return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{

@@ -14,33 +14,45 @@
   </CALLING_SEQUENCE>
   <ITEMIZE label='PARAMETERS#1 (generating randoms numbers following a given law)'>
   <ITEM label='Y=grand(m,n,&apos;bet&apos;,A,B), Y=grand(x,&apos;bet&apos;,A,B)'>
-: Returns random deviates from the beta distribution with  parameters A and B. The density of the beta is  <VERB>x^(a-1) * (1-x)^(b-1) / B(a,b)</VERB> for <VERB>0 &lt; x &lt; 1</VERB>.  For details see [1].
+: Generates random deviates from the beta distribution with  parameters A and B. The density of the beta is 
 
   </ITEM>
+  <VERBATIM><![CDATA[
+       x^(a-1) * (1-x)^(b-1) / B(a,b) for 0 < x < 1. 
+   ]]></VERBATIM>
+  <P>
+    For details see [1].
+  </P>
   <ITEM label='Y=grand(m,n,&apos;bin&apos;,N,P), Y=grand(x,&apos;bin&apos;,N,P)'>
-: Generates random deviates from a binomial distribution whose number of  trials is N and whose  probability of an event in each trial is P.  N is the number of trials in the binomial distribution  from which a random deviate is to be generated.  P is the probability of an event in each trial of the  binomial distribution from which a random deviate is to be generated.  (0.0 &lt;= P &lt;= 1.0). For details see [2].
+: Generates random deviates from a binomial distribution whose number of  trials is N and whose  probability of an event in each trial is P  (0.0 &lt;= P &lt;= 1.0). For details see [2].
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;chi&apos;,Df), Y=grand(x,&apos;chi&apos;,Df)'>
-: Generates random deviates from the distribution of a chisquare  with DF degrees of freedom random variable.  Uses relation between chisquare and gamma.
+: Generates random deviates from the distribution of a chisquare  random variable with Df degrees of freedom. 
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;def&apos;), Y=grand(x,&apos;def&apos;)'>
-: Returns random floating point numbers from a uniform distribution  over [0,1) (1 is never returned) using the current generator
+: Generates random deviates from a uniform distribution  over [0,1) (1 is never returned).
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;exp&apos;,Av), Y=grand(x,&apos;exp&apos;,Av)'>
-: Generates random deviates from an exponential  distribution with mean AV.  For details see [3].
+: Generates random deviates from an exponential  distribution with mean Av.  For details see [3].
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;f&apos;,Dfn,Dfd), Y=grand(x,&apos;f&apos;,Dfn,Dfd)'>
-: Generates random deviates from the F (variance ratio)  distribution with DFN degrees of freedom in the numerator and DFD degrees of freedom in the denominator.  Method: Directly generates ratio of chisquare variates
+: Generates random deviates from the F (variance ratio)  distribution with Dfn degrees of freedom in the numerator and Dfd degrees of freedom in the denominator. 
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;gam&apos;,Shape,Scale), Y=grand(x,&apos;gam&apos;,Shape,Scale)'>
-: Generates random deviates from the gamma distribution whose  density is  (Scale**Shape)/Gamma(Shape) * X**(Shape-1) * Exp(-Scale*X) For details see [4] (Case R &gt;= 1.0) and [5] (Case 0.0 &lt; R &lt; 1.0).
+: Generates random deviates from the gamma distribution whose  density is :
 
   </ITEM>
+  <VERBATIM><![CDATA[
+    A^R/gamma(R) * X^(R-1) * exp(-A*X)
+   ]]></VERBATIM>
+  <P>
+    For details see [4] (Case R &gt;= 1.0) and [5] (Case 0.0 &lt; R &lt; 1.0).
+  </P>
   <ITEM label='Y=grand(m,n,&apos;geom&apos;,p), Y=grand(x,&apos;geom&apos;,p)'>
 : Generates random deviates from a geometric distribution (number of Bernouilli trials (with probability succes of p) until a succes is met). p must be in [pmin,1] (with pmin = 1.3 10^(-307)).
 
@@ -50,7 +62,7 @@
 
   </ITEM>
   <ITEM label='Y=grand(M,&apos;mn&apos;,Mean,Cov)'>
-:Generate M Multivariate Normal random deviates Mean must be a Nx1 matrix and Cov a NxN positive definite matrix Y is a NxM matrix 
+:Generate M Multivariate Normal random deviates ; Mean must be a Nx1  matrix and Cov a NxN symetric positive definite matrix ; Y is a NxM matrix 
 
   </ITEM>
   <ITEM label='Y=grand(n,&apos;markov&apos;,P,x0)'>
@@ -58,27 +70,27 @@ Generates <VERB>n</VERB> successive states of a Markov chain described  by the t
 
   </ITEM>
   <ITEM label='Y=grand(M,&apos;mul&apos;,N,P)'>
-Generates <VERB>M</VERB> observations from the Multinomial distribution.  <VERB>N</VERB> is the number of events (put randomly <VERB>N</VERB> &quot;balls&quot; into <VERB>Ncat</VERB> &quot;urns&quot;) <VERB>P</VERB> is the vector of probabilities. <VERB>P(i)</VERB> is the probability that an event will be classified into category i. Thus,<VERB>P(i)</VERB> must be in <VERB>[0,1]</VERB>. <VERB>P</VERB> is of size <VERB>Ncat-1</VERB>,  (the probability of category <VERB>Ncat</VERB> is <VERB>1-sum(P)</VERB>).  <VERB>Y(:,i)</VERB> is an observation from multinomial distribution. All <VERB>Y(:,i)</VERB>  will be nonnegative and their sum will be <VERB>N</VERB>. <VERB>Y</VERB> is of size <VERB>NxM</VERB>. For details see Algorithm from page 559 of [6].
+Generates <VERB>M</VERB> observations from the Multinomial distribution.  <VERB>N</VERB> is the number of events (put randomly <VERB>N</VERB> &quot;balls&quot; into <VERB>Ncat</VERB> &quot;urns&quot;) <VERB>P</VERB> is the vector of probabilities. <VERB>P(i)</VERB> is the probability that an event will be classified into category i. Thus,<VERB>P(i)</VERB> must be in <VERB>[0,1]</VERB>. <VERB>P</VERB> is of size <VERB>Ncat-1</VERB>, (the probability of category <VERB>Ncat</VERB> is <VERB>1-sum(P)</VERB>).  <VERB>Y(:,i)</VERB> is an observation from multinomial distribution. All <VERB>Y(:,i)</VERB> will be nonnegative and their sum will be <VERB>N</VERB>. <VERB>Y</VERB> is of size <VERB>NxM</VERB>. For details see algorithm page 559 of [6].
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;nbn&apos;,N,P),Y=grand(x,&apos;nbn&apos;,N,P)'>
-: Generates random deviates from a negative binomial  distribution.  N is the required number of events (N &gt; 0).  P is The probability of an event during a Bernoulli trial (0.0 &lt; P &lt; 1.0). For details see Algorithm from page 480 of [6].
+: Generates random deviates from a negative binomial distribution.  N is the required number of events (N &gt; 0).   P is the probability of an event during a Bernoulli trial (0.0 &lt; P &lt; 1.0).  For details see Algorithm from page 480 of [6].
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;nch&apos;,Df,Xnon), Y=grand(x,&apos;nch&apos;,Df,Xnon)'>
-: Generates random deviates from the distribution of a noncentral  chisquare with DF degrees of freedom and noncentrality parameter XNONC.  DF is he degrees of freedom of the chisquare (Must be &gt;= 1.0) XNON the Noncentrality parameter of the chisquare  (Must be &gt;= 0.0)  Uses fact that noncentral chisquare is the sum of a chisquare  deviate with DF-1 degrees of freedom plus the square of a normal  deviate with mean XNONand standard deviation 1. 
+: Generates random deviates from the distribution of a noncentral  chisquare with Df degrees of freedom (Df must be &gt;= 1.0) and noncentrality  parameter Xnon (Xnon must be &gt;= 0.0).
 
   </ITEM>
-  <ITEM label='Y=grand(m,n,&apos;nf&apos;,Dfn,Dfd,Xnon), Y=grand(x,&apos;nf&apos;,Dfn,Dfd,Xnon)'>
-: Generates random deviates from the noncentral F (variance ratio)  distribution with DFN degrees of freedom in the numerator, and DFD  degrees of freedom in the denominator, and noncentrality parameter XNONC.  DFN is the numerator degrees of freedom  (Must be &gt;= 1.0)  DFD is the Denominator degrees of freedom (Must be positive)  XNON is the Noncentrality parameter (Must be nonnegative)  Method:  Directly generates ratio of noncentral numerator chisquare variate   to central denominator chisquare variate. 
+  <ITEM label='Y=grand(m,n,&apos;nf&apos;,Dfn,Dfd,Xnonc), Y=grand(x,&apos;nf&apos;,Dfn,Dfd,Xnonc)'>
+: Generates random deviates from the noncentral F (variance ratio)  distribution with Dfn (Dfn &gt;= 1.0) degrees of freedom in the numerator, and Dfd  (Dfd &gt; 0) degrees of freedom in the denominator, and noncentrality  parameter Xnonc (Xnonc &gt;= 0.0).
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;nor&apos;,Av,Sd), Y=grand(x,&apos;nor&apos;,Av,Sd)'>
-: Generates random deviates from a normal distribution  with mean, AV, and standard deviation, SD. AV is the mean of the normal distribution.  SD is the standard deviation of the normal distribution.  For details see [7]. 
+: Generates random deviates from a normal distribution  with mean, Av, and standard deviation, Sd. For details see [7]. 
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;poi&apos;,mu), Y=grand(x,&apos;poi&apos;,mu)'>
-: Generates random deviates from a Poisson distribution with mean MU.  MU is the mean of the Poisson distribution from which random deviates are to be generated (MU &gt;= 0.0). For details see [8].
+: Generates random deviates from a Poisson distribution with mean mu (mu &gt;= 0.0). For details see [8].
 
   </ITEM>
   <ITEM label='Mat=grand(M,&apos;prm&apos;,vect)'>
@@ -90,16 +102,16 @@ Generates <VERB>M</VERB> observations from the Multinomial distribution.  <VERB>
 
   </ITEM>
   <ITEM label='Y=grand(m,n,&apos;unf&apos;,Low,High),Y=grand(x,&apos;unf&apos;,Low,High)'>
-: Generates reals uniformly distributed between Low and high.  Low is the  low bound on real value to be generated  High is the high bound (exclusive) on real value to be generated  
+: Generates reals uniformly distributed in [Low, High). 
 
   </ITEM>
   </ITEMIZE>
   <ITEMIZE label='PARAMETERS#2 (set/get the current generator and its state)'>
   <P>
-     Since Scilab-2.6.x you have the possibility to choose between  the following 5 different base generators (which give random  numbers following the &apos;lgi&apos; law, the other laws being gotten from it) : 
+     Since Scilab-2.6.x you have the possibility to choose between  the following 6 different base generators (which give random  numbers following the &apos;lgi&apos; law, the other laws being gotten from it) : 
   </P>
   <ITEM label='mt'>
-The Mersenne-Twister of M. Matsumoto and T. Nishimura, period  about 2^19937, state given by an array of 624 integers ; this  is the default generator.
+The Mersenne-Twister of M. Matsumoto and T. Nishimura, period  about 2^19937, state given by an array of 625 integers (the first  integer being an index in [1,624]); this is the default generator.
 
   </ITEM>
   <ITEM label='kiss'>
@@ -107,7 +119,7 @@ The Keep It Simple Stupid of G. Marsaglia,  period about 2^123, state given by 4
 
   </ITEM>
   <ITEM label='clcg2'>
-a Combined 2 Linear Congruential Generator of P. L&apos;Ecuyer, period about 2^61, state given by 2 integers ; this is  the generator previously used by grand.
+a Combined 2 Linear Congruential Generator of P. L&apos;Ecuyer, period about 2^61, state given by 2 integers ; this is  the generator previously used by grand (but slightly modified)
 
   </ITEM>
   <ITEM label='clcg4'>
@@ -119,7 +131,7 @@ a uniform random number generator based  on  theory  and suggestions  given  in 
 
   </ITEM>
   <ITEM label='fsultra'>
-Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu).
+Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu). State given by 2 integers.
 
   </ITEM>
   <ITEM label='gen=grand(&apos;getgen&apos;)'>
@@ -131,7 +143,7 @@ Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu).
 
   </ITEM>
   <ITEM label='S = grand(&apos;getsd&apos;)'>
-: Gets the current state (the current seeds) of the current generator ; S is given as a column vector (of integers) of dimension 624 for mt, 4 for kiss, 2 for clcg2 and fsultra, 4 for clcg4 (for this last one you get the current state of the current virtual generator) and 1 for urand.
+: Gets the current state (the current seeds) of the current generator ; S is given as a column vector (of integers) of dimension 625 for mt (the first being an index in [1,624]), 4 for kiss, 2 for clcg2 and fsultra, 4 for clcg4  (for this last one you get the current state of the current virtual generator)  and 1 for urand.
 
   </ITEM>
   <ITEM label='grand(&apos;setsd&apos;,S), grand(&apos;setsd&apos;,s1[,s2,s3,s4])'>
@@ -139,7 +151,7 @@ Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu).
 
   </ITEM>
   <ITEM label='for mt'>
-S is a vector of integers of dim 624, but a simpler initialisation may be done with only one integer s1 (s1 must be in [1,2^32[) ;
+S is a vector of integers of dim 625 (the first component is an index and must be in [1,624], the 624 last ones must be in [0,2^32[) (but must not be all zeros) ; a simpler initialisation may be done with only one  integer s1 (s1 must be in [0,2^32[) ;
 
   </ITEM>
   <ITEM label='for kiss'>
@@ -255,7 +267,7 @@ The code was given by G. Marsaglia at the end of a thread concerning RNG in C in
 
   </ITEM>
   <ITEM label='clcg2'>
-The method is from P. L&apos;Ecuyer but the C code is provided at the Luc  Devroye home page (http://cgm.cs.mcgill.ca/~luc/rng.html). This one have been slighty modified to recover the generator uses previously  by grand (but clcg2 don&apos;t provide the virtual generators stuff)
+The method is from P. L&apos;Ecuyer but the C code is provided at the Luc  Devroye home page (http://cgm.cs.mcgill.ca/~luc/rng.html). This was the generator used previously by grand but this version is slightly different so that you cannot get exactly the same output than before.  Note also that clcg2 don&apos;t provide the old grand virtual generators stuff, this role being now devoted to clcg4.
 
   </ITEM>
   <ITEM label='clcg4'>
@@ -263,7 +275,7 @@ The code is from P. L&apos;Ecuyer and Terry H.Andres and provided at the P. L&ap
 
   </ITEM>
   <ITEM label='fsultra'>
-code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu)
+code from Arif Zaman (arif@stat.fsu.edu) and George Marsaglia (geo@stat.fsu.edu).
 
   </ITEM>
   <ITEM label='scilab packaging'>

@@ -32,6 +32,20 @@
  *      - add get state routine
  *      - add a little verif when the state is changed with the simple
  *        procedure
+ *
+ *     furthers modifications on May 25 2002 :
+ *
+ *     1/ corrections of the followings : 
+ *        
+ *        bug 1 : the complete state was returned at the scilab level
+ *                without the index mti. Now the complete state is a 
+ *                vector of dim 625 with mti as the first component
+ *        bug 2 : the set_state doesn't work if the generator was not
+ *                initialised => add a is_init var and returned
+ *                the state given with the default initialisation.
+ *
+ *     2/ Following the modif in the new version of this generator I have
+ *       changed the simple initialisation (but not put the init via array)
  */
 
 #include <math.h>
@@ -57,8 +71,9 @@ int set_state_mt_simple(double s);
 #define TEMPERING_SHIFT_L(y)  (y >> 18)
 
 static unsigned long mt[N]; /* the array for the state vector  */
-static int mti=N+1; /* mti==N+1 means mt[N] is not initialized */
-
+static int mti=N;
+static int is_init=0;  
+static double DEFAULT_SEED=5489.0;
 
 unsigned long randmt()
 {
@@ -69,8 +84,11 @@ unsigned long randmt()
     if (mti >= N) { /* generate N words at one time */
         int kk;
 
-        if (mti == N+1)     /* if set_state_mt_simple() not been called, */
-            set_state_mt_simple(4357.0); /* a default initial seed is used   */
+	if ( ! is_init )
+	  {
+            set_state_mt_simple(DEFAULT_SEED);
+	    is_init = 1;
+	  }
 
         for (kk=0;kk<N-M;kk++) {
             y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
@@ -95,28 +113,30 @@ unsigned long randmt()
     return ( y );
 }
 
-/* initializing the array with a NONZERO seed */
+
 int set_state_mt_simple(double s)
 {
-  /*   setting initial seeds to mt[N] using
-   *   the generator Line 25 of Table 1 in
-   *   [KNUTH 1981, The Art of Computer Programming
-   *   Vol. 2 (2nd Ed.), pp102]                 
-   */
+  /*   set the initial state with the simple procedure  */
   unsigned long seed;
 
-  if ( s == floor(s) && 1.0 <= s && s <= 4294967295.0)
+  if ( s == floor(s) && 0.0 <= s && s <= 4294967295.0)
     {
       seed = (unsigned long) s;
 	mt[0]= seed & 0xffffffff;
       for (mti=1; mti<N; mti++)
-        mt[mti] = (69069 * mt[mti-1]) & 0xffffffff;
-      mti=N;   
+	{
+	  mt[mti] =  (1812433253UL * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti); 
+	  /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
+	  /* In the previous versions, MSBs of the seed affect   */
+	  /* only MSBs of the array mt[].                        */
+	  /* 2002/01/09 modified by Makoto Matsumoto             */
+	  mt[mti] &= 0xffffffffUL;   /* for >32 bit machines */
+	}
       return ( 1 );
     }
   else
     {
-      sciprint("\n\r bad seed for mt, must be an integer in [1, 2^32-1] \n\r");
+      sciprint("\n\r bad seed for mt, must be an integer in [0, 2^32-1] \n\r");
       return ( 0 );
     }
 }
@@ -137,24 +157,36 @@ int set_state_mt_simple(double s)
 
 int set_state_mt(double seed_array[])
 
-     /* pas de verif concernant la condition precedente ... */ 
 {
-    int i;
+    int i, mti_try;
 
+    mti_try = (int) seed_array[0];
+    if (mti_try < 1  ||  mti_try > 624)
+      {
+	sciprint("\n\r the first component of the mt state mt, must be an integer in [1, 624] \n\r");
+	return ( 0 );
+      }
+    mti = mti_try;
     for (i=0;i<N;i++) 
-      mt[i] = (unsigned long) seed_array[i];
-    mti=N;
+      mt[i] = ((unsigned long) seed_array[i+1]) & 0xffffffff;
     return ( 1 );
 }
 
 
-/*  Pour ramener l'etat au niveau scilab  */
+/*  To return the state at the scilab level  */
 void get_state_mt(double state[])
 {
     int i;
 
+    if ( ! is_init )
+      {
+	set_state_mt_simple(DEFAULT_SEED);
+	is_init = 1;
+      }
+    
+    state[0] = (double) mti;
     for (i=0;i<N;i++) 
-      state[i] = (double) mt[i];
+      state[i+1] = (double) mt[i];
 }
 
 

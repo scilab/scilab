@@ -2436,7 +2436,17 @@ int scixset(fname,fname_len)
   if (strncmp(cstk(l1),"clipping",8) == 0) 
     C2F(dr1)("xset",cstk(l1),&v,&v,&v,&v,&v,&v,&xx[0],&xx[1],&xx[2],&xx[3],5L,bsiz);
   else if ( strncmp(cstk(l1),"colormap",8) == 0) 
-    C2F(dr1)("xset",cstk(l1),xm,xn,&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,bsiz);
+    { 
+      C2F(dr1)("xset",cstk(l1),xm,xn,&v,&v,&v,&v,stk(lr),&dv,&dv,&dv,5L,bsiz);
+      /* ajout Bruno :
+       * since xset('colormap',..) is not recorded by the Rec driver the 
+       * current color initialisation performed by xset('colormap',..) 
+       * can be lost after redrawing. 
+       * Nex line is added for this
+       */
+      x[0] = xm[0]+1;
+      C2F(dr1)("xset","color",&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
+    }
   else if ( strncmp(cstk(l1),"mark size",9) == 0) {
     C2F(dr1)("xget","mark",&verb,mark,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,5L);
     mark[1]=(int)xx[0];
@@ -2451,7 +2461,8 @@ int scixset(fname,fname_len)
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   LhsVar(1)=0;
   return 0;
-} 
+}
+
 
 /*-----------------------------------------------------------
  * xstring(x,y,str,[angle,box])

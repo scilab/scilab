@@ -68,8 +68,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
   
   C2F(echelle2d)(x,y,xm,ym,Nnode,&n1,"f2i",3L);
 
-  /** Draw Axis or only rectangle **/
-  axis_draw(strflag);
   /* Fec code */
   frame_clip_on();
   {
@@ -199,6 +197,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
    ********************************************************************/
 
   frame_clip_off();
+
+  /** Draw Axis or only rectangle **/
+  axis_draw(strflag);
+
   /** Drawing the Legends **/
   if ((int)strlen(strflag) >=1  && strflag[0] == '1')
     {
