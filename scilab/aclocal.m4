@@ -374,6 +374,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
   WITH_TKSCI=0
   TCL_LIB_OK=0
+  TCL_INCLUDE_OK=0
   # Check for tcl header file
   AC_MSG_CHECKING([for header file tcl.h])
   dirs="$USER_TCL_INC_PATH /include /usr/include /usr/include/tcl /usr/include/tcl8.* /usr/local/include /usr/local/include/tcl /usr/local/include/tcl8.*  /usr/X11/include/tcl /usr/X11/include/tcl8.* /usr/include/X11 /usr/include/X11/tcl /usr/include/X11/tcl8.* ../include ../../include /usr/tcl /usr/local/tcl /usr/local/tcl/include /usr/tcl/include /sw/include"
@@ -382,6 +383,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 		AC_MSG_RESULT([found in $i ])
 		AC_CHECK_TCL_VERSION($i,8,4,tcl.h)
 		if test $TCL_VERSION_OK = 1; then
+			TCL_INCLUDE_OK=1	
 			AC_CHECK_TCL_LIB($TCL_MAJOR_VERSION,$TCL_MINOR_VERSION)
 			if test $TCL_LIB_OK = 1; then 
 				TCLTK_LIBS=" $TCL_LIB $TCLTK_LIBS"
@@ -393,18 +395,24 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
   #perform tk tests if tcl test passed
   if test $TCL_LIB_OK = 0; then 
-        AC_MSG_ERROR([tcl library not found])
+	if test $TCL_INCLUDE_OK = 0; then 
+        	AC_MSG_ERROR([no header file tcl.h  found for 8.4*])
+        else
+		AC_MSG_ERROR([header file tcl.h  has been found for 8.4*  but no corresponding tcl library])
+        fi	
   fi 
 
   # Check for tk header file
   AC_MSG_CHECKING([for header file tk.h])
   TK_LIB_OK=0
+  TK_INCLUDE_OK=0
   dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include /sw/include /usr/include/tcl8.*"
   for i in $dirs ; do
 	if test -r $i/tk.h; then 
 		AC_MSG_RESULT([found in $i ])
 		AC_CHECK_TK_VERSION($i,8,4,tk.h)
 		if test $TK_VERSION_OK = 1; then 
+			TK_INCLUDE_OK=1
 			AC_CHECK_TK_LIB($TK_MAJOR_VERSION,$TK_MINOR_VERSION)
 			if test $TK_LIB_OK = 1; then 
 				TKTK_LIBS=" $TK_LIB $TKTK_LIBS"
@@ -415,7 +423,12 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   done
 
   if test $TK_LIB_OK = 0; then 
-        AC_MSG_ERROR([tk library not found])
+	if test $TCL_INCLUDE_OK = 0; then 
+        	AC_MSG_ERROR([no header file tk.h found for 8.4*])	
+        else
+		AC_MSG_ERROR([header file tk.h  has been found for 8.4*  but no corresponding tk library])
+        fi
+
   else 
         TCLTK_LIBS=$TK_LIB" $TCLTK_LIBS"
         WITH_TKSCI=1
