@@ -1098,6 +1098,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
      int getmouse,dyn_men,getrelease;
      char *str;
 {
+  MSG msg;
   int win;
   /** BOOL flag1= TRUE; **/
   integer buttons = 0;
