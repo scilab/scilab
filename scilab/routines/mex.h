@@ -79,7 +79,6 @@ int mxGetNumberOfDimensions __PARAMS((Matrix *ptr));
 void *mxGetData __PARAMS((Matrix *ptr));
 void *mxGetImagData __PARAMS((Matrix *ptr));
 
-extern int C2F(createcvar) __PARAMS(());
 extern int C2F(createptr) __PARAMS((char *type,integer * m,integer * n, integer *it,integer * lr,integer *ptr, long int type_len));
 extern int C2F(createstkptr) __PARAMS((integer *m, vraiptrst *ptr));
 extern int C2F(endmex)  __PARAMS((integer *nlhs,Matrix *plhs[],integer *nrhs,Matrix *prhs[]));
