@@ -37,6 +37,7 @@ end
 // Load scilab functions libraries
 errcatch(48,'continue');
 write(%io(2),'  loading initial environment')
+
 load('SCI/macros/mtlb/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/algebre/lib')
@@ -64,12 +65,10 @@ home= getenv('HOME','ndef');
 if home=='ndef',home=unix_g('cd; pwd');end 
 
 // use MSDOS syntax?
-MSDOS = %f
-if getenv('WIN32','NO')=='OK' & (getenv('COMPILER','NO')=='VC++' | getenv('COMPILER','NO')=='ABSOFT') then
-  MSDOS = %t
-end
-
-
+COMP=getenv('COMPILER','NO'); 
+MSDOS = getenv('WIN32','NO')=='OK' & ( COMP=='VC++' | COMP =='ABSOFT' | ...
+				       COMP=='gcc')  
+clear COMP
 // Protect variable previously defined 
 clear ans
 predef('all') 
@@ -116,3 +115,4 @@ if  home<>PWD then
      end
   end
 end
+
