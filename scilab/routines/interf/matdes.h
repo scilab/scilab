@@ -6,8 +6,8 @@
 /* & voir xsc/x_screen.c */
 extern void HomeFunction(void);
 extern void ClearScreenConsole(void);
-
-
+extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
+extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
 int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
 
 extern int C2F(matdes)  _PARAMS((void));
@@ -88,7 +88,7 @@ extern int sciwinsid  _PARAMS((char *fname, unsigned long fname_len));
 extern int C2F(scigerase)  _PARAMS((void));
 extern int scixgraduate  _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
-
+extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 
 /* NG beg */
 extern int gset(char *fname, unsigned long fname_len);

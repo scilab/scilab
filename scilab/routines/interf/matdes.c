@@ -42,7 +42,7 @@ static char *pmodes[] =
 #ifndef NULL
 #define NULL 0
 #endif 
-
+extern void setposfig __PARAMS((integer *i,integer *j));
 extern int C2F (deletewin) __PARAMS((integer *number));  
 extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *n,
 				  char *type,char *iord));
@@ -3765,6 +3765,25 @@ int scixname(fname,fname_len)
   return 0;
 }
 
+/*-----------------------------------------------------------
+ * set_posfig_dim(width,height) : give a name to current graphic window 
+ *-----------------------------------------------------------*/
+
+int scisetposfig(fname,fname_len)
+     char *fname;
+     unsigned long fname_len;
+{
+  integer m1,n1,l1,m2,n2,l2;
+  CheckRhs(2,2);
+  CheckLhs(1,1);
+  GetRhsVar(1,"i",&m1,&n1,&l1);
+  GetRhsVar(2,"i",&m2,&n2,&l2);
+  setposfig(istk(l1),istk(l2));
+  LhsVar(1)=0;
+  return 0;
+}
+
+
 /*------------------------------------------------------------
  * dir = 'u','r','d','l'  [default -> 'l' ] 
  * fontsize =             [default -> -1   ] 
@@ -4477,8 +4496,8 @@ static MatdesTable Tab[]={
   {scixs2ppm,"xs2ppm"},
   {scixs2ps,"xs2ps"},
   {ClearScreenConsole,"clc"},
-  {HomeFunction,"tohome"}
-	
+  {HomeFunction,"tohome"},
+  {scisetposfig,"set_posfig_dim"}	
 };
 
 /* interface for the previous function Table */ 

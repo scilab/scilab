@@ -166,7 +166,8 @@
 {"xs2ppm",           	IN_matdes,      82,     2},
 {"xs2ps",		IN_matdes,	83,	2},
 {"clc",			IN_matdes,	84,	2},	
-{"tohome",		IN_matdes,	85,	2},	
+{"tohome",		IN_matdes,	85,	2},
+{"set_posfig_dim",	IN_matdes,	86,	2},
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
