@@ -53,8 +53,7 @@ typedef  struct  {
 
 /***********************************************************
  * call the apropriate interface according to the value of k 
- * iflagint is only used inside MatdsRC to switch between 
- * matdsc or matdsr 
+ * iflagint is no more used here ....
  ***********************************************************/
 
 static int sig_ok = 0;
@@ -63,7 +62,6 @@ int C2F(callinterf) ( int *k, int * iflagint)
 {
   int returned_from_longjump ;
   static int count = 0;
-  Iflag=*iflagint;
   if ( count == 0) 
     {
       if (sig_ok) signal(SIGINT,sci_sigint_addinter);
