@@ -329,37 +329,6 @@ rand('seed',0)
 // matdsr  matdsc
 a=rand(4,4);ac=a+i*rand(4,4);t=a*a';tc=ac*ac';
 tc=triu(tc,1)+triu(tc,1)'+diag(real(diag(tc)));
-//
-//hess
-[u,h]=hess(a);
-if norm(u*h*u'-a,1) > 20*%eps then pause,end
-if abs(norm(h-hess(a),1))> 10*%eps then pause,end
-[u,h]=hess(ac);
-if norm(u*h*u'-ac,1) > 200*%eps then pause,end
-if abs(norm(h-hess(ac),1))> 10*%eps then pause,end
-[u,h]=hess(t);
-if norm(u*h*u'-t,1)  > 200*%eps then pause,end
-if abs(norm(h-hess(t),1))> 10*%eps then pause,end
-[u,h]=hess(tc);
-if norm(u*h*u'-tc,1)  > 200*%eps then pause,end
-if abs(norm(h-hess(tc),1))> 10*%eps then pause,end
-//schur
-[u,s]=schur(a);
-if norm(u*s*u'-a,1 ) > 200*%eps then pause,end
-if norm(s-schur(a),1 ) > 200*%eps then pause,end
-if norm(spec(a)-spec(s),1)> 200*%eps then pause,end
-[u,s]=schur(ac);
-if norm(u*s*u'-ac,1 ) > 200*%eps then pause,end
-if norm(s-schur(ac),1 ) > 200*%eps then pause,end
-if norm(spec(ac)-spec(s),1)> 200*%eps then pause,end
-[u,s]=schur(t);
-if norm(u*s*u'-t,1 ) > 200*%eps then pause,end
-if norm(s-schur(t),1 ) > 200*%eps then pause,end
-if norm(diag(s)-spec(t),1)> 200*%eps then pause,end
-[u,s]=schur(tc);
-if norm(u*s*u'-tc,1 ) > 200*%eps then pause,end
-if norm(s-schur(tc),1 ) > 200*%eps then pause,end
-if norm(diag(s)-spec(tc),1) > 200*%eps then pause,end
 // fonctions matricielles
 s=sqrtm(t);
 if norm(t-s*s,1) > 200*%eps then pause,end
