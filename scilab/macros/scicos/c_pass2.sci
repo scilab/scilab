@@ -300,7 +300,7 @@ zord=zord(zord(:,1)<>zeros(zord(:,1)),:)
 //Donc les blocks indiques sont des blocks susceptibles de produire
 //des discontinuites quand l'evenement se produit
 
-maX=max(max(cord(:,1)),max(ordclk(:,1)))+1;
+maX=max([cord(:,1);ordclk(:,1)])+1;
 cordX=cord(:,1)*maX+cord(:,2);
 
 // 1: important; 0:non
