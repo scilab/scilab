@@ -22,9 +22,10 @@ with those defined in the drivers They are used in scixset to check
 for invalid keys ("old_style" has been added). A better way should be to make drivers return an
 error indicator in order to skip recording*/
 extern void  C2F(msgs)(int *i, int *v);
-#define NUMSETFONC 35
+#define NUMSETFONC 38
 static char *KeyTab_[] = {
 	 "alufunction",
+	 "auto clear",
 	 "background",
 	 "clipoff",
 	 "clipping",
@@ -35,6 +36,7 @@ static char *KeyTab_[] = {
 	 "default",
 	 "figure",
 	 "font",
+         "font size",
 	 "foreground",
 	 "fpf",
 	 "gc",
@@ -44,6 +46,7 @@ static char *KeyTab_[] = {
 	 "line mode",
 	 "line style",
 	 "mark",
+	 "mark size",
 	 "old_style",
 	 "pattern",
 	 "pixmap",
