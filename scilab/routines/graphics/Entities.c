@@ -11798,12 +11798,44 @@ sciDrawObj (sciPointObj * pobj)
      
       if (!sciGetVisibility(pobj)) break;
       
-      n1=1;      
+      n1=1;
       if ((xm = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
       if ((ym = MALLOC ((pFEC_FEATURE (pobj)->Nnode)*sizeof (integer))) == NULL)	return -1;
-      for ( i =0 ; i < pFEC_FEATURE (pobj)->Nnode ; i++) {
-	xm[i]= XScale(pFEC_FEATURE (pobj)->pvecx[i]); 
-	ym[i]= YScale(pFEC_FEATURE (pobj)->pvecy[i]);} 
+
+      if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE)
+	{
+	  for ( i =0 ; i < pFEC_FEATURE (pobj)->Nnode ; i++) {
+	    xm[i]= XScale(pFEC_FEATURE (pobj)->pvecx[i]); 
+	    ym[i]= YScale(pFEC_FEATURE (pobj)->pvecy[i]);} 
+	}
+      else /* 3D version */
+	{
+	  double * xvect = NULL;
+	  double * yvect = NULL;
+	  int n = pFEC_FEATURE (pobj)->Nnode;
+	  
+
+	  if ((xvect = MALLOC (n*sizeof (double))) == NULL) return -1;
+	  if ((yvect = MALLOC (n*sizeof (double))) == NULL){
+	    FREE(xvect); xvect = (double *) NULL; return -1;
+	  }
+	  
+	  for(i=0;i<n;i++){
+	    xvect[i] = pFEC_FEATURE (pobj)->pvecx[i];
+	    yvect[i] = pFEC_FEATURE (pobj)->pvecy[i];
+	  }
+	  
+	  ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n);
+	  ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n);
+	  
+	  for ( i =0 ; i < n ; i++)
+	    trans3d(sciGetParentSubwin(pobj),1,&xm[i],&ym[i],
+		    &xvect[i],&yvect[i],NULL);
+	  
+	  FREE(xvect); xvect = (double *) NULL;
+	  FREE(yvect); yvect = (double *) NULL;
+	}
+
 #ifdef WIN32
       flag_DO=MaybeSetWinhdc();
 #endif   
