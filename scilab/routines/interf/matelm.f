@@ -1865,8 +1865,11 @@ c
       lstk(top+1)=l1+mn*(it+1)
       if(sel.eq.0) then
 c     op(a) <=> op(a,'*')
-         call cupro(mn,stk(l1))
-         if(it.eq.1) call cupro(mn,stk(l1+mn))
+         if(it.eq.0) then
+            call cupro(mn,stk(l1))
+         else
+            call cuproi(mn,stk(l1),stk(l1+mn))
+         endif
       elseif(sel.eq.1) then
 c     op(a,'r')  <=>  op(a,1)
          if(it.eq.0) then
