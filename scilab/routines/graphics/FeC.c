@@ -31,6 +31,8 @@ void newfec __PARAMS((integer *xm,integer *ym,double *triangles,double *func,int
 		      integer *Ntr,double *zminmax,integer *colminmax));
 extern void initsubwin();
 
+void get_frame_in_pixel(integer WIRect[]);
+
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors 
  *  for a function defined by finite elements 
@@ -236,7 +238,7 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
     else if ( func[i] < zmin )
       zone[i] = 0;
     else
-      zone[i] = floor( (func[i] - zmin)/dz ) + 1;
+      zone[i] = (int) (floor( (func[i] - zmin)/dz ) + 1);
   };
   /* 
      2/ loop of the triangles : each triangle is finally decomposed 

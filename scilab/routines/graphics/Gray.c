@@ -294,7 +294,7 @@ static void GraySquare1_base(integer *x, integer *y, double *z, integer n1, inte
     for (j = 0 ; j < (n2)-1 ; j++)
       {
 	integer w,h;
-	fill[0]= z[i+(n1-1)*j];
+	fill[0]= (integer) (z[i+(n1-1)*j]);
 	C2F(dr)("xset","pattern",&(fill[0]),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 	w=Abs(x[j+1]-x[j]);
 	h=Abs(y[i+1]-y[i]);
