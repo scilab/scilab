@@ -25,13 +25,12 @@ I - TO RUN SCILAB (BINARY VERSION)
         for Visual C++.
  
     4 - If you have any problems or suggestions concerning Scilab,
-        send an email to:
         
-                           Scilab@inria.fr
+        http://www.scilab.org/cgi-bin/bugzilla_bug/index.cgi        
  
         or better post a message to newsgroup:
  
- 		      comp.soft-sys.math.scilab
+ 	comp.soft-sys.math.scilab
 
 CAUTION: When Scilab 2.7 is launched, file "scilab.hist" is created. By default it
 ********
@@ -92,9 +91,9 @@ V - DOCUMENTATION
  In addition to Scilab online documentation (obtained by typing "help item" or
  "apropos keyword" or clicking on the help button), you will find 
  compressed postscript and pdf documentation by anonymous ftp on
- "ftp.inria.fr:/INRIA/Projects/Meta2/Scilab/doc" (internet# 192.93.2.54)
+ "ftp.inria.fr:/INRIA/Projects/Scilab"
  or from Web site
- "http://www-rocq.inria.fr/scilab":
+ "http://www.scilab.org":
  
  Internals.ps.gz, Internals.pdf: Scilab's internals
  Intro.ps.gz, Intro.pdf: Introduction to Scilab
