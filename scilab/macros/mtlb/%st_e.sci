@@ -6,7 +6,7 @@ sz=size(getfield(1,w),'*')
 s=mlist(getfield(1,w),int32([1,1]));
 for k=3:sz
     ww=getfield(k,w);
-    ext=ww(I)
+    ext=ww(I);
     setfield(k,ext,s)
   end
 endfunction
