@@ -88,7 +88,7 @@ clear args larg L
 
 // INDEX file index.html
 global INDEX
-INDEX=SCI+"/man/"+LANGUAGE+"/index.html"
+INDEX=SCI+"/man/"+LANGUAGE+"/index.htm"
 
 //Scilab Help Chapters, %helps is a two column matrix of strings
 global %helps
