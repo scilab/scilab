@@ -41,14 +41,16 @@
     This edition mode  can also be entered pressing the "<VERB>o</VERB>" key while locator is in the
     edition window. 
     </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Defaults: '><P></P>
-    This menu  allows to set default values for node diameter, node
+    <DESCRIPTION_ITEM label='Graph/Settings: '><P></P>
+    This menu  allows to set if graph is directed or not. It also sets
+    default values for node diameter, node
     border width, edge width, and font size.
     </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Default names: '><P></P>
-    This menu automatically sets the node and egde names properties to
-    node and egde internal number.
+    <DESCRIPTION_ITEM label='Information: '><P></P>
+    This menu  outputs  graph informations, like number of nodes,
+    number of arcs, nodes properties ans arc properties.
     </DESCRIPTION_ITEM>
+
     <DESCRIPTION_ITEM label='Graph/Quit: '><P></P>
     Use this menu to exit out of the editor.
     </DESCRIPTION_ITEM>
@@ -81,7 +83,7 @@
     edition window. 
 
     </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Move: '><P></P>
+    <DESCRIPTION_ITEM label='Edit/Move Node: '><P></P>
     This menu set the current edition mode to "move node". To
     move a node just left click on the selected node move the mouse up
     to the final position and left click  (click on right button
@@ -157,6 +159,11 @@
       <P></P>
     This edition mode  can also be entered pressing the "<VERB>p</VERB>" key while locator is in the
     edition window. 
+    </DESCRIPTION_ITEM>
+
+    <DESCRIPTION_ITEM label='Edit/Default names: '><P></P>
+    This menu automatically sets the node and egde names properties to
+    node and egde internal number.
     </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label='Edit/Undo: '><P></P>
