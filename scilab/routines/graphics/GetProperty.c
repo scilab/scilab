@@ -4229,6 +4229,7 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
   else if (strcmp(marker,"color_mode") == 0)    {return 1;}/*DJ.A merge*/ 
   else if (strcmp(marker,"color_flag") == 0)    {return 1;}
+  else if (strcmp(marker,"cdata_mapping") == 0)    {return 10;}
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"margins") == 0)    {return 1;}

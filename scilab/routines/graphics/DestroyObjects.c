@@ -466,6 +466,8 @@ DestroySurface (sciPointObj * pthis)
   FREE(pSURFACE_FEATURE (pthis)->pvecy);
   FREE(pSURFACE_FEATURE (pthis)->pvecx);
   FREE(pSURFACE_FEATURE (pthis)->inputCMoV); /* Adding F.Leray 24.03.04*/
+  FREE(pSURFACE_FEATURE (pthis)->color); /* Adding F.Leray 18.03.05 */
+  
   if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
     FREE(pSURFACE_FEATURE (pthis)->zcol);
   pSUBWIN_FEATURE (psubwin)->surfcounter--;

@@ -134,7 +134,7 @@ extern void C2F(plot3dn)(sciPointObj *pobj,
 
 extern void C2F(fac3dn)(sciPointObj *pobj, 
 			double *x, double *y, double *z, 
-			integer *cvect, integer *p, integer *q, int *DPI);
+			double *cvect, integer *p, integer *q, int *DPI);
 /**DJ.Abdemouche 2003**/
 
 extern int Gen3DPoints (integer type,integer *polyx,integer *polyy,integer *fill,integer whiteid,double zmin,double zmax,double *,double *,double *,integer i,integer j,integer jj1,integer *p,integer dc,integer fg); /* DRAWINGS */

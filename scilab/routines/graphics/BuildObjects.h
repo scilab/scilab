@@ -51,7 +51,7 @@ extern sciPointObj *ConstructRectangle (sciPointObj * pparentfigure, double x,
 
 extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,
-				      integer *zcol, integer izcol, integer dimzx, integer dimzy, 
+				      double *zcol, integer izcol, integer dimzx, integer dimzy, 
 				      integer *flag, double *ebox, integer flagcolor, integer *isfac,
 				      integer *m1, integer *n1, integer *m2, integer *n2, 
 				      integer *m3, integer *n3, integer *m3n, integer *n3n); /* BUILD */

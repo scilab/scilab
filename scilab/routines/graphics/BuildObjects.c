@@ -27,7 +27,7 @@
 #include "BuildObjects.h"
 #include "SetProperty.h"
 
-
+extern int LinearScaling2Colormap(sciPointObj* pobj);
 extern double * AllocUserGrads(double * u_xgrads, int nb);
 extern char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
@@ -1364,7 +1364,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
  */
 sciPointObj *
 ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
-		  double * pvecx, double * pvecy, double * pvecz,integer *zcol, 
+		  double * pvecx, double * pvecy, double * pvecz,double *zcol, 
 		  integer izcol, integer dimzx, integer dimzy,  
 		  integer *flag, double *ebox,integer flagcolor, 
 		  integer *isfac, integer *m1, integer *n1, integer *m2, 
@@ -1441,96 +1441,97 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       psurf = pSURFACE_FEATURE (pobj);
   
       /*F.Leray 12.03.04 Adding here to know the length of arrays pvecx, pvecy and pvecz*/
-      pSURFACE_FEATURE (pobj)->nc = nc;
-      pSURFACE_FEATURE (pobj)->nx = nx;
-      pSURFACE_FEATURE (pobj)->ny = ny;
-      pSURFACE_FEATURE (pobj)->nz = nz;
-      pSURFACE_FEATURE (pobj)->isfac = *isfac;
-      pSURFACE_FEATURE (pobj)->m1= *m1;
-      pSURFACE_FEATURE (pobj)->m2= *m2;
-      pSURFACE_FEATURE (pobj)->m3= *m3;
-      pSURFACE_FEATURE (pobj)->n1= *n1;
-      pSURFACE_FEATURE (pobj)->n2= *n2;
-      pSURFACE_FEATURE (pobj)->n3= *n3;
+      psurf->nc = nc;
+      psurf->nx = nx;
+      psurf->ny = ny;
+      psurf->nz = nz;
+      psurf->isfac = *isfac;
+      psurf->m1= *m1;
+      psurf->m2= *m2;
+      psurf->m3= *m3;
+      psurf->n1= *n1;
+      psurf->n2= *n2;
+      psurf->n3= *n3;
       
       /*Adding F.Leray 19.03.04*/
-      pSURFACE_FEATURE (pobj)->m3n= *m3n;
-      pSURFACE_FEATURE (pobj)->n3n= *n3n;
+      psurf->m3n= *m3n;
+      psurf->n3n= *n3n;
 
-      if (((pSURFACE_FEATURE (pobj)->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
+      if (((psurf->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
       else
 	{
 	  for (i = 0;i < nx; i++)
-	    pSURFACE_FEATURE (pobj)->pvecx[i] = pvecx[i];
+	    psurf->pvecx[i] = pvecx[i];
 	}
-      if (((pSURFACE_FEATURE (pobj)->pvecy = MALLOC ((ny * sizeof (double)))) == NULL))
+      if (((psurf->pvecy = MALLOC ((ny * sizeof (double)))) == NULL))
 	{
-	  FREE(pSURFACE_FEATURE (pobj)->pvecx);
+	  FREE(psurf->pvecx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
       else
 	{
 	  for (j = 0;j < ny; j++)
-	    pSURFACE_FEATURE (pobj)->pvecy[j] = pvecy[j];
+	    psurf->pvecy[j] = pvecy[j];
 	}
 
-      if (((pSURFACE_FEATURE (pobj)->pvecz = MALLOC ((nz * sizeof (double)))) == NULL))
+      if (((psurf->pvecz = MALLOC ((nz * sizeof (double)))) == NULL))
 	{
-	  FREE(pSURFACE_FEATURE (pobj)->pvecy);
-	  FREE(pSURFACE_FEATURE (pobj)->pvecx);
+	  FREE(psurf->pvecy);
+	  FREE(psurf->pvecx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
       else
 	{
 	  for (j = 0;j < nz; j++)
-	    pSURFACE_FEATURE (pobj)->pvecz[j] = pvecz[j];
+	    psurf->pvecz[j] = pvecz[j];
 	}
 
       /*Storage of the input Color Matrix or Vector Data */ /* F.Leray 23.03.04*/
-      pSURFACE_FEATURE (pobj)->inputCMoV = NULL;
-      if (((pSURFACE_FEATURE (pobj)->inputCMoV = MALLOC (( (*m3n)*(*n3n) * sizeof (integer)))) == NULL))
+      psurf->inputCMoV = NULL;
+      if (((psurf->inputCMoV = MALLOC (( (*m3n)*(*n3n) * sizeof (double)))) == NULL))
 	{
-	  FREE(pSURFACE_FEATURE (pobj)->pvecy); pSURFACE_FEATURE (pobj)->pvecy = NULL;
-	  FREE(pSURFACE_FEATURE (pobj)->pvecx); pSURFACE_FEATURE (pobj)->pvecx = NULL;
-	  FREE(pSURFACE_FEATURE (pobj)->pvecz); pSURFACE_FEATURE (pobj)->pvecz = NULL;
+	  FREE(psurf->pvecy); psurf->pvecy = NULL;
+	  FREE(psurf->pvecx); psurf->pvecx = NULL;
+	  FREE(psurf->pvecz); psurf->pvecz = NULL;
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj); pobj = NULL;
 	  return (sciPointObj *) NULL;
 	}
       
       for (j = 0;j < (*m3n)*(*n3n); j++)  
-	pSURFACE_FEATURE (pobj)->inputCMoV[j] = zcol[j];
+	psurf->inputCMoV[j] = zcol[j];
       
-      /* Init. zcol to NULL F.Leray 17.03.04*/
-      pSURFACE_FEATURE (pobj)->zcol = NULL;
+      /* Init. zcol & zcolReal to NULL F.Leray 17.03.04*/
+      psurf->zcol = NULL;
+      psurf->color = NULL;
       
       /*
       if (izc !=0&&nc>0 ) {
-	if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
+	if (((psurf->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
 	  {
-	    FREE(pSURFACE_FEATURE (pobj)->pvecy); pSURFACE_FEATURE (pobj)->pvecy = NULL;
-	    FREE(pSURFACE_FEATURE (pobj)->pvecx); pSURFACE_FEATURE (pobj)->pvecx = NULL;
-	    FREE(pSURFACE_FEATURE (pobj)->pvecz); pSURFACE_FEATURE (pobj)->pvecz = NULL;
+	    FREE(psurf->pvecy); psurf->pvecy = NULL;
+	    FREE(psurf->pvecx); psurf->pvecx = NULL;
+	    FREE(psurf->pvecz); psurf->pvecz = NULL;
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
-	    FREE(pSURFACE_FEATURE (pobj));
+	    FREE(psurf);
 	    FREE(pobj); pobj = NULL;
 	    return (sciPointObj *) NULL;
 	  }
@@ -1538,21 +1539,21 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  {
 	    if (izcol !=0)
 	      for (j = 0;j < nc; j++)  
-	      pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j];  */ /* DJ.A 2003 */
+	      psurf->zcol[j]= zcol[j];  */ /* DJ.A 2003 */
       /*}
 	} */
       
       /*-------Replaced by: --------*/
 
       if (izc !=0&&nc>0 ) { /* Allocation of good size depending on flagcolor for nc (see above)*/
-	if (((pSURFACE_FEATURE (pobj)->zcol = MALLOC ((nc * sizeof (integer)))) == NULL))
+	if (((psurf->zcol = MALLOC ((nc * sizeof (double)))) == NULL))
 	  {
-	    FREE(pSURFACE_FEATURE (pobj)->pvecy); pSURFACE_FEATURE (pobj)->pvecy = NULL;
-	    FREE(pSURFACE_FEATURE (pobj)->pvecx); pSURFACE_FEATURE (pobj)->pvecx = NULL;
-	    FREE(pSURFACE_FEATURE (pobj)->pvecz); pSURFACE_FEATURE (pobj)->pvecz = NULL;
+	    FREE(psurf->pvecy); psurf->pvecy = NULL;
+	    FREE(psurf->pvecx); psurf->pvecx = NULL;
+	    FREE(psurf->pvecz); psurf->pvecz = NULL;
 	    sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	    sciDelHandle (pobj);
-	    FREE(pSURFACE_FEATURE (pobj));
+	    FREE(psurf);
 	    FREE(pobj); pobj = NULL;
 	    return (sciPointObj *) NULL;
 	  }
@@ -1563,13 +1564,13 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  /* case flagcolor == 2*/
 	  if(flagcolor==2 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
 	    {
-	      /* We have just enough information to fill the pSURFACE_FEATURE (pobj)->zcol array*/
+	      /* We have just enough information to fill the psurf->zcol array*/
 	      for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];  /* DJ.A 2003 */
+		psurf->zcol[j]= psurf->inputCMoV[j];  /* DJ.A 2003 */
 		  }
 	  else if(flagcolor==2 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
-	      /* We have too much information and we take only the first dimzy colors to fill the pSURFACE_FEATURE (pobj)->zcol array*/
+	      /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
 	      /* NO !! Let's do better; F.Leray 08.05.04 : */
 	      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
 	      /* in our example: m3n=4 and n3n=400 */
@@ -1578,9 +1579,9 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 		  double tmp = 0;
 		  int ii=0;
 		  for(ii=0;ii<(*m3n);ii++)
-		    tmp = tmp +  pSURFACE_FEATURE (pobj)->inputCMoV[j*(*m3n) + ii];
+		    tmp = tmp +  psurf->inputCMoV[j*(*m3n) + ii];
 		  tmp = tmp / (*m3n);
-		  pSURFACE_FEATURE (pobj)->zcol[j]= (integer)tmp;
+		  psurf->zcol[j]= tmp;
 		}
 	    }
 	  /* case flagcolor == 3*/
@@ -1590,48 +1591,76 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	      /* We repeat the data:*/
 	      for(i = 0; i< dimzy; i++){
 		for (j = 0;j < dimzx; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
-		  pSURFACE_FEATURE (pobj)->zcol[dimzx*i+j]= pSURFACE_FEATURE (pobj)->inputCMoV[i];  /* DJ.A 2003 */
+		  psurf->zcol[dimzx*i+j]= psurf->inputCMoV[i];  /* DJ.A 2003 */
 		    }
 	    }
 	  else if(flagcolor==3 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
-	      /* We have just enough information to fill the pSURFACE_FEATURE (pobj)->zcol array*/
+	      /* We have just enough information to fill the psurf->zcol array*/
 	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];
+		psurf->zcol[j]= psurf->inputCMoV[j];
 	    }
+	  /* Notice that the new case flagcolor == 4 is not available at the construction state */
+	  /* It is a flat mode display (like flagcolor == 2 case) with a different computation  */
+	  /* manner to simulate Matlab flat mode. It can be enabled by setting color_flag to 4. */
+
 	}
+
+
+      psurf->cdatamapping = 1; /* direct mode enabled by default */
+      
+      
+      /* We need to rebuild ...->color matrix */
+      if(psurf->cdatamapping == 0){ /* scaled */
+	FREE(psurf->color);
+	LinearScaling2Colormap(pobj);
+      }
+      else{
+	
+	FREE(psurf->color);
+	
+	if(nc>0){
+	  if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+	    return (sciPointObj *) NULL;
+	}
+	
+	for(i=0;i<nc;i++)
+	  psurf->color[i] = psurf->zcol[i];
+	/* copy zcol that has just been freed and re-alloc + filled in */
+      }
+
       /*-------END Replaced by: --------*/
 
-      pSURFACE_FEATURE (pobj)->dimzx = dimzx; /* dimzx is completly equal to m3*/
-      pSURFACE_FEATURE (pobj)->dimzy = dimzy; /* dimzx is completly equal to n3*/
-      pSURFACE_FEATURE (pobj)->izcol = izc;
-      pSURFACE_FEATURE (pobj)->pproj = NULL;	/* Les projections ne sont pas encore calculees */
-      pSURFACE_FEATURE (pobj)->isselected = TRUE;
+      psurf->dimzx = dimzx; /* dimzx is completly equal to m3*/
+      psurf->dimzy = dimzy; /* dimzx is completly equal to n3*/
+      psurf->izcol = izc;
+      psurf->pproj = NULL;	/* Les projections ne sont pas encore calculees */
+      psurf->isselected = TRUE;
 
-      pSURFACE_FEATURE (pobj)->flag[0] = flag[0]; /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */
-      pSURFACE_FEATURE (pobj)->flag[1] = flag[1];
-      pSURFACE_FEATURE (pobj)->flag[2] = flag[2];
+      psurf->flag[0] = flag[0]; /* F.Leray 16.04.04 HERE We store the flag=[mode (hidden part ), type (scaling), box (frame around the plot)] */
+      psurf->flag[1] = flag[1];
+      psurf->flag[2] = flag[2];
 
       /* DJ.A 2003 */
    
-      pSURFACE_FEATURE (pobj)->ebox[0] = ebox[0];
-      pSURFACE_FEATURE (pobj)->ebox[1] = ebox[1];
-      pSURFACE_FEATURE (pobj)->ebox[2] = ebox[2];
-      pSURFACE_FEATURE (pobj)->ebox[3] = ebox[3];
-      pSURFACE_FEATURE (pobj)->ebox[4] = ebox[4];
-      pSURFACE_FEATURE (pobj)->ebox[5] = ebox[5];
-      pSURFACE_FEATURE (pobj)->flagcolor =flagcolor;
-      pSURFACE_FEATURE (pobj)->typeof3d = typeof3d;
-      pSURFACE_FEATURE (pobj)->hiddencolor = pSUBWIN_FEATURE(pparentsubwin)->hiddencolor;
-
+      psurf->ebox[0] = ebox[0];
+      psurf->ebox[1] = ebox[1];
+      psurf->ebox[2] = ebox[2];
+      psurf->ebox[3] = ebox[3];
+      psurf->ebox[4] = ebox[4];
+      psurf->ebox[5] = ebox[5];
+      psurf->flagcolor =flagcolor;
+      psurf->typeof3d = typeof3d;
+      psurf->hiddencolor = pSUBWIN_FEATURE(pparentsubwin)->hiddencolor;
+      
       if (sciInitGraphicContext (pobj) == -1)
 	{
-	  FREE(pSURFACE_FEATURE (pobj)->pvecz);
-	  FREE(pSURFACE_FEATURE (pobj)->pvecy);
-	  FREE(pSURFACE_FEATURE (pobj)->pvecx);
+	  FREE(psurf->pvecz);
+	  FREE(psurf->pvecy);
+	  FREE(psurf->pvecx);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
 	  sciDelHandle (pobj);
-	  FREE(pSURFACE_FEATURE (pobj));
+	  FREE(psurf);
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
@@ -2837,3 +2866,7 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
   sciprint("Your second entity is not a popup menu !\n");
   return -1;
 }
+
+
+
+

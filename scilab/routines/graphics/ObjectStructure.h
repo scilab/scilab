@@ -891,10 +891,16 @@ typedef struct
   double * pvecx;
   double * pvecy;
   double * pvecz;
-  integer *zcol;
-  integer *inputCMoV; /* Adding here in order to always have the input data*/
+  double *inputCMoV; /* Adding here in order to always have the input data*/
   /* We will determinate if it is a vector or matrix data with m3n and n3n values*/
+  double *zcol;
+  double *color;  /* Final matrix used only for drawing :  */
+                  /*  color == zcol if 'direct' mode used (direct indices on colormap)  */
+                  /* else 'scaled' mode used => color == linear interp. of zcol on the colormap */
 
+  int cdatamapping; /* like in Matlab, it determines how the color is computed ('saled' or 'direct' mode) */
+                    /* 0: scaled */
+                    /* 1: direct (default) */
   integer izcol;  
   integer dimzx;
   integer dimzy;

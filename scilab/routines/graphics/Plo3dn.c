@@ -588,7 +588,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
 
 void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
-                   integer * cvect, integer * p, integer * q, int *DPI)
+                   double * cvect, integer * p, integer * q, int *DPI)
 {
   integer polysize, npoly, whiteid, verbose =
     0, narg, hiddencolor, front_size;
@@ -725,7 +725,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
               /* interpolated shading */
 
               for (k = 0; k < *p; k++)
-                col[k] = cvect[(*p) * locindex[i] + k];
+                col[k] = (int) cvect[(*p) * locindex[i] + k];
 
             }
           else if (color_flag == 2)
@@ -733,7 +733,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
               /* flat shading */
 
               for (k = 0; k < *p; k++)
-                col[k] = cvect[locindex[i]];
+                col[k] = (int) cvect[locindex[i]];
 
             }
 	  else if (color_flag == 4)
@@ -741,7 +741,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
               /* flat shading "a la Matlab" */
 	      
               for (k = 0; k < *p; k++)
-                col[k] = cvect[locindex[i]];
+                col[k] = (int) cvect[locindex[i]];
 	      
             }
           else if (color_flag == 1)

@@ -288,7 +288,8 @@ void Objmatplot1 (z,n1,n2,xrect)
 void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m1,n1,m2,n2,m3,n3,m3n,n3n)
      double x[],y[],z[];
      double *theta,*alpha,*ebox;
-     integer *isfac,*n,*m,*iflag,*izcol,*zcol;
+     integer *isfac,*n,*m,*iflag,*izcol;
+     double *zcol;
      integer * m1, *n1, *m2, *n2, *m3, *n3, *m3n, *n3n;/*Adding F.Leray 12.03.04 and 19.03.04*/
      char *fname,*legend; 
      /* F.Leray 25.04.05 : warning here legends means "X@Y@Z": it is labels writings!! */
@@ -515,9 +516,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	sciSetCurrentObj (ConstructPolyline
 			  ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			   &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
-	if ((*n > 0) && (zcol != (integer *)NULL)) {
-	  if (zcol[i] > 0){
-	    sciSetForeground (sciGetCurrentObj(), zcol[i]);
+	if ((*n > 0) && (zcol != (double *)NULL)) {
+	  if ((int) zcol[i] > 0){
+	    sciSetForeground (sciGetCurrentObj(), (int) zcol[i]);
 	    sciSetIsMark(sciGetCurrentObj(), FALSE);
 	    sciSetIsLine(sciGetCurrentObj(),  TRUE);
 	  }
@@ -525,7 +526,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	    sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
  	    sciSetIsMark(sciGetCurrentObj(),TRUE);
 	    sciSetIsLine(sciGetCurrentObj(),FALSE);
-	    sciSetMarkStyle(sciGetCurrentObj(),-zcol[i]);
+	    sciSetMarkStyle(sciGetCurrentObj(),(int) -zcol[i]);
 	  }
 	}
 	hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 

@@ -6179,7 +6179,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 2:
-	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
+	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
 	      if ( flag < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -6196,14 +6196,14 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 		return;
 	      } 
 	      else  {
-		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];*/
-		shade(polyx,polyy,&(pSURFACE_FEATURE (pobj)->zcol[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
+		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]= (int) pSURFACE_FEATURE (pobj)->color[index];*/
+		shade(polyx,polyy,(int *) &(pSURFACE_FEATURE (pobj)->color[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
 		if (sciGetIsMark (pobj))
 		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
 	      }
 	      break;
 	    case 4: /* new case for "flat" mode matlab compatibility */
-	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
+	      fill[0]= (int) pSURFACE_FEATURE (pobj)->color[index];
 	      if ( flag < 0 ) fill[0]=-fill[0];
 	      if(sciGetIsLine(pobj)){
 		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
@@ -8165,7 +8165,7 @@ sciDrawObj (sciPointObj * pobj)
 	case SCI_FAC3D:
 	  C2F(fac3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
 		      pSURFACE_FEATURE (pobj)->pvecz,
-		      pSURFACE_FEATURE (pobj)->zcol,
+		      pSURFACE_FEATURE (pobj)->color,
 		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy, DPI);
 
 	  break;
