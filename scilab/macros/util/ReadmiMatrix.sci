@@ -85,7 +85,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
        end
     end
     //Form Scilab representation
-    value=tlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
+    value=mlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
   case ObjectClass 
     ClassName=stripblanks(ascii(double(ReadSimpleElement(fd))))
     FieldNameLength=double(ReadSimpleElement(fd,1))
