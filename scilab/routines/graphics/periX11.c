@@ -2333,8 +2333,8 @@ static void xset_background(integer *num, integer *v2, integer *v3, integer *v4)
 	:  ScilabXgc->Colors[ScilabXgc->NumBackground];
       
       XSetWindowBackground(dpy, ScilabXgc->CWindow,px);
-      if(ScilabXgc->Cdrawable != (Drawable) 0 ) 
-	XSetWindowBackground(dpy, ScilabXgc->Cdrawable,px);
+      /*if(ScilabXgc->Cdrawable != (Drawable) 0 ) 
+	XSetWindowBackground(dpy, ScilabXgc->Cdrawable,px);*/
     }
 }
  
@@ -3535,11 +3535,11 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       XSetErrorHandler(X_error_handler);
       XSetIOErrorHandler((XIOErrorHandler) X_error_handler);
     }
-
   InitMissileXgc(PI0,PI0,PI0,PI0);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
   XSync(dpy,0);
+  
 }
 
 /* writes a message in the info widget associated to the current scilab window */
