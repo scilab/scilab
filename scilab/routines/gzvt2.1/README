@@ -1,8 +1,0 @@
-Since pluging a menus does not work correctly with gtk2. 
-This version works in a different way zterm creates a zterm widget and
-forks a child program. The child program must create a socket widget
-and sends to its parent process the id of the socket using shared
-memory. When the parent process get the socket id the zterm widget 
-is plugged to this socket widget via a gtk plug. 
-
-
