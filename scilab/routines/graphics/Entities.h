@@ -1235,7 +1235,10 @@ extern int sciGetColormap (sciPointObj * pobj, double *rgbmat);
 /*Adding F.Leray 31.03.04*/
 extern int sciSetGoodIndex(sciPointObj * pobj, int colorindex);
 extern int sciGetGoodIndex(sciPointObj * pobj, int colorindex);
-extern int  sciUpdateBaW (sciPointObj * pobj, int flag, int value);
+extern void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m);
+extern int sciUpdateBaW (sciPointObj * pobj, int flag, int value);
+extern int sciGetForegroundToDisplay (sciPointObj * pobj);
+extern int sciGetBackgroundToDisplay (sciPointObj * pobj);
 /*End Adding 31.03.04*/
 
 
