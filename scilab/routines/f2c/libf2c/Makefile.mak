@@ -1,6 +1,6 @@
 SHELL = /bin/sh
-SCIDIR=../../../
-SCIDIR1=..\..\..\
+SCIDIR=../../..
+SCIDIR1=..\..\..
 
 LIBRARY = $(SCIDIR)/libs/libf2c.lib
 DLL = $(SCIDIR)/libs/libf2c.dll
