@@ -453,6 +453,8 @@ c      call showstack()
      $     ,'xset: window dimensions have been set less than 2^16')
       goto 9999
  207  continue
+         call basout(io,wte
+     $     ,'Some data have not been computed they are replaced by NaN')
       goto 9999
  208  continue
       goto 9999
