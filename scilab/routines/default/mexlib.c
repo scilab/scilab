@@ -1037,7 +1037,7 @@ static int mexCallSCI(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *na
 	mexErrMsgTxt("mexCallSCILAB: evaluation failed ");
       }
     return 1; 
-    /*	      return 0;  */
+    /*	return 0;  */
   }
   for (k = 1; k <= nlhs; ++k) {
     plhs[k-1] = (Matrix *) C2F(vstk).Lstk[nv + k + Top - Rhs - 1];
@@ -1160,14 +1160,19 @@ Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
 
 int mexEvalString(char *name)
 {
+  double *val ;
   int rep;
-  Matrix *ppr[1];Matrix *ppl[1];
+  Matrix *ppr[3];Matrix *ppl[1];
   int nlhs;     int nrhs;
-  *ppr = mxCreateString(name);
-  nrhs=1;nlhs=0;
-  if (( rep = mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0))==1) 
+  ppr[0] = mxCreateString(name);
+  ppr[1] = mxCreateString("errcatch");
+  ppr[2] = mxCreateString("m");
+  nrhs=3;nlhs=1;
+  rep = mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0); 
+  /* check returned value */ 
+  val = mxGetPr(ppl[0]); 
+  if ( rep == 1 || (int) (*val) != 0 )
     {
-      sciprint("Error in mexEvalString %s\r\n",name);
       errjump();
     }
   return rep;
