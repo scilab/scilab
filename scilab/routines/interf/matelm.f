@@ -28,14 +28,15 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeross tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-
+c     nearfloat
+c       47     
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300                 ),fin
+     4      165,195,196,152,154,300,310              ),fin
 
  10   continue
       call intabs(id)
@@ -276,7 +277,12 @@ c     number_properties
 c
  300  call  intnbprop(id)
       go to 900
-
+c
+c     number_properties
+c
+ 310  call  intnearfl(id)
+      go to 900
+c
  900  return
       end
 
@@ -4722,9 +4728,10 @@ c        argument is a complex matrix
       return
       end
 
+
       subroutine intnbprop(id)
 
-c     Interface for number_properties :
+c     Interface for number_properties (an interface on dlamch) :
 c    
 c         number_properties("eps")    -> machine epsilon
 c         number_properties("radix")  -> base
@@ -4736,8 +4743,6 @@ c         number_properties("tiny")   -> min positive normalised float
 c         number_properties("denorm") -> (boolean) true if denormalised number are used
 c         number_properties("tiniest")-> min positive denormalised float 
 c         
-c         number_properties("nextfloat",x) -> succ of x
-c         number_properties("prevfloat",x) -> pred of x
 c
       implicit none
 
@@ -4746,8 +4751,8 @@ c
       integer id(nsiz)
 
 c     EXTERNAL FUNCTIONS
-      double precision dlamch, nearfloat
-      external         dlamch, nearfloat
+      double precision dlamch
+      external         dlamch
 
 c     EXTERNAL API FUNCTIONS
       logical  checkrhs, checklhs, getsmat, getrmat, cremat, crebmat
@@ -4760,111 +4765,137 @@ c     LOCAL VAR
       parameter(lmax = 10)
       character*(lmax) inputstring
       character*17 fname
-      double precision tiniest, b, xtest
+      double precision tiniest, b
 
 c     TEXT
       fname = 'number_properties'
       topk=top
       rhs=max(0,rhs)
 
-      if (.not.checkrhs(fname,1,2)) return
+      if (.not.checkrhs(fname,1,1)) return
       if (.not.checklhs(fname,1,1)) return
 
-      if ( rhs.eq.2 ) then
-c        -> nextfloat prevfloat : second arg must be a real matrix
-c                                 first arg must be a string
+c     1/ get the string
+      if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
+c     rmq : pas de verif qu'il s'agit bien d'une matrice (1,1) ...
+c     on recupere la chaine dans la variable inputstring
+      lm = min(nlstr,lmax)
+      call cvstr(lm,istk(lstr),inputstring,1)
+c     complete (eventualy) the string with some blanks
+      inputstring(lm+1:lmax) = '          '
 
-c        1/ get the adress of the matrix
-         if( .not. getrmat(fname, topk, top, m, n, idxmat) ) return
-         top = top - 1
-c        2/ get the string
-         if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
-c        pas de verif qu'il s'agit bien d'une matrice (1,1) ...
-c        on recupere la chaine dans la variable inputstring
-         lm = min(nlstr,lmax)
-         call cvstr(lm,istk(lstr),inputstring,1)
-c        complete (eventualy) the string with some blanks
-         inputstring(lm+1:lmax) = '          '
-
-c        3/ go on
-         if (inputstring .eq. 'nextfloat ') then
-            if (.not.cremat(fname,top,0,m,n,lr,lc)) return
-            do i=0, m*n-1
-               stk(lr+i) = nearfloat(stk(idxmat+i),1.d0)
-            enddo
-
-         elseif (inputstring(1:9) .eq. 'prevfloat ') then
-            if (.not.cremat(fname,top,0,m,n,lr,lc)) return
-            do i=0, m*n-1
-               stk(lr+i) = nearfloat(stk(idxmat+i),-1.d0)
-            enddo
-
+c     2/ go on
+      if     (inputstring(1:9) .eq. 'eps      ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('e')
+      elseif (inputstring(1:9) .eq. 'huge     ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('o')
+      elseif (inputstring(1:9) .eq. 'tiny     ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('u')
+      elseif (inputstring(1:9) .eq. 'radix    ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('b')
+      elseif (inputstring(1:9) .eq. 'digits   ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('n')
+      elseif (inputstring(1:9) .eq. 'minexp   ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('m')
+      elseif (inputstring(1:9) .eq. 'maxexp   ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         stk(lr) = dlamch('l')
+      elseif (inputstring(1:9) .eq. 'denorm   ') then
+         if (.not.crebmat(fname,top,1,1,lr)) return
+         if (dlamch('u') / dlamch('b') .gt. 0.d0) then
+            istk(lr) = 1
          else
-            buf=fname//' : unknown property kind'
-            call error(999)
-            return
+            istk(lr) = 0
          endif
-            
+      elseif (inputstring(1:9) .eq. 'tiniest  ') then
+         if (.not.cremat(fname,top,0,1,1,lr,lc)) return
+         b = dlamch('b')
+         tiniest = dlamch('u')
+         if ( tiniest/b .ne. 0.d0 ) then
+c     denormalised number are used
+            do i = 1, dlamch('n') - 1
+               tiniest = tiniest / b
+            enddo
+         endif
+         stk(lr) = tiniest
       else
-c        -> one arg : this is a query of a property of the
-c                     floating point system (one string argument only)
+         buf=fname//' : unknown property kind'
+         call error(999)
+         return
+      endif
+      
+      end
 
-c        1/ get the string
-         if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
-c           rmq : pas de verif qu'il s'agit bien d'une matrice (1,1) ...
-c        on recupere la chaine dans la variable inputstring
-         lm = min(nlstr,lmax)
-         call cvstr(lm,istk(lstr),inputstring,1)
-c        complete (eventualy) the string with some blanks
-         inputstring(lm+1:lmax) = '          '
+      subroutine intnearfl(id)
 
-c        2/ go on
-         
-         if     (inputstring(1:9) .eq. 'eps      ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('e')
-         elseif (inputstring(1:9) .eq. 'huge     ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('o')
-         elseif (inputstring(1:9) .eq. 'tiny     ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('u')
-         elseif (inputstring(1:9) .eq. 'radix    ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('b')
-         elseif (inputstring(1:9) .eq. 'digits   ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('n')
-         elseif (inputstring(1:9) .eq. 'minexp   ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('m')
-         elseif (inputstring(1:9) .eq. 'maxexp   ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            stk(lr) = dlamch('l')
-         elseif (inputstring(1:9) .eq. 'denorm   ') then
-            if (.not.crebmat(fname,top,1,1,lr)) return
-            if (dlamch('u') / dlamch('b') .gt. 0.d0) then
-               istk(lr) = 1
-            else
-               istk(lr) = 0
-            endif
-         elseif (inputstring(1:9) .eq. 'tiniest  ') then
-            if (.not.cremat(fname,top,0,1,1,lr,lc)) return
-            b = dlamch('b')
-            tiniest = dlamch('u')
-            if ( tiniest/b .ne. 0.d0 ) then
-c              denormalised number are used
-               do i = 1, dlamch('n') - 1
-                  tiniest = tiniest / b
-               enddo
-            endif
-            stk(lr) = tiniest
-         else
-            buf=fname//' : unknown property kind'
-            call error(999)
-            return
-         endif
+c     Interface for nearfloat :
+c    
+c         nearfloat("succ",x) -> succ of x
+c         nearfloat("pred",x) -> pred of x
+c
+      implicit none
 
+      INCLUDE '../stack.h'
+
+      integer id(nsiz)
+
+c     EXTERNAL FUNCTIONS
+      double precision nearfloat
+      external         nearfloat
+
+c     EXTERNAL API FUNCTIONS
+      logical  checkrhs, checklhs, getsmat, getrmat, cremat
+      external checkrhs, checklhs, getsmat, getrmat, cremat
+
+c     LOCAL VAR
+      integer topk
+      integer n, m, idxmat, mt, nt, lstr, nlstr, lm, lr, lc, i
+      integer   lmax
+      parameter(lmax = 4)
+      character*(lmax) inputstring
+      character*9 fname
+
+c     TEXT
+      fname = 'nearfloat'
+      topk=top
+      rhs=max(0,rhs)
+
+      if (.not.checkrhs(fname,2,2)) return
+      if (.not.checklhs(fname,1,1)) return
+
+c     1/ get the adress of the matrix
+      if( .not. getrmat(fname, topk, top, m, n, idxmat) ) return
+      top = top - 1
+c     2/ get the string
+      if( .not. getsmat(fname,topk,top,mt,nt,1,1,lstr,nlstr)) return
+c     pas de verif qu'il s'agit bien d'une matrice (1,1) ...
+c     on recupere la chaine dans la variable inputstring
+      lm = min(nlstr,lmax)
+      call cvstr(lm,istk(lstr),inputstring,1)
+
+c     3/ go on
+      if (inputstring .eq. 'succ') then
+         if (.not.cremat(fname,top,0,m,n,lr,lc)) return
+         do i=0, m*n-1
+            stk(lr+i) = nearfloat(stk(idxmat+i),1.d0)
+         enddo
+
+      elseif (inputstring .eq. 'pred') then
+         if (.not.cremat(fname,top,0,m,n,lr,lc)) return
+         do i=0, m*n-1
+            stk(lr+i) = nearfloat(stk(idxmat+i),-1.d0)
+         enddo
+
+      else
+         buf=fname//' : unknown string specifier (must be pred or succ)'
+         call error(999)
+         return
       endif
 
       end
