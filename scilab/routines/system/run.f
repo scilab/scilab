@@ -670,7 +670,7 @@ c
  140  continue
       m=istk(lc+2)
       if(rstk(pt).eq.617) then
-c     run time arg count (list extraction)
+c     .  runtime arg count (list extraction)
          m=m+pstk(pt)
          pstk(pt)=0
       endif
@@ -690,7 +690,8 @@ c
       goto 10
 
 c
-c     begrhs
+c     begrhs - for run time rhs value computation
+c              syntax like: l=list(...); a(l(:))
 c
  160  continue
       lc=lc+1
@@ -766,6 +767,7 @@ c     affectation
 c     following code is an adaptation of corresponding code in parse.f
       ndel=0
  231  rhs = istk(li+nsiz)
+
       lastindpos=(top-lhs-ndel)
       if(err1.ne.0) goto 233
 
@@ -780,6 +782,10 @@ c     .  fin points on the newly saved variable
          endif
          goto 233
       endif
+
+c     take rhs (number of indices) computed at runtime into account
+      call adjustrhs
+
 c     partial variable affectation (insertion)
       if(lastindpos+1.ne.top) then
 c     .  create reference variables to get index1,...,indexn, value at
@@ -802,7 +808,6 @@ c     put a reference to the lhs variable
 c     perform insertion operation
 c     index1,...,indexn, value ==> updated lhs value (or pointer to)
 
-      call adjustrhs
 
       if ( eptover(1,psiz))  return
 c     pstk(pt) is used by allops to get the name of output variable
@@ -860,6 +865,10 @@ c
 c     
       end
       subroutine adjustrhs
+c     to adjust rhs in the case it is only fixed at run time
+c     example  l=list(....); foo(a,l(2:3)).
+c     the parser supposes that the rhs for foo is 2. at run time it is
+C     really 3. See begrhs
       include '../stack.h'
 c     adjust rhs
       if(rstk(pt).eq.617) then

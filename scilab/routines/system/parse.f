@@ -558,6 +558,7 @@ c
 c     store results
 c-------------------
  70   continue
+      lhs=max(lhs,1)
       if (compil(29,lhs,sym,0,0)) then 
          if (err.gt.0) return
          pt=pt-lhs
