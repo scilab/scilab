@@ -823,15 +823,25 @@ Matrix *mxGetCell(Matrix *ptr, int index)
   return (Matrix *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
+/*----------------------------------------------------
+ * mxCalloc is supposed to initialize data to 0 
+ * but what does it means since size can be anythink 
+ * we initialize to zero for double and int data types 
+ *----------------------------------------------------*/
+
 void *mxCalloc(unsigned int n, unsigned int size)
 {
-  int m;  vraiptrst lrd;
+  int m;  vraiptrst lrd; 
+  static one=1; 
+  static double zero =0.0;
   m = (n * size) /sizeof(double) + 1;
   if (! C2F(createstkptr)( &m, &lrd)) {
     return 0;
   }
+  if ( size ==  sizeof(double)) C2F(dset)(&n,&zero,(double *) lrd,&one);
   return (void *) lrd;
 }
+
 
 void *mxMalloc(unsigned int nsize)
 {
