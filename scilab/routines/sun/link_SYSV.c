@@ -33,6 +33,7 @@
 #endif
 #endif
 
+
 #if defined(linux) || defined(netbsd) || defined(freebsd)
 #include <unistd.h>
 #include <sys/wait.h>
@@ -51,6 +52,7 @@
 #if !defined(linux) && !defined(netbsd) && !defined(freebsd)
 #ifdef __alpha
 #include <c_asm.h>
+#define RTLD_GLOBAL 0
 #endif
 #endif
 
@@ -201,6 +203,10 @@ void call_ctor_dtor(handle,loading)
 #define SHARED_SUF ".so"
 #else
 #define SHARED_SUF ".sl"
+#endif
+
+#ifndef RTLD_GLOBAL
+#define RTLD_GLOBAL 0
 #endif
 
 
