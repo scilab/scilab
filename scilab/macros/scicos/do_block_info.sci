@@ -17,7 +17,7 @@ while %t
   end
   kc=find(win==windows(:,2))
   if kc==[] then
-    message('This window is not an active palette')
+    txt='This window is not an active palette'
     k=[];break
   elseif windows(kc,1)<0 then //click dans une palette
     kpal=-windows(kc,1)
