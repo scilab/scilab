@@ -157,7 +157,7 @@ install:
 		strip $(SCIDIR)/bin/scilex; \
 		(cd tests; make distclean); \
 		(cd examples; make distclean); \
-		(cd .. ; tar cf - $(BINDISTFILES) @PVMINST@ | (cd ${LIBPREFIX}; tar xf -));
+		(cd .. ; tar cf - $(BINDISTFILES) @PVMINST@ | (cd ${LIBPREFIX}; tar xf -)); \
 		(cd ${LIBPREFIX}/$(SCIBASE); make); \
 		$(RM) .binary; \
 	fi
