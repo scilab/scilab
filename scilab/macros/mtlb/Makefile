@@ -29,8 +29,10 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 
 M5 = mtlb_cell.sci struct.sci  \
 	%s_i_struct.sci %b_i_struct.sci %i_i_struct.sci %sp_i_struct.sci \
-	%c_i_struct.sci %s_i_struct.sci %cell_i_struct.sci %struct_p.sci\
-	%struct_e.sci \
+	%c_i_struct.sci %s_i_struct.sci %cell_i_struct.sci %p_i_struct.sci
+	%l_i_struct.sci %struct_i_struct.sci %r_i_struct.sci %lss_i_struct.sci\
+	%spb_i_struct.sci %mc_i_struct.sci %hm_i_struct.sci\
+	%struct_p.sci %struct_e.sci %struct_string.sci\
         %cell_e.sci %cell_p.sci %cell_size.sci cell.sci \
 	%b_i_cell.sci %cell_i_cell.sci %i_i_cell.sci %p_i_cell.sci  \
 	%s_i_cell.sci %spb_i_cell.sci %c_i_cell.sci %hm_i_cell.sci \
@@ -39,7 +41,7 @@ M5 = mtlb_cell.sci struct.sci  \
 	%cell_c_s.sci %cell_f_s.sci %s_f_cell.sci %s_c_cell.sci \
 	%c_c_cell.sci %c_f_cell.sci %cell_f_c.sci %cell_c_c.sci \
 	%i_c_cell.sci %i_f_cell.sci %cell_f_i.sci %cell_c_i.sci \
-	%cell_string.sci %struct_string.sci
+	%cell_string.sci 
 
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
