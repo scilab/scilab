@@ -156,9 +156,9 @@ OpTab tabsim[] ={
 {"sinblk",(ScicosF) F2C(sinblk)},
 {"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
+{"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
-{"sum",(ScicosF) sum},
 {"switchn",(ScicosF) switchn},
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tcslti",(ScicosF) F2C(tcslti)},
@@ -168,8 +168,8 @@ OpTab tabsim[] ={
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
-{"zcross2",(ScicosF) zcross2},
 {"zcross",(ScicosF) F2C(zcross)},
+{"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
 int ntabsim= 83 ;

@@ -84,11 +84,6 @@ c       --   subvariable outtb(state) --
         l1e8 = sadr(il1e8+4)
 
 c      
-c       --   subvariable mod(state) --
-        il1e9=iadr(l1+istk(il1+10)-1)
-        n1e9 = istk(il1e9+1)
-        l1e9 = sadr(il1e9+4)
-
 c       checking variable tcur (number 2)
 c       
         il2 = iadr(lstk(top-rhs+2))
@@ -435,7 +430,6 @@ c       cross equal output variable checking
 c       not implemented yet
         call entier(n4e3,stk(l4e3),istk(iadr(l4e3)))
         call entier(n4e4,stk(l4e4),istk(iadr(l4e4)))
-        call entier(n1e9,stk(l1e9),istk(iadr(l1e9)))
         call entier(n4e5,stk(l4e5),istk(iadr(l4e5)))
         call entier(n1e6,stk(l1e6),istk(iadr(l1e6)))
         call entier(n4e6,stk(l4e6),istk(iadr(l4e6)))
@@ -538,7 +532,7 @@ c
 c
         call scicos(stk(l1e2),istk(iadr(l4e3)),stk(l1e3),
      $       stk(l1e4),istk(ilinp),
-     $       istk(iadr(l1e9)),istk(iadr(l4e31)),
+     $       istk(iadr(l4e31)),
      &       istk(llab),istk(labptr),stk(l2),stk(l3),stk(l1e5),
      $       istk(iadr(l1e6)),n1e5,pointi,stk(l1e8),nout,
      $       istk(lfunpt),istk(iadr(l4e28)),istk(linpptr),
@@ -583,6 +577,13 @@ c
            elseif(ierr.eq.5) then
               buf='cannot allocate memory'
               kfun=0
+           elseif(ierr.eq.21) then
+              write(buf,'(''cannot allocate memory in block='',i5)') 
+     $             kfun
+              kfun=0
+           elseif(ierr.eq.22) then
+              buf='sliding mode condition, cannot integrate'
+              kfun=0
            else
               buf='scicos unexpected error,please report...'
               kfun=0
@@ -606,8 +607,6 @@ c     change iz to double
 c           call int2db(n1e4,istk(iadr(l1e4)),-1,stk(l1e4),-1)
 c     change evtspt to double
            call int2db(n1e6,istk(iadr(l1e6)),-1,stk(l1e6),-1)
-c     change mod to double
-           call int2db(n1e9,istk(iadr(l1e9)),-1,stk(l1e9),-1)
            top=top+1
         endif
 c     
