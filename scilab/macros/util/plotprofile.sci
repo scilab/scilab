@@ -39,8 +39,9 @@ nn=ceil((n+1)/step)
 nm=nn*step
 mx=max(count(:,1))+1
 
-xsetech([0,0,1,1/3]);plot2d3('enn',0,count(:,1),1,'011',' ',..
-    [0,0,nm,mx],[step nn 1 3])
+xsetech([0,0,1,1/3]);
+plot2d3(1:size(count,1),count(:,1),style=1, frameflag=1,axesflag=1,..
+	rect=[0,0,nm,mx],nax=[step nn 1 3])
 xsegs(ones(2,1)*bnd,[0;mx]*ones(bnd),5*ones(bnd))
 xp=[0 bnd];yp=mx*1.05;for k=1:nf,xstring(xp(k),yp,fun(k));end  
 legends('# calls',1,1)
