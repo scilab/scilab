@@ -31,7 +31,7 @@ files = ['ex01intc.o'
 	 'ex15intf.o'
 	 'ex15f.o' 
 	 'ex16intc.o'
-	 'ex17intc.o';'strings.o' ];
+	 'ex17intc.o'];
 
 
 libs  = [] 				// other libs needed for linking
