@@ -26,3 +26,5 @@ for i=45:sp:80,
   xset("wshow");
 end
 xset("pixmap",kp);driver(kdr);
+xbasc();
+
