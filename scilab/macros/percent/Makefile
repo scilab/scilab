@@ -86,7 +86,7 @@ MACROS =%ar_p.sci %b_c_spb.sci %b_f_spb.sci %b_g_s.sci %b_g_spb.sci %b_h_s.sci \
 	%hm_n_hm.sci \
 	%hm_fft.sci %hm_sum.sci %hm_cumsum.sci %hm_prod.sci %hm_cumprod.sci\
 	%hm_matrix.sci %hm_degree.sci %hm_maxi.sci %hm_mini.sci \
-	%hm_mean.sci %hm_st_deviation.sci %hm_median.sci \
+	%hm_mean.sci %hm_st_deviation.sci %hm_median.sci %hm_zeros.sci \
 	%s_matrix.sci\
 	%ip_a_s.sci %ip_s_s.sci %ip_m_s.sci %s_a_ip.sci %s_s_ip.sci \
 	%s_m_ip.sci %ip_p.sci %s_i_spb.sci %b_i_sp.sci %c_a_c.sci %msp_p.sci\

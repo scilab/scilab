@@ -88,6 +88,7 @@
 {"testmatrix",		IN_matelm,	37,	0},	
 {"isreal",		IN_matelm,	38,	0},	
 {"frexp",		IN_matelm,	39,	0},
+{"zeros",		IN_matelm,	40,	0},	
 #define  IN_matdes  7  
 {"champ",		IN_matdes,	1,	2},	
 {"champ1",		IN_matdes,	52,	2},	
