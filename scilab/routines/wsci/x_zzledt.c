@@ -40,8 +40,15 @@ void C2F (zzledt1) (buffer, buf_size, len_line, eof, dummy1)
      long int dummy1;		/* added by FORTRAN to give buffer length */
 #endif
 {
+  int i;
   set_is_reading (TRUE);
-  read_line (save_prompt);
+  i=read_line (save_prompt);
+  if (i==-1) { /* dynamic menu canceled read SS */
+    *len_line = 0;
+    *eof = -1;
+    set_is_reading (FALSE);
+    return;
+  }
   strncpy (buffer, input_line, *buf_size);
   *len_line = strlen (buffer);
 /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
@@ -65,6 +72,12 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, dummy1)
   int i;
   set_is_reading (TRUE);
   i = read_line (save_prompt);
+  if (i==-1) { /* dynamic menu canceled read SS*/
+    *len_line = 0;
+    *eof = -1;
+    set_is_reading (FALSE);
+    return;
+  }
   strncpy (buffer, input_line, *buf_size);
   *len_line = strlen (buffer);
   /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/

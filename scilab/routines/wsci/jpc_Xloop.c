@@ -218,13 +218,13 @@ StoreCommand1 (command, flag)
   if (scig_command_handler (command) == 1)
     return 0;
 
-  if (get_is_reading ())
+  /* if (get_is_reading ())
     {
       write_scilab (command);
       if (flag == 1)
 	write_scilab ("\n");
       return 0;
-    }
+      }*/
   p = (CommandRec *) malloc (sizeof (CommandRec));
   if (p == (CommandRec *) 0)
     {
@@ -248,6 +248,8 @@ StoreCommand1 (command, flag)
 	q = r;
       q->next = p;
     }
+  if (get_is_reading ())
+    if (flag == 1) write_scilab ("\n");
   return (0);
 }
 

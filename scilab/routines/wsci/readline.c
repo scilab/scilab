@@ -229,7 +229,9 @@ static void clear_eoline ();
 static void copy_line ();
 static void set_termio ();
 static void reset_termio ();
-
+#include "../machine.h"
+extern int C2F(ismenu) ();
+static int sendprompt=1;
 /* user_putc and user_puts should be used in the place of
  * fputc(ch,stdout) and fputs(str,stdout) for all output
  * of user typed characters.  This allows MS-Windows to 
@@ -364,7 +366,9 @@ readline_win (char *prompt)
   set_termio ();
 
   /* print the prompt */
-  fputs (prompt, stdout);
+  if (sendprompt) fputs (prompt, stdout);
+  sendprompt=1;
+
   cur_line[0] = '\0';
   cur_pos = 0;
   max_pos = 0;
@@ -374,6 +378,15 @@ readline_win (char *prompt)
   for (;;)
     {
       cur_char = special_getc ();
+      if (C2F(ismenu) () == 1) {/* abort current line aquisition SS */
+	sendprompt=0;
+	new_line = (char *) alloc ((unsigned long) 2,
+					 "history");
+	new_line[0] = -2;
+	new_line[1] = '\0';
+	reset_termio ();
+	return (new_line);
+      }
 #ifdef OS2
       /* for emx: remap scan codes for cursor keys */
       if (cur_char == 0)

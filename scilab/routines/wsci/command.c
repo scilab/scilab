@@ -124,6 +124,10 @@ read_line (char *prompt)
   input_line[start] = ilen > 126 ? 126 : ilen;
   input_line[start + 2] = 0;
   (void) (*rlgets_def) (&(input_line[start + 2]), ilen, prompt);
+  if (input_line[start + 2] == -2) /* dynamic menu canceled read SS */
+    {
+      return (-1);
+    }
   if ((p = strchr (&(input_line[start + 2]), '\r')) != NULL)
     *p = 0;
   if ((p = strchr (&(input_line[start + 2]), '\n')) != NULL)
