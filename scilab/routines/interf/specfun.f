@@ -8,7 +8,9 @@ c
       integer iadr, sadr
       integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
-      double precision alpha
+      double precision infinity
+      double precision alpha,EXPARG
+      data EXPARG/709.0D0/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -88,12 +90,16 @@ c
       nn5=1
       
       do 10 i=0,n2*m2-1
-         call ribesl(stk(lr2+i),alpha,nb,ice,stk(lw5),ncalc)
-         if(ncalc.ne.nb) then
-            call error(24)
-            return
-         endif
-         call unsfdcopy(m1*n1,stk(lw5+nb1),1,stk(lw4+i),n2*m2)
+            call ribesl(stk(lr2+i),alpha,nb,ice,stk(lw5),ncalc)
+            if(ncalc.ne.nb) then
+               if(ncalc.lt.0.and.ice.eq.1) then
+                  call dset(m1*n1,infinity(0.0d0),stk(lw4+i),n2*m2)
+                  goto 10
+               endif
+               call error(24)
+               return
+            endif
+            call unsfdcopy(m1*n1,stk(lw5+nb1),1,stk(lw4+i),n2*m2)
  10   continue
 c     
       if(lhs .ge. 1) then
