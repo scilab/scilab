@@ -6,8 +6,11 @@ tests = ['Exec.java';'Real1.java';'Real2.java'];
 //---------------------------------------------------------------
 // Compilation du fichier Java
 function ret=BuildJava(filename)
-  Command='javac -deprecation -d '+SCI+'\bin -classpath '+SCI+'\bin '+filename;
-  disp(Command);
+  if MSDOS then
+    Command='javac -deprecation -d '+SCI+'\bin -classpath '+SCI+'\bin '+filename;
+  else
+    Command='javac -deprecation -d '+SCI+'/bin -classpath '+SCI+'/bin '+filename;
+  end
   [rep,stat]=unix_g(Command);
   if ~(stat==0) then
     disp('error compilation '+filename);
@@ -21,6 +24,10 @@ endfunction
 function ExecJava(filename,buildref)
   currentdir=pwd();
   chdir(SCI+'\bin');
+  if ~MSDOS then
+    setenv('LD_LIBRARY_PATH',pwd());
+    setenv('CLASSPATH','.:'+pwd());
+  end
   [path,fname,extension]=fileparts(filename);
   [rep,stat]=unix_g('java '+fname);
   chdir(currentdir);
@@ -55,12 +62,12 @@ function CompareDiary(filename)
   mclose(fpdia);
   ref=mgetl(fpref);
   mclose(fpref);
-  
+
   dia=strsubst(dia,' ','');
   ref=strsubst(ref,' ','');
-  
-  if or(ref<>dia) then 
-    disp('Test Failed SEE : diff -w  '+fname+' '+fname+'.ref ');
+
+  if or(ref<>dia) then
+    disp('Test Failed SEE : diff -w  '+fname+'.dia '+fname+'.ref ');
   else
     disp('Test '+fname+' passed');
   end
