@@ -69,15 +69,35 @@ void XtMyLoop(Widget w, Display *dpy, int flag, int *ok_Flag)
 #define SHELL_TYPE transientShellWidgetClass 
 
 void 
-ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh)
+ShellFormCreateOld(char *shellname, Widget *shell, Widget *form, Display **dpyh)
 {
   static  Widget toplevel,hpaned;
   DisplayInit("",dpyh,&toplevel);
 
   *shell = XtCreatePopupShell(shellname,SHELL_TYPE,toplevel,
-			      (Arg *) NULL,(Cardinal)ZERO); 
+				(Arg *) NULL,(Cardinal)ZERO); 
 
   hpaned = XtCreateManagedWidget("hpaned",panedWidgetClass,*shell,
+			     (Arg *) NULL,(Cardinal)ZERO);
+
+  *form = XtCreateManagedWidget("paned",panedWidgetClass,hpaned,
+			     (Arg *) NULL,(Cardinal)ZERO);
+}
+
+extern Widget initColors  __PARAMS((Widget));  
+
+void 
+ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh)
+{
+  static  Widget toplevel,hpaned,color,outer;
+  DisplayInit("",dpyh,&toplevel);
+  
+  *shell = XtAppCreateShell("Xscilab",shellname,topLevelShellWidgetClass,*dpyh,
+			    (Arg *) NULL,(Cardinal)ZERO);
+  color = initColors(*shell); 
+  outer = XtCreateManagedWidget(shellname, panedWidgetClass,
+				 color,(Arg *) NULL,(Cardinal)ZERO);
+  hpaned = XtCreateManagedWidget("hpaned",panedWidgetClass,outer,
 			     (Arg *) NULL,(Cardinal)ZERO);
 
   *form = XtCreateManagedWidget("paned",panedWidgetClass,hpaned,

@@ -222,9 +222,11 @@ Xscilab*helpForm.aproposInfo.height:		30
 Xscilab*helpForm.aproposInfo.fromHoriz:	aproposLabel
 Xscilab*helpForm.aproposInfo.fromVert:	aproposText
 Xscilab*helpForm.aproposInfo.label:		
+
 !---------------------------------------------------------------
 ! Common for x_message x_choose x_dialog x_mdialog 
 ! specific resources are set below 
+! obsolete june 2002 x_ are changed to XtAppCreateShell
 !---------------------------------------------------------------
 
 Xscilab*TransientShell*font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
@@ -274,6 +276,61 @@ Xscilab*TransientShell.hpaned.paned.cform.Command.left:			chainLeft
 Xscilab*TransientShell.hpaned.paned.cform.Command.right:			chainLeft
 Xscilab*TransientShell.hpaned.paned.cform.Command.top: 			chainBottom
 Xscilab*TransientShell.hpaned.paned.cform.Command.bottom: 			chainBottom
+
+!---------------------------------------------------------------
+! Common for x_message x_choose x_dialog x_mdialog 
+! specific resources are set below 
+! changed june 2002 x_ are changed to XtAppCreateShell
+!---------------------------------------------------------------
+
+Xscilab*Paned*font:*-fixed-medium-r-*-*-13-*-*-*-*-*-iso8859-*
+Xscilab*Paned.x:						147
+Xscilab*Paned.y:						20
+Xscilab*Paned.allowShellResize:				True
+Xscilab*Paned.hpaned.orientation:				horizontal
+Xscilab*Paned.hpaned.paned.showGrip:				False
+Xscilab*Paned.hpaned.paned.showGrip:				False
+Xscilab*Paned.hpaned.paned.max:				800
+Xscilab*Paned.hpaned.paned.min:				100
+Xscilab*Paned.hpaned.paned.orientation:			vertical
+Xscilab*Paned.hpaned.paned.*showGrip:				False
+Xscilab*Paned.hpaned.paned.internalBorderWidth:		1
+! generic for all form.Viewport 
+Xscilab*Paned.hpaned.paned.Viewport.allowVert:			True
+Xscilab*Paned.hpaned.paned.Viewport.allowHoriz:		True
+Xscilab*Paned.hpaned.paned.Viewport.forceBars:			False
+Xscilab*Paned.hpaned.paned.Viewport.vertical.width:		10
+Xscilab*Paned.hpaned.paned.Viewport.horizontal.height:		10
+Xscilab*Paned.hpaned.paned.Viewport.borderWidth:		10
+!
+Xscilab*Paned.hpaned.paned.Viewport.Label.borderWidth:		0
+Xscilab*Paned.hpaned.paned.Viewport.Label.internalWidth: 	10
+Xscilab*Paned.hpaned.paned.Viewport.Label.internalHeight:	10
+!
+Xscilab*Paned.hpaned.paned.Viewport.List.internalWidth:	15
+Xscilab*Paned.hpaned.paned.Viewport.List.internalHeight:	10
+Xscilab*Paned.hpaned.paned.Viewport.List.verticalList:		True
+Xscilab*Paned.hpaned.paned.Viewport.List.defaultColumns:	1
+Xscilab*Paned.hpaned.paned.Viewport.List.forceColumns:		True
+Xscilab*Paned.hpaned.paned.Viewport.List.maxSelectable: 	1
+Xscilab*Paned.hpaned.paned.Viewport.List.rowSpacing: 		2
+!
+Xscilab*Paned.hpaned.paned*Text.bottomMargin:			7
+Xscilab*Paned.hpaned.paned*Text.leftMargin:			7
+Xscilab*Paned.hpaned.paned*Text*Scrollbar.thickness: 		7
+Xscilab*Paned.hpaned.paned*Text.resizable: 				True
+Xscilab*Paned.hpaned.paned*Text*editType: 				edit
+Xscilab*Paned.hpaned.paned*Text.scrollVertical: 			whenNeeded
+Xscilab*Paned.hpaned.paned*Text.scrollHorizontal: 			whenNeeded
+Xscilab*Paned.hpaned.paned*Text.borderWidth: 				1
+! I want buttons to keep their dimensions 
+Xscilab*Paned.hpaned.paned.cform.min:					30
+Xscilab*Paned.hpaned.paned.cform.skipAdjust:				True
+Xscilab*Paned.hpaned.paned.cform.Command.left:			chainLeft
+Xscilab*Paned.hpaned.paned.cform.Command.right:			chainLeft
+Xscilab*Paned.hpaned.paned.cform.Command.top: 			chainBottom
+Xscilab*Paned.hpaned.paned.cform.Command.bottom: 			chainBottom
+
 !---------------------------------------------------------------
 ! Scilab x_message windows 
 !---------------------------------------------------------------
