@@ -8,7 +8,7 @@ c     Copyright INRIA
       integer id(nsiz),id1(nsiz),istr(nlgh)
 c
       logical eqid,cresmat
-      integer srhs,percen,blank,fptr,mode(2),sfun,slhs
+      integer srhs,percen,blank,fptr,mode(2),sfun,slhs,r
       integer iadr
       data nclas/29/,percen/56/,blank/40/
 c
@@ -112,8 +112,18 @@ c     load variables stored in the given file
       fun=0
       rhs=1
       lhs=1
+c     just avoid the case where rstk(pt) has been set to 906 by a
+c     unterminated call to intload
+      r=rstk(pt)
+      rstk(pt)=0
       call intload(id,k)
       if(err.gt.0) return
+      if (fun.eq.-1) then
+         buf='Overloaded load cannot occur in this context'
+         call error(999)
+         return
+      endif
+      rstk(pt)=r
       rhs=srhs
       lhs=slhs
       top=top-1
