@@ -8,24 +8,23 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   end
   
   ng=0
-
+  fil=pathconvert(fil,%f,%t)
   mlibs=pathconvert(modelica_libs,%f,%t)
   if MSDOS then
     modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)
+    if strindex(modelicac,' ')<>[] then modelicac='""'+modelicac+'""',end
+    modelicac=modelicac+strcat(' -L ""'+mlibs+'""')
   else
-     modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)
+    modelicac=pathconvert(SCI+'/bin/modelicac',%f,%t)+strcat(' -L '+mlibs)
   end
-  modelicac=modelicac+strcat(' -L '+mlibs)
   
   name=basename(fil)
   path=strsubst(stripblanks(fil),name+'.mo','')
-  
-  
   //do not update C code if needcompile==0 this allows C code
   //modifications for debugging purposes  
   updateC=needcompile <>0|fileinfo(path+name+'.c')==[]
   if updateC then
-    
+    //disp(modelicac+' '+fil+' -o '+path+name+'.c')
     if execstr('unix_s(modelicac+'' ''+fil+'' -o ''+path+name+''.c'')','errcatch')<>0 then
       
       x_message(['Modelica compiler error:'
@@ -47,6 +46,7 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
  
   // build shared library with the C code
   files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
+
   ierr=execstr('libn=ilib_for_link(name,files,[],''c'',Make,loader)','errcatch')
   if ierr<>0 then 
     ok=%f;x_message(['sorry compilation problem';lasterror()]);
