@@ -96,7 +96,6 @@ iPol = 0;
 iPl3 = 0;
 iFac = 0;
 iRec = 0;
-
 iTex = 0;
 iLeg = 0;
 iArc = 0;
@@ -381,6 +380,7 @@ function ged_axes(h)
   
   select h.view
     case "2d" 
+    drawlater();
     h.view='3d'
     TK_SetVar("old_curalpharotation",string(h.rotation_angles(1)))
     TK_SetVar("old_curthetarotation",string(h.rotation_angles(2)))
@@ -392,6 +392,7 @@ function ged_axes(h)
     TK_SetVar("dbymax",string(h.data_bounds(2,2)))
     TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
     h.view='2d'
+    drawnow();
     case "3d"
     TK_SetVar("zGrid",string(h.grid(3)))
     TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
@@ -435,9 +436,17 @@ function ged_rectangle(h)
   TK_SetVar("curvis",h.visible)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"];
-  TK_SetVar("curmarkstyle",ged_markstylearray(h.mark_style+1))
+  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
+  "circle2" "asterisk" "square" "diamond2"];
+  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TK_SetVar("curmarkmode",h.mark_mode)
+  TK_SetVar("curmarksize",string(h.mark_size))
+  TK_SetVar("curmarkforeground",string(h.mark_foreground))
+  TK_SetVar("curmarkbackground",string(h.mark_background))
+
+ 
+  TK_SetVar("curlinemode",h.line_mode)
   // Rectangle data
    select ax.view
     case "2d" 
@@ -492,10 +501,18 @@ function ged_polyline(h)
     TK_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
     ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
     TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-    ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"];
-    TK_SetVar("curmarkstyle",ged_markstylearray(h.mark_style+1))
-    TK_SetVar("curmarkmode",h.mark_mode)
+    ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+    "diamond" "triangle up" "triangle down" "trefle" "circle" ..
+    "circle2" "asterisk" "square" "diamond2"];
 
+    TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+    TK_SetVar("curmarkmode",h.mark_mode)
+    TK_SetVar("curmarksize",string(h.mark_size))
+    TK_SetVar("curmarkforeground",string(h.mark_foreground))
+    TK_SetVar("curmarkbackground",string(h.mark_background))
+
+    TK_SetVar("curlinemode",h.line_mode)
+    
     d="["+strcat(string(size(h.data)),'x')+" double array]"
     TK_SetVar("curdata",d);
 
@@ -541,6 +558,18 @@ function ged_plot3d(h)
   TK_SetVar("curforeground",string(h.foreground))
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
+
+  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
+  "circle2" "asterisk" "square" "diamond2"];
+
+  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TK_SetVar("curmarkmode",h.mark_mode)
+  TK_SetVar("curmarksize",string(h.mark_size))
+  TK_SetVar("curmarkforeground",string(h.mark_foreground))
+  TK_SetVar("curmarkbackground",string(h.mark_background))
+  TK_SetVar("curlinemode",h.surface_mode)
+
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
   TK_SetVar("curdata_x",d);
@@ -591,6 +620,18 @@ function ged_fac3d(h)
   TK_SetVar("curforeground",string(h.foreground))
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
+
+  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
+  "circle2" "asterisk" "square" "diamond2"];
+
+  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TK_SetVar("curmarkmode",h.mark_mode)
+  TK_SetVar("curmarksize",string(h.mark_size))
+  TK_SetVar("curmarkforeground",string(h.mark_foreground))
+  TK_SetVar("curmarkbackground",string(h.mark_background))
+  TK_SetVar("curlinemode",h.surface_mode)
+
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
   TK_SetVar("curdata_x",d);
@@ -740,6 +781,16 @@ function ged_segs(h)
   TK_SetVar("curthick",string(h.thickness))
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
+  "circle2" "asterisk" "square" "diamond2"];
+  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TK_SetVar("curmarkmode",h.mark_mode)
+  TK_SetVar("curmarksize",string(h.mark_size))
+  TK_SetVar("curmarkforeground",string(h.mark_foreground))
+  TK_SetVar("curmarkbackground",string(h.mark_background))
+  TK_SetVar("curlinemode",h.line_mode)
+    
   TK_SetVar("nbrow",string(size(h.data,1)))
   
    d="["+strcat(string(size(h.data)),'x')+" double array]"
@@ -1168,7 +1219,8 @@ endfunction
 function setMarkStyle(sty)
   global ged_handle; h=ged_handle
   h.mark_style=find(sty==["dot" "plus" "cross" "star" "diamond fill" ..
-                    "diamond" "triangle up" "triangle down" "trefle" "circle"])-1
+                    "diamond" "triangle up" "triangle down" "trefle" ..
+		    "circle" "circle2" "asterisk" "square" "diamond2"])-1
    
 endfunction
 function setFontStyle(ftn)
@@ -1236,11 +1288,14 @@ function setZdb(zmin, zmax)
   global ged_handle; h=ged_handle
  select h.view
      case "2d"
+      drawlater();
       h.view='3d';
       tmp=h.data_bounds;
       tmp(1,3)=zmin;
       tmp(2,3)=zmax;
       h.data_bounds=tmp;
+      h.view='2d';
+      drawnow();
 //      tst=execstr('h.data_bounds=tmp','errcatch','n');
 //      h.view='2d';
 //      if tst<>0 then
@@ -1728,9 +1783,11 @@ function LoadTicks2TCL(h)
 
   select h.view
    case "2d" 
+    drawlater();
     h.view='3d'
     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
     h.view='2d'
+    drawnow();
    case "3d"
      TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
    end
@@ -1828,9 +1885,11 @@ function ReLoadTicks2TCL(h)
 
   select h.view
    case "2d" 
+    drawlater();
     h.view='3d'
     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
     h.view='2d'
+    drawnow();
    case "3d"
      TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
    end
