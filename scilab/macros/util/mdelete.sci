@@ -23,14 +23,10 @@ else
   filename=part(filename,k($)+1:length(filename))
 end
 
-if strindex(filename," ") then
-  filename=""""+filename+""""
+if strindex(filename," ") | strindex(file_path," ") then
+  file_path=""""+file_path
+  filename=filename+""""
 end
-
-if strindex(file_path," ") then
-  file_path=""""+file_path+""""
-end
-  
 
 if MSDOS then
   cmd="del "+file_path+filename;
