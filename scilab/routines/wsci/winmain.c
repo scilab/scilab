@@ -462,6 +462,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	ForceToActiveWindowParent();
 	HideScilex(); /* Cache la fenetre Console */
 
+	if (LaunchAFile) ChangeCursorWhenScilabIsReady();
+
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
 
 	CloseScilabConsole();

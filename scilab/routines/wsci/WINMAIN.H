@@ -69,6 +69,7 @@ extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
 extern void start_sci_gtk();
 extern void sci_tk_activate(void);
+extern void ChangeCursorWhenScilabIsReady(void);
 
 static void CheckMemory (LPSTR str);
 static void AllGraphWinDelete ();

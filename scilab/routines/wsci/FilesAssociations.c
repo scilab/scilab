@@ -232,44 +232,35 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					if ( IsABinOrSavFile(FinalFileName)== TRUE )
 					{
 						/* C'est un fichier .BIN ou .SAV d'ou load */
-						wsprintf(Cmd,"%s -e load('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+						wsprintf(Cmd,"%s -e load(getlongpathname('%s'));disp(getlongpathname('%s')+ascii(32)+'loaded');",PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
 					if  ( IsAScicosFile(fichier)== TRUE )
 					{
-						ReplaceSlash(FinalFileName,fichier);
-						ExtensionFileIntoLowerCase(FinalFileName);	
-						/*wsprintf(Cmd,"%s -e scicos('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);*/
-						wsprintf(Cmd,"%s -e scicos('%s'); ",PathWScilex,FinalFileName,FinalFileName);
+					    ExtensionFileIntoLowerCase(FinalFileName);	
+						wsprintf(Cmd,"%s -e scicos(getlongpathname('%s'));",PathWScilex,FinalFileName);
 					}
 					else
 					if ( IsAGraphFile(fichier)== TRUE )
 					{
-						ReplaceSlash(FinalFileName,fichier);
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						/*wsprintf(Cmd,"%s -e edit_graph('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,fichier);*/
-						wsprintf(Cmd,"%s -e edit_graph('%s'); ",PathWScilex,FinalFileName,fichier);
+						wsprintf(Cmd,"%s -e edit_graph(getlongpathname('%s'));",PathWScilex,FinalFileName);
 					}
-					else wsprintf(Cmd,"%s -e exec('%s'); ",PathWScilex,FinalFileName);
+					else wsprintf(Cmd,"%s -e exec(getlongpathname('%s'));",PathWScilex,FinalFileName);
 				}
 			break;
 			case 2: /* Print -P*/
 				{
-					/* A mettre en place plus precisément*/
-					/* Pour le moment l'impression a lieu par l'editeur de fichier .txt défini par défaut */
-					/* c-a-d notepad ou autre */
-				PrintFile(fichier);
-				strcpy(Cmd," ");
-				exit(0);
-
-
+					PrintFile(fichier);
+					strcpy(Cmd," ");
+					exit(0);
 				}
 			break;
 			case 0:default: /* Open -O*/
 				{
 					if (! HaveAnotherWindowScilab())
 					{
-						wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
+						wsprintf(Cmd,"%s -e scipad(getlongpathname('%s')); ",PathWScilex,FinalFileName);
 					}
 					else
 					{
@@ -285,7 +276,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 						}
 						else
 						{
-							wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
+							wsprintf(Cmd,"%s -e scipad(getlongpathname('%s')); ",PathWScilex,FinalFileName);
 						}
 						
 					}
