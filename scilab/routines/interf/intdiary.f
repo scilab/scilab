@@ -2,7 +2,7 @@
 c     Copyright INRIA/ENPC
       INCLUDE '../stack.h'
 c     
-      integer mode(2)
+      integer mode(2),fd
       logical opened,eptover
       integer iadr,sadr
 c
@@ -19,14 +19,24 @@ c
          return
       endif
 
-c     opening file
       top = top-rhs+1
       il=iadr(lstk(top))
-      mode(1)=0
-      mode(2)=0
-      call v2unit(top,mode,lunit,opened,ierr)
-      if(ierr.gt.0) return
 
+      if(abs(istk(il)).eq.1) then
+         fd = int(stk(sadr(il+4)))
+         if(fd.eq.0) then
+            call clunit(-wio,buf,mode)
+            goto 29
+         endif
+      endif
+
+      call v2cunit(top,'wb',lunit,opened,ierr)
+      if(ierr.lt.0) then
+         call error(244)
+         return
+      elseif(ierr.gt.0) then
+         return
+      endif
 c     
       if(wio.ne.0) then
          mode(1)=0
