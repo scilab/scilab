@@ -87,8 +87,8 @@ extern int Gfgets(LPSTR lp, int size, GFILE *gfile);
 /* wprinter.c - Printer setup and dump */
 
 extern BOOL PrintSize(HDC printer, HWND hwnd, LPRECT lprect);
-extern void PrintRegister(LPPRINT lpr);
-extern void PrintUnregister(LPPRINT lpr);
+extern void PrintRegister(LP_PRINT lpr);
+extern void PrintUnregister(LP_PRINT lpr);
 
 extern EXPORT BOOL CALLBACK  PrintAbortProc(HDC hdcPrn, int code);
 extern EXPORT BOOL CALLBACK  PrintDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);

@@ -16,6 +16,7 @@ extern int MyWinMain();
 int main()
 {
   HMODULE x = GetModuleHandle (0);
+ 
   MyWinMain (x, 0, GetCommandLine (), 1);
   return (0);
 }

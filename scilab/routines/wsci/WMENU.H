@@ -1,0 +1,219 @@
+#include <windows.h>
+#include <commdlg.h>
+#include <stdio.h>
+#include <ShlObj.h>
+#include <time.h>
+#include <string.h>		/* only use far items */
+#include <math.h>
+/*#include "wgnuplib.h"*/
+#include "wresource.h"
+#include "wcommon.h"
+
+#include "wtext.h"
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Definitions */
+/*-----------------------------------------------------------------------------------*/
+
+/* Allan CORNET */
+/* EzCreateFont */
+/* Fonts Properties */
+#define EZ_ATTR_BOLD 1
+#define EZ_ATTR_ITALIC 2
+#define EZ_ATTR_UNDERLINE 4
+#define EZ_ATTR_STRIKEOUT 8
+
+
+/* limits */
+#define MAXSTR 255
+#define MACROLEN 5000
+/* #define NUMMENU 256  defined in wresourc.h */
+#define MENUDEPTH 3
+
+/* menu tokens */
+#define CMDMIN 			129
+/**********************/
+#define NEWSCILAB		CMDMIN
+#define EXEC 			CMDMIN+1
+#define GETF 			CMDMIN+2
+#define PRINTWINDOW		CMDMIN+3
+#define LOAD 			CMDMIN+4
+#define SAVE 			CMDMIN+5
+#define GETCWD 			CMDMIN+6
+#define CHDIR 			CMDMIN+7
+#define EXIT   			CMDMIN+8
+/**********************/
+#define MCOPY 			EXIT+1
+#define PASTE 			MCOPY+1
+#define TOOLBAR			MCOPY+2
+#define FRENCH			MCOPY+3
+#define ENGLISH			MCOPY+4
+#define CHOOSETHEFONT 		MCOPY+5
+/**********************/
+#define RESTART 		CHOOSETHEFONT+1
+#define PAUSE 			RESTART+1
+#define RESUME 			RESTART+2
+#define ABORT 			RESTART+3
+#define CONSOLE 		RESTART+4
+/**********************/
+#define SET  			CONSOLE+1
+#define RAISE 			SET+1
+#define DELETESCIW 		SET+2
+#define PLUS 			SET+3
+#define MINUS 			SET+4
+#define XBASC 			SET+5
+/**********************/
+#define SCIPAD 			XBASC+1
+/**********************/
+#define HELP 			SCIPAD+1
+#define DEMOS 			HELP+1
+#define NEWSGROUP		HELP+2
+#define EMAIL 			HELP+3
+#define WEB  			HELP+4
+#define BUGZILLA		HELP+5
+#define ABOUT 			HELP+6
+/**********************/
+#define EOS 			ABOUT+1
+/**********************/
+#define M_CTRL_C		EOS+1
+#define M_CTRL_U		M_CTRL_C+1
+#define M_CTRL_P		M_CTRL_C+2
+#define M_CTRL_B		M_CTRL_C+3
+#define M_CTRL_F		M_CTRL_C+4
+#define M_CTRL_A		M_CTRL_C+5
+#define M_CTRL_E		M_CTRL_C+6
+#define M_CTRL_H		M_CTRL_C+7
+#define M_CTRL_D		M_CTRL_C+8
+#define M_CTRL_W		M_CTRL_C+9
+#define M_CTRL_K		M_CTRL_C+10
+#define M_CTRL_L		M_CTRL_C+11
+#define M_CTRL_N		M_CTRL_C+12
+/**********************/
+#define CLEARCOMMANDWINDOW	M_CTRL_N+1
+#define CMDMAX 			CLEARCOMMANDWINDOW
+/**********************/
+#define URLNEWSGROUP "http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab"
+#define URL "http://www.scilab.org"
+#define URLBUGZILLA "http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug/index.cgi"
+#define MAILTO "Scilab@inria.fr"
+#define CCMAILTO ""
+#define SUBJECT "Doctor Scilab Please Help me"
+
+
+#define NEWSTRING(x) if ((x=LocalAlloc(LPTR, MAXSTR+1)) == (char *)NULL) \
+{ *ierr=1;return(FALSE);}
+
+#define BUGGOTOCLEAN(str) \
+      wsprintf(buf,str,nLine,lpmw->szMenuName); \
+      MessageBox(lptw->hWndParent,(LPSTR) buf,lptw->Title,MB_ICONEXCLAMATION);\
+      goto errorcleanup;
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Variables Globales */
+/*-----------------------------------------------------------------------------------*/
+
+extern BOOL ShowButtons;
+
+int LanguageCode=0;
+/* 0 ENGLISH 
+   1 FRENCH
+   ...
+*/
+char *keyword[] =
+{
+  "[FRENCH]","[ENGLISH]",
+  "[TOOLBAR]","[NEWSGROUP]","[PRINTWINDOW]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
+  "[MCOPY]","[PASTE]","[CHOOSETHEFONT]",
+  "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
+  "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
+  "[SCIPAD]",
+  "[HELP]","[DEMOS]","[WEB]","[EMAIL]","[BUGZILLA]","[ABOUT]",
+  "{ENTER}", "{ESC}", "{TAB}",
+  "[M_CTRL_A]", "[M_CTRL_B]", "[M_CTRL_C]", "[M_CTRL_D]", "[M_CTRL_E]", "[M_CTRL_F]", "{^G}", "[M_CTRL_H]",
+  "{^I}", "{^J}", "[M_CTRL_K]", "[M_CTRL_L]", "{^M}", "[M_CTRL_N]", "{^O}", "[M_CTRL_P]",
+  "{^Q}", "{^R}", "{^S}", "{^T}", "[M_CTRL_U]", "{^V}", "[M_CTRL_W]", "{^X}",
+  "{^Y}", "{^Z}", "{^[}", "{^\\}", "{^]}", "{^^}", "{^_}",
+  NULL};
+
+BYTE keyeq[] =
+{
+  FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
+  MCOPY,PASTE,CHOOSETHEFONT,
+  RESTART,PAUSE,RESUME,ABORT,CONSOLE,
+  SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
+  SCIPAD,
+  HELP,DEMOS,WEB,EMAIL,BUGZILLA,ABOUT,
+  13, 27, 9,
+  M_CTRL_A, M_CTRL_B, M_CTRL_C, M_CTRL_D, M_CTRL_E, M_CTRL_F, 7, M_CTRL_H,
+  9, 10, M_CTRL_K, M_CTRL_L, 13, M_CTRL_N, 15, M_CTRL_P,
+  17, 18, 19, 20, M_CTRL_U, 22, M_CTRL_W, 24,
+  25, 26, 28, 29, 30, 31,
+  0 /* NULL */ };
+
+static integer lab_count = 0;
+static char gwin_name[100], gwin_name1[100];
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Fonctions */
+/*-----------------------------------------------------------------------------------*/
+EXPORT BOOL CALLBACK InputBoxDlgProc (HWND, UINT, WPARAM, LPARAM);
+EXPORT LRESULT CALLBACK MenuButtonProc (HWND, UINT, WPARAM, LPARAM);
+
+static void Countp ();
+static void Countm ();
+static void SendCountSet ();
+static void SendCountRaise ();
+static void SendCountDelete ();
+
+void SendMacro (LPTW lptw, UINT m);
+BOOL SciOpenSave (HWND hWndParent, BYTE ** s, char **d, int *ierr);
+void MenuFixCurrentWin (int ivalue);
+GFILE * Gfopen (LPSTR lpszFileName, int fnOpenMode);
+void Gfclose (GFILE * gfile);
+int Gfgets (LPSTR lp, int size, GFILE * gfile);
+int GetLine (char *buffer, int len, GFILE * gfile);
+void LeftJustify (char *d, char *s);
+void TranslateMacro (char *string);
+void LoadMacros (LPTW lptw);
+void CloseMacros (LPTW lptw);
+
+/*Boite de dialogue Load ou Save */
+BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *file);
+/* Double le caractere \ dans un chemin */
+void DoubleDoubleSlash(char *pathout,char *pathin);
+/* WTEXT.C*/
+extern void PasteFunction(LPTW lptw);
+extern void SwitchConsole(void);
+/*--------------------------------*/
+/* Envoye le signal CTRL+une touche */
+void SendCTRLandAKey(int code);
+
+/* Efface la fenetre de "commandes" */
+extern void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
+/*--------------------------------*/
+/* Imprime la fenetre courante */
+void PrintCommandWindow(LPTW lptw);
+
+int EntetePage(HDC hdc,LPSTR Entete,int numero);
+HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
+HDC GetPrinterDC(void);
+/*--------------------------------*/
+extern void ClearCommandWindow(LPTW lptw);
+void ResetMenu(void);
+/*--------------------------------*/
+void ShowToolBar(LPTW lptw);
+void HideToolBar(LPTW lptw);
+void ToolBarOnOff(LPTW lptw,BOOL ON);
+/*--------------------------------*/
+void ReLoadMenus(LPTW lptw,BOOL ToolbarON);
+void UpdateFileNameMenu(LPTW lptw,int LangCode);
+/*--------------------------------*/
+/* Cree une infobulle */
+void CreateMyTooltip (HWND hwnd,char ToolTipString[30]);
+/*--------------------------------*/
+void SwitchLanguage(LPTW lptw,int LangCode);
+/*--------------------------------*/
+void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSizeX, int ButtonSizeY);
+/*--------------------------------*/

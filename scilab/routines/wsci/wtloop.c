@@ -79,8 +79,7 @@ static void testloop (void);
  * for scilab 
  ***********************************************/
 
-void 
-SignalCtrC (void)
+void SignalCtrC (void)
 {
 #ifdef TEST
   sciprint ("signal CtrC detected\r\n");
@@ -91,8 +90,7 @@ SignalCtrC (void)
 #endif
 }
 
-void 
-inter (int an_int)
+void inter (int an_int)
 {
   (void) signal (SIGINT, inter);
   (void) signal (SIGFPE, SIG_DFL);	/* turn off FPE trapping */
@@ -109,8 +107,7 @@ interrupt_setup (void)
   (void) signal (SIGINT, inter);
 }
 
-void 
-sci_windows_main (int nowin, int *nos, char *path,int pathtype,
+void sci_windows_main (int nowin, int *nos, char *path,int pathtype,
 		  int *lpath,int memory)
 {
 #ifdef XPG3_LOCALE
@@ -194,9 +191,11 @@ static void realmain(int nos,char *initial_script,int initial_script_type,
     }
 
   /* initialize scilab interp  */
+  
   C2F(inisci)(&ini, &memory, &ierr);
   if (ierr > 0) sci_exit(1) ;
   /* execute the initial script and enter scilab */ 
+  
   C2F(scirun)(startup,strlen(startup));
   /* cleaning */
   /* performed in atexit C2F(sciquit)(); */

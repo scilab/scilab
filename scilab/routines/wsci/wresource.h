@@ -54,6 +54,13 @@
 #define M_REBUILDTOOLS NUMMENU+11
 /* wtext.c */
 #define M_SYSCOLORS    NUMMENU+12
+#define M_HELPON       NUMMENU+13
+#define M_CONSOLE      NUMMENU+14
+#define M_PRINTSELECTION NUMMENU+15
+#define M_SPECIALPASTE  NUMMENU+16
+#define M_OPENSELECTION NUMMENU+17
+#define M_CUT		NUMMENU+18
+#define M_EVALSELECTION	NUMMENU+19
 
 /* wprinter.c */
 #define PSIZE_SBOX 100
@@ -127,6 +134,8 @@
 
 #define DI_TEXT                     408
 #define DI_TIT                      409
+
+//#define IDC_LICENCE		410
 
 #define IDC_STATIC                      -1
 

@@ -1,5 +1,28 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
 #include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
 #include "wresource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -113,14 +136,18 @@ BEGIN
     ICON            "GRPICON",IDC_STATIC,7,7,16,16
 END
 
-ABOUTDLGBOX DIALOG DISCARDABLE  32, 32, 202, 143
-STYLE WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
-CAPTION "Scilab "
+ABOUTDLGBOX DIALOG DISCARDABLE  32, 32, 319, 234
+STYLE DS_MODALFRAME | DS_CENTER | DS_CENTERMOUSE | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Scilab"
 FONT 8, "MS Sans Serif"
 BEGIN
-    ICON            "GRPICON",IDC_STATIC,11,8,18,20
-    PUSHBUTTON      "OK",IDOK,142,6,32,12
-    LTEXT           "",AB_TEXT2,15,35,179,101
+    PUSHBUTTON      "OK",IDOK,9,213,62,12
+    PUSHBUTTON      "Licence",IDC_LICENCE,248,213,62,12
+    CONTROL         103,IDC_STATIC,"Static",SS_BITMAP,9,9,301,161
+    CTEXT           "version",IDC_VERSION_SPLASH,9,174,301,10
+    CTEXT           "copyright",IDC_COPYRIGHT_SPLASH,9,187,301,8
+    CTEXT           "Date Time build",IDC_BUILD,9,198,301,8
 END
 
 IDD_INFO3 DIALOG DISCARDABLE  0, 0, 326, 153
@@ -186,11 +213,10 @@ BEGIN
     LTEXT           "",IDE_MDTIT,82,4,229,31
     COMBOBOX        IDE_MD1,109,44,197,58,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
                     WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDE_MD2,109,75,197,58,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL |
-		    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDE_MD2,109,75,197,58,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | 
+                    WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDE_MD3,109,105,197,58,CBS_DROPDOWNLIST | 
-                    CBS_AUTOHSCROLL | WS_VSCROLL | 
-                    WS_TABSTOP
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_MCHOICE2 DIALOG DISCARDABLE  0, 0, 326, 153
@@ -221,7 +247,7 @@ BEGIN
 END
 
 ID_HELPDIALOG DIALOG DISCARDABLE  10, 65521, 324, 234
-STYLE  WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+STYLE WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Scilab Help"
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -238,14 +264,14 @@ BEGIN
 END
 
 SCICHOOSEDLGBOX DIALOGEX 16, 32, 164, 183
-STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU 
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Scilab Choose"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     ICON            "GRPICON",IDC_STATIC,7,10,18,20
     LISTBOX         CHOOSE_LINENUM,9,49,144,108,WS_VSCROLL | WS_HSCROLL | 
-                     WS_TABSTOP
-    PUSHBUTTON      "OK",IDOK,14,161,32,14 ,WS_GROUP
+                    WS_TABSTOP
+    PUSHBUTTON      "OK",IDOK,14,161,32,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,66,161,32,14,WS_GROUP
     LTEXT           "",CHOOSE_TEXT,40,10,110,28
 END
@@ -278,8 +304,6 @@ BEGIN
     ICON            "GRPICON",IDC_STATIC,7,10,20,20
 END
 
-
-
 SCIBIGMESSAGEDLGBOX1 DIALOG DISCARDABLE  10, 65521, 312, 207
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Scilab Message"
@@ -300,7 +324,7 @@ BEGIN
     PUSHBUTTON      "&Cancel",IDCANCEL,57,12,35,14,WS_GROUP
     PUSHBUTTON      "&Done",IDOK,126,12,35,14,WS_GROUP
     ICON            "GRPICON",IDC_STATIC,7,6,20,20
-    EDITTEXT           DI_TEXT,7,34,299,167,ES_MULTILINE | ES_AUTOVSCROLL | 
+    EDITTEXT        DI_TEXT,7,34,299,167,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN | 
                     WS_VSCROLL | WS_HSCROLL
 END
@@ -340,6 +364,16 @@ BEGIN
     LISTBOX         SPOOL_PORT,8,8,140,50,WS_VSCROLL | WS_TABSTOP
 END
 
+IDD_SPLASH DIALOG DISCARDABLE  0, 0, 316, 201
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         103,IDC_STATIC,"Static",SS_BITMAP | SS_REALSIZEIMAGE | 
+                    WS_BORDER,7,7,302,162
+    CTEXT           "version",IDC_VERSION_SPLASH,7,170,302,10
+    CTEXT           "copyright",IDC_COPYRIGHT_SPLASH,7,184,302,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -348,7 +382,93 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
+IDI_VIDE                ICON    DISCARDABLE     "Icones Scilab\\VIDE.ICO"
 GRPICON                 ICON    DISCARDABLE     "scilab.ico"
 TEXTICON                ICON    DISCARDABLE     "scilab.ico"
+IDI_BIN                 ICON    DISCARDABLE     "Icones Scilab\\BIN.ICO"
+IDI_COS                 ICON    DISCARDABLE     "Icones Scilab\\COS.ICO"
+IDI_COSF                ICON    DISCARDABLE     "Icones Scilab\\COSF.ICO"
+IDI_DEM                 ICON    DISCARDABLE     "Icones Scilab\\DEM.ICO"
+IDI_GRAPH               ICON    DISCARDABLE     "Icones Scilab\\Graph.ICO"
+IDI_SAV                 ICON    DISCARDABLE     "Icones Scilab\\SAV.ICO"
+IDI_SCE                 ICON    DISCARDABLE     "Icones Scilab\\SCE.ICO"
+IDI_SCI                 ICON    DISCARDABLE     "Icones Scilab\\SCI.ICO"
+IDI_TST                 ICON    DISCARDABLE     "Icones Scilab\\TST.ICO"
 
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""wresource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    "ABOUTDLGBOX", DIALOG
+    BEGIN
+        LEFTMARGIN, 9
+        RIGHTMARGIN, 310
+        TOPMARGIN, 9
+        BOTTOMMARGIN, 225
+    END
+
+    "IDD_SPLASH", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGO                BITMAP  DISCARDABLE     "scilab_logo.bmp"
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
 

@@ -49,8 +49,7 @@ int C2F (xscion) (int *i)
 
 extern TW textwin;
 
-void
-TextMessage1 (int ctrlflag)
+void TextMessage1 (int ctrlflag)
 {
   MSG msg;
 #ifdef WITH_TK
@@ -73,9 +72,9 @@ TextMessage1 (int ctrlflag)
 }
 /** function used in wtext.c in function TextGetCh  must wait for an event **/
 
-void
-TextMessage2()
+void TextMessage2()
 {
+  MSG msg;
 #ifdef WITH_TK
   flushTKEvents ();
 #else 
@@ -114,8 +113,7 @@ int C2F (sxevents) ()
  * For Fortran call 
  **********************************************************************/
 
-static void
-strip_blank (source)
+static void strip_blank (source)
      char *source;
 {
   char *p;
@@ -181,16 +179,14 @@ static CommandRec *commandQueue = NULL;
  * if flag == 1 a \n is added 
  ***************************************/
 
-int 
-scig_command_handler_none (char *command)
+int  scig_command_handler_none (char *command)
 {
   return 0;
 };
 
 static Scig_command_handler scig_command_handler = scig_command_handler_none;
 
-Scig_command_handler 
-set_scig_command_handler (f)
+Scig_command_handler set_scig_command_handler (f)
      Scig_command_handler f;
 {
   Scig_command_handler old = scig_command_handler;
@@ -198,31 +194,30 @@ set_scig_command_handler (f)
   return old;
 }
 
-void 
-reset_scig_command_handler ()
+void reset_scig_command_handler ()
 {
   scig_command_handler = scig_command_handler_none;
 }
 
-int
-StoreCommand (command)
+int StoreCommand (command)
      char *command;
 {
   return (StoreCommand1 (command, 1));
 }
 
 
-int
-StoreCommand1 (command, flag)
+int StoreCommand1 (command, flag)
      char *command;
      int flag;
 {
   CommandRec *p, *q, *r;
   /* check if handler is using the command */
+  
   if (scig_command_handler (command) == 1)
     return 0;
    if (flag==1&& get_is_reading ())
     {
+    	
       write_scilab (command);
       if (flag == 1)
 	write_scilab ("\n");
@@ -261,13 +256,15 @@ StoreCommand1 (command, flag)
  * and remove it from the queue 
  ************************************************/
 
-void
-GetCommand (str)
+void GetCommand (str)
      char *str;
 {
+	
   if (commandQueue != NULL)
     {
+
       CommandRec *p;
+          	
       p = commandQueue;
       strcpy (str, p->command);
       commandQueue = p->next;

@@ -1,0 +1,206 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+#include <windows.h>
+#include <Winuser.h>
+#include "..\version.h"
+
+#include "wcommon.h"
+#include "plot.h"
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Definitions */
+/*-----------------------------------------------------------------------------------*/
+
+#if (defined __MSC__ ) || (defined __MINGW32__) 
+#define putenv(x) _putenv(x)
+#endif
+
+#ifdef __ABSC__
+#define putenv(x) abs_putenv(x)
+#endif
+
+/* limits */
+#define MAXSTR 255
+#define MAXPRINTF 1024
+
+#define MENUNAME "wscilabE.mnu"
+#define GRAPHMENUNAME "wgscilab.mnu"
+
+#define MIN_STACKSIZE 180000
+
+#define MAXCMDTOKENS 128
+
+/** test if we are using a file or not **/
+#define isterm(f) (f==stdin || f==stdout || f==stderr)
+
+#define MORESTR "[More (y or n ) ?] "
+
+/* replacement stdio routines that use Text Window for stdin/stdout */
+/* WARNING: Do not write to stdout/stderr with functions not listed 
+   in win/wtext.h */
+#undef kbhit
+#undef getche
+#undef getch
+#undef putch
+
+#undef fgetc
+#undef getchar
+#undef getc
+#undef fgets
+#undef gets
+
+#undef fputc
+#undef putchar
+#undef putc
+#undef fputs
+#undef puts
+
+#undef fprintf
+#undef printf
+#undef vprintf
+#undef vfprintf
+
+#undef fwrite
+#undef fread
+
+#define ExecutableNameOfScilab "SCILEX.EXE"
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Variables Globales */
+/*-----------------------------------------------------------------------------------*/
+TW textwin;
+GW graphwin;
+PW pausewin;
+MW menuwin;
+
+LPSTR szModuleName;
+LPSTR szMenuName;
+LPSTR szGraphMenuName;
+
+static int startupf = 0; /** 0 if we execute startup else 1 **/
+static int nointeractive = 0;
+static int show_logo = 1;
+static int  memory = MIN_STACKSIZE;
+static int my_argc = -1;
+
+int  sci_show_banner=1;
+int SciPlatformId;
+
+char ScilexConsoleName[MAX_PATH];
+
+/*-----------------------------------------------------------------------------------*/
+/* Les Fonctions */
+/*-----------------------------------------------------------------------------------*/
+extern void C2F (tmpdirc) ();
+extern void C2F (getwins) (integer *, integer *, integer *);
+extern void C2F (diary) (char *, int *, int);
+extern void set_sci_env(char *p, char *wsci) ;
+
+
+static void CheckMemory (LPSTR str);
+static void AllGraphWinDelete ();
+static LPSTR my_argv[MAXCMDTOKENS];
+static void SciEnv ();
+EXPORT int CALLBACK  ShutDown (void);
+
+void set_sci_env(char *p, char *wsci) ;
+int Pause (LPSTR str);
+int SciWinGetPlatformId ();
+
+
+int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow);
+
+void add_sci_argv(char *p);
+int sci_iargc();
+int sci_getarg(int *n,char *s,long int ls);
+int InteractiveMode ();
+int C2F(showlogo) ();
+int MyPutCh (int ch);
+int MyKBHit (void);
+int MyGetCh (void);
+int MyGetChE (void);
+int MyFGetC (FILE * file);
+char *MyGetS (char *str);
+char * MyFGetS (char *str, unsigned int size, FILE * file);
+int MyFPutC (int ch, FILE * file);
+int MyFPutS (char *str, FILE * file);
+int MyPutS (char *str);
+void Scistring (char *str);
+int MyFPrintF (FILE * file, char *fmt,...);
+int MyPrintF (char *fmt,...);
+void sciprint (char *fmt,...);
+void sciprint_nd (char *fmt,...);
+int sciprint2 (int iv, char *fmt,...);
+size_t MyFWrite (const void *ptr, size_t size, size_t n, FILE * file);
+size_t MyFRead (void *ptr, size_t size, size_t n, FILE * file);
+extern void Xputchar ();
+void Xputchar (c);
+void Xputstring (str, n);
+void C2F (xscisncr) (str, n, dummy);
+void C2F (xscistring) (str, n, dummy);
+void C2F (xscimore) (n);
+void Scisncr (str);
+int ReadKey (void);
+int WriteStr (char *s, FILE * file);
+int WriteKey (char c, FILE * file);
+
+
+
+void WinExit (void);
+void CreateProcessScilex(char *cmdline,int NumberScilex,int CodeActionWin98);
+void CreateThreadSplashscreen(void);
+DWORD WINAPI ThreadSplashscreen(LPVOID lpParam );
+
+/* Tue le Process Scilex si OS est Windows 9x */
+void Kill_Scilex_Win98(void);
+/* Tue le Process Scilex */
+void Kill_Scilex(void);
+
+/* Teste si la chaine de caractere correspond à un fichier existant*/
+/* retourne TRUE si c'est le cas sinon FALSE */
+BOOL IsAFile(char *chainefichier);
+
+/* Teste si le fichier a une extension .sav ou .bin*/
+/* retourne TRUE si c'est le cas sinon FALSE */
+BOOL IsABinOrSavFile(char *chainefichier);
+
+BOOL IsAGraphFile(char *chainefichier);
+BOOL IsAGraphFilegraph(char *chainefichier);
+BOOL IsAGraphFilegraphb(char *chainefichier);
+
+BOOL IsAScicosFile(char *chainefichier);
+BOOL IsAScicosFileCOS(char *chainefichier);
+BOOL IsAScicosFileCOSF(char *chainefichier);
+
+/* Retourne un numéro valide pour nommer les fenetres associées à ce process */
+int FindFreeScilexNumber(void);
+
+/* Sauvegarde des parametres eventuels de la ligne de commandes */
+int SaveArgs(LPSTR saveargv);
+
+/* Teste si la chaine de caracteres line correspond à un fichier existant */
+/* retourne le nom du fichier au format 8.3 pour Scipad dans filename*/
+/* retourne le code option */
+/*-1 rien ou invalide */
+/* 0 -o open with scipad*/
+/* 1 execute */
+/* 2 print file */
+/* retourne TRUE si OK */
+int CleanFileName(char *line,char *filename,int *option);
+
+
+
+/* Suivant la commande Via menu ouvre, edit, imprime ...*/
+extern void DoubleDoubleSlash(char *pathout,char *pathin);
+int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
+/* Imprime le fichier sur l'imprimante par défaut */
+void PrintFileText(char *fichier);
+
+BOOL IsWindowInterface();
+
+void ExtensionFileIntoLowerCase(char *fichier);
+
+/*-----------------------------------------------------------------------------------*/

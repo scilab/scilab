@@ -25,11 +25,14 @@ extern char input_line[MAX_LINE_LEN + 1];
  * zzledt1 for scilab 
  * zzledt  for scilab -nw 
  **********************************************************************/
-
 char save_prompt[10];
+/* Fonction Récuperant la ligne à executer par Scilab */
 
+
+extern void SetReadyOrNotForAnewLign(BOOL Ready);
 
 #ifdef __STDC__
+
 void C2F (zzledt1) (char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1)
 #else
 void C2F (zzledt1) (buffer, buf_size, len_line, eof, dummy1)
@@ -40,21 +43,31 @@ void C2F (zzledt1) (buffer, buf_size, len_line, eof, dummy1)
      long int dummy1;		/* added by FORTRAN to give buffer length */
 #endif
 {
-  int i;
-  set_is_reading (TRUE);
-  i=read_line (save_prompt);
-  if (i==-1) { /* dynamic menu canceled read SS */
-    *len_line = 0;
-    *eof = -1;
-    set_is_reading (FALSE);
-    return;
-  }
-  strncpy (buffer, input_line, *buf_size);
-  *len_line = strlen (buffer);
-/** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
-  *eof = FALSE;
-  set_is_reading (FALSE);
+  	int i;
+  	SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
+  	set_is_reading (TRUE);
+  	i=read_line(save_prompt);
+  	if (i==-1) 
+  	{ /* dynamic menu canceled read SS */
+    	*len_line = 0;
+    	*eof = -1;
+    	set_is_reading (FALSE);
+    	return;
+  	}
+	
+	
+  	strncpy (buffer, input_line, *buf_size); /* buffer contient la commande à executer */
+  	
+  	*len_line = strlen (buffer);
+  	*eof = FALSE;
+  
+   	set_is_reading (FALSE);
+ 
+  
+
+  
   return;
+  
 }
 
 /**** Warning here : eof can be true  ***/
@@ -72,10 +85,11 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, dummy1)
   int i;
   set_is_reading (TRUE);
   i = read_line (save_prompt);
-  if (i==-1) { /* dynamic menu canceled read SS*/
+  if (i==-1) 
+  { /* dynamic menu canceled read SS*/
     *len_line = 0;
     *eof = -1;
-    set_is_reading (FALSE);
+    //set_is_reading (FALSE);
     return;
   }
   strncpy (buffer, input_line, *buf_size);
@@ -95,4 +109,5 @@ void C2F (setprlev) (pause)
     sprintf (save_prompt, "-%d->", *pause);
   else
     sprintf (save_prompt, ">>");
+
 }

@@ -39,7 +39,7 @@
 #define MyGetProcAddress(strProc,Proc) Proc 
 #endif
 
-#define WSCILABVERSION  "1.0   1996"
+#define WSCILABVERSION  "2.7.1   2003"
 
 EXPORT BOOL CheckWScilabVersion(LPSTR str);
 
@@ -57,7 +57,7 @@ typedef struct tagPRINT {
 	struct tagPRINT  *next;
 } PRINT;
 
-typedef PRINT *  LPPRINT; 
+typedef PRINT *  LP_PRINT; 
 
 /*****************************************
  * wpause.c - pause window structure *
@@ -120,7 +120,7 @@ typedef MW  *LPMW;
 #define MAXFONTNAME 80
 typedef struct tagTW
 {
-  LPPRINT	lpr;		/* must be first */
+  LP_PRINT	lpr;		/* must be first */
   HINSTANCE hInstance;		/* required */
   HINSTANCE hPrevInstance;	/* required */
   LPSTR	Title;			/* required */
@@ -202,7 +202,7 @@ EXPORT void WINAPI  AboutBox(HWND hwnd, LPSTR str);
  *****************************************/
 
 typedef struct tagGW {
-  LPPRINT	lpr;		/* must be first */
+  LP_PRINT	lpr;		/* must be first */
   HINSTANCE	hInstance;	/* required */
   HINSTANCE	hPrevInstance;	/* required */
   LPSTR	Title;			/* required */

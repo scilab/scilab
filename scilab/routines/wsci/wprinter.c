@@ -41,7 +41,7 @@
 #include "wcommon.h"
 #include <commdlg.h>
 
-LPPRINT prlist = NULL;
+LP_PRINT prlist = NULL;
 /** list of selected printers **/
 
 /********************************************
@@ -54,10 +54,10 @@ PrintSizeDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam)
 {
 
   char buf[8];
-  LPPRINT lpr;
+  LP_PRINT lpr;
   HWND parent;
   parent = GetParent (hdlg);
-  lpr = (LPPRINT) GetWindowLong (parent, 4);
+  lpr = (LP_PRINT) GetWindowLong (parent, 4);
   switch (wmsg)
     {
     case WM_INITDIALOG:
@@ -132,7 +132,7 @@ PrintSize (HDC printer, HWND hwnd, LPRECT lprect)
   DLGPROC lpfnPrintSizeDlgProc;
   BOOL status = FALSE;
   PRINT pr;
-  SetWindowLong (hwnd, 4, (LONG) ((LPPRINT) & pr));
+  SetWindowLong (hwnd, 4, (LONG) ((LP_PRINT) & pr));
   pr.poff.x = 0;
   pr.poff.y = 0;
   pr.psize.x = GetDeviceCaps (printer, HORZSIZE);
@@ -162,18 +162,18 @@ PrintSize (HDC printer, HWND hwnd, LPRECT lprect)
  ******************************/
 
 void
-PrintRegister (LPPRINT lpr)
+PrintRegister (LP_PRINT lpr)
 {
-  LPPRINT next;
+  LP_PRINT next;
   next = prlist;
   prlist = lpr;
   lpr->next = next;
 }
 
-LPPRINT
+LP_PRINT
 PrintFind (HDC hdc)
 {
-  LPPRINT this;
+  LP_PRINT this;
   this = prlist;
   while (this && (this->hdcPrn != hdc))
     {
@@ -183,10 +183,10 @@ PrintFind (HDC hdc)
 }
 
 void
-PrintUnregister (LPPRINT lpr)
+PrintUnregister (LP_PRINT lpr)
 {
-  LPPRINT this, prev;
-  prev = (LPPRINT) NULL;
+  LP_PRINT this, prev;
+  prev = (LP_PRINT) NULL;
   this = prlist;
   while (this && (this != lpr))
     {
@@ -212,10 +212,10 @@ PrintUnregister (LPPRINT lpr)
 EXPORT BOOL CALLBACK
 PrintDlgProc (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  LPPRINT lpr;
+  LP_PRINT lpr;
   HWND parent;
   parent = GetParent (hDlg);
-  lpr = (LPPRINT) GetWindowLong (parent, 4);
+  lpr = (LP_PRINT) GetWindowLong (parent, 4);
   switch (message)
     {
     case WM_INITDIALOG:
@@ -238,7 +238,7 @@ EXPORT BOOL CALLBACK
 PrintAbortProc (HDC hdcPrn, int code)
 {
   MSG msg;
-  LPPRINT lpr;
+  LP_PRINT lpr;
   lpr = PrintFind (hdcPrn);
   while (!lpr->bUserAbort && PeekMessage (&msg, 0, 0, 0, PM_REMOVE))
     {

@@ -65,6 +65,8 @@
 /* #define SGTTY */
 #endif
 
+
+
 #if !defined(MSDOS) && !defined(ATARI) && !defined(_Windows) && !defined(DOS386)
 
 extern char *alloc (unsigned long size, char *message);
@@ -164,11 +166,14 @@ static char ansi_getc ();
 #include "wtext.h"
 #endif
 
+
+extern LPTW Backuplptw;
 extern TW textwin;
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0
 #define special_getc() msdos_getch()
 static char msdos_getch ();
+static char Windows_getch ();
 #endif
 
 #if defined(MSDOS) || defined(DOS386)
@@ -336,24 +341,17 @@ NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
  * a pointer to an allocated zone (alloc) where
  *   the read characters are stored is returned 
  ***************************************************/
-
 #ifdef USE_CONSOLE
-char *
-readline_nw (char *prompt)
-#else
-char *
-readline_win (char *prompt)
-#endif
+char * readline_nw (char *prompt)
 {
   unsigned char cur_char;
-  char *new_line;
-  /* unsigned char *new_line; */
+  char *new_line;  /* unsigned char *new_line; */
   int eof;
   if (NotTTyRead (prompt, cur_line, MAXBUF, &eof) == 1)
     {
       if (eof == 1)
 	{
-/** coded line to return eof **/
+	/** coded line to return eof **/
 	  cur_line[0] = -1;
 	  cur_line[1] = '\0';
 	}
@@ -378,57 +376,16 @@ readline_win (char *prompt)
   for (;;)
     {
       cur_char = special_getc ();
-      if (C2F(ismenu) () == 1) {/* abort current line aquisition SS */
-	sendprompt=0;
-	new_line = (char *) alloc ((unsigned long) 2,
-					 "history");
-	new_line[0] = -2;
-	new_line[1] = '\0';
-	reset_termio ();
-	return (new_line);
-      }
-#ifdef OS2
-      /* for emx: remap scan codes for cursor keys */
-      if (cur_char == 0)
-	{
-	  cur_char = getc (stdin);
-	  switch (cur_char)
-	    {
-	    case 75:		/* left, map to ^B */
-	      cur_char = 2;
-	      break;
-	    case 77:		/* right, map to ^F */
-	      cur_char = 6;
-	      break;
-	    case 115:		/* ctrl left */
-	    case 71:		/* home, map to ^A */
-	      cur_char = 1;
-	      break;
-	    case 116:		/* ctrl right */
-	    case 79:		/* end, map to ^E */
-	      cur_char = 5;
-	      break;
-	    case 72:		/* up, map to ^P */
-	      cur_char = 16;
-	      break;
-	    case 80:		/* down, map to ^N */
-	      cur_char = 14;
-	      break;
-	    case 83:		/* delete, map to ^D */
-	      cur_char = 4;
-	      break;
-	    default:		/* ignore */
-	      cur_char = 0;
-	      continue;
-	    }
-	}
-#endif /*OS2 */
-      if ((isprint (cur_char)
-#if defined(ATARI) || defined(_Windows) || defined(MSDOS) || defined(DOS386)
-      /* this should be used for all 8bit ASCII machines, I guess */
-	   || ((unsigned char) cur_char > 0x7f)
-#endif
-	  ) && max_pos < MAXBUF - 1)
+      if (C2F(ismenu) () == 1) 
+      	{/* abort current line aquisition SS */
+		sendprompt=0;
+		new_line = (char *) alloc ((unsigned long) 2, "history");
+		new_line[0] = -2;
+		new_line[1] = '\0';
+		reset_termio ();
+		return (new_line);
+        }
+      if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
 	{
 	  int i;
 	  for (i = max_pos; i > cur_pos; i--)
@@ -439,100 +396,25 @@ readline_win (char *prompt)
 	  cur_line[cur_pos] = cur_char;
 	  cur_pos += 1;
 	  max_pos += 1;
-	  if (cur_pos < max_pos)
-	    fix_line ();
+	  if (cur_pos < max_pos)    fix_line ();
+	  
 	  cur_line[max_pos] = '\0';
 
-	  /* else interpret unix terminal driver characters */
-#ifdef VERASE
-	}
-      else if (cur_char == term_chars[VERASE])
-	{			/* DEL? */
-	  if (cur_pos > 0)
-	    {
-	      int i;
-	      cur_pos -= 1;
-	      backspace ();
-	      for (i = cur_pos; i < max_pos; i++)
-		cur_line[i] = cur_line[i + 1];
-	      max_pos -= 1;
-	      fix_line ();
-	    }
-#endif /* VERASE */
-#ifdef VEOF
-	}
-      else if (cur_char == term_chars[VEOF])
-	{			/* ^D? */
-	  if (max_pos == 0)
-	    {
-	      reset_termio ();
-	      return ((char *) NULL);
-	    }
-	  if ((cur_pos < max_pos) && (cur_char == 004))
-	    {			/* ^D */
-	      int i;
-	      for (i = cur_pos; i < max_pos; i++)
-		cur_line[i] = cur_line[i + 1];
-	      max_pos -= 1;
-	      fix_line ();
-	    }
-#endif /* VEOF */
-#ifdef VKILL
-	}
-      else if (cur_char == term_chars[VKILL])
-	{			/* ^U? */
-	  clear_line (prompt);
-#endif /* VKILL */
-#ifdef VWERASE
-	}
-      else if (cur_char == term_chars[VWERASE])
-	{			/* ^W? */
-	  while ((cur_pos > 0) &&
-		 (cur_line[cur_pos - 1] == SPACE))
-	    {
-	      cur_pos -= 1;
-	      backspace ();
-	    }
-	  while ((cur_pos > 0) &&
-		 (cur_line[cur_pos - 1] != SPACE))
-	    {
-	      cur_pos -= 1;
-	      backspace ();
-	    }
-	  clear_eoline ();
-	  max_pos = cur_pos;
-#endif /* VWERASE */
-#ifdef VREPRINT
-	}
-      else if (cur_char == term_chars[VREPRINT])
-	{			/* ^R? */
-	  putc ('\n', stdout);	/* go to a fresh line */
-	  redraw_line (prompt);
-#endif /* VREPRINT */
-#ifdef VSUSP
-	}
-      else if (cur_char == term_chars[VSUSP])
-	{
-	  reset_termio ();
-	  kill (0, SIGTSTP);
-
-	  /* process stops here */
-
-	  set_termio ();
-	  /* print the prompt */
-	  redraw_line (prompt);
-#endif /* VSUSP */
 	}
       else
 	{
+		
+		
 	  /* do normal editing commands */
 	  /* some of these are also done above */
 	  int i;
+	  
 	  switch (cur_char)
 	    {
+	    	
+	    	
 	    case 255:		/* jpc eof quand on fait un pipe */
-	      new_line = (char *) alloc ((unsigned long) 2,
-					 "history");
+	      new_line = (char *) alloc ((unsigned long) 2, "history");
 	      new_line[0] = -1;
 	      new_line[1] = '\0';
 	      reset_termio ();
@@ -654,10 +536,10 @@ readline_win (char *prompt)
 	    case '\r':		/* ^M */
 	      cur_line[max_pos + 1] = '\0';
 	      putc ('\n', stdout);
-	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1),
-					 "history");
+	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 	      strcpy (new_line, cur_line);
 	      reset_termio ();
+	      
 	      return (new_line);
 	    default:
 	      break;
@@ -665,7 +547,217 @@ readline_win (char *prompt)
 	}
     }
 }
+#else
+/************************************************************************************************************/
+char * readline_win (char *prompt)
+{
+  unsigned char cur_char;
+  char *new_line;  /* unsigned char *new_line; */
+  int eof;
+  
+  /* print the prompt */
+  if (sendprompt) fputs (prompt, stdout);
+  sendprompt=1;
 
+  cur_line[0] = '\0';
+  cur_pos = 0;
+  max_pos = 0;
+  cur_entry = NULL;
+
+
+  
+  /* get characters */
+  for (;;)
+    {
+    
+
+	cur_char = Windows_getch() ;      
+	if (C2F(ismenu) () == 1) 
+      	{/* abort current line aquisition SS */
+		sendprompt=0;
+		new_line = (char *) alloc ((unsigned long) 2, "history");
+		new_line[0] = -2;
+		new_line[1] = '\0';
+
+		reset_termio ();
+	
+		return (new_line);
+        }
+	
+	//cur_char = Windows_getch() ;      
+	
+	if ((isprint (cur_char)  || ((unsigned char) cur_char > 0x7f)  ) && max_pos < MAXBUF - 1)
+	{
+	  int i;
+ 
+	
+	  
+	  for (i = max_pos; i > cur_pos; i--)
+	    {
+	      cur_line[i] = cur_line[i - 1];
+	    }
+	  user_putc (cur_char);
+	  cur_line[cur_pos] = cur_char;
+	  cur_pos += 1;
+	  max_pos += 1;
+	  if (cur_pos < max_pos)    fix_line ();
+	  
+	  cur_line[max_pos] = '\0';
+          
+	}
+      else
+	{
+	  /* do normal editing commands */
+	  /* some of these are also done above */
+	  int i;
+	
+	
+	
+	  switch (cur_char)
+	    {
+	    case 255:		/* jpc eof quand on fait un pipe */
+	      new_line = (char *) alloc ((unsigned long) 2, "history");
+	      new_line[0] = -1;
+	      new_line[1] = '\0';
+
+	      
+	      return (new_line);
+	    case EOF:
+	      reset_termio ();
+	      return ((char *) NULL);
+	    case 001:		/* ^A */
+	      while (cur_pos > 0)
+		{
+		  cur_pos -= 1;
+		  backspace ();
+		}
+	      break;
+	    case 002:		/* ^B */
+	      if (cur_pos > 0)
+		{
+		  cur_pos -= 1;
+		  backspace ();
+		}
+	      break;
+    
+	    case 005:		/* ^E */
+	      while (cur_pos < max_pos)
+		{
+		  user_putc (cur_line[cur_pos]);
+		  cur_pos += 1;
+		}
+	      break;
+	    case 006:		/* ^F */
+	      if (cur_pos < max_pos)
+		{
+		  user_putc (cur_line[cur_pos]);
+		  cur_pos += 1;
+		}
+	      break;
+	    case 013:		/* ^K */
+	      clear_eoline ();
+	      max_pos = cur_pos;
+	      break;
+	    case 020:		/* ^P */
+	      if (history != NULL)
+		{
+		  if (cur_entry == NULL)
+		    {
+		      cur_entry = history;
+		      clear_line (prompt);
+		      copy_line (cur_entry->line);
+		    }
+		  else if (cur_entry->prev != NULL)
+		    {
+		      cur_entry = cur_entry->prev;
+		      clear_line (prompt);
+		      copy_line (cur_entry->line);
+		    }
+		}
+	      break;
+	    case 016:		/* ^N */
+	      if (cur_entry != NULL)
+		{
+		  cur_entry = cur_entry->next;
+		  clear_line (prompt);
+		  if (cur_entry != NULL)
+		    copy_line (cur_entry->line);
+		  else
+		    cur_pos = max_pos = 0;
+		}
+	      break;
+	    case 014:		/* ^L */
+	    case 022:		/* ^R */
+	      putc ('\n', stdout);	/* go to a fresh line */
+	      putc ('\n', stdout);
+	      redraw_line (prompt);
+	      break;
+	    case 0177:		/* DEL */
+	    case 010:		/* ^H */
+	      if (cur_pos > 0)
+		{
+		  cur_pos -= 1;
+		  backspace ();
+		  for (i = cur_pos; i < max_pos; i++)
+		    cur_line[i] = cur_line[i + 1];
+		  max_pos -= 1;
+		  fix_line ();
+		}
+	      break;
+	    case 004:		/* ^D */
+	      if (max_pos == 0)
+		{
+		  clear_line (prompt);
+		  break;
+		}
+	      if (cur_pos < max_pos)
+		{
+		  for (i = cur_pos; i < max_pos; i++)
+		    cur_line[i] = cur_line[i + 1];
+		  max_pos -= 1;
+		  fix_line ();
+		}
+	      break;
+	    case 025:		/* ^U */
+	      clear_line (prompt);
+	      break;
+	    case 027:		/* ^W */
+	      while ((cur_pos > 0) &&
+		     (cur_line[cur_pos - 1] == SPACE))
+		{
+		  cur_pos -= 1;
+		  backspace ();
+		}
+	      while ((cur_pos > 0) &&
+		     (cur_line[cur_pos - 1] != SPACE))
+		{
+		  cur_pos -= 1;
+		  backspace ();
+		}
+	      clear_eoline ();
+	      max_pos = cur_pos;
+	      break;
+	    case '\n':		/* ^J */
+	    
+	    case '\r':		/* ^M */
+	      cur_line[max_pos + 1] = '\0';
+	      putc ('\n', stdout);
+	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
+	      strcpy (new_line, cur_line);
+
+
+		
+	      return (new_line);
+	    default:
+	    
+	      break;
+	    }
+	}
+    }
+      
+}
+#endif
+/************************************************************************************************************/
 /* fix up the line from cur_pos to max_pos */
 /* do not need any terminal capabilities except backspace, */
 /* and space overwrites a character */
@@ -811,16 +903,13 @@ ansi_getc ()
 #if defined(MSDOS) || defined(_Windows) || defined(DOS386)
 
 /* Convert Arrow keystrokes to Control characters: */
-static char
-msdos_getch ()
+static char msdos_getch ()
 {
-#ifdef DJGPP
-  char c;
-  int ch = getkey ();
-  c = (ch & 0xff00) ? 0 : ch & 0xff;
-#else
-  char c = _getch ();
-#endif
+  char c ;
+  
+  c = getch ();
+  Sleep(1);
+
   if (c == 3)
     {
 /** control-C : we return a \n for stopping line processing **/
@@ -829,11 +918,11 @@ msdos_getch ()
     }
   if (c == 0)
     {
-#ifdef DJGPP
-      c = ch & 0xff;
-#else
-      c = _getch ();		/* Get the extended code. */
-#endif
+	
+  	 c = getch ();		/* Get the extended code. */
+
+      
+
       switch (c)
 	{
 	case 75:		/* Left Arrow. */
@@ -870,6 +959,64 @@ msdos_getch ()
     }
   return c;
 }
+#endif /* MSDOS */
+
+#if defined(MSDOS) || defined(_Windows) || defined(DOS386)
+static char Windows_getch ()
+{
+  char c ;
+
+  c = MyGetCh();
+  
+  if (c == 3)
+    {
+	/** control-C : we return a \n for stopping line processing **/
+      	SignalCtrC ();
+      	return ((int) '\n');
+    }
+  else
+  if (c == 0)
+    {
+  	 c = MyGetCh();		/* Get the extended code. */
+  
+      switch (c)
+	{
+	case 75:		/* Left Arrow. */
+	  c = 002;
+	  break;
+	case 77:		/* Right Arrow. */
+	  c = 006;
+	  break;
+	case 72:		/* Up Arrow. */
+	  c = 020;
+	  break;
+	case 80:		/* Down Arrow. */
+	  c = 016;
+	  break;
+	case 115:		/* Ctl Left Arrow. */
+	case 71:		/* Home */
+	  c = 001;
+	  break;
+	case 116:		/* Ctl Right Arrow. */
+	case 79:		/* End */
+	  c = 005;
+	  break;
+	case 83:		/* Delete */
+	  c = 004;
+	  break;
+	default:
+	  c = 0;
+	  break;
+	}
+    }
+  else if (c == 033)
+    {				/* ESC */
+      c = 025;
+    }
+  
+  return c;
+}
+
 
 #endif /* MSDOS */
 
@@ -1151,3 +1298,6 @@ reset_termio ()
 #endif /* !MSDOS && !ATARI && !_Windows */
 #endif /* #if defined(OK_TO_USE_TERMIO) */
 }
+#if defined(MSDOS) || defined(_Windows) || defined(DOS386)
+
+#endif

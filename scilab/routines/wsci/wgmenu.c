@@ -898,7 +898,13 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
       if (*ierr == 1)
 	return (0);
     }
-  AddMenu (win_num, button_name, menu_entries, ne, typ, fname, ierr);
+  /* Modification Allan CORNET */
+  /* Réinitialisation Menu Console Principale */
+  if ( (strcmp(button_name,"RESETMENU")==0) && (*win_num==-1) )
+  {
+	ResetMenu();	
+  }
+  else AddMenu (win_num, button_name, menu_entries, ne, typ, fname, ierr);
   return (0);
 }
 
