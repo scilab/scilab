@@ -59,8 +59,8 @@ int  sci_get_file_window(char *filemask,char **file,char *dirname,
   static int last_choice = 0;
   GList *cbitems = NULL;
   GtkWidget *combo;
-  static int n_actions = 4 ;
-  static char *actions[]={ "getf","exec","load","chdir",NULL };
+  static int n_actions = 5 ;
+  static char *actions[]={ "getf","exec","load","chdir","scipad",NULL };
   guint signals[3];
   static state rep;
   GtkWidget *window;
