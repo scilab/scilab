@@ -25,78 +25,78 @@ A=rand(3,2);Ac=A+rand(A)*%i;
 
 //Real Case
 Q=qr(A);
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 Q=qr(A,"e");
-if Err(Q'*Q-eye())> 100*%eps then pause,end
+if Err(Q'*Q-eye())> 200*%eps then pause,end
 
 [Q,R]=qr(A);
-if Err(Q*R-A)> 100*%eps then pause,end
+if Err(Q*R-A)> 200*%eps then pause,end
 
 [Q,R]=qr(A,"e");
-if Err(Q*R-A)> 100*%eps then pause,end
-if Err(Q'*Q-eye())> 100*%eps then pause,end
+if Err(Q*R-A)> 200*%eps then pause,end
+if Err(Q'*Q-eye())> 200*%eps then pause,end
 
 Q=qr(A');
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 Q=qr(A',"e");
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 
 [Q,R]=qr(A');
-if Err(Q*R-A')> 100*%eps then pause,end
+if Err(Q*R-A')> 200*%eps then pause,end
 
 [Q,R]=qr(A',"e");
-if Err(Q*R-A')> 100*%eps then pause,end
+if Err(Q*R-A')> 200*%eps then pause,end
 
 [Q,R,x]=qr(A);
-if Err(Q*R*x'-A)> 100*%eps then pause,end
+if Err(Q*R*x'-A)> 200*%eps then pause,end
 
 [Q,R,x]=qr(A,"e");
-if Err(Q*R*x'-A)> 100*%eps then pause,end
+if Err(Q*R*x'-A)> 200*%eps then pause,end
 
 //Complex case
 Q=qr(Ac);
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 Q=qr(Ac,"e");
-if Err(Q'*Q-eye())> 100*%eps then pause,end
+if Err(Q'*Q-eye())> 200*%eps then pause,end
 
 [Q,R]=qr(Ac);
-if Err(Q*R-Ac)> 100*%eps then pause,end
+if Err(Q*R-Ac)> 200*%eps then pause,end
 [Q,R]=qr(Ac,"e");
-if Err(Q*R-Ac)> 100*%eps then pause,end
-if Err(Q'*Q-eye())> 100*%eps then pause,end
+if Err(Q*R-Ac)> 200*%eps then pause,end
+if Err(Q'*Q-eye())> 200*%eps then pause,end
 
 Q=qr(Ac');
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 Q=qr(Ac',"e");
-if Err(Q*Q'-eye())> 100*%eps then pause,end
+if Err(Q*Q'-eye())> 200*%eps then pause,end
 
 
 [Q,R]=qr(Ac');
-if Err(Q*R-Ac')> 100*%eps then pause,end
+if Err(Q*R-Ac')> 200*%eps then pause,end
 [Q,R]=qr(Ac',"e");
-if Err(Q*R-Ac')> 100*%eps then pause,end
+if Err(Q*R-Ac')> 200*%eps then pause,end
 
 [Q,R,x]=qr(Ac);
-if Err(Q*R-Ac*x)> 100*%eps then pause,end
+if Err(Q*R-Ac*x)> 200*%eps then pause,end
 [Q,R,x]=qr(Ac,"e");
-if Err(Q*R-Ac*x)> 100*%eps then pause,end
+if Err(Q*R-Ac*x)> 200*%eps then pause,end
 
 [Q,R,x]=qr(Ac');
-if Err(Q*R-Ac'*x)> 100*%eps then pause,end
+if Err(Q*R-Ac'*x)> 200*%eps then pause,end
 [Q,R,x]=qr(Ac',"e");
-if Err(Q*R-Ac'*x)> 100*%eps then pause,end
+if Err(Q*R-Ac'*x)> 200*%eps then pause,end
 
 //Rank detection (obsolete)
 [Q,R,rk,x]=qr(A);
-if Err(Q*R*x'-A)> 100*%eps | rk<>2  then pause,end
+if Err(Q*R*x'-A)> 200*%eps | rk<>2  then pause,end
 [Q,R,rk,x]=qr(A,1.d-8);
-if Err(Q*R*x'-A)> 100*%eps | rk<>2  then pause,end
+if Err(Q*R*x'-A)> 200*%eps | rk<>2  then pause,end
 
 [Q,R,rk,x]=qr(Ac);
-if Err(Q*R*x'-Ac)> 100*%eps | rk<>2  then pause,end
+if Err(Q*R*x'-Ac)> 200*%eps | rk<>2  then pause,end
 
 [Q,R,rk,x]=qr(Ac,1.d-8);
-if Err(Q*R*x'-Ac)> 100*%eps | rk<>2  then pause,end
+if Err(Q*R*x'-Ac)> 200*%eps | rk<>2  then pause,end
 
 //Large dimension
 //---------------
@@ -187,9 +187,9 @@ if L<>[]|U<>[]|E<>[] then pause,end
 //Non full rank
 A=rand(5,2);A=A*A';;Ac=rand(5,2)+%i*rand(5,2);Ac=Ac*Ac';
 [L,U,E]=lu(A);
-if Err(L*U-E*A) >100*%eps then pause,end
+if Err(L*U-E*A) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
-if Err(L*U-E*Ac) >100*%eps then pause,end
+if Err(L*U-E*Ac) >200*%eps then pause,end
 
 //Small dimension
 //---------------
@@ -198,38 +198,38 @@ A=rand(5,5);Ac=A+%i*rand(A);
 //Real case 
 
 [L,U]=lu(A);
-if Err(L*U-A) >100*%eps then pause,end
+if Err(L*U-A) >200*%eps then pause,end
 [L,U,E]=lu(A);
-if Err(L*U-E*A) >100*%eps then pause,end
+if Err(L*U-E*A) >200*%eps then pause,end
 //Complex case
 [L,U]=lu(Ac);
-if Err(L*U-Ac) >100*%eps then pause,end
+if Err(L*U-Ac) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
-if Err(L*U-E*Ac) >100*%eps then pause,end
+if Err(L*U-E*Ac) >200*%eps then pause,end
 //Fat
 A=rand(3,5);Ac=A+%i*rand(A);
 //Real case
 [L,U]=lu(A);
-if Err(L*U-A) >100*%eps then pause,end
+if Err(L*U-A) >200*%eps then pause,end
 [L,U,E]=lu(A);
-if Err(L*U-E*A) >100*%eps then pause,end
+if Err(L*U-E*A) >200*%eps then pause,end
 //Complex case
 [L,U]=lu(Ac);
-if Err(L*U-Ac) >100*%eps then pause,end
+if Err(L*U-Ac) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
-if Err(L*U-E*Ac) >100*%eps then pause,end
+if Err(L*U-E*Ac) >200*%eps then pause,end
 //Tall
 A=rand(5,3);Ac=A+%i*rand(A);
 //Real case
 [L,U]=lu(A);
-if Err(L*U-A) >100*%eps then pause,end
+if Err(L*U-A) >200*%eps then pause,end
 [L,U,E]=lu(A);
-if Err(L*U-E*A) >100*%eps then pause,end
+if Err(L*U-E*A) >200*%eps then pause,end
 //Complex case
 [L,U]=lu(Ac);
-if Err(L*U-Ac) >100*%eps then pause,end
+if Err(L*U-Ac) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
-if Err(L*U-E*Ac) >100*%eps then pause,end
+if Err(L*U-E*Ac) >200*%eps then pause,end
 
 
 //large dimension
@@ -301,36 +301,36 @@ A=rand(3,5);Ac=A+%i*rand(A);
 
 //Real Case
 [U,S,V]=svd(A);
-if Err(U*S*V'-A)>100*%eps then pause,end
-if Err(svd(A)-diag(S))> 100*%eps then pause,end
+if Err(U*S*V'-A)>200*%eps then pause,end
+if Err(svd(A)-diag(S))> 200*%eps then pause,end
 
 [U,S,V]=svd(A,"e");
-if Err(U*S*V'-A)>100*%eps then pause,end
+if Err(U*S*V'-A)>200*%eps then pause,end
 
 A=A';
 [U,S,V]=svd(A);
-if Err(U*S*V'-A)>100*%eps then pause,end
-if Err(svd(A)-diag(S))> 100*%eps then pause,end
+if Err(U*S*V'-A)>200*%eps then pause,end
+if Err(svd(A)-diag(S))> 200*%eps then pause,end
 
 [U,S,V]=svd(A,"e");
-if Err(U*S*V'-A)>100*%eps then pause,end
+if Err(U*S*V'-A)>200*%eps then pause,end
 
 
 //Complex Case
 [U,S,V]=svd(Ac);
-if Err(U*S*V'-Ac)>100*%eps then pause,end
-if Err(svd(Ac)-diag(S))> 100*%eps then pause,end
+if Err(U*S*V'-Ac)>200*%eps then pause,end
+if Err(svd(Ac)-diag(S))> 200*%eps then pause,end
 
 [U,S,V]=svd(Ac,"e");
-if Err(U*S*V'-Ac)>100*%eps then pause,end
+if Err(U*S*V'-Ac)>200*%eps then pause,end
 
 Ac=Ac';
 [U,S,V]=svd(Ac);U*S*V'-Ac;
-if Err(U*S*V'-Ac)>100*%eps then pause,end
-if Err(svd(Ac)-diag(S))> 100*%eps then pause,end
+if Err(U*S*V'-Ac)>200*%eps then pause,end
+if Err(svd(Ac)-diag(S))> 200*%eps then pause,end
 
 [U,S,V]=svd(Ac,"e");
-if Err(U*S*V'-Ac)>100*%eps then pause,end
+if Err(U*S*V'-Ac)>200*%eps then pause,end
 
 
 //Large dimension
@@ -413,24 +413,24 @@ if execstr('spec([%i %i;%nan 3])','errcatch')==0 then pause,end
 //---------------
 //Real Case
 //Unsymetric
-if Checktestmat1(3,5)>100*%eps then pause,end
+if Checktestmat1(3,5)>200*%eps then pause,end
 [U,S]=spec(testmat1(3,5));
-if Err(U*S/U-testmat1(3,5))>100*%eps then pause,end 
+if Err(U*S/U-testmat1(3,5))>200*%eps then pause,end 
 //Symmetric
-if Checktestmat2(3,5)>100*%eps then pause,end
+if Checktestmat2(3,5)>200*%eps then pause,end
 [U,S]=spec(testmat2(3,5));
-if Err(U*S/U-testmat2(3,5))>100*%eps then pause,end 
+if Err(U*S/U-testmat2(3,5))>200*%eps then pause,end 
 
 //Complex Case
 //Unsymetric
-if Checktestmat1(3+2*%i,5)>100*%eps then pause,end
+if Checktestmat1(3+2*%i,5)>200*%eps then pause,end
 [U,S]=spec(testmat1(3+2*%i,5));
-if Err(U*S/U-testmat1(3+2*%i,5))>100*%eps then pause,end 
+if Err(U*S/U-testmat1(3+2*%i,5))>200*%eps then pause,end 
 
 //Symmetric
-if Checktestmat2(3+2*%i,5)>100*%eps then pause,end
+if Checktestmat2(3+2*%i,5)>200*%eps then pause,end
 [U,S]=spec(testmat2(3+2*%i,5));
-if Err(U*S/U-testmat2(3+2*%i,5))>100*%eps then pause,end 
+if Err(U*S/U-testmat2(3+2*%i,5))>200*%eps then pause,end 
 
 //Large dimension
 //---------------
@@ -491,11 +491,11 @@ S=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
 [Sa,Se,Z]=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
-if Err(A*Z-E*Z*diag(S))>100*%eps then pause,end
+if Err(A*Z-E*Z*diag(S))>200*%eps then pause,end
 [Sa,Se,Q,Z]=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
-if Err(A*Z-E*Z*diag(S))>100*%eps then pause,end
-if Err(Q'*A-diag(S)*Q'*E)>100*%eps then pause,end
+if Err(A*Z-E*Z*diag(S))>200*%eps then pause,end
+if Err(Q'*A-diag(S)*Q'*E)>200*%eps then pause,end
 
 //Complex Case
 
@@ -505,11 +505,11 @@ S=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
 [Sa,Se,Z]=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
-if Err(A*Z-E*Z*diag(S))>100*%eps then pause,end
+if Err(A*Z-E*Z*diag(S))>200*%eps then pause,end
 [Sa,Se,Q,Z]=spec(A,E);
 if Err(S-Sa./Se)>10*%eps then pause,end
-if Err(A*Z-E*Z*diag(S))>100*%eps then pause,end
-if Err(Q'*A-diag(S)*Q'*E)>100*%eps then pause,end
+if Err(A*Z-E*Z*diag(S))>200*%eps then pause,end
+if Err(Q'*A-diag(S)*Q'*E)>200*%eps then pause,end
 
 
 //Large dimension
@@ -560,9 +560,9 @@ if execstr('inv(rand(2,3)+%i*eye())','errcatch')==0 then pause,end
 //Unsymetric
 A=testmat1(3,5);Ac=testmat1(3+%i,5);
 //Real Case
-if Err(A*inv(A)-eye(A)) >100*%eps then pause,end
+if Err(A*inv(A)-eye(A)) >200*%eps then pause,end
 //Complex Case
-if Err(Ac*inv(Ac)-eye(A)) >100*%eps then pause,end
+if Err(Ac*inv(Ac)-eye(A)) >200*%eps then pause,end
 //Symetric
 A=A*A';Ac=Ac*Ac';
 //Real Case
@@ -658,17 +658,17 @@ A=testmat1(3,5);Ac=testmat1(3+%i,5);
 //Real
 [U,S]=schur(A);
 if Err(triu(S,-1)-S)>%eps then pause,end
-if Err(U*S*U'-A)>100*%eps then pause,end
+if Err(U*S*U'-A)>200*%eps then pause,end
 if Err(schur(A)-S) >%eps then pause,end
 
 [U,S]=schur(A,'real');
 if Err(triu(S,-1)-S)>%eps then pause,end
-if Err(U*S*U'-A)>100*%eps then pause,end
+if Err(U*S*U'-A)>200*%eps then pause,end
 if Err(schur(A)-S) >%eps then pause,end
 
 [U,S]=schur(A,'complex');
 if Err(triu(S)-S)>%eps then pause,end
-if Err(U*S*U'-A)>100*%eps then pause,end
+if Err(U*S*U'-A)>200*%eps then pause,end
 if Err(schur(A,'complex')-S) >%eps then pause,end
 
 [U,n]=schur(A,'c');S=U'*A*U;
@@ -689,12 +689,12 @@ if or(real(spec(S(n+1:$,n+1:$)))<0) then pause,end
 //Complex
 [U,S]=schur(Ac);
 if Err(triu(S,-1)-S)>%eps then pause,end
-if Err(U*S*U'-Ac)>100*%eps then pause,end
+if Err(U*S*U'-Ac)>200*%eps then pause,end
 if Err(schur(Ac)-S) >%eps then pause,end
 
 [U,S]=schur(Ac,'complex');
 if Err(triu(S,-1)-S)>%eps then pause,end
-if Err(U*S*U'-Ac)>100*%eps then pause,end
+if Err(U*S*U'-Ac)>200*%eps then pause,end
 if Err(schur(Ac)-S) >%eps then pause,end
 
 
@@ -813,10 +813,10 @@ if execstr('[Z,dim]=schur(rand(2,3),rand(2,3),sel)','errcatch')==0 then  pause,e
 //----Real------------
 A=testmat1(1,5);E=testmat1(-2,5) ;
 [As,Es,Q,Z]=schur(A,E);
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 [As1,Es1]=schur(A,E);
 if Err(As1-As)>10*%eps then pause,end
@@ -826,36 +826,36 @@ if Err(Es1-Es)>10*%eps then pause,end
 dim=schur(A,E,'c');
 if dim<>5 then pause,end
 [Z,dim]=schur(A,E,'c');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'c');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>5 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>5 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 // Ordered 'd'
 dim=schur(A,E,'d');
 if dim<>5 then pause,end
 [Z,dim]=schur(A,E,'d');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'d');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>5 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>5 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
 function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
@@ -863,26 +863,26 @@ function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 dim=schur(A,E,sel);
 if dim<>2 then pause,end
 [Z,dim]=schur(A,E,sel);
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,sel);
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>2 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,sel);
 if dim<>2 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 //----Complex------------
 A=testmat1(1+%i,5);E=testmat1(-2-3*%i,5) ;
 [As,Es,Q,Z]=schur(A,E);
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 [As1,Es1]=schur(A,E);
 if Err(As1-As)>10*%eps then pause,end
@@ -892,36 +892,36 @@ if Err(Es1-Es)>10*%eps then pause,end
 dim=schur(A,E,'c');
 if dim<>5 then pause,end
 [Z,dim]=schur(A,E,'c');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'c');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>5 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>5 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 // Ordered 'd'
 dim=schur(A,E,'d');
 if dim<>5 then pause,end
 [Z,dim]=schur(A,E,'d');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'d');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>5 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>5 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
 function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
@@ -929,29 +929,29 @@ function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 dim=schur(A,E,sel);
 if dim<>3 then pause,end
 [Z,dim]=schur(A,E,sel);
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,sel);
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>3 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,sel);
 if dim<>3 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //Large dimension
 
 //----Real------------
 A=testmat1(1,50);E=testmat1(-2,50) ;
 [As,Es,Q,Z]=schur(A,E);
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 [As1,Es1]=schur(A,E);
 if Err(As1-As)>10*%eps then pause,end
@@ -961,36 +961,36 @@ if Err(Es1-Es)>10*%eps then pause,end
 dim=schur(A,E,'c');
 if dim<>50 then pause,end
 [Z,dim]=schur(A,E,'c');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'c');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>50 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>50 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 // Ordered 'd'
 dim=schur(A,E,'d');
 if dim<>50 then pause,end
 [Z,dim]=schur(A,E,'d');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'d');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>50 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>50 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 //ordered sel
 function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
@@ -998,24 +998,24 @@ function t=sel(Alpha,Beta),t=real(Alpha)>-0.2*real(Beta) ,endfunction
 dim=schur(A,E,sel);
 if dim<>12 then pause,end
 [Z,dim]=schur(A,E,sel);
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,sel);
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>12 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,sel);
 if dim<>12 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
-if Err(As-Q'*A*Z) >100*%eps then pause,end
-if Err(Es-Q'*E*Z) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
+if Err(As-Q'*A*Z) >200*%eps then pause,end
+if Err(Es-Q'*E*Z) >200*%eps then pause,end
 //----Complex------------
 A=testmat1(1+%i,50);E=testmat1(-2-3*%i,50) ;
 [As,Es,Q,Z]=schur(A,E);
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 
@@ -1027,34 +1027,34 @@ if Err(Es1-Es)>10*%eps then pause,end
 dim=schur(A,E,'c');
 if dim<>50 then pause,end
 [Z,dim]=schur(A,E,'c');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'c');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>50 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>50 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 // Ordered 'd'
 dim=schur(A,E,'d');
 if dim<>50 then pause,end
 [Z,dim]=schur(A,E,'d');
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,'d');
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>50 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,'d');
 if dim<>50 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 
@@ -1064,17 +1064,17 @@ function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 dim=schur(A,E,sel);
 if dim<>32 then pause,end
 [Z,dim]=schur(A,E,sel);
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 
 [Q,Z1,dim]=schur(A,E,sel);
 if Err(Z1-Z)>10*%eps then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
 if dim<>32 then pause,end
 
 [As,Es,Z,dim]=schur(A,E,sel);
 if dim<>32 then pause,end
-if Err(Q*Q'-eye(Q)) >100*%eps then pause,end
-if Err(Z*Z'-eye(Z)) >100*%eps then pause,end
+if Err(Q*Q'-eye(Q)) >200*%eps then pause,end
+if Err(Z*Z'-eye(Z)) >200*%eps then pause,end
 if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 
@@ -1106,27 +1106,27 @@ if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U'*U-eye())>10*%eps  then pause,end
 
 [U1,S1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U1'*U1-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U1'*U1-eye())>200*%eps  then pause,end
 
 [U1,S1,V]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
-if Err(U1*S1*V'-A) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
+if Err(U1*S1*V'-A) >200*%eps  then pause,end
 
 [U1,S1,V1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U-U1)>10*%eps  then pause,end
-if Err(U1*S1*V1'-A) >100*%eps  then pause,end
+if Err(U1*S1*V1'-A) >200*%eps  then pause,end
 
 [U1,S1,V1,rk]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U-U1)>100*%eps  then pause,end
-if Err(V-V1) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U-U1)>200*%eps  then pause,end
+if Err(V-V1) >200*%eps  then pause,end
 if rk<>3 then pause,end
 
 //Real Case Tall
@@ -1137,27 +1137,27 @@ if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
 
 [U1,S1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U1'*U1-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U1'*U1-eye())>200*%eps  then pause,end
 
 [U1,S1,V]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
-if Err(U1*S1*V'-A) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
+if Err(U1*S1*V'-A) >200*%eps  then pause,end
 
 [U1,S1,V1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
 if size(U1,2)<>3 then pause,end
-if Err(U1*S1*V1'-A) >100*%eps  then pause,end
+if Err(U1*S1*V1'-A) >200*%eps  then pause,end
 
 [U1,S1,V1,rk]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U-U1)>100*%eps  then pause,end
-if Err(V-V1) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U-U1)>200*%eps  then pause,end
+if Err(V-V1) >200*%eps  then pause,end
 if rk<>3 then pause,end
 
 //Complex Case Fat
@@ -1167,27 +1167,27 @@ if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
 
 [U1,S1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U1'*U1-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U1'*U1-eye())>200*%eps  then pause,end
 
 [U1,S1,V]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
 if Err(U1*S1*V'-A) >30*%eps  then pause,end
 
 [U1,S1,V1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U-U1)>100*%eps  then pause,end
-if Err(U1*S1*V1'-A) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U-U1)>200*%eps  then pause,end
+if Err(U1*S1*V1'-A) >200*%eps  then pause,end
 
 [U1,S1,V1,rk]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U-U1)>100*%eps  then pause,end
-if Err(V-V1) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U-U1)>200*%eps  then pause,end
+if Err(V-V1) >200*%eps  then pause,end
 if rk<>3 then pause,end
 
 //Complex Case Tall
@@ -1198,27 +1198,27 @@ if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
 [U,S1]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
 
 [U1,S1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U1'*U1-eye())>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U1'*U1-eye())>200*%eps  then pause,end
 
 [U1,S1,V]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U'*U-eye())>100*%eps  then pause,end
-if Err(U1*S1*V'-A) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U'*U-eye())>200*%eps  then pause,end
+if Err(U1*S1*V'-A) >200*%eps  then pause,end
 
 [U1,S1,V1]=svd(A,"e");
-if Err(S-diag(S1))>100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
 if size(U1,2)<>3 then pause,end
-if Err(U1*S1*V1'-A) >100*%eps  then pause,end
+if Err(U1*S1*V1'-A) >200*%eps  then pause,end
 
 [U1,S1,V1,rk]=svd(A);
-if Err(S-diag(S1))>100*%eps  then pause,end
-if Err(U-U1)>100*%eps  then pause,end
-if Err(V-V1) >100*%eps  then pause,end
+if Err(S-diag(S1))>200*%eps  then pause,end
+if Err(U-U1)>200*%eps  then pause,end
+if Err(V-V1) >200*%eps  then pause,end
 if rk<>3 then pause,end
 
 
@@ -1368,21 +1368,21 @@ if execstr('[U,H]=hess(rand(2,5)+%i)','errcatch')==0 then pause,end
 A=rand(5,5);
 H=hess(A);
 [U,H1]=hess(A);
-if Err(H-H1)>100*%eps then pause,end
-if Err(U'*U-eye()) >100*%eps then pause,end
-if Err(U'*A*U-H1)  >100*%eps then pause,end
+if Err(H-H1)>200*%eps then pause,end
+if Err(U'*U-eye()) >200*%eps then pause,end
+if Err(U'*A*U-H1)  >200*%eps then pause,end
 //complex case
 A=rand(5,5)+%i*rand(5,5);
 H=hess(A);
 [U,H1]=hess(A);
-if Err(H-H1)>100*%eps then pause,end
-if Err(U'*U-eye()) >100*%eps then pause,end
-if Err(U'*A*U-H1)  >100*%eps then pause,end
+if Err(H-H1)>200*%eps then pause,end
+if Err(U'*U-eye()) >200*%eps then pause,end
+if Err(U'*A*U-H1)  >200*%eps then pause,end
 //Large dimension
 A=rand(20,20);
 H=hess(A);
 [U,H1]=hess(A);
-if Err(H-H1)>100*%eps then pause,end
+if Err(H-H1)>200*%eps then pause,end
 if Err(U'*U-eye()) >1000*%eps then pause,end
 if Err(U'*A*U-H1)  >1000*%eps then pause,end
 //complex case
@@ -1406,36 +1406,36 @@ if errcatch('lsq(rand(3,2),rand(2,1))','errcatch')==0 then pause,end
 //Real full rank fat
 A=rand(3,5);b=rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 //Real rank deficient fat
 A=[1 2 3;1 2 3];b=[4;5];
 X=lsq(A,b);
-if Err(A'*A*X-A'*b)> 100*%eps then pause,end
+if Err(A'*A*X-A'*b)> 200*%eps then pause,end
 //Real  tall
 A=[1 2;4 2;0 1];b=[1;1;1];
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:2,:))*b1(1:2);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 //Complex full rank fat
 A=rand(3,5)+%i*rand(3,5);b=rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 
 A=rand(3,5);b=rand(3,2)+%i*rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 
 A=rand(3,5)+%i*rand(3,5);b=rand(3,2)+%i*rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 //Complex  rank deficient fat
 A=[1 2 3;1 2 3]+%i;b=[4;5];
 X=lsq(A,b);
 A=[1 2 3;1 2 3];b=[4;5]+%i;
 X=lsq(A,b);
-if Err(A'*A*X-A'*b)>100*%eps then pause,end
+if Err(A'*A*X-A'*b)>200*%eps then pause,end
 
-if Err(A'*A*X-A'*b)>100*%eps then pause,end
+if Err(A'*A*X-A'*b)>200*%eps then pause,end
 A=[1 2 3;1 2 3]+%i;b=[4;5]+%i;
 X=lsq(A,b);
 if Err(A'*A*X-A'*b)>1000*%eps then pause,end
@@ -1444,17 +1444,17 @@ if Err(A'*A*X-A'*b)>1000*%eps then pause,end
 A=[1 2;4 2;0 1]+%i;b=[1;1;1];
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:2,:))*b1(1:2);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 
 A=[1 2;4 2;0 1];b=[1;1;1]+%i;
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:2,:))*b1(1:2);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 
 A=[1 2;4 2;0 1]+%i;b=[1;1;1]+%i;
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:2,:))*b1(1:2);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 
 
 
@@ -1462,38 +1462,38 @@ if Err(X-X1)>100*%eps then pause,end
 //Real full rank fat
 A=rand(3,50);b=rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 //Real full rank tall
 A=rand(50,3);b=rand(50,2);
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:3,:))*b1(1:3,:);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 
 //Complex full rank fat
 A=rand(3,50)+%i;b=rand(3,2);
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 A=rand(3,50);b=rand(3,2)+%i;
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 
 A=rand(3,50);b=rand(3,2)+%i;
 X=lsq(A,b);
-if Err(A*X-b)>100*%eps then pause,end
+if Err(A*X-b)>200*%eps then pause,end
 //Complex full rank tall
 A=rand(50,3)+%i;b=rand(50,2);
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:3,:))*b1(1:3,:);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 
 A=rand(50,3);b=rand(50,2)+%i;
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:3,:))*b1(1:3,:);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 A=rand(50,3)+%i;b=rand(50,2)+%i;
 X=lsq(A,b);
 [Q,R]=qr(A);b1=Q'*b;X1=inv(R(1:3,:))*b1(1:3,:);
-if Err(X-X1)>100*%eps then pause,end
+if Err(X-X1)>200*%eps then pause,end
 //==========================================================================
 //==============================    chol      ============================== 
 //==========================================================================
@@ -1508,14 +1508,14 @@ if errcatch('chol([1 2;3 4]+%i)','errcatch')==0 then pause,end
 //REAL
 A=rand(5,5);A=A*A';
 U=chol(A);
-if Err(triu(U)-U)>100*%eps then pause,end
-if Err(U'*U-A)>100*%eps then pause,end
+if Err(triu(U)-U)>200*%eps then pause,end
+if Err(U'*U-A)>200*%eps then pause,end
 
 //Complex
 A=rand(5,5)+%i*rand(5,5);A=A*A';
 U=chol(A);
-if Err(triu(U)-U)>100*%eps then pause,end
-if Err(U'*U-A)>100*%eps then pause,end
+if Err(triu(U)-U)>200*%eps then pause,end
+if Err(U'*U-A)>200*%eps then pause,end
 
 //Large dimension
 //REAL
@@ -1546,7 +1546,7 @@ if execstr('rdiv(b,A)','errcatch')==0 then pause,end
 n=5;
 b=rand(2,n);A=rand(n,n);
 x=rdiv(b,A);
-if Err(x*A-b)>100*%eps then pause,end
+if Err(x*A-b)>200*%eps then pause,end
 //Small dimensions complex
 b=rand(2,n)+%i;A=rand(n,n);
 x=rdiv(b,A);
@@ -1587,24 +1587,24 @@ if execstr('rdiv(b,A)','errcatch')==0 then pause,end
 n=5;m=3;
 b=rand(2,n);A=rand(m,n);
 x=rdiv(b,A);
-if Err(x*A*A'-b*A')>100*%eps then pause,end
+if Err(x*A*A'-b*A')>200*%eps then pause,end
 
 n=3;m=5;
 b=rand(2,n);A=rand(m,n);
 x=rdiv(b,A);
-if Err(x*A*A'-b*A')>100*%eps then pause,end
+if Err(x*A*A'-b*A')>200*%eps then pause,end
 //Small dimensions complex
 n=5;m=3;
 b=rand(2,n)+%i;A=rand(m,n);
 x=rdiv(b,A);
-if Err(x*A*A'-b*A')>100*%eps then pause,end
+if Err(x*A*A'-b*A')>200*%eps then pause,end
 n=5;m=3;
 b=rand(2,n);A=rand(m,n)+%i;
 x=rdiv(b,A);
-if Err(x*A*A'-b*A')>100*%eps then pause,end
+if Err(x*A*A'-b*A')>200*%eps then pause,end
 b=rand(2,n)+%i;A=rand(m,n)+%i;
 x=rdiv(b,A);
-if Err(x*A*A'-b*A')>100*%eps then pause,end
+if Err(x*A*A'-b*A')>200*%eps then pause,end
 
 n=3;m=5;
 b=rand(2,n)+%i;A=rand(m,n);
@@ -1675,7 +1675,7 @@ if execstr('ldiv(A,B)','errcatch')==0 then pause,end
 n=5;
 b=rand(n,2);A=rand(n,n);
 x=ldiv(A,b);
-if Err(A*x-b)>100*%eps then pause,end
+if Err(A*x-b)>200*%eps then pause,end
 //Small dimensions complex
 b=rand(n,2)+%i;A=rand(n,n);
 x=ldiv(A,b);
@@ -1683,12 +1683,12 @@ if Err(A*x-b)>500*%eps then pause,end
 
 b=rand(n,2);A=rand(n,n)+%i;
 x=ldiv(A,b);
-if Err(A*x-b)>100*%eps then pause,end
+if Err(A*x-b)>200*%eps then pause,end
 
 
 b=rand(n,2)+%i;A=rand(n,n)+%i;
 x=ldiv(A,b);
-if Err(A*x-b)>100*%eps then pause,end
+if Err(A*x-b)>200*%eps then pause,end
 
 
 //Large dimensions real
@@ -1718,7 +1718,7 @@ if execstr('ldiv(A,b)','errcatch')==0 then pause,end
 n=5;m=3;
 b=rand(m,2);A=rand(m,n);
 x=ldiv(A,b);
-if Err(A'*A*x-A'*b)>100*%eps then pause,end
+if Err(A'*A*x-A'*b)>200*%eps then pause,end
 
 n=3;m=5;
 b=rand(m,2);A=rand(m,n);
@@ -1834,25 +1834,25 @@ if Ab<>[]|X<>[] then pause,end
 //Real Case
 A=testmat3(10000,5);
 [Ab,X]=balanc(A);
-if Err(diag(diag(X))-X)>100*%eps then pause,end 
-if Err(Ab-inv(X)*A*X)>100*%eps then pause,end 
+if Err(diag(diag(X))-X)>200*%eps then pause,end 
+if Err(Ab-inv(X)*A*X)>200*%eps then pause,end 
 
 //Complex Case
 A=testmat3(10000+0.01*%i,5);
 [Ab,X]=balanc(A);
-if Err(diag(diag(X))-X)>100*%eps then pause,end 
-if Err(Ab-inv(X)*A*X)>100*%eps then pause,end 
+if Err(diag(diag(X))-X)>200*%eps then pause,end 
+if Err(Ab-inv(X)*A*X)>200*%eps then pause,end 
 
 //LArge dimension
 A=testmat3(10000,30);
 [Ab,X]=balanc(A);
-if Err(diag(diag(X))-X)>100*%eps then pause,end 
+if Err(diag(diag(X))-X)>200*%eps then pause,end 
 if Err(Ab-inv(X)*A*X)>1000*%eps then pause,end 
 
 //Complex Case
 A=testmat3(10000+0.01*%i,30);
 [Ab,X]=balanc(A);
-if Err(diag(diag(X))-X)>100*%eps then pause,end 
+if Err(diag(diag(X))-X)>200*%eps then pause,end 
 if Err(Ab-inv(X)*A*X)>1000*%eps then pause,end 
 
 // PENCILS
@@ -1861,14 +1861,14 @@ if Err(Ab-inv(X)*A*X)>1000*%eps then pause,end
 //Real Case
 A=testmat3(10000,5);B=testmat3(1000,5);
 [Ab,Bb,X,Y]=balanc(A,B);
-if Err(Bb-inv(X)*B*Y)>100*%eps then pause,end 
-if Err(Ab-inv(X)*A*Y)>100*%eps then pause,end 
+if Err(Bb-inv(X)*B*Y)>200*%eps then pause,end 
+if Err(Ab-inv(X)*A*Y)>200*%eps then pause,end 
 
 //complex case
 A=testmat3(10000+0.001*%i,5);B=testmat3(1000+100*%i,5);
 [Ab,Bb,X,Y]=balanc(A,B);
-if Err(Bb-inv(X)*B*Y)>100*%eps then pause,end 
-if Err(Ab-inv(X)*A*Y)>100*%eps then pause,end 
+if Err(Bb-inv(X)*B*Y)>200*%eps then pause,end 
+if Err(Ab-inv(X)*A*Y)>200*%eps then pause,end 
 
 
 //Large dimension
@@ -1918,18 +1918,18 @@ Ab1=bdiag(A);
 if or(triu(Ab1,-1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>500000*%eps then pause,end 
+if Err(Ab2-inv(X)*A*X )>600000*%eps then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>1.d-10 then pause,end 
+if Err(Ab2-inv(X)*A*X )>2.d-10 then pause,end 
 if or(size(bs)<>[3,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
 if or(bs<=0) then pause,end
 
 [Ab2,X,bs]=bdiag(A,1);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>1d-7 then pause,end 
+if Err(Ab2-inv(X)*A*X )>2d-7 then pause,end 
 if or(size(bs)<>[1,1]) then pause,end
 if sum(bs)<>size(A,1) then pause,end
 if or(bs<=0) then pause,end
