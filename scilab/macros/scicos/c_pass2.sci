@@ -1809,19 +1809,21 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
 	for k=1:n_w
 	  if dep_ut(w(k,1),1) then
 	    g=get_from([],w(k,1))
-	    //on garde les blocs de g qui ne sont pas dans w  
-	    h=setdiff(g,w(:,1))
-	    if h==[] then
-	      //si aucun bloc ne vient d'en dehors du faisceau
-	      vec(w(k,1))=max(vec(g))
-	    else 
-	      //on garde dans h les termes >-1
-	      //i.e. les blocs activés par l'horloge clk
-	      h=h(find(vec(h)>-1))
-	      if h~=[] then
-		vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
+	    if g<>[] then
+	      //on garde les blocs de g qui ne sont pas dans w  
+	      h=setdiff(g,w(:,1))
+	      if h==[] then
+		//si aucun bloc ne vient d'en dehors du faisceau
+		vec(w(k,1))=max(vec(g))
 	      else 
-		vec(w(k,1))=max(vec(w(:,1)))
+		//on garde dans h les termes >-1
+		//i.e. les blocs activés par l'horloge clk
+		h=h(find(vec(h)>-1))
+		if h~=[] then
+		  vec(w(k,1))=max(vec(w(k,1)),max(vec(h))+1)
+		else 
+		  vec(w(k,1))=max(vec(w(:,1)))
+		end
 	      end
 	    end
 	  else
