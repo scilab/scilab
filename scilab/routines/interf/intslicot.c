@@ -1,14 +1,19 @@
 #include "../mex.h"
 #include "../stack-c.h"
+#include <math.h>
 
 #define MAX(x,y)	(((x)>(y))?(x):(y))
 #define MIN(x,y)	(((x)<(y))?(x):(y))
+
+extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
 extern Gatefunc C2F(sident);
 extern Gatefunc C2F(sorder);
 extern Gatefunc C2F(findbd);
 extern Gatefunc C2F(intmucomp);
 extern Gatefunc C2F(intricc2);
+extern Gatefunc C2F(inthinf);
+extern Gatefunc C2F(intdhinf);
 
 int intrankqr(fname)
      char* fname;
@@ -36,15 +41,16 @@ int intab01od(fname)
   int LDA, LDB, LDU, LDV, LDWORK;
   int N, M, mtol, ntol; int un; int INFO, INDCON, NCONT;
   char  *JOBU, *JOBV;
-  double theTOL=0;
+  double theTOL;
   int minlhs=1, minrhs=2, maxlhs=6, maxrhs=3;
 
   /*     [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B,[TOL])   */
 
   CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
-
+  theTOL=(double) C2F(dlamch)("e",1L);
   GetRhsVar(1,"d",&mA,&nA,&ptrA);   A=1;        /*     A */
   N=mA;
+  theTOL=0.2*sqrt(2*theTOL)*N;
   GetRhsVar(2,"d",&mB,&nB,&ptrB);   B=2;        /*     B */
   M=nB;
   if (nA != mB || mA != nA )
@@ -94,6 +100,8 @@ static GenericTable Tab[]={
   {(Myinterfun) sci_gateway, intab01od,"contr"},
   {(Myinterfun) sci_gateway, C2F(intmucomp),"mucomp"},
   {(Myinterfun) sci_gateway, C2F(intricc2),"pet_ricc"},
+  {(Myinterfun) sci_gateway, C2F(inthinf),"hinf"},
+  {(Myinterfun) sci_gateway, C2F(intdhinf),"dhinf"},
 };
  
 int C2F(intslicot)()
