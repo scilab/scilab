@@ -773,7 +773,7 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		    }
 		  else if ( check_mouse(&msg,ibutton,x1,yy1, 
 					listptr->winxgc.horzsi.nPos,
-					listptr->winxgc.vertsi.nPos0,0)==1) 
+					listptr->winxgc.vertsi.nPos,0,0)==1) 
 		    {
 		      buttons++;
 		    }
