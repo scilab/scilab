@@ -7,8 +7,6 @@ function []=sci_m2scideclare(def)
 // Global variable for M2SCI
 global("varslist")
 
-txt=[]
-
 //variable_name|dimensions|datatype|property
 
 //dimensions: variable dimensions separated by blanks (Unknown dimension is ?)
@@ -73,11 +71,7 @@ end
 // Datatype
 datatypetxt=strsubst(datatypetxt,"?","Unknown")
 datatype=convstr(datatypetxt,"l")
-if part(datatype,1:3)=="fos" then
-  // Nothing to do (parsing done below)
-elseif part(datatype,1:3)=="coc" then
-  // Nothing to do (parsing done below)
-elseif or(datatype==["double","boolean","string","int","sparse","cell","struct","unknown"]) then
+if or(datatype==["double","boolean","string","int","sparse","cell","struct","unknown"]) then
   datatype=convstr(part(datatype,1),"u")+part(datatype,2:length(datatype))
   vtype=evstr(datatype)
 else
