@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>moment  </TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000  </DATE>
+  <SHORT_DESCRIPTION name="moment">  non central moments of all orders  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>mom=moment(x,ord)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>mom=moment(x,ord,&apos;r&apos;) or mom=moment(x,ord,1)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>mom=moment(x,ord,&apos;c&apos;) or mom=moment(x,ord,2)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or complex vector or matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>ord  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : positive integer
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+  </P>
+  <P>
+    moment<VERB>(x,ord)</VERB> is the non central moment or order ord
+    of the elements of <VERB>x</VERB>.
+  </P>
+  <P>
+    If a third  argument of  type string  <VERB>&apos;r&apos;</VERB>  (or <VERB> 1
+    </VERB>) or <VERB>&apos;c&apos;</VERB> (or <VERB>  2</VERB>) is used,   we get in  the
+    first  case,  a  row  vector   <VERB>   mom  </VERB>   such  that
+    <VERB>mom(j)</VERB> contains  the  non  central  moment of  order
+    <VERB>ord</VERB> of     the    <VERB>j</VERB>     column    of  <VERB>x</VERB>.
+    <VERB>moment(x,ord,&apos;c&apos;)</VERB> is used in   the same way  for the
+    non central moments in the rows.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
+mom=moment(x,3)
+mom=moment(x,2,'r')
+mom=moment(x,3,'c')
+ ]]></EXAMPLE>
+  <AUTHOR>
+ Carlos Klimann
+  </AUTHOR>
+  <BIBLIO>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+  </BIBLIO>
+</MAN>

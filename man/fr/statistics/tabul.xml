@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>tabul  </TITLE>
+  <TYPE>  </TYPE>
+  <DATE>July 2000  </DATE>
+  <SHORT_DESCRIPTION name="tabul"> frequency of values of a matrix or vector  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[m]=tabul(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>x  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : real or complex vector or matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    This function computes   the frequency of values of  the
+    components of a  numerical o chain  of characters vector
+    or matrix <VERB>x</VERB>.
+  </P>
+  <P>
+    If <VERB>x</VERB> is a numerical vector or matrix, <VERB>m</VERB> is a
+    two column matrix who  contains in the first column  the
+    values of <VERB>x</VERB> sorted in descending  order and in the
+    other  column there is the number  of occurrences of the
+    corresponding value in <VERB>x</VERB>.
+  </P>
+  <P>
+    If <VERB>x</VERB> is composed of  chains of characters, <VERB>m</VERB>
+    is a list whose first member is a string vector composed
+    with the  values of <VERB>x</VERB> and  the second  member is a
+    vector whose components are the number of occurrences of
+    each value in <VERB>x</VERB>.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+
+x=[2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
+m=tabul(x)
+ 
+ ]]></EXAMPLE>
+  <AUTHOR>
+ Carlos Klimann
+  </AUTHOR>
+  <BIBLIO>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+  </BIBLIO>
+</MAN>
