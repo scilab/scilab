@@ -93,7 +93,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
         %model_p.sci  %graphics_p.sci \
 	%Block_p.sci  %params_p.sci %diagram_p.sci\
 	tk_mpopup.sci tk_mpopupX.sci tk_getcolor.sci tk_choose.sci tk_getvalue.sci \
-	sci2tcl.sci do_Displaymode.sci loadpallibs.sci\
+	sci2tcl.sci do_Displaymode.sci loadpallibs.sci \
 	$(MENU) $(COMPAT) $(CONSTRUCTORS) $(SIMPA)
 
 include ../Make.lib.mak
