@@ -11367,6 +11367,7 @@ sciDrawObj (sciPointObj * pobj)
 
   sciAxes *paxes = (sciAxes *) NULL; /* debug */
 /*   sciPointObj * pfigure = NULL;  sciPointObj * psubwin = NULL;/\* debug *\/  */
+  sciSubWindow * ppsubwin = NULL; /* debug */
   int i,j;
   /* variable pour le set_scale update_frame_bounds*/
   double subwin[4], framevalues[4];
@@ -11423,6 +11424,7 @@ sciDrawObj (sciPointObj * pobj)
      }
      break;
    case SCI_SUBWIN: 
+	ppsubwin = pSUBWIN_FEATURE (pobj);
      if (!sciGetVisibility(pobj)) break;
      sciSetSelectedSubWin(pobj); 
      
@@ -12704,6 +12706,9 @@ sciGetCurrentFigure ()
   static sciPointObj *masousfen;  
 
   moncurScilabXgc = sciGetCurrentScilabXgc();
+  if(moncurScilabXgc == (struct BCG *) NULL)
+	  return (sciPointObj *) NULL;
+
   pfigure = (sciPointObj *) (moncurScilabXgc->mafigure);
 
   if(pfigure == (sciPointObj *) NULL )
