@@ -98,7 +98,9 @@ extern TW textwin;
 extern struct sci_hist *history;	/* voir history.c */
 extern struct sci_hist *cur_entry;
 
-static char cur_line[MAXBUF];	/* current contents of the line */
+extern BOOL PutLineInBuffer;
+extern char copycur_line[MAXBUF];
+char cur_line[MAXBUF];	/* current contents of the line */
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;		/* maximum character position */
 

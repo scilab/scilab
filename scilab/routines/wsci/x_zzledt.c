@@ -26,6 +26,9 @@ extern BOOL ScilabIsStarting;
 extern void SetReadyOrNotForAnewLign(BOOL Ready);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 
+
+char copycur_line[1024];
+BOOL PutLineInBuffer=FALSE;
 void ChangeCursorWhenScilabIsReady(void);
 /*-----------------------------------------------------------------------------------*/
 /***********************************************************************
@@ -50,13 +53,21 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 #endif
 {
   int i;
- 
+  extern BOOL PutLineInBuffer;
+  extern char copycur_line[1024];
+
   GetCurrentPrompt(save_prompt);
 
   ChangeCursorWhenScilabIsReady();
 
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
+  if (PutLineInBuffer)
+  {
+	  SendCTRLandAKey(CTRLU);
+	  write_scilab(copycur_line);
+	  PutLineInBuffer=FALSE;
+  }
   i = read_line (save_prompt,*interrupt);
   if (i==-1) 
   { /* dynamic menu canceled read SS*/
@@ -90,6 +101,16 @@ void ChangeCursorWhenScilabIsReady(void)
 	InvalidateCursor(); 
 	ScilabIsStarting=FALSE;
   }
+
+}
+/*-----------------------------------------------------------------------------------*/
+void SaveCurrentLine(void)
+{
+	extern char cur_line[1024];
+
+	
+	strcpy(copycur_line,cur_line);
+	PutLineInBuffer=TRUE;
 
 }
 /*-----------------------------------------------------------------------------------*/

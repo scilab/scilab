@@ -456,6 +456,7 @@ void Callback_CLEARHISTORY(void)
  *********************************/
 void SendMacro (LPTW lptw, UINT m)
 {
+
   BYTE *s;
   char *d;
   char *buf;
@@ -483,6 +484,7 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 			case OPEN:
+				SaveCurrentLine();
 				Callback_OPEN();
 				return;
 	    	case EXEC:
@@ -587,14 +589,17 @@ void SendMacro (LPTW lptw, UINT m)
 	    		return;
 	    	break;
 	    	case SCIPAD:
+				SaveCurrentLine();
 	    		Callback_SCIPAD();
 	    		return;
 	    	break;
 	    	case HELP:
-			Callback_HELP();
+				SaveCurrentLine();
+				Callback_HELP();
 	    		return;
 	    	break;
 			case CONFIGBROWSER:
+				SaveCurrentLine();
 				Callback_CONFIGUREBROWSER();
 				return;
 			break;

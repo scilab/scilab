@@ -271,3 +271,4 @@ int HideToolBarWin32(int WinNum);
 extern void HideGraphToolBar(struct BCG * ScilabGC);
 extern void ShowGraphToolBar(struct BCG * ScilabGC);
 /*--------------------------------*/
+extern void SaveCurrentLine(void);
