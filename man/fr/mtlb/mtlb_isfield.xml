@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_isfield</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_isfield">Fonction d'émulation de la fonction Matlab isfield</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Il n'y a pas de fonction Scilab equivalente à la fonctions Matlab <VERB>isfield(st,f)</VERB> et l'expression équivalente se comporte différemment dans certains cas particuliers:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>st</VERB> n'est pas une structure : l'équivalent Scilab retourne une erreur alors que Matlab renvoie <VERB>0</VERB>.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_isfield(st,f)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>isfield(st,f)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_isfield</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>st</VERB> est une structure
+        <VERB>tf = mtlb_isfield(st,f)</VERB> peut être remplacé par <VERB>allf=getfield(1,st);tf=or(allf(3:$)==f);</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>st</VERB> n'est pas une structure
+        <VERB>tf = mtlb_isfield(st,f)</VERB> peut être remplacé par <VERB>tf=%F;</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_isfield</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getfield</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
