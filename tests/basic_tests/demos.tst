@@ -60,8 +60,10 @@ else
 // UNIX
   sel=[1:31] 
 end
-sel(29)=[]//suppression de pvm
+sel(29:30)=[]//suppression de pvm et tk
+
 sel(find(sel==16))=[] // do not execute demo 16 (Dialog)
+
 dialogs='demo'+string(sel)+'.dialogs'
 for dia=dialogs
   I=file('open','SCI/tests/demos/'+dia,'old');
