@@ -7,6 +7,8 @@
 #define MAX_MSG_LINES  20
 
 static char* msg_buff[MAX_MSG_LINES];
+static char funname[24];
+static int where = 0;
 static int err_n = 0;
 static int msg_line_counter=0;
 
@@ -14,6 +16,19 @@ int C2F(errstore)(n)
      int *n;
 {
   err_n = *n;
+  return 0;
+}
+int C2F(linestore)(n)
+     int *n;
+{
+  where = *n;
+  return 0;
+}
+int C2F(funnamestore)(str,n)
+     char *str;
+     int *n;
+{
+  strncpy(funname, str, (size_t)*n);
   return 0;
 }
 
@@ -48,12 +63,12 @@ int C2F(lasterror)(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  int k, one=1, l1, zero=0, m1, n1, clear;
+  int k, one=1, l1, zero=0, m1, n1, clear, four=4,lr;
   int sz[MAX_MSG_LINES];
 
   Rhs = Max(0, Rhs);
   CheckRhs(0,1);
-  CheckLhs(1,2);
+  CheckLhs(1,4);
   if (msg_line_counter == 0) {
     CreateVar(1,"d",&zero,&zero,&l1);
     LhsVar(1)=1;
@@ -73,13 +88,27 @@ int C2F(lasterror)(fname,fname_len)
       sz[k]=strlen(msg_buff[k])-1;
     C2F(createvarfromptr)(&one, "S", &msg_line_counter, &one,(void *) msg_buff, 1L);
     LhsVar(1) = 1;
-    if (Lhs == 2) {
+    if (Lhs >= 2) {
       CreateVar(2,"d",&one,&one,&l1);
       *stk(l1) = (double)err_n;
       LhsVar(2)=2;
     }
-    if (clear)
+    if (Lhs >= 3) {
+      CreateVar(3,"d",&one,&one,&l1);
+      *stk(l1) = (double)where;
+      LhsVar(3)=3;
+    }
+    if (Lhs >= 4) {
+      l1=strlen(funname);
+      C2F(createvar)(&four,"c", &one,&l1 , &lr, 1L);
+      strcpy(cstk(lr),funname);
+      LhsVar(4)=4;
+    }
+    if (clear) {
+      where=0;
+      funname[0]='\0';
       C2F(freemsgtable)();
+    }
   }
   C2F(putlhsvar)();
   return(0);

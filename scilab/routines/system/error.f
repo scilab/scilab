@@ -1273,6 +1273,7 @@ c
                m=11
                first=.false.
                nlc=0
+               call linestore(lct(8))
             else
                buf='line '
                m=6
@@ -1282,7 +1283,10 @@ c
             m=m+4
             buf(m+1:m+18)=' of function     '
             m=m+13
-            if (km.le.isiz) call cvname(idstk(1,km),buf(m+1:m+nlgh),1)
+            if (km.le.isiz) then
+               call cvname(idstk(1,km),buf(m+1:m+nlgh),1)
+               call funnamestore(buf(m+1:m+nlgh),nlgh) 
+            endif
             m=m+nlgh
          else
             buf='in  execstr instruction'
