@@ -847,6 +847,7 @@ int sciparam3d(fname, fname_len)
   GetLegend(6,opts);
 
   if (version_flag() == 0) iflag_def[1]=8;
+  else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
@@ -953,6 +954,7 @@ int sciparam3d1(fname, fname_len)
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
   if (version_flag() == 0) iflag_def[1]=8;
+  else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
   ifl=&(iflag_def[1]);
   GetOptionalIntArg(7,"flag",&ifl,2,opts);
   iflag[0]=iflag_def[0];iflag[1]=ifl[0];iflag[2]=ifl[1];
@@ -1142,6 +1144,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   }
   C2F(sciwin)();
   if (version_flag() == 0) iflag_def[1]=8;
+  else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
 
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
@@ -6584,9 +6587,9 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow   = 1;
 	numcol   = 1;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	#ifdef WITH_TK
+#ifdef WITH_TK
 	*stk(outindex) = (double )LAB_gcf();
-	#endif
+#endif
       }
     }
   else if (strncmp(marker,"current_obj", 11) == 0)
