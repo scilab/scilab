@@ -392,6 +392,7 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	end
 	case '27' then
 	// funptr variable
+	top=top+1
 	stk(top)=list(op(4),'0')
       else
 	ok=%f
