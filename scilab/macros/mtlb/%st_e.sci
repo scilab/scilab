@@ -70,7 +70,7 @@ function s=%st_e(varargin)
     end
   end
   
-  while  dims($)==1 then dims($)=[],end
+  while  dims<>[]&dims($)==1 then dims($)=[],end
   select size(dims,'*')
   case 0 then
     dims=[1,1]
