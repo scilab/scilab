@@ -5,13 +5,24 @@
   <TITLE>ScilabEval</TITLE>
   <TYPE>TCL Function</TYPE>
   <DATE> 04 June 1998</DATE>
-  <SHORT_DESCRIPTION name="ScilabEval"> tcl instruction : Evaluate a string with scilab interpreter</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="ScilabEval"> tcl instruction : Evaluate a string
+    with scilab interpreter</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>ScilabEval str opt </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o</PARAM_NAME>
+        <PARAM_NAME>str </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>str : tcl string character Contains the string to evaluate with the current scilab interpreter.</SP>
+          <SP>: tcl string character contains the string to evaluate with the current scilab interpreter.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>opt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: tcl optionnal string character may contains "seq".</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -20,20 +31,60 @@
     <P>
     This function must be called in a tcl/tk script executed from scilab.
     It allows to associate scilab actions to tcl/tk widgets (graphic
-    objects).  The string str is put in the scilab interpreter buffer
+    objects).  The string <VERB>str</VERB> is put in the scilab interpreter buffer
     which then evaluates it.  This has in general no border effect in the
-    tcl/tk interpreter.</P>
+    tcl/tk interpreter.
+    </P>
+    <P>
+    The instructions send to Scilab by <VERB>ScilabEval</VERB> are executed in an
+      asynchronous way. The instrutions are first stored in a command buffer,
+      and Scilab executes them when possible (it sould be at the prompt but
+      also at the  end of each instructions of the currently running
+      function) but in the ordrer they were submitted. If a user wants to be sure
+      that a <VERB>ScilabEval</VERB> command execution will be completed before execution of
+      any other one is started, he should add the optional argument <VERB>seq</VERB>.
+    </P>
   </DESCRIPTION>
+
   <EXAMPLE>
 <![CDATA[
-//Create a Tcl script using ScilabEval
+//create tcl instructions
 tcl_script=['toplevel .w1'
-'button .w1.b -text ""Click here to see a new Scilab Graphic Window""\'
-'  -command {ScilabEval ""xselect()""}'
-'pack .w1.b ']
-mputl(tcl_script,TMPDIR+'/test.tcl')
+'button .w1.b -text ""Click here to start without seq option""\'
+'  -command Draw'
+'button .w1.b1 -text ""Click here to start with seq option""\'
+'  -command Draw1'
+'button .w1.s -text ""Click here to Stop animation""\'
+'  -command {ScilabEval ""global cont;cont=%f""}'
+'pack .w1.b .w1.b1 .w1.s'
+'proc Draw {} { ';
+'  ScilabEval ""cont=%f;global cont;xpause(1d6);cont=%t;"" '
+'  ScilabEval ""mydraw()"" '
+'}'
+'proc Draw1 {} { ';
+'  ScilabEval ""cont=%f;global cont;xpause(1d6);cont=%t;"" ""seq""'
+'  ScilabEval ""mydraw()""'
+'}'];
+
+
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+
+function mydraw(), 
+  global cont;
+  f=gcf();clf();f.pixmap='on';//for smooth animation
+  t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t));show_pixmap();
+  a=gca();
+  while cont, 
+    a.rotation_angles(2)=modulo(a.rotation_angles(2)+1,360)
+    show_pixmap();
+  end
+endfunction
+
 // Execute the tcl script
-TK_EvalFile(TMPDIR+'/test.tcl')
+TK_EvalFile(TMPDIR+'/test.tcl');;
+
+
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
