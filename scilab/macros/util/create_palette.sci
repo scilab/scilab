@@ -1,4 +1,4 @@
-function create_palette(bidon)
+function routines=create_palette(bidon)
   load SCI/macros/scicos/lib;
   scicos_ver='scicos2.7.3'
   lisf=unix_g('ls *.sci')
@@ -6,6 +6,7 @@ function create_palette(bidon)
   if rhs==0 then
     Path=pwd();
     to_del=[]
+
     for i=1:size(lisf,'*')
       fil=lisf(i)
       ierror=execstr('getf(fil)','errcatch')
@@ -30,6 +31,7 @@ function create_palette(bidon)
       bidon=bidon(:)'
     end
     
+    routines=[]
     for txt=bidon
       disp('Constructing '+txt)
       if txt=='Sources' then
@@ -110,19 +112,21 @@ function create_palette(bidon)
       else
 	error('Palette '+txt+' does not exists')
       end
-      build_palette(lisf,path,txt)
+      routines=[routines;build_palette(lisf,path,txt)]
     end
     chdir(savepwd)
   end
+  routines=unique(routines)
 endfunction
 
 
-function build_palette(lisf,path,fname)
+function [routines]=build_palette(lisf,path,fname)
   scs_m=scicos_diagram()
   X=0
   Y=0
   yy=0
   sep=30
+  routines=[];
   for fil=lisf'
     name= part(fil,1:length(fil)-4)
     ierror=execstr('blk='+name+'(''define'')','errcatch')
@@ -131,6 +135,7 @@ function build_palette(lisf,path,fname)
       fct=[]
       return
     end
+    routines=[routines;blk.model.sim(1)]
     blk.graphics.sz=20*blk.graphics.sz;
     blk.graphics.orig=[X Y]
     X=X+blk.graphics.sz(1)+sep
