@@ -212,13 +212,13 @@ let rec not_atomic expr = match nature expr with
   | _ -> true
 
 let add_to_occurrence_table modes_on expr table =
-  let rec add_if_necessary expr = match nature expr with
+  let rec add_if_necessary modes_on expr = match nature expr with
     | BlackBox ("noEvent", [expr']) ->
-        (* special case for 'noEvent' *) add_if_necessary expr'
+        (* special case for 'noEvent' *) add_if_necessary false expr'
     | Or [expr1; expr2] when is_greater_equal expr ->
         begin match nature expr1, nature expr2 with
           | Greater (expr', expr''), _ | _, Greater (expr', expr'') ->
-              add_if_necessary (create_blackBox ">=" [expr'; expr''])
+              add_if_necessary modes_on (create_blackBox ">=" [expr'; expr''])
               (* this is a hack to simulate >= being a primitive expression. *)
           | _ -> assert false
         end
@@ -227,8 +227,8 @@ let add_to_occurrence_table modes_on expr table =
           let record = ExpressionTable.find table expr in
           record.occurrences <- record.occurrences + 1
         with
-          | Not_found -> if not_atomic expr then add expr
-  and add expr =
+          | Not_found -> if not_atomic expr then add modes_on expr
+  and add modes_on expr =
     ExpressionTable.add table expr { occurrences = 1; label = None };
     match nature expr with
       | ArcCosine expr' | ArcHyperbolicCosine expr' | ArcHyperbolicSine expr' |
@@ -237,22 +237,22 @@ let add_to_occurrence_table modes_on expr table =
         HyperbolicCosine expr' | HyperbolicSine expr' |
         HyperbolicTangent expr' | Logarithm expr' | Not expr' |
         RationalPower (expr', _) | Sign expr' | Sine expr' | Tangent expr' ->
-          add_if_necessary expr'
+          add_if_necessary modes_on expr'
       | Addition exprs' | And exprs' | BlackBox (_, exprs') |
         Multiplication exprs' | Or exprs' ->
-          List.iter add_if_necessary exprs'
+          List.iter (add_if_necessary modes_on) exprs'
       | Equality (expr', expr'') | Greater (expr', expr'') ->
-          add_if_necessary expr'; add_if_necessary expr''
+          add_if_necessary modes_on expr'; add_if_necessary modes_on expr''
       | If (expr', expr'', expr''') ->
           begin match nature expr' with
-            | BlackBox ("noEvent", [expr']) -> add_if_necessary expr'
-            | _ when not modes_on -> add_if_necessary expr'
+            | BlackBox ("noEvent", [expr']) -> add_if_necessary false expr'
+            | _ when not modes_on -> add_if_necessary modes_on expr'
             | _ -> ()
           end;
-          add_if_necessary expr''; add_if_necessary expr'''
+          add_if_necessary modes_on expr''; add_if_necessary modes_on expr'''
       | TimeVariable -> ()
       | _ -> assert false
-  in add_if_necessary expr
+  in add_if_necessary modes_on expr
 
 let has_multiple_occurrences expr model_info =
   try
