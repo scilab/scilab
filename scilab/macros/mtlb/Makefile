@@ -70,7 +70,7 @@ PLOT=   mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_grid.sci \
 	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci mtlb_box.sci mtlb_colordef.sci \
 	mtlb_close.sci
 
-UTIL=enlarge_shape.sci makecell.sci firstnonsingleton.sci asciimat.sci mstr2sci.sci
+UTIL=enlarge_shape.sci makecell.sci firstnonsingleton.sci asciimat.sci mstr2sci.sci char.sci
 
 
 MACROS =$(MTLB) $(M5) $(PLOT) $(UTIL)
