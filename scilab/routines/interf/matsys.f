@@ -1286,9 +1286,13 @@ c
       if(.not.checklhs(fname,1,1)) return
 
       if(rhs.le.0) then
-c     clear all variable
-         call iset(gtop-(isiz+1)*nsiz,0,idstk(1,isiz+2),1)
-         gtop=isiz+1
+c     clear all variable but those created by the startup
+         nprotect=6
+         nv=gtop-(isiz+1)-nprotect
+         if(nv.gt.0) then 
+            call iset(nv*nsiz,0,idstk(1,isiz+2+nprotect),1)
+            gtop=isiz+1+nprotect
+         endif
          goto 100
       endif
      
