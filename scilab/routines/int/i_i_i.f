@@ -45,6 +45,11 @@ c
 c     
       il1=iadr(lstk(top))
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      if (istk(il1).eq.10.or.istk(il1).eq.15) then
+         top=top0
+         fin=-fin
+         return
+      endif
       m1=istk(il1+1)
       n1=istk(il1+2)
       it1=istk(il1+3)
