@@ -93,6 +93,10 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
 	@echo ------------- Compile file $< --------------
 	$(CC) $(CFLAGS) $< 
 
+.cpp.obj	:
+	@echo ------------- Compile file $< --------------
+	$(CC) $(CFLAGS) $< 
+
 # default rule for Fortran Compilation 
 
 !IF "$(USE_F2C)" == "YES"
