@@ -23,7 +23,7 @@ double *inptr[],*outptr[],*t;
     int k;
     double *y;
     double *u;
-    int nev,ic;
+    /*int nev,ic;*/
     integer one=1,skip;
     integer nu,ny;
     integer mlhs=5,mrhs=8;

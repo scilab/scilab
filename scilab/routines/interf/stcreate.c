@@ -7,6 +7,13 @@ static integer c17 = 17;
 static integer c1 = 1;
 static integer c4 = 4;
 
+#ifdef WIN32
+#include <string.h>
+int sttyp(ivt, job, nf, fnames);
+int creonevoid(slw,lw);
+int crelistofvoids(slw,lw,nels);
+#endif
+
 int C2F(stcreate)(lw, nz, sz, nf, fnames, retval)
 integer *lw, *nz, *sz, *nf, *retval;
 char *fnames[];

@@ -34,7 +34,7 @@ int connection(int* path_out,int* path_in)
   l5=Top - Rhs + ibegin;
   il=iadr(*lstk(l5));
   l=sadr(il+4);
-  ninnout=*stk(l);  
+  ninnout=(int) *stk(l);  
   return ninnout;
 }
 int badconnection(int* path_out,int prt_out, int nout,int* path_in,int prt_in,int nin) 

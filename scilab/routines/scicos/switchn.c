@@ -13,7 +13,7 @@ double *inptr[],*outptr[],*t;
     int k;
     double *y;
     double *u;
-    int nev,ic;
+    int /*nev,*/ic;
     ic=ipar[0];
     if (*nin>1) {
       y=(double *)outptr[0];

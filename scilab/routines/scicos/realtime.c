@@ -118,7 +118,7 @@ int C2F(realtime)(double *t) {
 */
 
   if (delay > 0) {
-    Sleep(delay/10000);
+    Sleep((DWORD)(delay/10000));
   }
   return 0;
 }

@@ -125,7 +125,7 @@ int C2F(putvar)(number, namex, name_len)
      unsigned long name_len;
 {
   integer Rhs_k = Rhs , Top_k = Top ;
-  integer l4, id[nsiz], lc, lr, cx0=1;
+  integer l4, id[nsiz],/* lc, lr,*/ cx0=1;
   
   C2F(str2name)(namex, id, name_len);
   Top = *number + Top -Rhs;
@@ -457,7 +457,7 @@ int C2F(str2name)(namex, id, name_len)
     integer ix;
     integer lon;
     lon = 0;
-    for (ix = 0 ; ix < name_len ; ix++ ) {
+    for (ix = 0 ; ix < (integer) name_len ; ix++ ) {
       if ( namex[ix] == '\0') break;
       ++lon;
     }

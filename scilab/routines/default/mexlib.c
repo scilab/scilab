@@ -46,6 +46,10 @@
 #include <varargs.h>
 #endif 
 
+#ifdef WIN32
+	#include <stdlib.h> /*pour exit()*/
+#endif
+
 #include "../calelm/calelm.h"
 static char *the_current_mex_name;
 
@@ -784,6 +788,7 @@ bool mxIsSingle(const mxArray *ptr)
 {
   mexPrintf("Routine mxIsSingle not implemented \r\n");
   exit(1);  /* TO BE DONE */
+  return 0;
 }
 
 bool mxIsEmpty(const mxArray *ptr)
@@ -1226,7 +1231,7 @@ int mxGetNumberOfFields(const mxArray *ptr)
 
 void *mxRealloc(void *ptr, size_t nsize)
 {
-  int m;  vraiptrst lrd; 
+  int m;  vraiptrst lrd=(vraiptrst)NULL; 
   m = (nsize) /sizeof(double) + 1;
   mxFree((void *) lrd);
   if (! C2F(createstkptr)( &m, &lrd)) return 0;
@@ -1574,7 +1579,7 @@ int arr2numcst(const mxArray  *ptr )
  
 bool mexIsGlobal(const mxArray *ptr)
 {
-  int pointed;int kkk;
+  int pointed;/*int kkk;*/
   int ret_val;
   int *header;int *rheader;
   header=(int *) Header(ptr);
@@ -2166,6 +2171,7 @@ const char *mxGetName(const mxArray *array_ptr)
 {
     mexPrintf("Routine mxGetName  not implemented \r\n");
     exit(1); 
+	return 0;
 }
 
 int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)

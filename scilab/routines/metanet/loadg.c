@@ -12,6 +12,11 @@
 #include <malloc.h>
 #endif
 
+#ifdef WIN32
+#include <stdlib.h> /*qsort*/
+#include <direct.h> /*_getcwd _chdir*/
+#endif
+
 #if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
 /** only used for x=dir[1024] **/
 #ifndef __ABSC__

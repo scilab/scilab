@@ -2851,7 +2851,7 @@ char *get_fname(fname,fname_len)
   int i;
   strncpy(Fname,fname,Min(fname_len,nlgh));
   Fname[fname_len] = '\0';
-  for ( i= 0 ; i < fname_len ; i++) 
+  for ( i= 0 ; i < (int) fname_len ; i++) 
     if (Fname[i] == ' ') { Fname[i]= '\0'; break;}
   return Fname;
 }
@@ -3197,7 +3197,7 @@ int C2F(getexternal)(fname, topk, lw, namex, typex, setfun, fname_len, name_len)
   case 10 :
     ret_value = C2F(getsmat)(fname, topk, lw, &m, &n, &cx1, &cx1, &lr, &nlr, fname_len);
     *typex = TRUE_;
-    for (i=0; i < name_len ; i++ ) namex[i] = ' ';
+    for (i=0; i < (int)name_len ; i++ ) namex[i] = ' ';
     if (ret_value == TRUE_) 
       {
 	C2F(cvstr)(&nlr, istk(lr ), namex, &cx1, name_len);

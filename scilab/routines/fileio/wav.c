@@ -120,7 +120,7 @@ void wavstartread(ft_t ft, WavInfo *Wi, int flag)
 	sciprint("Sorry, this WAV file is in Microsoft Official Unknown format.\r\n");
 	ft->ierr=1;return;
       }
-    case WAVE_FORMAT_PCM: 	/* this one, at least, I can handle */
+    case WAVE_FORMAT_PCM_SCI: 	/* this one, at least, I can handle */
       if (ft->info.style != -1 && ft->info.style != UNSIGNED && ft->info.style != SIGN2)
 	sciprint("User options overiding style read in .wav header\r\n");
       break;
@@ -369,12 +369,12 @@ void wavwritehdr(ft_t ft)
   switch (ft->info.style)
     {
     case UNSIGNED:
-      wFormatTag = WAVE_FORMAT_PCM;
+      wFormatTag = WAVE_FORMAT_PCM_SCI;
       if (wBitsPerSample != 8 && !wav->second_header)
 	sciprint("Sciprinting - writing bad .wav file using unsigned data and %d bits/sample\r\n",wBitsPerSample);
       break;
     case SIGN2:
-      wFormatTag = WAVE_FORMAT_PCM;
+      wFormatTag = WAVE_FORMAT_PCM_SCI;
       if (wBitsPerSample == 8 && !wav->second_header)
 	sciprint("Sciprinting - writing bad .wav file using signed data and %d bits/sample\r\n",wBitsPerSample);
       break;
@@ -462,7 +462,7 @@ wav_format_str(unsigned int wFormatTag)
     {
     case WAVE_FORMAT_UNKNOWN:
       return "Microsoft Official Unknown";
-    case WAVE_FORMAT_PCM:
+    case WAVE_FORMAT_PCM_SCI:
       return "Microsoft PCM";
     case WAVE_FORMAT_ADPCM:
       return "Microsoft ADPCM";

@@ -96,7 +96,7 @@ static int intascii(char* fname)
     CreateVar(2,"d",&un,&nchars,&l2);
     k=0;
     for ( i = 0 ; i < mn ; i++ ) 
-      for ( j =0 ; j < strlen(Str[i]) ; j++ ) 
+      for ( j =0 ; j < (int)strlen(Str[i]) ; j++ ) 
 	*stk(l2+k++) = (unsigned char) Str[i][j];
     FreeRhsSVar(Str);
     LhsVar(1) = 2  ;
@@ -161,10 +161,10 @@ static int intstrcat(char* fname)
       k=0;
       for ( i = 0 ; i < mn ; i++ ) 
 	{
-	  for ( j =0 ; j < strlen(Str[i]) ; j++ ) 
+	  for ( j =0 ; j < (int)strlen(Str[i]) ; j++ ) 
 	    *cstk(l3+ k++) = Str[i][j];
 	  if ( i != mn-1) 
-	    for ( j =0 ; j < strlen(sep) ; j++ ) 
+	    for ( j =0 ; j < (int)strlen(sep) ; j++ ) 
 	      *cstk(l3+ k++) = sep[j];
 	}
       FreeRhsSVar(Str);
@@ -513,11 +513,11 @@ static int intconvstr(char* fname)
     }
   if ( flag == 'u' ) 
     for ( i = 0 ; i < mn ; i++ ) 
-      for ( j=0 ; j < strlen(Str[i]) ; j++) 
+      for ( j=0 ; j < (int)strlen(Str[i]) ; j++) 
 	  Str[i][j]=toupper(Str[i][j]);
   else 
     for ( i = 0 ; i < mn ; i++ ) 
-	for ( j=0 ; j < strlen(Str[i]) ; j++) 
+	for ( j=0 ; j < (int)strlen(Str[i]) ; j++) 
 	  Str[i][j]=tolower(Str[i][j]);
   CreateVarFromPtr(Rhs+1,"S",&m1,&n1,Str);
   FreeRhsSVar(Str);
@@ -634,7 +634,7 @@ static int intemptystr(char* fname)
     CheckScalar(1,m1,n1);
     GetRhsVar(2,"d",&m2,&n2,&l2);
     CheckScalar(1,m2,n2);
-    m = *stk(l1);n = *stk(l2); 
+    m = (int) *stk(l1);n = (int) *stk(l2); 
     break;
   case 1:
     switch ( VarType(1)) {
@@ -972,7 +972,7 @@ static int C2F(listnames)(integer pos,integer *il);
 static int intmacrostring(void)
 {
   static integer eol = 99;
-  integer ix1;
+  /*integer ix1;*/
   integer ltxt, l, n;
   integer il, nl, lw, nch, ilm, ilt, ilp;
   /*     argument on top */

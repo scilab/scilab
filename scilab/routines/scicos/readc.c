@@ -46,7 +46,7 @@ double *inptr[],*outptr[],*t;
   char str[100],type[4];
   int job = 1,three=3;
   FILE *fd;
-  int n, k, ievt, kmax, no, lfil, m, i, irep, nm, ierr;
+  int n, k, ievt, kmax,/* no,*//* lfil,*/ m, i, irep,/* nm,*/ ierr;
   double *buffer,*record;
   int *mask;
   long offset;
@@ -66,7 +66,7 @@ double *inptr[],*outptr[],*t;
   if (*flag==1) {
     n    = ipar[6];
     ievt = ipar[5];
-    k    = z[1];
+    k    = (int)z[1];
     /* copy current record to output */
     record=buffer+(k-1)*ipar[7]-1;
 
@@ -75,7 +75,7 @@ double *inptr[],*outptr[],*t;
 
     if (*nevprt>0) {
       /*     discrete state */
-      kmax = z[2];
+      kmax = (int)z[2];
       if (k>=kmax&&kmax==n) {
 	/*     read a new buffer */
 	m=ipar[6]*ipar[7];
@@ -107,8 +107,8 @@ double *inptr[],*outptr[],*t;
   else if (*flag==3) {
     ievt = ipar[5];
     n    = ipar[6];
-    k    = z[1];
-    kmax = z[2];
+    k    = (int)z[1];
+    kmax = (int) z[2];
     if (k > kmax && kmax < n) {
       if(ievt) 
 	tvec[0] = *t-1.0;

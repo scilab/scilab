@@ -14,7 +14,7 @@ double *inptr[],*outptr[],*t;
     double *u;
     int nev,ic;
     
-    ic=z[0];
+    ic=(int)z[0];
     if ((*flag)<3) {
 	ic=-1;
 	nev=*nevprt;

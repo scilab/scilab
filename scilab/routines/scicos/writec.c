@@ -17,9 +17,9 @@ double *inptr[],*outptr[],*t;
   char str[100],type[4];
   int job = 1,three=3;
   FILE *fd;
-  int n, k, m, i, ierr;
+  int n, k,/* m,*/ i, ierr;
   double *buffer,*record;
-  long offset;
+/*  long offset;*/
   
 
   --ipar;
@@ -33,7 +33,7 @@ double *inptr[],*outptr[],*t;
 
   if (*flag==2&&*nevprt>0) { /* add a new record to the buffer */
     n    = ipar[5];
-    k    = z[1];
+    k    = (int)z[1];
     /* copy current record to output */
     record=buffer+(k-1)*(insz[0]);
 
@@ -67,7 +67,7 @@ double *inptr[],*outptr[],*t;
   }
   else if (*flag==5) {
     if(z[2]==0) return;
-    k    = z[1];
+    k    =(int) z[1];
     if (k>=1) {/* flush rest of buffer */
       F2C(cvstr)(&three,&(ipar[2]),type,&job);
       for (i=2;i>=0;i--)

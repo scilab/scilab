@@ -1797,7 +1797,7 @@ static void rl_flush_withtable(count)
     repleft = 1 + compute_triangle_count(leftover,max_ocodes);
   }
  if (VERBOSE) printf("rl_flush_withtable repmax=%d leftover=%d repleft=%d\n",repmax,leftover,repleft);
- if (1+compute_triangle_count(count,max_ocodes) < repmax+repleft)
+ if ( (int) 1+compute_triangle_count(count,max_ocodes) < repmax+repleft)
   { output(code_clear);
     did_clear();
     rl_flush_fromclear(count);

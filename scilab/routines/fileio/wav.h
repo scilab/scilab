@@ -16,7 +16,7 @@ typedef struct wavinfo {
 /* purloined from public Microsoft RIFF docs */
 
 #define	WAVE_FORMAT_UNKNOWN		(0x0000)
-#define	WAVE_FORMAT_PCM			(0x0001) 
+#define	WAVE_FORMAT_PCM_SCI			(0x0001) 
 #define	WAVE_FORMAT_ADPCM		(0x0002)
 #define	WAVE_FORMAT_ALAW		(0x0006)
 #define	WAVE_FORMAT_MULAW		(0x0007)

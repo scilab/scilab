@@ -199,7 +199,7 @@ integer flag;
       le77=(double*) (le7+4);
       ne7=le7[1];
       for (i=0; i<ne7; i++){
-	Blocks[0].mode[i]=le77[i];
+	Blocks[0].mode[i]=(int)le77[i];
       }   
     }
     break;
@@ -306,7 +306,7 @@ integer flag;
     le77=(double*) (le7+4);
     ne7=le7[1];
     for (i=0; i<ne7; i++){
-      Blocks[0].mode[i]=le77[i];
+      Blocks[0].mode[i]=(int)le77[i];
     }     
     break;
   case 9 :

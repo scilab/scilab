@@ -2032,7 +2032,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
                   initexei.col2[l+(int) ((*initexe)[0])/3]=prt[l];
                   initexei.col3[l+(int) ((*initexe)[0])/3]=ll11[prt[l]];
                 }
-              if (((*initexe)=(double*)realloc((*initexe),sizeof(double)*(3*initexei.col1[0]+1))) == NULL ) return 0;
+              if (((*initexe)=(double*)realloc((*initexe),(size_t) (sizeof(double)*(3*initexei.col1[0]+1)))) == NULL ) return 0;
 	      ((*initexe)[0])=3*((int) initexei.col1[0]);
               for(l=1;l<(int) (*initexe)[0]/3+1;l++)
                 {
@@ -2908,7 +2908,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    {
 			      for (j=1;j<ind[0]+1;j++)
 				{
-				  ww[ind[j]]=k;
+				  ww[ind[j]]=(int) k;
 				}
 			      for (j=bllst3ptr[connectmat[jj+connectmat[0]/2]];j<bllst3ptr[connectmat[jj+connectmat[0]/2]+1];j++)
 				{
@@ -3009,7 +3009,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    {
 			      for (j=1;j<ind[0]+1;j++)
 				{
-				  ww[ind[j]]=k;
+				  ww[ind[j]]= (int) k;
 				}
 			      for (j=bllst2ptr[connectmat[jj]];j<bllst2ptr[connectmat[jj]+1];j++)
 				{
@@ -3779,11 +3779,11 @@ int cleanup(int** clkconnect)
     }
   free(clkconnectind); clkconnectind=NULL;
   if(ind) free(ind);ind=NULL;
-  if ((vec=(int*)malloc(sizeof(int)*(cc[0]))) == NULL ) return 0;
-  vec[0]=cc[0]-1;
+  if ((vec=(int*)malloc((size_t) (sizeof(int)*(cc[0])))) == NULL ) return 0;
+  vec[0]=(int) cc[0]-1;
   for (j=1;j<vec[0]+1;j++)
     {
-      vec[j]=cc[j+1]-cc[j];
+      vec[j]=(int) (cc[j+1]-cc[j]);
     }
   if(cc) free(cc); cc=NULL;
   ind=FindEg(vec,0);

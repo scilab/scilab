@@ -42,7 +42,7 @@ int C2F(intor)(fname,l)
    }
    else {
      GetRhsVar(2,"d",&m1,&n1,&lo);
-     opt=*stk(lo);
+     opt=(int) *stk(lo);
      if (opt>2||opt<1) {
        Err=2;
        C2F(error)(&errn);
@@ -110,7 +110,7 @@ int C2F(intand)(fname,l)
    }
    else {
      GetRhsVar(2,"d",&m1,&n1,&lo);
-     opt=*stk(lo);
+     opt= (int) *stk(lo);
      if (opt>2||opt<1) {
        Err=2;
        C2F(error)(&errn);

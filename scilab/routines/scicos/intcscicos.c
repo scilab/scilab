@@ -345,7 +345,7 @@ int intcpass2(fname,fname_len)
 	      
 	      le12=(int*) listentry(le1,2); /*sim(2)*/
 	      le121=((double *) (le12+4));
-	      bllst112[k]=le121[0];
+	      bllst112[k]=(int)le121[0];
 	    }
 	}
       else
@@ -366,7 +366,7 @@ int intcpass2(fname,fname_len)
       if ((bllst2=realloc(bllst2,sizeof(int)*(bllst2[0]+ne2+1))) ==NULL )  return 0;	
       for (j=0; j< ne2; j++)
 	{
-	  bllst2[bllst2[0]+j+1]=le22[j];
+	  bllst2[bllst2[0]+j+1]=(int)le22[j];
 	}
       bllst2[0]=bllst2[0]+ne2;
       /* 3ieme element de la list out*/
@@ -377,7 +377,7 @@ int intcpass2(fname,fname_len)
       if ((bllst3=realloc(bllst3,sizeof(int)*(bllst3[0]+ne3+1))) ==NULL )  return 0;
       for (j=0; j< ne3; j++)
 	{
-	  bllst3[bllst3[0]+j+1]=le33[j];
+	  bllst3[bllst3[0]+j+1]=(int)le33[j];
 	}
       bllst3[0]=bllst3[0]+ne3;
       /* 4ieme element de la list evtin*/
@@ -388,7 +388,7 @@ int intcpass2(fname,fname_len)
       if ((bllst4=realloc(bllst4,sizeof(int)*(bllst4[0]+ne4+1))) ==NULL )  return 0;
       for (j=0; j< ne4; j++)
 	{
-	  bllst4[bllst4[0]+j+1]=le44[j];
+	  bllst4[bllst4[0]+j+1]=(int)le44[j];
 	}
       bllst4[0]=bllst4[0]+ne4;
       /* 5ieme element de la list evtout*/
@@ -399,7 +399,7 @@ int intcpass2(fname,fname_len)
       if ((bllst5=realloc(bllst5,sizeof(int)*(bllst5[0]+ne5+1))) ==NULL )  return 0;
       for (j=0; j< ne5; j++)
 	{
-	  bllst5[bllst5[0]+j+1]=le55[j];
+	  bllst5[bllst5[0]+j+1]=(int)le55[j];
 	}
       bllst5[0]=bllst5[0]+ne5;
       /* 6ieme element de la list state*/
@@ -514,7 +514,7 @@ int intcpass2(fname,fname_len)
 	  if ((bllst9=realloc(bllst9,sizeof(int)*(bllst9[0]+ne9+1))) ==NULL )  return 0;
 	  for (j=0; j< ne9; j++)
 	    {
-	      bllst9[bllst9[0]+j+1]=le99[j];
+	      bllst9[bllst9[0]+j+1]=(int)le99[j];
 	    }
 	  bllst9[0]=bllst9[0]+ne9;
 	}
@@ -557,7 +557,7 @@ int intcpass2(fname,fname_len)
      /* 14ieme element de la list nzcross*/
       le14=(int*) listentry(li,15);
       le1414=((double *) (le14+4));
-      nzcross[k]=le1414[0];
+      nzcross[k]=(int)le1414[0];
     }
   
   GetRhsVar(2, "i", &m1, &n1, &l1);
@@ -597,7 +597,7 @@ int intcpass2(fname,fname_len)
       if ((corinvec=realloc(corinvec,sizeof(int)*(corinvec[0]+nc1*mc1+1))) ==NULL )  return 0;
       for (j=0; j< nc1*mc1; j++)
 	{
-	  corinvec[corinvec[0]+j+1]=lc1[j];
+	  corinvec[corinvec[0]+j+1]=(int)lc1[j];
 	}
       corinvec[0]=corinvec[0]+nc1*mc1;
       corinvptr[k+1]=corinvptr[k]+nc1*mc1;

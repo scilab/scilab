@@ -2777,9 +2777,9 @@ int scixset(fname,fname_len)
  /* NG beg */
   else if ( strncmp(cstk(l1),"old_style",9) == 0) {
     if (*stk(lr) == 0) 
-      versionflag = *stk(lr);
+      versionflag = (int) *stk(lr);
     else if (*stk(lr) == 1)
-      versionflag = *stk(lr);
+      versionflag = (int) *stk(lr);
     else
       Scierror(999,"%s: Value must be 1 or 0",fname);
   }/* NG end */
@@ -4083,9 +4083,9 @@ int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
       switch (mn) 
 	{
 	case 3: 
-	  *ntics =  *stk(yl+2)+1;break;
+	  *ntics = (int) *stk(yl+2)+1;break;
 	case 4: 
-	  *ntics =  *stk(yl+3)+1;break;
+	  *ntics = (int) *stk(yl+3)+1;break;
 	case -1: 
 	  *ntics =  ym*yn;break;
 	}
@@ -4098,9 +4098,9 @@ int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
       switch (mn) 
 	{
 	case 3: 
-	  *ntics =  *stk(xl+2)+1;break;
+	  *ntics =  (int) *stk(xl+2)+1;break;
 	case 4: 
-	  *ntics =  *stk(xl+3)+1;break;
+	  *ntics =  (int) *stk(xl+3)+1;break;
 	case -1: 
 	  *ntics =  xm*xn;break;
 	}
@@ -5007,11 +5007,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*************************** Handles Properties ********/
   else if (strncmp(marker,"current_obj", 11) == 0) 
     {
-      sciSetCurrentObj((sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]));
+      sciSetCurrentObj((sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]));
     }
   else if (strncmp(marker,"current_axes", 12) == 0) 
     {
-      tmpobj =(sciPointObj *)sciGetPointerFromHandle(stk(*value)[0]);
+      tmpobj =(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
       if (tmpobj == (sciPointObj *) NULL)
 	{strcpy(error_message,"Object is not valid");return -1;}
       if (sciGetEntityType (tmpobj) == SCI_SUBWIN)
@@ -5024,12 +5024,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*19/11/2002*/
   else if (strncmp(marker,"figure_position", 15) == 0)
     {
-      sciSetFigurePos ((sciPointObj *)pobj, stk(*value)[0], stk(*value)[1]);
+      sciSetFigurePos ((sciPointObj *)pobj, (int)stk(*value)[0], (int)stk(*value)[1]);
     } 
   else if (strncmp(marker,"axes_size", 9) == 0)
     {
-      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=stk(*value)[0];  
-      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=stk(*value)[1];
+      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=(int)stk(*value)[0];  
+      pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=(int)stk(*value)[1];
       /*Ajout A.Djalel wdim au lieu de wpdim*/
       if ((sciPointObj *)pobj != pfiguremdl)
 	C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
@@ -5037,8 +5037,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     } 
   else if (strncmp(marker,"figure_size", 11) == 0)
     {
-      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=stk(*value)[0];  
-      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=stk(*value)[1];
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=(int)stk(*value)[0];  
+      pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=(int)stk(*value)[1];
       if ((sciPointObj *)pobj != pfiguremdl)
 	C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
 		&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -5079,13 +5079,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"background", 10) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) /**DJ.Abdemouche 2003**/
-       pSUBWIN_FEATURE (pobj)->cubecolor=stk(*value)[0];
+       pSUBWIN_FEATURE (pobj)->cubecolor=(integer)stk(*value)[0];
       else  
-	sciSetBackground((sciPointObj *)pobj, stk(*value)[0]);
+	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
     }
   else if (strncmp(marker,"foreground", 10) == 0)
     {
-      sciSetForeground((sciPointObj *)pobj, stk(*value)[0]);
+      sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
     }
 
   else if (strncmp(marker,"fill_mode", 9) == 0)
@@ -5097,14 +5097,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
     }
   else if (strncmp(marker,"thickness", 9) == 0)  {
-    sciSetLineWidth((sciPointObj *) pobj, *stk(*value));
+    sciSetLineWidth((sciPointObj *) pobj,(int) *stk(*value));
   }
   else if (strncmp(marker,"line_style", 10) == 0) {
-    sciSetLineStyle((sciPointObj *) pobj, *stk(*value));
+    sciSetLineStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
   else if (strncmp(marker,"mark_style", 10) == 0) {
     sciSetIsMark((sciPointObj *) pobj, 1);
-    sciSetMarkStyle((sciPointObj *) pobj, *stk(*value));
+    sciSetMarkStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
   else if (strncmp(marker,"mark_mode", 9) == 0) { 
     if (strncmp(cstk(*value),"on",2)==0 )
@@ -5115,7 +5115,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strncmp(marker,"mark_size", 9) == 0) {
     sciSetIsMark((sciPointObj *) pobj, 1);
-    sciSetLineWidth((sciPointObj *) pobj, *stk(*value));
+    sciSetLineWidth((sciPointObj *) pobj, (int)*stk(*value));
   }
 
   else if (strncmp(marker,"polyline_style", 14) == 0)
@@ -5123,7 +5123,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if (sciGetEntityType (pobj) == SCI_POLYLINE)
 	if ((stk(*value)[0]==0) || (stk(*value)[0]==1) || (stk(*value)[0]==2) 
 	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4))
-	  pPOLYLINE_FEATURE (pobj)->plot = stk(*value)[0];
+	  pPOLYLINE_FEATURE (pobj)->plot = (int)stk(*value)[0];
 	else
 	  {strcpy(error_message,"Stylemust be 0,1,2,3 or 4");return -1;}
       else
@@ -5138,7 +5138,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"font_angle", 10) == 0)
     {
       xtmp = (int)stk(*value)[0];
-      sciSetFontOrientation((sciPointObj *) pobj, (*stk(*value)*10));
+      sciSetFontOrientation((sciPointObj *) pobj,(int) (*stk(*value)*10));
     }
   else if (strncmp(marker,"font_foreground", 15) == 0) 
     {
@@ -5220,7 +5220,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
      
   /**************** callback *********************/
   else if (strncmp(marker,"callbackmevent", 14) == 0) {
-    sciSetCallbackMouseEvent((sciPointObj *)pobj, *stk(*value));
+    sciSetCallbackMouseEvent((sciPointObj *)pobj,(int) *stk(*value));
   }
   else if (strncmp(marker,"callback", 8) == 0) {
     sciAddCallback((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow),1);
@@ -5371,9 +5371,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strncmp(marker,"tics_color", 10) == 0) {   
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->ticscolor = stk(*value)[0];
+      pAXES_FEATURE (pobj)->ticscolor = (int)stk(*value)[0];
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.ticscolor = stk(*value)[0];
+      pSUBWIN_FEATURE (pobj)->axes.ticscolor = (int)stk(*value)[0];
     else
       {strcpy(error_message,"tics_color property does not exist for this handle");return -1;}
     }
@@ -5393,12 +5393,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*Dj.A 17/12/2003*/
   else if (strncmp(marker,"sub_tics", 8) == 0) {
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->subint= *stk(*value);
+      pAXES_FEATURE (pobj)->subint= (int) *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if ((*numcol != 3 )&& (*numcol != 2)) {
 	strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
       for (i = 0; i < *numcol;i++)
-	pSUBWIN_FEATURE (pobj)->axes.subint[i]=*stk(*value+i); 
+	pSUBWIN_FEATURE (pobj)->axes.subint[i]=(int) *stk(*value+i); 
     }
     else
       {strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
@@ -5406,9 +5406,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strncmp(marker,"tics_textsize", 13) == 0) {   
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->fontsize= stk(*value)[0]; 
+      pAXES_FEATURE (pobj)->fontsize= (int) stk(*value)[0]; 
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.fontsize = stk(*value)[0];
+      pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) stk(*value)[0];
     else
       {strcpy(error_message,"tics_textsize property does not exist for this handle");return -1;}
   }
@@ -5428,17 +5428,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 
   else if (strcmp(marker,"labels_font_size") == 0)	{
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->fontsize = *stk(*value);
+      pAXES_FEATURE (pobj)->fontsize = (int) *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.fontsize = *stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) *stk(*value);
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
   else if (strcmp(marker,"labels_font_color") == 0)	{
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->textcolor=*stk(*value);
+      pAXES_FEATURE (pobj)->textcolor=(int)*stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.textcolor=*stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.textcolor=(int)*stk(*value);
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
   }	
@@ -5541,7 +5541,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if (stk(*value)[i] < -1)
 	    {strcpy(error_message,"Argument must be -1 (no grid)  or number of color");return -1;}
 	  else
-	    {pSUBWIN_FEATURE (pobj)->grid[i]=stk(*value)[i];}
+	    {pSUBWIN_FEATURE (pobj)->grid[i]=(int) stk(*value)[i];}
 	}   
   }
   else if  (strncmp(marker,"axes_visible", 12) == 0) 
@@ -5557,7 +5557,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"hiddencolor", 11) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN)
-	pSUBWIN_FEATURE (pobj)->hiddencolor=stk(*value)[0];
+	pSUBWIN_FEATURE (pobj)->hiddencolor=(int) stk(*value)[0];
       else
 	{strcpy(error_message,"hiddencolor property does not exist for this handle");return -1;}
     
@@ -5602,12 +5602,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if ((*numrow)* (*numcol)==1) {
 	pSEGS_FEATURE (pobj)->iflag=0;
 	for (i = 0; i < (pSEGS_FEATURE (pobj)->Nbr1)/2 ;i++)
-	  pSEGS_FEATURE (pobj)->pstyle[i]=*stk(*value);
+	  pSEGS_FEATURE (pobj)->pstyle[i]=(int)*stk(*value);
       } 
       else if (((*numrow)* (*numcol)== (pSEGS_FEATURE (pobj)->Nbr1)/2)) {
 	pSEGS_FEATURE (pobj)->iflag=1;
 	for (i = 0; i < (pSEGS_FEATURE (pobj)->Nbr1)/2 ;i++)
-	  pSEGS_FEATURE (pobj)->pstyle[i]=*stk(*value+i);
+	  pSEGS_FEATURE (pobj)->pstyle[i]=(integer) *stk(*value+i);
       }
       else
 	{ 
@@ -5654,7 +5654,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*DJ.A merge*/
   else if (strcmp(marker,"color_mode") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-	pSURFACE_FEATURE (pobj)->flag[0]= stk(*value)[0];       
+	pSURFACE_FEATURE (pobj)->flag[0]=(integer) stk(*value)[0];       
     }
     else
       {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
@@ -5666,10 +5666,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_PLOT3D) {
 	if ((*stk(*value)<0)||(*stk(*value)>1))
 	  {strcpy(error_message,"Second argument must be equal to 0 or 1");return -1;}
-	pSURFACE_FEATURE (pobj)->flagcolor= stk(*value)[0];
+	pSURFACE_FEATURE (pobj)->flagcolor= (int)stk(*value)[0];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	int oldflagcolor,N,j,flagcolor=stk(*value)[0];
+	int oldflagcolor,N,j,flagcolor=(int)stk(*value)[0];
 	int *zcol;
 	if ((*stk(*value)<0)||(*stk(*value)>3))
 	  {strcpy(error_message,"Second argument must be 0 1 2 or 3");return -1;}
@@ -5746,7 +5746,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  {sprintf(error_message,"Second argument must have %d elements ",
 		   pSURFACE_FEATURE (pobj)->dimzy);return -1;}
 	for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
-	    pSURFACE_FEATURE (pobj)->zcol[i]= stk(*value)[i];
+	    pSURFACE_FEATURE (pobj)->zcol[i]= (integer)stk(*value)[i];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)  {
 	strcpy(error_message,"surface_color cannot be set in this case");
@@ -5766,7 +5766,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  if (*numrow * *numcol != N)
 	    {sprintf(error_message,"Second argument must have %d elements ",N);return -1;}
 	  for (i=0;i<N;i++) 
-	    pSURFACE_FEATURE (pobj)->zcol[i]= stk(*value)[i];
+	    pSURFACE_FEATURE (pobj)->zcol[i]= (integer)stk(*value)[i];
 	}
       }
     }
@@ -6705,7 +6705,7 @@ else if (strncmp(marker,"visible", 7) == 0) {
       if (sciGetEntityType (pobj) == SCI_SEGS) {
 	numrow = 1;numcol = 1;
 	CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-	*istk(outindex) = pSEGS_FEATURE (pobj)->arrowsize ;
+	*istk(outindex) = (int) pSEGS_FEATURE (pobj)->arrowsize ;
       }
       else
 	{strcpy(error_message,"arrow_size property does not exist for this handle");return -1;}
@@ -7148,7 +7148,7 @@ int drawnow(fname,fname_len)
 	    GetRhsVar(1,"h",&m,&n,&l); 
 	    for (i = 0; i < n*m; i++)
 	      {
-		subwin = sciGetPointerFromHandle(*stk(l+i)); 
+		subwin = (sciPointObj*) sciGetPointerFromHandle((long)*stk(l+i)); 
 		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
 		  return 0;

@@ -9,9 +9,12 @@
 
 #include <string.h>
 #include <stdio.h>
-#include "../stack-c.h"
+#include "../stack-c.h" 
 #include "../sun/men_Sutils.h" 
 
+#ifdef WIN32
+#define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
+#endif
 /* Table of constant values */
 
 static integer cx1 = 1;
@@ -2826,7 +2829,7 @@ void strcpy_tws(str1,str2,len)
      int len;
 {
   int i; 
-  for ( i =0 ; i  < strlen(str2); i++ ) str1[i]=str2[i];
+  for ( i =0 ; i  < (int)strlen(str2); i++ ) str1[i]=str2[i];
   for (i = strlen(str2) ; i < len ; i++) str1[i]=' ';
   str1[len-1] ='\0';
 }

@@ -26,7 +26,7 @@ double *inptr[],*outptr[],*t;
   char str[100],type[4];
   int job = 1,three=3;
   FILE *fd;
-  int n, k, kmax, no, lfil, m, i, irep, nm, ierr;
+  int n, k, kmax, /*no, lfil,*/ m, i, irep,/* nm,*/ ierr;
   double *buffer,*record;
   long offset;
   double y;
@@ -38,7 +38,7 @@ double *inptr[],*outptr[],*t;
   int sig;
   int e;
   int f;
-  double ff;
+/*  double ff;*/
   double two=2.0;
 
   ETAB[0]=0; ETAB[1]=132; ETAB[2]= 396; ETAB[3]=924; ETAB[4]=1980;
@@ -56,7 +56,7 @@ double *inptr[],*outptr[],*t;
 
   if (*flag==1) {
     n    = ipar[6];
-    k    = z[1];
+    k    = (int)z[1];
     /* copy current record to output */
     record=buffer+(k-1)*ipar[7];
 
@@ -90,7 +90,7 @@ double *inptr[],*outptr[],*t;
       }
     if (*nevprt>0) {
       /*     discrete state */
-      kmax = z[2];
+      kmax =(int) z[2];
       if (k>=kmax&&kmax==n) {
 	/*     read a new buffer */
 	m=ipar[6]*ipar[7];

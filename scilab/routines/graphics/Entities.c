@@ -15683,7 +15683,7 @@ BOOL IsDownAxes(sciPointObj *pobj)
     if (!(pSUBWIN_FEATURE (pobj)->isoview))
       cof=10.0;
     else
-      cof= (double) (Min(5,ceil(Max(
+      cof= (double) (Min(5.0,ceil(Max(
 				    abs(pSUBWIN_FEATURE (pobj)->axes.xlim[1]-pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
 				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
 				    abs(pSUBWIN_FEATURE (pobj)->axes.ylim[1]-pSUBWIN_FEATURE (pobj)->axes.ylim[0])/

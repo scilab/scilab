@@ -1075,7 +1075,7 @@ int C2F(scicos)
   static integer otimer = 0;
   /* System generated locals */
   integer i3,*ipardummy;
-  double d__1,*rpardummy;
+  double /*d__1,*/*rpardummy;
 
   /* Local variables */
   static integer flag__, jdum;
