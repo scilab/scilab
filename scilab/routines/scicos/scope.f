@@ -183,11 +183,11 @@ c     to force dimensions update
      &        0,0,v,dv,dv,dv,dv)
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
          call scicosclip(1)
-         n=40
-         call getlabel(kfun,buf,n)
-         if(n.gt.39) n=39
-         buf(n+1:n+1)=char(0)
-         if ((n.eq.1.and.buf(1:1).eq.' ').or.(n.eq.0)) then
+         nxname=40
+         call getlabel(kfun,buf,nxname)
+         if(nxname.gt.39) nxname=39
+         buf(nxname+1:nxname+1)=char(0)
+         if ((nxname.eq.1.and.buf(1:1).eq.' ').or.(nxname.eq.0)) then
          else
             call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
          endif
