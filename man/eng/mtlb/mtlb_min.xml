@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_max.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_min</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_min">Matlab min emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab and Scilab <VERB>min</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With complex values: Matlab <VERB>min</VERB> can be used with complex values but not Scilab function.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one input: Matlab <VERB>min</VERB> threats values along the first
+	non-singleton dimension but Scilab threats all input values.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two inputs: if one is an empty matrix, Scilab returns an error message but Matlab returns [].
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with three inputs: if <VERB>dim</VERB> parameter is greater than number of
+	dimensions of first input, Scilab returns an error message and Matlab returns the first input.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>[r[,k]] = mtlb_min(A[,B[,dim]])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>[r[,k]] = min(A[,B[,dim]])</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_min</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>A</VERB> is a vector or a scalar
+        <VERB>[r[,k]] = mtlb_min(A)</VERB> may be replaced by <VERB>min(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one input, if <VERB>A</VERB> is a matrix
+        <VERB>[r[,k]] = mtlb_min(A)</VERB> may be replaced by <VERB>min(A,&quot;r&quot;)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two inputs, if <VERB>A</VERB> and <VERB>B</VERB> are real matrices and not empty matrices
+        <VERB>[r[,k]] = mtlb_min(A,B)</VERB> may be replaced by <VERB>min(A,B)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with three inputs, if <VERB>dim</VERB> is lesser than the number of dimensions of <VERB>A</VERB>
+        <VERB>[r[,k]] = mtlb_min(A,[],dim)</VERB> may be replaced by <VERB>min(A,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_min</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

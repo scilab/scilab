@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- When this file is modified please also modify mtlb_max.xml -->
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_min</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_min">Fonction d'émulation de la fonction Matlab min</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction <VERB>min</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec des valeurs complexes : La fonction Matlab <VERB>min</VERB> peut être utilisée
+	avec des complexes mais pas la fonction Scilab.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <VERB>min</VERB> traite les valeurs
+	suivant la première dimension qui n'est pas 1 alors que Scilab traite l'ensemble des valeurs de l'entrée.
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec deux paramètres d'entrée : si l'une d'elles est une matrice vide, Scilab
+	retourne un message d'erreur alors que Matlab renvoie [].
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec trois paramètres d'entrée : si le paramètre <VERB>dim</VERB> est plus grand que
+	le nombre de dimensions de le première entrée, Scilab retourne un message d'erreur alors que Matlab
+	retourne le premier paramètre.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>[r[,k]] = mtlb_min(A[,B[,dim]])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>[r[,k]] = min(A[,B[,dim]])</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_min</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        En cas d'appel avec un paramètre d'entrée, si <VERB>A</VERB> est un scalaire ou un vecteur
+        <VERB>[r[,k]] = mtlb_min(A)</VERB> peut être remplacé par <VERB>min(A)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec un paramètre d'entrée, si <VERB>A</VERB> est une matrice
+        <VERB>[r[,k]] = mtlb_min(A)</VERB> peut être remplacé par <VERB>min(A,&quot;r&quot;)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec deux paramètres d'entrée, si <VERB>A</VERB> et <VERB>B</VERB> 
+	sont des matrices réelles et ne sont pas des matrices vides,
+        <VERB>[r[,k]] = mtlb_min(A,B)</VERB> peut être remplacé par <VERB>min(A,B)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        En cas d'appel avec trois paramètres d'entrée, si <VERB>dim</VERB> est inférieur
+	au nombre de dimensions de <VERB>A</VERB>,
+        <VERB>[r[,k]] = mtlb_min(A,[],dim)</VERB> peut être remplacé par <VERB>min(A,dim)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_min</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>firstnonsingleton</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
