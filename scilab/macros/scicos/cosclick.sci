@@ -8,16 +8,25 @@ function [btn,xc,yc,win,Cmenu]=cosclick(flag)
   else
     [btn,xc,yc,win,str]=xclick()
   end
-
-  if btn==-100 then  
-    if win==curwin then
-      Cmenu='Quit',
-    else
-      Cmenu='Open/Set'
+  if btn==2 then
+    TK_EvalStr(%scicos_lhb_txt)
+    done=%f
+    while ~done,
+    TK_EvalStr('set d [winfo ismapped .scicoslhb.edit]');t=TK_GetVar('d');
+    done=t=='0'
     end
+    disp(btn)
     return
-  end 
-  if btn==-2 then
+    
+  elseif btn==-100 then  
+      if win==curwin then
+	Cmenu='Quit',
+      else
+	Cmenu='Open/Set'
+      end
+      return
+  
+  elseif btn==-2 then
     // click in a dynamic menu
     if strindex(str,'_'+string(curwin)+'(')<>[] then
       // click in a scicos dynamic menu
@@ -29,8 +38,8 @@ function [btn,xc,yc,win,Cmenu]=cosclick(flag)
       execstr(str,'errcatch')
       return
     end
-  end
-  if btn==0&(Cmenu==[]|Cmenu=='Open/Set')&(win<>curwin) then
+    
+  elseif btn==0&(Cmenu==[]|Cmenu=='Open/Set')&(win<>curwin) then
     jj=find(windows(:,2)==win)
     if jj <> [] then
       btn=99  //mode copy

@@ -46,6 +46,9 @@ if ~super_block then
       %scicos_display_mode=%scicos_display_mode_0
     end
   end
+  //intialize lhb menu
+  %scicos_lhb_txt=scicos_lhb(%scicos_short)
+  //
   if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
   if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
 end
@@ -263,4 +266,15 @@ function [x,k]=gunique(x)
     keq=find(x(2:$)==x(1:$-1))
     x(keq)=[]
     k(keq)=[]
+endfunction
+
+function txt=scicos_lhb(choix)
+ts=[];tt=[];
+for i=1:size(choix,1)
+  t=choix(i,2)
+  btn=choix(i,1)
+tt=tt+'proc scicos_'+string(i)+' {} {ScilabEval '"btn='+string(ascii(btn))+''"};'
+ts=ts+'.scicoslhb.edit add command -label '"'+t+''" -underline 0 -command '" scicos_'+string(i)+''";'
+end
+txt='if { [winfo exists .scicoslhb ] } { } else {toplevel .scicoslhb;wm state .scicoslhb withdrawn;menu .scicoslhb.edit -tearoff 0;.scicoslhb configure -menu .scicoslhb.edit;'+ts+tt+'proc showpopup2 {} {set numx [winfo pointerx .];set numy [winfo pointery .];set z {expr {$numy+1}};set numz [eval $z];tk_popup .scicoslhb.edit $numx $numz;.scicoslhb.edit activate 0}};showpopup2'
 endfunction
