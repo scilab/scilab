@@ -218,9 +218,9 @@ static void CreateButtons (parent)
   /* AddInfoHandler(menuentry,"Abort Scilab execution after pause or stop"); */
 
   iopt=2;C2F(infficl)(&iopt,&nc);
-  Startup=(char *) malloc( (7+nc+2)*(sizeof(char)));
-  strcpy(Startup,"abort;\n");
-  C2F(inffic)(&iopt, &(Startup[7]),&nc);strcat(Startup,"\n");
+  Startup=(char *) malloc( (22+nc+2)*(sizeof(char)));
+  strcpy(Startup,"abort;\nsavehistory();\n");
+  C2F(inffic)(&iopt, &(Startup[22]),&nc);strcat(Startup,"\n");
   menuentry = AddInMenu(menu1, "Restart", DoIt,(XtPointer)Startup); 
   /*  AddInfoHandler(menuentry,"Clear everything"); */
   menuentry = AddInMenu(menu1, "Stop", Do_Stop, " ");
