@@ -13,9 +13,7 @@
 #ifdef WIN32 
 #include <windows.h>
 #else 
-#if defined(HAVE_VALUES_H)
 #include <values.h>
-#endif
 #endif
 
 #if defined(netbsd)
