@@ -127,7 +127,7 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
 	@echo ----------- Compile file $*.f (using f2c) -------------
 	@"$(SCIDIR1)\bin\f2c.exe" $(FFLAGS) $*.f 
 	@$(CC) $(CFLAGS) $*.c 
-	@del $*.c 
+	-del $*.c 
 !ELSE 
 .f.obj	:
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
@@ -145,17 +145,17 @@ RM = del
 #----------------------------------
 
 clean::
-	@del *.CKP 
-	@del *.ln 
-	@del *.BAK 
-	@del *.bak 
-	@del core 
-	@del errs 
-	@del *~ 
-	@del *.a 
-	@del .emacs_* 
-	@del tags 
-	@del TAGS 
-	@del make.log 
+	-del *.CKP 
+	-del *.ln 
+	-del *.BAK 
+	-del *.bak 
+	-del core 
+	-del errs 
+	-del *~ 
+	-del *.a 
+	-del .emacs_* 
+	-del tags 
+	-del TAGS 
+	-del make.log 
 
 distclean:: clean 
