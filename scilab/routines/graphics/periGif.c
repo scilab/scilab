@@ -1055,9 +1055,9 @@ void C2F(gethidden3dGif)(integer *verbose, integer *num, integer *narg, double *
  routines } 
 -------------------------------------------------------*/
 
-void C2F(semptyGif)(integer *verbose, integer *v2, integer *v3, integer *v4)
+void C2F(semptyGif)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
-  if ( *verbose ==1 ) Scistring("\n No operation ");
+  
 }
 void C2F(setwwhowGif)(integer *verbose, integer *v2, integer *v3, integer *v4)
 {
