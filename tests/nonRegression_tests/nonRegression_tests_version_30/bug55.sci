@@ -8,7 +8,6 @@ affich_result(sci2exp(-%inf)=="-%inf", 55.2)
 affich_result(sci2exp(%nan)=="%nan", 55.3)
 affich_result(sci2exp(-%nan)=="%nan", 55.4)
 
-
 clear all
 
 // Error message :

@@ -1,14 +1,14 @@
-// Non-regression test file for bug 681
+// Non-regression test file for bug 946
 // Copyright INRIA
 // Scilab Project - V. Couvert
 
 mode(-1);
 clear all;
 
-MFILECONTENTS="error(''This is an error message'')"
+MFILECONTENTS=["x=zeros(3,2);";"y=zeros(3,1);";"x=[1 0;0 0;0 0];";"y(1:3)=x(:,1);"]
 
-MFILE=TMPDIR+"/bug681.m"
-SCIFILE=TMPDIR+"/bug681.sci"
+MFILE=TMPDIR+"/bug946.m"
+SCIFILE=TMPDIR+"/bug946.sci"
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -27,13 +27,16 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"error(""This is an error message"")"]
+"x = zeros(3,2);";
+"y = zeros(3,1);";
+"x = [1,0;0,0;0,0];";
+"y(1:3) = x(:,1);"]
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
   correct=%F
 end
 
-affich_result(correct,681);
+affich_result(correct,946);
 
 clear all
