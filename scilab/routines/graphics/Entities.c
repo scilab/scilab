@@ -7908,6 +7908,11 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->WRect[2]   = pSUBWIN_FEATURE (paxesmdl)->WRect[2];
       pSUBWIN_FEATURE (pobj)->WRect[3]   = pSUBWIN_FEATURE (paxesmdl)->WRect[3];
 
+      pSUBWIN_FEATURE (pobj)->ARect[0]   = pSUBWIN_FEATURE (paxesmdl)->ARect[0];
+      pSUBWIN_FEATURE (pobj)->ARect[1]   = pSUBWIN_FEATURE (paxesmdl)->ARect[1];
+      pSUBWIN_FEATURE (pobj)->ARect[2]   = pSUBWIN_FEATURE (paxesmdl)->ARect[2];
+      pSUBWIN_FEATURE (pobj)->ARect[3]   = pSUBWIN_FEATURE (paxesmdl)->ARect[3];
+
       pSUBWIN_FEATURE (pobj)->FRect[0]   = pSUBWIN_FEATURE (paxesmdl)->FRect[0];
       pSUBWIN_FEATURE (pobj)->FRect[1]   = pSUBWIN_FEATURE (paxesmdl)->FRect[1] ;
       pSUBWIN_FEATURE (pobj)->FRect[2]   = pSUBWIN_FEATURE (paxesmdl)->FRect[2];
@@ -8224,6 +8229,11 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
   pSUBWIN_FEATURE (paxesmdl)->WRect[2]   = 1;
   pSUBWIN_FEATURE (paxesmdl)->WRect[3]   = 1;
+
+  pSUBWIN_FEATURE (paxesmdl)->ARect[0]   = 0.125;
+  pSUBWIN_FEATURE (paxesmdl)->ARect[1]   = 0.125;
+  pSUBWIN_FEATURE (paxesmdl)->ARect[2]   = 0.125;
+  pSUBWIN_FEATURE (paxesmdl)->ARect[3]   = 0.125;
   
   pSUBWIN_FEATURE (paxesmdl)->FRect[0]   = 0.0;
   pSUBWIN_FEATURE (paxesmdl)->FRect[1]   = 0.0;
@@ -11041,9 +11051,9 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      */
 
       /* NEEDED to take into account subwindow resize F.Leray 06.04.04 */
-      set_scale ("tttftf", pSUBWIN_FEATURE (pobj)->WRect, 
+      set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, 
 		 pSUBWIN_FEATURE (pobj)->FRect,
-		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);  
+		 NULL, pSUBWIN_FEATURE (pobj)->logflags, pSUBWIN_FEATURE (pobj)->ARect);  
       
       
       /********** TEST ************/
