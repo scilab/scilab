@@ -1,10 +1,8 @@
 function varargout=%hm_size(M,job)
 // Copyright INRIA
 // returns dimensions of an hyper matrix
-
-
 [lhs,rhs]=argn(0)
-dims=double(M('dims'))
+dims=matrix(double(M.dims),1,-1)
 if rhs==2 then
   if job=='*' then
     varargout(1)=prod(dims)
