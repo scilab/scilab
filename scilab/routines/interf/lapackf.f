@@ -72,7 +72,7 @@ c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, B, LDB )
-      if(N.ge.2) then
+c      if(N.ge.2) then
          if(M.gt.N) then
             do 20 j = 1, N
                do 10 i = j+1, M
@@ -88,7 +88,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, B, LDB )
  30            continue
  40         continue 
          endif
-      endif
+c      endif
       
       if(M.gt.N) then
          call DLACPY( 'F', M, N, stk(lA), M, stk(lQ), M ) 
@@ -217,7 +217,7 @@ c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
 
       call ZLACPY( 'U', M, N, zstk(lA), M, zstk(lR), M )
 c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
-      if(N.ge.2) then
+C      if(N.ge.2) then
          if(M.gt.N) then
             do 20 j = 1, N
                do 10 i = j+1, M
@@ -233,7 +233,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
  30            continue
  40         continue
          endif 
-      endif
+C      endif
       
       if(M.gt.N) then
          call ZLACPY( 'F', M, N, zstk(lA), M, zstk(lQ), M ) 
@@ -360,7 +360,7 @@ c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
 c     SUBROUTINE DLACPY( UPLO, M, N, A, B, LDB )
-      if(N.ge.2) then
+c      if(N.ge.2) then
          if(M.gt.N) then
             do 20 j = 1, N
                do 10 i = j+1, M
@@ -376,7 +376,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, B, LDB )
  30            continue
  40         continue 
          endif
-      endif
+c      endif
       
       if(M.gt.N) then
          call DLACPY( 'F', M, N, stk(lA), M, stk(lQ), M ) 
@@ -613,7 +613,7 @@ c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
 
       call ZLACPY( 'U', M, N, zstk(lA), M, zstk(lR), M )
 c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
-      if(N.ge.2) then
+c      if(N.ge.2) then
          if(M.gt.N) then
             do 20 j = 1, N
                do 10 i = j+1, M
@@ -629,7 +629,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, B, LDB )
  30            continue
  40         continue
          endif 
-      endif
+c      endif
       
       if(M.gt.N) then
          call ZLACPY( 'F', M, N, zstk(lA), M, zstk(lQ), M ) 
