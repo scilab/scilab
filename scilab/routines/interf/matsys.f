@@ -1556,34 +1556,54 @@ c     .  get debug mode
       endif 
       return
       end
+
       subroutine intdelbpt
 c     Copyright INRIA
+c Francois VOGEL, May      2004 - Bug 718 fixed
+c Francois VOGEL, January  2005 - Bug 1187 fixed
+c Francois VOGEL, February 2005 - Request 156 fixed - delbpt()
+c Francois VOGEL, February 2005 - Vector argument now allowed
       include '../stack.h'
       integer id(nsiz)
-      logical checkrhs,checklhs,getsmat,getscalar,checkval,eqid
+      logical checkrhs,checklhs,getsmat,getrvect,checkval,eqid
       integer topk
 c
       topk=top
 
-c Francois VOGEL, February 2005 - Request 156 fixed - delbpt()
       rhs=max(0,rhs)
       if(.not.checklhs('delbpt',1,1)) return
       if(.not.checkrhs('delbpt',0,2)) return
 
+c check line number(s) argument
       if(rhs.eq.2) then
-         if(.not.getscalar('delbpt',topk,top,l)) return
-c Francois VOGEL, January 2005 - Bug 1187 fixed
-         if (int(stk(l)).ne.stk(l).or.stk(l).lt.1) then
-            buf='Breakpoint line number must be a positive integer'
-            call error(9997)
-            return
-         endif
-         lnb=int(stk(l))
+         if(.not.getrvect('delbpt',topk,top,m,n,lv)) return
+         nbp=m*n
+         do 345 i=1,nbp
+            lnb=stk(lv+i-1)
+            if (int(stk(lv+i-1)).ne.stk(lv+i-1).or.lnb.lt.1) then
+               buf='Breakpoint line number must be a positive integer'
+               call error(9997)
+               return
+            endif
+ 345     continue
+c silently remove duplicate line numbers in vector argument
+         if(nbp.eq.1) goto 347
+ 346     do 347 i=0,nbp-2
+            do 348 j=i+1,nbp-1
+               if(stk(lv+i).eq.stk(lv+j)) then
+                  stk(lv+j)=stk(lv+nbp-1)
+                  nbp=nbp-1
+                  goto 346
+               endif
+ 348        continue
+ 347     continue
+         lnb=stk(lv)
          top=top-1
          if(nmacs.eq.0) goto 360
       endif
 
       if(rhs.gt.0) then
+c rhs is 1 or 2 (macro name is provided)
          if(.not.getsmat('delbpt',topk,top,m,n,1,1,l,n1)) return
          if(.not.checkval('delbpt',m*n,1) ) return
          call namstr(id,istk(l),n1,0)
@@ -1602,54 +1622,54 @@ c Francois VOGEL, January 2005 - Bug 1187 fixed
 
  355  continue
       if(rhs.eq.1.or.rhs.eq.0) then
-c     on supprime tous les points d'arret de la macro
+c all the breakpoints of the specified macro are removed
          if(kmac.lt.nmacs) then
             l0=lgptrs(kmac+1)
             call icopy(lgptrs(nmacs+1)-l0 ,bptlg(l0),1,
      $           bptlg(lgptrs(kmac)),1)
             do 356 kk=kmac,nmacs-1
                call icopy(nsiz,macnms(1,kk+1),1,macnms(1,kk),1)
-c Francois VOGEL, May 2004
-c the following statement was wrong - replaced with the next line
-c               lgptrs(kk)=lgptrs(kk+1)
                lgptrs(kk+1)=lgptrs(kk)+lgptrs(kk+2)-lgptrs(kk+1)
  356        continue
-c            lgptrs(nmacs)=lgptrs(nmacs+1)
             lgptrs(nmacs+1)=0
-c FV, May 2004
-c else part (just these two lines) added to cure bugzilla #718
          else
             lgptrs(nmacs+1)=0
          endif
          nmacs=nmacs-1
          if(rhs.eq.0) goto 354
-      else
-c     on supprime le point d'arret specifie
-         kk1=lgptrs(kmac)-1
-         do 357 kk=lgptrs(kmac),lgptrs(kmac+1)-1
-            if(bptlg(kk).ne.lnb) then
-               kk1=kk1+1
-               bptlg(kk1)=bptlg(kk)
-            endif
- 357     continue
-         if(kk.eq.kk1) goto 360
 
-         kk2=kk-kk1-1
+      else
+c only the specified breakpoint(s) is (are) removed
+         nbpr=0
+c    forget about bpts requested - nbpr keeps track of the
+c    number of removed breakpoints
+         do 3571 i=0,nbp-1
+            lnb=stk(lv+i)
+            kk1=lgptrs(kmac)-1
+            do 357 kk=lgptrs(kmac),lgptrs(kmac+1)-1-nbpr
+               if(bptlg(kk).ne.lnb) then
+                  kk1=kk1+1
+                  bptlg(kk1)=bptlg(kk)
+               else
+                  nbpr=nbpr+1
+               endif
+ 357        continue
+ 3571    continue
+c    if no match was found, return
+         if(nbpr.eq.0) goto 360
+c    shift end of breakpoints list - no hole allowed
          if(kmac.lt.nmacs) then
             l0=lgptrs(kmac+1)
             do 358 kk=kmac+1,nmacs
-c FV, May 2004
-c changed to remove at once multiple breakpoints on a single line
-c               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-1),1)
-               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-kk2),1)
+               call icopy(lgptrs(kk+1)-l0,bptlg(l0),1,bptlg(l0-nbpr),1)
                l0=lgptrs(kk+1)
-c               lgptrs(kk+1)=lgptrs(kk+1)-1
-               lgptrs(kk)=lgptrs(kk)-kk2
+               lgptrs(kk)=lgptrs(kk)-nbpr
  358        continue
          endif
-c         lgptrs(kmac+1)=lgptrs(kmac+1)-1
-         lgptrs(nmacs+1)=lgptrs(nmacs+1)-kk2
+         lgptrs(nmacs+1)=lgptrs(nmacs+1)-nbpr
          lgptrs(nmacs+2)=0
+c    shift end of macro names array in case all the bpts
+c    of a macro were removed - forget name of macros w/o bpt
          if(lgptrs(kmac+1).eq.lgptrs(kmac)) then
             if(kmac.lt.nmacs) then
                do 359 kk=kmac,nmacs-1
@@ -1663,6 +1683,7 @@ c         lgptrs(kmac+1)=lgptrs(kmac+1)-1
          endif
       endif
 
+c the end...
  360  continue
       call objvide('delbpt',top)
       return
@@ -1691,6 +1712,7 @@ c
       call objvide('dispbpt',top)
       return
       end
+
       subroutine interrcatch
 c     Copyright INRIA
       include '../stack.h'
@@ -2660,93 +2682,146 @@ c     resume in a pause
 
       subroutine intsetbpt
 c     Copyright INRIA
+c Francois VOGEL, May      2004 - Bug 718 fixed
+c Serge Steer,    May      2004 - Bug 719 fixed
+c Francois VOGEL, January  2005 - Bug 1187 fixed
+c Francois VOGEL, February 2005 - Vector argument now allowed
       include '../stack.h'
       integer id(nsiz)
-      logical checkrhs,checklhs,getsmat,getscalar,checkval,eqid
+      logical checkrhs,checklhs,getsmat,getrvect,checkval,eqid
       integer topk
-c
+
       topk=top
 
       if(.not.checklhs('setbpt',1,1)) return
       if(.not.checkrhs('setbpt',1,2)) return
 
+c check line number(s) argument
       if(rhs.eq.2) then
-         if(.not.getscalar('setbpt',topk,top,l)) return
-c Francois VOGEL, January 2005 - Bug 1187 fixed
-         if (int(stk(l)).ne.stk(l).or.stk(l).lt.1) then
-            buf='Breakpoint line number must be a positive integer'
-            call error(9997)
-            return
-         endif
-         lnb=int(stk(l))
+         if(.not.getrvect('setbpt',topk,top,m,n,lv)) return
+         nbp=m*n
+         do 310 i=1,nbp
+            lnb=stk(lv+i-1)
+            if (int(stk(lv+i-1)).ne.stk(lv+i-1).or.lnb.lt.1) then
+               buf='Breakpoint line number must be a positive integer'
+               call error(9997)
+               return
+            endif
+ 310     continue
+c silently remove duplicate line numbers in vector argument
+         if(nbp.eq.1) goto 313
+ 312     do 313 i=0,nbp-2
+            do 314 j=i+1,nbp-1
+               if(stk(lv+i).eq.stk(lv+j)) then
+                  stk(lv+j)=stk(lv+nbp-1)
+                  nbp=nbp-1
+                  goto 312
+               endif
+ 314        continue
+ 313     continue
+         lnb=stk(lv)
          top=top-1
       else
+c rhs is 0 or 1 (no line number provided)
          lnb=1
+         nbp=1
       endif
+
+c check macro name argument
       if(.not.getsmat('setbpt',topk,top,m,n,1,1,l,n1)) return
       if(.not.checkval('setbpt',m*n,1) ) return
       call namstr(id,istk(l),n1,0)
-cx      if(fin.eq.24) goto 350
-c
-c      if(rhs.eq.1) lnb=1
+
       if(nmacs.gt.0) then
          do 323 kmac=1,nmacs
-c Francois VOGEL, May 2004
-c            if(eqid(macnms(1,kmac),id)) goto 325
             if(eqid(macnms(1,kmac),id)) goto 324
  323     continue
       endif
-C Serge Steer May 2004
+
+c required macro has no breakpoint yet
       if (nmacs.ge.maxdb) then
          buf='Too many functions contain breakpoints'
          call error(9999)
          return
       endif
-
       nmacs=nmacs+1
       call putid(macnms(1,nmacs),id)
-C Serge Steer May 2004
-      if (lgptrs(nmacs)+1.gt.maxbpt) then
-         buf='Too many defined  breakpoints'
+      if (lgptrs(nmacs)+nbp.gt.maxbpt) then
+         buf='Too many defined breakpoints'
          call error(9998)
          return
       endif
   
-      lgptrs(nmacs+1)=lgptrs(nmacs)+1
-      bptlg(lgptrs(nmacs))=lnb
-      goto 330
-c FV, May 2004
-c do statement added to avoid definition of duplicate bpts
- 324  do 3241 kk=lgptrs(kmac),lgptrs(kmac+1)-1
-          if (bptlg(kk).eq.lnb) goto 330
- 3241 continue
- 325  if(kmac.eq.nmacs) then
-         lgptrs(nmacs+1)=lgptrs(nmacs+1)+1
-C Serge Steer May 2004
-         if (lgptrs(nmacs+1)-1.gt.maxbpt) then
-            buf='Too many defined  breakpoints'
-            call error(9998)
-            return
-         endif
-         bptlg(lgptrs(nmacs+1)-1)=lnb
+      lgptrs(nmacs+1)=lgptrs(nmacs)+nbp
+      if(nbp.eq.1) then
+         bptlg(lgptrs(nmacs))=lnb
       else
-C Serge Steer May 2004
-        if (lgptrs(nmacs+1)-1.gt.maxbpt) then
-            buf='Too many defined  breakpoints'
+         do 3232 i=0,nbp-1
+            bptlg(lgptrs(nmacs)+i)=stk(lv+i)
+ 3232    continue
+      endif
+      goto 330
+
+c required macro already has breakpoints defined
+c    remove duplicate line requests from vector argument
+ 324  if (rhs.lt.2) then
+         do 3244 kk=lgptrs(kmac),lgptrs(kmac+1)-1
+            if (bptlg(kk).eq.lnb) goto 330
+ 3244    continue
+      else
+ 3243    do 3241 kk=lgptrs(kmac),lgptrs(kmac+1)-1
+            do 3242 j=0,nbp-1
+               if (bptlg(kk).eq.stk(lv+j)) then
+                  stk(lv+j)=stk(lv+nbp-1)
+                  nbp=nbp-1
+                  if (nbp.eq.0) goto 330
+                  goto 3243
+               endif
+ 3242       continue
+ 3241    continue
+      endif
+
+ 325  if(kmac.eq.nmacs) then
+c    required macro is the last in the list,
+c    just add the new breakpoints at the end of the list
+         nae=lgptrs(nmacs+1)-lgptrs(nmacs)
+         lgptrs(nmacs+1)=lgptrs(nmacs+1)+nbp
+         if (lgptrs(nmacs+1)-1.gt.maxbpt) then
+            buf='Too many defined breakpoints'
             call error(9998)
             return
          endif
-  
+         if(rhs.lt.2) then
+            bptlg(lgptrs(nmacs+1)-1)=lnb
+         else
+            do 3251 i=0,nbp-1
+               bptlg(lgptrs(nmacs)+nae+i)=stk(lv+i)
+ 3251       continue
+         endif
+      else
+c    required macro is not the last in the list,
+c    first move the existing breakpoints, and then
+c    add the new breakpoints
+        if (lgptrs(nmacs+1)+nbp-1.gt.maxbpt) then
+            buf='Too many defined breakpoints'
+            call error(9998)
+            return
+         endif
          do 326 kk=nmacs,kmac,-1
             l0=lgptrs(kk)
-            call icopy(lgptrs(kk+1)-l0,bptlg(l0),-1,bptlg(l0+1),-1)
-            lgptrs(kk+1)=lgptrs(kk+1)+1
+            call icopy(lgptrs(kk+1)-l0,bptlg(l0),-1,bptlg(l0+nbp),-1)
+            lgptrs(kk+1)=lgptrs(kk+1)+nbp
  326     continue
-c FV, May 2004
-c this statement was wrong - replaced with next line
-c         bptlg(lgptrs(kmac+1)-1)=lnb
-         bptlg(lgptrs(kmac))=lnb
+         if(rhs.lt.2) then
+            bptlg(lgptrs(kmac))=lnb
+         else
+            do 327 i=0,nbp-1
+               bptlg(lgptrs(kmac)+i)=stk(lv+i)
+ 327        continue
+         endif
       endif
+
+c the end...
  330  continue
       call objvide('setbpt',top)
       return
