@@ -1,9 +1,6 @@
 #include "scicos_block.h"
 #include <math.h>
 
-void * scicos_malloc(size_t );
-void scicos_free(void *p);
-
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 
