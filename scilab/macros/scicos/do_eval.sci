@@ -11,6 +11,7 @@ deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);%scicos_prob=resu
 
 %scicos_prob=%f
 deff('[ok,tt]=FORTR(funam,tt,i,o)','ok=%t')
+deff('[ok,tt]=CFORTR2(funam,tt,i,o)','ok=%t')
 deff('[ok,tt]=CFORTR(funam,tt,i,o)','ok=%t')
 deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..

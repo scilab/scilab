@@ -87,7 +87,8 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	default_options.sci  set_cmap.sci set_background.sci \
 	do_focus.sci do_xsetech.sci is_split.sci dist2polyline.sci \
 	do_stupidmove.sci do_navigator.sci build_scs_tree.sci whereintree.sci \
-	do_icon_edit.sci CFORTR.sci FORTR.sci getblocktext.sci getblocklink.sci \
+	do_icon_edit.sci CFORTR.sci CFORTR2.sci FORTR.sci \
+	getblocktext.sci getblocklink.sci \
 	do_export.sci systexport.sci do_doc.sci dig_bound.sci under_connection.sci \
 	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci \
         %model_p.sci  %graphics_p.sci  pwindow_set_size.sci \

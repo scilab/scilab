@@ -61,7 +61,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
 		     ["Display mode can be 0 or 1. In mode 1, scicos editor uses the";
 		      "pixmap option of Scilab graphics to create   a backing";
 		      "store for the graphics used for displying scicos diagrams. ";
-		      "By default, Display mode is 1 under X and 0 under Windows where ";
+		      "By default, Display mode is 0. Under Windows operating system";
 		      "the backing store is handled in a different way. "],..
 		     [' In the active editor Scicos window, clicking on the ';
 		      ' Window menu item invokes a dialog box that allows you to change ';
