@@ -1,3 +1,11 @@
+
+ATLASDIR=@ATLAS_DIR@
+
+STD_BLAS=$(SCIDIR)/libs/blas.a  
+ATLAS_LAPACKBLAS= $(ATLASDIR)/liblapack.a $(ATLASDIR)/libcblas.a $(ATLASDIR)/libf77blas.a $(ATLASDIR)/libatlas.a
+
+BLAS=$(@WHICH_BLAS@) 
+
 LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
 	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a \
         $(SCIDIR)/libs/integ.a $(SCIDIR)/libs/control.a \
@@ -10,7 +18,8 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
 	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
         $(SCIDIR)/libs/libcomm.a $(SCIDIR)/libs/comm.a \
 	$(SCIDIR)/libs/sound.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \
-        $(SCIDIR)/libs/blas.a  $(SCIDIR)/libs/int.a \
+        $(BLAS) \
+	$(SCIDIR)/libs/int.a \
         $(SCIDIR)/libs/slicot.a  \
 	@PVMSCILIB@ @XDRLIBNAME@ @TKSCILIB@
 
