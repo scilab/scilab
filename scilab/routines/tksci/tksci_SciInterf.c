@@ -45,12 +45,20 @@ voidf FuncI[] ={
      
 void C2F(tksciInterf)()
 {
+  static int first =0;
   InterfInit();
-  if (TK_Started==1)
-    (*FuncI[Interf.FuncIndex -1])();
-  else 
+  if (TK_Started != 1 )
     {
-      Cout("You have started Scilab in a mode in which TK not initialized.\n");
+      if ( first == 0) 
+	{
+	  sci_tk_activate();first++;
+	  if ( TK_Started != 1 ) 
+	    {
+	      Cout("You have started Scilab in a mode in which TK not initialized.\n");
+	      Cout("I've tried initialization but it failed\n");
+	      return ;
+	    }
+	}
     }
-  InterfDone();
+  (*FuncI[Interf.FuncIndex -1])();
 }

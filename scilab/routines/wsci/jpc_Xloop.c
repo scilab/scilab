@@ -4,7 +4,7 @@
  * (1997) : Jean-Philippe Chancelier 
  * 
  */
-
+/*-----------------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #ifndef STRICT
@@ -20,33 +20,81 @@
 extern void inittk ();
 extern void flushTKEvents ();
 extern int  tcl_check_one_event(void);
+static int BasicScilab = 1;
 #endif
-
+/*-----------------------------------------------------------------------------------*/
 /** do I want a scilab or an xscilab (here it means Windows ) */
 
 int INXscilab = 0; /**  XXXX just to use zzledt1 **/
 
-void
-SetXsciOn ()
+/*-----------------------------------------------------------------------------------*/
+void SetNotBasic()
 {
-  switch_rlgets (1);
-  INXscilab = 1;
+  BasicScilab=0;
+}
+/*-----------------------------------------------------------------------------------*/
+int GetBasic() { return  BasicScilab;} 
+/*-----------------------------------------------------------------------------------*/
+
+void start_sci_gtk() 
+{
+#ifdef WITH_TK
+  inittk();
+  BasicScilab = 0;
+  flushTKEvents();
+#endif
+}
+
+/*-----------------------------------------------------------------------------------*/
+void SetXsciOn ()
+{
+switch_rlgets (1);
+INXscilab = 1;
 #ifdef WITH_TK
   inittk ();
 #endif
 }
-
+/*-----------------------------------------------------------------------------------*/
 int C2F (xscion) (int *i)
 {
   *i = INXscilab;
   return (0);
 }
+/*-----------------------------------------------------------------------------------*/
 
+/* used to know if we must check events 
+ * inside the scilab interpreter (parse/*)
+ * A faire sous windows 
+ */
+
+int C2F(checkevts)(int *i)
+{
+  /*  *i= INXscilab; */
+  *i= Max(INXscilab,1-BasicScilab);
+  return(0);
+}
+/*-----------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+ * used to start tk at run time when scilab 
+ * was started with scilab -nw 
+ * open a display with DisplayInit and initialize 
+ * Tk. If TK_Started is set to one then the initialization 
+ * was correct.
+ *---------------------------------------------------------------------------*/
+
+void sci_tk_activate(void)
+{
+  start_sci_gtk();
+  inittk();
+  BasicScilab = 0;
+
+}
+/*-----------------------------------------------------------------------------------*/
 /*************************************************
  * Dealing with Events on the queue when computing in Scilab 
  * we also try to detect when CTRLC was  activated 
  *************************************************/
-
 extern TW textwin;
 
 void TextMessage1 (int ctrlflag)
@@ -71,7 +119,7 @@ void TextMessage1 (int ctrlflag)
     }
 }
 /** function used in wtext.c in function TextGetCh  must wait for an event **/
-
+/*-----------------------------------------------------------------------------------*/
 void TextMessage2()
 {
 #ifdef WITH_TK
@@ -95,17 +143,16 @@ void TextMessage2()
     }
 #endif
 }
-
-
+/*-----------------------------------------------------------------------------------*/
 int C2F (sxevents) ()
 {
-  if (INXscilab == 1)
+  if (INXscilab == 1 || BasicScilab == 0 )
     {
       TextMessage1 (1);
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 
 
 /**********************************************************************

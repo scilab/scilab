@@ -28,7 +28,7 @@ c
 c     
       tref = 0
       itime = 10000
-      call xscion(inxsci)
+      call checkevts(inxsci)
       if (ddt .eq. 4) then
          write(buf(1:8),'(2i4)') pt,rstk(pt)
          call basout(io,wte,' run pt:'//buf(1:4)//' rstk(pt):'

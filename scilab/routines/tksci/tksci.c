@@ -23,7 +23,7 @@
 
 Tcl_Interp *TKinterp=NULL;
 Tk_Window TKmainWindow=NULL;
-int XTKsocket;
+int XTKsocket=0;
 
 Matrix *UserData[MAX_HANDLE];
 
@@ -119,11 +119,8 @@ int OpenTksci()
     {
       TKinterp = Tcl_CreateInterp();
       Tcl_Init(TKinterp);
-      if (Tk_Init(TKinterp) != TCL_OK) {
-	Cout("TK initialisation failed !\n");
-	return(1);
-      }
-      
+      Tk_Init(TKinterp);
+
       sprintf(MyCommand, "set SciPath \"%s\";",SciPath); 
       Tcl_Eval(TKinterp,MyCommand);
       Tcl_CreateCommand(TKinterp,"ScilabEval",TK_EvalScilabCmd,(ClientData)1,NULL);

@@ -26,9 +26,12 @@
 #include <errno.h>
 #include <stdio.h>
 
+#include <sys/select.h>
+
 #ifdef aix
 #include <sys/select.h>
 #endif
+
 #ifdef __STDC__
 #include <stdlib.h>
 #else
@@ -36,6 +39,10 @@
 #endif
 
 #include "../sun/Sun.h"
+
+#ifdef WITH_TK
+#include "../tksci/tksci.h"
+#endif
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 
@@ -54,8 +61,18 @@ extern void xevents1  __PARAMS((void));
  * is it a scilab or a scilab -nw 
  *-------------------------------------------------------*/
 
+
+static fd_set Select_mask_ref,select_mask,Write_mask_ref,write_mask;
+static int max_plus1 = 0;
+Display *the_dpy = (Display *) NULL;
+int BasicScilab = 1;
+XtAppContext app_con;
+int IsClick_menu(void);
+void Click_menu(int n);
+int charfromclick(void);
+
 static int INXscilab=0;
-static int intoemacs;
+static int intoemacs=0;
 
 void SetXsciOn(void)
 {
@@ -77,20 +94,13 @@ int C2F(xscion)(int *i)
 }
 
 
-int pty_mask = 1;
-int X_mask =16;
-int Select_mask;
-int select_mask = 0;
-int write_mask = 2;
-int Write_mask = 2;
-int max_plus1 = 5;
+int C2F(checkevts)(int *i)
+{
+  *i= Max(INXscilab,1-BasicScilab);
+  return(0);
+}
 
-Display *the_dpy = (Display *) NULL;
-int BasicScilab = 1;
-XtAppContext app_con;
-int IsClick_menu(void);
-void Click_menu(int n);
-int charfromclick(void);
+
 
 static String bgfallback_resources[] = {
 #include "Xscilab.ad.h"
@@ -109,10 +119,32 @@ static XtActionsRec actionProcs[] = {
   {"KeyboardMapping", KeyboardMapping}
 };
 
-void DisplayInit(string, dpy, toplevel)
-     char *string;
-     Display **dpy;
-     Widget *toplevel;
+
+
+/* 
+ * used to start tk at run time when scilab 
+ * was started with scilab -nw 
+ * open a display with DisplayInit and initialize 
+ * Tk. If TK_Started is set to one then the initialization 
+ * was correct.
+ */
+
+static void basic_scilab_mask( Display **dpy);
+
+void sci_tk_activate(void)
+{
+  Display *dpy = (Display *) NULL;
+  Widget toplevel = (Widget) NULL;
+  Cout("You have started Scilab in a mode in which TK not initialized.\n");
+  Cout("Trying to initialize \n");
+  DisplayInit("",&dpy,&toplevel);
+  inittk();
+  BasicScilab = 0;
+  basic_scilab_mask(&dpy);
+  flushTKEvents();
+}
+
+void DisplayInit(char *string,Display **dpy,Widget * toplevel)
 {
   static XrmOptionDescRec *optionDescList = NULL;
   static Display *dpy1;
@@ -135,24 +167,50 @@ void DisplayInit(string, dpy, toplevel)
     }
   else
     {
-      int Xsocket,fd ;
       *toplevel=toplevel1=XtAppInitialize (&app_con,"Xscilab",optionDescList,
 					   0,&argc, (String *)argv,
 					   bgfallback_resources,(ArgList) NULL,(Cardinal) 0);
       XtAppAddActions(app_con, actionProcs, XtNumber(actionProcs));
       the_dpy = *dpy=dpy1=XtDisplay(toplevel1);
       BasicScilab = 0;
-      Xsocket = ConnectionNumber(dpy1);
-      X_mask = 1 << Xsocket;
-      fd = fileno(stdin) ;
-      pty_mask = 1   << fd;
-      Select_mask = pty_mask | X_mask;  
-      Write_mask = 1 << fileno(stdout);
-      max_plus1 = (fd < Xsocket) ? (1 + Xsocket) : (1 + fd);
+      basic_scilab_mask(dpy);
       intoemacs=IntoEmacs();
     }
   XSync(dpy1,0);
 }
+
+/* fix the select masks : used graphics or tk is activated from a scilab -nw */
+
+static int Xsocket=0,fd_in=0,fd_out=0,fd_err=0 ;
+
+static void basic_scilab_mask( Display **dpy)
+{
+  Xsocket = ConnectionNumber(*dpy);
+  fd_in = fileno(stdin) ;
+  fd_out = fileno(stdout);
+  fd_err = fileno(stderr);
+
+  FD_ZERO(&Select_mask_ref);
+  FD_SET(fd_in , &Select_mask_ref);
+  FD_SET(Xsocket, &Select_mask_ref);
+#ifdef WITH_TK 
+  if ( XTKsocket != 0 ) FD_SET(XTKsocket, &Select_mask_ref);
+#endif 
+  FD_ZERO(&Write_mask_ref);
+  /* the two next FD_SET causes select not to wait 
+   * 
+   */
+  /* FD_SET(fd_out,&Write_mask_ref);
+     FD_SET(fd_err,&Write_mask_ref);*/
+
+  max_plus1 = Max(fd_in,Xsocket);      
+  max_plus1 = Max(fd_out,max_plus1);
+  max_plus1 = Max(fd_err,max_plus1);
+#ifdef WITH_TK 
+  max_plus1 = Max(XTKsocket,max_plus1);
+#endif 
+  max_plus1++;
+}  
 
 
 /*-------------------------------------------------------
@@ -176,18 +234,20 @@ int Xorgetchar(int interrupt)
 {
   register int i;
   static struct timeval select_timeout;
-  static int state=0;
+  static int state = 0;
   if ( BasicScilab) return(getchar());
   for( ; ; ) {
     XFlush(the_dpy); /* always flush writes before waiting */
-    /* Update the masks and, unless X events are already in the queue,
-       wait for I/O to be possible. */
-    select_mask = Select_mask;
-    write_mask  = Write_mask;
+    fflush(stdout); 
+    fflush(stderr); 
+    flushTKEvents();
+    /* Initialize masks  */
+    select_mask = Select_mask_ref;
+    write_mask  = Write_mask_ref;
+
     select_timeout.tv_sec = 1;
     select_timeout.tv_usec = 0;
-    i = select(max_plus1, (fd_set *)&select_mask, 
-	       (fd_set *) &write_mask, (fd_set *)NULL,
+    i = select(max_plus1, &select_mask, &write_mask, (fd_set *)NULL,
 	       QLength(the_dpy) ? &select_timeout
 	       : (struct timeval *) NULL);
     if (i < 0) {
@@ -198,13 +258,28 @@ int Xorgetchar(int interrupt)
 	  continue;
 	}
     } 
-    if (write_mask & Write_mask) {	  fflush(stdout);}
+
+    /* if there's something to output */
+    if ( FD_ISSET(fd_out,&write_mask)) { 
+      fflush(stdout); 
+    }
+    if ( FD_ISSET(fd_err,&write_mask)) { 
+      fflush(stderr); 
+    }
+
+#ifdef WITH_TK 
+    if ( XTKsocket != 0 && FD_ISSET(XTKsocket,&select_mask )) { 
+      flushTKEvents();
+    }
+#endif 
+
+
 
     /* if there's something to read */
-    if ((select_mask & pty_mask) || IsClick_menu()) 
+    if (FD_ISSET(fd_in,&select_mask) || IsClick_menu()) 
       state=1;
     else
-      if (QLength(the_dpy) || (select_mask & X_mask) ||!(intoemacs))
+      if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ||!(intoemacs))
 	state=0;
 
     if (state) {
@@ -218,10 +293,32 @@ int Xorgetchar(int interrupt)
 	
     /* if there are X events already in our queue, it
        counts as being readable */
-    if (QLength(the_dpy) || (select_mask & X_mask)) 
+    if (QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ))
       { C2F(sxevents)();	}
   }
+
+  /* The previous code seams stangely complex 
+   * and I would prefer what follows ..
+   * but the intoemacs stuff needs to be checked 
+   *
+    if ( FD_ISSET(fd_in,&select_mask ) ) 
+      {
+	return getchar();
+      }
+    if ( IsClick_menu() )
+      {
+	return charfromclick();
+      } 
+    if ( QLength(the_dpy) ||  FD_ISSET(Xsocket,&select_mask ) ) 
+      {
+	C2F(sxevents)();
+      }
+  }
+  */
 }
+
+
+
 
 /*-------------------------------------------------------
  *  Dealing with X11 Events.
@@ -241,6 +338,9 @@ int C2F(sxevents)()
       XEvent event;
       if (BasicScilab) return(0);
       if ( the_dpy == (Display *) NULL)  return(0);
+#ifdef WITH_TK 
+      if ( XTKsocket != 0 ) flushTKEvents();
+#endif 
       if (!XPending (the_dpy))
 	/* protect against events/errors being swallowed by us or Xlib */
 	return(0);

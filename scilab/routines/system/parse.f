@@ -37,7 +37,7 @@ c
 
 c
       itime = 10000
-      call xscion(inxsci)
+      call checkevts(inxsci)
  01   r = 0
       if(pt.gt.0) r=rstk(pt)
       if(ddt.eq.4) then
