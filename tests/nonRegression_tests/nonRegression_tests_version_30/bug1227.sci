@@ -6,7 +6,7 @@
  
 a = 123456789;
 savematfile(TMPDIR+'/file_1232.mat','a');
-clear
+clear a
 loadmatfile(TMPDIR+'/file_1232.mat','a');
 
 if( a == 123456789 ) then
