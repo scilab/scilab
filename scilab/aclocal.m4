@@ -258,10 +258,11 @@ dnl  TK_LIB : flag to link against tcl lib
 CHK_TK_MAJ=$1
 CHK_TK_MIN=$2
 TK_LIB_OK=0
-  AC_MSG_CHECKING([for tcl library tcl$1.$2])
+
+AC_MSG_CHECKING([for tk library tk$1.$2])
 dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib"
 libexts="so so.1.0 sl a"
-libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tcl.$CHK_TK_MAJ.$CHK_TK_MIN tcl$CHK_TK_MAJ$CHK_TK_MIN tcl.$CHK_TK_MAJ$CHK_TK_MIN"
+libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 for e in $libexts; do
 	for j in $dirs; do
 		for n in $libnames; do
