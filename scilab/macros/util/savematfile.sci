@@ -284,7 +284,7 @@ else
       mtlb_names(k)=[]
     end
   end
-  if strindex("-tabs",mtlb_opts)<>[] then
+  if ( (mtlb_opts <> []) & (strindex("-tabs",mtlb_opts)<>[]) ) then
     sep=code2str(-40)
   else
     sep=" "
