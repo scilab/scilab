@@ -8,7 +8,8 @@ dims=M('dims')
 
 
 if rhs-1>size(dims,'*') then
-  error('Too many subscripts')
+  dims(rhs-1)=1
+  //error('Too many subscripts')
 end
 dims1=[]
 I=0
