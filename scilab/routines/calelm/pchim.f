@@ -148,7 +148,8 @@ C
 C
 C  SPECIAL CASE N=2 -- USE LINEAR INTERPOLATION.
 C
-      IF (NLESS1 .EQ. 2) THEN
+C    patch Bruno N was NLESS1
+      IF (N .EQ. 2) THEN
          D(1,1) = DEL1
          D(1,N) = DEL1
          return
