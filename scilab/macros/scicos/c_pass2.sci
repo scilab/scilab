@@ -784,7 +784,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
       if ll11<>[] then
 	prt=find(ll11>=zeros(ll11))
       else
-	prt=[]
+	prt=[] 
       end
       nprt=prod(size(prt))
 	
