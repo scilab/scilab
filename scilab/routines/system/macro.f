@@ -268,6 +268,7 @@ c
          toperr=ids(6,pt)
          top=toperr
          macr=macr-1
+         if (.not.exec) bot=lin(k+5)
          goto 48
       endif
 

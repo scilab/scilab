@@ -75,12 +75,13 @@ c     .  for matlab compatiblity  for (k=1:n)
          call compcl
          if(err.gt.0) return
       endif
-      ids(4,pt-1) = toperr
       rstk(pt) = 801
       icall=1
 c     *call* expr
       return
- 05   if(comp(1).ne.0) call compcl
+ 05   continue
+      if(err1.gt.0) goto 20
+      if(comp(1).ne.0) call compcl
       if(err.gt.0) return
       if (pstk(pt-1).eq.1) then
 c     .  for matlab compatiblity: for (k=1:n)
@@ -91,7 +92,6 @@ c     .  for matlab compatiblity: for (k=1:n)
             return
          endif
       endif
-      toperr=top
       pstk(pt-1) = 0
       ids(1,pt-1)=top
       if (eqid(syn,do)) then
@@ -134,8 +134,9 @@ c     *call* parse
       return
  15   continue
       if(err1.gt.0.and.catch.eq.0) then
-c     .  skip to the end
-         top=top-1
+        
+c     .  remove variable associated to the expression and skip to the end
+         top=ids(1,pt-1)-1
          goto 20
       endif
       if(comp(1).eq.0) goto 10
@@ -144,7 +145,6 @@ c     .  skip to the end
 c     
 c     fin for
  20   continue
-      toperr = ids(4,pt-1)
       pt = pt-2
       icall=7
       char1 = blank

@@ -135,11 +135,11 @@ c     .  error recovery required: return error number
          istk(il+2)=1
          istk(il+3)=0
          l=sadr(il+4)
-         stk(l)=err1
+         stk(l)=max(err2,err1)
          lstk(top+1)=l+1
          errct=ids(2,pt)
-         err2=ids(3,pt)
-         err1=ids(4,pt)
+         err2=0
+         err1=0
          errpt=ids(5,pt)
          sym=ids(6,pt)/10000
          lct(4)=ids(6,pt)-10000*sym-100
