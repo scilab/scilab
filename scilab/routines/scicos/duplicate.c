@@ -9,6 +9,10 @@ int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int
 int Message(char* code);
 extern int Max1(int* vect);
 extern int *listentry(int *header, int i);
+extern double get_scicos_time();
+extern int *get_pointer_xproperty();
+extern int get_phase_simulation();
+extern void set_pointer_xproperty(int* pointer,int n);
 
 void  duplicata(n,v,w,ww,nw)
      double *v,*w,*ww;
@@ -35,6 +39,72 @@ double *v;
     if (v[i]>0) *nw=*nw+(int) v[i];
   }
 }
+
+int C2F(inttime)(fname)
+     /* renvoi le temps de simulation t=get_scicos_time() */
+     char *fname;
+{ 
+  int un,l1,m,n,l2;
+  CheckRhs(0,1);
+  CheckLhs(1,1);
+  GetRhsVar(1,"d",&m,&n,&l2);
+  CreateVar(2,"d",(un=1,&un),(un=1,&un),&l1);
+  *stk(l1)=get_scicos_time(stk(l2));
+  LhsVar(1)=2;
+  return 0;
+}
+int C2F(intxproperty)(fname)
+     /* renvoi le type d'equation get_pointer_xproperty() 
+      *	(-1: algebriques, +1 differentielles) */
+     char *fname;
+{
+  int i,un,*px,l1,m,n,l2;
+  CheckRhs(0,1);
+  CheckLhs(1,1);
+  GetRhsVar(1,"i",&m,&n,&l2);
+  CreateVar(2,"i",&m,(un=1,&un),&l1);
+  px=(int*) get_pointer_xproperty(istk(l2));
+  if (px) {
+    for (i=0;i<m;i++){
+      *istk(l1+i)=px[i];
+    }
+  }
+  else{
+    *istk(l1)=0;
+  }
+    LhsVar(1)=2; 
+  return 0;
+}
+ 
+int C2F(intphasesim)(fname)
+     /* renvoi la phase de simulation phase=get_phase_simulation() */
+     char *fname;
+{ 
+  int un,l1,m,n,l2;
+  CheckRhs(0,1);
+  CheckLhs(1,1);
+  GetRhsVar(1,"i",&m,&n,&l2);
+  CreateVar(2,"i",(un=1,&un),(un=1,&un),&l1);
+  *istk(l1)=get_phase_simulation(stk(l2));
+  LhsVar(1)=2;
+  return 0;
+}
+ 
+int C2F(intsetxproperty)(fname)
+     /* renvoi le type d'equation get_pointer_xproperty() 
+      *	(-1: algebriques, +1 differentielles) */
+     char *fname;
+{
+  int un,l1,m1,n1,l2,m2;
+  CheckRhs(2,2);
+ 
+  GetRhsVar(1,"i",&m1,&n1,&l1);
+  GetRhsVar(2,"i",&m2,(un=1,&un),&l2);
+  set_pointer_xproperty(istk(l1),*istk(l2));
+  LhsVar(1)=0; 
+  return 0;
+}
+ 
 
 int C2F(intdiffobjs)(fname)
      /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
@@ -343,7 +413,7 @@ int C2F(intcpass2)(fname)
       le8=(int*) listentry(li,9);
       ne8=le8[1];
       le88=((double *) (le8+4));
-      if ( bllst112[k] == 3 || bllst112[k] == 5)
+      if ( bllst112[k] == 3 || bllst112[k] == 5 || bllst112[k] == 10005)
 	{
 	  if (ne7 != 0)
 	    {
@@ -874,6 +944,7 @@ int Message(char* code)
   SciString(&ibegin,name,&mlhs,&mrhs);
   return 0;
 }
+
 
 
 

@@ -28,17 +28,17 @@ integer flag;
 {
   int k,j;
   double *u;
-  int one=1,*header,ne1;
+  int one=1,*header,ne1,ne3,ne8;
   int nu,l5,l,moinsun=-1;
   int mlhs=1,mrhs=2;
   int n27=30,zero=0;
-  int *le1,*le2,ne2,*le3,*le4,ne4,*le33,*le5;
-  double *le22,*le44,*le111,*le333,*le55;
+  int *le1,*le2,ne2,*le3,*le4,ne4,*le33,*le5,*le6,ne6,*le7,*le8;
+  double *le22,*le44,*le111,*le333,*le55,*le222,*le444,*le66,*le666,*le77,*le88;
   char *str[]={ "scicos_block","nevprt","funpt","type",
 		"scsptr","nz","z","nx","x","xd","res","nin",
 		"insz","inptr","nout","outsz","outptr","nevout",
 		"evout","nrpar","rpar","nipar","ipar","ng","g",
-		"ztyp","jroot","label","mode","work"};
+		"ztyp","jroot","label","work","mode"};
   
   char **str1;
   
@@ -100,7 +100,7 @@ integer flag;
   if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(&Blocks[0].ztyp,&one,&one);
   if (C2F(scierr)()!=0) goto err;
-  C2F(dtosci)(Blocks[0].jroot,&Blocks[0].ng,&one);
+  C2F(itosci)(Blocks[0].jroot,&Blocks[0].ng,&one);
   if (C2F(scierr)()!=0) goto err;
   
   if ((str1=malloc(sizeof(char*))) ==NULL )  return ;
@@ -111,7 +111,7 @@ integer flag;
   free(str1[0]);
   free(str1);
   if (C2F(scierr)()!=0) goto err; 
-
+  
   C2F(vvtosci)(*Blocks[0].work,&zero);
   if (C2F(scierr)()!=0) goto err; 
   C2F(itosci)(&Blocks[0].mode,&one,&one);
@@ -141,23 +141,34 @@ integer flag;
 	  {
 	    le33=(int*) listentry(le3,j); 
 	    le333=(double *) (le33+4);
-	    *Blocks[0].outptr[j-1]=le333[0];
+	    if (le33){
+	      ne3=le33[1];
+	    }
+	    else{ne3=0;}
+	    C2F(unsfdcopy)(&ne3,le333,&moinsun,Blocks[0].outptr[j-1],&moinsun);
 	  }
       }
     }
     break;
   case 0 :
     /*  x'  computation */
-    {
       /* 9 ieme element de la tlist xd */
       if (Blocks[0].nx != 0){
 	le4=(int*) listentry(header,10);
 	le44=(double *) listentry(header,10);
-	ne4=header[10+2]-header[10+1];
-	C2F(unsfdcopy)(&ne4,le44,&moinsun,Blocks[0].xd,&moinsun);
+	ne4=le4[1];
+	le444=((double *) (le4+4));
+	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+      }
+      /* 10 ieme element de la tlist res */
+      if (Blocks[0].nx != 0){
+	le6=(int*) listentry(header,11);
+	le66=(double *) listentry(header,11);
+	ne6=le6[1];
+	le666=((double *) (le6+4));
+	C2F(unsfdcopy)(&ne6,le666,&moinsun,Blocks[0].res,&moinsun);
       }
       break;
-    }
   case 2 :
     {
       /* 6ieme element de la tlist z */
@@ -169,9 +180,22 @@ integer flag;
       if (Blocks[0].nx != 0){
 	le2=(int*) listentry(header,9);
 	le22=(double *) listentry(header,9);
-	ne2=header[9+2]-header[9+1];
-	C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
+	ne2=le2[1];
+	le222=((double *) (le2+4));
+	C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
       }
+      /* 9 ieme element de la tlist xd */
+      if (Blocks[0].nx != 0){
+	le4=(int*) listentry(header,10);
+	le44=(double *) listentry(header,10);
+	ne4=le4[1];
+	le444=((double *) (le4+4));
+	C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+      }
+      /* 29 ieme element de la tlist mode */
+      le7=(int*) listentry(header,30);
+      le77=(double*) (le7+4);
+      Blocks[0].mode=le77[0];   
     }
     break;
   case 3 :
@@ -190,8 +214,17 @@ integer flag;
     if (Blocks[0].nx != 0){
       le2=(int*) listentry(header,9);
       le22=(double *) listentry(header,9);
-      ne2=header[9+2]-header[9+1];
-      C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
+      ne2=le2[1];
+      le222=((double *) (le2+4));
+      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
+    }
+    /* 9 ieme element de la tlist xd */
+    if (Blocks[0].nx != 0){
+      le4=(int*) listentry(header,10);
+      le44=(double *) listentry(header,10);
+      ne4=le4[1];
+      le444=((double *) (le4+4));
+      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
     }
     break;
   case 5 :
@@ -203,8 +236,17 @@ integer flag;
     if (Blocks[0].nx != 0){
       le2=(int*) listentry(header,9);
       le22=(double *) listentry(header,9);
-      ne2=header[9+2]-header[9+1];
-      C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
+      ne2=le2[1];
+      le222=((double *) (le2+4));
+      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
+    }
+    /* 9 ieme element de la tlist xd */
+    if (Blocks[0].nx != 0){
+      le4=(int*) listentry(header,10);
+      le44=(double *) listentry(header,10);
+      ne4=le4[1];
+      le444=((double *) (le4+4));
+      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
     }
     break;
   case 6 :
@@ -217,8 +259,17 @@ integer flag;
     if (Blocks[0].nx != 0){
       le2=(int*) listentry(header,9);
       le22=(double *) listentry(header,9);
-      ne2=header[9+2]-header[9+1];
-      C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
+      ne2=le2[1];
+      le222=((double *) (le2+4));
+      C2F(unsfdcopy)(&ne2,le222,&moinsun,Blocks[0].x,&moinsun);
+    }
+    /* 9 ieme element de la tlist xd */
+    if (Blocks[0].nx != 0){
+      le4=(int*) listentry(header,10);
+      le44=(double *) listentry(header,10);
+      ne4=le4[1];
+      le444=((double *) (le4+4));
+      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
     }
     /* 16ieme element de la tlist y */
     if (Blocks[0].nout!=0) {
@@ -227,10 +278,35 @@ integer flag;
 	{
 	  le33=(int*) listentry(le3,j); 
 	  le333=(double *) (le33+4);
-	  *Blocks[0].outptr[j-1]=le333[0];
+	  if (le33){
+	    ne3=le33[1];
+	  }
+	  else{ne3=0;}
+	  C2F(unsfdcopy)(&ne3,le333,&moinsun,Blocks[0].outptr[j-1],&moinsun);
 	}
     }
     
+    break;
+  case 7 :
+    /* 9 ieme element de la tlist xd */
+    if (Blocks[0].nx != 0){
+      le4=(int*) listentry(header,10);
+      le44=(double *) listentry(header,10);
+      ne4=le4[1];
+      le444=((double *) (le4+4));
+      C2F(unsfdcopy)(&ne4,le444,&moinsun,Blocks[0].xd,&moinsun);
+    }
+    /* 29 ieme element de la tlist mode */
+    le7=(int*) listentry(header,30);
+    le77=(double*) (le7+4);
+    Blocks[0].mode=le77[0];   
+    break;
+  case 9 :
+    /* 24 ieme element de la tlist g */
+    le8=(int*) listentry(header,25);
+    le88=(double*) (le8+4);
+    ne8=le8[1];
+    C2F(unsfdcopy)(&ne8,le88,&moinsun,Blocks[0].g,&moinsun);
     break;
   }
   Top=Top-1;
@@ -238,6 +314,7 @@ integer flag;
  err: 
   flag=-1;
 }
+
 
 
 
