@@ -2482,7 +2482,7 @@ int C2F(putlhsvar)()
 static int C2F(mvfromto)(itopl, ix)
      integer *itopl, *ix;
 {
-  integer ix1, m,n,it,lcs,lrs ,il; 
+  integer ix1, m,n,it,lcs,lrs ,il,l; 
   unsigned char Type ;
   int iwh; double wsave;
 
@@ -2521,7 +2521,11 @@ static int C2F(mvfromto)(itopl, ix)
      */
     if (C2F(intersci).lad[*ix - 1] != lrs) {
       ix1 = m * n * (it + 1);
-      C2F(dcopy)(&ix1, stk(C2F(intersci).lad[*ix - 1]), &cx1, stk(lrs), &cx1);
+      l=C2F(intersci).lad[*ix - 1];
+      if (abs(l-lrs)<ix1)
+	C2F(unsfdcopy)(&ix1, stk(l), &cx1, stk(lrs), &cx1);
+      else
+	C2F(dcopy)(&ix1, stk(l), &cx1, stk(lrs), &cx1);
       C2F(intersci).lad[*ix - 1] = lrs;
     }
     break;
