@@ -16,7 +16,7 @@ MACROS = sysconv.sci readc_.sci lin.sci halt.sci bloc2exp.sci \
 	trianfml.sci trisolve.sci sci2map.sci \
 	logspace.sci linspace.sci ssprint.sci ssrand.sci \
 	sysdiag.sci syslin.sci syssize.sci trfmod.sci manedit.sci \
-	x_matrix.sci typeof.sci isdef.sci zeros.sci edit.sci \
+	x_matrix.sci typeof.sci isdef.sci edit.sci \
 	getvalue.sci  macrovar.sci input.sci sci2exp.sci \
 	whereami.sci projaff.sci derivative.sci \
 	printf.sci fprintf.sci sprintf.sci scanf.sci fscanf.sci sscanf.sci \
