@@ -5,6 +5,12 @@
 
 /** external functions to be called through this interface **/
 
+#ifdef __STDC__
+void  sciprint(char *fmt,...);
+#else
+/*VARARGS0*/
+void sciprint();
+#endif
 
 /**************************************************
  *  hand written interface for the randlib 

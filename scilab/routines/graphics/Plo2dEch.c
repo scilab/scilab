@@ -10,6 +10,12 @@
 #include "Math.h"
 #include "PloEch.h"
 
+#ifdef __STDC__
+void  sciprint(char *fmt,...);
+#else
+/*VARARGS0*/
+void sciprint();
+#endif                                                                                              
 extern void   set_delete_win_mode();
 extern void   set_no_delete_win_mode();
 

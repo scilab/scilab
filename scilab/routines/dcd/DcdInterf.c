@@ -4,7 +4,13 @@
 #include "../../routines/stack-c.h"
 
 /** external functions to be called through this interface **/
-
+#ifdef __STDC__
+void  sciprint(char *fmt,...);
+#else
+/*VARARGS0*/
+void sciprint();
+#endif  
+ 
 extern int C2F(cdfbet) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
 extern int C2F(cdfnbn) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
 extern int C2F(cdffnc) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));

@@ -18,7 +18,7 @@ typedef struct { doublereal r, i; } doublecomplex;
 typedef long int logical;
 typedef short int shortlogical;
 typedef char logical1;
-typedef char integer1;
+typedef signed char integer1;
 #if 0	/* Adjust for integer*8. */
 typedef long long longint;		/* system-dependent */
 typedef unsigned long long ulongint;	/* system-dependent */

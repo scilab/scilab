@@ -1,5 +1,5 @@
 #include "../machine.h"
-typedef char integer1;
+typedef signed char integer1;
 typedef short integer2;
 /*     Copyright INRIA */
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )

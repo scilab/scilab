@@ -673,7 +673,7 @@ static int ReadLine(fd)
   int n=0;
   while (1)
     {
-      char c = getc(fd);
+      char c = (char) getc(fd);
       if ( n > INFOSIZE) 
 	{
 	  sciprint("Error Info buffer is too small (too many columns in your file ?)\r\n");

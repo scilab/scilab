@@ -10,6 +10,13 @@
 #include "Math.h"
 #include "PloEch.h"
 
+#ifdef __STDC__
+void wininfo(char *format,...);
+#else
+/*VARARGS0*/
+void wininfo();
+#endif    
+
 extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);

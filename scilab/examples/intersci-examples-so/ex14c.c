@@ -4,7 +4,9 @@
  * simple example with sparse matrix 
  * Display of a 
  *******************************************/
-
+#ifdef __STDC__
+extern void sciprint(char *, ...);
+#endif    
 int F2C(ext14ca)(S)
      SciSparse *S;
 { 

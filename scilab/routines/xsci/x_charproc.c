@@ -27,8 +27,8 @@
  */
 
 /* charproc.c */
-#ifdef sgi
-#define __STDC__
+#if defined  sgi && ! defined  __STDC__
+#define __STDC__ 1  
 #endif
 
 #include "../machine.h"
