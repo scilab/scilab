@@ -225,8 +225,15 @@ void C2F(SetDriver)(x0, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
       DriverId = 0;
       break;
     case 'P'  :
-      strcpy(DriverName,"Pos");
-      DriverId = 1;
+      if (x0[1] == 'P') {
+          strcpy(DriverName,"PPM");
+	  DriverId = 3;
+          break;
+      }
+      else {
+	strcpy(DriverName,"Pos");
+	DriverId = 1;
+      }
       break;
     case 'F'  :
       strcpy(DriverName,"Fig");

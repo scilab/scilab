@@ -147,15 +147,34 @@ void C2F(xselgraphicGif)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 
 /** End of graphic (close the file) **/
 
+void GetDriverName(DriverName)
+char *DriverName;
+{    integer *v2;
+     integer *v3;
+     integer *v4;
+     integer *v5;
+     integer *v6;
+     integer *v7;
+     double *dv1;
+     double *dv2;
+     double *dv3;
+     double *dv4;
+     GetDriver1(DriverName, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4);
+}
+
 void C2F(xendgraphicGif)()
 {
-
+  char DriverName[10];
   integer num;
   if (file != stdout && file != (FILE*) 0) {
     num = ScilabGCGif.NumBackground;
     gdImageChangeColor(GifIm,col_white,col_index[num]);
     gdSetBackground(GifIm,col_index[num] );
-    gdImageGif(GifIm, file);
+    GetDriverName(DriverName);
+    if (strcmp(DriverName,"GIF")==0)
+      gdImageGif(GifIm, file);
+    else if (strcmp(DriverName,"PPM")==0)
+      gdImagePPM(GifIm, file);
     fclose(file);
     gdImageDestroy(GifIm);
     file=stdout;
