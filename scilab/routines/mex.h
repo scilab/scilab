@@ -63,7 +63,6 @@ Matrix *mxCreateCharArray __PARAMS((int ND, int *size));
 Matrix *mxCreateCellArray __PARAMS((int ND,int *size));
 Matrix *mxGetCell __PARAMS((Matrix *ptr,int index));
 
-
 double C2F(mxgetscalar)  __PARAMS((Matrix *ptr));
 double * C2F(mxgetpi)  __PARAMS((Matrix *ptr));
 double * C2F(mxgetpr)  __PARAMS((Matrix *ptr));
@@ -161,7 +160,6 @@ void mexprint __PARAMS((char* fmt,...));
 void mxFree __PARAMS((void *ptr));
 void mxFreeMatrix __PARAMS((Matrix *ptr));
 void mxDestroyArray __PARAMS((Matrix *ptr));
-
 vraiptrst C2F(locptr) __PARAMS((void *x));
 
 typedef enum {
@@ -181,7 +179,7 @@ typedef enum {
 	mxUNKNOWN_CLASS = -1
 } mxClassID;
 
-mxClassID mxGetClassID __PARAMS((Matrix *ptr));
+mxClassID mxGetClassID __PARAMS((const mxArray *ptr));
 
 typedef enum {
   mxREAL,
