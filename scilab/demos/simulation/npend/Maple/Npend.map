@@ -77,8 +77,8 @@ sorties(`systeme.tex`,`R~:`,XX[3]):
 # Constraints on the N-link Pendulum 
 #------------------------------------------------
 ncont:=2*n;
-cont:=[ seq(op([ x[i]-x[i-1] - r[i]*cos(th[i]),
-		y[i]-y[i-1] - r[i]*sin(th[i])]),i=1..n)]:
+cont:=[ seq(op([ x[i]-x[i-1] - 2*r[i]*cos(th[i]),
+		y[i]-y[i-1] - 2*r[i]*sin(th[i])]),i=1..n)]:
 
 sortiesM(`systeme.tex`,`Constraints `,cont);
 
