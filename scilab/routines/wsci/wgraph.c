@@ -69,28 +69,28 @@ int C2F (deletewin) (integer * number)
       sciPointObj  *pobj= NULL;
       
       hdl = sciGetpendofhandletab();
-      
-      while (hdl != NULL)
-	{
-	  pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
-	  if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
-	    {
-	      sciSetCurrentFigure(pobj);
-	      /* sciGetScilabXgc (pobj)->CWindow */
-	      /* cur =  sciGetScilabXgc (pobj)->CWindow;*/
-	      /* to force a reset in the graphic scales : COPY from Actions.c line 237 */
-	      /* SwitchWindow(&cur);*/
-	      /*C2F(dr)("xset","window",&(pFIGURE_FEATURE(pobj)->number),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);*/
-	      /*sciDrawObj(pobj);*/
-	      /*sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
-		(pobj));*/
-	      sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
-	      break;
-	      
-	    }
+
+	  if(CurrentScilabXgc != NULL)
+		while (hdl != NULL)
+		{
+		 pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+		 if (sciGetEntityType(pobj) == SCI_FIGURE && sciGetNum(pobj) == CurrentScilabXgc->CurWindow ) /* Adding F.Leray 19.04.04 */
+	      {
+	        sciSetCurrentFigure(pobj);
+	        /* sciGetScilabXgc (pobj)->CWindow */
+	        /* cur =  sciGetScilabXgc (pobj)->CWindow;*/
+	        /* to force a reset in the graphic scales : COPY from Actions.c line 237 */
+	        /* SwitchWindow(&cur);*/
+	        /*C2F(dr)("xset","window",&(pFIGURE_FEATURE(pobj)->number),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);*/
+	        /*sciDrawObj(pobj);*/
+	        /*sciSetSelectedSubWin((sciPointObj *) sciGetSelectedSubWin
+		      (pobj));*/
+	        sciSetCurrentObj(pobj); /* The current object will always be the figure too. */
+	        break;
+		  }
 	  hdl = hdl->pprev;
+		}
 	}
-    }
   
   return (0);
 }
