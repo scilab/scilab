@@ -12,8 +12,6 @@
 #include "../sun/Sun.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 
-extern int  C2F(matdsc) __PARAMS((void));
-extern int  C2F(matdsr) __PARAMS((void));
 extern int  C2F(error) __PARAMS((int *));
 extern void sciprint __PARAMS((char* ,...));
 extern int  Scierror __PARAMS((int iv,char *fmt,...));

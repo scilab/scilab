@@ -67,7 +67,7 @@ extern void    /* 45  */ C2F(intslicot)();
 
 static OpTab Interfaces[] ={
             /* 01  */ {C2F(matold)},
-	    /* 02  */ {C2F(MatdsRC)},
+	    /* 02  */ {C2F(matdsr)},
 	    /* 03  */ {C2F(matold)},
 	    /* 04  */ {C2F(matold)},
 	    /* 05  */ {C2F(matio)},
