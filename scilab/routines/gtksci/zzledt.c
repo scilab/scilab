@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.7 2002/09/02 08:17:58 chanceli Exp $
+ * $Id: zzledt.c,v 1.8 2002/12/12 16:10:13 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.8  2002/12/12 16:10:13  chanceli
+ * update
+ *
  * Revision 1.7  2002/09/02 08:17:58  chanceli
  * readline
  *
@@ -233,6 +236,8 @@ static int sendprompt=1;
 
 #include "x_VTparse.h" 
 extern int groundtable[]; /* character table */ 
+
+int using_readline() { return 0;}
 
 /***********************************************************************
  * line editor

@@ -7,19 +7,42 @@
 #include <stdlib.h> 
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <setjmp.h>
 
 #include "../machine.h" 
 
 #define TRUE 1 
 #define FALSE 0
 static int fd=0;              /* file number for standard in */
-static char Sci_Prompt[10];
-
+static char Sci_Prompt[24];
+static int  use_prompt=1;
+static int hist = 1; /* flag to add to history */
 /***********************************************************************
  * line editor
  **********************************************************************/
 
-static int my_getc (FILE *dummy) { return Xorgetchar();}
+
+/* my_getc just try to get one interactive character typed 
+ * by scilab user while dealing with gtk/tcltk events 
+ * if a soft menu is activated current edited line is aborted and we 
+ * jump to quit readline 
+ */
+
+static jmp_buf my_env;
+
+static int my_getc (FILE *dummy) 
+{ 
+  int i= Xorgetchar();
+  if ( C2F (ismenu) () == 1)
+    { 
+      /* abort current line aquisition*/
+      longjmp(my_env,1);
+      return 0;
+    }
+  return i;
+}
+
+int using_readline() { return 1;}
 
 static void initialize_readline();
 
@@ -31,6 +54,21 @@ static char * dupstr (char *s)
   return (r);
 }
 
+
+int get_one_char(char *prompt) {
+  static char lp[24];
+  char buffer[2];
+  int buf_size=2, len_line, eof;
+  rl_num_chars_to_read = 1;  
+  hist = 0; /* not to be added to history */
+  strcpy(lp,Sci_Prompt);
+  strcpy(Sci_Prompt,prompt); 
+  C2F(zzledt)(buffer,&buf_size,&len_line,&eof,2);
+  strcpy(Sci_Prompt,lp);
+  rl_num_chars_to_read = 0;
+  hist = 1;
+  return buffer[0];
+}
 
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
@@ -67,9 +105,18 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
    }
 
    rl_getc_function = my_getc;
-   line = readline(Sci_Prompt);
 
-   if ( line && *line != '\0') 
+   if ( setjmp(my_env)) {
+     /** return from longjmp **/
+     *eof = -1;
+     use_prompt=0;
+     return;
+   } else {
+     line = readline((use_prompt) ? Sci_Prompt : "" );
+     use_prompt=1;
+   }
+
+   if (hist && line && *line != '\0') 
      add_history (line);
 
    if ( line == NULL) 

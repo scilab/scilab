@@ -58,8 +58,12 @@ void C2F(xscimore)(int *n)
 {
   int n1;
   *n=0;
-  fprintf(stdout,"%s","[More (y or n ) ?] ");
-  n1=Xorgetchar();
+  if ( using_readline() == 1 ) 
+    n1= get_one_char("[More (y or n) ?]");
+  else {
+    fprintf(stdout,"%s","[More (y or n ) ?] ");
+    n1=Xorgetchar();
+  }
   if ( n1 == 110 )  *n=1;
   fprintf(stdout,"\n");
 }
@@ -231,8 +235,7 @@ int  sci_input_char_buffer_count = 0;
 
 /* send string s as if it was typed in scilab window */ 
 
-void write_scilab(s)
-    char   *s;
+void write_scilab(char *s)
 {
   while ( *s != '\0' && sci_input_char_buffer_count < IBSIZE) 
     {
@@ -244,7 +247,7 @@ void write_scilab(s)
 
 /* wait for a character and check for pending events */
 
-int Xorgetchar()
+int Xorgetchar(void)
 {
   int i;
   static int c_count = -1;
@@ -269,7 +272,6 @@ int Xorgetchar()
       max_plus1 = Max(XTKsocket,max_plus1);
 #endif 
       max_plus1++;
-      
     }
   
   for( ; ; ) {
@@ -360,7 +362,7 @@ int Xorgetchar()
  *  xevents must work for scilab and scilab -nw 
  ---------------------------------------------------------------------------*/
 
-int C2F(sxevents)()
+int C2F(sxevents)(void)
 {
   /* check the TK case */ 
 #ifdef WITH_TK

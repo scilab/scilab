@@ -58,10 +58,12 @@ int StoreCommand( char *command)
   /** first check if we have a special handler set for commands **/
   if ( scig_command_handler(command) == 1) return 0;
   /*  if (get_is_reading()) 
-    { 
+      { 
       write_scilab(command);
       return 0;
-      }*/
+      }
+  */
+
   p = (CommandRec *) malloc( sizeof(CommandRec));
   if ( p == (CommandRec *) 0 ) 
     {
@@ -86,15 +88,21 @@ int StoreCommand( char *command)
       q->next = p;
     }
 
+  /* this is important: to quit Xorgetchar */
+     
   if (get_is_reading()) 
-    write_scilab(" ");
+    { 
+      int i;
+      C2F(xscion)(&i);
+      if (i) write_scilab("");
+      }
 
   return(0);
 }
 
 /*---------------------------------------------------------------------------
  * Gets info on the first queue element by copying 
- * command in str and  * remove it from the queue 
+ * command in str and remove it from the queue 
  *---------------------------------------------------------------------------*/
 
 static void get_scilab_command(char *str) 

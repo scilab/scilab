@@ -1057,7 +1057,7 @@ static void sci_menu_stop ()
 {
   int j = SIGINT;
   C2F(sigbas)(&j);
-  if (get_is_reading()) write_scilab("");
+  /* if (get_is_reading()) write_scilab(""); */
 }
 
 /*-----------------------------------------------------------------
