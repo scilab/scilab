@@ -11,7 +11,7 @@ name='imppart_'+stripblanks(name);
 path=pathconvert(stripblanks(path),%t,%t)
 [txt,rpar,ipar]=create_modelica1(blklstm,cmmat,name);
 mputl(txt,path+name+'.mo');
-mprintf("%s",'   Modelica code generated at '+path+name+'.mo\n')
+mprintf('   Modelica code generated at '+path+name+'.mo\n')
 [ok,name1,nx,nin,nout,ng,nm,nz]=compile_modelica(path+name+'.mo');
 
 if ~ok then return,end
