@@ -16,7 +16,7 @@ OBJDUMP =
 STATIC = 
 LN_S = ln -s
 NM = /usr/bin/nm -B
-LDFLAGS = 
+LDFLAGS = $(OTHERLIBS)
 LIBS = -lm 
 
 #******************************************************************* 
