@@ -845,7 +845,7 @@ static void xset_curwin(integer *intnum, integer *v2, integer *v3, integer *v4)
 /* NG beg */
 static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
 {
- figure=(double *)ScilabXgc->mafigure;
+ ScilabXgc->mafigure=(sciPointObj *)figure;
 }
 
 static void xget_scilabFigure(integer *verbose, integer *x,integer *narg, double *figure)
