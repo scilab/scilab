@@ -85,12 +85,21 @@ endfunction
 
 function TK_send_handles_list(h)
 iFig = 0;
-iAxe = 0;
+iAxe = 0; // <=> subwindow in C code
 iAgr = 0;
 iPol = 0;
 iPl3 = 0;
 iFac = 0;
 iRec = 0;
+
+iTex = 0;
+iLeg = 0;
+iArc = 0;
+iSeg = 0;
+iCha = 0; // Champ
+iFec = 0;
+iGra = 0;
+iAxi = 0; // axis : entity created when using drawaxis method for example
 
 f=getparfig(h);
 handles = Get_handles_list(f)
@@ -121,7 +130,7 @@ for i=1:size(handles,1)
     iPl3 = iPl3+1;
     pl3name= "Plot3d("+string(iPl3)+")";
     TK_EvalStr('set '+SelObject+" "+pl3name);
-  case "Fac3d"
+   case "Fac3d"
     iFac = iFac+1;
     Facname= "Fac3d("+string(iFac)+")";
     TK_EvalStr('set '+SelObject+" "+Facname);
@@ -129,10 +138,40 @@ for i=1:size(handles,1)
     iRec = iRec+1;
     Recname= "Rectangle("+string(iRec)+")";
     TK_EvalStr('set '+SelObject+" "+Recname);
-
+   case "Text"
+    iTex = iTex+1;
+    Texname= "Text("+string(iTex)+")";
+    TK_EvalStr('set '+SelObject+" "+Texname);
+   case "Legend"
+    iLeg = iLeg+1;
+    Legname= "Legend("+string(iLeg)+")";
+    TK_EvalStr('set '+SelObject+" "+Legname);
+   case "Arc"
+    iArc = iArc+1;
+    Arcname= "Arc("+string(iArc)+")";
+    TK_EvalStr('set '+SelObject+" "+Arcname);
+   case "Segs"
+    iSeg = iSeg+1;
+    Segname= "Segs("+string(iSeg)+")";
+    TK_EvalStr('set '+SelObject+" "+Segname);
+   case "Champ"
+    iCha = iCha+1;
+    Chaname= "Champ("+string(iCha)+")";
+    TK_EvalStr('set '+SelObject+" "+Chaname);
+   case "Fec"
+    iFec = iFec+1;
+    Fecname= "Fec("+string(iFec)+")";
+    TK_EvalStr('set '+SelObject+" "+Fecname);
+   case "Grayplot"
+    iGra = iGra+1;
+    Graname= "Grayplot("+string(iGra)+")";
+    TK_EvalStr('set '+SelObject+" "+Graname);
+   case "Axis"
+    iAxi = iAxi+1;
+    Axiname= "Axis("+string(iAxi)+")";
+    TK_EvalStr('set '+SelObject+" "+Axiname);
   end
 end
-//TK_SetVar("handle_figure",string(f));
 endfunction
 
 
@@ -204,6 +243,12 @@ endfunction
 
 
 
+function ged_agregation(h)
+  global ged_handle;ged_handle=h;
+  TK_SetVar("curvis",h.visible)
+  TK_EvalFile(SCI+'/tcl/ged/Agregation.tcl')
+endfunction
+
 
 function ged_figure(h)
   global ged_handle;ged_handle=h;
@@ -230,6 +275,39 @@ endfunction
 
 function ged_axes(h)
   global ged_handle;ged_handle=h;
+  TK_SetVar("Lmargins",string(h.margins(1)));
+  TK_SetVar("Rmargins",string(h.margins(2)));
+  TK_SetVar("Tmargins",string(h.margins(3)));
+  TK_SetVar("Bmargins",string(h.margins(4)));
+  ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
+  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
+    h.clip_state='clipgrf';
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    h.clip_state='off';
+   else
+    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TK_SetVar("Xclipbox",string(h.clip_box(1)))
+    TK_SetVar("Yclipbox",string(h.clip_box(2)))
+    TK_SetVar("Wclipbox",string(h.clip_box(3)))
+    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+  end
+  TK_SetVar("curclipstate",h.clip_state);
+  TK_SetVar("curautoclear",h.auto_clear);
+  TK_SetVar("curautoscale",h.auto_scale);
+  //TK_SetVar("curfillmode",h.fill_mode);
+  TK_SetVar("curalpharotation",string(h.rotation_angles(1)))
+  TK_SetVar("curthetarotation",string(h.rotation_angles(2)))
   ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
 	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
 	 "Helvetica Bold" "Helvetica Bold Italic"];
@@ -275,6 +353,8 @@ function ged_axes(h)
   select h.view
     case "2d" 
     h.view='3d'
+    TK_SetVar("old_curalpharotation",string(h.rotation_angles(1)))
+    TK_SetVar("old_curthetarotation",string(h.rotation_angles(2)))
     TK_SetVar("zGrid",string(h.grid(3)))
     TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
     TK_SetVar("dbymin",string(h.data_bounds(1,2)))
@@ -363,6 +443,75 @@ function ged_polyline(h)
       TK_SetVar("nbcol",string(3));
     end
     TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+endfunction
+
+
+function ged_plot3d(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_fac3d(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+endfunction
+
+
+function ged_text(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_legend(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_arc(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_segs(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_champ(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+function ged_fec(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_grayplot(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+endfunction
+
+
+function ged_axis(h)
+  global ged_handle; ged_handle=h
+  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
+  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
 endfunction
 
 
@@ -564,13 +713,35 @@ function tkged()
   select h.type
     case "Polyline"
      ged_polyline(h)
-
     case "Rectangle"
-    ged_rectangle(h)
+     ged_rectangle(h)
     case "Axes"
-    ged_axes(h)
+     ged_axes(h)
     case "Figure"
-    ged_figure(h)
+     ged_figure(h)
+    case "Agregation"
+     ged_agregation(h)
+
+    case "Plot3d"
+     ged_plot3d(h)
+    case "Fac3d"
+     ged_fac3d(h)
+    case "Text"
+     ged_text(h)
+    case "Legend"
+     ged_legend(h)
+    case "Arc"
+     ged_arc(h)
+    case "Segs"
+     ged_segs(h)    
+    case "Champ"
+     ged_champ(h)
+    case "Fec"
+     ged_fec(h)
+    case "Grayplot"
+     ged_grayplot(h)
+    case "Axis"
+     ged_axis(h)
   end
 endfunction
 function setStyle(sty)
