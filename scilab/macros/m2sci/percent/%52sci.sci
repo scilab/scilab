@@ -7,8 +7,10 @@ function [tree]=%52sci(tree)
 // V.C.
 
 A = getoperands(tree)
-A = convert2double(A)
-tree.operands=list(A)
+if and(A.vtype<>[Double,Boolean]) then
+  A = convert2double(A)
+  tree.operands=list(A)
+end
 
 tree.out(1).dims=A.dims
 tree.out(1).type=Type(Boolean,Real)
