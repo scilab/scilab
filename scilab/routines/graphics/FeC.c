@@ -73,6 +73,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
        sciXbasc(); 
        initsubwin();
        sciRedrawFigure();
+	   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 25.02.04
      } 
   
     /*---- Boundaries of the frame ----*/

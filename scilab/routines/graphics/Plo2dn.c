@@ -78,8 +78,9 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
-    initsubwin();
+    initsubwin(); 	// Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04
     sciRedrawFigure();
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  // F.Leray 24.02.04
   } 
   
   /*---- Boundaries of the frame ----*/
@@ -89,7 +90,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   if (sciGetGraphicMode (psubwin)->autoscaling)
   {
-	  sciprint("je suis APRES le if");
+	//  sciprint("je suis APRES le if");
      update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); 
   } 
 
