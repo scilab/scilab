@@ -1,0 +1,174 @@
+; Menu file for Windows Scilab 
+; From the gnuplot version ( Roger Hadgraft, 26-5-92,Russell Lang, 30 Nov 1992)
+; Jean-Philippe Chancelier 1996 / 1997
+; Allan CORNET Juillet 2003
+
+[Menu]
+ &File
+ 	
+        	&New Scilab
+        		[NEWSCILAB]
+ 		--
+ 		&Exec ...
+ 			[EXEC]
+ 	
+ 		&Getf ...
+ 			[GETF]
+ 		--
+ 		&Print Window
+ 			[PRINTWINDOW]	
+ 		--
+ 		&Load ...
+ 			[LOAD]
+ 		&Save ...
+ 			[SAVE]
+ 		--
+ 		&Change Directory
+ 			[CHDIR]
+ 		Ge&t Current Directory 
+			[GETCWD]
+		--
+ 		E&xit
+ 			[EXIT]
+ 	
+ 
+[EndMenu]
+
+[Menu]
+ &Edit
+ 	
+        	&Copy	Ctrl+INS
+			[MCOPY]
+		&Paste	Shift+INS
+			[PASTE]
+		--	
+		[Menu]
+		&History
+			Previous command	Ctrl+P
+				[M_CTRL_P]
+			Next command	Ctrl+N
+				[M_CTRL_N]
+			--
+			Back one character	Ctrl+B
+				[M_CTRL_B]
+			Forward one character	Ctrl+F
+				[M_CTRL_F]
+			--
+			Beginning of the line	Ctrl+A
+				[M_CTRL_A]
+			End of the line	Ctrl+E
+				[M_CTRL_E]
+			--
+			Delete previous character	Ctrl+H
+				[M_CTRL_H]
+			Delete current character	Ctrl+D
+				[M_CTRL_D]
+			Delete last word	Ctrl+W
+				[M_CTRL_W]
+			Delete to end of line	Ctrl+K
+				[M_CTRL_K]
+			Delete entire line	Ctrl+U
+				[M_CTRL_U]
+			--
+			Redraw the line	Ctrl+L
+				[M_CTRL_L]
+		[EndMenu]
+ 	
+ 
+[EndMenu]
+
+[Menu]
+ &Preferences
+ 		[Menu]
+ 			&Language
+ 				&Francais
+ 					[FRENCH]
+ 				&English
+ 					[ENGLISH]
+ 		[EndMenu]
+ 			
+ 		&Toolbar	F3
+				[TOOLBAR]	
+		Choose &Font...
+				[CHOOSETHEFONT]
+        	--
+        	Clear Command Window	F2
+			[CLEARCOMMANDWINDOW]	
+		&Console	F12
+			[CONSOLE]	
+ 		
+ 
+[EndMenu]
+
+[Menu]
+ &Control
+		Re&start
+			[RESTART]
+		&Resume
+			[RESUME]
+		&Abort
+			[ABORT]
+		&Interrupt	Ctrl+C
+			[M_CTRL_C]
+		
+ 	
+ 
+[EndMenu]
+
+[Menu]
+	&Graphic Window 0
+		&Set (Create) Window
+			[SET]
+		&Raise (Create) Window
+			[RAISE]
+		&Delete Graphic Window 
+			[DELETESCIW]
+		&+ (increase current num)
+			[PLUS]
+		&- (decrease current num)
+			[MINUS]
+		--
+		&Clear Current Window
+			[XBASC]
+[EndMenu]
+
+ E&ditor
+        	[SCIPAD]
+        	
+
+[Menu]
+ &Help
+ 	
+       		Scilab He&lp	F1
+			[HELP]
+		--
+		Scilab De&mos
+			[DEMOS]
+		--
+		&Report a bug or a request
+			[BUGZILLA]
+		--
+		Scilab &Web Site
+			[WEB]
+		--
+		Scilab &Newsgroup
+			[NEWSGROUP]
+		--	
+		&About
+			[ABOUT]
+[EndMenu]
+;		E-mail to &Doctor Scilab
+;			[EMAIL]
+;		--
+
+ 	
+ 
+[EndMenu]
+
+[Button]
+
+	Scicos
+		scicos();	
+[Button]
+	Metanet
+		edit_graph();
