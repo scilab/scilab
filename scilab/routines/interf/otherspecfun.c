@@ -22,9 +22,6 @@
 #define max(a,b) ((a) < (b) ? (b) : (a))
 
 
-/* #if WIN32 */
-/* extern int F2C(dxlegf)(); */
-/* #endif */
 
 /* fortran functions headers */
 double F2C(dgamma)(double *);
