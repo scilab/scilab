@@ -165,7 +165,7 @@ c
       l0=l1
       ifmt=iw(ldef)
       sgn=' '
-      if(a.lt.0.0d+0) sgn='-'
+      if(a.lt.0.0d+0.and.typ.ne.-2) sgn='-'
       a=abs(a)
 c
       cw(l1:l1+1)=' '//sgn
