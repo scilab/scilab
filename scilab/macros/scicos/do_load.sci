@@ -82,24 +82,30 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 	ft=modulo(%cpr.sim.funtyp(jj),10000)
 	if ft>999 then
 	  funam=%cpr.sim.funs(jj)
-	  //regenerate systematically dynamically linked blocks for safety
-	  [a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
-	  qqq=%cpr.corinv(jj)
-	  path=list('objs',qqq(1))
-	  for kkk=qqq(2:$)
-	    path($+1)='model'
-	    path($+1)='rpar'
-	    path($+1)='objs'
-	    path($+1)=kkk
-	  end
+	  //regenerate systematically dynamically linked blocks forsafety 
+	  //[a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
+	  //should be better than 
+	  //"if  ~c_link(funam) then" 
+	  //but ulink remove .so files and Makefile doesnt depends on .so file...
+	  if ~c_link(funam) then
 
-	  path($+1)='graphics';path($+1)='exprs';path($+1)=2;
-	  tt=scs_m(path)
-	  if ft>1999 then
-	    [ok]=scicos_block_link(funam,tt,'c')
-	  else
-	    [ok]=scicos_block_link(funam,tt,'f')
-	  end 
+	    qqq=%cpr.corinv(jj)
+	    path=list('objs',qqq(1))
+	    for kkk=qqq(2:$)
+	      path($+1)='model'
+	      path($+1)='rpar'
+	      path($+1)='objs'
+	      path($+1)=kkk
+	    end
+
+	    path($+1)='graphics';path($+1)='exprs';path($+1)=2;
+	    tt=scs_m(path)
+	    if ft>1999 then
+	      [ok]=scicos_block_link(funam,tt,'c')
+	    else
+	      [ok]=scicos_block_link(funam,tt,'f')
+	    end 
+	  end
 	end
       end
     end
