@@ -120,7 +120,7 @@ if grep(args,'scilex')<>[] then
     end
     if with_tk() then
 	delmenu("Editor")
-      if ~MSDOS then addmenu("Editor",list(2,"scipad")),end
+      if ~MSDOS then addmenu("Editor",list(2,"scipad();")),end
     end
   end
 end
