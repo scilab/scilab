@@ -298,6 +298,7 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabExec(JNIEnv *env , jclass cl, j
 /********************************************************************************************************/
 static void Initialize() 
 {
+  static env[1024];
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
@@ -346,7 +347,8 @@ static void Initialize()
 		set_sci_env(p1,NULL);
 	}
   #else
-    setenv("SCI",SCI,1);
+   sprintf (env, "%s=%s", "SCI",SCI);
+   putenv (env);
   #endif
 
   /* Scilab Initialization */
@@ -363,7 +365,7 @@ static void Initialize()
   /* Initialisation fenetre graphique */
   #if WIN32
     InitWindowGraphDll();
-	start_sci_gtk() ;
+    start_sci_gtk() ;
   #endif
 
   /* Chargement de Scilab.star */
