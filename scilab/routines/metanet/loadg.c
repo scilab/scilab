@@ -1,5 +1,5 @@
 #include <stdio.h>
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
 #ifdef __FreeBSD__
 #include <sys/types.h>
 #endif
@@ -12,7 +12,7 @@
 #include <malloc.h>
 #endif
 
-#if (defined __MSC__) || (defined __ABSC__)
+#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
 /** only used for x=dir[1024] **/
 #ifndef __ABSC__
 #define  getwd(x) _getcwd(x,1024)
@@ -71,7 +71,7 @@ int *ndim,*ma;
   return;
   #else  **/
   FILE *fg;
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
   DIR *dirp;
 #endif
   char fname[2 * MAXNAM];
@@ -85,7 +85,7 @@ int *ndim,*ma;
   char **lar;
 
   path[*lpath] = '\0';
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
   if ((dirp=opendir(path)) != NULL) {
     sprintf(description,"\"%s\" is a directory",path);
     cerro(description);
@@ -95,7 +95,7 @@ int *ndim,*ma;
 #endif
   if (dirname(path) == NULL) getwd(dir);
   else strcpy(dir,dirname(path));
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) &&! (defined __MINGW32__)
   if ((dirp=opendir(dir)) == NULL) {
     sprintf(description,"Directory \"%s\" does not exist",dir);
     cerro(description);
@@ -113,7 +113,7 @@ int *ndim,*ma;
     return;
   }
   strcpy(*name,pname);
-#if !(defined __MSC__) && !(defined __ABSC__)
+#if !(defined __MSC__) && !(defined __ABSC__) && !(defined __MINGW32__)
   if(!CheckGraphName(*name,dir)) {
     sprintf(description,"Graph file \"%s/%s.graph\" does not exist",dir,*name);
     cerro(description);

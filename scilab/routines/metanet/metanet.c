@@ -20,7 +20,7 @@
 #include "../libcomm/libCom.h"
 #include "netcomm.h"
 
-#if (defined __MSC__) || (defined __ABSC__)
+#if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
 /** gethostname exists metanet not implemented in windows **/
 /**void gethostname(char *str,int len) { 
   strncpy(str,"BUG",len);
