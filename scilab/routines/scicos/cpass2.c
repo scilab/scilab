@@ -92,8 +92,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
       *ok=false;
       return 0;
     }
-  adjust_inout(*bllst2,*bllst3,*bllst2ptr,*bllst3ptr,*connectmat,ok,*corinvec,*corinvptr,nblk1);
-  if (!*ok) return 0;
+  
   mini_extract_info(*bllst2,bllst4,*bllst10,*bllst12,*bllst2ptr,*bllst3ptr,bllst4ptr,*connectmat,
 		    *clkconnect,inplnk,outlnk,&typ_l,&typ_r,&typ_m,&tblock,&typ_cons,ok);
  
@@ -151,12 +150,16 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
   free(typ_m);
   free(*inplnk);
   free(*outlnk);
-  extract_info(*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst13,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
+  extract_info(*bllst2,*bllst3,*bllst5,*bllst10,*bllst11,*bllst12,*bllst13,*bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst5ptr,
                *bllst11ptr,*connectmat,*clkconnect,lnkptr,inplnk,outlnk,&typ_z,
 	       &typ_s,&typ_m,&initexe,&bexe,&boptr,&blnk,&blptr,ok,*corinvec,*corinvptr);
   free(typ_m);
   typ_m=NULL;
-  if(!(*ok)) return 0;
+  if(!(*ok)) 
+    {
+      Message("Problem in port size.");
+      return 0;
+    }
   if(!OR(*typ_x) && OR(typ_z) )
     {
       Message("For using treshold, You need a DUMMY CLSS block.");
@@ -1880,7 +1883,7 @@ void *discard(int* bllst5ptr,int* clkconnect,int* exe_cons,int** ordptr1,int** e
 
 /* ======================================= endfunction discard =============================================== */
 /* *************************************** function extract_info ******************************************** */
-int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
+int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,int* clkconnect,
 		 int** lnkptr,int** inplnk,int** outlnk,int** typ_z,int** typ_s,int** typ_m,double** initexe,
 		 int** bexe,int** boptr,int** blnk,int** blptr,int* ok,int* corinvec,int* corinvptr)
@@ -2076,6 +2079,9 @@ int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bll
       free(idl);idl=NULL;
     }
   free(ppget);ppget=NULL;
+  
+  adjust_inout(bllst2,bllst3,bllst2ptr,bllst3ptr,connectmat,ok,corinvec,corinvptr,nbl);
+  
   nlnk=connectmat[0]/4;
   if (((*inplnk)=(int*)calloc(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL ) return 0;
   (*inplnk)[0]=bllst2ptr[bllst2ptr[0]]-1;
@@ -2381,13 +2387,13 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 {
   int hhjj,j,hh,jj,nout,nin,findflag,mini1,mini2;
   int *wwi,*ww,*nww,*ind,*ind1,*wwi1,a,ninnout,*nww1;
-  double k;
-  int kint;
+  double k,k1;
+  int kint,prt_out,prt_in;
   wwi=ww=nww=ind=ind1=wwi1=nww1=NULL;
   
-  for (hhjj=1;hhjj<nblk1+1;hhjj++)
+  for (hhjj=1;hhjj<nblk1+2;hhjj++)
     {
-      for (hh=1;hh<nblk1+1;hh++)
+      for (hh=1;hh<nblk1+2;hh++)
         {
           *ok=true;
           for (jj=1;jj<connectmat[0]/4+1;jj++)
@@ -2402,9 +2408,15 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 		{
                   if (nin != nout)
                     {
-		      Message("Warning: Bad_connection is detected");
+		      ind1=GetPartVect(corinvec,corinvptr[connectmat[jj]],corinvptr[connectmat[jj]+1]-corinvptr[connectmat[jj]]);
+		      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
+		      prt_out=connectmat[jj+connectmat[0]/4];
+		      prt_in=connectmat[jj+3*connectmat[0]/4];
+		      badconnection(ind1,prt_out,nout,ind,prt_in,nin);
 		      *ok=false;
-                      return 0;
+		      if(ind1) free (ind1); 
+		      if(ind) free (ind); 
+		      return 0;
                     }
                 } /* fin de if 1 */
               else if (nout>0 && nin<0)
@@ -2543,8 +2555,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    }
 			  else
 			    {
-			      Message("Warning: Bad_connection is detected");
+			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
+			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      ind1[0]=1;
+			      ind1[1]=-1;
+			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
+			      if(ind) free (ind); 
+			      if(ind1) free (ind1);
 			      return 0;
 			      }
 			}
@@ -2581,7 +2599,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    {
 			      nww1[j]=ww[ind1[j]];
 			    }
-			  k=(nout-Sum(nww1))/nww[0];
+			  k1=nout-Sum(nww1);
+			  k=k1/nww[0];
 			  kint=(int) k;
 			  free(nww1);
 			  free(ind1);
@@ -2598,8 +2617,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    }
 			  else
 			    {
-			      Message("Warning: Bad_connection is detected");
+			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj+connectmat[0]/2]],corinvptr[connectmat[jj+connectmat[0]/2]+1]-corinvptr[connectmat[jj+connectmat[0]/2]]);
+			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      ind1[0]=1;
+			      ind1[1]=-1;
+			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
+			      if(ind) free (ind); 
+			      if(ind1) free (ind1);
 			      return 0; 
 			    }
 			}
@@ -2631,8 +2656,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    }
 			  else
 			      {
-				Message("Warning: Bad_connection is detected");
+				ind=GetPartVect(corinvec,corinvptr[connectmat[jj]],corinvptr[connectmat[jj]+1]-corinvptr[connectmat[jj]]);
+				if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+				ind1[0]=1;
+				ind1[1]=-1;
+				badconnection(ind,0,0,ind1,0,0);
 				*ok=false;
+				if(ind) free (ind); 
+				if(ind1) free (ind1);
 				return 0;
 			      }
 			}
@@ -2670,7 +2701,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			      nww1[j]=ww[ind1[j]];
 			    }
 			  free(ind1);
-			  k=(nout-Sum(nww1))/nww[0];
+			  k1=nout-Sum(nww1);
+			  k=k1/nww[0];
 			  free(nww1);
 			  kint=(int)k;
 			  if (k==(double) kint)
@@ -2686,8 +2718,14 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 			    }
 			  else
 			    {
-			      Message("Warning: Bad_connection is detected");
+			      ind=GetPartVect(corinvec,corinvptr[connectmat[jj]],corinvptr[connectmat[jj]+1]-corinvptr[connectmat[jj]]);
+			      if ((ind1=(int*)malloc(sizeof(int)*2)) == NULL ) return 0;
+			      ind1[0]=1;
+			      ind1[1]=-1;
+			      badconnection(ind,0,0,ind1,0,0);
 			      *ok=false;
+			      if(ind) free (ind); 
+			      if(ind1) free (ind1);
 			      return 0;
 			    }
 			}
@@ -2709,7 +2747,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
             } /*fin de for jj */
           if (*ok) return 0;
         } /*  fin de for hh */
-      Message("Not enough information to determinate, I try to find the problem");
+      Message("Not enough information to find port sizes, I try to find the problem");
       findflag=false;
       for (jj=1;jj<connectmat[0]/4+1;jj++)
         {
@@ -2738,7 +2776,6 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 		  *ok=false;
 		  return 0;
 		}
-	      /*modifes*/
 	      wwi=GetPartVect(bllst3,bllst3ptr[connectmat[jj]],bllst3ptr[connectmat[jj]+1]-bllst3ptr[connectmat[jj]]);
 	      ww=FindEg(wwi,nout);
 	      for (j=1;j<ww[0]+1;j++)

@@ -97,7 +97,8 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
 					  connectmat,clkconnect)
 
-  if ~ok then 
+  if ~ok then
+     message('Problem in port size');
     cpr=list()
     return,
   end
@@ -659,7 +660,6 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 	  typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
 	  bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
 						 connectmat,clkconnect)
-
   ok=%t
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
@@ -828,7 +828,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     n=j-outptr(m)+1
     nm=bllst(m).out(n)
     if nm<1 then 
-      pause
+      //pause
       under_connection(corinv(m),n,nm,-1,0,0),ok=%f,return,end
     siz_unco=maxi(siz_unco,nm)
   end
@@ -915,8 +915,8 @@ endfunction
 
 function [ok,bllst]=adjust_inout(bllst,connectmat)
   nlnk=size(connectmat,1)
-  for hhjj=1:length(bllst)
-    for hh=1:length(bllst)
+  for hhjj=1:length(bllst)+1
+    for hh=1:length(bllst)+1
       ok=%t
       for jj=1:nlnk
 	nout=bllst(connectmat(jj,1)).out(connectmat(jj,2))
@@ -956,7 +956,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	      if sum(ww)==nout then
 		bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
 	      else
-		bad_connection(corinv(connectmat(jj,3)))
+		bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -965,13 +965,15 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	    end
 	  else      
 	    nww=ww(find(ww<0))
+
 	    if norm(nww-nww(1),1)==0 & nout>0 then
 	      bllst(connectmat(jj,3)).in(connectmat(jj,4))=nout
 	      k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+
 	      if k==int(k) then
 		bllst(connectmat(jj,3)).out(find(ww<0))=k
 	      else
-		bad_connection(corinv(connectmat(jj,3)))
+		bad_connection(corinv(connectmat(jj,3)),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -986,7 +988,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	      if sum(ww)==nin then
 		bllst(connectmat(jj,1)).out(connectmat(jj,2))=nin
 	      else
-		bad_connection(corinv(connectmat(jj,1)))
+		bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -1001,7 +1003,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	      if k==int(k) then
 		bllst(connectmat(jj,1)).in(find(ww<0))=k
 	      else
-		bad_connection(corinv(connectmat(jj,1)))
+		bad_connection(corinv(connectmat(jj,1)),0,0,-1,0,0)
 		ok=%f;return
 	      end
 	    else
@@ -1016,7 +1018,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
       end
       if ok then return, end
     end
-    message(['Not enough information to determine port sizes';
+    message(['Not enough information to find port sizes';
 	     'I try to find the problem']);  
     findflag=%f
     for jj=1:nlnk
@@ -1050,6 +1052,7 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	//bllst(connectmat(jj,3)).in(connectmat(jj,4))=ninnout
       end
     end
+
     if ~findflag then 
       message(['I cannot find a link with undetermined size';
 	       'My guess is that you have a block with unconnected';
@@ -1064,6 +1067,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // path_out : Path of the "from block" in scs_m
 // path_in  : Path of the "to block" in scs_m
 //!
+
 if path_in==-1 then
   hilite_obj(scs_m.objs(path_out));
   message(['One of this block''s outputs has negative size';
@@ -1076,8 +1080,10 @@ end
 lp=mini(size(path_out,'*'),size(path_in,'*'))
 k=find(path_out(1:lp)<>path_in(1:lp))
 path=path_out(1:k(1)-1) // common superbloc path
-path_out=path_out(k(1)) // "from" block number
-path_in=path_in(k(1))   // "to" block number
+if (k <> []) then
+  path_out=path_out(k(1)) // "from" block number
+  path_in=path_in(k(1))   // "to" block number
+end
 if isdef('Code_gene_run') then
   mxwin=maxi(winsid())
   path=path+1 // Consider locally compiled superblock as a superblock
@@ -1089,7 +1095,7 @@ if isdef('Code_gene_run') then
   hilite_obj(scs_m.objs(path_out))
   if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
   ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-      'with  sizes that cannot be determiend by the context';
+      'with  sizes that cannot be determined by the context';
       'what is the size of this link'],'1'))
   for k=size(path,'*'):-1:1,xdel(mxwin+k),end
   scs_m=null()
@@ -1100,7 +1106,7 @@ else
     if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     
     ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	'with  sizes that cannot be determiend by the context';
+	'with  sizes that cannot be determined by the context';
 	'what is the size of this link'],'1'))
     hilite_obj(scs_m.objs(path_out))
     if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
@@ -1114,7 +1120,7 @@ else
     hilite_obj(scs_m.objs(path_out))
     if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
-	'with  sizes that cannot be determiend by the context';
+	'with  sizes that cannot be determined by the context';
 	'what is the size of this link'],'1'))
     for k=size(path,'*'):-1:1,xdel(mxwin+k),end
     scs_m=null()

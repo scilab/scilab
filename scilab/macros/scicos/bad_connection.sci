@@ -4,6 +4,14 @@ function bad_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // path_in  : Path of the "to block" in scs_m
 //!
 // Copyright INRIA
+
+if path_in==-1 then
+  hilite_obj(scs_m.objs(path_out));
+  message(['Hilited block has connected ports ';
+	'with  incompatible sizes'])
+  hilite_obj(scs_m.objs(path_out));
+  return;
+end
 [lhs,rhs]=argn(0)
 if rhs==6 then  //two connected blocks
   lp=mini(size(path_out,'*'),size(path_in,'*'))
@@ -42,9 +50,7 @@ if rhs==6 then  //two connected blocks
 else // connected links do not verify block contraints
   if rhs==2 then 
     mess=prt_out;
-  else
-    mess=['Hilited block has connected ports ';
-	'with  incompatible sizes']
+  
   end
   path=path_out(1:$-1) // superbloc path
   path_out=path_out($) //  block number
