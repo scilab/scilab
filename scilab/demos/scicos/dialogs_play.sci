@@ -136,7 +136,7 @@ function rep=message(comment,btns)
   end
 endfunction
 
-function str=dialog(labels,valueini) 
+function rep=dialog(labels,valueini) 
 // Copyright INRIA
   if argn(2)==1 then
     rep=x_dialog(labels) 

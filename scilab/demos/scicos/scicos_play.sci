@@ -37,7 +37,11 @@ names=[
     'do_view';
     'getlink';
     'prt_align';
-    'cosclick';]
+    'cosclick';
+    'SaveasInterfFunc_'
+    'do_addnew'
+    'do_export'
+    'do_load' ]
 for k=1:size(names,'r')
   getf(get_function_path(names(k)))
 end
