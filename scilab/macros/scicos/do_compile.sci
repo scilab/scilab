@@ -48,7 +48,15 @@ if size(connectmat,2)==6 then connectmat=connectmat(:,[1 2 4 5]),end
 scs_m=null()
 if ~ok then %cpr=list(),enablemenus(),return,end
 
+//newc_pass2 destroys the corinv component associated
+//to the modelica blocks preserve it
+clast=corinv($)
+if type(clast)==15 then corinv($)=clast(1),klast=size(corinv),end
 %cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv);
+//newc_pass2 destroys the corinv component associated
+//to the modelica blocks
+if type(clast)==15 then %cpr.corinv(klast)=clast,end
+
 //%cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 
 if %cpr==list() then ok=%f,end 
