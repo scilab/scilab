@@ -5874,30 +5874,30 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
-      if (realloc
+      /*      if (realloc
 	  (	(sciGetFontContext(pobj))->pfontname,
 		n * sizeof (char)) == NULL)
 	return -1;
       strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname, n);
-      (sciGetFontContext(pobj))->fontnamelen = n;
+      (sciGetFontContext(pobj))->fontnamelen = n;*/
       break;
     case SCI_TITLE:
-      if (realloc
+       /*if (realloc
 	  (	(sciGetFontContext(pobj))->pfontname,
 		n * sizeof (char)) == NULL)
 	return -1;
       strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname,
 		n);
-      (sciGetFontContext(pobj))->fontnamelen = n;
+      (sciGetFontContext(pobj))->fontnamelen = n;*/
       break;
     case SCI_LEGEND:
-      if (realloc
+      /*if (realloc
 	  (	(sciGetFontContext(pobj))->pfontname,
 		n * sizeof (char)) == NULL)
 	return -1;
       strncpy (	(sciGetFontContext(pobj))->pfontname, pfontname,
 		n);
-      (sciGetFontContext(pobj))->fontnamelen = n;
+		(sciGetFontContext(pobj))->fontnamelen = n;*/
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -6322,8 +6322,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontstrikeout   = FALSE;	/*d'utilisation sur les differents OS */
       (sciGetFontContext(pobj))->textorientation = 0;
       /**/
-      /* unknown function initfontname "Win-stand"!! */
-      /*(sciGetFontContext(pobj))->fontnamelen = strlen (inifontname);  */
+      sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       if (((sciGetFontContext(pobj))->pfontname =
 	   calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 		   sizeof (char))) == NULL)
@@ -6344,6 +6343,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*     (sciGetFontContext(pobj))->fontnamelen =lstrlen (inifontname);*/    
       if (
@@ -6366,6 +6366,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*     (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);     */
       if (
@@ -6389,6 +6390,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*(sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
       if (
@@ -6407,6 +6409,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname); */
       if (
@@ -6429,6 +6432,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*      (sciGetFontContext(pobj))->fontnamelen = lstrlen (inifontname);  */
       if (
@@ -6451,6 +6455,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*(sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);   */
       if (
@@ -6474,6 +6479,7 @@ sciInitFontContext (sciPointObj * pobj)
       (sciGetFontContext(pobj))->fontunderline = FALSE;
       (sciGetFontContext(pobj))->fontstrikeout = FALSE;
       (sciGetFontContext(pobj))->textorientation = 0;
+      (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
       /* Unknown Function "WIN" */
       /*     (sciGetFontContext(pobj))->fontnamelen =	lstrlen (inifontname);*/
       if (
@@ -9972,20 +9978,32 @@ sciDrawObj (sciPointObj * pobj)
 	  for ( i =0 ; i <n ; i++) {
 	    xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
 	    ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);} 
+#ifdef WIN32 
+	  SetWinhdc ();
+#endif
 	  if (pSEGS_FEATURE (pobj)->arrowsize == 0)
 	    C2F(dr)("xsegs","v",xm,ym,&n,pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag,
 		    PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  else 
 	    C2F(dr1)("xarrow","v",pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag
 		     ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
+#ifdef WIN32 
+      ReleaseWinHdc ();
+#endif 
 	}
       else
         {
+#ifdef WIN32 
+	  SetWinhdc ();
+#endif
         C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
         if (uc)
 	  C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 	else
 	  C2F(dr)("xget","line style",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+#ifdef WIN32 
+      ReleaseWinHdc ();
+#endif 
 	n=2*(pSEGS_FEATURE (pobj)->Nbr1)*(pSEGS_FEATURE (pobj)->Nbr2); 
 	xm = graphic_alloc(0,n,sizeof(int));
 	ym = graphic_alloc(1,n,sizeof(int));
@@ -10006,11 +10024,18 @@ sciDrawObj (sciPointObj * pobj)
            pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,pSEGS_FEATURE (pobj)->vfx,
            pSEGS_FEATURE (pobj)->vfy,&(pSEGS_FEATURE (pobj)->Nbr1),
            &(pSEGS_FEATURE (pobj)->Nbr2),&(pSEGS_FEATURE (pobj)->parfact));
+#ifdef WIN32 
+	SetWinhdc ();
+#endif
 	if ( pSEGS_FEATURE (pobj)->pcolored ==0) 
           C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,&sflag,&dv,&dv,&dv,&dv,0L,0L); 
 	else
 	  C2F(dr)("xarrow","v",xm,ym,&na,&arssize,zm,(sflag=1,&sflag),&dv,&dv,&dv,&dv,0L,0L);   
+#ifdef WIN32 
+      ReleaseWinHdc ();
+#endif 
         }  
+
       sciUnClip(sciGetIsClipping(pobj));
       break;
     case SCI_GRAYPLOT:  
