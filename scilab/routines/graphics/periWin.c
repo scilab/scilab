@@ -860,7 +860,7 @@ void C2F(xclick_any_old)(char *str,integer *ibutton,integer* x1,integer * yy1,
 /* used by xclick_any and xclick */ 
 
 extern But SciClickInfo; /* for xclick and xclick_any */
-extern void set_wait_click(val); 
+extern void set_wait_click(int val); 
 /*-----------------------------------------------------------------------------------*/
 void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		     integer *iwin,integer *iflag,integer *istr,

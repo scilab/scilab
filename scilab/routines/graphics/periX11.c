@@ -449,6 +449,13 @@ static void set_client_message_on() { client_message=1;};
 static void set_client_message_off() { client_message=0;};
 int get_xclick_client_message_flag () { return client_message;}
 
+typedef struct but {
+  int win,x,y,ibutton,motion,release;
+} But;
+But SciClickInfo; /* for xclick and xclick_any */
+
+extern But SciClickInfo; /* for xclick and xclick_any */
+extern void set_wait_click(int val); 
 
 void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, integer *iwin, integer *iflag, integer *istr, double *dv1, double *dv2, double *dv3, double *dv4)
 {
@@ -488,104 +495,44 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
   if ( *iflag ==0 )  ClearClickQueue(-1);
 
   /* ignore the first event if it is a ClientMessage */ 
+  set_wait_click(1);
 
   set_client_message_on();
   while (buttons == 0) {
+    C2F(sxevents)();
     wincount =  GetWinsMaxId()+1;
-    if ( wincount == 0) 
-      {
-	*istr = *x1= *yy1 = *iwin = 0;
-	*ibutton = -100;
-	set_client_message_off();
-	return ;
-      }
-#ifdef WITH_TK
-    flushTKEvents(); 
-#endif
-
-    if (XPending(dpy) > 0) {
-      XNextEvent (dpy, &event);
-      
-      switch ( event.type )
-	{
-	case  KeyPress :
-	  if ((nowin = GraphicWinEvent(&event,wincount,0)) == -1 ) 
-	    {
-	      XtDispatchEvent(&event);
-	    }
-	  else 
-	    {
-	      char buf[100];
-	      int cent=100;
-	      *x1=event.xkey.x;
-	      *yy1=event.xkey.y;
-	      XLookupString((XKeyEvent *)&(event.xkey), buf, 
-			    cent, &keysym,&compose_status);
-	      /** sciprint("keycode=%d\r\n",event.xkey.keycode); **/
-	      *ibutton=(int)keysym;
-	      *iwin= nowin;
-	      *istr = 0;
-	      buttons++;  /* to quit the while */
-	    }
-	  break;
-	case ButtonPress: 
-	  if ((nowin = GraphicWinEvent(&event,wincount,0)) == -1 ) 
-	    {
-	      XtDispatchEvent(&event);
-	    }
-	  else 
-	    {
-	      *x1=event.xbutton.x;
-	      *yy1=event.xbutton.y;
-	      *ibutton=event.xbutton.button-1;
-	      *iwin= nowin;
-	      *istr = 0;
-	      buttons++;
-	    }
-	  break;
-	case ClientMessage:
-	  if (IswmDeleteWindow(&event) && (nowin = GraphicWinEvent(&event,wincount,1)) != -1  )
-	    {
-	      *x1= *yy1 = *istr = 0;
-	      *iwin= nowin ;
-	      *ibutton = -100;
-	      buttons++;
-	      XtDispatchEvent(&event);
-	    } 
-	  else if ( (nowin = IsCloseSGWindow(&event)) != -1 )
-	    {
-	      *x1= *yy1 = *istr = 0;
-	      *iwin= nowin ;
-	      *ibutton = -100;
-	      buttons++;
-	      /** No need to dispatch XtDispatchEvent(&event); **/
-	    }
-	  else 
-	    {
-	      XtDispatchEvent(&event);
-	    }
-	  break;
-	default :
-	  XtDispatchEvent(&event);
-	}
-
-      /** Check menu activation **/
-      if ( *istr==1 && C2F(ismenu)()==1 ) 
-	{
-	  int entry;
-	  C2F(getmen)(str,&lstr,&entry);
-	  *ibutton = -2;
-	  *istr=lstr;
-	  *x1=0;
-	  *yy1=0;
-	  *iwin=-1;
-	  break;
-	}
+    if ( wincount == 0) {
+      *istr = *x1= *yy1 = *iwin = 0;
+      *ibutton = -100;
+      break;
+    }
+   /** Check menu activation **/
+    if ( *istr==1 && C2F(ismenu)()==1 ) {
+      int entry;
+      C2F(getmen)(str,&lstr,&entry);
+      *ibutton = -2;
+      *istr=lstr;
+      *x1=0;
+      *yy1=0;
+      *iwin=-1;
+      break;
+    }
+     /** Check for click events **/
+    if ( SciClickInfo.win != -1 &&
+	 SciClickInfo.motion == 0 && 
+	 SciClickInfo.release== 0 ) {
+      *iwin =  SciClickInfo.win;
+      *x1   =  SciClickInfo.x;
+      *yy1  =  SciClickInfo.y;
+      *ibutton = SciClickInfo.ibutton;
+      if (*istr==1) *istr = 0;
+      break;
     }
     /* to slow down event loop not to use all cpu when nothing happen*/
     delay.tv_sec = 0; delay.tv_usec = 10;
     select(0, 0, 0, 0, &delay);
   }
+  set_wait_click(0);
   set_client_message_off();
 
   /** Cleanup **/
@@ -648,72 +595,53 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
       *ibutton = -100;     return;
     }
   win = ScilabXgc->CurWindow;
-  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
-    {
-      return;
-    }
+  if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1)  return;
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
 
   XDefineCursor(dpy, ScilabXgc->CWindow ,crosscursor);
+  set_wait_click(1);
   while (buttons == 0) 
     {
+      C2F(sxevents)();
       /** maybe someone decided to destroy scilab Graphic window **/
       if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
 	{
 	  *ibutton = -100;
 	  return;
 	}
-#ifdef WITH_TK
-      flushTKEvents();
-#endif
-
-      if (XPending(dpy) > 0) {
-	XNextEvent (dpy, &event); 
-
-
-	if ( event.xany.window == ScilabXgc->CWindow 
-	     && event.type ==  ButtonPress ) 
-	  {
-	    *x1=event.xbutton.x;
-	    *yy1=event.xbutton.y;
-	    *ibutton=event.xbutton.button-1;
-	    buttons++;
-	  }
-	else if ( getrelease == 1 
-		  &&event.xany.window == ScilabXgc->CWindow 
-		  && event.type ==  ButtonRelease ) 
-	  {
-	    *x1=event.xbutton.x;
-	    *yy1=event.xbutton.y;
-	    *ibutton = event.xbutton.button-6;
-	    buttons++;
-
-	  }
-	else if ( getmouse == 1 
-		  &&event.xany.window == ScilabXgc->CWindow 
-		  && event.type ==  MotionNotify ) 
-	  {
-	    *x1=event.xbutton.x;
-	    *yy1=event.xbutton.y;
-	    *ibutton = -1;
-	    buttons++;
-	  }
-	else      
-	  XtDispatchEvent(&event);
-
-	if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) 
-	  {
-	    int entry;
-	    C2F(getmen)(str,lstr,&entry);
-	    *ibutton = -2;
-	    *x1=0;
-	    *yy1=0;
-	    break;
-	  }
+      if ( dyn_men == 1 &&  C2F(ismenu)()==1 ) {
+	int entry;
+	C2F(getmen)(str,lstr,&entry);
+	*ibutton = -2;
+	*x1=0;
+	*yy1=0;
+	break;
       }
+      if ( SciClickInfo.win == win ) {
+	if ((SciClickInfo.motion == 1) && (getmouse == 1)) {
+	  *x1   =  SciClickInfo.x;
+	  *yy1  =  SciClickInfo.y;
+	  *ibutton = SciClickInfo.ibutton;
+	  break;
+	}
+	if ((SciClickInfo.release == 1) && (getrelease == 1)){
+	  *x1   =  SciClickInfo.x;
+	  *yy1  =  SciClickInfo.y;
+	  *ibutton = SciClickInfo.ibutton;
+	  break;
+	}
+	if ( SciClickInfo.motion == 0 && SciClickInfo.release ==0 ) {
+	  *x1   =  SciClickInfo.x;
+	  *yy1  =  SciClickInfo.y;
+	  *ibutton = SciClickInfo.ibutton;
+	  break;
+	}
+      }
+
       /* to slow down event loop not to use all cpu when nothing happen*/
       select(0, 0, 0, 0, &delay);
     }
+  set_wait_click(0);
   if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
     XDefineCursor(dpy, ScilabXgc->CWindow ,arrowcursor);
   XSync (dpy, 0);

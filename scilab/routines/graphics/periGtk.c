@@ -19,6 +19,7 @@
 #include "bcg.h"
 #include "../version.h"
 #include "color.h"
+#include "Events.h"
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
 extern integer C2F(ismenu)();
@@ -430,14 +431,10 @@ static gint key_press_event (GtkWidget *widget, GdkEventKey *event, BCG *gc)
   return TRUE;
 }
 
-static int sci_graphic_protect = 0;
-
-void   set_delete_win_mode(void) {  sci_graphic_protect = 0 ;}
-extern void   set_no_delete_win_mode(void) {  sci_graphic_protect = 1 ;}
 
 static gboolean sci_destroy_window (GtkWidget *widget, GdkEventKey *event,  BCG *gc)
 {
-  if (  sci_graphic_protect == 1 )
+  if (  get_delete_win_mode() == 1 )
     {
       wininfo("Cannot destroy window while acquiring zoom rectangle ");
       return TRUE;

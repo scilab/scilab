@@ -22,20 +22,6 @@ extern int  Scierror  __PARAMS((int iv,char *fmt,...));
 
 /*  "jpc_SGraph-n.c.X1"*/
 
-extern void  reset_scig_handler __PARAMS((void));
-extern void  reset_scig_click_handler __PARAMS((void));
-extern void  reset_scig_deletegwin_handler __PARAMS((void));
-
-typedef int (*Scig_click_handler) __PARAMS((int,int,int,int,int,int));
-extern Scig_click_handler set_scig_click_handler __PARAMS((Scig_click_handler f));
-
-typedef void (*Scig_deletegwin_handler) __PARAMS((int));
-extern Scig_deletegwin_handler set_scig_deletegwin_handler __PARAMS((Scig_deletegwin_handler f));
-
-
-extern int PushClickQueue __PARAMS((int,int ,int y,int ibut,int m,int r));
-extern int CheckClickQueue  __PARAMS((integer *,integer *x, integer *y, integer *ibut));  
-extern int ClearClickQueue  __PARAMS((integer));  
 
 extern int C2F (deletewin) __PARAMS((integer *number));  
 extern void SGDeleteWindow  __PARAMS((Widget w, XEvent *event, String *params, Cardinal *num_params));  
