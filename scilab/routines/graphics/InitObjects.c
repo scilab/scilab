@@ -1468,6 +1468,7 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   integer i , m, n;
   integer x[2], verbose=0, narg=0; 
   struct BCG *XGC=NULL;
+  int succeed = 0;
   
 
   if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */
@@ -1483,8 +1484,14 @@ int ResetFigureToDefaultValues(sciPointObj * pobj)
   n=3;
   m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
   /* try to install the colormap in the graphic context */
-  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,
+  C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,
 	 pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+
+  if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
+    sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
+    return -1;
+  }
+  
   if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (XGC->Numcolors * n * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pobj);

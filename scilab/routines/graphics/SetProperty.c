@@ -126,8 +126,13 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
     if ((cmap = (double *)MALLOC (m*n*sizeof(double))) == (double *) NULL) {
       if (pobj != pfiguremdl) {
 	sciSetCurrentFigure ( pobj);
-	C2F(dr)("xset","colormap",&old_m,&n,PI0,PI0,PI0,PI0,
+	C2F(dr)("xset","colormap",&old_m,&n,&succeed,PI0,PI0,PI0,
 		pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap,PD0,PD0,PD0,0L,0L);
+	
+	  if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
+		sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
+	    return -1;
+	  }
 	sciSetCurrentFigure (pcurwin);
       }
       sciprint ("Not enough memory available for colormap, previous one kept\n");
