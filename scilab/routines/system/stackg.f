@@ -51,6 +51,7 @@ c
 c     
 c     set environnement where variable is searched
       cbot=bot
+
       if(fin.eq.-3.and.(macr.ne.0.or.paus.ne.0)) then
          k=lpt(1)-(13+nsiz)
          last=lin(k+5)-1
@@ -169,12 +170,28 @@ c     copy the variable at the top of the stack
       if(istk(ilk).lt.0) then
 c     if indirect variable copy the variable pointed by
          k=istk(ilk+2)
+         if(k.eq.0) then
+c     .     indirection to a list entry
+
+            top = top+1
+            lt=lstk(top)
+            is=istk(ilk+3)
+            err=lt+is-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call dcopy(is,stk(istk(ilk+1)),1,stk(lt),1)
+            lstk(top+1)=lstk(top)+is
+            infstk(top)=0
+            goto 27
+         endif
       endif
  25   top = top+1
       if (.not.vcopyobj(' ',k,top)) return
       infstk(top)=infstk(k)
       if(infstk(top).ne.2) infstk(top)=0
-      call putid(idstk(1,top),id)
+ 27   call putid(idstk(1,top),id)
       go to 99
 c     
  31   continue
