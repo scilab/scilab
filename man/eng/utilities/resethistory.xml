@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>resethistory</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>17-July-2004</DATE>
+
+  <SHORT_DESCRIPTION name="resethistory">Deletes all entries in the scilab
+  history.</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>resethistory()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>Deletes all entries in the current scilab history.</P>
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>savehistory</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>loadhistory</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
