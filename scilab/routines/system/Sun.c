@@ -42,7 +42,6 @@ Sun_contents(x)
       strwidth();
       RemoveInterf();
       SciLibLoad();
-      ShowInterf();
       C2F(addinter)();
       C2F(userlk)();
       HelpActivate();

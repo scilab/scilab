@@ -2,7 +2,7 @@
      $                   LDT, U, LDU, G, LDG, Q, LDQ, X, LDX, SEP,
      $                   RCOND, FERR, IWORK, DWORK, LDWORK, INFO )
 C
-C     RELEASE 3.0, WGS COPYRIGHT 1999.
+C     RELEASE 4.0, WGS COPYRIGHT 1999.
 C
 C     PURPOSE
 C
