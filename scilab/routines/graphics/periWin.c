@@ -464,7 +464,9 @@ void C2F(show)( integer *v1, integer *v2, integer *v3, integer *v4)
 	      ScilabXgc->hdcCompat,0,0,SRCCOPY);
       /* ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,SRCCOPY); */
       ReleaseDC(ScilabXgc->CWindow,hdc1);
+	  RefreshGraphToolBar(ScilabXgc);
     }
+
 }
 /*-----------------------------------------------------------------------------------*/
 
