@@ -34,7 +34,7 @@ BLOCKS_CODE=intcos.obj coselm.obj \
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
 	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj \
-	blocks.obj
+	blocks.obj 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
 	readau.obj plusblk.obj
@@ -44,7 +44,7 @@ OBJSF=sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj scicos.obj cosini.obj 
 	list2vars.obj dtosci.obj itosci.obj scitoi.obj scitod.obj vvtosci.obj \
 	scitovv.obj cosiord.obj $(BLOCKS_CODE)
 
-OBJSC=callf.obj import.obj sciblk2.obj simblk.obj grblk.obj realtime.obj $(BLOCKSC)
+OBJSC=callf.obj import.obj sciblk2.obj simblk.obj grblk.obj realtime.obj intrealtime.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 

@@ -691,7 +691,7 @@ c
       logical putlhsvar,checkrhs,checklhs
       character*(nlgh) fname
 c
-      goto (1,2,3,4,5) fin 
+      goto (1,2,3,4,5,6,7) fin 
       return
  1    call intsscicos
       return
@@ -717,6 +717,14 @@ c     [r1,r2,ok]=tree4(vec,outoin,outoinptr,dep_ut,typ_r)
       if(.not.checklhs(fname,2,2)) return
       if(.not.checkrhs(fname,5,5)) return
       call intree4(fname)
+      goto 9988
+ 6    continue
+      fname='realtimeinit'
+      call intsrealtimeinit(fname)
+      goto 9988
+ 7    continue
+      fname='realtime'
+      call intsrealtime(fname) 
       goto 9988
  9988 if(.not.putlhsvar())return
       end

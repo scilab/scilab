@@ -31,7 +31,7 @@ BLOCKS_CODE=intcos.o coselm.o \
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
 	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
-	blocks.o
+	blocks.o 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	readau.o plusblk.o
@@ -41,7 +41,7 @@ OBJSF=sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o cosini.o cossim.o cosen
 	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
 	scitovv.o cosiord.o $(BLOCKS_CODE)
 
-OBJSC=callf.o import.o sciblk2.o simblk.o grblk.o realtime.o $(BLOCKSC)
+OBJSC=callf.o import.o sciblk2.o simblk.o grblk.o realtime.o intrealtime.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
