@@ -1,72 +1,59 @@
 /* Copyright INRIA */
-#include "../machine.h"
+
+
+#include "nsp/math.h"
+#include "nsp/machine.h"
 #include <string.h>
 #include "import.h"
 
-extern  int C2F(cvstr)  __PARAMS((integer *,integer *,char *,integer *,unsigned long int));
-
 extern struct {
-  integer kfun;
+  int kfun;
 } C2F(curblk);
 
 
-
 ScicosImport  scicos_imp={
-(double *) NULL,   /* x */
-(integer *) NULL,  /* xptr */
-(integer *) NULL,  /* zcptr */
-(double *) NULL,   /* z */
-(integer *) NULL,  /* zptr */
-(integer *) NULL,   /* mod */
-(integer *) NULL,  /* modptr */
-(integer *) NULL,  /* iz */
-(integer *) NULL,  /* izptr */
-
-(integer *) NULL,  /* inpptr */
-(integer *) NULL,  /* inplnk */
-(integer *) NULL,  /* outptr */
-(integer *) NULL,  /* outlnk */
-(integer *) NULL,  /* lnkptr */
-0,                 /* nlnkptr */
-(double *) NULL,   /* rpar */
-(integer *) NULL,  /* rpptr */
-(integer *) NULL,  /* ipar */
-(integer *) NULL,  /* ipptr */
-0,                 /* nblk */
-(double *) NULL,   /* outtb */
-0,                 /* nout */
-(integer *) NULL,  /* subs */
-0,                 /* nsubs */
-(double *) NULL,   /* tevts */
-(integer *) NULL,  /* evtspt */
-0,                 /* nevts */
-0,                 /* pointi */
-(integer *) NULL,  /* oord */
-(integer *) NULL,  /* zord */
-(integer *) NULL,  /* funptr */
-(integer *) NULL,   /* funtyp */
-(integer *) NULL,   /* ztyp */
-(integer *) NULL,   /* cord */
-(integer *) NULL,   /* ordclk */
-(integer *) NULL,   /* clkptr */
-(integer *) NULL,   /* ordptr */
-(integer *) NULL,   /* critev */
-(integer *) NULL,    /* iwa */
+  (double *) NULL,   /* x */
+  (int *) NULL,  /* xptr */
+  (int *) NULL,  /* zcptr */
+  (double *) NULL,   /* z */
+  (int *) NULL,  /* zptr */
+  (int *) NULL,   /* mod */
+  (int *) NULL,  /* modptr */
+  (char **) NULL,  /* iz XXX jpc */
+  (char **) NULL,  /* izptr XXX jpc*/
+  (int *) NULL,  /* inpptr */
+  (int *) NULL,  /* inplnk */
+  (int *) NULL,  /* outptr */
+  (int *) NULL,  /* outlnk */
+  (int *) NULL,  /* lnkptr */
+  0,                 /* nlnkptr */
+  (double *) NULL,   /* rpar */
+  (int *) NULL,  /* rpptr */
+  (int *) NULL,  /* ipar */
+  (int *) NULL,  /* ipptr */
+  0,                 /* nblk */
+  (double *) NULL,   /* outtb */
+  0,                 /* nout */
+  (int *) NULL,  /* subs */
+  0,                 /* nsubs */
+  (double *) NULL,   /* tevts */
+  (int *) NULL,  /* evtspt */
+  0,                 /* nevts */
+  0,                 /* pointi */
+  (int *) NULL,  /* oord */
+  (int *) NULL,  /* zord */
+  (int *) NULL,  /* funptr */
+  (int *) NULL,   /* funtyp */
+  (int *) NULL,   /* ztyp */
+  (int *) NULL,   /* cord */
+  (int *) NULL,   /* ordclk */
+  (int *) NULL,   /* clkptr */
+  (int *) NULL,   /* ordptr */
+  (int *) NULL,   /* critev */
+  (int *) NULL,    /* iwa */
 };
 
-void  
-C2F(makescicosimport)(x,xptr,zcptr,z,zptr,mod,modptr,iz,izptr,
-     inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
-     rpar,rpptr,ipar,ipptr,nblk,outtb,nout,subs,nsubs,
-     tevts,evtspt,nevts,pointi,oord,zord,
-     funptr,funtyp,ztyp,cord,ordclk,clkptr,ordptr,critev,iwa)
-     
-double *x ,*z,*outtb,*rpar,*tevts;
-integer *xptr,*zcptr,*zptr,*iz,*izptr,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr;
-integer *nlnkptr,*rpptr,*ipar,*ipptr,*nblk,*nout,*subs,*nsubs;
-integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk;
-integer *clkptr,*ordptr,*critev, *iwa, *mod,*modptr;
-     
+void  scicos_makescicosimport(double *x, int *xptr, int *zcptr, double *z, int *zptr, int *mod, int *modptr, char **iz, char **izptr, int *inpptr, int *inplnk, int *outptr, int *outlnk, int *lnkptr, int *nlnkptr, double *rpar, int *rpptr, int *ipar, int *ipptr, int *nblk, double *outtb, int *nout, int *subs, int *nsubs, double *tevts, int *evtspt, int *nevts, int *pointi, int *oord, int *zord, int *funptr, int *funtyp, int *ztyp, int *cord, int *ordclk, int *clkptr, int *ordptr, int *critev, int *iwa)
 {
     scicos_imp.x=x;
     scicos_imp.xptr=xptr;
@@ -116,182 +103,163 @@ integer *clkptr,*ordptr,*critev, *iwa, *mod,*modptr;
     scicos_imp.iwa=iwa;
 }
 
-void
-C2F(clearscicosimport)()
+void scicos_clearscicosimport(void)
 {
-    scicos_imp.x=(double *) NULL;
-    scicos_imp.xptr=(integer *) NULL;
-    scicos_imp.zcptr=(integer *) NULL;
-    scicos_imp.z=(double *) NULL;
-    scicos_imp.zptr=(integer *) NULL;
-    scicos_imp.mod=(integer *) NULL;
-    scicos_imp.modptr=(integer *) NULL;
-    scicos_imp.iz=(integer *) NULL;
-    scicos_imp.izptr=(integer *) NULL;
-
-    scicos_imp.inpptr=(integer *) NULL;
-    scicos_imp.inplnk=(integer *) NULL;
-    scicos_imp.outptr=(integer *) NULL;
-    scicos_imp.outlnk=(integer *) NULL;
-    scicos_imp.lnkptr=(integer *) NULL;
-    scicos_imp.nlnkptr=0;
-
-    scicos_imp.rpar=(double *) NULL;
-    scicos_imp.rpptr=(integer *) NULL;
-    scicos_imp.ipar=(integer *) NULL;
-    scicos_imp.ipptr=(integer *) NULL;
-    scicos_imp.nblk=0;
-    scicos_imp.outtb=(double *) NULL;
-    scicos_imp.nout=0;
-
-    scicos_imp.subs=(integer *) NULL;
-    scicos_imp.nsubs=0;
-    scicos_imp.tevts=(double *) NULL;
-    scicos_imp.evtspt=(integer *) NULL;
-    scicos_imp.nevts=0;
-    scicos_imp.pointi=0;
-
-    scicos_imp.oord=(integer *) NULL;
-    scicos_imp.zord=(integer *) NULL;
-
-    scicos_imp.funptr=(integer *) NULL;
-    scicos_imp.funtyp=(integer *) NULL;
-
-    scicos_imp.ztyp=(integer *) NULL;
-    scicos_imp.cord=(integer *) NULL;
-    scicos_imp.ordclk=(integer *) NULL;
-    scicos_imp.clkptr=(integer *) NULL;
-    scicos_imp.ordptr=(integer *) NULL;
-    scicos_imp.critev=(integer *) NULL;
-
-    scicos_imp.iwa=(integer *) NULL;
+  scicos_imp.x=(double *) NULL;
+  scicos_imp.xptr=(int *) NULL;
+  scicos_imp.zcptr=(int *) NULL;
+  scicos_imp.z=(double *) NULL;
+  scicos_imp.zptr=(int *) NULL;
+  scicos_imp.mod=(int *) NULL;
+  scicos_imp.modptr=(int *) NULL;
+  scicos_imp.iz= NULL;
+  scicos_imp.izptr= NULL;
+  scicos_imp.inpptr=(int *) NULL;
+  scicos_imp.inplnk=(int *) NULL;
+  scicos_imp.outptr=(int *) NULL;
+  scicos_imp.outlnk=(int *) NULL;
+  scicos_imp.lnkptr=(int *) NULL;
+  scicos_imp.nlnkptr=0;
+  scicos_imp.rpar=(double *) NULL;
+  scicos_imp.rpptr=(int *) NULL;
+  scicos_imp.ipar=(int *) NULL;
+  scicos_imp.ipptr=(int *) NULL;
+  scicos_imp.nblk=0;
+  scicos_imp.outtb=(double *) NULL;
+  scicos_imp.nout=0;
+  scicos_imp.subs=(int *) NULL;
+  scicos_imp.nsubs=0;
+  scicos_imp.tevts=(double *) NULL;
+  scicos_imp.evtspt=(int *) NULL;
+  scicos_imp.nevts=0;
+  scicos_imp.pointi=0;
+  scicos_imp.oord=(int *) NULL;
+  scicos_imp.zord=(int *) NULL;
+  scicos_imp.funptr=(int *) NULL;
+  scicos_imp.funtyp=(int *) NULL;
+  scicos_imp.ztyp=(int *) NULL;
+  scicos_imp.cord=(int *) NULL;
+  scicos_imp.ordclk=(int *) NULL;
+  scicos_imp.clkptr=(int *) NULL;
+  scicos_imp.ordptr=(int *) NULL;
+  scicos_imp.critev=(int *) NULL;
+  scicos_imp.iwa=(int *) NULL;
 }
 
-integer  
-C2F(getscicosvars)(what,v,nv,type)
-integer *what;  /* data structure selection */
-double **v;    /* Pointer to the beginning of the imported data */
-integer *nv;   /* size of the imported data */
-integer *type ;/* type of the imported data 0:integer,1:double */
-{
-    int nblk;
+/* 
+ * data structure selection 
+ * Pointer to the beginning of the imported data 
+ * nv,   size of the imported data 
+ * type  type of the imported data 0:int,1:double 
+ */
 
-    if (scicos_imp.x==(double *)NULL){
-	*v=(void *) NULL;
-	return(2); /* undefined import table scicos is not running */
+int  scicos_getscicosvars(int *what, double **v, int *nv, int *type)
+{
+  int nblk;
+  if (scicos_imp.x == NULL)
+    {
+      *v= NULL;
+      return(2); /* undefined import table scicos is not running */
     }
-    nblk=scicos_imp.nblk;
-    /* imported from */
-    switch (*what) {
+  nblk=scicos_imp.nblk;
+  /* imported from */
+  switch (*what) 
+    {
     case 1 :			/* continuous state */
-	*nv=(integer) (scicos_imp.xptr[nblk]-scicos_imp.xptr[0]);
-        *v=(void *)(scicos_imp.x);
-	*type=1;
-	break;
+      *nv=(int) (scicos_imp.xptr[nblk]-scicos_imp.xptr[0]);
+      *v=(void *)(scicos_imp.x);
+      *type=1;
+      break;
     case 2 :			/* continuous state splitting array*/
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.xptr);
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.xptr);
+      *type=0;
+      break;
     case 3 :			/* continuous state splitting array*/
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.zcptr);
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.zcptr);
+      *type=0;
+      break;
     case 4 :			/* discrete state */
-	*nv=(integer)(scicos_imp.zptr[nblk]-scicos_imp.zptr[0]);
-	*v=(void *) (scicos_imp.z);
-	*type=1;
-	break;
+      *nv=(int)(scicos_imp.zptr[nblk]-scicos_imp.zptr[0]);
+      *v=(void *) (scicos_imp.z);
+      *type=1;
+      break;
     case 5 :			/* discrete  state splitting array*/
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.zptr);
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.zptr);
+      *type=0;
+      break;
     case 6 :			/* rpar */
-	*nv=(integer)(scicos_imp.rpptr[nblk]-scicos_imp.rpptr[0]);
-	*v=(void *) (scicos_imp.rpar);
-	*type=1;
-	break;
+      *nv=(int)(scicos_imp.rpptr[nblk]-scicos_imp.rpptr[0]);
+      *v=(void *) (scicos_imp.rpar);
+      *type=1;
+      break;
     case 7 :			/* rpar  splitting array*/
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.rpptr);
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.rpptr);
+      *type=0;
+      break;
     case 8 :			/* ipar */
-	*nv=(integer)(scicos_imp.ipptr[nblk]-scicos_imp.ipptr[0]);
-	*v=(void *) (scicos_imp.ipar);
-	*type=0;
-	break;
+      *nv=(int)(scicos_imp.ipptr[nblk]-scicos_imp.ipptr[0]);
+      *v=(void *) (scicos_imp.ipar);
+      *type=0;
+      break;
     case 9 :			/* ipar  splitting array*/
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.ipptr);
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.ipptr);
+      *type=0;
+      break;
     case 10 :			/* outtb */
-	*nv=(integer)(scicos_imp.nout);
-	*v=(void *) (scicos_imp.outtb);
-	*type=1;
-	break;
+      *nv=(int)(scicos_imp.nout);
+      *v=(void *) (scicos_imp.outtb);
+      *type=1;
+      break;
     case 11 :                   /* inpptr */
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.inpptr); 
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.inpptr); 
+      *type=0;
+      break;
     case 12 :                   /* outptr */
-	*nv=(integer)(nblk+1);
-	*v=(void *) (scicos_imp.outptr); 
-	*type=0;
-	break;
+      *nv=(int)(nblk+1);
+      *v=(void *) (scicos_imp.outptr); 
+      *type=0;
+      break;
     case 13 :                   /* inplnk */
-	*nv=(integer)(scicos_imp.inpptr[nblk]-scicos_imp.inpptr[0]); 
-	*v=(void *) (scicos_imp.inplnk); 
-	*type=0;
-	break;
+      *nv=(int)(scicos_imp.inpptr[nblk]-scicos_imp.inpptr[0]); 
+      *v=(void *) (scicos_imp.inplnk); 
+      *type=0;
+      break;
     case 14 :                   /* outlnk */
-	*nv=(integer)(scicos_imp.outptr[nblk]-scicos_imp.outptr[0]); 
-	*v=(void *) (scicos_imp.outlnk); 
-	*type=0;
-	break;
+      *nv=(int)(scicos_imp.outptr[nblk]-scicos_imp.outptr[0]); 
+      *v=(void *) (scicos_imp.outlnk); 
+      *type=0;
+      break;
     case 15 :                   /* lnkptr */
-	*nv=(integer)(scicos_imp.nlnkptr);
-	*v=(void *) (scicos_imp.lnkptr); 
-	*type=0;
-	break;
+      *nv=(int)(scicos_imp.nlnkptr);
+      *v=(void *) (scicos_imp.lnkptr); 
+      *type=0;
+      break;
     }
-    return(0);
+  return(0);
 }
-void 
-C2F(getlabel)(kfun,label,n)
-integer *n, *kfun;  /* length of the label 
-                       as input n gives the max length expected*/
-char *label;    
-{
-    int k;
-    int job=1;
 
-    k= *kfun;
-    if (*n>(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1])){
-      *n=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
-    }
-    if (*n>0 )
-	F2C(cvstr)(n,&(scicos_imp.iz[scicos_imp.izptr[k-1]-1]),label,&job,*n);
+
+void  scicos_getlabel(int *kfun,char **label)
+{
+  *label = scicos_imp.izptr[*kfun];
 }
-void 
-C2F(getblockbylabel)(kfun,label,n)
-integer *n, *kfun;  /* length of the label */
-char **label;    
+
+
+int scicos_getblockbylabel(int *kfun,const char *label) 
 {
-    int k,i,i0,nblk,n1;
-    int job=0;
-    int lab[40];
-
-    nblk=(integer)(scicos_imp.nblk);
-    F2C(cvstr)(n,lab,*label,&job,*n);
-
-    *kfun=0;
-    for (k=0;k<nblk;k++) {
-      n1=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
+  int k,nblk;
+  nblk=(int)(scicos_imp.nblk);
+  *kfun=0;
+  for ( k=0 ; k < nblk ; k++) 
+    {
+      /* FIXME: j'y comprends rien 
+      n1=(int)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
       if (n1==*n) {
 	i0=scicos_imp.izptr[k-1]-1;
 	i=0;
@@ -299,70 +267,52 @@ char **label;
 	if (i==n1) {
 	  *kfun=k+1;
 	  return;
+	  }
 	}
-      }
+      */
     }
+  return FAIL;
 }
-integer
-C2F(getsciblockbylabel)(kfun,label,n)
-integer *n, *kfun;  /* length of the label */
-integer label[];    
-{
-    int k,i,i0,nblk,n1;
-    if (scicos_imp.x==(double *)NULL){
-	return(2); /* undefined import table scicos is not running */
-    }
-    nblk=(integer)(scicos_imp.nblk);
 
-    *kfun=0;
-    for (k=0;k<nblk;k++) {
-      n1=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
-      if (n1==*n) {
-	i0=scicos_imp.izptr[k-1]-1;
-	i=0;
-	while ((label[i]==scicos_imp.iz[i0+i])&(i<n1)) i++;
-	if (i==n1) {
+int scicos_getsciblockbylabel(int *kfun,const char *label) 
+{
+  int k,nblk;
+  if (scicos_imp.x==(double *)NULL){
+    return FAIL;
+  }
+  nblk=(int)(scicos_imp.nblk);
+  *kfun=0;
+  for( k=0 ; k < nblk ; k++) 
+    {
+      if (strcmp(scicos_imp.izptr[k],label)==0) 
+	{
 	  *kfun=k+1;
-	  return 0;
+	  return OK;
+	  break;
 	}
-      }
     }
-    return 0;
+  return FAIL;
 }
 
-integer
-C2F(getscilabel)(kfun,label,n)
-integer *n, *kfun;  /* length of the label */
-integer label[];    
+int scicos_getscilabel(int *kfun,char **label)
 {
-    int k,i;
-    integer *u,*y;
-
-    if (scicos_imp.x==(double *)NULL){
-	return(2); /* undefined import table scicos is not running */
+  if (scicos_imp.x==(double *)NULL) 
+    {
+      return FAIL; /* undefined import table scicos is not running */
     }
-    k= *kfun;
-    *n=(integer)(scicos_imp.izptr[k]-scicos_imp.izptr[k-1]);
-    if (*n>0 ) {
-	u=(integer *)&(scicos_imp.iz[scicos_imp.izptr[k-1]-1]);
-	y=label;
-	for (i=0;i<*n;i++)
-	    *(y++)=*(u++);  
-	}
-    return(0);
+  *label = scicos_imp.izptr[*kfun];
+  return OK;
 }
 
-integer C2F(getcurblock)()
+int scicos_getcurblock(void)
 {
-return(C2F(curblk).kfun);
-    }
+  return(C2F(curblk).kfun);
+}
 
-void 
-C2F(getouttb)(nsize,nvec,outtc)
-integer *nsize,*nvec;
-double *outtc;
+
+void scicos_getouttb(int *nsize,int *nvec, double *outtc)
 {
-  integer i;
+  int i;
   for (i=0;i<*nsize;i++)
     outtc[i]=(double)scicos_imp.outtb[nvec[i]-1];  
 }

@@ -41,9 +41,9 @@ static void Invd(double* Vect);
 extern int Message(char* code);
 extern int badconnection(int* path_out,int prt_out,int nout,int* path_in,int prt_in,int nin);
 extern int connection(int* path_out,int* path_in);
-extern void sciprint __PARAMS((char *fmt, ...));  
-extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
-				  char *type,char *iord));
+extern void sciprint (char *fmt, ...);  
+extern int C2F(gsort) (int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
+		       char *type,char *iord);
 
 typedef struct 
 {

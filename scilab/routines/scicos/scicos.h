@@ -1,5 +1,6 @@
 #ifndef __SCICOS_H 
 #define __SCICOS_H 
+
 #include "scicos_block.h"
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
@@ -11,20 +12,20 @@ of type 0 */
 /* common for ? */
 
 extern struct {
-  integer ptr;
+  int ptr;
 } C2F(scsptr);
 
 /* scicos common for debug */
 
 extern struct {
-    integer idb;
+    int idb;
 } C2F(dbcos);
 
 typedef void (*voidf)();
 
 /* Blocks prototypes */
-#define I integer
-#define IP integer*
+#define I int
+#define IP int*
 #define DP double*
 #define DPP double**
 #define DB scicos_block*
@@ -58,15 +59,15 @@ typedef void (*voidf)();
 #define ARGS_scicos4 DB, I
 
 
-typedef void (*ScicosFm1) __PARAMS((ARGS_scicosm1));
-typedef void (*ScicosF0) __PARAMS((ARGS_scicos0));
-typedef void (*ScicosF) __PARAMS((ARGS_scicos));
-typedef void (*ScicosF2) __PARAMS((ARGS_scicos2));
-typedef void (*ScicosF2z) __PARAMS((ARGS_scicos2z));
-typedef void (*ScicosFi) __PARAMS((ARGS_scicosi));
-typedef void (*ScicosFi2) __PARAMS((ARGS_scicosi2));
-typedef void (*ScicosFi2z) __PARAMS((ARGS_scicosi2z));
-typedef void (*ScicosF4) __PARAMS((ARGS_scicos4));
+typedef void (*ScicosFm1) (ARGS_scicosm1);
+typedef void (*ScicosF0) (ARGS_scicos0);
+typedef void (*ScicosF) (ARGS_scicos);
+typedef void (*ScicosF2) (ARGS_scicos2);
+typedef void (*ScicosF2z) (ARGS_scicos2z);
+typedef void (*ScicosFi) (ARGS_scicosi);
+typedef void (*ScicosFi2) (ARGS_scicosi2);
+typedef void (*ScicosFi2z) (ARGS_scicosi2z);
+typedef void (*ScicosF4) (ARGS_scicos4);
 
 typedef  struct  {
   char *name;

@@ -1,8 +1,7 @@
-
 #include <stdlib.h> 
 #include <string.h>
-#include "../machine.h"
-#include "../sun/link.h"
+#include "nsp/machine.h"
+#include "../system/link.h"
 #include "scicos.h"
 #include "import.h"
 #include "blocks.h"
@@ -40,22 +39,22 @@ void cosend(double *);
 void cdoit(double *);
 void doit(double *);
 void ddoit(double *);
-void edoit(double *,integer *);
+void edoit(double *,int *);
 void odoit(double *,double *,double *,double *);
-void ozdoit(double *,double *,double *,integer *);
+void ozdoit(double *,double *,double *,int *);
 void zdoit(double *,double *,double *,double *);
-void reinitdoit(double *,integer *);
+void reinitdoit(double *,int *);
 void cossimdaskr(double *);
 void cossim(double *);
-void callf(double *, double *, double *, double *,double *,integer *);
-int C2F(simblk)(integer *, double *, double *, double *);
-int C2F(simblkdaskr)(double *, double *, double *, integer *, double *, integer *, double *, integer *);
-int C2F(grblk)(integer *, double *, double *, integer *, double *);
-int C2F(grblkdaskr)(integer *, double *, double *, double *, integer *, double *, double *, integer *);
-void addevs(double ,integer *,integer *);
-void putevs(double *,integer *,integer *);
-void free_blocks();
-int setmode(double *,double *,double *,integer *,double);
+void callf(double *, double *, double *, double *,double *,int *);
+int C2F(simblk)(int *, double *, double *, double *);
+int C2F(simblkdaskr)(double *, double *, double *, int *, double *, int *, double *, int *);
+int C2F(grblk)(int *, double *, double *, int *, double *);
+int C2F(grblkdaskr)(int *, double *, double *, double *, int *, double *, double *, int *);
+void addevs(double ,int *,int *);
+void putevs(double *,int *,int *);
+void free_blocks(void);
+int setmode(double *,double *,double *,int *,double);
 
 
 IMPORT struct {
@@ -70,39 +69,39 @@ struct {
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
-extern void  GetDynFunc();
+extern void  GetDynFunc(int, void (**) (/* ??? */));
 extern void  sciprint();
 extern void  C2F(iislink)();
 
 
-extern  integer C2F(cvstr)();
-extern  integer C2F(dset)();
-extern  integer C2F(dcopy)();
-extern  integer C2F(iset)();
-extern  integer C2F(realtime)();
-extern  integer C2F(realtimeinit)();
-extern  integer C2F(sxevents)();
-extern  integer C2F(stimer)();
-extern  integer C2F(xscion)();
-extern  integer C2F(ddaskr)();
-extern  integer C2F(lsodar2)();
+extern  int C2F(cvstr)();
+extern  int C2F(dset)();
+extern  int C2F(dcopy)();
+extern  int C2F(iset)();
+extern  int C2F(realtime)();
+extern  int C2F(realtimeinit)();
+extern  int C2F(sxevents)();
+extern  int C2F(stimer)();
+extern  int C2F(xscion)();
+extern  int C2F(ddaskr)();
+extern  int C2F(lsodar2)();
 
 ScicosImport  scicos_imp;
 
-static integer nblk, nordptr, nout, ng, ncord, noord, nzord,niord,
+static int nblk, nordptr, nout, ng, ncord, noord, nzord,niord,
   nclock,nordclk,niord,nmod;
 
-static integer *neq;
+static int *neq;
 
 static  double Atol, rtol, ttol, deltat,hmax;
-static integer hot;
+static int hot;
 
 extern struct {
-  integer iero;
+  int iero;
 } C2F(ierode);
 
 extern  struct {
-  integer kfun;
+  int kfun;
 } C2F(curblk);
 
 struct {
@@ -110,45 +109,43 @@ struct {
 }  C2F(rtfactor);
 
 extern struct {
-  integer halt;
+  int halt;
 }  C2F(coshlt);
 
 /* Table of constant values */
 
-static integer c__90 = 90;
-static integer c__0 = 0;
-static integer c__91 = 91;
+static int c__90 = 90;
+static int c__0 = 0;
+static int c__91 = 91;
 static double c_b14 = 0.;
-static integer c__1 = 1;
-static integer panj=5;
+static int c__1 = 1;
+static int panj=5;
 
-static integer *iwa;
+static int *iwa;
 
-static integer *xptr,*modptr, *evtspt;
-static integer  *funtyp, *inpptr, *outptr, *inplnk, *outlnk, *lnkptr;
-static integer *clkptr, *ordptr, *ordclk, *cord, 
-  *iord, *oord,  *zord,  *critev,  *zcptr;
-static integer *pointi;
-static integer *ierr;
+static int *xptr,*modptr, *evtspt;
+static int  *funtyp, *inpptr, *outptr, *inplnk, *outlnk, *lnkptr;
+static int *clkptr, *ordptr, *ordclk, *cord,   *iord, *oord,  *zord,  *critev,  *zcptr;
+static int *pointi;
+static int *ierr;
 
 static double *x,*xd,*tevts,*outtb;
-static integer *mod;
+static int *mod;
 static double *t0,*tf,scicos_time;
 
 static scicos_block *Blocks; 
 
-static integer phase;
+static int phase;
 
-integer *pointer_xproperty;
+int *pointer_xproperty;
 
-integer n_pointer_xproperty;
+int n_pointer_xproperty;
 
-static integer *block_error;
+static int *block_error;
 
-void call_debug_scicos(double *, double *, double *, double *,double *,integer
- *,integer,integer,integer);
+void call_debug_scicos(double *, double *, double *, double *,double *,int *,int,int,int);
 
-static integer debug_block;
+static int debug_block;
 
 /* Subroutine */ 
 int C2F(scicos)
@@ -160,35 +157,33 @@ int C2F(scicos)
       flag__, ierr_out)
      double *x_in,*z__;
      void **work;
-     integer *modptr_in;
-     integer *xptr_in;
-     integer *zptr, *iz, *izptr;
+     int *modptr_in;
+     int *xptr_in;
+     int *zptr, *iz, *izptr;
      double *t0_in, *tf_in, *tevts_in;
-     integer *evtspt_in, *nevts, *pointi_in;
+     int *evtspt_in, *nevts, *pointi_in;
      double *outtb_in;
-     integer *nout1, *funptr, *funtyp_in, *inpptr_in, *outptr_in;
-     integer *inplnk_in, *outlnk_in, *lnkptr_in,*nlnkptr;
+     int *nout1, *funptr, *funtyp_in, *inpptr_in, *outptr_in;
+     int *inplnk_in, *outlnk_in, *lnkptr_in,*nlnkptr;
      double *rpar;
-     integer *rpptr, *ipar, *ipptr, *clkptr_in, *ordptr_in, *nordptr1;
-     integer *ordclk_in, *cord_in, *ncord1, *iord_in, *niord1, *oord_in;
-     integer *noord1, *zord_in, *nzord1, *critev_in, *nblk1, *ztyp, *zcptr_in;
-     integer *subscr, *nsubs;
+     int *rpptr, *ipar, *ipptr, *clkptr_in, *ordptr_in, *nordptr1;
+     int *ordclk_in, *cord_in, *ncord1, *iord_in, *niord1, *oord_in;
+     int *noord1, *zord_in, *nzord1, *critev_in, *nblk1, *ztyp, *zcptr_in;
+     int *subscr, *nsubs;
      double *simpar;
-     integer *flag__, *ierr_out;
+     int *flag__, *ierr_out;
 
 {
-  integer i1,kf,lprt,in,out,job=1;
+  int i1,kf,lprt,in,out,job=1;
 
   extern /* Subroutine */ int C2F(msgs)();
-  static integer mxtb, ierr0, kfun0, i, j, k;
+  static int mxtb, ierr0, kfun0, i, j, k;
   extern /* Subroutine */ int C2F(makescicosimport)();
   extern /* Subroutine */ int C2F(getscsmax)();
-  static integer ni, no;
+  static int ni, no;
   extern /* Subroutine */ int C2F(clearscicosimport)();
-  static integer nx, nz;
+  static int nx, nz;
   double *W;
-
-
 
   /*     Copyright INRIA */
   /* iz,izptr are used to pass block labels */
@@ -234,7 +229,7 @@ int C2F(scicos)
   ttol = simpar[3];
   deltat = simpar[4];
   C2F(rtfactor).scale = simpar[5];
-  C2F(cmsolver).solver = (integer) simpar[6];
+  C2F(cmsolver).solver = (int) simpar[6];
   hmax=simpar[7];
 
   nordptr = *nordptr1;
@@ -526,16 +521,16 @@ int C2F(scicos)
   return 0;
 } /* scicos_ */
 
-/* Subroutine */ void cosini(told)
 
-     double *told;
 
+
+/* Subroutine */ void cosini(double *told)
 {
-  static integer flag__;
-  static integer i;
+  static int flag__;
+  static int i;
 
-  static integer kfune;
-  static integer jj;
+  static int kfune;
+  static int jj;
 
   double *W;
   jj=max(ng,nout);
@@ -626,20 +621,19 @@ int C2F(scicos)
   free(W);
 } /* cosini_ */
 
-/* Subroutine */ void idoit(told)
-     double *told;
+/* Subroutine */ void idoit(double *told)
 {
-  static integer flag__;
-  static integer i,jj;
-  static integer ierr1;
-  static integer i2;
+  static int flag__;
+  static int i,jj;
+  static int ierr1;
+  static int i2;
   /*     Copyright INRIA */
 
 
   /* ..   Parameters .. */
   /*     maximum number of clock output for one block */
 
-  /*     neq must contain after #states all integer data for simblk and grblk */
+  /*     neq must contain after #states all int data for simblk and grblk */
   /*     X must contain after state values all real data for simblk and grblk */
   /* Parameter adjustments */
 
@@ -669,7 +663,7 @@ int C2F(scicos)
 	    i=1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	  i=max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	i2 =i+ clkptr[C2F(curblk).kfun] - 1;
@@ -688,34 +682,32 @@ int C2F(scicos)
   }  
 } /* idoit_ */
 
-/* Subroutine */ void cossim(told)
-     double *told;
-     
+/* Subroutine */ void cossim(double *told)
 {
   /* Initialized data */
-  static integer otimer = 0;
+  static int otimer = 0;
   /* System generated locals */
-  integer i3;
+  int i3;
   
   /* Local variables */
-  static integer flag__, jdum;
-  static integer iopt;
+  static int flag__, jdum;
+  static int iopt;
   
-  static integer ierr1;
-  static integer j, k;
+  static int ierr1;
+  static int j, k;
   static double t;
-  static integer itask;
-  static integer jj, jt;
-  static integer istate, ntimer;
+  static int itask;
+  static int jj, jt;
+  static int istate, ntimer;
 
   static double rhotmp;
-  static integer inxsci;
+  static int inxsci;
 
-  static integer kpo, kev;
+  static int kpo, kev;
   
   double *rhot;
-  integer *ihot,niwp,nrwp;
-  integer *jroot,*zcros;
+  int *ihot,niwp,nrwp;
+  int *jroot,*zcros;
 
   double *W;
 
@@ -1026,37 +1018,36 @@ int C2F(scicos)
 
 
 
-/* Subroutine */ void cossimdaskr(told)
-     double *told;
+/* Subroutine */ void cossimdaskr(double *told)
 {
   /* Initialized data */
-  static integer otimer = 0;
+  static int otimer = 0;
   /* System generated locals */
-  integer i3,*ipardummy=NULL;
+  int i3,*ipardummy=NULL;
   double /*d__1,*/*rpardummy=NULL;
 
   /* Local variables */
-  static integer flag__, jdum;
-  static integer info[20];
+  static int flag__, jdum;
+  static int info[20];
 
-  static integer ierr1;
-  static integer j, k;
+  static int ierr1;
+  static int j, k;
   static double t;
-  static integer jj, jt;
-  static integer istate, ntimer;
+  static int jj, jt;
+  static int istate, ntimer;
   static double rhotmp;
-  static integer inxsci;
-  static integer kpo, kev;
+  static int inxsci;
+  static int kpo, kev;
 
   double *rhot;
-  integer *ihot,niwp,nrwp;
-  integer *jroot,*zcros;
-  integer maxord;
-  integer *scicos_xproperty;
+  int *ihot,niwp,nrwp;
+  int *jroot,*zcros;
+  int maxord;
+  int *scicos_xproperty;
 
   double *W;
-  integer *Mode_save;
-  integer Mode_change;
+  int *Mode_save;
+  int Mode_change;
 
   maxord = 5;
   nrwp = max(maxord + 4,7) * (*neq) + 60 + (*neq)*(*neq) + ng * 3;
@@ -1484,13 +1475,12 @@ int C2F(scicos)
 
 
 
-/* Subroutine */ void cosend(told)
-     double *told;
+/* Subroutine */ void cosend(double *told)
 {
   /* Local variables */
-  static integer flag__;
+  static int flag__;
 
-  static integer kfune;
+  static int kfune;
 
   /* Function Body */
   *ierr = 0;
@@ -1513,17 +1503,16 @@ int C2F(scicos)
   }
 } /* cosend_ */
 
-/* Subroutine */ void doit(told)
-     double *told;
+/* Subroutine */ void doit(double *told)
 {
   /* System generated locals */
-  integer i,i2;
+  int i,i2;
 
   /* Local variables */
-  static integer flag__, nord;
+  static int flag__, nord;
 
-  static integer ierr1;
-  integer ii, kever;
+  static int ierr1;
+  int ii, kever;
 
   /* Function Body */
   kever = *pointi;
@@ -1559,7 +1548,7 @@ int C2F(scicos)
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 
-	  i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	  i=max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
@@ -1578,16 +1567,15 @@ int C2F(scicos)
   }
 } /* doit_ */
 
-/* Subroutine */ void cdoit(told)
-     double *told;
+/* Subroutine */ void cdoit(double *told)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__;
-  static integer ierr1;
-  static integer i,jj;
+  static int flag__;
+  static int ierr1;
+  static int i,jj;
   
   /* Function Body */
   for (jj = 1; jj <= ncord; ++jj) {
@@ -1613,7 +1601,7 @@ int C2F(scicos)
 	    i = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	  i= max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
@@ -1632,18 +1620,16 @@ int C2F(scicos)
   }
 } /* cdoit_ */
 
-/* Subroutine */ void ddoit(told)
-     double *told;
-
+/* Subroutine */ void ddoit(double *told)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, kiwa;
+  static int flag__, kiwa;
 
-  static integer i;
-  static integer  ii, keve;
+  static int i;
+  static int  ii, keve;
 
 
   /* Function Body */
@@ -1693,20 +1679,18 @@ int C2F(scicos)
   }
 } /* ddoit_ */
 
-/* Subroutine */ void edoit(told,kiwa)
-     double *told;
-     integer *kiwa;
+/* Subroutine */ void edoit(double *told, int *kiwa)
 {
   /* System generated locals */
-  integer i2, i3;
+  int i2, i3;
   double d__1;
 
   /* Local variables */
-  static integer flag__;
-  static integer nord;
+  static int flag__;
+  static int nord;
 
-  static integer ierr1, i;
-  integer kever, ii;
+  static int ierr1, i;
+  int kever, ii;
   
   /* Function Body */
   kever = *pointi;
@@ -1771,7 +1755,7 @@ int C2F(scicos)
 	    i = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	  i= max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
@@ -1787,18 +1771,15 @@ int C2F(scicos)
   }
 } /* edoit_ */
 
-/* Subroutine */ void odoit(residual, xt, xtd, told)
-     double *residual, *xt, *xtd;
-     double *told;
-
+/* Subroutine */ void odoit(double *residual, double *xt, double *xtd, double *told)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
-  static integer ierr1, i;
-  static integer ii, jj;
+  static int flag__, keve, kiwa;
+  static int ierr1, i;
+  static int ii, jj;
   
   /* Function Body */
   kiwa = 0;
@@ -1829,7 +1810,7 @@ int C2F(scicos)
 	      i=1;
 	    }
 	  } else if (funtyp[C2F(curblk).kfun] == -2) {
-	    i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	    i=max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }
 	  i2 =i+ clkptr[C2F(curblk).kfun] - 1;
@@ -1880,21 +1861,19 @@ int C2F(scicos)
       }
     }
   }
-} /* odoit_ */
+}
 
 
-/* Subroutine */ void reinitdoit(told,scicos_xproperty)
-     double *told;
-     integer *scicos_xproperty;
+void reinitdoit(double *told, int *scicos_xproperty)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
+  static int flag__, keve, kiwa;
 
-  static integer ierr1, i;
-  static integer ii, jj;
+  static int ierr1, i;
+  static int ii, jj;
   
   /* Function Body */
   kiwa = 0;
@@ -1919,7 +1898,7 @@ int C2F(scicos)
 	  i=1;
 	}
       } else if (funtyp[C2F(curblk).kfun] == -2) {
-	i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+	i= max(min((int) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		  Blocks[C2F(curblk).kfun - 1].nevout),1);
       }
       if(Blocks[C2F(curblk).kfun - 1].nmode>0){
@@ -1976,19 +1955,16 @@ int C2F(scicos)
   }
 } /* reinitdoit_ */
 
-/* Subroutine */ void ozdoit(xtd, xt, told, kiwa)
-     double *xtd, *xt;
-     double *told;
-     integer *kiwa;
+/* Subroutine */ void ozdoit(double *xtd, double *xt, double *told, int *kiwa)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, nord;
+  static int flag__, nord;
 
-  static integer ierr1, i;
-  integer ii, kever; 
+  static int ierr1, i;
+  int ii, kever; 
 
   /* Function Body */
   kever = *pointi;
@@ -2032,7 +2008,7 @@ int C2F(scicos)
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1 || Blocks[C2F(curblk).kfun - 1].nmode==0){
-	    i= max(min((integer) 
+	    i= max(min((int) 
 		       outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		       Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }else{
@@ -2053,18 +2029,15 @@ int C2F(scicos)
   }
 } /* ozdoit_ */
 
-/* Subroutine */ void zdoit(g, xtd, xt,told)
-     double *g;
-     double *xtd, *xt;
-     double *told;
+/* Subroutine */ void zdoit(double *g, double *xtd, double *xt, double *told)
 {
   /* System generated locals */
-  integer i2;
+  int i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
-  static integer ierr1, i,j;
-  static integer ii, jj;
+  static int flag__, keve, kiwa;
+  static int ierr1, i,j;
+  static int ii, jj;
   
   /* Function Body */
   C2F(dset)(&ng, &c_b14,g , &c__1);
@@ -2099,7 +2072,7 @@ int C2F(scicos)
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1|| Blocks[C2F(curblk).kfun - 1].nmode==0){
-	    i=max(min((integer) 
+	    i=max(min((int) 
 		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }else{
@@ -2148,7 +2121,7 @@ int C2F(scicos)
 	      -(double)(jj+2);
 	  }
 	  if(phase==1&&Blocks[C2F(curblk).kfun - 1].nmode>0){
-	    j=max(min((integer) 
+	    j=max(min((int) 
 		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	    Blocks[C2F(curblk).kfun - 1].mode[0]= j;
@@ -2189,7 +2162,7 @@ int C2F(scicos)
 		-(double)(jj+2);
 	    }
 	    if(phase==1&&Blocks[C2F(curblk).kfun - 1].nmode>0){
-	      j=max(min((integer) 
+	      j=max(min((int) 
 			outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 			Blocks[C2F(curblk).kfun - 1].nevout),1);
 	      Blocks[C2F(curblk).kfun - 1].mode[0]= j;
@@ -2205,15 +2178,11 @@ int C2F(scicos)
 
 
 
-void 
-callf(t,xtd,xt,residual,g,flag) 
-     integer *flag;
-     double *t,*xtd,*xt,*residual,*g;
-     
+void  callf(double *t, double *xtd, double *xt, double *residual, double *g, int *flag)
 {
   voidf loc ; 
   double* args[SZ_SIZE];
-  integer sz[SZ_SIZE];
+  int sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
   int ii,kf,in,out,ki,ko,ni,no,k,j;
   int lprt,szi,flagi;
@@ -2591,9 +2560,8 @@ callf(t,xtd,xt,residual,g,flag)
 }
 
 
-void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
-     integer *flag,kf,flagi,deb_blk;
-     double *t,*xtd,*xt,*residual,*g;
+
+void call_debug_scicos(double *t, double *xtd, double *xt, double *residual, double *g, int *flag, int kf, int flagi, int deb_blk)
 {
   voidf loc ; 
   int solver=C2F(cmsolver).solver,k;
@@ -2639,11 +2607,11 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
 
 
 
-integer C2F(funnum)(fname)
+int C2F(funnum)(fname)
      char * fname;
 {
   int i=0,ln;
-  integer loc=-1;
+  int loc=-1;
   while ( tabsim[i].name != (char *) NULL) {
     if ( strcmp(fname,tabsim[i].name) == 0 ) return(i+1);
     i++;
@@ -2655,20 +2623,20 @@ integer C2F(funnum)(fname)
 }
 
 
+/* 
+   !purpose 
+   compute state derivative of the continuous part
+   !calling sequence 
+   neq   : int the size of the  continuous state
+   t     : current time 
+   xc    : double precision vector whose  contains the continuous state. 
+   xcdot : double precision vector, contain the computed derivative 
+   of the state 
+*/
 
 int C2F(simblk)(neq1, t, xc, xcdot)
-     integer *neq1;
+     int *neq1;
      double *t, *xc, *xcdot;
-     /* 
-	!purpose 
-	compute state derivative of the continuous part
-	!calling sequence 
-	neq   : integer the size of the  continuous state
-	t     : current time 
-	xc    : double precision vector whose  contains the continuous state. 
-	xcdot : double precision vector, contain the computed derivative 
-	of the state 
-     */
 { 
   C2F(dset)(neq, &c_b14,xcdot , &c__1);
   C2F(ierode).iero = 0;
@@ -2677,21 +2645,22 @@ int C2F(simblk)(neq1, t, xc, xcdot)
   C2F(ierode).iero = *ierr;
   return 0;
 }
+
+     
+/* 
+   !purpose 
+   compute residual  of the continuous part
+   !calling sequence 
+   t     : current time 
+   xc    : double precision vector whose  contains the continuous state. 
+   xcdot : double precision vector, contain the computed derivative 
+   of the state 
+*/
  
 int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
-     integer *ires,*ipar1;
+     int *ires,*ipar1;
      double *t, *xc, *xcdot, *rpar1, *residual;
-     integer *cj;
-     
-     /* 
-	!purpose 
-	compute residual  of the continuous part
-	!calling sequence 
-	t     : current time 
-	xc    : double precision vector whose  contains the continuous state. 
-	xcdot : double precision vector, contain the computed derivative 
-	of the state 
-     */
+     int *cj;
 { 
   C2F(dcopy)(neq, xcdot, &c__1, residual, &c__1);
   *ires=0;
@@ -2705,9 +2674,9 @@ int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
  
 
 int C2F(grblkdaskr)(neq1, t, xc, xtd,ng1, g,rpar1,ipar1)
-     integer *neq1;
+     int *neq1;
      double *t, *xc, *xtd;
-     integer *ng1,*ipar1;
+     int *ng1,*ipar1;
      double *g,*rpar1;
 {
   *ierr= 0;
@@ -2717,27 +2686,24 @@ int C2F(grblkdaskr)(neq1, t, xc, xtd,ng1, g,rpar1,ipar1)
   return 0;
 }
 
+     
+     
+/*
+  !purpose 
+  interface to grbl1 at the lsodar format 
+  !calling sequence 
+  neq   : int  the size of the continuous state
+  t     : current time 
+  xc    : double precision vector contains the continuous state
+  g     : computed zero crossing surface (see lsodar) 
+  !
+*/
 
 int C2F(grblk)(neq1, t, xc, ng1, g)
-     integer *neq1;
+     int *neq1;
      double *t, *xc;
-     integer *ng1;
+     int *ng1;
      double *g;
-     
-     
-     /*
-       !purpose 
-       interface to grbl1 at the lsodar format 
-       !calling sequence 
-       neq   : integer  the size of the continuous state
-       t     : current time 
-       xc    : double precision vector contains the continuous state
-       g     : computed zero crossing surface (see lsodar) 
-       !
-     */
-     
-     /* Local variables */
-     
 { 
  C2F(ierode).iero = 0;
  *ierr= 0;
@@ -2747,11 +2713,9 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
 }
 
 
-/* Subroutine */ void addevs(t, evtnb, ierr1)
-     double t;
-     integer *evtnb, *ierr1;
+void addevs(double t, int *evtnb, int *ierr1)
 {
-  static integer i, j;
+  static int i, j;
 
   /* Function Body */
   *ierr1 = 0;
@@ -2790,11 +2754,10 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
     evtspt[*evtnb] = evtspt[i];
     evtspt[i] = *evtnb;
   }
-} /* addevs */
+} 
 
-/* Subroutine */ void putevs(t, evtnb, ierr1)
-     double *t;
-     integer *evtnb, *ierr1;
+
+void putevs(double *t, int *evtnb, int *ierr1)
 {
 
   /* Function Body */
@@ -2816,8 +2779,7 @@ int C2F(grblk)(neq1, t, xc, ng1, g)
 
 
 
-void free_blocks()
-
+void free_blocks(void)
 {
   int kf;
   for (kf = 0; kf < nblk; ++kf) {
@@ -2861,10 +2823,10 @@ void free_blocks()
   
 
 
-int setmode(W,x,told,jroot,ttol)
+int setmode(double *W, double *x, double *told, int *jroot, double ttol)
      /* work space W needs to be ng+*neq*2 */
-     double *W,*x,*told,ttol;
-     int *jroot;
+                             
+                
 {
   int k,j,jj,diff;
   double ttmp;
@@ -2909,29 +2871,23 @@ int setmode(W,x,told,jroot,ttol)
   return 0;
 }
 
-  
-int get_phase_simulation()
-
+int get_phase_simulation(void)
 {
   return phase;
 }
 
-
-
-void do_cold_restart()
-
+void do_cold_restart(void)
 {
   hot=0;
   return;
 }
 
-double get_scicos_time()
-
+double get_scicos_time(void)
 {
   return scicos_time;
 }
-int get_block_number()
 
+int get_block_number(void)
 {
   return C2F(curblk).kfun;
 }
@@ -2942,7 +2898,6 @@ void set_block_error(int err)
   *block_error=err;
   return;
 }
-
 
 void set_pointer_xproperty(int* pointer)
 {

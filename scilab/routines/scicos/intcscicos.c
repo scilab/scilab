@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <math.h>
 #include "../stack-c.h"
-#include "../machine.h"
+#include "nsp/machine.h"
 #include "intcscicos.h"
 #include "scicos_block.h"
 
-typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
+typedef int (*des_interf) (char *fname,unsigned long l);
 
 typedef struct table_struct {
   des_interf f;    /** function **/
