@@ -262,6 +262,7 @@ static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
  * in ScilabXgc.
  */
 
+
 void sci_pixmap_resize(struct BCG *Xgc,int x,int y)
 {
   /*if (Xgc->CurPixmapStatus != 0) { use pixmap as backing store if CurPixmapStatus==0 */
@@ -2774,13 +2775,8 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
   for (i=0 ; i < *n/2 ; i++)
     { 
       double dx,dy,norm;
-      NDvalue = 0;
-      if ( (int) *iflag == 1) {
-	NDvalue = style[i];
-	xset_line_style(&NDvalue,PI0,PI0,PI0);}
-      else if (*style >= 1)
-	xset_line_style(style,PI0,PI0,PI0);
-
+      NDvalue = ( (int) *iflag == 1) ? style[i] : ((*style >= 1) ?  *style : Dvalue[0]);
+      xset_line_style(&NDvalue,PI0,PI0,PI0);
       dx=( vx[2*i+1]-vx[2*i]);
       dy=( vy[2*i+1]-vy[2*i]);
       norm = sqrt(dx*dx+dy*dy);
