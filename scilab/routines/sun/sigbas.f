@@ -8,8 +8,8 @@ c
 c     Copyright INRIA
       integer  n
       include '../stack.h'
-      logical         iflag
-      common /basbrk/ iflag
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
       integer  ilk,k,l,lunit,nc,mode(2)
 c     
       iadr(l)=l+l-1

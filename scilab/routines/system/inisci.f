@@ -23,8 +23,8 @@ c     common for scicos debug mode
       integer cosd
 
 c     common for Control-C interruptions
-      logical         iflag
-      common /basbrk/ iflag
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
 c     scilab function protection mode
       integer macprt
       common /mprot/ macprt
@@ -157,6 +157,7 @@ c     .  Control-C recovery
 c     .  ------------------
       if (first) then
          call inibrk
+         interruptible=.true.
          first=.false.
       endif
 c     

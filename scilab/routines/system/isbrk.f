@@ -6,8 +6,8 @@ c
 c ===================================== ( Inria    ) ==========
 c
 c     Copyright INRIA
-      logical         iflag
-      common /basbrk/ iflag
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
       l=0
       if(iflag) l=1
       return
