@@ -2428,25 +2428,26 @@ c     .  in an execstr, check execstr calling context
      &           (rstk(pt0).eq.805.and.eqid(ids(1,pt0),sel)).or.
      &           (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
             if(rstk(pt0).lt.501.or.rstk(pt0).gt.503) goto 153
-            if(rstk(pt0).eq.503.and.rio.eq.rte.and.pause.ne.0) then
+c            if(rstk(pt0).eq.503.and.rio.eq.rte.and.paus.ne.0) then
+            if(rio.eq.rte.and.paus.ne.0) then
 c     .       resume appele dans par un execstr sous pause
                k=lpt(1)-(13+nsiz)
                lpt(1)=lin(k+1)
                macr=macr-1
-
                k=lpt(1)-(13+nsiz)
                bot=lin(k+5)
                mrhs=rhs
                rhs=0
-               paus=paus-1
+               pt=pt0
+               if(rstk(pt0).eq.503) paus=paus-1
                do 154 i=1,mrhs
                   call stackp(ids(1,ip0),0)
                   ip0=ip0-1
  154           continue
-               paus=paus+1
+               if(rstk(pt0).eq.503) paus=paus+1
                lin(k+5)=bot
                top=top-count
-               pt=pt0
+
                goto 999
             elseif(paus.ne.0.and.rstk(pt0).eq.201) then
 c     .        ???

@@ -5110,11 +5110,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"data_bounds") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       if (*numrow * *numcol != 4) 
-	{strcpy(error_message,"Second argument must have 4 elements r");return -1;}
+	{strcpy(error_message,"Second argument must have 4 elements ");return -1;}
       for (i=0;i<4;i++) {
 	pSUBWIN_FEATURE (pobj)->FRect[i]=stk(*value)[i];
       }
     }
+   else if (sciGetEntityType (pobj) == SCI_SURFACE) {
+     if (*numrow * *numcol != 6) 
+       {strcpy(error_message,"Second argument must have 6 elements ");return -1;}
+     for (i=0;i<6;i++) {
+       pSURFACE_FEATURE (pobj)->ebox[i]=stk(*value)[i];
+     }
+   }
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   }
@@ -5361,16 +5368,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"rotation_angles property does not exist for this handle");return -1;}
   }
-  else if (strcmp(marker,"bounds") == 0) {
+  else if (strcmp(marker,"flag") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      if (*numrow * *numcol != 6)
-	{strcpy(error_message,"Second argument must have 6 elements ");return -1;}
+      if (*numrow * *numcol != 3)
+	{strcpy(error_message,"Second argument must have 3 elements ");return -1;}
       for (i=0;i<6;i++) {
-	pSURFACE_FEATURE (pobj)->ebox[i]= stk(*value)[i];
+	pSURFACE_FEATURE (pobj)->flag[i]= stk(*value)[i];
       }
     }
     else
-      {strcpy(error_message,"bounds property does not exist for this handle");return -1;}
+      {strcpy(error_message,"flags property does not exist for this handle");return -1;}
   }
   else if (strcmp(marker,"surface_color") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE && 
@@ -5953,6 +5960,13 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->FRect[i];
 	}
     }
+    else if (sciGetEntityType (pobj) == SCI_SURFACE) {
+	numrow   = 3;numcol   = 2;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	for (i=0;i<numcol*numrow;i++) {
+	  stk(outindex)[i] = pSURFACE_FEATURE (pobj)->ebox[i];
+	}
+    }
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   } 
@@ -6168,16 +6182,16 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"rotation_angle property does not exist for this handle");return -1;}
   } 
-  else if (strcmp(marker,"bounds") == 0) {
+  else if (strcmp(marker,"flag") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      numrow = 1;numcol = 6;
+      numrow = 1;numcol = 3;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       for (i=0;i<numcol;i++) {
-	  stk(outindex)[i] = pSURFACE_FEATURE (pobj)->ebox[i];
+	  stk(outindex)[i] = pSURFACE_FEATURE (pobj)->flag[i];
       }
     }
     else
-      {strcpy(error_message,"bounds property does not exist for this handle");return -1;}
+      {strcpy(error_message,"flag property does not exist for this handle");return -1;}
   } 
   else if (strcmp(marker,"surface_color") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE && 
