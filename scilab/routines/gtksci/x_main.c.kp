@@ -1,0 +1,315 @@
+/*---------------------------------------------------------- 
+ * mainsci.f directly call this function 
+ * thus this is the real main for scilab 
+ * Copyright 2001 Inria/Enpc 
+ *----------------------------------------------------------*/
+#include <pwd.h>
+#include <ctype.h>
+#include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+#include <gtk/gtk.h>
+
+#include "version.h"
+#include "../machine.h"
+#include "../graphics/Math.h"
+#include "x_ptyxP.h"
+#include "x_error.h"
+#include "x_menu.h"
+
+#include "All-extern-x.h"
+#include "All-extern.h"
+
+char *ProgramName;
+
+void sci_clear_and_exit (int);
+
+extern void C2F(tmpdirc)();
+static void Syntax  (char *badOption);  
+static void Help  (void);  
+
+/*---------------------------------------------------------- 
+ * mainsci.f directly call this function 
+ * thus this is the real main for scilab 
+ * Copyright Inria/Enpc 
+ *----------------------------------------------------------*/
+
+#define MIN_STACKSIZE 180000
+
+static int  no_startup_flag=0;
+static int  memory = MIN_STACKSIZE;
+static int  no_window = 0;
+static char * initial_script = NULL;
+
+extern int C2F(initcom)(int *,int*);
+extern int scilab_main (int argc,char **argv,char *pname,int no_window,int no_startup, char *display);
+extern int C2F(nofpex)(void);
+extern int C2F(getarg)(int *,char *,long int l);
+extern int C2F(iargc)(void);
+extern void C2F(settmpdir)(void);
+extern char *get_sci_data_strings(int n);
+
+static char ** create_argv(int *argc);
+static void strip_blank(char *source);
+
+
+void C2F(realmain)()
+{
+  int ierr, argc,i;
+  static int ini=-1;
+  char startup[128];
+  char **argv, *display = NULL;
+
+  /* floating point exceptions */
+  C2F(nofpex)(); 
+  /* create argv */
+  if (( argv = create_argv(&argc))== NULL) 
+    exit(1);
+  ProgramName = argv[0];
+  /* scanning options */
+  for ( i=0 ; i < argc ; i++) 
+    {
+      if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
+      else if ( strcmp(argv[i],"-display") == 0) { display = argv[++i];} 
+      else if ( strcmp(argv[i],"-ns") == 0) { no_startup_flag = 1; }
+      else if (strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
+      else if (strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
+      else if ( strcmp(argv[i],"-pipes") == 0) 
+	{
+	  int p1,p2;
+	  p1 = atoi(argv[++i]);
+	  p2 = atoi(argv[++i]); 
+	  C2F(initcom)(&p1, &p2);
+	}
+    }
+  /* create temp directory */
+  C2F(settmpdir)();
+
+  /* Always initialise gtk */
+  gtk_init(&argc,&argv);
+  if ( no_window == 0 ) 
+    {
+      /* we are in window mode */
+      create_main_menu() ;
+      SetXsciOn();
+    }
+  /* signals */
+  signal(SIGINT,sci_clear_and_exit);
+  signal(SIGBUS,sci_clear_and_exit);
+  signal(SIGSEGV,sci_clear_and_exit);
+  signal(SIGQUIT,sci_clear_and_exit);
+  signal(SIGHUP,sci_clear_and_exit);
+  /* initialize scilab interp  */
+  C2F(inisci)(&ini, &memory, &ierr);
+  if (ierr > 0) return ;
+  /*  execute startup 
+   *  and enter main loop 
+   */
+
+  if ( no_startup_flag == 0) 
+    strcpy(startup,get_sci_data_strings(1));
+  else 
+    strcpy(startup," ");
+
+  if ( initial_script == NULL ) 
+    {
+      C2F(scirun)(startup,strlen(startup));
+    }
+  else 
+    {
+      strcat(startup,";quit");
+      C2F(scirun)(startup,strlen(startup));
+      sprintf(startup,"exec('%s',-1)",initial_script);
+      C2F(scirun)(startup,strlen(startup));
+    }
+  /* cleaning */
+  C2F(sciquit)();
+  return 0;
+}
+
+/* utility */
+
+#define BSIZE 128 
+
+static char ** create_argv(int *argc)
+{
+  int i;
+  char **argv;
+  *argc = C2F(iargc)() + 1;
+  if ( ( argv = malloc((*argc)*sizeof(char *))) == NULL) return NULL;
+  for ( i=0 ; i < *argc ; i++) 
+    {
+      char buf[BSIZE];
+      C2F(getarg)(&i,buf,BSIZE);
+      buf[BSIZE-1]='\0';
+      strip_blank(buf);
+      argv[i] = malloc((strlen(buf)+1)*sizeof(char));
+      if ( argv[i] == NULL) return NULL;
+      strcpy(argv[i],buf);
+      fprintf(stderr,"arg[%d] %s\n",i,argv[i]);
+    }
+  return argv;
+}
+
+/* utility */
+
+static void strip_blank(char *source)
+{
+  char *p;
+  p = source;
+  /* look for end of string */
+  while(*p != '\0') p++;
+  while(p != source) {
+    p--;
+    if(*p != ' ') break;
+    *p = '\0';
+  }
+}
+
+/*-------------------------------------------------------
+ * Exit function called by some 
+ * X11 functions 
+ * call sciquit which call clearexit
+ *-------------------------------------------------------*/
+
+int C2F(sciquit)()
+{
+  int status = 0;
+  if ( no_startup_flag == 0) 
+    {
+      char *quit_script =  get_sci_data_strings(5);
+      C2F(scirun)(quit_script,strlen(quit_script));
+    }
+  C2F(clearexit)(&status);
+} 
+
+
+void sci_clear_and_exit(int n)
+{
+  C2F(sciquit)();
+}
+
+int C2F(clearexit)(n)
+     int *n;
+{
+  /** clean tmpfiles **/
+  C2F(tmpdirc)();
+  /** clean ieee **/
+#ifdef sun 
+#ifndef SYSV
+#include <sys/ieeefp.h>
+  {
+    char *mode, **out, *in;
+    ieee_flags("clearall","exeption","all", &out);
+  }
+#endif 
+#endif 
+  /* really exit */
+  exit(*n);
+  return(0);
+}
+
+/*-------------------------------------------------------
+ * Utility function to try to hide system differences from
+ * everybody who used to call killpg() 
+ *-------------------------------------------------------*/
+
+int kill_process_group(pid, sig)
+    int pid;
+    int sig;
+{
+    return kill (-pid, sig);
+}
+
+/*-------------------------------------------------------
+ * Syntax 
+ *-------------------------------------------------------*/
+
+static struct _options {
+  char *opt;
+  char *desc;
+} options[] = {
+{ "-help",                 "print out this message" },
+{ "-ns",                   "no startup mode " },
+{ "-nw",                   "no window mode " },
+{ "-display displayname",  "X server to contact" },
+{ "-name string",          "client instance, icon, and title strings" },
+{ "-xrm resourcestring",   "additional resource specifications" },
+{ "-tm string",            "terminal mode keywords and characters" },
+{ NULL, NULL }};
+
+static void Syntax (badOption)
+    char *badOption;
+{
+  struct _options *opt;
+  int col;
+
+  fprintf (stderr, "%s:  bad command line option \"%s\"\r\n\n",
+	   ProgramName, badOption);
+
+  fprintf (stderr, "usage:  %s", ProgramName);
+  col = 8 + strlen(ProgramName);
+  for (opt = options; opt->opt; opt++) {
+    int len = 3 + strlen(opt->opt);	 /* space [ string ] */
+    if (col + len > 79) {
+      fprintf (stderr, "\r\n   ");  /* 3 spaces */
+      col = 3;
+    }
+    fprintf (stderr, " [%s]", opt->opt);
+    col += len;
+  }
+
+  fprintf (stderr, "\r\n\nType %s -help for a full description.\r\n\n",
+	   ProgramName);
+  exit (1);
+}
+
+/*-------------------------------------------------------
+ * Help utility function 
+ *-------------------------------------------------------*/
+
+static char *message[] = {
+  "Options that start with a plus sign (+) restore the default.",
+  NULL
+};
+
+static void Help ()
+{
+  struct _options *opt;
+  char **cpp;
+
+  fprintf (stderr, "usage:\n        %s [-options ...] \n\n",
+	   ProgramName);
+  fprintf (stderr, "where options include:\n");
+  for (opt = options; opt->opt; opt++) {
+    fprintf (stderr, "    %-28s %s\n", opt->opt, opt->desc);
+  }
+  putc ('\n', stderr);
+  for (cpp = message; *cpp; cpp++) {
+    fputs (*cpp, stderr);
+    putc ('\n', stderr);
+  }
+  putc ('\n', stderr);
+  exit (0);
+}
+
+/*-------------------------------------------------------
+ * color status 
+ *-------------------------------------------------------*/
+
+static int screencolor = 1 ; /* default screen color status */
+
+/* return the current screencolor */
+
+void getcolordef(integer *screenc)
+{
+  *screenc= screencolor;
+}
+
+void setcolordef( int screenc)
+{
+  screencolor = screenc;
+}
+
