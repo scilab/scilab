@@ -96,16 +96,6 @@ E&dit
 		xbasc()
 [EndMenu]
 
-[Menu]
-&Help
-	&Help Dialog
-		[HELP]
-	&Topic
-		help [INPUT]Help Topic?
-	&Apropos 
-		apropos [INPUT]Key ?
-[EndMenu]
-
 ; [Menu]
 ; &Plot
 ; 	Plot2d

@@ -1,4 +1,4 @@
-                         Scilab version 2.6
+                         Scilab version 2.7
                          ******************
  
  ******************************************************************************
@@ -36,8 +36,8 @@
  
     1 - Configure your system by issuing the following command in the Scilab 
         directory:
- 	./configure --with-tk
-	Or simply "./configure" if you don't have tcl/tk 8.0 or later 
+ 	./configure
+	Or use  "./configure  --without-tk" if you don't have tcl/tk 8.0 or later 
         installed.
  
         This will create and/or modify a few Makefile and other files for your 
@@ -73,28 +73,31 @@
            Athena Widgets library when needed, so the use of this option is not
            recommanded (see below KNOWN PROBLEMS 3).
 
-        --with-xaw3d: use 3D version of Athena Widgets.
+       --without-xaw3d: do not use 3D version of Athena Widgets. The default
+           is to compile with these libraries. If they are not found, standard
+           Athena Widgets are taken.
 
         --without-pvm: compile without PVM library. The default is to compile
            with PVM library.
+       
+           If your PVM libraries and include files are in customized places, 
+           you can specify them by hand with the following arguments:
+        --with-pvm-library=DIR: PVM library files are in DIR
+        --with-pvm-include=DIR: PVM include files are in DIR
  
-        --with-tk: compile with TCL/TK library. The default is to compile
-           without TCL/TK library. You must have libraries of TCL/TK 8.x and 
+        --without-tk: compile without TCL/TK library. The default is to compile
+           with TCL/TK library. You must have libraries of TCL/TK 8.x and 
            corresponding include files installed in standard directory 
            (configure is looking for them).
 
-           If your libraries and include files are in customized places, 
+           If your TCL/TK libraries and include files are in customized places, 
            you can specify them by hand with the following arguments:
         --with-tcl-library=DIR: Tcl library files are in DIR
         --with-tcl-include=DIR: Tcl include files are in DIR
         --with-tk-library=DIR: Tk library files are in DIR
         --with-tk-include=DIR: Tk include files are in DIR
-        
-        Similarily for PVM :
-        --with-pvm-library=DIR: PVM library files are in DIR
-        --with-pvm-include=DIR: PVM include files are in DIR
 
-        --prefix=DIR: scilab will install itself in DIR/scilab-2.6 
+         --prefix=DIR: scilab will install itself in DIR/scilab-2.6 
            and create 3 symlinks in DIR/bin
         By default prefix=/usr
         	 

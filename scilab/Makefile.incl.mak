@@ -10,11 +10,11 @@ MAKE=nmake /f Makefile.mak
 #---------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
 # the good pathnames for TKLIBS and TCL_INCLUDES.
-#TKSCI=libs/tksci.lib 
-#TKLIBS=d:\tcl8.0\win\tcl80.lib d:\tk8.0\win\tk80.lib
-#TKLIBSBIN="$(SCIDIR1)\bin\tcl80.lib" "$(SCIDIR1)\bin\tk80.lib"
-#TCL_INCLUDES=-Id:\tcl8.0\generic -Id:\tk8.0\generic -Id:\tk8.0\xlib
-#DTK=-DWITH_TK
+TKSCI=libs/tksci.lib 
+TKLIBS=C:\Tcl\lib\tcl83.lib C:\Tcl\lib\tk83.lib
+TKLIBSBIN=C:\Tcl\bin\tcl83.lib C:\Tcl\bin\tk83.lib 
+TCL_INCLUDES=-Ic:\Tcl\include -Ic:\Tcl\include\X11
+DTK=-DWITH_TK
 #---------------------
 # Scilab pvm library
 #---------------------

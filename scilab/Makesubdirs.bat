@@ -6,7 +6,6 @@ if "%1" == "routines-distclean" goto routines-distclean
 if "%1" == "macros" goto macros
 if "%1" == "macros-clean" goto macros-clean 
 if "%1" == "macros-distclean" goto macros-distclean 
-if "%1" == "wless" goto wless
 if "%1" == "imp" goto imp
 if "%1" == "intersci" goto intersci
 if "%1" == "dumpexts" goto dumpexts
@@ -70,13 +69,6 @@ goto end
 :macros-distclean 
 cd macros 
  nmake /C /f Makefile.mak distclean
-cd ..
-goto end
-
-:wless
-cd wless
- echo making all in wless
- nmake /C /f Makefile.mak 
 cd ..
 goto end
 

@@ -28,8 +28,8 @@ include config/@MAKEFILE_TARGET@
 distclean::
 	$(RM) bin/scilex
 
-SUBDIRS = scripts maple macros imp intersci @MANVIEWER@ @XMETANET@ \
-	tests demos @COMM@ examples man
+SUBDIRS = scripts maple macros imp intersci  \
+	tests demos  examples
 
 scilex-lib::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
@@ -67,10 +67,39 @@ clean::
 		(cd $$i ; echo "making clean in $$i..."; \
 			$(MAKE) $(MFLAGS)  clean); \
 	done
+# making the man
+# whatis must be done first
 
-#clean::
-#	@cd pvm3; echo "making clean in pvm3..."; \
-#	$(MAKE) $(MFLAGS)  clean;
+man: whatis html index
+
+whatis:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in man;\
+	do \
+		(cd $$i ; echo "making whatis in $$i..."; \
+			$(MAKE) $(MFLAGS) whatis); \
+	done
+
+html:	
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in man;\
+	do \
+		(cd $$i ; echo "making html in $$i..."; \
+			$(MAKE) $(MFLAGS) html); \
+	done
+
+index:
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	(cd man ; echo "making index in man..."; \
+	$(MAKE) $(MFLAGS) index);
+
+manclean:	
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in man;\
+	do \
+		(cd $$i ; echo "making manclean in $$i..."; \
+			$(MAKE) $(MFLAGS) manclean); \
+	done
 
 tests:
 	@echo "Type \"make tests\" in $(SCIDIR)/tests directory "
@@ -80,6 +109,7 @@ distclean::
 	$(RM) config.cache config.log config.status .binary foo.f foo.o \
 	conftest conftest.c so_locations
 
+# SCIBASE for scilab binaries generation
 SCIBASE = scilab-2.6
 
 PVMBINDISTFILES = \
@@ -117,7 +147,10 @@ BINDISTFILES = \
 	$(SCIBASE)/imp/NperiPos.ps \
 	$(SCIBASE)/imp/giffonts \
 	$(SCIBASE)/macros \
-	$(SCIBASE)/man \
+	$(SCIBASE)/man/eng/index.html \
+	$(SCIBASE)/man/eng/*/*.html \
+	$(SCIBASE)/man/fr/index.html \
+	$(SCIBASE)/man/fr/*/*.html \
 	$(SCIBASE)/maple \
 	$(SCIBASE)/routines/*.h \
 	$(SCIBASE)/routines/Make.lib \

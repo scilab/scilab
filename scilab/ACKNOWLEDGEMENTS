@@ -81,8 +81,6 @@ system2: low level Scilab routines (INRIA).
 
 X11: optionnal Xaw and Xmu routines  (from mit X11 distribution).
 
-xless: Xless
-
 xsci: top level window and utilities using code from: xterm, xxgdb, xfig 
 	 combined and modified by J.P. Chancelier.
 
@@ -93,9 +91,6 @@ wsci: Scilab programs for the windows version using code from
          gnuplot/gsview (gvwprn.c) and emacs (runemacs.c) (J.P.Chancelier).
 
 imp: a set of programs for Scilab prints (J.P.Chancelier).
-
-geci: interprocess communication tool made by CalICo group from
-         LaBRI (University of Bordeaux I, France).
 
 dcd: Library of Fortran Routines for Cumulative Distribution
          Functions, Inverses, and Other Parameters (February, 1994)

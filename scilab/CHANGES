@@ -5,19 +5,25 @@ NEW FUNCTIONALITIES
 ===================
 Slicot based control routines have been introduced
 Interface with TeXmacs 
+text editor for Windows.
 
 OTHERS IMPROVEMENTS
 ===================
 Linear algebra primitives now based on Lapack instead of Linpack/Eispack
 Basic functions revised (thanks to B Pincon)
-stacksize use is no more restricted
+stacksize use is no more restricted.
+Hypertext online help instead of the old help browser. 
 
 INCOMPATIBLITY
 ==============
 User's Scilab function libraries must be rebuild
 gschur and gspec are now obsolete and replaced by schur and spec
 
+Geci and communication library have been removed
 
+Metanet graph editor has been removed. You can use SCIGRAPH contribution instead.
+
+man pages have to be written in HTML or better in XML
 
 		     Main Changes Scilab 2.5 -> 2.6
 		     ==============================
