@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-<xsl:output method="html" indent="no" />
+<xsl:output method="html" indent="no" encoding="ISO-8859-1" />
 <xsl:template match="MAN">
 <html>
 <head>
@@ -36,7 +36,9 @@
 </xsl:if>
 
 <xsl:if test="./EXAMPLE">
-	<H3><font color="blue">Examples</font></H3>
+	<H3><font color="blue"><a><xsl:attribute name="href">toscilab.html</xsl:attribute>
+	<xsl:attribute name="title"><xsl:value-of select="./EXAMPLE/self::node()"/></xsl:attribute>Examples</a>
+	</font></H3>
 	<dl><table bgcolor="lightblue"><tr><td><pre><xsl:value-of select="./EXAMPLE/self::node()"/></pre></td></tr></table></dl>
 </xsl:if>
 
@@ -144,7 +146,7 @@
 </xsl:template>
 
 <xsl:template match="DESCRIPTION">
-	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|A|text()"/></dl>
+	<dl><xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|VERB|TABLE|A|text()"/></dl>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
