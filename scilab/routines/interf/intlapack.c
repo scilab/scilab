@@ -244,6 +244,31 @@ int intchol(fname)
   }
 }
 
+int intlu(fname)
+  char *fname;
+{
+  int *header1;
+  int CmplxA;int ret;
+
+  /*   chol(A)  */
+  header1 = (int *) GetData(1);    
+  CmplxA=header1[3];   
+  switch (CmplxA) {
+  case 0:   
+    ret = C2F(intdgetrf)("lu",2L);
+    return;
+    break;
+  case 1:
+    ret = C2F(intzgetrf)("lu",2L);
+    return;
+    break;
+  default:
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return 0;
+    break;
+  }
+}
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -260,6 +285,7 @@ static LapackTable Tab[]={
   {intinv,"lap_inv"},
   {intrcond,"lap_rcond"},
   {intchol,"lap_chol"},
+  {intlu,"lap_lu"},
 };
 
 int C2F(intlapack)()

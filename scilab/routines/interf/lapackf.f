@@ -1647,6 +1647,162 @@ c     SUBROUTINE ZPOTRF( 'U', N, A, LDA, INFO )
 c     
       end
 
+      subroutine intdgetrf(fname)
+
+c     [L,U,E] = dgetrf(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character fname*(*)
+      double precision ZERO, ONE
+      parameter ( ZERO = 0.0D0, ONE = 1.0D0 )
+c     
+      minrhs=1
+      maxrhs=1
+      minlhs=2
+      maxlhs=3
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
+
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.eq.0 .or.N.eq.0) then
+        lhsvar(1) = 1
+        return
+      endif
+      if(.not.createvar(2,'d',M,min(M,N),lL)) return
+      if(.not.createvar(3,'d',min(M,N),N,lU)) return
+      if(.not.createvar(4,'i',1,min(M,N),lIPIV)) return
+      if(.not.createvar(5,'d',M,M,lE)) return
+
+
+      call DGETRF( M, N, stk(lA), M, istk(lIPIV), INFO )
+c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
+      if(info.ne.0) then
+         call errorinfo("dgetrf",info)
+         return
+      endif
+ 
+      do 20 j=1,min(M,N)
+         do 10 i=1,M
+            ij = i+(j-1)*M
+            if(i.eq.j) then
+              stk(lL+ij-1)=ONE
+            else if(i.gt.j) then
+              stk(lL+ij-1)=stk(lA+ij-1)
+            else if(i.lt.j) then
+              stk(lL+ij-1)=ZERO
+            endif
+ 10      continue
+ 20   continue     
+      do 40 j=1,N
+         do 30 i=1,min(M,N)
+            ij1 = i+(j-1)*min(M,N)
+            ij2 = i+(j-1)*M
+            if(i.gt.j) then
+              stk(lU+ij1-1)=ZERO
+            else if(i.le.j) then
+              stk(lU+ij1-1)=stk(lA+ij2-1)
+            endif
+ 30      continue
+ 40   continue
+      if(lhs.gt.2) then
+        call DLASET( 'F', M, M, ZERO, ONE, stk(lE), M ) 
+c        SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+        call DLASWP( M, stk(lE), M, 1, min(M,N), istk(lIPIV), 1 )
+c        SUBROUTINE DLASWP( N, A, LDA, K1, K2, IPIV, INCX )   
+      endif   
+
+
+      lhsvar(1)=2
+      lhsvar(2)=3
+      lhsvar(3)=5
+c
+      return     
+      end
+
+
+      subroutine intzgetrf(fname)
+
+c     [L,U,E] = zgetrf(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character fname*(*)
+      double precision ZERO, ONE
+      parameter ( ZERO = 0.0D0, ONE = 1.0D0 )
+      complex*16 CZERO, CONE
+      parameter ( CZERO = (0.0D0,0.0D0), CONE = (1.0D0,0.0D0) )
+c     
+      minrhs=1
+      maxrhs=1
+      minlhs=2
+      maxlhs=3
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
+
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.eq.0 .or.N.eq.0) then
+        lhsvar(1) = 1
+        return
+      endif
+      if(.not.createvar(2,'z',M,min(M,N),lL)) return
+      if(.not.createvar(3,'z',min(M,N),N,lU)) return
+      if(.not.createvar(4,'i',1,min(M,N),lIPIV)) return
+      if(.not.createvar(5,'d',M,M,lE)) return
+
+
+      call ZGETRF( M, N, zstk(lA), M, istk(lIPIV), INFO )
+c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
+      if(info.ne.0) then
+         call errorinfo("zgetrf",info)
+         return
+      endif
+ 
+      do 20 j=1,min(M,N)
+         do 10 i=1,M
+            ij = i+(j-1)*M
+            if(i.eq.j) then
+              zstk(lL+ij-1) = CONE
+            else if(i.gt.j) then
+              zstk(lL+ij-1) = zstk(lA+ij-1)
+            else if(i.lt.j) then
+              zstk(lL+ij-1) = CZERO
+            endif
+ 10      continue
+ 20   continue     
+      do 40 j=1,N
+         do 30 i=1,min(M,N)
+            ij1 = i+(j-1)*min(M,N)
+            ij2 = i+(j-1)*M
+            if(i.gt.j) then
+              zstk(lU+ij1-1) = CZERO
+            else if(i.le.j) then
+              zstk(lU+ij1-1) = zstk(lA+ij2-1)
+            endif
+ 30      continue
+ 40   continue
+      if(lhs.gt.2) then
+        call DLASET( 'F', M, M, ZERO, ONE, stk(lE), M ) 
+c        SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+        call DLASWP( M, stk(lE), M, 1, min(M,N), istk(lIPIV), 1 )
+c        SUBROUTINE DLASWP( N, A, LDA, K1, K2, IPIV, INCX )   
+      endif   
+
+
+      lhsvar(1)=2
+      lhsvar(2)=3
+      lhsvar(3)=5
+c
+      return     
+      end
+
+
+
+
 
 
 
