@@ -39,7 +39,7 @@ OBJSF = dgelqf.o dgels.o  dgeqrf.o dlae2.o dlaev2.o \
 	zlarfx.o zlasr.o ztrexc.o ztrsyl.o ztrti2.o zungl2.o zunmlq.o \
 	dzsum1.o izmax1.o zlartg.o zrot.o zunml2.o zgelsy.o ztzrzf.o \
 	zunmrz.o zlarzb.o zlarzt.o zlatrz.o zunmr3.o zlarz.o \
-	dgeev.o zgeev.o dtrevc.o ztrevc.o zlatrs.o
+	dgeev.o zgeev.o dtrevc.o ztrevc.o zlatrs.o zgecon.o
 
 include ../../Makefile.incl
 
