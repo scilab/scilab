@@ -11,17 +11,8 @@ if rhs==3&(type(index)==10|type(index)==15) then
   M=createstruct(index,N)
   return
 end
+if M<>[] then N=bool2s(N),def=0,else def=%f,end
 
-N=bool2s(varargin(rhs-1))//inserted matrix
-if rhs<=4 then
-  if rhs==3 then
-    M(varargin(1))=N
-  else
-    M(varargin(1),varargin(2))=N
-  end
-  return
-end
-  
 M=mlist(['hm','dims','entries'],size(M),M(:))
 dims=M('dims')
 v=M('entries');v=v(:)
@@ -54,7 +45,7 @@ for k=rhs-2:-1:1
   end
 end
 //
-if prod(dims1)>size(v,'*') then v(prod(dims1))=%f,end
+if prod(dims1)>size(v,'*') then v(prod(dims1))=def,end
 v(I+1)=N(:)
 
 
