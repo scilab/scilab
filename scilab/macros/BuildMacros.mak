@@ -85,12 +85,6 @@ scicos	:
 	@makemacros > nul
 	@cd..
 	
-scicos_blocks	:	
-	@cd scicos_blocks
-	@echo Creation of scicos_blocks (Macros)
-	@makemacros > nul
-	@cd..
-
 signal	:	
 	@cd signal
 	@echo Creation of signal (Macros)
@@ -137,6 +131,12 @@ xdess	:
 	@cd xdess
 	@echo Creation of xdess (Macros)
 	@makemacros > nul
+	@cd..
+
+scicos_blocks	:
+	@cd scicos_blocks
+	@echo Creation of scicos_blocks (Macros)
+	@buildmacros.bat > nul
 	@cd..
 	
 clean::

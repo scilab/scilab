@@ -4,6 +4,6 @@ for %%f in (*.sci) do echo %%~nf>>names
 for %%f in (*.sci) do echo getf('%%f'),save('%%~nf.bin'),clear ;>>tmp_Macros
 echo exit;>>tmp_Macros
 ..\..\..\bin\scilex.exe -ns -nwni -f tmp_Macros
-..\..\..\bin\scilex.exe -ns -nwni -e scslinearlib=lib('SCI/macros/scicos_blocks/Linear');save('SCI/macros/scicos_blocks/Linear/lib',scslinearlib);exit
+..\..\..\bin\scilex.exe -ns -nwni -e scslinearlib=lib('SCI/macros/scicos_blocks/Linear/');save('SCI/macros/scicos_blocks/Linear/lib',scslinearlib);exit
 echo scslinearlib=lib('SCI/macros/scicos_blocks/Linear');save('SCI/macros/scicos_blocks/Linear/lib',scslinearlib);exit>genlib
 del tmp_Macros > nul
