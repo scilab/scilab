@@ -4566,7 +4566,7 @@ sciSetName (sciPointObj * pobj, char *pvalue, int length)
     {
     case SCI_FIGURE:
       /*sprintf(pFIGURE_FEATURE (pobj)->name,pvalue,pFIGURE_FEATURE (pobj)->number);*/
-      strncpy (pFIGURE_FEATURE (pobj)->name, pvalue, Min (60, length));
+      strcpy (pFIGURE_FEATURE (pobj)->name, pvalue);
       pFIGURE_FEATURE (pobj)->namelen = Min (60, length); 
       if (pobj != pfiguremdl) {
 	char str[80];
