@@ -30,6 +30,8 @@ distclean::
 	for i in $(SUBDIRS) ;\
 	do \
 		(cd $$i ; echo "Making distclean in macros/m2sci/$$i..."; \
+		$(RM) names ;\
+		$(RM) libs ;\
 		$(MAKE) $(MFLAGS)  distclean); \
 	done
 
@@ -38,6 +40,8 @@ clean::
 	for i in $(SUBDIRS) ;\
 	do \
 		(cd $$i ; echo "Making clean in macros/m2sci/$$i..."; \
+		$(RM) names ;\
+		$(RM) libs ;\
 		$(MAKE) $(MFLAGS) clean); \
 	done
 
