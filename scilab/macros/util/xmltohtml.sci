@@ -44,6 +44,7 @@ function xmltohtml(dirs,titles,xsl,step)
   if step=='all' | step == 'whatis' then 
     for k=1:size(dirs,'*');
       mprintf('Creating whatis.htm in %s\n",dirs(k));
+      dirs(k)=pathconvert(dirs(k),%t,%t)
       chdir(dirs(k));
       if titles(k) == H then 
 	titles(k) = titles(k)+' ('+dirs(k)+')';
