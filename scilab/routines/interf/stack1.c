@@ -1627,7 +1627,7 @@ int cre_listsmat_from_str(fname, lw, numi, stlw,  m, n, Str, fname_len )
 
 
 /*------------------------------------------------------------------ 
- * Try to create a string matrix S of size mxn 
+ * Try to create a sparse matrix S of size mxn 
  *     - m is the number of rows of Matrix S 
  *     - n is the number of colums of Matrix S 
  *     - Str : a null terminated array of strings char **Str assumed 
@@ -1656,9 +1656,15 @@ int cre_sparse_from_ptr_i(fname, lw, m, n, S, fname_len ,rep)
     return  FALSE_;
   } ;
   *istk(il ) = 5;
-  /*   si m*n=0 les deux dimensions sont mises a zero. */
-  *istk(il + 1) = Min(*m , *m * *n);
-  *istk(il + 2) = Min(*n,*m * *n);
+  /* note: code sligtly modified (remark of C. Deroulers in the newsgroup) */
+  if ( *m == 0  |  *n == 0 )
+      *istk(il + 1) = 0; 
+      *istk(il + 2) = 0;
+  } else {
+    *istk(il + 1) = *m; 
+    *istk(il + 2) = *n;
+  }
+  /* end of the modified code */
   *istk(il + 3) = S->it;
   *istk(il + 4) = S->nel;
   C2F(icopy)(&S->m, S->mnel, &cx1, istk(il+5 ), &cx1);
