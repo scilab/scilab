@@ -920,6 +920,7 @@ typedef struct _rec_calloc {
 #define rec_size 512 
 static rec_calloc calloc_table[rec_size]={{0,0}}; 
 
+
 void *mxCalloc_m(unsigned int n, unsigned int size) 
 {
   void *loc = calloc(n,size);
@@ -929,6 +930,7 @@ void *mxCalloc_m(unsigned int n, unsigned int size)
       {
 	if (calloc_table[i].keep == 0 ) 
 	  {
+	    /* sciprint("calloc installed at position %d\r\n",i); */
 	    calloc_table[i].adr = loc;
 	    calloc_table[i].keep = 1;
 	    return loc ; 
@@ -949,6 +951,7 @@ void *mxMalloc_m(unsigned int n)
       {
 	if (calloc_table[i].keep == 0 ) 
 	  {
+	    /* sciprint("malloc installed at position %d\r\n",i); */
 	    calloc_table[i].adr = loc;
 	    calloc_table[i].keep = 1;
 	    return loc ; 
@@ -980,15 +983,18 @@ void mexMakeMemoryPersistent(void *ptr) {
 
 void mxFree_m(void *ptr){ 
   int i;
+  
   for ( i = 0 ; i < rec_size ; i++) {
     if (calloc_table[i].adr == ptr)
       {
 	/* allocated and preserved */
 	if  (calloc_table[i].keep != 0 ) 
 	  {
+	    /* sciprint("mxFree position %d \r\n",i); */
 	    free(ptr);
 	    calloc_table[i].keep = 0;
 	    calloc_table[i].adr = NULL;
+	    return;
 	  }
       }
   }
@@ -1003,7 +1009,8 @@ static void mxFree_m_all() {
   for ( i = 0 ; i < rec_size ; i++) {
     if  (calloc_table[i].keep == 1 ) 
       {
-	free(calloc_table[i].adr);
+	/* sciprint("mxFree all position %d \r\n",i); */
+        free(calloc_table[i].adr);
 	calloc_table[i].keep = 0;
 	calloc_table[i].adr = NULL;
       }
