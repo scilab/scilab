@@ -1,5 +1,9 @@
 // Copyright INRIA
 mode(-1)
+if ~with_tk() then
+  x_message('Sorry this version has not been built with tcl/tk interface')
+  return
+end
 oldln=lines();
 lines(0)
 deff('[]=demoex(num)','execstr(demolist(num,2))')
