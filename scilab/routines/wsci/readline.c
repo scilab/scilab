@@ -744,11 +744,12 @@ static char msdos_getch ()
 {
   char c ;
   
-  while( !_kbhit() )
+  while( !_kbhit() && C2F(ismenu)()==0)  /* Test on C2F(ismenu) added (bug 1052) - Francois VOGEL */
   {
 	  C2F (sxevents) ();
 	  Sleep(1);
   }
+  if (C2F(ismenu)()==1) return 0;  /* This line added to fix bug 1052 - Francois VOGEL */
 
   c = getch ();
   
