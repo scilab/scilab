@@ -7,14 +7,10 @@ end
 
 kd=find(da<>db)
 kd(find(kd==1))=[]
-if kd<>[] then
-  error('inconsistent dimensions')
-end
-val=list()
-for k=1:size(da,'*')
-  val($+1)=a.entries(k)
-end
-for k=1:size(db,'*')
+if kd<>[] then error(6);end
+
+val=a.entries
+for k=1:prod(db)
   val($+1)=b.entries(k)
 end
 da(1)=da(1)+db(1)

@@ -30,8 +30,13 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 M5 = mtlb_cell.sci struct.sci  \
 	%s_i_struct.sci %b_i_struct.sci %i_i_struct.sci %sp_i_struct.sci \
 	%c_i_struct.sci %s_i_struct.sci %struct_p.sci\
-        %cell_e.sci %cell_p.sci %cell_size.sci %s_i_cell.sci cell.sci \
-	%cell_c_cell.sci %cell_f_cell.sci 
+        %cell_e.sci %cell_p.sci %cell_size.sci cell.sci \
+	%s_i_cell.sci %c_i_cell.sci %cell_i_cell.sci\
+	%cell_c_cell.sci %cell_f_cell.sci \
+	%cell_c_s.sci %cell_f_s.sci %s_f_cell.sci %s_c_cell.sci \
+	%c_c_cell.sci %c_f_cell.sci %cell_f_c.sci %cell_c_c.sci \
+	%i_c_cell.sci %i_f_cell.sci %cell_f_i.sci %cell_c_i.sci 
+
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci\
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \

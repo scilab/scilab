@@ -1,4 +1,4 @@
-function M=%s_i_cell(varargin)
+function M=%cell_i_cell(varargin)
 // Copyright INRIA
 //insertion of a matrix in an hypermatrix
 [lhs,rhs]=argn(0)
@@ -67,8 +67,7 @@ if or(dims1>dims) then
   end
   v=v1
 end
-
-for i=1:size(I,'*'), v(I(i)+1)=N,end
+v(I+1)=N
 
 
 while  dims1($)==1 then dims1($)=[],end

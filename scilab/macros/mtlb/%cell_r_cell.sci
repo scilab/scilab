@@ -8,8 +8,10 @@ end
 kd=find(da<>db)
 kd(find(kd==2))=[]
 if kd<>[] then
-  error(5)
+  error('inconsistent dimensions')
 end
+
+pause
 v=[matrix(1:prod(da),da(1)*da(2),prod(da)/(da(1)*da(2)));
     -matrix(1:prod(db),db(1)*db(2),prod(db)/(db(1)*db(2)))]
 val=list()
