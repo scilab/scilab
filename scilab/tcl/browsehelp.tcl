@@ -12,7 +12,7 @@
 
 ### modified by Matthieu 16/11/2001
 if { ![info exists sciw] } {
-    set sciw .foo
+    set sciw .scilabhelp
 }
 if { ![info exists lang] } {
     set lang "eng"
