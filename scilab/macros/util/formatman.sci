@@ -130,7 +130,7 @@ while k<n
   case 'table' then
     txt=[txt;maketable(mk(2),ind)]
   case 'fill' then
-    txt=[txt;justify(item,mk(2),ind,mk(3))]
+    txt=[txt;justify_text(item,mk(2),ind,mk(3))]
     item=[]
   case 'verbatim' then
     txt=[txt;part(' ',ones(1,sum(ind)))+mk(2)]
@@ -803,7 +803,7 @@ for k=1:size(tab,2)
   t=t+part(tab(:,k),1:max(length(tab(:,k))))+'|'
 end
 
-function t=justify(item,txt,ind,tp)
+function t=justify_text(item,txt,ind,tp)
 curind=sum(ind)
 tp=max(0,tp)
 t=[]
