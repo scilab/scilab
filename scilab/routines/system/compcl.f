@@ -6,14 +6,13 @@ c     Copyright INRIA
       include '../stack.h'
 c
       parameter (nz1=nsiz-1,nz2=nsiz-2)
+      parameter (iif=1,iwhile=2,iselect=3)
       logical eqid
-      integer while(nsiz),else(nsiz),r,cas(nsiz),sel(nsiz),elsif(nsiz)
+      integer else(nsiz),r,cas(nsiz),elsif(nsiz)
       integer sadr
 
       data else/236721422,nz1*673720360/
-      data while/353505568,673720334,nz2*673720360/
       data cas/236718604,nz1*673720360/
-      data sel/236260892,673717516,nz2*673720360/
       data elsif/236721422,673713938,nz2*673720360/
 c
       sadr(l)=(l/2)+1
@@ -27,7 +26,7 @@ c
      &              //buf(15:20))
       endif
 
-      if(eqid(ids(1,pt),sel)) goto 10
+      if(ids(1,pt).eq.iselect) goto 10
       goto(02,03,04,05,06,08),r
 c
 c for : <7 l.boucle boucle.ops l.ops varn(1:nsiz) for.ops>
@@ -138,7 +137,7 @@ c fin if/while
       comp(2)=istk(l0)
       istk(l0)=-(l-istk(l0-1))
       istk(l0-1)=8
-      if(eqid(ids(1,pt),while)) istk(l0-1)=9
+      if(ids(1,pt).eq.iwhile) istk(l0-1)=9
       call setlnb
       return
 c

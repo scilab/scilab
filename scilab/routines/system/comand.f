@@ -12,6 +12,7 @@ C
       integer cmdl
       parameter (cmdl = 27)
       parameter (nz1 = nsiz-1, nz2 = nsiz-2, nz3 = nsiz-3)
+      parameter (iif=1,iwhile=2,iselect=3)
 C     
       integer cmd(nsiz,cmdl),a,blank,name
       integer id(nsiz),ennd(nsiz),sel(nsiz),while(nsiz),for(nsiz)
@@ -195,7 +196,7 @@ C
  37   fin = -16
       if (pt .eq. 0) then
         goto 42
-      elseif (abs(rstk(pt)).ne.805 .or. .not.eqid(ids(1,pt),sel)) then
+      elseif (abs(rstk(pt)).ne.805 .or. ids(1,pt).ne.iselect) then
         goto 42
       endif
       goto 999
@@ -229,7 +230,7 @@ C     compilation return:<99>
  47   pt = pt - 1
       if (pt .eq. 0) goto 48
       if (rstk(pt).eq.802 .or. rstk(pt).eq.612 .or.
-     &    (rstk(pt).eq.805.and.eqid(ids(1,pt),sel)) .or.
+     &    (rstk(pt).eq.805.and.ids(1,pt).eq.iselect) .or.
      &    (rstk(pt).eq.616.and.pstk(pt).eq.10)) top = top - 1
       ir = rstk(pt) / 100
       if (ir .ne. 5) goto 47
@@ -425,11 +426,11 @@ C     .  break or continue in a for loop
             top = top - 1
             pt = pt - 2
          endif
-      elseif(eqid(ids(1,pt),sel)) then
+      elseif(ids(1,pt).eq.iselect) then
 c     .  discard select variable
          top = top - 1
          goto 131
-      elseif (eqid(ids(1,pt),while)) then
+      elseif (ids(1,pt).eq.iwhile) then
 C     .  break or continue in a  while
          if (kcmd.eq.kbrk) pt = pt - 1
       elseif (int(rstk(pt)/100) .eq. 5) then

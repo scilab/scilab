@@ -2484,6 +2484,7 @@ c     .        unmark all
 c     Copyright INRIA
       include '../stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
+      parameter (iif=1,iwhile=2,iselect=3)
       logical eqid
       integer pt0,count,r
       integer semi,comma,eol
@@ -2506,7 +2507,7 @@ c
       if(pt0.le.0) return
          
       if(rstk(pt0).eq.802.or.rstk(pt0).eq.612 .or.
-     &     (rstk(pt0).eq.805.and.eqid(ids(1,pt0),sel)).or.
+     &     (rstk(pt0).eq.805.and.ids(1,pt0).eq.iselect).or.
      &     (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
       if(int(rstk(pt0)/100).ne.5) goto 151
 c
@@ -2525,7 +2526,7 @@ c            pt0=pt0-2
  153        pt0=pt0-1
             if(pt0.le.0) return
             if(rstk(pt0).eq.802.or.rstk(pt0).eq.612 .or.
-     &           (rstk(pt0).eq.805.and.eqid(ids(1,pt0),sel)).or.
+     &           (rstk(pt0).eq.805.and.ids(1,pt0).eq.iselect).or.
      &           (rstk(pt0).eq.616.and.pstk(pt0).eq.10)) count=count+1
             if(rstk(pt0).lt.501.or.rstk(pt0).gt.503) goto 153
             if(rstk(pt0).eq.503.and.rio.eq.rte.and.paus.ne.0) then

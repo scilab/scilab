@@ -12,6 +12,7 @@ c     Copyright INRIA
       integer r,r1
       logical eqid,istrue,ok,first,eptover
       parameter (nz1=nsiz-1,nz2=nsiz-2)
+      parameter (iif=1,iwhile=2,iselect=3)
       data semi/43/,equal/50/,eol/99/,blank/40/
       data comma/52/,name/1/
       data lparen/41/,rparen/42/
@@ -23,6 +24,10 @@ c     Copyright INRIA
       data cas/236718604,nz1*673720360/
       data sel/236260892,673717516,nz2*673720360/
       data elsif/236721422,673713938,nz2*673720360/
+      
+
+
+
 c     
       r = -fin-10
       fin = 0
@@ -153,11 +158,18 @@ c
 c     while  if  select/case or if/elseif
 c   
  30   if ( eptover(1,psiz)) return
-      call putid(ids(1,pt),syn)
+      if (eqid(syn,while))  then
+         ids(1,pt)=iwhile
+      elseif(eqid(syn,sel))  then
+         ids(1,pt)=iselect
+      else
+         ids(1,pt)=iif
+      endif
+C      call putid(ids(1,pt),syn)
+
       pstk(pt) = lpt(4)-1
-      if(eqid(while,ids(1,pt))) then
-c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
-c     sont chargee (pb des matrices sur plusieurs lignes)
+      if(ids(1,pt).eq.iwhile) then
+c     .  while, look for the end to be sure all lines are loaded
          call skpins(1)
          if(err.gt.0) return
       endif
@@ -174,7 +186,8 @@ c     sont chargee (pb des matrices sur plusieurs lignes)
  37   icall=1
 c     *call* expr
       return
- 40   if (.not.eqid(ids(1,pt),sel)) goto 46
+ 40   if (ids(1,pt).ne.iselect) goto 46
+c     select case
  41   continue
       if(sym.eq.comma.or.sym.eq.semi) then
          call getsym
@@ -262,14 +275,14 @@ c     comparaison ...
          if(err.gt.0) return
          if(eqid(syn,else)) goto 60
          if(eqid(syn,elsif)) then
-            if(.not.eqid(iff,ids(1,pt))) then
+            if(ids(1,pt).ne.iif) then
                call error(34)
                return
             endif
             goto 36
          endif
          if(eqid(syn,cas)) then
-            if(.not.eqid(sel,ids(1,pt))) then
+            if(ids(1,pt).ne.iselect) then
                call error(34)
                return
             endif
@@ -289,7 +302,7 @@ c     --------
 c     *call* parse
       return
  55   if(comp(1).eq.0) then
-         if (eqid(ids(1,pt),while)) go to 35
+         if (ids(1,pt).eq.iwhile) go to 35
          if(.not.eqid(syn,ennd)) then
             call skpins(1)
             if(err.gt.0) return
@@ -317,7 +330,7 @@ c     *call parse*
 c     
 c     fin if ou while ou select
 c------------------------------
- 66   if(eqid(ids(1,pt),sel).and.comp(1).eq.0) top=top-1
+ 66   if(ids(1,pt).eq.iselect.and.comp(1).eq.0) top=top-1
       pt=pt-1
       icall=7
       return

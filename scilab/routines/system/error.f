@@ -168,6 +168,7 @@ c     n : error number, if n execeeds the maximum error number this
 c         routines displays the error message contained in buf
 c!
       include '../stack.h'
+      parameter (iif=1,iwhile=2,iselect=3)
       integer n,errtyp
       integer lunit,sadr,nl,io
       character line*340
@@ -309,8 +310,14 @@ c
       errtyp=1
       go to 999
    35 continue
-      call cvname(ids(1,pt),buf,1)
-      call msgout(io,lunit,'Syntax error in '//buf(1:nlgh))
+      if(ids(1,pt).eq.iif) then
+         call msgout(io,lunit,'Syntax error in an if instruction')
+      elseif(ids(1,pt).eq.iwhile) then
+         call msgout(io,lunit,'Syntax error in a while instruction')
+      else
+         call msgout(io,lunit,
+     $        'Syntax error in a select/case instruction')
+      endif
       errtyp=1
       go to 999
    36 if(err.ne.1) then
