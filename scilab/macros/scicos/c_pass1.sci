@@ -133,7 +133,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m)
     cmmat=abs(cmmat) ;
     //create regular block associated to all modelica blocks
 
-    [model,ok]=build_modelica_block(blklstm, cmmat,NiM,NoM,scs_m.props.title(1),scs_m.props.title(2));
+    [model,ok]=build_modelica_block(blklstm, cmmat,NiM,NoM,scs_m.props.title(1),TMPDIR+'/');
     if ~ok then return,end
     blklst(nr+1)=model;
     //make compiled modelica block refer to the set of corresponding
