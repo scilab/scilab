@@ -30,13 +30,14 @@ fstyle=get('figure_style')
 k=1;n=yc(k);c=1;level=xc(k)
 if fstyle=='new' then 
   fig=gcf();
-  if stripblanks(fig.auto_clear)=="on" then xbasc(),end
+  autoc=stripblanks(fig.auto_clear)
+  if autoc=="on" then xbasc(),end
   a=gca();
-  autoc=stripblanks(a.auto_clear)
-  if autoc=="on" then %h_delete(a.children);a=gca(),end
-  v=a.visible
-  a.visible="off"
-  a.auto_clear="off"
+  //autoc=stripblanks(a.auto_clear)
+  //if autoc=="on" then %h_delete(a.children);a=gca(),end
+  v=fig.visible
+  fig.visible="off"
+  fig.auto_clear="off"
   cnt=0
 end
 while k+yc(k)<size(xc,'*')
@@ -62,5 +63,5 @@ end
 if fstyle=='new' then 
   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
 end
-if fstyle=='new' then a.visible=v, a.auto_clear=autoc;end
+if fstyle=='new' then fig.visible=v, fig.auto_clear=autoc;end
 endfunction
