@@ -198,6 +198,31 @@
 #   Scilab help
 # * version --> 2.0
 
+# Francois VOGEL, 18/05/04
+# * closing the find dialog using the cross at the upper right corner does not
+#   produce an error any more (patch provided by ES)
+# * added display of the line number in function in the status bar (provided by ES)
+#   note: this required moving proc whichfun before proc keyposn
+# * removed \n in ScilabEval as this hangs unix versions and does not cure the
+#   loosing of first characters. Added 5 leading spaces trying to limit the issue.
+# * added quotes around strings tested in if conditions (used to hang unix versions)
+# * debug commands now check if scilab is busy before sending commands to scilab
+#   shell
+# * version --> 2.1
+
+# Francois VOGEL, 21/05/04
+# * fixed expose binding issue (100% CPU and edge blinking when find dialog was open)
+# * solved bug that occurred when trying to input an argument of a function when the
+#   listbox was empty
+# * improved proc whichfun to treat some pathological cases:
+#   - comments ended by ...
+#   - continued lines without ... (therefore, check for unmatched brackets and braces
+#     on any single line)
+#   - also corrected slight bugs in that proc, but it is still not perfect
+# * added a second status indicator to display line number in function at the bottom
+#   of the pad instead of displaying that information in the message area
+# * version --> 2.2
+
 # default global values
 #global .
 
@@ -213,7 +238,7 @@ set fileName " "
 set textareacur $pad.textarea
 set saveTextMsg 0
 set winTitle "SciPad"
-set version "Version 2.0"
+set version "Version 2.2"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
@@ -574,7 +599,7 @@ proc execfile {} {
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-	    ScilabEval "exec(\"$f\");\n"
+	    ScilabEval "exec(\"$f\");"
 	}
     }
 }
@@ -885,6 +910,25 @@ if {$lang == "eng"} {
       -underline 0 -command "removescilab_bp with_output"
 }
 
+proc checkscilabbusy {} {
+    global sciprompt lang
+    if [ expr [string compare $sciprompt -1] == 0 ] {
+        if {$lang == "eng"} {
+            set mes "Scilab is working, wait for the prompt to issue a\
+                 debugger command."
+            set tit "Scilab working"
+        } else {
+            set mes "Scilab est occupé, attendez le prompt pour\
+                 effectuer des commandes de débug."
+            set tit "Scilab occupé"
+        }
+        tk_messageBox -message $mes -title $tit -type ok -icon info
+        return "busy"
+    } else {
+        return "OK"
+    }
+}
+
 proc insertremove_bp {} {
     set textareacur [gettextareacur]
     set i1 "insert linestart"
@@ -911,38 +955,40 @@ proc removeall_bp {} {
 
 proc insertremovedebug_bp {} {
     set textareacur [gettextareacur]
-    set i1 "insert linestart"
-    set i2 "insert lineend"
-    set activetags [$textareacur tag names $i1]
-    if {[string first breakpoint $activetags] == -1} {
-        $textareacur tag add breakpoint $i1 $i2
-        set infun [whichfun [$textareacur index $i1]]
-        if {$infun !={} } {
-            set funname [lindex $infun 0]
-            set lineinfun [expr [lindex $infun 1] - 1]
-            set setbpcomm " setbpt(\"$funname\",$lineinfun);"
-            ScilabEval $setbpcomm
+    if {[checkscilabbusy] == "OK"} {
+        set i1 "insert linestart"
+        set i2 "insert lineend"
+        set activetags [$textareacur tag names $i1]
+        if {[string first breakpoint $activetags] == -1} {
+            $textareacur tag add breakpoint $i1 $i2
+            set infun [whichfun [$textareacur index $i1]]
+            if {$infun !={} } {
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set setbpcomm " setbpt(\"$funname\",$lineinfun);"
+                ScilabEval $setbpcomm
+            } else {
+                # <TODO> .sce case
+            }
         } else {
-            # <TODO> .sce case
-        }
-    } else {
-        # There was bug(s) in scilab routines/interf/matsys.f file
-        # on this one: in -1-> mode, setbpt("foo",linenum) worked, but
-        # delbpt("foo",linenum) did not (bp was removed from dispbpt
-        # list but execution still stopped at linenum)
-        # The correction has been submitted to Scilab team (see
-        # bugzilla #718). If the patch is not installed, the following
-        # will fail.
-        $textareacur tag remove breakpoint $i1 $i2
-        $textareacur tag remove activebreakpoint $i1 $i2
-        set infun [whichfun [$textareacur index $i1]]
-        if {$infun !={} } {
-            set funname [lindex $infun 0]
-            set lineinfun [expr [lindex $infun 1] - 1]
-            set delbpcomm " delbpt(\"$funname\",$lineinfun);"
-            ScilabEval $delbpcomm
-        } else {
-            # <TODO> .sce case
+            # There was bug(s) in scilab routines/interf/matsys.f file
+            # on this one: in -1-> mode, setbpt("foo",linenum) worked, but
+            # delbpt("foo",linenum) did not (bp was removed from dispbpt
+            # list but execution still stopped at linenum)
+            # The correction has been submitted to Scilab team (see
+            # bugzilla #718). If the patch is not installed, the following
+            # will fail.
+            $textareacur tag remove breakpoint $i1 $i2
+            $textareacur tag remove activebreakpoint $i1 $i2
+            set infun [whichfun [$textareacur index $i1]]
+            if {$infun !={} } {
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set delbpcomm " delbpt(\"$funname\",$lineinfun);"
+                ScilabEval $delbpcomm
+            } else {
+                # <TODO> .sce case
+            }
         }
     }
 }
@@ -961,71 +1007,75 @@ set funnames ""
 
 proc execfile_bp {} {
     global funnameargs funsinbuffer
-    set removecomm [removescilab_bp "no_output"]
-    set textareacur [gettextareacur]
-    set tagranges [$textareacur tag ranges breakpoint]
-    set setbpcomm ""
-    set firstbp true
-#    set nlins -1
- #   set nlins -2
-    foreach {tstart tstop} $tagranges {
-        set infun [whichfun [$textareacur index $tstart]]
-        if {$infun !={} } {
-            set funname [lindex $infun 0]
-            set lineinfun [expr [lindex $infun 1] - 1]
-            set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
-            if {$firstbp == true} {
-                set firstbp false
-                $textareacur tag remove activebreakpoint 1.0 end
-                $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
-                $textareacur mark set insert "$tstart linestart"
-                $textareacur see "$tstart linestart"
+    if {[checkscilabbusy] == "OK"} {
+        set removecomm [removescilab_bp "no_output"]
+        set textareacur [gettextareacur]
+        set tagranges [$textareacur tag ranges breakpoint]
+        set setbpcomm ""
+        set firstbp "true"
+#        set nlins -1
+ #       set nlins -2
+        foreach {tstart tstop} $tagranges {
+            set infun [whichfun [$textareacur index $tstart]]
+            if {$infun !={} } {
+                set funname [lindex $infun 0]
+                set lineinfun [expr [lindex $infun 1] - 1]
+                set setbpcomm [concat $setbpcomm "setbpt(\"$funname\",$lineinfun);"]
+                if {$firstbp == "true"} {
+                    set firstbp "false"
+                    $textareacur tag remove activebreakpoint 1.0 end
+                    $textareacur tag add activebreakpoint "$tstart linestart" "$tstart lineend"
+                    $textareacur mark set insert "$tstart linestart"
+                    $textareacur see "$tstart linestart"
+                }
+           } else {
+                # <TODO> .sce case: I thought about:
+                # - inserting pause before each bp, or
+                # - inserting mode(6) plus mode(0) before each bp
+                # but none is satisfactory. Using mode() will fail in loops,
+                # and pause is very limited (no way to add a new bp during debug,
+                # or to remove all bp to finish execution ignoring them)
+#                incr nlins 1
+ #               incr nlins 2
+#                $textareacur insert "$tstart +$nlins l linestart" "pause\n"
+ #               $textareacur insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
             }
-       } else {
-            # <TODO> .sce case: I thought about:
-            # - inserting pause before each bp, or
-            # - inserting mode(6) plus mode(0) before each bp
-            # but none is satisfactory. Using mode() will fail in loops,
-            # and pause is very limited (no way to add a new bp during debug,
-            # or to remove all bp to finish execution ignoring them)
-#            incr nlins 1
- #           incr nlins 2
-#            $textareacur insert "$tstart +$nlins l linestart" "pause\n"
- #           $textareacur insert "$tstart +$nlins l linestart" "mode(6)\nmode(0)\n"
         }
-    }
-    if {$funnameargs != ""} {
-        execfile
-# Leading space and trailing ;\n here to avoid loss of first character
+        if {$funnameargs != ""} {
+            execfile
+# Leading spaces here to avoid possible loss of first characters
 # However this does not work for long lines created by execfile (i.e.
 # lines that take a long time to display or execute in Scilab window)
-        if {$setbpcomm != ""} {
-            ScilabEval " $setbpcomm; $funnameargs,$removecomm\n"
+            if {$setbpcomm != ""} {
+                ScilabEval "     $setbpcomm; $funnameargs,$removecomm"
+            } else {
+                ScilabEval "     $funnameargs"
+            }
         } else {
-            ScilabEval " $funnameargs\n"
+            # <TODO> .sce case
+##            execfile
         }
-    } else {
-        # <TODO> .sce case
-##        execfile
     }
 }
 
 proc removescilab_bp {outp} {
     global funnames
-    set textareacur [gettextareacur]
-    set tagranges [$textareacur tag ranges breakpoint]
-    set setbpcomm ""
-    if {$funnames != ""} {
-        foreach fun $funnames {
-            set setbpcomm [concat $setbpcomm "delbpt(\"$fun\");"]
+    if {[checkscilabbusy] == "OK"} {
+        set textareacur [gettextareacur]
+        set tagranges [$textareacur tag ranges breakpoint]
+        set setbpcomm ""
+        if {$funnames != ""} {
+            foreach fun $funnames {
+                set setbpcomm [concat $setbpcomm "delbpt(\"$fun\");"]
+            }
+            if {$outp != "no_output"} {
+                ScilabEval " $setbpcomm"
+            }
+        } else {
+            # <TODO> .sce case
         }
-        if {$outp != "no_output"} {
-            ScilabEval " $setbpcomm\n"
-        }
-    } else {
-        # <TODO> .sce case
+        return $setbpcomm
     }
-    return $setbpcomm
 }
 
 proc stepbystep_bp {} {
@@ -1053,44 +1103,52 @@ proc resume_bp {} {
 # <TODO> correct wrong active bp tag when bp is in conditional structure
 # Solution to this is similar to what is explained in proc stepbystep_bp 
  #   global funnameargs
-    set textareacur [gettextareacur]
-    set actbprange [$textareacur tag ranges activebreakpoint]
-    if {$actbprange != {} } {
-        set actstart [lindex $actbprange 0]
-        set actstop [lindex $actbprange 1]
-        $textareacur tag remove activebreakpoint $actstart $actstop
-        set nextbprange [$textareacur tag nextrange breakpoint $actstop]
-        if {$nextbprange != {} } {
-            set newipos [lindex $nextbprange 0]
-            $textareacur tag add activebreakpoint $newipos [lindex $nextbprange 1]
-            $textareacur mark set insert $newipos
-            $textareacur see $newipos
+    if {[checkscilabbusy] == "OK"} {
+        set textareacur [gettextareacur]
+        set actbprange [$textareacur tag ranges activebreakpoint]
+        if {$actbprange != {} } {
+            set actstart [lindex $actbprange 0]
+            set actstop [lindex $actbprange 1]
+            $textareacur tag remove activebreakpoint $actstart $actstop
+            set nextbprange [$textareacur tag nextrange breakpoint $actstop]
+            if {$nextbprange != {} } {
+                set newipos [lindex $nextbprange 0]
+                $textareacur tag add activebreakpoint $newipos [lindex $nextbprange 1]
+                $textareacur mark set insert $newipos
+                $textareacur see $newipos
+            }
         }
+ #       if {$funnameargs != ""} {
+            ScilabEval " resume"
+ #       } else {
+            # <TODO> .sce case
+            # Sending \n is if mode(6) mode(0) is used. If pause, there is no
+            # need to ditinguish between .sci and .sce (resume is sent for both)
+ #           ScilabEval " "
+ #       }
     }
- #   if {$funnameargs != ""} {
-        ScilabEval " resume\n"
- #   } else {
-        # <TODO> .sce case
-        # Sending \n is if mode(6) mode(0) is used. If pause, there is no
-        # need to ditinguish between .sci and .sce (resume is sent for both)
- #       ScilabEval " \n"
- #   }
 }
 
 proc goonwo_bp {} {
-    [gettextareacur] tag remove activebreakpoint 1.0 end
-    removescilab_bp "with_output"
-    ScilabEval " resume\n"
+    if {[checkscilabbusy] == "OK"} {
+        [gettextareacur] tag remove activebreakpoint 1.0 end
+        removescilab_bp "with_output"
+        ScilabEval " resume"
+    }
 }
 
 proc dispcallstack_bp {} {
-    ScilabEval " whereami()\n"
+    if {[checkscilabbusy] == "OK"} {
+        ScilabEval " whereami()"
+    }
 }
 
 proc canceldebug_bp {} {
-    [gettextareacur] tag remove activebreakpoint 1.0 end
-    ScilabEval " abort\n"
-    removescilab_bp "with_output"
+    if {[checkscilabbusy] == "OK"} {
+        [gettextareacur] tag remove activebreakpoint 1.0 end
+        ScilabEval " abort"
+        removescilab_bp "with_output"
+    }
 }
 
 proc configurefoo_bp {} {
@@ -1349,7 +1407,7 @@ proc OKconf_bp {w} {
     set funname [$spin get]
     if {$funname != ""} {
         set orderOK [checkarglist $funname]
-        if {$orderOK == true} {
+        if {$orderOK == "true"} {
             set strargs ""
             for {set i 0} {$i < [$listboxinput size]} {incr i} {
                 set argvalue [$listboxinputval get $i]
@@ -1370,7 +1428,7 @@ proc checkarglist {funname} {
 # rely on the latest Obtainall_bp
     global listoftextarea funvars lang
     set pat "\\mfunction\\M.*\\m$funname\\M"
-    set orderOK false
+    set orderOK "false"
     foreach textarea $listoftextarea {
         set ex [$textarea search -regexp $pat 0.0 end]
         if {$ex != "" } {
@@ -1386,11 +1444,11 @@ proc checkarglist {funname} {
                 set clpar [string first "\)" $funline]
                 set listvars [string range $funline [expr $oppar+1] [expr $clpar-1]]
                 set listvars [string map {, " "} $listvars]
-                set orderOK true
+                set orderOK "true"
                 set i 0
                 foreach var $funvars($funname) {
                     if {$var != [lindex $listvars $i]} {
-                        set orderOK false
+                        set orderOK "false"
                         break
                     } else {
                         incr i
@@ -1399,7 +1457,7 @@ proc checkarglist {funname} {
             }
         }
     }
-    if {$orderOK != true } {
+    if {$orderOK != "true" } {
         if {$lang == "eng" } {
             set mes "Function name or input arguments do not match definition\
                      of the function $funname in the file!\n\nCheck function\
@@ -1433,7 +1491,7 @@ proc Obtainall_bp {} {
     set funsinbuffer($textarea) ""
     set nextfun [$textarea search -exact -forwards -regexp\
                  "\\mfunction\\M" 0.0 end ]
-    set firstfuninbuffer true
+    set firstfuninbuffer "true"
     while {$nextfun != ""} {
         while {[lsearch [$textarea tag names $nextfun] "textquoted"] != -1 || \
                [lsearch [$textarea tag names $nextfun] "rem2"] != -1 } {
@@ -1455,8 +1513,8 @@ proc Obtainall_bp {} {
                 $spin configure -values "$precval $funname"
             }
             $spin configure -state readonly
-            if {$firstfuninbuffer == true} {
-                set firstfuninbuffer false
+            if {$firstfuninbuffer == "true"} {
+                set firstfuninbuffer "false"
                 set funtoset $funname
             }
             set funline [lindex $infun 2]
@@ -1494,6 +1552,7 @@ proc Addarg_bp {} {
     global argname argvalue listboxinput listboxinputval spin
     global buttonAdd
     set pos [$listboxinput curselection]
+    if {$pos == ""} {set pos 0}
     if {[$spin get] != ""} {
         set adda $conf.adda
         toplevel $adda
@@ -1557,18 +1616,18 @@ proc OKadda_bp {w pos} {
     global spin funvars funvarsvals
     if {$argname!= ""} {
         set listboxinputelts [$listboxinput get 0 end]
-        set alreadyexists false
+        set alreadyexists "false"
         set eltindex 0
         foreach elt $listboxinputelts {
             if {$argname == $elt} {
-                set alreadyexists true
+                set alreadyexists "true"
                 break
             } else {
                 incr eltindex
             }
         }
         set funname [$spin get]
-        if {$alreadyexists == false} {
+        if {$alreadyexists == "false"} {
             set pos [expr $pos + 1]
             $listboxinput insert $pos $argname
             $listboxinputval insert $pos $argvalue
@@ -1941,6 +2000,119 @@ proc insertnewline {w} {
 }
 ### 
 
+proc whichfun {indexin {buf "current"}} {
+    global lang
+#it is implicitely meant that indexin refers to a position in textareacur
+# FV 13/05/04, added capability for looking in a buffer which is not the current one
+    if {$buf == "current"} {
+        set textarea [gettextareacur]
+    } else {
+        set textarea $buf
+    }
+    scan $indexin "%d.%d" ypos xpos
+# search for the previous "function" which is not in a comment nor
+# in a string
+    set precfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mfunction\\M" $indexin 0.0]
+    if {$precfun!=""} {
+# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
+        while {[lsearch [$textarea tag names $precfun] "textquoted"] !=-1 | \
+	       [lsearch  [$textarea tag names $precfun] "rem2"] !=-1} {
+          set precfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mfunction\\M" $precfun 0.0]
+ 	  if {$precfun==""} break
+	}
+    }
+# search for the previous "endfunction" which is not in a comment nor
+# in a string
+    set precendfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mendfunction\\M" $indexin 0.0]
+    if {$precendfun!=""} {
+# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
+        while {[lsearch [$textarea tag names $precendfun] "textquoted"] !=-1 | \
+	       [lsearch  [$textarea tag names $precendfun] "rem2"] !=-1} {
+          set precendfun [$textarea search -count len -exact -backwards -regexp\
+		     "\\mendfunction\\M" $precendfun 0.0]
+ 	  if {$precendfun==""} break
+	}
+    }
+    set insidefun 1
+    if {$precfun == "" | $precendfun > $precfun} {
+      set insidefun 0
+    } else { 
+# find the function name, excluding too pathological cases
+      set i1 [$textarea index "$precfun+8c"]
+      set i2 [$textarea index "$precfun lineend"]
+      set funline [$textarea get $i1 $i2]
+      set funname ""
+      set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
+      if {[set i3 [string first "=" $funline]] !={}} {
+	  regexp -start [expr $i3+1] $funpat $funline funname  
+      } else {
+	  regexp  $funpat $funline funname  
+      }
+      if {$funname==""} {set insidefun 0}
+    }
+    if {$insidefun == 0} {
+#      tk_messageBox -message \
+#	  "The cursor is not currently inside a function body"
+	return {}
+    } else {
+# check how many continued (...) lines between $indexin and $precfun,
+#  and derive the current line within the function definition
+        set last $precfun
+        set contlines 0
+        set dottedlineslist {}
+        while {[set ind [$textarea search -regexp "\\.{2,} *(//.*)?\\Z"\
+			     $last $indexin]] != {}} {
+            if {[$textarea compare $ind >= $last] } {
+                set last "$ind+1l linestart"
+                if { [lsearch [$textarea tag names $ind] "rem2"] ==-1 &&
+                     [$textarea compare $last <= $indexin] } {
+                    set contlines [expr $contlines+1]
+                    set dottedlineslist [linsert $dottedlineslist end \
+                                         [$textarea index "$ind linestart"]]
+                }
+            } else break
+        }
+        proc checkcontbraceorbracket {precfun indexin textarea openchar closechar dottedlineslist} {
+            set last $precfun
+            set contlines 0
+            while {[set ind [$textarea search $openchar \
+                             $last $indexin]] != {}} {
+                if {[$textarea compare $ind >= $last] &&
+                    [lsearch $dottedlineslist [$textarea index "$ind linestart"]] == -1 } {
+                    set ind2 [$textarea search $closechar $ind end]
+                    if {[$textarea compare "$ind2 linestart" > "$ind linestart"]} {
+                        incr contlines [expr int([$textarea index "$ind2 linestart"]\
+                                               - [$textarea index "$ind linestart"]) ]
+                    }
+                    if {[$textarea compare $ind2 > $indexin]} {
+                        incr contlines [expr int([$textarea index "$indexin linestart"]\
+                                               - [$textarea index "$ind2 linestart"]) ]
+                    }
+                    set last "$ind+1l linestart"
+                } else break
+            }
+            return $contlines
+        }
+        incr contlines [checkcontbraceorbracket $precfun $indexin $textarea "\{" "\}" $dottedlineslist]
+        incr contlines [checkcontbraceorbracket $precfun $indexin $textarea "\[" "\]" $dottedlineslist]
+
+        scan $precfun "%d." beginfunline 
+	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+# FV 13/05/04, message box commented
+#      if {$lang == "eng"} {
+#        tk_messageBox -message \
+#	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
+#      } else {
+#        tk_messageBox -message \
+#	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
+#      }
+        return [list $funname $lineinfun $funline $precfun] 
+    }
+}
+
 #############################################
 #to get the line number
 #included by Matthieu PHILIPPE 21/11/2001 from linenum.pth
@@ -1950,7 +2122,9 @@ entry $pad.statusind -relief groove -state disabled -background $colormen
 # this addes an entry widget to dsplay information !
 entry $pad.statusmes -relief groove -state disabled -background $colormen \
     -foreground blue
-pack $pad.statusind -in $pad.bottombottommenu -side right -expand 0
+# FV 21/05/04, added a second statusind to display the line number in functions
+entry $pad.statusind2 -relief groove -state disabled -background $colormen
+pack $pad.statusind2 $pad.statusind -in $pad.bottombottommenu -side right -expand 0
 pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
 # this proc gets the posn and sets the statusbar
@@ -1967,6 +2141,25 @@ proc keyposn {textarea} {
         $pad.statusind insert 0 "Ligne: $ypos   Colonne: $xpos"
     }
     $pad.statusind configure -state disabled
+#ES 16/5/2004 - show additionally the logical line in a function
+#FV 21/05/04 - changed to add a status indicator for line in fun
+    set infun [whichfun $indexin]
+    $pad.statusind2 configure -state normal
+    $pad.statusind2 delete 0 end
+    if {$infun !={} } {
+      set funname [lindex $infun 0]
+      set lineinfun [lindex $infun 1]
+      if {$lang == "eng"} {
+#        showinfo "Function $funname : line $lineinfun"
+        $pad.statusind2 insert 0 "Line $lineinfun in $funname"
+      } else {
+#        showinfo "Fonction $funname : ligne $lineinfun"
+        $pad.statusind2 insert 0 "Ligne $lineinfun de $funname"
+      }
+    } else {
+#      showinfo ""
+    }
+    $pad.statusind2 configure -state disabled
 }
 
 ###############
@@ -2053,14 +2246,14 @@ proc aboutme {} {
 	tk_messageBox -title "About" -type ok \
 	    -message "$winTitle $version\n\
             Originated by Joseph Acosta, joeja@mindspring.com.\n\
-            Modified by Scilab Consortium.\n\
+            Modified by Scilab Group.\n\
             Revised by Enrico Segre 2003,2004.\n\
             Miscellaneous improvements, particularly debug tools, by François Vogel 2004."
     } else {
 	tk_messageBox -title "A propos" -type ok \
 	    -message "$winTitle $version\n\
             Créé par Joseph Acosta, joeja@mindspring.com.\n\
-            Modifié par le Consortium Scilab.\n\
+            Modifié par le Groupe Scilab.\n\
             Amélioré par Enrico Segre 2003,2004.\n\
             Améliorations diverses, dont outils de débug, par François Vogel 2004."
     }
@@ -3134,7 +3327,9 @@ proc findtext {typ} {
     bind $find <Control-l> "CancelFind $find"
     bind $find <Visibility> {raise $find $pad};
 #ajout pour mettre a la fenetre Search devant le scipad !
-    bind $pad <Expose> {raise $find $pad};
+# FV 21/05/04, removed $pad to cure 100% CPU bug
+#    bind $pad <Expose> {catch {raise $find $pad} };
+    bind $pad <Expose> {catch {raise $find} }
 #ajout pour mettre a la fenetre Search devant le scipad !
     focus $find.l.f1.entry
     grab $find
@@ -4068,90 +4263,6 @@ proc modifiedtitle {textarea} {
                           -background "" -activebackground ""
        $pad.statusind configure -background [$pad.filemenu cget -background]
      }
-}
-
-proc whichfun {indexin {buf "current"}} {
-    global lang
-#it is implicitely meant that indexin refers to a position in textareacur
-# FV 13/05/04, added capability for looking in a buffer which is not the current one
-    if {$buf == "current"} {
-        set textarea [gettextareacur]
-    } else {
-        set textarea $buf
-    }
-    scan $indexin "%d.%d" ypos xpos
-# search for the previous "function" which is not in a comment nor
-# in a string
-    set precfun [$textarea search -count len -exact -backwards -regexp\
-		     "\\mfunction\\M" $indexin 0.0]
-    if {$precfun!=""} {
-# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
-        while {[lsearch [$textarea tag names $precfun] "textquoted"] !=-1 | \
-	       [lsearch  [$textarea tag names $precfun] "rem2"] !=-1} {
-          set precfun [$textarea search -count len -exact -backwards -regexp\
-		     "\\mfunction\\M" $precfun 0.0]
- 	  if {$precfun==""} break
-	}
-    }
-# search for the previous "endfunction" which is not in a comment nor
-# in a string
-    set precendfun [$textarea search -count len -exact -backwards -regexp\
-		     "\\mendfunction\\M" $indexin 0.0]
-    if {$precendfun!=""} {
-# FV 13/05/04, changed ==1 to !=-1 (twice) to take breakpoint tag into account
-        while {[lsearch [$textarea tag names $precendfun] "textquoted"] !=-1 | \
-	       [lsearch  [$textarea tag names $precendfun] "rem2"] !=-1} {
-          set precendfun [$textarea search -count len -exact -backwards -regexp\
-		     "\\mendfunction\\M" $precendfun 0.0]
- 	  if {$precendfun==""} break
-	}
-    }
-    set insidefun 1
-    if {$precfun == "" | $precendfun > $precfun} {
-      set insidefun 0
-    } else { 
-# find the function name, excluding too pathological cases
-      set i1 [$textarea index "$precfun+8c"]
-      set i2 [$textarea index "$precfun lineend"]
-      set funline [$textarea get $i1 $i2]
-      set funname ""
-      set funpat  "\[\%\#\]*\\m\[\\w%\#\]*\\M\[%\#\]*"
-      if {[set i3 [string first "=" $funline]] !={}} {
-	  regexp -start [expr $i3+1] $funpat $funline funname  
-      } else {
-	  regexp  $funpat $funline funname  
-      }
-      if {$funname==""} {set insidefun 0}
-    }
-    if {$insidefun == 0} {
-#      tk_messageBox -message \
-#	  "The cursor is not currently inside a function body"
-	return {}
-    } else {
-# check how many continued (...) lines between $indexin and $precfun,
-#  and derive the current line within the function definition
-        set last $precfun
-        set contlines 0
-        while {[set ind [$textarea search -regexp "\\.{2,} *(//.*)?\\Z"\
-			     $last $indexin]] != {}} {
-            	if {[$textarea compare $ind >= $last]} {
-		    set last $ind+1l
-		    set contlines [expr $contlines+1]
-		} else break
-	}
-        
-        scan $precfun "%d." beginfunline 
-	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
-# FV 13/05/04, message box commented
-#      if {$lang == "eng"} {
-#        tk_messageBox -message \
-#	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
-#      } else {
-#        tk_messageBox -message \
-#	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
-#      }
-        return [list $funname $lineinfun $funline $precfun] 
-    }
 }
 
 proc showwhichfun {} {
