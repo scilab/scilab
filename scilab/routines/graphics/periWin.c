@@ -695,7 +695,6 @@ int check_pointer_win(int *x1,int *yy1,int *win)
   return 0;
 }
 
-
 void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		     integer *iwin,integer *iflag,integer *istr,
 		     double * dv1, double *dv2,double * dv3,double * dv4)
@@ -758,7 +757,8 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		  /* check for mouse click, keypressed or menu pressed */
 		  ok = 1;
 		  PeekMessage(&msg, 0, 0, 0,PM_REMOVE);
-		  if (  msg.message == WM_CHAR || msg.message == WM_KEYDOWN ) 
+		  //if (  msg.message == WM_CHAR || msg.message == WM_KEYDOWN ) 
+		  if ( msg.message == WM_CHAR ) 
 		    {
 		      if ( check_pointer_win(x1,yy1,iwin)==1 )
 			{
@@ -802,9 +802,9 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		  DispatchMessage(&msg);
 		}
 #ifdef WITH_TK
-	      else if ( tcl_check_one_event() == 1) 
+	      else if (  tcl_check_one_event() == 1) 
 		{
-		  /* sciprint("tcl event %l\r\n",msg.hwnd); */
+		  sciprint("tcl event %l\r\n",msg.hwnd);
 		}
 #else
 	      else 

@@ -930,12 +930,10 @@ EXPORT LRESULT CALLBACK
 	  }
       return 0;
     case WM_KEYDOWN:
-      if ( check_pointer_win(&x,&y,&iwin)==1 ) {
-	PushClickQueue (ScilabGC->CurWindow, x,y,wParam,1,0);
-      }
       return (0);
     case WM_CHAR:
-      //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
+      check_pointer_win(&x,&y,&iwin);
+      PushClickQueue (ScilabGC->CurWindow, x,y,wParam,1,0);
       return (0);
     case WM_MOUSEMOVE:
       PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
