@@ -5,7 +5,7 @@ SCIDIR=../../
 include ../../Makefile.incl
 
 
-SUBDIRS =  mex-with-objects  mex-with-so
+SUBDIRS =  cmex
 
 info	:
 	@echo "Type \"make tests\" in examples directory"
@@ -27,7 +27,7 @@ clean::
 		$(MAKE) $(MFLAGS) clean); \
 	done
 
-TEST_SUBDIRS =  mex-with-objects  mex-with-so
+TEST_SUBDIRS =  cmex
 
 tests::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
