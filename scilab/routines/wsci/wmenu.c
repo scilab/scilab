@@ -47,13 +47,28 @@ void Callback_NEWSCILAB(void)
 	sec_attrs.lpSecurityDescriptor = NULL;
 	sec_attrs.bInheritHandle = FALSE;
   			
-	if (CreateProcess (ScilexName,"", &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
-	{
-		CloseHandle (child.hThread);
-		CloseHandle (child.hProcess);
-	}
-	else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
 
+	if ( GetVersion() < 0x80000000 )
+	{
+		/* Windows NT */
+		if (CreateProcess (ScilexName,"",&sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
+		{
+			CloseHandle (child.hThread);
+			CloseHandle (child.hProcess);
+		}
+		else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
+
+	}
+	else
+	{
+		/* Win32s, Win95,Win98,WinME */
+		if (CreateProcess (NULL,ScilexName, &sec_attrs, NULL, FALSE, CREATE_NEW_CONSOLE,  NULL, NULL, &start, &child))
+		{
+			CloseHandle (child.hThread);
+			CloseHandle (child.hProcess);
+		}
+		else MessageBox(NULL,"Couldn't Execute a new Scilab","Warning",MB_ICONWARNING);
+	}
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_OPEN(void)
