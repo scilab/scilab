@@ -13256,13 +13256,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  }
 	}
       }
-      else {
-	if ((*numcol != 3 +3*(*numrow * *numrow))&&(*numcol != 2 +2*(*numrow * *numrow)))
-	  {
-	    sciprint("The number of columns must be %d (%d if three-dimensional axes)\n",
-		     2+2*(*numrow * *numrow),3+3*(*numrow * *numrow));
-	    return -1;
-	  }
+      else { /* Strange test object == Champ: e=gce(); e.data = e.data 
+	        make this error happened! Remove it to perform such legal operation */
+	/* F.Leray 27.07.04 */
+/* 	if ((*numcol != 3 +3*(*numrow * *numrow))&&(*numcol != 2 +2*(*numrow * *numrow))) */
+/* 	  { */
+/* 	    sciprint("The number of columns must be %d (%d if three-dimensional axes)\n", */
+/* 		     2+2*(*numrow * *numrow),3+3*(*numrow * *numrow)); */
+/* 	    return -1; */
+/* 	  } */
 	n1=pSEGS_FEATURE (pthis)->Nbr1;
 	if (*numrow != n1) /* SS 30/1/02 */
 	  {
