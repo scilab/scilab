@@ -97,7 +97,6 @@ int GetEventKeyboardAndMouse(  UINT message, WPARAM wParam, LPARAM lParam,struct
 				break;
 
 				default:
-					wait_for_click=1;
 					PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
 					ScilabGC->horzsi.nPos,HIWORD (lParam) + ScilabGC->vertsi.nPos, DBL_CLCK_LEFT, 0, 1);
 				break;
