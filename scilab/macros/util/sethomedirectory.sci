@@ -72,10 +72,18 @@ function bOK=CreateHomeSciDir(HomeDirectory)
 bOK=%F;
 CurrentDirectory=getcwd();
 chdir(HomeDirectory);
-if ( mkdir('Scilab') == 1) then
-  bOK=%T;
+if MSDOS then
+  if ( mkdir('Scilab') == 1) then
+    bOK=%T;
+  else
+    bOK=%F;
+  end
 else
-  bOK=%F;
+  if ( mkdir('.Scilab') == 1) then
+    bOK=%T;
+  else
+    bOK=%F;
+  end
 end
 chdir(CurrentDirectory);
 endfunction
