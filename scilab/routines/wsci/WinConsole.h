@@ -11,7 +11,7 @@
 #include <windows.h>
 #include <Winuser.h>
 
-#define NameConsole "Console Scilab"
+#define NameConsole "Console"
 
 void RenameConsole(void);
 void CreateScilabConsole(BOOL ShowBanner);

@@ -22,7 +22,7 @@ void RenameConsole(void)
 
 	if ( strcmp(CurrentConsoleNameTmp,NameConsole) != 0)	 
 	{
-		wsprintf(ScilexConsoleName,"%s",NameConsole);
+		wsprintf(ScilexConsoleName,"%s %s",NameConsole,VERSION);
 		SetConsoleTitle(ScilexConsoleName);
 	}
 }
@@ -36,7 +36,7 @@ void CreateScilabConsole(int ShowBanner)
 	AllocConsole();
 
 	Current_Number_of_Scilex=FindFreeScilexNumber();
-	wsprintf(ScilexConsoleName,"%s (%d)",NameConsole,Current_Number_of_Scilex);
+	wsprintf(ScilexConsoleName,"%s %s (%d)",NameConsole,VERSION,Current_Number_of_Scilex);
 	SetConsoleTitle(ScilexConsoleName);
 
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
@@ -127,11 +127,11 @@ int FindFreeScilexNumber(void)
 	int Number_of_Scilex=0;
 	char NameScilex[MAX_PATH];
 
-	wsprintf(NameScilex,"%s (%d)",NameConsole,Number_of_Scilex);
+	wsprintf(NameScilex,"%s %s (%d)",NameConsole,VERSION,Number_of_Scilex);
 	while ( FindWindow(NULL,NameScilex) )
 	{
 		Number_of_Scilex++;
-		wsprintf(NameScilex,"%s (%d)",NameConsole,Number_of_Scilex);
+		wsprintf(NameScilex,"%s %s (%d)",NameConsole,VERSION,Number_of_Scilex);
 	}
 
 	return Number_of_Scilex;
