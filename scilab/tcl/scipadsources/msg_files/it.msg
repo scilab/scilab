@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v3.44
+# in sync with v3.47
 
 
 # commons
@@ -36,14 +36,14 @@
 ::msgcat::mcset it "Function name or input arguments do not match definition of the function" \
                     "Il nome della funzione o i suoi argomenti non corrispondono alla definizione della funzione"
     ::msgcat::mcset it "in the file!\n\nCheck function\
-                        name and arguments (names, order) in the configuration dialog.\
-                        \nArguments order can be changed using drag and drop with\
-                        right mouse button in the arguments listbox." \
-                       "nel file!\n\n\
-                        Verificare il nome della funzione e gli argomenti (nome, ordine\
-                        di comparsa) nella casella del dialogo di configurazione.\n\
-                        L'ordine degli argomenti può essere modificato trascinando e deponendo\
-                        col mouse."
+       name and arguments (names, order) in the configuration dialog.\
+       \nArguments order can be changed using drag and drop with\
+       right mouse button in the arguments listbox." \
+      "nel file!\n\n\
+        Verificare il nome della funzione e gli argomenti (nome, ordine\
+        di comparsa) nella casella del dialogo di configurazione.\n\
+        L'ordine degli argomenti può essere modificato trascinando e deponendo\
+        col mouse."
 ::msgcat::mcset it "Error in selected function name or arguments" \
         "Errore nella funzione selezionata o nei suoi argomenti"
 ::msgcat::mcset it "Debugger is not yet developed for sce scripts!"\
@@ -262,12 +262,14 @@
         ::msgcat::mcset it "m&edium" "m&edio"
         ::msgcat::mcset it "&large" "&grande"
     ::msgcat::mcset it "&Colors" "&Colori"
+    ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
     ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
-    ::msgcat::mcset it "&Indentation spaces" "&Indentation spaces"
-    ::msgcat::mcset fr "File&names" "File&names"
-        ::msgcat::mcset fr "&Full path" "&Full path"
-        ::msgcat::mcset fr "Full path if &ambiguous" "Full path if &ambiguous"
-        ::msgcat::mcset fr "&Unambiguous pruned path" "&Umambiguous pruned path"
+    ::msgcat::mcset it "File&names" "&Nomi dei files"
+        ::msgcat::mcset it "&Full path" "&Percorso completo"
+        ::msgcat::mcset it "Full path if &ambiguous"\
+                           "Percorso completo se &ambiguo"
+        ::msgcat::mcset it "&Unambiguous pruned path" \
+                           "Percorso &ridotto univoco"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset it "Opened Files" "Files aperti"
