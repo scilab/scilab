@@ -31,10 +31,9 @@ case 'set' then
       nout=size(a,'*')
       graphics.exprs=exprs
       model.out=nout
-      model.state(1)=rand()
       model.ipar=flag
-      model.rpar=[a(:);b(:);0]
-      model.state=[0*a(:);0]
+      model.rpar=[a(:);b(:)]
+      model.dstate=[rand();0*a(:)]
       x.graphics=graphics;x.model=model
       break
     end
@@ -50,7 +49,7 @@ case 'define' then
   model.out=out
   model.evtin1
   model.dstate=[rand();0*a(:)]
-  model.rpar=[a(:);b(:);dt]
+  model.rpar=[a(:);b(:)]
   model.ipar=flag
   model.blocktype='d'
   model.dep_ut=[%f %f]
