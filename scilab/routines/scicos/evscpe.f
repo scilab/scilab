@@ -161,7 +161,7 @@ c
          call getlabel(kfun,buf,n)
          if(n.gt.39) n=39
          buf(n+1:n+1)=char(0)
-         if (n.eq.1.and.buf(1:1).eq.' ') then
+         if ((n.eq.1.and.buf(1:1).eq.' ').or.(n.eq.0)) then
          else
             call dr('xname'//char(0),buf,v,v,v,v,v,v,dv,dv,dv,dv)
          endif
