@@ -4078,7 +4078,6 @@ clear;lines(0);
   plot2d(t,tan(2*t));  
  
   drawnow();
-  drawnow(f.children());
   drawnow(f.children([3 4]));
   drawnow("all");
 
