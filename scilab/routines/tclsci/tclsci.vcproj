@@ -814,6 +814,9 @@ cd .. &gt;nul
 			<File
 				RelativePath=".\TclUiGet.h">
 			</File>
+			<File
+				RelativePath=".\TclUiSet.h">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\fundef.tclsci">

@@ -43,42 +43,48 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	}
 	nocase(PropertieField);
 
-
-	if (strcmp(PropertieField,"userdata")==0)
+	if ( CheckPropertyField(PropertieField) )
 	{
-		sciprint("Not yet implemented\n");
-	}
-	else
-	{
-		if (strcmp(PropertieField,"style")==0)
+		if (strcmp(PropertieField,"userdata")==0)
 		{
-			int StyleValue=-1;
-
-			StyleValue=GetStyleInternalName(PropertieValue);
-			if (StyleValue!=-1)
-			{
-				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,UiStyleExternalName[StyleValue]);
-			}
-			else
-			{
-				Scierror(999,"Invalid parameter(s) type (Style).\n");
-				return 0;
-			}
+			sciprint("Not yet implemented\n");
 		}
 		else
 		{
-		   sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
-		}
+			if (strcmp(PropertieField,"style")==0)
+			{
+				int StyleValue=-1;
 
-		if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
-		{
-			Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-			return 0;
-		}
+				StyleValue=GetStyleInternalName(PropertieValue);
+				if (StyleValue!=-1)
+				{
+					sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,UiStyleExternalName[StyleValue]);
+				}
+				else
+				{
+					Scierror(999,"Invalid parameter(s) type (Style).\n");
+					return 0;
+				}
+			}
+			else
+			{
+				sprintf(MyTclCommand,"SetField %d \"%s\" \"%s\"",Handle,PropertieField,PropertieValue);
+			}
 
-		bOK=1;
+			if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+			{
+				Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+				return 0;
+			}
+
+			bOK=1;
+		}
 	}
-
+	else
+	{
+		Scierror(999,"Unknown propertie %s.\r\n",PropertieField);
+		return 0;
+	}
 	
 	return bOK;
 }

@@ -38,6 +38,7 @@ int MustReturnAMatrix(char *FieldPropertie);
 int MustReturnAString(char *FieldPropertie);
 int ValueMustBeAMatrix(char *FieldPropertie);
 int ValueMustBeAString(char *FieldPropertie);
+int CheckPropertyField(char *FieldPropertie);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __TCLGLOBAL__ */
 /*-----------------------------------------------------------------------------------*/ 

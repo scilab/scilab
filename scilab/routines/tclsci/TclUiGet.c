@@ -59,61 +59,72 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 		StrField=cstk(l1);
 
 		nocase(StrField);
-		if (strcmp(StrField,"userdata")==0)
-		{
-			sciprint("Not yet implemented\n");
-			m1=0;
-			n1=0;
-			l1=0;
-			CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
-			bOK=1;
-		}
-		else
-		{
-			sprintf(MyTclCommand,"set TclScilabTmpVar [GetField %d \"%s\"]", Handle, StrField);
-		
-			if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
-			{
-				Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-				return 0;
-			}
-			StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
 
-			if (StrValue)
+		if ( CheckPropertyField(StrField) )
+		{
+			if (strcmp(StrField,"userdata")==0)
 			{
-				if ( MustReturnAMatrix(StrField) )
-				{
-					int nbelem=0;
-					double *MatrixOut=NULL;
-
-					MatrixOut=String2Matrix(StrValue,&nbelem);
-					n1=1;
-					m1=nbelem;
-					CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
-					if (MatrixOut) {free(MatrixOut); MatrixOut=NULL;}
-					bOK=1;
-				}
-				else
-				if ( MustReturnAString(StrField) )
-				{
-					m1=strlen(StrValue);
-					n1=1;
-					CreateVar(Rhs+1, "c", &m1,&n1,&l1);
-					sprintf(cstk(l1),"%s",StrValue);
-					bOK=1;
-				}
-				else
-				{
-					Scierror(999,"Unknown propertie %s\r\n",StrField);
-					return 0;
-				}
+				sciprint("Not yet implemented\n");
+				m1=0;
+				n1=0;
+				l1=0;
+				CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+				bOK=1;
 			}
 			else
 			{
-				Scierror(999,"Error propertie not found.\n");
-				return 0;
+				sprintf(MyTclCommand,"set TclScilabTmpVar [GetField %d \"%s\"]", Handle, StrField);
+		
+				if ( Tcl_Eval(TCLinterp,MyTclCommand) == TCL_ERROR  )
+				{
+					Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
+					return 0;
+				}
+				StrValue = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", TCL_GLOBAL_ONLY);
+
+				if (StrValue)
+				{
+					if ( MustReturnAMatrix(StrField) )
+					{
+						int nbelem=0;
+						double *MatrixOut=NULL;
+
+						MatrixOut=String2Matrix(StrValue,&nbelem);
+						n1=1;
+						m1=nbelem;
+						CreateVarFromPtr(Rhs+1, "d", &n1, &m1, &MatrixOut);
+						if (MatrixOut) {free(MatrixOut); MatrixOut=NULL;}
+						bOK=1;
+					}
+					else
+					if ( MustReturnAString(StrField) )
+					{
+						m1=strlen(StrValue);
+						n1=1;
+						CreateVar(Rhs+1, "c", &m1,&n1,&l1);
+						sprintf(cstk(l1),"%s",StrValue);
+						bOK=1;
+					}
+					else
+					{
+						Scierror(999,"Unknown propertie %s\r\n",StrField);
+						return 0;
+					}
+				}
+				else
+				{
+					Scierror(999,"Error propertie not found.\n");
+					return 0;
+				}
 			}
 		}
+		else
+		{
+			Scierror(999,"Unknown propertie %s\r\n",StrField);
+			return 0;
+		}
+
+	
 	}
 
 	return bOK;

@@ -22,7 +22,8 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 												'tag' ..
 												'units' ..
 												'userdata' ..
-												'label'];
+												'label' ..
+												'figure_name'];
 	
 	TablePropertiesValueType = [type_real ..
 	      											type_string ..
@@ -36,6 +37,7 @@ function TypeReturn=GetUiControlValueType(PropertyName)
 												      type_real ..
 												      type_real ..
 												      type_real ..
+												      type_string ..
 												      type_string ..
 												      type_string ..
 												      type_string ..

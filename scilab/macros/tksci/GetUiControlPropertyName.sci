@@ -21,7 +21,8 @@
 												'units' ..
 												'userdata' ..
 												'value' ..
-												'label'];
+												'label' ..
+												'figure_name'];
   //conversion to lower format
   str = convstr(PropertyName);
   k=find(part(TableProperties,1:length(str))==str);

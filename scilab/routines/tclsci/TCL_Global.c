@@ -7,6 +7,29 @@
 Tcl_Interp *TCLinterp=NULL;
 Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
+#define NBRPROPERTIES 19
+static char *UiPropertiesName[NBRPROPERTIES]={
+												"backgroundcolor",
+												"callback",
+												"fontangle",
+												"fontsize",
+												"fontunits",
+												"fontweight",
+												"listboxtop",
+												"max",
+												"min",
+												"parent",
+												"position",
+												"sliderstep",
+												"string",
+												"style",
+												"tag",
+												"units",
+												"userdata",
+												"label",
+												"figure_name"
+											};
+/*-----------------------------------------------------------------------------------*/
 void nocase (char *s)
 {
 #ifndef WIN32
@@ -132,7 +155,8 @@ int MustReturnAString(char *FieldPropertie)
 		 (strcmp(Propertie,"fontunits") == 0) ||
 		 (strcmp(Propertie,"fontweight") == 0) ||
 		 (strcmp(Propertie,"string") == 0) ||
-		 (strcmp(Propertie,"label") == 0) ) bOK=1;
+		 (strcmp(Propertie,"label") == 0) ||
+		 (strcmp(Propertie,"figure_name") == 0) ) bOK=1;
 
 	return bOK;
 }
@@ -166,5 +190,25 @@ int ValueMustBeAMatrix(char *FieldPropertie)
 int ValueMustBeAString(char *FieldPropertie)
 {
 	return (MustReturnAString(FieldPropertie));
+}
+/*-----------------------------------------------------------------------------------*/
+int CheckPropertyField(char *FieldPropertie)
+{
+	int bOK=0;
+	int i=0;
+	char Propertie[256];
+
+	strcpy(Propertie,FieldPropertie);
+    nocase(Propertie);
+	
+	for (i=0;i<NBRPROPERTIES;i++)
+	{
+		if ( strcmp(Propertie,UiPropertiesName[i])==0 )
+		{
+			bOK=1;
+		}
+	}
+
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
