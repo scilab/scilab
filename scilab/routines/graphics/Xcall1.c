@@ -1,12 +1,24 @@
 /* C code produced by gperf version 3.0.1 */
 /* Command-line: gperf -C -t -k '2,3,4,$' Xcall1.gperf  */
+#if WIN32
+  #if NDEBUG
+   #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35)&& ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40)	&& (')' == 41) && ('*' == 42) && ('+' == 43) && (',' == 44)	&& ('-' == 45) && ('.' == 46) && ('/' == 47) && ('0' == 48)	&& ('1' == 49) && ('2' == 50) && ('3' == 51) && ('4' == 52)	&& ('5' == 53) && ('6' == 54) && ('7' == 55) && ('8' == 56)	&& ('9' == 57) && (':' == 58) && (';' == 59) && ('<' == 60)	&& ('=' == 61) && ('>' == 62) && ('?' == 63) && ('A' == 65)	&& ('B' == 66) && ('C' == 67) && ('D' == 68) && ('E' == 69)	&& ('F' == 70) && ('G' == 71) && ('H' == 72) && ('I' == 73)	&& ('J' == 74) && ('K' == 75) && ('L' == 76) && ('M' == 77)	&& ('N' == 78) && ('O' == 79) && ('P' == 80) && ('Q' == 81)	&& ('R' == 82) && ('S' == 83) && ('T' == 84) && ('U' == 85)	&& ('V' == 86) && ('W' == 87) && ('X' == 88) && ('Y' == 89)	&& ('Z' == 90) && ('[' == 91) && ('\\' == 92) && (']' == 93)&& ('^' == 94) && ('_' == 95) && ('a' == 97) && ('b' == 98)	&& ('c' == 99) && ('d' == 100) && ('e' == 101) && ('f' == 102)	&& ('g' == 103) && ('h' == 104) && ('i' == 105) && ('j' == 106)	&& ('k' == 107) && ('l' == 108) && ('m' == 109) && ('n' == 110)	&& ('o' == 111) && ('p' == 112) && ('q' == 113) && ('r' == 114)	&& ('s' == 115) && ('t' == 116) && ('u' == 117) && ('v' == 118)	&& ('w' == 119) && ('x' == 120) && ('y' == 121) && ('z' == 122)	&& ('{' == 123) && ('|' == 124) && ('}' == 125) && ('~' == 126))
+   /* The character set is not based on ISO-646.  */
+   #error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>."
+   #endif
 
-#if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35)&& ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40)	&& (')' == 41) && ('*' == 42) && ('+' == 43) && (',' == 44)	&& ('-' == 45) && ('.' == 46) && ('/' == 47) && ('0' == 48)	&& ('1' == 49) && ('2' == 50) && ('3' == 51) && ('4' == 52)	&& ('5' == 53) && ('6' == 54) && ('7' == 55) && ('8' == 56)	&& ('9' == 57) && (':' == 58) && (';' == 59) && ('<' == 60)	&& ('=' == 61) && ('>' == 62) && ('?' == 63) && ('A' == 65)	&& ('B' == 66) && ('C' == 67) && ('D' == 68) && ('E' == 69)	&& ('F' == 70) && ('G' == 71) && ('H' == 72) && ('I' == 73)	&& ('J' == 74) && ('K' == 75) && ('L' == 76) && ('M' == 77)	&& ('N' == 78) && ('O' == 79) && ('P' == 80) && ('Q' == 81)	&& ('R' == 82) && ('S' == 83) && ('T' == 84) && ('U' == 85)	&& ('V' == 86) && ('W' == 87) && ('X' == 88) && ('Y' == 89)	&& ('Z' == 90) && ('[' == 91) && ('\\' == 92) && (']' == 93)&& ('^' == 94) && ('_' == 95) && ('a' == 97) && ('b' == 98)	&& ('c' == 99) && ('d' == 100) && ('e' == 101) && ('f' == 102)	&& ('g' == 103) && ('h' == 104) && ('i' == 105) && ('j' == 106)	&& ('k' == 107) && ('l' == 108) && ('m' == 109) && ('n' == 110)	&& ('o' == 111) && ('p' == 112) && ('q' == 113) && ('r' == 114)	&& ('s' == 115) && ('t' == 116) && ('u' == 117) && ('v' == 118)	&& ('w' == 119) && ('x' == 120) && ('y' == 121) && ('z' == 122)	&& ('{' == 123) && ('|' == 124) && ('}' == 125) && ('~' == 126))
-/* The character set is not based on ISO-646.  */
-#error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>."
+   #line 1 "Xcall1.gperf"
+  #endif
+#else
+  #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35)&& ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40)	&& (')' == 41) && ('*' == 42) && ('+' == 43) && (',' == 44)	&& ('-' == 45) && ('.' == 46) && ('/' == 47) && ('0' == 48)	&& ('1' == 49) && ('2' == 50) && ('3' == 51) && ('4' == 52)	&& ('5' == 53) && ('6' == 54) && ('7' == 55) && ('8' == 56)	&& ('9' == 57) && (':' == 58) && (';' == 59) && ('<' == 60)	&& ('=' == 61) && ('>' == 62) && ('?' == 63) && ('A' == 65)	&& ('B' == 66) && ('C' == 67) && ('D' == 68) && ('E' == 69)	&& ('F' == 70) && ('G' == 71) && ('H' == 72) && ('I' == 73)	&& ('J' == 74) && ('K' == 75) && ('L' == 76) && ('M' == 77)	&& ('N' == 78) && ('O' == 79) && ('P' == 80) && ('Q' == 81)	&& ('R' == 82) && ('S' == 83) && ('T' == 84) && ('U' == 85)	&& ('V' == 86) && ('W' == 87) && ('X' == 88) && ('Y' == 89)	&& ('Z' == 90) && ('[' == 91) && ('\\' == 92) && (']' == 93)&& ('^' == 94) && ('_' == 95) && ('a' == 97) && ('b' == 98)	&& ('c' == 99) && ('d' == 100) && ('e' == 101) && ('f' == 102)	&& ('g' == 103) && ('h' == 104) && ('i' == 105) && ('j' == 106)	&& ('k' == 107) && ('l' == 108) && ('m' == 109) && ('n' == 110)	&& ('o' == 111) && ('p' == 112) && ('q' == 113) && ('r' == 114)	&& ('s' == 115) && ('t' == 116) && ('u' == 117) && ('v' == 118)	&& ('w' == 119) && ('x' == 120) && ('y' == 121) && ('z' == 122)	&& ('{' == 123) && ('|' == 124) && ('}' == 125) && ('~' == 126))
+  /* The character set is not based on ISO-646.  */
+  #error "gperf generated tables don't work with this execution character set. Please report a bug to <bug-gnu-gperf@gnu.org>."
+  #endif
+
+  #line 1 "Xcall1.gperf"
 #endif
 
-#line 1 "Xcall1.gperf"
+
 
 /*------------------------------------------------------------------------
  *   Graphic library for 2D and 3D plotting 
@@ -45,7 +57,15 @@ static double  Dvide;
 #define const 
 #endif 
 
-#line 40 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+    #line 40 "Xcall1.gperf"
+  #endif
+#else
+  #line 40 "Xcall1.gperf"
+#endif
+
+
 struct funreplace { char *name; f_xcall1 *action; };
 
 #define TOTAL_KEYWORDS 39
@@ -111,102 +131,337 @@ in_word_set (str, len)
     {
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""},
-#line 45 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 45 "Xcall1.gperf"
+  #endif
+#else
+	  #line 45 "Xcall1.gperf"
+#endif
       {"xarea",		fillpolyline_1},
       {""}, {""}, {""},
-#line 74 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 74 "Xcall1.gperf"
+  #endif
+#else
+	  #line 74 "Xcall1.gperf"
+#endif
       {"xset",		xset_1},
-#line 69 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 69 "Xcall1.gperf"
+  #endif
+#else
+	  #line 69 "Xcall1.gperf"
+#endif
       {"xrect",		drawrectangle_1},
-#line 76 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 76 "Xcall1.gperf"
+  #endif
+#else
+	  #line 76 "Xcall1.gperf"
+#endif
       {"xstart",		(func) C2F(dr)},
-#line 46 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 46 "Xcall1.gperf"
+  #endif
+#else
+	  #line 46 "Xcall1.gperf"
+#endif
       {"xarrow",		drawarrows_1},
       {""},
-#line 43 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 43 "Xcall1.gperf"
+  #endif
+#else
+	  #line 43 "Xcall1.gperf"
+#endif
       {"xarc",		drawarc_1},
-#line 60 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 60 "Xcall1.gperf"
+  #endif
+#else
+	  #line 60 "Xcall1.gperf"
+#endif
       {"xinit",		xinit_1},
-#line 75 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 75 "Xcall1.gperf"
+  #endif
+#else
+	  #line 75 "Xcall1.gperf"
+#endif
       {"xsetdr",		(func) C2F(dr)},
       {""},
-#line 78 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 78 "Xcall1.gperf"
+  #endif
+#else
+	  #line 78 "Xcall1.gperf"
+#endif
       {"xstringa",	displaystringa_1},
-#line 81 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	#line 81 "Xcall1.gperf"
+  #endif
+#else
+	#line 81 "Xcall1.gperf"
+#endif
       {"xstringtt",	displaystringt},
-#line 44 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 44 "Xcall1.gperf"
+  #endif
+#else
+	  #line 44 "Xcall1.gperf"
+#endif
+
       {"xarcs",		drawarcs_1},
-#line 70 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 70 "Xcall1.gperf"
+  #endif
+#else
+	  #line 70 "Xcall1.gperf"
+#endif
       {"xrects",		drawrectangles_1},
-#line 71 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 71 "Xcall1.gperf"
+  #endif
+#else
+	  #line 71 "Xcall1.gperf"
+#endif
       {"xreplay",	(func) C2F(dr)},
-#line 79 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 79 "Xcall1.gperf"
+  #endif
+#else
+	  #line 79 "Xcall1.gperf"
+#endif
       {"xstringb",	xstringb_1},
-#line 56 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 56 "Xcall1.gperf"
+  #endif
+#else
+	  #line 56 "Xcall1.gperf"
+#endif
       {"xget",		(func) C2F(dr)},
-#line 47 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 47 "Xcall1.gperf"
+  #endif
+#else
+	#line 47 "Xcall1.gperf"
+#endif
       {"xaxis",		drawaxis_1},
-#line 55 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 55 "Xcall1.gperf"
+  #endif
+#else
+	  #line 55 "Xcall1.gperf"
+#endif
       {"xfrect",		fillrectangle_1},
       {""}, {""},
-#line 58 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 58 "Xcall1.gperf"
+  #endif
+#else
+	  #line 58 "Xcall1.gperf"
+#endif
       {"xgetmouse",	xgetmouse_1},
-#line 53 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 53 "Xcall1.gperf"
+  #endif
+#else
+	  #line 53 "Xcall1.gperf"
+#endif
       {"xfarc",		fillarc_1},
-#line 57 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 57 "Xcall1.gperf"
+  #endif
+#else
+	#line 57 "Xcall1.gperf"
+#endif
       {"xgetdr",		(func) C2F(dr)},
       {""}, {""},
-#line 52 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 52 "Xcall1.gperf"
+  #endif
+#else
+	#line 52 "Xcall1.gperf"
+#endif
       {"xend",		(func) C2F(dr)},
       {""},
-#line 54 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 54 "Xcall1.gperf"
+  #endif
+#else
+	  #line 54 "Xcall1.gperf"
+#endif
       {"xfarcs",		fillarcs_1},
       {""}, {""}, {""},
-#line 48 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 48 "Xcall1.gperf"
+  #endif
+#else
+	  #line 48 "Xcall1.gperf"
+#endif
       {"xclea",		cleararea_1},
-#line 67 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 67 "Xcall1.gperf"
+  #endif
+#else
+	  #line 67 "Xcall1.gperf"
+#endif
       {"xpause",		(func) C2F(dr)},
-#line 77 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 77 "Xcall1.gperf"
+  #endif
+#else
+	  #line 77 "Xcall1.gperf"
+#endif
       {"xstring",	displaystring_1},
       {""},
-#line 51 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 51 "Xcall1.gperf"
+  #endif
+#else
+	  #line 51 "Xcall1.gperf"
+#endif
       {"xclickany",	xclick_any_1},
-#line 72 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 72 "Xcall1.gperf"
+  #endif
+#else
+	  #line 72 "Xcall1.gperf"
+#endif
       {"xsegs",		drawsegments_1},
-#line 49 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 49 "Xcall1.gperf"
+  #endif
+#else
+	  #line 49 "Xcall1.gperf"
+#endif
       {"xclear",		(func) C2F(dr)},
-#line 73 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 73 "Xcall1.gperf"
+  #endif
+#else
+	  #line 73 "Xcall1.gperf"
+#endif
       {"xselect",	(func) C2F(dr)},
       {""}, {""},
-#line 65 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 65 "Xcall1.gperf"
+  #endif
+#else
+	  #line 65 "Xcall1.gperf"
+#endif
       {"xname",		(func) C2F(dr)},
-#line 64 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 64 "Xcall1.gperf"
+  #endif
+#else
+	  #line 64 "Xcall1.gperf"
+#endif
       {"xmarks",		drawpolymark_1},
       {""},
-#line 80 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 80 "Xcall1.gperf"
+  #endif
+#else
+	  #line 80 "Xcall1.gperf"
+#endif
       {"xstringl",	boundingbox_1},
       {""}, {""},
-#line 59 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 59 "Xcall1.gperf"
+  #endif
+#else
+	  #line 59 "Xcall1.gperf"
+#endif
       {"xgfont",		(func) C2F(dr)},
       {""}, {""}, {""}, {""},
-#line 62 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 62 "Xcall1.gperf"
+  #endif
+#else
+	  #line 62 "Xcall1.gperf"
+#endif
       {"xlines",		drawpolyline_1},
-#line 63 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 63 "Xcall1.gperf"
+  #endif
+#else
+	  #line 63 "Xcall1.gperf"
+#endif
       {"xliness",	fillpolylines_1},
       {""}, {""}, {""},
-#line 61 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 61 "Xcall1.gperf"
+  #endif
+#else
+	  #line 61 "Xcall1.gperf"
+#endif
       {"xlfont",		(func) C2F(dr)},
       {""}, {""}, {""}, {""},
-#line 68 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 68 "Xcall1.gperf"
+  #endif
+#else
+	  #line 68 "Xcall1.gperf"
+#endif
       {"xpolys",		drawpolylines_1},
       {""}, {""}, {""}, {""},
-#line 50 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 50 "Xcall1.gperf"
+  #endif
+#else
+	  #line 50 "Xcall1.gperf"
+#endif
       {"xclick",		xclick_1},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {""}, {""}, {""}, {""}, {""},
-#line 66 "Xcall1.gperf"
+#if WIN32
+  #if NDEBUG
+	  #line 66 "Xcall1.gperf"
+  #endif
+#else
+	  #line 66 "Xcall1.gperf"
+#endif
       {"xnum",		displaynumbers_1}
     };
 
@@ -224,7 +479,15 @@ in_word_set (str, len)
     }
   return 0;
 }
-#line 82 "Xcall1.gperf"
+
+#if WIN32
+  #if NDEBUG
+	#line 82 "Xcall1.gperf"
+  #endif
+#else
+	#line 82 "Xcall1.gperf"
+#endif
+
 
 
 int C2F(dr1)(char x0[],char x1[],integer *x2,integer *x3,integer *x4,integer *x5,integer *x6,
