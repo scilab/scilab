@@ -4944,7 +4944,7 @@ clip_line(x1, yy1, x2, y2, x1n, yy1n, x2n, y2n, flag)
      integer x1, yy1, x2, y2, *flag, *x1n, *yy1n, *x2n, *y2n;
 {
     //integer x, y, dx, dy, x_intr[2], y_intr[2], count, pos1, pos2; F.Leray pb dimension 18.02.04
-	// de x_intr et y_intr. count peut aller jusqu'a 3 apparemment...
+	// de x_intr et y_intr. count peut aller jusqu'a 4 apparemment...
 
 	integer x, y, dx, dy, x_intr[5], y_intr[5], count, pos1, pos2;
 

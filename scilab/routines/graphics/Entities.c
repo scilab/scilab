@@ -4858,7 +4858,12 @@ sciIsExistingSubWin (WRect)
   sciSons *psonstmp;
 
   double WRectTmp[4];
-  int stop = 0;
+  int stop = 0,i;
+
+
+// Initialisation de WRectTmp a 0
+  for(i=0;i<4;i++)
+	  WRectTmp[i] = 0.;
 
   pparentfigure = (sciPointObj *)sciGetCurrentFigure();
   if (sciGetEntityType (pparentfigure) != SCI_FIGURE)
@@ -10419,7 +10424,7 @@ sciDrawObj (sciPointObj * pobj)
   double anglestr,w2,h2,as;
   double xx[2],yy[2];   
   integer px1[2],py1[2],pn1=1,pn2=2;
-  integer nn1,nn2, arsize,lstyle,iflag;
+  integer nn1,nn2, arsize,lstyle,iflag,in1,in2; // F.Leray Rajour de in1 et in2 18.02.04
   double arsize1=5.0,arsize2=5.0,dv;
   integer angle1, angle2;
   integer x1, yy1, w1, h1, wstr,hstr,hh1;
@@ -10637,7 +10642,11 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-      FREE(xm);FREE(ym);/* SS 02/04 */
+	  
+     // FREE(xm);FREE(ym);/* SS 02/04 */
+	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
+	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;} /* et F.Leray 18.02.04*/
+
       break;      
       /******************************** 22/05/2002 ***************************/    
      case SCI_SEGS:    
@@ -10667,13 +10676,19 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-     
-      if (pSEGS_FEATURE (pobj)->ptype == 0)
+
+      n=pSEGS_FEATURE (pobj)->Nbr1; // Report ici car besoin du n dans le "else"... F.Leray 19.02.04
+      if (pSEGS_FEATURE (pobj)->ptype == 0) // ptype == 0
         { 
-	  n=pSEGS_FEATURE (pobj)->Nbr1; 
-	  arsize = (integer) (pSEGS_FEATURE (pobj)->arrowsize); 
-	  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+ 		  //F.Leray 18.02.04 Correction suivante ANNULEE:
+	 //  in1 = pSEGS_FEATURE (pobj)->Nbr1; ANNULATION MODIF DU 18.02.04
+	 //  in2 = pSEGS_FEATURE (pobj)->Nbr2;
+		  arsize = (integer) (pSEGS_FEATURE (pobj)->arrowsize); 
+		  if ((xm = MALLOC (n*sizeof (integer))) == NULL)	return -1;
+		  if ((ym = MALLOC (n*sizeof (integer))) == NULL)	return -1; // F.Leray 18.02.04 Correction suivante:
+	//	if ((xm = MALLOC (in1*sizeof (integer))) == NULL)	return -1; // ANNULATION MODIF DU 18.02.04
+	//	if ((ym = MALLOC (in2*sizeof (integer))) == NULL)	return -1;
+
 	  /**DJ.Abdemouche 2003**/
 	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	    {
@@ -10682,7 +10697,7 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  else
 	    {
-	      for ( i =0 ; i <n ; i++) {
+	      for ( i =0 ; i <n ; i++) { // ...besoin de n ci-dessous
 		xm[i]= XScale(pSEGS_FEATURE (pobj)->vx[i]); 
 		ym[i]= YScale(pSEGS_FEATURE (pobj)->vy[i]);}
 	    } 
@@ -10706,18 +10721,21 @@ sciDrawObj (sciPointObj * pobj)
 	    else
 	      C2F(dr1)("xarrow","v",pSEGS_FEATURE (pobj)->pstyle,&pSEGS_FEATURE (pobj)->iflag
 		       ,&n,PI0,PI0,PI0,pSEGS_FEATURE (pobj)->vx,pSEGS_FEATURE (pobj)->vy,&pSEGS_FEATURE (pobj)->arrowsize,PD0,0L,0L);
+							// F.Leray appel bizarre ci dessus a dr1 pour le NG??!! A voir... 19.02.04
 	  } /***/
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-	  FREE(xm);FREE(ym);/* SS 02/04 */
+//	  FREE(xm);FREE(ym);/* SS 02/04 */
+	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
+	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;} /* et F.Leray 18.02.04*/
 	}
-      else
+      else    //ptype == 1
         {
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc();
 #endif
-        C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
+      C2F(dr)("xget","use color",&verbose, &uc, &narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
         if (uc)
 	  C2F(dr)("xget","color",&verbose,xz,&narg,&v,&v,&v,&dv,&dv,&dv,&dv,0L,0L);
 	else
@@ -10736,7 +10754,7 @@ sciDrawObj (sciPointObj * pobj)
 	    return -1;
 	  }      
 	if ( pSEGS_FEATURE (pobj)->pcolored != 0) {
-	  zm = graphic_alloc(2,n/2,sizeof(int));
+	  zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray a voir le n/2...
 	  if (  zm == 0 ) 
 	    {
 	      sciprint("Running out of memory \n");
@@ -10757,9 +10775,13 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-      FREE(xm);FREE(ym); /* SS 02/04 */
-	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) FREE(zm); // F.Leray 1802.04 modif ici
-        }  
+	  if (xm != NULL) {FREE(xm); xm = (integer *) NULL;}
+	  if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}/* SS 02/04 */ /* et F.Leray 18.02.04*/
+	  if ( pSEGS_FEATURE (pobj)->pcolored != 0) 
+	  {
+		  if (zm != NULL) {FREE(zm); zm = (integer *) NULL;}// F.Leray 1802.04 modif ici
+	  }
+ }  
 
       sciUnClip(sciGetIsClipping(pobj));
       break;
@@ -10773,7 +10795,7 @@ sciDrawObj (sciPointObj * pobj)
 	case 0:
 	  if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
 	  if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
-	    FREE(xm);return -1;
+	    FREE(xm); xm = (integer *) NULL; return -1; // F.Leray Rajout de xm = (integer *) NULL; 18.02.04
 	  }
  
 	  for ( i =0 ; i < n1 ; i++)  
@@ -10797,13 +10819,15 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
-	  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	//  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	 if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
+	 if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
 	  break;
 	case 1:
 	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
 	    return -1;
 	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	    FREE(xm);return -1;
+	    FREE(xm);xm = (integer *) NULL; return -1;  // F.Leray Rajout de xm = (integer *) NULL; 18.02.04
 	  }
 
           for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
@@ -10820,13 +10844,15 @@ sciDrawObj (sciPointObj * pobj)
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
-	  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	//  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	 if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
+	 if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
           break;
 	case 2:
 	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
 	    return -1;
 	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	    FREE(xm);return -1;
+	    FREE(xm);xm = (integer *) NULL; return -1; // F.Leray Rajout de xm = (integer *) NULL; 18.02.04
 	  }
 
 	  xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
@@ -10850,7 +10876,9 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-	  FREE(xm);FREE(ym); /* SS 03/01/03 */
+//	  FREE(xm);FREE(ym); /* SS 03/01/03 */
+	 if (xm != NULL) {FREE(xm); xm = (integer *) NULL;} // F.Leray c'est mieux.
+	 if (ym != NULL) {FREE(ym); ym = (integer *) NULL;}
 	  break;
 	default:
 	  break;
@@ -14905,7 +14933,7 @@ void Nextind(integer ind1, integer *ind2, integer *ind3)
 void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 {
   integer verbose=0,narg,xz[2],fontid[2],fontsize_kp,color_kp,size;
-  integer iof,barlengthx,barlengthy, posi[2]; 
+  integer iof,barlengthx = 0,barlengthy = 0, posi[2]; 
   char *loc,*legx,*legy,*legz;
   integer rect[4],flag=0,x=0,y=0;
   double ang=0.0, bbox[6];
