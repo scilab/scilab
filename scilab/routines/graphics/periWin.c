@@ -1109,6 +1109,10 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   int win;
   /** BOOL flag1= TRUE; **/
   integer buttons = 0;
+  #ifdef WITH_TK
+  #else
+  MSG msg;
+  #endif
 
   if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
     {

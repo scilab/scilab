@@ -98,7 +98,9 @@ extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,
 				  char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
 extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
+#ifdef WITH_TK
 extern int LAB_gcf();
+#endif
 extern sciPointObj *pfiguremdl; /* DJ.A 08/01/04 */
 extern sciPointObj *paxesmdl;/* DJ.A 08/01/04 */
 static integer one = 1, zero = 0;
@@ -6582,7 +6584,9 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow   = 1;
 	numcol   = 1;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	#ifdef WITH_TK
 	*stk(outindex) = (double )LAB_gcf();
+	#endif
       }
     }
   else if (strncmp(marker,"current_obj", 11) == 0)
