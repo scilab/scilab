@@ -22,10 +22,7 @@ c     .  NaN case
          ierr=4
       elseif (alpha .ge. 0.0d0) then
          call zbesh(xr,xi,alpha,kode,k, n,yr,yi,nz,ierr)
-         if (ierr.eq.2) then
-            call dset(n,inf,yr,1)
-            call dset(n,inf,yi,1)
-         elseif(ierr.eq.1.or.ierr.ge.4) then
+         if(ierr.eq.1.or.ierr.eq.2.or.ierr.ge.4) then
             call dset(n,inf-inf,yr,1)
             call dset(n,inf-inf,yi,1)
          endif
@@ -41,10 +38,7 @@ c     .     0 is between alpha and alpha+n
             nn=n
          endif
          call zbesh(xr,xi,a1,kode,k,n,wr,wi,nz,ierr)
-         if (ierr.eq.2) then
-            call dset(n,inf,yr,1)
-            call dset(n,inf,yi,1)
-         elseif (ierr.eq.1) then
+         if (ierr.eq.1.or.ierr.eq.2.or.ierr.ge.4) then
             call dset(n,inf-inf,yr,1)
             call dset(n,inf-inf,yi,1)
          else
@@ -94,10 +88,7 @@ C     .     changes sign with k
                call dscal(nn/2,-1.0d0,wr(2),2)
                call dscal(nn/2,-1.0d0,wi(2),2)
             endif
-         elseif (ierr.eq.2) then
-            call dset(nn,inf,wr,1)
-            call dset(nn,inf,wi,1)
-         elseif(ierr.eq.1.or.ierr.ge.4) then
+         elseif(ierr.eq.1.or.ierr.eq.2.or.ierr.ge.4) then
             call dset(nn,inf-inf,wr,1)
             call dset(nn,inf-inf,wi,1)
          endif
@@ -108,10 +99,7 @@ c     .  compute for positive value of alpha+k is any
          if (n.gt.nn) then
             a1=1.0d0-a1
             call zbesh(xr,xi,a1,kode,k,n-nn,yr(nn+1),yi(nn+1),nz,ier)
-            if (ier.eq.2) then
-               call dset(n-nn,inf,yr(nn+1),1)
-               call dset(n-nn,inf,yi(nn+1),1)
-            elseif(ier.eq.1.or.ier.ge.4) then
+            if(ier.eq.1.or.ier.eq.2.or.ier.ge.4) then
                call dset(n-nn,inf-inf,yr(nn+1),1)
                call dset(n-nn,inf-inf,yi(nn+1),1)
             endif
@@ -154,7 +142,6 @@ c     .  compute besselh(x(i),y(j)), i=1,nx,j=1,na
          if (j.le.na.and.abs((1+alpha(j-1))-alpha(j)).le.eps) then
             goto 10
          endif
-
          do i=1,nx
             call zbeshg (xr(i), xi(i), alpha(j0) ,kode,k, n, wr, wi, nz,
      $           wr(na+1),wi(na+1),ier)

@@ -981,6 +981,12 @@ int intbesselh(fname,fname_len)
 
   itr=1;
   lpos=Rhs;
+  if(it2 == 0) {
+    int i;
+    CreateVar(lpos+1,"d",&m2,&n2,&l2i);
+    for (i=0;i<m2*n2;i++) *stk(l2i+i)=0.0;
+    lpos=lpos+1;
+  }
   if (m1*n1 == 1) { /*bessely(scalar,matrix) */
     double wr[3],wi[3];
     mr=m2;
