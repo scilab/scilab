@@ -54,8 +54,15 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     [a,b]=c_link(name); while a ; ulink(b);[a,b]=c_link(name);end
     // build shared library with the C code
     files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
-    disp(files,Make)
-    ierr=execstr('libn=ilib_for_link(name,files,[],''c'',Make,loader)','errcatch')
+    //  build the list of external functions libraries
+    libs=[];
+    if MSDOS then ext='\*.ilib',else ext='/*.a',end
+    for k=1:size(mlibs,'*')
+      libs=[libs;listfiles(mlibs(k)+ext)]
+    end
+    
+pause
+    ierr=execstr('libn=ilib_for_link(name,files,libs,''c'',Make,loader)','errcatch')
     if ierr<>0 then 
       ok=%f;x_message(['sorry compilation problem';lasterror()]);
       return;

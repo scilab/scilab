@@ -14,6 +14,13 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo
 
+#for Modelica extern functions
+OBJECTS  =
+LIBRARY = libHydrau
+CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$*
+EXTRA_LDFLAGS =
+#uncomment next line if OBJECTS is not empty
+#include ..\..\..\config\Makedll.incl
 
 all  :: $(MACROS) $(MODELS)
 	@dir /B $(MACROS) >names

@@ -21,6 +21,14 @@ MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 	Diode.mo NPN.mo Resistor.mo VsourceDC.mo \
 	OutPort.mo VVsourceAC.mo 
 
+#for Modelica extern functions
+OBJECTS  =
+LIBRARY = libElectrical
+CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$*
+EXTRA_LDFLAGS =
+#uncomment next line if OBJECTS is not empty
+#include ..\..\..\config\Makedll.incl
+
 all  :: $(MACROS) $(MODELS)
 	@dir /B $(MACROS) >names
 	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genlib.sce -args $(NAME) $(NAM)
