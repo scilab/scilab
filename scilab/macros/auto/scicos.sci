@@ -44,24 +44,16 @@ if ~super_block then // global variables
   pal_mode=%f // Palette edition mode
   newblocks=[] // table of added functions in pal_mode
   super_path=[] // path to the currently opened superblock
-  errcatch(-1,'continue','nomessage')
+
   scicos_paltmp=scicos_pal;
-  load('.scicos_pal')
-  errcatch(-1)
-  if iserror(-1) then    
-    errclear(-1)
-  else
+  if execstr('load(''.scicos_pal'')','errcatch')==0 then
     scicos_pal=[scicos_paltmp;scicos_pal]
     [%junk,%palce]=gunique(scicos_pal(:,2))
     %palce=-sort(-%palce);
     scicos_pal=scicos_pal(%palce,:);
   end
-  errcatch(-1,'continue','nomessage')
-  load('.scicos_short')  //keyboard shortcuts
-  errcatch(-1)
-  if iserror(-1) then    
-    errclear(-1)
-  end
+
+  execstr('load(''.scicos_short'')','errcatch')  //keyboard shortcuts
 end
 //
 if rhs>=1 then
@@ -199,12 +191,9 @@ end
 
 //set context (variable definition...)
 if type(scs_m.props.context)==10 then
-  errcatch(-1,'continue','nomessage')
-  execstr(scs_m.props.context) 
-  errcatch(-1)
-  if iserror(-1) then   
-    message('Cannot evaluate context')
-    errclear(-1)
+  if execstr(scs_m.props.context,'errcatch') <>0 then
+    message(['Error occur when evaluating context:'
+	     lasterror() ])
   end
 else
   scs_m.props.context=' ' 
