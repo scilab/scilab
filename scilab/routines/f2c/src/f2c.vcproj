@@ -40,7 +40,7 @@
 				OutputFile="../../../bin/f2c.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
+				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcl/include/X11"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile=".\Debug/f2c.pdb"
 				SubSystem="1"
@@ -101,7 +101,7 @@
 				OutputFile="../../../bin/f2c.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
+				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcl/include/X11"
 				ProgramDatabaseFile=".\Release/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -161,7 +161,7 @@
 				OutputFile="../../../bin/f2c.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
+				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcl/include/X11"
 				ProgramDatabaseFile=".\$(IntDir)/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>
@@ -221,7 +221,7 @@
 				OutputFile="../../../bin/f2c.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcllib/include/X11"
+				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcl/include/X11"
 				ProgramDatabaseFile=".\$(IntDir)/f2c.pdb"
 				SubSystem="1"
 				TargetMachine="1"/>

@@ -23,7 +23,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcllib/include/X11"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11"
 				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
 				StringPooling="TRUE"
 				RuntimeLibrary="4"
@@ -81,7 +81,7 @@ cd .. &gt;nul
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../routines/f2c,../../tcllib/include/X11,../../tcllib/include"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
 				PreprocessorDefinitions="_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM;_DEBUG;WIN32"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="5"
