@@ -22,10 +22,14 @@ c
  10   continue
       if(lc.le.ni)  then
          op=istk(lc)
-
          icount=icount+1
 c     
-         if(op.eq.1) then
+         if(op.eq.0) then
+c     nop
+            icount=icount-1
+            lc=lc+istk(lc+1)
+            goto 10
+         elseif(op.eq.1) then
 c     stackp
             lc=lc+1+nsiz
             goto 10
