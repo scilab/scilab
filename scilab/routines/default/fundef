@@ -352,6 +352,8 @@
 #define  IN_logelm  23  
 {"find",		IN_logelm,	1,	0},
 {"bool2s",		IN_logelm,	2,	0},
+{"or",			IN_logelm,	3,	0},
+{"and",			IN_logelm,	4,	0},
 #define  IN_matus2  24  
 #define  IN_xawelm  25  
 {"addmenu",		IN_xawelm,	8,	3},	
