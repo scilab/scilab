@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ --------------------------------------------------------------------------*/
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>

@@ -1,6 +1,7 @@
-/*--------------------------------------------------------------
- * Gtk version 
- * main menu and graphic window menus 
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ *    main menu and graphic window menus 
  *--------------------------------------------------------------*/
 
 #include <stdio.h>

@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ --------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -1,8 +1,9 @@
- /*---------------------------------------------------------- 
-  * mainsci.f directly call this function 
-  * thus this is the real main for scilab 
-  * Copyright 2001 Inria/Enpc 
-  *----------------------------------------------------------*/
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ * mainsci.f directly call this function 
+ * thus this is the real main for scilab 
+ *----------------------------------------------------------*/
 
 #include <pwd.h>
 #include <ctype.h>

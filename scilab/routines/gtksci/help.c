@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
- *    Copyright (C) 2001 Enpc/Jean-Philippe Chancelier
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
  * Gtk widgets for Scilab help 
  *--------------------------------------------------------------------------*/

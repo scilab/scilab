@@ -1,4 +1,7 @@
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ *--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
