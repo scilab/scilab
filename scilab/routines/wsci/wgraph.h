@@ -53,6 +53,13 @@
 #include "wcommon.h"
 #include "../graphics/scigraphic.h"
 #include "../graphics/Graphics.h"
+
+#include "../graphics/DestroyObjects.h"
+#include "../graphics/GetProperty.h"
+#include "../graphics/DrawObjects.h"
+
+extern int version_flag();
+
 /*-----------------------------------------------------------------------------------*/
 typedef struct but{  int win, x, y, ibutton, motion, release;}But;
 typedef struct
