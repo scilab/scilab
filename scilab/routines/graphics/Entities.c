@@ -964,29 +964,38 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
   
   sciSetNumColors (pobj,old_m);
   
-  if(old_m +1 == sciGetForeground(pobj)){         /* 0 => deals with Foreground */
-    sciSetNumColors (pobj,m);
-    sciUpdateBaW (pobj,0,-1); /* Black */
-    sciSetNumColors (pobj,old_m);
-  }
-  else  if(old_m +2 == sciGetForeground(pobj)) {
-    sciSetNumColors (pobj,m);
-    sciUpdateBaW (pobj,0,-2); /* White */
-    sciSetNumColors (pobj,old_m);
-  }
 
-
-  if(old_m +1 == sciGetBackground(pobj)) {   /* 1 => deals with Background */
-    sciSetNumColors (pobj,m);
-    sciUpdateBaW (pobj,1,-1);
-    sciSetNumColors (pobj,old_m);
-  }
-  else if(old_m +2 == sciGetBackground(pobj)) {
-    sciSetNumColors (pobj,m);
-    sciUpdateBaW (pobj,1,-2);
-    sciSetNumColors (pobj,old_m);
-  }
-      
+  if((sciGetEntityType(pobj) != SCI_TEXT)        &&
+     (sciGetEntityType(pobj) != SCI_TITLE)       &&
+     (sciGetEntityType(pobj) != SCI_LEGEND)      &&
+     (sciGetEntityType(pobj) != SCI_AXES)        &&
+     (sciGetEntityType(pobj) != SCI_MENU)        &&
+     (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
+     (sciGetEntityType(pobj) != SCI_STATUSB)     &&
+     (sciGetEntityType(pobj) != SCI_LABEL))
+    {
+      if(old_m +1 == sciGetForeground(pobj)){         /* 0 => deals with Foreground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,0,-1); /* Black */
+	sciSetNumColors (pobj,old_m);
+      }
+      else  if(old_m +2 == sciGetForeground(pobj)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,0,-2); /* White */
+	sciSetNumColors (pobj,old_m);
+      }
+      if(old_m +1 == sciGetBackground(pobj)) {   /* 1 => deals with Background */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,1,-1);
+	sciSetNumColors (pobj,old_m);
+      }
+      else if(old_m +2 == sciGetBackground(pobj)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,1,-2);
+	sciSetNumColors (pobj,old_m);
+      }
+    }
+  
   if((sciGetEntityType(pobj) == SCI_TEXT)        ||
      (sciGetEntityType(pobj) == SCI_TITLE)       ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
@@ -998,30 +1007,29 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
      (sciGetEntityType(pobj) == SCI_LABEL))
     {
-    
-    if(old_m +1 == sciGetFontForeground(pobj))   {      /* 2 => deals with FontForeground */
-      sciSetNumColors (pobj,m);
-      sciUpdateBaW (pobj,2,-1);   
-      sciSetNumColors (pobj,old_m);
+      if(old_m +1 == sciGetFontForeground(pobj))   {      /* 2 => deals with FontForeground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,2,-1);   
+	sciSetNumColors (pobj,old_m);
+      }
+      else  if(old_m +2 == sciGetFontForeground(pobj)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,2,-2);
+	sciSetNumColors (pobj,old_m);
+      }
+      
+      if(old_m +1 == sciGetFontBackground(pobj))  {  /* 3 => deals with FontBackground */
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,3,-1);
+	sciSetNumColors (pobj,old_m);
+      }
+      else if(old_m +2 == sciGetFontBackground(pobj)) {
+	sciSetNumColors (pobj,m);
+	sciUpdateBaW (pobj,3,-2);
+	sciSetNumColors (pobj,old_m);
+      }
     }
-    else  if(old_m +2 == sciGetFontForeground(pobj)) {
-      sciSetNumColors (pobj,m);
-      sciUpdateBaW (pobj,2,-2);
-      sciSetNumColors (pobj,old_m);
-    }
-
-    if(old_m +1 == sciGetFontBackground(pobj))  {  /* 3 => deals with FontBackground */
-      sciSetNumColors (pobj,m);
-      sciUpdateBaW (pobj,3,-1);
-      sciSetNumColors (pobj,old_m);
-    }
-    else if(old_m +2 == sciGetFontBackground(pobj)) {
-      sciSetNumColors (pobj,m);
-      sciUpdateBaW (pobj,3,-2);
-      sciSetNumColors (pobj,old_m);
-    }
-  }
-
+  
   sciSetNumColors (pobj,m); /* Add F.Leray 25.06.04 */
   
   psonstmp = sciGetLastSons (pobj);
@@ -1030,7 +1038,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
       sciRecursiveUpdateBaW(psonstmp->pointobj, old_m, m);
       psonstmp = psonstmp->pprev;
     }
-  
 }
 
 
