@@ -2,7 +2,6 @@ function []=set_infos(t,level)
 // Copyright INRIA
 
 // Add warning and error messages obtained while translating to display it in the end of file translation
-t=strsubst(strsubst(t,"''","''''"),"""","""""")
 global("m2sci_infos")
 
 t(1)="L."+string(nblines)+": "+t(1)
