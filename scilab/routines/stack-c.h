@@ -187,7 +187,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define PutLhsVar()  if (! C2F(putlhsvar)()) {	return 0; }
 
-#define ReadMatrix(ct,mx,nx,w)  if (! C2F(creadmat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
+#define ReadMatrix(ct,mx,nx,w)  if (! C2F(creadmat)(ct,mx,nx,w,(unsigned long)strlen(ct) )) {	return 0; }
 
 #define WriteMatrix(ct,mx,nx,w)  if (! C2F(cwritemat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
 
@@ -197,7 +197,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define WriteString(ct,mx,w)  if (! C2F(cwritechain)(ct,mx,w,strlen(ct),strlen(w) )) {	return 0; }
 
-#define GetMatrixptr(ct,mx,nx,lx)  if (! C2F(cmatptr)(ct,mx,nx,lx,strlen(ct) )) {	return 0; }
+#define GetMatrixptr(ct,mx,nx,lx)  if (! C2F(cmatptr)(ct,mx,nx,lx,(unsigned long)strlen(ct) )) {	return 0; }
 
 #define GetMatrixdims(n,mx,nx)  if (! C2F(getmatdims)((c_local=n,&c_local),mx,nx)) {	return 0; }
 

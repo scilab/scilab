@@ -789,27 +789,6 @@ static int ReadLine(FILE *fd,int *mem)
     }
 }
 
-
-
-/***************************************
- * Test de TestNumTokens 
- ***************************************/
-#ifdef TEST 
-static void TestNumTokens(void)
-{
-  char buf[30], format[20];
-  strcpy(format,"%d Tokens in <%s>\n");
-  strcpy(buf,"un deux trois");fprintf(stderr,format,NumTokens(buf),buf);
-  strcpy(buf,"un");  fprintf(stderr,format,NumTokens(buf),buf);
-  strcpy(buf,"un deux trois  "); fprintf(stderr,format,NumTokens(buf),buf);
-  strcpy(buf,"un\tdeux\ttrois\n"); fprintf(stderr,format,NumTokens(buf),buf);
-  fprintf(stderr,format, NumTokens((char *) 0) , ((char *) 0));
-  strcpy(buf,"un\t");  fprintf(stderr,format,NumTokens(buf),buf);
-  strcpy(buf," \t\nun");  fprintf(stderr,format,NumTokens(buf),buf);
-  strcpy(buf,"1.0  1.0");fprintf(stderr,format,NumTokens(buf),buf);
-}
-#endif 
-
 int NumTokens(char *string)
 {
   char buf[128];

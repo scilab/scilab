@@ -25,24 +25,3 @@ integer C2F(isanan)(double *x)
 #endif
 }
 
-
-
-#ifdef TESTALONE 
-int main()
-{
-  double x=0.0,y=1/x,z;
-  z= y-y;
-  if ( C2F(isanan)(&z) == 1) 
-    fprintf(stdout,"z is a Nan\n");
-  if ( C2F(isanan)(&x) == 1) 
-    fprintf(stdout,"x is a Nan\n");
-  if ( C2F(isanan)(&y) == 1) 
-    fprintf(stdout,"y is a Nan\n");
-}
-			
-#endif 
-
-
-
-
-

@@ -37,15 +37,6 @@ static int Eqid(int *x, int *y);
 static void  Init(void) ;
 static int backsearch(int *key, int *data);
 
-#ifdef TEST 
-static  int C2F(cvname) __PARAMS((integer *id, char *str, integer *job,long int str_len));
-
-static int EnterStr();
-static void DeleteStr();
-static int FindStr();
-#endif 
-
-
 /**********************
  * Scilab functions 
  **********************/
@@ -113,117 +104,6 @@ int C2F(funtab)(int *id, int *fptr, int *job)
     }
   return(0);
 }
-
-#ifdef TEST /********************* test part ***/
-
-main()
-{
-  test_hash();
-}
-
-int test_hash()
-{
-  int j=0,code,level,k;
-  Init();
-  j=0;
-  while ( SciFuncs[j].name != (char *) 0 )
-    {
-      if ( FindStr(SciFuncs[j].name,&code,&level) == FAILED )
-	{
-	  printf(" %s not found \n",SciFuncs[j].name);
-	}
-      else
-	{
-	  printf(" %s found %d \n",SciFuncs[j].name,code);
-	}
-      j++;
-    }
-  for ( k = 1; k < 2 ; k++) 
-    {
-      printf("Je fais des delete \n");
-      j=0;
-      while ( SciFuncs[j].name != (char *) 0 && j < 20 )
-	{
-	  DeleteStr(SciFuncs[j].name,&code,&level);
-	  j++;
-	}
-      j=0;
-      printf("Je test \n");
-      while ( SciFuncs[j].name != (char *) 0 && j < 20  )
-	{
-	  if ( FindStr(SciFuncs[j].name,&code,&level) == FAILED)
-	    {
-	      printf(" %s not found \n",SciFuncs[j].name);
-	    }
-	  else
-	    {
-	      printf(" %s found %d \n",SciFuncs[j].name,code);
-	    }
-	  j++;
-	}
-      printf("Je remet les fonctions \n");
-      j=0;
-      while ( SciFuncs[j].name != (char *) 0 && j < 20 )
-	{
-	  EnterStr(SciFuncs[j].name,&SciFuncs[j].codeI,&SciFuncs[j].code,
-		   &SciFuncs[j].level);
-	  j++;
-	}
-      j=0;
-      while ( SciFuncs[j].name != (char *) 0 && j < 20  )
-	{
-	  if ( FindStr(SciFuncs[j].name,&code,&level) == FAILED)
-	    {
-	      printf(" %s not found \n",SciFuncs[j].name);
-	    }
-	  else
-	    {
-	      printf(" %s found %d \n",SciFuncs[j].name,code);
-	    }
-	  j++;
-	}
-    }
-  return(0);
-}
-
-C2F(cvname)(id,str,n1,n2)
-     int id[NAMECODE];
-     char str[];
-     int *n1;
-     long int n2;
-{
-  int i,j;
-  for ( i = 0; i < NAMECODE ; i++) 
-    {
-      id[i]=0;
-      for ( j = 0; j < 4 && j+4*i < n2 ; j++) 
-	id[i] = 256*id[i] + str[j+4*i];
-    }
-}
-
-
-static void DeleteStr(str,data,level)
-     char *str;
-     int  *data,*level;
-{
-  int id[NAMECODE];
-  int zero=0;
-  C2F(cvname)(id,str,&zero,strlen(str));
-  myhsearch(id,data,level,DELETE);
-}
-
-static int FindStr(str,data,level)
-     char *str;
-     int  *data,*level;
-{
-  int id[NAMECODE];
-  int zero=0;
-  C2F(cvname)(id,str,&zero,strlen(str));
-  return( myhsearch(id,data,level,FIND));
-}
-
-
-#endif  /********************* end of test part ***/
   
 static int EnterStr(char *str, int *dataI, int *data, int *level)
 {

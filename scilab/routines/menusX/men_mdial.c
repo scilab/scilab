@@ -10,40 +10,6 @@ MDialog SciMDialog = {NULL,NULL,NULL,-1,0};  /** used to stored the mdialog data
 
 
 /*************************************************     
- * a test function used in command.c
- **********************************************************/
-
-int TestmDialogWindow(void)
-{
-  int rep,i;
-  static char *labels = "LaBel";
-  static char *pszTitle[] = {
-    "first list entry",
-    "second list entry",
-    "third list entry",
-    "fourth list entry",
-    NULL
-    };
-  SciMDialog.labels = labels;
-  SciMDialog.pszTitle = pszTitle;
-  /** Warning pszName must be allocated because 
-    MatricDialogWindow will reallc it to store result **/
-  SciMDialog.pszName  = (char **) malloc((4+1)*sizeof(char *));
-  if ( SciMDialog.pszName == ( char **) 0 ) return(FALSE);
-  for ( i = 0 ; i < 4 ; i++ )
-    {
-      SciMDialog.pszName[i] = (char *) malloc(2*sizeof(char));
-      if ( SciMDialog.pszName[i] == ( char *) 0 ) return(FALSE);
-      sprintf(SciMDialog.pszName[i],"%1d",i);
-    }
-  SciMDialog.pszName[4]= (char*)0;
-  SciMDialog.nv = 4;
-  SciMDialog.ierr=0;
-  rep=mDialogWindow();
-  return(rep);
-}
-
-/*************************************************     
  * interface with scilab 
  **********************************************************/
 

@@ -134,12 +134,11 @@ typedef struct {
 /* "men_choice-n.c.X1" */
 
 extern void C2F(xchoices)(int *,int *,int *,int *,int *,int *,int *,int *,int *);  
-extern int TestChoice (void);  
 extern int SciChoice (char *, char **, int *, int );  
 
 /* "men_choose-n.c.X1" */
 
-extern int TestChoose (void);  
+
 extern void C2F(xchoose)(int *, int *ptrdesc, int *nd, int *basstrings, int *ptrstrings, int *nstring, int *btn, int *ptrbtn, int *nb, int *nrep, int *ierr);  
 
 /* "men_dialog-n.c.X1" */

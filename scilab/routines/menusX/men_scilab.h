@@ -154,23 +154,19 @@ typedef struct {
 /* "men_choice-n.c.X1" */
 
 extern void C2F(xchoices) __PARAMS((int *,int *,int *,int *,int *,int *,int *,int *,int *));  
-extern int TestChoice  __PARAMS((void));  
 extern int SciChoice  __PARAMS((char *, char **, int *, int ));  
 
 /* "men_choose-n.c.X1" */
 
-extern int TestChoose  __PARAMS((void));  
 extern void C2F(xchoose) __PARAMS((int *, int *, int *, int *, int *, int *, int *, int *, int *, int *, int *));  
 
 /* "men_dialog-n.c.X1" */
 
-extern int TestDialog  __PARAMS((void));  
 extern void C2F(xdialg) __PARAMS((int *value, int *ptrv, int *nv, int *, int *ptrdesc, int *nd, int *btn, int *ptrbtn, int *nb, int *res, int *ptrres, int *nr, int *ierr));  
 extern void xdialg1  __PARAMS((char *, char *valueinit, char **pButName, char *value, int *ok));  
 
 /* "men_getfile-n.c.X1" */
 
-extern int TestGetFile  __PARAMS((void));  
 extern void C2F(xgetfile) __PARAMS((char *filemask, char *dirname, char **res, integer *ires, integer *ierr, integer *idir,integer *desc,integer *ptrdesc,integer *nd));
 
 /* "men_madial-n.c.X1" */

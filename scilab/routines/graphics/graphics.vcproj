@@ -776,9 +776,6 @@ cd.. &gt;nul
 				RelativePath=".\SetProperty.c">
 			</File>
 			<File
-				RelativePath=".\Tests.c">
-			</File>
-			<File
 				RelativePath=".\Xcall.c">
 			</File>
 			<File

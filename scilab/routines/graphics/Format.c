@@ -524,30 +524,6 @@ static void decompInf(double x, integer *xk, integer *xa, integer b)
 }
  
 
-#ifdef TEST 
-
-
-main() 
-{
-  double xmin=1.0,xmax=1.0,eps=1.e-10,xi,xa;
-  integer n1,n2,n,i;
-  int kminr,kmaxr,ar;
-  xmin=0.0;
-  xmax=1.006;
-  C2F(graduate)(&xmin,&xmax,&xi,&xa,&n1,&n2,&kminr,&kmaxr,&ar) ;
-  fprintf(stderr,"test, [%f,%f,%d,%d]\n",xi,xa,n1,n2); 
-}
-
-C2F(dr)() {} ;
-
-#endif
-
-
-
-
-
-
-
 
 
 /* Francois' algo for Theticks */

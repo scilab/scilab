@@ -69,18 +69,6 @@ int prtdlg(integer *flag, char *printer, integer *colored, integer *orientation,
   return(0);
 }
 
-/******************************************
- * Test function 
- ******************************************/
-
-int TestPrintDlg(void)
-{
-  static char file[100],printer[20];
-  integer flag,colored,orientation,ok;
-  prtdlg(&flag,printer,&colored,&orientation,file,&ok);
-  return(0);
-}
-
 
 /******************************************
  * Initialize list of printers 

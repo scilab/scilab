@@ -7,19 +7,6 @@
 
 #include "../sun/Sun.h"
 
-/*************************************************     
- * test function 
- **********************************************************/
-
-#define MAXSTRGETF 256
-
-int TestGetFile(void)
-{
-  int ierr=0;
-  static char *init ="*.sci";
-  char *res;
-  return(GetFileWindow(init,&res,".",0,&ierr,"Title"));
-}
 
 /****************************************************
  * Scilab xgetfile command used to get a file name 

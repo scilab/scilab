@@ -123,15 +123,7 @@ extern int WriteKey(char c, FILE *file);
 
 /* ../menusX */
 
-extern int TestChoose(void);
-extern int TestmDialogWindow();
-extern int TestmChoiceWindow();
-extern int TestGetFile() ;
 extern BOOL  DialogWindow();
-extern void  test_mouse();
-extern int  TestChoice();
-extern int TestDialog();
-extern int TestMessage();
 
 /* readline-nowin */
 
@@ -192,8 +184,6 @@ extern int instring(char *str,char  c);
 
 extern void sci_windows_main(int,int *,char *,int,int *,int);
 extern void SciMenuSelect(char *Name);
-extern void test_sci();
-extern void test_mouse();
 extern void  C2F(setfbutn)(char *buf,int *rep);
 extern void  C2F(fbutn)(char *buf,int *win,int *ent);
 extern void  SignalCtrC(void);

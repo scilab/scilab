@@ -9,7 +9,7 @@ LIBRARY = $(SCIDIR)/libs/graphics.lib
 OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	Contour.obj Plo3d.obj Math.obj Axes.obj Champ.obj Plo2d.obj \
 	Plo2d1.obj Plo2d2.obj Plo2d3.obj Plo2d4.obj Plo2dEch.obj Rec.obj Gray.obj \
-	Alloc.obj FeC.obj RecLoad.obj RecSave.obj Tests.obj Actions.obj \
+	Alloc.obj FeC.obj RecLoad.obj RecSave.obj Actions.obj \
 	gsort.obj qsort.obj nues1.obj  Format.obj \
 	dr1Call.obj sciCall.obj Plo2dn.obj Plo3dn.obj \
 	GetProperty.obj BuildObjects.obj CloneObjects.obj DestroyObjects.obj \
@@ -56,7 +56,6 @@ qsort.obj: qsort.c
 Rec.obj: Rec.c Math.h ../machine.h Graphics.h Rec.h PloEch.h
 RecLoad.obj: RecLoad.c Math.h ../machine.h Graphics.h Rec.h
 RecSave.obj: RecSave.c Math.h ../machine.h Graphics.h Rec.h
-Tests.obj: Tests.c Math.h ../machine.h Graphics.h
 Xcall1.obj: Xcall1.c Math.h ../machine.h Graphics.h PloEch.h
 Xcall.obj: Xcall.c Math.h ../machine.h Graphics.h periX11.h periPos.h \
  periFig.h periGif.h

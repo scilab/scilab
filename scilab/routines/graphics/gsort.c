@@ -62,8 +62,6 @@ int C2F(gsort)(int *xI, double *xD, int *ind, int *iflag, int *m, int *n, char *
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
 
-#ifndef TEST 
-
 void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrres, int *ierr, int *ind, int *iflag, char *type, char *iord)
 {
   char **data;
@@ -90,7 +88,7 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
   ScilabCM2MStr(data,nv,res,ptrres,maxchars,ierr);
   for (i=0;i< nv ;i++) FREE(data[i]); FREE(data);
 }
-#endif 
+
 
 /******************************************************
  * General sort routine for Scilab strings 
@@ -99,8 +97,6 @@ void C2F(gsorts_old)(int *value, int *ptrv, int *m, int *n, int *res, int *ptrre
  * type : the operation ( see the interface ) 
  * iord : 'i' or 'd' : increasind or decreasing sort 
  ******************************************************/
-
-#ifndef TEST 
 
 void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord)
 {
@@ -118,34 +114,6 @@ void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, 
     default :  CNAME(GlobalSort,char)(data,ind,*iflag,*m,*n,iord[0]);break;
     }
 }
-#endif 
-
-
-/******************************************************
- * TEST 
- ******************************************************/
-#ifndef TEST 
-
-void gsort_test_function()
-{
-  printf("Test for int \n");
-  CNAME(sorttest,int)() ;
-  printf("Test for double \n");
-  CNAME(sorttest,double)() ;
-}
-
-#endif 
-
-
-#ifdef TEST 
-
-int main()
-{
-  gsort_test_function();
-  return(0);
-}
-
-#endif
 
 
 

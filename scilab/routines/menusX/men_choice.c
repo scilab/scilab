@@ -43,28 +43,6 @@ void C2F(xchoices)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
   FREE(label);
 }
 
-
-/*************************************************
- * test function 
- ************************************************/
-int TestChoice(void)
-{
-  static char* items[] = {
-    "Label1",    "choice1",    "a choice2",
-    NULL,
-    "colors",    "1","4","5","2","3","7","6",
-    NULL,
-    "Label2",    "poo", "foo","goo",
-    NULL,
-    "Label3",    "Blue",    "train",
-    NULL,
-    };
-  static int defch[]={1,3,3,2};
-  static int nitems= 4;
-  return(SciChoice("test",items,defch,nitems));
-}
-
-
 /*************************************************
  *
  * Main function 

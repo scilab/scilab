@@ -10,34 +10,6 @@ char *dialog_str = (char *) 0;
 SciDialog ScilabDialog = { NULL,NULL,NULL,-1,0}; 
 
 
-/**********************************************************
- * Test function 
- **********************************************************/
-
-int TestDialog(void)
-{
-  int rep;
-  static char *description = "Dialog test\nTexte";
-#ifdef WIN32 
-  static char *init ="Initial\r\nvalue";
-#else 
-  static char *init ="Initial\nvalue";
-#endif
-  static char *pButName[] = {
-    "LabelOK",
-    "LabelCancel",
-    NULL
-    };
-  ScilabDialog.description = description ;
-  ScilabDialog.init = init;
-  ScilabDialog.pButName = pButName;
-  ScilabDialog.nb = 2;
-  rep = DialogWindow();
-  sciprint("reponse[%d] %s\n",rep,dialog_str) ;
-  return(rep);
-}
-
-
 /*************************************************     
  * interface with scilab 
  **********************************************************/

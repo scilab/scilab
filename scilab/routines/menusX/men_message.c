@@ -7,26 +7,6 @@
 
 SciMess ScilabMessage ={NULL,NULL,-1,0};
 
-/*************************************************     
- * Test function 
- **********************************************************/
-
-int TestMessage(int n)
-{
-  int rep;
-  static char* description = "Message \ntest";
-  static char* buttonname[] = {
-        "Label1",
-	"Label2",
-	NULL
-    };
-  ScilabMessage.nb= n;
-  ScilabMessage.pButName = buttonname;
-  ScilabMessage.string = description;
-  rep= ExposeMessageWindow();
-  sciprint("reponse[%d] \n",rep);
-  return(rep);
-}
 
 /*************************************************     
  * Scilab Interface 

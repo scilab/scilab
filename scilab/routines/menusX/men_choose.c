@@ -7,29 +7,6 @@
 
 int     ExposeChooseWindow(ChooseMenu *);
 
-/*****************************************
- * TestFunction 
- *****************************************/
-
-int TestChoose(void)
-{
-  ChooseMenu Ch;
-  int Rep;
-  int nrep;
-  static char *butn[]= { "But 1"," But 2",NULL};
-  static char *strings[]= { "Str 1"," Str 2","Str 3",NULL};
-  Ch.nstrings = 3;
-  Ch.nb = 2; 
-  Ch.choice = 0;
-  Ch.description = " Title";
-  Ch.buttonname = butn;
-  Ch.strings = strings;
-  Rep = ExposeChooseWindow(&Ch);
-  if ( Rep == TRUE )
-    nrep=(1+ Ch.choice);
-  else nrep=0;
-  return (nrep);
-}
 
 /*****************************************
  * Interface with a Scilab ``structure'' 

@@ -43,7 +43,7 @@ int C2F(checkrhs)(fname, iMin, iMax, fname_len)
    */
 
   C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], fname, &cx0, fname_len);
-  /* sciprint("checkrhs test : [%s] \r\n",Get_Iname()); */
+  
   if ( Rhs < *iMin || Rhs > *iMax) 
     {
       Scierror(77,"%s: wrong number of rhs arguments\r\n",get_fname(fname,fname_len));

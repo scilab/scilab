@@ -11,6 +11,10 @@
  *   HISTORY 
  *     fleury - Jun 29, 1999: Created. 
  *     $Log: scipvmf77.c,v $
+ *     Revision 1.3  2005/01/19 14:40:36  cornet
+ *     remove some functions not used or only for debug (not recquired by scilab)
+ *     Cleaning Sources ...
+ *
  *     Revision 1.2  2004/09/16 13:11:40  steer
  *     name changes in C version of fortran stack commons
  *
@@ -40,10 +44,6 @@ static void f77_to_sci (double*, int*);
 typedef void (*Fm)(double *,int *); 
 typedef void (*Fl)(int *); 
 static void sci_object_walk(int il,Fm fm,int stk_pos);
-
-#ifdef TEST 
-static void print __PARAMS((double*, int));
-#endif 
 
 
 /*------------------------------------------------------------------------
@@ -247,22 +247,5 @@ static void sci_object_walk(int ilk,Fm fm,int stk_pos)
     break;
   }
 }
-
-
-/*--------------------------------------------------------
- * Utility function 
- *--------------------------------------------------------*/
-
-
-#ifdef TEST 
-static void print(double* tab,int  n)
-{
-  int i;
-  for (i = 0; i < n; ++i){
-    (void) printf("%f:", tab[i]);
-  }
-  (void) printf("\n");
-}
-#endif 
 
 

@@ -240,9 +240,6 @@ winsystem (char *s, int flag)
     p++;
   if (*p == '\0')
     {
-#ifdef WINEXECDEBUG
-      sciprint ("TestMessage0 : WinExec de %s\r\n", comspec);
-#endif
       WinExec (comspec, SW_SHOWNORMAL);
     }
   else
@@ -258,17 +255,11 @@ winsystem (char *s, int flag)
       if (s[0] == '/' && s[1] == '/' && s[3] == '/')
 	{
 	  sprintf (execstr, "%c:%s", s[2], s + 3);
-#ifdef WINEXECDEBUG
-	  sciprint ("TestMessage1 : WinExec de %s\r\n", execstr);
-#endif
 	  res = WinExec (execstr, sw_sci_flag);
 	}
       else
 	{
 	  sprintf (execstr, "%s", s);
-#ifdef WINEXECDEBUG
-	  sciprint ("TestMessage2 : WinExec de %s\r\n", execstr);
-#endif
 	  res = WinExec (execstr, sw_sci_flag);
 	}
       if (res <= 31)
@@ -282,9 +273,6 @@ winsystem (char *s, int flag)
 	    {
 	      sprintf (execstr, "%s /c %s", comspec, s);
 	    }
-#ifdef WINEXECDEBUG
-	  sciprint ("TestMessage3 : WinExec de %s\r\n", execstr);
-#endif
 	  res = WinExec (execstr, sw_sci_flag);
 	  if (res <= 31)
 	    sciprint ("WinExec of %s failed \r\n", execstr);

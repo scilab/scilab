@@ -592,17 +592,12 @@ void InitWindowGraphDll(void)
 /* to simulate argv */
 void add_sci_argv(char *p)
 {
-	my_argv[++my_argc]=p;
+	if (*p)	my_argv[++my_argc]=p;
 }
 /*-----------------------------------------------------------------------------------*/
 /* Fortran iargc and fgetarg implemented here */
 int sci_iargc()
 {
-	#ifdef TEST
-	char test[50];
-	sprintf(test,"%d",my_argc);
-	MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
-	#endif
 	return my_argc -1 ;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -610,16 +605,11 @@ int sci_getarg(int *n,char *s,long int ls)
 {
 	register char *t;
 	register int i;
-	#ifdef TEST
-	char test[50];
-	sprintf(test,"%d %d",my_argc,ls);
-	MessageBox (NULL, test, "pipo", MB_ICONSTOP | MB_OK);
-	#endif
+	
 	if(*n>=0 && *n <= my_argc)
 	t = my_argv[*n];
 	else
 	t = "";
-
 
 	for(i = 0; i < ls && *t!='\0' ; ++i)
 	*s++ = *t++;
