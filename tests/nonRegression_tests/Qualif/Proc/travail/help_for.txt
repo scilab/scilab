@@ -1,0 +1,159 @@
+Ex‚cute une commande donn‚e pour chaque fichier d'un ensemble de fichiers.
+
+FOR %variable IN (ensemble) DO commande [paramŠtres]
+
+  %variable   Sp‚cifie un paramŠtre rempla‡able par une seule lettre.
+  (ensemble)  Ensemble de fichiers. CaractŠres g‚n‚riques autoris‚s.
+  commande    Commande … ex‚cuter pour chaque fichier.
+  paramŠtres  Liste des paramŠtres ou des options pour la commande
+              sp‚cifi‚e.
+
+Pour utiliser la commande FOR dans un programme de commandes, sp‚cifiez
+%%variable au lieu de %variable. Les noms de variables respectent la
+casse, donc %i est diff‚rent de %I.
+
+Si les extensions de commandes sont activ‚es, les formes suppl‚mentaires
+suivantes sont prises en charge pour la commande FORÿ:
+
+FOR /D %variable IN (ensemble) DO commande [paramŠtres]
+
+    Si ensemble contient des caractŠres g‚n‚riques, alors la correspondance se 
+    fait sur les noms de r‚pertoires au lieu des noms de fichiers.
+
+FOR /R [[lecteur:]chemin] %variable IN (ensemble) DO commande [paramŠtres]
+
+    Parcourt l'arborescence de r‚pertoires depuis la racine [lecteur:]chemin,
+    en ex‚cutant FOR dans chaque r‚pertoire de l'arborescence. Si aucun
+    r‚pertoire n'est sp‚cifi‚ aprŠs /R alors le r‚pertoire en cours est
+    utilis‚. Si ensemble est seulement un point (.) alors seule l'arborescence
+    de r‚pertoires sera ‚num‚r‚e.
+
+FOR /L %variable IN (d‚but,pas,fin) DO commande [paramŠtres]
+
+    L'ensemble est une s‚quence de chiffres allant de d‚but … fin, incr‚ment‚
+    de pas. Ainsi (1,1,5) g‚nŠre la s‚quence 1 2 3 4 5 et (5,-1,1) g‚nŠre la
+    s‚quence (5 4 3 2 1)
+
+FOR /F ["options"] %variable IN (ensemble-fichiers) DO commande [paramŠtres]
+FOR /F ["options"] %variable IN ("chaŒne") DO commande [paramŠtres]
+FOR /F ["options"] %variable IN ('commande') DO commande [paramŠtres]
+
+    ou, si l'options usebackq est utilis‚eÿ:
+
+FOR /F ["options"] %variable IN (ensemble-fichiers) DO commande [paramŠtres]
+FOR /F ["options"] %variable IN ('chaŒne') DO commande [paramŠtres]
+FOR /F ["options"] %variable IN (`commande`) DO commande [paramŠtres]
+
+    ensemble-fichiers est un ou plusieurs noms de fichiers. Chaque fichier est
+    ouvert, lu et trait‚ avant de passer au fichier suivant de
+    ensemble-fichiers. Le traitement consiste … lire dans le fichier, le
+    d‚couper en lignes individuelles de texte puis analyser chaque ligne en
+    z‚ro ou plusieurs parties. Le corps de la boucle FOR est ensuite appel‚
+    avec la ou les valeurs de variables prenant la valeur de la ou des parties
+    trouv‚es. Par d‚faut, /F transmet la premiŠre partie s‚par‚e par un blanc
+    dans chaque ligne de chaque fichier. Les lignes vides sont ignor‚es. Vous
+    pouvez outrepasser le comportement d'analyse par d‚faut en sp‚cifiant le
+    paramŠtre optionnel "options". Ceci est une chaŒne entre guillemets
+    contenant un ou plusieurs mots-cl‚s sp‚cifiant diverses options d'analyse.
+    Les mots-cl‚s sontÿ:
+
+        eol=c           - sp‚cifie un caractŠre de commentaire de fin de ligne
+                          (un seul)
+        skip=n          - sp‚cifie le nombre de lignes … ignorer en d‚but
+                          de fichier.
+        delims=xxx      - sp‚cifie un ensemble de d‚limiteurs. Ceci remplace
+                          l'ensemble de d‚limiteurs par d‚faut qui sont
+                          l'espace et la tabulation.
+        tokens=x,y,m-n  - sp‚cifie les parties de chaque ligne devant ˆtre
+                          transmises au corps de FOR … chaque it‚ration.
+                          Ceci provoquera l'allocation de noms de variables
+                          suppl‚mentaires. La forme m-n est une ‚tendue
+                          sp‚cifiant les parties allant de m … n. Si le
+                          dernier caractŠre de la chaŒne tokens= est une
+                          ast‚risque, alors une variable suppl‚mentaire est
+                          allou‚e et re‡oit le texte restant dans la ligne
+                          suivant la derniŠre partie analys‚e.
+        usebackq        - sp‚cifie que la nouvelle s‚mantique est en place,
+                          lorsqu'une chaŒne entre guillemets invers‚s est
+                          ex‚cut‚e en tant que commande et une chaŒne entre
+                          guillemets simples est une chaŒne de commande
+                          litt‚rale et permet l'utilisation de guillemets
+                          doubles pour citer des noms de fichiers.
+
+    Quelques exemples explicatifsÿ:
+
+FOR /F "eol=; tokens=2,3* delims=, " %i in (monfich.txt) do @echo %i %j %k
+
+    analyse chaque ligne de monfich.txt, en ignorant les lignes commen‡ant
+    par un point-virgule, en transmettant les 2nde et 3Šme parties de
+    chaque ligne au corps de FOR, les parties ‚tant d‚limit‚es par des
+    virgules et/ou espaces. Notez que le corps de FOR r‚f‚rence %i pour
+    l'obtention de la 2nde partie, %j pour l'obtention de la 3Šme partie
+    et %k pour l'obtention des parties restantes aprŠs la 3Šme. Pour les
+    noms de fichiers contenant des espaces, placez les noms de fichiers
+    entre guillemets doubles. Afin d'utiliser ainsi les guillemets doubles,
+    vous devez ‚galement utiliser l'option usebackq, faute de quoi les
+    guillemets doubles seraient interpr‚t‚s comme d‚finissant une chaŒne
+    litt‚rale … analyser.
+
+    %i est d‚clar‚e explicitement dans la d‚claration FOR et %j et %k
+    sont d‚clar‚es implicitement via l'option tokens=. Vous pouvez sp‚cifier
+    jusqu'… 26 paries via la ligne tokens=, tant que cela ne provoque pas
+    de tentative de d‚claration de variable plus ‚lev‚e que la lettre 'z'
+    ou 'Z'. Souvenez-vous que les variables de FOR se composent de lettres,
+    tiennent compte de la casse, sont globales et que  plus de 52 ne peuvent
+    pas ˆtre actives … la fois.
+
+    Vous pouvez aussi utiliser la logique d'analyse FOR /F sur une chaŒne en
+    pla‡ant ensemble-fichiers entre guillemets entre les parenthŠses,
+    en utilisant des guillemets simples. Elle sera trait‚e comme une ligne
+    d'entr‚e simple provenant d'un fichier puis analys‚e.
+
+    Enfin, vous pouvez utiliser la commande FOR /F pour analyser les
+    donn‚es en sortie d'une commande. Faites ceci en pla‡ant des guillemets
+    invers‚s autour de ensemble-fichiers entre les parenthŠses.  Elle sera
+    trait‚e comme une ligne de commande transmise … un CMD.EXE enfant et
+    la sortie est gard‚e en m‚moire et analys‚e comme s'il s'agissait d'un
+    fichier. Ainsi l'exemple suivantÿ:
+
+      FOR /F "usebackq delims==" %i IN (`ensemble`) DO @echo %i
+
+    ‚num‚rerait les noms de variables d'environnement de l'environnement
+    en cours.
+
+De plus, la substitution de r‚f‚rences de variables FOR a ‚t‚ am‚lior‚e.
+Vous pouvez maintenant utiliser la syntaxe optionnelle suivanteÿ:
+
+    %~I         - ‚tend %I en supprimant les guillemets (")
+    %~fI        - ‚tend %I en nom de chemin d'accŠs reconnu
+    %~dI        - ‚tend %I en lettre de lecteur uniquement
+    %~pI        - ‚tend %I en chemin d'accŠs uniquement
+    %~nI        - ‚tend %I en nom de fichier uniquement
+    %~xI        - ‚tend %I en extension de fichier uniquement
+    %~sI        - chemin ‚tendu contenant uniquement des noms courts
+    %~aI        - ‚tend %I en attributs du fichier
+    %~tI        - ‚tend %I en date/heure du fichier
+    %~zI        - ‚tend %I en taille du fichier
+    %~$PATH:I   - parcourt les r‚pertoires de la variable
+                   d'environnement PATH et ‚tend %I en nom du
+                   premier fichier reconnu trouv‚. Si le nom de la
+                   variable d'environnement n'est pas d‚fini ou
+                   que le fichier n'est pas trouv‚ par la recherche,
+                   alors ce modificateur ‚tend en chaŒne vide
+
+Vous pouvez combiner les modificateurs pour obtenir des r‚sultats compos‚sÿ:
+
+    %~dpI       - ‚tend %I en lettre de lecteur et chemin d'accŠs uniquement
+    %~nxI       - ‚tend %I en nom de fichier et extension uniquement
+    %~fsI       - ‚tend %I en nom de chemin complet avec noms courts
+                   uniquement
+    %~dp$PATH:i - parcourt les r‚pertoires list‚s dans la variable
+                   d'environnement PATH … la recherche de %I et ‚tend
+                   en lettre de lecteur du premier trouv‚.
+    %~ftzaI     - ‚tend %I en DIR comme ligne en sortie
+
+Dans les exemples ci-dessus %I et PATH peuvent ˆtre remplac‚s par d'autres
+valeurs valides. La syntaxe %~ se termine par un nom de variable FOR valide.
+Le choix de noms de variables en majuscules comme %I facilite la lecture
+et empˆche toute confusion avec les modificateurs qui ne tiennent pas compte
+de la casse.

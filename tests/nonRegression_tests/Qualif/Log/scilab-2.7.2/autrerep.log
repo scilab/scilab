@@ -1,0 +1,26 @@
+                    ==========
+                    scilab-2.7.2
+        Copyright (C) 1989-2003 INRIA/ENPC
+                    ==========
+
+ 
+ 
+Startup execution:
+  loading initial environment
+ 
+    
+ 
+    
+ 
+ ------------------------------{ DEBUT TEST SUITE AUTREREP DEBUT }   
+ 
+    
+ 
+    
+   exec('bug' + string(k) + '.sci')
+                                    !--error   241 
+File bug1.sci does not exist or read access denied 
+at line      16 of exec file called by :    
+ch(-1,"stop");exec("autrerep.sce");quit;
+ 
+autrerep TEST SUITE --------------- NOT COMPLETED 
