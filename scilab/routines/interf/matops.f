@@ -2259,12 +2259,16 @@ c     arg3(arg1,arg2)
       endif
       if(mn3.eq.0) then 
 c     .  arg3=[]
-         il1=iadr(lstk(top))
-         istk(il1)=1
-         istk(il1+1)=0
-         istk(il1+2)=0
-         istk(il1+3)=0
-         lstk(top+1)=sadr(il1+4)
+         if(m1.eq.-1.and.m2.eq.-1) then
+            il1=iadr(lstk(top))
+            istk(il1)=1
+            istk(il1+1)=0
+            istk(il1+2)=0
+            istk(il1+3)=0
+            lstk(top+1)=sadr(il1+4)
+         else
+            call error(21)
+         endif
          return
       elseif(m3.lt.0) then
 c     .arg3=eye
