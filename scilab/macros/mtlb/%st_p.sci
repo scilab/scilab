@@ -12,13 +12,17 @@ for k=3:size(f,'*')
   var=f(k)
   value=s(var)
   tp=typeof(value)
+  if tp~='st' then
   str=sci2exp(value,ll(1))
+  else
+  str=strcat(string(size(value)),'x')+' struct';
+  end
   txt='   '+var+': '
   if size(str,'*')==1 then
-    txt=txt+str
+   txt=txt+str
   else
     tp=typeof(value)
-    txt=txt+'{'+strcat(string(size(value)),'x')+' '+tp+'}'
+    txt=txt+'{'+strcat(string(size(value)),'x')+' entries'+' '+tp+'}'
   end
   t=[t;txt]
 end
