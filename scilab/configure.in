@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.77 $)dnl
+AC_REVISION($Revision: 1.78 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1748,6 +1748,30 @@ else
 	AC_DEFINE(WITH_ATLAS)
 fi
 
+
+#################
+## ocaml 
+#################
+ AC_CHECK_PROG(with_ocamlc,ocamlc,yes,no)
+ if test "$with_ocamlc" = no; then
+    AC_MSG_WARN([ocamlc not found: I will not build Modelica compiler])
+    OCAMLTARGET=ocaml-bidon   
+ else
+    AC_CHECK_PROG(with_ocamlopt,ocamlopt,yes,no)
+    if test "$with_ocamlopt" = no; then
+       AC_MSG_WARN([ocamlopt not found: I will not build Modelica compiler])
+       OCAMLTARGET=ocaml-bidon   
+    else
+       AC_CHECK_PROG(with_ocamldep,ocamldep,yes,no)
+       if test "$with_ocamldep" = no; then
+          AC_MSG_WARN([ocamldep not found: I will not build Modelica compiler])
+          OCAMLTARGET=ocaml-bidon   
+       else
+          AC_DEFINE(WITH_OCAML)
+          OCAMLTARGET=scilex-lib
+       fi
+    fi
+ fi
 #########################
 ## substituting variables
 #########################
@@ -1821,7 +1845,8 @@ AC_SUBST(NOINLINE)
 AC_SUBST(WHICH_BLAS)
 AC_SUBST(ATLAS_DIR)
 AC_SUBST(IN_ATLAS)
-
+AC_SUBST(OCAMLTARGET)
+AC_SUBST(WITH_OCAML)
 # for Makemex
 
 AC_SUBST(SHELL)

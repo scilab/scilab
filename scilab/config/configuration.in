@@ -184,6 +184,11 @@ DLLTOOL			:@DLLTOOL@
 LIBM			:@LIBM@
 LIBTOOL_DEPS		:@LIBTOOL_DEPS@
 ------------------------------------------------------------
+Ocaml Variables
+------------------------------------------------------------
+WITH_OCAML		:@WITH_OCAML@
+OCAMLTARGET		:@OCAMLTARGET@
+------------------------------------------------------------
 Misc Variables
 ------------------------------------------------------------
 TERMCAPLIB		:@TERMCAPLIB@
