@@ -12,6 +12,9 @@ if "%1" == "intersci" goto intersci
 if "%1" == "dumpexts" goto dumpexts
 if "%1" == "pvm" goto pvm
 if "%1" == "def" goto def
+if "%1" == "man" goto man
+if "%1" == "man-clean" goto man-clean
+if "%1" == "man-distclean" goto man-distclean
 
 echo Unknown target %1 
 goto end
@@ -88,6 +91,27 @@ goto end
 cd intersci
  echo making all in intersci
  nmake /C /f Makefile.mak 
+cd ..
+goto end
+ 
+:man
+cd man
+ echo making all in man
+ nmake /C /f Makefile.mak 
+cd ..
+goto end
+
+:man-clean
+cd man
+ echo making all in man
+ nmake /C /f Makefile.mak clean 
+cd ..
+goto end
+
+:man-distclean
+cd man
+ echo making all in man
+ nmake /C /f Makefile.mak distclean 
 cd ..
 goto end
 

@@ -2,7 +2,7 @@
 SCIDIR=.
 include Makefile.incl.mak 
 
-all ::  routines-pvm  bin/scilex.exe macros wless imp intersci
+all ::  routines-pvm  bin/scilex.exe macros wless imp intersci man 
 
 !IF "$(DLPVM)" == "YES"
 routines-pvm :: routines pvm 
@@ -30,6 +30,9 @@ imp::
 intersci::
 	Makesubdirs.bat intersci
 
+man::
+	Makesubdirs.bat man 
+
 clean::
 	Makesubdirs.bat routines-clean
 	Makesubdirs.bat macros-clean
@@ -37,6 +40,7 @@ clean::
 distclean::
 	Makesubdirs.bat routines-distclean 
 	Makesubdirs.bat macros-distclean 
+	Makesubdirs.bat man-distclean 
 
 # win32 
 LIBRSCI = libs/system.lib libs/interf.lib libs/system2.lib libs/optim.lib \
