@@ -11430,10 +11430,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	return (double*)NULL;
       for (i=0;i < *numrow;i++)
 	{
-	  tab[2*i] = pPATCH_FEATURE (pthis)->pvx[i];	
-	  //pPATCH_FEATURE (pthis)->pvector[i].x = pvecx[i];
-	  tab[2*i+1]= pPATCH_FEATURE (pthis)->pvy[i];  
-	  //pPATCH_FEATURE (pthis)->pvector[i].x = pvecx[i];
+	  tab[i] = pPATCH_FEATURE (pthis)->pvx[i];	
+	  tab[*numrow+i]= pPATCH_FEATURE (pthis)->pvy[i];  
 	}
       return (double*)tab;
       break;
@@ -11444,8 +11442,8 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 	return (double*)NULL;
       for (i=0;i < *numrow;i++)
 	{
-	  tab[2*i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
-	  tab[2*i+1]= pPOLYLINE_FEATURE (pthis)->pvy[i];  
+	  tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
+	  tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];  
 	}
       return (double*)tab;
       break;
