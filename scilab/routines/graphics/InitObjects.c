@@ -750,7 +750,7 @@ sciInitGraphicContext (sciPointObj * pobj)
 int
 sciInitFontContext (sciPointObj * pobj)
 {
-  /*   int aa[5]; */ /* for debug purpose only F.Leray 13.01.05 */
+   /*   int aa[5]; */ /* for debug purpose only F.Leray 13.01.05 */
 
   /* 
    * initialisation du contexte font par defaut 
@@ -792,12 +792,17 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_LABEL: /* Re-init here must be better F.Leray 28.05.04 */
       if(sciGetParent(pobj) == paxesmdl)
 	{
-	  (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ =  sciGetFontBackground (sciGetParent (pobj)) -1;
-	  (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ =  sciGetFontForeground (sciGetParent (pobj)) -1;
-	  (sciGetFontContext(pobj))->fonttype       /*  = aa[2] */ =  (sciGetFontContext(sciGetParent(pobj)))->fonttype; 
-	  (sciGetFontContext(pobj))->fontdeciwidth  /*  = aa[3] */ =  (sciGetFontContext(sciGetParent(pobj)))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =  (sciGetFontContext(sciGetParent(pobj)))->textorientation;
-	  (sciGetFontContext(pobj))->fontnamelen    /*  = aa[5] */ =  (sciGetFontContext(sciGetParent(pobj)))->fontnamelen; 
+	  aa[0] = sciGetFontForeground (sciGetParent (pobj)) -1;
+	  aa[1] = (sciGetFontContext(paxesmdl))->foregroundcolor;
+
+	  /* init plabelmdl that could be models for title, x_label, y_label or z_label */
+	  sciSetFontStyle (pobj, 6);/* set helvetica font */
+	  (sciGetFontContext(pobj))->backgroundcolor = -3;
+	  (sciGetFontContext(pobj))->foregroundcolor = -2; 
+	  (sciGetFontContext(pobj))->fontdeciwidth = 100;
+	  (sciGetFontContext(pobj))->textorientation = 0;
+	  (sciGetFontContext(pobj))->fontnamelen=1; /*fontname not used */
+
 	  if (((sciGetFontContext(pobj))->pfontname =
 	       calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
 		       sizeof (char))) == NULL)
@@ -819,12 +824,12 @@ sciInitFontContext (sciPointObj * pobj)
 	  else if(pLABEL_FEATURE(pobj)->ptype == 4) /* z_label */
 	    plabelmdl = pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
 	  
-	  (sciGetFontContext(pobj))->backgroundcolor /* = aa[0] */ = (sciGetFontContext(plabelmdl))->backgroundcolor;
-	  (sciGetFontContext(pobj))->foregroundcolor /* = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
-	  (sciGetFontContext(pobj))->fonttype/*  =        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
- 	  (sciGetFontContext(pobj))->fontdeciwidth /* =   aa[3] */ =(sciGetFontContext(plabelmdl))->fontdeciwidth;
-	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ =(sciGetFontContext(plabelmdl))->textorientation;
-	  (sciGetFontContext(pobj))->fontnamelen /* =     aa[5] */ =(sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
+	  (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ = (sciGetFontContext(plabelmdl))->backgroundcolor;
+	  (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ = (sciGetFontContext(plabelmdl))->foregroundcolor;
+	  (sciGetFontContext(pobj))->fonttype  /*=        aa[2] */ = (sciGetFontContext(plabelmdl))->fonttype;
+ 	  (sciGetFontContext(pobj))->fontdeciwidth  /*=   aa[3] */ = (sciGetFontContext(plabelmdl))->fontdeciwidth;
+	  (sciGetFontContext(pobj))->textorientation/*  = aa[4] */ = (sciGetFontContext(plabelmdl))->textorientation;
+	  (sciGetFontContext(pobj))->fontnamelen  /*=     aa[5] */ = (sciGetFontContext(plabelmdl))->fontnamelen; /*fontname not used */
 	  
 	  if (
 	      ((sciGetFontContext(pobj))->pfontname = calloc ((sciGetFontContext(pobj))->fontnamelen + 1,
