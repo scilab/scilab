@@ -103,7 +103,7 @@ r = adda(t,y,p)
     <P>
     The input <VERB>jac</VERB> is also an external.</P>
     <P>
-    If <VERB>adda</VERB> is a function, its syntax must be as follows:</P>
+    If <VERB>jac</VERB> is a function, its syntax must be as follows:</P>
     <VERBATIM>
 <![CDATA[
 j = jac(t,y,ydot)
