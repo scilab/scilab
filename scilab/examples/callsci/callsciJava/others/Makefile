@@ -1,8 +1,8 @@
 SOURCES=*.java
 
-SCIDIR=/usr/local/scilab
+SCIDIR=/home/cornet/compil/scilab
 
-JAVAC=javac -d $(SCIDIR)/bin -classpath $(SCIDIR)/bin -g 
+JAVAC=javac -deprecation -d $(SCIDIR)/bin -classpath $(SCIDIR)/bin -g 
 
 all:
 	$(JAVAC)  $(SOURCES)

@@ -1,0 +1,16 @@
+Edit Makefile
+modify SCIDIR=/home/cornet/compil/scilab by your current scilab path
+
+go to bin directory
+cd /home/cornet/compil/scilab/bin
+
+export LD_LIBRARY_PATH=.:/home/cornet/compil/scilab/bin
+export CLASSPATH=.:/home/cornet/compil/scilab/bin
+
+java Exemple1
+java Exemple2
+java Exemple3
+java ExempleEvent
+java ExempleEvent2
+
+Allan CORNET INRIA 2005

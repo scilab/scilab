@@ -1,14 +1,13 @@
 SOURCES=*.java
 
-SCIDIR=/usr/local/scilab
+SCIDIR=/home/cornet/compil/scilab
 
-JAVAC=javac -d $(SCIDIR)/examples/callsci/callsciJava/classes -classpath \
-	$(SCIDIR)/examples/callsci/callsciJava/classes -g 
+JAVAC=javac -deprecation -d $(SCIDIR)/bin -classpath $(SCIDIR)/bin -g 
 
 all:
 	$(JAVAC)  $(SOURCES)
 
 clean:
-	$(RM) -f $(SCIDIR)/examples/callsci/callsciJava/classes/*.class
+	$(RM) -f $(SCIDIR)/bin/*.class
 
 
