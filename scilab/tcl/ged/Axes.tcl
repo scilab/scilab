@@ -40,7 +40,7 @@ global curgedindex
 global curgedobject
 
 global  visToggle limToggle boxToggle isoToggle gridToggle 
-global  xToggle yToggle red green blue color 
+global  xToggle yToggle zToggle red green blue color 
 global  xlabel ylabel zlabel tlabel
 global  curvis cubToggle viewToggle
 
@@ -608,24 +608,21 @@ bind  $w.frame.databmin <Return> {setZdb}
 bind  $w.frame.databmax <Return> {setZdb} 
 
 #Scale log or linear
-#frame $w.frame.scalesw  -borderwidth 0
-#pack $w.frame.scalesw  -in $w.frame -side top   -fill x
-#
-#label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
-#radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n"    -command "toggleZ" 
-#radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable zToggle -value "l" 	  -command "toggleZ" 	   
-#
-#pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
-#pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
-#pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
+frame $w.frame.scalesw  -borderwidth 0
+pack $w.frame.scalesw  -in $w.frame -side top   -fill x
 
-frame $w.frame.ticks  -borderwidth 0
-pack  $w.frame.ticks -in $w.frame -side top   -fill x  -pady 2m
+label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0 
+radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable zToggle -value "n"    -command "toggleZ" 
+radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable zToggle -value "l" 	  -command "toggleZ" 	   
 
 set numpage 2
-button $w.frame.ticks.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
-pack $w.frame.ticks.buttonticks -in $w.frame.ticks  -expand 1 -fill x
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
 
+
+pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
+pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
+pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
 
 # #sep bar
 # frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -1430,6 +1427,10 @@ ScilabEval "LogtoggleX('$xToggle')"
 proc toggleY {} {
 global yToggle
 ScilabEval "LogtoggleY('$yToggle')"
+}
+proc toggleZ {} {
+global zToggle
+ScilabEval "LogtoggleZ('$zToggle')"
 }
 proc toggleLimits {} {
 global limToggle
