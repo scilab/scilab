@@ -103,7 +103,7 @@ c     overloadable ops
 
 c
  80   if(err.gt.0) return
- 81   call iset(lhs,0,infstk(max(top-lhs+1,1)),1)
+ 81   call iset(rhs,0,infstk(max(top-lhs+1,1)),1)
 c
       if(fun.ne.0) then 
 c     .  appel d'un matfn necessaire pour achever l'evaluation
