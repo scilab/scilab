@@ -122,6 +122,9 @@ spec(A+K*C)
     <SEE_ALSO_ITEM>
       <LINK>lqr</LINK>
     </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>observer</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>F. D.   </AUTHOR>
 </MAN>
