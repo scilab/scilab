@@ -2430,12 +2430,13 @@ int conn_mat(int* inplnk,int* outlnk,int* bllst2ptr,int* bllst3ptr,int** outoin,
 int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int *typ_l,int *typ_zx,int *outoin,
 		    int *outoinptr,int *bllst5ptr,int **critev)
 {
-  int i,j,k,typ_c[typ_l[0]+1],done1,mm,a,*cll,val=0,*cllind,*typr;
+  int i,j,k,*typ_c,done1,mm,a,*cll,val=0,*cllind,*typr;
   int *clkconnecttmp,*clkconnectind,*ind,*ii,*oo,*vec,nblk,*r,*nd,max1,nnd,done,*jj;
   Mat4C clkconnecti;
   
   typr=VecEg1(typ_r);
   nblk=bllst12[0]/2;
+  if ((typ_c=(int*)malloc(sizeof(int)*(typ_l[0]+1))) == NULL ) return 0;
   typ_c[0]=typ_l[0];
   Setmem(typ_c,0);
   for (i=1; i<=typr[0]; i++){
@@ -2607,6 +2608,7 @@ int critical_events(int* connectmat,int* clkconnect,int *bllst12,int *typ_r,int 
       }
     }
   }
+  free(typ_c);
   free(typr);
   if (((*critev)=(int*)calloc(bllst5ptr[bllst5ptr[0]],sizeof(int))) == NULL ) return 0;
   (*critev)[0]=bllst5ptr[bllst5ptr[0]]-1;
