@@ -49,20 +49,23 @@
     Générateur de nombres aléatoires.
   </P>
   <P>
-    Sans l&apos;argument <VERB>key</VERB> la syntaxe ci-dessous produit une matrice aléatoire dont chaque élément est la réalisation d&apos;une variable aléatoire suivant une loi donnée (par défaut uniforme sur [0,1]).
+    Sans l&apos;argument <VERB>key</VERB> la syntaxe ci-dessous produit une matrice 
+    aléatoire dont chaque élément est la réalisation d&apos;une variable aléatoire 
+    suivant une loi donnée (par défaut uniforme sur [0,1]).
   </P>
    <DESCRIPTION_INDENT>
 
   <DESCRIPTION_ITEM  label='rand(m1,m2)'> 
-    <SP>est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>.</SP>
+    <SP> est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(m1,m2,..,mn)'> 
-    <SP>est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>,.. x <VERB>mn</VERB>.</SP>
+    <SP> est une matrice aléatoire de dimensions <VERB>m1</VERB> x <VERB>m2</VERB>,.. x <VERB>mn</VERB>.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(a)'> 
-    <SP>est une matrice aléatoire de mêmes dimensions que a. <VERB>rand(a)</VERB> est complexe si <VERB>a</VERB> est une matrice complexe.</SP>
+    <SP> est une matrice aléatoire de mêmes dimensions que a. <VERB>rand(a)</VERB> est complexe si <VERB>a</VERB> 
+    est une matrice complexe.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand() : sans argument, renvoie un scalaire aléatoire.'> 
@@ -73,7 +76,7 @@
   </P>
   <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='rand(&apos;uniform&apos;)'> 
-    <SP>La loi par défaut est uniforme sur l&apos;intervalle [0,1].</SP>
+    <SP> La loi par défaut est uniforme sur l&apos;intervalle [0,1].</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(&apos;normal&apos;)'> 
@@ -81,22 +84,32 @@
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='str=rand(&apos;info&apos;)'> 
-    <SP>renvoie &apos;uniform&apos; ou &apos;normal&apos; suivant la loi définie par défaut (voir ci-dessus).</SP>
+    <SP> renvoie &apos;uniform&apos; ou &apos;normal&apos; suivant la loi définie par défaut (voir ci-dessus).</SP>
   </DESCRIPTION_ITEM>
    </DESCRIPTION_INDENT>
   <P>
-    Il est possible de réinitialiser la graine du générateur aléatoire :
+    Il est possible de réinitialiser l'état interne du générateur aléatoire (spécifié par un entier
+    de l'intervalle [0,2^31-1]) ):
   </P>
   <DESCRIPTION_INDENT>
   <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;)'> 
-    <SP>Renvoie la valeur courante de la graine.</SP>
+    <SP> Renvoie la valeur courante de l'état interne.</SP>
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='rand(&apos;seed&apos;,n)'> 
-    <SP>Donne la valeur <VERB>n</VERB> à la graine (<VERB>n=0</VERB> au premier appel).</SP>
+    <SP> Impose la valeur <VERB>n</VERB> pour l'état interne (par défaut l'état est initialisé
+    à <VERB>n=0</VERB> au premier appel).</SP>
   </DESCRIPTION_ITEM>
   </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
+    <SECTION label="Remarque">
+    <P>
+       Il est conseillé d'utiliser plutôt la fonction <LINK>grand</LINK> qui permet aussi de simuler
+       les lois les plus classiques (binomiale, poisson, ....).
+    </P>
+    </SECTION>
+
   <EXAMPLE><![CDATA[
 x=rand(10,10,'uniform')
 rand('normal')
@@ -105,6 +118,7 @@ y=rand(x,'normal');
 x=rand(2,2,2)
  ]]></EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>grand</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>ssrand</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

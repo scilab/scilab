@@ -48,31 +48,31 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="rand(m1,m2)">
-        <SP>is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>.</SP>
+        <SP> is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand(m1,m2,..,mn)">
-        <SP>is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>,.. by <VERB>mn</VERB>.</SP>
+        <SP> is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>,.. by <VERB>mn</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand(a)">
-        <SP>is a random matrix of same size as a. <VERB>rand(a)</VERB> is complex if  <VERB>a</VERB> is a complex matrix</SP>
+        <SP> is a random matrix of same size as a. <VERB>rand(a)</VERB> is complex if  <VERB>a</VERB> is a complex matrix.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand() : with no arguments gives a scalar whose value changes">
-        <SP>each time it is referenced.</SP>
+        <SP> each time it is referenced.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P>
-    If present, the key argument allows to specifie an other random
-    generator.
+    If present, the key argument allows to specifie an other random distribution.
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="rand('uniform')">
-        <SP>The current random generator is set to a uniform random number generator. Random numbers are uniformly distributed in the interval (0,1).</SP>
+        <SP> The current random generator is set to a uniform random generator. Random numbers are 
+            uniformly distributed in the interval (0,1).</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand('normal')">
-        <SP>The current random generator is set to a Gaussian (with mean 0 and variance 1) random number generator .</SP>
+        <SP> The current random generator is set to a Gaussian (with mean 0 and variance 1) random number generator.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="str=rand('info')">
-        <SP>return the type of the default random generator ('uniform' or 'normal')</SP>
+        <SP> return the type of the default random generator ('uniform' or 'normal')</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P>
@@ -80,13 +80,20 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="rand('seed')">
-        <SP>returns the current value of the seed.</SP>
+        <SP> returns the current value of the seed.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand('seed',n)">
-        <SP>puts the seed to <VERB>n</VERB>. (<VERB>n=0</VERB> at first call).</SP>
+        <SP> puts the seed to <VERB>n</VERB>. (by default <VERB>n=0</VERB> at first call).</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
+    <SECTION label="Remark">
+    <P>
+       Use the more powerful function <LINK>grand</LINK> instead.
+    </P>
+    </SECTION>
+
   <EXAMPLE>
 <![CDATA[
 x=rand(10,10,'uniform')
@@ -97,6 +104,9 @@ x=rand(2,2,2)
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>grand</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>ssrand</LINK>
     </SEE_ALSO_ITEM>
