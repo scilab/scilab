@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>mkdir</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Septembre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mkdir">Cree un nouveau
+  repertoire</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>mkdir('dirname')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>mkdir('parentdir','newdir')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>status=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>[status,msg]=mkdir( ... )</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>mkdir('dirname') cree le repertoire dirname dans le repertoire
+    courant.</P>
+
+    <P>mkdir('parentdir','dirname') cree le repertoire dirname dans le
+    repertoire existant parentdir, ou parentdir est un chemin relatif ou
+    absolu.</P>
+
+    <P>[status,message] = mkdir(...,'dirname') cree le repertoire dirname dans
+    le repertoire existant parentdir, retourne le status, et un message. Ici,
+    status vaut 1 si tout c'est bien passé, 2 si le repertoire existe deja, 0
+    dans un autre cas.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+mkdir(SCI,'Directory')
+status=mkdir(SCI,'Directory')
+[status,msg] = mkdir(SCI,'Directory')
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>cd</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>dir</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
