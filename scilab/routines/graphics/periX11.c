@@ -28,11 +28,14 @@
 #include "color.h"
 #include "bcg.h"
 
-#include "tcl.h"
-#include "tk.h"
+#ifdef WITH_TK
+#include <tcl.h>
+#include <tk.h>
+#endif
 
 extern Tcl_Interp *TKinterp;
 extern Tk_Window TKmainWindow;
+
 extern int XRotDrawString();
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
@@ -3563,8 +3566,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     {
       ScilabXgc= NewXgc;
     }
-
-
+#ifdef WITH_TK
   if (IsTKGraphicalMode()) {
     Tk_Window  win;
 
@@ -3582,6 +3584,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     }
   }
   else
+#endif
     CreatePopupWindow(WinNum,toplevel,ScilabXgc,&DefaultForeground,&DefaultBackground) ;
 
 
