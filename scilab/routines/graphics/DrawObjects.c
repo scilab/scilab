@@ -302,10 +302,6 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   /*   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj); */
   
   BOOL cube_scaling; 
-  /*   BOOL isaxes = GetIsAxes(pobj); */
-
-  /*   printf("DEBUT DE axis_3ddraw\n"); */
-  /*   fflush(NULL); */
 
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
   for(i=0;i<5;i++) x[i] = -1000;
@@ -4165,7 +4161,7 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
 {
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-  BOOL isaxes = GetIsAxes(psubwin);
+  BOOL isaxes = GetIsAxes2D(psubwin);
 
   /* strflag[0]*/
   STRFLAG[0] = '0'; /* flag for caption display unused here so set to NULL by default */
@@ -4199,9 +4195,12 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
     }
   else
     {
-      STRFLAG[2] = '0';
+      if(ppsubwin->axes.rect == 1)
+	STRFLAG[2] = '2';
+      else
+	STRFLAG[2] = '0';
     }
-
+  
   STRFLAG[3] = '\0';
 }
 
@@ -4391,20 +4390,30 @@ int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grad
   return -1;
 }
 
+/* /\* test on all 3 axes *\/ */
+/* BOOL GetIsAxes(sciPointObj *psubwin) */
+/* { */
+/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin); */
+  
+/*   if((ppsubwin->axes.axes_visible[0] == FALSE) */
+/*      && (ppsubwin->axes.axes_visible[1] == FALSE) */
+/*      && (ppsubwin->axes.axes_visible[2] == FALSE)) */
+/*     return FALSE; */
+/*   else */
+/*     return TRUE; */
+/* } */
 
-BOOL GetIsAxes(sciPointObj *psubwin)
+/* test on x and y axes only : used in 2D routines only */
+BOOL GetIsAxes2D(sciPointObj *psubwin)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   
   if((ppsubwin->axes.axes_visible[0] == FALSE)
-     && (ppsubwin->axes.axes_visible[1] == FALSE)
-     && (ppsubwin->axes.axes_visible[0] == FALSE))
+     && (ppsubwin->axes.axes_visible[1] == FALSE))
     return FALSE;
   else
     return TRUE;
 }
-
-
 
 int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
 {
@@ -5014,7 +5023,6 @@ void DrawAxes(sciPointObj * pobj)
 {
   sciPointObj * psubwin = sciGetParentSubwin(pobj);
   /*   sciPointObj * pfigure = sciGetParentFigure(pobj); */
-  BOOL isaxes =  GetIsAxes(psubwin);
   char STRFLAG[4];
   integer x[6], v, markidsizenew[2];
   double dv;
@@ -5037,47 +5045,7 @@ void DrawAxes(sciPointObj * pobj)
 	     NULL, pSUBWIN_FEATURE (psubwin)->logflags, 
 	     pSUBWIN_FEATURE (psubwin)->ARect); 
      
-  if (pSUBWIN_FEATURE (psubwin)->is3d) 
-    { 
-
-      /* Nothing to be done. */
-      
-      
-      /*   int isoflag; */
-      /*       /\*To have directly all the possible ISOVIEW Modes*\/ */
-      /*       isoflag = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2;  */
-      
-      /*       if(pSUBWIN_FEATURE (psubwin)->isoview == TRUE) { */
-      /* 	if(isoflag ==2 || isoflag == 3){		} */
-      /* 	else { */
-      /* 	  if((pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 0) */
-      /* 	     || (pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 2)) */
-      /* 	    /\* The default isoview mode is type=4 3d isometric bounds  */
-      /* 	       derived from the data, to similarily type=2  *\/ */
-      /* 	    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 4;  */
-      /* 	  else if(pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 1) */
-      /* 	    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 3; */
-      /* 	} */
-      /*       } */
-      /*       else { */
-      /* 	if((pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 3)  */
-      /* 	   || (pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 5)) */
-      /* 	  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 1; /\* computed from ebox*\/ */
-      /* 	else if((pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 4)  */
-      /* 		|| (pSUBWIN_FEATURE (psubwin)->axes.flag[1] == 6)) */
-      /* 	  /\* The default NON-isoview mode is 2 computed from data*\/ */
-      /* 	  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 2;  */
-      /*       } */
-      
-      /*       axis_3ddraw(psubwin,xbox,ybox,zbox,InsideU,InsideD); /\* TEST on sciGetVisibility inside *\/ */
-      /*       /\* because axis_3ddraw displays 3d axes BUT ALSO compute + reset the 3d scale BEFORE !! *\/ */
-      
-      /*       if (sciGetVisibility(psubwin)) */
-      /* 	triedre(psubwin,xbox,ybox,zbox,InsideU,InsideD); */
-      
-      /*       wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (psubwin)->alpha,pSUBWIN_FEATURE (psubwin)->theta);  */
-    }
-  else /* we are in 2D mode...*/
+  if (!pSUBWIN_FEATURE (psubwin)->is3d)   /* we are in 2D mode...*/
     {
       /* F.Leray 07.12.04 */
       /* TO CORRECT the bug 1115 : Big object (grayplots) could cover axes*/
@@ -5086,52 +5054,10 @@ void DrawAxes(sciPointObj * pobj)
       C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-      if (isaxes) {
-	rebuild_strflag(psubwin,STRFLAG);
-	axis_draw2 (STRFLAG); /* Axes is rebuilt here to avoid being covered by the new created object */
-      }
+      rebuild_strflag(psubwin,STRFLAG);
+      axis_draw2 (STRFLAG); /* Axes is rebuilt here to avoid being covered by the new created object */
     }
 }
-
-/* /\* Rectangle for cleaning area *\/ */
-/* void CleanRectangle(sciPointObj * psubwin) */
-/* { */
-/*   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin); */
-/*   sciFigure * ppfigure = pFIGURE_FEATURE(sciGetParentFigure (psubwin)); */
-
-/*   integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp;  */
-  
-/*   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  */
-  
-/*   color = sciGetBackground(sciGetParentFigure (psubwin)); */
-  
-/*   ixbox[0] = ixbox[4] = ppsubwin->WRect[0] * ppfigure->windowdimwidth; */
-/*   iybox[0] = iybox[4] = ppsubwin->WRect[1] * ppfigure->windowdimheight; */
-/*   ixbox[1] = ixbox[0]; */
-/*   ixbox[2] = (ppsubwin->WRect[0] + ppsubwin->WRect[2]) * ppfigure->windowdimwidth; */
-/*   iybox[1] = (ppsubwin->WRect[1] + ppsubwin->WRect[3]) * ppfigure->windowdimheight; */
-/*   iybox[2] = iybox[1]; */
-/*   ixbox[3] = ixbox[2]; */
-/*   iybox[3] = iybox[0]; */
-  
-/*   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* /\*   color = 5; *\/ */
-/*   C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
-/*   C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/* } */
-
-
-
-
-
-
-
-
 
 
 /* Used only when switching from a plot3d to a plot2d or 
@@ -6393,8 +6319,8 @@ sciDrawObj (sciPointObj * pobj)
   double **zvect = (double **) NULL;
   int result_trans3d = 1;
 
-  BOOL isaxes = FALSE;
-
+  char STRFLAG[4];
+  
   subwin[0]    = 0;
   subwin[1]    = 0;
   subwin[2]   = 1;
@@ -6455,7 +6381,6 @@ sciDrawObj (sciPointObj * pobj)
       if (sciGetVisibility(pobj) == FALSE) break;
 
       ppsubwin = pSUBWIN_FEATURE (pobj);
-      isaxes = GetIsAxes(pobj);
      
       sciSetSelectedSubWin(pobj); 
      
@@ -6547,17 +6472,11 @@ sciDrawObj (sciPointObj * pobj)
 	 
 	  /* 	 if (sciGetVisibility(pobj)) */
 	  /* 	   { */
-	  labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
-	     
-	  if (isaxes) {
-	    char STRFLAG[4];
-	    rebuild_strflag(pobj,STRFLAG);
-	    axis_draw2 (STRFLAG);
-	  }
-	  /* 	   } */
-	  /* END */
-	 
-	 
+	  labels2D_draw(pobj); /* F.Leray 17.01.05 : no isaxes any more */
+	  
+	  rebuild_strflag(pobj,STRFLAG);
+	  axis_draw2 (STRFLAG);
+	  
 #ifdef WIN32
 	  if ( flag_DO == 1) ReleaseWinHdc();
 #endif

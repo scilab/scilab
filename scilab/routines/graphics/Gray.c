@@ -134,9 +134,9 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 
     if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
 
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
-    
     axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
    
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
        u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */
@@ -321,9 +321,9 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
   
     if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
     
-    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
-    
     axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+     
+    pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
  
     /* F.Leray 07.10.04 : trigger algo to init. manual graduation u_xgrads and 
        u_ygrads if nax (in matdes.c which is == aaint HERE) was specified */

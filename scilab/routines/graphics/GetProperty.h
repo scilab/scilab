@@ -138,7 +138,8 @@ extern sciPointObj *sciGetSurface(sciPointObj *psubwin); /* GET */
 extern BOOL Check3DObjs(sciPointObj *pobj); /* GET */
 extern sciPointObj *CheckClickedSubwin(integer x, integer y); /* GET */
 
-extern BOOL GetIsAxes(sciPointObj *psubwin); /* GET */
+/* extern BOOL GetIsAxes(sciPointObj *psubwin); /\* GET *\/ */
+extern BOOL GetIsAxes2D(sciPointObj *psubwin); /* GET */
 
 extern int CheckForAgregation (long *tabpointobj, int number); /* GET */
 extern sciPointObj *sciGetMerge(sciPointObj *psubwin);  /* GET */

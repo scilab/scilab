@@ -182,10 +182,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
   
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just before strflag2axes_properties */
-  
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
-  
+     
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+   
   with_leg= (strflag[0] == '1');
   pSUBWIN_FEATURE (psubwin)->with_leg = with_leg;
 
@@ -503,6 +503,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = FALSE;
       ppsubwin->axes.axes_visible[1] = FALSE;
       ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
+      ppsubwin->axes.rect = 0;
       haschanged = TRUE;
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
@@ -525,9 +526,10 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     if(ppsubwin->axes.axes_visible[0] != TRUE ||
        ppsubwin->axes.axes_visible[1] != TRUE ||
        ppsubwin->axes.axes_visible[2] != TRUE){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.axes_visible[0] = FALSE;
+      ppsubwin->axes.axes_visible[1] = FALSE;
+      ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
+      ppsubwin->axes.rect = 1;
       /* Case not implemented yet : the plot is surrounded by a box without tics. */
       haschanged = TRUE;
     }
