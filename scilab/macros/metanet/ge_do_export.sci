@@ -25,4 +25,5 @@ function ge_do_export()
   xsetech(arect=[0,0,0,0])
   plot2d(0,0,frameflag=3,axesflag=0,rect=rect)
   ge_drawobjs(GraphList)
+  xset('window',old)
 endfunction
