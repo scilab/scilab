@@ -11,15 +11,19 @@ function help(key)
 	     'opera'
 	     'quanta (kde)'];
   
+  // add tcktk if scilab was compiled with tcl/tk 
+  
   if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
     
   [lhs,rhs]=argn(0);
   
-  if %gtkhelp<>[] then 
-    help_mode = %gtkhelp;
-  else
-     %gtkhelp= gtk_help_ask(gtk_modes);
-  end
+  if %gtk 
+    if %gtkhelp<>[] then 
+      help_mode = %gtkhelp;
+    else
+       %gtkhelp= gtk_help_ask(gtk_modes);
+    end
+  end 
   
   //for compatibility with toolboxes making use of old cat files
   change_old_man() 
