@@ -31,8 +31,10 @@ QUIET=--quiet
  
 COMPILE = $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 FCOMPILE = $(FC) $(INCLUDES) $(FFLAGS)
+CXXCOMPILE = $(CXX) $(INCLUDES) $(CXXFLAGS) $(CFLAGS)
 
 LTCOMPILE = $(LIBTOOL)  --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+CXXLTCOMPILE = $(LIBTOOL)  --mode=compile $(QUIET) $(CXX) $(INCLUDES) $(CXXFLAGS) $(CFLAGS)
 FLTCOMPILE = $(LIBTOOL)  --mode=compile $(QUIET) $(FC) $(INCLUDES) $(FFLAGS)
 
 LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS)  $(FLIBS) $(OTHERLIBS) -o $@
@@ -86,11 +88,11 @@ $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).la $(LIBRARY_NAME).tst
 
 .cpp.o:
 	@echo "compiling $<"
-	@$(COMPILE)  -c $<
+	@$(CXXCOMPILE)  -c $<
 
 .cpp.lo :
 	@echo "Compiling $<"
-	@$(LTCOMPILE) -c $<
+	@$(CXXLTCOMPILE) -c $<
 
 .F.o:
 	@echo "compiling $<"
