@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>Contents</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>October 2004</DATE>
+
+  <SHORT_DESCRIPTION name="Contents">Créé un arbre contenant les
+  données d'inférence du contenu d'une variable</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>contents=Contents(liste_d_index,list_d_infer)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>liste_d_index</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : liste d'indexes similaires aux indexes retournés par <LINK>macr2tree</LINK>.</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>liste_d_infer</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : liste de tlists de type "infer" contenant les données
+        d'inférence pour l'index correspondant.</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>contents</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une tlist de type "contents"</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    Cette fonction créé une <VERB>tlist</VERB> représentant les
+    données d'inférence pour le contenu d'une Cell ou d'une Struct quand
+    on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
+    les "tlists M2SCI". (Unknown=-1 dans M2SCI).
+    Assurez vous que pour chaque entrée dans la liste d'indexes, il y
+    a une entrée dans la liste de tlists de type "infer".
+    </P>  
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>get_contents_infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
+

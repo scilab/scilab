@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Contents</TITLE>
+  <TYPE>M2SCI Function</TYPE>
+  <DATE>October 2004</DATE>
+
+  <SHORT_DESCRIPTION name="Contents">Create a tree containing contents inference data</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>contents=Contents(list_of_index,list_of_infer)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>list_of_index</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list of indexes similar to indexes returned by <LINK>macr2tree</LINK>.</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>list_of_infer</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list of "infer" tlists containing inference data for matching index.</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>contents</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a "contents" tlist</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    This function create a <VERB>tlist</VERB> representing inference
+    data for the contents of a Cell or a Struct when using M2SCI.
+    All input parameters values are verified to be compatible with
+    "M2SCI tlists". (Unknown=-1 in M2SCI)
+    Please ensure that for each entry you insert in
+    <VERB>list_of_index</VERB>, you also insert an entry in <VERB>list_of_infer</VERB>.
+    </P>  
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>get_contents_infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
+
