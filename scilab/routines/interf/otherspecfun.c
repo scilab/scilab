@@ -7,7 +7,7 @@
  *        2/ beta function (real positive case)
  *        3/ bessels functions
  *
- *   AUTHOR
+ *   AUTHORS
  *      Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr> (legendre, beta)
  *      Serge Steer <Serge.Steer@inria.fr> (bessel)
  *             
@@ -24,7 +24,7 @@
 
 
 /* fortran functions headers */
-double F2C(dgamma)(double *);
+double F2C(dgammacody)(double *);
 double F2C(betaln)(double *, double *);
 extern void  C2F(dbeskv) (double *x,int* nx, double *alpha, int *na, int *kode, 
 			  double *r, double *w, int *ierr);
@@ -267,7 +267,7 @@ static int intbeta(char *fname)
 	}
       xpy = x[i] + y[i];
       if ( xpy <= switch_limit )
-	z[i] = F2C(dgamma)(&x[i]) * F2C(dgamma)(&y[i]) / F2C(dgamma)(&xpy);
+	z[i] = F2C(dgammacody)(&x[i]) * F2C(dgammacody)(&y[i]) / F2C(dgammacody)(&xpy);
       else
 	z[i] = exp(F2C(betaln)(&x[i], &y[i]));
     }
