@@ -3961,7 +3961,8 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
   integer ne=7, menutyp=2, ierr;
-  char *EditMenus[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
+  char *EditMenusE[]={"Select","Redraw","Erase","Figure Properties","Current Axes Properties","Start Entity Picker","Stop  Entity Picker"};
+  char *EditMenusF[]={"Selectionner","Redessiner","Effacer","Proprietes de la Figure","Proprietes des Axes Courants","Démarrer Capture d'Entitées","Arrêter Capture d'Entitées"};
   
   if ( v2 != (integer *) NULL && *v2 != -1 )
     WinNum= *v2;
@@ -4101,10 +4102,10 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   switch( ScilabXgc->lpmw.CodeLanguage)
     {
     case 1:
-      AddMenu(&WinNum,"Edition", EditMenus, &ne, &menutyp, "ged", &ierr);
+      AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
       break;
     default:
-      AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+      AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
       break;
     }
   CreateGraphToolBar(ScilabXgc);

@@ -7,6 +7,8 @@
 &Fichier
 	&Nouvelle ...
 		[NEWFIG]
+	S&auvegarder Position
+		[UPDINI]
 	--	
 	&Charger ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
@@ -15,50 +17,29 @@
 	--	
 	&Exporter 
 		[SCIPS]
-	--
-		[Menu]
-		&Imprimer
-			&Postscript ...
-				[SCIPR]
-			&Windows ...
-				[PRINT]
-		[EndMenu]
-	--
-	&Fermer 
-		[CLOSE]	
- [EndMenu]
-	
-
-[Menu]
-&Editer
-	&Selectionner 
-		[SCIGSEL]
-	--		
-	&Redessiner 
-		[REDRAW]
-	
-	&Effacer 
-		[CLEARWG]
-	--
-		[Menu]
+	[Menu]
 		&Copier dans le Presse papier
 			&EnhMetafile
 				[COPYCLIP]
 			&Metafile + DIB
 				[COPYCLIP1]
-		[EndMenu]
+	[EndMenu]
 	--
-	S&auvegarder Position
-		[UPDINI]	
+	[Menu]
+	&Imprimer
+			&Postscript ...
+				[SCIPR]
+			&Windows ...
+				[PRINT]
+	[EndMenu]
+	--
+	&Fermer 
+		[CLOSE]			
 [EndMenu]
 
 
 [Menu]
 &Outils
-; modifier CreateGraphToolBar en consequence
-;	&Propriétes des objets
-;		???
-;	--
 	&Barre d'outils	F3
 		[TOOLBARGRAPH]
 	--
