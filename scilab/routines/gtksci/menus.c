@@ -644,6 +644,15 @@ static void sci_menu_default_callback (gpointer  callback_data,
 	sprintf(buf,"execstr(%s_%d(%d))",m->fname,m->winid,m->nsub);
       StoreCommand(buf);
     }
+  else if (m->action_type == 2) 
+    { 
+      /* Interpreted mode : we store the action on a queue */
+      if ( m->winid < 0 ) 
+	sprintf(buf,"%s(%d)",m->fname,m->nsub);
+      else 
+	sprintf(buf,"%s(%d,%d)",m->fname,m->nsub,m->winid);
+      StoreCommand(buf);
+    }
   else 
     { 
       /* hard coded mode */
