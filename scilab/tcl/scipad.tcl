@@ -2477,24 +2477,24 @@ proc colorize {w cpos iend} {
 		} else break
 	}
 # Scilab
-	$w mark set last begin
-	while {[set ind [$w search -count num -regexp \
-	      "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" last ende]] != {}} {
-	    if {[$w compare $ind >= last]} {
-		set res ""
-		regexp "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]" \
-		    [$w get $ind end] res
-		set num [string length $res]
-		$w mark set last "$ind + $num c"
-		$w mark set next {last wordend}
-		set word [$w get last-1c next]
-		if {[lsearch -exact $words(scilab.col1.[string range \
-					       $word 0 0]) $word] != -1} {
-		    $w tag add keywords last-1c next
-		}
-		$w mark set last next-1c
-	    } else break
-	  }
+        set sciChset "(\[^A-Za-z0-9_\]|^)\[$chset(scilab.col1)\]"
+ 	$w mark set last begin
+ 	while {[set ind [$w search -count num -regexp $sciChset last ende]]\
+            != {}} {
+ 	    if {[$w compare $ind >= last]} {
+ 		set res ""
+ 		regexp $sciChset [$w get $ind "$ind wordend+1c"] res
+ 		set num [string length $res]
+ 		$w mark set last "$ind + $num c"
+ 		$w mark set next {last wordend}
+ 		set word [$w get last-1c next]
+ 		if {[lsearch -exact $words(scilab.col1.[string range \
+ 					       $word 0 0]) $word] != -1} {
+ 		    $w tag add keywords last-1c next
+ 		}
+ 		$w mark set last next-1c
+ 	    } else break
+ 	  }
 # XML (#ES this is a problem as <> are also operators)
         if {$xmlcolor > 0} {
 	$w mark set last begin
