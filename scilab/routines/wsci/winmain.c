@@ -39,6 +39,8 @@ extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
 
+static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
+
 /*-----------------------------------------------------------------------------------*/
 int MAIN__ ()
 {
@@ -196,8 +198,12 @@ int Console_Main(int argc, char **argv)
   SciEnv ();
   if (nowin == 1)
     {
+
+      SaveConsoleColors();
+	  UpdateConsoleColors();
 	  start_sci_gtk() ;
       sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
+	 
     }
   else
     {
@@ -1068,6 +1074,10 @@ void WinExit (void)
 		TextClose (&textwin);
 		TextMessage ();		/* process messages */
 	}
+	else
+	{
+	  RestoreConsoleColors();
+	}
 	return;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -1676,5 +1686,47 @@ void ExtensionFileIntoLowerCase(char *fichier)
 BOOL IsWindowInterface()
 {
 	return WindowMode;
+}
+/*-----------------------------------------------------------------------------------*/
+void UpdateConsoleColors(void)
+{
+	  HANDLE hConsole=GetStdHandle(STD_OUTPUT_HANDLE);
+	  COORD Coord;
+	  DWORD cWritten;
+
+	  Coord.X=0;
+	  Coord.Y=0;
+	 
+	  FillConsoleOutputAttribute( hConsole,
+								  BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED|BACKGROUND_INTENSITY,
+								  csbiInfoSave.dwSize.X*csbiInfoSave.dwSize.Y,
+								  Coord,
+								  &cWritten); 
+
+
+	  SetConsoleTextAttribute(hConsole,BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED|BACKGROUND_INTENSITY);
+ 
+}
+/*-----------------------------------------------------------------------------------*/
+void SaveConsoleColors(void)
+{
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbiInfoSave); 
+}
+/*-----------------------------------------------------------------------------------*/
+void RestoreConsoleColors(void)
+{
+	HANDLE hConsole=GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD Coord;
+	DWORD cWritten;
+
+	Coord.X=0;
+	Coord.Y=0;
+
+	FillConsoleOutputAttribute( hConsole,
+								csbiInfoSave.wAttributes,
+								csbiInfoSave.dwSize.X*csbiInfoSave.dwSize.Y,
+								Coord,
+								&cWritten);
+	SetConsoleTextAttribute(hConsole,csbiInfoSave.wAttributes);
 }
 /*-----------------------------------------------------------------------------------*/

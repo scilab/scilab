@@ -105,7 +105,7 @@ extern void C2F (tmpdirc) ();
 extern void C2F (getwins) (integer *, integer *, integer *);
 //extern void C2F (diary) (char *, int *, int);
 extern void set_sci_env(char *p, char *wsci) ;
-
+extern void start_sci_gtk();
 
 static void CheckMemory (LPSTR str);
 static void AllGraphWinDelete ();
@@ -197,6 +197,10 @@ void ExtensionFileIntoLowerCase(char *fichier);
 
 void CreateScilabConsole(BOOL ShowBanner);
 void CloseScilabConsole(void);
+
+void UpdateConsoleColors(void);
+void SaveConsoleColors(void);
+void RestoreConsoleColors(void);
 
 extern BOOL SendCommandToAnotherScilab(char *ScilabWindowNameSource,char *ScilabWindowNameDestination,char *CommandLine);
 extern BOOL HaveAnotherWindowScilab(void);
