@@ -1,0 +1,4 @@
+mode(-1)
+path=get_absolute_file_path('datafit.dem');
+getf(path+'demo_datafit.sci')
+demo_datafit()
