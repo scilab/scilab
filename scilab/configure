@@ -2782,8 +2782,8 @@ fi
 FC_OPTIONS2=$FC_OPTIONS
 
 case "$host" in
-# SGI MIPS ULTRIX (NO LONGER SUPPORTED)
-  mips-*-ultrix*)
+# SGI MIPS 
+  mips-sgi-irix*)
     if test "$enable_debug" = yes; then   
       FC_OPTIONS2=$FC_OPTIONS
     else
