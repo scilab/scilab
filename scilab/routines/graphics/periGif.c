@@ -1394,7 +1394,7 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
 	  }
 
       gdImageThickLine(GifIm, vx[2*i], vy[2*i],
-		       vx[2*i + 1]-dx*cos20, vy[2*i + 1]-dy*cos20),
+		       vx[2*i + 1]-dx*cos20, vy[2*i + 1]-dy*cos20,
 		       GifLineColor(),Max(1,ScilabGCGif.CurLineWidth));
  
     }
