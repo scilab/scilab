@@ -1,6 +1,6 @@
 SHELL = /bin/sh
 
-SUBDIRS = npend wheel2
+SUBDIRS = 
 
 all::
 
