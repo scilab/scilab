@@ -25,8 +25,10 @@ distclean :: clean
 	$(RM) loader.sce Makelib
 	$(RM) -r .libs
 
+TESTS= 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17
+
 tests : 
-	@for i in  01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17  ;\
+	@for i in  $(TESTS)  ;\
 	do \
 		($(SCIDIR)/util/scidem $(SCIDIR) ex$$i.sce ex$$i.dia );\
 	done

@@ -41,6 +41,8 @@ ilib_build(ilib_name,table,files,libs);
    generate a loader file
    generate a Makefile: Makelib
    running the makefile
+   compilation of ex16fi
+   compilation of ex16c
  
  
  
