@@ -5294,9 +5294,8 @@ clear;lines(0);
   subplot(236);
   plot2d(t,tan(2*t));  
  
+  draw(f.children([3 4]));
   drawnow();
-  drawnow(f.children([3 4]));
-  drawnow("all");
 
 
 xdel(winsid())
