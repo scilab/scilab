@@ -42,6 +42,6 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	dirname.sci \
 	apropos.sci help.sci find_links.sci editor.sci \
 	xmltohtml.sci\
-	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci
+	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci
 
 include ../Make.lib
