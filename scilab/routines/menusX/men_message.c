@@ -11,8 +11,7 @@ SciMess ScilabMessage;
  * Test function 
  **********************************************************/
 
-int TestMessage(n)
-     int n;
+int TestMessage(int n)
 {
   int rep;
   static char* description = "Message \ntest";
@@ -33,8 +32,7 @@ int TestMessage(n)
  * Scilab Interface 
  **********************************************************/
 
-void C2F(xmsg)(basstrings,ptrstrings,nstring,btn,ptrbtn,nb,nrep,ierr)
-     int *basstrings,*nstring,*ptrstrings,*btn,*nb,*ptrbtn,*nrep,*ierr;
+void C2F(xmsg)(int *basstrings, int *ptrstrings, int *nstring, int *btn, int *ptrbtn, int *nb, int *nrep, int *ierr)
 {
   int i,rep;;
   *ierr=0;
@@ -53,10 +51,9 @@ void C2F(xmsg)(basstrings,ptrstrings,nstring,btn,ptrbtn,nb,nrep,ierr)
  * Scilab Interface  for modeless message
  **********************************************************/
 
-void C2F(xmsg1)(basstrings,ptrstrings,nstring,btn,ptrbtn,nb,ierr)
-     int *basstrings,*nstring,*ptrstrings,*btn,*nb,*ptrbtn,*ierr;
+void C2F(xmsg1)(int *basstrings, int *ptrstrings, int *nstring, int *btn, int *ptrbtn, int *nb, int *ierr)
 {
-  int i,rep;;
+  int i;
   *ierr=0;
   ScilabMStr2C(basstrings,nstring,ptrstrings,&(ScilabMessage.string),ierr);
   if ( *ierr == 1) return;

@@ -37,9 +37,7 @@ static int error=0;
  * The main function to activate the file menu 
  **********************************************************/
 
-int GetFileWindow(filemask,file,dirname,flag,ierr,title)
-     char *filemask,*dirname,**file,*title;
-     int flag,*ierr;
+int GetFileWindow(char *filemask, char **file, char *dirname, int flag, int *ierr, char *title)
 {
   int err=0;
   static Display *dpy = (Display *) NULL;
@@ -69,7 +67,7 @@ int GetFileWindow(filemask,file,dirname,flag,ierr,title)
  * X11 Event loop 
  **********************************************************/
 
-void XtSpecialLoop()
+void XtSpecialLoop(void)
 {
   XEvent event;
   ok_Flag_sci= 0;
@@ -84,7 +82,7 @@ void XtSpecialLoop()
  * The cancel command callback 
  **********************************************************/
 
-void cancel_getfile() 
+void cancel_getfile(void)
 { 
   ok_Flag_sci = -1;
 }
@@ -94,8 +92,7 @@ void cancel_getfile()
  * write result in a static var (str) 
  **********************************************************/
 
-int write_getfile(dir,file)
-     char dir[],file[];
+int write_getfile(char *dir, char *file)
 {
   xgetf_str = (char *) MALLOC( (strlen(dir)+strlen(file)+2)*(sizeof(char)));
   if (xgetf_str != 0)
@@ -118,9 +115,7 @@ int write_getfile(dir,file)
  * Activate the file menu 
  **********************************************************/
 
-int popup_file_panel1(w,description)
-    Widget	    w;
-     char *description;
+int popup_file_panel1(Widget w, char *description)
 {
     extern Atom     wm_delete_window;
     w_init(w);

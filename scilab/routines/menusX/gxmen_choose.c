@@ -19,8 +19,7 @@ static void item_selected(GtkWidget *widget,
   gtk_main_quit();
 }
 
-int ExposeChooseWindow(PCh)
-     ChooseMenu *PCh;
+int ExposeChooseWindow(ChooseMenu *PCh)
 {
   guint destroy_id;
   int i,maxl;

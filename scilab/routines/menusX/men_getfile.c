@@ -11,7 +11,7 @@
 
 #define MAXSTRGETF 256
 
-int TestGetFile() 
+int TestGetFile(void)
 {
   int ierr=0;
   static char *init ="*.sci";
@@ -27,10 +27,7 @@ int TestGetFile()
  *     clear the memory ( see xawelm.f ) 
  **********************************************************/
      
-void C2F(xgetfile)(filemask,dirname,res,ires,ierr,idir,desc,ptrdesc,nd)
-     char *filemask,**res,*dirname;
-     integer *desc,*ptrdesc,*nd;
-     integer *ierr,*ires,*idir;
+void C2F(xgetfile)(char *filemask, char *dirname, char **res, integer *ires, integer *ierr, integer *idir, integer *desc, integer *ptrdesc, integer *nd)
 {
   int flag=0,rep;
   char *description;

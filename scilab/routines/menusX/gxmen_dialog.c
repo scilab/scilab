@@ -50,7 +50,7 @@ static void sci_dialog_cancel(GtkWidget *widget,scigtk_dialog *answer)
 
 /* the main function */
 
-int  DialogWindow()
+int  DialogWindow(void)
 {
   GtkWidget *window = NULL;
   GtkWidget *vbox;

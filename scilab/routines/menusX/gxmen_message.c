@@ -10,14 +10,10 @@ extern SciMess ScilabMessage;
 
 #define OK 1
 #define CANCEL 2
-static int ok_Flag_sci;
-extern void ShellFormCreate();
-static void MessageOk();
-static void MessageCancel();
-int ExposeMessageWindow();
 
-static void MessageOk1();
-int ExposeMessageWindow1();
+extern void ShellFormCreate(char *, Widget *, Widget *, Display **);
+int ExposeMessageWindow(void);
+int ExposeMessageWindow1(void);
 
 #include <gtk/gtk.h>
 
@@ -36,13 +32,13 @@ static void sci_message_cancel(GtkWidget *widget,
   gtk_main_quit();
 }
 
-int ExposeMessageWindow1()
+int ExposeMessageWindow1(void)
 { 
   return  ExposeMessageWindow();
 }
 
 
-int ExposeMessageWindow()
+int ExposeMessageWindow(void)
 {
   GtkWidget *window = NULL;
   GtkWidget *box1;
@@ -78,7 +74,7 @@ int ExposeMessageWindow()
 
   label = gtk_label_new (ScilabMessage.string);
   gtk_widget_show (label);
-  gtk_scrolled_window_add_with_viewport( scrolled_window, label);
+  gtk_scrolled_window_add_with_viewport( GTK_SCROLLED_WINDOW (scrolled_window), label);
 
   separator = gtk_hseparator_new ();
   gtk_box_pack_start (GTK_BOX (box1), separator, FALSE, TRUE, 0);

@@ -13,7 +13,7 @@ SciDialog ScilabDialog;
  * Test function 
  **********************************************************/
 
-int TestDialog() 
+int TestDialog(void)
 {
   int rep;
   static char *description = "Dialog test\nTexte";
@@ -41,9 +41,7 @@ int TestDialog()
  * interface with scilab 
  **********************************************************/
 
-void C2F(xdialg)(value,ptrv,nv,desc,ptrdesc,nd,btn,ptrbtn,nb,res,ptrres,nr,ierr)
-     int *value,*ptrv,*nv,*desc,*ptrdesc,*nd,*btn,*nb;
-     int *ptrbtn,*res,*ptrres,*nr,*ierr;
+void C2F(xdialg)(int *value, int *ptrv, int *nv, int *desc, int *ptrdesc, int *nd, int *btn, int *ptrbtn, int *nb, int *res, int *ptrres, int *nr, int *ierr)
 {
   int maxlines,maxchars,i,rep;
   maxlines= *nr;
@@ -79,9 +77,7 @@ void C2F(xdialg)(value,ptrv,nv,desc,ptrdesc,nd,btn,ptrbtn,nb,res,ptrres,nr,ierr)
  * to open a dialog in a procedure 
  *********************************************************/
 
-void xdialg1(description,valueinit,pButName,value,ok)
-     char *description,*valueinit,**pButName,*value;
-     int *ok;
+void xdialg1(char *description, char *valueinit, char **pButName, char *value, int *ok)
 {
   int rep;
   ScilabDialog.description = description ;

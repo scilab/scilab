@@ -10,7 +10,7 @@ MDialog SciMDialog;        /** used to stored the mdialog data **/
  * a test function used in command.c
  **********************************************************/
 
-int TestmDialogWindow()
+int TestmDialogWindow(void)
 {
   int rep,i;
   static char *labels = "LaBel";
@@ -44,8 +44,7 @@ int TestmDialogWindow()
  * interface with scilab 
  **********************************************************/
 
-void C2F(xmdial)(label,ptrlab,nlab,value,ptrv,desc,ptrdesc,nv,res,ptrres,ierr)
-     int *label,*ptrlab,*nlab,*value,*ptrv,*desc,*ptrdesc,*nv,*res,*ptrres,*ierr;
+void C2F(xmdial)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int *desc, int *ptrdesc, int *nv, int *res, int *ptrres, int *ierr)
 {
   int i,rep;
   int  maxchars= *ierr;

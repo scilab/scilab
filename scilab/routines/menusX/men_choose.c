@@ -5,13 +5,13 @@
 #include "men_scilab.h"
 #endif
 
-int     ExposeChooseWindow();
+int     ExposeChooseWindow(ChooseMenu *);
 
 /*****************************************
  * TestFunction 
  *****************************************/
 
-int TestChoose()
+int TestChoose(void)
 {
   ChooseMenu Ch;
   int Rep;
@@ -35,8 +35,7 @@ int TestChoose()
  * Interface with a Scilab ``structure'' 
  *****************************************/
 
-void C2F(xchoose)(desc,ptrdesc,nd,basstrings,ptrstrings,nstring,btn,ptrbtn,nb,nrep,ierr)
-     int *desc,*ptrdesc,*nd,*basstrings,*nstring,*ptrstrings,*btn,*nb,*ptrbtn,*nrep,*ierr;
+void C2F(xchoose)(int *desc, int *ptrdesc, int *nd, int *basstrings, int *ptrstrings, int *nstring, int *btn, int *ptrbtn, int *nb, int *nrep, int *ierr)
 {
   ChooseMenu Ch;
   int Rep,i;

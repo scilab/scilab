@@ -1,8 +1,8 @@
 /* Copyright ENPC */
 #include "men_scilab.h"
 
-extern void ShellFormCreate();
-int MatrixDialogWindow();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
+int MatrixDialogWindow(void);
 
 extern MADialog MAD;
 
@@ -13,10 +13,7 @@ extern MADialog MAD;
 static Widget  *dialoglist,*labellistH, *labellistV;
 static int ok_Flag_sci;
 
-static XtCallbackProc matDialogOk(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
+static XtCallbackProc matDialogOk(Widget w, int nv, caddr_t callData)
 { int ind,i,ns;
   Arg args[2];
   Cardinal iargs;
@@ -57,10 +54,7 @@ static XtCallbackProc matDialogOk(w,nv,callData)
  **********************************************************/
 
 static XtCallbackProc 
-matDialogCancel(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int  nv;
+matDialogCancel(Widget w, int nv, caddr_t callData)
 { 
   matDialogOk(w,nv,callData);
   ok_Flag_sci = -1;
@@ -74,8 +68,8 @@ matDialogCancel(w,nv,callData)
 #define MAXLINES 16
 #define MAXWIDTH 900
 
-int MatrixDialogWindow()
-  {
+int MatrixDialogWindow(void)
+{
     Dimension j_width,j_height;
     Arg args[12];
     Cardinal iargs=0;

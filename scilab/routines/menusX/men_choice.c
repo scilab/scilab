@@ -17,9 +17,7 @@ SciStuff **Everything = NULL;
  * Interface to work with Scilab 
  ************************************************/
 
-void C2F(xchoices)(descla,ptrdescla,nvla,desc,ptrdesc,nv,defval,nitems,rep)
-     int *desc,*ptrdesc,*nv,*defval,*nitems;
-     int *descla,*ptrdescla,*nvla,*rep;
+void C2F(xchoices)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrdesc, int *nv, int *defval, int *nitems, int *rep)
 {
   int ierr,i,sepc=0;
   char **items,*label;
@@ -49,7 +47,7 @@ void C2F(xchoices)(descla,ptrdescla,nvla,desc,ptrdesc,nv,defval,nitems,rep)
 /*************************************************
  * test function 
  ************************************************/
-int TestChoice()
+int TestChoice(void)
 {
   static char* items[] = {
     "Label1",    "choice1",    "a choice2",
@@ -75,10 +73,7 @@ int TestChoice()
  *see choice-test.c
  ************************************************/
 
-int SciChoice(label,items,defval,nitems)
-     char **items,*label;
-     int defval[], nitems;
-
+int SciChoice(char *label, char **items, int *defval, int nitems)
 {
   int rep;
   rep =  SciChoiceCreate(items,defval,nitems);

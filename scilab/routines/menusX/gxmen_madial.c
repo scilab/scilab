@@ -6,8 +6,8 @@
 
 #include "men_scilab.h"
 
-extern void ShellFormCreate();
-int MatrixDialogWindow();
+extern void ShellFormCreate(char *, Widget *, Widget *, Display **);
+int MatrixDialogWindow(void);
 
 extern MADialog MAD;
 
@@ -39,7 +39,7 @@ static void sci_matdialog_cancel (GtkButton       *button, state * rep)
  * export_menu 
  *---------------------------------------------------------------*/
 
-int MatrixDialogWindow()
+int MatrixDialogWindow(void)
 {
   int i,j;
   static GtkWidget *window = NULL;

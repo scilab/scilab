@@ -34,7 +34,7 @@ static void sci_mdialog_cancel (GtkButton       *button, state * rep)
  * export_menu 
  *---------------------------------------------------------------*/
 
-int mDialogWindow()
+int mDialogWindow(void)
 {
   int use_scrolled=0;
   int i;

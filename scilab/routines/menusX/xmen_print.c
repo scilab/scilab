@@ -11,14 +11,13 @@ extern XtAppContext app_con;
 
 static Widget filedialog=(Widget)0;
 static int ok_Flag_sci;
-static void     okPrint();
+static void     okPrint(Widget w, XEvent *event, String *params, Cardinal *num_params);
 static XtActionsRec actionTable[] = 
 {
   {"go-print", okPrint},
 };
 
-static void okPrint(w,event,params,num_params) 
-     Widget w; XEvent *event; String *params; Cardinal *num_params;
+static void okPrint(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
   SaveDlgOk(w, (caddr_t) 0 , (caddr_t) 0);
 }
@@ -31,10 +30,7 @@ static void okPrint(w,event,params,num_params)
  ******************************************/
 
 void 
-PrintDlgOk(w,client_data,callData)
-     Widget w;
-     caddr_t client_data;
-     caddr_t callData;
+PrintDlgOk(Widget w, caddr_t client_data, caddr_t callData)
 {
   ok_Flag_sci = OK;
 }
@@ -44,10 +40,7 @@ PrintDlgOk(w,client_data,callData)
  ******************************************/
 
 void
-SaveDlgOk(w,client_data,callData)
-     Widget w;
-     caddr_t client_data;
-     caddr_t callData;
+SaveDlgOk(Widget w, caddr_t client_data, caddr_t callData)
 {
   Arg args[1];
   Cardinal iargs =0 ;
@@ -78,10 +71,7 @@ SaveDlgOk(w,client_data,callData)
  ******************************************/
 
 void 
-PrintDlgCancel(w,client_data,callData)
-     Widget w;
-     caddr_t client_data;
-     caddr_t callData;
+PrintDlgCancel(Widget w, caddr_t client_data, caddr_t callData)
 {
   ok_Flag_sci = CANCEL;
 }
@@ -91,9 +81,7 @@ PrintDlgCancel(w,client_data,callData)
  ******************************************/
 
 static void 
-DoChoosePrinter(widget,client_data,callData)
-     Widget widget;
-     caddr_t client_data,callData;
+DoChoosePrinter(Widget widget, caddr_t client_data, caddr_t callData)
 {
   XawListReturnStruct* item;
   item = (XawListReturnStruct*)callData;
@@ -104,8 +92,7 @@ DoChoosePrinter(widget,client_data,callData)
  * Widgets creation 
  ******************************************/
 
-int  ExposePrintdialogWindow(flag,colored,orientation)
-     int flag,*colored,*orientation;
+int  ExposePrintdialogWindow(int flag, int *colored, int *orientation)
 {
   int rep;
   static Display *dpy = (Display *) NULL;

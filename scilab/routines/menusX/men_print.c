@@ -26,9 +26,7 @@ static int nF=6;
  * main function 
  ******************************************/
 
-int prtdlg(flag,printer,colored,orientation,file,ok)
-     integer *colored,*orientation,*flag,*ok;
-     char printer[],file[];
+int prtdlg(integer *flag, char *printer, integer *colored, integer *orientation, char *file, integer *ok)
 { 
   static int firstentry=0;
   static int multiple_call=0;
@@ -75,7 +73,7 @@ int prtdlg(flag,printer,colored,orientation,file,ok)
  * Test function 
  ******************************************/
 
-int TestPrintDlg()
+int TestPrintDlg(void)
 {
   static char file[100],printer[20];
   integer flag,colored,orientation,ok;
@@ -88,11 +86,10 @@ int TestPrintDlg()
  * Initialize list of printers 
  ******************************************/
 
-int SetPrinterList(flag)
-     int flag;
+int SetPrinterList(int flag)
 {
   int n,i,npr;
-  char *getenv(),*str,*p;
+  char *getenv(const char *),*str,*p;
   if (flag == 1) 
     {
       /* searching for printers */

@@ -8,23 +8,19 @@
 #include "men_scilab.h"
 
 extern int IsPrivateCmap();
-extern void ShellFormCreate();
-extern int AllocAndCopy();
-static void create_choice();
-static void select_button();
-static void line_up_labels();
-static int pttb();
-static XtCallbackProc ChoiceOk();
-static XtCallbackProc ChoiceCancel();
-static int choices_cmap();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
+extern int AllocAndCopy(char **strh1, char *str2);
+static void create_choice(Widget w, SciStuff *info, int flag);
+static void select_button(Widget w);
+static void line_up_labels(SciStuff **Everything, int num);
+static int pttb(Widget w, caddr_t closure, caddr_t call_data);
+static XtCallbackProc ChoiceOk(Widget w, int nv, caddr_t callData);
+static XtCallbackProc ChoiceCancel(Widget w, int nv, caddr_t callData);
+static int choices_cmap(void);
 
 static int ok_Flag_sci;
 
-static void ChangeBF1(w,str,fg,bg)
-     Widget w;
-     char *str;
-     Pixel fg;
-     Pixel bg;
+static void ChangeBF1(Widget w, char *str, Pixel fg, Pixel bg)
 {
   Arg args[2];
   int iargs ;
@@ -43,9 +39,7 @@ static void ChangeBF1(w,str,fg,bg)
     }
 }
 
-int SciChoiceI(label,defval,nitems)
-     char *label;
-     int defval[], nitems;
+int SciChoiceI(char *label, int *defval, int nitems)
 {
   int i,flag=0;
   static Widget ok,wlabel,toppaned,shell,wlabelviewport,dviewport,form,cform;
@@ -127,10 +121,7 @@ int SciChoiceI(label,defval,nitems)
 
 
 static XtCallbackProc
-ChoiceOk(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
+ChoiceOk(Widget w, int nv, caddr_t callData)
 { 
   ok_Flag_sci=1 ;
   /* sciprint("OK\r\n"); */
@@ -144,10 +135,7 @@ ChoiceOk(w,nv,callData)
 
 
 static XtCallbackProc
-ChoiceCancel(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
+ChoiceCancel(Widget w, int nv, caddr_t callData)
 { 
   ok_Flag_sci=- 1 ;
   /* sciprint("OK\r\n"); */
@@ -170,10 +158,7 @@ ChoiceCancel(w,nv,callData)
  ****************************************************/
 
 int 
-SciChoiceCreate(items,defval,nitems)
-     char **items;
-     int defval[];
-     int nitems;
+SciChoiceCreate(char **items, int *defval, int nitems)
 {
   int i,j;
   if ( Everything != (SciStuff **) NULL) 
@@ -240,8 +225,7 @@ SciChoiceCreate(items,defval,nitems)
 
 
 
-int AllocAndCopy(strh1,str2)
-     char **strh1, *str2;
+int AllocAndCopy(char **strh1, char *str2)
 {
   *strh1= (char *) MALLOC((strlen(str2)+1)*sizeof(char));
   if ( *strh1 == (char *) NULL) return(0);
@@ -250,7 +234,7 @@ int AllocAndCopy(strh1,str2)
 }
 
 
-int SciChoiceFree(nitems) 
+int SciChoiceFree(int nitems)
 {
   int i,j;
   for ( i=0 ; i < nitems ; i++) 
@@ -276,10 +260,7 @@ int SciChoiceFree(nitems)
  ****************************************************/
 
 
-Widget create_choices(toppaned,wvert,flag)
-     Widget toppaned;
-     Widget wvert;
-     int flag;
+Widget create_choices(Widget toppaned, Widget wvert, int flag)
 {
   Widget lastChoice;
   static Arg gcchoiceargs[] = {
@@ -350,10 +331,7 @@ Widget create_choices(toppaned,wvert,flag)
 
 
 static void
-create_choice(w,info,flag)
-     Widget w;
-     SciStuff *info;
-     int flag;
+create_choice(Widget w, SciStuff *info, int flag)
 {
   int col_numbers;
   int i;			/* Counter */
@@ -514,7 +492,7 @@ create_choice(w,info,flag)
  *   a list with colored toggles buttons 
  ****************************************************/
 
-static int choices_cmap()
+static int choices_cmap(void)
 {
   int Nchoices=0,i,flag=0 ;			/* counter */
   while ( Everything[Nchoices] != (SciStuff *) NULL ) Nchoices++;
@@ -531,8 +509,7 @@ static int choices_cmap()
  *********************************************************************/
 
 static void
-select_button(w)
-     Widget w;
+select_button(Widget w)
 {
   static Arg toggleargs[] = {
     {XtNstate,   (XtArgVal) True}
@@ -550,9 +527,7 @@ select_button(w)
  *********************************************************************/
 
 static void
-line_up_labels(Everything,num)
-     SciStuff *Everything[];
-     int num;
+line_up_labels(SciStuff **Everything, int num)
 {
   int i;			/* counter */
   Dimension width;		/* current width */
@@ -582,10 +557,10 @@ line_up_labels(Everything,num)
  *********************************************************************/
 
 static int
-pttb(w,closure,call_data)
-     Widget  w;
-     caddr_t closure;           /* contains the string */
-     caddr_t call_data;
+pttb(Widget w, caddr_t closure, caddr_t call_data)
+               
+                                /* contains the string */
+                       
 {
   int itm=0,tog=0;
   sscanf((char *) closure,"%d %d",&itm,&tog);

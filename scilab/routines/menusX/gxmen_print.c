@@ -7,13 +7,12 @@
 #include "men_scilab.h"
 
 #define OK 1
-#define CANCEL 2
+#define CANCEL 2 
 #define MEMERR 3
 
 extern PrintDial ScilabPrintD;
-static int ok_Flag_sci;
-static void     okPrint();
-
+static int menu_export (int *colored,int *orient);
+static int menu_print (int *colored,int *orient);
 /*
  * Gtk version 
  */
@@ -34,21 +33,26 @@ int  ExposePrintdialogWindow(int flag,int *colored,int *orientation)
  * data and callbacks for print and export menu  
  *---------------------------------------------------------------*/
 
-typedef enum { pOK, pCANCEL , RESET } state; 
+typedef enum { pOK, pCANCEL , pDESTROY, RESET } state; 
 
-void menu_print_ok (GtkButton       *button, state * rep) 
+static void menu_print_ok (GtkButton *button, state * rep) 
 {
   *rep = pOK;  gtk_main_quit();
 } 
 
-void menu_print_cancel (GtkButton       *button, state * rep) 
+static void menu_print_cancel (GtkButton *button, state * rep) 
 {
   *rep = pCANCEL;  gtk_main_quit();
 }
 
+static void menu_print_destroy (GtkButton *button, state * rep) 
+{
+  *rep = pDESTROY;  gtk_main_quit();
+}
+
 /* convenience routine */
 
-void make_menu_items( GtkWidget    *option_menu, 
+static void make_menu_items( GtkWidget    *option_menu, 
 		      gchar        *name[],
 		      guint        nname,
 		      guint history,
@@ -108,7 +112,7 @@ static int menu_export (int *colored,int *orient)
   GtkWidget *cancelbutton;
   GtkWidget *formatmenu;
   GtkWidget *filename;
-  if ( current_lp_status.in_use == 1) return ;
+  if ( current_lp_status.in_use == 1) return FALSE ;
   current_lp_status.in_use = 1;
   rep =RESET;
 
@@ -120,6 +124,10 @@ static int menu_export (int *colored,int *orient)
     {
       window1 = gtk_window_new (GTK_WINDOW_TOPLEVEL);
       gtk_window_set_title (GTK_WINDOW (window1), "Scilab print");
+
+      gtk_signal_connect (GTK_OBJECT (window1), "destroy",
+			  GTK_SIGNAL_FUNC(menu_print_destroy),
+			  &rep);
 
       table = gtk_table_new (5, 2, TRUE);
       gtk_widget_ref (table);
@@ -194,6 +202,7 @@ static int menu_export (int *colored,int *orient)
       gtk_table_attach (GTK_TABLE (table), cancelbutton, 1, 2, 4, 5,0,0,0,0);
 
     }
+
   gtk_widget_show (window1);
   while (1) 
     {
@@ -203,23 +212,31 @@ static int menu_export (int *colored,int *orient)
       gtk_main();
       if ( rep != RESET ) break;
     }
+  
   current_lp_status.in_use = 0;
-  if ( rep == pOK ) 
-    {
-      char * fn;
-      *colored =  current_lp_status.color + 1;
-      *orient=	 current_lp_status.portrait + 1;
-      ScilabPrintD.numChoice = current_lp_status.format +1;
-      ScilabPrintD.filename  = gtk_editable_get_chars ( GTK_EDITABLE(entry),0,
+
+  switch (rep) {
+  case pOK : 
+    *colored =  current_lp_status.color + 1;
+    *orient=	 current_lp_status.portrait + 1;
+    ScilabPrintD.numChoice = current_lp_status.format +1;
+    ScilabPrintD.filename  = gtk_editable_get_chars ( GTK_EDITABLE(entry),0,
 							GTK_ENTRY(entry)->text_length);
-      gtk_widget_hide(window1);
-      return(TRUE);
-    }
-  else
-    {
-      gtk_widget_hide(window1);
-      return(FALSE);
-    }
+    gtk_widget_hide(window1);
+    return(TRUE);
+    break;
+  case pCANCEL :
+    gtk_widget_hide(window1);
+    return(FALSE);
+    break;
+  case pDESTROY :
+    window1 = NULL;
+    return(FALSE);
+    break;
+  default :
+    break;
+  }
+  return TRUE;
 }
 
 /*---------------------------------------------------------------
@@ -246,7 +263,7 @@ static int menu_print (int *colored,int *orient)
   GtkWidget *cancelbutton;
   GtkWidget *lpmenu;
 
-  if ( current_lp_status.in_use == 1) return ;
+  if ( current_lp_status.in_use == 1) return FALSE;
   current_lp_status.in_use = 1;
   rep =RESET;
   /* computing list of printers  */
@@ -259,6 +276,9 @@ static int menu_print (int *colored,int *orient)
 
       window1 = gtk_window_new (GTK_WINDOW_TOPLEVEL);
       gtk_window_set_title (GTK_WINDOW (window1), "Scilab print");
+      gtk_signal_connect (GTK_OBJECT (window1), "destroy",
+			  GTK_SIGNAL_FUNC(menu_print_destroy),
+			  &rep);
 
       table = gtk_table_new (4, 2, TRUE);
       gtk_widget_ref (table);
@@ -347,22 +367,31 @@ static int menu_print (int *colored,int *orient)
   while (1) 
     {
       /* here we only want to quit gtk_main after a selection in 
-       * this menu XXXXX attention rajouter un test sur destroy 
+       * this menu 
        */
       gtk_main();
       if ( rep != RESET ) break;
     }
-  gtk_widget_hide(window1);
   current_lp_status.in_use = 0;
-  if ( rep == OK ) 
-    {
-      *colored =  current_lp_status.color + 1;
-      *orient=	 current_lp_status.portrait + 1;
-      ScilabPrintD.numChoice = current_lp_status.lp +1;
-      return(TRUE);
-    }
-  else
+
+  switch (rep) {
+  case pOK : 
+    gtk_widget_hide(window1);
+    *colored =  current_lp_status.color + 1;
+    *orient=	 current_lp_status.portrait + 1;
+    ScilabPrintD.numChoice = current_lp_status.lp +1;
+    return(TRUE);
+    break;
+  case pDESTROY :
+    window1 = NULL;
     return(FALSE);
+  case pCANCEL :
+    gtk_widget_hide(window1);
+    return(FALSE);
+  default :
+    return FALSE ;
+  }
 }
+
 
 

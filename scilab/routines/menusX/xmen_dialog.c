@@ -5,25 +5,23 @@
  * XWindow part for dialog 
  *******************************************************/
 
-extern void ShellFormCreate();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
 extern void C2F(cvstr)();
 static  int ok_Flag_sci; 
-int DialogWindow();
+int DialogWindow(void);
 
 extern char *dialog_str ;
 extern SciDialog ScilabDialog;
 
-static XtCallbackProc DialogOk();
-static XtCallbackProc DialogCancel();
+static XtCallbackProc DialogOk(Widget w, XtPointer client_data, XtPointer call_data);
+static XtCallbackProc DialogCancel(Widget w, XtPointer client_data, XtPointer callData);
 
 
 /**********************************************************
  * The dialog command OK callback 
  **********************************************************/
 
-static XtCallbackProc DialogOk(w, client_data, call_data) 
-     Widget w;
-     XtPointer client_data, call_data;	
+static XtCallbackProc DialogOk(Widget w, XtPointer client_data, XtPointer call_data)
 { 
   Arg args[1];
   Cardinal iargs=0;
@@ -53,9 +51,7 @@ static XtCallbackProc DialogOk(w, client_data, call_data)
  * The cancel command callback 
  **********************************************************/
 
-static XtCallbackProc   DialogCancel(w,client_data,callData)
-     Widget w;
-     XtPointer client_data, callData;	
+static XtCallbackProc   DialogCancel(Widget w, XtPointer client_data, XtPointer callData)
 { 
   ok_Flag_sci = -1;
   return(0);
@@ -65,7 +61,7 @@ static XtCallbackProc   DialogCancel(w,client_data,callData)
  * Dialog Widget creation 
  **********************************************************/
 
-int  DialogWindow()
+int  DialogWindow(void)
 {
   Dimension height,top,bot;
   int lines =1 ;

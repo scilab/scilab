@@ -7,22 +7,19 @@
 
 extern MDialog SciMDialog;        /** used to stored the mdialog data **/
 
-extern void ShellFormCreate();
-int mDialogWindow();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
+int mDialogWindow(void);
 
 /*************************************************     
  * Ok Callback 
  **********************************************************/
 
-extern void ShellFormCreate();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
 static Widget  *dialoglist;
 static int ok_Flag_sci;
 
 static XtCallbackProc
-mDialogOk(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int nv;
+mDialogOk(Widget w, int nv, caddr_t callData)
 { int ind,i,ns;
   Arg args[2];
   Cardinal iargs;
@@ -60,10 +57,7 @@ mDialogOk(w,nv,callData)
  **********************************************************/
 
 static XtCallbackProc 
-mDialogCancel(w,nv,callData)
-     Widget w;
-     caddr_t callData;
-     int  nv;
+mDialogCancel(Widget w, int nv, caddr_t callData)
 { 
   mDialogOk(w,nv,callData);
   ok_Flag_sci = -1;
@@ -74,7 +68,7 @@ mDialogCancel(w,nv,callData)
  * Widgets creation 
  **********************************************************/
 
-int mDialogWindow()
+int mDialogWindow(void)
 {
   Arg args[10];
   Cardinal iargs = 0;

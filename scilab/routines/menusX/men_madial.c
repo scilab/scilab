@@ -5,7 +5,7 @@
 #include "men_scilab.h"
 #endif
 
-int MatrixDialogWindow();
+int MatrixDialogWindow(void);
 
 MADialog MAD;
 
@@ -13,8 +13,7 @@ MADialog MAD;
  * Interface with Scilab 
  **********************************************************/
 
-void C2F(xmatdg)(label,ptrlab,nlab,value,ptrv,descv,ptrdescv,desch,ptrdesch,nl,nc,res,ptrres,ierr)
-     int *label,*ptrlab,*nlab,*value,*ptrv,*descv,*ptrdescv,*desch,*ptrdesch,*nl,*nc,*res,*ptrres,*ierr;
+void C2F(xmatdg)(int *label, int *ptrlab, int *nlab, int *value, int *ptrv, int *descv, int *ptrdescv, int *desch, int *ptrdesch, int *nl, int *nc, int *res, int *ptrres, int *ierr)
 {
   int i,rep;
   int maxchars= *ierr;
@@ -52,7 +51,7 @@ void C2F(xmatdg)(label,ptrlab,nlab,value,ptrv,descv,ptrdescv,desch,ptrdesch,nl,n
  * Test function 
  **********************************************************/
 
-int TestMatrixDialogWindow()
+int TestMatrixDialogWindow(void)
 {
   int rep,i;
   static char *labels = "LaBel";

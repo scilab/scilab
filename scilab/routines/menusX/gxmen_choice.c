@@ -8,8 +8,8 @@
 #include <gtk/gtk.h>
 #include "men_scilab.h"
 
-extern int AllocAndCopy();
-static int choices_cmap();
+extern int AllocAndCopy(char **strh1, char *str2);
+static int choices_cmap(void);
 
 static GtkWidget *window = NULL; 
 
@@ -69,9 +69,7 @@ static void sci_choices_cancel (GtkButton       *button, state * rep)
  * The x_choice interaction window 
  *---------------------------------------------------------------*/
 
-int SciChoiceI(label,defval,nitems)
-     char *label;
-     int defval[], nitems;
+int SciChoiceI(char *label, int *defval, int nitems)
 {
   int Nchoices=0, use_scrolled=0, i;
   static state rep = RESET ;
@@ -310,7 +308,7 @@ int SciChoiceFree(int nitems)
  *   a list with colored toggles buttons 
  ****************************************************/
 
-static int choices_cmap()
+static int choices_cmap(void)
 {
   int Nchoices=0,i,flag=0 ;			/* counter */
   while ( choices_data[Nchoices] != (SciComboData *) NULL ) Nchoices++;

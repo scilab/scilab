@@ -10,23 +10,20 @@ extern SciMess ScilabMessage;
 #define OK 1
 #define CANCEL 2
 static int ok_Flag_sci;
-extern void ShellFormCreate();
-static void MessageOk();
-static void MessageCancel();
-int ExposeMessageWindow();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
+static void MessageOk(Widget w, caddr_t shell, caddr_t callData);
+static void MessageCancel(Widget w, caddr_t shell, caddr_t callData);
+int ExposeMessageWindow(void);
 
-static void MessageOk1();
-int ExposeMessageWindow1();
+static void MessageOk1(Widget w, XtPointer client_data, caddr_t callData);
+int ExposeMessageWindow1(void);
 
 /*************************************************     
  * OK Callback 
  **********************************************************/
 
 static 
-void MessageOk(w,shell,callData)
-     Widget w;
-     caddr_t shell;
-     caddr_t callData;
+void MessageOk(Widget w, caddr_t shell, caddr_t callData)
 {
   ok_Flag_sci = OK;
 }
@@ -36,10 +33,7 @@ void MessageOk(w,shell,callData)
  **********************************************************/
 
 static 
-void MessageCancel(w,shell,callData)
-     Widget w;
-     caddr_t shell;
-     caddr_t callData;
+void MessageCancel(Widget w, caddr_t shell, caddr_t callData)
 {
   ok_Flag_sci = CANCEL;
 }
@@ -48,7 +42,7 @@ void MessageCancel(w,shell,callData)
  * Widget Creation 
  **********************************************************/
 
-int ExposeMessageWindow()
+int ExposeMessageWindow(void)
 {
   Arg args[10];
   Cardinal iargs = 0;
@@ -88,10 +82,7 @@ typedef struct {
  **********************************************************/
 
 static 
-void MessageOk1(w,client_data,callData)
-     Widget w;
-     XtPointer  client_data;
-     caddr_t callData;
+void MessageOk1(Widget w, XtPointer client_data, caddr_t callData)
 {
   MessDataPtr datas =(MessDataPtr)client_data;
   ok_Flag_sci = OK;
@@ -101,17 +92,16 @@ void MessageOk1(w,client_data,callData)
   FREE(datas)
 }
 
-int ExposeMessageWindow1()
+int ExposeMessageWindow1(void)
 {
   Arg args[10];
   Cardinal iargs = 0;
-  Widget shell,dialog,mpanned,mviewport,okbutton,cancelbutton,cform;
-  Widget menu;
+  Widget shell,dialog,mpanned,mviewport,okbutton,cform;
   static Display *dpy = (Display *) NULL;
   MessDataPtr Mdatas;
 
   Mdatas= (MessDataPtr) MALLOC(sizeof(MessData) );
-  if ( Mdatas == (MessDataPtr) 0) return;
+  if ( Mdatas == (MessDataPtr) 0) return 0;
   ShellFormCreate("messageShell",&shell,&mpanned,&dpy);
 
   /* Create a Viewport+Label and resize it */
@@ -128,6 +118,7 @@ int ExposeMessageWindow1()
   XtPopup(shell,XtGrabNone); 
   XFlush(dpy);
   XSync(dpy,0);
+  return 0;
 }
 
 

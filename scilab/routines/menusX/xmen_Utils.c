@@ -33,11 +33,7 @@ static   Cardinal iargs = 0;
  * we want to exit the loop when ok_Flag_sci != 0 
  *******************************************************/
 
-void XtMyLoop(w,dpy,flag,ok_Flag)
-     Widget w;
-     Display *dpy;
-     int flag;
-     int *ok_Flag;
+void XtMyLoop(Widget w, Display *dpy, int flag, int *ok_Flag)
 {
   Atom	 wmDeleteWindow;
   XEvent event;
@@ -73,10 +69,7 @@ void XtMyLoop(w,dpy,flag,ok_Flag)
 #define SHELL_TYPE transientShellWidgetClass 
 
 void 
-ShellFormCreate(shellname,shell,form,dpyh)
-     char shellname[];
-     Display **dpyh;
-     Widget *shell,*form;
+ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh)
 {
   static  Widget toplevel,hpaned;
   DisplayInit("",dpyh,&toplevel);
@@ -95,11 +88,7 @@ ShellFormCreate(shellname,shell,form,dpyh)
  * just add a button and it's callback 
  ********************************************************/
 
-int ButtonCreate(parentW,button,callback,data,label,name)
-     Widget parentW,*button;
-     char label[],name[];
-     XtCallbackProc callback;
-     XtPointer data;
+int ButtonCreate(Widget parentW, Widget *button, XtCallbackProc callback, XtPointer data, char *label, char *name)
 {
   iargs=0;
   XtSetArg(args[iargs], XtNlabel,label); iargs++;
@@ -118,10 +107,7 @@ int ButtonCreate(parentW,button,callback,data,label,name)
  ********************************************************/
 
 
-int ViewpLabelCreate(parentW,labelW,viewportW,description)
-     Widget parentW;
-     Widget *labelW,*viewportW;
-     char description[];
+int ViewpLabelCreate(Widget parentW, Widget *labelW, Widget *viewportW, char *description)
 {
   iargs=0;
   *viewportW = XtCreateManagedWidget("labelviewport",viewportWidgetClass,parentW,args,iargs);
@@ -142,11 +128,7 @@ int ViewpLabelCreate(parentW,labelW,viewportW,description)
  ********************************************************/
 
 
-int ViewpListCreate(parentW,listW,viewportW,strings,nstr)
-     Widget parentW;
-     Widget *listW,*viewportW;
-     char **strings;
-     int nstr;
+int ViewpListCreate(Widget parentW, Widget *listW, Widget *viewportW, char **strings, int nstr)
 {
   iargs=0;
   /* create chooseviewport and chooselist widgets */
@@ -165,10 +147,7 @@ int ViewpListCreate(parentW,listW,viewportW,strings,nstr)
  * filled with a string of nchar per lines and nlines 
  ********************************************************/
 
-int LabelSize(label,nchar,nlines,width,height)
-     Widget label;
-     int nchar,nlines;
-     Dimension *width,*height;
+int LabelSize(Widget label, int nchar, int nlines, Dimension *width, Dimension *height)
 {
   Dimension la_iheight=10 , la_iwidth=10;
   XFontStruct *temp_font = (XFontStruct *) NULL;
@@ -188,10 +167,7 @@ int LabelSize(label,nchar,nlines,width,height)
  * with restriction on lines and cols 
  ********************************************************/
 
-int AsciiSize(ascii,nchar,nlines,width,height)
-     Widget ascii;
-     int nchar,nlines;
-     Dimension *width,*height;
+int AsciiSize(Widget ascii, int nchar, int nlines, Dimension *width, Dimension *height)
 {
   Dimension rmarg,lmarg,topmarg,botmarg;
   XFontStruct *temp_font = (XFontStruct *) NULL;
@@ -213,10 +189,7 @@ int AsciiSize(ascii,nchar,nlines,width,height)
  ********************************************************/
 
 
-int SetLabel(label,str,width,height)
-     Widget label;
-     char str[];
-     Dimension width,height;
+int SetLabel(Widget label, char *str, Dimension width, Dimension height)
 {
   iargs=0;
   XtSetArg(args[iargs], XtNwidth ,width) ; iargs++;
@@ -230,10 +203,7 @@ int SetLabel(label,str,width,height)
  * Set an ascii Widget strin and size 
  ********************************************************/
 
-int SetAscii(ascii,str,width,height)
-     Widget ascii;
-     char str[];
-     Dimension width,height;
+int SetAscii(Widget ascii, char *str, Dimension width, Dimension height)
 {
   iargs=0;
   XtSetArg(args[iargs], XtNwidth ,width) ; iargs++;

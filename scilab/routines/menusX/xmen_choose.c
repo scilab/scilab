@@ -5,10 +5,10 @@
  * XWindow part for choose 
  *******************************************************/
 
-extern void ShellFormCreate();
+extern void ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh);
 static  int numChoix ;
-static  void CancelChoose();
-static  void DoChoose();
+static  void CancelChoose(Widget w, caddr_t shell, caddr_t callData);
+static  void DoChoose(Widget widget, caddr_t shell, caddr_t callData);
 
 static int ok_Flag_sci;
 
@@ -17,18 +17,14 @@ static int ok_Flag_sci;
 
 /* The cancel command callback */
 
-static void CancelChoose(w,shell,callData)
-     Widget w;
-     caddr_t shell,callData;
+static void CancelChoose(Widget w, caddr_t shell, caddr_t callData)
 {
   ok_Flag_sci = CANCEL;
 }
 
 /* The choose command callback */
 
-static void DoChoose(widget,shell,callData)
-     Widget widget;
-     caddr_t shell,callData;
+static void DoChoose(Widget widget, caddr_t shell, caddr_t callData)
 {
   XawListReturnStruct* item;
   item = (XawListReturnStruct*)callData;
@@ -36,8 +32,7 @@ static void DoChoose(widget,shell,callData)
   ok_Flag_sci = CHOOSE;
 }
 
-int ExposeChooseWindow(PCh)
-     ChooseMenu *PCh;
+int ExposeChooseWindow(ChooseMenu *PCh)
 {
   Widget choosepanned,wid,list,shell,chooseviewport,chooselabel,labelviewport,cform;
   Arg args[10];
