@@ -108,8 +108,12 @@ else
 	// Variable added to varslist before insertion
 	if funptr(inservar.name)<>0 then
 	  varslist($+1)=M2scivar("%"+inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
+	  // Variable is initialized to [] in converted script is does not already exist
+	  m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
 	else
 	  varslist($+1)=M2scivar(inservar.name,inservar.name,Infer(list(0,0),Type(Double,Real)))
+	  // Variable is initialized to [] in converted script is does not already exist
+	  m2sci_to_insert_b($+1)=Equal(list(inservar),Cste([]))
 	end
 	sci_instr.lhs(k).out(1).infer=Infer()
       else
@@ -119,7 +123,7 @@ else
       [sci_instr.lhs(k)]=operation2sci(sci_instr.lhs(k))
 
       if typeof(sci_instr.lhs(k))=="operation" then
-	if sci_instr.lhs(k).operands($)<>sci_instr.expression then // Update expression if has been modified while converting lhs
+	if or(sci_instr.lhs(k).operands($)<>sci_instr.expression) then // Update expression if has been modified while converting lhs
 	  sci_instr.expression=sci_instr.lhs(k).operands($)
 	end
 	sci_instr.lhs(k).operands($)=null()
@@ -137,19 +141,21 @@ else
 
 end
 
-// Result is displayed or not ?
-if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
-  if typeof(sci_instr.lhs(1))=="variable" & sci_instr.lhs(1).name=="ans" then // Variable to display
-    if typeof(sci_instr.expression)<>"funcall" | sci_instr.expression.name<>"comment" then
-      sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+if sci_instr<>list() then 
+  // Result is displayed or not ?
+  if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
+    if typeof(sci_instr.lhs(1))=="variable" & sci_instr.lhs(1).name=="ans" then // Variable to display
+      if typeof(sci_instr.expression)<>"funcall" | sci_instr.expression.name<>"comment" then
+	sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+      end
+    else // Instruction lhs to display
+      sci_instr.endsymbol=","
+      displhs=list()
+      for klhs=size(sci_instr.lhs):-1:1
+	displhs($+1)=sci_instr.lhs(klhs)
+      end
+      m2sci_to_insert_a($+1)=Equal(list(Variable("ans",Infer())),Funcall("disp",1,displhs,list()))
     end
-  else // Instruction lhs to display
-    sci_instr.endsymbol=","
-    displhs=list()
-    for klhs=size(sci_instr.lhs):-1:1
-      displhs($+1)=sci_instr.lhs(klhs)
-    end
-    m2sci_to_insert_a($+1)=Equal(list(Variable("ans",Infer())),Funcall("disp",1,displhs,list()))
   end
 end
 endfunction
