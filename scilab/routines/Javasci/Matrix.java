@@ -151,6 +151,10 @@ public class  Matrix {
   public native void scilabSend();
   
   public static native void scilabEvents();
+  
+  public static native int scilabHaveAGraph();
+  
+  
   /**
    * Recopie dans l'objet <tt>Matrix</tt> la valeur de l'objet Scilab 
    * de type Matrice correspondant.

@@ -153,6 +153,28 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabEvents
 }
 
 
+JNIEXPORT jint JNICALL Java_javasci_Matrix_scilabHaveAGraph
+  (JNIEnv *env , jobject obj_this)
+{
+	integer iflag =0,ids,num,un=1,l1;
+	int *ArrayWGraph=NULL;
+	jint vInt=0;
+
+	if (version_flag() == 0)
+	{
+		sciGetIdFigure (&ids,&num,&iflag);
+		if (num > 0) vInt=1;
+		
+	}/* NG end*/
+	else
+	{
+		C2F(getwins)(&num,&ids ,&iflag);
+		if (num > 0) vInt=1;
+    } 
+ 
+	return vInt;
+}
+
 /*----------------------------------
  * Get a Scilab Matrix from Scilab 
  *----------------------------------*/ 
