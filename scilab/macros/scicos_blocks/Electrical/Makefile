@@ -24,11 +24,10 @@ MODELS=Capacitor.moc Ground.moc OutPutPort.moc VariableResistor.moc \
 
 include ../../Make.lib
 
-.mo.moc: $(SCIDIR)/bin/modelicac
-	$(SCIDIR)/bin/modelicac -c $(<) -o $(@)
-
 all :: $(MODELS)
-
+	@ls $(MODELS) >models
+	@echo $(SCIDIR)/bin/scilab -f $(SCIDIR)/util/genmoc.sce
 
 distclean::
-	@$(RM) *.moc
+	@$(RM) *.moc models
+
