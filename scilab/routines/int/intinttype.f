@@ -10,11 +10,14 @@ c
       if(.not.checklhs('inttype',1,1)) return
 
       il=iadr(lstk(top))
-      if(istk(il).ne.8) then
+      if(istk(il).eq.8) then
+         is=istk(il+3)
+      elseif(istk(il).eq.1) then
+         is=0
+      else
          call error(44)
          return
       endif
-      is=istk(il+3)
       istk(il)=1
       istk(il+1)=1
       istk(il+2)=1
