@@ -1512,41 +1512,38 @@ endfunction
 // Edit Data using sciGUI /////
 ///////////////////////////////
 
-//function EditData(curEditDataStatus)
-
-function [outvar] = EditData(TheData)
+function EditData(TheData,datastring)
 // TheData must be a real scalar or matrix
 global ged_handle; h=ged_handle
 
-WLdeb = winlist();
-//disp("WLdeb=")
-//disp(WLdeb)
+// I declare ged_tmp ged_tmp_string WINDOW as global
+global ged_tmp;
+global ged_tmp_string;
+global WINDOW;
+
+ged_tmp_string = datastring;
 
 ged_tmp=TheData;
-ged_SAUV=ged_tmp;
 
-GEDeditvar ged_tmp
+WINDOW = GEDeditvar("ged_tmp")
 
-WL = winlist();
-//disp("WL=")
-//disp(WL)
-MyW = find(winlist()~=WLdeb)
-//disp("MyW=")
-//disp(MyW)
+endfunction
 
-while(find(winlist()==MyW))
- ged_tmp=GEDeditvar_get(MyW);
-end
 
-//disp("ged_tmp : ")
-//disp(ged_tmp)
+function CloseEditorSaveData()
+// Called when closing data editor
 
-//disp("Av. TheData=")
-//disp(TheData)
-outvar= ged_tmp;
+global ged_handle; // To leave here because used when doing execstr(ged_tmp_string...
+global ged_tmp;
+global ged_tmp_string;
+global WINDOW;
 
-//disp("Ap. TheData=")
-//disp(TheData)
+ged_tmp=GEDeditvar_get(WINDOW);
+
+execstr(ged_tmp_string+"= ged_tmp");
+
+clearglobal ged_tmp ged_tmp_string WINDOW
+clear ged_tmp ged_tmp_string WINDOW
 
 endfunction
 
@@ -1591,7 +1588,7 @@ for j=1:varnj,
 end
 endfunction
 
-function GEDeditvar(varargin)
+function [WINID] = GEDeditvar(varargin)
 // Simple Variable Editor
 // This file is part of sciGUI toolbox
 // Copyright (C) 2004 Jaime Urzua Grez 
@@ -1671,6 +1668,8 @@ function GEDeditvar(varargin)
  
   TK_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
  
+  WINID = %_winId;
+
 endfunction
 
 
@@ -1876,8 +1875,13 @@ endfunction
 function DestroyGlobals()
  global ged_current_figure
 
- xset('window',ged_current_figure)
- clearglobal ged_current_figure
+ if find(ged_current_figure==winsid()) then
+  xset('window',ged_current_figure)
+ end 
+
+clearglobal ged_current_figure
  clear ged_current_figure
+
+// disp("PASSE PAR DestroyGlobals Scilab");
 endfunctions
 
