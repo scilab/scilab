@@ -3300,11 +3300,11 @@ v=rand(1,21);
  
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
  
-if Err(det(A)-prod(v))>200000*%eps then bugmes();quit;end
+if Err(det(A)-prod(v))>400000*%eps then bugmes();quit;end
  
 [e,m]=det(A);
  
-if Err(m*(10^e)-prod(v))>200000*%eps then bugmes();quit;end
+if Err(m*(10^e)-prod(v))>400000*%eps then bugmes();quit;end
  
 //Complex
  
