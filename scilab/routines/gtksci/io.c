@@ -27,7 +27,7 @@
    include by ../graphics/Math.h */ 
 
 #ifdef WITH_TK
-include "../tclsci/TCL_Global.h"
+#include "../tclsci/TCL_Global.h"
 #endif
 
 extern void start_sci_gtk(void);
