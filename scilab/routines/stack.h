@@ -13,13 +13,12 @@ c nlgh  length of variable names
 c csiz  used for character coding
 c intersiz used in interfaces
 c*-------------------------------------------------------------------
-C     The next lines are used by visual Fortran 
-C     when building dll's which share common data with Scilab.dll
-c DEC$ IF DEFINED (FORDLL)
-c DEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
-c DEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/ 
-c DEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/
-c DEC$ ENDIF
+C     The next lines are used by DecAlpha and should be removed if compiled with visual fortran
+c    $ IF DEFINED (FORDLL)
+c    $ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
+c    $ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/ 
+c    $ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/
+c    $ ENDIF
 C     ---------------------------------------------------------------
       integer   csiz,bsiz,isizt,psiz,nsiz,lsiz
       parameter (csiz=63,bsiz=4096,isizt=10000,psiz=4096,nsiz=6)
