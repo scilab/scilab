@@ -69,7 +69,9 @@ case 'define' then
   model.blocktype='c'
   model.dep_ut=[%f %t]
 
-  gr_i=['xstringb(orig(1),orig(2),[''Num(s)'';''-----'';''Den(s)''],sz(1),sz(2),''fill'');']
+  gr_i=['xstringb(orig(1),orig(2),[''num(s)'';''den(s)''],sz(1),sz(2),''fill'')';
+	'xpoly([orig(1)+.1*sz(1),orig(1)+.9*sz(1)],[1,1]*(orig(2)+sz(2)/2))']
+
   x=standard_define([2.5 2.5],model,exprs,gr_i)
 end
 endfunction
