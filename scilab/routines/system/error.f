@@ -68,20 +68,24 @@ c
       if(erecmode) then
 c     error recovery mode
          p=pt+1
-c        . looking if error has occured in execstr deff getf or comp
+c        . looking if error has occurred in execstr deff getf or comp
  20      p=p-1
          if(p.le.errpt) then
             pt0=pt
             goto 50
          endif
-         if(rstk(p).eq.502) then 
+         if(rstk(p).eq.1001) then
+c     .     error has occurred in an external
+            errtyp=0
+            pt0=p
+         elseif(rstk(p).eq.502) then 
             if(rstk(p-1).eq.903) then
-c     .     error has occured in execstr
+c     .     error has occurred in execstr
 
                errtyp=0
                pt0=p
             elseif(rstk(p-1).eq.904.or.rstk(p-1).eq.901) then
-c     .     error has occured in comp
+c     .     error has occurred in comp
                errtyp=0
                pt0=p
             else

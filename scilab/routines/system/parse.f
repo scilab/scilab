@@ -711,7 +711,7 @@ c
 c     last label is used to handle return from abort
       goto(81,82,83,91,88,90,15,80,85,05),icall
       r = rstk(pt)/100
-      goto(81,82,83,91,88,90,92,80,85),r
+      goto(81,82,83,91,88,90,92,80,85,89),r
       goto 99
 c     
  91   icall=0
