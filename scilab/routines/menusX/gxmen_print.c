@@ -207,7 +207,7 @@ static int menu_export (int *colored,int *orient)
   while (1) 
     {
       /* here we only want to quit gtk_main after a selection in 
-       * this menu XXXXX attention rajouter un test sur destroy 
+       * this menu.
        */
       gtk_main();
       if ( rep != RESET ) break;
