@@ -9,5 +9,4 @@ function t=atanh(x)
 if type(x)<>1 then error(53),end
 [m,n]=size(x)
 t=log((ones(m,n)+x).*sqrt(ones(m,n)./(ones(m,n)-(x.*x))))
-
-
+endfunction

@@ -53,3 +53,4 @@ if lhs==2 then
   A=bool2s((A<>0)|(A'<>0));
   A=A+speye(A);
 end
+endfunction

@@ -13,6 +13,4 @@ if m<>n then
 else 
   t=logm(x+sqrtm(x*x+eye()))
 end
-
-
-
+endfunction

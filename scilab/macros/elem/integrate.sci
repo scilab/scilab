@@ -28,6 +28,4 @@ case 5 then for xk=x1,x=[x,intg(x0,xk,func,ea)],end,
 case 6 then for xk=x1,x=[x,intg(x0,xk,func,ea,er)],end,
 else error(39), end,
 x=matrix(x,m,n)
-
-
-
+endfunction

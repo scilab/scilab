@@ -32,3 +32,4 @@ end;
 g1=add_edge(i,n+1,g1);
 g1=add_edge(n+1,j,g1);
 g1=delete_arcs([i j],g1);
+endfunction

@@ -48,4 +48,4 @@ a=a+0*%i;   //Set complex
   end
   x=(u*diag(w1))*inv(u);
 end
-
+endfunction

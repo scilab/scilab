@@ -13,3 +13,4 @@ d1=he(ic);
 [ir,ic]=find(he==i);
 d2=ta(ic);
 d=-sort(-[d1 d2]);
+endfunction

@@ -54,3 +54,4 @@ case 6 then //quiver(X,Y,U,V,linespec,'filled')
       ny+' = ['+ny+';'+ny+' + matrix('+stk(top)(1)+',1,-1)]']
 end
 stk=list('xarrows'+rhsargs([nx,ny]),'0','?','?','?')
+endfunction

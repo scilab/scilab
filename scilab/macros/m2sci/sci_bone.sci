@@ -12,3 +12,4 @@ else
   end
   stk=list('(7*graycolormap('+n+') + hotcolormap('+n+')*[0 0 1;0 1 0;1 0 0])/8','0',n,'3','1')
 end
+endfunction

@@ -55,3 +55,4 @@ case 'length'
 else
   error('Unknown type ""'+typ+'""')
 end
+endfunction

@@ -23,3 +23,4 @@ if (yi<>[]) then
   y1i=0.5*(yi(tta)+yi(hhe));
   g1('node_y')=y1i;
 end
+endfunction

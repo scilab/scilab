@@ -29,4 +29,4 @@ else
   stk=list(ss1+'.^'+ss2,'1','?','?','?')
 end
 top=top-1
-
+endfunction

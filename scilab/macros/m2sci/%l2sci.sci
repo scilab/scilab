@@ -18,6 +18,4 @@ elseif s2(3)=='1'&s2(4)=='1' then
 else
   stk=list(s1(1)+'\'+s2(1),'1',s1(3),s1(4),s1(5))
 end
-
-
-
+endfunction

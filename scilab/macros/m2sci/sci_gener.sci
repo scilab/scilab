@@ -57,6 +57,4 @@ else
     stk(k)=list(nam+rhsargs(RHS),'-1','?','?','?')
   end
 end
-
-
-
+endfunction

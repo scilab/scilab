@@ -41,3 +41,4 @@ if g('edge_weight')<>[] then g1('edge_weight')=[g('edge_weight') 0];end;
 if g('edge_label')<>[] then
   g1('edge_label')=[g('edge_label') string(ma+1)];
 end;
+endfunction

@@ -10,5 +10,4 @@ else
     stk=list('mclose('+stk(top)(1)+')','0','1','1','1')
   end
 end
-
-
+endfunction

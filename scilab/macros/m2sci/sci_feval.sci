@@ -16,5 +16,4 @@ else
   for k=1:lhs,stk(k)=list(' ','-2','0','?','?','?'),end
   top=top-rhs+1
 end
-
-
+endfunction

@@ -8,3 +8,4 @@ function x=sqrtm(a)
 //!
 // Copyright INRIA
 x=%s_pow(a,0.5);
+endfunction

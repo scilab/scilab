@@ -20,4 +20,4 @@ while l<M
   Matplot(double(z(:,l:l1)),"010",[-(l-1),0,M-l+1,N]+0.5)
   l=l1
 end
-
+endfunction

@@ -4,5 +4,4 @@ function i=modulo(n,m)
 // Copyright INRIA
 
 i=n-int(n./m).*m
-
-
+endfunction

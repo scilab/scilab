@@ -17,6 +17,4 @@ nb=degree(b);b=coeff(b)';
 s(na+nb,na+nb)=0;
 for i=1:nb,s(i:na+i,i)=a,end
 for i=1:na,s(i:nb+i,nb+i)=b,end
-
-
-
+endfunction

@@ -25,3 +25,4 @@ else
   error('Unknown argument ""'+sup+'""')  
 end
 m6showns(ns,isup)
+endfunction

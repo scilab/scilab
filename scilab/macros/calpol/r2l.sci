@@ -92,15 +92,15 @@ E = [E 0*ones(rE,supE)];
 Es=clean(mat2pol(E,degE));
 
 
+endfunction
 function [As]=mat2pol(A,degA)
 [na,ma]=size(a);long=ma/(degA+1);
 nb=degA+1;debut=1;fin=long;As=0*ones(na,fin);
 s=poly(0,'s');
 for k=1:nb ,As=As+s^(k-1)*A(:,debut:fin),debut=fin+1,fin=fin+long,end
 
+endfunction
 function [F,degF]=pol2mat(Fs)
 degf=maxi(degree(Fs));
 F=coeff(Fs);
-
-
-
+endfunction

@@ -115,6 +115,7 @@ end
 
 
 
+endfunction
 function txt=i_notation(txt)
 // Change 1i ,... by 1*i,...
 n=size(txt,1)
@@ -166,6 +167,7 @@ for k=1:n
   txt(k)=tk
 end
 
+endfunction
 function i_n_test()
 Txt=[
 'x=1+k2i1'
@@ -183,3 +185,4 @@ for k=1:size(Txt,1)
   txt=Txt(k)
   disp(txt+' --> '+i_notation(txt))
 end
+endfunction

@@ -47,4 +47,4 @@ else
   vn=vn($)//??????
   stk(top)=list(vnms(vn,1),'0',vtps(vn)(2),vtps(vn)(3),vtps(vn)(1))
 end
-
+endfunction

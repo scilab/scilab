@@ -10,4 +10,4 @@ else
   stk=list(stk(top-2)(1)+':'+stk(top-1)(1)+':'+stk(top)(1),'3','1','?','?')
   top=top-2
 end
-
+endfunction

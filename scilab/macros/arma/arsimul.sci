@@ -119,5 +119,4 @@ xi=[0*ones(al,1);xi];
 z=ode('discret',xi,0,1:Nu,fff);
 // Now z contains y_{1},.....y_{Nu};
 z=z(1:al,:)
-
-
+endfunction

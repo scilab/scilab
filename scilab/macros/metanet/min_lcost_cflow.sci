@@ -67,3 +67,4 @@ end
 // compute constrained min cost flow by Busacker and Goven algorithm
 [v,phi,flag]=m6busack(i,j,cv,maxcap,g('head'),g('tail'),la,lp,n,costs)
 c=costs*phi'
+endfunction

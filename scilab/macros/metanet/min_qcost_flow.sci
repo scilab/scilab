@@ -55,3 +55,4 @@ end
 // compute min quadratic cost flow
 [phi,flag]=m6floqua(p,mincap,maxcap,g('head'),g('tail'),la,lp,n,qorig,qweight)
 c=sum(qweight.*(phi-qorig).*(phi-qorig))/2
+endfunction

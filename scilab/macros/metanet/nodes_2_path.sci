@@ -23,3 +23,4 @@ else
 end
 // compute path
 p=m6ns2p(ns,la,lp,ls,n)
+endfunction

@@ -27,5 +27,4 @@ if type(h)< 3 then
    b=h*f;d=0;for l=1:n,d=d+b(l,l),end;d=-d/n;
 end
 if 2*int(n/2)<>n then d=-d;end
-
-
+endfunction

@@ -11,5 +11,4 @@ else
   stk=list(list('unix_g('+stk(top)(1)+')','-1','?','1','10'),..
       list('unix_g('+stk(top)(1)+')','-1','1','1','1'))
 end
-
-
+endfunction

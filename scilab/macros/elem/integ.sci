@@ -35,3 +35,4 @@ elseif orient==2|orient=='c' then
   dx = (x(2:$)-x(1:$-1))/2 ;
   som = dy*matrix(dx,-1,1) ;
 end
+endfunction

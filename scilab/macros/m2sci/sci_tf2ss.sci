@@ -15,5 +15,4 @@ stk=list()
 for k=1:lhs
   stk(k)=s(lhs+1-k)
 end
-
-
+endfunction

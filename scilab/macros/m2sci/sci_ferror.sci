@@ -12,4 +12,4 @@ end
 if rhs==2 then
   txt=[txt;'mclearerr('+fid(1)+')']
 end
-
+endfunction

@@ -20,3 +20,4 @@ else
 end
 // compute node set
 ns=m6p2ns(p,la,lp,ls,g('directed'),n)
+endfunction

@@ -57,5 +57,4 @@ else
   stk=list(B,'0',stk(top-1)(3),stk(top-1)(4),stk(top-1)(5))
   top=top-1
 end
-
-
+endfunction

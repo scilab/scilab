@@ -11,3 +11,4 @@ if rhs==2 then
 else
   stk=list('matrix'+RHS,'0','?','?','?')
 end
+endfunction

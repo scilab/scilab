@@ -47,3 +47,4 @@ while i<>m
   uumem=uu;i=i+1;end;
 end
 che=che(1:m);chn=chn(1:m);
+endfunction

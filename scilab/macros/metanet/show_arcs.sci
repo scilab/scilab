@@ -22,3 +22,4 @@ else
   error('Unknown argument ""'+sup+'""')  
 end
 m6showp(p,isup)
+endfunction

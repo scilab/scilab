@@ -51,4 +51,4 @@ elseif rhs==3 then
     stk=list('mtlb_fft'+rhsargs(args),'0','?','?','1')
   end
 end
-
+endfunction

@@ -22,6 +22,4 @@ for t=t0+1:n2,
   XTM1=XT;UTM1=UT;ETM1=ET;ZTM1=ZT;
 end
 sig=1/(n2-t0)*sum(resid.*resid)
-
-
-
+endfunction

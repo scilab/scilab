@@ -30,3 +30,4 @@ else
     stk=list('clear('+makeargs(vars)+')','0','0','0','1')
   end
 end
+endfunction

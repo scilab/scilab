@@ -13,6 +13,4 @@ for l=1:m1
    n(l,k)=num(l,k)*pdiv(d,den(l,k));
   end;
 end;
-
-
-
+endfunction

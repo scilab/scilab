@@ -7,5 +7,4 @@ end
 set_infos('//! echo '+strcat(RHS,' ')+' ignored',2)
 txt=[txt;    '// echo '+strcat(RHS,' ')]
 stk=list(' ','-2','0','0','1')
-
-
+endfunction

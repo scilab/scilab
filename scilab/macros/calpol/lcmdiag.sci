@@ -25,3 +25,4 @@ D=diag([diag(D);pgcd]);
 N=[N,Num(:,k).*fact];  
 end
 end
+endfunction

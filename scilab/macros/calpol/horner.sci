@@ -32,3 +32,4 @@ for l=1:m
   r=[r;rk]
 end
 if indef then r=r*eye(),end
+endfunction

@@ -29,4 +29,4 @@ j=int((ij-1)/m);
 i=ij-j*m;
 j=j+1;
 a=sparse([i j],rand(nel1-1,1,typ),[m,n]);
-
+endfunction

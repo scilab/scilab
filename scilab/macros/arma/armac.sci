@@ -32,4 +32,4 @@ if nd<>ny then
 	return;
 end
 ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
-
+endfunction

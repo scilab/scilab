@@ -24,6 +24,4 @@ else
   stk=list(e,'2',stk(top)(3),stk(top)(4),'1')
 end
 top=top-1
-
-
-
+endfunction

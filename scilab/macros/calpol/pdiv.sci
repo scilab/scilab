@@ -30,4 +30,4 @@ for l=1:n,
     end;
 end
 if lhs==1 then R=Q; end
-
+endfunction

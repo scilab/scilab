@@ -65,4 +65,4 @@ end
 if op(2)=='global' then
   [vnms,vtps]=resume(vnms,vtps)
 end
-
+endfunction

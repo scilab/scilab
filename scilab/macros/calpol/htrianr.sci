@@ -39,6 +39,4 @@ end
 ww=[v,w];
 A=A(:,ww);U=U(:,ww);
 rk=n-k0;
-
-
-
+endfunction

@@ -32,6 +32,4 @@ if opt<>[] then
 else
   stk=list('save'+rhsargs(args),'0','0','0','0')
 end
-
-
-
+endfunction

@@ -12,3 +12,4 @@ else
         list('size('+stk(top)(1)+')','-1','1','1','?'))
   end
 end
+endfunction

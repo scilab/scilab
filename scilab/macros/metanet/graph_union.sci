@@ -122,3 +122,4 @@ a=g('edge_label');a1=g1('edge_label');
 if((a<>[])&(a1<>[])) then
   g2('edge_label')=[a a1];
 end;
+endfunction

@@ -93,3 +93,4 @@ a=g('edge_weight');g1('edge_weight')=a(noe);
 if size(g('edge_label'),2) <> 0,
   a=g('edge_label');g1('edge_label')=a(noe);
 end;
+endfunction

@@ -22,4 +22,4 @@ ymoy=sum(y,2)/n2
 [arc,la,lb,sig]=armax(0,0,y-ymoy*ones(1,n2),x-xmoy*ones(1,n2),0,dflag);
 if typeof(la)=='list' then a=lb(1);else a=lb;end
 b=ymoy-a*xmoy;
-
+endfunction

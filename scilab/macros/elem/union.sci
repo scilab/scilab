@@ -15,3 +15,4 @@ else
   kb=kab(kab>na)
   if kb<>[] then kb=kb-na,end
 end
+endfunction

@@ -18,3 +18,4 @@ else
 end
 // compute connexity
 [nc,ncomp]=m6compc(lp,ls,n)
+endfunction

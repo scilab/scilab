@@ -13,3 +13,4 @@ for k=1:size(txt,'r')
       if pchar<36 then // extraction
   end
 end
+endfunction

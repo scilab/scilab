@@ -13,3 +13,4 @@ plot2d3("onn",(0:n)',ac,[1],"011"," ",[0,minim,n,maxim]);
 stde=2*sqrt(1/prod(size(x)));
 plot2d( [0,0,0;n,n,n],[0,stde,-stde;0,stde,-stde],[1,2,2],"000")
 xtitle('Autocorrelation Function ');
+endfunction

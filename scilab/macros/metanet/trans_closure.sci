@@ -28,3 +28,4 @@ g('node_diam'),g('node_border'),g('node_font_size'),g('node_demand'),..
 [],[],[],[],[],[],[],[],[],[],[],[],..
 g('default_node_diam'),g('default_node_border'),g('default_edge_width'),..
 g('default_edge_hi_width'),g('default_font_size'),[],[])
+endfunction

@@ -12,4 +12,4 @@ else
   txt='['+out+','+ierr+']=evstr('+stk(top)(1)+')'
   stk=list(out,'0','?','?','1')
 end
-
+endfunction

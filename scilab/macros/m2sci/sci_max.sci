@@ -30,4 +30,4 @@ if lhs<>1 then
   stk(2)='-1'
   stk=list(stk,stk)
 end
-
+endfunction

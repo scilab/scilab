@@ -50,6 +50,4 @@ same=['error','input','clc','home','fprintf','sprintf','emptystr',..
 [logics,same,ops,%else,%end,%elseif,%if,%for,%select,%while,%case,%then]=...
 resume(logics,same,ops,%else,%end,%elseif,%if,%for,%select,%while,%case,%then)
  
-
-
-
+endfunction

@@ -44,3 +44,4 @@ else
   end
   t=m6edge2st(alf) 
 end
+endfunction

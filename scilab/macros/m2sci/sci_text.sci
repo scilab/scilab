@@ -18,6 +18,4 @@ else
   txt=lhsargs([x,y])+' = geom3d'+rhsargs([x1,y1,z1])
   stk=list('xstring'+rhsargs([x,y,str]),'0','0','0','0')
 end
-
-
-
+endfunction

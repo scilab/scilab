@@ -16,3 +16,4 @@ else
     x(find(x(2:$)==x(1:$-1)))=[]
   end
 end
+endfunction

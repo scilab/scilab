@@ -14,3 +14,4 @@ if norm(imag(a),1)==0 then
 else
   x=-0.5*%i*(expm(%i*a)-expm(-%i*a));
 end
+endfunction

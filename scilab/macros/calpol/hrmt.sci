@@ -12,6 +12,4 @@ for k=2:m
  [pg,uk]=bezout(pg,v(k))
  U(:,k-1:k)=U(:,k-1:k)*uk(:,[2 1])
 end
-
-
-
+endfunction

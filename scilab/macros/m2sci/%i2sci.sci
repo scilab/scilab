@@ -21,9 +21,8 @@ if rhs==1 then
     stk=list(op(2),'-1','?','?',sto(5))
   else
     if s2(5)=='10' then //x('i')=y
-      ind=part(s2(1),2:length(s2(1))-1)
       if s2(2)=='0' then
-	txt=[txt;sto(1)+'.'+ind+' = '+sfrom(1)]
+	txt=[txt;sto(1)+'.'+part(s2(1),2:length(s2(1))-1)+' = '+sfrom(1)]
       else
 	txt=[txt;sto(1)+'('+s2(1)+') = '+sfrom(1)]
       end
@@ -72,6 +71,7 @@ else // x(i,j)=y
   end
 end
 
+endfunction
 function [stk,txt,top]=%i2sci_rec()
 n=s2(1)(1)
 m=s2(1)(2)
@@ -90,6 +90,7 @@ end
 txt=ex+'='+sfrom(1)
 stk=list(' ','-1','?','1','?')
 
+endfunction
 function [stk,txt,top]=%i2sci_rec2(s2,flag)
 n=s2(1)(1)
 m=s2(1)(2)
@@ -117,6 +118,7 @@ end
 
 
 
+endfunction
 function [stk,txt,top]=%i2sci_s()
 // x(i)=y with x a scalar
 if sfrom(3)=='1'&sfrom(4)=='1' then
@@ -135,6 +137,7 @@ else
 end
 stk=list(op(2),'-1','1','?',sto(5))
 
+endfunction
 function [stk,txt,top]=%i2sci_r()
 // x(i)=y with x  a row
 
@@ -155,6 +158,7 @@ else
 end
 stk=list(op(2),'-1','1','?',sto(5))
 
+endfunction
 function [stk,txt,top]=%i2sci_c()
 //  x(i)=y with x  a column vector
 if sfrom(3)=='1'&sfrom(4)=='1' then //insert a scalar
@@ -175,6 +179,7 @@ else
 end
 stk=list(op(2),'-1','?','1',sto(5))
 
+endfunction
 function [stk,txt,top]=%i2sci_g()
 //  x(i)=y with x a matrix
 e=sto(1)+' = mtlb_i('+sto(1)+','+s2(1)+','+sfrom(1)+')'
@@ -185,5 +190,4 @@ set_infos([
     '  or if '+sto(1)+' and '+sfrom(1)+' are both row or column vectors'],1)
 txt=[txt; e]
 stk=list(op(2),'-1','?','?',sto(5))
-
-
+endfunction

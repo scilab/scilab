@@ -32,4 +32,4 @@ else //SYS = SS(SYS)
       'matlab syntax used'],2)
   stk=list('ss'+rhsargs(RHS),'0',w(1,1),w(1,2),w(1,3))
 end
-
+endfunction

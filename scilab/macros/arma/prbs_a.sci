@@ -23,6 +23,4 @@ for i=1:n2-1,
         u(ids(i+1):ids(i))=val*ones(ids(i+1):ids(i));val=-1*val;
        end
 end
-
-
-
+endfunction

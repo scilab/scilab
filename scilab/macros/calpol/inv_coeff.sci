@@ -12,4 +12,4 @@ p=poly(0,name);
 P=p.^[0:d];
 P=P.*.eye(m/(d+1),m/(d+1));
 P= c*P'
-
+endfunction

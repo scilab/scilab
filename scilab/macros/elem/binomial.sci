@@ -11,3 +11,4 @@ function pr=binomial(p,n)
 //plot2d(x,gauss(x));
 z=poly(0,'z');
 pr=coeff((1-p+z)^n).*horner(z^(0:n),p);
+endfunction

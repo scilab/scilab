@@ -38,3 +38,4 @@ end
 if t<>[] then
   txt=[txt;ascii(t)]
 end
+endfunction

@@ -6,3 +6,4 @@ t1=exp(x);t2=exp(-x);
 t=(t1-t2)./(t1+t2);
 k=find(isnan(t))
 t(k)=sign(real(x(k)))
+endfunction

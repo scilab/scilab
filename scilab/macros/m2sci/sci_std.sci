@@ -59,7 +59,4 @@ else
     stk=list('st_deviation('+s1(1)+','+s3(1)+')*sqrt(1-1/size('+x+','+s3(1)+'))','0',m,n,s1(5))
   end
 end
-
-
-
-
+endfunction

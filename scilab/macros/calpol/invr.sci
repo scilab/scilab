@@ -89,8 +89,4 @@ if type(h)==15|type(h)==16 then
   end;
 end;
 error('invalid input to invr');
-
-
-
-
-
+endfunction

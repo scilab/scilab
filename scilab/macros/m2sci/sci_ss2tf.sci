@@ -38,4 +38,4 @@ txt=[txt;
     DEN+' = '+DEN+'($:-1:1)';
     'simp_mode(%sm)']
 stk=list(list('?','-2','1','?','?'),list('?','-2','1','?','?'))
-
+endfunction

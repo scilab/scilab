@@ -8,3 +8,4 @@ if k<>[] then
 else
   r=-1
 end
+endfunction

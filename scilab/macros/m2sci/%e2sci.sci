@@ -78,3 +78,4 @@ else
     stk=list(sn(1)+rhsargs([s1(1),s2(1)]),'0','?','?',sn(5))
   end
 end
+endfunction

@@ -26,3 +26,4 @@ n3=n+n+n;n4=n3+n;
 [a,b]=m6permuto(n,n3,n4,c,f,d)
 crit=a;
 order=b(1:n);
+endfunction

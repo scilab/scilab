@@ -32,3 +32,4 @@ B=demand(1:$-1)';
 pi=lusolve(h,B); pi(n)=0;
 ludel(h);
 x=-rp*a'*pi;
+endfunction

@@ -48,5 +48,4 @@ else // more than one input argument (option or generalized eigen values?)
     stk=list(list(' ','-2',m,n,'1'),list(' ','-2',m,n,'1'))
   end
 end    
-
-
+endfunction

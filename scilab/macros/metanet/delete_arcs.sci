@@ -57,3 +57,4 @@ a=g('edge_q_weight');g1('edge_q_weight')=a(ii);
 a=g('edge_q_orig');g1('edge_q_orig')=a(ii);
 a=g('edge_weight');g1('edge_weight')=a(ii);
 a=g('edge_label');g1('edge_label')=a(ii);
+endfunction

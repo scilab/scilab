@@ -39,3 +39,4 @@ if uniqueflag then
   x(k,:)=[]
   ind(k)=[]
 end
+endfunction

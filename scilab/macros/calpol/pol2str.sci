@@ -35,6 +35,4 @@ for k=1:n
     if k>1 then str=str+'^'+string(k),end
   end
 end
-
-
-
+endfunction

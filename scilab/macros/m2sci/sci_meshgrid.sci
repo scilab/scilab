@@ -50,5 +50,4 @@ else
   X='mtlb_meshgrid('+makeargs([X,Y,Z])+')'
   stk=list(list(X,'-1','?','?','1'),list(X,'-1','?','?','1'))
 end
-
-
+endfunction

@@ -13,3 +13,4 @@ elseif my==mx&ny==nx then
 else
   stk=list('pmodulo'+rhsargs([stk(top-1)(1),stk(top)(1)]),'0','?','?','1')
 end
+endfunction

@@ -23,3 +23,4 @@ else
   r=list('?','-2','1','?','1'),
   stk=list(r,r,r)
 end
+endfunction

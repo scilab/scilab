@@ -23,4 +23,4 @@ else
     stk(3)=list(nam+rhsargs(RHS),'-1','1','1','1')
   end
 end
-
+endfunction

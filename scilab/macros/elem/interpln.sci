@@ -36,8 +36,4 @@ for pt=1:n,
   end
   y(1,pt)=xyd(2,k)+(xpt-xyd(1,k))*d(k)
 end
-
-
-
-
-
+endfunction

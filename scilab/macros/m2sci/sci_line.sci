@@ -53,7 +53,4 @@ end
 txt=[txt;'xpolys'+rhsargs([x,y,options])]
 top=top-1
 stk=list(' ','-2','0','0','0')
-
-
-
-
+endfunction

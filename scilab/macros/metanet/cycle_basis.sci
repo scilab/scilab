@@ -52,3 +52,4 @@ for i=1:nu,
   ncy=size(cycle,2);
   spc(i,1:ncy)=cycle;
 end
+endfunction

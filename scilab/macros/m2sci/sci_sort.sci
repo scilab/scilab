@@ -53,3 +53,4 @@ else
   stk=list(list('?','-2',stk(top)(3),stk(top)(4),'1'),..
       list('?','-2',stk(top)(3),stk(top)(4),'1'))
 end
+endfunction

@@ -72,3 +72,4 @@ wkk=w(kk);
 end
 end    //'d'
 end   //RHS=2
+endfunction

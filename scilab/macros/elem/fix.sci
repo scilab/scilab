@@ -4,3 +4,4 @@ function x= fix(x)
 //x(:)=y;
 // Copyright INRIA
 x=int(x);
+endfunction

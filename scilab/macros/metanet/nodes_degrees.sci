@@ -8,3 +8,4 @@ i=g('directed')
 outdegree=lp(2:np1)-lp(1:n);
 [lp,la,ls] = adj_lists(i,n,he,ta);
 indegree=lp(2:np1)-lp(1:n);
+endfunction

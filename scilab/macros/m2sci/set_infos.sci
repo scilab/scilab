@@ -12,3 +12,4 @@ case 2 then
   txt=[txt;' ';'//!! '+t]
 end
 txt=resume(txt)
+endfunction

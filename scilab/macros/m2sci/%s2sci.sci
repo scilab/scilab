@@ -19,6 +19,4 @@ if op(3)=='2' then
 else
   stk=list('-'+s2(1),'2',s2(3),s2(4),s2(5))
 end
-
-
-
+endfunction

@@ -17,4 +17,4 @@ y=real(f(z)*%i*(b-a)*z)')
 deff('y=imag1(t)','z=z0+r*exp(%i*((1-t)*a+t*b)),...
 y=imag(f(z)*%i*(b-a)*z)')
 r=intg(0,1,real1)+%i*intg(0,1,imag1)
-
+endfunction

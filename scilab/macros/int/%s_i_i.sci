@@ -8,4 +8,4 @@ else
   is=inttype(n)
   n(i,j)=iconvert(f2,is)
 end
-
+endfunction

@@ -47,3 +47,4 @@ if sum(demand)<>0 then
 end
 // compute linear min cost flow by relaxation method (Bertsekas)
 [c,phi,flag]=m6relax(g('head'),g('tail'),costs,maxcap,demand,arc_number(g),n)
+endfunction

@@ -95,6 +95,4 @@ to_kill=sort(to_kill)
 for k=1:prod(size(to_kill))
   lst(to_kill(k))=null();
 end
-
-
-
+endfunction

@@ -11,3 +11,4 @@ n=size(xy,2);
 nn=2*n;
 [nhull,iwork]=m6hullcvex(n,nn,xy);
 ind=iwork(1:nhull);
+endfunction

@@ -19,4 +19,4 @@ else
   stk=list('eye('+stk(top-1)(1)+','+stk(top)(1)+')','0',stk(top-1)(1),stk(top)(1),'?')
   top=top-1
 end
-
+endfunction

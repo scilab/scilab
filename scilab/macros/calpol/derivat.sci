@@ -38,6 +38,4 @@ if t==16 then
   end;
 end;
 error('incorrect data type')
-
-
-
+endfunction

@@ -18,5 +18,4 @@ else
   stk=list(s1(1)+'+'+s2(1),'2',s1(3),s1(4),s1(5))
 end
 top=top-1
-
-
+endfunction

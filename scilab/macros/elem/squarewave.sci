@@ -8,4 +8,4 @@ function s = squarewave(t,%)
 [lhs,rhs]=argn()
 if rhs<2 then %=50,end
 s=2*bool2s(modulo(t,2*%pi) < 2*%pi*%/100)-1
-
+endfunction

@@ -17,3 +17,4 @@ end
 if i==0 then p=[]
 else p=m6prevn2p(i,i,r,la,lp,ls,g('directed')), r=[]
 end
+endfunction

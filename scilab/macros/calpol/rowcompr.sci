@@ -13,7 +13,4 @@ Ac=Ac';
 X=U';
 X=X(n:-1:1,:)
 Ac=Ac(n:-1:1,:)
-
-
-
-
+endfunction

@@ -9,3 +9,4 @@ dg=maxi(degree(Ds))+1;
 [nout,nin]=size(Ds);
 [Sl]=markp2ss(coeff(Ds),dg,nout,nin);
 N=Sl(2);B=-Sl(3);C=Sl(4)
+endfunction

@@ -33,3 +33,4 @@ g1('node_diam')=g('node_diam');
 g1('node_border')=g('node_border');
 g1('node_font_size')=g('node_font_size');
 g1('node_demand')=g('node_demand');
+endfunction

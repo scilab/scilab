@@ -170,3 +170,4 @@ if cw==0 then
   cw=m6inimet(' ',winsize(1),winsize(2))
 end
 m6showg(g,g('name'),ma,cw,irep,scale,is_nlabel,is_elabel)
+endfunction

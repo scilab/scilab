@@ -9,3 +9,4 @@ end
 // checking of g is made in strong_connex
 [l,nc]=strong_connex(g)
 ns=m6sconcom(i,nc)
+endfunction

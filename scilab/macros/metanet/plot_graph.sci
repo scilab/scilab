@@ -245,3 +245,4 @@ if ((rep(4)==1)|(rep(5)==1)|(rep(8)==1)) then,
     xstring(xnodes(i)-ray(i)/2,-ynodes(i)-ray(i)/2,towrite);
   end;
 end;
+endfunction

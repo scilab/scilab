@@ -53,3 +53,4 @@ else //diff(x,N)
     stk=list(x+'('+addf('1',N)+':$,:)-'+x+'(1:$-'+N+',:)','1','1','1','1')
   end
 end
+endfunction

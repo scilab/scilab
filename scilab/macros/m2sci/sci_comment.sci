@@ -10,3 +10,4 @@ else
 // txt='//'+stk(1) 
 end
 stk=list(' ','-1','?','?','?')
+endfunction

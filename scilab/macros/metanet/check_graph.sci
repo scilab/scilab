@@ -253,3 +253,4 @@ if prod(s)<>0 then
     error('Graph list check: ""edge_label"" must be a row vector of size '+string(ma))
   end
 end
+endfunction

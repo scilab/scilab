@@ -16,4 +16,4 @@ flag=or(a<>a');
 if flag then error('signm: non hermitian matrix'),end
 [u,s]=schur(a)
 x=u'*diag(sign(real(diag(s))))*u
-
+endfunction

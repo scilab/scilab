@@ -84,6 +84,7 @@ arc=armac(a,b,d,1,1,sig);
 
 
 
+endfunction
 function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
 //=============================================
 //<sig,resid>=epred(r,s,q,coef,y,u,b0f)
@@ -108,6 +109,4 @@ for t=t0+1:n2,
   XTM1=XT;UTM1=UT;ETM1=ET;ZTM1=ZT;
 end
 sig=1/(n2-t0)*sum(resid.*resid)
-
-
-
+endfunction

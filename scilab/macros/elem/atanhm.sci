@@ -10,4 +10,4 @@ if m<>n then
 else 
   t=logm((eye()+x)*sqrtm(eye(x)/(eye()-x*x)))
 end
-
+endfunction

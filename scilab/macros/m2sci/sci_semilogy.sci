@@ -7,3 +7,4 @@ for k=1:rhs
   top=top-1
 end
 stk=list('mtlb_semilogy'+'('+makeargs(RHS)+')','0','?','?','?')
+endfunction

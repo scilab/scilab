@@ -9,3 +9,4 @@ end
 // checking of g is made in connex
 [l,nc]=connex(g)
 ns=m6concom(i,nc)
+endfunction

@@ -33,6 +33,4 @@ else
   stk=list(e,'0','0','0','0')
   top=top-2
 end
-
-
-
+endfunction

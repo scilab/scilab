@@ -57,3 +57,4 @@ elseif rhs==2 then
   top=top-1
 end
 stk=list(' ','-2','0','0','0')
+endfunction

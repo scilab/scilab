@@ -12,5 +12,4 @@ case 15
 else
   answ = size(m,'*')==0;
 end;
-
-
+endfunction

@@ -7,7 +7,4 @@ else
   r=list('frexp('+stk(top)(1)+')','-1',stk(top)(3),stk(top)(4),'1')
   stk=list(r,r)
 end
-
-
-
-
+endfunction

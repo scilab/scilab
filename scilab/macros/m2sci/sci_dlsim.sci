@@ -46,3 +46,4 @@ else //DLSIM(NUM,DEN,U)
     stk=list('rtitr'+rhsargs([NUM,DEN,U])+'.''','0',nt,'1','1')
   end
 end
+endfunction

@@ -9,3 +9,4 @@ function w=sdiff(z,d)
 if rhs==1;d=1;end
 w=z;
 for i=1:d,[n1,n2]=size(w); w=w(:,2:n2)-w(:,1:(n2-1));end
+endfunction

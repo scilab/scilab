@@ -62,3 +62,4 @@ if (g('node_demand')<>[]) then g1('node_demand')=[g1('node_demand') 0];end;
 if (g1('node_label')<>[]) then
   g1('node_label')=[g1('node_label') string(n+1)];
 end;
+endfunction

@@ -16,8 +16,10 @@ end
 fptr=list(kfuns,fptr)
 
 
+endfunction
 function restorefuns(fptr)
 [funs,fptr]=fptr(1:2)
 for k=1:size(funs,'*')
   newfun(funs(k),fptr(k))
 end
+endfunction

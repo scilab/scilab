@@ -38,10 +38,4 @@ else
   for kk=1:k,fi=[fi,det(freq(W,ones(W),ksi(kk)))];end
   res=clean(real(poly(fft(fi,1),varn(W),'c')),epsa,epsr);
 end
-
-
-
-
-
-
-
+endfunction

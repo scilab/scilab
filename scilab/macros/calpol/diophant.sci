@@ -18,6 +18,4 @@ else
    err=norm(coeff(b-x*q),2)/norm(coeff(b),2)
    x=q*u(:,1)
 end
-
-
-
+endfunction

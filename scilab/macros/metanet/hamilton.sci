@@ -16,3 +16,4 @@ nc=1;nb=-1;
 //nb = number of backtracking to be performed (nb=-1 means exact procedure)
 [s]=m6hamil(n,m,np1,pr,ls,nc,nb); s=[s s(1)];
 if(s <> []) then cir=nodes_2_path(s,g);else cir=[];end;
+endfunction

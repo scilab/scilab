@@ -6,3 +6,4 @@ if rhs<1 then
 else
   stk=list('hotcolormap('+stk(top)(1)+')','0',stk(top)(1),'3','1')
 end
+endfunction

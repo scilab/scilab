@@ -91,3 +91,4 @@ a=g('edge_q_weight');g1('edge_q_weight')=a(v);
 a=g('edge_q_orig');g1('edge_q_orig')=a(v);
 a=g('edge_weight');g1('edge_weight')=a(v);
 a=g('edge_label');g1('edge_label')=a(v);
+endfunction

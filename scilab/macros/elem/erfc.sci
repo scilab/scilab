@@ -17,3 +17,4 @@ function y=erfc(x)
 //!
 // Copyright INRIA
 y=calerf(x,1)
+endfunction

@@ -9,3 +9,4 @@ for k=1:rhs
 end
 top=top+1
 stk=list(nam+rhsargs(RHS),'0','1','1','?')
+endfunction

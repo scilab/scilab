@@ -18,3 +18,4 @@ end
 
 stk=list('global('+makeargs(vars)+')','0','0','0','1')
 [vnms,vtps]=resume(vnms,vtps)
+endfunction

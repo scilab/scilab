@@ -118,6 +118,4 @@ case %select then
   vtps=vtps_n
   vnms=vnms_n
 end
-
-
-
+endfunction

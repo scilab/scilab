@@ -6,5 +6,4 @@ function []=null()
 //!
 
 // Copyright INRIA
-
-
+endfunction

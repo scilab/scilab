@@ -118,3 +118,4 @@ if(ierr == 64000) then
     error('program terminated by error');
 return;end;
 end;
+endfunction

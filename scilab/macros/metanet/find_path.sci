@@ -22,3 +22,4 @@ end
 // compute path
 [l,v]=m6dfs(i,lp,ls,n)
 p=m6prevn2p(i,j,v,la,lp,ls,g('directed'))
+endfunction

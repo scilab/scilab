@@ -8,4 +8,4 @@ r=0
 if ierr<>0 then m=-1,end
 [n,ierr]=evstr(v(4))
 if ierr<>0 then n=-1,end
-
+endfunction

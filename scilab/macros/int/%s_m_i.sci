@@ -9,4 +9,4 @@ case 2 then
 case 4 then
   r=int32(a)*b
 end
-
+endfunction

@@ -6,3 +6,4 @@ if rhs<0 then
 else
   stk=list('unix_w(''ls ''+'+stk(top)(1)+')','0','?','?','?')
 end
+endfunction

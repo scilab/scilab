@@ -8,8 +8,4 @@ else
   stk=list('linspace'+rhsargs([stk(top-2)(1),stk(top-1)(1),stk(top)(1)]),'0','1',stk(top)(1),'1')
   top=top-2
 end
-
-
-
-
-
+endfunction

@@ -8,4 +8,4 @@ else
   txt=s+'='+stk(top)(1)
 end
 stk=list(s+'(1)(2:$)','0','?','1','10','?')
-
+endfunction

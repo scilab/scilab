@@ -11,3 +11,4 @@ else
   stk=list(list('mtlb_fread'+rhsargs(RHS),'-1','?','?','1'),..
            list('mtlb_fread'+rhsargs(RHS),'-1','1','1','1'))
 end
+endfunction

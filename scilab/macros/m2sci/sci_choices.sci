@@ -13,3 +13,4 @@ txt=['while %t;'
   'execstr(callbacks('+num+'))'
   'end']
 stk=list(' ','-2','0','0','1')
+endfunction

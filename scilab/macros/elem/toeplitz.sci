@@ -13,5 +13,4 @@ if nr*nc==0 then a=[],return,end
 if r(1)<>c(1) then error('conflicting  r(1) and c(1)'),end
 a(nc,nr)=r(1);k=mini([nr,nc]);
 for l=1:k,a(l,l:nr)=r(1:nr-l+1),a(l:nc,l)=c(1:nc-l+1),end
-
-
+endfunction

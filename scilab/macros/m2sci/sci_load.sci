@@ -10,7 +10,4 @@ for k=1:rhs
   args=[args,stk(top-rhs+k)(1)]
 end
 stk=list('mtlb_load'+rhsargs(args),'0','0','0','0')
-
-
-
-
+endfunction

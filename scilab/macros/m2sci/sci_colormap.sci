@@ -13,3 +13,4 @@ else
   stk=list('mtlb_colormap('+stk(top)(1)+')','0','?','3','1')
 end
  
+endfunction

@@ -21,3 +21,4 @@ if (s(1)<>1|s(2)<>2) then
   error('The argument ""winsize"" must be a row vector with size 2')
 end
 scr=m6inimet(path,winsize(1),winsize(2))
+endfunction

@@ -16,5 +16,4 @@ if te1=='2'|te1=='3' then s1='('+s1+')',end
 if part(s2,1)=='-' then s2='('+s2+')',end
 stk=list(s1+'^'+s2,'2',m1,n1,'1')
 top=top-1
-
-
+endfunction

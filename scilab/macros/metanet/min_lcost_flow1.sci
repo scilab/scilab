@@ -57,3 +57,4 @@ end
 // compute linear min cost flow by out-of-kilter algorithm
 [phi,flag]=m6kilter(mincap,maxcap,g('head'),g('tail'),la,lp,n,costs)
 c=costs*phi'
+endfunction

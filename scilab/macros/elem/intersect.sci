@@ -17,3 +17,4 @@ else
   ka=kab(keq+1)
   kb=kab(keq)
 end
+endfunction

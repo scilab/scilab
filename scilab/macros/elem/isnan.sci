@@ -5,3 +5,4 @@ if x==[] then
 else
   r=~(x==x)
 end
+endfunction

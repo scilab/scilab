@@ -14,5 +14,4 @@ for l=2:m*n,
 end,
 fact=matrix(fact,m,n),
 p=p0;
-
-
+endfunction

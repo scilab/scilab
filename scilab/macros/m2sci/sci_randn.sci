@@ -21,5 +21,4 @@ elseif rhs==1 then
 else
   stk=list('rand('+stk(top-1)(1)+','+stk(top)(1)+',''n'')','0',stk(top-1)(1),stk(top)(1),'1','?')
 end
-
-
+endfunction

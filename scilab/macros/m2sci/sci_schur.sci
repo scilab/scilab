@@ -8,4 +8,4 @@ else
   stk=list(list('schur('+s(1)+')','-1',s(3),s(4),'1','?'),..
            list('schur('+s(1)+')','-1',s(3),s(4),'1','?'))
 end
-
+endfunction

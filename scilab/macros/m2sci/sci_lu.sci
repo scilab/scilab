@@ -12,4 +12,4 @@ else
   r= list('lu('+s(1)+')','-1',s(3),s(4),'1','?')   
   stk=list(r,r,r)     
 end
-
+endfunction

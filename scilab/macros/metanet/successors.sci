@@ -14,3 +14,4 @@ end
 ta=g('tail');he=g('head');
 [ir,ic]=find(ta==i);
 d=he(ic);
+endfunction

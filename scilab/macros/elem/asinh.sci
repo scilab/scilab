@@ -8,7 +8,4 @@ function t=asinh(x)
 // Copyright INRIA
 if type(x)<>1 then error(53),end
 t=log(x+sqrt(x.*x+ones(x)))
-
-
-
-
+endfunction

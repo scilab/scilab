@@ -15,3 +15,4 @@ if d<>[] then k([d;d+1])=[],end
 keep = find(k <= na); 
 a = a(k(keep));
 ka = ka(k(keep));
+endfunction

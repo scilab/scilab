@@ -17,3 +17,4 @@ elseif cr=='r'|cr==1
 else
   error('2nd argument cr must be equal to ''c'' or 2, ''r''or  1');
 end
+endfunction

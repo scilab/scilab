@@ -10,6 +10,4 @@ if type(x)<>1 then error(53),end
 if x==[] then t=[],return,end
 t=-%i*log(%i*x+sqrt(ones(x)-x.*x))
 if norm(imag(x))==0&maxi(abs(x))<=1 then  t=real(t);end
-
-
-
+endfunction

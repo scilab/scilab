@@ -11,6 +11,4 @@ t=-%i*log(x+%i*sqrt(ones(x)-x.*x))
 if norm(imag(x))==0&maxi(abs(x))<=1 then 
   t=real(t);
 end
-
-
-
+endfunction

@@ -4,4 +4,4 @@ function [stk,top]=num2sci(val,stk)
 // Copyright INRIA
 top=top+1
 stk(top)=list(val,'0','1','1','1')
-
+endfunction

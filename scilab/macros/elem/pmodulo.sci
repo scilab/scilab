@@ -4,6 +4,4 @@ function i=pmodulo(n,m)
 //!
 // Copyright INRIA
 i=n-floor(n./m).*m
-
-
-
+endfunction

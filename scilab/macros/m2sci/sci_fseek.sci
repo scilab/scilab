@@ -22,4 +22,4 @@ else
   flag='fseek_origin('+origin(1)+')'
 end
 stk=list('mseek'+rhsargs([offset(1),fid(1),flag]),'0','1','1','1')
-
+endfunction

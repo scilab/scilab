@@ -44,3 +44,4 @@ if directed==1 then
 else
   [lp,la,ls]=m6ta2lpu(tail,head,n+1,n,2*ma)
 end
+endfunction

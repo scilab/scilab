@@ -10,6 +10,4 @@ function [Y,rk,Ac]=colcompr(A);
 // Copyright INRIA
 [m,n]=size(A);
 [Ac,Y,rk]=htrianr(A);
-
-
-
+endfunction

@@ -10,3 +10,4 @@ if rhs==2 then
 else
   stk=list('norm('+stk(top)(1)+')','0','1','1','1','?')
 end
+endfunction

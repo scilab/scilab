@@ -3,4 +3,4 @@ function [stk,txt,top]=sci_ftell()
 txt=[]
 fid=stk(top)
 stk=list('mtell('+fid(1)+')','0','1','1','1')
-
+endfunction

@@ -5,4 +5,4 @@ if x==[] then
 else
   r=abs(x)==%inf
 end
-
+endfunction

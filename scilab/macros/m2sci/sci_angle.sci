@@ -8,3 +8,4 @@ else
   txt=n+'='+stk(top)(1)
 end
 stk=list('atan(imag('+n+'),real('+n+'))','0',stk(top)(3),stk(top)(4),'1')
+endfunction

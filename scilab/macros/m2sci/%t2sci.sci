@@ -11,4 +11,4 @@ if part(s2(1),length(s2(1)))==quote then
 else
   stk=list(s2(1)+quote,s2(2),s2(4),s2(3),s2(5))
 end
-
+endfunction

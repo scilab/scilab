@@ -6,3 +6,4 @@ if rhs==0 then
 else
   stk=list('mtlb_hold('+stk(top-rhs+1)(1)+')','0','0','0','0')
 end
+endfunction

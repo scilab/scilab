@@ -29,3 +29,4 @@ end
 [c,v]=m6chcm(i,la,lp,ls,n,g('edge_max_cap'))
 p=m6prevn2p(i,j,v,la,lp,ls,g('directed'))
 cap=c(j)
+endfunction

@@ -32,3 +32,4 @@ if(vstar==-5) then print(%io(2),'A knapsack contains all the items');end;
 ind=xstar;
 ij=find(xstar<>0);
 ind=zeros(xstar);ind(ij)=k2(xstar(kk(ij)));
+endfunction

@@ -6,6 +6,4 @@ function [x]=isnum(str)
  [H,ierr]=evstr(str)
  x=ierr==0
 //x=find(part(str,1)==string(0:9))<>[];
-
-
-
+endfunction

@@ -18,4 +18,4 @@ else
     stk(2)=list(nam+rhsargs(RHS),'-1','1','1','10')
   end
 end
-
+endfunction

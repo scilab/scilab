@@ -12,3 +12,4 @@ else
     stk=list('diary('+stk(top)(1)+')','0','0','0','0')
   end
 end
+endfunction

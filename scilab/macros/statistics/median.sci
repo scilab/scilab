@@ -29,3 +29,4 @@ else
   error('median : second argument must be ''r'', ''c'', 1 or 2')
 end
   
+endfunction

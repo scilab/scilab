@@ -12,3 +12,4 @@ else
   end
   stk=list('sqrt((2*graycolormap('+n+') + hotcolormap('+n+'))/3)','0',n,'3','1')
 end
+endfunction

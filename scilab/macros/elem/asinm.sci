@@ -8,7 +8,4 @@ if m<>n then
 else 
   t=-%i*logm(%i*x+sqrtm(eye()-x*x))
 end
-
-
-
-
+endfunction

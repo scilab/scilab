@@ -14,3 +14,4 @@ else
   txt=map+'=ones(ceil('+n+'/4),1).*.[1 0 0;1 1 1;0 0 1;0 0 0]'
   stk=list(map+'(1:'+n+',:)','0',n,'3','1')
 end
+endfunction

@@ -18,3 +18,4 @@ else
       r+'=(0:'+n+')''/'+n+';']
   stk=list('['+r+',1-'+r+',ones('+r+')]','0',n,'3','1')
 end
+endfunction

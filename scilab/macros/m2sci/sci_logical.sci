@@ -7,3 +7,4 @@ set_infos(['logical('+stk(top)(1)+') replaced by '+stk(top)(1);
 stk=list('stk(top)(1)','0',stk(top)(3),stk(top)(4),stk(top)(5))
 //ceci pourrait etre ameliore avec une propriete supplementaire qui serait le 
 //type Matlab, type que l'on interrogerait dans l'extration et insertion..
+endfunction

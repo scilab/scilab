@@ -7,3 +7,4 @@ function [r] = spones(s)
 //
 [ij,v,mn]=spget(s);
 r=sparse(ij,ones(v),mn);
+endfunction

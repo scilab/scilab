@@ -17,5 +17,4 @@ else
   txt='for %w=winsid(),xdel(%w);end'
   stk=list(' ','-2','0','0','1')
 end
-
-
+endfunction

@@ -18,8 +18,4 @@ else //figure without argument
     stk=list('max(winsid())','0','1','1','1')
   end
 end
-
-
-
-
-
+endfunction

@@ -13,3 +13,4 @@ nd2=n/2;nd8=int(n/8);np1=n+1;nt2=2*n;mt2=2*m;mt3=3*m;mt4=4*m;
 n8t8=ceil(n/8)*8;
 ta=g('tail');he=g('head');
 [card,match]=m6bmatch(n,m,nd2,n8t8,nd8,np1,nt2,mt2,mt3,mt4,n,m,ta,he)
+endfunction

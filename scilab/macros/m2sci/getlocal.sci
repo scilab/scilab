@@ -38,6 +38,4 @@ else
   end
   out='iwork(iiw'+nam+')'
 end
-
-
-
+endfunction

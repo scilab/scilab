@@ -19,3 +19,4 @@ if (ii <> m2) then
 end
 [lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,m2)
 [cost,nmatch]=m6prfmatch(n,m,n+1,m2,ls,arcost,lp);
+endfunction

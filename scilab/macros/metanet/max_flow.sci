@@ -40,3 +40,4 @@ if ldif<>[] then
 end
 // compute maximum flow
 [v,phi,ierr]=m6fordfulk(n,ma,i,j,maxcap,g('tail'),g('head'))
+endfunction

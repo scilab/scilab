@@ -121,3 +121,4 @@ if type(data)<>10|prod(size(data))<>1 then
   error('Second argument must be a string')
 end
 m6saveg(g,g('name'),ma,data)
+endfunction

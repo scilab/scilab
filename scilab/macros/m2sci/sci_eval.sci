@@ -59,4 +59,4 @@ else
   stk=list()
   for k=1:lhs,stk(k)=s,end
 end
-
+endfunction

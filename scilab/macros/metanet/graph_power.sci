@@ -29,3 +29,4 @@ end;
 ta=[ij(:,1)'];he=[ij(:,2)'];
 g1=make_graph('foo',1,n,ta,he);
 g1('node_x')=g('node_x');g1('node_y')=g('node_y');
+endfunction

@@ -18,3 +18,4 @@ else
 end
 // is g connex
 res=m6tconex(la,lp,ls,n)
+endfunction

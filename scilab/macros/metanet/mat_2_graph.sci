@@ -75,3 +75,4 @@ elseif mat=='node-node'
 else
  error('Third argument must be ""node-node"" or ""node-arc""')
 end
+endfunction

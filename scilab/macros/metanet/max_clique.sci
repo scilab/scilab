@@ -35,3 +35,4 @@ else
   if (ii<>[]) then bestn(ii)=[]; end;
   nodes=clnod(bestn);
 end;
+endfunction

@@ -12,3 +12,4 @@ else
   end
   stk=list('min(ones('+n+',3),graycolormap('+n+')*diag([1.2500 0.7812 0.4975]))','0',n,'3','1')
 end
+endfunction

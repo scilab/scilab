@@ -14,4 +14,4 @@ else
   X0=stk(top)(1)
   stk=list('ltitr'+rhsargs([A,B,U,X0])+'.''','0',nt,na,'1')
 end
-
+endfunction

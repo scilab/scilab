@@ -7,3 +7,4 @@ if rhs==2 then
 else 
   stk=list('fsolve('+stk(top-rhs+2)(1)+',%ev,'+stk(top-rhs+3)(1)+')','0',stk(top)(3),stk(top)(4),'1')
 end
+endfunction

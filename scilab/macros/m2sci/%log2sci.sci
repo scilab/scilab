@@ -47,7 +47,4 @@ elseif s2(3)=='1'&s2(4)=='1' then
 else
   stk=list(s1(1)+ops(iop,1)+s2(1),'3',s1(3),s1(4),'4')
 end
-
-
-
-
+endfunction

@@ -28,3 +28,4 @@ for k=1:lhs0
     varargout(1)(k,1)=varname
   end
 end
+endfunction

@@ -95,17 +95,4 @@ br=sig*rand(al,Nu,'normal')
 bru=rtitr(num,den,br,ep,0*ones(ep));
 // z(k) = y(k) + bru(k)
 z=y+bru(:,1:Nu);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+endfunction

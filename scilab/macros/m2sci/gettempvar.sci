@@ -11,3 +11,4 @@ end
 if rhs==1 then
   var=var+'$'+string(n)
 end
+endfunction

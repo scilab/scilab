@@ -34,7 +34,4 @@ elseif type(Fs)==16|type(Fs)==15
 else
 error('First argument to coffg is invalid');
 end
-
-
-
-
+endfunction

@@ -15,3 +15,4 @@ else
   end
   stk=list(s1+'.* 2 .^'+stk(top-1)(1),'?','?','1')
 end
+endfunction

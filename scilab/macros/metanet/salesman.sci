@@ -24,3 +24,4 @@ uu1=sparse([ta' he'],lsup*ones(1,m)',[n,n]);
 a=full(uu);a=a+100000-uu1;
 s=m6visitor(n,a,nstac);s=[s s(1)]
 if(s <> []) then cir=nodes_2_path(s,g);else cir=[];end;
+endfunction

@@ -27,6 +27,4 @@ for l=mn:-1:2
      end
   end
 end
-
-
-
+endfunction

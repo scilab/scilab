@@ -21,3 +21,4 @@ if (y1<>[]) then
   g1('node_y')=ynodes;
 end;
 g1=delete_nodes(j,g1);
+endfunction

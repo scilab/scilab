@@ -43,3 +43,4 @@ end
 p=m6prevn2p(n1,n2,pred,la,lp,ls,g('directed'))
 ii=find(p>ma); 
 if(ii <> []) then p(ii)=p(ii)-ma;end;
+endfunction

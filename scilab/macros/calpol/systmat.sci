@@ -22,6 +22,4 @@ s=poly(0,'s');
 Sm=[-s*Sl(6)+Sl(2),Sl(3);Sl(4),Sl(5)];
 return
 end
-
-
-
+endfunction
