@@ -637,6 +637,68 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
   int xof, yof;
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
+  int *x = width; /* F.Leray 01.07.04 copy the setwindowdim function philosohpy (see periwin.c)*/
+  int *y = height;
+
+ if (ScilabXgc->CWindow != (Window) NULL) 
+  {
+    /* initialisation des variables SCROLLINFO*/
+    sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
+    sciGetScrollInfo(ScilabXgc, SB_HORZ, &horzsi);
+    
+    ScilabXgc->CWindowWidth = Max((int) *x,50);
+    ScilabXgc->CWindowHeight =Max((int) *y,50);
+    if ( sciGetwresize() == 1 ) {
+      ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
+      ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+      vertsi.nPos   = 0;
+      horzsi.nPos   = 0;
+    }
+
+    if ( ScilabXgc->CWindowWidthView > ScilabXgc->CWindowWidth)
+      ScilabXgc->CWindowWidthView = ScilabXgc->CWindowWidth;
+
+    if (ScilabXgc->CWindowHeightView > ScilabXgc->CWindowHeight)
+      ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+    CPixmapResize1();
+
+    GetWindowRect (ScilabXgc->hWndParent, &rect) ;
+    GetWindowRect (ScilabXgc->CWindow, &rect1) ;
+    xof = (rect.right-rect.left)- (rect1.right - rect1.left);
+    yof = (rect.bottom-rect.top)- (rect1.bottom -rect1.top );
+    if (sciGetwresize () == 0)
+      {
+	SetWindowPos (ScilabXgc->hWndParent, HWND_TOP, 0, 0,
+		      ScilabXgc->CWindowWidthView + xof +
+		      GetSystemMetrics (SM_CXVSCROLL),
+		      ScilabXgc->CWindowHeightView + yof +
+		      GetSystemMetrics (SM_CYHSCROLL),
+		      SWP_NOMOVE | SWP_NOZORDER);
+      }
+    else
+      {
+	SetWindowPos(ScilabXgc->hWndParent,HWND_TOP,0,0,
+		     ScilabXgc->CWindowWidthView  + xof,
+		     ScilabXgc->CWindowHeightView + yof,
+		     SWP_NOMOVE | SWP_NOZORDER );
+      }
+    vertsi.nMax   = ScilabXgc->CWindowHeight;
+    vertsi.nPage  = ScilabXgc->CWindowHeightView;
+    horzsi.nMax   = ScilabXgc->CWindowWidth;
+    horzsi.nPage  = ScilabXgc->CWindowWidthView;  
+    sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
+    sciSetScrollInfo(ScilabXgc,SB_HORZ, &(horzsi), TRUE);
+    if ( sciGetwresize() == 0 ) 
+      {
+	/* need to force a rdraw in that case */
+	if ( ScilabXgc->horzsi.nPos + ScilabXgc->CWindowWidthView < 
+	     ScilabXgc->CWindowWidth 
+	     &&  ScilabXgc->vertsi.nPos + ScilabXgc->CWindowHeightView < 
+	     ScilabXgc->CWindowHeight) 
+	  InvalidateRect(ScilabXgc->CWindow,NULL,FALSE);
+	  }
+  }
+  /*
   if (ScilabXgc->CWindow != (Window) NULL)
     {
       sciGetScrollInfo (ScilabXgc, SB_VERT, &vertsi);
@@ -644,10 +706,13 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
 
       ScilabXgc->CWindowWidthView = *width;
       ScilabXgc->CWindowHeightView = *height;
-      /* remise a jour de la fenetre */
+      // remise a jour de la fenetre 
       if ( ScilabXgc->CurPixmapStatus == 1)
 	{
+//	  ScilabXgc->CWindowWidth = *width;
+//      ScilabXgc->CWindowHeight = *height;
 	  sci_pixmap_resize(ScilabXgc,
+//		  *width, *height);
 			    ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
 	}
       GetWindowRect (ScilabXgc->hWndParent, &rect);
@@ -659,9 +724,9 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
 		    ScilabXgc->CWindowHeightView + yof,
 		    SWP_NOMOVE | SWP_NOZORDER);
 
-      /* mise a jour de la taille des scroll bars */
-      /* changer l'etat de visibilite des scroll bar  */
-      /* suivant l etat on ou off et ajouter un offset d'affichage */
+      // mise a jour de la taille des scroll bars //
+      // changer l'etat de visibilite des scroll bar  //
+      // suivant l etat on ou off et ajouter un offset d'affichage //
       vertsi.nMax = ScilabXgc->CWindowHeight;
       vertsi.nPage = ScilabXgc->CWindowHeightView;
       horzsi.nMax = ScilabXgc->CWindowWidth;
@@ -669,6 +734,7 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
       sciSetScrollInfo (ScilabXgc, SB_VERT, &vertsi, TRUE);
       sciSetScrollInfo (ScilabXgc, SB_HORZ, &horzsi, TRUE);
     }
+	*/
 }
 /*-----------------------------------------------------------------------------------*/
 void set_wait_click(val)
@@ -1052,6 +1118,7 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
       hdc1 = GetDC (ScilabGC->CWindow);
       hbmTemp = CreateCompatibleBitmap (hdc1,ScilabGC->CWindowWidth,
 					ScilabGC->CWindowHeight);
+	  ReleaseDC(ScilabGC->CWindow,hdc1);
       if (hbmTemp == NULL )
 	{
 	  sciprint("Can't resize pixmap\r\n");
@@ -1063,7 +1130,7 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
       ScilabGC->hbmCompat = hbmTemp;
       if ( ScilabGC->ClipRegionSet == 1 )  SelectClipRgn(ScilabGC->hdcCompat,NULL);
       sci_pixmapclear(ScilabGC->hdcCompat,ScilabGC); 
-      ReleaseDC(ScilabGC->CWindow,hdc1);
+      
       return TRUE;
     }
   return FALSE;
@@ -1393,7 +1460,7 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int hei
   if (version_flag() == 0)
     {
       sciRedrawF(&win_num); /* NG */
-    }
+	}
   else
     C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, 
 	      PD0, PD0, PD0, 0L, 0L);
@@ -1419,7 +1486,7 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
   TEXTMETRIC tm;
   HDC hdc;
   PAINTSTRUCT ps;
-  RECT rect, rect1;
+  RECT rect, rect1, rrect, rrect1;
   struct BCG *ScilabGC;
   ScilabGC = (struct BCG *) GetWindowLong (hwnd, 0);
   switch (message)
@@ -1485,6 +1552,23 @@ EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wPar
 		    LOWORD (lParam), (rect.bottom - rect.top),
 		    SWP_NOZORDER | SWP_NOACTIVATE);
 	  
+	switch (LOWORD (wParam)) /* Maximized case . F.leray 01.07.04 */
+	  {
+	case SIZE_MAXIMIZED:
+    	GetWindowRect (ScilabGC->Statusbar, &rrect1);
+        GetClientRect (ScilabGC->hWndParent, &rrect);
+        ScilabGC->CWindowWidthView = rrect.right;
+        ScilabGC->CWindowHeightView = rrect.bottom - (rrect1.bottom - rrect1.top);
+		if (ScilabGC->CurResizeStatus != 0)
+		 {
+		  ScilabGC->CWindowWidth = ScilabGC->CWindowWidthView;
+		  ScilabGC->CWindowHeight = ScilabGC->CWindowHeightView;
+		 }
+        break;
+	default:
+		break;
+	  }
+
       SetWindowPos (ScilabGC->CWindow, (HWND) NULL, 0,
 		    0,
 		    LOWORD (lParam), HIWORD (lParam) - (rect.bottom - rect.top),
