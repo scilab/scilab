@@ -3,8 +3,7 @@ function files= listfiles(paths,flag,flagexpand)
 // each path can be ended with a wildcard name 
 // path is a string matrix 
 // if flagexpand is %t then SCI, HOME ~ are expanded 
-// if flag is %t then paths is converted according to 
-//    MSDOS value 
+// if flag is %t then paths is converted according to  MSDOS value 
 // when flag is %t according to the 
 // value of flagexpand SCI, HOME ~ are expanded 
 // or not 
@@ -20,15 +19,33 @@ function files= listfiles(paths,flag,flagexpand)
   end 
   
   if MSDOS then
-    dirs= dirname(paths,flag,flagexpand);
     files=[];
     for i=1:size(paths,'*') 
       // dir returns names without the dirname 
       filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
-      if filesi<>"" & filesi<>[] then 
+      if filesi == "" then filesi=[],end
+      if filesi<>[] then 
 	filesi=filesi($:-1:1)
-	if dirs(i) <> '.' then 
-	  filesi= dirs(i)+'\'+filesi
+	// prepend with the path, if required 
+	// when listing a full directory, path is not prepended
+	dirs=paths(i)
+	if part(dirs,length(dirs))<>'\'then
+	  if isdir(dirs) then //yes
+	    with_dir=%f
+	  else                //no
+	    k=strindex(dirs,'\');
+	    if k==[] then 
+	      with_dir=%f
+	    else
+	      dirs=part(dirs,1:k($))
+	      with_dir=%t
+	    end
+	  end
+	else
+	  with_dir=%f
+        end
+	if with_dir then 
+	  filesi = dirs+filesi
 	end
       end
       files=[files;filesi];
@@ -37,6 +54,7 @@ function files= listfiles(paths,flag,flagexpand)
     paths=strsubst(stripblanks(paths),' ','\ ')
     paths=stripblanks(strcat(paths,' '))
     files=unix_g('ls  -t1 '+paths);
+    if files== "" then files=[],end
   end
 endfunction
 
