@@ -65,6 +65,7 @@ else
   A=getoperands(tree)
   A=convert2double(A)
   tree.operands=list(A)
-  tree.out(1).infer=A.infer
+  tree.out(1).dims=A.dims
+  tree.out(1).type=A.type
 end
 endfunction
