@@ -4731,12 +4731,12 @@ sciGetWidth (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      Xgc=pFIGURE_FEATURE (pthis)->pScilabXgc;
-      pFIGURE_FEATURE (pthis)->windowdimwidth= Xgc->CWindowWidth;
-      return pFIGURE_FEATURE (pthis)->windowdimwidth;
+      Xgc=pFIGURE_FEATURE (pobj)->pScilabXgc;
+      pFIGURE_FEATURE (pobj)->windowdimwidth= Xgc->CWindowWidth;
+      return pFIGURE_FEATURE (pobj)->windowdimwidth;
       break;
     case SCI_SUBWIN:
-       return pSUBWIN_FEATURE (pthis)->windimwidth;
+       return pSUBWIN_FEATURE (pobj)->windimwidth;
       break;
     default:
       sciprint ("Only Figure is physical dimensioned\n");
@@ -4754,15 +4754,16 @@ sciGetWidth (sciPointObj * pobj)
 double 
 sciGetHeight (sciPointObj * pobj)
 {
+  struct BCG *Xgc;
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
-      Xgc=pFIGURE_FEATURE (pthis)->pScilabXgc;
-      pFIGURE_FEATURE (pthis)->windowdimheight= Xgc->CWindowHeight;
-      return pFIGURE_FEATURE (pthis)->windowdimheight;
+      Xgc=pFIGURE_FEATURE (pobj)->pScilabXgc;
+      pFIGURE_FEATURE (pobj)->windowdimheight= Xgc->CWindowHeight;
+      return pFIGURE_FEATURE (pobj)->windowdimheight;
       break;
     case SCI_SUBWIN:
-       return pSUBWIN_FEATURE (pthis)->windimheight;
+       return pSUBWIN_FEATURE (pobj)->windimheight;
       break;
     default:
       sciprint ("Only Figure is physical dimensioned\n");
@@ -4778,7 +4779,7 @@ sciGetHeight (sciPointObj * pobj)
 int
 sciSetFigurePos (sciPointObj * pobj, int pposx, int pposy)
 {
-  integer x[2],y=0,cur,num,na;
+  integer y=0,cur,num,na;
 
   switch (sciGetEntityType (pobj))
     {
@@ -14204,7 +14205,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   /* initialisation with the first son */
   xtmp = (long) handelsvalue[0];
-
   for (i=0;i<number;i++)
     {
       if ((sons = MALLOC ((sizeof (sciSons)))) == NULL)
@@ -14233,6 +14233,73 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   return (sciPointObj *)pobj;
 }
+
+/**sciConstructAgregationSeq
+ * @memo constructes an agregation of with the last n entities cerated in the current subwindow
+ */
+sciPointObj *
+ConstructAgregationSeq (int number) 
+{
+  sciSons *sons, *lastsons;
+  sciPointObj *pobj;
+  int i;
+  long xtmp;
+  sciPointObj *psubwin;
+  sciSubWindow *ppsubwin;
+  sciAgreg     *ppagr;
+
+  psubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppsubwin=pSUBWIN_FEATURE(psubwin);
+
+  /* initialize the agregation data structure */
+  if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+    return (sciPointObj *) NULL;
+
+  sciSetEntityType (pobj, SCI_AGREG);
+  if ((pobj->pfeatures = MALLOC ((sizeof (sciAgreg)))) == NULL)
+    return (sciPointObj *) NULL;
+  ppagr=pAGREG_FEATURE(pobj);
+
+  if (sciAddNewHandle (pobj) == -1)
+    {
+      sciprint("no handle to allocate\n");
+      free(pobj->pfeatures);free(pobj);
+      return (sciPointObj *) NULL;
+    }
+
+  
+  sons=ppsubwin->relationship.psons;
+  lastsons=sons;
+  for (i=0;i<number;i++) {
+    (sciGetRelationship (lastsons->pointobj))->pparent=pobj ;
+    lastsons=lastsons->pnext;
+  }
+
+
+  /* attach the agregation to the current subwin */
+  if (!(sciAddThisToItsParent (pobj, (sciPointObj *)psubwin))) {
+    free(pobj->pfeatures);free(pobj);
+    return (sciPointObj *) NULL;
+  }
+  sciSetCurrentSon (pobj, (sciPointObj *) NULL);
+
+  ppagr->relationship.psons = sons;
+  ppagr->callback = (char *)NULL;
+  ppagr->callbacklen = 0;
+  ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
+  ppagr->isselected = TRUE;
+ 
+  /* re chain sons lists */
+  ppsubwin->relationship.psons->pnext = lastsons->pnext;
+
+  ppagr->relationship.plastsons = lastsons;
+  ppagr->relationship.plastsons->pnext = (sciSons *)NULL;
+  ppagr->relationship.psons->pprev = (sciSons *)NULL;
+  return (sciPointObj *)pobj;
+}
+
+
+
 
 
 

@@ -1452,6 +1452,7 @@ extern sciPointObj *ConstructMenu (sciPointObj * pparentfigure,
 extern int DestroySciMenu (sciPointObj * pthis);
 extern sciPointObj *ConstructAgregation (long *tabpointobj, int number);
 extern int CheckForAgregation (long *tabpointobj, int number);
+extern sciPointObj *ConstructAgregationSeq (int number);
 
 extern sciPointObj *sciCloneObj (sciPointObj * pobj);
 extern sciPointObj *sciCopyObj (sciPointObj * pobj, sciPointObj * psubwinparenttarget );
