@@ -18,7 +18,7 @@
 #include "matdes.h"
 
 
-
+int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 static char *pmodes[] =
   { 
     "clear", 
@@ -50,6 +50,7 @@ extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,
 				  char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
 extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
+extern int LAB_gcf();
 static integer one = 1, zero = 0;
 /* NG beg */
 int versionflag = 1; /* old mode */
@@ -3688,15 +3689,14 @@ int sciwinsid(fname,fname_len)
      unsigned long fname_len;
 {
   integer iflag =0,ids,num,un=1,l1,i;
-  int vect[10],id=0;
   CheckRhs(-1,0) ;  /* NG beg */
  if (version_flag() == 0)
    {
-    sciGetIdFigure (vect,&id);
-    CreateVar(1,"d",&un,&id,&l1);
-    for (i=0;i<id;i++)
-      stk(l1)[i] = vect[i];
-    LhsVar(1) = Rhs+1; 
+    sciGetIdFigure (&ids,&num,&iflag);
+    CreateVar(1,"i",&un,&num,&l1);
+    iflag = 1; 
+    sciGetIdFigure (istk(l1),&num,&iflag);
+    LhsVar(1) = 1; 
    }/* NG end*/
  else
    {
@@ -4711,7 +4711,7 @@ int gget(fname,fname_len)
   case 10:/* string argument (string) */
     CheckRhs(1,1);
     GetRhsVar(1,"c",&numrow2,&numcol2,&l2);
-    if (strncmp(cstk(l2),"old_style",9) !=0) C2F(sciwin)();
+    if (strncmp(cstk(l2),"old_style",9) !=0&&strncmp(cstk(l2),"current_figure",14) !=0) C2F(sciwin)();
     if (version_flag() == 0)
       {
 	if ((strncmp(cstk(l2),"children",8) != 0) &&  
@@ -4814,6 +4814,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	if ((figure = ConstructFigure (XGC)) != NULL) {
 	  XGC->mafigure = (sciPointObj *) figure;
 	  XGC->graphicsversion=1;  
+	  cf_type=1;
 	  if ((psubwin = ConstructSubWin (figure, XGC->CurWindow)) != NULL)
 	    sciSetOriginalSubWin (figure, psubwin);
 	}
@@ -5655,7 +5656,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   double *tab;
   char **str;
   sciPointObj *psubwin;
-  int Etype,vect[10],id=0;
+  int Etype,ids,iflag=0;
         
   if (pobj != (sciPointObj *)NULL){
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
@@ -5663,7 +5664,8 @@ int sciGet(sciPointObj *pobj,char *marker)
 
   if ((pobj == (sciPointObj *)NULL) && 
       (strncmp(marker,"old_style", 9) !=0 ) && 
-      (strncmp(marker,"figure_style", 12) != 0))
+      (strncmp(marker,"figure_style", 12) != 0) && 
+      (strncmp(marker,"current_figure", 14) != 0))
     {
       if (version_flag() == 0)
 	{strcpy(error_message,"handle is not valid");return -1;}
@@ -5672,12 +5674,11 @@ int sciGet(sciPointObj *pobj,char *marker)
 		
     }
   else if (strncmp(marker,"figures_id", 10) == 0){
-    sciGetIdFigure (vect,&id);
+    sciGetIdFigure (&ids,&numcol,&iflag);
     numrow   = 1;
-    numcol   = id;
-    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      for (i=0;i<numcol;i++)
-	stk(outindex)[i] = vect[i];
+    CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+    iflag = 1; 
+    sciGetIdFigure (istk(outindex),&numcol,&iflag);
   }
   /***************** graphics mode *******************************/ 
   else if (strncmp(marker,"visible", 7) == 0) {
@@ -5822,10 +5823,22 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strncmp(marker,"current_figure", 14) == 0)
     {
-      numrow   = 1;
-      numcol   = 1;
-      CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *stk(outindex) = (double )sciGetHandle(sciGetCurrentFigure());
+      
+      if (cf_type==1) {
+	C2F(sciwin)();
+	numrow   = 1;
+	numcol   = 1;
+	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
+	*stk(outindex) = (double )sciGetHandle(sciGetCurrentFigure());
+	printf("cf_type %d %f\n",cf_type,*stk(outindex));
+      }
+      else {
+	numrow   = 1;
+	numcol   = 1;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	*stk(outindex) = (double )LAB_gcf();
+	printf("cf_type %d %f\n",cf_type,*stk(outindex));
+      }
     }
   else if (strncmp(marker,"current_obj", 11) == 0)
     {
