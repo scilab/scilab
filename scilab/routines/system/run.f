@@ -121,6 +121,8 @@ c
          call putid(ids(1,pt+1),istk(lc+1))
          if(fun.eq.0) then
             call error(4)
+            top=top-1
+            return
          else
 c     .     referenced name was function at compile time it is now a
 c     .     primitive. Modify the code for further use
