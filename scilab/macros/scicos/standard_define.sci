@@ -11,12 +11,12 @@ function o=standard_define(sz,model,label,gr_i)
   if nout>0 then pout(nout,1)=0,else pout=[],end
 
   ncin=size(model.evtin,1);
-  if ncin>0 then pcin(ncin,1)=0,else pcin=[],end
+  if ncin>0 then pein(ncin,1)=0,else pein=[],end
 
   ncout=size(model.evtout,1);
-  if ncout>0 then pcout(ncout,1)=0,else pcout=[],end
+  if ncout>0 then peout(ncout,1)=0,else peout=[],end
 
-  graphics=scicos_graphics(sz=sz,pin=pin,pout=pout,pcin=pcin,pcout=pcout, ...
+  graphics=scicos_graphics(sz=sz,pin=pin,pout=pout,pein=pein,peout=peout, ...
 			   gr_i=gr_i,exprs=label) 
   
   if model.sim(1)=='super' then

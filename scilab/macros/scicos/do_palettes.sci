@@ -16,7 +16,8 @@ function [palettes,windows]=do_palettes(palettes,windows)
   if winpal==[] then  //selected palettes isnt loaded yet
     curwin=get_new_window(windows)
     if or(curwin==winsid()) then
-      xdel(curwin);xset('window',curwin)
+      xdel(curwin);
+      //xset('window',curwin)
     end
     windows=[windows;[-kpal curwin]]
     palettes=add_palette(palettes,scicos_pal(kpal,2),kpal)
@@ -25,7 +26,20 @@ function [palettes,windows]=do_palettes(palettes,windows)
     curwin=windows(winpal,2)
   end
   //
-  xset('window',curwin),xselect();
+  xset('window',curwin),
+  if ~MSDOS then
+  delmenu(curwin,'3D Rot.')
+  delmenu(curwin,'UnZoom')
+  delmenu(curwin,'2D Zoom')
+//  delmenu(curwin,'File')
+else
+  delmenu(curwin,'3D &Rot.')
+  delmenu(curwin,'&UnZoom')
+  delmenu(curwin,'2D &Zoom')
+//  delmenu(curwin,'&File')
+end
+  
+  xselect();
   xset('alufunction',3)
   if pixmap then xset('pixmap',1),end,xbasc();
   rect=dig_bound(palettes(kpal));
