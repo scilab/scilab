@@ -71,7 +71,7 @@ System_contents(x)
       C2F(ptrback)();
       C2F(putid)();
       C2F(run)();
-      C2F(sascii)();
+      /* C2F(sascii)();*/
       C2F(savlod)();
       C2F(scilines)();
       C2F(scirun)();
@@ -85,7 +85,7 @@ System_contents(x)
       C2F(typ2cod)();
       C2F(whatln)();
       C2F(wspdsp)();
-      C2F(xchar)();
+      /* C2F(xchar)(); */
       C2F(xerbla)();
     }
 }

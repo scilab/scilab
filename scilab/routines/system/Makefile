@@ -9,14 +9,14 @@ LIBRARY = $(SCIDIR)/libs/system.a
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o helpap.o \
 	scicurdir.o readline.o msgstore.o storeversion.o
 
-OBJSF = allops.o  banier.o sascii.o diary.o\
+OBJSF = allops.o  banier.o diary.o\
 	clause.o comand.o compcl.o   \
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \
 	getval.o helpmg.o inisci.o \
 	logops.o macro.o mname.o nextj.o parse.o print.o \
 	prompt.o putid.o  run.o savlod.o  stackg.o stackgl.o \
-	ref2val.o stackp.o terme.o xchar.o  scirun.o \
+	ref2val.o stackp.o terme.o  scirun.o \
 	majmin.o apropo.o whatln.o \
 	seteol.o setlnb.o skpins.o msgs.o prntid.o \
 	cvname.o cvstr.o compil.o ptover.o ptrback.o \
@@ -95,7 +95,6 @@ ptover.o: ../stack.h
 ptrback.o: ../stack.h
 putid.o: ../stack.h
 run.o: ../stack.h
-sascii.o: ../stack.h
 savlod.o: ../stack.h
 scilines.o: ../stack.h
 sciquit.o: ../stack.h
