@@ -28,9 +28,9 @@ TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
 
-#---------------------
+#-------------------
 # Scilab pvm library
-#---------------------
+#-------------------
 # To compile with PVM interface, uncomment the following lines and give
 # the good pathname for PVM_ROOT.
 #
