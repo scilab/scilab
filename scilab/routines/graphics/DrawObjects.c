@@ -3546,7 +3546,9 @@ BOOL Ishidden(sciPointObj *pobj)
   double alpha;
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
     alpha = pSUBWIN_FEATURE (pobj)->alpha;
-    if ((alpha <0.0 ) && (alpha > -90.0)) 
+    if ((alpha <0.0 ) && (alpha > -90.0))
+      return TRUE;
+    if ((alpha <360.0 ) && (alpha > 270.0)) /* missing case added to fix bug 839 F.Leray */
       return TRUE;
     if ((alpha <-180.0 ) && (alpha > -270.0))
       return TRUE;
@@ -5235,12 +5237,16 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   
   if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
 	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1]))*facteur <  0) && (fg >=0 )) 
-    if (type != 0)
-      fill[jj1]= (dc < 0 ) ? -fg : fg ;
-    else
-      fill[jj1]=  (dc != 0 ) ? fg : dc ;
+    {
+      /*      sciprint("CAS 1\n");*/
+      if (type != 0)
+	fill[jj1]= (dc < 0 ) ? -fg : fg ;
+      else
+	fill[jj1]=  (dc != 0 ) ? fg : dc ;
+    }
   else
     {
+      /*      sciprint("CAS 2\n");*/
       if (type != 0)
 	{
 	  fill[jj1]=inint((whiteid-1)*((1/4.0*( z[i+(*p)*j]+ z[i+1+(*p)*j]+
