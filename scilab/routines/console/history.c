@@ -427,6 +427,8 @@ static void read_history(char *filename)
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function gethistory  */
 
+#ifndef  WITH_READLINE
+
 static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
 
 int C2F(gethistory) _PARAMS((char *fname))
@@ -535,4 +537,107 @@ static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   C2F(intersci).ntypes[number - 1] = '$';
   return TRUE_;
 } 
+
+#else 
+
+/* readline version */
+
+static int CreSmatFromHist(char *fname, int number, int from_line, int count);
+
+int C2F(gethistory) _PARAMS((char *fname))
+{
+  register HIST_ENTRY **the_list;
+  int l1, m1, n1, GotoLine,count;
+
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,1) ;
+  CheckLhs(1,1) ;
+
+  if (Rhs == 1) {
+    GetRhsVar(1,"i",&m1,&n1,&l1);
+    GotoLine=Max(1,*istk(l1)); 
+  }
+  else {
+    GotoLine=1; 
+  }
+
+  the_list = history_list ();
+  for (count = 0; the_list[count]; count++) ;
+  if ( GotoLine -1 >= count ) goto empty;
+
+  if(!CreSmatFromHist(fname, Rhs+1,GotoLine,count)) return 0;
+  LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
+  return 0;
+
+ empty:
+  m1=0;
+  n1=0;
+  CreateVar(Rhs+1,"d",  &m1, &n1, &l1);
+  LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
+  return 0;
+}	
+ 
+
+static int CreSmatFromHist(char *fname, int number, int from_line, int count)
+{
+  int ix1, il, nnchar, kij, ilp, lw, pos, indice,i;
+  static int  cx0 = 0;
+  register HIST_ENTRY **the_list;
+
+  Nbvars = Max(number,Nbvars);
+  lw = number + Top - Rhs;
+
+  the_list = history_list ();
+
+  /* get the number of history lines and total number of characters */
+
+  indice=0;nnchar = 0;
+  if ( from_line -1 >= count ) return 0;
+  for ( i = Max(from_line -1,0) ; i < count  ; i++)
+    {
+      nnchar += strlen(the_list[i]->line);
+      indice++;
+    }
+  
+  /* Check for available memory */
+
+  il = iadr(*lstk(lw));
+  ix1 = il + 4 + (nnchar + 1) + (indice + 1);
+  Err = sadr(ix1) - *lstk(Bot );
+  if (Err > 0) {
+    Scierror(17,"%s: stack size exceeded (Use stacksize function to increase it)\r\n",
+	     fname);
+    return FALSE_;
+  } ;
+  /* create the variable header */
+  *istk(il ) = 10;
+  *istk(il + 1) = indice;
+  *istk(il + 2) = 1;
+  *istk(il + 3) = 0;
+  ilp = il + 4;
+  *istk(ilp ) = 1;
+  pos = ilp + indice + 1;
+
+  /* fill in the variable */
+
+  kij = ilp + 1;
+  for ( i = Max(from_line -1,0) ; i < count  ; i++)
+    {
+      int l = strlen(the_list[i]->line);
+      *istk(kij ) = *istk(kij - 1) + l;
+      C2F(cvstr)(&l, istk(pos), the_list[i]->line, &cx0, l);
+      kij++;
+      pos = pos + l;
+    }
+  /* close the variable */
+  *lstk(lw+1) = sadr(pos);
+
+  C2F(intersci).iwhere[number - 1] = *lstk(lw);
+  C2F(intersci).ntypes[number - 1] = '$';
+  return TRUE_;
+} 
+
+#endif 
 
