@@ -338,4 +338,19 @@ Sr=mlist(['st','dims','a'],int32([2,1]),..
 	 list([],mlist(['st','dims','b'],int32([3,1]),list([],[],1))));
 if or(S<>Sr) pause,end
 
+//
+S=mlist(['st','dims','a','b'],int32([1 1 2]),list('1','2'),list(2,[]));
+S(2).a=5;
+Sr=  mlist(["st","dims","a","b"],int32([1,1,2]),list("1",5),list(2,[]));
+if or(S<>Sr) pause,end
 
+S(1,3,2).a='foo';
+Sr=  mlist(["st","dims","a","b"],int32([1,3,2]),list("1",[],[],5,[],"foo"),..
+	   list(2,[],[],[],[],[]));
+if or(S<>Sr) pause,end
+
+S(1,3,2,2).b=[33 44];
+Sr=mlist(["st","dims","a","b"],int32([1,3,2,2]),..
+	 list("1",[],[],5,[],"foo" ,[],[],[],[],[],[]),..
+	 list(2,[],[],[],[],[],[],[],[],[],[],[33,44]));
+if or(S<>Sr) pause,end
