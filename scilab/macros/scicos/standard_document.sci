@@ -96,6 +96,7 @@ function texte = standard_document(objet, k)
 	for kp=1:size(super_path,'*'),path(kp)=super_path(kp);end
 	path($+1)=k
 	ind=cor(path)
+	pause
 	if ind>0&ind<=size(corinv) then
 	  txt = ['Compiled structure Index   : '+string(cor(path)); ' ']
 	else
@@ -178,15 +179,28 @@ function texte = standard_document(objet, k)
     from=objet.from
     if %cpr<>list() then
       if sous_type == 'Regular Link' then 
+	scs_m_tmp=scs_m
+	
 	while %t
-	  if scs_m.objs(from(1)).model.sim=='lsplit' then
-	    #link=scs_m.objs(from(1)).graphics.pin
-	    from=scs_m.objs(#link).from
+	  obji=scs_m_tmp.objs(from(1))
+	  if obji.model.sim=='lsplit' then
+	    
+	  elseif obji.model.sim=='super' then
+	    super_path;super_path($+1)=from(1)
+	    scs_m_tmp=obji.model.rpar
+	    for obji=scs_m_tmp.objs
+	      if typeof(obji)=='Block' then
+		if obji.model.sim=='output'&obji.model.ipar==from(2) then
+		  break
+		end
+	      end
+	    end
 	  else
 	    break
 	  end
+	  #link=obji.graphics.pin
+	  from=scs_m_tmp.objs(#link).from
 	end
-
 	cor = %cpr.cor
 	path=list()
 	for kp=1:size(super_path,'*'),path(kp)=super_path(kp);end
@@ -197,7 +211,7 @@ function texte = standard_document(objet, k)
 	  beg=%cpr.sim('lnkptr')(kl)
 	  fin=%cpr.sim('lnkptr')(kl+1)-1
 	  txt = ['Compiled link memory zone  : ['+..
-		 string(beg)+','+string(fin)+']'; ' ']
+		 string(beg)+':'+string(fin)+']'; ' ']
 	else
 	  txt = ['Compiled link memory zone  : Not available';' ']
 	end

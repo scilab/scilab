@@ -55,14 +55,14 @@ scs_m.objs(4)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
               "gr_i","id","in_implicit","out_implicit"],[230,0],[60,40],%t,..
-              ["0";"0";"1";"2113248"],[],0,0,[],..
+              ["0";"0";"1";"7560437"],[],0,0,[],..
               list(..
               ["txt=[''random'';''generator''];";
               "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],8),"",[],"E"),..
               mlist(..
               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
-              "equations"],"rndblk",[],1,1,[],[],[2113248;0],[0;1],0,"d",[],..
+              "equations"],"rndblk",[],1,1,[],[],[7560437;0],[0;1],0,"d",[],..
               [%f,%f],"",0,0,list()),"RAND_f",list())
 scs_m.objs(5)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
