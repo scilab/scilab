@@ -8,8 +8,10 @@ function [alreadyran,%cpr]=do_terminate(scs_m,%cpr)
     alreadyran=%f
     //terminate current simulation
     win=xget('window')
+    disablemenus()
     ierr=execstr('[state,t]=scicosim(%cpr.state,par.tf,par.tf,'+..
 		 '%cpr.sim,''finish'',par.tol)','errcatch')
+    enablemenus()
     xset('window',win)
     %cpr; //not always called with second arg
     %cpr.state=state

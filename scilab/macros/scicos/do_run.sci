@@ -64,8 +64,10 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       state=%cpr.state
       needstart=%t
       tf=scs_m.props.tf;
+      disablemenus()
       ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 		   '''finish'',tolerances)','errcatch')
+      enablemenus()
       %cpr.state=state
       alreadyran=%f
       if ierr<>0 then
@@ -104,9 +106,10 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       x_message(['Simulation parameters not set';'use setup button']);
       return;
     end
-
+    disablemenus()
     ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 		 '''start'',tolerances)','errcatch')
+    enablemenus()
     %cpr.state=state
     if ierr<>0 then
       kfun=curblock()
@@ -121,8 +124,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       end
       ok=%f
       xset('window',curwin)
-      unsetmenu(curwin,'stop')
-      enablemenus()
+
       return
     end
     xset('window',win);
