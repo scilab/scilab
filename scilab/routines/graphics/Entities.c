@@ -10374,7 +10374,7 @@ DestroyArc (sciPointObj * pthis)
 sciPointObj *
 ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 		    double height, double width, double horzcurvature,
-		    double vertcurvature, int fillflag, int fillcolor, int str)
+		    double vertcurvature, int fillflag, int fillcolor, int str, BOOL flagstring)
 {
   sciPointObj *pobj = (sciPointObj *) NULL; 
  
@@ -10411,6 +10411,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->callbackevent = 100;
 
 
+      pRECTANGLE_FEATURE (pobj)->flagstring = flagstring;
       pRECTANGLE_FEATURE (pobj)->x = x;
       pRECTANGLE_FEATURE (pobj)->y = y;
       pRECTANGLE_FEATURE (pobj)->z = 0; 
@@ -10469,7 +10470,7 @@ CloneRectangle (sciPointObj * pthis)
     return (sciPointObj *)NULL;
   if (!(pobj = ConstructRectangle (subwinparent, pRECTANGLE_FEATURE(pthis)->x, 
 				   pRECTANGLE_FEATURE(pthis)->y, pRECTANGLE_FEATURE(pthis)->height,pRECTANGLE_FEATURE(pthis)->width, 
-				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,0,0,0))){
+				   pRECTANGLE_FEATURE(pthis)->horzcurvature, pRECTANGLE_FEATURE(pthis)->vertcurvature,0,0,0,pRECTANGLE_FEATURE(pthis)->flagstring))){
     return (sciPointObj *)NULL;
   }
   else {
@@ -12271,7 +12272,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 
       break;
     case SCI_ARC: 
-     
+   
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
@@ -12318,18 +12319,47 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	}
       else
 	{
-	  x1 = XDouble2Pixel (pARC_FEATURE (pobj)->x);
-	  yy1 = YDouble2Pixel (pARC_FEATURE (pobj)->y);
+	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (sciGetParentSubwin(pobj));
+	  double tmpx = pARC_FEATURE (pobj)->x;
+	  double tmpy = pARC_FEATURE (pobj)->y;
+	  
+	  double tmpwidth = pARC_FEATURE (pobj)->width;
+	  double tmpheight= pARC_FEATURE (pobj)->height;
+	  
+	  if(ppsubwin->axes.reverse[0] == TRUE){
+	    tmpx= tmpx + tmpwidth;
+	  }
+	  
+	  if(ppsubwin->axes.reverse[1] == TRUE){
+	    tmpy = tmpy - tmpheight;
+	  }
+	  
+	  x1  = XDouble2Pixel (tmpx);
+	  yy1 = YDouble2Pixel (tmpy);
 	}
+
       w2 = pARC_FEATURE (pobj)->width;
       h2 = pARC_FEATURE (pobj)->height; 
       /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
       w1 = WScale(w2);
       h1 = HScale(h2);
+
       angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
-      angle2 = (integer) (pARC_FEATURE (pobj)->alphaend);   
+      angle2 = (integer) (pARC_FEATURE (pobj)->alphaend); 
+
+      if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
+	 && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == FALSE)){
+	angle1 = 180*64 - (angle2+angle1);
+      }
+      else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
+	      && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
+	angle1 = 180*64 + angle1;
+      }
+      else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == FALSE)
+	      && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
+	angle1 = 360*64 - (angle2+angle1);
+      }
      
-      
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
@@ -12396,9 +12426,24 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       /**DJ.Abdemouche 2003**/
       if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
 	{
-	  x1 = XDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x); 
-	  yy1 = YDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y);
+	  sciSubWindow * ppsubwin = (pSUBWIN_FEATURE (sciGetParentSubwin(pobj)));
+	  double tmpx = pRECTANGLE_FEATURE (pobj)->x;
+	  double tmpy = pRECTANGLE_FEATURE (pobj)->y;
 	  
+	  double tmpwidth = pRECTANGLE_FEATURE (pobj)->width;
+	  double tmpheight= pRECTANGLE_FEATURE (pobj)->height;
+
+	  if((ppsubwin->axes.reverse[0] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
+	    tmpx= tmpx + tmpwidth;
+	  }
+	  
+	  if((ppsubwin->axes.reverse[1] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
+	    tmpy = tmpy - tmpheight;
+	  }
+	  
+	    x1  = XDouble2Pixel(tmpx); 
+	    yy1 = YDouble2Pixel(tmpy);
+	    
 	  /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
 	  width = WDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x,pRECTANGLE_FEATURE (pobj)->width); 
 	  height = HDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y,pRECTANGLE_FEATURE (pobj)->height);
@@ -15064,8 +15109,9 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"x_ticks") == 0)    {return 16;} 
   else if (strcmp(marker,"y_ticks") == 0)    {return 16;} 
   else if (strcmp(marker,"z_ticks") == 0)    {return 16;} 
-  else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;} 
-  
+  else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;}
+  else if (strncmp(marker,"axes_reverse",12) == 0){return 10;}
+
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
@@ -19059,8 +19105,8 @@ void  sci_update_frame_bounds()
    ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
    ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
    
-   ppsubwin->axes.reverse[0] = FALSE; /*TRUE;*/  /* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 */
-   ppsubwin->axes.reverse[1] = FALSE; /*TRUE;*/ 
+ /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/  /\* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 *\/ */
+/*    ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
    
 
    set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
@@ -19219,63 +19265,10 @@ void update_3dbounds(sciPointObj *pobj)
   ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
    
      
-  ppsubwin->axes.reverse[0] = FALSE; /*TRUE;*/
-  ppsubwin->axes.reverse[1] = FALSE; /*TRUE;*/ 
-  ppsubwin->axes.reverse[2] = FALSE; /*TRUE;*/ 
+/*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/ */
+/*   ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
+/*   ppsubwin->axes.reverse[2] = FALSE; /\*TRUE;*\/  */
      
-
-  /*   if ( ppsubwin->tight_limits == FALSE) { */
-  /*    n1=deux;n2=dix; */
-  /*     C2F(graduate)(&xmin, &xmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
-  /*     ppsubwin->axes.xlim[0]=min; */
-  /*     ppsubwin->axes.xlim[1]=max; */
-  /*     ppsubwin->axes.xlim[2]=puiss; */
-  /*     ppsubwin->axes.xlim[3]=n2; */
-  /*     ppsubwin->FRect[0]=lmin; */
-  /*     ppsubwin->FRect[2]=lmax; */
-
- 
-  /*     n1=deux;n2=dix; */
-  /*     C2F(graduate)(&ymin, &ymax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
-  /*     ppsubwin->axes.ylim[0]=min; */
-  /*     ppsubwin->axes.ylim[1]=max; */
-  /*     ppsubwin->axes.ylim[2]=puiss; */
-  /*     ppsubwin->axes.ylim[3]=n2; */
-  /*     ppsubwin->FRect[1]=lmin; */
-  /*     ppsubwin->FRect[3]=lmax; */
-      
-
-  /*     n1=deux;n2=dix; */
-  /*     C2F(graduate)(&zmin, &zmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
-  /*     ppsubwin->axes.zlim[0]=min; */
-  /*     ppsubwin->axes.zlim[1]=max; */
-  /*     ppsubwin->axes.zlim[2]=puiss; */
-  /*     ppsubwin->axes.zlim[3]=n2; */
-  /*     ppsubwin->FRect[4]=lmin; */
-  /*     ppsubwin->FRect[5]=lmax;} */
-  /*   else { */
-  /*    ppsubwin->axes.xlim[0]=inint(xmin); */
-  /*    ppsubwin->axes.xlim[1]=inint(xmax); */
-  /*    ppsubwin->axes.xlim[2]=0; */
-  /*    ppsubwin->axes.xlim[3]=10; */
-  /*    ppsubwin->FRect[0]=xmin; */
-  /*    ppsubwin->FRect[2]=xmax; */
-
-
-  /*    ppsubwin->axes.ylim[0]=inint(ymin); */
-  /*    ppsubwin->axes.ylim[1]=inint(ymax); */
-  /*    ppsubwin->axes.ylim[2]=0; */
-  /*    ppsubwin->axes.ylim[3]=10; */
-  /*    ppsubwin->FRect[1]=ymin; */
-  /*    ppsubwin->FRect[3]=ymax; */
-
-  /*    ppsubwin->axes.zlim[0]=inint(zmin); */
-  /*    ppsubwin->axes.zlim[1]=inint(zmax); */
-  /*    ppsubwin->axes.zlim[2]=0; */
-  /*    ppsubwin->axes.zlim[3]=10; */
-  /*    ppsubwin->FRect[4]=zmin; */
-  /*    ppsubwin->FRect[5]=zmax;} */
-
   wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
       
 }
@@ -20483,6 +20476,7 @@ int labels2D_draw(sciPointObj * psubwin)
   double dv, locx, locy;
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   char locstr;
+  double tmp;
 /*   integer fontid, fontsize, textcolor; */
 
   if (!sciGetVisibility(psubwin)) return 0;
@@ -20548,7 +20542,15 @@ int labels2D_draw(sciPointObj * psubwin)
   
   /* x label */
   rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2];
-  rect1[1]= YScale(locy-(ppsubwin->FRect[3]-ppsubwin->FRect[1])/12);
+
+  tmp = locy-(ppsubwin->FRect[3]-ppsubwin->FRect[1])/12;
+  if(ppsubwin->axes.reverse[1] == TRUE){
+    double ymin = ppsubwin->SRect[2];
+    double ymax = ppsubwin->SRect[3];
+    tmp = (tmp-ymin)/(ymax-ymin)*ymin + (tmp-ymax)/(ymin-ymax)*ymax;
+  }
+  
+  rect1[1]= YScale(tmp);
   rect1[2]= Cscale.WIRect1[2]/6;
   rect1[3]= Cscale.WIRect1[3]/6;
   
@@ -20561,11 +20563,19 @@ int labels2D_draw(sciPointObj * psubwin)
   C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
   C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
   
-   if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_x_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
   
   /* y label */
-  rect1[0]= XScale(locx-(ppsubwin->FRect[2]-ppsubwin->FRect[0])/12);
+  
+  tmp = locx-(ppsubwin->FRect[2]-ppsubwin->FRect[0])/12;
+  if(ppsubwin->axes.reverse[0] == TRUE){
+    double xmin = ppsubwin->SRect[0];
+    double xmax = ppsubwin->SRect[1];
+    tmp= (tmp-xmin)/(xmax-xmin)*xmin + (tmp-xmax)/(xmin-xmax)*xmax;
+  }
+
+  rect1[0]= XScale(tmp);
   rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24;
   rect1[2]= Cscale.WIRect1[2]/6;
   rect1[3]= Cscale.WIRect1[3]/12;
