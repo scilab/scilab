@@ -3,9 +3,9 @@ function t=justify(t,job)
   [m,n]=size(t)
   for k=1:n
     L=length(t(:,k));mx=max(L);
-    if part(job,1)=='r' then //right
+    if part(job,1)=='l' then //right
       t(:,k)=part(t(:,k),1:mx)
-    elseif part(job,1)=='l' then //left
+    elseif part(job,1)=='r' then //left
       for l=1:m
 	t(l,k)=part(' ',1:(mx-length(t(l,k))))+t(l,k)
       end
