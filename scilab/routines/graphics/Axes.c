@@ -1295,41 +1295,88 @@ static void axesplot(strflag, psubwin)
     {
       if (c != '4')
 	{  
-	  xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
-	  switch (xstr) 
-	    {
-	    case 'u':  
-	      y1= ppsubwin->axes.ylim[1];
-	      dirx='u';   
-	      break;
-	    case 'c':  
-	      y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
-	      y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
-	      seg =1; 
-	      dirx ='d';                           
-	      break;
-	    default :  
-	      y1= ppsubwin->axes.ylim[0];
-	      dirx ='d'; 
-	      break;
+	  xstr=ppsubwin->axes.xdir;
+	  if(ppsubwin->axes.reverse[1] == FALSE)
+	    { /* y reverse axis : NO */
+	      switch (xstr) 
+		{
+		case 'u':  
+		  y1= ppsubwin->axes.ylim[1];
+		  dirx='u';   
+		  break;
+		case 'c':  
+		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
+		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
+		  seg =1; 
+		  dirx ='d';                           
+		  break;
+		default :  
+		  y1= ppsubwin->axes.ylim[0];
+		  dirx ='d'; 
+		  break;
+		}
 	    }
-	  ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
-	  switch (ystr) 
-	    {
-	    case 'r': 
-	      x1= ppsubwin->axes.xlim[1];
-	      dir='r';    
-	      break;
-	    case 'c': 
-	      x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
-	      x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
-	      seg =1; 
-	      dir ='l';                              
-	      break; 
-	    default : 
-	      x1= ppsubwin->axes.xlim[0];
-	      dir ='l';  
-	      break;
+	  else
+	    { /* y reverse axis : YES */
+	      switch (xstr) 
+		{
+		case 'u':  
+		  y1= ppsubwin->axes.ylim[0];
+		  dirx='u';
+		  break;
+		case 'c':  
+		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
+		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
+		  seg =1; 
+		  dirx ='d';                           
+		  break;
+		default :  
+		  y1= ppsubwin->axes.ylim[1];
+		  dirx ='d'; 
+		  break;
+		}
+	    }
+
+	  ystr=ppsubwin->axes.ydir;
+	  if(ppsubwin->axes.reverse[0] == FALSE)
+	    { /* x reverse axis : NO */
+	      switch (ystr) 
+		{
+		case 'r': 
+		  x1= ppsubwin->axes.xlim[1];
+		  dir='r';    
+		  break;
+		case 'c': 
+		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
+		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
+		  seg =1; 
+		  dir ='l';                              
+		  break; 
+		default : 
+		  x1= ppsubwin->axes.xlim[0];
+		  dir ='l';  
+		  break;
+		}
+	    }
+	  else
+	    { /* x reverse axis : YES */
+	      switch (ystr) 
+		{
+		case 'r': 
+		  x1= ppsubwin->axes.xlim[0];
+		  dir='r';    
+		  break;
+		case 'c': 
+		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
+		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
+		  seg =1; 
+		  dir ='l';                              
+		  break; 
+		default : 
+		  x1= ppsubwin->axes.xlim[1];
+		  dir ='l';  
+		  break;
+		}
 	    }
 	}
     }
@@ -1340,55 +1387,92 @@ static void axesplot(strflag, psubwin)
       
       if (c != '4')
 	{  
-	  xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
-	  switch (xstr) 
-	    {
-	    case 'u':  
-	      y1=ppsubwin->axes.ygrads[lastyindex];
-	      dirx='u';   
+	  xstr=ppsubwin->axes.xdir;
+	  if(ppsubwin->axes.reverse[1] == FALSE)
+	    { /* y reverse axis : NO */
+	      switch (xstr) 
+		{
+		case 'u':  
+		  y1=ppsubwin->axes.ygrads[lastyindex];
+		  dirx='u';   
+		  break;
+		case 'c':  
+		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
+		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
+		  seg =1; 
+		  dirx ='d';                           
 	      break;
-	    case 'c':  
-	      y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
-	      y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
-	      seg =1; 
-	      dirx ='d';                           
-	      break;
-	    default :  
-	      y1= ppsubwin->axes.ygrads[0];
-	      dirx ='d'; 
-	      break;
+		default :  
+		  y1= ppsubwin->axes.ygrads[0];
+		  dirx ='d'; 
+		  break;
+		}
 	    }
-	  ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
-	  switch (ystr) 
-	    {
-	    case 'r': 
-	      x1= ppsubwin->axes.xgrads[lastxindex];
-	      dir='r';    
-	      break;
-	    case 'c': 
-	      x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
-	      x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
-	      seg =1; 
-	      dir ='l';                              
-	      break; 
-	    default : 
-	      x1= ppsubwin->axes.xgrads[0];
-	      dir ='l';  
-	      break;
+	  else
+	    { /* y reverse axis : YES */
+	      switch (xstr) 
+		{
+		case 'u':  
+		  y1=ppsubwin->axes.ygrads[0];
+		  dirx='u';   
+		  break;
+		case 'c':  
+		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
+		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
+		  seg =1; 
+		  dirx ='d';
+		  break;
+		default :  
+		  y1= ppsubwin->axes.ygrads[lastyindex];
+		  dirx ='d';
+		  break;
+		}
+	    }
+	  
+	  ystr=ppsubwin->axes.ydir;
+	  if(ppsubwin->axes.reverse[0] == FALSE)
+	    { /* x reverse axis : NO */
+	      switch (ystr) 
+		{
+		case 'r': 
+		  x1= ppsubwin->axes.xgrads[lastxindex];
+		  dir='r';    
+		  break;
+		case 'c': 
+		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
+		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
+		  seg =1; 
+		  dir ='l';                              
+		  break; 
+		default : 
+		  x1= ppsubwin->axes.xgrads[0];
+		  dir ='l';  
+		  break;
+		}
+	    } 
+	  else 
+	    { /* x reverse axis : YES */
+	      switch (ystr) 
+		{
+		case 'r': 
+		  x1= ppsubwin->axes.xgrads[0];
+		  dir='r';    
+		  break;
+		case 'c': 
+		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
+		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
+		  seg =1; 
+		  dir ='l';                              
+		  break; 
+		default : 
+		  x1= ppsubwin->axes.xgrads[lastxindex];
+		  dir ='l';  
+		  break;
+		}
 	    }
 	}
     }
   
-  
-/*   if ( c != '4' && c != '5' ) { */
-/*     if (pSUBWIN_FEATURE (psubwin)->axes.rect == 0) */
-/*       seg=1; */
-/*     else */
-/*       /\** frame rectangle **\/ */
-/*       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3],  */
-/* 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-/*   } */
-    
   ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
   textcolor=sciGetFontForeground(psubwin);
   fontsize=sciGetFontDeciWidth(psubwin)/100;
@@ -1687,13 +1771,13 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  vx[0] = vx[1] = xm[0] =  XScale(xtmp);
 	  posi[0] = inint( xm[0] -rect[2]/2.0);
 	  
-	  if ( pos == 'd' ) 
+	  if ( pos == 'd')
 	    {
 	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]);
 	      vy[0]= ym[0];vy[1]= ym[0] + barlength ;
 	    }
 	  else 
-	    { 
+	    {
 	      posi[1]=inint( ym[0] - 1.2*barlength);
 	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
 	    }
@@ -1759,16 +1843,27 @@ static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  vx[0] = vx[1] = xm[0] =  XScale(xtmp);
 	  posi[0] = inint( xm[0] -rect[2]/2.0);
 	  
-	  if ( pos == 'd' ) 
+	  if ( pos == 'd')
 	    {
 	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]);
 	      vy[0]= ym[0];vy[1]= ym[0] + barlength ;
 	    }
 	  else 
-	    { 
+	    {
 	      posi[1]=inint( ym[0] - 1.2*barlength);
 	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
 	    }
+	  
+	  /* 	  if ( pos == 'd' )  */
+/* 	    { */
+/* 	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]); */
+/* 	      vy[0]= ym[0];vy[1]= ym[0] + barlength ; */
+/* 	    } */
+/* 	  else  */
+/* 	    {  */
+/* 	      posi[1]=inint( ym[0] - 1.2*barlength); */
+/* 	      vy[0]= ym[0];vy[1]= ym[0] - barlength; */
+/* 	    } */
 	  
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  
@@ -2021,26 +2116,6 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
   
   barlength =  (integer) (Cscale.WIRect1[2]/75.0);
   
-  /* test EN DUR */
-/*   ppsubwin->axes.u_ygrads=(double *)MALLOC(5*sizeof(double)); */
-/*   ppsubwin->axes.u_ygrads[0]=2.5; */
-/*   ppsubwin->axes.u_ygrads[1]=3.89; */
-/*   ppsubwin->axes.u_ygrads[2]=5; */
-/*   ppsubwin->axes.u_ygrads[3]=5.9; */
-/*   ppsubwin->axes.u_ygrads[4]=6.5; */
-
-/*   ppsubwin->axes.u_ylabels=(char**)MALLOC(5*sizeof(char*)); */
-/*   for(i=0;i<5;i++)  ppsubwin->axes.u_ylabels[i]=(char*)MALLOC(256*sizeof(char)); */
-  
-/*   strcpy(ppsubwin->axes.u_ylabels[0],"deux virgule 5"); */
-/*   strcpy(ppsubwin->axes.u_ylabels[1],"3 virg 89"); */
-/*   strcpy(ppsubwin->axes.u_ylabels[2],"CINQ"); */
-/*   strcpy(ppsubwin->axes.u_ylabels[3],"5.9"); */
-/*   strcpy(ppsubwin->axes.u_ylabels[4],"six et demi invisible la"); */
-
-/*   ppsubwin->axes.u_nygrads=5; */
-  /* FIN de test EN DUR */
-
   if(ppsubwin->axes.auto_ticks[1] == FALSE)
     {
       /* we display the x tics specified by the user*/
@@ -2079,6 +2154,11 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]);
 	      vx[0]= xm[0];vx[1]= xm[0] - barlength;
 	    }
+
+
+
+
+
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -2133,6 +2213,7 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	  
 	  vy[0]= vy[1] = ym[0] = YScale(ytmp);
 	  posi[1]=inint( ym[0] +rect[3]/2.0);
+
 	  if ( pos == 'r' ) 
 	    {
 	      posi[0]=inint( xm[0] + 1.2*barlength);
@@ -2143,6 +2224,21 @@ static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_forma
 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]);
 	      vx[0]= xm[0];vx[1]= xm[0] - barlength;
 	    }
+
+
+
+/* 	  if ( pos == 'r' )  */
+/* 	    { */
+/* 	      posi[0]=inint( xm[0] + 1.2*barlength); */
+/* 	      vx[0]= xm[0];vx[1]= xm[0]+barlength; */
+/* 	    } */
+/* 	  else  */
+/* 	    {  */
+/* 	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]); */
+/* 	      vx[0]= xm[0];vx[1]= xm[0] - barlength; */
+/* 	    } */
+
+
 	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
 	  if ( logflag == 'l' )
@@ -2243,7 +2339,8 @@ static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int
     switchXY = 0;
     logflag = ppsubwin->logflags[0];
     auto_ticks = ppsubwin->axes.auto_ticks[0];
-  } else if(pos=='l' || pos=='r'){
+  }
+  else if(pos=='l' || pos=='r'){
     switchXY = 1;
     logflag = ppsubwin->logflags[1];
     auto_ticks = ppsubwin->axes.auto_ticks[1];
