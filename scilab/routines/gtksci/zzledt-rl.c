@@ -17,7 +17,7 @@
 #include "../machine.h" 
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof, int * inter, int * modex,long int  dummy1)
+			int * eof, int * inter, int * modex,long int  dummy1);
 #define TRUE 1 
 #define FALSE 0
 static int fd=0;              /* file number for standard in */
@@ -25,10 +25,10 @@ static char Sci_Prompt[24];
 static int  use_prompt=1;
 static int hist = 1; /* flag to add to history */
 static int interrupt;
+
 /***********************************************************************
  * line editor
  **********************************************************************/
-
 
 /* my_getc just try to get one interactive character typed 
  * by scilab user while dealing with gtk/tcltk events 
@@ -63,7 +63,8 @@ static char * dupstr (char *s)
 }
 
 
-int get_one_char(char *prompt) {
+int get_one_char(char *prompt) 
+{
   static char lp[24];
   char buffer[2];
   int buf_size=2, len_line, eof,inter=0,modex=0;
@@ -79,7 +80,7 @@ int get_one_char(char *prompt) {
 }
 
 
-extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
+void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
 			int * eof, int * inter, int * modex,long int  dummy1)
 {
   static int init_flag = TRUE;
@@ -230,3 +231,19 @@ static char *command_generator (const char *text, int state)
   /* If no names matched, then return NULL. */
   return ((char *)NULL);
 }
+
+/*----------------------------------------------------------------------
+ * clear the screen / move to home 
+ *----------------------------------------------------------------------*/
+
+void HomeFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void ClearScreenConsole _PARAMS((char *fname))
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+
