@@ -1224,7 +1224,6 @@ int sciplot2d(fname, fname_len)
   else
     C2F(plot2d)(stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect, Nax, 4L, bsiz);
   LhsVar(1)=0;
-  while (1) {};
   return 0;
 }
 
