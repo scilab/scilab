@@ -8,7 +8,7 @@ end
 dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
       "gui";"utilities";"linear";"polynomials";"control";"robust";
       "nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
-      "pvm";"tdcs";"tksci";"statistics";"dcd"];
+      "pvm";"tdcs";"tksci";"statistics";"dcd";"identification"];
 sep="/";if MSDOS then sep="\",end
 %helps=sep+"man"+sep+language+sep+dirs; 
 select language
@@ -26,8 +26,9 @@ case "eng"
 	   "Scicos: Bloc diagram editor and simulator";"Sound file handling";
 	   "Language or data translations";"PVM parallel toolbox";"TdCs";
 	   "TCL/Tk interface";
-	   "Statistics"
-	   "Cumulative Distribution Functions; Inverses, grand"]];
+	   "Statistics";
+	   "Cumulative Distribution Functions; Inverses, grand";
+           "Identification"]];
   case "fr"
   %helps=[%helps,..
 	  ["Programmation";"Librairie graphique";"Fonctions élémentaires";
@@ -44,6 +45,7 @@ case "eng"
 	   "Calcul parallèle avec PVM";"TdCs";
 	   "Interface TCL/Tk";
 	   "Statistiques";
-	   "Fonctions de distributions statistiques"]];
+	   "Fonctions de distributions statistiques";
+           "Identification"]];
 end
 %helps=[SCI+%helps(:,1),%helps(:,2)];
