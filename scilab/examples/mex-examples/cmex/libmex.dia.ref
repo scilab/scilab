@@ -10,8 +10,6 @@ shared archive loaded
  
  
 [p,q,r]=mexf01(1:4,'qwerty');
-Warning: This function requires 2 inputs
-
  
 if r~='qwerty' then bugmes();quit;end
  
