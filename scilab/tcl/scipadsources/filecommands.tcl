@@ -707,16 +707,14 @@ proc AddRecentFile {filename} {
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
                        -command "openfile \"[lindex $listofrecent 0]\""
+            # update menu entries (required to update the numbers)
+            UpdateRecentLabels $rec1ind
         } else {
             # forget last entry of the list and insert new entry
             set listofrecent [lreplace $listofrecent end end]
             set listofrecent [linsert $listofrecent 0 $filename]
             # update menu entries
-            for {set i 0} {$i<$nbrecentfiles} {incr i} {
-                $pad.filemenu.files entryconfigure [expr $rec1ind + $i] \
-                           -label [file tail [lindex $listofrecent $i] ] \
-                           -command "openfile \"[lindex $listofrecent $i]\""
-            }
+            UpdateRecentLabels $rec1ind
         }
     }
 }
@@ -732,13 +730,27 @@ proc GetFirstRecentInd {} {
     return $rec1ind
 }
 
+proc UpdateRecentLabels {rec1ind} {
+# update labels of recent files entries with file tail preceded by a number
+    global pad listofrecent nbrecentfiles
+    for {set i 0} {$i<$nbrecentfiles} {incr i} {
+        set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
+        $pad.filemenu.files entryconfigure [expr $rec1ind + $i] \
+                   -label $lab \
+                   -command "openfile \"[lindex $listofrecent $i]\"" \
+                   -underline 0
+    }
+}
+
 proc BuildInitialRecentFilesList {} {
     global pad listofrecent nbrecentfiles
     set nbrecentfiles [llength $listofrecent]
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
+        set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
         $pad.filemenu.files add command \
-                   -label [file tail [lindex $listofrecent $i] ] \
-                   -command "openfile \"[lindex $listofrecent $i]\""
+                   -label $lab \
+                   -command "openfile \"[lindex $listofrecent $i]\"" \
+                   -underline 0
     }
     bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu %W}
     if {$nbrecentfiles > 0} {

@@ -765,3 +765,7 @@ Francois VOGEL, 26/02/05
  * The list of the 4 more recently opened/saved files is now available in
    the file menu for quick access.
  * version --> 3.36
+
+Francois VOGEL, 27/02/05
+ * Added a number in front of the recent files names.
+ * version --> 3.37
