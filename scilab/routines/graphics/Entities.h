@@ -1232,6 +1232,13 @@ extern int sciSetNumColors (sciPointObj * pobj, int numcolors);
 extern int sciGetNumColors (sciPointObj * pobj);
 extern double *sciCloneColormap (sciPointObj * pobj);
 extern int sciGetColormap (sciPointObj * pobj, double *rgbmat);
+/*Adding F.Leray 31.03.04*/
+extern int sciSetGoodIndex(sciPointObj * pobj, int colorindex);
+extern int sciGetGoodIndex(sciPointObj * pobj, int colorindex);
+extern int  sciUpdateBaW (sciPointObj * pobj, int flag, int value);
+/*End Adding 31.03.04*/
+
+
 extern int sciSetBackground (sciPointObj * pobj, int colorindex);
 extern int sciGetBackground (sciPointObj * pobj);
 extern int sciSetForeground (sciPointObj * pobj, int colorindex);
