@@ -86,8 +86,8 @@ c     A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1]
       subroutine fd(xd,y,xp)
 c     Ad=[0.5,1;0,0.05] Bd=[1;1]
       double precision xd(*),y(*),xp(*)
-      xp(1)=0.5*xd(1)+xd(2)+y(1)
-      xp(2)=0*xd(1)+0.05*xd(2)+y(1)
+      xp(1)=0.5D0*xd(1)+xd(2)+y(1)
+      xp(2)=0*xd(1)+0.05D0*xd(2)+y(1)
       return
       end
 
@@ -135,7 +135,7 @@ c     A and B real scilab matrices
       call matptr('A'//char(0),m,n,la)
 c      call dset(m,0.0d0,xdot,1)
 c      call dgemm('n','n',m,1,m,1.0d0,stk(la),m,xc,m,1.0d0,xdot,m)
-      call dmmul(stk(la),m,xc,m,xdot,m,m,m,1)
+      call brdmmul(stk(la),m,xc,m,xdot,m,m,m,1)
       call matptr('B'//char(0),m,nb,lb)
       call dgemm('n','n',m,1,nb,1.0d0,stk(lb),m,u,1,1.0d0,xdot,m)
       end
@@ -145,7 +145,7 @@ c      call dgemm('n','n',m,1,m,1.0d0,stk(la),m,xc,m,1.0d0,xdot,m)
       include '../stack.h'
 c     y=C*x
       call matptr('C'//char(0),m,n,lc)      
-      call dmmul(stk(lc),m,x,m,y,m,m,n,1)
+      call brdmmul(stk(lc),m,x,m,y,m,m,n,1)
       end
 
       subroutine fd1(xd,y,xp)
@@ -153,7 +153,7 @@ c     xp=Ad*xd + Bd*y
       double precision xd(*),y(*),xp(*)
       include '../stack.h'
       call matptr('Ad'//char(0),m,n,la)
-      call dmmul(stk(la),m,xd,m,xp,m,m,m,1)
+      call brdmmul(stk(la),m,xd,m,xp,m,m,m,1)
       call matptr('Bd'//char(0),m,nb,lb)
       call dgemm('n','n',m,1,nb,1.0d0,stk(lb),m,y,1,1.0d0,xp,m)
       end
@@ -165,7 +165,7 @@ c     u=Cd*xd
       include '../stack.h'
 c     y=C*x
       call matptr('Cd'//char(0),m,n,lc)      
-      call dmmul(stk(lc),m,xd,m,u,m,m,n,1)
+      call brdmmul(stk(lc),m,xd,m,u,m,m,n,1)
       end
 
       subroutine finput(t,v)
@@ -214,11 +214,28 @@ c     A and B real scilab matrices
       double precision t,x(*),xdot(*)
       include '../stack.h'
       call matptr('A'//char(0),m,n,la)
-      call dmmul(stk(la),m,x,m,xdot,m,m,m,1)
+      call brdmmul(stk(la),m,x,m,xdot,m,m,m,1)
       call matptr('B'//char(0),m,nb,lb)
       call dgemm('n','n',m,1,nb,1.0d0,stk(lb),m,x(m+1),1,1.0d0,xdot,m)
       end
 
+      subroutine brdmmul(a,na,b,nb,c,nc,l,m,n)
+c     Copyright INRIA
+      double precision a(*),b(*),c(*)
+      double precision ddot
+      integer na,nb,nc,l,m,n
+      integer i,j,ib,ic
+c
+      ib=1
+      ic=0
+      do 30 j=1,n
+         do 20 i=1,l
+   20    c(ic+i)=ddot(m,a(i),na,b(ib),1)
+      ic=ic+nc
+      ib=ib+nb
+   30 continue
+      return
+      end
 
 
 

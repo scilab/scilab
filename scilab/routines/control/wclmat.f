@@ -53,7 +53,7 @@ c
    10    continue
          do 30 i1=1,ndng
             im1 = ndng1 - i1
-            call wmmul(ar,ai,ia,w(k1r),w(k1i),1,br(1,j),bi(1,j),
+            call wmmul(ar,ai,ia,w(k1r),w(k1i),n,br(1,j),bi(1,j),
      *                ib,n,n,1)
             do 20 i=1,n
                w1 = two*br(i,j) - w(k2r-1+i)

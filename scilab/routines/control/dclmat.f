@@ -47,7 +47,7 @@ c
    10    continue
          do 30 i1=1,ndng
             im1 = ndng1 - i1
-            call dmmul(a,ia,w,1,b(1,j),ib,n,n,1)
+            call dmmul(a,ia,w,n,b(1,j),ib,n,n,1)
             do 20 i=1,n
                w1 = two*b(i,j) - w(n+i)
                w(n+i) = w(i)
