@@ -5,7 +5,7 @@ function x=%spb_and(a,flag)
 // Copyright INRIA
 if argn(2)==1 then flag='*',end
 if flag=='*' then
-  x=size(find(a),flag)==size(a,flag) 
+  x=size(find(a,1),flag)==size(a,flag) 
 else
   x=sum(bool2s(a),flag)==size(a,flag)
 end
