@@ -115,7 +115,7 @@ static int  no_startup_flag=0;
 static int  memory = MIN_STACKSIZE;
 static int  no_window = 0;
 static char * initial_script = NULL;
-
+extern void settexmacs();
 void C2F(realmain)()
 {
   int ierr, argc,i;
@@ -139,7 +139,7 @@ void C2F(realmain)()
 	  sprintf(dpy,"DISPLAY=%s",display);
 	  putenv(dpy);
 	} 
-      else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1; }
+      else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 
       else if ( strcmp(argv[i],"-pipes") == 0) 
@@ -149,6 +149,8 @@ void C2F(realmain)()
 	  p2 = atoi(argv[++i]); 
 	  C2F(initcom)(&p1, &p2);
 	}
+      else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
+
     }
   /* create temp directory */
   C2F(settmpdir)();
