@@ -204,7 +204,17 @@ else
     
     typ="Type("+vtype+","+prop+")"
     
-    trad=[trad;"tree.lhs(1).dims="+dims;"tree.lhs(1).type="+typ]
+    if mtlbtree.outputs($).name<>"varargout" then
+      trad=[trad;"tree.lhs(1).dims="+dims;"tree.lhs(1).type="+typ]
+    else
+      trad=[trad;
+	  "for k=1:lhs"
+	  "  tree.lhs(k).dims=list(Unknown,Unknown)"
+	  "  tree.lhs(k).vtype=Unknown"
+	  "  tree.lhs(k).property=Unknown"
+	  "end"
+	  ]
+    end
   else  // Function with more than 1 output
     dims=list();
     vtype=[];
@@ -233,13 +243,28 @@ else
 	vtype
 	"//  prop(i) is the ith output argument property"
 	prop]
-    
-    trad=[trad;
-	"for k=1:lhs"
-	"  tree.lhs(k).dims=dims(k)"
-	"  tree.lhs(k).vtype=evstr(vtype(k))"
-	"  tree.lhs(k).property=evstr(prop(k))"
-	"end"]
+    if mtlbtree.outputs($).name<>"varargout" then
+      trad=[trad;
+	  "for k=1:lhs"
+	  "  tree.lhs(k).dims=dims(k)"
+	  "  tree.lhs(k).vtype=vtype(k)"
+	  "  tree.lhs(k).property=prop(k)"
+	  "end"]
+    else
+      trad=[trad;
+	  "for k=1:min(lstsize(dims),lhs)"
+	  "  tree.lhs(k).dims=dims(k)"
+	  "  tree.lhs(k).vtype=vtype(k)"
+	  "  tree.lhs(k).property=prop(k)"
+	  "end"
+	  "// Inference for varargout"
+	  "for k=min(lstsize(dims),lhs)+1:lhs"
+	  "  tree.lhs(k).dims=list(Unknown,Unknown)"
+	  "  tree.lhs(k).vtype=Unknown"
+	  "  tree.lhs(k).property=Unknown"
+	  "end"
+	  ]
+    end
   end
 end
 clearglobal varslist
