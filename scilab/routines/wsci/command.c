@@ -33,7 +33,7 @@ struct hist
     		struct hist *next;
 };
 
-extern void add_history_sci (char *line);
+extern void AddHistory (char *line);
 extern struct hist * SearchBackwardInHistory(char *line);
 extern BOOL NewSearchInHistory;
 
@@ -87,7 +87,7 @@ static char * rlgets (char *s, int n, char *prompt)
   /* If it's not an EOF */
   if (line)
     {
-      if (*line>=0) add_history_sci (line);
+      if (*line>=0) AddHistory (line);
       strncpy (s, line, n);
       return s;
     }
@@ -114,7 +114,7 @@ rlgets_nw (char *s, int n, char *prompt)
     {
       /* -1 is added for eos ( end of input when using pipes ) */
       if (*line>=0)
-	add_history_sci (line);
+	AddHistory (line);
       strncpy (s, line, n);
       return s;
     }
