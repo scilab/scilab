@@ -262,22 +262,30 @@
 
   <SECTION label="Remarks">
     <ITEMIZE>
-      <ITEM label="Known Issues:">
-        <P></P>
-
-        <SP>Execute selection deals only with selections containing less than
-        a reasonable number of characters (~4000 on Linux, or ~500 on
-        Windows). It gets confused if the selection contains a
-        <VERB>function</VERB> not terminated by an <VERB>endfunction</VERB>.
-        The commands passed are output on the Scilab window, but are not
-        recorded in the history.</SP>
-
-        <P></P>
-      </ITEM>
-
-      <ITEM label="Bugs:">
-        <SP>There are still a few... Details can be found in file
-        SCI/tcl/scipadsources/BUGS</SP>
+      <ITEM label="Localisation:">
+       <SP>Scipad menues and messages can be translated to several languages.
+        By default, they appear in the language of Scilab, which is either 
+        English or French (see <LINK>setlanguage</LINK>), but other languages
+        are being added.
+        To this extent, the following commands have to be issued in
+        scilab once per session, before launching Scipad for the first time:
+        </SP>
+        <P>
+        <VERB>global %scipad_language; %scipad_language="XX"</VERB>
+        </P>
+        <SP>
+        where XX stands for the code of the language. Such commands
+        can be included, for instance, in the user .scilab file.
+        Currently, the supported
+        codes are: "eng" (English), "fr" (French), "it" (Italian), 
+        "se" (Swedish). 
+        </SP>
+        <SP>
+        Further languages can be added by creating the proper translation
+        file and putting it in SCI/tcl/scipadsources/msg_files/. If you plan
+        to do such a job and to contribute it to the community, please 
+        contact the current mantainers for detailed instructions.
+        </SP>
 
         <P></P>
       </ITEM>
@@ -295,12 +303,14 @@
         Scipad window. Possible actions are move (just use mouse button-1) and
         copy (Control button-1).</P>
 
-        <P>TkDnD installation for Windows platforms: Download the full package
+        <P>Tkdnd is currently shipped with Windows and linux-i386 binary 
+        versions of Scilab. If not, here are some installation instructions:</P>
+        <P>Windows platforms: Download the full package
         (currently tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the
         content of lib\tkdnd and paste it into SCI\tcl\tk8.4\tkdnd. That's
         all!</P>
 
-        <P>TkDnD installation for linux i386 platforms: Download the rpm
+        <P>linux-i386 platforms: Download the rpm
         package (currently tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may
         have to force --nodeps if it doesn't recognize an existing tcl
         installation). If you have a source version of Scilab and an
@@ -308,6 +318,26 @@
         /usr/share/). and move the newly created directory /usr/lib/tkdnd1.0/
         to there. If you have a binary version of Scilab, move tkdnd1.0/ to
         SCI/tcl/, where the supplied tcl-tk binaries are.</P>
+
+        <P></P>
+      </ITEM>
+      
+      <ITEM label="Known Issues:">
+        <P></P>
+
+        <SP>Execute selection deals only with selections containing less than
+        a reasonable number of characters (~4000 on Linux, or ~500 on
+        Windows). It gets confused if the selection contains a
+        <VERB>function</VERB> not terminated by an <VERB>endfunction</VERB>.
+        The commands passed are output on the Scilab window, but are not
+        recorded in the history.</SP>
+
+        <P></P>
+      </ITEM>
+
+      <ITEM label="Bugs:">
+        <SP>There are still a few... Details can be found in file
+        SCI/tcl/scipadsources/BUGS</SP>
 
         <P></P>
       </ITEM>
