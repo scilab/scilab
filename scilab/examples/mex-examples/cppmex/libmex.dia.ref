@@ -1,0 +1,21 @@
+ 
+// load the shared library
+ 
+ 
+exec loader.sce ;
+shared archive loaded
+ 
+ 
+// run tests
+ 
+ 
+x=56;
+ 
+y = square(x);
+ 
+if norm(y-x^2) > %eps then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 

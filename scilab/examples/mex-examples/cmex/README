@@ -1,0 +1,26 @@
+The purpose of this contribution is to emulate the Matlab mexfile
+mechanism for people too lazy/busy to learn the Scilab dynamic
+link interfacing mechanism...
+
+Only the most useful functions have been emulated. 
+
+See SCIDIR/routines/default/mexlib.c for additional info and
+in particular the list of emulated mx functions.
+
+-------------------------------------------------------
+To build the shared library enter 
+	--> exec builder.sce 
+	at scilab prompt 
+To load the shared library enter 
+	--> exec loader.sce 
+	at scilab prompt 
+
+To run a test just exec the libmex.tst file 
+
+You can also build and run all the tests with 
+	make tests (Unix) 
+	nmake /f Makefile.mak tests (visual C++) 
+-------------------------------------------------------
+
+jpc and fd 
+

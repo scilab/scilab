@@ -1,0 +1,123 @@
+ 
+// load the shared library
+ 
+ 
+exec loader.sce ;
+shared archive loaded
+ 
+ 
+// run tests
+ 
+ 
+[p,q,r]=mexf01(1:4,'qwerty');
+Warning: This function requires 2 inputs
+
+ 
+if r~='qwerty' then bugmes();quit;end
+ 
+ 
+[a,x]=mexf02(20,'x');
+ 
+if a~=20 then bugmes();quit;end
+ 
+A=rand(2,2);B=rand(2,3);
+ 
+ 
+C=mexf03(A,B);
+ 
+if norm(A*B-C) > %eps then bugmes();quit;end
+ 
+ 
+p=mexf04(1:3,'x');
+ 
+if p ~= poly(1:3,'x') then bugmes();quit;end
+ 
+ 
+w1=mexf05(1:5);
+ 
+if and(w1~=(1:5)) then bugmes();quit;end
+ 
+ 
+w2=mexf06(1:5);
+ 
+if and(w2~=(1:5)) then bugmes();quit;end
+ 
+w=rand(2,3);w(10,15)=0;w=sparse(w);
+ 
+ 
+mexf07(mtlb_sparse(w));
+(1 , 1) = 0.560849 
+(2 , 1) = 0.662357 
+(1 , 2) = 0.726351 
+(2 , 2) = 0.198514 
+(1 , 3) = 0.544257 
+(2 , 3) = 0.232075 
+ 
+ 
+w=mexf08();
+Rows 3; Columns 10
+ 
+if w(1)~='123456789 ' then bugmes();quit;end
+ 
+ 
+mexf09() // prints something calling disp
+ 
+ A=[1,2;3,4]   
+ 
+ 
+clear myvar;
+ 
+ 
+A=mexf10() // search myvar
+ A  =
+ 
+ variable myvar not found   
+ 
+if A<>"variable myvar not found" then bugmes();quit;end
+ 
+myvar=1:45;
+ 
+A=mexf10() // search myvar again
+ A  =
+ 
+ variable myvar found size=[1,45]   
+ 
+if A<>"variable myvar found size=[1,45]" then bugmes();quit;end
+ 
+ 
+mexf11() // creates A11 with a mexEvalString
+ 
+if A11<>[1,2,3,4] then bugmes();quit;end
+ 
+ 
+mexf12() // creates C with a WriteMatrix (<==> mxPutArray)
+ 
+if C<>matrix(0:7,4,2) then bugmes();quit;end
+ 
+ 
+mexf13() // creates X with a mexEvalString
+ ans  =
+ 
+ variable X found size=[1,3]   
+ 
+// then try to get it with mexGetArray
+ 
+if X<>[1,2,3] then bugmes();quit;end
+ 
+ 
+ 
+[x,y,z]=mexf14(1,2,3);
+ 
+if z~=3 then bugmes();quit;end
+ 
+ 
+[u,v]=mexf15(2,1:3);
+ 
+if u~=2 then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,34 @@
+
+	mexfunctions and c++ code 
+
+(for standard C code see ../mex-with-so) 
+
+See SCIDIR/routines/default/mexlib.c for additional info and
+in particular the list of emulated mx functions.
+
+Usage:
+I: Building the dynamic library (TO BE DONE ONCE)
+
+-Edit the script builder.sce.
+-Fill the table of functions
+ table =[     'square',         'temptst',     'cmex'];
+          scilab-function       source.cpp     keyword 
+
+-At scilab prompt enter
+--> exec builder.sce
+
+The script builds a dynamic library and a file loader.sce;
+
+II: To load the library into Scilab enter
+-->exec loader.sce;
+
+To run a test just exec the libmex.tst file 
+
+You can also build and run all the tests with 
+	make tests (Unix) 
+	nmake /f Makefile.mak tests (visual C++) 
+-------------------------------------------------------
+
+jpc and fd (Wed Mar 31 2004)
+
+
