@@ -99,7 +99,6 @@ function mydisp(str)
 endfunction
 
 function myexec()
-  pause
   if MSDOS then
       if fileinfo(tmpfiles+'dia')<>[] then  
 	unix_s('del '+tmpfiles+'dia')
