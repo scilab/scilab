@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>help_skeleton</TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>21-May-2003</DATE>
+  <SHORT_DESCRIPTION name="help_skeleton">build the skeleton of the
+  xml help file associated to a Scilab function</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>txt = help_skeleton(funname)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>funname</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       : character string : the name of the function
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+
+    <PARAM_ITEM>
+    <PARAM_NAME>txt</PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       : the XML code
+    </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+  </PARAM_INDENT>
+  </PARAM>
+ 
+  <DESCRIPTION>
+   <VERB>txt = help_skeleton(funname)</VERB> generates a vector of
+   strings containing the skeleton of the XML code describing the help
+   of the function <VERB>funname</VERB>. The
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   function [y,z]=foo(a,b),y=a+b,z=1,endfunction
+   mputl(help_skeleton('foo'),'foo.xml')
+   scipad foo.xml
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK> help</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>
+    Serge Steer, INRIA
+  </AUTHOR>
+</MAN>
