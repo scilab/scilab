@@ -13,7 +13,7 @@ if rhs==1 then
   tree.rhs=Rhs(X)
   // Y = lu(X)
   if lhs==1 then
-    if tree.lhs(1).name=="" then
+    if tree.lhs(1).name=="ans" then
       no_equiv(expression2code(tree))
     else
       no_equiv(tree.lhs(1).name+" = "+expression2code(tree))
