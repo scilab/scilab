@@ -1,17 +1,17 @@
                 Scilab version 2.7 for Windows (95/98/NT/2000/XP)
                 *************************************************
  
- ******************************************************************************
- 0 - COPYRIGHT NOTICE
- ********************
+******************************************************************************
+0 - COPYRIGHT NOTICE
+********************
  
  Scilab is free software. 
  See the included license: "license.txt" in English
                            "licence.txt" in French
  
- ******************************************************************************
- I - TO RUN SCILAB (BINARY VERSION)
- **********************************
+******************************************************************************
+I - TO RUN SCILAB (BINARY VERSION)
+**********************************
  
     1 - You have already installed Scilab by executing "scilab27.exe".
         By default Scilab is in "C:\Program Files\Scilab-2.7" directory.
@@ -32,18 +32,25 @@
         or better post a message to newsgroup:
  
  		      comp.soft-sys.math.scilab
+
+CAUTION: When Scilab 2.7 is launched, file "scilab.hist" is created. By default it
+********
+is created in the folder defined by environment variable "HOME". This may cause
+problem when this variable is not defined and/or you do not have write access to
+the folder it defines: Scilab 2.7 crashes. To solve this problem you have to
+define the "HOME" environment variable in Windows in the usual way.
  
- ******************************************************************************
- II - TO UNINSTALL SCILAB (BINARY VERSION)
- *****************************************
+******************************************************************************
+II - TO UNINSTALL SCILAB (BINARY VERSION)
+*****************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
     "Scilab 2.7" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
- ******************************************************************************
- III - TO CUSTOMIZE SCILAB FONTS, WINDOW SIZE and SCILAB MENUS 
- *************************************************************
+******************************************************************************
+III - TO CUSTOMIZE SCILAB FONTS, WINDOW SIZE and SCILAB MENUS 
+*************************************************************
  
     When you enter Scilab for the first time the window may be too
     large and the fonts not properly choosen.  Just change this
@@ -58,9 +65,9 @@
     "bin/wgscilab.mnu" to customize the Scilab menus. It's quite
     easy to change them.
  
- ******************************************************************************
- IV - TO COMPILE SCILAB FROM A SOURCE VERSION
- ********************************************
+******************************************************************************
+IV - TO COMPILE SCILAB FROM A SOURCE VERSION
+********************************************
  
     We have compiled this distribution with Visual C++ 6.0. It is
     possible to compile it with egcs or Cygwin compiler.
@@ -78,9 +85,9 @@
     2 - To compile with egcs or Cygwin compiler, try typing "./configure" and 
         then "make all".
  
- ******************************************************************************
- V - DOCUMENTATION
- ******************
+******************************************************************************
+V - DOCUMENTATION
+******************
  
  In addition to Scilab online documentation (obtained by typing "help item" or
  "apropos keyword" or clicking on the help button), you will find 
@@ -102,7 +109,7 @@
 
 ******************************************************************************
 VI - SOME IMPORTANT FILES AND DIRECTORIES
-******************************************
+*****************************************
  
  scilab.star: startup file for Scilab instructions in this file
               are executed when Scilab is executed. Note that
