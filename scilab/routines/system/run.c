@@ -176,7 +176,7 @@ int C2F(run)()
      * or errcatch in execstr('foo()','errcatch') */
     if (C2F(errgst).catch == 0) goto L999;
     /* error under errcatch(....,'continue') */
-    if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001) {
+    if (Rstk[Pt - 1] == 903 || Rstk[Pt - 1] == 909 || Rstk[Pt] == 1001 || Rstk[Pt] == 1002) {
       return 0;
     }
   }

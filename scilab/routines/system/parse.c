@@ -1491,7 +1491,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   static int *Rstk = C2F(recu).rstk-1;
   static int *Lstk = C2F(vstk).lstk-1;
   static int *Infstk  = C2F(vstk).infstk-1;
-  C2F(basbrk).interruptible = *seq != 0;
+
+   C2F(basbrk).interruptible = *seq != 0;
   C2F(bexec)(str, ns, ierr, (*ns));
   if (*ierr != 0) {
     goto L9998;
@@ -1503,7 +1504,7 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   Ids[1 + Pt * nsiz] = Lhs;
   Ids[2 + Pt * nsiz] = Rhs;
   Ids[3 + Pt * nsiz] = C2F(com).sym;
-  Rstk[Pt] = 1001;
+  Rstk[Pt] = 1002;
   ++C2F(recu).niv;
   C2F(com).fun = 0;
   C2F(recu).icall = 5;
@@ -1623,6 +1624,8 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
   /* + */
   --C2F(recu).niv;
   *ierr = 0;
+  C2F(recu).icall = 0;
+  C2F(com).fin = 3;
   return 0;
  L9998:
   *ierr = 1;

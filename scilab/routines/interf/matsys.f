@@ -2573,13 +2573,22 @@ c     .     get location of lhs var names
             pstk(pt0+1)=lvar
             pstk(pt0+2)=count+1
          else
-c     .     resume in an uncompiled macro
+c     .     resume in an uncompiled macro or syncexec
             if(rstk(pt-1).ne.201
      &           .or.rstk(pt-2).ne.101
      &           .or.rstk(pt-3).ne.703
      &           .or.(sym.ne.semi.and.sym.ne.comma.and.sym.ne.eol)) 
      &           goto 156
             pt=pt-3
+            if (rstk(pt0-1).eq.1002) then
+c     .        syncexec case
+               mrhs=rhs
+               rhs=0
+               do  i=1,mrhs
+                  call stackp(ids(1,pt),0)
+                  pt=pt-1
+               enddo
+            endif
             pstk(pt0+1)=pt
             pstk(pt0+2)=count
          endif

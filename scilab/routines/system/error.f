@@ -74,7 +74,7 @@ c        . looking if error has occurred in execstr deff getf or comp
             pt0=pt
             goto 50
          endif
-         if(rstk(p).eq.1001) then
+         if(rstk(p).eq.1001.or.rstk(p).eq.1002) then
 c     .     error has occurred in an external
             errtyp=0
             pt0=p

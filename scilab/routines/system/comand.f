@@ -340,25 +340,34 @@ C     compilation abort:<14>
         lct(4) = lin(k+6)
         lpt(6) = k
         if (rstk(pt) .le. 502) then
-c     . abort dans une macro  ou execstr
+c     . abort in a  macro  an execstr or external
           if(pt.gt.1) then
-             if(rstk(pt-1).ne.903.and.rstk(pt-1).ne.909.and.
-     $            rstk(pt-1).ne.706) then
-c     .      abort dans une macro
+             if(rstk(pt-1).eq.1002) then
+c     .         abort in syncexec, make current parser finish
+                fin = 4
+                fun = 99
+                macr=macr-1
+                lct(8) = 0
+                lct(4)=pstk(pt)
+                pt = pt-1
+                goto 999
+             elseif(rstk(pt-1).ne.903.and.rstk(pt-1).ne.909.and.
+     $              rstk(pt-1).ne.706) then
+c     .         abort in a macro
                 bot = lin(k+5)
              endif
           else
-c     .      abort dans une macro
+c     .      abort in a macro
              bot = lin(k+5)
           endif
         elseif (rstk(pt) .eq. 503) then
           if (rio .eq. rte) then
-c     .     abort dans une pause
+c     .     abort in a pause
             rio = pstk(pt-1)
             paus = paus - 1
             bot = lin(k+5)
           else
-c     .     abort dans un exec
+c     .     abort in an exec
              mode(1)=0
              call clunit(-rio,buf,mode)
              rio = pstk(pt-1)
