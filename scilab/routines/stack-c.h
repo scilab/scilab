@@ -89,7 +89,7 @@ static int c_local;
 #define Lhs C2F(com).lhs
 #define Bot C2F(vstk).bot
 #define Err C2F(iop).err
-#define Leps  *stk(C2F(vstk).leps) 
+#define Leps_sci  *stk(C2F(vstk).leps) 
 
 #define stk(x)  ( C2F(stack).Stk + x-1 )
 #define istk(x) (((int *) C2F(stack).Stk) + x-1 )
