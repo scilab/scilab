@@ -1816,7 +1816,6 @@ int scixarcs(fname,fname_len)
   /* NG beg */
   long  hdl;
   int i,a1,a2;
-  long *hdltab;
   /* NG end */
   C2F(sciwin)();
   CheckRhs(1,2);
@@ -1851,21 +1850,15 @@ int scixarcs(fname,fname_len)
     }  
   /* NG beg */
   if (version_flag() == 0){ 
-    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
-      Scierror(999,"%s: No more memory available\r\n",fname);
-      return 0; 
-    }
     for (i = 0; i < n1; ++i)
       { 
 	a1=(int)(*stk(l1+(6*i)+4));
 	a2=(int)(*stk(l1+(6*i)+5));
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
 		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),0,&hdl); 
-	hdltab[i]=hdl; /** handle of arc i **/
       }
     /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregation (hdltab, n1));
-    FREE(hdltab);
+    sciSetCurrentObj (ConstructAgregationSeq (n1));
   }   
   else
     Xarcs(fname,fname_len,istk(l2), n1,stk(l1));
@@ -1882,10 +1875,8 @@ int scixfarcs(fname,fname_len)
      unsigned long fname_len;
 {
   int m1,n1,l1,m2,n2,l2;
-  /* NG beg */
   long  hdl;
   int i,a1,a2;
-  long *hdltab; /* NG end */
 
   C2F(sciwin)();
   CheckRhs(1,2);
@@ -1910,27 +1901,19 @@ int scixfarcs(fname,fname_len)
       m2=1,n2=n1; CreateVar(2,"i",&m2,&n2,&l2);
       for (i = 0; i < n2; ++i)  *istk(l2 + i) = i+1;
     }
-  /* NG beg */
   if (version_flag() == 0) {
-    if ((hdltab = malloc (n1 * sizeof (long))) == NULL){
-      Scierror(999,"%s: No more memory available\r\n",fname);
-      return 0; 
-    }
     for (i = 0; i < n1; ++i)
       { 
 	a1 = (int)(*stk(l1+(6*i)+4));
 	a2 = (int)(*stk(l1+(6*i)+5));
 	Objarc (&a1,&a2,stk(l1+(6*i)),stk(l1+(6*i)+1),
 		stk(l1+(6*i)+2),stk(l1+(6*i)+3),*istk(l2+i),1,&hdl); 
-	hdltab[i]=hdl; /** handle of arc i **/
       }
     /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
-    FREE(hdltab);
+    sciSetCurrentObj (ConstructAgregationSeq (n1));
   }   
   else
     Xfarcs(fname,fname_len,istk(l2), n1,stk(l1));
-  /* NG end */
   LhsVar(1)=0;
   return 0;
 
@@ -2350,12 +2333,8 @@ int scixfpolys(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; /* v2 = 0 F.leray 24.02.04 unused flag*/
   /* v1 is the flag used for flat (v1==1)/interpolated (v1==2) shading */
 
-  /* NG beg */
   int i,color;
   long hdl;
-  long *hdltab;
-  /* NG end */
-
 
   C2F(sciwin)();
 
@@ -2392,31 +2371,21 @@ int scixfpolys(fname,fname_len)
       CreateVar(3,"i",&un,&n2,&l3);
       for (ix = 0 ; ix < n2 ; ++ix) *istk(l3+ix) = 0;
     }
-  /* NG beg */
   if (version_flag() == 0) {
-    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
-      Scierror(999,"%s: No more memory available\r\n",fname);
-      return 0; 
-    }
     for (i = 0; i < n1; ++i) {
       if (*istk(l3+i) == 0) {
 	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
-	color= ((i==0) ? 1: sciGetForeground(sciGetPointerFromHandle((long) hdltab[i-1])));
+	color= ((i==0) ? 1: sciGetForeground(sciGetSelectedSubWin(sciGetCurrentFigure ())));
 	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
       }
       else   
 	/** poly i is drawn using the line style (or color) **/  
 	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,*istk(l3+i),&hdl);
-      hdltab[i]=hdl;
     }
     /** construct agregation and make it current object**/
-    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
-    FREE(hdltab);
+    sciSetCurrentObj (ConstructAgregationSeq (n1));
   }
   Xfpolys(istk(l3),v1,v2,n2,m2,stk(l1),stk(l2));
-  /* NG end */
-
-  /* end of Code modified by polpoth 7/7/2000 */
 
   LhsVar(1)=0;  
   return 0;  
@@ -2728,11 +2697,8 @@ int scixpolys(fname,fname_len)
      unsigned long fname_len;
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3;
-  /* NG beg */
   int i;
   long hdl;
-  long *hdltab;
-  /* NG end */
 
   C2F(sciwin)();
   CheckRhs(2,3);
@@ -2751,23 +2717,15 @@ int scixpolys(fname,fname_len)
       CreateVar(3,"i",&un,&n1,&l3);
       for (i = 0 ; i < n1 ; ++i) *istk(l3+i) = 1;
     } 
-  /* NG beg */
   if (version_flag() == 0) {
-    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
-      Scierror(999,"%s: No more memory available\r\n",fname);
-            return 0; 
-    }
-    for (i = 0; i < n1; ++i) {
+    for (i = 0; i < n1; ++i) 
       Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
-      hdltab[i]=hdl;
-      }
+      
     /** construct agregation and make it current object**/
-    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
-    FREE(hdltab);
+    sciSetCurrentObj (ConstructAgregationSeq (n1));
     }
    else
      Xpolys(istk(l3),n2,m2,stk(l1),stk(l2));
-  /* NG end*/
   LhsVar(1)=0;
   return 0;
 }
@@ -3032,8 +2990,7 @@ int scixstring(fname,fname_len)
   integer i,j,iv =0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
-  long hdlstr, hdlrect;/* NG */
-  long *hdltab;/* NG */
+  long hdlstr, hdlrect;
 
   CheckRhs(3,5);
   
@@ -3048,12 +3005,7 @@ int scixstring(fname,fname_len)
   C2F(sciwin)();
   wc = 0.;/* to keep the size of the largest line */
 
-  /* NG beg */
   if (version_flag() == 0) {
-    if ((hdltab = malloc ((m3+1) * sizeof (long))) == NULL){
-      Scierror(999,"%s: No more memory available\r\n",fname);
-      return 0; 
-    }
     for (i = m3 -1 ; i >= 0; --i)  {
       int ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
@@ -3062,7 +3014,6 @@ int scixstring(fname,fname_len)
 	if ( j != n3-1) { C2F(cha1).buf[ib]=' '; ib++;}
       }
       Objstring (C2F(cha1).buf,bsiz,iv,x,y,&angle,rect,(double *)0,-1,&hdlstr);
-      hdltab[m3-1-i]=hdlstr;   
       wc = Max(wc,rect[2]);
       if (i != 0 ) 
 	y += rect[3] * 1.2; 
@@ -3075,17 +3026,13 @@ int scixstring(fname,fname_len)
       Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect);
     }
     /** construct agregation and make it current object **/ 
-    if ((flagx == 1) && (*stk(l4) == 0)){
-      hdltab[m3]=hdlrect;
-      sciSetCurrentObj (ConstructAgregation (hdltab, m3+1));
-    }
-    else  { 
-      if (m3 > 1)
-	sciSetCurrentObj ( ConstructAgregation (hdltab, m3));
-    }
-    FREE(hdltab);
-  } /* end if (version_flag() == 0) */
-  else { /* NG end */
+    if ((flagx == 1) && (*stk(l4) == 0))
+      sciSetCurrentObj (ConstructAgregationSeq (m3+1));
+    else  
+      if (m3 > 1) sciSetCurrentObj ( ConstructAgregationSeq (m3));
+    
+  } 
+  else {
     for (i = m3 -1 ; i >= 0; --i) {
       int ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
@@ -3104,7 +3051,7 @@ int scixstring(fname,fname_len)
 	double dx1 = y - yi;
 	Xrect ("xrect",6L,&x,&y,&wc,&dx1); 
       }
-  } /* end  (version_flag() == 0) */
+  } 
    
   /* we must free Str memory */ 
   FreeRhsSVar(Str);
@@ -3122,9 +3069,6 @@ int scixtitle(fname,fname_len)
      unsigned long fname_len;
 {
   int narg;
- /*  long hdl; */
-/*   long *hdltab; */
- /*  sciSubWindow * ppsubwin = NULL; */
   sciPointObj * psubwin = NULL;
 
   if (Rhs <= 0) {
@@ -3133,17 +3077,9 @@ int scixtitle(fname,fname_len)
   }
   CheckRhs(1,3);
   C2F(sciwin)();
-/*   if (version_flag() == 0){ */
-/*     if (Rhs >= 1) */
-/*       { */
-/* 	if ((hdltab = malloc (Rhs * sizeof (long))) == NULL) */
-/* 	  return 0; */
-/*       } */
-/*   } */
 
   if (version_flag() == 0) 
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-  /*   ppsubwin = pSUBWIN_FEATURE( sciGetSelectedSubWin (sciGetCurrentFigure ())); */
 
   for ( narg = 1 ; narg <= Rhs ; narg++) 
     {
@@ -3160,9 +3096,6 @@ int scixtitle(fname,fname_len)
       FreeRhsSVar(Str);
       if (version_flag() == 0)
 	{
-	  /*   Objtitle(C2F(cha1).buf,narg,&hdl); */
-	  /* 	  hdltab[narg-1]=hdl; */
-
 	  switch(narg){
 	  case 1:
 	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_title, C2F(cha1).buf , strlen(C2F(cha1).buf));
@@ -3180,11 +3113,6 @@ int scixtitle(fname,fname_len)
       else
 	Xtitle (C2F(cha1).buf,narg);
     }
- /*  if (version_flag() == 0) { */
-/*     if (Rhs > 1){ */
-/*       sciSetCurrentObj (ConstructAgregation (hdltab, Rhs)); */
-/*       FREE(hdltab); } */
-/*   } */
   LhsVar(1)=0;
   return 0;
 }
@@ -4554,7 +4482,6 @@ int scirects(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
   int i,j;
-  long *hdltab;
   C2F(sciwin)();
   CheckRhs(1,2);
 
@@ -4583,9 +4510,6 @@ int scirects(fname,fname_len)
     }  
   /* NG beg */
   if (version_flag() == 0){
-    if ((hdltab = malloc (n1 * sizeof (long))) == NULL) {
-      return 0; 
-    }
     for (i = 0; i < n1; ++i) { 
       j = (i==0) ? 0 : 1;
       if (*istk(l2+i) == 0)  
@@ -4598,11 +4522,9 @@ int scirects(fname,fname_len)
 	else         
 	  /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
 	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),1,*istk(l2+i),0,&hdl); 
-      hdltab[i]=hdl; /** handle of rectangle i **/
     }
     /** construct agregation and make it current object **/
-    sciSetCurrentObj (ConstructAgregation (hdltab, n1));  
-    FREE(hdltab);
+    sciSetCurrentObj (ConstructAgregationSeq (n1));  
   }   
   else
     Xrects(fname,fname_len,istk(l2), n1,stk(l1));
@@ -8030,7 +7952,7 @@ int scixclearsubwin(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 { 
-  unsigned long hdl,hdltab[10];
+  unsigned long hdl;
   sciPointObj *subwin, *tmpsubwin;
   integer m,n,l,i,numrow,numcol,outindex,j=0;
  
@@ -8065,7 +7987,7 @@ int scixclearsubwin(fname,fname_len)
 	    return 0;
 	  }
 	  else  {
-	    hdltab[j] = hdl;
+	    /*hdltab[j] = hdl; ???? SS*/
 	    j++;
 	    sciSetSelectedSubWin (subwin);
 	    sciSetdrawmode (FALSE); 
