@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.2 2002/10/31 12:30:51 chanceli Exp $
+# $Id: Makefile.aimk,v 1.3 2002/10/31 12:35:33 chanceli Exp $
 #
 # Generic Makefile body to be concatenated to config header.
 #
@@ -27,7 +27,7 @@ LIBS		=	-L$(PVMLDIR) -l$(PVMLIB) $(ARCHLIB)
 
 HEADERS		=	$(PVMIDIR)/pvm3.h $(PVMIDIR)/pvmproto.h
 
-REXECOBJ	=
+REXECOBJ	= pvmwinrexec.o pvmwinrsh.o
 
 default:	all
 install:	all
