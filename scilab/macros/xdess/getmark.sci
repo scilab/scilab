@@ -38,7 +38,8 @@ deff('menu_cancel(k,gwin)','global done;done=2')
 
 set('figure_style','new')
 f=gcf();
-f.visible='off';
+cur_drawing_mode = f.immediate_drawing;
+f.immediate_drawing ='off';
 a=gca();
 
 a.axes_visible='off';
@@ -64,7 +65,7 @@ for x=1:6
     H=[H;p];
   end
 end
-f.visible='on'
+f.immediate_drawing = cur_drawing_mode;
 f.pixmap='on';
 
 seteventhandler('evh')
