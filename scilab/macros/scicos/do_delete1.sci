@@ -28,7 +28,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
       
       if fromblock.gui=='SPLIT_f'|fromblock.gui=='CLKSPLIT_f' then
 	//user kills a split  output link:
-	
+
 	//get links connected to the split block
 	connected=get_connected(scs_m,from(1))
 	if size(connected,'*')==2 then
@@ -62,11 +62,22 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 	    o1.to=o2.to;
 	    DEL=[DEL connected(1)] // supress one link
 	    DELL=[DELL  connected(1)]
-	    scs_m.objs(connected(2))=o1 //change link
-	    scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),'in',ct2(2),..
-				   connected(2))
-	    scs_m.objs(o1.from(1))=mark_prt(scs_m.objs(o1.from(1)),o1.from(2),'out',..
-				       o1.ct(2),connected(2))
+	    if find(to2(1)==DEL)<>[]|find(o1.from(1)==DEL)<>[] then
+	      DEL=[DEL connected(2)] // supress one link
+	      DELL=[DELL  connected(2)]
+	      scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),'in',ct2(2),..
+				   0)
+	      scs_m.objs(o1.from(1))=mark_prt(scs_m.objs(o1.from(1)),o1.from(2),'out',..
+				       o1.ct(2),0)
+	      drawobj(scs_m.objs(connected(2)))
+	      drawobj(scs_m.objs(connected(1)))
+	    else
+	      scs_m.objs(connected(2))=o1 //change link
+	      scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),'in',ct2(2),..
+					  connected(2))
+	      scs_m.objs(o1.from(1))=mark_prt(scs_m.objs(o1.from(1)),o1.from(2),'out',..
+					      o1.ct(2),connected(2))
+	    end
 	  end
 	end
       end
