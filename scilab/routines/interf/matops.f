@@ -690,11 +690,13 @@ c     .  a/[] or []/a
             call error(14)
             return
          endif
-         if (m2 .eq. n2) fun = 1
-         if (m2 .ne. n2) fun = 4
-         fin = -1
          top = top+1
-         rhs = 2
+         rhs = 2        
+         call intslash('slash')
+         call putlhsvar()
+c         if (m2 .eq. n2) fun = 1
+c         if (m2 .ne. n2) fun = 4
+c         fin = -1
       else
 c     .  vector / cst
          if(m2.lt.0.and.mn1.ne.1) then 
@@ -788,11 +790,13 @@ c     .  a\[] or []\a
             call error(14)
             return
          endif
-         if (m1 .eq. n1) fun = 1
-         if (m1 .ne. n1) fun = 4
          top = top+1
-         fin = -2
-         rhs = 2
+         rhs = 2 
+         call intbackslash('backslash')
+         call putlhsvar()
+c         if (m1 .eq. n1) fun = 1
+c         if (m1 .ne. n1) fun = 4
+c         fin = -2
       else
 c     .  cst \ vector
          if(m1.lt.0.and.mn2.ne.1) then 
@@ -1115,13 +1119,11 @@ c     .     vect^scalar treated as  vect.^scalar (see matxpow)
       endif
 c     
       if (nexp.le.0) then
-         fun=10
-         fin=1
          rhs=1
-         call matlu
-         if(err.gt.0) return
+         call intinv('pow')
+c         call matlu
+         if(err.gt.0.or.err1.gt.0) return
          nexp=-nexp
-         fun=0
       endif
       l2=l1+mn1*(it1+1)
 c     

@@ -142,16 +142,27 @@ int intsvd(fname)
     header2 = (int *) GetData(2);
     switch (header2[0]) {
     case DOUBLE :
-      /*  old svd, tolerance is passed: [U,S,V,rk]=svd(A,tol)  */
-      /*   ret = C2F(intsvdold)("svd",2L);  */
-      if (Cmplx==0) {
-	tol = ((double *) header2)[2];
-	ret = C2F(intdoldsvd)(&tol,"svd",3L);  
-	return 0;}
-      if (Cmplx==1) {
-	tol = ((double *) header2)[2];
-	ret = C2F(intzoldsvd)(&tol,"svd",3L);  
-	return 0;} 
+      if (Lhs == 4) {
+	/*  old svd, tolerance is passed: [U,S,V,rk]=svd(A,tol)  */
+	/*   ret = C2F(intsvdold)("svd",2L);  */
+	if (Cmplx==0) {
+	  tol = ((double *) header2)[2];
+	  ret = C2F(intdoldsvd)(&tol,"svd",3L);  
+	  return 0;}
+	if (Cmplx==1) {
+	  tol = ((double *) header2)[2];
+	  ret = C2F(intzoldsvd)(&tol,"svd",3L);  
+	  return 0;} 
+      }
+      else {
+	/* old Economy size:  [U,S,V]=svd(A,0)  */
+	if (Cmplx==0) {
+	  ret = C2F(intdgesvd2)("svd",3L);  
+	  return 0;}
+	if (Cmplx==1) {
+	  ret = C2F(intzgesvd2)("svd",3L);  
+	  return 0;} 
+      }
       break;
     case STRING  :
       /* Economy size:  [U,S,V]=svd(A,"e")  */
@@ -227,48 +238,100 @@ int intlsq(fname)
 int inteig(fname)
   char *fname;
 {
-  int *header1;
-  int CmplxA;int ret;int Symmetric;int X;
+  int *header1, *header2;
+  int CmplxA, CmplxB;
+  int ret;int Symmetric;int X;
 
   extern int C2F(intdgeev) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intdsyev) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intzgeev) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intzheev) __PARAMS((char *fname, unsigned long fname_len));
 
-  /*   spec(A)  */
-  header1 = (int *) GetData(1);    
-  CmplxA=header1[3];
-  Symmetric = C2F(issymmetric)((X=1,&X));
-  switch (CmplxA) {
-  case REAL:
-    
-    switch (Symmetric) {
-    case NO :
-    ret = C2F(intdgeev)("spec",4L);
-    break;
-    case YES :
-    ret = C2F(intdsyev)("spec",4L);
-    break;
-    }
-    return 0;
-  case COMPLEX:
-    switch (Symmetric) {
-    case NO :
-    ret = C2F(intzgeev)("spec",4L);
-    break;
-    case YES: 
-    ret = C2F(intzheev)("spec",4L);
-    break;
-    }
-    return 0;
-  default:
-    Scierror(999,"%s: Invalid input! \r\n",fname);
-    return 0;
-  }
-  return 0;
+  extern int C2F(intdggev) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intzggev) __PARAMS((char *fname, unsigned long fname_len));
+  switch (Rhs) {
+  case 1:   /* spec(A)   */
+    header1 = (int *) GetData(1);    
+    CmplxA=header1[3];
+    Symmetric = C2F(issymmetric)((X=1,&X));
+    switch (CmplxA) {
+    case REAL:
+      switch (Symmetric) {
+      case NO :
+	ret = C2F(intdgeev)("spec",4L);
+	break;
+      case YES :
+	ret = C2F(intdsyev)("spec",4L);
+	break;
+      }
+      break;
+    case COMPLEX:
+      switch (Symmetric) {
+      case NO :
+	ret = C2F(intzgeev)("spec",4L);
+	break;
+      case YES: 
+	ret = C2F(intzheev)("spec",4L);
+	break;
+      }
+      break;
+    default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      break;
+    } /* end switch  (CmplxA) */
+    break; /* end case 1 */
+  case 2: /* gspec(A,B) */
+    header1 = (int *) GetData(1);    
+    header2 = (int *) GetData(2);
+    CmplxA=header1[3];   
+    CmplxB=header2[3];
+
+
+
+
+    switch (CmplxA) {
+    case REAL:   
+      switch (CmplxB) {
+      case REAL :
+	/* A real, Breal */
+	ret = C2F(intdggev)("gspec",5L);
+	break;
+      case COMPLEX :
+	/* A real, B complex : complexify A */
+	C2F(complexify)((X=1,&X));
+	ret = C2F(intzggev)("gspec",5L);
+	break;
+      default:
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    case COMPLEX :
+      switch (CmplxB) {
+      case REAL :
+	/* A complex, B real : complexify B */
+	C2F(complexify)((X=2,&X));
+	ret = C2F(intzggev)("gspec",5L);
+	break;
+      case COMPLEX :
+	/* A complex, B complex */
+	ret = C2F(intzggev)("gspec",5L);
+	return 0;
+	break;
+      default:
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
+      }
+      break;
+    default :
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      break;
+    } /*end  switch (CmplxA) */
+    break;/* end case 2 */
+  }/* end switch (Rhs) */
 }
 
-int intinv(fname)
+int C2F(intinv)(fname)
   char *fname;
 {
   int *header1;
@@ -408,8 +471,35 @@ int intlu(fname)
   }
   return 0;
 }
+int intdet(fname)
+  char *fname;
+{
+  int *header1;
+  int CmplxA;int ret;
 
-int intslash(fname)
+  extern int C2F(intdgetrf) __PARAMS((char *fname, unsigned long fname_len));
+  extern int C2F(intzgetrf) __PARAMS((char *fname, unsigned long fname_len));
+
+  /*   det(A)  */
+  header1 = (int *) GetData(1);    
+  CmplxA=header1[3];   
+  switch (CmplxA) {
+  case REAL:   
+    ret = C2F(intddet)("det",2L);
+    return 0;
+    break;
+  case COMPLEX:
+    ret = C2F(intzdet)("det",2L);
+    return 0;
+    break;
+  default:
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return 0;
+  }
+  return 0;
+}
+
+int C2F(intslash)(fname)
   char *fname;
 {
   int *header1;int *header2;
@@ -418,7 +508,7 @@ int intslash(fname)
   extern int C2F(intdgesv4) __PARAMS((char *fname, unsigned long fname_len));
   extern int C2F(intzgesv4) __PARAMS((char *fname, unsigned long fname_len));
 
-  /*   X = slash(A,B) <=> X = B / A */
+  /*   X = slash(A,B) <=> X = A / B */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
   switch (CmplxA) {
@@ -462,7 +552,7 @@ int intslash(fname)
 }
 
 
-int intbackslash(fname)
+int C2F(intbackslash)(fname)
   char *fname;
 {
   int *header1;int *header2;
@@ -594,6 +684,7 @@ int intschur(fname)
 	  ret = C2F(intzgees1)("schur",5L);
 	  break;
 	}
+	break;
       default:
 	/*   String is an external function  */
 	switch (CmplxA) {
@@ -682,139 +773,6 @@ return 0;
 }
 
 
-
-int intgschur(fname)
-     char *fname;
-
-{
-  int *header1;int *header2;int *header3; 
-  int CmplxA; int CmplxB;
-  int ret; int something;
-  int Cmplx; int X;
-
-  extern int C2F(intdgges) __PARAMS((char *fname, unsigned long fname_len));
-  extern int C2F(intzgges) __PARAMS((char *fname, unsigned long fname_len));
-  extern int C2F(intogschur) __PARAMS((char *fname, unsigned long fname_len));
-  extern int C2F(intzgschur) __PARAMS((char *fname, unsigned long fname_len));
-  extern int C2F(intgschur) __PARAMS((char *fname, unsigned long fname_len));
-
-  header1 = (int *) GetData(1);   CmplxA=header1[3];
-  header2 = (int *) GetData(2);   CmplxB=header2[3];
-
-  if ((CmplxA == 0) && (CmplxB ==0))  Cmplx =0; 
-  if ((CmplxA == 1) && (CmplxB ==0)) {
-    C2F(complexify)((X=2,&X));
-    Cmplx=1;}
-  if ((CmplxA == 0) && (CmplxB ==1)) {
-    C2F(complexify)((X=1,&X));
-    Cmplx=1;}
-  if ((CmplxA == 1) && (CmplxB ==1)) Cmplx=1;
-  
-  switch (Rhs) {
-  case 2:   /* gschur(A,B)   */
-    switch (Cmplx) {
-    case REAL :
-      ret = C2F(intdgges)("gschur",6L);
-      break;
-    case COMPLEX :
-      ret = C2F(intzgges)("gschur",6L);
-      break;
-    default :
-      Scierror(999,"%s: Invalid input! \r\n",fname);
-      break;
-    }
-    return 0;
-  case 3 :   /* gschur(A, B, something)   */
-    header3 = (int *) GetData(3); something=header3[0];
-    switch (something) {
-    case FUNCTION :
-      switch (Cmplx) {
-      case REAL :
-	ret = C2F(intogschur)("gschur",6L);
-	break;
-      case COMPLEX :
-	ret = C2F(intzgschur)("gschur",6L);
-	break;
-      default :
-	Scierror(999,"%s: Invalid input! \r\n",fname);
-	break;
-      }
-      return 0;
-    case STRING  :
-      switch (Cmplx) {
-      case REAL:
-	ret = C2F(intgschur)("gschur",6L);
-	break;
-      case COMPLEX:
-	ret = C2F(intzgschur)("gschur",6L);
-	break;
-      default :
-	Scierror(999,"%s: Invalid input! \r\n",fname);
-	break;
-      }
-      return 0;
-    }
-    return 0;
-  }
-  return 0;
-}
-
-int intgspec(fname)
-  char *fname;
-{
-  int *header1;int *header2;
-  int CmplxA;int CmplxB;int ret;int X;
-
-  extern int C2F(intdggev) __PARAMS((char *fname, unsigned long fname_len));
-  extern int C2F(intzggev) __PARAMS((char *fname, unsigned long fname_len));
-  /*  gspec(A,B) */
-  header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
-  CmplxA=header1[3];   CmplxB=header2[3];
-  switch (CmplxA) {
-  case REAL:   
-    switch (CmplxB) {
-    case REAL :
-      /* A real, Breal */
-      ret = C2F(intdggev)("gspec",5L);
-      return 0;
-      break;
-    case COMPLEX :
-      /* A real, B complex : complexify A */
-      C2F(complexify)((X=1,&X));
-      ret = C2F(intzggev)("gspec",5L);
-      return 0;
-      break;
-    default:
-      Scierror(999,"%s: Invalid input! \r\n",fname);
-      return 0;
-      break;
-    }
-  case COMPLEX :
-    switch (CmplxB) {
-    case REAL :
-      /* A complex, B real : complexify B */
-      C2F(complexify)((X=2,&X));
-      ret = C2F(intzggev)("gspec",5L);
-      return 0;
-      break;
-    case COMPLEX :
-      /* A complex, B complex */
-      ret = C2F(intzggev)("gspec",5L);
-      return 0;
-      break;
-    default:
-      Scierror(999,"%s: Invalid input! \r\n",fname);
-      return 0;
-      break;
-    }
-    break;
-  default :
-    Scierror(999,"%s: Invalid input! \r\n",fname);
-    return 0;
-    break;
-  }
-}
-
 int schtst (longueur, header)
      int longueur;
      int *header;
@@ -840,15 +798,15 @@ static LapackTable Tab[]={
   {intsvd,"lap_svd"},
   {intlsq,"lsq"},
   {inteig,"lap_spec"},
-  {intinv,"lap_inv"},
+  {C2F(intinv),"lap_inv"},
   {intrcond,"lap_rcond"},
   {intchol,"lap_chol"},
   {intlu,"lap_lu"},
-  {intslash,"lap_slash"},
-  {intbackslash,"lap_backslash"},
+  {C2F(intslash),"lap_slash"},
+  {C2F(intbackslash),"lap_backslash"},
   {intschur,"lap_schur"},
   {inthess,"lap_hess"},
-  {intgspec,"lap_gspec"},
+  {intdet,"lap_det"},
 };
 
 int C2F(intlapack)()

@@ -66,9 +66,9 @@ c
       LWORKMIN = 3*N
       LWORK=maxvol(k+2,'d')
       if(LWORK.le.LWORKMIN) then
-        buf='schur'//': not enough memory (use stacksize)'
-        call error(998)
-        return
+         err=(LWORK-LWORKMIN)
+         call error(17)
+         return
       endif
       if(.not.createvar(k+2,'d',1,LWORKMIN,lDWORK)) return
 
@@ -171,8 +171,8 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(k+3,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='schur'//': not enough memory (use stacksize)'
-         call error(998)
+         err=2*(LWORK-LWORKMIN)
+         call error(17)
          return
        endif
        if(.not.createvar(k+3,'z',1,LWORK,lDWORK)) return     
@@ -254,8 +254,8 @@ c
        LWORKMIN = N
        LWORK=maxvol(k,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='hess'//': not enough memory (use stacksize)'
-         call error(998)
+         err=(LWORK-LWORKMIN)
+         call error(17)
          return
        endif
       if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
@@ -336,8 +336,8 @@ c
        LWORKMIN = N
        LWORK=maxvol(k,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='hess'//': not enough memory (use stacksize)'
-         call error(998)
+         err=(LWORK-LWORKMIN)
+         call error(17)
          return
        endif
       if(.not.createvar(k,'z',1,LWORK,lDWORK)) return
@@ -378,123 +378,161 @@ c     [al,be,V]=gspec(A,B)
 c     [al,be] = gspec(A,B)
 
       include '../stack.h'
-      logical getrhsvar,createvar
+      logical getrhsvar,createvar,createcvar
       logical checklhs,checkrhs
-   
+      integer vfinite
+
       character fname*(*)
       character JOBVL, JOBVR
       double precision DZERO
       complex*16 complex
       parameter ( DZERO=0.0D0 )
 
-       minrhs=2
-       maxrhs=2
-       minlhs=2
-       maxlhs=3
-c
-       if(.not.checkrhs(fname,minrhs,maxrhs)) return
-       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+      minrhs=2
+      maxrhs=2
+      minlhs=1
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
 
-       if(.not.getrhsvar(1,'d', MA, NA, lA)) return
-       if(MA.ne.NA) then
-          err=1
-          call error(20)
-          return
-       endif
-       if(.not.getrhsvar(2,'d', MB, NB, lB)) return
-       if(MB.ne.NB) then
-          err=2
-          call error(20)
-          return
-       endif
-       if(MA.ne.MB) then
-         buf='gspec'//':
-     $        the matrices A and B must be of the same dimension'
-         call error(998)
+      if(.not.getrhsvar(1,'d', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         err=1
+         call error(20)
          return
-       endif
-       N = MA
-       if(N.eq.0) then
-         if(.not.createvar(3,'z', N, 1, lALPHA)) return
-         if(.not.createvar(4,'d', N, 1, lBETA)) return
-         lhsvar(1)=3
-         lhsvar(2)=4
-         if(lhs.eq.3) then
-           if(.not.createvar(5,'z', N, N, lV)) return
-           lhsvar(3)=5
+      endif
+      if(.not.getrhsvar(2,'d', MB, NB, lB)) return
+      if(MB.ne.NB) then
+         err=2
+         call error(20)
+         return
+      endif
+      if(MA.ne.MB) then
+         call error(267)
+         return
+      endif
+      N = MA
+      if(N.eq.0) then
+         lhsvar(1)=1
+         lhsvar(2)=2
+         if(lhs.ge.3) then
+            if(.not.createvar(3,'d', N, N, lVR   )) return
+            lhsvar(3)=3
+         endif
+         if(lhs.eq.4) then
+            if(.not.createvar(4,'d', N, N, lVL)) return
+            lhsvar(4)=4
          endif
          return
-       endif
-       if(.not.createvar(3,'z', N, 1, lALPHA)) return
-       k = 4              
-       if(lhs.eq.3) then
-         if(.not.createvar(4,'d', N, N, lVR)) return
-         if(.not.createvar(5,'z', N, N, lV)) return
-         k = 6
-       endif
-       if(.not.createvar(k,'d', N, 1, lALPHAR)) return
-       if(.not.createvar(k+1,'d', N, 1, lALPHAI)) return
-       if(.not.createvar(k+2,'d', N, 1, lBETA)) return
-       LWORKMIN = max(1,8*N)
-       LWORK=maxvol(k+3,'d')
-       if(LWORK.le.LWORKMIN) then
-         buf='gspec'//': not enough memory (use stacksize)'
-         call error(998)
+      endif
+       if(vfinite(N*N,stk(lA)).eq.0) then
+          err=1
+          call error(264)
+          return
+       endif  
+       if(vfinite(N*N,stk(lB)).eq.0) then
+          err=2
+          call error(264)
+          return
+       endif  
+
+      if(.not.createcvar(3,'d',1, N, 1, lALPHAR,lALPHAI)) return
+      if(.not.createvar(4,'d', N, 1, lBETA)) return
+      k=5
+      if(lhs.ge.3) then
+         if(.not.createcvar(5,'d',1, N, N, lVRR, lVRI)) return
+         k = 6            
+      endif
+      if(lhs.eq.4) then
+         if(.not.createcvar(6,'d',1, N, N, lVLR, lVLI)) return
+         k = 7           
+      endif
+
+      LWORKMIN = max(1,8*N)
+      LWORK=maxvol(k,'d')
+      if(LWORK.le.LWORKMIN) then
+         err=(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
-      if(.not.createvar(k+3,'d',1,LWORK,lDWORK)) return
-
-      JOBVL = 'N'
-      if(lhs.eq.2) then
-        JOBVR = 'N'
-        lVR = lDWORK
+      if(.not.createvar(k,'d',1,LWORK,lDWORK)) return
+      if(lhs.eq.1.or.lhs.eq.2) then
+         JOBVL = 'N'
+         JOBVR = 'N'
+         lVR = lDWORK
+         lVL = lDWORK
+      elseif(lhs.eq.3) then
+         JOBVR = 'V'
+         JOBVL = 'N'
+         lVL = lDWORK
       else
-        JOBVR = 'V'
+         JOBVR = 'V'
+         JOBVL = 'V'
       endif 
       call DGGEV( JOBVL, JOBVR, N, stk(lA), N, stk(lB), N, stk(lALPHAR),
-     $     stk(lALPHAI), stk(lBETA), stk(lDWORK), N, stk(lVR), N,
+     $     stk(lALPHAI), stk(lBETA), stk(lVLR), N, stk(lVRR), N,
      $     stk(lDWORK), LWORK, INFO )
-c      SUBROUTINE DGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHAR,
-c    $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
-       if(info.ne.0) then
+c     SUBROUTINE DGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHAR,
+c     $     ALPHAI, BETA, VL, LDVL, VR, LDVR, WORK, LWORK, INFO )
+      if(info.ne.0) then
          call errorinfo("gspec",info)
          return
-       endif
-
-       do 10 i = 1, N
-           zstk(lALPHA+i-1) = dcmplx(stk(lALPHAR+i-1),stk(lALPHAI+i-1))
- 10    continue      
-      
-      if(lhs.eq.3) then
-        j = 0
- 20     j = j+1
-           if(stk(lALPHAI+j-1).eq.DZERO) then
-              do 30 i = 1, N
-                 ij = i+(j-1)*N
-                 zstk(lV+ij-1) = stk(lVR+ij-1)
- 30           continue
-           else   
-              do 40 i = 1, N
-                 ij = i+(j-1)*N
-                 ij1 = i+j*N
-                 zstk(lV+ij-1) = dcmplx(stk(lVR+ij-1),stk(lVR+ij1-1))
-                 zstk(lV+ij1-1) = dcmplx(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
- 40           continue
-              j = j+1
-           endif
-        if(j.lt.N) go to 20
       endif
-     
+      if(lhs.eq.1) then
+         do 15 i = 1, N
+            stk(lALPHAR-1+i)=stk(lALPHAR-1+i)/stk(lBETA-1+i)
+            stk(lALPHAI-1+i)=stk(lALPHAI-1+i)/stk(lBETA-1+i)
+ 15      continue
+         lhsvar(1)=3
+         return
+      endif
       if(lhs.eq.2) then
-        lhsvar(1)=3
-        lhsvar(2)=6
-      else 
-        lhsvar(1)=3
-        lhsvar(2)=8
-        lhsvar(3)=5
+         lhsvar(1)=3
+         lhsvar(2)=4
+         return
+      endif
+      if(lhs.ge.3) then
+         call dset(N*N,0.0d0,stk(lVRI),1)
+         j = 0
+ 20      j = j+1
+         if(stk(lALPHAI+j-1).ne.DZERO) then
+            do 30 i = 1, N
+               ij = i+(j-1)*N
+               ij1 = i+j*N
+               stk(lVRI+ij-1) = stk(lVRR+ij1-1)
+               stk(lVRI+ij1-1) = -stk(lVRR+ij1-1)
+               stk(lVRR+ij1-1) = stk(lVRR+ij-1)
+ 30         continue
+            j = j+1
+         endif
+         if(j.lt.N) go to 20
+         lhsvar(1)=3
+         lhsvar(2)=4
+         lhsvar(3)=5
+      endif
+      if(lhs.eq.4) then
+         call dset(N*N,0.0d0,stk(lVLI),1)
+         j = 0
+ 35      j = j+1
+         if(stk(lALPHAI+j-1).ne.DZERO) then
+            do 40 i = 1, N
+               ij = i+(j-1)*N
+               ij1 = i+j*N
+               stk(lVLI+ij-1) = stk(lVLR+ij1-1)
+               stk(lVLI+ij1-1) = -stk(lVLR+ij1-1)
+               stk(lVLR+ij1-1) = stk(lVLR+ij-1)
+ 40         continue
+            j = j+1
+         endif
+         if(j.lt.N) go to 35
+         lhsvar(1)=3
+         lhsvar(2)=4
+         lhsvar(3)=6
+         lhsvar(4)=5
       endif
 c
-       end
+      end
 
 
 
@@ -506,6 +544,7 @@ c     [al,be]=gspec(A,B)
       include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
+      integer vfinite
    
 
       character fname*(*)
@@ -513,8 +552,8 @@ c     [al,be]=gspec(A,B)
 
        minrhs=2
        maxrhs=2
-       minlhs=2
-       maxlhs=3
+       minlhs=1
+       maxlhs=4
 c
        if(.not.checkrhs(fname,minrhs,maxrhs)) return
        if(.not.checklhs(fname,minlhs,maxlhs)) return 
@@ -532,9 +571,7 @@ c
           return
        endif
        if(MA.ne.NB) then
-         buf='gspec'//':
-     $        the matrices A and B must be of the same dimension'
-         call error(998)
+         call error(267)
          return
        endif
        N = MA
@@ -543,57 +580,88 @@ c
          if(.not.createvar(4,'z', N, 1, lBETA)) return
          lhsvar(1)=3
          lhsvar(2)=4
-         if(lhs.eq.3) then
+         if(lhs.ge.3) then
            if(.not.createvar(5,'z', N, N, lVR)) return
            lhsvar(3)=5
          endif
+         if(lhs.eq.4) then
+           if(.not.createvar(6,'z', N, N, lVL)) return
+           lhsvar(4)=6
+         endif
          return
+       endif
+       if(vfinite(2*N*N,zstk(lA)).eq.0) then
+          err=1
+          call error(264)
+          return
+       endif  
+       if(vfinite(2*N*N,zstk(lB)).eq.0) then
+          err=2
+          call error(264)
+          return
        endif
        if(.not.createvar(3,'z', N, 1, lALPHA)) return
        if(.not.createvar(4,'z', N, 1, lBETA)) return
-       K = 5
-       if(lhs.eq.3) then
+       k = 5
+       if(lhs.ge.3) then
          if(.not.createvar(5,'z', N, N, lVR)) return
          k = 6
+       endif
+       if(lhs.eq.4) then
+         if(.not.createvar(6,'z', N, N, lVL)) return
+         k = 7
        endif
        if(.not.createvar(k,'d', 8*N, 1, lRWORK)) return
        LWORKMIN = 2*N
        LWORK=maxvol(k+1,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='gspec'//': not enough memory (use stacksize)'
-         call error(998)
+         err=2*(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
       if(.not.createvar(k+1,'z',1,LWORK,lDWORK)) return
-
-      JOBVL = 'N'
-      if(lhs.eq.2) then
-        JOBVR = 'N'
-        lVR = lDWORK
+      if(lhs.eq.1.or.lhs.eq.2) then
+         JOBVL = 'N'
+         JOBVR = 'N'
+         lVR = lDWORK
+         lVL = lDWORK
+      elseif(lhs.eq.3) then
+         JOBVR = 'V'
+         JOBVL = 'N'
+         lVL = lDWORK
       else
         JOBVR = 'V'
+        JOBVL = 'V'
       endif 
       call ZGGEV( JOBVL, JOBVR, N, zstk(lA), N, zstk(lB),N,
-     $     zstk(lALPHA), zstk(lBETA), zstk(lDWORK), N, zstk(lVR), N,
+     $     zstk(lALPHA), zstk(lBETA), zstk(lVL), N, zstk(lVR), N,
      $     zstk(lDWORK), LWORK, stk(lRWORK), INFO )
-c      SUBROUTINE ZGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHA, BETA,
+c     SUBROUTINE ZGGEV( JOBVL, JOBVR, N, A, LDA, B, LDB, ALPHA, BETA,
 c     $     VL, LDVL, VR, LDVR, WORK, LWORK, RWORK, INFO )
-       if(info.ne.0) then
+      if(info.ne.0) then
          call errorinfo("zggev",info)
          return
-       endif
-
-
-      if(lhs.eq.2) then
-        lhsvar(1)=3
-        lhsvar(2)=4
+      endif
+      if(lhs.eq.1) then
+         do 15 i = 1, N
+            zstk(lALPHA-1+i)=zstk(lALPHA-1+i)/zstk(lBETA-1+i)
+ 15      continue
+         lhsvar(1)=3
+      elseif(lhs.eq.2) then
+         lhsvar(1)=3
+         lhsvar(2)=4
+      elseif(lhs.eq.3) then
+         lhsvar(1)=3
+         lhsvar(2)=4
+         lhsvar(3)=5
       else
-        lhsvar(1)=3
-        lhsvar(2)=4
-        lhsvar(3)=5
+         lhsvar(1)=3
+         lhsvar(2)=4
+         lhsvar(3)=6
+         lhsvar(4)=5
       endif
 c
-       end
+      end
 
 
       subroutine intdsyev(fname)
@@ -636,8 +704,8 @@ c
          endif
        endif
        if(vfinite(M*N,stk(lA)).eq.0) then
-          buf='spec'//': the matrix contains NaN of Inf'
-          call error(997)
+          err=1
+          call error(264)
           return
        endif 
        if(lhs.eq.1) then
@@ -649,8 +717,8 @@ c
        LWORKMIN = 3*N - 1
        LWORK=maxvol(4,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='spec'//': not enough memory (use stacksize)'
-         call error(998)
+         err=(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
       if(.not.createvar(4,'d',1,LWORK,lDWORK)) return
@@ -728,8 +796,8 @@ c
          endif
        endif
        if(vfinite(2*M*N,zstk(lA)).eq.0) then
-          buf='spec'//': the matrix contains NaN of Inf'
-          call error(997)
+          err=1
+          call error(264)
           return
        endif 
        if(lhs.eq.1) then
@@ -742,8 +810,8 @@ c
        LWORKMIN = 2*N - 1
        LWORK=maxvol(5,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='spec'//': not enough memory (use stacksize)'
-         call error(998)
+         err=2*(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
       if(.not.createvar(5,'z',1,LWORK,lDWORK)) return
@@ -818,9 +886,7 @@ c
           return
        endif
        if(MA.ne.MB) then
-         buf='gschur'//':
-     $        the matrices A and B must be of the same dimension'
-         call error(998)
+         call error(267)
          return
        endif
        N = MA
@@ -850,8 +916,8 @@ c
        LWORKMIN = 8*N+16
        LWORK=maxvol(k+1,'d')
        if(LWORK.le.LWORKMIN) then
-         buf='gschur'//': not enough memory (use stacksize)'
-         call error(998)
+         err=(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
       if(.not.createvar(k+1,'d',1,LWORK,lDWORK)) return
@@ -929,9 +995,7 @@ c
           return
        endif
        if(MA.ne.NB) then
-         buf='gschur'//':
-     $        the matrices A and B must be of the same dimension'
-         call error(998)
+         call error(267)
          return
        endif
        N = MA
@@ -961,8 +1025,8 @@ c
        LWORKMIN = 2*N
        LWORK=maxvol(k+1,'z')
        if(LWORK.le.LWORKMIN) then
-         buf='gschur'//': not enough memory (use stacksize)'
-         call error(998)
+         err=2*(LWORK-LWORKMIN)
+         call error(17)
          return
       endif
       if(.not.createvar(k+1,'z',1,LWORK,lDWORK)) return
@@ -1018,7 +1082,7 @@ c     [VS,dim]=gshur(A,B,function)
       character  JOBVSL, JOBVSR, SORT
       logical SCIZGSHR,scizgchk
       external SCIZGSHR,scizgchk
-      common /scizgsch/ lf, nfree
+      common /scizgsch/ lf, nfree, nf
 
       minrhs=3
       maxrhs=3
@@ -1052,10 +1116,11 @@ c
         endif
         return
       endif
-      if(.not.getrhsvar(3,'f', mlhs, mrhs, lf)) return
+      nf=3
+      if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
       if(mlhs.ne.1 .or. mrhs.ne.1) then
-         buf='invalid ordering function passed to gschur' 
-         call error(999)
+         err=nf
+         call error(80)
          return
       endif
 
@@ -1110,7 +1175,7 @@ c
       logical function scizgshr(alpha,beta)
       INCLUDE '../stack.h'
       logical scifunction, createcvar
-      common /scizgsch/ lf, nx
+      common /scizgsch/ lf, nx, nf
       integer iadr
       complex*16 alpha, beta
       intrinsic dreal, dimag
@@ -1143,7 +1208,7 @@ c    checks fct passed to zgshur
    
       integer iadr
       common/ierinv/iero
-      common /scizgsch/ lf, nx
+      common /scizgsch/ lf, nx, nf
       iadr(l) = l+l-1
 
       scizgchk=.false.
@@ -1160,13 +1225,13 @@ c     error into fct passed to schur (zgschur(A,B,tst))
 c     check return value of fct
       ilx=iadr(lx-2)
       if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then
-         buf='invalid return value for function passed to zgschur!'
-         call error(999)
+         err=nf
+         call error(268)
          return
       endif
       if(istk(ilx+1)*istk(ilx+2).ne.1) then
-         buf='invalid return value for function passed to schur!'
-         call error(999)
+         err=nf
+         call error(268)
          return
       endif
       scizgchk=.true.
@@ -1188,7 +1253,7 @@ c     [VSR,dim]=gschur(A,B,function)
       character  JOBVSL, JOBVSR, SORT
       logical SCIGSHUR,scigchk
       external SCIGSHUR,scigchk
-      common /scigsch/ lf, nfree
+      common /scigsch/ lf, nfree, nf
 
       minrhs=3
       maxrhs=3
@@ -1212,9 +1277,7 @@ c
          return
        endif
        if(MA.ne.MB) then
-         buf='gschur'//':
-     $        the matrices A and B must be of the same dimension'
-         call error(998)
+         call error(267)
          return
        endif
        N = MA
@@ -1239,10 +1302,11 @@ c
         endif
         return
       endif
-       if(.not.getrhsvar(3,'f', mlhs, mrhs, lf)) return
+      nf=3
+       if(.not.getrhsvar(nf,'f', mlhs, mrhs, lf)) return
        if(mlhs.ne.1 .or. mrhs.ne.1) then
-         buf='invalid ordering function passed to gschur' 
-         call error(999)
+          err=nf
+          call error(80)
          return
        endif
 
