@@ -16398,6 +16398,12 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
     } 
 }
 
+double Fill_XYdec01_TLO_and_ISO_case(int Xdec3, double val)
+{
+ 
+  return (double) (val / (exp10(Xdec3)));
+}
+
 /*** F.Leray 02.04.04 */
 /* FUNCTION FOR 2D UPDATE ONLY !!!!! <=> beginning of axis_3ddraw (in 2d HERE of course! ) */
 /* Copy on update_frame_bounds */
@@ -16406,6 +16412,7 @@ void  sci_update_frame_bounds(int cflag)
   double xmax, xmin, ymin, ymax,xmax_tmp, xmin_tmp, ymin_tmp, ymax_tmp;
   double hx,hy,hx1,hy1;
   int Xdec[3],Ydec[3],i;
+  double dXdec[3], dYdec[3]; /* double HERE F.Leray 03.06.04 */
   sciPointObj *subwindowtmp; 
   sciSubWindow * ppsubwin ;
   double FRect[4],WRect[4],ARect[4]; 
@@ -16473,7 +16480,7 @@ void  sci_update_frame_bounds(int cflag)
    ppsubwin->axes.ylim[1]=inint(ymax);
    ppsubwin->axes.ylim[2]=0;
 
-   /* default values in the case where graduate is no called  1/2 */
+   /* default values in the case where graduate is not called  1/2 */
    /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0; */
    /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0; */
 
@@ -16490,14 +16497,32 @@ void  sci_update_frame_bounds(int cflag)
      if(ppsubwin->logflags[0] == 'n'){
        C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
        ppsubwin->axes.xlim[2]=Xdec[2];
+       dXdec[0] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmin);
+       dXdec[1] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmax);
+       dXdec[2] = (double) Xdec[2];
+
+     }
+     else{
+       dXdec[0] = xmin;
+       dXdec[1] = xmax;
+       dXdec[2] = 0;
      }
    
      if(ppsubwin->logflags[1] == 'n'){
        C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
        ppsubwin->axes.ylim[2]=Ydec[2];
+       dYdec[0] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymin);
+       dYdec[1] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymax);
+       dYdec[2] = (double) Ydec[2];
+     }
+     else{
+       dYdec[0] = ymin;
+       dYdec[1] = ymax;
+       dYdec[2] = 0;
      }
    }
 
+  
    /* default values in the case where graduate is no called  2/2 */
    /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax); */
    /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax); */
@@ -16508,15 +16533,33 @@ void  sci_update_frame_bounds(int cflag)
        C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.xlim[i]=Xdec[i];
        xmin=xmin_tmp;xmax=xmax_tmp;
+       dXdec[0] = (double) Xdec[0];
+       dXdec[1] = (double) Xdec[1];
+       dXdec[2] = (double) Xdec[2];
      }
-     
+     else{
+       dXdec[0] = xmin;
+       dXdec[1] = xmax;
+       dXdec[2] = 0;
+     }
+
      if ( ppsubwin->logflags[1]=='n') { /* y-axis */
        C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
        for (i=0; i < 3 ; i++ ) ppsubwin->axes.ylim[i]=Ydec[i];
        ymin=ymin_tmp;ymax=ymax_tmp;
+       dYdec[0] = (double) Ydec[0];
+       dYdec[1] = (double) Ydec[1];
+       dYdec[2] = (double) Ydec[2];
+     }
+     else{
+       dYdec[0] = ymin;
+       dYdec[1] = ymax;
+       dYdec[2] = 0;
      }
    }
    
+   
+
    
    /*****************************************************************
     * modify  bounds if  isoview requested 
@@ -16541,10 +16584,15 @@ void  sci_update_frame_bounds(int cflag)
        ymin=ymin-(hy1-hy)/2.0;
        ymax=ymax+(hy1-hy)/2.0;
      }
+
+     dXdec[0] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmin);
+     dXdec[1] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmax);
+     dYdec[0] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymin);
+     dYdec[1] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymax);
    }
    
-   Xdec[0]=xmin;Xdec[1]=xmax;
-   Ydec[0]=ymin;Ydec[1]=ymax;
+   /*   Xdec[0]=xmin;Xdec[1]=xmax; */ /* F.Leray 03.06.04 */
+/*    Ydec[0]=ymin;Ydec[1]=ymax; */
    
    
    /*****************************************************************
@@ -16568,8 +16616,8 @@ void  sci_update_frame_bounds(int cflag)
   /* Should be added to set_scale */
 
   /* A voir s'il faut garder en + de update_graduation */
-  for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = Xdec[i];
-  for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = Ydec[i];
+  for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = dXdec[i];
+  for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = dYdec[i];
   Cscale.xtics[3] = ppsubwin->axes.aaint[1];
   Cscale.ytics[3] = ppsubwin->axes.aaint[3]; 
 

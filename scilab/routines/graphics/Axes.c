@@ -263,30 +263,7 @@ static void aplotv1(strflag)
   char dirx = 'd';  
 
   seg=0; 
-
-  if (version_flag() == 0){    /* stockage des puissances ICI */
-    Cscale.xtics[2]=pSUBWIN_FEATURE(psubwin)->axes.xlim[2];
-    Cscale.ytics[2]=pSUBWIN_FEATURE(psubwin)->axes.ylim[2];
-
-     for(i=0 ; i<4 ; i++ )
-      Cscale.frect[i]=  pSUBWIN_FEATURE(psubwin)->FRect[i] ;
-    /***COMMENT Djalel:  parceque c'est pas la subwin selectionnee mais celle en cours ***/
-
-    Cscale.xtics[1]= (Cscale.frect[2] / (exp10( Cscale.xtics[2]))) ;
-    Cscale.xtics[0]= (Cscale.frect[0]  / (exp10( Cscale.xtics[2]))) ;
-    Cscale.xtics[3]= floor(Cscale.xtics[1])-ceil(Cscale.xtics[0]);  
-    Cscale.ytics[1]= (Cscale.frect[3] / (exp10( Cscale.ytics[2]))) ; 
-    Cscale.ytics[0]  = (Cscale.frect[1]  / (exp10( Cscale.ytics[2]))) ;
-
-    /* HARD BUG HERE in relesae mode : memory overwritten 40 -> 39 (why -1??) 
-       run plot2d() and observe the y axis graduations... */
-    Cscale.ytics[3]= floor(Cscale.ytics[1])-ceil(Cscale.ytics[0]); 
-    /* sciprint("----->Changement ?? aplotv1 APRES Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
-
-
-
-  }       
-     
+  
   switch ( c ) 
     { 
     case '3' : /* right axis */
@@ -579,8 +556,11 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 	if(xy_type == 'i')
 	  {
-	    x[1] = floor(Cscale.frect[2] / (exp10( x[2]))) ;  
-	    x[0] =  ceil(Cscale.frect[0]  / (exp10( x[2]))) ; 
+	 /*    x[1] = floor(Cscale.frect[2] / (exp10( x[2]))) ;   */
+/* 	    x[0] =  ceil(Cscale.frect[0]  / (exp10( x[2]))) ;  */
+
+	    x[1] = floor(  Cscale.xtics[1] );
+	    x[0] =  ceil(  Cscale.xtics[0] );
 	    x[3]=inint(x[1]-x[0]);
 	    while (x[3]>10)  x[3]=floor(x[3]/2);
 	    Nx=x[3]+1;
@@ -761,8 +741,12 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 	if(xy_type == 'i')
 	  {
-	    y[1] = floor(Cscale.frect[3] / (exp10( y[2]))) ;  
-	    y[0] =  ceil(Cscale.frect[1]  / (exp10( y[2]))) ; 
+	  /*   y[1] = floor(Cscale.frect[3] / (exp10( y[2]))) ;   */
+/* 	    y[0] =  ceil(Cscale.frect[1]  / (exp10( y[2]))) ;  */
+
+	    y[1] = floor( Cscale.ytics[1] );
+	    y[0] =  ceil( Cscale.ytics[0] );
+
 	    y[3]=inint(y[1]-y[0]);
 	    while (y[3]>10)  y[3]=floor(y[3]/2);
 	    Ny=y[3]+1;
