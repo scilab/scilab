@@ -38,7 +38,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 			else
 			{
 				if (StrValue) {free(StrValue); StrValue=NULL;}
-				Scierror(999,"Unknown propertie %s\r\n",StrField);
+				Scierror(999,"Unknown property %s\r\n",StrField);
 				return 0;
 			}
 			if (StrValue) {free(StrValue); StrValue=NULL;}
@@ -107,20 +107,20 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 					}
 					else
 					{
-						Scierror(999,"Unknown propertie %s\r\n",StrField);
+						Scierror(999,"Unknown property %s\r\n",StrField);
 						return 0;
 					}
 				}
 				else
 				{
-					Scierror(999,"Error propertie not found.\n");
+					Scierror(999,"Error property not found.\n");
 					return 0;
 				}
 			}
 		}
 		else
 		{
-			Scierror(999,"Unknown propertie %s\r\n",StrField);
+			Scierror(999,"Unknown property %s\r\n",StrField);
 			return 0;
 		}
 

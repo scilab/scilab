@@ -82,7 +82,7 @@ int TCL_UiSet(int Handle,char *PropertieField,char *PropertieValue)
 	}
 	else
 	{
-		Scierror(999,"Unknown propertie %s.\r\n",PropertieField);
+		Scierror(999,"Unknown property %s.\r\n",PropertieField);
 		return 0;
 	}
 	
