@@ -5,7 +5,7 @@ if argn(2)<=2 then
   if argn(1)==2 then
     [As,Es]= schur(A,E)
   else
-    [As,Es,Z,dim]= schur(A,E) 
+    [As,Es,Q,Z]= schur(A,E);Q=Q'
   end
 elseif type(extern)==10 then
   if convstr(extern)=='c'|convstr(extern)=='d' then
