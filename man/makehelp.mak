@@ -12,7 +12,8 @@ eng	:
 	@echo Creation of the help (English)
 	..\..\bin\scilex -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
-	
+
+distclean::	
 clean::
 	-del *.htm /s
 	-del *.xml2* /s
