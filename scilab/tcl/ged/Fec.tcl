@@ -37,8 +37,10 @@ global RED GREEN BLUE ncolors
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
 
-global nbrow nbcol zbmin zbmax nbrowTri nbcolTri
+#global nbrow nbcol nbrowTri nbcolTri
+global zbmin zbmax
 global scicomint_data scicomint_triangles
+global curdata_data curdata_triangles
 
 set ww .axes
 catch {destroy $ww}
@@ -110,7 +112,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Triangles "Scilab Command Interface"} -pad 40 -height 540 -width 600
+Notebook:create $uf.n -pages {Style Data } -pad 40 -height 540 -width 600
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -156,111 +158,152 @@ pack $w.buttons -side bottom
 
 ########### Data onglet ###########################################
 ###################################################################
- set w3 [Notebook:frame $uf.n Data]
+set w [Notebook:frame $uf.n Data]
 
- frame $w3.frame2 -borderwidth 0
- pack $w3.frame2 -anchor w -fill both
-
- frame $w3.frame2.fdata -borderwidth 0
- pack $w3.frame2.fdata  -in $w3.frame2 -side top   -fill x
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
 
 
-canvas $w3.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w3.frame2.ysbar set} -xscrollcommand {$w3.frame2.xsbar set}
-scrollbar $w3.frame2.ysbar -orient vertical -command   {$w3.frame2.c1 yview}
-scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
-#scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
-#pack configure $w3.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
-   
-for {set i 1} {$i<=$nbrow} {incr i} {
-#    puts $i
-    set bb [expr 10+(25*$i)]
-    $w3.frame2.c1 create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbcol} {incr j} {
-#	puts $j
-	set aa [expr 10+($j*150)]
-	$w3.frame2.c1 create text $aa 10 -anchor c -text $j
-	set tmp $w3.frame2.c1.data$i
-	set tmp $tmp+"_"
-	entry  $tmp$j  -relief sunken  -textvariable datafecVAL($i,$j)
-	bind   $tmp$j <Return> "setData $i $j"
-#location help balloon	
-	set_balloon $tmp$j "Row: $i Column: $j"
-	
-	$w3.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
-    }
-}
+##############################
+## DATA edit via sciGUI ######
+##############################
 
- $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -yscrollincrement 0.1i -xscrollincrement 0.1i
-# $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -xscrollincrement 0.1i
+frame $w.frame.curdataframeX  -borderwidth 0
+pack $w.frame.curdataframeX  -in $w.frame  -side top  -fill x
 
-#pack  $w3.frame2.ysbar.scrollh -side bottom -fill x
- pack  $w3.frame2.ysbar -side right -fill y
- pack  $w3.frame2.xsbar -side bottom -fill x
- pack  $w3.frame2.c1
+label $w.frame.polydatalabelX  -height 0 -text "         Data :   " -width 0 
+combobox $w.frame.polydataX \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata_data \
+    -editable false \
+    -command [list SelectDataData ]
+eval $w.frame.polydataX list insert end [list $curdata_data "----" "Edit data..."]
+pack $w.frame.polydatalabelX -in $w.frame.curdataframeX  -side left
+pack $w.frame.polydataX   -in $w.frame.curdataframeX  -expand 1 -fill x -pady 2m -padx 2m
+
+
+frame $w.frame.curdataframeY  -borderwidth 0
+pack $w.frame.curdataframeY  -in $w.frame  -side top  -fill x
+
+label $w.frame.polydatalabelY  -height 0 -text "   Triangles :   " -width 0 
+combobox $w.frame.polydataY \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata_triangles \
+    -editable false \
+    -command [list SelectDataTriangles ]
+eval $w.frame.polydataY list insert end [list $curdata_triangles "----" "Edit data..."]
+pack $w.frame.polydatalabelY -in $w.frame.curdataframeY  -side left
+pack $w.frame.polydataY   -in $w.frame.curdataframeY  -expand 1 -fill x -pady 2m -padx 2m
+
+
+#######################################################
+## DATA edit via Scilab Command Interface sciGUI ######
+#######################################################
+
+frame $w.scicom1
+pack $w.scicom1 -side top -fill x -pady 2m
+
+label $w.scicom1.label1 -text "Scilab Command Interface for data and triangles:"
+pack  $w.scicom1.label1 -in $w.scicom1 -side left
+
+frame $w.scicom
+pack $w.scicom -side top -fill x -pady 2m
+
+label $w.scicom.label1 -text "        Data =     "
+pack  $w.scicom.label1 -in $w.scicom -side left
+
+entry $w.scicom.text1 -relief sunken -textvariable scicomint_data
+set_balloon $w.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+bind  $w.scicom.text1 <Return> "sciCommandData"
+
+pack $w.scicom.text1  -side left  -fill both -expand yes
+
+
+frame $w.scicomT
+pack $w.scicomT -side top -fill x -pady 2m
+
+label $w.scicomT.label1 -text "  Triangles =     "
+pack  $w.scicomT.label1 -in $w.scicomT -side left
+
+entry $w.scicomT.text1 -relief sunken -textvariable scicomint_triangles
+set_balloon $w.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
+bind  $w.scicomT.text1 <Return> "sciCommandTriangles"
+
+pack $w.scicomT.text1  -side left  -fill both -expand yes
+
+
 
 #sep bar
-frame $w3.sep -height 2 -borderwidth 1 -relief sunken
-pack $w3.sep -fill both  -pady 10m
+frame $w.sep -height 2 -borderwidth 1 -relief sunken
+pack $w.sep -fill both  -pady 10m
 
 
 #exit button
-frame $w3.buttons
-button $w3.b -text Quit -command "destroy $ww"
-pack $w3.b -side bottom 
+frame $w.buttons
+button $w.b -text Quit -command "destroy $ww"
+pack $w.b -side bottom 
 
 
-########### Triangles onglet ######################################
-###################################################################
-set w4 [Notebook:frame $uf.n Triangles]
+# ########### Triangles onglet ######################################
+# ###################################################################
+# set w4 [Notebook:frame $uf.n Triangles]
 
-frame $w4.frame2 -borderwidth 0
-pack $w4.frame2 -anchor w -fill both
+# frame $w4.frame2 -borderwidth 0
+# pack $w4.frame2 -anchor w -fill both
 
-frame $w4.frame2.fdata -borderwidth 0
-pack $w4.frame2.fdata  -in $w4.frame2 -side top   -fill x
+# frame $w4.frame2.fdata -borderwidth 0
+# pack $w4.frame2.fdata  -in $w4.frame2 -side top   -fill x
 
-canvas $w4.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w4.frame2.ysbar set} -xscrollcommand {$w4.frame2.xsbar set}
-scrollbar $w4.frame2.ysbar -orient vertical -command   {$w4.frame2.c1 yview}
-scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
-#scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
-#pack configure $w4.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
+# canvas $w4.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w4.frame2.ysbar set} -xscrollcommand {$w4.frame2.xsbar set}
+# scrollbar $w4.frame2.ysbar -orient vertical -command   {$w4.frame2.c1 yview}
+# scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
+# #scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
+# #pack configure $w4.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
    
-for {set i 1} {$i<=$nbrowTri} {incr i} {
-#    puts $i
-    set bb [expr 10+(25*$i)]
-    $w4.frame2.c1 create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbcolTri} {incr j} {
-#	puts $j
-	set aa [expr 10+($j*150)]
-	$w4.frame2.c1 create text $aa 10 -anchor c -text $j
-	set tmp $w4.frame2.c1.data$i
-	set tmp $tmp+"_"
-	entry  $tmp$j  -relief sunken  -textvariable trianglesfecVAL($i,$j)
-	bind   $tmp$j <Return> "setTriangles $i $j"
-#location help balloon	
-	set_balloon $tmp$j "Row: $i Column: $j"
+# for {set i 1} {$i<=$nbrowTri} {incr i} {
+# #    puts $i
+#     set bb [expr 10+(25*$i)]
+#     $w4.frame2.c1 create text 10 $bb -anchor c -text $i
+#     for {set j 1} {$j<=$nbcolTri} {incr j} {
+# #	puts $j
+# 	set aa [expr 10+($j*150)]
+# 	$w4.frame2.c1 create text $aa 10 -anchor c -text $j
+# 	set tmp $w4.frame2.c1.data$i
+# 	set tmp $tmp+"_"
+# 	entry  $tmp$j  -relief sunken  -textvariable trianglesfecVAL($i,$j)
+# 	bind   $tmp$j <Return> "setTriangles $i $j"
+# #location help balloon	
+# 	set_balloon $tmp$j "Row: $i Column: $j"
 	
-	$w4.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
-    }
-}
+# 	$w4.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
+#     }
+# }
 
- $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all] -yscrollincrement 0.1i -xscrollincrement 0.1i
-# $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all] -xscrollincrement 0.1i
+#  $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all] -yscrollincrement 0.1i -xscrollincrement 0.1i
+# # $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all] -xscrollincrement 0.1i
 
-#pack  $w4.frame2.ysbar.scrollh -side bottom -fill x
- pack  $w4.frame2.ysbar -side right -fill y
- pack  $w4.frame2.xsbar -side bottom -fill x
- pack  $w4.frame2.c1
+# #pack  $w4.frame2.ysbar.scrollh -side bottom -fill x
+#  pack  $w4.frame2.ysbar -side right -fill y
+#  pack  $w4.frame2.xsbar -side bottom -fill x
+#  pack  $w4.frame2.c1
 
-#sep bar
-frame $w4.sep -height 2 -borderwidth 1 -relief sunken
-pack $w4.sep -fill both  -pady 10m
+# #sep bar
+# frame $w4.sep -height 2 -borderwidth 1 -relief sunken
+# pack $w4.sep -fill both  -pady 10m
 
 
-#exit button
-frame $w4.buttons
-button $w4.b -text Quit -command "destroy $ww"
-pack $w4.b -side bottom 
+# #exit button
+# frame $w4.buttons
+# button $w4.b -text Quit -command "destroy $ww"
+# pack $w4.b -side bottom 
+
+
 
 
 ########### Clipping onglet #######################################
@@ -358,56 +401,56 @@ pack $w4.b -side bottom
 # pack $w9.b -side bottom 
 
 
-########### Scilab Command Interface ##############################
-###################################################################
-set w5 [Notebook:frame $uf.n "Scilab Command Interface"]
+# ########### Scilab Command Interface ##############################
+# ###################################################################
+# set w5 [Notebook:frame $uf.n "Scilab Command Interface"]
 
-frame $w5.frame -borderwidth 0
-pack $w5.frame -anchor w -fill both
-
-
-frame $w5.scicom1
-pack $w5.scicom1 -side top -fill x -pady 2m
-
-label $w5.scicom1.label1 -text "Scilab Command Interface for data and triangles:"
-pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
-
-frame $w5.scicom
-pack $w5.scicom -side top -fill x -pady 2m
-
-label $w5.scicom.label1 -text "fec_handle.data =         "
-pack  $w5.scicom.label1 -in $w5.scicom -side left
-
-entry $w5.scicom.text1 -relief sunken -textvariable scicomint_data
-set_balloon $w5.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
-bind  $w5.scicom.text1 <Return> "sciCommandData"
-
-pack $w5.scicom.text1  -side left  -fill both -expand yes
+# frame $w5.frame -borderwidth 0
+# pack $w5.frame -anchor w -fill both
 
 
-frame $w5.scicomT
-pack $w5.scicomT -side top -fill x -pady 2m
+# frame $w5.scicom1
+# pack $w5.scicom1 -side top -fill x -pady 2m
 
-label $w5.scicomT.label1 -text "fec_handle.triangles =   "
-pack  $w5.scicomT.label1 -in $w5.scicomT -side left
+# label $w5.scicom1.label1 -text "Scilab Command Interface for data and triangles:"
+# pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
 
-entry $w5.scicomT.text1 -relief sunken -textvariable scicomint_triangles
-set_balloon $w5.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
-bind  $w5.scicomT.text1 <Return> "sciCommandTriangles"
+# frame $w5.scicom
+# pack $w5.scicom -side top -fill x -pady 2m
 
-pack $w5.scicomT.text1  -side left  -fill both -expand yes
+# label $w5.scicom.label1 -text "fec_handle.data =         "
+# pack  $w5.scicom.label1 -in $w5.scicom -side left
+
+# entry $w5.scicom.text1 -relief sunken -textvariable scicomint_data
+# set_balloon $w5.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+# bind  $w5.scicom.text1 <Return> "sciCommandData"
+
+# pack $w5.scicom.text1  -side left  -fill both -expand yes
+
+
+# frame $w5.scicomT
+# pack $w5.scicomT -side top -fill x -pady 2m
+
+# label $w5.scicomT.label1 -text "fec_handle.triangles =   "
+# pack  $w5.scicomT.label1 -in $w5.scicomT -side left
+
+# entry $w5.scicomT.text1 -relief sunken -textvariable scicomint_triangles
+# set_balloon $w5.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
+# bind  $w5.scicomT.text1 <Return> "sciCommandTriangles"
+
+# pack $w5.scicomT.text1  -side left  -fill both -expand yes
 
 
 
-#sep bar
-frame $w5.sep -height 2 -borderwidth 1 -relief sunken
-pack $w5.sep -fill both -pady 10m
+# #sep bar
+# frame $w5.sep -height 2 -borderwidth 1 -relief sunken
+# pack $w5.sep -fill both -pady 10m
 
 
-#exit button
-frame $w5.buttons
-button $w5.b -text Quit -command "destroy $ww"
-pack $w5.b -side bottom 
+# #exit button
+# frame $w5.buttons
+# button $w5.b -text Quit -command "destroy $ww"
+# pack $w5.b -side bottom 
 
 pack $sw $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes
@@ -550,3 +593,40 @@ proc sciCommandTriangles {} {
     }
 }
 
+
+proc SelectDataData  {w args} {
+    global curdata_data
+    variable mycurdata
+    set mycurdata $curdata_data
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+#    puts "finddbarray = $finddbarray"
+
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;ged_handle.data=EditData(ged_handle.data)" "seq"
+	}
+    }
+}
+
+
+proc SelectDataTriangles  {w args} {
+    global curdata_triangles
+    variable mycurdata
+    set mycurdata $curdata_triangles
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+#    puts "finddbarray = $finddbarray"
+
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;ged_handle.triangles=EditData(ged_handle.triangles)" "seq"
+	}
+    }
+}

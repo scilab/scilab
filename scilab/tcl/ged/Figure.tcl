@@ -393,7 +393,7 @@ frame $w.scicom
 pack $w.scicom -side top -fill x -pady 2m
 
 
-label $w.scicom.label1 -text "figure_handle.color_map = "
+label $w.scicom.label1 -text "Colormap (Nx3 double array) = "
 pack  $w.scicom.label1 -in $w.scicom -side left
 
 #text $w.scicom.text1 -height 3m -width 50 -relief sunken -yscrollcommand "$w.scicom.scroll set"

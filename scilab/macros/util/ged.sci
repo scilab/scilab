@@ -465,18 +465,10 @@ function ged_polyline(h)
     ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"];
     TK_SetVar("curmarkstyle",ged_markstylearray(h.mark_style+1))
     TK_SetVar("curmarkmode",h.mark_mode)
-    TK_SetVar("nbrow",string(size(h.data,1)))
-    // pass the data matrix
-    for i=1:size(h.data,1)
-      val= "polyVAL("+string(i)+",1)";
-      TK_EvalStr('set '+val+" "+string(h.data(i,1)));
-      val= "polyVAL("+string(i)+",2)";
-      TK_EvalStr('set '+val+" "+string(h.data(i,2)));
-      if(get(getparaxe(h),'view') == '3d')
-	val= "polyVAL("+string(i)+",3)";
-	TK_EvalStr('set '+val+" "+string(h.data(i,3)));
-      end
-    end
+
+    d="["+strcat(string(size(h.data)),'x')+" double array]"
+    TK_SetVar("curdata",d);
+
     select get(getparaxe(h),'view')
       case "2d"
       TK_SetVar("nbcol",string(2));
@@ -520,65 +512,20 @@ function ged_plot3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
-  winId=waitbar('Loading Plot3d data...');
-  waitbar(0,winId);
+  d="["+strcat(string(size(h.data.x)),'x')+" double array]"
+  TK_SetVar("curdata_x",d);
+  d="["+strcat(string(size(h.data.y)),'x')+" double array]"
+  TK_SetVar("curdata_y",d);
+  d="["+strcat(string(size(h.data.z)),'x')+" double array]"
+  TK_SetVar("curdata_z",d);
 
-  tmp = 0;
-  totaldatasize = size(h.data.x,2) + size(h.data.y,2) + size(h.data.z,1) * size(h.data.z,2);
+  TK_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-   totaldatasize = totaldatasize + size(h.data.color,1) * size(h.data.color,2)
+  TK_EvalStr('set flagCOLOR 1')
+    d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
+    TK_SetVar("curdata_color",d);
   end
-
-// pass the 2 vectors and the z matrix
-// X vector
-  TK_SetVar("nbrowX",string(size(h.data.x,2)))
-  for i=1:size(h.data.x,2)
-      val= "plot3dXVAL("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(h.data.x(i)));
-  end
-  tmp = tmp + (size(h.data.x,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// Y vector
-  TK_SetVar("nbrowY",string(size(h.data.y,2)))
-  for i=1:size(h.data.y,2)
-      val= "plot3dYVAL("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(h.data.y(i)));
-  end
- tmp = tmp + (size(h.data.y,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// Z matrix
- TK_SetVar("nbrowZ",string(size(h.data.z,1)))
- TK_SetVar("nbcolZ",string(size(h.data.z,2)))
-  for i=1:size(h.data.z,1) 
-   for j=1:size(h.data.z,2) 
-      val= "plot3dZVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
-   end
-  end
-  tmp = tmp + (size(h.data.z,1) * size(h.data.z,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// COLOR matrix
-   TK_EvalStr('set flagCOLOR 0')
-   if(h.data(1)==["3d" "x" "y" "z" "color"])
-    TK_EvalStr('set flagCOLOR 1')
-    TK_SetVar("nbrowCOLOR",string(size(h.data.color,1)))
-    TK_SetVar("nbcolCOLOR",string(size(h.data.color,2)))
-    for i=1:size(h.data.color,1) 
-     for j=1:size(h.data.color,2) 
-        val= "plot3dCOLORVAL("+string(i)+","+string(j)+")";
-        TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
-     end
-    end
-   tmp = tmp + (size(h.data.color,1) * size(h.data.color,2)) / totaldatasize;
-   tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-   waitbar(tmp,winId);
-   end
-   
   TK_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
-  winclose(winId);
 endfunction
 
 
@@ -615,71 +562,22 @@ function ged_fac3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
-  tmp = 0;
-  totaldatasize = size(h.data.x,1) * size(h.data.x,2) + size(h.data.y,1) * size(h.data.y,2) + size(h.data.z,1) * size(h.data.z,2);
+  d="["+strcat(string(size(h.data.x)),'x')+" double array]"
+  TK_SetVar("curdata_x",d);
+  d="["+strcat(string(size(h.data.y)),'x')+" double array]"
+  TK_SetVar("curdata_y",d);
+   d="["+strcat(string(size(h.data.z)),'x')+" double array]"
+  TK_SetVar("curdata_z",d);
+
+  TK_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-   totaldatasize = totaldatasize + size(h.data.color,1) * size(h.data.color,2)
+  TK_EvalStr('set flagCOLOR 1')
+    d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
+    TK_SetVar("curdata_color",d);
   end
 
-  winId=waitbar('Loading Fac3d data...');
-  waitbar(0,winId);
 
- // pass the 2 vectors and the z matrix
-// X matrix
-  TK_SetVar("nbrowX",string(size(h.data.x,1)))
-  TK_SetVar("nbcolX",string(size(h.data.x,2)))
-  for i=1:size(h.data.x,1)
-   for j=1:size(h.data.x,2)
-      val= "fac3dXVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.data.x(i,j)));
-   end
-  end
-  tmp = tmp + (size(h.data.x,1) * size(h.data.x,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// Y matrix
-  TK_SetVar("nbrowY",string(size(h.data.y,1)))
-  TK_SetVar("nbcolY",string(size(h.data.y,2)))
-  for i=1:size(h.data.y,1)
-   for j=1:size(h.data.y,2)
-    val= "fac3dYVAL("+string(i)+","+string(j)+")";
-    TK_EvalStr('set '+val+" "+string(h.data.y(i,j)));
-   end
-  end
-  tmp = tmp + (size(h.data.y,1) * size(h.data.y,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// Z matrix
-  TK_SetVar("nbrowZ",string(size(h.data.z,1)))
-  TK_SetVar("nbcolZ",string(size(h.data.z,2)))
-  for i=1:size(h.data.z,1)
-   for j=1:size(h.data.z,2)
-      val= "fac3dZVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.data.z(i,j)));
-   end
-  end
-  tmp = tmp + (size(h.data.z,1) * size(h.data.z,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-// COLOR matrix
-   TK_EvalStr('set flagCOLOR 0')
-   if(h.data(1)==["3d" "x" "y" "z" "color"])
-    TK_EvalStr('set flagCOLOR 1')
-    TK_SetVar("nbrowCOLOR",string(size(h.data.color,1)))
-    TK_SetVar("nbcolCOLOR",string(size(h.data.color,2)))
-    for i=1:size(h.data.color,1)
-     for j=1:size(h.data.color,2) 
-        val= "fac3dCOLORVAL("+string(i)+","+string(j)+")";
-        TK_EvalStr('set '+val+" "+string(h.data.color(i,j)));
-     end
-    end
-   tmp = tmp + (size(h.data.color,1) * size(h.data.color,2)) / totaldatasize;
-   tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-   waitbar(tmp,winId);
-   end
- 
   TK_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
-  winclose(winId);
 endfunction
 
 
@@ -860,20 +758,9 @@ function ged_champ(h)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
-//data a mettre
-  TK_SetVar("nbrow",string(size(h.data,1)))
-  TK_SetVar("nbcol",string(size(h.data,2)))
-  winId=waitbar('Loading Champ data...');
-  waitbar(0,winId);
+  d="["+strcat(string(size(h.data)),'x')+" double array]"
+  TK_SetVar("curdata",d);
 
-  tmp = 0;
-  for i=1:size(h.data,1) 
-   for j=1:size(h.data,2) 
-      val= "champVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
-   end
-  end
-  waitbar(1,winId);
   if(h.clip_box==[])
     TK_SetVar("old_Xclipbox","")
     TK_SetVar("old_Yclipbox","")
@@ -896,7 +783,6 @@ function ged_champ(h)
   TK_SetVar("curclipstate",h.clip_state);
 
   TK_EvalFile(SCI+'/tcl/ged/Champ.tcl')
-   winclose(winId);
 endfunction
 
 function ged_fec(h)
@@ -904,36 +790,15 @@ function ged_fec(h)
   TK_SetVar("curvis",h.visible)
   TK_SetVar("zbmin",string(h.z_bounds(1)))
   TK_SetVar("zbmax",string(h.z_bounds(2)))
-  TK_SetVar("nbrow",string(size(h.data,1)))
-  TK_SetVar("nbcol",string(size(h.data,2)))
-  TK_SetVar("nbrowTri",string(size(h.triangles,1)))
-  TK_SetVar("nbcolTri",string(size(h.triangles,2)))
+//  TK_SetVar("nbrow",string(size(h.data,1)))
+//  TK_SetVar("nbcol",string(size(h.data,2)))
+//  TK_SetVar("nbrowTri",string(size(h.triangles,1)))
+//  TK_SetVar("nbcolTri",string(size(h.triangles,2)))
 
-  winId=waitbar('Loading Fec data...');
-  waitbar(0,winId);
-  tmp = 0;
-  totaldatasize = size(h.data,1)*size(h.data,2) + size(h.triangles,1)*size(h.triangles,2);
-
-  //data
-  for i=1:size(h.data,1) 
-   for j=1:size(h.data,2) 
-      val= "datafecVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
-   end
-  end
-  tmp = tmp +  (size(h.data,1) * size(h.data,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-
-  for i=1:size(h.triangles,1) 
-   for j=1:size(h.triangles,2) 
-      val= "trianglesfecVAL("+string(i)+","+string(j)+")";
-      TK_EvalStr('set '+val+" "+string(h.triangles(i,j)));
-   end
-  end
-  tmp = tmp +  (size(h.triangles,1) * size(h.triangles,2)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
+  d="["+strcat(string(size(h.data)),'x')+" double array]"
+  TK_SetVar("curdata_data",d);
+  d="["+strcat(string(size(h.triangles)),'x')+" double array]"
+  TK_SetVar("curdata_triangles",d);
 
 //  if(h.clip_box==[])
 //    TK_SetVar("old_Xclipbox","")
@@ -957,7 +822,6 @@ function ged_fec(h)
 //  TK_SetVar("curclipstate",h.clip_state);
 
   TK_EvalFile(SCI+'/tcl/ged/Fec.tcl')
-  winclose(winId);
 endfunction
 
 
@@ -965,48 +829,16 @@ function ged_grayplot(h)
   global ged_handle; ged_handle=h
   TK_SetVar("curvis",h.visible)
   TK_SetVar("curdatamapping",h.data_mapping)
-  TK_SetVar("nbrowX",string(size(h.data,1)-1))
-  TK_SetVar("nbrowY",string(size(h.data,2)-1))
-  TK_SetVar("nbrowZ",string(size(h.data,1)-1))
-  TK_SetVar("nbcolZ",string(size(h.data,2)-1))
 
-  winId=waitbar('Loading Grayplot data...');
-  waitbar(0,winId);
-  tmp = 0;
-  totaldatasize = (size(h.data,1)-1)+ (size(h.data,2)-1) + (size(h.data,1)-1)*(size(h.data,2)-1) 
-
-//data
-// X vector
-  for i=2:size(h.data,1) 
-    val= "grayplotXVAL("+string(i-1)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(i,1)));
-   end
-  tmp = tmp +  (size(h.data,1)-1) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-
-// Y vector
-  for i=2:size(h.data,2) 
-    val= "grayplotYVAL("+string(i-1)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(1,i)));
-   end
-  tmp = tmp +  (size(h.data,2)-1) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
-
-// Z matrix
-  for i=2:size(h.data,1) 
-   for j=2:size(h.data,2) 
-    val= "grayplotZVAL("+string(i-1)+","+string(j-1)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(i,j)));
-   end
-  end
-  tmp = tmp +  ((size(h.data,1)-1)*(size(h.data,2)-1)) / totaldatasize;
-  tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
-  waitbar(tmp,winId);
+  d="["+strcat(string(size(h.data(2:$,1))),'x')+" double array]"
+  TK_SetVar("curdata_x",d);
+  d="["+strcat(string(size(h.data(1,2:$))),'x')+" double array]"
+  TK_SetVar("curdata_y",d);
+  d="["+strcat(string(size(h.data(2:$,2:$))),'x')+" double array]"
+  TK_SetVar("curdata_z",d);
 
   TK_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
-  winclose(winId);
+
 endfunction
 
 
@@ -1609,4 +1441,170 @@ function setGrayplot(X,Y,Z)
   X=[0;X];
   Z=[X Z];
   h.data=Z;
+endfunction
+
+
+///////////////////////////////
+// Edit Data using sciGUI /////
+///////////////////////////////
+
+//function EditData(curEditDataStatus)
+
+function [outvar] = EditData(TheData)
+// TheData must be a real scalar or matrix
+global ged_handle; h=ged_handle
+
+WLdeb = winlist();
+//disp("WLdeb=")
+//disp(WLdeb)
+
+ged_tmp=TheData;
+ged_SAUV=ged_tmp;
+
+GEDeditvar ged_tmp
+
+WL = winlist();
+//disp("WL=")
+//disp(WL)
+MyW = find(winlist()~=WLdeb)
+//disp("MyW=")
+//disp(MyW)
+
+while(find(winlist()==MyW))
+ ged_tmp=GEDeditvar_get(MyW);
+end
+
+//disp("ged_tmp : ")
+//disp(ged_tmp)
+
+//disp("Av. TheData=")
+//disp(TheData)
+outvar= ged_tmp;
+
+//disp("Ap. TheData=")
+//disp(TheData)
+
+endfunction
+
+
+function outvar=GEDeditvar_get(winId)
+// Simple variable editor - import data
+// This file is part of sciGUI toolbox
+// Copyright (C) 2004 Jaime Urzua Grez
+// mailto:jaime_urzua@yahoo.com
+// rev. 0.1
+  //
+// This program is free software; you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation; either version 2 of the License, or
+//(at your option) any later version.
+
+//disp("Please wait...");
+outvar=[];
+base="sciGUITable(win,"+string(winId)+",data";
+varType=evstr(TK_GetVar(base+',type)'));
+varni=evstr(TK_GetVar(base+',ni)'));
+varnj=evstr(TK_GetVar(base+',nj)'));
+for j=1:varnj,
+	ww=[];
+	for i=1:varni,
+		q=TK_GetVar(base+','+string(i)+','+string(j)+')');
+		if (varType~=10) then
+			if (varType==4) then
+				if ((q=="T")|(q=="t")) then
+					ww=[ww;%t];
+				else
+					ww=[ww;%f];
+				end
+			else
+				ww=[ww;evstr(q)];
+			end
+		else
+			ww=[ww;q];
+		end
+	end
+	outvar=[outvar ww];
+end
+endfunction
+
+function GEDeditvar(varargin)
+// Simple Variable Editor
+// This file is part of sciGUI toolbox
+// Copyright (C) 2004 Jaime Urzua Grez 
+// mailto:jaime_urzua@yahoo.com
+// rev. 0.2 2004/06/24
+//
+// This program is free software; you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation; either version 2 of the License, or
+//(at your option) any later version.
+  
+  sciGUI_init()
+  
+  [%_nams]=who('get');
+  %_loc_type=type(varargin(1))
+  if (%_loc_type~=10) then error(42), end
+  %_in_list=find(%_nams==varargin(1));
+  if (%_in_list==[]) then error(42), end
+  execstr("%_loc_var="+varargin(1));
+  %_loc_type=type(%_loc_var);
+  %_allo=find([1;4;10]==%_loc_type);
+  if (%_allo==[]) then error(42), end
+
+  //disp("Please wait...");
+  %_loc_nam=varargin(1);
+  %_loc_ni=size(%_loc_var,1);
+  %_loc_nj=size(%_loc_var,2);
+  %_loc_type=string(%_loc_type);
+
+  TK_EvalStr("set EdVarLoc [GEDsciGUIEditVar -1]");
+
+  %_winId=TK_GetVar("EdVarLoc");
+
+  TK_SetVar("sciGUITable(win,"+%_winId+",data,name)",%_loc_nam);
+  TK_SetVar("sciGUITable(win,"+%_winId+",data,type)",string(%_loc_type));
+  TK_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_loc_ni));
+  TK_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_loc_nj));
+
+  //
+  // This is a slow manner to move the data ...
+  // Anyone have a faster method than TK_SetVar
+  // I would like set some tcl variable like varname(pos_i,pos_j)
+  //
+  Nb_data=(%_loc_nj)*(%_loc_ni)
+ // disp("Nb_data=")
+ // disp(Nb_data);
+ // winWB=waitbar('Loading data...');
+ // tmp = 0;
+ // waitbar(tmp,winWB);
+ 
+
+  for %_j=1:%_loc_nj,
+    for %_i=1:%_loc_ni,
+      %_value=string(%_loc_var(%_i,%_j));
+      %_varname="sciGUITable(win,"+%_winId+",data,"+string(%_i)+","+string(%_j)+")";
+      TK_SetVar(%_varname,%_value);
+    end
+
+  //tmp = ((%_j)*(%_loc_ni)) / Nb_data;
+  //tmp = tmp *100; tmp = int(tmp); tmp = tmp /100;
+  //disp("tmp dans for=")
+  //disp(tmp)
+  //waitbar(tmp,winWB);
+  end
+
+
+ // disp("%_winId=");
+ // disp(%_winId);
+ // disp("type(%_winId)=");
+ // disp(type(%_winId));
+ // disp("winWB=");
+ // disp(winWB);
+ // disp("type(winWB)=");
+ // disp(type(winWB));
+ // disp("AVANT DrawGrid");
+
+ 
+  TK_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
+ 
 endfunction

@@ -7,11 +7,6 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
-
-global MySciPath
-set MySciPath [file join  "$env(SCIPATH)"]
-
-
 variable DEMODIR
 
 lappend ::auto_path [file dirname  "$env(SCIPATH)/tcl/BWidget-1.7.0"]
@@ -28,7 +23,7 @@ package require combobox 2.3
 catch {namespace import combobox::*}
 
 global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
-global polyVAL nbcol nbrow
+#global polyVAL nbcol nbrow
 
 global SELOBJECT
 global ged_handle_list_size
@@ -37,6 +32,7 @@ global curgedindex
 global curgedobject
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox ncolors
+global curdata
 
 # set ncolors 32
 # set nbcol 2
@@ -262,57 +258,25 @@ set w [Notebook:frame $uf.n Data]
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
-frame $w.frame.fdata -borderwidth 0
-pack $w.frame.fdata  -in $w.frame -side top   -fill x
+set mycurdata $curdata
 
-scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
-canvas $w.frame.c -width 8i -height 3.5i  -yscrollcommand {$w.frame.ysbar set}
+frame $w.frame.curdataframe  -borderwidth 0
+pack $w.frame.curdataframe  -in $w.frame  -side top  -fill x
 
-$w.frame.c create text 160 10 -anchor c -text "X"
-$w.frame.c create text 310 10 -anchor c -text "Y"
+label $w.frame.polydatalabel  -height 0 -text "Data field:    " -width 0 
+combobox $w.frame.polydata \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata \
+    -editable true \
+    -command [list SelectData ]
+eval $w.frame.polydata list insert end [list $mycurdata "----" "Edit data..."]
+pack $w.frame.polydatalabel -in $w.frame.curdataframe  -side left
+pack $w.frame.polydata   -in $w.frame.curdataframe  -expand 1 -fill x -pady 2m -padx 2m
 
-if { $nbcol == 3 } {
-    $w.frame.c create text 460 10 -anchor c -text "Z"
-}
 
-for {set i 1} {$i<=$nbrow} {incr i} {
-    set bb [expr 10+(25*$i)]
-    $w.frame.c create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbcol} {incr j} {
-	set aa [expr 10+($j*150)]
-	set tmp $w.frame.c.data$i
-	set tmp $tmp+"_"
-	entry  $tmp$j  -relief sunken  -textvariable polyVAL($i,$j)
-	bind  $tmp$j <Return> "setData $i $j"
-#location help balloon	
-	set_balloon $tmp$j "Row: $i Column: $j"
-
-	$w.frame.c create window $aa $bb -anchor c -window $tmp$j
-    }
-}
-
-$w.frame.c configure -scrollregion [$w.frame.c bbox all] -yscrollincrement 0.1i
-
-pack  $w.frame.ysbar -side right -fill y
-pack  $w.frame.c
-
-frame $w.scicom1
-pack $w.scicom1 -side top -fill x -pady 2m
-
-label $w.scicom1.label1 -text "Scilab Command Interface for data:"
-pack  $w.scicom1.label1 -in $w.scicom1 -side left
-
-frame $w.scicom
-pack $w.scicom -side top -fill x -pady 2m
-
-label $w.scicom.label1 -text "polyline_handle.data = "
-pack  $w.scicom.label1 -in $w.scicom -side left
-
-entry $w.scicom.text1 -relief sunken -textvariable scicomint_data
-set_balloon $w.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a Nx2 or Nx3 matrix)\n to initialize the \"data\" field."
-bind  $w.scicom.text1 <Return> "sciCommandData"
-
-pack $w.scicom.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -586,3 +550,27 @@ proc sciCommandData {} {
     }
 }
 
+proc GUIEditData  {} {
+    ScilabEval "global ged_handle;ged_handle.data=EditData(ged_handle.data)" "seq"
+}
+
+proc SelectData  {w args} {
+    global curdata scicomint_data
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $curdata]]
+#    puts "finddbarray = $finddbarray"
+
+
+    if { ($curdata == "----") || ($finddbarray != -1) } {
+#	puts "nothing to do"
+    } else {
+	if { $curdata ==  "Edit data..." } {
+	    GUIEditData
+	} else {
+	    #enter a variable
+	    set scicomint_data $curdata
+	    sciCommandData
+	}
+    }
+}
