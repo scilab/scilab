@@ -11,7 +11,7 @@ OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	Plo2d1.obj Plo2d2.obj Plo2d3.obj Plo2d4.obj Plo2dEch.obj Rec.obj Gray.obj \
 	Alloc.obj FeC.obj RecLoad.obj RecSave.obj Tests.obj Actions.obj \
 	gsort.obj qsort.obj nues1.obj  Format.obj \
-	Entities.obj dr1Call.obj sciCall.o Plo2dn.obj
+	Entities.obj dr1Call.obj sciCall.obj Plo2dn.obj
 
 OBJSF = 
 

@@ -10,7 +10,8 @@ OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	Contour.obj Plo3d.obj Math.obj Axes.obj Champ.obj Plo2d.obj \
 	Plo2d1.obj Plo2d2.obj Plo2d3.obj Plo2d4.obj Plo2dEch.obj Rec.obj Gray.obj \
 	Alloc.obj FeC.obj RecLoad.obj RecSave.obj Tests.obj Actions.obj \
-	gsort.obj qsort.obj nues1.obj Format.obj
+	gsort.obj qsort.obj nues1.obj Format.obj\
+	Entities.obj dr1Call.obj sciCall.obj Plo2dn.obj
 
 OBJSF = 
 
