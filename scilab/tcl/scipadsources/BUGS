@@ -34,6 +34,15 @@ Bugs:
  More precisely, the binded action is performed by the system, the buffer is
  NOT reported as modified by Scipad, but the action can be undone by Ctrl-z.
 
+-In the debugger, trying to F10 with something like:
+    function ...
+                    atest
+    enfunction
+ fails. This is due to a bug in tcl/tk itself and will be solved in 8.5
+ See: http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
+ For the time being, the keyword "function" and the function name MUST be
+ on the same code line.
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------

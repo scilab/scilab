@@ -877,3 +877,20 @@ Francois VOGEL, 16/03/05
  * Differences of keysyms between Linux and Windows platforms are now fully
    handled
  * version --> 3.51
+
+Francois VOGEL, 19/03/05
+ * Added an "Exec done" showinfo so that the user has a visual feedback of his
+   action when it results in no change in the Scilab window.
+ * F10 (Configure execution) in the debugger now accepts function definitions
+   splitted on multiple continued lines, possibly with interlaced comments.
+   There is still a limitation due to the tcl fact that matches must be within
+   a single text line. Therefore the keyword "function" and the function name
+   must still be within a single line.
+ * Find/Replace with regexps could highlight the wrong number of matched chars.
+   This is fixed but there is still something unclear about the text widget
+   search command, whose switch -count var does not always update variable var
+   with the length of the match. Worked around and code cleaned from -count
+   switch.
+ * Drag and drop of text within a buffer is now implemented. Possible actions
+   are move (Shift-Button-1) and copy (Shift-Control-Button-1).
+ * version --> 3.52

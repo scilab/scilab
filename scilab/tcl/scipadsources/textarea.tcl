@@ -135,7 +135,6 @@ proc setfontscipad {FontSize} {
     showinfo [concat [mc "Font size"] $FontSize ]
 }
 
-
 proc exitapp {} {
 # exit app
     global listoffile listoftextarea pad
@@ -153,4 +152,37 @@ proc setwingeom {wintoset} {
     set myy [expr (([winfo screenheight $pad]/2) - \
                 ([winfo reqheight $wintoset]/2))]
     wm geometry $wintoset +$myx+$myy
+}
+
+proc tkdndbind {w} {
+# Drag and drop feature using TkDnD
+    global TkDnDloaded savedsel
+    if {$TkDnDloaded == "true"} {
+
+        # Drag and drop files or directories to Scipad - Just one line!
+        dnd bindtarget $w text/uri-list <Drop> {openlistoffiles %D}
+
+        # Drag and drop text within Scipad - More complicated!
+        dnd bindtarget $w text/plain <Drop> \
+            {   if {"%A" == "copy"} { \
+                    %W tag remove sel 0.0 end \
+                } ; \
+                puttext %W %D \
+            }
+        dnd bindsource $w text/plain \
+            {  if {[%W tag ranges sel] != ""} { \
+                    set savedsel [%W get sel.first sel.last] \
+                } else { \
+                    set savedsel "" \
+                } ; \
+                return $savedsel \
+             }
+        dnd bindtarget $w text/plain <Drag> \
+            {   %W mark set insert @%x,%y ; \
+                update idletasks ; \
+                return %A \
+            }
+        bind Text <Shift-Button-1>          { dnd drag %W -actions {move} }
+        bind Text <Shift-Control-Button-1>  { dnd drag %W -actions {copy} }
+    }
 }

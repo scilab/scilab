@@ -46,7 +46,6 @@ proc remalltags {w begin ende} {
 
 proc colorize {w cpos iend} {
     global words chset listoffile scilabSingleQuotedStrings
-    set num 0
     set textarea [gettextareacur]
     set schema $listoffile("$textarea",language)
     $w mark set begin "$cpos linestart"
@@ -125,8 +124,7 @@ proc colorize {w cpos iend} {
     if {$schema=="scilab"} {
         set sciChset {[A-Za-z0-9_\%\#\!\$\?]}
         $w mark set last begin
-        set displ 0
-        while {[set ind [$w search -count displ -regexp $sciChset \
+        while {[set ind [$w search -regexp $sciChset \
                             last ende]] != {}} {
             if {[$w compare $ind >= last]} {
                 set kword ""
@@ -165,7 +163,7 @@ proc colorize {w cpos iend} {
     # XML (#ES this is a problem as <> are also operators)
     if {$schema=="xml"} {
         $w mark set last begin
-        while {[set ind [$w search  -regexp "<" last ende]] != {}} {
+        while {[set ind [$w search -regexp "<" last ende]] != {}} {
             if {[$w compare $ind >= last]} {
                 set res ""
                 regexp ">" [$w get $ind end] res
@@ -180,7 +178,7 @@ proc colorize {w cpos iend} {
 
     # Text
     $w mark set last begin
-    while { [set ind [$w search -count num -regexp \
+    while { [set ind [$w search -regexp \
                         {"[^"]*("|$)} last ende]] != {}} {
         if {[$w compare $ind >= last]} {
             set res ""
@@ -205,7 +203,7 @@ proc colorize {w cpos iend} {
      # has to trigger a recolorization of all buffers 
     if {$scilabSingleQuotedStrings == "yes"} {
         $w mark set last begin
-        while { [set ind [$w search -count num -regexp \
+        while { [set ind [$w search -regexp \
                               {'[^']*('|$)} last ende]] != {}} {
             if {[$w compare $ind >= last]} {
                 set res ""
@@ -334,7 +332,7 @@ proc refreshQuotedStrings {} {
         $w mark set last begin
         if {$scilabSingleQuotedStrings=="yes"} {
 #this is taken directly from proc colorize
-          while { [set ind [$w search -count num -regexp \
+          while { [set ind [$w search -regexp \
                               {'[^']*('|$)} last ende]] != {}} {
             if {[$w compare $ind >= last]} {
                 set res ""

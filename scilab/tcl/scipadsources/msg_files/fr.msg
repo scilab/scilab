@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync with v3.50
+# in sync at least with v3.52
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -31,6 +31,8 @@
 ::msgcat::mcset fr "Obtain" "Obtenir"
 ::msgcat::mcset fr "Input arguments:" "Arguments d'entrée :"
 ::msgcat::mcset fr "Remove" "Supprimer"
+::msgcat::mcset fr "Check function definition: it must be on a single code line." \
+                   "Vérifier la définition de la fonction : elle doit être sur une seule ligne."
 ::msgcat::mcset fr "Function name or input arguments do not match definition of the function" \
                     "Le nom de la fonction ou ses arguments ne correspondent pas à la définition de la fonction"
     ::msgcat::mcset fr "in the file!\n\nCheck function\
@@ -272,6 +274,7 @@
 # scilabexec.tcl
 ::msgcat::mcset fr "No point in loading an empty file!" "Charger un fichier vide ne présente pas d'intérêt!"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to load file" "Scilab est occupé, attendez le prompt pour charger le fichier"
+::msgcat::mcset fr "Exec done" "Exécution effectuée"
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." "Scilab est occupé, attendez le prompt pour exécuter la sélection."
 ::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
 ::msgcat::mcset fr "Matlab file to convert" "Fichier Matlab à importer"

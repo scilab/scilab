@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v3.50
+# in sync at least with v3.51
 
 
 # commons
@@ -33,6 +33,8 @@
 ::msgcat::mcset it "Obtain" "Ottenere"
 ::msgcat::mcset it "Input arguments:" "Argumenti di ingresso:"
 ::msgcat::mcset it "Remove" "Rimuovi"
+::msgcat::mcset it "Check function definition: it must be on a single code line." \
+                   "ENRICO, PLEASE TRANSLATE"
 ::msgcat::mcset it "Function name or input arguments do not match definition of the function" \
                     "Il nome della funzione o i suoi argomenti non corrispondono alla definizione della funzione"
     ::msgcat::mcset it "in the file!\n\nCheck function\
@@ -297,6 +299,7 @@
 ::msgcat::mcset it "No point in loading an empty file!" "Inutile caricare un file vuoto!"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to load file" \
       "Scilab è occupato, attendere il prompt per caricare il file"
+::msgcat::mcset it "Exec done" "ENRICO, PLEASE TRANSLATE"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to execute the selection." \
     "Scilab è occupato, attendere il prompt per eseguire la selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a Matlab file." \

@@ -254,7 +254,11 @@ proc checkarglist {funname} {
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
     global listoftextarea funvars
+    # In tcl<8.5, this does not match multiple lines. This is a tcl/tk bug.
+    # See http://www.cs.man.ac.uk/fellowsd-bin/TIP/113.html
+    # <TODO>: once using 8.5, the messageBox below can be removed
     set pat "\\mfunction\\M.*\\m$funname\\M"
+#    set pat "\\mfunction\\M\[.\\n\\r\\t\]*\\m$funname\\M"
     set orderOK "false"
     foreach textarea $listoftextarea {
         set ex [$textarea search -regexp $pat 0.0 end]
@@ -286,6 +290,9 @@ proc checkarglist {funname} {
                 }
             }
         }
+    }
+    if {$ex == ""} {
+        tk_messageBox -message [mc "Check function definition: it must be on a single code line."]
     }
     if {$orderOK != "true" } {
         set mes [concat [mc "Function name or input arguments do not match definition\

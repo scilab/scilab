@@ -117,6 +117,4 @@ set listundo_id("$textareacur") $undo_id
 update
 
 # Drag and drop feature using TkDnD
-if {$TkDnDloaded == "true"} {
-    dnd bindtarget $pad.new$winopened text/uri-list <Drop> {openlistoffiles %D}
-}
+tkdndbind $pad.new$winopened

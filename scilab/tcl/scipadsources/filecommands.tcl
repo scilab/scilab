@@ -335,16 +335,12 @@ proc shownewbuffer {file} {
 
 proc newfilebind {} {
     global pad winopened radiobuttonvalue listundo_id
-    global TkDnDloaded
     set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
     bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
     bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
     TextStyles $pad.new$winopened
     set radiobuttonvalue $winopened
-    # Drag and drop feature using TkDnD
-    if {$TkDnDloaded == "true"} {
-        dnd bindtarget $pad.new$winopened text/uri-list <Drop> {openlistoffiles %D}
-    }
+    tkdndbind $pad.new$winopened
 }
 
 proc fileisopen {file} {

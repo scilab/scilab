@@ -35,6 +35,7 @@ proc execfile {{buf "current"}} {
                 scilaberror $listoffile("$textarea",fullname)
                 return -1
             } else {
+                showinfo [mc "Exec done"]
                 return 0 
             }
         }

@@ -15,22 +15,29 @@ proc FindIt {w} {
         }
         if {$regexpcase != "1"} {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search $caset -$SearchDir \
                                 -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search $caset -$SearchDir \
                                 -- $SearchString $SearchPos $SearchEnd]
             }
+            set len [string length $SearchString]
         } else {
             if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos]
             } else {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                set SearchPos [ $textareacur search $caset -$SearchDir \
                                 -regexp -- $SearchString $SearchPos $SearchEnd]
             }
+            if {$SearchPos != "" } {
+                # lineend below to be revisited once 8.5 is used (browse for TIP113)
+                regexp $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                set len [string length $res]
+            } else {
+                set len [string length $SearchString]
+            }
         }
-        set len [string length $SearchString]
         if {$SearchPos != ""} {
             $textareacur see $SearchPos
             $textareacur mark set insert $SearchPos
@@ -46,23 +53,23 @@ proc FindIt {w} {
             }
             keyposn $textareacur
             if {$SearchDir == "forwards"} {
-                set SearchPos "$SearchPos + $len char"
+                set SearchPos [$textareacur index "$SearchPos + $len char"]
             }         
         } else {
             if {$SearchEnd == "No_end"} {
                 tk_messageBox -message \
                     [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
                     -parent $pw -title [mc "Find"]
-                set SearchPos insert
+                set SearchPos [$textareacur index "insert"]
             } else {
                 set answer [tk_messageBox -message \
                     [concat [mc "No match found in the selection for"] $SearchString [mc "\nWould you like to look for it in the entire text?"] ] \
                     -parent $pw -title [mc "Find"] -type yesno -icon question]
                 if {![string compare $answer "yes"]} {
                     if {$SearchDir == "forwards"} {
-                        set SearchPos "insert + $len char"
+                        set SearchPos [$textareacur index "insert + $len char"]
                     } else {
-                        set SearchPos insert
+                        set SearchPos [$textareacur index "insert"]
                     }
                     set SearchEnd "No_end"
                     $textareacur tag remove sel 0.0 end
@@ -97,18 +104,18 @@ proc ReplaceIt {once_or_all} {
             }
             if {$regexpcase != "1"} {
                 if {$SearchEnd == "No_end"} {
-                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                    set SearchPos [ $textareacur search $caset -$SearchDir \
                                     -- $SearchString $SearchPos]
                 } else {
-                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                    set SearchPos [ $textareacur search $caset -$SearchDir \
                                     -- $SearchString $SearchPos $SearchEnd]
                 }
             } else {
                 if {$SearchEnd == "No_end"} {
-                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                    set SearchPos [ $textareacur search $caset -$SearchDir \
                                     -regexp -- $SearchString $SearchPos]
                 } else {
-                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                    set SearchPos [ $textareacur search $caset -$SearchDir \
                                     -regexp -- $SearchString $SearchPos $SearchEnd]
                 }
             }
@@ -117,14 +124,24 @@ proc ReplaceIt {once_or_all} {
             # therefore just set the location where the replace should occur
             set SearchPos [lindex $foundtextrange 0]
         }
-        set len [string length $SearchString]
+        if {$regexpcase != "1"} {
+            set len [string length $SearchString]
+        } else {
+            if {$SearchPos != "" } {
+                # lineend below to be revisited once 8.5 is used (browse for TIP113)
+                regexp $SearchString [$textareacur get $SearchPos "$SearchPos lineend"] res
+                set len [string length $res]
+            } else {
+                set len [string length $SearchString]
+            }
+        }
         if {$SearchPos != ""} {
             $textareacur see $SearchPos
             $textareacur delete $SearchPos "$SearchPos+$len char"
             $textareacur insert $SearchPos $ReplaceString
             colorize $textareacur \
-              [$textareacur index "$SearchPos linestart"] \
-              [$textareacur index "$SearchPos lineend"]
+                [$textareacur index "$SearchPos linestart"] \
+                [$textareacur index "$SearchPos lineend"]
             $textareacur mark set insert $SearchPos
             $textareacur tag remove foundtext 0.0 end
             $textareacur tag remove replacedtext 0.0 end
@@ -133,11 +150,11 @@ proc ReplaceIt {once_or_all} {
             MoveDialogIfFoundHidden
             keyposn $textareacur
             if {$SearchDir == "forwards"} {
-                set SearchPos "$SearchPos+$lenR char"
+                set SearchPos [$textareacur index "$SearchPos+$lenR char"]
                 # $SearchEnd must be adjusted for the search to occur in the new selection
                 if {$SearchEnd != "No_end" } {
                     if {int([$textareacur index $SearchEnd])==int([$textareacur index $SearchPos]) } {
-                        set SearchEnd "$SearchEnd+[expr $lenR - $len] char"
+                        set SearchEnd [$textareacur index "$SearchEnd+[expr $lenR - $len] char"]
                     }
                 }
             }         
@@ -145,7 +162,7 @@ proc ReplaceIt {once_or_all} {
             reshape_bp
             return [list "Done" $SearchPos [expr $lenR - $len]]
         } else {
-            set SearchPos insert
+            set SearchPos [$textareacur index "insert"]
             if {$once_or_all == "once"} {
                 tk_messageBox -message \
                     [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
@@ -161,22 +178,23 @@ proc ReplaceIt {once_or_all} {
 
 proc ReplaceAll {} {
     global SearchPos SearchString find
+    set textareacur [gettextareacur]
     if {$SearchString != ""} {
         # The following has been a little bit reworked to account for the possibility that the user,
         # without checking the Match case box, tries to replace a string S1 with a string S2 that is
         # only different from S1 by the character case 
         set ReplaceItResult [ReplaceIt once]
         set anotherone [lindex $ReplaceItResult 0]
-        set RefPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
+        set RefPos [$textareacur index [lindex $ReplaceItResult 1]]
         set NbOfReplaced 0
         while {$anotherone != "No_match"} {
             incr NbOfReplaced
             set ReplaceItResult [ReplaceIt all]
             set anotherone [lindex $ReplaceItResult 0]
-            set NewPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
-            if {int([[gettextareacur] index $RefPos])==int([[gettextareacur] index $NewPos]) && \
-                [[gettextareacur] compare $NewPos < $RefPos] } {
-                set RefPos [[gettextareacur] index "$RefPos+[lindex $ReplaceItResult 2] char"]
+            set NewPos [$textareacur index [lindex $ReplaceItResult 1]]
+            if {int([$textareacur index $RefPos])==int([$textareacur index $NewPos]) && \
+                [$textareacur compare $NewPos < $RefPos] } {
+                set RefPos [$textareacur index "$RefPos+[lindex $ReplaceItResult 2] char"]
             }
             if {$NewPos == $RefPos} {
                 set anotherone "No_match"
@@ -204,7 +222,7 @@ proc CancelFind {w} {
         $textareacur mark set insert sel.first
         $textareacur see insert
     }
-    bind $pad <Expose> {};
+    bind $pad <Expose> {}
     destroy $w
 }
 
@@ -215,9 +233,9 @@ proc ResetFind {} {
     if {$sel == "text doesn't contain any characters tagged with \"sel\""} {
         if {$SearchDir=="forwards" && [$textareacur tag ranges foundtext]!=""} {
             set len [string length $SearchString]
-            set SearchPos "insert + $len char"
+            set SearchPos [$textareacur index "insert + $len char"]
         } else {
-            set SearchPos insert
+            set SearchPos [$textareacur index insert]
         }
         set SearchEnd "No_end"
     } else {
@@ -229,14 +247,14 @@ proc ResetFind {} {
         if {$SearchDir=="forwards"} {
             if {[$textareacur tag ranges foundtext]!=""} {
                 set len [string length $SearchString]
-                set SearchPos "insert + $len char"
+                set SearchPos [$textareacur index "insert + $len char"]
             } else {
                 set SearchPos [$textareacur index sel.first]
             }
             set SearchEnd [$textareacur index sel.last]
         } else {
             if {[$textareacur tag ranges foundtext]!=""} {
-                set SearchPos "insert"
+                set SearchPos [$textareacur index "insert"]
             } else {
                 set SearchPos [$textareacur index sel.last]
             }
