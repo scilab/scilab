@@ -347,8 +347,10 @@ int int_objscanf(char *fname)
     args = Rhs; /* args set to Rhs on entry */
     if (do_scanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) return 0;
     if ( retval == EOF) {
-      Scierror(999,"Error: in %s: end of file reached\r\n",fname);
-      return 0;
+      /* 
+	 Scierror(999,"Error: in %s: end of file reached\r\n",fname);
+	 return 0;
+      */
     }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
@@ -433,8 +435,11 @@ int int_objsscanf(char *fname)
     free(str);
     if ( err < 0 )  return 0;
     if ( retval == EOF) {
-      Scierror(999,"Error: in %s: end of string reached\r\n",fname);
-      return 0;
+      /* 
+	 first returned argument wil be set to -1 
+	 Scierror(999,"Error: in %s: end of string reached\r\n",fname);
+	 return 0;
+      */
     }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
@@ -511,8 +516,10 @@ int int_objfscanf(char *fname)
     pos=ftell(f);
     if ( do_scanf("fscanf",f,cstk(l2),&args,(char *)0,&retval,buf,type) < 0 )  return 0;
     if ( retval == EOF) {
+      /* 
       Scierror(999,"Error: in %s: end of file reached\r\n",fname);
       return 0;
+      */
     }
     if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,
 			buf,&data,rowcount,args)) <0 ) {
