@@ -32,12 +32,13 @@ c
 c
       iv=1
       if(flag.eq.0) then
+         v(1) = dsum(m*n,a(1,1),1)
 c     sum of all the entries
-         t=0.0d0
-         do 10 j=1,n
-            t=t+dsum(m,a(1,j),1)
- 10      continue
-         v(1)=t
+c         t=0.0d0
+c         do 10 j=1,n
+c            t=t+dsum(m,a(1,j),1)
+c 10      continue
+c         v(1)=t
       elseif(flag.eq.1) then
          do 20 j=1,n
             t=dsum(m,a(1,j),1)

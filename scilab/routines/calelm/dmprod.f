@@ -34,9 +34,10 @@ c
       if(flag.eq.0) then
 c     product of all the entries
          t=1.0d0
-         do 10 j=1,n
-            call dvmul(m,a(1,j),1,t,0)
- 10      continue
+c         do 10 j=1,n
+c            call dvmul(m,a(1,j),1,t,0)
+c 10      continue
+         call dvmul(m*n,a(1,1),1,t,0)
          v(1)=t
       elseif(flag.eq.1) then
          do 20 j=1,n
