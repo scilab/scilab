@@ -662,13 +662,15 @@ c
 
       call scipvmspawn(buf(lbufi1:lbuff1),nlr1,buf(lbufi3:lbuff3),nlr
      $     3,buf(lbufi5:lbuff5),nlr4,ntask,stk(lw8),res)
+
+      top=topk
 c     
 c     --------------output variable: tids
       call int2db(1*ntask,istk(iadr(lw8)),-1,stk(ltids),-1)
 c     
       if(lhs .ge. 2) then
 c     --------------output variable: res
-         top=topk+1
+         top=top+1
          if(.not.cremat(fname,top,0,1,1,lrs,lcs)) return
          stk(lrs)=res
       endif
