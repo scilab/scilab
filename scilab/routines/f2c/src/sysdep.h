@@ -47,6 +47,10 @@ use or performance of this software.
 #define MSDOS
 #endif
 
+#ifdef __MINGW32__
+#define MSDOS
+#endif
+
 #ifdef MSDOS
 #define ANSI_Libraries
 #define ANSI_Prototypes

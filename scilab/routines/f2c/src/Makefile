@@ -4,7 +4,7 @@ SCIDIR=../../..
 include $(SCIDIR)/Makefile.incl
 
 CC=gcc
-CFLAGS = $(CC_OPTIONS) -DMSDOS 
+CFLAGS = $(CC_OPTIONS)
 SHELL = /bin/sh
 
 OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
