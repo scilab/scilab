@@ -78,8 +78,9 @@ if {$tcl_platform(platform) != "unix"} {
     $textareacur configure -insertofftime 0
 }
 
-scrollbar $pad.yscroll -command "$textareacur yview"
-scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal
+scrollbar $pad.yscroll -command "$textareacur yview" -takefocus 0
+scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal\
+       -takefocus 0
 pack $textareacur  -in $pad.bottomleftmenu   -side left  -expand 1 -fill both
 pack $pad.yscroll  -in $pad.bottomrightmenu  -side right -expand 1 -fill both
 pack $pad.xscroll  -in $pad.bottombottommenu -expand 1 -fill x 
