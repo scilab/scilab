@@ -106,8 +106,8 @@ void SciLink(int iflag, int *rhs, int *ilib, char **files, char **en_names, char
       else 
 	*ilib  = Sci_dlopen(files,0);
     }
-  if (*ilib  == -1 ) return;
-  sciprint("shared archive loaded\r\n");
+  if ( *ilib  == -1 ) return;
+  if ( iflag == 0) sciprint("shared archive loaded\r\n");
   if ( *rhs >= 2) 
     {
       i=0 ;

@@ -8,7 +8,7 @@ typedef long int ftnlen ;
 
 /*  "addinter-n.c.X1" */
 
-void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
+void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *iname,
 		   int *desc, int *ptrdesc, int *nv, char *c_cpp, 
 		   int *lib_cpp, int *err);
 

@@ -52,14 +52,16 @@ char * Use_c_cpp;
  * Dynamically added interface to Scilab 
  ************************************************/
 
-void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
+void C2F(addinter)(int *iflag,int *descla, int *ptrdescla, int *nvla, char *iname,
 		   int *desc, int *ptrdesc, int *nv, char *c_cpp, 
 		   int *lib_cpp, int *err)
-     /* ename */
-     /* files */
-     /* interface name */
-     /* C++ compiler */
-     /* for cpp library */
+     /* files (int *descla, int *ptrdescla, int *nvla) */
+     /* interface name iname */
+     /* functions name : desc, ptrdesc, nv */
+     /* for cpp library: c_cpp */
+     /* C++ compiler lib_cpp  */
+     /* the files are given by a previously loaded libary with number iflag  */ 
+     /* (if iflag == -1 (int *descla, int *ptrdescla, int *nvla) are used ) */
 {
   int i,rhs=2,ilib=0,inum;
   char **files,*names[2];
@@ -69,8 +71,12 @@ void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
   Use_c_cpp = (char *) malloc((strlen(c_cpp) +1) * sizeof(char));
   strcpy(Use_c_cpp,c_cpp);
 
-  ScilabMStr2CM(descla,nvla,ptrdescla,&files,err);
-  if ( *err == 1) return;
+  if ( *iflag == -1 ) 
+    {
+      ScilabMStr2CM(descla,nvla,ptrdescla,&files,err);
+      if ( *err == 1) return;
+    }
+
   names[0]=iname;
   names[1]=(char *)0;
 
@@ -104,18 +110,28 @@ void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
 
   if ( inum >=  MAXINTERF ) 
     {
-      /*      sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
-	      sciprint("has been reached\r\n");*/
+      /* sciprint("Maximum number of dynamic interfaces %d\r\n",MAXINTERF);
+         sciprint("has been reached\r\n");*/
       *err=1;
       return;
     }
 
-  SciLink(0,&rhs,&ilib,files,names,"f");
-
-  if ( ilib < 0 ) 
-    {
-      *err=ilib;  return;
-    }
+  if ( *iflag == -1 ) { 
+    /* link then search  */ 
+    SciLink(0,&rhs,&ilib,files,names,"f");
+    if ( ilib < 0 ) 
+      {
+	*err=ilib;  return;
+      }
+  } else {
+    /* search in already loaded library number ilib */ 
+    ilib = Max(*iflag,0);
+    SciLink(1,&rhs,&ilib,files,names,"f");
+    if ( ilib < 0 ) 
+      {
+	*err=ilib;  return;
+      }
+  }
 
   /** store the linked function in the interface function table DynInterf **/
   DynInterf[inum].Nshared = ilib;
@@ -137,7 +153,10 @@ void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
     in the scilab function table funtab **/
 
   DynFuntab(desc,ptrdesc,nv,inum+1);
-  for (i=0;i< *nvla;i++) FREE(files[i]); FREE(files);
+
+  if ( *iflag == -1 ) {
+    for (i=0;i< *nvla;i++) FREE(files[i]); FREE(files);
+  }
   ShowInterf();
 }
 
