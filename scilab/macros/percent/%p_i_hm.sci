@@ -12,19 +12,19 @@ if type(v)==4 then
 else
   z=0
 end
-ndims=rhs-2
-if ndims>size(dims,'*') then
-  dims(size(dims,'*')+1:ndims)=0
-elseif ndims<size(dims,'*') then
-  for k=1:size(dims,'*')-ndims
-    varargin(ndims+1)=1
-    ndims=ndims+1
+Ndims=rhs-2
+if Ndims>size(dims,'*') then
+  dims(size(dims,'*')+1:Ndims)=0
+elseif Ndims<size(dims,'*') then
+  for k=1:size(dims,'*')-Ndims
+    varargin(Ndims+1)=1
+    Ndims=Ndims+1
   end
 end  
 del=N==[];count=[]
 dims1=[]
 I=0;I1=0
-for k=ndims:-1:1
+for k=Ndims:-1:1
   ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
     ik=round(horner(ik,dims(k))) // explicit subscript

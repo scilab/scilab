@@ -13,13 +13,13 @@ if type(v)==4 then
 else
   z=0
 end
-ndims=rhs-2
+Ndims=rhs-2
 nd=size(dims,'*')
-if ndims>nd then dims(nd+1:ndims)=0;end  
+if Ndims>nd then dims(nd+1:Ndims)=0;end  
 del=N==[];count=[]
 dims1=[]
 I=0;I1=0
-for k=ndims:-1:1
+for k=Ndims:-1:1
   ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
     ik=round(horner(ik,dims(k))) // explicit subscript
@@ -30,7 +30,7 @@ for k=ndims:-1:1
   elseif mini(size(ik))<0 then // :
     ik=1:dims(k)
     dims1(k,1)=max(max(ik),dims(k))
-    if k==ndims then
+    if k==Ndims then
       if k<nd then
 	ik=1:prod(dims(k:$))
 	dims1(k:nd,1)=dims(k:nd)
