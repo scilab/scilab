@@ -6,7 +6,7 @@ SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/interf.a
 
 OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
-	intlapack.o intslicot.o matdes.o intorand.o stcreate.o intfilestat.o \
+	intlapack.o intslicot.o intarpack.o matdes.o intorand.o stcreate.o intfilestat.o \
 	strelm-c.o  matdsr.o
 
 
@@ -116,6 +116,7 @@ stack0.o stack1.o stack2.o: ../stack.h
 getdate.o: ../machine.h
 intlapack.o: ../machine.h ../stack-c.h
 intslicot.o: ../machine.h ../stack-c.h ../mex.h
+intarpack.o: ../machine.h ../stack-c.h ../mex.h
 
 all:: Makefile.mak Makefile.amk
 
