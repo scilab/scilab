@@ -127,14 +127,10 @@ function path=save_csuper(scs_m,fpath)
 	 '  x=arg1'
 	 '  typ=newpar']
   end
-  t1=sci2exp(model,'model');
-  txt=[
-      txt;
-      'case ''define'' then'
-      bl(ones(size(t1,1),1))+t1;
-      '  gr_i=''xstringb(orig(1),orig(2),'''''+nam+''''',sz(1),sz(2),''''fill'''')'';'
-      '  x=standard_define([2 2],model,[],gr_i)';
-      'end']
+  //t1=sci2exp(model,'model');
+  txt=[txt;
+       'case ''define'' then']
+ 
   path=stripblanks(fpath)+'/'+nam+'.sci'
   [u,err]=file('open',path,'unknown')
   if err<>0 then
@@ -142,5 +138,13 @@ function path=save_csuper(scs_m,fpath)
     return
   end
   write(u,txt,'(a)')
+  cos2cosf(u,model.rpar,0)
+  model.rpar='%scs_m_1'
+  t1=sci2exp(model,'model');
+  t1=[strsubst(t1,sci2exp('%scs_m_1'),'scs_m_1')
+      '  gr_i=''xstringb(orig(1),orig(2),'''''+nam+''''',sz(1),sz(2),''''fill'''')'';'
+      '  x=standard_define([2 2],model,[],gr_i)';
+      'end']
+  write(u,t1,'(a)')
   file('close',u)
 endfunction
