@@ -53,7 +53,6 @@ noe=[1:ne];noe(ic)=[];
 g1=make_graph('foo',g('directed'),(n+1-ndel),a1,b1);
 idel=vv(2:$);ivv=vv(1);
 a=g('node_type');a(idel)=[];g1('node_type')=a;
-pause
 a=g('node_x');if a<>[] then a(ivv)=sum(a(vv))/ndel;end;a(idel)=[];g1('node_x')=a;
 a=g('node_y');if a<>[] then a(ivv)=sum(a(vv))/ndel;end;a(idel)=[];g1('node_y')=a;
 a=g('node_color');a(idel)=[];g1('node_color')=a;
