@@ -23,7 +23,7 @@ E=[I,Z,0*B2;
 Aa=[A,Z,B2;
     -C1'*C1,-A',-C1'*D12;
      D12'*C1,B2',D12'*D12];
-[w,ks]=gschur(Aa,E,'c');
+[w,ks]=schur(Aa,E,'c');
 if ks<>n then error('lqr: stable subspace too small!');end
 ws=w(:,1:n);
 X12=ws(1:n,:);
@@ -43,7 +43,7 @@ Aa=[A,Z, B2;
     -C1'*C1,I, -C1'*D12;
      D12'*C1, 0*B2', D12'*D12];
 
-[w,ks]=gschur(Aa,E,'d');
+[w,ks]=schur(Aa,E,'d');
 if ks<>n then error('lqr: stable subspace too small!');end
 ws=w(:,1:n);
 X12=ws(1:n,:);
