@@ -7,10 +7,11 @@ index=varargin(1) //
 
 if rhs==3&(type(index)==10|type(index)==15) then
   if type(index)==15 then
-     INDX=index($);
-     [index,N]=pre_trait(index,N);
+    M=struct()
+    M(index)=N
+  else
+    M=createstruct(index,N)
   end
-  M=createstruct(index,N)
   return
 end
 
