@@ -8,7 +8,7 @@ if rhs<2 then
   return
 end
 
-if and(vtype~=[Double,Boolean,String,Unknown,Sparse,Cell,Struct]) then
+if and(vtype~=[Double,Boolean,String,Unknown,Sparse,Cell,Struct,Int,Handle]) then
   error("Type(): "+string(vtype)+" is not yet implemented !")
 end
 

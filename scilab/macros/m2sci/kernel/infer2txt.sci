@@ -62,6 +62,8 @@ elseif tp==17 then
   else
     txt="No infos"
   end
+elseif tp==9 then
+  tp="Handle"
 else
   tp="Unknown"
 end

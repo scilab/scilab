@@ -33,6 +33,7 @@ Double=1;
 Boolean=4; // Boolean type can also be 6
 Sparse=5;
 Int=8;
+Handle=9;
 String=10;
 Cell=17;
 Struct=16;
