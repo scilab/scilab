@@ -394,6 +394,15 @@ IDI_SAV                 ICON    DISCARDABLE     "Icones Scilab\\SAV.ICO"
 IDI_SCE                 ICON    DISCARDABLE     "Icones Scilab\\SCE.ICO"
 IDI_SCI                 ICON    DISCARDABLE     "Icones Scilab\\SCI.ICO"
 IDI_TST                 ICON    DISCARDABLE     "Icones Scilab\\TST.ICO"
+IDI_XPPRINT             ICON    DISCARDABLE     "Icones Scilab\\XPPrint.ico"
+IDI_METANET             ICON    DISCARDABLE     "Icones Scilab\\Metanet.ico"
+IDI_SCICOS              ICON    DISCARDABLE     "Icones Scilab\\Scicos.ico"
+IDI_XPCONSOLE           ICON    DISCARDABLE     "Icones Scilab\\XPConsole.ico"
+IDI_XPDIR               ICON    DISCARDABLE     "Icones Scilab\\XPDir.ico"
+IDI_XPEXIT              ICON    DISCARDABLE     "Icones Scilab\\XPexit.ico"
+IDI_XPFONT              ICON    DISCARDABLE     "Icones Scilab\\XPFont.ico"
+IDI_XPHELP              ICON    DISCARDABLE     "Icones Scilab\\XPhelp.ico"
+IDI_SCILAB              ICON    DISCARDABLE     "Icones Scilab\\scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
