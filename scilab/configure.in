@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.48 $)dnl
+AC_REVISION($Revision: 1.49 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -194,6 +194,8 @@ EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
 # special stuff for cygwin in impdir 
 IMPPREF=S
 IMPENV= 
+# strip executable (not to be done on darwin) 
+STRIP=strip
 
 #########################
 ## libtool 
@@ -979,6 +981,7 @@ case "$host" in
    ;;
 # Darwin/MacOSX (Not supported by INRIA)
   *-*-darwin*)
+     STRIP=echo 
      GCC=yes
      CC=cc
      CC_OPTIONS='-no-cpp-precomp -O2 -I/sw/include'
@@ -1590,6 +1593,7 @@ AC_SUBST(EXAMPLES_TESTS)
 AC_SUBST(IMPPREF)
 AC_SUBST(IMPENV)
 AC_SUBST(ZZLEDT)
+AC_SUBST(STRIP)
 
 AC_OUTPUT(Makefile.OBJ Makefile.incl Makefile scripts/Makefile routines/Makefile routines/default/Makefile routines/sun/Makefile routines/graphics/Makefile routines/menusX/Makefile routines/xsci/Makefile routines/sparse/Makefile Makemex routines/stack.h config/Makeso.incl routines/control/Makefile routines/calelm/Makefile routines/xsci/jpc_SGraph.c  config/Makefile.aix config/Makefile.ultrix routines/lapack/Makefile scripts/scilab.g scripts/scilab-gtk.g examples/Makefile routines/version.h imp/Makefile routines/gtksci/Makefile pvm3/Makefile) 
  
