@@ -299,7 +299,12 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   int i, ok, mn;
   sciPointObj *psubwin;
   double drect[6];
-  char *loc,*legx,*legy,*legz;
+  char * loc = NULL;
+  char * legx = NULL;
+  char * legy = NULL;
+  char * legz = NULL;
+  char * buff = NULL;
+
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
 
@@ -336,7 +341,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   
   strcpy(loc,legend);
   
-  legx=strtok(loc,"@");
+  legx=strtok_r(loc,"@",&buff);
   if(legx == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_x_label, empty , strlen(empty));
@@ -344,7 +349,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   else
     sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
    
-  legy=strtok((char *)0,"@");
+  legy=strtok_r((char *)0,"@",&buff);
   if(legy == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_y_label, empty , strlen(empty));
@@ -352,7 +357,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   else
   sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
  
-  legz=strtok((char *)0,"@");
+  legz=strtok_r((char *)0,"@",&buff);
   if(legz == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_z_label, empty , strlen(empty));

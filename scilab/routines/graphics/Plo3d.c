@@ -41,7 +41,6 @@ static void C2F(fac3dg) __PARAMS(( char *name, int iflag, double *x, double *y, 
 
 static void dbox __PARAMS((void));
 
-
 /*-------------------------------------------------------------------------
  *
  *  3D Plotting of surfaces given by z=f(x,y)
@@ -737,7 +736,7 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
   char * legends = NULL;
   sciPointObj * psubwin = NULL;
   sciSubWindow * ppsubwin =  NULL;
-
+  
   char * legx = NULL;
   char * legy = NULL;
   char * legz = NULL;
@@ -762,11 +761,24 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
 			      7)*sizeof (char))) == NULL)
 	Scistring("box3d : No more Place to store legends (3D labels)\n");
 
-      strcpy(legends,legx);
+      if(legx == NULL)
+	strcpy(legends,"");
+      else
+	strcpy(legends,legx);
+      
       strcat(legends,"@"); 
-      strcat(legends,legy);
+      
+      if(legy == NULL)
+	strcat(legends,"");
+      else
+	strcat(legends,legy);
+
       strcat(legends,"@"); 
-      strcat(legends,legz);
+
+      if(legz == NULL)
+	strcat(legends,"");
+      else
+	strcat(legends,legz);
       
       Convex_Box(xbox,ybox,InsideU,InsideD,legends,flag,Cscale.bbox1);
       FREE(legends); legends = NULL;
@@ -1116,17 +1128,26 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 {
   integer verbose=0,narg,xz[2];
   integer iof;
-  char *loc,*legx,*legy,*legz; 
+  char *loc = NULL;
+  char * buff = NULL;
+  char * legx = NULL;
+  char * legy = NULL;
+  char * legz = NULL;
   integer rect[4],flag=0,x,y;
   double ang=0.0;
-   loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
-  if ( loc == 0)    
+
+  loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
+  if ( loc == NULL)
     {
       Scistring("AxesString : No more Place to store Legends\n");
       return;
     }
+  
   strcpy(loc,legend);
-  legx=strtok(loc,"@");legy=strtok((char *)0,"@");legz=strtok((char *)0,"@");
+  legx=strtok_r(loc,"@",&buff);
+  legy=strtok_r(NULL,"@",&buff);
+  legz=strtok_r(NULL,"@",&buff);
+
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   iof = (xz[0]+xz[1])/50;
@@ -1148,7 +1169,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
       BBoxToval(&lx,&ly,&lz,xind[3],bbox);
       TDAxis(1L,fz,lz,xnax,FPoint,LPoint,Ticsdir);
     }
-  if (legz != 0)
+  if (legz != NULL)
     {
       C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xstring",legz,(x=x - rect[2],&x),&y,PI0,&flag
@@ -1176,7 +1197,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	  BBoxToval(&lx,&ly,&lz,xind[4],bbox);
 	  TDAxis(2L,fx,lx,xnax,FPoint,LPoint,Ticsdir);
 	}
-      if (legx != 0)
+      if (legx != NULL)
 	{
 
 	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1199,7 +1220,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	  BBoxToval(&lx,&ly,&lz,xind[4],bbox);
 	  TDAxis(2L,fy,ly,xnax,FPoint,LPoint,Ticsdir);
 	}
-      if (legy != 0)
+      if (legy != NULL)
 	{
 
 	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1229,7 +1250,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	  BBoxToval(&lx,&ly,&lz,xind[5],bbox);
 	  TDAxis(3L,fx,lx,xnax,FPoint,LPoint,Ticsdir); 
 	}
-      if (legx != 0) 
+      if (legx != NULL) 
 	{
 	  C2F(dr)("xstring",legx,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	}
@@ -1249,7 +1270,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	  BBoxToval(&lx,&ly,&lz,xind[5],bbox);
 	  TDAxis(3L,fy,ly,xnax,FPoint,LPoint,Ticsdir); 
 	}
-      if (legy != 0) 
+      if (legy != NULL) 
 	{
 	  C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	}
@@ -1600,7 +1621,7 @@ static void dbox(void)
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "line style",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #endif/**DJ.Abdemouche 2003**/
-SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
+  SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
   C2F(box3d)(xbox,ybox,zbox);
 #ifdef WIN32
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1767,9 +1788,5 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
    }
    return 0;
 }     
-
-
-
-
 
 
