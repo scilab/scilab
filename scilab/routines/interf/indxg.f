@@ -3,7 +3,7 @@ c!Purpose
 c     Converts a scilab index variable to a vector of indices
 c!Calling sequence
 c     subroutine indxg(il,siz,ilr,mi,lw,iopt)
-c     il    : beginning of a  a  scilab variable structure. 
+c     il    : beginning of a  a scilab variable structure. 
 c     siz   : integer, matrix size, used for implicits index descriptions
 c     ilr   : adress of first elment of resulting vector of indices in
 c            istk
@@ -233,7 +233,7 @@ c!Purpose
 c     Converts a scilab index variable to the complementary vector of indices
 c!Calling sequence
 c     subroutine indxg(il,siz,ilr,mi,lw)
-c     il   : beginning of a  a  scilab variable structure. 
+c     il   : beginning of a scilab variable structure. 
 c     siz  : integer, matrix size, used for implicits index descriptions
 c     ilr  : adress of first elment of resulting vector of indices in
 c            istk
@@ -242,10 +242,15 @@ c     mx   : maximum value of resulting vector of indices
 c     lw   : pointer to free space in stk (modified by execution)
 c!
 
+*     modification by Bruno so as to use a faster algorithm (7 May 2002)
+
+      implicit none
       include '../stack.h'
-      integer siz
-      logical test
-      integer iadr,sadr
+      integer il, siz, ilr, mi, mx, lw
+
+      integer i, k, ilc
+      
+      integer l, iadr,sadr
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -260,29 +265,45 @@ c
          return
       endif
       if(mi.eq.0) then
-         do 05 i=1,siz
+         do i=1,siz
             istk(ilc+i-1)=i
- 05      continue
+         enddo
          mx=istk(ilc+siz-1)
          mi=siz
       else
-c     computes complement
-         k=0
-         do 20 i=1,siz
-            test=.true.
-            do 10 j=1,mi
-               test=test.and.istk(ilr-1+j).ne.i
- 10         continue
-            if(test) then
-               istk(ilc+k)=i
-               k=k+1
-            endif
- 20      continue
+
+*     computes complement (part of the code modified by Bruno)
+*
+*     given 
+*       1/ a "vector" w of mi indices stored from istk(ilr)
+*          so that w=[istk(ilr), ....., istk(ilr+mi-1)] is this vector
+*       2/ the "vector" v of indices v=[1,2,..., siz]
+*
+*     computes the vector v minus w
+*     this new vector is stored from istk(ilc) and its final number of
+*     components will be stored in mi
+
+         do i = 0, siz-1
+            istk(ilc+i) = 1
+         end do
+
+         do i = 0, mi-1
+            k = istk(ilr+i)
+            if (k .le. siz) istk(ilc+k-1) = 0
+         end do
+            
+         k = 0
+         do i = 1, siz
+            if (istk(ilc+i-1) .eq. 1) then
+               istk(ilc+k) = i
+               k = k+1
+            end if
+         end do
+         
+         mi = k
          mx=istk(ilc-1+k)
-         mi=k
       endif
       ilr=ilc
-c     call icopy(mi,istk(ilc),1,istk(ilr),1)
       lw=sadr(ilr+mi)
 
       return
