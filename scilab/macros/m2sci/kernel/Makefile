@@ -21,6 +21,8 @@ INSER = %infer_i_st.sci  %infer_i_s.sci \
 	%s_i_variable.sci %s_i_operatio.sci \
 	%type_i_cste.sci %type_i_funcall.sci %type_i_operatio.sci %type_i_variable.sci  \
 	%contents_i_funcall.sci %contents_i_operatio.sci %contents_i_variable.sci
+#\
+#	%c_i_variable.sci
 
 KERNEL = allunknown.sci clause2sci.sci convert2double.sci \
 	 default_trad.sci equal2sci.sci expression2sci.sci first_non_singleton.sci funcall2sci.sci getvar2sci.sci \
@@ -30,7 +32,7 @@ KERNEL = allunknown.sci clause2sci.sci convert2double.sci \
 	 m2sci.sci m2sci_syntax.sci mtlbtree2sci.sci multi_fun_file.sci no_equiv.sci \
 	 not_a_scalar.sci not_a_vector.sci not_empty.sci not_yet_converted.sci operation2sci.sci \
 	 repl_poss.sci replace_brackets.sci sci_generic.sci sci_m2scideclare.sci sciparam.sci set_infos.sci \
-	 update_instr_list.sci updatevarslist.sci
+	 update_instr_list.sci updatevarslist.sci transformtree.sci mtlbtoolfun.sci
 
 MACROS= $(TLIST_CREATE) $(TLIST_e) $(TLIST_6) $(INSER) $(KERNEL) 
 
