@@ -100,6 +100,7 @@ function %h_p(h)
 	 "log_flags = "+sci2exp(h.log_flags)
 	 "tight_limits = "+sci2exp(h.tight_limits)
 	 "data_bounds = "+sci2exp(h.data_bounds,0)
+	 "zoom_box = "+sci2exp(h.zoom_box,0)
 	 "margins = "+sci2exp(h.margins,0)
 	 "axes_bounds = "+sci2exp(h.axes_bounds,0)
 	 " "
