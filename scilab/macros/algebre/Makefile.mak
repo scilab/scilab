@@ -22,5 +22,5 @@ MACROS = coff.sci colcomp.sci companion.sci rref.sci cond.sci pinv.sci sva.sci\
 	pbig.sci psmall.sci range.sci nlev.sci spantwo.sci aff2ab.sci\
 	householder.sci chfact.sci chsolve.sci genmarkov.sci classmarkov.sci \
 	eigenmarkov.sci norm.sci\
-	gspec.sci gschur.sci 
+	gspec.sci gschur.sci  diff.sci
 include ../Make.lib.mak
