@@ -15,7 +15,7 @@ int C2F(intFindObj) _PARAMS((char *fname))
 	{
 		static int l1,n1,m1;
 		
-		char MyTclCommand[2000];
+		char MyTclCommand[2048];
 		char *StrHandle;
 		int Handle=0;
 		char *field=NULL;

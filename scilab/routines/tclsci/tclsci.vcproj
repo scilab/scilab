@@ -791,6 +791,9 @@ cd .. &gt;nul
 				RelativePath=".\TclUiGet.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\fundef.tclsci">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

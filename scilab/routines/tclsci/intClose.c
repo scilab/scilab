@@ -6,7 +6,7 @@
 /*-----------------------------------------------------------------------------------*/
 int C2F(intClose) _PARAMS((char *fname))
 {
-	char MyTclCommand[2000];
+	char MyTclCommand[2048];
 
 	CheckLhs(1,1);
 	CheckRhs(0,1);

@@ -7,6 +7,8 @@ extern int TK_Started;
 /*-----------------------------------------------------------------------------------*/
 extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/
+static int first =0;
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(intTclDoOneEvent) _PARAMS((char *fname));
 extern int C2F(intTclEvalFile) _PARAMS((char *fname));
 extern int C2F(intTclEvalStr) _PARAMS((char *fname));
@@ -18,6 +20,7 @@ extern int C2F(intFindObj) _PARAMS((char *fname));
 extern int C2F(intTclSet) _PARAMS((char *fname));
 extern int C2F(intTclGet) _PARAMS((char *fname));
 extern int C2F(intTclGcf) _PARAMS((char *fname));
+extern int C2F(intTclScf) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
  static TCLSCITable Tab[]=
  {
@@ -31,15 +34,20 @@ extern int C2F(intTclGcf) _PARAMS((char *fname));
   {C2F(intFindObj),"findobj"},
   {C2F(intTclSet),"%s_set"},
   {C2F(intTclGet),"%s_get"},
-  {C2F(intTclGcf),"TCL_gcf"}
-
+  {C2F(intTclGcf),"TCL_gcf"},
+  {C2F(intTclScf),"TCL_scf"},
  };
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
 {  
-  static int first =0;
   Rhs = Max(0, Rhs);
-   
+  ReInitTCL();  
+  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
+  return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+void ReInitTCL(void)
+{
   if (TK_Started != 1 )
   {
       if ( first == 0) 
@@ -53,7 +61,5 @@ int C2F(inttclsci)()
 	    }
 	  }
   }
-  (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  return 0;
 }
 /*-----------------------------------------------------------------------------------*/

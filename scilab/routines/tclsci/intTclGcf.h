@@ -9,6 +9,7 @@
 
 
 int C2F(intTclGcf) _PARAMS((char *fname));
+int C2F(intTclScf) _PARAMS((char *fname));
 
 #endif /* __INTTCLGCF__ */
 /*-----------------------------------------------------------------------------------*/ 

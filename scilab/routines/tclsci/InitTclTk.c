@@ -28,15 +28,15 @@ int OpenTCLsci(void)
 /* Checks if tcl/tk has already been initialised and if not */
 /* initialise it. It must find the tcl script */
 {
-  char *SciPath;
-  char TkScriptpath[1000];
-  char MyCommand[1000];
+  char *SciPath=NULL;
+  char TkScriptpath[2048];
+  char MyCommand[2048];
 
 #ifndef WIN32
-  DIR *tmpdir;
+  DIR *tmpdir=NULL;
 #endif
 
-  FILE *tmpfile;
+  FILE *tmpfile=NULL;
 
   Display *XTKdisplay;
 
@@ -93,6 +93,12 @@ int OpenTCLsci(void)
   if (TCLinterp == NULL) 
     {
       TCLinterp = Tcl_CreateInterp();
+	  if ( TCLinterp == NULL )
+	  {
+	    Scierror(999,"Tcl Error  : Tcl_CreateInterp\r\n");
+		return (1);
+	  }
+
       Tcl_Init(TCLinterp);
       Tk_Init(TCLinterp);
 
@@ -101,7 +107,7 @@ int OpenTCLsci(void)
 	  if ( Tcl_Eval(TCLinterp,MyCommand) == TCL_ERROR  )
 	  {
 		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-		return 0;
+		return (1);
 	  }
       
 	  Tcl_CreateCommand(TCLinterp,"ScilabEval",TCL_EvalScilabCmd,(ClientData)1,NULL);
@@ -118,7 +124,7 @@ int OpenTCLsci(void)
   	  if ( Tcl_EvalFile(TCLinterp,TkScriptpath) == TCL_ERROR  )
 	  {
 		Scierror(999,"Tcl Error %s\r\n",TCLinterp->result);
-		return 0;
+		return (1);
 	  }
 
       flushTKEvents();

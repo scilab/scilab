@@ -12,7 +12,7 @@ int TCL_UiGet(int  Handle,int RhsPropertieField)
 
 	int bOK=0;
 	static int l1,n1,m1;
-	char MyTclCommand[2000];
+	char MyTclCommand[2048];
 	
 	if (Handle == 0)
 	{

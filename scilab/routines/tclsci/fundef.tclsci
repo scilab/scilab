@@ -8,3 +8,6 @@
 {"findobj",             IN_tclsci, 8,    2},
 {"%s_set",              IN_tclsci, 9,	2},
 {"%s_get",              IN_tclsci, 10,	2},
+{"TCL_gcf",             IN_tclsci, 11,	2},
+{"TCL_scf",             IN_tclsci, 12,	2},
+

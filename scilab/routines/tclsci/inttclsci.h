@@ -24,6 +24,7 @@ typedef struct table_struct
   char *name;      /** its name **/
 } TCLSCITable;
 
+void ReInitTCL(void);
 
 #endif /*  __INTTCLSCI__ */
 /*-----------------------------------------------------------------------------------*/
