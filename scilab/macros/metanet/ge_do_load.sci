@@ -11,7 +11,7 @@ function [ok,GraphList,edited,fname]=ge_do_load(fname)
     if ok==2 then ok=%f,return,end
   end
   edited=%f
-  if argn(2)<1 then fname=xgetfile('*.graph'),end
+  if argn(2)<1 then fname=xgetfile('*.graph*'),end
   if fname<>emptystr() then
     [path,name,ext]=splitfilepath(fname)
 
@@ -24,8 +24,16 @@ function [ok,GraphList,edited,fname]=ge_do_load(fname)
       end
       version=editgraph_ver()
       ok=%t
+    case 'graphb'
+      ierr=execstr('load(fname)','errcatch')
+      if(ierr<>0) then
+	x_message(lasterror());ok=%f
+	return
+      end
+      version=editgraph_ver()
+      ok=%t
     else
-      x_message(['Only *.graph (formatted) files allowed'])
+      x_message(['Only *.graph (formatted) or *.graphb (binary) files allowed'])
       ok=%f
       return
     end
