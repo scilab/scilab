@@ -50,16 +50,15 @@ c ------------------------------------
 c   Get variable #1 , complex 
 
        if(.not.getrhsvar(1, 'z', m1, n1, l1)) return
-       call f99fz(stk(l1),m1*n1) 
+       call f99fz(zstk(l1),m1*n1) 
 
        lhsvar(1)=1
        return
        end
 
        subroutine f99fz(z,n)
-       double precision z(*)
+       complex*16 z(*)
        do 1 k=1,n
-          z(2*k-1)=2.0d0*z(2*k-1)
-          z(2*k)  =3.0d0*z(2*k)
+          z(k)=2.0d0*z(k)
  1     continue
        end

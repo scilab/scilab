@@ -72,10 +72,9 @@ int intex2c_2(fname)
   CheckLhs(minlhs,maxlhs) ;
 
   GetRhsVar(1, "z", &m1, &n1, &lr1); /* expecting a complex matrix */
+
   z = zstk(lr1); 
-
-  f99z(z,m1,n1) ;
-
+    f99z(z,m1,n1) ; 
   LhsVar(1) = 1;
   return 0;
 }
