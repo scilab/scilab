@@ -7,7 +7,7 @@ NEW FUNCTIONALITIES
 OTHERS IMPROVEMENTS
 ===================
 - More efficient 3D Zoom (thanks to B. Pincon)
-- Improved scipad, shortcuts, language handling,.. (thanks to E Segre)
+- Improved scipad, shortcuts, language handling, colorization, bug fixes.. (thanks to E Segre)
 INCOMPATIBLITIES
 ================
 - returned arguments f1 f2 f3 of interp have been transposed
