@@ -5,8 +5,10 @@ M=varargin(rhs)
 N=varargin(rhs-1)//inserted matrix
 index=varargin(1) //...
 if type(index)==15 then
+ if size(index)==2 then
    if type(index(2))==10 then
-      //X(p,q).f = y
+      if type(index(1))==1 then
+      //X(p,q).f = y  : index=list([p,q],f)
       toinsert=varargin(rhs-1)
       Dims=list2vec(index(1));
       M=mlist(["st","dims",index(2)],int32(Dims));
@@ -18,7 +20,53 @@ if type(index)==15 then
       li(nmax)=toinsert;
       setfield(3,li,M);
       return;
+      elseif type(index(1))==15
+      //X(p,q).f=z
+      Dims=[];
+      for kkk=1:lstsize(index(1))
+       Dims=[Dims,int32(index(1)(kkk))];
+      end
+	L=list();
+      for lll=1:prod(double(Dims))
+      L(lll)=[];
+      end
+      L($)=varargin(rhs-1);
+      M=mlist(["st","dims",index(2)],Dims,L);
+      return;
+      else
+      //X.f.g=y
+      M=mlist(["st","dims",index(1)],int32([1,1]),...
+        mlist(["st","dims",index(2)],int32([1,1]),varargin(2)));
+      return;
+      end
+   else
+   //X.f(p,q)=y : index=list(f,list(p,q))  
+   z(index(2)(:))=varargin(2);
+   M=mlist(["st","dims",index(1)],int32([1,1]),z);
+   return;
    end
+ else
+ v=varargin(2);
+// pause
+ if type(index($))==1 then
+ w(index($)(:))=v;index($)=null();
+ tmp=mlist(["st","dims",index($-1)],int32([1,1]),w);
+ else
+ tmp=mlist(["st","dims",index($)],int32([1,1]),v);
+ end
+//pause;
+ for k=1:2
+ dims=index($-k)(:);
+ 
+ tmp=mlist(["st","dims",index($-k-1)],int32(dims));
+ error("not implemented"); 
+ end
+
+ M=mlist(["st","dims",index($)],int32([1,1]));
+ index($)=null();
+ M(index)=tmp;
+//pause;
+ end
 end
 
 if type(index)==10 then
