@@ -52,7 +52,7 @@ CFLAGS = $(CC_OPTIONS) -DSkip_f2c_Undefs -D_POSIX_SOURCE -DMSDOS
 include ../../Make.lib.mak
 
 Version.obj: Version.c
-	$(CC) -c Version.c
+	$(CC) $(CC_OPTIONS) -c Version.c
 
 backspace.obj:	fio.h
 close.obj:	fio.h
@@ -106,6 +106,9 @@ wsne.obj:		lio.h
 xwsne.obj:	fio.h
 xwsne.obj:	lio.h
 xwsne.obj:	fmt.h
+
+.c.txt	:
+	$(CC) $(CFLAGS) -E $*.c 
 
 
 

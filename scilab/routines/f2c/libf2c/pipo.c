@@ -1,18 +1,11 @@
-#include "f2c.h"
+
+#ifdef WIN32 
+OKWIN32=1
+#endif 
 
 
-#ifdef KR_headers
-extern double sin(), cos(), sinh(), cosh();
-echo poo 
+#ifdef __MSC__ 
+OKMSC=1
+#endif 
 
-VOID c_cos(r, z) complex *r, *z;
-#else
-#undef abs
-#include "math.h"
 
-void c_cos(complex *r, complex *z)
-#endif
-{
-r->r = cos(z->r) * cosh(z->i);
-r->i = - sin(z->r) * sinh(z->i);
-}

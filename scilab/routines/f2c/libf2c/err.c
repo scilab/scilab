@@ -3,9 +3,10 @@
 #include "sys/stat.h"
 #endif
 #include "f2c.h"
-#include "fio.h"
 #include "fmt.h"	/* for struct syl */
 #include "rawio.h"	/* for fcntl.h, fdopen */
+#include "fio.h"
+
 #ifdef NON_UNIX_STDIO
 #ifdef KR_headers
 extern char *malloc();

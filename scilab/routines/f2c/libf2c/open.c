@@ -3,9 +3,10 @@
 #include "sys/stat.h"
 #endif
 #include "f2c.h"
+#include "rawio.h"
 #include "fio.h"
 #include "string.h"
-#include "rawio.h"
+
 
 #ifdef KR_headers
 extern char *malloc(), *mktemp();

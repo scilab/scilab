@@ -3,7 +3,7 @@
 #include "../machine.h"
 #include <stdio.h>
 
-#ifdef __STDC__
+#if defined(__STDC__) || defined(__MSC__) || defined(__CYGWIN__) ||  (defined __ABSC__)
 #include <stdlib.h>
 #ifndef WIN32
 #include <sys/types.h>
@@ -13,10 +13,8 @@
 extern  char  *getenv();
 #endif
 
-#if (defined __MSC__) || (defined __ABSC__)
-#include <stdlib.h> 
+#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
 #ifdef __MINGW32__
-/** XXXXX missing in mingw32 **/
 #define putenv(x) 
 #else 
 #ifdef __ABSC__
@@ -27,7 +25,6 @@ extern  char  *getenv();
 #endif
 #endif 
 #endif
-
 
 extern void C2F(setprlev) __PARAMS((int*));
 

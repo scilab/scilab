@@ -1,5 +1,5 @@
 #include "f2c.h"
-#include "fio.h"
+
 #ifdef KR_headers
 integer f_inqu(a) inlist *a;
 #else
@@ -12,6 +12,10 @@ integer f_inqu(a) inlist *a;
 #include "io.h"
 #endif
 #endif
+
+#include "fio.h"
+
+
 integer f_inqu(inlist *a)
 #endif
 {	flag byfile;

@@ -1,9 +1,11 @@
 #include "f2c.h"
+#include "rawio.h"
 #include "fio.h"
 #ifndef NON_UNIX_STDIO
 #include "sys/types.h"
 #endif
-#include "rawio.h"
+
+
 
 #ifdef KR_headers
 extern char *strcpy();

@@ -1,5 +1,6 @@
 # Makefile for f2c, a Fortran 77 to C converter
 SCIDIR=../../..
+SCIDIR1=..\..\..
 
 include ../../../Makefile.incl.mak
 
@@ -19,7 +20,14 @@ CFLAGS=$(CC_OPTIONS) -DMSDOS
 all::  $(SCIDIR)/bin/f2c.exe
 
 $(SCIDIR)/bin/f2c.exe	: $(OBJECTS)
-	@$(LINKER) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS)
+	@echo ------- Building $@  --------
+	@$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS)
+
+# @$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS)
+# @$(LINKER) $(LINKER_FLAGS) $(GUIFLAGS) -OUT:"$(SCIDIR)/bin/f2c.exe" $(OBJECTS) $(GUILIBS) 
+
+
+
 
 $(OBJECTSd): defs.h ftypes.h defines.h machdefs.h sysdep.h
 
@@ -51,4 +59,4 @@ clean::
 	del *.obj *.o 
 
 distclean:: clean 
-	del $(SCIDIR)/bin/f2c.exe
+	del $(SCIDIR1)\bin\f2c.exe

@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef __STDC__
+#if defined (__STDC__) || defined(__MSC__) || defined(__CYGWIN__)
 #include <stdlib.h>
 #else
 #include <malloc.h>

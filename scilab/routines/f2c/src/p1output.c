@@ -26,6 +26,8 @@ use or performance of this software.
 #include "output.h"
 #include "names.h"
 
+/** XXXX **/
+#define __cplusplus 
 
 static void p1_addr Argdcl((Addrp));
 static void p1_big_addr Argdcl((Addrp));
