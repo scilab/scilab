@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_more</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Avril 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_more">Fonction d'émulation de la fonction Matlab more</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>more</VERB> et la fonction Scilab
+    <VERB>lines</VERB> se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec des chaînes de caractères comme entrée : La fonction Matlab <VERB>more</VERB> accepte
+	&quot;on&quot; et &quot;off&quot; comme entrée mais pas la fonction Scilab <VERB>lines</VERB>,
+	il existe des équivalents (0 et 60).
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_more(in)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>more(in)</VERB> quand il n'était pas
+    possible de savoir ce qu'était le paramètre d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_more</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>in</VERB> est égal à &quot;on&quot;
+        <VERB>mtlb_more(in)</VERB> peut être remplacé par <VERB>lines(60)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+         Si <VERB>in</VERB> est égal à &quot;off&quot;
+        <VERB>mtlb_more(in)</VERB> peut être remplacé par <VERB>lines(0)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+         Si <VERB>in</VERB> est un double
+        <VERB>mtlb_more(in)</VERB> peut être remplacé par <VERB>lines(in)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_more</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

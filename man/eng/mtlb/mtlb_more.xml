@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_more</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>April 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_more">Matlab more emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>more</VERB> and Scilab <VERB>lines</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With character strings as input: Matlab <VERB>more</VERB> can take &quot;on&quot; 
+	and &quot;off&quot; as input but not Scilab <VERB>lines</VERB> but there are equivalents (0 and 60).
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_more(in)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>more(in)</VERB> when it was not
+    possible to know what was the input while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_more</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>in</VERB> is equal to &quot;on&quot;
+        <VERB>mtlb_more(in)</VERB> may be replaced by <VERB>lines(60)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>in</VERB> is equal to &quot;off&quot;
+        <VERB>mtlb_more(in)</VERB> may be replaced by <VERB>lines(0)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>in</VERB> is a double value
+        <VERB>mtlb_more(in)</VERB> may be replaced by <VERB>lines(in)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_more</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
