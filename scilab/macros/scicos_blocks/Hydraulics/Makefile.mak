@@ -17,8 +17,8 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 	PerteDP.sci bache_draw_ports.sci puit_inputs.sci vanne_inputs.sci \
 	PuitsP.sci bache_inputs.sci source_draw_ports.sci vanne_outputs.sci \
 	SourceP.sci bache_outputs.sci source_inputs.sci
-MODELS = Bache.moc    PortPHQ1.moc  Puits.moc   ThermoCarre.moc \
-	PerteDP.moc  PortPHQ2.moc  Source.moc  VanneReglante.moc
+MODELS = Bache.moc PortPHQ1.moc Puits.moc  ThermoCarre.moc \
+	PerteDP.moc PortPHQ2.moc Source.moc VanneReglante.moc
 
 include ../../Make.lib.mak
 
