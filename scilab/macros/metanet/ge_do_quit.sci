@@ -10,6 +10,6 @@ function  ge_do_quit
     if ok==2 then return,end
   end
   if win==EGcurrent then EGcurrent=[],end
-  xdel(win)
-  execstr('clearglobal EGdata_'+w')
+  //xdel(win)
+   execstr('clearglobal EGdata_'+w+' EGhist_'+w)
 endfunction

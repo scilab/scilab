@@ -1,7 +1,10 @@
 function ge_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
-if ibut<0 then return,end
+  if ibut<0 then 
+    if ibut==-1000 then ge_do_quit(),end//the window has been closed
+    return,
+  end
   old=xget('window');xset('window',win)
   seteventhandler("")  
   w=string(win)
