@@ -35,10 +35,16 @@ proc FindIt {w} {
             $textareacur see $SearchPos
             $textareacur mark set insert $SearchPos
             $textareacur tag remove foundtext 0.0 end
+            $textareacur tag remove replacedtext 0.0 end
             $textareacur tag add foundtext $SearchPos  "$SearchPos + $len char"
+            # <TODO>: these bindings are required to remove the foundtext tag after a find
+            #         next triggered by F3. Once set, they will live in the textarea forever!
+            bind $textareacur <KeyPress>    {+$textareacur tag remove foundtext 0.0 end}
+            bind $textareacur <ButtonPress> {+$textareacur tag remove foundtext 0.0 end}
             if {[winfo exists $find]} {
                 MoveDialogIfFoundHidden
             }
+            keyposn $textareacur
             if {$SearchDir == "forwards"} {
                 set SearchPos "$SearchPos + $len char"
             }         
@@ -75,27 +81,36 @@ proc ReplaceIt {once_or_all} {
     global find SearchEnd
     set textareacur [gettextareacur]
     if {$SearchString != ""} {
-        if {$findcase=="1"} {
-            set caset "-exact"
-        } else {
-            set caset "-nocase"
-        }
-        if {$regexpcase != "1"} {
-            if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
-                                -- $SearchString $SearchPos]
+        set foundtextrange [$textareacur tag ranges foundtext]
+        if {$foundtextrange == {}} {
+            # there is no already found matching text (Find Next was not hit)
+            # therefore perform a search first
+            if {$findcase=="1"} {
+                set caset "-exact"
             } else {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
-                                -- $SearchString $SearchPos $SearchEnd]
+                set caset "-nocase"
+            }
+            if {$regexpcase != "1"} {
+                if {$SearchEnd == "No_end"} {
+                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                                    -- $SearchString $SearchPos]
+                } else {
+                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                                    -- $SearchString $SearchPos $SearchEnd]
+                }
+            } else {
+                if {$SearchEnd == "No_end"} {
+                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                                    -regexp -- $SearchString $SearchPos]
+                } else {
+                    set SearchPos [ $textareacur search -count len $caset -$SearchDir \
+                                    -regexp -- $SearchString $SearchPos $SearchEnd]
+                }
             }
         } else {
-            if {$SearchEnd == "No_end"} {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
-                                -regexp -- $SearchString $SearchPos]
-            } else {
-                set SearchPos [ $textareacur search -count len $caset -$SearchDir \
-                                -regexp -- $SearchString $SearchPos $SearchEnd]
-            }
+            # there is already some matching text found (Find Next was hit)
+            # therefore just set the location where the replace should occur
+            set SearchPos [lindex $foundtextrange 0]
         }
         set len [string length $SearchString]
         if {$SearchPos != ""} {
@@ -107,9 +122,11 @@ proc ReplaceIt {once_or_all} {
               [$textareacur index "$SearchPos lineend"]
             $textareacur mark set insert $SearchPos
             $textareacur tag remove foundtext 0.0 end
+            $textareacur tag remove replacedtext 0.0 end
             set lenR [string length $ReplaceString]
-            $textareacur tag add foundtext $SearchPos  "$SearchPos + $lenR char"
+            $textareacur tag add replacedtext $SearchPos  "$SearchPos + $lenR char"
             MoveDialogIfFoundHidden
+            keyposn $textareacur
             if {$SearchDir == "forwards"} {
                 set SearchPos "$SearchPos+$lenR char"
                 # $SearchEnd must be adjusted for the search to occur in the new selection
@@ -161,25 +178,38 @@ proc ReplaceAll {} {
 }
 
 proc CancelFind {w} {
-    global textareacur pad
-    [gettextareacur] tag remove foundtext 0.0 end
+    global pad
+    set textareacur [gettextareacur]
+    $textareacur tag remove foundtext 0.0 end
+    $textareacur tag remove replacedtext 0.0 end
+    if {[$textareacur tag ranges fakeselection] != {}} {
+        # there was a selection at the time the find dialog was opened, restore it
+        $textareacur tag add sel fakeselection.first fakeselection.last 
+        $textareacur tag remove fakeselection 0.0 end
+    }
     bind $pad <Expose> {};
     destroy $w
 }
 
 proc ResetFind {} {
     global SearchPos SearchEnd SearchPosI SearchDir
-    catch {[[gettextareacur] get sel.first sel.last]} sel
+    set textareacur [gettextareacur]
+    catch {[$textareacur get sel.first sel.last]} sel
     if {$sel == "text doesn't contain any characters tagged with \"sel\""} {
         set SearchPos insert
         set SearchEnd "No_end"
     } else {
+        # there is a selection - fakeselection is the copied sel tag, required
+        # because the sel tag is not visible when focus is out of $pad
+        $textareacur tag add fakeselection sel.first sel.last
+        $textareacur tag raise foundtext fakeselection
+        $textareacur tag raise replacedtext fakeselection
         if {$SearchDir=="forwards"} {
-            set SearchPos [[gettextareacur] index sel.first]
-            set SearchEnd [[gettextareacur] index sel.last]
+            set SearchPos [$textareacur index sel.first]
+            set SearchEnd [$textareacur index sel.last]
         } else {
-            set SearchPos [[gettextareacur] index sel.last]
-            set SearchEnd [[gettextareacur] index sel.first]
+            set SearchPos [$textareacur index sel.last]
+            set SearchEnd [$textareacur index sel.first]
         }
         set SearchPosI $SearchPos
     }
@@ -310,7 +340,9 @@ proc MoveDialogIfFoundHidden {} {
     set bt [expr $tt + [winfo height $pad] + $titlsize + $filemenusize + $bordsize]
     # get found text area coordinates relative to the main window coordinate system
     set textareacur [gettextareacur]
-    set foundlcoord [$textareacur dlineinfo foundtext.first]
+    if {[catch {set foundlcoord [$textareacur dlineinfo foundtext.first]} ]} {
+        set foundlcoord [$textareacur dlineinfo replacedtext.first]
+    }
     set lf1 [lindex $foundlcoord 0]
     set rf1 [expr $lf1 + [lindex $foundlcoord 2]]
     set tf1 [lindex $foundlcoord 1]

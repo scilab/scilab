@@ -806,3 +806,15 @@ Francois VOGEL, 06/03/05
  * In case of opening a precendently opened file from the recent file list,
    the corresponding entry is moved at the top of the list.
  * version --> 3.41
+
+Francois VOGEL, 07/03/05
+ * Further changes related to request 168:
+     - position of the text found/replaced is now given in the status bar
+     - the foundtext tag that stayed forever after a find next triggered
+       by F3 is now removed on keypress or buttonpress event
+     - when the user hits replace, now the previously found text is replaced
+       instead of the next one - if no match was previously found, then a
+       search occurs, immediately followed by a replace if successful
+     - now the possibly existing selection remains visible while the find
+       dialog is open
+ * version --> 3.42

@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.41"
+set version "Version 3.42"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -37,7 +37,7 @@ set NUMCOLOR "yellow4"
 set SELCOLOR "PaleGreen"
 set BREAKPOINTCOLOR "pink"
 set FOUNDTEXTCOLOR "green2"
-set FontSize 12 
+set FontSize 12
 set WMGEOMETRY 600x480
 set printCommand lpr
 set actbptextFont "-Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*"
@@ -47,13 +47,16 @@ set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
 set scilabSingleQuotedStrings "yes"
 
-#other non-pref initial settings
+# other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
 set Scheme scilab
 
 # source the user preferences file if any
 set preffilename $env(HOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
+
+set REPLACEDTEXTCOLOR $FOUNDTEXTCOLOR
+set FAKESELCOLOR $SELCOLOR
 
 # message files and localization to avoid ifs on $lang
 package require msgcat

@@ -15,9 +15,6 @@ Bugs:
  replace an existing selection. Problem of setting up the proper bindings,
  likely. Note: this happens only on some platforms.
 
--On unix, focus to the Find window can be off when clicking on some other window, 
- such as scipad, even though Find stays always on top
- 
 -Line number finding in functions may provide wrong results in some pathological
  cases of continued lines, namely:
  . "Mixed" continued lines, i.e. a single cont line splitted in many buffer lines,
@@ -80,10 +77,6 @@ of ScilabEval and the command queue space.
 A workaround could be to via execstr(TK_GetVar), but then scipad has to be
 launched inside the master tk interpreter (perhaps in a namespace) and not 
 in a slave interpreter.
-
--after a successful find the match is highlighted in green. This remains the 
- selection color until one switches to another buffer. Hacked - now the text 
- found gets selected normally, period.
 
 -command for indenting/unindenting. Now I just duplicated the Comment/uncomment
  stuff, which works fine but just for two spaces. This is a "hard indentation":

@@ -72,7 +72,8 @@ proc scipadindent {textarea cm} {
 proc TextStyles { t } {
     global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
     global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR
-    global BREAKPOINTCOLOR FOUNDTEXTCOLOR actbptextFont textFont
+    global BREAKPOINTCOLOR FOUNDTEXTCOLOR REPLACEDTEXTCOLOR FAKESELCOLOR 
+    global actbptextFont textFont
 
     $t tag configure parenthesis -foreground $PARCOLOR
     $t tag configure bracket -foreground $BRAKCOLOR
@@ -92,7 +93,8 @@ proc TextStyles { t } {
     $t tag configure activebreakpoint -font $actbptextFont \
         -relief raised -borderwidth 2
     $t tag configure foundtext -background $FOUNDTEXTCOLOR
-
+    $t tag configure replacedtext -background $REPLACEDTEXTCOLOR
+    $t tag configure fakeselection -background $FAKESELCOLOR
 }
 
 proc setfontscipad {FontSize} {
