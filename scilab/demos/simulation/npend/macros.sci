@@ -89,10 +89,14 @@ function []=npend_build_and_load()
 // since this demo can be run by someone 
 // who has no write access in this directory 
 // we use TMPDIR 
+
   if ~c_link('npend') then
     cd = getcwd(); 
     chdir(TMPDIR); 
-    unix_s('cp '+SCI+'/demos/npend/Maple/*.f .'); 
+    fcode=mgetl(SCI+'/demos/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
+    fcode=mgetl(SCI+'/demos/npend/Maple/ener.f');mputl(fcode,'ener.f')
+    fcode=mgetl(SCI+'/demos/npend/Maple/np.f');mputl(fcode,'np.f')
+    fcode=mgetl(SCI+'/demos/npend/Maple/npend.f');mputl(fcode,'npend.f')
     files = ['npend.o','np.o','ener.o','dlslv.o' ];
     ilib_for_link(['npend';'np';'ener'],files,[],"f");
     exec loader.sce 
