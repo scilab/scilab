@@ -24,9 +24,13 @@ c
       top0=top
 c     
       lw=lstk(top+1)
-      rhs1=rhs
-      if(op.eq.insert) rhs=2
-      if(op.eq.extrac) rhs=1
+      if(op.eq.insert) then
+         rhs1=2
+      elseif(op.eq.extrac) then
+         rhs1=1
+      else
+         rhs1=rhs
+      endif
 c     
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))
@@ -47,13 +51,16 @@ c     librairies
       if(op.eq.equal.or.op.eq.less+great) goto 60
 c     
 c     operations non implantees
-      rhs=rhs1
       top=top0
       fin=-fin
       return
 c     
 c     comparaisons
  60   continue
+
+      il2=iadr(lstk(top))
+      if(istk(il2).lt.0) il2=iadr(istk(il2+1))
+
       top = top-1
       il1=iadr(lstk(top))
       ilr=il1
@@ -100,11 +107,13 @@ c
 c     operations non implantees
       top=top0
       fin=-fin
-      rhs=rhs1
       return
 c     
-c     comparaisons
+c     comparaisons of macros
  180  continue
+      il2=iadr(lstk(top))
+      if(istk(il2).lt.0) il2=iadr(istk(il2+1))
+
       top = top-1
       il1=iadr(lstk(top))
       ilr=il1
