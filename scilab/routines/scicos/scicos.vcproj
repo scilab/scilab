@@ -47,8 +47,8 @@
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def scicos.def &gt;nul
-copy scicos.def ..\..\..\libs\scicos.def &gt;nul
+copy *.def scicos_tmp.def &gt;nul
+copy scicos_tmp.def ..\..\..\libs\scicos.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -108,8 +108,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def scicos.def &gt;nul
-copy scicos.def ..\..\..\libs\scicos.def &gt;nul
+copy *.def scicos_tmp.def &gt;nul
+copy scicos_tmp.def ..\..\..\libs\scicos.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -169,8 +169,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def scicos.def &gt;nul
-copy scicos.def ..\..\..\libs\scicos.def &gt;nul
+copy *.def scicos_tmp.def &gt;nul
+copy scicos_tmp.def ..\..\..\libs\scicos.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
@@ -230,8 +230,8 @@ cd .. &gt;nul
 				Name="VCPostBuildEventTool"
 				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul
 for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
-copy *.def scicos.def &gt;nul
-copy scicos.def ..\..\..\libs\scicos.def &gt;nul
+copy *.def scicos_tmp.def &gt;nul
+copy scicos_tmp.def ..\..\..\libs\scicos.def &gt;nul
 del *.def &gt;nul
 cd .. &gt;nul
 "/>
