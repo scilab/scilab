@@ -528,7 +528,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
   info.getmen     = 1 ; 
   info.sci_click_activated = 1;
 
-  if (  info.getmen == 1 && info.timer == 0 ) 
+  if (  info.getmen == 1  ) 
     {
       /*  Check soft menu activation during xclick_any */ 
       info.timer = gtk_timeout_add(100, (GtkFunction) timeout_test, ScilabXgc);
@@ -556,7 +556,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
   *istr = info.lstr;
 
   /* remove timer if it was set by us */ 
-  if ( rec_info.timer == 0 )  gtk_timeout_remove (info.timer);
+  if ( info.getmen == 1 )  gtk_timeout_remove (info.timer);
   
 #ifdef WITH_TK
   gtk_timeout_remove(timer_tk);
