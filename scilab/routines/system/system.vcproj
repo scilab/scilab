@@ -662,6 +662,9 @@ cd .. &gt;nul
 				RelativePath=".\scicurdir.c">
 			</File>
 			<File
+				RelativePath=".\Sparse.c">
+			</File>
+			<File
 				RelativePath=".\storeversion.c">
 			</File>
 			<File
