@@ -6,7 +6,7 @@ LIBRARY = libtst
 OBJS = libtst.obj
 # added libraries 
 OTHERLIBS = xtimesy.lib
-!include $(SCIDIR1)\Makefile.incl.mak
+!include $(SCIDIR)/Makefile.incl.mak
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines" 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 EXTRA_LDFLAGS = 
