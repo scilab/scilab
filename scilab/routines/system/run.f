@@ -682,7 +682,6 @@ c
       call bexec(buf(1:lb),lb,ierr)
       if(ierr.ne.0) goto 10
       pt=pt+1
-      print *,'run:Entree callback', pt,interruptible,ierr,buf(1:lb)
       ids(1,pt)=lc
       ids(2,pt)=l0
       ids(3,pt)=nc
@@ -692,7 +691,6 @@ c
 c     *call* macro
       return
  116  interruptible=.true.
-      print *,'run:sortie callback', pt
       lc=ids(1,pt)
       l0=ids(2,pt)
       nc=ids(3,pt)
