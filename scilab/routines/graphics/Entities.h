@@ -753,6 +753,8 @@ typedef struct
   double ymin;				/** ymin */
   double xmax;				/** xmax Adding  F.Leray  02.04.04 */
   double ymax;	                        /** ymax Adding  F.Leray  02.04.04 */
+  double zmin;	                        /** zmin Adding  F.Leray  07.04.04 */
+  double zmax;                          /** zmax Adding  F.Leray  07.04.04 */
   double width;			/** width */
   double height;		/** height */
   BOOL isselected;
