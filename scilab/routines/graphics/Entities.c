@@ -14806,6 +14806,10 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  Cscale.metric3d=flag; 
 	}
            
+	// F.Leray 23.02.04 Mise a 0 du tableau xind pour corriger bug
+	// dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]
+	for(i=0;i<8;i++) xind[i] = 0;
+
       /******/
       if(pSUBWIN_FEATURE (pobj)->isaxes)
 	{  
