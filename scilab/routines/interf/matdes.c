@@ -2312,7 +2312,7 @@ int scixfpolys(fname,fname_len)
 
   /* end of Code modified by polpoth 7/7/2000 */
 
-  LhsVar(1)=0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+  LhsVar(1)=0;  
   return 0;  
 } 
 
@@ -3411,7 +3411,7 @@ int scifec(fname,fname_len)
 			    {-1,"colminmax","?",0,0,0},
 			    {-1,NULL,NULL,0,0}};
   if (Rhs <= 0) {
-    sci_demo (fname," exec(\"SCI/demos/fec/fec.ex1\");",&one);
+    sci_demo (fname," exec(\"SCI/demos/graphics/fec/fec.ex1\");",&one);
     return 0;
   }
 
