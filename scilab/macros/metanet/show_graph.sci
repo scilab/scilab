@@ -25,14 +25,12 @@ function win=show_graph(GraphList,smode,scale,winsize)
   
   if smode=='rep' then
     if EGcurrent==[] then
-      disp('EGcurrent==[]')
       smode='new',t=%f
     else
       w=string(EGcurrent)
       execstr('global EGdata_'+w+';t=type(EGdata_'+w+')==1')
       if t then
 	smode='new'
-	disp('EGdata_'+w+'==[]')
       else
 	smode='rep',
       end
@@ -44,7 +42,6 @@ function win=show_graph(GraphList,smode,scale,winsize)
     win=editgraph(GraphList)//,scale,winsize)
   else //replace
     old=[];if winsid()<>[] then old=xget('window'),end
-    if EGcurrent==[] then  disp('EGcurrent==[]'),pause,end
     win=EGcurrent;
     xset('window',win);seteventhandler("") 
     GraphList=ge_complete_defaults(GraphList)

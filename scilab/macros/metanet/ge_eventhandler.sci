@@ -1,19 +1,20 @@
 function ge_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
-  if or(win==winsid()) then //check if the windows still exists
+
+  if or(win==winsid()) then //does the windows still exists
     old=xget('window'); xset('window',win)
     seteventhandler("")  
-  else
+  else //window has been deleted by an asynchronous xdel()
     ge_do_quit()
+    return
   end
 
   if ibut<0 then 
     if ibut==-1000 then ge_do_quit(),end//the window has been closed
-    return,
+    seteventhandler("ge_eventhandler"),return,
+    
   end
-  old=xget('window'); xset('window',win)
-  seteventhandler("")  
 
   w=string(win)
   if ibut>2 then 
