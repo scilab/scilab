@@ -378,24 +378,23 @@ void rhs_opt_print_names(opts)
  *   or is just a reference to a variable on the stack 
  *---------------------------------------------------------------------*/
 
-int C2F(isref)(lw)
-     integer *lw;
+int IsRef(int number) { 
+  return C2F(isref)(&number);
+}
+
+int C2F(isref)(integer *number) 
 {
-  int retval;
-  integer  lw1;
-  retval = FALSE_;
-  if (*lw > intersiz) {
-    Scierror(999,"isref: too many arguments in the stack edit stack.h and enlarge intersiz\r\n");
-    return retval;
+  integer il,lw;
+  lw = *number + Top - Rhs;
+  if ( *number > Rhs) {
+    Scierror(999,"isref: bad call to isref! (1rst argument)\r\n");
+    return FALSE_;
   }
-  Nbvars = Max(*lw,Nbvars);
-  lw1 = *lw + Top - Rhs;
-  if (*lw < 0) {
-    Scierror(999,"isref: bad call! (1rst argument)\r\n");
-    return retval;
-  }
-  if ( *istk(iadr(lw1)) < 0)   retval = TRUE_;
-  return retval;
+  il = iadr(*lstk(lw));
+  if ( *istk(il) < 0) 
+    return TRUE_ ; 
+  else 
+    return FALSE_ ; 
 }
 
 /*---------------------------------------------------------------------
@@ -419,8 +418,8 @@ int C2F(createvar)(lw, typex, m, n, lr, type_len)
      integer *m, *n, *lr;
      unsigned long type_len;
 {
-  integer ix1, ix, it=0, lw1, lcs, M,N,IT,LR;
-  unsigned char Type = *typex , Type1;
+  integer ix1, ix, it=0, lw1, lcs, IT;
+  unsigned char Type = *typex;
   char *fname = Get_Iname();
   if (*lw > intersiz) {
     Scierror(999,"%s: (createvar) too many arguments in the stack edit stack.h and enlarge intersiz\r\n",
@@ -1123,6 +1122,7 @@ int C2F(createlistcvarfromptr)(lnumber, number, typex,it, m, n, iptr, iptc, type
  *     check if argument number <<number>> is a matrix and 
  *     returns its dimensions
  *---------------------------------------------------------------------*/
+
 int C2F(getmatdims)(number, m, n)
      integer *number, *m, *n;
 {
@@ -1146,6 +1146,7 @@ int C2F(getmatdims)(number, m, n)
   *n = *istk(il + 2);
   return TRUE_;
 }
+
 /*---------------------------------------------------------------------
  * getrhsvar :
  *     get the argument number <<number>> 
@@ -1168,7 +1169,7 @@ int C2F(getrhsvar)(number, typex, m, n, lr, type_len)
      integer *m, *n, *lr;
      unsigned long type_len;
 {
-  int ierr=0, un=1,il1,ild1,nn;
+  int ierr=0,il1,ild1,nn;
   int lrr;
   char *fname = Get_Iname();
   char **items, namex[nlgh+1];
@@ -1369,7 +1370,7 @@ int C2F(getrhscvar)(number, typex, it, m, n, lr, lc, type_len)
      integer *it, *m, *n, *lr, *lc;
      unsigned long type_len;
 {
-  integer ix1, lw, topk, ix2;
+  integer ix1, lw, topk;
   unsigned char Type = *typex;
   char *fname = Get_Iname();
   
@@ -2579,6 +2580,36 @@ static int C2F(mvfromto)(itopl, ix)
   return TRUE_;
 } 
 
+
+
+/*---------------------------------------------------------------------
+ * copyref 
+ * copy object at position from to position to 
+ * without changing data. 
+ * The copy is only performed if object is a reference 
+ * and ref object is replaced by its value 
+ *---------------------------------------------------------------------*/
+
+int Ref2val(int from , int to ) 
+{
+  integer il,lw;
+  lw = from + Top - Rhs;
+  if ( from  > Rhs) {
+    Scierror(999,"copyref: bad call to isref! (1rst argument)\r\n");
+    return FALSE_;
+  }
+  il = iadr(*lstk(lw));
+  if ( *istk(il) < 0) 
+    {
+      int lwd ; 
+      /* from contains a reference */ 
+      lw= *istk(il+2); 
+      lwd = to + Top -Rhs;
+      C2F(copyobj)("copyref", &lw, &lwd, strlen("copyref"));
+    }
+  return 0;
+}
+
 /*---------------------------------------------------------------------
  * convert2sci : 
  *     this routine converts data of variable number num 
@@ -2906,7 +2937,7 @@ int check_list_one_dim(lpos,pos,dim,val,valref)
 
 
 /*---------------------------------------------------------------------
- * Utility for ? 
+ * Utility for hand writen data extraction or creation 
  *---------------------------------------------------------------------*/
 
 int C2F(createdata)(lw, n)
