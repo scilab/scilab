@@ -4,7 +4,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/calelm.a
 
-OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o
+OBJSC = vfloor.o vceil.o  finite.o vfrexp.o sci_tools.o vfinite.o
 
 OBJSF = coshin.o arcosh.o  dad.o dadd.o  ccopy.o  rcopy.o ddif.o \
 	 dmcopy.o dmmul.o dset.o dsort.o \
