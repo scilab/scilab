@@ -7,8 +7,6 @@ CFLAGS = $(CC_OPTIONS)
 
 FFLAGS = $(FC_OPTIONS)
 
-include ../Make.lib
-
 EXAMPLES= Ex-colnew.o Ex-corr.o  Ex-feval.o  Ex-fsolve.o  Ex-impl.o  \
 	Ex-intg.o \
 	Ex-ode-more.o  Ex-ode.o  Ex-odedc.o  Ex-optim.o  Ex-schur.o  \
@@ -22,6 +20,9 @@ all:: $(OBJSC) $(OBJSF)
 
 FTables.h : Flist 
 	./FCreate
+
+clean::
+	$(RM) *.o *.obj 
 
 distclean::
 	$(RM) *.o *.obj 
