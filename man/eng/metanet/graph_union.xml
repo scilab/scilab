@@ -50,9 +50,9 @@ g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]
 g('edge_color')=modulo([1:(edge_number(g))],15)+1;
 g('node_diam')=[1:(g('node_number'))]+20;
 g('node_name')=['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q'];
-show_graph(g);
+w=show_graph(g);
 v=[7 8 9 10 11 12 13];
-w=show_nodes(v);
+show_nodes(v);
 g1=subgraph(v,'nodes',g);
 show_graph(g1,'new');
 v=[1 2 5 6 7 8 9 10];
