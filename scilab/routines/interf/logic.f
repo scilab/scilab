@@ -456,7 +456,11 @@ c     .  arg1=[] or arg2=[]
          istk(ilrs+1)=0
          istk(ilrs+2)=0
          istk(ilrs+3)=0
-         lstk(top+1)=l1+1
+* this following line commented by bruno
+c$$$         lstk(top+1)=l1+1
+* this following line added by bruno for the A(i,j) bug
+* when i or j is []
+         lstk(top+1)=sadr(ilrs+4)
          goto 999
       endif
 c     get memory for the result
@@ -859,6 +863,7 @@ c     .  arg4(:,:)=arg3
             istk(ilrs)=4
             istk(ilrs+1)=m4
             istk(ilrs+2)=n4
+
             call iset(mn4,istk(l3),istk(ilrs+3),1)
             lstk(top+1)=sadr(ilrs+3+mn4)
             return
@@ -871,15 +876,26 @@ c     .  arg4(:,:)=arg3
       if(err.gt.0) return
       call indxg(il2,n4,ilj,mj,mxj,lw,1)
       if(err.gt.0) return
-      if(mi.eq.0.or.mj.eq.0) then
-         call error(15)
-         return
-      endif
+* the 4 following lines commented by bruno (see just after)
+c$$$      if(mi.eq.0.or.mj.eq.0) then
+c$$$         call error(15)
+c$$$         return
+c$$$      endif
       inc3=1
       if(mi.ne.m3.or.mj.ne.n3) then
 c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
          if(m3*n3.eq.1) then
-            inc3=0
+* added by Bruno to have A(i,j) = boolean_scalar working
+* as usual when i or j is []
+            if(mi.eq.0.or.mj.eq.0) then
+               ilrs=iadr(lstk(top))
+               call icopy(3+mn4,istk(il4),1,istk(ilrs),1)
+               lstk(top+1)=sadr(ilrs+3+mn4)
+               goto 999
+            else
+* end of the add on *************************************
+               inc3=0
+            endif
          else
             call error(15)
             return
