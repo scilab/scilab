@@ -1,9 +1,11 @@
 # Makefile for f2c, a Fortran 77 to C converter
+SCIDIR=../../..
 
+include $(SCIDIR)/Makefile.incl
+# XXXX a finir 
 
-g = -g 
 CC=gcc
-CFLAGS = $g
+CFLAGS =  -mno-cygwin -DMSDOS
 SHELL = /bin/sh
 
 OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
@@ -13,12 +15,12 @@ OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
 OBJECTS = $(OBJECTSd) 
 #OBJECTS = $(OBJECTSd) malloc.o
 
-all:  f2c
+all::  $(SCIDIR)/bin/f2c.exe
 
-f2c: $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o f2c 
+$(SCIDIR)/bin/f2c.exe: $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c.exe
 
-#	$(CC) $(LDFLAGS) $(OBJECTS) -o f2c -lmmalloc
+#	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $(SCIDIR)/bin/f2c.exe -lmmalloc
 
 $(OBJECTSd): defs.h ftypes.h defines.h machdefs.h sysdep.h
 
@@ -56,7 +58,7 @@ f2c.t: f2c.1t
 #f2c.1: f2c.1t
 #	nroff -man f2c.1t | col -b | uniq >f2c.1
 
-clean:
+clean::
 	rm -f  *.o f2c tokdefs.h f2c.t
 
 b = Notice README cds.c data.c defines.h defs.h equiv.c error.c \
