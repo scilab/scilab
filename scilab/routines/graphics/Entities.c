@@ -11665,7 +11665,22 @@ sciDrawObj (sciPointObj * pobj)
 	   sciDrawObj (psonstmp->pointobj);
 	   psonstmp = psonstmp->pprev;
 	 }
-
+	 
+	 /* F.Leray 07.12.04 */
+	 /* TO CORRECT the bug 1115 : Big object (grayplots) could cover axes*/
+	 C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+	 C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	 
+	 if (isaxes) {
+	   char STRFLAG[4];
+	   rebuild_strflag(pobj,STRFLAG);
+	   reaxesplot(STRFLAG,pobj); /* same thing as axesplot without displaying ticks*/
+	 }
+	 /* END */
+	 
+	 
 #ifdef WIN32
 	 if ( flag_DO == 1) ReleaseWinHdc();
 #endif

@@ -1592,5 +1592,6 @@ extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPoin
 extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz);
 extern double InvAxis(double min, double max, double u);
 extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1);
+extern void reaxesplot(char* ,sciPointObj*);
 
 #endif /*__SCI_ENTITIES__*/
