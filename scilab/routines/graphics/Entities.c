@@ -666,13 +666,20 @@ sciInitGraphicContext (sciPointObj * pobj)
    * que l'on peut recuperer sur les structure de base de scilab 
    * la colormap des fils est heritee du parent
    */
+
+  /* F.Leray debug 30.03.04*/
+  /*
+  sciGraphicContext * psciGC_pobj = sciGetGraphicContext(pobj); 
+  sciGraphicContext * psciGC_paxe = sciGetGraphicContext(paxesmdl);
+  sciGraphicContext * psciGC_pfig = sciGetGraphicContext(pfiguremdl);
+  */
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
       if (pobj == pfiguremdl)
 	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor = 33;
-	  (sciGetGraphicContext(pobj))->foregroundcolor = 32;
+	  (sciGetGraphicContext(pobj))->backgroundcolor = -3; /*33*/;  /* F.Leray 29.03.04: Wrong index here: 32+1 (old method) must be changed to -1 new method*/
+	  (sciGetGraphicContext(pobj))->foregroundcolor = -2; /*32;*/  /* F.Leray 29.03.04: Wrong index here: 32+2 (old method) must be changed to -2 new method*/
 	  (sciGetGraphicContext(pobj))->fillstyle = HS_HORIZONTAL;
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->linewidth = 1;
@@ -697,8 +704,8 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_SUBWIN:
       if (pobj == paxesmdl)
 	{
-	  (sciGetGraphicContext(pobj))->backgroundcolor =	33;
-	  (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
+	  (sciGetGraphicContext(pobj))->backgroundcolor =	-3; /*33;*/
+	  (sciGetGraphicContext(pobj))->foregroundcolor =	-2; /*sciGetForeground (sciGetParent (pobj)) - 1;*/
 	  (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
@@ -756,6 +763,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     }
   return 0;
 }
+
 
  
 /**sciGetGraphicMode
@@ -886,25 +894,29 @@ int
 sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
   /*  double *pc;*/
-  int k;
+  int k,old_m;
+  /*sciSons *psonstmp;*/
+  sciHandleTab *hdl;
+  sciPointObj * pobj2;
+
+  old_m = sciGetNumColors(pobj); /* F.Leray*/
+
+
+  if(n != 3){
+    sciprint("Impossible size for colormap : number of colums must be 3\n");
+    return 0;
+  }
+  
   if (pobj != pfiguremdl)
     C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
-  
-  /* pc=pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap;*/ /* F.Leray Correction here 04.03.04*/
-/*
-  if(pc = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
-  {
-     sciprint ("Not enough memory available for colormap\n");
-	 return -1;
+
+
+  if(SCI_FIGURE != sciGetEntityType(pobj)){
+    sciprint("sciSetColormap Error: Object must be a SCI_FIGURE\n");
+    return 0;
   }
-  else
-  {
-      for (k=0;k<m*n;k++)
-		  pc[k] = pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k];
-  }
-  */
+
   FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
-  
   if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
     {
       sciprint ("Not enough memory available for colormap\n");
@@ -912,17 +924,176 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
     }  
   for (k=0;k<m*n;k++) 
     pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
+
+
+  
   sciSetNumColors (pobj,m);
-  sciSetBackground ((sciPointObj *) pobj, m);
+  /* sciSetBackground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+2 the bg is always STORED at m+2*/
+  sciSetBackground ((sciPointObj *) pobj, -2); /* F.Leray 30.03.04*/
   if (pobj == pfiguremdl) 
     pSUBWIN_FEATURE (paxesmdl)->cubecolor= m;
   else
     pSUBWIN_FEATURE (sciGetSelectedSubWin (pobj))->cubecolor= m;
-  sciSetForeground ((sciPointObj *) pobj, m); 
-  return 0;
+  /*sciSetForeground ((sciPointObj *) pobj, m); */ /* F.Leray 29.03.04: Probably wrong index here: m+1 the fg is always STORED at m+2*/
+  sciSetForeground ((sciPointObj *) pobj, -1); /* F.Leray 30.03.04*/
 
+  /* F.Leray 31.03.04*/ /* ne fait rien... car pobj est une figure*/
+  /*sciSetFontForeground((sciPointObj *) pobj, -1);
+    sciSetFontBackground((sciPointObj *) pobj, -2);*/
+
+  
+  hdl=pendofhandletab;
+  while (hdl != NULL)
+    {
+      pobj2=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+      
+      if(old_m +1 == sciGetForeground(pobj2))         /* 0 => deals with Foreground */
+	sciUpdateBaW (pobj2,0,-1);      
+      else  if(old_m +2 == sciGetForeground(pobj2))   
+	sciUpdateBaW (pobj2,0,-2);
+      else if(old_m +1 == sciGetBackground(pobj2))    /* 1 => deals with Background */
+	sciUpdateBaW (pobj2,1,-1);
+      else if(old_m +2 == sciGetBackground(pobj2)) 
+	sciUpdateBaW (pobj2,1,-2);
+      
+      if((sciGetEntityType(pobj2) == SCI_TEXT)        ||
+	 (sciGetEntityType(pobj2) == SCI_TITLE)       ||
+	 (sciGetEntityType(pobj2) == SCI_LEGEND)      ||
+	 (sciGetEntityType(pobj2) == SCI_AXES)        ||
+	 (sciGetEntityType(pobj2) == SCI_MENU)        ||
+	 (sciGetEntityType(pobj2) == SCI_MENUCONTEXT) ||
+	 (sciGetEntityType(pobj2) == SCI_STATUSB)){
+	if(old_m +1 == sciGetForeground(pobj2))         /* 2 => deals with FontForeground */
+	  sciUpdateBaW (pobj2,2,-1);     
+	else  if(old_m +2 == sciGetForeground(pobj2))   
+	  sciUpdateBaW (pobj2,2,-2);
+	else if(old_m +1 == sciGetBackground(pobj2))    /* 3 => deals with FontBackground */
+	  sciUpdateBaW (pobj2,3,-1);
+	else if(old_m +2 == sciGetBackground(pobj2)) 
+	  sciUpdateBaW (pobj2,3,-2);
+      }
+      hdl=hdl->pprev;
+    }
+  
+  
+  return 0;
+  
 }
 
+
+int  
+sciUpdateBaW (sciPointObj * pobj, int flag, int value)
+{
+  
+  /* F.Leray debug 30.03.04*/
+  
+  switch (flag)
+    {
+    case 0: /* Foreground*/
+      switch (sciGetEntityType (pobj))
+	{
+	case SCI_FIGURE:
+	case SCI_SUBWIN: 
+	case SCI_ARC:
+	case SCI_SEGS: 
+	case SCI_FEC: 
+	case SCI_GRAYPLOT: 
+	case SCI_POLYLINE:
+	case SCI_PATCH:
+	case SCI_RECTANGLE:
+	case SCI_SURFACE:
+	case SCI_LIGHT:
+	case SCI_AXES:
+	case SCI_MENU:
+	case SCI_MENUCONTEXT:
+	case SCI_STATUSB:
+	  sciSetForeground(pobj,value);
+	  break;
+	case SCI_AGREG:
+	case SCI_TEXT:
+	case SCI_TITLE:
+	case SCI_LEGEND:
+	case SCI_PANNER:		/* pas de context graphics */
+	case SCI_SBH:		/* pas de context graphics */
+	case SCI_SBV:		/* pas de context graphics */
+	default:
+	  return -1;
+	  break;
+	}
+      break;
+    case 1: /* Background*/
+       switch (sciGetEntityType (pobj))
+	{
+	case SCI_FIGURE:
+	case SCI_SUBWIN: 
+	case SCI_ARC:
+	case SCI_SEGS: 
+	case SCI_FEC: 
+	case SCI_GRAYPLOT: 
+	case SCI_POLYLINE:
+	case SCI_PATCH:
+	case SCI_RECTANGLE:
+	case SCI_SURFACE:
+	case SCI_LIGHT:
+	case SCI_AXES:
+	case SCI_MENU:
+	case SCI_MENUCONTEXT:
+	case SCI_STATUSB:
+	  sciSetBackground(pobj,value);
+	  break;
+	case SCI_AGREG:
+	case SCI_TEXT:
+	case SCI_TITLE:
+	case SCI_LEGEND:
+	case SCI_PANNER:		/* pas de context graphics */
+	case SCI_SBH:		/* pas de context graphics */
+	case SCI_SBV:		/* pas de context graphics */
+	default:
+	  return -1;
+	  break;
+	}
+      break;
+    case 2: /* FontForeground*/
+      switch (sciGetEntityType (pobj))
+	{
+	case SCI_AXES:
+	case SCI_MENU:
+	case SCI_MENUCONTEXT:
+	case SCI_STATUSB:
+	case SCI_TEXT:
+	case SCI_TITLE:
+	case SCI_LEGEND:
+	  sciSetFontForeground(pobj,value);
+	  break;
+	default:
+	  return -1;
+	  break;
+	}
+      break;
+    case 3:
+       switch (sciGetEntityType (pobj))
+	{
+	case SCI_AXES:
+	case SCI_MENU:
+	case SCI_MENUCONTEXT:
+	case SCI_STATUSB:
+	case SCI_TEXT:
+	case SCI_TITLE:
+	case SCI_LEGEND:
+	  sciSetFontBackground(pobj,value);
+	  break;
+	default:
+	  return -1;
+	  break;
+	}
+       break;
+       
+    default:
+      return -1;
+      
+    }
+  return 0;
+}
 /**sciGetColormap
  * This function gets a colormap from the figure. It's the same for all sons
  * @memo Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
@@ -935,6 +1106,7 @@ sciGetColormap (sciPointObj * pobj, double *rgbmat)
   int m = sciGetNumColors (pobj);	/* the number of the color*/
   if (sizeof (rgbmat) != m * 3)
     return -1;
+  
   for (i = 0; i < m; i++)
     {
       rgbmat[i] = sciGetScilabXgc (pobj)->Red[i];
@@ -997,6 +1169,35 @@ sciCloneColormap (sciPointObj * pobj)
   return (double *) rgbmat;
 }
 
+
+/*** Adding F.Leray 31.03.04 for supporting -1 and -2 indexes.*/
+int sciSetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
+{
+  int m = sciGetNumColors (pobj);	/* the number of the color*/
+
+  if(colorindex == -1) /* Black */
+    return m +1; /* modif. ici*/
+  else if(colorindex == -2) /* White */
+    return m+1 +1; /* modif. ici*/
+  else
+    return colorindex;
+}
+
+/* This function */
+int sciGetGoodIndex(sciPointObj * pobj, int colorindex) /* return colorindex or m (Default Black) or m+1 (Default White)*/
+{
+  int m = sciGetNumColors (pobj);	/* the number of the color*/
+
+  if(colorindex == -1) /* Black */
+    return m+1;
+  else if(colorindex == -2) /* White */
+    return m+1 +1;
+  else
+    return colorindex;
+}
+
+
+
 /**sciSetBackground
  * @memo Sets the number of the Background
  */
@@ -1004,6 +1205,8 @@ int
 sciSetBackground (sciPointObj * pobj, int colorindex)
 {
   int zero = 0;
+  
+  colorindex = sciSetGoodIndex(pobj,colorindex);
 
   if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     {
@@ -1082,6 +1285,7 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
   return 0;
 }
 
+
 /**sciGetBackground
  * @memo Gets the color number of the Background. Be carreful the return of the subwindow 
  * is the feature of its parent figure.
@@ -1089,6 +1293,9 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
 int
 sciGetBackground (sciPointObj * pobj)
 {
+
+  int colorindex = -999;
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -1097,43 +1304,43 @@ sciGetBackground (sciPointObj * pobj)
 	  sciGetBackground that returns the "stored color + 1" 
           that is equal to the color set by the user
       */
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex = (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TEXT:
-      return (sciGetFontContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_TITLE:
-      return (sciGetFontContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_LEGEND:
-      return (sciGetFontContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetFontContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_LIGHT:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
       /*   case SCI_AXIS
-           return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+           colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
 	   break;*/
     case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_PANNER:		/* pas de context graphics */
       break;
@@ -1142,13 +1349,13 @@ sciGetBackground (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
       break;
     case SCI_MENU:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_MENUCONTEXT:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_STATUSB:
-      return (sciGetGraphicContext(pobj))->backgroundcolor + 1;
+      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;  
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -1157,8 +1364,13 @@ sciGetBackground (sciPointObj * pobj)
     default:
       break;
     }
-  return 0;
+  
+  colorindex = sciGetGoodIndex(pobj, colorindex);
+  
+  return colorindex;
 }
+
+
 
 /**sciSetForeground
  * @memo sets the number of the Background
@@ -1166,6 +1378,9 @@ sciGetBackground (sciPointObj * pobj)
 int
 sciSetForeground (sciPointObj * pobj, int colorindex)
 {
+
+  colorindex = sciSetGoodIndex(pobj,colorindex);
+
   /*pour le moment les couleur pris en compte sont les memes pour tout le monde */
   if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     {
@@ -1240,6 +1455,86 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
       break;
     }
   return 0;
+}
+
+
+
+
+/**sciGetForeground
+ * @memo Gets the color number of the Foreground
+ */
+int
+sciGetForeground (sciPointObj * pobj)
+{
+
+  int colorindex = -999;
+  
+  /** the foreground is a solid line style in b&w */
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      /** the colormap is 32x3 by default */
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_SUBWIN:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_TEXT:
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_TITLE:
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_LEGEND:
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_ARC:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_POLYLINE:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_PATCH:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_RECTANGLE:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_SURFACE:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_LIGHT:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+      /*   case SCI_AXIS
+	   colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+	   break; */
+    case SCI_AXES:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_MENU:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_MENUCONTEXT:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_STATUSB:
+      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
+      break;
+    case SCI_SEGS:
+    case SCI_FEC: 
+    case SCI_GRAYPLOT:
+    case SCI_AGREG:
+    case SCI_PANNER:		/* pas de context graphics */
+    case SCI_SBH:		/* pas de context graphics */
+    case SCI_SBV:		/* pas de context graphics */
+    default:
+      break;
+    }
+
+  colorindex = sciGetGoodIndex(pobj, colorindex);
+  
+  return colorindex;
 }
 
 
@@ -1321,79 +1616,6 @@ sciGetFillFlag (sciPointObj * pobj)
   return 0;
 }
 
-
-
-
-/**sciGetForeground
- * @memo Gets the color number of the Foreground
- */
-int
-sciGetForeground (sciPointObj * pobj)
-{
-  /** the foreground is a solid line style in b&w */
-  switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-      /** the colormap is 32x3 by default */
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SUBWIN:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TEXT:
-      return (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_TITLE:
-      return (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LEGEND:
-      return (sciGetFontContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_ARC:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_RECTANGLE:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SURFACE:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_LIGHT:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-      /*   case SCI_AXIS
-	   return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-	   break; */
-    case SCI_AXES:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENU:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_MENUCONTEXT:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_STATUSB:
-      return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_SEGS:
-    case SCI_FEC: 
-    case SCI_GRAYPLOT:
-    case SCI_AGREG:
-    case SCI_PANNER:		/* pas de context graphics */
-    case SCI_SBH:		/* pas de context graphics */
-    case SCI_SBV:		/* pas de context graphics */
-    default:
-      break;
-    }
-  return 0;
-}
 
 /**sciGetLineWidth
  * @memo Gets the line width
@@ -1619,7 +1841,7 @@ sciGetLineStyle (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     default:
-      sciprint ("This object has no Line Width\n");
+      sciprint ("This object has no Line Style\n");
       return -1;
       break;
     }
@@ -2052,7 +2274,7 @@ sciGetFillStyle (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     default:
-      sciprint ("This object has no Line Width\n");
+      sciprint ("This object has no Fill Style\n");
       return -1;
       break;
     }
@@ -2191,7 +2413,7 @@ sciGetFillColor (sciPointObj * pobj)
     case SCI_SBV:		/* pas de context graphics */
     case SCI_AGREG:
     default:
-      sciprint ("This object has no Line Width\n");
+      sciprint ("This object has no Fill Color\n");
       return -1;
       break;
     }
@@ -5730,7 +5952,8 @@ int
 sciGetFontBackground (sciPointObj * pobj)
 {
 
-
+  int colorindex = -999;
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -5741,7 +5964,7 @@ sciGetFontBackground (sciPointObj * pobj)
       /*   case SCI_AXIS*/
     case SCI_AXES:
     case SCI_STATUSB:
-      return (sciGetFontContext(pobj))->backgroundcolor;
+      colorindex = (sciGetFontContext(pobj))->backgroundcolor;
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -5762,6 +5985,9 @@ sciGetFontBackground (sciPointObj * pobj)
       return -1;
       break;
     }
+  
+  colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
+  return colorindex; 
 }
 
 
@@ -5776,6 +6002,9 @@ sciGetFontBackground (sciPointObj * pobj)
 int
 sciSetFontBackground (sciPointObj * pobj, int colorindex)
 {
+
+ colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -5843,6 +6072,8 @@ int
 sciGetFontForeground (sciPointObj * pobj)
 {
 
+  int colorindex = -999;
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -5853,7 +6084,7 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
-      return (sciGetFontContext(pobj))->foregroundcolor+ 1 ;
+      colorindex =  (sciGetFontContext(pobj))->foregroundcolor+ 1 ; /* Modif. F.Leray 31.03.04*/
       break;
     case SCI_FIGURE:
     case SCI_SUBWIN:
@@ -5874,6 +6105,9 @@ sciGetFontForeground (sciPointObj * pobj)
       return -1;
       break;
     }
+
+  colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
+  return colorindex;
 }
 
 
@@ -5886,6 +6120,9 @@ sciGetFontForeground (sciPointObj * pobj)
 int
 sciSetFontForeground (sciPointObj * pobj, int colorindex)
 {
+  
+  colorindex = sciSetGoodIndex(pobj,colorindex); /* Adding F.Leray 31.03.04*/
+  
   switch (sciGetEntityType (pobj))
     {
     case SCI_TEXT:
@@ -7209,7 +7446,9 @@ ConstructFigure (XGC)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }  
-  for (i=0; i <m*n ; i++) 
+
+  /* F.Leray 30.03.04 */
+  for (i=0; i <m*n ; i++)
     pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
   C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,pFIGURE_FEATURE(pobj)->pcolormap,PD0,PD0,PD0,0L,0L);
   sciSetNumColors (pobj,m);
@@ -7570,7 +7809,7 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS_SCI;
   /** the colormap is mx3 matrix */
-  m = NUMCOLORS_SCI;
+  m = NUMCOLORS_SCI; /* F.Leray 30.03.04 */
   if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pfiguremdl);
@@ -7585,6 +7824,7 @@ int C2F(graphicsmodels) ()
       pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+m] = (double) (defcolors[3*i+1]/255.0); 
       pFIGURE_FEATURE(pfiguremdl)->pcolormap[i+2*m] = (double) (defcolors[3*i+2]/255.0);
     }
+
   /* initialisation de context et mode graphique par defaut */
   if (sciInitGraphicContext (pfiguremdl) == -1)
     {
@@ -10642,6 +10882,7 @@ sciDrawObj (sciPointObj * pobj)
   switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE: 
+    
       x[1] = sciGetBackground (pobj);x[4] = 0;
       /** xclear will properly upgrade background if necessary **/
 #ifdef WIN32
@@ -10672,6 +10913,7 @@ sciDrawObj (sciPointObj * pobj)
       /**/ 
       break;
     case SCI_SUBWIN: 
+     
       if (!sciGetVisibility(pobj)) break;
       sciSetSelectedSubWin(pobj); 
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
@@ -10739,6 +10981,7 @@ sciDrawObj (sciPointObj * pobj)
       /******************/
 	  
     case SCI_AGREG: 
+     
       if (!sciGetVisibility(pobj)) break;
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
@@ -10751,6 +10994,7 @@ sciDrawObj (sciPointObj * pobj)
       /************ 30/04/2001 **************************************************/
       
     case SCI_LEGEND: 
+     
       if (!sciGetVisibility(pobj)) break;
       /* sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
       C2F (dr1) ("xget", "dashes", &flagx, &xold[0], &vold, &vold, &vold,
@@ -10816,6 +11060,7 @@ sciDrawObj (sciPointObj * pobj)
       break; 
       /******************************** 22/05/2002 ***************************/    
     case SCI_FEC:  
+     
       if (!sciGetVisibility(pobj)) break;
       
       n1=1;      
@@ -10841,6 +11086,7 @@ sciDrawObj (sciPointObj * pobj)
       break;      
       /******************************** 22/05/2002 ***************************/    
     case SCI_SEGS:    
+     
       if (!sciGetVisibility(pobj)) break;
       
       sciClip(sciGetIsClipping(pobj)); 
@@ -11001,6 +11247,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       sciUnClip(sciGetIsClipping(pobj));
       break;
     case SCI_GRAYPLOT:  
+     
       if (!sciGetVisibility(pobj)) break;
       n1 = pGRAYPLOT_FEATURE (pobj)->nx;
       n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
@@ -11100,6 +11347,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	}
       break; 
     case SCI_POLYLINE: 
+     
       if (!sciGetVisibility(pobj)) break;
 
       /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
@@ -11242,6 +11490,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       FREE (ym); ym = (integer *) NULL;
       break;
     case SCI_PATCH: 
+     
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	     F.Leray 25.03.04 */
 
@@ -11300,6 +11549,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       FREE (ym); ym = (integer *) NULL;
       break;
     case SCI_ARC: 
+     
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
@@ -11372,6 +11622,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif
       break;
     case SCI_RECTANGLE:  
+     
       if (!sciGetVisibility(pobj)) break;
 
       /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
@@ -11512,6 +11763,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	}
       break;
     case SCI_TEXT: 
+     
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
       n = 1;
@@ -11564,6 +11816,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       /*   case SCI_AXIS 
       break; */
     case SCI_TITLE:
+     
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
       /* load the object foreground and dashes color */
@@ -11707,6 +11960,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 		pMERGE_FEATURE (pobj)->dimzx, pMERGE_FEATURE (pobj)->dimzy,pMERGE_FEATURE (pobj)->tab);
       break;
     case SCI_SURFACE:
+      
       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       if (!sciGetVisibility(pobj)) break;
       /*sciSetCurrentObj (pobj);	F.Leray 25.03.04*/
@@ -16241,7 +16495,7 @@ void DrawFac3d(sciPointObj *psubwin, double *x, double *y,double *z,
   sciPointObj *pobj; 
   integer context[6];
   /* F.Leray debug*/
-  sciSurface * psurf = pSURFACE_FEATURE (pobj);
+  /* sciSurface * psurf = pSURFACE_FEATURE (pobj);*/
 #ifdef WIN32 
   int flag; /* Allan.C 19/01/04 */
 #endif
