@@ -3,7 +3,7 @@
 <MAN>
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>for  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
+  <TYPE>Scilab Keyword  </TYPE>
   <DATE>April 1993  </DATE>
   <SHORT_DESCRIPTION name="for"> mot clé pour les structures de boucles  </SHORT_DESCRIPTION>
   <DESCRIPTION>
@@ -41,4 +41,15 @@ for v=a, write(6,v),end
 for j=1:n,v=a(:,j), write(6,v),end 
 for l=list(1,2,'example'); l,end 
  ]]></EXAMPLE>
+   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>while</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>end</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>do</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
 </MAN>
