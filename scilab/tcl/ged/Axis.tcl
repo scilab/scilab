@@ -214,30 +214,30 @@ pack $w.buttons -side bottom
 
 #Trimmings here
 ###############
-proc TrimmingFunction  { stringtotrim value } {
-    #Trimming et epuration des $stringtotrim dans $value
+# proc TrimmingFunction  { stringtotrim value } {
+#     #Trimming et epuration des $stringtotrim dans $value
     
-    set i [string last $stringtotrim $value]
-    set i [string last $stringtotrim $value]
-    while { $i != -1 } {
-	set firstocc [string last $stringtotrim $value]
-	set tmp [string range $value 0 [expr $firstocc-1]]
-	append tmp [string range $value [expr $firstocc+1] end] 
-	set value $tmp
-	set i [string first $stringtotrim $value]
-    }
-    return $value
-}
+#     set i [string last $stringtotrim $value]
+#     set i [string last $stringtotrim $value]
+#     while { $i != -1 } {
+# 	set firstocc [string last $stringtotrim $value]
+# 	set tmp [string range $value 0 [expr $firstocc-1]]
+# 	append tmp [string range $value [expr $firstocc+1] end] 
+# 	set value $tmp
+# 	set i [string first $stringtotrim $value]
+#     }
+#     return $value
+# }
 
-#xticscoord
-set xticscoord [TrimmingFunction \"  $xticscoord]
-set xticscoord [TrimmingFunction \=  $xticscoord ]
-set xticscoord [TrimmingFunction " " $xticscoord ]
+# #xticscoord
+# set xticscoord [TrimmingFunction \"  $xticscoord]
+# set xticscoord [TrimmingFunction \=  $xticscoord ]
+# set xticscoord [TrimmingFunction " " $xticscoord ]
 
-#yticscoord
-set yticscoord [TrimmingFunction \"  $yticscoord ]
-set yticscoord [TrimmingFunction \=  $yticscoord ]
-set yticscoord [TrimmingFunction " " $yticscoord ]
+# #yticscoord
+# set yticscoord [TrimmingFunction \"  $yticscoord ]
+# set yticscoord [TrimmingFunction \=  $yticscoord ]
+# set yticscoord [TrimmingFunction " " $yticscoord ]
 
 
 ########### Xtics onglet ##########################################
@@ -722,7 +722,7 @@ proc SelectXticsCoord2 { w } {
 proc SelectXticsCoord { w } {
     global xticscoord curticslabel
     ScilabEval "global ged_handle;ged_handle.xtics_coord=$xticscoord"
-    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",str2exp(ged_handle.tics_labels,lmax=0))"
+    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
 }
 
 
@@ -736,7 +736,7 @@ proc SelectYticsCoord2 { w } {
 proc SelectYticsCoord { w } {
     global yticscoord curticslabel
     ScilabEval "global ged_handle;ged_handle.ytics_coord=$yticscoord"
-    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",str2exp(ged_handle.tics_labels,lmax=0))"
+    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
   
 }
 
