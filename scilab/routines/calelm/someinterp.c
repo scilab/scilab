@@ -1,4 +1,10 @@
-/* quelques routines d'interpolation en C */
+/* 
+ * a routine for n-dim linear interpolation together
+ * with its utility routines
+ *
+ *  AUTHOR
+ *    Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr>
+ */
 
 #include "../stack-c.h"
 #include <math.h>
