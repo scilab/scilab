@@ -3,8 +3,9 @@ function [wa,ha]=do_export(scs_m,fname,titleflag)
 // used only with fname
   
   [lhs,rhs]=argn(0)
+  if rhs<3 then titleflag=0,end
+  wa=0;ha=0  
   
-    
   rect=dig_bound(scs_m)
   if rect==[] then
     enablemenus()
