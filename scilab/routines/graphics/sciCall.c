@@ -1,6 +1,7 @@
 /*------------------------------------------------------------------------
  *    Graphic library 2001-2002
  *    Graphic subroutines interface
+ *    Author Djalel ABDEMOUCHE
  --------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
