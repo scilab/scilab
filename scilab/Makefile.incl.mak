@@ -15,6 +15,7 @@ MAKE=nmake /f Makefile.mak
 DTK=-DWITH_TK
 
 !IF "$(DTK)" == "-DWITH_TK"
+# -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
 TCLTK=C:\Tcl\lib
 TCLTK=c:\softs\active-tcl
@@ -25,24 +26,30 @@ TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
 !ENDIF
 
-# compiler flags: -MT is only needed if tcl/tk is used
-
-
 #---------------------
 # Scilab pvm library
 #---------------------
 # To compile with PVM interface, uncomment the following lines and give
 # the good pathname for PVM_ROOT.
 #
-#PVM=libs/pvm.lib 
-#PVM_ROOT=d:\scilab-2.4\pvm3
-#PVM_ARCH=WIN32
-#PVMLIB=$(PVM_ROOT)\lib\WIN32\libpvm3.lib $(PVM_ROOT)\lib\WIN32\libgpvm3.lib 
-#PVM_INCLUDES=-I$(PVM_ROOT)/src
-#DPVM=-DWITH_PVM
+DPVM=-DWITH_PVM
+
+!IF "$(DPVM)" == "-DWITH_PVM"
+# compiler flags: -MT should be removed for pvm 
+USE_MT=
+PVM=libs/pvm.lib 
+PVM_ROOT=c:\softs\scilab\scilab-cvs\pvm3
+PVM_ARCH=WIN32
+PVMLIB=$(PVM_ROOT)\lib\WIN32\libpvm3.lib $(PVM_ROOT)\lib\WIN32\libgpvm3.lib 
+PVM_INCLUDES=-I"$(PVM_ROOT)\include" -I"$(PVM_ROOT)\src"
+!ENDIF 
+
 #
 # YES if we compile the PVM given with Scilab else NO
-#DLPVM=YES
+# If you use DLPVM=YES you will have to edit and customize
+# pvm3/conf/WIN32.def 
+DLPVM=YES
+
 #--------------------------
 # to generate blas symbols compatible with 
 # intel blas library 
