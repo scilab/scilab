@@ -88,13 +88,13 @@ function md=help_ask(modes)
   md=modes(n)
 endfunction
 
-function tcltk_help(path,key)
+function tcltk_help(path,key,key1)
   // the tck tk help browser
   global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
   INDEX=strsubst(INDEX,"\","/")
-  key1=key //for temp file and widget name
+  if argn(2)<3 then key1=key,end //for temp file and widget name
   K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
   for k=K,key1=strsubst(key1,k,'_'),end
   if MSDOS then

@@ -43,7 +43,7 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
 	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
 	dirname.sci \
-	apropos.sci help.sci browsehelp.sci help_menu.sci change_old_man.sci \
+	apropos.sci help.sci gethelpfile.sci browsehelp.sci help_menu.sci change_old_man.sci \
 	make_help_index.sci find_links.sci editor.sci \
 	xmltohtml.sci help_skeleton.sci\
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
