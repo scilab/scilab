@@ -334,6 +334,13 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	case CTRL_N:
 	  if (cur_entry != NULL) {
 	    cur_entry = cur_entry->next;
+
+	    /* To get a empty line when no more data in history */
+	    backspace(cursor);
+	    erase_nchar(cursor_max);
+	    wk_buf[0] = NUL;
+	    cursor = cursor_max = 0;
+
 	    if (cur_entry != NULL) {
 	      CopyCurrentHist(wk_buf,&cursor, &cursor_max); 
 	    }
