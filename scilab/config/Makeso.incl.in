@@ -35,7 +35,7 @@ FCOMPILE = $(FC) $(INCLUDES) $(FFLAGS)
 LTCOMPILE = $(LIBTOOL)  --mode=compile $(QUIET) $(CC) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
 FLTCOMPILE = $(LIBTOOL)  --mode=compile $(QUIET) $(FC) $(INCLUDES) $(FFLAGS)
 
-LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS)  $(FLIBS) -o $@
+LINK = $(LIBTOOL) --mode=link $(QUIET) $(CC) $(CFLAGS) $(LDFLAGS)  $(FLIBS) $(OTHERLIBS) -o $@
 
 OBJECTS = $(OBJS:.o=.lo)
 LIBRARY_NAME = $(LIBRARY:.a=)
