@@ -19,13 +19,36 @@ int intqr(fname)
      char *fname;
 {
   int *header1;int *header2;
-  int Cmplx;int ret;
+  int Cmplx;int ret; double *snd; double tol;
 
   header1 = (int *) GetData(1);
   Cmplx=header1[3];
 
+  if (header1[0] == 10) Cmplx=10;
+
+  if (Lhs==4) {   /* obsolete : [Q,R,rk,E]=qr(A) or = qr(A,tol)   */
+    if (Rhs==2) {
+      snd = (double *) GetData(2);
+      tol = snd[2];
+    }
+    else {
+      tol = -1;Rhs=1;
+    }
+    switch (Cmplx) {
+    case REAL :
+       ret = C2F(doldqr)(&tol,"qr",2L);
+       break;
+    case COMPLEX :
+      ret = C2F(zoldqr)(&tol,"qr",2L); 
+      break;
+    default :
+      Scierror(999,"%s: Invalid input! \r\n",fname);
+      return;
+    }
+    return;
+  }
   switch (Rhs) {
-  case 1:   /* qr(A)   */
+  case 1:   /*   qr(A)   */
     switch (Cmplx) {
     case REAL :
       ret = C2F(intdgeqpf3)("qr",2L);
@@ -38,13 +61,9 @@ int intqr(fname)
       break;
     }
     break;
-  case 2 :   /* qr(A, something)   */
+  case 2 :   /*   qr(A, something)   */
     header2 = (int *) GetData(2);
     switch (header2[0]) {
-    case DOUBLE :
-      /*  old qr, tolerance is passed: [Q,R,rk,E]=qr(A,tol)  *
-       *   ret = C2F(intqrold)("qr",2L);  */
-      break;
     case STRING  :
       /* Economy size:  ...=qr(A,"e")  */
       switch (Cmplx) {
@@ -58,15 +77,18 @@ int intqr(fname)
 	Scierror(999,"%s: Invalid input! \r\n",fname);
 	break;
       }
+    default:
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
     }
-    break;
+    return;
   default :
     Scierror(999,"%s: Invalid call! \r\n",fname);
     break;
   }
   return 0;
 }
+
 
 int intsvd(fname)
      char *fname;
