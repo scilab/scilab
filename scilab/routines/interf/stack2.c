@@ -2542,8 +2542,10 @@ static int C2F(mvfromto)(itopl, ix)
   Type = C2F(intersci).ntypes[*ix - 1];
   if ( Type != '$') 
     {
-      int iwh = *ix + Top - Rhs;
-      ilp = iadr(*lstk(iwh));
+      /* int iwh = *ix + Top - Rhs;
+	 ilp = iadr(*lstk(iwh)); */ 
+      int iwh = C2F(intersci).iwhere[*ix - 1];
+      ilp = iadr(iwh); 
       if ( *istk(ilp) < 0)  ilp = iadr(*istk(ilp +1));
       m =*istk(ilp +1);
       n =*istk(ilp +2);
