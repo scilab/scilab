@@ -4,7 +4,7 @@ function [Menus,Shorts]=initial_editgraph_tables()
 
 //Editgraph Menu definitions
   Menus=list(['Graph','New','Zoom','Replot','SaveAs','Save','Load',..
-	      'Options','Defaults','Default names','Export','Quit'],..
+	      'Options','Settings','Default names','Export','Quit'],..
 	     ['Edit','NewNode','NewArc','Move','Move Region',..
 	      'Copy Region To ClipBoard','Paste','Delete',..
 	      'Delete Region','Properties','Undo'],..

@@ -59,9 +59,9 @@ function r=ge_graph(kmen,win)
     old=xget('window');xset('window',win);seteventhandler("")  
     ge_do_options()
     seteventhandler("ge_eventhandler") ;xset('window',old)
-  case "Defaults" then
+  case "Settings" then
     old=xget('window');xset('window',win);seteventhandler("")  
-    ge_do_defaults()
+    ge_do_settings()
     seteventhandler("ge_eventhandler") ;xset('window',old)
   case "Default names" then
     old=xget('window');xset('window',win);seteventhandler("")  

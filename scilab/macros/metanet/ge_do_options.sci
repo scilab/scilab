@@ -7,15 +7,12 @@ function ge_do_options()
   arc=list('Arcs',EGdata.ArcId+1,['Nothing','Number','Name','Cost','Min cap','Max cap',..
 		     'Length', 'Quadratic weight','Quadratic origin', ...
 		    'Weight'])
-  graph=list('Is graph directed',EGdata.GraphList.directed+1,['No','Yes'])
-  rep=x_choices("Select information to display",list(node,arc,graph))
+  rep=x_choices("Select information to display",list(node,arc))
   
   if EGdata.NodeId<>rep(1)-1 | ...
-	EGdata.ArcId<>rep(2)-1 | ...
-	EGdata.GraphList.directed<>rep(3)-1 then
+	EGdata.ArcId<>rep(2)-1 then
     EGdata.NodeId=rep(1)-1
     EGdata.ArcId=rep(2)-1
-    EGdata.GraphList.directed=rep(3)-1
     execstr('EGdata_'+w+'=EGdata')
     GraphList=EGdata.GraphList
     xbasc()
