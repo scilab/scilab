@@ -9,7 +9,7 @@ function change_old_man()
     if flag1 == [] & flag2 <> []  then
       txt=mgetl(%helps(k,1)+"/whatis")
       whatispath=TMPDIR+"/man"+string(k);
-      p=pathconvert(whatispath);
+      p=pathconvert(whatispath,%f,%t);
       if fileinfo(p)==[] then unix_s("mkdir "+p),end
      
       name=[],fil=[],def=[]
