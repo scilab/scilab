@@ -3686,8 +3686,8 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
   
 
   *n_grads = 0;
-  log_max =  ceil(_max);
-  log_min =  floor(_min);
+  log_max =  (int) ceil(_max);
+  log_min =  (int) floor(_min);
   
   size = log_max - log_min +1;
  /*  tab=(int *)MALLOC(size*sizeof(int)); */
@@ -7114,7 +7114,7 @@ sciDrawObj (sciPointObj * pobj)
 		   int cinq = 5, un = 1;
 		   integer fill;
 
-		   fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
+		   fill = (int ) - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
 
 		   vertexx[0] = xm[i+n2*j];
 		   vertexx[1] = xm[i+n2*(j+1)];
@@ -7229,7 +7229,7 @@ sciDrawObj (sciPointObj * pobj)
 		 int cinq = 5, un = 1;
 		 integer fill;
 
-		 fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
+		 fill = (int) - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
 		 
 		 vertexx[0] = xm[i+n2*j];
 		 vertexx[1] = xm[i+n2*(j+1)];

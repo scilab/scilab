@@ -85,7 +85,7 @@ extern void Plo2d3RealToPixel(integer *n1, integer *n2, double *x, double *y, in
 {
   integer i,j;
   /** Computing y-values **/
-  int y_zero = 0.;
+  double y_zero = 0.;
 
   if(version_flag()==0)
     {
