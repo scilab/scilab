@@ -739,6 +739,10 @@ int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
     sciprint("Impossible case\n");
     return 0;
   }
+  
+  /* if ticscolor is -1 or -2 */
+  /* compute the good index */
+  ticscolor=sciGetGoodIndex(psubwin,ticscolor);
 
   bbox[0] =  xminval = pSUBWIN_FEATURE (psubwin)->FRect[0]; /*xmin*/
   bbox[1] =  xmaxval = pSUBWIN_FEATURE (psubwin)->FRect[2]; /*xmax*/
@@ -6186,6 +6190,14 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];*/
 		shade(polyx,polyy,&(pSURFACE_FEATURE (pobj)->zcol[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
 	      }
+	      break;
+	    case 4: /* new case for "flat" mode matlab compatibility */
+	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
+	      if ( flag < 0 ) fill[0]=-fill[0];
+	      if(sciGetIsLine(pobj))
+		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      if(sciGetIsMark(pobj))
+		DrawMarks3D(pobj,5*npoly,polyx,polyy);
 	      break;
 	    }
 	  }
