@@ -106,8 +106,8 @@
      </DESCRIPTION_ITEM>
 
      <DESCRIPTION_ITEM label='children: '>
-     This field is a vector of <LINK>handle_graphics</LINK>. this handles represent 
-     the children of the figure. Note that all figure children are of type <VERB>"Axes"</VERB>
+     This handles represent 
+     the vector of the figure's children . Note that all figure children are of type <VERB>"Axes"</VERB>
      </DESCRIPTION_ITEM>
 
    </DESCRIPTION_INDENT>
