@@ -1886,7 +1886,7 @@ void SwitchLanguage(LPTW lptw)
 {
 	char commandline[256];
 
-	strcpy(commandline,"%helps=initial_help_chapters(LANGUAGE);");
+	strcpy(commandline,"global LANGUAGE;%helps=initial_help_chapters(LANGUAGE);");
 
 	StoreCommand1 (commandline, 0);
 	switch (lptw->lpmw->CodeLanguage)
@@ -1901,7 +1901,7 @@ void SwitchLanguage(LPTW lptw)
 	}
 	StoreCommand1 (commandline, 0);
 
-	strcpy(commandline,"%helps=initial_help_chapters(LANGUAGE);");
+	strcpy(commandline,"global LANGUAGE;%helps=initial_help_chapters(LANGUAGE);");
 	StoreCommand1 (commandline, 0);
     
 	ReLoadMenus(lptw);
