@@ -2795,11 +2795,11 @@ int scixset(fname,fname_len)
       subwin = sciGetSelectedSubWin(sciGetCurrentFigure());
       if (( strncmp(cstk(l1),"foreground",10) == 0) ||( strncmp(cstk(l1),"color",4) == 0) ) {
         sciSetForeground(subwin, x[0]); 
-        sciSetForeground(sciGetParent(subwin), x[0]); 
+        /*sciSetForeground(sciGetParent(subwin), x[0]);*/ /* TO DELETE F.Leray 02.04.04*/
       } 
       else if ( strncmp(cstk(l1),"background",10) == 0) {
         sciSetBackground(subwin, x[0]); 
-        sciSetBackground(sciGetParent(subwin), x[0]); 
+        /*sciSetBackground(sciGetParent(subwin), x[0]); */ /* TO DELETE F.Leray 02.04.04*/
       }  
       else if ( strncmp(cstk(l1),"thickness",9) == 0) {
         sciSetLineWidth(subwin, x[0]); 
