@@ -1,5 +1,13 @@
 function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprint)
 // Copyright INRIA
+// Scilab Project - V. Couvert
+// Conversion of a Matlab function tree to Scilab (and code generation)
+// Input arguments:
+//  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code
+//  - prettyprint: boolean flag for pretty printed output file if TRUE
+// Output arguments:
+//  - scitree: Scilab equivalent for mtlbtree
+//  - crp: Scilab equivalent function code (function body)
 
 // Global variables for M2SCI
 global("m2sci_to_insert_b") // To insert before current instruction
@@ -28,7 +36,7 @@ m2sci_info("Conversion of M-tree...",-1);
 
 // Default value
 rhs = argn(2);
-if rhs==2 then
+if rhs<2 then
   prettyprint=%F
 end
 
