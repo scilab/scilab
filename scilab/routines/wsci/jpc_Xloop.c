@@ -62,21 +62,21 @@ TextMessage1 (int ctrlflag)
     {
 #ifdef WITH_TK
       if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
-	  {
+	{
 #endif
-		  PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
-		  if (ctrlflag == 1)
-			  CtrlCHit (&textwin);
-		  /** test if Modeless help exists **/
-		  /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-		  {**/
-			  TranslateMessage (&msg);
-			  DispatchMessage (&msg);
-		 /** }**/
+	  PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
+	  if (ctrlflag == 1)
+	    CtrlCHit (&textwin);
+	  /** test if Modeless help exists **/
+	  /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
+	      {**/
+	  TranslateMessage (&msg);
+	  DispatchMessage (&msg);
+	  /** }**/
 #ifdef WITH_TK
-	  }
+	}
 #endif
-  }
+    }
 }
 
 /** function used in wtext.c in function TextGetCh  must wait for an event **/
@@ -96,7 +96,7 @@ TextMessage2 ()
 #endif
       /** test if Modeless help exists **/
       /**if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	  {**/
+	 {**/
 		  TranslateMessage (&msg);
 		  DispatchMessage (&msg);
 	 /** }**/
