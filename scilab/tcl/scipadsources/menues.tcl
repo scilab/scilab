@@ -175,7 +175,8 @@ menu $pad.filemenu.options -tearoff 1 -font $menuFont
             -command {colormenuoption $c} -foreground \[set $c\]"
            }
     eval "$pad.filemenu.options add check [me "Word &Wrap"] \
-               -command \"wraptext\" "
+               -command \"wraptext\" \
+               -onvalue \"word\" -offvalue \"none\" -variable wordWrap "
 
 
 # window menu

@@ -838,3 +838,7 @@ Francois VOGEL, 09/03/05
  * Find in selection now works correctly on Linux also
  * Wrt the new Options/colors, propagated changes to french messages
  * version --> 3.44
+
+Francois VOGEL, 09/03/05
+ * Word wrap is now correctly taken into account between Scilab sessions
+ * version --> 3.45

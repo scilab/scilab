@@ -128,12 +128,6 @@ proc printtime {} {
 proc wraptext {} {
 # binding for wordwrap
     global wordWrap
-    global textareacur
-    if [expr [string compare $wordWrap word] == 0] {
-        set wordWrap none	
-    } else {
-        set wordWrap word
-    }
     [gettextareacur] configure -wrap $wordWrap
 }
 
