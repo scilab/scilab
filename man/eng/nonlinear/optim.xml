@@ -75,13 +75,13 @@
             <PARAM_ITEM>
               <PARAM_NAME>nap</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: maximum number of calls to <VERB>costf</VERB> allowed.</SP>
+                <SP>: maximum number of calls to <VERB>costf</VERB> allowed (default is 100).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>iter</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: maximum number of iterations allowed.</SP>
+                <SP>: maximum number of iterations allowed (default is 100).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
