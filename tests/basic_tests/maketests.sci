@@ -45,6 +45,7 @@ function tests=testslist()
 'pause.tst';
 'polelm.tst';
 'polops.tst';
+'pvm.tst';	   
 'resume.tst';
 'saveload.tst';
 'scilab.tst';
@@ -59,6 +60,7 @@ if MSDOS then
 tests(find(tests=='breakpoints.tst'))=[]
 tests(find(tests=='pause.tst'))=[]
 tests(find(tests=='metanet.tst'))=[]
+tests(find(tests=='pvm.tst'))=[]
 end
 endfunction
 
