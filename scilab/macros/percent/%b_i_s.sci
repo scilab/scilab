@@ -4,6 +4,13 @@ function M=%b_i_s(varargin)
 [lhs,rhs]=argn(0)
 M=varargin(rhs)
 //if M<>[] then M=M<>0,end
+N=varargin(rhs-1)//inserted matrix
+index=varargin(1) //
+
+if rhs==3&(type(index)==10|type(index)==15) then
+  M=createstruct(index,N)
+  return
+end
 
 N=bool2s(varargin(rhs-1))//inserted matrix
 if rhs<=4 then
