@@ -64,7 +64,6 @@ c     SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("qr: dgeqpf",info)
          return
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
@@ -205,7 +204,6 @@ c     SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("qr: zgeqpf",info)
          return
       endif
 
@@ -346,7 +344,6 @@ c     SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("qr: dgeqpf",info)
          return
       endif
       call DLACPY( 'U', M, N, stk(lA), M, stk(lR), M )
@@ -477,7 +474,6 @@ c     SUBROUTINE DGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE DGEQPF( M, N, A, LDA, JPVT, TAU, WORK, INFO )
          endif
          if(info.ne.0) then
-            call errorinfo("qr: dgeqpf",info)
             return
          endif
          call DLACPY( 'U', min(M,N), N, stk(lA), M, stk(lR), min(M,N) )
@@ -592,7 +588,6 @@ c     SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("qr: zgeqpf",info)
          return
       endif
 
@@ -725,7 +720,6 @@ c     SUBROUTINE ZGEQRF( M, N, A, LDA, TAU, WORK, LWORK, INFO )
 c     SUBROUTINE ZGEQPF( M, N, A, LDA, JPVT, TAU, WORK, RWORK, INFO )
       endif
       if(info.ne.0) then
-         call errorinfo("qr: zgeqpf",info)
          return
       endif
       
@@ -858,7 +852,7 @@ c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
       endif  
       if(info.ne.0) then
-         call errorinfo("svd: dgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 
@@ -974,7 +968,7 @@ c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
       endif  
       if(info.ne.0) then
-         call errorinfo("svd: dgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 
@@ -1097,9 +1091,9 @@ C     Next lines introduced to patch an error of  ZGESVD
      $        ,M, zstk(lVT), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
-      endif  
+      endif 
       if(info.ne.0) then
-         call errorinfo("svd: zgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 
@@ -1221,9 +1215,9 @@ C     Next lines introduced to patch an error of  ZGESVD
      $        ,INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
-      endif  
+      endif 
       if(info.ne.0) then
-         call errorinfo("svd: zgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 
@@ -1330,7 +1324,6 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 c     SUBROUTINE DGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $     RANK, WORK, LWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("lsq: dgelsy",info)
          return
       endif
 
@@ -1422,7 +1415,6 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
 c     SUBROUTINE ZGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $     RANK, WORK, LWORK, RWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("lsq: zgelsy",info)
          return
       endif
       call ZLACPY( 'F', N, NRHS, zstk(lXB), max(M,N), zstk(lX), N )
@@ -1516,7 +1508,7 @@ c     SUBROUTINE DGEEV( JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR,
 c     LDVR, 
 c     $     WORK, INFO )
       if(info.ne.0) then
-         call errorinfo("spec: dgeev",info)
+         call error(24)
          return
       endif
 
@@ -1641,7 +1633,7 @@ c
 c     SUBROUTINE ZGEEV( JOBVL, JOBVR, N, A, LDA, W, VL, LDVL,
 c     $     VR, LDVR, WORK, LWORK, RWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("spec: zgeev",info)
+         call error(24)
          return
       endif
 
@@ -1711,7 +1703,6 @@ c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
          call error(19)
          return
       elseif (info.lt.0) then
-         call errorinfo("inv: dgetrf",info)
          return
       endif
       call DGETRI( N, stk(lA), N, istk(lIWORK), stk(lDWORK),
@@ -1766,7 +1757,6 @@ c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
          call error(19)
          return
       elseif (info.lt.0) then
-         call errorinfo("inv: zgetrf",info)
          return
       endif
       call ZGETRI( N, zstk(lA), N, istk(lIWORK), zstk(lDWORK),
@@ -1934,11 +1924,7 @@ c
       call DPOTRF( 'U', N, stk(lA), N, INFO )
 c     SUBROUTINE DPOTRF( 'U', N, A, LDA, INFO )
       if(info.ne.0) then
-         if(info.gt.0) then
-            call error(29)
-         else
-            call errorinfo("chol: dpotrf",info)
-         endif
+         if(info.gt.0)  call error(29)
          return
       endif
 
@@ -1989,11 +1975,7 @@ c
       call ZPOTRF( 'U', N, zstk(lA), N, INFO )
 c     SUBROUTINE ZPOTRF( 'U', N, A, LDA, INFO )
       if(info.ne.0) then
-         if(info.gt.0) then
-            call error(29)
-         else
-            call errorinfo("chol: zpotrf",info)
-         endif
+         if(info.gt.0)  call error(29)
          return
       endif
 
@@ -2054,7 +2036,6 @@ c
       call DGETRF( M, N, stk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.lt.0) then
-         call errorinfo("lu: dgetrf",info)
          return
       endif
       
@@ -2155,7 +2136,6 @@ c
       call ZGETRF( M, N, zstk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.lt.0) then
-         call errorinfo("lu: zgetrf",info)
          return
       endif
       
@@ -2258,7 +2238,6 @@ c
       call DGETRF( M, N, stk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.lt.0) then
-         call errorinfo("det: dgetrf",info)
          return
       endif
       if (lhs.eq.1) then
@@ -2342,7 +2321,6 @@ c
       call ZGETRF( M, N, zstk(lA), M, istk(lIPIV), INFO )
 c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
       if(info.lt.0) then
-         call errorinfo("det: dgetrf",info)
          return
       endif
       if (lhs.eq.1) then
@@ -2492,7 +2470,6 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
 c     SUBROUTINE ZGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $                    RANK, WORK, LWORK, RWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("zgelsy",info)
          return
       endif
       if( M.ne.N .and. istk(lRANK).lt.min(M,N) )then
@@ -2637,7 +2614,6 @@ c
 c     SUBROUTINE ZGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $                     RANK, WORK, LWORK, RWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("zgelsy",info)
          return
       endif
       if( M.ne.N .and. istk(lRANK).lt.min(M,N) )then
@@ -2786,7 +2762,6 @@ c
 c     SUBROUTINE DGELSY( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $                     RANK, WORK, LWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("dgelsy",info)
          return
       endif
       if( M.ne.N .and. istk(lRANK).lt.min(M,N) )then
@@ -2910,7 +2885,6 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
 c     SUBROUTINE DGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND,
 c     $                    RANK, WORK, LWORK, INFO )
       if(info.ne.0) then
-         call errorinfo("dgelsy",info)
          return
       endif
       if( M.ne.N .and. istk(lRANK).lt.min(M,N) )then
@@ -2995,9 +2969,8 @@ c
      $     istk(lBWORK), INFO )
 c     SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
 c     $    VS, LDVS, WORK, LWORK, INFO )
-      if(info.ne.0) then
-         call errorinfo("schur: dgees",info)
-         return
+      if(info.gt.0) then
+         call msgs(2,info)
       endif
 
       if(lhs.eq.1) then
@@ -3115,9 +3088,8 @@ c
      $        INFO )
 c     SUBROUTINE DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
 c     $    VS, LDVS, WORK, LWORK, INFO )
-         if(info.ne.0) then
-            call errorinfo("schur: dgees",info)
-            return
+         if(info.gt.0) then
+            call msgs(2,info)
          endif
       else
          do 20 i = 1, N
@@ -3131,9 +3103,8 @@ c     $    VS, LDVS, WORK, LWORK, INFO )
      $        istk(lBWORK), INFO )
 c     SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $    VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
-         if(info.ne.0) then
-            call errorinfo("schur: zgees",info)
-            return
+         if(info.gt.0) then
+            call msgs(2,info)
          endif
       endif
 
@@ -3236,10 +3207,16 @@ c
       call DGEES( JOBVS, SORT, SCISCHUR, N, stk(lA), N, istk(lSDIM),
      $     stk(lWR), stk(lWI), stk(lVS), N, stk(lDWORK), LWORK,
      $     istk(lBWORK), INFO )
-
-      if(info.ne.0) then
-         call errorinfo("schur: dgees",info)
-         return
+      if(info.gt.0) then
+         if(info.le.N) then
+            call msgs(2,info)
+         elseif(info.eq.N+1) then
+            buf='eigenvalues could not be reordered (the problem '//
+     $              'is very ill-conditioned'
+            call error(1002)
+         elseif(info.eq.N+2) then   
+            call msgs(103,0) 
+         endif
       endif
       
       if(lhs.eq.1) then
@@ -3254,7 +3231,110 @@ c
       endif
 c     
       end
-      
+
+
+      subroutine intdgebal(fname)
+
+c     [V,D]=balanc(A)
+c     d = balanc(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+c      integer vfinite
+
+      character fname*(*)
+      character  JOB
+      double precision ZERO, ONE
+      parameter ( ZERO=0.0D0, ONE=1.0D0 )
+
+      minrhs=1
+      maxrhs=1
+      minlhs=2
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
+         if(.not.createvar(2,'d', 0, 0, lD)) return
+         lhsvar(1) = 1
+         lhsvar(2) = 2
+         return
+      endif 
+
+      if(.not.createvar(2,'d', N, N, lZ)) return
+      if(.not.createvar(3,'d', 1, N, lSCALE)) return
+      JOB='B'
+c     SUBROUTINE DGEBAL( JOB, N, A, LDA, ILO, IHI, SCALE, INFO )
+      call  DGEBAL(JOB, N, stk(lA), N, ILO, IHI,stk(lSCALE),INF0)
+
+      call DLASET( 'F', N, N, ZERO, ONE, stk(lZ), N ) 
+c     SUBROUTINE DGEBAK( JOB, SIDE, N, ILO, IHI, SCALE, M, V, LDV, INFO )
+      call DGEBAK(JOB, 'R', N, ILO, IHI, stk(lSCALE), N,
+     $     stk(lZ), N, INFO )
+ 
+      lhsvar(1)=1
+      lhsvar(2)=2
+c     
+      end
+
+      subroutine intzgebal(fname)
+
+c     [V,D]=balanc(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character JOB
+      character fname*(*)
+      double precision ZERO, ONE
+      parameter ( ZERO=0.0D0, ONE=1.0D0 )
+c
+      minrhs=1
+      maxrhs=1
+      minlhs=2
+      maxlhs=2
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(M.ne.N) then
+         err=1
+         call error(20)
+         return
+      endif
+      if(N.eq.0) then
+         if(.not.createvar(2,'d', 0, 0, lZ)) return
+         lhsvar(1) = 1
+         lhsvar(2) = 2
+         return
+      endif  
+
+      if(.not.createvar(2,'d', N, N, lZ)) return
+      if(.not.createvar(3,'d', 1, N, lSCALE)) return
+      JOB='B'
+      call ZGEBAL( JOB, N, zstk(lA), N, ILO, IHI,stk(lSCALE),INF0)
+
+
+      call DLASET( 'F', N, N, ZERO, ONE, stk(lZ), N ) 
+c     SUBROUTINE DGEBAK( JOB, SIDE, N, ILO, IHI, SCALE, M, V, LDV, INFO )
+      call DGEBAK( JOB, 'R', N, ILO, IHI, stk(lSCALE), N,
+     $     stk(lZ), N, INFO )
+
+      lhsvar(1)=1
+      lhsvar(2)=2
+c     
+      end
+
+
       logical function scischur(re,im)
       INCLUDE '../stack.h'
       logical scifunction, createcvar
@@ -3380,9 +3460,8 @@ c
      $     istk(lBWORK), INFO )
 c     SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
-      if(info.ne.0) then
-         call errorinfo("schur: zgees",info)
-         return
+      if(info.gt.0) then
+         call msgs(2,info)
       endif
       
       if(lhs.eq.1) then
@@ -3473,9 +3552,8 @@ c
      $     istk(lBWORK), INFO )
 c     SUBROUTINE ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W,
 c     $  VS, LDVS, WORK, LWORK, RWORK, BWORK, INFO )
-      if(info.ne.0) then
-         call errorinfo("schur: zgees",info)
-         return
+      if(info.gt.0) then
+         call msgs(2,info)
       endif
       
       if(lhs.eq.1) then
@@ -3696,9 +3774,16 @@ c
       call ZGEES( JOBVS, SORT, SCIZSCHUR, N, zstk(lA), N, istk(lSDIM),
      $     zstk(lW), zstk(lVS), N, zstk(lDWORK), LWORK, stk(lRWORK),
      $     istk(lBWORK), INFO )
-      if(info.ne.0) then
-         call errorinfo("schur: zgees",info)
-         return
+      if(info.gt.0) then
+         if(info.le.N) then
+            call msgs(2,info)
+         elseif(info.eq.N+1) then
+            buf='eigenvalues could not be reordered (the problem '//
+     $              'is very ill-conditioned'
+            call error(1002)
+         elseif(info.eq.N+2) then   
+           call msgs(103,0) 
+        endif
       endif
       
       if(lhs.eq.1) then
@@ -3876,10 +3961,21 @@ c
 c     SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
 c     $     LWORK, BWORK, INFO )
-      if(info.ne.0) then
-         call errorinfo("gschur: dgges",info)
-         return
+      if(info.gt.0) then
+         if(info.le.N) then
+            call msgs(1,info)
+         elseif(info.eq.N+1) then
+            call error(24)
+            return
+         elseif(info.eq.N+2) then 
+            call msgs(103,0)
+         elseif(info.eq.N+3) then 
+            buf='reordering failed'
+            call error(1002)
+            return
+         endif
       endif
+
       if(lhs.eq.1) then
          lhsvar(1)=4
       elseif(lhs.eq.2) then
@@ -3996,10 +4092,21 @@ c     SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
 c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK
 c     ,
 c     $    BWORK, INFO )
-      if(info.ne.0) then
-         call errorinfo("gschur: zgges",info)
-         return
+      if(info.gt.0) then
+         if(info.le.N) then
+            call msgs(1,info)
+         elseif(info.eq.N+1) then
+            call error(24)
+            return
+         elseif(info.eq.N+2) then 
+            call msgs(103,0)
+         elseif(info.eq.N+3) then 
+            buf='reordering failed'
+            call error(1002)
+            return
+         endif
       endif
+
       if(lhs.eq.1) then
          lhsvar(1)=4
       elseif(lhs.eq.2) then
@@ -4177,7 +4284,7 @@ c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
       endif  
       if(info.ne.0) then
-         call errorinfo("dgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 
@@ -4314,9 +4421,9 @@ C     $      LDVT, WORK, LWORK, RWORK, INFO )
      $        stk(lRWORK), INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
-      endif  
+      endif 
       if(info.ne.0) then
-         call errorinfo("zgesvd",info)
+         if(info.gt.0) call error(24)
          return
       endif
 

@@ -56,7 +56,12 @@ C
       lw = lstk(top+1)
       eps = stk(leps)
 C
-      if (fin .eq. 6) goto 310
+      if (fin .eq. 6) then
+c     for compatibility
+         call intbalanc
+         call putlhsvar
+         return
+      endif
 C
       if (fin.eq.2 .and. rhs.eq.2) then
         call error(43)

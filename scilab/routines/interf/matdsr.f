@@ -64,7 +64,12 @@ C
          return
       endif
 C
-      if (fin .eq. 6) goto 310
+      if (fin .eq. 6) then
+c     for compatibility
+         call intbalanc
+         call putlhsvar
+         return
+      endif
 C
       ireg = 0
       vect = (lhs.ge.2.and.fin.ne.3)
