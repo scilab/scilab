@@ -6,7 +6,7 @@
 #include <dirent.h>
 #endif
 #include <string.h>
-#ifdef __STDC__
+#ifdef __STDC__ 
 #include <stdlib.h>
 #else
 #include <malloc.h>
@@ -15,6 +15,7 @@
 #if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__) 
 /** only used for x=dir[1024] **/
 #ifndef __ABSC__
+#include <io.h>
 #define  getwd(x) _getcwd(x,1024) 
 #define chdir(x) _chdir(x)
 #else
@@ -116,7 +117,7 @@ int *ma;
   else {
 #if (defined __MSC__) || (defined __ABSC__) || (defined __MINGW32__)
     getwd(dir);
-#ifdef __MSC__  
+#if (defined __MSC__)   || (defined __MINGW32__)
     it= chdir(path);
     chdir(dir);
 #else
