@@ -1,8 +1,8 @@
-function []=Sgrayplot(x,y,z,strf,rect,aaint)
+function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax)
 // Like fgrayplot but the function fec is used to smooth the 
 // result 
 // f is evaluated on the grid x.*.y 
-// anf the result is plotted assuming that f is linear on the triangles 
+// and the result is plotted assuming that f is linear on the triangles 
 // built on the grid 
 // 
 // ______ 
@@ -12,31 +12,50 @@ function []=Sgrayplot(x,y,z,strf,rect,aaint)
 // |/_|/_|
 //!
 // Copyright INRIA
-[lhs,rhs]=argn(0);
-if rhs<=0,s_mat=['t=-%pi:0.1:%pi;m=sin(t)''*cos(t);Sgrayplot(t,t,m);'];
-         write(%io(2),s_mat);execstr(s_mat);
-         return;end;
-if rhs <= 3,strf="121";end
-if rhs <= 4,rect=[-1,-1,1,1];end
-if rhs <= 5,aaint=[10,2,10,2];end
-p=prod(size(x));
-q=prod(size(y));
-noe_x = ones(y).*.x;
-noe_y = y.*.ones(x);
-z = matrix(z,p*q,1);
-xxb=(1:p-1)';xx=[];
-for i=0:q-2; xx=[ xx; xxb+p*i*ones(xxb)];end
-[Ntr,vv]=size(xx);
-trianl=[(1:Ntr)',xx,xx+ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
-trianl=[trianl;(Ntr+1:2*Ntr)',xx,xx+(p)*ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
-fec(noe_x',noe_y',trianl,z,strf," ",rect,aaint) 
+// Modified by Bruno (14 oct 04) to have named argument working
+//
+   [lhs,rhs] = argn();
+   if rhs<=0,s_mat=['t=-%pi:0.1:%pi;m=sin(t)''*cos(t);Sgrayplot(t,t,m);'];
+      write(%io(2),s_mat);execstr(s_mat);
+      return;
+   end;
+   
+   opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax"]
+   has_opt_arg = %f
+   for opt_arg = opt_arg_list
+      if exists(opt_arg,"local") then
+	 if has_opt_arg then
+	    opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
+	 else
+	    opt_arg_seq = opt_arg + "=" + opt_arg
+	    has_opt_arg = %t
+	 end
+      end
+   end
+   
+   p=prod(size(x));
+   q=prod(size(y));
+   noe_x = ones(y).*.x;
+   noe_y = y.*.ones(x);
+   z = matrix(z,p*q,1);
+   xxb=(1:p-1)';xx=[];
+   for i=0:q-2; xx=[ xx; xxb+p*i*ones(xxb)];end
+   [Ntr,vv]=size(xx);
+   trianl=[(1:Ntr)',xx,xx+ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
+   trianl=[trianl;(Ntr+1:2*Ntr)',xx,xx+(p)*ones(xx),xx+(p+1)*ones(xx),0*ones(xx)];
+
+   if has_opt_arg then
+      execstr("fec(noe_x'',noe_y'',trianl,z,"+opt_arg_seq+")")
+   else
+      fec(noe_x',noe_y',trianl,z)
+   end
 // if you need to see the triangulation uncomment the following lines 
 // 
 //noeul=[noe_x',noe_y'];
 //triang=size(trianl,1);
 //i_meshvisu(3,rect);
-
 endfunction
+
 function []=i_meshvisu(col,rect)
 // Mesh visualisation 
 // uses global variables 
