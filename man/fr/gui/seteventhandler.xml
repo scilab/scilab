@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>seteventhandler </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>2002  </DATE>
+  <SHORT_DESCRIPTION name="seteventhandler"> set an event handler for
+  the current graphic window </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>seteventhandler(sfun_name)   </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>seteventhandler('')   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>sfun_name</PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a character string. The name of the Scilab function which is
+  intended to handle the events
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    The function allows the user to set a particular event handler for
+    the current graphic window. <VERB>seteventhandler('') </VERB>
+    removes the handler.
+
+    The event handler is defined by a Scilab function whose calling
+    sequence must be <VERB>function sfun_name(win,x,y,ibut)</VERB>, where
+
+   <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <VERB>win</VERB> represents the number of the window where the
+    event had occured.
+   </DESCRIPTION_ITEM>
+
+    <DESCRIPTION_ITEM >
+    <VERB>x,y</VERB> are the coordinates of the pointer (in pixels), when the event
+    has occured
+    </DESCRIPTION_ITEM>
+    
+    <DESCRIPTION_ITEM>
+     <VERB>ibut</VERB>is the event type:
+     <P></P><VERB>ibut==0</VERB> : Left mouse button has been pressed
+     <P></P><VERB>ibut==-5</VERB> : Left mouse button has been released
+     <P></P><VERB>ibut==1</VERB> : Middle mouse button has been pressed
+     <P></P><VERB>ibut==-4</VERB> : Middle mouse button has been released
+     <P></P><VERB>ibut==2</VERB> : Right mouse button has been pressed
+     <P></P><VERB>ibut==-3</VERB> : Right mouse button has been released
+     <P></P>
+     <P></P><VERB>ibut==-1</VERB> : pointer has moved
+     <P></P>
+     <P></P><VERB>ibut>=32</VERB> : key with ascii code ascii(ibut) has been pressed
+     <P></P><VERB>ibut<=-32</VERB> : key with ascii code ascii(-ibut)
+     has been released
+     <P></P>
+     <P></P><VERB>ibut==-1000</VERB> : graphic window has been closed
+    </DESCRIPTION_ITEM>
+  
+   </DESCRIPTION_INDENT>
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   function my_eventhandler(win,x,y,ibut)
+       if ibut==-1 then 
+         [x,y]=xchange(x,y,'i2f')
+         xinfo('Mouse position is ('+string(x)+','+string(y)+')')
+       end
+   endfunction
+   plot2d()
+   seteventhandler('my_eventhandler')
+   //now move the mouse over the graphic window/
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>addmenu</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>
+  <SEE_ALSO_ITEM> <LINK>xchange</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
