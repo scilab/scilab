@@ -857,6 +857,10 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
   HDC hdc;
   HDC hdc1;
 
+  static COLORREF px;
+  HBRUSH hBrush;
+
+
   PAINTSTRUCT ps;
   RECT rect;
   /* paint++; */
@@ -892,72 +896,77 @@ ScilabGC->CWindowHeight, NULL);
      
 		  /* MAJ D.ABDEMOUCHE*/
 	  if (ScilabGC->CurResizeStatus == 0)
-	    SetViewportOrgEx (hdc, -ScilabGC->horzsi.nPos, 
--ScilabGC->vertsi.nPos, NULL);
+	    SetViewportOrgEx (hdc, -ScilabGC->horzsi.nPos,-ScilabGC->vertsi.nPos, NULL);
 
-if ((  ScilabGC->hdcCompat = CreateCompatibleDC (hdc)) == NULL)
-	{
-	  sciprint("Setting pixmap on is impossible \r\n");
-	  return;
-	}
-      else
-	{
-	  HBITMAP hbmTemp ;
-	  SetMapMode(ScilabGC->hdcCompat, MM_TEXT);
-	  SetBkMode(ScilabGC->hdcCompat,TRANSPARENT);
-	  SetTextAlign(ScilabGC->hdcCompat, TA_LEFT|TA_BOTTOM);
-	  hbmTemp =CreateCompatibleBitmap (hdc,
-						    ScilabGC->CWindowWidth,
-						    ScilabGC->CWindowHeight);
-	  /* ajout */
-	  if (!hbmTemp)
+	  if ((  ScilabGC->hdcCompat = CreateCompatibleDC (hdc)) == NULL)
 	    {
-	      sciprint("Seeting pixmap on is impossible \r\n");
+	      sciprint("Setting pixmap on is impossible \r\n");
 	      return;
 	    }
 	  else
-{
-	      HBITMAP  hbmSave;
-	      hbmSave = SelectObject ( ScilabGC->hdcCompat, hbmTemp);
-
-          ScilabGC->hbmCompat = hbmTemp;
-	      ScilabGC->CurPixmapStatus = 1;
-	      C2F(pixmapclear)(PI0,PI0,PI0,PI0); /* background color */
-	      /** the create default font/brush etc... in hdc */ 
-	      SetGHdc(ScilabGC->hdcCompat,ScilabGC->CWindowWidth,
-		       ScilabGC->CWindowHeight);
+	    {
+	      HBITMAP hbmTemp ;
+	      SetMapMode(ScilabGC->hdcCompat, MM_TEXT);
+	      SetBkMode(ScilabGC->hdcCompat,TRANSPARENT);
+	      SetTextAlign(ScilabGC->hdcCompat, TA_LEFT|TA_BOTTOM);
+	      hbmTemp =CreateCompatibleBitmap (hdc,
+					       ScilabGC->CWindowWidth,
+					       ScilabGC->CWindowHeight);
 	      
-	      SetGHdc((HDC)0,ScilabGC->CWindowWidth,
+	      if (!hbmTemp)
+		{
+		  sciprint("Seeting pixmap on is impossible \r\n");
+		  return;
+		}
+	      else
+		{
+		  HBITMAP  hbmSave;
+		  hbmSave = SelectObject ( ScilabGC->hdcCompat, hbmTemp);
+		  
+		  ScilabGC->hbmCompat = hbmTemp;
+		  
+		  px = (ScilabGC->Colors == NULL)? 0
+		    :  ScilabGC->Colors[ScilabGC->NumBackground];
+		  SetBkColor( ScilabGC->hdcCompat, px );
+		  rect.top    = 0;
+		  rect.bottom = ScilabGC->CWindowHeight;
+		  rect.left   = 0;
+		  rect.right  = ScilabGC->CWindowWidth;
+		  hBrush = CreateSolidBrush(px);
+		  FillRect( ScilabGC->hdcCompat, &rect,hBrush );
+		  DeleteObject(hBrush);
+		  
+		  
+		  
+		  /*   SetGHdc(ScilabGC->hdcCompat,ScilabGC->CWindowWidth,
 		       ScilabGC->CWindowHeight);
-          scig_replay_hdc('W',ScilabGC->CurWindow,ScilabGC->hdcCompat,ScilabGC->CWindowWidth, ScilabGC->CWindowHeight,1);
-          
+		       
+		       ResetScilabXgc();
+		       SetGHdc((HDC)0,ScilabGC->CWindowWidth,
+		       ScilabGC->CWindowHeight);*/
+		  scig_replay_hdc('W',ScilabGC->CurWindow,ScilabGC->hdcCompat,ScilabGC->CWindowWidth, ScilabGC->CWindowHeight,1);
+		  
 		  hdc1=GetDC(ScilabGC->CWindow);
-      BitBlt (hdc1,0,0,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight,
-	      ScilabGC->hdcCompat,0,0,SRCCOPY);
-      ReleaseDC(ScilabGC->CWindow,hdc1);
-		  
-		  
-	/** 	  C2F (show) (PI0, PI0, PI0, PI0);**/
-               ScilabGC->CurPixmapStatus = 0;
-      /** XXXX **/
-      if ( ScilabGC->hdcCompat)
-	SelectObject (ScilabGC->hdcCompat, NULL) ;
-      if ( ScilabGC->hbmCompat)
-	DeleteObject (ScilabGC->hbmCompat);
-      if ( ScilabGC->hdcCompat)
-	{
-	  if ( hdc == ScilabGC->hdcCompat)
-	    hdc=GetDC(ScilabGC->CWindow);
-	  DeleteDC(ScilabGC->hdcCompat);
-	}
-      ScilabGC->hbmCompat = (HBITMAP) 0;
-      ScilabGC->hdcCompat = (HDC) 0;
-	  }
+		  BitBlt (hdc1,0,0,ScilabGC->CWindowWidth,ScilabGC->CWindowHeight,ScilabGC->hdcCompat,0,0,SRCCOPY);
+		  ReleaseDC(ScilabGC->CWindow,hdc1);
+		  if ( ScilabGC->hdcCompat)
+		    SelectObject (ScilabGC->hdcCompat, NULL) ;
+		  if ( ScilabGC->hbmCompat)
+		    DeleteObject (ScilabGC->hbmCompat);
+		  if ( ScilabGC->hdcCompat)
+		    {
+		      if ( hdc == ScilabGC->hdcCompat)
+			hdc=GetDC(ScilabGC->CWindow);
+		      DeleteDC(ScilabGC->hdcCompat);
+		    }
+		  ScilabGC->hbmCompat = (HBITMAP) 0;
+		  ScilabGC->hdcCompat = (HDC) 0;
+		}
+	    }
 	}
     }
-  }
   EndPaint(hwnd, &ps);
-
+  
   scig_buzy = 0;
 }
 
@@ -1225,7 +1234,7 @@ ScilabGC->horzsi.nPos,
 	    vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, HIWORD 
 (wParam)));
 	    deltay = deltay - vertsi.nPos;
-	    break;
+	    break; 
 	  default:
 	    deltay = 0;
 	    break;
