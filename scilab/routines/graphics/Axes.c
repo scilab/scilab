@@ -43,6 +43,11 @@ void axis_draw(strflag)
   if (version_flag() == 0){/**DJ.Abdemouche 2003**/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
     color=pSUBWIN_FEATURE (psubwin)->cubecolor;
+    
+    /* F.Leray test on color here*/
+    color=sciGetBackground(psubwin);
+    
+
     ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1];
     ixbox[1]=ixbox[0];iybox[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
     ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1];
