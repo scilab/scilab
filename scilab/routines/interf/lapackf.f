@@ -117,7 +117,6 @@ c     SUBROUTINE DLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 c     evaluating the rank
       tt = abs(stk(lR))
       if(tol.eq.-1.0d0)  tol = dble(max(m,n)) * eps * tt
-      write(6,*) tol
       k = 0
       ls = lr
       m1 = min(m,n)
