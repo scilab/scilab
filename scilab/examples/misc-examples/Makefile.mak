@@ -46,12 +46,12 @@ distclean:: clean
 
 ##----------------------  test all the example  
 
-EXAMPLES= dasrt1.sce + dasrt2.sce + dasrt3.sce + dassl1.sce + dassl2.sce + ode1.sce + ode2.sce + ode3.sce + odedc.sce + odeoptions.sce
+EXAMPLES= dasrt1.sce dasrt2.sce dasrt3.sce dassl1.sce dassl2.sce ode1.sce ode2.sce ode3.sce odedc.sce odeoptions.sce
 
 tests	:
 	@del zlink.dia	
-	@copy  $(EXAMPLES) /f zlink.tst 		
-	"$(SCIDIR1)\bin\scilex.exe"  -f zlink.tst 
+	@type  $(EXAMPLES) > zlink.tst 		
+	"$(SCIDIR1)\bin\scilex.exe"  -e lines(-1);exec('zlink.tst');quit
 
 clean	::
 	@del zlink.dia 
