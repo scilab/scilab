@@ -9,10 +9,9 @@ int C2F(banier)(integer *flag)
 {
   if (*flag != 999 && sci_show_banner == 1) {
     sciprint("                    ==========\r\n");
-    sciprint("                      Scilab\r\n");
-    sciprint("                    ==========\r\n\r\n");
     sciprint("                    %s\r\n",VERSION);
-    sciprint("                    Copyright (C) 1989-2003 INRIA/ENPC\r\n");
+    sciprint("        Copyright (C) 1989-2003 INRIA/ENPC\r\n");
+    sciprint("                    ==========\r\n\r\n");
   }
   return 0;
 } 
