@@ -18,6 +18,8 @@ else
   win=0
 end
 xset('window',win);
+set figure_style new;
+
 fnts=xlfont();nf=size(find(fnts<>''),'*')-1
 //Disabling standard menus
 if ~MSDOS then
@@ -50,7 +52,7 @@ W1=1 //first column width
 H1=1 // first row height
 
 H=1.5;W=1.5;
-drawchart()
+Hdl=drawchart()
 
 
 
@@ -61,16 +63,17 @@ execstr('File_'+string(win)+..
 
 cmdok='execstr(File_'+string(win)+'(1))'
 cmdcancel='execstr(File_'+string(win)+'(2))'
+
 if exists('font','local') then
   fontId=max(0,min(nf,font(1)))
   fontSize=max(0,min(5,font(2)))
-  xset('color',red), xset("font",fontId,fontSize);
-  xstringb(W1+(fontSize)*W,H*fontId,S,W,H),
-  xset("font",fsave(1),fsave(2));
-  selected=%t;xset('color',curcol)
+  selected=fontId+(nf+1)*fontSize+1;
+  t=Hdl(selected); t.foreground=5;
+  show_pixmap()
 else
-  selected=%f
+  selected=0
 end
+
 
 while %t
   [c_i,cx,cy,cw,str]=xclick();
@@ -80,24 +83,20 @@ while %t
   elseif c_i==-100 then str=cmdcancel ;
     break, 
   elseif c_i>=0&c_i<3 then
-    if selected then 
-      xset("font",fontId,fontSize);
-      xstringb(W1+(fontSize)*W,H*fontId,S,W,H),
-      xset("font",fsave(1),fsave(2));
+    if selected<>0 then 
+      t=Hdl(selected)
+      t.foreground=-1;
     end
     fontId=max(0,min(nf,floor((cy)/H)));
     fontSize=max(0,min(5,floor((cx-W1)/W)));
-    
-    xset('color',red), xset("font",fontId,fontSize);
-    xstringb(W1+(fontSize)*W,H*fontId,S,W,H),
-    xset("font",fsave(1),fsave(2));
-    selected=%t;xset('color',curcol)
-    
+    selected=fontId+(nf+1)*fontSize+1;
+    t=Hdl(selected);t.foreground=5;
+    show_pixmap()
     xinfo('You have chosen (fontId, fontSize) = ( '+..
 	  string(fontId)+', '+string(fontSize)+')')
   else
     S=ascii(c_i)
-    selected=%f
+    selected=0
     drawchart()
   end
 end
@@ -109,9 +108,11 @@ end
 if lhs<2 then fontId=[fontId,fontSize],end
 endfunction
 
-function drawchart()
-  xbasc()
-  xsetech(frect=[0 0 W1+6*W H1+(nf+1)*H])
+function Hdl=drawchart()
+  f=gcf();f.pixmap='on';
+  a=gca()
+  drawlater()
+  a.data_bounds=[0 0;W1+6*W H1+(nf+1)*H]
   xtitle(["Click to select font Id  and font size";
 	 "or press a key to select a character"])
   // Drawing first column
@@ -124,19 +125,22 @@ function drawchart()
     xstringb(W1+l*W,(nf+1)*H ,string(l),W,H1)
     xrect(W1+l*W, H1+(nf+1)*H, W, H1);
   end
+  // drawing top left corner
   xrect(0,H1+(nf+1)*H,W1,H1);
   xstringb(0, (nf+1)*H,"Id\Sz",H1,W1)
-  xset("thickness",2);
 
-  xset('color',xget('foreground'))
-  
+  Hdl=[]
   for k=-(0:nf)
+    Hdll=[]
     for x=1:6
       xset("font",-k,x-1);
       xstringb(W1+(x-1)*W,-H*k,S,W,H)
+      t=gce();t.font_size=x-1;t.font_style=-k
+      Hdll=[Hdll t]
     end
+     Hdl=[Hdl;Hdll]
   end
-  xset("font",fsave(1),fsave(2));
-  xset("thickness",tsave);
-
+  glue(Hdl)
+  drawnow()
+  show_pixmap()
 endfunction
