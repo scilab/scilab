@@ -687,6 +687,10 @@ void mexErrMsgTxt(char *error_msg)
   cerro(error_msg);
   errjump();
 }
+void mxAssert(int expr, char *error_message)
+{
+  if (!expr) mexErrMsgTxt(error_message);
+}
 
 Matrix *mxCreateFull(int m, int n, int it)
 {
