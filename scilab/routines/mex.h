@@ -269,3 +269,9 @@ typedef REAL32_T real32_T;
 #ifdef __cplusplus
 }
 #endif
+
+#ifdef __cplusplus
+extern "C" {
+void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
+}
+#endif
