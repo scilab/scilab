@@ -184,31 +184,28 @@ clear fd ierr
 // calling user initialization
 //=============================
 // Home dir
-[startup,ierr]=file('open','home/.scilab','old','formatted');
+[startup,ierr]=mopen('home/.scilab','r')
 if ierr==0 then
-   exec(startup,-1);file('close',startup);
+   exec(startup,-1);mclose(startup)
 else
-   [startup,ierr]=file('open','home/scilab.ini','old','formatted');
+   [startup,ierr]=mopen('home/scilab.ini','r')
    if ierr==0 then
-      exec(startup,-1);file('close',startup);
+      exec(startup,-1);mclose(startup)
    end
 end
 clear startup ierr
 
 // working dir
 if  home<>PWD then
-  [startup,ierr]=file('open','.scilab','old','formatted');
+  [startup,ierr]=mopen('.scilab','r')
   if ierr==0 then
-     exec(startup,-1);file('close',startup);
+    exec(startup,-1);mclose(startup)
   else
-     [startup,ierr]=file('open','scilab.ini','old','formatted');
-     if ierr==0 then
-        exec(startup,-1);file('close',startup);
-     end
+    [startup,ierr]=mopen('scilab.ini','r')
+    if ierr==0 then
+      exec(startup,-1);mclose(startup)
+    end
   end
 end
-
-
-
 clear startup ierr
 
