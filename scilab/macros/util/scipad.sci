@@ -3,7 +3,7 @@ function scipad(varargin)
 global %scipad_fontsize;
   if with_tk() then
     TK_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TK_GetVar("isscipadinterp")=='0' then    
+    if TK_GetVar("isscipadinterp")=="0" then    
       TK_EvalStr("interp create scipad")
       TK_EvalStr("load {'+gettklib()+'} Tk scipad")
       TK_EvalStr("scipad eval {wm withdraw .}")
@@ -21,24 +21,28 @@ global %scipad_fontsize;
       for i=1:nfiles
         f=varargin(i)       
         if type(f)==10 then
-            onevalidfile=%t 
+          onevalidfile=%t 
 // caveat: this fails for eval(f)=integer, though
-            // For Windows
-	    if MSDOS then
-      		f=strsubst(f,'\','/'); 
-      		if type(f)==10 then TK_EvalStr('scipad eval {openfile '+ f +'}'),end
-      		else
-      		if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}'),end
-      		end
+       // For Windows
+      	    if MSDOS then
+            		f=strsubst(f,"\","/");
+            		if type(f)==10 then
+            		  TK_EvalStr("scipad eval {openfile """+ f +"""}")
+            		end
+           else
+            	if type(f)==10 then
+            		  TK_EvalStr("scipad eval {openfile """+pathconvert(f,%f,%t)+"""}")
+             end
+          end
         end
       end
-// close "Untitled.sce" opened as default when scipad is started anew
-      if TK_GetVar("isscipadopen")=='0' & onevalidfile then
-          TK_EvalStr('scipad eval {closefile $pad.textarea}')
+  // close "Untitled.sce" opened as default when scipad is started anew
+      if TK_GetVar("isscipadopen")=="0" & onevalidfile then
+          TK_EvalStr("scipad eval {closefile $pad.textarea}")
       end
     end
   else
-    error(' Scilab has not been built with tk: scipad unavailable')
+    error(" Scilab has not been built with tk: scipad unavailable")
   end
 endfunction
 
