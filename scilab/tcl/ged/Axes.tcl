@@ -22,6 +22,17 @@ source [file join $sourcedir Combobox.tcl]
 package require combobox 2.3
 catch {namespace import combobox::*}
 
+
+global fen1 fen2 fen3
+global axes_boundsL axes_boundsU axes_boundsW axes_boundsH
+global xlabel_visibility ylabel_visibility zlabel_visibility titlelabel_visibility
+global SubticksEntryX SubticksEntryY SubticksEntryZ
+global XautoticksToggle YautoticksToggle ZautoticksToggle
+global StepEntryX StepEntryY StepEntryZ
+global LOCATIONS_X LABELS_X nbticks_x
+global LOCATIONS_Y LABELS_Y nbticks_y
+global LOCATIONS_Z LABELS_Z nbticks_z
+global LEI_x LEI_y LEI_z
 global SELOBJECT
 global ged_handle_list_size
 global lalist
@@ -43,8 +54,8 @@ global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox
 global curlinestyle
 global Lmargins Rmargins Tmargins Bmargins
 
-#axes_visible
-global visToggle
+#axes_visible has changed !!!
+global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
 
 global xGrif yGrid zGrid
 
@@ -57,6 +68,16 @@ global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
 global RED GREEN BLUE
 
 # add for XF init only : to remove after...
+
+    #test debug
+  #   set nbticks_x 2
+
+#     set LOCATIONS_X(1) 0.001
+#     set LOCATIONS_X(2) 1.7
+
+#     set LABELS_X(1) "zero virgule 00 et un"
+#     set LABELS_X(2) "un,7"
+    #
 
 
 #      set ncolors 32
@@ -133,6 +154,12 @@ pack $fra  -anchor w -fill both
 
 #Hierarchical selection
 set lalist ""
+# puts "ged_handle_list_size vaut: $ged_handle_list_size"
+# puts "SELOBJECT(1) = $SELOBJECT(1) "
+# puts "SELOBJECT(2) = $SELOBJECT(2) "
+# puts "SELOBJECT(3) = $SELOBJECT(3) "
+# puts "SELOBJECT(4) = $SELOBJECT(4) "
+
 for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
 append lalist "\""
 append lalist "$SELOBJECT($i)" 
@@ -166,16 +193,36 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create $uf.n -pages {X Y Z Title Style Aspect Viewpoint} -pad 20   -height 600 -width 430
+Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 430
 pack $uf.n -fill both -expand yes
 
 
 ########### X onglet ##############################################
 ###################################################################
-set w [Notebook:frame $uf.n X]
+set w [Notebook:frame $uf.n "X Axis"]
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+
+
+#visibility of X axis
+frame $w.frame.vis -borderwidth 0
+pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislabel  -text "Visibility:  on axis   "
+checkbutton $w.frame.visb  -textvariable Xaxes_visibleToggle  \
+    -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilityX" 
+pack $w.frame.vislabel -in $w.frame.vis -side left
+pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "               on label   "
+checkbutton $w.frame.vislabb  -textvariable xlabel_visibility \
+    -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylabx" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 
 #x label
@@ -284,13 +331,28 @@ label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable xToggle -value "n"    -command "toggleX" 
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable xToggle -value "l" 	  -command "toggleX" 	   
 
+set numpage 0
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
+
+# frame $w.frame.ticks  -borderwidth 0
+# pack  $w.frame.ticks -in $w.frame -side top   -fill x  -pady 2m
+
+# set numpage 0
+# button $w.frame.ticks.buttonticks -text "Ticks..." -command "PopUp $ww $numpage"
+# pack $w.frame.ticks.buttonticks -in $w.frame.ticks  -expand 1 -fill x
+
+
+
+
 
 #sep bar
-frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 10m  
+#frame $w.sep -height 2 -borderwidth 1 -relief sunken
+#pack $w.sep -fill both -pady 10m  
 
 #exit button
 frame $w.buttons
@@ -299,11 +361,31 @@ pack $w.b -side bottom
 
 ########### Y onglet ##############################################
 ###################################################################
- set w [Notebook:frame $uf.n Y]
+ set w [Notebook:frame $uf.n "Y Axis"]
 
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+
+
+#visibility of Y axis
+frame $w.frame.vis -borderwidth 0
+pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislabel  -text "Visibility:  on axis   "
+checkbutton $w.frame.visb  -textvariable Yaxes_visibleToggle  \
+    -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilityY" 
+pack $w.frame.vislabel -in $w.frame.vis -side left
+pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "               on label   "
+checkbutton $w.frame.vislabb  -textvariable ylabel_visibility \
+    -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylaby" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 
 #y label
@@ -415,13 +497,17 @@ label $w.frame.scalesw.label -height 0 -text "       Scale:  " -width 0
 radiobutton $w.frame.scalesw.radioLIN -text "Linear" -variable yToggle -value "n"    -command "toggleY" 
 radiobutton $w.frame.scalesw.radioLOG -text "Logarithmic" -variable yToggle -value "l" 	  -command "toggleY" 	   
 
+set numpage 1
+button $w.frame.scalesw.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+
 pack $w.frame.scalesw.label  -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
+pack $w.frame.scalesw.buttonticks  -in  $w.frame.scalesw    -side left -expand 1 -fill x
 
-#sep bar
-frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 10m  
+# #sep bar
+# frame $w.sep -height 2 -borderwidth 1 -relief sunken
+# pack $w.sep -fill both -pady 10m  
 
 #exit button
 frame $w.buttons
@@ -430,12 +516,31 @@ pack $w.b -side bottom
 
 ########### Z onglet ##############################################
 ###################################################################
- set w [Notebook:frame $uf.n Z]
+ set w [Notebook:frame $uf.n "Z Axis"]
 
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
+
+#visibility of Z axis
+frame $w.frame.vis -borderwidth 0
+pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislabel  -text "Visibility:  on axis   "
+checkbutton $w.frame.visb  -textvariable Zaxes_visibleToggle \
+    -variable Zaxes_visibleToggle -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilityZ" 
+pack $w.frame.vislabel -in $w.frame.vis -side left
+pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "               on label   "
+checkbutton $w.frame.vislabb  -textvariable zlabel_visibility \
+    -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylabz" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #z label
 frame $w.frame.lbz -borderwidth 0
@@ -547,22 +652,40 @@ bind  $w.frame.databmax <Return> {setZdb}
 #pack $w.frame.scalesw.radioLIN -in  $w.frame.scalesw -side left 
 #pack $w.frame.scalesw.radioLOG  -in  $w.frame.scalesw    -side left 
 
-#sep bar
-frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 20m  
+frame $w.frame.ticks  -borderwidth 0
+pack  $w.frame.ticks -in $w.frame -side top   -fill x  -pady 2m
+
+set numpage 2
+button $w.frame.ticks.buttonticks -text "Ticks..." -command "ReLoadTicks ; PopUp $ww $numpage"
+pack $w.frame.ticks.buttonticks -in $w.frame.ticks  -expand 1 -fill x
+
+
+# #sep bar
+# frame $w.sep -height 2 -borderwidth 1 -relief sunken
+# pack $w.sep -fill both -pady 20m  
 
 #exit button
 frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
 pack $w.b -side bottom 
 
-########### Title onglet ##############################################
+########### Title onglet ##########################################
 ###################################################################
  set w [Notebook:frame $uf.n Title]
 
 
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
+
+#visibility of label ONLY
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "Visibility:  on label   "
+checkbutton $w.frame.vislabb  -textvariable titlelabel_visibility \
+    -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitytitle" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 
 #title label
@@ -771,16 +894,6 @@ frame $w.frame -borderwidth 0
 pack $w.frame  -anchor w -fill both
 
 
-#visible
-frame $w.frame.vis -borderwidth 0
-pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislabel  -text "        Visible:  "
-checkbutton $w.frame.visb  -textvariable visToggle  \
-    -variable visToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibility" 
-pack $w.frame.vislabel -in $w.frame.vis -side left
-pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x -pady 1.m -padx 1.m
-
 #auto clear
 frame $w.frame.clear -borderwidth 0
 pack $w.frame.clear  -in $w.frame  -side top  -fill x -pady 1.m
@@ -912,7 +1025,8 @@ bind  $w.frame.datah <Return> {SelectClipBox}
 frame $w.frame.marg1 -borderwidth 0
 pack $w.frame.marg1  -in $w.frame -side top   -fill x
 label $w.frame.labelmarg -text "  Margins:"
-pack $w.frame.labelmarg -in  $w.frame.marg1 -side left
+label $w.frame.labelaxesbounds -text "\t\t\t  Axes bounds:"
+pack $w.frame.labelmarg $w.frame.labelaxesbounds -in  $w.frame.marg1 -side left
 
 frame $w.frame.marg2 -borderwidth 0
 pack $w.frame.marg2  -in $w.frame -side top   -fill x
@@ -920,15 +1034,22 @@ pack $w.frame.marg2  -in $w.frame -side top   -fill x
 frame $w.frame.marg21 -borderwidth 0
 pack $w.frame.marg21  -in $w.frame -side top   -fill x
 
-label $w.frame.labelleft -text  "          Left: "
+label $w.frame.labelleft -text  "          Left:  "
 entry $w.frame.datamargl -relief sunken  -textvariable Lmargins
+label $w.frame.labelleftaxesbounds -text  "   Left: "
+entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL
+
 label $w.frame.labelright -text "         Right:"
 entry $w.frame.datamargr -relief sunken  -textvariable Rmargins
+label $w.frame.labelupaxesbounds -text  "      Up: "
+entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU
 
-pack $w.frame.labelleft  $w.frame.datamargl  -in  $w.frame.marg2 -side left  -fill x -pady 1.m -padx 1.m
-pack $w.frame.labelright $w.frame.datamargr  -in  $w.frame.marg21 -side left -fill x -pady 1.m -padx 1.m 
+pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 1.m -padx 1.m
+pack $w.frame.labelright $w.frame.datamargr  $w.frame.labelupaxesbounds $w.frame.dataupaxesbounds -in  $w.frame.marg21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w.frame.datamargl <Return> {SelectMargins}
 bind  $w.frame.datamargr <Return> {SelectMargins}
+bind  $w.frame.dataleftaxesbounds <Return> {SelectAxesbounds}
+bind  $w.frame.dataupaxesbounds   <Return> {SelectAxesbounds}
 
 frame $w.frame.marg4 -borderwidth 0
 pack $w.frame.marg4  -in $w.frame -side top   -fill x
@@ -936,15 +1057,22 @@ pack $w.frame.marg4  -in $w.frame -side top   -fill x
 frame $w.frame.marg41 -borderwidth 0
 pack $w.frame.marg41  -in $w.frame -side top   -fill x
 
-label $w.frame.labeltop -text    "          Top: "
+label $w.frame.labeltop -text    "           Top:"
 entry $w.frame.datamargt -relief sunken  -textvariable Tmargins
-label $w.frame.labelbottom -text "     Bottom :"
-entry $w.frame.datamargb -relief sunken  -textvariable Bmargins
+label $w.frame.labelwidthaxesbounds -text    "  Width: "
+entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW
 
-pack $w.frame.labeltop     $w.frame.datamargt -in  $w.frame.marg4  -side left -fill x -pady 1.m -padx 1.m
-pack $w.frame.labelbottom  $w.frame.datamargb -in  $w.frame.marg41 -side left -fill x -pady 1.m -padx 1.m
+label $w.frame.labelbottom -text "      Bottom:"
+entry $w.frame.datamargb -relief sunken  -textvariable Bmargins
+label $w.frame.labelheightaxesbounds -text    "Height: "
+entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH
+
+pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 1.m -padx 1.m
+pack $w.frame.labelbottom  $w.frame.datamargb $w.frame.labelheightaxesbounds $w.frame.dataheightaxesbounds -in  $w.frame.marg41 -side left -fill x -pady 1.m -padx 1.m
 bind  $w.frame.datamargt <Return> {SelectMargins}
 bind  $w.frame.datamargb <Return> {SelectMargins}
+bind  $w.frame.datawidthaxesbounds   <Return> {SelectAxesbounds}
+bind  $w.frame.dataheightaxesbounds  <Return> {SelectAxesbounds}
 
 
 #sep bar
@@ -1008,8 +1136,25 @@ pack $topf -fill both -pady 2 -expand yes
 
 
 # les proc associes:
+
+proc SelectAxesbounds {} {
+    global axes_boundsL axes_boundsU axes_boundsW axes_boundsH
+    
+    if { ($axes_boundsL == "") || ($axes_boundsU == "") ||($axes_boundsW == "") ||($axes_boundsH == "") } {
+	tk_messageBox -icon error -type ok -title "Axes bounds selection failed" -message "You must fill in the 4 fields"
+	return
+    }
+    
+    ScilabEval "global ged_handle;ged_handle.axes_bounds=\[$axes_boundsL $axes_boundsU $axes_boundsW $axes_boundsH \]" "seq"
+}
+
 proc SelectMargins {} {
 global Lmargins Rmargins Tmargins Bmargins
+    
+    if { ($Lmargins == "") || ($Rmargins == "") ||($Tmargins == "") ||($Bmargins == "") } {
+	tk_messageBox -icon error -type ok -title "Margins selection failed" -message "You must fill in the 4 fields"
+	return
+    }
 ScilabEval "global ged_handle;ged_handle.margins=\[$Lmargins $Rmargins $Tmargins $Bmargins \]"
 }
 proc SelectLineStyle {w args} {
@@ -1018,9 +1163,13 @@ ScilabEval "setLineStyle('$curlinestyle')"
 }
 
 proc SelectClipBox {} {
-global Xclipbox Yclipbox Wclipbox Hclipbox curclipstate
-ScilabEval "global ged_handle;ged_handle.clip_box=\[$Xclipbox $Yclipbox $Wclipbox $Hclipbox\]"
-set curclipstate "on"
+    global Xclipbox Yclipbox Wclipbox Hclipbox curclipstate
+    if { ($Xclipbox == "") || ($Yclipbox == "") ||($Wclipbox == "") ||($Hclipbox == "") } {
+	tk_messageBox -icon error -type ok -title "Clip box selection failed" -message "You must fill in the 4 fields"
+	return
+    }
+    ScilabEval "global ged_handle;ged_handle.clip_box=\[$Xclipbox $Yclipbox $Wclipbox $Hclipbox\]"
+    set curclipstate "on"
 }
 
 proc SelectClipState {w args} {
@@ -1250,10 +1399,43 @@ ScilabEval "global ged_handle;ged_handle.labels_font_size=$fs;"
 }
 
 
-proc toggleVisibility {} {
-global visToggle
-ScilabEval "global ged_handle;ged_handle.axes_visible='$visToggle'"
+proc toggleVisibilityX {} {
+global Xaxes_visibleToggle
+ScilabEval "global ged_handle;ged_handle.axes_visible(1)='$Xaxes_visibleToggle'"
 }
+
+proc toggleVisibilityY {} {
+global Yaxes_visibleToggle
+ScilabEval "global ged_handle;ged_handle.axes_visible(2)='$Yaxes_visibleToggle'"
+}
+
+proc toggleVisibilityZ {} {
+global Zaxes_visibleToggle
+ScilabEval "global ged_handle;ged_handle.axes_visible(3)='$Zaxes_visibleToggle'"
+}
+
+
+proc toggleVisibilitylabx {} {
+global xlabel_visibility
+ScilabEval "global ged_handle;ged_handle.x_labels.visible='$xlabel_visibility'"
+}
+
+proc toggleVisibilitylaby {} {
+global ylabel_visibility
+ScilabEval "global ged_handle;ged_handle.y_labels.visible='$ylabel_visibility'"
+}
+
+proc toggleVisibilitylabz {} {
+global zlabel_visibility
+ScilabEval "global ged_handle;ged_handle.z_labels.visible='$zlabel_visibility'"
+}
+
+
+proc toggleVisibilitytitle {} {
+global titlelabel_visibility
+ScilabEval "global ged_handle;ged_handle.title.visible='$titlelabel_visibility'"
+}
+
 
 
 proc toggleVis {} {
@@ -1710,3 +1892,958 @@ ScilabEval "global ged_handle;ged_handle.auto_scale='$curautoscale'"
 # global curfillmode
 # ScilabEval "global ged_handle;ged_handle.fill_mode='$curfillmode'"
 # }
+
+
+proc PopUp { w numpage} {
+    variable www www2
+    global LEI_x LEI_y LEI_z
+    global LOCATIONS_X LABELS_X nbticks_x
+    global LOCATIONS_Y LABELS_Y nbticks_y
+    global LOCATIONS_Z LABELS_Z nbticks_z
+    global fen1 fen2 fen3
+    global SubticksEntryX SubticksEntryY SubticksEntryZ
+    global XautoticksToggle YautoticksToggle ZautoticksToggle
+    global StepEntryX StepEntryY StepEntryZ
+
+    set frameaxes $w
+
+    set www .ticks
+    catch {destroy $www}
+
+    toplevel $www
+    wm withdraw  $www
+    update idletasks
+    wm transient $www $w
+    wm deiconify $www
+    
+    wm title $www  "Edit Axes Ticks"
+    wm geometry $www 530x750
+    wm iconname $www "TE"
+    grab set $www
+#    bell -displayof $w
+    
+    set topf  [frame $www.topf]
+    set titf1 [TitleFrame $topf.titf1 -text "Ticks Editor"]
+    
+    set parent  [$titf1 getframe]
+    set pw1  [PanedWindow $parent.pw -side top]
+    set pane3  $pw1  
+    
+    #sauv www
+    set old_www $www
+
+
+    # Make a frame scrollable
+
+    set sw [ScrolledWindow $pane3.sw -relief sunken -borderwidth 2]
+    # pack $sw -in .sw -fill both -expand true 
+    set sf [ScrollableFrame $sw.f]
+    $sw setwidget $sf
+    set uf [$sf getframe]
+
+    set w $uf
+    set fra [frame $w.frame -borderwidth 0]
+    pack $fra  -anchor w -fill both
+
+    
+    Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis"} -pad 20   -height 600 -width 430
+    pack $uf.n -in $uf -fill both -expand yes
+
+    Notebook:raise.page $uf.n $numpage
+
+    set w2 $www
+    
+    ########### X onglet ##############################################
+    ###################################################################
+    set fen1 [Notebook:frame $uf.n "X Axis"]
+
+#meme choix que Mtlb
+    set LEI_x $nbticks_x
+    set numpage 0
+    
+    frame $fen1.frame -borderwidth 0
+    pack $fen1.frame -anchor w -fill both
+
+    frame $fen1.frame.xautoticks -borderwidth 0
+    pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 1.m
+    label $fen1.frame.xautotickslabel  -text "        Auto ticks:  "
+    checkbutton $fen1.frame.xautoticksb  -textvariable  XautoticksToggle \
+	-variable XautoticksToggle  -onvalue "on" -offvalue "off" \
+	-command "toggleXautoticks $frameaxes $numpage" 
+    pack $fen1.frame.xautotickslabel -in $fen1.frame.xautoticks -side left
+    pack $fen1.frame.xautoticksb  -in $fen1.frame.xautoticks  -side left  -fill x -pady 1.m -padx 1.m
+
+    frame $fen1.frame.step -borderwidth 0
+    pack $fen1.frame.step  -in $fen1.frame -side top -fill x -pady 1.m
+    label $fen1.frame.steplabel  -text "           Step by: "
+    entry $fen1.frame.stepe  -relief sunken  -justify right \
+	-background white -textvariable StepEntryX -width 10
+    bind  $fen1.frame.stepe <Return> "SetStep $frameaxes $numpage 1"
+    pack $fen1.frame.steplabel $fen1.frame.stepe -in $fen1.frame.step -side left -pady 1.m -padx 1.m
+
+    frame $fen1.frame.subticks -borderwidth 0
+    pack $fen1.frame.subticks  -in $fen1.frame -side top -fill x -pady 1.m
+    label $fen1.frame.subtickslabel  -text "         Sub ticks: "
+
+#    puts "SubticksEntryX vaut: $SubticksEntryX"
+
+    entry $fen1.frame.subtickse  -relief sunken  -justify right \
+	-background white -textvariable SubticksEntryX -width 10
+    bind  $fen1.frame.subtickse <Return> "SetSubticksX"
+    pack $fen1.frame.subtickslabel $fen1.frame.subtickse -in $fen1.frame.subticks -side left -pady 1.m -padx 1.m
+
+    frame $fen1.frame.fdata -borderwidth 0
+    pack $fen1.frame.fdata  -in $fen1.frame -side top   -fill x
+    
+    scrollbar $fen1.frame.ysbar -orient vertical -command   {$fen1.frame.c yview}
+    canvas $fen1.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen1.frame.ysbar set}
+    
+    $fen1.frame.c create text 160 10 -anchor c -text "Locations"
+    $fen1.frame.c create text 310 10 -anchor c -text "Labels"
+      
+    for {set i 1} {$i<=$nbticks_x} {incr i} {
+	set bb [expr 10+(25*$i)]
+	$fen1.frame.c create text 10 $bb -anchor c -text $i
+	#Locations
+	set aa [expr 10+(1*150)]
+	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right \
+	    -background white -textvariable LOCATIONS_X($i)
+	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
+	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
+	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
+	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.locationsdata$i
+	
+	
+	#Labels
+	set aa [expr 10+(2*150)]
+	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left \
+	    -background white -textvariable LABELS_X($i)
+	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
+	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
+	bind  $fen1.frame.c.labelsdata$i <Return> "TicksApplyX $fen1"
+	$fen1.frame.c create window $aa $bb -anchor c -window $fen1.frame.c.labelsdata$i
+    }
+
+    $fen1.frame.c configure -scrollregion [$fen1.frame.c bbox all] -yscrollincrement 0.1i
+    
+    pack  $fen1.frame.ysbar -side right -fill y
+    pack  $fen1.frame.c
+    
+    
+    frame $fen1.boutons -borderwidth 0
+    pack $fen1.boutons -anchor w -fill both  -side top   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes "
+    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes "
+    pack $fen1.boutons.buttoninsert $fen1.boutons.buttondelete -in  $fen1.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+    
+    #sep bar
+    frame $fen1.sep -height 2 -borderwidth 1 -relief sunken
+    pack $fen1.sep -fill both -pady 10m  
+
+    
+     #exit button
+    frame $fen1.buttons -borderwidth 0
+    pack  $fen1.buttons -anchor w -fill both  -side bottom   -fill x
+    
+    button $fen1.buttons.apply -text Apply -command "TicksApplyX $fen1"
+    button $fen1.buttons.b -text Quit -command "destroy $old_www"
+    
+    pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
+	-side left   -fill x  -expand 1 -pady 2m
+
+
+    ########### Y onglet ##############################################
+    ###################################################################
+    set fen2 [Notebook:frame $uf.n "Y Axis"]
+    
+#    puts "1. fen2 vaut: $fen2"
+    #meme choix que Mtlb
+    set LEI_y $nbticks_y
+    set numpage 1
+
+
+    frame $fen2.frame -borderwidth 0
+    pack $fen2.frame -anchor w -fill both
+
+    frame $fen2.frame.yautoticks -borderwidth 0
+    pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 1.m
+    label $fen2.frame.yautotickslabel  -text "        Auto ticks:  "
+    checkbutton $fen2.frame.yautoticksb  -textvariable  YautoticksToggle \
+	-variable YautoticksToggle  -onvalue "on" -offvalue "off" \
+	-command "toggleYautoticks $frameaxes $numpage" 
+    pack $fen2.frame.yautotickslabel -in $fen2.frame.yautoticks -side left
+    pack $fen2.frame.yautoticksb  -in $fen2.frame.yautoticks  -side left  -fill x -pady 1.m -padx 1.m
+
+    frame $fen2.frame.step -borderwidth 0
+    pack $fen2.frame.step  -in $fen2.frame -side top -fill x -pady 1.m
+    label $fen2.frame.steplabel  -text "           Step by: "
+    entry $fen2.frame.stepe  -relief sunken  -justify right \
+	-background white -textvariable StepEntryY -width 10
+    bind  $fen2.frame.stepe <Return> "SetStep $frameaxes $numpage 2"
+    pack $fen2.frame.steplabel $fen2.frame.stepe -in $fen2.frame.step -side left -pady 1.m -padx 1.m
+
+    frame $fen2.frame.subticks -borderwidth 0
+    pack $fen2.frame.subticks  -in $fen2.frame -side top -fill x -pady 1.m
+    label $fen2.frame.subtickslabel  -text "         Sub ticks: "
+
+    entry $fen2.frame.subtickse  -relief sunken  -justify right \
+	-background white -textvariable SubticksEntryY -width 10
+    bind  $fen2.frame.subtickse <Return> "SetSubticksY"
+    pack $fen2.frame.subtickslabel $fen2.frame.subtickse -in $fen2.frame.subticks -side left -pady 1.m -padx 1.m
+
+
+    frame $fen2.frame.fdata -borderwidth 0
+    pack $fen2.frame.fdata  -in $fen2.frame -side top   -fill x
+  
+    canvas $fen2.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen2.frame.ysbar set}
+    scrollbar $fen2.frame.ysbar -orient vertical -command   {$fen2.frame.c yview}
+    
+    $fen2.frame.c create text 160 10 -anchor c -text "Locations"
+    $fen2.frame.c create text 310 10 -anchor c -text "Labels"
+      
+    for {set i 1} {$i<=$nbticks_y} {incr i} {
+	set bb [expr 10+(25*$i)]
+	$fen2.frame.c create text 10 $bb -anchor c -text $i
+	#Locations
+	set aa [expr 10+(1*150)]
+	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right \
+	    -background white -textvariable LOCATIONS_Y($i)
+	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
+	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
+	bind  $fen2.frame.c.locationsdata$i <Return> "TicksApplyY $fen2"
+	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.locationsdata$i
+	
+	
+	#Labels
+	set aa [expr 10+(2*150)]
+	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left \
+	    -background white -textvariable LABELS_Y($i)
+	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
+	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
+	bind  $fen2.frame.c.labelsdata$i <Return> "TicksApplyY $fen2"
+	$fen2.frame.c create window $aa $bb -anchor c -window $fen2.frame.c.labelsdata$i
+    }
+
+    $fen2.frame.c configure -scrollregion [$fen2.frame.c bbox all] -yscrollincrement 0.1i
+    
+    pack  $fen2.frame.ysbar -side right -fill y
+    pack  $fen2.frame.c
+    
+#    puts "2. fen2 vaut: $fen2"
+
+    frame $fen2.boutons -borderwidth 0
+    pack $fen2.boutons -anchor w -fill both  -side top   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes "
+    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes "
+    pack $fen2.boutons.buttoninsert $fen2.boutons.buttondelete -in  $fen2.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+    
+    #sep bar
+    frame $fen2.sep -height 2 -borderwidth 1 -relief sunken
+    pack $fen2.sep -fill both -pady 10m  
+
+    
+     #exit button
+    frame $fen2.buttons -borderwidth 0
+    pack  $fen2.buttons -anchor w -fill both  -side bottom   -fill x
+    
+    button $fen2.buttons.apply -text Apply -command "TicksApplyY $fen2"
+    button $fen2.buttons.b -text Quit -command "destroy $old_www"
+    
+    pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+#    puts "3. fen2 vaut: $fen2"
+
+
+
+     ########### Z onglet ##############################################
+     ###################################################################
+     set fen3 [Notebook:frame $uf.n "Z Axis"]
+  
+    #meme choix que Mtlb
+    set LEI_z $nbticks_z
+    set numpage 2
+
+
+    frame $fen3.frame -borderwidth 0
+    pack $fen3.frame -anchor w -fill both
+
+    frame $fen3.frame.zautoticks -borderwidth 0
+    pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 1.m
+    label $fen3.frame.zautotickslabel  -text "        Auto ticks:  "
+    checkbutton $fen3.frame.zautoticksb  -textvariable  ZautoticksToggle \
+	-variable ZautoticksToggle  -onvalue "on" -offvalue "off" \
+	-command "toggleZautoticks $frameaxes $numpage" 
+    pack $fen3.frame.zautotickslabel -in $fen3.frame.zautoticks -side left
+    pack $fen3.frame.zautoticksb  -in $fen3.frame.zautoticks  -side left  -fill x -pady 1.m -padx 1.m
+
+    frame $fen3.frame.step -borderwidth 0
+    pack $fen3.frame.step  -in $fen3.frame -side top -fill x -pady 1.m
+    label $fen3.frame.steplabel  -text "           Step by: "
+    entry $fen3.frame.stepe  -relief sunken  -justify right \
+	-background white -textvariable StepEntryZ -width 10
+    bind  $fen3.frame.stepe <Return> "SetStep $frameaxes $numpage 3"
+    pack $fen3.frame.steplabel $fen3.frame.stepe -in $fen3.frame.step -side left -pady 1.m -padx 1.m
+
+    frame $fen3.frame.subticks -borderwidth 0
+    pack $fen3.frame.subticks  -in $fen3.frame -side top -fill x -pady 1.m
+    label $fen3.frame.subtickslabel  -text "         Sub ticks: "
+
+    entry $fen3.frame.subtickse  -relief sunken  -justify right \
+	-background white -textvariable SubticksEntryZ -width 10
+    bind  $fen3.frame.subtickse <Return> "SetSubticksZ"
+    pack $fen3.frame.subtickslabel $fen3.frame.subtickse -in $fen3.frame.subticks -side left -pady 1.m -padx 1.m
+
+
+    frame $fen3.frame.fdata -borderwidth 0
+    pack $fen3.frame.fdata  -in $fen3.frame -side top   -fill x
+  
+    canvas $fen3.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen3.frame.ysbar set}
+    scrollbar $fen3.frame.ysbar -orient vertical -command   {$fen3.frame.c yview}
+    
+    $fen3.frame.c create text 160 10 -anchor c -text "Locations"
+    $fen3.frame.c create text 310 10 -anchor c -text "Labels"
+      
+    for {set i 1} {$i<=$nbticks_z} {incr i} {
+	set bb [expr 10+(25*$i)]
+	$fen3.frame.c create text 10 $bb -anchor c -text $i
+	#Locations
+	set aa [expr 10+(1*150)]
+	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right \
+	    -background white -textvariable LOCATIONS_Z($i)
+	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
+	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
+	bind  $fen3.frame.c.locationsdata$i <Return> "TicksApplyZ $fen3"
+	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.locationsdata$i
+	
+	
+	#Labels
+	set aa [expr 10+(2*150)]
+	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left \
+	    -background white -textvariable LABELS_Z($i)
+	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
+	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
+	bind  $fen3.frame.c.labelsdata$i <Return> "TicksApplyZ $fen3"
+	$fen3.frame.c create window $aa $bb -anchor c -window $fen3.frame.c.labelsdata$i
+    }
+
+    $fen3.frame.c configure -scrollregion [$fen3.frame.c bbox all] -yscrollincrement 0.1i
+    
+    pack  $fen3.frame.ysbar -side right -fill y
+    pack  $fen3.frame.c
+    
+    frame $fen3.boutons -borderwidth 0
+    pack $fen3.boutons -anchor w -fill both  -side top   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes "
+    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes "
+    pack $fen3.boutons.buttoninsert $fen3.boutons.buttondelete -in  $fen3.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+    
+    #sep bar
+    frame $fen3.sep -height 2 -borderwidth 1 -relief sunken
+    pack $fen3.sep -fill both -pady 10m  
+
+    
+     #exit button
+    frame $fen3.buttons -borderwidth 0
+    pack  $fen3.buttons -anchor w -fill both  -side bottom   -fill x
+    
+    button $fen3.buttons.apply -text Apply -command "TicksApplyZ $fen3"
+    button $fen3.buttons.b -text Quit -command "destroy $old_www"
+    
+    pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+
+
+
+    pack $sw $pw1 -fill both -expand yes
+    pack $titf1 -padx 4 -side left -fill both -expand yes
+    pack $topf -fill both -pady 2 -expand yes
+
+
+
+
+}
+
+
+############## TICKS ##############
+
+### X
+
+proc TicksInsertX { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_X LABELS_X
+    global LEI_x
+    global nbticks_x
+
+    set i $LEI_x
+
+    if {$i == -1} {
+	tk_messageBox -icon error -type ok -title "Insertion failed" -message "Select a cell first to insert after"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_x} {incr j} {
+	set tmploc($j) $LOCATIONS_X($j)
+	set tmplab($j) $LABELS_X($j)
+
+	if {$j == $i} {
+	    set tmploc($j) $LOCATIONS_X($j)
+	    set tmplab($j) $LABELS_X($j)
+	    break
+	}
+    }
+    set fin [expr $nbticks_x+1]
+    set index [expr $i+1]
+    for {set j $index} {$j<=$fin} {incr j} {
+	set ind [expr $j-1]
+	set tmploc($j) $LOCATIONS_X($ind)
+	set tmplab($j) $LABELS_X($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_X($j) $tmploc($j)
+	set LABELS_X($j) $tmplab($j)
+    }
+
+    set nbticks_x $fin
+
+    set numpage 0
+    PopUp $w $numpage
+
+}
+
+
+
+
+
+proc TicksDeleteX { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_X LABELS_X
+    global LEI_x
+    global nbticks_x
+
+
+    set i $LEI_x
+
+    if {$nbticks_x <= 2} {
+	tk_messageBox -icon error -type ok -title "Deletion forbidden" -message "You must have at least 2 ticks"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_x} {incr j} {
+	set tmploc($j) $LOCATIONS_X($j)
+	set tmplab($j) $LABELS_X($j)
+
+	if {$j == $i} {
+	    break
+	}
+    }
+    set fin [expr $nbticks_x-1]
+    set index [expr $i+1]
+    for {set j $i} {$j<=$fin} {incr j} {
+	set ind [expr $j+1]
+	set tmploc($j) $LOCATIONS_X($ind)
+	set tmplab($j) $LABELS_X($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_X($j) $tmploc($j)
+	set LABELS_X($j) $tmplab($j)
+    }
+
+    set nbticks_x $fin
+
+    set numpage 0
+    PopUp $w $numpage
+    
+}
+
+proc TicksApplyX { w } {
+    global LOCATIONS_X LABELS_X
+    global nbticks_x 
+    global XautoticksToggle
+    #First, we pass the TLIST in 2 arrays to scilab
+    #LOCATIONS_X
+    for {set i 1} {$i<=$nbticks_x} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab($LOCATIONS_X($index),$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab2($LOCATIONS_X($index),$index,ged_tmp_LOCATIONS)"  "seq"
+	}
+    }
+     #LABELS_X
+    for {set i 1} {$i<=$nbticks_x} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LABELS=GetTab('$LABELS_X($index)',$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LABELS=GetTab2('$LABELS_X($index)',$index,ged_tmp_LABELS)"  "seq"
+	}
+    }
+    
+    ScilabEval "setTicksTList('X',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
+    
+    set XautoticksToggle "off"
+
+}
+
+
+### Y
+
+proc TicksInsertY { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_Y LABELS_Y
+    global LEI_y
+    global nbticks_y
+ 
+    set i $LEI_y
+
+    if {$i == -1} {
+	tk_messageBox -icon error -type ok -title "Insertion failed" -message "Select a cell first to insert after"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_y} {incr j} {
+	set tmploc($j) $LOCATIONS_Y($j)
+	set tmplab($j) $LABELS_Y($j)
+
+	if {$j == $i} {
+	    set tmploc($j) $LOCATIONS_Y($j)
+	    set tmplab($j) $LABELS_Y($j)
+	    break
+	}
+    }
+    set fin [expr $nbticks_y+1]
+    set index [expr $i+1]
+    for {set j $index} {$j<=$fin} {incr j} {
+	set ind [expr $j-1]
+	set tmploc($j) $LOCATIONS_Y($ind)
+	set tmplab($j) $LABELS_Y($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_Y($j) $tmploc($j)
+	set LABELS_Y($j) $tmplab($j)
+    }
+
+    set nbticks_y $fin
+
+    set numpage 1
+    PopUp $w $numpage
+
+}
+
+
+
+
+
+proc TicksDeleteY { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_Y LABELS_Y
+    global LEI_y
+    global nbticks_y
+
+
+    set i $LEI_y
+
+    if {$nbticks_y <= 2} {
+	tk_messageBox -icon error -type ok -title "Deletion forbidden" -message "You must have at least 2 ticks"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_y} {incr j} {
+	set tmploc($j) $LOCATIONS_Y($j)
+	set tmplab($j) $LABELS_Y($j)
+
+	if {$j == $i} {
+	    break
+	}
+    }
+    set fin [expr $nbticks_y-1]
+    set index [expr $i+1]
+    for {set j $i} {$j<=$fin} {incr j} {
+	set ind [expr $j+1]
+	set tmploc($j) $LOCATIONS_Y($ind)
+	set tmplab($j) $LABELS_Y($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_Y($j) $tmploc($j)
+	set LABELS_Y($j) $tmplab($j)
+    }
+
+    set nbticks_y $fin
+
+    set numpage 1
+    PopUp $w $numpage
+    
+}
+
+proc TicksApplyY { w } {
+    global LOCATIONS_Y LABELS_Y
+    global nbticks_y
+    global YautoticksToggle
+
+    #First, we pass the TLIST in 2 arrays to scilab
+    #LOCATIONS_Y
+    for {set i 1} {$i<=$nbticks_y} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab($LOCATIONS_Y($index),$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab2($LOCATIONS_Y($index),$index,ged_tmp_LOCATIONS)"  "seq"
+	}
+    }
+     #LABELS_Y
+    for {set i 1} {$i<=$nbticks_y} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LABELS=GetTab('$LABELS_Y($index)',$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LABELS=GetTab2('$LABELS_Y($index)',$index,ged_tmp_LABELS)"  "seq"
+	}
+    }
+    
+    ScilabEval "setTicksTList('Y',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
+    
+    set YautoticksToggle "off"
+}
+
+
+
+### Z
+
+proc TicksInsertZ { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_Z LABELS_Z
+    global LEI_z
+    global nbticks_z
+
+    set i $LEI_z
+
+    if {$i == -1} {
+	tk_messageBox -icon error -type ok -title "Insertion failed" -message "Select a cell first to insert after"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_z} {incr j} {
+	set tmploc($j) $LOCATIONS_Z($j)
+	set tmplab($j) $LABELS_Z($j)
+
+	if {$j == $i} {
+	    set tmploc($j) $LOCATIONS_Z($j)
+	    set tmplab($j) $LABELS_Z($j)
+	    break
+	}
+    }
+    set fin [expr $nbticks_z+1]
+    set index [expr $i+1]
+    for {set j $index} {$j<=$fin} {incr j} {
+	set ind [expr $j-1]
+	set tmploc($j) $LOCATIONS_Z($ind)
+	set tmplab($j) $LABELS_Z($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_Z($j) $tmploc($j)
+	set LABELS_Z($j) $tmplab($j)
+    }
+
+    set nbticks_z $fin
+
+    set numpage 2
+    PopUp $w $numpage
+
+}
+
+
+
+
+
+proc TicksDeleteZ { ww w } {
+    global tmploc tmplab
+    global LOCATIONS_Z LABELS_Z
+    global LEI_z
+    global nbticks_z
+
+
+    set i $LEI_z
+
+    if {$nbticks_z <= 2} {
+	tk_messageBox -icon error -type ok -title "Deletion forbidden" -message "You must have at least 2 ticks"
+	return
+    }
+
+    for {set j 1} {$j<=$nbticks_z} {incr j} {
+	set tmploc($j) $LOCATIONS_Z($j)
+	set tmplab($j) $LABELS_Z($j)
+
+	if {$j == $i} {
+	    break
+	}
+    }
+    set fin [expr $nbticks_z-1]
+    set index [expr $i+1]
+    for {set j $i} {$j<=$fin} {incr j} {
+	set ind [expr $j+1]
+	set tmploc($j) $LOCATIONS_Z($ind)
+	set tmplab($j) $LABELS_Z($ind)
+    }
+
+    for {set j 1} {$j<=$fin} {incr j} {
+	set LOCATIONS_Z($j) $tmploc($j)
+	set LABELS_Z($j) $tmplab($j)
+    }
+
+    set nbticks_z $fin
+
+    set numpage 2
+    PopUp $w $numpage
+    
+}
+
+proc TicksApplyZ { w } {
+    global LOCATIONS_Z LABELS_Z
+    global nbticks_z
+    global ZautoticksToggle
+
+    #First, we pass the TLIST in 2 arrays to scilab
+    #LOCATIONS_Z
+    for {set i 1} {$i<=$nbticks_z} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab($LOCATIONS_Z($index),$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LOCATIONS=GetTab2($LOCATIONS_Z($index),$index,ged_tmp_LOCATIONS)"  "seq"
+	}
+    }
+     #LABELS_Z
+    for {set i 1} {$i<=$nbticks_z} {incr i} {
+	set index $i
+
+	if { $i == 1 } {
+	    ScilabEval "ged_tmp_LABELS=GetTab('$LABELS_Z($index)',$index)"  "seq"
+	} else {
+	    ScilabEval "ged_tmp_LABELS=GetTab2('$LABELS_Z($index)',$index,ged_tmp_LABELS)"  "seq"
+	}
+    }
+    
+    ScilabEval "setTicksTList('Z',ged_tmp_LOCATIONS,ged_tmp_LABELS)" "seq"
+
+    set ZautoticksToggle "off"
+}
+
+
+
+
+proc setLEI_x { i } {
+    global LEI_x
+
+    set LEI_x $i
+#    return $LEI
+}
+
+proc setLEI_y { i } {
+    global LEI_y
+
+    set LEI_y $i
+#    return $LEI
+}
+
+proc setLEI_z { i } {
+    global LEI_z
+
+    set LEI_z $i
+#    return $LEI
+}
+
+proc ReLoadTicks { } {
+    global LOCATIONS_X LABELS_X
+    global LOCATIONS_Y LABELS_Y
+    global LOCATIONS_Z LABELS_Z
+    global nbticks_x nbticks_y nbticks_z
+
+    ScilabEval "global ged_handle; LoadTicks2TCL(ged_handle); " "sync" "seq"
+}
+
+proc toggleXautoticks { w numpage } {
+    global XautoticksToggle
+    
+    ScilabEval "global ged_handle;ged_handle.auto_ticks(1)='$XautoticksToggle'" "seq"
+    ReLoadTicks
+    PopUp $w $numpage
+}
+
+proc toggleYautoticks { w numpage } {
+    global YautoticksToggle
+    
+    ScilabEval "global ged_handle;ged_handle.auto_ticks(2)='$YautoticksToggle'" "seq"
+    ReLoadTicks
+    PopUp $w $numpage
+}
+
+proc toggleZautoticks { w numpage } {
+    global ZautoticksToggle
+    
+    ScilabEval "global ged_handle;ged_handle.auto_ticks(3)='$ZautoticksToggle'" "seq"
+    ReLoadTicks
+    PopUp $w $numpage
+}
+
+
+proc SetStep { w numpage xyz} {
+    # I rely on a.data_bounds data
+    variable min max
+    variable step
+    global StepEntryX StepEntryY StepEntryZ
+    global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
+    global LOCATIONS_X LABELS_X
+    global LOCATIONS_Y LABELS_Y
+    global LOCATIONS_Z LABELS_Z
+    global nbticks_x nbticks_y nbticks_z
+    
+    if { $xyz == 1 } {
+	set min $dbxmin
+	set max $dbxmax
+	set nbticks_x 0
+	set step $StepEntryX
+    } else {
+	if { $xyz == 2 } {
+	    set min $dbymin
+	    set max $dbymax
+	    set nbticks_y 0
+	    set step $StepEntryY
+	} else {
+	    if { $xyz == 3 } {
+		set min $dbzmin
+		set max $dbzmax
+		set nbticks_z 0
+		set step $StepEntryZ
+	    }
+	}
+    }
+    
+    set min [expr floor($min)]
+    set max [expr ceil ($max)]
+    
+    set x 0
+    set i 0
+    
+#     puts "tout debut"
+#     puts "min = $min"
+#     puts "max = $max"
+    
+    if {$step <= 0  | $step==""} {
+	tk_messageBox -icon error -type ok -title "Wrong Step" -message "The step must be positive !"
+	return
+    }
+    
+    set x $min
+    
+    while {$x<$max} {
+
+	set ii [expr $i+1]
+	if { $xyz == 1 } {
+	    set LOCATIONS_X($ii) $x
+	    set LABELS_X($ii) $x
+	    set nbticks_x [expr $nbticks_x +1]
+	} else {
+	    if { $xyz == 2 } {
+		set LOCATIONS_Y($ii) $x
+		set LABELS_Y($ii) $x
+		set nbticks_y [expr $nbticks_y +1]
+	    } else {
+		if { $xyz == 3 } {
+		    set LOCATIONS_Z($ii) $x
+		    set LABELS_Z($ii) $x
+		    set nbticks_z [expr $nbticks_z +1]
+		}
+	    }
+	}
+	incr i
+	set x [expr $min + $i*$step]
+    }
+
+#     puts "AVANT avant one more to finish"
+  
+#     puts "i= $i"
+    # one more to finish
+#    incr i
+    set ii [expr $i+1]
+#     puts "avant one more to finish"
+#     puts "i= $i"
+#     puts "step = $step"
+#     puts "min = $min"
+    set x $max
+    if { $xyz == 1 } {
+	set LOCATIONS_X($ii) $x
+	set LABELS_X($ii) $x
+	set nbticks_x [expr $nbticks_x +1]
+    } else {
+	if { $xyz == 2 } {
+	    set LOCATIONS_Y($ii) $x
+	    set LABELS_Y($ii) $x
+	    set nbticks_y [expr $nbticks_y +1]
+	} else {
+	    if { $xyz == 3 } {
+		set LOCATIONS_Z($ii) $x
+		set LABELS_Z($ii) $x
+		set nbticks_z [expr $nbticks_z +1]
+	    }
+	}
+    }
+    
+    PopUp $w $numpage
+}
+
+
+
+proc SetSubticksX { } {
+    global SubticksEntryX
+
+    if {$SubticksEntryX < 0 | $SubticksEntryX==""} {
+	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
+	return
+    }
+    ScilabEval "Subtickstoggle($SubticksEntryX,1)"
+}
+
+
+proc SetSubticksY { } {
+    global SubticksEntryY
+ 
+    if {$SubticksEntryY < 0 | $SubticksEntryY==""} {
+	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
+	return
+    }
+    ScilabEval "Subtickstoggle($SubticksEntryY,2)"
+}
+
+proc SetSubticksZ { } {
+    global SubticksEntryZ
+    
+    if {$SubticksEntryZ < 0 | $SubticksEntryZ==""} {
+	tk_messageBox -icon error -type ok -title "Incorrect sub ticks value" -message "Select a positive integer value"
+	return
+    }
+    ScilabEval "Subtickstoggle($SubticksEntryZ,3)"
+}
