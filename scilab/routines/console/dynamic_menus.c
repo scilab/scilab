@@ -114,13 +114,13 @@ int StoreCommand1 (char *command,int flag)
 #endif
  switch (flag)
  {
-	case 1: // the command is shown in scilab window (if at prompt)
+ case 1: /* the command is shown in scilab window (if at prompt) */
 		{
 			write_scilab (command);
 			return (0);
 		}
 		break;
-	case 0: default : // the command is not shown in Scilab
+ case 0: default : /* the command is not shown in Scilab */
 		{
 			  CommandRec *p, *q, *r;
 
