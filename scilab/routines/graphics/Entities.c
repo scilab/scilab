@@ -16623,6 +16623,31 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
     }
 
 
+
+
+
+  /******************************************************************************************/
+
+  /* F.Leray 29.04.04 : TEST to take into account a rect arg previously specified */
+
+  /*   sciprint("ppsubwin->brect[0] = %.3f\n",ppsubwin->brect[0]);
+  sciprint("ppsubwin->brect[2] = %.3f\n",ppsubwin->brect[2]);
+  sciprint("ppsubwin->brect[1] = %.3f\n",ppsubwin->brect[1]);
+  sciprint("ppsubwin->brect[3] = %.3f\n",ppsubwin->brect[3]);*/
+
+
+  if( ((ppsubwin->brect[0] != 0.) || (ppsubwin->brect[2] != 0.)) &&
+      ((ppsubwin->brect[1] != 0.) || (ppsubwin->brect[3] != 0.)) &&
+      sciGetZooming(subwindowtmp) == FALSE )
+
+    {
+      xmin= Min(xmin,ppsubwin->brect[0]);xmax= Max(xmax,ppsubwin->brect[2]);
+      ymin= Min(ymin,ppsubwin->brect[1]);ymax= Max(ymax,ppsubwin->brect[3]);
+    }
+  
+  /******************************************************************************************/
+  
+
   /*sciprint("Dans sci_update_frame_bounds 2. , strflag = %c%c%c\n\n",strflag[0],strflag[1],strflag[2]); */
 
   /*
@@ -16791,13 +16816,12 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
  /*  update_graduation(subwindowtmp); */
 
 
-/*   sciprint("AFTER FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; et finalement FRect[5]=zmin;FRect[6]=zmax;AFFECTATION\n"); */
+ /* sciprint("AFTER FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax; et finalement FRect[5]=zmin;FRect[6]=zmax;AFFECTATION\n");*/
 /*   sciprint("FRect[0]=xmin=  %.3f\r\n", FRect[0]); */
 /*   sciprint("FRect[2]=xmax=  %.3f\r\n", FRect[2]); */
 /*   sciprint("FRect[1]=ymin=  %.3f\r\n", FRect[1]); */
 /*   sciprint("FRect[3]=ymax=  %.3f\r\n", FRect[3]); */
-/*   sciprint("FRect[4]=zmin=  %.3f\r\n", FRect[4]); */
-/*   sciprint("FRect[5]=zmax=  %.3f\r\n\n", FRect[5]); */
+
 
   /*if strflag[1] == 7 or 8 we compute the max between current scale and the new one*/
   if (strflag[1] == '7' || strflag[1] == '8' )
@@ -17632,11 +17656,16 @@ int update_2dbounds(sciPointObj *pobj, int cflag, double * x, double *y, integer
   
   /* ppsubwin = pSUBWIN_FEATURE(pobj);*/
  /* Adding F.Leray 21.04.04 */
-  pSUBWIN_FEATURE (pobj)->brect[0] = brect[0];
-  pSUBWIN_FEATURE (pobj)->brect[1] = brect[1];
-  pSUBWIN_FEATURE (pobj)->brect[2] = brect[2];
-  pSUBWIN_FEATURE (pobj)->brect[3] = brect[3];
 
+  
+  if( ((brect[0] != 0.) || (brect[2] != 0.)) &&
+      ((brect[1] != 0.) || (brect[3] != 0.)))
+    {
+      pSUBWIN_FEATURE (pobj)->brect[0] = brect[0];
+      pSUBWIN_FEATURE (pobj)->brect[1] = brect[1];
+      pSUBWIN_FEATURE (pobj)->brect[2] = brect[2];
+      pSUBWIN_FEATURE (pobj)->brect[3] = brect[3];
+    }
 
   logflags[0] = pSUBWIN_FEATURE (pobj)->logflags[0];
   logflags[1] = pSUBWIN_FEATURE (pobj)->logflags[1];
