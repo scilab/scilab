@@ -60,12 +60,12 @@
 
 <xsl:if test="./AUTHORS">
 	<H3><font color="blue">Auteurs</font></H3>
-	<p><ul><xsl:value-of select="./AUTHORS"/></ul></p>
+	<p><xsl:apply-templates select="AUTHORS"/></p>
 </xsl:if>
 
 <xsl:if test="./USED_FUNCTION">
 	<H3><font color="blue">Fonctions utilisees</font></H3>
-	<p><xsl:value-of select="./USED_FUNCTION"/></p>
+	<p><xsl:apply-templates select="USED_FUNCTION"/></p>
 </xsl:if>
 
 <xsl:if test="./BIBLIO">
@@ -192,14 +192,18 @@
 </xsl:template>
 
 <xsl:template match="AUTHORS_ITEM">
-<li>
-<b><xsl:value-of select="@label"/>  </b>,
+  <p>
+<b><xsl:value-of select="@label"/>  </b>
 <xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|VERB|EM|BD|TT|TABLE|ITEMIZE|A|text()"/>
-</li>
+</p>
 </xsl:template>
 
 <xsl:template match="BIBLIO">
       <dl><xsl:apply-templates select="P|VERBATIM|VERB|EM|BD|TT|A|text()"/></dl>
+</xsl:template>
+
+<xsl:template match="USED_FUNCTION">
+	<dl><xsl:apply-templates select="P|VERBATIM|VERB|EM|BD|TT|A|text()"/></dl>
 </xsl:template>
 
 </xsl:stylesheet>
