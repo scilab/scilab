@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>datenum</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>31-Aout-2004</DATE>
+
+  <SHORT_DESCRIPTION name="datenum">Convertie une date en un
+  nombre</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>N = datenum()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(DT)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D, H, MI,
+    S)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>La fonction datenum convertie une date en un nombre lui correspondant.
+    Ce nombre correspond au nombre de jours passé depuis une date référence.
+    Par défaut, cette date es est le 1-Jan-0000.</P>
+
+    <P>N = datenum() retourne le nombre correspondant à la date courante.</P>
+
+    <P>N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
+    M, D (année, mois, jour).</P>
+
+    <P>N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
+    elements Y, M, D, H, MI, et S (année, mois, jour, heure, minute, and
+    seconde).</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[datenum()
+
+datenum(1973,8,4) 
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>datevec</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>calendar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

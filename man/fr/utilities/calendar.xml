@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>calendar</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>31-Aout-2004</DATE>
+
+  <SHORT_DESCRIPTION name="calendar">Calendrier</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>c = calendar()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>c = calendar(d)</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>c = calendar(y,m)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>c = calendar retourne une liste contenant le calendrier pour le mois en
+    cours. Les semaines debutant le Dimanche(Sunday) et se terminant le
+    Samedi(Saturday).</P>
+
+    <P>c = calendar(d), ou d est un nombre (voir datenum) , retourne un
+    calendrier pour le mois specifie.</P>
+
+    <P>c = calendar(y,m), ou y et sont des entiers, retourne le calendrier
+    pour le mois et l'annee specifie.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[calendar()
+
+calendar(1973,8) 
+
+calendar(720840)]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>datevec</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>datenum</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

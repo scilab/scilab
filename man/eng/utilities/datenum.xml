@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>datenum</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>31-August-2004</DATE>
+
+  <SHORT_DESCRIPTION name="datenum">Convert to serial date
+  number</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>N = datenum()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(DT) </CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D) </CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>N = datenum(Y, M, D, H, MI, S)
+    </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P>The datenum function converts date vectors (defined by datevec) into
+    serial date numbers. Date numbers are serial days elapsed from some
+    reference date. By default, the serial day 1 corresponds to
+    1-Jan-0000.</P>
+
+    <P>N = datenum() returns the serial date numbers corresponding to current
+    date.</P>
+
+    <P>N = datenum(Y, M, D) returns the serial date numbers for corresponding
+    elements of the Y, M, and D (year, month, day) arrays. </P>
+
+    <P>N = datenum(Y, M, D, H, MI, S) returns the serial date numbers for
+    corresponding elements of the Y, M, D, H, MI, and S (year, month, day,
+    hour, minute, and second) array values.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[datenum()
+
+datenum(1973,8,4) 
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>datevec</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>calendar</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
