@@ -128,6 +128,7 @@ extern void asinh_blk __PARAMS((ARGS_scicos));
 extern void acosh_blk __PARAMS((ARGS_scicos));
 extern void atanh_blk __PARAMS((ARGS_scicos));
 extern void evtvardly __PARAMS((ARGS_scicos));
+extern void edgetrig __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -163,6 +164,7 @@ OpTab tabsim[] ={
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar",(ScicosF) F2C(dollar)},
 {"dsslti",(ScicosF) F2C(dsslti)},
+{"edgetrig",(ScicosF) edgetrig},
 {"eselect",(ScicosF) F2C(eselect)},
 {"evaluate_expr",(ScicosF) evaluate_expr},
 {"evscpe",(ScicosF) F2C(evscpe)},
@@ -258,6 +260,6 @@ OpTab tabsim[] ={
 {"zcross2",(ScicosF) zcross2},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 126 ;
+int ntabsim= 127 ;
 #endif 
 /***********************************/

@@ -2239,7 +2239,7 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosF4 loc4;
   
   kf=C2F(curblk).kfun;
-  if(debug_block==kf-1) return;  /* a debugging block */
+  block_error=flag;  /* to return error from blocks of type 4 */
 
   flagi=*flag; /* flag 7 implicit initialization */
   if(flagi==7 && Blocks[kf-1].type<10000) *flag=0;
@@ -2251,13 +2251,14 @@ callf(t,xtd,xt,residual,g,flag)
     if(debug_block>-1){
       sciprint("Entering the block \r\n");
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
+      if (*flag<0) return;  /* error in debug block */
     }
   }
 
   
   C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
 
-  block_error=flag;
+  
   loc=Blocks[kf-1].funpt;
   if (Blocks[kf-1].type==4||Blocks[kf-1].type==10004) {
     scicos_time=*t;
@@ -2301,6 +2302,7 @@ callf(t,xtd,xt,residual,g,flag)
     }
     if ( cosd > 1){
       if(debug_block>-1){
+	if (*flag<0) return;  /* error in block */
 	sciprint("Leaving block %d \r\n",kf);
 	call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       }
@@ -2587,6 +2589,7 @@ callf(t,xtd,xt,residual,g,flag)
   }
   if ( cosd > 1){
     if(debug_block>-1){
+      if (*flag<0) return;  /* error in block */
       sciprint("Leaving block %d \r\n",kf);
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
     }
@@ -2602,6 +2605,7 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
   int solver=C2F(cmsolver).solver,k;
   ScicosF4 loc4;
 
+  if (Blocks[kf-1].type<0) return; /* no synchro block debugging */
   C2F(scsptr).ptr=Blocks[deb_blk].scsptr;
   loc=Blocks[deb_blk].funpt;
   scicos_time=*t;
@@ -2636,6 +2640,7 @@ void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
       (*loc4)(&Blocks[kf-1],*flag);
     }
   }
+  if (*flag<0) sciprint("Error in the Debug block \r\n");
 }
   
 

@@ -26,7 +26,7 @@ scicos_block *Blocks;
 integer flag;
 
 {
-  int k,j,i;
+  int k,j,i,topsave;
   double *u,*y;
   int one=1,*header,ne1,ne3,ne8;
   int nu,ny,l5,l,moinsun=-1;
@@ -42,6 +42,8 @@ integer flag;
   
   char **str1;
   
+
+  topsave=Top;
   str2sci(str,1,31);
 
   C2F(itosci)(&Blocks[0].nevprt,&one,&one);
@@ -141,7 +143,9 @@ integer flag;
   C2F(itosci)(&flag,&one,&one);
   if (C2F(scierr)()!=0) goto err;
   
+
   C2F(scifunc)(&mlhs,&mrhs);
+
   if (C2F(scierr)()!=0) goto err;
   
   l5=Top;
@@ -343,10 +347,12 @@ integer flag;
     }     
     break;
   }
-  Top=Top-1;
+  /* Top=Top-1; */
+  Top=topsave;
   return;
  err: 
-  flag=-1;
+  Top=topsave;
+  set_block_error(-1);
 }
 
 
