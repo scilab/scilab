@@ -1334,10 +1334,10 @@ function [CCode,FCode]=gen_blocks()
     if size(corinv(kdyn(i)),'*')==1 then
       O=scs_m.objs(corinv(kdyn(i)));
     else
-      path=list();
-      for l=corinv(kdyn(i))(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';end
+      path=list('objs');
+      for l=corinv(kdyn(i))(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';end
       path($+1)=corinv(kdyn(i))($);
-      O=scs_m.objs(path);
+      O=scs_m(path);
     end
     if funtyp(kdyn(i))>2000 then
       //C block
@@ -2138,24 +2138,32 @@ function Code=make_standalone()
     for i=1:(length(zptr)-1) 
       
       if zptr(i+1)-zptr(i)>0 then
-	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	if size(corinv(i),'*')==1 then
+	  OO=scs_m.objs(corinv(i));
+	else
+	  path=list('objs');
+	  for l=cpr.corinv(i)(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar'; path($+1)='objs';end
+	 path($+1)=cpr.corinv(i)($);
+	  OO=scs_m(path);
+	end
+	aaa=OO.gui;bbb=emptystr(3,1);
 	if and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
 	  Code($+1)=' ';	
 	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	  Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	  Code($+1)=' Gui name of block: '+strcat(string(OO.gui));
 	  //Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
 	//Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
 	Code($+1)='Compiled structure index: '+strcat(string(i));
-	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	if stripblanks(OO.model.label)~=emptystr() then	    
+	  Code=[Code;cformatline('Label: '+strcat(string(OO.model.label)),70)];
 	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	if stripblanks(OO.graphics.exprs)~=emptystr() then
+	  Code=[Code;cformatline('Exprs: '+strcat(OO.graphics.exprs,","),70)];
 	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	if stripblanks(OO.graphics.id)~=emptystr() then
 	  Code=[Code;
 		cformatline('Identification: '+..
-			    strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+			    strcat(string(OO.graphics.id)),70)];
 	  
 	end
 	Code=[Code;cformatline('z= {'+strcat(string(z(zptr(i):zptr(i+1)-1)),",")+'};',70)];
@@ -2301,23 +2309,32 @@ function Code=make_static_standalone()
     
     for i=1:(length(rpptr)-1) 
       if rpptr(i+1)-rpptr(i)>0  then
-	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	
+	if size(corinv(i),'*')==1 then
+	  OO=scs_m.objs(corinv(i));
+	else
+	  path=list('objs');
+	  for l=cpr.corinv(i)(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';end
+	  path($+1)=cpr.corinv(i)($);
+	  OO=scs_m(path);
+	end
+	aaa=OO.gui;bbb=emptystr(3,1);
 	if and(aaa+bbb~= ['INPUTPORTEVTS'; ...
 			  'OUTPUTPORTEVTS';'EVTGEN_f']) then
 	  
 	  nbrpa=nbrpa+1;
 	  Code($+1)=' ';
 	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	  Code($+1)='   Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	  Code($+1)='   Gui name of block: '+strcat(string(OO.gui));
+	  if stripblanks(OO.model.label)~=emptystr() then	    
+	    Code=[Code;cformatline('Label: '+strcat(string(OO.model.label)),70)];
 	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	  if stripblanks(OO.graphics.exprs)~=emptystr() then
+	    Code=[Code;cformatline('Exprs: '+strcat(OO.graphics.exprs,","),70)];
 	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	  if stripblanks(OO.graphics.id)~=emptystr() then
 	    Code=[Code;
-		  cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+		  cformatline('Identification: '+strcat(string(OO.graphics.id)),70)];
 	    
 	  end
 	  Code=[Code;'rpar= '];
@@ -2341,24 +2358,33 @@ function Code=make_static_standalone()
     for i=1:(length(ipptr)-1) 
       
       if ipptr(i+1)-ipptr(i)>0  then
-	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	
+	if size(corinv(i),'*')==1 then
+	  OO=scs_m.objs(corinv(i));
+	else
+	  path=list('objs');
+	  for l=cpr.corinv(i)(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';end
+	  path($+1)=cpr.corinv(i)($);
+	  OO=scs_m(path);
+	end
+	aaa=OO.gui;bbb=emptystr(3,1);
 	if and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
 	  nbipa=nbipa+1;
 	  Code($+1)=' ';
 	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	  Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	  Code($+1)=' Gui name of block: '+strcat(string(OO.gui));
 	  // Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
 	  // Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
 	  Code($+1)='Compiled structure index: '+strcat(string(i));
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	  if stripblanks(OO.model.label)~=emptystr() then	    
+	    Code=[Code;cformatline('Label: '+strcat(string(OO.model.label)),70)];
 	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	  if stripblanks(OO.graphics.exprs)~=emptystr() then
+	    Code=[Code;cformatline('Exprs: '+strcat(OO.graphics.exprs,","),70)];
 	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	  if stripblanks(OO.graphics.id)~=emptystr() then
 	    Code=[Code;
-		  cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+		  cformatline('Identification: '+strcat(string(OO.graphics.id)),70)];
 	    
 	  end
 	  Code=[Code;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];

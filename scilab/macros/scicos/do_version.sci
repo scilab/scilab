@@ -16,7 +16,7 @@ if version=='scicos2.5.1' then
   disp('This is an old scicos diagram. I have to translate.')
   scs_m=do_versionxx(scs_m);scs_m=do_version27(scs_m);version='scicos2.7';
   disp('I am now going to clean your diagram. Block numbers may change.')
-  scs_m_new=do_purge(scs_m);
+  scs_m=do_purge(scs_m);
   disp('Save the diagram (under a different name just in case)')
   lines(ncl(2))
 end
@@ -1034,7 +1034,7 @@ function scs_m_new=do_version27(scs_m)
   if size(tol,'*')<4 then tol(4)=tf+1,end
   if size(tol,'*')<5 then tol(5)=0,end
   if size(tol,'*')<6 then tol(6)=0,end
-  
+  for iix=size(scs_m(1))+1:10,scs_m(1)(iix)=[];end
   scs_m_new.props=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
 				tol=tol,tf=tf,..
 				context=scs_m(1)(5),options=scs_m(1)(7),..

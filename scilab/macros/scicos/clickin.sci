@@ -37,6 +37,9 @@ if typeof(o)=='Block' then
       modified=prod(size(newparameters))>0
     end
     curwin=lastwin
+    if(~(or(curwin==winsid()))) then Cmenu=resume('Open/Set');end
+    xset('window',curwin)
+    xselect()
   elseif o.model.sim=='csuper' then
     execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)')
     modified=prod(size(newparameters))>0
