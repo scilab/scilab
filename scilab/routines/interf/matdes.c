@@ -5335,10 +5335,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {  
       if (sciGetEntityType (pobj) == SCI_POLYLINE)
 	if ((stk(*value)[0]==0) || (stk(*value)[0]==1) || (stk(*value)[0]==2) 
-	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4))
+	    || (stk(*value)[0]==3) ||(stk(*value)[0]==4)||(stk(*value)[0]==5))
 	  pPOLYLINE_FEATURE (pobj)->plot = (int)stk(*value)[0];
 	else
-	  {strcpy(error_message,"Stylemust be 0,1,2,3 or 4");return -1;}
+	  {strcpy(error_message,"Stylemust be 0,1,2,3,4 or 5");return -1;}
       else
 	{strcpy(error_message,"Object is not a Polyline");return -1;}
     }
