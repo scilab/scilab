@@ -46,6 +46,25 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible = "+sci2exp(h.visible)]
       case "Axes"
+
+      T=h.x_ticks
+      locx=sci2exp(T.locations,0)
+      if length(locx)>70 then locx="matrix '+strcat(string(size(T.locations)),'x'), end
+      labx=sci2exp(T.labels,0)
+      if length(labx)>70 then labx="matrix '+strcat(string(size(T.labels)),'x'), end
+
+      T=h.y_ticks
+      locy=sci2exp(T.locations,0)
+      if length(locy)>70 then locy="matrix '+strcat(string(size(T.locations)),'x'), end
+      laby=sci2exp(T.labels,0)
+      if length(laby)>70 then laby="matrix '+strcat(string(size(T.labels)),'x'), end
+
+      T=h.z_ticks
+      locz=sci2exp(T.locations,0)
+      if length(locz)>70 then locz="matrix '+strcat(string(size(T.locations)),'x'), end
+      labz=sci2exp(T.labels,0)
+      if length(labz)>70 then labz="matrix '+strcat(string(size(T.labels)),'x'), end
+   
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -59,8 +78,15 @@ function %h_p(h)
 	 "x_label: "+fmtchildren(h.x_label)
 	 "y_label: "+fmtchildren(h.y_label)
 	 "z_label: "+fmtchildren(h.z_label)
+	 "auto_ticks = "+sci2exp(h.auto_ticks)
+	 "x_ticks.locations = "+locx
+	 "y_ticks.locations = "+locy
+	 "z_ticks.locations = "+locz
+	 "x_ticks.labels = "+labx
+	 "y_ticks.labels = "+laby
+	 "z_ticks.labels = "+labz
 	 "box = "+sci2exp(h.box)
-	 "sub_tics = "+sci2exp(h.sub_tics,0)
+	 "sub_ticks = "+sci2exp(h.sub_ticks,0)
 	 "tics_color = "+string(h.tics_color)
          "font_style = "+string(h.font_style)
 	 "font_size = "+string(h.font_size)
@@ -90,6 +116,7 @@ function %h_p(h)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	]
+
       case "Legend"
       t=[t;
 	 "parent: "+h.parent.type
