@@ -3,7 +3,7 @@ proc updateactivebreakpoint {} {
     set comm2 "TK_EvalStr(\"scipad eval {updateactivebreakpointtag  \"+string(db_l(2))+\" \"+string(db_m(2))+\"}\");"
     set fullcomm [concat $comm1 $comm2]
     ScilabEval "     $fullcomm"  "seq"
-    while {[checkscilabbusy "nomessage"] == "busy"} {}
+#    while {[checkscilabbusy "nomessage"] == "busy"} {}
 }
 
 proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {

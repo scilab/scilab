@@ -129,7 +129,7 @@ proc setdbmenuentriesstates_bp {} {
 
 proc getdebuggersciancillaries_bp {} {
     global env
-    ScilabEval "     getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""   "seq"
+    ScilabEval "     getf \"$env(SCIPATH)/tcl/scipadsources/FormatStringsForDebugWatch.sci\""   "sync"
 }
 
 proc setdbstatevisualhint_hp {} {

@@ -42,7 +42,7 @@ proc execfile {{buf "current"}} {
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-	    ScilabEval "     exec(\"$f\");"   "seq"
+	    ScilabEval "     exec(\"$f\");"   "sync"
 	}
     }
 }

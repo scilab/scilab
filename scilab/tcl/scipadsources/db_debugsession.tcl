@@ -1,5 +1,6 @@
 proc checkscilabbusy {{mb "message"}} {
     global sciprompt lang
+    return "OK"
     if [ expr [string compare $sciprompt -1] == 0 ] {
         if {$mb != "nomessage"} {
             if {$lang == "eng"} {
@@ -68,18 +69,17 @@ proc execfile_bp {} {
                 set commnvars [createsetinscishellcomm]
                 set watchsetcomm [lindex $commnvars 0]
                 if {$watchsetcomm != ""} {
-                    ScilabEval "     $watchsetcomm"  "seq"
+                    ScilabEval "     $watchsetcomm"  "sync"
                 }
-                while {[checkscilabbusy "nomessage"] == "busy"} {}
                 ScilabEval "     $setbpcomm; $funnameargs,$removecomm"  "seq"
+#		while {[checkscilabbusy "nomessage"] == "busy"} {}
                 set filename [creategetfromshellcomm]
                 if {$filename != "emptyfile"} {
-                    ScilabEval "     exec(\"$filename\");"  "seq"
+                    ScilabEval "     exec(\"$filename\");"   "sync"
                 }
-                while {[checkscilabbusy "nomessage"] == "busy"} {}
                 updateactivebreakpoint
             } else {
-                ScilabEval "     $funnameargs"  "seq"
+                ScilabEval "     $funnameargs"  "sync"
             }
         } else {
             # <TODO> .sce case
@@ -114,7 +114,7 @@ proc resume_bp {} {
             set commnvars [createsetinscishellcomm]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
-                ScilabEval "     $watchsetcomm"  "seq"
+                ScilabEval "     $watchsetcomm"  "sync"
                 set returnwithvars [lindex $commnvars 1]
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
     # [..]=resume(..) was bugged (see bug 818)
@@ -124,11 +124,11 @@ proc resume_bp {} {
                 ScilabEval "     $returnwithvars"  "seq"
             } else {
                 while {[checkscilabbusy "nomessage"] == "busy"} {}
-                ScilabEval "     resume(0)"
+                ScilabEval "     resume(0)"  "seq"
             }
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "seq"
+                ScilabEval "     exec(\"$filename\");"  "sync"
             }
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             updateactivebreakpoint
@@ -155,7 +155,7 @@ proc goonwo_bp {} {
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "seq"
+                ScilabEval "     exec(\"$filename\");"  "sync"
             }
         }
         setdbstate "ReadyForDebug"
@@ -180,7 +180,7 @@ proc canceldebug_bp {} {
             while {[checkscilabbusy "nomessage"] == "busy"} {}
             set filename [creategetfromshellcomm]
             if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "seq"
+                ScilabEval "     exec(\"$filename\");"  "sync"
             }
         }
         setdbstate "NoDebug"
