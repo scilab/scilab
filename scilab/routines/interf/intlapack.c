@@ -64,7 +64,6 @@ static LapackTable Tab[]={
 
 int C2F(intlapack)()
 {  
-  /* int ifin = Fin; */
   Rhs = Max(0, Rhs);
   (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   C2F(putlhsvar)();
