@@ -795,6 +795,9 @@ cd .. &gt;nul
 			<File
 				RelativePath=".\vfrexp.c">
 			</File>
+			<File
+				RelativePath=".\xerhlt.c">
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
