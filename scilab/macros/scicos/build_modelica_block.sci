@@ -23,7 +23,7 @@ if ~ok then return,end
 model=scicos_model(sim=list(name,10004),.. 
 	           in=ones(nin,1),out=ones(nout,1),..
 		   state=zeros(nx*2,1),..
-		   dstate=nz,..
+		   dstate=zeros(nz,1),..
 		   rpar=rpar,..
 		   ipar=ipar,..
 		   dep_ut=[%f %t],nzcross=ng,nmode=nm)

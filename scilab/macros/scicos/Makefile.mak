@@ -74,7 +74,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	do_addnew.sci update_scicos_pal.sci save_scs_gc.sci restore_scs_gc.sci\
 	cos2cosf.sci changeports.sci update_redraw_obj.sci do_copy_region.sci\
 	do_delete_region.sci do_context.sci scs_show.sci generic_block.sci \
-	do_rename.sci message.sci dialog.sci fortran_block.sci\
+	do_rename.sci message.sci dialog.sci fortran_block.sci generic_block2.sci\
 	scicos_block_link.sci do_zoomin.sci do_zoomout.sci \
 	c_block.sci do_load_as_palette.sci do_options.sci \
 	enablemenus.sci disablemenus.sci \
