@@ -140,7 +140,7 @@ O4 =      %s_4_hm.sci
 
 O5 =      %s_5.sci
 
-FUNS =   %choose.sci %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
+HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_cos.sci %hm_cumprod.sci %hm_cumsum.sci \
 	 %hm_degree.sci %hm_exp.sci %hm_fft.sci %hm_floor.sci \
 	 %hm_imag.sci %hm_int.sci %hm_log.sci %hm_matrix.sci \
@@ -148,12 +148,37 @@ FUNS =   %choose.sci %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_ones.sci %hm_prod.sci %hm_rand.sci %hm_real.sci \
 	 %hm_round.sci %hm_sign.sci %hm_sin.sci %hm_size.sci \
 	 %hm_sqrt.sci %hm_st_deviation.sci %hm_sum.sci \
-	 %hm_zeros.sci %i_and.sci %i_or.sci %s_and.sci \
-	 %s_matrix.sci %s_or.sci %sp_and.sci %sp_or.sci \
-	 %spb_and.sci %spb_or.sci
+	 %hm_zeros.sci
+
+BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci 
+
+CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci %c_tril.sci %c_triu.sci 
+
+LSSFUNS= %lss_eye.sci %lss_inv.sci %lss_ones.sci %lss_rand.sci %lss_size.sci
+
+PFUNS =  %p_det.sci %p_inv.sci %p_prod.sci %p_simp.sci %p_string.sci %p_sum.sci
+
+RFUNS =  %r_clean.sci %r_det.sci %r_diag.sci %r_eye.sci %r_inv.sci \
+	 %r_ones.sci %r_rand.sci %r_simp.sci %r_size.sci %r_string.sci \
+	 %r_tril.sci %r_triu.sci
+
+SFUNS =  %s_pow.sci %s_simp.sci %s_sort.sci %s_and.sci %s_matrix.sci %s_or.sci
+
+SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
+	 %sp_imag.sci %sp_int.sci %sp_inv.sci %sp_norm.sci %sp_real.sci \
+	 %sp_round.sci %sp_sin.sci %sp_sort.sci %sp_sqrt.sci %sp_sum.sci \
+	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
+	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci
+
+IFUNS =  %i_and.sci %i_or.sci 
+
+
+FUNS =   %cblock_p.sci %choose.sci    
 
 MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
-	$(E) $(F) $(FUNS) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
-	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)
+	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
+	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
+	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
+	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) 
 
 include ../Make.lib
