@@ -1,4 +1,4 @@
-set w .rect
+set w .axes
 catch {destroy $w}
 toplevel $w
 wm title $w "Rectangle Editor"
