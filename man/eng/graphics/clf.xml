@@ -72,18 +72,19 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-   f4=scf(4); //creates figure with id==4 and make it the current one
-   f.color_map = jetcolormap(64);
-   f.figure_size = [400, 200];
+   f4=scf(4);  //creates figure with id==4 and make it the current one
+   f4.color_map = jetcolormap(64);
+   f4.figure_size = [400, 200];
    plot2d()
-   clf(f,'reset')
+   clf(f4,'reset')
    f0=scf(0); //creates figure with id==0 and make it the current one
    f0.color_map=hotcolormap(128);
    plot3d1();
    clf() // equivalent to clf(gcf(),'clear')
-   plot3d1(); // color_map unchanged
+   plot3d1();  // color_map unchanged
    clf(gcf(),'reset')
-   plot3d1(); // color_map changed (back to the default one with 32 colors)
+   plot3d1();  // color_map changed (back to the default one with 32 colors)
+
   ]]></EXAMPLE>
 
   <SEE_ALSO>
