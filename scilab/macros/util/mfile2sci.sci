@@ -36,7 +36,7 @@ end
 global("m2sci_infos")
 [l,mac]=where()
 Reclevel=size(find(mac=="mfile2sci"),"*")
-if size(find(mac=="m2sci_gui"),"*")==1 & size(find(mac=="translatepaths"),"*")<>1 then // Bug 679
+if size(find(mac=="m2sci_gui"),"*")==1 & size(find(mac=="translatepaths"),"*")==1 then // Bug 679
   Reclevel=Reclevel-1
 end
 if size(find(mac=="multi_fun_file"),"*")==1 then
