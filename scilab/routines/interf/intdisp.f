@@ -21,12 +21,12 @@ c
       endif
 
       il=iadr(lstk(top))
-      id(1)=0
 
 c     loop on variable to display
       i=1
  201  continue
       topk=top
+      id(1)=0
  202  call print(id,topk,wte)
       if(topk.eq.0) goto 204
 c     overloaded display 
