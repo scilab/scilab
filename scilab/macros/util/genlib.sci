@@ -20,7 +20,6 @@ function genlib(nam,path,force,verbose)
     error('I cannot find any sci files in '+path);
     return ;
   end
-  
   names = basename(files,%f);
   
   modified=%f
@@ -101,6 +100,8 @@ function getsave(fl)
     // save all functions in the output file
     [u,ierr]=mopen(fl,'wb')
     if ierr<>0 then 
+      nf=length(fl)
+      if nf>40 then fl='...'+part(fl,nf-40:nf),end
       error('Impossible to open file '+fl+' for writing, ')
     end
     if new<>[] then 
