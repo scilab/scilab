@@ -95,7 +95,7 @@ bind Text <Control-a> ""
 bind $pad <Control-a> {selectall}
 
 bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
-bind Text <Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
+bind Text <Shift-Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
 
 # The folowing are (unfortunately) platform-dependent keysyms
 if {"$tcl_platform(platform)" == "unix"} {

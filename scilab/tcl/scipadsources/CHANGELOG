@@ -894,3 +894,10 @@ Francois VOGEL, 19/03/05
  * Drag and drop of text within a buffer is now implemented. Possible actions
    are move (Shift-Button-1) and copy (Shift-Control-Button-1).
  * version --> 3.52
+
+Francois VOGEL, 20/03/05
+ * Changed bindings for drag and drop of text within Scipad for more standard
+   ones: Button-1 now moves, whereas Control-Button-1 copies.
+ * Binding for openlibfunsource is now Shift-Control-Button-1 (had no better
+   idea...)
+ * version --> 3.53

@@ -159,10 +159,10 @@ proc tkdndbind {w} {
     global TkDnDloaded savedsel
     if {$TkDnDloaded == "true"} {
 
-        # Drag and drop files or directories to Scipad - Just one line!
+# Drag and drop files or directories to Scipad - Just one line!
         dnd bindtarget $w text/uri-list <Drop> {openlistoffiles %D}
 
-        # Drag and drop text within Scipad - More complicated!
+# Drag and drop text within Scipad - More complicated!
         dnd bindtarget $w text/plain <Drop> \
             {   if {"%A" == "copy"} { \
                     %W tag remove sel 0.0 end \
@@ -182,7 +182,29 @@ proc tkdndbind {w} {
                 update idletasks ; \
                 return %A \
             }
-        bind Text <Shift-Button-1>          { dnd drag %W -actions {move} }
-        bind Text <Shift-Control-Button-1>  { dnd drag %W -actions {copy} }
+        # If proc ::tk::TextButton1 changes in the tk source (library/text.tcl)
+        # the following bindings could have to be changed accordingly
+        # Currently they are checked OK with tk 8.4.6
+        bind Text <Button-1> \
+            {   tk::TextButton1 %W %x %y ; \
+                if {[%W tag ranges sel] != ""} { \
+                    if { [%W compare sel.first <= [%W index @%x,%y]] && \
+                         [%W compare [%W index @%x,%y] <= sel.last] } { \
+                        dnd drag %W -actions {move} ; \
+                    } else { \
+                        %W tag remove sel 0.0 end ; \
+                    } \
+                } \
+            }
+        bind Text <Control-Button-1> \
+            {   if {[%W tag ranges sel] != ""} { \
+                    if { [%W compare sel.first <= [%W index @%x,%y]] && \
+                         [%W compare [%W index @%x,%y] <= sel.last] } { \
+                        dnd drag %W -actions {copy} ; \
+                    } else { \
+                        %W mark set insert @%x,%y ; \
+                    } \
+                } \
+            }
     }
 }
