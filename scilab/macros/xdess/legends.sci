@@ -119,7 +119,7 @@ function legends(leg, style, opt, with_box)
   
   if fs then
     if with_box then xrect(pos(1),pos(2),width,height),end
-    ls=xget('line style')
+    linestyle=xget('line style')
     clr=xget('color')
     for k=1:nleg
       if k<=size(style,2) then
@@ -136,7 +136,7 @@ function legends(leg, style, opt, with_box)
       y=y-bbx(k,2)-dh
     end
     //reset saved graphic context
-    xset('line style',ls)
+    xset('line style',linestyle)
     xset('color',clr)
     xsetech(wrect=r1,frect=r2,arect=arect,logflag=logflag)
   else

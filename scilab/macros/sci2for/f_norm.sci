@@ -96,9 +96,8 @@ elseif p=='1' then
   stk=list(out,'0','1','1','1')
 elseif p=='inf' then
   [s2,nwrk,txt]=typconv(s2,nwrk,'1')
-  ls=length(s2(1))
   if part(s2(1),1:4)==work then
-    out=callfun(['abs',part(s2(1),1:ls-1)+'-1+'+..
+    out=callfun(['abs',part(s2(1),1:length(s2(1))-1)+'-1+'+..
                     callfun(['idamax',mulf(s2(4),s2(5)),s2(1),'1'])+')'])
   else
     out=callfun(['abs',s2(1)+'('+..
@@ -112,7 +111,7 @@ else
   tl1=string(10*lbl);
   var='ilb'+tl1;
   if part(s2(1),1:4)==work then
-    t2=t+'='+t+'('+part(s2(1),1:ls-1)+'+'+var+'))**'+p
+    t2=t+'='+t+'('+part(s2(1),1:length(s2(1))-1)+'+'+var+'))**'+p
   else
     t2=t+'='+t+'('+s2(1)+'('+var+'))**'+p
   end

@@ -19,8 +19,8 @@ function [flag]=%choose(x)
 // Copyright INRIA
 eps=0.0001;         //modify eps here !
 // 
-ls=x(1);flag=0;s=poly(0,'s');
-select ls
+flag=0;s=poly(0,'s');
+select x(1)
 case 1 then
   // ASSUME x(3) NOT ZERO   (for gev pb. x(3)=0 => eval @ infty)
   vp=x(2)/x(3);pol=s-vp; //disp(pol);
