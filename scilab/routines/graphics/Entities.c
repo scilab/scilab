@@ -27,7 +27,7 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 					 integer *arsize,integer *colored,double *x,double *y,
                                          double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 int DestroyAgregation (sciPointObj * pthis);
-
+extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 /*************************************************************************************************/
 /**DJ.Abdmouche2003**/
 static double xz1,yz1;
@@ -11143,6 +11143,7 @@ sciPointObj *
 sciGetCurrentFigure ()
 {
   return (sciPointObj *) sciGetCurrentScilabXgc ()->mafigure  ; 
+  cf_type=1;/* current figure is a graphic one */
 }                                                               
 
 
@@ -13345,7 +13346,7 @@ void sciSwitchWindow(winnum)
   static sciPointObj *masousfen;  
   integer v;
   double dv; 
-  
+
   /* find if exist figure winnum */
   /* une autre methode c est de tester CurXGC->mafigure = NULL */
   if ( (sciPointObj *) sciIsExistingFigure(winnum) == (sciPointObj *) NULL) 
@@ -13357,11 +13358,15 @@ void sciSwitchWindow(winnum)
 	{
 	  CurXGC->mafigure = mafigure;
           CurXGC->graphicsversion = 1;
-	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL)
+	  if ((masousfen = ConstructSubWin (mafigure, CurXGC->CurWindow)) != NULL) {
 	    sciSetOriginalSubWin (mafigure, masousfen);
+	    cf_type=1;/* current figure is a graphic one */
+	  }
 	}
        
-    } 
+    }
+  else
+    cf_type=1;/* current figure is a graphic one */
 }
 
 
@@ -13946,18 +13951,19 @@ void Unzoom_Subwin()
 /**sciGetIdFigure
  */
 void
-sciGetIdFigure (int *vect, int *id)
+sciGetIdFigure (int *vect, int *id, int *iflag)
 {
   sciHandleTab *hdl;
   sciPointObj  *pobj;
 
   hdl = pendofhandletab;
+  *id = 0;
   while (hdl != NULL)
     { 
       pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
       if (sciGetEntityType(pobj) == SCI_FIGURE)
 	{
-	  vect[*id] = sciGetNum(pobj);
+	  if (*iflag) vect[*id] = sciGetNum(pobj);
 	  (*id)++;
 	} 
         

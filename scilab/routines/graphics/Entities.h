@@ -1431,7 +1431,7 @@ extern sciPointObj *sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
 extern void sciSwitchWindow(int *winnum);
 extern int sciType (char *marker);
 extern int sciUnAgregation (sciPointObj * pobj);
-extern void sciGetIdFigure (int *vect, int *id);
+extern void sciGetIdFigure (int *vect, int *id, int *iflag);
 extern int version_flag(); 
 extern int sciDelGraphicObj (sciPointObj * pthis);
 extern unsigned int sciGetFontNameLength (sciPointObj * pobj);
