@@ -34,7 +34,7 @@ BLOCKS_CODE=intcos.o coselm.o \
 	blocks.o 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
-	readau.o plusblk.o
+	readau.o plusblk.o slider.o
 
 OBJSF=sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o cosini.o cossim.o cosend.o \
 	 sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \

@@ -83,6 +83,7 @@ extern void writec __PARAMS((ARGS_scicos));
 extern void writeau __PARAMS((ARGS_scicos));
 extern void readau __PARAMS((ARGS_scicos));
 extern void plusblk __PARAMS((ARGS_scicos));
+extern void slider __PARAMS((ARGS_scicos));
  
 OpTab tabsim[] ={
 {"absblk",(ScicosF) F2C(absblk)},
@@ -152,10 +153,11 @@ OpTab tabsim[] ={
 {"selblk",(ScicosF) F2C(selblk)},
 {"selector",(ScicosF) selector},
 {"sinblk",(ScicosF) F2C(sinblk)},
+{"slider",(ScicosF) slider},
 {"sqrblk",(ScicosF) F2C(sqrblk)},
-{"sum",(ScicosF) sum},
 {"sum2",(ScicosF) F2C(sum2)},
 {"sum3",(ScicosF) F2C(sum3)},
+{"sum",(ScicosF) sum},
 {"switchn",(ScicosF) switchn},
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tcslti",(ScicosF) F2C(tcslti)},
@@ -168,6 +170,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 81 ;
+int ntabsim= 82 ;
 #endif 
 /***********************************/

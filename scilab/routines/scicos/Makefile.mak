@@ -37,7 +37,7 @@ BLOCKS_CODE=intcos.obj coselm.obj \
 	blocks.obj 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
-	readau.obj plusblk.obj
+	readau.obj plusblk.obj slider.obj
 
 OBJSF=sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj scicos.obj cosini.obj cossim.obj cosend.obj \
 	 sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
