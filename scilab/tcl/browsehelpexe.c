@@ -16,9 +16,9 @@ char TkScriptpath[1000];
 int main(int argc, char *argv[]) 
 {
   Tcl_Interp *interp;
-  if (argv[1]==NULL)
+  if (argc!=4)
     {
-      printf("The second argument must be initialised !\n");
+      printf("browsehelpexe: 3 arguments are needed !\n");
       return(1);
     }
   if (getenv("SCI")==(char *)NULL)
@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
       XTKsocket = ConnectionNumber(XTKdisplay);
       Tk_GeometryRequest(TKmainWindow,200,200);
       Tcl_SetVar(interp, "manpath", argv[1],TCL_GLOBAL_ONLY);
+      Tcl_SetVar(interp, "Home", argv[2],TCL_GLOBAL_ONLY);
+      Tcl_SetVar(interp, "lang", argv[3],TCL_GLOBAL_ONLY);
       Tcl_SetVar(interp, "SciPath",getenv("SCI") ,TCL_GLOBAL_ONLY);
       Tcl_EvalFile(interp, TkScriptpath);
       Tcl_Eval(interp, "wm withdraw .");
