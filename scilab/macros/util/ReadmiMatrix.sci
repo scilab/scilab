@@ -35,7 +35,7 @@ function [value,ArrayName]=ReadmiMatrix(fd)
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
     end
     value=matrix(value,DimensionArray)
-   case Int16Class
+  case Int16Class
     value=int16(ReadSimpleElement(fd,prod(DimensionArray),Class))
     if Flags(1) then 
       value=double(value)+%i*double(ReadSimpleElement(fd,prod(DimensionArray)))
@@ -269,7 +269,9 @@ function [head,version,swap]=matfile_header(fd)
   elseif and(IM_MI==[77,73]) then // big endian file
     swap='b'
   else
-    mclose(fd);error('invalid file!')
+    mclose(fd);
+    // This line has to be mofified according to message in 'loadmatfile' function
+    error('Invalid level 5 binary MAT-file!') 
   end
 endfunction
 
