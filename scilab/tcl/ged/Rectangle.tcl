@@ -40,7 +40,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Rectangle Editor"
 wm iconname $ww "RE"
-wm geometry $ww 435x520
+wm geometry $ww 435x720
 wm protocol $ww WM_DELETE_WINDOW "DestroyGlobals; destroy $ww "
 
 set topf  [frame $ww.topf]
@@ -105,7 +105,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 20  -height 400 -width 350
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 20  -height 600 -width 350
 pack $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -127,11 +127,24 @@ pack $w.frame.visiblelabel   -in $w.frame.vis  -side left
 pack $w.frame.visible  -in $w.frame.vis  -side left -fill x -pady 2m -padx 2m
 
 
+#Line mode
+frame $w.frame.linelinemode  -borderwidth 0
+pack $w.frame.linelinemode  -in $w.frame  -side top  -fill x
+
+label $w.frame.linemodelabel -height 0 -text " Line mode:   " -width 0 
+checkbutton $w.frame.linemode  -textvariable curlinemode -indicatoron 1 \
+    -variable curlinemode -onvalue "on" -offvalue "off" \
+    -command "toggleLinemode" 
+
+pack $w.frame.linemodelabel  -in $w.frame.linelinemode  -side left 
+pack $w.frame.linemode   -in $w.frame.linelinemode   -side left  -fill x -pady 2m -padx 2m
+
+
 #Line Style
 frame $w.frame.rectst  -borderwidth 0
 pack $w.frame.rectst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text " Line style:    " -width 0 
+label $w.frame.stylelabel  -height 0 -text " Line style:   " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -143,50 +156,6 @@ combobox $w.frame.style \
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.stylelabel -in $w.frame.rectst   -side left
 pack $w.frame.style   -in $w.frame.rectst   -expand 1 -fill x -pady 2m -padx 2m
-
-
-#Mark style
-frame $w.frame.rectmarkst  -borderwidth 0
-pack $w.frame.rectmarkst  -in $w.frame  -side top  -fill x
-
-label $w.frame.markstylelabel  -height 0 -text "Mark style:   " -width 0 
-combobox $w.frame.markstyle \
-    -borderwidth 1 \
-    -highlightthickness 1 \
-    -maxheight 0 \
-    -width 3 \
-    -textvariable curmarkstyle \
-    -editable false \
-    -command [list SelectMarkStyle ]
-eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"]
-
-
-pack $w.frame.markstylelabel  -in $w.frame.rectmarkst   -side left
-pack $w.frame.markstyle   -in $w.frame.rectmarkst  -expand 1 -fill x -pady 2m -padx 2m
-
-#Mark mode
-frame $w.frame.rectmarkmode  -borderwidth 0
-pack $w.frame.rectmarkmode  -in $w.frame  -side top  -fill x
-
-label $w.frame.markmodelabel -height 0 -text "Mark mode: " -width 0 
-checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
-    -variable curmarkmode -onvalue "on" -offvalue "off" \
-    -command "toggleMarkmode" 
-
-pack $w.frame.markmodelabel  -in $w.frame.rectmarkmode  -side left
-pack $w.frame.markmode   -in $w.frame.rectmarkmode  -side left  -fill x -pady 2m -padx 2m
-
-
-#filled
-frame $w.frame.fil  -borderwidth 0
-pack $w.frame.fil  -in $w.frame  -side top  -fill x
-
-label $w.frame.filledlabel -height 0 -text "         Filled: " -width 0 
-checkbutton $w.frame.filled  -textvariable filToggle -indicatoron 1 \
-    -variable filToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleFilled" 
-pack $w.frame.filledlabel  -in $w.frame.fil  -side left
-pack $w.frame.filled  -in $w.frame.fil   -side left -fill x -pady 2m -padx 2m
 
 
 #Color scale
@@ -212,6 +181,88 @@ scale $w.frame.thickness -orient horizontal -from 1 -to 20 \
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
 pack $w.frame.thickness  -in $w.frame.thk  -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.thickness set $curthick
+
+
+#filled
+frame $w.frame.fil  -borderwidth 0
+pack $w.frame.fil  -in $w.frame  -side top  -fill x
+
+label $w.frame.filledlabel -height 0 -text "         Filled: " -width 0 
+checkbutton $w.frame.filled  -textvariable filToggle -indicatoron 1 \
+    -variable filToggle  -onvalue "on" -offvalue "off" \
+    -command "toggleFilled" 
+pack $w.frame.filledlabel  -in $w.frame.fil  -side left
+pack $w.frame.filled  -in $w.frame.fil   -side left -fill x -pady 2m -padx 2m
+
+
+#Mark mode
+frame $w.frame.rectmarkmode  -borderwidth 0
+pack $w.frame.rectmarkmode  -in $w.frame  -side top  -fill x
+
+label $w.frame.markmodelabel -height 0 -text " Mark mode:" -width 0 
+checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
+    -variable curmarkmode -onvalue "on" -offvalue "off" \
+    -command "toggleMarkmode" 
+
+pack $w.frame.markmodelabel  -in $w.frame.rectmarkmode  -side left
+pack $w.frame.markmode   -in $w.frame.rectmarkmode  -side left  -fill x -pady 2m -padx 2m
+
+
+#Mark style
+frame $w.frame.rectmarkst  -borderwidth 0
+pack $w.frame.rectmarkst  -in $w.frame  -side top  -fill x
+
+label $w.frame.markstylelabel  -height 0 -text " Mark style:  " -width 0 
+combobox $w.frame.markstyle \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curmarkstyle \
+    -editable false \
+    -command [list SelectMarkStyle ]
+eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle" "circle2" "asterisk" "square" "diamond2"]
+
+pack $w.frame.markstylelabel  -in $w.frame.rectmarkst   -side left
+pack $w.frame.markstyle   -in $w.frame.rectmarkst  -expand 1 -fill x -pady 2m -padx 2m
+
+
+#Mark size
+frame $w.frame.mksize  -borderwidth 0
+pack $w.frame.mksize  -side top -fill x
+
+label $w.frame.marksizelabel -height 0 -text "   Mark size:  " -width 0 
+scale $w.frame.marksize -orient horizontal -length 284 -from 1 -to 20 \
+	 -resolution 1.0 -command "setMarkSize $w.frame.marksize" -tickinterval 0
+pack $w.frame.marksizelabel -in $w.frame.mksize -side left 
+pack $w.frame.marksize  -in $w.frame.mksize  -expand 1 -fill x -pady 2m -padx 2m
+$w.frame.marksize set $curmarksize
+
+
+#Mark foreground
+frame $w.frame.markf  -borderwidth 0
+pack $w.frame.markf  -in $w.frame -side top  -fill x
+
+label $w.frame.markflabel -height 0 -text "Mark foreground:" -width 0
+scale $w.frame.markforeground -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setMarkForeground $w.frame.markforeground" -tickinterval 0 
+
+pack $w.frame.markflabel -in $w.frame.markf -side left
+pack $w.frame.markforeground  -in  $w.frame.markf -side left -expand 1 -fill x -pady 2m -padx 2m
+$w.frame.markforeground set $curmarkforeground
+
+
+#Mark background
+frame $w.frame.markb  -borderwidth 0
+pack $w.frame.markb  -in $w.frame -side top  -fill x
+
+label $w.frame.markblabel -height 0 -text "Mark background:" -width 0
+scale $w.frame.markbackground -orient horizontal -from -2 -to $ncolors \
+	 -resolution 1.0 -command "setMarkBackground $w.frame.markbackground" -tickinterval 0 
+
+pack $w.frame.markblabel -in $w.frame.markb -side left
+pack $w.frame.markbackground  -in  $w.frame.markb -side left -expand 1 -fill x -pady 2m -padx 2m
+$w.frame.markbackground set $curmarkbackground
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -566,3 +617,104 @@ proc DestroyGlobals { } {
     ScilabEval "DestroyGlobals()" "seq"
 }
 
+
+
+proc setMarkForeground {w index} {   
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+		
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; ged_handle.mark_foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
+
+
+proc setMarkBackground {w index} {   
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global ged_handle;"
+    if { $index == -2 } {
+	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == -1 } {
+	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	$w config  -activebackground $color -troughcolor $color
+    } elseif { $index == 0 } {
+	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+		
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+    } else { 
+	ScilabEval "global ged_handle; ged_handle.mark_background=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
+	
+	$w config  -activebackground $color -troughcolor $color
+	
+    }
+}
+
+
+proc setMarkSize {w marks} {
+ScilabEval "global ged_handle;ged_handle.mark_size=$marks;"
+}
+
+proc toggleMarkmode {} {
+global curmarkmode
+ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+}
+
+#Added on the 21.01.05
+proc toggleLinemode {} {
+global curlinemode
+ScilabEval "global ged_handle;ged_handle.line_mode='$curlinemode'"
+}
