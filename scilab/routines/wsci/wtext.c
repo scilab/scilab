@@ -2513,10 +2513,8 @@ BOOL HasAZoneTextSelected(LPTW lptw)
 	return ValRetour;
 }
 /*-----------------------------------------------------------------------------------*/
-int ClearScreenConsole _PARAMS((char *fname))
+int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 {
-	
-	
 	if (Rhs == 0) /* aucun parametre On Efface tout l'ecran */
         {
 		if ( IsWindowInterface() )
@@ -2758,7 +2756,7 @@ int ReplacePrompt(char *Text,char *prompt)
 	
 }
 /*-----------------------------------------------------------------------------------*/
-void HomeFunction(void)
+void HomeFunction _PARAMS((char *fname, unsigned long fname_len))
 {
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);

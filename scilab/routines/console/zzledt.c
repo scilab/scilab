@@ -1048,22 +1048,27 @@ static void enable_keypad_mode(){}
 static void disable_keypad_mode(){}
 #endif
 
-
-
-void HomeFunction(void)
+int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 {
-  XHomeFunction(); /* In SCI/routines/xsci/x_util.c */
-  return;
+	Scierror(999,"\nNot yet implemented. \n");	
+	return 0;
 }
 
-int ClearScreenConsole(char *fname)
+int HomeFunction _PARAMS((char *fname, unsigned long fname_len))
+{
+  XHomeFunction(); /* In SCI/routines/xsci/x_util.c */
+  return 0;
+}
+
+int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len))
 {
   return XClearScreenConsole(fname); /* In SCI/routines/xsci/x_util.c */
 }
 
-int ShowWindowFunction _PARAMS((char *fname))
+int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len))
 {
- sciprint("\nNot yet implemented. \n");	
+  Scierror(999,"\nNot yet implemented. \n");	
+  return 0;
 }
 
 

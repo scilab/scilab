@@ -1,18 +1,20 @@
 #ifndef MATDES_SCI 
 #define MATDES_SCI 
 
-extern int XSaveNative _PARAMS((char *fname));
-/* Minimize or Restore a window */
-extern int ShowWindowFunction _PARAMS((char *fname)); /* wtext.c (wsci)*/
 /* Allan CORNET le 20/08/03 */
 /* voir wsci\wtext.c */
 /* & voir xsc/x_screen.c */
-extern void HomeFunction(void);
-extern int ClearScreenConsole _PARAMS((char *fname));
+extern int ShowWindowFunction _PARAMS((char *fname, unsigned long fname_len)); /* wtext.c (wsci)*/
+extern int HomeFunction _PARAMS((char *fname, unsigned long fname_len));
+extern int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
+extern int XSaveNative _PARAMS((char *fname, unsigned long fname_len));
+
 extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
+
+
 extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
 int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
-/*int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, int ypos,int ym,int yn,unsigned long int xl,unsigned long int yl,  int *ntics));*/
+
 
 
 extern int C2F(matdes)  _PARAMS((void));

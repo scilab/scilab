@@ -244,7 +244,7 @@ extern void Kill_Scilex(void);
 /* voir fichier wmenu.c*/
 extern void SendCTRLandAKey(int code);
 /*--------------------------*/
-void HomeFunction(void);
+void HomeFunction _PARAMS((char *fname, unsigned long fname_len));
 void ResizeScreenBuffer(LPTW lptw);
 void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
@@ -257,7 +257,7 @@ extern BOOL IsAFile(char *chainefichier);
 extern void ToolBarOnOff(LPTW lptw);
 extern void ReLoadMenus(LPTW lptw);
 extern void ResetMenu(void);
-int ClearScreenConsole _PARAMS((char *fname));
+int ClearScreenConsole _PARAMS((char *fname, unsigned long fname_len));
 void ClearCommandWindow(LPTW lptw,BOOL Clearfirstline);
 void HideScilex(void);
 void ShowScilex(void);

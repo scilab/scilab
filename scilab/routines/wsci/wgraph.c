@@ -1814,14 +1814,13 @@ static int NumBMP=0;
 static char DefaultFilenameTests[MAX_PATH]="IMG";
 #define ExtensionTests ".bmp"
 /*-----------------------------------------------------------------------------------*/
-int XSaveNative _PARAMS((char *fname))
+int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 {
 	static int l1, m1, n1;
 	char FilenameBMP[MAX_PATH];
 	integer iflag =0,ids,num,un=1;
 	int *ArrayWGraph=NULL;
 	int i=0;
-	
 
 	switch( Rhs )
 	{
