@@ -5,7 +5,7 @@
   <TITLE>loadmatfile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>2002</DATE>
-  <SHORT_DESCRIPTION name="loadmatfile">loads a Matlab MAT-file (binary or ASCII) into Scilab</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="loadmatfile">loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>loadmatfile(format,filename[,var1[,var2[,...]]])</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>loadmatfile(filename[,format[,var1[,var2[,...]]]])</CALLING_SEQUENCE_ITEM>
