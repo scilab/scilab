@@ -47,6 +47,7 @@ c     librairies
       if(op.eq.equal.or.op.eq.less+great) goto 60
 c     
 c     operations non implantees
+      rhs=rhs1
       top=top0
       fin=-fin
       return
@@ -99,6 +100,7 @@ c
 c     operations non implantees
       top=top0
       fin=-fin
+      rhs=rhs1
       return
 c     
 c     comparaisons
