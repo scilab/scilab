@@ -138,7 +138,7 @@ xset('pattern',1)
 // -- trace du cadre
 plot2d(rect(1),rect(2),-1,'011',' ',rect,axisdata);
 xgrid(4)
-
+xtitle(tit(1),tit(2),tit(3));
 xset('alufunction',6)
 if x<>[]&y<>[] then 
   plot2d(x,y,1,'000',' ');plot2d(x,y,-1,'000',' ');
