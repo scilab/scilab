@@ -2651,7 +2651,7 @@ int scixpolys(fname,fname_len)
             return 0; 
     }
     for (i = 0; i < n1; ++i) {
-      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n1,0,*istk(l3+i),&hdl);
+      Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),m1,0,*istk(l3+i),&hdl);
       hdltab[i]=hdl;
       }
     /** construct agregation and make it current object**/
