@@ -227,7 +227,7 @@ int C2F(savehistory) _PARAMS((char *fname))
 
 #ifndef WITH_READLINE
 
-static void write_history(char *filename)
+void write_history(char *filename)
 {
 	FILE * pFile;
 	sci_hist *Parcours = history;
@@ -348,7 +348,6 @@ static void reset_history(void)
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */
 
-static void reset_history(void);
 
 int C2F(resethistory) _PARAMS((char *fname))
 {

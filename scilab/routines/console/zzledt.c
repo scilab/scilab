@@ -229,7 +229,7 @@ static char *CL=NULL;            /* clear screen */
 
 extern int GetSaveHistoryAfterNcommands(void);
 extern char * getfilenamehistory(void);
-extern void save_history(char *filename);
+extern void write_history(char *filename);
 
 int NumberOfCommands=0;
 
@@ -658,7 +658,7 @@ extern void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  char *filenamehistory=NULL;
 	
 	  filenamehistory=getfilenamehistory();
-	  save_history( filenamehistory );
+	  write_history( filenamehistory );
 	  free(filenamehistory);
 
 	  NumberOfCommands=0;
