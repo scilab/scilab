@@ -152,8 +152,6 @@ c           call error(110)
       goto 26
  28   lc=lc+nsiz+3
       if(fin.gt.0) goto 65
-
-
       goto 10
 c     
 c     allops 
@@ -168,6 +166,7 @@ c     allops
             rhs=rhs-1
             fun=ifun
             fin=ifin
+            call adjustrhs
             goto 81
          endif
       endif
