@@ -6028,7 +6028,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*DJ.A merge*/
   else if (strcmp(marker,"color_mode") == 0) {    
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      int m3n,n3n,nc,j;
+   /*    int m3n,n3n,nc,j; */
       sciSurface * psurf = pSURFACE_FEATURE (pobj);
       
 
@@ -6041,83 +6041,83 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    {
 	      pSURFACE_FEATURE (pobj)->izcol = 0;
 	    }
-	  else if(psurf->flagcolor == 1)
-	    {
-	      pSURFACE_FEATURE (pobj)->izcol = 0;
-	    }
-	  else if(psurf->flagcolor == 2) /* Warning: here we need a color vector (one color per facet). N = 1 x dimzy  */
-	    {
-	      m3n = pSURFACE_FEATURE (pobj)->m3n;
-	      n3n = pSURFACE_FEATURE (pobj)->n3n;
-	      nc = psurf->dimzy; /* rappel: dimzy always equal n3*/
+/* 	  else if(psurf->flagcolor == 1) */
+/* 	    { */
+/* 	      pSURFACE_FEATURE (pobj)->izcol = 0; */
+/* 	    } */
+	 /*  else if(psurf->flagcolor == 2) /\* Warning: here we need a color vector (one color per facet). N = 1 x dimzy  *\/ */
+/* 	    { */
+/* 	      m3n = pSURFACE_FEATURE (pobj)->m3n; */
+/* 	      n3n = pSURFACE_FEATURE (pobj)->n3n; */
+/* 	      nc = psurf->dimzy; /\* rappel: dimzy always equal n3*\/ */
 	      
-	      psurf->nc = nc;
-	      FREE(psurf->zcol); psurf->zcol = NULL;
+/* 	      psurf->nc = nc; */
+/* 	      FREE(psurf->zcol); psurf->zcol = NULL; */
 	      
-	      if(nc>0){
-		if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL)
-		  return -1;
-	      }
+/* 	      if(nc>0){ */
+/* 		if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL) */
+/* 		  return -1; */
+/* 	      } */
 	      
-	      if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
-		if( m3n==1 || n3n ==1)
-		  {
-		    /* We have just enough information to fill the psurf->zcol array*/
-		    for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-		      psurf->zcol[j]= psurf->inputCMoV[j];                 	
-		  }
-		else if (!( m3n==1 || n3n ==1))
-		  {
-		    /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
-		    for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		      psurf->zcol[j]= psurf->inputCMoV[j];
-		  }
-	      }
-	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
-		for (j = 0;j < psurf->dimzy; j++)   /* nc value is dimzy*/
-		  psurf->zcol[j]= abs(psurf->flag[0]);
-	      }
+/* 	      if(m3n * n3n != 0 ){ /\* There is either a color matrix or vector*\/ */
+/* 		if( m3n==1 || n3n ==1) */
+/* 		  { */
+/* 		    /\* We have just enough information to fill the psurf->zcol array*\/ */
+/* 		    for (j = 0;j < nc; j++)  /\* nc value is dimzx*dimzy == m3n * n3n *\/ */
+/* 		      psurf->zcol[j]= psurf->inputCMoV[j];                 	 */
+/* 		  } */
+/* 		else if (!( m3n==1 || n3n ==1)) */
+/* 		  { */
+/* 		    /\* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*\/ */
+/* 		    for (j = 0;j < nc; j++)   /\* nc value is dimzy*\/ */
+/* 		      psurf->zcol[j]= psurf->inputCMoV[j]; */
+/* 		  } */
+/* 	      } */
+/* 	      else if (m3n * n3n == 0) {/\* There is no color matrix/vect. in input *\/ */
+/* 		for (j = 0;j < psurf->dimzy; j++)   /\* nc value is dimzy*\/ */
+/* 		  psurf->zcol[j]= abs(psurf->flag[0]); */
+/* 	      } */
 	      
-	    }
-	  else if (psurf->flagcolor == 3)
-	    {
-	      m3n = pSURFACE_FEATURE (pobj)->m3n;
-	      n3n = pSURFACE_FEATURE (pobj)->n3n;
-	      nc = psurf->dimzx * psurf->dimzy;
+/* 	    } */
+	/*   else if (psurf->flagcolor == 3) */
+/* 	    { */
+/* 	      m3n = pSURFACE_FEATURE (pobj)->m3n; */
+/* 	      n3n = pSURFACE_FEATURE (pobj)->n3n; */
+/* 	      nc = psurf->dimzx * psurf->dimzy; */
 	      
-	      psurf->nc = nc;
-	      FREE(psurf->zcol); psurf->zcol = NULL;
-	      
-	      
-	      if ((psurf->zcol = MALLOC ( nc * sizeof (int))) == NULL)
-		return -1;
+/* 	      psurf->nc = nc; */
+/* 	      FREE(psurf->zcol); psurf->zcol = NULL; */
 	      
 	      
-	      if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
-		if( m3n==1 || n3n ==1) /* COLOR VECTOR */
-		  {
-		    /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
-		    /* We repeat the data:*/
-		    for(i = 0; i< psurf->dimzy; i++){
-		      for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-			psurf->zcol[(psurf->dimzx)*i+j]= psurf->inputCMoV[i];
-		    }               	
-		  }
-		else if (!( m3n==1 || n3n ==1)) /* COLOR MATRIX */
-		  {
-		    /* We have just enough information to fill the psurf->zcol array*/
-		    for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /* nc value is dimzy*/
-		      psurf->zcol[j]=  psurf->inputCMoV[j];
-		  }
-	      }
-	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
+/* 	      if ((psurf->zcol = MALLOC ( nc * sizeof (int))) == NULL) */
+/* 		return -1; */
+	      
+	      
+/* 	      if(m3n * n3n != 0 ){ /\* There is either a color matrix or vector*\/ */
+/* 		if( m3n==1 || n3n ==1) /\* COLOR VECTOR *\/ */
+/* 		  { */
+/* 		    /\* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*\/ */
+/* 		    /\* We repeat the data:*\/ */
+/* 		    for(i = 0; i< psurf->dimzy; i++){ */
+/* 		      for (j = 0;j < psurf->dimzx; j++)  /\* nc value is dimzx*dimzy == m3n * n3n *\/ */
+/* 			psurf->zcol[(psurf->dimzx)*i+j]= psurf->inputCMoV[i]; */
+/* 		    }               	 */
+/* 		  } */
+/* 		else if (!( m3n==1 || n3n ==1)) /\* COLOR MATRIX *\/ */
+/* 		  { */
+/* 		    /\* We have just enough information to fill the psurf->zcol array*\/ */
+/* 		    for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /\* nc value is dimzy*\/ */
+/* 		      psurf->zcol[j]=  psurf->inputCMoV[j]; */
+/* 		  } */
+/* 	      } */
+/* 	      else if (m3n * n3n == 0) {/\* There is no color matrix/vect. in input *\/ */
 		
-		for(i = 0; i<  psurf->dimzy; i++){
-		  for (j = 0;j <  psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-		    psurf->zcol[( psurf->dimzx)*i+j]= abs(psurf->flag[0]);
-		}  
-	      }
-	    }
+/* 		for(i = 0; i<  psurf->dimzy; i++){ */
+/* 		  for (j = 0;j <  psurf->dimzx; j++)  /\* nc value is dimzx*dimzy == m3n * n3n *\/ */
+/* 		    psurf->zcol[( psurf->dimzx)*i+j]= abs(psurf->flag[0]); */
+/* 		}   */
+/* 	      } */
+/* 	    } */
 	}
     }
     else
@@ -6133,7 +6133,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pSURFACE_FEATURE (pobj)->flagcolor= (int)stk(*value)[0];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	int oldflagcolor,m3n,n3n,nc,j,flagcolor=(int)stk(*value)[0];
+	int oldflagcolor,m3n,n3n,nc,j,ii,flagcolor=(int)stk(*value)[0];
 	/*int *zcol;*/
 	/*F.Leray psurf for debug*/
 	sciSurface * psurf = pSURFACE_FEATURE (pobj);
@@ -6184,8 +6184,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      else if (!( m3n==1 || n3n ==1))
 		{
 		  /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+		  /* NO !! Let's do better; F.Leray 08.05.04 : */
+		  /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
+		  /* in our example: m3n=4 and n3n=400 */
 		  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		    psurf->zcol[j]= psurf->inputCMoV[j];
+		    {
+		      double tmp = 0;
+		      for(ii=0;ii<m3n;ii++)
+			tmp = tmp +  psurf->inputCMoV[j*m3n + ii];
+		      tmp = tmp / m3n;
+		      psurf->zcol[j]= tmp;
+		    }
 		}
 	    }
 	    else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
@@ -7324,7 +7333,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	*stk(outindex) = pSURFACE_FEATURE (pobj)->hiddencolor;
       }
-      else {
+      else{
 	strcpy(error_message,"hiddencolor property does not exist for this handle");
 	return -1;
       }
@@ -8238,7 +8247,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
 
 
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n, n3n, l3n;
+  integer m3n, n3n, l3n, ii;
 
   double * pvecx = NULL, * pvecy = NULL, * pvecz = NULL;
   integer /* * zcol = NULL,*/ izcol = 0 ;
@@ -8400,8 +8409,17 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       else if(psurf->flagcolor==2 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	{
 	  /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+	  /* NO !! Let's do better; F.Leray 08.05.04 : */
+	  /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
+	  /* in our example: m3n=4 and n3n=400 */
 	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-	    psurf->zcol[j]= psurf->inputCMoV[j];
+	    {
+	      double tmp = 0;
+	      for(ii=0;ii<m3n;ii++)
+		tmp = tmp +  psurf->inputCMoV[j*m3n + ii];
+	      tmp = tmp / m3n;
+	      psurf->zcol[j]= tmp;
+	    }
 	}
       /* case flagcolor == 3*/
       else if(psurf->flagcolor==3 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
@@ -8445,17 +8463,16 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       }
 
       /* case flagcolor == 2*/
-      if(psurf->flagcolor==2) /* it means we have a vector in Color input: 1 color per facet in input*/
+      if(psurf->flagcolor==2) /* we have to fill a Color vector */
 	{
-	  /* We have just enough information to fill the psurf->zcol array*/
 	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
 	    psurf->zcol[j]= abs(psurf->flag[0]);
 	}
-      else if(psurf->flagcolor==3) /* it means we have a vector in Color input: 1 color per facet in input*/
+      else if(psurf->flagcolor==3) /* we have to fill a color matrix */
 	{
 	  for(i = 0; i< psurf->dimzy; i++){
-	    for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-	      psurf->zcol[psurf->dimzx*i+j]=  abs(psurf->flag[0]); /* DJ.A 2003 */
+	    for (j = 0;j < psurf->dimzx; j++)
+	      psurf->zcol[psurf->dimzx*i+j]=  abs(psurf->flag[0]);
 	  }
 	}
       else
