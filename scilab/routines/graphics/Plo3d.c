@@ -394,7 +394,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 /*        printf("%d %d %d %d\n",flag_det0,flag_det1,flag_det2,flag_det3); */
 	  }
 	  flag_det=flag_det0+flag_det1+flag_det2+flag_det3;
-      if (flag_det > 3 || (flag_det==1 && (*p)==3)) {	      
+      if ((flag_det > 3 || (flag_det==1 && (*p)==3)) && fg1>0) {	      
 	    fill[0] = (flag[0] > 0 ) ? fg1 : -fg1 ;
 	      /* 
 		 The following test fixes a bug : when flag[0]==0 then only the
@@ -404,13 +404,8 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	      
 	      if (flag[0]==0) fill[0]=0;
 	      /* modification du to E Segre to avoid drawing of hidden facets */
-	      if (fg1>0) 
-		{
 		  C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize,
 			  PI0,PD0,PD0,PD0,PD0,0L,0L); 
-		}
-	      /*C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&polysize ,
-		PI0,PD0,PD0,PD0,PD0,0L,0L); */
 	    }
 	  else if ( iflag == 1) 
 	    {
