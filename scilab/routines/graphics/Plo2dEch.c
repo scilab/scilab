@@ -474,22 +474,14 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	  if (( masousfen = sciIsExistingSubWin (WRect)) != (sciPointObj *)NULL)
 	    sciSetSelectedSubWin(masousfen);
 	  else if ((masousfen = ConstructSubWin (sciGetCurrentFigure(), 0)) != NULL)
-	    sciSetSelectedSubWin(masousfen);
-
-	  pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
-	  pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
-	  pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
-          pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
-
-	  if (FRect != NULL)
 	    {
-	      pSUBWIN_FEATURE (masousfen)->FRect[0]   = FRect[0];
-	      pSUBWIN_FEATURE (masousfen)->FRect[1]   = FRect[1];
-	      pSUBWIN_FEATURE (masousfen)->FRect[2]   = FRect[2];
-	      pSUBWIN_FEATURE (masousfen)->FRect[3]   = FRect[3];
-	    }
-	}
-
+	    sciSetSelectedSubWin(masousfen);
+            pSUBWIN_FEATURE (masousfen)->WRect[0]   = WRect[0];
+	    pSUBWIN_FEATURE (masousfen)->WRect[1]   = WRect[1];
+	    pSUBWIN_FEATURE (masousfen)->WRect[2]   = WRect[2];
+            pSUBWIN_FEATURE (masousfen)->WRect[3]   = WRect[3];
+            }
+	} 
       /** */
       /* a subwindow is specified */
       flag[1]='t';
@@ -512,7 +504,15 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	    }
 	}
     }
-  else WRect = Cscale.subwin_rect;
+  else WRect = Cscale.subwin_rect; 
+  if (version_flag() == 0)
+    if (FRect != NULL)
+	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+	      pSUBWIN_FEATURE (masousfen)->FRect[0]   = FRect[0];
+	      pSUBWIN_FEATURE (masousfen)->FRect[1]   = FRect[1];
+	      pSUBWIN_FEATURE (masousfen)->FRect[2]   = FRect[2];
+	      pSUBWIN_FEATURE (masousfen)->FRect[3]   = FRect[3];
+	    }
   if ( FRect != NULL) flag[2]='t'; else FRect = Cscale.frect;
   if ( ARect != NULL) flag[5]='t'; else ARect = Cscale.axis;
   if ( logscale != NULL) flag[4] ='t'; else logscale = Cscale.logflag;
@@ -539,8 +539,8 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	  FRect[3]=log10(FRect[3]);
 	}
     }
-  if (GetDriver()=='R') StoreNEch("nscale",flag,WRect,ARect,FRect,logscale);
-  set_scale(flag,WRect,FRect,NULL,logscale,ARect);
+  if ((GetDriver()=='R') && (version_flag() != 0)) StoreNEch("nscale",flag,WRect,ARect,FRect,logscale);
+  set_scale(flag,WRect,FRect,NULL,logscale,ARect);  
   return(0);
 }
 
@@ -1305,6 +1305,7 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
   sciPointObj *psubwin; 
   int i;
 
+  /** 18/06/2002 **/
   if (version_flag() == 0){
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       for (i=0;i<4 ; i++)
