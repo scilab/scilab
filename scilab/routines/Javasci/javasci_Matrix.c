@@ -1,19 +1,26 @@
 #include "javasci_Matrix.h"
+/********************************************************************************************************/
 /* Modifications Allan CORNET */
 /* INRIA 2004 */
+/********************************************************************************************************/
 #include <math.h>
 #include <stdio.h> 
 #include <string.h>
 #if WIN32
-#include <windows.h>
+  #include <windows.h>
 #endif
-#include "..\machine.h"
-#include "..\stack-c.h"
 
+#include "../machine.h"
+#include "../stack-c.h"
 
+/********************************************************************************************************/
+#ifndef SCI 
+  #define SCI ".."
+#endif 
+/********************************************************************************************************/
 static int send_scilab_job(char *job) ;
 static void Initialize() ;
-
+/********************************************************************************************************/
 extern void C2F(banier)(int *x) ;
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
@@ -21,19 +28,23 @@ extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void C2F(storeversion)(char *str,int n);
 extern  int C2F(sxevents)();
+extern void sciGetIdFigure (int *vect, int *id, int *flag);
+extern void start_sci_gtk();
+extern int version_flag();
+extern char *getenv();
+extern void add_sci_argv();
+extern void add_sci_argv();
+extern void set_sci_env();
 
+/********************************************************************************************************/
 #if WIN32
 extern void TextMessage1 (int ctrlflag);
 extern void InitWindowGraphDll(void);
 #endif
-
+/********************************************************************************************************/
 static int init = 0;
-
-
-
-
-JNIEXPORT void JNICALL Java_javasci_Matrix_scilabJob
-  (JNIEnv *env , jobject obj_this, jstring job)
+/********************************************************************************************************/
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabJob(JNIEnv *env , jobject obj_this, jstring job)
 {
   int i,cm,cn,lp;
   const char *cname,*cjob;
@@ -76,13 +87,8 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabJob
   (*env)->ReleaseStringUTFChars(env, job , cjob);
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
-
-/*----------------------------------
- * just a test XXXXX 
- *----------------------------------*/ 
-
-JNIEXPORT void JNICALL Java_javasci_Matrix_testFill
-  (JNIEnv *env , jobject obj_this)
+/********************************************************************************************************/
+JNIEXPORT void JNICALL Java_javasci_Matrix_testFill(JNIEnv *env , jobject obj_this)
 {
   int i,j;
   /* get the class */
@@ -103,14 +109,11 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_testFill
 
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
-
-
+/********************************************************************************************************/
 /*----------------------------------
  * Send a Scilab Matrix to scilab 
  *----------------------------------*/ 
-
-JNIEXPORT void JNICALL Java_javasci_Matrix_scilabSend
-  (JNIEnv *env , jobject obj_this)
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabSend(JNIEnv *env , jobject obj_this)
 {
   int cm,cn;
   const char *cname; 
@@ -138,12 +141,11 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabSend
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   (*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
+/********************************************************************************************************/
 /*----------------------------------
- *  
+ *  scilabEvents
  *----------------------------------*/
-JNIEXPORT void JNICALL Java_javasci_Matrix_scilabEvents
-  (JNIEnv *env , jobject obj_this)
-  
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabEvents(JNIEnv *env , jobject obj_this)
 {
   #if WIN32
 	TextMessage1 (1);
@@ -151,12 +153,10 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabEvents
 	C2F(sxevents)();
   #endif
 }
-
-
-JNIEXPORT jint JNICALL Java_javasci_Matrix_scilabHaveAGraph
-  (JNIEnv *env , jobject obj_this)
+/********************************************************************************************************/
+JNIEXPORT jint JNICALL Java_javasci_Matrix_scilabHaveAGraph (JNIEnv *env , jobject obj_this)
 {
-	integer iflag =0,ids,num,un=1,l1;
+	integer iflag =0,ids,num,un=1;
 	int *ArrayWGraph=NULL;
 	jint vInt=0;
 
@@ -174,13 +174,11 @@ JNIEXPORT jint JNICALL Java_javasci_Matrix_scilabHaveAGraph
  
 	return vInt;
 }
-
+/********************************************************************************************************/
 /*----------------------------------
  * Get a Scilab Matrix from Scilab 
  *----------------------------------*/ 
-
-JNIEXPORT void JNICALL Java_javasci_Matrix_scilabGetN
-  (JNIEnv *env , jobject obj_this)
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabGetN(JNIEnv *env , jobject obj_this)
 {
   int cm,cn,lp;
   const char *cname; 
@@ -206,9 +204,7 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabGetN
 
   if ( init == 0) { init++; Initialize();} 
   cm=jm;cn=jn;
-
-
-	if ( jt == 0 )
+  if ( jt == 0 )
 	{
 	  if ( ! C2F(cmatptr)((char *)cname, &cm, &cn, &lp, strlen(cname))) 
 		  fprintf(stderr,"erreur lors de la reception \n");
@@ -228,13 +224,11 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabGetN
 	}
 	(*env)->ReleaseDoubleArrayElements(env,jx,cx,0);
 }
-
+/********************************************************************************************************/
 /*----------------------------------
  * Get a Scilab Matrix from Scilab 
  *----------------------------------*/ 
-
-JNIEXPORT jstring JNICALL Java_javasci_Matrix_scilabGetSN
-  (JNIEnv *env , jobject obj_this, jint ixarg, jint jarg)
+JNIEXPORT jstring JNICALL Java_javasci_Matrix_scilabGetSN(JNIEnv *env , jobject obj_this, jint ixarg, jint jarg)
 {
   int cm,cn,lp;
   const char *cname; 
@@ -274,14 +268,11 @@ JNIEXPORT jstring JNICALL Java_javasci_Matrix_scilabGetSN
   (*env)->ReleaseStringUTFChars(env, jname , cname);
   return (*env)->NewStringUTF(env, tmpStr);
 }
-
-
+/********************************************************************************************************/
 /*----------------------------------
  * execute a scilab instruction 
  *----------------------------------*/ 
-
-JNIEXPORT void JNICALL Java_javasci_Matrix_scilabExec 
-  (JNIEnv *env , jclass cl, jstring job)
+JNIEXPORT void JNICALL Java_javasci_Matrix_scilabExec(JNIEnv *env , jclass cl, jstring job)
 {
   const char *cjob;
   cjob = (*env)->GetStringUTFChars(env, job, NULL);
@@ -292,36 +283,18 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabExec
     }
   (*env)->ReleaseStringUTFChars(env, job , cjob);
 }
-
-
-
+/********************************************************************************************************/
 /* 
  * Initialisation de Scilab 
- * avec execution de la startup 
- * pour ne pas avoir a ecrire un script 
- * de lancement je fixe SCI en dur qui est passe par le 
- * Makefile 
  */
-
-#ifndef SCI 
-#define SCI ".."
-#endif 
-
+/********************************************************************************************************/
 static void Initialize() 
 {
-
+  static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 
   static char nw[]="-nw";
   static char nb[]="-nb";
-  
-  
-
-  extern char *getenv();
-  extern void add_sci_argv();
-  extern void add_sci_argv();
-  extern void set_sci_env();
-
 
   char *p1 = (char*)getenv ("SCI");
   
@@ -330,7 +303,7 @@ static void Initialize()
   add_sci_argv(nw);
   
   
-  /* je fixe des variables d'environement
+  /* je fixe des variables d'environnement
    * ici pour pas avoir de callsci a ecrire 
    */ 
   if ( p1== NULL )
@@ -338,13 +311,6 @@ static void Initialize()
 	  set_sci_env(SCI,NULL);
   }
   else  set_sci_env(p1,NULL);
- 
-
-   /* Initialisation fenetre graphique */
-  #if WIN32
-  InitWindowGraphDll();
-  #endif
- 
 
   /* Scilab Initialization */ 
   C2F(inisci)(&iflag,&stacksize,&ierr);
@@ -356,43 +322,30 @@ static void Initialize()
   /* running the startup */ 
   C2F(settmpdir)();
 
-  /* Chargement de ScilabJava.star */
-  C2F(scirun)("exec('SCI/scilab.star');exit;",strlen("exec('SCI/scilab.star');exit;" ));
+  /* Initialisation fenetre graphique */
+  #if WIN32
+  InitWindowGraphDll();
+  #endif
+
+  start_sci_gtk() ;
+
+  /* Chargement de Scilab.star */
+  C2F(scirun)(initstr,(int)strlen(initstr));
   
   fprintf(stderr,"Fin de Init\n");
  
 }
-
-
-
+/********************************************************************************************************/
 static int send_scilab_job(char *job) 
 {
   static char buf[1024],
   format[]="Err=execstr('%s','errcatch','n');quit;";
   int m,n,lp;
   sprintf(buf,format,job);
-  C2F(scirun)(buf,strlen(buf));
+  C2F(scirun)(buf,(int)strlen(buf));
   GetMatrixptr("Err", &m, &n, &lp);
   return (int) 0; // *stk(lp);
 }
-
-/* I do not want to see the Scilab banier */ 
-
-void C2F(banier)(int *x) 
-{
-  fprintf(stdout,"Et Hop ....\n");
-  //C2F(storeversion)("scilab-2.5.1",12L);
-}
-
-/* sert a rien sinon a satisfaire le linker */
-
+/********************************************************************************************************/
 int MAIN__() {return 0;};
-
-
-
-
-
-
-
-
-
+/********************************************************************************************************/
