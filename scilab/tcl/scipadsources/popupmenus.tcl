@@ -11,15 +11,39 @@ proc showpopup2 {} {
         tk_popup $pad.filemenu.debug $numx $numy
     }
 }
+
 proc showpopup3 {} {
-    global pad
+    global pad 
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     tk_popup $pad.filemenu.exec $numx $numy
 }
+
 proc showpopupfont {} {
     global pad
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     tk_popup $pad.filemenu.options $numx $numy
+}
+
+proc showpopupsource {ind} {
+    global pad textareacur menuFont lang
+    set numx [winfo pointerx .]
+    set numy [winfo pointery .]
+    catch {destroy $pad.popsource}
+    if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
+    set curterm [$textareacur get [$textareacur index "$ind wordstart"] \
+		       [$textareacur index "$ind wordend"]]
+    if {[info exists curterm]} {
+          set curterm [string trim $curterm]
+          if {$curterm!=""} {
+             set sourcecommand "scipad(get_function_path(\"$curterm\"))"
+             menu $pad.popsource -tearoff 0 -font $menuFont
+	      if {$lang=="eng"} { set plabel "Open the source of $curterm"
+	      } else { set plabel "Ouvrir le source du $curterm"}
+             $pad.popsource add command -label $plabel\
+	      -command "ScilabEval $sourcecommand"
+	  }
+    }
+    tk_popup $pad.popsource $numx $numy
 }

@@ -637,3 +637,10 @@ ES 24/1/05
  * file "words" purged of all the keywords in the two lists above
  * new colors for them
  * version --> 3.19
+
+ES 26/1/05
+ * Ctrl-B1 clicking, or issuing F8 when the cursor is in a libfun
+   opens the source file (via get_function_path()) of that libfun
+   (undocumented yet, nor reported in a menu)
+ * a nicer color for libfun
+ * version 3.20

@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.19"
+set version "Version 3.20"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below
@@ -25,7 +25,7 @@ set BRACCOLOR "red"
 set PUNCOLOR "turquoise4"
 set KEYWCOLOR "blue2"
 set PDEFCOLOR "purple"
-set LFUNCOLOR "RoyalBlue1"
+set LFUNCOLOR \#006874
 set OPCOLOR "blue4"
 set TXTCOLOR $FGCOLOR
 set QTXTCOLOR "darkred"
