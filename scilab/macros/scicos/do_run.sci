@@ -93,7 +93,6 @@ if needstart then //scicos initialisation
     return;
   end
   if size(tolerances,'*')<6 then tolerances(6) =0,end
-  end
   solver=tolerances(6)
   if %cpr(1).xptr($)-1<size(%cpr(2).x,'*') & solver<100 then
       message(['Diagram has been compiled for implicit solver'
@@ -127,7 +126,8 @@ if needstart then //scicos initialisation
     return
   end
   xset('window',win);
-end  needreplay=%t
+end  
+needreplay=%t
 
 // simulation
 wpar=scs_m(1);tf=wpar(4);tolerances=wpar(3)
