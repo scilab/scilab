@@ -48,6 +48,8 @@ case 5 then
   t=sp2exp(a,lmax)
 case 6 then
   t=sp2exp(a,lmax)
+case 8 then 
+  t=int2exp(a,lmax)
 case 10 then
   t=str2exp(a,lmax)
 case 13 then
@@ -201,6 +203,9 @@ if m*n>1 then
 end
 
 endfunction
+
+
+
 function t=pol2exp(a,lmax)
 $
 [lhs,rhs]=argn(0)
@@ -472,3 +477,12 @@ end
 t($)=t($)+')'
 endfunction
 
+
+function t=int2exp(a,lmax)
+it=inttype(a)
+if it>10 then f='uint',else f='int',end
+f=f+string(8*modulo(it,10))
+t=mat2exp(double(a),lmax)
+t(1)=f+'('+t(1)
+t($)=t($)+')'
+endfunction
