@@ -70,6 +70,7 @@ c         return
 c      endif
       if (.not.checkrhs(fname,1,4)) return
       if (.not.checklhs(fname,1,1)) return
+      topk = top
 c     checking last variable
       ill=iadr(lstk(top))
       if(istk(ill).eq.15) then
