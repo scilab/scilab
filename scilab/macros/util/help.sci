@@ -14,6 +14,8 @@ function help(key,flag)
     elseif key==2 then
       key=x_dialog('Select a keyword','')
       if key==[] then return,end
+      key=stripblanks(key(1))
+      if key=='' then return,end
       help_apropos(key)
       return
     elseif key==3 then //configure
