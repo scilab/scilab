@@ -3,8 +3,9 @@ function %h_p(h)
     T=matrix(h.type,size(h))
     t=''
     for k=1:size(h,2)
-      t=t+part(T(:,k),max(length(T(:,k)))+1)
+      t=t+part(T(:,k),1:max(length(T(:,k)))+1)
     end
+    t=[string(size(h,1))+' by '+string(size(h,2))+' matrix of handles:';t]
   else
     t=h.type
     select h.type
