@@ -1062,8 +1062,8 @@ int C2F(scicos)
   /* Initialized data */
   static integer otimer = 0;
   /* System generated locals */
-  integer i3,*ipardummy;
-  double /*d__1,*/*rpardummy;
+  integer i3,*ipardummy=NULL;
+  double /*d__1,*/*rpardummy=NULL;
 
   /* Local variables */
   static integer flag__, jdum;
@@ -1324,6 +1324,8 @@ int C2F(scicos)
 	      free(W); 
 	      return; 
 	    }
+		
+
 	    C2F(ddaskr)(C2F(simblkdaskr), neq, told, x, xd, &t, info, &rtol, 
 			&Atol, &istate, &rhot[1],&nrwp, &ihot[1], &niwp,
 			rpardummy, ipardummy, &jdum, rpardummy, 
