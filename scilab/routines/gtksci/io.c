@@ -198,6 +198,13 @@ int C2F(xscion)(int *i)
   return(0);
 }
 
+
+int C2F(checkevts)(int *i)
+{
+  *i= Max(INXscilab,1-BasicScilab);
+  return(0);
+}
+
 /*---------------------------------------------------------------------------
  * when there is no window 
  *    the display can be activated i.e with a plot or an x_menu 
@@ -209,6 +216,27 @@ void SetNotBasic() {
 }
 
 int GetBasic() { return  BasicScilab;} 
+
+
+
+/* 
+ * used to start tk at run time when scilab 
+ * was started with scilab -nw 
+ * open a display with DisplayInit and initialize 
+ * Tk. If TK_Started is set to one then the initialization 
+ * was correct.
+ */
+
+void sci_tk_activate(void)
+{
+#ifdef WITH_TK
+  start_sci_gtk(); /* be sure that gtk is started */
+  inittk();
+  BasicScilab = 0;
+  flushTKEvents();
+#endif
+}
+
 
 
 /*---------------------------------------------------------------------------
