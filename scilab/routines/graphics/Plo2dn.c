@@ -178,8 +178,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   
   if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
   
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
-  
   axes_properties_changed = strflag2axes_properties(psubwin, strflag);
   
   with_leg= (strflag[0] == '1');
@@ -266,6 +264,9 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     }
     return(0);
   }
+  
+  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
+  
   /*  sciDrawObj(sciGetCurrentFigure ());*/
   return(0);
 }
@@ -452,7 +453,8 @@ int re_index_brect(double * brect, double * drect)
 BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 {
   BOOL haschanged = FALSE;
-  
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+
   /* F.Leray 07.05.04 */
   /* strflag[1] Isoview & tight_limits flags management*/
   switch (strflag[1])  {
@@ -460,22 +462,22 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     /* no changes */
     break;
   case '1' : case '2' : case '7' : case '8' :
-    if(pSUBWIN_FEATURE (psubwin)->tight_limits != TRUE){
-      pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;
+    if(ppsubwin->tight_limits != TRUE){
+      ppsubwin->tight_limits = TRUE;
       haschanged = TRUE;
     }
     /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE; */
     break;
   case '3' : case '4' :
     /*pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;*/
-    if(pSUBWIN_FEATURE (psubwin)->isoview != TRUE){
-      pSUBWIN_FEATURE (psubwin)->isoview = TRUE;
+    if(ppsubwin->isoview != TRUE){
+      ppsubwin->isoview = TRUE;
       haschanged = TRUE;
     }
     break;
   case '5' : case '6' :
-    if(pSUBWIN_FEATURE (psubwin)->tight_limits != FALSE){
-      pSUBWIN_FEATURE (psubwin)->tight_limits = FALSE; /* pretty axes */
+    if(ppsubwin->tight_limits != FALSE){
+      ppsubwin->tight_limits = FALSE; /* pretty axes */
       haschanged = TRUE;
     }
     /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE;*/
@@ -486,88 +488,88 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
   /* strflag[2] */
   switch (strflag[2])  {
   case '0': 
-    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE){
-      /*       pSUBWIN_FEATURE (psubwin)->isaxes = FALSE; */
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE; /* also trigger z axis */
+    if(ppsubwin->FirstPlot == TRUE){
+      /*       ppsubwin->isaxes = FALSE; */
+      ppsubwin->axes.axes_visible[0] = FALSE;
+      ppsubwin->axes.axes_visible[1] = FALSE;
+      ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
       haschanged = TRUE;
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
     break;
   case '1' : 
- /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'l'){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      pSUBWIN_FEATURE (psubwin)->axes.ydir ='l';
+ /*    ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE ||
+       ppsubwin->axes.ydir != 'l'){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.ydir ='l';
       haschanged = TRUE;
     }
     break;
   case '2' : 
-  /*   pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+  /*   ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       /* Case not implemented yet : the plot is surrounded by a box without tics. */
       haschanged = TRUE;
     }
     break;
   case '3' : 
-    /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'r'){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      pSUBWIN_FEATURE (psubwin)->axes.ydir ='r';
+    /*    ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE ||
+       ppsubwin->axes.ydir != 'r'){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.ydir ='r';
       haschanged = TRUE;
     }
     break;
   case '4' :
-    /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    /*     ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
       haschanged = TRUE;
     }
     break;
   case '5' :
- /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.xdir != 'c' ||
-       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'c'){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
-      pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
+ /*    ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE ||
+       ppsubwin->axes.xdir != 'c' ||
+       ppsubwin->axes.ydir != 'c'){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.xdir ='c';
+      ppsubwin->axes.ydir ='c';
       haschanged = TRUE;
     }
     break;
   case '9' :
-    /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
-       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    /*     ppsubwin->isaxes = TRUE; */
+    if(ppsubwin->axes.axes_visible[0] != TRUE ||
+       ppsubwin->axes.axes_visible[1] != TRUE ||
+       ppsubwin->axes.axes_visible[2] != TRUE){
+      ppsubwin->axes.axes_visible[0] = TRUE;
+      ppsubwin->axes.axes_visible[1] = TRUE;
+      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       haschanged = TRUE;
     }
   }
