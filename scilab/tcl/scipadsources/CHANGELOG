@@ -867,3 +867,8 @@ Francois VOGEL, 13/03/05
 ES 15/03/05
  * new option available: single quoted strings colorized as strings/not
  * version --> 3.49
+
+Francois VOGEL, 16/03/05
+ * Several minor glitches corrected for Find/Replace, in selection or full
+   text, related to changing search direction between searches
+ * version --> 3.50

@@ -1,5 +1,5 @@
 # Scipad texts in French
-# in sync with v3.49
+# in sync with v3.50
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -120,6 +120,7 @@
 # findreplace.tcl
 ::msgcat::mcset fr "The string" "La chaîne"
     ::msgcat::mcset fr "could not be found" "n'a pu être trouvée"
+::msgcat::mcset fr "replacements done" "remplacements effectués"
 ::msgcat::mcset fr "Find" "Rechercher"
 ::msgcat::mcset fr "No match found in the selection for" "La chaîne"
     ::msgcat::mcset fr "\nWould you like to look for it in the entire text?" "n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?"

@@ -1,6 +1,6 @@
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase regexpcase
-    global pad SearchEnd SearchPosI find
+    global pad SearchEnd find
     set textareacur [gettextareacur]
     if {[winfo exists $w]} {
         set pw $w
@@ -65,8 +65,13 @@ proc FindIt {w} {
                         set SearchPos insert
                     }
                     set SearchEnd "No_end"
+                    $textareacur tag remove sel 0.0 end
                 } else {
-                    set SearchPos $SearchPosI
+                    if {$SearchDir=="forwards"} {
+                        set SearchPos [$textareacur index sel.first]
+                    } else {
+                        set SearchPos [$textareacur index sel.last]
+                    }
                 }
             }
         }
@@ -163,7 +168,9 @@ proc ReplaceAll {} {
         set ReplaceItResult [ReplaceIt once]
         set anotherone [lindex $ReplaceItResult 0]
         set RefPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
+        set NbOfReplaced 0
         while {$anotherone != "No_match"} {
+            incr NbOfReplaced
             set ReplaceItResult [ReplaceIt all]
             set anotherone [lindex $ReplaceItResult 0]
             set NewPos [[gettextareacur] index [lindex $ReplaceItResult 1]]
@@ -178,6 +185,7 @@ proc ReplaceAll {} {
                 undo_menu_proc
             }
         }
+        showinfo "$NbOfReplaced [mc "replacements done"]"
     } else {
         tk_messageBox -message [mc "You are searching for an empty string!"] \
                       -parent $find -title [mc "Replace"]
@@ -193,17 +201,24 @@ proc CancelFind {w} {
         # there was a selection at the time the find dialog was opened, restore it
         $textareacur tag add sel fakeselection.first fakeselection.last 
         $textareacur tag remove fakeselection 0.0 end
+        $textareacur mark set insert sel.first
+        $textareacur see insert
     }
     bind $pad <Expose> {};
     destroy $w
 }
 
 proc ResetFind {} {
-    global SearchPos SearchEnd SearchPosI SearchDir
+    global SearchPos SearchEnd SearchDir SearchString
     set textareacur [gettextareacur]
     catch {[$textareacur get sel.first sel.last]} sel
     if {$sel == "text doesn't contain any characters tagged with \"sel\""} {
-        set SearchPos insert
+        if {$SearchDir=="forwards" && [$textareacur tag ranges foundtext]!=""} {
+            set len [string length $SearchString]
+            set SearchPos "insert + $len char"
+        } else {
+            set SearchPos insert
+        }
         set SearchEnd "No_end"
     } else {
         # there is a selection - fakeselection is the copied sel tag, required
@@ -212,19 +227,27 @@ proc ResetFind {} {
         $textareacur tag raise foundtext fakeselection
         $textareacur tag raise replacedtext fakeselection
         if {$SearchDir=="forwards"} {
-            set SearchPos [$textareacur index sel.first]
+            if {[$textareacur tag ranges foundtext]!=""} {
+                set len [string length $SearchString]
+                set SearchPos "insert + $len char"
+            } else {
+                set SearchPos [$textareacur index sel.first]
+            }
             set SearchEnd [$textareacur index sel.last]
         } else {
-            set SearchPos [$textareacur index sel.last]
+            if {[$textareacur tag ranges foundtext]!=""} {
+                set SearchPos "insert"
+            } else {
+                set SearchPos [$textareacur index sel.last]
+            }
             set SearchEnd [$textareacur index sel.first]
         }
-        set SearchPosI $SearchPos
     }
 }
 
 proc findtext {typ} {
 # procedure to find text
-    global SearchString SearchDir ReplaceString findcase c find pad regexpcase lang
+    global SearchString SearchDir ReplaceString findcase find pad regexpcase
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
     set find $pad.find
     catch {destroy $find}
@@ -234,7 +257,7 @@ proc findtext {typ} {
     frame $find.l
     frame $find.l.f1
     label $find.l.f1.label -text [mc "Find what:"] -width 11
-    entry $find.l.f1.entry  -textvariable SearchString -width 30 
+    entry $find.l.f1.entry -textvariable SearchString -width 30
     pack $find.l.f1.label $find.l.f1.entry -side left
  # next line commented since it does not sleep with -exportselection 1 on Linux
  #   $find.l.f1.entry selection range 0 end
@@ -320,7 +343,7 @@ proc findtext {typ} {
 
 proc findnext {typof} {
 # proc for find next
-    global SearchString SearchDir ReplaceString findcase c find
+    global SearchString find
     if [catch {expr [string compare $SearchString "" ] }] {
         findtext $typof
     } else {
