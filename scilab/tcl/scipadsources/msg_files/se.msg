@@ -1,5 +1,6 @@
 # Scipad texts in Swedish
 # in sync at least with v3.52
+# provided by Gunnar Lindholm
 
 # commons
 ::msgcat::mcset se "Cancel" "Avbryt"
@@ -199,7 +200,7 @@
     ::msgcat::mcset se "Select &All" "Markera &Allt"
     ::msgcat::mcset se "Insert &Time/Date" "Infoga datum och &Tid"
     ::msgcat::mcset se "Co&mment selection" "Ko&mmentera markering"
-    ::msgcat::mcset se "U&ncomment selection" "&Avkomme&ntera markeringen"
+    ::msgcat::mcset se "U&ncomment selection" "&Avkommentera markeringen"
     ::msgcat::mcset se "&Indent selection" "&Indentera markeringen"
     ::msgcat::mcset se "Unin&dent selection" "Oin&dentera markeringen"
 
