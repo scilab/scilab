@@ -2,46 +2,33 @@
 // Copyright INRIA
 mode(-1);  // silent execution mode
 
-// clean database when restarted
+// clean database when restarted ======================================
 predef('clear'); //unprotect all variables 
 clear  // erase all variables 
 clear  scicos_pal // explicitly clear %helps scicos_pal variables
 clearglobal();
 
-// Set stack size
+// Set stack size   ===================================================
 newstacksize=1000000;
 old=stacksize()
 if old(1)<>newstacksize then stacksize(newstacksize),end
 clear old newstacksize
 
-// Startup message
-if sciargs()<>"-nb" then 
-  verbose=%t;
-else  
-   verbose=%f;
-end
-
+// Startup message  ===================================================
+verbose=sciargs()<>"-nb"
 if verbose then 
-  t=[' '
-     ' '
-     'Startup execution:'];
-  write(%io(2),t)
-  clear t;
+  write(%io(2),[' ';' ';'Startup execution:'])
 end
 
-// Special variables definition
+// Special variables definition =======================================
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
 
 %s=poly(0,'s');%z=poly(0,'z');
 $=poly(0,'$')
 
 %T=%t;%F=%f;       // boolean variables
-SCI=getenv('SCI')  // path of scilab main directory
-if getenv('WIN32','NO')=='OK' then
-  WSCI=getenv('WSCI')  // path of scilab main directory for Windows
-end
 
-// Load scilab functions libraries
+// Load scilab functions libraries  ===================================
 if verbose then 
   write(%io(2),'  loading initial environment')
 end 
@@ -65,24 +52,25 @@ load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
-if or(sciargs()=="--texmacs") then load('SCI/macros/texmacs/lib'),end
+if with_texmacs() then load('SCI/macros/texmacs/lib'),end
 load('SCI/macros/xdess/lib')
 
-// Create a temporary directory
+// Create some configuration variables ================================
 TMPDIR=getenv('TMPDIR')
-
 PWD = getcwd()
 home= getenv('HOME','ndef');
 if home=='ndef',home=unix_g('cd; pwd');end 
-
-// in inisci.f COMPILER=getenv('COMPILER','NO');
-// 
 // use MSDOS syntax?
 MSDOS = getenv('WIN32','NO')=='OK' & ..
 	or(COMPILER==['VC++' 'ABSOFT' 'gcc'])
 
+SCI=getenv('SCI')  // path of scilab main directory
+if getenv('WIN32','NO')=='OK' then
+  WSCI=getenv('WSCI')  // path of scilab main directory for Windows
+end
 
-// LANGUAGE TO USE FOR ONLINE MAN
+// Set LANGUAGE  ======================================================
+// used mainly for on-line help
 global LANGUAGE
 LANGUAGE="eng" // default language
 args=sciargs(); larg=find(args=="-l")
@@ -91,28 +79,32 @@ if larg<>[] & larg<=size(args,"*") then
   if L=="eng" | L=="fr" then
     LANGUAGE=L
   else
-    write(%io(2)," ")
-    write(%io(2),"Unsupported language """+L+"""."+..
-   	         " Choosing default language """+LANGUAGE+""".")
+    write(%io(2),[" "
+		  "Unsupported language """+L+"""."+..
+		  "Choosing default language """+LANGUAGE+"""."])
   end
 end
 clear  larg L
 
-//Scilab Help Chapters, %helps is a two column matrix of strings
+//Scilab Help Chapters, ===============================================
+//%helps is a two column matrix of strings
 global %helps
 %helps=initial_help_chapters(LANGUAGE)
 clear initial_help_chapters
 
-// Define Initial demo tables, demolist is a two column matrix of strings
+// Define Initial demo tables, ========================================
+//demolist is a two column matrix of strings
 global demolist
 demolist=initial_demos_tables()
 clear initial_demos_tables
 
-// Menu for Help and editor
+// Menu for Help and editor ===========================================
 if grep(args,'scilex') <>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
     delmenu("Help")
-    if ~MSDOS then addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),end
+    if ~MSDOS then 
+      addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
+    end
     if with_tk() then
       delmenu("Editor")
       if ~MSDOS then addmenu("Editor",list(2,"scipad")),end
@@ -120,59 +112,52 @@ if grep(args,'scilex') <>[] then
   end
 end
 
-
-// Protect variable previously defined 
+// Protect variable previously defined  ================================
 clear ans  %b_h_s args
 predef('all') 
 
-// this variable is used to store the preferred browser 
+// Set the preferred browser  ==========================================
 global %browsehelp
 if with_tk()
-  %browsehelp="tcltk";//set scilab  browser by default. may be changed in
-		      //the user startup file
+  %browsehelp="tcltk";
+elseif with_gtk()
+  %browsehelp="help widget";
 end
-if with_gtk()
-  %browsehelp="help widget";//set scilab  browser by default. may be changed in
-		      //the user startup file
-end
-
 clear %browsehelp //remove the local variable
 
-
-
-// Define scicos palettes of blocks, scicos_menus and shortcuts
-[scicos_pal,%scicos_menu,%scicos_short,%scicos_help,%scicos_display_mode]=initial_scicos_tables()
-
+// Define Scicos data tables ===========================================
+[scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
+	%scicos_display_mode,modelica_libs]=initial_scicos_tables()
 clear initial_scicos_tables
 
 
-// load contrib menu if present 
-//=================================
-
+// load contrib menu if present ========================================
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
 if ierr== 0 then;
-	mclose(fd); 
-	global %toolboxes
-	global %toolboxes_dir
-	exec(SCI+'/contrib/loader.sce');
+  mclose(fd); 
+  global %toolboxes
+  global %toolboxes_dir
+  exec(SCI+'/contrib/loader.sce');
 end
 clear fd ierr
 
-// calling user initialization
-//=============================
-// Home dir
+// load history file ==================================================
+loadhistory()
+
+// calling user initialization =========================================
+// Home dir startup (if any)
 [startup,ierr]=mopen('home/.scilab','r')
 if ierr==0 then
-   exec(startup,-1);mclose(startup)
+  exec(startup,-1);mclose(startup)
 else
-   [startup,ierr]=mopen('home/scilab.ini','r')
-   if ierr==0 then
-      exec(startup,-1);mclose(startup)
-   end
+  [startup,ierr]=mopen('home/scilab.ini','r')
+  if ierr==0 then
+    exec(startup,-1);mclose(startup)
+  end
 end
 clear startup ierr
 
-// working dir
+// working dirr startup (if any)
 if  home<>PWD then
   [startup,ierr]=mopen('.scilab','r')
   if ierr==0 then
@@ -186,4 +171,3 @@ if  home<>PWD then
 end
 clear startup ierr
 
-loadhistory()
