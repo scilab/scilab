@@ -62,9 +62,8 @@ c
  95   continue
 
       if (.not.allowptr(k)) call ref2val
-
       call callinterf(k,iflagint)
-      
+      if (k.eq.krec) krec=99999
       if(fun.ge.0) then
          if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
          goto 90
