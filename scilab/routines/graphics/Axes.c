@@ -432,7 +432,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
   /*** 01/07/2002 ***/
-  double xmin,xmax,ymin, ymax;
+  /* double xmin,xmax,ymin, ymax;*/ /* F.Leray 28.04.04 */
   /*** MAJ Djalel A 21/01/2003 ***/
   integer pstyle;
 
