@@ -531,10 +531,10 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			RelativePath="..\..\pvm3\lib\WIN32\libpvm3.lib">
 		</File>
 		<File
-			RelativePath="..\..\TCLLIB\LIB\TCL84.LIB">
+			RelativePath="..\..\bin\tcl84.lib">
 		</File>
 		<File
-			RelativePath="..\..\TCLLIB\LIB\TK84.LIB">
+			RelativePath="..\..\bin\tk84.lib">
 		</File>
 	</Files>
 	<Globals>
