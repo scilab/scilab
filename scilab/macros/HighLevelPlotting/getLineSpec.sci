@@ -133,7 +133,7 @@ for j=length(ch):-1:1
   if strindex(ch,SPESH(res(i)))<>[]
    if (res(i) >= 1) & (res(i) <= 6)
     MarkerStyle=11;
-    MarkerSize=4;
+    MarkerSize=3;
     ch=strsubst(ch,SPESH(res(i)),'');
     break;
    else if (res(i) >= 7) & (res(i) <= 13)
@@ -187,7 +187,7 @@ select part(ch,i)
     MarkerSize=1;
   case 'o'
      MarkerStyle=9;
-     MarkerSize=4;
+     MarkerSize=3;
   else
      fail=1;
 end // select
