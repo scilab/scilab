@@ -15,7 +15,7 @@ A =      %c_a_c.sci %hm_a_hm.sci %hm_a_s.sci %ip_a_s.sci \
 	 %p_a_lss.sci %p_a_r.sci %r_a_lss.sci %r_a_p.sci \
 	 %r_a_r.sci %r_a_s.sci %s_a_hm.sci %s_a_ip.sci \
 	 %s_a_lss.sci %s_a_r.sci %s_a_sp.sci %sp_a_s.sci \
-	 %sp_a_sp.sci
+	 %sp_a_sp.sci %i_a_i.sci
 
 B =      %b_i_b.sci %s_g_b.sci %s_h_b.sci %s_i_b.sci \
 	 %spb_c_b.sci %spb_f_b.sci %spb_g_b.sci %spb_h_b.sci \
@@ -29,7 +29,7 @@ C =      %b_c_spb.sci %c_i_c.sci %hm_c_hm.sci %l_n_c.sci \
 
 D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
 	 %p_d_s.sci %r_d_p.sci %r_d_r.sci %r_d_s.sci %s_d_p.sci \
-	 %s_d_r.sci %s_d_sp.sci %sp_d_s.sci %sp_d_sp.sci
+	 %s_d_r.sci %s_d_sp.sci %sp_d_s.sci %sp_d_sp.sci %i_d_i.sci
 
 E =      %c_e.sci %hm_e.sci %lss_e.sci %p_e.sci %r_e.sci %s_e.sci \
 	 %sp_e.sci %spb_e.sci
@@ -40,9 +40,11 @@ F =      %b_f_spb.sci %c_f_s.sci %hm_f_hm.sci %lss_f_lss.sci \
 	 %r_f_s.sci %s_f_lss.sci %s_f_r.sci %s_f_sp.sci \
 	 %sp_f_s.sci
 
-G =      %b_g_s.sci %b_g_spb.sci %s_g_s.sci %spb_g_spb.sci
+G =      %b_g_s.sci %b_g_spb.sci %s_g_s.sci %spb_g_spb.sci \
+	 %i_g_i.sci
 
-H =      %b_h_s.sci %b_h_spb.sci %s_h_s.sci %spb_h_spb.sci
+H =      %b_h_s.sci %b_h_spb.sci %s_h_s.sci %spb_h_spb.sci \
+	 %i_h_i.sci
 
 I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %c_i_r.sci %hm_i_hm.sci %lss_i_lss.sci %lss_i_p.sci \
@@ -71,7 +73,7 @@ M =      %hm_m_s.sci %ip_m_s.sci %l_n_m.sci %l_o_m.sci \
 	 %lss_m_lss.sci %lss_m_p.sci %lss_m_r.sci %lss_m_s.sci \
 	 %p_m_lss.sci %p_m_r.sci %r_m_lss.sci %r_m_p.sci \
 	 %r_m_r.sci %r_m_s.sci %s_m_hm.sci %s_m_ip.sci \
-	 %s_m_lss.sci %s_m_r.sci
+	 %s_m_lss.sci %s_m_r.sci %i_m_i.sci
 
 N =      %hm_n_hm.sci %hm_n_s.sci %ip_n_ip.sci %l_n_p.sci \
 	 %l_n_s.sci %lss_n_lss.sci %lss_n_p.sci %lss_n_r.sci \
@@ -103,7 +105,7 @@ R =      %hm_r_s.sci %lss_r_lss.sci %lss_r_r.sci %lss_r_s.sci \
 	 %r_s_r.sci %r_v_r.sci %r_x_r.sci %r_y_r.sci %r_z_r.sci \
 	 %s_r_s.sci %s_r_lss.sci %s_r_r.sci %s_r_sp.sci %s_s_r.sci \
 	 %s_v_r.sci %s_x_r.sci %s_y_r.sci %s_z_r.sci %sp_r_s.sci \
-	 %sp_r_sp.sci
+	 %sp_r_sp.sci %i_r_i.sci
 
 S =      %hm_1_s.sci %hm_2_s.sci %hm_3_s.sci %hm_4_s.sci \
 	 %hm_s.sci %hm_s_hm.sci %hm_s_s.sci %hm_x_s.sci \
@@ -112,7 +114,8 @@ S =      %hm_1_s.sci %hm_2_s.sci %hm_3_s.sci %hm_4_s.sci \
 	 %p_z_s.sci %r_s.sci %r_s_lss.sci %r_s_s.sci %r_v_s.sci \
 	 %r_x_s.sci %r_y_s.sci %r_z_s.sci %s_s_hm.sci \
 	 %s_s_ip.sci %s_s_lss.sci %s_s_sp.sci %s_v_s.sci \
-	 %sp_s_s.sci %sp_s_sp.sci %sp_y_s.sci %sp_z_s.sci
+	 %sp_s_s.sci %sp_s_sp.sci %sp_y_s.sci %sp_z_s.sci \
+	 %i_s_i.sci
 
 T =      %lss_t.sci %r_t.sci
 
@@ -122,7 +125,7 @@ V =      %lss_v_lss.sci %p_v_lss.sci %r_v_lss.sci %s_v_lss.sci
 
 W =     
 
-X =      %hm_x_hm.sci %s_x_hm.sci
+X =      %hm_x_hm.sci %s_x_hm.sci %i_x_i.sci
 
 Y =      %s_y_sp.sci %sp_y_sp.sci
 
@@ -130,15 +133,15 @@ Z =      %s_z_sp.sci %sp_z_sp.sci
 
 O0 =     
 
-O1 =      %s_1_hm.sci
+O1 =      %s_1_hm.sci %hm_1_hm.sci
 
-O2 =      %s_2_hm.sci
+O2 =      %s_2_hm.sci %hm_2_hm.sci
 
-O3 =      %s_3_hm.sci
+O3 =      %s_3_hm.sci %hm_3_hm.sci
 
-O4 =      %s_4_hm.sci
+O4 =      %s_4_hm.sci %hm_4_hm.sci
 
-O5 =      %s_5.sci
+O5 =      %s_5.sci %hm_5.sci
 
 HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_cos.sci %hm_cumprod.sci %hm_cumsum.sci \
@@ -148,9 +151,10 @@ HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_ones.sci %hm_prod.sci %hm_rand.sci %hm_real.sci \
 	 %hm_round.sci %hm_sign.sci %hm_sin.sci %hm_size.sci \
 	 %hm_sqrt.sci %hm_st_deviation.sci %hm_sum.sci \
-	 %hm_zeros.sci
+	 %hm_zeros.sci %hm_bool2s.sci %hm_find.sci %hm_isnan.sci \
+	 %hm_isreal.sci
 
-BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci 
+BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci 
 
 CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci %c_tril.sci %c_triu.sci 
 
@@ -171,7 +175,7 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
 	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci
 
-IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci
+IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci 
 
 
 FUNS =   %cblock_p.sci %choose.sci    
