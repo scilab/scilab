@@ -1,91 +1,99 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>text_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 2002 </DATE>
-  <SHORT_DESCRIPTION name="text_properties"> description of the
-   Text entity properties </SHORT_DESCRIPTION>
- 
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="text_properties">description of the Text entity
+  properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-  <P>
-  The Text entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for string drawing
-  </P>
+    <P>The Text entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for string drawing</P>
 
-  <DESCRIPTION_INDENT>
-   <DESCRIPTION_ITEM label="visible: ">  
-   <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should  be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  .By default, 
-   the text is visible, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the text is not to display on the screen.</SP>
-   </DESCRIPTION_ITEM>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
+        default, the text is visible, the value's property is <VERB>"on"
+        </VERB>. If <VERB>"off"</VERB> the text is not displayed on the
+        screen.</SP>
+      </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label="text: ">
-    <SP>This field is the character string vector which contains the text.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="text: ">
+        <SP>This field is the character string vector which contains the
+        text.</SP>
+      </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="data: ">
+        <SP>This field is the vector <VERB>[x,y,[z]]</VERB> of the origin of
+        the text in the data units of the axes.</SP>
+      </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label="data: ">
-    <SP>This field is the vector  <VERB>[x,y,[z]]</VERB> of the origin
-    of the text in the data units of the axes.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="font_size: ">
+        <SP>The <VERB>font_size</VERB> property is used to select the type of
+        size of the text. Its value should be an integer in between 0 and 5
+        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="font_size: ">
-     <SP>The <VERB>font_size</VERB> property  is used to select the
-       type of size of the text. Its value should be an integer in between 0 and 5
-       whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
-     </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM label="font_style: ">
-     <SP>Seven differents fonts are available :
-     &quot;Courrier&quot;, &quot;Symbol&quot;, &quot;Times&quot;, &quot;Times Italic&quot;, &quot;Times Bold&quot;,
-     &quot;User defined&quot;. The font_size property is an index in [0 6] which
-     is associated to the previous font names.</SP>
+      <DESCRIPTION_ITEM label="font_style: ">
+        <SP>Seven differents fonts are available : "Courrier", "Symbol",
+        "Times", "Times Italic", "Times Bold", "User defined". The font_size
+        property is an index in [0 6] which is associated to the previous font
+        names.</SP>
+      </DESCRIPTION_ITEM>
 
-     </DESCRIPTION_ITEM>
-     <DESCRIPTION_ITEM label="font_angle: ">
-     <SP>This property determines the orientation of the text string. 
-     Specify value of rotation in degrees.</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="font_angle: ">
+        <SP>This property determines the orientation of the text string.
+        Specify value of rotation in degrees.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="foreground: ">
-      <SP>This field contains the color used to display the text.
-      Its value should be a color index (relative to the current colormap).</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color used to display the text. Its value
+        should be a color index (relative to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_state: ">
-      <SP>This field contains the <VERB>clip_state</VERB> property
-      value for the text.  Its value should be :</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;off&quot;</VERB> this means that the text is not clipped.</SP>
-         </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="clip_state: ">
+        <SP>This field contains the <VERB>clip_state</VERB> property value for
+        the text. Its value should be :</SP>
 
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;cliprf&quot;</VERB> this means that the
-         text is clipped outside the Axes box.</SP>
-         </DESCRIPTION_ITEM>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"off"</VERB> this means that the text is not
+            clipped.</SP>
+          </DESCRIPTION_ITEM>
 
-        <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;on&quot;</VERB> this means that the
-         text is clipped outside the rectangle given by the property  <VERB>clip_box</VERB>.</SP>
-         </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"cliprf"</VERB> this means that the text is clipped
+            outside the Axes box.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_box: ">
-      <SP>This field contains the  <VERB>clip_box</VERB> property.
-      Its value should be an empty matrix if clip_state is &quot;off&quot; 
-      or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height).</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"on"</VERB> this means that the text is clipped outside
+            the rectangle given by the property <VERB>clip_box</VERB>.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="parent: "> 
-      <SP>This property contains the handle of the parent. The parent of the text
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
-     </DESCRIPTION_ITEM>
-  </DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="clip_box: ">
+        <SP>This field contains the <VERB>clip_box</VERB> property. Its value
+        should be an empty matrix if clip_state is "off" or the vector
+        <VERB>[x,y,w,h</VERB>] (upper-left point width height).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        text entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Agregation"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[   
 
   set("figure_style","new") //create a figure
@@ -103,13 +111,28 @@
    t.font_angle=90;
 
  ]]></EXAMPLE>
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>xtitle</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
-<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
-</MAN>
 
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xtitle</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
+</MAN>

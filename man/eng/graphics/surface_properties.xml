@@ -1,197 +1,252 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>surface_properties</TITLE>
+
   <TYPE>Scilab Data type</TYPE>
-  <DATE> 2002</DATE>
-  <SHORT_DESCRIPTION name="surface_properties"> description of the
-   3D entities properties</SHORT_DESCRIPTION>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="surface_properties">description of the 3D entities
+  properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-    <P>
-  The Surface entity is a leaf of the graphics entities
-  hierarchy. Two classes appears under this type of entity :
-  <VERB>Plot3d</VERB> and <VERB>Fac3d</VERB>
-  according to the ploting function.
-  </P>
-    <P> 
-  This entity is still under developpement
-  and will problably evolve a lot. In particular we intend to extend
-  the Axes data structure to 3D and split the Axes propteies and
-  Surface drawing properties similarily to the 2D case.
-  </P>
+    <P>The Surface entity is a leaf of the graphics entities hierarchy. Two
+    classes appears under this type of entity : <VERB>Plot3d</VERB> and
+    <VERB>Fac3d</VERB> according to the ploting function.</P>
+
+    <P>Here are the properties contained in a surface entity:</P>
+
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
-        <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  .
-   By default, surfaces are visibles, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the 3D graphics are not displayed on the screen.</SP>
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, surfaces are visibles, the value's property is <VERB>"on"
+        </VERB>. If <VERB>"off"</VERB> the 3D graphics are not displayed on
+        the screen.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="data: ">
-        <SP>This field is not yet available.
-    It will be define a  matrix data of a row and column indices of each element 
-    as the x- and y-coordinates and the value of each element as the z-coordinate.</SP>
+        <SP>This field defines a <VERB>tlist</VERB> data structure of type
+        <VERB>"3d"</VERB> composed of a row and column indices of each element
+        as the x-, y- and z-coordinates contained respectivly in
+        <VERB>data.x,</VERB> <VERB>data.y</VERB> and <VERB>data.z</VERB>. The
+        complementary field named <VERB>data.color</VERB> is available in case
+        a color vector or matrix is specified. If none,
+        <VERB>data.color</VERB> is not displayed and the modes
+        <VERB>color_mode=2</VERB> and <VERB>color_mode=3</VERB> use color
+        <VERB>"color_mode"</VERB>.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="color_mode: ">
-        <SP>a string (treatment of hidden parts).  where:</SP>
+        <SP>an integer for surface color treatment where:</SP>
+
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
-              <P>
-	 If  <VERB>color_mode&gt;0</VERB> 
-	 the hidden parts of the surface are removed 
-	 and the surface is painted  with color <VERB>&quot;color_mode&quot;</VERB>.
-         </P>
-	 </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM>
-	     <P>
-	     if <VERB>color_mode=0</VERB>  the hidden parts of the surface are drawn.
-         </P>
-	  </DESCRIPTION_ITEM>
+            <P>If <VERB>color_mode&gt;0</VERB> and <VERB>color_flag==0</VERB>
+            the surface is painted with color <VERB>"color_mode"</VERB> ; the
+            boundary of the facet is drawn with current line style and
+            color.</P>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM>
-            <P>
-         if <VERB>color_mode&lt;0 </VERB>
-         only the backward facing facets are painted with color or
-         pattern id <VERB>&quot;-color_mode&quot;</VERB>.
-         </P>
+            <P>if <VERB>color_mode==0</VERB> and <VERB>color_flag==0</VERB> a
+            mesh of the surface is drawn.</P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM>
+            <P>if <VERB>color_mode&lt;0 </VERB> and <VERB>color_flag==0
+            </VERB>the surface is painted with color
+            <VERB>"-color_mode"</VERB> ; the boundary of the facet is not
+            drawn.</P>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="thickness: ">
-        <SP>This field contains the default <VERB>thickness</VERB> value of the lines
-       used to draw the axes and the facets contours. It should be a positive integer.</SP>
+        <SP>This field contains the default <VERB>thickness</VERB> value of
+        the lines used to draw the axes and the facets contours. It should be
+        a positive integer.</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="foreground: ">
-        <SP>This field contains the color index used to draw the axes and the facets contours.  
-      Its value should be a color index (relative to the current colormap).</SP>
+        <SP>This field contains the color index used to draw the axes and the
+        facets contours. Its value should be a color index (relative to the
+        current colormap).</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="color_flag: ">
         <SP>This field is used to specify the algorithm used to set facets'
-      colors.</SP>
+        colors.</SP>
+
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==0</VERB> then all facets are painted
-         using the color index defined by <VERB>flag(1)</VERB> (see
-         above).
-        </P>
+            <P>If <VERB>color_flag==0</VERB> then all facets are painted using
+            the color index and method defined by <VERB>color_mode</VERB>.</P>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==1</VERB> then all facets are painted
-         using the color index proportional to <VERB>z</VERB>. The minimum
-         <VERB>z</VERB> value is painted using the index 1 color while The maximum
-         <VERB>z</VERB> value is painted using highest color index.
-        </P>
+            <P>If <VERB>color_flag==1</VERB> then all facets are painted using
+            the color index proportional to <VERB>z</VERB>. The minimum
+            <VERB>z</VERB> value is painted using the index 1 color while the
+            maximum <VERB>z</VERB> value is painted using highest color
+            index.</P>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==2</VERB> then all facets are painted
-         using the color index given in the
-         <VERB>surface_color</VERB> property (one color per facet). 
-         </P>
-            <P>
-         This option is available only with <VERB>Fac3d</VERB> entity
-         type.
-         </P>
+            <P>If <VERB>color_flag==2</VERB> then all facets are painted using
+            the color index given in the <VERB>data.color</VERB> property (one
+            color per facet is needed). Two cases are then possible:</P>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P><VERB>data.color</VERB> contains a <VERB>color</VERB>
+                vector : if <VERB>color(i)</VERB> is positive it gives the
+                color of facet <VERB>i</VERB> and the boundary of the facet is
+                drawn with current line style and color. If
+                <VERB>color(i)</VERB> is negative, color id
+                <VERB>-color(i)</VERB> is used and the boundary of the facet
+                is not drawn.</P>
+
+                <P><VERB>data.color</VERB> contains a color matrix of size
+                (nf,n) where <VERB>n</VERB> stands for the number of facets
+                and <VERB>nf</VERB> for the number of points defining the
+                polygonal facet. For the <VERB>nf</VERB> vertices defining
+                each facet, the algorithm computes an average value of the
+                color index (from the matrix color index) : the
+                <VERB>nf</VERB> vertices of the same facet will have the same
+                color index value.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+
+            <P>This option is available only with <VERB>Fac3d</VERB> entity
+            type.</P>
           </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==3</VERB> then facets painting results of
-         interpolation of  facet boundary colors. The facet boundary
-         colors indices are given in the
-         <VERB>surface_color</VERB> property (one color per
-         facet boundary). 
-         </P>
-            <P>
-         This option is available only with <VERB>Fac3d</VERB> entity type.</P>
+            <P>If <VERB>color_flag==3</VERB> then facets painting results of
+            interpolation of facet boundary colors. The facet boundary colors
+            indices are given in the <VERB>data.color</VERB> property (one
+            color per facet boundary is needed). Man musts provide one color
+            for each vertex defining the boundary of the facet ; here again,
+            two cases are possible:</P>
+
+            <DESCRIPTION_INDENT>
+              <DESCRIPTION_ITEM>
+                <P><VERB>data.color</VERB> contains a <VERB>colors</VERB>
+                vector : then, there are too few data to complete the
+                interpolated shading mode. Indeed, a color matrix of size
+                (nf,n) (where <VERB>n</VERB> stands for the number of facets
+                and <VERB>nf</VERB> for the number of points defining the
+                polygonal facet) is needed to perform this operation. For each
+                facet, the algorithm copies the single color index value of
+                the facet into the <VERB>nf</VERB> color indexes vertices
+                defining the facet's boundary.</P>
+
+                <P><VERB>data.color</VERB> contains a color matrix of size
+                (nf,n) (see upper for <VERB>nf</VERB> and <VERB>n</VERB>
+                definitions), the interpolated shading mode can be completed
+                normally using those color indexes.</P>
+              </DESCRIPTION_ITEM>
+            </DESCRIPTION_INDENT>
+
+            <P>This option is available only with <VERB>Fac3d</VERB> entity
+            type.</P>
           </DESCRIPTION_ITEM>
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="surface_color: ">
-        <SP>If <VERB>color_flag</VERB> is equal to 2 or 3 this property
-      contains the index of the color used to paint facets.</SP>
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==2</VERB> then the property value is a
-         vector of indices. One color index per facet.
-        </P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-         If <VERB>color_flag==3</VERB> then the property value is a
-         matrix of indices. One column per facet and for each facet one
-         color index is given for each boundary.
-        </P>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
+
+      <DESCRIPTION_ITEM label="hiddencolor:">
+        <SP> This field contains the color index used to draw the backward
+        faces of a surface. Its value should be a color index (relative to the
+        current colormap).</SP>
       </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="parent: ">
-        <SP>This property contains the handle of the parent. The parent of the surface
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB>.</SP>
+        <SP>This property contains the handle of the parent. The parent of the
+        surface entity should be of the type <VERB>"Axes"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
-   set("figure_style","new") //create a figure
+
+  <EXAMPLE><![CDATA[set("figure_style","new") 
+//create a figure 
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z); 
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
+h=get("hdl") //get handle on current entity (here the surface) 
+a=gca(); //get current axes
+a.rotation_angles=[40,70]; 
+a.grid=[1 1 1]; 
+//make grids 
+a.data_bounds=[-6,6;6,-1;0,5]; 
+a.axes_visible="off"; 
+//axes are hidden a.axes_bounds=[.2 0 1 1]; 
+f=get("current_figure");
+//get the handle of the parent figure 
+f.color_map=hotcolormap(64); 
+//change the figure colormap 
+h.color_flag=1; 
+//color according to z 
+h.color_mode=-2; 
+//remove the facets boundary 
+h.color_flag=2; 
+//color according to given colors 
+h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
+//shaded
+h.color_flag=3; 
+
+scf(2); // creates second window
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+e=gce();
+f=e.data;
+TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,6*rand(f.z)); // random color matrix
+e.data = TL;
+TL2 = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,4*rand(1,800)); // random color vector
+e.data = TL2;
+TL3 = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,[20*ones(1,400) 6*ones(1,400)]);
+e.data = TL3;
+TL4 = tlist(["3d" "x" "y" "z"],f.x,f.y,f.z); // no color specified
+e.data = TL4;
+e.color_flag=1 // color index proportional to altitude (z coord.)
+e.color_flag=2; // back to default mode
+e.color_flag= 3; // interpolated shading mode (based on blue default color because field data.color is not filled)
 
 
-   t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');[xx,yy,zz]=genfac3d(t,t,z);
-   plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
 
-   h=get("hdl") //get handle on current entity (here the surface)
-   
-   a=gca(); //get current axes
-   
-   a.rotation_angles=[40,70];
-   a.grid=[1 1 1]; //make grids
+]]></EXAMPLE>
 
-   a.data_bounds=[-6,6;6,-1;0,5];
-   a.axes_visible="off"; //axes are hidden
-   a.axes_bounds=[.2 0 1 1];
-
- 
-   f=get("current_figure");//get the handle of the parent figure    
-   f.color_map=hotcolormap(64); //change the figure colormap
-
-   h.color_flag=1; //color according to z
-   h.color_mode=-2;  //remove the facets boundary
-
-   h.color_flag=2; //color according to given colors
-   h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
-
-   f.color_map=hotcolormap(512);
-   h.color_flag=3; //shaded
-   c=[1:400,1:400];
-   h.surface_color=[c;c+1;c+2;c+3];
-
-
- ]]>
-  </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot3d</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot3d1</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot3d2</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
   <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

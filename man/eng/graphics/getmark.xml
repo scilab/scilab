@@ -1,39 +1,60 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>getmark</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="getmark"> dialog to select mark (symbol)  </SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="getmark">dialog to select mark
+  (symbol)</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[mark,mrkSize]=getmark()  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[mark,mrkSize]=getmark()</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
         <PARAM_NAME>mark</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of the selected mark</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
+
       <PARAM_ITEM>
         <PARAM_NAME>mrkSize</PARAM_NAME>
+
         <PARAM_DESCRIPTION>
           <SP>: integer, the size of the selected mark</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
+
   <DESCRIPTION>
     <P><VERB>getmark</VERB> opens a graphic window to select a mark (symbol).
-    Usage: <VERB>[mark,mrkSize]=getmark()</VERB>. 
-    <VERB>xset(&quot;mark size&quot;,mrkSize)</VERB>. <VERB>plot2d(x,y,style=mark)</VERB>.</P>
+    Usage: <VERB>[mark,mrkSize]=getmark()</VERB>;
+    <VERB>plot2d(x,y,style=mark)</VERB>.</P>
   </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[set("figure_style","new")
+a=gca();
+x=0:0.1:10;
+plot2d(x,sin(x))
+e=gce(); // storee the agregation containing the plot
+mark=getmark();
+e.children(1).mark_style = mark(1)
+
+]]></EXAMPLE>
+
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>xset</LINK>
-    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM></SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>getfont</LINK>
     </SEE_ALSO_ITEM>
