@@ -134,7 +134,7 @@ static void CNAME(setLexiSize,int)( int n, int p)
   CNAME(lexirows,int) = n;
 }
 
-static  int CNAME(LexiRowcompareC,int)( char * i, char * j)
+static  int CNAME(LexiRowcompareC,int)(int * i,int * j)
 {
   int jc;
   for ( jc = 0 ; jc < CNAME(lexicols,int) ; jc++) 
@@ -149,7 +149,7 @@ static  int CNAME(LexiRowcompareC,int)( char * i, char * j)
   return (0);
 }
 
-static  int CNAME(LexiRowcompareD,int)( char * i, char * j)
+static  int CNAME(LexiRowcompareD,int)(int * i,int * j)
 {
   int jc;
   for ( jc = 0 ; jc < CNAME(lexicols,int) ; jc++) 
@@ -304,10 +304,8 @@ static void CNAME(afficher,int)( int * a, char * name, int n, int p)
     }
 }
 
-
 #define Nint 2
 #define Pint 2 
-
 
 static void CNAME(sorttest,int)()
 {
@@ -347,6 +345,9 @@ static void CNAME(sorttest,int)()
   CNAME(afficher,int)(a,"lexico Row a",n,p);
   afficherint(ind,"lexico Row ind",n,1);
 }
+
+
+
 
 
 

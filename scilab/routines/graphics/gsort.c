@@ -124,20 +124,27 @@ void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, 
 /******************************************************
  * TEST 
  ******************************************************/
+#ifndef TEST 
 
-#ifdef TEST 
-
-
-main()
+void gsort_test_function()
 {
-  printf("Test for char \n");
-  CNAME(sorttest,char)() ;
   printf("Test for int \n");
   CNAME(sorttest,int)() ;
   printf("Test for double \n");
   CNAME(sorttest,double)() ;
+}
+
+#endif 
+
+
+#ifdef TEST 
+
+int main()
+{
+  gsort_test_function();
   return(0);
 }
+
 #endif
 
 
