@@ -14722,7 +14722,9 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
-  else if (strncmp(marker,"text", 4) == 0)        {return 10;}	 
+  else if (strcmp(marker,"text") == 0)        {return 10;}	
+  else if (strcmp(marker,"text_box") == 0)     {return 1;}	
+  else if (strcmp(marker,"text_box_mode") == 0){return 10;}	
   else if (strncmp(marker,"old_style", 9) == 0)   {return 10;}
   else if (strncmp(marker,"figure_style", 12) == 0)   {return 10;}        
   else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
