@@ -112,10 +112,10 @@ clear initial_demos_tables
 if grep(args,'scilex') <>[] then
   if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
     delmenu("Help")
-    addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu"))
+    if ~MSDOS then addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),end
     if with_tk() then
       delmenu("Editor")
-      addmenu("Editor",list(2,"scipad")),
+      if ~MSDOS then addmenu("Editor",list(2,"scipad")),end
     end
   end
 end
