@@ -58,8 +58,7 @@ distclean::
 about.o: about.c 
 
 click.o: click.c ../sun/men_Sutils.h ../machine.h ../menusX/men_scilab.h \
-  ../graphics/Math.h ../graphics/Graphics.h \
- ../graphics/Entities.h \
+  ../graphics/Math.h ../graphics/Graphics.h
   ../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
   ../interf/stack3.h All-extern.h
 
