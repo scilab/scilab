@@ -81,7 +81,7 @@ case 'define' then
     x.gui='ANDBLK'
     x.graphics.sz=[2,2]
     x.graphics.gr_i=list('xstringb(orig(1),orig(2),''ANDBLK'',sz(1),s"+...
-			 " z(2),''fill'')',8);
+			 "z(2),''fill'')',8);
     x.graphics.pein=[0;0]
     x.graphics.peout=0
     x.model.sim='csuper'
