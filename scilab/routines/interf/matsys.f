@@ -60,8 +60,8 @@ c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
 c     lasterror version loadhistory savehistory gethistory resethistory sendtobrowser macr2tree
 c     53         54        55          56         57          58        59            60
-c     hidetoolbar     
-c     61
+c     hidetoolbar use_as_command    
+c     61             62
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -75,7 +75,8 @@ c
      +      251,300,320,350,370,380,390,400,410,420,
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
-     +      694,695,697,698,699,700,701,702,703,704,705),fin
+     +      694,695,697,698,699,700,701,702,703,704,
+     +      705,706),fin
 c     
 c     debug
  10   call intdebug()
@@ -263,6 +264,8 @@ c     mtlb_mode
  704  call macr2tree('macr2tree')
       goto 999
  705  call hidetoolbar('hidetoolbar')
+      goto 999             
+ 706  call useascommand('use_as_command')
       goto 999             
 
  998  continue
@@ -912,11 +915,21 @@ c
       logical checkrhs,checklhs,getrhsvar
       include '../stack.h'
       nbvars=0
-      if(.not.checkrhs(fname,1,1)) return
+      if(.not.checkrhs(fname,0,1)) return
       if(.not.checklhs(fname,1,1)) return
+      if(rhs.eq.0) then
+         if(.not.createvar(1,'i',1,1,l2)) return
+         istk(l2)=0
+         lhsvar(1)=1
+         if(.not.putlhsvar()) return
+         return 
+      endif
+ 
       if(.not.getrhsvar(1,'c',m1,n1,lr)) return 
+      call cluni0(cstk(lr:lr+m1*n1), buf,lp)
+      buf(lp+1:lp+1)=char(0)
       if(.not.createvar(2,'i',1,1,l2)) return
-      call scichdir(cstk(lr:lr+m1*n1),istk(l2))
+      call scichdir(buf(1:lp+1),istk(l2))
       if(istk(l2) .gt. 0) then 
          buf = fname // ': Internal Error' 
          call error(998)
@@ -2525,6 +2538,10 @@ c     resume in a pause
          pt=pt-3
          k=lpt(1)-(13+nsiz)
          bot=lin(k+5)
+         if(macr.ne.0.or.paus.ne.0) then
+            lpts=lpt(1)
+            lpt(1)=lin(k+1)
+         endif
          mrhs=rhs
          rhs=0
          paus=paus-1
@@ -2533,6 +2550,9 @@ c     resume in a pause
             pt=pt-1
  155     continue
          paus=paus+1
+         if(macr.ne.0.or.paus.ne.0) then
+            lpt(1)=lpts
+         endif
          lin(k+5)=bot
          top=top-count
       else
@@ -3086,5 +3106,56 @@ c     set
          istk(il)=0
          lstk(top+1)=lstk(top)+1
       endif
+      return
+      end
+
+      subroutine useascommand(fname)
+c     Copyright INRIA
+      include '../stack.h'
+      logical checkrhs,checklhs,cremat,getscalar,getsmat,checkval
+      integer topk,id(nsiz)
+      integer iadr,sadr
+      character*1 opt
+      character*(*) fname
+c
+c    
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      rhs=max(0,rhs)
+      if(.not.checkrhs(fname,1,2)) return
+      if(.not.checklhs(fname,1,1)) return
+
+      job=1
+      topk=top
+      
+      if(rhs.eq.2) then
+         if(.not.getsmat(fname,topk,top,m,n,1,1,l,nl))return
+         if (nl.ne.1) then
+            err=2
+            call error(36)
+            return
+         endif
+         call cvstr(nl,istk(l),opt,1)
+         top=top-1
+
+         if(opt.eq.'a') then
+            job=1
+         elseif (opt.eq.'d') then
+            job=2
+         else
+            err=2
+            call error(36)
+            return
+         endif
+      endif
+      if(.not.getsmat(fname,topk,top,m,n,1,1,l,n1)) return
+      if(.not.checkval(fname,m*n,1) ) return
+      call namstr(id,istk(l),n1,0)
+      call comand(id,job)
+      if(err.gt.0) return
+      il=iadr(lstk(top))
+      istk(il)=0
+      lstk(top+1)=lstk(top)+1
       return
       end
