@@ -1597,7 +1597,7 @@ void C2F(fillarcGif)(char *str, integer *x, integer *y, integer *width, integer 
 /** drawvect[i] < 0 use a line style for polyline i **/
 
 void C2F(drawpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer *drawvect, integer *n, integer *p, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
-{ integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,/*j,*/close;
+{ integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,j,close;
   verbose =0 ;
   if (GifIm == (gdImagePtr)0 ) {
     sciprint(" xinit must be called before any action \r\n");
@@ -1612,7 +1612,7 @@ void C2F(drawpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
 	{ /** on utilise la marque de numero associ\'ee **/
 	  NDvalue = - drawvect[i];
 	  C2F(setdashGif)((j=1,&j),PI0,PI0,PI0);
-	 
+
 	  C2F(xsetmarkGif)(&NDvalue,symb+1,PI0,PI0);
 	  
 	  C2F(drawpolymarkGif)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
