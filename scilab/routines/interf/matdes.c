@@ -17,6 +17,7 @@
 #include "../graphics/PloEch.h"
 #include "matdes.h"
 
+
 /* The following NUMSETFONC and KeyTab_ definition should be coherent
 with those defined in the drivers They are used in scixset to check
 for invalid keys ("old_style" has been added). A better way should be to make drivers return an
@@ -4898,11 +4899,15 @@ int gget(fname,fname_len)
 	if (strncmp(cstk(l2),"old_style",9) !=0&&strncmp(cstk(l2),"current_figure",14) !=0) C2F(sciwin)();
 	if (version_flag() == 0)
 	  {
+	    /* Test debug F.Leray 13.04.04 */
+	    sciPointObj * ppobj;
 	    if ((strncmp(cstk(l2),"children",8) != 0) &&  
 		(strncmp(cstk(l2),"zoom_",5) !=0) && 
 		(strncmp(cstk(l2),"clip_box",8) !=0) && 
 		(strncmp(cstk(l2),"auto_",5) !=0)) 
-	      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());
+	      {
+	      ppobj = sciGetCurrentObj();
+	      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ());}
 	    else  
 	      hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* on recupere le pointeur d'objet par le handle */
 	  }
@@ -7148,21 +7153,70 @@ int delete(fname,fname_len)
       Scierror(999,"%s :the handle is not valid\r\n",fname);
       return 0;
     }
-  num= sciGetNumFigure (pobj);    
+  num= sciGetNumFigure (pobj); 
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
     sciDelCallback((sciPointObj *)pobj);
   else {  
-      if (sciGetParentFigure(pobj) != NULL)  {
-	  pparentfigure = sciGetParentFigure(pobj);
-	}
-      sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
-      sciDelGraphicObj((sciPointObj *)pobj);	
-      sciDrawObj((sciPointObj *)pparentfigure);	 
+    if (sciGetParentFigure(pobj) != NULL && sciGetEntityType(pobj) != SCI_FIGURE)  
+      { /* I added && sciGetEntityType(pobj) != SCI_FIGURE at last !!!!!!!! F.Leray 09.04.04 */
+	pparentfigure = sciGetParentFigure(pobj);
+	/*}*/
+	sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
+	sciDelGraphicObj((sciPointObj *)pobj);	
+	sciDrawObj((sciPointObj *)pparentfigure);
+      }
+    else if(sciGetEntityType(pobj) == SCI_FIGURE) /* F.Leray 13.04.04: We delete the special object Figure !!*/
+      {
+	/*struct BCG *Xgc = NULL;
+	Xgc = (struct BCG *) pFIGURE_FEATURE(pobj)->pScilabXgc;
+	DestroyAllGraphicsSons (pobj);
+	DestroyFigure (pobj);
+	Xgc->mafigure = (sciPointObj *) NULL;
+	C2F(deletewin)( &num);*/
+
+	/** Delete the graphic window COPY from /wsci/jpc_SGraph.c**/
+	/*Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
+	DeleteObjs(num); 
+	scig_deletegwin_handler(num);
+	DeleteSGWin(num);*/
+
+
+	C2F(deletewin)( &num);
+	
+
+	/* Need to reset the new current figure returned by sciGetCurrentFigure */
+/* 	sciHandleTab *hdl; */
+/* 	sciPointObj  *pobj; */
+/* 	int compteur = 0; */
+
+/* 	hdl = sciGetpendofhandletab();   */
+	
+/* 	while (hdl != NULL) */
+/* 	  {  */
+/* 	    pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index); */
+/* 	    if (sciGetEntityType(pobj) == SCI_FIGURE) */
+/* 	      { */
+/* 		sciSetCurrentFigure(pobj); */
+/* 		sciSetCurrentObj(pobj); /\* The current object will always be the figure too. *\/ */
+/* 		compteur = 99; */
+/* 		break; */
 		
-    }
-  C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/* 	      }  */
+/* 	    hdl = hdl->pprev; */
+/* 	  } */
+	
+/* 	if(compteur == 0) */
+/* 	  sciprint("********************1  PAS DE FIGURE TROUVEE\n"); */
+	  
+	
+      }
+		
+  }
+
+  if(cur != num)
+    C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   LhsVar(1)=0;
   return 0;
 }
