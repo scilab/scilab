@@ -1351,8 +1351,8 @@ int C2F(parse)()
 
  L96:
   /*     asynchronous events handling */
-  C2F(basbrk).interruptible = C2F(getmen)(C2F(cha1).buf, &lb, &nentry, bsiz) == 0;
-  C2F(bexec)(C2F(cha1).buf, &lb, &ierr, lb);
+  C2F(basbrk).interruptible = C2F(getmen)(C2F(cha1).buf, &lb, &nentry) == 0;
+  C2F(bexec)(C2F(cha1).buf, &lb, &ierr);
   if (ierr != 0) {
     goto L15;
   }

@@ -944,9 +944,8 @@ int C2F(run)()
 
   /* gestion des evements asynchrones "interpretes" */
  L115:
-  C2F(basbrk).interruptible = C2F(getmen)(C2F(cha1).buf, &lb, &nentry, bsiz) 
-    == 0;
-  C2F(bexec)(C2F(cha1).buf, &lb, &ierr, lb);
+  C2F(basbrk).interruptible = C2F(getmen)(C2F(cha1).buf, &lb, &nentry) == 0;
+  C2F(bexec)(C2F(cha1).buf, &lb, &ierr);
   if (ierr != 0) {
     goto L10;
   }
