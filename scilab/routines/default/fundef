@@ -459,6 +459,7 @@
 {"fprintfMat",		IN_soundi,	20,	3},
 {"NumTokens",		IN_soundi,	21,	3},
 {"PlaySound",		IN_soundi,	22,	3},
+{"beep",		IN_soundi,	23,	3},
 #define  IN_coselm  35  
 {"curblock",		IN_coselm,	5,	3},	
 {"getblocklabel",	IN_coselm,	6,	3},	

@@ -3,6 +3,15 @@
 #ifdef WIN32
 	#include <windows.h>
 	#pragma comment(lib, "winmm.lib")
+#else
+/*
+	/* pour la fonction beep mais semble ne pas fonctionner sur le PC de Vincent ??? */
+	/*#include <stdlib.h>
+	#include <sys/types.h>
+	#include <fcntl.h>
+	#include <sys/ioctl.h>
+	#include <linux/kd.h>*/
+*/
 #endif
 
 
@@ -19,12 +28,11 @@ extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int n
 #define FILENAME_MAX 4096 
 #endif 
 
-
+static int BeepON=1;
 
 /******************************************
  * SCILAB function : savewave, 
  ******************************************/
-
 char filename[FILENAME_MAX];
 int out_n;
 long int lin,lout;
@@ -121,8 +129,8 @@ int C2F(playsound)(char * filename)
 	PlaySound(NULL,NULL,SND_PURGE);	
 
 	// Play Wav file	
-     	PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
-     	#endif
+    PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
+    #endif
      	
 	return 0;
 }
@@ -135,7 +143,6 @@ int C2F(playsound)(char * filename)
  ******************************************/
 int intPlaysound (char *fname)
 {
-  
   int m1,n1,l1;
   CheckRhs(1,1);
   
@@ -151,7 +158,80 @@ int intPlaysound (char *fname)
   PutLhsVar();
   return 0;
 }
+/******************************************/
+void BeepLinuxWindows(void)
+{
+	#if WIN32
+		MessageBeep(-1);
+	#else
+   /* semble ne pas fonctionner sur le PC de Vincent */
 
+   /*
+   int fd, time, freq, arg;
+
+   fd = open("/dev/tty0", O_RDONLY);
+   freq = 500; 
+   time = 50;  
+   arg = (time<<16)+(1193180/freq);
+   ioctl(fd,KDMKTONE,arg);
+   */
+	system("echo -e \"\a"\"");
+	#endif
+}
+/******************************************
+ * SCILAB function : beep, 
+ ******************************************/
+ /* Allan CORNET Aout 2004 */
+int intBeep (char *fname)
+{
+	static int l1,n1,m1;
+	char *output=NULL ;
+
+	Rhs=Max(0,Rhs);
+	CheckRhs(0,1);
+	CheckLhs(0,1);
+
+	if (Rhs == 1)
+	{
+	char *param1=NULL;
+
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	param1=cstk(l1);
+
+	if ( strcmp(param1,"on") == 0 )
+	{
+		BeepON=1;
+	}
+	else 
+	{
+		if ( strcmp(param1,"off") == 0 )
+		{
+			BeepON=0;
+		}
+		else Scierror(999,"Unknown command option.\r\n");
+	}
+
+	}
+	else
+	{
+	if (BeepON) BeepLinuxWindows();
+	}
+
+	output=(char*)malloc(MAX_PATH*sizeof(char));
+	n1=1;
+
+	if (BeepON) strcpy(output,"on");
+	else strcpy(output,"off");
+
+	CreateVarFromPtr( 1, "c",(m1=strlen(output), &m1),&n1,&output);
+	free(output);
+	output=NULL;
+
+	LhsVar(1) = 1;
+
+	PutLhsVar();
+	return 0;
+}
 /******************************************
  * SCILAB function : mopen, 
  ******************************************/
@@ -586,6 +666,7 @@ static TabF Tab[]={
  {int_objfprintfMat,"fprintfMat"},
  {int_objnumTokens,"NumTokens"},
  {intPlaysound,"PlaySound"},
+ {intBeep,"beep"},
  {intsmerror, "merror"}
  
 };
@@ -596,4 +677,5 @@ int C2F(soundi)(void)
  (*(Tab[Fin-1].f))(Tab[Fin-1].name);
  return 0;
 }
+
 
