@@ -600,6 +600,14 @@ typedef struct
   double  ylim[4];  /* [ymin,ymax,ar,nint]           */ /* pour afficher les graduations automatiques on a calculé des xyzgrads provenant de TheTicks */
   double  zlim[4];  /* [zmin,zmax,ar,nint]         */ 
 
+  /* tics data from algo */
+  double  xgrads[20], ygrads[20], zgrads[20];                   /* Here they are  */
+  int nxgrads, nygrads, nzgrads;                         /* with their size <=> nber of tics */
+
+  /* tics data from user (=> u_...)*/
+  double *u_xgrads, *u_ygrads, *u_zgrads;                       /* Here they are  */
+  int u_nxgrads, u_nygrads, u_nzgrads;                   /* with their size <=> nber of tics */
+  
   int  ticscolor;
   /*  int  fontsize;
       int  textcolor;*/
@@ -610,14 +618,7 @@ typedef struct
   char xdir;   /**  xdir  = 'u' | 'd'  : gives the xy-axes positions **/ 
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
  
-  /* tics data from algo */
-  double  xgrads[20], ygrads[20], zgrads[20];                   /* Here they are  */
-  int nxgrads, nygrads, nzgrads;                         /* with their size <=> nber of tics */
 
-  /* tics data from user (=> u_...)*/
-  double *u_xgrads, *u_ygrads, *u_zgrads;                       /* Here they are  */
-  int u_nxgrads, u_nygrads, u_nzgrads;                   /* with their size <=> nber of tics */
-  
   /* flags for switching from auto to manual ticks */
   BOOL auto_ticks[3]; /* if on, it means that the ticks are taken from computation (see theticks algo. by Francois D.) */
   
