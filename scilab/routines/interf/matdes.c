@@ -5812,7 +5812,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		  {
 		    /* We have just enough information to fill the psurf->zcol array*/
 		    for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /* nc value is dimzy*/
-		      psurf->zcol[j]=  psurf->inputCMoV[i];
+		      psurf->zcol[j]=  psurf->inputCMoV[j];
 		  }
 	      }
 	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
@@ -5927,7 +5927,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 		{
 		  /* We have just enough information to fill the psurf->zcol array*/
 		  for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /* nc value is dimzy*/
-		    psurf->zcol[j]=  psurf->inputCMoV[i];
+		    psurf->zcol[j]=  psurf->inputCMoV[j];
 		}
 	    }
 	    else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
