@@ -6,10 +6,12 @@ if size(x,'*')==1 then
 else
   [lhs,rhs]=argn()
   if lhs==2 then
-    [x,k]=gsort(x,'g','i');
+    [x,k]=gsort(x,'g','d');
     keq=find(x(2:$)==x(1:$-1))
     x(keq)=[]
     k(keq)=[]
+    k=k($:-1:1)
+    x=x($:-1:1)
   else
     x=sort(x);x=x($:-1:1);
     x(find(x(2:$)==x(1:$-1)))=[]
