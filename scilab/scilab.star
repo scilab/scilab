@@ -172,9 +172,9 @@ end
 // load contrib menu if present 
 //=================================
 
-//[fd,ierr]=mopen(SCI+'/contrib/loader.sce');
-//if ierr== 0 then;mclose(fd); exec(SCI+'/contrib/loader.sce');end
-//clear fd ierr
+[fd,ierr]=mopen(SCI+'/contrib/loader.sce');
+if ierr== 0 then;mclose(fd); exec(SCI+'/contrib/loader.sce');end
+clear fd ierr
 
 // calling user initialization
 //=============================
