@@ -42,6 +42,6 @@ function sd=stdev(x,cr)
       sd=sqrt(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
     end
   else
-    error('Optional 2nd argument cr must be equal to ''e'', ''c'' or 2, ''r''or  1');
+    error('Optional 2nd argument cr must be equal to ''*'', ''c'' or 2, ''r''or  1');
   end
 endfunction
