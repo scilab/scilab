@@ -1,0 +1,8 @@
+More .msg files can be added to this directory for support of additional
+languages.
+
+Please contact the current mantainers if you wish to contribute a new
+file. We will be glad to provide detailed instructions about the format
+used.
+ 
+Enrico Segre and François Vogel
