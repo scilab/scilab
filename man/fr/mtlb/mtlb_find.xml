@@ -45,28 +45,28 @@
     <ITEMIZE>
       <ITEM>
         <SP>
-        Pour un appel avec un seul paramètre de sortie, si <VERB>B est un vecteur ligne,
+        Pour un appel avec un seul paramètre de sortie, si <VERB>B</VERB> est un vecteur ligne,
         <VERB>i = mtlb_find(B)</VERB> peut être remplacé par <VERB>i = find(B)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour un appel avec un seul paramètre de sortie, si <VERB>B n'est pas un vecteur ligne,
+        Pour un appel avec un seul paramètre de sortie, si <VERB>B</VERB> n'est pas un vecteur ligne,
         <VERB>i = mtlb_find(B)</VERB> peut être remplacé par <VERB>i = matrix(find(B),-1,1)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour un appel avec deux paramètres de sortie, si <VERB>B est un vecteur ligne,
+        Pour un appel avec deux paramètres de sortie, si <VERB>B</VERB> est un vecteur ligne,
         <VERB>[i,j] = mtlb_find(B)</VERB> peut être remplacé par <VERB>[i,j] = find(B)</VERB>
         </SP>
       </ITEM>
 
       <ITEM>
         <SP>
-        Pour un appel avec un seul paramètre de sortie, si <VERB>B n'est pas un vecteur ligne,
+        Pour un appel avec un seul paramètre de sortie, si <VERB>B</VERB> n'est pas un vecteur ligne,
         <VERB>[i,j] = mtlb_find(B)</VERB> peut être remplacé par 
 	<VERB>[i,j] = find(B);i = matrix(i,-1,1);j = matrix(j,-1,1);</VERB>
         </SP>
