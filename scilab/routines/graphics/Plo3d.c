@@ -1129,7 +1129,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   integer verbose=0,narg,xz[2];
   integer iof;
   char *loc = NULL;
-  char * buff = NULL;
+/*   char * buff = NULL; */
   char * legx = NULL;
   char * legy = NULL;
   char * legz = NULL;
@@ -1144,9 +1144,13 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
     }
   
   strcpy(loc,legend);
-  legx=strtok_r(loc,"@",&buff);
-  legy=strtok_r(NULL,"@",&buff);
-  legz=strtok_r(NULL,"@",&buff);
+/*   legx=strtok_r(loc,"@",&buff); */
+/*   legy=strtok_r(NULL,"@",&buff); */
+/*   legz=strtok_r(NULL,"@",&buff); */
+ 
+  legx=strtok(loc,"@");
+  legy=strtok(NULL,"@");
+  legz=strtok(NULL,"@");
 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

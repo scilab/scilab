@@ -303,7 +303,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   char * legx = NULL;
   char * legy = NULL;
   char * legz = NULL;
-  char * buff = NULL;
+/*   char * buff = NULL; */
 
   sciSubWindow * ppsubwin = NULL;
   BOOL bounds_changed = FALSE; /* cannot be used here because we have to force redrawing since there is no way to avoid merge (=> complete redraaw) */
@@ -341,7 +341,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   
   strcpy(loc,legend);
   
-  legx=strtok_r(loc,"@",&buff);
+  /*   legx=strtok_r(loc,"@",&buff); */
+  legx=strtok(loc,"@");
+  
   if(legx == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_x_label, empty , strlen(empty));
@@ -349,15 +351,17 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   else
     sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
    
-  legy=strtok_r((char *)0,"@",&buff);
+  /*   legy=strtok_r((char *)0,"@",&buff); */
+  legy=strtok((char *)0,"@");
   if(legy == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_y_label, empty , strlen(empty));
   }
   else
-  sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
+    sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
  
-  legz=strtok_r((char *)0,"@",&buff);
+  /*   legz=strtok_r((char *)0,"@",&buff); */
+  legz=strtok((char *)0,"@");
   if(legz == NULL) {
     char empty[]= "";
     sciSetText(ppsubwin->mon_z_label, empty , strlen(empty));
@@ -381,22 +385,46 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   
   if( pSUBWIN_FEATURE (psubwin)->FirstPlot == FALSE && (iflag[2] == 0 || iflag[2] == 1))
     { /* Nothing to do: we leave as before */}
-  else
+  else{
     pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
-  
+    
+    if(iflag[2] == 0 || iflag[2] == 1){
+      pSUBWIN_FEATURE (psubwin)->axes.rect = 0; /* for 2d use only (when switching to 2d mode) */
+
+      if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
+	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
+	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
+	pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
+	pSUBWIN_FEATURE (psubwin)->axes.rect = 0;
+      }
+      /*else no changes : the axes visible properties are driven by the previous plot */
+    }
+    else if(iflag[2] == 3){
+      pSUBWIN_FEATURE (psubwin)->axes.rect = 1; /* for 2d use only (when switching to 2d mode) */
+      
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE;
+      
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,TRUE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,TRUE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,TRUE);
+    }
+    else if(iflag[2] == 4){
+      pSUBWIN_FEATURE (psubwin)->axes.rect = 1;
+
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE;
+      
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_x_label,TRUE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_y_label,TRUE);
+      sciSetVisibility(pSUBWIN_FEATURE (psubwin)->mon_z_label,TRUE);
+    }
+  }
 
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
-
-  if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
-/*     pSUBWIN_FEATURE (psubwin)->project[2]= 1; */
-/*     pSUBWIN_FEATURE (psubwin)->is3d  = TRUE; */
-/*     pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE;
-
-  }
 
   ok=0;  
  if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) ok=1;

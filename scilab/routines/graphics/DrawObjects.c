@@ -299,7 +299,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   integer wmax,hmax,ind2,ind3,ind,tmpind;
   integer ixbox[8],iybox[8],xind[8],dash[6];
   integer background,zero=0, color_old; /* Adding color_old 04.03.04*/
-  /*   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj); */
+/*   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj); */
   
   BOOL cube_scaling; 
 
@@ -563,7 +563,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       C2F(dr)("xset","pattern",&color_old,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /***********/
       /***  hidden axis */
-      if(pSUBWIN_FEATURE (pobj)->axes.rect== 1)
+/*       if(pSUBWIN_FEATURE (pobj)->axes.rect== 1) */
+      if(flag != 0 && flag != 1)
 	{ 
 	  x[2] = sciGetLineWidth (pobj);
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -593,24 +594,26 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
       C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      if(pSUBWIN_FEATURE (pobj)->axes.rect!= 1)
-	{
-	  for (i=0; i < 4 ; i++)
-	    {
-	      ixbox[i]=XScale(xbox[xind[i+2]]);
-	      iybox[i]=YScale(ybox[xind[i+2]]);
-	    }
-	  p=4,n=1;
-	  if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
-	} 
+/*       if(pSUBWIN_FEATURE (pobj)->axes.rect!= 1) */
+  /*     if((flag == 0) || (flag == 1) || (flag == 2)) */
+/* 	{ */
+/* 	  for (i=0; i < 4 ; i++) */
+/* 	    { */
+/* 	      ixbox[i]=XScale(xbox[xind[i+2]]); */
+/* 	      iybox[i]=YScale(ybox[xind[i+2]]); */
+/* 	    } */
+/* 	  p=4,n=1; */
+/* 	  if(flag >=3) {C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);} */
+/* 	}  */
       for (i=0; i < 6 ; i++)
 	{
 	  ixbox[i]=XScale(xbox[xind[i]]);
 	  iybox[i]=YScale(ybox[xind[i]]);
 	}
       ixbox[6]=ixbox[0];iybox[6]=iybox[0]; p=7,n=1;
-      if(pSUBWIN_FEATURE (pobj)->axes.rect == 1)
-	if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
+      /*       if(pSUBWIN_FEATURE (pobj)->axes.rect == 1) */
+      /*       if(pSUBWIN_FEATURE (pobj)->axes.flag[2] == 3 ||pSUBWIN_FEATURE (pobj)->axes.flag[2] == 4) */
+      if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
       /** graduation ***/
       if (flag>=3) {Axes3dStrings2(ixbox,iybox,xind);}
       
