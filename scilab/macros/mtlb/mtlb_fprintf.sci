@@ -43,7 +43,17 @@ else //mtlb_fprintf(fid,fmt,...)
     fmt=strcat(fmt(ones(1,mult))) // duplicate format
     l=list()
     for k=1:size(a,'*'),l(k)=a(k); end
-    mfprintf(fid,fmt,l(:))
+    if or(fid==[1 2]) then
+      mprintf(fmt,l(:))
+    else
+      mfprintf(fid,fmt,l(:))
+    end
+  elseif nv==0 then
+    if or(fid==[1 2]) then
+      mprintf(fmt)
+    else
+      mfprintf(fid,fmt)
+    end 
   else
     sz=[]
     for k=1:nv
@@ -52,9 +62,13 @@ else //mtlb_fprintf(fid,fmt,...)
     if and(sz==1) then
       mult=max(nv/nfmt,1)
       fmt=strcat(fmt(ones(1,mult))) // duplicate format 
-      mfprintf(fid,fmt,varargin(3:$))
+      if or(fid==[1 2]) then
+	mprintf(fmt,varargin(3:$))
+      else
+	mfprintf(fid,fmt,varargin(3:$))
+      end
     else
-    error('mtlb_fprintf this particular case is not implemented')
+      error('mtlb_fprintf this particular case is not implemented')
     end
   end
 end
