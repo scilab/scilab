@@ -1,13 +1,7 @@
 function r=isdir(fil)
 //checks  if given path is a directory
 //see C function stat
-  sep='/',if MSDOS then sep='\',end
-
-  if or(part(fil,1:4)=='SCI'+[' ' '/' '\']) then 
-    fil=SCI+sep+part(fil,5:length(fil))
-  elseif or(part(fil,1:2)=='~'+[' ' '/' '\']) then 
-    fil=home+sep+part(fil,3:length(fil))
-  end
+  if or(fil==['SCI','~']) then fil=fil+'/',end
 
   mask=int32(61440);//o0170000
   dirtype=16384;//o0040000
