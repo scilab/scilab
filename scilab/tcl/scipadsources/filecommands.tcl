@@ -179,9 +179,16 @@ proc openlibfunsource {ind} {
 proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
+# in case a directory is given, open all the files in that directory
     foreach f $filelist {
-        regsub "^file://" $f "" f
-        openfile $f
+        if {[file isfile $f] == 1} {
+            regsub "^file://" $f "" f
+            openfile $f
+        } elseif {[file isdirectory $f] == 1} {
+            openlistoffiles [glob -nocomplain -directory $f * ]
+        } else {
+            # just do nothing, what could it be else?
+        }
     }
 }
 
@@ -739,10 +746,20 @@ proc UpdateRecentLabels {rec1ind} {
     global pad listofrecent nbrecentfiles
     for {set i 0} {$i<$nbrecentfiles} {incr i} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
-        $pad.filemenu.files entryconfigure [expr $rec1ind + $i] \
+        set ind [expr $rec1ind + $i]
+        $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
-                   -command "openfile \"[lindex $listofrecent $i]\"" \
+                   -command "openfile \"[lindex $listofrecent $i]\""
+        if {$i<9} {
+            $pad.filemenu.files entryconfigure $ind \
                    -underline 0
+        } else {
+            # this is a hack to remove the underline by setting it after the
+            # end of the entry
+            set len [expr [string length $lab] + 100]
+            $pad.filemenu.files entryconfigure $ind \
+                   -underline $len
+        }
     }
 }
 
@@ -753,8 +770,12 @@ proc BuildInitialRecentFilesList {} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
         $pad.filemenu.files add command \
                    -label $lab \
-                   -command "openfile \"[lindex $listofrecent $i]\"" \
+                   -command "openfile \"[lindex $listofrecent $i]\""
+        if {$i<9} {
+            set ind [$pad.filemenu.files index end]
+            $pad.filemenu.files entryconfigure $ind \
                    -underline 0
+        }
     }
     bind $pad.filemenu.files <<MenuSelect>> {+showinfo_menu %W}
     if {$nbrecentfiles > 0} {

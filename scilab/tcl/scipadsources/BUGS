@@ -7,6 +7,7 @@ Bugs:
    caught as number
  . multiple matrix transposes in the same line are colorized as textquoted, 
    e.g. A=A'+B'
+ . line-breaks (..) are not handled for quoted strings colorization
 
 -Find in selection does not work correctly on unix.
 
@@ -233,3 +234,5 @@ Wishes:
 
 -Colorization progressbar. Could be an overlay on the left status area,
  incrementing over the "Wait seconds for loading..." message.
+
+-Add underlined numbers in the Windows menu, as for the File menu.

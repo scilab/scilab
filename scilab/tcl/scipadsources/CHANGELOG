@@ -778,4 +778,9 @@ ES, 1/3/2005
    solves old obscure geometry problems related to the initial buffer)
  * proc openlistoffiles in filecommands.tcl removes the eventual
    prefix "file://" - needed for d&d in linux
- * version -->3.38
+ * version --> 3.38
+
+Francois VOGEL, 01/03/05
+ * Directory dropping in Scipad now handled (opens all the files in it)
+ * Wrong underline removed for >9 recent files in the file menu (hack)
+ * version --> 3.39
