@@ -32,7 +32,7 @@ man:
 check:
 	@for i in $(DIRS) ;\
 	do \
-		(cd $$i ; echo "Checking xlm in $$i"; \
+		(cd $$i ; echo "Checking xml in $$i"; \
 		for j in *.xml; \
 		do xmllint --noout --valid $$j 2> xmllint.tmp; \
 			if (grep error xmllint.tmp $(QUIET)) then \
