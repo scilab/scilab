@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.5  2002/07/29 14:37:49  chanceli
+     vc++
+
      Revision 1.4  2002/07/25 08:42:44  chanceli
      updates
 
@@ -114,6 +117,11 @@ int _stricmp(const char *s1, const char *s2)
   return (int)tolower(*s1) - (int)tolower(*s2);
 }
 #endif
+
+/* stat function */
+#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
+#define stat _stat 
+#endif 
 
 
 typedef char *strings;
@@ -328,6 +336,9 @@ void C2F(scipvmspawn)(char *task,  int *l1,
 		      char *where, int *l3, 
 		      int *ntask,  int *tids, int *res)
 {
+#if (defined __MSC__) || defined(__MINGW32__) 
+  char *path ;
+#endif
   int flag = PvmTaskDefault;
   char cmd[256];
   char *arg[4];

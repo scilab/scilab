@@ -14,7 +14,7 @@ OBJSF = mycmatptr.obj
 
 include ../../Makefile.incl.mak
 
-CFLAGS = $(CC_OPTIONS)  -I${PVMINCLUDE}
+CFLAGS = $(CC_OPTIONS) -D__STDC__
 
 FFLAGS = $(FC_OPTIONS)
 

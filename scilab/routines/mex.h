@@ -18,9 +18,11 @@ typedef int Gatefunc __PARAMS((int nlhs,Matrix *plhs[],int nrhs,
 typedef int (*GatefuncS) __PARAMS((char *fname, int l));
 typedef int (*Myinterfun) __PARAMS((char *, GatefuncH F));
 
+typedef int (*GT) ();
+
 typedef struct table_struct {
   Myinterfun f;    /** interface **/
-  GatefuncH F;     /** function **/
+  GT F;     /** function **/
   char *name;      /** its name **/
 } GenericTable;
 

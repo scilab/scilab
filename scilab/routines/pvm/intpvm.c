@@ -42,7 +42,7 @@ int intspvm_error_mode(fname)
 	pvm_error = 0; 
       else {
 	Scierror(999,"%s: first argument should be \"stop\" or \"continue\"\r\n",fname);
-	return ;
+	return 0;
       }
       LhsVar(1)=0;
     }
@@ -885,11 +885,11 @@ int intspvm_bufinfo(fname)
   CreateVar(3,"i",&un,&un,&msgtag);
   CreateVar(4,"i",&un,&un,&tid);
   CreateVar(5,"i",&un,&un,&res);
-  C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res));
+  C2F(scipvmbufinfo)(istk(l1), istk(bytes), istk(msgtag), istk(tid), istk(res)); 
   for ( i = 1 ; i <= Lhs ; i++) 
     LhsVar(i)= i+1; 
   error_check(fname,*istk(res));
-  return 0;
+  return 0;  
 }
 
  
