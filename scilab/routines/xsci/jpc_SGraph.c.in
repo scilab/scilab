@@ -27,7 +27,6 @@
 #include <X11/IntrinsicP.h>
 #include <X11/@XAW@/ViewportP.h>
 
-
 #include <string.h>
 /** getpid **/
 #ifdef __STDC__
@@ -358,6 +357,8 @@ void SciViewportClipGetSize(ScilabXgc,w,h)
  *	Returns: none.
  */
 
+extern void sci_pixmap_resize(struct BCG *Xgc,int x,int y);
+
 /* ARGSUSED */
 
 void ViewportCallback(w, scigc_ptr, report_ptr)
@@ -442,7 +443,11 @@ void ViewportCallback(w, scigc_ptr, report_ptr)
 	  ScilabXgc->CWindowHeight = clheight;
 	  /* if necessary we must resize the pixmap */
 	  if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
-	    CPixmapResize(ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
+	    {
+	      /* sci_pixmap_resize(ScilabXgc,ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);*/
+	      scig_resize(ScilabXgc->CurWindow); 
+
+	    }
 	  XtResizeWidget(child,clwidth,clheight,0);
 	  n=0;
 	  XtSetArg (args[n], XtNsliderWidth, clwidth); n++;
@@ -528,7 +533,9 @@ void GViewportResize(ScilabXgc,width,height)
       XtResizeWidget(ScilabXgc->drawbox ,Width,Height,0);
       /** and if necessary its associated pixmap **/
       if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
-	CPixmapResize(Width,Height);
+	{
+	  sci_pixmap_resize(ScilabXgc,Width,Height);
+	}
       /*
        * Resize the viewport child which contains the graphic widget 
        * we don't want the viewport child to be smaller than the 
@@ -597,7 +604,8 @@ void GViewportResize(ScilabXgc,width,height)
 	  XtSetArg (args[iargs], XtNwidth, &cwidth ); iargs++;
 	  XtSetArg (args[iargs], XtNheight, &cheight); iargs++;
 	  XtGetValues (ScilabXgc->drawbox, args, iargs);
-	  CPixmapResize(cwidth,cheight);
+	  sci_pixmap_resize(ScilabXgc,cwidth,cheight); 
+	  /* scig_resize(ScilabXgc->CurWindow);  */
 	}
     }
 }

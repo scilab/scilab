@@ -80,7 +80,7 @@ void scig_replay(integer win_num)
 
 void scig_expose(integer win_num)
 {
-  integer verb=0,cur,pix,na;
+  integer verb=0,cur,pix,na,backing;
   char name[4];
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
@@ -88,23 +88,39 @@ void scig_expose(integer win_num)
   C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+
 #if defined(WIN32) || defined(WITH_GTK)
-  if (pix == 0) {
+  backing = 0;
 #else
-  if (!WithBackingStore) {
+  backing = WithBackingStore();
 #endif
-    if ( (GetDriver()) != 'R') 
-      C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-    C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-    if (version_flag() == 0) /* NG */
-      sciRedrawF(&win_num); /* NG */
-    else /* NG */  
-      /* XXXX scig_handler(win_num); */
-      C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
-  else
+  if (backing) 
     {
+      /* only used whith X11 were pixmap mode can be used for backing store 
+       * we are here in a case where the pixmap is used for backing store 
+       */
       C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+    }
+  else 
+    {
+      if (pix == 0) 
+	{
+	  if ( (GetDriver()) != 'R') 
+	    C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+	  C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	  if (version_flag() == 0) /* NG */
+	    {
+	      sciRedrawF(&win_num); /* NG */
+	      C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+	    }
+	  else /* NG */  
+	    /* XXXX scig_handler(win_num); */
+	    C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	}
+      else
+	{
+	  C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+	}
     }
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsetdr",name, PI0, PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -117,7 +133,7 @@ void scig_expose(integer win_num)
 
 void scig_resize(integer win_num)
 {
-  integer verb=0,cur,na;
+  integer verb=0,cur,na,pix,backing;
   char name[4];
   if ( scig_buzy  == 1 ) return ;
   scig_buzy =1;
@@ -126,11 +142,21 @@ void scig_resize(integer win_num)
     C2F(SetDriver)("Rec",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
   C2F(dr)("xset","window",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","pixmap",&verb,&pix,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
   CPixmapResize1();
   C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+#if defined(WIN32) || defined(WITH_GTK)
+  backing = 0;
+#else
+  backing = WithBackingStore();
+#endif
   /* XXXX scig_handler(win_num); */
   if (version_flag() == 0) /* NG */
-    sciRedrawF(&win_num); /* NG */
+    {
+      sciRedrawF(&win_num); /* NG */
+      if (pix==1) C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+      if (backing) C2F(dr)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+    }
   else /* NG */  
     C2F(dr)("xreplay","v",&win_num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

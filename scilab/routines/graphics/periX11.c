@@ -260,21 +260,28 @@ static void xset_show(integer *v1, integer *v2, integer *v3, integer *v4)
  * in ScilabXgc.
  */
 
-void CPixmapResize(int x, int y)
+void sci_pixmap_resize(struct BCG *Xgc,int x,int y)
 {
-  /*if (ScilabXgc->CurPixmapStatus != 0) { use pixmap as backing store if CurPixmapStatus==0 */
-  if (ScilabXgc->Cdrawable != (Drawable) 0) 
-    XFreePixmap(dpy,(Pixmap)ScilabXgc->Cdrawable);
-  ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
-  if ( ScilabXgc->Cdrawable == (Drawable) 0) 
+  /*if (Xgc->CurPixmapStatus != 0) { use pixmap as backing store if CurPixmapStatus==0 */
+  if (Xgc->Cdrawable != (Drawable) 0) 
+    XFreePixmap(dpy,(Pixmap)Xgc->Cdrawable);
+  Xgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
+  if ( Xgc->Cdrawable == (Drawable) 0) 
     sciprint("No more space to create Pixmaps\r\n");
   else
     {
       PixmapClear(0,0,x,y);
-      XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow,(Pixmap) ScilabXgc->Cdrawable);
+      XSetWindowBackgroundPixmap(dpy, Xgc->CWindow,(Pixmap) Xgc->Cdrawable);
     }
   /*}*/
+}  
+
+void CPixmapResize(int x, int y)
+{
+  sci_pixmap_resize(ScilabXgc,x,y);
 }
+
+
 
 /*
  * Pixmap clear : 
