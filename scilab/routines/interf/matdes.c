@@ -3102,8 +3102,8 @@ int scixset(fname,fname_len)
         sciSetLineStyle(sciGetParent(subwin), x[0]);   
       }  
       else if ( strncmp(cstk(l1),"mark",4) == 0) {
-        sciSetIsMark(subwin,1); 
-        sciSetIsMark(sciGetParent(subwin),1); 
+        sciSetIsMark(subwin,1);                  /* A REVOIR F.Leray 21.01.05 */
+        sciSetIsMark(sciGetParent(subwin),1);
 	sciSetMarkStyle(subwin,x[0]); 
         sciSetMarkStyle(sciGetParent(subwin),x[0]);   
       } 
@@ -5672,18 +5672,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       sciSetForeground((sciPointObj *)pobj, (int) stk(*value)[0]);
     }
-/*   else if (strncmp(marker,"complete_redraw", 15) == 0)   /\* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 *\/ */
-/*     { */
-/*       if (sciGetEntityType (pobj) == SCI_FIGURE){ */
-/* 	if (strncmp(cstk(*value),"on",2)==0 ) */
-/* 	  pFIGURE_FEATURE(pobj)->allredraw = TRUE; */
-/* 	else if (strncmp(cstk(*value),"off",3)==0 ) */
-/* 	  pFIGURE_FEATURE(pobj)->allredraw = FALSE; */
-/* 	else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;} */
-/*       } */
-/*       else */
-/* 	{ strcpy(error_message,"complete_redraw property does not exist for this handle"); return -1;} */
-/*     } */
   else if (strncmp(marker,"fill_mode", 9) == 0)
     { 
       if (strncmp(cstk(*value),"on",2)==0 )
@@ -5698,20 +5686,36 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"line_style", 10) == 0) {
     sciSetLineStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
+  else if (strncmp(marker,"line_mode", 9) == 0) {
+    if (strncmp(cstk(*value),"on",2)==0 )
+      sciSetIsLine((sciPointObj *) pobj,1);
+    else if (strncmp(cstk(*value),"off",3)==0 )
+      sciSetIsLine((sciPointObj *) pobj,0);
+    else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
+  }
   else if (strncmp(marker,"mark_style", 10) == 0) {
-    sciSetIsMark((sciPointObj *) pobj, 1);
+    sciSetIsMark((sciPointObj *) pobj, TRUE);
     sciSetMarkStyle((sciPointObj *) pobj,(int) *stk(*value));
   }
-  else if (strncmp(marker,"mark_mode", 9) == 0) { 
+  else if (strncmp(marker,"mark_mode", 9) == 0) {
     if (strncmp(cstk(*value),"on",2)==0 )
       sciSetIsMark((sciPointObj *) pobj,1);
     else if (strncmp(cstk(*value),"off",3)==0 )
       sciSetIsMark((sciPointObj *) pobj,0);
     else  {strcpy(error_message,"Value must be 'on/off'"); return -1;}
   }
+
   else if (strncmp(marker,"mark_size", 9) == 0) {
-    sciSetIsMark((sciPointObj *) pobj, 1);
-    sciSetLineWidth((sciPointObj *) pobj, (int)*stk(*value));
+    sciSetIsMark((sciPointObj *) pobj, TRUE);
+    sciSetMarkSize((sciPointObj *) pobj, (int)*stk(*value));
+  }
+  else if (strncmp(marker,"mark_foreground", 15) == 0) {
+    sciSetIsMark((sciPointObj *) pobj, TRUE);
+    sciSetMarkForeground((sciPointObj *) pobj, (int)*stk(*value));
+  }
+  else if (strncmp(marker,"mark_background", 15) == 0) {
+    sciSetIsMark((sciPointObj *) pobj, TRUE);
+    sciSetMarkBackground((sciPointObj *) pobj, (int)*stk(*value));
   }
 
   else if (strncmp(marker,"polyline_style", 14) == 0)
@@ -7309,6 +7313,15 @@ if ((pobj == (sciPointObj *)NULL) &&
     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
     *stk(outindex) = sciGetLineStyle((sciPointObj *) pobj);
   }
+  else if (strncmp(marker,"line_mode", 9) == 0)
+    {
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (sciGetIsLine((sciPointObj *)pobj) == 1)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off", numrow*numcol);
+    }
   else if (strncmp(marker,"mark_style", 10) == 0)	{
     numrow   = 1;numcol   = 1;
     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
@@ -7323,12 +7336,23 @@ if ((pobj == (sciPointObj *)NULL) &&
       else
 	strncpy(cstk(outindex),"off", numrow*numcol);
     }
-
   else if (strcmp(marker,"mark_size") == 0)
     {
     numrow   = 1;numcol   = 1;
     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-    *stk(outindex) = sciGetLineWidth((sciPointObj *) pobj);
+    *stk(outindex) = sciGetMarkSize((sciPointObj *) pobj);
+    }
+  else if (strcmp(marker,"mark_foreground") == 0)
+    {
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    *stk(outindex) = sciGetMarkForegroundToDisplay((sciPointObj *) pobj);
+    }
+  else if (strcmp(marker,"mark_background") == 0)
+    {
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    *stk(outindex) = sciGetMarkBackgroundToDisplay((sciPointObj *) pobj);
     }
 
   else if (strncmp(marker,"polyline_style", 14) == 0)
