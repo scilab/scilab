@@ -10,11 +10,24 @@ MAKE=nmake /f Makefile.mak
 #---------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
 # the good pathnames for TKLIBS and TCL_INCLUDES.
-TKSCI=libs/tksci.lib 
-TKLIBS=C:\Tcl\lib\tcl83.lib C:\Tcl\lib\tk83.lib
-TKLIBSBIN=C:\Tcl\bin\tcl83.lib C:\Tcl\bin\tk83.lib 
-TCL_INCLUDES=-Ic:\Tcl\include -Ic:\Tcl\include\X11
+# compiler flags: -MT or -MD  only needed if tcl/tk is used
+
 DTK=-DWITH_TK
+
+!IF "$(DTK)" == "-DWITH_TK"
+USE_MT=-MT 
+TCLTK=C:\Tcl\lib
+TCLTK=c:\softs\active-tcl
+TKSCI=libs/tksci.lib 
+
+TKLIBS="$(TCLTK)\lib\tcl83.lib" "$(TCLTK)\lib\tk83.lib"
+TKLIBSBIN=$(TKLIBS)
+TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"
+!ENDIF
+
+# compiler flags: -MT is only needed if tcl/tk is used
+
+
 #---------------------
 # Scilab pvm library
 #---------------------
@@ -45,11 +58,10 @@ LINKER=link
 # debug option for the linker 
 LINKER_FLAGS=/NOLOGO /DEBUG /Debugtype:cv /machine:ix86
 # standard option for the linker 
-LINKER_FLAGS=/NOLOGO /machine:ix86
+LINKER_FLAGS=/NOLOGO /machine:ix86 
 # include options 
 INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) $(PVM_INCLUDES)
-# compiler flags: -MT is only needed if tcl/tk is used 
-#USE_MT=-MT
+
 CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 # debug 
 CC_OPTIONS =  $(CC_COMMON) -Z7 -W3 -Od 
@@ -79,9 +91,11 @@ GUIFLAGS=-SUBSYSTEM:console
 GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
 
 !IF "$(USE_MT)" == "-MT"
-GUILIBS=-NODEFAULTLIB:libc.lib $(GUI) libcmt.lib oldnames.lib
+GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
+!ELSEIF "$(USE_MT)" == "-MD"
+GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:libcmt.lib $(GUI)  msvcrt.lib
 !ELSE 
-GUILIBS= $(GUI) libc.lib
+GUILIBS=-NODEFAULTLIB:libcmt.lib $(GUI) libc.lib msvcrt.lib
 !ENDIF
 
 # XLIBS is used for linking Scilab
@@ -95,7 +109,7 @@ XLIBSBIN=$(TKLIBSBIN) $(PVMLIB) $(GUILIBS)
 
 .cpp.obj	:
 	@echo ------------- Compile file $< --------------
-	$(CC) $(CFLAGS) $< 
+	@$(CC) $(CFLAGS) $< 
 
 # default rule for Fortran Compilation 
 

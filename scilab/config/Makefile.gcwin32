@@ -9,7 +9,7 @@ DLL_NAME1 =bin/LibScilab
 
 # scilex-lib
 
-bin/scilex bin/scilex.exe : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME1).dll 
+bin/scilex bin/scilex.exe : scilex-lib  routines/wsci/Rscilab.o $(DLL_NAME1).a
 	@$(ECHO) ------- Building $@ --------
 	@$(CC)  -mconsole -o bin/scilex.exe libs/scimain.o \
 		$(RESOURCES) $(DLL_NAME1).a $(WINLIBS)  --enable-stdcall-fixup
