@@ -217,6 +217,8 @@ Lapack_contents(x)
 	C2F(zrot)();
 	C2F(zunml2)();
 	C2F()(zgelsy);
+	C2F()(ztzrzf);
+	C2F()(zunmrz);
 }
 }
 
