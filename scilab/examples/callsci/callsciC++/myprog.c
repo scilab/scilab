@@ -2,40 +2,51 @@
 #include "machine.h"
 #include "stack-c.h"
 
-/* 
- * Initialisation de Scilab 
- * avec execution de la startup 
- * pour ne pas avoir a ecrire un script 
- * de lancement je fixe SCI en dur qui est passe par le 
- * Makefile 
- */
+#if (defined __MSC__ ) || (defined __MINGW32__) 
+#define putenv(x) _putenv(x)
+#endif
 
-#ifndef SCI 
-#define SCI "../.."
-#endif 
+#ifdef __ABSC__
+#define putenv(x) abs_putenv(x)
+#endif
 
-static void Initialize() 
+/* ---------------------------------------------
+ * Initialize scilab 
+ * If SCI is not specified in the Makefile 
+ * the executable will only run if run from this 
+ * directory (since SCI will be bound to ../../../) 
+ * except if environment variables are set 
+ * ---------------------------------------------*/
+
+#ifndef SCI
+#define SCI "SCI=../../.." 
+#endif  
+
+extern void add_sci_argv(char *p);
+
+/* this function should be moved inside scilab */
+
+static void Initialize()  
 {
   char *p1;
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static iflag=-1, stacksize = 1000000, ierr=0;
-#ifdef WIN32
-  /* The next statements have no effect with msvc++, I don't know why */
-  _putenv("SCI=c:\\softs\\scilab\\scilab-2.6");
-  _putenv("TMPDIR=c:\\tmp");
-#else
-  setenv("SCI",SCI,1);
-  setenv("TMPDIR","/tmp",1);
-#endif 
-  
-  if ((p1 = getenv ("SCI")) != (char *) 0)
+
+  if ((p1 = getenv ("SCI")) == (char *) 0)
     {
-      fprintf (stderr, "voila SCI=%s\n", p1);
+#if (defined __MSC__ ) || (defined __MINGW32__) 
+      set_sci_env(SCI,NULL);
+#endif 
     }
   else
-    fprintf (stderr, "pas de SCI", p1);
-
+    {
+#if (defined __MSC__ ) || (defined __MINGW32__) 
+      set_sci_env(p1,NULL);
+#endif 
+    }
+  
   /* Scilab Initialization */ 
+  C2F(settmpdir)();
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
     {
@@ -43,19 +54,17 @@ static void Initialize()
       exit(1);
     }
   /* running the startup */ 
-  C2F(settmpdir)();
   C2F(scirun)(initstr,strlen(initstr));
+  return;
 }
 
 int send_scilab_job(char *job) 
 {
   static char buf[1024];
-  static char 
-    format[]="Err=execstr('%s','errcatch','n');quit;";
+  static char format[]="Err=execstr('%s','errcatch','n');quit;";
   int m,n,lp;
   sprintf(buf,format,job);
   fprintf(stderr,"job envoye %s\n",buf);
-
   C2F(scirun)(buf,strlen(buf));
   GetMatrixptr("Err", &m, &n, &lp);
   return (int) *stk(lp);
@@ -123,13 +132,18 @@ static int my_job()
 
 void C2F(banier)(int *x) 
 {
-  fprintf(stdout,"Ourf ....\n");
-  C2F(storeversion)("scilab-2.5.1",12L);
+  /* fprintf(stdout,"Ourf ....\n");
+     C2F(storeversion)("scilab-2.5.1",12L);
+  */
 }
 
 
 int MAIN__(void) 
 {
+  static char nw[]="-nw";
+  static char nb[]="-nb";
+  add_sci_argv(nw);
+  add_sci_argv(nb);
   Initialize();
   my_ode_job();
   my_job();
@@ -149,9 +163,9 @@ int my_ode_job()
   double x[]={1,0,0} ; int mx=3,nx=1;
   double time[]={0.4,4}; int mt=1,nt=2;
   fprintf(stdout,"je linke \n");
-  send_scilab_job("TMPDIR,link(''./mon_edo.o'',''mon_edo'',''c'');");
+  send_scilab_job("ilib_for_link(''odeex'',''my_ode.o'',[],''c'');");
   fprintf(stdout,"fin du link  \n");
-  send_scilab_job("link(''show'')");
+  send_scilab_job("exec(''loader.sce'');link(''show'')");
   WriteMatrix("x", &mx, &nx, x);
   WriteMatrix("time", &mt, &nt,time);
   /* pour que scilab <<linke>> mon_edo */

@@ -22,11 +22,13 @@ clean	::
 
 distclean:: clean 
 	@del $(SCIDIR1)\bin\prog.*
+	@del libod_ex.* loader.sce 
 
 RESOURCES= $(SCIDIR)/routines/wsci/Rscilab.res 
 
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 
-	@$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe"  $(RESOURCES) \
-	$(SCIDIR)/routines/f2c/libf2c/main.obj  $(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBS) 
+	$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe"  $(RESOURCES) \
+	$(SCIDIR)/routines/f2c/libf2c/main.obj \
+		$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBS) 
 	@echo "done " $(SCIDIR)/bin/prog.exe 
