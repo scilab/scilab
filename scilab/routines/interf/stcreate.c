@@ -52,7 +52,8 @@ char *fnames[];
     *istk(il + 3) = *istk(il + 2) + n1;
     l += n1;
 /*     set dims entry (int32 matrix) */
-    if (!C2F(creimati)("stcreate", &l, &c4, nz, &c1, &lr, &c1,  12L)) return 1;
+/*  if (!C2F(creimati)("stcreate", &l, &c4, nz, &c1, &lr, &c1,  12L)) return 1;  FD comment*/
+    if (!C2F(creimati)("stcreate", &l, &c4, &c1, nz, &lr, &c1,  12L)) return 1;
     C2F(icopy)(nz,sz,&c1,istk(lr),&c1);
     n1 = sadr(iadr(l)+4) + memused(c4,*nz) - l;
     *istk(il + 4) = *istk(il + 3) + n1;

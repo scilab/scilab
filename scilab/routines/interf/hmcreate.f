@@ -53,12 +53,13 @@ c     set mlist type entry
       l=l+n1
 c     set the size field 
       ilsz=iadr(l)
-      istk(ilsz)=1
+      istk(ilsz)=8
       istk(ilsz+1)=1
       istk(ilsz+2)=nz
-      istk(ilsz+3)=0
+      istk(ilsz+3)=4
       l=sadr(ilsz+4)
-      call int2db(nz,sz,1,stk(l),1)
+c      call int2db(nz,sz,1,stk(l),1)  FD
+      call icopy(nz,sz,1,istk(ilsz+4),1)
       l=l+nz
       istk(il+4)=istk(il+3)+nz+2
 c

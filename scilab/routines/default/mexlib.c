@@ -289,7 +289,7 @@ mxClassID mxGetClassID(const mxArray *ptr)
       case 12:
 	return  mxUINT16_CLASS;
       case 14:
-	return  mxUINT16_CLASS;
+	return  mxUINT32_CLASS;
       default:
 	return mxUNKNOWN_CLASS;
       }
@@ -1060,18 +1060,47 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
-  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ]; 
 }
 
 mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, int cmplx)
 {
-  int two=2;int dims[2];
-  if (CLASS==mxDOUBLE_CLASS)
-    return mxCreateDoubleMatrix(m, n, mxREAL);
-  else
-    dims[0] = m; dims[1] = n;
-  return mxCreateNumericArray( two, dims, CLASS, (mxComplexity) cmplx); 
+  static int lw,lw1;
+  int it;int lr;
+  switch (CLASS) {
+  case mxDOUBLE_CLASS:
+    return mxCreateDoubleMatrix(m, n, cmplx);
+  case mxINT8_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=1, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  case mxINT16_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=2, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  case mxINT32_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=4, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  case mxUINT8_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=11, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  case mxUINT16_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=12, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  case mxUINT32_CLASS:
+    Nbvars++;lw = Nbvars;  lw1 = lw + Top - Rhs;
+    if (! C2F(creimat)("  ", &lw1, (it=14, &it), &m, &n, &lr, 4L)) return (mxArray *) 0;
+    break;
+  default:
+    return (mxArray *) 0;  
+  }
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
+
 
 mxArray *mxCreateCharArray(int ndim, const int *dims)
 {
@@ -1581,7 +1610,7 @@ int arr2numcst(const mxArray  *ptr )
  
 bool mexIsGlobal(const mxArray *ptr)
 {
-  int pointed;/*int kkk;*/
+  int pointed;
   int ret_val;
   int *header;int *rheader;
   header=(int *) Header(ptr);
@@ -1609,7 +1638,7 @@ mxArray *mxDuplicateArray(const mxArray *ptr)
   Nbvars++; lw = Nbvars;
   numberandsize( ptr, &number, &size);
   CreateData(lw, size*sizeof(double));
-  data = (double *) GetData(lw);
+  data = (double *) GetRawData(lw);
   for (k = 0; k <size; ++k)
   data[k]=old[k];
   return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];
@@ -2003,7 +2032,7 @@ int mxGetElementSize(const mxArray *ptr)
    break;
  case INTMATRIX:
    /*[8,m,n,it] it=01    02   04    11     12    14
-     int8 int16 int32 uint8 uint16 uint32    */
+                  int8 int16 int32 uint8 uint16 uint32    */
    it=header[3];
    return( it%10 );
  default:
@@ -2195,7 +2224,7 @@ const char *mxGetClassName(const mxArray *ptr)
     return "sparse";
   case INTMATRIX:
     /*[8,m,n,it] it=01    02   04    11     12    14
-      int8 int16 int32 uint8 uint16 uint32    */
+                   int8 int16 int32 uint8 uint16 uint32    */
     switch (header[3]){
     case 1:
       return "int8";
