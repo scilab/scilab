@@ -1,139 +1,150 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>polyline_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 2002 </DATE>
-  <SHORT_DESCRIPTION name="polyline_properties"> description of the
-   Polyline entity properties </SHORT_DESCRIPTION>
- 
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="polyline_properties">description of the Polyline
+  entity properties</SHORT_DESCRIPTION>
+
   <DESCRIPTION>
-  <P>
-  The Polyline entity is a leaf of the graphics entities
-  hierarchy. This entity defines the parameters for polylines.
-  </P>
-  <DESCRIPTION_INDENT>
-   <DESCRIPTION_ITEM label="visible: ">
-    <SP>This field contains the  <VERB>visible</VERB> property value
-   for the entity . It should
-   be <VERB>&quot;on&quot; </VERB> or <VERB>&quot;off&quot;</VERB>  . By default, 
-   the polyline is visible, the value's property is  <VERB>&quot;on&quot;
-   </VERB>. If <VERB>&quot;off&quot;</VERB> the polyline is not drawn on the screen.</SP>
-   </DESCRIPTION_ITEM>
+    <P>The Polyline entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for polylines.</P>
 
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .
+        By default, the polyline is visible, the value's property is
+        <VERB>"on" </VERB>. If <VERB>"off"</VERB> the polyline is not drawn on
+        the screen.</SP>
+      </DESCRIPTION_ITEM>
 
-   <DESCRIPTION_ITEM label="data: ">
-    <SP>This field contains the  values for the x and y coordinates. 
-    Component Z is to be added in the case of three-dimensional axes. 
-    It is a two (three) column matrix <VERB>[x,y,[z]]</VERB> of points.</SP>
-   </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="data: ">
+        <SP>This field contains the values for the x and y coordinates.
+        Component Z is to be added in the case of three-dimensional axes. It
+        is a two (three) column matrix <VERB>[x,y,[z]]</VERB> of points.</SP>
+      </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM label="line_style: ">
-      <SP>The  <VERB>line_style</VERB> property value should be an integer in [0 9].
-       0 stands for solid the other value stands for a selection of
-       dashes.</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="line_style: ">
+        <SP>The <VERB>line_style</VERB> property value should be an integer in
+        [0 9]. 0 stands for solid the other value stands for a selection of
+        dashes.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="thickness: ">
-       <SP>This field contains the line <VERB>thickness</VERB> property. It's value should
-       be positive integer.</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="thickness: ">
+        <SP>This field contains the line <VERB>thickness</VERB> property. It's
+        value should be positive integer.</SP>
+      </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="polyline_style: ">
+        <SP>This property sets several polyline drawing mode:</SP>
 
-     <DESCRIPTION_ITEM label="polyline_style: ">
-      <SP>This property sets several polyline drawing mode:</SP>
-     <DESCRIPTION_INDENT>
-        <DESCRIPTION_ITEM> 
-        <SP>If the value is 0 or 1 lines are drawn between two consecutives points.</SP>
-        </DESCRIPTION_ITEM>
-	<DESCRIPTION_ITEM> 
-        <SP>If the value is 2 the polyline produces a staircase plot. Two
-        consecutives points are linked by an horizontal line followed
-        by a vertical line.</SP>
-        </DESCRIPTION_ITEM>
-	<DESCRIPTION_ITEM>
-        <SP>If the value is 3 the polyline produces a bar plot. For each
-        given point (x,y) a vertical line is drawn from (x,y) to (x,0).</SP>
-        </DESCRIPTION_ITEM>
-        <DESCRIPTION_ITEM>
-         <SP>If the value is 4 arrows are drawn between two consecutives points.</SP>
-        </DESCRIPTION_ITEM>
-	  <DESCRIPTION_ITEM>
-         <SP>If the value is 5 the polyline is filled (patch).</SP>
-        </DESCRIPTION_ITEM>
-     </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 0 or 1 lines are drawn between two
+            consecutives points.</SP>
+          </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 2 the polyline produces a staircase plot. Two
+            consecutives points are linked by an horizontal line followed by a
+            vertical line.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="mark_mode: ">
-      <SP>If <VERB>mark_mode</VERB> property is  <VERB>&quot;on&quot; </VERB> the
-      polyline  is represented by a mark drawn at each given
-      points. If is the default value <VERB>&quot;off&quot;</VERB> 
-      the polyline is represented using lines.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 3 the polyline produces a bar plot. For each
+            given point (x,y) a vertical line is drawn from (x,y) to
+            (x,0).</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="mark_style: ">
-      <SP>The <VERB>mark_style</VERB> property value is used to select the
-       type of mark to use when <VERB>mark_mode</VERB> property is 
-       <VERB>&quot;on&quot; </VERB>. The value should be an integer in [0 9]
-       which stands for: dot, plus, cross, star, diamond fill, diamond,
-       triangle up, triangle down, trefle and circle.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 4 arrows are drawn between two consecutives
+            points.</SP>
+          </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="mark_size: ">
-      <SP>The <VERB>mark_size</VERB> property  is used to select the
-       type of size of the marks when <VERB>mark_mode</VERB> property is
-       <VERB>&quot;on&quot; </VERB>. Its value should be an integer between 0 and 5
-       whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
-     </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM>
+            <SP>If the value is 5 the polyline is filled (patch).</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="foreground: ">  
-     <SP>This field contains the default <VERB>foreground</VERB> property
-      used to draw the polyline. Its value should be a color index
-      (relative to the current colormap).</SP>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="mark_mode: ">
+        <SP>If <VERB>mark_mode</VERB> property is <VERB>"on" </VERB> the
+        polyline is represented by a mark drawn at each given points. If is
+        the default value <VERB>"off"</VERB> the polyline is represented using
+        lines.</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_state: ">
-      <SP>This field contains the <VERB>clip_state</VERB> property
-      value for the polyline.  It should be :</SP>
-      <DESCRIPTION_INDENT>
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;off&quot;</VERB> this means that the polyline is not clipped.</SP>
-         </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="mark_style: ">
+        <SP>The <VERB>mark_style</VERB> property value is used to select the
+        type of mark to use when <VERB>mark_mode</VERB> property is <VERB>"on"
+        </VERB>. The value should be an integer in [0 9] which stands for:
+        dot, plus, cross, star, diamond fill, diamond, triangle up, triangle
+        down, trefle and circle.</SP>
+      </DESCRIPTION_ITEM>
 
-         <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;clipgrf&quot;</VERB> this means that the
-         polyline is clipped outside the Axes box.</SP>
-         </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="mark_size: ">
+        <SP>The <VERB>mark_size</VERB> property is used to select the type of
+        size of the marks when <VERB>mark_mode</VERB> property is <VERB>"on"
+        </VERB>. Its value should be an integer between 0 and 5 whith stands
+        for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
 
-        <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;on&quot;</VERB> this means that the
-         polyline is clipped outside the rectangle given by property clip_box.</SP>
-         </DESCRIPTION_ITEM>
-      </DESCRIPTION_INDENT>
-     </DESCRIPTION_ITEM>
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the default <VERB>foreground</VERB> property
+        used to draw the polyline. Its value should be a color index (relative
+        to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
 
-     <DESCRIPTION_ITEM label="clip_box: ">   
-     <SP>This field is to determinate  the  <VERB>clip_box</VERB> property.
-      By Default its value should be an empty matrix if clip_state is &quot;off&quot;.
-       Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width height) 
-       defines the portions  of the polyline to display, however <VERB>clip_state</VERB> property 
-       value will be changed.</SP>
-      </DESCRIPTION_ITEM> 
+      <DESCRIPTION_ITEM label="clip_state: ">
+        <SP>This field contains the <VERB>clip_state</VERB> property value for
+        the polyline. It should be :</SP>
 
-      <DESCRIPTION_ITEM label="parent: "> 
-      <SP>This field contains the handle of the parent. The parent of the polyline
-      entity should be of the type <VERB>&quot;Axes&quot;</VERB> or <VERB>&quot;Agregation&quot;</VERB>.</SP>
-     </DESCRIPTION_ITEM>
-  
-  </DESCRIPTION_INDENT>
+        <DESCRIPTION_INDENT>
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"off"</VERB> this means that the polyline is not
+            clipped.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"clipgrf"</VERB> this means that the polyline is clipped
+            outside the Axes box.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM>
+            <SP><VERB>"on"</VERB> this means that the polyline is clipped
+            outside the rectangle given by property clip_box.</SP>
+          </DESCRIPTION_ITEM>
+        </DESCRIPTION_INDENT>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="clip_box: ">
+        <SP>This field is to determinate the <VERB>clip_box</VERB> property.
+        By Default its value should be an empty matrix if clip_state is "off".
+        Other cases the vector <VERB>[x,y,w,h]</VERB> (upper-left point width
+        height) defines the portions of the polyline to display, however
+        <VERB>clip_state</VERB> property value will be changed.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This field contains the handle of the parent. The parent of the
+        polyline entity should be of the type <VERB>"Axes"</VERB> or
+        <VERB>"Agregation"</VERB>.</SP>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
   </DESCRIPTION>
+
   <EXAMPLE><![CDATA[  
 
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
-   a.data_bounds=[-2,2;-2,2];
+   a.data_bounds=[-2,-2;2,2];
 
    xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
    p=get("hdl"); //get handle on current entity (here the polyline entity)
@@ -150,18 +161,40 @@
 
 
  ]]></EXAMPLE>
+
   <SEE_ALSO>
-   <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>xpoly</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>xfpoly</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>xpolys</LINK> </SEE_ALSO_ITEM>
-   <SEE_ALSO_ITEM> <LINK>xfpolys</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
 
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
 
+    <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xpoly</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xfpoly</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xpolys</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xfpolys</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
-</MAN>
 
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
+</MAN>
