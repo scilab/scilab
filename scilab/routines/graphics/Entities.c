@@ -14995,7 +14995,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD)
 {
   integer  x[5],narg = 0;
-  integer color_kp,verbose,thick_kp,style_kp;
+  integer color_kp,verbose = 0,thick_kp,style_kp;
 
   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray Replacement
   C2F(dr)("xget","thickness",&verbose,&thick_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray addings here
