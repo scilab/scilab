@@ -138,7 +138,7 @@ extern sciPointObj *paxesmdl;/* DJ.A 08/01/04 */
 static integer one = 1, zero = 0;
 /* NG beg */
 int versionflag = 1; /* old mode */
-sciClipTab ptabclip[15]; /* pourquoi n'est pas une prop de la figure */
+/* sciClipTab ptabclip[15]; /\* pourquoi n'est pas une prop de la figure *\/ */
 static char error_message[70];
 /* NG end */
 
@@ -5915,8 +5915,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /***********************************************/
   else if (strncmp(marker,"clip_box", 8) == 0)  { 
     /* On doit avoir avoir une matrice 4x1 */
-    if (*numcol * *numrow == 4)
-      sciSetClipping((sciPointObj *)pobj, stk(*value)); 
+    if (*numcol * *numrow == 4){
+      sciSetClipping((sciPointObj *)pobj, stk(*value));
+      sciSetIsClipping(pobj, 1);
+    }
     else {strcpy(error_message,"Argument must be a vector of size 4");return -1;}
 	      
   } 
@@ -5925,8 +5927,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       sciSetIsClipping( (sciPointObj *)pobj,0);
     else if ((strncmp(cstk(*value),"off", 3) == 0)) 
       sciSetIsClipping( (sciPointObj *)pobj,-1);
-    else if ((strncmp(cstk(*value),"on", 2) == 0)) 
-      {strcpy(error_message,"set clip box ( set('clip_box',[x y w h]) )");  return -1;}
+    else if ((strncmp(cstk(*value),"on", 2) == 0))
+      if(sciGetClipping(pobj) != NULL){
+	sciSetIsClipping( (sciPointObj *)pobj,1);
+      }
+      else{
+	sciSetIsClipping( (sciPointObj *)pobj,0);
+      }
     else
       {strcpy(error_message,"Value must be 'clipgrf', 'on' or 'off'"); return -1;}
   }		
@@ -7657,28 +7664,31 @@ int sciGet(sciPointObj *pobj,char *marker)
     }
   else if (strncmp(marker,"clip_box", 8) == 0) 
     {
-      if ((k=sciGetIsClipping ((sciPointObj *) pobj)) > 0 )
+      if (sciGetIsClipping ((sciPointObj *) pobj) > 0)
 	{ 
 	  numrow=1; numcol=4;  
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] =  ptabclip[k].clip[i];	
-		 
+	    stk(outindex)[i] =  (sciGetClipping(pobj))[i];
+	  
 	}
-      else if ((k=sciGetIsClipping ((sciPointObj *) pobj)) == 0  && (sciGetEntityType (pobj) == SCI_SUBWIN) )
-	{																/* Adding above:  && (sciGetEntityType (pobj) == SCI_SUBWIN) */
-																	/* We must first distinguish between SUBWIN and other Objects */
-	  numrow=1;numcol=4;  
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	/*Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04 */
-	  stk(outindex)[1] =  pSUBWIN_FEATURE (pobj)->FRect[1];
-	  stk(outindex)[2] =  pSUBWIN_FEATURE (pobj)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	
-	  stk(outindex)[3] =  pSUBWIN_FEATURE (pobj)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	
-	}
+    /*   else if (sciGetIsClipping ((sciPointObj *) pobj) == 0 ) */
+/* 	{ */
+/* 	  sciPointObj * psubwin =  sciGetParentSubwin(pobj); */
+/* 	  numrow=1;numcol=4; */
+/* 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); */
+	  
+/* 	  stk(outindex)[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];	/\*Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04 *\/ */
+/* 	  stk(outindex)[1] =  pSUBWIN_FEATURE (psubwin)->FRect[1]; */
+/* 	  stk(outindex)[2] =  pSUBWIN_FEATURE (psubwin)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	 */
+/* 	  stk(outindex)[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	 */
+/* 	} */
       else
 	{ 
 	  numrow=0;numcol=0;
-	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);		
+	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+/* 	  strcpy(error_message,"No clipping info."); */
+/* 	  return -1; */
 	}
     }
   else if (strncmp(marker,"clip_state", 9) == 0) 
