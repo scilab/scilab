@@ -542,14 +542,14 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       /******* 01/07/2002 **********/
-      if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1) && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
-	xmax=Cscale.frect[2];
-	xmin=Cscale.frect[0];
-        x[1]= floor(Cscale.frect[2] / (exp10( x[2]))) ;  
-        x[0]  = ceil(Cscale.frect[0]  / (exp10( x[2]))) ; 
-        x[3]=inint(x[1]-x[0]);
-        while (x[3]>10)  x[3]=floor(x[3]/2);
-        Nx=  (integer) (x[3]+1);}
+    /*   if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1) && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){   */
+/* 	xmax=Cscale.frect[2]; */
+/* 	xmin=Cscale.frect[0]; */
+/*         x[1]= floor(Cscale.frect[2] / (exp10( x[2]))) ;   */
+/*         x[0]  = ceil(Cscale.frect[0]  / (exp10( x[2]))) ;  */
+/*         x[3]=inint(x[1]-x[0]); */
+/*         while (x[3]>10)  x[3]=floor(x[3]/2); */
+/*         Nx=  (integer) (x[3]+1);} */
       /**********************/
       /** loop on the ticks **/
       if (Nx==1) break; /*D.Abdemouche 16/12/2003*/
@@ -632,40 +632,40 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	      }
 	    } 
 	  /***   01/07/2002 ****/
-	  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
-	    if ( i == 0 ) 
-	      {
-		int j;
-		double dx ; 
-		vxx1= x_convert(xy_type,x,i+1);
-		dx = (vxx1-vxx)/subtics;
-		for ( j = 1 ; j < subtics; j++) {  
-		  if ( vxx-dx*j > xmin){
-		    vx[0] = vx[1] = XScale(vxx-dx*j);
-		    if ( pos == 'd' ) 
-		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; }
-		    else 
-		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }}
-	      } 
-	    if ( i == Nx-1 ) 
-	      {
-		int j;
-		double dx ; 
-		vxx1= x_convert(xy_type,x,i+1);
-		dx = (vxx1-vxx)/subtics;
-		for ( j = 1 ; j < subtics; j++) {  
-		  if ( vxx+dx*j < xmax){
-		    vx[0] = vx[1] = XScale(vxx+dx*j);
-		    if ( pos == 'd' ) 
-		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; }
-		    else 
-		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }}
-	      } 
-	  }
+	 /*  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){ */
+/* 	    if ( i == 0 )  */
+/* 	      { */
+/* 		int j; */
+/* 		double dx ;  */
+/* 		vxx1= x_convert(xy_type,x,i+1); */
+/* 		dx = (vxx1-vxx)/subtics; */
+/* 		for ( j = 1 ; j < subtics; j++) {   */
+/* 		  if ( vxx-dx*j > xmin){ */
+/* 		    vx[0] = vx[1] = XScale(vxx-dx*j); */
+/* 		    if ( pos == 'd' )  */
+/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; } */
+/* 		    else  */
+/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; } */
+/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 		  }} */
+/* 	      }  */
+/* 	    if ( i == Nx-1 )  */
+/* 	      { */
+/* 		int j; */
+/* 		double dx ;  */
+/* 		vxx1= x_convert(xy_type,x,i+1); */
+/* 		dx = (vxx1-vxx)/subtics; */
+/* 		for ( j = 1 ; j < subtics; j++) {   */
+/* 		  if ( vxx+dx*j < xmax){ */
+/* 		    vx[0] = vx[1] = XScale(vxx+dx*j); */
+/* 		    if ( pos == 'd' )  */
+/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] + barlength/2.0) ; } */
+/* 		    else  */
+/* 		      { vy[0]= ym[0];vy[1]=  (integer) (ym[0] - barlength/2.0) ; } */
+/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 		  }} */
+/* 	      }  */
+/* 	  } */
          
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
@@ -690,14 +690,14 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       /******* 01/07/2002 **********/
-      if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
-	ymax=Cscale.frect[3];
-	ymin=Cscale.frect[1];
-        y[1]= floor(Cscale.frect[3] / (exp10( y[2]))) ;  
-        y[0]  = ceil(Cscale.frect[1]  / (exp10( y[2]))) ; 
-        y[3]=inint(y[1]-y[0]);
-        while (y[3]>10)  y[3]=floor(y[3]/2);
-        Ny= (integer) (y[3]+1);}
+    /*   if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){   */
+/* 	ymax=Cscale.frect[3]; */
+/* 	ymin=Cscale.frect[1]; */
+/*         y[1]= floor(Cscale.frect[3] / (exp10( y[2]))) ;   */
+/*         y[0]  = ceil(Cscale.frect[1]  / (exp10( y[2]))) ;  */
+/*         y[3]=inint(y[1]-y[0]); */
+/*         while (y[3]>10)  y[3]=floor(y[3]/2); */
+/*         Ny= (integer) (y[3]+1);} */
       /**********************/
       /** loop on the ticks **/
       if (Ny==1) break; /*D.Abdemouche 16/12/2003*/
@@ -779,40 +779,40 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		}
 	    }
 	  /***   01/07/2002 ****/
-	  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
-	    if ( i == 0 )  
-	      {
-		int j;
-		double dy ; 
-		vxx1= y_convert(xy_type,y,i+1);
-		dy = (vxx1-vxx)/subtics;
-		for ( j = 1 ; j < subtics; j++) {  
-		  if ( vxx-dy*j > ymin){
-		    vy[0] = vy[1] = YScale(vxx-dy*j);
-		    if ( pos == 'r' ) 
-		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; }
-		    else 
-		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }}
-	      }
-	    if ( i == Ny-1 )
-	      {
-		int j;
-		double dy ; 
-		vxx1= y_convert(xy_type,y,i+1);
-		dy = (vxx1-vxx)/subtics;
-		for ( j = 1 ; j < subtics; j++) {  
-		  if ( vxx+dy*j < ymax){
-		    vy[0] = vy[1] = YScale(vxx+dy*j);
-		    if ( pos == 'r' ) 
-		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; }
-		    else 
-		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; }
-		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }}
-	      }  
-	  }
+	 /*  if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.limits[0] ==1)&& (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){ */
+/* 	    if ( i == 0 )   */
+/* 	      { */
+/* 		int j; */
+/* 		double dy ;  */
+/* 		vxx1= y_convert(xy_type,y,i+1); */
+/* 		dy = (vxx1-vxx)/subtics; */
+/* 		for ( j = 1 ; j < subtics; j++) {   */
+/* 		  if ( vxx-dy*j > ymin){ */
+/* 		    vy[0] = vy[1] = YScale(vxx-dy*j); */
+/* 		    if ( pos == 'r' )  */
+/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; } */
+/* 		    else  */
+/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; } */
+/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 		  }} */
+/* 	      } */
+/* 	    if ( i == Ny-1 ) */
+/* 	      { */
+/* 		int j; */
+/* 		double dy ;  */
+/* 		vxx1= y_convert(xy_type,y,i+1); */
+/* 		dy = (vxx1-vxx)/subtics; */
+/* 		for ( j = 1 ; j < subtics; j++) {   */
+/* 		  if ( vxx+dy*j < ymax){ */
+/* 		    vy[0] = vy[1] = YScale(vxx+dy*j); */
+/* 		    if ( pos == 'r' )  */
+/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] + barlength/2.0) ; } */
+/* 		    else  */
+/* 		      { vx[0]= xm[0];vx[1]= (integer) (xm[0] - barlength/2.0) ; } */
+/* 		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 		  }} */
+/* 	      }   */
+/* 	  } */
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
