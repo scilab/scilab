@@ -81,6 +81,8 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
   int ierr,i;
   char **files,**en_names;
   ierr=0;
+  en_names=NULL; /* Initialisation variable pour Windows */
+
   if ( *iflag == 0) 
     {
       ScilabMStr2CM(descla,nvla,ptrdescla,&files,&ierr);
@@ -106,7 +108,7 @@ void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrde
     }
 
   /** calling the linker **/
-
+  
   SciLink(*iflag,rhs,ilib,files,en_names,strf);
 
   if ( *rhs >= 2) 
