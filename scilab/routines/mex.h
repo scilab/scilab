@@ -47,14 +47,14 @@ typedef struct table_struct {
 
 #define mxCreateFull mxCreateDoubleMatrix
 #define bool int
-#define mexCallMATLAB mexCallSCILAB
+
 #define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
 /** XXXX A finir **/
 #define mexGetArrayPtr(name,type) mexGetArray(name,type) 
-#define mexPrintf sciprint
+
+void mexPrintf __PARAMS((char *fmt,...));
 
 /** Put a matrix in Scilab Workspace */ 
-
 #define mexPutFull(name,m,n,ptrM,tag) \
   if ( ! C2F(cwritemat)(name,(c_local=m,&c_local),(c1_local=n,&c1_local),ptrM,strlen(name))) {	\
       mexErrMsgTxt("mexPutFull failed\r\n");return; }
@@ -98,6 +98,8 @@ int mxGetNumberOfDimensions __PARAMS((const mxArray *ptr));
 int mxGetNumberOfFields __PARAMS((const mxArray *ptr));
 void *mxGetData __PARAMS((const mxArray *ptr));
 void *mxGetImagData __PARAMS((const mxArray *ptr));
+extern void diary_nnl __PARAMS((char *str,int *n));
+extern int getdiary __PARAMS(());
 
 extern int C2F(createptr) __PARAMS((char *type,integer * m,integer * n, integer *it,integer * lr,integer *ptr, long int type_len));
 extern int C2F(createstkptr) __PARAMS((integer *m, vraiptrst *ptr));
@@ -131,6 +133,7 @@ int C2F(mxcopyreal8toptr)  __PARAMS((double *y, mxArray *ptr, integer *n));
 int fortran_mex_gateway __PARAMS((char *fname, FGatefuncH F));
 int mexAtExit __PARAMS((mxArray *ptr));
 int mexCallSCILAB __PARAMS((int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name));
+int mexCallMATLAB __PARAMS((int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name));
 int mex_gateway __PARAMS((char *fname, GatefuncH F));
 int mxGetElementSize __PARAMS((const mxArray *ptr));
 int mxGetM __PARAMS((const mxArray *ptr));
