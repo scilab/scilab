@@ -42,7 +42,7 @@ function xmltohtml(dirs,titles,xsl,step)
   if rhs <= 0 then dirs = man_dirs ;end 
   if titles==[] then titles= H+ emptystr(dirs);end 
   if dirs == [] then 
-    dirs = man_dirs ;
+    dirs = 'SCI/man/'+LANGUAGE+'/'+man_dirs ;
     titles= man_titles;
   end 
   
