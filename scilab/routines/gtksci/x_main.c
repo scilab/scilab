@@ -724,6 +724,7 @@ int GetScreenDPI(int *ixres, int *iyres)
   *iyres = (int) (yres + 0.5);
   
   return 0;
+#endif
 }
 
 
