@@ -20,12 +20,14 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
   CreateVarFromPtr( 1, "c",(m1=strlen(Version), &m1),&n1,&v);
   LhsVar(1) = 1;
   if (Lhs==2) {
-    static char *Str[6];
+    static char *Str[7];
     char tk[]="tk";
     char pvm[]="pvm";
     char gtk[]="gtk";
     char ocaml[]="ocaml";
 	char atlas[]="atlas";
+	char debugmode[]="debug";
+	char releasemode[]="release";
 
 	#ifdef __TIME__
 	char TimeBuild[]=__TIME__;
@@ -50,15 +52,29 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     if (irep) {Str[n1]=ocaml;n1++;}
 
 	#ifdef WITH_ATLAS
-	{Str[n1]=atlas;n1++;}
+		{Str[n1]=atlas;n1++;}
+	#endif
+
+	#ifdef WIN32
+		#if _DEBUG
+			{Str[n1]=debugmode;n1++;}
+		#else
+			{Str[n1]=releasemode;n1++;}
+		#endif
+	#else
+		#ifdef NDEBUG
+			{Str[n1]=releasemode;n1++;}
+		#else
+			{Str[n1]=debugmode;n1++;}
+		#endif
 	#endif
 
 	#ifdef __TIME__
-	{Str[n1]=DateBuild;n1++;}
+		{Str[n1]=DateBuild;n1++;}
 	#endif
 
 	#ifdef __DATE__
-	{Str[n1]=TimeBuild;n1++;}
+		{Str[n1]=TimeBuild;n1++;}
 	#endif
 
     m1=1;
