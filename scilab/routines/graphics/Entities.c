@@ -7201,6 +7201,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->axes.fontsize  = -1;  
       pSUBWIN_FEATURE (pobj)->axes.subint[0]  = 1;   
       pSUBWIN_FEATURE (pobj)->axes.subint[1]  = 1; 
+      pSUBWIN_FEATURE (pobj)->axes.subint[2]  = 1;
       pSUBWIN_FEATURE (pobj)->axes.xdir='d'; /*SS 02/01/03 */
       pSUBWIN_FEATURE (pobj)->axes.ydir='l'; /*SS 02/01/03 */
 
@@ -13606,6 +13607,7 @@ void initsubwin()
   pSUBWIN_FEATURE (psubwin)->axes.fontsize  = -1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[0] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[1] =  1;
+  pSUBWIN_FEATURE (psubwin)->axes.subint[2] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.limits[0]  = 0;  
   pSUBWIN_FEATURE (psubwin)->visible = TRUE;
   pSUBWIN_FEATURE (psubwin)->is3d = FALSE;  
