@@ -7935,10 +7935,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->isclip = pSUBWIN_FEATURE (paxesmdl)->isclip;
 
       /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
-      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0];
-      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1];
-      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2];
-      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3];
+      pSUBWIN_FEATURE (pobj)->axes.aaint[0] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0];
+      pSUBWIN_FEATURE (pobj)->axes.aaint[1] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1];
+      pSUBWIN_FEATURE (pobj)->axes.aaint[2] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2];
+      pSUBWIN_FEATURE (pobj)->axes.aaint[3] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3];
 
       /* F.Leray 07.04.04*/
       pSUBWIN_FEATURE (pobj)-> value_min[0] = 0;  /* xmin */
@@ -11152,10 +11152,9 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	  triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
 	  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
 	}/***/
-      else 
+      else /* we are in 2D mode...*/
 	{
-	  if (pSUBWIN_FEATURE (pobj)->isaxes)
-	    {
+	 /* F.leray 26.04.04 : Remove the if here and place it at the level of axis_draw (see below...)*/
 	      /*  sciSetCurrentObj (sciGetParent(pobj)); F.Leray 25.03.04*/
 	      /* load the object foreground and dashes color */
 	      x[0] = sciGetForeground (pobj);
@@ -11213,6 +11212,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 		 double *value_max, integer *aaint,
 		 char *strflag, double *FRect) */
 	      
+		/* TEST debug F.Leray 26.04.04*/
+
 	      sci_update_frame_bounds(0,pSUBWIN_FEATURE (pobj)->logflags,pSUBWIN_FEATURE (pobj)->value_min,
 				      pSUBWIN_FEATURE (pobj)->value_max,pSUBWIN_FEATURE (pobj)->axes.aaint,
 				      pSUBWIN_FEATURE (pobj)->strflag);
@@ -11220,7 +11221,8 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 	      
 	      /*------------------------------------------------------------------------------------------------------------------*/
 	      
-	      
+	    if (pSUBWIN_FEATURE (pobj)->isaxes)
+	    {
 	      axis_draw (pSUBWIN_FEATURE (pobj)->strflag); 
 	    }
 	  
