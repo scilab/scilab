@@ -1,5 +1,5 @@
-function M=%i_i_s(varargin)
-//insertion of an integer matrix in an matrix of double or []
+function M=%i_i_i(varargin)
+//insertion of an integer matrix in an matrix of integers for more than 2 indices
 // Copyright INRIA
   rhs=argn(2)
   M=varargin(rhs)// destination matrix
