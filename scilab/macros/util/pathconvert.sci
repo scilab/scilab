@@ -109,17 +109,18 @@ function paths=pathconvert(paths,flagtrail,flagexpand,str)
      for i=1:size(paths,'*') 
        path=paths(i);
        k = strindex(path,'/');
-       if k(1) > 1 then 
+       
+       if k==[] then 
+	  if part(path,length(path))== ':' then 
+	    paths(i)='/cygdrive/'+... 
+		     part(path,1:length(path)-1)+sep;
+	  end
+       elseif k(1) > 1 then 
 	 if part(path,k(1)-1)== ':' then 
 	   paths(i)='/cygdrive/'+... 
 		    part(path,1:k(1)-2)+ ...
 		    part(path,k(1):length(path));
 	 end
-       elseif k==[] then 
-	  if part(path,length(path))== ':' then 
-	    paths(i)='/cygdrive/'+... 
-		     part(path,1:length(path)-1)+sep;
-	  end
        end
      end
   end
