@@ -148,9 +148,7 @@
 {"ereduc",		IN_matqz,	3,	2},	
 {"fstair",		IN_matqz,	4,	2},	
 #define  IN_matric 9  
-{"lyap",		IN_matric,	1,	2},	
 {"ricc",		IN_matric,	3,	2},	
-{"sylv",		IN_matric,	2,	2},	
 #define  IN_matnew  10  
 {"freq",		IN_matnew,	4,	2},	
 {"ltitr",		IN_matnew,	5,	2},	
@@ -547,4 +545,5 @@
 {"pet_ricc",		IN_intslicot,	7,	3},
 {"hinf",		IN_intslicot,	8,	3},
 {"dhinf",		IN_intslicot,	9,	3},
+{"linmeq",		IN_intslicot,	10,	3},
 
