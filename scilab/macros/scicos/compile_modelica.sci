@@ -60,8 +60,7 @@ function [ok,name,nx,nin,nout,ng,nm,nz]=compile_modelica(fil)
     for k=1:size(mlibs,'*')
       libs=[libs;listfiles(mlibs(k)+ext)]
     end
-    
-pause
+
     ierr=execstr('libn=ilib_for_link(name,files,libs,''c'',Make,loader)','errcatch')
     if ierr<>0 then 
       ok=%f;x_message(['sorry compilation problem';lasterror()]);
