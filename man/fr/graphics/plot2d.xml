@@ -122,7 +122,8 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>plot2d</VERB> plots a set of 2D curves.</P>
+    <P><VERB>plot2d</VERB> plots a set of 2D curves. If you are familiar with
+    Matlab <VERB>plot</VERB> syntax, you should use <LINK>plot</LINK>.</P>
 
     <P></P>
 
@@ -430,6 +431,10 @@ a.isoview='off';
 ]]></EXAMPLE>
 
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
+    </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>plot2d1</LINK>
     </SEE_ALSO_ITEM>

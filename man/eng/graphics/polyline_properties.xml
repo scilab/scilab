@@ -33,7 +33,7 @@
 
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The <VERB>line_style</VERB> property value should be an integer in
-        [0 9]. 0 stands for solid the other value stands for a selection of
+        [0 6]. 0 stands for solid the other value stands for a selection of
         dashes.</SP>
       </DESCRIPTION_ITEM>
 
@@ -83,17 +83,17 @@
 
       <DESCRIPTION_ITEM label="mark_style: ">
         <SP>The <VERB>mark_style</VERB> property value is used to select the
-        type of mark to use when <VERB>mark_mode</VERB> property is 
-        <VERB>"on"</VERB>. The value should be an integer in [0 9] which stands for:
-        dot, plus, cross, star, diamond fill, diamond, triangle up, triangle
-        down, trefle and circle.</SP>
+        type of mark to use when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. The value should be an integer in [0 9] which
+        stands for: dot, plus, cross, star, diamond fill, diamond, triangle
+        up, triangle down, trefle and circle.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="mark_size: ">
         <SP>The <VERB>mark_size</VERB> property is used to select the type of
-        size of the marks when <VERB>mark_mode</VERB> property is 
-        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5 whith stands
-        for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+        size of the marks when <VERB>mark_mode</VERB> property is
+        <VERB>"on"</VERB>. Its value should be an integer between 0 and 5
+        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="foreground: ">

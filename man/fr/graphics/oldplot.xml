@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>oldplot</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>April 1993 modified on February 2005</DATE>
+
+  <SHORT_DESCRIPTION name="oldplot">simple plot (old
+  version)</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>oldplot(x,y,[xcap,ycap,caption])</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>oldplot(y)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>x,y</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: two vectors with same sizes</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>xcap,ycap,caption</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: character strings or string matrices</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>Plot <VERB>y</VERB> as function of <VERB>x</VERB>. <VERB>xcap</VERB>
+    and <VERB>ycap</VERB> are captions for x-axis and y-axis respectively and
+    <VERB>caption</VERB> is the caption of the plot.</P>
+
+    <P>Invoked with only one argument, <VERB>oldplot(y)</VERB> plots the
+    <VERB>y</VERB> vector or, if <VERB>y</VERB> is a matrix, it plots all its
+    row vectors on the same plot. This plot is done with respect to the vector
+    1:&lt;number of columns of <VERB>y</VERB>&gt;.</P>
+
+    <P><VERB>oldplot</VERB> is obsolete. Use <VERB>plot2d</VERB> or
+    <VERB>plot</VERB> instead.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+
+x=0:0.1:2*%pi;
+// simple plot
+oldplot(sin(x))
+// using captions
+xbasc()
+oldplot(x,sin(x),"sin","time","plot of sinus")
+// plot 2 functions
+xbasc()
+oldplot([sin(x);cos(x)])
+ 
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>plot2d</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>plot</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>J.Ph.C.</AUTHOR>
+</MAN>
