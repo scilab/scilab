@@ -71,7 +71,7 @@ c     nouvelle 'operation'
       op=istk(lc)
       goto(20, 25, 40, 42, 30, 41, 45, 49, 49, 55,
      &     15, 90, 95, 100,105,110,120,130,140,150,
-     &     160,170,180,190,200,210,220) ,op
+     &     160,170,180,190,200,210,220,97) ,op
 c     matfns
       if(op.ge.100) goto 80
 c     return
@@ -535,14 +535,14 @@ c     break
          goto 10
       endif
       if(rstk(p).eq.612) then
-c     break dans un for
+c     break in a for
          l0=ids(1,p)
          lc=l0+istk(l0-1-nsiz)
          pt=p-1
          top=top-1
          goto 70
       elseif(rstk(p).eq.616.and.istk(pstk(p)).eq.9) then
-c     break dans un while 
+c     break in a while 
          l0=pstk(p)
          lc=l0+abs(istk(l0+1))
          pt=p-1
@@ -550,7 +550,30 @@ c     break dans un while
       else
          goto 96
       endif
-c     
+
+c     continue
+ 97   continue
+      p=pt+1
+ 98   p=p-1
+      if(p.eq.0) then
+         lc=lc+1
+         goto 10
+      endif
+      if(rstk(p).eq.612) then
+c     continue in a  for
+         l0=ids(1,p)
+         pt=p
+         goto 47
+      elseif(rstk(p).eq.616.and.istk(pstk(p)).eq.9) then
+c     continue in a while 
+         l0=pstk(p)
+         lc=l0
+         pt=p
+         goto 51
+      else
+         goto 98
+      endif
+
 c     abort
  100  continue
       pt=pt+1

@@ -117,6 +117,7 @@ c     quit  :<17>
 c     exit  :<20>
 c     begrhs:<21>
 c     deffnull:<24>
+c     continue:<28>
 c     return:<99>
          err=sadr(l+2)-lstk(bot)
          if(err.gt.0) goto 90
