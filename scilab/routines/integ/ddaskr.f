@@ -4052,7 +4052,10 @@ C
       NCF = NCF + 1
       R = 0.25D0
       H = H*R
-      IF (NCF .LT. 10 .AND. ABS(H) .GE. HMIN) GO TO 690
+c     ------------------ HMIN chnage---------------------
+c      IF (NCF .LT. 10 .AND. ABS(H) .GE. HMIN) GO TO 690
+      IF ((NCF .LT. 10 ) .and. (x+h .ne. x)) GO TO 690
+c     ------------------ HMIN chnage---------------------
       IF (IDID .EQ. 1) IDID = -7
       IF (NEF .GE. 3) IDID = -9
       GO TO 675
