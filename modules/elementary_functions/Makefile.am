@@ -34,7 +34,8 @@ src/c/cosh.c \
 src/c/sin.c \
 src/c/sinh.c \
 src/c/tan.c \
-src/c/exp.c
+src/c/exp.c \
+src/c/log.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp

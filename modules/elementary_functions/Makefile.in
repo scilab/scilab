@@ -68,12 +68,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/fftw.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pvm.m4 \
-	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/sciman.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/matio.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
+	$(top_srcdir)/m4/sciman.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -223,7 +223,8 @@ am__objects_2 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-sin.lo \
 	libscielementary_functions_la-sinh.lo \
 	libscielementary_functions_la-tan.lo \
-	libscielementary_functions_la-exp.lo
+	libscielementary_functions_la-exp.lo \
+	libscielementary_functions_la-log.lo
 am__objects_3 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-wasum.lo \
 	libscielementary_functions_la-dexpm1.lo \
@@ -574,7 +575,8 @@ LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 MANGENERATOR = @MANGENERATOR@
-MATIO_INC_PATH = @MATIO_INC_PATH@
+MATIO_CFLAGS = @MATIO_CFLAGS@
+MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIB = @MATIO_LIB@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
@@ -719,7 +721,8 @@ src/c/cosh.c \
 src/c/sin.c \
 src/c/sinh.c \
 src/c/tan.c \
-src/c/exp.c
+src/c/exp.c \
+src/c/log.c
 
 
 # List of the cpp files
@@ -1265,6 +1268,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-idmax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-idmin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-int2db.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-char.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-qsort-int.Plo@am__quote@
@@ -1575,6 +1579,13 @@ libscielementary_functions_la-exp.lo: src/c/exp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/exp.c' object='libscielementary_functions_la-exp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-exp.lo `test -f 'src/c/exp.c' || echo '$(srcdir)/'`src/c/exp.c
+
+libscielementary_functions_la-log.lo: src/c/log.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-log.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-log.Tpo -c -o libscielementary_functions_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-log.Tpo $(DEPDIR)/libscielementary_functions_la-log.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/log.c' object='libscielementary_functions_la-log.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-log.lo `test -f 'src/c/log.c' || echo '$(srcdir)/'`src/c/log.c
 
 libscielementary_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_isequal.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
