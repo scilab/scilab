@@ -2,7 +2,7 @@ function t=etime(t1,t0)
 // Copyright INRIA
 // returns the time in seconds that has elapsed between vectors t1 and t0
 // t1 and t0 must be six elements long, in the format:
-//       t = [Year Month Day Hour Minute Second]
+//       t = [Year Month Day Hour Minute Second.Milliseconds]
 // or, 10 elements long, in the format returned by getdate()
 //       t = [Year Month ISO_8601_week_number Julian_day Week_Day Day Hour Minute Second Millisecond]
 // in this case ISO_8601_week_number Julian_day Week_Day are ignored
