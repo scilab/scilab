@@ -248,8 +248,7 @@ static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
 int CopyPrint (struct BCG *ScilabGC)
 {
   int xPage, yPage;
-  static DOCINFO di =
-  {sizeof (DOCINFO), "Scilab: Printing", NULL};
+  static DOCINFO di = {sizeof (DOCINFO), "Scilab: Printing", NULL};
   BOOL bError = FALSE;
   HDC printer;
   LPGW lpgw;
@@ -257,10 +256,10 @@ int CopyPrint (struct BCG *ScilabGC)
   DLGPROC lpfnPrintDlgProc;
   static PRINTDLG pd;
   HWND hwnd;
-  RECT rect;
+  RECT rect,RectRestore;
   PRINT pr;
-  if (scig_buzy == 1)
-    return TRUE;
+
+  if (scig_buzy == 1) return TRUE;
   scig_buzy = 1;
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
@@ -278,7 +277,9 @@ int CopyPrint (struct BCG *ScilabGC)
   pd.hDevMode = NULL;
   pd.hDevNames = NULL;
   pd.hDC = NULL;
-  pd.Flags = PD_ALLPAGES | PD_COLLATE | PD_RETURNDC;
+  pd.Flags = PD_ALLPAGES | PD_COLLATE | PD_RETURNDC| PD_USEDEVMODECOPIESANDCOLLATE|PD_NOSELECTION|PD_HIDEPRINTTOFILE|PD_NONETWORKBUTTON;
+  /* Allan CORNET */
+  /* PD_USEDEVMODECOPIESANDCOLLATE supports multiple copies and collation */
   pd.nFromPage = 0;
   pd.nToPage = 0;
   pd.nMinPage = 0;
@@ -295,19 +296,21 @@ int CopyPrint (struct BCG *ScilabGC)
 
   if (PrintDlg (&pd) == FALSE)
     {
-      /** int i;
-      i=CommDlgExtendedError();
-      sciprint("Printer Menu error code %d\r\n",i);
-      **/
-      scig_buzy = 0;
-      return TRUE;
+		/* Redessine si Cancel Impression */
+		GetClientRect (hwnd, &RectRestore);
+		scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+		scig_buzy = 0;
+		return TRUE;
     }
   printer = pd.hDC;
   if (NULL == printer)
     {
-      sciprint ("Can't print \r\n");
-      scig_buzy = 0;
-      return TRUE;		/* abort */
+		/* Redessine si Cancel Impression */
+		GetClientRect (hwnd, &RectRestore);
+		scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+		sciprint ("\r\nCan't print \r\n");
+		scig_buzy = 0;
+		return TRUE;		/* abort */
     }
 
   pr.hdcPrn = printer;
@@ -360,12 +363,6 @@ PrintAbortProc);
       if (StartPage (pr.hdcPrn) > 0)
 	{
 	  int scalef = 1;
-/** test : PageGDICalls (pr.hdcPrn, xPage, yPage) ; **/
-	  /** 
-	    SetMapMode(pr.hdcPrn, MM_ANISOTROPIC);
-	    SetWindowExtEx(pr.hdcPrn, rect.right-rect.left, 
-	    rect.bottom-rect.right, (LPSIZE)NULL); 
-	    **/
 	  SetMapMode (pr.hdcPrn, MM_TEXT);
 	  SetBkMode (pr.hdcPrn, TRANSPARENT);
 	  SetTextAlign (pr.hdcPrn, TA_LEFT | TA_BOTTOM);
@@ -382,12 +379,14 @@ PrintAbortProc);
 	    resolution and redraw with the printer as hdc 
 	  **/
 	  scalef = (int) (10.0 * ((double) xPage * yPage) / (6800.0 * 4725.0));
-	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,
-			   xPage, yPage, scalef);
-	  if (EndPage (pr.hdcPrn) > 0)
-	    EndDoc (pr.hdcPrn);
-	  else
-	    bError = TRUE;
+      GetClientRect (hwnd, &RectRestore);
+	  /* Evite bug lorsque l'on selectionne la fenetre & que l'on imprime apres */
+	  scig_replay_hdc ('P', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,xPage, yPage, scalef);
+	  /* Redessine à l'ecran apres l'impression */
+	  scig_replay_hdc ('W', ScilabGC->CurWindow, GetDC (hwnd),RectRestore.right - RectRestore.left, RectRestore.bottom - RectRestore.top, 1);
+	  if (EndPage (pr.hdcPrn) > 0)  EndDoc (pr.hdcPrn);
+	  else bError = TRUE;
 	}
     }
   else
