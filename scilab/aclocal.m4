@@ -113,7 +113,7 @@ else
 	if $TCL_VERSION = "can't happen"; then
 		AC_MSG_ERROR([can(t happen])
         else 
-	   AC_MSG_ERROR([you need at least version 8.0 of tcl])
+	   AC_MSG_ERROR([you need at least version 8.4 of tcl])
 	fi
 fi
 CFLAGS=$saved_cflags
@@ -265,7 +265,7 @@ else
 	if $TK_VERSION = "can't happen"; then
 		AC_MSG_ERROR([can(t happen])
         else 
-	   AC_MSG_ERROR([you need at least version 8.0 of tk])
+	   AC_MSG_ERROR([you need at least version 8.4 of tk])
 	fi
 fi
 CFLAGS=$saved_cflags
@@ -367,7 +367,7 @@ dnl  WITH_TKSCI : =1 if all was OK, 0 otherwise
 dnl  TCL_INC_PATH : flag to give to cpp if one wants to include tcl.h
 dnl  TK_INC_PATH : flag to give to cpp if one wants to include tk.h
 dnl  TCLTK_LIBS : complete line to link tcl/tk with scilab
-dnl    it might be something like "/usr/lib/tk8.0.so /usr/lib/ltcl8.0.so -ldl"
+dnl    it might be something like "/usr/lib/tk8.4.so /usr/lib/ltcl8.4.so -ldl"
 dnl  TCL_VERSION : version of the found tcl includes and libs
 dnl  TK_VERSION : version of the found tk includes and libs
 dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
