@@ -29,18 +29,46 @@
   <P>
     The components of vector <VERB>t</VERB> are the hyperbolic tangent inverse of the 
     corresponding entries of vector <VERB>x</VERB>.
-    Definition domain is ]-1,1[
-  </P>
-  <P>
-    This function takes values in
-  </P>
-  <P>
-  </P>
-  <P>
+    Definition domain is <VERB>[-1,1]</VERB> for the real function (see Remark).
   </P>
   </DESCRIPTION>
+
+  <ITEMIZE label='Remark'>
+  <P>
+    In Scilab (as in some others numerical software) when you try to evaluate an elementary
+    mathematical function outside its definition domain in the real case, then the complex 
+    extension is used (with a complex result). The more famous example being the sqrt
+    function (try <VERB>sqrt(-1)</VERB> !). This approach have some drawbacks when you
+    evaluate the function at a singular point which may led to different results when
+    the point is considered as real or complex. For the <VERB>atanh</VERB> this occurs
+    for <VERB>-1</VERB> and <VERB>1</VERB> because the at these points the imaginary 
+    part do not converge and so <VERB>atanh(1) = +Inf + i NaN</VERB> while 
+    <VERB>atanh(1) = +Inf</VERB> for the real case (as lim x->1- of atanh(x)). So
+    when you evaluate this function on the vector <VERB>[1 2]</VERB> then like <VERB>2</VERB>
+    is outside the definition domain, the complex extension is used for all the vector
+    and you get <VERB>atanh(1) = +Inf + i NaN</VERB> while you get <VERB>atanh(1) = +Inf</VERB>
+    with <VERB>[1 0.5]</VERB> for instance.
+  </P>
+  </ITEMIZE>
   <EXAMPLE><![CDATA[
+// example 1
 x=[0,%i,-%i]
 tanh(atanh(x))
+
+// example 2
+x = [-%inf -3 -2 -1 0 1 2 3 %inf]
+ieee(2)
+atanh(tanh(x))
+
+// example 3 (see Remark)
+ieee(2)
+atanh([1 2])
+atanh([1 0.5])
  ]]></EXAMPLE>
+
+<SEE_ALSO>
+  <SEE_ALSO_ITEM> <LINK>tanh</LINK> </SEE_ALSO_ITEM>     
+  <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>
+</SEE_ALSO>
+
 </MAN>

@@ -44,11 +44,10 @@
     inverse of <VERB>tan(phi)</VERB>.  For real <VERB>x</VERB>, <VERB>phi</VERB> is in the
     interval (-pi/2, pi/2).  For complex <VERB>x</VERB>, <VERB>atan</VERB> has two
     singular, branching points <VERB>+%i</VERB>,<VERB>-%i</VERB> and the chosen branch
-    cuts are the two imaginary half-straight lines [i, i*oo) and (-i*oo,
-    -i].
+    cuts are the two imaginary half-straight lines [i, i*oo) and (-i*oo, -i].
   </P>
   <P>
-    The second form computes the 4-quadrant arctangent (`atan2&apos; in
+    The second form computes the 4-quadrant arctangent (atan2 in
     Fortran), this is, it returns the argument (angle) of the complex
     number <VERB>x+i*y</VERB>.  The range of <VERB>atan(y,x)</VERB> is (-pi, pi].
   </P>
@@ -61,15 +60,15 @@
     with <VERB>phi(i,j)=atan(x(i,j))</VERB> or <VERB>phi(i,j)=tan(y(i,j),x(i,j))</VERB>.
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='EXAMPLES'>
-  <VERBATIM><![CDATA[
+
+  <EXAMPLE><![CDATA[
 // examples with the second form
 x=[1,%i,-1,%i]
 phasex=atan(imag(x),real(x))
 atan(0,-1)
 atan(-%eps,-1)
 
-// branch cuts, [+i, i*oo) and (-i*oo, -i]
+// branch cuts
 atan(-%eps + 2*%i)
 atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
@@ -79,13 +78,15 @@ atan(+%eps - 2*%i)
 ieee(2)
 atan(%i)
 atan(-%i)
-   ]]></VERBATIM>
-  </ITEMIZE>
+ ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>tan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ieee</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <AUTHOR>
-    B.P., L.V.D.
-  </AUTHOR>
+  <AUTHORS>
+    <AUTHOR_ITEM>B.P.</AUTHOR_ITEM> 
+    <AUTHOR_ITEM>L.V.D.</AUTHOR_ITEM> 
+    <EM>(authors of the complex atan function).</EM>
+  </AUTHORS>
 </MAN>

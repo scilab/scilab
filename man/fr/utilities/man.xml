@@ -54,7 +54,10 @@
      The entire XML file <VERB>foo.xml</VERB> is in the <VERB>&lt;SCIDIR&gt;/man/eng/utility</VERB>
      directory and the result may be displayed by clicking on <LINK>foo</LINK>.
      (you may found others examples in the <VERB>&lt;SCIDIR&gt;/examples/man-examples-xml</VERB> 
-     directory).
+     directory). <BD>Finally</BD> note that some tag pairs <VERB>&lt;TAG&gt;</VERB>, 
+     <VERB>&lt;/TAG&gt;</VERB> have been renamed here <VERB>&lt;ATAG&gt;</VERB>, 
+     <VERB>&lt;/ATAG&gt;</VERB>. This is because some scilab scripts which do some work
+     on or from the xml files don't verify if a tag is inside a <VERB>VERBATIM</VERB> entry.
      </P>
 
     <P>
@@ -65,7 +68,7 @@
       <VERB>TYPE</VERB> and  <VERB>DATE</VERB>, are also mandatory (in this order) the text 
       corresponding to  <VERB>&lt;TYPE&gt;</VERB> being generally 'Scilab function' 
       (most of the cases) but may be simply  'Scilab keyword' or 'Scilab data type', ..., 
-      depending of what explains the help page. 
+      depending of what explains the help page.have 
    </P>
    <VERBATIM><![CDATA[
        <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
@@ -83,14 +86,17 @@
    <LINK>apropos</LINK> command to search help pages from a keyword : the short description
    is used to build the <VERB>whatis.html</VERB> file corresponding to your toolbox and 
    the <VERB>apropos keyword</VERB> command looks in all the whatis files and then proposes
-   the links to every page containing the word <VERB>keyword</VERB> in its  short description.
+   the links to every page containing the word <VERB>keyword</VERB> in its  short description
+   (in fact the actual associated tags are <VERB>&lt;SHORT_DESCRIPTION&gt;</VERB> and 
+   <VERB>&lt;/SHORT_DESCRIPTION&gt;</VERB> and not <VERB>&lt;ASHORT_DESCRIPTION&gt;</VERB>
+   and <VERB>&lt;/ASHORT_DESCRIPTION&gt;</VERB>).
    The next entry (<VERB>CALLING_SEQUENCE</VERB>) must be used if you describe a function 
    (but is not stricly mandatory). If your function have several calling sequences
    use several <VERB>CALLING_SEQUENCE_ITEM</VERB> entries.
    </P>
 
    <VERBATIM><![CDATA[
-          <SHORT_DESCRIPTION name="foo">foo short description</SHORT_DESCRIPTION>
+          <ASHORT_DESCRIPTION name="foo">foo short description</ASHORT_DESCRIPTION>
           <CALLING_SEQUENCE>
               <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>
           </CALLING_SEQUENCE>
@@ -125,15 +131,13 @@
    mandatory) and may be more sophisticated than in this example (for instance you may have    
    <VERB>DESCRIPTION_ITEM</VERB> sub-entries). Here you see how to write several paragraphes
    (each one enclosed between the <VERB>&lt;P&gt;</VERB> and <VERB>&lt;/P&gt;</VERB> tags),
-   how to emphasis a variable or a function name (by enclosing it between the <VERB>&lt;VERB&gt;</VERB> and 
-   <VERB>&lt;/VERB&gt;</VERB> tags), how to do emphasis a part of text (<VERB>EM</VERB> or <VERB>BD</VERB>
+   how to emphasis a variable or a function name (by enclosing it between the 
+   <VERB>&lt;VERB&gt;</VERB> and <VERB>&lt;/VERB&gt;</VERB> tags), how to do 
+   emphasis a part of text (<VERB>EM</VERB> or <VERB>BD</VERB>
    and <VERB>TT</VERB> to put it in a type writer font)), and finally, how to put a link onto 
-   another help page  (in fact the real 
-   associated tags are <VERB>&lt;LINK&gt;</VERB> and <VERB>&lt;/LINK&gt;</VERB> and not 
-   <VERB>&lt;ALINK&gt;</VERB>
-   and <VERB>&lt;/ALINK&gt;</VERB> : this is because this kind of entry is first transformed into
-   a real HTML link by a scilab script which do not consider if a <VERB>LINK</VERB> entry is
-   inside or not in a <VERB>VERBATIM</VERB> entry).
+   another help page  (in fact the actual associated tags are <VERB>&lt;LINK&gt;</VERB> and 
+   <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB>
+   and <VERB>&lt;/ALINK&gt;</VERB>).
    </P>
 
   <VERBATIM><![CDATA[
@@ -172,6 +176,19 @@
    ]]></VERBATIM>
 
   <P>
+  An important entry is the <VERB>EXAMPLE</VERB> one which is reserved to show scilab
+  uses of your function (begin with simple ones !). Note that you must close this entry
+  with  <VERB>]]&gt;&lt;/EXAMPLE&gt;</VERB> and not like here with <VERB>}}&gt;&lt;/EXAMPLE&gt;</VERB>
+  (once again this is a bad trick to avoid some interpretation problems).
+  </P>
+   <VERBATIM><![CDATA[
+         <EXAMPLE><![CDATA[
+             deff("y=foo(x)","y=x"); // define the foo function as the identity function
+             foo("toto")
+      }}></EXAMPLE>
+   ]]></VERBATIM>
+
+  <P>
   This last part explains how to put the links onto others related help pages 
   (as said before the good tags are in fact <VERB>&lt;LINK&gt;</VERB> and 
   <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB> and 
@@ -192,28 +209,20 @@
        </MAN>
    ]]></VERBATIM>
 
-  <P>
-  An important entry which don't appear in this simple example (due to some interpretation
-  problem...) is the <VERB>EXAMPLES</VERB> entry which is reserved to show scilab
-  uses of your function (begin with simple ones !) : see others XML pages for the special
-  syntax required. Note that if this entry exists <BD>its must be placed before</BD> the
-  <VERB>SEE_ALSO</VERB> entry.
-  </P>
 
-     </ITEM>
+  </ITEM>
 
   </ITEMIZE>
 
   <ITEMIZE label='Browser choice'>
-  <P> With the Xaw3d interface (and windows ?) the global variable <VERB>%browsehelp</VERB>
-      (a string which defines which browser must be used) may
-      be changed (or redefined in your .scilab file). When you enter an <VERB>help</VERB> command
-      the different browser choice possibilities are displayed if <VERB>%browsehelp=[]</VERB>  (so that
-      you can enter first <VERB>%browsehelp=[]</VERB> for changing of browser !). As generally
-      different browsers have differents calling sequences, if your favorite one is not
-      in the list you have to change somethings in the  
-      <VERB>&lt;SCIDIR&gt;/macros/util/help.sci</VERB> scilab function.
-      For the gtk interface the same is valid with the global variable <VERB>%gtkhelp</VERB>.
+  <P> The global variable <VERB>%browsehelp</VERB> contains a string defining which browser 
+      must be used : its value may be changed (or redefined in your .scilab file). Note that when you 
+      enter an <VERB>help</VERB> command while <VERB>%browsehelp</VERB> contains the empty matrix
+      <VERB>[]</VERB> then the different 
+      browser choice possibilities are displayed (so that you can enter first 
+      <VERB>%browsehelp=[]</VERB> for changing of browser !). As generally different browsers 
+      have differents calling sequences, if your favorite one is not in the list you have to 
+      change somethings in the <VERB>&lt;SCIDIR&gt;/macros/util/help.sci</VERB> scilab function.
   </P>
   </ITEMIZE>
 
