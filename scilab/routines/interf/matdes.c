@@ -2409,7 +2409,7 @@ int scixclick(fname,fname_len)
     C2F(dr1)("xclick","xv",&ix,&iflag,&istr,&v,&v,&v,&x,&y,&dv,&dv,7L,3L);
   }
 
-  if ( Lhs == 1 ) 
+  if ( Lhs == 1 )
     {
       LhsVar(1) = Rhs+1;
       CreateVar(Rhs+1,"d",&un,&trois,&rep);
@@ -6660,11 +6660,54 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strcmp(marker,"color_mode") == 0) {    
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
       /*    int m3n,n3n,nc,j; */
+      int flagcolor;
       sciSurface * psurf = pSURFACE_FEATURE (pobj);
       
-
+      flagcolor = psurf->flagcolor;
+      
       psurf->flag[0]= (integer) stk(*value)[0];
       
+      if(flagcolor != 0 && flagcolor !=1){ 
+	if(psurf->m3n * psurf->n3n == 0) {/* There is no color matrix/vect. in input : update the fake color one */
+	  int j,nc;
+	
+	  if(flagcolor == 2 || flagcolor == 4)
+	    nc = psurf->dimzy; /* rappel: dimzy always equal n3*/
+	  else if(flagcolor == 3)
+	    nc = psurf->dimzx * psurf->dimzy;
+
+	  FREE(psurf->zcol);
+	
+	  if ((psurf->zcol = MALLOC ( nc * sizeof (double))) == NULL)
+	    return -1;
+	
+	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+	    psurf->zcol[j]= psurf->flag[0];
+
+	
+	  if(flagcolor != 0 && flagcolor !=1){ 
+	    /* We need to rebuild ...->color matrix */
+	    if(psurf->cdatamapping == 0){ /* scaled */
+	      FREE(psurf->color);
+	      LinearScaling2Colormap(pobj);
+	    }
+	    else{
+	      int nc = psurf->nc;
+	    
+	      FREE(psurf->color);
+	    
+	      if(nc>0){
+		if ((psurf->color = MALLOC (nc * sizeof (double))) == NULL)
+		  return -1;
+	      }
+	    
+	      for(i=0;i<nc;i++)
+		psurf->color[i] = psurf->zcol[i];
+	      /* copy zcol that has just been freed and re-alloc + filled in */
+	    }
+	  }
+	}
+      }
 
       if(psurf->typeof3d==SCI_FAC3D)  /* we have to deal with colors... and may be update because we just changed  psurf->flag[0]*/
 	if(psurf->flagcolor == 0)
@@ -6686,7 +6729,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) 
 	{
-	  int oldflagcolor,m3n,n3n,nc,j,ii,flagcolor=(int)stk(*value)[0];
+	  int m3n,n3n,nc,j,ii,flagcolor=(int)stk(*value)[0];
 	  /*int *zcol;*/
 	  /*F.Leray psurf for debug*/
 	  sciSurface * psurf = pSURFACE_FEATURE (pobj);
@@ -6702,8 +6745,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	
 	  if (pSURFACE_FEATURE (pobj)->flagcolor == stk(*value)[0])
 	    return 0;
-	  oldflagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
-	
 
 	  if(flagcolor == 0)
 	    {
@@ -6752,7 +6793,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      }
 	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
 		for (j = 0;j < psurf->dimzy; j++)   /* nc value is dimzy*/
-		  psurf->zcol[j]= abs(psurf->flag[0]);
+		  psurf->zcol[j]= psurf->flag[0];
 	      }
 		  
 	    }
@@ -6791,7 +6832,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      
 		for(i = 0; i<  psurf->dimzy; i++){
 		  for (j = 0;j <  psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-		    psurf->zcol[( psurf->dimzx)*i+j]= abs(psurf->flag[0]);
+		    psurf->zcol[( psurf->dimzx)*i+j]= psurf->flag[0];
 		}  
 	      }
 	    }
@@ -6827,13 +6868,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      }
 	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
 		for (j = 0;j < psurf->dimzy; j++)   /* nc value is dimzy*/
-		  psurf->zcol[j]= abs(psurf->flag[0]);
+		  psurf->zcol[j]= psurf->flag[0];
 	      }
 	    }
 
-	  
-	  pSURFACE_FEATURE (pobj)->flagcolor = flagcolor;
-	      
 	  if(flagcolor != 0 && flagcolor !=1){ 
 	    /* We need to rebuild ...->color matrix */
 	    if(psurf->cdatamapping == 0){ /* scaled */
@@ -6855,6 +6893,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      /* copy zcol that has just been freed and re-alloc + filled in */
 	    }
 	  }
+	  
+	  /* Finally, update the flagcolor */
+	  pSURFACE_FEATURE (pobj)->flagcolor = flagcolor;
+	  
 	}
     }
   }
@@ -9425,13 +9467,13 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       if(psurf->flagcolor==2 || psurf->flagcolor==4) /* we have to fill a Color vector */
 	{
 	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
-	    psurf->zcol[j] = abs(psurf->flag[0]);
+	    psurf->zcol[j] = psurf->flag[0];
 	}
       else if(psurf->flagcolor==3) /* we have to fill a color matrix */
 	{
 	  for(i = 0; i< psurf->dimzy; i++){
 	    for (j = 0;j < psurf->dimzx; j++)
-	      psurf->zcol[psurf->dimzx*i+j] = abs(psurf->flag[0]);
+	      psurf->zcol[psurf->dimzx*i+j] = psurf->flag[0];
 	  }
 	}
       else
