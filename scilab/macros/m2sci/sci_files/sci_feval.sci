@@ -9,7 +9,7 @@ function [tree]=sci_feval(tree)
 
 set_infos("Verify that expression evaluated by execstr() is Scilab compatible",2)
 
-RHS=tree.rhs(1).value+"("
+RHS="("
 for k=2:rhs
   if k<>2 then
     RHS=RHS+","
@@ -21,10 +21,11 @@ for k=2:rhs
   end
 end
 RHS=RHS+")"
+RHS=Operation("+",list(tree.rhs(1),Cste(RHS)),list())
 
 if lhs==1 then
   tree.name="evstr"
-  tree.rhs=Rhs(RHS)
+  tree.rhs=list(RHS)
 else
   tree.name="execstr"
   LHS="["
@@ -35,7 +36,8 @@ else
     LHS=LHS+tree.lhs(k).name
   end
   LHS=LHS+"]"
-  tree.rhs=Rhs(LHS+" = "+RHS)
+
+  tree.rhs=Rhs(Operation("+",list(Cste(LHS+" = "),RHS),list()))
   
   tree.lhs=list(Variable("ans",Infer()))
 end
