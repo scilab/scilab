@@ -9,7 +9,7 @@ int C2F(intTclSet) _PARAMS((char *fname))
 	CheckLhs(1,1);
 	CheckRhs(3,3);
 
-	if ( IsAInteger(Rhs-2) && (GetType(Rhs-1)==sci_strings) )
+	if ( IsAScalar(Rhs-2) && (GetType(Rhs-1)==sci_strings) )
 	{
 		static int l1,n1,m1;
 		int *Handle=NULL;
@@ -26,7 +26,7 @@ int C2F(intTclSet) _PARAMS((char *fname))
 			Scierror(999,"Handle must be an integer.\n");
 			return 0;
 		}
-		if ( IsAInteger(Rhs-2) )
+		if ( IsAScalar(Rhs-2) )
 		{
 			Scierror(999,"Field parameter must be a string.\n");
 			return 0;

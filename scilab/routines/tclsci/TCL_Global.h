@@ -29,11 +29,11 @@ extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 extern int TK_Started;
 extern int XTKsocket;
+extern int IsAScalar(int RhsNumber); 
 /*-----------------------------------------------------------------------------------*/
 void nocase (char *s);
 char *Matrix2String(int RhsMatrix);
 double *String2Matrix(char *StringIn,int *nbelemOut);
-int IsAInteger(int RhsNumber); 
 int MustReturnAMatrix(char *FieldPropertie);
 int MustReturnAString(char *FieldPropertie);
 int ValueMustBeAMatrix(char *FieldPropertie);

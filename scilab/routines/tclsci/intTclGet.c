@@ -9,7 +9,7 @@ int C2F(intTclGet) _PARAMS((char *fname))
 	CheckLhs(1,1);
 	CheckRhs(2,2);
 
-	if ( IsAInteger(Rhs-1) && (GetType(Rhs)==sci_strings) )
+	if ( IsAScalar(Rhs-1) && (GetType(Rhs)==sci_strings) )
 	{
 		static int l1,n1,m1;
 		int *Handle=NULL;

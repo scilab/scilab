@@ -75,22 +75,6 @@ char *Matrix2String(int RhsMatrix)
   
 }
 /*-----------------------------------------------------------------------------------*/  
-int IsAInteger(int RhsNumber)
-{
-	int bOK=0;
-
-	if ( GetType(RhsNumber) == sci_matrix )
-	{
-		static int l1,n1,m1;
-		GetRhsVar(1,"i",&m1,&n1,&l1);
-		if ( (m1 == 1) && (n1 == 1) )
-		{
-			bOK=1;
-		}
-	}
-	return bOK;
-}
-/*-----------------------------------------------------------------------------------*/
 double *String2Matrix(char *StringIn,int *nbelemOut)
 {
     double *MatrixReturn=NULL;

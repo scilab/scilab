@@ -63,7 +63,7 @@ int C2F(intTclScf) _PARAMS((char *fname))
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 	
-	if ( (Rhs== 1) && (IsAInteger(1)) )
+	if ( (Rhs== 1) && (IsAScalar(1)) )
 	{
 		int *Handle=NULL;
 
