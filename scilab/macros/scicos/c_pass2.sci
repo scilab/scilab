@@ -808,7 +808,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   //
   [ok,bllst]=adjust_inout(bllst,connectmat)
   if ~ok then 
-    lnkptr=[]=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
+    lnkptr=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
 	  xptr=[],zptr=[],rpptr=[],ipptr=[],xc0=[],xcd0=[],xd0=[],rpar=[],ipar=[],dep_ut=[],..
 	  typ_z=[],typ_s=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],labels=[],..
 	  bexe=[],boptr=[],blnk=[],blptr=[],

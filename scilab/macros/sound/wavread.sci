@@ -61,7 +61,7 @@ function [y,Fs,bits]=wavread(wavfile,ext)
     [ID,Size]=find_cktype(fid);
     select ID
      case 'fact' then
-      total_byte=Size;
+      total_bytes=Size;
       orig_pos = mtell(fid);
       nbytes = 4;
       // # of required bytes in <fact-ck> header
