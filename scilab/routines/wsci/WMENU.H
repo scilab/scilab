@@ -278,3 +278,4 @@ extern void ShowGraphToolBar(struct BCG * ScilabGC);
 extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 /*--------------------------------*/
+static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);

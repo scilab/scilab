@@ -21,7 +21,7 @@
  *   Modified for Scilab (1997) : Jean-Philippe Chancelier 
  *   Modified for Scilab (2003-2004) : Allan CORNET
  */
- #pragma comment(lib, "shell32.lib")
+#pragma comment(lib, "shell32.lib")
 #include <ShlObj.h>
 #include "wmenu.h"
 
@@ -171,33 +171,60 @@ void Callback_SAVE(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_CHDIR(void)
 {
+	#define NumberCharByLineInChdirBox	56
 	BROWSEINFO InfoBrowserDirectory;
-	char chemin[MAX_PATH];
+	char Path[MAX_PATH];
+	char PathToDisplay[MAX_PATH*2];
 	char command[MAX_PATH]; 
-	char TextPath[MAX_PATH*2]; 
+	char TextPath[MAX_PATH*2];
+	
 	LPITEMIDLIST pidl; 
 			
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 		
-	GetCurrentDirectory(MAX_PATH,chemin);
-			
+	GetCurrentDirectory(MAX_PATH,Path);
+	CutLineForDisplay(PathToDisplay,Path,NumberCharByLineInChdirBox);		
 	InfoBrowserDirectory.hwndOwner = lptw->hWndParent; 
 	InfoBrowserDirectory.pidlRoot = NULL; 
 	switch (lptw->lpmw->CodeLanguage)
 	{ 
 		case 1:
-			wsprintf(TextPath,"%s\n%s","Choisir un répertoire",chemin);
+		if (lstrlen(Path) < NumberCharByLineInChdirBox)
+		{
+			wsprintf(TextPath,"%s\n\n%s","Choisir un répertoire :",PathToDisplay);
+		}
+		else
+		{
+			if ( lstrlen(Path) > (NumberCharByLineInChdirBox*2) )
+			{
+				wsprintf(TextPath,"%s","Choisir un répertoire :");
+			}
+			else
+			wsprintf(TextPath,"%s\n%s","Choisir un répertoire :",PathToDisplay);
+		}
 		break;
 				
 		case 0:default:
-			wsprintf(TextPath,"%s\n\n%s","Choose a Directory",chemin);
+		if (lstrlen(Path)<NumberCharByLineInChdirBox)
+		{
+			wsprintf(TextPath,"%s\n\n%s","Choose a Directory :",PathToDisplay);
+		}
+		else
+		{
+			if ( lstrlen(Path) > (NumberCharByLineInChdirBox*2) )
+			{
+				wsprintf(TextPath,"%s","Choose a Directory :");
+			}
+			else
+			wsprintf(TextPath,"%s\n%s","Choose a Directory :",PathToDisplay);
+		}
 		break;
 	}
 		
 	InfoBrowserDirectory.lpszTitle=TextPath;
-	InfoBrowserDirectory.pszDisplayName=chemin; 
+	InfoBrowserDirectory.pszDisplayName=Path; 
 	InfoBrowserDirectory.ulFlags = BIF_STATUSTEXT|BIF_RETURNONLYFSDIRS; 
 	InfoBrowserDirectory.lpfn =NULL;
 
@@ -205,9 +232,9 @@ void Callback_CHDIR(void)
 	pidl=SHBrowseForFolder(&InfoBrowserDirectory);
 	if (pidl!=NULL)
 	{
-	 	SHGetPathFromIDList(pidl, chemin); 
+	 	SHGetPathFromIDList(pidl, Path); 
 	 	SendCTRLandAKey(CTRLU);
-		wsprintf(command,"chdir('%s');",chemin);
+		wsprintf(command,"chdir('%s');",Path);
 		StoreCommand (command);
 		//WriteIntoScilab(lptw,command);
 	}
@@ -2479,5 +2506,43 @@ void PageHeader(HDC hdc,LPSTR Entete)
 	
 	free(ptrLine);     
 
+}
+/*-----------------------------------------------------------------------------------*/
+static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
+{
+	int LenLine=lstrlen(Line);
+
+	if (LenLine > NumberOfCharByLine)
+	{
+		int NumberOfLines=lstrlen(Line)/NumberOfCharByLine;
+		int Rest=lstrlen(Line) % NumberOfCharByLine;
+		int i=0;
+		char *Buffer=NULL;
+
+		Buffer=(char*)malloc((LenLine+NumberOfLines+1)*sizeof(char));
+		for (i=0;i<NumberOfLines+1;i++)
+		{
+			if ( i == 0)
+			{
+				lstrcpyn(Buffer,&Line[i*NumberOfCharByLine],NumberOfCharByLine);
+				
+			}
+			else
+			{
+				char BufferCat[MAX_PATH];
+				lstrcpyn(BufferCat,&Line[i*NumberOfCharByLine],NumberOfCharByLine);
+				lstrcat(Buffer,BufferCat);
+				
+			}
+			if (i != NumberOfLines) lstrcat(Buffer,"\n");
+		}
+		lstrcpy(CutLine,Buffer);
+
+		free(Buffer);
+	}
+	else
+	{
+		wsprintf(CutLine,"%s",Line);
+	}
 }
 /*-----------------------------------------------------------------------------------*/
