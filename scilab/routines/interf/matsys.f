@@ -1566,6 +1566,12 @@ c
 
       if(rhs.eq.2) then
          if(.not.getscalar('delbpt',topk,top,l)) return
+c Francois VOGEL, January 2005 - Bug 1187 fixed
+         if (int(stk(l)).ne.stk(l).or.stk(l).lt.1) then
+            buf='Breakpoint line number must be a positive integer'
+            call error(9997)
+            return
+         endif
          lnb=int(stk(l))
          top=top-1
       endif
@@ -2651,6 +2657,12 @@ c
 
       if(rhs.eq.2) then
          if(.not.getscalar('setbpt',topk,top,l)) return
+c Francois VOGEL, January 2005 - Bug 1187 fixed
+         if (int(stk(l)).ne.stk(l).or.stk(l).lt.1) then
+            buf='Breakpoint line number must be a positive integer'
+            call error(9997)
+            return
+         endif
          lnb=int(stk(l))
          top=top-1
       else
