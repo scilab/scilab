@@ -198,8 +198,8 @@ disp(P1);
 disp("P=")
 disp(P)
 
-disp("ListArg=")
-disp(ListArg)
+//disp("ListArg=")
+//disp(ListArg)
 
 if(provided_data == 2) then
  for i=1:numplot
