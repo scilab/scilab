@@ -1,3 +1,16 @@
+		     Main Changes Scilab 2.7 -> 
+NEW FUNCTIONALITIES
+===================
+- continue instruction added
+
+OTHERS IMPROVEMENTS
+===================
+- More efficient 3D Zoom (thanks to B. Pincon)
+- Improved scipad, shortcuts, language handling,.. (thanks to E Segre)
+INCOMPATIBLITIES
+================
+- returned arguments f1 f2 f3 of interp have been transposed
+
 		     Main Changes Scilab 2.6 -> 2.7
 		     ==============================
 THANKS
