@@ -9,20 +9,21 @@ tf=wpar(4)
 atol=tolerances(1);rtol=tolerances(2);ttol=tolerances(3);deltat=tolerances(4)
 scale=tolerances(5);
 while %t do
-  [ok,tf,scale,atol,rtol,ttol,deltat]=getvalue('Set parameters',[
+  [ok,tf,scale,atol,rtol,ttol,deltat,solver]=getvalue('Set parameters',[
       'Final integration time';
       'Realtime scaling';
       'Integrator absolute tolerance';
       'Integrator relative tolerance';
       'Tolerance on time';
-      'max time step for integration'],..
-      list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1),..
-      [string([tf;scale;atol;rtol;ttol;deltat])])
+      'max time step for integration'
+      'solver 0/100'],..
+      list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1,'vec',1),..
+      [string([tf;scale;atol;rtol;ttol;deltat;0])])
   if ~ok then break,end
   if or([tf,atol,rtol,ttol,deltat]<=0) then
     message('Parameter must  be positive')
   else
-    wpar(3)=[atol;rtol;ttol;deltat;scale]
+    wpar(3)=[atol;rtol;ttol;deltat;scale;solver]
     wpar(4)=tf
     break
   end

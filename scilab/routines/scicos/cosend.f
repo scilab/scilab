@@ -19,7 +19,9 @@ c
 C     
       integer kfun
       common /curblk/ kfun
-
+c
+      integer solver
+      common /cmsolver/ solver
 C     
       ierr = 0
 

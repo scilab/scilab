@@ -18,6 +18,16 @@ extern struct {
 
 static integer c1 = 1;
 
+int C2F(grblkdassl)(neq, t, xc, ng1, g,rpar,ipar)
+     integer *neq;
+     double *t, *xc;
+     integer *ng1,*ipar;
+     double *g,*rpar;
+{
+  return C2F(grblk)(neq, t, xc, ng1, g);
+}
+
+
 int C2F(grblk)(neq, t, xc, ng1, g)
      integer *neq;
      double *t, *xc;
@@ -71,6 +81,7 @@ int C2F(grblk)(neq, t, xc, ng1, g)
 	      }
 	  }
       }
+      printf("surface_g %f \n", *g);
       return 0;
   }
 

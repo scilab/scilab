@@ -29,20 +29,67 @@ int C2F(simblk)(neq, t, xc, xcdot)
 	xcdot : double precision vector, contain the computed derivative 
 	of the state 
 	*/
-    { integer nordclk;
-	C2F(ierode).iero = 0;
-	nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
-	C2F(odoit)(neq, xcdot, xc, scicos_imp.xptr, scicos_imp.z, scicos_imp.zptr, scicos_imp.iz, 
-	       scicos_imp.izptr, t, 
-	       scicos_imp.tevts, scicos_imp.evtspt, &scicos_imp.nevts, &scicos_imp.pointi, 
-	       scicos_imp.inpptr, scicos_imp.inplnk, scicos_imp.outptr, scicos_imp.outlnk, 
-	       scicos_imp.lnkptr, 
-	       scicos_imp.clkptr, scicos_imp.ordptr, &C2F(cossiz).nordptr, scicos_imp.ordclk, 
-	       &nordclk, scicos_imp.cord, 
-	       scicos_imp.oord, scicos_imp.zord, 
-	       scicos_imp.critev, scicos_imp.rpar, scicos_imp.rpptr, scicos_imp.ipar, 
-	       scicos_imp.ipptr, scicos_imp.funptr, scicos_imp.funtyp, scicos_imp.outtb, 
-	       scicos_imp.iwa,&C2F(ierode).iero);
-	    
-    }
+{ 
+  integer nordclk;
+  C2F(ierode).iero = 0;
+  nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
+  C2F(odoit)(neq, xcdot, xc, scicos_imp.xptr, scicos_imp.z, 
+	     scicos_imp.zptr, scicos_imp.iz, 
+	     scicos_imp.izptr, t, 
+	     scicos_imp.tevts, scicos_imp.evtspt, 
+	     &scicos_imp.nevts, &scicos_imp.pointi, 
+	     scicos_imp.inpptr, scicos_imp.inplnk, 
+	     scicos_imp.outptr, scicos_imp.outlnk, 
+	     scicos_imp.lnkptr, 
+	     scicos_imp.clkptr, scicos_imp.ordptr, 
+	     &C2F(cossiz).nordptr, scicos_imp.ordclk, 
+	     &nordclk, scicos_imp.cord, 
+	     scicos_imp.oord, scicos_imp.zord, 
+	     scicos_imp.critev, scicos_imp.rpar, 
+	     scicos_imp.rpptr, scicos_imp.ipar, 
+	     scicos_imp.ipptr, scicos_imp.funptr, 
+	     scicos_imp.funtyp, scicos_imp.outtb, 
+	     scicos_imp.iwa,&C2F(ierode).iero);    
+}
+ 
+int C2F(simblkdassl)(t,xc,xcdot,residual,ires,rpar,ipar)
+     integer *ires,*ipar;
+     double *t, *xc, *xcdot, *rpar, *residual;
+    
+     
+     /* 
+	!purpose 
+	compute residual  of the continuous part
+	!calling sequence 
+	t     : current time 
+	xc    : double precision vector whose  contains the continuous state. 
+	xcdot : double precision vector, contain the computed derivative 
+	of the state 
+     */
+{ integer nordclk,neq;
+printf("t xc xcdot %f %f %f\n", *t, *xc,*xcdot);
+ *ires=0;
+ C2F(ierode).iero = 0;
+ neq=scicos_imp.xptr[scicos_imp.nblk]-1;
+ nordclk=scicos_imp.ordptr[C2F(cossiz).nordptr-1]-1;
+ C2F(odoit)(neq, residual, xc, scicos_imp.xptr, scicos_imp.z, scicos_imp.zptr, 
+	    scicos_imp.iz, 
+	    scicos_imp.izptr, t, 
+	    scicos_imp.tevts, scicos_imp.evtspt, &scicos_imp.nevts, 
+	    &scicos_imp.pointi, 
+	    scicos_imp.inpptr, scicos_imp.inplnk, scicos_imp.outptr, 
+	    scicos_imp.outlnk, 
+	    scicos_imp.lnkptr, 
+	    scicos_imp.clkptr, scicos_imp.ordptr, 
+	    &C2F(cossiz).nordptr, scicos_imp.ordclk, 
+	    &nordclk, scicos_imp.cord, 
+	    scicos_imp.oord, scicos_imp.zord, 
+	    scicos_imp.critev, scicos_imp.rpar, 
+	    scicos_imp.rpptr, scicos_imp.ipar, 
+	    scicos_imp.ipptr, scicos_imp.funptr, 
+	    scicos_imp.funtyp, scicos_imp.outtb, 
+	    scicos_imp.iwa,&C2F(ierode).iero);
+ if(C2F(ierode).iero != 0) *ires=-2;
+ printf("residual %f \n", *residual);    
+}
  

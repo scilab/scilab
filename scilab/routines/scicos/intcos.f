@@ -6,10 +6,12 @@ c     Copyright INRIA
       integer start,run,finish,flag,linear
       parameter (start=28,run=27,finish=15,linear=21)
       integer id(nsiz)
-      double precision simpar(5)
+      double precision simpar(6)
       integer pointi
       integer funnum
       external funnum
+c
+      integer solver
 
       common /dbcos/ idb
 
@@ -329,7 +331,8 @@ c       checking variable flag (number 5)
         endif
 
         if(rhs.ge.6) then
-c     checking variable simpar (number 6) [atol  rtol ttol, deltat, scale]
+c     checking variable simpar (number 6) 
+c      [atol  rtol ttol, deltat, scale, impl]
 c     
            il6 = iadr(lstk(top-rhs+6))
            if (istk(il6) .ne. 1) then
@@ -338,7 +341,7 @@ c
               return
            endif
            m6 = istk(il6+1)*istk(il6+2)
-           if (m6 .ne. 5.and. m6.ne.4) then
+           if (m6 .ne. 5.and. m6.ne.4.and. m6.ne.6) then
               err = 6
               call error(89)
               return
@@ -445,9 +448,14 @@ c
         if(m6.eq.4) then
            call dcopy(4,stk(l6),1,simpar,1)
            simpar(5)=  0.d0
-        else
+           simpar(6)=  0.d0
+        elseif(m6.eq.5) then
            call dcopy(5,stk(l6),1,simpar,1)
+           simpar(6)=  0.d0
+        else
+           call dcopy(6,stk(l6),1,simpar,1)
         endif
+        solver=simpar(6)
 c
         lfunpt=iadr(lw)
         lw=sadr(lfunpt+nblk)
@@ -480,18 +488,33 @@ c        ilst=iadr(l4e3)
         ilinp=iadr(l4e4)
 c        ilout=iadr(l4e5)
 c        ilclk=iadr(l4e11)
-        
-
-        nn42=nout+22+ncst*max(16,ncst + 9)+3*ng 
-        lw42=lw
-        lw=lw+nn42
-        nn43= 20 + ncst + 2*ng
-        lw43=lw
-        lw=lw+nn43
-        nn44=2*nblk
-        lw44=lw
-        lw=lw+sadr(nn44)+1
-
+    
+        if(solver.eq.0) then 
+c     .    see also paragraph f below.
+c     .    nout is for flag 6 point fix iteration
+c     .    22+ncst*max(16,ncst + 9)+3*ng is for lsodar RWORK
+           nn42=nout+22+ncst*max(16,ncst + 9)+3*ng 
+           lw42=lw
+           lw=lw+nn42
+c     .    lsodar IWORK 20 + neq
+           nn43= 20 + ncst + 2*ng
+           lw43=lw
+           lw=lw+nn43
+           nn44=2*nblk
+           lw44=lw
+           lw=lw+sadr(nn44)+1
+        elseif(solver.eq.100) then
+c     .    dassrt
+           ncst=ncst/2
+           MAXORD=5
+           nn42=nout+50+(MAXORD+4)*ncst+ncst**2+3*ng
+           lw42=lw
+           nn43=20 + ncst + 2*ng
+           lw=lw+nn43
+           nn44=2*nblk
+           lw44=lw
+           lw=lw+sadr(nn44)+1
+        endif
         err=lw-lstk(bot)
         if (err .gt. 0) then
           call error(17)

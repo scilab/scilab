@@ -21,7 +21,8 @@ c
 C     
       integer kfun
       common /curblk/ kfun
-
+      integer solver
+      common /cmsolver/ solver
 C     
       ierr = 0
 C     initialization (flag 4)
@@ -76,6 +77,7 @@ C     loop on blocks
      $           outtb,flag) 
             if(flag.lt.0) then
                ierr=5-flag
+
                return
             endif
  11      continue
@@ -99,9 +101,25 @@ c
          do 20 jj=1,nout
             if(outtb(jj).ne.outt(jj)) goto 30
  20     continue
-         return
+c     
+        if(solver.eq.100) then
+           do 25 kfun=1,nblk
+              if(xptr(kfun+1)-xptr(kfun).gt.0) then
+                 flag=7
+                 call callf(kfun,nclock,funptr,funtyp,told,
+     $                w,x,xptr,z,zptr,iz,izptr,rpar,
+     $                rpptr,ipar,ipptr,tvec,ntvec,inpptr,
+     $                inplnk,outptr,outlnk,lnkptr,outtb,flag) 
+                 if (flag .lt. 0) then
+                    ierr = 5 - flag
+                    return
+                 endif
+              endif
+ 25        continue
+        endif
+        return
  30     continue
-         call dcopy(nout,outtb,1,outt,1)
+        call dcopy(nout,outtb,1,outt,1)
  50   continue
       ierr=20
       return

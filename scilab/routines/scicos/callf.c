@@ -3,7 +3,7 @@
 #include "../machine.h"
 #include "../sun/link.h"
 #include "scicos.h"
-
+#include "import.h"
 #include "blocks.h"
 
 
@@ -15,6 +15,16 @@ extern void  GetDynFunc();
 extern void  sciprint();
 extern void  C2F(iislink)();
 
+#ifdef FORDLL 
+#define IMPORT  __declspec (dllimport)
+#else 
+#define IMPORT extern
+#endif
+
+IMPORT struct {
+  int solver;
+} C2F(cmsolver);
+ScicosImport  scicos_imp;
 void 
 C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
 	   rpar,rpptr,ipar,ipptr,tvec,ntvec,inpptr,inplnk,outptr,
@@ -24,12 +34,14 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
      integer *ntvec,*inpptr,*inplnk,*outptr,*outlnk,*lnkptr,*flag;
      double *t,*xd,*x,*z,*rpar,*outtb,*tvec;
 {
-  voidf loc ;  
+  voidf loc ; 
+  double *residual;
   double* args[SZ_SIZE];
   integer sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
-  int ii,i,kf,nx,nz,nrpar,nipar,in,out,ki,ko,ni,no;
-  int nin,nout,lprt,szi,funtype;
+  int ii,i,kf,nx,nz,nrpar,nipar,in,out,ki,ko,ni,no,k,Nx;
+  int nin,nout,lprt,szi,funtype,flagi;
+  int solver=C2F(cmsolver).solver;
   ScicosF0 loc0;
   ScicosF loc1;
   ScicosFm1 loc3;
@@ -38,7 +50,10 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
   kf=*kfun-1;
   i=funptr[kf];
   funtype=funtyp[kf];
-  
+  residual=xd;
+  flagi=*flag; /* flag 7 implicit initialization */
+  if(flagi==7 && funtype<10000) *flag=0;
+
   if (i<0) {
     switch (funtype) {
     case -1:
@@ -217,6 +232,19 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
     sciprint("Undefined Function type\r\n");
     *flag=-1000;
     return;
+  }
+  if(solver==100 && funtype<10000 && *flag==0) { /* Implicit Solver */
+    Nx=xptr[scicos_imp.nblk]-1;/* complete state size */
+    if(flagi!=7) {
+      for (k=0;k<nx;k++) {
+	residual[xptr[kf]-1+k]=x[Nx+xptr[kf]-1+k]-xd[xptr[kf]-1+k];
+      }
+    }
+    else {
+      for (k=0;k<nx;k++) {
+	x[Nx+xptr[kf]-1+k]=xd[xptr[kf]-1+k];
+      } 
+    }
   }
 }
 

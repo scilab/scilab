@@ -8,7 +8,7 @@ c     Copyright INRIA
      $     flag,ierr)
 c iz,izptr are used to pass block labels
       double precision x(*),z(*),t0,tf,tevts(nevts),outtb(*),rpar(*)
-      double precision simpar(5),w(*)
+      double precision simpar(*),w(*)
 
       integer xptr(*),zptr(*),iz(*),izptr(*),evtspt(nevts),nevts
       integer pointi,funptr(*),funtyp(*),inpptr(*),outptr(*)
@@ -33,12 +33,15 @@ c
 c
       double precision scale
       common /rtfactor/ scale  
+      integer solver
+      common /cmsolver/ solver
 c
-      atol = simpar(1)
-      rtol = simpar(2)
-      ttol = simpar(3)
+      atol  = simpar(1)
+      rtol  = simpar(2)
+      ttol  = simpar(3)
       deltat=simpar(4)
-      scale=simpar(5)  
+      scale =simpar(5)  
+      solver=simpar(6) 
 c
       nordptr=nordptr1
       nblk = nblk1
@@ -59,9 +62,17 @@ c     number of  discrete real states
       nz = zptr(nblk+1) - 1
 c     number of continuous states
       nx = xptr(nblk+1) - 1
+      if(solver.eq.0) then
 c     hotstart work size
-      nrwp = 22 + nx*max(16,nx+9) + 3*ng 
-      niwp = 20 + nx 
+         nrwp = 22 + nx*max(16,nx+9) + 3*ng 
+         niwp = 20 + nx 
+      elseif(solver.eq.100) then
+         MAXORD=5
+         nrwp = 50+(MAXORD+4)*nx+nx**2+3*ng
+         niwp = 20 + nx 
+      else
+c        add an error message please
+      endif
 c     number of rows in ordclk is ordptr(nclkp1)-1
 c     maximum block state and input sizes      
 
@@ -158,15 +169,29 @@ c     initialisation des blocks
          
       elseif(flag.eq.2) then
 c     integration
-         call cossim(nx,x,xptr,z,zptr,
-     $        iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
-     $        inpptr,inplnk,outptr,outlnk,
-     $        lnkptr,clkptr,ordptr,nordptr,
-     $        ordclk,ordptr(nordptr)-1,ztyp,
-     $        cord,iord,niord,oord,zord,critev,
-     $        rpar,rpptr,ipar,ipptr,funptr,
-     $        funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
-     $        w(lww),iwa,ierr)
+         if (solver.eq.0) then
+            call cossim(nx,x,xptr,z,zptr,
+     $           iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
+     $           inpptr,inplnk,outptr,outlnk,
+     $           lnkptr,clkptr,ordptr,nordptr,
+     $           ordclk,ordptr(nordptr)-1,ztyp,
+     $           cord,iord,niord,oord,zord,critev,
+     $           rpar,rpptr,ipar,ipptr,funptr,
+     $           funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
+     $           w(lww),iwa,ierr)
+         elseif (solver.eq.100) then
+           call cossimdassl(nx,x,xptr,z,zptr,
+     $           iz,izptr,t0,tf,tevts,evtspt,nevts,pointi,
+     $           inpptr,inplnk,outptr,outlnk,
+     $           lnkptr,clkptr,ordptr,nordptr,
+     $           ordclk,ordptr(nordptr)-1,ztyp,
+     $           cord,iord,niord,oord,zord,critev,
+     $           rpar,rpptr,ipar,ipptr,funptr,
+     $           funtyp,w(lrhot),iw(lihot),outtb,iw(ljroot),
+     $           w(lww),iwa,ierr)
+         else
+c     add a warning message please
+         endif
          if(ierr.ne.0) then
             kfun0=kfun
             call cosend(x,xptr,z,zptr,iz,

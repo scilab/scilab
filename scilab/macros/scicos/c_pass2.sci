@@ -87,7 +87,7 @@ if show_trace then disp('c_pass31:'+string(timer())),end
 
 //extract various info from bllst
 [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-    xptr,zptr,rpptr,ipptr,xc0,xd0,rpar,ipar,dep_ut,..
+    xptr,zptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
     typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
     bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
     connectmat,clkconnect)
@@ -152,6 +152,7 @@ simtp=['scs','funs','xptr','zptr','izptr','inpptr','outptr','inplnk',..
 
 subscr=[]
 ncblk=0;nxblk=0;ndblk=0;ndcblk=0;
+
 sim=tlist(simtp,funs,xptr,zptr,izptr,..
     inpptr,outptr,inplnk,outlnk,..
     lnkptr,rpar,rpptr,ipar,ipptr,clkptr,..
@@ -165,6 +166,8 @@ if show_trace then disp('c_pass61:'+string(timer())),end
 statetp=['xcs','x','z','iz','tevts','evtspt','pointi','outtb']
 outtb=0*ones(lnkptr($)-1,1)
 iz0=[]
+if exists('%scicos_solver')==0 then %scicos_solver=0,end
+if %scicos_solver==100 then xc0=[xc0;xcd0],end
 state=tlist(statetp,xc0,xd0,iz0,tevts,evtspt,pointi,outtb);
 cpr=list(state,sim,cor,corinv)
 
@@ -616,7 +619,7 @@ if b<>[] then a=sum(b), else a=[], end
 
 endfunction
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-    xptr,zptr,rpptr,ipptr,xc0,xd0,rpar,ipar,dep_ut,..
+    xptr,zptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
     typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
     bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
     connectmat,clkconnect)
@@ -632,7 +635,7 @@ rpptr=clkptr;ipptr=clkptr;
 //rpptr=1;ipptr=1;
 
 //
-xc0=[];xd0=[];rpar=[];ipar=[];
+xc0=[];xcd0=[];xd0=[];rpar=[];ipar=[]
 
 fff=ones(nbl,1)==1
 dep_ut=[fff,fff];typ_z=fff;typ_s=fff;typ_x=fff;typ_m=fff;
@@ -662,12 +665,18 @@ for i=1:nbl
   inpnum=ll(2);outnum=ll(3);cinpnum=ll(4);coutnum=ll(5);
   //
   inpptr(i+1)=inpptr(i)+size(inpnum,'*')
-outptr(i+1)=outptr(i)+size(outnum,'*')
-cliptr(i+1)=cliptr(i)+size(cinpnum,'*')
-clkptr(i+1)=clkptr(i)+size(coutnum,'*')
+  outptr(i+1)=outptr(i)+size(outnum,'*')
+  cliptr(i+1)=cliptr(i)+size(cinpnum,'*')
+  clkptr(i+1)=clkptr(i)+size(coutnum,'*')
   //
   xc0=[xc0;ll(6)(:)]
-    xptr(i+1)=xptr(i)+size(ll(6),'*')
+  if funtyp(i,1)<10000 then
+    xcd0=[xcd0;0*ll(6)(:)]
+  else
+    xcd0=[xcd0;0*ll(6)(:)] //faux
+  end
+    
+  xptr(i+1)=xptr(i)+size(ll(6),'*')
   
   if funtyp(i,1)==3 then //sciblocks
     if ll(7)==[] then xd0k=[]; else xd0k=var2vec(ll(7));end
