@@ -87,8 +87,16 @@ c     *call* expr
          sym=semi
          pstk(pt) = lpt(4)
       else
-         call error(34)
-         return
+         if(comp(1).ne.0.and.comp(3).eq.1) then
+c          to accept matlab syntax for matlab to scilab translation
+           sym = semi
+	   lpt(4)=lpt(2)
+           pstk(pt) = lpt(4)
+	   char1=blank
+         else
+           call error(34)
+           return
+         endif
       endif
 c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
 c     sont chargee (pb des matrices sur plusieurs lignes)
@@ -172,8 +180,16 @@ c     get the following line
             if(err.gt.0) return
          endif
       else
-         call error(35)
-         return
+         if(comp(1).ne.0.and.comp(3).eq.1) then
+c          to accept matlab syntax for matlab to scilab translation
+           sym = semi
+	   lpt(4)=lpt(2)
+	   char1=blank
+	   goto 41
+         else
+           call error(35)
+           return
+         endif
       endif   
 
  42   if(comp(1).eq.0) then
@@ -210,8 +226,15 @@ c     *call* allops(==)
      &     .or.sym.eq.comma.or.sym.eq.semi.or.sym.eq.eol) then
          sym = semi
       else
-         call error(35)
-         return
+         if(comp(1).ne.0.and.comp(3).eq.1) then
+c          to accept matlab syntax for matlab to scilab translation
+           sym = semi
+	   lpt(4)=lpt(2)
+	   char1=blank
+         else
+           call error(35)
+           return
+         endif
       endif
       if(comp(1).ne.0) goto 48
 c     comparaison ...
