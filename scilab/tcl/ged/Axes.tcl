@@ -122,7 +122,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 435x720
+wm geometry $ww 480x720
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
@@ -193,7 +193,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 350
+Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 420
 pack $uf.n -fill both -expand yes
 
 
