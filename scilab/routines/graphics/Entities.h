@@ -1486,7 +1486,7 @@ extern void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
-extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta);/*dj2004*/
+extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta);/* DJ.A 2003 */
 extern double search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/

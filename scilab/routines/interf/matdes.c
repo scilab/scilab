@@ -4655,7 +4655,7 @@ int gset(fname,fname_len)
       num= sciGetNumFigure (pobj);    
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-      sciDrawObj(sciGetParentFigure(pobj));  
+      //sciDrawObj(sciGetParentFigure(pobj));  
       sciDrawObj(sciGetParentFigure(pobj));
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
@@ -5143,31 +5143,31 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {                   
       if ((strncmp(cstk(*value),"off", 3) == 0)) 
 	{                     
-	  pSUBWIN_FEATURE (psubwin)->FRect[0]= 
-	    exp10( Cscale.xtics[2]) * (floor(pSUBWIN_FEATURE (psubwin)->axes.limits[1]/ (exp10( Cscale.xtics[2])))); 
-	  pSUBWIN_FEATURE (psubwin)->FRect[1]=  
-	    exp10( Cscale.ytics[2]) * (floor(pSUBWIN_FEATURE (psubwin)->axes.limits[2]/ (exp10( Cscale.ytics[2]))));   
-	  pSUBWIN_FEATURE (psubwin)->FRect[2]=  
-	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
-	  pSUBWIN_FEATURE (psubwin)->FRect[3]=  
-	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
+	  pSUBWIN_FEATURE (pobj)->FRect[0]= 
+	    exp10( Cscale.xtics[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[1]/ (exp10( Cscale.xtics[2])))); 
+	  pSUBWIN_FEATURE (pobj)->FRect[1]=  
+	    exp10( Cscale.ytics[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[2]/ (exp10( Cscale.ytics[2]))));   
+	  pSUBWIN_FEATURE (pobj)->FRect[2]=  
+	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
+	  pSUBWIN_FEATURE (pobj)->FRect[3]=  
+	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
                  
-	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0;} 
+	  pSUBWIN_FEATURE (pobj)->axes.limits[0] = 0;} 
       else if ((strncmp(cstk(*value),"on", 2) == 0)){
 	for (i=0;i<4 ; i++) 
-	  pSUBWIN_FEATURE (psubwin)->FRect[i]
-	    = pSUBWIN_FEATURE (psubwin)->axes.limits[i+1];
-	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1; }            
+	  pSUBWIN_FEATURE (pobj)->FRect[i]
+	    = pSUBWIN_FEATURE (pobj)->axes.limits[i+1];
+	pSUBWIN_FEATURE (pobj)->axes.limits[0] = 1; }            
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
   /**DJ.Abdemouche 2003**/
   else if (strncmp(marker,"view", 4) == 0) 
     { 
-      /*2004*/
+      /* DJ.A 2003 */
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {                  
 	if ((strncmp(cstk(*value),"2d", 2) == 0)) 
-	  {  /*2004*/
+	  {  
 	    if (sciGetSurface(pobj) == (sciPointObj *) NULL)
 	      {
 		pSUBWIN_FEATURE (pobj)->is3d = FALSE;
@@ -5287,7 +5287,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->fontsize = *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (psubwin)->axes.fontsize = *stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.fontsize = *stk(*value);
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -5295,7 +5295,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->textcolor=*stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (psubwin)->axes.textcolor=*stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.textcolor=*stk(*value);
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
   }	
@@ -5383,9 +5383,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if  (strncmp(marker,"box", 3) == 0) 
     {
       if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	pSUBWIN_FEATURE (psubwin)->axes.rect= 1; 
+	pSUBWIN_FEATURE (pobj)->axes.rect= 1; 
       else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	pSUBWIN_FEATURE (psubwin)->axes.rect= 0;
+	pSUBWIN_FEATURE (pobj)->axes.rect= 0;
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     }
@@ -5404,13 +5404,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if  (strncmp(marker,"axes_visible", 12) == 0) 
     {
       if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	pSUBWIN_FEATURE (psubwin)->isaxes= TRUE; 
+	pSUBWIN_FEATURE (pobj)->isaxes= TRUE; 
       else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	pSUBWIN_FEATURE (psubwin)->isaxes= FALSE;
+	pSUBWIN_FEATURE (pobj)->isaxes= FALSE;
       else
 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
     } 
-  /*2004*/
+  /* DJ.A 2003 */
   else if (strncmp(marker,"hiddencolor", 11) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN)
@@ -5421,12 +5421,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
   /**DJ.Abdemouche 2003**/
   else if  (strncmp(marker,"isoview", 7) == 0) 
-    {  /*2004*/
+    {  /* DJ.A 2003 */
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	if ((strncmp(cstk(*value),"on", 2) == 0)) 
-	  pSUBWIN_FEATURE (psubwin)->isoview= TRUE; 
+	  pSUBWIN_FEATURE (pobj)->isoview= TRUE; 
 	else if ((strncmp(cstk(*value),"off", 3) == 0))  
-	  pSUBWIN_FEATURE (psubwin)->isoview= FALSE;
+	  pSUBWIN_FEATURE (pobj)->isoview= FALSE;
 	else
 	  {strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
       }
@@ -5500,7 +5500,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   } 
   /**************** Surface *******************************/
   else if (strcmp(marker,"rotation_angles") == 0) {
-    /*2004*/
+    /* DJ.A 2003 */
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       Obj_RedrawNewAngle(pobj,*stk(*value+1),*stk(*value));
       wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta);
@@ -5508,13 +5508,13 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"rotation_angles property does not exist for this handle");return -1;}
   }
-  /*2004*/
-  else if (strcmp(marker,"mode") == 0) {
+  /*DJ.A merge*/
+  else if (strcmp(marker,"color_mode") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
 	pSURFACE_FEATURE (pobj)->flag[0]= stk(*value)[0];       
     }
     else
-      {strcpy(error_message,"mode property does not exist for this handle");return -1;}
+      {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
   }
   else if (strcmp(marker,"color_flag") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
@@ -5879,8 +5879,10 @@ int sciGet(sciPointObj *pobj,char *marker)
       toto = sciGetSons((sciPointObj *) pobj);
       while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
 	{
+	  /* DJ.A 30/12 */
+	  if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE)
+	    i++;
 	  toto = toto->pnext;
-	  i++;
 	}
       numrow   = i;
       numcol   = 1;
@@ -5892,11 +5894,14 @@ int sciGet(sciPointObj *pobj,char *marker)
 	toto = sciGetSons((sciPointObj *) pobj);
 	i = 0;
 	while ((toto != (sciSons *)NULL) && (toto->pointobj != (sciPointObj *)NULL))
-	  {
-	    stk(outindex)[i] = 
-	      (double )sciGetHandle((sciPointObj *)toto->pointobj);
+	  { /* DJ.A 30/12 */
+	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE)
+	      {
+		stk(outindex)[i] = 
+		  (double )sciGetHandle((sciPointObj *)toto->pointobj);
+		i++;
+	      }
 	    toto = toto->pnext;/* toto is pointer to one son */
-	    i++;
 	  }
       }
     }
@@ -6079,10 +6084,10 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{ 
 	  numrow=1;numcol=4;  
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];	
-	  stk(outindex)[1] =  pSUBWIN_FEATURE (psubwin)->FRect[1];
-	  stk(outindex)[2] =  pSUBWIN_FEATURE (psubwin)->FRect[2] - pSUBWIN_FEATURE (psubwin)->FRect[0];	
-	  stk(outindex)[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3] - pSUBWIN_FEATURE (psubwin)->FRect[1];	
+	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	
+	  stk(outindex)[1] =  pSUBWIN_FEATURE (pobj)->FRect[1];
+	  stk(outindex)[2] =  pSUBWIN_FEATURE (pobj)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	
+	  stk(outindex)[3] =  pSUBWIN_FEATURE (pobj)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	
 	}
       else
 	{ 
@@ -6316,7 +6321,7 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  numcol=(pSUBWIN_FEATURE (pobj)->is3d)? 3 : 2;
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  for (i=0;i<numcol;i++)
-	    stk(outindex)[i] = pSUBWIN_FEATURE (psubwin)->axes.subint[i];
+	    stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->axes.subint[i];
 	}
       else
 	{strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
@@ -6328,7 +6333,7 @@ int sciGet(sciPointObj *pobj,char *marker)
       if (sciGetEntityType (pobj) == SCI_AXES)
 	*stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
       else
-	*stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+	*stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;
     }
   else if (strncmp(marker,"tics_segment", 12) == 0) 
     {
@@ -6349,7 +6354,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -6359,7 +6364,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
   }
@@ -6421,7 +6426,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     numrow   = 1;
     numcol   = 3;
     CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-    if (pSUBWIN_FEATURE (psubwin)->axes.rect==1)
+    if (pSUBWIN_FEATURE (pobj)->axes.rect==1)
       strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
     else 
       strncpy(cstk(outindex),"off", numrow*numcol);  
@@ -6443,7 +6448,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       numrow   = 1;numcol   = 3;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (pSUBWIN_FEATURE (psubwin)->isaxes)
+      if (pSUBWIN_FEATURE (pobj)->isaxes)
 	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
       else 
 	strncpy(cstk(outindex),"off", numrow*numcol);  
@@ -6451,7 +6456,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"axes_visible property does not exist for this handle");return -1;}
   }
-   /*2004*/
+   /* DJ.A 2003 */
    else if (strncmp(marker,"hiddencolor", 11) == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
@@ -6469,7 +6474,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       numrow   = 1;numcol   = 3;
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (pSUBWIN_FEATURE (psubwin)->isoview)
+      if (pSUBWIN_FEATURE (pobj)->isoview)
 	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
       else 
 	strncpy(cstk(outindex),"off", numrow*numcol);  
@@ -6525,7 +6530,7 @@ int sciGet(sciPointObj *pobj,char *marker)
   } 
  /**************** Surface *******************************/
   else if (strcmp(marker,"rotation_angles") == 0) {
-    /*2004*/ 
+    /* DJ.A 2003 */
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       numrow = 1;numcol = 2;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
@@ -6535,14 +6540,14 @@ int sciGet(sciPointObj *pobj,char *marker)
     else
       {strcpy(error_message,"rotation_angle property does not exist for this handle");return -1;}
   } 
-  else if (strcmp(marker,"mode") == 0) {/*2004*/
+  else if (strcmp(marker,"color_mode") == 0) {/*DJ.A merge*/
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	  *stk(outindex) = pSURFACE_FEATURE (pobj)->flag[0];
       }
     else
-      {strcpy(error_message,"mode property does not exist for this handle");return -1;}
+      {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
   } 
   else if (strcmp(marker,"color_flag") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) {

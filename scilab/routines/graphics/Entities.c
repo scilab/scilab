@@ -15,7 +15,7 @@
 #include "bcg.h"
 #include "PloEch.h" 
 
-/*2004*/
+/* DJ.A 2003 */
 #ifdef __STDC__
 void wininfo(char *format,...);
 #else
@@ -232,8 +232,7 @@ sciGetCharEntityType (sciPointObj * pobj)
 	  break;
 	case SCI_PLOT3D:
 	  return "Plot3d";
-	  break;
-	  /*2004*/
+	  break;/* DJ.A 2003 */
 	case SCI_CONTOUR:
 	default:
 	  break;
@@ -7284,7 +7283,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->project[2]= 0;
       pSUBWIN_FEATURE (pobj)->cubecolor= (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       /***/
-      /*dj2004*/
+      /* DJ.A 2003 */
       C2F(dr)("xget","hidden3d",&verbose,&(pSUBWIN_FEATURE (pobj)->hiddencolor),&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       pSUBWIN_FEATURE (pobj)->hiddenstate=0;
       /***/
@@ -7991,7 +7990,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
 	  ymax          = Max(ppoly->pvy[i], ymax);
 	}
       /**DJ.Abdemouche 2003**/
-      /*2004*/
       if (pvecz == (double *) NULL)
 	ppoly->pvz = (double *) NULL;
       else
@@ -8052,7 +8050,7 @@ ClonePolyline (sciPointObj * pthis)
 	 && (sciGetEntityType(subwinparent) != -1));
   if (sciGetEntityType(subwinparent) == -1)
     return (sciPointObj *)NULL;
-  /*2004*/
+  /* DJ.A 2003 */
   if (!(pobj = ConstructPolyline (subwinparent, pPOLYLINE_FEATURE(pthis)->pvx, pPOLYLINE_FEATURE(pthis)->pvy,pPOLYLINE_FEATURE(pthis)->pvz,
 				  pPOLYLINE_FEATURE(pthis)->closed, pPOLYLINE_FEATURE(pthis)->n1,pPOLYLINE_FEATURE(pthis)->n2,pPOLYLINE_FEATURE(pthis)->plot)))
     return (sciPointObj *)NULL;
@@ -9090,7 +9088,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     else 
       nc=0;
   }
-  /*2004*/
+  /* DJ.A 2003 */
   else {
     nx=dimzx*dimzy;
     ny=dimzx*dimzy;
@@ -9197,8 +9195,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  {
 	    if (izcol !=0)
 	      for (j = 0;j < nc; j++)  
-		pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j];
-	    /*2004*/ 
+		pSURFACE_FEATURE (pobj)->zcol[j]= zcol[j]; /* DJ.A 2003 */
 	  }
       }
 
@@ -9212,7 +9209,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->flag[1] = flag[1];
       pSURFACE_FEATURE (pobj)->flag[2] = flag[2];
 
-      /*2004*/
+      /* DJ.A 2003 */
    
       pSURFACE_FEATURE (pobj)->ebox[0] = ebox[0];
       pSURFACE_FEATURE (pobj)->ebox[1] = ebox[1];
@@ -9263,7 +9260,7 @@ DestroySurface (sciPointObj * pthis)
   if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
     FREE(pSURFACE_FEATURE (pthis)->zcol);
 
-  /*2004*/
+  /* DJ.A 2003 */
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -11148,7 +11145,7 @@ sciDrawObj (sciPointObj * pobj)
 #endif     
  
       switch(pSURFACE_FEATURE (pobj)->typeof3d)
-	{ /*2004*/
+	{ /* DJ.A 2003 */
 	case SCI_FAC3D:
 	  C2F(fac3dn)(pSURFACE_FEATURE (pobj)->flagcolor,
 			pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
@@ -11932,7 +11929,7 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       }
       return (double*)tab;
       break;
-    case SCI_SURFACE:/*2004*/
+    case SCI_SURFACE:/* DJ.A 2003 */
 	sciprint ("Un handled data field\n");
 	return (double*)NULL;
       break;
@@ -12347,7 +12344,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       break;
 
 
-    case SCI_SURFACE:/*dj2004*/
+    case SCI_SURFACE:/* DJ.A 2003 */
 	sciprint ("Un handled data field\n");
 	return -1;
       break;
@@ -13693,7 +13690,7 @@ int sciType (marker)
   else if (strncmp(marker,"figure_position", 15) == 0) {return 1;}	 
   else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}
   else if (strncmp(marker,"axes_visible", 12) == 0)   {return 10;}
-  else if (strncmp(marker,"hiddencolor", 11) == 0)   {return 1;}/*2004*/
+  else if (strncmp(marker,"hiddencolor", 11) == 0)   {return 1;}/* DJ.A 2003 */
   else if (strncmp(marker,"isoview", 7) == 0)   {return 10;}/**DJ.Abdemouche 2003**/
   else if (strncmp(marker,"view", 4) == 0)   {return 10;}/**DJ.Abdemouche 2003**/	
   else if (strncmp(marker,"figure_size", 11) == 0){return 1;}	
@@ -13828,7 +13825,7 @@ void initsubwin()
   pSUBWIN_FEATURE (psubwin)->axes.limits[0]  = 0;  
   pSUBWIN_FEATURE (psubwin)->visible = TRUE;
   pSUBWIN_FEATURE (psubwin)->is3d = FALSE;  
-  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;/*2004*/
+  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;/* DJ.A 2003 */
   pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
 }
 
@@ -14139,7 +14136,7 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 	}
     }
 }
-/*2004*/
+/* DJ.A 2003 */
 BOOL Check3DObjs(sciPointObj *pobj)
 {  
   sciSons *psonstmp;
@@ -14403,7 +14400,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	     { 
 	       x[2] = sciGetLineWidth (pobj);
 	       C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	       /*2004*/
+	       /* DJ.A 2003 */
 	       hiddencolor=pSUBWIN_FEATURE (pobj)->hiddencolor;
 	       if (hiddencolor==-1) hiddencolor=0;
 	       if (zbox[InsideU[0]] > zbox[InsideD[0]])
@@ -14566,7 +14563,7 @@ void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend)
 	BBoxToval(&fx,&fy,&fz,xind[3],bbox);
 	NumberFormat(str,((integer) zz[0]),((integer) zz[2]));
 	C2F(dr)("xstringl",str,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-	x=ixbox[2]-(xz[0]+xz[1])/20;y=(iybox[3]+iybox[2])/2;/*2004*/
+	x=ixbox[2]-(xz[0]+xz[1])/20;y=(iybox[3]+iybox[2])/2;/* DJ.A 2003 */
 	zz[3]=inint(zz[1]-zz[0]);
 	while (zz[3]>10)  zz[3]=floor(zz[3]/2);
 	zz[3]=10; 
@@ -15247,7 +15244,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
   mn=n1*n2;
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     { 
-      /*2004*/
+      /* DJ.A 2003 */
       if (!(sciGetGraphicMode (pobj)->addplot)) { 
 	sciXbasc(); 
 	initsubwin();
@@ -15256,7 +15253,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       } 
      
       xmin=(double) Mini(x,mn);xmax=(double) Maxi(x,mn);
-      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 )  || (pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 )  && (pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
 	{  
 	  xmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[1],xmin);
 	  xmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[3],xmax);
@@ -15272,7 +15269,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       pSUBWIN_FEATURE (pobj)->FRect[2]=lmax;
 
       ymin=(double) Mini(y,mn);ymax=(double) Maxi(y,mn);
-       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) || (pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
+       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) && (pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
 	{
 	  ymin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[2],ymin);
 	  ymax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[4],ymax);
@@ -15289,7 +15286,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       
   
       zmin=(double) Mini(z,mn);zmax=(double) Maxi(z,mn);   
-      if ((pSUBWIN_FEATURE (pobj)->axes.limits[5] !=0 ) || (pSUBWIN_FEATURE (pobj)->axes.limits[6] !=0 ))
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[5] !=0 ) && (pSUBWIN_FEATURE (pobj)->axes.limits[6] !=0 ))
 	{
 	  zmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[5],zmin);
 	  zmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[6],zmax);
@@ -15363,7 +15360,7 @@ void update_graduation(sciPointObj *pobj)
 
 
 
-/*2004*/
+/* DJ.A 2003 */
 int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, integer whiteid, double zmin, double zmax, double *x, double *y, double *z, integer i, integer j, integer jj1, integer *p, integer dc, integer fg)
 {
   sciPointObj *pobj;
