@@ -36,7 +36,8 @@ c
             pt=pt-1
          elseif (r.eq.402) then 
             pt=pt-1
-         elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
+C         elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
+         elseif (r.ge.403.and.r.le.407) then
             goto 50
          elseif (r.eq.408) then
             goto 60
@@ -116,13 +117,14 @@ c     .  *call* matfns
 c
       if(icall.eq.5) return
 
-      if(fin.le.0) then
+      if(fin.lt.0) then
          op=-fin
          fin=-fin
          goto 90
       endif
 
-      if(rstk(pt).eq.406.or.rstk(pt).eq.405) then
+c      if(rstk(pt).eq.406.or.rstk(pt).eq.405) then
+      if(rstk(pt).eq.406) then
 c     .  list recursive extraction insertion 
          goto 50
       endif
