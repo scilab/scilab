@@ -1,6 +1,6 @@
 /*------------------------------------------------------------------------
  *    Graphic library
- *    Copyright (C) 1998-2001 Enpc/Jean-Philippe Chancelier
+ *    Copyright (C) 1998-2003 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
  *--------------------------------------------------------------------------*/
 
@@ -196,83 +196,78 @@ static HDC  hdc1 = (HDC) 0 ;
 
 int sciGetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si)
 {
-	SCROLLINFO totosi;
-	
-	switch (sb_ctl) {
-	case SB_VERT:
-		/* definition des scroll bars verticalles */
-		si->cbSize = Scilabgc->vertsi.cbSize;
-		si->fMask  = Scilabgc->vertsi.fMask;
-		si->nMin   = Scilabgc->vertsi.nMin;
-		si->nMax   = Scilabgc->vertsi.nMax;
-		si->nPage  = Scilabgc->vertsi.nPage;
-		si->nPos   = Scilabgc->vertsi.nPos;
-		break;
-	case SB_HORZ:
-		/* definition des scroll bars horizontalles */
-		si->cbSize = Scilabgc->horzsi.cbSize;
-		si->fMask  = Scilabgc->horzsi.fMask;
-		si->nMin   = Scilabgc->horzsi.nMin;
-		si->nMax   = Scilabgc->horzsi.nMax;
-		si->nPage  = Scilabgc->horzsi.nPage;
-		si->nPos   = Scilabgc->horzsi.nPos;
-		break;
-	default:
-		break;
-	}
-	/* force le rafraichissement de l'affichage des SB !!! */
-	GetScrollInfo(Scilabgc->CWindow, sb_ctl, &totosi);
-	return 0;
+  SCROLLINFO totosi;
+  switch (sb_ctl) 
+    {
+    case SB_VERT:
+      /* definition des scroll bars verticalles */
+      si->cbSize = Scilabgc->vertsi.cbSize;
+      si->fMask  = Scilabgc->vertsi.fMask;
+      si->nMin   = Scilabgc->vertsi.nMin;
+      si->nMax   = Scilabgc->vertsi.nMax;
+      si->nPage  = Scilabgc->vertsi.nPage;
+      si->nPos   = Scilabgc->vertsi.nPos;
+      break;
+    case SB_HORZ:
+      /* definition des scroll bars horizontalles */
+      si->cbSize = Scilabgc->horzsi.cbSize;
+      si->fMask  = Scilabgc->horzsi.fMask;
+      si->nMin   = Scilabgc->horzsi.nMin;
+      si->nMax   = Scilabgc->horzsi.nMax;
+      si->nPage  = Scilabgc->horzsi.nPage;
+      si->nPos   = Scilabgc->horzsi.nPos;
+      break;
+    default:
+      break;
+    }
+  /* force le rafraichissement de l'affichage des SB !!! */
+  GetScrollInfo(Scilabgc->CWindow, sb_ctl, &totosi);
+  return 0;
 }
 
 int sciSetScrollInfo(struct BCG *Scilabgc, int sb_ctl, SCROLLINFO *si, BOOLEAN bRedraw)
 {
-	int inttmp = si->nMax;
-	SCROLLINFO totosi;
-
-
-	switch (sb_ctl) {
-	case SB_VERT:
-		/* definition des scroll bars verticalles */
-		Scilabgc->vertsi.cbSize = si->cbSize;
-		Scilabgc->vertsi.fMask  = si->fMask;
-		Scilabgc->vertsi.nMin   = si->nMin;
-		Scilabgc->vertsi.nMax   = si->nMax;
-		Scilabgc->vertsi.nPage  = si->nPage;
-		if (sciGetwresize() == 1) {
-		  si->nMax = 0; /* on effectue un swapp pour ne pas changer la val (pointeur !!) */
-		  /* 0 permet de faire disparaitre les scrollbars */
-		}
-		Scilabgc->vertsi.nPos   = si->nPos;	
-		break;
-	case SB_HORZ:
-		/* definition des scroll bars horizontalles */
-		Scilabgc->horzsi.cbSize = si->cbSize;
-		Scilabgc->horzsi.fMask  = si->fMask;
-		Scilabgc->horzsi.nMin   = si->nMin;
-		Scilabgc->horzsi.nMax   = si->nMax;
-		Scilabgc->horzsi.nPage  = si->nPage;
-		if (sciGetwresize() == 1) {
-		  si->nMax = 0;
-		}
-		Scilabgc->horzsi.nPos   = si->nPos;
-		break;
-	default:
-		break;
-	}
-	/* reset clip region after a scroll */
-	set_clip_after_scroll() ;
-	/* ? */  
-	SetScrollInfo(Scilabgc->CWindow, sb_ctl, si, bRedraw);
-	if (sciGetwresize() == 1)
-	  si->nMax = inttmp;
-	/* force le rafraichissement de l'affichage des SB !!! */
-	sciGetScrollInfo(Scilabgc, sb_ctl, &totosi);
-	return 0;
+  int inttmp = si->nMax;
+  SCROLLINFO totosi;
+  
+  switch (sb_ctl) {
+  case SB_VERT:
+    /* definition des scroll bars verticalles */
+    Scilabgc->vertsi.cbSize = si->cbSize;
+    Scilabgc->vertsi.fMask  = si->fMask;
+    Scilabgc->vertsi.nMin   = si->nMin;
+    Scilabgc->vertsi.nMax   = si->nMax;
+    Scilabgc->vertsi.nPage  = si->nPage;
+    if ( Scilabgc->CurResizeStatus == 1) 
+      {
+	si->nMax = 0; /* on effectue un swapp pour ne pas changer la val (pointeur !!) */
+	/* 0 permet de faire disparaitre les scrollbars */
+      }
+    Scilabgc->vertsi.nPos   = si->nPos;	
+    break;
+  case SB_HORZ:
+    /* definition des scroll bars horizontalles */
+    Scilabgc->horzsi.cbSize = si->cbSize;
+    Scilabgc->horzsi.fMask  = si->fMask;
+    Scilabgc->horzsi.nMin   = si->nMin;
+    Scilabgc->horzsi.nMax   = si->nMax;
+    Scilabgc->horzsi.nPage  = si->nPage;
+    if ( Scilabgc->CurResizeStatus == 1 ) {  si->nMax = 0;} 
+    Scilabgc->horzsi.nPos   = si->nPos;
+    break;
+  default:
+    break;
+  }
+  /* reset clip region after a scroll */
+  /* set_clip_after_scroll() ; */
+  /* ? */  
+  SetScrollInfo(Scilabgc->CWindow, sb_ctl, si, bRedraw);
+  if (  Scilabgc->CurResizeStatus == 1)
+    si->nMax = inttmp;
+  /* force le rafraichissement de l'affichage des SB !!! */
+  sciGetScrollInfo(Scilabgc, sb_ctl, &totosi);
+  return 0;
 }
-
-
-
 
 int sciInitScrollBar(struct BCG *Scilabgc)
 {
@@ -297,7 +292,6 @@ int sciInitScrollBar(struct BCG *Scilabgc)
   sciSetScrollInfo(ScilabXgc,SB_HORZ, &si, TRUE);
   return 0;
 }
-
 
 void  SetWinhdc()
 {
@@ -370,8 +364,8 @@ void SetGHdc(lhdc,width,height)
 /** Allocating colors in BCG struct */
 
 int XgcAllocColors(xgc,m)
-struct BCG *xgc;
-int m;
+     struct BCG *xgc;
+     int m;
 {
   int mm;
   /* don't forget black and white */
@@ -411,72 +405,62 @@ int XgcFreeColors(xgc)
 	return(0);
 }
 
-
-
 /** Pixmap routines **/
 
-void C2F(pixmapclear)(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int ww,int hh)
 {
   RECT rect;
-  static COLORREF px;
+  COLORREF px;
   HBRUSH hBrush;
-  px = (ScilabXgc->Colors == NULL)? DefaultBackground 
-    :  ScilabXgc->Colors[ScilabXgc->NumBackground];
-  if ( ScilabXgc->hdcCompat)
-    {
-      SetBkColor( ScilabXgc->hdcCompat, px );
-      /*
-       * modified by Matthieu Philippe Saphir Control 19 October 2000
-       * GetClientRect is replaced by the internal Scilab graphique Context Structure
-       * calculates in file wgraph.c function WndGraphProc() at WM_SIZE event and
-       * GPopupResize()
-       */
-      /* GetClientRect(ScilabXgc->CWindow, &rect); */
-      rect.top    = 0;
-      rect.bottom = ScilabXgc->CWindowHeight;
-      rect.left   = 0;
-      rect.right  = ScilabXgc->CWindowWidth;
-      hBrush = CreateSolidBrush(px);
-      FillRect( ScilabXgc->hdcCompat, &rect,hBrush );
-      DeleteObject(hBrush);
-    }
+  if ( hdc_c  == NULL) return ;
+  px = (ScilabGC->Colors == NULL)? DefaultBackground 
+    :  ScilabGC->Colors[ScilabGC->NumBackground];
+  SetBkColor( hdc_c , px );
+  rect.top    = 0;
+  rect.bottom = ww ;
+  rect.left   = 0;
+  rect.right  = hh ;
+  hBrush = CreateSolidBrush(px);
+  FillRect( hdc_c , &rect,hBrush );
+  DeleteObject(hBrush);
 }
 
-void C2F(show)(v1, v2, v3, v4)
-     integer *v1;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC )
+{
+  sci_pixmapclear_rect(hdc_c,ScilabGC, 
+		       ScilabGC->CWindowHeight,ScilabGC->CWindowWidth);
+}
+
+void C2F(pixmapclear)( integer *v1, integer *v2, integer *v3, integer *v4)
+{
+  sci_pixmapclear(ScilabXgc->hdcCompat, ScilabXgc);
+}
+
+void C2F(show)( integer *v1, integer *v2, integer *v3, integer *v4)
 {
   if ( ScilabXgc->hdcCompat)
     {
       HDC hdc1=GetDC(ScilabXgc->CWindow);
-
       BitBlt (hdc1,0,0,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight,
-	      ScilabXgc->hdcCompat,ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,SRCCOPY);
+	      ScilabXgc->hdcCompat,0,0,SRCCOPY);
+      /* ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,SRCCOPY); */
       ReleaseDC(ScilabXgc->CWindow,hdc1);
     }
 }
 
 
 /** 
- *  ResiZe the pixmap associated to CWindow and store it 
+ *  Resize the pixmap associated to CurWindow and store it 
  *  back in the window List 
  **/
 
-void CPixmapResize(x, y)
-     int x;
-     int y;
+void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y) 
 {
   HDC hdc1;
   HBITMAP hbmTemp;
-  hdc1=GetDC(ScilabXgc->CWindow);
+  hdc1=GetDC(ScilabGC->CWindow);
   hbmTemp = CreateCompatibleBitmap (hdc1,x,y);
-  ReleaseDC(ScilabXgc->CWindow,hdc1);
+  ReleaseDC(ScilabGC->CWindow,hdc1);
   if (!hbmTemp)
     {
       sciprint("Can't resize pixmap\r\n");
@@ -485,26 +469,29 @@ void CPixmapResize(x, y)
   else
     {
       HBITMAP  hbmSave;
-      hbmSave = SelectObject ( ScilabXgc->hdcCompat, hbmTemp);
-      if ( ScilabXgc->hbmCompat != NULL)
-	DeleteObject (ScilabXgc->hbmCompat);
-      ScilabXgc->hbmCompat = hbmTemp;
-      C2F(pixmapclear)(PI0,PI0,PI0,PI0);
-      C2F(show)(PI0,PI0,PI0,PI0);
+      hbmSave = SelectObject ( ScilabGC->hdcCompat, hbmTemp);
+      if ( ScilabGC->hbmCompat != NULL)
+	DeleteObject (ScilabGC->hbmCompat);
+      ScilabGC->hbmCompat = hbmTemp;
+      sci_pixmapclear(ScilabGC->hdcCompat, ScilabGC);
+      /* XXX C2F(show)(PI0,PI0,PI0,PI0); */ 
     }
 }
 
+void CPixmapResize(int x,int y)
+{
+  void sci_pixmap_resize(ScilabXgc, x, y) ;
+}
+
 /* 
-   Resize the Pixmap according to window size change 
-   But only if there's a pixmap 
-   */
+ * Resize the Pixmap according to window size change 
+ * But only if there's a pixmap 
+ */
 
 void CPixmapResize1()
 {
   if ( sciGetPixmapStatus() == 1 )
-    {
-      CPixmapResize(ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight);
-    }
+    sci_pixmap_resize(ScilabXgc,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight);
 }
 
 
@@ -1256,12 +1243,13 @@ void C2F(getwindowdim)(verbose, x, narg,dummy)
     sciprint("\n CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
 } 
 
-/** To change the window size
+/* To change the window size
  * on redimensionne la dimension virtuelle
  * si le resizing et off, la vue (View) et la virtuelle sont egales
- * voire dans le resize de wgraph.c
- *@see: GPopupResize
+ * voir dans le resize de wgraph.c
+ * @see: GPopupResize
  */
+
 void C2F(setwindowdim)(x, y, v3, v4)
      integer *x;
      integer *y;
@@ -1274,55 +1262,61 @@ void C2F(setwindowdim)(x, y, v3, v4)
   SCROLLINFO horzsi;
   if (ScilabXgc->CWindow != (Window) NULL) 
   {
-	  /* initialisation des variables SCROLLINFO*/
-	  sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
-	  sciGetScrollInfo(ScilabXgc, SB_HORZ, &horzsi);
+    /* initialisation des variables SCROLLINFO*/
+    sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
+    sciGetScrollInfo(ScilabXgc, SB_HORZ, &horzsi);
+    
+    ScilabXgc->CWindowWidth = Max((int) *x,50);
+    ScilabXgc->CWindowHeight =Max((int) *y,50);
+    if ( sciGetwresize() == 1 ) {
+      ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
+      ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+      vertsi.nPos   = 0;
+      horzsi.nPos   = 0;
+    }
 
-      ScilabXgc->CWindowWidth = Max((int) *x,50);
-      ScilabXgc->CWindowHeight =Max((int) *y,50);
-      if ( sciGetwresize() ) {
-		  ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
-		  ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
-		  vertsi.nPos   = 0;
-		  horzsi.nPos   = 0;
-	  }
+    if ( ScilabXgc->CWindowWidthView > ScilabXgc->CWindowWidth)
+      ScilabXgc->CWindowWidthView = ScilabXgc->CWindowWidth;
 
-      if (ScilabXgc->CWindowWidthView > ScilabXgc->CWindowWidth)
-	ScilabXgc->CWindowWidthView = ScilabXgc->CWindowWidth;
+    if (ScilabXgc->CWindowHeightView > ScilabXgc->CWindowHeight)
+      ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+    CPixmapResize1();
 
-      if (ScilabXgc->CWindowHeightView > ScilabXgc->CWindowHeight)
-	ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
-
-      if ( sciGetPixmapStatus() == 1 )
-	  {
-	    CPixmapResize(ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight);
-	  }
-      GetWindowRect (ScilabXgc->hWndParent, &rect) ;
-      GetWindowRect (ScilabXgc->CWindow, &rect1) ;
-      xof = (rect.right-rect.left)- (rect1.right - rect1.left);
-      yof = (rect.bottom-rect.top)- (rect1.bottom -rect1.top );
-      if (sciGetwresize () == 0)
-	{
-	  SetWindowPos (ScilabXgc->hWndParent, HWND_TOP, 0, 0,
-			ScilabXgc->CWindowWidthView + xof +
-			GetSystemMetrics (SM_CXVSCROLL),
-			ScilabXgc->CWindowHeightView + yof +
-			GetSystemMetrics (SM_CYHSCROLL),
-			SWP_NOMOVE | SWP_NOZORDER);
-	}
-      else
-	{
-      SetWindowPos(ScilabXgc->hWndParent,HWND_TOP,0,0,
-		   ScilabXgc->CWindowWidthView  + xof,
-		   ScilabXgc->CWindowHeightView + yof,
-		   SWP_NOMOVE | SWP_NOZORDER );
-	  }
-      vertsi.nMax   = ScilabXgc->CWindowHeight;
-      vertsi.nPage  = ScilabXgc->CWindowHeightView;
-      horzsi.nMax   = ScilabXgc->CWindowWidth;
-      horzsi.nPage  = ScilabXgc->CWindowWidthView;  
-      sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
-      sciSetScrollInfo(ScilabXgc,SB_HORZ, &(horzsi), TRUE);
+    GetWindowRect (ScilabXgc->hWndParent, &rect) ;
+    GetWindowRect (ScilabXgc->CWindow, &rect1) ;
+    xof = (rect.right-rect.left)- (rect1.right - rect1.left);
+    yof = (rect.bottom-rect.top)- (rect1.bottom -rect1.top );
+    if (sciGetwresize () == 0)
+      {
+	SetWindowPos (ScilabXgc->hWndParent, HWND_TOP, 0, 0,
+		      ScilabXgc->CWindowWidthView + xof +
+		      GetSystemMetrics (SM_CXVSCROLL),
+		      ScilabXgc->CWindowHeightView + yof +
+		      GetSystemMetrics (SM_CYHSCROLL),
+		      SWP_NOMOVE | SWP_NOZORDER);
+      }
+    else
+      {
+	SetWindowPos(ScilabXgc->hWndParent,HWND_TOP,0,0,
+		     ScilabXgc->CWindowWidthView  + xof,
+		     ScilabXgc->CWindowHeightView + yof,
+		     SWP_NOMOVE | SWP_NOZORDER );
+      }
+    vertsi.nMax   = ScilabXgc->CWindowHeight;
+    vertsi.nPage  = ScilabXgc->CWindowHeightView;
+    horzsi.nMax   = ScilabXgc->CWindowWidth;
+    horzsi.nPage  = ScilabXgc->CWindowWidthView;  
+    sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
+    sciSetScrollInfo(ScilabXgc,SB_HORZ, &(horzsi), TRUE);
+    if ( sciGetwresize() == 0 ) 
+      {
+	/* need to force a rdraw in that case */
+	if ( ScilabXgc->horzsi.nPos + ScilabXgc->CWindowWidthView < 
+	     ScilabXgc->CWindowWidth 
+	     &&  ScilabXgc->vertsi.nPos + ScilabXgc->CWindowHeightView < 
+	     ScilabXgc->CWindowHeight) 
+	  InvalidateRect(ScilabXgc->CWindow,NULL,FALSE);
+      }
   }
 }
 
@@ -1334,10 +1328,10 @@ void C2F(getpopupdim)(verbose, x, narg,dummy)
      integer *narg;
      double *dummy;
 {
-	x[0]= ScilabXgc->CWindowWidthView; 
-	x[1]= ScilabXgc->CWindowHeightView;
-	*narg = 2;
-	if (*verbose == 1) 
+  x[0]= ScilabXgc->CWindowWidthView; 
+  x[1]= ScilabXgc->CWindowHeightView;
+  *narg = 2;
+  if (*verbose == 1) 
     sciprint("\n ScilabXgc->CWindow dim :%d,%d\r\n",(int) x[0],(int) x[1]);
 }
 
@@ -1346,6 +1340,7 @@ void C2F(getpopupdim)(verbose, x, narg,dummy)
  *@description: To change the popup window size  (visible borders)
  *              it's used by xget('wpdim') and xset('wpdim',x,y) in Scilab langage
  **/
+
 void C2F(setpopupdim)(x, y, v3, v4)
      integer *x;
      integer *y;
@@ -2057,6 +2052,7 @@ void C2F(getusecolor)(verbose, num, narg,dummy)
 
 /** Change the status of a Graphic Window **/
 /** adding or removing a Background Pixmap to it **/
+
 void C2F(setpixmapOn)(num, v2, v3, v4)
      integer *num;
      integer *v2;
@@ -2105,7 +2101,7 @@ void C2F(setpixmapOn)(num, v2, v3, v4)
 	      ResetScilabXgc ();
 	      SetGHdc((HDC)0,ScilabXgc->CWindowWidth,
 		       ScilabXgc->CWindowHeight);
-		  /* ajout */
+	      /* ajout */
 	      C2F(show)(PI0,PI0,PI0,PI0);
 	    }
 	}
@@ -2140,28 +2136,28 @@ void C2F(getpixmapOn)(integer *verbose, integer *value, integer *narg, double *d
 
 integer sciGetPixmapStatus()
 {
-	return ScilabXgc->CurPixmapStatus;
+  return ScilabXgc->CurPixmapStatus;
 }
 
 /** Change the status of a Graphic Window **/
 /** follow or dont follow the viewport resize  **/
 
-void C2F(setwresize)(num, v2, v3, v4)
-     integer *num;
-     integer *v2;
-     integer *v3;
-     integer *v4;
+void C2F(setwresize)( integer *num, integer *v2, integer *v3, integer *v4)
 {
   integer num1= Min(Max(*num,0),1);
   integer xtmp=0;
   integer ytmp=0;
-
+  if ( ScilabXgc->CurResizeStatus == num1 ) 
+    {
+      static int count=0; 
+      wininfo("rien a faire %d %d.....",num1,count++);
+      return;
+    }
   ScilabXgc->CurResizeStatus = num1; /* a faire avant setwindowdim */
   C2F(setwindowdim)((xtmp = ScilabXgc->CWindowWidthView, &xtmp),
-	  (ytmp=ScilabXgc->CWindowHeightView,&ytmp), PI0, PI0);
+		    (ytmp=ScilabXgc->CWindowHeightView,&ytmp), PI0, PI0);
   SetViewportOrgEx(hdc,-ScilabXgc->horzsi.nPos,-ScilabXgc->vertsi.nPos,NULL);
-  UpdateWindow(ScilabXgc->CWindow);  
-  InvalidateRect(ScilabXgc->CWindow,NULL,TRUE);
+  InvalidateRect(ScilabXgc->CWindow,NULL,FALSE);
 }
 
 void C2F(getwresize)(verbose, value, narg,dummy)
@@ -2182,7 +2178,7 @@ void C2F(getwresize)(verbose, value, narg,dummy)
  */
 integer sciGetwresize()
 {
-	 return ScilabXgc->CurResizeStatus;
+  return ScilabXgc->CurResizeStatus;
 }
 
 
@@ -2778,25 +2774,25 @@ test(str,flag,verbose,x1,x2,x3,x4,x5)
      integer flag ;
      integer  *verbose,*x1,*x2,*x3,*x4,*x5;
 { 
-double *dv;
-C2F(setalufunction1)(x1,x2,x3,x4);C2F(getalufunction)(verbose,x1,x2,dv);
-C2F(setclip)(x1,x2,x3,x4);C2F(getclip)(verbose,x1,x2,dv);
-C2F(unsetclip)(x1,x2,x3,x4);C2F(getclip)(verbose,x1,x2,dv);
-C2F(setdash)(x1,x2,x3,x4);C2F(getdash)(verbose,x1,x2,dv);
-InitMissileXgc(x1,x2,x3,x4); C2F(gempty)(verbose,x1,x2,dv);
-C2F(xsetfont)(x1,x2,x3,x4);C2F(xgetfont)(verbose,x1,x2,dv);
-C2F(setabsourel)(x1,x2,x3,x4);C2F(getabsourel)(verbose,x1,x2,dv);
-C2F(xsetmark)(x1,x2,x3,x4);C2F(xgetmark)(verbose,x1,x2,dv);
-C2F(setpattern)(x1,x2,x3,x4);C2F(getpattern)(verbose,x1,x2,dv);
-C2F(setpixmapOn)(x1,x2,x3,x4);C2F(getpixmapOn)(verbose,x1,x2,dv);
-C2F(setthickness)(x1,x2,x3,x4);C2F(getthickness)(verbose,x1,x2,dv);
-C2F(usecolor)(x1,x2,x3,x4);C2F(gempty)(verbose,x1,x2,dv);
-C2F(setwindowdim)(x1,x2,x3,x4);C2F(getwindowdim)(verbose,x1,x2,dv);
-C2F(sempty)(x1,x2,x3,x4);C2F(getwhite)(verbose,x1,x2,dv);
-C2F(setcurwin)(x1,x2,x3,x4);C2F(getcurwin)(verbose,x1,x2,dv);
-C2F(setwindowpos)(x1,x2,x3,x4);C2F(getwindowpos)(verbose,x1,x2,dv);
-C2F(show)(x1,x2,x3,x4);C2F(gempty)(verbose,x1,x2,dv);
-C2F(pixmapclear)(x1,x2,x3,x4);gempty(verbose,x1,x2,dv);
+  double *dv;
+  C2F(setalufunction1)(x1,x2,x3,x4);C2F(getalufunction)(verbose,x1,x2,dv);
+  C2F(setclip)(x1,x2,x3,x4);C2F(getclip)(verbose,x1,x2,dv);
+  C2F(unsetclip)(x1,x2,x3,x4);C2F(getclip)(verbose,x1,x2,dv);
+  C2F(setdash)(x1,x2,x3,x4);C2F(getdash)(verbose,x1,x2,dv);
+  InitMissileXgc(x1,x2,x3,x4); C2F(gempty)(verbose,x1,x2,dv);
+  C2F(xsetfont)(x1,x2,x3,x4);C2F(xgetfont)(verbose,x1,x2,dv);
+  C2F(setabsourel)(x1,x2,x3,x4);C2F(getabsourel)(verbose,x1,x2,dv);
+  C2F(xsetmark)(x1,x2,x3,x4);C2F(xgetmark)(verbose,x1,x2,dv);
+  C2F(setpattern)(x1,x2,x3,x4);C2F(getpattern)(verbose,x1,x2,dv);
+  C2F(setpixmapOn)(x1,x2,x3,x4);C2F(getpixmapOn)(verbose,x1,x2,dv);
+  C2F(setthickness)(x1,x2,x3,x4);C2F(getthickness)(verbose,x1,x2,dv);
+  C2F(usecolor)(x1,x2,x3,x4);C2F(gempty)(verbose,x1,x2,dv);
+  C2F(setwindowdim)(x1,x2,x3,x4);C2F(getwindowdim)(verbose,x1,x2,dv);
+  C2F(sempty)(x1,x2,x3,x4);C2F(getwhite)(verbose,x1,x2,dv);
+  C2F(setcurwin)(x1,x2,x3,x4);C2F(getcurwin)(verbose,x1,x2,dv);
+  C2F(setwindowpos)(x1,x2,x3,x4);C2F(getwindowpos)(verbose,x1,x2,dv);
+  C2F(show)(x1,x2,x3,x4);C2F(gempty)(verbose,x1,x2,dv);
+  C2F(pixmapclear)(x1,x2,x3,x4);gempty(verbose,x1,x2,dv);
 }
 
 #endif 
@@ -2856,13 +2852,11 @@ void C2F(MissileGCGetorSet)(str, flag, verbose, x1, x2, x3, x4, x5,x6,dv1)
 	{ if ( j <= 0)
 	    {
 	      sciprint("\nUnknow X operator <%s>\r\n",str);
-              *x1=1;*x2=0;
 	      return;
 	    }
 	}
     }
   sciprint("\n Unknow X operator <%s>\r\n",str);
-  *x1=1;*x2=0;
 }
 
 
@@ -3694,6 +3688,7 @@ struct BCG *AddNewWindow(listptr)
        {
          (*listptr)->winxgc.CWindow = (Window) NULL;
          (*listptr)->winxgc.CurWindow = 0;
+         (*listptr)->winxgc.in_sizemove = 0;
 	 (*listptr)->winxgc.Red = (float *) 0;
 	 (*listptr)->winxgc.Green = (float *) 0;
 	 (*listptr)->winxgc.Blue = (float *) 0;
@@ -4085,7 +4080,7 @@ static void CreateGraphClass()
   wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
   /** should be changed : cursor must be changed when inside xclick **/
   wndclass.hCursor =  LoadCursor(NULL, IDC_CROSS);
-  wndclass.hbrBackground = GetStockBrush(WHITE_BRUSH);
+  wndclass.hbrBackground = NULL; /* GetStockBrush(WHITE_BRUSH);*/
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szGraphClass;
   RegisterClass(&wndclass);
@@ -4100,7 +4095,7 @@ static void CreateGraphClass()
   else
     wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
   wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-  wndclass.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);
+  wndclass.hbrBackground = NULL; /* (HBRUSH) GetStockObject(BLACK_BRUSH); */
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szParentGraphClass;
   RegisterClass(&wndclass);
@@ -4147,7 +4142,6 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   integer i,j;
   ScilabXgc->IDLastPattern = GREYNUMBER - 1;
   ScilabXgc->CurLineWidth=0 ;
- 
   C2F(setalufunction1)((i=3,&i),PI0,PI0,PI0);
   /** retirer le clipping **/
   i=j= -1;
@@ -4155,11 +4149,6 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   ScilabXgc->ClipRegionSet= 0;
   C2F(xsetfont)((i=2,&i),(j=1,&j),PI0,PI0);
   C2F(xsetmark)((i=0,&i),(j=0,&j),PI0,PI0);
-  /* ScilabXgc->CurPixmapStatus =0 ; */
-  C2F(setpixmapOn)((i = 0,&i),PI0,PI0,PI0);
-  /* ScilabXgc->CurResizeStatus =1 ; */
-  C2F(setwresize)((i = sciGetwresize(), &i), PI0,PI0,PI0);
-  C2F(setpixmapOn)((i = 0,&i),PI0,PI0,PI0);
   /** trac\'e absolu **/
   i= CoordModeOrigin ;
   C2F(setabsourel)(&i,PI0,PI0,PI0);
@@ -4184,14 +4173,27 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   /* Choix du mode par defaut (decide dans initgraphic) */
   getcolordef(&i);
   /** we force CurColorStatus to the opposite value of col
-    to force usecolorPos to perform initialisations
-    **/
+   *  to force usecolorPos to perform initialisations
+   **/
   ScilabXgc->graphicsversion = 0;/* NG */ /* old */
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   C2F(usecolor)(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
+
   /** default scales **/
   Cscale2default();
+
+  /* This is a very bad idea to try to put a 
+   * C2F(setwresize)((i = 1, &i), PI0,PI0,PI0);
+   * here. It leads to an infinite paint loop 
+   * since setwresize start a InvalidateRect 
+   * and InitMissileXgc if started from xset('default') 
+   * is a recorded graphic 
+   * xset('default') -> setwresize -> InvalidateRect 
+   * then paint -> xset('default')
+   */ 
+  
+  C2F(setpixmapOn)((i = 0,&i),PI0,PI0,PI0);
 }
 
 
@@ -4883,11 +4885,9 @@ static integer xleft,xright,ybot,ytop;
  * 0 is returned if inside.
  */
 
-static int clip_point(x, y)
-integer x, y;
+static int clip_point( integer x,integer y)
 {
     integer ret_val = 0;
-
     if (x < xleft) ret_val |= (char)0x01;
     else if (x > xright) ret_val |= (char)0x02;
     if (y < ybot) ret_val |= (char)0x04;
