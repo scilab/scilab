@@ -15,7 +15,7 @@
 
 
 #include "Entities.h" /* NG */
-sciPointObj *psubwin;/* NG */
+static sciPointObj *psubwin;/* NG */
 
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
@@ -90,7 +90,7 @@ void axis_draw(strflag)
 static void aplotv2(strflag) 
      char *strflag;
 {
-  char dir = 'l';
+  char dir = 'l'; // F.Leray Note: by default the position of y-axis is 'left'
   int nx,ny;
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
   int seg =0;
@@ -103,6 +103,10 @@ static void aplotv2(strflag)
 char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   x[0] = Cscale.frect[0]; x[1] = Cscale.frect[2] ; x[2]=Cscale.Waaint1[1];
   y[0]=  Cscale.frect[1]; y[1] = Cscale.frect[3] ; y[2]=Cscale.Waaint1[3]; 
+
+  // Comments on the x and y arrays:
+  // x = [xmin,xmax,nb_subtics_on_x_axis]
+  // y = [ymin,ymax,nb_subtics_on_y_axis]
 
   /** Cscale.frect[4]= xmin ymin xmax ymax **/ 
 
@@ -177,7 +181,7 @@ char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
         }
   if ( c != '4' && c != '5' ) {
     if ((version_flag() == 0) && (pSUBWIN_FEATURE (psubwin)->axes.rect == 0))
-      seg=1;
+      seg=1; // seg=1 means not to draw a rectangle (cases wherexy-axis is centered in the middle of the frame or in (0,0))
     else  
     /** frame rectangle **/
     C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
@@ -185,11 +189,17 @@ char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   }
 
   if (version_flag() == 0){  
-    Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */
+    //  Cscale.Waaint1[i]= pSUBWIN_FEATURE (psubwin)->axes.subint[i]+1; /*SS 01/01/03 */ // F.Leray Error here: Array overflowed: dim  Cscale.Waaint1 = 4 and i=4 
     Cscale.Waaint1[0]= pSUBWIN_FEATURE (psubwin)->axes.subint[0]+1;
-    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */
+    Cscale.Waaint1[1]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.xlim[3]); /*SS 02/01/03 */ // Give the number of intervals on x
     Cscale.Waaint1[2]= pSUBWIN_FEATURE (psubwin)->axes.subint[1]+1; 
-    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */
+    Cscale.Waaint1[3]= (integer) (pSUBWIN_FEATURE (psubwin)->axes.ylim[3]);/*SS 02/01/03 */  // Give the number of intervals on y
+
+    // Above: Number of tics on x-axis: Cscale.Waaint1[0]
+    //        Number of tics on y-axis: Cscale.Waaint1[2]
+
+    // Above: Number of subtics on x-axis: Cscale.Waaint1[1]
+    //        Number of subtics on y-axis: Cscale.Waaint1[3]
 
     ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
     textcolor=pSUBWIN_FEATURE (psubwin)->axes.textcolor;
@@ -437,12 +447,26 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
     }
   /**** 01/07/2002 ***/ 
   if (version_flag() == 0) 
-  {
-	   // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
-	  // meaning of x and y ?
-while (x[3]>10)  x[3]=floor(x[3]/2);
-while (y[3]>10)  y[3]=floor(y[3]/2);  //Wrong!! => but need something... F.Leray 25.02.04 Pb here: DOES NOT WORK PROPERLY !!!! NEED MODIFICATIONS !!
-  }
+    {
+      // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
+      // x and y are either double x[3] (resp. y[3]) or simply a double !  F.Leray 05.03.04
+      // So a test on x[3] (resp. y[3]) is ALWAYS bad!!
+      // NO!! It depends on the xy_type as follow (see in aplotv1):
+      /*
+ *   xy_type = 'v' (for vector) or 'r' (for range) 
+ *         'v' means that tics position are given by a vector 
+ *         'r' means that tics position are in a range i.e given by a vector of size 3 
+ *             [min,max,number_of_intervals] 
+ *         'i' means that tics positions are in a range given by four number (integers) 
+ *             [k1,k2,e,number_of intervale] -> [k1*10^e,k2*10^e] */
+
+      if(xy_type == 'i') {     // Adding F.Leray 05.03.04
+	while (x[3]>10)  x[3]=floor(x[3]/2);
+	while (y[3]>10)  y[3]=floor(y[3]/2);  //Wrong!! => but need something... F.Leray 25.02.04 Pb here: DOES NOT WORK PROPERLY !!!! NEED MODIFICATIONS !!
+      }
+
+    }
+
   
   /** Real to Pixel values **/
   switch ( xy_type ) 
@@ -478,7 +502,7 @@ while (y[3]>10)  y[3]=floor(y[3]/2);  //Wrong!! => but need something... F.Leray
       /** the horizontal segment **/
 
 	//F.Leray 26.02.04
-	debug = version_flag();
+        debug = version_flag();
 
       vx[0] =  XScale(x_convert(xy_type, x , 0));
       vx[1] =  XScale(x_convert(xy_type, x , Nx-1));
