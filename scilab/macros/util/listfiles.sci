@@ -29,7 +29,7 @@ function files= listfiles(paths,flag,flagexpand)
 	// prepend with the path, if required 
 	// when listing a full directory, path is not prepended
 	dirs=paths(i)
-	if part(dirs,length(dirs))<>'\'then
+	if part(dirs,length(dirs))<>'\' then
 	  if isdir(dirs) then //yes
 	    with_dir=%f
 	  else                //no
