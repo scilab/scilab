@@ -41,9 +41,12 @@ Void=0;
 Unknown=-1;
 Complex="Complex"
 Real="Real"
+Units=["pixels","centimeters","points","inches","normalized"]
 
-global %graphicswindow
-%graphicswindow=Handle
+global %graphics
+%graphics=struct()
+%graphics.type=Double
+%graphics.units="pixels"
 
 // Translated function input arguments
 macrhs=size(mtlbtree.inputs) 
@@ -114,9 +117,14 @@ for k=1:size(mtlbtree.outputs)
     end
   end
 end
+
+// Graphics init
+//graph_ini=["// Graphics initialisation";"global %graphics";"%graphics.type=1";"%graphics.units=""pixels"""];
+graph_ini=[]
 if ini<>[] then
   ini=["";"// Ouput variables initialisation (not found in input variables)";ini]
 end
+//ini=[ini;" ";graph_ini]
 
 // Info on macros variables 
 if verbose_mode<0 then
@@ -271,4 +279,5 @@ else
   end
 end
 clearglobal varslist
+clearglobal %graphics
 endfunction
