@@ -80,56 +80,90 @@ distclean::
 	$(RM) Fblocknames Cblocknames blocks.h
 
 #--------------dependencies 
-affich.obj: ../stack.h
-coselm.obj: ../stack.h
-dtosci.obj: ../stack.h
-intcos.obj: ../stack.h
-itosci.obj: ../stack.h
-list2vars.obj: ../stack.h
-readf.obj: ../stack.h
-sciblk.obj: ../stack.h
-scierr.obj: ../stack.h
-scifunc.obj: ../stack.h
-scitod.obj: ../stack.h
-scitoi.obj: ../stack.h
-scitovv.obj: ../stack.h
-skipvars.obj: ../stack.h
-vvtosci.obj: ../stack.h
-writef.obj: ../stack.h
-writeau.obj: ../stack.h ../machine.h
-readau.obj: ../machine.h
-grblk.obj: ../machine.h import.h
-scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h scicos_block.h
-coselm.obj : ../stack.h
-intcos.obj : ../stack.h
-cpass2.obj: ../machine.h cc_pass2.h
-intconnection.obj: ../machine.h ../stack-c.h
-intcscicos.obj: intcscicos.h ../stack-c.h ../machine.h
-mswitch.obj: scicos_block.h ../machine.h
-logicalop.obj : scicos_block.h ../machine.h
-switch2.obj : scicos_block.h ../machine.h
-variable_delay.obj : scicos_block.h ../machine.h
-time_delay.obj : scicos_block.h ../machine.h
-cscope.obj : scicos_block.h ../machine.h
-cmscope.obj : scicos_block.h ../machine.h
-satur.obj: scicos_block.h ../machine.h
-step_func.obj: scicos_block.h ../machine.h
-integral_func.obj: scicos_block.h ../machine.h
-absolute_value.obj : scicos_block.h ../machine.h
-bounce_ball.obj : scicos_block.h ../machine.h
-bouncexy.obj : scicos_block.h ../machine.h
-extractor.obj : scicos_block.h ../machine.h
-scalar2vector.obj : scicos_block.h ../machine.h
-minmax.obj : scicos_block.h ../machine.h
-signum.obj : scicos_block.h ../machine.h
-product.obj : scicos_block.h ../machine.h
-summation.obj : scicos_block.h ../machine.h
-multiplex.obj : scicos_block.h ../machine.h
-gainblk.obj: scicos_block.h ../machine.h
-relationalop.obj: scicos_block.h ../machine.h
-modulo_count.obj: scicos_block.h ../machine.h
-hystheresis.obj: scicos_block.h ../machine.h
-ratelimiter.obj: scicos_block.h ../machine.h
-backlash.obj: scicos_block.h ../machine.h
-deadband.obj: scicos_block.h ../machine.h
-ramp.obj: scicos_block.h ../machine.h
+# fortran code
+affich.obj: affich.f ../stack.h
+coselm.obj: coselm.f ../stack.h
+dtosci.obj: dtosci.f  ../stack.h
+intcos.obj: intcos.f  ../stack.h
+itosci.obj: itosci.f  ../stack.h
+list2vars.obj: list2vars.f ../stack.h
+readf.obj: readf.f ../stack.h
+sciblk.obj: sciblk.f  ../stack.h
+scierr.obj: scierr.f  ../stack.h
+scifunc.obj: scifunc.f ../stack.h
+scitod.obj: scitod.f ../stack.h
+scitoi.obj: scitoi.f ../stack.h
+scitovv.obj: scitovv.f ../stack.h
+skipvars.obj: skipvars.f  ../stack.h
+vvtosci.obj: vvtosci.f  ../stack.h
+writef.obj: writef.f ../stack.h
+
+#c code
+absolute_value.obj: absolute_value.c scicos_block.h ../machine.h
+backlash.obj: backlash.c scicos_block.h
+blocks.obj: blocks.c ../machine.h ../calelm/calelm.h scicos.h \
+  scicos_block.h
+bounce_ball.obj: bounce_ball.c scicos_block.h ../machine.h
+bouncexy.obj: bouncexy.c scicos_block.h ../machine.h
+cmscope.obj: cmscope.c scicos_block.h ../machine.h
+cpass2.obj: cpass2.c ../machine.h cc_pass2.h
+cscope.obj: cscope.c scicos_block.h ../machine.h
+deadband.obj: deadband.c scicos_block.h
+extractor.obj: extractor.c scicos_block.h
+gainblk.obj: gainblk.c scicos_block.h ../machine.h
+hystheresis.obj: hystheresis.c scicos_block.h
+import.obj: import.c ../machine.h import.h
+intconnection.obj: intconnection.c ../stack-c.h ../graphics/Math.h \
+  ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+intcscicos.obj: intcscicos.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h intcscicos.h scicos_block.h
+integral_func.obj: integral_func.c scicos_block.h
+intrealtime.obj: intrealtime.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+logicalop.obj: logicalop.c scicos_block.h
+minmax.obj: minmax.c scicos_block.h
+modulo_count.obj: modulo_count.c scicos_block.h
+mswitch.obj: mswitch.c scicos_block.h
+multiplex.obj: multiplex.c scicos_block.h
+plusblk.obj: plusblk.c ../machine.h
+prod.obj: prod.c ../machine.h
+product.obj: product.c scicos_block.h
+ramp.obj: ramp.c scicos_block.h
+ratelimiter.obj: ratelimiter.c scicos_block.h
+readau.obj: readau.c ../machine.h
+readc.obj: readc.c ../machine.h
+realtime.obj: realtime.c ../machine.h
+relationalop.obj: relationalop.c scicos_block.h
+relay.obj: relay.c ../machine.h
+satur.obj: satur.c scicos_block.h
+scalar2vector.obj: scalar2vector.c scicos_block.h
+sciblk2.obj: sciblk2.c ../machine.h
+sciblk2i.obj: sciblk2i.c ../machine.h
+sciblk4.obj: sciblk4.c ../machine.h ../stack-c.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h scicos_block.h
+scicos.obj: scicos.c ../machine.h ../sun/link.h scicos.h scicos_block.h \
+  import.h blocks.h
+scicos_free.obj: scicos_free.c scicos_block.h
+scicos_malloc.obj: scicos_malloc.c scicos_block.h
+scicosclip.obj: scicosclip.c ../machine.h ../graphics/Math.h \
+  ../graphics/Graphics.h ../graphics/PloEch.h
+selector.obj: selector.c ../machine.h
+signum.obj: signum.c scicos_block.h
+slider.obj: slider.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h
+step_func.obj: step_func.c scicos_block.h
+str2sci.obj: str2sci.c ../stack-c.h ../graphics/Math.h ../machine.h \
+  ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
+  ../interf/stack2.h ../interf/stack3.h
+sum.obj: sum.c ../machine.h
+summation.obj: summation.c scicos_block.h
+switch2.obj: switch2.c scicos_block.h
+switchn.obj: switchn.c ../machine.h
+time_delay.obj: time_delay.c scicos_block.h ../machine.h
+variable_delay.obj: variable_delay.c scicos_block.h ../machine.h
+writeau.obj: writeau.c ../machine.h
+writec.obj: writec.c ../machine.h
+zcross2.obj: zcross2.c ../machine.h
