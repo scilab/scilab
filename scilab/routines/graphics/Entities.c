@@ -13551,7 +13551,8 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  for (i=0;i < *numrow;i++) {
 	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
 	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
+	    if (*numcol == 3)
+	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
 	  }
 	}
       }
