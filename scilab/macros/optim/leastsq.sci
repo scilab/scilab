@@ -18,8 +18,19 @@ else
   fn=fun;params=list()
 end
 
-Dfun=varargin(1)
-if type(Dfun)==10|type(Dfun)==11|type(Dfun)==13 then 
+Dfun=varargin(1),kr=1;
+if type(Dfun)==10 then //the 'b' keyword or the jacobian entry point name
+  if Dfun=='b' & size(varargin) >= 3 then
+    if type(varargin(2))==1 & type(varargin(3))==1 then
+      J=%f //bounds specification
+      k
+    else
+      J=%t //jacobian 
+    end 
+  else
+    J=%t //jacobian 
+  end
+elseif type(Dfun)==11|type(Dfun)==13 then
   J=%t  //Jacobian provided
   varargin(1)=null()
 elseif type(Dfun)==15 then 
@@ -27,13 +38,17 @@ elseif type(Dfun)==15 then
 else
   J=%f
 end
+//looking for x0 in varargin
+if J then kr=2,else kr=1,end
+if varargin(kr)=='b' then kr=kr+3,end
+x0=varargin(kr)
 
 if type(fn)==10 then //hard coded function given by its name
   if size(params)==0 then 
     error('With hard coded function, user must give output size of fun'),
   end
   m=params(1);params(1)=null()
-  n=size(x,'*')
+  n=size(x0,'*')
   // foo(m,nx,x,params,f)
   deff('f=fn(x,p)','f=call('''+fn+''','+..
       'm,1,''i'',n,2,''i'',x,3,''d'','+..
@@ -47,12 +62,12 @@ if type(fn)==10 then //hard coded function given by its name
   
 end
 
-if J then
+if J then //jacobian given
   if type(Dfun)==10 then //form function to call hard coded external
     // dfoo(m,nx,x,params,g)
-    deff('g=Dfun(x)','g=call('''+DG+''','+..
-	'm,1,''i'',nx,2,''i'',x,3,''d'','+..
-	'pars,4,''out'',['+string(m)+','+string(nx)+'],5,''d'')')
+    deff('g=Dfun(x)','g=call('''+Dfun+''','+..
+	'm,1,''i'',n,2,''i'',x,3,''d'','+..
+	'pars,4,''out'',['+string(m)+','+string(n)+'],5,''d'')')
   end
 else
   if params==list()
@@ -73,5 +88,7 @@ else
       'f=sum(ff.^2)'
       'g=2*(gf''*ff(:))'])
 end
-[f,x,g]=optim(%opt,varargin(:),imp=imp)
+
+if J then kr=2,else kr=1,end
+[f,x,g]=optim(%opt,varargin(kr:$),imp=imp)
 
