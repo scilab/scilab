@@ -1928,6 +1928,10 @@ int GetScreenProperty(char *prop, char *value)
     {
       sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,(float)1,(float)1);
     }
+  else if(!strcmp(prop,"screendepth"))
+    {
+      sprintf(value,"%f",(float)GetDeviceCaps(hdc,BITSPIXEL));
+    }
   else
     {
       sciprint("Unknown property %s\r\n",prop);
