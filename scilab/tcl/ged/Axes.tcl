@@ -1160,6 +1160,12 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
 
 proc setAlphaAngle {} {
     global curalpharotation curthetarotation viewToggle
+
+    if { ($curalpharotation == "") || ($curthetarotation == "") } {
+	tk_messageBox -icon error -type ok -title "Rotation angles selection failed" -message "You must fill in the 2 fields"
+	return
+    }
+
     ScilabEval "global ged_handle;ged_handle.rotation_angles=\[$curalpharotation $curthetarotation\]"
    if { ( $curalpharotation == 0) && ( $curthetarotation == 270) } {
 	set viewToggle "2d"
@@ -1169,9 +1175,15 @@ proc setAlphaAngle {} {
 }
 
 proc setThetaAngle {} {
-global curalpharotation curthetarotation viewToggle
+    global curalpharotation curthetarotation viewToggle
+    
+    if { ($curalpharotation == "") || ($curthetarotation == "") } {
+	tk_messageBox -icon error -type ok -title "Rotation angles selection failed" -message "You must fill in the 2 fields"
+	return
+    }
+    
     ScilabEval "global ged_handle;ged_handle.rotation_angles=\[$curalpharotation $curthetarotation\]"
-   if { ( $curalpharotation == 0) && ( $curthetarotation == 270) } {
+    if { ( $curalpharotation == 0) && ( $curthetarotation == 270) } {
 	set viewToggle "2d"
     } else {
 	set viewToggle "3d"
