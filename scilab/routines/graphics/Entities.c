@@ -944,7 +944,7 @@ sciGetNumColors (sciPointObj * pobj)
   if ( (pobj == pfiguremdl) || (pobj == paxesmdl))
     return pFIGURE_FEATURE (pfiguremdl)->numcolors;
   else
-    return sciGetScilabXgc (pobj)->Numcolors;
+    return sciGetScilabXgc (pobj)->numcolors;
 }
 
 /**sciCloneColormap
@@ -10444,7 +10444,7 @@ sciDrawObj (sciPointObj * pobj)
        flag=MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      sciGetScilabXgc (pobj)->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1));
+      (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1));
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
@@ -13817,8 +13817,8 @@ void sciSwitchWindow(winnum)
   struct BCG *CurXGC; 
   static sciPointObj *mafigure;
   static sciPointObj *masousfen;  
-  integer v;
-  double dv; 
+  integer v=0;
+  double dv=0.0; 
   /* find if exist figure winnum */
   /* une autre methode c est de tester CurXGC->mafigure = NULL */
   if ( (sciPointObj *) sciIsExistingFigure(winnum) == (sciPointObj *) NULL) 

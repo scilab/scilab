@@ -129,9 +129,9 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
      /** Drawing the Legends **/
      if ((int)strlen(strflag) >=1  && strflag[0] == '1')
        {
-	 integer style = -1;
+	 integer styl[2] = {-1,0}; 
 	 n1=1;
-	 Legends(&style,&n1,legend);
+	 Legends(styl,&n1,legend);
        }        
    } /** version_flag ***/
    

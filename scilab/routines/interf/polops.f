@@ -48,6 +48,7 @@ c
 
 c
       var2(1)=0
+      it2=0
       if(rhs.eq.1) goto 05
       il2=iadr(lstk(top))
       if(istk(il2).lt.0) il2=iadr(istk(il2+1))

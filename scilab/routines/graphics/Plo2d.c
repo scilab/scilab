@@ -363,6 +363,10 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       /* recherche automatique des bornes et graduations */
       Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2]));
     }
+    else {
+      Xdec[0]=inint(FRect[0]);Xdec[1]=inint(FRect[2]);Xdec[2]=0;
+      Ydec[0]=inint(FRect[1]);Ydec[1]=inint(FRect[3]);Ydec[2]=0;
+    }
   
   /* Update the current scale */
   set_scale("tftttf",NULL,FRect,aaint,xf+1,NULL); 

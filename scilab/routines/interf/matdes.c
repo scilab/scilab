@@ -22,12 +22,13 @@ with those defined in the drivers They are used in scixset to check
 for invalid keys ("old_style" has been added). A better way should be to make drivers return an
 error indicator in order to skip recording*/
 extern void  C2F(msgs)(int *i, int *v);
-#define NUMSETFONC 33
+#define NUMSETFONC 35
 static char *KeyTab_[] = {
 	 "alufunction",
 	 "background",
 	 "clipoff",
 	 "clipping",
+	 "clipgrf",
 	 "color",
 	 "colormap",
 	 "dashes",
@@ -35,6 +36,7 @@ static char *KeyTab_[] = {
 	 "figure",
 	 "font",
 	 "foreground",
+	 "fpf",
 	 "gc",
 	 "gccolormap",
 	 "hidden3d",
@@ -4872,8 +4874,8 @@ int gget(fname,fname_len)
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
 {
   int xtmp;
-  int  i,num,v,na,id;
-  double dtmp,dv; 
+  int  i,num,v=0,na,id;
+  double dtmp,dv=0.0; 
   char  **str, **ptr, ctmp[10];    
   sciPointObj *psubwin, *figure, *tmpobj;
   struct BCG *XGC;
