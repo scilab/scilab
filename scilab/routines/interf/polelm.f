@@ -208,13 +208,9 @@ c     necessary while matdsr and matdsc cannot be called by reference
          call unsfdcopy(mn1*(it1+1),stk(l1),1,stk(lr),1)
          lstk(top+1)=lr+mn1*(it1+1)
       endif
-      fin=3
       rhs=1
-      if(it1.eq.0) then
-         call matdsr
-      else
-         call matdsc
-      endif
+      call inteig('spec')
+      call putlhsvar
       if(err.gt.0) return
       il1=iadr(lstk(top))
       l1=sadr(il1+4)
