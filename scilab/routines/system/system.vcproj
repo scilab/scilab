@@ -275,9 +275,6 @@ cd .. &gt;nul
 				RelativePath=".\diary.c">
 			</File>
 			<File
-				RelativePath=".\history.c">
-			</File>
-			<File
 				RelativePath=".\inisci-c.c">
 			</File>
 			<File
@@ -314,9 +311,6 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
-			<File
-				RelativePath=".\history.h">
-			</File>
 			<File
 				RelativePath="msgstore.h">
 			</File>
