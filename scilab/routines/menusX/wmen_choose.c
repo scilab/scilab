@@ -114,18 +114,19 @@ int ExposeChooseWindow( ChooseMenu *PCh)
     }
   while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE) || PCh->status == -1 )
     {
+	  Sleep(1);
       if ( CtrlCHit(&textwin) == 1) 
-	{
-	  if ( ChooseModeless != (HWND) 0) DestroyWindow( ChooseModeless) ;
-	  ChooseModeless = (HWND)0;
-	  PCh->status = FALSE;
-	  break;
-	}
+		{
+			if ( ChooseModeless != (HWND) 0) DestroyWindow( ChooseModeless) ;
+			ChooseModeless = (HWND)0;
+			PCh->status = FALSE;
+			break;
+		}
       if (  ChooseModeless ==0 || ! IsDialogMessage(ChooseModeless,&msg)) 
-	{
+		{
 	      TranslateMessage(&msg);
 	      DispatchMessage(&msg);
-	}
+		}
     }
   SetWindowLong(textwin.hWndParent, 4, (LONG)(0L));
   return PCh->status;
