@@ -6108,10 +6108,6 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 #ifdef WIN32
 	hdcflag=MaybeSetWinhdc();
 #endif
-	C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
-		  PD0, PD0, PD0, 5L, 6L);
-	C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, 
-		  PD0, PD0, PD0, 5L, 10L);
 	C2F (dr) ("xset", "thickness",  context+1, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
 	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
@@ -6138,8 +6134,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      fill[0] = (flag < 0 ) ? -fg1 : fg1 ;
 	    else
 	      fill[0] = (flag != 0 ) ? fg1 : flag ;
-	    if(sciGetIsLine(pobj))
+	    if(sciGetIsLine(pobj)){
+	      C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+	      C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
 	    if(sciGetIsMark(pobj))
 	      DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	  }
@@ -6147,8 +6146,11 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	    switch ( pSURFACE_FEATURE (pobj)->flagcolor) {
 	    case 0:
 	      fill[0]= flag ;
-	      if(sciGetIsLine(pobj))
+	      if(sciGetIsLine(pobj)){
+		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p, PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
 	      if(sciGetIsMark(pobj))
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
@@ -6168,16 +6170,22 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      /* 	      sciprint("fill[0] = %d\n\n",fill[0]); */
 	     
 	      if ( flag  < 0 ) fill[0]=-fill[0];
-	      if(sciGetIsLine(pobj))
+	      if(sciGetIsLine(pobj)){
+		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      if(sciGetIsMark(pobj))
+	      }
+		if(sciGetIsMark(pobj))
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
 	    case 2:
 	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
 	      if ( flag < 0 ) fill[0]=-fill[0];
-	      if(sciGetIsLine(pobj))
+	      if(sciGetIsLine(pobj)){
+		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
 	      if(sciGetIsMark(pobj))
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
@@ -6190,13 +6198,18 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge, int * DPI)
 	      else  {
 		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];*/
 		shade(polyx,polyy,&(pSURFACE_FEATURE (pobj)->zcol[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
+		if (sciGetIsMark (pobj))
+		  DrawMarks3D (pobj, p,polyx,polyy,DPI);
 	      }
 	      break;
 	    case 4: /* new case for "flat" mode matlab compatibility */
 	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
 	      if ( flag < 0 ) fill[0]=-fill[0];
-	      if(sciGetIsLine(pobj))
+	      if(sciGetIsLine(pobj)){
+		C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 6L);
+		C2F (dr) ("xset", "foreground", context,   context,   context+3, context+3, context+3, PI0, PD0, PD0, PD0, PD0, 5L, 10L);
 		C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      }
 	      if(sciGetIsMark(pobj))
 		DrawMarks3D(pobj,5*npoly,polyx,polyy,DPI);
 	      break;
@@ -7250,7 +7263,7 @@ sciDrawObj (sciPointObj * pobj)
 		    vertexy[2] = ym[j+1+n1*(i+1)];
 		    vertexy[3] = ym[j+n1*(i+1)];
 		    vertexy[4] = ym[j+n1*i];
-		  
+		    
 		    C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
 			    PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  }
@@ -7365,7 +7378,7 @@ sciDrawObj (sciPointObj * pobj)
 		  vertexy[2] = ym[j+1+n1*(i+1)];
 		  vertexy[3] = ym[j+n1*(i+1)];
 		  vertexy[4] = ym[j+n1*i];
-		 
+		  
 		  C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
 			  PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
@@ -7749,31 +7762,9 @@ sciDrawObj (sciPointObj * pobj)
       w2 = pARC_FEATURE (pobj)->width;
       h2 = pARC_FEATURE (pobj)->height; 
       /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
-
-      printf("dans sciDrawObj->SCI_ARC\n");
-      printf("Cscale.Wscx1 = %lf\n",Cscale.Wscx1);
-      printf("Cscale.Wscy1 = %lf\n",Cscale.Wscy1);
-      printf("Cscale.Wxofset1 = %lf\n",Cscale.Wxofset1);
-      printf("Cscale.Wyofset1 = %lf\n",Cscale.Wyofset1);
-      printf("Cscale.frect[0] = %lf\n",Cscale.frect[0]);
-      printf("Cscale.frect[1] = %lf\n",Cscale.frect[1]);
-      printf("Cscale.frect[2] = %lf\n",Cscale.frect[2]);
-      printf("Cscale.frect[3] = %lf\n",Cscale.frect[3]);
- 
-       printf("AVANT Wscale\n");
-      printf("x1 = %d\n",x1);
-      printf("yy1 = %d\n",yy1);
-      printf("w1 = %lf\n",w2);
-      printf("h1 = %lf\n",h2);
       
       w1 = WScale(w2);
       h1 = HScale(h2);
-
-      printf("APRES Wscale\n");
-      printf("x1 = %d\n",x1);
-      printf("yy1 = %d\n",yy1);
-      printf("w1 = %d\n",w1);
-      printf("h1 = %d\n\n",h1);
       
       angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
       angle2 = (integer) (pARC_FEATURE (pobj)->alphaend); 
@@ -8148,7 +8139,7 @@ sciDrawObj (sciPointObj * pobj)
       C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,PD0, PD0, PD0, PD0, 4L, 4L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	
+/*       x[0] = sciGetForeground (pobj);	 */
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -8157,8 +8148,6 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
       flag_DO = MaybeSetWinhdc();
 #endif
-      C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
       C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); /*D.A 17/12/2003*/
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
@@ -8939,8 +8928,8 @@ int GetDPIFromDriver(int * DPI)
       /*       printf("DRIVERS POS enabled -- -- -- --\n"); */
       /* when using Pos driver, the output file is 6000x4240 pixels */
       /* computed DPI: height : 6000/(30cm/2.54) = 508 ; width: 4240/(21.20/2.54) = 508 */
-      ixres = 508.;
-      iyres = 508.;
+      ixres = 524.*1.5;
+      iyres = 524.*1.5;
       break;
     case 2: /* Fig. */
       /*       printf("DRIVERS FIG enabled -- -- -- --\n"); */

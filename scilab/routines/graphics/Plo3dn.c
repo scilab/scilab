@@ -36,7 +36,10 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   integer i, j, flagcolor;
   sciPointObj *psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); /* a laisser!!!!!!!! */
   sciSubWindow *ppsubwin = pSUBWIN_FEATURE (psubwin);
-
+  int xx[4]; /* used to load the object foreground and dashes color */
+  integer v=0;
+  double dv=0.;
+  
   /* Test to enable reverse axis in 3D *//* F.Leray 14.10.04 */
   int u;
   double *xtmp = NULL;
@@ -65,6 +68,8 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   fg1 = pSURFACE_FEATURE (pobj)->hiddencolor;
   dc = pSURFACE_FEATURE (pobj)->flag[0];
   flagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
+
+  xx[0] = sciGetForeground (pobj);
 
   /** initialisation **/
   polyx = graphic_alloc (0, 5 * (*q), sizeof (int));
@@ -112,10 +117,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
-                        C2F (dr) ("xliness", "str", polyx, polyy, fill,
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+			C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -135,10 +143,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -169,10 +180,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -192,11 +206,14 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
-
+		      }
+		      
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
                     }
@@ -227,10 +244,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -249,10 +269,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -277,10 +300,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -299,10 +325,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -331,10 +360,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -353,10 +385,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -383,10 +418,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -405,10 +443,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -437,10 +478,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -459,10 +503,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -489,10 +536,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -511,10 +561,13 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     }
                   if (npolyok != 0)
                     {
-                      if (sciGetIsLine (pobj))
+                      if (sciGetIsLine (pobj)){
+			C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+			C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                         C2F (dr) ("xliness", "str", polyx, polyy, fill,
                                   &npolyok, &polysize, PI0, PD0, PD0, PD0,
                                   PD0, 0L, 0L);
+		      }
 
                       if (sciGetIsMark (pobj))
                         DrawMarks3D (pobj, 5 * npolyok, polyx, polyy,DPI);
@@ -549,7 +602,10 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   integer flag_det = 0, flag_det0 = 0, flag_det1 = 0, flag_det2 =
     0, flag_det3 = 0, rear;
   double determ, determ0, determ1, determ2, determ3;
-
+  int xx[4]; /* used to load the object foreground and dashes color */
+  integer v=0;
+  double dv=0.;
+ 
   int u;
   double *xtmp = NULL;
   double *ytmp = NULL;
@@ -564,6 +620,8 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   hiddencolor = pSURFACE_FEATURE (pobj)->hiddencolor;
   color_mode = pSURFACE_FEATURE (pobj)->flag[0];
   color_flag = pSURFACE_FEATURE (pobj)->flagcolor;
+
+  xx[0] = sciGetForeground (pobj);
 
   polyz = graphic_alloc (5, (*q), sizeof (double));
   if ((polyz == NULL) && (*q) != 0)
@@ -752,10 +810,14 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                   integer rear_fill = col[0];
                   if (color_mode >= 0)  /* The edge of the facet is forcibly drawn if color_mode >= 0 */
                     rear_fill = Abs (col[0]);
-                  if (sciGetIsLine (pobj))
+                  if (sciGetIsLine (pobj)){
+		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                     C2F (dr) ("xliness", "str", rear_x, rear_y, &rear_fill,
                               &npoly, &rear_size, PI0, PD0, PD0, PD0, PD0, 0L,
                               0L);
+		  }
+		  
                   if (sciGetIsMark (pobj))
                     DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
 
@@ -766,9 +828,13 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
               if (color_mode > 0)       /* Force the drawing of the mesh */
                 col[0] = Abs (col[0]);
-              if (sciGetIsLine (pobj))
+              if (sciGetIsLine (pobj)){
+		C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                 C2F (dr) ("xliness", "str", polyx, polyy, col, &npoly,
                           &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	      }
+	      
               if (sciGetIsMark (pobj))
                 DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
 
@@ -820,17 +886,25 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
               if (hiddencolor < 0 && rear)
                 {               /* draw the rear facing part of the facet */
-                  if (sciGetIsLine (pobj))
+                  if (sciGetIsLine (pobj)){
+		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                     C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
                               &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+		  }
+		  
                   if (sciGetIsMark (pobj))
                     DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
                   if (rear_size == *p)
                     continue;
                 }
-              if (sciGetIsLine (pobj))
+              if (sciGetIsLine (pobj)){
+		C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                 C2F (dr) ("xliness", "str", polyx, polyy, fill, &npoly,
                           &front_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	      }
+	      
               if (sciGetIsMark (pobj))
                 DrawMarks3D (pobj, front_size, polyx, polyy,DPI);
 
