@@ -84,6 +84,6 @@ case 1
 case 2
   M=matrix(v,dims1(1),dims1(2))
 else
-  M=mlist(['hm','dims','entries'],dims1,v)
+  M=mlist(['hm','dims','entries'],matrix(dims1,1,-1),v)
 end
 endfunction

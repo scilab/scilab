@@ -21,7 +21,7 @@ if rhs==2 then
   return
 end
 if lhs==1 then
-  varargout(1)=dims'
+  varargout(1)=matrix(dims,1,-1)
 else
   if lhs>size(dims,'*') then error('Too many LHS args'),end
   for k=1:lhs

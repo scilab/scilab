@@ -1,7 +1,7 @@
 function M1=%hm_c_hm(M1,M2)
 // Copyright INRIA
 d1=M1('dims');
-d2=M2('dims')
+d2=M2('dims');
 if size(d1,'*')<>size(d2,'*') then
   error('In concatenation the number of dimensions for each component must match');
 end

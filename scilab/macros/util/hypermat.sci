@@ -9,11 +9,11 @@ function M=hypermat(dims,v)
 [lhs,rhs]=argn(0)
 dims=round(dims)
 if rhs<2 then
-  M=mlist(['hm','dims','entries'],dims,zeros(prod(dims),1))
+  M=mlist(['hm','dims','entries'],matrix(dims,1,-1),zeros(prod(dims),1))
 else
   if size(v,'*')<> prod(dims) then
     error('hypermat: Number of entries does not match product of dimensions')
   end
-  M=mlist(['hm','dims','entries'],dims,v(:))
+  M=mlist(['hm','dims','entries'],matrix(dims,1,-1),v(:))
 end
 endfunction

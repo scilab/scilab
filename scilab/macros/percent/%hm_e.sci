@@ -31,7 +31,7 @@ for k=rhs-1:-1:1
       end
     end
   end
-  dims1=[size(ik,'*');dims1]
+  dims1=[size(ik,'*'),dims1]
   if size(ik,'*')>1 then
     ik=ik(:)
     if size(I,'*')>1 then
