@@ -162,7 +162,7 @@ static char *command_generator (const char *text, int state)
       len = strlen (text);
     }
   /* Return the next name which partially matches from the command list. */
-  while (name = commands[list_index])
+  while ( (name = commands[list_index]))
     {
       list_index++;
       if (strncmp (name, text, len) == 0)

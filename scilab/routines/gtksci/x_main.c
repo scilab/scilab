@@ -87,7 +87,7 @@ void C2F(realmain)()
 	} 
       else if ( strcmp(argv[i],"-pipes") == 0) 
 	{
-	  /*
+	  /* old stuff used by geci 
 	  int p1,p2;
   	  p1 = atoi(argv[++i]);
 	  p2 = atoi(argv[++i]); 
@@ -124,6 +124,8 @@ void C2F(realmain)()
 
   /* initialize scilab interp  */
   C2F(inisci)(&ini, &memory, &ierr);
+  /* set up terminal size */
+  sci_winch_signal(0);
   if (ierr > 0) return ;
   /*  execute startup 
    *  and enter main loop 
@@ -380,16 +382,13 @@ void setcolordef( int screenc)
  * try to build SCI and MANCHAPTERS if not provided 
  *-------------------------------------------------------*/
 
-static char *sci_env,*sci_man_chapters;
-
-static char format[] = "MANCHAPTERS=%s/man/Chapters";
+static char *sci_env;
 
 extern int C2F(scigetcwd)( char **path, int *lpath, int *err);
 
 static void set_sci_env ()
 {
   char *p1; 
-  char *p; 
   if ((p1 = getenv ("SCI")) == (char *) 0)
     {
       sci_env = malloc((strlen(ProgramName)+1+4)*sizeof(char));
@@ -437,16 +436,6 @@ static void set_sci_env ()
 	    }
 	}
     }    
-  /* 
-  if ((p1 = getenv ("MANCHAPTERS")) == (char *) 0)
-    {
-      if ((p = getenv ("SCI")) == (char *) 0) return ;
-      sci_man_chapters= malloc((strlen(p)+1+strlen(format))*sizeof(char));
-      sprintf (sci_man_chapters,format,p);
-      putenv (sci_man_chapters);
-    }
-  */
-
 }
 
 /*-------------------------------------------------------

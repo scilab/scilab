@@ -484,7 +484,7 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
 {  
   int i;
   /* here we must find the menu_entry associated to win_num */
-  menu_entry *me1,*me2,*top,*subs=NULL;
+  menu_entry *me1=NULL,*me2,*top,*subs=NULL;
   /* first build the sub_menus */
   for (i=0 ; i < ne ;i++) 
     {

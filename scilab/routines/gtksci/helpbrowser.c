@@ -933,6 +933,7 @@ int Sci_Help(char *mandir,char *locale,char *help_file)
     open_browser_dialog (mandir,locale,help_file);
   else if ( help_file != NULL)
     load_page (current_page, &pages[HELP], help_file, 0, TRUE, TRUE);
+  return 0;
 }
 
 

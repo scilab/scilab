@@ -106,7 +106,6 @@ void  sciprint(char *fmt,...)
 
 void  sciprint_nd(char *fmt,...) 
 {
-  integer lstr;
   va_list ap;
   char s_buf[1024];
   va_start(ap,fmt);
@@ -359,7 +358,7 @@ void sci_winch_signal(int n)
 {
   int rows,cols;
   sci_get_screen_size (&rows,&cols);
-  C2F(scilines)(&rows,&cols);
+  if ( rows != 0 && cols != 0 )     C2F(scilines)(&rows,&cols);
 #ifdef DEBUG
   fprintf(stderr,"windows size changed %d %d\r\n",rows,cols);
 #endif 
