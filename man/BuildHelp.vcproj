@@ -28,6 +28,9 @@
 			ConfigurationType="0">
 			<Tool
 				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
 	</Configurations>
