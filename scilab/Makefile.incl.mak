@@ -80,7 +80,7 @@ LINKER_FLAGS=/NOLOGO /machine:ix86
 # include options 
 INCLUDES=-I"$(SCIDIR)/routines/f2c" $(TCL_INCLUDES) 
 
-CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
+CC_COMMON=-D__MSC__ -DWIN32 -c -DSTRICT -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(DPVM) $(DMKL) $(USE_MT)
 # debug 
 CC_OPTIONS =  $(CC_COMMON) -Z7 -W3 -Od 
 # standard option ( replace Od->O2 for optimization but note that optimization does not work )
