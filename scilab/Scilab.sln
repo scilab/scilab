@@ -1521,17 +1521,13 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug.ActiveCfg = Debug|Win32
-		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug.Build.0 = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.ActiveCfg = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.Build.0 = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Pentium_Release.ActiveCfg = Release|Win32
-		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Pentium_Release.Build.0 = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release.ActiveCfg = Release|Win32
-		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release.Build.0 = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release with Atlas.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.PIV_Release with Atlas.Build.0 = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release.ActiveCfg = Release|Win32
-		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release.Build.0 = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas.Build.0 = Release|Win32
 	EndGlobalSection
