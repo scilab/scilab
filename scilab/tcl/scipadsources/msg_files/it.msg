@@ -94,7 +94,7 @@
 ::msgcat::mcset it "New Script" "Nuovo testo"
 ::msgcat::mcset it "The contents of" "Il contenuto di"
    ::msgcat::mcset it "may have changed, do you wish to save your changes?"\
-            "potrebbe essere cambiato, registrare i cambi?"
+            "potrebbe essere cambiato, registrare le modifiche?"
 ::msgcat::mcset it "Save Confirm?" "Conferma salvataggio?"
 ::msgcat::mcset it "Weird drag&drop" "Strano trascina e deponi"
 ::msgcat::mcset it "is neither a valid filename nor a valid directory.\
@@ -265,6 +265,7 @@
     ::msgcat::mcset it "&Tabs and indentation" "&Tabulatori e indentazione"
         ::msgcat::mcset it "Tab inserts &spaces" "&Tab inserisce spazi"
         ::msgcat::mcset it "&Indentation spaces" "&Spazi di indentazione"
+    ::msgcat::mcset it "Colorize \'&strings\'" "Colora \'&stringhe\'"
     ::msgcat::mcset it "Word &Wrap" "&Ritorno a capo visuale"
     ::msgcat::mcset it "File&names" "Nome dei &files"
         ::msgcat::mcset it "&Full path" "&Percorso completo"
