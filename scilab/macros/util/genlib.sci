@@ -91,7 +91,7 @@ function getsave(fl)
 
   ierr=execstr('getf(fl)','errcatch') // get functions defined in file 'fl'
   if ierr<>0 then
-    warning(['Error in file '+fl+''';lasterror(); file ignored'])
+    warning(['Error in file '+fl+' :""'+lasterror()+'""; file ignored'])
   else
     // lookfor names of the functions defined in file 'fl'
     new=who('get')
