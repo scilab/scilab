@@ -2908,7 +2908,7 @@ int scixstring(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  double rect[4],wc,/*wy,*/x,y,yi,angle=0.0;
+  double rect[4],wc,wy,x,y,yi,angle=0.0;
   integer i,j,iv =0,flagx=0;
   integer m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,m5,n5,l5;
   char **Str;
@@ -2934,7 +2934,7 @@ int scixstring(fname,fname_len)
       Scierror(999,"%s: No more memory available\r\n",fname);
       return 0; 
     }
-    /*wy = 0.; */ /* F.Leray 25.03.04 */ /* old BUG*/
+    wy = 0.; /* Unused in fact... F.Leray 25.03.04 */ /* old BUG*/
     for (i = m3 -1 ; i >= 0; --i)  {
       int ib = 0;
       for (j = 0 ; j < n3 ; ++j) {
