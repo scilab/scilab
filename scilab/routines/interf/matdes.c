@@ -2556,8 +2556,9 @@ int scixfpolys(fname,fname_len)
     /** construct agregation and make it current object**/
     sciSetCurrentObj (ConstructAgregationSeq (n1));
   }
-  Xfpolys(istk(l3),v1,v2,n2,m2,stk(l1),stk(l2));
-
+  else
+    Xfpolys(istk(l3),v1,v2,n2,m2,stk(l1),stk(l2));
+  
   LhsVar(1)=0;  
   return 0;  
 } 
@@ -8551,7 +8552,6 @@ int drawnow(fname,fname_len)
 		    sciSetVisibility (subwin,TRUE);
 		    sciDrawObj(sciGetCurrentFigure ());
 		  }
-                        
 	      }
 	    break;
 	  case 10:/* first is a string argument so it's a drawnow('all') */
@@ -8579,12 +8579,71 @@ int drawlater(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {  
+  sciPointObj *subwin;
+  integer m,n,l,i;
+ 
+/*   SciWin();  */
+/*   CheckRhs(-1,0); */
+/*   pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->visible =FALSE;  */
+/*   LhsVar(1) = 0; */
+/*   return 0; */
+
   
   SciWin(); 
-  CheckRhs(-1,0);
-  pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->visible =FALSE; 
+  CheckRhs(0,1);
+  CheckLhs(0,1); 
+
+  if (version_flag() == 0)
+    {
+      if (Rhs <= 0) {
+	sciSetVisibility (sciGetSelectedSubWin(sciGetCurrentFigure ()), FALSE);  
+	sciDrawObj(sciGetCurrentFigure ());
+	LhsVar(1) = 0;
+	return 0;}
+      else
+        switch(VarType(1)) 
+	  {
+	  case 9: /* first is a handle argument so it's a drawnow(subwin) */
+	    GetRhsVar(1,"h",&m,&n,&l); 
+	    for (i = 0; i < n*m; i++)
+	      {
+		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i)); 
+		if (subwin == NULL) {
+		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
+		  return 0;
+		}
+		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
+		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
+		  return 0;
+		}
+		else 
+		  {	
+		    sciSetVisibility (subwin,FALSE);
+		    sciDrawObj(sciGetCurrentFigure ());
+		  }
+	      }
+	    break;
+	  case 10:/* first is a string argument so it's a drawnow('all') */
+	    GetRhsVar(1,"c",&m,&n,&l);
+	    if (strncmp(cstk(l),"all", 3) == 0){ 
+	      sciSetVisibility (sciGetCurrentFigure (),FALSE);  
+	      sciDrawObj(sciGetCurrentFigure ());
+	      LhsVar(1) = 0;
+	      return 0;}
+	    else{
+              Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+              return 0;}
+	    break; 
+	  default: 
+	    Scierror(999,"%s: 'all' or an handle on a subwindow is expected\r\n",fname);
+	    return 0;
+	    break;
+          }
+    }
+      
   LhsVar(1) = 0;
   return 0;
+  
 }
 
 int scixclearsubwin(fname,fname_len)
