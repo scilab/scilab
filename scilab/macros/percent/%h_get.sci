@@ -2,7 +2,7 @@ function out_vect = %h_get(varargin)
   if (lstsize(varargin) == 2)
     hdl = varargin(1)
     str = varargin(2)
-    for i=1:length(hdl)
+    for i=1:size(hdl,'*')
       out_vect(i) = get(hdl(i),str)
     end,
 

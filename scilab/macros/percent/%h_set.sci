@@ -1,10 +1,9 @@
-function %h_set(varargin)
-
+function hdl=%h_set(varargin)
   if (lstsize(varargin) == 3)
     hdl = varargin(1)
     str = varargin(2)
     val = varargin(3)
-    for i=1:length(hdl)
+    for i=1:size(hdl,'*')
       set(hdl(i),str,val)
     end,
 
@@ -13,7 +12,6 @@ function %h_set(varargin)
     val = varargin(2)
     set(str,val)
   end,
-
 endfunction
 
 
