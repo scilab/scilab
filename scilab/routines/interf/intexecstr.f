@@ -1,5 +1,6 @@
       subroutine intexecstr
 c     Copyright INRIA/ENPC
+c     Bug 1054 corrected by Francois VOGEL, October 2004
       INCLUDE '../stack.h'
 c     
       integer retu(6),comma,eol,topk,mode(2)
@@ -80,8 +81,10 @@ c     .  add <eol> at the end of the first n-1 lines
             istk(il+4+i)=istk(il+4+i)+i-1
  21      continue 
       endif
-c     add ",return,<eol>,<eol>" at the end of the last line
+c     add "<eol>,return,<eol><eol>" at the end of the last line
       l1=l-1+istk(l-1)
+      istk(l1)=eol
+      l1=l1+1
       istk(l1)=comma
       l1=l1+1
       call icopy(6,retu,1,istk(l1),1)
@@ -91,7 +94,7 @@ c     add ",return,<eol>,<eol>" at the end of the last line
       istk(l1)=eol
       l1=l1+1
       istk(l1)=eol
-      istk(l-1)=istk(l-1)+10
+      istk(l-1)=istk(l-1)+11
       lstk(top+1)=sadr(l1)+1
 c     
       fin=lstk(top)      
