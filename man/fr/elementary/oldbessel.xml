@@ -7,11 +7,11 @@
   <DATE>September 1997</DATE>
   <SHORT_DESCRIPTION name="oldbesseli">Modified Bessel functions of the first kind
     (I sub alpha).</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="oldbesselj">Modified Bessel functions of the first kind
+  <SHORT_DESCRIPTION name="oldbesselj">Bessel functions of the first kind
     (J sub alpha).</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="oldbesselk">Modified Bessel functions of the second kind
     (K sub alpha).</SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="oldbessely">Modified Bessel functions of the second kind
+  <SHORT_DESCRIPTION name="oldbessely">Bessel functions of the second kind
     (Y sub alpha).</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> y = oldbesseli(alpha,x)  </CALLING_SEQUENCE_ITEM>
@@ -55,19 +55,23 @@
 
     <P><VERB>oldbesseli(alpha,x)</VERB> computes modified Bessel functions of the
     first kind (I sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real  argument <VERB>x</VERB>. </P> 
+    and real  argument <VERB>x</VERB>. <VERB>oldbesseli(alpha,x,2)</VERB> computes 
+      <VERB>oldbesseli(alpha,x).*exp(-abs(real(x)))</VERB>.</P> 
 
-    <P><VERB>oldbesselj(alpha,x)</VERB> computes modified Bessel functions of the
+    <P><VERB>oldbesselj(alpha,x)</VERB> computes Bessel functions of the
     first kind (J sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>. </P> 
+    and real argument <VERB>x</VERB>. <VERB>oldbesselj(alpha,x,2)</VERB> computes
+	  <VERB>oldbesselj(alpha,x).*exp(-abs(imag(x)))</VERB>.</P> 
 
     <P><VERB>oldbesselk(alpha,x)</VERB> computes modified Bessel functions of the
     second kind (K sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>. </P> 
+    and real argument <VERB>x</VERB>.   <VERB>oldbesselk(alpha,x,1)</VERB> computes
+	  <VERB>oldbesselk(alpha,x).*exp(x)</VERB></P> 
 
-    <P><VERB>oldbessely(alpha,x)</VERB> computes modified Bessel functions of the
+    <P><VERB>oldbessely(alpha,x)</VERB> computes Bessel functions of the
     second kind (Y sub alpha), for real, non-negative order <VERB>alpha</VERB> 
-    and real argument <VERB>x</VERB>. </P> 
+    and real argument <VERB>x</VERB>. <VERB>oldbessely(alpha,x,1)</VERB> computes
+	  <VERB>oldbessely(alpha,x).*exp(-abs(imag(x)))</VERB>.</P> 
 
 
 
@@ -77,9 +81,26 @@
     <VERB>oldbesseli(alpha(j),x(i))</VERB>.</P>
 
 
-    <P>
-    If <VERB>ice</VERB> is equal to 2 exponentialy scaled Bessel functions is
-    computed (<TT>I_alpha_scaled(x) = exp(-x) I_alpha(x)</TT>).</P>
+   
+   <P> I_alpha and K_alpha   are 2 independant solutions of the modified Bessel's differential equation :</P>
+    <VERBATIM>
+<![CDATA[
+          2                     2        2
+         x  y(x)" + x y(x)' - (x  + alpha ) y(x) = 0 , 
+     ]]>
+    </VERBATIM>
+
+
+   <P> J_alpha and Y_alpha  are 2 independant 
+        solutions of the  Bessel's differential equation :</P>
+    <VERBATIM>
+<![CDATA[
+          2                     2        2
+         x  y(x)" + x y(x)' + (x  - alpha ) y(x) = 0 , 
+     ]]>
+    </VERBATIM>
+
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
