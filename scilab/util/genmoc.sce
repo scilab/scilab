@@ -14,6 +14,7 @@ for k=1:size(models,1)
   M=models(k)
   n=newest(M,M+'c',compilerpath)
   if n<>2 then
+    write(%io(2),'Processing file '+M)
     ierr=unix(compilerpath+' -c '+M+' -o '+M+'c')
     if ierr<>0 then 
       mprintf('------------------------- '+M+..
