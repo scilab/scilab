@@ -72,8 +72,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci \
         do_version26.sci scicos_block.sci scicos_graphics.sci \
 	scicos_model.sci scicos_link.sci  %model_p.sci  %graphics_p.sci \
-	%Block_p.sci %Block_n_Block.sci %params_n_params.sci %params_o_params.sci\
-	%graphics_n_graphics.sci %model_n_model.sci %params_p.sci \
+	%Block_p.sci  %params_p.sci \
 	scicos_params.sci scicos_cpr.sci scicos_sim.sci scicos_state.sci $(MENU)
 
 include ../Make.lib
