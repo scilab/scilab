@@ -3490,6 +3490,286 @@ c     check return value of fct
       end
 
 
+      subroutine intgschur(fname)
+
+c     [As,Bs,VSR,dim]=gschur(A,B,"function")
+c     [VSR,dim]=gschur(A,B,"function")
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBVSL, JOBVSR, SORT
+      integer gshsel
+      external gshsel
+ 
+      minrhs=3
+      maxrhs=3
+      minlhs=2
+      maxlhs=4
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+      if(.not.getrhsvar(1,'d', MA, NA, lA)) return
+      if(MA.ne.NA) then
+         buf='dgges'//': the matrix A must be square'
+         call error(998)
+         return
+      endif
+
+      if(.not.getrhsvar(2,'d', MB, NB, lB)) return
+       if(MB.ne.NB) then
+         buf='dgges'//': the matrix B must be square'
+         call error(998)
+         return
+       endif
+       if(MA.ne.MB) then
+         buf='dgges'//':
+     $        the matrices A and B must be of the same order'
+         call error(998)
+         return
+       endif
+       N = MA
+       if(N.eq.0) then
+        lhsvar(1)=1
+        lhsvar(2)=2
+        if(lhs.eq.4) then
+           if(.not.createvar(3,'d', N, N, lVSR)) return
+           if(.not.createvar(4,'d', N, N, lSDIM)) return
+           lhsvar(3)=3
+           lhsvar(4)=4
+        endif
+        return
+      endif
+      if(.not.getrhsvar(3,'c', mr, mc, lc)) return
+      call setgshsel(mr*mc, cstk(lc:lc+mr*mc),irep)
+      if ( irep.eq.1) then 
+         buf = cstk(lc:lc+mr*mc)
+         call error(50)
+         return
+      endif
+
+       if(.not.createvar(4,'i', 1, 1, lSDIM)) return
+       if(.not.createvar(5,'d', N, 1, lALPHAR)) return
+       if(.not.createvar(6,'d', N, 1, lALPHAI)) return
+       if(.not.createvar(7,'d', N, 1, lBETA)) return              
+       if(.not.createvar(8,'d', N, N, lVSL)) return
+       if(.not.createvar(9,'d', N, N, lVSR)) return
+       if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
+
+       LWORKMIN = 8*N+16
+       LWORK=maxvol(11,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dgges'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(11,'d',1,LWORK,lDWORK)) return
+
+      JOBVSL = 'V'
+      JOBVSR = 'V'
+      SORT = 'S'
+c     
+      call DGGES( JOBVSL, JOBVSR, SORT, gshsel, N, stk(lA), N, stk(lB),
+     $     N, istk(lSDIM), stk(lALPHAR), stk(lALPHAI), stk(lBETA),
+     $     stk(lVSL), N, stk(lVSR), N, stk(lDWORK), LWORK, istk(lBWORK),
+     $     INFO )
+c      SUBROUTINE DGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     $     SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
+c     $     LWORK, BWORK, INFO )
+       if(info.ne.0) then
+         call errorinfo("dgges",info)
+         return
+       endif
+
+      if(lhs.eq.2) then
+        lhsvar(1)=9
+        lhsvar(2)=4
+      else if(lhs.eq.4) then
+        lhsvar(1)=1
+        lhsvar(2)=2
+        lhsvar(3)=9
+        lhsvar(4)=4
+      endif
+
+      end
+
+      subroutine intzgschur(fname)
+
+
+c     [As,Bs,VSR,dim]=gschur(A,B,'function')
+c     [VSR,dim]=gschur(A,B,'function')
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+  
+
+      character fname*(*)
+      character  JOBVSL, JOBVSR, SORT
+      integer gzhsel
+      external gzhsel
+
+       minrhs=3
+       maxrhs=3
+       minlhs=2
+       maxlhs=4
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+
+       if(.not.getrhsvar(1,'z', MA, NA, lA)) return
+       if(MA.ne.NA) then
+         buf='zgges'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(.not.getrhsvar(2,'z', MB, NB, lB)) return
+       if(MB.ne.NB) then
+         buf='zgges'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(MA.ne.NB) then
+         buf='zgges'//':
+     $        the matrices A and B must be of the same order'
+         call error(998)
+         return
+       endif
+       N = MA
+       if(N.eq.0) then
+        lhsvar(1)=1
+        lhsvar(2)=2
+        if(lhs.eq.4) then
+           if(.not.createvar(3,'z', N, N, lVSR)) return
+           if(.not.createvar(4,'d', N, N, lSDIM)) return
+           lhsvar(3)=3
+           lhsvar(4)=4
+        endif
+        return
+      endif
+       if(.not.getrhsvar(3,'c', mr, mc, lc)) return
+       call setgzhsel(mr*mc, cstk(lc:lc+mr*mc),irep)
+       if ( irep.eq.1) then 
+          buf = cstk(lc:lc+mr*mc)
+          call error(50)
+          return
+       endif
+       if(.not.createvar(4,'i', 1, 1, lSDIM)) return
+       if(.not.createvar(5,'z', N, 1, lALPHA)) return
+       if(.not.createvar(6,'z', N, 1, lBETA)) return
+       if(.not.createvar(7,'z', N, N, lVSL)) return
+       if(.not.createvar(8,'z', N, N, lVSR)) return
+       if(.not.createvar(9,'d', 8*N, 1, lRWORK)) return
+       if(.not.createvar(10,'i', 2*N, 1, lBWORK)) return
+       LWORKMIN = 2*N
+       LWORK=maxvol(11,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgges'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
+
+      JOBVSL = 'V'
+      JOBVSR = 'V' 
+      SORT = 'S'
+
+      call ZGGES( JOBVSL, JOBVSR, SORT, gzhsel, N, zstk(lA), N,
+     $     zstk(lB), N, istk(lSDIM), zstk(lALPHA), zstk(lBETA),
+     $     zstk(lVSL), N, zstk(lVSR), N, zstk(lDWORK), LWORK,
+     $     stk(lRWORK), istk(lBWORK), INFO )
+c      SUBROUTINE ZGGES( JOBVSL, JOBVSR, SORT, DELCTG, N, A, LDA, B, LDB,
+c     $    SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK, LWORK, RWORK,
+c     $    BWORK, INFO )
+       if(info.ne.0) then
+         call errorinfo("zgges",info)
+         return
+       endif
+
+    
+      if(lhs.eq.2) then
+        lhsvar(1) = 8
+        lhsvar(2) = 4
+      else if(lhs.eq.4) then
+        lhsvar(1)=1
+        lhsvar(2)=2
+        lhsvar(3)=8
+        lhsvar(4)=4
+      endif
+c
+       end
+
+
+
+      
+      logical function scigshur(alphar,alphai,beta)
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+      common /scigsch/ lf, nx
+      integer iadr
+      double precision alphar, alphai, beta
+c
+      iadr(l) = l+l-1
+c
+      scigshur=.false.
+      if(.not.createvar(nx,'d',1,3,lx)) return
+      stk(lx)=alphar
+      stk(lx+1)=alphai
+      stk(lx+2)=beta
+      if(.not.scifunction(nx,lf,1,1)) return
+c     stk(lx)=fct([alphar,alphai,beta])  evaluated by scilab fct pointed to by lf
+      ilx=iadr(lx-2)
+      if(istk(ilx).eq.1) then
+         scigshur=(stk(lx).ne.0.0d0)
+      elseif (istk(ilx).eq.4) then
+         scigshur=(istk(ilx+3).ne.0)
+      endif
+      return
+      end
+
+      logical function scigchk()
+c    checks fct passed to gschur
+      INCLUDE '../stack.h'
+      logical scifunction, createvar
+      double precision alphar, alphai, beta
+c     
+      integer iadr
+      common/ierinv/iero
+      common /scigsch/ lf, nx
+      iadr(l) = l+l-1
+
+      scigchk=.false.
+      if(.not.createvar(nx,'d',1,3,lx)) return
+      stk(lx)=1.0d0
+      stk(lx+1)=1.0d0
+      stk(lx+2)=1.0d0
+      if(.not.scifunction(nx,lf,1,1)) then
+c     error into fct passed to gschur (gschur(A,B,tst))
+         return
+      endif
+c     check return value of fct
+      ilx=iadr(lx-2)
+      if(istk(ilx).ne.1 .and. istk(ilx).ne.4) then
+         buf='invalid return value for function passed to gschur!'
+         call error(999)
+      return
+      endif
+      if(istk(ilx+1)*istk(ilx+2).ne.1) then
+         buf='invalid return value for function passed to gschur!'
+         call error(999)
+      return
+      endif
+      scigchk=.true.
+      return
+      end
+
+
+
+
 
 
 

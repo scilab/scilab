@@ -344,8 +344,8 @@ int intlu(fname)
   default:
     Scierror(999,"%s: Invalid input! \r\n",fname);
     return 0;
-    break;
   }
+  return;
 }
 
 int intslash(fname)
@@ -363,43 +363,38 @@ int intslash(fname)
     case REAL :
       /* A real, Breal */
       ret = C2F(intdgesv4)("slash",5L);
-      return;
       break;
     case COMPLEX :
       /* A real, B complex : complexify A */
       C2F(complexify)((X=1,&X));
       ret = C2F(intzgesv4)("slash",5L);
-      return;
       break;
     default:
       Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
       break;
     }
+    return;
   case COMPLEX :
     switch (CmplxB) {
     case REAL :
       /* A complex, B real : complexify B */
       C2F(complexify)((X=2,&X));
       ret = C2F(intzgesv4)("slash",5L);
-      return;
       break;
     case COMPLEX :
       /* A complex, B complex */
       ret = C2F(intzgesv4)("slash",5L);
-      return;
       break;
     default:
       Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
       break;
     }
-    break;
+    return;
   default :
     Scierror(999,"%s: Invalid input! \r\n",fname);
     return;
-    break;
   }
+  return 0;
 }
 
 
@@ -418,38 +413,33 @@ int intbackslash(fname)
     case REAL :
       /* A real, B real */
       ret = C2F(intdgesv3)("lsq",3L);
-      return;
       break;
     case COMPLEX :
       /* A real, B complex : complexify A */
       C2F(complexify)((X=1,&X));
       ret = C2F(intzgesv3)("lsq",3L);
-      return;
       break;
     default:
       Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
       break;
     }
+    return;
   case COMPLEX :
     switch (CmplxB) {
     case REAL :
       /* A complex, B real : complexify B */
       C2F(complexify)((X=2,&X));
       ret = C2F(intzgesv3)("lsq",3L);
-      return;
       break;
     case COMPLEX :
       /* A complex, B complex */
       ret = C2F(intzgesv3)("lsq",3L);
-      return;
       break;
     default:
       Scierror(999,"%s: Invalid input! \r\n",fname);
-      return;
       break;
     }
-    break;
+    return;
   default :
     Scierror(999,"%s: Invalid input! \r\n",fname);
     return;
@@ -493,7 +483,7 @@ int intschur(fname)
 	Scierror(999,"%s: Invalid input! \r\n",fname);
 	break;
       }
-      break;
+      return;
     case STRING  :
       longueur=header2[5]-header2[4];
       which = schtst(longueur, header2);
@@ -560,77 +550,51 @@ int intgschur(fname)
   if ((CmplxA == 1) && (CmplxB ==1)) Cmplx=1;
   
   switch (Rhs) {
-  case 1:   /* gschur(A,B)   */
+  case 2:   /* gschur(A,B)   */
     switch (Cmplx) {
     case REAL :
-      ret = C2F(intdgees0)("gschur",6L);
+      ret = C2F(intdgges)("gschur",6L);
       break;
     case COMPLEX :
-      ret = C2F(intzgees0)("gschur",6L);
+      ret = C2F(intzgges)("gschur",6L);
       break;
     default :
       Scierror(999,"%s: Invalid input! \r\n",fname);
       break;
     }
     return;
-  case 2 :   /* gschur(A, B, something)   */
+  case 3 :   /* gschur(A, B, something)   */
     header3 = (int *) GetData(3); something=header3[0];
     switch (something) {
     case FUNCTION :
       switch (Cmplx) {
       case REAL :
-	ret = C2F(intoschur)("gschur",6L);
+	ret = C2F(intogschur)("gschur",6L);
 	break;
       case COMPLEX :
-	ret = C2F(intzschur)("schur",6L);
+	ret = C2F(intzgschur)("schur",6L);
 	break;
       default :
 	Scierror(999,"%s: Invalid input! \r\n",fname);
 	break;
       }
-      break;
+      return;
     case STRING  :
-      longueur=header2[5]-header2[4];
-      which = schtst(longueur, header2);
-      switch (which) {
-      case STRINGREAL:
-	switch (Cmplx) {
-	case REAL:
-	  ret = C2F(intdgees1)("gschur",6L);
-	  break;
-	case COMPLEX:
-	  Scierror(999,"%s: Invalid call! \r\n",fname);
-	  break;
-	}
-	return;
-      case STRINGCOMPLEX:
-	switch (Cmplx) {
-	case REAL:
-	  ret = C2F(intdgees1)("gschur",6L);
-	  break;
-	case COMPLEX:
-	  ret = C2F(intzgees1)("gschur",6L);
-	  break;
-	}
-	return;
-      default:
-	/*   String is an external function  */
-	switch (Cmplx) {
-	case REAL:
-	  ret = C2F(intfschur)("gschur",6L);
-	  break;
-	case COMPLEX:
-	  ret = C2F(intzfschur)("gschur",6L);
-	  break;
-	}
-	return;
+      switch (Cmplx) {
+      case REAL:
+	ret = C2F(intgschur)("gschur",6L);
+	break;
+      case COMPLEX:
+	ret = C2F(intzgschur)("gschur",6L);
+	break;
+      default :
+	Scierror(999,"%s: Invalid input! \r\n",fname);
+	break;
       }
-    default :
-      Scierror(999,"%s: Invalid call! \r\n",fname);
-      break;
+      return;
     }
+    return 0;
   }
-  return 0;
 }
 
 int intgspec(fname)
@@ -698,7 +662,6 @@ int schtst (longueur, header)
 return 0;
 }
 
-
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -721,6 +684,7 @@ static LapackTable Tab[]={
   {intschur,"lap_schur"},
   {inthess,"lap_hess"},
   {intgspec,"lap_gspec"},
+  {intgschur,"lap_gschur"},
 };
 
 int C2F(intlapack)()

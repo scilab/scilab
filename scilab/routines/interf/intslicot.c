@@ -8,6 +8,7 @@ extern Gatefunc C2F(sident);
 extern Gatefunc C2F(sorder);
 extern Gatefunc C2F(findbd);
 extern Gatefunc C2F(intmucomp);
+extern Gatefunc C2F(intricc2);
 
 int intrankqr(fname)
      char* fname;
@@ -19,10 +20,11 @@ int intrankqr(fname)
   Cmplx=header1[3];
   if (Cmplx==0) {
     ret = C2F(intmb03od)("rankqr",6L);
-    return; } else
-      {
-	ret = C2F(intzb03od)("rankqr",6L);
-	return; } 
+    return; } 
+  else
+    {
+      ret = C2F(intzb03od)("rankqr",6L);
+      return; } 
 }
 
 int intab01od(fname)
@@ -91,6 +93,7 @@ static GenericTable Tab[]={
   {(Myinterfun) sci_gateway, intrankqr,"rankqr"},
   {(Myinterfun) sci_gateway, intab01od,"contr"},
   {(Myinterfun) sci_gateway, C2F(intmucomp),"mucomp"},
+  {(Myinterfun) sci_gateway, C2F(intricc2),"pet_ricc"},
 };
  
 int C2F(intslicot)()
