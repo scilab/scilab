@@ -41,7 +41,7 @@ do_scilex()
 {
     PATH=$PATH:$SCI:$SCI/util
     export PATH
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/bin:$SCI/libs
+    LD_LIBRARY_PATH=$SCI/bin:$SCI/libs:$LD_LIBRARY_PATH
     export LD_LIBRARY_PATH
     XAPPLRESDIR=$SCI/X11_defaults
     export XAPPLRESDIR
