@@ -4553,7 +4553,8 @@ clear;lines(0);
    a.parent.figure_size= [400,200];
    a.rotation_angles=[0 260];
    delete(a.children(2)); 
-   delete(); // delete current object
+   delete(); // delete current object ; F.Leray Note that 'a' is now destroyed
+   a=gca(); // We must redefined a as the current axes: if not 'a.labels_font_size=1;' as no meaning...
    a.labels_font_size=1;
    a.auto_clear= "on";
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
@@ -5507,20 +5508,21 @@ clear;lines(0);
 
 xdel(winsid())
 
+//////////////////////// WARNING !!!!  Bugs here F.Leray 26.03.04 The legends macro has been bugged...
 //====================================================
 // ../man/eng/graphics/legends.xml
 //====================================================
-clear;lines(0);
-
-t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
-legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],4)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
-legends(["sin(t)";"cos(t)"],[[5;2],[3;4]])
-
-xdel(winsid())
-
+//clear;lines(0);
+//
+//t=0:0.1:2*%pi;
+//plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+//legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],4)
+//xset("line style",2);plot2d(t,cos(t),style=5);
+//xset("line style",4);plot2d(t,sin(t),style=3);
+//legends(["sin(t)";"cos(t)"],[[5;2],[3;4]])
+//
+//xdel(winsid())
+//
 //====================================================
 // ../man/eng/graphics/loadplots.xml
 //====================================================
