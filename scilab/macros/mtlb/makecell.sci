@@ -17,7 +17,8 @@ end
 if prod(dims)==1 then
   s=mlist(["ce","dims","entries"],int32(dims),varargin(2))
 else
-  varargin(1)=null()
-  s=mlist(["ce","dims","entries"],int32(dims),varargin)
+  listentries=varargin
+  listentries(1)=null()
+  s=mlist(["ce","dims","entries"],int32(dims),list(listentries(:)))
 end
 endfunction
