@@ -52,8 +52,7 @@ c
       endif
       goto 9999 
  104  continue
-      call  basout(io,wte,' Warning:')
-      call basout(io,wte,'  Non convergence')
+      call  basout(io,wte,' Warning:  Result may be inaccurate')
       goto 9999
 c----------------------------------------------------------------------
 c---------------------- message de matlu et matnew---------------------
