@@ -109,6 +109,9 @@ while k<n
   case 'SH' then
     txt=[txt;convstr(mk(2),'u')]   
     ind=ind(1)
+  case 'SS' then
+    txt=[txt;mk(2)]   
+    ind=ind(1)
   case 'begin_indent' then
     ind($+1)=mk(2)
   case 'end_indent' then
@@ -166,6 +169,8 @@ while k<n
     else
       txt=[txt;'\Shead{'+texsubstitute(t)+'}']
     end
+  case 'SS' then  
+    txt=[txt;'\subsubsection{'+texsubstitute(t)+'}']
   case 'begin_indent' then
     txt=[txt;'\begin{scitem}']
   case 'end_indent' then
@@ -223,7 +228,11 @@ while k<n
 	    '<br>'+strcat('<a href=""'+gethtmlref(nm)+'"">'+nm+'</a>',', ')]
       end
     end
-
+  case 'SS' then
+    mk(2)=htmlsubstitute(mk(2))
+    txt=[txt;
+	  '<h2>'
+	  t+'</h2>']
   case 'begin_indent' then
     txt=[txt;'<ul>']
   case 'end_indent' then
@@ -253,7 +262,8 @@ while k<n
 end
 
 function man=getman(path)
-//given a man file, this function analyse it and returns a data structure 
+//partial groff analyser. See /usr/lib/groff/tmac/tmac.an
+//given a groff file (*.man), this function analyse it and returns a data structure 
 write(%io(2),'Processing '+path)
 ind_def=4
 man=list()
@@ -271,9 +281,10 @@ fill=%t;table=%f;output=%f;k1=1
 while k<size(com,'*')
   k=k+1
   tk=txt(com(k))
-  OP=part(tk,1:4);//disp(OP)
+  OP=getop(tk)
+
   select OP
-  case '.TH ' then
+  case '.TH' then
     th=stripblanks(part(tk,5:length(tk)))
     p=strindex(th,' ')
     nm=strsubst(part(th,1:p(1)-1),'""','')
@@ -283,29 +294,35 @@ while k<size(com,'*')
     if size(p,2)>=6 then typ=part(th,p(5)+1:p(6)-1),else typ='',end
     man($+1)=list('TH',nm,dt,aut,typ)
     k1=com(k)+1
-  case '.nf '
+  case '.nf'
     if com(k)-1>=k1 then
       k2=com(k)-1
       filledregion(txt(k1:k2))
     end
     fill=%f
     k1=com(k)+1
-  case '.RS '
+  case '.RS'
     output=%t
     begin=%t
-  case '.FI '
+  case '.FI'
     man(pos)=list('latex_ignore',list(man(pos:$)))
     for kp=pos+1:size(man),man(kp)=null(),end
     output=%t
-  case '.ft '
+  case '.ft'
     man($+1)=list('font')
     output=%t
-  case '.fi' then
-    if com(k)-1>=k1 then
-      k2=com(k)-1
-      man($+1)=list('verbatim',strsubst(txt(k1:k2),'\\','\')),
-    end
-    output=%f
+//  case '.fi' then
+//    if com(k)-1>=k1 then
+//      k2=com(k)-1
+//      man($+1)=list('verbatim',strsubst(txt(k1:k2),'\\','\')),
+//    end
+//    output=%f
+  case '.I' then
+
+  case '.LP' then
+    output=%t
+  case '.PP' then  
+    output=%t
   case '   ' then
     output=%t
   else
@@ -329,25 +346,38 @@ while k<size(com,'*')
     output=%f
     k1=k2+2
     select OP
-    case '.SH ' then
+    case '.SH' then
       if tp>0 then man($+1)=list('end_indent'),tp=tp-1;end
       man($+1)=list('SH',stripblanks(part(tk,5:length(tk)))) 
       begin=%t
       fill=%t
       k1=com(k)+1
-    case '.LA ' then 
+    case '.SS' then
+      if tp>0 then man($+1)=list('end_indent'),tp=tp-1;end
+      man($+1)=list('SS',stripblanks(part(tk,5:length(tk)))) 
+      begin=%t
+      fill=%t
+      k1=com(k)+1
+    case '.LA' then 
       if man($)(1)=='latex' then
 	man($)(2)($+1)=part(tk,5:length(tk))
       else
 	man($+1)=list('latex',part(tk,5:length(tk)))
       end
       k1=com(k)+1
-    case '.RE ' then
+    case '.Vb' then
+      if man($)(1)=='verbatim' then
+	man($)(2)($+1)=part(tk,5:length(tk))
+      else
+	man($+1)=list('verbatim',part(tk,5:length(tk)))
+      end
+      k1=com(k)+1      
+    case '.RE' then
       man($+1)=list('end_indent')
       tp=tp-1
-    case '.IG '
+    case '.IG'
       pos=size(man)+1
-    case '.TP '
+    case '.TP'
       if begin then
 	if stripblanks(part(tk,5:length(tk)))<>'' then
 	  man($+1)=list('begin_indent',evstr(part(tk,5:length(tk))))
@@ -360,7 +390,7 @@ while k<size(com,'*')
       end
       man($+1)=list('item',stripblanks(txt(k1)))
       k1=k1+1
-    case '.IP ' then
+    case '.IP' then
       if begin then
 	man($+1)=list('begin_indent',ind_def)
 	begin=%f
@@ -369,11 +399,18 @@ while k<size(com,'*')
       txt(com(k))=part(txt(com(k)),4:length(txt(com(k))))
       k1=com(k)
     end
-    table=OP=='.TS '
+    table=OP=='.TS'
   end
 end
 if tp>0 then man($+1)=list('end_indent'),tp=tp-1,end
-
+endfunction
+function op=getop(txt)
+k=strindex(txt,' ')
+if k==[] then 
+  op=txt
+else
+  op=part(txt,1:k(1)-1)
+end
 
 function filledregion(txt)
 man
@@ -453,7 +490,7 @@ for k=1:size(wh,1)
 end
 
 function txt=replacefonts(txt)
-fonts='\f'+['V','R','B','P','I','(CR']
+fonts=['\f'+['V','R','B','P','I','(CR'] '.I ']
 for f=fonts,txt=strsubst(txt,f,''),end
 //suppress inline comments
 [l,k]=grep(txt,'\""')
