@@ -207,6 +207,8 @@ function [txt,ilst]=cod2sci(lst,ilst)
       txt($+1)=''
       case '18' then  
       case '25' then   
+      case '28' then //continue
+      txt=catcode(txt,'continue,')
       case '99' then //return
       txt=catcode(txt,'return,')
     else
