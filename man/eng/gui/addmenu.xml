@@ -83,7 +83,7 @@
 
    <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM label='If'>
-    action argument is not given the action associated
+    <VERB>action</VERB> argument is not given the action associated
     with a button must be defined by a scilab instruction given by the
     character string variable which name is
 
@@ -95,14 +95,14 @@
    </DESCRIPTION_ITEM>
 
     <DESCRIPTION_ITEM label='If'>
-    action argument is set to 0 <P><VERB>proc_name</VERB>
+    <VERB>action</VERB>  argument is set to 0 <P><VERB>proc_name</VERB>
     should be the name of a Scilab string vector.  Actions associated
     with the kth sub_menu must be defined by scilab instructions
     stored in the kth element of the character string variable.</P>
     </DESCRIPTION_ITEM>
     
     <DESCRIPTION_ITEM label='If'>
-     action argument is set to 1 <P><VERB>proc_name</VERB>
+     <VERB>action</VERB> argument is set to 1 <P><VERB>proc_name</VERB>
     designes a C or Fortran procedure, this procedure may be
     interfaced in Fortran subroutine default/fbutn.f or dynamically
     linked with scilab using the <VERB>link </VERB> function. The C
@@ -110,13 +110,13 @@
     *k)</VERB></P>
     </DESCRIPTION_ITEM>
     <DESCRIPTION_ITEM label='If'>
-    action argument is set to 2 <P><VERB>proc_name</VERB>
+    <VERB>action</VERB> argument is set to 2 <P><VERB>proc_name</VERB>
     designes a Scilab function. This function calling sequence should
     be:</P>
     <DESCRIPTION_INDENT>
     <P> +  <VERB>proc_name(k)</VERB>for a main window command</P>
     <P> +  <VERB>proc_name(k,gwin)</VERB>for a graphic window
-    commandor a main window command</P>
+    command or a main window command</P>
     </DESCRIPTION_INDENT>
    </DESCRIPTION_ITEM>
    </DESCRIPTION_INDENT>
