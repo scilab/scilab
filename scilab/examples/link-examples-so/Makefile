@@ -17,7 +17,8 @@ TESTS= 1c 2c 3c 4c 5c 6c 7c 8c 9c 10c 11c 12c 13c 14c \
 tests : 
 	@for i in  $(TESTS) ;\
 	do \
-		($(SCIDIR)/util/scidem $(SCIDIR) ext$$i.sce ext$$i.dia );\
+	  SCI=$(SCIDIR);export SCI;\
+	  echo "scitest('ext$$i.sce',%t);quit" | $(SCIDIR)/bin/scilex -nwni ;\
 	done
 
 message:
