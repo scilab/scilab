@@ -147,12 +147,12 @@ int *ma;
   }
   closedir(dirp);
 
-  if(CheckGraphName(nname,dir)) {
+  /*  if(CheckGraphName(nname,dir)) {
     sprintf(description,"Graph \"%s\" already exists in directory \"%s\"",
 	    nname,dir);
     cerro(description);
     return;
-  }
+    }*/
 #endif
 
   strcpy(fname,dir);
