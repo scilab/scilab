@@ -5,6 +5,7 @@
   <TITLE>TK_EvalStr</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="TCL_EvalStr"> Evaluate a string whithin the  tcl/tk interpreter (obsolete)</SHORT_DESCRIPTION>
   <SHORT_DESCRIPTION name="TK_EvalStr"> Evaluate a string whithin the  tcl/tk interpreter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TK_EvalStr(str)  </CALLING_SEQUENCE_ITEM>

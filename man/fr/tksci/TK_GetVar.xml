@@ -5,7 +5,8 @@
   <TITLE>TK_GetVar</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE> 04 June 1998</DATE>
-  <SHORT_DESCRIPTION name="TK_GetVar"> Get a tcl/tk variable value</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TCL_GetVar"> Get a tcl/tk variable value</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TK_GetVar"> Get a tcl/tk variable value (Obsolete)</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>

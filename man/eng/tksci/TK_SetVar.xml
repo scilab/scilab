@@ -5,7 +5,8 @@
   <TITLE>TK_SetVar</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE> 04 June 1998</DATE>
-  <SHORT_DESCRIPTION name="TK_SetVar"> Set a tcl/tk variable value</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TCL_SetVar"> Set a tcl/tk variable value</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TK_SetVar"> Set a tcl/tk variable value (obsolete)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TK_SetVar(varname, value)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

@@ -5,7 +5,8 @@
   <TITLE>TK_EvalFile</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE> 02 June 1998</DATE>
-  <SHORT_DESCRIPTION name="TK_EvalFile"> Reads and evaluate a tcl/tk file</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TCL_EvalFile"> Reads and evaluate a tcl/tk file</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="TK_EvalFile"> Reads and evaluate a tcl/tk file (obsolete)</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TK_EvalFile(filename)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
