@@ -1,7 +1,144 @@
+/*-----------------------------------------------------------------------------------*/
+/*******************************************
+ * Original source : GNUPLOT - win/wgraph.c
+ * modified for Scilab 
+ *******************************************
+ *
+ * Copyright (C) 1992   Maurice Castro, Russell Lang
+ *
+ * Permission to use, copy, and distribute this software and its
+ * documentation for any purpose with or without fee is hereby granted, 
+ * provided that the above copyright notice appear in all copies and 
+ * that both that copyright notice and this permission notice appear 
+ * in supporting documentation.
+ *
+ * Permission to modify the software is granted, but not the right to
+ * distribute the modified code.  Modifications are to be distributed 
+ * as patches to released version.
+ *  
+ * This software is provided "as is" without express or implied warranty.
+ * 
+ * AUTHORS (GNUPLOT) 
+ *   Maurice Castro
+ *   Russell Lang
+ *
+ * Modifications for Scilab 
+ *   Jean-Philipe Chancelier 
+ *   CORNET Allan 2004
+ *   Bugs and mail : Scilab@inria.fr 
+ */
+/*-----------------------------------------------------------------------------------*/#ifndef __WGRAPH__
+#define __WGRAPH__
 
+#ifndef STRICT
+#define STRICT
+#endif
 
-typedef struct but
+#define MaxCB 50
+#define MAXPRINTF 1024
+
+/*-----------------------------------------------------------------------------------*/
+#include <windows.h>
+#include <windowsx.h>
+#include <commdlg.h>
+#include <shellapi.h>
+
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdarg.h>
+
+#include "wresource.h"
+#include "wcommon.h"
+#include "../graphics/scigraphic.h"
+#include "../graphics/Graphics.h"
+/*-----------------------------------------------------------------------------------*/
+typedef struct but{  int win, x, y, ibutton, motion, release;}But;
+typedef struct
 {
-  int win, x, y, ibutton, motion, release;
+  MSG msg;
+  integer flag;
 }
-But;
+SCISEND;
+SCISEND sciSend;
+/*-----------------------------------------------------------------------------------*/
+extern TW textwin;
+extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
+extern void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC );
+extern void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int w,int h); 
+extern void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y) ;
+extern void   set_no_delete_win_mode() ;
+extern void DebugGW (char *fmt,...);
+extern void DebugGW1 (char *fmt,...);
+extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
+
+static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height, int scale);
+
+void ReadGraphIni (struct BCG *ScilabGC);
+void WriteGraphIni (struct BCG *ScilabGC);
+
+void scig_deletegwin_handler_none (int win);
+void scig_deletegwin_handler_sci (int win);
+Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f);
+void reset_scig_deletegwin_handler ();
+void set_delete_win_mode();
+
+int C2F (deletewin) (integer * number);
+EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC);
+EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC);
+void NewCopyClip (struct BCG *ScilabGC);
+void CopyClip (struct BCG *ScilabGC);
+int CopyPrint (struct BCG *ScilabGC);
+void SciViewportMove (ScilabGC, x, y);
+void SciViewportGet (ScilabXgc, x, y);
+void GPopupResize (struct BCG * ScilabXgc,int * width,int * height);
+void set_wait_click(val);
+int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release);
+int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release);
+Scig_click_handler set_scig_click_handler (f);
+void reset_scig_click_handler ();
+int PushClickQueue (int win,int x,int y,int ibut,int motion,int release);
+int CheckClickQueue (integer *win,integer *x, integer *y, integer *ibut);
+int ClearClickQueue (int win);
+void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+int sciPeekMessage (MSG * msg);
+static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
+static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
+static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC);
+static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC);
+static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC);
+static void ScilabNoPaint (HWND hwnd, struct BCG *ScilabGC);
+static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam);
+static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale);
+EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+void C2F(seteventhandler)(int *win_num,char *name,int *ierr);
+
+/*-----------------------------------------------------------------------------------*/
+static int scig_buzy = 0;
+static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
+static int sci_graphic_protect = 0;
+static Scig_click_handler scig_click_handler = scig_click_handler_sci;
+static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
+/*-----------------------------------------------------------------------------------*/
+/***********************************************
+ * we keep track of the last MaxCB XXBUTTONDOWN 
+ * events while we are in GraphicWindowProc 
+ ***********************************************/
+
+static But ClickBuf[MaxCB];
+static int lastc = 0;
+
+/* used by xclick_any and xclick */ 
+static int wait_for_click=0;
+But SciClickInfo; /* for xclick and xclick_any */
+
+/* if thid flag is set to one then a pixmap is used 
+ * when painting for windows with CurPixmapStatus==0.
+ */ 
+static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
+static COLORREF DefaultBackground = RGB(255,255,255);
+
+
+#endif /* __WGRAPH__ */
+/*-----------------------------------------------------------------------------------*/

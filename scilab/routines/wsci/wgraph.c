@@ -1,78 +1,10 @@
-/*******************************************
- * Original source : GNUPLOT - win/wgraph.c
- * modified for Scilab 
- *******************************************
- *
- * Copyright (C) 1992   Maurice Castro, Russell Lang
- *
- * Permission to use, copy, and distribute this software and its
- * documentation for any purpose with or without fee is hereby granted, 
- * provided that the above copyright notice appear in all copies and 
- * that both that copyright notice and this permission notice appear 
- * in supporting documentation.
- *
- * Permission to modify the software is granted, but not the right to
- * distribute the modified code.  Modifications are to be distributed 
- * as patches to released version.
- *  
- * This software is provided "as is" without express or implied warranty.
- * 
- * AUTHORS (GNUPLOT) 
- *   Maurice Castro
- *   Russell Lang
- *
- * Modifications for Scilab 
- *   Jean-Philipe Chancelier 
- *   CORNET Allan
- *   Bugs and mail : Scilab@inria.fr 
- */
-
-#ifndef STRICT
-#define STRICT
-#endif
-#include <windows.h>
-#include <windowsx.h>
-#include <commdlg.h>
-#include <shellapi.h>
-
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-
-#include "wresource.h"
-#include "wcommon.h"
-#include "../graphics/scigraphic.h"
-#include "../graphics/Graphics.h"
 #include "wgraph.h"
-extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int 
-			     width, int height, int scale);
-
-extern void sci_pixmapclear(HDC hdc_c, struct BCG *ScilabGC );
-extern void sci_pixmapclear_rect(HDC hdc_c, struct BCG *ScilabGC,int w,int h); 
-extern void sci_pixmap_resize(struct BCG * ScilabGC, int x, int y) ;
-
-extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
-extern TW textwin;
-
-EXPORT LRESULT CALLBACK WndGraphProc (HWND hwnd, UINT message, WPARAM 
-wParam, LPARAM lParam);
-void ReadGraphIni (struct BCG *ScilabGC);
-void WriteGraphIni (struct BCG *ScilabGC);
-
-static int scig_buzy = 0;
-
-/******************************************
- * delete a graphic window
- ******************************************/
-
+/*-----------------------------------------------------------------------------------*/
 /* add handlers for delete action */
-
 void scig_deletegwin_handler_none (int win)
 {
 };
-
+/*-----------------------------------------------------------------------------------*/
 void scig_deletegwin_handler_sci (int win)
 {
   static char buf[256];
@@ -84,29 +16,26 @@ void scig_deletegwin_handler_sci (int win)
     StoreCommand1(buf,2);
   }
 };
-
-static Scig_deletegwin_handler scig_deletegwin_handler = 
-scig_deletegwin_handler_sci;
-/*static Scig_deletegwin_handler scig_deletegwin_handler = 
-scig_deletegwin_handler_none;*/
-
+/*-----------------------------------------------------------------------------------*/
 Scig_deletegwin_handler set_scig_deletegwin_handler (Scig_deletegwin_handler f)
 {
   Scig_deletegwin_handler old = scig_deletegwin_handler;
   scig_deletegwin_handler = f;
   return old;
 }
-
+/*-----------------------------------------------------------------------------------*/
 void reset_scig_deletegwin_handler ()
 {
   scig_deletegwin_handler = scig_deletegwin_handler_sci;
 }
-
-static int sci_graphic_protect = 0;
-
-void   set_delete_win_mode() {  sci_graphic_protect = 0 ;}
+/*-----------------------------------------------------------------------------------*/
+void   set_delete_win_mode()
+{ 
+	sci_graphic_protect = 0 ;
+}
+/*-----------------------------------------------------------------------------------*/
 extern void   set_no_delete_win_mode()  {  sci_graphic_protect = 1 ;}
-
+/*-----------------------------------------------------------------------------------*/
 int C2F (deletewin) (integer * number)
 {
   /* destroying recorded graphic commands */
@@ -117,75 +46,79 @@ int C2F (deletewin) (integer * number)
   DeleteSGWin (*number);
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /******************************************
  * Printing and redrawing graphic window 
  ******************************************/
-
-EXPORT void WINAPI
-GraphPrint (struct BCG *ScilabGC)
+EXPORT void WINAPI GraphPrint (struct BCG *ScilabGC)
 {
   if (ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
     SendMessage (ScilabGC->CWindow, WM_COMMAND, M_PRINT, 0L);
 }
-
-EXPORT void WINAPI
-GraphRedraw (struct BCG *ScilabGC)
+/*-----------------------------------------------------------------------------------*/
+EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC)
 {
   if (ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
     SendMessage (ScilabGC->CWindow, WM_COMMAND, M_REBUILDTOOLS, 0L);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to clipboard 
  * with the EnHmetafile format (win95/winNT)
  ****************************************/
-
 void NewCopyClip (struct BCG *ScilabGC)
 {
+  
+  TCHAR   szDesc[] = "Scilab\0Image\0\0";
   LPGW lpgw;
+  
   RECT rect;
   HANDLE hmf;
+  
+   
   HWND hwnd;
   HDC hdc;
-  if (scig_buzy == 1)
-    return;
+
+
+  if (scig_buzy == 1) return;
   scig_buzy = 1;
+
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
+
   /* view the window */
-  if (IsIconic (hwnd))
-    ShowWindow (hwnd, SW_SHOWNORMAL);
+  if (IsIconic (hwnd)) ShowWindow (hwnd, SW_SHOWNORMAL);
   BringWindowToTop (hwnd);
   UpdateWindow (hwnd);
+  
+  hdc = CreateEnhMetaFile (NULL, NULL, NULL, szDesc);
+ 
   GetClientRect (hwnd, &rect);
-  hdc = CreateEnhMetaFile (NULL, NULL, NULL, NULL);
   SetMapMode (hdc, MM_TEXT);
   SetTextAlign (hdc, TA_LEFT | TA_BOTTOM);
-  SetWindowExtEx (hdc, rect.right - rect.left,
-		  rect.bottom - rect.top, (LPSIZE) NULL);
-  /** 
-  SetWindowExtEx(hdc, rect.right, rect.bottom, (LPSIZE)NULL); 
-  **/
+  SetWindowExtEx (hdc, rect.right - rect.left,rect.bottom - rect.top, (LPSIZE) NULL);
+  Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+
   /** fix hdc in the scilab driver **/
-  Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, 
-	     ScilabGC->CWindowHeightView);
-  scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,
-		   ScilabGC->CWindowWidth, ScilabGC->CWindowHeight, 1);
-  hmf = CloseEnhMetaFile (hdc);
+  scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
+  scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,rect.right - rect.left, rect.bottom - rect.top, 1);
+
+  hmf = CloseEnhMetaFile (hdc);  
+
   OpenClipboard (hwnd);
   EmptyClipboard ();
   SetClipboardData (CF_ENHMETAFILE, hmf);
   CloseClipboard ();
+
   scig_buzy = 0;
   return;
-}
 
+}
+/*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to clipboard 
  * copy a CF_METAFILEPICT and a CF_BITMAP to the clipboard 
  ****************************************/
-
 void CopyClip (struct BCG *ScilabGC)
 {
   LPGW lpgw;
@@ -194,12 +127,12 @@ void CopyClip (struct BCG *ScilabGC)
   HBITMAP bitmap;
   HANDLE hmf;
   HGLOBAL hGMem;
-  /** XXXX  GLOBALHANDLE hGMem;**/
   LPMETAFILEPICT lpMFP;
   HWND hwnd;
   HDC hdc;
-  if (scig_buzy == 1)
-    return;
+
+
+  if (scig_buzy == 1) return;
   scig_buzy = 1;
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
@@ -264,11 +197,10 @@ void CopyClip (struct BCG *ScilabGC)
   scig_buzy = 0;
   return;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************
  * copy graph window to printer         *
  ****************************************/
-
 /* PageGDICalls : only for testing */
 #ifdef PageTest
 static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
@@ -283,7 +215,7 @@ static void PageGDICalls (HDC hdcPrn, int cxPage, int cyPage)
   TextOut (hdcPrn, 0, 0, szTextStr, sizeof (szTextStr) - 1);
 }
 #endif
-
+/*-----------------------------------------------------------------------------------*/
 int CopyPrint (struct BCG *ScilabGC)
 {
   int xPage, yPage;
@@ -443,13 +375,12 @@ PrintAbortProc);
   scig_buzy = 0;
   return bError || pr.bUserAbort;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************
  *  INI file stuff 
  *  XXXX : should be upgraded for win95/winnt 
  *  using the registry ? 
  ****************************************/
-
 void WriteGraphIni (struct BCG *ScilabGC)
 {
   RECT rect;
@@ -467,7 +398,7 @@ void WriteGraphIni (struct BCG *ScilabGC)
   WritePrivateProfileString (section, "GraphSize", profile, file);
   return;
 }
-
+/*-----------------------------------------------------------------------------------*/
 void ReadGraphIni (struct BCG *ScilabGC)
 {
   LPSTR file = ScilabGC->lpgw->IniFile;
@@ -493,13 +424,10 @@ file);
   if ((p = GetLInt (p, &ScilabGC->lpgw->Size.y)) == NULL)
     ScilabGC->lpgw->Size.y = CW_USEDEFAULT;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Debug Function 
  ****************************************************/
-
-#define MAXPRINTF 1024
-
 extern void DebugGW (char *fmt,...)
 {
 #ifdef DEBUG
@@ -513,7 +441,7 @@ extern void DebugGW (char *fmt,...)
   va_end (args);
 #endif
 }
-
+/*-----------------------------------------------------------------------------------*/
 extern void DebugGW1 (char *fmt,...)
 {
   int  count;
@@ -525,7 +453,7 @@ extern void DebugGW1 (char *fmt,...)
 	      textwin.Title, MB_ICONEXCLAMATION);
   va_end (args);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /**SciViewportMove
  *@description: used to move the panner and the viewport interactively 
  *              through scilab command.
@@ -540,7 +468,6 @@ Graphic window
  *@author: Matthieu PHILIPPE
  *@date: Dec 1999
  **/
-
 void SciViewportMove (ScilabGC, x, y)
      struct BCG *ScilabGC;
      int x, y;
@@ -564,7 +491,7 @@ void SciViewportMove (ScilabGC, x, y)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /**SciViewportGet
  *@description: used to get panner position through scilab command.
  *
@@ -578,7 +505,6 @@ Graphic window
  *@author: Matthieu PHILIPPE
  *@date: Dec 1999
  **/
-
 void SciViewportGet (ScilabXgc, x, y)
      struct BCG *ScilabXgc;
      int *x, *y;
@@ -594,7 +520,7 @@ void SciViewportGet (ScilabXgc, x, y)
       *y = 0;
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /**GPopupResize
  *@description: a little beat different to windowdim. GPopupResize sets
  * the visible window (parents dimension)
@@ -602,7 +528,6 @@ void SciViewportGet (ScilabXgc, x, y)
  *@see: setwindowdim
  *
  **/
-
 void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
 {
   RECT rect, rect1;
@@ -642,35 +567,20 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
       sciSetScrollInfo (ScilabXgc, SB_HORZ, &horzsi, TRUE);
     }
 }
-
-/***********************************************
- * we keep track of the last MaxCB XXBUTTONDOWN 
- * events while we are in GraphicWindowProc 
- ***********************************************/
-
-#define MaxCB 50
-static But ClickBuf[MaxCB];
-static int lastc = 0;
-
-/* used by xclick_any and xclick */ 
-
-static int wait_for_click=0;
-But SciClickInfo; /* for xclick and xclick_any */
-
-void set_wait_click(val) {  
+/*-----------------------------------------------------------------------------------*/
+void set_wait_click(val)
+{  
   wait_for_click=val;
   if ( val == 1 ) 
     SciClickInfo.win=-1; 
 }
-
-int scig_click_handler_none (int win,int x,int y,int ibut,int 
-motion,int release)
+/*-----------------------------------------------------------------------------------*/
+int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release)
 {
   return 0;
 };
-
-int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int 
-release)
+/*-----------------------------------------------------------------------------------*/
+int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 
 {
   static char buf[256];
@@ -684,11 +594,7 @@ release)
   else
     return 0;
 };
-
-static Scig_click_handler scig_click_handler = scig_click_handler_sci;
-/*static Scig_click_handler scig_click_handler = 
-scig_click_handler_none;*/
-
+/*-----------------------------------------------------------------------------------*/
 Scig_click_handler set_scig_click_handler (f)
      Scig_click_handler f;
 {
@@ -696,14 +602,13 @@ Scig_click_handler set_scig_click_handler (f)
   scig_click_handler = f;
   return old;
 }
-
+/*-----------------------------------------------------------------------------------*/
 void reset_scig_click_handler ()
 {
   scig_click_handler = scig_click_handler_sci;
 }
-
-int PushClickQueue (int win,int x,int y,int ibut,int motion,int 
-release)
+/*-----------------------------------------------------------------------------------*/
+int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
   /* If we are in xclick_any or xclick then send info */
   if ( wait_for_click==1)
@@ -751,9 +656,8 @@ release)
     }
   return (0);
 }
-
-int CheckClickQueue (integer *win,integer *x, integer *y, integer 
-*ibut)
+/*-----------------------------------------------------------------------------------*/
+int CheckClickQueue (integer *win,integer *x, integer *y, integer *ibut)
 {
   int i;
   for (i = 0; i < lastc; i++)
@@ -780,7 +684,7 @@ int CheckClickQueue (integer *win,integer *x, integer *y, integer
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 int ClearClickQueue (int win)
 {
   int i;
@@ -809,22 +713,11 @@ int ClearClickQueue (int win)
   lastc = 0;
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*************************************************
  * une petite fonction a la peek moi le message 
  *************************************************/
-
-typedef struct
-{
-  MSG msg;
-  integer flag;
-}
-SCISEND;
-
-SCISEND sciSend;
-
-void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM 
-lParam)
+void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   sciSend.msg.lParam = lParam;
   sciSend.msg.wParam = wParam;
@@ -833,7 +726,7 @@ lParam)
   sciSend.flag = 1;
 
 }
-
+/*-----------------------------------------------------------------------------------*/
 int sciPeekMessage (MSG * msg)
 {
   if (sciSend.flag != 0)
@@ -848,19 +741,16 @@ int sciPeekMessage (MSG * msg)
   else
     return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Drawing graphic window 
  ****************************************************/
 
 /* utility for backing store simulation */
 
-/* A améliorer pour que le bitmat ne soit pas plus grand que nécessaire 
+/* A améliorer pour que le bitmap ne soit pas plus grand que nécessaire 
  * ou au moins qu'il utilise rcpaint comme clipregion. 
  */
-
-static void sci_extra_margin(HDC hdc , struct BCG *ScilabGC);
-
 static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC)
 {
   static HDC hdc_compat = NULL; 
@@ -923,7 +813,7 @@ static void ScilabPaintWithBitmap(HWND hwnd,HDC hdc , struct BCG *ScilabGC)
 	 hdc_compat,ScilabGC->horzsi.nPos,ScilabGC->vertsi.nPos,
 	 SRCCOPY); 
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC)
 {
   if (  ScilabGC->CWindowWidth-ScilabGC->vertsi.nPos < ScilabGC->CWindowWidthView) 
@@ -947,15 +837,8 @@ static void sci_extra_margin(HDC hdc_c , struct BCG *ScilabGC)
       FillRect( hdc_c , &rect,hBrush );
     }
 }
-
-/* if thid flag is set to one then a pixmap is used 
- * when painting for windows with CurPixmapStatus==0.
- */ 
-
-static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
-
+/*-----------------------------------------------------------------------------------*/
 /* the paint function */
-
 static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
 {
   /* static paint = 0; */
@@ -1042,7 +925,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
       scig_buzy = 0;
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void ScilabNoPaint (HWND hwnd, struct BCG *ScilabGC)
 {
   HDC hdc;
@@ -1050,16 +933,10 @@ static void ScilabNoPaint (HWND hwnd, struct BCG *ScilabGC)
   hdc = BeginPaint(hwnd, &ps);  
   EndPaint(hwnd, &ps);
 }
-
-
- 
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Resize 
  ****************************************************/
-
-static COLORREF DefaultBackground = RGB(255,255,255);
-
 static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
 {
   /** We do not paint just check if we must resize the pixmap  **/
@@ -1088,13 +965,11 @@ static int ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
     }
   return FALSE;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * The Event Handler for the graphic windows 
  ****************************************************/
-
-EXPORT LRESULT CALLBACK
-WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   RECT rect;
   struct BCG *ScilabGC;
@@ -1358,7 +1233,7 @@ WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /********************************************************
  * A special Replay for win95 
  * we want to replay with a specific hdc 
@@ -1368,9 +1243,7 @@ WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
  *    a redraw can occurs while we are using a alufunction 
  *    in a graphic mode without xtape )
  ********************************************************/
-
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, 
-			     int height,  int scale)
+static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,int height,  int scale)
 {
   integer verb = 0, cur, na;
   char name[4];
@@ -1412,13 +1285,11 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width,
   SciG_Font ();
   SwitchWindow (&cur);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /********************************************************
  * parent overlapped window 
  ********************************************************/
-
-EXPORT LRESULT CALLBACK
-WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+EXPORT LRESULT CALLBACK WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   POINT ScreenMinSize =   {16, 4};
   POINT *MMinfo = (POINT *) lParam;
@@ -1557,7 +1428,7 @@ WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
 {  
   struct BCG *SciGc;
@@ -1568,3 +1439,4 @@ void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
   if ( SciGc ==  NULL ) {*ierr=1;return;}
   strncpy(SciGc->EventHandler,name,24);
 }
+/*-----------------------------------------------------------------------------------*/
