@@ -48,6 +48,7 @@ MACROS = copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	make_help_index.sci find_links.sci editor.sci \
 	xmltohtml.sci xmlfiletohtml.sci help_skeleton.sci\
 	loadmatfile.sci matfile2sci.sci ReadmiMatrix.sci toolboxes.sci\
+	savematfile.sci WritemiMatrix.sci \
 	with_tk.sci with_gtk.sci gettklib.sci with_pvm.sci with_ocaml.sci \
 	with_texmacs.sci with_modelica_compiler.sci\
 	scipad.sci iscell.sci isstruct.sci issparse.sci isfield.sci \
