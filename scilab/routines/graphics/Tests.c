@@ -812,7 +812,7 @@ TestOpTab GraphicTestTab[] ={
  {(char *) NULL,vide}
 };
 
-
+#ifndef WIN32
 int call_graphics_predefined_callbacks(char *name, int winid)
 {
   if (strcmp(name,"$test2DD")==0) test2DD();
@@ -848,4 +848,4 @@ int call_graphics_predefined_callbacks(char *name, int winid)
   else return 0;
   return 1;
 }
-
+#endif
