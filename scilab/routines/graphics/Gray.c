@@ -302,12 +302,7 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
     } 
   
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());  /* F.Leray 25.02.04*/
-    /* Adding F.Leray 22.04.04 */
-    pSUBWIN_FEATURE (psubwin)->brect[0] = xrect[0];
-    pSUBWIN_FEATURE (psubwin)->brect[1] = xrect[1];
-    pSUBWIN_FEATURE (psubwin)->brect[2] = xrect[2];
-    pSUBWIN_FEATURE (psubwin)->brect[3] = xrect[3];
-    
+  
     /*---- Boundaries of the frame ----*/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
     sciSetIsClipping (psubwin,0); 
