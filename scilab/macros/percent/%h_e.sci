@@ -7,7 +7,11 @@ function r=%h_e(i,h)
     for k=1:n
       p=i(k)
       if type(p)==10 then
-	h=get(h,p),
+	if type(h)==9 then
+	  h=get(h,p),
+	else
+	  h=h(p)
+	end
       elseif type(p)==1|type(p)==4|type(p)==2|type(p)==129 then
 	h=h(p)
       elseif type(p)==15 then
