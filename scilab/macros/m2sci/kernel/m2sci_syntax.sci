@@ -82,22 +82,24 @@ for k=1:n
   end
   offset=0
   for l=1:size(kop,"*")
-    ksym=kop(l)+offset+1
-    while part(tk,ksym)==" "
-      ksym=ksym+1
-      if ksym>length(tk) then
-	break
+    if ~isinstring(tk,kop(l)) then
+      ksym=kop(l)+offset+1
+      while part(tk,ksym)==" "
+	ksym=ksym+1
+	if ksym>length(tk) then
+	  break
+	end
       end
-    end
-    if part(tk,ksym)=="-" then
-      endoftk=part(tk,ksym+1+offset:length(tk))
-      m=min(strindex(endoftk,[ops(:,1)',",",";"]))
-      if m<>[] then
-	tk=part(tk,1:ksym-1)+"("+part(tk,ksym+offset:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
-      else
-	tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
+      if part(tk,ksym)=="-" then
+        endoftk=part(tk,ksym+1+offset:length(tk))
+        m=min(strindex(endoftk,[ops(:,1)',",",";"]))
+	if m<>[] then
+	  tk=part(tk,1:ksym-1)+"("+part(tk,ksym+offset:ksym+m-1)+")"+part(tk,ksym+m:length(tk))
+	else
+	  tk=part(tk,1:ksym-1)+"("+part(tk,ksym:length(tk))+")"
+	end
+	offset=offset+2
       end
-      offset=offset+2
     end
   end
 
