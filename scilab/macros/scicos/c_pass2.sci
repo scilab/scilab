@@ -917,121 +917,129 @@ ord=ord(:)
 function [ok,bllst]=adjust_inout(bllst,connectmat)
 nlnk=size(connectmat,1)
 for hhjj=1:length(bllst)
-for hh=1:length(bllst)
-  ok=%t
-  for jj=1:nlnk
-    nout=bllst(connectmat(jj,1))(3)(connectmat(jj,2))
-    nin=bllst(connectmat(jj,3))(2)(connectmat(jj,4))
-    if (nout>0&nin>0) then
-      if nin<>nout then
-	bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
-	    corinv(connectmat(jj,3)),connectmat(jj,4),nin)
-	ok=%f;return
-      end
-    elseif (nout>0&nin<0) then 
-      ww=find(bllst(connectmat(jj,3))(2)==nin)
-      bllst(connectmat(jj,3))(2)(ww)=nout
-      
-      ww=find(bllst(connectmat(jj,3))(3)==nin)
-      bllst(connectmat(jj,3))(3)(ww)=nout
-      
-      ww=find(bllst(connectmat(jj,3))(3)==0)
-      if (ww<>[]&mini(bllst(connectmat(jj,3))(2)(:))>0) then
-	bllst(connectmat(jj,3))(3)(ww)=sum(bllst(connectmat(jj,3))(2)(:))
-      end
-      
-    elseif (nin>0&nout<0) then 
-      ww=find(bllst(connectmat(jj,1))(3)==nout)
-      bllst(connectmat(jj,1))(3)(ww)=nin
-
-      ww=find(bllst(connectmat(jj,1))(2)==nout)
-      bllst(connectmat(jj,1))(2)(ww)=nin
-      
-      ww=find(bllst(connectmat(jj,1))(2)==0)
-      if (ww<>[]&mini(bllst(connectmat(jj,1))(3)(:))>0) then 
-	bllst(connectmat(jj,1))(2)(ww)=sum(bllst(connectmat(jj,1))(3))
-      end
-      
-
-    elseif (nin==0) then
-      ww=bllst(connectmat(jj,3))(3)(:)
-      if mini(ww)>0 then 
-	if nout>0 then
-	  if sum(ww)==nout then
+  for hh=1:length(bllst)
+    ok=%t
+    for jj=1:nlnk
+      nout=bllst(connectmat(jj,1))(3)(connectmat(jj,2))
+      nin=bllst(connectmat(jj,3))(2)(connectmat(jj,4))
+      if (nout>0&nin>0) then
+	if nin<>nout then
+	  bad_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
+			 corinv(connectmat(jj,3)),connectmat(jj,4),nin)
+	  ok=%f;return
+	end
+      elseif (nout>0&nin<0) then 
+	ww=find(bllst(connectmat(jj,3))(2)==nin)
+	bllst(connectmat(jj,3))(2)(ww)=nout
+	
+	ww=find(bllst(connectmat(jj,3))(3)==nin)
+	bllst(connectmat(jj,3))(3)(ww)=nout
+	
+	ww=find(bllst(connectmat(jj,3))(3)==0)
+	if (ww<>[]&mini(bllst(connectmat(jj,3))(2)(:))>0) then
+	  bllst(connectmat(jj,3))(3)(ww)=sum(bllst(connectmat(jj,3))(2)(:))
+	end
+	
+      elseif (nin>0&nout<0) then 
+	ww=find(bllst(connectmat(jj,1))(3)==nout)
+	bllst(connectmat(jj,1))(3)(ww)=nin
+	
+	ww=find(bllst(connectmat(jj,1))(2)==nout)
+	bllst(connectmat(jj,1))(2)(ww)=nin
+	
+	ww=find(bllst(connectmat(jj,1))(2)==0)
+	if (ww<>[]&mini(bllst(connectmat(jj,1))(3)(:))>0) then 
+	  bllst(connectmat(jj,1))(2)(ww)=sum(bllst(connectmat(jj,1))(3))
+	end
+	
+	
+      elseif (nin==0) then
+	ww=bllst(connectmat(jj,3))(3)(:)
+	if mini(ww)>0 then 
+	  if nout>0 then
+	    if sum(ww)==nout then
+	      bllst(connectmat(jj,3))(2)(connectmat(jj,4))=nout
+	    else
+	      bad_connection(corinv(connectmat(jj,3)))
+	      ok=%f;return
+	    end
+	  else
+	    bllst(connectmat(jj,3))(2)(connectmat(jj,4))=sum(ww)
+	    ok=%f
+	  end
+	else      
+	  nww=ww(find(ww<0))
+	  if norm(nww-nww(1),1)==0 & nout>0 then
 	    bllst(connectmat(jj,3))(2)(connectmat(jj,4))=nout
+	    k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+	    if k==int(k) then
+	      bllst(connectmat(jj,3))(3)(find(ww<0))=k
+	    else
+	      bad_connection(corinv(connectmat(jj,3)))
+	      ok=%f;return
+	    end
 	  else
-	    bad_connection(corinv(connectmat(jj,3)))
-	    ok=%f;return
+	    ok=%f
 	  end
-	else
-	  bllst(connectmat(jj,3))(2)(connectmat(jj,4))=sum(ww)
-	  ok=%f
 	end
-      else      
-	nww=ww(find(ww<0))
-	if norm(nww-nww(1),1)==0 & nout>0 then
-	  bllst(connectmat(jj,3))(2)(connectmat(jj,4))=nout
-	  k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-	  if k==int(k) then
-	    bllst(connectmat(jj,3))(3)(find(ww<0))=k
+	
+      elseif (nout==0) then
+	ww=bllst(connectmat(jj,1))(2)(:)
+	if mini(ww)>0 then 
+	  if nin>0 then
+	    if sum(ww)==nin then
+	      bllst(connectmat(jj,1))(3)(connectmat(jj,2))=nin
+	    else
+	      bad_connection(corinv(connectmat(jj,1)))
+	      ok=%f;return
+	    end
 	  else
-	    bad_connection(corinv(connectmat(jj,3)))
-	    ok=%f;return
+	    bllst(connectmat(jj,1))(3)(connectmat(jj,2))=sum(ww)
+	    ok=%f
 	  end
-	else
-	  ok=%f
-	end
-      end
-
-    elseif (nout==0) then
-      ww=bllst(connectmat(jj,1))(2)(:)
-      if mini(ww)>0 then 
-	if nin>0 then
-	  if sum(ww)==nin then
+	else      
+	  nww=ww(find(ww<0))
+	  if norm(nww-nww(1),1)==0 & nin>0 then
 	    bllst(connectmat(jj,1))(3)(connectmat(jj,2))=nin
+	    k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
+	    if k==int(k) then
+	      bllst(connectmat(jj,1))(2)(find(ww<0))=k
+	    else
+	      bad_connection(corinv(connectmat(jj,1)))
+	      ok=%f;return
+	    end
 	  else
-	    bad_connection(corinv(connectmat(jj,1)))
-	    ok=%f;return
+	    ok=%f
 	  end
-	else
-	  bllst(connectmat(jj,1))(3)(connectmat(jj,2))=sum(ww)
-	  ok=%f
-	end
-      else      
-	nww=ww(find(ww<0))
-	if norm(nww-nww(1),1)==0 & nin>0 then
-	  bllst(connectmat(jj,1))(3)(connectmat(jj,2))=nin
-	  k=(nout-sum(ww(find(ww>0))))/size(nww,'*')
-	  if k==int(k) then
-	    bllst(connectmat(jj,1))(2)(find(ww<0))=k
-	  else
-	    bad_connection(corinv(connectmat(jj,1)))
-	    ok=%f;return
-	  end
-	else
-	  ok=%f
-	end
-      end	
-
-    else
-      //case where both are negative
-      ok=%f
+	end	
+	
+      else
+	//case where both are negative
+	ok=%f
+      end
+    end
+    if ok then return, end
+  end
+  message(['Not enough information to determine port sizes';
+	   'I try to find the problem']);  
+  findflag=%f
+  for jj=1:nlnk
+    nout=bllst(connectmat(jj,1))(3)(connectmat(jj,2));
+    nin=bllst(connectmat(jj,3))(2)(connectmat(jj,4));
+    if nout<=0&nin<=0 then
+      findflag=%t;
+      ninnout=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
+			       corinv(connectmat(jj,3)),connectmat(jj,4),nin);
+      if ninnout==[] then ok=%f;return;end
+      if ninnout<=0  then ok=%f;return;end
+      bllst(connectmat(jj,1))(3)(connectmat(jj,2))=ninnout;
+      bllst(connectmat(jj,3))(2)(connectmat(jj,4))=ninnout;
     end
   end
-if ok then return, end
-end
-message('Not enough information to determine port sizes');  
-  for jj=1:nlnk
-    nout=bllst(connectmat(jj,1))(3)(connectmat(jj,2))
-    nin=bllst(connectmat(jj,3))(2)(connectmat(jj,4))
-    if nout<=0&nin<=0 then
-      	ninnout=under_connection(corinv(connectmat(jj,1)),connectmat(jj,2),nout,..
-	    corinv(connectmat(jj,3)),connectmat(jj,4),nin)
-	if ninnout==[] then ok=%f;return;end
-	if ninnout<=0  then ok=%f;return;end
-      bllst(connectmat(jj,1))(3)(connectmat(jj,2))=ninnout
-      bllst(connectmat(jj,3))(2)(connectmat(jj,4))=ninnout
-    end
+  if ~findflag then 
+    message(['I cannot find a link with undetermined size';
+	     'My guess is that you have a block with unconnected undetermined  output ports']);
+    ok=%f;return;
   end
 end
 
