@@ -17,8 +17,12 @@
 
 
 #ifndef WIN32
+#ifndef FALSE
 #define FALSE 0
+#endif
+#ifndef TRUE 
 #define TRUE 1
+#endif
 #define PS_SOLID 0
 #define HS_HORIZONTAL 0
 #define PLANES 0
