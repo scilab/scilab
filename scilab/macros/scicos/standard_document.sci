@@ -36,10 +36,14 @@ function texte = standard_document(objet, k)
       elseif fonction(2) <10000 then
 	language = string(fonction(2))+'  (dynamic link or...)'
       else
-	language = string(fonction(2))+'  (implicit bloc)'
+	language = string(fonction(2))+'  (internally implicit bloc)'
       end
     else
-      language = '0 (Scilab function type Scicos 2.2)'
+      if modele.equations==list() then
+	language = '0 (Scilab function type Scicos 2.2)'
+      else
+	language= 'implicit Modelica block'
+      end
     end
     //
 
