@@ -25,15 +25,8 @@ if rhs==1 then
 	tree.rhs=Rhs(X,-1,tmp,1)
       end
     else
-      scitree=tree
-      scitree.name="mtlb_fft"
-      scitree.rhs=Rhs(X)
-      repl1=tree
-      repl1.rhs=Rhs(X,-1,2,1)
-      repl_poss(scitree,..
-	  tree,X,"is a scalar or a vector",..
-	  repl1,X,"is not a vector")
-      tree=scitree
+      tree.name="mtlb_fft"
+      tree.rhs=Rhs(X)
     end
   else
     tree.rhs=Rhs(X,-1,Funcall("firstnonsingleton",1,list(X,"num"),list()),1)
