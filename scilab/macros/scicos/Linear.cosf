@@ -37,8 +37,8 @@ scs_m.objs(2)=mlist(["Block","graphics","model","gui","doc"],..
 scs_m.objs(3)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
-              "gr_i","id","in_implicit","out_implicit"],[170,0],[40,40],%t,"0",0,..
-              0,0,[],..
+              "gr_i","id","in_implicit","out_implicit"],[170,0],[40,40],%t,..
+              ["0";"0"],0,0,0,[],..
               list("xstringb(orig(1),orig(2),''1/z'',sz(1),sz(2),''fill'')",8),..
               "","E","E"),..
               mlist(..
