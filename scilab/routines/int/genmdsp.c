@@ -26,11 +26,11 @@ X=(Type *)x;\
 	for (l = 1; l <= m; ++l) {\
 	    aa = Abs((double)X[lp + l]);\
 	    if (aa == 0) {\
-		fl = 1;\
+		fl = 0;\
 	    } else {\
-	      fl = (int)(log(aa)/log(10.));\
+	      fl = (int)(log(aa)/log(10.))  ;\
 	    }\
-	    iw[k] = Max(iw[k],fl + 3);\
+	    iw[k] = Max(iw[k],fl + 2);\
 	}\
 	s += iw[k];\
 	if (s > *ll - 2) {\
@@ -59,10 +59,10 @@ X=(Type *)x;\
 	    for (k = k1; k <= k2; ++k) {\
 		a = X[l + (k - 1) * *nx];\
                 sprintf((char *)&(cw[l1]),Fmt,iw[k],a);\
-		l1 += iw[k];\
+		l1 += iw[k]+1;\
 	    }\
-	    cw[l1-1] = dl;\
-	    C2F(basout)(&io, lunit, cw, l1);\
+	    cw[l1] = dl;\
+	    C2F(basout)(&io, lunit, cw, l1+1);\
 	    if (io == -1) return 0;\
 	}\
 	k1 = k2 + 1;\
@@ -83,22 +83,22 @@ int cw_len;
 
   switch (*typ) {
   case 1:
-    DSP(integer1,"%-*i");
+    DSP(integer1,"%*i ");
     break;
   case 2:
-    DSP(integer2,"%-*i");
+    DSP(integer2,"%*i ");
     break;
   case 4:
-    DSP(integer,"%-*i");
+    DSP(integer,"%*i ");
     break;
   case 11:
-    DSP(unsigned char,"%-*u");
+    DSP(unsigned char,"%*u ");
     break;
   case 12:
-    DSP(unsigned short,"%-*u");
+    DSP(unsigned short,"%*u ");
     break;
   case 14:
-    DSP(unsigned int,"%-*u");
+    DSP(unsigned int,"%*u ");
     break;
   }
   return 0;
