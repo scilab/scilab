@@ -85,7 +85,7 @@ case 16 then
     if a(7)=='c' then der=' \dot{X}',else der=' \stackrel{+}{X}',end
     debut='\begin{eqnarray}';fin='\end{eqnarray}'
     debut='';fin=''
-    tt=debut+der+' = '+texprint(a(2))+' x + '+...
+    tt=debut+der+' = '+texprint(a(2))+' X + '+...
 	texprint(a(3))+'U \\ \\ Y = '+texprint(a(4))+' X '
     if norm(a(5),1)==0 then
       tt=tt+fin
