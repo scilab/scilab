@@ -3044,7 +3044,7 @@ void Jdoit(residual, xt, xtd, told, job)
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
       flag__ = 1;
 
-      if ((*job==2)&&(oord[jj]==nblk)) {// applying desired output
+      if ((*job==2)&&(oord[jj]==nblk)) {/* applying desired output */
       }else
 	callf(told, xtd, xt, residual,x,&flag__);      
       if (flag__ < 0) {
@@ -3123,7 +3123,7 @@ void Jdoit(residual, xt, xtd, told, job)
     }
   }
 } /* odoit_ */
-//-----------------------------------------------------------------------
+/*-----------------------------------------------------------------------*/
 
 int C2F(Jacobian)(t,xc, xcdot,residual,cj,rpar1,ipar1)
      int *ipar1;
@@ -3251,7 +3251,7 @@ int C2F(Jacobian)(t,xc, xcdot,residual,cj,rpar1,ipar1)
  return 0;
 
 }
-//----------------------------------------------------
+/*----------------------------------------------------*/
 void Multp(A,B,R,ra ,ca, rb,cb)
      double *A, *B, *R;
      int ra,rb,ca,cb;
