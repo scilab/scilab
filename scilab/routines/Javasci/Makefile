@@ -23,7 +23,9 @@ CFLAGS = $(CC_OPTIONS) $(JAVAINC)
 
 OBJS = $(OBJSC)
 
-all:: $(LIBRARY)
+all::
+
+all1:: $(LIBRARY)
 
 $(LIBRARY): $(OBJS)
 	@echo Creation of $(LIBRARY)
