@@ -4,18 +4,24 @@ function txt=replace_brackets(txt)
 symbs=[",",";","=",")","]"]
 // This file will be use to deal with cells...
 for k=1:size(txt,'r')
-  tk=strsubst(txt(k)," ","")
-  
-  ko=strindex(tk,'{')
-  if ko<>[] then
-    teq=strindex(tk,"=")
+
+  // select-case
+  if strindex(txt(k),"case")<>[] then
+    txt(k)=strsubst(strsubst(txt(k),'{','makecell('),'}',')')
+  else
+    tk=strsubst(txt(k)," ","")
     
-    for kk=1:size(ko,"*")
-      if or(part(tk,ko(kk)-1)==symbs) then // Cell creation
-	txt(k)=strsubst(txt(k),'{}','makecell()')
-	txt(k)=strsubst(strsubst(txt(k),'{','(makecell([cell(),'),'}',']))')
-      else // Cell index
-	txt(k)=strsubst(strsubst(txt(k),'{','('),'}',').entries')
+    ko=strindex(tk,'{')
+    if ko<>[] then
+      teq=strindex(tk,"=")
+      
+      for kk=1:size(ko,"*")
+	if or(part(tk,ko(kk)-1)==symbs) then // Cell creation
+	  txt(k)=strsubst(txt(k),'{}','makecell()')
+	  txt(k)=strsubst(strsubst(txt(k),'{','(makecell([cell(),'),'}',']))')
+	else // Cell index
+	  txt(k)=strsubst(strsubst(txt(k),'{','('),'}',').entries')
+	end
       end
     end
   end
