@@ -968,16 +968,40 @@ let perform_hungarian_method model =
 let eliminate_trivial_relations max_simplifs model =
   let max_simplifs_ref = ref max_simplifs in
   let choose_variable i j =
-    let svi = model.variables.(i).start_value
-    and svj = model.variables.(j).start_value in
-    match nature svi, nature svj with
-      | _, Number (Num.Int 0) -> i
-      | _ -> j
+    let sti = model.variables.(i).state
+    and stj = model.variables.(j).state in
+    match sti, stj with
+      | true, false -> i
+      | false, true -> j
+      | _ ->
+          let svi = model.variables.(i).start_value
+          and svj = model.variables.(j).start_value in
+          begin match nature svi, nature svj with
+            | _, Number (Num.Int 0) -> i
+            | _ -> j
+          end
   in
   let permute_equations i j =
     let equation = model.equations.(i) in
     model.equations.(i) <- model.equations.(j);
     model.equations.(j) <- equation
+  in
+  let update_variable_attributes i j =
+    let svi = model.variables.(i).start_value
+    and svj = model.variables.(j).start_value in
+    let sti = model.variables.(i).state
+    and stj = model.variables.(j).state in
+    let state = sti || stj in
+    model.variables.(i).state <- state;
+    model.variables.(j).state <- state;
+    match sti, stj with
+      | true, false -> model.variables.(j).start_value <- svi
+      | false, true -> model.variables.(i).start_value <- svj
+      | _ ->
+          begin match nature svi, nature svj with
+            | _, Number (Num.Int 0) -> model.variables.(j).start_value <- svi
+            | _ -> model.variables.(i).start_value <- svj
+          end
   in
   let simplify_trivial_relation n =
     match nature model.equations.(n).expression with
@@ -988,6 +1012,7 @@ let eliminate_trivial_relations max_simplifs model =
                 perform_then_propagate_inversion model i
             | Variable i, Variable j ->
                 let k = choose_variable i j in
+                update_variable_attributes i j;
                 permute_equations k n;
                 perform_then_propagate_inversion model k;
                 decr max_simplifs_ref
@@ -996,6 +1021,7 @@ let eliminate_trivial_relations max_simplifs model =
                 begin match nature node, nature node' with
                   | Number _, Variable j | Variable j, Number _ ->
                       let k = choose_variable i j in
+                      update_variable_attributes i j;
                       permute_equations k n;
                       perform_then_propagate_inversion model k;
                       decr max_simplifs_ref

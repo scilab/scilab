@@ -437,9 +437,8 @@ val symbolic_partial_derivative: t -> t -> t
 (** [symbolic_partial_derivative expr expr'] returns an object that represents
 the result of applying the partial derivative function to the expression
 represented by [expr'] with respect to the variable represented by [expr]. If
-[expr] does not represent a variable, or if [expr]'s nature is [And _],
-[BooleanValue _], [Equality _], [Not _], [Or _], [Greater _]
-or [GreaterEqual _], raise Invalid_argument. *)
+[expr]'s nature is [And _], [BooleanValue _], [Equality _], [Not _], [Or _],
+[Greater _] or [GreaterEqual _], raise Invalid_argument. *)
 
 val symbolic_power: t -> t -> t
 (** [symbolic_power expr expr'] returns an object that represents the result of

@@ -1,6 +1,7 @@
 module type CODEGENERATOR =
   sig
-    val generate_code: string -> string -> string -> Optimization.model -> unit
+    val generate_code: string -> string -> string -> Optimization.model -> bool
+      -> unit
   end
 
 module type S =
@@ -12,13 +13,15 @@ module type S =
 module Make(G: CODEGENERATOR): S =
   struct
 
-    let version = "1.4.0"
+    let version = "1.5.0"
 
     let path = ref ""
 
     let keep_variables = ref false
 
     let compile_only = ref false
+
+    let with_jac = ref false
 
     let directories = ref [""]
 
@@ -71,7 +74,8 @@ module Make(G: CODEGENERATOR): S =
         ("-keep-all-variables", Arg.Set keep_variables,
           "Don\'t remove alias variables");
         ("-max-simplifs", Arg.Int set_max_simplifs,
-         "<passes> Max number of simplifications")]
+         "<passes> Max number of simplifications");
+        ("-jac", Arg.Set with_jac, "Generate symbolic jacobian matrix")]
         set_input
         ("usage: modelicac [-c] [-o <outputfile>] <inputfile> [other options]")
 
@@ -127,9 +131,6 @@ module Make(G: CODEGENERATOR): S =
                     if not variable.Optimization.solved then n + 1 else n)
                   0
                   model.Optimization.equations); flush stdout;
-              (*Printf.printf "\nComputing structural index...\n"; flush stdout;
-              let strct_index = Optimization.compute_structural_index model in
-              Printf.printf "Structural index = %d" strct_index; flush stdout;*)
               Printf.printf "\nFinding subsystems...\n"; flush stdout;
               let compnts = Optimization.find_submodels model in
               Printf.printf "%d subsystem(s) found.\n" (List.length compnts);
@@ -140,7 +141,7 @@ module Make(G: CODEGENERATOR): S =
                 compnts;
             end;
             Printf.printf "Generating code..."; flush stdout;
-            G.generate_code !path filename fun_name model
+            G.generate_code !path filename fun_name model !with_jac
         | Compilation.CompiledFunction _ ->
             failwith "Attempt to generate code for a function"
       end;

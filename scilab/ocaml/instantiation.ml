@@ -1131,7 +1131,10 @@ and instantiate_expression ctx = function
 
 and check_function_type ctx lccl iexprs =
   let compare_input_types iexpr tex_type =
-    iexpr.tex_type = tex_type
+    iexpr.tex_type = tex_type ||
+    match iexpr.tex_type, tex_type with
+      | IntegerType dims, RealType dims' when dims = dims' -> true
+      | _ -> false
   and extract_type = function
     | Compilation.DiscreteVariable { Compilation.vat_dimensions = cdims } ->
         let dims = Array.map (compute_subscript ctx) cdims in

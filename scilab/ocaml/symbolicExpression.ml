@@ -460,6 +460,7 @@ let pi_over_two =
 let minus_pi_over_two =
   NodeSet.find_or_add (insert minus_one_over_two [pi]) multiplicationNodeSet
 let e = NodeSet.find_or_add "2.71828182846" constantNodeSet
+let eps = NodeSet.find_or_add "0.00001" constantNodeSet
 let false_value = create_node (BooleanValue false) 0
 let true_value = create_node (BooleanValue true) 1
 let time = create_node TimeVariable 0
@@ -705,10 +706,12 @@ and symbolic_gt node node' = match node.nature, node'.nature with
   | Number num, Number num' -> create_booleanValue (gt_num num num')
   | _ -> create_greater node node'
 
-and symbolic_if node node' node'' = match node.nature with
-  | BooleanValue b -> if b then node' else node''
-  | Not bool -> symbolic_if bool node'' node'
-  | _ -> create_if node node' node''
+and symbolic_if node node' node'' =
+  if node' == node'' then node'
+  else match node.nature with
+    | BooleanValue b -> if b then node' else node''
+    | Not bool -> symbolic_if bool node'' node'
+    | _ -> create_if node node' node''
 
 and symbolic_floor node = match node.nature with
   | Number num -> create_number (floor_num num)
@@ -771,9 +774,12 @@ and symbolic_partial_derivative var node' =
   let rec partial_derivative node =
     if node == var then one
     else match node.nature with
-      | Number _ | Constant _ | DiscreteVariable _ | Floor _ | Parameter _ |
-        Sign _ | TimeVariable | Variable _ -> zero
-      | BlackBox _ | Derivative _ | PartialDerivative _ ->
+      | Number _ | Constant _ | Derivative _ | DiscreteVariable _ | Floor _ |
+        Parameter _ | Sign _ | TimeVariable | Variable _ -> zero
+      | BlackBox (s, nodes) ->
+          let nodes' = List.map (replace var (symbolic_add var eps)) nodes in
+          symbolic_div (symbolic_sub (create_blackBox s nodes') node) eps
+      | PartialDerivative _ ->
           create_partialDerivative var node
       | Addition nodes ->
           List.fold_left (fun sum elt -> partial_derivative elt + sum) zero nodes
@@ -797,7 +803,7 @@ and symbolic_partial_derivative var node' =
       | HyperbolicTangent node' ->
           partial_derivative node' * (one - node' ** two_num)
       | If (cond, node', node'') ->
-          create_if cond (partial_derivative node') (partial_derivative node'')
+          symbolic_if cond (partial_derivative node') (partial_derivative node'')
       | Logarithm node' -> partial_derivative node' / node'
       | Multiplication [] -> zero
       | Multiplication [node'] -> partial_derivative node'
@@ -1262,7 +1268,7 @@ and output out_channel node =
 
 (* Symbolic manipulation helpers *)
 
-let rec exists p node =
+and exists p node =
   p node || match node.nature with
     | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ |
       Parameter _ | TimeVariable | Variable _ -> false
@@ -1280,9 +1286,9 @@ let rec exists p node =
     | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
       Or nodes -> List.exists (exists p) nodes
 
-let rec is_subnode_of node node' = exists (fun node -> node == node') node
+and is_subnode_of node node' = exists (fun node -> node == node') node
 
-let rec variables_of node = match node.nature with
+and variables_of node = match node.nature with
   | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
     TimeVariable -> []
   | Variable _ -> [node]
@@ -1304,7 +1310,7 @@ let rec variables_of node = match node.nature with
     Or nodes ->
       List.fold_left (fun acc node -> union (variables_of node) acc) [] nodes
 
-let rec assignable_variables_of node = match node.nature with
+and assignable_variables_of node = match node.nature with
   | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
     TimeVariable -> []
   | Variable _ -> [node]
@@ -1329,7 +1335,7 @@ let rec assignable_variables_of node = match node.nature with
         nodes
   | And _ | Or _ | Not _ -> []
 
-let rec derivatives_of node = match node.nature with
+and derivatives_of node = match node.nature with
   | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ | Parameter _ |
     TimeVariable | Variable _ -> []
   | ArcCosine node' | ArcHyperbolicCosine node' |
@@ -1346,7 +1352,7 @@ let rec derivatives_of node = match node.nature with
     Or nodes ->
       List.fold_left (fun acc node -> union (derivatives_of node) acc) [] nodes
 
-let rec invert_if_possible_with_respect_to node left right =
+and invert_if_possible_with_respect_to node left right =
   let not_null node = match node.nature with
     | Constant _ -> true
     | Number num -> num <>/ zero_num
@@ -1436,7 +1442,7 @@ let rec invert_if_possible_with_respect_to node left right =
       TimeVariable | Variable _ ->
         invalid_arg "invert_if_possible_with_respect_to"
 
-let rec exists_except_in_conditions p node =
+and exists_except_in_conditions p node =
   p node || match node.nature with
     | BooleanValue _  | Constant _ | DiscreteVariable _ | Number _ |
       Parameter _ | TimeVariable | Variable _ -> false
@@ -1454,7 +1460,7 @@ let rec exists_except_in_conditions p node =
     | And nodes | Addition nodes | BlackBox (_, nodes) | Multiplication nodes |
       Or nodes -> List.exists (exists_except_in_conditions p) nodes
 
-let inversion_difficulty node left right =
+and inversion_difficulty node left right =
   let is_derivative_of_node node' = match node'.nature with
     | Derivative (node', _) -> node' == node
     | _ -> false
@@ -1470,7 +1476,7 @@ let inversion_difficulty node left right =
         end
     | _ -> 2
 
-let replace node node' node'' =
+and replace node node' node'' =
   let rec rewrite node =
     if node.count = !global_count then
       node.replacement

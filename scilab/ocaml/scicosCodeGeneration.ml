@@ -513,6 +513,140 @@ let bufferize_equations model_info =
         Printf.bprintf model_info.code_buffer ";\n")
     model_info.model.equations
 
+let bufferize_jacobian model_info =
+  let model = model_info.model in
+  let nx =
+    Array.fold_left
+      (fun acc equation -> if not equation.solved then acc + 1 else acc)
+      0
+      model.equations
+  and nu = Array.length model.inputs
+  and ny =
+    Array.fold_left
+      (fun acc variable -> if variable.output <> None then acc + 1 else acc)
+      0
+      model.variables
+  in
+  let cj = create_blackBox "Get_Jacobian_parameter" [] in
+  let jacobian_matrix =
+    Array.init (nx + ny) (fun _ -> Array.make (nx + nu) zero)
+  in
+  let _ =
+    Array.fold_left
+      (fun i equation ->
+        if not equation.solved then begin
+          let _ =
+            Array.fold_left
+              (fun (j, k) variable ->
+                if not model.equations.(k).solved then begin
+                  let dfdx =
+                    symbolic_partial_derivative
+                      (create_variable k)
+                      equation.expression
+                  in
+                  jacobian_matrix.(i).(j) <-
+                    if variable.state then
+                      let dfdxd =
+                        symbolic_partial_derivative
+                          (create_derivative (create_variable k) (Num.Int 1))
+                          equation.expression
+                      in
+                      symbolic_add dfdx (symbolic_mult cj dfdxd)
+                    else dfdx;
+                  j + 1, k + 1
+                end else j, k + 1)
+              (0, 0)
+              model.variables
+          in
+          i + 1
+        end else i)
+      0
+      model.equations
+  in
+  ();
+  let _ =
+    Array.fold_left
+      (fun i equation ->
+        if not equation.solved then begin
+          for j = -1 downto -Array.length model.inputs do
+            jacobian_matrix.(i).(nx - 1 - j) <-
+              symbolic_partial_derivative
+                (create_discrete_variable j)
+                equation.expression
+          done;
+          i + 1
+        end else i)
+      0
+      model.equations
+  in
+  ();
+  let _ =
+    Array.fold_left
+      (fun (i, k) equation ->
+        if model.variables.(k).output <> None then begin
+          let _ =
+            Array.fold_left
+              (fun (j, l) variable ->
+                if not model.equations.(l).solved then begin
+                  jacobian_matrix.(nx + i).(j) <-
+                    if equation.solved then
+                      symbolic_partial_derivative
+                        (create_variable l)
+                        equation.expression
+                    else if k = l then one
+                    else zero;
+                  j + 1, l + 1
+                end else j, l + 1)
+              (0, 0)
+              model.variables
+          in
+          i + 1, k + 1
+        end else i, k + 1)
+      (0, 0)
+      model.equations
+  in
+  ();
+  let _ =
+    Array.fold_left
+      (fun (i, k) equation ->
+        if model.variables.(k).output <> None then begin
+          for j = -1 downto -Array.length model.inputs do
+            jacobian_matrix.(nx + i).(nx - 1 - j) <-
+              if equation.solved then
+                symbolic_partial_derivative
+                  (create_discrete_variable j)
+                  equation.expression
+              else zero
+          done;
+          i + 1, k + 1
+        end else i, k + 1)
+      (0, 0)
+      model.equations
+  in
+  ();
+  ExpressionTable.clear model_info.occurrence_table;
+  Array.iter
+    (fun row ->
+      Array.iter
+        (fun elt ->
+          add_to_occurrence_table
+            true
+            elt
+            model_info.occurrence_table)
+        row)
+    jacobian_matrix;
+  model_info.current_index <- -1;
+  Array.iteri
+    (fun i row ->
+      Array.iteri
+        (fun j elt ->
+          let lhs = "res[" ^ (string_of_int (i * (nx + nu) + j)) ^ "] = " in
+          bufferize_rhs model_info 2 true lhs elt;
+          Printf.bprintf model_info.code_buffer ";\n")
+        row)
+    jacobian_matrix;
+  Printf.bprintf model_info.code_buffer "\t\tset_block_error(0);\n"
+
 let bufferize_outputs model_info =
   let bufferize_outputs' modes_on =
     Array.iteri
@@ -718,27 +852,34 @@ let bufferize_initializations model_info =
     model_info.model.variables
 
 let bufferize_variable_nature model_info =
-  Array.iteri
-    (fun i variable ->
-      let equation = model_info.model.equations.(i) in
-      if not equation.solved then begin
-        Printf.bprintf
-          model_info.code_buffer
-          "\t\tproperty[%d] = %s; /* %s"
-          model_info.final_index_of_variables.(i)
-          (if variable.state then "1" else "-1")
-          variable.v_name;
-        if variable.v_comment <> "" then
-          Printf.bprintf model_info.code_buffer " = %s" variable.v_comment;
-        Printf.bprintf
-          model_info.code_buffer
-          " (%s variable) */\n"
-          (if variable.state then "state" else "algebraic")
-      end)
-    model_info.model.variables;
-  Printf.bprintf model_info.code_buffer "\t\tset_pointer_xproperty(property);\n"
+  let nb_vars =
+    Array.fold_left
+      (fun acc equation -> if not equation.solved then acc + 1 else acc)
+      0
+      model_info.model.equations in
+  if nb_vars > 0 then begin
+    Array.iteri
+      (fun i variable ->
+        let equation = model_info.model.equations.(i) in
+        if not equation.solved then begin
+          Printf.bprintf
+            model_info.code_buffer
+            "\t\tproperty[%d] = %s; /* %s"
+            model_info.final_index_of_variables.(i)
+            (if variable.state then "1" else "-1")
+            variable.v_name;
+          if variable.v_comment <> "" then
+            Printf.bprintf model_info.code_buffer " = %s" variable.v_comment;
+          Printf.bprintf
+            model_info.code_buffer
+            " (%s variable) */\n"
+            (if variable.state then "state" else "algebraic")
+        end)
+      model_info.model.variables;
+    Printf.bprintf model_info.code_buffer "\t\tset_pointer_xproperty(property);\n"
+  end
 
-let generate_code path filename fun_name model =
+let generate_code path filename fun_name model with_jac =
   let rec to_filename = function
     | [] -> ""
     | [s] -> s
@@ -758,10 +899,10 @@ let generate_code path filename fun_name model =
     }
   in
   let nb_vars =
-    (Array.fold_left
+    Array.fold_left
       (fun acc equation -> if not equation.solved then acc + 1 else acc)
       0
-      model.equations)
+      model.equations
   and nb_modes = List.length model_info.surfaces in
   Printf.fprintf oc "/*\n\
     number of discrete variables = %d\n\
@@ -804,8 +945,10 @@ let generate_code path filename fun_name model =
      \tdouble *res = block->res;\n\
      \tint *jroot = block->jroot;\n\
      \tint *mode = block->mode;\n\
-     \tint nevprt = block->nevprt;\n\
-     \tint property[%d];\n\n" nb_vars;
+     \tint nevprt = block->nevprt;\n";
+  if nb_vars > 0 then
+    Printf.fprintf oc "\tint property[%d];\n" nb_vars;
+  Printf.fprintf oc "\n";
   Printf.bprintf model_info.code_buffer "\tif (flag == 0) {\n";
   bufferize_equations model_info;
   Printf.bprintf model_info.code_buffer "\t} else if (flag == 1) {\n";
@@ -815,12 +958,19 @@ let generate_code path filename fun_name model =
   bufferize_when_equations model_info;
   Printf.bprintf model_info.code_buffer "\t} else if (flag == 4) {\n";
   bufferize_initializations model_info;
+  if with_jac then begin
+    Printf.bprintf model_info.code_buffer "\t\tSet_Jacobian_flag(1);\n";
+  end;
   Printf.bprintf model_info.code_buffer
     "\t} else if (flag == 6) {\n";
   Printf.bprintf model_info.code_buffer "\t} else if (flag == 7) {\n";
   bufferize_variable_nature model_info;
   Printf.bprintf model_info.code_buffer "\t} else if (flag == 9) {\n";
   bufferize_surfaces model_info;
+  if with_jac then begin
+    Printf.bprintf model_info.code_buffer "\t} else if (flag == 10) {\n";
+    bufferize_jacobian model_info;
+  end;
   Printf.bprintf model_info.code_buffer "\t}\n";
   if model_info.max_index >= 0 then begin
     Printf.fprintf oc "\t/* Intermediate variables */\n\tdouble ";

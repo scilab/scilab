@@ -64,8 +64,9 @@ Other options include:
 -L <directory>: Add <directory> to the list of directories to be searched when
                 producing a C file (no effect when used with -c).
 -hpath <directory>: Specify a path to be added to #include directives in the
-                    generated C code
+                    generated C code.
 -keep-all-variables: Do not remove any variable from the initial system.
+-jac: Generate analytic jacobian matrix code.
 
 Examples
 -------
@@ -145,23 +146,25 @@ Restrictions on expressions
 
 Restrictions on external function definitions (to be implemented)
 -----------------------------------------------------------------
+ Only functions taking zero or several Real scalars and returning exactly one
+Real scalar are supported.
  External functions must be declared in a separate file (one file per function).
 This file contains the prototype of the corresponding C function with the same
 name. For example:
 
-function blackbox
+function Blackbox
   input Real u;
-  output Real[2] y;
+  output Rea y;
 external;
-end blackbox;
+end Blackbox;
 
  This function can be called from another modelica file using the following
-syntax (assuming blackbox.mo to be defined in ./Foo/Bar):
+syntax (assuming Blackbox.mo to be defined in ./Foo/Bar):
 
-...Foo.Bar.blackbox(42)...
+...Blackbox(42)...
 
-Modelicac assumes that both ./Foo/Bar/blackbox.h and ./Foo/Bar/blackbox.c exist
-and contain the C code corresponding to a C function with the following
-signature:
+Modelicac assumes that both ./Foo/Bar/Blackbox.h and ./Foo/Bar/Blackbox.c exist
+(see "-hpath" option) and contain the C code corresponding to a C function with
+the following signature:
 
-void blackbox(double u, double *y1, double *y2);
+double blackbox(double u);
