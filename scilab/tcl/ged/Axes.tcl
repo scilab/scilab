@@ -122,7 +122,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 500x720
+wm geometry $ww 500x750
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
@@ -914,7 +914,7 @@ pack $w.frame.limit  -in $w.frame.lim  -side left  -fill x -pady 1.m -padx 1.m
 #cubescaling
 frame $w.frame.cub -borderwidth 0
 pack $w.frame.cub  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.cublabel  -text "Cube scaling:"
+label $w.frame.cublabel  -text "Cube scaling: "
 checkbutton $w.frame.cubb  -textvariable cubToggle  \
     -variable cubToggle  -onvalue "on" -offvalue "off" \
     -command "toggleCubview" 
@@ -1002,12 +1002,12 @@ pack $w.frame.marg21  -in $w.frame -side top   -fill x
 
 label $w.frame.labelleft -text  "           Left: "
 entry $w.frame.datamargl -relief sunken  -textvariable Lmargins
-label $w.frame.labelleftaxesbounds -text  "    Left:  "
+label $w.frame.labelleftaxesbounds -text  "   Left: "
 entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL
 
 label $w.frame.labelright -text "         Right:"
 entry $w.frame.datamargr -relief sunken  -textvariable Rmargins
-label $w.frame.labelupaxesbounds -text  "      Up:  "
+label $w.frame.labelupaxesbounds -text  "      Up: "
 entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU
 
 pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 1.m -padx 1.m
@@ -1030,7 +1030,7 @@ entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW
 
 label $w.frame.labelbottom -text "      Bottom:"
 entry $w.frame.datamargb -relief sunken  -textvariable Bmargins
-label $w.frame.labelheightaxesbounds -text    "  Height:"
+label $w.frame.labelheightaxesbounds -text    " Height:"
 entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH
 
 pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 1.m -padx 1.m
@@ -1985,8 +1985,8 @@ proc PopUp { w numpage} {
 	$fen1.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
 	set aa [expr 100]
-	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right \
-	    -background white -textvariable LOCATIONS_X($i)
+	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right -width 14\
+	    -background white -textvariable LOCATIONS_X($i) 
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen1.frame.c.locationsdata$i <ButtonPress-1> "setLEI_x $i;"
 	bind  $fen1.frame.c.locationsdata$i <Return> "TicksApplyX $fen1"
@@ -1995,7 +1995,7 @@ proc PopUp { w numpage} {
 	
 	#Labels
 	set aa [expr 230]
-	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left \
+	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left -width 14\
 	    -background white -textvariable LABELS_X($i)
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen1.frame.c.labelsdata$i <ButtonPress-1> "setLEI_x $i;"
@@ -2099,7 +2099,7 @@ proc PopUp { w numpage} {
 	$fen2.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
 	set aa [expr 100]
-	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right \
+	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right  -width 14\
 	    -background white -textvariable LOCATIONS_Y($i)
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen2.frame.c.locationsdata$i <ButtonPress-1> "setLEI_y $i;"
@@ -2109,7 +2109,7 @@ proc PopUp { w numpage} {
 	
 	#Labels
 	set aa [expr 230]
-	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left \
+	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left  -width 14\
 	    -background white -textvariable LABELS_Y($i)
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen2.frame.c.labelsdata$i <ButtonPress-1> "setLEI_y $i;"
@@ -2212,7 +2212,7 @@ proc PopUp { w numpage} {
 	$fen3.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
 	set aa [expr 100]
-	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right \
+	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right  -width 14\
 	    -background white -textvariable LOCATIONS_Z($i)
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
 	bind  $fen3.frame.c.locationsdata$i <ButtonPress-1> "setLEI_z $i;"
@@ -2222,7 +2222,7 @@ proc PopUp { w numpage} {
 	
 	#Labels
 	set aa [expr 230]
-	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left \
+	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left  -width 14\
 	    -background white -textvariable LABELS_Z($i)
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
 	bind  $fen3.frame.c.labelsdata$i <ButtonPress-1> "setLEI_z $i;"
