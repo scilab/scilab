@@ -148,7 +148,37 @@ exec `which wish` "$0" "$@"
 #    "123456", //123 etc. should be colorized consistently 
 # * comment/uncomment, indent/unindent applies to the current line 
 #    if unselected
-  
+
+# Francois VOGEL, 16/04/2004
+# * fixed silent clearing of selection in one buffer that occurred when another
+#   buffer was modified
+# * added Ctrl-F6 binding and proc switchbuffer to switch opened buffers
+# * fixed bug that occurred when a copy-paste modification on a buffer was
+#   undone once too much (a "lifo($id) pop error, empty" resulted)
+
+#19/4/2004
+# * added "Import matlab file..."
+# * version --> 1.3
+# * switchbuffer --> prevbuffer (F6) and nextbuffer (F7); bug corrected, wrong 
+#   buffer when one or more previously open buffers were closed
+# * added bindings Ctrl-+/- to increase/decrease fontsize
+
+# Francois VOGEL, 21/04/2004
+# * fixed size/position bug of sliders when switching buffers or opening a new file
+# * corrected minor typos in french texts, added french text where was missing
+# * restored cursor blinking as I could not make it disappear any more while
+#   moving it with the arrows - was probably a tcl bug, seems to work with 8.4.6
+# * many improvements in find/replace/replaceall:
+#     - added forward and backward automatic wrap-around
+#     - added message box in case of no match found
+#     - added message box in case of find or replace with an empty string
+#     - if text is selected, find or replace occurs inside that selection (for find,
+#       if not found, then asks for extending the search to the entire buffer)
+#     - starting from a saved file, doing stuff and then undoing all changes does
+#       not report the file as modified any more
+# * added Ctrl-F6 (prevbuffer) and Ctrl-F7 (nextbuffer) bindings
+
+
 # default global values
 #global .
 
@@ -164,7 +194,7 @@ set fileName " "
 set textareacur $pad.textarea
 set saveTextMsg 0
 set winTitle "SciPad"
-set version "Version 1.2"
+set version "Version 1.3"
 set wordWrap none
 ##ES: default options which can be overridden
 if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
@@ -278,6 +308,9 @@ if {$lang == "eng"} {
     $pad.filemenu.files add command -label "Save As" -underline 5 \
                    -command "filesaveascur" -accelerator Ctrl+S
     $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Import Matlab file..." \
+	-underline 7 -command "importmatlab" -accelerator F4
+    $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Print Setup" -underline 8 \
                    -command "printseupselection" -accelerator Ctrl+P
@@ -300,6 +333,9 @@ if {$lang == "eng"} {
 	-command "filetosavecur" -accelerator Ctrl+s
     $pad.filemenu.files add command -label "Enregistrer sous" -underline 2 \
 	-command "filesaveascur" -accelerator Ctrl+S
+    $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Importer fichier Matlab..." \
+                   -underline 17 -command "importmatlab" -accelerator F4
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Mise en page" -underline 8 \
@@ -367,19 +403,19 @@ if {$lang == "eng"} {
     $pad.filemenu.edit add command -label "Effacer" -underline 0 \
 	-command "deletetext" -accelerator Del
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Selectionner tout" -underline 13 \
+    $pad.filemenu.edit add command -label "Sélectionner tout" -underline 13 \
 	-command "selectall" -accelerator Ctrl+/
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
 #      -command "printtime"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Commenter selection" -underline 3 \
+    $pad.filemenu.edit add command -label "Commenter la sélection" -underline 3 \
 	-command "CommentSel" -accelerator Ctrl+m
-    $pad.filemenu.edit add command -label "Decommenter selection" -underline 0\
+    $pad.filemenu.edit add command -label "Décommenter la sélection" -underline 0\
 	-command "UnCommentSel" -accelerator Ctrl+M
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Indenter selection" -underline 0 \
+    $pad.filemenu.edit add command -label "Indenter la sélection" -underline 0 \
 	-command "IndentSel" -accelerator Ctrl+d
-    $pad.filemenu.edit add command -label "Dedenter selection" -underline 1 \
+    $pad.filemenu.edit add command -label "Désindenter la sélection" -underline 1 \
 	-command "UnIndentSel" -accelerator Ctrl+D
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add check -label "Retour à la ligne automatique" \
@@ -473,7 +509,7 @@ if {$lang == "eng"} {
 	-menu $pad.filemenu.exec
     $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
 	-command "execfile" -accelerator Ctrl-l
-    $pad.filemenu.exec add command -label "Evaluer la selection" -underline 0\
+    $pad.filemenu.exec add command -label "Evaluer la sélection" -underline 0\
 	-command "execselection" -accelerator Ctrl-y
 }
 
@@ -531,7 +567,7 @@ proc execselection {} {
 	       -title "Scilab working" -type ok -icon info
 	 } else {
 	   tk_messageBox -message \
-               "Scilab est occupé, attendez le prompt pour charger la selection" \
+               "Scilab est occupé, attendez le prompt pour charger la sélection" \
 	       -title "Scilab occupé" -type ok -icon info
 	 }
      } else {
@@ -591,6 +627,73 @@ proc execselection {} {
      }
 }
 
+proc importmatlab {} {
+    global pad listoffile sciprompt lang
+    if [ expr [string compare $sciprompt -1] == 0 ] {
+	if {$lang == "eng"} {
+	   tk_messageBox -message \
+             "Scilab is working, wait for the prompt to convert a Matlab file" \
+	       -title "Scilab working" -type ok -icon info
+	 } else {
+	   tk_messageBox -message \
+             "Scilab est occupé, attendez le prompt pour importer un fichier Matlab"\
+	       -title "Scilab occupé" -type ok -icon info
+	 }
+     } else {
+       if {$lang == "eng"} {
+	  set types {
+	    {"Matlab files" {*.m }} 
+	    {"All files" {* *.*}}
+	    }
+	  set dtitle "Matlab file to convert"
+       } else {
+	  set types {
+	    {"Fichiers Matlab" {*.m }} 
+	    {"Tous les fichiers" {*.* *}}
+	    }
+	    set dtitle "Fichier Matlab à importer"
+       }
+       set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+       if {$sourcefile !=""} {
+	 set sourcedir [file dirname $sourcefile]
+         set destfile [file rootname $sourcefile].sci 
+	 set convcomm "execstr(\"res=mfile2sci(\"\"$sourcefile\"\",\
+                      \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
+	 set impcomm \
+	      "if $convcomm==0 then \
+                 TK_EvalStr(\"scipad eval {delinfo; openfile $destfile} \"); \
+               else; \
+                 TK_EvalStr(\"scipad eval {failmatlabimp} \");\
+               end"
+         if {$lang == "eng"} {
+	     showinfo "Scilab is converting, please hold on..." }
+         if {$lang == "fr"} {
+	     showinfo "Scilab est en train de convertir, patientez SVP..." }
+         ScilabEval $impcomm
+       }
+     }
+}
+
+proc failmatlabimp {} {
+  global lang
+  if {$lang == "eng"} {
+     tk_messageBox -title "Matlab file import"  \
+       -message "Conversion of the file failed, see the Scilab window\
+                for details -- Perhaps report the error text and the\
+                offending Matlab file to \
+                http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
+                -icon error
+  }
+  if {$lang == "fr"} {
+     tk_messageBox -title "Import du fichier Matlab"  \
+       -message "La conversion du ficher a échoué, voyez dans la fenêtre\
+                Scilab pour plus d'informations -- Veuillez rapporter le\
+                message d'erreur et le fichier Matlab incriminé à\
+                http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
+                -icon error
+  }
+}
+
 # help menu
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
 if {$lang == "eng"} {
@@ -605,11 +708,11 @@ if {$lang == "eng"} {
 } else {
     $pad.filemenu add cascade -label "Aide" -underline 0 \
 	-menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "Apropos" -underline 1 \
+    $pad.filemenu.help add command -label "A propos" -underline 1 \
 	-command "aboutme" ;#-accelerator Shift-F1
     $pad.filemenu.help add command -label "Aide" -underline 0 \
         -command "helpme" -accelerator F1
-    $pad.filemenu.help add command -label "Quoi?" -underline 0 \
+    $pad.filemenu.help add command -label "Qu'est-ce ?" -underline 0 \
 	-command "helpword" -accelerator Ctrl-F1
 }
 
@@ -621,10 +724,11 @@ set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
 ##ES was here: added insertofftime 0 and exportselection
+## Francois Vogel, 21/04/04: changed insertofftime to 500, and added insertontime 500
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
-        -insertwidth 3 -insertborderwidth 2 -insertofftime 0 \
+        -insertwidth 3 -insertborderwidth 2 -insertofftime 500 -insertontime 500 \
         -insertbackground $CURCOLOR -selectbackground $SELCOLOR -exportselection 1
 set textareacur $pad.textarea  
 ####
@@ -775,7 +879,7 @@ proc showinfo {message} {
 }
 
 proc blinkbrace {w pos brace} {
-	global	bracefind fno
+	global	bracefind fno lang
 
 	switch $brace {
 		\{	{ set findbs {[{}]}; set bs "\}";\
@@ -822,7 +926,11 @@ proc blinkbrace {w pos brace} {
 		selection clear
 		$w see insert
 	} else {
-		showinfo "No corresponding <$bs> found!"
+            if {$lang == "eng"} {
+                showinfo "No corresponding <$bs> found!"
+            } else {
+                showinfo "Aucun <$bs> correspondant trouvé !"
+            }
 	}
 }
 
@@ -873,13 +981,17 @@ pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
 # this proc gets the posn and sets the statusbar
 proc keyposn {textarea} {
-    global pad
+    global pad lang
     $pad.statusind configure -state normal
     set indexin [$textarea index insert]
     $pad.statusind delete 0 end 
     # changement Matthieu PHILIPPE 30/11/2001
     scan $indexin "%d.%d" ypos xpos
-    $pad.statusind insert 0 "Line: $ypos   Column: $xpos"
+    if {$lang == "eng"} {
+        $pad.statusind insert 0 "Line: $ypos   Column: $xpos"
+    } else {
+        $pad.statusind insert 0 "Ligne: $ypos   Colonne: $xpos"
+    }
     $pad.statusind configure -state disabled
 }
 
@@ -967,12 +1079,12 @@ proc aboutme {} {
 	tk_messageBox -title "About" -type ok \
 	    -message "$winTitle $version\n originated by Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
-            Modified by Scilab Group.\nRevised by Enrico Segre 2003"
+            Modified by Scilab Group.\nRevised by Enrico Segre 2003,2004"
     } else {
-	tk_messageBox -title "Apropos" -type ok \
+	tk_messageBox -title "A propos" -type ok \
 	    -message "$winTitle $version\n créé par Joseph Acosta,\n\
 	    joeja@mindspring.com.\n\
-            Modifié par le Groupe Scilab.\nAmelioré par Enrico Segre 2003"
+            Modifié par le Groupe Scilab.\nAmélioré par Enrico Segre 2003,2004"
     }
 }
 
@@ -1031,6 +1143,7 @@ proc filesetasnewmat {} {
     global listoftextarea
     global pad
     global radiobuttonvalue
+    global lang
 
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
@@ -1047,7 +1160,11 @@ proc filesetasnewmat {} {
 	-value $winopened -variable radiobuttonvalue \
 	-command "montretext $pad.new$winopened"
     set radiobuttonvalue $winopened
-    showinfo "New Script"
+    if {$lang == "eng"} {
+        showinfo "New Script"
+    } else {
+        showinfo "Nouveau script"
+    }
     montretext $pad.new$winopened
     set fileName " "
     #inccount $pad.new$winopened
@@ -1160,15 +1277,52 @@ proc exitapp {} {
 proc montretext {textarea} {
     global listoffile
     global pad
+# Next line added by Francois VOGEL 16/04/04, to fix the silent clearing of 
+# selection
+    selection clear
     pack forget [gettextareacur]
     settextareacur $textarea
     $pad.yscroll configure -command "[gettextareacur] yview"
     $pad.xscroll configure -command "[gettextareacur] xview"
+# Next two lines added by Francois VOGEL, 21/04/04, to fix size/position bug of sliders
+    $pad.xscroll set [lindex [[gettextareacur] xview] 0] [lindex [[gettextareacur] xview] 1]
+    $pad.yscroll set [lindex [[gettextareacur] yview] 0] [lindex [[gettextareacur] yview] 1]
 #    settitle $listoffile("$textarea",filename)
     modifiedtitle $textarea
     pack  $textarea -in  $pad.bottomleftmenu -side left -expand 1 -fill both
     focus $textarea
     keyposn $textarea
+}
+
+# Francois VOGEL, 16/04/04, corrected and expanded by ES
+proc nextbuffer {} {
+    global pad listoftextarea listoffile radiobuttonvalue
+    set textarea [gettextareacur]
+    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+    set curbuf [expr $curbuf+1]
+    set nbuf [llength $listoftextarea]
+
+    if {$curbuf>$nbuf} {
+        set curbuf 1
+    }
+#    showinfo $curbuf
+    set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
+    montretext [lindex $listoftextarea [expr $curbuf-1]]
+}
+
+proc prevbuffer {} {
+   global pad listoftextarea listoffile radiobuttonvalue
+    set textarea [gettextareacur]
+    set curbuf [$pad.filemenu.wind index $listoffile("$textarea",filename)]    
+    set curbuf [expr $curbuf-1]
+    set nbuf [llength $listoftextarea]
+
+    if {$curbuf<1} {
+        set curbuf $nbuf
+    }
+#    showinfo $curbuf
+    set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
+    montretext [lindex $listoftextarea [expr $curbuf-1]]
 }
 
 
@@ -1230,13 +1384,13 @@ proc showopenwin {textarea} {
 	    # file is already opened
             if {$lang == "eng"} {
   	       tk_messageBox -type ok -title "Open file" -message \
-                   "This file is already opened! Save the current \
-                    opened file to an another name and reopen \
-                    it from disk"
+                   "This file is already opened! Save the current\
+                    opened file to an another name and reopen\
+                    it from disk!"
             } else {
   	       tk_messageBox -type ok -title "Ouvrir fichier" -message \
-                  "Cette fichier est deja ouvert! Sauvez-le sous un \
-                   autre nom y ouvrez-le par le disque!"
+                  "Ce fichier est déjà ouvert ! Sauvez-le sous un\
+                   autre nom et rouvrez-le à partir du disque !"
             }
 	    $pad.filemenu.wind invoke $res
 	}
@@ -1293,12 +1447,12 @@ proc openfile {file} {
 	    # file is already opened
             if {$lang == "eng"} {
   	       tk_messageBox -type ok -title "Open file" -message \
-                   "This file is already opened! Save the current opened \
-                    file to an another name and reopen it from disk"
+                   "This file is already opened! Save the current opened\
+                    file to an another name and reopen it from disk!"
             } else {
   	       tk_messageBox -type ok -title "Ouvrir fichier" -message \
-               "Cette fichier est deja ouvert! Sauvez-le sous un autre \
-                nom y ouvrez-le par le disque!"
+               "Ce fichier est déjà ouvert! Sauvez-le sous un\
+                autre nom et rouvrez-le à partir du disque !"
             }
 	}
 	selection clear
@@ -1350,7 +1504,7 @@ proc filetosave {textarea} {
 	set msgTitle "File has changed !"
     } else {
 	set msgChanged "Le contenu de $listoffile("$textarea",filename) a\
-            changé sur le disque, étes-vous sur de vouloir le sauvegarder ?"
+            changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
 	set msgTitle "Le fichier a changé"
     }
 
@@ -1592,80 +1746,183 @@ proc pastetext {} {
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase 
     global textareacur pad
+    global lang SearchEnd SearchPosI
 #    [gettextareacur] tag configure sel -background green
+# Francois VOGEL, 21/04/04
+    if {[winfo exists $w]} {
+        set pw $w
+    } else {
+        set pw $pad
+    }
     if {$SearchString!=""} {
-	if {$findcase=="1"} {
-	    set caset "-exact"
-	} else {
-	    set caset "-nocase"
-	}
-	if {$SearchDir == "forwards"} {
-	    set limit end
-	} else {
-	    set limit 1.0
-	}
-	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-			    -- $SearchString $SearchPos $limit]
-	set len [string length $SearchString]
-	if {$SearchPos != ""} {
-	    [gettextareacur] see $SearchPos
+        if {$findcase=="1"} {
+            set caset "-exact"
+        } else {
+            set caset "-nocase"
+        }
+# Francois VOGEL, 21/04/04, removed $limit to allow for wrap-around (both directions)
+# and find in selected text only
+#	if {$SearchDir == "forwards"} {
+#	    set limit end
+#	} else {
+#	    set limit 1.0
+#	}
+#	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+#			    -- $SearchString $SearchPos $limit]
+        if {$SearchEnd == "No_end"} {
+            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                            -- $SearchString $SearchPos]
+        } else {
+            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                            -- $SearchString $SearchPos $SearchEnd]
+        }
+        set len [string length $SearchString]
+        if {$SearchPos != ""} {
+	      [gettextareacur] see $SearchPos
 #	    tkTextSetCursor [gettextareacur] $SearchPos
-	    [gettextareacur] mark set insert $SearchPos
+            [gettextareacur] mark set insert $SearchPos
             [gettextareacur] tag remove sel 0.0 end
-	    [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
-	    
-	    if {$SearchDir == "forwards"} {
-		set SearchPos "$SearchPos + $len char"
-	    }         
+	      [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
+	      if {$SearchDir == "forwards"} {
+                set SearchPos "$SearchPos + $len char"
+            }         
 	} else {
-	    set SearchPos "0.0"
-	}
+# Francois VOGEL, 21/04/04, added message box
+#	    set SearchPos "0.0"
+            if {$SearchEnd == "No_end"} {
+                if {$lang == "eng"} {
+                    tk_messageBox -message "No match found for $SearchString" -parent $pw -title "Find"
+                } else {
+                    tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée" -parent $pw -title "Rechercher"
+                }
+                set SearchPos insert
+            } else {
+                if {$lang == "eng"} {
+                    set answer [tk_messageBox -message "No match found in the selection for $SearchString\nWould you like to look for it in the entire text?" \
+                                  -parent $pw -title "Find" -type yesno -icon question]
+                } else {
+                    set answer [tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?" \
+                                  -parent $pw -title "Rechercher" -type yesno -icon question]
+                }
+                if {![string compare $answer "yes"]} {
+                    if {$SearchDir == "forwards"} {
+                        set SearchPos "insert + $len char"
+                    } else {
+                        set SearchPos insert
+                    }
+                    set SearchEnd "No_end"
+                } else {
+                    set SearchPos $SearchPosI
+                }
+            }
+        }
+    } else {
+# Francois VOGEL, 21/04/04
+        if {$lang == "eng"} {
+            tk_messageBox -message "You are searching for an empty string!" -parent $pw -title "Find"
+        } else {
+            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $pw -title "Rechercher"
+        }
     }
     focus [gettextareacur]
 }
 
-proc ReplaceIt {} {
+proc ReplaceIt {once_or_all} {
     global SearchString SearchDir ReplaceString SearchPos findcase
     global textareacur
+    global find lang SearchEnd
+# Francois VOGEL, 21/04/04
     if {$SearchString != ""} {
-	if {$findcase=="1"} {
-	    set caset "-exact"
-	} else {
-	    set caset "-nocase"
-	}
-	if {$SearchDir == "forwards"} {
-	    set limit end
-	} else {
-	    set limit 1.0
-	}
-	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
-			    -- $SearchString $SearchPos $limit]
-	set len [string length $SearchString]
-	if {$SearchPos != ""} {
-	    [gettextareacur] see $SearchPos
-	    [gettextareacur] delete $SearchPos "$SearchPos+$len char"
-	    [gettextareacur] insert $SearchPos $ReplaceString
-	    colorize [gettextareacur] \
-		[[gettextareacur] index "$SearchPos linestart"] \
-		[[gettextareacur] index "$SearchPos lineend"]
-	    if {$SearchDir == "forwards"} {
-		set SearchPos "$SearchPos+$len char"
-	    }         
-	} else {
-	    set SearchPos "0.0"
-	}
+        if {$findcase=="1"} {
+            set caset "-exact"
+        } else {
+            set caset "-nocase"
+        }
+# Francois VOGEL, 21/04/04, removed $limit to allow for wrap-around (both directions)
+# and replace in selected text only
+#	if {$SearchDir == "forwards"} {
+#	    set limit end
+#	} else {
+#	    set limit 1.0
+#	}
+#	set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+#			    -- $SearchString $SearchPos $limit]
+        if {$SearchEnd == "No_end"} {
+            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                            -- $SearchString $SearchPos]
+        } else {
+            set SearchPos [ [gettextareacur] search -count len $caset -$SearchDir \
+                            -- $SearchString $SearchPos $SearchEnd]
+        }
+        set len [string length $SearchString]
+        if {$SearchPos != ""} {
+            [gettextareacur] see $SearchPos
+            [gettextareacur] delete $SearchPos "$SearchPos+$len char"
+            [gettextareacur] insert $SearchPos $ReplaceString
+            colorize [gettextareacur] \
+              [[gettextareacur] index "$SearchPos linestart"] \
+              [[gettextareacur] index "$SearchPos lineend"]
+            [gettextareacur] mark set insert $SearchPos
+            [gettextareacur] tag remove sel 0.0 end
+            set lenR [string length $ReplaceString]
+            [gettextareacur] tag add sel $SearchPos  "$SearchPos + $lenR char"
+            if {$SearchDir == "forwards"} {
+                set SearchPos "$SearchPos+$lenR char"
+# Francois VOGEL, 21/04/04, $SearchEnd must be adjusted for the search to occur in the new selection
+                if {$SearchEnd != "No_end" } {
+                    if {int([[gettextareacur] index $SearchEnd])==int([[gettextareacur] index $SearchPos]) } {
+                        set SearchEnd "$SearchEnd+[expr $lenR - $len] char"
+                    }
+                }
+            }         
+            inccount [gettextareacur]
+            focus [gettextareacur]
+            return "Done"
+        } else {
+# Francois VOGEL, 21/04/04, added message box
+#	    set SearchPos "0.0"
+            set SearchPos insert
+            if {$once_or_all == "once"} {
+                if {$lang == "eng"} {
+                    tk_messageBox -message "No match found for $SearchString" -parent $find -title "Replace"
+                } else {
+                    tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée" -parent $find -title "Remplacer"
+                }
+            }
+            return "No_match"
+        }
+    } else {
+# Francois VOGEL, 21/04/04
+        if {$lang == "eng"} {
+            tk_messageBox -message "You are searching for an empty string!" -parent $find -title "Find"
+        } else {
+            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $find -title "Rechercher"
+        }
     }
-    inccount [gettextareacur]
+#    inccount [gettextareacur]
 }
 
 proc ReplaceAll {} {
-      global SearchPos SearchString
-       if {$SearchString != ""} {
-                ReplaceIt
-	while {$SearchPos!="0.0"} {
-		ReplaceIt
-	}
-       }
+      global SearchPos SearchString lang find
+# Francois VOGEL, 21/04/04
+#      if {$SearchString != ""} {
+#          ReplaceIt
+#          while {$SearchPos!="0.0"} {
+#              ReplaceIt
+#          }
+#      }
+    if {$SearchString != ""} {
+        set anotherone [ReplaceIt once]
+        while {$anotherone != "No_match"} {
+            set anotherone [ReplaceIt all]
+        }
+    } else {
+        if {$lang == "eng"} {
+            tk_messageBox -message "You are searching for an empty string!" -parent $find -title "Find"
+        } else {
+            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $find -title "Rechercher"
+        }
+    }
 }
 
 proc CancelFind {w} {
@@ -1677,8 +1934,24 @@ proc CancelFind {w} {
 }
 
 proc ResetFind {} {
-    global SearchPos
-    set SearchPos insert
+#    global SearchPos
+#    set SearchPos insert
+# Francois VOGEL, 21/04/04, added find in current selection
+    global SearchPos SearchEnd SearchPosI SearchDir
+    catch {[[gettextareacur] get sel.first sel.last]} sel
+    if {$sel == "text doesn't contain any characters tagged with \"sel\""} {
+        set SearchPos insert
+        set SearchEnd "No_end"
+    } else {
+        if {$SearchDir=="forwards"} {
+            set SearchPos [[gettextareacur] index sel.first]
+            set SearchEnd [[gettextareacur] index sel.last]
+        } else {
+            set SearchPos [[gettextareacur] index sel.last]
+            set SearchEnd [[gettextareacur] index sel.first]
+        }
+        set SearchPosI $SearchPos
+    }
 }
 
 # procedure to find text
@@ -1693,7 +1966,10 @@ proc findtext {typ} {
 	    wm title $find "Rechercher"
 	}
 	setwingeom $find
-	ResetFind
+# Francois VOGEL, 21/04/04, this is already done by invoking down radiobutton below
+# as I added -command on this radiobutton to take care of the case where find shall
+# look backwards in selection
+#	ResetFind
 	frame $find.l
 	frame $find.l.f1
 	if {$lang == "eng"} {
@@ -1739,19 +2015,19 @@ proc findtext {typ} {
 	    button $find.f2.button1 -text "Rechercher suivant" -command \
 		"FindIt $find" -width 15 -height 1 -underline 5 
 	    button $find.f2.button2 -text "Annuler" \
-		-command "CancelFind $find" -width 10 -underline 0	    
+		-command "CancelFind $find" -width 15 -underline 0	    
 	}
 	if {$typ=="replace"} {
 	    if {$lang == "eng"} {
-		button $find.f2.button3 -text "Replace" -command ReplaceIt \
+		button $find.f2.button3 -text "Replace" -command "ReplaceIt once"\
 		    -width 10 -height 1 -underline 0
 		button $find.f2.button4 -text "Replace All" \
 		    -command ReplaceAll -width 10 -height 1 -underline 8
 	    } else {
-		button $find.f2.button3 -text "Remplacer" -command ReplaceIt \
-		    -width 10 -height 1 -underline 0
+		button $find.f2.button3 -text "Remplacer" -command "ReplaceIt once" \
+		    -width 15 -height 1 -underline 0
 		button $find.f2.button4 -text "Remplacer tout" \
-                    -command ReplaceAll -width 12 -height 1 -underline 8
+                    -command ReplaceAll -width 15 -height 1 -underline 8
 	    }
 	    pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
 	} else {
@@ -1759,16 +2035,17 @@ proc findtext {typ} {
 	}
 	frame $find.l.f4
 	frame $find.l.f4.f3 -borderwidth 2 -relief groove
+# Francois VOGEL 21/04/04, added -command on these two radiobuttons
 	if {$lang == "eng"} {
 	    radiobutton $find.l.f4.f3.up -text "Up" -underline 0 \
-		-variable SearchDir -value "backwards" 
+		-variable SearchDir -value "backwards" -command "ResetFind"
 	    radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 \
-		-variable SearchDir -value "forwards"
+		-variable SearchDir -value "forwards" -command "ResetFind"
 	} else {
 	    radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 0 \
-		-variable SearchDir -value "backwards" 
+		-variable SearchDir -value "backwards" -command "ResetFind"
 	    radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 0 \
-		-variable SearchDir -value "forwards"
+		-variable SearchDir -value "forwards" -command "ResetFind"
 	} 
 	$find.l.f4.f3.down invoke
 	pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
@@ -1788,8 +2065,8 @@ proc findtext {typ} {
      # each widget must be bound to th eevents of the other widgets
      proc bindevnt {widgetnm types find} {
 	if {$types=="replace"} {
-		bind $widgetnm <Return> "ReplaceIt"
-		bind $widgetnm <Control-r> "ReplaceIt"
+		bind $widgetnm <Return> "ReplaceIt once"
+		bind $widgetnm <Control-r> "ReplaceIt once"
 		bind $widgetnm <Control-a> "ReplaceAll"
 	} else {
 		bind $widgetnm <Return> "FindIt $find"
@@ -2031,6 +2308,18 @@ bind Text <Control-d> ""
 bind $pad <Control-d> {IndentSel}
 bind $pad <Control-D> {UnIndentSel}
 
+# Francois VOGEL 16/04/04, ES 19/4/04, FV 21/04/04
+bind $pad <F7> {nextbuffer}
+bind $pad <F6> {prevbuffer}
+bind $pad <Control-F7> {nextbuffer}
+bind $pad <Control-F6> {prevbuffer}
+
+bind $pad <Control-plus> {set FontSize [expr round($FontSize*1.11)]; \
+                             setfontscipad $FontSize}
+bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
+                              setfontscipad $FontSize}
+
+bind $pad <F4> {importmatlab}
 
 ###################################################################
 #set zed_dir [file dirname [info script]] 
@@ -2223,10 +2512,13 @@ proc textUndoer:undo {id} {
     global textUndoer
 
     if {[catch {set cursor [lifo:pop $textUndoer($id,cursorStack)]}]} {
-        return
+        return "Undo_lifo_empty"
     }
-    
-    set popArgs [lifo:pop $textUndoer($id,commandStack)] 
+# Francois VOGEL, 16/04/04, added catch to fix the bug that happens if undo
+# is performed once too much
+    if {[catch {set popArgs [lifo:pop $textUndoer($id,commandStack)]}]} {
+        return "Undo_lifo_empty"
+    } 
     textRedoer:checkpoint $id $popArgs
     
     eval $textUndoer($id,originalCommand) $popArgs
@@ -2234,6 +2526,11 @@ proc textUndoer:undo {id} {
     $textUndoer($id,originalCommand) mark set insert $cursor
     # make sure insertion point can be seen
     $textUndoer($id,originalCommand) see insert
+# Francois VOGEL, 21/04/04, added test to check empty lifo
+    global lifo
+    if {$lifo($textUndoer($id,commandStack),last)<$lifo($textUndoer($id,commandStack),first)} {
+        return "Undo_lifo_empty"
+    }
 }
 
 
@@ -2341,10 +2638,15 @@ proc undo_menu_proc {} {
 
     #textUndoer:undo $undo_id
     set i1 [[gettextareacur] index insert]
-    textUndoer:undo $listundo_id("[gettextareacur]")
+    set isempty [textUndoer:undo $listundo_id("[gettextareacur]")]
     set i2 [[gettextareacur] index insert]
     colorize [gettextareacur] $i1 [[gettextareacur] index "$i2+1l linestart"]
-    inccount [gettextareacur]
+# Francois VOGEL, 21/04/04, added test and outccount
+    if {$isempty != "Undo_lifo_empty"} {
+        inccount [gettextareacur]
+    } else {
+        outccount [gettextareacur]
+    }
 }
 
 proc redo_menu_proc {} {
@@ -2708,6 +3010,7 @@ proc modifiedtitle {textarea} {
 }
 
 proc whichfun {indexin} {
+    global lang
 #it is implicitely meant that indexin refers to a position in textareacur
     set textarea [gettextareacur]
     scan $indexin "%d.%d" ypos xpos
@@ -2771,22 +3074,37 @@ proc whichfun {indexin} {
         
         scan $precfun "%d." beginfunline 
 	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+      if {$lang == "eng"} {
         tk_messageBox -message \
 	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
+      } else {
+        tk_messageBox -message \
+	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
+      }
         return [list $funname $lineinfun] 
     }
 }
 
 proc showwhichfun {} {
+    global lang
     set textarea [gettextareacur]
     set infun [whichfun [$textarea index insert]]
     if {$infun !={} } {
 	set funname [lindex $infun 0]
 	set lineinfun [lindex $infun 1]
-      tk_messageBox -message "function $funname line $lineinfun"
+      if {$lang == "eng"} {
+        tk_messageBox -message "Function $funname line $lineinfun"
+      } else {
+        tk_messageBox -message "Fonction $funname ligne $lineinfun"
+      }
     } else {
-      tk_messageBox -message \
-	  "The cursor is not currently inside a function body"
+      if {$lang == "eng"} {
+        tk_messageBox -message \
+	    "The cursor is not currently inside a function body"
+      } else {
+        tk_messageBox -message \
+	    "Le curseur ne se trouve pas à l'intérieur d'une fonction"
+      }
     }
 }
 
