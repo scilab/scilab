@@ -6,8 +6,4 @@ function [tree]=sci_tic(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-no_equiv(expression2code(tree))
-
-set_infos("See timer() for solutions");
-
 endfunction

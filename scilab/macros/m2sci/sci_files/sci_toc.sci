@@ -6,8 +6,6 @@ function [tree]=sci_toc(tree)
 // Ouput: tree = Scilab equivalent for tree
 // V.C.
 
-no_equiv(expression2code(tree))
-
-set_infos("See timer() for solutions");
-
+tree.lhs(1).dims=list(1,1)
+tree.lhs(1).type=Type(Double,Real)
 endfunction
