@@ -40,6 +40,11 @@ end
 
 I=P.statements
 
+// To avoid to have some instructions on the first line (function prototype)
+if I(1)<>list("EOL") then
+  C=cat_code(C,instruction2code(list("EOL"),%T));
+end
+
 // For each statement, generate corresponding code
 for i=1:size(I)-2 // -2 to ignore last return+EOL
   C=cat_code(C,instruction2code(I(i),prettyprint));
