@@ -30,22 +30,10 @@ if rhs==1 then
       dim=Unknown
     end
     
-    tree=Funcall("cell",1,Rhs(n,n),tree.lhs)
     tree.lhs(1).dims=list(dim,dim)
     tree.lhs(1).type=Type(Cell,Unknown)
   // cell([n1,n2,...])
   elseif not_a_scalar(n)
-    tmp=n
-    if typeof(n)<>"variable" then
-      tmp=gettempvar()
-      insert(Equal(list(tmp),n))
-    end
-    newrhs=list()
-    for k=1:size(n.dims)
-      newrhs(k)=Operation("ext",list(tmp,Cste(k)),list())
-    end
-    tree=Funcall("cell",1,newrhs,tree.lhs)
-
     // All dimensions are unknown because we can not compute them here...
     tree.lhs(1).dims=list()
     for k=1:size(tree.rhs)
@@ -71,7 +59,7 @@ else
       tree.rhs(k)=newn
     end
   end
-  tree.name="cell"
+
   // If one input is a Cste, we can infer corresponding dimension...
   tree.lhs(1).dims=list()
   for k=1:size(tree.rhs)
