@@ -12,18 +12,14 @@ OBJSC2 =readwin.o wtloop.o misc.o \
 	strings.o files.o tclWinError.o 
 
 OBJSC = $(OBJSC1) $(OBJSC2)
-
 OBJSF = 
 
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) -I../ -Wall
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
-
-
 
 #================== dependencies 
 
@@ -33,6 +29,13 @@ $(OBJSC) : wgnuplib.h
 readcons.o	: readline.c wtextc.h 
 readgcwin.o	: readline.c 
 readwin.o 	: readline.c
+
+#================= mainapp 
+
+all	:: ../../libs/scimain.o
+
+../../libs/scimain.o	: 
+	$(CC) $(CFLAGS) -o ../../libs/scimain.o -c scimain.c 
 
 #================= resources 
 
