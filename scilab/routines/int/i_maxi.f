@@ -1,9 +1,9 @@
       subroutine i_maxi()
 c     -------------------------------
-c     maxi mini interface 
+c     max interface 
+c     Author: Serge Steer, Copyright INRIA
 c     -------------------------------
       character*(2) type
-c     Interface for maxi and mini 
       INCLUDE '../stack.h'
       logical checkrhs,checklhs,getsmat
       integer gettype,itype,topk
@@ -80,7 +80,7 @@ c     ------------max of each column of a
          ilk=iadr(lstk(top))
          l=sadr(ilk+4)
          if (job.ne.0) then
-            if(ilk+4.gt.lk) then
+            if(ilk+4.ge.lk) then
                call int2db(mnr,istk(lk),-1,stk(l),-1)
             else
                call int2db(mnr,istk(lk),1,stk(l),1)

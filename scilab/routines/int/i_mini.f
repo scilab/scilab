@@ -1,14 +1,15 @@
       subroutine i_mini()
 c     -------------------------------
-c     mini  interface 
+c     min interface 
+c     Author: Serge Steer, Copyright INRIA
 c     -------------------------------
       character*(2) type
       INCLUDE '../stack.h'
       logical checkrhs,checklhs,getsmat
       integer gettype,itype,topk
+      integer iadr,sadr
       external memused,uppertype
       integer memused,uppertype
-      integer iadr,sadr
       integer s
 c
       iadr(l)=l+l-1
@@ -25,9 +26,9 @@ c
       itype=gettype(topk)
 
       if(rhs.gt.1.and.itype.ne.10) goto 100
+c
 
-c=====mini  (A1)
-c     ------simple case one argument which is a matrix or vector 
+c     mini(A1)
  10   if(rhs.eq.2) then 
          if(.not.getsmat(fname,topk,top,m2,n2,1,1,lr2,nlr2))return
          if (nlr2.ne.1) then
@@ -74,13 +75,12 @@ c     ------------min of each column of a
       istk(il+1)=mr
       istk(il+2)=nr
       lstk(top+1)=sadr(lr1+memused(it,mnr))
-
       if(lhs.eq.2) then
          top=top+1
          ilk=iadr(lstk(top))
          l=sadr(ilk+4)
          if (job.ne.0) then
-            if(ilk+4.gt.lk) then
+            if(ilk+4.ge.lk) then
                call int2db(mnr,istk(lk),-1,stk(l),-1)
             else
                call int2db(mnr,istk(lk),1,stk(l),1)
@@ -252,4 +252,3 @@ c     attention lv doit pointer sur une frontiere de double precision
       endif
       return
       end
-

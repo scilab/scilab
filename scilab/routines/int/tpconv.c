@@ -78,6 +78,15 @@ void *dy;
     case 4:
       TCONV(integer1,integer);
       break;
+    case 11:
+      TCONV(integer1,unsigned char);
+      break;
+    case 12:
+      TCONV(integer1,unsigned short);
+      break;
+    case 14:
+      TCONV(integer1,unsigned int);
+      break;
     }
     break;
   case 2:
