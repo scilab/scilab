@@ -1,14 +1,14 @@
-// [x, flag, err, iter, res] = pcg(A, b, x, M, maxIter, tol)
+// [x, flag, err, iter, res] = pcg(A, b, tol, maxIter, M, x)
 //
 // PCG solves the symmetric positive definite linear system Ax=b 
 // using the Preconditionned Conjugate Gradient.
 //
 // input   A        REAL symmetric positive definite matrix or function
 //         b        REAL right hand side vector
-//         x        REAL initial guess vector
-//         M        REAL preconditioner matrix (default: none)
-//         maxIter  INTEGER maximum number of iterations (default: 50)
 //         tol      REAL error tolerance (default: 1e-8)
+//         maxIter  INTEGER maximum number of iterations (default: 50)
+//         M        REAL preconditioner matrix (default: none)
+//         x        REAL initial guess vector
 //
 // output  x        REAL solution vector
 //         flag     INTEGER: 0 = solution found to tolerance
@@ -31,7 +31,7 @@
 
 // Sage Group (IRISA, 2004)
 
-function [x, err, iter, flag, res] = pcg(A, varargin)
+function [x, flag, err, iter, res] = pcg(A, varargin)
 
 // -----------------------
 // Parsing input arguments
@@ -58,13 +58,9 @@ if (matrixType == 1),
   if (size(A,1) ~= size(A,2)),
     error("pcg: matrix A must be square");
   end
-  // We don't test for symmetry (too expensive)
-  //if ( bool2s(or( A ~= A')) == 1 ),
-  //  error("pcg: matrix A must be symmetric");
-  //end
 end
 
-// Parsing the right hand side b
+// Parsing right hand side b
 b=varargin(1);
 if (size(b,2) ~= 1),
   error("pcg: right hand side b must be a column vector");
@@ -207,4 +203,7 @@ end
 // test for convergence
 if (err > tol),
   flag = 1; 
+  if (lhs < 2),
+    warning('PCG did not converge');
+  end
 end

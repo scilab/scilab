@@ -13,6 +13,6 @@ include ../../Makefile.incl.mak
 NAME = sparselib
 NAM = SCI/macros/sparse
 
-MACROS = pcg.sci
+MACROS = pcg.sci gmres.sci
 
 include ../Make.lib.mak
