@@ -199,6 +199,11 @@
     <xsl:apply-templates select="VERB|text()"/></a>
 </xsl:template>
 
+<xsl:template match="IMG">
+  <IMG ALIGN="CENTERED"> <xsl:attribute name="src"><xsl:value-of select='@src'/></xsl:attribute>
+    <xsl:apply-templates select="VERB|text()"/> </IMG>
+</xsl:template>
+
 <!-- paragraph -->
 <xsl:template match="P"><p><xsl:apply-templates/></p></xsl:template>
 
