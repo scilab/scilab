@@ -152,6 +152,10 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
   int *zone, *fill, kp, perm[3], zxy[3], color_min;
   integer ii[3];
 
+  /* pour le pre-cliping */
+  integer WIRect[4];
+  double Fxmin, Fxmax, Fymin, Fymax;
+
   /* choice between zmin and zmax given by the user or computed
    *   with the min and max z values. In matdes.c I have put 
    * zminmax[0]= zminmax[1]=0 if the user don't give this argument 
@@ -238,8 +242,13 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
      2/ loop of the triangles : each triangle is finally decomposed 
      into its differents zones (polygons) by the function PaintTriangle   
   */
-  for ( j = 0 ; j < *Ntr ; j++) {
 
+  get_frame_in_pixel(WIRect);
+  Fxmin = (double) WIRect[0];  Fymin = (double) WIRect[1];
+  Fxmax = (double) WIRect[2];  Fymax = (double) WIRect[3];
+
+  for ( j = 0 ; j < *Ntr ; j++) {
+    double xmin, xmax, ymin, ymax;
     /* retrieve node numbers and functions values */
     for ( k = 0 ; k < 3 ; k++ ) {
       ii[k] = (integer) triangles[j+(*Ntr)*(k+1)] - 1;      
@@ -257,8 +266,29 @@ void newfec(integer *xm,integer *ym,double *triangles,double *func,integer *Nnod
       fxy[k] = func[ii[kp]]; zxy[k] = zone[ii[kp]];
     };
 
-    /* call the "painting" function */
-    PaintTriangle(sx, sy, fxy, zxy, zlevel, fill);
+  /* essai de pre-clipping tous les triangles en dehors de la zone
+     d'affichage ne seront pas traités */
+    xmin = xmax = sx[0]; ymin = ymax = sy[0];
+    if ( sx[1] < sx[2] ) 
+      { 
+	xmin = Min(xmin,sx[1]); xmax = Max(xmax,sx[2]);
+      } 
+    else 
+      {
+	xmin = Min(xmin,sx[2]); xmax = Max(xmax,sx[1]);
+      }
+    if ( sy[1] < sy[2] )
+      { 
+	ymin = Min(ymin,sy[1]); ymax = Max(ymax,sy[2]);
+      }
+    else
+      {
+	ymin = Min(ymin,sy[2]); ymax = Max(ymax,sy[1]);
+      }
+
+    if ( xmax > Fxmin  &&  ymax > Fymin  &&  xmin < Fxmax  &&  ymin < Fymax )  
+      /* call the "painting" function */
+      PaintTriangle(sx, sy, fxy, zxy, zlevel, fill);
   }
   frame_clip_off();
 }
@@ -402,13 +432,15 @@ static void PaintTriangle (double *sx, double *sy, double *fxy, int *zxy, double
 	  PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
-static void FindIntersection(double *sx, double *sy, double *fxy, double z, int inda, int indb, integer *xint, integer *yint)
+static void FindIntersection(double *sx, double *sy, double *fxy, double z, 
+			     int inda, int indb, integer *xint, integer *yint)
 {
   double alpha;
   alpha = (z - fxy[inda])/(fxy[indb] - fxy[inda]);
   *xint = inint((1 - alpha)*sx[inda] + alpha*sx[indb]);
   *yint = inint((1 - alpha)*sy[inda] + alpha*sy[indb]);
 }
+
 
 
 

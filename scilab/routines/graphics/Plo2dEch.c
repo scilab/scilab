@@ -12,9 +12,6 @@
 #include "PloEch.h"
 #include "Entities.h"
 
-extern void   set_delete_win_mode();
-extern void   set_no_delete_win_mode();
-
 /*----------------------------------------------
  * A List for storing Window scaling information 
  *----------------------------------------------*/
@@ -565,6 +562,15 @@ int getscale2d(WRect,FRect,logscale,ARect)
   return(0);
 }
 
+void get_frame_in_pixel(integer WIRect[])
+{
+  /* ajout bruno */
+  WIRect[0] = Cscale.WIRect1[0];
+  WIRect[1] = Cscale.WIRect1[1];
+  WIRect[2] = Cscale.WIRect1[0] +  Cscale.WIRect1[2];
+  WIRect[3] = Cscale.WIRect1[1] +  Cscale.WIRect1[3];
+}
+
 /*-------------------------------------------
  * changes selected items in the current scale 
  * flag gives which component must be used for 
@@ -995,8 +1001,6 @@ void zoom_get_rectangle(bbox)
   integer modes[2];
   double x0,yy0,x,y,xl,yl;
 
-  set_no_delete_win_mode();
-
   modes[0]=1;modes[1]=0; /* for xgemouse only get mouse mouvement*/ 
 
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1005,7 +1009,6 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xget","color",&verbose,&color,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,style,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
 
 #ifdef WIN32
   SetWinhdc();
@@ -1049,8 +1052,6 @@ void zoom_get_rectangle(bbox)
   C2F(dr)("xset","line style",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  set_delete_win_mode();
-  wininfo(" ");
 #ifdef WIN32
   ReleaseWinHdc();
   SciMouseRelease();
@@ -1314,4 +1315,5 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
 
 }
+
 
