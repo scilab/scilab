@@ -16,6 +16,9 @@
 #include "../graphics/Graphics.h"
 #include "../graphics/PloEch.h"
 #include "matdes.h"
+#define SciWin() if(C2F(sciwin)() !=0)\
+        {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
+
 
 
 /* The following NUMSETFONC and KeyTab_ definition should be coherent
@@ -608,7 +611,7 @@ int scichamp_G(fname, func, fname_len)
   GetRect(6,opts);
   GetStrf(7,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -693,7 +696,7 @@ int scicontour(fname, fname_len)
   GetOptionalIntArg(8,"flag",&iflag,3,opts);
   GetOptionalDoubleArg(9,"ebox",&ebox,6,opts);
   GetOptionalDoubleArg(10,"zlev",&zlev,1,opts);
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
   C2F(contour)(stk(l1), stk(l2), stk(l3), &m3, &n3, &flagx, &nz, stk(l4), theta, alpha,
 	       Legend, iflag, ebox, zlev, bsiz);
@@ -773,7 +776,7 @@ int scicontour2d_G(fname, func, fname_len)
   GetRect(8,opts);
   GetNax(9,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -850,7 +853,7 @@ int sciparam3d(fname, fname_len)
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
 
-  C2F(sciwin)();
+  SciWin();
   GetOptionalDoubleArg(4,"theta",&theta,1,opts);
   GetOptionalDoubleArg(5,"alpha",&alpha,1,opts);
   GetLegend(6,opts);
@@ -971,7 +974,7 @@ int sciparam3d1(fname, fname_len)
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
 
   if (m1 == 1 && n1 > 1) { m1 = n1;    n1 = 1; }
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
   /* NG beg */
   isfac=-1;
@@ -1053,7 +1056,7 @@ int scigeom3d(fname, fname_len)
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
   if (m1 * n1 == 0)  { LhsVar(1) = 0; return 0;}
-  C2F(sciwin)();
+  SciWin();
   ix1 = m1 * n1;
   C2F(geom3d)(stk(l1), stk(l2), stk(l3), &ix1);
   LhsVar(1)=1;
@@ -1151,7 +1154,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
 	return 0;
       }
   }
-  C2F(sciwin)();
+  SciWin();
   if (version_flag() == 0) iflag_def[1]=8;
   else iflag_def[1]=2; /* F.Leray 15.06.04 : if switching back to old graphic style */
 
@@ -1183,7 +1186,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   }
   
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
  
   /******************** 24/015/2002 ********************/
@@ -1333,7 +1336,7 @@ int sciplot2d(fname, fname_len)
   GetNax(7+iskip,opts);
   if (iskip==0) GetLogflags(8,opts);
 
-  C2F(sciwin)(); /* required here to make version_flag() known */
+  SciWin(); 
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -1539,7 +1542,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
   GetNax(7+iskip,opts);
   if (iskip==0) GetLogflags(8,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -1621,7 +1624,7 @@ int scigrayplot(fname, fname_len)
   GetRect(5,opts);
   GetNax(6,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -1693,7 +1696,7 @@ int scimatplot(fname, fname_len)
   GetRect(3,opts);
   GetNax(4,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -1745,7 +1748,7 @@ int scigray2plot(fname, fname_len)
   GetRhsVar(2, "d", &m2, &n2, &l2);
   CheckLength(2,m2*n2,4);
   if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
-  C2F(sciwin)();
+  SciWin();
   
   /* NG beg */
   if (version_flag() == 0)
@@ -1794,7 +1797,7 @@ int scixarc(fname,fname_len)
   integer m1,n1,l1,l2,l3,l4,l5,l6;
   long hdl;/* NG */
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(6,6);
   GetRhsVar(1,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);
   GetRhsVar(2,"d",&m1,&n1,&l2);CheckScalar(2,m1,n1);
@@ -1828,7 +1831,7 @@ int scixarcs(fname,fname_len)
   long  hdl;
   int i,a1,a2;
   /* NG end */
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,2);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -1889,7 +1892,7 @@ int scixfarcs(fname,fname_len)
   long  hdl;
   int i,a1,a2;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,2);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -1943,7 +1946,7 @@ int sciarrows(fname,fname_len)
   integer m4,n4,l4,mn2;
   double arsize=-1.0;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(2,4);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -1992,7 +1995,7 @@ int scixsegs(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,m3=1,n3=1,l3; 
   double arsize=0;
 
-  C2F(sciwin)();
+  SciWin();
 
   CheckRhs(2,3);
 
@@ -2049,7 +2052,7 @@ int scixaxis(fname,fname_len)
   GetRhsVar(3,"d",&m3,&n3,&l3); CheckLength(1,m3*n3,3);
   GetRhsVar(4,"d",&m4,&n4,&l4); CheckLength(1,m4*n4,2);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(dr1)("xaxis","v",&v,istk(l2),&v,&v,&v,&v,stk(l1),stk(l3),stk(l4),&dv,6L,2L);
   LhsVar(1)=0;
   return 0;
@@ -2072,7 +2075,7 @@ int scixchange(fname,fname_len)
   GetRhsVar(3,"c",&m3,&n3,&l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
-  C2F(sciwin)();
+  SciWin();
   if ( strncmp(cstk(l3),"i2f",3) == 0) 
     {
       GetRhsVar(1,"i",&m1,&n1,&l1);
@@ -2140,7 +2143,7 @@ int scixclea(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
   integer v;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,4);
   switch ( Rhs ) 
     {
@@ -2177,7 +2180,7 @@ int scixclear(fname,fname_len)
 
   CheckRhs(0,2); /* NG  */ /*CheckRhs(-1,1) */ 
   CheckLhs(0,1);
-  C2F(sciwin)();
+  SciWin();
   if (Rhs == 1) 
     {
       GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -2218,7 +2221,7 @@ int scixclick(fname,fname_len)
 
   iflag = ( Rhs >= 1) ? 1 :0;
 
-  C2F(sciwin)();
+  SciWin();
 
   switch (Lhs) {
   case 4 : 
@@ -2271,7 +2274,7 @@ int scixend(fname,fname_len)
   sciPointObj * figure = NULL;
   struct BCG *Xgc;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(-1,0);
  /* printf("Type de Driver: %c\n",GetDriver());
   printf("Type d'ID     : %d\n\n",GetDriverId());
@@ -2307,7 +2310,7 @@ int scixgrid(fname,fname_len)
     CheckScalar(1,m1,n1);
     style = (integer) *stk(l1);
   }
-  C2F(sciwin)();
+  SciWin();
   C2F(xgrid)(&style); /* test on version_flag() inside Plo2.c F.Leray 07.05.04 */
   LhsVar(1)=0;
   return 0;
@@ -2325,7 +2328,7 @@ int scixfpoly(fname,fname_len)
 
   long hdl; /* NG */
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(2,3);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -2364,7 +2367,7 @@ int scixfpolys(fname,fname_len)
   int i,color;
   long hdl;
 
-  C2F(sciwin)();
+  SciWin();
 
   CheckRhs(2,3);
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -2430,7 +2433,7 @@ int scixget(fname,fname_len)
   integer flagx=0,x1[10],x2, m1,n1,l1,m2,n2,l2,l3,v,i ;
   double dv;
 
-  C2F(sciwin)();
+  SciWin();
   if (Rhs <= 0) {
     sci_demo(fname,"xsetm();",&zero);
     return 0;
@@ -2565,7 +2568,7 @@ int scixlfont(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2,v,i,count,sz[10],num;
   double dv;
 
-  C2F(sciwin)();
+  SciWin();
   if (Rhs <= 0) 
     {
       char **S;
@@ -2615,7 +2618,7 @@ int scixnumb(fname,fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,m5,n5,l5;
   integer flagx=0,mn3;
-  C2F(sciwin)();
+  SciWin();
 
   CheckRhs(3,5);
 
@@ -2658,7 +2661,7 @@ int scixpause(fname,fname_len)
 {
   integer m1,n1,l1,v,sec=0;
   double dv;
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(-1,1);
   if (Rhs == 1) { GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1); sec = (integer) *stk(l1);} 
   C2F(dr1)("xpause","v",&sec,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
@@ -2679,7 +2682,7 @@ int scixpoly(fname,fname_len)
   long hdl;/* NG */
   int mark;/* NG */
 
-  C2F(sciwin)();
+  SciWin();
 
   CheckRhs(2,4);
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -2729,7 +2732,7 @@ int scixpolys(fname,fname_len)
   int i;
   long hdl;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(2,3);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -2839,7 +2842,7 @@ int scixset(fname,fname_len)
    */
   isdc = 0;
   if (strncmp(cstk(l1),"colormap",8) == 0 || strncmp(cstk(l1),"default",7) == 0) C2F(sedeco)(&isdc);
-  if (strncmp(cstk(l1),"window",6L) != 0) C2F(sciwin)();
+  if (strncmp(cstk(l1),"window",6L) != 0) SciWin();
   isdc = 1;
   if (strncmp(cstk(l1),"colormap",8) == 0 || strncmp(cstk(l1),"default",7) == 0) C2F(sedeco)(&isdc);
   if (strncmp(cstk(l1),"wdim",8) == 0 || strncmp(cstk(l1),"wpdim",7) == 0) {
@@ -2890,7 +2893,9 @@ int scixset(fname,fname_len)
     C2F(dr1)("xset",cstk(l1),&x[0],&x[1],&x[2],&x[3],&x[4],&v,&dv,&dv,&dv,&dv,5L,bsiz);
   /* NG beg */
   if ((versionflag == 0) && (strncmp(cstk(l1),"window",6L) == 0))
-    sciSwitchWindow(&x[0]);
+    if (sciSwitchWindow(&x[0]) != 0){
+      Scierror(999,"%s: It was not possible to create the requested figure",fname);
+    }
 
   if (version_flag() == 0)
     {
@@ -3033,7 +3038,7 @@ int scixstring(fname,fname_len)
   if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); angle = *stk(l4 ); }
   if (Rhs >= 5) { GetRhsVar(5,"d",&m5,&n5,&l5); CheckScalar(5,m5,n5); flagx = (integer) *stk(l5);  }
 
-  C2F(sciwin)();
+  SciWin();
   wc = 0.;/* to keep the size of the largest line */
 
   if (version_flag() == 0) {
@@ -3107,7 +3112,7 @@ int scixtitle(fname,fname_len)
     return 0;
   }
   CheckRhs(1,3);
-  C2F(sciwin)();
+  SciWin();
 
   if (version_flag() == 0) 
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
@@ -3163,7 +3168,7 @@ int scixstringb(fname,fname_len)
   double wh[2],rect[4],angle=0;
   long hdlstr;
 
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(5,6);
 
   GetRhsVar(1,"d",&m1,&n1,&l1); CheckScalar(1,m1,n1);  x = *stk(l1);
@@ -3227,7 +3232,7 @@ int scixstringl(fname,fname_len)
   GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); yi = y = *stk(l2);
   GetRhsVar(3,"S",&m3,&n3,&Str);
   if ( m3*n3 == 0 ) { LhsVar(1)=0; return 0;} 
-  C2F(sciwin)();
+  SciWin();
   /*     to keep the size of the largest line */
   wc = 0.;
   for (i = m3 -1 ; i >= 0; --i) 
@@ -3385,7 +3390,7 @@ int scixsetech(fname, fname_len)
   int minrhs = 0,maxrhs = 0,minlhs=0,maxlhs=1,nopt;
 
   nopt = NumOpt();
-  C2F(sciwin)();
+  SciWin();
 
   if ( nopt == 0) 
     {
@@ -3434,7 +3439,7 @@ int scixsetech(fname, fname_len)
 	wrect = stk(opts[3].l);	CheckLength(opts[3].position,opts[3].m*opts[3].n,4);
       } 
     }
-  C2F(sciwin)();
+  SciWin();
   C2F(Nsetscale2d)(wrect,arect,frect,logflag,0L);
   LhsVar(1)=0;
   return 0;
@@ -3460,7 +3465,7 @@ int scixgetech(fname,fname_len)
   if ( Lhs >=2 ) { CreateVar( 2, "d", &un, &quatre,&l2); F= stk(l2);}
   if ( Lhs >=3 ) { CreateVar( 3, "c", &un, &deux,  &l3); L= cstk(l3);}
   if ( Lhs >=4 ) { CreateVar( 4, "d", &un, &quatre,&l4); A= stk(l4);}
-  C2F(sciwin)();
+  SciWin();
   getscale2d(W,F,L,A);
   for ( i = 1 ; i <= Lhs ; i++) LhsVar(i) = i;
   return 0;
@@ -3476,7 +3481,9 @@ int C2F(sciwin)()
   double dv;
   C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  if (versionflag == 0) sciSwitchWindow(&win);  /* NG */
+  if (versionflag == 0) { 
+    return sciSwitchWindow(&win); 
+  }
   return 0;
 } 
 
@@ -3533,7 +3540,7 @@ int scifec(fname,fname_len)
   GetZminmax(9,opts);
   GetColminmax(10,opts);
 
-  C2F(sciwin)();
+  SciWin();
   C2F(scigerase)();
 
   if (Strf == def_strf) {
@@ -3598,7 +3605,7 @@ int scixgetmouse(fname,fname_len)
     }
   }
 
-  C2F(sciwin)();
+  SciWin();
   C2F(dr1)("xgetmouse","xv",&button,&iflag,&v,&v,sel,&v,&x,&y,&dv,&dv,10L,3L);
 
   CreateVar(Rhs+1,"d",&m1,&n1,&l1);
@@ -3631,7 +3638,7 @@ int scixsave(fname,fname_len)
     integer verb=0,na;
     C2F(dr)("xget","window",&verb,&wid,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
   }
-  C2F(sciwin)();
+  SciWin();
 
   C2F(xsaveplots)(&wid,cstk(l1),m1);
   LhsVar(1)=0;
@@ -3660,7 +3667,7 @@ int scixload(fname,fname_len)
     GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2); wid = (integer) *stk(l2 );
     C2F(dr)("xset","window",&wid,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   }
-  C2F(sciwin)();
+  SciWin();
   C2F(xloadplots)(cstk(l1),m1);
   LhsVar(1)=0;
   return 0;
@@ -3950,7 +3957,7 @@ int scixname(fname,fname_len)
   CheckRhs(1,1);
   CheckLhs(1,1);
   GetRhsVar(1,"c",&m1,&n1,&l1);
-  C2F(sciwin)();
+  SciWin();
   C2F(dr1)("xname",cstk(l1),&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,bsiz);
   LhsVar(1)=0;
   return 0;
@@ -4031,7 +4038,7 @@ int nscixaxis(fname, fname_len)
   
   nopt = NumOpt();
 
-  C2F(sciwin)();
+  SciWin();
 
   CheckRhs(minrhs,maxrhs+nopt) ;
   CheckLhs(minlhs,maxlhs) ;
@@ -4467,7 +4474,7 @@ int scirect(fname,fname_len)
 {
   long hdl;
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4;
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,4);
   switch ( Rhs ) 
     {
@@ -4514,7 +4521,7 @@ int scirects(fname,fname_len)
   integer m1,n1,l1,m2,n2,l2;
   long  hdl;
   int i,j;
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,2);
 
   GetRhsVar(1,"d",&m1,&n1,&l1);
@@ -4572,7 +4579,7 @@ int sciseteventhandler(fname, fname_len)
   integer m1,n1,l1,ierr;
   integer verb=0,win,na,v;
   double dv;
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(1,1);
   CheckLhs(0,1);
   C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
@@ -4804,7 +4811,7 @@ int gset(fname,fname_len)
 	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
-	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
+	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
       
       if (VarType(3) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
@@ -4829,7 +4836,7 @@ int gset(fname,fname_len)
 	  }
 	  else
 	    {
-	      C2F(sciwin)();
+	      SciWin();
 	      if (version_flag() == 0 )
 		if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
 		    (strncmp(cstk(l2),"auto_",5) !=0) && 
@@ -4991,7 +4998,7 @@ int gget(fname,fname_len)
       {
 	if ((strncmp(cstk(l2),"old_style",9) !=0)
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
-	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
+	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
 	if (version_flag() ==0)
 	  hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle */
 	else
@@ -5010,7 +5017,7 @@ int gget(fname,fname_len)
 	}
 	else
 	  {
-	    C2F(sciwin)();
+	    SciWin();
 	    if (version_flag() == 0)
 	      {
 		/* Test debug F.Leray 13.04.04 */
@@ -5253,7 +5260,10 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	num=(int)stk(*value)[0];
 
       C2F(dr1)("xset","window",&num,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,6L);
-      sciSwitchWindow(&num);
+      if (sciSwitchWindow(&num) != 0){
+	strcpy(error_message,"It was not possible to create the requested figure");return -1;
+      }
+      
     }
 	
   /************************  figure Properties *****************************/ 
@@ -5312,7 +5322,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if ((sciPointObj *)pobj != pfiguremdl)
       {
 	C2F(dr)("xset","window",&id,&v,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,5L,7L);
-	sciSwitchWindow(&id);
+	if (sciSwitchWindow(&id) != 0){
+	  strcpy(error_message,"It was not possible to create the requested figure");return -1;
+	}
       }
     else
       sciSetNum(pfiguremdl, &id);
@@ -6607,7 +6619,7 @@ if ((pobj == (sciPointObj *)NULL) &&
     {
       
       if (cf_type==1) {
-	C2F(sciwin)();
+	C2F(sciwin)();/*SciWin();*/
 	numrow   = 1;
 	numcol   = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
@@ -7581,7 +7593,7 @@ int delete(fname,fname_len)
 
   CheckRhs(0,1);
   CheckLhs(0,1);
-  /*C2F(sciwin)();*/
+  /*SciWin();*/
   switch(VarType(1)) 
     {
     case 9: /* delete Entity given by a handle */
@@ -7598,7 +7610,7 @@ int delete(fname,fname_len)
       GetRhsVar(1,"c",&m2,&n2,&l2);
       if (strncmp(cstk(l2),"all", 3) == 0) 
 	{   
-	  C2F(sciwin)();
+	  SciWin();
 	  sciXbasc();return 0;
 	} 
       else
@@ -7619,7 +7631,7 @@ int delete(fname,fname_len)
       return 0;
     }
   num= sciGetNumFigure (pobj); 
-  C2F(sciwin)();
+  SciWin();
   C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ((Rhs == 2) && (strncmp(cstk(l2),"callback", 8) == 0))
@@ -7659,7 +7671,7 @@ int addcb(fname,fname_len)
 	CheckLhs(0,1);
 
 	/*  set or create a graphic window*/
-	C2F(sciwin)();
+	SciWin();
 	switch(VarType(1)) 
 	{
 	case 1: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
@@ -7707,7 +7719,7 @@ int copy(fname,fname_len)
   CheckLhs(0,1);
         
   /*  set or create a graphic window*/
-  C2F(sciwin)();
+  SciWin();
   if (Rhs == 1)
     {
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
@@ -7759,7 +7771,7 @@ int move(fname,fname_len)
    
   CheckRhs(1,3);
   /*  set or create a graphic window */
-  C2F(sciwin)();
+  SciWin();
   opt = FALSE;
   if (Rhs ==3) {
     GetRhsVar(3,"c",&m3,&n3,&l3);
@@ -7800,7 +7812,7 @@ int glue(fname,fname_len)
   CheckLhs(0,1);
 
   /*  set or create a graphic window */
-  C2F(sciwin)();
+  SciWin();
   GetRhsVar(1,"h",&numrow,&numcol,&l1); /* We get the scalar value if it is ones */
   n=numrow*numcol;
   CreateVar(Rhs+1,"d",&numrow,&numcol,&l2);
@@ -7868,7 +7880,7 @@ int unglue(fname,fname_len)
   CheckRhs(1,1);
   CheckLhs(0,1);
   /*  set or create a graphic window */
-  C2F(sciwin)();
+  SciWin();
   GetRhsVar(1,"h",&m1,&n1,&l1);
   hdl = (unsigned long)*stk(l1);
   pobj = sciGetPointerFromHandle(hdl);
@@ -7916,7 +7928,7 @@ int drawnow(fname,fname_len)
      sciPointObj *subwin;
      integer m,n,l,i;
  
-  C2F(sciwin)(); 
+  SciWin(); 
   CheckRhs(0,1);
   CheckLhs(0,1); 
 
@@ -7977,7 +7989,7 @@ int drawlater(fname,fname_len)
      unsigned long fname_len;
 {  
   
-  C2F(sciwin)(); 
+  SciWin(); 
   CheckRhs(-1,0);
   pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->visible =FALSE; 
   LhsVar(1) = 0;
@@ -7992,7 +8004,7 @@ int scixclearsubwin(fname,fname_len)
   sciPointObj *subwin, *tmpsubwin;
   integer m,n,l,i,numrow,numcol,outindex,j=0;
  
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(0,1);
   CheckLhs(0,1);
   if (version_flag() == 0) {
@@ -8062,7 +8074,7 @@ int scixbascsubwin(fname,fname_len)
   sciSons *psons;
   integer m,n,l,i;
  
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(0,1);
   CheckLhs(0,1);
   if (version_flag() == 0)     {
@@ -8148,7 +8160,7 @@ int draw(fname,fname_len)
 /*  BOOL tmpmode; SS 20.04.04*/
    
  
-  C2F(sciwin)();
+  SciWin();
   CheckRhs(0,1);
   CheckLhs(0,1);
   if (version_flag() == 0) {
@@ -8362,7 +8374,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   }
   
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  /* C2F(sciwin)();
+  /* SciWin();
      C2F(scigerase)();*/
 
   if(flagc == 1)
