@@ -1167,7 +1167,7 @@ int mexEvalString(char *name)
   nrhs=1;nlhs=0;
   if (( rep = mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0))==1) 
     {
-      sciprintf("Error in mexEvalString %s\r\n",name);
+      sciprint("Error in mexEvalString %s\r\n",name);
       errjump();
     }
   return rep;
@@ -1257,7 +1257,7 @@ int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long 
   static int lc, lw;
   Nbvars++;
   lw = Nbvars;
-  sciprint("createptr XXXX  %d\n\r",lw);
+  /* sciprint("createptr XXXX  %d\n\r",lw); */
   if (! C2F(createcvar)(&lw, type, it, m, n, lr, &lc, 1L)) {
     return 0;
   }
