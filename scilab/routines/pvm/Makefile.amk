@@ -7,9 +7,10 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/pvm.lib
 
-OBJSC = lpack.obj pvm_grp.obj pvm_proc_ctrl.obj pvm_send.obj  pvm_info.obj \
-	pvm_recv.obj listsci2f77.obj sci2f77.obj
-OBJSF = intpvm.obj mycmatptr.obj varpack.obj scipvmf77tosci.obj scipvmscitof77.obj
+OBJSC = pvm_grp.obj pvm_proc_ctrl.obj pvm_send.obj  pvm_info.obj \
+	pvm_recv.obj scipvmf77.obj  varpack.obj intpvm.obj
+
+OBJSF = mycmatptr.obj
 
 include ../../Makefile.incl.amk
 

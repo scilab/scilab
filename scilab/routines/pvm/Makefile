@@ -4,9 +4,10 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/pvm.a
 
-OBJSC = lpack.o pvm_grp.o pvm_proc_ctrl.o pvm_send.o  pvm_info.o \
-	pvm_recv.o listsci2f77.o sci2f77.o
-OBJSF = intpvm.o mycmatptr.o varpack.o scipvmf77tosci.o scipvmscitof77.o
+OBJSC = pvm_grp.o pvm_proc_ctrl.o pvm_send.o  pvm_info.o \
+	pvm_recv.o scipvmf77.o  varpack.o intpvm.o
+
+OBJSF = mycmatptr.o
 
 include ../../Makefile.incl
 
