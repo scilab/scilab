@@ -94,7 +94,7 @@ if rhs==1 then
       if iscste then
 	iscolon=ind.value==":"
       end
-      if ~iscolon then
+      if ~iscolon & iscste then
 	tree.out(1).dims=ind.dims
 
 	[bval,index]=isdefinedvar(var)
