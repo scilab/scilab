@@ -26,9 +26,15 @@
 /*#include "wgnuplib.h"*/
 #include "wcommon.h"
 #include "plot.h"
+struct hist
+{
+    		char *line;
+    		struct hist *prev;
+    		struct hist *next;
+};
 
 extern void add_history (char *line);
-extern void SearchInHistory(char *line);
+extern struct hist * SearchBackwardInHistory(char *line);
 extern BOOL NewSearchInHistory;
 
 extern GW graphwin;		/* graphic window */
@@ -56,22 +62,26 @@ int inline_num = 0;		/* input line number */
 static char * rlgets (char *s, int n, char *prompt)
 {
   static char *line = (char *) NULL;
-
+  
   /* If we already have a line, first free it */
   if (line != (char *) NULL)
     free (line);
 
   line = readline_win (prompt);
-   /* Rappel Commande avec ! */
-  if (line[0]=='!')
+   /* Rappel Commande avec ! 
+   if (line[0]=='!')
   	{
+	  struct hist *P=NULL;
   		if (strlen(line)>1)
   		{
-  			SearchInHistory(&line[1]);
+  			P=SearchBackwardInHistory(&line[1]);
+			if (P != NULL) {
+			  write_scilab(P->line);
+			  add_history(P->line);
+			}
   		}
-  		add_history(line);
   		return NULL;
-  	}
+		}  supprime par serge Steer (reporte dans readline)*/
   NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
   if (line)

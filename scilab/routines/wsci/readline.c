@@ -111,6 +111,8 @@ static void clear_eoline ();
 static void copy_line ();
 extern int C2F(ismenu) ();
 static int sendprompt=1;
+#define SV_BUF_SIZE 5000
+static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
 /*-----------------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
  * fputc(ch,stdout) and fputs(str,stdout) for all output
@@ -370,11 +372,23 @@ char * readline_nw (char *prompt)
 	    case '\n':		/* ^J */
 	    case '\r':		/* ^M */
 	      cur_line[max_pos + 1] = '\0';
+              /* added by  Serge Steer feb 04*/
+	      strip_blank(cur_line);
+	      if (cur_line[0]=='!') { /* search backward */
+		strcpy(tosearch,cur_line); /* memorise search key for further use */
+		cur_entry=SearchBackwardInHistory(tosearch+1);
+		if(cur_entry != NULL) {
+		  strcpy(cur_line,cur_entry->line);
+		}
+		else {
+		  cur_line[0]='\0';
+		}
+		break;
+	      }
+	      /* end addition */
 	      putc ('\n', stdout);
 	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 	      strcpy (new_line, cur_line);
-
-	      
 	      return (new_line);
 	    default:
 	      break;
