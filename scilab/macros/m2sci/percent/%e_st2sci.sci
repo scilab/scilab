@@ -104,7 +104,7 @@ if rhs==1 then
 	  ind=list(Cste(1),ind)
 	elseif var.dims(2)==1 then // column vector
 	  ind=list(ind,Cste(1))
-	else	  
+	end	  
       end
     end
     if typeof(ind)<>"list" then
