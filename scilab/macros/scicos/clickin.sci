@@ -72,7 +72,8 @@ if typeof(o)=='Block' then
 		 ~isequal(model.state,model_n.state)|..
 		 ~isequal(model.dstate,model_n.dstate)|..
 		 ~isequal(model.rpar,model_n.rpar)|..
-		 ~isequal(model.ipar,model_n.ipar)
+		 ~isequal(model.ipar,model_n.ipar)|..
+		 ~isequal(model.label,model_n.label)
 	if or(model.in<>model_n.in)|or(model.out<>model_n.out) then  
 	  // input or output port sizes changed
 	  needcompile=1

@@ -10,6 +10,7 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
   ipar=sim.ipar
   rpar=sim.rpar
   ztyp=sim.ztyp
+  labels=sim.labels
   st=state.x
   dst=state.z
   st0=%state0.x
@@ -125,6 +126,8 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
 	    sim('funtyp')(kc)==0;
 	  end
 	end
+	//Change label
+	labels(kc)=o.model.label
       end
     end
   end
@@ -135,6 +138,7 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
   sim.rpptr=rpptr;
   sim.ipar=ipar;
   sim.ipptr=ipptr
+  sim.labels=labels
 
   if Impl then
     state.x=[st;std]
