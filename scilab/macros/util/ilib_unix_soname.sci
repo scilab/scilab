@@ -7,9 +7,4 @@ if strindex(str,".sl")<>[]
 else 
   rep="so" ; 
 end 
- 
-  
-  
-	 
-	
 endfunction

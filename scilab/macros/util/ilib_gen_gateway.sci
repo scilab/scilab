@@ -1,8 +1,10 @@
 function ilib_gen_gateway(name,table)
 //------------------------------------
 // generate an interface gateway named name
-// from table table
+// from table table taking into account 
+// attributes of function i.e mex fmex or scilab interface 
 
+// if name is a full path just extract the filename 
 k=strindex(name,['/','\'])
 if k~=[] then
   path=part(name,1:k($))
@@ -13,12 +15,15 @@ end
 name=strsubst(name,'.c','')
 
 [mt,nt]=size(table);
-if nt<>2 then error('second argument has wrong size ');end 
+
+if nt==2 then col= "csci"; table = [table, col(ones(mt,1))];nt = 3 ; end 
+if nt<>3 then error('second argument has wrong size ');end 
+[gate,names]=new_names(table); 
 
 t=[ '#include <mex.h> ';
-    'extern Gatefunc ' + table(:,2) + ';';
-    'static GenericTable Tab[]={'
-    '  {(Myinterfun)sci_gateway,'+table(:,2)+',""'+table(:,1)+'""},'
+    'extern Gatefunc ' + names(:) + ';';
+    'static GenericTable Tab[]={';
+    '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
     '};'
     ' '
     'int C2F('+name+')()'
@@ -28,4 +33,32 @@ t=[ '#include <mex.h> ';
     '  return 0;'
     '}'];
 mputl(t,path+name+'.c')    
+endfunction
+
+function [gate,names]=new_names(table) 
+// change names according to types 
+[mt,nt]=size(table);
+gate= "mex_gateway"; 
+gate = gate(ones(mt,1)); 
+names= " "; 
+names= names(ones(mt,1)); 
+for i=1:mt 
+    select table(i,3) 
+	case 'cmex' then 
+		names(i) = "mex_" + table(i,2)
+	case 'fmex' then 
+		gate(i)="(Myinterfun)fortran_mex_gateway" 
+		names(i) = "C2F(mex" + table(i,2) + ")"
+	case 'Fmex' then 
+		gate(i)="(Myinterfun)fortran_mex_gateway" 
+		names(i) = "C2F(mex" + table(i,2) + ")"
+	case 'csci'  then 
+		gate(i)="(Myinterfun)sci_gateway" 
+		names(i) = table(i,2)
+	case 'fsci'  then 
+		gate(i)="(Myinterfun)sci_gateway" 
+		names(i) = "C2F(" + table(i,2) + ")"
+	else error(999,"wrong interface type "+table(i,3)); 
+     end 
+end 
 endfunction
