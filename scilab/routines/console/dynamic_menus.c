@@ -84,10 +84,14 @@ void reset_scig_command_handler ()
 /*---------------------------------------------------------------
  * try to execute a command or add it to the end of command queue 
  *----------------------------------------------------------------*/
-
+/* problem with windows and events */
 int StoreCommand ( char *command)
 {
-  return (StoreCommand1 (command, 0)); /* jpc 1->0 */
+  #ifdef WIN32
+	return (StoreCommand1 (command, 1)); 
+  #else
+	return (StoreCommand1 (command, 0)); /* jpc 1->0 */
+  #endif
 }
 
 /*---------------------------------------------------------------
@@ -106,6 +110,9 @@ int StoreCommand1 (char *command,int flag)
   if (flag==1 && get_is_reading ())
     {
       write_scilab (command);
+		#ifdef WIN32
+			if (flag == 1) 	write_scilab ("\n");
+		#endif
       return 0;
     }
 
@@ -134,11 +141,9 @@ int StoreCommand1 (char *command,int flag)
     }
   if (get_is_reading ())
     { 
-#ifdef WIN32
-      if (flag==2) { /* for windows */
-	write_scilab ("\n");
-      }
-#endif
+	#ifdef WIN32
+		if (flag==2&& get_is_reading ()) write_scilab ("\n");
+	#endif
     }
   return (0);
 }

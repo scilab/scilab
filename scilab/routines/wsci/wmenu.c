@@ -19,7 +19,7 @@
  *   Maurice Castro
  *   Russell Lang
  *   Modified for Scilab (1997) : Jean-Philippe Chancelier 
- *   Modified for Scilab (2003) : Allan CORNET
+ *   Modified for Scilab (2003-2004) : Allan CORNET
  */
  #pragma comment(lib, "shell32.lib")
 #include <ShlObj.h>
@@ -98,7 +98,7 @@ void Callback_EXEC(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"exec('%s');disp('exec done');\n;",Fichier);
+		wsprintf(command,"exec('%s');disp('exec done');",Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -115,7 +115,7 @@ void Callback_GETF(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Getf",TRUE,"Files *.sci\0*.sci\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"getf('%s');disp('getf done');\n;",Fichier);
+		wsprintf(command,"getf('%s');disp('getf done');",Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -132,8 +132,8 @@ void Callback_LOAD(void)
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Load",TRUE,"Files *.sav;*.bin\0*.sav;*.bin\0Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-	    	wsprintf(command,"load('%s');disp('file loaded');\n;",Fichier);
-			StoreCommand1 (command,1);
+	    wsprintf(command,"load('%s');disp('file loaded');",Fichier);
+		StoreCommand1 (command,1);
 	}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -149,7 +149,7 @@ void Callback_SAVE(void)
 	if (OpenSaveSCIFile(lptw->hWndParent,"Save",FALSE,"Files *.sav\0*.sav\0Files *.bin\0*.bin\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
 		SendCTRLandAKey(CTRLU);
-		wsprintf(command,"save('%s');disp('file saved');\n;",Fichier);
+		wsprintf(command,"save('%s');disp('file saved');",Fichier);
 		StoreCommand1 (command,1);
 	}
 }
@@ -246,9 +246,13 @@ void Callback_FRENCH(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
-	lptw->lpmw->CodeLanguage=1;
-	SwitchLanguage(lptw);
-	ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+	if (lptw->lpmw->CodeLanguage!=1)
+		{
+			SendCTRLandAKey(CTRLU);
+			lptw->lpmw->CodeLanguage=1;
+			SwitchLanguage(lptw);
+			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+		}
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -257,10 +261,14 @@ void Callback_ENGLISH(void)
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-
-	lptw->lpmw->CodeLanguage=0;
-	SwitchLanguage(lptw);
-	ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+	
+	if (lptw->lpmw->CodeLanguage!=0)
+		{
+			SendCTRLandAKey(CTRLU);
+			lptw->lpmw->CodeLanguage=0;
+			SwitchLanguage(lptw);
+			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+		}
 
 }
 /*-----------------------------------------------------------------------------------*/
@@ -284,35 +292,34 @@ void Callback_RESTART(void)
 	ClearCommandWindow(lptw,TRUE);
 
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("abort;",0);
+	StoreCommand1("abort;",1);
 
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("savehistory();",0);
+	StoreCommand1("savehistory();",1);
 
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("resethistory();",0);
+	StoreCommand1("resethistory();",1);
 
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("exec('SCI/scilab.star',-1);\n",1);
-	
+	write_scilab("exec('SCI/scilab.star',-1);\n");
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABORT(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("abort;\n",1);
+	StoreCommand1("abort;",1);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_PAUSE(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("pause;\n",1);
+	StoreCommand1("pause;",1);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_RESUME(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand1("resume;\n",1);
+	StoreCommand1("resume;",1);
 	
 }
 /*-----------------------------------------------------------------------------------*/
@@ -331,14 +338,14 @@ void Callback_SCIPAD(void)
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
-			StoreCommand("LANGUAGE=\"fr\";");
+			StoreCommand1("LANGUAGE=\"fr\";",0);
 		break;
 		
 		default: case 0:
-			StoreCommand("LANGUAGE=\"eng\";");
+			StoreCommand1("LANGUAGE=\"eng\";",0);
 		break;
 	}
-	StoreCommand ("%helps=initial_help_chapters(LANGUAGE);");
+	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);",0);
 	
 }
 /*-----------------------------------------------------------------------------------*/
@@ -352,15 +359,15 @@ void Callback_HELP(void)
 	switch (lptw->lpmw->CodeLanguage)
 	{
 		case 1:
-			StoreCommand ("LANGUAGE=\"fr\";");
+			StoreCommand1 ("LANGUAGE=\"fr\";",0);
 		break;
 		
 		default: case 0:
-			StoreCommand ("LANGUAGE=\"eng\";");
+			StoreCommand1 ("LANGUAGE=\"eng\";",0);
 		break;
 	}
 		
-	StoreCommand ("%helps=initial_help_chapters(LANGUAGE);");
+	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);",0);
 	    		
 }
 /*-----------------------------------------------------------------------------------*/
@@ -426,7 +433,7 @@ void Callback_PRINTWINDOW(void)
 void Callback_CONFIGUREBROWSER(void)
 {
 	SendCTRLandAKey(CTRLU);
-	StoreCommand("help_menu(3);");
+	StoreCommand1("help_menu(3);",0);
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_CLEARHISTORY(void)
@@ -2029,6 +2036,7 @@ void UpdateFileNameMenu(LPTW lptw)
 /*-----------------------------------------------------------------------------------*/   
 void SwitchLanguage(LPTW lptw)
 {
+	
 	StoreCommand1 ("%helps=initial_help_chapters(LANGUAGE);", 2);
 	switch (lptw->lpmw->CodeLanguage)
 	{
