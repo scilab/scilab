@@ -2575,12 +2575,12 @@ int scixstringb(fname,fname_len)
   GetRhsVar(2,"d",&m2,&n2,&l2); CheckScalar(2,m2,n2);  y = *stk(l2);
   GetRhsVar(3,"S",&m3,&n3,&Str);
   if ( m3*n3 == 0 ) { LhsVar(1)=0; return 0;} 
-
+  
   GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);  w = *stk(l4);
   GetRhsVar(5,"d",&m5,&n5,&l5); CheckScalar(5,m5,n5);  hx = *stk(l5);
-
+  
   if (Rhs == 6) {
-    GetRhsVar(3,"c",&m6,&n6,&l6);
+    GetRhsVar(6,"c",&m6,&n6,&l6);
     if ( m6*n6 !=0 && strncmp(cstk(l6),"fill",4) == 0) 
       fill =1;
     else 
