@@ -1,3 +1,3 @@
-function r=iscellt(S)
+function r=iscell(S)
 r=typeof(S)=='ce'
 endfunction
