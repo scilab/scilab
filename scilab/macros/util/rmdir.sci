@@ -33,14 +33,19 @@ function [status,msg]=rmdir(varargin)
   end
   
   if MSDOS then
-    batchlog = ' > '+TMPDIR+'\rmdir.log';
+    ver=OS_Version();
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+      batchlog = ' >'+ TMPDIR+'\rmdir.out';
+    else
+      batchlog = ' >'+ TMPDIR+'\rmdir.out' +' 2>'+TMPDIR+'\rmdir.err';
+    end
     if SubDirMode then
       cmd = 'rmdir /s /q '+DirName; 
     else
       cmd = 'rmdir '+DirName;
     end
   else
-    batchlog = ' > '+TMPDIR+'/rmdir.log';
+    batchlog = ' >'+ TMPDIR+'/rmdir.out' +' 2>'+TMPDIR+'/rmdir.err';
     if SubDirMode then
       cmd = 'rm -r -f '+DirName;
     else
@@ -52,9 +57,16 @@ function [status,msg]=rmdir(varargin)
   status=unix(cmdline);
   if (status~=0) then
     if MSDOS then
-      msg='Error :'+cmd;
+      ver=OS_Version();
+      if ver == 'Windows 98' | ver == 'Windows 95' then
+         msg='Error :'+cmd;
+      else
+         msg='Error : '+mgetl(TMPDIR+'\rmdir.err');
+         msg=msg+' '+mgetl(TMPDIR+'\rmdir.out');
+      end
     else
-      msg='Error :'+cmd;  
+      msg='Error : '+mgetl(TMPDIR+'/rmdir.err');
+      msg=msg+' '+mgetl(TMPDIR+'/rmdir.out');
     end
     status=0;
   else

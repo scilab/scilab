@@ -52,16 +52,32 @@ function [status,msg]=mkdir(varargin)
     
     case 1
       if MSDOS then
-        cmdline='mkdir '+NewDirectory+'> '+TMPDIR+'\mkdir.log';
+        ver=OS_Version();
+        if ver == 'Windows 98' | ver == 'Windows 95' then
+          batchlog = ' >'+ TMPDIR+'\mkdir.out';
+        else
+          batchlog = ' >'+ TMPDIR+'\mkdir.out' +' 2>'+TMPDIR+'\mkdir.err';
+        end
+        cmd='mkdir '+NewDirectory;
+        cmdline=cmd+batchlog;
       else
-        cmdline='mkdir '+NewDirectory+'> '+TMPDIR+'/mkdir.log';
+        batchlog = ' >'+ TMPDIR+'\mkdir.out' +' 2>'+TMPDIR+'\mkdir.err';
+        cmd='mkdir '+NewDirectory;
+        cmdline=cmd+batchlog;
       end
       status=unix(cmdline);
       if (status~=0) then
         if MSDOS then
-          msg=mgetl(TMPDIR+'\mkdir.log');  
+      	  ver=OS_Version();
+          if ver == 'Windows 98' | ver == 'Windows 95' then
+            msg='Error :'+cmd;
+          else
+            msg='Error : '+mgetl(TMPDIR+'\mkdir.err');
+            msg=msg+' '+mgetl(TMPDIR+'\mkdir.out');
+          end
         else
-          msg=mgetl(TMPDIR+'/mkdir.log');  
+          msg='Error : '+mgetl(TMPDIR+'/rmdir.err');
+          msg=msg+' '+mgetl(TMPDIR+'/rmdir.out');
         end
         status=0;
       else
@@ -82,4 +98,3 @@ function [status,msg]=mkdir(varargin)
  
 endfunction
 //------------------------------------------------------------------------
-
