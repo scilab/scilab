@@ -26,7 +26,6 @@ function h=%s_i_h(i,v,h)
 	error('Invalid path')
       end
     end
-    pause
     if type(index)==15 then
       hdl=hdl(index(:))
     else
