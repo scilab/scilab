@@ -124,13 +124,9 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
       editcommand="editor()"
     end
   else
-    if %gtk == %f then     
-      if funptr("TK_EvalStr")<>0 then
-	delmenu("Help")
-	addmenu("Help",list(0,"helpcommand"))
-	helpcommand="help()"
-      end
-    end
+    delmenu("Help")
+    addmenu("Help",list(0,"helpcommand"))
+    helpcommand="help()"
   end
 end
 
@@ -140,10 +136,13 @@ clear ans  %b_h_s
 predef('all') 
 
 // this variable is used to store the preferred browser 
-// for a --with-gtk version 
-if %gtk then 
-  global %gtkhelp
-end 
+global %browsehelp
+if with_tk()
+  %browsehelp="tcltk";//set scilab  browser by default. may be changed in
+		      //the user startup file
+end
+clear %browsehelp //remove the local variable
+
 
 
 // Define scicos palettes of blocks, scicos_menus and shortcuts
