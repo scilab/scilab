@@ -19,12 +19,11 @@ c     look only in scilab code function libraries
       if(fin.eq.-4) goto 30
 c     
 c     
-c     if special compilation mode skip primitive functions
-c      if (comp(3).eq.1) then
-c      if (comp(1).ne.0.and.comp(3).ne.2) then
       if (comp(1).ne.0) then
+c     if  compilation mode skip primitive functions
          fin=0
          fun=0
+         return
       endif
 c
 c     look for name in primitive functions
