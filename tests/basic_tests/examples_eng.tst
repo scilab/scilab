@@ -1,4 +1,4 @@
-// ven jan 31 17:56:31 CET 2003
+// ven jan 31 18:39:18 CET 2003
 
 //====================================================
 // ../man/eng/arma/arma.xml
@@ -3264,10 +3264,9 @@ txt=['NAME          TESTPROB'
      ' LO BND1      YTWO                -1'
      ' UP BND1      YTWO                 1'
      'ENDATA'];
-u=file('open','/tmp/test.mps','unknown')
-write(u,txt,'(a)');file('close',u)
+mputl(txt,TMPDIR+'/test.mps)
 //Read the MPS file
-P=readmps('/tmp/test.mps',[0 10^30])
+P=readmps(TMPDIR+'/test.mps',[0 10^30])
 //Convert it to linpro format
 LP=mps2linpro(P)
 //Solve it with linpro
