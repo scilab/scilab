@@ -10,8 +10,8 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
-#include "wgnuplib.h"
+/*#include <windows.h>
+  #include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "../machine.h"
@@ -71,15 +71,7 @@ TextMessage1 (int ctrlflag)
       CtrlCHit (&textwin);
     }
 }
-
-/* function used in wtext.c in function TextGetCh. 
- * This function is not used any more (see wtext.c)
- * If enableb in wtext.c then 99% of the cpu is used while scilab 
- * is waiting for a character. 
- * It should be turned into a blocking function in order to be 
- * used in wtext.c but don't know how to make it work properly 
- * with tcl/tk + Scilab dynamic menus. 
- */
+/** function used in wtext.c in function TextGetCh  must wait for an event **/
 
 void
 TextMessage2()

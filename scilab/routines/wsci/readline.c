@@ -155,14 +155,14 @@ static char ansi_getc ();
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
+/*#include <windows.h>*/
+/*#include "wgnuplib.h"*/
+#include "wcommon.h"
 #ifdef USE_CONSOLE
 #include "wtextc.h"
 #else
 #include "wtext.h"
 #endif
-#include "wgnuplib.h"
-#include "wcommon.h"
 
 extern TW textwin;
 #define TEXTUSER 0xf1

@@ -26,13 +26,14 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
-#include <windowsx.h>
-#include <commdlg.h>
+/* #include <windows.h>
+   #include <windowsx.h>*/
+
 #include <string.h>		/* only use far items */
-#include "wgnuplib.h"
+/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
+#include <commdlg.h>
 
 EXPORT BOOL CALLBACK InputBoxDlgProc (HWND, UINT, WPARAM, LPARAM);
 EXPORT LRESULT CALLBACK MenuButtonProc (HWND, UINT, WPARAM, LPARAM);

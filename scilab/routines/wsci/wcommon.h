@@ -23,12 +23,13 @@
 #ifndef SCI_WCOMMON
 #define SCI_WCOMMON
 
+
+#include <stdio.h>
+#include "../graphics/Math.h" /* Scilab graphic window */
+#include "../graphics/bcg.h" /* Scilab graphic window */
 #ifndef __GNUC__ 
 #include <shellapi.h>
 #endif
-#include <stdio.h>
-#include "../graphics/Math.h" /* Scilab graphic window */
-#include "../graphics/periWin-bcg.h" /* Scilab graphic window */
 #include "wadd.h" 
 
 #include "common.h" 

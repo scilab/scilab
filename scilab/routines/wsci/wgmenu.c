@@ -9,9 +9,8 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
-#include <windowsx.h>
-#include <commdlg.h>
+/*#include <windows.h>
+  #include <windowsx.h>*/
 #include <string.h>		/* only use  items */
 
 #ifdef __CYGWIN32__
@@ -31,9 +30,10 @@
 int system ();
 #endif
 
-#include "wgnuplib.h"
+/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
+#include <commdlg.h>
 #include "../graphics/Graphics.h"
 #include "../sun/men_Sutils.h"
 extern TW textwin;

@@ -37,11 +37,12 @@
 #include <stdlib.h>
 
 #include "plot.h"
+
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
-#include "wgnuplib.h"
+/*#include <windows.h>
+#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 #include "../sun/Sun.h"

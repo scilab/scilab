@@ -38,7 +38,6 @@
 #include <ctype.h>
 #include <stdarg.h>
 
-#include "wgnuplib.h"
 #include "wresource.h"
 #include "wcommon.h"
 #include "../graphics/scigraphic.h"

@@ -28,9 +28,19 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
+
+/*#include <windows.h>
 #include <windowsx.h>
-#include <commctrl.h>
+#include <commctrl.h>*/
+
+#include "wcommon.h"
+#include "plot.h"
+/* #include "wgnuplib.h"
+#include "wtext.h"*/
 
 #if (defined __MSC__ ) || (defined __MINGW32__) 
 #define putenv(x) _putenv(x)
@@ -39,16 +49,6 @@
 #ifdef __ABSC__
 #define putenv(x) abs_putenv(x)
 #endif
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
-
-#include "plot.h"
-#include "wgnuplib.h"
-#include "wtext.h"
-#include "wcommon.h"
 
 extern void C2F (tmpdirc) ();
 

@@ -10,7 +10,7 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
+/*#include <windows.h>*/
 #include <setjmp.h>
 #include <string.h>
 #include <stdlib.h>
@@ -22,7 +22,7 @@
 
 #include <time.h>		/* kludge to provide sleep() */
 
-#include "wgnuplib.h"
+/*#include "wgnuplib.h"*/
 #include "wcommon.h"
 #include "plot.h"
 

@@ -27,16 +27,16 @@
 #ifndef STRICT
 #define STRICT
 #endif
-#include <windows.h>
+/*#include <windows.h>
 #include <windowsx.h>
 #include <commdlg.h>
-#include <shellapi.h>
+#include <shellapi.h>*/
 
 #include <string.h>		/* use only far items */
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "wgnuplib.h"
+/*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
 
