@@ -1171,6 +1171,10 @@ int mexEvalString(char *name)
   rep = mexCallSCI(nlhs, ppl, nrhs, ppr, "execstr",0); 
   /* check returned value */ 
   val = mxGetPr(ppl[0]); 
+  mxFreeMatrix(ppl[0]);
+  mxFreeMatrix(ppr[2]);
+  mxFreeMatrix(ppr[1]);
+  mxFreeMatrix(ppr[0]);
   if ( rep == 1 || (int) (*val) != 0 )
     {
       errjump();
@@ -1304,7 +1308,8 @@ void clear_mex(integer nlhs, Matrix **plhs, integer nrhs, Matrix **prhs)
 }
 
 void mexInfo(char *str) {
-  sciprint("%s %d\r\n",str,Nbvars);
+  fprintf(stderr,"%s %d\r\n",str,Nbvars);
+  fflush(stderr);
 }
 
 /****************************************************
