@@ -1200,14 +1200,14 @@ Rot3D(w, number, client_data)
   XtSetArg(args[iargs], XtNsensitive, False); iargs++;
   XtSetValues(w, args, iargs);
   SetUnsetMenu(&win_num,"UnZoom",&ne,False);
-  SetUnsetMenu(&win_num,"2D Zoom",&ne,False);
+  SetUnsetMenu(&win_num,"Zoom",&ne,False);
   SetUnsetMenu(&win_num,"File",&ne,False);
   scig_3drot(win_num);
   iargs = 0;
   XtSetArg(args[iargs], XtNsensitive,True); iargs++;
   XtSetValues(w, args, iargs);
   SetUnsetMenu(&win_num,"UnZoom",&ne,True);
-  SetUnsetMenu(&win_num,"2D Zoom",&ne,True);
+  SetUnsetMenu(&win_num,"Zoom",&ne,True);
   SetUnsetMenu(&win_num,"File",&ne,True);
 }
 

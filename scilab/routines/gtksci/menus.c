@@ -735,7 +735,7 @@ void * graphic_initial_menu(int winid) {
 			   "L_oad|<control>L|$load",
 			   "C_lose||$close" };
   sci_menu_add(&m,winid,"_File",file_entries,7,0,"$file");
-  sci_menu_add(&m,winid,"2D _Zoom",NULL,0,0,"$zoom");
+  sci_menu_add(&m,winid,"_Zoom",NULL,0,0,"$zoom");
   sci_menu_add(&m,winid,"_UnZoom",NULL,0,0,"$unzoom");
   sci_menu_add(&m,winid,"3D _Rot.",NULL,0,0,"$rot3d");
   return m;
@@ -968,12 +968,12 @@ static void sci_menu_fileops()
 static void scig_menu_zoom(int winid) 
 {
   integer ne=0;
-  SetUnsetMenu(&winid,"2D Zoom",&ne,False);
+  SetUnsetMenu(&winid,"Zoom",&ne,False);
   SetUnsetMenu(&winid,"3D Rot.",&ne,False);
   SetUnsetMenu(&winid,"UnZoom",&ne,False);
   SetUnsetMenu(&winid,"File",&ne,False);
   scig_2dzoom(winid);
-  SetUnsetMenu(&winid,"2D Zoom",&ne,True);
+  SetUnsetMenu(&winid,"Zoom",&ne,True);
   SetUnsetMenu(&winid,"3D Rot.",&ne,True);
   SetUnsetMenu(&winid,"UnZoom",&ne,True);
   SetUnsetMenu(&winid,"File",&ne,True);
@@ -1002,12 +1002,12 @@ static void scig_menu_rot3d(int winid)
   integer ne=0;
   SetUnsetMenu(&winid,"3D Rot.",&ne,False);
   SetUnsetMenu(&winid,"UnZoom",&ne,False);
-  SetUnsetMenu(&winid,"2D Zoom",&ne,False);
+  SetUnsetMenu(&winid,"Zoom",&ne,False);
   SetUnsetMenu(&winid,"File",&ne,False);
   scig_3drot(winid);
   SetUnsetMenu(&winid,"3D Rot.",&ne,True);
   SetUnsetMenu(&winid,"UnZoom",&ne,True);
-  SetUnsetMenu(&winid,"2D Zoom",&ne,True);
+  SetUnsetMenu(&winid,"Zoom",&ne,True);
   SetUnsetMenu(&winid,"File",&ne,True);
 }
 

@@ -45,12 +45,12 @@ xset('wdim',H,W)
 if ~MSDOS then
   delmenu(win,'3D Rot.')
   delmenu(win,'UnZoom')
-  delmenu(win,'2D Zoom')
+  delmenu(win,'Zoom')
   delmenu(win,'File')
 else
   delmenu(win,'3D &Rot.')
   delmenu(win,'&UnZoom')
-  delmenu(win,'2D &Zoom')
+  delmenu(win,'&Zoom')
   delmenu(win,'&File')
 end
 

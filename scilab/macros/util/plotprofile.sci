@@ -107,12 +107,12 @@ lbl=string(1:size(txt,1))';lbl=part(lbl,1:max(length(lbl)));
       if ~MSDOS then
 	delmenu(curwin,'3D Rot.')
 	delmenu(curwin,'UnZoom')
-	delmenu(curwin,'2D Zoom')
+	delmenu(curwin,'Zoom')
 	delmenu(curwin,'File')
       else
 	delmenu(curwin,'3D &Rot.')
 	delmenu(curwin,'&UnZoom')
-	delmenu(curwin,'2D &Zoom')
+	delmenu(curwin,'&Zoom')
 	delmenu(curwin,'&File')
       end     
     

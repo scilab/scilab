@@ -343,7 +343,7 @@
 "Xscilab*scigForm.scigmForm.File.fromVert:scigraphicinfo",
 "Xscilab*scigForm.scigmForm.File.fromHoriz:Panner",
 "Xscilab*scigForm.scigmForm.File.Label:File",
-"Xscilab*scigForm.scigmForm.Zoom.label:2D Zoom",
+"Xscilab*scigForm.scigmForm.Zoom.label:Zoom",
 "Xscilab*scigForm.scigmForm.Zoom.fromHoriz:File",
 "Xscilab*scigForm.scigmForm.Zoom.fromVert:scigraphicinfo",
 "Xscilab*scigForm.scigmForm.UnZoom.label:UnZoom",

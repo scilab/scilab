@@ -30,12 +30,12 @@ function [palettes,windows]=do_palettes(palettes,windows)
   if ~MSDOS then
     delmenu(curwin,'3D Rot.')
     delmenu(curwin,'UnZoom')
-    delmenu(curwin,'2D Zoom')
+    delmenu(curwin,'Zoom')
     //  delmenu(curwin,'File')
   else
     delmenu(curwin,'3D &Rot.')
     delmenu(curwin,'&UnZoom')
-    delmenu(curwin,'2D &Zoom')
+    delmenu(curwin,'&Zoom')
     //  delmenu(curwin,'&File')
   end
   
