@@ -24,12 +24,15 @@
 
 char *ProgramName;
 
-void sci_clear_and_exit (int);
-void sci_usr1_signal(int);
+extern void sci_winch_signal(int);
 
 extern void C2F(tmpdirc)();
 static void Syntax  (char *badOption);  
 static void Help  (void);  
+
+void sci_clear_and_exit (int);
+void sci_usr1_signal(int);
+
 
 /*---------------------------------------------------------- 
  * mainsci.f directly call this function 
@@ -103,6 +106,8 @@ void C2F(realmain)()
   signal(SIGQUIT,sci_clear_and_exit);
   signal(SIGHUP,sci_clear_and_exit);
   signal(SIGUSR1,sci_usr1_signal);
+  signal(SIGWINCH, sci_winch_signal);
+
   /* initialize scilab interp  */
   C2F(inisci)(&ini, &memory, &ierr);
   if (ierr > 0) return ;
@@ -220,6 +225,8 @@ void sci_usr1_signal(int n)
 {
   controlC_handler(n);
 }
+
+
 
 /*-------------------------------------------------------
  * Ctrl-Z : stops the current computation 

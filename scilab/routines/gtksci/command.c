@@ -1,7 +1,8 @@
 /*------------------------------------------------------------------------
  *    Copyright (C) 2001 Enpc/Jean-Philippe Chancelier
  *    jpc@cermics.enpc.fr 
- --------------------------------------------------------------------------*/
+ *--------------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <string.h>
 #include "../graphics/Math.h"
@@ -104,7 +105,6 @@ static void get_scilab_command(char *str)
       FREE(p);
     }
 }
-
 
 /*---------------------------------------------------------------------------
  * Checks if there's something on the 

@@ -168,8 +168,8 @@ void C2F(zzledt1)( char *buffer,int *  buf_size, int * len_line,int * eof,
 }
 
 #define IBSIZE 1024
-static char input_char_buffer[IBSIZE];
-static int  input_char_buffer_count = 0;
+char sci_input_char_buffer[IBSIZE];
+int  sci_input_char_buffer_count = 0;
 
 #define SELECT_DEBUG(x)
 
@@ -178,12 +178,12 @@ static int  input_char_buffer_count = 0;
 void write_scilab(s)
     char   *s;
 {
-  while ( *s != '\0' && input_char_buffer_count < IBSIZE) 
+  while ( *s != '\0' && sci_input_char_buffer_count < IBSIZE) 
     {
-      input_char_buffer[input_char_buffer_count++]= *s;
+      sci_input_char_buffer[sci_input_char_buffer_count++]= *s;
       s++;
     }
-  input_char_buffer[input_char_buffer_count++]='\n';
+  sci_input_char_buffer[sci_input_char_buffer_count++]='\n';
 }
 
 /* XXXXX A terminer */
@@ -191,7 +191,6 @@ void write_scilab(s)
 
 int Xorgetchar()
 {
-  SELECT_DEBUG(static FILE *f;  static int lcount = 0;)
   int i;
   static int c_count = -1;
   static int GtkXsocket,fd_in,fd_out,fd_err;
@@ -208,11 +207,9 @@ int Xorgetchar()
       max_plus1 = Max(fd_in,GtkXsocket);      
       max_plus1 = Max(fd_out,max_plus1);
       max_plus1 = Max(fd_err,max_plus1) + 1;
-      SELECT_DEBUG(f = fopen("/tmp/foo","w");)
     }
   
   for( ; ; ) {
-    SELECT_DEBUG(fprintf(f,"encore une fois %d\n",lcount++);)
     /* always flush writes before waiting */
     gdk_flush();
     fflush(stdout); 
@@ -225,10 +222,11 @@ int Xorgetchar()
     FD_SET(GtkXsocket, &select_mask);
     FD_ZERO(&write_mask);
     /* XXXX : the two next FD_SET causes select not to wait 
-       and since they do not seam necessary they are commented out 
-       FD_SET(fd_out,&write_mask);
-       FD_SET(fd_err,&write_mask);
-    */
+     * and since they do not seam necessary they are commented out  
+     */
+    /* FD_SET(fd_out,&write_mask);
+       FD_SET(fd_err,&write_mask); */
+
     select_timeout.tv_sec = 5;
     select_timeout.tv_usec = 0;
     while ( gtk_events_pending())
@@ -236,10 +234,10 @@ int Xorgetchar()
 	gtk_main_iteration(); 
       }
     /* maybe a new string to execute */
-    if ( input_char_buffer_count > 0) 
+    if ( sci_input_char_buffer_count > 0) 
       {
-	input_char_buffer_count--;
-	return input_char_buffer[++c_count];
+	sci_input_char_buffer_count--;
+	return sci_input_char_buffer[++c_count];
       }
     else
       {
@@ -258,30 +256,26 @@ int Xorgetchar()
     }
     /* if there's something to output */
     if ( FD_ISSET(fd_out,&write_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur write_mask et out \n");)
       fflush(stdout); 
     }
     if ( FD_ISSET(fd_err,&write_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur write_mask et err \n");)
-      fflush(stdout); 
+      fflush(stderr); 
     }
 
     /* if there's something to read */
     if ( FD_ISSET(fd_in,&select_mask )) { 
-      SELECT_DEBUG(fprintf(f,"sortie de select sur in_mask \n");)
       return getchar();
       break;
     } 
     if ( FD_ISSET(GtkXsocket,&select_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur gtk \n");)
+      /* if there are X events in our queue, it
+       * counts as being readable 
+       */
+      while ( gtk_events_pending()) /*  ||(select_mask & gtk_mask) */
+	{ 
+	  gtk_main_iteration(); 
+	} 
     }
-    /* if there are X events in our queue, it
-     * counts as being readable 
-     */
-    while ( gtk_events_pending()) /*  ||(select_mask & gtk_mask) */
-      { 
-	gtk_main_iteration(); 
-      } 
   }
 }
 
@@ -301,137 +295,16 @@ int C2F(sxevents)()
   return(0);
 }
 
+/*-------------------------------------------------------
+ * winch signal : window size changed 
+ *-------------------------------------------------------*/
 
-/*-----------------------------------------------------
- * XXXXXX experience 
- * zzledt with readline 
- *-----------------------------------------------------*/
-#include <readline/readline.h>
-
-void process_line(char *line);
-
-int prompt = 1;
-char prompt_buf[40], line_buf[256];
-
-static int stop;
-static char * full_line = NULL;
-
-void C2F(zzledt)( char *buffer,int *  buf_size, int * len_line,int * eof, long int dummy1)
+void sci_winch_signal(int n) 
 {
-  rl_callback_handler_install("-->", process_line);
-  stop = 1;
-  my_readline();
-  /* now full_line contains the line */
-  strcpy(buffer,full_line);
-  *len_line = strlen(full_line);
-  *eof = FALSE;
-  free(full_line);
-}
-
-int my_readline()
-{
-  SELECT_DEBUG(static FILE *f;  static int lcount = 0;)
-  int i;
-  static int c_count = -1;
-  static int GtkXsocket,fd_in,fd_out,fd_err;
-  static int first = 0,max_plus1;
-  fd_set select_mask,write_mask;
-  static struct timeval select_timeout;
-  if ( first == 0) 
-    {
-      first++;
-      GtkXsocket = ConnectionNumber(GDK_DISPLAY());
-      fd_in  = fileno(stdin) ;
-      fd_out = fileno(stdout);
-      fd_err = fileno(stderr);
-      max_plus1 = Max(fd_in,GtkXsocket);      
-      max_plus1 = Max(fd_out,max_plus1);
-      max_plus1 = Max(fd_err,max_plus1) + 1;
-      SELECT_DEBUG(f = fopen("/tmp/foo","w");)
-    }
-  
-  while (stop == 1)  {
-    SELECT_DEBUG(fprintf(f,"encore une fois %d\n",lcount++);)
-    /* always flush writes before waiting */
-    gdk_flush();
-    fflush(stdout); 
-    fflush(stderr);
-    /* Update the masks and, unless X events are already in the queue,
-     * wait for I/O to be possible. 
-     */
-    FD_ZERO(&select_mask);
-    FD_SET(fd_in , &select_mask);
-    FD_SET(GtkXsocket, &select_mask);
-    FD_ZERO(&write_mask);
-    /* XXXX : the two next FD_SET causes select not to wait 
-       and since they do not seam necessary they are commented out 
-       FD_SET(fd_out,&write_mask);
-       FD_SET(fd_err,&write_mask);
-    */
-    select_timeout.tv_sec = 5;
-    select_timeout.tv_usec = 0;
-    while ( gtk_events_pending())
-      { 
-	gtk_main_iteration(); 
-      }
-    /* maybe a new string to execute */
-    if ( input_char_buffer_count > 0) 
-      {
-	input_char_buffer_count--;
-	return input_char_buffer[++c_count];
-      }
-    else
-      {
-	c_count = -1;
-      }
-
-    i = select(max_plus1, &select_mask,&write_mask, (fd_set *)NULL,
-	       &select_timeout);
-    if (i < 0) {
-      if (errno != EINTR)
-	{ 
-	  fprintf(stderr,"error in select\n");
-	  exit(0);
-	  continue;
-	} 
-    }
-    /* if there's something to output */
-    if ( FD_ISSET(fd_out,&write_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur write_mask et out \n");)
-      fflush(stdout); 
-    }
-    if ( FD_ISSET(fd_err,&write_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur write_mask et err \n");)
-      fflush(stdout); 
-    }
-
-    /* if there's something to read */
-    if ( FD_ISSET(fd_in,&select_mask )) { 
-      SELECT_DEBUG(fprintf(f,"sortie de select sur in_mask \n");)
-	rl_callback_read_char();
-    } 
-    if ( FD_ISSET(GtkXsocket,&select_mask)) { 
-      SELECT_DEBUG( fprintf(f,"sortie de select sur gtk \n");)
-    }
-    /* if there are X events in our queue, it
-     * counts as being readable 
-     */
-    while ( gtk_events_pending()) /*  ||(select_mask & gtk_mask) */
-      { 
-	gtk_main_iteration(); 
-      } 
-  }
-}
-
-
-void process_line(char *line)
-{
-  if ( line != NULL ) 
-    { 
-      if (line[0] != '\0' ) add_history(line);
-      full_line = line ;
-      rl_callback_handler_install("", process_line);
-      stop = 0;
-    }
+  int rows,cols;
+  /* XXXXX need a rcent version of readlin 
+   * rl_get_screen_size(&rows,&cols);
+   */ 
+  fprintf(stderr,"windows size changed %d %d\r\n",rows,cols);
 }
 

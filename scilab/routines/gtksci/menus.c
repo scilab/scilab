@@ -303,8 +303,6 @@ void AddMenu(win_num, button_name, entries, ne, typ, fname, ierr)
  * Activate or deactivate a menu 
  *---------------------------------------------------*/
 
-
-
 void SetUnsetMenu(win_num, button_name, ne,flag)
      integer *win_num;
      char *button_name;
@@ -943,6 +941,23 @@ static void scig_menu_load(int winid)
     }
 }
 
+/*-----------------------------------------------------------------*
+ * file operations 
+ *-----------------------------------------------------------------*/
+
+static void sci_menu_fileops()
+{
+  static char * file = NULL ;
+  int rep,ierr;
+  rep = GetFileWindow(NULL,&file,".",1,&ierr,"File operations");
+  if ( ierr == 0 && rep == TRUE ) 
+    { 
+      StoreCommand(file); 
+      free(file); 
+      file =NULL; 
+    }
+}
+
 /*-----------------------------------------------------------------**
  * 2D Zoom calback 
  *-----------------------------------------------------------------*/
@@ -1035,6 +1050,9 @@ static void sci_menu_demos()
   StoreCommand( get_sci_data_strings(2));
 }
 
+
+
+
 /*-----------------------------------------------------------------
  * Execute predefined callbacks 
  *-----------------------------------------------------------------*/
@@ -1042,19 +1060,21 @@ static void sci_menu_demos()
 int call_predefined_callbacks(char *name, int winid)
 {
   if      (strcmp(name,"$clear")== 0)  scig_menu_erase(winid) ;
-  else if (strcmp(name,"$select")== 0)  scig_menu_select(winid) ;
-  else if (strcmp(name,"$print")== 0) scig_menu_print(winid);
-  else if (strcmp(name,"$export")== 0)  scig_export(winid);
-  else if (strcmp(name,"$save")== 0)  scig_menu_save(winid);
-  else if (strcmp(name,"$load")== 0) scig_menu_load(winid);
-  else if (strcmp(name,"$close")== 0) scig_menu_delete(winid);
-  else if (strcmp(name,"$zoom")== 0)  scig_menu_zoom(winid);
-  else if (strcmp(name,"$unzoom")== 0)  scig_menu_unzoom(winid);
-  else if (strcmp(name,"$rot3d")== 0) scig_menu_rot3d(winid);
-  else if (strcmp(name,"$help")== 0) sci_menu_help();
-  else if (strcmp(name,"$stop")== 0) sci_menu_stop();
-  else if (strcmp(name,"$kill")== 0) sci_menu_kill();
-  else if (strcmp(name,"$demos")== 0) sci_menu_demos();
+  else if (strcmp(name,"$select")== 0) scig_menu_select(winid) ;
+  else if (strcmp(name,"$print")== 0)  scig_menu_print(winid);
+  else if (strcmp(name,"$export")== 0) scig_export(winid);
+  else if (strcmp(name,"$save")== 0)   scig_menu_save(winid);
+  else if (strcmp(name,"$load")== 0)   scig_menu_load(winid);
+  else if (strcmp(name,"$close")== 0)  scig_menu_delete(winid);
+  else if (strcmp(name,"$zoom")== 0)   scig_menu_zoom(winid);
+  else if (strcmp(name,"$unzoom")== 0) scig_menu_unzoom(winid);
+  else if (strcmp(name,"$rot3d")== 0)  scig_menu_rot3d(winid);
+  else if (strcmp(name,"$help")== 0)   sci_menu_help();
+  else if (strcmp(name,"$stop")== 0)   sci_menu_stop();
+  else if (strcmp(name,"$kill")== 0)   sci_menu_kill();
+  else if (strcmp(name,"$demos")== 0)  sci_menu_demos();
+  else if (strcmp(name,"$fileops")== 0) sci_menu_fileops();
+
   else return 0;
   return 1;
 }
