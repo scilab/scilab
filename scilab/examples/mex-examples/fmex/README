@@ -1,0 +1,4 @@
+CAUTION: Use integer*8 for integers containing pointers
+         on DEC Alpha machines (64 bits arch).
+
+

@@ -1,0 +1,28 @@
+ 
+// load the shared library
+ 
+exec loader.sce ;
+shared archive loaded
+ 
+// run tests
+ 
+[a,b]=mexf1(1,2);
+ 
+if b~=2 then bugmes();quit;end
+ 
+ 
+[a,b,c,d,e]=mexf2(1,2);
+ 
+if part(e,1:6) ~='scimex' then pause;end
+ 
+ 
+a=mexf3(2);
+ 
+if b~=2 then bugmes();quit;end
+ 
+ 
+ 
+ 
+ 
+ 
+ 
