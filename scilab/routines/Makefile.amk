@@ -3,7 +3,7 @@ SHELL = /bin/sh
 include ../Makefile.incl.amk
 
 SCIDIRS = graphics calelm comm control default integ interf intersci lapack \
-	libcomm metanet optim poly signal sparse sun system system2  \
+	libcomm metanet optim poly signal sparse sun system system2 slicot \
 	menusX scicos sound wsci xdr  gd 
 
 SUBDIRS = $(XAW_LOCAL_SUBDIR) $(DLD_SUBDIR) $(SCIDIRS)
