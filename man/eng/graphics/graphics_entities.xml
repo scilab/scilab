@@ -46,8 +46,6 @@
     <VERB>set("old_style","on")</VERB> are used to set the default mode to be
     used when a new graphics window is created.</P>
 
-    <P>The new graphics mode is a beta version.</P>
-
     <P></P>
 
     <DESCRIPTION_INDENT>
@@ -250,7 +248,7 @@
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[
+  <EXAMPLE>
 
 
   //Play this example line per line
@@ -285,7 +283,7 @@
   plot2d(x,x^3)  //the drawing are sent to the initial figure
 
  
-  ]]></EXAMPLE>
+  </EXAMPLE>
 
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
