@@ -299,9 +299,16 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     }
   
   /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
-
+  if (version_flag() == 0) 
+    {/*update A.Djalel for new graphics auto scaling*/
+      subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1]=xmin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[1],xmin);
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3]=xmax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[3],xmax);
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2]=ymin=Min(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[2],ymin);
+      pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4]=ymax=Max(pSUBWIN_FEATURE (subwindowtmp)->axes.limits[4],ymax);
+    }
   FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
-  if (version_flag() == 0) subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
+  
  /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
   if (strflag[1] == '7' || strflag[1] == '8' )
     {
