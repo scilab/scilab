@@ -263,7 +263,7 @@ int intcpass2(fname,fname_len)
   int *critev,nb,*ztyp,nblk,ndcblk,*iord,solver,*solverptr;
   double *bllst6,*bllst7,*bllst8,*bllst11,*tevts,*xcd0,*ppd;
   char **bllst111,**bllst10,**bllst13;
-  unsigned long str_len;
+  /*unsigned long str_len;*/
   int moinsun=-1, field_num;
   char *field_name;
 
@@ -373,7 +373,7 @@ int intcpass2(fname,fname_len)
 	      n1111=le11[5]-1;
 	      if ((bllst111[k]=(char*) malloc(sizeof(char)*(n1111+1))) ==NULL )  return 0;
 	      ((char*) bllst111[k])[n1111]='\0';
-	      C2F(cvstr)(&n1111,le111,bllst111[k],&one,str_len);
+	      C2F(cvstr)(&n1111,le111,bllst111[k],&one,strlen(bllst111[k]));
 	      
 	      le12=(int*) listentry(le1,2); /*sim(2)*/
 	      le121=((double *) (le12+4));
@@ -387,7 +387,7 @@ int intcpass2(fname,fname_len)
 	  n1111=le1[5]-1;
 	  if ((bllst111[k]=(char*) malloc(sizeof(char)*(n1111+1))) ==NULL )  return 0;
 	  ((char*) bllst111[k])[n1111]='\0';
-	  C2F(cvstr)(&n1111,le111,bllst111[k],&one,str_len);
+	  C2F(cvstr)(&n1111,le111,bllst111[k],&one,strlen(bllst111[k]));
 	  
 	}
       /* 2ieme element de la list in */
@@ -604,7 +604,7 @@ int intcpass2(fname,fname_len)
       le1010=((int *) (le10+6));      
       if ((bllst10[k]=(char*) malloc(sizeof(char)*2)) ==NULL )  return 0;
       ((char*) bllst10[k])[1]='\0';
-      C2F(cvstr)(&one,le1010,bllst10[k],&one,str_len);
+      C2F(cvstr)(&one,le1010,bllst10[k],&one,strlen(bllst10[k]));
       /* 11ieme element de la list firing*/
       if ((field_name=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
       ((char*) field_name)[6]='\0';
@@ -645,7 +645,7 @@ int intcpass2(fname,fname_len)
       n1313=le13[5]-1;
       if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
-      C2F(cvstr)(&n1313,le1313,bllst13[k],&one,str_len);
+      C2F(cvstr)(&n1313,le1313,bllst13[k],&one,strlen(bllst13[k]));
      /* 14ieme element de la list nzcross*/
       if ((field_name=(char*) malloc(sizeof(char)*8)) ==NULL )  return 0;
       ((char*) field_name)[7]='\0';
