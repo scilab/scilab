@@ -10,9 +10,19 @@ from=tree.operands($)
 to=tree.operands(1)
 
 if and(to.vtype<>[Cell,Unknown]) then
-  error("%i_ce2sci: destination variable is not a cell: "+to.name+" is of type "+string(to.vtype))
+  if to.vtype==Double & and(to.dims==list(0,0)) then
+    insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
+    // To be sure that variable will now be of type Struct
+    [bval,index]=isdefinedvar(to)
+    varslist(index).infer.type.vtype=Cell
+  else
+    error("%i_ce2sci: destination variable is not a cell: "+to.name+" is of type "+string(to.vtype))
+  end
 elseif to.vtype==Unknown then
   insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
+  // To be sure that variable will now be of type Struct
+  [bval,index]=isdefinedvar(to)
+  varslist(index).infer.type.vtype=Cell
 end
 
 // Just one index value
@@ -78,6 +88,7 @@ if rhs==1 then
     else
       tree.out(1).contents=cell()
     end
+    tree.out(1).vtype=Cell
   end
 // Two indexes: to(ind1,ind2,...)=from or more
 else
