@@ -790,21 +790,15 @@ int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads)
   return 0;
 }
 
-int GradEqual(double * grads, int *ngrads)
+/* Returns 0 if 2 consecutive grads at least are equal */
+int GradEqual(const double grads[],const int *ngrads)
 {
   int i;
-  double tmp = 0.;
-  double old_tmp = grads[0];
-  
-  for(i=1;i<(*ngrads);i++)
+  const double *g = grads; 
+  for( i= 0 ; i < (*ngrads) -1 ; i++)
     {
-      tmp = grads[i];
-      if(tmp == old_tmp){
-	return 0; /* 2 consecutive grads at least are equal */
-	break;
-      }
-      old_tmp = tmp;
+      if (*g == *(g+1)) return 0;
+      g++;
     }
-  
   return 1;
 }
