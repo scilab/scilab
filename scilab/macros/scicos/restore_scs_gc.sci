@@ -1,9 +1,10 @@
 function restore_scs_gc(scs_gc)
 // restore the current scicos graphic context
 // Copyright INRIA
-xsetech(scs_gc(1)(1),scs_gc(1)(2))
-driver(scs_gc(2))
-for i=3:size(scs_gc)
+  xset('window',scs_gc(1))
+xsetech(scs_gc(2)(1),scs_gc(2)(2))
+driver(scs_gc(3))
+for i=4:size(scs_gc)
   x=scs_gc(i)
   xx=x(2);
   select size(x(2),'*'),
