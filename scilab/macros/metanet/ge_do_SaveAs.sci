@@ -60,9 +60,13 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
 	unix_s('rm '+fname)
       end
     end
+    path_s=GraphList.name(2);
+    GraphList.name= GraphList.name(1)
     ok=execstr('save_graph(GraphList,fname)','errcatch')==0
+    GraphList.name(2)=path_s
     if ok then 
       nf=length(fname)
+      GraphList.name(1)=name
       GraphList.name(2)=part(fname,1:nf-6)
     else
       x_message([lasterror();'';'Graph has not been saved'])
@@ -70,6 +74,7 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
     
   else
     message('Only *.graph  files allowed');
+    ok=%f
     return
   end
 endfunction

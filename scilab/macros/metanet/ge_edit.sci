@@ -12,7 +12,7 @@ function r=ge_edit(kmen,win)
 	'Left click on a point, drag, left click to validate selection'
 	'Left click on the node or the arc to open properties dialog'
 	' ']
-  mens=['NewNode','NewArc','Move','Move Region',..
+  mens=['NewNode','NewArc','Move Node','Move Region',..
 	"Copy Region To ClipBoard",'Paste','Delete',..
 	'Delete Region','Properties','Give default names','Undo']
   execstr('global EGdata_'+w+'; EGdata_'+w+'.Cmenu='''+mens(kmen)+'''')

@@ -12,6 +12,7 @@ function show_nodes(p,sup,leg)
     error('No current edit_graph window defined, use netwindow')
   end
   win=EGcurrent;w=string(win)
+  old=xget('window');xset('window',win)
   execstr(['global EGdata_'+w
 	   'if typeof(EGdata_'+w+')==''egdata'' then';
 	   'EGdata=EGdata_'+w
@@ -24,4 +25,5 @@ function show_nodes(p,sup,leg)
 	   'GraphList.node_border(p)=b'
 	   'ge_drawnodes(p)'
 	   'end'])
+   xset('window',old)
 endfunction

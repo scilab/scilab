@@ -4,5 +4,5 @@ function ge_drawtitle(wpar)
 
 // draw window title
 // Copyright INRIA
-xname(wpar(1))  
+xname(wpar(1) +'  ('+w+')  ')
 endfunction

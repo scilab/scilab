@@ -29,6 +29,7 @@ function r=ge_graph(kmen,win)
     execstr('GraphList=EGdata_'+w+'.GraphList')
     [GraphList,ok]=ge_do_SaveAs(GraphList)
     if ok then
+      ge_drawtitle(GraphList.name)
       execstr('EGdata_'+w+'.GraphList=GraphList;EGdata_'+w+'.Edited=%f;')
     end
     seteventhandler("ge_eventhandler") 

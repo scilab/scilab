@@ -7,7 +7,7 @@ function  ok=ge_do_quit(check_if_edited)
   execstr('global EGdata_'+w+'; edited=EGdata_'+w+'.Edited')
   if edited&check_if_edited then
     ok=x_message(['Current graph is modified'
-		  'Quit really ?'],['yes','no'])
+		  'Really quit?'],['yes','no'])
     if ok==2 then ok=%f,return,end
   end
   if win==EGcurrent then EGcurrent=[],end

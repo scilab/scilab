@@ -19,6 +19,7 @@ function [ok,GraphList,edited]=ge_do_load(fname)
     case 'graph'
       ierr=execstr('GraphList=load_graph(fname)','errcatch')
       version=editgraph_ver()
+      GraphList.name(2)=part(fname,1:length(fname)-6)
       ok=%t
     else
       message(['Only *.graph (formatted) files allowed'])
