@@ -1,6 +1,8 @@
 #include "../gd/gd.h"
 #include "../machine.h"
 
+extern void sciprint __PARAMS ((char *fmt,...));
+
 void C2F(deallocategifimg)(im)
      gdImagePtr *im;
 {
@@ -80,7 +82,6 @@ void C2F(getgifcmap)(imgptr,cmap)
      unsigned char *cmap;
 {
   int i,k, ncol;
-  unsigned char *c1;
   gdImagePtr im;
   im = *imgptr;
   
