@@ -38,7 +38,7 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl)
  *-----------------------------------------------*/
 
 void Objarc (angle1,angle2,x,y,width,height,color,fill,hdl)
-    double *angle1,*angle2;
+    int *angle1,*angle2;
     double *x,*y,*width,*height;
     int color,fill;
     long *hdl;
