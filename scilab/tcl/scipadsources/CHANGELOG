@@ -784,3 +784,14 @@ Francois VOGEL, 01/03/05
  * Directory dropping in Scipad now handled (opens all the files in it)
  * Wrong underline removed for >9 recent files in the file menu (hack)
  * version --> 3.39
+
+ES, 6/3/05
+ * fine-tuning for linux drag&drop (.* files considered when dragging
+   directories, .. and . excluded, warning for drops of non file://
+   objects (e.g. ftp:// or http://). Filenames with non escaped spaces
+   (or with %20) not yet supported.
+ * warning issued when trying to open a file from the recent list, if the
+   file does not exist anymore.
+ * preference added scilabSingleQuotedStrings=yes/no
+ * removed the unnecessary input argument to proc showopenwin
+ * version --> 3.40

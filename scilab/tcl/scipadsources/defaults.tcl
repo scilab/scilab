@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.39"
+set version "Version 3.40"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -13,7 +13,7 @@ set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
        LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont indentspaces \
-       filenamesdisplaytype maxrecentfiles }
+       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings}
 set listofpref_list { listofrecent }
 
 # default options which can be overriden
@@ -44,6 +44,7 @@ set indentspaces 2
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full"
 set maxrecentfiles 4
 set listofrecent [list]    ;# always full filenames here
+set scilabSingleQuotedStrings "yes"
 
 #other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }

@@ -1,5 +1,5 @@
 # Scipad texts in French
-
+#in sync with v3.40
 
 # commons
 ::msgcat::mcset fr "Cancel" "Annuler"
@@ -84,6 +84,19 @@
 ::msgcat::mcset fr "The contents of" "Voulez-vous enregistrer les modifications apportées à"
     ::msgcat::mcset fr "may have changed, do you wish to save your changes?" "?"
 ::msgcat::mcset fr "Save Confirm?" "Confirmer sauver ?"
+::msgcat::mcset fr "Weird drag&drop" "Glisser&déposer inattendu"
+::msgcat::mcset fr "is neither a valid filename nor a valid directory.\
+                    Either you're dragging an object of another type, or\
+                    you hit a bug of the dnd mechanism." \
+                    "n'est ni un nom de fichier valide ni un nom de répertoire\
+                     valide. Soit vous avez tenté de glisser un objet d'un \
+                     type différent, soit c'est un bug du mécanisme de \
+                     glisser&déposer."
+::msgcat::mcset fr "File not found" "Fichier introuvable"
+::msgcat::mcset fr "does not exist anymore. Do you want to create an\
+                    empty file with the same name?" \
+                   "n'existe plus. Voulez-vous créer un nouveau fichier\
+                    portant ce nom ?"
 ::msgcat::mcset fr "Open file" "Ouvrir fichier"
 ::msgcat::mcset fr "The file" "Le fichier"
     ::msgcat::mcset fr "is already opened! Save the current opened file to an another name and reopen it from disk!" "est déjà ouvert! Sauvez-le sous un autre nom et rouvrez-le à partir du disque !"

@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v 3.31
+# in sync with v 3.40
 
 
 # commons
@@ -42,7 +42,7 @@
                        "nel file!\n\n\
                         Verificare il nome della funzione e gli argomenti (nome, ordine\
                         di comparsa) nella casella del dialogo di configurazione.\n\
-                        L'ordine degli argomenti puÚ essere modificato trascinando e deponendo\
+                        L'ordine degli argomenti pu√≤ essere modificato trascinando e deponendo\
                         col mouse."
 ::msgcat::mcset it "Error in selected function name or arguments" \
         "Errore nella funzione selezionata o nei suoi argomenti"
@@ -52,13 +52,13 @@
 
 # db_debugsession.tcl
 ::msgcat::mcset it "Scilab is working, wait for the prompt to issue a debugger command." \
-   "Scilab Ë occupato, aspettare il prompt per eseguire comandi di debug."
+   "Scilab √® occupato, aspettare il prompt per eseguire comandi di debug."
 ::msgcat::mcset it "Cursor position is out of reach!" \
-     "La posizione del cursore Ë irraggiungibile"
+     "La posizione del cursore √® irraggiungibile"
 ::msgcat::mcset it "Cursor must be in a function" \
      "Il cursore deve essere dentro una funzione"
 ::msgcat::mcset it "No effect - The debugged file is not stuck" \
-     "Senza effetto - il file in debug non Ë piantato"
+     "Senza effetto - il file in debug non √® piantato"
 ::msgcat::mcset it "Scilab execution error" \
     "Errore di Scilab durante l'esecuzione"
 ::msgcat::mcset it "The shell reported an error while trying to execute " \
@@ -96,17 +96,29 @@
    ::msgcat::mcset it "may have changed, do you wish to save your changes?"\
             "potrebbe essere cambiato, registrare i cambi?"
 ::msgcat::mcset it "Save Confirm?" "Conferma salvataggio?"
+::msgcat::mcset it "Weird drag&drop" "Strano trascina e deponi"
+::msgcat::mcset it "is neither a valid filename nor a valid directory.\
+                    Either you're dragging an object of another type, or\
+                    you hit a bug of the dnd mechanism." \
+                   "non √® un nome valido per un file. O √® stato trascinato\
+                    un oggetto di tipo sbagliato, o il meccanismo di d&d\
+                    ha un baco." 
+::msgcat::mcset it "File not found" "File non trovato"
+::msgcat::mcset it "does not exist anymore. Do you want to create an\
+                    empty file with the same name?" \
+                   "non esiste pi√π. Creare un nuovo file collo\
+                    stesso nome?"
 ::msgcat::mcset it "Open file" "Aprire file"
 ::msgcat::mcset it "The file" "Il file"
     ::msgcat::mcset it "is already opened! Save the current opened file to an another name and reopen it from disk!" \
- "Ë gi‡ aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
+ "√® gi√† aperto! Salvarlo eventualmente con un altro nome e riaprirlo dal disco"
 ::msgcat::mcset it "File" "File"
     ::msgcat::mcset it "saved" "salvato"
-::msgcat::mcset it "cannot be written!" "non Ë scrivibile!"
+::msgcat::mcset it "cannot be written!" "non √® scrivibile!"
 ::msgcat::mcset it "The contents of " "Il contenuto di"
     ::msgcat::mcset it "has changed on disk, save it anyway?" \
-       "Ë cambiato sul disco, salvare comunque?"
-::msgcat::mcset it "File has changed!" "Il file Ë cambiato"
+       "√® cambiato sul disco, salvare comunque?"
+::msgcat::mcset it "File has changed!" "Il file √® cambiato"
 ::msgcat::mcset it "Save as" "Registra come"
 ::msgcat::mcset it "Scilab files" "Files Scilab"
 ::msgcat::mcset it "XML files" "Files XML"
@@ -122,14 +134,14 @@
 
 # findreplace.tcl
 ::msgcat::mcset it "The string" "La stringa"
-    ::msgcat::mcset it "could not be found" "non Ë stata trovata"
+    ::msgcat::mcset it "could not be found" "non √® stata trovata"
 ::msgcat::mcset it "Find" "Cerca"
 ::msgcat::mcset it "No match found in the selection for" \
          "Nessuna corrispondenza trovata all'interno della selezione."
  ::msgcat::mcset it "\nWould you like to look for it in the entire text?" \
                    "Continuare la ricerca nel resto del testo?"
 ::msgcat::mcset it "You are searching for an empty string!" \
-          "La stringa da cercare Ë vuota!"
+          "La stringa da cercare √® vuota!"
 ::msgcat::mcset it "Re&place" "&Cerca"
 ::msgcat::mcset it "Find what:" "Cerca:"
 ::msgcat::mcset it "Replace with:" "Cambia in:"
@@ -150,7 +162,7 @@
                    "\n Originato da tknotepad di Joseph Acosta, joeja@mindspring.com.\n\
                     Modificato dal Consorzio Scilab.\n\
                     Migliorato da Enrico Segre 2003-2005\n\
-                    e da FranÁois Vogel (in particolare il debugger) 2004-2005."
+                    e da Fran√ßois Vogel (in particolare il debugger) 2004-2005."
 
 
 # infomessages.tcl
@@ -254,7 +266,7 @@
 
     # menues.tcl - Help menu
     ::msgcat::mcset it "&Help..." "&Aiuto..."
-    ::msgcat::mcset it "&What's?..." "&Cos'Ë?..."
+    ::msgcat::mcset it "&What's?..." "&Cos'√®?..."
     ::msgcat::mcset it "&About" "A &proposito"
 
 
@@ -269,11 +281,11 @@
 # scilabexec.tcl
 ::msgcat::mcset it "No point in loading an empty file!" "Inutile caricare un file vuoto!"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to load file" \
-      "Scilab Ë occupato, attendere il prompt per caricare il file"
+      "Scilab √® occupato, attendere il prompt per caricare il file"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to execute the selection." \
-    "Scilab Ë occupato, attendere il prompt per eseguire la selezione"
+    "Scilab √® occupato, attendere il prompt per eseguire la selezione"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to convert a Matlab file." \
-    "Scilab Ë occupato, attendere il prompt per convertire un file Matlab"
+    "Scilab √® occupato, attendere il prompt per convertire un file Matlab"
 ::msgcat::mcset it "Matlab file to convert" "File Matlab da importare"
 ::msgcat::mcset it "Scilab is converting, please hold on..." \
     "Scilab sta traducendo, attendere..."
@@ -282,13 +294,13 @@
                     for details -- Perhaps report the error text and the\
                     offending Matlab file to \
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
-                   "La traduzione del file Ë fallita, vedere la finestra\
-                    Scilab dettagli -- Il bugg puÚ essere riportato a\
+                   "La traduzione del file √® fallita, vedere la finestra\
+                    Scilab dettagli -- Il bugg pu√≤ essere riportato a\
                     http://scilabsoft.inria.fr/bugzilla_bug/index.cgi \
                     includendo il file incriminato ed il messagggio di errore."
 ::msgcat::mcset it "Please select destination path for the xml source of the help file" \
    "Scegliere una cartella di destinazione per la sorgente XML della pagina di aiuto"
-::msgcat::mcset it "Older version of" "Esiste gi‡ una versione di"
+::msgcat::mcset it "Older version of" "Esiste gi√† una versione di"
     ::msgcat::mcset it "found!" "!"
 ::msgcat::mcset it "An old version of" "Esiste una versione precedente di"
     ::msgcat::mcset it "already exists: open the old file instead?" \
@@ -296,7 +308,7 @@
 ::msgcat::mcset it "Existing file" "File esistente"
 ::msgcat::mcset it "New skeleton" "Crea nuovo scheletro"
 ::msgcat::mcset it "Scilab is working, wait for the prompt to compile the help file." \
-      "Scilab Ë occupato, attendere il prompt per compilare la pagina di aiuto"
+      "Scilab √® occupato, attendere il prompt per compilare la pagina di aiuto"
 
 # scipad.tcl
 ::msgcat::mcset it "NOT CONNECTED TO SCILAB" "MANCA LA CONNESSIONE A SCILAB"
@@ -312,7 +324,7 @@
     ::msgcat::mcset it "begins at" "comincia a"
     ::msgcat::mcset it ", and there are" ", e ci sono"
     ::msgcat::mcset it "continued lines, i.e. we are at line" \
-         "linee continuate, cioË siamo alla linea"
+         "linee continuate, cio√® siamo alla linea"
     ::msgcat::mcset it "of" "di"
 ::msgcat::mcset it "Function" "Funzione"
     ::msgcat::mcset it "line" "linea"

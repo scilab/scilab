@@ -180,19 +180,30 @@ proc openlistoffiles {filelist} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
+#    tk_messageBox -message $filelist
     foreach f $filelist {
+        regsub "^file:" $f "" f
+# in unix, .* files are not matched by *, but .* matches . and ..
+# If we don't exclude them, we have infinite recursion
+        if {[file tail $f] == "." | [file tail $f] == ".."} continue
         if {[file isfile $f] == 1} {
-            regsub "^file://" $f "" f
             openfile $f
         } elseif {[file isdirectory $f] == 1} {
-            openlistoffiles [glob -nocomplain -directory $f * ]
+            openlistoffiles [glob -nocomplain -directory $f -types hidden *]
+            openlistoffiles [glob -nocomplain -directory $f -types {f d} *]
         } else {
-            # just do nothing, what could it be else?
+            # In windows this never happened to us, but linux applications
+            # allow sometimes drag of e.g. http:// or ftp://; moreover
+            #  spaces in namefiles can produce unexpected results
+            tk_messageBox -title [mc "Weird drag&drop"] -message [concat $f \
+            [ mc "is neither a valid filename nor a valid directory.\
+                       Either you're dragging an object of another type, or\
+                       you hit a bug of the dnd mechanism." ] ]
         }
     }
 }
 
-proc showopenwin {textarea} {
+proc showopenwin {} {
 # bring up the open dialog for file selection
 # if file is not already open, open it
 # otherwise just switch buffers to show it
@@ -222,6 +233,24 @@ proc showopenwin {textarea} {
     [gettextareacur] mark set insert "1.0"
     keyposn [gettextareacur]
 }
+
+proc openfileifexists {file} {
+#wrapper to openfile, but issues a warning if the file does not exist (anymore)
+    if {[file exist $file]} {
+         openfile $file
+    } else {
+         set answer \
+            [tk_messageBox -type yesno -icon question \
+             -title [mc "File not found"] -message "[mc "The file"]\
+              $file [mc "does not exist anymore. Do you want to create an\
+              empty file with the same name?"]"]
+         switch -- $answer {
+           yes {openfile $file}
+           no {}
+           }
+    }
+}
+
 
 proc openfile {file} {
 # try to open a file with filename $file (no file selection through a dialog)
@@ -717,7 +746,7 @@ proc AddRecentFile {filename} {
             set listofrecent [linsert $listofrecent 0 $filename]
             $pad.filemenu.files insert $rec1ind command \
                        -label [file tail [lindex $listofrecent 0] ] \
-                       -command "openfile \"[lindex $listofrecent 0]\""
+                       -command "openfileifexists \"[lindex $listofrecent 0]\""
             # update menu entries (required to update the numbers)
             UpdateRecentLabels $rec1ind
         } else {
@@ -749,7 +778,7 @@ proc UpdateRecentLabels {rec1ind} {
         set ind [expr $rec1ind + $i]
         $pad.filemenu.files entryconfigure $ind \
                    -label $lab \
-                   -command "openfile \"[lindex $listofrecent $i]\""
+                   -command "openfileifexists \"[lindex $listofrecent $i]\""
         if {$i<9} {
             $pad.filemenu.files entryconfigure $ind \
                    -underline 0
@@ -770,7 +799,7 @@ proc BuildInitialRecentFilesList {} {
         set lab [concat [expr $i + 1] [file tail [lindex $listofrecent $i] ] ]
         $pad.filemenu.files add command \
                    -label $lab \
-                   -command "openfile \"[lindex $listofrecent $i]\""
+                   -command "openfileifexists \"[lindex $listofrecent $i]\""
         if {$i<9} {
             set ind [$pad.filemenu.files index end]
             $pad.filemenu.files entryconfigure $ind \

@@ -45,7 +45,7 @@ proc remalltags {w begin ende} {
 }
 
 proc colorize {w cpos iend} {
-    global words chset listoffile 
+    global words chset listoffile scilabSingleQuotedStrings
     set num 0
     set textarea [gettextareacur]
     set schema $listoffile("$textarea",language)
@@ -199,23 +199,29 @@ proc colorize {w cpos iend} {
     }
 
     # tag 'sometext' with single quotes as textquoted
-    $w mark set last begin
-    while { [set ind [$w search -count num -regexp \
-                        {'[^']*('|$)} last ende]] != {}} {
-        if {[$w compare $ind >= last]} {
-            set res ""
-            $w mark set endetext "$ind lineend"
-            regexp {'[^']*'} [$w get last endetext] res
-            set num [string length $res]
-            if {$num <= 0} {
-                $w mark set last "$ind + 1c"
-            } else {
-                $w mark set last "$ind + $num c"
-                # textquoted deletes any other tag
-                remalltags $w $ind last
-                $w tag add textquoted $ind last
-            }          
-        } else break
+     #let it be optional -- but be aware that if the option is changed, 
+     # it will affect only tagging of the subsequently added text.
+     # if the option is to be changed within scilab, the change
+     # has to trigger a recolorization of all buffers 
+    if {$scilabSingleQuotedStrings == "yes"} {
+        $w mark set last begin
+        while { [set ind [$w search -count num -regexp \
+                              {'[^']*('|$)} last ende]] != {}} {
+            if {[$w compare $ind >= last]} {
+                set res ""
+                $w mark set endetext "$ind lineend"
+                regexp {'[^']*'} [$w get last endetext] res
+                set num [string length $res]
+                if {$num <= 0} {
+                    $w mark set last "$ind + 1c"
+                } else {
+                    $w mark set last "$ind + $num c"
+                    # textquoted deletes any other tag
+                    remalltags $w $ind last
+                    $w tag add textquoted $ind last
+                }          
+            } else break
+        }
     }
 
     # scilab remark

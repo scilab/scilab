@@ -5,7 +5,7 @@ menu $pad.filemenu.files -tearoff 0 -font $menuFont
     eval "$pad.filemenu.files add command [me "&New"] \
                    -command \"filesetasnew\" -accelerator Ctrl+n"
     eval "$pad.filemenu.files add command [me "&Open..."] \
-                   -command \"showopenwin $textareacur\" -accelerator Ctrl+o"
+                   -command \"showopenwin\" -accelerator Ctrl+o"
     eval "$pad.filemenu.files add command [me "&Save"] \
                    -command \"filetosavecur\" -accelerator Ctrl+s"
     eval "$pad.filemenu.files add command [me "Save &as..."]\
