@@ -2747,7 +2747,7 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
   if (NZMAX==0) NZMAX=1;
   ix1 = il + 4 + (*n + 1) + NZMAX;
   size = (*it + 1) * NZMAX ;
-  Err = sadr(ix1)  - *lstk(Bot );
+  Err = sadr(ix1)  - *Lstk(Bot );
   if (Err > -size ) {
     Scierror(17,"stack size exceeded (Use stacksize function to increase it)\r\n");
     return FALSE_;
