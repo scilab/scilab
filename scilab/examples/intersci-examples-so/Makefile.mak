@@ -1,4 +1,4 @@
-.SUFFIXES: .desc $(SUFFIXES)
+.SUFFIXES: .desc .sce .dia  $(SUFFIXES)
 
 SCIDIR=../..
 SCIDIR1=..\..
@@ -13,9 +13,17 @@ include ../../Makefile.incl.mak
 FFLAGS = $(FC_OPTIONS) -DFORDLL
 CFLAGS = $(CC_OPTIONS) -DFORDLL 
 
-all:: info
+.desc.c: 
+	@echo  generating $*.c 
+	@$(INTERSCI) $* 
 
-info:
+all	:: message 
+
+TESTS=ex01.dia ex02.dia ex03.dia ex04.dia ex05.dia ex06.dia ex07.dia ex08.dia \
+	ex09.dia ex10.dia ex11.dia ex12.dia ex13.dia ex14.dia ex15.dia ex16.dia ex17.dia
+
+
+message:
 	@echo ------------------------------------------;
 	@echo At Scilab prompt, enter:;
 	@echo -->exec exXX.sce; 
@@ -23,15 +31,13 @@ info:
 	@echo ------------------------------------------;
 	@echo Type nmake /f Makefile.mak tests 
 	@echo to run all tests 
+	@echo ------------------------------------------;
 
-.desc.c: 
-	@echo  generating $*.c 
-	@$(INTERSCI) $* 
-
-clean::
+tests	: $(TESTS) 
 
 distclean	::
 	@del *.obj 
+	@del *.dia
 	@del *.dll
 	@del *.ilib 
 	@del *.pdk
@@ -44,15 +50,5 @@ distclean	::
 	@del *fi.c 
 	@del libex*
 
-tests	: 
-	"$(SCIDIR1)\bin\scilex.exe"  -f zall.sce
-
-distclean:: clean
-
-clean	::
-	@del zallfi
-	@del zallfi.sce 
-	@del zallfi.f 
-	@del zallfi.obj 
-	@del zallfi.dia
-
+.sce.dia:
+	@"$(SCIDIR1)\bin\scilex.exe"  -nwni -e scitest('$*.sce',%t);quit
