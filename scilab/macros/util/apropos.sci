@@ -53,6 +53,9 @@ function [provpath]=apropos_gener(key)
      found= found(k);
   end
   provpath=TMPDIR+sep+"apropos_"+key1;
+  if MSDOS then
+  	provpath=provpath+'.htm';
+  end
 
   apropos_txt =["<html>";
 		 "<head>";
