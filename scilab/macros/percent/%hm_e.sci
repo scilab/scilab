@@ -2,6 +2,7 @@ function M=%hm_e(varargin)
 // Copyright INRIA
 //extract an sub_hypermatrix
 [lhs,rhs]=argn(0)
+
 M=varargin(rhs)
 dims=M.dims
 
@@ -45,8 +46,6 @@ for k=rhs-1:-1:1
   end
 end
 //
-dims1(max(find(dims1>1))+1:$)=[]
-
 
 while  dims1($)==1 then dims1($)=[],end
 select size(dims1,'*')
