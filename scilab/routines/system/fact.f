@@ -345,6 +345,7 @@ c     .     (.. ,) syntax
 
  40   if(sym.ne.name.or.char1.ne.equal) goto 42
 c     next lines to manage named arguments (..,a=..)
+
       fun=fun1
 
       lpt4=lpt(4)
@@ -353,6 +354,10 @@ c     next lines to manage named arguments (..,a=..)
 c     check for a==
          lpt(4)=lpt4
          goto 42
+      endif
+      if(ids(1,pt).eq.blank) then 
+         call error(2)
+         return
       endif
       if ( eptover(1,psiz-1))  return
       ids(1,pt)=rhs
