@@ -16,6 +16,8 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible)
 	 "data: "+d
 	 "line_style: "+string(h.line_style)
@@ -31,6 +33,8 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible)
 	 "data: "+d
 	 "foreground: "+string(h.foreground)
@@ -38,9 +42,12 @@ function %h_p(h)
 	 "clip_box: "+sci2exp(h.clip_box)]
       case "Agregation"
       t=[t;
-	 "children: "+sci2exp(h.children.type,0)]
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)]
       case "Axes"
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible)
 	 "axes_visible: "+string(h.axes_visible)
 	 "grid: "+sci2exp(h.grid)
@@ -55,7 +62,6 @@ function %h_p(h)
 	 "data_bounds: "+sci2exp(h.data_bounds,0)
 	 "axes_bounds: "+sci2exp(h.axes_bounds,0)
 	 "foreground: "+string(h.foreground)
-	 "children: "+sci2exp(h.children.type,0)
 	 " "
 	 "auto_clear: "+h.auto_clear
 	 "auto_scale: "+h.auto_scale
@@ -72,18 +78,15 @@ function %h_p(h)
 	]
       case "Legend"
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "foreground: "+string(h.foreground)
 	 "visible: "+string(h.visible)
-	 "clip_state: "+string(h.clip_state)	
-	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "font_size:"+sci2exp(h.font_size,0)
-	 "font_angle: "+string(h.font_angle)
-	 "font_style: "+string(h.font_style)
-	 "font_foreground: "+string(h.font_foreground)
-	 "font_name: "+string(h.font_name)
 	 "text: "+string(h.text)]
       case "Rectangle"
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "thickness: "+string(h.thickness)
 	 "mark_mode: "+string(h.mark_mode)
 	 "mark_style: "+string(h.mark_style)
@@ -97,6 +100,8 @@ function %h_p(h)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
       case "Arc"
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "thickness: "+string(h.thickness)
 	 "line_style: "+string(h.line_style)
 	 "fill_mode: "+string(h.fill_mode)
@@ -109,6 +114,7 @@ function %h_p(h)
       c=sci2exp(h.children.type,0)
       if length(c)>70 then c="matrix "+strcat(string(size(h.children)),'x'),end
       t=[t;
+	 "children: "+fmtchildren(h.children)
 	 "figure_style: "+h.figure_style
 	 "figure_position: "+sci2exp(h.figure_position,0)
 	 "figure_size: "+sci2exp(h.figure_size,0)
@@ -119,7 +125,6 @@ function %h_p(h)
          "color_map: matrix "+strcat(string(size(h.color_map)),'x')
 	 "background: "+string(h.background)
 	 "pixel_drawing_mode: "+sci2exp(h.pixel_drawing_mode,0)
-	 "children: "+c
 	 " "
 	 "auto_scale: "+h.auto_scale
 	 "auto_clear: "+h.auto_clear
@@ -138,20 +143,20 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible) 
 	 "data: "+d
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "data_mapping: "+h.data_mapping
 	]
       case "Matplot"
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible)
 	 "data: "+d
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "data_mapping: "+h.data_mapping]
      
       case "Fec"
@@ -160,11 +165,11 @@ function %h_p(h)
       f=sci2exp(h.triangles,0)
       if length(f)>70 then f="matrix '+strcat(string(size(h.triangles)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible) 
 	 "data: "+d
 	 "triangles: "+f
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box,0)
 	 "z_bounds: "+sci2exp(h.z_bounds,0)
 	]
       
@@ -174,6 +179,8 @@ function %h_p(h)
       c=sci2exp(h.segs_color,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.segs_color)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible) 
 	 "data: "+d
 	 "line_style: "+string(h.line_style)
@@ -186,6 +193,8 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible) 
 	 "data: "+d
 	 "line_style: "+string(h.line_style)
@@ -194,21 +203,36 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
       case "Text"
-      t=sci2exp(h.text,0)
-      if length(t)>70 then d="string array '+strcat(string(size(h.text)),'x'),end
+      T=sci2exp(h.text,0)
+      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "visible: "+string(h.visible) 
-	 "text: "+sci2exp(h.text,0)
+	 "text: "+T
 	 "data: "+sci2exp(h.data,0)
 	 "foreground: "+string(h.foreground)
 	 "font_style: "+string(h.font_style)
 	 "font_size: "+string(h.font_size)
 	 "font_angle: "+string(h.font_angle)
-	 "font_name: "+h.font_name
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
+      case "Title"
+      T=sci2exp(h.text,0)
+      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
+      t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
+	 "visible: "+string(h.visible) 
+	 "text: "+T
+	 "foreground: "+string(h.foreground)
+	 "font_style: "+string(h.font_style)
+	 "font_size: "+string(h.font_size)
+	 "font_angle: "+string(h.font_angle)]
       case "Plot3d"
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "foreground: "+string(h.foreground)
 	 "thickness: "+string(h.thickness)
 	 "visible: "+string(h.visible) 
@@ -224,6 +248,8 @@ function %h_p(h)
       if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
 
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "foreground: "+string(h.foreground)
 	 "thickness: "+string(h.thickness)
 	 "visible: "+string(h.visible) 
@@ -242,6 +268,8 @@ function %h_p(h)
       c=sci2exp(h.surface_color,0)
       if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
       t=[t;
+	 "parent: "+h.parent.type
+	 "children: "+fmtchildren(h.children)
 	 "foreground: "+string(h.foreground)
 	 "thickness: "+string(h.thickness)
 	 "visible: "+string(h.visible) 
@@ -257,4 +285,11 @@ function %h_p(h)
   end
   write(%io(2),t)
 endfunction
-
+function t=fmtchildren(c)
+  if c==[] then 
+    t='[]'
+  else
+    t=sci2exp(c.type,0)
+    if length(t)>70 then t="matrix "+strcat(string(size(c)),'x'),end 
+  end
+endfunction
