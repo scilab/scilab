@@ -5,15 +5,24 @@ SCIDIR1=..\..\..
 
 include ../../../Makefile.incl
 
-.SUFFIXES: .sci .bin $(SUFFIXES)
+.SUFFIXES: .sci .bin .mo .moc $(SUFFIXES)
 
 NAME = scselectricallib
 NAM = SCI/macros/scicos_blocks/Electrical
 
 MACROS= Capacitor.sci Ground.sci NPN.sci VVsourceAC.sci \
 	ConstantVoltage.sci Inductor.sci PotentialSensor.sci VariableResistor.sci \
-	CurrentSensor.sci MOTOR.sci Resistor.sci VoltageSensor.sci \
-	Diode.sci SineVoltage.sci VsourceAC.sci \
+	CurrentSensor.sci Resistor.sci VoltageSensor.sci \
+	Diode.sci  VsourceAC.sci 
 
 
 include ../../Make.lib
+
+.mo.moc: $(SCIDIR)/bin/modelicac
+	$(SCIDIR)/bin/modelicac -c   $(<) -o $(@)
+
+all ::  $(MACROS:.sci=.moc)
+
+
+distclean::
+	@$(RM) *.moc
