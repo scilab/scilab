@@ -23,7 +23,6 @@ if type(Dfun)==10 then //the 'b' keyword or the jacobian entry point name
   if Dfun=='b' & size(varargin) >= 3 then
     if type(varargin(2))==1 & type(varargin(3))==1 then
       J=%f //bounds specification
-      k
     else
       J=%t //jacobian 
     end 
