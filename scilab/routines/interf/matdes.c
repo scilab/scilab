@@ -836,7 +836,7 @@ int sciparam3d(fname, fname_len)
   isfac=-1;
   izcol=0;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3);//Adding F.Leray 12.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -940,7 +940,7 @@ int sciparam3d1(fname, fname_len)
   /* NG beg */
   isfac=-1;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox);
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3); //Adding F.Leray 12.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -1121,7 +1121,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   GetLegend(6,opts);
   GetOptionalIntArg(7,"flag",&iflag,3,opts);
   GetOptionalDoubleArg(8,"ebox",&ebox,6,opts);
-
+  
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
     if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
       Scierror(999,"%s: The three first arguments have incompatible length \r\n",fname);
@@ -1142,7 +1142,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
 	return 0;
       }
   }
-
+  
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
   C2F(sciwin)();
   C2F(scigerase)();
@@ -1154,7 +1154,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
     isfac=0;
 
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3);//Adding F.Leray 12.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -4653,6 +4653,13 @@ int gset(fname,fname_len)
   int lw;
   sciPointObj *pobj;
 
+  //F.Leray Adding some tmp variable for SCI_SURFACE / data case
+  integer m3tl, n3tl, l3tl; //,m3l, n3l, l3l;
+  int numrow[4];
+  int numcol[4], lxyzcol[4];
+  int flagc = -1;
+
+
   CheckRhs(2,3);
   CheckLhs(0,1);
   /*  set or create a graphic window */
@@ -4664,22 +4671,23 @@ int gset(fname,fname_len)
       return 0;
       break;
     case 9: /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
+      // F.Leray; INFO: case 9 is considered for a matrix of graphic handles
       CheckRhs(3,3);
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
       if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
 	{
-	if (m1!=1||n1!=1) { 
-	  lw = 1 + Top - Rhs;
-	  C2F(overload)(&lw,"set",3);return 0;
-	}
-	if (version_flag() ==0)
-	  hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */ 
-	else
-	  hdl = (unsigned long)0;
-	if (hdl == (unsigned long)0 )
-	  pobj = (sciPointObj *) NULL;
-	else
-	  pobj = sciGetPointerFromHandle(hdl);
+	  if (m1!=1||n1!=1) { 
+	    lw = 1 + Top - Rhs;
+	    C2F(overload)(&lw,"set",3);return 0;
+	  }
+	  if (version_flag() ==0)
+	    hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */ 
+	  else
+	    hdl = (unsigned long)0;
+	  if (hdl == (unsigned long)0 )
+	    pobj = (sciPointObj *) NULL;
+	  else
+	    pobj = sciGetPointerFromHandle(hdl);
 	} /* DJ.A 08/01/04 */
       else 
 	{
@@ -4690,10 +4698,10 @@ int gset(fname,fname_len)
       GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
       if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
-	    	&&(strncmp(cstk(l2),"default_figure",14) !=0) 
-	    	  && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
+	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
+	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
       
-      if (VarType(3) != sciType(cstk(l2))) {
+      if (VarType(3) != sciType(cstk(l2),pobj)) { // F.Leray MODIFICATION ICI
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
@@ -4716,7 +4724,7 @@ int gset(fname,fname_len)
 		(strncmp(cstk(l2),"clip_box",8) !=0) )   
 	      hdl = (unsigned long ) sciGetHandle(sciGetCurrentObj ()) ; 
 	    else  
-	    hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+	      hdl = (unsigned long ) sciGetHandle(sciGetSelectedSubWin (sciGetCurrentFigure ()));
 	  else
 	    hdl = (unsigned long)0;
 	  if (hdl == (unsigned long)0 )
@@ -4729,7 +4737,7 @@ int gset(fname,fname_len)
 	  hdl = (unsigned long)0;
 	  pobj = (sciPointObj *) NULL;
 	}
-      if (VarType(2) != sciType(cstk(l2))) {
+      if (VarType(2) != sciType(cstk(l2),pobj)) { // F.Leray MODIFICATION ICI
 	Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
 
 	return 0;} 
@@ -4747,11 +4755,63 @@ int gset(fname,fname_len)
       return 0;
       break;
     }
-  if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/
-    if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
-      Scierror(999,"%s: %s\r\n",fname,error_message);
-      return 0;
-    }
+  if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/  // F.Leray 16.03.04
+    pobj = sciGetPointerFromHandle(hdl);
+    // make a test on SCI_SURFACE here
+    if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
+      {
+	
+	if (sciSet(pobj, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+	  Scierror(999,"%s: %s\r\n",fname,error_message);
+	  return 0;
+	}
+      }
+    else
+      {
+	// F.Leray Work here
+	if (strncmp(cstk(l2),"data",4) !=0) {
+	  sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
+	  return -1;
+	}
+	
+	if(VarType(3) != 16){
+	  Scierror(999,"%s: Incorrect argument, must be a Tlist!\r\n",fname);
+	  return -1;
+	}
+	
+	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
+	
+   // GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); Not good because 3,1, is the string character "3d x y z [en option col]"
+	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
+	GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
+	/*
+	GetListRhsVar(3,3,"l",&m3l,&n3l,&l3l);
+	if ( m3l > 2 ) 
+	{
+	  sciprint("Error third argument must be a matrix or a list of 2 matrices [zz zcol]\r\n");
+	    return 0;
+	  }
+	*/
+	if(m3tl == 4)
+	  {
+	    GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+	    flagc = 0;
+	  }
+	else if( m3tl == 5)
+	  {
+	    GetListRhsVar(3,4,"d",&numrow[2],&numcol[2],&lxyzcol[2]);
+	    GetListRhsVar(3,5,"i",&numrow[3],&numcol[3],&lxyzcol[3]);
+	    flagc = 1;
+	  }
+	else
+	  {
+	    sciprint("Error m3tl must be equal to 4 or 5\r\n");
+	    return -1;
+	  }
+	
+	if (set3ddata(pobj, lxyzcol, numrow, numcol,flagc,fname)!=0)  return 0;
+      }
+    
     if ((strncmp(cstk(l2),"figure_style",12) !=0) &&
 	(strncmp(cstk(l2),"old_style",9) !=0 ) && 
 	(strncmp(cstk(l2),"current_axes",12) !=0) &&
@@ -4761,15 +4821,15 @@ int gset(fname,fname_len)
       num= sciGetNumFigure (pobj);    
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      sciDrawObj(sciGetParentFigure(pobj));
+      sciDrawObj(sciGetParentFigure(pobj)); // F.Leray we redraw here
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   }
-  else
-    if (sciSet((sciPointObj *) NULL, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
-      Scierror(999,"%s: %s\r\n",fname,error_message);
-      return 0;
-    }
+  else if (sciSet((sciPointObj *) NULL, cstk(l2), &l3, &numrow3, &numcol3)!=0) {
+    Scierror(999,"%s: %s\r\n",fname,error_message);
+    return 0;
+  }
+  
   LhsVar(1)=0;
   return 0;
 }
@@ -4857,11 +4917,22 @@ int gget(fname,fname_len)
     }
   }
   else {
-    if ((pobj = sciGetPointerFromHandle(hdl)))
-      if (sciGet(pobj, cstk(l2))!=0) {
-	Scierror(999,"%s: %s\r\n",fname,error_message);
-	return 0;
-      }
+    if ((pobj = sciGetPointerFromHandle(hdl))){
+      // make a test on SCI_SURFACE here
+      if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
+	{
+	  if (sciGet(pobj, cstk(l2))!=0)
+	    {
+	      Scierror(999,"%s: %s\r\n",fname,error_message);
+	      return 0;
+	    }
+	}
+      else
+	{
+	  if (get3ddata(pobj)!=0)
+	    return 0;
+	}
+    }
   }
   LhsVar(1)=Rhs+1;
   return 0;
@@ -6326,11 +6397,51 @@ else if (strncmp(marker,"visible", 7) == 0) {
     {
       if ((tab = sciGetPoint ((sciPointObj *)pobj, &numrow, &numcol)) == NULL)
 	{strcpy(error_message,"No point");return -1;}
+
+      //  if(sciGetEntityType (pobj) != SCI_SURFACE){
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       k=0;
       for (j=0;j < numcol*numrow;j++)
 	stk(outindex)[j] = tab[j];
       FREE(tab);
+      /*}
+	else
+	{
+	if( pSURFACE_FEATURE (pobj)->isfac == 0){
+	    
+	    
+	}
+	else
+	{
+	//if(Hmat = MALLOC(sizeof(HyperMat) == NULL)
+	//return 0; 
+	//if((Hmat->dims) = MALLOC(4*sizeof(int)) == NULL)
+	//return 0;
+	      
+	Hmat = MALLOC(sizeof( HyperMat ));
+	Hmat->R = MALLOC((3*numrow*numcol)*sizeof(double));
+	      
+	for(j=0;j< 3*numcol*numrow;j++)
+	Hmat->R[j] = tab[j];
+	      
+	Hmat->dims = &trois;
+	Hmat->dimsize = 3;
+	Hmat->size = numrow * numcol;
+	Hmat->I = NULL;
+	Hmat->it = 0;
+	      
+	CreateHMat(Rhs+1,Hmat,numrow,numcol, &outindex);
+	Top = Top+1;
+	      
+	//for (j=0;j < 3*numcol*numrow;j++)
+	for (j=0;j < 20;j++)
+	stk(outindex)[j] = tab[j];
+
+
+
+	FREE(tab);
+	}*/
+      
     }
         
   /**************** callback *********************/
@@ -7387,3 +7498,305 @@ int draw(fname,fname_len)
   return 0;
 }
 
+static int get3ddata(sciPointObj *pobj)
+{
+  char *variable_tlist_color[] = {"3d","x","y","z","color"};
+  char *variable_tlist[] = {"3d","x","y","z"};
+  int m_variable_tlist = 0;
+  int n_variable_tlist = 0;
+  //int n_variable_tlist = 1;
+
+  int one = 1, nc;
+  int four = 4;
+  int  numrow, numcol,l;
+
+  // F.Leray debug
+  //sciSurface * psurf = pSURFACE_FEATURE (pobj);
+  
+  // tests a faire sur presence et taille color
+  nc = pSURFACE_FEATURE (pobj)->nc;
+  if(nc !=0)
+    {
+      m_variable_tlist = 1;
+      n_variable_tlist = 5;
+
+      if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
+	{
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+	  // CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  
+	  
+	  // Add 'variable' tlist items to stack 
+	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
+	  
+	  
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
+	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+      
+	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) // nc=dimzy; // one color per facet
+	    {
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &one,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	    }
+	  else  // //one color per edge 
+	    {
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	    }
+	  // copy the x value in stk(lr)
+	  
+	}
+      else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
+	{
+	  /* Add 'variable' tlist items to stack */
+	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // but here m1!=m2!=m3 and n1!=n2!=n3
+	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	  
+	  numrow = pSURFACE_FEATURE (pobj)->m2;
+	  numcol = pSURFACE_FEATURE (pobj)->n2;
+	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
+      
+	  numrow = pSURFACE_FEATURE (pobj)->m3;
+	  numcol = pSURFACE_FEATURE (pobj)->n3;
+	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+
+	  
+	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) //nc=nz; /* one color per facet */
+	    {
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	    }
+	  else  //  nc=nz*4; /*one color per edge */
+	    {
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &four,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	    }
+	  /* copy the x value in stk(lr) */
+	}
+    }
+  else // no color
+    {
+      m_variable_tlist = 1;
+      n_variable_tlist = 4;
+      
+      if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
+	{
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+	  // CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  
+	  
+	  // Add 'variable' tlist items to stack 
+	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	 	  
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
+	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+      	}
+      else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
+	{
+	  /* Add 'variable' tlist items to stack */
+	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
+	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+      
+	  numrow = pSURFACE_FEATURE (pobj)->m1;
+	  numcol = pSURFACE_FEATURE (pobj)->n1; // but here m1!=m2!=m3 and n1!=n2!=n3
+	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+
+	  numrow = pSURFACE_FEATURE (pobj)->m2;
+	  numcol = pSURFACE_FEATURE (pobj)->n2;
+	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
+
+	  numrow = pSURFACE_FEATURE (pobj)->m3;
+	  numcol = pSURFACE_FEATURE (pobj)->n3;
+	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+	}
+    }
+  
+  
+  return 0;
+}
+
+
+// set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3)
+static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc, char *fname)
+{
+  int i=0;
+  sciSurface * psurf = pSURFACE_FEATURE (pobj);
+
+
+  integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
+  integer m3n, n3n, l3n;
+
+  double * pvecx = NULL, * pvecy = NULL, * pvecz = NULL;
+  integer * zcol = NULL, izcol = 0 ;
+
+  
+  m1 = numrow[0];
+  m2 = numrow[1];
+  m3 = numrow[2];
+  m3n = numrow[3]; // F.Leray for color
+  n1 = numcol[0];
+  n2 = numcol[1];
+  n3 = numcol[2];
+  n3n = numcol[3]; // F.Leray for color
+  l1 = value[0];
+  l2 = value[1];
+  l3 = value[2];
+  l3n = value[3]; // F.Leray for color
+   
+  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
+    if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
+      Scierror(999,"%s:  Inside the Tlist (third argument): The three first arguments have incompatible length \r\n",fname);
+      return 0;
+    }
+  } else {
+    if (m2 * n2 != n3) {
+      Scierror(999,"%s:  Inside the Tlist (third argument): The second and third arguments have incompatible length\r\n",fname);
+      return 0;
+    }
+    if (m1 * n1 != m3) {
+      Scierror(999,"%s:  Inside the Tlist (third argument): The first and third arguments have incompatible length\r\n",fname);
+      return 0;
+    }
+    if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
+      {
+	Scierror(999,"%s: Inside the Tlist (third argument):The first and second arguments should be of size >= 2\r\n",fname);
+	return 0;
+      }
+  }
+  
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
+  // C2F(sciwin)();
+  // C2F(scigerase)();
+ 
+  if(flagc == 1)
+    {
+      psurf->nc = 1;
+      izcol = 1;
+      if (   m3n*n3n == m3*n3 ) izcol=2  ;
+    }
+  else
+    psurf->nc = 0;
+  
+  psurf->izcol = izcol;
+ 
+
+
+  if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
+    {//isfac=1;
+      if(psurf->isfac != 1)
+	{
+	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
+	  return 0;
+	}
+    }
+  else
+    { 
+      //isfac=0;
+      if(psurf->isfac != 0)
+	{
+	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
+	  return 0;
+	}
+    }
+  
+
+  // Free the old values...
+  FREE(psurf->pvecx); psurf->pvecx = NULL;
+  FREE(psurf->pvecy); psurf->pvecy = NULL;
+  FREE(psurf->pvecz); psurf->pvecz = NULL;
+  // ...even on zcol wich must have been initialized like others or set to NULL in case there was no color before
+  // The FREE macro tests the NULL pointer existence...
+  FREE(psurf->zcol); psurf->zcol = NULL;
+
+  // allocations:
+  if ((pvecx = MALLOC (m1*n1 * sizeof (double))) == NULL) return -1;
+  if ((pvecy = MALLOC (m2*n2 * sizeof (double))) == NULL) {
+    FREE(pvecx); pvecx = (double *) NULL;
+    return -1;
+  } 
+  if ((pvecz = MALLOC (m3*n3 * sizeof (double))) == NULL) {
+    FREE(pvecx); pvecx = (double *) NULL;
+    FREE(pvecy); pvecy = (double *) NULL;
+    return -1;
+  }
+
+  // Copy the values F.Leray
+  for(i=0;i< m1*n1;i++)
+    pvecx[i] = stk(l1)[i];
+  
+  for(i=0;i< m2*n2;i++)
+    pvecy[i] = stk(l2)[i];
+
+  for(i=0;i< m3*n3;i++)
+    pvecz[i] = stk(l3)[i];
+  
+  if(flagc ==1) // F.Leray There is a color matrix
+    {
+      if ((zcol = MALLOC (m3n*n3n * sizeof (int))) == NULL) {
+	FREE(pvecx); pvecx = (double *) NULL;
+	FREE(pvecy); pvecy = (double *) NULL;
+	FREE(pvecz); pvecz = (double *) NULL;
+	return -1;
+      }
+
+      for(i=0;i< m3n*n3n;i++)
+	zcol[i] = istk(l3n)[i];
+      
+    }
+  
+  psurf->pvecx = pvecx;
+  psurf->pvecy = pvecy;
+  psurf->pvecz = pvecz;
+  psurf->zcol = zcol;
+
+
+  psurf->m1 = m1;
+  psurf->m2 = m2;
+  psurf->m3 = m3;
+  psurf->n1 = n1;
+  psurf->n2 = n2;
+  psurf->n3 = n3;
+  // Update of the dimzx, dimzy depends on  m3, n3:
+  psurf->dimzx = m3;
+  psurf->dimzy = n3;
+  /*
+  if (typeof3d == SCI_PLOT3D) {
+    nx=dimzx;
+    ny=dimzy;
+    nz=dimzx*dimzy;
+    if (flagcolor == 2)
+      nc=nz; // one color per facet 
+    else if (flagcolor == 3)
+      nc=nz*4; // one color per edge 
+    else 
+      nc=0;
+  }
+  // DJ.A 2003 
+  else {
+    nx=dimzx*dimzy;
+    ny=dimzx*dimzy;
+    nz=dimzx*dimzy;
+    if (flagcolor == 2)
+      nc=dimzy; // one color per facet 
+    else if (flagcolor == 3)
+      nc=nz; // one color per edge 
+    else 
+      nc=0;
+  }
+  */
+  return 0;
+}
