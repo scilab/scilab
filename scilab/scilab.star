@@ -99,8 +99,9 @@ demolist=initial_demos_tables()
 clear initial_demos_tables demolist
 
 // Scipad font size micro=10,small=12,medium=14,large=18
-global %scipad_fontsize;%scipad_fontsize=12
-clear %scipad_fontsize //remove the local variable
+//Overridden by the preference file ES 15/11/04
+//global %scipad_fontsize;%scipad_fontsize=12
+//clear %scipad_fontsize //remove the local variable
 
 // Set the preferred browser  ==========================================
 global %browsehelp
