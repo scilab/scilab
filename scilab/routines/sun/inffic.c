@@ -40,3 +40,14 @@ void C2F(infficl)(iopt,nc)
   *nc=strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
 }
 
+
+/******************************************
+ *  get string .....
+ ******************************************/
+
+char *get_sci_data_strings(int n)
+{
+  return dataStrings[Max(Min(n,MAXDATA),0)];
+}
+
+
