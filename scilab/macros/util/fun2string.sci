@@ -333,12 +333,12 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	dqote='""'
 	if lst(ilst+1)(1)=='20'&lst(ilst+1)(2)=='deff' then
 	  st=op(4:$)
-	  txt=['function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
-	       st(:)
+	  txt=catcode(txt,['function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
+	       indentsci(st(:))
 	       'endfunction'
-	       '']
-	  txt=indentsci(txt)
+	       ''])
 	  lst(ilst+1)(1)='0'
+	  lst(ilst+2)(1)='0'
 	  stk(top)=list('','-2'),top=top-1
 	  ilst=ilst+3
 	else
