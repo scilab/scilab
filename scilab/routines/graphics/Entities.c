@@ -14326,7 +14326,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 } 
 void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD)
 {
- integer  x[4];
+ integer  x[5];
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN) 
     if(pSUBWIN_FEATURE (pobj)->isaxes)
