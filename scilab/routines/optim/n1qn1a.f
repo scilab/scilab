@@ -2,20 +2,24 @@
      1     niter,nsim,iprint,lp,h,d,w,xa,ga,xb,gb,izs,rzs,dzs)
 c     Copyright INRIA
 
+*     A (very) few modifs by Bruno (14 March 2005): I have translated some output
+*     informations in english (but they don't use format instruction 
+*     which is put in the secong arg of write). Also for the linear
+*     search output informations I divide by the direction vector norm
+*     to get the "normalized" directionnal derivative. Note that this is
+*     just for output (the computing code is normaly not modified).
+
       implicit double precision (a-h,o-z)
       dimension x(n),g(n),scale(n),h(*),d(n),w(n),
      1 xa(n),ga(n),xb(n),gb(n),izs(*),dzs(*)
       real rzs(*)
       external simul
+      double precision dnrm2 ! (blas routine) added by Bruno to get
+                             ! a better information concerning directionnal derivative
  1000 format (46h n1qn1 ne peut demarrer (contrainte implicite))
  1001 format (40h n1qn1 termine par voeu de l'utilisateur)
  1010 format (45h n1qn1 remplace le hessien initial (qui n'est,
      1 20h pas defini positif)/27h par une diagonale positive)
- 1019 format (1h+,51x,12hderiv init =,d11.4)
- 1020 format (6h n1qn1,i4,6h iters,i6,7h simuls,5h   f=,d15.7)
- 1021 format (6h n1qn1,13x,3hpas,d12.5,10h  diff f =,d11.4,
-     1 9h  deriv =,d11.4)
- 1022 format (6h n1qn1,13x,3hpas,d12.5,9h  indic =,i2)
  1023 format (40h n1qn1 bute sur une contrainte implicite)
 c
 c              calcul initial de fonction-gradient
@@ -155,8 +159,15 @@ c               initialisation du pas
       step=1.0d+0
       if (dff.le.0.0d+0) step=min(step,1.0d+0/c)
       if (dff.gt.0.0d+0) step=min(step,(dff+dff)/(-dga))
-      if (iprint.ge.2) write (lp,1020) itr,nfun,fa
-      if (iprint.ge.3) write (lp,1019) dga
+
+      if (iprint.ge.2) then
+         write (lp,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+     $                ', nb calls=',nfun,', f=',fa
+         if (iprint.ge.3) then
+            write (lp,'(A,G10.4)')
+     $            ' linear search: initial derivative=',dga/dnrm2(n,d,1)
+         endif
+      endif
 c              boucle de reherche lineaire
   170 c=stmin+step
       if (nfun.ge.nsim) go to 250
@@ -177,7 +188,10 @@ c              test sur indic
   183 stepbd=step
       ial=1
       step=step/10.0d+0
-      if (iprint.ge.3) write (lp,1022) c,indic
+      if (iprint.ge.3) then
+         write (lp,'(A,G10.4,A,I2)') 
+     $   '                step length=',c,', indic=',indic
+      endif
       if (stepbd.gt.steplb) goto 170
       if (iprint.ne.0.and.isfv.lt.2) write (lp,1023)
       goto 240
@@ -202,7 +216,11 @@ c               calcul de la derivee directionnelle
   230 dgb=dgb+gb(i)*d(i)
       if (iprint.lt.3) goto 231
       s=fb-fa
-      write (lp,1021) c,s,dgb
+* a small change (Bruno): to give a better indication about
+*  the directionnal derivative I scale it by || d ||
+      write (lp,'(A,G10.4,A,G10.4,A,G10.4)')
+     $  '                step length=',c,
+     $  ', df=',s,', derivative=',dgb/dnrm2(n,d,1)
 c               test si la fonction a descendu
   231 if (fb-fa.le.0.10d+0*c*dga) go to 280
       ial=0
@@ -210,7 +228,10 @@ c               iteration terminee si le pas est minimum
       if (step.gt.steplb) go to 270
   240 if (isfv.ge.2) go to 110
 c               ici, tout est termine
-  250 if (iprint.gt.0) write (lp,1020) itr,nfun,f
+  250 if (iprint.gt.0) then
+         write (lp,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+     $                ', nb calls=',nfun,', f=',f
+      endif
       acc=0.0d+0
       do 260 i=1,n
   260 acc=acc+g(i)*g(i)

@@ -57,16 +57,15 @@ c!
       dimension x(n),g(n),var(n),zm(*),izs(*),dzs(*)
       real rzs(*)
       external simul
- 1000 format (41h1entree dans n1qn1. dimension du probleme,i4,
-     19h,   de zm,i6)
- 1003 format (5h mode,i2,7h   eps=,d10.2,9h   niter=,i4,
-     16h nsim=,i5,5h imp=,i3)
- 1100 format (16h sortie de n1qn1,24h. norme gradient carre =,d15.7)
-      if (imp.le.0) go to 10
-      nw=n*(13+n)/2
-      write (lp,1000) n,nw
-      write (lp,1003) mode,eps,niter,nsim,imp
-   10 continue
+      if (imp.gt.0) then
+         write(lp,*)
+         write(lp,*) '***** enters -qn code- (without bound cstr)'
+         write(lp,*) 'dimension=',n,', epsg=',eps, 
+     $                ', verbosity level: imp=',imp
+         write(lp,*) 'max number of iterations allowed: iter=',niter
+         write(lp,*) 'max number of calls to costf allowed: nap=',nsim
+         write(lp,*) '------------------------------------------------'
+      endif
       nd=1+(n*(n+1))/2
       nw=nd+n
       nxa=nw+n
@@ -76,6 +75,7 @@ c!
       call n1qn1a (simul,n,x,f,g,var,eps,mode,
      1 niter,nsim,imp,lp,zm,zm(nd),zm(nw),zm(nxa),zm(nga),
      2 zm(nxb),zm(ngb),izs,rzs,dzs)
-      if (imp.gt.0) write (lp,1100) eps
-      return
+      if (imp.gt.0) then
+         write (lp,*) '***** leaves -qn code-, gradient norm=',sqrt(eps)
+      endif
       end
