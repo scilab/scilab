@@ -25,7 +25,7 @@ global lalist
 global curgedindex
 global curgedobject
 
-global curvis
+global curvis ncolors RED GREEN BLUE
 
 
 set ww .axes

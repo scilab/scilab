@@ -12,7 +12,7 @@ global curgedobject
 global curvis
 global curcolormode curthick colorflagToggle curforeground curhiddencolor
 global nbrowX nbrowY nbcolX nbcolY fac3dXVAL fac3dYVAL fac3dZVAL fac3dCOLORVAL flagCOLOR
-global nbrowZ nbcolZ nbrowCOLOR nbcolCOLOR
+global nbrowZ nbcolZ nbrowCOLOR nbcolCOLOR ncolors
 
 set ww .axes
 catch {destroy $ww}
