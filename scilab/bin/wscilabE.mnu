@@ -150,6 +150,10 @@
 	 	--	
 	 	m&2sci
 	 		mfile2sci();
+	 	--
+	 	&Browser Variables
+	 		browsevar();	
+	 		
 [EndMenu]
 
 [Menu]
