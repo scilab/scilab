@@ -27,7 +27,12 @@ function files= listfiles(paths,flag,flagexpand)
       filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
       if filesi<>"" & filesi<>[] then 
 	filesi=filesi($:-1:1)
-	filesi= dirs(i)+'\'+filesi
+	if dirs(i) <> '.' then 
+	  filesi= dirs(i)+'\'+filesi
+	end
+	// dir *.xml will return also *.xml2 *.xml22 etc... 
+	ind = grep(filesi,'xml2');
+	filesi(ind)=[];
       end
       files=[files;filesi];
     end
