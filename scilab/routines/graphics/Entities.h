@@ -429,6 +429,9 @@ typedef struct
   BOOL visible;
   /** specifies the number of the selected son         */
   int numsubwinselected;
+  /*Ajout D.Abdemouche */
+  int pixmap;
+  int wshow ; 
     
 }/** */
 sciFigure;  

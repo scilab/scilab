@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
-
+/*lkjwdlkqjdlqjksd*/
 
 #include "bcg.h"
 #include "PloEch.h" 
@@ -7012,6 +7012,8 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->rotstyle = 0;
   pFIGURE_FEATURE (pobj)->visible = TRUE;
   pFIGURE_FEATURE (pobj)->numsubwinselected = 0; 
+  pFIGURE_FEATURE (pobj)->pixmap = 0; /*Ajout D.Abdemouche */
+  pFIGURE_FEATURE (pobj)->wshow = 0; 
   return pobj;
 }
 
@@ -9870,6 +9872,8 @@ sciDrawObj (sciPointObj * pobj)
 	    }
 	  psonstmp = psonstmp->pprev;
 	}
+      if(pFIGURE_FEATURE (pobj)->wshow == 1) /*Ajout D.Abdemouche */
+	    C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       break;
     case SCI_SUBWIN: 
       if (!sciGetVisibility(pobj)) break;
@@ -13584,6 +13588,7 @@ int sciType (marker)
   else if (strncmp(marker,"figure_id", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"figure_name", 11) == 0){return 10;}   
   else if (strncmp(marker,"figures_id", 10) == 0)   {return 1;}
+  else if (strncmp(marker,"pixmap", 10) == 0)   {return 10;}/*Ajout D.Abdemouche */
   else if (strncmp(marker,"polyline_style", 14) == 0){return 1;} 
   else if (strncmp(marker,"font_size", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"font_angle", 10) == 0) {return 1;}		
