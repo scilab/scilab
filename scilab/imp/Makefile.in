@@ -1,0 +1,76 @@
+nSHELL = /bin/sh
+
+SCIDIR=..
+include ../Makefile.incl
+
+# just add -DEPSFIG 
+# il you prefer epsfig to special to insert postscript files in LaTeX 
+
+CFLAGS = $(CC_OPTIONS)
+PREF=@IMPPREF@ 
+ENV=@IMPENV@
+
+all:: $(SCIDIR)/bin/$(PREF)lpr $(SCIDIR)/bin/$(PREF)latexprs $(SCIDIR)/bin/$(PREF)latexpr2 \
+	$(SCIDIR)/util/$(PREF)latdocs $(SCIDIR)/bin/$(PREF)Epsf $(SCIDIR)/bin/$(PREF)latexpr \
+	 $(SCIDIR)/util/$(PREF)latdoc
+
+$(SCIDIR)/bin/$(PREF)lpr: Slpr.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slpr.o $(ENV) $(CC_LDFLAGS)
+clean::
+	$(RM) Slpr.o $(ENV)
+distclean::
+	$(RM) Slpr.o $(ENV) $(SCIDIR)/bin/$(PREF)lpr
+
+$(SCIDIR)/bin/$(PREF)Epsf: SEpsf.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ SEpsf.o $(ENV) $(CC_LDFLAGS)
+clean::
+	$(RM) SEpsf.o
+distclean::
+	$(RM) SEpsf.o $(SCIDIR)/bin/$(PREF)Epsf
+
+$(SCIDIR)/bin/$(PREF)latexpr: Slatexpr.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatexpr.o $(ENV) $(CC_LDFLAGS)
+clean::
+	$(RM) Slatexpr.o
+distclean::
+	$(RM) Slatexpr.o $(SCIDIR)/bin/$(PREF)latexpr
+
+$(SCIDIR)/bin/$(PREF)latexprs: Slatexprs.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatexprs.o $(ENV) $(CC_LDFLAGS)
+clean::
+	$(RM) Slatexprs.o
+distclean::
+	$(RM) Slatexprs.o $(SCIDIR)/bin/$(PREF)latexprs
+
+$(SCIDIR)/bin/$(PREF)latexpr2: Slatexpr2.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatexpr2.o $(ENV) $(CC_LDFLAGS)
+clean::
+	$(RM) Slatexpr2.o
+distclean::
+	$(RM) Slatexpr2.o $(SCIDIR)/bin/$(PREF)latexpr2
+
+$(SCIDIR)/util/$(PREF)latdocs: Slatdocs.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatdocs.o $(ENV)  $(CC_LDFLAGS)
+
+clean::
+	$(RM) Slatdocs.o
+distclean::
+	$(RM) Slatdocs.o $(SCIDIR)/util/$(PREF)latdocs
+
+$(SCIDIR)/util/$(PREF)latdoc: Slatdoc.o $(ENV)
+	$(RM) $@
+	$(CC) -o $@ Slatdoc.o $(ENV)  $(CC_LDFLAGS)
+
+
+clean::
+	$(RM) Slatdoc.o
+distclean::
+	$(RM) Slatdoc.o $(SCIDIR)/util/$(PREF)latdoc
+
+

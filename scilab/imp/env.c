@@ -2,16 +2,19 @@
 
 /********************************
  * Set up environment variables if 
- * necessary 
+ * necessary for WIN32 
  ********************************/
 
-#if (defined(_WIN32)||defined(__ABSC__))
 #include <windows.h>
 #include <stdio.h>
-/* #endif */
+#include <stdlib.h>
 
 #ifdef __ABSC__
 #define putenv(x) abs_putenv(x)
+#endif 
+
+#if (defined __MSC__) || defined(__MINGW32__) 
+#define putenv(x) _putenv(x)
 #endif
 
 void SciEnv ()
@@ -52,6 +55,6 @@ void SciEnv ()
 	{  sprintf(env,"SCI=%s",p); putenv(env); }
     }
 }
-#endif /** WIN32 **/
+
 
 

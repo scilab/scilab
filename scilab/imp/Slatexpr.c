@@ -255,23 +255,23 @@ double xs,ys;
 #endif
   fprintf(fo,"\\begin{figure}[hbtp]\n");
   fprintf(fo,"\\begin{center}\n");
-  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n");
   fprintf(fo,"%%If you prefer cm, uncomment the following two lines\n");
   fprintf(fo,"%%\\setlength{\\unitlength}{1mm}\n");
   fprintf(fo,"%%\\fbox{\\begin{picture}(%.2f,%.2f)\n",widecm,highcm);
-  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \n");
   fprintf(fo,"\\fbox{\\begin{picture}(%.2f,%.2f)\n",wide,high);
   FileNameChange(filein,fileout,base,"eps");
 #ifdef EPSFIG
   fprintf(fo,"\\epsfig{file=\\Figdir %s.eps,width=%.2fpt,height=%.2fpt}\n",
 	  base,wide,high);
 #else
-  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
   fprintf(fo,"%% If you want to use epsfig, uncomment the following line \n");
   fprintf(fo,"%% and comment the \\special line \n");
   fprintf(fo,"%%\\epsfig{file=\\Figdir %s.eps,width=%.2fpt,height=%.2fpt}\n",
 	  base,wide,high);
-  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+  fprintf(fo,"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
   fprintf(fo,"\\special{psfile=\\Figdir %s.eps hscale=%.2f vscale=%.2f}\n",
 	  base,hscale,vscale);
 #endif
