@@ -214,7 +214,6 @@ static int intlegendre(char *fname)
     }
   }
   LhsVar(1) = Rhs+1;
-  PutLhsVar();
   return 0;
 }
 
@@ -262,7 +261,6 @@ static int intbeta(char *fname)
 	z[i] = exp(F2C(betaln)(&x[i], &y[i]));
     }
   LhsVar(1) = 3;
-  PutLhsVar();
   return 0;
 }
 
