@@ -35,6 +35,9 @@ extern int IsCloseSGWindow __PARAMS((XEvent *));
 extern void SciViewportMove __PARAMS((struct BCG *,int,int));
 extern void SciViewportGet __PARAMS((struct BCG *,int *,int*));
 extern void SciViewportClipGetSize __PARAMS((struct BCG *,int *,int*));
+#ifdef WITH_TK
+extern void flushTKEvents();
+#endif
 
 #define MESSAGE4 "Can't allocate point vector"
 #define MESSAGE5 "Can't re-allocate point vector" 
@@ -589,6 +592,10 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag, int g
 	  return;
 	}
       XNextEvent (dpy, &event); 
+#ifdef WITH_TK
+      flushTKEvents();
+#endif
+
 
       if ( event.xany.window == ScilabXgc->CWindow 
 	   && event.type ==  ButtonPress ) 
