@@ -25,7 +25,7 @@ function [files]= dirname(files,flag,flagexpand)
     if pref_pos <> [] then 
       fname = part(fname,1:pref_pos($));
     else
-       fname = emptystr();
+       fname = "."; //emptystr();
     end
     files(i)= fname; 
   end

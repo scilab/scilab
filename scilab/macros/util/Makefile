@@ -40,6 +40,7 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
 	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
 	dirname.sci \
-	apropos.sci help.sci find_links.sci make_index.sci editor.sci
+	apropos.sci help.sci find_links.sci editor.sci \
+	xmltohtml.sci
 
 include ../Make.lib

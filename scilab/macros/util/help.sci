@@ -190,7 +190,9 @@ function change_old_man()
   // index of the chapter in %help
   global %helps
   for k=1:size(%helps,1)
-    if fileinfo(%helps(k,1)+"/whatis")<>[] then
+    flag1 = fileinfo(%helps(k,1)+"/whatis.htm");
+    flag2 = fileinfo(%helps(k,1)+"/whatis");
+    if flag1 == [] & flag2 <> []  then
       txt=mgetl(%helps(k,1)+"/whatis")
       whatispath=TMPDIR+"/man"+string(k);
       p=pathconvert(whatispath);

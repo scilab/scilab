@@ -62,6 +62,10 @@ function paths=pathconvert(paths,flagtrail,flagexpand,str)
 	is_expanded = %t ;
 	paths(i)=sci + part(path,4:length(path)),
       end
+      //if part(path,1:2) == '.'+sep then 
+      //is_expanded = %t ;
+      //paths(i)=getcwd() + part(path,4:length(path)),
+      //end
       if part(path,1:2) =='~'+sep then 
 	is_expanded = %t ;
 	path=getenv('HOME','/home/')+part(path,2:length(path)),

@@ -1,7 +1,8 @@
-function formatman(path,to)
+function formatman(path,to,dtd)
 [lhs,rhs]=argn(0)
 if rhs<1 then path='./',end
 if rhs<2 then to='ascii',end
+if rhs<3 then dtd='../../man.dtd',end
 select to
 case 'ascii'
   ext='.cat'
@@ -270,7 +271,7 @@ while k<n
   k=k+1;mk=man(k)
   select mk(1)
   case 'TH' then
-	txt=["<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?> ";"<!DOCTYPE MAN SYSTEM ""../../man.dtd"">" ;"<MAN>"];    
+	txt=["<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?> ";"<!DOCTYPE MAN SYSTEM """+dtd+""">" ;"<MAN>"];    
 	txt=[txt;
 	"  <LANGUAGE>eng</LANGUAGE>"  ;
 	"  <TITLE>" + mk(2) + "  </TITLE>" ; 
