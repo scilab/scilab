@@ -112,10 +112,12 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
       helpcommand="help()"
     end
   else
-    if funptr("TK_EvalStr")<>0 then
-      delmenu("Help")
-      addmenu("Help",list(0,"helpcommand"))
-      helpcommand="help()"
+    if %gtk == %f then     
+      if funptr("TK_EvalStr")<>0 then
+	delmenu("Help")
+	addmenu("Help",list(0,"helpcommand"))
+	helpcommand="help()"
+      end
     end
   end
 end
