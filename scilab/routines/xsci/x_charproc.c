@@ -520,9 +520,7 @@ void Xputstring(str,n)
   for ( i =0 ; i < n; i++) Xputchar(str[i]);
 }
 
-void C2F(xscisncr)(str,n,dummy)
-     char *str;
-     integer *n,dummy;
+void C2F(xscisncr)(char *str,integer *n,integer dummy)
 {
   int i;
   for ( i =0 ; i < *n; i++) {
@@ -532,9 +530,7 @@ void C2F(xscisncr)(str,n,dummy)
 
 /** print str on Scilab window \n are changed to \r\n **/
 
-void C2F(xscisrn)(str,n,dummy)
-     char *str;
-     integer *n,dummy;
+void C2F(xscisrn)(char *str,integer *n,integer dummy)
 {
   int i;
   for ( i =0 ; i < *n; i++) {
@@ -546,10 +542,7 @@ void C2F(xscisrn)(str,n,dummy)
   }
 }
 
-void C2F(xscistring)(str,n,dummy)
-     char *str;
-     int *n;
-     long int dummy;
+void C2F(xscistring)(char *str,integer *n,long int dummy)
 {
   int i ;
   for ( i =0 ; i < *n; i++) {
@@ -644,7 +637,8 @@ void sciprint(va_alist) va_dcl
     }
   else 
     {
-      C2F(xscisncr)(s_buf,&lstr,0L);
+      C2F(xscisrn)(s_buf,&lstr,0L);
+      /* C2F(xscisncr)(s_buf,&lstr,0L); */
     }
   if (getdiary()) diary_nnl(s_buf,&lstr);
   va_end(ap);
@@ -682,7 +676,8 @@ void sciprint_nd(va_alist) va_dcl
     }
   else 
     {
-      C2F(xscisncr)(s_buf,&lstr,0L);
+      C2F(xscisrn)(s_buf,&lstr,0L);
+      /* C2F(xscisncr)(s_buf,&lstr,0L); */
     }
   va_end(ap);
 }
