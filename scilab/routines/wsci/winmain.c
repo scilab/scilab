@@ -33,6 +33,9 @@
 #include "winmain.h"
 
 BOOL WindowMode;
+extern int getdiary();
+void C2F(diary) __PARAMS((char *str,int *n));
+void diary_nnl __PARAMS((char *str,int *n));
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -552,15 +555,8 @@ void sciprint (char *fmt,...)
 		/*count = vsprintf(buf,fmt,args); SS */
 		TextPutS (&textwin, buf);
 	}
-	/* \r\n -> \n for diary */
-	if ( lstr >= 2 && buf[lstr-1]== '\n' && buf[lstr-2]== '\r')
-	{
-		buf[lstr-2]= '\n';
-		buf[lstr-1]= '\0';
-		lstr--;
-	}
+	if (getdiary()) diary_nnl(buf,&lstr);
 
-	C2F (diary) (buf, &lstr, 0L);
 	va_end (args);
 	/** return count; **/
 }
@@ -619,15 +615,7 @@ int sciprint2 (int iv, char *fmt,...)
 		/* count = vsprintf (s_buf, fmt, ap); SS */
 		TextPutS (&textwin, s_buf);
 	}
-
-	/* \r\n -> \n for diary */
-	if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r')
-	{
-		s_buf[lstr-2]= '\n';
-		s_buf[lstr-1]= '\0';
-		lstr--;
-	}
-	C2F (diary) (s_buf, &lstr, 0L);
+	if (getdiary()) diary_nnl(s_buf,&lstr);
 
 	va_end (ap);
 	return count;

@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: x_zzledt.c,v 1.3 2002/08/08 14:59:47 steer Exp $
+ * $Id: x_zzledt.c,v 1.4 2003/12/11 14:20:01 steer Exp $
  * $Log: x_zzledt.c,v $
+ * Revision 1.4  2003/12/11 14:20:01  steer
+ * diary rewritten in C to be compatible with mprintf
+ *
  * Revision 1.3  2002/08/08 14:59:47  steer
  * ajout de déclaration de ismenu et sciprint
  *
@@ -144,7 +147,7 @@ long int dummy1;                /* added by FORTRAN to give buffer length */
    int character_count;
    char wk_buf[WK_BUF_SIZE + 1];
 
-   if(sendprompt) sciprint(Sci_Prompt);
+   if(sendprompt) sciprint_nd(Sci_Prompt);
                             /* empty work buffer */
    sendprompt=1;
    set_is_reading(TRUE);

@@ -9,9 +9,9 @@ LIBRARY = $(SCIDIR)/libs/system.a
 
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
-	inisci-c.o getdiary.o
+	inisci-c.o diary.o
 
-OBJSF = allops.o  banier.o diary.o\
+OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \

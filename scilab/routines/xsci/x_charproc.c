@@ -89,7 +89,9 @@ typedef int XtGravity;
 static Char buffer[BUF_SIZE];
 static Char *bptr = buffer;
 static int bcnt = 0;
-
+extern int getdiary();
+void C2F(diary) __PARAMS((char *str,int *n));
+void diary_nnl __PARAMS((char *str,int *n));
 typedef  int (*osc_func) ();
 
 /*
@@ -225,7 +227,6 @@ static void HandleBell  __PARAMS((Widget w, XEvent *event, String *params, Cardi
 static void HandleVisualBell  __PARAMS((Widget w, XEvent *event, String *params, Cardinal *param_count));  
 static void HandleIgnore  __PARAMS((Widget w, XEvent *event, String *params, Cardinal *param_count));  
 static void DoSetSelectedFont  __PARAMS((Widget w, XtPointer client_data, Atom *selection, Atom *type, XtPointer value, long unsigned int *length, int *format));  
-extern void C2F(diary) __PARAMS((char *str, int *n, int nn));
 
 
 /*
@@ -633,8 +634,6 @@ void sciprint(va_alist) va_dcl
   va_start(ap);
   fmt = va_arg(ap, char *);
 #endif
-
-  /* next three lines added for diary SS*/
   (void ) vsprintf(s_buf, fmt, ap );
   lstr=strlen(s_buf);
 
@@ -647,15 +646,7 @@ void sciprint(va_alist) va_dcl
     {
       C2F(xscisncr)(s_buf,&lstr,0L);
     }
-  /* \r\n -> \n for diary */ 
-  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
-    {
-      s_buf[lstr-2]= '\n';
-      s_buf[lstr-1]= '\0';
-      lstr--;
-    }
-  C2F(diary)(s_buf,&lstr,0L);
-
+  if (getdiary()) diary_nnl(s_buf,&lstr);
   va_end(ap);
 }
 
@@ -721,9 +712,6 @@ int sciprint2(va_alist) va_dcl
   iv = va_arg(ap,int);
   fmt = va_arg(ap, char *);
 #endif
-  /* next three lines added for diary SS*/
-  (void ) vsprintf(s_buf, fmt, ap );
-  lstr=strlen(s_buf);
 
   C2F(xscion)(&i);
   if (i == 0) 
@@ -732,18 +720,16 @@ int sciprint2(va_alist) va_dcl
     }
   else 
     {
-      /* Next two lines suppressed:see above SS
-	 retval= vsprintf(s_buf, fmt, ap );*/
+      retval= vsprintf(s_buf, fmt, ap );
+      lstr=strlen(s_buf);
       C2F(xscisncr)(s_buf,&lstr,0L);
     }
-  /* \r\n -> \n for diary */ 
-  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
-    {
-      s_buf[lstr-2]= '\n';
-      s_buf[lstr-1]= '\0';
-      lstr--;
-    }
-  C2F(diary)(s_buf,&lstr,0L);
+  if (getdiary()) {
+    retval= vsprintf(s_buf, fmt, ap );
+    lstr=strlen(s_buf);
+    diary_nnl(s_buf,&lstr);
+  }
+
   va_end(ap);
   return retval;
 }
@@ -3171,7 +3157,7 @@ void HandleSetFont(w, event, params, param_count)
       Bell();
       return;
     }
-    if (*param_count > maxparams)
+    if (*param_count > (Cardinal)maxparams)
     {				/* see if extra args given */
       Bell();
       return;

@@ -31,9 +31,12 @@
 #endif
 
 
-extern void C2F(diary) _PARAMS((char *str, int *n, int nn));
+
 extern void C2F(zzledt)( char *buffer,int *  buf_size, int * len_line,int * eof, long int dummy1);
 
+extern int getdiary();
+void C2F(diary) __PARAMS((char *str,int *n));
+void diary_nnl __PARAMS((char *str,int *n));
 
 static int BasicScilab = 1;
 
@@ -91,18 +94,13 @@ void  sciprint(char *fmt,...)
   va_list ap;
   char s_buf[1024];
   va_start(ap,fmt);
-  /* next three lines added for diary SS*/
-  (void ) vsprintf(s_buf, fmt, ap );
-  printf("%s",s_buf); 
-  
-  lstr=strlen(s_buf);
-  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
-    {
-      s_buf[lstr-2]= '\n';
-      s_buf[lstr-1]= '\0';
-      lstr--;
-    }
-  C2F(diary)(s_buf,&lstr,0L);
+
+  (void )vfprintf(stdout, fmt, ap );
+  if (getdiary()) {
+    (void ) vsprintf(s_buf, fmt, ap );
+    lstr=strlen(s_buf);
+    diary_nnl(s_buf,&lstr);
+  }
   va_end(ap);
 }
 
@@ -114,11 +112,8 @@ void  sciprint(char *fmt,...)
 void  sciprint_nd(char *fmt,...) 
 {
   va_list ap;
-  char s_buf[1024];
   va_start(ap,fmt);
-  /* next three lines added for diary SS*/
-  (void ) vsprintf(s_buf, fmt, ap );
-  printf("%s",s_buf); 
+  printf(fmt, ap );
   va_end(ap);
 }
 
@@ -133,17 +128,14 @@ int  sciprint2(int iv,char *fmt,...)
   va_list ap;
   char s_buf[1024];
   va_start(ap,fmt);
-  /* next three lines added for diary SS*/
-  (void ) vsprintf(s_buf, fmt, ap );
-  lstr=strlen(s_buf);
-  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
-    {
-      s_buf[lstr-2]= '\n';
-      s_buf[lstr-1]= '\0';
-      lstr--;
-    }
-  C2F(diary)(s_buf,&lstr,0L);
+
   retval= vfprintf(stdout, fmt, ap );
+  if (getdiary()) {
+    (void ) vsprintf(s_buf, fmt, ap );
+    lstr=strlen(s_buf);
+    diary_nnl(s_buf,&lstr);
+  }
+
   va_end(ap);
   return retval;
 }
