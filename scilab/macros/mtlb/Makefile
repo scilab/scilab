@@ -33,7 +33,7 @@ M5 = mtlb_cell.sci  cell.sci struct.sci  \
 	%c_i_st.sci %ce_i_st.sci %p_i_st.sci \
 	%l_i_st.sci %st_i_st.sci %r_i_st.sci %lss_i_st.sci\
 	%spb_i_st.sci %mc_i_st.sci %hm_i_st.sci\
-	%st_p.sci %st_e.sci \
+	%st_p.sci %st_e.sci %st_size.sci \
         %ce_e.sci %ce_p.sci %ce_size.sci  \
 	%b_i_ce.sci %ce_i_ce.sci %i_i_ce.sci %p_i_ce.sci  \
 	%s_i_ce.sci %spb_i_ce.sci %c_i_ce.sci %hm_i_ce.sci \
