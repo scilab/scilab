@@ -38,6 +38,6 @@ path(1:n)=[]
 
 Path=list();
 for pk=path
-  Path=lstcat(Path,pk,3,8);
+  Path=lstcat(Path,pk,'model','rpar');
 end
 endfunction
