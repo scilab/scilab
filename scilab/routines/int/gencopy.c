@@ -57,5 +57,6 @@ int *dy;
     COPYINT(unsigned int);
     break;
   }
+  return 0;
 }
 

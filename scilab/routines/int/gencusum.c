@@ -39,5 +39,6 @@ integer *typ, *n, *w, *iw;
     CUSUM(unsigned int);
     break;
   }
+  return 0;
 }
 

@@ -40,4 +40,5 @@ integer *typ;
     RCONC(unsigned int);
     break;
   }
+  return 0;
 }

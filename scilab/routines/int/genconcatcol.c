@@ -53,4 +53,5 @@ m=(*m1)+(*m2);
     COLCONC(unsigned int);
     break;
   }
+  return 0;
 }
