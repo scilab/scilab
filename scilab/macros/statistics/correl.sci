@@ -16,15 +16,16 @@ function rho=correl(x,y,fre)
   if x==[] | y==[] then s=%nan; return, end
   [lhs,rhs]=argn(0)
   if rhs <> 3 then error('correl requires three arguments.'), end
-  [lfre cfre]=size(fre);
-  [lx cx]=size(x)
-  [ly cy]=size(y)
+  [lfre,cfre]=size(fre);
+  [lx,cx]=size(x)
+  [ly,cy]=size(y)
   if lx<>1 & cx<>1 then error('First argument must be a vector.'), end
   if ly<>1 & cy<>1 then error('Second argument must be a vector.'), end
   lx=lx*cx;
   cy=ly*cy;
-  if lx<>cfre then error('inconsistent dimensions'), end
-  if cy<>lfre then error('inconsistent dimensions'), end
+
+  if cy<>cfre then error('inconsistent dimensions'), end
+  if lx<>lfre then error('inconsistent dimensions'), end
   x=matrix(x,lx,1);
   y=matrix(y,1,cy);
   fr=fre/sum(fre)
