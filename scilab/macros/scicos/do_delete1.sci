@@ -125,7 +125,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 	    to1=o1.to; //number of block at the boundary of link o1
 	    to2=o2.to; //number of block at the boundary of link o2
 	    if (o1.xx(1)==o1.xx(2)& o2.xx(1)==o2.xx(2))| ..
-		  (o1.yy(1)==o1.yy(2)& o2.yy(1)==o2.yy(2))then
+		  (o1.yy(1)==o1.yy(2)& o2.yy(1)==o2.yy(2)) then
 	      o1.xx=o1.xx(2:$);o1.yy=o1.yy(2:$)
 	    end
 	    o1.xx=[o1.xx($:-1:1);o2.xx]
@@ -160,8 +160,8 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
     elseif typ=='Deleted' then
     else
       message('This object can''t be deleted')
-    end
-  end
+    end 
+ end
 
   if gr==%t then 
     if pixmap then xset('wshow'),end,

@@ -256,7 +256,7 @@ end
 if rep(3)<>2 then
   if abs(x1(1)-x1(2))<rela*abs(y1(1)-y1(2)) then
     x1(2)=x1(1)
-  elseif abs(x1(2)-x1(3))<rela*abs(y1(2)-y1(3))then
+  elseif abs(x1(2)-x1(3))<rela*abs(y1(2)-y1(3)) then
     x1(2)=x1(3)
   end  
   if abs(y1(1)-y1(2))<rela*abs(x1(1)-x1(2)) then
