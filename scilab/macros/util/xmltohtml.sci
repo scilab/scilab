@@ -44,7 +44,7 @@ function xmltohtml(dirs,titles,xsl,step)
   // ---------------------------
   if step=='all' | step == 'whatis' then 
     for k=1:size(dirs,'*');
-      mprintf('Creating whatis.htm in %s\n",dirs(k));
+      mprintf('Creating whatis.htm in %s\n',dirs(k));
       dirs(k)=pathconvert(dirs(k),%t,%t)
       chdir(dirs(k));
       if titles(k) == H then 
@@ -65,7 +65,7 @@ function xmltohtml(dirs,titles,xsl,step)
     dirs=stripblanks(dirs)
     
     for k=1:size(dirs,'*');
-      mprintf('Processing chapter %s\n",dirs(k));
+      mprintf('Processing chapter %s\n',dirs(k));
       chdir(dirs(k));
       global %helps;
       nk=length(dirs(k))
@@ -86,21 +86,19 @@ function xmltohtml(dirs,titles,xsl,step)
 	if xml2 <> "" then 
 	  for k1=1:size(xml2,'*')  // loop on .xml2 files 
 	    fb=basename(xml2(k1))
-	    mprintf('  Processing file %s.xml\n",fb);
+	    mprintf('  Processing file %s.xml\n',fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
-	    //write(%io(2),'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
-	    
+
 	    if  MSDOS then 
 	    // added by HUYNH Olivier on the 09/03/2004, run the xml parser under Windows OS.
-	    //disp('--'+'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
 	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
 	    else
-	    
-	    ierr=execstr('unix_s(''xsltproc -o ''+fb+''.htm ''+xslpath+'' ''+fb+''.xml2 '');','errcatch')
+	    ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
 	    end
 	    
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
+	      pause
 	    end
 	  end 
 	end
@@ -117,7 +115,7 @@ function xmltohtml(dirs,titles,xsl,step)
     
   // now the index 
   if step=='all' | step == 'index' then 
-    mprintf('Creating index.htm \n");
+    mprintf('Creating index.htm \n');
     if rhs <= 0 then 
       gener_index() 
     else
@@ -127,7 +125,7 @@ function xmltohtml(dirs,titles,xsl,step)
   
   // now the contents 
   if step=='all' | step == 'contents' then 
-    mprintf('Creating contents.htm  \n");
+    mprintf('Creating contents.htm  \n');
     if rhs <= 0 then 
       gener_contents() 
     else
