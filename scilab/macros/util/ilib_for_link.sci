@@ -55,7 +55,11 @@ function ilib_link_gen_loader(names,flag,loadername,libs,libname)
   mfprintf(fd,"%s_path=get_absolute_file_path(''%s'');\n",libname,basename(loadername+'.x'));
   nl=size(libs,'*') 
   for i=1:nl 
-    mfprintf(fd,"link(%s_path+''/%s.%s'');\n",libname,libs(i),lib_suf);
+    if part(libs(i),1)=='/' then
+      mfprintf(fd,"link(''%s.%s'');\n",libs(i),lib_suf);
+    else
+      mfprintf(fd,"link(%s_path+''/%s.%s'');\n",libname,libs(i),lib_suf);
+    end
   end 
   mfprintf(fd,"link(%s_path+''/lib%s.%s'',[",libname,libname,lib_suf);
   names=names(:)';
