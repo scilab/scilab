@@ -1539,19 +1539,19 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					if ( IsABinOrSavFile(FinalFileName)== TRUE )
 					{
 						/* C'est un fichier .BIN ou .SAV d'ou load */
-						wsprintf(Cmd,"%s -e load('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+						wsprintf(Cmd,"%s -e load('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
 					if  ( IsAScicosFile(FinalFileName)== TRUE )
 					{
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e scicos('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,FinalFileName);
+						wsprintf(Cmd,"%s -e scicos('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,FinalFileName);
 					}
 					else
 					if ( IsAGraphFile(FinalFileName)== TRUE )
 					{
 						ExtensionFileIntoLowerCase(FinalFileName);	
-						wsprintf(Cmd,"%s -e edit_graph('%s');disp('%s loaded'); ",PathWScilex,FinalFileName,fichier);
+						wsprintf(Cmd,"%s -e edit_graph('%s');disp('\"\"%s\"\"loaded'); ",PathWScilex,FinalFileName,fichier);
 					}
 					else wsprintf(Cmd,"%s -e exec('%s'); ",PathWScilex,FinalFileName);
 				}
