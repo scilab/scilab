@@ -288,6 +288,10 @@ function ged_axes(h)
 
   LoadTicks2TCL(h);
 
+  TK_SetVar("Xaxes_reverseToggle",h.axes_reverse(1))
+  TK_SetVar("Yaxes_reverseToggle",h.axes_reverse(2))
+  TK_SetVar("Zaxes_reverseToggle",h.axes_reverse(3))
+
 // forgotten axes bounds info.
   TK_SetVar("axes_boundsL",string(h.axes_bounds(1,1)))
   TK_SetVar("axes_boundsU",string(h.axes_bounds(1,2)))
