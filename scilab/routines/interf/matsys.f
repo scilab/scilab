@@ -2575,7 +2575,7 @@ c      if(rhs.eq.1) lnb=1
       subroutine intstacksize
 c     Copyright INRIA
       include '../stack.h'
-      integer offset
+      integer offset,p
       logical checkrhs,checklhs,cremat,getscalar
       integer iadr,sadr
 c
@@ -2597,16 +2597,14 @@ c
 
       if(.not.getscalar('stacksize',top,top,l)) return
       top=top-1
-      if (top.ne.0) then
-         buf='stacksize cannot be used in this context'
-         call error(1502)
-         return
-      endif
+c
       mem=stk(l)
       memold=lstk(isiz)-lstk(1)
-      if (mem.eq.memold) goto 502
-      l=lstk(isiz)-lstk(bot)
-      if (mem.lt.l) then
+      if (mem.eq.memold) goto 50
+      lbot=lstk(isiz)-lstk(bot)
+      ltop=0
+      if (top.gt.0) ltop=lstk(top+1)-lstk(1)
+      if (mem.lt.lbot+ltop) then
          buf='Required memory too small for defined data'
          call error(1503)
          return
@@ -2617,20 +2615,61 @@ c
          return
       endif
       offset=offset+1
-      call unsfdcopy(l,stk(lstk(bot)),1,stk(offset+mem-l),1)
-      kd=offset-lstk(1)+mem-memold
-      do 501 k=bot,isiz
-         lstk(k)=lstk(k)+kd
- 501  continue 
+      l1=lstk(1)
+      l2=lstk(bot)
+c     copy the top of the stack
+      if (top.gt.0) call unsfdcopy(ltop,stk(l1),1,stk(offset),1)
+      kd1=offset-l1
+      do 30 k=1,top+1
+         lstk(k)=lstk(k)+kd1
+ 30   continue
+
+c     copy the bottom of the stack
+      call unsfdcopy(lbot,stk(l2),1,stk(offset+mem-lbot),1)
+      kd2=offset+mem-lbot-l2
+      do 40 k=bot,isiz
+         lstk(k)=lstk(k)+kd2
+ 40   continue
+
       call freemem()
-      lstk(1)=offset
+c     rebuild asolute pointers if necessary see macro.f  and run.f
+      if(macr.gt.0) then
+         lpt1=lpt(1)
+c     Check if a compiled macro is running
+         p=pt+1
+ 45      p=p-1
+         if((rstk(p).ge.601.and.rstk(p).le.603).or.rstk(p).eq.605) then
+            call adjuststkptr(pstk(p),kd1,kd2,l2)
+         elseif(rstk(p).eq.604.or.rstk(p).eq.606) then
+            call adjuststkptr(ids(1,p),kd1,kd2,l2)
+         elseif(rstk(p).eq.501.or.rstk(p).eq.502.or.rstk(p).eq.503) then
+            k = lpt1 - (13+nsiz)
+            lpt1 = lin(k+1)
+            if(rstk(p).eq.501.or.rstk(p).eq.502) then
+               call adjuststkptr(lin(k+6),kd1,kd2,l2)
+               call adjuststkptr(lin(k+7),kd1,kd2,l2)
+               call adjuststkptr(ids(3,p),kd1,kd2,l2)
+            endif
+         endif
+         if(p.gt.0) goto 45
+      endif
+
       leps=sadr(iadr(lstk(isiz-5)) +4)
 
- 502  continue
-      top=top+1
+ 50   top=top+1
       call objvide('stacksize',top)
       return
       end
+      subroutine adjuststkptr(p,topoffset,botoffset,lbot)
+c     routine for intstacksize
+      integer p,topoffset,botoffset,lbot
+      if(p.ge.2*lbot) then
+         p=p+2*botoffset
+      else
+         p=p+2*topoffset
+      endif
+      end
+
       subroutine inttimer
 c     Copyright INRIA
       include '../stack.h'
