@@ -25,20 +25,23 @@ C =      %b_c_spb.sci %c_i_c.sci %hm_c_hm.sci %l_n_c.sci \
 	 %l_o_c.sci %lss_c_lss.sci %lss_c_p.sci %lss_c_r.sci \
 	 %lss_c_s.sci %p_c_lss.sci %p_c_r.sci %r_c_lss.sci \
 	 %r_c_p.sci %r_c_r.sci %r_c_s.sci %s_c_lss.sci \
-	 %s_c_r.sci %s_c_sp.sci %s_i_c.sci %sp_c_s.sci
+	 %s_c_r.sci %s_c_sp.sci %s_i_c.sci %sp_c_s.sci \
+	 %c_c_cblock.sci %cblock_c_cblock.sci %s_c_cblock.sci \
+	 %cblock_c_s.sci
 
 D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
 	 %p_d_s.sci %r_d_p.sci %r_d_r.sci %r_d_s.sci %s_d_p.sci \
 	 %s_d_r.sci %s_d_sp.sci %sp_d_s.sci %sp_d_sp.sci %i_d_i.sci
 
 E =      %c_e.sci %hm_e.sci %lss_e.sci %p_e.sci %r_e.sci %s_e.sci \
-	 %sp_e.sci %spb_e.sci
+	 %sp_e.sci %spb_e.sci %cblock_e.sci
 
 F =      %b_f_spb.sci %c_f_s.sci %hm_f_hm.sci %lss_f_lss.sci \
 	 %lss_f_p.sci %lss_f_r.sci %lss_f_s.sci %p_f_lss.sci \
 	 %p_f_r.sci %r_f_lss.sci %r_f_p.sci %r_f_r.sci \
 	 %r_f_s.sci %s_f_lss.sci %s_f_r.sci %s_f_sp.sci \
-	 %sp_f_s.sci
+	 %sp_f_s.sci  %cblock_f_cblock.sci \
+	 %s_f_cblock.sci
 
 G =      %b_g_s.sci %b_g_spb.sci %s_g_s.sci %spb_g_spb.sci \
 	 %i_g_i.sci
