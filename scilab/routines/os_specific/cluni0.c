@@ -22,14 +22,12 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 {
   int  nc= MAX_ENV;
   static char SCI[MAX_ENV],HOME[MAX_ENV],TMP[MAX_ENV];
-  static int firstentry=0,k;
-  if ( firstentry == 0 ) 
-    {
-      GetenvB("SCI",SCI,nc);
-      GetenvB("HOME",HOME,nc);
-      GetenvB("TMPDIR",TMP,nc);
-      firstentry++;
-    }
+  static int k;
+
+  GetenvB("SCI",SCI,nc);
+  GetenvB("HOME",HOME,nc);
+  GetenvB("TMPDIR",TMP,nc);
+  
   /* in_name[lin]='\0';*/
   if ( Cluni0(SCI,SCI_a,in_name,out_name,lin) == 0 )
     if ( Cluni0(HOME,HOME_a,in_name,out_name,lin) == 0 )

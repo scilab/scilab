@@ -24,12 +24,6 @@
 /*-----------------------------------------------------------------------------------*/
 void SciEnv ();
 void set_sci_env(char *p) ;
-BOOL SetHomeDirectory(char *DefaultPath);
-char *GenerateWindowsHomeDirectory(void);
-char *GenerateScilabHomeDirectory(char *WinHomeDir);
-char * GetScilabHomeDirUnixFormat(char *ScilabHomeDirectory);
-BOOL CreateScilabHomeDirectory(char *WinHomeDir);
-void SetDefaultHome(char *DefaultPath);
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
 BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 
