@@ -73,7 +73,9 @@ text $pad.new$winopened -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" 
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
         -selectbackground $SELCOLOR -exportselection 1
 if {$tcl_platform(platform) != "unix"} {
-    $textareacur configure -insertofftime 500 -insertontime 500
+# <TODO> restore the blinking of the cursor once drag and drop problem is cleared
+#    $textareacur configure -insertofftime 500 -insertontime 500
+    $textareacur configure -insertofftime 0
 } else {
     $textareacur configure -insertofftime 0
 }
@@ -117,4 +119,4 @@ set listundo_id("$textareacur") $undo_id
 update
 
 # Drag and drop feature using TkDnD
-tkdndbind $pad.new$winopened
+tkdndbind $textareacur

@@ -179,32 +179,30 @@ proc tkdndbind {w} {
              }
         dnd bindtarget $w text/plain <Drag> \
             {   %W mark set insert @%x,%y ; \
+                %W see insert ; \
+                if {%x <= 10} { %W xview scroll -1 units } ; \
+                if {%y <= 10} { %W yview scroll -1 units } ; \
                 update idletasks ; \
-                return %A \
+                if {"%m" == "Control"} { \
+                    return copy \
+                } else { \
+                    return move \
+                } \
             }
         # If proc ::tk::TextButton1 changes in the tk source (library/text.tcl)
-        # the following bindings could have to be changed accordingly
-        # Currently they are checked OK with tk 8.4.6
+        # the following binding could have to be changed accordingly
+        # Currently this works OK at least with tk 8.4.6
         bind Text <Button-1> \
             {   tk::TextButton1 %W %x %y ; \
                 if {[%W tag ranges sel] != ""} { \
                     if { [%W compare sel.first <= [%W index @%x,%y]] && \
                          [%W compare [%W index @%x,%y] <= sel.last] } { \
-                        dnd drag %W -actions {move} ; \
-                    } else { \
-                        %W tag remove sel 0.0 end ; \
+                        dnd drag %W -actions {copy move} ; \
                     } \
-                } \
+                } ; \
+                %W tag remove sel 0.0 end ; \
             }
-        bind Text <Control-Button-1> \
-            {   if {[%W tag ranges sel] != ""} { \
-                    if { [%W compare sel.first <= [%W index @%x,%y]] && \
-                         [%W compare [%W index @%x,%y] <= sel.last] } { \
-                        dnd drag %W -actions {copy} ; \
-                    } else { \
-                        %W mark set insert @%x,%y ; \
-                    } \
-                } \
-            }
+        $w tag bind sel <Enter> {%W configure -cursor hand2}
+        $w tag bind sel <Leave> {%W configure -cursor xterm}
     }
 }

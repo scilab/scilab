@@ -901,3 +901,13 @@ Francois VOGEL, 20/03/05
  * Binding for openlibfunsource is now Shift-Control-Button-1 (had no better
    idea...)
  * version --> 3.53
+
+Francois VOGEL, 21/03/05
+ * Drag and drop improvements for text within Scipad:
+     - action can now be switched between copy and move during a drag operation
+     - the cursor can no more be located inside a selection
+     - scrolling of the window when drop location approaches the window border
+     - cursor changes shape when over a selection
+ * No more blinking of the cursor on Windows (temporary patch because of a
+   glitch with drag and drop)
+ * version --> 3.54
