@@ -54,13 +54,13 @@ M5 =    cell.sci struct.sci  \
 	%st_i_b.sci  %st_i_fptr.sci  %st_i_i.sci   %st_i_msp.sci\
 	%st_i_s.sci %st_i_spb.sci %st_i_c.sci %st_i_h.sci %st_i_ip.sci\
 	%st_i_p.sci %st_i_sp.sci st_i_generic.sci %st_t.sci %st_c_st.sci\
-	%st_f_st.sci %ce_t.sci %ce_i_s.sci generic_i_ce.sci mtlb_axis.sci
+	%st_f_st.sci %ce_t.sci %ce_i_s.sci generic_i_ce.sci mtlb_axis.sci mtlb_box.sci
 
 
-PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
+PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci \
 	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
 	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
-	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci
+	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci mtlb_box.sci mtlb_colordef.sci
 
 UTIL=enlarge_shape.sci makecell.sci firstnonsingleton.sci asciimat.sci mstr2sci.sci
 
