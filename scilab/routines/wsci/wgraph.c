@@ -1290,7 +1290,7 @@ PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 /** the create default font/brush etc... in hdc */
   ResetScilabXgc ();
 /** xclear will properly upgrade background if necessary **/
-sciprint("scig_replay_hdc %d\n",sciGetPixmapStatus());
+
 if (sciGetPixmapStatus() != 1)
   C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
 PD0, 0L, 0L);
