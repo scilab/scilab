@@ -7,12 +7,23 @@ extern int sci_show_banner ;
 
 int C2F(banier)(integer *flag)
 {
-  if (*flag != 999 && sci_show_banner == 1) {
+  if (*flag != 999 && sci_show_banner == 1)
+  {
+	#ifdef WIN32
+	sciprint("        ___________________________________________\r\n");
+	#else
     sciprint("        -------------------------------------------\r\n");
+	#endif
+
     sciprint("                       %s\r\n\n",VERSION);
     sciprint("                  Copyright (c) 1989-2004          \r\n");
     sciprint("              Consortium Scilab (INRIA, ENPC)      \r\n");
+
+    #ifdef WIN32
+	sciprint("        ___________________________________________\r\n");
+	#else
     sciprint("        -------------------------------------------\r\n");
+	#endif
   }
   return 0;
 } 

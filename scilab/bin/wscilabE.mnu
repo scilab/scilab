@@ -11,13 +11,9 @@
  		--
  		&Exec ...
  			[EXEC]
- 	
- 		&Getf ...
- 			[GETF]
  		--
- 		&Print Window
- 			[PRINTWINDOW]	
- 		--
+ 		&Open ...
+ 			[OPEN]
  		&Load ...
  			[LOAD]
  		&Save ...
@@ -89,7 +85,7 @@
  			
  		&Toolbar	F3
 				[TOOLBAR]	
-		Choose &Font...
+		Choose &Font ...
 				[CHOOSETHEFONT]
         	--
         	Clear Command Window	F2
@@ -115,26 +111,37 @@
  
 [EndMenu]
 
-[Menu]
-	&Graphic Window 0
-		&Set (Create) Window
-			[SET]
-		&Raise (Create) Window
-			[RAISE]
-		&Delete Graphic Window 
-			[DELETESCIW]
-		&+ (increase current num)
-			[PLUS]
-		&- (decrease current num)
-			[MINUS]
-		--
-		&Clear Current Window
-			[XBASC]
-[EndMenu]
+;[Menu]
+;	&Graphic Window 0
+;		&Set (Create) Window
+;			[SET]
+;		&Raise (Create) Window
+;			[RAISE]
+;		&Delete Graphic Window 
+;			[DELETESCIW]
+;		&+ (increase current num)
+;			[PLUS]
+;		&- (decrease current num)
+;			[MINUS]
+;		--
+;		&Clear Current Window
+;			[XBASC]
+;[EndMenu]
 
  E&ditor
         	[SCIPAD]
         	
+[Menu]
+	 &Applications
+	 	&Scicos
+	 		scicos()
+	 	--	
+	 	&EditGraph
+	 		edit_graph()
+	 	--	
+	 	m&2sci
+	 		m2sci()	
+[EndMenu]
 
 [Menu]
  &Help
@@ -173,36 +180,29 @@
 [Button]
 	|New Scilab|SCILAB_ICON|
 		[NEWSCILAB]
+;[Button]
+;	--
+;		--
 [Button]
-	--
-		--				
+	|Open Scipad|NEW_ICON|
+		[SCIPAD]
 [Button]
-	|Scicos|SCICOS_ICON|
-		scicos();	
+	|Copy|COPY_ICON|
+		[MCOPY]
 [Button]
-	|Metanet|METANET_ICON|
-		edit_graph();
-[Button]
-	--
-		--				
+	|Paste|PASTE_ICON|
+		[PASTE]				
 [Button]
 	|Change Directory|DIRECTORY_ICON|
 		[CHDIR]
 [Button]
 	|Console|CONSOLE_ICON|
-		[CONSOLE]				
+		[CONSOLE]
 [Button]
-	|Choose Font...|FONT_ICON|
+	|Choose Font ...|FONT_ICON|
 		[CHOOSETHEFONT]
 [Button]
-	|Print|PRINT_ICON|
-		[PRINT]
-[Button]
-	|Help|HELP_ICON|
+	|Scilab Help|HELP_ICON|
 		[HELP]
-[Button]
-	--
-		--							
-[Button]
-	|Exit|EXIT_ICON|
-		[EXIT]
+
+

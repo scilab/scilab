@@ -5,15 +5,14 @@
 
 [Menu]
 &File
-	&New Figure
+	&New ...
 		[NEWFIG]
 	--
 	&Load ...
 		[LOADSCG]xload[EOS]*.scg[EOS]
 	S&ave ...
 		[SAVESCG]xsave[EOS]*.scg[EOS]
-	Cl&ose 
-		[CLOSE]								
+	
 	--	
 	&Export 
 		[SCIPS]
@@ -25,9 +24,9 @@
 			&Windows
 				[PRINT]
 		[EndMenu]
-	--	
- 	&Save Position
-		[UPDINI]
+	--
+	Cl&ose 
+		[CLOSE]									
 	
 
  
@@ -52,12 +51,18 @@
 			&Metafile + DIB
 				[COPYCLIP1]
 		[EndMenu]
+	--
+	Save &Position
+		[UPDINI]	
 	
 [EndMenu]
 
 
 [Menu]
 &Tools
+	&Objects properties
+		???
+	--	
 	&ToolBar	F3
 		[TOOLBARGRAPH]
 	--	
@@ -66,7 +71,7 @@
 	&UnZoom
 		[UNZOOM]
 	--	
-	3D &Rot.
+	2D/3D &Rotation
 		[ROT3D]
 [EndMenu]
 

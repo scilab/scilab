@@ -1,7 +1,7 @@
 ; Menu file for Windows Scilab 
 ; From the gnuplot version ( Roger Hadgraft, 26-5-92,Russell Lang, 30 Nov 1992)
 ; Jean-Philippe Chancelier 1996 / 1997
-; Allan CORNET Juillet 2003
+; Allan CORNET Juillet 2004
 
 [Menu]
  &Fichier
@@ -10,16 +10,15 @@
  	--
  	&Exec ...
  		[EXEC]
- 	
- 	&Getf ...
- 		[GETF]
- 	--
- 	&Chargement ...
+ 	--	
+  	&Ouvrir ...
+ 		[OPEN]
+ 	&Charger ...
  		[LOAD]
- 	&Sauvegarde ...
+ 	&Sauvegarder ...
  		[SAVE]
  	--
- 	&Changer de répertoire
+ 	&Changer de répertoire ...
  		[CHDIR]
  	&Répertoire Courant
 		[GETCWD]
@@ -83,12 +82,12 @@
  			
  		&Barre d'outils	F3
 				[TOOLBAR]	
-		C&hanger la Police 
+		C&hanger la police ...
 			[CHOOSETHEFONT]
 		--
 		Effacer la fenêtre ligne de commande	F2
 			[CLEARCOMMANDWINDOW]
-		&Console	F12
+		Afficher &Console	F12
 			[CONSOLE]			 		
  
 [EndMenu]
@@ -106,41 +105,51 @@
  
 [EndMenu]
 
-[Menu]
-	&Graphic Window 0
-		&Set (Créer) Fenêtre
-			[SET]
-		&Raise (Créer) Fenêtre
-			[RAISE]
-		&Détruire Fenêtre Graphique
-			[DELETESCIW]
-		&+ (Augmenter indice courant)
-			[PLUS]
-		&- (Diminuer indice couant)
-			[MINUS]
-		--
-		&Effacer Fenêtre Graphique Courante
-			[XBASC]
-[EndMenu]
+;[Menu]
+;	&Graphic Window 0
+;		&Set (Créer) Fenêtre
+;			[SET]
+;		&Raise (Créer) Fenêtre
+;			[RAISE]
+;		&Détruire Fenêtre Graphique
+;			[DELETESCIW]
+;		&+ (Augmenter indice courant)
+;			[PLUS]
+;		&- (Diminuer indice couant)
+;			[MINUS]
+;		--
+;		&Effacer Fenêtre Graphique Courante
+;			[XBASC]
+;[EndMenu]
 
 
 E&diteur
         	[SCIPAD]
         	
-
 [Menu]
- &Aide
+	 &Applications
+	 	&Scicos
+	 		scicos()
+	 	--	
+	 	&EditGraph
+	 		edit_graph()
+	 	--	
+	 	m&2sci
+	 		m2sci()	
+[EndMenu]
+[Menu]
+ &?
  	
        		Aide &Scilab 	F1
 			[HELP]
 		--
-		De&monstrations Scilab 
+		Dé&monstrations Scilab 
 			[DEMOS]
 		--
-		S&ignaler un bug
+		Signaler un &bug
 			[BUGZILLA]
 		--
-		S&ite Internet Scilab
+		Site &Internet Scilab
 			[WEB]
 		--
 		&Newsgroup Scilab

@@ -479,13 +479,16 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	if (sci_show_banner)
 	{
 		char line[80];
-		strcpy(line,"        __________________________________________\r\n");
+
+		strcpy(line,"        ___________________________________________\r\n");
 		printf(line);
-		wsprintf(line,"                       %s\r\n\n",VERSION);
+	    wsprintf(line,"                       %s\r\n\n",VERSION);
 		printf(line);
-		strcpy(line,"              Copyright (C) 1989-2004 INRIA ENPC \r\n");
+		strcpy(line,"                  Copyright (c) 1989-2004          \r\n");
 		printf(line);
-		strcpy(line,"        __________________________________________\r\n\r\n");
+		strcpy(line,"              Consortium Scilab (INRIA, ENPC)      \r\n");
+		printf(line);
+    	strcpy(line,"        ___________________________________________\r\n\r\n");
 		printf(line);
 	}
 
