@@ -32,10 +32,12 @@ integer f_clos(cllist *a)
 	if(b->ufd==NULL)
 		goto done;
 	if (!a->csta)
-		if (b->uscrtch == 1)
-			goto Delete;
-		else
-			goto Keep;
+	  {
+	    if (b->uscrtch == 1)
+	      goto Delete;
+	    else
+	      goto Keep;
+	  }
 	switch(*a->csta) {
 		default:
 	 	Keep:

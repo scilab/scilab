@@ -16,7 +16,9 @@ OBJI =	backspace.o close.o dfe.o dolio.o due.o endfile.o err.o \
 	open.o rdfmt.o rewind.o rsfe.o rsli.o rsne.o sfe.o sue.o typesize.o \
 	uio.o util.o wref.o wrtfmt.o wsfe.o wsle.o wsne.o xwsne.o
 
-MISC =	F77_aloc.o Version.o main.o s_rnge.o abort_.o getarg_.o iargc_.o \
+MAIN=main.o
+
+MISC =	F77_aloc.o Version.o  s_rnge.o abort_.o getarg_.o iargc_.o \
 	getenv_.o signal_.o s_stop.o s_paus.o system_.o cabs.o\
 	derf_.o derfc_.o erf_.o erfc_.o sig_die.o exit.o
 POW =	pow_ci.o pow_dd.o pow_di.o pow_hh.o pow_ii.o  pow_ri.o pow_zi.o pow_zz.o
@@ -47,7 +49,7 @@ all:: main.o
 
 include ../../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) -D_POSIX_SOURCE  -DWANT_LEAD_0 -DNON_UNIX_STDIO -DSkip_f2c_Undefs 
+CFLAGS = -mno-cygwin $(CC_OPTIONS) -D_POSIX_SOURCE  -DSkip_f2c_Undefs -DMSDOS
 
 include ../../Make.lib
 
