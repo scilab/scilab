@@ -66,7 +66,7 @@ void C2F (plot3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   cache = pSUBWIN_FEATURE (psubwin)->hiddenstate;
 
   fg1 = pSURFACE_FEATURE (pobj)->hiddencolor;
-  dc = pSURFACE_FEATURE (pobj)->flag[0];
+  dc = pSURFACE_FEATURE (pobj)->flag[0]; /* color_mode */
   flagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
 
   xx[0] = sciGetForeground (pobj);
@@ -598,9 +598,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
   sciPointObj *psubwin = NULL;
   sciSubWindow *ppsubwin = NULL;
   int facteur = 1;
-  integer flag_det = 0, flag_det0 = 0, flag_det1 = 0, flag_det2 =
-    0, flag_det3 = 0, rear;
-  double determ, determ0, determ1, determ2, determ3;
+  integer rear;
   int xx[4]; /* used to load the object foreground and dashes color */
   integer v=0;
   double dv=0.;
@@ -719,6 +717,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 
           front_size = *p;      /* initial size of the front facing facet */
 
+
           if (color_flag == 3)
             {
               /* interpolated shading */
@@ -788,9 +787,13 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
                     fill[0] = -hiddencolor;
                 }
 
-              if (sciGetIsLine (pobj))
-                C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
+              if (sciGetIsLine (pobj)){
+		C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+		C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+		C2F (dr) ("xliness", "str", rear_x, rear_y, fill, &npoly,
                           &rear_size, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	      }
+	      
               if (sciGetIsMark (pobj))
                 DrawMarks3D (pobj, rear_size, rear_x, rear_y,DPI);
 
@@ -813,8 +816,7 @@ void C2F (fac3dn) (sciPointObj * pobj, double *x, double *y, double *z,
 		    C2F (dr) ("xset", "dashes",     xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
 		    C2F (dr) ("xset", "foreground", xx,   xx,   xx+4, xx+4, xx+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
                     C2F (dr) ("xliness", "str", rear_x, rear_y, &rear_fill,
-                              &npoly, &rear_size, PI0, PD0, PD0, PD0, PD0, 0L,
-                              0L);
+                              &npoly, &rear_size, PI0, PD0, PD0, PD0, PD0, 0L,0L);
 		  }
 		  
                   if (sciGetIsMark (pobj))
