@@ -178,5 +178,8 @@ mclose(u);
     <SEE_ALSO_ITEM>
       <LINK>mtell</LINK>
     </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>mdelete</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
