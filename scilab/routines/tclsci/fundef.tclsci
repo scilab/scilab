@@ -10,4 +10,5 @@
 {"%s_get",              IN_tclsci, 10,	2},
 {"TCL_gcf",             IN_tclsci, 11,	2},
 {"TCL_scf",             IN_tclsci, 12,	2},
+{"TCL_GetVersion",      IN_tclsci, 13,	2},
 

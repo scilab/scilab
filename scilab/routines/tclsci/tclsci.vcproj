@@ -709,6 +709,9 @@ cd .. &gt;nul
 				RelativePath=".\intTclGetVar.c">
 			</File>
 			<File
+				RelativePath=".\intTclGetVersion.c">
+			</File>
+			<File
 				RelativePath=".\inttclsci.c">
 			</File>
 			<File
@@ -765,6 +768,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\intTclGetVar.h">
+			</File>
+			<File
+				RelativePath=".\intTclGetVersion.h">
 			</File>
 			<File
 				RelativePath=".\inttclsci.h">
