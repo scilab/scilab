@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.15 $)dnl
+AC_REVISION($Revision: 1.16 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -840,18 +840,21 @@ case "$host" in
 # FreeBSD  systems (not supported by INRIA)
   *-*-freebsd*)
      GCC=yes
-     CC=gcc
-     CC_OPTIONS='-O2 -Dfreebsd'
+     #CC=gcc
+     #CC_OPTIONS='-O2 -Dfreebsd'
+     CC=cc
+     CC_OPTIONS="${CFLAGS} -Dfreebsd"
      CC_LDFLAGS=-lm
      CC_PICFLAGS='-fPIC'
      # script shell f77 have bugs, get ours
      FC=f77
-     FC_OPTIONS='-O2 -Dfreebsd'
+     FC_OPTIONS="${CFLAGS} -Dfreebsd"	
      FC_OPTIONS_O0='-Dfreebsd'
-     FC_LDFLAGS=-lm
+     FC_LDFLAGS='-lm -Wl,--export-dynamic'
      FC_PICFLAGS='-fPIC'
      LD=ld
      LD_LDFLAGS=-lm
+
      if test "$enable_debug" = yes; then 
        CC_OPTIONS='-g -Dfreebsd'
        FC_OPTIONS=-g
@@ -1250,6 +1253,12 @@ else
   PVMROOT="$SCIDIR/pvm3"
   PVMTARGET=scilex-lib
 fi
+PVMINCLUDE=$PVMROOT/include
+AC_ARG_WITH(pvm-include,
+    [  --with-pvm-include=DIR  PVM include files are in DIR ],
+    [  PVMINCLUDE=$withval
+    ])
+
 
 AC_CACHE_CHECK("for PVM architecture",ac_cv_PVM_arch,
 [
@@ -1261,8 +1270,15 @@ if test "$ac_cv_PVM_arch" = UNKNOWN; then
 else
   AC_DEFINE(WITH_PVM)
   PVMARCH="$ac_cv_PVM_arch"
-  PVMGLIB="$PVMROOT/lib/$ac_cv_PVM_arch/libgpvm3.a"
-  PVMLIB="$PVMROOT/lib/$ac_cv_PVM_arch/libpvm3.a"
+	
+  PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
+  AC_ARG_WITH(pvm-library,
+  	[  --with-pvm-library=DIR  PVM library files are in DIR ],
+    	[  PVMLIBDIR=$withval
+	    ])
+  PVMGLIB="$PVMLIBDIR/libgpvm3.a"
+  PVMLIB="$PVMLIBDIR/libpvm3.a"
+	
   PVMSCIDIR=pvm
   PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
 fi
@@ -1416,6 +1432,7 @@ AC_SUBST(PVMSCILIB)
 AC_SUBST(PVMGLIB)
 AC_SUBST(PVMTARGET)
 AC_SUBST(PVMROOT)
+AC_SUBST(PVMINCLUDE)
 AC_SUBST(TK_INC_PATH)
 AC_SUBST(TCL_INC_PATH)
 AC_SUBST(TCLTK_LIBS)
