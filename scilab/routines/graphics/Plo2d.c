@@ -384,7 +384,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
       switch (strflag[1]) 
 	{
 	case '2' : strflag[1]='1';break;
-	  /* case '4' : strflag[1]='3';break; */
+	case '4' : strflag[1]='3';break; 
 	case '6' : strflag[1]='5';break;
 	}
     }
