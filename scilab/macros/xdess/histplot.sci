@@ -4,8 +4,8 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 // 
 // histplot(xi,data,<opt_arg_seq>)
 // generates the histogram of entries in data put into classes
-// ]xi(k) xi(k+1)] .
-// xi's are assumed st. increasing
+// [xi(1),xi(2)], (xi(k) xi(k+1)], k=2,..,n.
+// xi's are assumed st. increasing (this point is verified now).
 //
 // optionnal args: 
 //     1/ the same than for a plot2d:
@@ -51,7 +51,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
       return;
    end;
    
-   if type(n) ~= 1 or type(data) ~= 1 then
+   if type(n) ~= 1 | type(data) ~= 1 then
       error("first and second argument must be real") 
    end
    
