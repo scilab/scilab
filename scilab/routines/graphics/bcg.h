@@ -107,6 +107,7 @@ typedef struct BCG
   HDC hdcCompat ;  /** for pixmap version */
   HBITMAP hbmCompat ;  /** for pixmap version */
   MW  lpmw;        /** graphic window menu **/
+  int in_sizemove ;   /** graphic window is in resize move */
   /** A reprendre avec des pointeurs comme en X11 XXXXXX **/
   COLORREF *Colors;/* vector of colors */ 
   HPEN hPen ;  /** the current pen for graphic window **/
