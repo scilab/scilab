@@ -31,8 +31,9 @@ c
 c     
  10   continue
       if(r.eq.701.or.r.eq.902.or.r.eq.604) goto 50
-c     initialize macro execution
-c-------------------------------
+
+c     initialize macro or execstr execution
+c------------------------------------------
 c     
       ilk=iadr(fin)
 c     
@@ -223,8 +224,8 @@ c     *call* parse
       go to 99
 c     
  40   continue
-c     terminate macro execution
-c------------------------------
+c     terminate macro or execstr execution
+c-----------------------------------------
 c     handle errcatch
       exec=rstk(pt-1).eq.909.or.rstk(pt-1).eq.903
       if(errct.ne.0.and.errpt.ge.pt.and..not.exec) then
@@ -386,7 +387,6 @@ c
       ival(1)=lin(k+8)
       ival(2)=lin(k+9)
       stk(lstk(isiz))=val
-
       return
 c     
 c     exec
@@ -415,6 +415,7 @@ c
       lin(k+11)=sym
       lin(k+12+nsiz)=lct(8)
       lpt(1) = k + (13+nsiz)
+      lpt(6) = lpt(1)
       if(lct(4).le.-10) fin=-lct(4)-11
       lct(4) = fin
       if(rio.eq.rte) paus=paus+1
@@ -446,7 +447,6 @@ c     fin exec
       endif
       wmac=pstk(pt)
       pt=pt-1
-
       go to 99
 c     
  99   continue
