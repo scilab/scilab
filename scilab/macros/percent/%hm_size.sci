@@ -4,7 +4,7 @@ function varargout=%hm_size(M,job)
 
 
 [lhs,rhs]=argn(0)
-dims=M('dims')
+dims=double(M('dims'))
 if rhs==2 then
   if job=='*' then
     varargout(1)=prod(dims)
