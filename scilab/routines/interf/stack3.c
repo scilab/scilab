@@ -449,9 +449,9 @@ int C2F(str2name)(namex, id, name_len)
  *     in scilab's internal stack 
  *----------------------------------------------------------------*/
 
-int C2F(objptr)(namex, lp, name_len)
+int C2F(objptr)(namex, lp, fin, name_len)
      char *namex;
-     integer *lp;
+     integer *lp; integer *fin;
      unsigned long name_len;
 {
     integer id[nsiz];
@@ -467,6 +467,7 @@ int C2F(objptr)(namex, lp, name_len)
       /*         call error(4) */
       return FALSE_;
     }
+    *fin = Fin;
     *lp = *lstk(Fin );
     if (*infstk(Fin ) == 2) {
 	*lp = *lstk(*istk(iadr(*lp) + 1 +1) );

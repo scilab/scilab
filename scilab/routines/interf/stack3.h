@@ -12,7 +12,7 @@ extern int C2F(matptr)  __PARAMS((char *name__, integer *m, integer *n, integer 
 extern int C2F(cmatptr)  __PARAMS((char *name__, integer *m, integer *n, integer *lp, unsigned long name_len));
 
 extern int C2F(str2name)  __PARAMS((char *name__, integer *id, unsigned long name_len));
-extern int C2F(objptr)  __PARAMS((char *name__, integer *lp, unsigned long name_len));
+extern int C2F(objptr)  __PARAMS((char *name__, integer *lp, integer *fin, unsigned long name_len));
 
 #endif 
 
