@@ -38,3 +38,4 @@ int get_phase_simulation();
 int* get_pointer_xproperty();
 double get_scicos_time();
 int get_block_number();
+void set_block_error(int);

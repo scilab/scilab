@@ -128,6 +128,8 @@ static integer phase;
 
 static integer *pointer_xproperty;
 
+static integer *block_error;
+
 /* Subroutine */ 
 int C2F(scicos)
      (x_in, xptr_in, z__, work,zptr, iz, izptr, t0_in, tf_in, tevts_in, 
@@ -2232,33 +2234,30 @@ int C2F(scicos)
     }
 
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
-      if (funtyp[C2F(curblk).kfun] < 0) {
-
-
-	/*	if (funtyp[C2F(curblk).kfun] == -1) {
-	  Blocks[C2F(curblk).kfun - 1].nevout=
-	    mode[C2F(curblk).kfun - 1];
-	  
-	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  Blocks[C2F(curblk).kfun - 1].nevout=
-	    mode[C2F(curblk).kfun - 1];
-	    }*/
-	
-	++urg;
-	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
-
-	i2 = Blocks[C2F(curblk).kfun - 1].mode + clkptr[C2F(curblk).kfun] - 1;
-	putevs(told, &i2, &ierr1);
-	if (ierr1 != 0) {
-	  /*     !                 event conflict */
-	  *ierr = 3;
-	  return;
+      if (funtyp[C2F(curblk).kfun] == -1) {
+	if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
+	  i=2;
+	} else {
+	  i=1;
 	}
+      } else if (funtyp[C2F(curblk).kfun] == -2) {
+	i=
+	  max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		  Blocks[C2F(curblk).kfun - 1].nevout),1);
+      }
+      ++urg;
+      Blocks[C2F(curblk).kfun - 1].mode=i;
+      i2 =i+ clkptr[C2F(curblk).kfun] - 1;
+      putevs(told, &i2, &ierr1);
+      if (ierr1 != 0) {
+	/*     !                 event conflict */
+	*ierr = 3;
+	return;
       }
     }
   }
   while (urg > 0) {
-    ozdoit(xd, x,told, &urg, &kiwa);
+    doit(told,&urg);
   }
   /*     .  re-initialize */
   for (ii = 1; ii <= noord; ++ii) {
@@ -2639,6 +2638,8 @@ callf(t,xtd,xt,residual,g,flag)
   flagi=*flag; /* flag 7 implicit initialization */
   if(flagi==7 && Blocks[kf-1].type<10000) *flag=0;
   C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
+
+  block_error=flag;
   loc=Blocks[kf-1].funpt;
   if (Blocks[kf-1].type==4||Blocks[kf-1].type==10004) {
     scicos_time=*t;
@@ -3228,4 +3229,11 @@ int get_block_number()
 
 {
   return C2F(curblk).kfun;
+}
+
+void set_block_error(int err)
+
+{
+  *block_error=err;
+  return;
 }
