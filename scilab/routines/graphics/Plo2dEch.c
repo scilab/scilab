@@ -585,6 +585,22 @@ void get_frame_in_pixel(integer WIRect[])
   WIRect[3] = Cscale.WIRect1[1] +  Cscale.WIRect1[3];
 }
 
+void get_margin_in_pixel(integer Margin[])
+{
+  /* added by bruno 
+   *       Margin[0]: left margin 
+   *       Margin[1]: right margin
+   *       Margin[2]: up margin
+   *       Margin[3]: down margin
+   */
+  double coef_w = 1.0 - Cscale.axis[0] - Cscale.axis[1];
+  double coef_h = 1.0 - Cscale.axis[2] - Cscale.axis[3];
+  Margin[0] = (integer) ( Cscale.axis[0]/coef_w * (double) Cscale.WIRect1[2]);
+  Margin[1] = (integer) ( Cscale.axis[1]/coef_w * (double) Cscale.WIRect1[2]);
+  Margin[2] = (integer) ( Cscale.axis[2]/coef_h * (double) Cscale.WIRect1[3]);
+  Margin[3] = (integer) ( Cscale.axis[3]/coef_h * (double) Cscale.WIRect1[3]);
+}
+
 /*-------------------------------------------
  * changes selected items in the current scale 
  * flag gives which component must be used for 

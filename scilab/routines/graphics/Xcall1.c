@@ -973,27 +973,36 @@ void displaystring_1(char *fname, char *string, integer *v1, integer *v2, intege
 /*-----------------------------------------------------------------------------
  *  displaystringa
  *-----------------------------------------------------------------------------*/
-void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, integer *v3, integer *v4, integer *x7, integer *x8, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, integer *v3, 
+		      integer *v4, integer *x7, integer *x8, double *dx1, double *dx2, 
+		      double *dx3, double *dx4, integer lx0, integer lx1)
 {
+  /* modified by Bruno 11 nov 04 */
+  integer Margin[4]; /* 0 left, 1 right, 2 up, 3 down */
+  get_margin_in_pixel(Margin);
+
   if (GetDriver()=='R') 
 	StoreXcall1(fname,string,ipos,1L,v2,1L,v3,1L,v4,1L,&Ivide,1L,&Ivide,1L,dx1,1L,dx2,1L,dx3,1L,dx4,1L);
   switch ( *ipos )
     {
     case 1:
-      xstringb(string,Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Cscale.WIRect1[3]/6);
+      xstringb(string,Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2],Margin[2]);
       break;
     case 2:
-      xstringb(string,Cscale.WIRect1[0]+Cscale.WIRect1[2],Cscale.WIRect1[1]+Cscale.WIRect1[3],Cscale.WIRect1[2]/6,Cscale.WIRect1[3]/6);
+      xstringb(string, Cscale.WIRect1[0]+Cscale.WIRect1[2], Cscale.WIRect1[1]+Cscale.WIRect1[3]+Margin[3], 
+	       Margin[1], 2*Margin[3]);
       break;
     case 3:
-      xstringb(string,Cscale.WIRect1[0],Cscale.WIRect1[1],Cscale.WIRect1[2]/6,Cscale.WIRect1[3]/12);
+      xstringb(string, Cscale.WIRect1[0]-Margin[0], Cscale.WIRect1[1], 2*Margin[0], Margin[2]);
       break;
     }
 }
 /*-----------------------------------------------------------------------------
  * MAJ D.A
  *-----------------------------------------------------------------------------*/
-void displaystringt(char *fname,char *string, integer *v1, integer *v2, integer *v3, integer *v4 , integer *x7, integer *x8, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+void displaystringt(char *fname,char *string, integer *v1, integer *v2, integer *v3, 
+		    integer *v4 , integer *x7, integer *x8, double *dx1, double *dx2, 
+		    double *dx3, double *dx4, integer lx0, integer lx1)
 {
   integer x, y, w, h;
   x=*v1; 

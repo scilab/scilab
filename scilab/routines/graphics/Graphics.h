@@ -139,6 +139,7 @@ extern void Scale2D  __PARAMS((integer,double *,integer *,integer *,double *,dou
 extern int C2F(setscale2d)  __PARAMS((double *,double *,char *,integer)); 
 extern int C2F(Nsetscale2d)  __PARAMS((double *,double *,double *,char *,integer)); 
 extern int getscale2d  __PARAMS((double *,double *,char *,double *)); 
+extern void get_margin_in_pixel(integer *);
 extern int C2F(echelle2d)  __PARAMS((double *,double *,integer *,integer *,integer *,integer *, char *,integer)); 
 extern void C2F(echelle2dl)  __PARAMS((double *,double *,integer *,integer *,integer *,integer *,char *)); 
 extern void C2F(ellipse2d)  __PARAMS((double *,integer *,integer *,char *)); 
