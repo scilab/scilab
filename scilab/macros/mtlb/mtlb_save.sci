@@ -104,8 +104,12 @@ if mtlb_opts==[] then //binary save
       end
       P=5
       T=1
+    else
+      error('Attempt to write an unsupported data type to an ASCII file'
     end
     [m,n]=size(x)
+  
+      
     M = 0 //little endian
     O = 0
     MOPT=[M O P T]
