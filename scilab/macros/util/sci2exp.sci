@@ -13,9 +13,9 @@ function t=sci2exp(a,nom,lmax)
 //!
 // Copyright INRIA
   deff('x=String(a)',['x=string(a)'
-		      'x(find(x==''Inf''))=''%inf'' '
-		      'x(find(x==''-Inf''))=''-%inf'' '
-		      'x(find(x==''Nan''))=''%nan'' '])
+		      'x=strsubst(x,''Nan'',''%Nan'')'
+		      'x=strsubst(x,''Inf'',''%Inf'')'
+		     ])
 
   
 [lhs,rhs]=argn(0)
