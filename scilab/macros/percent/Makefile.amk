@@ -68,7 +68,7 @@ J =      %hm_j_hm.sci %hm_j_s.sci %p_j_s.sci %r_j_s.sci
 
 K =      %p_k_p.sci %p_k_r.sci %p_k_s.sci %r_k_p.sci %r_k_r.sci \
 	 %r_k_s.sci %s_k_p.sci %s_k_r.sci %s_k_sp.sci \
-	 %sp_k_s.sci %sp_k_sp.sci
+	 %sp_k_s.sci %sp_k_sp.sci %hm_k_s.sci %s_k_hm.sci %hm_k_hm.sci
 
 L =      %c_n_l.sci %c_o_l.sci %l_n_l.sci %l_o_l.sci \
 	 %lss_l_lss.sci %lss_l_p.sci %lss_l_r.sci %lss_l_s.sci \
