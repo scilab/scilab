@@ -22,18 +22,15 @@ ng=prod(size(getted))
 globals=[],called=[]
 for k=1:ng
   if (find(getted(k)==vars)==[])&(find(getted(k)==in)==[]) then 
-    if whereis(getted(k))<>[] then
-      called=[called;getted(k)]
-    elseif exists(getted(k))==0 then
-      globals=[globals;getted(k)]
-    else
-      w=null()
-      w=evstr(getted(k))
-      if type(w)==11|type(w)==13 then
+    ierr=execstr('w='+getted(k),'errcatch')
+    if ierr==0 then //the variable exists
+      if or(type(w)==[13 130 11]) then
         called=[called;getted(k)]
       else
         globals=[globals;getted(k)]
       end
+    else
+      globals=[globals;getted(k)]
     end
   end
 end
@@ -47,6 +44,7 @@ end
 vars=list(in,out,globals,called,locals)
 
 endfunction
+
 function [vars,getted]=listvars(lst)
 for lstk=lst
   if type(lstk)==15 then
@@ -60,7 +58,7 @@ for lstk=lst
       for k=0:nlhs-1
 	vars=[vars;addvar(lstk(3+2*k))],
       end
-    elseif lstk(1)=='2' then 
+    elseif or(lstk(1)==['2','20']) then 
        getted=[getted;addget(lstk(2))],
     end
   end
