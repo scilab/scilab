@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN
+>
+
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>beta </TITLE>
+
+  <TYPE>Scilab Function  </TYPE>
+
+  <DATE>December 2003 </DATE>
+
+  <SHORT_DESCRIPTION name="beta">beta function</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM> z = beta(x,y) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+     <PARAM_ITEM>
+        <PARAM_NAME>x, y </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+	 <SP>: 2 positive reals or 2 matrices (or vectors) of positive reals of same size.</SP>
+	</PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+     <PARAM_ITEM>
+        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_DESCRIPTION>
+         <SP>: a real or a matrix of the same size than <VERB>x</VERB> with <VERB>z(i,j) = beta(x(i,j),y(i,j))</VERB>.</SP>
+        </PARAM_DESCRIPTION> 
+     </PARAM_ITEM>
+   </PARAM_INDENT>
+  </PARAM>
+  
+  <DESCRIPTION>
+  <P>
+    Computes the complete beta function :
+  </P>
+     <VERBATIM><![CDATA[
+               /1
+               |   x-1     y-1        gamma(x) gamma(y)
+  beta(x,y) =  |  t   (1-t)    dt  =  ----------------
+               /0                        gamma(x+y)
+      ]]></VERBATIM>
+  <P>
+    For small <VERB>x</VERB> and <VERB>y</VERB> the algorithm uses the expression in function
+    of the gamma function, else it applies the exponential function onto the result of the
+    <VERB>betaln</VERB> function provided with the DCDFLIB: Library of Fortran Routines for 
+    Cumulative Distribution Functions, Inverses, and Other Parameter (see <LINK>cdfbet</LINK>
+    for more information about DCDFLIB).
+  </P>
+  </DESCRIPTION>
+
+ 
+  <EXAMPLE><![CDATA[
+// example 1 :
+beta(5,2) - beta(2,5)   // symetry (must be exactly 0)
+beta(0.5,0.5)           // exact value is pi
+
+// example 2 : an error study based on the relation  B(1,x) = 1/x
+// (computing 1/x must lead to only a relative error of eps_m, so
+//  it may be used near as a reference to evaluate the error in B(1,x))  
+x = logspace(-8,8,20000)';
+e = beta(ones(x),x) - (1)./x;
+er = abs(e) .* x;
+ind = find(er ~= 0);
+eps = ones(x(ind))*number_properties("eps");
+xbasc()
+plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
+xtitle("approximate relative error in computing beta(1,x)")
+xselect()
+
+// example 3 : plotting the beta function 
+t = linspace(0.2,10,60);
+X = t'*ones(t); Y = ones(t')*t;
+Z = beta(X,Y);
+xbasc()
+plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
+xtitle("The beta function on [0.2,10]x[0.2,10]")
+xselect()
+ ]]></EXAMPLE>
+ 
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>gamma</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>cdfbet</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+</MAN>
