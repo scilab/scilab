@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_save</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Octobre 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_save">Fonction d'émulation de la fonction Matlab save</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>
+    La fonction <VERB>mtlb_save</VERB> était utilisée par les anciennes version de 
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>save</VERB> mais est maintenant obsolète
+    utilisez plutôt <VERB>savematfile</VERB>
+    </P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>savematfile</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
