@@ -1,5 +1,5 @@
 # Scipad texts in Italian
-# in sync with v3.49
+# in sync with v3.50
 
 
 # commons
@@ -135,7 +135,7 @@
 # findreplace.tcl
 ::msgcat::mcset it "The string" "La stringa"
     ::msgcat::mcset it "could not be found" "non è stata trovata"
-::msgcat::mcset it "replacements done" "Enrico, please translate here"
+::msgcat::mcset it "replacements done" "sostituzioni effettuate"
 ::msgcat::mcset it "Find" "Cerca"
 ::msgcat::mcset it "No match found in the selection for" \
          "Nessuna corrispondenza trovata all'interno della selezione."
