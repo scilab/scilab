@@ -16,32 +16,37 @@ function [y,Fs,bits]=wavread(wavfile,ext)
   //    in the file in place of the actual audio data, returning the
   //     vector siz=[samples channels].
 
-  [nargout,nargin] = argn(0)
-  // Parse input arguments:
-  if nargin<1|nargin>2 then error(77),end
-  if nargin<2 then   ext = [];end
-
-  exts = size(ext,'*');
-  if convstr(ext)~='size'&(exts>2) then
-    error('Index range must be specified as a scalar or 2-element vector.');
-  end
-  
-  if (type(ext)~=10)&(exts==1) then
-    if ext==0 then
-      ext = 'size';  // synonym for size
-    else
-       ext = [1,ext];
-    end
-  end
-  
-  // Append .wav extension
-  if strindex(wavfile,'.')==[] then
-    wavfile = wavfile+'.wav';
-  end
+  // Append .wav extension if necessary
+  if strindex(wavfile,'.')==[] then  wavfile = wavfile+'.wav';end
+  // Open the file
   [fid,err] = mopen(wavfile,'rb',1);    // Little-endian
-  if err<0 then 
-    error('Cannot open specified .wav file');
+  if err<0 then  error('Cannot open '+wavfile), end
+
+  // Handle ext optional argument
+  if argn(2)<2 then   ext = [];end
+
+  if type(ext)==10 then
+    ext=convstr(ext)
+    if ext<>'size' then
+      error('second argument must be ""size"", an integer or a vector of 2 integers")
+    end
+  elseif type(ext)==1 then
+    exts = size(ext,'*');
+    if exts>2|exts<1 then
+      error('Index range must be specified as a scalar or 2-element vector.');
+    end
+    if exts==1 then
+      if ext==0 then
+	ext = 'size';  // synonym for size
+      else
+	ext = [1,ext];
+      end
+    end
+  else
+    error('second argument must be ""size"", an integer or a vector of 2 integers")
   end
+  
+
 
   Data=[];
   ID=stripblanks(ascii(mget(4,'c',fid)));
@@ -85,7 +90,7 @@ function [y,Fs,bits]=wavread(wavfile,ext)
       if ~found_fmt then
 	error('Invalid .wav file: found data before format information.');
       end
-      if (convstr(ext)=='size')|(~(ext==[]))&and(ext==0) then
+      if (ext=='size')|(~(ext==[]))&and(ext==0) then
 	// Caller just wants data size:
 	samples=read_wavedat(fid, Size ,wFormatTag, nChannels, nBitsPerSample,-1)
 	mclose(fid);
@@ -219,12 +224,13 @@ function Data=read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
     if mseek(total_bytes,fid,'cur')==-1 then
       error( 'Error reading .wav file');
     end
+    return
   end
   if ext==[] then
     ext = [1,SamplesPerChannel];
   else
      if prod(size(ext))~=2 then
-       erro('Sample limit vector must have 2 entries');
+       error('Sample limit vector must have 2 entries');
        return
      end
      if ext(1)<1|ext(2)>SamplesPerChannel then
