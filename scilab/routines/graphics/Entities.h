@@ -534,9 +534,9 @@ sciLegend;
 typedef enum
 {
   /** */
-  SCI_TITLE_IN_TOP,
+  SCI_TITLE_IN_TOP = 0,
   /** */
-  SCI_TITLE_IN_BOTTOM,
+  SCI_TITLE_IN_BOTTOM = 1,
 }/** */
 sciTitlePlace;	
 
@@ -549,7 +549,8 @@ typedef struct
   /** */
   sciText text;
   /** absolut position in subindow*/
-  POINT2D pos;		   
+  POINT2D pos;	
+  int ptype;
   /** up, down */
   sciTitlePlace titleplace; 
   /** */
@@ -1304,7 +1305,7 @@ extern sciPointObj *ConstructText (sciPointObj * pparentfigure, char text[],
 extern sciPointObj *CloneText (sciPointObj * pthis);
 extern int DestroyText (sciPointObj * pthis);
 extern sciPointObj *ConstructTitle (sciPointObj * pparentfigure, char text[],
-				    int n, sciTitlePlace place);
+				    int type);
 extern int DestroyTitle (sciPointObj * pthis);
 extern sciPointObj *ConstructLegend (sciPointObj * pparentfigure, char text[],
 				     int n, int nblegends, int *pstyle, sciPointObj **pptabofpointobj);

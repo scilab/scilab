@@ -177,6 +177,19 @@ void Xstring (fname,fname_len,str,x,y,angle,box)
 }
 
 /*------------------------------------------------
+ *  Xtitle(str)
+ *-----------------------------------------------*/   
+void Xtitle (str,n)
+     char *str;
+     int n;
+{ 
+     integer v; 
+     double dv;
+   
+     C2F(dr1)("xstringa",str,&n,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,8L,2L);
+}
+
+/*------------------------------------------------
  * drawaxis (pos, xy_type, x, nx, y, ny, str, subtics
               format, fontsize,textcolor, 
               ticscolor, logflag, seg_flag)

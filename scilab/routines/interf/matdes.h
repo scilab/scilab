@@ -101,7 +101,9 @@ extern int scixclearsubwin(char *fname, unsigned long fname_len);
 extern int scixbascsubwin(char *fname, unsigned long fname_len);
 
 
-extern int draw(char *fname, unsigned long fname_len);void Objarc (int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl);
+extern int draw(char *fname, unsigned long fname_len);
+
+void Objarc (int *angle1,int *angle2,double *x,double *y,double *width,double *height,int color,int fill,long *hdl);
 void Objdrawaxis (char dir,char tics,double *x,int *nx,double *y,int *ny,char **val,int subint,char *format,int font,int textcol,int ticscol,char flag,int seg);
 void Objfec (double *x,double *y,double *noeud,double *fun,integer *n,integer *m,char *strflag,char *legend,double *brect,integer *aaint,double *Zminmax,integer *Colminmax);
 
@@ -118,6 +120,7 @@ void Objpoly (double *x,double *y,integer n,integer closed,int mark,long *hdl);
 void Objrect (double *x,double *y,double *width,double *height,int fillflag,int fillcolor,int n,long *hdl);
 void Objsegs (integer *style,integer flag,integer n,double *x,double *y, double arsize);
 void Objstring(char *fname,unsigned long fname_len,integer str,double x,double y,double *angle,double *box,double wy,long *hdl);
+void Objtitle(char *str,int n,long *hdl);
 
 void Xarc (char *fname,unsigned long fname_len,int *a1,int *a2,double *x,double *y,double *width,double *height);
 void Xarcs (char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2);
@@ -142,5 +145,6 @@ void Xrect (char *fname,unsigned long fname_len,double *x,double *y,double *widt
 void Xrects (char *fname,unsigned long fname_len,int *vect1,integer n,double *vect2);
 void Xsegs (integer *style,integer flag,integer n,double *x,double *y, double arsize);
 void Xstring (char *fname,unsigned long fname_len,integer str,double x,double y,double angle,double *box);
+void Xtitle (char *str,int n);
 /* NG beg */
 #endif 

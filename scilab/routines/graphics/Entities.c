@@ -746,8 +746,22 @@ sciInitGraphicMode (sciPointObj * pobj)
 int
 sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
+  double *pc;
+  int k;
   C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
-  pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap = rgbmat;
+  
+  pc=pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap;
+
+  FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
+  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
+    {
+      sciprint ("Not enough memory available for colormap\n");
+      pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap=pc;
+      return -1;
+    }  
+  
+  for (k=0;k<m*n;k++) 
+    pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k] = rgbmat[k];
   sciSetBackground ((sciPointObj *) pobj, sciGetNumColors (pobj));
   sciSetForeground ((sciPointObj *) pobj, sciGetNumColors (pobj)+1); 
   return 0;
@@ -7205,19 +7219,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	} 
-      /* strflag is not allocated !!!! jpc 2003  
-      if ((pSUBWIN_FEATURE (pobj)->strflag = calloc (3,sizeof (char))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      */
 
-       pSUBWIN_FEATURE (pobj)->logflags[0] = 'n';
-       pSUBWIN_FEATURE (pobj)->logflags[1] = 'n';
+      pSUBWIN_FEATURE (pobj)->logflags[0] = 'n';
+      pSUBWIN_FEATURE (pobj)->logflags[1] = 'n';
+
   
      /* axes labelling values*/
       pSUBWIN_FEATURE (pobj)->axes.ticscolor  = -1;
@@ -7293,7 +7298,6 @@ DestroySubWin (sciPointObj * pthis)
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
-  FREE(pSUBWIN_FEATURE(pthis)->strflag);
   if ( sciGetCallback(pthis) != (char *)NULL)
     FREE(sciGetCallback(pthis));
   FREE (sciGetPointerToFeature (pthis));
@@ -7585,8 +7589,7 @@ DestroyText (sciPointObj * pthis)
  * @return  : pointer sciPointObj if ok , NULL if not
  */
 sciPointObj *
-ConstructTitle (sciPointObj * pparentsubwin, char text[], int n,
-		sciTitlePlace place)
+ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
 
@@ -7624,7 +7627,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int n,
       pTITLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
      
 
-      if ((pTITLE_FEATURE (pobj)->text.ptextstring =calloc (n+1, sizeof (char))) == NULL)
+      if ((pTITLE_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
 	{
 	  sciprint("No more place to allocates text string, try a shorter string");
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -7634,12 +7637,15 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int n,
 	  return (sciPointObj *) NULL;
 	}
       /* on copie le texte du titre dans le champs specifique de l'objet */
-      strncpy (pTITLE_FEATURE (pobj)->text.ptextstring, text, n);
-      pTITLE_FEATURE (pobj)->text.textlen = n;
+      strncpy (pTITLE_FEATURE (pobj)->text.ptextstring, text, strlen(text));
+      pTITLE_FEATURE (pobj)->text.textlen = strlen(text);
+      pTITLE_FEATURE (pobj)->ptype = type;
+
       pTITLE_FEATURE (pobj)->text.fontcontext.textorientation = 0;
-      pTITLE_FEATURE (pobj)->titleplace = place;
+
+      pTITLE_FEATURE (pobj)->titleplace = SCI_TITLE_IN_TOP;
       pTITLE_FEATURE (pobj)->isselected = TRUE;
-      if (sciInitGraphicContext (pobj) == -1)
+      if (sciInitFontContext (pobj) == -1)
 	{
 	  FREE(pTITLE_FEATURE(pobj)->text.ptextstring);
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -7648,8 +7654,6 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int n,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-      sciInitFontContext (pobj);
-
       return (sciPointObj *) pobj;
     }
   else
@@ -9263,18 +9267,7 @@ ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double min
 
 
       pAXIS_FEATURE (pobj)->strflaglen = strlen (strflag);
-      /* strflag is not allocated jpc 2003
-      if ((pAXIS_FEATURE (pobj)->strflag = calloc (pAXIS_FEATURE (pobj)->strflaglen+1, 
-						   sizeof (char))) == NULL)
-	{
-	  sciprint("No more Memory allocation for axis !\n");
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pAXIS_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      */
+
       strncpy(pAXIS_FEATURE (pobj)->strflag, strflag, pAXIS_FEATURE (pobj)->strflaglen);
 
 
@@ -9815,9 +9808,9 @@ sciDrawObj (sciPointObj * pobj)
  //     HFONT hfont;
   ///  LOGFONT logfont;           /* Unknown type !! (non utilise ?!)*/
   ///  HDC hdc;                   /* Structure BCG "Win" */
-  char str[2] = "xv";
+  char str[2] = "xv",locstr;
   integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0;
-  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4],style[1];
+  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4],style[1],rect1[4];
   integer closeflag = 0;
   integer width, height;
   /* 12/01/2002 */
@@ -9834,6 +9827,8 @@ sciDrawObj (sciPointObj * pobj)
   sciSons *psonstmp;
   integer itmp[5];		// variable temporaire
   integer markidsizeold[2], markidsizenew[2];// variables du type de mark
+  sciPointObj *psubwin;
+  double locx,locy,loctit;
 
   int i,j;
   /* variable pour le set_scale update_frame_bouns*/
@@ -9878,17 +9873,15 @@ sciDrawObj (sciPointObj * pobj)
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect, NULL, "nn", NULL);      
       if (pSUBWIN_FEATURE (pobj)->isaxes)
 	{
-	  sciSetCurrentObj (pobj);
+	  sciSetCurrentObj (sciGetParent(pobj));
 	  /* load the object foreground and dashes color */
 	  x[0] = sciGetForeground (pobj);
-	  //	  x[1] = sciGetBackground (pobj);
 	  x[2] = sciGetLineWidth (pobj);
 	  x[3] = sciGetLineStyle (pobj);
 	  markidsizenew[0] = sciGetMarkStyle(pobj);
 	  markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
 	  C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
-	  //	  C2F (dr) ("xset","background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    
@@ -10147,7 +10140,6 @@ sciDrawObj (sciPointObj * pobj)
 
       /* load the object foreground and dashes color */
       x[0] = sciGetForeground (pobj);	
-      //      x[1] = sciGetBackground (pobj);
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       markidsizenew[0] = sciGetMarkStyle(pobj);
@@ -10164,8 +10156,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 0L, 0L);
       C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
@@ -10175,7 +10165,6 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       ReleaseWinHdc ();
 #endif  
- 
       n1 = pPOLYLINE_FEATURE (pobj)->n1;
       n2 = pPOLYLINE_FEATURE (pobj)->n2;
       closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
@@ -10251,8 +10240,7 @@ sciDrawObj (sciPointObj * pobj)
 		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
 
       /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (pobj);
+      x[0] = sciGetForeground (pobj);	
       x[2] = sciGetLineWidth (pobj);
       x[3] = sciGetLineStyle (pobj);
       x[4] = 0;
@@ -10265,8 +10253,6 @@ sciDrawObj (sciPointObj * pobj)
 		&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		&dv, &dv, &dv, &dv, 5L, 10L);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+4, x+4, x+4, &v,
-      //		&dv, &dv, &dv, &dv, 5L, 10L);
       C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
 		PD0, PD0, PD0, 4L, 9L);
 #ifdef WIN32 
@@ -10587,7 +10573,106 @@ sciDrawObj (sciPointObj * pobj)
 	}
       return 0;
       break;
-      /************** 12/04/2002 *****************************************************************/
+    case SCI_TITLE:
+      if (!sciGetVisibility(pobj))
+	return 0;
+      sciSetCurrentObj (pobj);        // place l'objet comme objet courrant
+      /* load the object foreground and dashes color */
+      x[0] = sciGetFontForeground (pobj);//la dash est de la meme couleur que le foreground
+      x[2] = sciGetFontDeciWidth (pobj)/100;
+      x[3] = 0;
+      x[4] = 0; sciGetFontStyle(pobj);
+      v = 0;
+      dv = 0;
+#ifdef WIN32
+      SetWinhdc ();
+#endif
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+      C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+#ifdef WIN32
+      ReleaseWinHdc ();
+#endif
+      sciClip(sciGetIsClipping(pobj));
+      ///
+      flagx = 0;
+      anglestr = 0;
+      psubwin = sciGetParentSubwin(pobj);
+      if (sciGetEntityType(psubwin) == SCI_SUBWIN)
+	{
+	  locstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+	  switch (locstr)
+	    {
+	    case 'd':
+	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1];
+	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
+	      break;
+	    case 'c':
+	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[1]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: 0.0;
+	      locy=(pSUBWIN_FEATURE (psubwin)->FRect[3]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[1]: locy;
+	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
+	      break;
+	    case 'u':
+	      locy=pSUBWIN_FEATURE (psubwin)->FRect[3];
+	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[1];
+	      break;
+	    default:
+	      locy=pSUBWIN_FEATURE (psubwin)->FRect[1];
+	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[3];
+	      break;
+	    }
+	  locstr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+	  switch (locstr)
+	    {
+	    case 'l':
+	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0];
+	      break;
+	    case 'c':
+	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[0]>0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: 0.0;
+	      locx=(pSUBWIN_FEATURE (psubwin)->FRect[2]<0.0)?pSUBWIN_FEATURE (psubwin)->FRect[0]: locx;
+	      loctit=pSUBWIN_FEATURE (psubwin)->FRect[1];
+	      break;
+	    case 'r':
+	      locx=pSUBWIN_FEATURE (psubwin)->FRect[2];
+	      break;
+	    default:
+	      locx=pSUBWIN_FEATURE (psubwin)->FRect[0];
+	      break;
+	    }
+	}
+      switch (pTITLE_FEATURE (pobj)->ptype)
+	{
+	case 1:
+	  rect1[0]= XScale(pSUBWIN_FEATURE (psubwin)->FRect[0]);
+	  rect1[1]= (loctit==pSUBWIN_FEATURE (psubwin)->FRect[1])?(YScale(loctit)+Cscale.WIRect1[3]/6):YScale(loctit);
+
+	  rect1[2]= Cscale.WIRect1[2];
+	  rect1[3]= Cscale.WIRect1[3]/6;
+	  break;
+	case 2:
+	  rect1[0]= Cscale.WIRect1[0]+Cscale.WIRect1[2];
+	  rect1[1]= YScale(locy-(pSUBWIN_FEATURE (psubwin)->FRect[3]-pSUBWIN_FEATURE (psubwin)->FRect[1])/12);
+	  rect1[2]= Cscale.WIRect1[2]/6;
+	  rect1[3]= Cscale.WIRect1[3]/6;
+	  break;
+	case 3:
+	  rect1[0]= XScale(locx-(pSUBWIN_FEATURE (psubwin)->FRect[2]-pSUBWIN_FEATURE (psubwin)->FRect[0])/12);
+	  rect1[1]= Cscale.WIRect1[1]-Cscale.WIRect1[3]/24;
+	  rect1[2]= Cscale.WIRect1[2]/6;
+	  rect1[3]= Cscale.WIRect1[3]/12;
+	  break;
+	}
+#ifdef WIN32
+      SetWinhdc ();
+#endif
+      C2F(dr1)("xstringtt",sciGetText (pobj),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
+#ifdef WIN32
+      ReleaseWinHdc ();
+#endif
+      sciUnClip(sciGetIsClipping(pobj));
+      return 0;
+      break;
+
     case SCI_AXES:
       if (!sciGetVisibility(pobj))
 	return 0;
@@ -10605,10 +10690,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32 
       SetWinhdc ();
 #endif
-    
-      
-
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+          C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
 		&dv, &dv, &dv, 5L, 4096);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
 		&dv, &dv, &dv, &dv, 5L, 4096);
@@ -10720,7 +10802,6 @@ sciDrawObj (sciPointObj * pobj)
 	}
       return 0;
       break;
-    case SCI_TITLE:
     case SCI_LIGHT:
     case SCI_PANNER:
     case SCI_SBH:
@@ -12447,6 +12528,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   pAGREG_FEATURE (pobj)->callback = (char *)NULL;
   pAGREG_FEATURE (pobj)->callbacklen = 0;
+  pAGREG_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
   sonsnext = (sciSons *) NULL;
 
@@ -12856,7 +12938,8 @@ int sciType (marker)
   else if (strncmp(marker,"fill_mode", 9) == 0)   {return 10;}		
   else if (strncmp(marker,"thickness", 9) == 0)   {return 1;}
   else if (strncmp(marker,"line_style", 10) == 0) {return 1;}		
-  else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}		
+  else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}	
+  else if (strcmp(marker,"mark_size") == 0) {return 1;}	
   else if (strncmp(marker,"mark_mode", 9) == 0)   {return 10;}	
   else if (strncmp(marker,"figure_position", 15) == 0) {return 1;}	 
   else if (strncmp(marker,"axes_size", 9) == 0)   {return 1;}
@@ -12864,19 +12947,22 @@ int sciType (marker)
   else if (strncmp(marker,"figure_size", 11) == 0){return 1;}	
   else if (strncmp(marker,"figure_id", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"figure_name", 11) == 0){return 10;}   
+  else if (strncmp(marker,"figures_id", 10) == 0)   {return 1;}
   else if (strncmp(marker,"polyline_style", 14) == 0){return 1;} 
   else if (strncmp(marker,"font_size", 9) == 0)   {return 1;}	
   else if (strncmp(marker,"font_angle", 10) == 0) {return 1;}		
   else if (strncmp(marker,"font_foreground", 15) == 0){return 1;}	
   else if (strncmp(marker,"font_style", 10) == 0) {return 1;}	      
   else if (strncmp(marker,"font_name", 9) == 0)   {return 10;}
-  else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}	
+  else if (strncmp(marker,"textcolor", 9) == 0)   {return 1;}
+  else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
+  else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
   else if (strncmp(marker,"text", 4) == 0)        {return 10;}	 
   else if (strncmp(marker,"old_style", 9) == 0)   {return 10;}
   else if (strncmp(marker,"figure_style", 12) == 0)   {return 10;}        
   else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
   else if (strncmp(marker,"auto_resize", 10) == 0){return 10;}
-  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0)    {return 1;}    
+  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0)    {return 10;}    
   else if (strncmp(marker,"default_values", 14) == 0) {return 10;} 
   else if (strncmp(marker,"color_map", 9) == 0)   {return 1;}    
   else if (strncmp(marker,"x_location", 10) == 0) {return 10;} 
@@ -12901,7 +12987,9 @@ int sciType (marker)
   else if (strncmp(marker,"clip_state", 9) == 0)  {return 10;} 
   else if (strncmp(marker,"auto_clear", 10) == 0) {return 10;}		
   else if (strncmp(marker,"auto_scale", 10) == 0) {return 10;}		  	 
-  else if (strncmp(marker,"arrow_size", 10) == 0) {return 1;}	
+  else if (strncmp(marker,"arrow_size", 10) == 0) {return 1;}
+  else if (strncmp(marker,"segs_color", 10) == 0) {return 1;}
+  else if (strncmp(marker,"colored", 7) == 0) {return 10;}
   else if (strcmp(marker,"data") == 0)            {return 1;}	
   else if (strncmp(marker,"hdl", 3) == 0)         {return 1;}		
   else if (strncmp(marker,"callbackmevent", 14) == 0) {return 1;}
@@ -12910,6 +12998,8 @@ int sciType (marker)
   else if (strcmp(marker,"data_mapping") == 0)    {return 10;}
   else if (strcmp(marker,"rotation_angles") == 0)    {return 1;}
   else if (strcmp(marker,"bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
 
   else { sciprint("\r\n Unknown property \r");return 0;}

@@ -153,6 +153,24 @@ void Objstring(fname,fname_len,str,x,y,angle,box,wy,hdl)
      C2F(echelle2dl)(box+2,box+3,rect1+2,rect1+3,&n,&n,"i2f");
  
 }
+/*-----------------------------------------------------------
+ * Objtitle:
+ *-----------------------------------------------------------*/
+
+void Objtitle(str,n,hdl)
+     char* str;
+     int n;
+     long *hdl;
+{ 
+  sciSetCurrentObj (ConstructTitle
+  		((sciPointObj *)
+             		 sciGetSelectedSubWin (sciGetCurrentFigure ()),str,n));
+  
+  *hdl=sciGetHandle(sciGetCurrentObj ()); 
+  //sciSetFontOrientation (sciGetCurrentObj (), *angle *  10); 
+  sciDrawObj(sciGetCurrentObj ()); 
+}
+
 
 /*------------------------------------------------
  *  plot2d 

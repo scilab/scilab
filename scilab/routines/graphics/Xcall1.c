@@ -27,7 +27,7 @@ static f_xcall1 xset_1, drawarc_1, fillarcs_1  ,drawarcs_1  ,fillpolyline_1  ,dr
 static f_xcall1 drawaxis_1  ,cleararea_1  ,xclick_1  ,xclick_any_1  ,xgetmouse_1  ,fillarc_1  ;
 static f_xcall1 fillrectangle_1  ,drawpolyline_1  ,fillpolylines_1  ,drawpolymark_1  ,displaynumbers_1  ;
 static f_xcall1 drawpolylines_1  ,drawrectangle_1  ,drawrectangles_1  ,drawsegments_1  ,displaystring_1  ;
-static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ;
+static f_xcall1 displaystringa_1  ,boundingbox_1  ,xstringb_1  ,displaystringt;
 
 static integer Ivide=0;
 static double  Dvide;
@@ -101,7 +101,8 @@ in_word_set (str, len)
       {"xsetdr",		(func) C2F(dr)},
       {"xreplay",	(func) C2F(dr)},
       {"xstringb",	xstringb_1},
-      {""},
+      /*{""},*/ 
+      {"xstringtt",	displaystringt},
       {"xrect",		drawrectangle_1},
       {"xrects",		drawrectangles_1},
       {""}, {""}, {""}, {""}, {""},
@@ -126,7 +127,7 @@ in_word_set (str, len)
       {"xstart",		(func) C2F(dr)},
       {""},
       {"xstringa",	displaystringa_1},
-      {""},
+      {""},     
       {"xarcs",		drawarcs_1},
       {"xpolys",		drawpolylines_1},
       {""}, {""},
@@ -667,11 +668,23 @@ void displaystringa_1(char *fname, char *string, integer *ipos, integer *v2, int
     }
 }
 /*-----------------------------------------------------------------------------
+ * MAJ D.A
+ *-----------------------------------------------------------------------------*/
+void displaystringt(char *fname,char *string, integer *v1, integer *v2, integer *v3, integer *v4 , integer *x7, integer *x8, double *dx1, double *dx2, double *dx3, double *dx4, integer lx0, integer lx1)
+{
+  integer x, y, w, h;
+  x=*v1; 
+  y=*v2; 
+  w=*v3; 
+  h=*v4;
+  xstringb (string,x,y,w,h);
+}
+/*-----------------------------------------------------------------------------
  * display a set of lines coded with 'line1@line2@.....@'
  *   centred in the rectangle [x,y,w=wide,h=height] 
  *-----------------------------------------------------------------------------*/
 
-static void xstringb(char *string, integer x, integer y, integer w, integer h)
+static void xstringb (char *string, integer x, integer y, integer w, integer h)
 {
   char *loc,*loc1;
   loc= (char *) MALLOC( (strlen(string)+1)*sizeof(char));
@@ -768,7 +781,7 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
  * and the string is Drawn if Dflag ==1 ;
  **********************************/
 
-static void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, integer *h)
+void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, integer *h)
 {
   char *p = StrMat,*p1,*p2,*plast;
   integer yi=*y;
@@ -780,15 +793,17 @@ static void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer 
     {
       integer logrect[4];
       double angle=0.0;
-      integer flag=0;
+      integer flag=1;
       p2 =p1 ; *p1 = '\0';
       while ( p1 != p && *p1 != '\n' ) 
 	p1--;
       if ( Dflag == 1) 
 	C2F(dr)("xstring",( p1 == p ) ? p1 : p1 +1,
 		x,&yi,PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-      C2F(dr)("xstringl", ( p1 == p ) ? p1 : p1 +1,
-	      x,&yi,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      C2F(dr)("xstringl",
+	      ( p1 == p ) ? p1 : p1 +1,
+	      x,&yi,logrect,PI0,PI0,PI0,
+	      PD0,PD0,PD0,PD0,0L,0L);	
       if ( p2 != plast) 	*p2 = '\n';
       wc = Max( wc , logrect[2]);
       if ( p == p1 ) 
