@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-<xsl:output method="html" indent="yes"  />
+<xsl:output method="html" indent="yes" encoding="ISO-8859-1" />
 
 <!-- from hml.xsl matt. revisited: jpc 21 sept 2003 -->
 
