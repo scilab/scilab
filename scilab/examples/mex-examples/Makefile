@@ -4,7 +4,7 @@ SCIDIR=../../
 include ../../Makefile.incl
 
 
-SUBDIRS =  cmex
+SUBDIRS =  cmex  fmex mexglx mexdll
 
 info	:
 	@echo "Type \"make tests\" in examples directory"
