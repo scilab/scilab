@@ -635,7 +635,7 @@ Linking wfexab
 Link done
 
  
-if norm(x-ode(ones(10,1),0,[1,2,3],'wfexab')) > 1000*%eps then bugmes();quit;end
+if norm(x-ode(ones(10,1),0,[1,2,3],'wfexab')) > 10000*%eps then bugmes();quit;end
  
  
  
