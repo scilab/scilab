@@ -12,7 +12,8 @@ elseif type(extern)==10 then
     warning('Obsolete function gschur. Please, replace gschur by schur')
     [As,Es,Z,dim]= schur(A,E,extern) 
   else // hard coded
-    error('Obsolete function gschur, the old external cannot be used')
+    error('Obsolete function gschur, the old external cannot be used. See help')
+    
     //impossible to redefine
   end
 else //coded by a scilab function
