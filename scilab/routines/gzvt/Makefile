@@ -1,7 +1,7 @@
 include ../../Makefile.incl 
 
-LDFLAGS= `gtk-config --libs`  `gnome-config --libs zvt`  
-# `imlib-config --libs-gdk`
+# imlib-config --libs-gdk is needed for some gnome versions 
+LDFLAGS= `gnome-config --libs zvt`   `imlib-config --libs-gdk`
 CFLAGS=  `gtk-config --cflags` 
 
 all	::  ../../bin/zterm gtkplug 
