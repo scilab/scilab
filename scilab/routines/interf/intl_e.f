@@ -335,7 +335,7 @@ c     .  L(:)
          n=istk(illist+1)
          llist=sadr(illist+3+n)
 c     .  Check lhs
-         if(lhs.eq.1) then
+         if(lhs.le.1) then
             if(n.ne.lhs) then
                call forcerhs(n,ierr)
                if(ierr.ne.0) then
