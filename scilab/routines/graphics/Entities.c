@@ -9475,7 +9475,9 @@ sciPointObj *
 ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 		  double * pvecx, double * pvecy, double * pvecz,integer *zcol, 
 		  integer izcol, integer dimzx, integer dimzy,  
-		  integer *flag, double *ebox,integer flagcolor, integer *isfac, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3)
+		  integer *flag, double *ebox,integer flagcolor, 
+		  integer *isfac, integer *m1, integer *n1, integer *m2, 
+		  integer *n2, integer *m3, integer *n3, integer *m3n, integer *n3n)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
   //debug F.Leray
@@ -9489,21 +9491,23 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     ny=dimzy;
     nz=dimzx*dimzy;
     if (flagcolor == 2)
-      nc=nz; /* one color per facet */
+      nc=nz; /* one color per facet */    /* nc = dimzx * dimzy */
     else if (flagcolor == 3)
-      nc=nz*4; /*one color per edge */
+      nc=nz*4; /*one color per edge */    /* nc = 4* dimzx * dimzy*/ /* 3 or 4 vectices are needed: 
+									I think we take 4 to have enough allocated memory*/ 
+    /* made by Djalel : comes from the genfac3d case*/
     else 
       nc=0;
   }
   /* DJ.A 2003 */
-  else {
+  else { /* case SCI_FAC3D */
     nx=dimzx*dimzy;
     ny=dimzx*dimzy;
     nz=dimzx*dimzy;
     if (flagcolor == 2)
-      nc=dimzy; /* one color per facet */
+      nc=dimzy; /* one color per facet */ /* nc = dimzy */
     else if (flagcolor == 3)
-      nc=nz; /*one color per edge */
+      nc=nz; /*one color per edge */      /* nc = dimzx * dimzy */
     else 
       nc=0;
   }
@@ -9559,6 +9563,9 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->n2= *n2;
       pSURFACE_FEATURE (pobj)->n3= *n3;
       
+      //Adding F.Leray 19.03.04
+      pSURFACE_FEATURE (pobj)->m3n= *m3n;
+      pSURFACE_FEATURE (pobj)->n3n= *n3n;
 
       if (((pSURFACE_FEATURE (pobj)->pvecx = MALLOC ((nx * sizeof (double)))) == NULL))
 	{
