@@ -33,10 +33,10 @@ MTLB = mtlb.sci mtlb_e.sci mtlb_i.sci mtlb_is.sci mtlb_eval.sci \
 	mtlb_dir.sci mtlb_e.sci mtlb_eig.sci mtlb_false.sci mtlb_fopen.sci mtlb_format.sci \
 	mtlb_full.sci mtlb_imp.sci mtlb_int8.sci mtlb_int16.sci mtlb_int32.sci \
 	mtlb_isletter.sci mtlb_isspace.sci mtlb_logical.sci mtlb_logic.sci \
-	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_norm.sci mtlb_qr.sci \
+	mtlb_lower.sci mtlb_l.sci mtlb_more.sci mtlb_norm.sci mtlb_num2str.sci mtlb_qr.sci \
 	mtlb_randn.sci mtlb_rcond.sci mtlb_rem.sci mtlb_setstr.sci mtlb_size.sci \
 	mtlb_sort.sci mtlb_s.sci mtlb_strcmp.sci mtlb_strcmpi.sci \
-	mtlb_strfind.sci mtlb_strrep.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
+	mtlb_strfind.sci mtlb_strrep.sci mtlb_toeplitz.sci mtlb_tril.sci mtlb_triu.sci mtlb_true.sci mtlb_t.sci \
 	mtlb_type.sci mtlb_uint8.sci mtlb_uint16.sci mtlb_uint32.sci mtlb_upper.sci \
 	mtlb_delete.sci mtlb_beta.sci mtlb_conv.sci mtlb_dec2hex.sci
 
