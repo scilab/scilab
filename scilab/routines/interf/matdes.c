@@ -6408,7 +6408,7 @@ int delete(fname,fname_len)
   unsigned long hdl;
   sciPointObj *pobj, *pparentfigure;
 
-  CheckRhs(1,2);
+  CheckRhs(0,1);
   CheckLhs(0,1);
   C2F(sciwin)();
   switch(VarType(1)) 
@@ -6696,7 +6696,7 @@ int drawnow(fname,fname_len)
   if (version_flag() == 0)
     {
       if (Rhs <= 0) {
-	sciSetVisibility (sciGetCurrentFigure (), TRUE);  
+	sciSetVisibility (sciGetSelectedSubWin(sciGetCurrentFigure ()), TRUE);  
 	sciDrawObj(sciGetCurrentFigure ());
 	LhsVar(1) = 0;
 	return 0;}
@@ -6707,7 +6707,7 @@ int drawnow(fname,fname_len)
 	    GetRhsVar(1,"h",&m,&n,&l); 
 	    for (i = 0; i < n*m; i++)
 	      {
-		subwin = sciGetPointerFromHandle(*istk(l+i)); 
+		subwin = sciGetPointerFromHandle(*stk(l+i)); 
 		if (sciGetEntityType (subwin) != SCI_SUBWIN) {
 		  Scierror(999,"%s: handle does not refer to a sub_window\r\n",fname);
 		  return 0;
