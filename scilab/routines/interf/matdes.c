@@ -5523,7 +5523,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	{strcpy(error_message,"can not set directly a label object");return -1;}
       }
     }
- else if (strncmp(marker,"title", 7) == 0)
+ else if (strncmp(marker,"title", 5) == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"title property undefined for this object");return -1;}
@@ -6949,7 +6949,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
       }
     }
- else if (strncmp(marker,"title", 7) == 0)
+ else if (strncmp(marker,"title", 5) == 0)
     {
       if (sciGetEntityType (pobj) != SCI_SUBWIN)
 	{strcpy(error_message,"title property undefined for this object");return -1;}
