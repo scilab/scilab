@@ -14,6 +14,7 @@ c     --- end
       character string*(*),fmt*(*)
       integer ierr,lunit,status
 c
+      status = 0
       ierr=0
       if(lunit.eq.rte) then
          string=' '
