@@ -1,4 +1,11 @@
 #include "history.h"
+
+sci_hist *history = NULL;	/* no history yet */
+sci_hist *cur_entry = NULL;
+/* Use for SearchInHistory --> ! */
+sci_hist *research_knot_last = NULL;
+BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
+
 /*-----------------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr)
 {
@@ -36,7 +43,7 @@ void GetCommentDateSession(char *line,int BeginSession)
 /* add line to the history at the end of history*/
 void AddHistory (char *line)
 {
-  struct hist *entry;
+  sci_hist *entry;
   
   if (history)
   {
@@ -47,7 +54,7 @@ void AddHistory (char *line)
   	
   }
  
-  entry = (struct hist *) malloc ((unsigned long) sizeof (struct hist));
+  entry = (sci_hist *) malloc ((unsigned long) sizeof (sci_hist));
   entry->line = malloc ((unsigned long) (strlen (line) + 1)); 
   strcpy (entry->line, line);
 
@@ -61,11 +68,11 @@ void AddHistory (char *line)
   
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * SearchBackwardInHistory(char *line)
+sci_hist * SearchBackwardInHistory(char *line)
 /* Effectue la recherche via ! dans l'historique*/
 {
 
-	struct hist *Parcours=NULL;
+	sci_hist *Parcours=NULL;
 	char LineComp[MAXBUF];
 	
 	if (research_knot_last)
@@ -97,14 +104,14 @@ struct hist * SearchBackwardInHistory(char *line)
 	}
 
 	research_knot_last=NULL;
-	return (struct hist *)NULL;
+	return (sci_hist *)NULL;
 
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * SearchForwardInHistory(char *line)
+sci_hist * SearchForwardInHistory(char *line)
 /* Effectue la recherche via ! dans l'historique*/
 {
-	struct hist *Parcours=NULL;
+	sci_hist *Parcours=NULL;
 	char LineComp[MAXBUF];
 	
 	if (research_knot_last)
@@ -136,32 +143,32 @@ struct hist * SearchForwardInHistory(char *line)
 	}
 
 	research_knot_last=NULL;
-	return (struct hist *)NULL;
+	return (sci_hist *)NULL;
 
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * GoFirstKnot(struct hist * CurrentKnot)
+sci_hist * GoFirstKnot(sci_hist * CurrentKnot)
 {
 	while(CurrentKnot->prev) CurrentKnot=GoPrevKnot(CurrentKnot);
-	return (struct hist *) CurrentKnot;
+	return (sci_hist *) CurrentKnot;
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * GoLastKnot(struct hist * CurrentKnot)
+sci_hist * GoLastKnot(sci_hist * CurrentKnot)
 {
 	while(CurrentKnot->next) CurrentKnot=GoNextKnot(CurrentKnot);
-	return (struct hist *) CurrentKnot;
+	return (sci_hist *) CurrentKnot;
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * GoPrevKnot(struct hist * CurrentKnot)
+sci_hist * GoPrevKnot(sci_hist * CurrentKnot)
 {
 	CurrentKnot=CurrentKnot->prev;
-	return (struct hist *) CurrentKnot;
+	return (sci_hist *) CurrentKnot;
 }
 /*-----------------------------------------------------------------------------------*/
-struct hist * GoNextKnot(struct hist * CurrentKnot)
+sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 {
 	CurrentKnot=CurrentKnot->next;
-	return (struct hist *) CurrentKnot;
+	return (sci_hist *) CurrentKnot;
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function savehistory  */
@@ -170,7 +177,7 @@ int C2F(savehistory) _PARAMS((char *fname))
 	FILE * pFile;
   	char *Home;
   	char *HistoryFileNamePath;
-	struct hist *Parcours = history;
+	sci_hist *Parcours = history;
 	
 	Home = getenv ("HOME");
 	if (Home)
@@ -221,8 +228,8 @@ int C2F(resethistory) _PARAMS((char *fname))
 {
 	if (history)
 	{
-		struct hist *Parcours = history;
-		struct hist *PrevParcours=NULL;
+		sci_hist *Parcours = history;
+		sci_hist *PrevParcours=NULL;
 		char Commentline[MAXBUF];
 	
 		Parcours=GoFirstKnot(Parcours);
@@ -266,7 +273,7 @@ int C2F(loadhistory) _PARAMS((char *fname))
   	pFile = fopen (HistoryFileNamePath,"rt");
   	if (pFile)
   		{
-  		struct hist *Parcours = history;
+  		sci_hist *Parcours = history;
   		if (Parcours) Parcours=GoLastKnot(Parcours);
   			
   		while(fgets (line,sizeof(line),pFile) != NULL)
@@ -301,7 +308,7 @@ int C2F(gethistory) _PARAMS((char *fname))
 
   static int l1, m1, n1;	
   int indice=0;
-  struct hist *Parcours = history;
+  sci_hist *Parcours = history;
 
 
    if (Rhs <= 0) /* aucun parametre --> affichage de la liste de l'historique */
