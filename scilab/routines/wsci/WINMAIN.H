@@ -222,5 +222,6 @@ int GetOSVersion(void);
 
 BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
 BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
+BOOL SetHomeDirectory(char *DefaultPath);
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __WINMAIN_H__ */

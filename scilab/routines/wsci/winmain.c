@@ -1210,12 +1210,8 @@ void set_sci_env(char *p)
 	}
 
 	/* HOME variable Environment */
-	if ((environmentTemp = getenv ("HOME")) == (char *) 0)
-	{
-		sprintf (env, "HOME=%s", CopyOfp);
-		putenv (env);
-	}
-	
+	SetHomeDirectory(CopyOfp);
+		
 	/* TK_LIBRARY variable Environment */
 	if ((environmentTemp = getenv ("TK_LIBRARY")) == (char *) 0)
 	{
@@ -1764,5 +1760,98 @@ int GetOSVersion(void)
 	if(osvi.dwMajorVersion==5 && osvi.dwMinorVersion==2 && osvi.dwPlatformId==VER_PLATFORM_WIN32_NT)  return OS_WIN32_WINDOWS_SERVER_2003_FAMILY;
 
 	return OS_ERROR;
+}
+/*-----------------------------------------------------------------------------------*/
+BOOL SetHomeDirectory(char *DefaultPath)
+{
+	BOOL bOK=FALSE;
+	char *environmentTemp=NULL;
+	char *CopyOfp=NULL;
+	char env[MAX_PATH + 1 + 10];
+	int Version=GetOSVersion();
+
+	environmentTemp = getenv ("HOME");
+
+	if ( (Version == OS_WIN32_WINDOWS_95) ||
+		 (Version == OS_WIN32_WINDOWS_98) ||
+		 (Version == OS_WIN32_WINDOWS_Me) ||
+		 (Version == OS_WIN32_WINDOWS_NT_3_51) )
+	{
+		if ( environmentTemp == (char *) 0)
+		{
+			sprintf (env, "HOME=%s",DefaultPath);
+			putenv (env);
+		}
+	}
+	else /* NT and more ... */
+	{
+		char *PathApplicationsData = (char*)getenv ("APPDATA");
+
+		if (environmentTemp == (char *) 0)
+		{
+			if (PathApplicationsData == (char *) 0)
+			{
+				sprintf (env, "HOME=%s",DefaultPath);
+				putenv (env);
+			}
+			else
+			{
+				char *PathScilabData=NULL;
+				PathScilabData=(char *)malloc( (strlen(PathApplicationsData)+strlen("Scilab")+strlen(VERSION)+2)*sizeof(char));
+				if (PathScilabData)
+				{
+					wsprintf(PathScilabData,"%s\\Scilab\\%s",PathApplicationsData,VERSION);
+					if ( IsAFile(PathScilabData) )
+					{
+						int i=0;
+						for (i=0;i<(int)strlen(PathScilabData);i++)
+						{
+							if (PathScilabData[i]=='\\') PathScilabData[i]='/';
+						}
+						sprintf (env, "HOME=%s",PathScilabData);
+						putenv (env);
+					}
+					else
+					{
+						char *PathScilab=NULL;
+						PathScilab=(char *)malloc( (strlen(PathApplicationsData)+strlen("Scilab")+2)*sizeof(char));
+						wsprintf(PathScilab,"%s\\Scilab",PathApplicationsData);
+
+						if ( ! CreateDirectory(PathScilab,NULL) )
+						{
+							sprintf (env, "HOME=%s",DefaultPath);
+							putenv (env);
+						}
+						else
+						if ( ! CreateDirectory(PathScilabData,NULL) )
+						{
+							sprintf (env, "HOME=%s",DefaultPath);
+							putenv (env);
+						}
+						else
+						{
+							int i=0;
+							for (i=0;i<(int)strlen(PathScilabData);i++)
+							{
+								if (PathScilabData[i]=='\\') PathScilabData[i]='/';
+							}
+							sprintf (env, "HOME=%s",PathScilabData);
+							putenv (env);
+						}
+						free(PathScilabData);
+						free(PathScilab);
+						PathScilabData=NULL;
+						PathScilab=NULL;
+					}
+				}
+				else
+				{
+					MessageBox(NULL,"Allocate Memory","Error",MB_ICONSTOP | MB_OK);
+					exit(1);
+				}
+			}
+		}
+	}
+	return bOK;
 }
 /*-----------------------------------------------------------------------------------*/
