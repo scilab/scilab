@@ -37,6 +37,8 @@
 
 #include <stdio.h>
 
+extern int IsConsoleMode(void);
+
 static void horizontal_copy_area();
 static void vertical_copy_area();
 
