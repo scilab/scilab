@@ -71,13 +71,10 @@ int C2F(intduplicate)(fname)
 int C2F(intcpass2)(fname) 
      char *fname;
 {
-  IMPORT struct {
-    int solver;
-  } C2F(cmsolver);
   static int l1,l2,m1,m2,m3; 
   static int n1,n2,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16;
   static int n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30;
-  static int minlhs=3, maxlhs=3, minrhs=4, maxrhs=4;
+  static int minlhs=4, maxlhs=4, minrhs=5, maxrhs=5;
   static int one=1,deux=2;
   static int n33,n34,n35,n36,n37,n38,n1111,n41;
   int m31=8,n31=1,l31,n32=8;
@@ -86,10 +83,10 @@ int C2F(intcpass2)(fname)
   static int m,me12,ne2,ne3,ne4,ne5,ne6,ne7,ne8,ne9,ne11,ne12;
   static double *le66,*le77,*le88,*le1111,*le121,*le22,*le33,*le44,*le55,*le71;
   static double *le81,*le99,*xd0k,*lc1,*rpark;
-  static int *le1010,*le111,*le1313,nc1,mc1,l33,*vecnull;
+  static int *le1010,*le111,*le1313,nc1,mc1,l33,l3,m4,*vecnull;
   static char *Str1[]={ "xcs","x","z","iz","tevts","evtspt","pointi","outtb"};
   double *y1,*y2,*y4,*y17;
-  int *y3,*y5,*y6,*y7,*y9,*y10,*y11,*y12,*y13,*y14,*y15,*y16,*y18,*y19,*y20,*y38;
+  int *y3,*y5,*y6,*y7,*y9,*y10,*y11,*y12,*y13,*y14,*y15,*y16,*y18,*y19,*y20,*y38,*y39;
   int *y21,*y22,*y23,*y24,*y25,*y26,*y27,*y28,*y29,*y30,*y31,*y32,*y33,*y34,*y35;
   static char *Str2[]={ "scs","funs","xptr","zptr","izptr","inpptr","outptr","inplnk",
 			"outlnk","lnkptr","rpar","rpptr","ipar","ipptr","clkptr","ordptr",
@@ -106,11 +103,11 @@ int C2F(intcpass2)(fname)
   int *izptr,*nbptr,*nblkptr,*ndcblkptr; 
   int *inplnk,*outlnk,*lnkptr,*ordptr;
   int *execlk,*ordclk,*cord,*oord,*zord,*iz0,*subscr;
-  int *critev,nb,*ztyp,nblk,ndcblk,*iord;
+  int *critev,nb,*ztyp,nblk,ndcblk,*iord,solver,*solverptr;
   double *bllst6,*bllst7,*bllst8,*bllst11,*tevts,*xcd0,*ppd;
   char **bllst111,**bllst10,**bllst13;
   unsigned long str_len;
-  int solver=C2F(cmsolver).solver; 
+
   xcd0=NULL;
   ppd=NULL;
   pointiptr=NULL;
@@ -179,7 +176,7 @@ int C2F(intcpass2)(fname)
   if ((bllst13=malloc(sizeof(char *)*(m+1))) ==NULL )  return 0;		  
   ((int*) bllst13)[0]=m;
   if ((xcd0=(double*)malloc(sizeof(double))) == NULL) return 0;
-  xcd0[0]=0;
+  ((int*) xcd0)[0]=0;
   if ((typ_x=malloc(sizeof(int *)*(m+1))) ==NULL )  return 0;		  
   typ_x[0]=m;
   
@@ -279,7 +276,7 @@ int C2F(intcpass2)(fname)
               xcd0[j+((int*) xcd0)[0]+1]=0;
               bllst6[((int *) bllst6)[0]+j+1]=le66[j];
             }  
-	  xcd0[0]=((int*) xcd0)[0]+ne6; 
+	  ((int*) xcd0)[0]=((int*) xcd0)[0]+ne6; 
 	  ((int *) bllst6)[0]=((int *) bllst6)[0]+ne6;
 	  bllst6ptr[k+1]=bllst6ptr[k]+ne6;
 	}
@@ -292,7 +289,7 @@ int C2F(intcpass2)(fname)
               xcd0[j+1+((int*) xcd0)[0]]=le66[j+ne6/2];
 	      bllst6[((int *) bllst6)[0]+j+1]=le66[j];
             }
-	  xcd0[0]=((int*) xcd0)[0]+ne6/2;                          
+	  ((int*) xcd0)[0]=((int*) xcd0)[0]+ne6/2;                          
 	  ((int *) bllst6)[0]=((int *) bllst6)[0]+ne6/2;
 	  bllst6ptr[k+1]=bllst6ptr[k]+ne6/2;
 	}
@@ -469,6 +466,9 @@ int C2F(intcpass2)(fname)
 
     }
   
+  GetRhsVar(5, "i", &one, &m4, &l3); 
+  solver=*istk(l3);
+  
   cpass2(&bllst2,&bllst3,&bllst4,&bllst5,&bllst10,&bllst11,
 	 &bllst12,&bllst13,&bllst2ptr,&bllst3ptr,&bllst4ptr,&bllst5ptr,&typ_x,
 	 &bllst11ptr,&connectmat,&clkconnect,&corinvec,&corinvptr,
@@ -503,7 +503,7 @@ int C2F(intcpass2)(fname)
     }
   if ((Max1(bllst112)>10000) && (solver==0))
     {
-      sciprint("Diagram contains implicit blocks, compiling for implicit Solver");
+      Message("Diagram contains implicit blocks, compiling for implicit Solver");
       solver=100;
     }
   if (solver==100)
@@ -511,7 +511,7 @@ int C2F(intcpass2)(fname)
       if ((bllst6=(double*)realloc(bllst6,sizeof(double)*(((int*) bllst6)[0]+((int*) xcd0)[0]+1))) == NULL ) return 0;
       ppd=(double *)&bllst6[1+((int*) bllst6)[0]];
       ppd=memcpy(ppd,&xcd0[1],sizeof(double)*(((int*) xcd0)[0]));
-      bllst6[0]=((int*) bllst6)[0]+(int) xcd0[0];
+      ((int*) bllst6)[0]=((int*) bllst6)[0]+((int*) xcd0)[0];
     }
   if (xcd0) free(xcd0);
   /******************* state **************************/
@@ -536,23 +536,23 @@ int C2F(intcpass2)(fname)
   n7=(int) tevts[0];
   n8= evtspt[0];
   n9= outtb[0];
-  CreateVar(4,"t", &m31, &n31, &l31);
-  CreateListVarFromPtr(4,1,"S", &one, &n32, Str1);
-  CreateListVarFromPtr(4,2,"d", &n4, &one,  &y1);
-  CreateListVarFromPtr(4,3,"d", &n5, &one,  &y2);
-  CreateListVarFromPtr(4,4,"i", &n6, &one,  &y3);
-  CreateListVarFromPtr(4,5,"d", &n7, &one,  &y4);
-  CreateListVarFromPtr(4,6,"i", &n8, &one,  &y5);
-  CreateListVarFromPtr(4,7,"i", &one, &one, &y6);
-  CreateListVarFromPtr(4,8,"i", &n9, &one,  &y7);
-  LhsVar(1) = 4;
+  CreateVar(6,"t", &m31, &n31, &l31);
+  CreateListVarFromPtr(6,1,"S", &one, &n32, Str1);
+  CreateListVarFromPtr(6,2,"d", &n4, &one,  &y1);
+  CreateListVarFromPtr(6,3,"d", &n5, &one,  &y2);
+  CreateListVarFromPtr(6,4,"i", &n6, &one,  &y3);
+  CreateListVarFromPtr(6,5,"d", &n7, &one,  &y4);
+  CreateListVarFromPtr(6,6,"i", &n8, &one,  &y5);
+  CreateListVarFromPtr(6,7,"i", &one, &one, &y6);
+  CreateListVarFromPtr(6,8,"i", &n9, &one,  &y7);
+  LhsVar(1) = 6;
   free(iz0);
   free(tevts);
   free(evtspt);
   free(outtb);
   //********************** sim *****************
-  CreateVar(5,"t", &m33, &n39, &l32);
-  CreateListVarFromPtr(5,1,"S", &one, &n40, Str2);
+  CreateVar(7,"t", &m33, &n39, &l32);
+  CreateListVarFromPtr(7,1,"S", &one, &n40, Str2);
   y8=(char**) (bllst111+1);
   n10=(int) bllst111[0];
   y9=(int*) (bllst6ptr+1);
@@ -643,37 +643,37 @@ int C2F(intcpass2)(fname)
   y38=(int*) (vecnull+1);
   n41=0;
   
-  CreateListVarFromPtr(5,2,"i", &n41, &one, &y38);
-  CreateListVarFromPtr(5,3,"i", &n11, &one, &y9);
-  CreateListVarFromPtr(5,4,"i", &n12,&one,  &y10);
-  CreateListVarFromPtr(5,5,"i", &n13, &one, &y11);
-  CreateListVarFromPtr(5,6,"i", &n14,&one,  &y12);
-  CreateListVarFromPtr(5,7,"i", &n15,&one,  &y13);
-  CreateListVarFromPtr(5,8,"i", &n16, &one, &y14);
-  CreateListVarFromPtr(5,9,"i", &n17, &one, &y15);
-  CreateListVarFromPtr(5,10,"i", &n18, &one, &y16);
-  CreateListVarFromPtr(5,11,"d", &n19,&one,  &y17);
-  CreateListVarFromPtr(5,12,"i", &n20, &one, &y18);
-  CreateListVarFromPtr(5,13,"i", &n21, &one, &y19);
-  CreateListVarFromPtr(5,14,"i", &n22, &one, &y20);
-  CreateListVarFromPtr(5,15,"i", &n23, &one, &y21);
-  CreateListVarFromPtr(5,16,"i", &n24, &one, &y22);
-  CreateListVarFromPtr(5,17,"i", &n25, &deux, &y23);
-  CreateListVarFromPtr(5,18,"i", &n26, &deux, &y24);
-  CreateListVarFromPtr(5,19,"i", &n27, &deux, &y25);
-  CreateListVarFromPtr(5,20,"i", &n28, &deux,&y26);
-  CreateListVarFromPtr(5,21,"i", &n29, &deux, &y27);
-  CreateListVarFromPtr(5,22,"i", &n30, &one, &y28);
-  CreateListVarFromPtr(5,23,"i", &one, &one, &y29);
-  CreateListVarFromPtr(5,24,"i", &n33, &one, &y30);
-  CreateListVarFromPtr(5,25,"i", &one, &one, &y31);
-  CreateListVarFromPtr(5,26,"i", &one, &one, &y32);
-  CreateListVarFromPtr(5,27,"i", &n34, &one, &y33);
-  CreateListVarFromPtr(5,28,"i", &n35,&one,  &y34);
-  CreateListVarFromPtr(5,29,"i", &n36, &deux, &y35);
-  CreateListVarFromPtr(5,30,"c", &n37, &one, &y36);
+  CreateListVarFromPtr(7,2,"i", &n41, &one, &y38);
+  CreateListVarFromPtr(7,3,"i", &n11, &one, &y9);
+  CreateListVarFromPtr(7,4,"i", &n12,&one,  &y10);
+  CreateListVarFromPtr(7,5,"i", &n13, &one, &y11);
+  CreateListVarFromPtr(7,6,"i", &n14,&one,  &y12);
+  CreateListVarFromPtr(7,7,"i", &n15,&one,  &y13);
+  CreateListVarFromPtr(7,8,"i", &n16, &one, &y14);
+  CreateListVarFromPtr(7,9,"i", &n17, &one, &y15);
+  CreateListVarFromPtr(7,10,"i", &n18, &one, &y16);
+  CreateListVarFromPtr(7,11,"d", &n19,&one,  &y17);
+  CreateListVarFromPtr(7,12,"i", &n20, &one, &y18);
+  CreateListVarFromPtr(7,13,"i", &n21, &one, &y19);
+  CreateListVarFromPtr(7,14,"i", &n22, &one, &y20);
+  CreateListVarFromPtr(7,15,"i", &n23, &one, &y21);
+  CreateListVarFromPtr(7,16,"i", &n24, &one, &y22);
+  CreateListVarFromPtr(7,17,"i", &n25, &deux, &y23);
+  CreateListVarFromPtr(7,18,"i", &n26, &deux, &y24);
+  CreateListVarFromPtr(7,19,"i", &n27, &deux, &y25);
+  CreateListVarFromPtr(7,20,"i", &n28, &deux,&y26);
+  CreateListVarFromPtr(7,21,"i", &n29, &deux, &y27);
+  CreateListVarFromPtr(7,22,"i", &n30, &one, &y28);
+  CreateListVarFromPtr(7,23,"i", &one, &one, &y29);
+  CreateListVarFromPtr(7,24,"i", &n33, &one, &y30);
+  CreateListVarFromPtr(7,25,"i", &one, &one, &y31);
+  CreateListVarFromPtr(7,26,"i", &one, &one, &y32);
+  CreateListVarFromPtr(7,27,"i", &n34, &one, &y33);
+  CreateListVarFromPtr(7,28,"i", &n35,&one,  &y34);
+  CreateListVarFromPtr(7,29,"i", &n36, &deux, &y35);
+  CreateListVarFromPtr(7,30,"c", &n37, &one, &y36);
   
-  LhsVar(2) = 5;
+  LhsVar(2) = 7;
   
   free(izptr);
   free(inplnk);
@@ -722,20 +722,25 @@ int C2F(intcpass2)(fname)
   free(connectmat); 
   free(vecnull);
 
-  CreateVar(6,"l", &n10, &one, &l33);
+  CreateVar(8,"l", &n10, &one, &l33);
   for (i=0; i < n10; i++)
     {
       n38=strlen(y8[i]);
       y37=*(y8+i);
-      CreateListVarFromPtr(6,i+1,"c", &n38, &one, &y37); 
+      CreateListVarFromPtr(8,i+1,"c", &n38, &one, &y37); 
     }
-  LhsVar(3) = 6;
+  LhsVar(3) = 8;
   for (i = 1; i <= nb; i++)
     free(bllst111[i]);
   free(bllst111);
   free(corinvec);
   free(corinvptr);
-    
+  if ((solverptr=malloc(sizeof(int))) ==NULL )  return 0;		  
+  solverptr[0]=solver;
+  y39=solverptr;
+  CreateVarFromPtr(9, "i", &one, &one, &y39);
+  LhsVar(4) = 9;
+  free(solverptr);
   return 0;
 }
 

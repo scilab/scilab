@@ -231,7 +231,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 {
   int i,iii,k,l,j,jj,hh,o,fl,fz,maX,n,nblk=typ_x[0];
   int *vec,*wec,*ii,*ii1,*ii2,*r,*ext_cord1,*pp,*ppget;
-  int *orddif,*cordX,*ext_cord,*oordii,*ind,*kk,nord;
+  int *orddif,*cordX,*ext_cord,*oordii,*ind;//,*kk,nord;
   Mat2C ordclki;
   
   vec=NULL;
@@ -631,7 +631,7 @@ int paksazi(int** bllst2,int** bllst3,char*** bllst10,int** bllst12,int** bllst2
   int i,j=1,k,l,o,leng,ki,sbb,m1,a;
   int *vectconnect,*iVect,*id,*dl,*ltmp,*idl,*lb,*indx,*tmpvect,*indxo,*indy,*bexe,*blnk;
   int *tmp,*clkconnecttmp,*clkconnect0,*texeclk0,*ind,*w2,*w1,*boptr,*blptr,*tclkconnect,*tcon,*ordptr1,*texeclki;
-  int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1,*kk,nord;
+  int *b1,*typ_lm,*pointer,*r,*w3,*pointer1,*con,*vec,*clkconnectind,*connectmatind,*con1;//,*kk,nord;
   int okk,nn,nblk=((int*) (*bllst10))[0];
   int nblkorg=nblk;
   int change=false;  
@@ -1903,9 +1903,10 @@ int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bll
       if (fff) 
         {
           ll11=GetPartVectd(bllst11,bllst11ptr[j],bllst11ptr[j+1]-bllst11ptr[j]);
-          prt=FindSupEgd(ll11,0);
-	  if(prt)
+          if(ll11)
             {
+	      prt=FindSupEgd(ll11,0);
+	  
               if ((initexei.col1=(double*)malloc(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
 	      initexei.col1[0]=(int) ((*initexe)[0])/3+prt[0];
               if ((initexei.col2=(double*)malloc(sizeof(double)*((int) ((*initexe)[0])/3+prt[0]+1))) == NULL) return 0;
@@ -1936,8 +1937,8 @@ int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bll
 	      free(initexei.col2);
 	      free(initexei.col3);
 	      free(prt);prt=NULL;
+	      free(ll11); ll11=NULL;
             }
-	  free(ll11); ll11=NULL;
 	  free(fff);
         }
     } /* end for j */
@@ -2729,8 +2730,8 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* conn
 int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,
               int* tblock,int* typ_cons,int* bllst5ptr,int** exe_cons,int nblk)
 {
-  int *all_out,*kk,*ind,*ind1,*vec,*cll,*ii,*oo,*r,*clkconnectind,*cllind,*nd,*pp,*ppget;
-  int mm,j,l,k,nnd,max1,*r1,*r2,nr,a;
+  int *all_out,*ind,*ind1,*vec,*cll,*ii,*oo,*r,*clkconnectind,*cllind,*nd,*pp,*ppget;
+  int mm,j,l,k,a,nnd,max1;//,*r1,*r2,nr,*kk;
   Mat4C clkconnecti;
   Mat2C exe_consi;
   Mat2C all_outi;
