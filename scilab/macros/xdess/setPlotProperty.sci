@@ -170,24 +170,31 @@ case 'markforeground'        // <=> MarkerEdgeColor
     if index == 10
       // 'none' specified
       a=gca(); // pick up the background color of the parent axes
-      Curves(markmodeON).mark_foreground = a.background;
+      if markmodeON <> []
+	Curves(markmodeON).mark_foreground = a.background;
+      end
     elseif index == 11
       // 'auto' specified
-      Curves(markmodeON).mark_foreground =  Curves.foreground;
+      if markmodeON <> []
+	Curves(markmodeON).mark_foreground =  Curves.foreground;
+      end
     else
       if (index==-1)
 	disp("Bad value for markforeground property");
 	return;
       else
-	Curves(markmodeON).mark_foreground = color(ColorVal(index));
+	if markmodeON <> []
+	  Curves(markmodeON).mark_foreground = color(ColorVal(index));
+	end
       end
     end
   elseif (type(PropertyValue)==1)
     if (size(PropertyValue,'*')==3)
       
       markmodeON = find(Curves.mark_mode=='on');
-      Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
-	  
+      if markmodeON <> []
+	Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
+      end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       return;
@@ -209,27 +216,37 @@ case 'markbackground'        // <=> MarkerFaceColor
     ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
         
     markmodeON = find(Curves.mark_mode=='on');
-
+    
     if index == 10
       // 'none' specified
       a=gca(); // pick up the background color of the parent axes
-      Curves(markmodeON).mark_background = a.background;
+      if markmodeON <> []
+	Curves(markmodeON).mark_background = a.background;
+      end
     elseif index == 11
       // 'auto' specified
       a=gca();
-      Curves.mark_background = a.background;
+      if markmodeON <> []
+	Curves(markmodeON).mark_background = a.background;
+      end
     else
       if (index==-1)
 	disp("Bad value for markbackground property");
 	return;
       else
-	Curves(markmodeON).mark_background = color(ColorVal(index));
+	if markmodeON <> []
+	  Curves(markmodeON).mark_background = color(ColorVal(index));
+	end
       end
     end
   elseif (type(PropertyValue)==1)
     
     if (size(PropertyValue,'*')==3)
-      Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
+      
+      markmodeON = find(Curves.mark_mode=='on');
+      if markmodeON <> []
+	Curves(markmodeON).mark_background = addcolor(PropertyValue);
+      end
     else
       disp("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
       return;
@@ -248,7 +265,9 @@ case 'marksize'        // <=> MarkerSize
     
     markmodeON = find(Curves.mark_mode=='on');
     
-    Curves(markmodeON).mark_size = PropertyValue;
+    if markmodeON <> []
+      Curves(markmodeON).mark_size = PropertyValue;
+    end
   else
     disp("Color value must be an integer.")
     return;
