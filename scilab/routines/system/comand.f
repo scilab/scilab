@@ -100,7 +100,8 @@ C
 c     form function like call
       fin = 0
       nchar=lin(lpt(4))
-      if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
+c      if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
+      if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) goto 11
       if(lpt(4).ge.2) then
          pchar=lin(lpt(4)-2)
          if(pchar.ne.blank) return
