@@ -10,7 +10,6 @@
 #include "Math.h"
 #include "PloEch.h"
 #include "Entities.h"
-
 #ifdef __STDC__
 void wininfo(char *format,...);
 #else
@@ -694,24 +693,51 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
  *-------------------------------------------------------------------*/
 
 int C2F(box3d)(double *xbox, double *ybox, double *zbox)
-{
+{  
+ 
   static integer InsideU[4],InsideD[4],flag[]={1,1,3},verbose=0,fg,narg,fg1;
+  static integer ixbox[4],iybox[4], n=2, m=1;
   /** Calcule l' Enveloppe Convexe de la boite **/
   /** ainsi que les triedres caches ou non **/
+       
   Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
-  /** le triedre vu **/
-  C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (zbox[InsideU[0]] > zbox[InsideD[0]])
-    DrawAxis(xbox,ybox,InsideU,fg);
-  else 
-    DrawAxis(xbox,ybox,InsideD,fg);
-  C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if (fg1==-1) fg1=0;
-  /** Le triedre cache **/
-  if (zbox[InsideU[0]] > zbox[InsideD[0]])
-      DrawAxis(xbox,ybox,InsideD,fg1);
-  else 
-      DrawAxis(xbox,ybox,InsideU,fg1);
+  /**DJ.Abdmouche 2003**/
+   if (version_flag() != 0) {
+     /** le triedre vu **/
+     C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if (zbox[InsideU[0]] > zbox[InsideD[0]])
+       DrawAxis(xbox,ybox,InsideU,fg);
+     else 
+       DrawAxis(xbox,ybox,InsideD,fg);
+     C2F(dr)("xget","hidden3d",&verbose,&fg1,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+     if (fg1==-1) fg1=0;
+     /** Le triedre cache **/
+     if (zbox[InsideU[0]] > zbox[InsideD[0]])
+       DrawAxis(xbox,ybox,InsideD,fg1);
+     else 
+       DrawAxis(xbox,ybox,InsideU,fg1);
+   }
+   else
+     {
+       C2F (dr) ("xset","thickness",&m,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+       if (zbox[InsideU[0]] > zbox[InsideD[0]])
+	 DrawAxis(xbox,ybox,InsideU,2);
+       else 
+	 DrawAxis(xbox,ybox,InsideD,2);    
+       if (zbox[InsideU[0]] > zbox[InsideD[0]])
+	 DrawAxis(xbox,ybox,InsideD,2);
+       else 
+	 DrawAxis(xbox,ybox,InsideU,2);
+    
+       ixbox[0]=XScale(xbox[0]);ixbox[1]=XScale(xbox[2]);
+       ixbox[2]=XScale(xbox[1]);ixbox[3]=XScale(xbox[3]);
+       iybox[0]=YScale(ybox[0]); iybox[1]=YScale(ybox[2]);
+       iybox[2]=YScale(ybox[1]); iybox[3]=YScale(ybox[3]);
+       C2F(dr)("xpolys","v",ixbox,iybox,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+       C2F(dr)("xpolys","v",ixbox+2,iybox+2,&n,&m,&n,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+
+     }
+
   return(0);
 }
 
@@ -880,8 +906,8 @@ void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *t
 
 void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
 {
-  integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg;
-  integer i,iflag=0;
+  integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg,hiddencolor;
+  integer i, iflag=0, j=1;
   for ( i = 0 ; i <= 4 ; i=i+2)
     {
       ixbox[i]=XScale(xbox[Indices[0]]);iybox[i]=YScale(ybox[Indices[0]]);
@@ -890,7 +916,13 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[3]=XScale(xbox[Indices[2]]);iybox[3]=YScale(ybox[Indices[2]]);
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
   C2F(dr)("xget","line style",&verbose,lstyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /**DJ.Abdmouche 2003**/
+  if (version_flag() == 0) { 
+    C2F(dr)("xget","hidden3d",&verbose,&hiddencolor,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    if (hiddencolor == style ) j= 2;
+  }	
+    /***/  
+  C2F(dr)("xset","line style",&j,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xsegs","v",ixbox,iybox,&npoly,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",lstyle,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
@@ -976,19 +1008,23 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
    }
   ixbox[6]=ixbox[0];iybox[6]=iybox[0];
   p=7,n=1;
-  C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /** On trace l'enveloppe cvxe **/
+  /**DJ.Abdmouche 2003**/
+  if (version_flag() != 0) 
+    C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  else
+   dvect[0]=2;       
+     /** On trace l'enveloppe cvxe **/
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-    
+  C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdmouche 2003**/	   
   if (flag[2]>=3){
     C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
-	    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
+        ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","pattern",dvect,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
-  if (flag[2]>=3)AxesStrings(flag[2],ixbox,iybox,xind,legend,bbox);
+  C2F(dr)("xset","pattern",dvect,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  if (flag[2]>=3)
+    AxesStrings(flag[2],ixbox,iybox,xind,legend,bbox);
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
@@ -1006,7 +1042,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   char *loc,*legx,*legy,*legz; 
   integer rect[4],flag=0,x,y;
   double ang=0.0;
-  loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
+   loc=(char *) MALLOC( (strlen(legend)+1)*sizeof(char));
   if ( loc == 0)    
     {
       Scistring("AxesString : No more Place to store Legends\n");
@@ -1017,7 +1053,11 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   /** le cot\'e gauche ( c'est tjrs un axe des Z **/
   C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   iof = (xz[0]+xz[1])/50;
-  x=ixbox[2]-iof ;y=iybox[2]-iof;
+  if (version_flag() != 0) 
+    {x=ixbox[2]-iof ;y=iybox[2]-iof;}
+  else
+    {x=ixbox[2]-(xz[0]+xz[1])/20 ;y=0.5*iybox[3]+0.5*iybox[2];}
+ /*** le z scaling ***/
   if ( axflag>=4)
     {
       double fx,fy,fz,lx,ly,lz;
@@ -1035,11 +1075,15 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
     {
       C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xstring",legz,(x=x - rect[2],&x),&y,PI0,&flag
-	  ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+          ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
     }
   /** le cot\^e en bas \`a gauche **/
-  x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
-  y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+iof);
+  if (version_flag() != 0) {
+    x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
+    y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+iof);}
+  else{
+    x=inint((ixbox[3]+ixbox[4])/2.0 -iof);
+    y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+(xz[0]+xz[1])/30);}
   if ( xind[3]+xind[4] == 3)
     {
       if ( axflag>=4)
@@ -1087,8 +1131,12 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	}
     }
   /** le cot\'e en bas a droite **/
-  x=inint((ixbox[4]+ixbox[5])/2+iof);
-  y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof);
+  if (version_flag() != 0) {
+    x=inint((ixbox[4]+ixbox[5])/2+iof);
+    y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof); }
+  else{
+    x=inint((ixbox[4]+ixbox[5])/2+(xz[0]+xz[1])/30);
+    y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+iof); }
   if ( xind[4]+xind[5] == 3)
     {
       if ( axflag>=4)
@@ -1128,9 +1176,10 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
 	{
 	  C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
 	}
-    }
+    }  
   FREE(loc);
 }
+
 
 void MaxiInd(double *vect, integer n, integer *ind, double maxi)
 {
@@ -1160,7 +1209,6 @@ void DownNext(integer ind1, integer *ind2, integer *ind3)
   if (*ind3 == -1) *ind3 = 3;
 }
 
-
 void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPoint, integer *LPoint, integer *Ticsdir)
 {
   char fornum[100];
@@ -1168,7 +1216,7 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
   double xp, dx,dy,ticsx,ticsy,size;
   integer verbose=0,narg,xz[2];
   C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0;
+  size = xz[0]>=xz[1] ? xz[1]/50.0 : xz[0]/50.0; 
   C2F(TDdrawaxis)(size,FPval,LPval,nax,FPoint,LPoint,Ticsdir) ;
   ChoixFormatE(fornum,Min(FPval,LPval),Max(LPval,FPval),
 	       Abs((LPval-FPval))/nax[1]);
@@ -1176,7 +1224,7 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
   barlength=inint(1.2*size);
   dx= ((double) LPoint[0]-FPoint[0])/((double)nax[1]);
   dy= ((double) LPoint[1]-FPoint[1])/((double)nax[1]);
-  if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
+   if ( Ticsdir[0] == 0 && Ticsdir[1] == 0) 
     {
       ticsx= ticsy = 0;
     }
@@ -1194,7 +1242,7 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
       char foo[100];/*** JPC : must be cleared properly **/
       double lp;
       lp = xp + i*(LPval-FPval)/((double)nax[1]);
-      sprintf(foo,fornum,lp);
+      sprintf(foo,fornum,lp);   
       C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       posi[0]=inint(FPoint[0]+ i*dx + 2*ticsx );
       posi[1]=inint(FPoint[1]+ i*dy + 2*ticsy +rect[3]/2 );
@@ -1207,7 +1255,7 @@ void TDAxis(integer flag, double FPval, double LPval, integer *nax, integer *FPo
 	case 2: posi[0] -= rect[2];break;
 	}
       C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag1,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
-    }
+    } 
 }
 
 
@@ -1285,13 +1333,7 @@ void I3dRotation(void)
 	return;
       }
   }
-  else {
-    if ( !Check3DObjs()) 
-      {
-	wininfo("No 3d entities in your graphic window");
-	return;
-      }
-  }
+  /**DJ.Abdmouche 2003**/
   xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
   yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1317,16 +1359,10 @@ void I3dRotation(void)
       if (version_flag() != 0)
 	C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #endif
-   
+      if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
-#ifdef WIN32
-      ReleaseWinHdc();
-      SciMouseRelease();
-#endif
-
       if (version_flag() != 0)
-	     C2F(dr)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       theta=Cscale.theta ;
       alpha=Cscale.alpha ;
 
@@ -1336,7 +1372,6 @@ void I3dRotation(void)
       theta0=theta;
       alpha0=alpha;
       ibutton=-1;
-
       if (version_flag() == 0)
 	{
 	  tmpsubwin = (sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ());          
@@ -1351,20 +1386,38 @@ void I3dRotation(void)
           if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
 	    {
 	      psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
-	      psurface = (sciPointObj *) sciGetSurface(psubwin); 
-	      if (psurface != (sciPointObj *)NULL)
+	      /**DJ.Abdmouche 2003**/
+	      if((sciPointObj *) psubwin != NULL)
 		{
 		  sciSetSelectedSubWin (psubwin);
-		  theta0 =  pSURFACE_FEATURE (psurface)-> theta; 
-		  alpha0 =  pSURFACE_FEATURE (psurface)-> alpha;
+		  theta0 =  pSUBWIN_FEATURE (psubwin)-> theta; 
+		  alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
+		  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
+		  Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
+		  if (pSUBWIN_FEATURE (psubwin)->isreal)
+		    {
+		      Cscale.bbox1[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0]; 
+		      Cscale.bbox1[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2];
+		      Cscale.bbox1[2] =  pSUBWIN_FEATURE (psubwin)->FRect[1];
+		      Cscale.bbox1[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3];
+		      Cscale.bbox1[4] =  pSUBWIN_FEATURE (psubwin)->FRect[4];
+		      Cscale.bbox1[5] =  pSUBWIN_FEATURE (psubwin)->FRect[5];
+		    }
+		  else
+		    { Cscale.bbox1[0] =  0.0; 
+		      Cscale.bbox1[1] =  1.0;
+		      Cscale.bbox1[2] =  0.0;
+		      Cscale.bbox1[3] =  1.0;
+		      Cscale.bbox1[4] =  -1.0;
+		      Cscale.bbox1[5] =  1.0;}
 		}
-	      else 
-		{
-		  wininfo("Is not a 3d Entity");
-		  if ( pixmode == 0) 
-		    C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  return;
-		}
+	      else
+              {
+		wininfo("No 3d object selected");
+		if ( pixmode == 0) 
+		  C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		return;
+	      }
 	    }
           else
 	    {                  
@@ -1377,28 +1430,17 @@ void I3dRotation(void)
 		} 
 	      sciSetSelectedSubWin (psonstmp->pointobj);
 	    } 
-	  }
-#ifdef WIN32
-      SetWinhdc();
-      SciMouseCapture();
-#endif
-	  if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
+	}
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
 	  theta= ((int)(theta0 - 180.0*(x-x0)) % 360);
 	  alpha= ((int)(alpha0 + 180.0*(y-yy0)) % 360);
 	  wininfo("alpha=%.1f,theta=%.1f",alpha,theta); 
-
 	  if ( pixmode == 1) C2F(dr1)("xset","wwpc",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
 	  dbox();
-
 	  if ( pixmode == 1) C2F(dr1)("xset","wshow",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-
 	    C2F(dr1)("xgetmouse","one",&ibutton,&iwait,PI0,PI0,modes,PI0,&xl, &yl,PD0,PD0,0L,0L);
-
 	    /* effacement du rectangle */
 	    dbox();
 	    xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
@@ -1449,11 +1491,12 @@ static void dbox(void)
 {
   double xbox[8],ybox[8],zbox[8];
 #ifdef WIN32
-  integer verbose=0,pat,pat1=3,narg;
+  integer verbose=0,pat,pat1=3,narg,un=1;
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif
-  SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
+  C2F (dr) ("xset", "line style",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#endif/**DJ.Abdmouche 2003**/
+SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
   C2F(box3d)(xbox,ybox,zbox);
 #ifdef WIN32
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);

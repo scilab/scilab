@@ -20,7 +20,7 @@ sciPointObj *psubwin;/* NG */
 
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
-static void NumberFormat __PARAMS((char *str,integer k,integer a));
+extern void NumberFormat __PARAMS((char *str,integer k,integer a));
 static void aplotv1 __PARAMS((char*));
 static void aplotv2 __PARAMS((char*));
 extern int version_flag();
@@ -32,15 +32,25 @@ void axis_draw(strflag)
      char strflag[];
 { 
   /* using foreground to draw axis */
-  integer verbose=0,narg,xz[10],fg,i;
+  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp;
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-   if (version_flag() == 0)
+  if (version_flag() == 0){/**DJ.Abdmouche 2003**/
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+    color=pSUBWIN_FEATURE (psubwin)->cubecolor;
+    ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1];
+    ixbox[1]=ixbox[0];iybox[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
+    ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1];
+    ixbox[3]=ixbox[2];iybox[3]=iybox[0]; 
+    C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+    C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  
+    C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+    C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  
+  }
 
  switch ( c) 
     {
@@ -50,7 +60,7 @@ void axis_draw(strflag)
       if (version_flag() == 0) pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  /* NG */
        
       C2F(dr)("xrect","xv",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
-		,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      	,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       break;
     default :
       if ( strflag[1] == '5' || strflag[1] =='6' )
@@ -384,7 +394,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   double angle=0.0,vxx,vxx1;
   int vx[2],vy[2],xm[2],ym[2];
   char c_format[5];
-  integer flag=0,xx=0,yy=0,posi[2],rect[4];
+  integer flag=0,xx=0,yy=0,posi[2],rect[4],dash[6],trois=3;/**DJ.Abdmouche 2003**/
   integer i,barlength;
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
@@ -527,12 +537,15 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0) 
 	    if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid > -1)
+	      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1) /**DJ.Abdmouche 2003**/
 		{
-		  pstyle=pSUBWIN_FEATURE (psubwin)->grid ;
-		vy[0]=Cscale.WIRect1[1];
-		vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
-		C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[0] ;
+		  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  vy[0]=Cscale.WIRect1[1];
+		  vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	  /***/
 	  /* subtics */
@@ -670,12 +683,15 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	  /*** MAJ Djalel.A 21/01/2003 ***/ 
 	  if (version_flag() == 0)
             if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
-	      if (pSUBWIN_FEATURE (psubwin)->grid > -1)
+	      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1) /**DJ.Abdmouche 2003**/
 		{
-		  pstyle=pSUBWIN_FEATURE (psubwin)->grid ;
+		  pstyle=pSUBWIN_FEATURE (psubwin)->grid[1] ;
 		  vx[0]=Cscale.WIRect1[0];
-		  vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2]; 
-		C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];  
+		  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		}
 	  /* subtics */
 	  if ( i < Ny-1 ) 
@@ -779,7 +795,7 @@ static double y_convert(xy_type, y , i)
 
 /* Format pour imprimer un nombre de la forme k10^a */
 
-static void NumberFormat(str, k, a)
+extern void NumberFormat(str, k, a)
      char *str;
      integer k;
      integer a;
@@ -800,4 +816,101 @@ static void NumberFormat(str, k, a)
 	default: sprintf(str,"%de%d",(int)k,(int)a) ;break;
 	}
     }
+}
+/*---------------------------------------------------------------------
+ *Trace l'enveloppe convexe de la boite contenant le dessin 
+ * et renvoit dans InsideU et InsideD les indices des points dans xbox et ybox
+ * qui sont sur les 2 tri\`edres a l'interieur de l'enveloppe convexe
+ *---------------------------------------------------------------------*/
+
+void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox)
+{
+  double xmaxi;
+  integer ixbox[8],iybox[8];
+  integer xind[8];
+  integer ind2,ind3,ind;
+  integer p,n,dvect[1],dash[6];
+  integer verbose=0,narg,pat;
+  integer i,j;
+  /** dans xbox[8] se trouve l'abscisse des points successifs   **/
+  /** de la boite qui continent la surface                      **/
+  /** on stocke dans xind[8] les indices des points de la boite **/
+  /** qui sont sur l'enveloppe convexe en partant du pointeger en haut **/
+  /** a droite et en tournant ds le sens trigonometrique           **/
+  /** par exemple avec : **/
+  /*      4 ----- 5        */
+  /*       /    /|         */
+  /*     7----6  |         */
+  /*      | 0 | / 1        */
+  /*     3----- 2          */
+  /** on doit trouver xind={5,4,7,3,2,1}; **/
+  /** on en profite pour stocker aussi les points des triedres **/
+
+  xmaxi=((double) Maxi(xbox,8L));
+  ind= -1;
+  for (i =0 ; i < 8 ; i++)
+    {
+      MaxiInd(xbox,8L,&ind,xmaxi);
+      if ( ind > 3)
+	  {
+	    xind[0]=ind;
+	    break;
+	  }
+    }
+  if (ind < 0 || ind > 8) 
+    {
+      Scistring("xind out of bounds");
+      xind[0]=0;
+    }
+  UpNext(xind[0],&ind2,&ind3);
+  if (ybox[ind2] > ybox[ind3]) 
+    {
+      xind[1]=ind2;InsideU[0]=ind3;
+    }
+  else 
+    {
+      xind[1]=ind3;InsideU[0]=ind2;
+    }
+  UpNext(ind2,&ind2,&ind3); InsideU[1]=xind[0];
+  InsideU[2]=ind2; InsideU[3]=InsideU[0]-4;
+  xind[2]=ind2;
+  /* le pointeger en bas qui correspond */
+  xind[3]=ind2-4;
+  DownNext(xind[3],&ind2,&ind3);
+  if (ybox[ind2] < ybox[ind3]) 
+   {
+     xind[4]=ind2;InsideD[0]=ind3;
+   }
+ else  
+   {
+     xind[4]=ind3;InsideD[0]=ind2;
+   }
+  DownNext(ind2,&ind2,&ind3);
+  InsideD[1]=xind[3];
+  InsideD[2]=ind2;
+  InsideD[3]=InsideD[0]+4;
+  xind[5]=ind2;
+  for (i=0; i < 6 ; i++)
+   {
+     ixbox[i]=XScale(xbox[xind[i]]);
+     iybox[i]=YScale(ybox[xind[i]]);
+   }
+  ixbox[6]=ixbox[0];iybox[6]=iybox[0];
+  p=7,n=1;
+  C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /** On trace l'enveloppe cvxe **/
+  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
+  if (flag[2]>=3){
+    C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
+	    ,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","pattern",dvect,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  if (flag[2]>=3)AxesStrings(flag[2],ixbox,iybox,xind,legend,bbox);
+  C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 }

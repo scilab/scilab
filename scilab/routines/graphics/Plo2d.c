@@ -120,7 +120,8 @@ int C2F(xgrid)(style)
     {
       sciPointObj *psubwin;
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-      pSUBWIN_FEATURE (psubwin)->grid = *style;
+      for (i=0 ; i<3 ; i++) /**DJ.Abdmouche 2003**/
+	pSUBWIN_FEATURE (psubwin)->grid[i] = *style;
       sciDrawObj(psubwin);
       return(0);
     }
@@ -300,8 +301,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
   /* FRect gives the plotting boundaries xmin,ymin,xmax,ymax */
 
   FRect[0]=xmin;FRect[1]=ymin;FRect[2]=xmax;FRect[3]=ymax;
-
-  /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
+  subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); /**DJ.Abdmouche 2003**/
+ /* if strflag[1] == 7 or 8 we compute the max between current scale and the new one  */
   if (strflag[1] == '7' || strflag[1] == '8' )
     {
       if ( Cscale.flag != 0 ) 
@@ -317,12 +318,20 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	      Scistring("Warning: you cannot use automatic rescale if you switch from log to normal or normal to log \n");
 	    }
 	  else 
-	    {
-	      FRect[0] = Min(FRect[0],Cscale.frect[0]);
-	      FRect[1] = Min(FRect[1],Cscale.frect[1]);
-	      FRect[2] = Max(FRect[2],Cscale.frect[2]);
-	      FRect[3] = Max(FRect[3],Cscale.frect[3]);
-	      if ( FRect[0] < Cscale.frect[0] 
+	    { 
+	      if (version_flag() != 0){
+		FRect[0] = Min(FRect[0],Cscale.frect[0]);
+		FRect[1] = Min(FRect[1],Cscale.frect[1]);
+		FRect[2] = Max(FRect[2],Cscale.frect[2]);
+		FRect[3] = Max(FRect[3],Cscale.frect[3]);
+	      }
+	      else{ /*dj2003*/
+		FRect[0] = Min(FRect[0],pSUBWIN_FEATURE (subwindowtmp)->FRect[0]);
+		FRect[1] = Min(FRect[1],pSUBWIN_FEATURE (subwindowtmp)->FRect[1]);
+		FRect[2] = Max(FRect[2],pSUBWIN_FEATURE (subwindowtmp)->FRect[2]);
+		FRect[3] = Max(FRect[3],pSUBWIN_FEATURE (subwindowtmp)->FRect[3]);
+	      }
+	       if ( FRect[0] < Cscale.frect[0] 
 		   || FRect[1] < Cscale.frect[1] 
 		   || FRect[2] > Cscale.frect[2] 
 		   || FRect[3] > Cscale.frect[3] )
@@ -342,8 +351,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	case '6' : strflag[1]='5';break;
 	}
     }
-
-  if ( (int)strlen(strflag) >=2 && ( strflag[1]=='5' || strflag[1]=='6' ))
+    if ( (int)strlen(strflag) >=2 && ( strflag[1]=='5' || strflag[1]=='6' ))
     {
       /* recherche automatique des bornes et graduations */
       Gr_Rescale(&xf[1],FRect,Xdec,Ydec,&(aaint[0]),&(aaint[2]));

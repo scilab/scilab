@@ -108,7 +108,7 @@ int get_window_scale(i,subwin)
 static int get_scale_win(listptr, wi,subwin)
      ScaleList *listptr;
      integer wi;
-     double *subwin;
+     double *subwin;                                                          
 {
   if (listptr != (ScaleList  *) NULL)
     { 
@@ -561,7 +561,7 @@ int getscale2d(WRect,FRect,logscale,ARect)
     }
   return(0);
 }
-
+/* reporte de CVS par serge 07/11/03*/
 void get_frame_in_pixel(integer WIRect[])
 {
   /* ajout bruno */
@@ -1282,7 +1282,7 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
       if ((version_flag() != 0) || ( pSUBWIN_FEATURE (psubwin)->axes.limits[0] !=1))
          {
           C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
-          FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
+	  FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
          }
         
       else
@@ -1315,5 +1315,4 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
 
 }
-
 

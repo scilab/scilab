@@ -452,6 +452,7 @@ typedef struct
   /***/
   double wy;			    
   /** */
+  double z; /**DJ.Abdmouche 2003**/
   unsigned int textlen;
   /** specifies the text scilab code for the callback associated with this entity */
   char *callback; 
@@ -570,7 +571,9 @@ typedef struct
   char ydir;   /**  ydir  = 'r' | 'l' : gives the xy-axes positions **/ 
   double  xlim[4];  /* [xmin,xmax,ar,nint]           */
   double  ylim[4];  /* [ymin,ymax,ar,nint]           */ 
+  double  zlim[4];  /* [zmin,zmax,ar,nint]         */  /**DJ.Abdmouche 2003**/
   double    limits[5]; /* = 1 set tight limits = 0 set axes auto shape */
+  integer flag[3]; /* 3d options */
 }
 AXES; 
 
@@ -609,16 +612,19 @@ typedef struct
   int zoomx;				 
   /** specifies the factor of the y zoom                     */
   int zoomy;
-  double FRect[4];
+  double FRect[6]; /**DJ.Abdmouche 2003**/
   double WRect[4];
   int zoomy_kp;
   double FRect_kp[4];
   double WRect_kp[4];
   char logflags[2]; /* SS 01/01/03 */
   char strflag[4];
-  int grid;
+  int grid[3];/**DJ.Abdmouche 2003**/
   BOOL isaxes;
-  AXES axes;	
+  AXES axes;
+  BOOL is3d;
+  double theta;
+  double alpha;	
   /** specifie the associated entity popup menu */
   sciPointObj *pPopMenu;    
   /** specifies the text scilab code for the callback associated with this entity */
@@ -629,6 +635,10 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible;  
   int isclip;
+  /**DJ.Abdmouche 2003**/
+  integer project[3];
+  BOOL isreal; 
+  integer cubecolor;
 }/** */
 sciSubWindow;  
 
@@ -669,7 +679,8 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;  
-  int isclip;
+  int isclip; 
+  double z; /**DJ.Abdmouche 2003**/
 }  /** */
 sciArc;
 
@@ -706,7 +717,8 @@ typedef struct
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
   int n1;                               /** number of point */
-  int n2;				/** numbre of curve if Plot **/
+  int n2;                             /** numbre of curve if Plot **/ 
+  double *pvz; /**DJ.Abdmouche 2003**/
   int closed;                      /** is it a closed polyline */
   int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   double xmin;				/** xmin */
@@ -735,7 +747,7 @@ typedef struct
   POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
-  int n;				/** number of point */
+   int n;				/** number of point */
   int closed;			/** is it a closed polyline */
   double xmin;				/** xmin */
   double ymin;				/** ymin */
@@ -748,6 +760,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
+  double *pvz;  /* vecteur des points z *//**DJ.Abdmouche 2003**/
 }
 sciPatch;  /** */
 
@@ -777,6 +790,7 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
+  double z;  /** rectangle */
 }
 sciRectangle;  /** */
 
@@ -897,9 +911,13 @@ typedef struct
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
   POINT2D *vector;		/* vecteur de points redondant, for future developpement*/
   double *vx;  /** vx vector of size nx **/
-  double *vy;  /** vy vector of size ny **/  
+  double *vy;  /** vy vector of size ny **/ 
+  /**DJ.Abdmouche 2003**/
+  double *vz; 
   int nx;
   int ny;
+  /***/
+  int nz;
   char **str ;  /** string vector **/
   int subint;  /** subints : number of sub intervals **/ 
   char *format; /** format for tick marks **/
@@ -949,6 +967,8 @@ typedef struct
   /** specifies if this object is visble             */
   BOOL visible; 
   int isclip;
+  double *vz; /**DJ.Abdmouche 2003**/
+  double *vfz;
 
 }
 sciSegs; 
@@ -1375,6 +1395,7 @@ extern int sciSetPosX (sciPointObj * pthis, double x);
 extern int sciSetPosY (sciPointObj * pthis, double y);
 extern double sciGetPosX (sciPointObj * pthis);
 extern double sciGetPosY (sciPointObj * pthis);
+extern double sciGetPosZ (sciPointObj * pthis);/**DJ.Abdmouche 2003**/
 extern double sciGetPosWidth (sciPointObj * pthis);
 extern double sciGetPosHeight (sciPointObj * pthis);
 extern double *sciGetPoint (sciPointObj * pthis, int *num, int *numco);
@@ -1422,3 +1443,19 @@ extern sciPointObj *sciGetSurface(sciPointObj *psubwin);
 extern void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha);
 extern BOOL Check3DObjs();
 extern sciPointObj *CheckClickedSubwin(integer x, integer y);
+/**DJ.Abdmouche 2003**/
+extern void SetEch3d1(double *xbox, double *ybox, double *zbox, double *bbox, double *teta, double *alpha, integer flag);
+extern void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, char *legend, integer *flag, double *bbox);
+extern void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style);
+extern void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
+extern void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD);
+extern void Nextind(integer ind1, integer *ind2, integer *ind3);
+extern void Axes3dStrings(integer *ixbox, integer *iybox, integer *xind, char *legend);
+extern void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z);
+extern BOOL Ishidden(sciPointObj *pobj);
+extern BOOL IsDownAxes(sciPointObj *pobj);
+extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
+extern void update_3dbounds(sciPointObj *pobj,double *x,double *y,double *z,integer n1, integer n2, integer n3);
+extern double search(double *id, double *tab1, double *tab2, integer *n);
+extern void update_graduation(sciPointObj *pobj);
+/***/
