@@ -102,7 +102,7 @@ c calculate the final zero or pair zeros
       zeror(degree) = - p(2)/p(1)
       zeroi(degree) = 0.0d+0
       return
-   50 call quad(p(1), p(2), p(3), zeror(degree-1),
+   50 call myquad(p(1), p(2), p(3), zeror(degree-1),
      * zeroi(degree-1), zeror(degree), zeroi(degree))
       return
 c find largest and smallest moduli of coefficients.

@@ -23,7 +23,7 @@ c nz - number of zero found
       v = vv
       j = 0
 c main loop
-   10 call quad(1.0d+0, u, v, szr, szi, lzr, lzi)
+   10 call myquad(1.0d+0, u, v, szr, szi, lzr, lzi)
 c return if roots of the quadratic are real and not
 c close to multiple or nearly equal and  of opposite
 c sign
