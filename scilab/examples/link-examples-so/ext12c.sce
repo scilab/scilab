@@ -13,7 +13,7 @@ ilib_for_link(link_name,files,libs,flag);
 
 // load new function code in the scope of call 
 // using the previously generated loader 
-exec loader.sce 
+exec loader.sce; 
 
 // test new function through the ode function 
 //same example as # 10 with call to matptr
