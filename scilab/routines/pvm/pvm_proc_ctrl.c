@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.12  2004/02/28 13:50:09  cornet
+     Corrections Warnings
+
      Revision 1.11  2003/11/04 09:36:06  steer
      back to previous version
 
@@ -124,6 +127,7 @@
 #ifdef __ABSC__ /* For the definition of _stricmp */
 #include <ctype.h>
 
+
 int _stricmp(const char *s1, const char *s2)
 {
   while (tolower(*s1) == tolower(*s2))
@@ -141,6 +145,13 @@ int _stricmp(const char *s1, const char *s2)
 #if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
 #define stat _stat 
 #endif 
+
+#ifdef WIN32
+extern void sciprint_nd (char *fmt,...);
+extern void sciprint (char *fmt,...);
+extern int pvmendtask();
+#endif
+
 
 
 typedef char *strings;
@@ -365,11 +376,11 @@ void C2F(scipvmspawn)(char *task,  int *l1,
 		      char *where, int *l3, 
 		      int *ntask,  int *tids, int *res)
 {
-  char *path ;
+  
   int flag = PvmTaskDefault;
   char cmd[256];
   char *arg[4];
-  int nargs= -1,i;
+  int nargs= -1;
     
   arg[0] = NULL;
    

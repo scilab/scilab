@@ -30,7 +30,7 @@ int intspvm_error_mode(fname)
   char *loc;
   static char stop[]="stop"; 
   static char cont[]="continue"; 
-  int m1,n1,l1,un=1,l2; 
+  int m1,n1,l1,un=1; 
   CheckRhs(0,1);
   CheckLhs(1,1);
   if ( Rhs == 1 ) 

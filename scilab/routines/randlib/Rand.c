@@ -96,7 +96,7 @@ double C2F(ignuin)(double *a, double *b)
   qd = RngMaxInt[current_gen] - RngMaxInt[current_gen] % d;
   do 
     { 
-      k = ignlgi();
+      k = (unsigned long)ignlgi();
     } 
   while ( k >= qd );
   return ( *a + (double)(k % d) );

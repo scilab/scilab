@@ -175,7 +175,7 @@ char swb1fill(void)
   swb1p = &swb1[0];
   swb1n = 31;
   i = i32bit();
-  for (j=0;j<32;j++) { swb1[j] = i&1; i=i>>1; }
+  for (j=0;j<32;j++) { swb1[j] = (char) (i&1); i=i>>1; }
   return *(swb1p++);
 }
 
@@ -187,15 +187,15 @@ char  i1bit(void) { return (swb1n--)  ? *(swb1p++)  : swb1fill(); }
 float vni(void)
 { long temp;
   temp = i32bit();
-  if (temp & 0xFF000000) { return temp * two2neg31; }
-  return (temp + i32bit() * two2neg32) * two2neg31;
+  if (temp & 0xFF000000) { return (float) (temp * two2neg31); }
+  return (float) ((temp + i32bit() * two2neg32) * two2neg31);
 }
 
 float uni(void)
 { long temp;
   temp = i31bit();
-  if (temp & 0xFF000000) { return temp * two2neg31; }
-  return (temp + i32bit() * two2neg32) * two2neg31;
+  if (temp & 0xFF000000) { return (float) (temp * two2neg31); }
+  return (float) ((temp + i32bit() * two2neg32) * two2neg31);
 }
 
 double dvni(void)

@@ -81,7 +81,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	    datum = getc(ft->fp);
 	    if (feof(ft->fp))
 	      return done;
-	    datum = st_ulaw_to_linear(datum);
+	    datum = st_ulaw_to_linear((unsigned char)datum);
 	    /* scale signed up to long's range */
 	    *buf++ = datum =  LEFT(datum, 16);
 	    done++;
@@ -93,7 +93,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
 	    datum = getc(ft->fp);
 	    if (feof(ft->fp))
 	      return done;
-	    datum = st_Alaw_to_linear(datum);
+	    datum =  st_Alaw_to_linear((unsigned char)datum);
 	    /* scale signed up to long's range */
 	    *buf++ = datum = LEFT(datum, 16);
 	    done++;
@@ -144,7 +144,7 @@ int rawread(ft_t ft, long int *buf, long int nsamp)
     case FLOAT:
       while(done < nsamp) 
 	{
-	  datum = rfloat(ft);
+	  datum = (long) rfloat(ft);
 	  if (feof(ft->fp))
 	    return done;
 	  *buf++ = datum =  LEFT(datum, 16);

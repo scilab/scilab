@@ -300,7 +300,7 @@ swapf(float uf)
       unsigned long l;  /** we assume here long is 4 bytes **/
       float f;
     } u;
-    u.f= uf;
+    u.f= (float)uf;
     u.l= (u.l>>24) | ((u.l>>8)&0xff00) | ((u.l<<8)&0xff0000) | (u.l<<24);
     return u.f;
   }
@@ -309,7 +309,7 @@ swapf(float uf)
       unsigned int l;  /** we assume here int is 4 bytes **/
       float f;
     } u;
-    u.f= uf;
+    u.f= (float) uf;
     u.l= (u.l>>24) | ((u.l>>8)&0xff00) | ((u.l<<8)&0xff0000) | (u.l<<24);
     return u.f;
   }

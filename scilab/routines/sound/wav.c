@@ -395,7 +395,7 @@ void wavwritehdr(ft_t ft)
   bytespersample = (wBitsPerSample + 7)/8;
   wAvgBytesPerSec = ft->info.rate * ft->info.channels * bytespersample;
   wChannels = ft->info.channels;
-  wBlockAlign = ft->info.channels * bytespersample;
+  wBlockAlign = (unsigned short) (ft->info.channels * bytespersample);
   if (!wav->second_header)	/* use max length value first time */
     data_length = 0x7fffffff - (8+16+12);
   else				/* fixup with real length */
