@@ -23,7 +23,7 @@ extern struct {
 typedef void (*voidf)();
 
 /* Blocks prototypes */
-
+#define I integer
 #define IP integer*
 #define DP double*
 #define DPP double**
@@ -54,8 +54,8 @@ typedef void (*voidf)();
 /*        flag   nclockf t   residual xd   x    nx   z   nz   tvec   ntvec  rpar  nrpar ipar  nipar   args_in sz_in, n_in  args_out sz_out, n_out g ng */
 #define ARGS_scicosi2z IP,IP,DP,DP,DP,DP,IP,DP,IP,DP,IP,DP,IP,IP,IP,DPP,IP,IP,DPP,IP,IP,DP,IP
 
-/*        flag   nclockf t block*/
-#define ARGS_scicos4 IP,IP,DP,DB
+/*         block     flag*/
+#define ARGS_scicos4 DB, I
 
 
 typedef void (*ScicosFm1) __PARAMS((ARGS_scicosm1));

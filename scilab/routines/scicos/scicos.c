@@ -59,6 +59,7 @@ extern void  sciprint();
 extern void  C2F(iislink)();
 
 
+extern integer  C2F(cvstr)();
 extern  integer C2F(dset)();
 extern  integer C2F(dcopy)();
 extern  integer C2F(iset)();
@@ -106,20 +107,19 @@ static integer c__1 = 1;
 static integer c_n1 = -1;
 
 static double tvec[100];
-static integer ntvec;
 
 static double *W; /* space for coding g and outtb-bis for fixed point iteration */
 
 static integer *iwa;
 
-static integer *xptr,*zptr, *iz, *izptr,*evtspt;
-static integer  *funptr, *funtyp, *inpptr, *outptr, *inplnk, *outlnk, *lnkptr;
-static integer *rpptr, *ipar, *ipptr, *clkptr, *ordptr, *ordclk, *cord, 
-  *iord, *oord,  *zord,  *critev, *ztyp, *zcptr;
+static integer *xptr, *evtspt;
+static integer  *funtyp, *inpptr, *outptr, *inplnk, *outlnk, *lnkptr;
+static integer *clkptr, *ordptr, *ordclk, *cord, 
+  *iord, *oord,  *zord,  *critev,  *zcptr;
 static integer *pointi;
 static integer *ierr;
 
-static double *x,*xd,*z__,*tevts,*outtb, *rpar  ;
+static double *x,*xd,*tevts,*outtb;
 
 static double *rhot;
 static integer *ihot;
@@ -132,30 +132,29 @@ static scicos_block *Blocks;
 
 
 /* Subroutine */ 
-int C2F(scicos)(x_in, xptr_in, z_in, zptr_in, iz_in, izptr_in, t0_in, tf_in, tevts_in, 
-		evtspt_in, nevts, pointi_in, outtb_in, nout1, funptr_in, funtyp_in, inpptr_in, outptr_in, 
-		inplnk_in, outlnk_in, lnkptr_in, nlnkptr, rpar_in, rpptr_in, ipar_in, ipptr_in, clkptr_in, 
+int C2F(scicos)(x_in, xptr_in, z__, zptr, iz, izptr, t0_in, tf_in, tevts_in, 
+		evtspt_in, nevts, pointi_in, outtb_in, nout1, funptr, funtyp_in, inpptr_in, outptr_in, 
+		inplnk_in, outlnk_in, lnkptr_in, nlnkptr, rpar, rpptr, ipar, ipptr, clkptr_in, 
 		ordptr_in, nordptr1, ordclk_in, cord_in, ncord1, iord_in, niord1, oord_in, noord1, 
-		zord_in, nzord1, critev_in, nblk1, ztyp_in, zcptr_in, ng1, subscr, nsubs, simpar, 
+		zord_in, nzord1, critev_in, nblk1, ztyp, zcptr_in, ng1, subscr, nsubs, simpar, 
 		w, iw, iwa_in, flag__, ierr_out)
-     double *x_in;
+     double *x_in,*z__;
      integer *xptr_in;
-     double *z_in;
-     integer *zptr_in, *iz_in, *izptr_in;
+     integer *zptr, *iz, *izptr;
      double *t0_in, *tf_in, *tevts_in;
      integer *evtspt_in, *nevts, *pointi_in;
      double *outtb_in;
-     integer *nout1, *funptr_in, *funtyp_in, *inpptr_in, *outptr_in, *inplnk_in, *outlnk_in, *lnkptr_in,
+     integer *nout1, *funptr, *funtyp_in, *inpptr_in, *outptr_in, *inplnk_in, *outlnk_in, *lnkptr_in,
        *nlnkptr;
-     double *rpar_in;
-     integer *rpptr_in, *ipar_in, *ipptr_in, *clkptr_in, *ordptr_in, *nordptr1, *ordclk_in, *cord_in, *
-     ncord1, *iord_in, *niord1, *oord_in, *noord1, *zord_in, *nzord1, *critev_in, *
-     nblk1, *ztyp_in, *zcptr_in, *ng1, *subscr, *nsubs;
+     double *rpar;
+     integer *rpptr, *ipar, *ipptr, *clkptr_in, *ordptr_in, *nordptr1, *ordclk_in, *cord_in, *
+       ncord1, *iord_in, *niord1, *oord_in, *noord1, *zord_in, *nzord1, *critev_in, *
+       nblk1, *ztyp, *zcptr_in, *ng1, *subscr, *nsubs;
 double *simpar, *w;
 integer *iw, *iwa_in, *flag__, *ierr_out;
 {
   /* System generated locals */
-  integer i1, i2,kf,lprt,in,out;
+  integer i1, i2,kf,lprt,in,out,job=1;
 
   /* Local variables */
   extern /* Subroutine */ int C2F(msgs)();
@@ -182,24 +181,19 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   pointi=pointi_in;
   x=x_in;
   xptr=xptr_in-1;
-  z__=z_in;
-  zptr=zptr_in-1;
-  iz=iz_in;
-  izptr=izptr_in-1;
+  --zptr;
+  --izptr;
   evtspt=evtspt_in-1;
   tevts=tevts_in-1;
   outtb=outtb_in;
-  funptr=funptr_in;
   funtyp=funtyp_in-1;
   inpptr=inpptr_in-1;
   outptr=outptr_in-1;
   inplnk=inplnk_in-1;
   outlnk=outlnk_in-1;
   lnkptr=lnkptr_in-1;
-  rpar=rpar_in;
-  rpptr=rpptr_in-1;
-  ipar=ipar_in;
-  ipptr=ipptr_in-1;
+  --rpptr;
+  --ipptr;
   clkptr=clkptr_in-1;
   ordptr=ordptr_in-1;
   ordclk=ordclk_in-1;
@@ -209,7 +203,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   zord=zord_in-1;
 
   critev=critev_in-1;
-  ztyp=ztyp_in-1;
+  --ztyp;
   zcptr=zcptr_in-1;
   --simpar;
   --w;
@@ -341,93 +335,100 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     }
   }
 
- if((Blocks=malloc(sizeof(scicos_block)*nblk))== NULL ){
-   *ierr =10000;
-   return 0;
- }
- for (kf = 0; kf < nblk; ++kf) {
-   C2F(curblk).kfun = kf+1;
-   i=funptr[kf];
-   Blocks[kf].type=funtyp[kf+1];
-   if (i<0) {
-     switch (funtyp[kf+1]) {
-     case 0:
-       Blocks[kf].funpt=F2C(sciblk);
-       break;
-     case 1:
-       sciprint("type 1 function not allowed for scilab blocks\r\n");
-       *ierr=10000;
-       return 0;
-     case 2:
-       sciprint("type 2 function not allowed for scilab blocks\r\n");
-       *ierr=10000;
-       return 0;
-     case 3:
-       Blocks[kf].funpt=sciblk2;
-       Blocks[kf].type=2;
-       break;
-     case 10003:
-       Blocks[kf].funpt=sciblk2i;
-       Blocks[kf].type=2;
-       break;
-     default :
-       sciprint("Undefined Function type\r\n");
-       *ierr=10000;
-       return 0;
-     }
-     Blocks[kf].scsptr=-i; /* set scilab function adress for sciblk */
-   }
-   else if (i<=ntabsim)
-     Blocks[kf].funpt=*(tabsim[i-1].fonc);
-   else {
-     i -= (ntabsim+1);
-     GetDynFunc(i,&Blocks[kf].funpt);
-     if ( Blocks[kf].funpt == (voidf) 0) {
-       sciprint("Function not found\r\n");
-       *ierr=1000;
-       return 0;
-     }
-   }
-   Blocks[kf].ztyp=ztyp[kf+1];
-   Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
-   Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];
-   Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];
-   Blocks[kf].nrpar=rpptr[kf+2]-rpptr[kf+1];
-   Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];
-   Blocks[kf].nin=inpptr[kf+2]-inpptr[kf+1]; /* number of input ports */
-   Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
-   if ((Blocks[kf].insz=malloc(sizeof(int)*Blocks[kf].nin))== NULL ){
-     *ierr =10000;
-     return 0;
-   }
-   if ((Blocks[kf].inptr=malloc(sizeof(int*)*Blocks[kf].nin))== NULL ){
-     *ierr =10000;
-     return 0;
-   }
-   for(in=0;in<Blocks[kf].nin;in++) {
-     lprt=inplnk[inpptr[kf+1]+in];
-     Blocks[kf].inptr[in]=&(outtb[lnkptr[lprt]-1]);
-     Blocks[kf].insz[in]=lnkptr[lprt+1]-lnkptr[lprt];
-   }
-   if ((Blocks[kf].outsz=malloc(sizeof(int)*Blocks[kf].nout))== NULL ){
-     *ierr =10000;
-     return 0;
-   }
-   if ((Blocks[kf].outptr=malloc(sizeof(double*)*Blocks[kf].nout))== NULL ){
-     *ierr =10000;
-     return 0;
-   }
-   for(out=0;out<Blocks[kf].nout;out++) {
-     lprt=outlnk[outptr[kf+1]+out];
-     Blocks[kf].outptr[out]=&(outtb[lnkptr[lprt]-1]);
-     Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
-   }
-   Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
-   Blocks[kf].z=&(z__[zptr[kf+1]-1]);
-   Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
-   Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
- }
- C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1], iz, &izptr[1], 
+  if((Blocks=malloc(sizeof(scicos_block)*nblk))== NULL ){
+    *ierr =10000;
+    return 0;
+  }
+  for (kf = 0; kf < nblk; ++kf) {
+    C2F(curblk).kfun = kf+1;
+    i=funptr[kf];
+    Blocks[kf].type=funtyp[kf+1];
+    if (i<0) {
+      switch (funtyp[kf+1]) {
+      case 0:
+	Blocks[kf].funpt=F2C(sciblk);
+	break;
+      case 1:
+	sciprint("type 1 function not allowed for scilab blocks\r\n");
+	*ierr=10000;
+	return 0;
+      case 2:
+	sciprint("type 2 function not allowed for scilab blocks\r\n");
+	*ierr=10000;
+	return 0;
+      case 3:
+	Blocks[kf].funpt=sciblk2;
+	Blocks[kf].type=2;
+	break;
+      case 10003:
+	Blocks[kf].funpt=sciblk2i;
+	Blocks[kf].type=2;
+	break;
+      default :
+	sciprint("Undefined Function type\r\n");
+	*ierr=10000;
+	return 0;
+      }
+      Blocks[kf].scsptr=-i; /* set scilab function adress for sciblk */
+    }
+    else if (i<=ntabsim)
+      Blocks[kf].funpt=*(tabsim[i-1].fonc);
+    else {
+      i -= (ntabsim+1);
+      GetDynFunc(i,&Blocks[kf].funpt);
+      if ( Blocks[kf].funpt == (voidf) 0) {
+	sciprint("Function not found\r\n");
+	*ierr=1000;
+	return 0;
+      }
+    }
+    Blocks[kf].ztyp=ztyp[kf+1];
+    Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
+    Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];
+    Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];
+    Blocks[kf].nrpar=rpptr[kf+2]-rpptr[kf+1];
+    Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];
+    Blocks[kf].nin=inpptr[kf+2]-inpptr[kf+1]; /* number of input ports */
+    Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
+    if ((Blocks[kf].insz=malloc(sizeof(int)*Blocks[kf].nin))== NULL ){
+      *ierr =10000;
+      return 0;
+    }
+    if ((Blocks[kf].inptr=malloc(sizeof(int*)*Blocks[kf].nin))== NULL ){
+      *ierr =10000;
+      return 0;
+    }
+    for(in=0;in<Blocks[kf].nin;in++) {
+      lprt=inplnk[inpptr[kf+1]+in];
+      Blocks[kf].inptr[in]=&(outtb[lnkptr[lprt]-1]);
+      Blocks[kf].insz[in]=lnkptr[lprt+1]-lnkptr[lprt];
+    }
+    if ((Blocks[kf].outsz=malloc(sizeof(int)*Blocks[kf].nout))== NULL ){
+      *ierr =10000;
+      return 0;
+    }
+    if ((Blocks[kf].outptr=malloc(sizeof(double*)*Blocks[kf].nout))== NULL ){
+      *ierr =10000;
+      return 0;
+    }
+    for(out=0;out<Blocks[kf].nout;out++) {
+      lprt=outlnk[outptr[kf+1]+out];
+      Blocks[kf].outptr[out]=&(outtb[lnkptr[lprt]-1]);
+      Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
+    }
+    Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
+    Blocks[kf].z=&(z__[zptr[kf+1]-1]);
+    Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
+    Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
+
+
+    i1=izptr[kf+2]-izptr[kf+1];
+    i1=max(i1,40);
+    C2F(cvstr)(&i1,&(iz[izptr[kf+1]-1]),Blocks[kf].label,&job,i1);
+    Blocks[kf].label[i1]='\0';
+  }
+
+  C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1], iz, &izptr[1], 
 			&inpptr[1], &inplnk[1], &outptr[1], &outlnk[1], &lnkptr[1], 
 			nlnkptr, rpar, &rpptr[1], ipar, &ipptr[1], &nblk, outtb, 
 			&nout, subscr, nsubs, &tevts[1], &evtspt[1], nevts, pointi, 
@@ -447,34 +448,34 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     /*     integration */
     if (C2F(cmsolver).solver == 0) {
       cossim(t0);
-    } else if (C2F(cmsolver).solver == 100) {
-      cossimdassl(t0);
-    } else {
-      /*     add a warning message please */
-    }
-    if (*ierr != 0) {
-      ierr0=*ierr;
-      kfun0 = C2F(curblk).kfun;
-      cosend(t0);
-      *ierr=ierr0;
-      C2F(curblk).kfun = kfun0;
-    }
-
-  } else if (*flag__ == 3) {
-    /*     fermeture des blocks */
+  } else if (C2F(cmsolver).solver == 100) {
+    cossimdassl(t0);
+  } else {
+    /*     add a warning message please */
+  }
+  if (*ierr != 0) {
+    ierr0=*ierr;
+    kfun0 = C2F(curblk).kfun;
     cosend(t0);
-  } else if (*flag__ == 4) {
-    cosiord(t0);
-    if (*ierr == 0) {
-      C2F(simblk)(&nx, t0, x, W);
-      for (i = 0; i < nx; ++i) {
-	x[i] = W[i];
-      }
+    *ierr=ierr0;
+    C2F(curblk).kfun = kfun0;
+  }
+
+} else if (*flag__ == 3) {
+  /*     fermeture des blocks */
+  cosend(t0);
+} else if (*flag__ == 4) {
+  cosiord(t0);
+  if (*ierr == 0) {
+    C2F(simblk)(&nx, t0, x, W);
+    for (i = 0; i < nx; ++i) {
+      x[i] = W[i];
     }
   }
+}
     
-  C2F(clearscicosimport)();
-  return 0;
+C2F(clearscicosimport)();
+return 0;
 } /* scicos_ */
 
 /* Subroutine */ void cosini(told)
@@ -493,7 +494,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /*     initialization (flag 4) */
   /*     loop on blocks */
   tvec[0] = 0.;
-  ntvec = 0;
+
   C2F(dset)(&nout, &c_b14, W, &c__1);
   nclock = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
@@ -513,7 +514,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /*     initialization (flag 6) */
   nclock = 0;
   tvec[0] = 0.;
-  ntvec = 0;
+
   if (ncord > 0) {
     for (jj = 1; jj <= ncord; ++jj) {
       C2F(curblk).kfun = cord[jj];
@@ -545,7 +546,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 
     nclock = 0;
     tvec[0] = 0.;
-    ntvec = 0;
+
     if (ncord > 0) {
       for (jj = 1; jj <= ncord; ++jj) {
 	C2F(curblk).kfun = cord[jj];
@@ -589,7 +590,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /* Parameter adjustments */
 
   /* Function Body */
-  ntvec = 0;
+
   /*     initialisation (propagation of constant blocks outputs) */
 
   for (jj = 1; jj <= niord; ++jj) {
@@ -644,264 +645,272 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   C2F(iset)(&niwp, &c__0, &ihot[1], &c__1);
   C2F(dset)(&nrwp, &c_b14, &rhot[1], &c__1);
   C2F(realtimeinit)(told, &C2F(rtfactor).scale);
-  ntvec = 0;
+
 
   jj = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
-    if (zcptr[C2F(curblk).kfun + 1] - zcptr[C2F(curblk).kfun] >= 1) {
-      zcros[jj] = C2F(curblk).kfun;
-      ++jj;
-    }
+    if (Blocks[C2F(curblk).kfun-1].ng >= 1) {
+    zcros[jj] = C2F(curblk).kfun;
+    ++jj;
   }
-  /*     . Il fault:  ng >= jj */
-  if (jj != ng) {
-    zcros[jj] = -1;
-  }
-  /*     Initializing the zero crossing mask */
-  C2F(iset)(&ng, &c__0, mask, &c__1);
+}
+/*     . Il fault:  ng >= jj */
+if (jj != ng) {
+  zcros[jj] = -1;
+}
+/*     Initializing the zero crossing mask */
+C2F(iset)(&ng, &c__0, mask, &c__1);
 
-  /*     initialisation (propagation of constant blocks outputs) */
+/*     initialisation (propagation of constant blocks outputs) */
 
-  for (jj = 1; jj <= niord; ++jj) {
-    C2F(curblk).kfun = iord[jj];
-    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
-      nclock = iord[jj + niord];
-      flag__ = 1;
-      callf(told, xd , x, x,W,&flag__);
+for (jj = 1; jj <= niord; ++jj) {
+  C2F(curblk).kfun = iord[jj];
+  if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
+    nclock = iord[jj + niord];
+    flag__ = 1;
+    callf(told, xd , x, x,W,&flag__);
 	    
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	return;
-      }
+    if (flag__ < 0) {
+      *ierr = 5 - flag__;
+      return;
     }
   }
+}
 
-  /*     main loop on time */
+/*     main loop on time */
 
-  while(*told < *tf) {
+while(*told < *tf) {
 
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)();
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	/*     .     sxevents can modify halt */
-      }
+  if (inxsci == 1) {
+    ntimer = C2F(stimer)();
+    if (ntimer != otimer) {
+      C2F(sxevents)();
+      otimer = ntimer;
+      /*     .     sxevents can modify halt */
     }
-    if (C2F(coshlt).halt != 0) {
-      C2F(coshlt).halt = 0;
-      return;
-    }
-    if (*pointi == 0) {
-      t = *tf;
-    } else {
-      t = tevts[*pointi];
-    }
-    if (abs(t - *told) < ttol) {
-      t = *told;
-      /*     update output part */
-    }
-    if (*told > t) {
-      /*     !  scheduling problem */
-      *ierr = 1;
-      return;
-    }
-    if (*told != t) {
-      if (xptr[nblk+1] == 1) {
-	/*     .     no continuous state */
-	if (*told + deltat + ttol > t) {
-	  *told = t;
-	} else {
-	  *told += deltat;
-	}
-	/*     .     update outputs of 'c' type blocks with no continuous state */
-	if (*told >= *tf) {
-	  /*     .     we are at the end, update continuous part before leaving */
-	  if (ncord > 0) {
-	    cdoit(told);
-	    return;
-	  }
-	}
+  }
+  if (C2F(coshlt).halt != 0) {
+    C2F(coshlt).halt = 0;
+    return;
+  }
+  if (*pointi == 0) {
+    t = *tf;
+  } else {
+    t = tevts[*pointi];
+  }
+  if (abs(t - *told) < ttol) {
+    t = *told;
+    /*     update output part */
+  }
+  if (*told > t) {
+    /*     !  scheduling problem */
+    *ierr = 1;
+    return;
+  }
+  if (*told != t) {
+    if (xptr[nblk+1] == 1) {
+      /*     .     no continuous state */
+      if (*told + deltat + ttol > t) {
+	*told = t;
       } else {
-	/*     integrate */
-	if (hot) {
-	  istate = 2;
-	} else {
-	  istate = 1;
+	*told += deltat;
+      }
+      /*     .     update outputs of 'c' type blocks with no continuous state */
+      if (*told >= *tf) {
+	/*     .     we are at the end, update continuous part before leaving */
+	if (ncord > 0) {
+	  cdoit(told);
+	  return;
 	}
-	itask = 4;
+      }
+    } else {
+      /*     integrate */
+      if (hot) {
+	istate = 2;
+      } else {
+	istate = 1;
+      }
+      itask = 4;
 
-	rhotmp = *tf + ttol;
-	kpo = *pointi;
-      L20:
-	if (critev[kpo] == 1) {
-	  rhotmp = tevts[kpo];
-	  goto L30;
-	}
-	kpo = evtspt[kpo];
-	if (kpo != 0) {
-	  goto L20;
-	}
-      L30:
-	if (rhotmp < rhot[1]) {
-	  istate = 1;
-	}
-	rhot[1] = rhotmp;
+      rhotmp = *tf + ttol;
+      kpo = *pointi;
+    L20:
+      if (critev[kpo] == 1) {
+	rhotmp = tevts[kpo];
+	goto L30;
+      }
+      kpo = evtspt[kpo];
+      if (kpo != 0) {
+	goto L20;
+      }
+    L30:
+      if (rhotmp < rhot[1]) {
+	istate = 1;
+      }
+      rhot[1] = rhotmp;
 
-	iopt = 0;
+      iopt = 0;
 
-	jt = 2;
-	t = min(*told + deltat,min(t,*tf + ttol));
+      jt = 2;
+      t = min(*told + deltat,min(t,*tf + ttol));
 
 
-	if (C2F(cosdebug).cosd >= 3) {
-	  sciprint("****lsodar from: %f to %f\r\n", *told, t);
-	}
-	C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
-		    &Atol, &itask, &istate, &iopt, &rhot[1], &
-		    nrwp, &ihot[1], &niwp, &jdum, &jt, 
-		    C2F(grblk), &ng, jroot);
-	if (C2F(cosdebug).cosd >= 3) {
-	  sciprint("****lsodar reached: %f",*told);
-	}
-	if (istate <= 0) {
-	  if (istate == -3) {
-	    C2F(grblk)(neq, told, x, &ng, W);
-	    for (ib = 0; ib < ng; ++ib) {
-	      if (W[ib] == 0.) {
-		mask[ib] = 1;
-	      }
+      if (C2F(cosdebug).cosd >= 3) {
+	sciprint("****lsodar from: %f to %f\r\n", *told, t);
+      }
+      C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &rtol, 
+		  &Atol, &itask, &istate, &iopt, &rhot[1], &
+		  nrwp, &ihot[1], &niwp, &jdum, &jt, 
+		  C2F(grblk), &ng, jroot);
+      if (C2F(cosdebug).cosd >= 3) {
+	sciprint("****lsodar reached: %f",*told);
+      }
+      if (istate <= 0) {
+	if (istate == -3) {
+	  C2F(grblk)(neq, told, x, &ng, W);
+	  for (ib = 0; ib < ng; ++ib) {
+	    if (W[ib] == 0.) {
+	      mask[ib] = 1;
 	    }
-	    hot = 0;
-	    itask = 2;
-	    rhot[5] = ttol;
-	    istate = 1;
-	    C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &
-			rtol, &Atol, &itask, &istate, &
-			c__1, &rhot[1], &nrwp, &ihot[1], &
-			niwp, &jdum, &jt, C2F(grblk), &ng, jroot);
-	    rhot[5] = (float)0.;
-	    hot = 0;
-	    if (istate <= 0) {
-	      /*     !           integration problem */
-	      *ierr = 100 - istate;
-	      return;
-	    }
-	  } else {
-	    /*     !        integration problem */
+	  }
+	  hot = 0;
+	  itask = 2;
+	  rhot[5] = ttol;
+	  istate = 1;
+	  C2F(lsodar)(C2F(simblk), neq, x, told, &t, &c__1, &
+		      rtol, &Atol, &itask, &istate, &
+		      c__1, &rhot[1], &nrwp, &ihot[1], &
+		      niwp, &jdum, &jt, C2F(grblk), &ng, jroot);
+	  rhot[5] = (float)0.;
+	  hot = 0;
+	  if (istate <= 0) {
+	    /*     !           integration problem */
 	    *ierr = 100 - istate;
 	    return;
 	  }
 	} else {
-	  hot = 1;
+	  /*     !        integration problem */
+	  *ierr = 100 - istate;
+	  return;
 	}
-	/*     Initializing the zero crossing mask */
-	C2F(grblk)(neq, told, x, &c_n1, W);
-	for (ib = 0; ib < ng; ++ib) {
-	  if (W[ib] != 0. && mask[ib] == 1) {
-	    hot = 0;
-	    mask[ib] = 0;
-	  }
-	}
-	/*     .     update outputs of 'c' type  blocks if we are at the end*/
-	if (*told >= *tf) {
-	  if (ncord > 0) {
-	    cdoit(told);
-	    return;
-	  }
-	}
-	if (istate == 3) {
-	  /*     .        at a least one root has been found */
+      } else {
+	hot = 1;
+      }
+      /*     Initializing the zero crossing mask */
+      C2F(grblk)(neq, told, x, &c_n1, W);
+      for (ib = 0; ib < ng; ++ib) {
+	if (W[ib] != 0. && mask[ib] == 1) {
 	  hot = 0;
-	  if (C2F(cosdebug).cosd >= 3) {
-	    sciprint("root found at t=: %f\r\n",*told);
-	  }
-	  /*     .        update outputs affecting ztyp blocks */
-	  zdoit(W, xd, x,told);
-	  /*     .        initialize mask */
-	  for (ib = 0; ib < ng; ++ib) {
-	    mask[ib] = 0;
-	  }
+	  mask[ib] = 0;
+	}
+      }
+      /*     .     update outputs of 'c' type  blocks if we are at the end*/
+      if (*told >= *tf) {
+	if (ncord > 0) {
+	  cdoit(told);
+	  return;
+	}
+      }
+      if (istate == 3) {
+	/*     .        at a least one root has been found */
+	hot = 0;
+	if (C2F(cosdebug).cosd >= 3) {
+	  sciprint("root found at t=: %f\r\n",*told);
+	}
+	/*     .        update outputs affecting ztyp blocks */
+	zdoit(W, xd, x,told);
+	/*     .        initialize mask */
+	for (ib = 0; ib < ng; ++ib) {
+	  mask[ib] = 0;
+	}
 
-	  for (jj = 0; jj < ng; ++jj) {
-	    C2F(curblk).kfun = zcros[ jj];
-	    if (C2F(curblk).kfun == -1) {
-	      break; 
-	    }
-	    kev = 0;
+	for (jj = 0; jj < ng; ++jj) {
+	  C2F(curblk).kfun = zcros[ jj];
+	  if (C2F(curblk).kfun == -1) {
+	    break; 
+	  }
+	  kev = 0;
+	  /*
 	    for (j = zcptr[C2F(curblk).kfun]-1 ; 
-		 j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
-	      /*     .        copy result of zerocrossing test in W */
-	      W[j]=(double)jroot[j];
-	      if(jroot[j]!=0){
-		kev=1;
+	    j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
+	    W[j]=(double)jroot[j];
+	    if(jroot[j]!=0){
+	    kev=1;
+	    }
+	    }
+	  */
+	  for (j = zcptr[C2F(curblk).kfun]-1 ; 
+	       j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
+	    if(jroot[j]!=0){
+	      kev=1;
+	      break;
+	    }
+	  }
+	  /*   */
+	  if (kev != 0) {
+	    Blocks[C2F(curblk).kfun-1].jroot=&jroot[zcptr[C2F(curblk).kfun]-1];
+	    if (Blocks[C2F(curblk).kfun-1].nevout > 0) {
+	      flag__ = 3;
+	      /* call corresponding block to determine output event (kev) */
+	      nclock = -kev;
+	      callf(told, xd, x, x,W,&flag__);
+	      if (flag__ < 0) {
+		*ierr = 5 - flag__;
+		return;
+	      }
+	      /*     .              update event agenda */
+	      for (k = 1; k <= Blocks[C2F(curblk).kfun-1].nevout; ++k) {
+		if (tvec[k - 1] >= *told) {
+		  if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
+		      == 1) {
+		    hot = 0;
+		  }
+		  i3 = k + clkptr[C2F(curblk).kfun] - 1;
+		  addevs(&tvec[k - 1], &i3, &ierr1);
+		  if (ierr1 != 0) {
+		    /*     .                       nevts too small */
+		    *ierr = 3;
+		    return;
+		  }
+		} 
 	      }
 	    }
-	    if (kev != 0) {
-	      ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-	      if (ntvec > 0) {
-		flag__ = 3;
-		/* call corresponding block to determine output event (kev) */
-		nclock = -kev;
-		callf(told, xd, x, x,W,&flag__);
-		if (flag__ < 0) {
-		  *ierr = 5 - flag__;
-		  return;
-		}
-		/*     .              update event agenda */
-		for (k = 1; k <= ntvec; ++k) {
-		  if (tvec[k - 1] >= *told) {
-		    if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
-			== 1) {
-		      hot = 0;
-		    }
-		    i3 = k + clkptr[C2F(curblk).kfun] - 1;
-		    addevs(&tvec[k - 1], &i3, &ierr1);
-		    if (ierr1 != 0) {
-		      /*     .                       nevts too small */
-		      *ierr = 3;
-		      return;
-		    }
-		  } 
-		}
-	      }
-		/*     .              update state */
-	      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
-		  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
-		  > 0) {
-		/*     .              call corresponding block to update state */
-		flag__ = 2;
-		nclock = -kev;
-		callf(told, xd, x, x,W,&flag__);
+	    /*     .              update state */
+	    if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz
+		> 0) {
+	      /*     .              call corresponding block to update state */
+	      flag__ = 2;
+	      nclock = -kev;
+	      callf(told, xd, x, x,W,&flag__);
 		
-		if (flag__ < 0) {
-		  *ierr = 5 - flag__;
-		  return;
-		}
+	      if (flag__ < 0) {
+		*ierr = 5 - flag__;
+		return;
 	      }
 	    }
 	  }
 	}
       }
-      C2F(realtime)(told);
-    } else {
-      /*     .  t==told */
-
-      if (C2F(cosdebug).cosd >= 1) {
-	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
-      }
-
-      ddoit(told);
-      if (C2F(cosdebug).cosd >= 1) {
-	sciprint("End of activation\r\n");
-      }
-      if (*ierr != 0) {
-	return;
-      }
-
     }
-    /*     end of main loop on time */
+    C2F(realtime)(told);
+  } else {
+    /*     .  t==told */
+
+    if (C2F(cosdebug).cosd >= 1) {
+      sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+    }
+
+    ddoit(told);
+    if (C2F(cosdebug).cosd >= 1) {
+      sciprint("End of activation\r\n");
+    }
+    if (*ierr != 0) {
+      return;
+    }
+
   }
+  /*     end of main loop on time */
+}
 } /* cossim_ */
 
 
@@ -912,8 +921,8 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /* Initialized data */
   static integer otimer = 0;
   /* System generated locals */
-  integer i3;
-  double d__1;
+  integer i3,*ipardummy;
+  double d__1,*rpardummy;
 
   /* Local variables */
   static integer flag__, jdum;
@@ -947,7 +956,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   info[4] = 0;
   /*     full jac matrx */
   info[5] = 0;
-  ntvec = 0;
+
   /*     max step size not given (handled by deltat) */
   info[6] = 0;
   /*     code determines initial step size */
@@ -971,111 +980,238 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   }
   jj = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
-    if (zcptr[C2F(curblk).kfun + 1] - zcptr[C2F(curblk).kfun] >= 1) {
-      zcros[jj] = C2F(curblk).kfun;
-      ++jj;
-    }
+    if (Blocks[C2F(curblk).kfun-1].ng >= 1) {
+    zcros[jj] = C2F(curblk).kfun;
+    ++jj;
   }
-  /*     . Il fault:  ng >= jj */
-  if (jj != ng) {
-    zcros[jj] = -1;
-  }
-  /*     Initializing the zero crossing mask */
-  C2F(iset)(&ng, &c__0, mask, &c__1);
+}
+/*     . Il fault:  ng >= jj */
+if (jj != ng) {
+  zcros[jj] = -1;
+}
+/*     Initializing the zero crossing mask */
+C2F(iset)(&ng, &c__0, mask, &c__1);
     
-  /*     initialisation (propagation of constant blocks outputs) */
-  for (jj = 1; jj <= niord; ++jj) {
-    C2F(curblk).kfun = iord[jj];
-    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
-      nclock = iord[jj + niord];
-      flag__ = 1;
-      callf(told, xd, x, x,W,&flag__);
+/*     initialisation (propagation of constant blocks outputs) */
+for (jj = 1; jj <= niord; ++jj) {
+  C2F(curblk).kfun = iord[jj];
+  if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
+    nclock = iord[jj + niord];
+    flag__ = 1;
+    callf(told, xd, x, x,W,&flag__);
 
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	return;
-      }
+    if (flag__ < 0) {
+      *ierr = 5 - flag__;
+      return;
     }
   }
-  /*     main loop on time */
-  while (*told < *tf) {
-    if (inxsci == 1) {
-      ntimer = C2F(stimer)();
-      if (ntimer != otimer) {
-	C2F(sxevents)();
-	otimer = ntimer;
-	/*     .     sxevents can modify halt */
+}
+/*     main loop on time */
+while (*told < *tf) {
+  if (inxsci == 1) {
+    ntimer = C2F(stimer)();
+    if (ntimer != otimer) {
+      C2F(sxevents)();
+      otimer = ntimer;
+      /*     .     sxevents can modify halt */
+    }
+  }
+  if (C2F(coshlt).halt != 0) {
+    C2F(coshlt).halt = 0;
+    return;
+  }
+  if (*pointi == 0) {
+    t = *tf;
+  } else {
+    t = tevts[*pointi];
+  }
+  if (abs(t - *told) < ttol) {
+    t = *told;
+    /*     update output part */
+  }
+  if (*told > t) {
+    /*     !  scheduling problem */
+    *ierr = 1;
+    return;
+  }
+  if (*told != t) {
+    if (xptr[nblk+1] == 1) {
+      /*     .     no continuous state */
+      if (*told + deltat + ttol > t) {
+	*told = t;
+      } else {
+	*told += deltat;
       }
-    }
-    if (C2F(coshlt).halt != 0) {
-      C2F(coshlt).halt = 0;
-      return;
-    }
-    if (*pointi == 0) {
-      t = *tf;
-    } else {
-      t = tevts[*pointi];
-    }
-    if (abs(t - *told) < ttol) {
-      t = *told;
-      /*     update output part */
-    }
-    if (*told > t) {
-      /*     !  scheduling problem */
-      *ierr = 1;
-      return;
-    }
-    if (*told != t) {
-      if (xptr[nblk+1] == 1) {
-	/*     .     no continuous state */
-	if (*told + deltat + ttol > t) {
-	  *told = t;
-	} else {
-	  *told += deltat;
+      /*     .     update outputs of 'c' type blocks with no continuous state */
+      if (*told >= *tf) {
+	/*     .     we are at the end, update continuous part before leaving */
+	if (ncord > 0) {
+	  cdoit(told);
+	  return;
 	}
-	/*     .     update outputs of 'c' type blocks with no continuous state */
-	if (*told >= *tf) {
-	  /*     .     we are at the end, update continuous part before leaving */
-	  if (ncord > 0) {
-	    cdoit(told);
-	    return;
+      }
+    } else {
+      info[3] = 1;
+      info[2] = 0;
+
+      rhotmp = *tf + ttol;
+      kpo = *pointi;
+    L20:
+      if (critev[kpo] == 1) {
+	rhotmp = tevts[kpo];
+	goto L30;
+      }
+      kpo = evtspt[kpo];
+      if (kpo != 0) {
+	goto L20;
+      }
+    L30:
+      if (rhotmp < rhot[1]) {
+	info[0] = 0;
+      }
+      rhot[1] = rhotmp;
+
+      iopt = 0;
+
+      jt = 2;
+
+      t = min(*told + deltat,min(t,*tf + ttol));
+
+      if (info[0] == 0) {
+	for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; 
+	     ++C2F(curblk).kfun) {
+	  if (Blocks[C2F(curblk).kfun-1].nx  > 0) {
+	    flag__ = 7;
+	    nclock = 0;
+	    callf(told, xd, x, xd,W,&flag__);
+
+	    if (flag__ < 0) {
+	      *ierr = 5 - flag__;
+	      return;
+	    }
 	  }
 	}
-      } else {
-	info[3] = 1;
-	info[2] = 0;
+      }
+      if (C2F(cosdebug).cosd >= 3) {
+	sciprint("****daskr from: %f to %f\r\n", *told, t);
+      }
+      /*     Warning rpar and ipar are used here as dummy pointers */
+      C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd, &t, 
+		  info, &rtol, &Atol, &istate, &rhot[1], &
+		  nrwp, &ihot[1], &niwp, rpardummy, ipardummy
+		  , &jdum, rpardummy, C2F(grblkdassl), &ng, jroot)
+	;
+      if (C2F(cosdebug).cosd >= 3) {
+	sciprint("****daskr reached: %f\r\n",*told);
+      }
+      if (istate <= 0) {
+	if (istate == -33) {
 
-	rhotmp = *tf + ttol;
-	kpo = *pointi;
-      L20:
-	if (critev[kpo] == 1) {
-	  rhotmp = tevts[kpo];
-	  goto L30;
-	}
-	kpo = evtspt[kpo];
-	if (kpo != 0) {
-	  goto L20;
-	}
-      L30:
-	if (rhotmp < rhot[1]) {
+	  C2F(grblkdassl)(neq, told, x,xd, &ng, W,rpardummy,ipardummy);  /*rpar,ipar used as dummy*/
+	  for (ib = 0; ib < ng; ++ib) {
+	    if (W[ib] == 0.) {
+	      mask[ib] = 1;
+	    }
+	  }
 	  info[0] = 0;
+	  info[2] = 1;
+	  d__1 = *told + ttol;
+	  C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd
+		      , &d__1, info, &rtol, &Atol, &
+		      istate, &rhot[1], &nrwp, &ihot[1], &
+		      niwp, rpardummy, ipardummy, &jdum, rpardummy
+		      , C2F(grblkdassl), &ng, jroot);
+	  info[0] = 0;
+	  if (istate <= 0) {
+	    /*     !           integration problem */
+	    *ierr = 100 - istate;
+	    return;
+	  }
+	} else {
+	  /*     !        integration problem */
+	  *ierr = 100 - istate;
+	  return;
 	}
-	rhot[1] = rhotmp;
+      } else {
+	info[0] = 1;
+      }
 
-	iopt = 0;
+      /*     Initializing the zero crossing mask */
+      C2F(grblkdassl)(neq, told, x,xd, &c_n1, W,rpardummy,ipardummy);  /*rpar,ipar used as dummy*/
+      for (ib = 0; ib < ng; ++ib) {
+	if (W[ib] != 0. && mask[ib] == 1) {
+	  info[0] = 0;
+	  mask[ib] = 0;
+	}
+      }
+      /*     .     update outputs of 'c' type  blocks if we are at the end*/
+      if (*told >= *tf) {
+	if (ncord > 0) {
+	  cdoit(told);
+	  return;
+	}
+      }
+      if (istate == 5) {
+	/*     .        at a least one root has been found */
+	info[0] = 0;
+	if (C2F(cosdebug).cosd >= 3) {
+	  sciprint("root found at t=: %f\r\n",*told);
+	}
+	/*     .        update outputs affecting ztyp blocks */
+	zdoit(W, xd, x,told);
+	/*     .        initialize mask */
+	for (ib = 0; ib < ng; ++ib) {
+	  mask[ib] = 0;
+	}
 
-	jt = 2;
-
-	t = min(*told + deltat,min(t,*tf + ttol));
-
-	if (info[0] == 0) {
-	  for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; 
-	       ++C2F(curblk).kfun) {
-	    if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] > 0) {
-	      flag__ = 7;
-	      nclock = 0;
-	      callf(told, xd, x, xd,W,&flag__);
-
+	for (jj = 0; jj < ng; ++jj) {
+	  C2F(curblk).kfun = zcros[jj];
+	  if (C2F(curblk).kfun == -1) {
+	    break; 
+	  }
+	  kev = 0;
+	  for (j = zcptr[C2F(curblk).kfun]-1 ; 
+	       j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
+	    if(jroot[j]!=0){
+	      kev=1;
+	      break;
+	    }
+	  }
+	  if (kev != 0) {
+	    Blocks[C2F(curblk).kfun-1].jroot=&jroot[zcptr[C2F(curblk).kfun]-1];
+	    if (Blocks[C2F(curblk).kfun-1].nevout > 0) {
+	      flag__ = 3;
+	      /*     .              call corresponding block to determine output event (kev) */
+	      nclock = -kev;
+	      callf(told, xd, x, x,W,&flag__);
+	      if (flag__ < 0) {
+		*ierr = 5 - flag__;
+		return;
+	      }
+	      /*     .              update event agenda */
+	      for (k = 1; k <= Blocks[C2F(curblk).kfun-1].nevout; ++k) {
+		if (tvec[k - 1] >= *told) {
+		  if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
+		      == 1) {
+		    info[0] = 0;
+		  }
+		  i3 = k + clkptr[C2F(curblk).kfun] - 1;
+		  addevs(&tvec[k - 1], &i3, &ierr1);
+		  if (ierr1 != 0) {
+		    /*     .                       nevts too small */
+		    *ierr = 3;
+		    return;
+		  }
+		}
+	      }
+	    }
+	    /*     .              update state */
+	    if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz
+		> 0) {
+	      /*     .              call corresponding block to update state */
+	      flag__ = 2;
+	      nclock = -kev;
+	      callf(told, xd, x, x,W,&flag__);
 	      if (flag__ < 0) {
 		*ierr = 5 - flag__;
 		return;
@@ -1083,159 +1219,30 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	    }
 	  }
 	}
-	if (C2F(cosdebug).cosd >= 3) {
-	  sciprint("****daskr from: %f to %f\r\n", *told, t);
-	}
-	/*     Warning rpar and ipar are used here as dummy pointers */
-	C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd, &t, 
-		    info, &rtol, &Atol, &istate, &rhot[1], &
-		    nrwp, &ihot[1], &niwp, rpar, ipar
-		    , &jdum, rpar, C2F(grblkdassl), &ng, jroot)
-	  ;
-	if (C2F(cosdebug).cosd >= 3) {
-	  sciprint("****daskr reached: %f\r\n",*told);
-	}
-	if (istate <= 0) {
-	  if (istate == -33) {
-
-	    C2F(grblkdassl)(neq, told, x,xd, &ng, W,rpar,ipar);  /*rpar,ipar used as dummy*/
-	    for (ib = 0; ib < ng; ++ib) {
-	      if (W[ib] == 0.) {
-		mask[ib] = 1;
-	      }
-	    }
-	    info[0] = 0;
-	    info[2] = 1;
-	    d__1 = *told + ttol;
-	    C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd
-			, &d__1, info, &rtol, &Atol, &
-			istate, &rhot[1], &nrwp, &ihot[1], &
-			niwp, rpar, ipar, &jdum, rpar
-			, C2F(grblkdassl), &ng, jroot);
-	    info[0] = 0;
-	    if (istate <= 0) {
-	      /*     !           integration problem */
-	      *ierr = 100 - istate;
-	      return;
-	    }
-	  } else {
-	    /*     !        integration problem */
-	    *ierr = 100 - istate;
-	    return;
-	  }
-	} else {
-	  info[0] = 1;
-	}
-
-	/*     Initializing the zero crossing mask */
-	C2F(grblkdassl)(neq, told, x,xd, &c_n1, W,rpar,ipar);  /*rpar,ipar used as dummy*/
-	for (ib = 0; ib < ng; ++ib) {
-	  if (W[ib] != 0. && mask[ib] == 1) {
-	    info[0] = 0;
-	    mask[ib] = 0;
-	  }
-	}
-	/*     .     update outputs of 'c' type  blocks if we are at the end*/
-	if (*told >= *tf) {
-	  if (ncord > 0) {
-	    cdoit(told);
-	    return;
-	  }
-	}
-	if (istate == 5) {
-	  /*     .        at a least one root has been found */
-	  info[0] = 0;
-	  if (C2F(cosdebug).cosd >= 3) {
-	    sciprint("root found at t=: %f\r\n",*told);
-	  }
-	  /*     .        update outputs affecting ztyp blocks */
-	  zdoit(W, xd, x,told);
-	  /*     .        initialize mask */
-	  for (ib = 0; ib < ng; ++ib) {
-	    mask[ib] = 0;
-	  }
-
-	  for (jj = 0; jj < ng; ++jj) {
-	    C2F(curblk).kfun = zcros[jj];
-	    if (C2F(curblk).kfun == -1) {
-	      break; 
-	    }
-	    kev = 0;
-	    for (j = zcptr[C2F(curblk).kfun]-1 ; 
-		 j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
-	      /*     .        copy result of zerocrossing test in W */
-	      W[j]=(double)jroot[j];
-	      if(jroot[j]!=0){
-		kev=1;
-	      }
-	    }
-	    if (kev != 0) {
-	      ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-	      if (ntvec > 0) {
-		flag__ = 3;
-		/*     .              call corresponding block to determine output event (kev) */
-		nclock = -kev;
-		callf(told, xd, x, x,W,&flag__);
-		if (flag__ < 0) {
-		  *ierr = 5 - flag__;
-		  return;
-		}
-		/*     .              update event agenda */
-		for (k = 1; k <= ntvec; ++k) {
-		  if (tvec[k - 1] >= *told) {
-		    if (critev[k + clkptr[C2F(curblk).kfun] - 1] 
-			== 1) {
-		      info[0] = 0;
-		    }
-		    i3 = k + clkptr[C2F(curblk).kfun] - 1;
-		    addevs(&tvec[k - 1], &i3, &ierr1);
-		    if (ierr1 != 0) {
-		      /*     .                       nevts too small */
-		      *ierr = 3;
-		      return;
-		    }
-		  }
-		}
-	      }
-	      /*     .              update state */
-	      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
-		  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] 
-		  > 0) {
-		/*     .              call corresponding block to update state */
-		flag__ = 2;
-		nclock = -kev;
-		callf(told, xd, x, x,W,&flag__);
-		if (flag__ < 0) {
-		  *ierr = 5 - flag__;
-		  return;
-		}
-	      }
-	    }
-	  }
-	}
       }
-      C2F(realtime)(told);
-    } else {
-      /*     .  t==told */
-      if (C2F(cosdebug).cosd >= 1) {
-	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
-      }
-
-      hot = info[0] == 1;
-      ddoit(told);
-      if (C2F(cosdebug).cosd >= 1) {
-	sciprint("End of activation");
-      }
-      if (*ierr != 0) {
-	return;
-      }
-      if (! hot) {
-	info[0] = 0;
-      }
-
     }
-    /*     end of main loop on time */
+    C2F(realtime)(told);
+  } else {
+    /*     .  t==told */
+    if (C2F(cosdebug).cosd >= 1) {
+      sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+    }
+
+    hot = info[0] == 1;
+    ddoit(told);
+    if (C2F(cosdebug).cosd >= 1) {
+      sciprint("End of activation");
+    }
+    if (*ierr != 0) {
+      return;
+    }
+    if (! hot) {
+      info[0] = 0;
+    }
+
   }
+  /*     end of main loop on time */
+}
 } /* cossimdassl_ */
 
 
@@ -1252,7 +1259,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   *ierr = 0;
   /*     loop on blocks */
   tvec[0] = 0.;
-  ntvec = 0;
+
   nclock=0;
 
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
@@ -1278,7 +1285,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /* System generated locals */
   integer i2;
 
-    /* Local variables */
+  /* Local variables */
   static integer flag__, keve, nord;
 
   static integer ierr1;
@@ -1312,22 +1319,22 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
     C2F(curblk).kfun = ordclk[ii];
     /*     .     Initialize tvec */
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1369,22 +1376,22 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       }
     }
 
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++urg;
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1437,13 +1444,11 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     for (ii = ordptr[keve]; ii <= i2; ++ii) {
       C2F(curblk).kfun = ordclk[ii];
       /*     If continuous state jumps, do cold restart */
-      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
-	  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] > 0) {
+      if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz > 0) {
 	/*     Solution not satisfying but... Have to find a better test */
 	/*     to know if state can jump. If we only leave the first test */
 	/*     it sets hot to false at every event! */
-	if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] > 0 && 
-	    ordclk[ii + nordclk] != 0) {
+	if (Blocks[C2F(curblk).kfun-1].nx > 0 && ordclk[ii + nordclk] != 0) {
 	  hot = 0;
 	}
 	flag__ = 2;
@@ -1474,7 +1479,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   static integer ierr1, i;
   static integer ii;
 
-    /* Function Body */
+  /* Function Body */
   --(*urg);
   keve = *pointi;
   *pointi = evtspt[keve];
@@ -1504,11 +1509,10 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
     C2F(curblk).kfun = ordclk[ii ];
     /*     .     Initialize tvec */
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] >= 0) {
 	d__1 = *told - 1.;
-	C2F(dset)(&ntvec, &d__1, tvec, &c__1);
+	C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, &d__1, tvec, &c__1);
 
 	flag__ = 3;
 	nclock=ordclk[ii + nordclk];
@@ -1519,8 +1523,8 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 	  return;
 	}
 
-	if (ntvec >= 1) {
-	  for (i = 1; i <= ntvec; ++i) {
+	if (Blocks[C2F(curblk).kfun - 1].nevout >= 1) {
+	  for (i = 1; i <= Blocks[C2F(curblk).kfun - 1].nevout; ++i) {
 	    if (tvec[i - 1] >= *told) {
 	      i3 = i + clkptr[C2F(curblk).kfun] - 1;
 	      addevs(&tvec[i - 1], &i3, &ierr1);
@@ -1535,16 +1539,17 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       } else {
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1564,14 +1569,14 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /* System generated locals */
   integer i2;
 
-    /* Local variables */
+  /* Local variables */
   static integer flag__, keve, kiwa;
 
   static integer ierr1, i;
   static integer ii, jj;
   static integer urg;
 
-    /* Function Body */
+  /* Function Body */
   urg = 0;
   kiwa = 0;
 
@@ -1588,22 +1593,22 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       }
     }
 
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++urg;
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1619,7 +1624,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /*     .  update states derivatives */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
-    if (xptr[C2F(curblk).kfun+1 ] - xptr[C2F(curblk).kfun] > 0) {
+    if (Blocks[C2F(curblk).kfun-1].nx > 0) {
       flag__ = 0;
       nclock = oord[ii + noord];
       callf(told, xtd, xt, residual,W,&flag__);
@@ -1635,7 +1640,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     keve = iwa[i];
     for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
       C2F(curblk).kfun = ordclk[ii ];
-      if (xptr[C2F(curblk).kfun+1 ] - xptr[C2F(curblk).kfun] > 0) {
+      if (Blocks[C2F(curblk).kfun-1].nx > 0) {
 	flag__ = 0;
 	nclock = ordclk[ii + nordclk];
 	callf(told, xtd, xt, residual,W,&flag__);
@@ -1689,22 +1694,23 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       }
     }
     /*     .     Initialize tvec */
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1747,22 +1753,22 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       }
     }
 
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
+    if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
 
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 2;
 	  } else {
-	    ntvec = 1;
+	    Blocks[C2F(curblk).kfun - 1].nevout = 1;
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
+	  Blocks[C2F(curblk).kfun - 1].nevout= 
+	    max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
+		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++urg;
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -1780,33 +1786,33 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   /*     .  update zero crossing surfaces */
   for (ii = 1; ii <= nzord; ++ii) {
     C2F(curblk).kfun = zord[ii];
-    if (zcptr[C2F(curblk).kfun + 1] - zcptr[C2F(curblk).kfun] > 0) {
-      flag__ = 9;
-      nclock = oord[ii +nzord];
-      callf(told, xtd, xt, xtd,g,&flag__);
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	return;
-      }
+    if (Blocks[C2F(curblk).kfun-1].ng > 0) {
+    flag__ = 9;
+    nclock = oord[ii +nzord];
+    callf(told, xtd, xt, xtd,g,&flag__);
+    if (flag__ < 0) {
+      *ierr = 5 - flag__;
+      return;
     }
   }
+}
 
-  for (i = 0; i < kiwa; ++i) {
-    keve = iwa[i];
-    for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
-      C2F(curblk).kfun = ordclk[ii ];
-      if (zcptr[C2F(curblk).kfun + 1] - zcptr[C2F(curblk).kfun] > 0) {
-	flag__ = 9;
-	nclock = ordclk[ii + nordclk];
-	callf(told, xtd, xt, xtd,g,&flag__);
+for (i = 0; i < kiwa; ++i) {
+  keve = iwa[i];
+  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
+    C2F(curblk).kfun = ordclk[ii ];
+    if (Blocks[C2F(curblk).kfun-1].ng > 0) {
+    flag__ = 9;
+    nclock = ordclk[ii + nordclk];
+    callf(told, xtd, xt, xtd,g,&flag__);
 
-	if (flag__ < 0) {
-	  *ierr = 5 - flag__;
-	  return;
-	}
-      }
+    if (flag__ < 0) {
+      *ierr = 5 - flag__;
+      return;
     }
   }
+}
+}
 } /* zdoit_ */
 
 
@@ -1824,8 +1830,8 @@ callf(t,xtd,xt,residual,g,flag)
   double* args[SZ_SIZE];
   integer sz[SZ_SIZE];
   double intabl[TB_SIZE],outabl[TB_SIZE];
-  int ii,kf,nx,nz,nzc,nrpar,nipar,in,out,ki,ko,ni,no,k;
-  int nin,noutc,lprt,szi,funtype,flagi;
+  int ii,kf,in,out,ki,ko,ni,no,k,j;
+  int lprt,szi,flagi;
   int solver=C2F(cmsolver).solver;
   int cosd=C2F(cosdebug).cosd;
   ScicosF0 loc0;
@@ -1837,8 +1843,6 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosFi2 loci2;
   ScicosFi2z loci2z;
   ScicosF4 loc4;
-  integer typz;
-
   
   kf=C2F(curblk).kfun;
   if ( cosd > 1){
@@ -1847,49 +1851,46 @@ callf(t,xtd,xt,residual,g,flag)
     sciprint("at time %f \r\n",*t);
   }
   flagi=*flag; /* flag 7 implicit initialization */
-
-
-
-  if(flagi==7 && funtype<10000) *flag=0;
-
+  if(flagi==7 && Blocks[kf-1].type<10000) *flag=0;
 
   loc=Blocks[kf-1].funpt;
-  funtype=Blocks[kf-1].type;
-  if (funtype==4||funtype==10004) {
+  if (Blocks[kf-1].type==4||Blocks[kf-1].type==10004) {
+    Blocks[kf-1].time=*t;
+    Blocks[kf-1].nevprt=nclock;
     loc4 = (ScicosF4) loc;
-    if(nx==0){
-      (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+    if(Blocks[kf-1].nx==0){
+      (*loc4)(&Blocks[kf-1],*flag);
     } 
     else {
-      nzc=Blocks[kf-1].ng;
-      if(nzc>0){
+      
+      if(Blocks[kf-1].ng>0){
 	Blocks[kf-1].g=&g[zcptr[kf]-1];
       }
       Blocks[kf-1].x=&xt[xptr[kf]-1];
-      if(funtype==4) {
+      if(Blocks[kf-1].type==4) {
 	if(*flag==0 && solver==100) {
 	  Blocks[kf-1].xd=&residual[xptr[kf]-1];
-	  (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+	  (*loc4)(&Blocks[kf-1],*flag);
 	  if(flagi!=7) {
-	    for (k=0;k<nx;k++) {
+	    for (k=0;k<Blocks[kf-1].nx;k++) {
 	      Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
 	    }
 	  }
 	  else {
-	    for (k=0;k<nx;k++) {
+	    for (k=0;k<Blocks[kf-1].nx;k++) {
 	      Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
 	    } 
 	  }
 	}
 	else {
 	  Blocks[kf-1].xd=&xtd[xptr[kf]-1];
-	  (*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+	  (*loc4)(&Blocks[kf-1],*flag);
 	}
       }
       else {
 	Blocks[kf-1].xd=&xtd[xptr[kf]-1];
 	Blocks[kf-1].res=&residual[xptr[kf]-1];
-	(*loc4)(flag,&nclock,t,&Blocks[kf-1]);
+	(*loc4)(&Blocks[kf-1],*flag);
       }
     }
     return;
@@ -1897,22 +1898,17 @@ callf(t,xtd,xt,residual,g,flag)
   
   C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
 
-  
+  /*This is for compatibility*/
+  if(nclock<0){
+    for (j = zcptr[C2F(curblk).kfun]-1 ;j <zcptr[C2F(curblk).kfun+1]-1 ; ++j) {
+      g[j]=(double)jroot[j];
+    }
+  }
 
-  typz=Blocks[kf-1].ztyp;
-  nx=Blocks[kf-1].nx;
-  nzc=Blocks[kf-1].ng;
-  nz=Blocks[kf-1].nz;
-  nrpar=Blocks[kf-1].nrpar;
-  nipar=Blocks[kf-1].nipar;
-  nin=Blocks[kf-1].nin;
-  noutc=Blocks[kf-1].nout;
-  ntvec=Blocks[kf-1].nevout;
-
-  if(typz>0){
+  if(Blocks[kf-1].ztyp>0){
     Blocks[kf-1].g=&g[zcptr[kf]-1];
   }
-  if(nx>0){
+  if(Blocks[kf-1].nx>0){
     Blocks[kf-1].x=&xt[xptr[kf]-1];
     Blocks[kf-1].xd=&xtd[xptr[kf]-1];
     if(solver==100) {
@@ -1920,30 +1916,30 @@ callf(t,xtd,xt,residual,g,flag)
     }
   }
 
-  switch (funtype) {
+  switch (Blocks[kf-1].type) {
 
   case 1 :			
     /* one entry for each input or output */
-    for (in = 0 ; in < nin ; in++) 
+    for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
       {
 	args[in]=Blocks[kf-1].inptr[in];
 	sz[in]=Blocks[kf-1].insz[in];
       }
-    for (out=0;out<noutc;out++) {
+    for (out=0;out<Blocks[kf-1].nout;out++) {
       args[in+out]=Blocks[kf-1].outptr[out];
       sz[in+out]=Blocks[kf-1].outsz[out];
     }
-    if(typz>0){
+    if(Blocks[kf-1].ztyp>0){
       Blocks[kf-1].g=&g[zcptr[kf]-1];
-      args[nin+noutc]=Blocks[kf-1].g;
-      sz[nin+noutc]=Blocks[kf-1].ng;
+      args[Blocks[kf-1].nin+Blocks[kf-1].nout]=Blocks[kf-1].g;
+      sz[Blocks[kf-1].nin+Blocks[kf-1].nout]=Blocks[kf-1].ng;
     }
     loc1 = (ScicosF) loc;
     if (solver==100) {
-      (*loc1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
-	      Blocks[kf-1].z,&nz,
-	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-	      Blocks[kf-1].ipar,&nipar,
+      (*loc1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
+	      Blocks[kf-1].z,&Blocks[kf-1].nz,
+	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
 	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
@@ -1956,10 +1952,10 @@ callf(t,xtd,xt,residual,g,flag)
 	      (double *)args[17],&sz[17]); 
     }
     else {
-      (*loc1)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
-	      Blocks[kf-1].z,&nz,
-	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-	      Blocks[kf-1].ipar,&nipar,
+      (*loc1)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+	      Blocks[kf-1].z,&Blocks[kf-1].nz,
+	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
 	      (double *)args[0],&sz[0],
 	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
 	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
@@ -1977,9 +1973,9 @@ callf(t,xtd,xt,residual,g,flag)
     ni=0;
     /* catenate inputs if necessary */
 
-    if (nin>1) {
+    if (Blocks[kf-1].nin>1) {
       ki=0;
-      for (in=0;in<nin;in++) {
+      for (in=0;in<Blocks[kf-1].nin;in++) {
 	lprt=inplnk[inpptr[kf]+in];
 	szi=lnkptr[lprt+1]-lnkptr[lprt];
 	for (ii=0;ii<szi;ii++) 
@@ -1989,7 +1985,7 @@ callf(t,xtd,xt,residual,g,flag)
       args[0]=&(intabl[0]);
     }
     else {
-      if (nin==0) {
+      if (Blocks[kf-1].nin==0) {
 	ni=0;
 	args[0]=&(outtb[0]);
       }
@@ -1999,12 +1995,12 @@ callf(t,xtd,xt,residual,g,flag)
 	ni=lnkptr[lprt+1]-lnkptr[lprt];
       }
     }
-    in=nin;
+    in=Blocks[kf-1].nin;
     
     /* catenate outputs if necessary */
-    if (noutc>1) {
+    if (Blocks[kf-1].nout>1) {
       ko=0;
-      for (out=0;out<noutc;out++) {
+      for (out=0;out<Blocks[kf-1].nout;out++) {
 	lprt=outlnk[outptr[kf]+out];
 	szi=lnkptr[lprt+1]-lnkptr[lprt];
 	
@@ -2015,7 +2011,7 @@ callf(t,xtd,xt,residual,g,flag)
       args[1]=&(outabl[0]);
     }
     else {
-      if (noutc==0) {
+      if (Blocks[kf-1].nout==0) {
 	no=0;
 	args[1]=&(outtb[0]);
       }
@@ -2028,22 +2024,24 @@ callf(t,xtd,xt,residual,g,flag)
 
     loc0 = (ScicosF0) loc;
     if (solver==100) {
-      (*loc0)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,&(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&ni,
+      (*loc0)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
+	      Blocks[kf-1].z,&Blocks[kf-1].nz,
+	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
     }
     else {
-      (*loc0)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,&(z__[zptr[kf]-1]),&nz,
-	      tvec,&ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
-	      &(ipar[ipptr[kf]-1]),&nipar,(double *)args[0],&ni,
+      (*loc0)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+	      Blocks[kf-1].z,&Blocks[kf-1].nz,
+	      tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	      Blocks[kf-1].ipar,&Blocks[kf-1].nipar,(double *)args[0],&ni,
 	      (double *)args[1],&no);
     }
     
     /* split output vector on each port if necessary */
-    if (noutc>1) {
+    if (Blocks[kf-1].nout>1) {
       ko=0;
-      for (out=0;out<noutc;out++) {
+      for (out=0;out<Blocks[kf-1].nout;out++) {
 	lprt=outlnk[outptr[kf]+out];
 	szi=lnkptr[lprt+1]-lnkptr[lprt];
 	for (ii=0;ii<szi;ii++)  
@@ -2055,98 +2053,105 @@ callf(t,xtd,xt,residual,g,flag)
 
     
     if (solver==100) {
-      if (typz==0){
+      if (Blocks[kf-1].ztyp==0){
 	loc2 = (ScicosF2) loc;
-	(*loc2)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
-		Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
+	(*loc2)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
+		Blocks[kf-1].z,&Blocks[kf-1].nz,
+		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
+		Blocks[kf-1].insz,&Blocks[kf-1].nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
       }
       else{
 	loc2z = (ScicosF2z) loc;
-	(*loc2z)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&nx,
-		Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
+	(*loc2z)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].x,&Blocks[kf-1].nx,
+		 Blocks[kf-1].z,&Blocks[kf-1].nz,
+		 tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		 Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&Blocks[kf-1].nin,
+		 Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
+		 Blocks[kf-1].g,&Blocks[kf-1].ng);
       }
     }
     else {
-      if (typz==0){
+      if (Blocks[kf-1].ztyp==0){
 	loc2 = (ScicosF2) loc;
-	(*loc2)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
-		Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
+	(*loc2)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+		Blocks[kf-1].z,&Blocks[kf-1].nz,
+		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
+		Blocks[kf-1].insz,&Blocks[kf-1].nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
       }
       else{
 	loc2z = (ScicosF2z) loc;
-	(*loc2z)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
-		 Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
+	(*loc2z)(flag,&nclock,t,Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+		 Blocks[kf-1].z,&Blocks[kf-1].nz,
+		 tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		 Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
+		 Blocks[kf-1].insz,&Blocks[kf-1].nin,
+		 Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
+		 Blocks[kf-1].g,&Blocks[kf-1].ng);
       }
     }
     break;
   case 10001 :			
     /* implicit block one entry for each input or output */
-    for (in = 0 ; in < nin ; in++) 
-      for (in = 0 ; in < nin ; in++) 
-      {
-	args[in]=Blocks[kf-1].inptr[in];
-	sz[in]=Blocks[kf-1].insz[in];
-      }
-    for (out=0;out<noutc;out++) {
+    for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
+      for (in = 0 ; in < Blocks[kf-1].nin ; in++) 
+	{
+	  args[in]=Blocks[kf-1].inptr[in];
+	  sz[in]=Blocks[kf-1].insz[in];
+	}
+    for (out=0;out<Blocks[kf-1].nout;out++) {
       args[in+out]=Blocks[kf-1].outptr[out];
       sz[in+out]=Blocks[kf-1].outsz[out];
     }
-    if(typz>0){
+    if(Blocks[kf-1].ztyp>0){
       Blocks[kf-1].g=&g[zcptr[kf]-1];
-      args[nin+noutc]=Blocks[kf-1].g;
-      sz[nin+noutc]=Blocks[kf-1].ng;
+      args[Blocks[kf-1].nin+Blocks[kf-1].nout]=Blocks[kf-1].g;
+      sz[Blocks[kf-1].nin+Blocks[kf-1].nout]=Blocks[kf-1].ng;
     }
     loci1 = (ScicosFi) loc;
 
     (*loci1)(flag,&nclock,t,Blocks[kf-1].res,Blocks[kf-1].xd,Blocks[kf-1].x,
-	     &nx,Blocks[kf-1].z,&nz,
-	      tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-	      Blocks[kf-1].ipar,&nipar,
-	      (double *)args[0],&sz[0],
-	      (double *)args[1],&sz[1],(double *)args[2],&sz[2],
-	      (double *)args[3],&sz[3],(double *)args[4],&sz[4],
-	      (double *)args[5],&sz[5],(double *)args[6],&sz[6],
-	      (double *)args[7],&sz[7],(double *)args[8],&sz[8],
-	      (double *)args[9],&sz[9],(double *)args[10],&sz[10],
-	      (double *)args[11],&sz[11],(double *)args[12],&sz[12],
-	      (double *)args[13],&sz[13],(double *)args[14],&sz[14],
-	      (double *)args[15],&sz[15],(double *)args[16],&sz[16],
-	      (double *)args[17],&sz[17]); 
+	     &Blocks[kf-1].nx,Blocks[kf-1].z,&Blocks[kf-1].nz,
+	     tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	     Blocks[kf-1].ipar,&Blocks[kf-1].nipar,
+	     (double *)args[0],&sz[0],
+	     (double *)args[1],&sz[1],(double *)args[2],&sz[2],
+	     (double *)args[3],&sz[3],(double *)args[4],&sz[4],
+	     (double *)args[5],&sz[5],(double *)args[6],&sz[6],
+	     (double *)args[7],&sz[7],(double *)args[8],&sz[8],
+	     (double *)args[9],&sz[9],(double *)args[10],&sz[10],
+	     (double *)args[11],&sz[11],(double *)args[12],&sz[12],
+	     (double *)args[13],&sz[13],(double *)args[14],&sz[14],
+	     (double *)args[15],&sz[15],(double *)args[16],&sz[16],
+	     (double *)args[17],&sz[17]); 
     break; 
   case 10002 :			
     /* implicit block, inputs and outputs given by a table of pointers */
    
-    if(typz==0) {
+    if(Blocks[kf-1].ztyp==0) {
       loci2 = (ScicosFi2) loc;
       
       (*loci2)(flag,&nclock,t,Blocks[kf-1].res,
-	       Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
-	       Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc);
+	       Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+	       Blocks[kf-1].z,&Blocks[kf-1].nz,
+	       tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+	       Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,
+	       Blocks[kf-1].insz,&Blocks[kf-1].nin,
+	       Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout);
     }
     else {
       loci2z = (ScicosFi2z) loc;
       
       (*loci2z)(flag,&nclock,t,Blocks[kf-1].res,
-		Blocks[kf-1].xd,Blocks[kf-1].x,&nx,
-		Blocks[kf-1].z,&nz,
-		tvec,&ntvec,Blocks[kf-1].rpar,&nrpar,
-		Blocks[kf-1].ipar,&nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&nin,
-		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&noutc,&(g[zcptr[kf]-1]),&nzc);
+		Blocks[kf-1].xd,Blocks[kf-1].x,&Blocks[kf-1].nx,
+		Blocks[kf-1].z,&Blocks[kf-1].nz,
+		tvec,&Blocks[kf-1].nevout,Blocks[kf-1].rpar,&Blocks[kf-1].nrpar,
+		Blocks[kf-1].ipar,&Blocks[kf-1].nipar,Blocks[kf-1].inptr,Blocks[kf-1].insz,&Blocks[kf-1].nin,
+		Blocks[kf-1].outptr,Blocks[kf-1].outsz,&Blocks[kf-1].nout,
+		Blocks[kf-1].g,&Blocks[kf-1].ng);
     }
     break;  
   default:
@@ -2154,15 +2159,15 @@ callf(t,xtd,xt,residual,g,flag)
     *flag=-1000;
     return;
   }
-  if(solver==100 && funtype<10000 && *flag==0) { /* Implicit Solver */
+  if(solver==100 && Blocks[kf-1].type<10000 && *flag==0) { /* Implicit Solver */
 
     if(flagi!=7) {
-      for (k=0;k<nx;k++) {
+      for (k=0;k<Blocks[kf-1].nx;k++) {
 	Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
       }
     }
     else {
-      for (k=0;k<nx;k++) {
+      for (k=0;k<Blocks[kf-1].nx;k++) {
 	Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
       } 
     }
@@ -2202,7 +2207,7 @@ int C2F(simblk)(neq1, t, xc, xcdot)
 	xc    : double precision vector whose  contains the continuous state. 
 	xcdot : double precision vector, contain the computed derivative 
 	of the state 
-	*/
+     */
 { 
   C2F(ierode).iero = 0;
   odoit(xcdot, xc,xcdot,t); 

@@ -1,6 +1,8 @@
 typedef void (*voidg)();
 
 typedef struct {
+  double time;
+  int nevprt;
   voidg funpt ;
   int type;
   int scsptr;
@@ -24,4 +26,6 @@ typedef struct {
   int ng;
   double *g;
   int ztyp;
+  int *jroot;
+  char label[41];
 } scicos_block;
