@@ -78,7 +78,7 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
     Underscores(1,en_names[0],enamebuf);
   else 
     Underscores(0,en_names[0],enamebuf);
-  F2C(dynload)(&ii,enamebuf,files,&err);
+  C2F(dynload)(&ii,enamebuf,files,&err);
   if ( err == 0 ) 
     {
       strncpy(EP[ii].name,en_names[0],MAXNAME);
@@ -119,7 +119,7 @@ void C2F(isciulink)(i)
 
 
 
-int F2C(dynload)(ii,ename1,loaded_files,err)
+int C2F(dynload)(ii,ename1,loaded_files,err)
      char ename1[], loaded_files[];
      int *ii;
      int *err;
@@ -447,7 +447,7 @@ char *searchpath, buf[200],prog[200];
 char *getenv();
 int kd, kf, j, i ,ok, km;
 
-F2C(getpro)(prog,sizeof(prog)-1);
+C2F(getpro)(prog,sizeof(prog)-1);
      strcpy(name,prog);
 
 if ( (index(name,'/')) != 0)
@@ -520,7 +520,7 @@ return;
 
 #ifdef hppa
 int
-F2C(getpro)(s, l)
+C2F(getpro)(s, l)
 char *s;
 int l;
 {

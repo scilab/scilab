@@ -9,11 +9,11 @@
 
 #include "../machine.h"
 #include "../sun/addinter.h" /* for DynInterfStart */
+#include "../sun/Sun.h" /* for DynInterfStart */
 
 static  jmp_buf jmp_env; 
 extern int  C2F(matdsc) __PARAMS((void));
 extern int  C2F(matdsr) __PARAMS((void));
-extern int  C2F(userlk) __PARAMS((int *));
 extern int  C2F(error) __PARAMS((int *));
 extern void sciprint __PARAMS((char* ,...));
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
@@ -122,7 +122,7 @@ extern int   System2_contents __PARAMS((int));
 extern int   System_contents __PARAMS((int));
 extern int  Intersci_contents __PARAMS((int));
 
-int ForceLink()
+int ForceLink(void)
 {
   Blas_contents(0);
   Lapack_contents(0);

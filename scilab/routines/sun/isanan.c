@@ -15,8 +15,7 @@
 /* testing Nan returns 1 if a Nan is found and 0 elsewhere */
 /* should be changed to use a libm isnan function when possible */
 
-integer C2F(isanan)(x)
-     double *x ;
+integer C2F(isanan)(double *x)
 {
 #ifdef _ISANAN
   return(_isnan(*x)== 1);

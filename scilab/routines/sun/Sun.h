@@ -8,7 +8,10 @@ typedef long int ftnlen ;
 
 /*  "addinter-n.c.X1" */
 
-extern void C2F(addinter)  __PARAMS((int *descla, int *ptrdescla, int *nvla, char *iname, int *desc, int *ptrdesc, int *nv));  
+void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
+		   int *desc, int *ptrdesc, int *nv, char *c_cpp, 
+		   int *lib_cpp, int *err);
+
 extern void RemoveInterf  __PARAMS((int Nshared));  
 extern void C2F(userlk) __PARAMS((integer *k));  
 
@@ -26,7 +29,7 @@ extern int C2F(basou1) __PARAMS((integer *lunit, char *string, ftnlen string_len
 /*  "cgpath-n.c.X1" */
 extern void C2F(cgpath) __PARAMS((char *nomfic, integer *ln));  
 /*  "cluni0-n.c.X1" */
-extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, integer *ierr, ftnlen name_len, ftnlen nams_len));  
+extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, ftnlen name_len, ftnlen nams_len));  
 /*  "clunit-n.c.X1" */
 extern int C2F(clunit) __PARAMS((integer *lunit, char *name, integer *mode, ftnlen name_len));  
 /*  "csignal-n.c.X1" */
@@ -49,7 +52,9 @@ extern int get_echo_mode  __PARAMS((void));
 extern void set_is_reading  __PARAMS((int mode));  
 extern int get_is_reading  __PARAMS((void));  
 /*  "getenvc-n.c.X1" */
-extern void C2F(getenvc) __PARAMS((int *ierr, char *var, char *cont, int *iflag));  
+
+void C2F(getenvc) __PARAMS((int *ierr,char *var,char *buf,int *buflen,int *iflag));
+
 /*  "getpidc-n.c.X1" */
 extern int C2F(getpidc) __PARAMS((int *id1));  
 /*  "getpro-n.c.X1" */
@@ -78,5 +83,10 @@ extern void C2F(settmpdir) __PARAMS((void));
 extern void C2F(tmpdirc) __PARAMS((void));  
 /*  "zzledt-n.c.X1" */
 extern void C2F(zzledt) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1));  
+
+/* link.c */
+extern int LinkStatus  __PARAMS((void));
+extern void C2F(isciulink)(integer *i) ;
+
 
 #endif /* SUNSCI_PROTO */

@@ -54,9 +54,9 @@ typedef struct {
 } Hd;
 
 static Hd  hd[ENTRYMAX]; /* shared libs handler */
-static Nshared  = 0   ;
+static int Nshared  = 0   ;
 static Epoints EP[ENTRYMAX];  /* entryPoints */
-static NEpoints = 0   ;        /* Number of Linked names */
+static int NEpoints = 0   ;        /* Number of Linked names */
 
 /** for debug info **/
 /** #define DEBUG  **/
@@ -72,11 +72,11 @@ static NEpoints = 0   ;        /* Number of Linked names */
  * rhs                   : number of rhs arguments in link(...)
  ************************************************/
 
-void C2F(iscilink)(descla,ptrdescla,nvla,desc,ptrdesc,nv,strf,ilib,iflag,rhs)
-     int *desc,*ptrdesc,*nv;         /* files */
-     int *descla,*ptrdescla,*nvla;   /* entry points */
-     char *strf;
-     int *ilib,*iflag,*rhs;                      
+void C2F(iscilink)(int *descla, int *ptrdescla, int *nvla, int *desc, int *ptrdesc, int *nv, char *strf, int *ilib, int *iflag, int *rhs)
+                                     /* files */
+                                     /* entry points */
+                
+                                                 
 {
   int ierr,i;
   char **files,**en_names;
@@ -184,9 +184,7 @@ void C2F(isciulink)(i)
  * in entry names 
  ********************************************/
 
-static void Underscores(isfor,ename,ename1)
-     char ename[],ename1[];
-     int isfor;
+static void Underscores(int isfor, char *ename, char *ename1)
 {
 #ifdef WLU1
   *ename1='_'; ename1++;
@@ -202,7 +200,7 @@ static void Underscores(isfor,ename,ename1)
  * Initialize tables 
  *************************************/
 
-void SciLinkInit()
+void SciLinkInit(void)
 {
   static int first_entry = 0;
   int i;
@@ -234,9 +232,7 @@ void SciLinkInit()
  * 
  *************************************/
 
-void C2F(iislink)(buf,irep)
-     char *buf;
-     integer *irep;
+void C2F(iislink)(char *buf, integer *irep)
 {
   void (*loc)();
   if ( *irep != -1 ) 
@@ -250,9 +246,7 @@ void C2F(iislink)(buf,irep)
  * returns the ii functions 
  *************************************/
 
-void GetDynFunc(ii,realop) 
-     void (**realop)();
-     int ii;
+void GetDynFunc(int ii, void (**realop) (/* ??? */))
 {
   if ( EP[ii].Nshared != -1 ) 
     *realop = EP[ii].epoint;
@@ -265,9 +259,7 @@ void GetDynFunc(ii,realop)
  * Search from end to top 
  *************************************/
 
-int SearchInDynLinks(op,realop) 
-     void (**realop)();
-     char *op;
+int SearchInDynLinks(char *op, void (**realop) (/* ??? */))
 {
   int i=0;
   for ( i = NEpoints-1 ; i >=0 ; i--) 
@@ -287,9 +279,7 @@ int SearchInDynLinks(op,realop)
  * Search from end to top 
  *************************************/
 
-static int SearchFandS(op,ilib)
-     int ilib;
-     char *op;
+static int SearchFandS(char *op, int ilib)
 {
   int i=0;
   for ( i = NEpoints-1 ; i >=0 ; i--) 
@@ -306,7 +296,7 @@ static int SearchFandS(op,ilib)
  * Show the linked files 
  *************************************/
 
-void  ShowDynLinks()
+void  ShowDynLinks(void)
 {
   int i=0,count=0;
   sciprint("Number of entry points %d\r\n",NEpoints);

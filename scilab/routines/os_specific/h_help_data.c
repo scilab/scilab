@@ -56,9 +56,9 @@ static char Buf[MAX_PATH_STR];
 /*
  * Functions defined here 
  */
-static int NewString();
-static void CleanHelpTopics();
-static void CleanAproposTopics();
+static int NewString(char **hstr, char *line);
+static void CleanHelpTopics(void);
+static void CleanAproposTopics(void);
 
 /**************************************
  * Info List for one chapter 
@@ -92,8 +92,7 @@ Apropos AP ;
  * activate the help ( xless application on the selected topic 
  *****************************************************************/
 
-void HelpActivate(ntopic) 
-     int ntopic;
+void HelpActivate(int ntopic)
 {
   char           *TopicInfo;
   char            Topic[30];
@@ -138,8 +137,7 @@ void HelpActivate(ntopic)
  * this is for the keyboard  scilab command help xxxx
  **********************************************/
 
-int Sci_Help(name) 
-     char *name;
+int Sci_Help(char *name)
 {
   int i,k,cti,aps,ok=0;
   char c_name[MAXTOPIC];
@@ -189,8 +187,7 @@ int Sci_Help(name)
 #include "../menusX/men_scilab.h"
 #endif
 
-int Sci_Apropos(name) 
-     char *name;
+int Sci_Apropos(char *name)
 {
   static char *butn[]= { "Ok","Cancel",NULL};
   int Rep;
@@ -247,7 +244,7 @@ int Sci_Apropos(name)
  * Init function : 
  ************************************/
 
-int Help_Init()
+int Help_Init(void)
 {
   static int first = 0;
   static int Erstatus = 0 ;
@@ -271,7 +268,7 @@ int Help_Init()
  * Init help Chapters List 
  ************************************/
 
-int initHelpDatas()
+int initHelpDatas(void)
 {
   /** Help chapters was previously searched in Chapter 
       we use now Scilab variable %helps 
@@ -283,7 +280,7 @@ int initHelpDatas()
   return  InitHelpDatas_FromScilabVar();
 }
 
-int InitHelpDatas_With_Chapter()
+int InitHelpDatas_With_Chapter(void)
 {
   static int first=0;
   FILE           *fg;
@@ -361,7 +358,7 @@ int InitHelpDatas_With_Chapter()
  * are  found in a Scilab %help variable 
  *********************************************************/
 
-int InitHelpDatas_FromScilabVar()
+int InitHelpDatas_FromScilabVar(void)
 {
   static int first=0;
   int  i,ir,ic,itslen= MAX_PATH_STR,Sm;
@@ -439,8 +436,7 @@ int InitHelpDatas_FromScilabVar()
  * ( leading ' ' are ignored )
  ************************************/
 
-int HelpGetPath(line,Path,Tit)
-     char *line,*Tit,*Path;
+int HelpGetPath(char *line, char *Path, char *Tit)
 {
   char *local = (char *) 0, lk;
   int ln,k;
@@ -498,8 +494,7 @@ int HelpGetPath(line,Path,Tit)
  * for chapter n 
  ************************************/
 
-int setHelpTopicInfo(n)
-     int n;
+int setHelpTopicInfo(int n)
 {
   FILE           *fg;
   char            line[120];
@@ -558,7 +553,7 @@ int setHelpTopicInfo(n)
  * Clean The HelpInfo Datas  
  ******************************************/
 
-static void CleanHelpTopics()
+static void CleanHelpTopics(void)
 {
   int k;
   for (k = 0; k < nTopicInfo; k++)
@@ -574,8 +569,7 @@ static void CleanHelpTopics()
  * In case of memory failure the routine return 1
  ******************************************/
 
-int SetAproposTopics(str)
-     char *str;
+int SetAproposTopics(char *str)
 {
   int stop =0;
   FILE           *fg;
@@ -641,7 +635,7 @@ int SetAproposTopics(str)
  * Clean The Apropos Datas  
  ******************************************/
 
-static void CleanAproposTopics()
+static void CleanAproposTopics(void)
 {
   int n;
   for (n = 0; n < AP.nTopic ; n++) 
@@ -656,8 +650,7 @@ static void CleanAproposTopics()
  * Utility function 
  ************************************/
 
-static int NewString(hstr,line)
-     char **hstr, *line;
+static int NewString(char **hstr, char *line)
 {
   *hstr = (char *) MALLOC((strlen(line) + 1) * (sizeof(char)));
   if ( (*hstr) == NULL)

@@ -67,9 +67,9 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
   else 
     Underscores(0,en_names[0],enamebuf);
   if ( files[1] != (char *) 0 )
-    F2C(dynload1)(&ii,enamebuf,files,&err);
+    C2F(dynload1)(&ii,enamebuf,files,&err);
   else 
-    F2C(dynload)(&ii,enamebuf,files[0],&err);
+    C2F(dynload)(&ii,enamebuf,files[0],&err);
   if ( err == 0 ) 
     {
       strncpy(EP[ii].name,en_names[0],MAXNAME);
@@ -151,7 +151,7 @@ void list_undefined ()
 
 #define MAXCHAR 256
 #if defined(__STDC__)
-int F2C(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
+int C2F(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 #else 
      int dynload_(ii,ename1,loaded_files,err)
      int *ii;char ename1[],loaded_files[];int *err;
@@ -268,7 +268,7 @@ int F2C(dynload)(int *ii,char ename1[],char loaded_files[],int *err)
 
 
 #if defined(__STDC__)
-int F2C(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
+int C2F(dynload1)(int *ii,char ename1[],char *loaded_files[],int *err)
 #else 
      int dynload_(ii,ename1,loaded_files,err)
      int *ii;char ename1[], *loaded_files[];int *err;

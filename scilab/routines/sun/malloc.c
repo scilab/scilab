@@ -165,9 +165,7 @@ realloc(Char *f, Unsigned size)
 #endif
 
 void *
-calloc(num, size)
-        Unsigned num;
-        register Unsigned size;
+calloc(size_t num, register size_t size)
 {
         register void *p;
 

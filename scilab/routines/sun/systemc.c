@@ -11,9 +11,7 @@
 int  system();
 #endif
 
-int C2F(systemc)(command,stat)
-     char * command;
-     integer * stat;
+int C2F(systemc)(char *command, integer *stat)
 {
   int status;
 #ifdef __ABSC__ 

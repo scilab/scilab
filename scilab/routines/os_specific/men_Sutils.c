@@ -21,10 +21,7 @@ extern int C2F(cvstr) __PARAMS((integer *n, integer *line, char *str, integer *j
  *  generic functions for strings 
  ********************************************************/
 
-void strwidth(string,max_width,height)
-     char * string;
-     int  *max_width;
-     int  *height;
+void strwidth(char *string, int *max_width, int *height)
 {
   int width=0,i;
   *height=0;
@@ -52,16 +49,12 @@ void strwidth(string,max_width,height)
  ********************************************************/
 
 
-void ScilabStr2C(n,Scistring,strh,ierr)
-     int *n,*ierr;
-     int *Scistring;
-     char **strh;
-     
+void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr)
 {
   int job=1;
   *strh =(char *) MALLOC( (*n)+1);
   if ((*strh) == NULL)    {*ierr=1;     return;}
-  F2C(cvstr)(n,Scistring,*strh,&job,(long int)*n);
+  C2F(cvstr)(n,Scistring,*strh,&job,(long int)*n);
   (*strh)[*n]='\0';
 }
 
@@ -78,9 +71,7 @@ void ScilabStr2C(n,Scistring,strh,ierr)
  *   
  ********************************************************/
 
-void ScilabMStr2CM(Scistring,nstring,ptrstrings,strh,ierr)
-     int *Scistring,*nstring,*ptrstrings,*ierr;
-     char ***strh;
+void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, int *ierr)
 {
   char **strings,*p;
   int li,ni,*SciS,i;
@@ -111,9 +102,7 @@ void ScilabMStr2CM(Scistring,nstring,ptrstrings,strh,ierr)
  ********************************************************/
 
 
-void ScilabMStr2C(desc,nd,ptrdesc,strh,ierr)
-     int *desc,*nd,*ptrdesc,*ierr;
-     char **strh;
+void ScilabMStr2C(int *desc, int *nd, int *ptrdesc, char **strh, int *ierr)
 {
   int ln,li=1,di=0,*SciS,job=1,i,ni;
   char *description,*p;
@@ -129,7 +118,7 @@ void ScilabMStr2C(desc,nd,ptrdesc,strh,ierr)
     {
       p= &(description[di]);
       ni=ptrdesc[i]-li;
-      F2C(cvstr)(&ni,SciS,p,&job,(long int)0);
+      C2F(cvstr)(&ni,SciS,p,&job,(long int)0);
       SciS += ni;
 #ifdef WIN32 
       p[ni]= '\r';
@@ -149,9 +138,7 @@ void ScilabMStr2C(desc,nd,ptrdesc,strh,ierr)
  * into a Scilab matrix of String 
  ********************************************************/
 
-void ScilabC2MStr2(res,nr,ptrres,str,ierr,maxchars,maxlines)
-     int *res,*ptrres,*nr,*ierr,maxchars,maxlines;
-     char *str;
+void ScilabC2MStr2(int *res, int *nr, int *ptrres, char *str, int *ierr, int maxchars, int maxlines)
 {
   int job=0,li=0,n,i,ni;
   *nr=0;
@@ -170,7 +157,7 @@ void ScilabC2MStr2(res,nr,ptrres,str,ierr,maxchars,maxlines)
 	      if (i > 0 && str[i-1]=='\r' ) ni1=ni-1;
 #endif 
 	      ptrres[*nr+1]=ptrres[*nr]+ni1;
-	      F2C(cvstr)(&ni1,res,&str[li],&job,(long int)0);
+	      C2F(cvstr)(&ni1,res,&str[li],&job,(long int)0);
 	      res+=ni1;
 	      li += ni+1;
 	      ni= -1;
@@ -212,9 +199,7 @@ void squash_r(char *s)
 #endif /* WIN32 */
 
 
-void ScilabCM2MStr(str,nv,res,ptrres,maxchars,ierr)
-     char **str;
-     int nv, *res, *ptrres,maxchars,*ierr;
+void ScilabCM2MStr(char **str, int nv, int *res, int *ptrres, int maxchars, int *ierr)
 {
   int job=0,nr=0,i,ni,ntot=0;
   ptrres[0]=1;
@@ -233,7 +218,7 @@ void ScilabCM2MStr(str,nv,res,ptrres,maxchars,ierr)
 	}
       ptrres[nr+1]=ptrres[nr]+ni;
       nr++;
-      F2C(cvstr)(&ni,res,str[i],&job,(long int) 0);
+      C2F(cvstr)(&ni,res,str[i],&job,(long int) 0);
       res +=ni;
     }
 }

@@ -25,8 +25,7 @@
 static clock_t t1;
 static int init_clock = 1;
 
-int C2F(timer)(etime)
-     double *etime;
+int C2F(timer)(double *etime)
 {
   clock_t t2;
   t2 = clock();
@@ -66,7 +65,7 @@ static struct timezone tmz;
  ***********************************************************/
     
 
-int C2F(stimer)()
+int C2F(stimer)(void)
 {
 #if defined(THINK_C)||defined(__MWERKS__) 
         YieldToAnyThread();
@@ -115,7 +114,7 @@ int stimerwin()
 #endif
 #endif
 
-int C2F(fclock)()
+int C2F(fclock)(void)
 {
 return (int)clock();
 }

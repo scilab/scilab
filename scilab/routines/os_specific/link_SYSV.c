@@ -1,8 +1,7 @@
-/* Copyright INRIA/ENPC */
-/*********************************
+/*--------------------------------------------------------------
  * Link version for SYSV machine 
- *********************************/
-
+ * Copyright (C) Inria/Enpc 
+ *--------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <ctype.h>
@@ -10,7 +9,6 @@
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/file.h>
-
 
 #ifndef hppa
 #include <dlfcn.h>
@@ -80,8 +78,11 @@ static int Sci_dlopen __PARAMS((char *loaded_files[]));
 static int Sci_dlsym __PARAMS((char *ename,int  ishared,char * strf));
 static int SetArgv  __PARAMS((char *argv[], char *files[],int first,int max,int *err));
 static int SetArgv1  __PARAMS((char *argv[], char *files,int first,int max,int *err));
+static int CreateCppShared(char **loaded_files, char *tmp_file);
+static int CreateShared(char **loaded_files, char *tmp_file);
 
 int Call_shl_load = 0;
+
 
 
 /*************************************
@@ -94,9 +95,7 @@ int Call_shl_load = 0;
  *   -5 : pb with one of the entry point 
  *************************************/
 
-void SciLink(iflag,rhs,ilib,files,en_names,strf)
-     int iflag,*ilib,*rhs;
-     char *files[],*en_names[],*strf;
+void SciLink(int iflag, int *rhs, int *ilib, char **files, char **en_names, char *strf)
 {
   int i;
   if ( iflag == 0 )
@@ -122,7 +121,7 @@ void SciLink(iflag,rhs,ilib,files,en_names,strf)
  * or 0 elsewhere 
  *************************************/
 
-int LinkStatus()
+int LinkStatus(void)
 {
   return(1);
 }
@@ -131,8 +130,7 @@ int LinkStatus()
  * Unlink a shared lib 
  *************************************/
 
-void C2F(isciulink)(i) 
-     integer *i;
+void C2F(isciulink)(integer *i)
 {
   /* delete entry points in shared lib *i */
   Sci_Delsym(*i);
@@ -199,8 +197,7 @@ void call_ctor_dtor(handle,loading)
 
 
 
-static int Sci_dlopen(loaded_files)
-     char *loaded_files[];
+static int Sci_dlopen(char **loaded_files)
 {
   int i=0;
 #ifndef hppa
@@ -209,7 +206,7 @@ static int Sci_dlopen(loaded_files)
   shl_t hd1;
   void (*init_ctor)() = 0;
 #endif
-  char tmp_file[TMPL],*libs,*getenv();
+  char tmp_file[TMPL],*getenv(const char *);
   /** XXXXX **/
   if ( strncmp(loaded_files[0],"scilab",6) !=0)
     {
@@ -289,9 +286,7 @@ static int Sci_dlopen(loaded_files)
 
 /** creates a shared executable from the set of files **/
   
-int CreateShared(loaded_files,tmp_file)
-  char *loaded_files[];
- char *tmp_file;
+static int CreateShared(char **loaded_files, char *tmp_file)
 {
   int argc=3,err=0;
   static int count=0;
@@ -381,9 +376,7 @@ int CreateShared(loaded_files,tmp_file)
 
 /** creates a shared executable from the set of C++ files **/
 
-int CreateCppShared(loaded_files,tmp_file)
-  char *loaded_files[];
- char *tmp_file;
+static int CreateCppShared(char **loaded_files, char *tmp_file)
 {
   int argc=3,err=0;
   static int count=0;
@@ -401,7 +394,7 @@ int CreateCppShared(loaded_files,tmp_file)
   sciprint(" to create a shared executable\r\n");
   count++;
   tmpdir = get_sci_tmp_dir();
-  sprintf(tmp_file, "%s/SL_%d_XXXXXX",tmpdir,(int) getpid(),count);
+  sprintf(tmp_file, "%s/SL_%d_XXXXXX",tmpdir,(int) getpid()); /*,count);*/
   
   mktemp(tmp_file);
   {
@@ -459,10 +452,7 @@ int CreateCppShared(loaded_files,tmp_file)
  * return FAIL or OK 
  *************************************/
 
-static int Sci_dlsym(ename,ishared,strf)
-     int ishared;
-     char *ename;
-     char *strf;
+static int Sci_dlsym(char *ename, int ishared, char *strf)
 {
 #ifdef hppa
   shl_t hd1;
@@ -534,8 +524,7 @@ static int Sci_dlsym(ename,ishared,strf)
  ****************************************************/
 
 
-static void Sci_Delsym( ishared) 
-     int ishared;
+static void Sci_Delsym(int ishared)
 {
   int ish = Min(Max(0,ishared),ENTRYMAX-1);
   int i=0;
@@ -583,10 +572,7 @@ static void Sci_Delsym( ishared)
  * first 
  *******************************************************/
 
-static int SetArgv(argv,files,first,max,err)
-     char *argv[];
-     char *files[];
-     int first,max,*err;
+static int SetArgv(char **argv, char **files, int first, int max, int *err)
 {
   int i=0,j=first;
   *err=0;
@@ -599,10 +585,7 @@ static int SetArgv(argv,files,first,max,err)
   return(j);
 }
 
-static int SetArgv1(argv,files,first,max,err)
-     char *argv[];
-     char *files;
-     int first,max,*err;
+static int SetArgv1(char **argv, char *files, int first, int max, int *err)
 {
   int j=first;
   char *loc = files;

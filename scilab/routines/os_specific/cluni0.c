@@ -3,11 +3,9 @@
 #include <string.h>
 
 #include "../graphics/Math.h"
+#include "Sun.h"
 
 #define MAX_ENV 256 
-
-extern void C2F(getenvc) 
-     __PARAMS((int *ierr,char *var,char *buf,int *buflen,int *iflag));
 
 static char *SCI_a[] = {  "SCI/", "sci/", "$SCI", (char *) 0 };
 static char *HOME_a[] = {  "HOME/", "home/", "~/" , "$HOME", (char *) 0};
@@ -20,10 +18,7 @@ static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name,
  *       
  ************************************************/
 
-int C2F(cluni0)( in_name, out_name, out_n,lin,lout)
-     char * in_name, *out_name ;
-     int  *out_n;
-     long int lin,lout;
+int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout)
 {
   int  nc= MAX_ENV;
   static char SCI[MAX_ENV],HOME[MAX_ENV],TMP[MAX_ENV];
@@ -55,9 +50,7 @@ int C2F(cluni0)( in_name, out_name, out_n,lin,lout)
  * getenv + squash trailing white spaces 
  ************************************************/
 
-void GetenvB(name,env,len)
-     char *name,*env;
-     int len;
+void GetenvB(char *name, char *env, int len)
 {
   int ierr,un=1;
   C2F(getenvc)(&ierr,name,env,&len,&un);
@@ -79,9 +72,7 @@ void GetenvB(name,env,len)
  *     out_name must be large enough to get the result 
  ************************************************/
 
-static int Cluni0(env,alias, in_name,out_name,lin)
-     char *env,**alias,*in_name, *out_name ;
-     long int lin;
+static int Cluni0(char *env, char **alias, char *in_name, char *out_name, long int lin)
 {
   int i=0;
   if ( env[0] == '\0' ) return(0);

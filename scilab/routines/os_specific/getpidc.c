@@ -14,8 +14,7 @@
 extern int getpid();
 #endif
 
-int C2F(getpidc)(id1)
-     int *id1;
+int C2F(getpidc)(int *id1)
 {
   *id1=getpid();
   return(0) ;

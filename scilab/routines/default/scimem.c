@@ -25,7 +25,7 @@ void C2F(nofpex)()
   fpsetmask(0);   /* Don't dump core on FPE return Inf or NaN */
 }
 #else
-void C2F(nofpex)()
+void C2F(nofpex)(void)
 {
   return;
 }
@@ -42,8 +42,7 @@ extern struct {
   double stk_1[2];
 } C2F(stack);
 
-integer C2F(scimem)(n,ptr)
-     integer *n, *ptr;
+integer C2F(scimem)(integer *n, integer *ptr)
 {
   char *p1;
   if (*n > 0){
@@ -66,8 +65,7 @@ integer C2F(scimem)(n,ptr)
   }
   return(0);
 }
-integer C2F(scigmem)(n,ptr)
-     integer *n, *ptr;
+integer C2F(scigmem)(integer *n, integer *ptr)
 {
   char *p1;
   if (*n > 0){
@@ -90,12 +88,12 @@ integer C2F(scigmem)(n,ptr)
   }
   return(0);
 }
-void C2F(freegmem)()
+void C2F(freegmem)(void)
 {
   if (the_gps != NULL) free(the_gps);
 }
 
-void C2F(freemem)()
+void C2F(freemem)(void)
 {
   if (the_ps != NULL) free(the_ps);
 }

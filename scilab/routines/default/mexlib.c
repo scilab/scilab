@@ -38,16 +38,13 @@ extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 /* i2sadr: loci adress to loc adress */
 #define i2sadr(l) ( ( (l)/2 ) +1 )
 
-vraiptrst  stkptr(ptr_lstk)
-     Matrix *ptr_lstk;
+vraiptrst  stkptr(long int ptr_lstk)
 {
-  vraiptrst ptr;
-  ptr = C2F(locptr)(stk((int)(ptr_lstk))); 
+  vraiptrst ptr =  C2F(locptr)(stk((long int)(ptr_lstk))); 
   return ptr;
 }
 
-Matrix *loci2ptr(loci)
-     int *loci;
+Matrix *loci2ptr(int *loci)
 {
   Matrix ptr;
   ptr=(Matrix) ((double *)loci-(double *)stkptr(C2F(vstk).Lstk[0])+C2F(vstk).Lstk[0]) ;
@@ -58,8 +55,7 @@ Matrix *loci2ptr(loci)
 
 
 
-int *listentry(loci,i)
-     int *loci; int i;
+int *listentry(int *loci, int i)
 {
   int n, *ptr; /* , lll;*/
   n = loci[1]; 
@@ -74,9 +70,7 @@ int *listentry(loci,i)
   }
 }
 
-double *listentryold(loci,i)
-     int *loci;
-     int i;
+double *listentryold(int *loci, int i)
 {
   int n;
   double *ptr;
@@ -90,8 +84,7 @@ double *listentryold(loci,i)
   }
 }
 
-int theMLIST(loci)
-     int *loci;
+int theMLIST(int *loci)
 {
   if (loci[0]==17 && loci[1]==3 && loci[6]==10) {
     if (loci[14]==12 && loci[15]==14) return 2;  /* CELL   */
@@ -191,10 +184,9 @@ int theMLIST(loci)
  *----------------------------------------------------------------------
  **************************************************************************/
 
-mxClassID mxGetClassID( ptr)
-     Matrix *ptr;
+mxClassID mxGetClassID(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: 
     return mxDOUBLE_CLASS;
@@ -270,7 +262,7 @@ mxClassID mxGetClassID( ptr)
   }
 }
 
-double mxGetEps()
+double mxGetEps(void)
 {
   double eps;
   eps=C2F(dlamch)("e",1L);
@@ -278,14 +270,14 @@ double mxGetEps()
 }
 
 
-double mxGetInf()
+double mxGetInf(void)
 {
   double big;
   big=C2F(dlamch)("o",1L);
   return big*big;
 }
 
-double mxGetNaN()
+double mxGetNaN(void)
 {
 double x,y;
 x=mxGetInf();
@@ -293,40 +285,35 @@ y=x/x;
   return y;
 }
 
-int mxIsInf(x)
-     double x;
+int mxIsInf(double x)
 {
   if (x == x+1)
     return 1;
   else return 0;
 }
 
-int mxIsFinite(x)
-     double x;
+int mxIsFinite(double x)
 {
   if (x < x+1)
     return 1;
   else return 0;
 }
 
-int mxIsNaN(x)
-     double x;
+int mxIsNaN(double x)
 {
   if ( x != x ) 
     return 1;
   else return 0;
 }
 /*******************   C functions              ***************************/
-int *mxGetHeader(ptr)
-     Matrix *ptr;
+int *mxGetHeader(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   return &loci[0];
 }
-int mxGetNumberOfElements(ptr)
-     Matrix *ptr;
+int mxGetNumberOfElements(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int) ptr);
   int m, commonlength;
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
@@ -348,11 +335,10 @@ int mxGetNumberOfElements(ptr)
 }
 
 
-double *mxGetPr(ptr)
-     Matrix *ptr;
+double *mxGetPr(Matrix *ptr)
 {
-  double *loc = (double *) stkptr(ptr);
-  int *loci = (int *) stkptr(ptr);
+  double *loc = (double *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return &loc[2];
@@ -381,11 +367,10 @@ double *mxGetPr(ptr)
 }
 
 
-double *mxGetPi(ptr)
-     Matrix *ptr;
+double *mxGetPi(Matrix *ptr)
 { int debut; int m,n,it;
- double *loc = (double *) stkptr(ptr);
- int *loci = (int *) stkptr(ptr);
+ double *loc = (double *) stkptr((long int)ptr);
+ int *loci = (int *) stkptr((long int)ptr);
  switch (loci[0]) {
  case DOUBLEMATRIX: case INTMATRIX:
    if (loci[3]==0) return NULL;
@@ -412,11 +397,10 @@ double *mxGetPi(ptr)
  }
 }
 
-int mxGetNumberOfDimensions(ptr)
-     Matrix *ptr;
+int mxGetNumberOfDimensions(Matrix *ptr)
 {
   int *loci1;
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
     return 2;
@@ -442,11 +426,10 @@ int mxGetNumberOfDimensions(ptr)
   }
 }
 
-int *mxGetDimensions(ptr)
-     Matrix *ptr;
+int *mxGetDimensions(Matrix *ptr)
 {
   int *loci1;
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int) ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX:
     return &loci[1];
@@ -467,11 +450,10 @@ int *mxGetDimensions(ptr)
   return 0;
 }
 
-int mxGetM(ptr)
-     Matrix *ptr;
+int mxGetM(Matrix *ptr)
 {
   int *loci1;
-  int *loci= (int *) stkptr(ptr);
+  int *loci= (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX: case SPARSEMATRIX:
     return loci[1];
@@ -493,10 +475,9 @@ int mxGetM(ptr)
   }
 }
 
-void mxSetM(ptr,m)
-     Matrix *ptr; int m;
+void mxSetM(Matrix *ptr, int m)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   int oldM; int commonlength; int j;
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
@@ -516,10 +497,9 @@ void mxSetM(ptr,m)
   }
 }
 
-int *mxGetJc(ptr)
-     Matrix *ptr;
+int *mxGetJc(Matrix *ptr)
 {
-  int *loci= (int *) stkptr(ptr);
+  int *loci= (int *) stkptr((long int)ptr);
   if (loci[0] != SPARSEMATRIX) {
     return 0;}
   /*  loci[0]=7;  M=loci[1];  N=loci[2];  it =loci[3];  nzmax=loci[4];
@@ -527,21 +507,19 @@ int *mxGetJc(ptr)
   return &loci[5];
 }
 
-int *mxGetIr(ptr)
-     Matrix *ptr;
+int *mxGetIr(Matrix *ptr)
 {
-  int *loci= (int *) stkptr(ptr);
+  int *loci= (int *) stkptr((long int)ptr);
   /* ... N=loci[2],  nzmax=loci[4]; then Jc,  then Ir   */
   return &loci[5+loci[2]+1];
 }
 
 
-int mxGetN(ptr)
-     Matrix *ptr;
+int mxGetN(Matrix *ptr)
 {
   int ret;int j;
   int *loci1;
-  int *loci= (int *) stkptr(ptr);
+  int *loci= (int *) stkptr((long int)ptr);
   int numberofdim;
 
   switch (loci[0]) {
@@ -574,10 +552,9 @@ int mxGetN(ptr)
 }
 
 
-void mxSetN(ptr,n)
-     Matrix *ptr; int n; 
+void mxSetN(Matrix *ptr, int n)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   int i,m;
   switch (loci[0]) {
   case STRINGMATRIX:
@@ -596,19 +573,17 @@ void mxSetN(ptr,n)
   }
 }
 
-int mxIsString(ptr)
-     Matrix *ptr;
+int mxIsString(Matrix *ptr)
 {
-  int *loci=(int *) stkptr(ptr);
+  int *loci=(int *) stkptr((long int)ptr);
   if (loci[0] == STRINGMATRIX) 
     return 1;
   else return 0;
 } 
 
-int mxIsChar(ptr)
-     Matrix *ptr;
+int mxIsChar(Matrix *ptr)
 {
-  int *loci=(int *) stkptr(ptr);
+  int *loci=(int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case STRINGMATRIX:
     return 1;
@@ -628,86 +603,77 @@ int mxIsChar(ptr)
   } 
 }
 
-int mxIsNumeric(ptr)
-     Matrix *ptr;
+int mxIsNumeric(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] != STRINGMATRIX)
     return 1;
   else
     return 0;
 }
 
-int mxIsDouble(ptr)
-     Matrix *ptr;
+int mxIsDouble(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if ((loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) | ( (loci[0] == MLIST) && (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX)))
     return 1;
   else 
     return 0;
 }
 
-int mxIsEmpty(ptr)
-     Matrix *ptr;
+int mxIsEmpty(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if ( (loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) ) 
     return 1-loci[1]*loci[2];
   else 
     return 0;
 }
 
-int mxIsFull(ptr)
-     Matrix *ptr;
+int mxIsFull(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if ( loci[0] != SPARSEMATRIX)
     return 1;
   else
     return 0;
 }
 
-int mxIsSparse(ptr)
-     Matrix *ptr;
+int mxIsSparse(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] == SPARSEMATRIX) 
     return 1;
   else
     return 0;
 }
 
-int mxIsLogical(ptr)
-     Matrix *ptr;
+int mxIsLogical(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] == LOGICAL) 
     return 1;
   else
     return 0;
 }
 
-void mxSetLogical(ptr)
-     Matrix *ptr;
+void mxSetLogical(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   loci[0] = LOGICAL;
 }
 
-void mxClearLogical(ptr)
-     Matrix *ptr;
+void mxClearLogical(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] != LOGICAL)
     mexErrMsgTxt("Variable is not logical");
   loci[0] = DOUBLEMATRIX;
 }
 
-int mxIsComplex(ptr)
-     Matrix *ptr;
+int mxIsComplex(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX:
     return loci[3];
@@ -723,11 +689,10 @@ int mxIsComplex(ptr)
 }
 
 
-double mxGetScalar(ptr)
-     Matrix *ptr;
+double mxGetScalar(Matrix *ptr)
 { 
-  double *loc = (double *) stkptr(ptr);
-  int *loci = (int *) stkptr(ptr);
+  double *loc = (double *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0] == DOUBLEMATRIX) {
     return  loc[2];
   }
@@ -741,8 +706,7 @@ double mxGetScalar(ptr)
 }
 
 
-void *mxGetData(ptr)
-     Matrix *ptr;
+void *mxGetData(Matrix *ptr)
 {
   return mxGetPr(ptr);
   /*  double *loc = (double *) stkptr(ptr);
@@ -765,21 +729,18 @@ void *mxGetData(ptr)
   }  */
 }
 
-void *mxGetImagData(ptr)
-     Matrix *ptr;
+void *mxGetImagData(Matrix *ptr)
 {
   return mxGetPi(ptr);
 }
 
-void mexErrMsgTxt(error_msg)
-     char *error_msg;
+void mexErrMsgTxt(char *error_msg)
 {
   cerro(error_msg);
   errjump();
 }
 
-Matrix *mxCreateFull(m, n, it)
-     int m, n, it;
+Matrix *mxCreateFull(int m, int n, int it)
 {
   static int lw, lr, lc;
   int k;
@@ -793,10 +754,9 @@ Matrix *mxCreateFull(m, n, it)
   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1];
 }
 
-int mxIsClass( ptr, name)
-     Matrix *ptr; char *name;
+int mxIsClass(Matrix *ptr, char *name)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   switch (loci[0]) {
   case DOUBLEMATRIX: 
     if ( strcmp(name,"double") == 0) return 1;
@@ -823,8 +783,7 @@ int mxIsClass( ptr, name)
   return 0;
 }
 
-Matrix *mxCreateNumericArray(ND, size, CLASS, cmplx) 
-     int ND; int *size; int CLASS; int cmplx;
+Matrix *mxCreateNumericArray(int ND, int *size, int CLASS, int cmplx)
 {
   static int lw,lw1;
   int retval;
@@ -839,8 +798,7 @@ Matrix *mxCreateNumericArray(ND, size, CLASS, cmplx)
   return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
-Matrix *mxCreateCharArray(ND, size)
-     int ND; int *size;
+Matrix *mxCreateCharArray(int ND, int *size)
 {
   static int lw,lw1, CLASS, cmplx;
   int retval;
@@ -856,8 +814,7 @@ Matrix *mxCreateCharArray(ND, size)
 
 }
 
-Matrix *mxCreateCellArray(ND, size)
-     int ND; int *size;
+Matrix *mxCreateCellArray(int ND, int *size)
 {
   Matrix *ppr[1];Matrix *ppl[1];
   int k, nlhs, nrhs;
@@ -877,11 +834,10 @@ Matrix *mxCreateCellArray(ND, size)
 
 
 
-Matrix *mxGetCell(ptr, index)
-     Matrix *ptr; int index;
+Matrix *mxGetCell(Matrix *ptr, int index)
 {
   int *locilist,*lociobj;
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   int k;
   locilist = listentry(loci,3);
   for (k=1;k<5;k++) {
@@ -892,8 +848,7 @@ Matrix *mxGetCell(ptr, index)
 return (Matrix *) 0;
 }
 
-void *mxCalloc(n, size)
-     unsigned int n, size;
+void *mxCalloc(unsigned int n, unsigned int size)
 {
   int m;  vraiptrst lrd;
   m = (n * size) /sizeof(double) + 1;
@@ -903,8 +858,7 @@ void *mxCalloc(n, size)
   return (void *) lrd;
 }
 
-void *mxMalloc(nsize)
-     unsigned int nsize;
+void *mxMalloc(unsigned int nsize)
 {
   int m;  vraiptrst lrd;
   m = (nsize) /sizeof(double) + 1;
@@ -914,19 +868,17 @@ void *mxMalloc(nsize)
   return (void *) lrd;
 }
 
-int mxIsCell(ptr)
-     Matrix *ptr;
+int mxIsCell(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   if (loci[0]==17 && loci[1]==3 && loci[6]==10 && loci[14]==12 && loci[15]==14)
     return 1;
   else return 0;
 }
 
-int mxIsStruct(ptr)
-     Matrix *ptr;
+int mxIsStruct(Matrix *ptr)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   /* mlist(["struct","dims","fields"],
            [d1,..,dk],["f1",...,"fp"],list1(...),listp(...)) */
   if (loci[0]==17 && loci[17]==28 && loci[18]==29 && loci[19]==27)
@@ -939,10 +891,9 @@ int mxIsStruct(ptr)
  * string Matrix pointed to by ptr ( ptr is assumed to be a String Matrix )
  **************************************************************/
 
-int mxGetString(ptr,str,strl)
-     Matrix *ptr;     int  strl;     char *str;
+int mxGetString(Matrix *ptr, char *str, int strl)
 {
-  int *loci = (int *) stkptr(ptr);
+  int *loci = (int *) stkptr((long int)ptr);
   int commonlength, firstchain; 
   int nrows = loci[1];
   /*  int ncols = loci[2]; This is 1 */
@@ -970,8 +921,7 @@ int mxGetString(ptr,str,strl)
  * for (i= rhs -1 ; i >=0 ; i--) mxFreeMatrix(rhs[i]);
  *-------------------------------------------------*/
 
-void mxFreeMatrix(ptr)
-     Matrix *ptr;
+void mxFreeMatrix(Matrix *ptr)
 {
   /* If we free the last stored object we can decrement Nbvars */
   if ( (int)ptr == C2F(vstk).Lstk[Top - Rhs + Nbvars - 1]) 
@@ -981,28 +931,24 @@ void mxFreeMatrix(ptr)
 }
 
 
-void mxDestroyArray(ptr)
-     Matrix *ptr;
+void mxDestroyArray(Matrix *ptr)
 {   /* No need */
   return; 
 }
 
-void mxFree(ptr)
-     Matrix *ptr;
+void mxFree(Matrix *ptr)
 {
   /* No need to free */
   return ;
 }
 
-int mexAtExit(ptr)
-     Matrix *ptr;
+int mexAtExit(Matrix *ptr)
 {
   /* To be done....*/
   return 0;
 }
 
-Matrix *mxCreateSparse(m,n,nzmax,cmplx)
-     int m, n, nzmax, cmplx;
+Matrix *mxCreateSparse(int m, int n, int nzmax, int cmplx)
 {
   static int lw, iprov;
   Nbvars++;
@@ -1019,8 +965,7 @@ Matrix *mxCreateSparse(m,n,nzmax,cmplx)
  * Create on Scilab Stack a 1x1 string matrix filled with string
  **************************************************************/
 
-Matrix *mxCreateString(string)
-     char *string;
+Matrix *mxCreateString(char *string)
 {
   static int i, lw;
   static int one=1;
@@ -1073,8 +1018,7 @@ void  C2F(mexprintf)(va_alist) va_dcl
 */
 
 
-void mexWarnMsgTxt(error_msg)
-     char *error_msg;
+void mexWarnMsgTxt(char *error_msg)
 {
   mexPrintf("Warning: ");
   mexPrintf(error_msg);
@@ -1082,10 +1026,7 @@ void mexWarnMsgTxt(error_msg)
   /*  mexPrintf(strcat("Warning: ",error_msg)); */
 }
 
-int mexCallSCILAB(nlhs, plhs, nrhs, prhs, name)
-     int nlhs, nrhs;
-     Matrix *prhs[];Matrix *plhs[];
-     char *name;
+int mexCallSCILAB(int nlhs, Matrix **plhs, int nrhs, Matrix **prhs, char *name)
 {
   static int i1, i2;
   static int k, kk, nv;
@@ -1119,9 +1060,7 @@ int mexCallSCILAB(nlhs, plhs, nrhs, prhs, name)
   return 1;
 }
 
-int mxCalcSingleSubscript(ptr, nsubs, subs)
-     Matrix *ptr; int nsubs; int *subs;
-
+int mxCalcSingleSubscript(Matrix *ptr, int nsubs, int *subs)
 {
   int k, retval, coeff;
   int *dims = mxGetDimensions(ptr);
@@ -1133,19 +1072,14 @@ int mxCalcSingleSubscript(ptr, nsubs, subs)
   return retval;
 }
 
-int C2F(mexcallscilab)(nlhs, plhs, nrhs, prhs, name, namelen)
-     integer *nlhs,*nrhs;
-     Matrix *plhs[];     Matrix *prhs[];
-     char *name;     int namelen;
+int C2F(mexcallscilab)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs, char *name, int namelen)
 {
   return mexCallSCILAB(*nlhs, plhs, *nrhs, prhs, name);
 }
 
 /** generic mex interface **/
 
-int mex_gateway(fname,F)
-     char *fname;
-     GatefuncH F;
+int mex_gateway(char *fname, GatefuncH F)
 {
   int nlhs,nrhs;
   Matrix * plhs[intersiz];  Matrix * prhs[intersiz];
@@ -1155,9 +1089,7 @@ int mex_gateway(fname,F)
   return 0;
 }
 
-int fortran_mex_gateway(fname,F)
-     char *fname;
-     FGatefuncH F;
+int fortran_mex_gateway(char *fname, FGatefuncH F)
 {
   int nlhs,nrhs;
   Matrix * plhs[intersiz];  Matrix * prhs[intersiz];
@@ -1170,19 +1102,16 @@ int fortran_mex_gateway(fname,F)
 
 /** generic scilab interface **/
 
-int sci_gateway(fname,F)
-     char *fname;
-     GatefuncS F;
+int sci_gateway(char *fname, GatefuncS F)
 {
   (*F)(fname,strlen(fname));
   if (!C2F(putlhsvar)()) {return 0;}
   return 0;
 }
 
-int mxGetElementSize(ptr)
-     Matrix *ptr;
+int mxGetElementSize(Matrix *ptr)
 { int k, it; 
- int *loci = (int *) stkptr(ptr);
+ int *loci = (int *) stkptr((long int)ptr);
  switch (loci[0]) {
  case DOUBLEMATRIX: case SPARSEMATRIX:
    return sizeof(double);
@@ -1211,9 +1140,7 @@ int mxGetElementSize(ptr)
  return 0;
 }
 
-Matrix *mxCreateCharMatrixFromStrings(m, str)
-     int m;
-     char **str;
+Matrix *mxCreateCharMatrixFromStrings(int m, char **str)
 {
   static int i, lr1, lw, ilocal, n, k,kk, nmax;
   nmax = strlen(str[0]);
@@ -1243,8 +1170,7 @@ Matrix *mxCreateCharMatrixFromStrings(m, str)
   return (Matrix *) C2F(vstk).Lstk[lw - 1];
 }
 
-void mexEvalString(name)
-     char *name;
+void mexEvalString(char *name)
 {
   Matrix *ppr[1];Matrix *ppl[1];
   int nlhs;     int nrhs;
@@ -1254,8 +1180,7 @@ void mexEvalString(name)
   return;
 }
 
-mxArray *mexGetArray(name, workspace)
-     char *name; char *workspace;
+mxArray *mexGetArray(char *name, char *workspace)
 {
   int lw;
   C2F(objptr)(name,&lw,strlen(name));
@@ -1264,9 +1189,7 @@ mxArray *mexGetArray(name, workspace)
 
 
 
-int C2F(initmex)(nlhs, plhs, nrhs, prhs)
-     integer *nlhs,*nrhs;
-     Matrix *plhs[];     Matrix *prhs[]; 
+int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 {
   int *loci;int *loci1;
   static int output, k, RhsVar;
@@ -1280,7 +1203,7 @@ int C2F(initmex)(nlhs, plhs, nrhs, prhs)
       RhsVar = k  + Top - Rhs;
       prhs[k-1] = (Matrix *) C2F(vstk).Lstk[RhsVar - 1];
       C2F(intersci).ntypes[k-1]=AsIs;
-      loci = (int *) stkptr(prhs[k-1]);
+      loci = (int *) stkptr((long int)prhs[k-1]);
       switch (loci[0]) {
       case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
 	break;
@@ -1320,15 +1243,12 @@ int C2F(initmex)(nlhs, plhs, nrhs, prhs)
  * A set of utility functions 
  ****************************************************/
 
-vraiptrst C2F(locptr)(x)
-     void *x;
+vraiptrst C2F(locptr)(__builtin_va_list x)
 {
   return((vraiptrst) x);
 }
 
-int C2F(createstkptr)(m, ptr)
-     integer *m;
-     vraiptrst *ptr;
+int C2F(createstkptr)(integer *m, vraiptrst *ptr)
 {
   int lr, n=1, lw;
   Nbvars++;
@@ -1340,10 +1260,7 @@ int C2F(createstkptr)(m, ptr)
   return 1;
 } 
 
-int C2F(createptr)(type, m, n, it, lr, ptr, type_len)
-     char *type;
-     int *m, *n, *it, *lr, *ptr;
-     long int type_len;
+int C2F(createptr)(char *type, int *m, int *n, int *it, int *lr, int *ptr, long int type_len)
 {
   static int lc, lw;
   Nbvars++;
@@ -1355,9 +1272,7 @@ int C2F(createptr)(type, m, n, it, lr, ptr, type_len)
   return 1;
 } 
 
-int C2F(endmex)(nlhs, plhs, nrhs, prhs)
-     integer *nlhs,*nrhs;
-     Matrix *plhs[];     Matrix *prhs[];
+int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 {
   int nv=Nbvars ,kk,k; 
   for (k = 1; k <= *nlhs; k++)
@@ -1381,8 +1296,7 @@ int C2F(endmex)(nlhs, plhs, nrhs, prhs)
  * C functions for Fortran  mexfunctions 
  ****************************************************/
 
-double * C2F(mxgetpr)(ptr)
-     Matrix *ptr;
+double * C2F(mxgetpr)(Matrix *ptr)
 {
   double *loc = (double *) stkptr(*ptr);
   int *loci = (int *) stkptr(*ptr);
@@ -1399,22 +1313,19 @@ double * C2F(mxgetpr)(ptr)
 }
 
 
-double * C2F(mxgetpi)(ptr)
-     Matrix *ptr;
+double * C2F(mxgetpi)(Matrix *ptr)
 {
   double *loc = (double *) stkptr(*ptr);
   return &loc[2 +  C2F(mxgetm)(ptr) *  C2F(mxgetn)(ptr)];
 }
 
-int  C2F(mxgetm)(ptr)
-     Matrix *ptr;
+int  C2F(mxgetm)(Matrix *ptr)
 {
   int *loc= (int *) stkptr(*ptr);
   return loc[1] ;
 }
 
-int  C2F(mxgetn)(ptr)
-     Matrix *ptr;
+int  C2F(mxgetn)(Matrix *ptr)
 {
   int *loc = (int *) stkptr(*ptr);
   if ( loc[0] == STRINGMATRIX) {
@@ -1423,8 +1334,7 @@ int  C2F(mxgetn)(ptr)
   return loc[2] ;
 }
 
-int  C2F(mxisstring)(ptr)
-     Matrix *ptr;
+int  C2F(mxisstring)(Matrix *ptr)
 {
   int *loc=(int *) stkptr(*ptr);
   if (loc[0] == STRINGMATRIX) 
@@ -1432,8 +1342,7 @@ int  C2F(mxisstring)(ptr)
   else return 0;
 } 
 
-int  C2F(mxisnumeric)(ptr)
-     Matrix *ptr;
+int  C2F(mxisnumeric)(Matrix *ptr)
 {
   int *loc = (int *) stkptr(*ptr);
   if ( loc[0] == DOUBLEMATRIX) 
@@ -1442,8 +1351,7 @@ int  C2F(mxisnumeric)(ptr)
     return 0;
 }
 
-int  C2F(mxisfull)(ptr)
-     Matrix *ptr;
+int  C2F(mxisfull)(Matrix *ptr)
 {
   int *loc = (int *) stkptr(*ptr);
   if ( loc[0] == DOUBLEMATRIX) {
@@ -1452,8 +1360,7 @@ int  C2F(mxisfull)(ptr)
   return 0;
 }
 
-int  C2F(mxissparse)(ptr)
-     Matrix *ptr;
+int  C2F(mxissparse)(Matrix *ptr)
 {
   int *loc = (int *) stkptr(*ptr);
   if (loc[0] == SPARSEMATRIX) {
@@ -1463,8 +1370,7 @@ int  C2F(mxissparse)(ptr)
 }
 
 
-int  C2F(mxiscomplex)(ptr)
-     Matrix *ptr;
+int  C2F(mxiscomplex)(Matrix *ptr)
 {
   int *loc = (int *) stkptr(*ptr);
   if (loc[3] == DOUBLEMATRIX) {
@@ -1473,8 +1379,7 @@ int  C2F(mxiscomplex)(ptr)
   return 0;
 }
 
-double  C2F(mxgetscalar)(ptr)
-     Matrix *ptr;
+double  C2F(mxgetscalar)(Matrix *ptr)
 { static int N,nnz;
  double *loc = (double *) stkptr(*ptr);
  int *loci = (int *) stkptr(*ptr);
@@ -1491,9 +1396,7 @@ double  C2F(mxgetscalar)(ptr)
  }
 }
 
-void  C2F(mexprintf)(error_msg,len) 
-     char *error_msg;
-     int len;
+void  C2F(mexprintf)(char *error_msg, int len)
 {
   char * buf;
   if ((buf = (char *)malloc((unsigned)sizeof(char)*(len+1)))
@@ -1507,16 +1410,13 @@ void  C2F(mexprintf)(error_msg,len)
   free(buf);
 }
 
-void C2F(mexerrmsgtxt)(error_msg,len)
-     char *error_msg;
-     int len;
+void C2F(mexerrmsgtxt)(char *error_msg, int len)
 {
   C2F(erro)(error_msg,len);
   errjump();
 }
 
-Matrix *C2F(mxcreatefull)(m, n, it)
-     int *m, *n, *it;
+Matrix *C2F(mxcreatefull)(int *m, int *n, int *it)
 {
   static int lr1;
   int lrd;
@@ -1527,8 +1427,7 @@ Matrix *C2F(mxcreatefull)(m, n, it)
 } 
 
 
-unsigned long int C2F(mxcalloc)(n, size)
-     unsigned int *n, *size;
+unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size)
 {
   int m;
   vraiptrst lrd;
@@ -1539,8 +1438,7 @@ unsigned long int C2F(mxcalloc)(n, size)
   return (unsigned long int) lrd;
 }
 
-int  C2F(mxgetstring)(ptr,str,strl)
-     Matrix *ptr;     int  *strl;     char *str;
+int  C2F(mxgetstring)(Matrix *ptr, char *str, int *strl)
 {
   int *loc = (int *) stkptr(*ptr);
   int commonlength;  int nrows = loc[1];
@@ -1551,16 +1449,13 @@ int  C2F(mxgetstring)(ptr,str,strl)
   return 0;
 }
 
-void C2F(mxfreematrix)(ptr)
-     Matrix *ptr;
+void C2F(mxfreematrix)(Matrix *ptr)
 {
   return ;
 }
 
 
-Matrix * C2F(mxcreatestring)(string,l)
-     char *string;
-     long int l;
+Matrix * C2F(mxcreatestring)(char *string, long int l)
 {
   static int i, lr1, lw, iprov, ilocal; 
   /** i = strlen(string); **/
@@ -1577,8 +1472,7 @@ Matrix * C2F(mxcreatestring)(string,l)
 }
 
 
-int C2F(mxcopyreal8toptr)(y,ptr,n)
-     Matrix *ptr;     double y[];     integer *n;
+int C2F(mxcopyreal8toptr)(double *y, Matrix *ptr, integer *n)
 {
   int one=1;
   double *loc = ((double *) *ptr); 
@@ -1586,8 +1480,7 @@ int C2F(mxcopyreal8toptr)(y,ptr,n)
   return 0;
 }
 
-int C2F(mxcopycomplex16toptr)(y,ptr,pti,n)
-     Matrix *ptr;     Matrix *pti;   double y[];     integer *n;
+int C2F(mxcopycomplex16toptr)(double *y, Matrix *ptr, Matrix *pti, integer *n)
 {
   int one=1; int two=2;
   double *loc = ((double *) *ptr);  
@@ -1597,8 +1490,7 @@ int C2F(mxcopycomplex16toptr)(y,ptr,pti,n)
   return 0;
 }
 
-int C2F(mxcopyptrtoreal8)(ptr,y,n)
-     Matrix *ptr;     double y[];     integer *n;
+int C2F(mxcopyptrtoreal8)(Matrix *ptr, double *y, integer *n)
 {
   int one=1;
   double *loc = ((double *) *ptr); 
@@ -1606,8 +1498,7 @@ int C2F(mxcopyptrtoreal8)(ptr,y,n)
   return 0;
 }
 
-int C2F(mxcopyptrtocomplex16)(ptr,pti,y,n)
-     Matrix *ptr;     Matrix *pti;   double y[];     integer *n;
+int C2F(mxcopyptrtocomplex16)(Matrix *ptr, Matrix *pti, double *y, integer *n)
 {
   int one=1; int two=2;
   double *loc = ((double *) *ptr);

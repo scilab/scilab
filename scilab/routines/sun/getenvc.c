@@ -4,13 +4,11 @@
 #include <string.h>
 
 #include "../graphics/Math.h"
+#include "Sun.h"
 
-void C2F(getenvc)(ierr,var,buf,buflen,iflag)
-     char *var ;
-     char *buf ;
-     int  *buflen,*ierr,*iflag;
+void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
-  char *getenv(),*local;
+  char *getenv(const char *),*local;
   *ierr=0;
 #if defined(THINK_C)||defined(__MWERKS__)
   *buf=0;

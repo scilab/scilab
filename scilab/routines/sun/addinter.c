@@ -9,14 +9,14 @@
 #endif
 #include "men_Sutils.h"
 #include "link.h"
-
 #include "addinter.h" 
+#include "Sun.h"
+
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job));  
 extern int C2F(error)  __PARAMS((integer *n));  
 extern void GetenvB __PARAMS(( char *name,char *env, int len));
-
 
 #ifdef __STDC__
 #include <stdlib.h>
@@ -40,8 +40,10 @@ typedef struct
 
 Iel DynInterf[MAXINTERF];
 static int LastInterf=0;
-static void SciInterInit();
+static void SciInterInit(void);
 static void DynFuntab __PARAMS((int *Scistring,int *ptrstrings,int *nstring,int k1));
+static void ShowInterf(void);
+
 
 int Use_cpp_code;
 char * Use_c_cpp;
@@ -50,16 +52,16 @@ char * Use_c_cpp;
  * Dynamically added interface to Scilab 
  ************************************************/
 
-void C2F(addinter)(descla,ptrdescla,nvla,iname,desc,ptrdesc,nv,
-		   c_cpp,lib_cpp,err)
-     int *desc,*ptrdesc,*nv;         /* ename */
-     int *descla,*ptrdescla,*nvla;   /* files */
-     char *iname;                    /* interface name */
-     char *c_cpp;                    /* C++ compiler */
-     int *lib_cpp;                   /* for cpp library */
-     int *err;
+void C2F(addinter)(int *descla, int *ptrdescla, int *nvla, char *iname,
+		   int *desc, int *ptrdesc, int *nv, char *c_cpp, 
+		   int *lib_cpp, int *err)
+     /* ename */
+     /* files */
+     /* interface name */
+     /* C++ compiler */
+     /* for cpp library */
 {
-  int ierr,i,rhs=2,ilib=0,inum;
+  int i,rhs=2,ilib=0,inum;
   char **files,*names[2];
   *err=0;
 
@@ -140,7 +142,7 @@ void C2F(addinter)(descla,ptrdescla,nvla,iname,desc,ptrdesc,nv,
 }
 
 
-static void SciInterInit()
+static void SciInterInit(void)
 {
   static int first_entry=0;
   if ( first_entry == 0) 
@@ -172,8 +174,7 @@ void hppa_sci_unlink_shared()
  * used in C2F(isciulink)(i) 
  *********************************/
 
-void RemoveInterf(Nshared)
-     int Nshared;
+void RemoveInterf(int Nshared)
 {
   int i;
   for ( i = 0 ; i < LastInterf ; i++ ) 
@@ -190,7 +191,7 @@ void RemoveInterf(Nshared)
  * show the interface table 
  *********************************/
 
-ShowInterf()
+static void ShowInterf(void)
 {
   int i;
   for ( i = 0 ; i < LastInterf ; i++ ) 
@@ -209,9 +210,7 @@ ShowInterf()
  ************************************************/
 
 
-static void DynFuntab(Scistring,ptrstrings,nstring,k1)
-     int *Scistring,*nstring,*ptrstrings;
-     int k1;
+static void DynFuntab(int *Scistring, int *ptrstrings, int *nstring, int k1)
 {
   int id[nsiz],zero=0,trois=3,fptr,fptr1,quatre=4;
   int li=1,ni,*SciS,i;
@@ -234,8 +233,7 @@ static void DynFuntab(Scistring,ptrstrings,nstring,k1)
  * is given by k1=(*k/100)-1
  ************************************************/
 
-void C2F(userlk)(k) 
-     integer *k;
+void C2F(userlk)(integer *k)
 {
   int k1 = *k - (DynInterfStart+1) ;
   int imes = 9999;
@@ -263,13 +261,9 @@ void C2F(userlk)(k)
  * sometimes we need to link several interfaces with the same code 
  ******************************************************/
 
-int  SciLibLoad(num_names,names,files,nums,err)
-     char *names[];
-     char **files;
-     int *err;
-     int nums[],num_names;
+int  SciLibLoad(int num_names, char **names, char **files, int *nums, int *err)
 {
-  int ierr,i,rhs=2,inum,ilib=0,j;
+  int i,rhs=2,inum,ilib=0,j;
   SciLinkInit();
   SciInterInit();
   *err=0;
@@ -322,8 +316,7 @@ int  SciLibLoad(num_names,names,files,nums,err)
 
 #define MAX_ENV 256 
 
-BuildName(name,str)
-     char *name,*str;
+void BuildName(char *name, char *str)
 {
   int  nc= MAX_ENV;
   GetenvB("SCI",name,nc);
@@ -331,17 +324,14 @@ BuildName(name,str)
   strcat(name,str);
 }
 
-CallDynInterf(pos,num_names,namepos,names,nums,files)
-     int *pos;
-     char *names[];
-     char *files[];
-     int namepos,num_names,nums[];
+void CallDynInterf(int *pos, int num_names, int namepos, char **names,
+		  int *nums, char **files)
 {
   int imes = 9999;
   if ( *pos == -1 || DynInterf[*pos].ok == 0) 
     {
       /** need to load or reload the interface **/
-      int pos1, err=0;
+      int err=0;
       SciLibLoad(num_names,names,files,nums,&err);
       if (err != 1) *pos = nums[namepos];
     }
@@ -351,7 +341,6 @@ CallDynInterf(pos,num_names,namepos,names,nums,files)
     {
       sciprint("Interface %s not linked\r\n",DynInterf[*pos].name);
       C2F(error)(&imes);
-      return;
     }
 }  
 

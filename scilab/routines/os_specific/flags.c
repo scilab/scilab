@@ -12,24 +12,22 @@ static int reading = False;
 /* 
    functions to handle echo of typed scilab commands 
 */
-void set_echo_mode(mode)
-int mode;
+void set_echo_mode(int mode)
 {
     echo_mode = mode;
 }
-int get_echo_mode()
+int get_echo_mode(void)
 {
     return(echo_mode);
 }
 /* 
    functions to handle when scilab waits for commands 
 */
-void set_is_reading(mode)
-int mode;
+void set_is_reading(int mode)
 {
     reading = mode;
 }
-int get_is_reading()
+int get_is_reading(void)
 {
     return(reading);
 }

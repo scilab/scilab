@@ -27,19 +27,14 @@ static ffevalf fevalfonc ;
 
 /** function call **/
 
-void C2F(ffeval)(nn,x1,x2,xres,itype,name) 
-     integer *nn,*itype;
-     double *x1,*x2,*xres;
-     char *name;
+void C2F(ffeval)(integer *nn, double *x1, double *x2, double *xres, integer *itype, char *name)
 {
   (*fevalfonc)(nn,x1,x2,xres,itype,name);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfeval)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfeval)(char *name, int *rep)
 {
   fevalfonc = (ffevalf) SetFunction(name,rep,FTab_ffeval);
 }
@@ -55,18 +50,14 @@ static fydotf fydotfonc ;
 
 /** function call **/
 
-void C2F(fydot)(n,t,y,ydot)
-     integer *n;
-     double *t,*y,*ydot;
+void C2F(fydot)(integer *n, double *t, double *y, double *ydot)
 {
   (*fydotfonc)(n,t,y,ydot);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfydot)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfydot)(char *name, int *rep)
 {
   fydotfonc = (fydotf) SetFunction(name,rep,FTab_fydot);
 }
@@ -78,18 +69,14 @@ static fjacf fjacfonc ;
 
 /** function call **/
 
-void C2F(fjac)(neq, t, y, ml, mu, pd, nrpd)
-     integer *neq,*ml,*mu,*nrpd;
-     double *t,*y,*pd;
+void C2F(fjac)(integer *neq, double *t, double *y, integer *ml, integer *mu, double *pd, integer *nrpd)
 {
   (*fjacfonc)(neq, t, y, ml, mu, pd, nrpd);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfjac)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfjac)(char *name, int *rep)
 {
   fjacfonc = (fjacf) SetFunction(name,rep,FTab_fjac);
 }
@@ -104,18 +91,14 @@ static fresf fresfonc ;
 
 /** function call **/
 
-void C2F(fres)(ny,t,y,s,r,ires)
-     integer *ny,*ires;
-     double *t,*y,*s,*r;
+void C2F(fres)(integer *ny, double *t, double *y, double *s, double *r, integer *ires)
 {
   (*fresfonc)(ny,t,y,s,r,ires);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfres)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfres)(char *name, int *rep)
 {
   fresfonc = (fresf) SetFunction(name,rep,FTab_fres);
 }
@@ -125,18 +108,14 @@ void C2F(setfres)(name,rep)
 
 static faddaf faddafonc ;
 
-void C2F(fadda)(ny,t,y,ml,mu,p,nrowp)
-     integer *ny,*ml,*mu,*nrowp;
-     double *t,*y,*p;
+void C2F(fadda)(integer *ny, double *t, double *y, integer *ml, integer *mu, double *p, integer *nrowp)
 {
   (*faddafonc)(ny,t,y,ml,mu,p,nrowp);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfadda)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfadda)(char *name, int *rep)
 {
   faddafonc = (faddaf) SetFunction(name,rep,FTab_fadda);
 }
@@ -148,18 +127,14 @@ static fj2f fj2fonc ;
 
 /** function call **/
 
-void C2F(fj2)(ny,t,y,s,ml,mu,p,nrowp)
-     integer *ny,*ml,*mu,*nrowp;
-     double *t,*y,*s,*p;
+void C2F(fj2)(integer *ny, double *t, double *y, double *s, integer *ml, integer *mu, double *p, integer *nrowp)
 {
   (*fj2fonc)(ny,t,y,s,ml,mu,p,nrowp);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfj2)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfj2)(char *name, int *rep)
 {
   fj2fonc = (fj2f) SetFunction(name,rep,FTab_fj2);
 }
@@ -177,18 +152,14 @@ static dgetxf dgetxfonc ;
 
 /** function call **/
 
-void C2F(dgetx)(x, incr, istart)
-     integer *incr,*istart;
-     double *x;
+void C2F(dgetx)(double *x, integer *incr, integer *istart)
 {
   (*dgetxfonc)(x, incr, istart);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setdgetx)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setdgetx)(char *name, int *rep)
 {
   dgetxfonc = (dgetxf) SetFunction(name,rep,FTab_dgetx);
 }
@@ -198,9 +169,7 @@ void C2F(setdgetx)(name,rep)
 
 static dgetyf dgetyfonc ;
 
-void C2F(dgety)(y, incr, istart)
-     integer *incr,*istart;
-     double *y;
+void C2F(dgety)(double *y, integer *incr, integer *istart)
 {
   (*dgetyfonc)(y, incr, istart);
 }
@@ -208,9 +177,7 @@ void C2F(dgety)(y, incr, istart)
 
 /** fixes the function associated to name **/
 
-void C2F(setdgety)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setdgety)(char *name, int *rep)
 {
   dgetyfonc = (dgetyf) SetFunction(name,rep,FTab_dgety);
 }
@@ -227,18 +194,14 @@ static fcoldgf fcoldgfonc ;
 
 /** function call **/
 
-void C2F(fcoldg)(i,z,dg)
-     integer *i;
-     double *z,*dg;
+void C2F(fcoldg)(integer *i, double *z, double *dg)
 {
   (*fcoldgfonc)(i,z,dg);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfcoldg)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfcoldg)(char *name, int *rep)
 {
   fcoldgfonc = (fcoldgf) SetFunction(name,rep,FTab_fcoldg);
 }
@@ -250,18 +213,14 @@ static fcolgf fcolgfonc ;
 
 /** function call **/
 
-void C2F(fcolg)(i,z,g)
-     integer *i;
-     double *z,*g;
+void C2F(fcolg)(integer *i, double *z, double *g)
 {
   (*fcolgfonc)(i,z,g);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfcolg)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfcolg)(char *name, int *rep)
 {
   fcolgfonc = (fcolgf) SetFunction(name,rep,FTab_fcolg);
 }
@@ -274,17 +233,14 @@ static fcoldff fcoldffonc ;
 
 /** function call **/
 
-void C2F(fcoldf)(x,z,df)
-     double *x,*z,*df;
+void C2F(fcoldf)(double *x, double *z, double *df)
 {
   (*fcoldffonc)(x,z,df);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfcoldf)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfcoldf)(char *name, int *rep)
 {
   fcoldffonc = (fcoldff) SetFunction(name,rep,FTab_fcoldf);
 }
@@ -296,17 +252,14 @@ static fcolff fcolffonc ;
 
 /** function call **/
 
-void C2F(fcolf)(x,z,df)
-     double *x,*z,*df;
+void C2F(fcolf)(double *x, double *z, double *df)
 {
   (*fcolffonc)(x,z,df);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfcolf)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfcolf)(char *name, int *rep)
 {
   fcolffonc = (fcolff) SetFunction(name,rep,FTab_fcolf);
 }
@@ -317,17 +270,14 @@ static fcolguf fcolgufonc ;
 
 /** function call **/
 
-void C2F(fcolgu)(x,z,dmval)
-     double *x,*z,*dmval;
+void C2F(fcolgu)(double *x, double *z, double *dmval)
 {
   (*fcolgufonc)(x,z,dmval);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfcolgu)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfcolgu)(char *name, int *rep)
 {
   fcolgufonc = (fcolguf) SetFunction(name,rep,FTab_fcolgu);
 }
@@ -344,17 +294,14 @@ static fintgf fintgfonc ;
 
 /** function call : WARNING fintg returns a double  **/
 
-double *C2F(fintg)(x)
-     double *x;
+double *C2F(fintg)(double *x)
 {
   return((*fintgfonc)(x));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfintg)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfintg)(char *name, int *rep)
 {
   fintgfonc = (fintgf) SetFunction(name,rep,FTab_fintg);
 }
@@ -370,17 +317,14 @@ static fint2df fint2dfonc ;
 
 /** function call : WARNING fintg returns a double  **/
 
-double *C2F(fint2d)(x,y)
-     double *x,*y;
+double *C2F(fint2d)(double *x, double *y)
 {
   return((*fint2dfonc)(x,y));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfint2d)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfint2d)(char *name, int *rep)
 {
   fint2dfonc = (fint2df) SetFunction(name,rep,FTab_fint2d);
 }
@@ -396,18 +340,14 @@ static fint3df fint3dfonc ;
 
 /** function call : WARNING fintg returns a double  **/
 
-void C2F(fint3d)(xyz,numfun,v)
-     double *xyz,*v;
-     integer *numfun;
+void C2F(fint3d)(double *xyz, integer *numfun, double *v)
 {
   (*fint3dfonc)(xyz,numfun,v);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfint3d)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfint3d)(char *name, int *rep)
 {
   fint3dfonc = (fint3df) SetFunction(name,rep,FTab_fint3d);
 }
@@ -424,18 +364,14 @@ static fsolvff fsolvffonc ;
 
 /** function call : fsolvf  **/
 
-void C2F(fsolvf)(n,x,fvec,iflag)
-     integer *n,*iflag;
-     double *x,*fvec;
+void C2F(fsolvf)(integer *n, double *x, double *fvec, integer *iflag)
 {
   (*fsolvffonc)(n,x,fvec,iflag);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfsolvf)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfsolvf)(char *name, int *rep)
 {
   fsolvffonc = (fsolvff) SetFunction(name,rep,FTab_fsolvf);
 }
@@ -446,18 +382,14 @@ static fsolvjf fsolvjfonc ;
 
 /** function call   **/
 
-void C2F(fsolvj)(n,x,fjac,iflag)
-     double *x,*fjac;
-     integer *n,*iflag;
+void C2F(fsolvj)(integer *n, double *x, double *fjac, integer *iflag)
 {
   (*fsolvjfonc)(n,x,fjac,iflag);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfsolvj)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfsolvj)(char *name, int *rep)
 {
   fsolvjfonc = (fsolvjf) SetFunction(name,rep,FTab_fsolvj);
 }
@@ -474,19 +406,14 @@ static foptimf foptimfonc ;
 
 /** function call : foptim  **/
 
-void C2F(foptim)(indsim,n,x,f,g,izs,rzs,dzs)
-     integer *indsim,*n,*izs;
-     float *rzs;
-     double *x,*f,*g,*dzs;
+void C2F(foptim)(integer *indsim, integer *n, double *x, double *f, double *g, integer *izs, float *rzs, double *dzs)
 {
   (*foptimfonc)(indsim,n,x,f,g,izs,rzs,dzs);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfoptim)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfoptim)(char *name, int *rep)
 {
   foptimfonc = (foptimf) SetFunction(name,rep,FTab_foptim);
 }
@@ -503,18 +430,14 @@ static fschurf fschurfonc ;
 
 /** function call : fschur  **/
 
-integer *C2F(fschur)(lsize,alpha,beta,s,p)
-     integer *lsize;
-     double *alpha,*beta,*s,*p;
+integer *C2F(fschur)(integer *lsize, double *alpha, double *beta, double *s, double *p)
 {
   return((*fschurfonc)(lsize,alpha,beta,s,p));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfschur)(name,rep) 
-     char *name;
-     int *rep;
+void C2F(setfschur)(char *name, int *rep)
 {
   if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
       fschurfonc = (fschurf) SetFunction("folhp",rep,FTab_fschur);
@@ -534,18 +457,14 @@ static schself schselfonc ;
 
 /** function call : schsel  **/
 
-integer *C2F(schsel)(alpha,beta)
-     double *alpha,*beta;
+integer *C2F(schsel)(double *alpha, double *beta)
 {
   return((*schselfonc)(alpha,beta));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setschsel)(len, name,rep) 
-     char *name;
-     int *rep;
-     int *len;
+void C2F(setschsel)(int *len, char *name, int *rep)
 {
   if ( ((strncmp(name,"c",1)== 0 ) && (*len==1)) || strncmp(name,"cont",4)== 0 )
       schselfonc = (schself) SetFunction("sb02mv",rep,FTab_schsel);
@@ -566,18 +485,14 @@ static zchself zchselfonc ;
 
 /** function call : zchsel  **/
 
-integer *C2F(zchsel)(alpha)
-     doublecmplx *alpha;
+integer *C2F(zchsel)(doublecmplx *alpha)
 {
   return((*zchselfonc)(alpha));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setzchsel)(len,name,rep) 
-     char *name;
-     int *rep;
-     int *len;
+void C2F(setzchsel)(int *len, char *name, int *rep)
 {
   if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
       zchselfonc = (zchself) SetFunction("zb02mv",rep,FTab_zchsel);
@@ -597,18 +512,14 @@ static gshself gshselfonc ;
 
 /** function call : gshsel  **/
 
-integer *C2F(gshsel)(alphar,alphai,beta)
-     double *alphar,*alphai,*beta;
+integer *C2F(gshsel)(double *alphar, double *alphai, double *beta)
 {
   return((*gshselfonc)(alphar,alphai,beta));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setgshsel)(len,name,rep) 
-     char *name;
-     int *rep;
-     int *len;
+void C2F(setgshsel)(int *len, char *name, int *rep)
 {
   if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
       gshselfonc = (gshself) SetFunction("sb02ow",rep,FTab_gshsel);
@@ -629,18 +540,14 @@ static gzhself gzhselfonc ;
 
 /** function call : gzhsel  **/
 
-integer *C2F(gzhsel)(alpha,beta)
-     doublecmplx *alpha,*beta;
+integer *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
 {
   return((*gzhselfonc)(alpha,beta));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setgzhsel)(len,name,rep) 
-     char *name;
-     int *rep;
-     int *len;
+void C2F(setgzhsel)(int *len, char *name, int *rep)
 {
   if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
       gzhselfonc = (gzhself) SetFunction("zb02ow",rep,FTab_gzhsel);
@@ -661,9 +568,7 @@ static fydot2f fydot2fonc ;
 
 /** function call **/
 
-void C2F(fydot2)(n,t,y,ydot)
-     integer *n;
-     double *t,*y,*ydot;
+void C2F(fydot2)(integer *n, double *t, double *y, double *ydot)
 {
   integer nd1,iflag1;
   C2F(getcodc)(&nd1,&iflag1);
@@ -672,9 +577,7 @@ void C2F(fydot2)(n,t,y,ydot)
 
 /** fixes the function associated to name **/
 
-void C2F(setfydot2)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfydot2)(char *name, int *rep)
 {
   fydot2fonc = (fydot2f) SetFunction(name,rep,FTab_fydot2);
 }
@@ -690,18 +593,14 @@ static fresdf fresdfonc ;
 
 /** function call **/
 
-void C2F(fresd)(t,y,ydot,res,ires,rpar,ipar)
-      integer *ires,*ipar;
-      double  *t,*y,*ydot,*res,*rpar;
+void C2F(fresd)(double *t, double *y, double *ydot, double *res, integer *ires, double *rpar, integer *ipar)
 {
   (*fresdfonc)(t,y,ydot,res,ires,rpar,ipar);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfresd)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfresd)(char *name, int *rep)
 {
   fresdfonc = (fresdf) SetFunction(name,rep,FTab_fresd);
 }
@@ -713,19 +612,14 @@ static fjacdf fjacdfonc ;
 
 /** function call **/
 
-void C2F(fjacd)(t,y,ydot,pd,cj,rpar,ipar)
-     integer *ipar;
-     double  *t,*y,*ydot,*rpar,*cj,*pd;
-
+void C2F(fjacd)(double *t, double *y, double *ydot, double *pd, double *cj, double *rpar, integer *ipar)
 {
   (*fjacdfonc)(t,y,ydot,pd,cj,rpar,ipar);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfjacd)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfjacd)(char *name, int *rep)
 {
   fjacdfonc = (fjacdf) SetFunction(name,rep,FTab_fjacd);
 }
@@ -738,18 +632,14 @@ static fsurfdf fsurfdfonc ;
 /** function call **/
 
 
-void C2F(fsurfd)(neq,t,y,ng,gout,rpar,ipar)
-     integer *neq,*ng,*ipar;
-     double  *t,*y,*gout,*rpar;
+void C2F(fsurfd)(integer *neq, double *t, double *y, integer *ng, double *gout, double *rpar, integer *ipar)
 {
   (*fsurfdfonc)(neq,t,y,ng,gout,rpar,ipar);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfsurfd)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfsurfd)(char *name, int *rep)
 {
   fsurfdfonc = (fsurfdf) SetFunction(name,rep,FTab_fsurfd);
 }
@@ -764,18 +654,14 @@ static fsurff fsurffonc ;
 
 /** function call **/
 
-void C2F(fsurf)(ny, t, y, ng, gout) 
-      integer *ny,*ng;
-      double  *t,*y,*gout;
+void C2F(fsurf)(integer *ny, double *t, double *y, integer *ng, double *gout)
 {
   (*fsurffonc)(ny, t, y, ng, gout) ;
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfsurf)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfsurf)(char *name, int *rep)
 {
   fsurffonc = (fsurff) SetFunction(name,rep,FTab_fsurf);
 }
@@ -791,18 +677,14 @@ static fbutnf fbutnfonc ;
 
 /** function call **/
 
-void C2F(fbutn)(name,win,entry)
-     char *name;
-     integer *win,*entry;
+void C2F(fbutn)(char *name, integer *win, integer *entry)
 {
   (*fbutnfonc)(name,win,entry);
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setfbutn)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setfbutn)(char *name, int *rep)
 {
   fbutnfonc = (fbutnf) SetFunction(name,rep,FTab_fbutn);
 }
@@ -819,12 +701,7 @@ static interff interffonc ;
 /** function call **/
 
 
-void C2F(interf)(x1 ,x2 ,x3 ,x4 ,x5 ,x6 ,x7 ,x8 ,x9 ,x10,
-		 x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,
-		 x21,x22,x23,x24,x25,x26,x27,x28,x29,x30)
-     void *x1 ,*x2 ,*x3 ,*x4 ,*x5 ,*x6 ,*x7 ,*x8 ,*x9 ,*x10;
-     void *x11,*x12,*x13,*x14,*x15,*x16,*x17,*x18,*x19,*x20;
-     void *x21,*x22,*x23,*x24,*x25,*x26,*x27,*x28,*x29,*x30;
+void C2F(interf)(__builtin_va_list x1, __builtin_va_list x2, __builtin_va_list x3, __builtin_va_list x4, __builtin_va_list x5, __builtin_va_list x6, __builtin_va_list x7, __builtin_va_list x8, __builtin_va_list x9, __builtin_va_list x10, __builtin_va_list x11, __builtin_va_list x12, __builtin_va_list x13, __builtin_va_list x14, __builtin_va_list x15, __builtin_va_list x16, __builtin_va_list x17, __builtin_va_list x18, __builtin_va_list x19, __builtin_va_list x20, __builtin_va_list x21, __builtin_va_list x22, __builtin_va_list x23, __builtin_va_list x24, __builtin_va_list x25, __builtin_va_list x26, __builtin_va_list x27, __builtin_va_list x28, __builtin_va_list x29, __builtin_va_list x30)
 {
   (*interffonc)(x1 ,x2 ,x3 ,x4 ,x5 ,x6 ,x7 ,x8 ,x9 ,x10,
 	       x11,x12,x13,x14,x15,x16,x17,x18,x19,x20,
@@ -832,16 +709,14 @@ void C2F(interf)(x1 ,x2 ,x3 ,x4 ,x5 ,x6 ,x7 ,x8 ,x9 ,x10,
 }
 
 
-void C2F(interf1)(name) char *name;
+void C2F(interf1)(char *name)
 {
   ((interff1) *interffonc)(name,strlen(name));
 }
 
 /** fixes the function associated to name **/
 
-void C2F(setinterf)(name,rep)
-     char *name;
-     int *rep;
+void C2F(setinterf)(char *name, int *rep)
 {
   interffonc = (interff) SetFunction(name,rep,FTab_interf);
 }
@@ -853,10 +728,7 @@ void C2F(setinterf)(name,rep)
  * General functions 
  *******************************************/
 
-voidf SetFunction(name,rep,table)
-     char *name;
-     int *rep;
-     FTAB table[];
+voidf SetFunction(char *name, int *rep, FTAB *table)
 {
   void (*loc)();
   char *s;
@@ -887,10 +759,7 @@ voidf SetFunction(name,rep,table)
  * a ameliorer en utilisant bsearch 
  *******************************************/
 
-static int SearchComp(Ftab,op,realop) 
-     FTAB Ftab[];
-     void (**realop)();
-     char *op;
+static int SearchComp(FTAB *Ftab, char *op, void (**realop) (/* ??? */))
 {
   int i=0;
   while ( Ftab[i].name != (char *) 0) 
@@ -943,11 +812,7 @@ static int SearchComp(Ftab,op,realop)
 
 extern int C2F(vartype) __PARAMS((integer*));
 
-voidf GetFuncPtr(name,n,Table,scifun,ifunc,lhs,rhs)
-        char *name;
-        int n,*lhs,*rhs,*ifunc;
-        FTAB *Table; 
-        voidf scifun;
+voidf GetFuncPtr(char *name, int n, FTAB *Table, voidf scifun, int *ifunc, int *lhs, int *rhs)
 {
   int type,rep,mm,nn,nlhs,nrhs;
   voidf f;

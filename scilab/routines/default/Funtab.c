@@ -1,18 +1,16 @@
-/**************************************
- * Copyright Jean-Philippe Chancelier 
- * ENPC 
+/*-------------------------------------------------------
+ * Scilab function table 
+ * Copyright ENPC Jean-Philippe Chancelier 
  * See Also copyright bellow 
- **************************************/
+ *-------------------------------------------------------*/
 
 #include <string.h>
 #include <stdio.h>
-#ifdef __STDC__
 #include <stdlib.h>
-#else
-#include <malloc.h>
-#endif
 
 #include "../machine.h"
+
+extern  int C2F(cvname) __PARAMS((integer *,char *,integer *, unsigned long int));
 
 /** size of name code in scilab int id[NAMECODE] */
 
@@ -32,12 +30,12 @@ typedef enum {
 } ACTION;
 
 
-static int	 myhcreate();
+static int	 myhcreate(unsigned int nel);
 /* static void	 myhdestroy(); */
-static int 	 myhsearch();
-static int Eqid();
-static void  Init() ;
-static int backsearch();
+static int 	 myhsearch(int *key, int *data, int *level, ACTION action);
+static int Eqid(int *x, int *y);
+static void  Init(void) ;
+static int backsearch(int *key, int *data);
 
 #ifdef TEST 
 static  int C2F(cvname) __PARAMS((integer *id, char *str, integer *job,long int str_len));
@@ -91,8 +89,7 @@ Funcs SciFuncs[]={
  ************************************************************/
 
 
-int C2F(funtab)(id,fptr,job)
-     int id[NAMECODE],*fptr,*job;
+int C2F(funtab)(int *id, int *fptr, int *job)
 {
   int level=0;
   Init();
@@ -205,20 +202,6 @@ C2F(cvname)(id,str,n1,n2)
 }
 
 
-#endif  /********************* end of test part ***/
-  
-static int EnterStr(str,dataI,data,level)
-     char *str;
-     int  *data,*dataI,*level;
-{
-  int ldata;
-  int id[NAMECODE];
-  int zero=0;
-  C2F(cvname)(id,str,&zero,strlen(str));
-  ldata= (*dataI)*100+*data;
-  return( myhsearch(id,&ldata,level,ENTER));
-}
-
 static void DeleteStr(str,data,level)
      char *str;
      int  *data,*level;
@@ -240,7 +223,19 @@ static int FindStr(str,data,level)
 }
 
 
-static void  Init() 
+#endif  /********************* end of test part ***/
+  
+static int EnterStr(char *str, int *dataI, int *data, int *level)
+{
+  int ldata;
+  int id[NAMECODE];
+  int zero=0;
+  C2F(cvname)(id,str,&zero,strlen(str));
+  ldata= (*dataI)*100+*data;
+  return( myhsearch(id,&ldata,level,ENTER));
+}
+
+static void  Init(void)
 {
   static int firstentry = 0;
   int j=0;
@@ -368,8 +363,7 @@ static unsigned   filled;
  */
 
 static int
-isprime(number)
-unsigned number;
+isprime(unsigned int number)
 {
     /* no even number will be passed */
     unsigned div = 3;
@@ -389,8 +383,7 @@ unsigned number;
  * becomes zero.
  */
 
-static int myhcreate(nel)
-     unsigned nel;
+static int myhcreate(unsigned int nel)
 {
     /* There is still another table active. Return with error. */
     if (htable != NULL)
@@ -430,8 +423,7 @@ myhdestroy()
 
 /** from data to key **/
 
-static int backsearch(key,data)
-     int key[],*data;
+static int backsearch(int *key, int *data)
 {
   unsigned int i;
   for ( i = 0 ; i < hsize ; i++ ) 
@@ -466,9 +458,7 @@ static int backsearch(key,data)
  ******************************************************************************/
 
 
-static int myhsearch(key,data,level, action)
-     int key[],*data,*level;
-     ACTION action;
+static int myhsearch(int *key, int *data, int *level, ACTION action)
 {
   register unsigned hval;
   register unsigned hval2;
@@ -579,8 +569,7 @@ static int myhsearch(key,data,level, action)
 }
 
 
-static int Eqid(x,y) 
-     int x[NAMECODE],y[NAMECODE];
+static int Eqid(int *x, int *y)
 {
   int i;
   for (i = 0; i < NAMECODE ; i++ ) 

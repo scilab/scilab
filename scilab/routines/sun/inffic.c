@@ -22,9 +22,7 @@ static char *dataStrings[] = {
  * get string associated with iopt 
  ******************************************/
 
-void C2F(inffic)(iopt,name,nc)
-     integer *iopt,*nc;
-     char *name;
+void C2F(inffic)(integer *iopt, char *name, integer *nc)
 {
   *nc=strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
   strcpy(name,dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
@@ -34,8 +32,7 @@ void C2F(inffic)(iopt,name,nc)
  * just get string length 
  ******************************************/
 
-void C2F(infficl)(iopt,nc)
-     integer *iopt,*nc;
+void C2F(infficl)(integer *iopt, integer *nc)
 {
   *nc=strlen(dataStrings[Max(Min(*iopt-1,MAXDATA),0)]);
 }

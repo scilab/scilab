@@ -39,7 +39,7 @@ static char tmp_dir[256],buf[256];
  * and fixes the TMPDIR env variable
  ****************************/
 
-void C2F(settmpdir)()
+void C2F(settmpdir)(void)
 {
   static int first =0;
   if ( first == 0 ) 
@@ -66,7 +66,7 @@ void C2F(settmpdir)()
  * get a reference to tmp_dir 
  ****************************/
 
-char *get_sci_tmp_dir() 
+char *get_sci_tmp_dir(void)
 {
   /* just in case */
   C2F(settmpdir)();
@@ -81,7 +81,7 @@ char *get_sci_tmp_dir()
   extern void hppa_sci_unlink_shared();
 #endif
 
-void C2F(tmpdirc)()
+void C2F(tmpdirc)(void)
 {
   char *tmp_dir = get_sci_tmp_dir(); 
 #ifdef WIN32 
