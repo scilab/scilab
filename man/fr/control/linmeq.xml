@@ -328,7 +328,8 @@ norm(A'*X'*X*A - X'*X +C'*C,1)
  ]]>
 </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>sldsyl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>sllyap</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slstei</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slstly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slstst</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>slsylv</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sylv</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>lyap</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>H. Xu, TU Chemnitz, FR Germany, Dec. 1998.  </AUTHOR>
 
