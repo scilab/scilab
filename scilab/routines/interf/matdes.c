@@ -2711,7 +2711,15 @@ int scixset(fname,fname_len)
   LhsVar(1)=0;
   return 0;
 
- OK:  
+ OK:
+  /* Allan CORNET Avril 2004 */
+  /* Bloque la commande xset('window') sans numero de fenetre */
+  if (Rhs == 1 && (strncmp(cstk(l1),"window",6L) == 0) )
+  {
+	sciprint("xset(\"window\",window-number): window-number must be set\r\n");
+	LhsVar(1)=0; return 0;
+  }
+
   if (Rhs == 2 && VarType(2) != 1) 
    {
       /* second argument is not a scalar it must be a string */ 
