@@ -19,7 +19,7 @@ case 'set' then
   if size(exprs,'*')==4 then exprs(4)=' ';exprs(5)=' ';end //compatibility
   if size(model.dstate,'*')<>6 then model.dstate=[0;-1;0;0;1;1];end //compatibility
   while %t do
-    [ok,font,fontsize,color,nt,nd,herit,exprs]=getvalue(..
+    [ok,font,fontsize,colr,nt,nd,herit,exprs]=getvalue(..
 	'Set  parameters',..
 	['Font number';
 	 'Font size';
@@ -65,7 +65,7 @@ case 'set' then
       [model,graphics,ok]=check_io(model,graphics,1,[],ones(1-herit,1),[])
     end
     if ok then
-      model.ipar=[font;fontsize;color;xget('window');nt;nd];
+      model.ipar=[font;fontsize;colr;xget('window');nt;nd];
       model.evtin=ones(1-herit,1)
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model
@@ -73,10 +73,10 @@ case 'set' then
     end
   end
 case 'define' then
-  font=1;fontsize=1;color=1;nt=9;nd=2;
+  font=1;fontsize=1;colr=1;nt=9;nd=2;
   exprs=[string(font);
       string(fontsize);
-      string(color);
+      string(colr);
       string(nt);
       string(nd);string(0)]
   model=scicos_model()
@@ -84,7 +84,7 @@ case 'define' then
   model.in=1
   model.evtin=1
   model.dstate=[0;-1;0;0;1;1]
-  model.ipar=[font;fontsize;color;1000;nt;nd]
+  model.ipar=[font;fontsize;colr;1000;nt;nd]
   model.blocktype='c'
   model.firing=[]
   model.dep_ut=[%t %f]
