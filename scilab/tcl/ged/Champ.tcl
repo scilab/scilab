@@ -172,7 +172,7 @@ label $w.frame.arrowlab -text "     Arrow size:   "
 entry $w.frame.arrow -relief sunken  -textvariable curarrowsize
 pack   $w.frame.arrowlab $w.frame.arrow -in $w.frame.ar -side left -fill x -pady 1.m -padx 1.m 
 bind  $w.frame.arrow <Return> {SelectArrowSize}
-
+bind  $w.frame.arrow <KP_Enter> {SelectArrowSize}
 
 #colored
 frame $w.frame.col -borderwidth 0
@@ -340,6 +340,8 @@ pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -
 pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
@@ -362,6 +364,8 @@ pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -p
 pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datah <KP_Enter> "SelectClipBox $w9.frame"
 
 
 frame $w9.frame.warning

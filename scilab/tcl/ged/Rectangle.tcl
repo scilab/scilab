@@ -257,6 +257,9 @@ pack $w.frame.labelz  $w.frame.dataz  -in  $w.frame.lb22 -side left -fill x -pad
 bind  $w.frame.datax <Return> {SelectXval} 
 bind  $w.frame.datay <Return> {SelectYval} 
 bind  $w.frame.dataz <Return> {SelectZval} 
+bind  $w.frame.datax <KP_Enter> {SelectXval} 
+bind  $w.frame.datay <KP_Enter> {SelectYval} 
+bind  $w.frame.dataz <KP_Enter> {SelectZval} 
 
 #----------------------------#
 frame $w.frame.lb3 -borderwidth 0
@@ -279,6 +282,8 @@ pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady
 pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 2m -padx 2m
 bind  $w.frame.dataw <Return> {SelectWval} 
 bind  $w.frame.datah <Return> {SelectHval} 
+bind  $w.frame.dataw <KP_Enter> {SelectWval} 
+bind  $w.frame.datah <KP_Enter> {SelectHval} 
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -344,6 +349,8 @@ pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -
 pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
@@ -366,6 +373,8 @@ pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -p
 pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datah <KP_Enter> "SelectClipBox $w9.frame"
 
 
 frame $w9.frame.warning

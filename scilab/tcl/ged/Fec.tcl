@@ -144,6 +144,8 @@ pack $w.frame.zbmin -in  $w.frame.zb  -side left -fill x -pady 2m -padx 2m
 pack $w.frame.zbmax -in  $w.frame.zb  -side left -fill x -pady 2m -padx 2m
 bind  $w.frame.zbmin <Return> {setZb} 
 bind  $w.frame.zbmax <Return> {setZb} 
+bind  $w.frame.zbmin <KP_Enter> {setZb} 
+bind  $w.frame.zbmax <KP_Enter> {setZb} 
 
 
 
@@ -221,6 +223,7 @@ pack  $w.scicom.label1 -in $w.scicom -side left
 entry $w.scicom.text1 -relief sunken -textvariable scicomint_data
 set_balloon $w.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
 bind  $w.scicom.text1 <Return> "sciCommandData"
+bind  $w.scicom.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicom.text1  -side left  -fill both -expand yes
 
@@ -234,6 +237,7 @@ pack  $w.scicomT.label1 -in $w.scicomT -side left
 entry $w.scicomT.text1 -relief sunken -textvariable scicomint_triangles
 set_balloon $w.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
 bind  $w.scicomT.text1 <Return> "sciCommandTriangles"
+bind  $w.scicomT.text1 <KP_Enter> "sciCommandTriangles"
 
 pack $w.scicomT.text1  -side left  -fill both -expand yes
 

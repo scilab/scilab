@@ -145,6 +145,7 @@ entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name
 pack $w.frame.figlabel -in  $w.frame.lbfig -side left
 pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.figlabel1 <Return> {setFiglabel} 
+bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel} 
 
 #figure id
 #label tout court non modifiable
@@ -165,7 +166,7 @@ entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
 pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 2m -padx 2m -side left 
 bind  $w.frame.xfigposlabel1 <Return> {setFigPos} 
-
+bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos} 
 
 #figure position y
 frame $w.frame.yfigpos -borderwidth 0
@@ -176,6 +177,7 @@ entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
 pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 2m -padx 2m -side left 
 bind  $w.frame.yfigposlabel1 <Return> {setFigPos} 
+bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos} 
 
 #figure size x
 frame $w.frame.xfigsiz -borderwidth 0
@@ -186,7 +188,7 @@ entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
 pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz} 
-
+bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz} 
 
 #figure size y
 frame $w.frame.yfigsiz -borderwidth 0
@@ -197,7 +199,7 @@ entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
 pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz} 
-
+bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz} 
 
 #axes size x
 frame $w.frame.xaxesiz -borderwidth 0
@@ -208,7 +210,7 @@ entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
 pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz} 
-
+bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz} 
 
 #axes size y
 frame $w.frame.yaxesiz -borderwidth 0
@@ -219,7 +221,7 @@ entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
 pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 2m -padx 2m -side left 
 bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz} 
-
+bind  $w.frame.yaxesizlabel1 <KP_Enter> {setAxeSiz} 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
@@ -347,6 +349,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set aa [expr 10+(1*150)]
     entry  $w.frame.c.reddata$i  -relief sunken  -textvariable RED($i)
     bind  $w.frame.c.reddata$i <Return> "setRedColor $w $i "
+    bind  $w.frame.c.reddata$i <KP_Enter> "setRedColor $w $i "
 #location help balloon	
     set_balloon $w.frame.c.reddata$i "Row: $i Column: 1"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.reddata$i
@@ -355,6 +358,8 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set aa [expr 10+(2*150)]
     entry  $w.frame.c.gredata$i  -relief sunken  -textvariable GREEN($i)
     bind  $w.frame.c.gredata$i <Return> "setGreenColor $w $i "
+    bind  $w.frame.c.gredata$i <KP_Enter> "setGreenColor $w $i "
+#location help balloon	
 #location help balloon	
     set_balloon $w.frame.c.gredata$i "Row: $i Column: 2"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.gredata$i
@@ -363,6 +368,7 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     set aa [expr 10+(3*150)]
     entry  $w.frame.c.bludata$i  -relief sunken  -textvariable BLUE($i)
     bind  $w.frame.c.bludata$i <Return> "setBlueColor  $w $i "
+    bind  $w.frame.c.bludata$i <KP_Enter> "setBlueColor  $w $i "
 #location help balloon	
     set_balloon $w.frame.c.bludata$i "Row: $i Column: 3"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.bludata$i
@@ -401,6 +407,7 @@ pack  $w.scicom.label1 -in $w.scicom -side left
 entry $w.scicom.text1 -relief sunken -textvariable scicomint_colormap
 set_balloon $w.scicom.text1 "Enter a graycolormap(COLOR_NUMBER), hotcolormap(COLOR_NUMBER)\n or jetcolormap(COLOR_NUMBER) call to initialize the \"colormap\" field."
 bind  $w.scicom.text1 <Return> "sciCommandColormap"
+bind  $w.scicom.text1 <KP_Enter> "sciCommandColormap"
 
 pack $w.scicom.text1  -side left -fill both -expand yes
 

@@ -244,6 +244,7 @@ pack  $w.scicomX.label1 -in $w.scicomX -side left
 entry $w.scicomX.text1 -relief sunken -textvariable scicomint_dataX
 set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"X data\" field."
 bind  $w.scicomX.text1 <Return> "sciCommandData"
+bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomX.text1  -side left  -fill both -expand yes
 
@@ -257,6 +258,7 @@ pack  $w.scicomY.label1 -in $w.scicomY -side left
 entry $w.scicomY.text1 -relief sunken -textvariable scicomint_dataY
 set_balloon $w.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"Y data\" field."
 bind  $w.scicomY.text1 <Return> "sciCommandData"
+bind  $w.scicomY.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomY.text1  -side left  -fill both -expand yes
 
@@ -270,6 +272,7 @@ pack  $w.scicomZ.label1 -in $w.scicomZ -side left
 entry $w.scicomZ.text1 -relief sunken -textvariable scicomint_dataZ
 set_balloon $w.scicomZ.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call\n to initialize the \"Z data\" field."
 bind  $w.scicomZ.text1 <Return> "sciCommandData"
+bind  $w.scicomZ.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomZ.text1  -side left  -fill both -expand yes
 

@@ -202,6 +202,7 @@ pack $w.frame.cas -anchor w -fill both
 label $w.frame.subticslab -height 0 -text "            Subtics: " -width 0 
 entry $w.frame.subtics  -relief sunken  -textvariable cursubtics
 bind  $w.frame.subtics  <Return> "SelectSubtics  $w.frame"
+bind  $w.frame.subtics  <KP_Enter> "SelectSubtics  $w.frame"
 pack  $w.frame.subticslab  $w.frame.subtics  -in  $w.frame.cas   -side left -fill x -pady 2m -padx 2m
 
 
@@ -263,6 +264,7 @@ if { $nbcolX == 1} {
     label $w.frame.xcoordlab -height 0 -text "    Xtics coord:   " -width 0 
     entry $w.frame.xcoord  -relief sunken  -textvariable xticscoord
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord  $w.frame"
+    bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord  $w.frame"
     pack  $w.frame.xcoordlab  $w.frame.xcoord  -in  $w.frame.cas1_1   -side left -fill x -pady 1.m -padx 1.m
 
     #sep bar
@@ -287,6 +289,7 @@ if { $nbcolX == 1} {
 #    pack $w.frame.scroll  -in  $w.frame.cas2_1 -side right -fill y
     entry $w.frame.xcoord  -relief sunken  -textvariable xticscoord
     bind  $w.frame.xcoord  <Return> "SelectXticsCoord2  $w.frame"
+    bind  $w.frame.xcoord  <KP_Enter> "SelectXticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
     pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 1.m -padx 1.m
     
@@ -296,6 +299,7 @@ if { $nbcolX == 1} {
     label $w.frame.ticslabellab -height 0 -text "    Tics Labels:   " -width 0 
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
+    bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
     pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 1.m -padx 1.m
 
@@ -352,6 +356,7 @@ if { $nbcolY == 1} {
     label $w.frame.xcoordlab -height 0 -text "    Ytics coord:   " -width 0 
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord  $w.frame"
+    bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord  $w.frame"
     pack  $w.frame.xcoordlab  $w.frame.xcoord  -in  $w.frame.cas1_1   -side left -fill x -pady 1.m -padx 1.m
 
     #sep bar
@@ -371,6 +376,7 @@ if { $nbcolY == 1} {
     label $w.frame.xcoordlab -height 0 -text "    Ytics coord:   " -width 0 
     entry $w.frame.xcoord  -relief sunken  -textvariable yticscoord
     bind  $w.frame.xcoord  <Return> "SelectYticsCoord2  $w.frame"
+    bind  $w.frame.xcoord  <KP_Enter> "SelectYticsCoord2  $w.frame"
     pack  $w.frame.xcoordlab  -in  $w.frame.cas2_1 -side left
     pack  $w.frame.xcoord  -in  $w.frame.cas2_1 -expand 1 -fill x -pady 1.m -padx 1.m
     
@@ -380,6 +386,7 @@ if { $nbcolY == 1} {
     label $w.frame.ticslabellab -height 0 -text "    Tics Labels:   " -width 0 
     entry $w.frame.ticslabel  -relief sunken  -textvariable curticslabel
     bind  $w.frame.ticslabel  <Return> "SelectTicsLabels  $w.frame"
+    bind  $w.frame.ticslabel  <KP_Enter> "SelectTicsLabels  $w.frame"
     pack  $w.frame.ticslabellab  -in  $w.frame.cas2_2   -side left
     pack  $w.frame.ticslabel  -in  $w.frame.cas2_2 -expand 1 -fill x -pady 1.m -padx 1.m
 
@@ -470,6 +477,8 @@ pack $w9.frame.labelx  $w9.frame.datax  -in  $w9.frame.lb2 -side left  -fill x -
 pack $w9.frame.labely  $w9.frame.datay  -in  $w9.frame.lb21 -side left -fill x -pady 1.m -padx 1.m 
 bind  $w9.frame.datax <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datay <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.datax <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datay <KP_Enter> "SelectClipBox $w9.frame"
 
 #----------------------------#
 frame $w9.frame.lb3 -borderwidth 0
@@ -492,6 +501,8 @@ pack $w9.frame.labelw  $w9.frame.dataw -in  $w9.frame.lb4  -side left -fill x -p
 pack $w9.frame.labelh  $w9.frame.datah -in  $w9.frame.lb41 -side left -fill x -pady 1.m -padx 1.m
 bind  $w9.frame.dataw <Return> "SelectClipBox $w9.frame"
 bind  $w9.frame.datah <Return> "SelectClipBox $w9.frame"
+bind  $w9.frame.dataw <KP_Enter> "SelectClipBox $w9.frame"
+bind  $w9.frame.datah <KP_Enter> "SelectClipBox $w9.frame"
 
 
 frame $w9.frame.warning

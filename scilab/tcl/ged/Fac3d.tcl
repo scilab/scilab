@@ -312,6 +312,7 @@ pack  $w.scicomX.label1 -in $w.scicomX -side left
 entry $w.scicomX.text1 -relief sunken -textvariable scicomint_dataX
 set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector or matrix)\n to initialize the \"X data\" field."
 bind  $w.scicomX.text1 <Return> "sciCommandData"
+bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomX.text1  -side left  -fill both -expand yes
 
@@ -325,6 +326,7 @@ pack  $w.scicomY.label1 -in $w.scicomY -side left
 entry $w.scicomY.text1 -relief sunken -textvariable scicomint_dataY
 set_balloon $w.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector or matrix)\n to initialize the \"Y data\" field."
 bind  $w.scicomY.text1 <Return> "sciCommandData"
+bind  $w.scicomY.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomY.text1  -side left  -fill both -expand yes
 
@@ -338,6 +340,7 @@ pack  $w.scicomZ.label1 -in $w.scicomZ -side left
 entry $w.scicomZ.text1 -relief sunken -textvariable scicomint_dataZ
 set_balloon $w.scicomZ.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"Z data\" field."
 bind  $w.scicomZ.text1 <Return> "sciCommandData"
+bind  $w.scicomZ.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomZ.text1  -side left  -fill both -expand yes
 
@@ -351,6 +354,7 @@ pack  $w.scicomCOLOR.label1 -in $w.scicomCOLOR -side left
 entry $w.scicomCOLOR.text1 -relief sunken -textvariable scicomint_dataCOLOR
 set_balloon $w.scicomCOLOR.text1 "Enter a variable defined in Scilab Console representing\n a integer matrix or use a macro call (defining a matrix)\n to initialize the \"Color data\" field."
 bind  $w.scicomCOLOR.text1 <Return> "sciCommandData"
+bind  $w.scicomCOLOR.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomCOLOR.text1  -side left  -fill both -expand yes
 

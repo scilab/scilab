@@ -208,6 +208,7 @@ pack  $w.scicomX.label1 -in $w.scicomX -side left
 entry $w.scicomX.text1 -relief sunken -textvariable scicomint_data
 set_balloon $w.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"data\" field."
 bind  $w.scicomX.text1 <Return> "sciCommandData"
+bind  $w.scicomX.text1 <KP_Enter> "sciCommandData"
 
 pack $w.scicomX.text1  -side left  -fill both -expand yes
 

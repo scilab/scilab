@@ -136,7 +136,7 @@ entry $w.frame.xlabel1 -relief sunken  -textvariable curtext
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setText} 
-
+bind  $w.frame.xlabel1 <KP_Enter> {setText} 
 
 
 ###############
