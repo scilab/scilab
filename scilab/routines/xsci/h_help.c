@@ -22,25 +22,27 @@
 #include "../stack-c.h"
 #include "../sun/h_help.h"
 #include "../graphics/Math.h"
-
+#include "All-extern.h"
 
 extern Widget   toplevel;
 extern Atom     wm_delete_window;
-extern  char  *getenv();
+extern  char  *getenv(const char *);
 extern Widget initColors  __PARAMS((Widget));  
 
 /** a terminer : normalement c'est statique plus une action **/
 
-void            popupHelpPanel();
+void            popupHelpPanel(void);
 
-static void     initHelpWidgets();
-static void     helpCallback();
-static void     helpCallback1();
-static void     helpDoneAction();
-static void     queryAproposAction();
-static void MyXawListChange();
-static int NewString();
+static void initHelpWidgets(void);
+static void helpCallback(Widget w, XtPointer client_data, XtPointer call_data);
+static void helpCallback1(Widget w, XtPointer client_data, XtPointer call_data);
+static void helpDoneAction(Widget w, XEvent *event, String *params, Cardinal *num_params);
+static void queryAproposAction(Widget w, XEvent *event, String *params, Cardinal *num_params);
+static void MyXawListChange(Widget w, char **help, int ntopic, int f1, int f2);
+static int NewString(char **hstr, char *line);
 
+static int CopyListForWidget(char ***help_c,char **help, int ntopic);
+static int FreeWidgetList( char **help_c,  int ntopic);
 /*
  * Data defined here 
  */
@@ -52,9 +54,11 @@ static Widget   aproposInfo;
 
 static Boolean  isPoppedUp;
 
+static void popupHelpPanelAction(Widget w,XEvent* event,String* params,Cardinal* num_params);
+
 static XtActionsRec actionTable[] = 
 {
-  {"help", popupHelpPanel},
+  {"help", popupHelpPanelAction},
   {"help-done", helpDoneAction},
   {"query-apropos", queryAproposAction},
 };
@@ -63,15 +67,20 @@ static XtActionsRec actionTable[] =
  * Help Popup 
  *************************************************************/
 
-void initHelpActions(appContext)
-     XtAppContext    appContext;
+void initHelpActions(XtAppContext appContext)
 {
   XtAppAddActions(appContext, actionTable, XtNumber(actionTable));
 }
 
 static int using_menu_help =0;
 
-void popupHelpPanel()
+
+static void popupHelpPanelAction(Widget w,XEvent* event,String* params,Cardinal* num_params)
+{
+  popupHelpPanel();
+}
+
+void popupHelpPanel(void)
 {
   if (isPoppedUp) 
     {
@@ -98,7 +107,7 @@ void popupHelpPanel()
     }
 }
 
-int help_popped_status()
+int help_popped_status(void)
 {
   return(using_menu_help);
 }
@@ -108,8 +117,7 @@ int help_popped_status()
  *********************************************/
 
 
-static void helpSetHints(topW)
-     Widget topW;
+static void helpSetHints(Widget topW)
 {
  XSizeHints		size_hints;
  size_hints.width	= 680;
@@ -127,7 +135,7 @@ static void helpSetHints(topW)
 
 
 static void
-initHelpWidgets()
+initHelpWidgets(void)
 {
   Widget          form,color;
   char            buf[64];
@@ -186,8 +194,7 @@ initHelpWidgets()
 
 /* meme chose mais appel r'eduit pour appel a partir de C */
 
-void help_info(message,str1,str2)
-     char *message,*str1,*str2;
+void help_info(char *message, char *str1, char *str2)
 {
   char buf[56];
   Arg args[1];
@@ -204,8 +211,7 @@ void help_info(message,str1,str2)
  * chapter i
  **************************************/
 
-void changeHelpList(i)
-     int  i;
+void changeHelpList(int i)
 {
   setHelpTopicInfo(i);
   if (nTopicInfo > 0)
@@ -214,23 +220,18 @@ void changeHelpList(i)
 
 /** Changes Widget List with a copy of help **/
 
-static void MyXawListChange(w,help,ntopic,f1,f2)
-     Widget w;
-     char **help;
-     int ntopic,f1,f2;
+static void MyXawListChange(Widget w, char **help, int ntopic, int f1, int f2)
 {
   static char **help_c=(char **)0,**help_c1;
   static int ntopic_c=0;
-  if ( CopyListForWidget(&help_c1,help,ntopic,f1,f2) == 1) return;
+  if ( CopyListForWidget(&help_c1,help,ntopic) == 1) return;
   if ( help_c != ( char **) 0) FreeWidgetList( help_c,ntopic_c);
   help_c = help_c1;
   ntopic_c = ntopic;
   XawListChange(w,help_c,ntopic,f1,f2);
 }
 
-int CopyListForWidget( help_c,help,ntopic)
-     char ***help_c,**help;
-     int ntopic;
+static int CopyListForWidget(char ***help_c,char **help, int ntopic)
 {
   int k;
   *help_c = (char **) MALLOC((ntopic + 1) * sizeof(char *));
@@ -260,8 +261,7 @@ int CopyListForWidget( help_c,help,ntopic)
 }
 
 
-static int NewString(hstr,line)
-     char **hstr, *line;
+static int NewString(char **hstr, char *line)
 {
   *hstr = (char *) MALLOC((strlen(line) + 1) * (sizeof(char)));
   if ( (*hstr) == NULL)
@@ -273,9 +273,7 @@ static int NewString(hstr,line)
   return(0);
 }
 
-int FreeWidgetList( help_c,ntopic)
-     char **help_c;
-     int ntopic;
+static int FreeWidgetList( char **help_c,  int ntopic)
 {
   int k;
   for ( k = 0 ; k < ntopic ; k++ ) FREE(help_c[k]);
@@ -289,8 +287,7 @@ int FreeWidgetList( help_c,ntopic)
  ************************************************/
 
 void
-setHelpShellState(state)
-     int state;
+setHelpShellState(int state)
 {
   if (!isPoppedUp)
     return;
@@ -309,8 +306,7 @@ setHelpShellState(state)
  * Scilab apropos function 
  ************************************/
 
-static void SciApropos(str)
-	char           *str;
+static void SciApropos(char *str)
 {
   int status = AP.nTopic;
   if ( SetAproposTopics(str) == 1) return ; /** memory allocation **/
@@ -337,20 +333,20 @@ static void SciApropos(str)
  *****************************************************************/
 
 static void
-helpCallback(w, client_data, call_data)
-     Widget          w;
-     XtPointer       client_data;	/* not used */
-     XtPointer       call_data;	/* returnStruct */
+helpCallback(Widget w, XtPointer client_data, XtPointer call_data)
+                       
+                                 	/* not used */
+                               	/* returnStruct */
 {
   int             ntopic = ((XawListReturnStruct *) call_data)->list_index;
   HelpActivate(ntopic) ;
 }
 
 static void
-helpCallback1(w, client_data, call_data)
-	Widget          w;
-	XtPointer       client_data;	/* not used */
-	XtPointer       call_data;	/* returnStruct */
+helpCallback1(Widget w, XtPointer client_data, XtPointer call_data)
+	                  
+	                            	/* not used */
+	                          	/* returnStruct */
 {
   int             topic = ((XawListReturnStruct *) call_data)->list_index;
   changeHelpList(topic + 1);
@@ -361,16 +357,14 @@ helpCallback1(w, client_data, call_data)
  * Action procedures 
  ****************************************************/
 
-static void helpDoneAction(w,event,params,num_params) 
-     Widget w; XEvent *event; String *params; Cardinal *num_params;
+static void helpDoneAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
   XtPopdown(helpShell);
   isPoppedUp = False;
 }
 
 char           *
-getWidgetString(widget)
-	Widget          widget;
+getWidgetString(Widget widget)
 {
   Arg             args[1];
   char           *s;
@@ -379,8 +373,7 @@ getWidgetString(widget)
   return (s);
 }
 
-static void queryAproposAction(w,event,params,num_params) 
-     Widget w; XEvent *event; String *params; Cardinal *num_params;
+static void queryAproposAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
   char           *apropos;
   if ((apropos = getWidgetString(aproposText)) == NULL || *apropos == '\0') 
@@ -394,72 +387,88 @@ static void queryAproposAction(w,event,params,num_params)
     }
 }
 
+/******************************************************************
+ * Filter the file MANPAGE (full path) through the program that is
+ * defined in the user variable PAGERVAR.  If PAGERVAR is undefined,
+ * run the program DEFAULTPAGER.
+ * CALLTAIL is appended to the resulting system call:
+ *         *PAGERVAR MANPAGE CALLTAIL
+ * where *PAGERVAR denotes the value of the user variable PAGERVAR.
+ *****************************************************************/
+
+void paginate(const char *manpage, const char *defaultpager,
+	      const char *calltail, /* const */ char *pagervar)
+{
+  /* const */ int len = 256;
+  char *userpager = (char *) MALLOC(len * sizeof(char));
+  const char *pager;
+  char *systemcall;
+  int id[nsiz];
+  
+  if (userpager == NULL)
+    {
+      sciprint("Running out of memory, I cannot activate help\n");
+      return;
+    }
+  *userpager = '\0';
+  
+  C2F(str2name) (pagervar, id, strlen(pagervar));
+  Fin = -1;
+  Err = 0;
+  C2F(stackg)(id);
+  if (Err > 0 || Fin == 0)
+    pager = defaultpager;
+  else
+    {
+      if (C2F(creadchain) (pagervar, &len, userpager,
+			   strlen(pagervar), strlen(userpager)) != 0)
+	pager = userpager;
+      else
+	pager = defaultpager;
+    }
+  systemcall = (char *) MALLOC((strlen(pager) + 1 + strlen(manpage)
+				+ 1 + strlen(calltail) + 1)
+			       * sizeof(char));
+  if (systemcall == NULL)
+    {
+      FREE(userpager);
+      sciprint("Running out of memory, I cannot activate help\n");
+      return;
+    }
+
+  sprintf(systemcall, "%s %s %s", pager, manpage, calltail);
+
+  system(systemcall);
+
+  FREE(userpager);
+  FREE(systemcall);
+}
 
 
 /****************************************************
  * activates help for topic Topic 
  ****************************************************/
 
-void SciCallHelp(helpPath,Topic)
-     char *Topic;
-     char *helpPath;
+
+void SciCallHelp(char *helpPath, char *Topic)
 {
-  int i;
-  static char format1[]= "$SCI/bin/xless %s/%s.cat 2> /dev/null &";
-  C2F(xscion)(&i);
-  if ( i != 0 )
+  int running_x;
+  char *helpfile = (char *) MALLOC((strlen(helpPath) + strlen(Topic) + 6)
+  			           * sizeof(char));
+  if (helpfile == NULL)
     {
-      char *buf = (char *) MALLOC((strlen(helpPath)+strlen(Topic)+strlen(format1)+1) * (sizeof(char)));
-      if (buf == NULL){ sciprint("Running out of memory, I cannot activate help\n");return;}
-      sprintf(buf,format1,helpPath, Topic);
-      system(buf);
-      FREE(buf);
+      sciprint("Running out of memory, I cannot activate help\n");
+      return;
     }
-  else 
-    {
-      static char tformat[] = "cat %s/%s.cat | %s ";
-      static char defaultpager[] = "more";
-      static char pagervar[] = "%pager";
-      int len = 256;
-      char *pager = (char *) MALLOC(len * sizeof(char));
-      char *textpager;
-      char *buf;
-      int id[nsiz];
+  sprintf(helpfile, "%s/%s.cat", helpPath, Topic);
 
-      if (pager == NULL)
-        {
-          sciprint("Running out of memory, I cannot activate help\n");
-	  return;
-        }
-      *pager = '\0';
+  C2F(xscion)(&running_x);
+  if (running_x == 0)
+      paginate(helpfile, "more", "", "%pager");
+  else
+      paginate(helpfile, "$SCI/bin/xless", "2>/dev/null&", "%xpager");
 
-      C2F(str2name) (pagervar, id, strlen(pagervar));
-      Fin = -1;
-      Err = 0;
-      C2F(stackg)(id);
-      if (Err > 0 || Fin == 0)
-	textpager = defaultpager;
-      else
-        {
-	  if (C2F(creadchain) (pagervar, &len, pager,
-			       strlen(pagervar), strlen(pager)) != 0)
-	    textpager = pager;
-	  else
-	    textpager = defaultpager;
-        }
-
-      buf = (char *) MALLOC((strlen(helpPath) + strlen(Topic)
-			     + strlen(textpager) + strlen(tformat) + 1)
-			    * sizeof(char));
-      if (buf == NULL)
-        {
-	  FREE(pager);
-          sciprint("Running out of memory, I cannot activate help\n");
-	  return;
-	}
-      sprintf(buf, tformat, helpPath, Topic, textpager);
-      FREE(pager);
-      system(buf);
-      FREE(buf);
-    }
+  FREE(helpfile);
 }
+
+
