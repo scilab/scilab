@@ -1,4 +1,4 @@
-// mar jan 28 18:32:21 CET 2003
+// ven jan 31 17:56:31 CET 2003
 
 //====================================================
 // ../man/eng/arma/arma.xml
@@ -1423,13 +1423,42 @@ xdel(winsid())
 //====================================================
 // ../man/eng/elementary/atan.xml
 //====================================================
+clear;lines(0);
+// examples with the second form
+x=[1,%i,-1,%i]
+phasex=atan(imag(x),real(x))
+atan(0,-1)
+atan(-%eps,-1)
+
+// branch cuts
+atan(-%eps + 2*%i)
+atan(+%eps + 2*%i)
+atan(-%eps - 2*%i)
+atan(+%eps - 2*%i)
+
+// values at the branching points
+ieee(2)
+atan(%i)
+atan(-%i)
+xdel(winsid())
 
 //====================================================
 // ../man/eng/elementary/atanh.xml
 //====================================================
 clear;lines(0);
+// example 1
 x=[0,%i,-%i]
 tanh(atanh(x))
+
+// example 2
+x = [-%inf -3 -2 -1 0 1 2 3 %inf]
+ieee(2)
+atanh(tanh(x))
+
+// example 3 (see Remark)
+ieee(2)
+atanh([1 2])
+atanh([1 0.5])
 xdel(winsid())
 
 //====================================================
@@ -3726,6 +3755,15 @@ xdel(winsid())
 //====================================================
 
 //====================================================
+// ../man/eng/graphics/agregation_properties.xml
+//====================================================
+clear;lines(0);
+
+    
+
+xdel(winsid())
+
+//====================================================
 // ../man/eng/graphics/alufunctions.xml
 //====================================================
 
@@ -3978,13 +4016,6 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-  set("figure_style","new") // select entity based graphics
-  t=1:10;plot2d(t,t.^2),
-  h=get("current_figure") //gets handle on the current figure
-  a=h.children
-  draw (a.children)
-  delete(a)
-  delete(h)
 
 xdel(winsid())
 
@@ -4362,6 +4393,8 @@ xdel(winsid())
 // ../man/eng/graphics/glue.xml
 //====================================================
 clear;lines(0);
+
+
 xdel(winsid())
 
 //====================================================
@@ -4383,6 +4416,7 @@ xdel(winsid())
 // ../man/eng/graphics/graphics_entities.xml
 //====================================================
 clear;lines(0);
+
   //Play this example line per line
 
   set("figure_style","new") //create a figure in entity mode
@@ -4404,10 +4438,10 @@ clear;lines(0);
   a.axes_bounds=[0 0 0.5 0.5]; 
 
   subplot(222) //create a new Axes entity
+  plot(1:10);
   a1=f.children(1); //get its handle
   copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-  a1.data_bounds=[1 0 10 10]; //change the Axes bounds
-  a1.axes_visible='on'; //make them visible
+  a1.data_bounds=[1 0 10 100]; //change the Axes bounds  
 
 
 xdel(winsid())
@@ -5221,6 +5255,8 @@ xdel(winsid())
 // ../man/eng/graphics/unglue.xml
 //====================================================
 clear;lines(0);
+
+
 xdel(winsid())
 
 //====================================================
@@ -7845,7 +7881,11 @@ xdel(winsid())
 clear;lines(0);
 g=load_graph(SCI+'/demos/metanet/mesh100');
 show_graph(g);
-unix('rm mymesh100.graph')
+if MSDOS then 
+  unix('del mymesh100.graph');
+else 
+  unix('rm -f mymesh100.graph'); 
+end
 save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100');
 show_graph(g,'new');
@@ -7891,7 +7931,7 @@ edgecolor=1*ones(1,ma); g1('edge_color')=edgecolor;
 edgewidth=1*ones(1,ma); edgewidth(t)=4*ones(t); g1('edge_width')=edgewidth;
 for i=8:12,
  edgecolor(t)=i*ones(t); g1('edge_color')=edgecolor;
- unix('sleep 2'); show_graph(g1);
+ xpause(3d5); show_graph(g1);
  show_arcs(t);
 end;
 xdel(winsid())
@@ -12167,6 +12207,14 @@ files=dirname('SCI/macros\util/poo.sci.k')
 xdel(winsid())
 
 //====================================================
+// ../man/eng/utilities/foo.xml
+//====================================================
+clear;lines(0);
+deff("y=foo(x)","y=x"); // define the foo function as the identity function
+foo("toto")
+xdel(winsid())
+
+//====================================================
 // ../man/eng/utilities/help.xml
 //====================================================
 
@@ -12298,6 +12346,10 @@ xdel(winsid())
 //====================================================
 // ../man/eng/utilities/man.xml
 //====================================================
+clear;lines(0);
+             deff("y=foo(x)","y=x"); // define the foo function as the identity function
+             foo("toto")
+xdel(winsid())
 
 //====================================================
 // ../man/eng/utilities/pathconvert.xml
