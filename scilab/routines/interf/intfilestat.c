@@ -32,7 +32,18 @@ char * fname;
    C2F(cluni0)(cstk(l1), cstk(l2), &m1,m1*n1,n);
    /* Get data associated with "given file": */
 #ifdef WIN32
-   result = _stat(cstk(l2), &buf );
+   {
+		char *path=cstk(l2);
+		if (path)
+		{
+			if ( (path[strlen(path)-1]=='/') || (path[strlen(path)-1]=='\\') )
+			{
+				path[strlen(path)-1]='\0';
+			}
+
+		}
+		result = _stat(path, &buf );
+   }
 #else
    result = stat(cstk(l2), &buf );
 #endif
