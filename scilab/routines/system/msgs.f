@@ -450,6 +450,8 @@ c      call showstack()
       endif
       goto 9999
  206  continue
+      call basout(io,wte
+     $     ,'xset: window dimensions have been set less than 2^16')
       goto 9999
  207  continue
       goto 9999
