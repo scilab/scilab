@@ -366,7 +366,11 @@ c     Nan
             write(form,120) maxc,15
             write(strg,form) xx
             ls=lnblnk(strg)
-            write(strg(ls+1:),'(''D'',i3)') ie
+            if(abs(x).lt.1.d-99) then
+               write(strg(ls+1:),'(''D'',i4)') ie
+            else
+               write(strg(ls+1:),'(''D'',i3)') ie
+            endif
          else
             write(form,130) maxc,maxc-7
             write(strg,form) x
