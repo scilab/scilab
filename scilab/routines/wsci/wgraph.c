@@ -1941,11 +1941,14 @@ int GetScreenProperty(char *prop, char *value)
 }
 /*-----------------------------------------------------------------------------------*/
 static int NumBMP=0;
-
+static char DefaultFilenameTests[MAX_PATH]="IMG";
+#define ExtensionTests ".bmp"
 /*-----------------------------------------------------------------------------------*/
 int XSaveNative _PARAMS((char *fname))
 {
+	/*
 	static int l1, m1, n1;	
+
 	if (Rhs == 0)
     	{
 			char FilenameBMP[MAX_PATH];
@@ -1956,7 +1959,7 @@ int XSaveNative _PARAMS((char *fname))
 			LhsVar(1)=0;
 
 			if (version_flag() == 0) /* New Graphic mode */
-			{
+	/*		{
 				sciGetIdFigure (&ids,&num,&iflag);
 				iflag = 1;
 				ArrayWGraph=(int*)malloc(sizeof(int)*num);
@@ -1985,20 +1988,6 @@ int XSaveNative _PARAMS((char *fname))
 				}
 				
 			}
-			if ( IsWindowInterface() )
-			{
-				extern char ScilexWindowName[MAX_PATH];
-				LPTW lptw;
-
-				wsprintf(FilenameBMP,"IMG%d.bmp",NumBMP);
-				NumBMP++;
-
-				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-				BringWindowToTop (lptw->hWndParent);
-				UpdateWindow (lptw->hWndParent);
-				HwndToBmpFile(lptw->hWndText,FilenameBMP);
-
-			}
 
     		free(ArrayWGraph);
 			ArrayWGraph=NULL;
@@ -2011,28 +2000,103 @@ int XSaveNative _PARAMS((char *fname))
   		GetRhsVar(1,"i",&m1,&n1,&l1);
   		num_win=*istk(l1);
         LhsVar(1)=0;
-		if (num_win == -1)
+		ScilabGC = GetWindowXgcNumber (num_win);
+
+		if (ScilabGC != (struct BCG *) 0)
 		{
-			if (IsWindowInterface())
-			{
-				extern char ScilexWindowName[MAX_PATH];
-				LPTW lptw;
-				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
-				HwndToBmpFile(lptw->hWndText,"d:\\Test.bmp");
-			}
 		}
-		else
-		{
-			ScilabGC = GetWindowXgcNumber (num_win);
-
-			if (ScilabGC != (struct BCG *) 0)
-			{
-			}
-
-		}
-
   		
 	}
+	return 0;*/
+
+	static int l1, m1, n1;
+	char FilenameBMP[MAX_PATH];
+	integer iflag =0,ids,num,un=1;
+	int *ArrayWGraph=NULL;
+	int i=0;
+	
+
+	switch( Rhs )
+	{
+
+	case 0:
+		{
+			/*DefaultFilenameTests*/
+		}
+	break;
+
+	case 1:
+		{
+			if ( GetType(1) == 1 ) 
+			{
+				GetRhsVar(1,"i",&m1,&n1,&l1);
+				NumBMP=*istk(l1);
+			}
+			else if( GetType(1) == 10 )
+			{
+				char *Input;
+				int out_n;
+				GetRhsVar(1,"c",&m1,&n1,&l1);
+				Input=cstk(l1);
+
+				C2F(cluni0)(Input,DefaultFilenameTests, &out_n,(long)strlen(Input),MAX_PATH);
+				NumBMP=0;
+			}
+			else
+			{
+				Scierror(999,"xsnative: input argument incorrect\r\n");
+				LhsVar(1)=0;
+				return 0;
+			}
+
+		}
+	break;
+
+	default:
+		{
+			Scierror(999,"xsnative: input argument incorrect\r\n");
+			LhsVar(1)=0;
+			return 0;
+		}
+	break;
+	}
+
+	if (version_flag() == 0) /* New Graphic mode */
+	{
+		sciGetIdFigure (&ids,&num,&iflag);
+		iflag = 1;
+		ArrayWGraph=(int*)malloc(sizeof(int)*num);
+		sciGetIdFigure (ArrayWGraph,&num,&iflag);	
+	}
+	else
+	{
+		C2F(getwins)(&num,&ids ,&iflag);
+		iflag = 1; 
+		ArrayWGraph=(int*)malloc(sizeof(int)*num);
+		C2F(getwins)(&num,ArrayWGraph,&iflag);
+	} 
+			
+	for (i=0;i<num;i++)
+	{
+		struct BCG *ScilabGC=NULL;
+			
+		wsprintf(FilenameBMP,"%s%d.bmp",DefaultFilenameTests,NumBMP);
+				
+		ScilabGC = GetWindowXgcNumber (ArrayWGraph[i]);
+
+		if (ScilabGC != (struct BCG *) 0)
+		{
+			ExportBMP(ScilabGC,FilenameBMP);
+			NumBMP++;
+		}
+	}
+
+    	free(ArrayWGraph);
+		ArrayWGraph=NULL;
+
+
+	LhsVar(1)=0;
 	return 0;
+
 }
 /*-----------------------------------------------------------------------------------*/
