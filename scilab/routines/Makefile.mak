@@ -18,7 +18,7 @@ all::
 
 !IF "$(DTK)" == "-DWITH_TK"
 all::
-	Makesubdirs.bat tksci
+	Makesubdirs.bat tclsci
 !ENDIF
 
 !IF "$(DPVM)" == "-DWITH_PVM"

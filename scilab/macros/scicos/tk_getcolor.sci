@@ -33,10 +33,10 @@ ta=size(col,1);
       " '+ttb+'] '+string(ta)+' '+string(Color)+';pack .toto.titi;tkwait w"+...
       "indow .toto;'
   Color=[];
-  TK_EvalStr(txt)
+  TCL_EvalStr(txt)
   Color=evstr(Color)
 endfunction
 
 
-//getf gg.sci;txt=gg(xget('colormap'),1);;TK_EvalStr(txt)
+//getf gg.sci;txt=gg(xget('colormap'),1);;TCL_EvalStr(txt)
 

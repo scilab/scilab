@@ -31,8 +31,8 @@
 {"fileinfo",     	IN_matio,       27,	1},
 {"getio",       	IN_matio,       28,	1},
 {"setenv",       	IN_matio,       29,	1},
-/*{"xls_open",       	IN_matio,       30,	1},*/
-/*{"xls_read",       	IN_matio,       31,	1},*/
+/*{"xls_open",       	IN_matio,       30,	1},
+{"xls_read",       	IN_matio,       31,	1},*/
 #define  IN_matelm  6  
 {"abs",			IN_matelm,	1,	0},	
 {"atan",		IN_matelm,	25,	0},	
@@ -510,9 +510,9 @@
 {"bessely",		IN_otherspecfun,	6,	3},	
 {"besselh",		IN_otherspecfun,	7,	3},	
 
-#define  IN_tksci  40
+#define  IN_tclsci  40
 #ifdef WITH_TK
-#include "../tksci/fundef.tksci"
+#include "../tclsci/fundef.tclsci"
 #endif
 #define  IN_lstelmi  41
 {"getfield",		IN_lstelmi,	1,	1},	
@@ -635,13 +635,3 @@
 {"setlanguagemenu",		IN_intwintools,	14,	2},
 {"console",				IN_intwintools,	15,	2},
 {"about",				IN_intwintools,	16,	2},
-#ifdef WIN32
-
-#define  IN_intTCLsci 49
-{"TCL_DoOneEvent",      IN_intTCLsci, 1,	2},
-{"TCL_EvalFile",        IN_intTCLsci, 2,	2}, 
-{"TCL_EvalStr",         IN_intTCLsci, 3,	2},
-{"TCL_GetVar",          IN_intTCLsci, 4,	2},
-{"TCL_SetVar",          IN_intTCLsci, 5,	2},
-
-#endif

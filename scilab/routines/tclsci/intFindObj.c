@@ -1,0 +1,68 @@
+/*-----------------------------------------------------------------------------------*/
+/* INRIA 2005 */
+/* Allan CORNET */
+/*-----------------------------------------------------------------------------------*/
+#include "intFindObj.h"
+/*-----------------------------------------------------------------------------------*/
+int C2F(intFindObj) _PARAMS((char *fname))
+{
+	int *paramoutINT=NULL;
+
+	CheckLhs(1,1);
+	CheckRhs(2,2);
+
+	if ( (GetType(1) == sci_strings ) && (GetType(2) == sci_strings ) )
+	{
+		static int l1,n1,m1;
+		
+		char MyTclCommand[2000];
+		char *StrHandle;
+		int Handle=0;
+		char *field=NULL;
+		char *value=NULL;
+			
+		GetRhsVar(1,"c",&m1,&n1,&l1);
+		field=cstk(l1);
+
+		GetRhsVar(2,"c",&m1,&n1,&l1);
+		value=cstk(l1);
+
+		nocase(value);
+
+		sprintf(MyTclCommand, "set TclScilabTmpVar [FindObj \"%s\" \"%s\"];", field, value);
+		Tcl_Eval(TCLinterp,MyTclCommand);
+		StrHandle = (char*)Tcl_GetVar(TCLinterp, "TclScilabTmpVar", 0);
+
+		Handle = (int)atoi(StrHandle);
+
+		if (Handle == -1)  
+		{
+			/* object not found */
+			m1=0;
+			n1=0;
+			l1=0;
+			CreateVar(1,"d",  &m1, &n1, &l1);
+		}
+		else
+		{
+			/* objet found */
+			paramoutINT=(int*)malloc(sizeof(int));
+			*paramoutINT=(int)(Handle);
+			n1=1;
+			CreateVarFromPtr(1, "i", &n1, &n1, &paramoutINT);
+		}
+	}
+	else
+	{
+		Scierror(999,"Invalid parameter(s) type.\n");
+		return 0;
+	}
+	
+	LhsVar(1) = 1;
+	C2F(putlhsvar)();	
+
+    if (paramoutINT) {free(paramoutINT);paramoutINT=NULL;}
+
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/

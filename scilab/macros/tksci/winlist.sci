@@ -11,7 +11,7 @@ function hout=winlist()
 //(at your option) any later version.
   
   rhs=argn(2);
-  if execstr('rep=TK_GetVar(''sciGUITable(win,id)'')','errcatch')<>0 then
+  if execstr('rep=TCL_GetVar(''sciGUITable(win,id)'')','errcatch')<>0 then
     hout=[];
     return
   end

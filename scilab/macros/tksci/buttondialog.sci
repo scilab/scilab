@@ -27,13 +27,13 @@ function answer=buttondialog(mes,bt,icon)
     end
     if ((type(mes)==10)&(type(bt)==10)) then
       // do the work
-      TK_EvalStr('set mybutdialoganswertmp [sciGUIButtonDialog -1 ""'+mes+'"" ""'+bt+'"" '+locicon+']');
+      TCL_EvalStr('set mybutdialoganswertmp [sciGUIButtonDialog -1 ""'+mes+'"" ""'+bt+'"" '+locicon+']');
       while %t
 	realtimeinit(0.1);realtime(0);realtime(0.1);
-	TK_EvalStr('set mybutdialogtmp [info exist mybutdialoganswertmp]');
-	if TK_GetVar('mybutdialogtmp')=='1' then break,end;
+	TCL_EvalStr('set mybutdialogtmp [info exist mybutdialoganswertmp]');
+	if TCL_GetVar('mybutdialogtmp')=='1' then break,end;
       end
-      answer=TK_GetVar('mybutdialoganswertmp');
+      answer=TCL_GetVar('mybutdialoganswertmp');
       doerror=%f;
     end
   end

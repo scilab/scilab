@@ -68,9 +68,9 @@ function hout=waitbar(x,mes,h)
 
   if doerror then	error(49); end
   if (m1=="") then
-    TK_EvalStr('set waitbartmp [sciGUIBarWait '+string(h1)+' """" '+string(x1)+']');
+    TCL_EvalStr('set waitbartmp [sciGUIBarWait '+string(h1)+' """" '+string(x1)+']');
   else
-    TK_EvalStr('set waitbartmp [sciGUIBarWait '+string(h1)+' ""'+m1+'"" '+string(x1)+']');
+    TCL_EvalStr('set waitbartmp [sciGUIBarWait '+string(h1)+' ""'+m1+'"" '+string(x1)+']');
   end
-  hout=evstr(TK_GetVar('waitbartmp'))
+  hout=evstr(TCL_GetVar('waitbartmp'))
 endfunction

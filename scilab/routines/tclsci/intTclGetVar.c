@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclGetVar.h"
 /*-----------------------------------------------------------------------------------*/
-C2F(intTclGetVar) _PARAMS((char *fname))
+int C2F(intTclGetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int TypeVar1=GetType(1);
@@ -20,7 +20,7 @@ C2F(intTclGetVar) _PARAMS((char *fname))
 		GetRhsVar(1,"c",&m1,&n1,&l1);
 		VarName=cstk(l1);
 
-		RetStr= (char*)Tcl_GetVar(TKinterp, VarName, 0);
+		RetStr= (char*)Tcl_GetVar(TCLinterp, VarName, 0);
 
 		if ( RetStr )
 		{

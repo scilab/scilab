@@ -67,7 +67,7 @@
 
 
 #ifdef WITH_TK
-#include "../tksci/tksci.h"
+#include "../tclsci/TCL_Global.h"
 #endif
 
 

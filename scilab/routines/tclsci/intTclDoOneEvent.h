@@ -5,7 +5,7 @@
 #ifndef __INTTCLDOONEEVENT__
 #define __INTTCLDOONEEVENT__
 
-#include "TCL_GLOBAL.h"
+#include "TCL_Global.h"
 
 
 int C2F(intTclDoOneEvent) _PARAMS((char *fname));

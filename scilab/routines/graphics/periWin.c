@@ -38,7 +38,7 @@
 #include "tk.h"
 #include "tkPlatDecls.h"
 
-extern Tcl_Interp *TKinterp;
+extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 
 extern void flushTKEvents ();
@@ -4046,10 +4046,10 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   	#ifdef WITH_TK
 	  Tk_Window  win;
 	  Window    windowId;
-	  /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */
+	  /* TKmainWindow est initialise dans tclsci.c  Tk_CreateMainWindow */
 	  if ( TKmainWindow != 0)
 		{
-			win = Tk_NameToWindow(TKinterp, string,TKmainWindow);
+			win = Tk_NameToWindow(TCLinterp, string,TKmainWindow);
 			if (win != 0)
 			{
 				windowId = Tk_WindowId(win);

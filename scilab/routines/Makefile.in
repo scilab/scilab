@@ -6,7 +6,7 @@ SCIDIRS = graphics calelm blas  control default integ interf intersci \
 	lapack slicot arpack \
 	metanet optim poly signal sparse sun system system2 console\
 	menusX scicos sound dcd randlib slicot arpack wintools\
-	gd int @GUILIB@ @XDRLIB@ @TKSCIDIR@ @PVMSCIDIR@ @GZVT@
+	gd int @GUILIB@ @XDRLIB@ @TCLSCIDIR@ @PVMSCIDIR@ @GZVT@
 
 SUBDIRS = $(XAW_LOCAL_SUBDIR) $(DLD_SUBDIR) $(SCIDIRS) @F2C_SUBDIR@
 

@@ -28,9 +28,9 @@ static void  sci_sigint_addinter(int n);
 
 static int c_local = 9999;
 
-void C2F(NoTksci)(void)
+void C2F(NoTclsci)(void)
 {
-  sciprint("tksci interface not loaded \n");
+  sciprint("TclSci interface not loaded \n");
   C2F(error)(&c_local);
   return;
 }

@@ -33,6 +33,6 @@ function browsevar()
   file('close',u);
 
   tmpDir=strsubst(TMPDIR,'\','/');
-  TK_EvalStr('sciGUIBrowseVar ""'+tmpDir+'""');
+  TCL_EvalStr('sciGUIBrowseVar ""'+tmpDir+'""');
 endfunction
 

@@ -679,6 +679,18 @@ cd .. &gt;nul
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat">
 			<File
+				RelativePath=".\InitTclTk.c">
+			</File>
+			<File
+				RelativePath=".\intClose.c">
+			</File>
+			<File
+				RelativePath=".\intFindObj.c">
+			</File>
+			<File
+				RelativePath=".\intOpenTk.c">
+			</File>
+			<File
 				RelativePath=".\intTclDoOneEvent.c">
 			</File>
 			<File
@@ -688,21 +700,54 @@ cd .. &gt;nul
 				RelativePath=".\intTclEvalStr.c">
 			</File>
 			<File
+				RelativePath=".\intTclGcf.c">
+			</File>
+			<File
+				RelativePath=".\intTclGet.c">
+			</File>
+			<File
 				RelativePath=".\intTclGetVar.c">
 			</File>
 			<File
 				RelativePath=".\inttclsci.c">
 			</File>
 			<File
+				RelativePath=".\intTclSet.c">
+			</File>
+			<File
 				RelativePath=".\intTclSetVar.c">
 			</File>
 			<File
+				RelativePath=".\ScilabEval.c">
+			</File>
+			<File
 				RelativePath=".\TCL_Global.c">
+			</File>
+			<File
+				RelativePath=".\TclEvents.c">
+			</File>
+			<File
+				RelativePath=".\TclUiGet.c">
+			</File>
+			<File
+				RelativePath=".\TclUiSet.c">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\InitTclTk.h">
+			</File>
+			<File
+				RelativePath=".\intClose.h">
+			</File>
+			<File
+				RelativePath=".\intFindObj.h">
+			</File>
+			<File
+				RelativePath=".\intOpenTk.h">
+			</File>
 			<File
 				RelativePath=".\intTclDoOneEvent.h">
 			</File>
@@ -713,16 +758,37 @@ cd .. &gt;nul
 				RelativePath=".\intTclEvalStr.h">
 			</File>
 			<File
+				RelativePath=".\intTclGcf.h">
+			</File>
+			<File
+				RelativePath=".\intTclGet.h">
+			</File>
+			<File
 				RelativePath=".\intTclGetVar.h">
 			</File>
 			<File
 				RelativePath=".\inttclsci.h">
 			</File>
 			<File
+				RelativePath=".\intTclSet.h">
+			</File>
+			<File
 				RelativePath=".\intTclSetVar.h">
 			</File>
 			<File
+				RelativePath=".\intUIMenu.h">
+			</File>
+			<File
+				RelativePath=".\ScilabEval.h">
+			</File>
+			<File
 				RelativePath=".\TCL_Global.h">
+			</File>
+			<File
+				RelativePath=".\TclEvents.h">
+			</File>
+			<File
+				RelativePath=".\TclUiGet.h">
 			</File>
 		</Filter>
 	</Files>

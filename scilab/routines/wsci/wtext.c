@@ -913,7 +913,18 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
 				SecondOccurence= strtok(NULL,"("); 
     			wsprintf(ScilexWindowName,"%s (%s",VERSION,SecondOccurence);
     		
-    			SetWindowText(hwnd,ScilexWindowName);  
+    			SetWindowText(hwnd,ScilexWindowName); 
+//				{
+//				typedef BOOL (WINAPI *SLWA_FUNC)(HWND hwnd,COLORREF crKey,BYTE 
+//bAlpha,DWORD dwFlags);
+//					SLWA_FUNC MySetLayeredWindowAttributes;
+//HMODULE hUser32 = GetModuleHandle("USER32.DLL");
+//if (!hUser32) return FALSE;
+//MySetLayeredWindowAttributes = (SLWA_FUNC)GetProcAddress(hUser32, "SetLayeredWindowAttributes");
+//				#define _WIN32_WINNT 0x0500
+//#define LWA_COLORKEY    0x01
+// MySetLayeredWindowAttributes(hwnd, RGB(255, 0, 255), 0, LWA_COLORKEY);
+//}
     		}
         }
 		break;

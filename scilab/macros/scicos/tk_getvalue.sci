@@ -217,14 +217,14 @@ function result=mdialog(title,items,init)
     
 txt=create_txt(title,items,init);
 result=[];
-TK_EvalStr(txt)
-done=TK_GetVar('done')
+TCL_EvalStr(txt)
+done=TCL_GetVar('done')
 if done==string(1) then
   for i=1:size(items,'*')
-    execstr('result(i)=TK_GetVar(''x'+string(i)+''')')
+    execstr('result(i)=TCL_GetVar(''x'+string(i)+''')')
   end
 end
-TK_EvalStr('destroy $w')
+TCL_EvalStr('destroy $w')
 
 endfunction
 

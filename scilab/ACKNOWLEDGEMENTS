@@ -100,7 +100,9 @@ sun: system specific Scilab routines (INRIA/ENPC).
          by B.Lapeyre.
          zzledt.c is from Mitchell and Gauthier ass.
 
-tksci: interface with TCL/TK developed by Bertrand Guiheneuf.
+tksci: interface with TCL/TK (obsolete) developed by Bertrand Guiheneuf.
+
+tclsci: interface with TCL/TK developed by Allan CORNET.
 
 X11: optionnal Xaw and Xmu routines  (from MIT X11 distribution).
 

@@ -130,5 +130,5 @@ scicurdir.obj: scicurdir.c ../machine.h
 storeversion.obj: storeversion.c ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h ../version.h
-tksynchro.obj: tksynchro.c ../machine.h ../tksci/tksci.h \
-  ../tksci/C-LAB_Interf.h ../stack-def.h
+tksynchro.obj: tksynchro.c ../machine.h ../tclsci/TCL_Global.h \
+   ../stack-def.h

@@ -133,6 +133,6 @@ function path=genhelpfromfunc(key)
   mputl(W,TMPDIR+'/localman/whatis.htm')
   if   nh==size(%helps,1)&%browsehelp=='Scilab Browser' then 
     //force a rescan
-    TK_SetVar('sciGUITable(browsehelp,nchap)',string(nh-1))
+    TCL_SetVar('sciGUITable(browsehelp,nchap)',string(nh-1))
   end
 endfunction

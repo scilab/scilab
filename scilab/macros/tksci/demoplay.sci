@@ -24,11 +24,11 @@ function demoplay(filename)
 
   if (goon) then
     ll=lines();lines(0);
-    TK_EvalStr('set editvartmp [sciGUIGenFileName ]');
-    slideFile=strsubst(TMPDIR,'\','/')+'/'+TK_GetVar('editvartmp');
+    TCL_EvalStr('set editvartmp [sciGUIGenFileName ]');
+    slideFile=strsubst(TMPDIR,'\','/')+'/'+TCL_GetVar('editvartmp');
     fileFile=strsubst(filename,'\','/');
-    TK_EvalStr('set demoplaytmp [sciGUIDemoPlay -1 ""'+fileFile+'"" ""'+slideFile+'"" ]');
-    demoplaytmp=evstr(TK_GetVar('demoplaytmp'));
+    TCL_EvalStr('set demoplaytmp [sciGUIDemoPlay -1 ""'+fileFile+'"" ""'+slideFile+'"" ]');
+    demoplaytmp=evstr(TCL_GetVar('demoplaytmp'));
     while %t
       realtimeinit(0.1);
       realtime(0);realtime(0.1);

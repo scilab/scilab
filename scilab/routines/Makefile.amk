@@ -13,7 +13,7 @@ all::
 	@copy machine-abs.h machine.h
 	@Makesubdirs.bat all ABSOFT
 	@if "%COMPILE_PVM%" == "yes" call Makesubdirs.bat pvm ABSOFT none
-	@if "%COMPILE_TCL_TK%" == "yes" call Makesubdirs.bat tksci ABSOFT none
+	@if "%COMPILE_TCL_TK%" == "yes" call Makesubdirs.bat tclsci ABSOFT none
 
 clean::
 	@Makesubdirs.bat clean

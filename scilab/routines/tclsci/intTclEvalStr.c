@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclEvalStr.h"
 /*-----------------------------------------------------------------------------------*/
-C2F(intTclEvalStr) _PARAMS((char *fname))
+int C2F(intTclEvalStr) _PARAMS((char *fname))
 { 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -17,7 +17,7 @@ C2F(intTclEvalStr) _PARAMS((char *fname))
 		GetRhsVar(1,"S",&m1,&n1,&Str);
 		for (i = 0; i<m1*n1 ;i++)
 		{
-			RET=Tcl_Eval(TKinterp,Str[i]);
+			RET=Tcl_Eval(TCLinterp,Str[i]);
 			if (RET==TCL_ERROR)
 			{
 				if(C2F(iop).err>0)
@@ -26,7 +26,7 @@ C2F(intTclEvalStr) _PARAMS((char *fname))
 				}
 				else
 				{
-					Scierror(999,"%s, %s at line %i \r\n",fname,TKinterp->result,i+1);
+					Scierror(999,"%s, %s at line %i \r\n",fname,TCLinterp->result,i+1);
 				}
 				FreeRhsSVar(Str);
 				return 0;

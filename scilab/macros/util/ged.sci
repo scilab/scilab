@@ -14,11 +14,11 @@ function ged(k,win)
     return
   end
   if k>3 then
-    TK_EvalStr("set isgedinterp [interp exists ged]")
-    if TK_GetVar("isgedinterp")=='0' then    
-      TK_EvalStr("interp create ged")
-      TK_EvalStr("load {'+gettklib()+'} Tk ged")
-      TK_EvalStr("ged eval {wm withdraw .}")
+    TCL_EvalStr("set isgedinterp [interp exists ged]")
+    if TCL_GetVar("isgedinterp")=='0' then    
+      TCL_EvalStr("interp create ged")
+      TCL_EvalStr("load {'+gettklib()+'} Tk ged")
+      TCL_EvalStr("ged eval {wm withdraw .}")
     end
   end
 
@@ -33,17 +33,17 @@ function ged(k,win)
 
    // hierarchical viewer
     TK_send_handles_list(gcf())
-    TK_SetVar("curgedindex",string(Get_handle_pos_in_list(gcf())))
+    TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gcf())))
 
     //color_map array for color sample display
     f=gcf();
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
-      TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
+      TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
       grename= "GREEN("+string(i)+")";
-      TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
+      TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
       bluname= "BLUE("+string(i)+")";
-      TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
+      TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
     
     //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
@@ -52,17 +52,17 @@ function ged(k,win)
     case 5 then //edit current axes
     // hierarchical viewer
     TK_send_handles_list(gcf())
-    TK_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
+    TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
 
     //color_map array for color sample display
     f=gcf();
     for i=1:size(f.color_map,1)
       redname= "RED("+string(i)+")";
-      TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
+      TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
       grename= "GREEN("+string(i)+")";
-      TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
+      TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
       bluname= "BLUE("+string(i)+")";
-      TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
+      TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
     end
 
     ged_axes(gca())
@@ -109,7 +109,7 @@ iAxi = 0; // axis : entity created when using drawaxis method for example
 f=getparfig(h);
 handles = Get_handles_list(f)
 
-TK_SetVar("ged_handle_list_size",string(size(handles,1)));
+TCL_SetVar("ged_handle_list_size",string(size(handles,1)));
 
 for i=1:size(handles,1)
  SelObject="SELOBJECT("+string(i)+")";
@@ -118,67 +118,67 @@ for i=1:size(handles,1)
    case "Figure"
     iFig = iFig+1;
     figname= "Figure("+string(iFig)+")";
-    TK_EvalStr('set '+SelObject+" "+figname);
+    TCL_EvalStr('set '+SelObject+" "+figname);
    case "Axes"
     iAxe = iAxe+1;
     axename= "Axes("+string(iAxe)+")";
-    TK_EvalStr('set '+SelObject+" "+axename);
+    TCL_EvalStr('set '+SelObject+" "+axename);
    case "Agregation"
     iAgr = iAgr+1;
     agrname= "Agregation("+string(iAgr)+")";
-    TK_EvalStr('set '+SelObject+" "+agrname);
+    TCL_EvalStr('set '+SelObject+" "+agrname);
    case "Polyline"
     iPol = iPol+1;
     polname= "Polyline("+string(iPol)+")";
-    TK_EvalStr('set '+SelObject+" "+polname);
+    TCL_EvalStr('set '+SelObject+" "+polname);
    case "Plot3d"
     iPl3 = iPl3+1;
     pl3name= "Plot3d("+string(iPl3)+")";
-    TK_EvalStr('set '+SelObject+" "+pl3name);
+    TCL_EvalStr('set '+SelObject+" "+pl3name);
    case "Fac3d"
     iFac = iFac+1;
     Facname= "Fac3d("+string(iFac)+")";
-    TK_EvalStr('set '+SelObject+" "+Facname);
+    TCL_EvalStr('set '+SelObject+" "+Facname);
    case "Rectangle"
     iRec = iRec+1;
     Recname= "Rectangle("+string(iRec)+")";
-    TK_EvalStr('set '+SelObject+" "+Recname);
+    TCL_EvalStr('set '+SelObject+" "+Recname);
    case "Text"
     iTex = iTex+1;
     Texname= "Text("+string(iTex)+")";
-    TK_EvalStr('set '+SelObject+" "+Texname);
+    TCL_EvalStr('set '+SelObject+" "+Texname);
    case "Legend"
     iLeg = iLeg+1;
     Legname= "Legend("+string(iLeg)+")";
-    TK_EvalStr('set '+SelObject+" "+Legname);
+    TCL_EvalStr('set '+SelObject+" "+Legname);
    case "Arc"
     iArc = iArc+1;
     Arcname= "Arc("+string(iArc)+")";
-    TK_EvalStr('set '+SelObject+" "+Arcname);
+    TCL_EvalStr('set '+SelObject+" "+Arcname);
    case "Segs"
     iSeg = iSeg+1;
     Segname= "Segs("+string(iSeg)+")";
-    TK_EvalStr('set '+SelObject+" "+Segname);
+    TCL_EvalStr('set '+SelObject+" "+Segname);
    case "Champ"
     iCha = iCha+1;
     Chaname= "Champ("+string(iCha)+")";
-    TK_EvalStr('set '+SelObject+" "+Chaname);
+    TCL_EvalStr('set '+SelObject+" "+Chaname);
    case "Fec"
     iFec = iFec+1;
     Fecname= "Fec("+string(iFec)+")";
-    TK_EvalStr('set '+SelObject+" "+Fecname);
+    TCL_EvalStr('set '+SelObject+" "+Fecname);
    case "Grayplot"
     iGra = iGra+1;
     Graname= "Grayplot("+string(iGra)+")";
-    TK_EvalStr('set '+SelObject+" "+Graname);
+    TCL_EvalStr('set '+SelObject+" "+Graname);
    case "Matplot"
     iMat = iMat+1;
     Matname= "Matplot("+string(iMat)+")";
-    TK_EvalStr('set '+SelObject+" "+Matname);
+    TCL_EvalStr('set '+SelObject+" "+Matname);
    case "Axis"
     iAxi = iAxi+1;
     Axiname= "Axis("+string(iAxi)+")";
-    TK_EvalStr('set '+SelObject+" "+Axiname);
+    TCL_EvalStr('set '+SelObject+" "+Axiname);
   end
 end
 endfunction
@@ -254,31 +254,31 @@ endfunction
 
 function ged_agregation(h)
   global ged_handle;ged_handle=h;
-  TK_SetVar("curvis",h.visible)
-  TK_EvalFile(SCI+'/tcl/ged/Agregation.tcl')
+  TCL_SetVar("curvis",h.visible)
+  TCL_EvalFile(SCI+'/tcl/ged/Agregation.tcl')
 endfunction
 
 
 function ged_figure(h)
   global ged_handle;ged_handle=h;
-  TK_SetVar("background",string(h.background))
-  TK_SetVar("rotation_style",h.rotation_style)
-  TK_SetVar("figure_name",h.figure_name)
-  TK_SetVar("figure_id",string(h.figure_id))
-  TK_SetVar("figure_xposition",string(h.figure_position(1)))
-  TK_SetVar("figure_yposition",string(h.figure_position(2)))
-  TK_SetVar("figure_xsiz",string(h.figure_size(1)))
-  TK_SetVar("figure_ysiz",string(h.figure_size(2)))
-  TK_SetVar("figure_xaxesiz",string(h.axes_size(1)))
-  TK_SetVar("figure_yaxesiz",string(h.axes_size(2)))
-  TK_SetVar("bcolor",string(h.background))
-  TK_SetVar("ncolors",string(size(h.color_map,1)))
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curpix",h.pixmap)
-  TK_SetVar("curpdm",h.pixel_drawing_mode)
-  TK_SetVar("curautoresize",h.auto_resize)
-  TK_SetVar("currotation_style",h.rotation_style)
-  TK_EvalFile(SCI+'/tcl/ged/Figure.tcl')
+  TCL_SetVar("background",string(h.background))
+  TCL_SetVar("rotation_style",h.rotation_style)
+  TCL_SetVar("figure_name",h.figure_name)
+  TCL_SetVar("figure_id",string(h.figure_id))
+  TCL_SetVar("figure_xposition",string(h.figure_position(1)))
+  TCL_SetVar("figure_yposition",string(h.figure_position(2)))
+  TCL_SetVar("figure_xsiz",string(h.figure_size(1)))
+  TCL_SetVar("figure_ysiz",string(h.figure_size(2)))
+  TCL_SetVar("figure_xaxesiz",string(h.axes_size(1)))
+  TCL_SetVar("figure_yaxesiz",string(h.axes_size(2)))
+  TCL_SetVar("bcolor",string(h.background))
+  TCL_SetVar("ncolors",string(size(h.color_map,1)))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curpix",h.pixmap)
+  TCL_SetVar("curpdm",h.pixel_drawing_mode)
+  TCL_SetVar("curautoresize",h.auto_resize)
+  TCL_SetVar("currotation_style",h.rotation_style)
+  TCL_EvalFile(SCI+'/tcl/ged/Figure.tcl')
 endfunction
 
 
@@ -287,244 +287,244 @@ function ged_axes(h)
 
   LoadTicks2TCL(h);
 
-  TK_SetVar("Xaxes_reverseToggle",h.axes_reverse(1))
-  TK_SetVar("Yaxes_reverseToggle",h.axes_reverse(2))
-  TK_SetVar("Zaxes_reverseToggle",h.axes_reverse(3))
+  TCL_SetVar("Xaxes_reverseToggle",h.axes_reverse(1))
+  TCL_SetVar("Yaxes_reverseToggle",h.axes_reverse(2))
+  TCL_SetVar("Zaxes_reverseToggle",h.axes_reverse(3))
 
 // forgotten axes bounds info.
-  TK_SetVar("axes_boundsL",string(h.axes_bounds(1,1)))
-  TK_SetVar("axes_boundsU",string(h.axes_bounds(1,2)))
-  TK_SetVar("axes_boundsW",string(h.axes_bounds(1,3)))
-  TK_SetVar("axes_boundsH",string(h.axes_bounds(1,4)))
+  TCL_SetVar("axes_boundsL",string(h.axes_bounds(1,1)))
+  TCL_SetVar("axes_boundsU",string(h.axes_bounds(1,2)))
+  TCL_SetVar("axes_boundsW",string(h.axes_bounds(1,3)))
+  TCL_SetVar("axes_boundsH",string(h.axes_bounds(1,4)))
 
  // forgotten visibilty info.
-  TK_SetVar("xlabel_visibility",string(h.x_label.visible))
-  TK_SetVar("ylabel_visibility",string(h.y_label.visible))
-  TK_SetVar("zlabel_visibility",string(h.z_label.visible))
-  TK_SetVar("titlelabel_visibility",string(h.title.visible))
+  TCL_SetVar("xlabel_visibility",string(h.x_label.visible))
+  TCL_SetVar("ylabel_visibility",string(h.y_label.visible))
+  TCL_SetVar("zlabel_visibility",string(h.z_label.visible))
+  TCL_SetVar("titlelabel_visibility",string(h.title.visible))
 
-  TK_SetVar("Lmargins",string(h.margins(1)));
-  TK_SetVar("Rmargins",string(h.margins(2)));
-  TK_SetVar("Tmargins",string(h.margins(3)));
-  TK_SetVar("Bmargins",string(h.margins(4)));
+  TCL_SetVar("Lmargins",string(h.margins(1)));
+  TCL_SetVar("Rmargins",string(h.margins(2)));
+  TCL_SetVar("Tmargins",string(h.margins(3)));
+  TCL_SetVar("Bmargins",string(h.margins(4)));
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
-  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
     h.clip_state='clipgrf';
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
     h.clip_state='off';
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
-  TK_SetVar("curautoclear",h.auto_clear);
-  TK_SetVar("curautoscale",h.auto_scale);
-  //TK_SetVar("curfillmode",h.fill_mode);
-  TK_SetVar("curalpharotation",string(h.rotation_angles(1)))
-  TK_SetVar("curthetarotation",string(h.rotation_angles(2)))
+  TCL_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curautoclear",h.auto_clear);
+  TCL_SetVar("curautoscale",h.auto_scale);
+  //TCL_SetVar("curfillmode",h.fill_mode);
+  TCL_SetVar("curalpharotation",string(h.rotation_angles(1)))
+  TCL_SetVar("curthetarotation",string(h.rotation_angles(2)))
   ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
 	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
 	 "Helvetica Bold" "Helvetica Bold Italic"];
-  TK_SetVar("Xlabelpos",h.x_location)
-  TK_SetVar("Ylabelpos",h.y_location)
-  TK_SetVar("Xlabelfontstyle",ged_fontarray(h.x_label.font_style+1))
-  TK_SetVar("Ylabelfontstyle",ged_fontarray(h.y_label.font_style+1))
-  TK_SetVar("Zlabelfontstyle",ged_fontarray(h.z_label.font_style+1))
-  TK_SetVar("TITLEfontstyle",ged_fontarray(h.title.font_style+1))
-  TK_SetVar("fontstyle",ged_fontarray(h.font_style+1))
-  TK_SetVar("msdos",string(MSDOS))
-  TK_SetVar("xlabel",h.x_label.text)
-  TK_SetVar("ylabel",h.y_label.text)
-  TK_SetVar("zlabel",h.z_label.text)
-  TK_SetVar("tlabel",h.title_label.text)
-  TK_SetVar("xlabel_foreground",string(h.x_label.foreground))
-  TK_SetVar("ylabel_foreground",string(h.y_label.foreground))
-  TK_SetVar("zlabel_foreground",string(h.z_label.foreground))
-  TK_SetVar("titlelabel_foreground",string(h.title.foreground))
-  TK_SetVar("xlabel_fontsize",string(h.x_label.font_size))
-  TK_SetVar("ylabel_fontsize",string(h.y_label.font_size))
-  TK_SetVar("zlabel_fontsize",string(h.z_label.font_size))
-  TK_SetVar("titlelabel_fontsize",string(h.title.font_size))
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("fcolor",string(h.foreground))
-  TK_SetVar("bcolor",string(h.background))
-  TK_SetVar("curthick",string(h.thickness))
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curfontsize",string(h.font_size))
-  TK_SetVar("curfontcolor",string(h.font_color))
-  TK_SetVar("limToggle",h.tight_limits)
-  TK_SetVar("isoToggle",h.isoview)
-  TK_SetVar("cubToggle",h.cube_scaling)
-  TK_SetVar("viewToggle",h.view)
-  TK_SetVar("boxToggle",h.box)
-  TK_SetVar("xToggle",part(h.log_flags,1))
-  TK_SetVar("yToggle",part(h.log_flags,2))
-  TK_SetVar("zToggle",part(h.log_flags,3))
-  TK_SetVar("xGrid",string(h.grid(1)))
-  TK_SetVar("yGrid",string(h.grid(2)))
+  TCL_SetVar("Xlabelpos",h.x_location)
+  TCL_SetVar("Ylabelpos",h.y_location)
+  TCL_SetVar("Xlabelfontstyle",ged_fontarray(h.x_label.font_style+1))
+  TCL_SetVar("Ylabelfontstyle",ged_fontarray(h.y_label.font_style+1))
+  TCL_SetVar("Zlabelfontstyle",ged_fontarray(h.z_label.font_style+1))
+  TCL_SetVar("TITLEfontstyle",ged_fontarray(h.title.font_style+1))
+  TCL_SetVar("fontstyle",ged_fontarray(h.font_style+1))
+  TCL_SetVar("msdos",string(MSDOS))
+  TCL_SetVar("xlabel",h.x_label.text)
+  TCL_SetVar("ylabel",h.y_label.text)
+  TCL_SetVar("zlabel",h.z_label.text)
+  TCL_SetVar("tlabel",h.title_label.text)
+  TCL_SetVar("xlabel_foreground",string(h.x_label.foreground))
+  TCL_SetVar("ylabel_foreground",string(h.y_label.foreground))
+  TCL_SetVar("zlabel_foreground",string(h.z_label.foreground))
+  TCL_SetVar("titlelabel_foreground",string(h.title.foreground))
+  TCL_SetVar("xlabel_fontsize",string(h.x_label.font_size))
+  TCL_SetVar("ylabel_fontsize",string(h.y_label.font_size))
+  TCL_SetVar("zlabel_fontsize",string(h.z_label.font_size))
+  TCL_SetVar("titlelabel_fontsize",string(h.title.font_size))
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("fcolor",string(h.foreground))
+  TCL_SetVar("bcolor",string(h.background))
+  TCL_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curfontsize",string(h.font_size))
+  TCL_SetVar("curfontcolor",string(h.font_color))
+  TCL_SetVar("limToggle",h.tight_limits)
+  TCL_SetVar("isoToggle",h.isoview)
+  TCL_SetVar("cubToggle",h.cube_scaling)
+  TCL_SetVar("viewToggle",h.view)
+  TCL_SetVar("boxToggle",h.box)
+  TCL_SetVar("xToggle",part(h.log_flags,1))
+  TCL_SetVar("yToggle",part(h.log_flags,2))
+  TCL_SetVar("zToggle",part(h.log_flags,3))
+  TCL_SetVar("xGrid",string(h.grid(1)))
+  TCL_SetVar("yGrid",string(h.grid(2)))
 
   
   select h.view
     case "2d" 
     drawlater();
     h.view='3d'
-    TK_SetVar("old_curalpharotation",string(h.rotation_angles(1)))
-    TK_SetVar("old_curthetarotation",string(h.rotation_angles(2)))
-    TK_SetVar("zGrid",string(h.grid(3)))
-    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
-    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
-    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
-    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
-    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
-    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+    TCL_SetVar("old_curalpharotation",string(h.rotation_angles(1)))
+    TCL_SetVar("old_curthetarotation",string(h.rotation_angles(2)))
+    TCL_SetVar("zGrid",string(h.grid(3)))
+    TCL_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TCL_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TCL_SetVar("dbzmin",string(h.data_bounds(1,3)))
+    TCL_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TCL_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
     h.view='2d'
     drawnow();
     case "3d"
-    TK_SetVar("zGrid",string(h.grid(3)))
-    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
-    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
-    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
-    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
-    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
-    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+    TCL_SetVar("zGrid",string(h.grid(3)))
+    TCL_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TCL_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TCL_SetVar("dbzmin",string(h.data_bounds(1,3)))
+    TCL_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TCL_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TCL_SetVar("dbzmax",string(h.data_bounds(2,3)))
   end
-  TK_EvalFile(SCI+'/tcl/ged/Axes.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Axes.tcl')
 endfunction
 
 function ged_rectangle(h)
   global ged_handle; ged_handle=h
  if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   ax=h;while stripblanks(ax.type)<>"Axes" then ax=ax.parent,end
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curcolor",string(h.foreground))
-  TK_SetVar("curthick",string(h.thickness))
-  TK_SetVar("curvis",h.visible)
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curcolor",string(h.foreground))
+  TCL_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
-  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
-  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-  TK_SetVar("curmarkmode",h.mark_mode)
-  TK_SetVar("curmarksize",string(h.mark_size))
-  TK_SetVar("curmarksizeunit",h.mark_size_unit);
-  TK_SetVar("curmarkforeground",string(h.mark_foreground))
-  TK_SetVar("curmarkbackground",string(h.mark_background))
+  TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TCL_SetVar("curmarkmode",h.mark_mode)
+  TCL_SetVar("curmarksize",string(h.mark_size))
+  TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+  TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+  TCL_SetVar("curmarkbackground",string(h.mark_background))
 
  
-  TK_SetVar("curlinemode",h.line_mode)
+  TCL_SetVar("curlinemode",h.line_mode)
   // Rectangle data
    select ax.view
     case "2d" 
     ax.view='3d'
-    TK_SetVar("Xval",string(h.data(1)))
-    TK_SetVar("Yval",string(h.data(2)))
-    TK_SetVar("Zval",string(h.data(3)))
-    TK_SetVar("Wval",string(h.data(4)))
-    TK_SetVar("Hval",string(h.data(5)))
+    TCL_SetVar("Xval",string(h.data(1)))
+    TCL_SetVar("Yval",string(h.data(2)))
+    TCL_SetVar("Zval",string(h.data(3)))
+    TCL_SetVar("Wval",string(h.data(4)))
+    TCL_SetVar("Hval",string(h.data(5)))
     ax.view='2d'
     case "3d"
-    TK_SetVar("Xval",string(h.data(1)))
-    TK_SetVar("Yval",string(h.data(2)))
-    TK_SetVar("Zval",string(h.data(3)))
-    TK_SetVar("Wval",string(h.data(4)))
-    TK_SetVar("Hval",string(h.data(5)))
+    TCL_SetVar("Xval",string(h.data(1)))
+    TCL_SetVar("Yval",string(h.data(2)))
+    TCL_SetVar("Zval",string(h.data(3)))
+    TCL_SetVar("Wval",string(h.data(4)))
+    TCL_SetVar("Hval",string(h.data(5)))
   end
-  TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
 endfunction
 
 function ged_polyline(h)
     global ged_handle; ged_handle=h
  
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
     f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
-    TK_SetVar("ncolors",string(size(f.color_map,1)))
-    TK_SetVar("curcolor",string(h.foreground))
-    TK_SetVar("curthick",string(h.thickness))
-    TK_SetVar("curvis",h.visible)
+    TCL_SetVar("ncolors",string(size(f.color_map,1)))
+    TCL_SetVar("curcolor",string(h.foreground))
+    TCL_SetVar("curthick",string(h.thickness))
+    TCL_SetVar("curvis",h.visible)
 
     ged_polylinestylearray=["interpolated" "staircase" "barplot" "arrowed" "filled"];
-    TK_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
+    TCL_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
     ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
-    TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+    TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
     ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
     "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
     "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
-    TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-    TK_SetVar("curmarkmode",h.mark_mode)
-    TK_SetVar("curmarksize",string(h.mark_size))
-    TK_SetVar("curmarksizeunit",h.mark_size_unit);
-    TK_SetVar("curmarkforeground",string(h.mark_foreground))
-    TK_SetVar("curmarkbackground",string(h.mark_background))
+    TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+    TCL_SetVar("curmarkmode",h.mark_mode)
+    TCL_SetVar("curmarksize",string(h.mark_size))
+    TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+    TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+    TCL_SetVar("curmarkbackground",string(h.mark_background))
 
-    TK_SetVar("curlinemode",h.line_mode)
+    TCL_SetVar("curlinemode",h.line_mode)
     
     d="["+strcat(string(size(h.data)),'x')+" double array]"
-    TK_SetVar("curdata",d);
+    TCL_SetVar("curdata",d);
 
     select get(getparaxe(h),'view')
       case "2d"
-      TK_SetVar("nbcol",string(2));
+      TCL_SetVar("nbcol",string(2));
       case "3d"
-      TK_SetVar("nbcol",string(3));
+      TCL_SetVar("nbcol",string(3));
     end
-    TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+    TCL_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
 endfunction
 
 
@@ -533,61 +533,61 @@ function ged_plot3d(h)
 
 //  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
 //   h.clip_state='clipgrf';
-//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("Hclipbox",string(h.clip_box(4)))
 //   h.clip_state='off';
 //  else
-//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("Hclipbox",string(h.clip_box(4)))
 //  end
-//  TK_SetVar("curclipstate",h.clip_state);
+//  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curcolormode",string(h.color_mode))
-  TK_SetVar("colorflagToggle",string(h.color_flag))
-  TK_SetVar("curforeground",string(h.foreground))
-  TK_SetVar("curhiddencolor",string(h.hiddencolor))
-  TK_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curcolormode",string(h.color_mode))
+  TCL_SetVar("colorflagToggle",string(h.color_flag))
+  TCL_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curhiddencolor",string(h.hiddencolor))
+  TCL_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
-  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-  TK_SetVar("curmarkmode",h.mark_mode)
-  TK_SetVar("curmarksize",string(h.mark_size))
-  TK_SetVar("curmarksizeunit",h.mark_size_unit);
-  TK_SetVar("curmarkforeground",string(h.mark_foreground))
-  TK_SetVar("curmarkbackground",string(h.mark_background))
-  TK_SetVar("curlinemode",h.surface_mode)
+  TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TCL_SetVar("curmarkmode",h.mark_mode)
+  TCL_SetVar("curmarksize",string(h.mark_size))
+  TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+  TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+  TCL_SetVar("curmarkbackground",string(h.mark_background))
+  TCL_SetVar("curlinemode",h.surface_mode)
 
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
-  TK_SetVar("curdata_x",d);
+  TCL_SetVar("curdata_x",d);
   d="["+strcat(string(size(h.data.y)),'x')+" double array]"
-  TK_SetVar("curdata_y",d);
+  TCL_SetVar("curdata_y",d);
   d="["+strcat(string(size(h.data.z)),'x')+" double array]"
-  TK_SetVar("curdata_z",d);
+  TCL_SetVar("curdata_z",d);
 
-  TK_EvalStr('set flagCOLOR 0')
+  TCL_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-  TK_EvalStr('set flagCOLOR 1')
+  TCL_EvalStr('set flagCOLOR 1')
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
-    TK_SetVar("curdata_color",d);
+    TCL_SetVar("curdata_color",d);
   end
-  TK_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Plot3d.tcl')
 endfunction
 
 
@@ -596,121 +596,121 @@ function ged_fac3d(h)
 
 //  if((h.clip_state<>'clipgrf') & (h.clip_state<>'on'))
 //   h.clip_state='clipgrf';
-//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("Hclipbox",string(h.clip_box(4)))
 //   h.clip_state='off';
 //  else
-//   TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//   TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//   TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//   TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//   TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//   TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+//   TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+//   TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+//   TCL_SetVar("Hclipbox",string(h.clip_box(4)))
 //  end
-//  TK_SetVar("curclipstate",h.clip_state);
+//  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curcolormode",string(h.color_mode))
-  TK_SetVar("colorflagToggle",string(h.color_flag))
-  TK_SetVar("curforeground",string(h.foreground))
-  TK_SetVar("curhiddencolor",string(h.hiddencolor))
-  TK_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curcolormode",string(h.color_mode))
+  TCL_SetVar("colorflagToggle",string(h.color_flag))
+  TCL_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curhiddencolor",string(h.hiddencolor))
+  TCL_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
-  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-  TK_SetVar("curmarkmode",h.mark_mode)
-  TK_SetVar("curmarksize",string(h.mark_size))
-  TK_SetVar("curmarksizeunit",h.mark_size_unit);
-  TK_SetVar("curmarkforeground",string(h.mark_foreground))
-  TK_SetVar("curmarkbackground",string(h.mark_background))
-  TK_SetVar("curlinemode",h.surface_mode)
+  TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TCL_SetVar("curmarkmode",h.mark_mode)
+  TCL_SetVar("curmarksize",string(h.mark_size))
+  TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+  TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+  TCL_SetVar("curmarkbackground",string(h.mark_background))
+  TCL_SetVar("curlinemode",h.surface_mode)
 
 
   d="["+strcat(string(size(h.data.x)),'x')+" double array]"
-  TK_SetVar("curdata_x",d);
+  TCL_SetVar("curdata_x",d);
   d="["+strcat(string(size(h.data.y)),'x')+" double array]"
-  TK_SetVar("curdata_y",d);
+  TCL_SetVar("curdata_y",d);
    d="["+strcat(string(size(h.data.z)),'x')+" double array]"
-  TK_SetVar("curdata_z",d);
+  TCL_SetVar("curdata_z",d);
 
-  TK_EvalStr('set flagCOLOR 0')
+  TCL_EvalStr('set flagCOLOR 0')
   if(h.data(1)==["3d" "x" "y" "z" "color"])
-  TK_EvalStr('set flagCOLOR 1')
+  TCL_EvalStr('set flagCOLOR 1')
     d="["+strcat(string(size(h.data.color)),'x')+" integer array]"
-    TK_SetVar("curdata_color",d);
+    TCL_SetVar("curdata_color",d);
   end
 
 
-  TK_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Fac3d.tcl')
 endfunction
 
 
 function ged_text(h)
   global ged_handle; ged_handle=h
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curforeground",string(h.foreground))
   ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
 	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
 	 "Helvetica Bold" "Helvetica Bold Italic"];
-  TK_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
-  TK_SetVar("curfontsize",string(h.font_size))
-  TK_SetVar("curfontangle",string(h.font_angle))
-//TK_SetVar("curtextbox1",string(h.textbox(1)))
-//TK_SetVar("curtextbox2",string(h.textbox(2)))
-  TK_SetVar("curtextboxmode",h.text_box_mode)
-  TK_SetVar("curtext",h.text)
+  TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
+  TCL_SetVar("curfontsize",string(h.font_size))
+  TCL_SetVar("curfontangle",string(h.font_angle))
+//TCL_SetVar("curtextbox1",string(h.textbox(1)))
+//TCL_SetVar("curtextbox2",string(h.textbox(2)))
+  TCL_SetVar("curtextboxmode",h.text_box_mode)
+  TCL_SetVar("curtext",h.text)
 
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_EvalFile(SCI+'/tcl/ged/Text.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Text.tcl')
 endfunction
 
 
 function ged_legend(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curforeground",string(h.foreground))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curforeground",string(h.foreground))
   ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
 	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
 	 "Helvetica Bold" "Helvetica Bold Italic"];
-  TK_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
-  TK_SetVar("curfontsize",string(h.font_size))
-  TK_SetVar("curtext",h.text)
+  TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
+  TCL_SetVar("curfontsize",string(h.font_size))
+  TCL_SetVar("curtext",h.text)
 
-  TK_EvalFile(SCI+'/tcl/ged/Legend.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Legend.tcl')
 endfunction
 
 
@@ -718,266 +718,266 @@ function ged_arc(h)
   global ged_handle; ged_handle=h
 
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
-  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-  TK_SetVar("nbcol",string(size(h.data,2)))
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TCL_SetVar("nbcol",string(size(h.data,2)))
   for i=1:size(h.data,2)
     val= "arcVAL("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(h.data(2)));
+      TCL_EvalStr('set '+val+" "+string(h.data(2)));
   end
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curcolor",string(h.foreground))
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curfillmode",h.fill_mode)
-  TK_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curcolor",string(h.foreground))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curfillmode",h.fill_mode)
+  TCL_SetVar("curthick",string(h.thickness))
 
   ax=getparaxe(h);
   // Arc data
    select ax.view
     case "2d" 
     ax.view='3d'  //strange behavior in 3D... seems to be bugged!!
-    TK_SetVar("Xval",string(h.data(1)))
-    TK_SetVar("Yval",string(h.data(2)))
-    TK_SetVar("Zval",string(h.data(3)))
-    TK_SetVar("Wval",string(h.data(4)))
-    TK_SetVar("Hval",string(h.data(5)))
-    TK_SetVar("A1val",string(h.data(6)))
-    TK_SetVar("A2val",string(h.data(7)))
+    TCL_SetVar("Xval",string(h.data(1)))
+    TCL_SetVar("Yval",string(h.data(2)))
+    TCL_SetVar("Zval",string(h.data(3)))
+    TCL_SetVar("Wval",string(h.data(4)))
+    TCL_SetVar("Hval",string(h.data(5)))
+    TCL_SetVar("A1val",string(h.data(6)))
+    TCL_SetVar("A2val",string(h.data(7)))
      ax.view='2d'
     case "3d"
-    TK_SetVar("Xval",string(h.data(1)))
-    TK_SetVar("Yval",string(h.data(2)))
-    TK_SetVar("Zval",string(h.data(3)))
-    TK_SetVar("Wval",string(h.data(4)))
-    TK_SetVar("Hval",string(h.data(5)))
-    TK_SetVar("A1val",string(h.data(6)))
-    TK_SetVar("A2val",string(h.data(7)))
+    TCL_SetVar("Xval",string(h.data(1)))
+    TCL_SetVar("Yval",string(h.data(2)))
+    TCL_SetVar("Zval",string(h.data(3)))
+    TCL_SetVar("Wval",string(h.data(4)))
+    TCL_SetVar("Hval",string(h.data(5)))
+    TCL_SetVar("A1val",string(h.data(6)))
+    TCL_SetVar("A2val",string(h.data(7)))
   end
-  TK_EvalFile(SCI+'/tcl/ged/Arc.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Arc.tcl')
 endfunction
 
 
 function ged_segs(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curarrowsize",string(h.arrow_size))
-  TK_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curarrowsize",string(h.arrow_size))
+  TCL_SetVar("curthick",string(h.thickness))
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
-  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
-  TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
-  TK_SetVar("curmarkmode",h.mark_mode)
-  TK_SetVar("curmarksize",string(h.mark_size))
-  TK_SetVar("curmarksizeunit",h.mark_size_unit);
-  TK_SetVar("curmarkforeground",string(h.mark_foreground))
-  TK_SetVar("curmarkbackground",string(h.mark_background))
-  TK_SetVar("curlinemode",h.line_mode)
+  TCL_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
+  TCL_SetVar("curmarkmode",h.mark_mode)
+  TCL_SetVar("curmarksize",string(h.mark_size))
+  TCL_SetVar("curmarksizeunit",h.mark_size_unit);
+  TCL_SetVar("curmarkforeground",string(h.mark_foreground))
+  TCL_SetVar("curmarkbackground",string(h.mark_background))
+  TCL_SetVar("curlinemode",h.line_mode)
     
-  TK_SetVar("nbrow",string(size(h.data,1)))
+  TCL_SetVar("nbrow",string(size(h.data,1)))
   
    d="["+strcat(string(size(h.data)),'x')+" double array]"
-  TK_SetVar("curdata",d);
+  TCL_SetVar("curdata",d);
   
-  TK_SetVar("nbcolsegscolor",string(size(h.segs_color,2)))
+  TCL_SetVar("nbcolsegscolor",string(size(h.segs_color,2)))
   for i=1:size(h.segs_color,2)
     val= "segscolorVAL("+string(i)+")";
-    TK_EvalStr('set '+val+" "+string(h.segs_color(i)));
+    TCL_EvalStr('set '+val+" "+string(h.segs_color(i)));
   end
 
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_EvalFile(SCI+'/tcl/ged/Segs.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Segs.tcl')
 endfunction
 
 
 function ged_champ(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curcolored",h.colored)
-  TK_SetVar("ncolors",string(size(f.color_map,1)))
-  TK_SetVar("curarrowsize",string(h.arrow_size))
-  TK_SetVar("curthick",string(h.thickness))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curcolored",h.colored)
+  TCL_SetVar("ncolors",string(size(f.color_map,1)))
+  TCL_SetVar("curarrowsize",string(h.arrow_size))
+  TCL_SetVar("curthick",string(h.thickness))
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
-  TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+  TCL_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
   d="["+strcat(string(size(h.data)),'x')+" double array]"
-  TK_SetVar("curdata",d);
+  TCL_SetVar("curdata",d);
 
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_EvalFile(SCI+'/tcl/ged/Champ.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Champ.tcl')
 endfunction
 
 function ged_fec(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("zbmin",string(h.z_bounds(1)))
-  TK_SetVar("zbmax",string(h.z_bounds(2)))
-//  TK_SetVar("nbrow",string(size(h.data,1)))
-//  TK_SetVar("nbcol",string(size(h.data,2)))
-//  TK_SetVar("nbrowTri",string(size(h.triangles,1)))
-//  TK_SetVar("nbcolTri",string(size(h.triangles,2)))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("zbmin",string(h.z_bounds(1)))
+  TCL_SetVar("zbmax",string(h.z_bounds(2)))
+//  TCL_SetVar("nbrow",string(size(h.data,1)))
+//  TCL_SetVar("nbcol",string(size(h.data,2)))
+//  TCL_SetVar("nbrowTri",string(size(h.triangles,1)))
+//  TCL_SetVar("nbcolTri",string(size(h.triangles,2)))
 
   d="["+strcat(string(size(h.data)),'x')+" double array]"
-  TK_SetVar("curdata_data",d);
+  TCL_SetVar("curdata_data",d);
   d="["+strcat(string(size(h.triangles)),'x')+" double array]"
-  TK_SetVar("curdata_triangles",d);
+  TCL_SetVar("curdata_triangles",d);
 
 //  if(h.clip_box==[])
-//    TK_SetVar("old_Xclipbox","")
-//    TK_SetVar("old_Yclipbox","")
-//    TK_SetVar("old_Wclipbox","")
-//    TK_SetVar("old_Hclipbox","")
-//    TK_SetVar("Xclipbox","")
-//    TK_SetVar("Yclipbox","")
-//    TK_SetVar("Wclipbox","")
-//    TK_SetVar("Hclipbox","")
+//    TCL_SetVar("old_Xclipbox","")
+//    TCL_SetVar("old_Yclipbox","")
+//    TCL_SetVar("old_Wclipbox","")
+//    TCL_SetVar("old_Hclipbox","")
+//    TCL_SetVar("Xclipbox","")
+//    TCL_SetVar("Yclipbox","")
+//    TCL_SetVar("Wclipbox","")
+//    TCL_SetVar("Hclipbox","")
 //   else
-//    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-//    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-//    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-//    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-//    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+//    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+//    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+//    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+//    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+//    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+//    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+//    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+//    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
 //  end
-//  TK_SetVar("curclipstate",h.clip_state);
+//  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_EvalFile(SCI+'/tcl/ged/Fec.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Fec.tcl')
 endfunction
 
 
 function ged_grayplot(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curdatamapping",h.data_mapping)
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curdatamapping",h.data_mapping)
 
   d="["+strcat(string(size(h.data(2:$,1))),'x')+" double array]"
-  TK_SetVar("curdata_x",d);
+  TCL_SetVar("curdata_x",d);
   d="["+strcat(string(size(h.data(1,2:$))),'x')+" double array]"
-  TK_SetVar("curdata_y",d);
+  TCL_SetVar("curdata_y",d);
   d="["+strcat(string(size(h.data(2:$,2:$))),'x')+" double array]"
-  TK_SetVar("curdata_z",d);
+  TCL_SetVar("curdata_z",d);
 
-  TK_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Grayplot.tcl')
 
 endfunction
 
 function ged_matplot(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curdatamapping",h.data_mapping)
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curdatamapping",h.data_mapping)
 
   d="["+strcat(string(size(h.data)),'x')+" double array]"
-  TK_SetVar("curdata",d);
+  TCL_SetVar("curdata",d);
 
-  TK_EvalFile(SCI+'/tcl/ged/Matplot.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Matplot.tcl')
 
 endfunction
 
 
 function ged_axis(h)
   global ged_handle; ged_handle=h
-  TK_SetVar("curvis",h.visible)
-  TK_SetVar("curseg",h.tics_segment)
-  TK_SetVar("curcolor",string(h.tics_color))
-  TK_SetVar("curticsstyle",h.tics_style)
-  TK_SetVar("curfontcolor",string(h.labels_font_color))
-  TK_SetVar("curfontsize",string(h.labels_font_size))
-  TK_SetVar("nbcolX",string(size(h.xtics_coord,2)))
-  TK_SetVar("nbcolY",string(size(h.ytics_coord,2)))
-  TK_SetVar("xticscoord",sci2exp(h.xtics_coord,0))
-  TK_SetVar("yticscoord",sci2exp(h.ytics_coord,0))
-  TK_SetVar("cursubtics",string(h.sub_tics))
-  TK_SetVar("curticslabel",sci2exp(h.tics_labels,0))
-  TK_SetVar("curticsdir",string(h.tics_direction))
+  TCL_SetVar("curvis",h.visible)
+  TCL_SetVar("curseg",h.tics_segment)
+  TCL_SetVar("curcolor",string(h.tics_color))
+  TCL_SetVar("curticsstyle",h.tics_style)
+  TCL_SetVar("curfontcolor",string(h.labels_font_color))
+  TCL_SetVar("curfontsize",string(h.labels_font_size))
+  TCL_SetVar("nbcolX",string(size(h.xtics_coord,2)))
+  TCL_SetVar("nbcolY",string(size(h.ytics_coord,2)))
+  TCL_SetVar("xticscoord",sci2exp(h.xtics_coord,0))
+  TCL_SetVar("yticscoord",sci2exp(h.ytics_coord,0))
+  TCL_SetVar("cursubtics",string(h.sub_tics))
+  TCL_SetVar("curticslabel",sci2exp(h.tics_labels,0))
+  TCL_SetVar("curticsdir",string(h.tics_direction))
 
   if(h.clip_box==[])
-    TK_SetVar("old_Xclipbox","")
-    TK_SetVar("old_Yclipbox","")
-    TK_SetVar("old_Wclipbox","")
-    TK_SetVar("old_Hclipbox","")
-    TK_SetVar("Xclipbox","")
-    TK_SetVar("Yclipbox","")
-    TK_SetVar("Wclipbox","")
-    TK_SetVar("Hclipbox","")
+    TCL_SetVar("old_Xclipbox","")
+    TCL_SetVar("old_Yclipbox","")
+    TCL_SetVar("old_Wclipbox","")
+    TCL_SetVar("old_Hclipbox","")
+    TCL_SetVar("Xclipbox","")
+    TCL_SetVar("Yclipbox","")
+    TCL_SetVar("Wclipbox","")
+    TCL_SetVar("Hclipbox","")
    else
-    TK_SetVar("old_Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("old_Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("old_Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("old_Hclipbox",string(h.clip_box(4)))
-    TK_SetVar("Xclipbox",string(h.clip_box(1)))
-    TK_SetVar("Yclipbox",string(h.clip_box(2)))
-    TK_SetVar("Wclipbox",string(h.clip_box(3)))
-    TK_SetVar("Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("old_Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("old_Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("old_Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("old_Hclipbox",string(h.clip_box(4)))
+    TCL_SetVar("Xclipbox",string(h.clip_box(1)))
+    TCL_SetVar("Yclipbox",string(h.clip_box(2)))
+    TCL_SetVar("Wclipbox",string(h.clip_box(3)))
+    TCL_SetVar("Hclipbox",string(h.clip_box(4)))
   end
-  TK_SetVar("curclipstate",h.clip_state);
+  TCL_SetVar("curclipstate",h.clip_state);
 
-  TK_EvalFile(SCI+'/tcl/ged/Axis.tcl')
+  TCL_EvalFile(SCI+'/tcl/ged/Axis.tcl')
 endfunction
 
 
@@ -1163,17 +1163,17 @@ function tkged()
 
   // hierarchical viewer
   TK_send_handles_list(gcf())
-  TK_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
+  TCL_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
 
   //color_map array for color sample display
   f=getparfig(h);
   for i=1:size(f.color_map,1)
     redname= "RED("+string(i)+")";
-    TK_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
+    TCL_EvalStr('set '+redname+" "+string(f.color_map(i,1)));
     grename= "GREEN("+string(i)+")";
-    TK_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
+    TCL_EvalStr('set '+grename+" "+string(f.color_map(i,2)));
     bluname= "BLUE("+string(i)+")";
-    TK_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
+    TCL_EvalStr('set '+bluname+" "+string(f.color_map(i,3)));
   end
 
   select h.type
@@ -1630,13 +1630,13 @@ function outvar=GEDeditvar_get(winId)
 //disp("Please wait...");
 outvar=[];
 base="sciGUITable(win,"+string(winId)+",data";
-varType=evstr(TK_GetVar(base+',type)'));
-varni=evstr(TK_GetVar(base+',ni)'));
-varnj=evstr(TK_GetVar(base+',nj)'));
+varType=evstr(TCL_GetVar(base+',type)'));
+varni=evstr(TCL_GetVar(base+',ni)'));
+varnj=evstr(TCL_GetVar(base+',nj)'));
 for j=1:varnj,
 	ww=[];
 	for i=1:varni,
-		q=TK_GetVar(base+','+string(i)+','+string(j)+')');
+		q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
 		if (varType~=10) then
 			if (varType==4) then
 				if ((q=="T")|(q=="t")) then
@@ -1685,18 +1685,18 @@ function [WINID] = GEDeditvar(varargin)
   %_loc_nj=size(%_loc_var,2);
   %_loc_type=string(%_loc_type);
 
-  TK_EvalStr("set EdVarLoc [GEDsciGUIEditVar -1]");
+  TCL_EvalStr("set EdVarLoc [GEDsciGUIEditVar -1]");
 
-  %_winId=TK_GetVar("EdVarLoc");
+  %_winId=TCL_GetVar("EdVarLoc");
 
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,name)",%_loc_nam);
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,type)",string(%_loc_type));
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_loc_ni));
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_loc_nj));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,name)",%_loc_nam);
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,type)",string(%_loc_type));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_loc_ni));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_loc_nj));
 
   //
   // This is a slow manner to move the data ...
-  // Anyone have a faster method than TK_SetVar
+  // Anyone have a faster method than TCL_SetVar
   // I would like set some tcl variable like varname(pos_i,pos_j)
   //
   Nb_data=(%_loc_nj)*(%_loc_ni)
@@ -1711,7 +1711,7 @@ function [WINID] = GEDeditvar(varargin)
     for %_i=1:%_loc_ni,
       %_value=string(%_loc_var(%_i,%_j));
       %_varname="sciGUITable(win,"+%_winId+",data,"+string(%_i)+","+string(%_j)+")";
-      TK_SetVar(%_varname,%_value);
+      TCL_SetVar(%_varname,%_value);
     end
 
   //tmp = ((%_j)*(%_loc_ni)) / Nb_data;
@@ -1733,7 +1733,7 @@ function [WINID] = GEDeditvar(varargin)
  // disp("AVANT DrawGrid");
 
  
-  TK_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
+  TCL_EvalStr("GEDsciGUIEditVarDrawGrid "+%_winId)
  
   WINID = %_winId;
 
@@ -1775,64 +1775,64 @@ endfunction
 function LoadTicks2TCL(h)
   global ged_handle;ged_handle=h;
 
-  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
-  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
-  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
+  TCL_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TCL_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TCL_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
 
-  TK_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
-  TK_GetVar("SubticksEntryX")
+  TCL_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
+  TCL_GetVar("SubticksEntryX")
  
  // disp("h.sub_ticks(1) =")
  // disp(h.sub_ticks(1));
 
-  TK_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
+  TCL_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
 
   select h.view
    case "2d" 
     drawlater();
     h.view='3d'
-    TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+    TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
     h.view='2d'
     drawnow();
    case "3d"
-     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+     TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
    end
 
-  TK_SetVar("XautoticksToggle",h.auto_ticks(1))
-  TK_SetVar("YautoticksToggle",h.auto_ticks(2))
-  TK_SetVar("ZautoticksToggle",h.auto_ticks(3))
+  TCL_SetVar("XautoticksToggle",h.auto_ticks(1))
+  TCL_SetVar("YautoticksToggle",h.auto_ticks(2))
+  TCL_SetVar("ZautoticksToggle",h.auto_ticks(3))
 
   //ticks value: X axis
   ticks = h.x_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_x",string(sizeticks));
+  TCL_SetVar("nbticks_x",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_X("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_X("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
   //ticks value: Y axis
   ticks = h.y_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_y",string(sizeticks));
+  TCL_SetVar("nbticks_y",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Y("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Y("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
  //ticks value: Z axis
   ticks = h.z_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_z",string(sizeticks));
+  TCL_SetVar("nbticks_z",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Z("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Z("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
 endfunction
@@ -1856,87 +1856,87 @@ endfunction
 function ReLoadTicks2TCL(h)
   global ged_handle;ged_handle=h;
 
-  TK_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
-  TK_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
-  TK_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
+  TCL_SetVar("Xaxes_visibleToggle",h.axes_visible(1))
+  TCL_SetVar("Yaxes_visibleToggle",h.axes_visible(2))
+  TCL_SetVar("Zaxes_visibleToggle",h.axes_visible(3))
 
   ticks = h.x_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TK_EvalStr("unset LOCATIONS_X");
-   TK_EvalStr("unset LABELS_X");
+   TCL_EvalStr("unset LOCATIONS_X");
+   TCL_EvalStr("unset LABELS_X");
   end
   
   ticks = h.y_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TK_EvalStr("unset LOCATIONS_Y");
-   TK_EvalStr("unset LABELS_Y");
+   TCL_EvalStr("unset LOCATIONS_Y");
+   TCL_EvalStr("unset LABELS_Y");
   end
   
   ticks = h.z_ticks;
   sizeticks = size(ticks.locations,1);
   if (sizeticks <> 0)
-   TK_EvalStr("unset LOCATIONS_Z");
-   TK_EvalStr("unset LABELS_Z");
+   TCL_EvalStr("unset LOCATIONS_Z");
+   TCL_EvalStr("unset LABELS_Z");
   end
   
-  TK_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
-  TK_GetVar("SubticksEntryX")
+  TCL_SetVar("SubticksEntryX",string(h.sub_ticks(1)))
+  TCL_GetVar("SubticksEntryX")
  
  // disp("h.sub_ticks(1) =")
  // disp(h.sub_ticks(1));
 
-  TK_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
+  TCL_SetVar("SubticksEntryY",string(h.sub_ticks(2)))
 
   select h.view
    case "2d" 
     drawlater();
     h.view='3d'
-    TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+    TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
     h.view='2d'
     drawnow();
    case "3d"
-     TK_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
+     TCL_SetVar("SubticksEntryZ",string(h.sub_ticks(3)))
    end
 
-  TK_SetVar("XautoticksToggle",h.auto_ticks(1))
-  TK_SetVar("YautoticksToggle",h.auto_ticks(2))
-  TK_SetVar("ZautoticksToggle",h.auto_ticks(3))
+  TCL_SetVar("XautoticksToggle",h.auto_ticks(1))
+  TCL_SetVar("YautoticksToggle",h.auto_ticks(2))
+  TCL_SetVar("ZautoticksToggle",h.auto_ticks(3))
 
   //ticks value: X axis
   ticks = h.x_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_x",string(sizeticks));
+  TCL_SetVar("nbticks_x",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_X("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
 //      disp("i vaut:");
 //      disp(i);
     val= "LABELS_X("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
   //ticks value: Y axis
   ticks = h.y_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_y",string(sizeticks));
+  TCL_SetVar("nbticks_y",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Y("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
      val= "LABELS_Y("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
  //ticks value: Z axis
   ticks = h.z_ticks;
   sizeticks = size(ticks.locations,1);
-  TK_SetVar("nbticks_z",string(sizeticks));
+  TCL_SetVar("nbticks_z",string(sizeticks));
   for i=1:sizeticks
     val= "LOCATIONS_Z("+string(i)+")";
-      TK_EvalStr('set '+val+" "+string(ticks.locations(i)));
+      TCL_EvalStr('set '+val+" "+string(ticks.locations(i)));
     val= "LABELS_Z("+string(i)+")";
-      TK_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
+      TCL_EvalStr('set '+val+" {"+ticks.labels(i)+"}");
   end
 
 endfunction

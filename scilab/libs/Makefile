@@ -9,7 +9,6 @@ DEFS= blas.def \
 calelm.def \
 control.def \
 dcd.def \
-fraclab.def \
 graphics.def \
 integ.def \
 interf.def \
@@ -31,7 +30,8 @@ system.def \
 system2.def \
 wsci.def \
 xdr.def \
-slicot.def 
+slicot.def \
+wintools.def
 
 all : $(DEFS)
 

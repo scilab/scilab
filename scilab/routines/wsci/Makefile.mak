@@ -37,7 +37,7 @@ GUIFLAGS=-SUBSYSTEM:windows
 
 #===================test ========================
 !IF "$(DTK)" == "-DWITH_TK"
-GTK_LIBS= ../../libs/tksci.lib ../../libs/intersci.lib ../../libs/libf2c.lib $(XLIBS)
+GTK_LIBS= ../../libs/tclsci.lib ../../libs/intersci.lib ../../libs/libf2c.lib $(XLIBS)
 !ELSE 
 GTK_LIBS= $(XLIBS)
 !ENDIF

@@ -49,7 +49,7 @@
 #include "../sun/Sun.h"
 
 #ifdef WITH_TK
-#include "../tksci/tksci.h"
+#include "../tclsci/TCL_Global.h"
 #endif
 
 extern int  Scierror __PARAMS((int iv,char *fmt,...));
@@ -85,7 +85,7 @@ static int intoemacs=0;
 void SetXsciOn(void)
 {
 #ifdef WITH_TK
-  inittk();
+  initTCLTK();
 #endif
   INXscilab=1;
 }
@@ -146,7 +146,7 @@ void sci_tk_activate(void)
   Cout("You have started Scilab in a mode in which TK is not initialized.\n");
   Cout("Trying to initialize \n");
   DisplayInit("",&dpy,&toplevel);
-  inittk();
+  initTCLTK();
   BasicScilab = 0;
   basic_scilab_mask(&dpy);
   flushTKEvents();

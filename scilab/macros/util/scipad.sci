@@ -4,18 +4,18 @@ global %scipad_language;
 global LANGUAGE
 global TMPDIR
   if with_tk() then
-    TK_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TK_GetVar("isscipadinterp")=="0" then    
-      TK_EvalStr("interp create scipad")
-      TK_EvalStr("load {'+gettklib()+'} Tk scipad")
-      TK_EvalStr("scipad eval {wm withdraw .}")
-      TK_EvalStr("scipad alias ScilabEval ScilabEval")
+    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+    if TCL_GetVar("isscipadinterp")=="0" then    
+      TCL_EvalStr("interp create scipad")
+      TCL_EvalStr("load {'+gettklib()+'} Tk scipad")
+      TCL_EvalStr("scipad eval {wm withdraw .}")
+      TCL_EvalStr("scipad alias ScilabEval ScilabEval")
     end
     if exists("home") then
       if MSDOS then
-        TK_EvalStr("scipad eval { set env(HOME) """+strsubst(home,"\","/")+""" }")
+        TCL_EvalStr("scipad eval { set env(HOME) """+strsubst(home,"\","/")+""" }")
       else
-        TK_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
+        TCL_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
       end
     end
     if %scipad_language==[] then 
@@ -25,15 +25,15 @@ global TMPDIR
         %scipad_language="eng"
       end
     end
-    TK_EvalStr("scipad eval { set lang """+%scipad_language+""" }")
+    TCL_EvalStr("scipad eval { set lang """+%scipad_language+""" }")
     if MSDOS then
-      TK_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
+      TCL_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
     else
-      TK_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
+      TCL_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
     end
-//    TK_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
-    TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
-    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
+//    TCL_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
+    TCL_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
+    TCL_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
     nfiles=argn(2)
     if nfiles>0 then
       onevalidfile=%f
@@ -71,12 +71,12 @@ global TMPDIR
           else
             filetoopen=pathconvert(filetoopen,%f,%t);
           end
-          TK_EvalStr("scipad eval {openfile """+ filetoopen +"""}")          
+          TCL_EvalStr("scipad eval {openfile """+ filetoopen +"""}")          
         end
       end
   // close "Untitled.sce" opened as default when scipad is started anew
-      if TK_GetVar("isscipadopen")=="0" & onevalidfile then
-          TK_EvalStr("scipad eval {closefile $pad.new1}")
+      if TCL_GetVar("isscipadopen")=="0" & onevalidfile then
+          TCL_EvalStr("scipad eval {closefile $pad.new1}")
       end
     end
   else

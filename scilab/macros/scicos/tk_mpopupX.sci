@@ -2,7 +2,7 @@ function Cmenu=tk_mpopupX(ll)
   Cmenu=[]
   if length(ll)==0 then return;end
   [txt,MM]=create_popup(ll)
-  ierr=execstr('TK_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','continue')
   done=0
   while ~done,end
 endfunction

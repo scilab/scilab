@@ -51,10 +51,10 @@ extern void    /* 38  */ C2F(randlib)();
 extern void    /* 39  */ C2F(otherspfunlib)();
 
 #ifdef WITH_TK
-extern void    /* 40  */ C2F(tksciInterf)();
-#define TKINTERF C2F(tksciInterf)
+extern void    /* 40  */ C2F(inttclsci)();
+#define TCLINTERF C2F(inttclsci)
 #else 
-#define TKINTERF C2F(NoTksci)
+#define TCLINTERF C2F(NoTclsci)
 #endif
 extern void    /* 41  */ C2F(lstelmi)();
 #ifdef WITH_PVM
@@ -69,9 +69,6 @@ extern void    /* 45  */ C2F(intslicot)();
 extern void    /* 46  */ C2F(intarpack)();
 extern void    /* 47  */ C2F(intcscicos)();
 extern void    /* 48  */ C2F(intwintools)();
-#if WIN32
-extern void    /* 49  */ C2F(inttclsci)();
-#endif
 
 static OpTab Interfaces[] ={
     /* 01  */ {C2F(matlu)},
@@ -113,7 +110,7 @@ static OpTab Interfaces[] ={
 	/* 37  */ {C2F(dcd)},
     /* 38  */ {C2F(randlib)},
     /* 39  */ {C2F(otherspfunlib)},
-    /* 40  */ {TKINTERF},
+    /* 40  */ {TCLINTERF},
 	/* 41  */ {C2F(lstelmi)},
 	/* 42  */ {PVMINTERF},
     /* 43  */ {C2F(intelm)},
@@ -122,10 +119,6 @@ static OpTab Interfaces[] ={
     /* 46  */ {C2F(intarpack)},
  	/* 47  */ {C2F(intcscicos)},
 	/* 48  */ {C2F(intwintools)}
-#if WIN32
-	/* 49  */ ,{C2F(inttclsci)}
-#endif
-
 };
 
 #endif /*__CALLINTERF__*/

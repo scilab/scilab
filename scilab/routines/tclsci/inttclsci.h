@@ -15,7 +15,8 @@
 
 typedef int (*TCLSci_Interf) __PARAMS((char *fname,unsigned long l));
 
-typedef struct table_struct {
+typedef struct table_struct 
+{
   TCLSci_Interf f;    /** function **/
   char *name;      /** its name **/
 } TCLSCITable;

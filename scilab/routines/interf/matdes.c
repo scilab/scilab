@@ -95,7 +95,7 @@ static char *KeyTab_[] = {
          " ", /* added */
  };
 
-int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
+int cf_type=1; /* used by gcf to determine if current figure is a graphic (1) or a tclsci (0) one */
 static char *pmodes[] =
   { 
     "clear", 
@@ -131,7 +131,7 @@ extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,
 extern void ShowScales  __PARAMS((void));
 extern  void C2F(seteventhandler)  __PARAMS((int *win_num,char *name,int *ierr));
 #ifdef WITH_TK
-extern int LAB_gcf();
+  extern int GetTclCurrentFigure(void);
 #endif
 extern sciPointObj *pfiguremdl; /* DJ.A 08/01/04 */
 extern sciPointObj *paxesmdl;/* DJ.A 08/01/04 */
@@ -5028,7 +5028,7 @@ int gset(fname,fname_len)
   /*  set or create a graphic window */
   switch(VarType(1)) 
     {
-    case 1: /* tksci handle */
+    case 1: /* tclsci handle */
       lw = 1 + Top - Rhs;
       C2F(overload)(&lw,"set",3);return 0;
       return 0;
@@ -5270,7 +5270,7 @@ int gget(fname,fname_len)
   l'objet courant ) */
   switch(VarType(1))
   {
-  case 1: /* tksci handle */
+  case 1: /* tclsci handle */
     lw = 1 + Top - Rhs;
     C2F(overload)(&lw,"get",3);return 0;
     return 0;
@@ -7202,7 +7202,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numcol   = 1;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 #ifdef WITH_TK
-	*stk(outindex) = (double )LAB_gcf();
+	*stk(outindex) = (double )GetTclCurrentFigure();
 #endif
       }
     }

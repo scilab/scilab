@@ -70,8 +70,8 @@ helpbrowser.o: helpbrowser.c \
   queue-gtk2.h uri.h
 
 io.o: io.c ../graphics/Math.h \
-  ../machine.h ../graphics/Graphics.h ../sun/Sun.h All-extern.h \
-  ../tksci/tksci.h ../tksci/C-LAB_Interf.h ../stack-def.h
+  ../machine.h ../graphics/Graphics.h ../sun/Sun.h All-extern.h \ 
+  ../tclsci/TCL_Global.h ../tksci/C-LAB_Interf.h ../stack-def.h
 
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/bcg.h  queue-gtk2.c queue-gtk2.h

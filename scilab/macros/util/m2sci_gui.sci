@@ -8,35 +8,35 @@ if ~with_tk() then
 end
 
 // Default Options and Values
-TK_SetVar("ePathToConvert",getcwd());
-TK_SetVar("eFileToConvert","<enter a file name>");
-TK_SetVar("eResDirName",getcwd());
-TK_SetVar("rRecMode","NO");
-TK_SetVar("rOnlyDouble","NO");
-TK_SetVar("rVerbMode","3");
-TK_SetVar("rPrettyPrint","NO");
-TK_SetVar("rFlagWhatToConvert","0");
-TK_SetVar("rToDo","0");
-TK_SetVar("rWindowKilled","0");
+TCL_SetVar("ePathToConvert",getcwd());
+TCL_SetVar("eFileToConvert","<enter a file name>");
+TCL_SetVar("eResDirName",getcwd());
+TCL_SetVar("rRecMode","NO");
+TCL_SetVar("rOnlyDouble","NO");
+TCL_SetVar("rVerbMode","3");
+TCL_SetVar("rPrettyPrint","NO");
+TCL_SetVar("rFlagWhatToConvert","0");
+TCL_SetVar("rToDo","0");
+TCL_SetVar("rWindowKilled","0");
 
-TK_EvalFile(SCI+"/tcl/m2sci.tcl");
+TCL_EvalFile(SCI+"/tcl/m2sci.tcl");
 
-rWindowKilled=TK_GetVar("rWindowKilled");
-rToDo=TK_GetVar("rToDo");
+rWindowKilled=TCL_GetVar("rWindowKilled");
+rToDo=TCL_GetVar("rToDo");
 while rToDo=="0" & rWindowKilled=="0"
-  rWindowKilled=TK_GetVar("rWindowKilled");
-  rToDo=TK_GetVar("rToDo");
+  rWindowKilled=TCL_GetVar("rWindowKilled");
+  rToDo=TCL_GetVar("rToDo");
 end
 
 if rToDo=="1" then
-  DirName=TK_GetVar("ePathToConvert");
-  FileName=TK_GetVar("eFileToConvert");
-  ResDirName=TK_GetVar("eResDirName");
-  RecMode=TK_GetVar("rRecMode");
-  OnlyDouble=TK_GetVar("rOnlyDouble");
-  VerbMode=TK_GetVar("rVerbMode");
-  PrettyPrint=TK_GetVar("rPrettyPrint");
-  FlagWhatToConvert=TK_GetVar("rFlagWhatToConvert");
+  DirName=TCL_GetVar("ePathToConvert");
+  FileName=TCL_GetVar("eFileToConvert");
+  ResDirName=TCL_GetVar("eResDirName");
+  RecMode=TCL_GetVar("rRecMode");
+  OnlyDouble=TCL_GetVar("rOnlyDouble");
+  VerbMode=TCL_GetVar("rVerbMode");
+  PrettyPrint=TCL_GetVar("rPrettyPrint");
+  FlagWhatToConvert=TCL_GetVar("rFlagWhatToConvert");
   
   // Modify Tcl/Tk values
   if RecMode=="YES" then

@@ -49,7 +49,6 @@
 #ifdef WIN32
 	#include <stdlib.h> /*pour exit()*/
 #endif
-
 #include "../calelm/calelm.h"
 static char *the_current_mex_name;
 
@@ -2800,4 +2799,3 @@ int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, integer *n)
     int mxAddField(mxArray *pa, const char *fieldname);
     void mxRemoveField(mxArray *pa, int field);
     void mxSetCopyInCell(mxArray *pa, int i, mxArray *value);  */
-

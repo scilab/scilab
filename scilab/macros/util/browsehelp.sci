@@ -132,24 +132,24 @@ function tcltk_help(path,key,key1)
   K=[' ','(',')','[',']','{','}','""','/','\','.','<','>']
   for k=K,key1=strsubst(key1,k,'_'),end
   if MSDOS then
-    TK_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
-    if TK_GetVar("isbrowsehelpinterp")=='0' then    
-      TK_EvalStr("interp create browsehelp")
-      TK_EvalStr("load {"+SCI+"/bin/tk84.dll} Tk browsehelp")
-      TK_EvalStr("browsehelp eval {wm withdraw .}")
+    TCL_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
+    if TCL_GetVar("isbrowsehelpinterp")=='0' then    
+      TCL_EvalStr("interp create browsehelp")
+      TCL_EvalStr("load {"+SCI+"/bin/tk84.dll} Tk browsehelp")
+      TCL_EvalStr("browsehelp eval {wm withdraw .}")
     end
-    TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
-    TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
-    TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
-    TK_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
-    TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
-    TK_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
+    TCL_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
+    TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
+    TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
+    TCL_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
+    TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
+    TCL_EvalStr("browsehelp eval {source ""'+SCI+'/tcl/browsehelp.tcl""}")
   else
-     TK_SetVar("lang",LANGUAGE)
-     TK_SetVar("Home",INDEX)
-     TK_SetVar("sciw",".scihelp-"+key1+"}")
-     TK_SetVar("manpath",path)
-     TK_EvalFile(SCI+"/tcl/browsehelp.tcl")
+     TCL_SetVar("lang",LANGUAGE)
+     TCL_SetVar("Home",INDEX)
+     TCL_SetVar("sciw",".scihelp-"+key1+"}")
+     TCL_SetVar("manpath",path)
+     TCL_EvalFile(SCI+"/tcl/browsehelp.tcl")
   end
 endfunction
 
@@ -161,18 +161,18 @@ function tcltk_apropos(path)
   path=strsubst(path,"\","/")
   INDEX=strsubst(INDEX,"\","/")
   if MSDOS then
-    TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
-    TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
-    TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
-    TK_EvalStr("browsehelp eval {set sciw .sciapropos}")
-    TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
-    TK_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
+    TCL_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
+    TCL_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
+    TCL_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
+    TCL_EvalStr("browsehelp eval {set sciw .sciapropos}")
+    TCL_EvalStr("browsehelp eval {set manpath """+path+"""}")
+    TCL_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
   else
-     TK_SetVar("lang",LANGUAGE)
-     TK_SetVar("Home",INDEX)
-     TK_SetVar("sciw",".sciapropos")
-     TK_SetVar("manpath",path)
-     TK_EvalFile(SCI+"/tcl/browsehelp.tcl")
+     TCL_SetVar("lang",LANGUAGE)
+     TCL_SetVar("Home",INDEX)
+     TCL_SetVar("sciw",".sciapropos")
+     TCL_SetVar("manpath",path)
+     TCL_EvalFile(SCI+"/tcl/browsehelp.tcl")
   end
 endfunction
 

@@ -13,13 +13,13 @@ function outvar=editvar_get(winId)
 disp("Please wait...");
 outvar=[];
 base="sciGUITable(win,"+string(winId)+",data";
-varType=evstr(TK_GetVar(base+',type)'));
-varni=evstr(TK_GetVar(base+',ni)'));
-varnj=evstr(TK_GetVar(base+',nj)'));
+varType=evstr(TCL_GetVar(base+',type)'));
+varni=evstr(TCL_GetVar(base+',ni)'));
+varnj=evstr(TCL_GetVar(base+',nj)'));
 for j=1:varnj,
 	ww=[];
 	for i=1:varni,
-		q=TK_GetVar(base+','+string(i)+','+string(j)+')');
+		q=TCL_GetVar(base+','+string(i)+','+string(j)+')');
 		if (varType~=10) then
 			if (varType==4) then
 				if ((q=="T")|(q=="t")) then

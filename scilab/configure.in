@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.112 $)dnl
+AC_REVISION($Revision: 1.113 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1655,8 +1655,8 @@ fi
 TK_INC_PATH=
 TK_LIB_PATH=
 TCLTK_LIBS=
-TKSCILIB=
-TKSCIDIR=
+TCLSCILIB=
+TCLSCIDIR=
 
 if test "$with_tk" != no; then
 
@@ -1693,8 +1693,8 @@ AC_CHECK_TCLTK()
 # set variables
 if test $WITH_TKSCI = 1; then
   AC_DEFINE(WITH_TK)
-  TKSCILIB="\$(SCIDIR)/libs/tksci.a"
-  TKSCIDIR=tksci
+  TCLSCILIB="\$(SCIDIR)/libs/tclsci.a"
+  TCLSCIDIR=tclsci
 else
   AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
 fi
@@ -2058,9 +2058,9 @@ AC_SUBST(TKBASE)
 AC_SUBST(TK_INC_PATH)
 AC_SUBST(TCL_INC_PATH)
 AC_SUBST(TCLTK_LIBS)
-AC_SUBST(TKSCILIB)
-AC_SUBST(TKSCIDIR)
-AC_SUBST(TKSCIDIR)
+AC_SUBST(TCLSCILIB)
+AC_SUBST(TCLSCIDIR)
+AC_SUBST(TCLSCIDIR)
 AC_SUBST(TK_MINOR_VERSION)
 AC_SUBST(TK_MAJOR_VERSION)
 AC_SUBST(NOINLINE)

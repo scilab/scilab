@@ -10,12 +10,12 @@ function sta=winclose(h)
 //the Free Software Foundation; either version 2 of the License, or
 //(at your option) any later version.
 
-  if execstr('TK_GetVar(''sciGUITable(win,id)'')','errcatch')<>0 then
+  if execstr('TCL_GetVar(''sciGUITable(win,id)'')','errcatch')<>0 then
     sta=1
     return
   end
   sta=0;
   for j=1:length(h),
-    TK_EvalStr('sciGUIDestroy '+string(h(j)));
+    TCL_EvalStr('sciGUIDestroy '+string(h(j)));
   end
 endfunction

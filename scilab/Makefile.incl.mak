@@ -7,7 +7,7 @@ all::
 MAKE=nmake /f Makefile.mak
 
 #---------------------
-# Scilab tksci library 
+# Scilab tclsci library 
 #---------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
 # the good pathnames for TKLIBS and TCL_INCLUDES.
@@ -26,7 +26,7 @@ USE_MT=-MT
 # and to scilab full path when used after compilation 
 # for dynamic linking
 TCLTK=$(SCIDIR1)\tcl
-TKSCI=libs/tksci.lib 
+TCLSCI=libs/tclsci.lib 
 TKLIBS="$(SCIDIR1)\bin\tcl84.lib" "$(SCIDIR1)\bin\tk84.lib"
 TKLIBSBIN=$(TKLIBS)
 TCL_INCLUDES=-I"$(TCLTK)\include" -I"$(TCLTK)\include\X11"

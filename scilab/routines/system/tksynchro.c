@@ -6,7 +6,7 @@
 #include "../machine.h"
 
 #ifdef WITH_TK
-#include "../tksci/tksci.h"
+  #include "../tclsci/TCL_Global.h"
 #endif
 
 
@@ -22,7 +22,8 @@ void C2F(tksynchro)(l)
     int RET;
 
     sprintf(str,"scipad eval {set sciprompt %d}",*l);
-    RET=Tcl_Eval(TKinterp,str);
+	  RET=Tcl_Eval(TCLinterp,str);
+    
 
   }
 #endif

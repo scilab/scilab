@@ -39,6 +39,6 @@ function config()
     end
   end
   vt=v1+' '+v2+' '+v3+' '+v4+' '+v5+' '+v6+' '+v7+' '+v8;
-  TK_EvalStr('sciGUIConfig -1 {'+vt+'}');
+  TCL_EvalStr('sciGUIConfig -1 {'+vt+'}');
   format(v4,evstr(v5));
 endfunction

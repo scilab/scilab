@@ -4,11 +4,11 @@ include ../Makefile.incl.mak
 all :: ..\bin\LibScilab.def 
 
 
-FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+sound.def+sparse.def+sun.def+system.def+system2.def+wsci.def+xdr.def+wintools.def+tclsci.def
+FILES = AAbase.def+arpack.def+blas.def+calelm.def+console.def+control.def+dcd.def+default.def+gd.def+graphics.def+int.def+integ.def+interf.def+intersci.def+lapack.def+libf2c.def+menusX.def+metanet.def+optim.def+poly.def+rand.def+scicos.def+signal.def+slicot.def+sound.def+sparse.def+sun.def+system.def+system2.def+wsci.def+xdr.def+wintools.def
 
 
 !IF "$(DTK)" == "-DWITH_TK"
-FILES1 = $(FILES)+tksci.def 
+FILES1 = $(FILES)+tclsci.def
 !ELSE 
 FILES1 = $(FILES)
 !ENDIF
@@ -56,7 +56,7 @@ clean::
 	-del wsci.def
 	-del xdr.def
 	-del pvm.def 
-	-del tksci.def 
+	-del tclsci.def
 	-del wintools.def 
 	-del *.lib
 	-del ..\bin\libscilab.def
@@ -96,7 +96,7 @@ distclean::
 	-del wsci.def
 	-del xdr.def
 	-del pvm.def 
-	-del tksci.def 
+	-del tclsci.def
 	-del wintools.def 
 	-del *.lib
 	

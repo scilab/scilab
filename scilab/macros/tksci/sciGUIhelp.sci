@@ -14,15 +14,15 @@ function sciGUIhelp(key)
   
   sciGUI_init();
 
-  nch=eval(TK_GetVar('sciGUITable(browsehelp,nchap)'));
+  nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
   if (size(%helps,1)~=nch) then	
     rescan_helps()
-    TK_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
+    TCL_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
     update='1';
   end
   tmpDir=strsubst(TMPDIR,'\','/');
   if (argn(2)==0|key=='index') then
-    TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
+    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
   elseif (argn(2)==1) then
     key=stripblanks(key)
     if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
@@ -30,7 +30,7 @@ function sciGUIhelp(key)
       key="symbols";
     end
     nn=string(key);
-    TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" '+nn);
+    TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt"" '+nn);
   else
     error(42);
   end

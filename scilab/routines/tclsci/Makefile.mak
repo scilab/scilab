@@ -1,4 +1,3 @@
-
 SHELL = /bin/sh
 SCIDIR=../..
 SCIDIR1=..\..
@@ -7,9 +6,11 @@ LIBRARY = $(SCIDIR)/libs/tclsci.lib
 
 OBJSF = 
 
-OBJSC  = intTclDoOneEvent.obj intTclEvalFile.obj intTclEvalStr.obj \
-         intTclGetVar.obj inttclsci.obj intTclSetVar.obj \
-         TCL_Global.obj         
+OBJSC  = InitTclTk.obj intClose.obj intFindObj.obj intOpenTk.obj \
+	 intTclDoOneEvent.obj intTclEvalFile.obj intTclEvalStr.obj \
+	 intTclGcf.obj intTclGet.obj intTclGetVar.obj inttclsci.obj \
+	 intTclSet.obj intTclSetVar.obj ScilabEval.obj TclEvents.obj \
+	 TclUiGet.obj TclUiSet.obj TCL_Global.obj 
 
 include ../../Makefile.incl.mak
 
@@ -20,7 +21,7 @@ FFLAGS = $(FC_OPTIONS)
 include ../Make.lib.mak
 
 
-tksci.obj: ../machine.h
+
 
 
 

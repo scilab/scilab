@@ -17,7 +17,7 @@
 #include "../machine.h"
 #ifdef WITH_TK
 #include "tcl.h"
-extern void inittk ();
+extern void initTCLTK ();
 extern void flushTKEvents ();
 extern int  tcl_check_one_event(void);
 static int BasicScilab = 1;
@@ -48,7 +48,7 @@ int GetBasic()
 void start_sci_gtk() 
 {
 #ifdef WITH_TK
-  inittk();
+  initTCLTK();
   BasicScilab = 0;
   flushTKEvents();
 #endif
@@ -60,7 +60,7 @@ void SetXsciOn ()
 switch_rlgets (1);
 INXscilab = 1;
 #ifdef WITH_TK
-  inittk ();
+  initTCLTK ();
 #endif
 }
 /*-----------------------------------------------------------------------------------*/
@@ -100,7 +100,7 @@ void sci_tk_activate(void)
 {
 	#ifdef WITH_TK
   start_sci_gtk();
-  inittk();
+  initTCLTK();
   BasicScilab = 0;
   #endif
 }

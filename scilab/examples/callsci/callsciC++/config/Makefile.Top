@@ -20,7 +20,7 @@ LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/interf.a \
         $(BLAS) \
 	$(SCIDIR)/libs/int.a \
         $(SCIDIR)/libs/slicot.a  \
-	$(SCIDIR)/libs/pvm.a  $(SCIDIR)/libs/tksci.a
+	$(SCIDIR)/libs/pvm.a  $(SCIDIR)/libs/tclsci.a
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB) $(PVMGLIB) $(PVMLIB)
 

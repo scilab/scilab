@@ -32,7 +32,7 @@
 #include <tcl.h>
 #include <tk.h>
 
-extern Tcl_Interp *TKinterp;
+extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
 #endif
 
@@ -3522,9 +3522,9 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   if (IsTKGraphicalMode()) {
     Tk_Window  win;
 
-    /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */
+    /* TKmainWindow est initialise dans tclsci.c  Tk_CreateMainWindow */
     if (TKmainWindow != (Tk_Window)0) {
-      win = Tk_NameToWindow(TKinterp, string, (Tk_Window) TKmainWindow);
+      win = Tk_NameToWindow(TCLinterp, string, (Tk_Window) TKmainWindow);
       if (win != (Tk_Window)0) {
 	ScilabXgc->CWindow=Tk_WindowId(win);
 	ScilabXgc->CBGWindow=(Window)0;

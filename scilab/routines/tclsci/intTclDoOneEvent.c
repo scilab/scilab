@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclDoOneEvent.h"
 /*-----------------------------------------------------------------------------------*/
-C2F(intTclDoOneEvent) _PARAMS((char *fname))
+int C2F(intTclDoOneEvent) _PARAMS((char *fname))
 {
 	CheckRhs(0,0);
 	CheckLhs(1,1);

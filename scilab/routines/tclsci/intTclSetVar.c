@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclSetVar.h"
 /*-----------------------------------------------------------------------------------*/
-C2F(intTclSetVar) _PARAMS((char *fname))
+int C2F(intTclSetVar) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
 	int TypeVar1=GetType(1);
@@ -25,7 +25,7 @@ C2F(intTclSetVar) _PARAMS((char *fname))
 		VarValue=cstk(l1);
 		
 
-		if ( !Tcl_SetVar(TKinterp, VarName, VarValue, 0) )
+		if ( !Tcl_SetVar(TCLinterp, VarName, VarValue, 0) )
 		{
 			*paramoutINT=(int)(FALSE);
 		}

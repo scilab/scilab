@@ -1114,7 +1114,6 @@ int GetScreenProperty(char *prop, char *value)
     }
   else
     {
-      sciprint("Unknown property %s\r\n",prop);
       return -1;
     }
   return 0;

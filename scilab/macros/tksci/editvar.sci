@@ -28,18 +28,18 @@ function editvar(varargin)
   %_loc_nj=size(%_loc_var,2);
   %_loc_type=string(%_loc_type);
 
-  TK_EvalStr("set EdVarLoc [sciGUIEditVar -1]");
+  TCL_EvalStr("set EdVarLoc [sciGUIEditVar -1]");
 
-  %_winId=TK_GetVar("EdVarLoc");
+  %_winId=TCL_GetVar("EdVarLoc");
 
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,name)",%_loc_nam);
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,type)",string(%_loc_type));
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_loc_ni));
-  TK_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_loc_nj));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,name)",%_loc_nam);
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,type)",string(%_loc_type));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,ni)",string(%_loc_ni));
+  TCL_SetVar("sciGUITable(win,"+%_winId+",data,nj)",string(%_loc_nj));
 
   //
   // This is a slow manner to move the data ...
-  // Anyone have a faster method than TK_SetVar
+  // Anyone have a faster method than TCL_SetVar
   // I would like set some tcl variable like varname(pos_i,pos_j)
   //
 
@@ -47,10 +47,10 @@ function editvar(varargin)
     for %_i=1:%_loc_ni,
       %_value=string(%_loc_var(%_i,%_j));
       %_varname="sciGUITable(win,"+%_winId+",data,"+string(%_i)+","+string(%_j)+")";
-      TK_SetVar(%_varname,%_value);
+      TCL_SetVar(%_varname,%_value);
     end
   end
 
-  TK_EvalStr("sciGUIEditVarDrawGrid "+%_winId);
+  TCL_EvalStr("sciGUIEditVarDrawGrid "+%_winId);
 
 endfunction

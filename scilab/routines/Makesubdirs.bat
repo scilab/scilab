@@ -3,7 +3,7 @@ REM Makesubdirs.bat all
 if "%1" == "all" goto all
 if "%1" == "clean" goto all
 if "%1" == "distclean" goto all
-if "%1" == "tksci" goto tksci 
+if "%1" == "tclsci" goto tclsci 
 if "%1" == "pvm" goto pvm 
 
 echo Unknown target %1 
@@ -154,9 +154,9 @@ cd ..
 echo on
 goto end
 
-:tksci 
-cd tksci 
-echo Making %1 in directory  tksci 
+:tclsci 
+cd tclsci 
+echo Making %1 in directory  tclsci 
  nmake /C /f Makefile.mak all
 cd ..
 goto end 

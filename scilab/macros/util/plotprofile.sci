@@ -103,34 +103,34 @@ function endprof()
   if or(winsid()==(win+1)) then xdel(win+1);end
   if or(winsid()==(win)) then xdel(win);end
   if withpad then
-    TK_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TK_GetVar("isscipadinterp")=='0' then return,end
-    TK_EvalStr('scipad eval {montretext $profiled}')
-    TK_EvalStr('scipad eval {closecur}')
+    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+    if TCL_GetVar("isscipadinterp")=='0' then return,end
+    TCL_EvalStr('scipad eval {montretext $profiled}')
+    TCL_EvalStr('scipad eval {closecur}')
   end
 endfunction
 
 function scipad_hiliteline(n)
-  TK_EvalStr("set isscipadinterp [interp exists scipad]")
-  if TK_GetVar("isscipadinterp")=='0' then //scipad has been closed
+  TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+  if TCL_GetVar("isscipadinterp")=='0' then //scipad has been closed
      openinscipad(profpath)
   end
-  TK_EvalStr('scipad eval {montretext $profiled}')
-  TK_EvalStr('scipad eval {set gotlnCommand '+string(n)+'}')
-  TK_EvalStr('scipad eval {[gettextareacur] mark set insert ""$gotlnCommand.0""}')
-  //TK_EvalStr('scipad eval {catch {keyposn [gettextareacur]}}')
-  TK_EvalStr('scipad eval {[gettextareacur] see insert}')
-  TK_EvalStr('scipad eval {set i1 [$textareacur index ""insert linestart""]}')
-  TK_EvalStr('scipad eval {set i2 [$textareacur index ""insert lineend""]}')
-  TK_EvalStr('scipad eval {$textareacur tag add sel $i1 $i2}')
-  TK_EvalStr('scipad eval {selectline}')
+  TCL_EvalStr('scipad eval {montretext $profiled}')
+  TCL_EvalStr('scipad eval {set gotlnCommand '+string(n)+'}')
+  TCL_EvalStr('scipad eval {[gettextareacur] mark set insert ""$gotlnCommand.0""}')
+  //TCL_EvalStr('scipad eval {catch {keyposn [gettextareacur]}}')
+  TCL_EvalStr('scipad eval {[gettextareacur] see insert}')
+  TCL_EvalStr('scipad eval {set i1 [$textareacur index ""insert linestart""]}')
+  TCL_EvalStr('scipad eval {set i2 [$textareacur index ""insert lineend""]}')
+  TCL_EvalStr('scipad eval {$textareacur tag add sel $i1 $i2}')
+  TCL_EvalStr('scipad eval {selectline}')
 
 endfunction
 
 function r=with_scipad()
   if with_tk() then
-    TK_EvalStr("set isscipadinterp [interp exists scipad]")
-    if TK_GetVar("isscipadinterp")=='0' then scipad(),end
+    TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+    if TCL_GetVar("isscipadinterp")=='0' then scipad(),end
     r=%t
   else
     r=%f
@@ -138,10 +138,10 @@ function r=with_scipad()
 endfunction
 
 function openinscipad(path)
-  TK_EvalStr("set isscipadinterp [interp exists scipad]")
-  if TK_GetVar("isscipadinterp")=='0' then scipad(),end
-  TK_EvalStr('scipad eval {openfile ""'+path+'""}')
-  TK_EvalStr('scipad eval {set profiled [lindex $listoftextarea end]}')
+  TCL_EvalStr("set isscipadinterp [interp exists scipad]")
+  if TCL_GetVar("isscipadinterp")=='0' then scipad(),end
+  TCL_EvalStr('scipad eval {openfile ""'+path+'""}')
+  TCL_EvalStr('scipad eval {set profiled [lindex $listoftextarea end]}')
 endfunction
 
 function [h,M]=dispfuntxt(txt,k,h,M)

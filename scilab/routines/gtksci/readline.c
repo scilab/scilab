@@ -20,7 +20,7 @@
 #include <gtk/gtk.h>
 
 #ifdef WITH_TK
-#include "../tksci/tksci.h"
+#include "../tclsci/TCL_Global.h"
 #endif
 
 #include "../graphics/Math.h"

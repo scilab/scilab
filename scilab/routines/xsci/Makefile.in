@@ -53,7 +53,7 @@ test: $(OBJTEST) $(OBJSC) ../sun/zzledt.o ../sun/flags.o  ../sun/men_Sutils.o ..
 	$(CC) -g -o $@ $(OBJTEST) ../sun/zzledt.o ../sun/flags.o  ../sun/tmpdir.o \
 	../sun/men_Sutils.o ../sun/inffic.o ../sun/timer.o \
 	$(OBJSC) $(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
-	$(SCIDIR)/@TKSCILIB@ $(CC_LDFLAGS) $(XLIBS) $(TERMCAPLIB) \
+	$(SCIDIR)/@TCLSCILIB@ $(CC_LDFLAGS) $(XLIBS) $(TERMCAPLIB) \
 	$(TCLTK_LIBS) -lm
 
 clean::
@@ -121,8 +121,8 @@ x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h
 x_button.o: x_button.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
   ../machine.h All-extern-x.h
 x_charproc.o: x_charproc.c ../machine.h x_ptyxP.h x_ptyx.h x_VTparse.h \
-  x_data.h x_error.h x_menu.h x_main.h ../tksci/tksci.h \
-  ../tksci/C-LAB_Interf.h ../stack-def.h All-extern-x.h All-extern.h
+  x_data.h x_error.h x_menu.h x_main.h ../tclsci/TCL_Global.h \
+  ../stack-def.h All-extern-x.h All-extern.h
 x_cursor.o: x_cursor.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
 x_data.o: x_data.c x_ptyxP.h x_ptyx.h x_data.h
 x_input.o: x_input.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h

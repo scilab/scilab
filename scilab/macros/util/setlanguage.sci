@@ -27,12 +27,12 @@ endfunction
 function RescanSciGUIHelp()
   update='0';
   sciGUI_init();
-  nch=eval(TK_GetVar('sciGUITable(browsehelp,nchap)'));
+  nch=eval(TCL_GetVar('sciGUITable(browsehelp,nchap)'));
   rescan_helps()
-  TK_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
+  TCL_SetVar('sciGUITable(browsehelp,nchap)',string(size(%helps,1)));
   update='1';
   tmpDir=strsubst(TMPDIR,'\','/');
-  TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
+  TCL_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
 
 endfunction
 //=====================================================================

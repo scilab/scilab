@@ -27,7 +27,7 @@
    include by ../graphics/Math.h */ 
 
 #ifdef WITH_TK
-#include "../tksci/tksci.h"
+include "../tclsci/TCL_Global.h"
 #endif
 
 extern void start_sci_gtk(void);
@@ -184,7 +184,7 @@ static int INXscilab=0;
 void SetXsciOn()
 {
 #ifdef WITH_TK
-  inittk();
+  initTCLTK();
 #endif
   INXscilab=1;
   BasicScilab = 0;
@@ -231,7 +231,7 @@ void sci_tk_activate(void)
 {
 #ifdef WITH_TK
   start_sci_gtk(); /* be sure that gtk is started */
-  inittk();
+  initTCLTK();
   BasicScilab = 0;
   flushTKEvents();
 #endif

@@ -5,7 +5,7 @@
 #ifndef __INTTCLSETVAR__
 #define __INTTCLSETVAR__
 
-#include "TCL_GLOBAL.h"
+#include "TCL_Global.h"
 
 
 int C2F(intTclSetVar) _PARAMS((char *fname));

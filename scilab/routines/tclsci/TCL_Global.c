@@ -4,138 +4,182 @@
 /*-----------------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 /*-----------------------------------------------------------------------------------*/
-extern void SetCommandflag(int flag) ;
-extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
-extern int GetCommand(char *str);
-extern int StoreCommand ( char *command); 
-extern int C2F(tksynchro)();
-extern integer C2F (ismenu)(void); 
+Tcl_Interp *TCLinterp=NULL;
+Tk_Window TKmainWindow=NULL;
 /*-----------------------------------------------------------------------------------*/
-/* what's the max number of commands in the queue ??*/
-#define arbitrary_max_queued_callbacks 20
-/*-----------------------------------------------------------------------------------*/
-static int c_n1 = -1;     
-/*-----------------------------------------------------------------------------------*/
-int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
+void nocase (char *s)
 {
-  int ns,ierr,seq;
-  char *command;
+#ifndef WIN32
+  int lg;
+  int i;
+  char c;
+ 
+  lg = strlen(s);
+  for (i=0; i<lg; i++)
+    {
+      c = s[i];
+      if ( (c >= 'A') && (c <= 'Z') ) s[i] = 'a' + (c-'A');
+    }
+#else
+  s=_strlwr(s);
+#endif
+} 
+/*-----------------------------------------------------------------------------------*/
+char *Matrix2String(int RhsMatrix)
+{
+	
+	static int l1,n1,m1;
+	double *param=NULL;
+	int sz=0;
+	char *retstr=NULL;
+	char *tmpstr=NULL;
+    
+	GetRhsVar(RhsMatrix,"d",&m1,&n1,&l1);
+	param=stk(l1);
+	
+	sz=m1*n1;
 
-  char *comm[arbitrary_max_queued_callbacks];
-  int   seqf[arbitrary_max_queued_callbacks];
-  int nc,ncomm=-1;
+    if (sz>0) 
+    {
+		#define ENT 10
+		#define MANT 5
+		int i=0;
+		int strl=0;
+		strl = sz * (ENT * MANT + 2);
+		/* the before the dot, after the dot, the dot and a space */
+      
+		retstr = (char*) malloc( (1+strl) * sizeof(char));
+		tmpstr = (char*) malloc( (ENT * MANT + 2) * sizeof(char));
+      
+		strcpy(retstr,"");
+        strcpy(tmpstr,"");
 
-  if (C2F(iop).ddt==-1)
-  {
-	/* trace for debugging */
-    int argc=1;
-    sciprint("TCL_EvalScilabCmd %s",argv[1]);
-    while (argv[++argc]) sciprint(" %s",argv[argc]);
-    sciprint("\n");
-  }
-
-  if (argv[1] != (char *)0)
-  {
-    if (strlen(argv[1])>=bsiz)
-	{
-      command = (char *) malloc (bsiz * sizeof (char));
-      if (command == (char *) 0)
-      {
-        sciprint ("TCL_EvalScilabCmd: No more memory\r\n");
-        return TCL_ERROR;
-      }
-      memset(command,'\0',bsiz);
-      strncpy(command,argv[1],bsiz-1);
-      sciprint("Warning: ScilabTCLEval command is too long and has been truncated to %d characters!\r\n",bsiz-1);
+		for (i=0; i<(sz-1); i++)
+		{
+			sprintf(tmpstr,"%.10lf|", param[i]);
+			strcat( retstr,tmpstr );
+		}
+      
+		sprintf(tmpstr,"%.10lf", param[i]);
+		strcat( retstr,tmpstr );
+      
+        if (tmpstr) {free(tmpstr);tmpstr=NULL;}
     }
 	else
-	{
-      command = (char *) malloc ((strlen (argv[1]) + 1) * sizeof (char));
-      if (command == (char *) 0)
-      {
-        sciprint ("TCL_EvalScilabCmd: No more memory\r\n");
-        return TCL_ERROR;
-      }
-      strcpy(command,argv[1]);
+    { 
+      retstr = (char*) malloc( sizeof(char) );
+      strcpy(retstr,"");
     }
+  
+  return(retstr);
+  
+}
+/*-----------------------------------------------------------------------------------*/  
+int IsAInteger(int RhsNumber)
+{
+	int bOK=0;
 
-    if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
+	if ( GetType(RhsNumber) == sci_matrix )
 	{
-      /* sync or sync seq */
-      C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
-      seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
-      ns=strlen(command); 
-      if (C2F(iop).ddt==-1) sciprint(" Execution starts for %s\r\n",command);
-      C2F(syncexec)(command,&ns,&ierr,&seq);
-      if (C2F(iop).ddt==-1) sciprint(" Execution ends for %s\r\n",command);
-      C2F(tksynchro)(&C2F(recu).paus);
-      if (ierr != 0) return TCL_ERROR;
-    }
-    else if (strncmp(command,"flush",5)==0)
-	{
-      /* flush */
-      if (C2F(iop).ddt==-1) sciprint(" Flushing starts for queued commands\r\n");
-      while (C2F(ismenu)() && ncomm<arbitrary_max_queued_callbacks-1)
-	  {
-        ncomm++;
-        comm[ncomm] = (char *) malloc (bsiz+1);
-        if (comm[ncomm] == (char *) 0)
-        {
-          sciprint ("TCL_EvalScilabCmd: No more memory\r\n");
-          return TCL_ERROR;
-        }
-        seqf[ncomm]=GetCommand (comm[ncomm]);
-      }
-      if (C2F(ismenu)()) sciprint("Warning: Too many callbacks in queue!\r\n");
-      for (nc = 0 ; nc <= ncomm ; nc++ )
-	  {
-        C2F(tksynchro)(&c_n1);  /* set sciprompt to -1 (scilab busy) */
-        if (C2F(iop).ddt==-1)
-        {
-	      if (seqf[nc]==0)
-		  {
-			  sciprint(" Flushed execution starts for %s - No option\r\n",comm[nc]);
-		  }
-	      else
-		  {
-			  sciprint(" Flushed execution starts for %s - seq\r\n",comm[nc]);
-		  }
-        }
-        ns=strlen(comm[nc]);
-        C2F(syncexec)(comm[nc],&ns,&ierr,&(seqf[nc]));
-        if (C2F(iop).ddt==-1)
-        {
-          sciprint(" Flushed execution ends for %s\r\n",comm[nc]);
-          free(comm[nc]);
-        }
-        C2F(tksynchro)(&C2F(recu).paus);
-        if (ierr != 0) return TCL_ERROR;
-      }
-      if (C2F(iop).ddt==-1) sciprint(" Flushing ends\r\n");
-    }
-    else
-	{
-      /* seq or no option */
-      StoreCommand(command); 
-      if ( (argv[2] != (char *)0) && (strncmp(argv[2],"seq",3)==0) )
-	  {
-        SetCommandflag(1);
-      }
-      else
-	  {
-		/* unknown option */
-        Tcl_SetResult(theinterp,NULL,NULL);
-	  }
-    }
-    free(command);
+		static int l1,n1,m1;
+		GetRhsVar(1,"i",&m1,&n1,&l1);
+		if ( (m1 == 1) && (n1 == 1) )
+		{
+			bOK=1;
+		}
+	}
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+double *String2Matrix(char *StringIn,int *nbelemOut)
+{
+    double *MatrixReturn=NULL;
+	int nbelem=0;
+	int Stringlen=strlen(StringIn);
 
-  } 
-  else
-  {
-	/* ScilabEval called without argument */
-    Scierror(999,"ScilabTCLEval: at least one argument is required\r\n");
-  }
+	if (Stringlen>0)
+	{
+		int begin_elem=0;
+		int end_elem=0;
+		int elem=0;
+		int i=0;
+		char *tmpstr=NULL;
 
-  return TCL_OK;
+		/* How many elements in the string ? */
+		for (i=0; i<(Stringlen-1); i++)  if (StringIn[i]=='|')	nbelem++;
+
+		nbelem++;
+
+		MatrixReturn=(double*) malloc(nbelem*sizeof(double));
+		tmpstr = (char *)malloc((Stringlen+1) * sizeof(char));
+
+		for (elem=0; elem<nbelem; elem++)
+		{
+			while ( (end_elem<Stringlen) && (StringIn[end_elem] != '|') )
+			{
+	            end_elem++;
+			}
+	  
+			strncpy(tmpstr, StringIn+begin_elem, end_elem-begin_elem);
+			MatrixReturn[elem]=atof(tmpstr);
+			begin_elem = end_elem+1;
+			end_elem = begin_elem;
+		}
+        if (tmpstr) {free(tmpstr);tmpstr=NULL;}
+		*nbelemOut=nbelem;
+	}
+
+	return MatrixReturn;
+}
+/*-----------------------------------------------------------------------------------*/
+int MustReturnAString(char *FieldPropertie)
+{
+	int bOK=0;
+	char Propertie[256];
+
+	strcpy(Propertie,FieldPropertie);
+    nocase(Propertie);
+
+	if ( (strcmp(Propertie,"style") == 0) ||
+		 (strcmp(Propertie,"tag") == 0) ||
+		 (strcmp(Propertie,"units") == 0) ||
+		 (strcmp(Propertie,"callback") == 0) ||
+		 (strcmp(Propertie,"fontangle") == 0) ||
+		 (strcmp(Propertie,"fontunits") == 0) ||
+		 (strcmp(Propertie,"fontweight") == 0) ||
+		 (strcmp(Propertie,"string") == 0) ) bOK=1;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int MustReturnAMatrix(char *FieldPropertie)
+{
+	int bOK=0;
+	char Propertie[256];
+
+	strcpy(Propertie,FieldPropertie);
+    nocase(Propertie);
+
+	if ( (strcmp(Propertie,"backgroungcolor") == 0) ||
+		 (strcmp(Propertie,"fontsize") == 0) ||
+		 (strcmp(Propertie,"listboxtop") == 0) ||
+		 (strcmp(Propertie,"max") == 0) ||
+		 (strcmp(Propertie,"min") == 0) ||
+		 (strcmp(Propertie,"parent") == 0) ||
+		 (strcmp(Propertie,"position") == 0) ||
+		 (strcmp(Propertie,"sliderstep") == 0) ||
+		 (strcmp(Propertie,"value") == 0) ) bOK=1;
+
+	return bOK;
+}
+/*-----------------------------------------------------------------------------------*/
+int ValueMustBeAMatrix(char *FieldPropertie)
+{
+	return (MustReturnAMatrix(FieldPropertie));
+}
+/*-----------------------------------------------------------------------------------*/
+int ValueMustBeAString(char *FieldPropertie)
+{
+	return (MustReturnAString(FieldPropertie));
 }
 /*-----------------------------------------------------------------------------------*/

@@ -10,6 +10,7 @@
   #include <windows.h>
 #endif
 #include <stdio.h>
+#include <string.h>
 #include "../machine.h"
 #include "../stack-c.h"
 #include "../version.h"
@@ -24,12 +25,19 @@
 #define TRUE  1
 #define FALSE 0
 /*-----------------------------------------------------------------------------------*/
-/*Tcl_Interp *TKinterp=NULL;*/
-/*Tk_Window TKmainWindow=NULL;*/
-extern Tcl_Interp *TKinterp;
+extern Tcl_Interp *TCLinterp;
 extern Tk_Window TKmainWindow;
+extern int TK_Started;
+extern int XTKsocket;
 /*-----------------------------------------------------------------------------------*/
-int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv);
+void nocase (char *s);
+char *Matrix2String(int RhsMatrix);
+double *String2Matrix(char *StringIn,int *nbelemOut);
+int IsAInteger(int RhsNumber); 
+int MustReturnAMatrix(char *FieldPropertie);
+int MustReturnAString(char *FieldPropertie);
+int ValueMustBeAMatrix(char *FieldPropertie);
+int ValueMustBeAString(char *FieldPropertie);
 /*-----------------------------------------------------------------------------------*/
 #endif /* __TCLGLOBAL__ */
 /*-----------------------------------------------------------------------------------*/ 

@@ -5,7 +5,7 @@
 #ifndef __INTTCLEVALSTR__
 #define __INTTCLEVALSTR__
 
-#include "TCL_GLOBAL.h"
+#include "TCL_Global.h"
 
 
 int C2F(intTclEvalStr) _PARAMS((char *fname));

@@ -25,7 +25,7 @@ static void Initialize() ;
 /********************************************************************************************************/
 extern void C2F(banier)(int *x) ;
 extern integer C2F (ismenu) __PARAMS((void));
-extern void inittk();
+extern void initTCLTK();
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
@@ -352,7 +352,7 @@ static void Initialize()
   #endif
 
   /* Scilab Initialization */
-  inittk(); /* TK Init. */
+  initTCLTK(); /* TK Init. */
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
     {

@@ -8,6 +8,6 @@ function p=tk_getdir(startdir,title)
   end
   if exists('title','local')==1 then arg=arg+' -title ""'+title+'""',end
   arg=arg+' -parent $root '
-  TK_EvalStr("set scifilepath [tk_chooseDirectory"+arg+"]")
-  p=TK_GetVar('scifilepath')
+  TCL_EvalStr("set scifilepath [tk_chooseDirectory"+arg+"]")
+  p=TCL_GetVar('scifilepath')
 endfunction

@@ -9,8 +9,8 @@ MAKE=amake /f Makefile.amk
 # Scilab tksci library 
 #---------------------
 # To compile with TCL/TK interface, uncomment the following lines and give
-# the good pathnames for TKLIBS and TCL_INCLUDES.
-#TKSCI=libs/tksci.lib 
+# the good pathnames for TClLIBS and TCL_INCLUDES.
+#TKSCI=libs/tclsci.lib 
 #TKLIBS=d:\tcl8.0\win\tcl80.lib d:\tk8.0\win\tk80.lib
 #TKLIBSBIN="$(SCIDIR1)\bin\tcl80.lib" "$(SCIDIR1)\bin\tk80.lib"
 #TCL_INCLUDES=-Id:\tcl8.0\generic -Id:\tk8.0\generic -Id:\tk8.0\xlib

@@ -46,11 +46,11 @@ function hout=progressionbar(h,mes)
 
 
   if (m1=="") then
-    TK_EvalStr('set progressionbartmp [sciGUIBarProgression '+string(h1)+' """"]');
+    TCL_EvalStr('set progressionbartmp [sciGUIBarProgression '+string(h1)+' """"]');
   else
-    TK_EvalStr('set progressionbartmp [sciGUIBarProgression '+string(h1)+' ""'+m1+'""]');
+    TCL_EvalStr('set progressionbartmp [sciGUIBarProgression '+string(h1)+' ""'+m1+'""]');
   end
-  hout=evstr(TK_GetVar('progressionbartmp'));
+  hout=evstr(TCL_GetVar('progressionbartmp'));
 
 endfunction
 

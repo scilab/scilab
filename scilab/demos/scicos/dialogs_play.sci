@@ -32,17 +32,17 @@ function str=x_dialog(comment,default)
   
   txt=create_txt4(comment,default)
 
-  TK_EvalStr(txt)
+  TCL_EvalStr(txt)
 
-  TK_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(default)+''"')
+  TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(default)+''"')
 
   for t=1:100,  xpause(2000),end
-  TK_EvalStr('$w.mess delete 0.0 end')
-  TK_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(str)+''"')
+  TCL_EvalStr('$w.mess delete 0.0 end')
+  TCL_EvalStr('$w.mess  insert 0.0 '"'+sci2tcl(str)+''"')
   
   for t=1:min(100*(ln-1),5000),  xpause(2000),end
   
-  TK_EvalStr('destroy $w')
+  TCL_EvalStr('destroy $w')
 endfunction
 
 function str=x_mdialog(description,labels,valuesini)
@@ -52,7 +52,7 @@ function str=x_mdialog(description,labels,valuesini)
   
    txt=create_txt1(description,labels,valuesini);
   
-   TK_EvalStr(txt)
+   TCL_EvalStr(txt)
    xpause(500000)
    for k=1:n
      str(k,1)=readline()
@@ -61,14 +61,14 @@ function str=x_mdialog(description,labels,valuesini)
    rep=readline()
    for i=1:3
      txt=create_txt2(valuesini);
-     TK_EvalStr(txt)
+     TCL_EvalStr(txt)
      xpause(500000)
      txt=create_txt2(str);
-     TK_EvalStr(txt)
+     TCL_EvalStr(txt)
      xpause(500000)
    end
     xpause(1500000)
-   TK_EvalStr('destroy $w')
+   TCL_EvalStr('destroy $w')
    if part(rep,1)=='c' then str=[],end
 endfunction
 
@@ -322,17 +322,17 @@ function tk_mpop(ll,but,pos)
 
   for bb=1:but-1
   [txt,MM]=create_pop(ll,bb,pos)
-  ierr=execstr('TK_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','continue')
   for i=1:10,xpause(5000),end
    txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TK_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','continue')
   end
   [txt,MM]=create_pop(ll,but,pos)
-  ierr=execstr('TK_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','continue')
   
   xpause(1000000)
   txt='catch {destroy .scicoslhb}'
-  ierr=execstr('TK_EvalStr(txt)','continue')
+  ierr=execstr('TCL_EvalStr(txt)','continue')
 endfunction
 
 function [txt,MM]=create_pop(ll,but,pos)

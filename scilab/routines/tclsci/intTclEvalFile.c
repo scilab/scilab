@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "intTclEvalFile.h"
 /*-----------------------------------------------------------------------------------*/
-C2F(intTclEvalFile) _PARAMS((char *fname))
+int C2F(intTclEvalFile) _PARAMS((char *fname))
 {
   /* execute Tcl scripts */
   int m1,n1,l1;
@@ -16,17 +16,17 @@ C2F(intTclEvalFile) _PARAMS((char *fname))
   if (GetType(1) == sci_strings)
   {
 	GetRhsVar(1,"c",&m1,&n1,&l1);
-	RET=Tcl_EvalFile(TKinterp,cstk(l1));
+	RET=Tcl_EvalFile(TCLinterp,cstk(l1));
 
 	if (RET==TCL_ERROR)
 	{
 		if (C2F(iop).err>0) 
 		{
-			sciprint("%s, at line %i of file %s\r\n","ScilabEval",TKinterp->errorLine,cstk(l1));
+			sciprint("%s, at line %i of file %s\r\n","ScilabEval",TCLinterp->errorLine,cstk(l1));
 		}
         else
 		{
-			Scierror(999,"%s, at line %i of file %s: %s\r\n",fname,TKinterp->errorLine,cstk(l1),TKinterp->result);
+			Scierror(999,"%s, at line %i of file %s: %s\r\n",fname,TCLinterp->errorLine,cstk(l1),TCLinterp->result);
 			return 0;
 		}
     }
