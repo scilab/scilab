@@ -10235,6 +10235,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->ebox[5] = ebox[5];
       pSURFACE_FEATURE (pobj)->flagcolor =flagcolor;
       pSURFACE_FEATURE (pobj)->typeof3d = typeof3d;
+      pSURFACE_FEATURE (pobj)->hiddencolor = pSUBWIN_FEATURE(pparentsubwin)->hiddencolor;
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -16795,7 +16796,7 @@ int Gen3DPoints(integer type,integer *polyx, integer *polyy, integer *fill, inte
   if (trans3d(pobj ,1, &(polyx[4+  5*jj1]),&(polyy[4+  5*jj1]),&(x[i]),&(y[j]),&(z[i+(*p)*j]))==0) return 0; 
   
   if ((((polyx[1+5*jj1]-polyx[0+5*jj1])*(polyy[2+5*jj1]-polyy[0+5*jj1])-
-	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1])) <  0) && (dc!=fg)) 
+	(polyy[1+5*jj1]-polyy[0+5*jj1])*(polyx[2+5*jj1]-polyx[0+5*jj1])) <  0) && (fg >=0 )) 
     if (type != 0)
       fill[jj1]= (dc < 0 ) ? -fg : fg ;
     else
@@ -17226,7 +17227,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
   static double zmin,zmax,xmoy,ymoy,zmoy,zl;
   int context[6];
 #ifdef WIN32 
-  int flag;
+  int hdcflag;
 #endif
 
   if(sciGetEntityType (psubwin) != SCI_SUBWIN) return;
@@ -17383,8 +17384,8 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
    * ========================================================================*/
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
-  zmin=  pSUBWIN_FEATURE (psubwin)->SRect[4];
-  zmax= pSUBWIN_FEATURE (psubwin)->SRect[5];
+  zmin=  pSUBWIN_FEATURE (psubwin)->FRect[4];
+  zmax= pSUBWIN_FEATURE (psubwin)->FRect[5];
   if ((polyx=(int *)MALLOC(max_p*sizeof(int)))==(int *) NULL) {
     FREE(dist);FREE(locindex);
     Scistring("DrawMerge3d : malloc No more Place\n");
@@ -17543,7 +17544,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	context[4] = sciGetMarkStyle(pobj);
 	context[5] = sciGetLineWidth (pobj);
 #ifdef WIN32
-	flag=MaybeSetWinhdc();
+	hdcflag=MaybeSetWinhdc();
 #endif
 	C2F (dr) ("xset", "dashes",     context,   context,   context+3, context+3, context+3, PI0, PD0, 
 		  PD0, PD0, PD0, 5L, 6L);
@@ -17553,33 +17554,39 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	C2F (dr) ("xset", "line style", context+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); 
 	C2F (dr) ("xset", "mark", context+4, context+5, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
 #ifdef WIN32
-	if ( flag == 1) ReleaseWinHdc ();
+	if ( hdcflag == 1) ReleaseWinHdc ();
 #endif	  
 
-	if (sciGetEntityType (pobj)==SCI_SURFACE) {  
+	if (sciGetEntityType (pobj)==SCI_SURFACE) { 
+	  int fg1  = pSURFACE_FEATURE (pobj)->hiddencolor;
+	  int flag = pSURFACE_FEATURE (pobj)->flag[0];
 	  polyx[p]=polyx[0];polyy[p]=polyy[0];p++; /*close the facet*/
 
 	  if ((((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-(polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) &&
-	      (pSUBWIN_FEATURE (psubwin)->hiddencolor>0)) { /* hidden face */
-	    fill[0]= pSUBWIN_FEATURE (psubwin)->hiddencolor;
+	      (fg1 >= 0)) { /* hidden face */
+
+	    if ( pSURFACE_FEATURE (pobj)->flagcolor != 0)
+	      fill[0] = (flag < 0 ) ? -fg1 : fg1 ;
+	    else
+	      fill[0] = (flag != 0 ) ? fg1 : flag ;
 	    C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  }
 	  else {
 	    switch ( pSURFACE_FEATURE (pobj)->flagcolor) {
 	    case 0:
-	      fill[0]= pSURFACE_FEATURE (pobj)->flag[0] ;
+	      fill[0]= flag ;
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p, PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      break;
 	    case 1:
 	      zl=0;
-	      for ( k1= 0 ; k1 < p ; k1++) zl+= Z[k1];
+	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1];
 	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
-	      if ( pSURFACE_FEATURE (pobj)->flag[0]  < 0 ) fill[0]=-fill[0];
+	      if ( flag  < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      break;
 	    case 2:
 	      fill[0]= pSURFACE_FEATURE (pobj)->zcol[index];
-	      if ( pSURFACE_FEATURE (pobj)->flag[0] < 0 ) fill[0]=-fill[0];
+	      if ( flag < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      break;
 	    case 3:

@@ -5897,6 +5897,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN)
 	pSUBWIN_FEATURE (pobj)->hiddencolor=(int) stk(*value)[0];
+      else if (sciGetEntityType (pobj) == SCI_SURFACE)
+	pSURFACE_FEATURE (pobj)->hiddencolor=(int) stk(*value)[0];
       else
 	{strcpy(error_message,"hiddencolor property does not exist for this handle");return -1;}
     
@@ -7317,7 +7319,12 @@ if ((pobj == (sciPointObj *)NULL) &&
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
 	*stk(outindex) = pSUBWIN_FEATURE (pobj)->hiddencolor;
       }
-      else{
+      else if (sciGetEntityType (pobj) == SCI_SURFACE) {
+	numrow   = 1;numcol   = 1;
+	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+	*stk(outindex) = pSURFACE_FEATURE (pobj)->hiddencolor;
+      }
+      else {
 	strcpy(error_message,"hiddencolor property does not exist for this handle");
 	return -1;
       }

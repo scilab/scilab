@@ -871,7 +871,7 @@ typedef struct
                         0: uniformed color
 			1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
   sciTypeOf3D typeof3d;
-
+  int hiddencolor;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */  

@@ -291,6 +291,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
+	 "hiddencolor = "+string(h.hiddencolor)
 	]
         else
 	  t=[t;
@@ -306,6 +307,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
+	 "hiddencolor = "+string(h.hiddencolor)
 	]
       end
 
@@ -338,6 +340,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
+	 "hiddencolor = "+string(h.hiddencolor)
 	]
         else
 	  t=[t;
@@ -353,6 +356,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	 "color_mode = "+string(h.color_mode)
 	 "color_flag = "+sci2exp(h.color_flag,0)
+	 "hiddencolor = "+string(h.hiddencolor)
 	]
       end
 
