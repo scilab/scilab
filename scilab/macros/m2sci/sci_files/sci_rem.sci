@@ -13,22 +13,27 @@ X = convert2double(X)
 Y = convert2double(Y)
 tree.rhs=Rhs(X,Y)
 
-set_infos("See M2SCI documentation for replacement possibilities for call to mtlb_rem()",1)
-
-tree.name="mtlb_rem"
+// X./Y
+drd=Operation("./",tree.rhs,list())
+// fix(X./Y)
+fix_funcall=Funcall("fix",1,list(drd),list())
+// fix(X./Y).*Y
+drm=Operation(".*",list(fix_funcall,tree.rhs(2)),list())
+// X-fix(X./Y).*Y
+tree=Operation("-",list(tree.rhs(1),drm),tree.lhs)
 
 if is_a_scalar(X) then
-  tree.lhs(1).dims=Y.dims
+  tree.out(1).dims=Y.dims
 elseif is_a_scalar(Y) then
-  tree.lhs(1).dims=X.dims
+  tree.out(1).dims=X.dims
 elseif is_a_vector(X) then
-  tree.lhs(1).dims=X.dims
+  tree.out(1).dims=X.dims
 elseif is_a_vector(Y) then
-  tree.lhs(1).dims=Y.dims
+  tree.out(1).dims=Y.dims
 else
-  tree.lhs(1).dims=X.dims
+  tree.out(1).dims=X.dims
 end
 
-tree.lhs(1).type=Type(Double,Real)
+tree.out(1).type=Type(Double,Real)
 
 endfunction
