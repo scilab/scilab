@@ -443,6 +443,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
   integer pstyle;
+  int x3, y3; /* for log. case management */
  /*** 01/07/2002 -> 11.05.04 ***/ /* F.Leray : Re-put the Djalel modif. for a better display 
 			 using tight_limits='on' and/or isoview='on' */
   double xmin,xmax,ymin, ymax; 
@@ -495,8 +496,34 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       if(xy_type == 'i') {     /* Adding F.Leray 05.03.04*/
 	/*F.Leray Modification on 09.03.04*/
 	switch ( pos ) {
-	case 'u' : case 'd' :  while (x[3]>10)  x[3]=floor(x[3]/2); break;
-	case 'r' : case 'l' :  while (y[3]>10)  y[3]=floor(y[3]/2); break;
+	case 'u' : case 'd' :  
+	  if(pSUBWIN_FEATURE(psubwin)->logflags[0] == 'n')
+	    while (x[3]>10)  x[3]=floor(x[3]/2); 
+	  else{
+	    if(x[3] > 12){ /* F.Leray arbitrary value=12 for the moment */
+	      x3=x[3];     /* if x[3]>12 algo is triggered to search a divisor */
+	      for(j=x3-1;j>1;j--)
+		if(x3%j == 0){
+		  x[3]=j; 
+		}
+	    }
+	  }
+	  
+	  break;
+	case 'r' : case 'l' :
+	  if(pSUBWIN_FEATURE(psubwin)->logflags[1] == 'n')
+	    while (y[3]>10)  y[3]=floor(y[3]/2);
+	  else{
+	    if(y[3] > 12){
+	      y3=y[3];
+	      for(j=y3-1;j>1;j--)
+		if(y3%j == 0){
+		  y[3]=j;
+		}
+	    }
+	}
+	
+	break;
 	}
       }
       
