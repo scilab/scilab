@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.79 $)dnl
+AC_REVISION($Revision: 1.80 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -564,7 +564,7 @@ case "$host" in
        LD_LDFLAGS="$LIEEELIB"
     else
        GCC=yes
-       CC=cc
+       CC=gcc
        CC_OPTIONS='-O -Dlinux -fwritable-strings -DNARROWPROTO'
        CC_LDFLAGS=$LIEEELIB
        CC_PICFLAGS=-fPIC
