@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="NDcost"> generic external for optim
   computing gradient using finite differences</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[f,g,ind]=CDcost(x,ind,fun,varargin) </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[f,g,ind]=NDcost(x,ind,fun,varargin) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -52,7 +52,7 @@
    function <VERB>fun</VERB> which computes the criterion is required.</P>
     <P>
    This function should be used as follow:
-   <VERB>[f,xopt,gopt]=optim(list(CDcost,fun,p1,...pn),x0,...)</VERB></P>
+   <VERB>[f,xopt,gopt]=optim(list(NDcost,fun,p1,...pn),x0,...)</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
