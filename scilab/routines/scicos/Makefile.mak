@@ -18,7 +18,7 @@ BLOCKSF=evtdly.obj cstblk.obj \
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj\
+	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj constraint.obj \
 	absblk.obj andlog.obj bidon.obj gain.obj cdummy.obj dband.obj cosblk.obj 
 
 
@@ -32,7 +32,7 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 	sawtth.obj tcslti.obj tcsltj.obj scopxy.obj evscpe.obj integr.obj readf.obj affich.obj\
 	intpol.obj intplt.obj minblk.obj maxblk.obj dlradp.obj  iocopy.obj \
 	sum2.obj sum3.obj delayv.obj mux.obj demux.obj samphold.obj dollar.obj mscope.obj \
-	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj\
+	eselect.obj intrp2.obj   intrpl.obj fsv.obj memo.obj fscope.obj scoxy.obj diffblk.obj constraint.obj\
 	blocks.obj 
 
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \

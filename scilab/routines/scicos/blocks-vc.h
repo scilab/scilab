@@ -65,6 +65,7 @@ extern void F2C(memo) __PARAMS((ARGS_scicos));
 extern void F2C(fscope) __PARAMS((ARGS_scicos));
 extern void F2C(scoxy) __PARAMS((ARGS_scicos));
 extern void F2C(diffblk) __PARAMS((ARGS_scicos));
+extern void F2C(constraint) __PARAMS((ARGS_scicos));
 extern void F2C(absblk) __PARAMS((ARGS_scicos));
 extern void F2C(andlog) __PARAMS((ARGS_scicos));
 extern void F2C(bidon) __PARAMS((ARGS_scicos));
@@ -90,6 +91,7 @@ OpTab tabsim[] ={
 {"andlog",(ScicosF) F2C(andlog)},
 {"bidon",(ScicosF) F2C(bidon)},
 {"cdummy",(ScicosF) F2C(cdummy)},
+{"constraint",(ScicosF) F2C(constraint)},
 {"cosblk",(ScicosF) F2C(cosblk)},
 {"csslti",(ScicosF) F2C(csslti)},
 {"cstblk",(ScicosF) F2C(cstblk)},
@@ -168,6 +170,6 @@ OpTab tabsim[] ={
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
  
-int ntabsim= 81 ;
+int ntabsim= 82 ;
 #endif 
 /***********************************/
