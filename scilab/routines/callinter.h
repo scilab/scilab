@@ -45,6 +45,7 @@ c
          call error(18)
          goto 97
       endif
+      toperr=top-max(0,rhs)
       goto 91
 c     
  90   if(err.gt.0) goto 97
@@ -61,18 +62,20 @@ c
 
       if (.not.allowptr(k)) call ref2val
       krec=k
+
       call callinterf(k,iflagint)
 C      if (k.eq.krec) krec=99999
       krec=-1
       if(fun.ge.0) then
          if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
          if(paus.gt.0) goto 91
+	 if (err1.gt.0) top=toperr
          goto 90
       endif
 c     called interface ask for a scilab function to perform the function (fun=-1)
 c     the function name is given in ids(1,pt+1)
 
-c     call ref2val removed here because if forces overloadin function to
+c     call ref2val removed here because if forces overloading function to
 C     be called by value
 c     call ref2val 
 
