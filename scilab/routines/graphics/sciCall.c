@@ -9,6 +9,8 @@
 #include "Entities.h"
 #include "PloEch.h"
 
+extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+
 int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,integer lstr1,integer lstr2);
 
 /*------------------------------------------------
@@ -269,11 +271,12 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
   
   pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0]; /* mode: treatment of hidden parts */
-  if (iflag[1] != 0)
+  if (iflag[1] != 0){
     if (iflag[1]<7)
       pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]; /* type: scaling (no more useful)  */
     else
       pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
+  }
   pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
 
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
