@@ -6132,6 +6132,7 @@ if ((pobj == (sciPointObj *)NULL) &&
   /************************  figure Properties *****************************/ 
   else if (strncmp(marker,"figure_position", 15) == 0)
     {
+	Etype=sciGetEntityType (pobj); /* CHECK IF NORMALLY WE HAVE TO REDECLARE Etype here F.Leray 06.04.04 */
       if (Etype != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
