@@ -20,11 +20,19 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
   CreateVarFromPtr( 1, "c",(m1=strlen(Version), &m1),&n1,&v);
   LhsVar(1) = 1;
   if (Lhs==2) {
-    static char *Str[4];
+    static char *Str[6];
     char tk[]="tk";
     char pvm[]="pvm";
     char gtk[]="gtk";
     char ocaml[]="ocaml";
+	#ifdef __TIME__
+	char TimeBuild[]=__TIME__;
+	#endif
+
+	#ifdef __DATE__
+	char DateBuild[]=__DATE__;
+	#endif
+
     static int irep,nbuf;
 
     n1=0;
@@ -38,6 +46,15 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     if (irep) {Str[n1]=tk;n1++;}
     C2F(withocaml)(&irep);
     if (irep) {Str[n1]=ocaml;n1++;}
+
+	#ifdef __TIME__
+	{Str[n1]=DateBuild;n1++;}
+	#endif
+
+	#ifdef __DATE__
+	{Str[n1]=TimeBuild;n1++;}
+	#endif
+
     m1=1;
     CreateVarFromPtr( 2, "S", &m1, &n1, Str);
     LhsVar(2) = 2;
