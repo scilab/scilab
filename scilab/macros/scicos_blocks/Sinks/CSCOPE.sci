@@ -15,7 +15,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   if size(exprs)<10 then exprs(10)=emptystr(),end // compatibility
   model=arg1.model;
-  dstate=model.in
+  //dstate=model.in
   while %t do
     [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=getvalue(..
 	'Set Scope parameters',..
@@ -75,8 +75,11 @@ case 'set' then
       if wdim==[] then wdim=[-1;-1];end
       rpar=[0;ymin;ymax;per]
       ipar=[win;1;N;clrs(:);wpos(:);wdim(:)]
-      if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
-      model.dstate=dstate;model.rpar=rpar;model.ipar=ipar
+      //if prod(size(dstate))<>(8+1)*N+1 then dstate=-eye((8+1)*N+1,1),end
+      model.dstate=[];
+      //model.dstate=dstate;
+      
+      model.rpar=rpar;model.ipar=ipar
       model.evtin=ones(1-heritance,1)
       model.label=nom;
       graphics.id=nom

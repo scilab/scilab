@@ -15,7 +15,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   if size(exprs)<11 then exprs(11)=emptystr(),end // compatibility
   model=arg1.model;
-  dstate=model.in
+  //dstate=model.in
   while %t do
     [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=getvalue(..
 	'Set Scope parameters',..
@@ -90,11 +90,14 @@ case 'set' then
 	rpar=[0;per;yy(:)]
 	clrs=clrs(1:sum(in))
 	ipar=[win;size(in,'*');N;wpos(:);wdim(:);in(:);clrs(:);heritance]
-	if prod(size(dstate))<>(sum(in)+1)*N+1 then 
-	  dstate=-eye((sum(in)+1)*N+1,1),
-	end
+	//if prod(size(dstate))<>(sum(in)+1)*N+1 then 
+	  //dstate=-eye((sum(in)+1)*N+1,1),
+	//end
         model.evtin=ones(1-heritance,1)
-	model.dstate=dstate;model.rpar=rpar;model.ipar=ipar
+	model.dstate=[]
+	//model.dstate=dstate;
+	
+	model.rpar=rpar;model.ipar=ipar
 	model.label=nom;
 	graphics.id=nom;
 	graphics.exprs=exprs;
