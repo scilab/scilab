@@ -2,6 +2,9 @@
 // Author Serge Steer Copyright INRIA
 // Update 26/10/2004
 //------------------------------------------------------------
+global INDEX
+INDEX = make_help_index()
+
 titles=['Scilab','Visualisation de surface Riemann','Complex Functions', ..
           'Traitement du signal','Stationnement d''une voiture', ..
           'Stationnement d''un semi remorque','Modelisation et simulation d''une chaine', ..
