@@ -10,7 +10,7 @@ list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m(2)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[135.37369,279.02322],[60,40],%t,['2';'0'],0,[],[],[],..
+         'gr_i','id'],[134.99932,279.74379],[60,40],%t,['2';'0'],0,[],0,[],..
          ['txt=[''write AU to'';''/dev/audio''];';
          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')'],emptystr()),..
          tlist(..
@@ -21,9 +21,9 @@ scs_m(2)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(3)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[64.212995,328.70005],[40,40],%t,..
+         'gr_i','id'],[65.324674,333.85893],[40,40],%t,..
          ['1 3 5 7 9 11 13 15';'1';'[]';'[600;400]';'-15';'15';'30';'2';'0'],0,..
-         [],[],[],..
+         [],0,[],..
          ['thick=xget(''thickness'');xset(''thickness'',2);';
          'xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);';
          'xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;';
@@ -45,8 +45,8 @@ scs_m(3)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(4)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[64.212995,276.05744],[40,40],%t,..
-         ['1';'1';'1';'[]';'[600;400]';'30'],[],[],[],[],..
+         'gr_i','id'],[63.842235,283.45031],[40,40],%t,..
+         ['1';'1';'1';'[]';'[600;400]';'30'],[],[],0,[],..
          ['thick=xget(''thickness'');xset(''thickness'',2);';
          'xrect(orig(1)+sz(1)/10,orig(2)+(1-1/10)*sz(2),sz(1)*8/10,sz(2)*8/10);';
          'xx=[orig(1)+sz(1)/5,orig(1)+sz(1)/5;';
@@ -67,8 +67,8 @@ scs_m(4)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(5)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[63.471738,223.41483],[40,40],%t,..
-         ['4';'1';'1';'[]';'[600;400]';'-15';'15';'-15';'15';'2'],[0;0],[],[],[],..
+         'gr_i','id'],[63.101015,230.81778],[40,40],%t,..
+         ['4';'1';'1';'[]';'[600;400]';'-15';'15';'-15';'15';'2'],[0;0],[],0,[],..
          ['thick=xget(''thickness'');xset(''thickness'',2);';
          't=(0:0.2:2*%pi)'';';
          'xx=orig(1)+(1/5+(cos(3*t)+1)*3/10)*sz(1);';
@@ -83,8 +83,8 @@ scs_m(5)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(6)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[61.247966,171.51366],[40,40],%t,..
-         ['-4';'1';'1';'[]';'[]';'-15';'15';'-15';'15';'2'],[0;0],[],[],[],..
+         'gr_i','id'],[61.618576,177.44394],[40,40],%t,..
+         ['-4';'1';'1';'[]';'[]';'-15';'15';'-15';'15';'2'],[0;0],[],0,[],..
          ['thick=xget(''thickness'');xset(''thickness'',2);';
          't=(0:0.3:2*%pi)'';';
          'xx=orig(1)+(1/5+(cos(2.2*t)+1)*3/10)*sz(1);';
@@ -99,8 +99,8 @@ scs_m(6)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(7)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[134.63244,329.44149],[60,40],%t,..
-         ['1';'foo';'(7(e10.3,1x))';'2'],0,[],[],[],..
+         'gr_i','id'],[137.22298,339.04806],[60,40],%t,..
+         ['1';'foo';'(7(e10.3,1x))';'2'],0,[],0,[],..
          ['txt=[''write to'';''output file''];';
          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')'],emptystr()),..
          tlist(..
@@ -111,8 +111,8 @@ scs_m(7)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(8)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[135.37369,222.67338],[60,40],%t,['1';'foo';'c  ';'2';'0'],..
-         0,[],[],[],..
+         'gr_i','id'],[134.99932,227.85256],[60,40],%t,['1';'foo';'c  ';'2';'0'],..
+         0,[],0,[],..
          ['txt=[''write to'';''C binary file''];';
          'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')'],emptystr()),..
          tlist(..
@@ -123,7 +123,7 @@ scs_m(8)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(9)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[222.84205,277.54033],[60,40],%t,['1';'1';'1';'9';'2'],0,..
+         'gr_i','id'],[223.20446,279.74379],[60,40],%t,['1';'1';'1';'9';'2'],0,..
          [],[],[],..
          ['xset(''font'',ipar(1),ipar(2))';
          'str='' ''+part(''0'',ones(1,ipar(5)-ipar(6)-2))+''.''+part(''0'',ones(1,ipar(6)))';
@@ -138,9 +138,9 @@ scs_m(9)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(10)=tlist(['Block','graphics','model','gui','doc'],..
           tlist(..
           ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-          'gr_i','id'],[143.52752,170.77221],[40,40],%t,..
+          'gr_i','id'],[140.92908,178.18524],[40,40],%t,..
           ['1 1';'1 3 5 7 9 11 13 15';'1';'[]';'[]';'-1 -5';'1 5';'30';'2';'0'],..
-          [0;0],[],[],[],..
+          [0;0],[],0,[],..
           'xstringb(orig(1),orig(2),''MScope'',sz(1),sz(2),''fill'')',emptystr()),..
           tlist(..
           ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -150,7 +150,7 @@ scs_m(10)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(11)=tlist(['Block','graphics','model','gui','doc'],..
           tlist(..
           ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-          'gr_i','id'],[233.21965,328.70005],[40,40],%t,' ',0,[],[],[],..
+          'gr_i','id'],[235.06398,340.53066],[40,40],%t,' ',0,[],0,[],..
           'xstringb(orig(1),orig(2),''Trash'',sz(1),sz(2),''fill'')',emptystr()),..
           tlist(..
           ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -159,7 +159,7 @@ scs_m(11)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(12)=tlist(['Block','graphics','model','gui','doc'],..
           tlist(..
           ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-          'gr_i','id'],[314.75795,288.662],[20,20],%t,'1',[],[],[],[],' ',..
+          'gr_i','id'],[316.59814,293.08725],[20,20],%t,'1',[],[],0,[],' ',..
           emptystr()),..
           tlist(..
           ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -168,7 +168,7 @@ scs_m(12)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(13)=tlist(['Block','graphics','model','gui','doc'],..
           tlist(..
           ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-          'gr_i','id'],[316.24046,241.20951],[20,20],%t,'1',0,[],[],[],' ',..
+          'gr_i','id'],[313.63326,245.64384],[20,20],%t,'1',0,[],[],[],' ',..
           emptystr()),..
           tlist(..
           ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -177,7 +177,7 @@ scs_m(13)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(14)=tlist(['Block','graphics','model','gui','doc'],..
           tlist(..
           ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-          'gr_i','id'],[316.24046,338.33883],[20,30],%t,'1',[],[],[],[],' ',..
+          'gr_i','id'],[315.85692,347.94369],[20,30],%t,'1',[],[],0,[],' ',..
           emptystr()),..
           tlist(..
           ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..

@@ -10,7 +10,7 @@ list([5,0],[4,0]),[0.8,0.8,0.8]),[],[],list())
 scs_m(2)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[-80.254984,392.22556],[40,40],%t,'1',0,[],[],[],..
+         'gr_i','id'],[-79.092903,394.44787],[40,40],%t,'1',0,[],[],0,..
          'xstringb(orig(1),orig(2),''Zcross'',sz(1),sz(2),''fill'');',emptystr()),..
          tlist(..
          ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -19,7 +19,7 @@ scs_m(2)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(3)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[-10.528512,393.70825],[40,40],%t,[],0,[],[],[],..
+         'gr_i','id'],[-8.6890404,395.93244],[40,40],%t,[],0,[],[],0,..
          'xstringb(orig(1),orig(2),'' - to + '',sz(1),sz(2),''fill'');',..
          emptystr()),..
          tlist(..
@@ -29,7 +29,7 @@ scs_m(3)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(4)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[-10.528512,329.95254],[40,40],%t,[],0,[],[],[],..
+         'gr_i','id'],[-9.4301337,332.09574],[40,40],%t,[],0,[],[],0,..
          'xstringb(orig(1),orig(2),'' + to - '',sz(1),sz(2),''fill'')',..
          emptystr()),..
          tlist(..
@@ -39,7 +39,7 @@ scs_m(4)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(5)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[61.423273,395.93229],[60,40],%t,['1';'1'],0,[],[],[],..
+         'gr_i','id'],[65.420288,395.93244],[60,40],%t,['1';'1'],0,[],[],0,..
          'xstringb(orig(1),orig(2),''GENERAL'',sz(1),sz(2),''fill'');',..
          emptystr()),..
          tlist(..

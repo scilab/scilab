@@ -40,7 +40,7 @@ scs_m(2)=tlist(..
 scs_m(3)=tlist(['Text','graphics','model','void','gui'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[190.10329,318.28195],[40,20],%t,['Text';'2';'1'],[],[],[],..
+         'gr_i','id'],[121.07264,257.4793],[40,20],%t,['Text';'2';'1'],[],[],[],..
          [],[],emptystr()),..
          tlist(..
          ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
@@ -94,7 +94,7 @@ scs_m(7)=tlist(['Block','graphics','model','gui','doc'],..
 scs_m(8)=tlist(['Block','graphics','model','gui','doc'],..
          tlist(..
          ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-         'gr_i','id'],[120.37682,304.93724],[40,40],%t,['0';'1'],0,0,[],[],..
+         'gr_i','id'],[115.14465,303.40522],[40,40],%t,['0';'1'],0,0,0,[],..
          'xstringb(orig(1),orig(2),''Mem'',sz(1),sz(2),''fill'')',emptystr()),..
          tlist(..
          ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
