@@ -140,8 +140,6 @@ function Code=make_ddoit1()
 	 '  integer nevprt; '; 
 	 '  integer urg; '; 
 	 ' '; 
-	 '  /* Generated constants */'
-	 '  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	 '  /* Parameter adjustments */ '; 
 	 '  --z; '; 
 	 '  --zptr; '; 
@@ -242,8 +240,6 @@ function Code=make_edoit1()
 	'  integer ierr1, i, nx=0; ';
 	'  integer ntvec, ntvecm, nevprt; ';
 	' ';
-	'  /* Generated constants */'
-	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	'  /* Parameter adjustments */ ';
 	'  --z; ';
 	'  --zptr; ';
@@ -329,7 +325,7 @@ function Code=make_edoit1()
 	Code=[Code;
 	      '     ++(*urg);';
 	      '     i2 = ntvecm + clkptr['+string(fun)+'] - 1;';
-	      '     C2F(putevs)(&tevts[1], &evtspt[1],nevts,pointi, told, &i2, &ierr1); ';
+	      '    '+rdnom+'_putevs(&tevts[1], &evtspt[1],nevts,pointi, told, &i2, &ierr1); ';
 	      '     if (ierr1 != 0) return 3;']
       end
     end
@@ -385,8 +381,6 @@ function Code=c_make_doit2(cpr);
 	'  integer ntvec; '; 
 	'  integer nevprt; '; 
 	' '; 
-	'  /* Generated constants */'
-	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';	
 	'    /* Parameter adjustments */ '; 
 	'  --z; '; 
 	'  --zptr; '; 
@@ -486,8 +480,6 @@ Code=[	'/*'+part('-',ones(1,40))+' endi */ ';
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
 	' '; 
-	'  /* Generated constants */'
-	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	'  /* Parameter adjustments */ '; 
 	'  --z; '; 
 	'  --zptr; '; 
@@ -563,8 +555,6 @@ function Code=c_make_initi(cpr)
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
 	' '; 
-	'  /* Generated constants */'
-	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	'  /* Parameter adjustments */ '; 
 	'  --z; '; 
 	'  --zptr; '; 
@@ -637,8 +627,6 @@ function Code=c_make_outtb()
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
 	' '; 
-	'  /* Generated constants */'
-	'  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	'  /* Parameter adjustments */ '; 
 	'  --z; '; 
 	'  --zptr; '; 
@@ -696,10 +684,13 @@ function [Code,actt,proto]=call_actuator(i)
 	 'nport = '+string(nbact)+';';
 	 rdnom+'_actuator(&flag, &nport, &nevprt, told, '+..
 	 '(double *)args[0], &nrd_'+string(nuk)+');'];
-  proto='void '+rdnom+'_actuator(int *flag, int *nport, int *nevprt, double *t,"+...
-	" double *u, int *nu);"
+  proto='void '+rdnom+'_actuator(int *, int *, int *, double *,"+...
+	" double *, int *);"
   proto=cformatline(proto,70);
 endfunction
+
+
+
 function [Code,proto]=call_block(i)
  //Copyright INRIA
 //Author : Rachid Djenidi
@@ -826,21 +817,21 @@ function [Code,proto]=callf(i)
 	  'tvec, &ntvec, &(rpar['+string(rpar)+']), &nrd_'+..
 	  string(nrpar)+', &(ipar['+..
 	  string(ipar)+']), &nrd_'+string(nipar);
-    proto='void '+"C2F(" +string(fun)+")(int *flag, int *nevprt, double *told,"+...
-	  " double *xd, double *x, int *nx, double *z, int *nz, double *tvec,"+...
-	  " int *ntvec, double *rpar, int *nrpar,int *ipar,int *nipar"
+    proto='void '+"C2F(" +string(fun)+")(int *, int *, double *,"+...
+	  " double *, double *, int *, double *, int *, double *,"+...
+	  " int *, double *, int *,int *,int *"
 
     if ftyp==0 then
       CodeC=CodeC+', (double *)args[0], &nrd_'+string(nuk)+..
 	    ', (double *)args[1], &nrd_'+string(nyk)+');';
-       proto=proto+", double *u, int *nu, double *y, int *ny);"
+       proto=proto+", double *, int *, double *, int *);"
     elseif ftyp==1 
       if nin>=1 then
 	for k=1:nin
 	  lprt=inplnk(inpptr(i)-1+k);
 	  uk=lnkptr(lprt);
 	  CodeC=CodeC+', &(outtb['+string(uk)+']), &nrd_'+string(nuk);
-	  proto=proto+", double *u"+string(k)+", int *nu"+string(k)
+	  proto=proto+", double *, int *"
 	end
       end
       if nout>=1 then
@@ -848,11 +839,17 @@ function [Code,proto]=callf(i)
 	  lprt=outlnk(outptr(i)-1+k);
 	  yk=lnkptr(lprt);
 	  CodeC=CodeC+', &(outtb['+string(yk)+']), &nrd_'+string(nyk);
-	  proto=proto+", double *y"+string(k)+", int *ny"+string(k)
+	  proto=proto+", double *, int *"
 	end
       end
-      CodeC=CodeC+');';
-       proto=proto+');'
+//RN if ztyp, add two dummy arguments at the end
+      if ztyp(i) then
+	CodeC=CodeC+',w,&nrd_0);';
+	proto=proto+',double *,int * );'
+      else
+	CodeC=CodeC+');';
+	proto=proto+');'
+      end
     end
   elseif ftyp==2 
     CodeC=fun+'(&flag, &nevprt, told,&(w['+string(x)+..
@@ -864,11 +861,11 @@ function [Code,proto]=callf(i)
        string(nin)+',&(args['+string(nin)+']),&(sz['+string(nin)+..
 	 ']),&nrd_'+string(nout)+');';
     
-    proto='void '+fun+"(int *flag, int *nevprt,double *told,"+...
-	  " double *xd, double *x, int *nx, double *z, int *nz, double *tvec, "+...
-	  " int *ntvec, double *rpar, int *nrpar, int *ipar, int *nipar, "+...
-	  " double **inptr, int* insz, int *nin, double **outptr,int"+...
-	  " *outsz, int *nout);" 
+    proto='void '+fun+"(int *, int *,double *,"+...
+	  " double *, double *, int *, double *, int *, double *, "+...
+	  " int *, double *, int *, int *, int *, "+...
+	  " double **, int *, int *, double **,int"+...
+	  " *, int *);" 
   end
   //
   Code=[Code;cformatline(CodeC,70);' ']
@@ -898,8 +895,8 @@ function [Code,capt,proto]=call_sensor(i)
 	 'nport = '+string(nbcap)+';'; 
 	 rdnom+'_sensor(&flag, &nport, &nevprt, '+..
 	 'told, (double *)args[1], &nrd_'+string(nyk)+');'];
-  proto='void '+rdnom+'_sensor(int *flag, int *nport, int *nevprt, double *t,"+...
-	" double *y, int *ny);"
+  proto='void '+rdnom+'_sensor(int *, int *, int *, double *,"+...
+	" double *, int *);"
   proto=cformatline(proto,70);
 endfunction
 
@@ -1156,7 +1153,7 @@ zcptr=cpr.sim.zcptr;
 //RN   elseif ztyp(i)<>0 then
     elseif (zcptr(i+1)-zcptr(i))<>0 then
 //
-      msg=[msg;'Zero crossing block''s not allowed']
+      msg=[msg;'Active zero crossing block''s not allowed']
     elseif (xptr(i+1)-xptr(i))<>0 then
       msg=[msg;'Continuous state block''s not allowed']
     elseif (clkptr(i+1)-clkptr(i))<>0 &funtyp(i)>-1 &funs(i)~='bidon' then
@@ -1377,7 +1374,8 @@ function ok=gen_ccode();
 	c_make_doit2();
 	c_make_outtb();
 	c_make_initi();
-	c_make_endi()]
+	c_make_endi();
+	make_putevs()]
   
 	
   ierr=execstr('mputl(Code,rpat+''/''+rdnom+''.c'')','errcatch')
@@ -1802,58 +1800,53 @@ function Code=make_decl()
 	'#include '"'+SCI+'/routines/sun/link.h'"';
 	'#include '"'+SCI+'/routines/scicos/scicos.h'"';
 	' ';
-	cformatline('void '+rdnom+'main1(double *z, double *t, '+..
-		    'double * rpar, int *nrpar, int *ipar, int *nipar);',70);
+	cformatline('void '+rdnom+'main1(double *, double *, '+..
+		    'double *, int *, int *, int *);',70);
 	' ';
-	cformatline('void '+rdnom+'main2(double *z, double *t, '+..
-		    'double * rpar, int *nrpar, int *ipar, int *nipar) ;',70);
+	cformatline('void '+rdnom+'main2(double *, double *, '+..
+		    'double *, int *, int *, int *) ;',70);
 	' ';
-	cformatline('void '+rdnom+'_init(double *z, double *t, '+..
-		    'double * rpar, int *nrpar, int *ipar, int *nipar) ;',70);
+	cformatline('void '+rdnom+'_init(double *, double *, '+..
+		    'double *, int *, int *, int *) ;',70);
 	' ';
-	cformatline('void '+rdnom+'_end(double *z, double *t, '+..
-		    'double * rpar, int *nrpar, int *ipar, int *nipar) ;',70);
+	cformatline('void '+rdnom+'_end(double *, double *, '+..
+		    'double *, int *, int *, int *) ;',70);
 	' ';
 	'int '+rdnom+'()  ;';
 	' ';
-	cformatline('int '+rdnom+'ddoit1(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double *outtb, int"+...
-		    " *iwa)  ;',70);
+	cformatline('int '+rdnom+'ddoit1(double *, int *, double *, double"+...
+		    " *, int *, int *, int *, int *,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double *, int *)  ;',70);
 	' ';
-	cformatline('int '+rdnom+'ddoit2(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double *outtb, int"+...
-		    " *iwa)  ;',70);
+	cformatline('int '+rdnom+'ddoit2(double *, int *, double *, double"+...
+		    " *, int *, int *, int *, int *,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double *, int *)  ;',70);
 	' ';
-	cformatline('int '+rdnom+'edoit1(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double"+...
-		    " *outtb, int * urg, int *iwa, int *kiwa)  ;',70);	
+	cformatline('int '+rdnom+'edoit1(double *, int *, double *, double"+...
+		    " *, int *, int *, int *, int *,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double"+...
+		    " *, int *, int *, int *)  ;',70);	
 	' ';
-	cformatline('int '+rdnom+'_initi(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double *outtb, int"+...
-		    " *iwa)  ;',70);
+	cformatline('int '+rdnom+'_initi(double *, int *, double *, double"+...
+		    " *, int *, int *, int *, int *,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double *, int *)  ;',70);
 	' ';
-	cformatline('int '+rdnom+'_endi(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double *outtb, int"+...
-		    " *iwa)  ;',70);
+	cformatline('int '+rdnom+'_endi(double *, int *, double *, double"+...
+		    " *, int *, int *, int *, int *,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double *, int *)  ;',70);
 	' ';
-	cformatline('int '+rdnom+'_outtb(double *z, int * zptr, double *t, double"+...
-		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
-		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
-		    " rpar, int *ipar, int *funptr, int *funtyp, double *outtb, int"+...
-		    " *iwa)  ;',70);
+	cformatline('int '+rdnom+'_outtb(double *, int * , double *, double"+...
+		    " *, int *, int * , int *, int * ,"+...
+		    " int *, int *, int *, int *, double *"+...
+		    " , int *, int *, int *, double *, int *iwa)  ;',70);
 	' ';
-	cformatline('int C2F(putevs)(double *tevts, int *evtspt, int * nevts, int"+...
-		    " *pointi, double *told, int *i2, int *ierr);',70);
+	cformatline('int '+rdnom+'_putevs(double *, int *, int * , int"+...
+		    " *, double *, int *, int *);',70);
 	'/* ---- block simulation functions -------*/'
 	' '];
 
@@ -2219,6 +2212,7 @@ function Code=make_static()
   funs=cpr.sim.funs;
   
   Code= ['/* Table of constant values */ ';
+	 'static  integer nrd_'+string(0:maxtotal)'+' = '+string(0:maxtotal)'+';';
 	 ' ';
 	 'static integer totalnevprt; '];
   
@@ -2431,3 +2425,26 @@ endfunction
   
 
 
+function Code=make_putevs()
+  //RN
+  Code=['int '+rdnom+'_putevs(tevts, evtspt, nevts, pointi, t, evtnb, ierr)';
+	'double *tevts,*t;'
+	'integer *evtspt, *nevts, *pointi,*evtnb, *ierr;'
+	'{    --evtspt; --tevts;'
+	'*ierr = 0;'
+	'if (evtspt[*evtnb] != -1) {'
+	'*ierr = 1;'
+	'return 0;'
+	'} else {'
+	'evtspt[*evtnb] = 0;'
+	'tevts[*evtnb] = *t;'
+	'}'
+	'if (*pointi == 0) {'
+	'*pointi = *evtnb;'
+	'return 0;'
+	'}'
+	'evtspt[*evtnb] = *pointi;'
+	'*pointi = *evtnb;'
+	'return 0;'
+	'} ']
+endfunction

@@ -1347,8 +1347,8 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     for (ii = ordptr[keve]; ii <= i2; ++ii) {
       C2F(curblk).kfun = ordclk[ii];
       /*     If continuous state jumps, do cold restart */
-      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + zptr[
-								   C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] > 0) {
+      if (xptr[C2F(curblk).kfun+1] - xptr[C2F(curblk).kfun] + 
+	  zptr[C2F(curblk).kfun + 1] - zptr[C2F(curblk).kfun] > 0) {
 	/*     Solution not satisfying but... Have to find a better test */
 	/*     to know if state can jump. If we only leave the first test */
 	/*     it sets hot to false at every event! */

@@ -796,6 +796,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   end  
   //
   [ok,bllst]=adjust_inout(bllst,connectmat)
+  if ~ok then return;end
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
   lnkbsz=[]

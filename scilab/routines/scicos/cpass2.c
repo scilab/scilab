@@ -184,9 +184,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 	    evoutoinptr,&typ_z,*typ_x,typ_s,bexe,boptr,blnk,blptr,ordptr,ordclk,cord,iord,oord,zord,critev,ok,*nzcross);
   if(!OR(*typ_x) && OR(typ_z) )
     {
-      Message("For using treshold, You need a DUMMY CLSS block.");
-      //*ok=false;
-      //return 0;
+      Message("No continuous-time state. Tresholds are ignored.");
     }
   free(typ_s);
   typ_s=NULL;
@@ -223,7 +221,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
     {
       (*zcptr)[i+1]=(*zcptr)[i] + typ_z[i];
     }
-  //completement inutile pour simulation, c'est pour la generation de code
+  /*completement inutile pour simulation, c'est pour la generation de code*/
   *ztyp=VecEg1(*nzcross); 
   for (i=1;i<(*ztyp)[0];i++)
     {
@@ -242,7 +240,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
     }
 
   ncblk=0;nxblk=0;ndblk=0;*ndcblk=0;
-  //*nb=typ_z[0];
+
   *nb=nombr;
   
   init_agenda(initexe,*bllst5ptr,tevts,evtspt,pointi);
@@ -393,8 +391,6 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      sciprint("serious bug,report0");
    }
  if(orddif) free(orddif);
- //if(*cord)
-  // {
  if (!(*cord))
    {
     if ((*cord=(int*)malloc(sizeof(int)))== NULL ) return 0;
@@ -412,8 +408,8 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
      tree3(vec,vec[0],bllst12,typ_s,bexe,boptr,blnk,blptr,&ext_cord,ok);
      if(vec) free(vec);
      vec=NULL; 
-     //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
-     //noter que typ_z contient les tailles des nzcross (peut etre >1)
+     /*pour mettre a zero les typ_z qui ne sont pas dans ext_cord
+     noter que typ_z contient les tailles des nzcross (peut etre >1)*/
      
      for (i=1; i<=ext_cord[0]; i++)
        {
@@ -532,7 +528,7 @@ int scheduler(bllst12,bllst5ptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoin
 	 if (!(fz) && !((*typ_z)[i])) (*zord)[iii]=0;
        } /* fin de for iii */
      free(ext_cord); ext_cord=NULL;
-     //////////////////////////
+
      if ((*cord)[0] != 0)
        {
 	 ppget=GetPartVect(*oord,1,(*oord)[0]/2);
@@ -1964,7 +1960,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   if ((fff=(int*)malloc(sizeof(int)*(nbl+1))) == NULL) return 0;
   fff[0]=nbl;
   Setmem(fff,1);
-  //*typ_z=VecEg1(fff);   
+
   *typ_s=VecEg1(fff);
   *typ_m=VecEg1(fff);
   free(fff); fff=NULL;
@@ -1973,8 +1969,6 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   
   for (j=1;j<nbl+1;j++)
     {
-      //if (*(bllst10[j]) == 'z' ) (*typ_z)[j]=1;
-      //else (*typ_z)[j]=0;
       if (*(bllst10[j]) == 's' ) (*typ_s)[j]=1;
       else (*typ_s)[j]=0;
       if (*(bllst10[j])=='m') (*typ_m)[j]=1;
@@ -2143,7 +2137,7 @@ int extract_info(int* bllst2,int* bllst3,int* bllst5,char **bllst10,double* blls
   free(ppget);ppget=NULL;
   
   adjust_inout(bllst2,bllst3,bllst2ptr,bllst3ptr,connectmat,ok,corinvec,corinvptr,nbl);
-  
+  if(!*ok) return 0;
   nlnk=connectmat[0]/4;
   if (((*inplnk)=(int*)calloc(bllst2ptr[bllst2ptr[0]],sizeof(int))) == NULL ) return 0;
   (*inplnk)[0]=bllst2ptr[bllst2ptr[0]]-1;
