@@ -209,7 +209,8 @@ c     (matrix/vector extraction, method..)
 
 c     standard matrix extraction
       call createref(il2i,0,vol2)
-      fin=3
+c
+ 34   fin=3
 c     back to allops for  standard extraction
       if (ptover(1,psiz)) return
       icall=4
@@ -217,6 +218,7 @@ c     back to allops for  standard extraction
 c     *call* allops
       return
  35   continue
+      icall=0
 c     move results at its correct location
       if(err1.ne.0) then
          pt=pt-1
@@ -226,9 +228,9 @@ c     move results at its correct location
       call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1)
       top=top-2
       lstk(top+1)=lstk(top)+vol
-
       pt=pt-1
 c     nothing more to do here
+      fin=0
       return
 
  40   continue
