@@ -1,7 +1,7 @@
 // demo pour visualisation des fonctions elementaires
 // complexe - Bruno Pincon 
 
-getf("MacCmplx.sci")  //  les macros utilisees ici
+getf("SCI/demos/cmplxfunc/MacCmplx.sci")  //  les macros utilisees ici
 
 my_win = max(winsid())+1;
 
