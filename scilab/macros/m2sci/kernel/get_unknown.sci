@@ -9,8 +9,15 @@ function [sci_equiv]=get_unknown(varname,lhslist)
 
 // Check clause !!!
 
-// Other cases: I am not able to determine what is nam
-set_infos("mtlb("+varname+") can be replaced by "+varname+"() or "+varname+" whether "+varname+" is an M-file or not",1)
-tmpvar=Variable(varname,Infer())
-sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
+// Check if it is a Matlab function not converted yet
+if or(varname==not_yet_converted()) then
+  set_infos("Matlab function "+varname+" not yet converted",2)
+  tmpvar=Variable(varname,Infer())
+  sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
+else
+  // Other cases: I am not able to determine what is nam
+  set_infos("mtlb("+varname+") can be replaced by "+varname+"() or "+varname+" whether "+varname+" is an M-file or not",1)
+  tmpvar=Variable(varname,Infer())
+  sci_equiv=Funcall("mtlb",1,Rhs(tmpvar),lhslist)
+end
 endfunction
