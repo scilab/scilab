@@ -1,5 +1,7 @@
 function r=mtlb_fft(x,n,job)
 // Copyright INRIA
+// Translation function for fft() Matlab function
+// V.C.
 [lhs,rhs]=argn(0)
 if rhs<2 then n=[],end
 if rhs==3 then //row or column-wise fft
@@ -40,8 +42,13 @@ else
       elseif s<n then //padd with zeros
 	x(n)=0
       end
-    end  
-    r=fft(x,-1)
+      r=fft(x,-1)
+      if s==1 then
+	r=r.'
+      end
+    else
+      r=fft(x,-1)
+    end
   else //row-wise fft
     if n<>[] then //pad or truncate
       s=size(x,1)
