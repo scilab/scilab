@@ -17,10 +17,10 @@
 #include "x_menu.h"
 #include <X11/StringDefs.h>
 #include <X11/Shell.h>
-#include <X11/Xaw/Form.h>
+#include <X11/Xaw3d/Form.h>
 #include <X11/Xos.h>
 #include <X11/cursorfont.h>
-#include <X11/Xaw/SimpleMenu.h>
+#include <X11/Xaw3d/SimpleMenu.h>
 
 #include "../version.h"
 #include "../machine.h"

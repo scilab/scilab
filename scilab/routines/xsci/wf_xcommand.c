@@ -34,8 +34,8 @@
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>	/* Get standard string definations. */
 
-#include <X11/Xaw/Command.h>	
-#include <X11/Xaw/Cardinals.h>	
+#include <X11/Xaw3d/Command.h>	
+#include <X11/Xaw3d/Cardinals.h>	
 
 #include "wf_resources.h"
 static void Syntax();
