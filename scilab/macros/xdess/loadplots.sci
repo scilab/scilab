@@ -763,6 +763,10 @@ function txt=%xcall1_string(rec)
     txt='xrect('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
 	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
 	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
+    case 'xrects' then	
+    m=rec.ndx1
+    txt=[sci2exp(matrix(rec.dx1,-1,4),'x')
+	 'xrects(x)']
     case 'xfrect' then
     txt='xfrect('+sci2exp(rec.dx1,0)+','+sci2exp(rec.dx2,0)+','+..
 	sci2exp(rec.dx3,0)+','+sci2exp(rec.dx4,0)+')'
