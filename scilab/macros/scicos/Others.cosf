@@ -97,44 +97,101 @@ scs_m.objs(6)=mlist(['Block','graphics','model','gui','doc'],..
 scs_m.objs(7)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-              'gr_i','id','in_implicit','out_implicit'],[0,70],[40,40],%t,'1',0,..
-              0,[],[],..
+              'gr_i','id','in_implicit','out_implicit'],[0,70],[60,40],%t,..
+              ['1';'-1'],0,0,[],[],..
               list(..
-              'xstringb(orig(1),orig(2),''=0    ?'',sz(1),sz(2),''fill'');',8),..
-              emptystr(),[],[]),..
+              'xstringb(orig(1),orig(2),''Rate limiter'',sz(1),sz(2),''fill'')',..
+              8),emptystr(),[],[]),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
-              'equations'],list('constraint',10001),1,1,[],[],[0;0;0;0],[],[],[],..
-              'c',[],[%f,%t],emptystr(),0,0,list()),'CONSTRAINT_f',list())
+              'equations'],list('ratelimiter',4),1,1,[],[],[],[],[1;-1],[],'c',..
+              [],[%t,%f],emptystr(),0,0,list()),'RATELIMITER',list())
 scs_m.objs(8)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-              'gr_i','id','in_implicit','out_implicit'],[70,70],[40,40],%t,..
-              ['0';'1'],0,0,0,[],..
-              list('xstringb(orig(1),orig(2),''Mem'',sz(1),sz(2),''fill'')',8),..
+              'gr_i','id','in_implicit','out_implicit'],[90,70],[50,40],%t,..
+              ['0';'1';'1'],0,0,[],[],..
+              list(..
+              'xstringb(orig(1),orig(2),[''backlash''],sz(1),sz(2),''fill'')',8),..
               emptystr(),[],[]),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
-              'equations'],'memo',1,1,1,[],[],0,0,[],'m',[],[%f,%f],emptystr(),0,..
-              0,list()),'MEMORY_f',list())
+              'equations'],list('backlash',4),1,1,[],[],[],[],[0;1],[],'c',[],..
+              [%t,%f],emptystr(),2,0,list()),'BACKLASH',list())
 scs_m.objs(9)=mlist(['Block','graphics','model','gui','doc'],..
               mlist(..
               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-              'gr_i','id','in_implicit','out_implicit'],[140,70],[40,40],%t,..
-              'v=sin(u);y=u*v',0,0,[],[],..
-              list('xstringb(orig(1),orig(2),''Func'',sz(1),sz(2),''fill'');',8),..
-              emptystr(),[],[]),..
+              'gr_i','id','in_implicit','out_implicit'],[170,70],[40,40],%t,..
+              ['0.5';'-0.5';'1'],0,0,[],[],..
+              list(..
+              ['thick=xget(''thickness'');xset(''thickness'',2);';
+              'xx=orig(1)+[4/5;3/5;2/5;1/5]*sz(1);';
+              'yy=orig(2)+[1-1/5;1/2;1/2;1/5]*sz(2);';
+              'xpoly(xx,yy,''lines'');';
+              'xset(''thickness'',thick)'],8),emptystr(),[],[]),..
               mlist(..
               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
-              'equations'],' ',1,1,[],[],[],[],[],[],'c',[],[%t,%f],emptystr(),0,..
-              0,list()),'func_block',list())
+              'equations'],list('deadband',4),1,1,[],[],[],[],[0.5;-0.5],[],'c',..
+              [],[%t,%f],emptystr(),2,1,list()),'DEADBAND',list())
 scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-               'gr_i','id','in_implicit','out_implicit'],[210,70],[50,40],%t,..
+               'gr_i','id','in_implicit','out_implicit'],[240,70],[40,40],%t,'1',..
+               0,0,[],[],..
+               list(..
+               'xstringb(orig(1),orig(2),''=0    ?'',sz(1),sz(2),''fill'');',8),..
+               emptystr(),[],[]),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
+               'equations'],list('constraint',10001),1,1,[],[],[0;0;0;0],[],[],..
+               [],'c',[],[%f,%t],emptystr(),0,0,list()),'CONSTRAINT_f',list())
+scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id','in_implicit','out_implicit'],[310,70],[40,40],%t,..
+               ['0';'1'],0,0,0,[],..
+               list('xstringb(orig(1),orig(2),''Mem'',sz(1),sz(2),''fill'')',8),..
+               emptystr(),[],[]),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
+               'equations'],'memo',1,1,1,[],[],0,0,[],'m',[],[%f,%f],emptystr(),..
+               0,0,list()),'MEMORY_f',list())
+scs_m.objs(12)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id','in_implicit','out_implicit'],[380,70],[40,40],%t,..
+               ['1';'0';'1';'0';'1'],0,0,[],[],..
+               list(..
+               ['xrect(orig(1)+0.329*sz(1),orig(2)+0.843*sz(2),0.282*sz(1),0.686*sz(2))';
+               'xrect(orig(1)+0.613*sz(1),orig(2)+0.843*sz(2),0.256*sz(1),0.003*sz(2))';
+               'xrect(orig(1)+0.082*sz(1),orig(2)+0.16*sz(2),0.245*sz(1),0.003*sz(2))'],..
+               8),emptystr(),[],[]),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
+               'equations'],list('hystheresis',4),1,1,[],[],[],[],[1;0;1;0],[],..
+               'c',[],[%t,%f],emptystr(),2,1,list()),'HYSTHERESIS',list())
+scs_m.objs(13)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id','in_implicit','out_implicit'],[0,140],[40,40],%t,..
+               'v=sin(u);y=u*v',0,0,[],[],..
+               list('xstringb(orig(1),orig(2),''Func'',sz(1),sz(2),''fill'');',8),..
+               emptystr(),[],[]),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
+               'equations'],' ',1,1,[],[],[],[],[],[],'c',[],[%t,%f],emptystr(),..
+               0,0,list()),'func_block',list())
+scs_m.objs(14)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id','in_implicit','out_implicit'],[70,140],[50,40],%t,..
                ['2';'0'],[0;0],0,[],[],..
                list(..
                'xstringb(orig(1),orig(2),[''Logical Op'';OPER],sz(1),sz(2),''fill'');',..
@@ -144,13 +201,13 @@ scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
                'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
                'equations'],list('logicalop',4),[-1;-1],-1,[],[],[],[],[],0,'c',..
                [],[%t,%f],emptystr(),0,0,list()),'LOGICAL_OP',list())
-scs_m.objs(11)=mlist(['Block','graphics','model','gui','doc'],..
+scs_m.objs(15)=mlist(['Block','graphics','model','gui','doc'],..
                mlist(..
                ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
-               'gr_i','id','in_implicit','out_implicit'],[290,70],[50,40],%t,..
+               'gr_i','id','in_implicit','out_implicit'],[150,140],[50,40],%t,..
                ['2';'0'],[0;0],0,[],[],..
                list(..
-               'xstringb(orig(1),orig(2),[''Relational Op'';OPER],sz(1),sz(2),''fill'');',..
+               'xstringb(orig(1),orig(2),[''Relational'';''Op : ''+OPER],sz(1),sz(2),''fill'');',..
                8),emptystr(),[],[]),..
                mlist(..
                ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..

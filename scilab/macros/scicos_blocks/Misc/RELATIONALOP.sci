@@ -44,7 +44,7 @@ case 'define' then
   model.dep_ut=[%t %f]
   
   exprs=[string(ipar);string(0)]
-  gr_i=['xstringb(orig(1),orig(2),[''Relational Op'';OPER],sz(1),sz(2),''fill'');']
+  gr_i=['xstringb(orig(1),orig(2),[''Relational'';''Op : ''+OPER],sz(1),sz(2),''fill'');']
   x=standard_define([2.5 2],model,exprs,gr_i)
 end
 endfunction

@@ -13,7 +13,9 @@ NAM = SCI/macros/scicos_blocks/Misc
 MACROS= BOUNCE.sci        DIFF_f.sci      SPLIT_f.sci     m_sin.sci\
 	BOUNCEXY.sci      DOLLAR_f.sci    SUPER_f.sci     scifunc_block.sci\
 	CLKSPLIT_f.sci    IMPSPLIT_f.sci  TEXT_f.sci     RELATIONALOP.sci\
-	CONSTRAINT_f.sci  MEMORY_f.sci    func_block.sci LOGICAL_OP.sci CBLOCK.sci
+	CONSTRAINT_f.sci  MEMORY_f.sci    func_block.sci \
+	LOGICAL_OP.sci    CBLOCK.sci      HYSTHERESIS.sci RATELIMITER.sci\
+	BACKLASH.sci      DEADBAND.sci
 
 
 include ../../Make.lib

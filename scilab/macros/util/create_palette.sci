@@ -33,7 +33,7 @@ function create_palette(bidon)
     for txt=bidon
       disp('Constructing '+txt)
       if txt=='Sources' then
-	lisf=['CONST_f.sci';'GENSQR_f.sci';  
+	lisf=['CONST_f.sci';'GENSQR_f.sci';'RAMP.sci';  
 	      'RAND_f.sci';'RFILE_f.sci';
 	      'CLKINV_f.sci'; 'CURV_f.sci';  'INIMPL_f.sci'; ' READAU_f.sci';
 	      'SAWTOOTH_f.sci'; 'STEP_FUNCTION.sci';
@@ -78,8 +78,9 @@ function create_palette(bidon)
       elseif txt=='Others' then
 	lisf=['DIFF_f.sci';
 	      'DOLLAR_f.sci';'SUPER_f.sci';'scifunc_block.sci';
-	      'TEXT_f.sci';'CBLOCK.sci'
-	      'CONSTRAINT_f.sci';'MEMORY_f.sci';
+	      'TEXT_f.sci';'CBLOCK.sci';'RATELIMITER.sci'; ...
+	      'BACKLASH.sci';'DEADBAND.sci';	      
+	      'CONSTRAINT_f.sci';'MEMORY_f.sci';'HYSTHERESIS.sci';
 	      'func_block.sci';'LOGICAL_OP.sci';'RELATIONALOP.sci']
 	
       elseif txt=='Linear' then
