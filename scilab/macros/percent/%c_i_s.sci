@@ -5,6 +5,11 @@ N=varargin(rhs-1)//inserted matrix
 index=varargin(1) //
 if rhs==3&(type(index)==10|type(index)==15) then
   M=createstruct(index,N)
+  if type(index(1))<>10 & index(2)=="entries" then
+    // change struct to cell
+    f=getfield(1,M);f(1)="ce"
+    setfield(1,f,M)
+  end
   return
 end
 //X(i,j,k)=n  hypermatrix
