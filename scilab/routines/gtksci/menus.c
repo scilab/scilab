@@ -915,6 +915,11 @@ static void scig_menu_saveps(int winid)
 	  /** Gif file **/
 	  scig_tops(winid,colored,file,"GIF");
 	}
+      else if (strcmp(printer,"PPM")==0)
+	{
+	  /** PPM file **/
+	  scig_tops(winid,colored,file,"PPM");
+	}
       if ( strcmp(printer,"Postscript No Preamble") != 0)
 	{
 	  sprintf(bufname,"$SCI/bin/scilab -%s %s %s",
