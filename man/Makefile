@@ -9,6 +9,12 @@ man ::
 	do \
 		(cd $$i ; $(MAKE) $(MFLAGS) man ); \
 	done
+check :: 
+	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
+	for i in eng fr;\
+	do \
+		(cd $$i ; $(MAKE) $(MFLAGS) check ); \
+	done
 
 manclean::
 	@case '${MFLAGS}' in *[ik]*) set +e;; esac; \
