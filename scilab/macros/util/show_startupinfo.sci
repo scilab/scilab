@@ -55,7 +55,7 @@ function show_startupinfo()
     end
     if show
       if x_message(DialogNewGraphic, Buttons) == 1 then
-	mputl('displayDialogNewGraphic=no','SCIHOME+'/.scilab_settings')
+	mputl('displayDialogNewGraphic=no',SCIHOME+'/.scilab_settings')
       end
     end
   end
