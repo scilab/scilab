@@ -5,6 +5,10 @@ c ================================== ( Inria    ) =============
 c     Copyright INRIA
       include '../stack.h'
       integer pause,escape,menusflag
+      character *20,linfo
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
+
       escape=0
       if (pause .ne. 1) then
          call basout(io,wte,' ')
@@ -15,7 +19,7 @@ C     version with pause ( mode(7) )
 c     .  accept immediate dynamic callback execution
          menusflag=1
  10      call basin(ierr,rte,buf,'*',menusflag)
-     
+         if(buf(1:1).eq.'p') iflag=.true.
          if(ierr.eq.-1) then
 c     .     a callback requires to be executed
             escape=1
