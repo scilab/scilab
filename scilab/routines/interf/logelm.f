@@ -34,6 +34,7 @@ c
       double precision tv
 c
       logical ref
+      integer nmax
       integer sadr,iadr
 c
       iadr(l)=l+l-1
@@ -42,7 +43,7 @@ c
       lw=lstk(top+1)
 c
 
-   10 if(rhs.ne.1) then
+   10 if(rhs.ne.1.and.rhs.ne.2) then
          call error(39)
          return
       endif
@@ -51,6 +52,20 @@ c
          return
       endif
 
+      if(rhs.eq.2) then
+c     max number of index to find
+         call getrmat('find', top, top, m2, n2, l2)
+         nmax=stk(l2)
+         top=top-1
+         if(nmax.eq.0) then
+            nt=nmax
+            goto 17
+         endif
+      else
+         nmax=-1
+      endif
+
+      
       il1=iadr(lstk(top))
       ilr=il1
       if(istk(il1).lt.0) il1=iadr(istk(il1+1))
@@ -72,13 +87,25 @@ c     argument is a standard matrix
          lr=sadr(ilr+4)
          l=lr
          if(mn1.gt.0) then
-            do 11 k=0,mn1-1
-               if(stk(l1+k).ne.0.0d0) then
-                  stk(l)=float(k+1)
-                  l=l+1
-               endif
- 11         continue
-            nt=l-lr
+            if (nmax.lt.0) then
+c     .     get all the occurences
+               do 11 k=0,mn1-1
+                  if(stk(l1+k).ne.0.0d0) then
+                     stk(l)=float(k+1)
+                     l=l+1
+                  endif
+ 11            continue
+            else
+c     .     get at most nmax occurences
+               do 12 k=0,mn1-1
+                  if(stk(l1+k).ne.0.0d0) then
+                     stk(l)=float(k+1)
+                     l=l+1
+                     if(l-lr.ge.nmax) goto 13
+                  endif
+ 12            continue
+            endif
+ 13         nt=l-lr
          else
             nt=0
          endif
@@ -101,12 +128,23 @@ c     argument is a full boolean matrix
          lr=sadr(ilr+4)
          if(mn1.gt.0) then
             l=lr
-            do 13 k=0,mn1-1
-               if(istk(il+k).ne.1) goto 13
-               stk(l)=float(k+1)
-               l=l+1
- 13         continue
-            nt=l-lr
+            if(nmax.lt.0) then
+c     .     get all occurrences
+               do 14 k=0,mn1-1
+                  if(istk(il+k).ne.1) goto 14
+                  stk(l)=float(k+1)
+                  l=l+1
+ 14            continue
+            else
+c     .     get at most nmax occurences
+               do 15 k=0,mn1-1
+                  if(istk(il+k).ne.1) goto 15
+                  stk(l)=float(k+1)
+                  l=l+1
+                  if(l-lr.ge.nmax) goto 16
+ 15            continue
+            endif
+ 16         nt=l-lr
          else
             nt=0
          endif
@@ -121,7 +159,7 @@ c     argument is a sparse  matrix
          fun=-1
          return
       endif
-      istk(ilr+1)=min(1,nt)
+ 17   istk(ilr+1)=min(1,nt)
       istk(ilr+2)=nt
       istk(ilr+3)=0
       lstk(top+1)=lr+nt
@@ -135,10 +173,10 @@ c     argument is a sparse  matrix
       l2=sadr(il2+4)
       lstk(top+1)=l2+nt
       if(nt.eq.0) goto 999
-      do 15 k=0,nt-1
+      do 18 k=0,nt-1
          stk(l2+k)=float(int((stk(lr+k)-1.0d0)/m1)+1)
          stk(lr+k)=stk(lr+k)-(stk(l2+k)-1.0d+0)*m1
- 15   continue
+ 18   continue
       goto 999
 c
  20   continue
@@ -176,22 +214,34 @@ c
          call int2db(nel1,istk(ilr1+m1),1,stk(lj),1)
       endif
       i1=0
-      do 30 i=0,m1-1
-         if(istk(ilr1+i).ne.0) then
-            tv=i+1
-            call dset(istk(ilr1+i),tv,stk(li+i1),1)
-            i1=i1+istk(ilr1+i)
-         endif
- 30   continue
+      if(nmax.lt.0) then
+         do 30 i=0,m1-1
+            if(istk(ilr1+i).ne.0) then
+               tv=i+1
+               call dset(istk(ilr1+i),tv,stk(li+i1),1)
+               i1=i1+istk(ilr1+i)
+            endif
+ 30      continue
+      else
+         do 31 i=0,m1-1
+            if(istk(ilr1+i).ne.0) then
+               tv=i+1
+               call dset(istk(ilr1+i),tv,stk(li+i1),1)
+               i1=i1+istk(ilr1+i)
+               if(i1.ge.nmax) goto 32
+            endif
+ 31      continue
+ 32      nel1=min(nmax,nel1)
+      endif
       istk(ilr)=1
       istk(ilr+1)=1
       istk(ilr+2)=nel1
       istk(ilr+3)=0
       lstk(top+1)=li+nel1
       if(lhs.eq.1) then
-         do 31 i=0,nel1-1
+         do 33 i=0,nel1-1
             stk(li+i)=stk(li+i)+(stk(lj+i)-1.0d0)*m1
- 31      continue
+ 33      continue
       else
          top=top+1
          istk(ilj)=1
