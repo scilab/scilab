@@ -35,9 +35,10 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_cd.sci \
 	 sci_cell.sci \
 	 sci_chol.sci sci_clc.sci sci_clear.sci sci_clock.sci sci_continue.sci \
-         sci_cputime.sci sci_csc.sci sci_csch.sci sci_date.sci\
+         sci_cputime.sci sci_csc.sci sci_csch.sci sci_date.sci sci_dec2hex.sci \
 	 sci_delete.sci sci_det.sci sci_diag.sci sci_diary.sci \
-	 sci_diff.sci sci_dir.sci sci_display.sci sci_disp.sci \
+	 sci_diff.sci sci_dir.sci sci_display.sci sci_disp.sci sci_doc.sci \
+	 sci_docopt.sci sci_drawnow.sci \
          sci_eig.sci sci_error.sci sci_eval.sci sci_exist.sci sci_exit.sci \
 	 sci_fclose.sci sci_feof.sci sci_ferror.sci sci_feval.sci sci_fft.sci \
          sci_fgets.sci sci_find.sci sci_findstr.sci sci_fopen.sci sci_format.sci \
