@@ -104,7 +104,14 @@ c     exec
          lpt(2)=lin(k+4)
          lpt(6)=k
 c
-         if(first) first=.false.
+         write(buf(1:4),'(i4)') nlc
+c         call basout(io,wte,'in exec : nlc : '//buf(1:4))
+         write(buf(1:4),'(i4)') lct(8)
+c         call basout(io,wte,'in exec : lct(8) : '//buf(1:4))
+         if(first) then
+            first=.false.
+            nlc=0
+         endif
          err=sadr(il+2+nlgh)-lstk(bot)
          if(err.gt.0) then
             call error(17)
