@@ -1,5 +1,5 @@
 
-/* $Id: pvmtev.h,v 1.1 2001/04/26 07:47:08 scilab Exp $ */
+/* $Id: pvmtev.h,v 1.2 2002/10/14 14:19:02 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,14 @@
  *
  *	Libpvm tracing includes.
  *
-$Log: pvmtev.h,v $
-Revision 1.1  2001/04/26 07:47:08  scilab
-Initial revision
-
+ * $Log: pvmtev.h,v $
+ * Revision 1.2  2002/10/14 14:19:02  chanceli
+ * update
+ *
+ * Revision 1.13  1999/07/08 18:59:48  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
  * Revision 1.12  1997/12/31  22:13:39  pvmsrc
  * Renamed TEV_REMOVE -> TEV_DELINFO.  D-Oh.
  * (Spanker=kohl)

@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# 2002: small patch in order to return UNKNOWN on cygwin (jpc)
-# $Id: pvmgetarch,v 1.2 2002/07/08 08:10:26 chanceli Exp $
+# $Id: pvmgetarch,v 1.3 2002/10/14 14:21:47 chanceli Exp $
 #
 # pvmgetarch.sh
 #
@@ -19,7 +18,7 @@
 # 08 Apr 1993  Robert Manchek  manchek@CS.UTK.EDU.
 # 24 Aug 1994  last revision
 # 28 Jul 1995  release 3.3.8
-# 
+#
 
 #
 # begin section that may need to be tuned.
@@ -50,8 +49,6 @@ if [ -f /bin/uname -o -f /usr/bin/uname \
 	fi
 
 	case "$os,$ht" in
-	CYGW*,* )               ARCH=CYGWIN ;;
-	MING*,* )               ARCH=CYGWIN ;;
 	SunOS,sun3* )           ARCH=SUN3 ;;
 	SunOS,sun4* )           ARCH=SUN4 ;;
 	SunOS,i86pc )           ARCH=X86SOL2 ;;
@@ -63,7 +60,6 @@ if [ -f /bin/uname -o -f /usr/bin/uname \
 	IRIX,* )                ARCH=SGI ;;
 	IRIX64,* )              ARCH=SGI64 ;;
 	*OSF*,alpha )           ARCH=ALPHA ;;
-	Linux,alpha )           ARCH=LINUXALPHA ;;
 	CRSOS,smp )             ARCH=CRAYSMP ;;
 	*,paragon )             ARCH=PGON ;;
 	dgux,AViiON )           ARCH=DGAV ;;
@@ -71,15 +67,32 @@ if [ -f /bin/uname -o -f /usr/bin/uname \
 	*,mips )                ARCH=MIPS ;;
 	*,CRAY-2 )              ARCH=CRAY2 ;;
 	Linux,i[3456]86 )       ARCH=LINUX ;;
-        Linux,sparc)            ARCH=LINUXSPARC ;;
+	Linux,ia64 )            ARCH=LINUX64 ;;
+	Linux,alpha )           ARCH=LINUXALPHA ;;
+	Linux,arm* )            ARCH=LINUXARM ;;
+	Linux,sparc* )          ARCH=LINUXSPARC ;;
+	Linux,hp_pa )           ARCH=LINUXHPPA ;;
+	Linux,ppc )             ARCH=LINUXPPC ;;
+	Linux,m68k )            ARCH=LINUXATARI ;;
 	BSD/OS,i[3456]86 )      ARCH=BSD386 ;;
-	FreeBSD,i386 )          ARCH=FREEBSD ;;
+	FreeBSD,i[3456]86 )     ARCH=FREEBSD ;;
+	FreeBSD,alpha )         ARCH=FREEBSD ;;
 	SUPER-UX,SX-3 )         ARCH=SX3 ;;
 	uts,* )                 ARCH=UTS2 ;;
 	realix,M88* )           ARCH=M88K ;;
 	DomainOS,DN* )          ARCH=APOLLO ;;
 	OS/2,i[3456]86 )        ARCH=OS2 ;;
+	CYGWIN*,i[3456]86 )     ARCH=CYGWIN ;;
+	Darwin,* )              ARCH=DARWIN ;;
+	Rhapsody,"Power Macintosh" )    ARCH=MACOSX ;;
 	esac
+fi
+
+# there is no other way to detect DG/intel than to run 'uname -a'
+if [ "$ARCH" = DGAV ]; then
+	if uname -a | grep 'PentiumPro$' > /dev/null ; then
+		ARCH=DGIX
+	fi
 fi
 
 if [ "$ARCH" = UNKNOWN ]; then
@@ -121,14 +134,24 @@ if [ "$ARCH" = UNKNOWN ]; then
 	if [ -f /bin/titan ]; then ARCH=TITN; fi
 
 	if [ -f /netbsd ]; then
-		case "`/usr/bin/machine`" in
-		i386)   ARCH=NETBSDI386 ;;
-		amiga)  ARCH=NETBSDAMIGA ;;
-		hp300)  ARCH=NETBSDHP300 ;;
-		mac68k) ARCH=NETBSDMAC68K ;;
-		pmax)   ARCH=NETBSDPMAX ;;
-		sparc)  ARCH=NETBSDSPARC ;;
-		sun3)   ARCH=NETBSDSUN3 ;;
+		# amiga)  ARCH=NETBSDAMIGA ;;  --> NETBSDM68K
+		# hp300)  ARCH=NETBSDHP300 ;;  --> NETBSDM68K
+		# mac68k) ARCH=NETBSDMAC68K ;;  --> NETBSDM68K
+		# pmax)   ARCH=NETBSDPMAX ;;  --> NETBSDMIPSEL
+		# sun3)   ARCH=NETBSDSUN3 ;;  --> NETBSDM68K
+		case "`/usr/bin/uname -p`" in
+		alpha)   ARCH=NETBSDALPHA ;;
+		arm32)   ARCH=NETBSDARM32 ;;
+		i386)    ARCH=NETBSDI386 ;;
+		m68k)    ARCH=NETBSDM68K ;;
+		mipseb)  ARCH=NETBSDMIPSEB ;;
+		mipsel)  ARCH=NETBSDMIPSEL ;;
+		ns32k)   ARCH=NETBSDNS32K ;;
+		powerpc) ARCH=NETBSDPOWERPC ;;
+		sh3)     ARCH=NETBSDSH3 ;;
+		sparc)   ARCH=NETBSDSPARC ;;
+		sparc64) ARCH=NETBSDSPARC64 ;;
+		vax)     ARCH=NETBSDVAX ;;
 		esac
 	elif [ -f /usr/bin/machine ]; then
 		case "`/usr/bin/machine`" in
@@ -239,12 +262,12 @@ if [ "$ARCH" = HPPA ]; then
 		then ARCH=HPPAMP;
 	fi
 fi
-
-
-if [ "$ARCH" = CYGWIN ]; then
-	ARCH=UNKNOWN;
+if [ "$ARCH" = LINUX ]; then
+	rel="`/bin/uname -r`"
+	case "$rel" in
+		*.beo* ) ARCH=BEOSCYLD ;;
+	esac
 fi
-
 #
 # ugh, done.
 #

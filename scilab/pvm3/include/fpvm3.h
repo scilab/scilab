@@ -1,5 +1,5 @@
 c
-c $Id: fpvm3.h,v 1.1 2001/04/26 07:47:08 scilab Exp $
+c $Id: fpvm3.h,v 1.2 2002/10/14 14:19:02 chanceli Exp $
 c
 
 c  -------------------------------------------------------------------
@@ -34,7 +34,7 @@ c     ----------------------------------
 c     fpvm3.h
 c
 c     Definitions to be included with
-c     User's Fortran application
+c     User Fortran application
 c     ----------------------------------
 
       integer PVMTASKDEFAULT, PVMTASKHOST, PVMTASKARCH, PVMTASKDEBUG
@@ -58,7 +58,7 @@ c     ----------------------------------
       integer PVMMBOXDEFAULT, PVMMBOXPERSISTENT, PVMMBOXMULTIINSTANCE
       integer PVMMBOXOVERWRITABLE, PVMMBOXFIRSTAVAIL
       integer PVMMBOXREADANDDELETE, PVMMBOXWAITFORINFO
-      integer STRING, BYTE1, INTEGER2, INTEGER4
+      integer STRING, BYTE1, INTEGER2, INTEGER4, INTEGER8
       integer REAL4, COMPLEX8, REAL8, COMPLEX16
 
       integer PvmOk, PvmSysErr, PvmBadParam, PvmMismatch
@@ -70,6 +70,7 @@ c     ----------------------------------
       integer PvmDupHost, PvmCantStart, PvmAlready, PvmNoTask
       integer PvmNoEntry, PvmDupEntry, PvmOverflow, PvmDenied
       integer PvmNotFound, PvmExists, PvmHostrNMstr, PvmParentNotSet
+      integer PvmIPLoopback
 
 c     --------------------
 c     spawn 'flag' options
@@ -127,6 +128,7 @@ c     --------------------------------
       parameter( COMPLEX8 = 5)
       parameter( REAL8    = 6)
       parameter( COMPLEX16= 7)
+      parameter( INTEGER8 = 8)
 
 c     --------------------------------
 c     setopt/getopt options for 'what'
@@ -223,6 +225,7 @@ c     --------------------------
       parameter( PvmExists       = -33)
       parameter( PvmHostrNMstr   = -34)
       parameter( PvmParentNotSet = -35)
+      parameter( PvmIPLoopback   = -36)
 
 c     --------------------------
 c     these are going away in the next version.
@@ -231,3 +234,8 @@ c     --------------------------
       parameter( PvmNoEntry    = -32)
       parameter( PvmDupEntry   = -33)
 
+
+c Uncomment this include for use with the WIN32 WATCOM fortran compiler
+c
+c     include '../include/fpvm3_watcom.h'
+c

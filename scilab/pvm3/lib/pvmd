@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#	$Id: pvmd,v 1.1 2001/04/26 07:47:08 scilab Exp $
+#	$Id: pvmd,v 1.2 2002/10/14 14:21:46 chanceli Exp $
 #
 #	Start the appropriate pvmd3.
 #	If PVM_ROOT is not set in environment,
@@ -84,6 +84,16 @@ if [ ! -f $PVM_ROOT/lib/$PVM_ARCH/pvmd3$sfx ]; then
 	echo "Make sure PVM is built and PVM_ROOT is set correctly" >&2
 	exit 1
 fi
-exec $PVM_ROOT/lib/$PVM_ARCH/pvmd3$sfx $@
-exit 1
+
+case "x$PVMD_NOHOLD" in x | xNO )
+	exec $PVM_ROOT/lib/$PVM_ARCH/pvmd3$sfx $@
+;;
+* )
+	# Don't hold shell - put pvmd3 in background
+	# (apparently helps with init scripts in RedHat Linux)
+	#     - change submitted by "Mike Wangsmo" <wanger@redhat.com>
+	$PVM_ROOT/lib/$PVM_ARCH/pvmd3$sfx $@ &
+;; esac
+
+exit 0
 

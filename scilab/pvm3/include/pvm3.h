@@ -1,5 +1,5 @@
 
-/* $Id: pvm3.h,v 1.1 2001/04/26 07:47:08 scilab Exp $ */
+/* $Id: pvm3.h,v 1.2 2002/10/14 14:19:02 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,105 @@
  *
  *	Libpvm3 includes.
  *
-$Log: pvm3.h,v $
-Revision 1.1  2001/04/26 07:47:08  scilab
-Initial revision
-
+ * $Log: pvm3.h,v $
+ * Revision 1.2  2002/10/14 14:19:02  chanceli
+ * update
+ *
+ * Revision 1.51  2001/09/27 21:24:18  pvmsrc
+ * Increased default PVMTMPNAMLEN to 64...
+ * 	- suggested by BEOSCYLD / Joe Vitale <vitale@scyld.com>
+ * 	- seems like a good idea.  :-)
+ * (Spanker=kohl)
+ *
+ * Revision 1.50  2001/09/27 18:24:39  pvmsrc
+ * Upped version to 3.4.4.
+ * (Spanker=kohl)
+ *
+ * Revision 1.49  2001/09/26 21:55:51  pvmsrc
+ * Oops...  fixed function proto for pvmtmpnam()...
+ * 	- leftover bogus cruft...
+ * (Spanker=kohl)
+ *
+ * Revision 1.48  2001/09/25 21:17:49  pvmsrc
+ * Minor TMPNAMFUN()/tmpnam() cleanup.
+ * 	- moved macro def to pvm3.h, renamed PVMTNPMAN().
+ * 	- same for LEN_OF_TMP_NAM -> PVMTMPNAMLEN.
+ * 	- mostly a huge waste of time, since *both* tmpnam() & mktemp()
+ * 		produce the same "dangerous" warning message in Linux/gcc...
+ * 	- damn.
+ * (Spanker=kohl)
+ *
+ * Revision 1.47  2001/06/18 18:38:23  pvmsrc
+ * Added missing function prototype for pvm_freezegroup()...
+ * (Spanker=kohl)
+ *
+ * Revision 1.46  2000/02/16 22:50:01  pvmsrc
+ * Upped version to 3.4.3 so I don't forget later.
+ * (Spanker=kohl)
+ *
+ * Revision 1.45  2000/02/10 23:53:09  pvmsrc
+ * Added new PvmIPLoopback error code.
+ * 	- Master Host IP Address tied to Loopback.
+ * (Spanker=kohl)
+ *
+ * Revision 1.44  1999/11/08 17:21:32  pvmsrc
+ * Added PvmMboxDirectIndex stuff:
+ * 	- PvmMboxMaxFlag: capped regular flags to squeeze in direct index...
+ * 	- PvmMboxDirectIndexShift: # of bits to shift index in flags
+ * 	- PvmMboxMaxDirectIndex: max direct index value, for error checking
+ * 	- PvmMboxDirectIndex(): macro to convert direct index into flag bits
+ * 	- PvmMboxDirectIndexOf(): macro to decode direct index from flags
+ * (Spanker=kohl)
+ *
+ * Revision 1.43  1999/10/27 18:48:40  pvmsrc
+ * Fixed (yet again) the prototype for pvm_recvf().
+ * 	- hopefully got it right this time...  :-Q
+ * (Spanker=kohl)
+ *
+ * Revision 1.42  1999/10/22 13:34:55  pvmsrc
+ * Fixed prototype for pvm_recvf().
+ * 	- reported by "Ed D'Azevedo" <efdazedo@alcor.epm.ornl.gov>.
+ * (Spanker=kohl)
+ *
+ * Revision 1.41  1999/10/18 21:22:00  pvmsrc
+ * Added function prototypes for:
+ * 	- pvm_pkmesg(), pvm_pkmesgbody(), pvm_upkmesg().
+ * (Spanker=kohl)
+ *
+ * Revision 1.40  1999/08/19 16:07:14  pvmsrc
+ * Upped version to 3.4.2.
+ * (Spanker=kohl)
+ *
+ * Revision 1.39  1999/07/08 18:59:47  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.38  1999/06/07 20:06:53  pvmsrc
+ * Upped version to 3.4.1.
+ * (Spanker=kohl)
+ * 
+ * Revision 1.37  1999/03/03  19:00:36  pvmsrc
+ * Added new define PVM_PATCH_VERSION.
+ * 	- the "0" in "3.4.0".
+ * 	- to go along with PVM_MAJOR_VERSION & PVM_MINOR_VERSION.
+ * (Spanker=kohl)
+ *
+ * Revision 1.36  1999/01/19  18:02:17  pvmsrc
+ * Bumped PVM_VER to 3.4.0.
+ * (Spanker=kohl)
+ *
+ * Revision 1.35  1999/01/13  00:03:19  pvmsrc
+ * Fixed backwards compat.
+ * 	- redefine old pvm_insert/lookup/delete() consts:
+ * 		* PvmNoEntry -> PvmNotFound
+ * 		* PvmDupEntry -> PvmDenied
+ * 	- remove #ifdef PVM33COMPAT...  O.K. in general.
+ * (Spanker=kohl)
+ *
+ * Revision 1.34  1998/08/27  15:17:14  pvmsrc
+ * Time to bump up to beta 7...
+ * (Spanker=kohl)
+ *
  * Revision 1.33  1997/12/30  18:15:32  pvmsrc
  * Oops...  better skip directly to beta 6 instead of beta 5...
  * 	- separate WIN32 release is beta 5...
@@ -180,17 +275,16 @@ Initial revision
 *	Release version
 */
 
-#define	PVM_VER				"3.4.beta6"
+#define	PVM_VER				"3.4.4"
 #define	PVM_MAJOR_VERSION	3
 #define	PVM_MINOR_VERSION	4
+#define PVM_PATCH_VERSION	4
 
 #ifndef WIN32
 #include	<sys/time.h>
 #else
 #include "pvmwin.h"
-#ifndef __ABSC__
 #include <sys/timeb.h>
-#endif
 #include <time.h>
 #endif
 
@@ -298,7 +392,27 @@ Initial revision
 #define	PvmMboxReadAndDelete	16	/* atomic read / delete */
 									/* requires read & delete rights */
 #define	PvmMboxWaitForInfo		32	/* for blocking recvinfo */
+#define PvmMboxMaxFlag			512	/* maximum mbox flag bit value */
 
+#define PvmMboxDirectIndexShift	10	/* log2(PvmMboxMaxFlag) + 1 */
+
+#define PvmMboxMaxDirectIndex \
+	( (unsigned) 1 << ( 31 - PvmMboxDirectIndexShift ) )
+
+#define PvmMboxDirectIndexOf( _flags ) \
+	( ( (_flags) & \
+		( ( PvmMboxMaxDirectIndex - 1 ) << PvmMboxDirectIndexShift ) ) \
+		>> PvmMboxDirectIndexShift )
+
+#define PvmMboxDirectIndex( _index ) \
+	( ( (_index) >= PvmMboxMaxDirectIndex ) ? \
+		( fprintf( stderr, "Mbox Direct Index Too Large: %d >= %d\n", \
+			(_index), PvmMboxMaxDirectIndex ), 0 ) \
+		: ( (_index) << PvmMboxDirectIndexShift ) )
+
+/*
+*	pre-defined system message mailbox classes
+*/
 
 #define PVMNORESETCLASS		"###_PVM_NO_RESET_###"
 
@@ -346,14 +460,13 @@ Initial revision
 #define	PvmExists		-33	/* Already exists */
 #define	PvmHostrNMstr	-34	/* Hoster run on non-master host */
 #define	PvmParentNotSet	-35	/* Spawning parent set PvmNoSpawnParent */
+#define	PvmIPLoopback	-36	/* Master Host's IP is Loopback */
+
 /*
-*	these are going away in the next version.
-*	use the replacements
+*	crusty error constants from 3.3, now redefined...
 */
-#ifdef	PVM33COMPAT
-#define	PvmNoEntry		-32	/* No such entry */
-#define	PvmDupEntry		-33	/* Duplicate entry */
-#endif
+#define	PvmNoEntry		PvmNotFound	/* No such entry */
+#define	PvmDupEntry		PvmDenied	/* Duplicate entry */
 
 /*
 *	Data types for pvm_reduce(), pvm_psend(), pvm_precv()
@@ -424,6 +537,29 @@ struct pvmmboxinfo {
 	int *mi_flags;			/* mbox entry flags */
 };
 
+/*
+*	temporary file name function / macro
+*	(since there are so many choices, but so little time,
+*	and since gcc now complains about tmpnam()... :-Q)
+*/
+
+#ifdef  NOTMPNAM
+#define PVMTMPNAMFUN(x)		pvmtmpnam(x)
+#define PVMTMPNAMLEN		64
+#else
+#define PVMTMPNAMFUN(x)		tmpnam(x)
+#ifdef L_tmpnam
+#define PVMTMPNAMLEN		L_tmpnam
+#else
+#define PVMTMPNAMLEN		64
+#endif
+#endif
+
+
+/*
+*	function prototypes
+*/
+
 #ifdef __ProtoGlarp__
 #undef __ProtoGlarp__
 #endif
@@ -436,6 +572,12 @@ struct pvmmboxinfo {
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#ifdef  NOTMPNAM
+char *pvmtmpnam		__ProtoGlarp__(( char * ));
+#endif
+char *pvmgetrsh		__ProtoGlarp__(( void ));
+char *pvmgettmp		__ProtoGlarp__(( void ));
 
 int pvm_addhosts	__ProtoGlarp__(( char **, int, int * ));
 int pvm_addmhf		__ProtoGlarp__(( int, int, int, int (*) (int) ));
@@ -455,6 +597,7 @@ int pvm_exit		__ProtoGlarp__(( void ));
 int pvm_export		__ProtoGlarp__(( char * ));
 int pvm_freebuf		__ProtoGlarp__(( int ));
 int pvm_freecontext	__ProtoGlarp__(( int ));
+int pvm_freezegroup	__ProtoGlarp__(( char *, int ));
 int pvm_gather		__ProtoGlarp__(( void*, void*,
 										int, int, int, char*, int));
 int pvm_getcontext	__ProtoGlarp__(( void ));
@@ -499,6 +642,8 @@ int pvm_pkstr		__ProtoGlarp__(( char * ));
 int pvm_pkuint		__ProtoGlarp__(( unsigned int *, int, int ));
 int pvm_pkulong		__ProtoGlarp__(( unsigned long *, int, int ));
 int pvm_pkushort	__ProtoGlarp__(( unsigned short *, int, int ));
+int pvm_pkmesg		__ProtoGlarp__(( int ));
+int pvm_pkmesgbody	__ProtoGlarp__(( int ));
 int pvm_precv		__ProtoGlarp__(( int, int,
 									void *, int, int,
 									int *, int *, int * ));
@@ -508,7 +653,8 @@ int pvm_psend		__ProtoGlarp__(( int, int,
 int pvm_pstat		__ProtoGlarp__(( int ));
 int pvm_putinfo		__ProtoGlarp__(( char *, int, int ));
 int pvm_recv		__ProtoGlarp__(( int, int ));
-int (*pvm_recvf		__ProtoGlarp__(( int (*)(int, int, int) )) )();
+int (*pvm_recvf		__ProtoGlarp__(( int (*)(int, int, int) )) )
+	__ProtoGlarp__(( int (*)(int, int, int) ));
 int pvm_recvinfo	__ProtoGlarp__(( char *, int, int ));
 int pvm_reduce		__ProtoGlarp__(( void (*)(int*, void*, void*, int*, int*),
 									void *, int,
@@ -565,6 +711,7 @@ int pvm_upkstr		__ProtoGlarp__(( char * ));
 int pvm_upkuint		__ProtoGlarp__(( unsigned int *, int, int ));
 int pvm_upkulong	__ProtoGlarp__(( unsigned long *, int, int ));
 int pvm_upkushort	__ProtoGlarp__(( unsigned short *, int, int ));
+int pvm_upkmesg		__ProtoGlarp__(( void ));
 char *pvm_version	__ProtoGlarp__(( void ));
 
 /*
@@ -575,10 +722,12 @@ char *pvm_version	__ProtoGlarp__(( void ));
 #ifdef	PVM33COMPAT
 int pvm_getmwid		__ProtoGlarp__(( int ));
 int pvm_setmwid		__ProtoGlarp__(( int, int ));
+#endif
+
+/* these are now backwards compatible -> they use mbox interface... */
 int pvm_delete		__ProtoGlarp__(( char *, int ));
 int pvm_insert		__ProtoGlarp__(( char *, int, int ));
 int pvm_lookup		__ProtoGlarp__(( char *, int, int * ));
-#endif
 
 #ifdef __cplusplus
 }

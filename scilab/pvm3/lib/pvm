@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#	$Id: pvm,v 1.1 2001/04/26 07:47:08 scilab Exp $
+#	$Id: pvm,v 1.2 2002/10/14 14:21:46 chanceli Exp $
 #
 #	Start the appropriate pvm console.
 #	If PVM_ROOT is not set in environment,

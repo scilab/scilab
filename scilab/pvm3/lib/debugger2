@@ -1,6 +1,6 @@
 #!/bin/csh -f
 #
-#	$Id: debugger2,v 1.1 2001/04/26 07:47:08 scilab Exp $
+#	$Id: debugger2,v 1.2 2002/10/14 14:21:46 chanceli Exp $
 #
 #	debugger2.csh
 #
@@ -46,8 +46,12 @@ case TITN:
 	set DBFF=""
 	breaksw
 
-case LINUXSPARC:
 case LINUX:
+case LINUX64:
+case LINUXALPHA:
+case LINUXHPPA:
+case LINUXSPARC:
+case LINUXATARI:
 case NEXT:
 	set DBCMD="gdb"
 	set DBFF="-q -x $TEMPCMD"
@@ -64,6 +68,7 @@ case CNVXN:
 	set DBFF=""
 	breaksw
 
+case AIX4SP2:
 case SP2MPI:
 	set DBCMD="pdbx $argv[1-]"
 	breaksw

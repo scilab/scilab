@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#	$Id: xpvm,v 1.1 2001/04/26 07:47:08 scilab Exp $
+#	$Id: xpvm,v 1.2 2002/10/14 14:21:47 chanceli Exp $
 #
 #	Start XPVM.
 #	If PVM_ROOT is not set in environment,

@@ -1,5 +1,5 @@
 
-/* $Id: pvmproto.h,v 1.1 2001/04/26 07:47:08 scilab Exp $ */
+/* $Id: pvmproto.h,v 1.2 2002/10/14 14:19:02 chanceli Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -34,10 +34,24 @@
  *
  *	PVM protocol definitions.
  *
-$Log: pvmproto.h,v $
-Revision 1.1  2001/04/26 07:47:08  scilab
-Initial revision
-
+ * $Log: pvmproto.h,v $
+ * Revision 1.2  2002/10/14 14:19:02  chanceli
+ * update
+ *
+ * Revision 1.18  2000/02/10 20:43:54  pvmsrc
+ * Removed hard-coded /tmp in TDSOCKNAME / TDSOCKNAME_CSPP.
+ * 	- use pvmgettmp() routine now to determine PVM temp dir.
+ * (Spanker=kohl)
+ *
+ * Revision 1.17  1999/07/08 18:59:48  kohl
+ * Fixed "Log" keyword placement.
+ * 	- indent with " * " for new CVS.
+ *
+ * Revision 1.16  1998/01/12  21:12:01  pvmsrc
+ * Added task output collection op defines.
+ * 	- TO_NEW, TO_SPAWN, TO_EOF.
+ * (Spanker=kohl)
+ *
  * Revision 1.15  1997/10/22  22:08:16  pvmsrc
  * Added SYSCTX_DG constant for dynamic group context.
  * (Spanker=kohl)
@@ -332,16 +346,16 @@ struct pmsg *mesg_new __ProtoGlarp__(( int master ));
 /* file with task->pvmd sockaddr */
 
 #ifdef	SHAREDTMP
-#define	TDSOCKNAME	"/tmp/pvmd.%d.%s"
+#define	TDSOCKNAME	"%s/pvmd.%d.%s"
 #else
-#define	TDSOCKNAME	"/tmp/pvmd.%d"
+#define	TDSOCKNAME	"%s/pvmd.%d"
 #endif
 
 #ifdef	IMA_CSPP
 #ifdef	SHAREDTMP
-#define	TDSOCKNAME_CSPP	"/tmp/pvmd.%d.%d.%s"
+#define	TDSOCKNAME_CSPP	"%s/pvmd.%d.%d.%s"
 #else
-#define	TDSOCKNAME_CSPP	"/tmp/pvmd.%d.%d"
+#define	TDSOCKNAME_CSPP	"%s/pvmd.%d.%d"
 #endif
 #endif	/*IMA_CSPP*/
 
@@ -408,6 +422,14 @@ struct pmsg *mesg_new __ProtoGlarp__(( int master ));
 #define	TC_OUTPUTX		(TC_FIRST+10)	/* (not sent) flush out coll */
 #define	TC_SIBLINGS		(TC_FIRST+11)	/* parent announce spawn grp */
 #define	TC_LAST			(TC_FIRST+11)	/* last TC_ message */
+
+/*
+* for Task Output Ops
+*/
+
+#define TO_EOF		 0
+#define TO_SPAWN	-1
+#define TO_NEW		-2
 
 
 /* Contexts Used by Some System Calls - these are allocated from the
