@@ -189,6 +189,6 @@ MACROS =$(O0) $(O1) $(O2) $(O3) $(O4) $(O5) $(A) $(B) $(C) $(D) \
 	$(E) $(F) $(G) $(H) $(I) $(J) $(K) $(L) $(M) $(N) \
 	$(O) $(P) $(Q) $(R) $(S) $(T) $(U) $(V) $(W) $(X) $(Y) $(Z)\
 	$(HMFUNS) $(BFUNS) $(CFUNS) $(LSSFUNS) $(PFUNS) $(RFUNS) \
-	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) 
+	$(SFUNS) $(SPFUNS) $(IFUNS) $(FUNS) $(HFUNS) 
 
 include ../Make.lib
