@@ -1268,8 +1268,35 @@ c     : in compiled for, next line to differentiate from extraction
          if(istk(pstk(pt)).eq.16) goto  54
       endif
 c
+      if (st .eq. 0.0d+0) then
+         istk(il1+1)=1
+         istk(il1+1)=0
+         istk(il1+2)=0
+         istk(il1+3)=0
+         lstk(top+1)=l1
+         return
+      endif
+
+      if(isanan(e1).eq.1.or.isanan(st).eq.1.or.isanan(e2).eq.1) then
+         stk(l1)=e1+st+e2
+         istk(il1+1)=1
+         istk(il1+2)=1
+         istk(il1+3)=0
+         lstk(top+1)=l1+1
+         return
+      endif
+
 c     floating point used to avoid integer overflow
       e1r=dble(l1) + max(3.0d0,(e2-e1)/st) - dble(lstk(bot))
+      if(isanan(e1r).eq.1) then
+        stk(l1)=eiR
+         istk(il1+1)=1
+         istk(il1+2)=1
+         istk(il1+3)=0
+         lstk(top+1)=l1+1
+       return
+      endif
+
       if (e1r .gt. 0.0d0) then
          err=e1r
          call error(17)
@@ -1296,12 +1323,19 @@ c
       return
 c     
 c     for clause
- 54   stk(l1) = e1
-      stk(l1+1) = st
-      stk(l1+2) = e2
-      istk(il1+1)=-3
-      istk(il1+2)=-1
-      lstk(top+1)=l1+3
+ 54   if(isanan(e1).eq.1.or.isanan(st).eq.1.or.isanan(e2).eq.1) then
+         stk(l1) = e1+st+e2
+         istk(il1+1)=1
+         istk(il1+2)=1
+         lstk(top+1)=l1+3
+      else
+         stk(l1) = e1
+         stk(l1+1) = st
+         stk(l1+2) = e2
+         istk(il1+1)=-3
+         istk(il1+2)=-1
+         lstk(top+1)=l1+3
+      endif
       return
       end
 
@@ -3190,7 +3224,7 @@ c
  10         continue
             lstk(top+1)=sadr(il1+3+mn1)
          endif
-      elseif(fin.eq.et) then
+      else
          if(mn1.eq.0.or.mn2.eq.0) then
             istk(il1)=1
             istk(il1+1)=0
@@ -3211,48 +3245,31 @@ c
          else
             i2=1
          endif
-         istk(il1)=4
-         do 20 i=0,mn1-1
-            e1=stk(l1+i)
-            e2=stk(l2+i)
-            if(e1.ne.0.0d0.and.e2.ne.0.0d0) then
-               istk(il1+3+i)=1
-            else
-               istk(il1+3+i)=0
-            endif
- 20      continue
-         lstk(top+1)=sadr(il1+3+mn1)
-         return
-      elseif(fin.eq.ou) then
-         if(mn1.eq.0.or.mn2.eq.0) then
-            istk(il1)=1
-            istk(il1+1)=0
-            istk(il1+2)=0
-            istk(il1+3)=0
-            lstk(top+1)=sadr(il1+4)
+         if(mn1.ne.mn2) then
+            call error(60)
             return
          endif
-         if(mn1.eq.1) then
-            i1=0
-            mn1=mn2
+         if(fin.eq.ou) then
+            do 30 i=0,mn1-1
+               e1=stk(l1+i*i1)
+               e2=stk(l2+i*i2)
+               if(e1.ne.0.0d0.or.e2.ne.0.0d0) then
+                  istk(il1+3+i)=1
+               else
+                  istk(il1+3+i)=0
+               endif
+ 30         continue
          else
-            i1=1
+            do 31 i=0,mn1-1
+               e1=stk(l1+i*i1)
+               e2=stk(l2+i*i2)
+               if(e1.ne.0.0d0.and.e2.ne.0.0d0) then
+                  istk(il1+3+i)=1
+               else
+                  istk(il1+3+i)=0
+               endif
+ 31         continue
          endif
-         if(mn2.eq.1) then
-            i2=0
-            mn2=mn1
-         else
-            i2=1
-         endif
-         do 30 i=0,mn1-1
-            e1=stk(l1+i)
-            e2=stk(l2+i)
-            if(e1.ne.0.0d0.or.e2.ne.0.0d0) then
-               istk(il1+3+i)=1
-            else
-               istk(il1+3+i)=0
-            endif
- 30      continue
          istk(il1)=4
          istk(il1+1)=max(m1,m2)
          istk(il1+2)=max(n1,n2)
