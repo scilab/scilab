@@ -631,4 +631,7 @@
 {"set_xproperty",       IN_intcscicos,  6,      2},
 {"scicos_cpass2",       IN_intcscicos,  7,      2},
 {"set_blockerror",      IN_intcscicos,  8,      2},
-
+#ifdef WIN32
+#define  IN_intwintools 48
+{"testwintools",	IN_intwintools,	1,	2},
+#endif

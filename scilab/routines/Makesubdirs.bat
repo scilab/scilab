@@ -123,6 +123,10 @@ cd randlib
 echo Making %1 in directory  randlib
  nmake /C /f Makefile.mak %1
 cd ..
+cd wintools
+echo Making %1 in directory  wintools
+ nmake /C /f Makefile.mak %1
+cd ..
 cd wsci
 echo Making %1 in directory  wsci
  nmake /C /f Makefile.mak %1
