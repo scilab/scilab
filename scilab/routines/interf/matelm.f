@@ -3197,6 +3197,13 @@ c
          call error(42)
          return
       endif
+      if(m.eq.0.or.n.eq.0) then
+         if(mn.ne.0) then
+            call error(60)
+            return
+         endif
+         return
+      endif
       if(m.eq.-1) m=mn/n
       if(n.eq.-1) n=mn/m
 
