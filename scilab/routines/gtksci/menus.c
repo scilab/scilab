@@ -837,7 +837,7 @@ void * graphic_initial_menu(int winid) {
   sci_menu_add(&m,winid,"_Zoom",NULL,0,0,"$zoom");
   sci_menu_add(&m,winid,"_UnZoom",NULL,0,0,"$unzoom");
   sci_menu_add(&m,winid,"3D _Rot.",NULL,0,0,"$rot3d");
-  sci_menu_add(&m,winid,"Tests",graph_entries,30,0,"$testg");
+  /* sci_menu_add(&m,winid,"Tests",graph_entries,30,0,"$testg");*/
   return m;
 }
 
