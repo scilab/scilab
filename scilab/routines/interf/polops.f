@@ -838,6 +838,11 @@ c     get arg1
          call error(220)
          return
       endif
+      if (istk(il1).eq.10.or.istk(il1).eq.15) then
+         top=top0
+         fin=-fin
+         return
+      endif
       m1=istk(il1+1)
       n1=istk(il1+2)
 c
