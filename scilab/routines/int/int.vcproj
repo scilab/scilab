@@ -482,6 +482,9 @@ cd .. &gt;nul
 				RelativePath=".\geninsert2.c">
 			</File>
 			<File
+				RelativePath=".\genisany.c">
+			</File>
+			<File
 				RelativePath=".\genkron.c">
 			</File>
 			<File
