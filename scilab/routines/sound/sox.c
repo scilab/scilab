@@ -92,11 +92,14 @@ int C2F(loadwave)(char * filename,double *res, integer * size_res,
       return 0;
     }
   if ( flag == 1) 
-    sciprint("Input file: using sample rate %lu\r\n\tsize %s, style %s, %d %s\r\n",
-	   informat.info.rate, sizes[informat.info.size], 
-	   styles[informat.info.style], informat.info.channels, 
-	   (informat.info.channels > 1) ? "channels" : "channel");
-  
+    {
+      sciprint("Input file: using sample rate %lu\r\n", 
+	       informat.info.rate);
+      sciprint("\tsize %s, style %s, %d %s\r\n",
+	       sizes[informat.info.size], 
+	       styles[informat.info.style], informat.info.channels, 
+	       (informat.info.channels > 1) ? "channels" : "channel");
+  }
   /* read chunk */
   size_max = *size_res ; 
   *size_res  = 0;
