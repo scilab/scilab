@@ -151,7 +151,7 @@ if txt~=[] then
   // kc+9 because 'function '
   ksc=min(strindex(txt(1),";")) // searching for a comment on first line after function prototype
   if isempty(ksc) then 
-    ksc=length(txt(1));
+    ksc=length(txt(1))+1;
     firstline=[]
   else
     firstline=part(txt(1),ksc+1:length(txt(1)));
