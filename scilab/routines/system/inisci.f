@@ -252,6 +252,7 @@ c     . COMPILER
       call cresmatvar(idloc,k,buf,nbuf)
       k=k+1
 c     . %gtk 
+      vname = ' '
       vname(1:4) = "%gtk"
       call withgtk(irep)
       call cvname(idloc,vname,0)
