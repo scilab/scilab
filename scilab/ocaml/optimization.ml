@@ -298,7 +298,7 @@ let rec symbolic_expression_of_expression maps iexpr =
             | _ ->
                 try
                   let inp = StringMap.find id (Lazy.force maps.inputs_map) in
-                  create_discrete_variable (~-1 - (inp.input_id))
+                  create_discrete_variable (-1 - (inp.input_id))
                   (* Use of strictly negative values to be able to distinguish
                      inputs from other discrete variables. *)
                 with
@@ -820,7 +820,7 @@ let propagate_noEvent expr =
 
 let create_index_array a p =
   let size = Array.length a in
-  let indexes = Array.make size ~-1 in
+  let indexes = Array.make size (-1) in
   let j = ref 0 in
   Array.iteri (fun i x -> if p x then begin indexes.(i) <- !j; incr j end) a;
   indexes

@@ -446,14 +446,14 @@ let zero_num = Int 0
 let one_num = Int 1
 let two_num = Int 2
 
-let minus_one = NodeSet.find_or_add (Int ~-1) numberNodeSet
+let minus_one = NodeSet.find_or_add (Int (-1)) numberNodeSet
 let zero = NodeSet.find_or_add zero_num numberNodeSet
 let one = NodeSet.find_or_add one_num numberNodeSet
 let two = NodeSet.find_or_add two_num numberNodeSet
 let ten = NodeSet.find_or_add (Int 10) numberNodeSet
 let one_over_two = NodeSet.find_or_add (div_num (one_num) two_num) numberNodeSet
 let minus_one_over_two =
-  NodeSet.find_or_add (div_num (Int ~-1) two_num) numberNodeSet
+  NodeSet.find_or_add (div_num (Int (-1)) two_num) numberNodeSet
 let pi = NodeSet.find_or_add "3.14159265359" constantNodeSet
 let pi_over_two =
   NodeSet.find_or_add (insert one_over_two [pi]) multiplicationNodeSet
@@ -1162,7 +1162,7 @@ and output out_channel node =
             else
               (create_number numerator :: nodes),
               (create_number denominator :: nodes')
-          | RationalPower (node'', num) when eq_num num (Int ~-1) ->
+          | RationalPower (node'', num) when eq_num num (Int (-1)) ->
               nodes, (node'' :: nodes')
           | RationalPower (node'', num) when lt_num num zero_num ->
               nodes, (create_rationalPower node'' (minus_num num) :: nodes')
@@ -1195,7 +1195,7 @@ and output out_channel node =
       end;
       begin match reciprocals with
         | [] -> ()
-        | [node'] -> output_string' " / "; output' (precedence node) node'
+        | [node'] -> output_string' " / "; output' (precedence node + 1) node'
         | node' :: nodes' ->
             output_string' " / (";
             output' (precedence node) node';
@@ -1225,8 +1225,8 @@ and output out_channel node =
               output_char' '('; output_string' (string_of_num num);
               output_char' ')'
         end
-    | RationalPower (node', num) when eq_num num (Int ~-1) ->
-        output_string' "1 / "; output' mult_precedence node'
+    | RationalPower (node', num) when eq_num num (Int (-1)) ->
+        output_string' "1 / "; output' (mult_precedence + 1) node'
     | RationalPower (node', num) ->
         output_string' "1 / "; output' (precedence node) node';
         output_string' " ^ ";
@@ -1341,10 +1341,20 @@ let rec derivatives_of node = match node.nature with
       List.fold_left (fun acc node -> union (derivatives_of node) acc) [] nodes
 
 let rec invert_if_possible_with_respect_to node left right =
-  let separate_invertible_part_if_possible nodes =
+  let not_null node = match node.nature with
+    | Constant _ -> true
+    | Number num -> num <>/ zero_num
+    | _ -> false
+  in
+  let invert_addition_if_possible nodes =
     match List.partition (fun node' -> is_subnode_of node' node) nodes with
       | [node'], nodes' -> Some (node', nodes')
-      | [], _ -> invalid_arg "invert_if_possible_with_respect_to"
+      | [], _ -> invalid_arg "invert_addition_if_possible"
+      | _ -> None
+  and invert_multiplication_if_possible nodes =
+    match List.partition (fun node' -> is_subnode_of node' node) nodes with
+      | [node'], nodes' when List.for_all not_null nodes' -> Some (node', nodes')
+      | [], _ -> invalid_arg "invert_multiplication_if_possible"
       | _ -> None
   in
   if node == left then Some right
@@ -1352,7 +1362,7 @@ let rec invert_if_possible_with_respect_to node left right =
     | BlackBox _ | Cosine _ | Derivative _ | Floor _ | HyperbolicCosine _ |
       PartialDerivative _ | Sign _ | Sine _ | Tangent _ -> None
     | Addition nodes ->
-        begin match separate_invertible_part_if_possible nodes with
+        begin match invert_addition_if_possible nodes with
           | None -> None
           | Some (node', nodes') ->
               invert_if_possible_with_respect_to
@@ -1398,7 +1408,7 @@ let rec invert_if_possible_with_respect_to node left right =
     | Logarithm node' ->
         invert_if_possible_with_respect_to node node' (symbolic_exp right)
     | Multiplication nodes ->
-        begin match separate_invertible_part_if_possible nodes with
+        begin match invert_multiplication_if_possible nodes with
           | None -> None
           | Some (node', nodes') ->
               invert_if_possible_with_respect_to

@@ -38,7 +38,7 @@ let next_index model_info =
 
 let create_index_array a p =
   let size = Array.length a in
-  let indexes = Array.make size ~-1 in
+  let indexes = Array.make size (-1) in
   let j = ref 0 in
   Array.iteri (fun i x -> if p x then begin indexes.(i) <- !j; incr j end) a;
   indexes
@@ -299,7 +299,7 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
       | If _ -> 1
       | Number num when lt_num num (Int 0) -> 12
       | Number (Int _) | Number (Big_int _) -> 14
-      | RationalPower (_, num) when eq_num num (Int ~-1) -> 11
+      | RationalPower (_, num) when eq_num num (Int (-1)) -> 11
       | RationalPower _ -> 13
   in
   let rec bufferize_expression_under prec expr =
@@ -498,7 +498,7 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
         List.fold_left
           (fun (exprs, exprs') expr -> match nature expr with
             | BlackBox ("noEvent", _) -> assert false
-            | RationalPower (expr'', num) when eq_num num (Int ~-1) &&
+            | RationalPower (expr'', num) when eq_num num (Int (-1)) &&
               not (has_multiple_occurrences expr model_info) ->
                 exprs, (expr'' :: exprs')
             | _ -> (expr :: exprs), exprs')
@@ -545,7 +545,7 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
       | Not_found -> assert false
   and bufferize_rational_power expr expr' num =
     let bufferize_rational_power' () =
-      if eq_num num (Int ~-1) then begin
+      if eq_num num (Int (-1)) then begin
         Printf.bprintf model_info.code_buffer "1.0/";
         bufferize_expression_under (precedence expr + 1) expr'
         (* add one to the precedence to ensure parentheses to be correctly
