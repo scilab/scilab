@@ -10163,8 +10163,8 @@ int LinearScaling2Colormap(sciPointObj* pobj)
       double A = (indexmin-indexmax)/(min-max); 
       double B = (min*indexmax-indexmin*max)/(min-max);
       for(i=0;i<nc;i++)
-	psurf->color[i] = A*psurf->zcol[i] + B;
-    }
+	psurf->color[i] = A*psurf->zcol[i] + B + 0.1;
+     }
   else
     {
       double C = (indexmin+indexmax)/2;
