@@ -511,6 +511,11 @@ int C2F(intslash)(fname)
   /*   X = slash(A,B) <=> X = A / B */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
+  if (header1[2]!=header2[2]&header1[1]*header1[2]==1) {
+    C2F(com).fun=0;
+    C2F(com).fin=-C2F(com).fin;
+    return 0;
+  }
   switch (CmplxA) {
   case REAL:   
     switch (CmplxB) {
@@ -564,6 +569,11 @@ int C2F(intbackslash)(fname)
   /*   backslash(A,B)  */
   header1 = (int *) GetData(1);    header2 = (int *) GetData(2);
   CmplxA=header1[3];   CmplxB=header2[3];
+  if (header1[1]!=header2[1]&header2[1]*header2[2]==1) {
+    C2F(com).fun=0;
+    C2F(com).fin=-C2F(com).fin;
+    return 0;
+  }
   switch (CmplxA) {
   case REAL:   
     switch (CmplxB) {

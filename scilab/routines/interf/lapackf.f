@@ -846,6 +846,11 @@ c
      $        M, stk(lA), N, stk(lDWORK), LWORK, INFO )
 c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
+c     next lines to patch an error of DGESVD
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
      $        M, stk(lVT), N, stk(lDWORK), LWORK, INFO )
@@ -957,6 +962,11 @@ c
      $        M, stk(lA), N, stk(lDWORK), LWORK, INFO )
 c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
+c     next lines to patch an error of DGESVD
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
      $        M, stk(lVT), min(M,N), stk(lDWORK), LWORK, INFO )
@@ -1009,6 +1019,8 @@ c     s = svd(A)
       character fname*(*)
       character JOBU, JOBVT
       double precision ZERO
+      complex*16 void
+
       parameter ( ZERO=0.0D0 )
       intrinsic conjg
 
@@ -1071,10 +1083,15 @@ c
          JOBVT = 'A'
       endif
       if(lhs.eq.1) then
-         call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lA)
-     $        ,M, zstk(lA), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
+         call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), void
+     $        ,M, void, N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
+C     Next lines introduced to patch an error of  ZGESVD
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lU)
      $        ,M, zstk(lVT), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
@@ -1193,6 +1210,11 @@ c
      $        ,M, zstk(lA), N, zstk(lDWORK), LWORK, stk(lRWORK), INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
+C     Next lines introduced to patch an error of  ZGESVD
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), zstk(lU)
      $        ,M, zstk(lVT), min(M,N), zstk(lDWORK), LWORK, stk(lRWORK)
@@ -2392,12 +2414,6 @@ c
          return
       endif
       if(MA .ne. MB) then
-         if(NB*MB .eq. 1) then
-c     .     1\A
-            fun=0
-            fin=-fin
-            return
-         endif
          call error(265)
          return
       endif
@@ -2521,12 +2537,6 @@ c     .  for backwar compatibility
          return
       endif
       if(NA .ne. NB) then
-         if(NB*MB .eq. 1) then
-c     .     1/A
-            fun=0
-            fin=-fin
-            return
-         endif
          call error(266)
          return
       endif
@@ -2679,11 +2689,6 @@ c
          return
       endif
       if(NA .ne. NB) then
-         if(NB*MB .eq. 1) then
-            fun=0
-            fin=-fin
-            return
-         endif
          call error(266)
          return
       endif
@@ -2832,12 +2837,6 @@ c
          return
       endif
       if(MA .ne. MB) then
-         if(NB*MB .eq. 1) then
-c     .     1\A
-            fun=0
-            fin=-fin
-            return
-         endif
          call error(265)
          return
       endif
@@ -4164,6 +4163,11 @@ c
      $        M, stk(lA), N, stk(lDWORK), LWORK, INFO )
 c     SUBROUTINE DGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, INFO )
+c     next lines to patch an error of DGESVD
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call DGESVD( JOBU, JOBVT, M, N, stk(lA), M, stk(lSV), stk(lU),
      $        M, stk(lVT), N, stk(lDWORK), LWORK, INFO )
@@ -4298,6 +4302,10 @@ c
      $        stk(lRWORK), INFO )
 c     SUBROUTINE ZGESVD( JOBU, JOBVT, M, N, A, LDA, S, U, LDU, VT,
 C     $      LDVT, WORK, LWORK, RWORK, INFO )
+         do 01 ii = 0,min(M,N)-1
+            stk(lSV+ii)=abs(stk(lSV+ii))
+ 01      continue
+         call DLASRT('D', min(M,N), stk(lSV), INFO )
       else
          call ZGESVD( JOBU, JOBVT, M, N, zstk(lA), M, stk(lSV), 
      $        zstk(lU), M, zstk(lVT), N, zstk(lDWORK), LWORK,
@@ -5038,12 +5046,12 @@ c     *     workspace: 2*MN+NRHS.
 *                             [  0  R22 ]
 *     where R11 = R(1:RANK,1:RANK)
 *
-*     [R11,R12] = [ T11, 0 ] * Y
-*
-      IF( RANK.LT.N )
-     $   CALL ZTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
-     $                LWORK-2*MN, INFO )
-*
+c*     [R11,R12] = [ T11, 0 ] * Y
+c*
+c      IF( RANK.LT.N )
+c     $   CALL ZTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
+c     $                LWORK-2*MN, INFO )
+c*
 *     complex workspace: 2*MN.
 *     Details of Householder rotations stored in WORK(MN+1:2*MN)
 *
@@ -5065,14 +5073,14 @@ c     *     workspace: 2*MN+NRHS.
             B( I, J ) = CZERO
    30    CONTINUE
    40 CONTINUE
-*
-*     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
-*
-      IF( RANK.LT.N ) THEN
-         CALL ZUNMRZ( 'Left', 'Conjugate transpose', N, NRHS, RANK,
-     $                N-RANK, A, LDA, WORK( MN+1 ), B, LDB,
-     $                WORK( 2*MN+1 ), LWORK-2*MN, INFO )
-      END IF
+c*
+c*     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
+c*
+c      IF( RANK.LT.N ) THEN
+c         CALL ZUNMRZ( 'Left', 'Conjugate transpose', N, NRHS, RANK,
+c     $                N-RANK, A, LDA, WORK( MN+1 ), B, LDB,
+c     $                WORK( 2*MN+1 ), LWORK-2*MN, INFO )
+c      END IF
 *
 *     complex workspace: 2*MN+NRHS.
 *
