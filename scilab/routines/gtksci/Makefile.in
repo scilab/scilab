@@ -10,9 +10,9 @@ LIBRARY = $(SCIDIR)/libs/gtksci.a
 # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
 HTMLFLAGS=@HTMLFLAGS@
 
-OBJSC =	click.o command.o  io.o \
+OBJSC =	click.o  io.o \
 	menus.o x_VTPrsTbl.o x_main.o \
-	@ZZLEDT@.o about.o queue.o helpbrowser.o @GTKPLUGBUG@
+	about.o queue.o helpbrowser.o @GTKPLUGBUG@
 
 OBJSF  = 
 

@@ -60,7 +60,7 @@ c     acquisition d'une ligne du fichier
 
  11   buf=' '
       if(ltype.eq.1) then
-         call basin(ierr,lunit,buf(1:lrecl),'*')
+         call basin(ierr,lunit,buf(1:lrecl),'*',0)
          if(ierr.eq.1) goto 60
          if(ierr.eq.2) goto 90
          n=lnblnk(buf(1:lrecl))

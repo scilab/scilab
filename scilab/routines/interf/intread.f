@@ -215,7 +215,7 @@ c     .  nombre de ligne a lire precise
          istk(ili)=1
          do 128 i=1,m
             if(iacces.eq.0) then
-               call basin(ierr,lunit,buf(nc+1:),buf(1:nc))
+               call basin(ierr,lunit,buf(nc+1:),buf(1:nc),.false.)
                if(ierr.eq.1) goto 997
                if(ierr.eq.2) goto 998
             else
@@ -247,7 +247,7 @@ c     .  nombre de ligne a lire non precise
          li=ili
          i=-1
  1281    i=i+1
-         call basin(ierr,lunit,buf(nc+1:),buf(1:nc))
+         call basin(ierr,lunit,buf(nc+1:),buf(1:nc),.false.)
          mn=bsiz+1
  1282    mn=mn-1
          if(buf(mn:mn).eq.' ') goto 1282

@@ -308,7 +308,7 @@ testloop (void)
 int 
 com_line ()
 {
-  if (read_line ("SciLoop>"))
+  if (read_line ("SciLoop>",0))
     return (1);
   else if (is_system (input_line[0]))
     {

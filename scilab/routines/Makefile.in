@@ -4,7 +4,7 @@ include ../Makefile.incl
 
 SCIDIRS = graphics calelm blas  control default integ interf intersci \
 	lapack slicot arpack \
-	metanet optim poly signal sparse sun system system2 \
+	metanet optim poly signal sparse sun system system2 console\
 	menusX scicos sound dcd randlib slicot arpack \
 	gd int @GUILIB@ @XDRLIB@ @TKSCIDIR@ @PVMSCIDIR@ @GZVT@
 

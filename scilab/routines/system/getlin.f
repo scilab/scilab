@@ -1,4 +1,4 @@
-      subroutine getlin(job)
+      subroutine getlin(job,menusflag)
 c ====================================================================
 c     get a new line from the terminal (rio==rte) or from a file, the
 c     characters read are stored in the lin array
@@ -8,15 +8,25 @@ c     job=0 : store read characters after the current position (lpt(1))
 c     job=2 : same as job=0 but if EOF occurs getlin returns with 
 c     .       fin=-2  instead of fin=0
 c     job=-1: ???
+c     job=3 : used to reenter getlin when it was interrupted while
+C     .       getting a continuation line
+c     menuflag is used to determine what to do if a dynamical menu is
+C     activated while reading a line on the Scilab console
+c     menuflag = 1 : line acquisition is interrupted, callback is
+C                    executed and line acquisition is restarted
+c     menuflag = 0 : callback execution is delayed
+C                    menus used when the parser is not in a state allowing
+C                    to execute the callback
 c ====================================================================
 c
 c     Copyright INRIA
       include '../stack.h'
 c
+      integer job, menusflag
       integer lrecl,eol,slash,dot,blank,comma
       integer retu(6)
       integer r,quit(4),lnblnk
-      logical isinstring,eof
+      logical isinstring,eof,continued
       character*20 tmp
       external isinstring,lnblnk, getfastcode
       integer getfastcode
@@ -33,16 +43,23 @@ c
       endif
 c
       n=1
+c     continued is set to true when continuation mark found at the end of a line
+      continued=.false.
  10   l1=lpt(1)
       lct(8)=lct(8)+1
 c     next line to preserve end-of-line marks (eol)
-      if(job.eq.1) l1=lpt(6)+1
-      if(job.eq.-1) then
+      if(job.eq.1) then
+         l1=lpt(6)+1
+         l=l1
+      elseif(job.eq.-1) then
          if (lpt(6).lt.0) then
             l=-lpt(6)
          else
             l=l1
          endif
+      elseif(job.eq.3) then
+         l=lpt(6)+1
+         l1=lpt(1)
       else
          l=l1
       endif
@@ -66,7 +83,7 @@ c        check if getlin is call in a macro or an exec
       call getfiletype(rio,ltype,info)
       if(info.ne.0) goto 50 
       if(ltype.eq.1) then
-         call basin(ierr,rio,buf(1:lrecl),'*')
+         call basin(ierr,rio,buf(1:lrecl),'*',menusflag)
          if(ierr.lt.0) goto 90
          if(ierr.ne.0) goto 50
          n=lnblnk(buf(1:lrecl))
@@ -138,6 +155,7 @@ c     check if .. is followed by more dots or //
 c
  29   continue
 c     next line is a continuation line
+      continued=.true.
       if(job.ne.-1) goto 11
 c     handle continuation lines when scilab is call as a procedure
       fin=-1
@@ -145,7 +163,7 @@ c     handle continuation lines when scilab is call as a procedure
       return
 c     There is no continuation line or syntax error
  31   continue
-
+      continued=.false.
       lin(l) = k
       if (l.lt.lsiz) l = l+1
       if (l.ge.lsiz) then
@@ -253,6 +271,12 @@ c%%
       goto 45
  90   continue
 c     interrupted line acquisition (callbacks)
+c     l should be memorized for correct continuation line handling    
+      if (continued) then
+          lpt(6) = l-1
+       else
+          lpt(6) = lpt(1)
+       endif
       fin=-3
       return
       end

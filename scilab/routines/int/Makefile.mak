@@ -37,7 +37,7 @@ include ../Make.lib.mak
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
 
-itops.obj: ../stack.h
+bitops.obj: ../stack.h
 convert.obj: ../stack.h
 creimat.obj: ../stack.h
 getimat.obj: ../stack.h

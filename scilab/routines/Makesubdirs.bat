@@ -95,6 +95,10 @@ cd system
 echo Making %1 in directory  system
  nmake /C /f Makefile.mak %1
 cd ..
+cd console
+echo Making %1 in directory  console
+ nmake /C /f Makefile.mak %1
+cd ..
 cd system2
 echo Making %1 in directory  system2
  nmake /C /f Makefile.mak %1

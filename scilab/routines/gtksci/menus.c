@@ -578,7 +578,7 @@ static int sci_menu_add(menu_entry **m,int winid,char *name,char** entries,int n
     }
   if ( ne == 0 ) 
     {
-      top = gtksci_new_menu_entry(name,0,winid,action_type,fname);
+      top = gtksci_new_menu_entry(name,winid,0,action_type,fname);
     }
   else
     {

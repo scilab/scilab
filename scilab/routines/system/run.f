@@ -606,7 +606,7 @@ c     gestion des points d'arrets dynamiques
  107  continue
 c
       if (mod(lct(4)/2,2).eq.1) then
-         call prompt(lct(4)/4)
+         call prompt(lct(4)/4,iesc)
       endif
 c
       lct(8)=lct(8)+1

@@ -75,8 +75,10 @@
 #include "All-extern.h"
 
 #define CTRL_B                0x0002  /* back a character */
+#define CTRL_C                0x0003  /* redo line */
 #define CTRL_D                0x0004  /* delete next char */
 #define CTRL_K                0x000b  /* delete to end of line */
+#define CTRL_Z                0x0020  /* stop */
 
 
 /** JPC **/
@@ -93,7 +95,7 @@ extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
 typedef  int (*osc_func) ();
-
+extern int C2F(ismenu)();
 /*
  * Check for both EAGAIN and EWOULDBLOCK, because some supposedly POSIX
  * systems are broken and return EWOULDBLOCK when they should return EAGAIN.
@@ -505,11 +507,9 @@ WidgetClass xtermWidgetClass = (WidgetClass) & xtermClassRec;
 
 /* I/O Function for scilab : this function are used when Xscilab is on */
 
-int in_put();
-
-int XEvorgetchar()
+int XEvorgetchar(int interrupt)
 {
-  return (in_put());
+  return (in_put(interrupt));
 }
 
 void Xputstring(str,n)
@@ -567,7 +567,7 @@ void C2F(xscimore)(n)
   *n=0;
   ln=strlen(MORESTR);
   Xputstring(MORESTR,ln);
-  n1=XEvorgetchar();
+  n1=XEvorgetchar(1);
   if ( n1 == 110 )  *n=1;
   Xputstring("\r\n",2);
 }
@@ -1236,7 +1236,7 @@ void Xputchar(c)
 
   case CASE_OSC:
     /* Operating System Command: ESC ] */
-    do_osc((osc_func) in_put());
+    do_osc((osc_func) in_put(0));
     parsestate = groundtable;
     break;
 
@@ -1324,7 +1324,27 @@ static int pty_read_bytes;
   
 ************************************************************************/
    
-extern int ctrl_action();
+static int ctrl_action(int i)
+{
+  int j = SIGINT;
+  if(iscntrl(i) ) {
+    /* stroke is line editing command */
+    switch(i) {
+    case CTRL_C:
+	/* fprintf(stderr,"zzledt1 : CTRL_C\n"); */
+	C2F(sigbas)(&j);
+	return(1);
+	break;
+    case CTRL_Z:
+	/* doesn't work on sun4 */
+	fprintf(stderr,"zzledt1 : CTRL_Z\n");
+	return(1);
+	break;
+      };
+  };
+  return(0);
+}
+
 
 
 void xevents1()
@@ -1354,7 +1374,7 @@ void xevents1()
  * returns a char and deal with events 
  ****************************************/
 
-int in_put()
+int in_put(int interrupt)
 {
   register TScreen *screen = &term->screen;
   register int i;
@@ -1384,6 +1404,9 @@ int in_put()
       cok = 0;
       break;
     }
+    /* escape if we accept input interruption and an event had been detected */
+    if (interrupt&&(C2F(ismenu)()==1)) return(-1);
+
     pty_read_bytes = 0;
     /* update the screen */
     if (screen->scroll_amt)

@@ -1,4 +1,4 @@
-      subroutine basin(ierr,lunit,string,fmt)
+      subroutine basin(ierr,lunit,string,fmt,menusflag)
 c
 c     gestion de la standard input
 c ================================== ( Inria ) =============
@@ -13,6 +13,8 @@ c     --- for myback
 c     --- end 
       character string*(*),fmt*(*)
       integer ierr,lunit,status
+c     to decide what has to be done with dynamic  menus actions  while reading
+      integer menusflag
 c
       status = 0
       ierr=0
@@ -21,12 +23,12 @@ c
          call xscion(iflag)
          if (iflag.eq.0) then 
             if (intexmacs().eq.0) then
-               call zzledt(string,len(string),lline,status)
+               call zzledt(string,len(string),lline,status,menusflag,0)
             else
                call texmacsin(string,len(string),lline,status)
             endif
          else
-            call zzledt1(string,len(string),lline,status)
+            call zzledt(string,len(string),lline,status,menusflag,1)
          endif
          if(status.ne.0) goto 10
          if (lline.eq.0) then

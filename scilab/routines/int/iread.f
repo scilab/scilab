@@ -281,19 +281,15 @@ c
          call xscion(iflag)
          if(m.gt.0) then
          do 01 l=1,m
-            if (iflag.eq.0) then 
-               call zzledt(string,len(string),lline,status)
-            else
-               call zzledt1(string,len(string),lline,status)
-            endif
+            call zzledt(string,len(string),lline,status,0,iflag)
             if(status.ne.0) goto 10
             if (lline.eq.0) then
                string(1:1)=' '
                lline=1
             endif
             if(fmt(1:1).ne.'*') then
-               read(string(1:lline),fmt,end=10,err=20) (v(l-1+i),i=1,n*iv,iv
-     $              )
+               read(string(1:lline),fmt,end=10,err=20) (v(l-1+i),
+     $              i=1,n*iv,iv)
             else
                call rldint(string(1:lline),v(l),iv,n1,n,ierr)
                if(ierr.ne.0) goto 20
@@ -328,11 +324,7 @@ c
       if(lunit.eq.rte) then
          string=' '
          call xscion(iflag)
-         if (iflag.eq.0) then 
-            call zzledt(string,len(string),lline,status)
-         else
-            call zzledt1(string,len(string),lline,status)
-         endif
+         call zzledt(string,len(string),lline,status,0,iflag)
          if(status.ne.0) goto 10
          if (lline.eq.0) then
             string(1:1)=' '

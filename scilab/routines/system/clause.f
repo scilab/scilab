@@ -181,7 +181,7 @@ c     *call* expr
          if(comp(1).ne.0) call seteol()
 c     get the following line
          if(lpt(4).eq.lpt(6))  then
-            call getlin(1)
+            call getlin(1,0)
          else
             lpt(4)=lpt(4)+1
             char1=blank

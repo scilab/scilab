@@ -82,7 +82,7 @@ extern int C2F(stimer) __PARAMS((void));
 extern void C2F(settmpdir) __PARAMS((void));  
 extern void C2F(tmpdirc) __PARAMS((void));  
 /*  "zzledt-n.c.X1" */
-extern void C2F(zzledt) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1));  
+extern void C2F(zzledt) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, int *interrupt, int *modex,long int dummy1));  
 
 /* link.c */
 extern int LinkStatus  __PARAMS((void));

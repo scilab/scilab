@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-extern char *readline_win (char *);
+extern char *readline_win (char * , int);
 
 main ()
 {
@@ -11,7 +11,7 @@ main ()
   char *line;
   for (i = 0; i < 10; i++)
     {
-      line = readline_win ("test");
+      line = readline_win ("test",0);
       if (line != (char *) 0)
 	{
 	  printf ("line %s\r\n", line);

@@ -39,7 +39,7 @@ typedef int (*Scig_command_handler) (char *);
 extern Scig_command_handler set_scig_command_handler (Scig_command_handler f);
 extern void SetXsciOn  (void);  
 extern int C2F (xscion) (int *i);  
-extern int Xorgetchar  (void);  
+extern int Xorgetchar  (int interrupt);  
 extern int C2F (sxevents) (void);  
 extern int StoreCommand  (char *command);  
 extern void GetCommand  (char *str);  
@@ -54,7 +54,7 @@ extern int C2F(inisci)(int *,int *,int *);
 /* zzledt.c */ 
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof,long int  dummy1); 
+			int * eof,int * interrupt, int * modex, long int  dummy1); 
 
 void sci_get_screen_size (int *rows,int *cols); 
 void C2F(setprlev)(int *pause) ; 

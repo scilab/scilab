@@ -36,7 +36,7 @@ extern void DisownSelection  __PARAMS((register XtermWidget termw));
 
 /*  "x_charproc-n.c.X1"*/
 
-extern int XEvorgetchar  __PARAMS((void));  
+extern int XEvorgetchar  __PARAMS((int interrupt));  
 extern void Xputstring  __PARAMS((char *str, int n));  
 extern void C2F (xscisncr) __PARAMS((char *str, integer *n, integer dummy));  
 extern void C2F (xscistring) __PARAMS((char *str, int *n, long int dummy));  
@@ -49,7 +49,7 @@ extern void Scistring __PARAMS((char *str));
 extern void Xputchar  __PARAMS((unsigned char c));  
 extern void v_write  __PARAMS((int f, char *d, int len));  
 extern void xevents1  __PARAMS((void));  
-extern int in_put  __PARAMS((void));  
+extern int in_put  __PARAMS((int interrupt));  
 
 extern void unparseseq  __PARAMS((register ANSI *ap, int fd));  
 extern void unparseputn  __PARAMS((unsigned int n, int fd));  

@@ -9,7 +9,7 @@ LIBRARY = $(SCIDIR)/libs/system.a
 
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
-	inisci-c.o diary.o dynamic_menus.o history.o
+	inisci-c.o diary.o  
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
@@ -130,4 +130,3 @@ storeversion.o: storeversion.c ../stack-c.h ../graphics/Math.h \
   ../interf/stack2.h ../interf/stack3.h ../version.h
 tksynchro.o: tksynchro.c ../machine.h ../tksci/tksci.h \
   ../tksci/C-LAB_Interf.h ../stack-def.h
-

@@ -20,7 +20,8 @@ distclean::
 	@Makesubdirs.bat macros-distclean 
 
 # win32 
-LIBRSCI = libs/system.lib libs/interf.lib libs/system2.lib libs/optim.lib \
+LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
+	libs/system2.lib libs/optim.lib \
 	libs/integ.lib libs/control.lib routines/control/fstair.obj \
 	routines/control/wexchn.obj routines/control/wshrsl.obj \
 	libs/scicos.lib libs/signal.lib \

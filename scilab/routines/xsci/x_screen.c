@@ -39,19 +39,6 @@
 #include "All-extern-x.h"
 #include "All-extern.h"
 
-
-/* Modification Allan CORNET */
-/* cls et tohome */
-void HomeFunction(void)
-{
-	sciprint("\nNot yet implemented. \n");
-}
-
-void ClearScreenConsole _PARAMS((char *fname))
-{
-	sciprint("\nNot yet implemented. \n");
-}
-
 /*
    allocates memory for a 2-dimensional array of chars and returns a pointer
    thereto

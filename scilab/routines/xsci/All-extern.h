@@ -22,10 +22,9 @@ extern int  Scierror  __PARAMS((int iv,char *fmt,...));
 
 /*  "jpc_SGraph-n.c.X1"*/
 
-extern void   reset_scig_handler __PARAMS((void));
+extern void  reset_scig_handler __PARAMS((void));
 extern void  reset_scig_click_handler __PARAMS((void));
 extern void  reset_scig_deletegwin_handler __PARAMS((void));
-extern void  reset_scig_command_handler __PARAMS((void));
 
 typedef int (*Scig_click_handler) __PARAMS((int,int,int,int,int,int));
 extern Scig_click_handler set_scig_click_handler __PARAMS((Scig_click_handler f));
@@ -51,17 +50,12 @@ extern int C2F (unsmen) __PARAMS((integer *win_num, char *button_name, integer *
 /*  "jpc_Xloop-n.c.X1"*/
 
 
-typedef int (*Scig_command_handler) __PARAMS((char *));
-extern Scig_command_handler set_scig_command_handler __PARAMS((Scig_command_handler f));
 extern void SetXsciOn  __PARAMS((void));  
 extern int C2F (xscion) __PARAMS((int *i));  
 extern void DisplayInit  __PARAMS((char *string, Display **dpy, Widget *toplevel));  
-extern int Xorgetchar  __PARAMS((void));  
+extern int Xorgetchar  __PARAMS((int interrupt));  
 extern int C2F (sxevents) __PARAMS((void));  
-extern int StoreCommand  __PARAMS((char *command));  
-extern void GetCommand  __PARAMS((char *str));  
-extern integer C2F (ismenu) __PARAMS((void));  
-extern int C2F (getmen) __PARAMS((char *btn_cmd, integer *lb, integer *entry));  
+
 /*  "jpc_coloredit-n.c.X1"*/
 extern void popup_choice_panel  __PARAMS((Widget tool));  
 extern void create_color_panel  __PARAMS((Widget form, Widget cancel));  

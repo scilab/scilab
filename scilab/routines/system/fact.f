@@ -105,7 +105,7 @@ c     create an empty matrix
          if(sym.eq.eol) then
             if(comp(1).ne.0) call seteol
             if(lpt(4).eq.lpt(6))  then
-               call getlin(0) 
+               call getlin(0,0) 
             else
                lpt(4)=lpt(4)+1
                call getsym
@@ -168,7 +168,7 @@ c     *call* allops(rconc)
  29   if (sym .eq. eol) then
          if(comp(1).ne.0) call seteol
          if(lpt(4).eq.lpt(6))  then
-            call getlin(0) 
+            call getlin(0,0) 
          else
             lpt(4)=lpt(4)+1
             call getsym

@@ -203,7 +203,7 @@ static int NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
  *   the read characters are stored is returned 
  ***************************************************/
 #ifdef USE_CONSOLE
-char * readline_nw (char *prompt)
+char * readline_nw (char *prompt, int interrupt)
 {
   unsigned char cur_char;
   char *new_line;  /* unsigned char *new_line; */
@@ -235,7 +235,7 @@ char * readline_nw (char *prompt)
   for (;;)
     {
       cur_char = special_getc ();
-      if (C2F(ismenu) () == 1) 
+      	if (interrupt&&(C2F(ismenu) () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");
@@ -412,7 +412,7 @@ char * readline_nw (char *prompt)
 }
 #else
 /*-----------------------------------------------------------------------------------*/
-char * readline_win (char *prompt)
+char * readline_win (char *prompt,int interrupt)
 {
   unsigned char cur_char;
   char *new_line;  /* unsigned char *new_line; */
@@ -430,7 +430,7 @@ char * readline_win (char *prompt)
   for (;;)
     {
 	cur_char = Windows_getch() ;      
-	if (C2F(ismenu) () == 1) 
+	if (interrupt&&(C2F(ismenu) () == 1))
       	{/* abort current line aquisition SS */
 		sendprompt=0;
 		new_line = (char *) alloc ((unsigned long) 2, "history");

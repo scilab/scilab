@@ -17,15 +17,14 @@
 #include "../machine.h" 
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof,long int  dummy1);
-
-
+			int * eof, int * inter, int * modex,long int  dummy1)
 #define TRUE 1 
 #define FALSE 0
 static int fd=0;              /* file number for standard in */
 static char Sci_Prompt[24];
 static int  use_prompt=1;
 static int hist = 1; /* flag to add to history */
+static int interrupt;
 /***********************************************************************
  * line editor
  **********************************************************************/
@@ -42,7 +41,7 @@ static jmp_buf my_env;
 static int my_getc (FILE *dummy) 
 { 
   int i= Xorgetchar();
-  if ( C2F (ismenu) () == 1)
+  if (interrupt&&( C2F (ismenu) () == 1))
     { 
       /* abort current line aquisition*/
       longjmp(my_env,1);
@@ -67,12 +66,12 @@ static char * dupstr (char *s)
 int get_one_char(char *prompt) {
   static char lp[24];
   char buffer[2];
-  int buf_size=2, len_line, eof;
+  int buf_size=2, len_line, eof,inter=0,modex=0;
   rl_num_chars_to_read = 1;  
   hist = 0; /* not to be added to history */
   strcpy(lp,Sci_Prompt);
   strcpy(Sci_Prompt,prompt); 
-  C2F(zzledt)(buffer,&buf_size,&len_line,&eof,2);
+  C2F(zzledt)(buffer,&buf_size,&len_line,&eof,&inter,&modex,2);
   strcpy(Sci_Prompt,lp);
   rl_num_chars_to_read = 0;
   hist = 1;
@@ -81,11 +80,12 @@ int get_one_char(char *prompt) {
 
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof,long int  dummy1)
+			int * eof, int * inter, int * modex,long int  dummy1)
 {
   static int init_flag = TRUE;
   char * line ; 
   static int tty =0;
+  interrupt=*inter;
 
    if(init_flag) {
      initialize_readline();
@@ -156,39 +156,6 @@ void sci_get_screen_size (int *rows,int *cols)
   rl_get_screen_size(rows,cols);
 }
 
-/*----------------------------------------------------------------------
- * clear the screen 
- *----------------------------------------------------------------------*/
-
-void HomeFunction(void)
-{
-  rl_clear_screen(0,0);
-}
-
-void ClearScreenConsole _PARAMS((char *fname))
-{
-  rl_clear_screen (0,0);
-}
-
-void HistoryFunction _PARAMS((char *fname))     
-{
-  sciprint("Not yet implemented. \r\n");
-}
-
-void LoadHistoryFunction(void)
-{
-  sciprint("Not yet implemented. \r\n");
-}
-
-void SaveHistoryFunction(void)
-{
-  sciprint("Not yet implemented. \r\n");
-}
-
-void ResetHistoryFunction(void)
-{
-  sciprint("Not yet implemented. \r\n");
-}
 
 /*----------------------------------------------------------------------
  * changing the prompt 

@@ -49,7 +49,7 @@ c     gestion des clause sur plusieurs lignes
             endif
 c     get the following line
             if(lpt(4).eq.lpt(6))  then
-               call getlin(1)
+               call getlin(1,0)
                if(err.gt.0) return
             else
                lpt(4)=lpt(4)+1

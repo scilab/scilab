@@ -31,9 +31,6 @@
 #endif
 
 
-
-extern void C2F(zzledt)( char *buffer,int *  buf_size, int * len_line,int * eof, long int dummy1);
-
 extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
 void diary_nnl __PARAMS((char *str,int *n));
@@ -65,7 +62,7 @@ void C2F(xscimore)(int *n)
     n1= get_one_char("[More (y or n) ?]");
   else {
     fprintf(stdout,"%s","[More (y or n ) ?] ");
-    n1=Xorgetchar();
+    n1=Xorgetchar(0);
   }
   if ( n1 == 110 )  *n=1;
   fprintf(stdout,"\n");
@@ -213,11 +210,6 @@ int GetBasic() { return  BasicScilab;}
  *      (in the following code  the key function is select )
  *---------------------------------------------------------------------------*/
 
-void C2F(zzledt1)( char *buffer,int *  buf_size, int * len_line,int * eof,
-			  long int dummy1)
-{
-  C2F(zzledt)(buffer, buf_size,len_line,eof, dummy1);
-}
 
 #define IBSIZE 1024
 char sci_input_char_buffer[IBSIZE];
@@ -242,7 +234,7 @@ void write_scilab(char *s)
 
 /* wait for a character and check for pending events */
 
-int Xorgetchar(void)
+int Xorgetchar(int interrupt)
 {
   int i;
   static int c_count = -1;
@@ -301,7 +293,7 @@ int Xorgetchar(void)
      * all be evaluated 
      */
 
-    if ( C2F (ismenu) () == 1) return 0;
+    if (interrupt&&(C2F(ismenu)()==1)) return(-1);
 
     /* maybe a new string to execute */
     if ( sci_input_char_buffer_count > 0) 
@@ -355,8 +347,10 @@ int Xorgetchar(void)
     }
   }
 }
-
-
+int XEvorgetchar(int interrupt)
+{
+  return Xorgetchar(interrupt);
+}
 /*---------------------------------------------------------------------------
  *  Dealing with X11 Events.
  *  xevents is called by Xorgetchar and also by DispatchEvents in 

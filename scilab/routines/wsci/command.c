@@ -42,8 +42,8 @@ extern TW textwin;
 extern jmp_buf env;		/* from plot.c */
 
 
-static char *rlgets (char *s, int n, char *prompt);
-static char *rlgets_nw (char *s, int n, char *prompt);
+static char *rlgets (char *s, int n, char *prompt, int interrupt);
+static char *rlgets_nw (char *s, int n, char *prompt, int interrupt);
 
 /* input data, parsing variables */
 
@@ -59,7 +59,7 @@ int inline_num = 0;		/* input line number */
  * version with readline and a textwindow 
  **********************************************/
 
-static char * rlgets (char *s, int n, char *prompt)
+static char * rlgets (char *s, int n, char *prompt, int interrupt)
 {
   static char *line = (char *) NULL;
   
@@ -67,7 +67,7 @@ static char * rlgets (char *s, int n, char *prompt)
   if (line != (char *) NULL)
     free (line);
 
-  line = readline_win (prompt);
+  line = readline_win (prompt,interrupt);
   
    /* Rappel Commande avec ! */
    if (line[0]=='!')
@@ -76,9 +76,11 @@ static char * rlgets (char *s, int n, char *prompt)
   		if (strlen(line)>1)
   		{
   			P=SearchBackwardInHistory(&line[1]);
+
 			if (P != NULL) 
 			{
 			  write_scilab_synchro(P->line);
+
 			}
   		}
   		return NULL;
@@ -101,14 +103,14 @@ static char * rlgets (char *s, int n, char *prompt)
  **********************************************/
 
 static char *
-rlgets_nw (char *s, int n, char *prompt)
+rlgets_nw (char *s, int n, char *prompt, int interrupt)
 {
   static char *line = (char *) NULL;
 
   /* If we already have a line, first free it */
   if (line != (char *) NULL)
     free (line);
-  line = readline_nw (prompt);
+  line = readline_nw (prompt, interrupt);
   /* If it's not an EOF */
   if (line)
     {
@@ -121,7 +123,7 @@ rlgets_nw (char *s, int n, char *prompt)
   return line;
 }
 
-typedef char *(*RLFUNC) (char *, int, char *);
+typedef char *(*RLFUNC) (char *, int, char *, int);
 RLFUNC rlgets_def = rlgets_nw;
 
 void 
@@ -138,7 +140,7 @@ switch_rlgets (int i)
  * according to current value of rlgets_def 
  **********************************************/
 
-int read_line (char *prompt)
+int read_line (char *prompt, int interrupt)
 {
   
   int start = 0, ilen = 0;
@@ -148,7 +150,7 @@ int read_line (char *prompt)
   input_line[start] = ilen > 126 ? 126 : ilen;
   input_line[start + 2] = 0;
   
-  (void) (*rlgets_def) (&(input_line[start+2]), ilen, prompt);
+  (void) (*rlgets_def) (&(input_line[start+2]), ilen, prompt, interrupt);
 
   if (input_line[start + 2] == -2) /* dynamic menu canceled read SS */
   {

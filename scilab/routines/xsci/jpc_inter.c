@@ -171,7 +171,8 @@ void DisplayInit(string, dpy, toplevel)
  *                now it is possible to run scicos from -nw mode
  *-------------------------------------------------------*/
 
-int Xorgetchar()
+int Xorgetchar(int interrupt)
+     /* interrupt is not used here (console mode) */
 {
   register int i;
   static struct timeval select_timeout;
@@ -252,145 +253,7 @@ int C2F(sxevents)()
 }
 
 
-/*-------------------------------------------------------*
- *  Command queue functions
- *  This function is used to store Scilab command in a queue 
- *  ( the queue is checked in the Scilab Event Loop )
- *  The queue is filled by the function related to dynamic buttons and menus 
- *
- *  One can also set a handler to deal with the commands 
- *  if he wants to bypass the queue
- *-------------------------------------------------------*/
 
-typedef struct commandRec {
-  char                *command;  /* command info one string two integers */
-  struct commandRec   *next;
-} CommandRec, *CommandRecPtr;
-
-static CommandRec *commandQueue = NULL;
-
-int scig_command_handler_none (win,x,y,ibut,motion,release)int win,x,y,ibut,motion,release;
-{return 0;};
-
-static Scig_command_handler scig_command_handler = scig_command_handler_none;
-
-Scig_command_handler set_scig_command_handler(f) 
-     Scig_command_handler f;
-{
-  Scig_command_handler old = scig_command_handler;
-  scig_command_handler = f;
-  return old;
-}
-
-void reset_scig_command_handler() 
-{
-  scig_command_handler = scig_command_handler_none;
-}
-
-
-
-/* try to execute a command or add it to the end of command queue */
-
-int StoreCommand(command)
-     char *command;
-{
-  CommandRec *p, *q, *r;
-  int i;
-
-
-  /** first check if we have a special handler set for commands **/
-  if ( scig_command_handler(command) == 1) return 0;
-  /*  if (get_is_reading()) 
-    { 
-      write_scilab(command);
-      C2F(xscion)(&i);
-      if (i) write_scilab("\n");
-      return 0;
-      }*/
-  p = (CommandRec *) malloc( sizeof(CommandRec));
-  if ( p == (CommandRec *) 0 ) 
-    {
-      sciprint("send_command : No more memory \r\n");
-      return(1);
-    }
-  p->command = (char *) malloc( ( strlen(command)+1)*sizeof(char));
-  if ( p->command == (char *) 0 ) 
-    {
-      sciprint("send_command : No more memory \r\n");
-      return(1);
-    }
-  strcpy(p->command,command);
-  p->next = NULL;
-  if ( !commandQueue)
-    commandQueue = p;
-  else 
-    {
-      q = commandQueue;
-      while ((r = q->next))
-	q = r;
-      q->next = p;
-    }
-  if (get_is_reading()) 
-    { 
-      C2F(xscion)(&i);
-      if (i) write_scilab(" ");
-      }
-  return(0);
-}
-
-/************************************************
- * Gets info on the first queue element 
- * and remove it from the queue 
- ************************************************/
-
-void GetCommand(str)
-     char *str;
-{
-  if ( commandQueue != NULL)
-    {
-      CommandRec *p;
-      p= commandQueue;
-      strcpy(str, p->command);
-      commandQueue = p->next;
-      free(p->command);
-      free(p);
-    }
-}
-
-
-/************************************************
- * Checks if there's something on the 
- * commandQueue 
- ************************************************/
-
-integer C2F(ismenu)()
-{
-  if ( commandQueue == NULL ) 
-    return(0) ;
-  else 
-    return(1);
-}
-
-/************************************************
- * menu/button info for Scilab 
- ************************************************/
-
-int C2F(getmen)(btn_cmd,lb,entry)
-     integer *entry,*lb;
-     char *btn_cmd;
-{
-  if (C2F(ismenu)()==1) 
-    {
-      GetCommand(btn_cmd);
-      *lb=strlen(btn_cmd);
-    }
-  else
-    { 
-      *lb =0;
-      *entry=0;
-    }
-  return(0);
-}
 void Click_menu(int n);
 
 static void str_to_xterm ( string, nbytes)

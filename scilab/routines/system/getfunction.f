@@ -120,10 +120,10 @@ c     statements of the function
       if(sym.eq.eol) then
          if (lpt(4).ge.lpt(6)) then
             if(comp(1).ne.0) then 
-               call getlin(2)
+               call getlin(2,0)
                eof=.false.
             else
-               call getlin(2)
+               call getlin(2,0)
                eof=fin.eq.-2
             endif
          else
@@ -222,7 +222,7 @@ c     . allocate memory for cblock more characters
       nr=nr+1
       if(.not.last) then
          if(lpt(4).ge.lpt(6)) then
-            call getlin(2)
+            call getlin(2,0)
             eof=fin.eq.-2
             l4=lpt(1)
          else

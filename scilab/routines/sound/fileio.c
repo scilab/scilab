@@ -25,7 +25,6 @@
 
 extern char * SciGetLine __PARAMS((char *));
 extern FILE *GetFile __PARAMS((int *));
-extern void C2F(zzledt1) __PARAMS((char *buffer, int *buf_size, int *len_line, int *eof, long int dummy1)); 
 extern int C2F(xscion) __PARAMS((int *));
 
 #ifdef __STDC__ 
@@ -298,6 +297,7 @@ int int_objscanf(char *fname)
   static char String[MAXSTR];
   static int l1, m1, n1, len= MAXSTR-1,iarg,maxrow,nrow,rowcount,ncol;
   int args,retval,retval_s,lline,status,iflag,err,n_count;
+  int interrupt=0;
   entry *data;
   rec_entry buf[MAXSCAN];
   sfdir  type[MAXSCAN],type_s[MAXSCAN];
@@ -333,10 +333,9 @@ int int_objscanf(char *fname)
     rowcount++;
     if ((maxrow >= 0) && (rowcount >= maxrow)) break;
     /* get a line */
-    if ( iflag == 0) 
-      C2F(zzledt)(String,&len,&lline,&status,strlen(String));
-    else
-      C2F(zzledt1)(String,&len,&lline,&status,strlen(String));
+    C2F(xscion)(&iflag);
+    C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,strlen(String));
+
     if(status != 0) 
       {
 	Scierror(999,"Error: in scanf\r\n");

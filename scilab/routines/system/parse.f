@@ -79,7 +79,12 @@ c-------------------
          lct(4)=-lct(4)-11      
       else
          if (mod(lct(4)/2,2).eq.1) then
-            call prompt(lct(4)/4)
+            call prompt(lct(4)/4,iesc)
+            if(iesc.eq.1) then
+c     .        interrupted line acquisition (mode=7)
+               iret=3
+               goto 96
+            endif
             lct(1)=0
             if(paus.eq.0.and.rio.eq.rte.and.macr.eq.0) then
                if(pt.ne.0) then
@@ -95,7 +100,7 @@ c-------------------
       endif
  13   continue
       call tksynchro(paus)
-      call getlin(job)
+      call getlin(job,1)
       call tksynchro(-1)
       if(fin .eq. -3) then
 c     interrupted line acquisition
@@ -733,9 +738,9 @@ c
          call seteol
       endif
 
-c     fin ligne
+c     EOL
       if(int(r/100).ne.8) goto 10
-c     fin d'une instruction dans une clause
+c     end of an instruction or a clause
       if(comp(1).ne.0) then
          k=lpt(6)
          if(lin(k-1).eq.eol.and.lin(k).eq.eol) then
@@ -744,7 +749,8 @@ c     fin d'une instruction dans une clause
          endif
       endif
       if(lpt(4).eq.lpt(6))  then
-         call getlin(1)
+c         call getlin(1,0)
+         goto 13
       else
          lpt(4)=lpt(4)+1
          call getsym
@@ -897,8 +903,18 @@ c     *call* macro
       pt=pt-1
       if(iret.eq.1) then
          goto 15
-      else
+      elseif(iret.eq.2) then
+          if(lpt(6).eq.lpt(1)) then
+             job=0
+          else
+c     .      go ahead with interrupted continuation line
+             job=3
+          endif
+         sym = eol
          goto 13
+      elseif(iret.eq.3) then
+         job=0
+         goto 12
       endif
       
  98   continue
