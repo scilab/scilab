@@ -380,7 +380,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   for i in $dirs ; do
 	if test -r $i/tcl.h; then 
 		AC_MSG_RESULT([found in $i ])
-		AC_CHECK_TCL_VERSION($i,8,0,tcl.h)
+		AC_CHECK_TCL_VERSION($i,8,4,tcl.h)
 		if test $TCL_VERSION_OK = 1; then
 			AC_CHECK_TCL_LIB($TCL_MAJOR_VERSION,$TCL_MINOR_VERSION)
 			if test $TCL_LIB_OK = 1; then 
@@ -403,7 +403,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   for i in $dirs ; do
 	if test -r $i/tk.h; then 
 		AC_MSG_RESULT([found in $i ])
-		AC_CHECK_TK_VERSION($i,8,0,tk.h)
+		AC_CHECK_TK_VERSION($i,8,4,tk.h)
 		if test $TK_VERSION_OK = 1; then 
 			AC_CHECK_TK_LIB($TK_MAJOR_VERSION,$TK_MINOR_VERSION)
 			if test $TK_LIB_OK = 1; then 
