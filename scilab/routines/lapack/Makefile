@@ -30,7 +30,8 @@ OBJSF = dgelqf.o dgels.o  dgeqrf.o dlae2.o dlaev2.o \
 	zlarft.o zlarfb.o zlarfg.o zung2r.o zunm2r.o zlarf.o zlacgv.o zladiv.o \
 	dgelsy.o dgesv.o dormrz.o dtrtrs.o dtzrzf.o dgeqp3.o dlarzb.o \
 	dlarzt.o dlatrz.o dormr3.o dlaqp2.o dlaqps.o dlarz.o dgelss.o \
-	zgeqp3.o zlaic1.o zlaqp2.o zlaqps.o zunmqr.o
+	zgeqp3.o zlaic1.o zlaqp2.o zlaqps.o zunmqr.o \
+	dsysv.o zgees.o zgesvd.o zgetrf.o zgetri.o zlange.o zlascl.o zlaset.o
 
 include ../../Makefile.incl
 

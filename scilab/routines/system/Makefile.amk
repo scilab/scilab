@@ -27,7 +27,7 @@ OBJSF = allops.obj  banier.obj sascii.obj diary.obj\
 	mrknmd.obj mkindx.obj mklist.obj cmdstr.obj setgetmode.obj\
 	typ2cod.obj israt.obj funnam.obj dspdsp.obj lspdsp.obj wspdsp.obj \
 	xerbla.obj algebre.obj storeglobal.obj setippty.obj allowptr.obj copyvar.obj \
-	lst2vars.obj createref.obj getfunction.obj
+	lst2vars.obj createref.obj getfunction.obj varfunptr.obj
 
 include ../../Makefile.incl.amk
 
