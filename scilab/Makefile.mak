@@ -60,6 +60,7 @@ clean::
 	Makesubdirs.bat modelicac-clean
 	Makesubdirs.bat intersci-clean
 	Makesubdirs.bat imp-clean
+	Makesubdirs.bat xmlint-clean
 
 distclean::
 	Makesubdirs.bat routines-distclean 
@@ -69,6 +70,7 @@ distclean::
 	Makesubdirs.bat modelicac-distclean
 	Makesubdirs.bat intersci-distclean
 	Makesubdirs.bat imp-distclean
+	Makesubdirs.bat xmlint-distclean
 
 # win32 
 LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \

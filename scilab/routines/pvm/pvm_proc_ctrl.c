@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.13  2005/01/07 20:49:25  cornet
+     update for compilation via makefiles (windows)
+
      Revision 1.12  2004/02/28 13:50:09  cornet
      Corrections Warnings
 
@@ -105,7 +108,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pvm3.h"
+#ifdef WIN32
+  #include "../../pvm3/include/pvm3.h"
+#else
+  #include "pvm3.h"
+#endif
 #include "../machine.h"
 #include "sci_pvm.h"
 

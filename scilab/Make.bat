@@ -16,6 +16,7 @@ if "%1" == "macros" goto macros
 if "%1" == "clean" goto clean
 if "%1" == "distclean" goto distclean
 if "%1" == "modelicac" goto modelicac
+if "%1" == "check" goto check
 goto all
 rem /**********************************************************/
 :min
@@ -48,6 +49,10 @@ goto Make
 rem /**********************************************************/
 :modelicac
 set PARAMS_COMPILE=modelicac
+goto Make
+rem /**********************************************************/
+:check
+set PARAMS_COMPILE=check
 goto Make
 rem /**********************************************************/
 :clean
@@ -101,6 +106,7 @@ echo "%0 mexlib" build mexlib interfaces
 echo "%0 javasci" build Java Scilab interface
 echo     you need Java SDK 1.4.2 or greater 
 echo     Java must be in Path environment variable
+echo "%0 check" check manuals
 echo "%0 man" build manuals
 echo "%0 macros" build macros
 echo "%0 modelicac" build modelicac

@@ -13,7 +13,11 @@
  *-----------------------------------------------------------------------*/
 
 #include <string.h> 
-#include "pvm3.h"
+#ifdef WIN32
+  #include "../../pvm3/include/pvm3.h"
+#else
+  #include "pvm3.h"
+#endif
 #include "../mex.h"
 #include "../stack-c.h"
 #include "sci_pvm.h"

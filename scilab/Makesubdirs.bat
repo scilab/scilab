@@ -20,6 +20,8 @@ if "%1" == "def" goto def
 if "%1" == "man" goto man
 if "%1" == "man-clean" goto man-clean
 if "%1" == "xmlint" goto xmlint
+if "%1" == "xmlint-distclean" goto xmlint-distclean
+if "%1" == "xmlint-clean" goto xmlint-clean
 if "%1" == "check" goto check
 if "%1" == "man-distclean" goto man-distclean
 if "%1" == "tcl" goto tcl
@@ -143,7 +145,7 @@ cd ..
 goto end
 
 :xmlint 
-cd win95-utils\xmlint
+cd win95-util\xmlint
 nmake /C /f Makefile.mak all /a
 cd ..\..
 goto end
@@ -216,6 +218,20 @@ cd libs
 echo making clean in libs
 nmake /C /f Makefile.mak clean
 cd ..
+goto end
+
+:xmlint-clean
+cd win95-util\xmlint
+echo making clean in xmlint
+nmake /C /f Makefile.mak clean /a
+cd ..\..
+goto end
+
+:xmlint-distclean
+cd win95-util\xmlint
+echo making clean in xmlint
+nmake /C /f Makefile.mak distclean /a
+cd ..\..
 goto end
 
 :end 

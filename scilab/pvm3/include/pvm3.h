@@ -1,5 +1,5 @@
 
-/* $Id: pvm3.h,v 1.2 2002/10/14 14:19:02 chanceli Exp $ */
+/* $Id: pvm3.h,v 1.3 2005/01/07 20:49:25 cornet Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -35,6 +35,9 @@
  *	Libpvm3 includes.
  *
  * $Log: pvm3.h,v $
+ * Revision 1.3  2005/01/07 20:49:25  cornet
+ * update for compilation via makefiles (windows)
+ *
  * Revision 1.2  2002/10/14 14:19:02  chanceli
  * update
  *
@@ -283,7 +286,7 @@
 #ifndef WIN32
 #include	<sys/time.h>
 #else
-#include "pvmwin.h"
+#include "../src/pvmwin.h"
 #include <sys/timeb.h>
 #include <time.h>
 #endif
