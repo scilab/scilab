@@ -1033,10 +1033,11 @@ Delete(w, number, client_data)
       SendSGDeleteMessage(win_num);
     }
   /** Delete the graphic window **/
-  if (version_flag() == 0) DeleteObjs(win_num);/* NG */
   Efface((Widget) 0,(XtPointer) number, (XtPointer) 0);
   scig_deletegwin_handler(win_num);
   DeleteSGWin(win_num);
+  /*if (version_flag() == 0) DeleteObjs(win_num); NG */
+
 }
 
 /* for Fortran call */
