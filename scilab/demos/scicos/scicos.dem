@@ -24,7 +24,7 @@ if with_modelica_compiler() then
               'Regulated Thermo Hydraulic plant'];
 end
 
-            
+    demos_name=[demos_name;'Live tutorials']        
 
 while %t do
   n=x_choose(demos_name,'Choose a demo')
@@ -67,8 +67,31 @@ while %t do
     scicos('SCI/demos/scicos/rlc1.cosf');
   case 'Electrical circuit: Rectifier' then  
     scicos('SCI/demos/scicos/Rectifier.cosf');
-  case 'Regulated Thermo Hydraulic plant' then  
+   case 'Regulated Thermo Hydraulic plant' then  
     scicos('SCI/demos/scicos/Hydraulics.cosf');
+   case 'Live tutorials' then
+    tuti=['Simple block construction';
+	  'Use of Super block'
+	  'Use of symbolic parameters'
+	  'Constructing a new block'
+	  'the Scifunc block'
+	  'The Cblock2 block'
+	  ];
+    while %t do
+      n=x_choose(tuti,'Choose a tutorial (must be played in order).')
+      if n ==0 then break,end
+      dirr=pwd()
+      chdir(TMPDIR)
+      if n> 4 then err=execstr('getf(''toto.sci'')','errcatch'),end
+      if err<>0 then 
+	x_message('tutorials must be played in order!'),
+	break
+      end
+      str='SCI/demos/scicos/tut'+string(n)
+      getf('SCI/demos/scicos/scicos_play.sci')
+      scicos_play(str)
+      chdir(dirr)
+    end
   end
 
 end

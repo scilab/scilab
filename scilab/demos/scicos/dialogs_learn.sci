@@ -39,7 +39,7 @@ function p=xgetfile(file_mask,dir,title)
   if exists('title','local')==0 then title='',end
   if exists('dir','local')==0 then dir='',end
   if exists('file_mask','local')==0 then file_mask='*',end
-  p=xgetf(file_mask,dir,title)
+  p=xgetfile1(file_mask,dir,title)
   txt=[comm + 'xgetfile: '+title(1);
        p]
   mputl(txt,uapp);
