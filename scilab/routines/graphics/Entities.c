@@ -20342,15 +20342,15 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
   
 	
 
-/* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
-/* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
-/* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
-/* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
-/* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
-/* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
-/* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
-/* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
-/* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
+	/* 	n2= pSURFACE_FEATURE (pobj)->dimzy; */
+	/* 	X[0]=X[1]=pSURFACE_FEATURE (pobj)->pvecx[k]; */
+	/* 	X[2]=X[3]=pSURFACE_FEATURE (pobj)->pvecx[k+1]; */
+	/* 	Z[0]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1]; */
+	/* 	Z[1]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1]; */
+	/* 	Z[2]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+n1+1]; */
+	/* 	Z[3]=pSURFACE_FEATURE (pobj)->pvecz[k+l*n1+1]; */
+	/* 	Y[0]=Y[3]=pSURFACE_FEATURE (pobj)->pvecy[l]; */
+	/* 	Y[1]=Y[2]=pSURFACE_FEATURE (pobj)->pvecy[l+1]; */
 
 
 	n2= pSURFACE_FEATURE (pobj)->dimzy;
@@ -20469,51 +20469,51 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       }
 
 
-   /*    switch (pPOLYLINE_FEATURE (pobj)->plot) { */
-/*       case 0: case 1: case 4: /\*linear interpolation *\/ */
-/* 	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]); */
-/* 	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]); */
-/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)  */
-/* 	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]); */
-/* 	else */
-/* 	  z=(double *)NULL; */
-/* 	break; */
-/*       case 2: /\* staircase *\/ /\* just for completion  *\/ */
-/* 	p=2; */
-/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1]; */
-/* 	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
-/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-/* 	  z=Z; */
-/* 	} */
-/* 	else  */
-/* 	  z=(double *)NULL; */
-/* 	x=X;y=Y; */
-/* 	break; */
-/*       case 3 : /\* vertical bar *\/ /\* just for completion  *\/ */
-/* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-/* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
-/* 	Y[0]=0.0; */
-/* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
-/* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
-/* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-/* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
-/* 	  z=Z; */
-/* 	} */
-/* 	else  */
-/* 	  z=(double *)NULL; */
-/* 	x=X;y=Y; */
-/* 	break; */
-/*       case 5: /\* patch*\/ */
-/* 	x=pPOLYLINE_FEATURE (pobj)->pvx; */
-/* 	y=pPOLYLINE_FEATURE (pobj)->pvy; */
-/* 	z=pPOLYLINE_FEATURE (pobj)->pvz; */
-/* 	p=n1; */
-/* 	break; */
-/*       } */
+      /*    switch (pPOLYLINE_FEATURE (pobj)->plot) { */
+      /*       case 0: case 1: case 4: /\*linear interpolation *\/ */
+      /* 	x=&(pPOLYLINE_FEATURE (pobj)->pvx[index]); */
+      /* 	y=&(pPOLYLINE_FEATURE (pobj)->pvy[index]); */
+      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL)  */
+      /* 	  z=&(pPOLYLINE_FEATURE (pobj)->pvz[index]); */
+      /* 	else */
+      /* 	  z=(double *)NULL; */
+      /* 	break; */
+      /*       case 2: /\* staircase *\/ /\* just for completion  *\/ */
+      /* 	p=2; */
+      /* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+      /* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index+1]; */
+      /* 	Y[0]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+      /* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+      /* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+      /* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+      /* 	  z=Z; */
+      /* 	} */
+      /* 	else  */
+      /* 	  z=(double *)NULL; */
+      /* 	x=X;y=Y; */
+      /* 	break; */
+      /*       case 3 : /\* vertical bar *\/ /\* just for completion  *\/ */
+      /* 	X[0]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+      /* 	X[1]=pPOLYLINE_FEATURE (pobj)->pvx[index]; */
+      /* 	Y[0]=0.0; */
+      /* 	Y[1]=pPOLYLINE_FEATURE (pobj)->pvy[index]; */
+      /* 	if (pPOLYLINE_FEATURE (pobj)->pvz != (double *) NULL) { */
+      /* 	  Z[0]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+      /* 	  Z[1]=pPOLYLINE_FEATURE (pobj)->pvz[index]; */
+      /* 	  z=Z; */
+      /* 	} */
+      /* 	else  */
+      /* 	  z=(double *)NULL; */
+      /* 	x=X;y=Y; */
+      /* 	break; */
+      /*       case 5: /\* patch*\/ */
+      /* 	x=pPOLYLINE_FEATURE (pobj)->pvx; */
+      /* 	y=pPOLYLINE_FEATURE (pobj)->pvy; */
+      /* 	z=pPOLYLINE_FEATURE (pobj)->pvz; */
+      /* 	p=n1; */
+      /* 	break; */
+      /*       } */
       
       break;
     case  SCI_SEGS: 
@@ -20555,29 +20555,29 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
       
       break;
     case  SCI_RECTANGLE: 
-		{
-	  double rectx[4],recty[4],rectz[4];
-      p = 5;
+      {
+	double rectx[4],recty[4],rectz[4];
+	p = 5;
+	
+	
+	pstyle=0; /* arevoir */
+	iflag=0; /* arevoir */
+	
+	rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+	rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+	recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+	recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+	rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+	
+	ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
       
-
-      pstyle=0; /* arevoir */
-      iflag=0; /* arevoir */
-      
-      rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-      rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-      recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-      recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-      rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
-      
-      ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
-      
-      X[0]=X[1]=X[4]=rectx[0];
-      Y[0]=Y[3]=Y[4]=recty[0];
-      X[2]=X[3]=rectx[1];
-      Y[1]=Y[2]=recty[2];
-      Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
-      x=X;y=Y;z=Z; 
-		}
+	X[0]=X[1]=X[4]=rectx[0];
+	Y[0]=Y[3]=Y[4]=recty[0];
+	X[2]=X[3]=rectx[1];
+	Y[1]=Y[2]=recty[2];
+	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
+	x=X;y=Y;z=Z; 
+      }
       break;
     default:
       p = 0;
@@ -20929,27 +20929,27 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	break;
       case  SCI_RECTANGLE: 
 	{
-	double rectx[4],recty[4],rectz[4];
-	p = 5;
+	  double rectx[4],recty[4],rectz[4];
+	  p = 5;
 	
 
-	pstyle=0; /* arevoir */
-	iflag=0; /* arevoir */
+	  pstyle=0; /* arevoir */
+	  iflag=0; /* arevoir */
       
-	rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-	rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-	recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-	recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-	rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+	  rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+	  rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+	  recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+	  recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
       
-	ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
+	  ReverseDataFor3D(psubwin, rectx, recty, rectz, 4);
       
-	X[0]=X[1]=X[4]=rectx[0];
-	Y[0]=Y[3]=Y[4]=recty[0];
-	X[2]=X[3]=rectx[1];
-	Y[1]=Y[2]=recty[2];
-	Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
-	x=X;y=Y;z=Z; 
+	  X[0]=X[1]=X[4]=rectx[0];
+	  Y[0]=Y[3]=Y[4]=recty[0];
+	  X[2]=X[3]=rectx[1];
+	  Y[1]=Y[2]=recty[2];
+	  Z[0]=Z[1]=Z[2]=Z[3]=Z[4]=rectz[0];
+	  x=X;y=Y;z=Z; 
 	}
 	break;
       default:
@@ -21024,18 +21024,18 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      break;
 	    case 1:
 	      zl=0;
-/* 	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1]; */
+	      /* 	      for ( k1= 0 ; k1 < p ; k1++) zl+= z[k1]; */
 	      for ( k1= 0 ; k1 < p ; k1++) zl+= Zoriginal[k1]; /* F.Leray 01.12.04 : DO NOT REPLACE z by ztmp here : zmin & zmax are computed to work with z ! */
 	      fill[0]=inint((whiteid-1)*((zl/p)-zmin)/(zmax-zmin))+1;
 
-/* 	      sciprint("whiteid-1 = %d\n",whiteid-1); */
-/* 	      sciprint("zl = %lf\n",zl); */
-/* 	      sciprint("zmin = %lf zmax = %lf\n",zmin,zmax); */
-/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[4]); */
-/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[4]); */
-/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[5]); */
-/* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[5]); */
-/* 	      sciprint("fill[0] = %d\n\n",fill[0]); */
+	      /* 	      sciprint("whiteid-1 = %d\n",whiteid-1); */
+	      /* 	      sciprint("zl = %lf\n",zl); */
+	      /* 	      sciprint("zmin = %lf zmax = %lf\n",zmin,zmax); */
+	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[4]); */
+	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[4]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[4]); */
+	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->SRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->SRect[5]); */
+	      /* 	      sciprint("pSUBWIN_FEATURE(psubwin)->FRect[5]= %lf\n",pSUBWIN_FEATURE(psubwin)->FRect[5]); */
+	      /* 	      sciprint("fill[0] = %d\n\n",fill[0]); */
 	     
 	      if ( flag  < 0 ) fill[0]=-fill[0];
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -21087,7 +21087,7 @@ int labels2D_draw(sciPointObj * psubwin)
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
   char locstr;
   double tmp;
-/*   integer fontid, fontsize, textcolor; */
+  /*   integer fontid, fontsize, textcolor; */
 
   if (!sciGetVisibility(psubwin)) return 0;
   /*sciSetCurrentObj (pobj);       F.Leray 25.03.04*/
