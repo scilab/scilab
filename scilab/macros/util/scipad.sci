@@ -12,7 +12,7 @@ function scipad(f)
     TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
     if argn(2)==1 then 
       
-      if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f)+'}'),end
+      if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}'),end
     end
   else
     error(' Scilab has not been built with tk: scipad unavailable')
