@@ -20,7 +20,7 @@ FORTRANINTERFACES = intfdgemm.o intdgebal.o intdgebak.o intdgels.o intdgeqrf.o
 
 FFUNCTIONS = fdgemm dgebal dgebak dgels dgeqrf 
 
-OTHERFOBJS = zgemm.o
+OTHERFOBJS = 
 ################ do not edit below this line ############################
 
 GATEWAY = $(LIBRARY:.a=)
