@@ -186,8 +186,8 @@
           <DESCRIPTION_ITEM label="zoom_box: ">
             <SP>This field contains the current zoom box if any.
             coordinates. It is an empty matrix (no zoom) or the vector
-            <VERB>[xmin,ymax,width,height]</VERB> (defines a rectangle given by
-	      its top left corner coordinates, width and height. </SP>
+            <VERB>[xmin,ymin,xmax,ymax]</VERB> (defines a rectangle given by
+	      two opposite corners. </SP>
           </DESCRIPTION_ITEM>
 
 
