@@ -1,17 +1,15 @@
-function r=mtlb_rand(a,opt)
+function r=mtlb_rand(a)
 // Copyright INRIA
-[lhs,rhs]=argn()
-if rhs==1 then
-  if and(size(a)==[1 1]) then
-    r=rand(a,a)
-  else
-    r=rand(a(1),a(2))
-  end
+// Emulation function for rand() Matlab function
+// V.C.
+
+if and(size(a)==[1 1]) then
+  r=rand(a,a)
 else
-  if and(size(a)==[1 1]) then
-    r=rand(a,a,opt)
-  else
-    r=rand(a(1),a(2),opt)
+  tmp=list()
+  for k=1:size(a,"*")
+    tmp(k)=a(k)
   end
+  r=rand(tmp(1:$))
 end
 endfunction
