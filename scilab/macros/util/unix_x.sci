@@ -13,15 +13,25 @@ function unix_x(cmd)
 // host unix_g unix_s
 //!
 // Copyright INRIA
+// Modified by Allan CORNET 2004
+
 if prod(size(cmd))<>1 then   error(55,1),end
 
+ver=OS_Version();
+
 if MSDOS then 
-  tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-  cmd1= cmd + ' > '+ tmp;
-else 
-  tmp=TMPDIR+'/unix.out';
-  cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
-end 
+    tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+    	cmd1= cmd + ' > '+ tmp;
+    else
+    	tmp=TMPDIR+'\unix.out';
+     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
+    end
+  else 
+     tmp=TMPDIR+'/unix.out';
+     cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
+  end 
+
 stat=host(cmd1);
 select stat
   case 0 then
@@ -29,11 +39,16 @@ select stat
 case -1 then // host failed
   error(85)
 else //sh failed
-  if MSDOS then 
-	error('unix_x: shell error');
-  else 
-	  msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
-	  error('unix_x: '+msg(1))
-  end 
+if MSDOS then 
+     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     		error('unix_x: shell error');
+     	else
+     		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
+     		error('unix_x: '+msg(1))
+     	end
+     else
+	msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
+	error('unix_x: '+msg(1))
+     end 
 end
 endfunction

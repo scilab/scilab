@@ -14,18 +14,29 @@ function [rep,stat]=unix_g(cmd)
 // host unix_x unix_s
 //!
 // Copyright INRIA
+// Modified by Allan CORNET 2004
 
   [lhs,rhs]=argn(0)
   if prod(size(cmd))<>1 then   error(55,1),end
+  
+  ver=OS_Version();
 
-  if MSDOS then
+  if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    cmd1= cmd + ' > '+ tmp;
-  else
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+    	cmd1= cmd + ' > '+ tmp;
+    else
+    	tmp=TMPDIR+'\unix.out';
+     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
+    end
+  else 
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
   end 
+  
+  
   stat=host(cmd1);
+  
   select stat
    case 0 then
     rep=mgetl(tmp)
@@ -34,17 +45,28 @@ function [rep,stat]=unix_g(cmd)
     disp('host does not answer...')
     rep=emptystr()
   else
-     if MSDOS then 
-       write(%io(2),'unix_g: shell error');
-       rep=emptystr()
+  if MSDOS then 
+     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     		write(%io(2),'unix_g: shell error');
+       		rep=emptystr()
+     	else
+     		msg=mgetl(TMPDIR+'\unix.err')
+        	disp(msg(1))
+        	rep=emptystr()
+     	end
      else 
         msg=mgetl(TMPDIR+'/unix.err')
         disp(msg(1))
         rep=emptystr()
-  end 
+     end 
   end
   if MSDOS then
-    host('del '+tmp);
+  	if ver == 'Windows 98' | ver == 'Windows 95' then
+    		host('del '+tmp);
+    	else
+    		host('del '+tmp);
+    		host('del '+TMPDIR+'\unix.err');
+    	end
   else
      host('rm -f '+tmp);
   end

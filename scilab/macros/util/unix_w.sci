@@ -13,16 +13,26 @@ function unix_w(cmd)
 // host unix_x unix_s unix_g
 //!
 // Copyright INRIA
+// Modified by Allan CORNET 2004
   if prod(size(cmd))<>1 then   error(55,1),end
-
+  
+  ver=OS_Version();
+  
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    cmd1= cmd + ' > '+ tmp;
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+    	cmd1= cmd + ' > '+ tmp;
+    else
+    	tmp=TMPDIR+'\unix.out';
+     	cmd1=cmd +'>'+ tmp +' 2>'+TMPDIR+'\unix.err';
+    end
   else 
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
   end 
+  
   stat=host(cmd1);
+  
   select stat
    case 0 then
     write(%io(2),read(tmp,-1,1,'(a)'))
@@ -30,14 +40,24 @@ function unix_w(cmd)
     error(85)
   else
      if MSDOS then 
-       error('unix_w: shell error');
-     else 
+     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     		error('unix_w: shell error');
+     	else
+     		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
+     		error('unix_w: '+msg(1))
+     	end
+     else
 	msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
 	error('unix_w: '+msg(1))
      end 
   end
   if MSDOS then
-    host('del '+tmp);
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+    	host('del '+tmp);
+    else
+    	host('del '+tmp);
+    	host('del '+TMPDIR+'\unix.err');
+    end
   else
      host('rm -f '+tmp);
   end

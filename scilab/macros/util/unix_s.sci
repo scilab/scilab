@@ -13,16 +13,26 @@ function unix_s(cmd)
 // host unix_g unix_x
 //!
 // Copyright INRIA
+// Modified by Allan CORNET 2004
+
   if prod(size(cmd))<>1 then   error(55,1),end
+  
+  ver=OS_Version();
 
   // done in scilab.star TMPDIR=getenv('TMPDIR')
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    cmd1= cmd + ' > '+ tmp;
+    if ver == 'Windows 98' | ver == 'Windows 95' then
+    	cmd1= cmd + ' > '+ tmp;
+    else
+    	cmd1=cmd +'>'+ ' NUL' +' 2>'+TMPDIR+'\unix.err';
+    end
   else 
      cmd1='('+cmd+')>/dev/null 2>'+TMPDIR+'/unix.err;';
   end 
+  
   stat=host(cmd1);
+  
   if MSDOS then
     host('del '+tmp);
   end
@@ -32,7 +42,14 @@ function unix_s(cmd)
     error(85)
   else //sh failed
      if MSDOS then 
-       error('unix_s: shell error');
+     	if ver == 'Windows 98' | ver == 'Windows 95' then
+       		error('unix_s: shell error');
+       	else
+       		msg=read(TMPDIR+'\unix.err',-1,1,'(a)');
+		for i=1:size(msg,'*') do write(%io(2),'   '+msg(i));end
+		error('unix_s: error during ``'+cmd+''''' execution')
+		host('del '+TMPDIR+'\unix.err');
+       	end
      else 
 	msg=read(TMPDIR+'/unix.err',-1,1,'(a)');
 	for i=1:size(msg,'*') do write(%io(2),'   '+msg(i));end
