@@ -28,16 +28,16 @@ function [palettes,windows]=do_palettes(palettes,windows)
   //
   xset('window',curwin),
   if ~MSDOS then
-  delmenu(curwin,'3D Rot.')
-  delmenu(curwin,'UnZoom')
-  delmenu(curwin,'2D Zoom')
-//  delmenu(curwin,'File')
-else
-  delmenu(curwin,'3D &Rot.')
-  delmenu(curwin,'&UnZoom')
-  delmenu(curwin,'2D &Zoom')
-//  delmenu(curwin,'&File')
-end
+    delmenu(curwin,'3D Rot.')
+    delmenu(curwin,'UnZoom')
+    delmenu(curwin,'2D Zoom')
+    //  delmenu(curwin,'File')
+  else
+    delmenu(curwin,'3D &Rot.')
+    delmenu(curwin,'&UnZoom')
+    delmenu(curwin,'2D &Zoom')
+    //  delmenu(curwin,'&File')
+  end
   
   xselect();
   xset('alufunction',3)

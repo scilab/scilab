@@ -12,19 +12,17 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-//  x=arg1
-//  model=arg1(3);graphics=arg1(2);
-//  label=graphics(4);
+ x=arg1;
   model=arg1.model;graphics=arg1.graphics;
-  label=graphics.label;
+  label=model.label;
   while %t do
     [ok,i,o,rpar,funam,lab]=..
-	getvalue('Set fortran_block parameters',..
-	  ['input ports sizes';
-	  'output port sizes';
-	  'System parameters vector';
-	  'function name'],..
-	  list('vec',-1,'vec',-1,'vec',-1,'str',-1),label(1))
+        getvalue('Set fortran_block parameters',..
+          ['input ports sizes';
+          'output port sizes';
+          'System parameters vector';
+          'function name'],..
+          list('vec',-1,'vec',-1,'vec',-1,'str',-1),label(1))
     if ~ok then break,end
     if funam==' ' then break,end
     label(1)=lab    
@@ -32,22 +30,14 @@ case 'set' then
     i=int(i(:));ni=size(i,1);
     o=int(o(:));no=size(o,1);
     tt=label(2);
-  //  if model(1)(1)<>funam|size(model(2),'*')<>size(i,'*')..
-//	|size(model(3),'*')<>size(o,'*') then
     if model.sim(1)<>funam|size(model.in,'*')<>size(i,'*')..
-	|size(model.out,'*')<>size(o,'*') then
+        |size(model.out,'*')<>size(o,'*') then
       tt=[]
     end
     [ok,tt]=FORTR(funam,tt,i,o)
     if ~ok then break,end
     [model,graphics,ok]=check_io(model,graphics,i,o,[],[])
     if ok then
-//      model(1)(1)=funam
-//      model(8)=rpar
-//      label(2)=tt
-//      x(3)=model
-//      graphics(4)=label
-//      x(2)=graphics
       model.sim(1)=funam
       model.rpar=rpar
       label(2)=tt
@@ -58,21 +48,23 @@ case 'set' then
     end
   end
 case 'define' then
-  in=1
-  out=1
-  clkin=[]
-  clkout=[]
-  x0=[]
-  z0=[]
-  typ='c'
-  auto=[]
-  rpar=[]
+  model=scicos_model()
+  model.sim=list(' ',1001)
+  model.in=1
+  model.out=1
+  model.evtin=[]
+  model.evtout=[]
+  model.state=[]
+  model.dstate=[]
+  model.rpar=[]
+  model.ipar=0
+  model.blocktype='c'
+  model.firing=[]
+  model.dep_ut=[%t %f]
   funam='forty'
-  model=list(list(' ',1001),in,out,clkin,clkout,x0,z0,rpar,0,typ,auto,[%t %f],..
-      ' ',list());
-  label=list([sci2exp(in);sci2exp(out);	strcat(sci2exp(rpar));funam],..
-	    list([]))
+  model.label=list([sci2exp(model.in);sci2exp(model.out);..
+  strcat(sci2exp(model.rpar));funam],list([]))
   gr_i=['xstringb(orig(1),orig(2),''Fortran'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,model.label,gr_i)
 end
 endfunction

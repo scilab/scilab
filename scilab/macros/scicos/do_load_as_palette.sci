@@ -18,6 +18,17 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
   //
   xset('window',curwin),xselect();
   xset('alufunction',3)
+  if ~MSDOS then
+    delmenu(curwin,'3D Rot.')
+    delmenu(curwin,'UnZoom')
+    delmenu(curwin,'2D Zoom')
+    //  delmenu(curwin,'File')
+  else
+    delmenu(curwin,'3D &Rot.')
+    delmenu(curwin,'&UnZoom')
+    delmenu(curwin,'2D &Zoom')
+    //  delmenu(curwin,'&File')
+  end
 
   if pixmap then xset('pixmap',1),end,xbasc();
   rect=dig_bound(scs_m);

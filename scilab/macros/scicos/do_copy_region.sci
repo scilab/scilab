@@ -7,7 +7,7 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
   [reg,rect]=get_region(xc,yc,win)
   // Copyright INRIA
   if rect==[] then enablemenus();return,end
-  modified=size(reg)>1
+  modified=length(reg)>1
 
 
   xinfo('Drag to destination position and click (left to fix, right to cancel)')

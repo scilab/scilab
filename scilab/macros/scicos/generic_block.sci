@@ -12,29 +12,28 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-//  x=arg1
-  model=arg1(3);graphics=arg1(2);label=graphics(4)
-  model=arg1.model;graphics=arg1.graphics;label=graphics.label
+  x=arg1
+  model=arg1.model;graphics=arg1.graphics;label=model.label
   if size(label,'*')==14 then label(9)=[],end //compatiblity
   while %t do
     [ok,junction_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
-	getvalue('Set scifunc_block parameters',..
-	['simulation function';
-	'function type (0,1,2,..)';
-	'input ports sizes';
-	'output port sizes';
-	'input event ports sizes';
-	'output events ports sizes';
-	'initial continuous state';
-	'initial discrete state';
-	'Real parameters vector';
-	'Integer parameters vector';	  
-	'initial firing vector (<0 for no firing)';
-	'direct feedthrough (y or n)';                                       
-	'time dependence (y or n)'],..
-	 list('str',1,'vec',1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
-	 'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec','sum(x6)',..
-	 'str',1,'str',1),label)
+        getvalue('Set scifunc_block parameters',..
+        ['simulation function';
+        'function type (0,1,2,..)';
+        'input ports sizes';
+        'output port sizes';
+        'input event ports sizes';
+        'output events ports sizes';
+        'initial continuous state';
+        'initial discrete state';
+        'Real parameters vector';
+        'Integer parameters vector';      
+        'initial firing vector (<0 for no firing)';
+        'direct feedthrough (y or n)';                                       
+        'time dependence (y or n)'],..
+         list('str',1,'vec',1,'vec',-1,'vec',-1,'vec',-1,'vec',-1,..
+         'vec',-1,'vec',-1,'vec',-1,'vec',-1,'vec','sum(x6)',..
+         'str',1,'str',1),label)
     if ~ok then break,end
     label=lab
     junction_name=stripblanks(junction_name)
@@ -58,23 +57,12 @@ case 'set' then
       // AVERIFIER
       if funtyp==3 then needcompile=4;end
       //
-//      model(1)=list(junction_name,funtyp);
-//      model(6)=xx
-//	model(7)=z
-//	model(8)=rpar
-//	model(9)=ipar
       model.sim=list(junction_name,funtyp);
       model.state=xx
-	model.dstate=z
-	model.rpar=rpar
-	model.ipar=ipar
+        model.dstate=z
+        model.rpar=rpar
+        model.ipar=ipar
 //      needcompile=4     AVERIFIER CANEMARCHEQUAVECFORTRAN
-//      model(10)=type_
-//      model(11)=auto0
-//      model(12)=dep_ut
-//      x(3)=model
-//      graphics(4)=label
-//      x(2)=graphics
       model.firing=auto0
       model.dep_ut=dep_ut
       arg1.model=model
@@ -85,26 +73,29 @@ case 'set' then
   end
   needcompile=resume(needcompile)
 case 'define' then
-  junction_name='sinblk'
+  model=scicos_model()
+  junction_name='sinblk';
   funtyp=1;
-  i=1
-  o=1
-  ci=[]
-  co=[]
-  xx=[]
-  z=[]
-  type_='c'
-  rpar=[]
-  ipar=[]
-  auto0=[];
-  depu='y';
-  dept='n';
-  model=list(list(junction_name,funtyp),i,o,ci,co,xx,z,rpar,ipar,type_,auto0,[depu dept],..
-      ' ',list());
-  label=[junction_name;sci2exp(funtyp);sci2exp(i);sci2exp(o);sci2exp(ci);sci2exp(co);
-	sci2exp(xx);sci2exp(z);
-	sci2exp(rpar);sci2exp(ipar);sci2exp(auto0);depu;dept];
+  model.sim=list(junction_name,funtyp)
+  
+  model.in=1
+  model.out=1
+  model.evtin=[]
+  model.evtout=[]
+  model.state=[]
+  model.dstate=[]
+  model.rpar=[]
+  model.ipar=[]
+  model.blocktype='c' 
+  model.firing=[]
+  model.dep_ut=['y' 'n']
+  model.label=[junction_name;sci2exp(model.blocktype);
+        sci2exp(model.in);sci2exp(model.out);
+        sci2exp(model.evtin);sci2exp(model.evtout);
+        sci2exp(model.state);sci2exp(model.dstate);
+        sci2exp(model.rpar);sci2exp(model.ipar);
+        sci2exp(model.firing);model.dep_ut(1);model.dep_ut(2)];
   gr_i=['xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');']
-  x=standard_define([2 2],model,label,gr_i)
+  x=standard_define([2 2],model,model.label,gr_i)
 end
 endfunction
