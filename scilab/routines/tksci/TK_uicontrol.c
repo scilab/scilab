@@ -5,7 +5,7 @@
 #include "TK_uicontrol.h"
 #include "TK_ScilabCallback.h"
 #include "tksci.h"
-
+/*#include "x_data.h" /* To get screen properties */
 
 
 /***/
@@ -103,36 +103,52 @@ int TK_UiGet(int Handle,Matrix * Mfield,Matrix ** Mvalue)
   nocase(StrField);
 
   sprintf(MyCommand,"set MyTmpBertrand [GetField %d \"%s\"]", Handle, StrField);
-   
-  Tcl_Eval(TKinterp,MyCommand);
-  MyAnswer = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
 
-  if ( MyAnswer == NULL) 
+  if(Handle==0) /* Screen properties */
     {
-      *Mvalue = MatrixCreate(0,0,"real");
-      return(0);
-    }
-
-    
-  if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); goto fin; }
-  if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); goto fin; }
-  if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
-  if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
-  if (!strcmp(StrField,"userdata")) 
-    {
-      if (UserData[Handle]!=NULL) 
+      if(!GetScreenProperty(StrField,&MyAnswer))
 	{
-	  mem_siz = MatrixMemSize(UserData[Handle]);
-	  TmpMat=(Matrix *)malloc(mem_siz);
-	  MatrixCopy(UserData[Handle],TmpMat);
-	  *Mvalue = TmpMat;
+	  Str2MatReal(MyAnswer, Mvalue);
+	  free(MyAnswer);
 	}
       else
-	*Mvalue = MatrixCreate(0,0,"real");
+	{
+	  *Mvalue = MatrixCreate(0,0,"real");
+	}
       goto fin;
     }
-    
-  Str2ListStr(MyAnswer, Mvalue);
+  else
+    {
+      Tcl_Eval(TKinterp,MyCommand);
+      MyAnswer = (char*)Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+
+      if ( MyAnswer == NULL) 
+	{
+	  *Mvalue = MatrixCreate(0,0,"real");
+	  return(0);
+	}
+      
+      
+      if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+      if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+      if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+      if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); goto fin; }
+      if (!strcmp(StrField,"userdata")) 
+	{
+	  if (UserData[Handle]!=NULL) 
+	    {
+	      mem_siz = MatrixMemSize(UserData[Handle]);
+	      TmpMat=(Matrix *)malloc(mem_siz);
+	      MatrixCopy(UserData[Handle],TmpMat);
+	      *Mvalue = TmpMat;
+	    }
+	  else
+	    *Mvalue = MatrixCreate(0,0,"real");
+	  goto fin;
+	}
+      
+      Str2ListStr(MyAnswer, Mvalue);
+    }
  fin:
   free(StrField);
   return(0);
