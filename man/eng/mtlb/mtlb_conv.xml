@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_conv</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_conv">Matlab conv emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>conv</VERB> and Scilab <VERB>convol</VERB> behave differently in some particular cases:</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With column vector inputs: if at least input is a column vector Matlab <VERB>conv</VERB> returns a column
+	vector but Scilab <VERB>convol</VERB> always returns a row vector.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    The function <VERB>mtlb_conv(u,v)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>conv(u,v)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_conv</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        If <VERB>u</VERB> and <VERB>v</VERB> are row vectors,
+        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>u</VERB> or <VERB>v</VERB> is a column vector,
+        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v).'</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>u</VERB> and <VERB>v</VERB> are column vectors,
+        <VERB>mtlb_conv(u,v)</VERB> may be replaced by <VERB>convol(u,v).'</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Scilab <VERB>convol</VERB> sometimes returns values that may be rounded using <VERB>clean</VERB>
+    to have a closer result from Matlab one.</P>
+
+    <P>Caution: <VERB>mtlb_conv</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_conv</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juin 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_conv">Fonction d'émulation de la fonction Matlab conv</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Dans plusieurs cas particuliers, la fonction Matlab <VERB>conv</VERB> et la fonction Scilab <VERB>convol</VERB>
+    se comportent différemment :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec des vecteurs colonne comme paramètres d'entrées : Si au moins l'un des deux paramètres d'entrée de la fonction
+	Matlab <VERB>conv</VERB> est un vecteur colonne alors la valeur retournée sera un vecteur colonne mais la fonction Scilab
+	<VERB>convol</VERB> retourne toujours un vecteur ligne.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_conv(u,v)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>conv(u,v)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_conv</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>u</VERB> et <VERB>v</VERB> sont des vecteurs ligne,
+        <VERB>mtlb_conv(u,v)</VERB> peut être remplacé par <VERB>convol(u,v)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>u</VERB> ou <VERB>v</VERB> est un vecteur colonne,
+        <VERB>mtlb_conv(u,v)</VERB> peut être remplacé par <VERB>convol(u,v).'</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>u</VERB> et <VERB>v</VERB> sont des vecteurs colonne,
+        <VERB>mtlb_conv(u,v)</VERB> peut être remplacé par <VERB>convol(u,v).'</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>La fonction Scilab <VERB>convol</VERB> retourne parfois des valeurs qui peuvent être arrondies en utilisant <VERB>clean</VERB>
+    pour avoir un résultat plus proche de Matlab.</P>
+
+    <P>Attention : <VERB>mtlb_conv</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
