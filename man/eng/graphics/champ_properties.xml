@@ -54,7 +54,7 @@
          </P>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
-            <P><VERB>&quot;cliprf&quot;</VERB> this means that the
+            <P><VERB>&quot;clipgrf&quot;</VERB> this means that the
          vector field is clipped outside the Axes box.
          </P>
           </DESCRIPTION_ITEM>

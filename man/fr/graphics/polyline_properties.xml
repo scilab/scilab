@@ -104,7 +104,7 @@
          </DESCRIPTION_ITEM>
 
          <DESCRIPTION_ITEM > 
-         <SP><VERB>&quot;cliprf&quot;</VERB> this means that the
+         <SP><VERB>&quot;clipgrf&quot;</VERB> this means that the
          polyline is clipped outside the Axes box.</SP>
          </DESCRIPTION_ITEM>
 

@@ -176,7 +176,7 @@
          </P>
               </DESCRIPTION_ITEM>
               <DESCRIPTION_ITEM>
-                <P><VERB>&quot;cliprf&quot;</VERB> this means that all objects created after
+                <P><VERB>&quot;clipgrf&quot;</VERB> this means that all objects created after
          that are clipped outside the Axes rectangle.
          </P>
               </DESCRIPTION_ITEM>

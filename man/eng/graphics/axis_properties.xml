@@ -71,7 +71,7 @@
             <SP>This field sets the number of tics to draw between two main
       tics.</SP>
           </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM label="tics_segement: ">
+          <DESCRIPTION_ITEM label="tics_segment: ">
             <SP>This field contains a flag which controls the display of the base segment of 
      the axis. The default is <VERB>&quot;on&quot;</VERB>, else if to not display it, the property
      takes <VERB>&quot;off&quot;</VERB> as value.</SP>
@@ -118,7 +118,7 @@
          </P>
               </DESCRIPTION_ITEM>
               <DESCRIPTION_ITEM>
-                <P><VERB>&quot;cliprf&quot;</VERB> this means that the
+                <P><VERB>&quot;clipgrf&quot;</VERB> this means that the
          axis is clipped outside the Axes box.
          </P>
               </DESCRIPTION_ITEM>
@@ -149,7 +149,7 @@
 
   set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-1,-1,10,10];
+   a.data_bounds=[-1,-1;10,10];
 
   drawaxis(x=2:7,y=4,dir='u');
   a1=a.children(1)
