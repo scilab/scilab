@@ -74,7 +74,7 @@ function path=save_csuper(scs_m,fpath)
 	 '    end'
 	 '    xx=arg1(spath)'+com+' get the block';
 	 '    execstr(''xxn=''+xx.gui+''(''''set'''',xx)'')'
-	 '    if xxn<>xx then '
+	 '    if diffobjs(xxn,xx) then '
 	 '      '+com+' parameter or states changed'
 	 '      arg1(spath)=xxn'+com+' Update'
 	 '      newpar(size(newpar)+1)=path'+com+' Notify modification'

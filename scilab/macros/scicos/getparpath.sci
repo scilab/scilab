@@ -23,7 +23,8 @@ function ppath=getparpath(scs_m,bpath,ppath)
 	  o=scs_m.objs(k).model.rpar
 	  ppath=getparpath(o,[bpath k],ppath)
 	else
-	  if model.state<>[] | model.dstate<>[] | model.rpar<>[] | model.ipar<>[] then
+	  if model.state<>[] | model.dstate<>[] | ..
+		model.rpar<>[] | model.ipar<>[] | model.firing<>[]  then
 	    ppath(size(ppath)+1)=[bpath k],
 	  end
 	end

@@ -140,13 +140,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return,
   end
   
-   if ~or(typ_x) & or(typ_z) then
-    message(['No continuous-time state. Tresholds are ignored. If not';
-	     'you need a block with continuous-time state in your diagram.';
-	     'You can include DUMMY CLSS block (linear palette).']);
-
-  end
-
 
   if show_trace then disp('c_pass51:'+string(timer())),end
   //form scicos arguments
@@ -161,6 +154,15 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     
   ztyp=sign(typ_z0)  //completement inutile pour simulation
                      // utiliser pour la generation de code
+		     
+  if xptr($)==1 & zcptr($)>1 then
+    message(['No continuous-time state. Thresholds are ignored; this ';
+	     'may be OK if you don't generate external events with them.';
+	     'If you want to reactivate the thresholds, the you need';
+	     'to include a block with continuous-time state in your diagram.';
+	     'You can for example include DUMMY CLSS block (linear palette).']);
+
+  end
 
   subscr=[]
   ncblk=0;nxblk=0;ndblk=0;ndcblk=0;
@@ -771,7 +773,10 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     //    typ_z(i)=ll.blocktype=='z'
     typ_z(i)=ll.nzcross
     typ_s(i)=ll.blocktype=='s'
-    typ_x(i)=ll.state<>[]
+    typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
+                                            // need to be in oord even
+                                            // without state
+					    
     typ_m(i)=ll.blocktype=='m'
     dep_ut(i,:)=(ll.dep_ut(:))'
     //
