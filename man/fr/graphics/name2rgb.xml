@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>name2rgb</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2004</DATE>
+  <SHORT_DESCRIPTION name="name2rgb"> returns the RGB values of a named color</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>rgb=name2rgb(name)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: name of the color.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>rgb</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of RGB integer values of a color.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>name2rgb</VERB> returns the RGB values of a color given by its name. The result is
+    a vector <VERB>[r,g,b]</VERB> where <VERB>r</VERB>, <VERB>g</VERB> and <VERB>b</VERB> are integers between 0 and 255
+    corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+    255 means all the intensity of the color.
+    </P>
+    <P> If no color is found <VERB>[]</VERB> is returned.</P>
+    <P> The list of all known colors is given by <LINK>color_list</LINK>.</P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+rgb=name2rgb("gold")
+rgb2name(rgb)
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>color</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>color_list</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>rgb2name</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

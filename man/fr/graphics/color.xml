@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>color</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2004</DATE>
+  <SHORT_DESCRIPTION name="color"> returns the color id of a color</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>id=color(name)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>id=color(r,g,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>name</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: name of a color.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>r,g,b</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: RGB integer values of a color.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>id</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: id of the color.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>color</VERB> returns the color id corresponding to its argument:</P>
+    <ITEMIZE>
+      <ITEM>
+        <SP> <VERB>name</VERB> must be the name of a known color (see <LINK>color_list</LINK>). </SP>
+      </ITEM> 
+      <ITEM>
+        <SP> <VERB>r</VERB>, <VERB>g</VERB> and <VERB>b</VERB> must be integers between 0 and 255
+        corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+        255 means all the intensity of the color. </SP>
+      </ITEM>
+    </ITEMIZE>
+    <P> If the requested color does not exist in the current colormap it is added to the
+    colormap.</P>
+    <P> This function can be used to specify the foreground or background colors when plotting. 
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=linspace(-2*%pi,2*%pi,100)';
+// using existing colors
+plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
+// new colors: there are added to the colormap
+e=gce(); p1=e.children(1); p2=e.children(2);
+p1.foreground=color("purple"); p2.foreground=color("navy blue");
+// using RGV values
+p1.foreground=color(255,128,128);
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>colormap</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>color_list</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>getcolor</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

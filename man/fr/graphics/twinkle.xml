@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>twinkle</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2004</DATE>
+  <SHORT_DESCRIPTION name="twinkle"> is used to have a graphics entity twinkle</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>twinkle(h,[n]) </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: handle of a graphics entity.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>n</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+    <P><VERB>twinkle</VERB> let the graphics entity given by its handle <VERB>h</VERB> twinkle. It can be used to
+    find the graphics object corresponding to a graphics handle in the graphics window. By default the graphics
+    entity twinkles 5 times, but you can change this by using optional argument <VERB>n</VERB>.
+    </P>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+x=linspace(-2*%pi,2*%pi,100)';
+plot2d(x,[sin(x),cos(x)]);
+e=gce(); p1=e.children(1); p2=e.children(2);
+// cos plot twinkle
+twinkle(p1)
+// sin plot twinkle 10 times
+twinkle(p2,10)
+// axes twinkle
+twinkle(gca())
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

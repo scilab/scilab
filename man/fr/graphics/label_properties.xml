@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>label_properties</TITLE>
+
+  <TYPE>Scilab Data type</TYPE>
+
+  <DATE>2002</DATE>
+
+  <SHORT_DESCRIPTION name="label_properties">description of the Label entity
+  properties</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>The Label entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for label drawing</P>
+
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label="visible: ">
+        <SP>This field contains the <VERB>visible</VERB> property value for
+        the entity . It should be <VERB>"on" </VERB> or <VERB>"off"</VERB> .By
+        default, the label is visible, the value's property is <VERB>"on"
+        </VERB>. If <VERB>"off"</VERB> the label is not displayed on the
+        screen.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="text: ">
+        <SP>This field is the character string vector which contains the
+        label.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="font_size: ">
+        <SP>The <VERB>font_size</VERB> property is used to select the type of
+        size of the label. Its value should be an integer in between 0 and 5
+        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="font_style: ">
+        <SP>Seven differents fonts are available : "Courrier", "Symbol",
+        "Times", "Times Italic", "Times Bold", "User defined". The font_size
+        property is an index in [0 6] which is associated to the previous font
+        names.</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="foreground: ">
+        <SP>This field contains the color used to display the label. Its value
+        should be a color index (relative to the current colormap).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="parent: ">
+        <SP>This property contains the handle of the parent. The parent of the
+        label entity should be of type <VERB>"Axes"</VERB> .</SP>
+
+        <P>Note that, for now, Label entity is exclusively used in
+        <VERB>title</VERB>, <VERB>x_label</VERB>, <VERB>y_label</VERB> and
+        <VERB>z_label</VERB> building.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[   
+
+   set("figure_style","new") //create a figure
+   a=get("current_axes");
+   a.title
+   type(a.title)
+   plot3d()
+   a.x_label
+   a.y_label
+   a.z_label
+   xtitle("My title","my x axis label", "Volume") 
+   a.z_label.text="Month"
+
+   t=a.title;
+   t.foreground=9;
+   t.font_size=5;
+   t.font_style=5;
+   t.text="SCILAB";
+   
+   xlabel=a.x_label;
+   xlabel.text=" Weight"
+   xlabel.font_style= 5;
+   a.y_label.foreground = 12;
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>set</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>xtitle</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>axes_properties</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>text_properties</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
+</MAN>
