@@ -4,6 +4,7 @@
                   //BODE PLOTS//////
                   //////////////////
 xbasc();xselect()
+mode(1)
 //First plot using state space representation
 //
 //   xd=-2*%pi*x+u

@@ -3,6 +3,7 @@
 ////////////////////////
 // Copyright INRIA
 xbasc();xselect()
+mode(1)
 //define system macro which generates the next
 //observation given the old state
  

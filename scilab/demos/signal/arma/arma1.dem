@@ -1,4 +1,4 @@
-//
+mode(1)
 // An example of arma simulation and identification 
 // form ( K.J. Astrom)
 // The armax process with the following characteristics 

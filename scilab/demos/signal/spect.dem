@@ -1,7 +1,7 @@
 ////////////////////////
 //SPECTRAL ESTIMATION///
 ////////////////////////
-
+mode(1)
 // Copyright INRIA
 xselect();xbasc(); 
  
