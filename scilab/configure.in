@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
 
-AC_REVISION($Revision: 1.1 $)dnl
+AC_REVISION($Revision: 1.2 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -414,7 +414,7 @@ case "$host" in
       FC=g77
       FC_OPTIONS=-O2
       FC_OPTIONS_O0=
-      FC_LDFLAGS=-t
+      FC_LDFLAGS='-t -Wl,-export-dynamic'
       if test "$enable_debug" = yes; then 
         FC_OPTIONS=-g
       fi
