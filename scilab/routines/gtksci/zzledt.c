@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.6 2002/08/08 14:49:24 steer Exp $
+ * $Id: zzledt.c,v 1.7 2002/09/02 08:17:58 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.7  2002/09/02 08:17:58  chanceli
+ * readline
+ *
  * Revision 1.6  2002/08/08 14:49:24  steer
  *  pour que les menus dynamiques ne provoque pas l'impression de l'instruction
  *
@@ -180,14 +183,14 @@ static int key_map[] = {UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, SEARCH_BA
 static char *tc_capabilities[] = { "ku", "kd", "kl", "kr", "" };
 static char strings[128];   /* place to store output strings from termcap
                              * file */
-static char *KS;            /* enable keypad */
-static char *KE;            /* disable keypad */
-static char *CE;            /* clear to end of line */
-static char *BC;            /* backspace */
-static char *IM;            /* start insert mode */
-static char *IC;            /* insert character */
-static char *EI;            /* end insert mode */
-static char *CL;            /* clear screen */
+static char *KS=NULL;            /* enable keypad */
+static char *KE=NULL;            /* disable keypad */
+static char *CE=NULL;            /* clear to end of line */
+static char *BC=NULL;            /* backspace */
+static char *IM=NULL;            /* start insert mode */
+static char *IC=NULL;            /* insert character */
+static char *EI=NULL;            /* end insert mode */
+static char *CL=NULL;            /* clear screen */
 #endif
 
 static char sv_buf[SV_BUF_SIZE];
@@ -282,6 +285,7 @@ extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
    while(1) {
                             /* get next keystroke (no echo) */
       keystroke = gchar_no_echo();
+      /* fprintf(stderr,"[%d,%c]",keystroke,keystroke); */
       if (C2F (ismenu) () == 1) {/* abort current line aquisition*/
 	sendprompt=0;
 	backspace(cursor);
@@ -958,7 +962,7 @@ static void init_io()
   int  tgetent();
   char *getenv();
   char *tgetstr();
-  char tc_buf[1024];       /* holds termcap buffer */
+  char tc_buf[2048];       /* holds termcap buffer */
   char *area;
   char erase_char;
   int i;
