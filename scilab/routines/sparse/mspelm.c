@@ -281,7 +281,7 @@ int C2F(intmspget)(integer *id)
  * %msp_full 
  *---------------------------------------*/
 
-int C2F(intmspfull)(integer *id)
+int C2F(intmfull)(integer *id)
 {
     integer I1, I2, I3;
 

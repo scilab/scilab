@@ -24,7 +24,7 @@ c     nnz     spmax  spmin spmatrix spchol readmps fadj2sp spcompack
 c     17      18      19      20       21     22      23      
 c     ordmmd  blkfc1i blkslvi inpnvi   sfinit symfcti bfinit 
 c     24              25      26
-c     mtlb_sparse   %mspget   %mspfull
+c     mtlb_sparse   %msp_spget   %msp_full
 c     
 
       goto (10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,
