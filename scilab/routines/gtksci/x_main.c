@@ -91,7 +91,9 @@ void C2F(realmain)()
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 
     {
+
       if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
+      else if ( strcmp(argv[i],"-nwni") == 0) { no_window = 1; } 
       else if ( strcmp(argv[i],"-display") == 0) { display = argv[++i];} 
       else if ( strcmp(argv[i],"-ns") == 0) { no_startup_flag = 1; }
       else if ( strcmp(argv[i],"-nb") == 0) { sci_show_banner = 0; }
