@@ -630,3 +630,10 @@ Francois VOGEL, 19/01/05
 Francois VOGEL, 20/01/05
  * Added accelerator name on the watch window buttons tooltips
  * version --> 3.18
+
+ES 24/1/05
+ * new tagging classes for scilab keywords: libfun and predef
+ * keyword lists for them derived from scilab at launch time
+ * file "words" purged of all the keywords in the two lists above
+ * new colors for them
+ * version --> 3.19

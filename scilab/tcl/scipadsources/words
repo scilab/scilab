@@ -1,50 +1,46 @@
 #MODE scilab
 #TAG col1
-%browsehelp %e %eps %i %inf %nan %pi %t %f %T %F %k %s %asn %sn %io %kphelps %helps %gtk %tk %pvm %scicos_display_mode %scicos_help %scicos_menu %scicos_short %scipad_fontsize %toolboxes_dir %toolboxes %z
-abcd abinv abort abs acoshm acosh acosm acos addcolor addf addinter addmenu add_edge add_node adj2sp adj_lists aff2ab alglib amell analpf analyze and ans apropos arc_graph arc_number argn arhnk arl2 arma2p armac armalib armax1 armax arma arsimul artest articul ascii asinhm asinh asinm asin atanhm atanh atanm atan augment auread autolib auwrite 
-balanc balreal bandwr basename bdiag besseli besselj besselk bessely best_match bezout bifish bilin binomial black bloc2exp bloc2ss bode bool2s boucle break bstap buttmag bvode
-cainv calerf calfrq call canon casc case ccontrg cdfbet cdfbin cdfchi cdfchn cdffnc cdff cdfgam cdfnbn cdfnor cdfpoi cdft ceil center cepstrum chaintest chain_struct champ1 champ chart chdir cheb1mag cheb2mag check_graph check_io chepol chfact chol chsolve circuit classmarkov clean clearfun clearglobal clear close cls2dls cmb_lin cmndred cmoment code2str coeff coffg coff colcompr colcomp colinout colormap colregul companion comp cond conj connex continue contour2di contour2d contourf contour contract_edge contrss contr cont_frm cont_mat convex_hull convol convstr con_nodes copfac copy correl corr coshm cosh cosm cos cotg cothm coth covar csim cspect ctr_gram cumprod cumsum curblock cycle_basis czt c_link
-dasrt dassl datafit date dbphi dcf ddp debug dec2hex deff definedfields degree delbpt delete_arcs delete_nodes delete delip delmenu demolist denom derivative derivat des2ss des2tf determ detr det dft dhinf dhnorm diag diary diff diophant dirname dispbpt dispfiles disp dlgamma do double dragrect drawaxis drawlater drawnow draw driver dscr dsearch dsimul dtsi dt_ility duplicate
-edge_number edit_curv edit_graph_menus edit_graph edit eigenmarkov elemlib ell1mag elseif else emptystr empty end endfunction eqfir eqiir equil1 equil ereduc erfcx erfc erf errbar errcatch errclear error eval3dp eval3d eval evans evstr excel2sci execstr exec exists exit expm exp external eye
-fac3d factors faurre fchamp fcontour2d fcontour fec feedback feval ffilt fftshift fft fgrayplot figure fileinfo file filter findm findobj findx0BD find_freq find_path find findABCD findAC findBD findBDK findR fishing fit_dat fix floor flts foo formatman format fort for fourplan fplot2d fplot3d1 fplot3d fprintf fprintfMat frep2tf freq freson frexp frfit frmag fscanf fscanfMat fsfirlin fsolve fspecg fstabst fstair ftest ftuneq fullrfk fullrf full fun2string funcprot function funptr fusee
-gainplot gamitg gammaln gamma gcare gcd gcf genfac3d genlib genmarkov gen_net geom3d geomean getblocklabel getcolor getcurblock getcwd getdate getd getenv getfield getfont getf getio getlinestyle getmark getpid getscicosvars getsymbol getvalue getversion get_function_path get gfare gfrancis girth givens glever glist global glue graduate grand graph_2_mat graph_center graph_complement graph_diameter graph_power graph_simp graph_sum graph_union graycolormap grayplot graypolarplot grep group gr_menu gschur gsort gspec gstacksize gtild g_margin
-h2norm halt hamilton hankelsv hank harmean havewindow help_skeleton help hermit hess hex2dec hilb hinf hist3d histplot home horner host hotcolormap householder hrmt htrianr hypermat h_cl h_inf_st h_inf h_norm
-iconvert icon_edit ieee if iirgroup iirlp iir ilib_build ilib_compile ilib_for_link ilib_gen_gateway ilib_gen_loader ilib_gen_Make imag impl imrep2ss imult im_inv inistate input insertion int16 int2d int32 int3d int8 intc intdec integrate interpln interp intersci intersect intg intl intlib intppty intsplin inttrap inttype int invr invsyslin inv_coeff inv iqr isdef isdir isequal iserror isglobal isinf isnan isoview isreal is_connex
-jmat justify
-kalm karmarkar kernel keyboard knapsack kpure krac2 kron kroneck
-labostat language lasterror lattn lattp lcf lcmdiag lcm ldivf ldiv leastsq left legends length leqr levin lev lex_sort lft lgfft lib lin2mu lincos lindquist lines line_graph linfn linf link linmeq linpro linsolve linspace lin listfiles list lmisolver lmitool loadmatfile loadplots loadwave load_graph load locate log10 log1p log2 logm logspace log lotest lqe lqg2stan lqg_ltr lqg lqr lsq lsslist lstcat lstsize ltitr ludel lufact luget lusolve lu lyap
-macglov macr2lst macr2tree macrovar macro mad make_graph make_index manedit mapsound markp2ss matfile2sci matrix mat_2_graph maxi max_cap_path max_clique max_flow max mclearerr mclose meanf mean median meof mese mesh2d metalib mfft mfile2sci mfprintf mfscanf mgetl mgetstr mget milk_drop mine mini minreal minss min_lcost_cflow min_lcost_flow1 min_lcost_flow2 min_qcost_flow min_weight_tree min mlist mode modelica_libs modulo moment mopen move msprintf mprintf mps2linpro mputl mputstr mput mrfit mscanf msd mseek msscanf mtell mtlblib mtlb_load mtlb_mode mtlb_save mtlb_sparse mu2lin mucomp mulf mvvacov m_circle
-names nand2mean nanmax nanmeanf nanmean nanmedian nanmin nanstdev nansum narsimul ndims nearfloat nehari neighbors netclose netwindows netwindow newest newfun nextpow2 nf3d nfreq nlev nnz nodes_2_path nodes_degrees node_number noisegen norm null number_properties numdiff numer nyquist
-obscont1 obscont observer obsvss obsv_mat obs_gram odedc odedi odeoptions ode_discrete ode_root ode oldload oldsave ones optim optlib or orth 
-param3d1 param3d paramfplot2d parrot part pathconvert path_2_nodes pause pbig pdiv pen2ea pencan penlaur percentlib perctl perfect_match pertrans pfss phasemag phc pinv pipe_network playsnd plot2d1 plot2d2 plot2d3 plot2d4 plot2d plot3d1 plot3d2 plot3d3 plot3d plotframe plotprofile plot_graph plot plzr pol2des pol2str pol2tex polarplot polar polfact poly polylib portr3d portrait ppol prbs_a predecessors predef printf print prod profile projsl projspec proj psmall pspect pvmd3 pvm_addhosts pvm_barrier pvm_bcast pvm_bufinfo pvm_config pvm_delhosts pvm_error pvm_exit pvm_f772sci pvm_getinst pvm_gettid pvm_get_timer pvm_gsize pvm_halt pvm_joingroup pvm_kill pvm_lvgroup pvm_mytid pvm_parent pvm_probe pvm_recv pvm_reduce pvm_sci2f77 pvm_send pvm_set_timer pvm_spawn_independent pvm_spawn pvm_start pvm_tasks pvm_tidtohost pvm pwd p_margin
-qassign qr quapro quart quaskro quit 
-randpencil rand range rankqr rank rational rat rcond rdivf read4b readb readc_ readmps read realtime realtimeinit real recur reglin regress remezb remez repfreq replot residu resume return riccati riccsl ricc ric_desc rlist roblib roots rotate round routh_t rowcompr rowcomp rowinout rowregul rowshuff rpem rref rtitr rubberbox
-s2flib salesman savewave save_graph save scaling scanf schur sci2exp sci2for sci2map sciargs scicosim scicos_block scicos_cpr scicos_diagram scicos_graphics scicos_link scicos_main scicos_menus scicos_model scicos_pal scicos_params scicos_sim scicos_state scicos scifunc_block scilink scipad sd2sci secto3d select semidef sensi setbpt setdiff seteventhandler setfield setmenu setscicosvars set sfact sgrid shortest_path showprofile show_arcs show_graph show_nodes show_startupinfo sident siglib signm sign simp_mode simp sincd sinc sinc sinhm sinh sinm sin size sm2des sm2ss smooth solve sorder sort sound soundlib sp2adj spaninter spanplus spantwo sparse spchol spcompack specfact spec speye spget splin split_edge spones sprand sprintf spzeros sqroot sqrtm sqrt squarewave square srfaur srkf ss2des ss2ss ss2tf sscanf sskf ssprint ssrand stabil stacksize standard_define standard_draw standard_input standard_origin standard_output statslib stdevf stdev steadycos str2code strange strcat strindex string stripblanks strong_connex strong_con_nodes strsubst st_deviation st_ility subf subgraph subplot successors sum supernode sva svd svplot sylm sylv sysconv sysdiag sysfact syslin syssize systems system systmat
-tabul tangent tanhm tanh tanm tan tdinit tdcslib testmatrix texprint tf2des tf2ss then thrownan tic timer time_id titlepage tk_getdir tk_getfile tk_savefile tkscilib tlist toc toeplitz tokenpos tokens trace translatepaths trans_closure trans tree2code trfmod trianfml tril trimmean trisolve triu trzeros typename typeof type
-uicontrol uimenu ui_observer uint16 uint32 uint8 ulink unglue union unique unix_g unix_s unix_w unix_x unix unobs unsetmenu user utillib
-varargin varargout variancef variance varn vectorfind
-warning wavread wavwrite wfir what whereami whereis where while whos who_user who wiener wigner window winsid with_gtk with_pvm with_texmacs with_tk writb write4b write
-xarcs xarc xarrows xaxis xbasc xbasimp xbasr xchange xclear xclea xclick xclip xdel xdesslib xend xfarcs xfarc xfpolys xfpoly xfrect xgetech xgetfile xgetmouse xget xgraduate xgrid xinfo xinit xlfont xload xmltohtml xname xnumb xpause xpolys xpoly xrects xrect xrpoly xs2fig xs2gif xs2ppm xs2ps xsave xsegs xselect xsetech xsetm xset xstringb xstringl xstring xtape xtitle x_choices x_choose x_dialog x_matrix x_mdialog x_message_modeless x_message
-yulewalk
-zeropen zeros zgrid zpbutt zpch1 zpch2 zpell
+%browsehelp %kphelps %scicos_display_mode %scicos_help %scicos_menu %scicos_short %scipad_fontsize %toolboxes_dir %toolboxes
 ABSBLK_f AFFICH_f ANDLOG_f ANIMXY_f
 BIGSOM_f
-CLINDUMMY_f CLKIN_f CLKINV_f CLKOUT_f CLKOUTV_f CLKSOM_f CLKSOMV_f CLKSPLIT_f CLOCK_f CLR_f CLSS_f COMPILER CONST_f COSBLK_f CURV_f
+CLINDUMMY_f CLKIN_f CLKINV_f CLKOUT_f CLKOUTV_f CLKSOM_f CLKSOMV_f CLKSPLIT_f CLOCK_f CLR_f CLSS_f CONST_f COSBLK_f CURV_f
 DELAY_f DELAYV_f DEMUX_f DLR_f DLRADAPT_f DLSS_f
 EVENTSCOPE_f EVTDLY_f EVTGEN_f EXPBLK_f
-G_make GAIN_f GAINBLK_f GENERAL_f GENERIC_f GENSIN_f GENSQR_f
+GAIN_f GAINBLK_f GENERAL_f GENERIC_f GENSIN_f GENSQR_f
 HALT_f
 IFTHEL_f IN_f INDEX INTEGRAL_f INTRP2BLK_f INTRPLBLK_f INVBLK_f
 LANGUAGE LCC LOGBLK_f LOOKUP_f
-Matplot1 Matplot MAX_f MCLOCK_f MFCLCK_f MIN_f MSDOS MUX_f
-NDcost NEGTOPOS_f
+Matplot1 Matplot MAX_f MCLOCK_f MFCLCK_f MIN_f MUX_f
+NEGTOPOS_f
 OUT_f
-POSTONEG_f POWBLK_f PROD_f PWD
+POSTONEG_f POWBLK_f PROD_f
 QUANT_f
 RAND_f READC_f REGISTER_f RELAY_f RFILE_f
-Sfgrayplot Sgrayplot Signal SAMPLEHOLD_f SAT_f SAWTOOTH_f SCOPE_f SCI SCOPXY_f SELECT_f SINBLK_f SOM_f SPLIT_f STOP_f SUPER_f
-TANBLK_f TCLSS_f TEXT_f TIME_f TK_EvalFile TK_EvalStr TK_GetVar TK_SetVar TMPDIR TRASH_f
+Signal SAMPLEHOLD_f SAT_f SAWTOOTH_f SCOPE_f SCOPXY_f SELECT_f SINBLK_f SOM_f SPLIT_f STOP_f SUPER_f
+TANBLK_f TCLSS_f TEXT_f TIME_f TK_EvalFile TK_EvalStr TK_GetVar TK_SetVar TRASH_f
 WFILE_f WRITEC_f WSCI
 ZCROSS_f
-# $Extended$File$Info$
-#
+abort abs addf addinter addmenu amell and ans argn arma ascii atan
+balanc bdiag besseli besselj besselk bessely bezout bool2s break bvode
+calerf call case cdfbet cdfbin cdfchi cdfchn cdffnc cdff cdfgam cdfnbn cdfnor cdfpoi cdft ceil champ1 champ chdir check_io chol clean clearfun clearglobal clear close code2str coeff colormap comp conj continue contour2di contour contr convstr copy corr cos cumprod cumsum curblock c_link
+dasrt dassl debug deff definedfields degree delbpt delete delip delmenu demolist det dhinf diag diary dispbpt disp dlgamma double do drawaxis drawlater drawnow draw driver dsearch duplicate
+edit_graph_menus elseif else emptystr empty endfunction end ereduc errcatch errclear error execstr exec exists exit expm exp external eye
+fec feedback feval fft figure fileinfo file filter findobj find findBD fishing floor foo format fort for fprintfMat freq frexp fscanfMat fsolve fstair full funcprot function funptr fusee
+gammaln gamma geom3d getblocklabel getcurblock getcwd getdate getenv getfield getf getio getpid getscicosvars getversion get glist global glue grand grayplot grep gsort gstacksize
+havewindow hess hinf host
+iconvert icon_edit ieee if imag impl imult insertion int16 int2d int32 int3d int8 interp intersci intg intppty inttype int inv isdef isequal iserror isglobal isreal
+keyboard kron
+labostat language lasterror lattp ldivf ldiv left length lgfft lib lines link linmeq list loadwave load log1p log lsq lsslist lstcat lstsize ltitr ludel lufact luget lusolve lu
+macr2lst macr2tree macro make_index matrix maxi max mclearerr mclose meof mfprintf mfscanf mgetl mgetstr mget mine mini min mlist modelica_libs mode mopen move mprintf mputstr mput mscanf mseek msprintf msscanf mtell mtlb_mode mtlb_sparse mucomp mulf
+names nearfloat newfun nnz number_properties
+odedc odedi ode_discrete ode_root ode oldload oldsave ones optim or
+param3d1 param3d part pause plot2d1 plot2d2 plot2d3 plot2d4 plot2d plot3d1 plot3d poly ppol predef print prod pvmd3 pvm_addhosts pvm_barrier pvm_bcast pvm_bufinfo pvm_config pvm_delhosts pvm_error pvm_exit pvm_f772sci pvm_getinst pvm_gettid pvm_get_timer pvm_gsize pvm_halt pvm_joingroup pvm_kill pvm_lvgroup pvm_mytid pvm_parent pvm_probe pvm_recv pvm_reduce pvm_sci2f77 pvm_send pvm_set_timer pvm_spawn_independent pvm_spawn pvm_start pvm_tasks pvm_tidtohost pvm pwd
+qr quit
+rand rankqr rational rat rcond rdivf read4b readb readmps read realtimeinit realtime real remez residu resume return riccsl ricc rlist roots round rpem rtitr
+savewave save schur sciargs scicosim scicos_block scicos_cpr scicos_diagram scicos_graphics scicos_link scicos_main scicos_menus scicos_model scicos_pal scicos_params scicos_sim scicos_state scifunc_block scilink select semidef setbpt seteventhandler setfield setmenu setscicosvars set sfact sident sign simp_mode simp sinc sin size sorder sort sparse spchol spcompack spec spget splin sqrt stacksize standard_define standard_draw standard_input standard_origin standard_output str2code strcat strindex string strsubst subf sum svd
+testmatrix then timer tlist tokens tril triu typename type
+uicontrol uimenu uint16 uint32 uint8 ulink unglue unix unsetmenu user
+varargin varargout varn
+what whereis where while who winsid writb write4b write
+xarcs xarc xarrows xaxis xchange xclea xclick xdel xend xfarcs xfarc xfpolys xfpoly xfrect xgetech xgetfile xgetmouse xget xgraduate xgrid xinfo xinit xlfont xload xname xpause xpolys xpoly xrects xrect xs2fig xs2gif xs2ppm xs2ps xsave xsegs xselect xsetech xset xstringb xstringl xstring xtape xtitle x_choose x_dialog x_mdialog x_message_modeless x_message
+zeros

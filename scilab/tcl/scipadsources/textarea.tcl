@@ -77,14 +77,16 @@ proc scipadindent {textarea cm} {
 
 proc TextStyles { t } {
     global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
-    global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR
-    global BREAKPOINTCOLOR actbptextFont
+    global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR LFUNCOLOR PDEFCOLOR
+    global BREAKPOINTCOLOR actbptextFont textFont
 
     $t tag configure parenthesis -foreground $PARCOLOR
     $t tag configure bracket -foreground $BRAKCOLOR
     $t tag configure brace -foreground $BRACCOLOR
     $t tag configure punct -foreground $PUNCOLOR
     $t tag configure keywords -foreground $KEYWCOLOR
+    $t tag configure libfun -foreground $LFUNCOLOR
+    $t tag configure predef -foreground $PDEFCOLOR
     $t tag configure operator -foreground $OPCOLOR
     $t tag configure text -foreground $FGCOLOR
     $t tag configure textquoted -foreground $QTXTCOLOR
@@ -93,7 +95,8 @@ proc TextStyles { t } {
     $t tag configure number -foreground $NUMCOLOR
     scipadindent $t .8
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
-    $t tag configure activebreakpoint -font $actbptextFont -relief raised -borderwidth 2
+    $t tag configure activebreakpoint -font $actbptextFont \
+        -relief raised -borderwidth 2
 }
 
 

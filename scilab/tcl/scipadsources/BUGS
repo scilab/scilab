@@ -126,7 +126,8 @@ Wishes:
  dynamical colorization (the current loaded functions, defined global 
  variables are highlighted properly -
  the list could be read either at scipad startup or resfreshed on
- demand)
+ demand) [now partially implemented for dynamical predefs and library 
+ functions]
 
 -highlighting of for--end, while--end, select--end blocks while
  typing, like for parentheses; scope background remains highlighted in a

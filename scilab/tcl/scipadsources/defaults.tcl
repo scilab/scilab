@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.18"
+set version "Version 3.19"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below
@@ -11,7 +11,7 @@ set version "Version 3.18"
 set listofpref {wordWrap BGCOLOR FGCOLOR CURCOLOR PARCOLOR BRAKCOLOR \
        BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR TXTCOLOR QTXTCOLOR \
        REMCOLOR XMLCOLOR NUMCOLOR SELCOLOR BREAKPOINTCOLOR FontSize \
-	  WMGEOMETRY printCommand actbptextFont}
+       LFUNCOLOR PDEFCOLOR WMGEOMETRY printCommand actbptextFont}
 
 
 ##ES: default options which can be overriden
@@ -24,6 +24,8 @@ set BRAKCOLOR "DarkGoldenrod4"
 set BRACCOLOR "red"
 set PUNCOLOR "turquoise4"
 set KEYWCOLOR "blue2"
+set PDEFCOLOR "purple"
+set LFUNCOLOR "RoyalBlue1"
 set OPCOLOR "blue4"
 set TXTCOLOR $FGCOLOR
 set QTXTCOLOR "darkred"

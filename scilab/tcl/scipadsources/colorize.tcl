@@ -2,9 +2,11 @@
 # added by Matthieu PHILIPPE 21/11/2001
 #
 proc load_words {} {
-        global        words chset env
+        global words chset env
 
         set ownpath "$env(SCIPATH)/tcl/scipadsources"
+#load the keywords which cannot be yet derived from scilab, from 
+#  the "word" file (control keywords, internal functions, scicos palettes)
         set type {}
         set col {}
         set f [open $ownpath/words r]
@@ -21,6 +23,9 @@ proc load_words {} {
                 }
         }
         close $f
+# ask to scilab about keywords: the scripts sets at run time
+#  chset(scilab.predef.$) and chset(scilab.libfun.$)
+       ScilabEval "exec $ownpath/dynamickeywords.sce;" "seq"
 }
 
 #ES 2/10/2003
@@ -32,6 +37,8 @@ proc remalltags {w begin ende} {
         $w tag remove operator $begin $ende
         $w tag remove number $begin $ende
         $w tag remove keywords $begin $ende
+        $w tag remove predef $begin $ende
+        $w tag remove libfun $begin $ende
         $w tag remove text $begin $ende
         $w tag remove rem2 $begin $ende
         $w tag remove xmltag $begin $ende
@@ -42,7 +49,7 @@ proc remalltags {w begin ende} {
 
 proc colorize {w cpos iend} {
 # modified for schemas, ES 27/5/04
-        global        words chset
+        global words chset
         global listoffile 
         set num 0
         set textarea [gettextareacur]
@@ -89,16 +96,6 @@ proc colorize {w cpos iend} {
                         $w tag add brace $ind last
                 } else break
         }
-##ES: numbers (the regexp can be perfectioned -- it matches e.g. single e6)
-# number can contain +-. so follows operator (?)
-        $w mark set last begin
-        while {[set ind [$w search -regexp {\m\d*\.?\d*[deDE]?\-?\d{1,3}\M} \
-                             last ende]] != {}} {
-                if {[$w compare $ind >= last]} {
-                        $w mark set last $ind+1c
-                        $w tag add number $ind last
-                } else break
-        }
 # operators
         if {$schema=="scilab"} {
             $w mark set last begin
@@ -110,31 +107,56 @@ proc colorize {w cpos iend} {
                 } else break
             }
         }
+# number can contain +-. so follows operator (?)
+# (the regexp has to be perfectioned -- it matches e.g. single e6)
+        set numregexp {\m\d*\.?\d*([deDE][+\-]?\d{1,3})?\M}
+#	set numregexp {\m(\d+|\.\d+|\d+\.\d*)([deDE][+\-]?\d{1,3})?\M}
+        $w mark set last begin
+        while {[set ind [$w search -regexp $numregexp last ende]] != {}} {
+                if {[$w compare $ind >= last]} {
+                        $w mark set last $ind+1c
+                        remalltags $w $ind last
+                        $w tag add number $ind last
+                } else break
+        }
 # Scilab keywords
        if {$schema=="scilab"} {
-          set sciChset "(\[^A-Za-z0-9_\%\]|^)\[$chset(scilab.col1)\]"
+#          set sciChset "(\[^A-Za-z0-9_\%\]|^)\[$chset(scilab.col1)\]"
+	   set sciChset {[A-Za-z_\%]}
            $w mark set last begin
            while {[set ind [$w search -count num -regexp $sciChset last ende]]\
                    != {}} {
              if {[$w compare $ind >= last]} {
-                 set res ""
-                 regexp $sciChset [$w get $ind "$ind wordend+1c"] res
-                 if {$res != ""} {
-                     set num [string length $res]
-                     $w mark set last "$ind + $num c"
-                     $w mark set next {last wordend}
-                     set word [$w get last-1c next]
-                     set initial [string range $word 0 0]
-                     if {[string first $initial $sciChset]>=0} {
-                          if {[lsearch -exact $words(scilab.col1.$initial) \
-                                $word] != -1} {
-                              $w tag add keywords last-1c next
-                          }
-                     }
-                     $w mark set last next-1c
-                 } else {
+                set res ""
+                regexp $sciChset [$w get $ind "$ind wordend+1c"] res
+                if {$res != ""} {
+                   set num [string length $res]
+                   $w mark set last "$ind + $num c"
+                   $w mark set next {last wordend}
+                   set word [$w get last-1c next]
+                   set initial [string range $word 0 0]
+                   if {[string first $initial $chset(scilab.col1)]>=0} {
+                        if {[lsearch -exact $words(scilab.col1.$initial) \
+                              $word] != -1} {
+                            $w tag add keywords last-1c next
+                        }
+		   }
+                   if {[string first $initial $chset(scilab.predef)]>=0} {
+                        if {[lsearch -exact $words(scilab.predef.$initial) \
+                              $word] != -1} {
+                            $w tag add predef last-1c next
+                        }
+		   }
+                   if {[string first $initial $chset(scilab.libfun)]>=0} {
+                        if {[lsearch -exact $words(scilab.libfun.$initial) \
+                              $word] != -1} {
+                            $w tag add libfun last-1c next
+                        }
+                   }
+                   $w mark set last next-1c
+               } else {
                      $w mark set last last+1c
-                 }
+               }
              } else break
            }
         }
