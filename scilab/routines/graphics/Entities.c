@@ -10862,6 +10862,7 @@ currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
    case SCI_AGREG: 
      
       if (!sciGetVisibility(pobj)) break;
+      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
       /* scan the hierarchie and call sciDrawObj */
       psonstmp = sciGetLastSons (pobj);
       while (psonstmp != (sciSons *) NULL)
@@ -13993,7 +13994,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   /*  rect of the dimension of the agregation */
   pAGREG_FEATURE(pobj)->isselected = TRUE;
-
   return (sciPointObj *)pobj;
 }
 
@@ -16606,17 +16606,10 @@ int DestroyMerge (sciPointObj * pthis)
   return 0;
 }
 
-void Merge3d(sciPointObj *psubwin)
+int  Merge3dDimension(sciPointObj *pparent)
 {
-  integer i,q,k,N; 
+  integer N,q; 
   sciSons *psonstmp;
-  sciPointObj *pmerge; 
-  int *index_in_entity;
-  long *from_entity;
-
-  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
-  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
-    DestroyMerge(pmerge); 
 
   /* ========================================================================
    * Compute the number of facets, segments,... included in all the subwin 
@@ -16628,7 +16621,7 @@ void Merge3d(sciPointObj *psubwin)
    * ========================================================================*/
 
   q=0;
-  psonstmp = sciGetSons (psubwin);
+  psonstmp = sciGetSons (pparent);
   while (psonstmp != (sciSons *) NULL) {   
     switch (sciGetEntityType (psonstmp->pointobj)) {  
     case SCI_SURFACE:
@@ -16653,12 +16646,84 @@ void Merge3d(sciPointObj *psubwin)
     case  SCI_RECTANGLE: 
       N = 4;
       break;
+    case SCI_AGREG:
+      N =  Merge3dDimension(psonstmp->pointobj);
+      break;
     default:
       N=0;
     }
     q+=N;
     psonstmp = psonstmp->pnext;
   }
+  return q;
+}
+
+void Merge3dBuildTable(sciPointObj *pparent, int *index_in_entity, long *from_entity, int *pos)
+{
+  sciSons *psonstmp;
+  int i,N;
+
+  psonstmp = sciGetSons (pparent);
+  while (psonstmp != (sciSons *) NULL) {   
+    switch (sciGetEntityType (psonstmp->pointobj)) {  
+    case SCI_SURFACE:
+      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
+	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
+      else
+	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
+      break;
+    case  SCI_POLYLINE:
+      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
+	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
+	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
+	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
+      }
+      else/* patch */
+	N = 1; 
+      break;
+    case  SCI_SEGS: 
+      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
+      break;
+    case  SCI_RECTANGLE: 
+      N = 4;
+      break;
+    case SCI_AGREG:
+      Merge3dBuildTable(psonstmp->pointobj, index_in_entity, from_entity, pos);
+      break;
+    default:
+      N = 0;
+    }
+    if (sciGetEntityType (psonstmp->pointobj) != SCI_AGREG)
+      for (i=0 ; i<N; i++) {
+	index_in_entity[*pos]=i;
+	from_entity[*pos]=(long) sciGetHandle (psonstmp->pointobj);
+	*pos=*pos+1;
+      }
+    psonstmp = psonstmp->pnext;
+  }
+
+}
+
+
+void Merge3d(sciPointObj *psubwin)
+{
+  integer q,k; 
+  sciPointObj *pmerge; 
+  int *index_in_entity;
+  long *from_entity;
+
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) return; 
+  if ((pmerge= sciGetMerge(psubwin)) != (sciPointObj *) NULL)
+    DestroyMerge(pmerge); 
+
+  /* ========================================================================
+   * Compute the number of facets, segments,... included in all the subwin 
+   * children
+   * ========================================================================*/
+
+
+  q =  Merge3dDimension(psubwin);
+
 
   /* ========================================================================
    * allocate tables for index and handles
@@ -16677,42 +16742,9 @@ void Merge3d(sciPointObj *psubwin)
   /* ========================================================================
    * fill the index and handles tables
    * ========================================================================*/
-  psonstmp = sciGetSons (psubwin);
-  k=0; /*current table index */
-  while (psonstmp != (sciSons *) NULL) {   
-    switch (sciGetEntityType (psonstmp->pointobj)) {  
-    case SCI_SURFACE:
-      if (pSURFACE_FEATURE (psonstmp->pointobj)->typeof3d == SCI_PLOT3D) 
-	N=(pSURFACE_FEATURE (psonstmp->pointobj)->dimzx-1)*(pSURFACE_FEATURE (psonstmp->pointobj)->dimzy-1);
-      else
-	N = pSURFACE_FEATURE (psonstmp->pointobj)->dimzy;
-      break;
-    case  SCI_POLYLINE:
-      if (pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 5) {/*polyline*/
-	N = pPOLYLINE_FEATURE (psonstmp->pointobj)->n1-1;
-	if ((pPOLYLINE_FEATURE (psonstmp->pointobj)->plot != 2) && 
-	    (sciGetIsMark((sciPointObj *)psonstmp->pointobj) == 1)) N=N+1;
-      }
-      else/* patch */
-	N = 1; 
-      break;
-    case  SCI_SEGS: 
-      N=pSEGS_FEATURE (psonstmp->pointobj)->Nbr1/2;
-      break;
-    case  SCI_RECTANGLE: 
-      N = 4;
-      break;
-    default:
-      N = 0;
-    }
-    for (i=0 ; i<N; i++) {
-      index_in_entity[k]=i;
-      from_entity[k]=(long) sciGetHandle (psonstmp->pointobj);
-      k=k+1;
-    }
-    
-    psonstmp = psonstmp->pnext;
-  }
+  k=0;
+  Merge3dBuildTable(psubwin, index_in_entity, from_entity, &k);
+
   /* ========================================================================
    * create the Merge data structure
    * ========================================================================*/

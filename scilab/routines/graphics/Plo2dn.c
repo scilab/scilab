@@ -77,12 +77,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   sciPointObj  *psubwin;
   long hdl;
   long *hdltab;
-  int cmpt=0,i;
+  int cmpt=0,i,ok;
   int with_leg;
   double drect[6];
   char dataflag/*,frameflag*/;
 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  ok=0;  
+  if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
 
 
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
@@ -208,6 +210,7 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct agregation ----*/
     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt)); 
     FREE(hdltab);
+    if (ok==1) Merge3d(psubwin);
     sciDrawObj(sciGetCurrentFigure ()); /*A.Djalel 3D axes*/
     return(0);
   }
