@@ -51,8 +51,8 @@ c
      $     gbot,gtop,isiz
 
       integer ids(nsiz,psiz),pstk(psiz),rstk(psiz),pt,niv,macr,paus
-      integer icall
-      common /recu/ ids,pstk,rstk,pt,niv,macr,paus,icall
+      integer icall,krec
+      common /recu/ ids,pstk,rstk,pt,niv,macr,paus,icall,krec
 
       integer ddt,err,lct(8),lin(lsiz),lpt(6),hio,rio,wio,rte,wte
       common /iop/ ddt,err,lct,lin,lpt,hio,rio,wio,rte,wte
