@@ -4,7 +4,7 @@ c     interface of exec function
 c     Copyright INRIA/ENPC
       INCLUDE '../stack.h'
 c     
-      integer flag,semi
+      integer flag,semi,typ
       integer mode(2),retu(6)
       logical opened
       integer iadr,sadr
@@ -70,19 +70,24 @@ c     .        error control
      $        'step-by-step mode: enter carriage return to proceed')
       endif
       il=iadr(lstk(top))
-      if(istk(il).eq.1.or.istk(il).eq.10) then
-c     .  opening file
+      typ=abs(istk(il))
+      if(typ.eq.1.or.typ.eq.10) then
+c     .  exec of a file , opening file
          call v2cunit(top,'rb',lunit,opened,ierr)
          if(ierr.gt.0)  return
          top=top-1
+         typ=1
+      elseif(typ.eq.11.or.typ.eq.13) then
+c     .  exec of a function
+         typ=0
+      else
+         err=1
+         call error(44)
+         return
       endif
-
+c
+c     set error recovery flags
       pt=pt+1
-c     error control
-      ids(2,pt)=errct
-      ids(3,pt)=err2
-      ids(4,pt)=err1
-      ids(5,pt)=errpt
       if(icheck.eq.0) then
          ids(1,pt)=0
       else
@@ -96,7 +101,10 @@ c     error control
       endif
 
 
-      if(istk(il).eq.11.or.istk(il).eq.13) goto 15
+      if(typ.eq.0) goto 15
+
+c     exec of a file
+c     ---------------
       pstk(pt)=rio
       rio = lunit
       rstk(pt)=902
@@ -106,18 +114,42 @@ c     error control
       fin=flag
 c     *call*  macro
       go to 999
-      
  12   continue
       opened=ids(6,pt).eq.1
       if(.not.opened) call clunit(-rio,buf,mode)
       rio=pstk(pt)
       top=top+1
-      goto 17
+      if(ids(1,pt).eq.1) then
+c     return error number
+         il=iadr(lstk(top))
+         istk(il)=1
+         istk(il+1)=1
+         istk(il+2)=1
+         istk(il+3)=0
+         l=sadr(il+4)
+         stk(l)=err1
+         lstk(top+1)=l+1
+         fun=0
+      else
+         il=iadr(lstk(top))
+         istk(il)=0
+         lstk(top+1)=lstk(top)+1
+         err1=0
+      endif
+      pt=pt-1
+      goto 999
+
 
 c     exec of a function
+c     ------------------
  15   continue
       fin=lstk(top)
       pstk(pt)=flag
+c     preserve error recovery flags (for exec(file) it is done inside macro)
+      ids(2,pt)=errct
+      ids(3,pt)=err2
+      ids(4,pt)=err1
+      ids(5,pt)=errpt
       rstk(pt)=909
       icall=5
 c     *call*  macro
@@ -146,5 +178,6 @@ c     return error number
       endif
       pt=pt-1
       goto 999
+c
  999  return
       end

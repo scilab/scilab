@@ -30,7 +30,9 @@ c
       goto 99
 c     
  10   continue
-      if(r.eq.701.or.r.eq.902.or.r.eq.604) goto 50
+
+c     check for interpreted pause(701),compiled pause(604) or exec(902)
+      if(r.eq.902.or.r.eq.701.or.r.eq.604) goto 50
 
 c     initialize macro or execstr execution
 c------------------------------------------
@@ -434,6 +436,17 @@ c
       lct(8)=0
       rstk(pt)=503
       pstk(pt)=wmac
+      
+c     preserve current error recovery modes
+      ids(2,pt)=errct
+      ids(3,pt)=err2
+      ids(4,pt)=err1
+      ids(5,pt)=errpt
+      if(r.eq.701.or.r.eq.604) then 
+c     .  disable error recovery mode , for pause only
+         err1=0
+         errct=-1
+      endif
       wmac=0
       icall=7
 c     *call parse*
@@ -456,6 +469,14 @@ c     fin exec
          paus=paus-1
       endif
       wmac=pstk(pt)
+      r=rstk(pt-1)
+
+c     restore current error recovery modes
+      errct=ids(2,pt)
+      err2=ids(3,pt)
+      err1=ids(4,pt)
+      errpt=ids(5,pt)
+
       pt=pt-1
       go to 99
 c     
