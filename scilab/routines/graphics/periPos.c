@@ -1030,7 +1030,7 @@ void C2F(displaystringPos)(char *string, integer *x, integer *y, integer *v1, in
   
   FPRINTF((file,"\n%%Latex:\\myput{%d}{%d}{%d}{%s}",
 	   (int)*x,def_height*prec_fact - yn, 
-	   fontsizePos (),
+	   fontsizePos ()/2,
 	   string));
  }
 
@@ -1688,9 +1688,13 @@ void FileInit(void)
 	}
       FPRINTF((file,"0.0 1.0] def"));
     }
-  FPRINTF((file,"\n%%Latex:\\begin{picture}(%d,%d)(0,0)",
+  FPRINTF((file,"\n%%Latex:\\setlength{\\unitlength}{%4.2fpt}",
+	   1.0/(prec_fact*2)));
+  FPRINTF((file,"\n%%Latex:\\begin{picture}(%d,%d)(%d,0)",
 	   def_width*prec_fact,
-	   def_height*prec_fact));
+	   def_height*prec_fact,
+	   def_width/3  /* not so clear XXX */
+	   ));
 }
 
 /*--------------------------------------------------------
