@@ -8,21 +8,19 @@
   <SHORT_DESCRIPTION name="ScilabEval"> tcl instruction : Evaluate a string
     with scilab interpreter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>ScilabEval str opt </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ScilabEval instruction</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ScilabEval instruction "seq"</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ScilabEval instruction "sync"</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>ScilabEval instruction "sync" "seq"</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str </PARAM_NAME>
+        <PARAM_NAME>instruction </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: tcl string character contains the string to evaluate with the current scilab interpreter.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
-        <PARAM_NAME>opt</PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: tcl optionnal string character may contains "seq".</SP>
+          <SP>: tcl string character contains a Scilab instruction to evaluate
+	    with the current scilab interpreter.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -31,59 +29,84 @@
     <P>
     This function must be called in a tcl/tk script executed from scilab.
     It allows to associate scilab actions to tcl/tk widgets (graphic
-    objects).  The string <VERB>str</VERB> is put in the scilab interpreter buffer
-    which then evaluates it.  This has in general no border effect in the
-    tcl/tk interpreter.
+    objects) or to use Scilab to perform some computation within a Tcl script. 
     </P>
     <P>
-    The instructions send to Scilab by <VERB>ScilabEval</VERB> are executed in an
-      asynchronous way. The instrutions are first stored in a command buffer,
-      and Scilab executes them when possible (it sould be at the prompt but
-      also at the  end of each instructions of the currently running
-      function) but in the ordrer they were submitted. If a user wants to be sure
-      that a <VERB>ScilabEval</VERB> command execution will be completed before execution of
-      any other one is started, he should add the optional argument <VERB>seq</VERB>.
+    If the <VERB>ScilabEval instruction </VERB> syntax is used, the
+      <VERB>instruction</VERB> is  first stored in a FIFO queue,
+      <VERB>ScilabEval</VERB> returns immediately.
+      Scilab executes the queued <VERB>instructions</VERB>  when
+      possible (it sould be at the prompt but also at the  end of each
+      instructions of the currently running function)  in the ordrer they
+      were submitted. This syntax can be used to associate Scilab actions to
+      tcl/tk widgets but not into a  Tcl script executed by
+      <VERB>TK_EvalFile</VERB> or <VERB>TK_EvalStr</VERB> because in this
+      situation the Scilab interpreter is blocked up to the end of the script.
+    </P>
+    <P>
+      If <VERB>"seq"</VERB> option is added, the associated instruction
+      evaluation should be finished (or paused) before the next queued instruction
+      evaluation started.
+    </P>
+    <P>
+      If the <VERB>ScilabEval instruction "sync"</VERB> syntax is used, the instruction
+      is  executed immediately and the ScilabEval instruction returns when the
+      <VERB>instruction </VERB>evaluation is finished.
+    </P>
+   <P>
+      If <VERB>"seq"</VERB> option is added, the associated instruction
+      evaluation should be finished (or paused) before any  queued instruction
+      evaluation can be started started.
     </P>
   </DESCRIPTION>
 
   <EXAMPLE>
 <![CDATA[
+//Callbacks and "seq" option usage
+
 //create tcl instructions
 tcl_script=['toplevel .w1'
-'button .w1.b -text ""Click here to start without seq option""\'
-'  -command Draw'
-'button .w1.b1 -text ""Click here to start with seq option""\'
-'  -command Draw1'
-'button .w1.s -text ""Click here to Stop animation""\'
-'  -command {ScilabEval ""global cont;cont=%f""}'
-'pack .w1.b .w1.b1 .w1.s'
-'proc Draw {} { ';
-'  ScilabEval ""cont=%f;global cont;xpause(1d6);cont=%t;"" '
-'  ScilabEval ""mydraw()"" '
+'button .w1.b -text ""Click here to execute without seq option""  -command WithoutSeq'
+'button .w1.b1 -text ""Click here to execute with seq option""  -command  WithSeq'
+'pack .w1.b .w1.b1'
+'proc  WithoutSeq {} { ';
+'  ScilabEval ""cont=%f;;cont=%t;"" '
+'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
 '}'
-'proc Draw1 {} { ';
-'  ScilabEval ""cont=%f;global cont;xpause(1d6);cont=%t;"" ""seq""'
-'  ScilabEval ""mydraw()""'
+'proc WithSeq {} { ';
+'  ScilabEval ""cont=%f;;cont=%t;""  ""seq""'
+'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
 '}'];
-
-
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
-
-function mydraw(), 
-  global cont;
-  f=gcf();clf();f.pixmap='on';//for smooth animation
-  t=-%pi:0.3:%pi;plot3d1(t,t,sin(t)'*cos(t));show_pixmap();
-  a=gca();
-  while cont, 
-    a.rotation_angles(2)=modulo(a.rotation_angles(2)+1,360)
-    show_pixmap();
-  end
-endfunction
-
 // Execute the tcl script
+cont=%f;
 TK_EvalFile(TMPDIR+'/test.tcl');;
 
+//scripts and "sync" option usage
 
+//----------------without "sync"----------------
+tcl_script=['  set t ""0""'
+    '  while {$t != ""10""} {'
+    '     ScilabEval ""a=$t;mprintf(''%d '',a);""'
+    '     incr t'
+    '  }'];
+
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+// Execute the tcl script
+TK_EvalFile(TMPDIR+'/test.tcl');mprintf('TK_EvalFile finished\n');
+// The ScilabEval are executed  after the and of TK_EvalFile
+
+//----------------with "sync"----------------
+tcl_script=['  set t ""0""'
+    '  while {$t != ""10""} {'
+    '     ScilabEval ""a=$t;mprintf(''%d '',a);"" ""sync""'
+    '     incr t'
+    '  }'];
+
+mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+// Execute the tcl script
+TK_EvalFile(TMPDIR+'/test.tcl');mprintf('TK_EvalFile finished\n');
+// The ScilabEval are executed  synchronously with TK_EvalFile
 
  ]]>
   </EXAMPLE>
