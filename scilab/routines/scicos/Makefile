@@ -29,11 +29,12 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 	sawtth.o tcslti.o tcsltj.o scopxy.o evscpe.o integr.o readf.o affich.o\
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
-	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o constraint.o\
-	blocks.o 
+	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
+	diffblk.o constraint.o 
+
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
-	readau.o plusblk.o slider.o
+	readau.o plusblk.o slider.o 	blocks.o 
 
 OBJSF=intcos.o coselm.o sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o \
 	cosini.o cossim.o cosend.o \
