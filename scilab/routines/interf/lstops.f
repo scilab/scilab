@@ -7,9 +7,8 @@ c     Copyright INRIA
       include '../stack.h'
 c
 c
-      integer insert,extrac, toto, gettype
+      integer insert,extrac
       data insert/2/,extrac/3/
-      logical ishm
 
 c     handle recursion
       if(rstk(pt).eq.403.or.rstk(pt).eq.405) goto 10
@@ -32,26 +31,12 @@ c     undefined operations (look for function-defined operation)
 c
 c     extraction
  10   continue
-      toto = gettype(top-1)
-c$$$      print *, ' type de top =', gettype(top), ' type de top-1 =', toto
-      if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
-         call intehm()
-      else               
-         call intl_e()
-      endif
+      call intl_e()
       return
 c
 c     insertion
  50   continue
-      toto = gettype(top-2)  ! a priori
-c$$$      print *, ' type de top =',   gettype(top), 
-c$$$     $         ' type de top-1 =', gettype(top-1),
-c$$$     $         ' type de top-2 =', toto
-      if ( ishm() .and. toto.ne.10 .and. toto.ne.15) then
-         call intihm()
-      else               
-         call intl_i()
-      endif
+      call intl_i()
       if(err.gt.0) return
 c      if(rstk(pt).eq.407) goto 50
       return
