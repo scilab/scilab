@@ -1,4 +1,4 @@
-function r=%s_p_i(a,n)
+function r=%s_j_i(a,n)
 isn=inttype(n)
 if or(double(iconvert(a,isn))<>a)|or(n<0) then
   r=a.^double(n)

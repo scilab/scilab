@@ -1,4 +1,4 @@
-function M=%hm_i_i(varargin)
+function M=%hm_i_b(varargin)
 // Copyright INRIA
 //insertion of an hypermatrix in a matrix  derived from %hm_i_hm
   [lhs,rhs]=argn(0)
