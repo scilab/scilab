@@ -36,6 +36,7 @@ ilib_build(ilib_name,table,files,libs)
    running the makefile
    compilation of intview
    compilation of intmatmul
+   building shared library (be patient)
  
  
  
