@@ -5125,7 +5125,7 @@ int gget(fname,fname_len)
 int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol)
 {
   int xtmp;
-  int  i,num,v=1,na,id;
+  int  i,num,v=1,na,id,cur,verb=0;
   double dtmp,dv=0.0; 
   char  **str, **ptr, ctmp[10];    
   sciPointObj *psubwin, *figure, *tmpobj;
@@ -5305,24 +5305,51 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     } 
   else if (strncmp(marker,"axes_size", 9) == 0)
     {
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=(int)stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=(int)stk(*value)[1];
-      if ((sciPointObj *)pobj != pfiguremdl)
-	C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
-		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ((sciPointObj *)pobj != pfiguremdl) {
+	num=pFIGURE_FEATURE(pobj)->number;
+	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F(dr)("xset","wdim",
+		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
+		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),
+		PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
     } 
   else if (strncmp(marker,"figure_size", 11) == 0)
     {
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=(int)stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=(int)stk(*value)[1];
-      if ((sciPointObj *)pobj != pfiguremdl)
-	C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
-		&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ((sciPointObj *)pobj != pfiguremdl) {
+	num=pFIGURE_FEATURE(pobj)->number;
+	C2F(dr)("xget","window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F(dr)("xset","wpdim",
+		&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
+		&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight),
+		PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      }
+
     }
   else if (strncmp(marker,"figure_name", 11) == 0) {
     sciSetName((sciPointObj *) pobj, cstk(*value), (*numcol)*(*numrow));
   }
   else if (strncmp(marker,"figure_id", 9) == 0){
+    if (sciGetEntityType (pobj) != SCI_FIGURE) {
+      sprintf(error_message,"%s property undefined for this object",marker);
+      return -1;
+    }
     id = (int)stk(*value)[0];
     if ((sciPointObj *)pobj != pfiguremdl)
       {
@@ -5334,21 +5361,25 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }
   else if (strncmp(marker,"rotation_style", 14) == 0)
     { 
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       if (strncmp(cstk(*value),"unary",5)==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 0 ;
       else if (strncmp(cstk(*value),"multiple",8)==0 )
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
       else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
     }
-  /*Ajout A.Djalel*/
   else if (strncmp(marker,"pixmap", 6) == 0){
-    if (strncmp(cstk(*value),"on",2)==0 ){
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
+    if (strncmp(cstk(*value),"on",2)==0 )
       pFIGURE_FEATURE(pobj)->pixmap =1;
-      /*sciSetVisibility (pobj, FALSE);*/}
-    else if (strncmp(cstk(*value),"off",3)==0 ){
+    else if (strncmp(cstk(*value),"off",3)==0 )
       pFIGURE_FEATURE(pobj)->pixmap =0;
-      /*sciSetVisibility (pobj, TRUE);
-      pFIGURE_FEATURE(pobj)->wshow=0;*/}
     else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
   }
   /********************** context graphique ******************************/
@@ -6377,7 +6408,7 @@ return 0;
 int sciGet(sciPointObj *pobj,char *marker)
 {
 int numrow, numcol, outindex, i,j,k;
-integer x[2],x1[10], x2,itmp=0, flagx=0;
+integer x[2],x1[10], x2,itmp=0,na,flagx=0;
 sciSons *toto;
 double *tab;
 char **str;
@@ -6478,8 +6509,7 @@ if ((pobj == (sciPointObj *)NULL) &&
   /************************  figure Properties *****************************/ 
   else if (strncmp(marker,"figure_position", 15) == 0)
     {
-	Etype=sciGetEntityType (pobj); /* CHECK IF NORMALLY WE HAVE TO REDECLARE Etype here F.Leray 06.04.04 */
-      if (Etype != SCI_FIGURE) {
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
 	return -1;
       }
@@ -6503,13 +6533,17 @@ if ((pobj == (sciPointObj *)NULL) &&
     }  
   else if (strncmp(marker,"axes_size", 9) == 0)
     {
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       numrow   = 1;
       numcol   = 2;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       if ((sciPointObj *) pobj != pfiguremdl)
 	{ 
-	  stk(outindex)[0] = sciGetPosWidth ((sciPointObj *) pobj); 
-	  stk(outindex)[1] = sciGetPosHeight ((sciPointObj *) pobj); 
+	  stk(outindex)[0] = sciGetWidth ((sciPointObj *) pobj); 
+	  stk(outindex)[1] = sciGetHeight ((sciPointObj *) pobj); 
 	}
       else
 	{
@@ -6519,12 +6553,22 @@ if ((pobj == (sciPointObj *)NULL) &&
     } 
   else if (strncmp(marker,"figure_size", 15) == 0)
     {
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       numrow   = 1;
       numcol   = 2;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
-	  C2F(dr)("xget","wpdim",&itmp,x,&itmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  int cur,num=pFIGURE_FEATURE(pobj)->number;
+	  C2F(dr)("xget","window",&itmp,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+	  C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+	  C2F(dr)("xget","wpdim",&itmp,x,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=x[0];  
 	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=x[1]; 
 	}
@@ -6533,6 +6577,10 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
   else if (strncmp(marker,"figure_name", 11) == 0)
     {
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       numrow = 1;
       numcol = sciGetNameLength((sciPointObj *) pobj);
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
@@ -6547,6 +6595,10 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
   else if (strncmp(marker,"rotation_style", 14) == 0) 
     {
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       numrow = 1;numcol = 8;
       CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
       if (pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle == 0)
@@ -6557,6 +6609,10 @@ if ((pobj == (sciPointObj *)NULL) &&
   /*Ajout A.Djalel*/
   else if (strncmp(marker,"pixmap", 6) == 0) 
     {
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
       numrow = 1;numcol = 3;
       CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
       if (pFIGURE_FEATURE(pobj)->pixmap==1)
@@ -7776,7 +7832,7 @@ int glue(fname,fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer numrow,numcol,l1,l2,lind,n,cx1=1 ;
+  integer numrow,numcol,l1,l2,lind,n,cx1=1,ret ;
   unsigned long hdl, parenthdl;
   long *handelsvalue;
   int outindex,i;
@@ -7821,7 +7877,15 @@ int glue(fname,fname_len)
 	}
                             
     }
-
+  ret = CheckForAgregation (handelsvalue, n);
+  if (ret>0) {
+    Scierror(999,"%s: handle %d cannot be glued (invalid parent)\r\n",fname,ret);
+    return 0;
+  }
+  if (ret<0) {
+    Scierror(999,"%s: handle %d cannot be glued (invalid type)\r\n",fname,-ret);
+    return 0;
+  }
   sciSetCurrentObj ((sciPointObj *)ConstructAgregation (handelsvalue, n));
   
   numrow = 1;
