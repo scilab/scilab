@@ -8,6 +8,7 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 	scicos signal sound strings tdcs tksci translation utilities
 
 QUIET= > /dev/null 
+LANGUAGE=eng 
 
 XSLFILE=../html-jpc.xsl
 #XSLFILE=../html.xsl
@@ -28,7 +29,7 @@ html:
 	do \
 		(cd $$i ;\
 		echo "Processing chapter $$i"; \
-		$(SCIDIR)/bin/scilab -nw -l eng -f ../make-links.sce  $(QUIET); \
+		$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f ../make-links.sce  $(QUIET); \
 		for j in *.xml2; \
 		do if [ $$j != "*.xml2" ]; then \
 			echo "   processing $${j%.*}.xml"; \
@@ -43,12 +44,12 @@ html:
 
 index:
 	@echo "Creating index.html"
-	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-index.sce" $(QUIET)
+	@$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f "make-index.sce" $(QUIET)
 
 
 contents: 
 	@echo "Creating contents.html"
-	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-contents.sce" $(QUIET)
+	@$(SCIDIR)/bin/scilab -nw -l $(LANGUAGE) -f "make-contents.sce" $(QUIET)
 
 check:
 	@for i in $(DIRS) ;\
@@ -67,4 +68,4 @@ distclean::
 	$(RM)  $(FILES_TO_CLEAN)
 
 manclean:
-	$(RM)  $(FILES_TO_CLEAN) */whatis */*.html index.html
+	$(RM)  $(FILES_TO_CLEAN) */whatis */*.htm index.htm contents.htm
