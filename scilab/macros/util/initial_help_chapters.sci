@@ -8,7 +8,7 @@ end
 dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
       "gui";"utilities";"linear";"polynomials";"control";"robust";
       "nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
-      "pvm";"tdcs";"tksci";"statistics";"dcd";"identification"];
+      "pvm";"tdcs";"tksci";"statistics";"dcd";"identification";"mtlb"];
 sep="/";if MSDOS then sep="\",end
 %helps=sep+"man"+sep+language+sep+dirs; 
 select language
@@ -28,7 +28,8 @@ case "eng"
 	   "TCL/Tk interface";
 	   "Statistic basics";
 	   "Cumulative Distribution Functions; Inverses, grand";
-           "Identification"]];
+           "Identification";
+	   "Matlab to Scilab conversion tips"]];
   case "fr"
   %helps=[%helps,..
 	  ["Programmation";"Librairie graphique";"Fonctions élémentaires";
@@ -46,6 +47,7 @@ case "eng"
 	   "Interface TCL/Tk";
 	   "Statistiques";
 	   "Fonctions de distributions statistiques";
-           "Identification"]];
+           "Identification";
+	   "Aide à la conversion Matlab vers Scilab"]];
 end
 %helps=[SCI+%helps(:,1),%helps(:,2)];
