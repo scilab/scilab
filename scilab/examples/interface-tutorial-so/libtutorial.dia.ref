@@ -2,7 +2,6 @@
 tutorial_path=get_file_path('libtutorial.tst');
  
 shared archive loaded
-
  
 //same as "exec tutorial.sce"
  
