@@ -54,7 +54,7 @@ M5 =    cell.sci struct.sci  \
 	%st_i_b.sci  %st_i_fptr.sci  %st_i_i.sci   %st_i_msp.sci\
 	%st_i_s.sci %st_i_spb.sci %st_i_c.sci %st_i_h.sci %st_i_ip.sci\
 	%st_i_p.sci %st_i_sp.sci st_i_generic.sci %st_t.sci %st_c_st.sci\
-	%st_f_st.sci %ce_t.sci %ce_i_s.sci generic_i_ce.sci
+	%st_f_st.sci %ce_t.sci %ce_i_s.sci generic_i_ce.sci mtlb_axis.sci
 
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
