@@ -1276,7 +1276,7 @@ int OLE_open_file( struct OLE_object *ole, char *fullpath )
 
   ole->file_size = st.st_size;
 
-  f = fopen(fullpath,"r");
+  f = fopen(fullpath,"rb");
   if (f == NULL)
     {
       ole->f = NULL;
@@ -1386,7 +1386,7 @@ int OLE_store_stream( struct OLE_object *ole, char *stream_name, char *directory
     } else {
       FILE *f;
 
-      f = fopen(full_path,"w");
+      f = fopen(full_path,"wb");
       if (f == NULL)
 	{
 	  LOGGER_log("%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)",FL, full_path, strerror(errno));
@@ -1436,7 +1436,7 @@ int OLE_store_excel_stream( struct OLE_object *ole, char *full_path,  char *stre
 {
   FILE *f;
 
-  f = fopen(full_path,"w");
+  f = fopen(full_path,"wb");
   if (f == NULL)
     {
       LOGGER_log("%s:%d:OLE_store_excel_stream:ERROR: Cannot open %s for writing (%s)",FL, full_path, strerror(errno));

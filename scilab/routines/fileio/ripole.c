@@ -337,33 +337,34 @@ int main( int argc, char **argv )
 
 int ripole(char *inputfile, char *outputdir, int debug, int verbose)
 {
-	struct OLE_object *ole = NULL;
+  /*struct OLE_object *ole = NULL;*/
+  struct OLE_object ole;
 	int result = 0;
 
-	ole = malloc(sizeof(struct OLE_object));
+	/*ole = malloc(sizeof(struct OLE_object));
 	if (ole == NULL)
 	{
 		LOGGER_log("ripOLE: Cannot allocate memory for OLE object");
 		return 1;
-	}
+	}*/
 
 	LOGGER_set_output_mode(_LOGGER_STDOUT);
 
-	OLE_init(ole);
-	if (debug ==1 ) OLE_set_debug(ole, OLE_DEBUG_NORMAL);
-	if (verbose == 1) OLE_set_verbose(ole, OLE_VERBOSE_NORMAL);
+	OLE_init(&ole);
+	if (debug ==1 ) OLE_set_debug(&ole, OLE_DEBUG_NORMAL);
+	if (verbose == 1) OLE_set_verbose(&ole, OLE_VERBOSE_NORMAL);
 
-	OLE_set_save_unknown_streams(ole, 2); /* get only excel streams */
+	OLE_set_save_unknown_streams(&ole, 2); /* get only excel streams */
 
-	OLE_set_filename_report_fn(ole, ripOLE_report_filename_decoded );
+	OLE_set_filename_report_fn(&ole, ripOLE_report_filename_decoded );
 
-	result = OLE_decode_file( ole, inputfile, outputdir);
-	OLE_decode_file_done(ole);
+	result = OLE_decode_file( &ole, inputfile, outputdir);
+	OLE_decode_file_done(&ole);
 
 
 	if ((result != 0)&&(verbose==1)) 
 	  LOGGER_log("ripOLE: decoding of %s resulted in error %d\n", inputfile, result );
 
-	if (ole != NULL) free(ole);
+	/*if (ole != NULL) free(ole);*/
 	return result;
 }

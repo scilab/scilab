@@ -144,7 +144,7 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
 		return -1;
 	}
 
-	f = fopen(full_name,"w");
+	f = fopen(full_name,"wb");
 	if (f != NULL)
 	{
 		size_t write_count;
