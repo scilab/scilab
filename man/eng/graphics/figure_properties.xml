@@ -69,6 +69,13 @@
             <SP>This property controls the figure window background color. IT takes as value
      an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
+            <DESCRIPTION_ITEM label="pixmap: ">
+            <SP>This property controlst the pixmap status of a Graphic Window.
+	    If this property value is <VERB>&quot;off&quot;</VERB> the graphics 
+	    are directly displayed on the screen. If it is <VERB>&quot;on&quot;</VERB> 
+	    the graphics are done on a pixmap and are sent to the graphics window with 
+	    the command xset("wshow"). </SP>
+          </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="pixel_drawing_mode: ">
             <P>
      This field defines the bitwise operation used to draw the pixel

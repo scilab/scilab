@@ -129,6 +129,7 @@ function %h_p(h)
 	 "figure_id= "+sci2exp(h.figure_id,0)
          "color_map= matrix "+strcat(string(size(h.color_map)),'x')
 	 "background= "+string(h.background)
+	 "pixmap= "+string(h.pixmap)
 	 "pixel_drawing_mode= "+sci2exp(h.pixel_drawing_mode,0)
 	 " "
 	 "auto_scale= "+h.auto_scale
