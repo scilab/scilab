@@ -11,14 +11,16 @@ typ='c';if dom<>'c' then typ='d',end
 // controllable part
 if rhs==1 then 
   if [a,b]~=[] then reltol=1.d-10*norm([a,b],1);else reltol=0;end
-  [a,b,u,n]=contr(a,b,reltol)
-         else [a,b,u,n]=contr(a,b,tol)
+  //[a,b,u,n]=contr(a,b,reltol);
+	[n,U,ind,V,a,b]=contr(a,b,reltol);
+         //else [a,b,u,n]=contr(a,b,tol);
+	else [n,U,ind,V,a,b]=contr(a,b,reltol);
 end;
 n=sum(n);nc=n;
 if lhs==4 then c=c*u;x0=u'*x0;end
 if n<>na then
 //order evals uncont. part
-  nn=n+1:na
+  nn=n+1:na;pause;
   [v,n1]=schur(a(nn,nn),part(typ,1))
   n=n+n1
 //new realization
