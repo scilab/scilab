@@ -485,11 +485,11 @@ int intdet(fname)
   CmplxA=header1[3];   
   switch (CmplxA) {
   case REAL:   
-    ret = C2F(intddet)("det",2L);
+    ret = C2F(intddet)("det",3L);
     return 0;
     break;
   case COMPLEX:
-    ret = C2F(intzdet)("det",2L);
+    ret = C2F(intzdet)("det",3L);
     return 0;
     break;
   default:
