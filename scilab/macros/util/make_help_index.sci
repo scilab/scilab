@@ -11,7 +11,7 @@ function path=make_help_index()
 	 "</head>";
 	 "<body bgcolor=""FFFFFF"">";]
   global %browsehelp
-  if %browsehelp == "Scilab Browser" then
+  if %browsehelp == "Old Scilab Browser" then
   	// Scilab Browser
   	i_lines=[i_lines;
   		"<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
