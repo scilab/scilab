@@ -145,6 +145,7 @@
 {"xname",             	IN_matdes,      66,     2},
 {"xaxis",             	IN_matdes,      67,     2},
 {"seteventhandler",    	IN_matdes,      68,     2},
+{"handle",    		IN_matdes,      69,     2},
 #ifdef WITH_GTK
 {"help_gtk",           	IN_matdes,      69,     2},
 #endif 
@@ -295,6 +296,7 @@
 {"lstcat",		IN_lstelm,	6,	1},	
 {"mlist",		IN_lstelm,	7,	1},	
 {"definedfields",	IN_lstelm,	8,	1},	
+{"lstsize",		IN_lstelm,	9,	1},	
 #define  IN_sigelm  18  
 {"amell",		IN_sigelm,	6,	2},	
 {"corr",		IN_sigelm,	4,	2},	
