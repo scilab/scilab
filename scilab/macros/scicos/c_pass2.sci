@@ -1122,7 +1122,14 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	if ninnout<=0  then ok=%f;return;end
 	ww=find(bllst(connectmat(jj,1)).out==nout)
 	bllst(connectmat(jj,1)).out(ww)=ninnout
-	
+	//
+	if bllst(connectmat(jj,1)).nzcross==nout then
+	    bllst(connectmat(jj,1)).nzcross=ninnout
+	end
+	if bllst(connectmat(jj,1)).nmode==nout then
+	  bllst(connectmat(jj,1)).nmode=ninnout
+	end
+	//
 	ww=find(bllst(connectmat(jj,1)).in==nout)
 	bllst(connectmat(jj,1)).in(ww)=ninnout
 	
@@ -1130,8 +1137,18 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
 	  bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
 	end
+	//
 	ww=find(bllst(connectmat(jj,3)).in==nin)
 	bllst(connectmat(jj,3)).in(ww)=ninnout
+	//
+	if bllst(connectmat(jj,3)).nzcross==nin then
+	  bllst(connectmat(jj,3)).nzcross=ninnout
+	end
+	if bllst(connectmat(jj,3)).nmode==nin then
+	  bllst(connectmat(jj,3)).nmode=ninnout
+	end
+
+	//
 	ww=find(bllst(connectmat(jj,3)).out==nin)
 	bllst(connectmat(jj,3)).out(ww)=ninnout
 	ww=find(bllst(connectmat(jj,3)).out==0)
