@@ -13,7 +13,7 @@ c
 
 c     
 c     fin    1       2     3        4
-c           ereduc  fstair
+c                        ereduc  fstair
 c     
       sadr(l)=(l/2)+1
       iadr(l)=l+l-1
@@ -26,10 +26,14 @@ c
       tops=top
       eps=stk(leps)
 c     
-      if (fin .eq.1) then
+      if (fin .eq.3) then
          call intereduc
-      elseif (fin .eq. 2) then
+      elseif (fin .eq. 4) then
          call intfstair
+      else
+         buf='some primitive functions has moved,'//
+     &        'recompile your scilab functions'
+         call error(1111)
       endif
       return
 c     
