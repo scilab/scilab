@@ -167,6 +167,7 @@ proc setup {} {
 	bind Text <Key> {}
 	bind Text <Key-Return> {}
         bind Text <ButtonPress-2> {}
+        bind Text <ButtonRelease-2> {set tototo 1} # BEURK qui fera mieux pour inhiber le coller!!!
 	bind Text <Key-Tab> {}
 	bind Text <Key-Delete> {}
         bind Text <<Cut>> {}
