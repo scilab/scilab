@@ -14,7 +14,7 @@ proc SetField { handle field value } {
     # specific function associated to $field, it
     # only sets the field "field" of the control corresponding
     # to handle "handle" to the *string* "value"
-    
+
     global Win;
     set name $Win($handle);
     global "$name";
@@ -37,7 +37,7 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits horizontalalignment listboxtop max min \
-		    parent position string units value figure_name};
+		    parent position string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
@@ -61,7 +61,7 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits horizontalalignment listboxtop max min \
-		    parent position string units value };
+		    parent position string units value figure_name verticalalignment };
 	    
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
@@ -156,18 +156,17 @@ proc Setfont { name } {
 	}
  
 	normalized {
-	    if { [string compare  fontsize '*']!=0 } {
+	    if { [string compare  fontsize "*"]!=0 } {
 		set hparent [ set "$name\(parent)"];
 		set parent $Win($hparent);
 		global $parent;
-		
-		
-		set width [ winfo  width $path ]; if {[ info exist "$name\(w)"]} { set width [set "$name\(w)"]; }
-		set height  [ winfo height $path ];if {[ info exist "$name\(h)"]} { set height [set "$name\(h)"]; }
-		set size  $height; 
+		set width [ winfo  width $path ]; if {[ info exist "$name\(w)"]} { set width [set "$name\(w)"]; };
+		set height  [ winfo height $path ];if {[ info exist "$name\(h)"]} { set height [set "$name\(h)"]; };
+		set size $height; 
 		set fontsize [expr round($size * $fontsize)];
 	    }   
 	    set font "-*-$fontname-$fw($fontweight)-$fa($fontangle)-*-*-$fontsize-*-*-*-*-*-*-*" 
+	    
 	    set fpath $path;
 	    if {[string compare $style listbox]==0 } { set fpath $path.list }
 	    if { [catch { $fpath configure -font $font }] == 0 } { return; }
@@ -288,7 +287,6 @@ proc Setfontname { name value } {
 proc Setfontsize { name value } {
 # set the font propoerties of  a control
 
-
   global "$name";
   set path [set "$name\(path)"];
     
@@ -316,7 +314,6 @@ proc Setfontweight { name value } {
 proc Setfontunits { name value } {
 # set the font propoerties of  a control
 
-
   global "$name";
   set path [set "$name\(path)"];
 
@@ -339,6 +336,24 @@ proc Sethorizontalalignment { name value } {
     switch -exact -- $style {
 	text {$path configure -anchor $AnchorEq($value)}
 	edit {$path configure -anchor $AnchorEq($value)}
+	checkbox {$path configure -anchor $AnchorEq($value)}
+	#listbox {$path.list configure -anchor $AnchorEq($value)}
+	
+    }
+
+}
+######################################################################################
+proc Setverticalalignment { name value } {
+
+ global "$name" AnchorEq;
+ set path [set "$name\(path)"];
+ set "$name\(verticalalignment)" $value;
+ set style [set "$name\(style)"];
+ 
+    switch -exact -- $style {
+	text {$path configure -anchor $AnchorEq($value)}
+	edit {$path configure -anchor $AnchorEq($value)}
+	checkbox {$path configure -anchor $AnchorEq($value)}
 	#listbox {$path.list configure -anchor $AnchorEq($value)}
 	
     }
@@ -564,7 +579,15 @@ proc Setposition { name value } {
 	    set h [expr round($h)];
 	    set x [expr round($x)];
 	    set y [expr round($y)];
+	    set scrh [winfo screenheight $path];
+	    set scrw [winfo screenwidth $path];
 	    
+	    if { [string compare $units "normalized"]==0 } {
+		set w [expr $w * $scrw]
+		set h [expr $h * $scrh]
+		set x [expr $x * $scrh]
+		set y [expr $y * $scrh]
+	    }
 	    wm geometry $path "+$x\+$y"; 
 	    $path configure -width $w$u;
 	    $path configure -height $h$u;
@@ -643,6 +666,7 @@ proc Setstring { name  str} {
 	    $path configure -text [lindex $item 0]
 	}
 	text { $path configure -text $str; }
+	checkbox { $path configure -text $str; }
 	pushbutton { $path configure -text $str;}
 	default {
 	    
