@@ -6,7 +6,6 @@
 
 #include "men_scilab.h"
 
-extern void ShellFormCreate(char *, Widget *, Widget *, Display **);
 int MatrixDialogWindow(void);
 
 extern MADialog MAD;

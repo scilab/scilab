@@ -13,9 +13,22 @@
 
 #if defined(__MWERKS__)||defined(THINK_C)
 #define Widget int
-#define TRUE 1
-#define FALSE 0
+#ifndef TRUE
+ #define TRUE 1
+#endif
+#ifndef FALSE
+ #define FALSE 0
+#endif
 #else
+#ifdef WITH_GTK 
+#define Widget int
+#ifndef TRUE
+ #define TRUE 1
+#endif
+#ifndef FALSE
+ #define FALSE 0
+#endif
+#else 
 #include <X11/Xatom.h>
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
@@ -34,6 +47,7 @@
 #include <X11/Xaw/Scrollbar.h>
 #include <X11/Xaw/Toggle.h>
 #endif
+#endif 
 
 #include <string.h>
 
@@ -183,6 +197,7 @@ extern int SetPrinterList  __PARAMS((int));
 
 /* "xmen_Utils-n.c.X1" */
 
+#ifndef WITH_GTK
 extern void XtMyLoop  __PARAMS((Widget , Display *, int, int *));  
 extern void ShellFormCreate  __PARAMS((char *, Widget *, Widget *, Display **));  
 extern int ButtonCreate  __PARAMS((Widget, Widget *, XtCallbackProc, XtPointer, char *, char *));  
@@ -192,7 +207,7 @@ extern int LabelSize  __PARAMS((Widget, int, int , Dimension *, Dimension *));
 extern int AsciiSize  __PARAMS((Widget, int, int , Dimension *, Dimension *));  
 extern int SetLabel  __PARAMS((Widget, char *, Dimension , Dimension ));  
 extern int SetAscii  __PARAMS((Widget, char *, Dimension , Dimension ));  
-
+#endif
 /* "xmen_choice-n.c.X1" */
 
 extern int SciChoiceI  __PARAMS((char *, int *, int ));  

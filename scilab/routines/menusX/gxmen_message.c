@@ -10,7 +10,6 @@ extern SciMess ScilabMessage;
 
 typedef enum { pOK, pCANCEL , RESET } state; 
 
-extern void ShellFormCreate(char *, Widget *, Widget *, Display **);
 int ExposeMessageWindow(void);
 int ExposeMessageWindow1(void);
 
