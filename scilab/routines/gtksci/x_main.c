@@ -631,3 +631,55 @@ void ShowWindowFunction (char *fname)
 {
   
 }
+
+/*-----------------------------------------------------------
+ * a new function ...
+ *-----------------------------------------------------------*/
+
+int GetScreenProperty(char *prop, char *value)
+{ 
+  
+  GdkScreen *screen =  gdk_screen_get_default();
+  
+  if(!strcmp(prop,"screensize_px"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)1,(float)1,
+	      (float) gdk_screen_get_width(screen),
+	      (float) gdk_screen_get_height(screen));
+    }
+  else if(!strcmp(prop,"screensize_mm"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
+	      (float) gdk_screen_get_width_mm(screen),
+	      (float) gdk_screen_get_height_mm (screen));
+    }
+  else if(!strcmp(prop,"screensize_cm"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
+	      (float) gdk_screen_get_width_mm(screen)/10.0,
+	      (float) gdk_screen_get_height_mm (screen)/10.0);
+    }
+  else if(!strcmp(prop,"screensize_in"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)  gdk_screen_get_width_mm(screen)/25.4,
+	      (float)  gdk_screen_get_height_mm (screen)/25.4);
+    }
+	      else if(!strcmp(prop,"screensize_pt"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
+	      (float)  gdk_screen_get_width_mm(screen)/25.4*72.0,
+	      (float)  gdk_screen_get_height_mm (screen)/25.4*72.0);
+    }
+  else if(!strcmp(prop,"screensize_norm"))
+    {
+      sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,(float)1,(float)1);
+    }
+  else
+    {
+      sciprint("Unknown property %s\r\n",prop);
+      return -1;
+    }
+  return 0;
+}
+
