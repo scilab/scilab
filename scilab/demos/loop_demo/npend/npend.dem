@@ -1,0 +1,53 @@
+mode(-1);
+// Copyright ENPC
+
+path="SCI/demos/npend";
+
+getf(path+'/macros.sci');
+getf(path+'/dessin.sci');
+
+xbasc();set("figure_style","old")
+flag1=x_choose(['Read a precomputed trajectory';
+        'Simulation with ode (needs f77 and link. may fail. see help link)'],...
+         'Simulation or Visualisation ? (click below)');
+
+select flag1,
+case 2 then 
+  mode(1)
+  npend_build_and_load() ;
+  n=np();
+  r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
+  y0=0*ones(2*n,1);
+  tt=0:0.05:10;
+  yt=ode(y0,0,tt,'npend');
+  xselect();
+  xbasc();
+  chaina(yt);
+  flag=2 ; 
+  y=[]; for i=1:n;y=[y;'theta'+string(i)];end
+  yd=[]; for i=1:n;yd=[yd;'thetad'+string(i)];end
+  ystr=[y;yd];
+  while flag==2, 
+    [n1,n2]=size(yt);
+    flag=x_choose(['Stop';'Go on'],'Choose');
+    if flag==2 then
+      y0=evstr(x_mdialog(['Initial point '],ystr,...
+	  string(yt(:,n2))));
+      yt=ode(y0,0,tt,'npend');
+      met=x_choose(['With last point trajectory';'Without'],...
+	  'Graphic Option');
+      xbasc();
+      if met==1; chainb(yt);else;chaina(yt);end
+    end
+  end
+  mode(-1)
+case 1 then // A precomputed value for 
+  mode(1)
+  //x0=[0;%pi/2+0.1;0;5.0;0.0;4.0;0;0];
+  n=10;
+  r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
+  y0=0*ones(2*n,1);
+  yt=read(path+'/yt.wrt',20,201);
+  chaina(yt);
+  mode(-1)
+end

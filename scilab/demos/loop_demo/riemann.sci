@@ -1,8 +1,10 @@
 function demo_riemann()
+  set('old_style','on');
   demo_help demo_riemann
-  xbasc();set figure_style old;xselect()
+  xbasc();
+  xselect();
   C=hotcolormap(200);C=C(1:$-40,:); 
-  xset('wdim', 597,634);w=xget('window')
+  xset('wdim', 497,634);w=xget('window')
   xset('colormap',C);xset('color',30);fond();
   
   [z,s]=cplxroot(4,35) //compute
@@ -20,6 +22,7 @@ function demo_riemann()
 
   end
   xdel(xget('window'))
+  set('old_style','off');
 endfunction
 
 function fond()

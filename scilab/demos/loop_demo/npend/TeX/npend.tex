@@ -1,0 +1,28 @@
+%XFlatexpr Magnification  0.6
+% Copyright ENPC
+\def\dessin#1#2{
+\begin{figure}[hbtp]
+\begin{center}\fbox{
+\setlength{\unitlength}{0.0075in}%
+\begin{picture}(465,258)(65,375)
+\put(210,400){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $\theta_1$}}}
+\put(300,460){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $\theta_2$}}}
+\put(390,545){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $\theta_3$}}}
+\put(255,550){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $(x_2,y_2)$}}}
+\put(395,620){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $(x_3,y_3)$}}}
+\put(195,455){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $(x_1,y_1)$}}}
+\put(510,375){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $x$}}}
+\put(110,595){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $y$}}}
+\put( 65,475){\makebox(0,0)[lb]{\raisebox{0pt}[0pt][0pt]{\sevrm $g$}}}
+\end{picture}
+}\makebox[0pt][r]{
+\makebox[3.486in][l]{
+  \vbox to 1.930in{
+    \vfill
+    \special{psfile=npend.ps}
+  }
+  \vspace{-\baselineskip}
+}
+}\end{center}
+\caption{\label{#2}#1}
+\end{figure}}

@@ -8,10 +8,10 @@ function demo_optloc()
   Beta=round(99*rand(n,1))+1;
   
   xbasc();set figure_style old,
-  xset("wpos",600,16);xset("wdim",600*0.9,400*0.9);xselect()
+  xset("wpos",500,16);xset("wdim",600*0.9,400*0.9);xselect()
   xset('mark size',4)
   plot2d(Alpha,Beta,style=-10,rect=[1 1 100 100])
-  xtitle('Position des consommateurs et des sercices potentiels')
+  xtitle('Position des consommateurs et des services potentiels')
   realtimeinit(0.1);for k=1:10,realtime(k),end
  
 

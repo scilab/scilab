@@ -1,0 +1,142 @@
+// demo pour visualisation des fonctions elementaires
+// complexe - Bruno Pincon 
+
+getf("SCI/demos/cmplxfunc/MacCmplx.sci")  //  les macros utilisees ici
+
+my_win = max(winsid())+1;
+
+xset("window", my_win);
+xset("default")
+xset("wdim",700,450)
+ 
+items = ["log"  ; "exp"  ;
+	 "tan"  ; "atan" ;
+	 "sin"  ; "asin" ;
+	 "cos"  ; "acos" ;
+	 "sinh" ; "asinh";
+	 "cosh" ; "acosh";
+	 "tanh" ; "atanh"; "custom"];
+
+title = ["visualisation of  complex";
+         "elementary  functions  on";
+	 "a centered disk or square";
+	 "                         ";
+	 "    Choose a function    "];
+
+title_custom = ["---BE CAREFUL NOTHING IS PROTECTED---";
+		"                                     ";
+		" To draw your own complex  function :";
+		"                                     ";
+		"1/ define the  function by a correct ";
+		"   string where  the complex var must";
+		"   be z ; also  as  the function will";
+		"   be evaluated  on  a matrix  don''t ";
+		"   forget the . to operate in element";
+		"   wize meaning ; examples :         ";
+		"   z.^2     (z+1).*(z-1)   (1)./(z+2)";
+		"   sqrt(z)  (z+%i).*(z-%i) 1+2*z+z.^2";
+		"                                     ";
+		"2/ define the type of the domain     ";
+		"   string Square or Disk             ";
+		"                                     ";
+		"3/ define the ""radius"" R of the domain";
+		"                                     ";
+		"4/ may be your function has a kind of";
+		"   discontinuity on Ox  or  Oy => put";
+		"   the string Ox or Oy or No if not  "];
+	
+
+title_items_custom = ["1/ string     ";
+		      "2/ Type Domain";
+		      "3/ R          ";
+		      "4/ Cut on Axe "];
+
+rep_init = ["(1)./((z+2).*(2-z))";"Disk";"1.9";"No"];
+rep = rep_init;       
+
+while %t
+  [num]=x_choose(items,title);
+  if num == 0 then , xdel(my_win) , break , end
+  
+  xbasc()
+  select items(num)
+    
+  // PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
+  case "log"
+     R = 4;  e = 0.001; theta = 30; alpha = 60;
+     PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"log",theta,alpha,[e,R])
+
+  case "exp"
+     R = 2; theta = -130; alpha = 73;
+     PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"exp",theta,alpha,[-R,R])
+
+  case "tan"
+     R = %pi/2-0.15; theta = -130; alpha = 73;
+     PlotCmplxFunc(R,0,"Square","Ox",41,"tan",theta,alpha,[-R,R])
+
+  case "atan"
+     R = 2 ; theta = -110; alpha = 75;
+     PlotCmplxFunc(R,0.001,"Square","Oy",41,"atan",theta,alpha,[-R,R])
+   
+  case "cos"
+     R = %pi; theta = 18; alpha = 43;
+     PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"cos",theta,alpha,[-R,R])
+
+  case "acos"
+     theta = -110; alpha = 75;
+     PlotCmplxFunc(2,%eps,"Square","Ox",41,"acos",theta,alpha,[-1,1])
+
+  case "sin"
+     R = %pi; theta = -130; alpha = 73;
+     PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"sin",theta,alpha,[-R,R])
+
+  case "asin"
+     theta = -110; alpha = 75;
+     PlotCmplxFunc(2,%eps,"Square","Ox",41,"asin",theta,alpha,[-1,1])
+
+  case "sinh"
+     R = %pi; e = 0; theta = -148; alpha = 60;
+     PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"sinh",theta,alpha,[-R,R])
+
+  case "asinh"
+     R = 2; theta = -110; alpha = 75;
+     PlotCmplxFunc(2,%eps,"Square","Oy",41,"asinh",theta,alpha,[-R,R])
+
+  case "cosh"
+     R = %pi; e = 0; theta = -130; alpha = 56;
+     PlotCmplxFunc(R,0,"Disk","Ox",[40 20],"cosh",theta,alpha,[-R,R])
+
+  case "acosh"
+     R = 2; theta = -110; alpha = 75;
+     PlotCmplxFunc(R,%eps,"Square","Ox",41,"acosh",theta,alpha,[1,R])
+
+  case "tanh"
+     R = %pi/2-0.2; theta = -130; alpha = 73;
+     PlotCmplxFunc(R,0,"Square","Ox",41,"tanh",theta,alpha,[-R,R])
+
+  case "atanh"
+     R = 2 ; theta = -110; alpha = 75;
+     PlotCmplxFunc(R,0.001,"Square","Ox",41,"atanh",theta,alpha,[-0.99,0.99])
+
+  case "custom"   // a voir !!!
+     rep = x_mdialog(title_custom,title_items_custom, rep);
+     if rep == [] then
+	rep = rep_init
+     else
+        select rep(4)
+        case "Ox" ; e = 0.001; TypeCut = "Ox";
+	case "Oy" ; e = 0.001; TypeCut = "Oy";
+	else e=0  ; TypeCut = "Ox" ; rep(4) = "No" ;
+	end
+	deff("Z=f(z)","Z="+rep(1))
+	theta = -110; alpha = 75;
+	R = evstr(rep(3));
+	select rep(2)
+	 case "Square"
+	  PlotCmplxFunc(R,e,"Square",TypeCut,41,"f",theta,alpha,[0;0])
+	 case "Disk"
+	  PlotCmplxFunc(R,e,"Disk",TypeCut,[40 20],"f",theta,alpha,[0;0])
+	end
+     end
+  end
+end

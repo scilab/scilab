@@ -2,7 +2,16 @@ function demo_scicos()
   funcprot(0)
   S=remove_builtins()
   load SCI/macros/scicos/lib
-  load SCI/macros/scicos_blocks/lib
+  load SCI/macros/scicos_blocks/Branching/lib
+  load SCI/macros/scicos_blocks/Electrical/lib
+  load SCI/macros/scicos_blocks/Events/lib
+  load SCI/macros/scicos_blocks/Hydraulics/lib
+  load SCI/macros/scicos_blocks/Linear/lib
+  load SCI/macros/scicos_blocks/Misc/lib
+  load SCI/macros/scicos_blocks/NonLinear/lib
+  load SCI/macros/scicos_blocks/Sinks/lib
+  load SCI/macros/scicos_blocks/Sources/lib
+  load SCI/macros/scicos_blocks/Threshold/lib
   deff('mode(x)','x=x')
   deff('halt()',' ')
   deff('x=lines(x)','x=0')
