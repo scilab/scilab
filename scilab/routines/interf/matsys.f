@@ -501,7 +501,7 @@ cc    implicit undefined (a-z)
       integer topk,iadr
 c      integer m3,n3,lr3,nlr3,m2,n2,il2,ild2,m1,n1,il1,ild1
       integer ilib,iv ,l1
-      logical checkrhs,crebmat,getscalar,getsmat,cremat
+      logical checkrhs,checklhs,crebmat,getscalar,getsmat,cremat
       iadr(l)=l+l-1
       if (.not.checkrhs(fname,1,2)) return
       if (.not.checklhs(fname,1,2)) return
@@ -516,7 +516,7 @@ c      integer m3,n3,lr3,nlr3,m2,n2,il2,ild2,m1,n1,il1,ild1
       if(.not.getsmat(fname,topk,top,m3,n3,1,1,lr3,nlr3))return
       call cvstr(nlr3,istk(lr3),buf,1)
       buf(nlr3+1:nlr3+1)=char(0)
-      call iislink(buf,ilib,irep)
+      call iislink(buf,ilib)
       if (.not.crebmat(fname,top,1,1,lr)) return
       if (ilib.eq.-1)  then 
          istk(lr) = 0
