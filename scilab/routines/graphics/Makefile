@@ -24,10 +24,7 @@ include ../Make.lib
 # with gcc compiler, do not inline "floor" function in "Format.c"
 
 Format.o: Format.c
-	$(CC) $(CFLAGS)  -g -c $< -o $@
-
-Axes.o: Axes.c
-	$(CC) $(CFLAGS) -g -c $< -o $@
+	$(CC) $(CFLAGS)  -c $< -o $@
 
 #--- dependencies generated with gcc -MM  ----
 Actions.o: Actions.c Math.h ../machine.h Graphics.h Entities.h \
@@ -110,4 +107,5 @@ qsort.o: qsort.c
 sciCall.o: sciCall.c Entities.h ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h PloEch.h
+
 
