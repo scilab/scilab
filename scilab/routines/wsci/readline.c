@@ -79,7 +79,7 @@
 #define TEXTUSER 0xf1
 #define TEXTGNUPLOT 0xf0
 #define special_getc() msdos_getch()
-#define MAXBUF	1024
+#define MAXBUF	512
 #define BACKSPACE 0x08		/* ^H */
 #define SPACE	' '
 #define isterm(f) ((f==stdin && InteractiveMode()==0)|| f==stdout || f==stderr)
