@@ -37,11 +37,8 @@ c
 c fft : transformee de  fourier rapide
 c ---
 c
-c*20  continue
-c*    return
-c
  20   continue
-      if(rhs.lt.2) then
+      if(rhs.ne.1.and.rhs.ne.2.and.rhs.ne.4) then
          call error(39)
          return
       endif
@@ -54,9 +51,6 @@ c
          call funnam(ids(1,pt+1),'fft',iadr(lstk(top2)))
          fun=-1
          return
-c         err=1
-c         call error(53)
-c         return
       endif
       m=istk(il+1)
       n=istk(il+2)
@@ -64,6 +58,82 @@ c         return
       it=istk(il+3)
       lr=sadr(il+4)
       vect=m.eq.1.or.n.eq.1
+
+
+      if(rhs.ge.4) goto 22
+c
+c fft 
+c
+      if(mn.le.1) then
+         top=top-rhs+1
+         return
+      endif
+
+      if(rhs.eq.2) then
+         il1=iadr(lstk(top))
+         if(istk(il1).ne.1) then
+            err=2
+            call error(53)
+            return
+         endif
+         l1=sadr(il1+4)
+         isn=nint(stk(l1))
+         if(isn.ne.1.and.isn.ne.-1) then
+            err=2
+            call error(36)
+            return
+         endif
+         top=top-1
+      else
+c     .  fft(a) is equivalent to fft(a,-1)
+         isn=-1
+      endif
+ 
+      li=lr+mn
+      libre=li+mn
+      lw=lbot-libre-1
+      err=libre-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
+
+      if(it.eq.0) then
+c     .  create imaginary part and set it to zero
+         call dset(mn,0.0d+0,stk(li),1)
+         istk(il+3)=1
+      endif
+
+      if(vect) then
+c     .  fft of a vector
+         mn2=2**int(log(dble(mn)+0.5d0)/log(2.0d+0))
+         if(mn2.eq.mn) then
+            if(mn.le.2**15) then
+               call fft842(isn,mn,stk(lr),stk(li),ierr)
+c     .        ierr should be always 0
+            else
+               call dfft2(stk(lr),stk(li),1,mn,1,isn,ierr,stk(libre),lw)
+            endif
+         else
+            call dfft2(stk(lr),stk(li),1,mn,1,isn,ierr,stk(libre),lw)
+         endif
+      else
+c     .  2 dimensionnal fft
+         call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
+         if(ierr.lt.0) goto 21
+         call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
+      endif
+ 21   if(ierr.lt.0) then
+         buf='fft fails by lack of memory'
+         call error(999)
+         return
+      endif
+      lstk(top+1)=li+mn
+      return
+
+c     n dimensional fft
+ 22   continue
+
       il1=iadr(lstk(top2+1))
       if(istk(il1).ne.1) then
          err=2
@@ -77,62 +147,7 @@ c         return
          call error(36)
          return
       endif
-      if(rhs.eq.4) goto 22
-c
-c fft 
-c
-      if(rhs.ne.2) then
-         call error(39)
-         return
-      endif
-      li=lr+mn
-      libre=li+mn
-      lw=lbot-libre-1
-      err=libre-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
-      endif
-      if(mn.eq.1) then
-         top=top-1
-         return
-      endif
-      if(it.eq.0) then
-         call dset(mn,0.0d+0,stk(li),1)
-         istk(il+3)=1
-      endif
-      if(.not.vect) goto 23
-      mn2=2**int(log(dble(mn)+0.5d0)/log(2.0d+0))
-      if(mn2.eq.mn) then
-         if(mn.le.2**15) then
-         call fft842(isn,mn,stk(lr),stk(li),err)
-         if(err.gt.0) then
-            buf='error in fft842'
-            call error(9999)
-            return
-         endif
-         else
-         call dfft2(stk(lr),stk(li),1,mn,1,isn,ierr,stk(libre),lw)
-         endif
-      else
-      call dfft2(stk(lr),stk(li),1,mn,1,isn,ierr,stk(libre),lw)
-      endif
-      goto 24
- 23   continue
-      call dfft2(stk(lr),stk(li),n,m,1,isn,ierr,stk(libre),lw)
-      if(ierr.lt.0) goto 24
-      call dfft2(stk(lr),stk(li),1,n,m,isn,ierr,stk(libre),lw)
- 24   continue
-      if(ierr.lt.0) then
-         buf='fft fails by lack of memory'
-         call error(999)
-         return
-      endif
-      top=top-1
-      lstk(top+1)=li+mn
-      return
- 22   continue
-c     rhs=4
+
       ilinc=iadr(lstk(top))
       if (istk(ilinc).ne.1) then  
          err=4
