@@ -13,6 +13,7 @@ ilib_for_link(routines,'externals.o',[],"f");
    generate a Makefile: Makelib
    running the makefile
    compilation of externals
+   building shared library (be patient)
  
 exec loader.sce ;
 shared archive loaded
