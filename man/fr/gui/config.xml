@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>config</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="config"> Scilab general configuration.</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>config()
+</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+
+
+<DESCRIPTION>
+<P><VERB>config()</VERB> allow configure scilab parameters like lines to display, stacksize, %ODEOPTIONS.</P>
+</DESCRIPTION>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

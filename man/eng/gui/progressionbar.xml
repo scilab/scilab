@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>waitbar</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="progressionbar"> Draw a progression bar</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>winId=progressionbar(mes)</CALLING_SEQUENCE_ITEM>
+<CALLING_SEQUENCE_ITEM>progressionbar(winId[,mes])</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+
+<PARAM>
+<PARAM_INDENT>
+<PARAM_ITEM>
+ <PARAM_NAME>mes</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: string, message to display.</SP></PARAM_DESCRIPTION>
+</PARAM_ITEM>
+<PARAM_ITEM>
+ <PARAM_NAME>winId</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: integer greater than 0, window identificator.</SP></PARAM_DESCRIPTION>
+</PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><VERB>progressionbar(mes)</VERB> create a new progression bar, return window identificator.</P>
+<P><VERB>progressionbar(winId[,mes])</VERB> update the progression bar identificated as winId.</P>
+
+</DESCRIPTION>
+
+<EXAMPLE>
+<![CDATA[winId=progressionbar('Do something');
+realtimeinit(0.3);
+for j=0:0.1:1,
+    realtime(3*j);
+    progressionbar(winId);
+end
+winclose(winId);]]>
+</EXAMPLE>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

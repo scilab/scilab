@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>buttondialog</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="buttondialog"> Create a simple button dialog</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>answer=buttondialog(mes,buttons[,icon])</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+
+<PARAM>
+<PARAM_INDENT>
+<PARAM_ITEM>
+ <PARAM_NAME>mes</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: string, message to display.</SP></PARAM_DESCRIPTION>
+</PARAM_ITEM>
+<PARAM_ITEM>
+ <PARAM_NAME>buttons</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: string, buttons name.</SP></PARAM_DESCRIPTION>
+</PARAM_ITEM>
+<PARAM_ITEM>
+ <PARAM_NAME>icon</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: string, icon type, should be: error, hourglass, info, passwd, question and warning.</SP> </PARAM_DESCRIPTION>
+</PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><VERB>buttondialog</VERB> create a simple button dialog and retur the answer. <VERB>buttons</VERB> identify the buttons to show in the following manner : "button_1|button_2....|button_n"</P>
+</DESCRIPTION>
+
+<EXAMPLE>
+<![CDATA[answ=buttondialog("This is an example","ok");
+answ=buttondialog("Do the work?","yes|no|maybe","question");
+]]>
+</EXAMPLE>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

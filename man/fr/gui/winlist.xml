@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>winlist</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="winlist"> Return the winId of current window created by sciGUI</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>winIds=winlist()</CALLING_SEQUENCE_ITEM>
+</CALLING_SEQUENCE>
+
+<PARAM>
+<PARAM_INDENT>
+<PARAM_ITEM>
+ <PARAM_NAME>winIds</PARAM_NAME>
+ <PARAM_DESCRIPTION>
+	<SP>: matrix of integer greater than 0, window identificator.</SP>
+</PARAM_DESCRIPTION>
+</PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><VERB>winlist()</VERB> Return the winId of current window created by sciGUI.</P>
+</DESCRIPTION>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

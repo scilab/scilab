@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>editvar</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="editvar"> Scilab variable editor</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>editvar varname</CALLING_SEQUENCE_ITEM>    
+</CALLING_SEQUENCE>
+
+<PARAM>
+<PARAM_INDENT>
+<PARAM_ITEM>
+ <PARAM_NAME>varname</PARAM_NAME>
+ <PARAM_DESCRIPTION><SP>: variable name. The variable must exist in scilab.</SP></PARAM_DESCRIPTION>
+</PARAM_ITEM>
+</PARAM_INDENT>
+</PARAM>
+
+<DESCRIPTION>
+<P><VERB>editvar</VERB> is an embedded Scilab variable editor written in TCL/TK.</P>
+<P><VERB>editvar</VERB> can edit the following variable type: real or complex constant matrix (type 1), boolean matrix (type 4) an matrix of character strings (type 10). </P>
+</DESCRIPTION>
+
+<EXAMPLE>
+<![CDATA[a=rand(10,10);
+editvar a;
+b=['hello';'good bye'];
+editvar b;]]>
+</EXAMPLE>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>

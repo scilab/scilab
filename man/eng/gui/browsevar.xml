@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+<LANGUAGE>eng</LANGUAGE>
+<TITLE>browsevar</TITLE>
+<TYPE>sciGUI toolbox function</TYPE>
+<DATE>2004-06-16</DATE>
+<SHORT_DESCRIPTION name="browsevar"> Scilab variable browser</SHORT_DESCRIPTION>
+
+<CALLING_SEQUENCE>
+<CALLING_SEQUENCE_ITEM>browsevar()</CALLING_SEQUENCE_ITEM>    
+</CALLING_SEQUENCE>
+
+
+<DESCRIPTION>
+<P><VERB>browsevar</VERB> is an embedded Scilab variable browser written in TCL/TK.</P>
+<P><VERB>browsevar</VERB> can show all variables and function (like who). <VERB>browsevar</VERB> can be costumized to show all or some type of variable. It's also posibble exclude variable names.</P>
+</DESCRIPTION>
+
+<EXAMPLE>
+<![CDATA[browsevar();]]>
+</EXAMPLE>
+
+<AUTHOR>Jaime Urzua</AUTHOR>
+  
+</MAN>
