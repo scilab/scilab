@@ -57,19 +57,11 @@
                   j1 = j
                endif
             enddo
-*           at this level we are sure that val(j1=j2-1) <= X(i) <= val(j2)
-*           some further tests are required because we impose something more
-*           precise
-            if ( X(i) .gt. val(j1) ) then  ! generic case
-               occ(j2) = occ(j2) + 1
-               indX(i) = j2
-            else  if ( j1 .eq. 0 ) then   ! for the case X(i) = val(j1) 
-               occ(j2) = occ(j2) + 1    ! the answer depend if j1=0 or not
-               indX(i) = j2
-            else
-               occ(j1) = occ(j1) + 1
-               indX(i) = j1
-            endif
+*           we have val(j1) < X(i) <= val(j2)  if j2 > 1  (j1=j2-1)
+*                or val(j1) <= X(i) <= val(j2) if j2 = 1  (j1=j2-1)
+*           so that j2 is the good interval number in all cases
+            occ(j2) = occ(j2) + 1
+            indX(i) = j2
          else     ! X(i) is not in [val(0), val(n)]
             info = info + 1
             indX(i) = 0
@@ -134,18 +126,19 @@
                   j1 = j
                endif
             enddo
-*           here we know that val(j1) <= X(i) <= val(j2)  with j2 = j1 + 1 
+*           here we know that val(j1) <= X(i) <= val(j2)  with j2 = j1 + 1
+*           (in fact we have exactly  val(j1) <= X(i) < val(j2) if j2 < n)
             if (X(i) .eq. val(j1)) then
                occ(j1) = occ(j1) + 1
                indX(i) = j1
-            else if (X(i) .eq. val(j2)) then
+            else if (X(i) .eq. val(j2)) then  ! (note: this case may happen only for j2=n)
                occ(j2) = occ(j2) + 1
                indX(i) = j2
-            else  ! X(i) is not in val(1..n)
+            else  ! X(i) is not in {val(1), val(2),..., val(n)}
                info = info + 1
                indX(i) = 0
             endif
-         else     ! X(i) is not in val(1..n)
+         else     ! X(i) is not in {val(1), val(2),..., val(n)}
             info = info + 1
             indX(i) = 0
          endif
