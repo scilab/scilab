@@ -1,50 +1,30 @@
-function help(key)
-// when %gtk is set we use the prefered 
-// broswer given by %gtkhelp
-// when %gtkhelp is [] a choose menu is given 
-  global %gtkhelp;
-  
-  // set of possible modes for gtk
-  gtk_modes=['help widget';
-	     'nautilus';
-	     'mozilla/netscape (gnome-moz-remote)';
-	     'opera'
-	     'quanta (kde)'];
-  
-  // add tcktk if scilab was compiled with tcl/tk 
-  
-  if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
-    
-  [lhs,rhs]=argn(0);
-  
-  if %gtk 
-    if %gtkhelp<>[] then 
-      help_mode = %gtkhelp;
-    else
-       %gtkhelp= gtk_help_ask(gtk_modes);
-    end
-  end 
-  
+function help(key,flag)
   //for compatibility with toolboxes making use of old cat files
   change_old_man() 
   INDEX=make_index()
-
+  [lhs,rhs]=argn(0);
+    
   if rhs==0 then
     browsehelp(INDEX,"index");
     return
   end 
   
-  if rhs<>1 then error(39),return; end
+  if rhs> 2 then error(39),return; end
+  if rhs == 2 then 
+    help_apropos(key)
+    return 
+  end
+  
   path=gethelpfile(key)
   if path<>[] then
     browsehelp(path,key)
   else
-     apropos(key)
+     help_apropos(key)
   end
 endfunction
 
 function path=gethelpfile(key)
-  // copy of gethelpfile contained in help.sci
+// copy of gethelpfile contained in help.sci
   global %helps
   sep="/";
   key=stripblanks(key)
@@ -91,7 +71,34 @@ endfunction
 function browsehelp(path,key)
   global LANGUAGE INDEX 
   global %gtkhelp
-  [lhs,rhs]=argn(0)
+
+  // when %gtk is set we use the prefered 
+  // broswer given by %gtkhelp
+  // when %gtkhelp is [] a choose menu is given 
+  global %gtkhelp;
+  
+  // set of possible modes for gtk
+  gtk_modes=['help widget';
+	     'nautilus';
+	     'mozilla/netscape (gnome-moz-remote)';
+	     'opera'
+	     'quanta (kde)'];
+  
+  // add tcktk if scilab was compiled with tcl/tk 
+  
+  if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
+    
+  [lhs,rhs]=argn(0);
+  
+  // ask for an help mode 
+  if %gtk 
+    if %gtkhelp<>[] then 
+      help_mode = %gtkhelp;
+    else
+       %gtkhelp= gtk_help_ask(gtk_modes);
+    end
+  end 
+
   if rhs==0 then
     path=INDEX
     key="index"
@@ -185,13 +192,8 @@ function change_old_man()
   for k=1:size(%helps,1)
     if fileinfo(%helps(k,1)+"/whatis")<>[] then
       txt=mgetl(%helps(k,1)+"/whatis")
-      whatispath=TMPDIR+"/man"+string(k)
-
-      if MSDOS then
-	p=strsubst(whatispath,'/','\')
-      else
-	p=whatispath
-      end
+      whatispath=TMPDIR+"/man"+string(k);
+      p=pathconvert(whatispath);
       if fileinfo(p)==[] then unix_s("mkdir "+p),end
       
       name=[],fil=[],def=[]
@@ -208,11 +210,25 @@ function change_old_man()
 	  fil(i)=stripblanks(part(txt(i),q+1:length(txt(i))))
 	end
 	def(i)=part(txt(i),p(1)+3:q-1)
-	mputl(["<html><pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html>"],whatispath+'/'+fil(i)+'.htm')
+	
+	head=["<html>";
+	      "  <head><meta http-equiv=""Content-Type"" content="""+...
+	      " text/html; charset=ISO-8859-1"">";
+	      "  <title>"+name(i)+"</title>";
+	      "<body>"];
+	mputl([head;"<pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html></body>"],... 
+	      whatispath+'/'+fil(i)+'.htm')
 	end
       end
-      mputl("<BR><A HREF="""+fil+".htm"">"+name+"</A> - "+def,whatispath+'/whatis.htm')
-      %helps(k,1)=whatispath
+      head=["<html>"
+	    "<head>"
+	    "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">"
+	    "    <title>"+%helps(k,2)+"</title>"
+	    "</head>"
+	    "<body bgcolor=""FFFFFF"">"];
+      mputl([head;"<BR><A HREF="""+fil+".htm"">"+name+"</A> - "+def;
+	     "</body></html>"],whatispath+'/whatis.htm')
+      %helps(k,1)=whatispath;
     end
   end
 endfunction
@@ -227,5 +243,88 @@ function gtk_mode=gtk_help_ask(modes)
   end
 endfunction
 
-     
 
+function help_apropos(key)
+  global %helps LANGUAGE INDEX
+  global %gtkhelp;
+  [lhs,rhs]=argn(0);
+  // list relevant man for key 
+  provpath =apropos_gener(key);
+  browsehelp(provpath,key);
+endfunction
+
+function tcltk_apropos(path) 
+// calling the tck tk help browser 
+// for apropos 
+  global LANGUAGE INDEX 
+  // We must have / in paths, even for Windows
+  path=strsubst(path,"\","/")
+  if MSDOS then
+    TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
+    TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
+    TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
+    TK_EvalStr("browsehelp eval {set sciw .sciapropos}")
+    TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
+    TK_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
+  else
+     TK_SetVar("lang",LANGUAGE)
+     TK_SetVar("Home",INDEX)
+     TK_SetVar("sciw",".sciapropos")
+     TK_SetVar("manpath",path)
+     TK_EvalFile(SCI+"/tcl/browsehelp.tcl")
+  end
+endfunction
+
+function [provpath]=apropos_gener(key)
+// generate html file for apropos key 
+// provpath is the path of generated html file 
+  global %helps LANGUAGE INDEX
+  sep="/";
+  key=stripblanks(key)
+  l=length(key)
+  found=[];foundkey=[]
+  for k=1:size(%helps,1)
+    [fd,ierr]=mopen(%helps(k,1)+sep+"whatis.htm","r");
+    if ierr==0 then
+      whatis=mgetl(fd);mclose(fd)
+      ind=grep(whatis,'</A>');
+      whatis=whatis(ind);
+      f=grep(whatis,key);
+      if whatis<>[] then
+	lwhatis=strsubst(whatis(f),"HREF=""", "HREF="""+%helps(k,1)+sep)
+	found=[found;lwhatis];
+	for k1=f
+	  i=strindex(whatis(k1),">"); j=strindex(whatis(k1),"</A>")
+	  lkey=part(whatis(k1),i(2)+1:j-1)
+	  foundkey=[foundkey;lkey]
+	end
+      end
+    end
+  end
+  
+  if found==[] then
+    select LANGUAGE
+     case "eng"
+      found="<H3>No man found for: "+key+"</H3>";
+     case "fr"
+      found="<H3>Pas de manuel trouvé pour : "+key+"</H3>";
+    end
+  else
+     [s,k]=sort(foundkey);
+     found= found(k);
+  end
+       
+  provpath=TMPDIR+sep+"apropos_"+key
+
+  
+  apropos_txt =["<html>";
+		 "<head>";
+		 "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";
+		 "    <title>Apropos "+key+"</title>";
+		 "</head>";
+		 "<body bgcolor=""FFFFFF"">";
+		 found;
+  		 "</body></html>"];
+  mputl(apropos_txt,provpath)
+
+endfunction
