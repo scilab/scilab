@@ -82,7 +82,6 @@
 {"champ",		IN_matdes,	1,	2},	
 {"champ1",		IN_matdes,	52,	2},	
 {"contour",		IN_matdes,	2,	2},	
-{"contour2d",		IN_matdes,	54,	2},	
 {"driver",		IN_matdes,	12,	2},	
 {"fec",			IN_matdes,	44,	2},	
 {"geom3d",		IN_matdes,	43,	2},	
