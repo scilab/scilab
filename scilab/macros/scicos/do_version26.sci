@@ -32,34 +32,25 @@ function scs_m_new=do_version26(scs_m)
   scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
   n=size(scs_m)
   back_col=8   //white background
+  
   for i=2:n //loop on objects
-    o=scs_m(i)
+    o=scs_m(i);
     if o(1)=='Block' then
       if size(o(2)) > 8 then
 	if type(o(2)(9))==15 then 
-	  gr_io=o(2)(9)(1)
+	  gr_io=o(2)(9)(1);
 	  if o(2)(9)(2)<>[] then
-	    back_col=o(2)(9)(2),
+	    back_col=o(2)(9)(2);,
 	  end
 	else
-	  gr_io=o(2)(9)
+	  gr_io=o(2)(9);
 	end
-	gr_i=convert_gri(o(5),gr_io)
-	if gr_i==[] then gr_i=gr_io, end
+	gr_i=convert_gri(o(5),gr_io);
+	if gr_i==[] then gr_i=gr_io;, end
       elseif size(o(2)) < 9 then
 	gr_i=[];
       end
       gr_i=list(gr_i,back_col)
-      graphics=scicos_graphics()
-      graphics.orig  = o(2)(1)
-      graphics.sz    = o(2)(2)
-      graphics.flip  = o(2)(3)
-      graphics.exprs = o(2)(4)
-      graphics.pin   = o(2)(5)
-      graphics.pout  = o(2)(6)
-      graphics.pein  = o(2)(7)
-      graphics.peout = o(2)(8)
-      graphics.gr_i  = gr_i
       
       mdl=o(3);
       if size(o(3))<=12 then 
@@ -76,52 +67,43 @@ function scs_m_new=do_version26(scs_m)
 	end
       end
       
-      model=scicos_model()
-      model.sim       = mdl(1)
-      model.in        = mdl(2)
-      model.out       = mdl(3)
-      model.evtin     = mdl(4)
-      model.evtout    = mdl(5)
-      model.state     = mdl(6)
-      model.dstate    = mdl(7)
-      model.rpar      = mdl(8)
-      model.ipar      = mdl(9)
-      model.blocktype = mdl(10)
-      model.firing    = mdl(11)
-      model.dep_ut    = mdl(12)
-      model.label     = mdl(13)
-      graphics.id        = mdl(15)
+      graphics=scicos_graphics(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
+			       exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
+			       pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
+			       id=mdl(15)) 	       
+      
+      
+      model=scicos_model(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
+			 evtout=mdl(5),state=mdl(6),dstate=mdl(7),..
+			 rpar=mdl(8),ipar=mdl(9),blocktype=mdl(10),..
+			 firing=mdl(11),dep_ut=mdl(12),label=mdl(13))
 
-
-      scs_m_new.objs(i)=scicos_block()
-      scs_m_new.objs(i).graphics = graphics, 
-      scs_m_new.objs(i).model    = model
-      scs_m_new.objs(i).gui      = o(5)
-      scs_m_new.objs(i).doc      = mdl(14)
-
-
+      
+      objsi=scicos_block(graphics=graphics,model=model,gui=o(5),..
+			 doc=mdl(14))
+      scs_m_new.objs(i)=objsi
+      
     elseif o(1)=='Link' then
       from=o(8);from(3)=0;
       to=o(9);to(3)=1;
-      scs_m_new.objs(i)=scicos_link()
-      scs_m_new.objs(i).xx=o(2),
-      scs_m_new.objs(i).yy=o(3), 
-      scs_m_new.objs(i).id=o(5),
-      scs_m_new.objs(i).thick=o(6),
-      scs_m_new.objs(i).ct=o(7),
-      scs_m_new.objs(i).from=from,
-      scs_m_new.objs(i).to=to
+      
+      objsi=scicos_link(xx=o(2),yy=o(3),id=o(5),thick=o(6),..
+			ct=o(7),from=from,to=to)
+      scs_m_new.objs(i)=objsi
     elseif o(1)=='Text' then
-      scs_m_new.objs(i)=TEXT_f('define')
-      scs_m_new.objs(i).model.rpar=o(3)(8)
-      scs_m_new.objs(i).model.ipar=o(3)(9)
-      scs_m_new.objs(i).graphics.orig=o(2)(1)
-      scs_m_new.objs(i).graphics.sz=o(2)(2)
-      scs_m_new.objs(i).graphics.exprs=o(2)(4)
+      
+      objsi=TEXT_f('define')
+      objsi.model.rpar=o(3)(8)
+      objsi.model.ipar=o(3)(9)
+      objsi.graphics.orig=o(2)(1)
+      objsi.graphics.sz=o(2)(2)
+      objsi.graphics.exprs=o(2)(4)
+      scs_m_new.objs(i)=objsi
     elseif o(1)=='Deleted' then
       scs_m_new.objs(i)=tlist('Deleted')
     end
   end
+
   [%cpr,edited]=resume(list(),%t) // doit etre enleve
 endfunction
 

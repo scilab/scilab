@@ -3,14 +3,17 @@ function do_exit()
 r=0
 if edited then
   if ~super_block then
-    r=message(['Diagram has not been saved';
-	'Save it before leaving?'],['Save';'Exit'])
+    r=x_choose(['Save';'Save As'],..
+	['Diagram has not been saved';
+	'What to do before leaving?'],'Don''t save')
   end
 end
 
 if r==1 then
   ok=do_save()
   if ~ok then do_SaveAs(),end
+elseif r==2 then
+  do_SaveAs()
 end
 
 if ~super_block&~pal_mode  then
