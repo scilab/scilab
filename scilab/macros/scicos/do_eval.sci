@@ -44,7 +44,7 @@ for %kk=1:%nx
       needcompile1=max(needcompile1,needcompile) // for scifunc_block
       model_n=o.model
       if or(model.blocktype<>model_n.blocktype)|.. // type 'c','d','z','l'
-	        or(model.dep_ut<>model_n.dep_ut) then 
+	        or(model.dep_ut<>model_n.dep_ut)|(model.nzcross<>model_n.nzcross) then 
 	needcompile1=4
       end
       scs_m.objs(%kk)=o
