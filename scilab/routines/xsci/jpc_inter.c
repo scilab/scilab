@@ -93,7 +93,7 @@ void Click_menu(int n);
 int charfromclick(void);
 
 static String bgfallback_resources[] = {
-#include "../xsci/Xscilab.ad.h"
+#include "Xscilab.ad.h"
   NULL,
 };
 

@@ -27,12 +27,11 @@ CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH)
 
 FFLAGS = $(FC_OPTIONS)
 
-include ../Make.lib
-
-
 XSCILAB_DEFAULT = $(SCIDIR)/X11_defaults/Xscilab
 
-all:: $(XSCILAB_DEFAULT)
+all:: $(XSCILAB_DEFAULT) Xscilab.ad.h 
+
+include ../Make.lib
 
 Xscilab.ad.h: Xscilab.ad
 	./ad2c.script Xscilab.ad > Xscilab.ad.h
@@ -100,7 +99,8 @@ jpc_windows.o: x_ptyx.h x_data.h jpc_global.h jpc_defs.h x_xbas.icon.X \
 	../version.h
 jpc_command.o: ../machine.h jpc_global.h jpc_defs.h 
 jpc_utils.o: jpc_global.h jpc_defs.h 
-jpc_inter.o: x_ptyxP.h x_ptyx.h x_data.h ../machine.h
+jpc_inter.o: x_ptyxP.h x_ptyx.h x_data.h ../machine.h Xscilab.ad.h 
+
 x_button.o: x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h
 x_charproc.o: ../machine.h x_ptyx.h x_ptyxP.h x_VTparse.h x_data.h x_error.h \
 	x_menu.h x_main.h 
