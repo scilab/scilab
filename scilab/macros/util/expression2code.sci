@@ -119,6 +119,8 @@ case "operation" then
       for k=2:size(operands,"*")
 	if operands(k)==""":""" then
 	  operands(k)=":"
+	elseif operands(k)=="""$""" then
+	  operands(k)="$"
 	end
       end
       val = part(operands(2),1)=="""" & part(operands(2),length(operands(2)))==""""
@@ -232,6 +234,8 @@ case "cste" then
   C=sci2exp(e.value)
   if C==""":""" then
     C=":"
+  elseif C=="""$""" then
+    C="$"
   end
   C=strsubst(C,"%Inf","%inf")
   // --------
@@ -268,6 +272,8 @@ case "list"
     end
     if ind==""":""" then
       ind=":"
+    elseif ind=="""$""" then
+      ind="$"
     end
     val = part(ind,1)=="""" & part(ind,length(ind))==""""
     if val then
