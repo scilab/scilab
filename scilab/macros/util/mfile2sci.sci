@@ -31,7 +31,7 @@ if exists("m2ssci_fileslib")==0 then load("SCI/macros/m2sci/sci_files/lib"),end
 // Get context
 global("m2sci_infos")
 [l,mac]=where()
-Reclevel=size(find(mac=="mfile2sci"),"*")
+Reclevel=size(find(mac=="mfile2sci"),"*")-size(find(mac=="m2sci_gui"),"*")
 if Reclevel==1 then
   nametbl=[]
 else
