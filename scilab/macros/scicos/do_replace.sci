@@ -14,7 +14,7 @@ while %t
     kpal=-windows(kc,1)
     palette=palettes(kpal)
     k=getblock(palette,[xc;yc])
-    if k<>[] then o=palette(k),break,end
+    if k<>[] then o=palette.objs(k),break,end
   elseif win==curwin then //click dans la fenetre courante
     k=getblock(scs_m,[xc;yc])
     if k<>[] then
