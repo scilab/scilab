@@ -7,11 +7,11 @@ function M=hypermat(dims,v)
 // and the vector of entries M('entries') such as the leftmost subcripts vary first
 // [M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]
 [lhs,rhs]=argn(0)
-dims=round(dims)
+//dims=round(dims)
 if rhs<2 then
   M=mlist(['hm','dims','entries'],matrix(dims,1,-1),zeros(prod(dims),1))
 else
-  if size(v,'*')<> prod(dims) then
+  if size(v,'*')<> double(prod(dims)) then
     error('hypermat: Number of entries does not match product of dimensions')
   end
   M=mlist(['hm','dims','entries'],matrix(dims,1,-1),v(:))
