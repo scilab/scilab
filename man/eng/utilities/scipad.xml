@@ -291,6 +291,11 @@
         files from an explorer and dropping to Scipad will open the file(s) in
         Scipad.</SP>
 
+        <P>TkDnD installation for Windows platforms: Download the full package
+        (currently tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the
+        content of lib\tkdnd and paste it into SCI\tcl\tk8.4\tkdnd. That's
+        all!</P>
+
         <P></P>
       </ITEM>
     </ITEMIZE>
