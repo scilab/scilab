@@ -283,6 +283,11 @@ if test "$rest" = "yes"; then
     sci_args="$sci_args -l $language"
   fi
 
+  if test -n "$arguments"; then
+    sci_args="$sci_args  $arguments"
+  fi
+
+
   if test -n "$now"; then
       sci_exe="do_scilex_now"
   else
