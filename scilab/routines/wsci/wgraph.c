@@ -73,7 +73,7 @@ void scig_deletegwin_handler_sci (int win)
   SciGc = GetWindowXgcNumber(win);
   if (strlen(SciGc->EventHandler)!=0) {
     sprintf(buf,"%s(%d,0,0,-1000)",SciGc->EventHandler,win);
-    StoreCommand(buf);
+    StoreCommand1(buf,2);
     }
 };
 static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
@@ -652,7 +652,7 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
   SciGc = GetWindowXgcNumber(win);
   if (strlen(SciGc->EventHandler)!=0) {
     sprintf(buf,"%s(%d,%d,%d,%d)",SciGc->EventHandler,win,x,y,ibut);
-    StoreCommand(buf);
+    StoreCommand1(buf,2);
     return 1;}
   else
     return 0;

@@ -237,7 +237,7 @@ void ScilabMenuAction (char *buf)
       if (buf[1] == '0')
 	{
 	  /* Interpreted mode : we store the action on a queue */
-	  StoreCommand1 (buf + 2, 1);
+	  StoreCommand1 (buf + 2, 2);
 	}
       else
 	{

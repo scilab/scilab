@@ -62,7 +62,7 @@ rlgets (char *s, int n, char *prompt)
   /* If it's not an EOF */
   if (line)
     {
-      if (*line)
+      if (*line>=0)
 	add_history_win (line);
       strncpy (s, line, n);
       return s;
@@ -88,7 +88,7 @@ rlgets_nw (char *s, int n, char *prompt)
   if (line)
     {
       /* -1 is added for eos ( end of input when using pipes ) */
-      if (*line && *line != -1)
+      if (*line>=0)
 	add_history_nw (line);
       strncpy (s, line, n);
       return s;
