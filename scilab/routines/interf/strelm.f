@@ -1477,8 +1477,8 @@ c     argument is a vector of ascii codes return a scilab string
          istk(ilr+5)=1+n
          lr=ilr+6
          do 20 i=0,n-1
-            m=int(stk(l+i))
-            istk(lr+i)=getcode(m)
+            c=char(int(stk(l+i)))
+            istk(lr+i)=getcode(c)
  20      continue
          lstk(top+1)=sadr(lr+n)
       elseif(istk(il).eq.10) then
