@@ -146,8 +146,8 @@ for e in $libexts; do
 						  [ -L$USER_TCL_LIB_PATH -l$NAME_LIB_TCL $TCL_LDFLAGS])
 				fi
 				CFLAGS="$saved_cflags"
-				CPPFLAGS="$saved_ldflags"
-				LDFLAGS="$saved_cppflags"
+				CPPFLAGS="$saved_cppflags"
+				LDFLAGS="$saved_ldflags"
 				if test $TCL_LIB_OK = 1; then 
 					if test "$USER_TCL_LIB_PATH" = ""
 					then TCL_LIB=" -L$PATH_LIB_TCL -l$NAME_LIB_TCL"
@@ -186,8 +186,10 @@ CHK_TK_INCLUDE_PATH=$1
 CHK_TK_MAJOR=$2
 CHK_TK_MINOR=$3
 CHK_TK_INC_NAME=$4
-saved_cppflags="$CFLAGS"
+saved_cflags="$CFLAGS"
+saved_cppflags="$CPPFLAGS"
 CFLAGS="$CFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
+CPPFLAGS="$CPPFLAGS -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 AC_MSG_CHECKING([if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later])
 AC_GREP_CPP(TK_VERSION_OK,
 [
@@ -240,6 +242,7 @@ else
 	fi
 fi
 CFLAGS=$saved_cflags
+CPPFLAGS=$saved_cppflags
 ]) dnl End of AC_CHECK_TK_VERSION
 
 
@@ -283,8 +286,8 @@ for e in $libexts; do
 						  [ -L$USER_TK_LIB_PATH -l$NAME_LIB_TK $TK_LDFLAGS])
 				fi
 				CFLAGS="$saved_cflags"
-				CPPFLAGS="$saved_ldflags"
-				LDFLAGS="$saved_cppflags"
+				CPPFLAGS="$saved_cppflags"
+				LDFLAGS="$saved_ldflags"
 				if test $TK_LIB_OK = 1; then 
 					if test "$USER_TK_LIB_PATH" = ""
 					then TK_LIB=" -L$PATH_LIB_TK -l$NAME_LIB_TK"
@@ -352,7 +355,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
   fi 
 
   # Check for tk header file
-  AC_MSG_CHECKING([for header file k.h])
+  AC_MSG_CHECKING([for header file tk.h])
   dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include"
   for i in $dirs ; do
 	if test -r $i/tk.h; then 
