@@ -254,19 +254,21 @@ void CPixmapResize(int x, int y)
 {
   Drawable draw;
   draw = ScilabXgc->Cdrawable;
-  ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
-  if ( ScilabXgc->Cdrawable == (Drawable) 0) 
-    {
-      ScilabXgc->Cdrawable = draw;
-      sciprint("No more space to create Pixmaps\r\n");
-    }
-  else
-    {
-      XFreePixmap(dpy,(Pixmap) draw);
-    }
-  PixmapClear(0,0,x,y);
-  XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, 
-			     (Pixmap) ScilabXgc->Cdrawable);
+  if (ScilabXgc->CurPixmapStatus == 1){
+    ScilabXgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
+    if ( ScilabXgc->Cdrawable == (Drawable) 0) 
+      {
+	ScilabXgc->Cdrawable = draw;
+	sciprint("No more space to create Pixmaps\r\n");
+      }
+    else
+      {
+	XFreePixmap(dpy,(Pixmap) draw);
+      }
+    PixmapClear(0,0,x,y);
+    XSetWindowBackgroundPixmap(dpy, ScilabXgc->CWindow, 
+			       (Pixmap) ScilabXgc->Cdrawable);
+  }
 }
 
 /*
