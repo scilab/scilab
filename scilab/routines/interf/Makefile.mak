@@ -8,7 +8,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/interf.lib
 
-OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj intlapack.obj
+OBJSC = Interf.obj ctest.obj  cs2st.obj getdate.obj stack1.obj stack2.obj stack3.obj intlapack.obj intslicot.obj
 
 OBJSF = lstelm.obj lstelmi.obj  matdes.obj matdsc.obj matdsr.obj matelm.obj\
 	lstops.obj intl_e.obj intl_i.obj \
@@ -23,7 +23,7 @@ OBJSF = lstelm.obj lstelmi.obj  matdes.obj matdsc.obj matdsr.obj matelm.obj\
 	where.obj indxg.obj defint.obj\
 	matodc.obj dasrti.obj\
 	intg.obj int2d.obj int3d.obj feval.obj bva.obj comm.obj specfun.obj\
-	isany.obj intdzgeqpf.obj \
+	isany.obj \
 	followpath.obj newsave.obj insertfield.obj v2unit.obj v2cunit.obj \
 	hmcreate.obj
 
