@@ -90,6 +90,10 @@ cd ..
 cd tksci
 echo Macros compilation tksci
 nmake /C /f Makefile.mak %1 
+cd ..
+cd sparse
+echo Macros compilation sparse
+nmake /C /f Makefile.mak %1 
 cd ..
 cd texmacs
 echo Macros compilation texmacs
