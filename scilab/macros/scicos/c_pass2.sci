@@ -93,7 +93,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   //extract various info from bllst
   [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-   xptr,zptr,modptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
+   xptr,zptr,typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
    typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
   typ_z0=typ_z;
@@ -152,11 +152,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   //form scicos arguments
   nb=size(typ_z,'*');
   zcptr=ones(nb+1,1);
+  modptr=ones(nb+1,1);
   for i=1:nb
     zcptr(i+1)=zcptr(i)+typ_z(i)
+    modptr(i+1)=modptr(i)+sign(typ_z(i))*typ_mod(i);
   end
-  
-  
+    
   ztyp=sign(typ_z0)  //completement inutile pour simulation
                      // utiliser pour la generation de code
 
@@ -175,7 +176,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   if show_trace then disp('c_pass61:'+string(timer())),end
 
   outtb=0*ones(lnkptr($)-1,1)
-  mod=0*ones(modptr($)-1,1)
+//  mod=0*ones(modptr($)-1,1)
   iz0=zeros(nb,1);
 
   if max(funtyp)>10000 &%scicos_solver==0 then
@@ -192,7 +193,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     state.evtspt=evtspt
     state.pointi=pointi
     state.outtb=outtb
-    state.mod=mod
+//    state.mod=mod
 
   cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 
@@ -692,7 +693,7 @@ function a=mysum(b)
 endfunction
 
 function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
-	  xptr,zptr,modptr,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
+	  xptr,zptr,typ_mod,rpptr,ipptr,xc0,xcd0,xd0,rpar,ipar,dep_ut,..
 	  typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
 	  bexe,boptr,blnk,blptr,ok]=extract_info(bllst,..
 						 connectmat,clkconnect)
@@ -700,13 +701,13 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
   cliptr=clkptr;inpptr=cliptr;outptr=inpptr;
-  xptr=1;zptr=1;modptr=1;
+  xptr=1;zptr=1;
   rpptr=clkptr;ipptr=clkptr;
   //
   xc0=[];xcd0=[];xd0=[];rpar=[];ipar=[];
 
   fff=ones(nbl,1)==1
-  dep_ut=[fff,fff];typ_z=zeros(nbl,1);typ_s=fff;typ_x=fff;typ_m=fff;
+  dep_ut=[fff,fff];typ_z=zeros(nbl,1);typ_s=fff;typ_x=fff;typ_m=fff;typ_mod=zeros(nbl,1);
 
   initexe=[];
   funs=list();
@@ -757,7 +758,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     end
     xd0=[xd0;xd0k]
     zptr(i+1)=zptr(i)+size(xd0k,'*')
-    modptr(i+1)=modptr(i)+ll.nmode;
+    typ_mod(i)=ll.nmode;
     //  
     if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
       if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
