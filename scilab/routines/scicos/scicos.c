@@ -26,9 +26,8 @@ void cdoit(double *);
 void doit(double *,integer *);
 void ddoit(double *);
 void edoit(double *,integer *,integer *);
-void oodoit(double *,double *,double *,integer *,integer *);
 void odoit(double *,double *,double *,double *);
-void zzdoit(double *,double *,double *,integer *,integer *);
+void ozdoit(double *,double *,double *,integer *,integer *);
 void zdoit(double *,double *,double *,double *);
 void cossimdassl(double *);
 void cossim(double *);
@@ -1395,7 +1394,6 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   if (nord == 0) {
     return;
   }
-
   iwa[*kiwa] = keve;
   ++(*kiwa);
   for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
@@ -1468,73 +1466,6 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   }
 } /* edoit_ */
 
-/* Subroutine */ void oodoit(xtd, xt,told,urg, kiwa)
-     double *xtd, *xt;
-     double *told;
-     integer *urg, *kiwa;
-{
-  /* System generated locals */
-  integer i2;
-
-  /* Local variables */
-  static integer flag__, keve, nord;
-
-  static integer ierr1;
-  static integer ii;
-
-  /* Function Body */
-  --(*urg);
-  keve = *pointi;
-  *pointi = evtspt[keve];
-  evtspt[keve] = -1;
-
-  nord = ordptr[keve + 1] - ordptr[keve];
-  if (nord == 0) {
-    return;
-  }
-  iwa[*kiwa] = keve;
-  ++(*kiwa);
-
-  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
-    C2F(curblk).kfun = ordclk[ii];
-    if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
-      nclock = ordclk[ii + nordclk];
-      flag__ = 1;
-      callf(told, xtd, xt, xt,W,&flag__);
-
-      if (flag__ < 0) {
-	*ierr = 5 - flag__;
-	return;
-      }
-    }
-    /*     .     Initialize tvec */
-    ntvec = clkptr[C2F(curblk).kfun + 1] - clkptr[C2F(curblk).kfun];
-    if (ntvec > 0) {
-      if (funtyp[C2F(curblk).kfun] < 0) {
-
-	if (funtyp[C2F(curblk).kfun] == -1) {
-	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
-	    ntvec = 2;
-	  } else {
-	    ntvec = 1;
-	  }
-	} else if (funtyp[C2F(curblk).kfun] == -2) {
-	  ntvec= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
-			 ntvec),1);
-	}
-	++(*urg);
-	i2 = ntvec + clkptr[C2F(curblk).kfun] - 1;
-	putevs(told, &i2, &ierr1);
-	if (ierr1 != 0) {
-	  /*     !                 event conflict */
-	  *ierr = 3;
-	  return;
-	}
-      }
-    }
-  }
-} /* oodoit_ */
-
 /* Subroutine */ void odoit(residual, xt, xtd, told)
      double *residual, *xt, *xtd;
      double *told;
@@ -1593,7 +1524,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
     }
   }
   while (urg > 0) {
-    oodoit(xtd, xt,told, &urg, &kiwa);
+    ozdoit(xtd, xt,told, &urg, &kiwa);
   }
   /*     .  update states derivatives */
   for (ii = 1; ii <= noord; ++ii) {
@@ -1628,9 +1559,8 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   }
 } /* odoit_ */
 
-/* Subroutine */ void zzdoit(xtd, xt,told,urg,  kiwa)
+/* Subroutine */ void ozdoit(xtd, xt,told,urg,  kiwa)
      double *xtd, *xt;
-
      double *told;
      integer *urg, *kiwa;
 {
@@ -1653,7 +1583,6 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
   if (nord == 0) {
     return;
   }
-
   iwa[*kiwa] = keve;
   ++(*kiwa);
 
@@ -1695,7 +1624,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
       }
     }
   }
-} /* zzdoit_ */
+} /* ozdoit_ */
 
 /* Subroutine */ void zdoit(g, xtd, xt,told)
      double *g;
@@ -1756,7 +1685,7 @@ integer *iw, *iwa_in, *flag__, *ierr_out;
 
 
   while (urg > 0) {
-    zzdoit(xtd, xt,told, &urg, &kiwa);
+    ozdoit(xtd, xt,told, &urg, &kiwa);
   }
   /*     .  update zero crossing surfaces */
   for (ii = 1; ii <= nzord; ++ii) {
