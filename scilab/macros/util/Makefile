@@ -53,7 +53,7 @@ MACROS = setlanguage.sci with_lcc.sci VCtoLCCLib.sci \
 	tree2code.sci expression2code.sci instruction2code.sci cat_code.sci format_txt.sci \
 	rhs2code.sci create_palette.sci ndgrid.sci \
 	m2sci_gui.sci mdelete.sci show_startupinfo.sci ged.sci \
-	tic.sci toc.sci etime.sci
+	tic.sci toc.sci etime.sci fullfile.sci
 
 
 include ../Make.lib
