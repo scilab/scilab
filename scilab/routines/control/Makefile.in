@@ -28,7 +28,7 @@ OBJSF =  bezous.o cerr.o coef.o dclmat.o dexpm1.o \
 	qhesz.o qitz.o quad.o quadit.o quadsd.o qvalz.o qvecz.o \
 	realit.o scaleg.o reduc2.o \
 	rpoly.o split.o tql2.o tred2.o wbalin.o wbdiag.o wexchn.o \
-	wshrsl.o fstair.o riccati.o
+	wshrsl.o fstair.o riccpack.o
 
 include ../../Makefile.incl
 
