@@ -1,4 +1,5 @@
 function ilib_gen_loader(name,tables,libs)
+// Copyright Enpc 
 //------------------------------------
 // generate a loader file for gateway
   if rhs < 3 then libs=[];end 

@@ -1,4 +1,5 @@
 function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags)
+  // Copyright Enpc 
   [lhs,rhs]=argn(0);
   info=1
   if rhs <= 4 then makename = 'Makelib';end

@@ -1,4 +1,5 @@
 function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags)
+// Copyright Enpc 
 // 
   [lhs,rhs]=argn(0);
   info=1

@@ -1,4 +1,5 @@
 function libn=ilib_for_link(names,files,libs,flag,makename,loadername,libname,ldflags,cflags,fflags,cc)
+// Copyright Enpc 
 // Generate a shared library which can be used by link 
 // command. 
 // names = names of entry points or the name of the library to 

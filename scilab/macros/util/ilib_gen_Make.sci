@@ -1,4 +1,5 @@
 function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldflags,cflags,fflags)
+// Copyright Enpc 
 //------------------------------------
 // generate a Makefile for gateway
   if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='';end

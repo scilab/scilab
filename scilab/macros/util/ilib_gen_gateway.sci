@@ -1,4 +1,5 @@
 function ilib_gen_gateway(name,tables)
+// Copyright Enpc 
 //------------------------------------
 // generate an interface gateway named name
 // from table table taking into account 
