@@ -18,7 +18,7 @@ void C2F(readgifimg)(string,imgptr,m,n,ncol)
   fd=fopen(string,"r");
     if (fd == 0) 
       {
-	sciprint("Can't open file %s\n");
+	sciprint("Can't open file %s\n",string);
 	return;
       }
   im = gdImageCreateFromGif(fd);
@@ -42,7 +42,7 @@ void C2F(readxbmimg)(string,imgptr,m,n,ncol)
   fd=fopen(string,"r");
     if (fd == 0) 
       {
-	sciprint("Can't open file %s\n");
+	sciprint("Can't open file %s\n",string);
 	return;
       }
   im = gdImageCreateFromXbm(fd);
