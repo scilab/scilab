@@ -2203,9 +2203,7 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas.Build.0 = Debug with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
-		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas without Java.Build.0 = Debug with Atlas without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug without Java.ActiveCfg = Debug without Java|Win32
-		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug without Java.Build.0 = Debug without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.ActiveCfg = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.Build.0 = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.ActiveCfg = PIV_Release with Atlas|Win32
@@ -2217,7 +2215,6 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
-		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.ActiveCfg = Release with Atlas without Java|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.Build.0 = Release with Atlas without Java|Win32
 	EndGlobalSection
