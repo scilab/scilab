@@ -17,7 +17,7 @@ demos_name=[
     'Synchro Block demo'];
 
 if ~MSDOS then demos_name=[demos_name;'sound demo'];end
-if with_modelica_compiler then
+if with_modelica_compiler() then
   demos_name=[demos_name;
 	      'Electrical circuit: RLC'
 	      'Electrical circuit: Rectifier'];
