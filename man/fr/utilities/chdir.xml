@@ -6,6 +6,7 @@
   <TYPE>Scilab Function  </TYPE>
   <DATE>April 1993  </DATE>
   <SHORT_DESCRIPTION name="chdir"> change le répertoire courant de Scilab  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="cd"> change le répertoire courant de Scilab  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>chdir(path)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>realpath=cd(path)  </CALLING_SEQUENCE_ITEM>
