@@ -12,15 +12,15 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   while K<>[] do
     k=K(1);K(1)=[]
     o=scs_m(k);
-    typ=typeof(o)
-    
+    if find(DEL==k)==[] then typ=typeof(o);else typ='Deleted',end
+
     DEL=[DEL k]
     if typ=='Link' then
       [ct,from,to]=(o.ct,o.from,o.to)
       //  free connected ports
       scs_m(from(1))=mark_prt(scs_m(from(1)),from(2),'out',ct(2),0)
       scs_m(to(1))=mark_prt(scs_m(to(1)),to(2),'in',ct(2),0)
-      
+
       // erase and delete link
       if gr==%t then drawobj(o),end
       fromblock=scs_m(from(1));
