@@ -53,7 +53,7 @@ function puit_draw_ports(o)
           xfpoly(in1(:,1)+ones(4,1)*orig(1),..
 	       in1(:,2)+ones(4,1)*(orig(2)+sz(2)-dy*k),1)
       else
-             if inporttype(k)=='E'then
+             if inporttype(k)=='E' then
              	if k==1 then
 	        xfpoly(in22(:,1)+ones(4,1)*(orig(1)+5*sz(1)/7),..
 	         in22(:,2)+ones(4,1)*(orig(2)+sz(2)),1)
@@ -64,7 +64,7 @@ function puit_draw_ports(o)
 	         xfpoly(in4(:,1)+ones(4,1)*(orig(1)+5*sz(1)/7),..
 	         in4(:,2)+ones(4,1)*(orig(2)),1)
 		end
-             elseif inporttype(k)=='I'then
+             elseif inporttype(k)=='I' then
 	        xfpoly(in2(:,1)+ones(4,1)*orig(1),..
 	  	 in2(:,2)+ones(4,1)*(orig(2)+sz(2)/2),1)	
              end
