@@ -2971,7 +2971,7 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
 
 
   //store unconnected outputs, if any, at the end of outtb
-    unco=find(outlnk==0);
+  unco=find(outlnk==0);
   for j=unco
     m=maxi(find(outptr<=j))
     n=j-outptr(m)+1
