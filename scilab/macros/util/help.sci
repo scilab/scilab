@@ -137,7 +137,7 @@ function gtk_help(path,key)
    case 'nautilus' then  unix_s("nautilus --no-desktop "+path+ '&'); 
    case 'help widget' 
     help_gtk(SCI+"/man/",LANGUAGE,path);
-   case 'tcl/tl' then  tcltk_help(path,key); 
+   case 'tcltl' then  tcltk_help(path,key); 
    case 'mozilla' then unix_s(%gtkhelp + " file://" +path+ '&'); 
    case 'netscape' then unix_s(%gtkhelp + " file://" +path+ '&'); 
    case 'opera' then unix_s(%gtkhelp + " file://" +path+ '&'); 
