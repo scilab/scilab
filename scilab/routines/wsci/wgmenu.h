@@ -180,8 +180,8 @@ int C2F (unsmen) (integer * win_num, char *button_name, integer * entries,
 EXPORT BOOL CALLBACK ExportStyleDlgProc (HWND hdlg, UINT wmsg, WPARAM wparam, LPARAM lparam);
 
 BOOL ExportStyle (struct BCG * ScilabGC);
-
-
+void NewFigure(struct BCG * ScilabGC);
+int FindFreeGraphicWindow(struct BCG * ScilabGC);
 
 
 

@@ -31,7 +31,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 			  s++;
 	      break;
 		case NEWFIG:
-			MessageBox(NULL,"Nouvelle Fenetre Graphique"," ",MB_OK);
+			NewFigure(ScilabGC);
 			s++;
 	      break;
 	    case ZOOM:
@@ -1085,5 +1085,71 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 		break;
 	}
 	
+}
+/*-----------------------------------------------------------------------------------*/
+void NewFigure(struct BCG * ScilabGC)
+{
+	
+	char Command[MAX_PATH];
+	int FreeWindow=0;
+
+	if (ScilabGC->graphicsversion == 0)
+	{
+		wsprintf(Command,"xset(\"window\",-1);");
+		StoreCommand1(Command,2);
+	}
+	else
+	{
+		FreeWindow=FindFreeGraphicWindow(ScilabGC);
+		wsprintf(Command,"xset(\"window\",%d);",FreeWindow);
+		StoreCommand1(Command,2);
+	}
+}
+	
+/*-----------------------------------------------------------------------------------*/
+/* Retourne un numéro valide de fenetre graphique libre */
+int FindFreeGraphicWindow(struct BCG * ScilabGC)
+{
+	int FreeNumber=-1;
+	integer iflag =0,ids,num,un=1;
+
+	if (ScilabGC->graphicsversion == 0)
+	{
+		HWND hWndGraph=NULL;
+		int Num=0;
+		char NameWindow[MAX_PATH];
+
+		wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
+		while ( FindWindow(NULL,NameWindow) )
+		{
+			Num++;
+			wsprintf(NameWindow,"%s%d","ScilabGraphic",Num);
+		}
+		FreeNumber=Num-1;
+	}
+	else
+	{
+		integer *tab=NULL;
+		int sizetab=0;
+		int i=0;
+
+		iflag = 0; 
+		C2F(getwins)(&num,&ids ,&iflag);
+		sizetab=num;
+
+		tab=(integer*)malloc(sizeof(integer)*sizetab);
+		for(i=0;i<sizetab;i++) tab[i]=0;
+
+		iflag = 1; 
+		C2F(getwins)(&num,tab,&iflag);
+
+		for(i=0;i<sizetab;i++)
+		{
+			if(FreeNumber<tab[i]) FreeNumber=tab[i];	
+		}
+		FreeNumber=FreeNumber+1;
+		free(tab);
+    } 
+	return FreeNumber;
 }
 /*-----------------------------------------------------------------------------------*/
