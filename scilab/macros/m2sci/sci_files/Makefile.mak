@@ -59,7 +59,7 @@ OTHERS = sci_acot.sci sci_acoth.sci sci_acsc.sci sci_acsch.sci sci_angle.sci \
 	 sci_svd.sci sci_tic.sci sci_toc.sci \
          sci_home.sci sci_type.sci sci_uigetdir.sci sci_waitforbuttonpress.sci sci_warning.sci
 
-PLOT =  sci_axis.sci sci_box.sci
+PLOT =  sci_axis.sci sci_box.sci sci_cla.sci sci_clf.sci sci_closereq.sci sci_colordef.sci
 
 MACROS = $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
          $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
