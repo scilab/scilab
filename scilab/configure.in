@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.56 $)dnl
+AC_REVISION($Revision: 1.57 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -969,9 +969,9 @@ case "$host" in
     #
     # C Compiler
     #
-    CC=cc
-    CC_OPTIONS='-O2 -Dnetbsd'
-    CC_LDFLAGS="-Wl,-R${X11BASE}/lib"
+    AC_PROG_CC
+    CC_OPTIONS="${CFLAGS} -Dnetbsd"
+    CC_LDFLAGS="${LDFLAGS} -Wl,-R${X11BASE}/lib"
     CC_PICFLAGS='-fPIC'
     # check for --export-dynamic
     ac_save_LDFLAGS="$LDFLAGS"
@@ -985,21 +985,13 @@ case "$host" in
    #
    # Fortran Compiler
    #
-   if test "$with_f2c" = yes; then
-     AC_CHECK_PROGS(F77,f2c-f77,no)
-     if test "$F77" = no; then
-       AC_MSG_ERROR([Unable to configure: Fortran compiler f2c-f77 not found])
-     fi
-   else		
-     AC_CHECK_PROGS(F77,"${FC}" f77 f2c-f77,no)
-     if test "$F77" = no; then
-       AC_MSG_ERROR([Unable to configure: Fortran, f77 or f2c-f77, compiler not found])
-     fi
-   fi
+
+   AC_PROG_F77
+   AC_F77_LIBRARY_LDFLAGS
    FC="$F77"
-   FC_OPTIONS='-O2'
+   FC_OPTIONS="${FFLAGS}"
    FC_OPTIONS_O0=`echo $FC_OPTIONS | sed 's/-O[0-9]*//g'`
-   FC_LDFLAGS="-Wl,-R${X11BASE}/lib"
+   FC_LDFLAGS="${LDLAGS} -Wl,-R${X11BASE}/lib"
    FC_PICFLAGS='-fPIC'
    # check for --export-dynamic
    ac_save_LDFLAGS="$LDFLAGS"
@@ -1024,13 +1016,7 @@ case "$host" in
      LD_LDFLAGS=["$LD_LDFLAGS  --export-dynamic"],
      AC_MSG_RESULT(no))
    LDFLAGS="$ac_save_LDFLAGS" 
-   #
-   # Compiler Debug Flags
-   #
-   if test "$enable_debug" = yes; then 
-      CC_OPTIONS='-g -Dnetbsd '
-      FC_OPTIONS='-g '
-   fi
+
    MAKEFILE_TARGET=Makefile.netbsd
    ;;
 # Darwin/MacOSX (Not supported by INRIA)
@@ -1315,7 +1301,7 @@ AC_CHECK_FUNCS(finite)
 ## test for header files
 ########################
 
-AC_CHECK_HEADERS(values.h) 
+AC_CHECK_HEADERS(limits.h values.h) 
 
 ##################
 ## termcap library
