@@ -2948,7 +2948,7 @@ c     encountered any trouble at this spot in DASKR, I recommend you
 c     make the change.
 cc      IF ((ABS(X2-X0) .LT. HMIN) .AND.
 cc     1   (ABS(X1-X0) .GT. 10.0D0*HMIN)) X2 = X0 + 0.1D0*(X1-X0)
-      IF (ABS(X2 - X0) < HALF*HMIN) THEN
+      IF (ABS(X2 - X0) .LT. HALF*HMIN) THEN
         FRACINT = ABS(X1 - X0)/HMIN
         IF (FRACINT .GT. FIVE) THEN
           FRACSUB = TENTH
@@ -2958,7 +2958,7 @@ cc     1   (ABS(X1-X0) .GT. 10.0D0*HMIN)) X2 = X0 + 0.1D0*(X1-X0)
         X2 = X0 + FRACSUB*(X1 - X0)
       ENDIF
 
-      IF (ABS(X1 - X2) < HALF*HMIN) THEN
+      IF (ABS(X1 - X2) .LT. HALF*HMIN) THEN
         FRACINT = ABS(X1 - X0)/HMIN
         IF (FRACINT .GT. FIVE) THEN
           FRACSUB = TENTH
