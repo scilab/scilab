@@ -19,6 +19,16 @@ proc checkscilabbusy {{mb "message"}} {
     }
 }
 
+proc tonextbreakpoint_bp {} {
+    if {[getdbstate] == "ReadyForDebug"} {
+        execfile_bp
+    } elseif {[getdbstate] == "DebugInProgress"} {
+        resume_bp
+    } else {
+        tk_messageBox -message "Unexpected debug state in proc tonextbreakpoint_bp: please report"
+    }
+}
+
 proc execfile_bp {} {
     global funnameargs listoftextarea funsinbuffer waitmessage
     if {[checkscilabbusy] == "OK"} {
@@ -149,12 +159,6 @@ proc goonwo_bp {} {
     }
 }
 
-# Now obsolete since replaced by the display in the watch window
-#proc dispcallstack_bp {} {}
-#        ScilabEval "whereami()"
-#{    }
-#{}
-
 proc canceldebug_bp {} {
     global funnameargs waitmessage
     if {[checkscilabbusy] == "OK"} {
@@ -179,7 +183,7 @@ proc scilaberror {funnameargs} {
                 TK_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
                                            set errnum  \"+string(db_n)+\"; \
                                            set errline \"+string(db_l)+\"; \
-                                           set errfunc \"+db_func+\"; \
+                                           set errfunc \"\"\"+db_func+\"\"\"; \
                                            set errmsg \"\"\"+db_str+\"\"\"}\")" \
                "sync" "seq"
     if {$lang == "eng"} {
@@ -187,13 +191,13 @@ proc scilaberror {funnameargs} {
           -message [concat "The shell reported an error while trying to execute "\
           $funnameargs ": error " $errnum ", " $errmsg " at line "\
           $errline " of function " $errfunc]
-        showinfo "Debug aborted due to Scilab execution error!"
+        showinfo "Execution aborted!"
     } else {
         tk_messageBox -title "Erreur Scilab durant l'exécution" \
           -message [concat "Le shell a rencontré une erreur en tentant d'exécuter "\
           $funnameargs ": erreur " $errnum ", " $errmsg " ligne "\
           $errline " de la fonction " $errfunc]
-        showinfo "Debug arrêté du fait d'une erreur Scilab!"
+        showinfo "Exécution arrêtée!"
     }
     if {[getdbstate] == "DebugInProgress"} {
         canceldebug_bp

@@ -545,3 +545,13 @@ Francois VOGEL, 29/10/04
    {updateactivebreakpointtag 1 foo}"). This occurred when the commented word "function" was
    present in the buffer and function foo was not defined in that buffer.
  * version --> 3.8
+
+Francois VOGEL, 01/11/04
+ * Fixed further bug in proc updateactivebreakpointtag. The first line of the function
+   defined just after the function searched for could be tagged.
+ * The insertion cursor is now positioned at the beginning of the active breakpoint on an
+   update of its position. This is an option of proc updateactivebreakpointtag.
+ * Simplified the debugger. Start debug (CTRL-F11) and Go to next breakpoint (F11) merged
+   into one single command.
+ * Improved proc scilaberror following ES' suggestions
+ * version --> 3.9

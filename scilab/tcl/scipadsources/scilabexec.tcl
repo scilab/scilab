@@ -43,7 +43,7 @@ proc execfile {{buf "current"}} {
 	} else {
 	    set f $listoffile("$textarea",filename)
         if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
-            scilaberror "this file"
+            scilaberror $listoffile("$textarea",filename)
         }
 	}
     }

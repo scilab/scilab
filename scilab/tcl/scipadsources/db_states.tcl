@@ -19,15 +19,15 @@
 # |                |goonwo_bp /   /     \                 |
 # |                          /   /       \-------<--------|
 # |               |---->----/   /
-# |   -----------------        /execfile_bp
+# |   -----------------        /tonextbreakpoint_bp
 # |-<-|DebugInProgress|---<---/
 #     -----------------
 #        \     \
 #         \     \
-#          \     \-->-- insertremove_bp  |
-#           \           removeall_bp     |
-#            \          resume_bp        |
-#             \         showwatch_bp     |
+#          \     \-->-- insertremove_bp     |
+#           \           removeall_bp        |
+#            \          tonextbreakpoint_bp |
+#             \         showwatch_bp        |
 #              \              |
 #               \----<--------|
 ####################################################################
@@ -55,10 +55,10 @@ proc getdbstate {} {
 }
 
 proc setdbmenuentriesstates_bp {} {
-    global pad debugstate
+    global pad
     set dm $pad.filemenu.debug
 
-    if {$debugstate == "NoDebug"} {
+    if {[getdbstate] == "NoDebug"} {
         $dm entryconfigure 1 -state normal
         bind all <F9> {insertremove_bp}
         $dm entryconfigure 2 -state normal
@@ -66,19 +66,16 @@ proc setdbmenuentriesstates_bp {} {
         $dm entryconfigure 4 -state normal
         bind all <F10> {configurefoo_bp}
         $dm entryconfigure 6 -state disabled
-        bind all <Control-F11> {}
-        $dm entryconfigure 7 -state disabled
         bind all <F11> {}
-#        bind all <Shift-F11> {insertremovedebug_bp}
-        $dm entryconfigure 8 -state disabled
+        $dm entryconfigure 7 -state disabled
         bind all <F12> {}
-        $dm entryconfigure 9 -state disabled
+        $dm entryconfigure 8 -state disabled
         bind all <Shift-F12> {}
-        $dm entryconfigure 11 -state disabled
+        $dm entryconfigure 10 -state disabled
         bind all <Control-F12> {}
-        $dm entryconfigure 13 -state disabled
+        $dm entryconfigure 12 -state disabled
 
-    } elseif {$debugstate == "ReadyForDebug"} {
+    } elseif {[getdbstate] == "ReadyForDebug"} {
         $dm entryconfigure 1 -state normal
         bind all <F9> {insertremove_bp}
         $dm entryconfigure 2 -state normal
@@ -86,41 +83,35 @@ proc setdbmenuentriesstates_bp {} {
         $dm entryconfigure 4 -state normal
         bind all <F10> {configurefoo_bp}
         $dm entryconfigure 6 -state normal
-        bind all <Control-F11> {execfile_bp}
+        bind all <F11> {tonextbreakpoint_bp}
         $dm entryconfigure 7 -state disabled
-        bind all <F11> {}
-#        bind all <Shift-F11> {insertremovedebug_bp}
-        $dm entryconfigure 8 -state disabled
         bind all <F12> {}
-        $dm entryconfigure 9 -state disabled
+        $dm entryconfigure 8 -state disabled
         bind all <Shift-F12> {}
-        $dm entryconfigure 11 -state normal
+        $dm entryconfigure 10 -state normal
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 13 -state disabled
+        $dm entryconfigure 12 -state disabled
 
-    } elseif {$debugstate == "DebugInProgress"} {
+    } elseif {[getdbstate] == "DebugInProgress"} {
         $dm entryconfigure 1 -state normal
         bind all <F9> {insertremove_bp}
         $dm entryconfigure 2 -state normal
         bind all <Control-F9> {removeall_bp}
         $dm entryconfigure 4 -state disabled
         bind all <F10> {}
-        $dm entryconfigure 6 -state disabled
-        bind all <Control-F11> {}
-        $dm entryconfigure 7 -state normal
-        bind all <F11> {resume_bp}
-#        bind all <Shift-F11> {insertremovedebug_bp}
-        $dm entryconfigure 8 -state disabled
+        $dm entryconfigure 6 -state normal
+        bind all <F11> {tonextbreakpoint_bp}
+        $dm entryconfigure 7 -state disabled
 #        bind all <F12> {stepbystep_bp}
         bind all <F12> {}
-        $dm entryconfigure 9 -state normal
+        $dm entryconfigure 8 -state normal
         bind all <Shift-F12> {goonwo_bp}
-        $dm entryconfigure 11 -state normal
+        $dm entryconfigure 10 -state normal
         bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure 13 -state normal
+        $dm entryconfigure 12 -state normal
 
     } else {
-        tk_messageBox -message "Unknown debugstate: please report"
+        tk_messageBox -message "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
     }
 }
 
@@ -131,23 +122,23 @@ proc getdebuggersciancillaries_bp {} {
 }
 
 proc setdbstatevisualhint_bp {} {
-    global pad debugstate
+    global pad
     global lang colormen
-    if {$debugstate == "NoDebug"} {
+    if {[getdbstate] == "NoDebug"} {
         $pad.statusmes configure -background $colormen
         if {$lang == "eng"} {
             showinfo "Currently no debug session"
         } else {
             showinfo "Pas de session de débug en cours"
         }
-    } elseif {$debugstate == "ReadyForDebug"} {
+    } elseif {[getdbstate] == "ReadyForDebug"} {
         $pad.statusmes configure -background SpringGreen
         if {$lang == "eng"} {
             showinfo "Ready to start debug"
         } else {
             showinfo "Prêt pour le débug"
         }
-    } elseif {$debugstate == "DebugInProgress"} {
+    } elseif {[getdbstate] == "DebugInProgress"} {
         $pad.statusmes configure -background tomato3
         if {$lang == "eng"} {
             showinfo "Debug in progress"

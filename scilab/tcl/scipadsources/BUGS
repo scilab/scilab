@@ -222,3 +222,6 @@ Wishes:
  absolutely sure that the variable names instantiated by Scipad in not used in Scilab,
  so that conflicts would always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
+
+-a visual tag somewhere in the editor window, when the file opened is
+read-only: e.g. in the title bar, a special color in the message bar...

@@ -1,6 +1,5 @@
 proc insertremove_bp {{buf "current"}} {
-    global debugstate
-    if {$debugstate == "DebugInProgress"} {
+    if {[getdbstate] == "DebugInProgress"} {
         insertremovedebug_bp $buf
     } else {
         if {$buf == "current"} {

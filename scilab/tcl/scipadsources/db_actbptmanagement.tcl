@@ -9,7 +9,7 @@ proc updateactivebreakpoint {} {
     ScilabEval "$fullcomm" "seq"
 }
 
-proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
+proc updateactivebreakpointtag {{activeline -1} {activemacro -1} {updatecursorpos "No"}} {
     global listoftextarea pad
     set textareafun ""
     foreach textarea $listoftextarea {
@@ -49,8 +49,13 @@ proc updateactivebreakpointtag {{activeline -1} {activemacro -1}} {
             incr offset
             set infun [whichfun [$textareafun index "$funstart + $offset l"] $textareafun]
         }
-        set actline [expr $funstart + $offset ]
-        $textareafun tag add activebreakpoint "$actline linestart" "$actline lineend"
-        $textareafun see $actline
+        if {[lindex $infun 0] == $activemacro} {
+            set actline [expr $funstart + $offset ]
+            $textareafun tag add activebreakpoint "$actline linestart" "$actline lineend"
+            $textareafun see $actline
+            if {$updatecursorpos != "No"} {
+                $textareafun mark set insert "$funstart + $offset l"
+            }
+        }
     }
 }

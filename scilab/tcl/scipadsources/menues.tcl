@@ -275,12 +275,8 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add command -label "Configure execution" \
       -underline 0 -command "configurefoo_bp" -accelerator F10
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Start execution with breakpoints" \
-      -underline 0 -command "execfile_bp" -accelerator Ctrl+F11
-    $pad.filemenu.debug add command -label "Go on up to next breakpoint" \
-      -underline 12 -command "resume_bp" -accelerator F11
-#    $pad.filemenu.debug add command -label "Insert/Remove breakpoint during debug" \
-#      -underline 18 -command "insertremovedebug_bp" -accelerator Shift+F11
+    $pad.filemenu.debug add command -label "Go to next breakpoint" \
+      -underline 12 -command "tonextbreakpoint_bp" -accelerator F11
     $pad.filemenu.debug add command -label "Step by step" \
       -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
     $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
@@ -288,13 +284,9 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Show watch" \
       -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12
-#    $pad.filemenu.debug add command -label "Display call stack" \
-#      -underline 6 -command "dispcallstack_bp"
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Cancel debug" \
       -underline 5 -command "canceldebug_bp"
-#    $pad.filemenu.debug add command -label "Remove all breakpoints in Scilab" \
-#      -underline 0 -command "removescilab_bp with_output"
 } else {
     $pad.filemenu add cascade -label "Débug" -underline 0 \
 	-menu $pad.filemenu.debug
@@ -306,12 +298,8 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add command -label "Configurer l'exécution" \
       -underline 3 -command "configurefoo_bp" -accelerator F10
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Démarrer l'exécution avec les points d'arrêt" \
-      -underline 0 -command "execfile_bp" -accelerator Ctrl+F11
-    $pad.filemenu.debug add command -label "Continuer jusqu'au prochain point d'arrêt" \
-      -underline 10 -command "resume_bp" -accelerator F11
-#    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt pendant le debug" \
-#      -underline 40 -command "insertremovedebug_bp" -accelerator Shift+F11
+    $pad.filemenu.debug add command -label "Aller jusqu'au prochain point d'arrêt" \
+      -underline 10 -command "tonextbreakpoint_bp" -accelerator F11
     $pad.filemenu.debug add command -label "Pas à pas" \
       -underline 0 -command "stepbystep_bp" -accelerator F12 -state disabled
     $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
@@ -319,13 +307,9 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Fenêtre watch" \
       -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12
-#    $pad.filemenu.debug add command -label "Montrer la pile des appels" \
-#      -underline 0 -command "dispcallstack_bp"
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Annuler le débug" \
       -underline 0 -command "canceldebug_bp"
-#    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt dans Scilab" \
-#      -underline 0 -command "removescilab_bp with_output"
 }
 
 # help menu
