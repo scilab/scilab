@@ -1,6 +1,6 @@
 function %h_save(h,fd)
   //Author S. Steer Sept 2004, Copyright INRIA
-  version=[3 0 0 0]
+  version=[3 0 0 1]
   mput(version,'c',fd)
   save_graphichandle(h,fd)
 endfunction
@@ -32,7 +32,7 @@ function save_graphichandle(h,fd)
   case "Axes" 
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
     mput(bool2s(h.visible=='on'),'c',fd)
-    mput(bool2s(h.axes_visible=='on'),'c',fd)
+    mput(size(h.axes_visible,'*'),'c',fd);mput(bool2s(h.axes_visible=='on'),'c',fd)
     mput(size(h.grid,'*'),'c',fd); mput(h.grid,'il',fd);
     mput(length(h.x_location),'c',fd);mput(ascii(h.x_location),'c',fd);
     mput(length(h.y_location),'c',fd);mput(ascii(h.y_location),'c',fd);
@@ -63,6 +63,20 @@ function save_graphichandle(h,fd)
       mput(l.font_style,'c',fd)
       mput(l.font_size,'c',fd)
     end
+    mput(size(h.auto_ticks,'*'),'c',fd);mput(bool2s(h.auto_ticks=='on'),'c',fd)
+    
+    mput(size(h.x_ticks.locations,'*'),'sl',fd); mput(h.x_ticks.locations,'dl',fd)
+    mput(length(h.x_ticks.labels),'c',fd);
+    mput(ascii(strcat(h.x_ticks.labels)),'c',fd);
+  
+    mput(size(h.y_ticks.locations,'*'),'sl',fd);mput(h.y_ticks.locations,'dl',fd)
+    mput(length(h.y_ticks.labels),'c',fd);
+    mput(ascii(strcat(h.y_ticks.labels)),'c',fd);
+
+    mput(size(h.z_ticks.locations,'*'),'sl',fd);mput(h.z_ticks.locations,'dl',fd)
+    mput(length(h.z_ticks.labels),'c',fd);
+    mput(ascii(strcat(h.z_ticks.labels)),'c',fd);
+    
     
     mput(bool2s(h.box=='on'),'c',fd)
     mput(size(h.sub_tics,'*'),'c',fd);mput(h.sub_tics,'c',fd);
@@ -76,6 +90,8 @@ function save_graphichandle(h,fd)
     mput(ascii(h.log_flags),'c',fd)
     mput(bool2s(h.tight_limits=='on'),'c',fd)
     mput(size(h.data_bounds,'*'),'c',fd); mput(h.data_bounds,'dl',fd);
+    mput(size(h.zoom_box,'*'),'c',fd); 
+    if size(h.zoom_box,'*')>0 then mput(h.zoom_box,'dl',fd);end
     mput(h.axes_bounds,'dl',fd);
     mput(bool2s(h.auto_clear=='on'),'c',fd)
     mput(bool2s(h.auto_scale=='on'),'c',fd)
@@ -99,8 +115,8 @@ function save_graphichandle(h,fd)
     end
   case "Polyline"
     mput(length(h.type),'c',fd);mput(ascii(h.type),'c',fd);
-    mput(bool2s(h.visible=='on'),'c',fd)
     
+    mput(bool2s(h.visible=='on'),'c',fd)
     mput(size(h.data),'il',fd);mput(h.data,'dl',fd)
     mput(h.line_style,'c',fd)
     mput(h.thickness,'sl',fd)

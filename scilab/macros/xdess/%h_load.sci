@@ -4,6 +4,7 @@ function h=%h_load(fd)
   version=mget(4,'c',fd)
   h=load_graphichandle(fd)
   f=gcf();f.visible='on'
+  draw(f)
 endfunction
 
 function   h=load_graphichandle(fd)
@@ -49,9 +50,13 @@ function   h=load_graphichandle(fd)
   case "Axes" 
     a=gca();title=a.title;x_label=a.x_label;y_label=a.y_label
     set(a,"visible"              , toggle(mget(1,'c',fd)))
-    axes_visible= toggle(mget(1,'c',fd));
+    if and(version==[3 0 0 0]) then
+      axes_visible= toggle(mget(1,'c',fd));
+      axes_visible=emptystr(1,3)+axes_visible
+    else
+      axes_visible= toggle(mget(mget(1,'c',fd),'c',fd));
+    end
     set(a,"axes_visible"         ,axes_visible)
-    
     set(a,"grid"                 , mget(mget(1,'c',fd),'il',fd))
     set(a,"x_location"           , ascii(mget(mget(1,'c',fd),'c',fd)))
     set(a,"y_location"           , ascii(mget(mget(1,'c',fd),'c',fd)))
@@ -81,7 +86,30 @@ function   h=load_graphichandle(fd)
       set(z_label,"font_style"     , mget(1,'c',fd));
       set(z_label,"font_size"      , mget(1,'c',fd));
     end
+    if ~and(version==[3 0 0 0]) then
+      auto_ticks=toggle(mget(mget(1,'c',fd),'c',fd));
 
+      ticks=['ticks','locations','labels']
+      sz=mget(1,'sl',fd)
+      x_ticks_locations=mget(sz,'dl',fd)'
+      lz=mget(sz,'c',fd)
+      x_ticks_labels=[];for ks=1:sz,x_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      set(a,'x_ticks',tlist(ticks,x_ticks_locations,x_ticks_labels))
+      
+      sz=mget(1,'sl',fd)
+      y_ticks_locations=mget(sz,'dl',fd)'
+      lz=mget(sz,'c',fd)
+      y_ticks_labels=[];for ks=1:sz,y_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      set(a,'y_ticks',tlist(ticks,y_ticks_locations,y_ticks_labels))
+
+      sz=mget(1,'sl',fd)
+      z_ticks_locations=mget(sz,'dl',fd)'
+      lz=mget(sz,'c',fd)
+      z_ticks_labels=[];for ks=1:sz,z_ticks_labels(ks)=ascii(mget(lz(ks),'c',fd));end
+      set(a,'z_ticks',tlist(ticks,z_ticks_locations,z_ticks_labels))
+
+      set(a,"auto_ticks"           , auto_ticks)
+    end
     set(a,"box"                  , toggle(mget(1,'c',fd)))
     set(a,"sub_tics"             , mget(mget(1,'c',fd),'c',fd))
     set(a,"tics_color"           , mget(1,'il',fd));
@@ -102,7 +130,11 @@ function   h=load_graphichandle(fd)
 	 set(a,"rotation_angles"   , rotation_angles)
        end
     end
-    set(a,"log_flags"            , ascii(mget(2,'c',fd)));
+    if and(version==[3 0 0 0]) then
+      set(a,"log_flags"            , ascii(mget(2,'c',fd)));
+    else
+      set(a,"log_flags"            , ascii(mget(3,'c',fd)));
+    end
     set(a,"tight_limits"         , toggle(mget(1,'c',fd)))
 
     data_bounds = matrix(mget(mget(1,'c',fd),'dl',fd),2,-1)
@@ -114,6 +146,11 @@ function   h=load_graphichandle(fd)
       for k=1:size(old_bounds,2)
 	data_bounds(1,k)=min(data_bounds(1,k),old_bounds(1,k));
 	data_bounds(2,k)=max(data_bounds(2,k),old_bounds(2,k));
+      end
+    end
+    if ~and(version==[3 0 0 0]) then
+      if mget(1,'c',fd)<>0 then
+	set(a,"zoom_box"          , mget(4,'dl',fd))  
       end
     end
     set(a,"axes_bounds"          , mget(4,'dl',fd))  
@@ -388,5 +425,6 @@ function   h=load_graphichandle(fd)
 endfunction
 function r=toggle(k)
 //Author S. Steer Sept 2004, Copyright INRIA
-  if k==0 then r='off',else,r='on',end
+  r=emptystr(k)+'on'
+  r(k==0)='off'
 endfunction
