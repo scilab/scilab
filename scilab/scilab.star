@@ -53,6 +53,7 @@ load('SCI/macros/int/lib')
 load('SCI/macros/calpol/lib')
 load('SCI/macros/percent/lib')
 if with_texmacs() then load('SCI/macros/texmacs/lib'),end
+clear with_texmacs
 load('SCI/macros/xdess/lib')
 
 // Create some configuration variables ================================
@@ -87,34 +88,19 @@ end
 clear  larg L
 
 //Scilab Help Chapters, ===============================================
-//%helps is a two column matrix of strings
 global %helps
 %helps=initial_help_chapters(LANGUAGE)
-clear initial_help_chapters
+clear initial_help_chapters %helps
 
 // Define Initial demo tables, ========================================
 //demolist is a two column matrix of strings
 global demolist
 demolist=initial_demos_tables()
-clear initial_demos_tables
+clear initial_demos_tables demolist
 
-// Menu for Help and editor ===========================================
-if grep(args,'scilex')<>[] then
-  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
-    delmenu("Help")
-    if ~MSDOS then 
-      addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
-    end
-    if with_tk() then
-      delmenu("Editor")
-      if ~MSDOS then addmenu("Editor",list(2,"scipad")),end
-    end
-  end
-end
-
-// Protect variable previously defined  ================================
-clear ans  %b_h_s args
-predef('all') 
+// Scipad font size micro=10,small=12,medium=14,large=18
+global %scipad_fontsize;%scipad_fontsize=12
+clear %scipad_fontsize //remove the local variable
 
 // Set the preferred browser  ==========================================
 global %browsehelp
@@ -123,7 +109,40 @@ if with_tk()& ~with_gtk()
 elseif with_gtk()
   %browsehelp="help widget";
 end
-clear %browsehelp //remove the local variable
+clear %browsehelp with_tk with_gtk//remove the local variable
+      
+// Menu for Help and editor ===========================================
+if grep(args,'scilex')<>[] then
+  if (args<>"-nw")&(args<>"-nwni")&(args<>"--texmacs") then
+    delmenu("Help")
+    if ~MSDOS then 
+      addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu")),
+    end
+    if with_tk() then
+	delmenu("Editor")
+      if ~MSDOS then addmenu("Editor",list(2,"scipad")),end
+    end
+  end
+end
+clear ans  %b_h_s args with_tk LANGUAGE
+
+// LCC initialization =================================================
+global LCC
+if MSDOS then
+  LCC=%f;
+else
+  LCC=%f
+end
+clear LCC 
+
+// Protect variable previously defined  ================================
+predef('all') 
+
+
+// Graphic mode and Startup info ======================================
+set old_style off
+show_startupinfo();clear show_startupinfo
+
 
 // Define Scicos data tables ===========================================
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
@@ -138,30 +157,14 @@ if ierr== 0 then;
   global %toolboxes
   global %toolboxes_dir
   exec(SCI+'/contrib/loader.sce');
+  clear %toolboxes %toolboxes_dir
 end
 clear fd ierr
 
 // load history file ==================================================
 loadhistory()
 
-// LCC initialization =================================================
-global LCC
-if MSDOS then
-	LCC=%f;
-else
-	LCC=%f
-end
-// Graphic mode and Startup info ======================================
-set old_style off
-show_startupinfo()
 
-// Scipad font size
-// micro=10
-// small=12
-// medium=14
-// large=18
-global %scipad_fontsize
- %scipad_fontsize=12
 
 // calling user initialization =========================================
 // Home dir startup (if any)
