@@ -5608,6 +5608,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pFIGURE_FEATURE((sciPointObj *)pobj)->rotstyle = 1 ;
       else  {strcpy(error_message,"Nothing to do (value must be 'unary/multiple')"); return -1;}
     }
+  else if (strncmp(marker,"immediate_drawing", 17) == 0)
+    { 
+      if (sciGetEntityType (pobj) != SCI_FIGURE) {
+	sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
+      if (strncmp(cstk(*value),"on",2)==0 )
+	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = TRUE ;
+      else if (strncmp(cstk(*value),"off",3)==0 )
+	pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw = FALSE ;
+      else  {strcpy(error_message,"Nothing to do (value must be 'on/off')"); return -1;}
+    }
   else if (strncmp(marker,"pixmap", 6) == 0){
      if (sciGetEntityType (pobj) != SCI_FIGURE) {
 	sprintf(error_message,"%s property undefined for this object",marker);
@@ -7048,6 +7060,19 @@ if ((pobj == (sciPointObj *)NULL) &&
 	strncpy(cstk(outindex),"unary", numrow*(numcol-3));
       else
 	strncpy(cstk(outindex),"multiple",numrow*numcol);
+    }
+  else if (strncmp(marker,"immediate_drawing", 17) == 0) 
+    {
+     if (sciGetEntityType (pobj) != SCI_FIGURE) {
+       sprintf(error_message,"%s property undefined for this object",marker);
+	return -1;
+      }
+      numrow = 1;numcol = 3;
+      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+      if (pFIGURE_FEATURE((sciPointObj *)pobj)->auto_redraw == TRUE)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1));
+      else
+	strncpy(cstk(outindex),"off",numrow*numcol);
     }
   /*Ajout A.Djalel*/
   else if (strncmp(marker,"pixmap", 6) == 0) 
