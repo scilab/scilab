@@ -150,6 +150,7 @@ BINDISTFILES = \
 	$(SCIBASE)/macros \
 	$(SCIBASE)/man/eng \
 	$(SCIBASE)/man/fr \
+	$(SCIBASE)/man/images \
 	$(SCIBASE)/man/*.dtd \
 	$(SCIBASE)/man/*/*.xsl \
 	$(SCIBASE)/maple \
