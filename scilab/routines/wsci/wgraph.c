@@ -15,7 +15,8 @@
  * distribute the modified code.  Modifications are to be distributed 
  * as patches to released version.
  *  
- * This software is provided "as is" without express or implied warranty.
+ * This software is provided "as is" without express or implied 
+warranty.
  * 
  * AUTHORS (GNUPLOT) 
  *   Maurice Castro
@@ -44,12 +45,14 @@
 #include "../graphics/Graphics.h"
 #include "wgraph.h"
 extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height,
+static void scig_replay_hdc (char c, integer win_num, HDC hdc, int 
+width, int height,
 			     int scale);
 extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 extern TW textwin;
 
-EXPORT LRESULT CALLBACK WndGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+EXPORT LRESULT CALLBACK WndGraphProc (HWND hwnd, UINT message, WPARAM 
+wParam, LPARAM lParam);
 void ReadGraphIni (struct BCG *ScilabGC);
 void WriteGraphIni (struct BCG *ScilabGC);
 
@@ -76,8 +79,10 @@ void scig_deletegwin_handler_sci (int win)
     StoreCommand1(buf,2);
     }
 };
-static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_sci;
-/*static Scig_deletegwin_handler scig_deletegwin_handler = scig_deletegwin_handler_none;*/
+static Scig_deletegwin_handler scig_deletegwin_handler = 
+scig_deletegwin_handler_sci;
+/*static Scig_deletegwin_handler scig_deletegwin_handler = 
+scig_deletegwin_handler_none;*/
 
 Scig_deletegwin_handler set_scig_deletegwin_handler (f)
      Scig_deletegwin_handler f;
@@ -158,7 +163,8 @@ void NewCopyClip (struct BCG *ScilabGC)
   SetWindowExtEx(hdc, rect.right, rect.bottom, (LPSIZE)NULL); 
   **/
 /** fix hdc in the scilab driver **/
-  Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+  Rectangle (hdc, 0, 0, ScilabGC->CWindowWidthView, 
+ScilabGC->CWindowHeightView);
   scig_replay_hdc ('C', ScilabGC->CurWindow, hdc,
 		   ScilabGC->CWindowWidth, ScilabGC->CWindowHeight, 1);
   hmf = CloseEnhMetaFile (hdc);
@@ -234,11 +240,14 @@ void CopyClip (struct BCG *ScilabGC)
   hmf = CloseMetaFile (hdc);
   hGMem = GlobalAlloc (GMEM_MOVEABLE, (DWORD) sizeof (METAFILEPICT));
   lpMFP = (LPMETAFILEPICT) GlobalLock (hGMem);
-  /* in MM_ANISOTROPIC, xExt & yExt give suggested size in 0.01mm units */
+  /* in MM_ANISOTROPIC, xExt & yExt give suggested size in 0.01mm units 
+*/
   hdc = GetDC (hwnd);
   lpMFP->mm = MM_ANISOTROPIC;
-  lpMFP->xExt = MulDiv (rect.right - rect.left, 2540, GetDeviceCaps (hdc, LOGPIXELSX));
-  lpMFP->yExt = MulDiv (rect.bottom - rect.top, 2540, GetDeviceCaps (hdc, LOGPIXELSX));
+  lpMFP->xExt = MulDiv (rect.right - rect.left, 2540, GetDeviceCaps 
+(hdc, LOGPIXELSX));
+  lpMFP->yExt = MulDiv (rect.bottom - rect.top, 2540, GetDeviceCaps 
+(hdc, LOGPIXELSX));
   lpMFP->hMF = hmf;
   ReleaseDC (hwnd, hdc);
   GlobalUnlock (hGMem);
@@ -291,7 +300,8 @@ int CopyPrint (struct BCG *ScilabGC)
   hwnd = ScilabGC->CWindow;
 #ifdef __GNUC__
 /** for cygwin and mingwin **/
-/** XXXXX : Bug in cygwin : sizeof(PRINTDLG) gives something wrong (68) **/
+/** XXXXX : Bug in cygwin : sizeof(PRINTDLG) gives something wrong (68) 
+**/
   memset (&pd, 0, 66);
   pd.lStructSize = 66;
 #else
@@ -343,7 +353,8 @@ int CopyPrint (struct BCG *ScilabGC)
   /** Warning : 
     inside PrintDlgProg we use GetWindowLong(GetParent(hdlg), 4);
     to get the parent window of the print dialog box 
-    GetParent(hdlg) returns ScilabGC->hWndParent and not hwnd = ScilabGC->CWindow 
+    GetParent(hdlg) returns ScilabGC->hWndParent and not hwnd = 
+ScilabGC->CWindow 
     as we would expect ? 
     So we call SetwindowLong with ScilabGC->hWndParent also 
     **/
@@ -354,7 +365,8 @@ int CopyPrint (struct BCG *ScilabGC)
       scig_buzy = 0;
       return TRUE;
     }
-  if (SetWindowLong (ScilabGC->hWndParent, 4, (LONG) ((LPPRINT) & pr)) == 0
+  if (SetWindowLong (ScilabGC->hWndParent, 4, (LONG) ((LPPRINT) & pr)) 
+== 0
       && GetLastError () != 0)
     {
       sciprint ("Can't print : Error in SetWindowLong");
@@ -370,8 +382,10 @@ int CopyPrint (struct BCG *ScilabGC)
   }
   EnableWindow (hwnd, FALSE);
   pr.bUserAbort = FALSE;
-  lpfnPrintDlgProc = (DLGPROC) MyGetProcAddress ("PrintDlgProc", PrintDlgProc);
-  lpfnAbortProc = (ABORTPROC) MyGetProcAddress ("PrintAbortProc", PrintAbortProc);
+  lpfnPrintDlgProc = (DLGPROC) MyGetProcAddress ("PrintDlgProc", 
+PrintDlgProc);
+  lpfnAbortProc = (ABORTPROC) MyGetProcAddress ("PrintAbortProc", 
+PrintAbortProc);
   pr.hDlgPrint = CreateDialogParam (hdllInstance, "PrintDlgBox", hwnd,
 				    lpfnPrintDlgProc, (LPARAM) lpgw->Title);
   SetAbortProc (pr.hdcPrn, lpfnAbortProc);
@@ -402,7 +416,8 @@ int CopyPrint (struct BCG *ScilabGC)
 	    put the apropriate scale factor according to printer 
 	    resolution and redraw with the printer as hdc 
 	  **/
-	  scalef = (int) (10.0 * ((double) xPage * yPage) / (6800.0 * 4725.0));
+	  scalef = (int) (10.0 * ((double) xPage * yPage) / (6800.0 * 
+4725.0));
 	  scig_replay_hdc ('P', ScilabGC->CurWindow, printer,
 			   xPage, yPage, scalef);
 	  if (EndPage (pr.hdcPrn) > 0)
@@ -445,7 +460,8 @@ void WriteGraphIni (struct BCG *ScilabGC)
   GetWindowRect (ScilabGC->CWindow, &rect);
   wsprintf (profile, "%d %d", rect.left, rect.top);
   WritePrivateProfileString (section, "GraphOrigin", profile, file);
-  wsprintf (profile, "%d %d", rect.right - rect.left, rect.bottom - rect.top);
+  wsprintf (profile, "%d %d", rect.right - rect.left, rect.bottom - 
+rect.top);
   WritePrivateProfileString (section, "GraphSize", profile, file);
   return;
 }
@@ -461,13 +477,15 @@ void ReadGraphIni (struct BCG *ScilabGC)
   if (!bOKINI)
     profile[0] = '\0';
   if (bOKINI)
-    GetPrivateProfileString (section, "GraphOrigin", "", profile, 80, file);
+    GetPrivateProfileString (section, "GraphOrigin", "", profile, 80, 
+file);
   if ((p = GetLInt (profile, &ScilabGC->lpgw->Origin.x)) == NULL)
     ScilabGC->lpgw->Origin.x = CW_USEDEFAULT;
   if ((p = GetLInt (p, &ScilabGC->lpgw->Origin.y)) == NULL)
     ScilabGC->lpgw->Origin.y = CW_USEDEFAULT;
   if (bOKINI)
-    GetPrivateProfileString (section, "GraphSize", "", profile, 80, file);
+    GetPrivateProfileString (section, "GraphSize", "", profile, 80, 
+file);
   if ((p = GetLInt (profile, &ScilabGC->lpgw->Size.x)) == NULL)
     ScilabGC->lpgw->Size.x = CW_USEDEFAULT;
   if ((p = GetLInt (p, &ScilabGC->lpgw->Size.y)) == NULL)
@@ -510,7 +528,8 @@ extern void DebugGW1 (char *fmt,...)
  *@description: used to move the panner and the viewport interactively 
  *              through scilab command.
  *
- *@input: struct BCG *ScilabGC : structure associated to a Scilab Graphic window
+ *@input: struct BCG *ScilabGC : structure associated to a Scilab 
+Graphic window
  *        int x,y : the x,y point of the graphic window to be moved at 
  *        the up-left position of the viewport
  *
@@ -530,7 +549,8 @@ void SciViewportMove (ScilabGC, x, y)
     {
       sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
       sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
-      if (sciGetwresize () == 0)
+    /* MAJ D.ABDEMOUCHE*/
+      if (ScilabGC->CurResizeStatus == 0)
 	{
 	  horzsi.nPos = max (horzsi.nMin, min (horzsi.nMax, x));
 	  sciSetScrollInfo (ScilabGC, SB_HORZ, &horzsi, TRUE);
@@ -545,7 +565,8 @@ void SciViewportMove (ScilabGC, x, y)
 /**SciViewportGet
  *@description: used to get panner position through scilab command.
  *
- *@input: struct BCG *ScilabGC : structure associated to a Scilab Graphic window
+ *@input: struct BCG *ScilabGC : structure associated to a Scilab 
+Graphic window
  *        int x,y : the x,y point of the graphic window to be moved at 
  *        the up-left position of the viewport
  *
@@ -572,7 +593,8 @@ void SciViewportGet (ScilabXgc, x, y)
 }
 
 /**GPopupResize
- *@description: a little beat different to windowdim. GPopupResize sets the visible
+ *@description: a little beat different to windowdim. GPopupResize sets 
+the visible
  * window (parents dimension)
  *
  *@see: setwindowdim
@@ -639,12 +661,14 @@ void set_wait_click(val) {
     SciClickInfo.win=-1; 
 }
 
-int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release)
+int scig_click_handler_none (int win,int x,int y,int ibut,int 
+motion,int release)
 {
   return 0;
 };
 
-int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
+int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int 
+release)
 
 {
   static char buf[256];
@@ -660,7 +684,8 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
 };
 
 static Scig_click_handler scig_click_handler = scig_click_handler_sci;
-/*static Scig_click_handler scig_click_handler = scig_click_handler_none;*/
+/*static Scig_click_handler scig_click_handler = 
+scig_click_handler_none;*/
 
 Scig_click_handler set_scig_click_handler (f)
      Scig_click_handler f;
@@ -675,7 +700,8 @@ void reset_scig_click_handler ()
   scig_click_handler = scig_click_handler_sci;
 }
 
-int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
+int PushClickQueue (int win,int x,int y,int ibut,int motion,int 
+release)
 {
   /* If we are in xclick_any or xclick then send info */
   if ( wait_for_click==1)
@@ -724,7 +750,8 @@ int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
   return (0);
 }
 
-int CheckClickQueue (integer *win,integer *x, integer *y, integer *ibut)
+int CheckClickQueue (integer *win,integer *x, integer *y, integer 
+*ibut)
 {
   int i;
   for (i = 0; i < lastc; i++)
@@ -794,7 +821,8 @@ SCISEND;
 
 SCISEND sciSend;
 
-void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+void sciSendMessage (HWND hwnd, UINT message, WPARAM wParam, LPARAM 
+lParam)
 {
   sciSend.msg.lParam = lParam;
   sciSend.msg.wParam = wParam;
@@ -843,11 +871,13 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
       SetBkMode (hdc, TRANSPARENT);
       GetClientRect (hwnd, &rect);
       /*SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);*/
-      SetViewportExtEx (hdc, ScilabGC->CWindowWidth, ScilabGC->CWindowHeight, NULL);
+      SetViewportExtEx (hdc, ScilabGC->CWindowWidth, 
+ScilabGC->CWindowHeight, NULL);
       DebugGW ("==> paint rect %d %d \n", rect.right, rect.bottom);
       if (sciGetPixmapStatus () == 1)
 	{
-	  if (sciGetwresize () == 1)
+		  /* MAJ D.ABDEMOUCHE*/
+	  if (ScilabGC->CurResizeStatus == 1)
 	    {
 	      scig_replay_hdc('W',ScilabGC->CurWindow,ScilabGC->hdcCompat,
 			      ScilabGC->CWindowWidth, ScilabGC->CWindowHeight,
@@ -857,9 +887,12 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
 	}
       else
 	{
-	  if (sciGetwresize () == 0)
-	    SetViewportOrgEx (hdc, -ScilabGC->horzsi.nPos, -ScilabGC->vertsi.nPos, NULL);
-	  scig_replay_hdc ('U', ScilabGC->CurWindow, hdc, ScilabGC->CWindowWidth,
+		  /* MAJ D.ABDEMOUCHE*/
+	  if (ScilabGC->CurResizeStatus == 0)
+	    SetViewportOrgEx (hdc, -ScilabGC->horzsi.nPos, 
+-ScilabGC->vertsi.nPos, NULL);
+	  scig_replay_hdc ('U', ScilabGC->CurWindow, hdc, 
+ScilabGC->CWindowWidth,
 			   ScilabGC->CWindowHeight, 1);
 	}
     }
@@ -872,7 +905,8 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
  * Resize 
  ****************************************************/
 
-static void ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
+static void ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM 
+wParam)
 {
   HDC hdc1;
 /** We do not paint just check if we must resize the pixmap  **/
@@ -886,7 +920,8 @@ static void ScilabGResize (HWND hwnd, struct BCG *ScilabGC, WPARAM wParam)
 	  inside periWin.c : so we must protect the hdc 
 	  XXXX : not useful with scig_resize_pixmap ? **/
       hdc1 = GetDC (ScilabGC->CWindow);
-      SetGHdc (hdc1, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView);
+      SetGHdc (hdc1, ScilabGC->CWindowWidthView, 
+ScilabGC->CWindowHeightView);
       scig_resize_pixmap (ScilabGC->CurWindow);
       SetGHdc ((HDC) 0, 0, 0);
     }
@@ -966,36 +1001,43 @@ EXPORT LRESULT CALLBACK
       PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
       return (0);
     case WM_MOUSEMOVE:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -1, 1, 0);
       return 0;
     case WM_LBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 0, 0, 0);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_MBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 1, 0, 0);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_RBUTTONDOWN:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, 2, 0, 0);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_LBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos
 		      ,HIWORD (lParam) + ScilabGC->vertsi.nPos, -5, 0, 1);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_MBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -4, 0, 1);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
     case WM_RBUTTONUP:
-      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + ScilabGC->horzsi.nPos,
+      PushClickQueue (ScilabGC->CurWindow, ((int) LOWORD (lParam)) + 
+ScilabGC->horzsi.nPos,
 		      HIWORD (lParam) + ScilabGC->vertsi.nPos, -3, 0, 1);
       /*sciSendMessage(hwnd, WM_CHAR, wParam, lParam);*/
       return (0);
@@ -1009,25 +1051,16 @@ EXPORT LRESULT CALLBACK
 	DragAcceptFiles (hwnd, TRUE);
       return (0);
     case WM_PAINT:
-      if (sciGetwresize () == 1)
-	{
+		/* MAJ D.ABDEMOUCHE*/
 	  ScilabPaint (hwnd, ScilabGC);
-	}
-      else
-	{
-	  ScilabPaint (hwnd, ScilabGC);
-	  /*hdc = BeginPaint(ScilabGC->CWindow, &ps);
-	     BitBlt(ps.hdc, 0, 0, ScilabGC->CWindowWidthView, ScilabGC->CWindowHeightView,
-	     ScilabGC->hdcCompat,ScilabGC->horzsi.nPos,ScilabGC->vertsi.nPos,
-	     SRCCOPY);
-	     EndPaint(ScilabGC->CWindow, &ps); */
-	}
+	
       break;
     case WM_SIZE:
       /* initialisation de SCROLLINFs */
       sciGetScrollInfo (ScilabGC, SB_HORZ, &horzsi);
       sciGetScrollInfo (ScilabGC, SB_VERT, &vertsi);
-      if (sciGetwresize () == 0)
+	  /* MAJ D.ABDEMOUCHE*/
+      if (ScilabGC->CurResizeStatus == 0)
 	{
 	  horzsi.nPage = LOWORD (lParam);
 	  vertsi.nPage = HIWORD (lParam);
@@ -1068,7 +1101,8 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_PAGEDOWN:
 	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - (int)horzsi.nPage, horzsi.nPos + 50);
+	    horzsi.nPos = min (horzsi.nMax - (int)horzsi.nPage, horzsi.nPos + 
+50);
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  case SB_LINEUP:
@@ -1078,12 +1112,14 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_LINEDOWN:
 	    deltax = horzsi.nPos;
-	    horzsi.nPos = min (horzsi.nMax - (int) horzsi.nPage, horzsi.nPos + 5);
+	    horzsi.nPos = min (horzsi.nMax - (int) horzsi.nPage, horzsi.nPos + 
+5);
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  case SB_THUMBTRACK:
 	    deltax = horzsi.nPos;
-	    horzsi.nPos = max (horzsi.nMin, min (horzsi.nMax, HIWORD (wParam)));
+	    horzsi.nPos = max (horzsi.nMin, min (horzsi.nMax, HIWORD 
+(wParam)));
 	    deltax = deltax - horzsi.nPos;
 	    break;
 	  default:
@@ -1109,7 +1145,8 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_PAGEDOWN:
 	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 50);
+	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 
+50);
 	    deltay = deltay - vertsi.nPos;
 	    break;
 	  case SB_LINEUP:
@@ -1119,12 +1156,14 @@ EXPORT LRESULT CALLBACK
 	    break;
 	  case SB_LINEDOWN:
 	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 5);
+	    vertsi.nPos = min (vertsi.nMax - (int) vertsi.nPage, vertsi.nPos + 
+5);
 	    deltay = deltay - vertsi.nPos;
 	    break;
 	  case SB_THUMBTRACK:
 	    deltay = vertsi.nPos;
-	    vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, HIWORD (wParam)));
+	    vertsi.nPos = min (vertsi.nMax, max (vertsi.nMin, HIWORD 
+(wParam)));
 	    deltay = deltay - vertsi.nPos;
 	    break;
 	  default:
@@ -1167,7 +1206,8 @@ EXPORT LRESULT CALLBACK
  *    in a graphic mode without xtape )
  ********************************************************/
 
-static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height,
+static void scig_replay_hdc (char c, integer win_num, HDC hdc, int 
+width, int height,
 			     int scale)
 {
   integer verb = 0, cur, na;
@@ -1175,10 +1215,14 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int he
   integer alu, narg, verbose = 0;
   GetDriver1 (name, PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0);
 /** Warning : We use a driver which does not touch to hdc **/
-  C2F (SetDriver) ("Int", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0);
-  C2F (dr) ("xget", "window", &verb, &cur, &na, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (dr) ("xset", "window", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (dr) ("xget", "alufunction", &verbose, &alu, &narg, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+  C2F (SetDriver) ("Int", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
+PD0);
+  C2F (dr) ("xget", "window", &verb, &cur, &na, PI0, PI0, PI0, PD0, 
+PD0, PD0, PD0, 0L, 0L);
+  C2F (dr) ("xset", "window", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, 
+PD0, PD0, PD0, 0L, 0L);
+  C2F (dr) ("xget", "alufunction", &verbose, &alu, &narg, PI0, PI0, 
+PI0, PD0, PD0, PD0, PD0, 0L, 0L);
   SetGHdc (hdc, width, height);
 /** new font for printers **/
   if (c == 'P')
@@ -1186,16 +1230,21 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int he
 /** the create default font/brush etc... in hdc */
   ResetScilabXgc ();
 /** xclear will properly upgrade background if necessary **/
-  C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+  C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
+PD0, 0L, 0L);
   if (version_flag() == 0)
     {
       sciRedrawF(&win_num); /* NG */
     }
   else
-    C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (dr1) ("xset", "alufunction", &alu, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (dr) ("xset", "window", &cur, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-  C2F (SetDriver) (name, PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0);
+    C2F (dr) ("xreplay", "v", &win_num, PI0, PI0, PI0, PI0, PI0, PD0, 
+PD0, PD0, PD0, 0L, 0L);
+  C2F (dr1) ("xset", "alufunction", &alu, PI0, PI0, PI0, PI0, PI0, PD0, 
+PD0, PD0, PD0, 0L, 0L);
+  C2F (dr) ("xset", "window", &cur, PI0, PI0, PI0, PI0, PI0, PD0, PD0, 
+PD0, PD0, 0L, 0L);
+  C2F (SetDriver) (name, PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, 
+PD0);
   SetGHdc ((HDC) 0, 600, 400);
 /** back to usual font size **/
   SciG_Font ();
@@ -1207,7 +1256,8 @@ static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int he
  ********************************************************/
 
 EXPORT LRESULT CALLBACK
-  WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+  WndParentGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM 
+lParam)
 {
   POINT ScreenMinSize =
   {16, 4};
@@ -1234,7 +1284,8 @@ EXPORT LRESULT CALLBACK
       SendMessage (textwin.hWndText, message, wParam, lParam);
       return (0);
     case WM_SETFOCUS:
-      /** when focus is set in the graphic window we set it to scilab window **/
+      /** when focus is set in the graphic window we set it to scilab 
+window **/
       /*************** Matthieu PHILIPPE
 	je retire cette fonction pour pouvoir recuperer
 	les evevenements clavier et les traiter !!
@@ -1276,8 +1327,10 @@ EXPORT LRESULT CALLBACK
       GetWindowRect (ScilabGC->Statusbar, &rect1);
       GetClientRect (ScilabGC->hWndParent, &rect);
       ScilabGC->CWindowWidthView = rect.right;
-      ScilabGC->CWindowHeightView = rect.bottom - (rect1.bottom - rect1.top);
-      if (sciGetwresize () != 0)
+      ScilabGC->CWindowHeightView = rect.bottom - (rect1.bottom - 
+rect1.top);
+	  /* MAJ D.ABDEMOUCHE*/
+      if (ScilabGC->CurResizeStatus != 0)
 	{
 	  ScilabGC->CWindowWidth = ScilabGC->CWindowWidthView;
 	  ScilabGC->CWindowHeight = ScilabGC->CWindowHeightView;
@@ -1346,4 +1399,3 @@ void C2F(seteventhandler)(int *win_num,char *name,int *ierr)
   if ( SciGc ==  NULL ) {*ierr=1;return;}
   strncpy(SciGc->EventHandler,name,24);
 }
-
