@@ -660,5 +660,13 @@ ES 27/1/05
 
 Francois VOGEL, 27/01/05
  * Bug corrected - Ctrl-x was still able to cut text in a locked buffer
- * version --> 3.22
+ * version --> 3.23
 
+ES 3/02/05
+ * fixed colorization bug introduced with 3.22 (one char to the left
+   too much colorized as keyword while typing)
+ * fixed some tag range issues for the name of the function to be
+   opened by mouseclick or menu command
+ * catched the saving of the preference file, so no error is reported
+   if it cannot be written
+ * version 3.24
