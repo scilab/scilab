@@ -790,7 +790,7 @@ int sciparam3d(fname, fname_len)
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n = 0, n3n = 0; // F.Leray 19.03.04
+  integer m3n = 0, n3n = 0; /* F.Leray 19.03.04*/
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
 			    {-1,"ebox","?",0,0,0},
 			    {-1,"flag","?",0,0,0},
@@ -837,7 +837,7 @@ int sciparam3d(fname, fname_len)
   isfac=-1;
   izcol=0;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);//Adding F.Leray 12.03.04
+    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 */
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -941,7 +941,7 @@ int sciparam3d1(fname, fname_len)
   /* NG beg */
   isfac=-1;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n); //Adding F.Leray 12.03.04
+    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n); /*Adding F.Leray 12.03.04*/
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -1045,7 +1045,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l; //F.Leray 19.03.04 m3n and n3n set to 0.
+  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l; /*F.Leray 19.03.04 m3n and n3n set to 0.*/
 
   integer izcol, *zcol=NULL, isfac;
 
@@ -1155,7 +1155,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
     isfac=0;
 
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);//Adding F.Leray 12.03.04 and 19.03.04
+    Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);/*Adding F.Leray 12.03.04 and 19.03.04*/
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -2241,8 +2241,8 @@ int scixfpolys(fname,fname_len)
      unsigned long fname_len;
 {
 
-  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; // v2 = 0 F.leray 24.02.04 unused flag
-  // v1 is the flag used for flat (v1==1)/interpolated (v1==2) shading
+  integer m1,n1,l1,m2,n2,l2,m3,n3,l3,v1=0,v2=0; /* v2 = 0 F.leray 24.02.04 unused flag*/
+  /* v1 is the flag used for flat (v1==1)/interpolated (v1==2) shading */
 
   /* NG beg */
   int i,color;
@@ -2475,8 +2475,8 @@ int scixlfont(fname,fname_len)
 	  return 0;
 	}
       count =0;
- // Pb here due to fonttab again: its size is 10 and NUMBERFONT is 11 (=m) so...
-// By-pass here for the moment: FONTNUMBER set to FONTNUMBER-- in queryfamily (file periWin.c)
+      /* OS Windows: Pb here due to fonttab again: its size is 10 and NUMBERFONT is 11 (=m) so...*/
+      /* By-pass here for the moment: FONTNUMBER set to FONTNUMBER-- in queryfamily (file periWin.c)*/
       for ( i = 0 ; i < m ; i++) {
 	if ((S[i]= (char *) MALLOC((sz[i]+1)*sizeof(char))) == NULL) 
 	{
@@ -3991,13 +3991,13 @@ int nscixaxis(fname, fname_len)
 
   if ( opts[8].position != -1 ) 
     { 
-      val = (char **) opts[8].l; // F.Leray 08.03.04
+      val = (char **) opts[8].l; /* F.Leray 08.03.04*/
     } 
 
   if ( opts[9].position != -1 ) 
     { 
       x = stk(opts[9].l);
-      nx = opts[9].m * opts[9].n ;  // F.Leray OK here opts[9].m and opts[9].n are integers.
+      nx = opts[9].m * opts[9].n ;  /* F.Leray OK here opts[9].m and opts[9].n are integers.*/
     }
   else 
     {
@@ -4654,14 +4654,14 @@ int gset(fname,fname_len)
   int lw;
   sciPointObj *pobj;
 
-  //F.Leray Adding some tmp variable for SCI_SURFACE / data case
-  integer m3tl, n3tl, l3tl; //,m3l, n3l, l3l;
+  /* F.Leray Adding some tmp variable for SCI_SURFACE / data case*/
+  integer m3tl, n3tl, l3tl; /*,m3l, n3l, l3l;*/
   int numrow[4],i;
   int numcol[4], lxyzcol[4];
   int flagc = -1;
 
 
-  // F.Leray Init. to 0
+  /* F.Leray Init. to 0*/
   for(i=0;i<4;i++){
     numrow[i] = 0;
     numcol[i] = 0;
@@ -4679,7 +4679,7 @@ int gset(fname,fname_len)
       return 0;
       break;
     case 9: /* first is a scalar argument so it's a gset(hdl,"command",[param]) */
-      // F.Leray; INFO: case 9 is considered for a matrix of graphic handles
+      /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/
       CheckRhs(3,3);
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
       if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl))
@@ -4709,7 +4709,7 @@ int gset(fname,fname_len)
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) C2F(sciwin)();
       
-      if (VarType(3) != sciType(cstk(l2),pobj)) { // F.Leray MODIFICATION ICI
+      if (VarType(3) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
@@ -4745,7 +4745,7 @@ int gset(fname,fname_len)
 	  hdl = (unsigned long)0;
 	  pobj = (sciPointObj *) NULL;
 	}
-      if (VarType(2) != sciType(cstk(l2),pobj)) { // F.Leray MODIFICATION ICI
+      if (VarType(2) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
 	Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
 
 	return 0;} 
@@ -4763,9 +4763,9 @@ int gset(fname,fname_len)
       return 0;
       break;
     }
-  if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/  // F.Leray 16.03.04
+  if ( (hdl != (unsigned long)0) ) {/**DJ.Abdemouche 2003**/  /* F.Leray 16.03.04*/
     pobj = sciGetPointerFromHandle(hdl);
-    // make a test on SCI_SURFACE here
+    /* make a test on SCI_SURFACE here*/
     if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
       {
 	
@@ -4776,7 +4776,7 @@ int gset(fname,fname_len)
       }
     else
       {
-	// F.Leray Work here
+	/* F.Leray Work here*/
 	if (strncmp(cstk(l2),"data",4) !=0) {
 	  sciprint("Impossible case: Handle must be a SCI_SURFACE one and marker must be data\n");
 	  return -1;
@@ -4789,7 +4789,7 @@ int gset(fname,fname_len)
 	
 	GetRhsVar(3,"t",&m3tl,&n3tl,&l3tl);
 	
-   // GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); Not good because 3,1, is the string character "3d x y z [en option col]"
+	/* GetListRhsVar(3,1,"d",&numrow[0],&numcol[0],&lxyzcol[0]); Not good because 3,1 is the string character "3d x y z [en option col]"*/
 	GetListRhsVar(3,2,"d",&numrow[0],&numcol[0],&lxyzcol[0]);
 	GetListRhsVar(3,3,"d",&numrow[1],&numcol[1],&lxyzcol[1]);
 	/*
@@ -4829,7 +4829,7 @@ int gset(fname,fname_len)
       num= sciGetNumFigure (pobj);    
       C2F (dr) ("xget", "window",&verb,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
-      sciDrawObj(sciGetParentFigure(pobj)); // F.Leray we redraw here
+      sciDrawObj(sciGetParentFigure(pobj)); /* F.Leray we redraw here*/
       C2F (dr) ("xset", "window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   }
@@ -4926,7 +4926,7 @@ int gget(fname,fname_len)
   }
   else {
     if ((pobj = sciGetPointerFromHandle(hdl))){
-      // make a test on SCI_SURFACE here
+      /* make a test on SCI_SURFACE here*/
       if(sciGetEntityType(pobj) != SCI_SURFACE || strcmp(cstk(l2),"data") != 0)
 	{
 	  if (sciGet(pobj, cstk(l2))!=0)
@@ -5733,42 +5733,97 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*DJ.A merge*/
   else if (strcmp(marker,"color_mode") == 0) {    
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-      int N,M3N,N3N,j;
-      pSURFACE_FEATURE (pobj)->flag[0]= (integer) stk(*value)[0];
+      int m3n,n3n,nc,j;
+      sciSurface * psurf = pSURFACE_FEATURE (pobj);
       
 
-      M3N = pSURFACE_FEATURE (pobj)->m3n;
-      N3N = pSURFACE_FEATURE (pobj)->n3n;
-      if(M3N * N3N == 0)
+      psurf->flag[0]= (integer) stk(*value)[0];
+      
+
+      if(psurf->typeof3d==SCI_FAC3D)  /* we have to deal with colors... and may be update because we just changed  psurf->flag[0]*/
 	{
-	  N = (pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
-	  FREE(pSURFACE_FEATURE(pobj)->zcol); pSURFACE_FEATURE(pobj)->zcol = NULL;
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-	    strcpy(error_message,"Not enough memory");
-	    return -1;
-	  }
-	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
-	  for (i=0;i<N;i++) 
-	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
-	  
-	  pSURFACE_FEATURE (pobj)->izcol = 2;
-	}
-      /*
-      // F/Leray Adding here
-      if(surfcompteur == 1)
-      {
-	  int N=0,i,j;
-	  FREE(pSURFACE_FEATURE(pobj)->zcol);
-	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-	    strcpy(error_message,"Not enough memory");
-	    return -1;
+	  if(psurf->flagcolor == 0)
+	    {
+	      pSURFACE_FEATURE (pobj)->izcol = 0;
 	    }
-	    j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
-	  for (i=0;i<N;i++) 
-	  pSURFACE_FEATURE(pobj)->zcol[i]=j;
+	  else if(psurf->flagcolor == 1)
+	    {
+	      pSURFACE_FEATURE (pobj)->izcol = 0;
+	    }
+	  else if(psurf->flagcolor == 2) /* Warning: here we need a color vector (one color per facet). N = 1 x dimzy  */
+	    {
+	      m3n = pSURFACE_FEATURE (pobj)->m3n;
+	      n3n = pSURFACE_FEATURE (pobj)->n3n;
+	      nc = psurf->dimzy; /* rappel: dimzy always equal n3*/
+	      
+	      psurf->nc = nc;
+	      FREE(psurf->zcol); psurf->zcol = NULL;
+	      
+	      if(nc>0){
+		if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL)
+		  return -1;
+	      }
+	      
+	      if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
+		if( m3n==1 || n3n ==1)
+		  {
+		    /* We have just enough information to fill the psurf->zcol array*/
+		    for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+		      psurf->zcol[j]= psurf->inputCMoV[j];                 	
+		  }
+		else if (!( m3n==1 || n3n ==1))
+		  {
+		    /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+		    for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+		      psurf->zcol[j]= psurf->inputCMoV[j];
+		  }
+	      }
+	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
+		for (j = 0;j < psurf->dimzy; j++)   /* nc value is dimzy*/
+		  psurf->zcol[j]= abs(psurf->flag[0]);
+	      }
+	      
+	    }
+	  else if (psurf->flagcolor == 3)
+	    {
+	      m3n = pSURFACE_FEATURE (pobj)->m3n;
+	      n3n = pSURFACE_FEATURE (pobj)->n3n;
+	      nc = psurf->dimzx * psurf->dimzy;
+	      
+	      psurf->nc = nc;
+	      FREE(psurf->zcol); psurf->zcol = NULL;
+	      
+	      
+	      if ((psurf->zcol = MALLOC ( nc * sizeof (int))) == NULL)
+		return -1;
+	      
+	      
+	      if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
+		if( m3n==1 || n3n ==1) /* COLOR VECTOR */
+		  {
+		    /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+		    /* We repeat the data:*/
+		    for(i = 0; i< psurf->dimzy; i++){
+		      for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+			psurf->zcol[(psurf->dimzx)*i+j]= psurf->inputCMoV[i];
+		    }               	
+		  }
+		else if (!( m3n==1 || n3n ==1)) /* COLOR MATRIX */
+		  {
+		    /* We have just enough information to fill the psurf->zcol array*/
+		    for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /* nc value is dimzy*/
+		      psurf->zcol[j]=  psurf->inputCMoV[i];
+		  }
+	      }
+	      else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
+		
+		for(i = 0; i<  psurf->dimzy; i++){
+		  for (j = 0;j <  psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+		    psurf->zcol[( psurf->dimzx)*i+j]= abs(psurf->flag[0]);
+		}  
+	      }
+	    }
 	}
-      */
     }
     else
       {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
@@ -5783,16 +5838,17 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pSURFACE_FEATURE (pobj)->flagcolor= (int)stk(*value)[0];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	int oldflagcolor,N,M3N,N3N,j,flagcolor=(int)stk(*value)[0];
+	int oldflagcolor,m3n,n3n,nc,j,flagcolor=(int)stk(*value)[0];
 	/*int *zcol;*/
-	//F.Leray psurf for debug
-	/*	sciSurface * psurf = pSURFACE_FEATURE (pobj);*/
+	/*F.Leray psurf for debug*/
+	sciSurface * psurf = pSURFACE_FEATURE (pobj);
 
 	if ((*stk(*value)<0)||(*stk(*value)>3))
 	  {strcpy(error_message,"Second argument must be 0 1 2 or 3");return -1;}
 
 
-	// F.Leray 18.03.04 Something goes wrong here: No need to re-build/re-alloc zcol normally!!
+	/* F.Leray 18.03.04 Something goes wrong here: No need to re-build/re-alloc zcol normally!!*/
+	/* YES in fact but use of anther fixed array named inputCMoV (inputColorMatrixorVector)*/
 	
 
 
@@ -5809,39 +5865,87 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  {
 	    pSURFACE_FEATURE (pobj)->izcol = 0;
 	  }
-	else if(flagcolor == 2 || flagcolor == 3)
+	else if(flagcolor == 2) /* Warning: here we need a color vector (one color per facet). N = 1 x dimzy  */
 	  {
-	    M3N = pSURFACE_FEATURE (pobj)->m3n;
-	    N3N = pSURFACE_FEATURE (pobj)->n3n;
-	    if( M3N * N3N == 0) // i.e. There is no color matrix/vect. in input
-	      {
-		N = (pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
-		FREE(pSURFACE_FEATURE(pobj)->zcol); pSURFACE_FEATURE(pobj)->zcol = NULL;
-		if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-		  strcpy(error_message,"Not enough memory");
-		  return -1;
+	    m3n = pSURFACE_FEATURE (pobj)->m3n;
+	    n3n = pSURFACE_FEATURE (pobj)->n3n;
+	    nc = psurf->dimzy; /* rappel: dimzy always equal n3*/
+	  
+	    psurf->nc = nc;
+	    FREE(psurf->zcol); psurf->zcol = NULL;
+
+	    if(nc>0){
+	      if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL)
+		return -1;
+	    }
+	    
+	    if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
+	      if( m3n==1 || n3n ==1)
+		{
+		  /* We have just enough information to fill the psurf->zcol array*/
+		  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+		    psurf->zcol[j]= psurf->inputCMoV[j];                 	
 		}
-		j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
-		for (i=0;i<N;i++) 
-		  pSURFACE_FEATURE(pobj)->zcol[i]=j;
-
-		pSURFACE_FEATURE (pobj)->izcol = 2;
-	      }
-	    else
-	      {
-		// Then there is a color vector or matrix
-		// It has been set and we use it
-	      }
-	   
+	      else if (!( m3n==1 || n3n ==1))
+		{
+		  /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+		  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+		    psurf->zcol[j]= psurf->inputCMoV[j];
+		}
+	    }
+	    else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
+	      for (j = 0;j < psurf->dimzy; j++)   /* nc value is dimzy*/
+		psurf->zcol[j]= abs(psurf->flag[0]);
+	    }
+		  
 	  }
+	else if (flagcolor == 3)
+	  {
+	    m3n = pSURFACE_FEATURE (pobj)->m3n;
+	    n3n = pSURFACE_FEATURE (pobj)->n3n;
+	    nc = psurf->dimzx * psurf->dimzy;
 
+	    psurf->nc = nc;
+	    FREE(psurf->zcol); psurf->zcol = NULL;
+	    
+
+	    if ((psurf->zcol = MALLOC ( nc * sizeof (int))) == NULL)
+	      return -1;
+
+	  
+	    if(m3n * n3n != 0 ){ /* There is either a color matrix or vector*/
+	      if( m3n==1 || n3n ==1) /* COLOR VECTOR */
+		{
+		  /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+		  /* We repeat the data:*/
+		  for(i = 0; i< psurf->dimzy; i++){
+		    for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+		      psurf->zcol[(psurf->dimzx)*i+j]= psurf->inputCMoV[i];
+		  }               	
+		}
+	      else if (!( m3n==1 || n3n ==1)) /* COLOR MATRIX */
+		{
+		  /* We have just enough information to fill the psurf->zcol array*/
+		  for (j = 0;j < (psurf->dimzx) * (psurf->dimzy); j++)   /* nc value is dimzy*/
+		    psurf->zcol[j]=  psurf->inputCMoV[i];
+		}
+	    }
+	    else if (m3n * n3n == 0) {/* There is no color matrix/vect. in input */
+	      
+	      for(i = 0; i<  psurf->dimzy; i++){
+		for (j = 0;j <  psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+		  psurf->zcol[( psurf->dimzx)*i+j]= abs(psurf->flag[0]);
+	      }  
+	    }
+	  }
+	
 	pSURFACE_FEATURE (pobj)->flagcolor= flagcolor;
       }
-    }
+    }    
     else
-    {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
+      {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
   }
-
+  
   else if (strcmp(marker,"surface_color") == 0) {
     if (sciGetEntityType (pobj) == SCI_SURFACE) { 
       if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PARAM3D1)  {
@@ -5849,7 +5953,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  {sprintf(error_message,"Second argument must have %d elements ",
 		   pSURFACE_FEATURE (pobj)->dimzy);return -1;}
 	for (i=0;i<pSURFACE_FEATURE (pobj)->dimzy;i++) 
-	    pSURFACE_FEATURE (pobj)->zcol[i]= (integer)stk(*value)[i];
+	  pSURFACE_FEATURE (pobj)->zcol[i]= (integer)stk(*value)[i];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)  {
 	strcpy(error_message,"surface_color cannot be set in this case");
@@ -5876,42 +5980,42 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else {
       strcpy(error_message,"surface_color property does not exist for this handle");
       return -1;
-    } 
-  }
-  else if (strcmp(marker,"triangles") == 0) {
-    if (sciGetEntityType (pobj) == SCI_FEC) { 
-      double *pnoeud;
-      if (*numcol != 5)
-	{strcpy(error_message,"Second argument must have 5 columns ");return -1;}
-      if (*numrow !=pFEC_FEATURE (pobj)->Ntr) {
-	pnoeud=pFEC_FEATURE(pobj)->pnoeud;
-	if ((pFEC_FEATURE(pobj)->pnoeud = malloc (*numrow * 5* sizeof (int))) == NULL){
-	  strcpy(error_message,"Not enough memory");
-	  pFEC_FEATURE(pobj)->pnoeud=pnoeud;
-	  return -1;
-	}
+  } 
+}
+else if (strcmp(marker,"triangles") == 0) {
+  if (sciGetEntityType (pobj) == SCI_FEC) { 
+    double *pnoeud;
+    if (*numcol != 5)
+      {strcpy(error_message,"Second argument must have 5 columns ");return -1;}
+    if (*numrow !=pFEC_FEATURE (pobj)->Ntr) {
+      pnoeud=pFEC_FEATURE(pobj)->pnoeud;
+      if ((pFEC_FEATURE(pobj)->pnoeud = malloc (*numrow * 5* sizeof (int))) == NULL){
+	strcpy(error_message,"Not enough memory");
+	pFEC_FEATURE(pobj)->pnoeud=pnoeud;
+	return -1;
       }
-      for (i=0;i<*numrow*5;i++) 
-	pFEC_FEATURE (pobj)->pnoeud[i]=stk(*value)[i];
     }
-    else
-      {strcpy(error_message,"triangles property does not exist for this handle");return -1;}
+    for (i=0;i<*numrow*5;i++) 
+      pFEC_FEATURE (pobj)->pnoeud[i]=stk(*value)[i];
   }
-  else if (strcmp(marker,"z_bounds") == 0) {
-    if (sciGetEntityType (pobj) == SCI_FEC) { 
-      if (*numcol *  *numrow!= 2)
-	{strcpy(error_message,"Second argument must have 2 elements ");return -1;}
+  else
+    {strcpy(error_message,"triangles property does not exist for this handle");return -1;}
+}
+else if (strcmp(marker,"z_bounds") == 0) {
+  if (sciGetEntityType (pobj) == SCI_FEC) { 
+    if (*numcol *  *numrow!= 2)
+      {strcpy(error_message,"Second argument must have 2 elements ");return -1;}
 
-      for (i=0;i<2;i++) 
-	pFEC_FEATURE (pobj)->zminmax[i]=stk(*value)[i];
-    }
-    else
-      {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
+    for (i=0;i<2;i++) 
+      pFEC_FEATURE (pobj)->zminmax[i]=stk(*value)[i];
   }
+  else
+    {strcpy(error_message,"z_bounds property does not exist for this handle");return -1;}
+}
 
-  else 
-    {sprintf(error_message,"Unknown  property %s",marker);return -1;}
-  return 0;
+else 
+{sprintf(error_message,"Unknown  property %s",marker);return -1;}
+return 0;
 }
 
 
@@ -5922,69 +6026,69 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
  */
 int sciGet(sciPointObj *pobj,char *marker)
 {
-  int numrow, numcol, outindex, i,j,k;
-  integer x[2],x1[10], x2,itmp=0, flagx=0;
-  sciSons *toto;
-  double *tab;
-  char **str;
-  sciPointObj *psubwin;
-  int Etype,ids,iflag=0;
+int numrow, numcol, outindex, i,j,k;
+integer x[2],x1[10], x2,itmp=0, flagx=0;
+sciSons *toto;
+double *tab;
+char **str;
+sciPointObj *psubwin;
+int Etype,ids,iflag=0;
 
-  if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl){
-    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-    Etype=sciGetEntityType (pobj);}
+if (pobj != (sciPointObj *)NULL && pobj  != pfiguremdl  && pobj  != paxesmdl){
+psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+Etype=sciGetEntityType (pobj);}
   
-  if ((pobj == (sciPointObj *)NULL) && 
-      (strncmp(marker,"old_style", 9) !=0 ) && 
-      (strncmp(marker,"figure_style", 12) != 0) && 
-      (strncmp(marker,"current_figure", 14) != 0) &&
-      (strncmp(marker,"default_figure",14) !=0) && 
-      (strncmp(marker,"default_axes",12) !=0))
-    {
-      if (version_flag() == 0)
-	{strcpy(error_message,"handle is not valid");return -1;}
-      else
-	{strcpy(error_message,"function not valid under old graphics style");return -1;}
-    }
-  else if (strncmp(marker,"figures_id", 10) == 0){
-    sciGetIdFigure (&ids,&numcol,&iflag);
-    numrow   = 1;
-    CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
-    iflag = 1; 
-    sciGetIdFigure (istk(outindex),&numcol,&iflag);
+if ((pobj == (sciPointObj *)NULL) && 
+(strncmp(marker,"old_style", 9) !=0 ) && 
+(strncmp(marker,"figure_style", 12) != 0) && 
+(strncmp(marker,"current_figure", 14) != 0) &&
+(strncmp(marker,"default_figure",14) !=0) && 
+(strncmp(marker,"default_axes",12) !=0))
+{
+  if (version_flag() == 0)
+    {strcpy(error_message,"handle is not valid");return -1;}
+  else
+    {strcpy(error_message,"function not valid under old graphics style");return -1;}
+}
+ else if (strncmp(marker,"figures_id", 10) == 0){
+   sciGetIdFigure (&ids,&numcol,&iflag);
+   numrow   = 1;
+   CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
+   iflag = 1; 
+   sciGetIdFigure (istk(outindex),&numcol,&iflag);
 
-  }
-  /***************** graphics mode *******************************/ 
-else if (strncmp(marker,"visible", 7) == 0) {
-    numrow   = 1;
-    numcol   = 3;
-    CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-    if (sciGetVisibility((sciPointObj *)pobj))
-      strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-    else 
-      strncpy(cstk(outindex),"off", numrow*numcol);
-  }
-  else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) 
-    {
-      if (sciGetEntityType (pobj) == SCI_FIGURE) {
-	numrow = 1;
-	i=pFIGURE_FEATURE (pobj)->gmode.xormode;
-	numcol = strlen(pmodes[i]);
-	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	strncpy(cstk(outindex),pmodes[i], numrow*numcol);
-      }
-   else
-	{strcpy(error_message,"pixel_drawing_mode do not exist for this handle");return -1;}
+ }
+/***************** graphics mode *******************************/ 
+ else if (strncmp(marker,"visible", 7) == 0) {
+   numrow   = 1;
+   numcol   = 3;
+   CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+   if (sciGetVisibility((sciPointObj *)pobj))
+     strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+   else 
+     strncpy(cstk(outindex),"off", numrow*numcol);
+ }
+ else if (strncmp(marker,"pixel_drawing_mode", 18) == 0) 
+   {
+     if (sciGetEntityType (pobj) == SCI_FIGURE) {
+       numrow = 1;
+       i=pFIGURE_FEATURE (pobj)->gmode.xormode;
+       numcol = strlen(pmodes[i]);
+       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+       strncpy(cstk(outindex),pmodes[i], numrow*numcol);
+     }
+     else
+       {strcpy(error_message,"pixel_drawing_mode do not exist for this handle");return -1;}
 
-    }  
-  else if (strncmp(marker,"old_style", 9) == 0)
-    {
-      numrow   = 1;
-      numcol   = 3;
-      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-      if (versionflag != 0)
-	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
-      else 
+   }  
+ else if (strncmp(marker,"old_style", 9) == 0)
+   {
+     numrow   = 1;
+     numcol   = 3;
+     CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+     if (versionflag != 0)
+       strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+     else 
 	strncpy(cstk(outindex),"off", numrow*numcol);      
 		
     }
@@ -6399,11 +6503,11 @@ else if (strncmp(marker,"visible", 7) == 0) {
 		 
 	}
       else if ((k=sciGetIsClipping ((sciPointObj *) pobj)) == 0  && (sciGetEntityType (pobj) == SCI_SUBWIN) )
-	{																// Adding above:  && (sciGetEntityType (pobj) == SCI_SUBWIN)
-																	// We must first distinguish between SUBWIN and other Objects
+	{																/* Adding above:  && (sciGetEntityType (pobj) == SCI_SUBWIN) */
+																	/* We must first distinguish between SUBWIN and other Objects */
 	  numrow=1;numcol=4;  
 	  CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	//Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04
+	  stk(outindex)[0] =  pSUBWIN_FEATURE (pobj)->FRect[0];	/*Check if pobj is a SUBWIN or Other Objects (POLYLINE...) before ! F.Leray 03.03.04 */
 	  stk(outindex)[1] =  pSUBWIN_FEATURE (pobj)->FRect[1];
 	  stk(outindex)[2] =  pSUBWIN_FEATURE (pobj)->FRect[2] - pSUBWIN_FEATURE (pobj)->FRect[0];	
 	  stk(outindex)[3] =  pSUBWIN_FEATURE (pobj)->FRect[3] - pSUBWIN_FEATURE (pobj)->FRect[1];	
@@ -6430,52 +6534,15 @@ else if (strncmp(marker,"visible", 7) == 0) {
       if ((tab = sciGetPoint ((sciPointObj *)pobj, &numrow, &numcol)) == NULL)
 	{strcpy(error_message,"No point");return -1;}
 
-      //  if(sciGetEntityType (pobj) != SCI_SURFACE){
+      /*  if(sciGetEntityType (pobj) != SCI_SURFACE){ */
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       k=0;
       for (j=0;j < numcol*numrow;j++)
 	stk(outindex)[j] = tab[j];
       FREE(tab);
-      /*}
-	else
-	{
-	if( pSURFACE_FEATURE (pobj)->isfac == 0){
-	    
-	    
-	}
-	else
-	{
-	//if(Hmat = MALLOC(sizeof(HyperMat) == NULL)
-	//return 0; 
-	//if((Hmat->dims) = MALLOC(4*sizeof(int)) == NULL)
-	//return 0;
-	      
-	Hmat = MALLOC(sizeof( HyperMat ));
-	Hmat->R = MALLOC((3*numrow*numcol)*sizeof(double));
-	      
-	for(j=0;j< 3*numcol*numrow;j++)
-	Hmat->R[j] = tab[j];
-	      
-	Hmat->dims = &trois;
-	Hmat->dimsize = 3;
-	Hmat->size = numrow * numcol;
-	Hmat->I = NULL;
-	Hmat->it = 0;
-	      
-	CreateHMat(Rhs+1,Hmat,numrow,numcol, &outindex);
-	Top = Top+1;
-	      
-	//for (j=0;j < 3*numcol*numrow;j++)
-	for (j=0;j < 20;j++)
-	stk(outindex)[j] = tab[j];
-
-
-
-	FREE(tab);
-	}*/
       
     }
-        
+  
   /**************** callback *********************/
   else if (strncmp(marker,"callbackmevent", 14) == 0)
     {
@@ -7536,17 +7603,17 @@ static int get3ddata(sciPointObj *pobj)
   char *variable_tlist[] = {"3d","x","y","z"};
   int m_variable_tlist = 0;
   int n_variable_tlist = 0;
-  //int n_variable_tlist = 1;
+  /*int n_variable_tlist = 1; */
 
   int flag_c;
   /*int one = 1;
     int four = 4;*/
   int  numrow, numcol,l;
 
-  // F.Leray debug
-  //sciSurface * psurf = pSURFACE_FEATURE (pobj);
+  /* F.Leray debug*/
+  /*sciSurface * psurf = pSURFACE_FEATURE (pobj); */
   
-  // tests a faire sur presence et taille color
+  /* tests a faire sur presence et taille color */
   flag_c = pSURFACE_FEATURE (pobj)->m3n;
   if(flag_c !=0)
     {
@@ -7556,19 +7623,20 @@ static int get3ddata(sciPointObj *pobj)
       if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
 	{
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
-	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	  // CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3*/
+	  /*
+	   CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	   CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+	   CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  */
 	  
-	  
-	  // Add 'variable' tlist items to stack 
+	  /* Add 'variable' tlist items to stack */
 	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
 	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
 	  
 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3*/
 	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
 	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
 	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
@@ -7576,15 +7644,15 @@ static int get3ddata(sciPointObj *pobj)
 	  numrow = pSURFACE_FEATURE (pobj)->m3n;
 	  numcol = pSURFACE_FEATURE (pobj)->n3n;
 	  /* see if problems here F.Leray 19.03.04*/ 
-	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) // nc=dimzy; // one color per facet
+	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) /* nc=dimzy;*/ /* one color per facet*/
 	    {
 	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
-	  else  // //one color per edge 
+	  else  /* one color per edge */
 	    {
 	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
-	  // copy the x value in stk(lr)
+	  /* copy the x value in stk(lr) */
 	  
 	}
       else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
@@ -7594,7 +7662,7 @@ static int get3ddata(sciPointObj *pobj)
 	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // but here m1!=m2!=m3 and n1!=n2!=n3
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* but here m1!=m2!=m3 and n1!=n2!=n3*/
 	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m2;
@@ -7608,11 +7676,11 @@ static int get3ddata(sciPointObj *pobj)
 	  numrow = pSURFACE_FEATURE (pobj)->m3n;
 	  numcol = pSURFACE_FEATURE (pobj)->n3n;
 	  /* see if problems here F.Leray 19.03.04*/ 
-	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) //nc=nz; /* one color per facet */
+	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) /*nc=nz; */ /* one color per facet */
 	    {
 	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
-	  else//  nc=nz*4; /*one color per edge */
+	  else /*  nc=nz*4; */ /*one color per edge */
 	    {
 	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
@@ -7627,18 +7695,19 @@ static int get3ddata(sciPointObj *pobj)
       if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
 	{
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
-	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
-	  // CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-	  // CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3 */
+	  /*
+	   CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
+	   CreateVarFromPtr(Rhs+1, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
+	   CreateVarFromPtr(Rhs+1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  */
 	  
-	  
-	  // Add 'variable' tlist items to stack 
+	  /* Add 'variable' tlist items to stack */
 	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
 	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
 	 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // Normaly here m1=m2=m3 and n1=n2=n3
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* Normaly here m1=m2=m3 and n1=n2=n3 */
 	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
 	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
 	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
@@ -7650,7 +7719,7 @@ static int get3ddata(sciPointObj *pobj)
 	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
       
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
-	  numcol = pSURFACE_FEATURE (pobj)->n1; // but here m1!=m2!=m3 and n1!=n2!=n3
+	  numcol = pSURFACE_FEATURE (pobj)->n1; /* but here m1!=m2!=m3 and n1!=n2!=n3 */
 	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
 
 	  numrow = pSURFACE_FEATURE (pobj)->m2;
@@ -7668,10 +7737,10 @@ static int get3ddata(sciPointObj *pobj)
 }
 
 
-// set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3)
+/* set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3) */
 static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc, char *fname)
 {
-  int i=0,j,N;
+  int i=0,j,nc;
   sciSurface * psurf = pSURFACE_FEATURE (pobj);
 
 
@@ -7679,21 +7748,21 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   integer m3n, n3n, l3n;
 
   double * pvecx = NULL, * pvecy = NULL, * pvecz = NULL;
-  integer * zcol = NULL, izcol = 0 ;
+  integer /* * zcol = NULL,*/ izcol = 0 ;
 
   
   m1 = numrow[0];
   m2 = numrow[1];
   m3 = numrow[2];
-  m3n = numrow[3]; // F.Leray for color
+  m3n = numrow[3]; /* F.Leray for color */
   n1 = numcol[0];
   n2 = numcol[1];
   n3 = numcol[2];
-  n3n = numcol[3]; // F.Leray for color
+  n3n = numcol[3]; /* F.Leray for color */
   l1 = value[0];
   l2 = value[1];
   l3 = value[2];
-  l3n = value[3]; // F.Leray for color
+  l3n = value[3]; /* F.Leray for color */
    
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) {
     if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3)) {
@@ -7717,25 +7786,25 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   }
   
   if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
-  // C2F(sciwin)();
-  // C2F(scigerase)();
- 
+  /* C2F(sciwin)();
+     C2F(scigerase)();*/
+
   if(flagc == 1)
     {
-      //psurf->nc = 1;  // Wrong!! 
-      psurf->nc = m3n*n3n;
+      /*psurf->nc = 1; */  /* Wrong!!  */
+      /* psurf->nc = m3n*n3n;*/
       izcol = 1;
       if (   m3n*n3n == m3*n3 ) izcol=2  ;
       psurf->izcol = izcol;
     }
   else
     {
-      psurf->nc = 0;
+      /*psurf->nc = 0;*/
       psurf->izcol = 0;
     }
 
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
-    {//isfac=1;
+    { /* case isfac=1;*/
       if(psurf->isfac != 1)
 	{
 	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_PLOT3D\r\n");
@@ -7744,7 +7813,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
     }
   else
     { 
-      //isfac=0;
+      /* case isfac=0;*/
       if(psurf->isfac != 0)
 	{
 	  sciprint("Can not change the typeof3d of graphic object: its type is SCI_FAC3D\r\n");
@@ -7753,15 +7822,19 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
     }
   
 
-  // Free the old values...
+  /* Free the old values... */
   FREE(psurf->pvecx); psurf->pvecx = NULL;
   FREE(psurf->pvecy); psurf->pvecy = NULL;
   FREE(psurf->pvecz); psurf->pvecz = NULL;
-  // ...even on zcol wich must have been initialized like others or set to NULL in case there was no color before
-  // The FREE macro tests the NULL pointer existence...
+  /* ...even on zcol wich must have been initialized like others or set to NULL in case there was no color before
+     The FREE macro tests the NULL pointer existence... */
   FREE(psurf->zcol); psurf->zcol = NULL;
+  /* If we had a previous color matrix/vector and we do not specify a new one, I consider we are losing it.*/
+  /* That's why we make a FREE as follows:*/
+  FREE(psurf->inputCMoV);psurf->inputCMoV = NULL; /* F.Leray 23.03.04*/
 
-  // allocations:
+  
+  /* allocations:*/
   if ((pvecx = MALLOC (m1*n1 * sizeof (double))) == NULL) return -1;
   if ((pvecy = MALLOC (m2*n2 * sizeof (double))) == NULL) {
     FREE(pvecx); pvecx = (double *) NULL;
@@ -7773,7 +7846,7 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
     return -1;
   }
 
-  // Copy the values F.Leray
+  /* Copy the new values F.Leray */
   for(i=0;i< m1*n1;i++)
     pvecx[i] = stk(l1)[i];
   
@@ -7783,36 +7856,122 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   for(i=0;i< m3*n3;i++)
     pvecz[i] = stk(l3)[i];
   
-  if(flagc ==1) // F.Leray There is a color matrix
+  if(flagc ==1) /* F.Leray There is a color matrix */
     {
-      if ((zcol = MALLOC (m3n*n3n * sizeof (int))) == NULL) {
+      if(m3n * n3n != 0) /* Normally useless test here: means we have a color vector or matrix */
+	{
+	  if (((psurf->inputCMoV = MALLOC (( (m3n)*(n3n) * sizeof (integer)))) == NULL))
+	    {
+	      FREE(pvecx); pvecx = (double *) NULL;
+	      FREE(pvecy); pvecy = (double *) NULL;
+	      FREE(pvecz); pvecz = (double *) NULL;
+	      return -1;
+	    }
+	  
+	  for (j = 0;j < (m3n)*(n3n); j++)  
+	    psurf->inputCMoV[j] = istk(l3n)[j];
+	  
+	}
+
+      if(psurf->flagcolor == 2)
+	{ /* case of SCI_PLOT3D avoid */
+	  nc = psurf->dimzy;
+	}
+      else if(psurf->flagcolor == 3)
+	{
+	  nc = psurf->dimzx * psurf->dimzy;
+	}
+      else
+	nc=0;
+
+      if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL) {
 	FREE(pvecx); pvecx = (double *) NULL;
 	FREE(pvecy); pvecy = (double *) NULL;
 	FREE(pvecz); pvecz = (double *) NULL;
 	return -1;
       }
 
-      for(i=0;i< m3n*n3n;i++)
-	zcol[i] =  istk(l3n)[i];
-
+      /* case flagcolor == 2*/
+      if(psurf->flagcolor==2 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
+	{
+	  /* We have just enough information to fill the psurf->zcol array*/
+	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3 * n3 */
+	    psurf->zcol[j]= psurf->inputCMoV[j];  /* DJ.A 2003 */
+	}
+      else if(psurf->flagcolor==2 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+	{
+	  /* We have too much information and we take only the first dimzy colors to fill the psurf->zcol array*/
+	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+	    psurf->zcol[j]= psurf->inputCMoV[j];
+	}
+      /* case flagcolor == 3*/
+      else if(psurf->flagcolor==3 && ( m3n==1 || n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
+	{
+	  /* We have insufficient info. to fill the entire zcol array of dimension nc = dimzx*dimzy*/
+	  /* We repeat the data:*/
+	  for(i = 0; i< psurf->dimzy; i++){
+	    for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+	      psurf->zcol[psurf->dimzx*i+j]= psurf->inputCMoV[i];  /* DJ.A 2003 */
+	  }
+	}
+      else if(psurf->flagcolor==3 && !( m3n==1 || n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
+	{
+	  /* We have just enough information to fill the psurf->zcol array*/
+	  for (j = 0;j < nc; j++)   /* nc value is dimzy*/
+	    psurf->zcol[j]= psurf->inputCMoV[j];
+	}
+     
     }
-  else // else we put the value of the color_mode flag[0]
+  else /* else we put the value of the color_mode flag[0]*/
     {
-      N=(psurf->dimzx * psurf->dimzy);
-      if ((zcol = malloc (N* sizeof (int))) == NULL){
-	strcpy(error_message,"Not enough memory");
-	return -1;
+      
+      if(psurf->flagcolor == 2)
+	{ /* case of SCI_PLOT3D avoid */
+	  nc = psurf->dimzy;
+	}
+      else if(psurf->flagcolor == 3)
+	{
+	  nc = psurf->dimzx *  psurf->dimzy;
+	}
+      else
+	nc=0;
+
+      if(nc>0){
+	if ((psurf->zcol = MALLOC (nc * sizeof (int))) == NULL) {
+	  FREE(pvecx); pvecx = (double *) NULL;
+	  FREE(pvecy); pvecy = (double *) NULL;
+	  FREE(pvecz); pvecz = (double *) NULL;
+	  return -1;
+	}
       }
-      j=abs(psurf->flag[0]);
-      for (i=0;i<N;i++) 
-	zcol[i]=j;
+
+      /* case flagcolor == 2*/
+      if(psurf->flagcolor==2) /* it means we have a vector in Color input: 1 color per facet in input*/
+	{
+	  /* We have just enough information to fill the psurf->zcol array*/
+	  for (j = 0;j < nc; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+	    psurf->zcol[j]= abs(psurf->flag[0]);
+	}
+      else if(psurf->flagcolor==3) /* it means we have a vector in Color input: 1 color per facet in input*/
+	{
+	  for(i = 0; i< psurf->dimzy; i++){
+	    for (j = 0;j < psurf->dimzx; j++)  /* nc value is dimzx*dimzy == m3n * n3n */
+	      psurf->zcol[psurf->dimzx*i+j]=  abs(psurf->flag[0]); /* DJ.A 2003 */
+	  }
+	}
+      else
+	{
+	  /* case flagcolor == 0 or 1 */
+	  psurf->zcol = NULL;
+	  psurf->izcol = 0;
+	}
     }
   
   psurf->pvecx = pvecx;
   psurf->pvecy = pvecy;
   psurf->pvecz = pvecz;
-  psurf->zcol = zcol;
 
+  psurf->nc = nc; /*Adding F.Leray 23.03.04*/
 
   psurf->m1 = m1;
   psurf->m2 = m2;
@@ -7820,36 +7979,12 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   psurf->n1 = n1;
   psurf->n2 = n2;
   psurf->n3 = n3;
-  psurf->m3n = m3n; // If m3n and n3n are 0, then it means that no color matrix/vector was in input
+  psurf->m3n = m3n; /* If m3n and n3n are 0, then it means that no color matrix/vector was in input*/
   psurf->n3n = n3n;
       
-  // Update of the dimzx, dimzy depends on  m3, n3:
+  /* Update of the dimzx, dimzy depends on  m3, n3: */
   psurf->dimzx = m3;
   psurf->dimzy = n3;
-  /*
-  if (typeof3d == SCI_PLOT3D) {
-    nx=dimzx;
-    ny=dimzy;
-    nz=dimzx*dimzy;
-    if (flagcolor == 2)
-      nc=nz; // one color per facet 
-    else if (flagcolor == 3)
-      nc=nz*4; // one color per edge 
-    else 
-      nc=0;
-  }
-  // DJ.A 2003 
-  else {
-    nx=dimzx*dimzy;
-    ny=dimzx*dimzy;
-    nz=dimzx*dimzy;
-    if (flagcolor == 2)
-      nc=dimzy; // one color per facet 
-    else if (flagcolor == 3)
-      nc=nz; // one color per edge 
-    else 
-      nc=0;
-  }
-  */
+
   return 0;
 }
