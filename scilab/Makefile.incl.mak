@@ -17,8 +17,10 @@ DTK=-DWITH_TK
 !IF "$(DTK)" == "-DWITH_TK"
 # -MT can be added here (note that DPVM=-DWITH_PVM will remove it)
 USE_MT=-MT 
+# for compilation 
 TCLTK=C:\Tcl\lib
-TCLTK=c:\softs\active-tcl
+# for binary distribution version after compilation 
+#TCLTK=$(SCIDIR1)\tcl\lib
 TKSCI=libs/tksci.lib 
 
 TKLIBS="$(TCLTK)\lib\tcl83.lib" "$(TCLTK)\lib\tk83.lib"
@@ -38,13 +40,18 @@ DPVM=-DWITH_PVM
 # compiler flags: -MT should be removed for pvm 
 USE_MT=
 PVM=libs/pvm.lib 
+#for compilation
 PVM_ROOT=c:\softs\scilab\scilab-cvs\pvm3
+# for binary distribution version after compilation 
+#PVM_ROOT=$(SCIDIR1)\pvm3
+
 PVM_ARCH=WIN32
-PVMLIB=$(PVM_ROOT)\lib\WIN32\libpvm3.lib $(PVM_ROOT)\lib\WIN32\libgpvm3.lib 
+PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
 PVM_CINCLUDE="."
-PVM_INCLUDES=-I$(PVM_ROOT)\include -I$(PVM_ROOT)\src
+PVM_INCLUDES=-I"$(PVM_ROOT)\include" -I"$(PVM_ROOT)\src"
 PVM_CCOMPILER=VISUALC++
 !ENDIF 
+
 
 #
 # YES if we compile the PVM given with Scilab else NO
