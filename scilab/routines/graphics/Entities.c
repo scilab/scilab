@@ -7041,6 +7041,10 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_SUBWIN: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
       return &(pSUBWIN_FEATURE (pobj)->axes.fontcontext);
       break;
+    case SCI_AXES:
+      /*axes uses the parent subwindow font context S Steer 04.06.04*/
+       return &(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->axes.fontcontext);
+       break;  
     case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
       return &(pFIGURE_FEATURE (pobj)->fontcontext);
       break;
