@@ -114,10 +114,11 @@ function [x,y,typ]=GAINBLK_f(job,arg1,arg2)
     end
     case 'define' then
     gain=1
+    in=1;out=1
     model=scicos_model()
     model.sim='gain'
-    model.in=1
-    model.out=1
+    model.in=in
+    model.out=out
     model.rpar=gain
     model.blocktype='c'
     model.dep_ut=[%t %f]

@@ -39,7 +39,7 @@ case 'define' then
   model.sim=list('switchn',2)
   model.in=in
   model.out=-1
-  model.ipar=io
+  model.ipar=i0
   model.blocktype='c'
   model.firing=[]
   model.dep_ut=[%t %t]

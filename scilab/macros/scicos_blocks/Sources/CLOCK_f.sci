@@ -66,8 +66,8 @@ case 'set' then
       
     split=CLKSPLIT_f('define')
       split.graphics.orig=[380.71066;172]
-      output_port.graphics.pein=4,
-      output_port.graphics.peout=[6;7]
+      split.graphics.pein=4,
+      split.graphics.peout=[6;7]
       
     gr_i=list(['wd=xget(''wdim'').*[1.016,1.12];';
 	       'thick=xget(''thickness'');xset(''thickness'',2);';

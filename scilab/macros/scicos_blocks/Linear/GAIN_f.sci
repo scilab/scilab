@@ -44,7 +44,7 @@ case 'define' then
   
   exprs=[strcat(sci2exp(gain));strcat(sci2exp(in));strcat(sci2exp(out))]
   gr_i=['nin=model.in;nout=model.out;';
-      'if =model.in*model.out==1 then '
+      'if model.in*model.out==1 then '
       '  gain=string(model.rpar),'
       'else'
       '  gain=''Gain'','

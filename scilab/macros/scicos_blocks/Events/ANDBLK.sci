@@ -56,8 +56,8 @@ case 'define' then
   x.graphics.sz=[2,2]
   x.graphics.gr_i='xstringb(orig(1),orig(2),''ANDBLK'',sz(1),sz(2),''fill'')';
   x.model.sim='csuper'
-  x.model.clkin=[1;1]
-  x.model.clkout=1
+  x.model.evtin=[1;1]
+  x.model.evtout=1
   x.model.blocktype='h'
   x.model.firing=%f
   x.model.dep_ut=[%f %f]

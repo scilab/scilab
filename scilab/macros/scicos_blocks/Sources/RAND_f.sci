@@ -47,7 +47,7 @@ case 'define' then
   model=scicos_model()
   model.sim='rndblk'
   model.out=out
-  model.evtin1
+  model.evtin=1
   model.dstate=[rand();0*a(:)]
   model.rpar=[a(:);b(:)]
   model.ipar=flag

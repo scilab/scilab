@@ -12,18 +12,7 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
-  while %t do
-    [x,newparameters,needcompile,edited]=scicos(arg1.model.rpar)
-    arg1.model.rpar=x
-    [ok,arg1]=adjust_s_ports(arg1)
-    if ok then
-      x=arg1
-      y=needcompile
-      typ=newparameters
-      break
-    end
-  end
-  edited=resume(edited)
+
 case 'define' then
   scs=empty_diagram()
   scs(1).title='Super Block'
