@@ -59,16 +59,15 @@ load('SCI/macros/sparse/lib')
 //load('SCI/macros/HighLevelPlotting/lib')
 
 // Create some configuration variables ================================
-
+// path of scilab main directory
+SCI=getenv('SCI');
 // use MSDOS syntax?
 MSDOS = (getos() == "Windows")
 TMPDIR=getenv('TMPDIR')
 PWD = getcwd()
-home= getenv('HOME','ndef');
-if home=='ndef',home=unix_g('cd; pwd');end 
+home=sethomedirectory();
 if MSDOS then
-  // path of scilab main directory
-	SCI=getshortpathname(getenv('SCI'))
+  SCI=getshortpathname(SCI)
   // path of scilab main directory for Windows
   WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
   if with_pvm() then
@@ -77,8 +76,6 @@ if MSDOS then
     setenv("PVM_TMP",getenv("TEMP"))
   end
 else
-  // path of scilab main directory
-  SCI=getenv('SCI')
   if getenv('PRINTERS','ndef')=="ndef" then
     setenv("PRINTERS","lp")
   end
@@ -178,8 +175,6 @@ clear fd ierr
 
 // load history file ==================================================
 loadhistory()
-
-
 
 // calling user initialization =========================================
 // Home dir startup (if any)

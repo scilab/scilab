@@ -13,7 +13,7 @@ include ../../Makefile.incl.mak
 NAME = utillib
 NAM = SCI/macros/util
 
-MACROS = copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
+MACROS = sethomedirectory.sci copyfile.sci mkdir.sci rmdir.sci calendar.sci datevec.sci \
 	datenum.sci perl.sci clipboard.sci with_atlas.sci with_javasci.sci \
 	setlanguage.sci with_lcc.sci VCtoLCCLib.sci \
 	sysconv.sci  lin.sci halt.sci bloc2exp.sci \
