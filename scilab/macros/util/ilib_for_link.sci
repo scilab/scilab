@@ -82,11 +82,21 @@ function ilib_link_gen_Make(names,files,libs,makename,libname,ldflags,cflags,ffl
   if getenv('WIN32','NO')=='OK' then
     select comp_target
      case 'VC++'   then Makename = makename+'.mak'
+      ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
+			       ldflags,cflags,fflags,cc)
      case 'ABSOFT' then Makename = makename+'.amk'
-    else Makename = makename;
+      ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
+			       ldflags,cflags,fflags,cc)
+     case 'gcc' then 
+      // cygwin assumed 
+      Makename = makename;
+      ilib_link_gen_Make_unix(names,files,libs,Makename,libname,...
+			      ldflags,cflags,fflags,cc)
+    else 
+       Makename = makename;
+       ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
+				ldflags,cflags,fflags,cc)
     end
-    ilib_link_gen_Make_win32(names,files,libs,Makename,libname,...
-			     ldflags,cflags,fflags,cc)
   else
      Makename = makename;
      ilib_link_gen_Make_unix(names,files,libs,Makename,libname,...
@@ -97,7 +107,6 @@ endfunction
 function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
 				 ldflags,cflags,fflags,cc)
   
-
   if libname=="" then libname = names(1);end 
     
   fd=mopen(Makename,"w");
@@ -118,7 +127,13 @@ function ilib_link_gen_Make_unix(names,files,libs,Makename,libname, ...
   mfprintf(fd,"CFLAGS = $(CC_OPTIONS) "+cflags+ "\n");
   mfprintf(fd,"FFLAGS = $(FC_OPTIONS) "+fflags+ "\n");
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+ "\n");
-  mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
+  if getenv('WIN32','NO')=='OK' then
+    // cygwin assumed : we use a specific makedll 
+    // and not libtool up to now XXX 
+    mfprintf(fd,"include $(SCIDIR)/config/Makecygdll.incl\n");
+  else
+     mfprintf(fd,"include $(SCIDIR)/config/Makeso.incl\n");
+  end
   mclose(fd);
 endfunction
 
@@ -153,3 +168,8 @@ function ilib_link_gen_Make_win32(names,files,libs,Makename,libname,ldflags, ...
   mfprintf(fd,"!include $(SCIDIR1)\\config\\Makedll.incl \n");
   mclose(fd);
 endfunction
+
+
+
+
+
