@@ -39,19 +39,18 @@ if rhs==1 then
       
       [bval,index]=isdefinedvar(var)
       if ~bval then
-	error("M2sci bug: extraction from unknown variable in varslist")
+	error("M2sci bug: extraction from unknown variable "+var.name+" in varslist")
       else
 	INFER=varslist(index).infer
 	ierr=execstr("INFER=varslist(index).infer.contents"+expression2code(infertree),"errcatch");
 	if ierr<>0 | typeof(INFER)<>"infer" then // infer==[] or non-exsisting index in inference data
-	  tree.out(1).infer=Infer()
+	  // Inference can not be done
 	else
 	  tree.out(1).infer=INFER
 	end
       end
     else
       // Inference can not be done
-      tree.out(1).infer=Infer()
     end
     
     // Convert last extraction operation is not already done
@@ -60,6 +59,9 @@ if rhs==1 then
       newtree.operands(2)($)=null()
       tmp=gettempvar()
       insert(Equal(list(tmp),newtree))
+      // tmp variable added to varslist so that inference can be done
+      varslist($+1)=M2scivar(tmp.name,tmp.name,newtree.infer)
+      
       // Change index
       IND=list()
       tmp.infer=newtree.infer
@@ -82,7 +84,7 @@ if rhs==1 then
     
     [bval,index]=isdefinedvar(var)
     if ~bval then
-      error("M2sci bug: extraction from unknown variable in varslist")
+      error("M2sci bug: extraction from unknown variable "+var.name+" in varslist")
     else
       if varslist(index).vtype<>Struct then
 	// variable not defined as a struct, modify inference
@@ -94,11 +96,13 @@ if rhs==1 then
     INF=INFER
     ierr=execstr("INF=INFER.contents(ind.value)","errcatch")
     if ierr<>0 then
-      tree.out(1).infer=Infer()
+      tree.out(1).vtype=Struct
     elseif typeof(INF)<>"infer" then
-      tree.out(1).infer=Infer()
+      tree.out(1).vtype=Struct
     else
-      tree.out(1).infer=INF
+      tree.out(1).dims=INF.dims
+      tree.out(1).type=INF.type
+      tree.out(1).contents=INF.contents
     end
   end
 // More than one index value

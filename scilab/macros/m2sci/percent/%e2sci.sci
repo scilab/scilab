@@ -54,10 +54,14 @@ if rhs==1 then
       if type(ind(kind))<>15 then
 	if ind(kind).vtype==String then
 	  if ind(kind).value=="entries" then
-	    tree=%e_st2sci(tree)
+	    tree.operands(1).vtype=Cell
+	    rhs=rhs+1
+	    tree=%e_ce2sci(tree)
 	    return
 	  else
-	    tree=%e_ce2sci(tree)
+	    tree.operands(1).vtype=Struct
+	    rhs=rhs+1
+	    tree=%e_st2sci(tree)
 	    return
 	  end
 	end

@@ -14,9 +14,25 @@ from=tree.operands($)
 to=tree.operands(1)
 
 // Insertion of a struct in a not-struct array
-if to.vtype<>Struct then
-  insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
-  //to.infer=Infer(list(0,0),Type(Struct,Unknown),struct())
+if typeof(to)=="variable" & to.vtype<>Struct then
+  
+  // To be sure that variable will now be of type Struct
+  [bval,index]=isdefinedvar(to)
+  varslist(index).infer.type.vtype=Struct
+  
+  // No more needed
+  // insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
+  
+  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),struct())
+elseif typeof(to)=="operation" & to.vtype<>Struct then
+  
+  // To be sure that variable will now be of type Struct
+  [bval,index]=isdefinedvar(to.operands(1))
+  varslist(index).infer.type.vtype=Struct
+
+  // No more needed
+  // insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
+  
   tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),struct())
 end
 
@@ -99,7 +115,8 @@ if rhs==1 then
       tree.out(1).dims=infdims
     else
       // Inference can not be done
-      tree.out(1).infer=Infer()
+      tree.out(1).type=Type(Struct,Unknown)
+      tree.out(1).dims=list(Unknown,Unknown)
     end
     
   end
