@@ -475,14 +475,27 @@ static int get_logflags(fname,pos,opts)
       if (VarType(pos)) {
 	GetRhsVar(pos, "c", &m, &n, &l);
 	if ((m * n != 2)&&(m * n != 3)) {
-	  Scierror(999,"%s: logflag has wrong size (%d), 2 expected \r\n",fname);
+	  Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m*n);
 	  return 0;
 	}
 	if (m * n == 2) {
+	  if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n')){
+	    Err=pos;
+	    Error(116);
+	    return 0;
+	  }
 	  logflags[0]='g';logflags[1]=*cstk(l);logflags[2]=*cstk(l+1);
 	  Logflags=logflags;}
-	else
+	else {
+	  if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
+	      (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
+	      (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
+	    Err=pos;
+	    Error(116);
+	    return 0;
+	  }
 	  Logflags=cstk(l);
+	}
       }
       else /* zero type argument --> default value */
 	{
@@ -492,14 +505,28 @@ static int get_logflags(fname,pos,opts)
   else if ((kopt=FindOpt("logflag",opts))) { /* named argument: style=value */
     GetRhsVar(kopt,"c", &m, &n, &l);
     if ((m * n != 2)&&(m * n != 3)) {
-      Scierror(999,"%s: logflag has wrong size (%d), 2 expected \r\n",fname);
+      Scierror(999,"%s: logflag has wrong size (%d), expected 2 or 3\r\n",fname,m * n);
       return 0;
     }
     if (m * n == 2) {
+      if ((*cstk(l)!='l'&&*cstk(l)!='n')||(*cstk(l+1)!='l'&&*cstk(l+1)!='n')){
+	Err=kopt;
+	Error(116);
+	return 0;
+      }
       logflags[0]='g';logflags[1]=*cstk(l);logflags[2]=*cstk(l+1);
       Logflags=logflags;}
-    else
+    else {
+      if (((*cstk(l)!='g')&&(*cstk(l)!='e')&&(*cstk(l)!='o')) || 
+	  (*cstk(l+1)!='l'&&*cstk(l+1)!='n') || 
+	      (*cstk(l+2)!='l'&&*cstk(l+2)!='n')){
+	Err=kopt;
+	Error(116);
+	return 0;
+      }
+    
       Logflags=cstk(l);
+    }
   }
   else /* unspecified argument --> default value */
     {
