@@ -19,14 +19,14 @@
     <VERB>set(get("current_axes"),"visible","off")</VERB> 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-revoir l'interface dans matdes VARTYPE(1°==1...
+
   set("figure_style","new") // select entity based graphics
-  t=1:10;plot2d(t,t.^2),
+
   h=get("current_figure") //gets handle on the current figure
   a=h.children
-  drawlater (a.children)
-  delete(a)
-  delete(h)
+  drawlater(a.children)
+  t=1:10;plot2d(t,t.^2)
+  drawnow(a.children)
 
  ]]></EXAMPLE>
   <SEE_ALSO>

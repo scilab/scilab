@@ -37,7 +37,6 @@
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-revoir l'interface dans matdes RHS...
   set("figure_style","new") // select entity based graphics
   t=1:10;plot2d(t,t.^2),
   h=get("current_figure") //gets handle on the current figure

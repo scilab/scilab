@@ -37,14 +37,13 @@
     If <VERB>a</VERB> is a handle on axes <VERB>drawnow(h)</VERB> is equivalent to <VERB>f.visible="on"</VERB>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-revoir l'interface dans matdes VARTYPE(1°==1...
+
   set("figure_style","new") // select entity based graphics
-  t=1:10;plot2d(t,t.^2),
+
   h=get("current_figure") //gets handle on the current figure
-  a=h.children
-  drawnow(a.children)
-  delete(a)
-  delete(h)
+  drawlater()
+  t=1:10;plot2d(t,t.^2)
+  drawnow()
 
  ]]></EXAMPLE>
   <SEE_ALSO>
