@@ -25,6 +25,7 @@
 #include "../wsci/wcommon.h"
 #include "../wsci/wgraph.h"
 
+#include "bcg.h"
 #include "periWin.h" 
 #include "../version.h"
 #include "color.h" 
@@ -33,6 +34,13 @@
 #include "../machine.h"
 
 #ifdef WITH_TK
+#include "../../tcl/include/tcl.h"
+#include "../../tcl/include/tk.h"
+#include "../../tcl/include/tkPlatDecls.h"
+
+extern Tcl_Interp *TKinterp;
+extern Tk_Window TKmainWindow;
+
 extern void flushTKEvents ();
 extern int tcl_check_one_event();
 #endif
@@ -40,6 +48,9 @@ extern int tcl_check_one_event();
 #define M_PI	3.14159265358979323846
 #define CoordModePrevious 1
 #define CoordModeOrigin 0
+
+extern BOOL IsTKGraphicalMode(void);
+
 
 /** 
   Warning : the following code won't work if the win.a library is 
@@ -118,7 +129,6 @@ unsigned short default_colors[] = {
 };
 
 
-#define GXxor 6
 
 #define MAXDASH 5
 static integer DashTab[MAXDASH] = { PS_SOLID,PS_DASH,PS_DOT,PS_DASHDOT,PS_DASHDOTDOT};
@@ -165,7 +175,7 @@ struct BCG *ScilabXgc = (struct BCG *) 0;
 
 /** functions **/
 
-Window GetWindowNumber();
+HWND GetWindowNumber();
 struct BCG *GetWinXgc();
 struct BCG *GetWindowXgcNumber();
 struct BCG *AddNewWindow();
@@ -302,7 +312,7 @@ int sciInitScrollBar(struct BCG *Scilabgc)
 /*-----------------------------------------------------------------------------------*/
 void  SetWinhdc()
 {
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (HWND) 0)
     {
       if ( sciGetPixmapStatus() == 1) 
 	hdc = ScilabXgc->hdcCompat;
@@ -351,7 +361,7 @@ void  ReleaseWinHdc()
   }
   else
   {
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (Window) 0)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->CWindow != (HWND) 0)
     {
       if ( sciGetPixmapStatus() != 1) 
 	ReleaseDC(ScilabXgc->CWindow,hdc);
@@ -380,7 +390,7 @@ void SetGHdc(lhdc,width,height)
   else
     {
       if ( hdc1 != (HDC) 0 && ScilabXgc != (struct BCG *) 0 
-	   && ScilabXgc->CWindow != (Window) 0 )
+	   && ScilabXgc->CWindow != (HWND) 0 )
 	{
 	  RECT rect;
 	  hdc=GetDC(ScilabXgc->CWindow);
@@ -547,7 +557,7 @@ void C2F(xselgraphic)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
      double *dv3;
      double *dv4;
 { 
-  if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CWindow == (Window ) NULL) 
+  if (ScilabXgc == (struct BCG *)0 || ScilabXgc->CWindow == (HWND) NULL) 
     C2F(initgraphic)("",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (IsIconic(ScilabXgc->hWndParent)) 
     ShowWindow(ScilabXgc->hWndParent, SW_SHOWNORMAL);
@@ -611,7 +621,7 @@ void C2F(clearwindow)(v1, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   /* reset the clip region using current data */
   set_current_clip ();
 
-  RefreshGraphToolBar(ScilabXgc);
+  if (! IsTKGraphicalMode()) RefreshGraphToolBar(ScilabXgc);
 	
 }
 /*-----------------------------------------------------------------------------------*/
@@ -723,7 +733,7 @@ void C2F(xclick_any_old)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		     double * dv1, double *dv2,double * dv3,double * dv4)
 {
   WindowList *listptr = The_List;
-  Window CW;
+  HWND CW;
   MSG msg;
   int buttons = 0,win = 0;
   integer lstr ;
@@ -1034,7 +1044,7 @@ void SciClick_Old(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   /** BOOL flag1= TRUE; **/
   integer buttons = 0;
 
-  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
     {
       *ibutton = -100;     return;
     }
@@ -1061,7 +1071,7 @@ void SciClick_Old(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   while (buttons == 0) {
     if (PeekMessage(&msg, 0, 0, 0,PM_NOREMOVE) != -1) {
       /** maybe someone decided to destroy scilab Graphic window **/
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
 	{
 	  *x1= 0 ;  *yy1= 0;  *ibutton=-100; return;
 	}
@@ -1126,7 +1136,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   MSG msg;
   #endif
 
-  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+  if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
     {
       *ibutton = -100;     return;
     }
@@ -1157,7 +1167,7 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
       TranslateMessage(&msg);
       DispatchMessage(&msg);
 #endif
-      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (Window) 0)
+      if ( ScilabXgc == (struct BCG *) 0 || ScilabXgc->CWindow == (HWND) 0)
 	{
 	  /* graphic window was deleted */
 	  *x1= 0 ;  *yy1= 0;  *ibutton=-100; 
@@ -1296,7 +1306,7 @@ void C2F(setwindowdim)(x, y, v3, v4)
   int xof,yof;
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
-  if (ScilabXgc->CWindow != (Window) NULL) 
+  if (ScilabXgc->CWindow != (HWND) NULL) 
   {
     /* initialisation des variables SCROLLINFO*/
     sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
@@ -3720,7 +3730,7 @@ struct BCG *AddNewWindow(listptr)
         }
      else
        {
-         (*listptr)->winxgc.CWindow = (Window) NULL;
+         (*listptr)->winxgc.CWindow = (HWND) NULL;
          (*listptr)->winxgc.CurWindow = 0;
          (*listptr)->winxgc.in_sizemove = 0;
 	 (*listptr)->winxgc.Red = (float *) 0;
@@ -3831,7 +3841,7 @@ void DeleteWindowToList(num)
  * Get Window number wincount ( or 0 )
  ********************************************/
 
-Window GetWindowNumber(wincount)
+HWND GetWindowNumber(wincount)
      int wincount;
 {
   struct BCG *bcg;
@@ -3839,7 +3849,7 @@ Window GetWindowNumber(wincount)
   if ( bcg != (struct BCG *) 0)
     return( bcg->CWindow);
   else
-    return( (Window) 0);
+    return( (HWND) 0);
 }
 /*-----------------------------------------------------------------------------------*/
 /********************************************
@@ -4014,30 +4024,71 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   sprintf(popupname,"ScilabGraphic%d", (int)WinNum);
   if (EntryCounter == 0) { ReadGraphIni(ScilabXgc);};
   ScilabXgc->Inside_init=1; /** to know that we are inside init code **/
-  ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
+  if (IsTKGraphicalMode())
+  {
+	  Tk_Window  win;
+	  Window    windowId;
+	  /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */
+	  if ( TKmainWindow != 0)
+		{
+			win = Tk_NameToWindow(TKinterp, string,TKmainWindow);
+			if (win != 0)
+			{
+				windowId = Tk_WindowId(win);
+				ScilabXgc->CWindow = (HWND) Tk_GetHWND( windowId );
+				if (ScilabXgc->CWindow ==NULL) MessageBox((HWND)NULL,"Couldn't open graphic window",(LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
+				ScilabXgc->hWndParent=NULL;
+				GetClientRect(ScilabXgc->hWndParent, &rect);
+				ScilabXgc->CWindowWidth =  rect.right;
+				ScilabXgc->CWindowHeight = rect.bottom;
+				ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
+				ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+			}
+		}
+    SetWinhdc();
+	 SetMapMode(hdc, MM_TEXT);
+	 SetBkMode(hdc,TRANSPARENT);
+	 GetClientRect(ScilabXgc->CWindow, &rect);
+	 SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
+	 SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
+	 SetFocus( ScilabXgc->CWindow);
+	if (EntryCounter == 0)
+    {
+      C2F(CreatePatterns)();
+      LoadFonts();
+    } 
+    InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
+	/* to be sure that current values are recorded */
+	StoreXgc(WinNum);
+	EntryCounter=Max(EntryCounter,WinNum);
+	EntryCounter++;
+
+  }
+  else
+  {
+	  ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
 				       WS_OVERLAPPEDWINDOW,
 				       graphwin.Origin.x, graphwin.Origin.y,
 				       graphwin.Size.x, graphwin.Size.y,
 				       NULL, NULL, graphwin.hInstance, 
 				       NewXgc);
-  if (ScilabXgc->hWndParent == (HWND)NULL) {
-    MessageBox((HWND)NULL,"Couldn't open parent graph window",
-	       (LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
-    return;
-  }
-  ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
-  ScilabXgc->Statusbar =  InitStatusBar (ScilabXgc->hWndParent);
-  ShowWindow(ScilabXgc->Statusbar,  SW_SHOWNORMAL);
-  GetWindowRect (ScilabXgc->Statusbar, &rect1) ;
-  GetClientRect(ScilabXgc->hWndParent, &rect);
-  MoveWindow(ScilabXgc->Statusbar, 0, rect.bottom -( rect1.bottom - rect1.top),
-	     rect.right,  ( rect1.bottom - rect1.top), TRUE) ;
-  sprintf((char *)winname,"BG%d", (int)WinNum);
+	  if (ScilabXgc->hWndParent == (HWND)NULL)
+	  {
+			MessageBox((HWND)NULL,"Couldn't open parent graph window",(LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
+			return;
+	  }
+	  ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
+	  ScilabXgc->Statusbar =  InitStatusBar (ScilabXgc->hWndParent);
+	  ShowWindow(ScilabXgc->Statusbar,  SW_SHOWNORMAL);
+	  GetWindowRect (ScilabXgc->Statusbar, &rect1) ;
+	  GetClientRect(ScilabXgc->hWndParent, &rect);
+	  MoveWindow(ScilabXgc->Statusbar, 0, rect.bottom -( rect1.bottom - rect1.top),
+				 rect.right,  ( rect1.bottom - rect1.top), TRUE) ;
+	  sprintf((char *)winname,"BG%d", (int)WinNum);
 
-
-  ScilabXgc->CWindowWidth =  rect.right;
-  ScilabXgc->CWindowHeight = rect.bottom - ( rect1.bottom - rect1.top);
-  ScilabXgc->CWindow = CreateWindow(szGraphClass, winname,
+	  ScilabXgc->CWindowWidth =  rect.right;
+	  ScilabXgc->CWindowHeight = rect.bottom - ( rect1.bottom - rect1.top);
+	  ScilabXgc->CWindow = CreateWindow(szGraphClass, winname,
 				    WS_CHILD | WS_VSCROLL | WS_HSCROLL,
 				    0, graphwin.ButtonHeight,
 				    ScilabXgc->CWindowWidth,
@@ -4046,81 +4097,79 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 				    NULL, graphwin.hInstance,
 				    NewXgc);
 
-  ScilabXgc->CurResizeStatus = 1;
-  ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
-  ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
+      ScilabXgc->CurResizeStatus = 1;
+      ScilabXgc->CWindowWidthView  = ScilabXgc->CWindowWidth;
+      ScilabXgc->CWindowHeightView = ScilabXgc->CWindowHeight;
 
-	/* definition des scroll bars verticalles */
-  vertsi.cbSize = sizeof(SCROLLINFO);
-  vertsi.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
-  vertsi.nMin   = 0;
-  vertsi.nMax   = ScilabXgc->CWindowHeight;
-  vertsi.nPage  = ScilabXgc->CWindowHeightView;
-  vertsi.nPos   = 0;
-  sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
-  sciGetScrollInfo(ScilabXgc,SB_VERT, &vertsi);
+	 /* definition des scroll bars verticalles */
+     vertsi.cbSize = sizeof(SCROLLINFO);
+     vertsi.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
+     vertsi.nMin   = 0;
+     vertsi.nMax   = ScilabXgc->CWindowHeight;
+     vertsi.nPage  = ScilabXgc->CWindowHeightView;
+     vertsi.nPos   = 0;
+     sciSetScrollInfo(ScilabXgc,SB_VERT, &(vertsi), TRUE);
+     sciGetScrollInfo(ScilabXgc,SB_VERT, &vertsi);
 
-	/* definition des scroll bars horizontalle */
-  horzsi.cbSize = sizeof(SCROLLINFO);
-  horzsi.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
-  horzsi.nMin   = 0;
-  horzsi.nMax   = ScilabXgc->CWindowWidth;
-  horzsi.nPage  = ScilabXgc->CWindowWidthView;
-  horzsi.nPos   = 0;
-  sciSetScrollInfo(ScilabXgc,SB_HORZ, &horzsi, TRUE);	  
-  sciGetScrollInfo(ScilabXgc,SB_HORZ, &horzsi);
+	 /* definition des scroll bars horizontalle */
+     horzsi.cbSize = sizeof(SCROLLINFO);
+     horzsi.fMask  = SIF_RANGE | SIF_PAGE | SIF_POS;
+     horzsi.nMin   = 0;
+     horzsi.nMax   = ScilabXgc->CWindowWidth;
+     horzsi.nPage  = ScilabXgc->CWindowWidthView;
+     horzsi.nPos   = 0;
+     sciSetScrollInfo(ScilabXgc,SB_HORZ, &horzsi, TRUE);	  
+     sciGetScrollInfo(ScilabXgc,SB_HORZ, &horzsi);
 
-  if (ScilabXgc->CWindow == (HWND)NULL) 
-    {
-      MessageBox((HWND)NULL,"Couldn't open graphic window",
-		 (LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
-      return;
-    }
+     if (ScilabXgc->CWindow == (HWND)NULL) 
+     {
+		MessageBox((HWND)NULL,"Couldn't open graphic window",(LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
+		return;
+     }
 
-  /* modify the system menu to have the new items we want */
-  /*sysmenu = GetSystemMenu(ScilabXgc->hWndParent,0);
-  AppendMenu(sysmenu, MF_SEPARATOR, 0, NULL);
-  AppendMenu(sysmenu, MF_STRING, M_ABOUT, "&About");*/
-  ShowWindow(ScilabXgc->CWindow, SW_SHOWNORMAL);
-  ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
-  graphwin.resized = FALSE;
+     ShowWindow(ScilabXgc->CWindow, SW_SHOWNORMAL);
+     ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
+     graphwin.resized = FALSE;
 
-  UpdateFileGraphNameMenu( ScilabXgc);
-  LoadGraphMacros( ScilabXgc);
-  /** Default value is without Pixmap **/
-  ScilabXgc->CurPixmapStatus = 0;
-  ScilabXgc->CurResizeStatus = 1;
-  ScilabXgc->CurWindow = WinNum;
-  /* on fait un SetWinhdc car on vient de creer la fenetre */
-  /* le release est fait par Xcall.c */
-  SetWinhdc();
-  SetMapMode(hdc, MM_TEXT);
-  SetBkMode(hdc,TRANSPARENT);
-  GetClientRect(ScilabXgc->CWindow, &rect);
-  SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
-  SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
-  SetFocus( ScilabXgc->CWindow);
+     UpdateFileGraphNameMenu( ScilabXgc);
+	 LoadGraphMacros( ScilabXgc);
+	 /** Default value is without Pixmap **/
+	 ScilabXgc->CurPixmapStatus = 0;
+	 ScilabXgc->CurResizeStatus = 1;
+     ScilabXgc->CurWindow = WinNum;
+	 /* on fait un SetWinhdc car on vient de creer la fenetre */
+	 /* le release est fait par Xcall.c */
+	 SetWinhdc();
+	 SetMapMode(hdc, MM_TEXT);
+	 SetBkMode(hdc,TRANSPARENT);
+	 GetClientRect(ScilabXgc->CWindow, &rect);
+	 SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
+	 SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
+	 SetFocus( ScilabXgc->CWindow);
 
-  if (EntryCounter == 0)
-    {
-      C2F(CreatePatterns)();
-      LoadFonts();
-    } 
-  InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
-  /* to be sure that current values are recorded */
-  StoreXgc(WinNum);
-  EntryCounter=Max(EntryCounter,WinNum);
-  EntryCounter++;
-  switch( ScilabXgc->lpmw.CodeLanguage)
-    {
-    case 1:
-      AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
-      break;
-    default:
-      AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
-      break;
-    }
-  CreateGraphToolBar(ScilabXgc);
+	 if (EntryCounter == 0)
+	 {
+		C2F(CreatePatterns)();
+		LoadFonts();
+     } 
+	 InitMissileXgc(PI0,PI0,PI0,PI0);/* a laisser ici */
+	 /* to be sure that current values are recorded */
+	 StoreXgc(WinNum);
+	 EntryCounter=Max(EntryCounter,WinNum);
+	 EntryCounter++;
+	 switch( ScilabXgc->lpmw.CodeLanguage)
+		{
+			case 1:
+				AddMenu(&WinNum,"&Editer", EditMenusF, &ne, &menutyp, "ged", &ierr);
+			break;
+			default:
+				AddMenu(&WinNum,"&Edit", EditMenusE, &ne, &menutyp, "ged", &ierr);
+			break;
+		}
+	CreateGraphToolBar(ScilabXgc);
+  }
+
+ 
   
   ScilabXgc->Inside_init=0;
 }
@@ -4165,7 +4214,7 @@ void C2F(xinfo)(message, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
      integer *v2,*v3,*v4,*v5,*v6,*v7;
      double *dv1,*dv2,*dv3,*dv4;
 {
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Statusbar != (Window) 0)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Statusbar != (HWND) 0)
     {
       (BOOL)SendMessage(ScilabXgc->Statusbar, SB_SETTEXT, (WPARAM) 0, 
 			(LPARAM) (LPSTR) message );
@@ -4182,7 +4231,7 @@ void wininfo(char *fmt,...)
   va_list args;
   va_start(args,fmt);
   count = vsprintf(buf,fmt,args);
-  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Statusbar != (Window) 0)
+  if ( ScilabXgc != (struct BCG *) 0 && ScilabXgc->Statusbar != (HWND) 0)
     {
       (BOOL)SendMessage(ScilabXgc->Statusbar, SB_SETTEXT, (WPARAM) 0, 
 			(LPARAM) (LPSTR) buf);

@@ -84,6 +84,7 @@ void C2F(set_cX11)(integer i);
 void C2F(idfromnameX11) (char *name1, integer *num);
 void C2F(getdashX11)(integer *verbose, integer *value, integer *narg, double *dummy);
 
+BOOL IsTKGraphicalMode(void);
 
 /** Global variables to deal with X11 **/
 
@@ -3564,7 +3565,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     }
 
 
-  if (string[0]=='.') {
+  if (IsTKGraphicalMode()) {
     Tk_Window  win;
 
     /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */

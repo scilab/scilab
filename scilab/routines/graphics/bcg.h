@@ -22,25 +22,26 @@
 #define CoordModeOrigin 0
 #endif 
 
-#ifndef GXclear 
-#define GXclear 0
-#define GXand 1
-#define GXandReverse 2
-#define GXcopy 3
-#define GXandInverted 4
-#define GXnoop 5
-#define GXxor 6
-#define GXor 7
-#define GXnor 8
-#define GXequiv 9
-#define GXinvert 10
-#define GXorReverse 11
-#define GXcopyInverted 12
-#define GXorInverted 13
-#define GXnand 14
-#define GXset 15
-#endif 
-
+#ifndef WIN32
+  #ifndef GXclear 
+   #define GXclear 0
+   #define GXand 1
+   #define GXandReverse 2
+   #define GXcopy 3
+   #define GXandInverted 4
+   #define GXnoop 5
+   #define GXxor 6
+   #define GXor 7
+   #define GXnor 8
+   #define GXequiv 9
+   #define GXinvert 10
+   #define GXorReverse 11
+   #define GXcopyInverted 12
+   #define GXorInverted 13
+   #define GXnand 14
+   #define GXset 15
+  #endif 
+#endif
 
 /** Structure to keep the graphic state  **/
 
@@ -60,9 +61,7 @@ typedef struct _menu_entry {
 
 
 #include "Entities.h"
-#ifdef WIN32
-#define Window HWND
-#endif
+
 
 typedef int (*EVTHANDLER) __PARAMS((int win,int x,int y,int ibut));
 

@@ -118,6 +118,7 @@ static char error_message[70];
 
 extern int xinitxend_flag;
 
+static BOOL TKModeON=FALSE;
 
 /*-----------------------------------------------------------
  * get_style
@@ -2532,6 +2533,18 @@ int scixget(fname,fname_len)
   return 0;
 }
 
+
+/*-------------------------------------------------------------*/
+void SetTKGraphicalMode(BOOL SetTKMode)
+{
+	TKModeON=SetTKMode;
+}
+/*-------------------------------------------------------------*/
+BOOL IsTKGraphicalMode(void)
+{
+	return TKModeON;
+}
+/*-------------------------------------------------------------*/
 /*-----------------------------------------------------------
  *   xinit([driver-name])
  *-----------------------------------------------------------*/
@@ -2551,8 +2564,11 @@ int scixinit(fname,fname_len)
     } 
   else 
     {
+	  char *param1=NULL;
       GetRhsVar(1,"c",&m1,&n1,&l1);
-      C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
+	  param1=cstk(l1);
+	  if (param1[0]='.') SetTKGraphicalMode(TRUE);
+	  C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
 	  if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
     }
   LhsVar(1)=0; return 0;

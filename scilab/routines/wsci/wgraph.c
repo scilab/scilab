@@ -499,7 +499,7 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
   int *x = width; /* F.Leray 01.07.04 copy the setwindowdim function philosohpy (see periwin.c)*/
   int *y = height;
 
- if (ScilabXgc->CWindow != (Window) NULL) 
+ if ( (ScilabXgc->CWindow != NULL) && (ScilabXgc->hWndParent != NULL) )
   {
     /* initialisation des variables SCROLLINFO*/
     sciGetScrollInfo(ScilabXgc, SB_VERT, &vertsi);
@@ -557,43 +557,7 @@ void GPopupResize (struct BCG * ScilabXgc,int * width,int * height)
 	  InvalidateRect(ScilabXgc->CWindow,NULL,FALSE);
 	  }
   }
-  /*
-  if (ScilabXgc->CWindow != (Window) NULL)
-    {
-      sciGetScrollInfo (ScilabXgc, SB_VERT, &vertsi);
-      sciGetScrollInfo (ScilabXgc, SB_HORZ, &horzsi);
-
-      ScilabXgc->CWindowWidthView = *width;
-      ScilabXgc->CWindowHeightView = *height;
-      // remise a jour de la fenetre 
-      if ( ScilabXgc->CurPixmapStatus == 1)
-	{
-//	  ScilabXgc->CWindowWidth = *width;
-//      ScilabXgc->CWindowHeight = *height;
-	  sci_pixmap_resize(ScilabXgc,
-//		  *width, *height);
-			    ScilabXgc->CWindowWidth, ScilabXgc->CWindowHeight);
-	}
-      GetWindowRect (ScilabXgc->hWndParent, &rect);
-      GetWindowRect (ScilabXgc->CWindow, &rect1);
-      xof = (rect.right - rect.left) - (rect1.right - rect1.left);
-      yof = (rect.bottom - rect.top) - (rect1.bottom - rect1.top);
-      SetWindowPos (ScilabXgc->hWndParent, HWND_TOP, 0, 0,
-		    ScilabXgc->CWindowWidthView + xof,
-		    ScilabXgc->CWindowHeightView + yof,
-		    SWP_NOMOVE | SWP_NOZORDER);
-
-      // mise a jour de la taille des scroll bars //
-      // changer l'etat de visibilite des scroll bar  //
-      // suivant l etat on ou off et ajouter un offset d'affichage //
-      vertsi.nMax = ScilabXgc->CWindowHeight;
-      vertsi.nPage = ScilabXgc->CWindowHeightView;
-      horzsi.nMax = ScilabXgc->CWindowWidth;
-      horzsi.nPage = ScilabXgc->CWindowWidthView;
-      sciSetScrollInfo (ScilabXgc, SB_VERT, &vertsi, TRUE);
-      sciSetScrollInfo (ScilabXgc, SB_HORZ, &horzsi, TRUE);
-    }
-	*/
+ 
 }
 /*-----------------------------------------------------------------------------------*/
 void set_wait_click(val)

@@ -626,9 +626,6 @@ cd.. &gt;nul
 				RelativePath="periWin.h">
 			</File>
 			<File
-				RelativePath="periX11.h">
-			</File>
-			<File
 				RelativePath="PloEch.h">
 			</File>
 			<File

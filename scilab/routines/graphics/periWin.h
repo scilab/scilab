@@ -42,7 +42,7 @@
  extern void C2F(loadfamily)();
  extern void  C2F(queryfamily)();
  extern void C2F(xinfo)();
-
+ 
 #endif /* __PERIWIN_H__ */
 
 
