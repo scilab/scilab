@@ -28,6 +28,12 @@
 #include "color.h"
 #include "bcg.h"
 
+#include "tcl.h"
+#include "tk.h"
+
+extern Tcl_Interp *TKinterp;
+extern Tk_Window TKmainWindow;
+extern int XRotDrawString();
 /** jpc_SGraph.c **/
 extern void ChangeBandF __PARAMS((int win_num,Pixel fg, Pixel bg));
 extern int CheckClickQueue   __PARAMS((integer *,integer *x,integer *y,integer *ibut));
@@ -89,7 +95,7 @@ static Pixel DefaultBackground, DefaultForeground;
 static double *vdouble = 0; /* used when a double argument is needed */
 static int depth;
 static unsigned long maxcol;
-static Visual *visual;
+Visual *visual;
 static int wpixel, bpixel;
 
 /* These DEFAULTNUMCOLORS colors come from Xfig */
@@ -181,6 +187,16 @@ static xget_f xget_usecolor,xget_pixmapOn,xget_wresize,xget_colormap,xget_backgr
 static xget_f xget_font,xget_mark,xget_dash_or_color;
 static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
 
+#define FONTNUMBER 11 
+#define FONTMAXSIZE 6
+#define SYMBOLNUMBER 10
+
+/* FontsList : storing font informations
+ *             the font i with size fsiz is stored at 
+ *             FontsList_[i][fsiz]->fid
+ */
+
+static XFontStruct *FontsList_[FONTNUMBER][FONTMAXSIZE];
 
 /* Allocating colors in BCG struct */
 
@@ -390,9 +406,11 @@ void Setpopupname(char *string)
 { 
   int iargs = 0;
   static Arg args[2] ;
-  XtSetArg(args[iargs],XtNtitle,string);iargs++;
-  XtSetArg(args[iargs],XtNiconName,string);iargs++;
-  XtSetValues(ScilabXgc->popup,args,iargs);
+  if (ScilabXgc->popup !=  (Widget)0 ){
+    XtSetArg(args[iargs],XtNtitle,string);iargs++;
+    XtSetArg(args[iargs],XtNiconName,string);iargs++;
+    XtSetValues(ScilabXgc->popup,args,iargs);
+  }
 }
 
 /* appelle ds Xcall.c */
@@ -2649,7 +2667,21 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
   XFlush(dpy);
 }
 
-void C2F(DispStringAngle)(integer *x0, integer *yy0, char *string, double *angle)
+void C2F(DispStringAngle)(integer *x, integer *y, char *string, double *angle)
+{
+  float ang;
+  XFontStruct *font;
+
+  font=FontsList_[ScilabXgc->FontId][ScilabXgc->FontSize];
+  ang=*angle * M_PI/180.0;
+
+  if (ScilabXgc->Cdrawable != (Drawable) 0)	
+    XRotDrawString(dpy, font, ang, ScilabXgc->Cdrawable, gc, *x, *y, string);
+  if (ScilabXgc->CurPixmapStatus != 1) 
+    XRotDrawString(dpy, font, ang, (Drawable) ScilabXgc->CWindow, gc, *x, *y, string);
+}
+
+void C2F(DispStringAngleold)(integer *x0, integer *yy0, char *string, double *angle)
 {
   int i;
   integer x,y, rect[4];
@@ -3530,7 +3562,28 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
     {
       ScilabXgc= NewXgc;
     }
-  CreatePopupWindow(WinNum,toplevel,ScilabXgc,&DefaultForeground,&DefaultBackground) ;
+
+
+  if (string[0]=='.') {
+    Tk_Window  win;
+
+    /* TKmainWindow est initialise dans tksci.c  Tk_CreateMainWindow */
+    if (TKmainWindow != (Tk_Window)0) {
+      win = Tk_NameToWindow(TKinterp, string, (Tk_Window) TKmainWindow);
+      if (win != (Tk_Window)0) {
+	ScilabXgc->CWindow=Tk_WindowId(win);
+	ScilabXgc->CBGWindow=(Window)0;
+	ScilabXgc->popup=(Widget)0;
+
+	/*	Tk_CreateEventHandler(win, ExposureMask, (Tk_EventProc *) redrawProc,NULL);*/
+
+      }
+    }
+  }
+  else
+    CreatePopupWindow(WinNum,toplevel,ScilabXgc,&DefaultForeground,&DefaultBackground) ;
+
+
  /*** XXXX ScilabXgc->CWindow = Find_TK_Window(WinNum); **/
   if (EntryCounter == 0)
     {
@@ -3566,7 +3619,8 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
-  AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+ if (string[0]!='.') 
+   AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
  
 
   XSync(dpy,0);
@@ -4006,16 +4060,6 @@ void C2F(bitmap)(char *string, integer w, integer h)
  * Using X11 Fonts}
  *---------------------------------------------------------------------*/
 
-#define FONTNUMBER 11 
-#define FONTMAXSIZE 6
-#define SYMBOLNUMBER 10
-
-/* FontsList : storing font informations
- *             the font i with size fsiz is stored at 
- *             FontsList_[i][fsiz]->fid
- */
-
-static XFontStruct *FontsList_[FONTNUMBER][FONTMAXSIZE];
 
 /* FontInfoTab : information on fonts 
  *  its name and ok is set to one if the font is loaded in the Xserver 
