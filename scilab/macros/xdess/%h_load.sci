@@ -1,6 +1,6 @@
 function h=%h_load(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
-  xload_mode=%f
+  if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
   h=load_graphichandle(fd)
   f=gcf();f.visible='on'
@@ -16,8 +16,18 @@ function   h=load_graphichandle(fd)
 
     if xload_mode then
       h=gcf()
+      visible=toggle(mget(1,'c',fd));
+      figure_position=mget(2,'sl',fd);
+      figure_size=mget(2,'sl',fd);
+      axes_size=mget(2,'sl',fd);
+      auto_resize=toggle(mget(1,'c',fd));
+      figure_name=ascii(mget(mget(1,'c',fd),'c',fd))
+      figure_id=mget(1,'sl',fd);
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3)
+      pixmap=toggle(mget(1,'c',fd));
+      pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd))
       h.background=mget(1,'il',fd)
+      rotation_style=ascii(mget(mget(1,'c',fd),'c',fd))
     else
       visible=toggle(mget(1,'c',fd));
       figure_position=mget(2,'sl',fd);
