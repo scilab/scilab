@@ -153,7 +153,7 @@ int intPlaysound (char *fname)
   
   C2F(playsound)(filename);
   
-  LhsVar(0)=0;
+  LhsVar(1)=0;
   PutLhsVar();
   return 0;
 }
