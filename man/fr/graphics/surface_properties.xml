@@ -52,8 +52,8 @@
           <DESCRIPTION_ITEM>
             <P><VERB>color_flag==0</VERB> </P>
         		<DESCRIPTION_INDENT>
-        		  <DESCRIPTION_ITEM>All facets are painted using
-            the color index and method defined by <VERB>color_mode</VERB> : </DESCRIPTION_ITEM>				
+        		  <DESCRIPTION_ITEM><P>All facets are painted using
+            the color index and method defined by <VERB>color_mode</VERB> : </P> </DESCRIPTION_ITEM>				
         		  <DESCRIPTION_ITEM>
             		<P>If <VERB>color_mode&gt;0</VERB> 
             		the surface is painted with color <VERB>"color_mode"</VERB> ; the
