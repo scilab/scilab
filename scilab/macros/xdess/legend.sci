@@ -114,13 +114,13 @@ function R=legend(varargin)
 	  r.line_style=h.line_style;
 	else
 	  if stripblanks(h.mark_mode)=='off'
-	    st=h.polyline_style;
-	    if st==3 then st=0,else st=0;end
+	    st=1//h.polyline_style;
+	    //if st==3 then st=0,else st=0;end
 	    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');r=gce();
 	    r.foreground=h.foreground;
 	    r.thickness=h.thickness;
 	    r.polyline_style=max(1,st);
-	    r.line_style=h.line_style;
+	    r.line_style=max(h.line_style,1);
 	  else
 	    xpoly(x+drx/2,y-bbx(k,2)/2);r=gce();
 	    r.foreground=h.foreground;
