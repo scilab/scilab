@@ -1,5 +1,11 @@
 #include <string.h>
 
+#ifdef WIN32
+	#include <windows.h>
+	#pragma comment(lib, "winmm.lib")
+#endif
+
+
 #include "../stack-c.h"
 #include "sox.h" 
 #include "stdio.h" 
@@ -12,6 +18,7 @@ extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int n
 #undef FILENAME_MAX
 #define FILENAME_MAX 4096 
 #endif 
+
 
 
 /******************************************
@@ -101,6 +108,46 @@ int intsloadwave(char *fname)
   LhsVar(1)= 2;
   LhsVar(2)= 3;
   LhsVar(3)= 4;
+  PutLhsVar();
+  return 0;
+}
+
+/* Play Sound for windows */
+/* Allan CORNET 18/01/2004 */
+int C2F(playsound)(char * filename)
+{
+	#ifdef WIN32
+	// Stop Playing
+	PlaySound(NULL,NULL,SND_PURGE);	
+
+	// Play Wav file	
+     	PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
+     	#endif
+     	
+	return 0;
+}
+
+
+
+/******************************************
+ * SCILAB function : PlaySound
+ * Allan CORNET 18/01/2004 
+ ******************************************/
+int intPlaysound (char *fname)
+{
+  
+  int m1,n1,l1;
+  CheckRhs(1,1);
+  
+  /*  checking variable file */
+  GetRhsVar(1,"c",&m1,&n1,&l1);
+  /*** first call to get the size **/
+  lout=FILENAME_MAX;
+  C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
+  
+  C2F(playsound)(filename);
+  
+  LhsVar(0)=0;
   PutLhsVar();
   return 0;
 }
@@ -538,7 +585,9 @@ static TabF Tab[]={
  {int_objfscanfMat,"fscanfMat"},
  {int_objfprintfMat,"fprintfMat"},
  {int_objnumTokens,"NumTokens"},
- { intsmerror, "merror"},
+ {intPlaysound,"PlaySound"},
+ {intsmerror, "merror"}
+ 
 };
 
 int C2F(soundi)(void)
