@@ -36,7 +36,7 @@ extern int versionflag;
 
 static double *vdouble = 0; /* used when a double argument is needed */
 static unsigned long maxcol;
-void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a);/* NG */
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a, integer *v3);/* NG */
 
 /* These DEFAULTNUMCOLORS colors come from Xfig */
 
@@ -1538,6 +1538,11 @@ void set_default_colormap(void)
  *   a[i+2*m] = BLUE
  * v2 gives the value of m and *v3 must be equal to 3 
  */
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
+/* NG beg*/
+
 /* NG beg*/
 static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
      integer *v1,*v2;
@@ -1545,20 +1550,21 @@ static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
      integer *v4,*v5,*v6;
      double *a;
 {
-
-  setcolormapg(ScilabXgc,v1,v2,a);
+  *v3 = 0;
+  setcolormapg(ScilabXgc,v1,v2,a,v3);
 }
-static void xset_gccolormap(v1,v2,a,XGC)
+static void xset_gccolormap(v1,v2,a,XGC,v3)
      integer *v1,*v2;
      double *a;
      struct BCG *XGC;
+     integer *v3;
 {
-
-  setcolormapg(XGC,v1,v2,a);
+  *v3 = 0;
+  setcolormapg(XGC,v1,v2,a,v3);
 }
 /* NG end*/
 
-void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a)
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a, integer *v3)
 {
   int i,m;
   float *r, *g, *b;
@@ -1566,6 +1572,7 @@ void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a)
   if (*v2 != 3 || *v1 < 0 || *v1 > maxcol - 2) {
     Scierror(999,"Colormap must be a m x 3 array with m <= %ld\r\n",
 	    maxcol-2);
+    *v3 = 1;
     return;
   }
   m = *v1;
@@ -1578,6 +1585,7 @@ void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a)
     XGC->Red = r;
     XGC->Green = g;
     XGC->Blue = b;
+    *v3 = 1;
     return;
   }
   /* Checking RGB values */
@@ -1588,6 +1596,7 @@ void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a)
       XGC->Red = r;
       XGC->Green = g;
       XGC->Blue = b;
+      *v3 = 1;
       return;
     }
     SETCOLOR(i, (float)  (a[i]*255), (float)(a[i+m]*255),(float) (a[i+2*m]*255));

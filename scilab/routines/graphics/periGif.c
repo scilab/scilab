@@ -204,7 +204,7 @@ void C2F(clearwindowGif)(char *v1, integer *v2, integer *v3, integer *v4, intege
   int col_white = col_index[ScilabGCGif.Numcolors+1];
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 1 xinit must be called before any action \r\n");
     return;
   }
 
@@ -282,7 +282,7 @@ void C2F(setwindowdimGif)(integer *x, integer *y, integer *v3, integer *v4)
   gdImagePtr GifImOld = GifIm;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 2 xinit must be called before any action \r\n");
     return;
   }
   GifIm = gdImageCreate(*x, *y);
@@ -323,7 +323,7 @@ void C2F(getcurwinGif)(integer *verbose, integer *intnum, integer *narg, double 
 void C2F(setclipGif)(integer *x, integer *y, integer *w, integer *h)
 {
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 3 xinit must be called before any action \r\n");
     return;
   }
   ScilabGCGif.ClipRegionSet = 1;
@@ -340,7 +340,7 @@ void C2F(setclipGif)(integer *x, integer *y, integer *w, integer *h)
 void C2F(unsetclipGif)(integer *v1, integer *v2, integer *v3, integer *v4)
 {
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 4 xinit must be called before any action \r\n");
     return;
   }
   ScilabGCGif.ClipRegionSet = 0;
@@ -414,7 +414,7 @@ void C2F(setalufunctionGif)(char *string)
 {    
   integer value;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 5 xinit must be called before any action \r\n");
     return;
   }
   C2F(idfromnameGif)(string,&value);
@@ -471,7 +471,7 @@ void C2F(setalufunction1Gif)(integer *num, integer *v2, integer *v3, integer *v4
   integer value;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 6 xinit must be called before any action \r\n");
     return;
   }
   value=AluStrucGif[Min(15,Max(0,*num))].id;
@@ -624,7 +624,7 @@ static int GifLineColor (void)
     int i, c = col_index[ScilabGCGif.CurColor];
 
     if (GifIm == (gdImagePtr)0 ) {
-      sciprint("xinit must be called before any action \r\n");
+      sciprint(" 7 xinit must be called before any action \r\n");
       return 0;
     }
     if (c < 0) c = 0;
@@ -653,7 +653,7 @@ void C2F(setdashstyleGif)(integer *value, integer *xx, integer *n)
   int i, j, cn, c1, c = col_index[ScilabGCGif.CurColor];
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 8 xinit must be called before any action \r\n");
     return;
   }
   if (*value != 0) {
@@ -812,16 +812,17 @@ void C2F(getusecolorGif)(integer *verbose, integer *num, integer *narg, double *
  *   to GIF when the GIF file is opened 
  *   ( see  if (  CheckColormap(&m) == 1) in FileInt) 
  ******************************************************/
-void setcolormapgGif(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
+void setcolormapgGif(struct  BCG *Xgc,integer *v1,integer *v2, double *a, integer *v3);/* NG */
 
-void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
+void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i,j,r,g,b,c,ierr,m1;
   double *cmap;
   int *ind,i1;
   int old_white,old_black;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 9 xinit must be called before any action \r\n");
+    *v3 = 1;
     return;
   }
   
@@ -830,6 +831,7 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
+      *v3 = 1;
       return;
     }
   }
@@ -845,11 +847,13 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
       m1 = gdMaxColors-2;
       if ( (cmap = (double*) malloc(3*m1 * sizeof(double)))== NULL) {
 	Scistring("Not enough memory\n");
+	*v3 = 1;
 	return;
       }
       if ( (ind = (int*) malloc(m * sizeof(int)))== NULL) {
 	Scistring("Not enough memory\n");
 	free(cmap);
+	*v3 = 1;
 	return;
       }
 
@@ -927,26 +931,34 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
   /* the bug for both mode) */
 }
 
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
+/* NG beg*/
 void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
   int m;
 
+  *v3 = 0;
+
   if (*v2 != 3 ||  *v1 < 0 ) {
     Scistring("Colormap must be a m x 3 array \n");
+    *v3 = 1;
     return;
   }
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 10 xinit must be called before any action \r\n");
+    *v3 = 1;
     return;
   }
   m = *v1;
 
-  C2F(setgccolormapGif)(&ScilabGCGif,m, a);
+  C2F(setgccolormapGif)(&ScilabGCGif,m, a, v3);
 }
 /* NG beg */
-void setcolormapgGif(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+void setcolormapgGif(struct  BCG *Xgc,integer *m,integer *v2, double *a, integer *v3) /* NG */
 {
-  C2F(setgccolormapGif)(Xgc,*m, a);
+  C2F(setgccolormapGif)(Xgc,*m, a, v3);
 }
 /* NG end */
 
@@ -959,7 +971,7 @@ static void ColorInitGif(void)
   int m,i,r,g,b,c;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 11 xinit must be called before any action \r\n");
     return;
   }
 
@@ -1236,7 +1248,7 @@ void C2F(DispStringAngleGif)(integer *x0, integer *yy0, char *string, double *an
   verbose =0 ;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 12 xinit must be called before any action \r\n");
     return;
   }
 
@@ -1286,7 +1298,7 @@ void C2F(displaystringGif)(char *string, integer *x, integer *y, integer *v1, in
   integer verbose, Dnarg,Dvalue[10],j;
   verbose =0 ;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 13 xinit must be called before any action \r\n");
     return;
   }
   if ( Abs(*angle) <= 0.1) {
@@ -1317,7 +1329,7 @@ void C2F(boundingboxGif)(char *string, integer *x, integer *y, integer *rect, in
 {
   int k,width;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 14 xinit must be called before any action \r\n");
     return;
   }
   width = 0;
@@ -1334,7 +1346,7 @@ void C2F(boundingboxGif)(char *string, integer *x, integer *y, integer *rect, in
 void C2F(drawlineGif)(integer *xx1, integer *yy1, integer *x2, integer *y2)
 {
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 15 xinit must be called before any action \r\n");
     return;
   }
   gdImageThickLine(GifIm, *xx1, *yy1, *x2, *y2, GifLineColor(),
@@ -1350,7 +1362,7 @@ void C2F(drawsegmentsGif)(char *str, integer *vx, integer *vy, integer *n, integ
   integer verbose=0,Dnarg,Dvalue[10],NDvalue;
   int i;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 16 xinit must be called before any action \r\n");
     return;
   }
 
@@ -1400,7 +1412,7 @@ void C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer
   integer polyx[4],polyy[4]; 
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 17 xinit must be called before any action \r\n");
     return;
   }
 
@@ -1451,7 +1463,7 @@ void C2F(drawrectanglesGif)(char *str, integer *vects, integer *fillvect, intege
   int i,cpat,verb=0,num,cd[10],thick;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 18 xinit must be called before any action \r\n");
     return;
   }
   C2F(getpatternGif)(&verb,&cpat,&num,vdouble);
@@ -1480,7 +1492,7 @@ void C2F(drawrectanglesGif)(char *str, integer *vects, integer *fillvect, intege
 void C2F(drawrectangleGif)(char *str, integer *x, integer *y, integer *width, integer *height, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4)
 {
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 19 xinit must be called before any action \r\n");
     return;
   }
   gdImageRectangle(GifIm, *x, *y, *x + *width, *y + *height, GifLineColor());
@@ -1494,7 +1506,7 @@ void C2F(fillrectangleGif)(char *str, integer *x, integer *y, integer *width, in
   integer cpat,verb=0,num;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 20 xinit must be called before any action \r\n");
     return;
   }
   C2F(getpatternGif)(&verb,&cpat,&num,vdouble);
@@ -1512,7 +1524,7 @@ void C2F(fillarcsGif)(char *str, integer *vects, integer *fillvect, integer *n, 
   int i,i6;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 21 xinit must be called before any action \r\n");
     return;
   }
   /* store the current values */
@@ -1542,7 +1554,7 @@ void C2F(drawarcsGif)(char *str, integer *vects, integer *style, integer *n, int
   int i,i6;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 22 xinit must be called before any action \r\n");
     return;
   }
   /* store the current values */
@@ -1570,7 +1582,7 @@ void C2F(drawarcGif)(char *str, integer *x, integer *y, integer *width, integer 
   integer close = 0;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 23 xinit must be called before any action \r\n");
     return;
   }
 
@@ -1594,7 +1606,7 @@ void C2F(fillarcGif)(char *str, integer *x, integer *y, integer *width, integer 
   float alpha,fact= (float) 0.01745329251994330,w,h;
   integer close = 1;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 24 xinit must be called before any action \r\n");
     return;
   }
   n=Min((*angle2/64),360);
@@ -1636,7 +1648,7 @@ void C2F(drawpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
 { integer verbose ,symb[2],Mnarg,Dnarg,Dvalue[10],NDvalue,i,j,close;
   verbose =0 ;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 25 xinit must be called before any action \r\n");
     return;
   }
   /* store the current values */
@@ -1685,7 +1697,7 @@ void C2F(fillpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
   gdPoint *points;
   integer c,thick;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 26 xinit must be called before any action \r\n");
     return;
   }
   n1 = *p;
@@ -1723,7 +1735,7 @@ void C2F(drawpolylineGif)(char *str, integer *n, integer *vx, integer *vy, integ
 {
   integer thick,n1;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 27 xinit must be called before any action \r\n");
     return;
   }
   thick = Max(1,ScilabGCGif.CurLineWidth);
@@ -1739,7 +1751,7 @@ void C2F(fillpolylineGif)(char *str, integer *n, integer *vx, integer *vy, integ
   integer i =1;
   integer cpat,verb=0,num;
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 28 xinit must be called before any action \r\n");
     return;
   }
   C2F(getpatternGif)(&verb,&cpat,&num,vdouble); 
@@ -1986,7 +1998,7 @@ void C2F(drawaxisGif)(char *str, integer *alpha, integer *nsteps, integer *v2, i
   double cosal,sinal;
 
   if (GifIm == (gdImagePtr)0 ) {
-    sciprint(" xinit must be called before any action \r\n");
+    sciprint(" 29 xinit must be called before any action \r\n");
     return;
   }
   cosal= cos( (double)M_PI * (*alpha)/180.0);

@@ -1876,10 +1876,10 @@ void set_default_colormap3(int m)
     sciprint("%d colors missing, switch to private colormap\r\n",m - 
 	     missing_col_mess);
 }
-void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a);/* NG */
-void setcolormap1(struct  BCG *XGC,integer m, double *a);
-void setcolormap2(struct  BCG *XGC,integer m, double *a);
-void setcolormap3(struct  BCG *XGC,integer m, double *a);
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a, integer *v3);/* NG */
+void setcolormap1(struct  BCG *XGC,integer m, double *a, integer *v3);
+void setcolormap2(struct  BCG *XGC,integer m, double *a, integer *v3);
+void setcolormap3(struct  BCG *XGC,integer m, double *a, integer *v3);
 
 /* Setting the colormap 
    a must be a m x 3 double RGB matrix: 
@@ -1887,6 +1887,9 @@ void setcolormap3(struct  BCG *XGC,integer m, double *a);
      a[i+m] = GREEN
      a[i+2*m] = BLUE
      *v2 gives the value of m and *v3 must be equal to 3 */
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
 /* NG beg*/
 static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
      integer *v1,*v2;
@@ -1894,43 +1897,46 @@ static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
      integer *v4,*v5,*v6;
      double *a;
 {
-
-  setcolormapg(ScilabXgc,v1,v2,a);
+  *v3 = 0;
+  
+  setcolormapg(ScilabXgc,v1,v2,a,v3);
 }
-static void xset_gccolormap(v1,v2,a,XGC)
+static void xset_gccolormap(v1,v2,a,XGC,v3)
      integer *v1,*v2;
      double *a;
      struct BCG *XGC;
+     integer *v3;
 {
 
-  setcolormapg(XGC,v1,v2,a);
+  setcolormapg(XGC,v1,v2,a,v3);
 }
 /* NG end*/
 
-extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a)
+extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a, integer *v3)
 {
   int m;
   /* 2 colors reserved for black and white */
   if (*v2 != 3 || *v1 < 0 || *v1 >(int) maxcol - 2) {
     sciprint("Colormap must be a m x 3 array with m <= %ld, previous one kept\r\n",maxcol-2);
+    *v3 =1;
     return;
   }
   m = *v1;
   switch (visual->class) {
   case TrueColor:
-    setcolormap1(XGC,m,a);
+    setcolormap1(XGC,m,a,v3);
     break;
   case DirectColor:
-    setcolormap2(XGC,m,a);
+    setcolormap2(XGC,m,a,v3);
     break;
   default:
-    setcolormap3(XGC,m,a);
+    setcolormap3(XGC,m,a,v3);
     break;
   }
 }
 
 /* True Color visuals */
-void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
+void setcolormap1(struct BCG *Xgc,integer m, double *a, integer *v3) /*NG*/
 {
   int i;
   Colormap cmap;
@@ -1947,6 +1953,7 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
     Xgc->Red = r;
     Xgc->Green = g;
     Xgc->Blue = b;
+    *v3 = 1;
     return;
   }
 
@@ -1959,6 +1966,7 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
       Xgc->Red = r;
       Xgc->Green = g;
       Xgc->Blue = b;
+      *v3 = 1;
       return;
     }
     Xgc->Red[i] = (float)a[i];
@@ -2007,14 +2015,14 @@ void setcolormap1(struct BCG *Xgc,integer m, double *a) /*NG*/
 }
 
 /* Direct Color visuals */
-void setcolormap2(struct BCG *Xgc,integer m, double *a)
+void setcolormap2(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   /* Use same code as Pseudo Color for the moment */
-  setcolormap3(Xgc,m,a);
+  setcolormap3(Xgc,m,a,v3);
 }
 
 /* Other visuals, mainly Pseudo Color */
-void setcolormap3(struct BCG *Xgc,integer m, double *a)
+void setcolormap3(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int missing_col_mess=-1;
   int i;
@@ -2033,6 +2041,7 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
     Xgc->Red = r;
     Xgc->Green = g;
     Xgc->Blue = b;
+    *v3 = 1;
     return;
   }
 
@@ -2042,7 +2051,8 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
     Xgc->Colors = c;
     Xgc->Red = r;
     Xgc->Green = g;
-    Xgc->Blue = b;    
+    Xgc->Blue = b;
+    *v3 = 1;
     return;
   }
 
@@ -2055,6 +2065,7 @@ void setcolormap3(struct BCG *Xgc,integer m, double *a)
       Xgc->Red = r;
       Xgc->Green = g;
       Xgc->Blue = b;
+      *v3 = 1;
       return;
     }
     Xgc->Red[i] = (float)a[i];

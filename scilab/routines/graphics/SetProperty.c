@@ -93,6 +93,7 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
   int k,old_m,m1;
   sciPointObj * pcurwin;
   double *cmap;
+  int succeed = 0;
 
  if(n != 3){
     sciprint("colormap : number of colums must be 3\n");
@@ -111,10 +112,16 @@ sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
     sciSetCurrentFigure ( pobj);
     /*It should be impossible to set the colormap because of restriction on max 
       number of colors. In this case the old one is kept*/
-    C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
+    C2F(dr)("xset","colormap",&m,&n,&succeed,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
     sciSetCurrentFigure (pcurwin);
     m1=sciGetNumColors(pobj); /* if m1!=m  old colormap has been  kept*/
   }
+  
+  if(succeed == 1){ /* failed to allocate or xinit (for Gif driver) was missing */
+    sciprint ("Failed to change colormap : Allocation failed or missing xinit detected\n");
+    return -1;
+  }
+  
   if (m1 != old_m){ /* color map size changes, reallocate it */
     if ((cmap = (double *)MALLOC (m*n*sizeof(double))) == (double *) NULL) {
       if (pobj != pfiguremdl) {

@@ -690,17 +690,22 @@ void C2F(getusecolorPos)(integer *verbose, integer *num, integer *narg, double *
  *   to Postscript when the Postscript file is opened 
  *   ( see  if (  CheckColormap(&m) == 1) in FileInt) 
  ******************************************************/
-void setcolormapgPos(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
+void setcolormapgPos(struct  BCG *Xgc,integer *v1,integer *v2, double *a, integer *v3);/* NG */
 
 
-void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a)
+void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i;
+
   /* Checking RGB values */
   for (i = 0; i < m; i++) {
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
+      *v3 = 1;
       return;
     }
   }
@@ -722,20 +727,24 @@ void C2F(setgccolormapPos)(struct BCG *Xgc,integer m, double *a)
 void C2F(setcolormapPos)(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
 {
   int m;
+
+  *v3 = 0;
+  
   if (*v2 != 3 ||  *v1 < 0) {
     Scistring("Colormap must be a m x 3 array \n");
+    *v3 = 1;
     return;
   }
   m = *v1;
-  C2F(setgccolormapPos)(&ScilabGCPos,m, a);
+  C2F(setgccolormapPos)(&ScilabGCPos,m, a, v3);
 }
 
 /* NG beg */
 
-void setcolormapgPos(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+void setcolormapgPos(struct  BCG *Xgc,integer *m,integer *v2, double *a, integer *v3) /* NG */
 {
 
-  C2F(setgccolormapPos)(Xgc,*m, a);
+  C2F(setgccolormapPos)(Xgc,*m, a, v3);
 }
 
 /* NG end */

@@ -2319,6 +2319,10 @@ void set_default_colormap()
      a[i+m] = GREEN
      a[i+2*m] = BLUE
      *v2 gives the value of m and *v3 must be equal to 3 */
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
+/* NG beg*/
 void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
      integer *v1,*v2;
      integer *v3;
@@ -2329,6 +2333,8 @@ void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
 
+  *v3 = 0;
+
   /** must be improved for 32bit color display **/
   if ( iBitsPixel > 24 ) iBitsPixel = 24;
   maxcol = 1 << ( iPlanes*iBitsPixel);
@@ -2336,21 +2342,22 @@ void C2F(setcolormap)(v1,v2,v3,v4,v5,v6,a)
  /** to avoid overflow in maxcol **/
   if (*v2 != 3 || (unsigned long) *v1 > maxcol || *v1 < 0) {
     sciprint("Colormap must be a m x 3 array with m <= %d\r\n",maxcol);
+    *v3 = 1;
     return;
   }
-  setcolormapg(ScilabXgc,v1,v2,a);
+  setcolormapg(ScilabXgc,v1,v2,a,v3);
 }
 /*-----------------------------------------------------------------------------------*/
-void C2F(setgccolormap)(v1,v2,a,XGC)
+void C2F(setgccolormap)(v1,v2,a,XGC,v3)
      integer *v1,*v2;
      double *a;
      struct BCG *XGC;
 {
 
-  setcolormapg(XGC,v1,v2,a);
+  setcolormapg(XGC,v1,v2,a,v3);
 }
 /*-----------------------------------------------------------------------------------*/
-void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
+void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a, integer *v3)
 {
   int i,palstatus ,m;
   unsigned long maxcol;
@@ -2393,6 +2400,7 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
     Xgc->Red = r;
     Xgc->Green = g;
     Xgc->Blue = b;
+    *v3 = 1;
     return;
   }
 
@@ -2405,6 +2413,7 @@ void setcolormapg(struct BCG *Xgc,integer *v1, integer *v2, double *a)
       Xgc->Red = r;
       Xgc->Green = g;
       Xgc->Blue = b;
+      *v3 = 1;
       return;
     }
     Xgc->Red[i] = (float)a[i];
@@ -2450,6 +2459,9 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
   float *b = (float *) NULL;
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
+
+  *v3 = 0;
+
   /** to avoid overflow in maxcol **/
   /** must be improved for 32bit color display **/
   if ( iBitsPixel > 24 ) iBitsPixel = 24;
@@ -2457,6 +2469,7 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
 
   if (*v2 != 3 || *v1 > maxcol || *v1 < 0) {
     sciprint("Colormap must be a m x 3 array with m <= %d\r\n",maxcol);
+    *v3 = 1;
     return;
   }
   m = *v1;
@@ -2479,6 +2492,7 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
     ScilabXgc->Red = r;
     ScilabXgc->Green = g;
     ScilabXgc->Blue = b;
+    *v3 = 1;
     return;
   }
 
@@ -2491,6 +2505,7 @@ void C2F(pal_setcolormap)(v1,v2,v3,v4,v5,v6,a)
       ScilabXgc->Red = r;
       ScilabXgc->Green = g;
       ScilabXgc->Blue = b;
+      *v3 = 1;
       return;
     }
     ScilabXgc->Red[i] = (float)a[i];

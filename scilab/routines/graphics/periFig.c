@@ -630,9 +630,9 @@ void C2F(getusecolorXfig)(integer *verbose, integer *num, integer *narg, double 
  * ds le cas usuel comme cette fonction n'est pas
  * enregistree ds Rec.c elle ne doit pas etre appellee
  ******************************************************/
-void setcolormapgXfig(struct  BCG *Xgc,integer *v1,integer *v2, double *a);/* NG */
+void setcolormapgXfig(struct  BCG *Xgc,integer *v1,integer *v2, double *a, integer *v3);/* NG */
 
-void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a)
+void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a, integer *v3)
 {
   int i;
   Scistring("Warning : you will have to move the colors definition\n");
@@ -643,6 +643,7 @@ void C2F(setgccolormapXfig)(struct BCG *Xgc,integer m, double *a)
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
         a[i+2*m] < 0 || a[i+2*m]> 1) {
       Scistring("RGB values must be between 0 and 1\n");
+      *v3 = 1;
       return;
     }
   }
@@ -671,20 +672,28 @@ void C2F(setcolormapXfig)(integer *v1, integer *v2, integer *v3, integer *v4, in
 {
  
   int m;
+
+  *v3 = 0;
+
   Scistring("Warning : you will have to move the colors definition\n");
   Scistring(" at the top of the xfig file \n");
   if (*v2 != 3 ||  *v1 < 0) {
     Scistring("Colormap must be a m x 3 array \n");
+    *v3 = 1;
     return;
   }
   m = *v1;
-  C2F(setgccolormapXfig)(&ScilabGCXfig, m, a);
+  C2F(setgccolormapXfig)(&ScilabGCXfig, m, a, v3);
 }
 
-void setcolormapgXfig(struct  BCG *Xgc,integer *m,integer *v2, double *a) /* NG */
+/* add *v3 (OUT) to know if colormap allocation has succeeded: */
+/* 0: succeed */
+/* 1: failed */
+/* NG beg*/
+void setcolormapgXfig(struct  BCG *Xgc,integer *m,integer *v2, double *a, integer *v3) /* NG */
 {
 
-  C2F(setgccolormapXfig)(Xgc,*m, a);
+  C2F(setgccolormapXfig)(Xgc,*m, a, v3);
 }
 
 void C2F(set_cXfig)(integer i)
