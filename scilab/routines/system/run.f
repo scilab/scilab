@@ -185,6 +185,8 @@ c     .  skip assignment op_code <29 43 ans 0>
          endif
          lc=lc+nsiz+4
 c     .  store
+         rhs=1
+         call ref2val
          call stackp(istk(lname),0)
          if (err .gt. 0 ) return
          goto 10
