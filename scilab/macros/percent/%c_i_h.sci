@@ -53,7 +53,7 @@ function h=%c_i_h(i,v,h)
 //    pause
       property(index(:))=v
     else
-      if index<>: | hind=="auto_ticks" | hind=="axes_visible" then
+      if index<>: | hind=="auto_ticks" | hind=="axes_visible" | hind=="axes_reverse" then
 //      disp('inside IF index<>: 1')
 //      pause
 	property(index)=v
