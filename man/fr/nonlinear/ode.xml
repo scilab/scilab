@@ -322,7 +322,7 @@
 	   '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
 	   '}']
     mputl(ccode,TMPDIR+'/myode.c') //create the C file
-    ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile');//compile
+    ilib_for_link('myode','myode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
     exec(TMPDIR+'/loader.sce') //incremental linking
     y0=0;t0=0;t=0:0.1:%pi;
     y=ode(y0,t0,t,'myode');
