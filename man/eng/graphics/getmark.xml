@@ -37,18 +37,19 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P><VERB>getmark</VERB> opens a graphic window to select a mark (symbol).
-    Usage: <VERB>[mark,mrkSize]=getmark()</VERB>;
-    <VERB>plot2d(x,y,style=mark)</VERB>.</P>
+    <P><VERB>getmark</VERB> opens a graphic window to select a mark
+    (symbol).</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[set("figure_style","new")
-a=gca();
-x=0:0.1:10;
+  <EXAMPLE><![CDATA[x=0:0.1:10;
+set("figure_style","new")
+[mark,mrkSize]=getmark();
+plot2d(x,sin(x),style=mark);
+clf();
 plot2d(x,sin(x))
-e=gce(); // storee the agregation containing the plot
+e=gce(); // store the agregation containing the plot
 mark=getmark();
-e.children(1).mark_style = mark(1)
+e.children(1).mark_style = mark(1);
 
 ]]></EXAMPLE>
 
@@ -57,6 +58,10 @@ e.children(1).mark_style = mark(1)
 
     <SEE_ALSO_ITEM>
       <LINK>getfont</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>getlinestyle</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -1,35 +1,47 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>gda</TITLE>
-  <TYPE>Scilab Function  </TYPE>
+
+  <TYPE>Scilab Function</TYPE>
+
   <DATE>13-Jan-2003</DATE>
-  <SHORT_DESCRIPTION name="gda">  Return handle of default axes. </SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="gda">Return handle of default
+  axes.</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>a = gda()</CALLING_SEQUENCE_ITEM>
-  <CALLING_SEQUENCE_ITEM>a = get("default_axes") </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>a = gda()</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>a = get("default_axes")</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <PARAM>
-  <PARAM_INDENT>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>a</PARAM_NAME>
 
-    <PARAM_ITEM>
-    <PARAM_NAME>a</PARAM_NAME>
-    <PARAM_DESCRIPTION>
-       <SP>: handle, the handle of the default axes.</SP>
-    </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-  </PARAM_INDENT>
+        <PARAM_DESCRIPTION>
+          <SP>: handle, the handle of the default axes.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
   </PARAM>
- 
-  <DESCRIPTION>  
-  <P>
-  This routine returns the handle of the axes' model in the interest 
-   to adapt it to the customer requirements.
-   </P>
-   </DESCRIPTION>
+
+  <DESCRIPTION>
+    <P>The default axes is a graphic entity which is never drawn. It is used
+    as a reference for the axes properties default values. Theses default
+    properties values are used to initialize new axes inside figures.</P>
+
+    <P>The <VERB>gda</VERB> function returns the handle on the default axes.
+    The user can use this handle to set or get the axes properties default
+    values.</P>
+
+    <P>Note that an equivalent default graphic entity exists for figure
+    entities too (see <VERB>gdf</VERB>).</P>
+  </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
      
@@ -49,26 +61,45 @@
     subplot(212)
     plot3d1() //create a second axes entity
     a.grids=[5 5 5]; // setting other model's properties
-    xbasc()
+    clf()
     t=0:0.1:5*%pi; 
     plot2d(sin(t),cos(t),t/10) 
     set(a,"default_values",1); // return to the  default values of the model
                                // see sda() function
-    xbasc()
+    clf()
     plot2d(sin(t),cos(t),t/10)
 
   ]]></EXAMPLE>
 
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> gdf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> sda</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> sdf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> gca</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> get</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>gdf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>sda</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>sdf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>clf</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>gca</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>get</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>graphics_entities</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
-  <AUTHOR>
-    Djalel ABDEMOUCHE
-  </AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

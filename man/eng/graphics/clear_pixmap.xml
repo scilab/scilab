@@ -18,11 +18,15 @@
 
   <DESCRIPTION>
     <SP>If a graphic window <VERB>pixmap</VERB> property is <VERB>"on"</VERB>
-    the drawings are send to a pixmap memory instead of the screen
-    display.</SP>
+    the drawings are send to a pixmap memory instead of the screen display.
+    </SP>
 
-    <SP>The <VERB>clear_pixmap()</VERB> instruction erase the pixmap, but not
-    the screen.</SP>
+    <P></P>
+
+    <P>The <VERB>clear_pixmap()</VERB> instruction erase the pixmap, but not
+    the screen.</P>
+
+    <P></P>
 
     <SP>The pixmap mode can be used to obtain smooth animations.</SP>
   </DESCRIPTION>

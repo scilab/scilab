@@ -1,53 +1,59 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
+
   <TITLE>Sgrayplot</TITLE>
+
   <TYPE>Scilab Function</TYPE>
+
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="Sgrayplot"> smooth 2D plot of a surface using colors</SHORT_DESCRIPTION>
+
+  <SHORT_DESCRIPTION name="Sgrayplot">smooth 2D plot of a surface using
+  colors</SHORT_DESCRIPTION>
+
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,[strf,rect,nax])  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>Sgrayplot(x,y,z,[strf,rect,nax])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+
   <DESCRIPTION>
-    <P><VERB>Sgrayplot</VERB> is the same as <VERB>grayplot</VERB> but the plot is smoothed.
-    The function <VERB>fec</VERB> is used for smoothing.
-    The surface is plotted assuming that it is linear on a set of
-    triangles built from the grid:</P>
-    <VERBATIM>
-<![CDATA[
-    ______ 
-    | /| /| 
-    |/_|/_|  
-    | /| /|
-    |/_|/_|
-   ]]>
-    </VERBATIM>
-    <P>
-    Enter the command <VERB>Sgrayplot()</VERB> to see a demo.</P>
+    <P><VERB>Sgrayplot</VERB> is the same as <VERB>grayplot</VERB> but the
+    plot is smoothed. The function <VERB>fec</VERB> is used for smoothing. The
+    surface is plotted assuming that it is linear on a set of triangles built
+    from the grid:</P>
+
+    <VERBATIM>______ | /| /| |/_|/_| | /| /| |/_|/_|</VERBATIM>
+
+    <P>Enter the command <VERB>Sgrayplot()</VERB> to see a demo.</P>
   </DESCRIPTION>
-  <EXAMPLE>
-<![CDATA[
+
+  <EXAMPLE><![CDATA[
+
 x=-10:10; y=-10:10;m =rand(21,21);
 Sgrayplot(x,y,m,"111",[-20,-20,20,20])
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
-xbasc()
+clf()
 Sgrayplot(t,t,m)
- ]]>
-  </EXAMPLE>
+ 
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>fec</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>fgrayplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>grayplot</LINK>
     </SEE_ALSO_ITEM>
+
     <SEE_ALSO_ITEM>
       <LINK>Sfgrayplot</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>J.Ph.C.  </AUTHOR>
+
+  <AUTHOR>J.Ph.C.</AUTHOR>
 </MAN>

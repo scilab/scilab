@@ -38,7 +38,7 @@
     constant.</P>
 
     <P>By default, successive plots are superposed. To clear the previous
-    plot, use <VERB>xbasc()</VERB>.</P>
+    plot, use <VERB>clf()</VERB>.</P>
 
     <P>Enter the command <VERB>plot2d2()</VERB> to see a demo. Note that all
     the modes proposed by <VERB>plot2dxx</VERB> (xx = 1 to 4) can be enabled
@@ -53,10 +53,10 @@
 plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
 // compare the following with plot2d
 x=[0:0.1:2*%pi]';
-xbasc()
+clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
   // In New graphics only
-xbasc()
+clf()
 set("figure_style","new")
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
@@ -84,7 +84,7 @@ e.children(3).polyline_style=2;
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>
-      <LINK>xbasc</LINK>
+      <LINK>clf</LINK>
     </SEE_ALSO_ITEM>
 
     <SEE_ALSO_ITEM>

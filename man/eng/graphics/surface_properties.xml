@@ -35,9 +35,9 @@
         <VERB>data.x,</VERB> <VERB>data.y</VERB> and <VERB>data.z</VERB>. The
         complementary field named <VERB>data.color</VERB> is available in case
         a color vector or matrix is specified. If none,
-        <VERB>data.color</VERB> is not displayed and the modes
-        <VERB>color_mode=2</VERB> and <VERB>color_mode=3</VERB> use color
-        <VERB>"color_mode"</VERB>.</SP>
+        <VERB>data.color</VERB> is not displayed. The surface is painted
+        according to <VERB>color_mode</VERB> and <VERB>color_flag</VERB>
+        properties.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="color_mode: ">
@@ -67,8 +67,8 @@
 
       <DESCRIPTION_ITEM label="thickness: ">
         <SP>This field contains the default <VERB>thickness</VERB> value of
-        the lines used to draw the axes and the facets contours. It should be
-        a positive integer.</SP>
+        the lines used to draw the facets contours. It should be a positive
+        integer.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="foreground: ">
@@ -159,14 +159,16 @@
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="hiddencolor:">
-        <SP> This field contains the color index used to draw the backward
+        <SP>This field contains the color index used to draw the backward
         faces of a surface. Its value should be a color index (relative to the
-        current colormap).</SP>
+        current colormap) or -1 which satns for the same color than the
+        "visible" face.</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the
-        surface entity should be of the type <VERB>"Axes"</VERB>.</SP>
+        surface entity should be of type <VERB>"Axes"</VERB> or
+        <VERB>"Agregation"</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

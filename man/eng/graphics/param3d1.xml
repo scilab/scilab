@@ -24,7 +24,7 @@
         <PARAM_NAME>x,y,z</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <P>: matrices of the same size (nl,nc). </P>
+          <P>: matrices of the same size (nl,nc).</P>
 
           <P>Each column i of the matrices corresponds to the coordinates of
           the ith curve. You can give a specific color for each curve by using
@@ -34,7 +34,7 @@
           mark with id <VERB>abs(style(i))+1</VERB>; if <VERB>style(i)</VERB>
           is strictly positive, a plain line with color id
           <VERB>style(i)</VERB> or a dashed line with dash id
-          <VERB>style(i)</VERB> is used. </P>
+          <VERB>style(i)</VERB> is used.</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -75,7 +75,7 @@
                     <PARAM_NAME>type=0</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>the plot is made using the current 3D scaling (set
+                      <SP> the plot is made using the current 3D scaling (set
                       by a previous call to <VERB>param3d</VERB>,
                       <VERB>plot3d</VERB>, <VERB>contour</VERB> or
                       <VERB>plot3d1</VERB>).</SP>
@@ -86,7 +86,7 @@
                     <PARAM_NAME>type=1</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>rescales automatically 3d boxes with extreme aspect
+                      <SP> rescales automatically 3d boxes with extreme aspect
                       ratios, the boundaries are specified by the value of the
                       optional argument <VERB>ebox</VERB>.</SP>
                     </PARAM_DESCRIPTION>
@@ -96,14 +96,14 @@
                     <PARAM_NAME>type=2</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>rescales automatically 3d boxes with extreme aspect
+                      <SP> rescales automatically 3d boxes with extreme aspect
                       ratios, the boundaries are computed using the given
                       data.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=3</PARAM_NAME>
+                    <PARAM_NAME>type=3 </PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric with box bounds given by optional
@@ -113,7 +113,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=4</PARAM_NAME>
+                    <PARAM_NAME>type=4 </PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric bounds derived from the data, to
@@ -122,7 +122,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=5</PARAM_NAME>
+                    <PARAM_NAME>type=5 </PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds with box bounds given
@@ -132,7 +132,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=6</PARAM_NAME>
+                    <PARAM_NAME>type=6 </PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds derived from the data,
@@ -156,7 +156,7 @@
                     <PARAM_NAME>box=0</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>nothing is drawn around the plot.</SP>
+                      <SP> nothing is drawn around the plot.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
@@ -164,7 +164,7 @@
                     <PARAM_NAME>box=1</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>unimplemented (like box=0).</SP>
+                      <SP> unimplemented (like box=0).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
@@ -172,12 +172,12 @@
                     <PARAM_NAME>box=2</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>only the axes behind the surface are drawn.</SP>
+                      <SP> only the axes behind the surface are drawn.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=3</PARAM_NAME>
+                    <PARAM_NAME>box=3 </PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn and captions
@@ -189,8 +189,8 @@
                     <PARAM_NAME>box=4</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
-                      <SP>a box surrounding the surface is drawn, captions and
-                      axes are added.Note that axes aspect can also be
+                      <SP> a box surrounding the surface is drawn, captions
+                      and axes are added.Note that axes aspect can also be
                       customized through the axes entity properties (see
                       <LINK>axes_properties</LINK>).</SP>
                     </PARAM_DESCRIPTION>
@@ -223,7 +223,7 @@
   <DESCRIPTION>
     <P><VERB>param3d1</VERB> is used to plot 3D curves defined by their
     coordinates <VERB>x</VERB>, <VERB>y</VERB> and <VERB>z</VERB>. Note that
-    data can also be reset through the surface entity properties (see
+    data can also be set or get through the surface entity properties (see
     <LINK>surface_properties</LINK>).</P>
 
     <P>Note that properties like <VERB>rotation angles</VERB>,

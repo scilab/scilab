@@ -31,8 +31,16 @@
   </PARAM>
 
   <DESCRIPTION>
-    <P>This routine returns the handle of the figure's model in the interest
-    to adapt it to the customer requirements.</P>
+    <P>The default figure is a graphic entity which is never drawn. It is used
+    as a reference for the figure properties default values. Theses default
+    properties values are used to initialize new figures.</P>
+
+    <P>The <VERB>gdf</VERB> function returns the handle on the default figure.
+    The user can use this handle to set or get the figure properties default
+    values.</P>
+
+    <P>Note that an equivalent default graphic entity exists for axes entities
+    too (see <VERB>gda</VERB>).</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[

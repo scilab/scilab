@@ -28,7 +28,7 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
-        <PARAM_NAME>theta,alpha</PARAM_NAME>
+        <PARAM_NAME>theta, alpha</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
           <SP>: real values giving in degree the spherical coordinates of the
@@ -212,7 +212,7 @@
   <DESCRIPTION>
     <P><VERB>param3d</VERB> is used to plot a 3D curve defined by its
     coordinates <VERB>x</VERB>, <VERB>y</VERB> and <VERB>z</VERB>. Note that
-    data can also be reset through the surface entity properties (see
+    data can also be set or get through the surface entity properties (see
     <LINK>surface_properties</LINK>).</P>
 
     <P>Note that properties like <VERB>rotation angles</VERB>,

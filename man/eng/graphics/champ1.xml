@@ -66,6 +66,25 @@
       </PARAM_ITEM>
 
       <PARAM_ITEM>
+        <PARAM_NAME>frameflag</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: controls the computation of the actual coordinate ranges from
+          the minimal requested values. The associated value should be an
+          integer ranging from 0 to 8.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>axesflag</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>: specifies how the axes are drawn. The associated value should
+          be an integer ranging from 0 to 5.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
         <PARAM_NAME>strf</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
@@ -89,7 +108,7 @@
 
   <EXAMPLE><![CDATA[
 
-champ1(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
  
   ]]></EXAMPLE>
 
