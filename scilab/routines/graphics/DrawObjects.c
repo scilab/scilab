@@ -6282,7 +6282,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
 			PD0, PD0, 0L, 0L);
 	      
-	      DrawNewMarks(pobj,5*npoly,polyx,polyy);
+	      DrawNewMarks(pobj,n1,polyx,polyy);
 	    }
 	  }
 	  else {/*patch*/
@@ -8180,6 +8180,8 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
 	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+	
+	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
       }
     break;
   case 1:
