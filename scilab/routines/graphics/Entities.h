@@ -640,7 +640,6 @@ typedef struct
   int grid[3];/**DJ.Abdemouche 2003**/
   BOOL isaxes;
   AXES axes;
-  int update_axes_flag; /* set to 0 by default; 1 means axes.limits[i] are set once */ /* F.Leray 01.04.04*/
   BOOL is3d;
   double theta_kp;
   double alpha_kp;	
@@ -667,6 +666,10 @@ typedef struct
   double value_min[3]; /* Contain the x,y and z min data */
   double value_max[3]; /* Contain the x,y and z max data */
   int flag_min_max;
+
+  double brect[6];
+
+  BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
 
 }/** */
 sciSubWindow;  
@@ -854,6 +857,7 @@ typedef struct
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible; 
+
 }
 sciSurface;  /** */
 
@@ -1508,8 +1512,9 @@ extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
-extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta);/* DJ.A 2003 */
-extern void  sci_update_frame_bounds(int cflag, char* xf,double *value_min,double *value_max, integer *aaint, char *strflag, double *FRect); /* F.Leray 02.04.04*/
+extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double alpha,double theta, double *ebox);/* DJ.A 2003 */
+
+extern void  sci_update_frame_bounds(int cflag, char* xf,double *value_min,double *value_max, integer *aaint, char *strflag); /* F.Leray 02.04.04*/
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/
@@ -1525,3 +1530,7 @@ extern int InitFigureModel();
 extern int InitAxesModel();
 
 extern sciHandleTab * sciGetpendofhandletab();
+
+
+/* TEST F.Leray 20.04.04 */
+extern int update_2dbounds(sciPointObj *pobj, int cflag, double *x, double *y, integer *n1, integer *n2, double *brect);

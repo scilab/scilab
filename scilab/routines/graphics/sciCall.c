@@ -287,10 +287,28 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   }
   ok=0; /* DJ.A 30/12 */
   psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  
+  /* Ajout F.Leray 16.04.04 */
+  if( iflag[1] == 3 || iflag[1] == 4 || iflag[1] == 5 || iflag[1] == 6)
+    pSUBWIN_FEATURE(psubwin)->isoview = TRUE;
+
+ 
+  pSUBWIN_FEATURE (psubwin)->axes.flag[0] = iflag[0];
+  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1];
+  pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2];
+  /* END Adding F.Leray*/
+
+  /* F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the 
+     scaling */
+  /* MARCHE MAL car confusion/absence entre arg ebox et rect cas 2D/ 3D */
+  /* iflag[1] = (integer) (-48 + (integer) pSUBWIN_FEATURE (psubwin)->strflag[1]);*/
+  /* sciprint("iflag[1] = \n",iflag[1]);*/
+
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL)
     ok=1;
   if ((sciGetGraphicMode (psubwin)->autoscaling))
-    update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
+    update_3dbounds(psubwin,isfac,x,y,z,m1,n1,m2,n2,m3,n3,*theta, *alpha,ebox);
   if ( typeof3d != SCI_PARAM3D1 ) /*Distinction here between SCI_PARAM3D1 and others*/
     sciSetCurrentObj (ConstructSurface
 		      ((sciPointObj *)

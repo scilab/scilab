@@ -498,7 +498,6 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 	}
     }
   else WRect = Cscale.subwin_rect; 
-
   if (version_flag() == 0)
     if (FRect != NULL)
 	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
@@ -511,12 +510,12 @@ int C2F(Nsetscale2d)(WRect,ARect,FRect,logscale,l1)
 
   if (version_flag() == 0)
     if (ARect != NULL)
-	    { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
-	      pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
-	      pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
-	      pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
-	      pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
-	    }
+      { masousfen=sciGetSelectedSubWin(sciGetCurrentFigure());
+      pSUBWIN_FEATURE (masousfen)->ARect[0]   = ARect[0];
+      pSUBWIN_FEATURE (masousfen)->ARect[1]   = ARect[1];
+      pSUBWIN_FEATURE (masousfen)->ARect[2]   = ARect[2];
+      pSUBWIN_FEATURE (masousfen)->ARect[3]   = ARect[3];
+      }
 
   if ( ARect != NULL) flag[5]='t'; else ARect = Cscale.axis;
   if ( logscale != NULL) flag[4] ='t'; else logscale = Cscale.logflag;
@@ -567,7 +566,7 @@ int getscale2d(WRect,FRect,logscale,ARect)
   if (logscale[0]=='l') 
     { 
       FRect[0]=pow(ten,FRect[0]);
-	FRect[2]=pow(ten,FRect[2]);
+      FRect[2]=pow(ten,FRect[2]);
     }
   if (logscale[1]=='l') 
     {
@@ -1333,3 +1332,69 @@ void Gr_Rescale(logf, FRectI, Xdec, Ydec, xnax, ynax)
 
 }
 
+
+
+
+
+
+
+
+/* 
+ *  FRectI=[xmin,ymin,xmax,ymax] est transforme de 
+ *  facon a avoir une graduation simple et reguliere 
+ *  Xdec,Ydec,xnax,ynax
+ *  caracterisant cette graduation 
+ *  (voir les fonctions qui suivent )
+ */
+/* F.Leray 20.04.04 */
+void Gr_Rescale2(logf, FRectI, Xdec, Ydec, xnax, ynax)
+     char *logf;
+     double *FRectI;
+     integer *Xdec;
+     integer *Ydec;
+     integer *xnax;
+     integer *ynax;
+{
+  double FRectO[4];
+  sciPointObj *psubwin;
+     
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+
+  if (logf[0] == 'n') 
+    { 
+      if (pSUBWIN_FEATURE (psubwin)->axes.limits[0] !=1)
+         {
+          C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
+	  FRectI[0]=FRectO[0];FRectI[2]=FRectO[2];
+         }
+        
+      else
+      {
+         C2F(graduate)(FRectI,FRectI+2,FRectO,FRectO+2,xnax,xnax+1,Xdec,Xdec+1,Xdec+2);
+      }
+    }
+  else
+    {
+      Xdec[0]=inint(FRectI[0]);
+      Xdec[1]=inint(FRectI[2]);
+      Xdec[2]=0;
+    }
+  if (logf[1] == 'n') 
+    {
+     if (pSUBWIN_FEATURE (psubwin)->axes.limits[0] !=1)
+         {
+            C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+            FRectI[1]=FRectO[1];FRectI[3]=FRectO[3];
+         } 
+     else
+      {
+         C2F(graduate)(FRectI+1,FRectI+3,FRectO+1,FRectO+3,ynax,ynax+1,Ydec,Ydec+1,Ydec+2);
+      }
+    }
+  else
+    {
+      Ydec[0]=inint(FRectI[1]);Ydec[1]=inint(FRectI[3]);Ydec[2]=0;
+    }
+
+
+}

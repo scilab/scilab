@@ -95,7 +95,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   if (sciGetGraphicMode (psubwin)->autoscaling)
   {
-     update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); 
+    update_2dbounds(psubwin,0,x,y,n1,n2,brect);
+    /*update_frame_bounds(0,logflags,x,y,n1,n2,aaint,strflag,brect); */
   } 
 
   with_leg= ((int)strlen(strflag) >=1  && strflag[0] == '1');
@@ -108,14 +109,34 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   sciSetIsClipping (psubwin,0); 
 
   pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
-
+  
   if (strflag[1]!='0'){
     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
   }
 
+  /* F.Leray In case of switching to 2D view, I copy the flag[1] value in strflag[1] to keep the 
+     scaling */
+  /* MARCHE MAL car confusion/absence entre arg nommes ebox et rect cas 2D/ 3D */
+  /*  if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '1')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  1;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '2')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  2;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '3')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  3;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '4')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  4;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '5')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  5;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '6')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] =  6;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '7')
+    pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 1;
+  else if(pSUBWIN_FEATURE (psubwin)->strflag[1] != '8')
+  pSUBWIN_FEATURE (psubwin)->axes.flag[1] = 2;*/
+  
   if ((int)strlen(strflag) >=3){
     if (strflag[2] == '0')
-      	pSUBWIN_FEATURE (psubwin)->isaxes= FALSE;
+      pSUBWIN_FEATURE (psubwin)->isaxes= FALSE;
     else if (strflag[2] == '1')
       pSUBWIN_FEATURE (psubwin)->axes.ydir = 'l';
     else if (strflag[2] == '2')
@@ -127,6 +148,9 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       pSUBWIN_FEATURE (psubwin)->axes.ydir = 'c';
       pSUBWIN_FEATURE (psubwin)->axes.rect= 0;}
   }
+
+  /* sciprint(" pSUBWIN_FEATURE (psubwin)->axes.flag[1]  = \n", pSUBWIN_FEATURE (psubwin)->axes.flag[1]);*/
+ 
 
   /* Adding F.Leray 07.04.04 */
   if((pSUBWIN_FEATURE (psubwin)->strflag[1]=='3') || (pSUBWIN_FEATURE (psubwin)->strflag[1]=='4'))  /* Then isoview mode is enabled*/
