@@ -1310,7 +1310,7 @@ int sciplot2d(fname, fname_len)
   /* NG beg */
   if (version_flag() == 0){
     Objplot2d (0,Logflags,stk(l1), stk(l2), &n1, &m1, Style, Strf,Legend, Rect,Nax);
-    sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure()));
+    /*sciSetCurrentObj (sciGetSelectedSubWin(sciGetCurrentFigure())); F.Leray 25.03.04 */
   } 
   else { /* NG end */
     if (Logflags != def_logflags) 
@@ -7111,7 +7111,7 @@ int delete(fname,fname_len)
       if (sciGetParentFigure(pobj) != NULL)  {
 	  pparentfigure = sciGetParentFigure(pobj);
 	}
-      sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj));
+      sciSetCurrentObj((sciPointObj *)sciGetParent((sciPointObj *)pobj)); /* A LAISSER F.Leray 25.03.04*/
       sciDelGraphicObj((sciPointObj *)pobj);	
       sciDrawObj((sciPointObj *)pparentfigure);	 
 		
