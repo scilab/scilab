@@ -895,6 +895,7 @@ void C2F(setcolormapGif)(integer *v1, integer *v2, integer *v3, integer *v4, int
   if (c == -1) 
     c = gdImageColorAllocate(GifIm,255,255,255);
   col_index[m+1]=c;
+  col_white=c;
 
   ScilabGCGif.IDLastPattern = m - 1;
   ScilabGCGif.NumForeground = m;
