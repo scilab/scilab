@@ -178,10 +178,16 @@ c     formal variable
          return
       endif
       n=istk(il+5)-1
+      if(n.gt.4) call msgs(109,0)
       do 12 i=1,4
          id(i)=blank
          if(i.le.n) id(i)=istk(il+5+i)
  12   continue
+      if(abs(id(1)).lt.10.or.abs(id(1)).ge.blank) then
+         err=2
+         call error(116)
+         return
+      endif
 c
 c     first argument
       top=top-1
