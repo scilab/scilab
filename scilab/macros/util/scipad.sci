@@ -9,12 +9,15 @@ function scipad(f)
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
+    if exists("LANGUAGE") then 
+         TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
+    end
     TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
-    if argn(2)==1 then 
-      
+    if argn(2)==1 then       
       if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}'),end
     end
   else
     error(' Scilab has not been built with tk: scipad unavailable')
   end
 endfunction
+
