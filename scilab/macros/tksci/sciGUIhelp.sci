@@ -28,7 +28,7 @@ function sciGUIhelp(key)
     update='1';
   end
   tmpDir=strsubst(TMPDIR,'\','/');
-  if (argn(2)==0|key='index') then
+  if (argn(2)==0|key=='index') then
     TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
   elseif (argn(2)==1) then
     key=stripblanks(key)
