@@ -4987,8 +4987,8 @@ c     EXTERNAL SUBROUTINES
       external  dsearchc, dsearchd
 
 c     EXTERNAL API FUNCTIONS
-      logical  checkrhs, checklhs, getsmat, getrvect, cremat
-      external checkrhs, checklhs, getsmat, getrvect, cremat
+      logical  checkrhs, checklhs, getsmat, getrvect, cremat, getrmat
+      external checkrhs, checklhs, getsmat, getrvect, cremat, getrmat
 
 c     LOCAL VAR
       integer topk, topl
@@ -5060,8 +5060,7 @@ c     get val
       top = top - 1
       
 c     get X
-      if( .not. getrvect(fname, topk, top, mX, nX, lX) ) return
-
+      if( .not. getrmat(fname, topk, top, mX, nX, lX) ) return
 
 c     reserve space for ind
       if (.not.cremat(fname, topk+1, 0, mX, nX, lind, lc)) return
@@ -5072,20 +5071,26 @@ c     reserve space for occ
 c     reserve space for info
       if (.not.cremat(fname, topk+3, 0, 1, 1, linfo, lc)) return
 
+      if (mX.eq.0.or.nX.eq.0) then
+         stk(linfo)=0
+         call dset(mocc*nocc,0.0D0,stk(locc),1)
+      else
+
 c     go on for the computation
-      if ( ch .eq. 'c') then
-         call dsearchc(stk(lX), mX*nX, stk(lval), mval*nval-1,
-     $                 stk(lind), stk(locc), stk(linfo))
-      else 
-         call dsearchd(stk(lX), mX*nX, stk(lval), mval*nval, stk(lind), 
-     $                 stk(locc), stk(linfo))
+         if ( ch .eq. 'c') then
+            call dsearchc(stk(lX), mX*nX, stk(lval), mval*nval-1,
+     $           stk(lind), stk(locc), stk(linfo))
+         else 
+            call dsearchd(stk(lX), mX*nX, stk(lval), mval*nval, stk(lind
+     $           ),stk(locc), stk(linfo))
+         endif
+
+c     int2db ... (normalement ca doit passer avec -1 sans copie
+C     supplementaire)
+         call int2db(mX*nX,     istk(iadr(lind)), -1, stk(lind), -1) 
+         call int2db(mocc*nocc, istk(iadr(locc)), -1, stk(locc), -1) 
+         call int2db(1,     istk(iadr(linfo)),-1, stk(linfo),-1) 
       endif
-
-c     int2db ... (normalement ca doit passer avec -1 sans copie supplementaire)
-      call int2db(mX*nX,     istk(iadr(lind)), -1, stk(lind), -1) 
-      call int2db(mocc*nocc, istk(iadr(locc)), -1, stk(locc), -1) 
-      call int2db(1,     istk(iadr(linfo)),-1, stk(linfo),-1) 
-
 *     copie en "haut" 
       topl = topk - rhs
       if(lhs .ge. 1) then
