@@ -1,4 +1,5 @@
 function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
+  Cmenu='Copy Region'  // to copy_region from palette
   [btn,%pt,win,Cmenu]=cosclick()
   if Cmenu<>[] then
     Cmenu=resume(Cmenu)

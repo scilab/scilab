@@ -1,6 +1,7 @@
 function [btn,%pt,win,Cmenu]=cosclick(flag)
 // Copyright INRIA POO
   [lhs,rhs]=argn(0)
+  Cmenu_orig=Cmenu
   Cmenu=[];%pt=[];
   if ~or(winsid()==curwin) then  Cmenu='Quit',return,end    
   if rhs==1 then
@@ -56,7 +57,11 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   elseif btn==0&(win<>curwin) then
     jj=find(windows(:,2)==win)
     if jj <> [] then
-      Cmenu='Copy' //btn=99  //mode copy
+      if Cmenu_orig=='Copy Region' then
+	Cmenu=[]
+      else
+	Cmenu='Copy' //btn=99  //mode copy
+      end
       if or(windows(jj,1)==100000) then
 	Cmenu='Open/Set'//btn=111  //mode open-set (cliquer dans navigator)
       end

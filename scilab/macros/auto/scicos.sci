@@ -74,7 +74,7 @@ if ~super_block then
 	      'Replot','Save','Save As',..
 	      'Load','Export','Quit','Background color','Aspect',..
 	      'Zoom in',  'Zoom out','Help')
- %scicos_lhb_list(3)=list('Copy','Help')
+ %scicos_lhb_list(3)=list('Copy','Copy Region','Help')
   //
   if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
   if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
