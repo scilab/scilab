@@ -1,6 +1,6 @@
 
 let sccs_id =
-  "@(#)Modelica Compiler 1.3.1 - Copyright (C) 2003-2004 Tni-Valiosys"
+  "@(#)Modelica Compiler 1.3.2 - Copyright (C) 2003-2004 Tni-Valiosys"
 
 let name = Sys.argv.(0)
 

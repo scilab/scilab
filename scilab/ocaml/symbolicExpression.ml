@@ -191,7 +191,7 @@ let arcSineNodeSet =
   let equal node1 node = match node.nature with
     | ArcSine node -> node == node1
     | _ -> invalid_arg "Argument mismatch."
-  and hash node1 = (node1.hash lsl 3) lxor 0x914500a0
+  and hash node1 = (node1.hash lsl 3) lxor 0x114500a0
   and create node1 hash = create_node (ArcSine node1) hash
   in NodeSet.create 101 equal hash create
 
@@ -243,7 +243,7 @@ let discreteVariableNodeSet =
   let equal i node = match node.nature with
     | DiscreteVariable i' -> i = i'
     | _ -> invalid_arg "Argument mismatch."
-  and hash i = GraphNodeSet.hash i lxor 0xafb049a3
+  and hash i = GraphNodeSet.hash i lxor 0x2fb049a3
   and create i hash = create_node (DiscreteVariable i) hash
   in NodeSet.create 101 equal hash create
 
@@ -252,7 +252,7 @@ let equalityNodeSet =
     | Equality (leftHandNode, rightHandNode) ->
         leftHandNode == node1 && rightHandNode == node2
     | _ -> invalid_arg "Argument mismatch."
-  and hash (node1, node2) = (node1.hash lsl 5) lxor (node2.hash + 0xd218c660)
+  and hash (node1, node2) = (node1.hash lsl 5) lxor (node2.hash + 0x5218c660)
   and create (node1, node2) hash = create_node (Equality (node1, node2)) hash
   in NodeSet.create 101 equal hash create
 
@@ -294,7 +294,7 @@ let hyperbolicSineNodeSet =
   let equal node1 node = match node.nature with
     | HyperbolicSine node -> node == node1
     | _ -> invalid_arg "Argument mismatch."
-  and hash node1 = (node1.hash lsl 5) lxor 0xa4f002f1
+  and hash node1 = (node1.hash lsl 5) lxor 0x24f002f1
   and create node1 hash = create_node (HyperbolicSine node1) hash
   in NodeSet.create 101 equal hash create
 
@@ -314,7 +314,7 @@ let ifNodeSet =
     | _ -> invalid_arg "Argument mismatch."
   and hash (node1, node2, node3) =
     (node1.hash lsl 17) lxor (node2.hash lsl 5) lxor
-    (node3.hash + 0xdd403a30)
+    (node3.hash + 0x5d403a30)
   and create (node1, node2, node3) hash =
     create_node (If (node1, node2, node3)) hash
   in NodeSet.create 101 equal hash create
@@ -362,7 +362,7 @@ let notNodeSet =
   let equal node1 node = match node.nature with
     | Not node -> node == node1
     | _ -> invalid_arg "Argument mismatch."
-  and hash node1 = (node1.hash lsl 5) lxor 0x818a20a0
+  and hash node1 = (node1.hash lsl 5) lxor 0x18a20a0
   and create node1 hash = create_node (Not node1) hash
   in NodeSet.create 101 equal hash create
 
@@ -427,7 +427,7 @@ let tangentNodeSet =
   let equal node1 node = match node.nature with
     | Tangent node -> node == node1
     | _ -> invalid_arg "Argument mismatch."
-  and hash node1 = (node1.hash lsl 8) lxor 0xe55001c9
+  and hash node1 = (node1.hash lsl 8) lxor 0x655001c9
   and create node1 hash = create_node (Tangent node1) hash
   in NodeSet.create 101 equal hash create
 
@@ -435,7 +435,7 @@ let variableNodeSet =
   let equal i node = match node.nature with
     | Variable i' -> i' = i
     | _ -> invalid_arg "Argument mismatch."
-  and hash i = GraphNodeSet.hash i lxor 0xafb04900
+  and hash i = GraphNodeSet.hash i lxor 0x2fb04900
   and create i hash = create_node (Variable i) hash
   in NodeSet.create 101 equal hash create
 
