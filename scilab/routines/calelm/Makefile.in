@@ -20,7 +20,8 @@ OBJSF = coshin.o arcosh.o  dad.o dadd.o  ccopy.o  rcopy.o ddif.o \
 	wwdiv.o wddiv.o dwdiv.o ddrdiv.o wwrdiv.o dwrdiv.o wdrdiv.o\
 	ivimp.o intp.o cusum.o cupro.o cuproi.o rcsort.o wsort.o vpythag.o\
 	calerf.o gamma.o ribesl.o rkbesl.o rjbesl.o rybesl.o psi.o dlgama.o\
-	dmsum.o wmsum.o dmprod.o wmprod.o drdiv.o dcabs1.o infinity.o unsfdcopy.o
+	dmsum.o wmsum.o dmprod.o wmprod.o drdiv.o dcabs1.o infinity.o \
+	unsfdcopy.o idmax.o idmin.o
 
 include ../../Makefile.incl
 

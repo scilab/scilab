@@ -595,24 +595,13 @@ c     ----- general maxi or mini
          x1=stk(lr1)
          k=1
          if(fin.eq.17) then 
-c     mini
-            do 41 i=2,m*n
-               lr1=lr1+1
-               if(stk(lr1).lt.x1.or.isanan(stk(lr1)).eq.1) then 
-                  k=i
-                  x1=stk(lr1)
-               endif
- 41         continue
-c     maxi
+c     .     mini
+            k=idmin(m*n,stk(lr1),1)
          else
-            do 42 i=2,m*n
-               lr1=lr1+1
-               if(stk(lr1).gt.x1.or.isanan(stk(lr1)).eq.1) then 
-                  k=i
-                  x1=stk(lr1)
-               endif
- 42         continue
+c     .     maxi
+            k=idmax(m*n,stk(lr1),1)
          endif
+         x1=stk(lr1-1+k)
 C     return the max or min 
          if (.not.cremat(fname,topk,0,1,1,l1,li1)) return
          stk(l1)=x1
