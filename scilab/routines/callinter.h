@@ -64,8 +64,11 @@ c
       if (.not.allowptr(k)) call ref2val
 
       call callinterf(k,iflagint)
-      if (top-lhs+1.gt.0) call iset(rhs,0,infstk(top-lhs+1),1)
-      if(fun.ge.0) goto 90
+      
+      if(fun.ge.0) then
+         if (top-lhs+1.gt.0) call iset(lhs,0,infstk(top-lhs+1),1)
+         goto 90
+      endif
 c     called interface ask for a scilab function to perform the function (fun=-1)
 c     the function name is given in ids(1,pt+1)
       call ref2val
