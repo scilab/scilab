@@ -44,6 +44,9 @@
 /* Define if have and use GTK */
 #undef WITH_GTK
 
+/* Define if have and use READLINE */
+#undef WITH_READLINE
+
 /* CNAME(x,y) ==> xy **/
 
 #if defined(USE_SHARP_SIGN)

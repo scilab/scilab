@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.40 $)dnl
+AC_REVISION($Revision: 1.41 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1264,8 +1264,12 @@ AC_CHECK_HEADERS(values.h)
 ##################
 
 TERMCAPLIB=no
-AC_CHECK_LIB(curses,main,
+AC_CHECK_LIB(ncurses,main,
+  [TERMCAPLIB=-lncurses])
+if test "$TERMCAPLIB" = no; then
+  AC_CHECK_LIB(curses,main,
   [TERMCAPLIB=-lcurses])
+fi
 if test "$TERMCAPLIB" = no; then
   AC_CHECK_LIB(termcap,main,
   [TERMCAPLIB=-ltermcap])
@@ -1382,6 +1386,15 @@ if test "$with_gtk" = yes; then
     SCILABSCRIPT=scilab-gtk.g
     MENUSOBJS=GOBJS
     PERIFILE=periGtk.o
+  fi
+  # try to use readline with the gtk version 
+  ac_save_LIBS="$LIBS"
+  LIBS="$TERMCAPLIB  $LIBS"
+  AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
+  LIBS=$ac_save_LIBS
+  TERMCAPLIB="$READLINE $TERMCAPLIB"
+  if test "$READLINE" != no; then
+     AC_DEFINE(WITH_READLINE)
   fi
 fi
 
