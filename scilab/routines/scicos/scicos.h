@@ -40,10 +40,20 @@ typedef void (*voidf)();
 /*        flag   nclock t    xd   x    nx   z   nz   tvec   ntvec  rpar  nrpar ipar  nipar   args_in sz_in, n_in  args_out sz_out, n_out  */
 #define ARGS_scicos2 IP,IP,DP,DP,DP,IP,DP,IP,DP,IP,DP,IP,IP,IP,DPP,IP,IP,DPP,IP,IP
 
+/*       flag   nclock t    residual xd   x    nx   z   nz   tvec   ntvec  rpar  nrpar ipar  nipar  intabl  .... */
+#define ARGS_scicosi IP,IP,DP,DP,DP,DP,IP,DP,IP,DP,IP,DP,IP,IP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP,DP,IP
+
+/*        flag   nclock t   residual xd   x    nx   z   nz   tvec   ntvec  rpar  nrpar ipar  nipar   args_in sz_in, n_in  args_out sz_out, n_out  */
+#define ARGS_scicosi2 IP,IP,DP,DP,DP,DP,IP,DP,IP,DP,IP,DP,IP,IP,IP,DPP,IP,IP,DPP,IP,IP
+
+
+
 typedef void (*ScicosFm1) __PARAMS((ARGS_scicosm1));
 typedef void (*ScicosF0) __PARAMS((ARGS_scicos0));
 typedef void (*ScicosF) __PARAMS((ARGS_scicos));
 typedef void (*ScicosF2) __PARAMS((ARGS_scicos2));
+typedef void (*ScicosFi) __PARAMS((ARGS_scicosi));
+typedef void (*ScicosFi2) __PARAMS((ARGS_scicosi2));
 
 typedef  struct  {
   char *name;

@@ -11,6 +11,7 @@
 
 extern void  F2C(sciblk)();
 extern void  sciblk2();
+extern void  sciblk2i();
 extern void  GetDynFunc();
 extern void  sciprint();
 extern void  C2F(iislink)();
@@ -46,6 +47,8 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
   ScicosF loc1;
   ScicosFm1 loc3;
   ScicosF2 loc2;
+  ScicosFi loci1;
+  ScicosFi2 loci2;
 
   kf=*kfun-1;
   i=funptr[kf];
@@ -72,6 +75,10 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
       break;
     case 3:
       loc=sciblk2;
+      funtype=2;
+      break;
+    case 10003:
+      loc=sciblk2i;
       funtype=2;
       break;
     default :
@@ -228,6 +235,55 @@ C2F(callf)(kfun,nclock,funptr,funtyp,t,xd,x,xptr,z,zptr,iz,izptr,
 	    &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
 	    &(args[in]),&(sz[in]),&nout);
     break;
+  case 10001 :			
+    /* implicit block one entry for each input or output */
+    for (in = 0 ; in < nin ; in++) 
+      {
+	lprt=inplnk[inpptr[kf]-1+in];
+	args[in]=&(outtb[lnkptr[lprt-1]-1]);
+	sz[in]=lnkptr[lprt]-lnkptr[lprt-1];
+      }
+    for (out=0;out<nout;out++) {
+      lprt=outlnk[outptr[kf]-1+out];
+      args[in+out]=&(outtb[lnkptr[lprt-1]-1]);
+      sz[in+out]=lnkptr[lprt]-lnkptr[lprt-1];
+    }
+    loci1 = (ScicosFi) loc;
+    Nx=xptr[scicos_imp.nblk]-1;/* complete state size */
+    (*loci1)(flag,nclock,t,&(residual[xptr[kf]-1]),&(x[Nx+xptr[kf]-1]),&(x[xptr[kf]-1]),
+	    &nx,&(z[zptr[kf]-1]),&nz,
+	    tvec,ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+	    &(ipar[ipptr[kf]-1]),&nipar,
+	    (double *)args[0],&sz[0],
+	    (double *)args[1],&sz[1],(double *)args[2],&sz[2],
+	    (double *)args[3],&sz[3],(double *)args[4],&sz[4],
+	    (double *)args[5],&sz[5],(double *)args[6],&sz[6],
+	    (double *)args[7],&sz[7],(double *)args[8],&sz[8],
+	    (double *)args[9],&sz[9],(double *)args[10],&sz[10],
+	    (double *)args[11],&sz[11],(double *)args[12],&sz[12],
+	    (double *)args[13],&sz[13],(double *)args[14],&sz[14],
+	    (double *)args[15],&sz[15],(double *)args[16],&sz[16]); 
+    break; 
+  case 10002 :			
+    /* implicit block, inputs and outputs given by a table of pointers */
+    for (in=0;in<nin;in++) {
+      lprt=inplnk[inpptr[kf]-1+in];
+      args[in]=&(outtb[lnkptr[lprt-1]-1]);
+      sz[in]=lnkptr[lprt]-lnkptr[lprt-1];
+    }
+    for (out=0;out<nout;out++) {
+      lprt=outlnk[outptr[kf]-1+out];
+      args[in+out]=&(outtb[lnkptr[lprt-1]-1]);
+      sz[in+out]=lnkptr[lprt]-lnkptr[lprt-1];
+    }
+    loci2 = (ScicosFi2) loc;
+    Nx=xptr[scicos_imp.nblk]-1;/* complete state size */
+    (*loci2)(flag,nclock,t,&(residual[xptr[kf]-1]),&(x[Nx+xptr[kf]-1]),&(x[xptr[kf]-1]),&nx,
+	    &(z[zptr[kf]-1]),&nz,
+	    tvec,ntvec,&(rpar[rpptr[kf]-1]),&nrpar,
+	    &(ipar[ipptr[kf]-1]),&nipar,&(args[0]),&(sz[0]),&nin,
+	    &(args[in]),&(sz[in]),&nout);
+    break;  
   default:
     sciprint("Undefined Function type\r\n");
     *flag=-1000;

@@ -99,8 +99,6 @@ c
  12         continue
          endif
          do 20 jj=1,nout
-            write(6,'(''outtb='',e10.3,'' outt='',e10.3)') 
-     $           outtb(1),outt(1)
             if(outtb(jj).ne.outt(jj)) goto 30
  20     continue
 c     

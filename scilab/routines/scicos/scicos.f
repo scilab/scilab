@@ -93,10 +93,13 @@ c
       ljroot = liw
       liw = ljroot + ng*2
 c
-
       call getscsmax(maxsz,maxtb)
       do 10 i=1,nblk
-         funtyp(i)=mod(funtyp(i),1000)
+         if (funtyp(i).lt.10000) then
+            funtyp(i)=mod(funtyp(i),1000)
+         else
+            funtyp(i)=10000+mod(funtyp(i),1000)
+         endif
          ni=inpptr(i+1)-inpptr(i)
          no=outptr(i+1)-outptr(i)
          if(funtyp(i).eq.1)then

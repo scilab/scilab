@@ -506,7 +506,6 @@ c     .    lsodar IWORK 20 + neq
         elseif(solver.eq.100) then
 c     .    dassrt
            ncst=ncst/2
-           write(6,'(''solver='',i5,'' ncst='',i5)') solver,ncst
            MAXORD=5
            nn42=nout+50+(MAXORD+4)*ncst+ncst**2+3*ng
            lw42=lw

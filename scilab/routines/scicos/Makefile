@@ -5,8 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/scicos.a
 
-BLOCKSF=intcos.o coselm.o \
-	evtdly.o cstblk.o \
+BLOCKSF=evtdly.o cstblk.o \
 	lusat.o pload.o qzcel.o qzflr.o\
 	qzrnd.o qztrn.o scope.o lsplit.o csslti.o\
 	dsslti.o trash.o zcross.o \
@@ -16,11 +15,11 @@ BLOCKSF=intcos.o coselm.o \
 	sawtth.o tcslti.o tcsltj.o scopxy.o evscpe.o integr.o readf.o affich.o\
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
-	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
-	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o
+	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o\
+	absblk.o andlog.o bidon.o gain.o cdummy.o dband.o cosblk.o 
 
-BLOCKS_CODE=intcos.o coselm.o \
-	evtdly.o cstblk.o \
+
+BLOCKS_CODE=evtdly.o cstblk.o \
 	lusat.o pload.o qzcel.o qzflr.o\
 	qzrnd.o qztrn.o scope.o lsplit.o csslti.o\
 	dsslti.o trash.o zcross.o \
@@ -30,18 +29,19 @@ BLOCKS_CODE=intcos.o coselm.o \
 	sawtth.o tcslti.o tcsltj.o scopxy.o evscpe.o integr.o readf.o affich.o\
 	intpol.o intplt.o minblk.o maxblk.o dlradp.o  iocopy.o \
 	sum2.o sum3.o delayv.o mux.o demux.o samphold.o dollar.o mscope.o \
-	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o \
+	eselect.o intrp2.o   intrpl.o fsv.o memo.o fscope.o scoxy.o diffblk.o\
 	blocks.o 
 
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	readau.o plusblk.o slider.o
 
-OBJSF=sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o cosini.o cossim.o cosend.o \
-	 sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
+OBJSF=intcos.o coselm.o sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o \
+	cosini.o cossim.o cosend.o \
+	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
 	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
 	scitovv.o cosiord.o $(BLOCKS_CODE)
 
-OBJSC=callf.o import.o sciblk2.o simblk.o grblk.o realtime.o intrealtime.o $(BLOCKSC)
+OBJSC=callf.o import.o sciblk2.o sciblk2i.o simblk.o grblk.o realtime.o intrealtime.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
