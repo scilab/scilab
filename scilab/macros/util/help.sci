@@ -136,17 +136,20 @@ function tcltk_help(path,key)
   global LANGUAGE INDEX
   // We must have / in paths, even for Windows
   path=strsubst(path,"\","/")
+  key1=strsubst(key,' ','_') //for temp file and widget name
+
+
   if MSDOS then
     TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
     TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
     TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
-    TK_EvalStr("browsehelp eval {set sciw .scihelp-"+key+"}")
+    TK_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
     TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
     TK_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
   else
      TK_SetVar("lang",LANGUAGE)
      TK_SetVar("Home",INDEX)
-     TK_SetVar("sciw",".scihelp-"+key+"}")
+     TK_SetVar("sciw",".scihelp-"+key1+"}")
      TK_SetVar("manpath",path)
      TK_EvalFile(SCI+"/tcl/browsehelp.tcl")
   end
@@ -158,6 +161,8 @@ function run_help(path,key)
   [lhs,rhs]=argn(0);
   global LANGUAGE INDEX
   global %browsehelp
+  key1=strsubst(key,' ','_') //for temp file and widget name
+
   select %browsehelp
    case 'help widget' then
     help_gtk(SCI+"/man/",LANGUAGE,path);
@@ -325,7 +330,11 @@ function [provpath]=apropos_gener(key)
      found= found(k);
   end
       
-  provpath=TMPDIR+sep+"apropos_"+key
+  if (strindex(key," "))
+    provpath=TMPDIR+sep+"apropos_"+part(key,1:strindex(key," ")-1);
+  else
+    provpath=TMPDIR+sep+"apropos_"+key;
+  end;
 
  
   apropos_txt =["<html>";
