@@ -29,11 +29,11 @@
 #define STRICT
 #endif
 
+//#include <WinAble.h>
 #include "WTEXT.h"   
-#include <WinAble.h>
-/*-----------------------------------------------------------------------------------*/
-//extern int LanguageCode;
+#include "wmcopydata.h"
 
+/*-----------------------------------------------------------------------------------*/
 char ScilexWindowName[MAX_PATH];
 
 POINT ScreenMinSize = {16, 4};
@@ -1199,6 +1199,19 @@ EXPORT LRESULT CALLBACK WndParentProc (HWND hwnd, UINT message, WPARAM wParam, L
            ExitWindow();
            return (0);
 		break;
+
+		case WM_COPYDATA:
+		{
+			char Command[MAX_PATH];
+			char TitleWndSend[MAX_PATH];
+
+			ReceiveFromAnotherScilab(wParam,lParam);
+
+			if ( GetCommandFromAnotherScilab(TitleWndSend,Command) )
+				StoreCommand1 (Command, 2);
+			return (0);
+		}
+		break;
 	}
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
@@ -1508,6 +1521,14 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	      		
 	      	}
 	      	break;
+
+			/*
+			case VK_F4:
+			{
+				SendCommandToAnotherScilab("Scilab-3.0-CVS (0)","Scilab-3.0-CVS (1)","scipad(SCI+'/scilab.star');");
+			}
+			break;
+			*/
 	      	
 	      	/* Allan CORNET 21/10/03*/
 	      	/* Reset des Menus & Boutons*/

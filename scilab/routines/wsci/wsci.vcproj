@@ -764,6 +764,9 @@ cd .. &gt;nul
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\wmcopydata.c">
+			</File>
+			<File
 				RelativePath="wmenu.c">
 				<FileConfiguration
 					Name="Debug|Win32">
@@ -1093,6 +1096,9 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\Winmain.h">
+			</File>
+			<File
+				RelativePath=".\wmcopydata.h">
 			</File>
 			<File
 				RelativePath=".\Wmenu.h">
