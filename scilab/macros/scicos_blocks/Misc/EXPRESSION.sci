@@ -116,14 +116,14 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
        'log10';
       ]; // ops above 100
   %num_arg=[1;1;1;1;1;
-	    1;1;
+	    1;1;1
 	    1;1;1;1;
 	    1;1;2;2;
 	   1;1;1;1;1;1;
 	    2;
 	    1
 	   ];  //number of arguments
-  %ZCR=[17,18,19,20,30,108,109,110,111,112,113,114,115];  // ops with zero-crossing
+  %ZCR=[16,17,18,19,20,21,28,29,30,109,110,111,112,113,114,115,116];  // ops with zero-crossing
   %UU=%mm(1)
   %ipar=[]
   %rpar=[]
