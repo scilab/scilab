@@ -1077,9 +1077,6 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_SEGS:
-      pSEGS_FEATURE (pobj)->iflag = 0 ;
-      *(pSEGS_FEATURE (pobj)->pstyle) = Max (0, Min (colorindex , sciGetNumColors (pobj) + 1));
-      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_AGREG:  
@@ -1236,10 +1233,6 @@ sciGetForeground (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_SEGS:
-      if (pSEGS_FEATURE (pobj)->iflag == 0)
-	return *(pSEGS_FEATURE (pobj)->pstyle) ;
-      else
-	return -1;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_AGREG:
@@ -1311,6 +1304,8 @@ sciGetLineWidth (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linewidth;
       break;
     case SCI_SEGS: 
+      return (sciGetGraphicContext(pobj))->linewidth;
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_PANNER:		/* pas de context graphics */
@@ -1393,8 +1388,10 @@ sciSetLineWidth (sciPointObj * pobj, int linewidth)
 	case SCI_STATUSB:
 	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
 	  break;
-	case SCI_AGREG:
         case SCI_SEGS: 
+	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
+	  break;
+	case SCI_AGREG:
 	case SCI_FEC: 
 	case SCI_GRAYPLOT:
 	case SCI_PANNER:
@@ -1464,6 +1461,8 @@ sciGetLineStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linestyle;
       break;
     case SCI_SEGS: 
+      return (sciGetGraphicContext(pobj))->linestyle;
+      break;
     case SCI_FEC: 
     case SCI_GRAYPLOT:
     case SCI_PANNER:		/* pas de context graphics */
@@ -1550,6 +1549,8 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
 	  break;
 	case SCI_SEGS: 
+	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
+	  break;
 	case SCI_FEC: 
 	case SCI_GRAYPLOT:
 	case SCI_AGREG:
@@ -1610,6 +1611,8 @@ sciGetIsMark (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->ismark;
       break; 
     case SCI_SEGS:
+      return (sciGetGraphicContext(pobj))->ismark;
+      break; 
     case SCI_GRAYPLOT:
     case SCI_LIGHT:
     case SCI_MENU:
@@ -1680,6 +1683,9 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
       return 0;
       break; 
     case SCI_SEGS: 
+      (sciGetGraphicContext(pobj))->ismark = ismark;
+      return 0;
+      break; 
     case SCI_GRAYPLOT:
     case SCI_MENU:
     case SCI_MENUCONTEXT:
@@ -1742,6 +1748,8 @@ sciGetMarkStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->markstyle;
       break; 
     case SCI_SEGS:
+      return (sciGetGraphicContext(pobj))->markstyle;
+      break; 
     case SCI_GRAYPLOT:
     case SCI_LIGHT:
     case SCI_MENU:
@@ -1820,6 +1828,9 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	  return 0;
 	  break; 
 	case SCI_SEGS: 
+          (sciGetGraphicContext(pobj))->markstyle = markstyle;
+	  return 0;
+	  break; 
 	case SCI_GRAYPLOT:
 	case SCI_MENU:
 	case SCI_MENUCONTEXT:
@@ -10004,7 +10015,31 @@ sciDrawObj (sciPointObj * pobj)
       if (!sciGetVisibility(pobj))
 	return 0;
       
-     sciClip(sciGetIsClipping(pobj));   
+     sciClip(sciGetIsClipping(pobj)); 
+
+      /* load the object foreground and dashes color */
+      x[2] = sciGetLineWidth (pobj);
+      x[3] = sciGetLineStyle (pobj);
+      x[4] = 0;
+      markidsizenew[0] =  sciGetMarkStyle(pobj);;
+      markidsizenew[1] =  sciGetLineWidth (pobj);;
+
+#ifdef WIN32 
+      SetWinhdc ();
+#endif
+
+      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+		&dv, &dv, &dv, 5L, 4096);
+      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+		PD0, PD0, PD0, 0L, 0L);    
+      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+		PD0, PD0, PD0, 0L, 0L);
+      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+		PD0, PD0, 0L, 0L);
+#ifdef WIN32 
+      ReleaseWinHdc ();
+#endif 
+   
       if (pSEGS_FEATURE (pobj)->ptype == 0)
         { 
 	  n=pSEGS_FEATURE (pobj)->Nbr1; 
@@ -10467,10 +10502,9 @@ sciDrawObj (sciPointObj * pobj)
       n = 1;
       /* load the object foreground and dashes color */
       x[0] = sciGetFontForeground (pobj);//la dash est de la meme couleur que le foreground
-      //      x[1] = sciGetBackground (sciGetParent (sciGetParent(pobj))); 
       x[2] = sciGetFontDeciWidth (pobj)/100;
       x[3] = 0;
-      x[4] = 0; sciGetFontStyle(pobj);
+      x[4] = sciGetFontStyle(pobj);
       v = 0;
       dv = 0;
 #ifdef WIN32 
@@ -10478,7 +10512,6 @@ sciDrawObj (sciPointObj * pobj)
 #endif
       C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
       C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-      //      C2F (dr) ("xset", "background", x+1, x+1, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
       C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 #ifdef WIN32 
       ReleaseWinHdc ();
@@ -11343,10 +11376,10 @@ sciGetPosHeight (sciPointObj * pthis)
  * @memo returns pointer to the points of the entity, and a pointer to the number of points. This function allocates memory for the tab of point, so after using the tab don't forget to free it
  */
 //& Conflicting types previous declaration in .h */
-double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
+double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 {
   double *tab;
-  int i;
+  int i,k;
   switch (sciGetEntityType (pthis))
     {
     case SCI_FIGURE:
@@ -11451,14 +11484,36 @@ double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
     case SCI_TITLE:
     case SCI_SEGS: 
       *numrow = pSEGS_FEATURE (pthis)->Nbr1;
-      *numcol = 2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
-      for (i=0;i < *numrow;i++)
-	{
-	  tab[2*i] = pSEGS_FEATURE (pthis)->vx[i];	
-	  tab[2*i+1]= pSEGS_FEATURE (pthis)->vy[i];  
-	}
+      if (pSEGS_FEATURE (pthis)->ptype == 0) {
+	*numcol = 2;
+	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	  return (double*)NULL;
+	for (i=0;i < *numrow;i++)
+	  {
+	    tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
+	    tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];  
+	  }
+      }
+      else {
+	*numcol = 2 + *numrow*2;
+	if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
+	  return (double*)NULL;
+	for (i=0;i < *numrow;i++)
+	  {
+	    tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
+	    tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];  
+	  }
+	k=*numrow*2;
+	for (i=0;i < *numrow * *numrow;i++)
+	  {
+	    tab[k+i] = pSEGS_FEATURE (pthis)->vfx[i];	
+	  }
+	k=k+*numrow * *numrow;
+	for (i=0;i < *numrow * *numrow;i++)
+	  {
+	    tab[k+i] = pSEGS_FEATURE (pthis)->vfy[i];	
+	  }
+      }
       return (double*)tab;
       break;
     case SCI_FEC: 
@@ -11487,8 +11542,8 @@ double *sciGetPoint (sciPointObj * pthis, int *numrow, int *numcol)
 int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
-  int i,n1;
-  double *pvx,*pvy;
+  int i,n1,k,k1;
+  double *pvx,*pvy, *pvfx,*pvfy;
   int *pstyle;
   POINT2D *pvector;
 
@@ -11616,44 +11671,107 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       return 0;
       break;
     case SCI_SEGS: 
-      if (*numcol != 2)
-	{
-	  sciprint("The number of columns must be %d\n",2);
-	  return -1;
-	}
-      n1=pSEGS_FEATURE (pthis)->Nbr1;
-      if (*numrow != n1) /* SS 30/1/02 */
-	{
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx);
+      if (pSEGS_FEATURE (pthis)->ptype == 0) {
+	if (*numcol != 2)
+	  {
+	    sciprint("The number of columns must be %d\n",2);
 	    return -1;
 	  }
-	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	    FREE(pvx);FREE(pvy);
-	    return -1;
+	n1=pSEGS_FEATURE (pthis)->Nbr1;
+	if (*numrow != n1) /* SS 30/1/02 */
+	  {
+	    n1=*numrow;
+	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	      FREE(pvx);
+	      return -1;
+	    }
+	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+	      FREE(pvx);FREE(pvy);
+	      return -1;
+	    }
+	    FREE(pSEGS_FEATURE (pthis)->vx);
+	    FREE(pSEGS_FEATURE (pthis)->vy);
+	    FREE(pSEGS_FEATURE (pthis)->pstyle);
+	    for (i=0;i < *numrow;i++)
+	      {
+		pvx[i] = tab[i];
+		pvy[i] = tab[i+ (*numrow)];
+		pstyle[i] = 0;
+	      }
+	    pSEGS_FEATURE (pthis)->vx=pvx;
+	    pSEGS_FEATURE (pthis)->vy=pvy;
+	    pSEGS_FEATURE (pthis)->Nbr1=n1;
+	    pSEGS_FEATURE (pthis)->pstyle=pstyle;
 	  }
-	  FREE(pSEGS_FEATURE (pthis)->vx);
-	  FREE(pSEGS_FEATURE (pthis)->vy);
-	  FREE(pSEGS_FEATURE (pthis)->pstyle);
+	else
 	  for (i=0;i < *numrow;i++)
 	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-	      pstyle[i] = 0;
+	      pSEGS_FEATURE (pthis)->vx[i] = tab[i];
+	      pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
 	    }
-	  pSEGS_FEATURE (pthis)->vx=pvx;
-	  pSEGS_FEATURE (pthis)->vy=pvy;
-	  pSEGS_FEATURE (pthis)->Nbr1=n1;
-	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
-	    }
-      else
-	for (i=0;i < *numrow;i++)
+      }
+      else {
+	if (*numcol != 2 +2*(*numrow * *numrow))
 	  {
+	    sciprint("The number of columns must be %d\n",2 +2*(*numrow * *numrow));
+	    return -1;
+	  }
+	n1=pSEGS_FEATURE (pthis)->Nbr1;
+	if (*numrow != n1) /* SS 30/1/02 */
+	  {
+	    n1=*numrow;
+	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
+	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
+	      FREE(pvx);
+	      return -1;
+	    }
+	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
+	      FREE(pvx);FREE(pvy);
+	      return -1;
+	    }
+	    if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
+	    if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
+	      FREE(pvx);FREE(pvy);FREE(pvfx);
+	      return -1;
+	    }
+	    FREE(pSEGS_FEATURE (pthis)->vx);
+	    FREE(pSEGS_FEATURE (pthis)->vy);
+	    FREE(pSEGS_FEATURE (pthis)->vfx);
+	    FREE(pSEGS_FEATURE (pthis)->vfy);
+	    for (i=0;i < n1;i++)
+	      {
+		pvx[i] = tab[i];
+		pvy[i] = tab[i+ (*numrow)];
+
+	      }
+	    k=2*n1;
+	    for (i=0;i < n1*n1;i++)
+	      {
+		pvfx[i] = tab[k+i];
+		pvfy[i] = tab[k+n1*n1+i];
+
+	      }
+	    pSEGS_FEATURE (pthis)->vx=pvx;
+	    pSEGS_FEATURE (pthis)->vy=pvy;
+	    pSEGS_FEATURE (pthis)->vx=pvfx;
+	    pSEGS_FEATURE (pthis)->vy=pvfy;
+	    pSEGS_FEATURE (pthis)->Nbr1=n1;
+
+	  }
+	else {
+	  for (i=0;i < *numrow;i++)   {
 	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
 	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
 	  }
+	  k=2* (*numrow);
+	  k1=k+ (*numrow * *numrow);
+	  for (i=0;i < *numrow * *numrow ;i++)   {
+	    pSEGS_FEATURE (pthis)->vfx[i] = tab[k+i];
+	    pSEGS_FEATURE (pthis)->vfy[i] = tab[k1+i];
+	  }
+	}
+      }
       return 0;
       break;
 
@@ -11689,7 +11807,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
  * @memo returns the sons' entity wich is cliked on x,y coordinates. If none, then returns this entity
  */
 sciPointObj 
-*sciGetObjClicked (sciPointObj *pthis,int x, int y)
+ *sciGetObjClicked (sciPointObj *pthis,int x, int y)
 {
   sciSons *sons;
   sciPointObj *result;
@@ -13001,7 +13119,6 @@ int sciType (marker)
   else if (strcmp(marker,"axes_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"data_bounds") == 0)    {return 1;}
   else if (strcmp(marker,"surface_color") == 0)    {return 1;}
-
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes

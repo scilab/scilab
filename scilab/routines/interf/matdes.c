@@ -5310,25 +5310,36 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   }  
   else if ((strncmp(marker,"segs_color", 10) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
     if (pSEGS_FEATURE (pobj)->ptype == 0){
-     if (((*numrow)* (*numcol)!= (pSEGS_FEATURE (pobj)->Nbr1)/2))
-       { 
-       sprintf(error_message,"segs color has a wrong size (%d), expecting (%d )",((*numrow)* (*numcol)) ,(pSEGS_FEATURE (pobj)->Nbr1)/2 );
-       return -1;
-       }
-     else
-       for (i = 0; i < (pSEGS_FEATURE (pobj)->Nbr1)/2 ;i++)
-	 pSEGS_FEATURE (pobj)->pstyle[i]=*stk(*value+i);
+      if ((*numrow)* (*numcol)==1) {
+	pSEGS_FEATURE (pobj)->iflag=0;
+	for (i = 0; i < (pSEGS_FEATURE (pobj)->Nbr1)/2 ;i++)
+	  pSEGS_FEATURE (pobj)->pstyle[i]=*stk(*value);
+      } 
+      else if (((*numrow)* (*numcol)== (pSEGS_FEATURE (pobj)->Nbr1)/2)) {
+	pSEGS_FEATURE (pobj)->iflag=1;
+	for (i = 0; i < (pSEGS_FEATURE (pobj)->Nbr1)/2 ;i++)
+	  pSEGS_FEATURE (pobj)->pstyle[i]=*stk(*value+i);
+      }
+      else
+	{ 
+	  sprintf(error_message,"segs color has a wrong size (%d), expecting 1 or (%d )",((*numrow)* (*numcol)) ,(pSEGS_FEATURE (pobj)->Nbr1)/2 );
+	  return -1;
+	}
     } 
- }
+    else
+      {strcpy(error_message,"segs_color property does not exist for this handle");return -1;}
+  }
   else if ((strncmp(marker,"colored", 7) == 0) && (sciGetEntityType (pobj) == SCI_SEGS)){  
     if (pSEGS_FEATURE (pobj)->ptype != 0){
-     if ((strncmp(cstk(*value),"on", 2) == 0)) 
-       pSEGS_FEATURE (pobj)->pcolored = 1;
+      if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	pSEGS_FEATURE (pobj)->pcolored = 1;
       else if ((strncmp(cstk(*value),"off", 3) == 0))  
 	pSEGS_FEATURE (pobj)->pcolored = 0;
       else
 	{strcpy(error_message,"Value must be 'on' or 'off'");return -1;}
     }
+    else
+      {strcpy(error_message,"colored property does not exist for Segs");return -1;}
   }
  /**************** Matplot Grayplot *********************/
   else if (strncmp(marker,"data_mapping", 12) == 0) {
@@ -5672,13 +5683,14 @@ int sciGet(sciPointObj *pobj,char *marker)
       { strcpy(error_message,"Unknown polyline property"); return -1;}
 
   }
+  /****************************************************/
   else if (strncmp(marker,"font_size", 9) == 0)
     {
       numrow = 1;numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetFontDeciWidth((sciPointObj *)pobj)/100;
     }
-  else if (strncmp(marker,"fontorient", 10) == 0)
+  else if (strncmp(marker,"font_angle", 10) == 0)
     {
       numrow = 1; numcol = 1;
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
@@ -5794,11 +5806,8 @@ int sciGet(sciPointObj *pobj,char *marker)
 	{strcpy(error_message,"No point");return -1;}
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       k=0;
-      for (j=0;j < numcol;j++)
-	for (i=0;i<numrow;i++)
-	  {
-	    stk(outindex)[k++] = tab[2*i+j];
-	  }
+      for (j=0;j < numcol*numrow;j++)
+	stk(outindex)[j] = tab[j];
       FREE(tab);
     }
         
@@ -6135,6 +6144,8 @@ int sciGet(sciPointObj *pobj,char *marker)
 	  else 
 	    strncpy(cstk(outindex),"off", numrow*numcol); 
         }
+    else
+     {strcpy(error_message,"colored property does not exist for Segs");return -1;} 
   }
  /**************** Matplot Grayplot *********************/
   else if (strncmp(marker,"data_mapping", 12) == 0) {
