@@ -4466,7 +4466,10 @@ static MatdesTable Tab[]={
   {unglue,"unglue"}, 
   {drawnow,"drawnow"},
   {drawlater,"drawlater"},  
-  {draw,"draw"} /* NG end */
+  {draw,"draw"}, /* NG end */
+  {scixs2gif,"xs2gif"},
+  {scixs2ppm,"xs2ppm"},
+  {scixs2ps,"xs2ps"}	
 };
 
 /* interface for the previous function Table */ 
