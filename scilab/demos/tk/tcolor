@@ -26,6 +26,11 @@ wm title .foo "Color Editor"
 #				automatically whenever the color changes.
 # name -			Name for new color, typed into entry.
 
+
+unset -nocomplain label1 label2 label3
+unset -nocomplain red green blue
+unset -nocomplain colorSpace color updating autoUpdate name
+
 set colorSpace hsb
 set red 65535
 set green 0
