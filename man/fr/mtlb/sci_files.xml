@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>sci_files</TITLE>
+  <TYPE>Documentation</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="sci_files">Comment écrire des fonctions de conversion</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>  
+  Pour convertir les appels à des fonctions Matlab, <VERB>mfile2sci</VERB> utilise une fonctions appelée
+  <VERB>sci_&lt;nom_de_la_fonction_Matlab&gt;</VERB>. Toutes ces fonctions sont définies dans des <TT>sci_files</TT>
+  dans le répertoire SCI/macros/m2sci/sci_files/. La palette de <TT>sci_files</TT> fournie dans Scilab
+  ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
+  Cependant, un utilisateur Scilab peut ajouter des <TT>sci_files</TT> (pour des fonctions Matlab
+  ou pour ses propres fonctions) en utilisant les conseils suivants.
+  </P>
+
+  <P>
+  Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
+  du fichier à convertir), représenté dans Scilab par une <VERB>tlist</VERB> avec les champs suivants :
+  </P>
+  
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="name">
+      <SP> : nom de la fonction Matlab</SP>
+      </ITEM>
+      <ITEM label="lhsnb">
+      <SP> : nombre de paramètres de sortie de la fonction Matlab</SP>
+      </ITEM>
+      <ITEM label="lhs">
+      <SP> : liste des paramètres de sortie de la fonction Matlab</SP>
+      </ITEM>
+      <ITEM label="rhs">
+      <SP> : liste des paramètres d'entrée de la fonction Matlab</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  
+  <P>
+  Une <TT>sci_function</TT> a un paramètre d'entrée <VERB>tree</VERB> qui est aussi la sortie de cette fonction.
+  Une <TT>sci_function</TT> doit convertir cet arbre pour qu'il soit compatible avec Scilab
+  en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
+  l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
+  ce que l'on peut inférer pour les lhs de cette fonction. 
+  </P>
+
+  <P>
+  Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
+  </P>
+
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="Funcall">
+      <SP> : créé un arbre qui représente l'appel à une fonction</SP>
+      </ITEM>
+      <ITEM label="Operation">
+      <SP> : créé un arbre qui représente une opération</SP>
+      </ITEM>
+      <ITEM label="Variable">
+      <SP> : créé un arbre qui représente une variable</SP>
+      </ITEM>
+      <ITEM label="Cste">
+      <SP> : créé un arbre qui représente une constante</SP>
+      </ITEM>
+      <ITEM label="Infer">
+      <SP> : créé un arbre qui représente les données d'inférence</SP>
+      </ITEM>
+      <ITEM label="Type">
+      <SP> : créé un arbre qui représente le type pour l'inférence</SP>
+      </ITEM>
+      <ITEM label="Equal">
+      <SP> : créé un arbre qui représente une instruction</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
+  Pour plus d'informations sur la fçon d'écrire ces fichiers, consulter le répertoire
+  SCI/macros/m2sci/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
+  aux plus compliqués (e.g. sci_zeros.sci).
+  </P>
+
+  </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>m2scideclare</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

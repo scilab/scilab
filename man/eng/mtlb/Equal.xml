@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>Equal</TITLE>
+  <TYPE>M2SCI Function</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="Equal">Create a tree representing an instruction</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>eq=Equal(lhslist,expression)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lhslist</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: list of lhs parameters (list of "M2SCI tlists")</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>expression</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: right member of equal (an "M2SCI tlist")</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>eq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: an "equal" tlist</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    This function create a <VERB>tlist</VERB> representing an instruction when using M2SCI.
+    All input parameters values are verified to be compatible with "M2SCI tlists".
+    </P>  
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>Equal</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="Equal">Créé un arbre représentant une instruction</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>eq=Equal(lhslist,expression)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>lhslist</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: liste des paramètres de sortie (liste de "tlists M2SCI")</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>expression</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: partie droite de l'instruction (une "tlist M2SCI")</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>eq</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une tlist de type "equal"</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    Cette fonction créé une <VERB>tlist</VERB> représentant les données d'inférence quand
+    on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
+    les "tlists M2SCI".
+    </P>  
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
+

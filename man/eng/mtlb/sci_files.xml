@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>sci_files</TITLE>
+  <TYPE>Documentation</TYPE>
+  <DATE>March 2004</DATE>
+
+  <SHORT_DESCRIPTION name="sci_files">How to write conversion functions</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  <P>  
+  To convert calls to Matlab functions, <VERB>mfile2sci</VERB> uses a function called
+  <VERB>sci_&lt;Matlab_function_name&gt;</VERB>. All these functions are defined in <TT>sci_files</TT>
+  in directory SCI/macros/m2sci/sci_files/. The set of <TT>sci_files</TT> given in Scilab
+  distribution does not allow to convert calls to all Matlab functions yet.
+  However, a Scilab user can add <TT>sci_files</TT> (for Matlab functions or for user defined functions)
+  to Scilab using the following tips. 
+  </P>
+
+  <P>
+  In M2SCI, a function call is considered as a "tree" (it is also the case for the instructions
+  of the file to convert), represented in Scilab by a <VERB>tlist</VERB> with following fields:
+  </P>
+  
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="name">
+      <SP>: Matlab function name</SP>
+      </ITEM>
+      <ITEM label="lhsnb">
+      <SP>: number of Matlab function output parameters</SP>
+      </ITEM>
+      <ITEM label="lhs">
+      <SP>: list of Matlab function output parameters</SP>
+      </ITEM>
+      <ITEM label="rhs">
+      <SP>: list of Matlab function input parameters</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+  
+  <P>
+  A <TT>sci_function</TT> has one input called <VERB>tree</VERB> which is also the output of the function.
+  A <TT>sci_function</TT> has to convert this incoming "tree" so that it is compatible with Scilab
+  by changing name, lhsnb, lhs and/or rhs. The other task that has to be done by this function
+  is inference. Incoming tree contains inference data in its lhs that have to be updated with what
+  can be infered for the outputs of this function. 
+  </P>
+
+  <P>
+  Some useful functions have been written to help to write this conversion function:
+  </P>
+
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="Funcall">
+      <SP>: create a tree representing a function call</SP>
+      </ITEM>
+      <ITEM label="Operation">
+      <SP>: create a tree representing an operation</SP>
+      </ITEM>
+      <ITEM label="Variable">
+      <SP>: create a tree representing a variable</SP>
+      </ITEM>
+      <ITEM label="Cste">
+      <SP>: create a tree representing a constante value</SP>
+      </ITEM>
+      <ITEM label="Infer">
+      <SP>: create a tree representing inference data</SP>
+      </ITEM>
+      <ITEM label="Type">
+      <SP>: create a tree representing type for inference</SP>
+      </ITEM>
+      <ITEM label="Equal">
+      <SP>: create a tree representing an instruction</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
+  To have more informations about how to write such files, refer to directory
+  SCI/macros/m2sci/sci_files/ which gives many examples from very simple ones
+  (e.g. sci_abs.sci) to very complex ones (e.g. sci_zeros.sci).
+  </P>
+
+  </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>m2scideclare</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>A_propos_des_outils_M2SCI</TITLE>
+  <TYPE>Documentation</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="A_propos_des_outils_M2SCI">Présentation générale des outils de conversion de fichiers Matlab vers Scilab...</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+  
+  <P>Scilab 3.0 contient une nouvelle version d'outils pour convertir des fichiers Matlab vers Scilab.</P>
+
+  <P>
+  A partir d'un fichier Matlab, <VERB>mfile2sci</VERB> modifie ce fichier pour qu'il puisse être
+  compilé par Scilab. Puis, ce code compilé est converti en "arbre" d'instructions
+  par <VERB>macr2tree</VERB>. Cet "arbre" est une imbrication de listes et de tlists Scilab et
+  est la base de la conversion. Chaque instruction de cet "arbre" est convertie en langage Scilab et
+  l'inférence est réalisée pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
+  le code est généré en utilisant <VERB>tree2code</VERB>.
+  </P>
+
+  <P>
+   Toutes les tlists utilisées pour coder cet arbre (et que nous appelons "tlists M2SCI") sont énumérées ci-dessous :
+  </P>
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+  <ITEMIZE>
+    <ITEM label="funcall">
+      <SP> : tlist représentant l'appel à une fonction créée par <VERB>Funcall</VERB></SP>
+    </ITEM>  
+    <ITEM label="operation">
+      <SP> : tlist représentant une opération créée par <VERB>Operation</VERB></SP>
+    </ITEM>  
+    <ITEM label="variable">
+      <SP> : tlist représentant une variable créée par <VERB>Variable</VERB></SP>
+    </ITEM>  
+    <ITEM label="cste">
+      <SP> : tlist représentant une constante créée par <VERB>Cste</VERB></SP>
+    </ITEM>  
+    <ITEM label="equal">
+      <SP> : tlist représentant une instruction créée <VERB>Equal</VERB></SP>
+    </ITEM>  
+    <ITEM label="ifthenelse">
+      <SP> : tlist représentant une instruction de contrôle IF/THEN/ELSE créée dans les fonctions du "noyau" de M2SCI</SP>
+    </ITEM>  
+    <ITEM label="while">
+      <SP> : tlist représentant une instruction de contrôle WHILE créée dans les fonctions du "noyau" de M2SCI</SP>
+    </ITEM>  
+    <ITEM label="selectcase">
+      <SP> : tlist représentant une instruction de contrôle SELECT/CASE créée dans les fonctions du "noyau" de M2SCI</SP>
+    </ITEM>  
+    <ITEM label="for">
+      <SP> : tlist représentant une instruction de contrôle FOR créée dans les fonctions du "noyau" de M2SCI</SP>
+    </ITEM>  
+  </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
+  Le contenu des ces tlists est décrit dans les pages d'aide correspondantes.
+  </P>
+
+  <P>
+  Les opérations sont converties en utilisant une fonction appelée <VERB>%&lt;codeop&gt;2sci</VERB> avec codeop
+  le code Scilab pour cette opérateur. Voir l'aide de overloading pour voir ces codes. Toutes
+  ces fonctions sont déjà écrites et sont dans le répertoire SCI/macros/m2sci/percent/.
+  </P>
+
+  <P>
+  Les appels aux fonctions sont convertis en utilisant une fonction appelée <VERB>sci_&lt;nom_de_la_fonction_Matlab&gt;</VERB>.
+  Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/macros/m2sci/sci_files/.
+  Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Néanmoins, tout le monde peut
+  écrire ces fonctions en utilisant la pages d'aide sci_files.
+  </P>
+
+  <P>
+  L'inférence est réalisée à l'aide de tlists de type "infer" contenant les champs :
+  </P>
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="dims">
+      <SP> : liste des dimensions</SP>
+      </ITEM>
+      <ITEM label="type">
+      <SP> : tlist de type "type"</SP>
+      </ITEM>
+      <ITEM label="contents">
+      <SP>: contenu si la variable est une Cell ou une Struct</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>
+  Type est une tlist de type "type" contenant les champs :
+  </P>
+
+  <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM label="vtype">
+      <SP> : type de donnée</SP>
+      </ITEM>
+      <ITEM label="property">
+      <SP> : propriété de cette donnée</SP>
+      </ITEM>
+    </ITEMIZE>
+  </DESCRIPTION_ITEM>
+  </DESCRIPTION_INDENT>
+
+  <P>Pour plus d'informations sur l'inférence, voir la page d'aide de m2scideclare.</P>
+
+  </DESCRIPTION> 
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mfile2sci</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>translatepaths</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>overloading</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>sci_files</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Infer</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>m2scideclare</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+  
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>Infer</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Mars 2004</DATE>
+
+  <SHORT_DESCRIPTION name="Infer">Créé un arbre contenant les données d'inférence</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>infer=Infer(varargin)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>varargin</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: données d'inference</SP>
+	  <PARAM_INDENT>
+          <PARAM_ITEM>
+            <PARAM_NAME>varargin(1)</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>: liste des dimensions, la valeur par défaut est list(Unknown,Unknown)</SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+          <PARAM_ITEM>
+            <PARAM_NAME>varargin(2)</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>: type (tlist de type "type", voir la page d'aide de Type), la valeur par défaut est Type(Unknown,Unknown)</SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+          <PARAM_ITEM>
+            <PARAM_NAME>varargin(3)</PARAM_NAME>
+            <PARAM_DESCRIPTION>
+              <SP>: contenu, la valeur par défaut est [], si la donnée réprésentée est une Cell
+	      le contenu est une Cell de tlists de type"infer", si la donnée réprésentée est une Struct,
+	      le contenu est une Struct de tlists de type "infer" sinon il n'est pas utilisé.
+	      </SP>
+            </PARAM_DESCRIPTION>
+          </PARAM_ITEM>
+          </PARAM_INDENT>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>infer</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: une tlist de type "infer"</SP>
+       </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    Cette fonction créé une <VERB>tlist</VERB> représentant les données d'inférence quand
+    on utilise M2SCI. Tous les paramètres d'entrée sont vérifiés pour être compatible avec
+    les "tlists M2SCI". (Unknown=-1 dans M2SCI)
+    </P>  
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>Funcall</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Operation</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Variable</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Cste</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Type</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Equal</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+
+</MAN>
+
