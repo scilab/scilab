@@ -1,5 +1,5 @@
 #-----------------------------
-# the vc++ version is not generated
+# generated from Makefile: DO NOT EDIT
 # -----------------------------
 SHELL = /bin/sh
 
@@ -57,17 +57,18 @@ OBJSF = dgelqf.obj dgels.obj  dgeqrf.obj dlae2.obj dlaev2.obj \
 	ztgexc.obj ztgsyl.obj ztgex2.obj ztgsy2.obj zgesc2.obj zgetc2.obj zlatdf.obj \
 	$(LOCAL) 
 
-include ../../Makefile.incl.mak
+include ../../Makefile.incl.amk
 
 CFLAGS = $(CC_OPTIONS)
 
 FFLAGS = $(FC_OPTIONS)
 
-include ../Make.lib.mak
+include ../Make.lib.amk
+
+all:: Makefile.mak Makefile.amk
 
 Makefile.mak	: Makefile
 	$(SCIDIR)/util/Mak2VCMak Makefile
 
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
-
