@@ -66,7 +66,6 @@ void RenameConsole(void)
 		wsprintf(ScilexConsoleName,"%s",NameConsole);
 		SetConsoleTitle(ScilexConsoleName);
 	}
-
 }
 /*-----------------------------------------------------------------------------------*/
 int Console_Main(int argc, char **argv)
@@ -212,13 +211,13 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	int i=0;
 	LPSTR tail;
 	BOOL ShortCircuitExec=FALSE;
-	
+	BOOL LaunchAFile=FALSE;
 	char FileName[MAX_PATH];
 	int nowin = 0, argcount = 0, lpath = 0, pathtype=0;
 	char *path = NULL;
 	
 	HANDLE hOut = NULL;
-	int Current_Number_of_Scilex=-1; 
+
 
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
@@ -263,7 +262,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	CheckMemory (szGraphMenuName);
 	strcpy (szGraphMenuName, szModuleName);
 	strcat (szGraphMenuName, GRAPHMENUNAME);
-
 
 	/* Load common control library * */
 	InitCommonControls ();
@@ -312,7 +310,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		char ShortPath[MAX_PATH];
 		char *pPathCmdLine=NULL;
 		char PathCmdLineCopy[1024];
-		
 
 		strcpy(LineCommand,pFullCmdLineTmp);
 		LineCommand[strlen(LineCommand)]='\0';
@@ -348,7 +345,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	while (my_argv[my_argc] != NULL)
 	{
 		my_argv[++my_argc] = strtok(NULL, " ");
-		
 	}
 
 	for (i=1;i<my_argc;i++)
@@ -376,10 +372,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			exit(1);
 		}
 	}
-
 	argcount = my_argc;
 
-	if (argcount >= 2)
+	if (argcount > 2)
 	{
 		if ( (strcmp (my_argv[1], "-X") == 0) ||
 		     (strcmp (my_argv[1], "-O") == 0) ||	
@@ -388,6 +383,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 			char *Commande=NULL;
 			int CodeAction=-1;
 			int j=0;
+
+			LaunchAFile=TRUE;
 
 			strcpy(FileName,my_argv[2]);
 			for (j=3;j<argcount;j++)
@@ -435,8 +432,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		path = my_argv[argcount]+lenPathWScilex+3;
 		lpath = strlen (my_argv[argcount]+lenPathWScilex+3);
 		pathtype=1;
-		
-
+		LaunchAFile=TRUE;
 	}
 	else
 	while (argcount > 0)
@@ -461,7 +457,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		}
 		else if ( strcmp(strupr(ArgTmp),"-MEM") == 0 && argcount + 1 < my_argc)
 		{
-
 			memory = Max(atoi( my_argv[argcount + 1]),MIN_STACKSIZE );
 		}
 	}		
@@ -475,37 +470,45 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	atexit (WinExit);
 	SciEnv ();
 
-	Current_Number_of_Scilex=FindFreeScilexNumber();
-	wsprintf(ScilexConsoleName,"%s (%d)",NameConsole,Current_Number_of_Scilex);
-	Windows_Console_State=0; /* Console DOS Cachée par défaut */
+	/* Splashscreen*/
+	if ( (sci_show_banner) && (LaunchAFile == FALSE) )CreateSplashscreen();
 
-	
+	CreateScilabConsole(sci_show_banner);
+
 	if (TextInit (&textwin))	exit (1);
 
-	AllocConsole();
-	SetConsoleTitle(ScilexConsoleName);
-	HideScilex(); /* Cache la fenetre Console */
-
-	/* Modification Allan CORNET 18/07/03 */
-	/* Splashscreen*/
-	if (sci_show_banner) 	CreateThreadSplashscreen();
-	
-	
 	textwin.hIcon = LoadIcon (hInstance, "texticon");
 	SetClassLong (textwin.hWndParent, GCL_HICON, (DWORD) textwin.hIcon);
-
 	SetXsciOn ();
 
-	
 	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
+	ForceToActiveWindowParent();
 
+	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
+
+	CloseScilabConsole();
+	/* Tue ce process pour fermeture correcte sous Windows 98 */
+	Kill_Scilex_Win98();
 	
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+void CreateScilabConsole(int ShowBanner)
+{
+	int Current_Number_of_Scilex=-1; 
+
+	Windows_Console_State=0; /* Console DOS Cachée par défaut */
+	AllocConsole();
+
+	Current_Number_of_Scilex=FindFreeScilexNumber();
+	wsprintf(ScilexConsoleName,"%s (%d)",NameConsole,Current_Number_of_Scilex);
+	SetConsoleTitle(ScilexConsoleName);
+
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
     freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
 	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
-
 	
-	if (sci_show_banner)
+	if (ShowBanner)
 	{
 		char line[80];
 
@@ -522,18 +525,13 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	}
 
 	HideScilex(); /* Cache la fenetre Console */
-	
-	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
-
+}
+/*-----------------------------------------------------------------------------------*/
+void CloseScilabConsole(void)
+{
 	fclose(stdout);
 	fclose(stderr);
 	FreeConsole();
-	/* Tue ce process pour fermeture correcte sous Windows 98 */
-	Kill_Scilex_Win98();
-	
-	return 0;
-
-	
 }
 /*-----------------------------------------------------------------------------------*/
 void InitWindowGraphDll(void)
@@ -1295,26 +1293,12 @@ void Kill_Scilex(void)
 		TerminateProcess(hProcess,0);
 	}
 	else MessageBox(NULL,"Don't Find Scilab Process","Attention",MB_ICONWARNING);
-
 }
 /*-----------------------------------------------------------------------------------*/
-void CreateThreadSplashscreen(void)
-{
-	HANDLE hThread;
-	DWORD IdThread;
-	hThread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)ThreadSplashscreen,(LPVOID)NULL,0,(LPDWORD)&IdThread);
-	CloseHandle( hThread );
-}
-/*-----------------------------------------------------------------------------------*/
-DWORD WINAPI ThreadSplashscreen(LPVOID lpParam )
+void CreateSplashscreen(void)
 {
 	HWND hdlg;
 	char buffer[MAX_PATH];
-
-	extern char ScilexWindowName[MAX_PATH];
-	
-	LPTW lptw;
-	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
 
@@ -1322,15 +1306,11 @@ DWORD WINAPI ThreadSplashscreen(LPVOID lpParam )
 	SetDlgItemText(hdlg,IDC_VERSION_SPLASH,VERSION);
 	SetDlgItemText(hdlg,IDC_COPYRIGHT_SPLASH,buffer);
 	
-	ShowWindow(hdlg, SW_SHOWDEFAULT);
+	ShowWindow(hdlg, SW_SHOWNORMAL);
 	UpdateWindow(hdlg);
 	Sleep(1500);
 
 	DestroyWindow(hdlg);
-	SendMessage(lptw->hWndParent, WM_PAINT, 0, 0);
-	ForceToActiveWindowParent();
-
-	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */
@@ -1385,6 +1365,9 @@ BOOL IsABinOrSavFile(char *chainefichier)
 	{
 		lastdot=buffer;
 	}
+
+	if (lastdot == NULL) return retour;
+
 	/* Mise en majuscule de l'extension du fichier*/
 	for (i=0;i<(int)strlen(lastdot);i++)
 	{
@@ -1422,6 +1405,8 @@ BOOL IsAGraphFilegraph(char *chainefichier)
 		lastdot=buffer;
 	}
 
+	if (lastdot == NULL) return retour;
+
 	/* Mise en majuscule de l'extension du fichier*/
 	for (i=0;i<strlen(lastdot);i++)
 	{
@@ -1450,6 +1435,9 @@ BOOL IsAGraphFilegraphb(char *chainefichier)
 	{
 		lastdot=buffer;
 	}
+
+	if (lastdot == NULL) return retour;
+
 	/* Mise en majuscule de l'extension du fichier*/
 	for (i=0;i<(int)strlen(lastdot);i++)
 	{
@@ -1488,6 +1476,8 @@ BOOL IsAScicosFileCOS(char *chainefichier)
 		lastdot=buffer;
 	}
 	/* Mise en majuscule de l'extension du fichier*/
+	if (lastdot == NULL) return retour;
+
 	for (i=0;i<(int)strlen(lastdot);i++)
 	{
 		lastdot[i]=toupper(lastdot[i]);
@@ -1514,6 +1504,9 @@ BOOL IsAScicosFileCOSF(char *chainefichier)
 	{
 		lastdot=buffer;
 	}
+
+	if (lastdot == NULL) return retour;
+
 	/* Mise en majuscule de l'extension du fichier*/
 	for (i=0;i<(int)strlen(lastdot);i++)
 	{

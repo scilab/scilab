@@ -158,8 +158,7 @@ int Console_Main(int argc, char **argv);
 int MAIN__ ();
 
 void WinExit (void);
-void CreateThreadSplashscreen(void);
-DWORD WINAPI ThreadSplashscreen(LPVOID lpParam );
+void CreateSplashscreen(void);
 
 /* Tue le Process Scilex si OS est Windows 9x */
 void Kill_Scilex_Win98(void);
@@ -195,5 +194,6 @@ BOOL IsWindowInterface();
 
 void ExtensionFileIntoLowerCase(char *fichier);
 
-
+void CreateScilabConsole(BOOL ShowBanner);
+void CloseScilabConsole(void);
 /*-----------------------------------------------------------------------------------*/
