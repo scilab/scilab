@@ -530,7 +530,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1,
       info.str   = str;
     }
 
-  /* take care og tck/tk */
+  /* take care of tck/tk */
   
 #ifdef WITH_TK
   timer_tk=  gtk_timeout_add(100,  (GtkFunction) timeout_tk , NULL);
@@ -626,7 +626,7 @@ void SciClick(integer *ibutton, integer *x1, integer *yy1, integer *iflag,
   win = ScilabXgc->CurWindow;
   if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
     { 
-      sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);/* XXXX */
+      /* sciprint("ds la queue %f %f \n",(double) *x1,(double) *yy1);*//* XXXX */
       return ;
     }
   if ( *iflag ==0 )  ClearClickQueue(ScilabXgc->CurWindow);
