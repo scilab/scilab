@@ -8,6 +8,6 @@ function sciGUI_init()
     TK_EvalFile(sciGUI_tclpath+'sciBrowseHelp.tcl');
     TK_EvalFile(sciGUI_tclpath+'sciEditVar.tcl');
     TK_EvalFile(sciGUI_tclpath+'sciConfig.tcl');
-    TK_EvalStr('sciGUIDoInit ""/tmp/sciGUI/"";sciGUIBrowseVarINI;sciGUIBrowseHelpINI');
+    TK_EvalStr('sciGUIDoInit ""'+SCI+'"";sciGUIBrowseVarINI;sciGUIBrowseHelpINI');
   end
 endfunction
