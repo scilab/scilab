@@ -1,36 +1,35 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>linmeq  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
-  <SHORT_DESCRIPTION name="linmeq"> Sylvester and Lyapunov equations solver  </SHORT_DESCRIPTION>
+  <TITLE>linmeq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="linmeq"> Sylvester and Lyapunov equations solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>task  </PARAM_NAME>
+        <PARAM_NAME>task</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to determine the equation type:</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>=</PARAM_NAME>
+              <PARAM_NAME>=1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  solve the Sylvester equation (1a) or (1b);</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>=</PARAM_NAME>
+              <PARAM_NAME>=2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  solve the Lyapunov equation (2a) or (2b);</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>=</PARAM_NAME>
+              <PARAM_NAME>=3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: solve for the Cholesky factor op(X) the Lyapunov equation (3a) or (3b).</SP>
               </PARAM_DESCRIPTION>
@@ -39,32 +38,32 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) integer vector of length 3 or 2 containing options.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>task  </PARAM_NAME>
+              <PARAM_NAME>task</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= 1 : flag has length </SP>
+                <SP>= 1 : flag has length 3</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
                     <PARAM_NAME>flag(1)</PARAM_NAME>
@@ -112,9 +111,9 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>task  </PARAM_NAME>
+              <PARAM_NAME>task</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= 2 : flag has length </SP>
+                <SP>= 2 : flag has length 2</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
                     <PARAM_NAME>flag(1)</PARAM_NAME>
@@ -133,9 +132,9 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>task  </PARAM_NAME>
+              <PARAM_NAME>task</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= 3 : flag has length </SP>
+                <SP>= 3 : flag has length 2</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
                     <PARAM_NAME>flag(1)  </PARAM_NAME>
@@ -159,7 +158,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>trans  </PARAM_NAME>
+        <PARAM_NAME>trans</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) integer specifying a transposition option.</SP>
           <PARAM_INDENT>
@@ -194,18 +193,18 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>schur  </PARAM_NAME>
+        <PARAM_NAME>schur</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) integer specifying whether the Hessenberg-Schur or Schur method should be used. Available for task = 1.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>= 1 : Hessenberg-Schur method (one matrix is reduced  </PARAM_NAME>
+              <PARAM_NAME>= 1 : Hessenberg-Schur method (one matrix is reduced</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>to Schur form).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>= 2 : Schur method (two matrices are reduced to Schur  </PARAM_NAME>
+              <PARAM_NAME>= 2 : Schur method (two matrices are reduced to Schur</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>form).</SP>
               </PARAM_DESCRIPTION>
@@ -217,7 +216,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:</SP>
         </PARAM_DESCRIPTION>

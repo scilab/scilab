@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unix_s  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="unix_s"> shell (sh) command execution, no output  </SHORT_DESCRIPTION>
+  <TITLE>unix_s</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="unix_s"> shell (sh) command execution, no output</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>unix_s(cmd)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>cmd  </PARAM_NAME>
+        <PARAM_NAME>cmd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pencan  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pencan"> canonical form of matrix pencil  </SHORT_DESCRIPTION>
+  <TITLE>pencan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pencan"> canonical form of matrix pencil</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Q,M,i1]=pencan(Fs)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Q,M,i1]=pencan(E,A)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Fs  </PARAM_NAME>
+        <PARAM_NAME>Fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a regular pencil <VERB>s*E-</VERB></SP>
+          <SP>: a regular pencil <VERB>s*E-A</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>E,</PARAM_NAME>
+        <PARAM_NAME>E,A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real square matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Q,</PARAM_NAME>
+        <PARAM_NAME>Q,M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two non-singular real matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>i</PARAM_NAME>
+        <PARAM_NAME>i1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
@@ -41,10 +40,10 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Given the regular pencil <VERB>Fs=s*E-</VERB>, <VERB>pencan</VERB> returns matrices <VERB/> 
-    and <VERB/>
-    such than <VERB>M*(s*E-A)*</VERB> is in &quot;canonical&quot; form.</P>
-    <P><VERB>M*E*</VERB> is a block matrix</P>
+    Given the regular pencil <VERB>Fs=s*E-A</VERB>, <VERB>pencan</VERB> returns matrices <VERB>Q</VERB> 
+    and <VERB>M</VERB>
+    such than <VERB>M*(s*E-A)*Q</VERB> is in &quot;canonical&quot; form.</P>
+    <P><VERB>M*E*Q</VERB> is a block matrix</P>
     <VERBATIM>
 <![CDATA[
 [I,0;
@@ -52,8 +51,8 @@
    ]]>
     </VERBATIM>
     <P>
-    with <VERB/> nilpotent and <VERB>i</VERB> = size of the <VERB/> matrix above.</P>
-    <P><VERB>M*A*</VERB> is a block matrix:</P>
+    with <VERB>N</VERB> nilpotent and <VERB>i1</VERB> = size of the <VERB>I</VERB> matrix above.</P>
+    <P><VERB>M*A*Q</VERB> is a block matrix:</P>
     <VERBATIM>
 <![CDATA[
 [Ar,0;

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hrmt  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="hrmt"> gcd of polynomials  </SHORT_DESCRIPTION>
+  <TITLE>hrmt</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hrmt"> gcd of polynomials</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[pg,U]=hrmt(v)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: row of polynomials i.e. <VERB/>x<VERB>k</VERB> polynomial matrix</SP>
+          <SP>: row of polynomials i.e. <VERB>1</VERB>x<VERB>k</VERB> polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pg  </PARAM_NAME>
+        <PARAM_NAME>pg</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: unimodular matrix polynomial</SP>
         </PARAM_DESCRIPTION>
@@ -33,7 +32,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>[pg,U]=hrmt(v)</VERB> returns a unimodular matrix <VERB/> and  <VERB>pg</VERB> = gcd of row of 
+    <P><VERB>[pg,U]=hrmt(v)</VERB> returns a unimodular matrix <VERB>U</VERB> and  <VERB>pg</VERB> = gcd of row of 
     polynomials <VERB>v</VERB> such that <VERB>v*U = [pg,0]</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -52,5 +51,5 @@ det(U)
       <LINK>htrianr</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> S. Steer INRI</AUTHOR>
+  <AUTHOR> S. Steer INRIA</AUTHOR>
 </MAN>

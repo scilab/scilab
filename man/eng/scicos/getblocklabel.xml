@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getblocklabel  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="getblocklabel"> get label of a Scicos block at running time  </SHORT_DESCRIPTION>
+  <TITLE>getblocklabel</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="getblocklabel"> get label of a Scicos block at running time</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>label=getblocklabel()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>label=getblocklabel(k)  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, index of the block. if <VERB>k</VERB> is omitted <VERB>k</VERB>is supposed to be equal to   <VERB>curblock()</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>label  </PARAM_NAME>
+        <PARAM_NAME>label</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string, The label of <VERB>k</VERB>th block (see  <VERB>Label</VERB> button in <VERB>Block</VERB> menu.</SP>
         </PARAM_DESCRIPTION>

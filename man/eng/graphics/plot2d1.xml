@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plot2d</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>plot2d1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="plot2d1"> 2D plot (logarithmic axes) (obsolete)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plot2d1(str,x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
@@ -13,29 +12,29 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is a string of length three <VERB>&quot;abc&quot;</VERB>.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>a  </PARAM_NAME>
+              <PARAM_NAME>a</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: can have the following values: <VERB>e</VERB>, <VERB>o</VERB>  or <VERB>g</VERB>.</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>e  </PARAM_NAME>
+                    <PARAM_NAME>e</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: means &quot;empty&quot;. Itspecifies the fact that the value of <VERB>x</VERB> is not used  (the <VERB>x</VERB> values are supposed to be regularly spaced,  ie 1:&lt;number of rows of <VERB>y</VERB>&gt;). The user must  anyway give a value for <VERB>x</VERB>, 1 for instance:  <VERB>plot2d1(&quot;enn&quot;,1,y)</VERB>.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>o  </PARAM_NAME>
+                    <PARAM_NAME>o</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: means &quot;one&quot;. If there are many curves, they all have the same x-values: <VERB>x</VERB> is a column vector of size nl and <VERB>y</VERB> is a matrix of size (nl,nc). For example : <VERB>x=[0:0.1:2*%pi]'; plot2d1(&quot;onn&quot;,x,[sin(x) cos(x)])</VERB>.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>g  </PARAM_NAME>
+                    <PARAM_NAME>g</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: means &quot;general&quot;. <VERB>x</VERB> and <VERB>y</VERB>
   must have the same size (nl,nc).  Each column of <VERB>y</VERB> is
@@ -48,18 +47,18 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>b, c  </PARAM_NAME>
+              <PARAM_NAME>b, c</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: can have the values <VERB>n</VERB> (normal) or <VERB>l</VERB> (logarithmic).</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>b=l  </PARAM_NAME>
+                    <PARAM_NAME>b=l</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: a logarithmic axis is used on the x-axis</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>c=l  </PARAM_NAME>
+                    <PARAM_NAME>c=l</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: a logarithmic axis is used on the y-axis</SP>
                     </PARAM_DESCRIPTION>
@@ -77,7 +76,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>opt_args  </PARAM_NAME>
+        <PARAM_NAME>opt_args</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: these arguments have the same meaning as in the <VERB>plot2d</VERB> function.</SP>
         </PARAM_DESCRIPTION>
@@ -87,7 +86,7 @@
   <DESCRIPTION>
     <P>
     This function is obsolete. Use <VERB>plot2d</VERB> instead.</P>
-    <P><VERB>plot2d</VERB> plots a set of 2D curves.
+    <P><VERB>plot2d1</VERB> plots a set of 2D curves.
     It is the same as <VERB>plot2d</VERB> but with one more argument 
     <VERB>str</VERB>
     which enables logarithmic axis. Moreover, it allows to specify only one column
@@ -116,13 +115,13 @@ plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
       <LINK>plot2d</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
+      <LINK>plot2d2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
+      <LINK>plot2d3</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
+      <LINK>plot2d4</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xbasc</LINK>

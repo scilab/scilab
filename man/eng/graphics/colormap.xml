@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>colormap  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>August 199</DATE>
-  <SHORT_DESCRIPTION name="colormap"> using colormaps  </SHORT_DESCRIPTION>
+  <TITLE>colormap</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>August 1996</DATE>
+  <SHORT_DESCRIPTION name="colormap"> using colormaps</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     A colormap <VERB>cmap</VERB> is defined by a m x 3 matrix. m is the number of colors.

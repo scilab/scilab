@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>read4b  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="read4b"> fortran file binary read   </SHORT_DESCRIPTION>
+  <TITLE>read4b</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="read4b"> fortran file binary read</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>x=read4b(file-name,m,n [,rec])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file-name  </PARAM_NAME>
+        <PARAM_NAME>file-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string or integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m, n  </PARAM_NAME>
+        <PARAM_NAME>m, n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers (dimensions of the matrix x). Set m=-1 if you do not know the numbers of rows, so all the file is read</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rec  </PARAM_NAME>
+        <PARAM_NAME>rec</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of positive integers. the selected records for direct access. This vector size must be equal to the number of rows of desired <VERB>x</VERB>.</SP>
         </PARAM_DESCRIPTION>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lsq  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
+  <TITLE>lsq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
   <SHORT_DESCRIPTION name="lsq"> linear least square problems.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>X=lsq(A,B)  </CALLING_SEQUENCE_ITEM>
@@ -13,19 +12,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Real or complex (m x n) matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex (m x p) matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex (n x p) matrix</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>X=lsq(A,B)</VERB> computes the minimum norm least square solution of
-    the equation <VERB>A*X=</VERB>, while <VERB>X=A \ </VERB> compute a least square
+    the equation <VERB>A*X=B</VERB>, while <VERB>X=A \ B</VERB> compute a least square
     solution with at at most <VERB>rank(A)</VERB>  nonzero components per column.</P>
   </DESCRIPTION>
   <SECTION label="References">

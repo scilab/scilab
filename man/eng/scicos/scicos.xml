@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>scicos  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="scicos"> Block diagram editor and GUI for the hybrid simulator scicosim  </SHORT_DESCRIPTION>
+  <TITLE>scicos</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="scicos"> Block diagram editor and GUI for the hybrid simulator scicosim</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sys=scicos()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sys=scicos(sys,[menus])  </CALLING_SEQUENCE_ITEM>
@@ -15,19 +14,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sys  </PARAM_NAME>
+        <PARAM_NAME>sys</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scicos data structure</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>file  </PARAM_NAME>
+        <PARAM_NAME>file</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. The path of a file containing the  image of a Scicos data structure. These files may have <VERB>.cos</VERB> or <VERB>.cosf</VERB> extensions.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>menus  </PARAM_NAME>
+        <PARAM_NAME>menus</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of character strings. It allows to select some of the Scicos menus. If <VERB>menus==[]</VERB>  Scicos draws the diagram and the contents of each super blocks in separate windows without menu bar. This option is useful to print diagrams.</SP>
         </PARAM_DESCRIPTION>

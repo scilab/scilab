@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gtild  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gtild"> tilde operation  </SHORT_DESCRIPTION>
+  <TITLE>gtild</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gtild"> tilde operation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Gt=gtild(G)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>Gt=gtild(G,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: either a polynomial or a linear system (<VERB>syslin</VERB> list) or a rational matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Gt  </PARAM_NAME>
+        <PARAM_NAME>Gt</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: same as </SP>
+          <SP>: same as G</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string: either <VERB>'c'</VERB> or <VERB>'d'</VERB> (optional parameter).</SP>
         </PARAM_DESCRIPTION>
@@ -35,18 +34,18 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    If <VERB/> is a polynomial matrix (or a polynomial), <VERB>Gt=gtild(G,'c')</VERB>
+    If <VERB>G</VERB> is a polynomial matrix (or a polynomial), <VERB>Gt=gtild(G,'c')</VERB>
     returns the polynomial matrix <VERB>Gt(s)=G(-s)'</VERB>.</P>
     <P>
-    If <VERB/> is a polynomial matrix (or a polynomial),  <VERB>Gt=gtild(G,'d')</VERB> 
+    If <VERB>G</VERB> is a polynomial matrix (or a polynomial),  <VERB>Gt=gtild(G,'d')</VERB> 
     returns the polynomial matrix <VERB>Gt=G(1/z)*z^n</VERB> where n is the maximum
-    degree of <VERB/>.</P>
+    degree of <VERB>G</VERB>.</P>
     <P>
     For continuous-time systems represented in state-space by a <VERB>syslin</VERB> list,
     <VERB>Gt = gtild(G,'c')</VERB> returns a state-space representation
-    of <VERB>G(-s)'</VERB> i.e the <VERB>ABC</VERB> matrices of <VERB>Gt</VERB> are
-    <VERB>A',-C', B', D'</VERB>. If <VERB/> is improper (<VERB> D= D(s)</VERB>) 
-    the <VERB/> matrix of <VERB>Gt</VERB> is <VERB>D(-s)'</VERB>.</P>
+    of <VERB>G(-s)'</VERB> i.e the <VERB>ABCD</VERB> matrices of <VERB>Gt</VERB> are
+    <VERB>A',-C', B', D'</VERB>. If <VERB>G</VERB> is improper (<VERB> D= D(s)</VERB>) 
+    the <VERB>D</VERB> matrix of <VERB>Gt</VERB> is <VERB>D(-s)'</VERB>.</P>
     <P>
     For  discrete-time systems represented in state-space by a <VERB>syslin</VERB> list,
     <VERB>Gt = gtild(G,'d')</VERB> returns a state-space representation

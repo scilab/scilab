@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_f772sci  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="pvm_f772sci"> Convert a F77 complex into a complex scalar  </SHORT_DESCRIPTION>
+  <TITLE>pvm_f772sci</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm_f772sci"> Convert a F77 complex into a complex scalar</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[res] = pvm_f772sci(var)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>var : local scilab variable.  On  return, the  variable will  be  </PARAM_NAME>
+        <PARAM_NAME>var : local scilab variable.  On  return, the  variable will  be</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>overwritten with the result  of conversion operation.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>res  </PARAM_NAME>
+        <PARAM_NAME>res</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: if the parameter var is not a variable, the result of the conversion  is returned in res.</SP>
         </PARAM_DESCRIPTION>
@@ -47,7 +46,7 @@ if norm(a - [1.+2* %i,3.+%i, 2. + 3. *%i ]) >10*%eps then pause;end
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>pvm_sci2f7</LINK>
+      <LINK>pvm_sci2f77</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

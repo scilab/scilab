@@ -1,36 +1,35 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>get  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
+  <TITLE>get</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
   <SHORT_DESCRIPTION name="get"> Retrieve a property value from a
   graphics entity or an User Interface object.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>h=get(prop) </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>val=get(h,prop)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>val=h.prop  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>val=h.prop</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>val=get(n,prop)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: handle, the handle of the entity to retrieve a property. <VERB>h</VERB> can be a vector of
      handles, in which case get returns the property's value for all objects identified by h(i).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the handle of the  User Interface object to retrieve a property.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>prop  </PARAM_NAME>
+        <PARAM_NAME>prop</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string name of the property.</SP>
         </PARAM_DESCRIPTION>
@@ -115,5 +114,5 @@
       <LINK>set</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

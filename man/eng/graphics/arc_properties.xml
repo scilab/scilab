@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>arc_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="arc_properties"> description of the
-   Arc entity properties </SHORT_DESCRIPTION>
+   Arc entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Arc entity is a leaf of the graphics entities
@@ -26,8 +25,8 @@
         <SP>This property is to return the coordinates of the upper-left point, the
     width and the height of the inclosing rectangle as well as the
     boundary angles of the sector. It is the matrix 
-    <VERB>[xleft,yup;width,height;a1,a2]</VERB> where <VERB>a1/6</VERB>
-    and <VERB>a2/6</VERB> are the sector boundary angles in degree.</SP>
+    <VERB>[xleft,yup;width,height;a1,a2]</VERB> where <VERB>a1/64</VERB>
+    and <VERB>a2/64</VERB> are the sector boundary angles in degree.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The  <VERB>line_style</VERB> property value should be an integer in [0 9].
@@ -124,5 +123,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

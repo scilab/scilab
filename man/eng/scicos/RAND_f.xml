@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>RAND_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="RAND_f"> Scicos random wave generator  </SHORT_DESCRIPTION>
+  <TITLE>RAND_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="RAND_f"> Scicos random wave generator</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block is a random wave generator: each output component takes piecewise
@@ -14,14 +13,14 @@
     input event port, the outputs take  new independent random values.
   </P>
     <P>
-    output port size is given by the size of <VERB/> and <VERB/> vectors
+    output port size is given by the size of <VERB>A</VERB> and <VERB>B</VERB> vectors
   </P>
   </DESCRIPTION>
   <SECTION label="Dialogue parameters">
     <ITEMIZE>
       <ITEM label="flag">
         <SP>: 0 or 1. 0 for uniform distribution on
-      <VERB>[A,A+</VERB>] and 1 for normal distribution
+      <VERB>[A,A+B</VERB>] and 1 for normal distribution
       <VERB>N(A,B*B)</VERB>.</SP>
       </ITEM>
       <ITEM label="A">

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>full  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="full"> sparse to full matrix conversion  </SHORT_DESCRIPTION>
+  <TITLE>full</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="full"> sparse to full matrix conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>X=full(sp)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sp  </PARAM_NAME>
+        <PARAM_NAME>sp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex sparse (or full) matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: full matrix</SP>
         </PARAM_DESCRIPTION>
@@ -28,7 +27,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>X=full(sp)</VERB> converts the sparse matrix <VERB>sp</VERB> into its
-    full representation. (If <VERB>sp</VERB> is already full then <VERB/> equals
+    full representation. (If <VERB>sp</VERB> is already full then <VERB>X</VERB> equals
     <VERB>sp</VERB>).</P>
   </DESCRIPTION>
   <EXAMPLE>

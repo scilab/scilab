@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>evans  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="evans"> Evans root locus  </SHORT_DESCRIPTION>
+  <TITLE>evans</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="evans"> Evans root locus</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>evans(H [,kmax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>H</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: list (linear system <VERB>syslin </VERB>)</SP>
+          <SP>: list (linear system <VERB>syslin</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>kmax  </PARAM_NAME>
+        <PARAM_NAME>kmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (maximum gain desired for the plot )</SP>
         </PARAM_DESCRIPTION>
@@ -39,7 +38,7 @@
     <VERB>k=-1/real(horner(h,[1,%i]*locate(1)))</VERB> and click the desired point
     on the root locus. If the coordinates of the selected point are
     in the real 2 x 1 vector <VERB>P=locate(1)</VERB>  this <VERB>k</VERB>
-    solves the equation <VERB> k*N(w) + D(w) =</VERB> with <VERB>w=P(1)+%i*P(2)=[1,%i]*</VERB>.</P>
+    solves the equation <VERB> k*N(w) + D(w) =0</VERB> with <VERB>w=P(1)+%i*P(2)=[1,%i]*P</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -63,7 +62,7 @@ evans(n,d,80);
       <LINK>kpure</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>krac</LINK>
+      <LINK>krac2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>locate</LINK>

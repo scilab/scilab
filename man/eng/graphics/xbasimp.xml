@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xbasimp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xbasimp"> send graphics to a Postscript printer or in a file  </SHORT_DESCRIPTION>
+  <TITLE>xbasimp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xbasimp"> send graphics to a Postscript printer or in a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xbasimp(win_num,[filen,printer])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>win_num  </PARAM_NAME>
+        <PARAM_NAME>win_num</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer scalar or vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>filen  </PARAM_NAME>
+        <PARAM_NAME>filen</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, Postscript file name (default value is &quot;file&quot;). The window number  is appended to <VERB>filen</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>printer  </PARAM_NAME>
+        <PARAM_NAME>printer</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, printer name. If <VERB>printer</VERB> is present or if there is only  one argument in the  calling sequence, the created file is printed on printer <VERB>printer</VERB>.</SP>
         </PARAM_DESCRIPTION>

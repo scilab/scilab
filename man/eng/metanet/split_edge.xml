@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>split_edge  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="split_edge"> splits an edge by inserting a node  </SHORT_DESCRIPTION>
+  <TITLE>split_edge</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="split_edge"> splits an edge by inserting a node</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = split_edge(i,j,g,name)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>i  </PARAM_NAME>
+        <PARAM_NAME>i</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of start node of edge</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>j  </PARAM_NAME>
+        <PARAM_NAME>j</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of end node of edge</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional name of the added node</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph</SP>
         </PARAM_DESCRIPTION>
@@ -45,7 +44,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>split_edge</VERB> returns the graph <VERB>g</VERB>, the edge from node
+    <P><VERB>split_edge</VERB> returns the graph <VERB>g1</VERB>, the edge from node
     number <VERB>i</VERB> to node number <VERB>j</VERB> being splitted: a new node is created
     and located at the middle point between the 2 previous nodes. This new node
     is linked with the 2 nodes <VERB>i</VERB> and <VERB>j</VERB>.

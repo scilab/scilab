@@ -1,18 +1,17 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>surface_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="surface_properties"> description of the
-   3D entities properties </SHORT_DESCRIPTION>
+   3D entities properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Surface entity is a leaf of the graphics entities
   hierarchy. Two classes appears under this type of entity :
-  <VERB>Plot3d</VERB> and <VERB>Fac3d </VERB>
+  <VERB>Plot3d</VERB> and <VERB>Fac3d</VERB>
   according to the ploting function.
   </P>
     <P> 
@@ -65,7 +64,7 @@
         if type=0  the plot is made using the current 3D scaling (set
         by a previous call to <VERB>param3d</VERB>,
         <VERB>plot3d</VERB>, <VERB>contour</VERB> or
-        <VERB>plot3d</VERB>). 
+        <VERB>plot3d1</VERB>). 
         </P>
             <P>
          if type=1  rescales automatically 3d boxes with extreme
@@ -108,14 +107,14 @@
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then all facets are painted
+         If <VERB>color_flag==0</VERB> then all facets are painted
          using the color index defined by <VERB>flag(1)</VERB> (see
          above).
         </P>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then all facets are painted
+         If <VERB>color_flag==1</VERB> then all facets are painted
          using the color index proportional to <VERB>z</VERB>. The minimum
          <VERB>z</VERB> value is painted using the index 1 color while The maximum
          <VERB>z</VERB> value is painted using highest color index.
@@ -123,7 +122,7 @@
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then all facets are painted
+         If <VERB>color_flag==2</VERB> then all facets are painted
          using the color index given in the
          <VERB>surface_color</VERB> property (one color per facet). 
          </P>
@@ -134,7 +133,7 @@
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then facets painting results of
+         If <VERB>color_flag==3</VERB> then facets painting results of
          interpolation of  facet boundary colors. The facet boundary
          colors indices are given in the
          <VERB>surface_color</VERB> property (one color per
@@ -151,13 +150,13 @@
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then the property value is a
+         If <VERB>color_flag==2</VERB> then the property value is a
          vector of indices. One color index per facet.
         </P>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
-         If <VERB>color_flag==</VERB> then the property value is a
+         If <VERB>color_flag==3</VERB> then the property value is a
          matrix of indices. One column per facet and for each facet one
          color index is given for each boundary.
         </P>
@@ -220,14 +219,14 @@
       <LINK>plot3d</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot3d</LINK>
+      <LINK>plot3d1</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot3d</LINK>
+      <LINK>plot3d2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

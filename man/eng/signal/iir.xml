@@ -1,40 +1,39 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>iir  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="iir"> iir digital filter  </SHORT_DESCRIPTION>
+  <TITLE>iir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="iir"> iir digital filter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[hz]=iir(n,ftype,fdesign,frq,delta)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: filter order (pos. integer)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ftype  </PARAM_NAME>
+        <PARAM_NAME>ftype</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string  specifying the filter type  <VERB>'lp','hp','bp','sb'</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fdesign  </PARAM_NAME>
+        <PARAM_NAME>fdesign</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string specifying the analog filter design  <VERB>='butt','cheb1','cheb2','ellip'</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>frq  </PARAM_NAME>
+        <PARAM_NAME>frq</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 2-vector of discrete cut-off frequencies (i.e.,
-  <VERB>0&lt;frq&lt;.</VERB>). For <VERB>lp</VERB> and
+  <VERB>0&lt;frq&lt;.5</VERB>). For <VERB>lp</VERB> and
   <VERB>hp</VERB> filters only <VERB>frq(1)</VERB> is used. For
   <VERB>bp</VERB> and <VERB>sb</VERB> filters <VERB>frq(1)</VERB> is
   the lower cut-off frequency and <VERB>frq(2)</VERB> is the upper
@@ -42,32 +41,32 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>delta  </PARAM_NAME>
+        <PARAM_NAME>delta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <P>
-    : 2-vector of error values for <VERB>cheb1, cheb</VERB>, and
+    : 2-vector of error values for <VERB>cheb1, cheb2</VERB>, and
   <VERB>ellip</VERB> filters where only <VERB>delta(1)</VERB> is used
-  for <VERB>cheb</VERB> case, only <VERB>delta(2)</VERB> is used for
-  <VERB>cheb</VERB> case, and <VERB>delta(1)</VERB> and
+  for <VERB>cheb1</VERB> case, only <VERB>delta(2)</VERB> is used for
+  <VERB>cheb2</VERB> case, and <VERB>delta(1)</VERB> and
   <VERB>delta(2)</VERB> are both used for <VERB>ellip</VERB>
-  case. <VERB>0&lt;delta(1),delta(2)&lt;</VERB></P>
+  case. <VERB>0&lt;delta(1),delta(2)&lt;1</VERB></P>
           <PARAM_INDENT>
             <PARAM_ITEM>
               <PARAM_NAME>-  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>for <VERB>cheb</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;</VERB> in passband</SP>
+                <SP>for <VERB>cheb1</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;1</VERB> in passband</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>-  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>for <VERB>cheb</VERB> filters <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
+                <SP>for <VERB>cheb2</VERB> filters <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>-  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>for <VERB>ellip</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;</VERB> in passband and <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
+                <SP>for <VERB>ellip</VERB> filters <VERB>1-delta(1)&lt;ripple&lt;1</VERB> in passband and <VERB>0&lt;ripple&lt;delta(2)</VERB> in stopband</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_recv  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_recv</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_recv"> receive a message.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[buff, info, msgtid, tag] = pvm_recv(tid, msgtag)  </CALLING_SEQUENCE_ITEM>
@@ -13,37 +12,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>tid  </PARAM_NAME>
+        <PARAM_NAME>tid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, task identifier of sending process supplied by the user.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be  </PARAM_NAME>
+        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>&gt;= 0.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>buff  </PARAM_NAME>
+        <PARAM_NAME>buff</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scilab variable, where the received message will be stored.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, status code returned by the routine. Values less than zero indicate an error.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msgtid : integer, returning  the source of the  message.  Useful when the  </PARAM_NAME>
+        <PARAM_NAME>msgtid : integer, returning  the source of the  message.  Useful when the</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>message was received with a wildcard tid.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tag  </PARAM_NAME>
+        <PARAM_NAME>tag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, returning the  message label.  Useful when the message was received with a wildcard msgtag.</SP>
         </PARAM_DESCRIPTION>
@@ -53,22 +52,22 @@
   <DESCRIPTION>
     <P><VERB>pvm_recv</VERB> 
     blocks the process until a message with label
-    <VERB>msgtag</VERB> (<VERB>-</VERB> can be used to match 
+    <VERB>msgtag</VERB> (<VERB>-1</VERB> can be used to match 
     all message tags)
-    has arrived from <VERB>tid</VERB> (<VERB>-</VERB> can be used to
+    has arrived from <VERB>tid</VERB> (<VERB>-1</VERB> can be used to
     match all tids). 
     <VERB>pvm_recv</VERB> returns the message in <VERB>buff</VERB>.</P>
     <P>
-    If <VERB>tid=-</VERB> and <VERB>msgtag</VERB> is defined by the user, 
+    If <VERB>tid=-1</VERB> and <VERB>msgtag</VERB> is defined by the user, 
     then <VERB>pvm_recv</VERB> will accept a
     message from any process which has a matching
     <VERB>msgtag</VERB>.</P>
     <P>
-    If <VERB>msgtag = -</VERB>
+    If <VERB>msgtag = -1</VERB>
     and <VERB>tid</VERB> is defined by the user, then 
     <VERB>pvm_recv</VERB> will accept any message
     that is sent from process <VERB>tid</VERB> .
-    If <VERB>tid=-</VERB> and <VERB>msgtag = -</VERB> then
+    If <VERB>tid=-1</VERB> and <VERB>msgtag = -1</VERB> then
     <VERB>pvm_recv</VERB> will accept any message from any process.</P>
     <P>
     When wildcard  are used,   the  application is   able to  receive  any

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>DELAYV_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="DELAYV_f"> Scicos time varying delay block  </SHORT_DESCRIPTION>
+  <TITLE>DELAYV_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="DELAYV_f"> Scicos time varying delay block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block implements a time varying discretized delay. The value of
@@ -31,7 +30,7 @@
         <SP>: size of the delayed vector (-1 not allowed)</SP>
       </ITEM>
       <ITEM label="Register initial state">
-        <SP>: register initial state vector. Dimension must be greater than  or equal to </SP>
+        <SP>: register initial state vector. Dimension must be greater than  or equal to 2</SP>
       </ITEM>
       <ITEM label="Max delay">
         <SP>: Maximum delay that can be produced by this block</SP>

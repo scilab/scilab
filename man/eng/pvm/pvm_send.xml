@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_send  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_send</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_send"> immediately sends (or multicast) data.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[info] = pvm_send(tids,buff,msgtag)  </CALLING_SEQUENCE_ITEM>
@@ -13,25 +12,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>tids  </PARAM_NAME>
+        <PARAM_NAME>tids</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row of integers, contains the task IDs of the tasks to be sent to.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>buff  </PARAM_NAME>
+        <PARAM_NAME>buff</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scilab variable.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be  </PARAM_NAME>
+        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag should be</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>&gt;= 0.  It allows the user's program to distinguish between different kinds of messages .</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, status code returned by the routine. Values less than zero indicate an error.</SP>
         </PARAM_DESCRIPTION>

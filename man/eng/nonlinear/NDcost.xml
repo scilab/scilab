@@ -1,45 +1,44 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>NDcost  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
+  <TITLE>NDcost</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
   <SHORT_DESCRIPTION name="NDcost"> generic external for optim
-  computing gradient using finite differences  </SHORT_DESCRIPTION>
+  computing gradient using finite differences</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[f,g,ind]=CDcost(x,ind,fun,varargin) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real  vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer parameter (see optim)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fun  </PARAM_NAME>
+        <PARAM_NAME>fun</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scilab function with calling sequence <VERB>F=fun(x,varargin)</VERB>
            varargin may be use to pass  parameters <VERB>p1,...pn</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: criterion value  at point <VERB>x</VERB> (see optim)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: gradient value  at point <VERB>x</VERB> (see optim)</SP>
         </PARAM_DESCRIPTION>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_tasks  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_tasks</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_tasks"> information about the tasks running on the virtual machine.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>res  = pvm_tasks([where])  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>where  </PARAM_NAME>
+        <PARAM_NAME>where</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) integer, specifying what tasks to return information about. The options are:</SP>
           <VERBATIM>
@@ -26,7 +25,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>res  </PARAM_NAME>
+        <PARAM_NAME>res</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  list of 7 elements such that:</SP>
           <PARAM_INDENT>
@@ -39,7 +38,7 @@
             <PARAM_ITEM>
               <PARAM_NAME>res(2)  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>:  integer returning parent task I</SP>
+                <SP>:  integer returning parent task ID</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>

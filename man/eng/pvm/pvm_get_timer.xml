@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_get_timer  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>January 199</DATE>
+  <TITLE>pvm_get_timer</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>January 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_get_timer"> Gets the  system's notion  of  the current time.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[time] = pvm_get_timer()  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>time  </PARAM_NAME>
+        <PARAM_NAME>time</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar</SP>
         </PARAM_DESCRIPTION>

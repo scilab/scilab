@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cepstrum  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="cepstrum"> cepstrum calculation  </SHORT_DESCRIPTION>
+  <TITLE>cepstrum</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cepstrum"> cepstrum calculation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>fresp = cepstrum(w,mag)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>w  </PARAM_NAME>
+        <PARAM_NAME>w</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: positive real vector of frequencies (rad/sec)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mag  </PARAM_NAME>
+        <PARAM_NAME>mag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector of magnitudes (same size as <VERB>w</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fresp  </PARAM_NAME>
+        <PARAM_NAME>fresp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: complex vector</SP>
         </PARAM_DESCRIPTION>

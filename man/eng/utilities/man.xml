@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>man  </TITLE>
-  <TYPE>Scilab Format  </TYPE>
-  <DATE>Jan 200</DATE>
-  <SHORT_DESCRIPTION name="man"> on line help XML file description format  </SHORT_DESCRIPTION>
+  <TITLE>man</TITLE>
+  <TYPE>Scilab Format</TYPE>
+  <DATE>Jan 2003</DATE>
+  <SHORT_DESCRIPTION name="man"> on line help XML file description format</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     The on line help source files are written in XML.
@@ -54,31 +53,31 @@
      directory). <BD>Finally</BD> note that some tag pairs <VERB>&lt;TAG&gt;</VERB>, 
      <VERB>&lt;/TAG&gt;</VERB> have been renamed here <VERB>&lt;ATAG&gt;</VERB>, 
      <VERB>&lt;/ATAG&gt;</VERB>. This is because some scilab scripts which do some work
-     on or from the xml files don't verify if a tag is inside a <VERB>VERBATI</VERB> entry.
+     on or from the xml files don't verify if a tag is inside a <VERB>VERBATIM</VERB> entry.
      </P>
         <P>
       The 3 first lines of the file are mandatory, the second precises the path to the
       DTD file and the third, formed by the <VERB>&lt;MAN&gt;</VERB> tag, begin the 
       hierarchical description (the file must finish with the <VERB>&lt;/MAN&gt;</VERB> tag). 
-      The 4 followings entries : <VERB>LANGUAG</VERB>, <VERB>TITL</VERB>, 
-      <VERB>TYP</VERB> and  <VERB>DAT</VERB>, are also mandatory (in this order) the text 
+      The 4 followings entries : <VERB>LANGUAGE</VERB>, <VERB>TITLE</VERB>, 
+      <VERB>TYPE</VERB> and  <VERB>DATE</VERB>, are also mandatory (in this order) the text 
       corresponding to  <VERB>&lt;TYPE&gt;</VERB> being generally 'Scilab function' 
       (most of the cases) but may be simply  'Scilab keyword' or 'Scilab data type', ..., 
       depending of what explains the help page.have 
    </P>
         <VERBATIM>
 <![CDATA[
-       <?xml version="1.0" standalone="no" ?> <!--*- mode: xml -*--> 
+       <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
        <!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
        <MAN>
           <LANGUAGE>eng</LANGUAGE>
           <TITLE>foo</TITLE>
           <TYPE>Scilab function</TYPE>
-          <DATE>Jan 200</DATE>
+          <DATE>Jan 2003</DATE>
    ]]>
         </VERBATIM>
         <P>
-   The first of these 2 following entries (<VERB>SHORT_DESCRIPTIO</VERB>)
+   The first of these 2 following entries (<VERB>SHORT_DESCRIPTION</VERB>)
    is mandatory and important since the words of the short description text, are used by the
    <LINK>apropos</LINK> command to search help pages from a keyword : the short description
    is used to build the <VERB>whatis.html</VERB> file corresponding to your toolbox and 
@@ -87,9 +86,9 @@
    (in fact the actual associated tags are <VERB>&lt;SHORT_DESCRIPTION&gt;</VERB> and 
    <VERB>&lt;/SHORT_DESCRIPTION&gt;</VERB> and not <VERB>&lt;ASHORT_DESCRIPTION&gt;</VERB>
    and <VERB>&lt;/ASHORT_DESCRIPTION&gt;</VERB>).
-   The next entry (<VERB>CALLING_SEQUENC</VERB>) must be used if you describe a function 
+   The next entry (<VERB>CALLING_SEQUENCE</VERB>) must be used if you describe a function 
    (but is not stricly mandatory). If your function have several calling sequences
-   use several <VERB>CALLING_SEQUENCE_ITE</VERB> entries.
+   use several <VERB>CALLING_SEQUENCE_ITEM</VERB> entries.
    </P>
         <VERBATIM>
 <![CDATA[
@@ -100,7 +99,7 @@
    ]]>
         </VERBATIM>
         <P>
-   The following entry (<VERB>PARA</VERB>) is not strictly mandatory but is
+   The following entry (<VERB>PARAM</VERB>) is not strictly mandatory but is
    the good one to describe each parameters (input and output) in case of a function.
    </P>
         <VERBATIM>
@@ -122,14 +121,14 @@
    ]]>
         </VERBATIM>
         <P>
-   The <VERB>DESCRIPTIO</VERB> entry is perhaps the most significant one (but not strictly 
+   The <VERB>DESCRIPTION</VERB> entry is perhaps the most significant one (but not strictly 
    mandatory) and may be more sophisticated than in this example (for instance you may have    
-   <VERB>DESCRIPTION_ITE</VERB> sub-entries). Here you see how to write several paragraphes
+   <VERB>DESCRIPTION_ITEM</VERB> sub-entries). Here you see how to write several paragraphes
    (each one enclosed between the <VERB>&lt;P&gt;</VERB> and <VERB>&lt;/P&gt;</VERB> tags),
    how to emphasis a variable or a function name (by enclosing it between the 
    <VERB>&lt;VERB&gt;</VERB> and <VERB>&lt;/VERB&gt;</VERB> tags), how to do 
-   emphasis a part of text (<VERB>E</VERB> or <VERB>B</VERB>
-   and <VERB>T</VERB> to put it in a type writer font)), and finally, how to put a link onto 
+   emphasis a part of text (<VERB>EM</VERB> or <VERB>BD</VERB>
+   and <VERB>TT</VERB> to put it in a type writer font)), and finally, how to put a link onto 
    another help page  (in fact the actual associated tags are <VERB>&lt;LINK&gt;</VERB> and 
    <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB>
    and <VERB>&lt;/ALINK&gt;</VERB>).
@@ -167,7 +166,7 @@
    ]]>
         </VERBATIM>
         <P>
-  An important entry is the <VERB>EXAMPL</VERB> one which is reserved to show scilab
+  An important entry is the <VERB>EXAMPLE</VERB> one which is reserved to show scilab
   uses of your function (begin with simple ones !). Note that you must close this entry
   with  <VERB>]]&gt;&lt;/EXAMPLE&gt;</VERB> and not like here with <VERB>}}&gt;&lt;/EXAMPLE&gt;</VERB>
   (once again this is a bad trick to avoid some interpretation problems).</P>
@@ -184,7 +183,7 @@
   (as said before the good tags are in fact <VERB>&lt;LINK&gt;</VERB> and 
   <VERB>&lt;/LINK&gt;</VERB> and not <VERB>&lt;ALINK&gt;</VERB> and 
   <VERB>&lt;/ALINK&gt;</VERB> ) and finally how to reveal your name if you want 
-  (use one <VERB>AUTHOR_ITE</VERB> entry by author). Perhaps it is a good idea 
+  (use one <VERB>AUTHOR_ITEM</VERB> entry by author). Perhaps it is a good idea 
   to put an email adress if you look for bug reports !</P>
         <VERBATIM>
 <![CDATA[

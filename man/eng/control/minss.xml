@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>minss  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="minss"> minimal realization  </SHORT_DESCRIPTION>
+  <TITLE>minss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="minss"> minimal realization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[slc]=minss( sl [,tol])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl,slc  </PARAM_NAME>
+        <PARAM_NAME>sl,slc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> lists (linear systems in state-space form)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (threshold for rank determination (see <VERB>contr</VERB>))</SP>
         </PARAM_DESCRIPTION>

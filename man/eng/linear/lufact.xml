@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lufact  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lufact"> sparse lu factorization  </SHORT_DESCRIPTION>
+  <TITLE>lufact</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lufact"> sparse lu factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[hand,rk]=lufact(A,prec)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>hand  </PARAM_NAME>
+        <PARAM_NAME>hand</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: handle to sparse lu factors</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rk  </PARAM_NAME>
+        <PARAM_NAME>rk</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer  (rank of A)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>prec  </PARAM_NAME>
+        <PARAM_NAME>prec</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of size two <VERB>prec=[eps,reps]</VERB> giving the absolute and relative  thresolds.</SP>
         </PARAM_DESCRIPTION>
@@ -39,7 +38,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>[hand,rk]=lufact(A)</VERB> performs the lu factorization of sparse matrix <VERB/>.
+    <P><VERB>[hand,rk]=lufact(A)</VERB> performs the lu factorization of sparse matrix <VERB>A</VERB>.
     <VERB>hand</VERB> (no display) is used by <VERB>lusolve</VERB> (for solving linear
     system) and <VERB>luget</VERB> (for retrieving the factors).
     <VERB>hand</VERB> should be cleared by the command: <VERB>ludel(hand)</VERB>;

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pertrans  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pertrans"> pertranspose  </SHORT_DESCRIPTION>
+  <TITLE>pertrans</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pertrans"> pertranspose</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Y]=pertrans(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex  matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrix</SP>
         </PARAM_DESCRIPTION>
@@ -27,8 +26,8 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>Y=pertrans(X)</VERB> returns the pertranspose of <VERB/>, i.e. 
-    the symmetric of <VERB/> w.r.t the second diagonal (utility
+    <P><VERB>Y=pertrans(X)</VERB> returns the pertranspose of <VERB>X</VERB>, i.e. 
+    the symmetric of <VERB>X</VERB> w.r.t the second diagonal (utility
     function).</P>
   </DESCRIPTION>
   <EXAMPLE>

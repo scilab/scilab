@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fileinfo  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jun 199</DATE>
-  <SHORT_DESCRIPTION name="fileinfo"> Provides information about a file  </SHORT_DESCRIPTION>
+  <TITLE>fileinfo</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jun 1999</DATE>
+  <SHORT_DESCRIPTION name="fileinfo"> Provides information about a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x,ierr]=fileinfo(file)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file  </PARAM_NAME>
+        <PARAM_NAME>file</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string, the file pathname</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer vector of size 6 containing information or an empty matrix if file does not exist.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ierr  </PARAM_NAME>
+        <PARAM_NAME>ierr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: error indicator, 0, if no error has occured</SP>
         </PARAM_DESCRIPTION>
@@ -65,7 +64,7 @@
         <SP>: The device type (if inode device)</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="x(10)">
-        <SP>: The blocksize for filesystem I/</SP>
+        <SP>: The blocksize for filesystem I/O</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="x(11)">
         <SP>: The  number of blocks allocated</SP>
@@ -105,5 +104,5 @@ getdate(w(6))
       <LINK>isdir</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>S. Steer INRI</AUTHOR>
+  <AUTHOR>S. Steer INRIA</AUTHOR>
 </MAN>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cheb1mag  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="cheb1mag">  response of Chebyshev type 1 filter  </SHORT_DESCRIPTION>
+  <TITLE>cheb1mag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cheb1mag">  response of Chebyshev type 1 filter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[h2]=cheb1mag(n,omegac,epsilon,sample)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer : filter order</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>omegac  </PARAM_NAME>
+        <PARAM_NAME>omegac</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real : cut-off frequency</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>epsilon  </PARAM_NAME>
+        <PARAM_NAME>epsilon</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real : ripple in pass band</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sample  </PARAM_NAME>
+        <PARAM_NAME>sample</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of frequencies where <VERB>cheb1mag</VERB> is evaluated</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
+        <PARAM_NAME>h2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Chebyshev I filter values at sample points</SP>
         </PARAM_DESCRIPTION>

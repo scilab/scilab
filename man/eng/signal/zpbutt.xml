@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>zpbutt  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="zpbutt"> Butterworth analog filter  </SHORT_DESCRIPTION>
+  <TITLE>zpbutt</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="zpbutt"> Butterworth analog filter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[pols,gain]=zpbutt(n,omegac)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (filter order)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>omegac  </PARAM_NAME>
+        <PARAM_NAME>omegac</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (cut-off frequency in Hertz)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pols  </PARAM_NAME>
+        <PARAM_NAME>pols</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: resulting poles of filter</SP>
         </PARAM_DESCRIPTION>
@@ -45,5 +44,5 @@
     transfer function H(s) is calculated by <VERB>H(s)=gain/real(poly(pols,'s'))
 </VERB></P>
   </DESCRIPTION>
-  <AUTHOR>F. Delebecque INRI</AUTHOR>
+  <AUTHOR>F. Delebecque INRIA</AUTHOR>
 </MAN>

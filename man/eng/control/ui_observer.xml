@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ddp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ui_observer"> unknown input observer  </SHORT_DESCRIPTION>
+  <TITLE>ddp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ui_observer"> unknown input observer</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)  </CALLING_SEQUENCE_ITEM>
@@ -14,43 +13,43 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sys  </PARAM_NAME>
+        <PARAM_NAME>Sys</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>(A,B,C2,D2)</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>reject  </PARAM_NAME>
+        <PARAM_NAME>reject</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector, indices of inputs of <VERB>Sys</VERB> which are unknown.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>C</PARAM_NAME>
+        <PARAM_NAME>C1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_NAME>D1</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real matrix. <VERB>C</VERB> and <VERB>D</VERB> have the same number of rows.</SP>
+          <SP>: real matrix. <VERB>C1</VERB> and <VERB>D1</VERB> have the same number of rows.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string <VERB>'ge'</VERB> or <VERB>'st'</VERB> (default) or <VERB>'pp'</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>alfa  </PARAM_NAME>
+        <PARAM_NAME>alfa</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector (loc. of closed loop poles)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>beta  </PARAM_NAME>
+        <PARAM_NAME>beta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector (loc. of closed loop poles)</SP>
         </PARAM_DESCRIPTION>
@@ -65,10 +64,10 @@
     The  matrices B and D2 of Sys are (implicitly) partitioned as:
     <VERB>B=[B1,B2]</VERB> and <VERB>D2=[D21,D22]</VERB>  with <VERB>B1=B(:,reject)</VERB>  and 
     <VERB>D21=D2(:,reject)</VERB> where reject = indices of unknown inputs.
-    The matrices <VERB>C</VERB> and <VERB>D</VERB> define <VERB>z = C1 x + D1 (w,u)</VERB>,
+    The matrices <VERB>C1</VERB> and <VERB>D1</VERB> define <VERB>z = C1 x + D1 (w,u)</VERB>,
     the to-be-estimated output.</P>
     <P>
-    The matrix <VERB>D</VERB> is (implicitly) partitioned as <VERB>D1=[D11,D12]</VERB>
+    The matrix <VERB>D1</VERB> is (implicitly) partitioned as <VERB>D1=[D11,D12]</VERB>
     with <VERB>D11=D(:,reject)</VERB></P>
     <P>
     The data (Sys, reject,C1, D1)   define a 2-input 2-output system:</P>

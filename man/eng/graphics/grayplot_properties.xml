@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>grayplot_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="grayplot_properties"> description of the
-   grayplot entities properties </SHORT_DESCRIPTION>
+   grayplot entities properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Grayplot entity is a leaf of the graphics entities hierarchy. It
   represents 2D plots of surface using colors and images (see
   <VERB>Xgrayplot</VERB>, <VERB>Matplot</VERB> and
-  <VERB>Matplot</VERB>).
+  <VERB>Matplot1</VERB>).
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="visible: ">
@@ -89,11 +88,11 @@
       <LINK>Matplot</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>Matplot</LINK>
+      <LINK>Matplot1</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

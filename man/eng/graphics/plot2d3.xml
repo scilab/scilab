@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plot2d</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>plot2d3</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="plot2d3"> 2D plot (vertical bars)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plot2d3([logflags,] x,y,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
@@ -23,7 +22,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>plot2d</VERB> is the same as <VERB>plot2d</VERB> but curves are plotted using 
+    <P><VERB>plot2d3</VERB> is the same as <VERB>plot2d</VERB> but curves are plotted using 
     vertical bars.</P>
     <P>
     By default, successive plots are superposed. To clear the previous plot, 
@@ -43,10 +42,10 @@ plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
       <LINK>plot2d</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
+      <LINK>plot2d2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>plot2d</LINK>
+      <LINK>plot2d4</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xbasc</LINK>

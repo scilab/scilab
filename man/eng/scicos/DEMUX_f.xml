@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>DEMUX_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="DEMUX_f"> Scicos demultiplexer block  </SHORT_DESCRIPTION>
+  <TITLE>DEMUX_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="DEMUX_f"> Scicos demultiplexer block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Given a vector valued input this block splits inputs over vector

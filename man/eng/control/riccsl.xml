@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>riccsl  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="riccsl"> Riccati equation solver  </SHORT_DESCRIPTION>
+  <TITLE>riccsl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="riccsl"> Riccati equation solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X,RCOND,FERR]=riccsl(A,C,D,'type','method')  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A,C,</PARAM_NAME>
+        <PARAM_NAME>A,C,D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real square matrices.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>type  </PARAM_NAME>
+        <PARAM_NAME>type</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 'continuous' or 'discrete'</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>method  </PARAM_NAME>
+        <PARAM_NAME>method</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 'schr' or 'sign' for continuous-time systems and 'schr' or 'invf' for discrete-tyme systems</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RCON</PARAM_NAME>
+        <PARAM_NAME>RCOND</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>FER</PARAM_NAME>
+        <PARAM_NAME>FERR</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number</SP>
         </PARAM_DESCRIPTION>
@@ -61,7 +60,7 @@
    ]]>
     </VERBATIM>
     <P>
-    gives a solution to the continuous time AR</P>
+    gives a solution to the continuous time ARE</P>
     <VERBATIM>
 <![CDATA[
   A'*X + X*A + C - X*D*X = 0
@@ -75,7 +74,7 @@
    ]]>
     </VERBATIM>
     <P>
-    gives a solution  to the discrete time AR</P>
+    gives a solution  to the discrete time ARE</P>
     <VERBATIM>
 <![CDATA[
 A'*X*inv(I + D*X)*A - X + C = 0

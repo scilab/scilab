@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xgetech  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xgetech"> get the current graphics scale  </SHORT_DESCRIPTION>
+  <TITLE>xgetech</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xgetech"> get the current graphics scale</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[wrect,frect,logflag,arect]=xgetech()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>wrect,frect  </PARAM_NAME>
+        <PARAM_NAME>wrect,frect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vectors.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>logflag  </PARAM_NAME>
+        <PARAM_NAME>logflag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string of size 2 &quot;xy&quot;.</SP>
         </PARAM_DESCRIPTION>

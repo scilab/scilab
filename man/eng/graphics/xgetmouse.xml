@@ -1,32 +1,31 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xgetmouse  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>September  199</DATE>
-  <SHORT_DESCRIPTION name="xgetmouse"> get the mouse events and current position   </SHORT_DESCRIPTION>
+  <TITLE>xgetmouse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September  1994</DATE>
+  <SHORT_DESCRIPTION name="xgetmouse"> get the mouse events and current position</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rep=xgetmouse([flag], [sel])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer. If present, the mouse click event queue is not cleared when entering  xgetmouse.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sel  </PARAM_NAME>
+        <PARAM_NAME>sel</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean vector <VERB>[getmotion, getrelease]</VERB>. default
   value is <VERB>[%t, %f]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rep  </PARAM_NAME>
+        <PARAM_NAME>rep</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size 3, [x,y,ibutton].</SP>
         </PARAM_DESCRIPTION>
@@ -83,5 +82,5 @@ xset("alufunction",3)
       <LINK>xclick</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>S. Steer  </AUTHOR>
+  <AUTHOR>S. Steer</AUTHOR>
 </MAN>

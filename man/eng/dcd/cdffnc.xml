@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdffnc  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdffnc"> cumulative distribution function non-central f-distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdffnc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdffnc"> cumulative distribution function non-central f-distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdffnc(&quot;PQ&quot;,F,Dfn,Dfd,Pnonc)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[F]=cdffnc(&quot;F&quot;,Dfn,Dfd,Pnonc,P,Q);  </CALLING_SEQUENCE_ITEM>
@@ -17,7 +16,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,F,Dfn,Dfd,Pnonc  </PARAM_NAME>
+        <PARAM_NAME>P,Q,F,Dfn,Dfd,Pnonc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: six real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -29,25 +28,25 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Upper limit of integration of the non-central f-density. Input range: [0, +infinity). Search range: [0,1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Dfn  </PARAM_NAME>
+        <PARAM_NAME>Dfn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Degrees of freedom of the numerator sum of squares. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Dfd  </PARAM_NAME>
+        <PARAM_NAME>Dfd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Degrees of freedom of the denominator sum of squares. Must be in range: (0, +infinity). Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Pnonc  </PARAM_NAME>
+        <PARAM_NAME>Pnonc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: The non-centrality parameter Input range: [0,infinity) Search range: [0,1E4]</SP>
         </PARAM_DESCRIPTION>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mopen  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="mopen"> open a file    </SHORT_DESCRIPTION>
+  <TITLE>mopen</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="mopen"> open a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[fd,err]=mopen(file [, mode,  swap ])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file  </PARAM_NAME>
+        <PARAM_NAME>file</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. The pathname of the file to open.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mode  </PARAM_NAME>
+        <PARAM_NAME>mode</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string that controls whether the file is opened for reading (r), writing (w), or appending (a) and whether the file is opened for updating (+).  The mode can also include a b parameter to indicate a binary file.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>swap  </PARAM_NAME>
+        <PARAM_NAME>swap</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a scalar. If <VERB>swap</VERB> is present and <VERB>swap=</VERB> then automatic bytes swap is disabled.</SP>
+          <SP>: a scalar. If <VERB>swap</VERB> is present and <VERB>swap=0</VERB> then automatic bytes swap is disabled.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a scalar. Error indicator</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fd  </PARAM_NAME>
+        <PARAM_NAME>fd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function <VERB>mopen</VERB> is used as a file descriptor (it's a positive integer).</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sparse  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="sparse"> sparse matrix definition  </SHORT_DESCRIPTION>
+  <TITLE>sparse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="sparse"> sparse matrix definition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sp=sparse(X)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sp=sparse(ij,v [,mn])  </CALLING_SEQUENCE_ITEM>
@@ -14,31 +13,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex full (or sparse) matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ij  </PARAM_NAME>
+        <PARAM_NAME>ij</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two columns integer matrix (indices of non-zeros entries)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mn  </PARAM_NAME>
+        <PARAM_NAME>mn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector with two entries (row-dimension, column-dimension)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sp  </PARAM_NAME>
+        <PARAM_NAME>sp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix</SP>
         </PARAM_DESCRIPTION>
@@ -49,8 +48,8 @@
     <P><VERB>sparse</VERB> is used to build a sparse matrix. Only non-zero entries
     are stored.</P>
     <P><VERB>sp = sparse(X)</VERB>  converts a full matrix to sparse form by
-     squeezing out any zero elements. (If <VERB/> is already sparse
-    <VERB>sp</VERB> is <VERB/>).</P>
+     squeezing out any zero elements. (If <VERB>X</VERB> is already sparse
+    <VERB>sp</VERB> is <VERB>X</VERB>).</P>
     <P><VERB>sp=sparse(ij,v [,mn])</VERB>  builds an <VERB>mn(1)</VERB>-by-<VERB>mn(2)</VERB>
     sparse matrix with <VERB>sp(ij(k,1),ij(k,2))=v(k)</VERB>. 
     <VERB>ij</VERB> and <VERB>v</VERB> must have the same column dimension.

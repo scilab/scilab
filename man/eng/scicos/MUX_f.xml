@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>MUX_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="MUX_f"> Scicos multiplexer block  </SHORT_DESCRIPTION>
+  <TITLE>MUX_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="MUX_f"> Scicos multiplexer block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Given <VERB>n</VERB> vector valued inputs this block merges inputs in an single
@@ -18,7 +17,7 @@
   <SECTION label="Dialogue parameters">
     <ITEMIZE>
       <ITEM label="number of output ports">
-        <SP>: integer greater than or equal to 1 and less than </SP>
+        <SP>: integer greater than or equal to 1 and less than 8</SP>
       </ITEM>
     </ITEMIZE>
   </SECTION>

@@ -1,21 +1,20 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bifish  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="bifish"> shows a bifurcation diagram in a fish population discrete time model   </SHORT_DESCRIPTION>
+  <TITLE>bifish</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bifish"> shows a bifurcation diagram in a fish population discrete time model</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>bifish([f_ch])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f_ch  </PARAM_NAME>
+        <PARAM_NAME>f_ch</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: can be one of <VERB>fish</VERB>, <VERB>fishr</VERB> and <VERB>fishr</VERB>. This option selects the population model.</SP>
+          <SP>: can be one of <VERB>fish</VERB>, <VERB>fishr</VERB> and <VERB>fishr2</VERB>. This option selects the population model.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -31,7 +30,7 @@
     </VERBATIM>
     <P>
     and the parameters <VERB>s</VERB> evolves to show the bifurcation diagram.
-    <VERB>fishr</VERB> and <VERB>fishr</VERB> are constructed as above but with added white noises.</P>
+    <VERB>fishr</VERB> and <VERB>fishr2</VERB> are constructed as above but with added white noises.</P>
     <VERBATIM>
 <![CDATA[
  fishr
@@ -44,7 +43,7 @@
    ]]>
     </VERBATIM>
     <P>
-    The three macros <VERB>fish, fishr, fishr</VERB> are loaded in Scilab when calling <VERB>bifish</VERB>.</P>
+    The three macros <VERB>fish, fishr, fishr2</VERB> are loaded in Scilab when calling <VERB>bifish</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

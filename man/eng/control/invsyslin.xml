@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>invsyslin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="invsyslin"> system inversion  </SHORT_DESCRIPTION>
+  <TITLE>invsyslin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="invsyslin"> system inversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sl2]=invsyslin(sl1)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl1,sl</PARAM_NAME>
+        <PARAM_NAME>sl1,sl2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> lists (linear systems in state space representation)</SP>
         </PARAM_DESCRIPTION>
@@ -22,11 +21,11 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Utility function. Computes the state form of the inverse <VERB>sl</VERB> of 
-    the linear system <VERB>sl</VERB> (which is also given in state form).</P>
+    Utility function. Computes the state form of the inverse <VERB>sl2</VERB> of 
+    the linear system <VERB>sl1</VERB> (which is also given in state form).</P>
     <P>
-    The <VERB/>-matrix is supposed to be full rank. Old stuff used by 
-    <VERB>inv(S)</VERB> when <VERB/> is a <VERB>syslin</VERB> list.</P>
+    The <VERB>D</VERB>-matrix is supposed to be full rank. Old stuff used by 
+    <VERB>inv(S)</VERB> when <VERB>S</VERB> is a <VERB>syslin</VERB> list.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

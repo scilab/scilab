@@ -1,17 +1,16 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fort  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="fort"> Fortran or C user routines call  </SHORT_DESCRIPTION>
+  <TITLE>fort</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fort"> Fortran or C user routines call</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>// long form 'out' is present   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>// long form 'out' is present</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[y1,...,yk]=fort(&quot;ident&quot;,x1,px1,&quot;tx1&quot;,...,xn,pxn,&quot;txn&quot;,  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>                 &quot;out&quot;,[ny1,my1],py1,&quot;ty1&quot;,...,[nyl,myl],pyl,&quot;tyl&quot;)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>// short form : no 'out' parameter   </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>// short form : no 'out' parameter</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[y1,....,yk]=fort(&quot;ident&quot;,x1,...,xn)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
@@ -23,19 +22,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xi  </PARAM_NAME>
+        <PARAM_NAME>xi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix or string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pxi, pyi  </PARAM_NAME>
+        <PARAM_NAME>pxi, pyi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>txi, tyi  </PARAM_NAME>
+        <PARAM_NAME>txi, tyi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string <VERB>&quot;d&quot;</VERB>, <VERB>&quot;r&quot;</VERB>, <VERB>&quot;i&quot;</VERB>  or <VERB>&quot;c&quot;</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -83,7 +82,7 @@
         <SP>is a keyword used to separate input variables from output variables. when this key word is present it is assumes that  the long form will be used and when it is not prsent, the short form is used.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="[ny1, my1]">
-        <SP>are the size (# of rows and columns. For 'c' arguments,<VERB>m1*n</VERB> is the number of charaters )  of output variables and</SP>
+        <SP>are the size (# of rows and columns. For 'c' arguments,<VERB>m1*n1</VERB> is the number of charaters )  of output variables and</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="py1, ...">
         <SP>are the positions of output variables (possibly equal to <VERB>pxi</VERB> ) in the calling sequence of the routine. The <VERB>pyi</VERB>'s integers must be in increasing order.</SP>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unglue  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 200</DATE>
+  <TITLE>unglue</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="unglue"> 
    unglue an agragation and replace it by individual children.
   </SHORT_DESCRIPTION>
@@ -16,13 +15,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a handle on an agregation.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>H</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of handle on the resulting entities after unagregation.</SP>
         </PARAM_DESCRIPTION>
@@ -53,5 +52,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

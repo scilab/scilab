@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nlev  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="nlev"> Leverrier's algorithm   </SHORT_DESCRIPTION>
+  <TITLE>nlev</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="nlev"> Leverrier's algorithm</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[num,den]=nlev(A,z [,rmax])    </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rmax  </PARAM_NAME>
+        <PARAM_NAME>rmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional parameter (see <VERB>bdiag</VERB>)</SP>
         </PARAM_DESCRIPTION>

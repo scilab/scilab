@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>%k  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="%k"> Jacobi's complete elliptic integral  </SHORT_DESCRIPTION>
+  <TITLE>%k</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="%k"> Jacobi's complete elliptic integral</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[K]=%k(m)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: parameter of the elliptic integral <VERB>0&lt;m&lt;</VERB> (<VERB>m</VERB> can be a vector)</SP>
+          <SP>: parameter of the elliptic integral <VERB>0&lt;m&lt;1</VERB> (<VERB>m</VERB> can be a vector)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of the elliptic integral from 0 to 1 on the real axis</SP>
         </PARAM_DESCRIPTION>
@@ -33,7 +32,7 @@
   </DESCRIPTION>
   <SECTION label="References">
     <P>
-    Abramowitz and Stegun page 59</P>
+    Abramowitz and Stegun page 598</P>
   </SECTION>
   <EXAMPLE>
 <![CDATA[

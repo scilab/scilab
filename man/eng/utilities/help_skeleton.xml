@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>help_skeleton</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>21-May-200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>21-May-2003</DATE>
   <SHORT_DESCRIPTION name="help_skeleton">build the skeleton of the
   xml help file associated to a Scilab function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>calfrq  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="calfrq"> frequency response discretization  </SHORT_DESCRIPTION>
+  <TITLE>calfrq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="calfrq"> frequency response discretization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[frq,split]=calfrq(h,[fmin,fmax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: SISO linear system (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fmin,fmax  </PARAM_NAME>
+        <PARAM_NAME>fmin,fmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalars (min and max frequencies)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>frq  </PARAM_NAME>
+        <PARAM_NAME>frq</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector (discretization of interval)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>split  </PARAM_NAME>
+        <PARAM_NAME>split</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of frq splitting points indexes</SP>
         </PARAM_DESCRIPTION>
@@ -45,11 +44,11 @@
     such that the peaks in the frequency response are well represented.</P>
     <P>
     Default values for <VERB>fmin</VERB> and <VERB>fmax</VERB> are
-    <VERB>1.d-</VERB>, <VERB>1.d+</VERB> if <VERB>h</VERB> is continuous-time
-    or <VERB>1.d-</VERB>, <VERB>1/(2*h('dt'))</VERB> if <VERB>h</VERB> is discrete-time.</P>
+    <VERB>1.d-3</VERB>, <VERB>1.d+3</VERB> if <VERB>h</VERB> is continuous-time
+    or <VERB>1.d-3</VERB>, <VERB>1/(2*h('dt'))</VERB> if <VERB>h</VERB> is discrete-time.</P>
     <P>
     Singularities are located between <VERB>frq(split(k))</VERB> and <VERB>frq(split(k)+1)</VERB>
-    for <VERB>k&gt;</VERB>.</P>
+    for <VERB>k&gt;1</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

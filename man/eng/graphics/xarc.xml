@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xarc  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xarc"> draw a part of an ellipse  </SHORT_DESCRIPTION>
+  <TITLE>xarc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xarc"> draw a part of an ellipse</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xarc(x,y,w,h,a1,a2)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y,w,h  </PARAM_NAME>
+        <PARAM_NAME>x,y,w,h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: four real values defining a rectangle.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a1,a</PARAM_NAME>
+        <PARAM_NAME>a1,a2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real values defining a sector.</SP>
         </PARAM_DESCRIPTION>
@@ -30,9 +29,9 @@
     <P><VERB>xarc</VERB> draws a part of an ellipse contained in the rectangle 
     <VERB>(x,y,w,h)</VERB> (upper-left point, width, height), and in the sector 
     defined by 
-    the angle <VERB>alpha</VERB> and the angle <VERB>alpha1+alpha</VERB>. 
-    <VERB>alpha</VERB> and <VERB>alpha</VERB> are 
-    given respectively by <VERB>a1/6</VERB> degrees and <VERB>a2/6</VERB> degrees.
+    the angle <VERB>alpha1</VERB> and the angle <VERB>alpha1+alpha2</VERB>. 
+    <VERB>alpha1</VERB> and <VERB>alpha2</VERB> are 
+    given respectively by <VERB>a1/64</VERB> degrees and <VERB>a2/64</VERB> degrees.
     This function uses the current graphics scale and color.</P>
   </DESCRIPTION>
   <EXAMPLE>

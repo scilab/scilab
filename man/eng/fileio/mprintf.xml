@@ -1,14 +1,13 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mprintf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Aug 199</DATE>
-  <SHORT_DESCRIPTION name="mfprintf"> converts, formats, and writes  data to a file   </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="mprintf"> converts, formats, and writes  data to the main scilab window  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="msprintf"> converts, formats, and writes  data in a string  </SHORT_DESCRIPTION>
+  <TITLE>mprintf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Aug 1999</DATE>
+  <SHORT_DESCRIPTION name="mfprintf"> converts, formats, and writes  data to a file</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mprintf"> converts, formats, and writes  data to the main scilab window</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="msprintf"> converts, formats, and writes  data in a string</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mfprintf(fd,format,a1,...,an);  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>mprintf(format,a1,...,an);  </CALLING_SEQUENCE_ITEM>
@@ -17,25 +16,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>fd  </PARAM_NAME>
+        <PARAM_NAME>fd</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: scalar, file descriptor given by <VERB>mopen</VERB> (it's a positive integer). The value <VERB>-</VERB> refers to the default file ( i.e the last opened file).</SP>
+          <SP>: scalar, file descriptor given by <VERB>mopen</VERB> (it's a positive integer). The value <VERB>-1</VERB> refers to the default file ( i.e the last opened file).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>format  </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab string describing  the format to use to write  the  remaining  operands.  The format operand follows, as close as possible,  the C printf format operand syntax.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string, string to be scanned.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a1,...,an  </PARAM_NAME>
+        <PARAM_NAME>a1,...,an</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Specifies the data to be converted and printed according to the format parameter.</SP>
         </PARAM_DESCRIPTION>

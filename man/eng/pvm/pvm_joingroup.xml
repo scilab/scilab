@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_joingroup  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_joingroup</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_joingroup"> enrolls the calling process in a named group.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[inum] = pvm_joingroup(group)  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>group  </PARAM_NAME>
+        <PARAM_NAME>group</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, string group name of an existing group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>inum  </PARAM_NAME>
+        <PARAM_NAME>inum</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, instance number returned by the routine.</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cmoment  </TITLE>
+  <TITLE>cmoment</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="cmoment">  central moments of all orders  </SHORT_DESCRIPTION>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="cmoment">  central moments of all orders</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mom=cmoment(x,ord)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>mom=cmoment(x,ord,'r') or mom=cmoment(x,ord,1)  </CALLING_SEQUENCE_ITEM>
@@ -15,13 +14,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ord  </PARAM_NAME>
+        <PARAM_NAME>ord</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: positive integer</SP>
         </PARAM_DESCRIPTION>
@@ -33,8 +32,8 @@
     cmoment<VERB>(x,ord)</VERB> is the central moment or order ord of
     the elements of <VERB>x</VERB>.
     If a  third argument  of type string  <VERB>'r'</VERB> (or  <VERB> 1
-    </VERB>) or  <VERB>'c'</VERB> (or <VERB> </VERB>)  is used, we  get  in the
-    first   case,   a  row   vector   <VERB> mom </VERB>  such   that
+    </VERB>) or  <VERB>'c'</VERB> (or <VERB> 2</VERB>)  is used, we  get  in the
+    first   case,   a  row   vector   <VERB> mom</VERB>  such   that
     <VERB>mom(j)</VERB>   contains  the   central  moment   of  order
     <VERB>ord</VERB>     of     the     <VERB>j</VERB>     column     of
     <VERB>x</VERB>. <VERB>cmoment(x,ord,'c')</VERB>  is used in  the same way
@@ -94,5 +93,5 @@ mom=cmoment(x,3,'c')
       <LINK>nanstdev</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

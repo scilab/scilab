@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>file  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="file"> file management  </SHORT_DESCRIPTION>
+  <TITLE>file</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="file"> file management</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>file(action,unit)  </CALLING_SEQUENCE_ITEM>
@@ -15,13 +14,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file-name  </PARAM_NAME>
+        <PARAM_NAME>file-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, file name of the file to be opened</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>status  </PARAM_NAME>
+        <PARAM_NAME>status</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, The status of the file to be opened</SP>
           <PARAM_INDENT>
@@ -73,7 +72,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>format   </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string,</SP>
           <PARAM_INDENT>
@@ -93,19 +92,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>recl   </PARAM_NAME>
+        <PARAM_NAME>recl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer,is the size of records in bytes when <VERB>access=&quot;direct&quot;</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>unit   </PARAM_NAME>
+        <PARAM_NAME>unit</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, logical unit descriptor of the opened file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>units   </PARAM_NAME>
+        <PARAM_NAME>units</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector, logical unit descriptor of
    the opened files. Units 1 5 and 6 are reserved by the system for
@@ -113,19 +112,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>typs   </PARAM_NAME>
+        <PARAM_NAME>typs</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Character string vector, type (C or Fortran) of opened files.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nams   </PARAM_NAME>
+        <PARAM_NAME>nams</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Character string vector, pathnames of opened files.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mod   </PARAM_NAME>
+        <PARAM_NAME>mod</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: file opening mode. Formed by three digits abc</SP>
           <PARAM_INDENT>
@@ -155,23 +154,23 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>C files   </PARAM_NAME>
+              <PARAM_NAME>C files</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>a   </PARAM_NAME>
+                    <PARAM_NAME>a</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: is 1 if file has been opened with a &quot;b&quot; (binary) mode</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>b   </PARAM_NAME>
+                    <PARAM_NAME>b</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: is 1 if file has been opened with a &quot;+&quot; (updating) mode</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>c   </PARAM_NAME>
+                    <PARAM_NAME>c</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: 1 stands for &quot;r&quot; (read), 2 stands for &quot;w&quot; (write) and 3 for &quot;a&quot; (append)</SP>
                     </PARAM_DESCRIPTION>
@@ -189,13 +188,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err   </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, error message number (see error), if open fails. If err is omitted an error message is issued.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>action   </PARAM_NAME>
+        <PARAM_NAME>action</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is one of the following strings:</SP>
           <PARAM_INDENT>

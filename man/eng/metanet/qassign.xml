@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>qassign  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="qassign"> solves a quadratic assignment problem  </SHORT_DESCRIPTION>
+  <TITLE>qassign</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="qassign"> solves a quadratic assignment problem</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[crit,order] = qassign(c,f,d)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>c  </PARAM_NAME>
+        <PARAM_NAME>c</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>d  </PARAM_NAME>
+        <PARAM_NAME>d</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>crit  </PARAM_NAME>
+        <PARAM_NAME>crit</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>order  </PARAM_NAME>
+        <PARAM_NAME>order</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>

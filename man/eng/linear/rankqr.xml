@@ -1,66 +1,65 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>RANKQ</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="rankqr">  rank revealing QR factorization  </SHORT_DESCRIPTION>
+  <TITLE>RANKQR</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="rankqr">  rank revealing QR factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RCON</PARAM_NAME>
+        <PARAM_NAME>RCOND</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number used to determine the effective rank of
-  <VERB/>, which is defined as the order of the largest leading
-  triangular submatrix <VERB>R1</VERB> in the QR factorization with
-  pivoting of<VERB/>, whose estimated condition number &lt;
-  <VERB>1/RCON</VERB>.</SP>
+  <VERB>A</VERB>, which is defined as the order of the largest leading
+  triangular submatrix <VERB>R11</VERB> in the QR factorization with
+  pivoting of<VERB>A</VERB>, whose estimated condition number &lt;
+  <VERB>1/RCOND</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>JPV</PARAM_NAME>
+        <PARAM_NAME>JPVT</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <P>
     : integer vector on entry, if <VERB>JPVT(i)</VERB> is not 0, the
- <VERB>i</VERB>-th column of <VERB> </VERB> is permuted to the front
- of <VERB>A</VERB>, otherwise column <VERB>i</VERB> is a free
+ <VERB>i</VERB>-th column of <VERB> A</VERB> is permuted to the front
+ of <VERB>AP</VERB>, otherwise column <VERB>i</VERB> is a free
  column. On exit, if <VERB>JPVT(i) = k</VERB>, then the
- <VERB>i</VERB>-th column of <VERB>A*</VERB> was the
- <VERB>k</VERB>-th column of <VERB/>. 
+ <VERB>i</VERB>-th column of <VERB>A*P</VERB> was the
+ <VERB>k</VERB>-th column of <VERB>A</VERB>. 
   </P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RAN</PARAM_NAME>
+        <PARAM_NAME>RANK</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the effective rank of <VERB/>, i.e., the order of the
-  submatrix <VERB>R1</VERB>.  This is the same as the order of the
-  submatrix <VERB>T</VERB> in the complete orthogonal factorization
-  of <VERB/>.</SP>
+          <SP>: the effective rank of <VERB>A</VERB>, i.e., the order of the
+  submatrix <VERB>R11</VERB>.  This is the same as the order of the
+  submatrix <VERB>T1</VERB> in the complete orthogonal factorization
+  of <VERB>A</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>SVA</PARAM_NAME>
+        <PARAM_NAME>SVAL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector with 3 components; The estimates of some of the
-  singular values of the triangular factor <VERB/>.</SP>
+  singular values of the triangular factor <VERB>R</VERB>.</SP>
           <P><VERB>SVAL(1)</VERB> is the largest singular value of
   <VERB>R(1:RANK,1:RANK)</VERB>;</P>
           <P><VERB>SVAL(2)</VERB> is the
   smallest singular value of <VERB>R(1:RANK,1:RANK)</VERB>;</P>
           <P><VERB>SVAL(3)</VERB> is the smallest singular value of
-  <VERB>R(1:RANK+1,1:RANK+1)</VERB>, if <VERB>RAN</VERB> &lt; <VERB>MIN(M,N)</VERB>, 
+  <VERB>R(1:RANK+1,1:RANK+1)</VERB>, if <VERB>RANK</VERB> &lt; <VERB>MIN(M,N)</VERB>, 
   or of <VERB>R(1:RANK,1:RANK)</VERB>, otherwise.</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
@@ -69,7 +68,7 @@
   <DESCRIPTION>
     <P>
 To compute (optionally) a rank-revealing QR factorization of a real
-general M-by-N real or complex matrix <VERB/>, which may be
+general M-by-N real or complex matrix <VERB>A</VERB>, which may be
 rank-deficient, and estimate its effective rank using incremental
 condition estimation.</P>
     <P>
@@ -81,22 +80,22 @@ The routine uses a QR factorization with column pivoting:</P>
 ]]>
     </VERBATIM>
     <P>
-with <VERB>R1</VERB> defined as the largest leading submatrix whose
-estimated condition number is less than <VERB>1/RCON</VERB>.  The
-order of <VERB>R1</VERB>, <VERB>RAN</VERB>, is the effective rank of
-<VERB/>.</P>
+with <VERB>R11</VERB> defined as the largest leading submatrix whose
+estimated condition number is less than <VERB>1/RCOND</VERB>.  The
+order of <VERB>R11</VERB>, <VERB>RANK</VERB>, is the effective rank of
+<VERB>A</VERB>.</P>
     <P>
 If the triangular factorization is a rank-revealing one (which will be
 the case if the leading columns were well- conditioned), then
 <VERB>SVAL(1)</VERB> will also be an estimate for the largest singular
-value of <VERB/>, and <VERB>SVAL(2)</VERB> and
-<VERB>SVAL(3)</VERB> will be estimates for the <VERB>RAN</VERB>-th
-and <VERB>(RANK+1)</VERB>-st singular values of <VERB/>,
+value of <VERB>A</VERB>, and <VERB>SVAL(2)</VERB> and
+<VERB>SVAL(3)</VERB> will be estimates for the <VERB>RANK</VERB>-th
+and <VERB>(RANK+1)</VERB>-st singular values of <VERB>A</VERB>,
 respectively.</P>
     <P>
 By examining these values, one can confirm that the
 rank is well defined with respect to the chosen value of
-<VERB>RCON</VERB>.  The ratio <VERB>SVAL(1)/SVAL(2)</VERB> is an
+<VERB>RCOND</VERB>.  The ratio <VERB>SVAL(1)/SVAL(2)</VERB> is an
 estimate of the condition number of <VERB>R(1:RANK,1:RANK)</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>

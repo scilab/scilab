@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gsort  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gsort"> decreasing order sorting  </SHORT_DESCRIPTION>
+  <TITLE>gsort</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gsort"> decreasing order sorting</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=gsort(v )  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=gsort(v,flag1)  </CALLING_SEQUENCE_ITEM>
@@ -15,19 +14,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>v,s  </PARAM_NAME>
+        <PARAM_NAME>v,s</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector/matrix; character string vector/matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_NAME>flag1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string <VERB>'r'</VERB>, <VERB>'c'</VERB>,<VERB>'g'</VERB>,<VERB>'lr'</VERB> and <VERB>'lc'</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_NAME>flag2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string <VERB>'i'</VERB> for increasing and <VERB>'d'</VERB> for decreasing order. k : vector or matrix of integers</SP>
         </PARAM_DESCRIPTION>

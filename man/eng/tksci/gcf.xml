@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gcf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
-  <SHORT_DESCRIPTION name="gcf"> gets the current active tksci figure  </SHORT_DESCRIPTION>
+  <TITLE>gcf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="gcf"> gets the current active tksci figure</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
@@ -46,5 +45,5 @@ close(5);
       <LINK>close</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

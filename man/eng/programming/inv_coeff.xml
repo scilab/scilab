@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>inv_coeff  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="inv_coeff"> build a polynomial matrix from its coefficients  </SHORT_DESCRIPTION>
+  <TITLE>inv_coeff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="inv_coeff"> build a polynomial matrix from its coefficients</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P]=inv_coeff(C,[,d,[name])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: big matrix of the coefficients</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>d  </PARAM_NAME>
+        <PARAM_NAME>d</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Polynomial matrix degree. optional parameter with default value  <VERB>d=-1+size(C,'c')/size(C,'r')</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string giving the polynomial variable name (default value <VERB>'x'</VERB>).</SP>
         </PARAM_DESCRIPTION>

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lstsize  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
-  <SHORT_DESCRIPTION name="lstsize"> list, tlist, mlist numbers of entries  </SHORT_DESCRIPTION>
+  <TITLE>lstsize</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="lstsize"> list, tlist, mlist numbers of entries</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>n=lstsize(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>l  </PARAM_NAME>
+        <PARAM_NAME>l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a  list, tlist or mlist object</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer, the number of entries</SP>
         </PARAM_DESCRIPTION>

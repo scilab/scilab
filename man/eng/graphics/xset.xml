@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xset  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xset"> set values of the graphics context  </SHORT_DESCRIPTION>
+  <TITLE>xset</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xset"> set values of the graphics context</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xset(choice-name,x1,x2,x3,x4,x5)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>xset()  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>choice-name  </PARAM_NAME>
+        <PARAM_NAME>choice-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x1,...,x</PARAM_NAME>
+        <PARAM_NAME>x1,...,x5</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: depending on <VERB>choice-name</VERB></SP>
         </PARAM_DESCRIPTION>
@@ -43,7 +42,7 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="xset(&quot;alufunction&quot;,number)">
         <SP>: Used to set the logical function for drawing.  The logical
-    function used is set by <VERB>x</VERB>. Usual values are: 3 for
+    function used is set by <VERB>x1</VERB>. Usual values are: 3 for
     copying (default), 6 for animation and 0 for clearing. See
     alufunctions for more details.</SP>
       </DESCRIPTION_ITEM>
@@ -101,7 +100,7 @@
         <SP>: Set the floating point format for number display in  contour functions. <VERB>string</VERB> is a string giving the format  in C format syntax (for example <VERB>string=&quot;%.3f&quot;</VERB>). Use  <VERB>string=&quot;&quot;</VERB> to switch back to default format.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="xset(&quot;hidden3d&quot;,colorid) : Set the color number for backward facing faces in">
-        <SP><VERB>plot3d</VERB>.   <VERB>colorid=</VERB> zero suppress the drawing of backward facing faces of 3d objects. This is technically called 'culling' and speeds up the rendering of closed surfaces.</SP>
+        <SP><VERB>plot3d</VERB>.   <VERB>colorid=0</VERB> zero suppress the drawing of backward facing faces of 3d objects. This is technically called 'culling' and speeds up the rendering of closed surfaces.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="xset(&quot;line mode&quot;,type)">
         <SP>: This function is used to set the line drawing mode. Absolute mode is set  with type=1 and relative mode with type=0. (Warning: the mode type=0 has bugs)</SP>

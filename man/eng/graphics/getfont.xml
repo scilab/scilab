@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getfont  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="getfont"> dialog to select font  </SHORT_DESCRIPTION>
+  <TITLE>getfont</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="getfont"> dialog to select font</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[fId,fSize]=getfont()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[fId,fSize]=getfont(str)  </CALLING_SEQUENCE_ITEM>
@@ -17,25 +16,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character (e.g. &quot;a&quot;)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fId  </PARAM_NAME>
+        <PARAM_NAME>fId</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of the selected font</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fSize  </PARAM_NAME>
+        <PARAM_NAME>fSize</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the size of the selected font</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fnt  </PARAM_NAME>
+        <PARAM_NAME>fnt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector [fId,fSize]</SP>
         </PARAM_DESCRIPTION>

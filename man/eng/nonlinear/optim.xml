@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>optim  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="optim"> non-linear optimization routine  </SHORT_DESCRIPTION>
+  <TITLE>optim</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="optim"> non-linear optimization routine</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[f,xopt]=optim(costf,x0)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[f,[xopt,[gradopt,[work]]]]=optim(costf,[contr],x0,['algo'],[df0,[mem]],  </CALLING_SEQUENCE_ITEM>
@@ -15,33 +14,33 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>costf  </PARAM_NAME>
+        <PARAM_NAME>costf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external, i.e Scilab function list or string (<VERB>costf</VERB> is the cost function: see below its calling sequence (Scilab or Fortran)). See also external for details about external functions.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (initial value of variable to be minimized).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of optimal cost (<VERB>f=costf(xopt)</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xopt  </PARAM_NAME>
+        <PARAM_NAME>xopt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: best value of <VERB>x</VERB> found.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>contr  </PARAM_NAME>
+        <PARAM_NAME>contr</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and <VERB>bsup</VERB> real vectors with same dimension as <VERB>x</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower and upper bounds on <VERB>x</VERB>.</SP>
+          <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and <VERB>bsup</VERB> real vectors with same dimension as <VERB>x0</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower and upper bounds on <VERB>x</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -51,9 +50,9 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>df</PARAM_NAME>
+        <PARAM_NAME>df0</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first iteration. (<VERB>df0=</VERB> is the default value).</SP>
+          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first iteration. (<VERB>df0=1</VERB> is the default value).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -63,7 +62,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>stop  </PARAM_NAME>
+        <PARAM_NAME>stop</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. <VERB>             stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]</VERB></SP>
           <PARAM_INDENT>
@@ -74,33 +73,33 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>nap  </PARAM_NAME>
+              <PARAM_NAME>nap</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of calls to <VERB>costf</VERB> allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>iter  </PARAM_NAME>
+              <PARAM_NAME>iter</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of iterations allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsg  </PARAM_NAME>
+              <PARAM_NAME>epsg</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold on gradient norm.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsf  </PARAM_NAME>
+              <PARAM_NAME>epsf</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsx  </PARAM_NAME>
+              <PARAM_NAME>epsx</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) of same size as <VERB>x</VERB> can be used to scale <VERB>x</VERB>.</SP>
+                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) of same size as <VERB>x0</VERB> can be used to scale <VERB>x</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
@@ -115,17 +114,17 @@
       <PARAM_ITEM>
         <PARAM_NAME>&quot;imp=iflag&quot;  </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: named argument used to set the trace mode. <VERB>iflag=</VERB> nothing (execpt errors) is reported, <VERB>iflag=</VERB> initial and final reports, <VERB>iflag=</VERB> adds a report per iteration, <VERB>iflag&gt;</VERB> add reports on linear search. Warning, most of these reports are written on the Scilab standard output.</SP>
+          <SP>: named argument used to set the trace mode. <VERB>iflag=0</VERB> nothing (execpt errors) is reported, <VERB>iflag=1</VERB> initial and final reports, <VERB>iflag=2</VERB> adds a report per iteration, <VERB>iflag&gt;2</VERB> add reports on linear search. Warning, most of these reports are written on the Scilab standard output.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>gradopt  </PARAM_NAME>
+        <PARAM_NAME>gradopt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  gradient of <VERB>costf</VERB> at <VERB>xopt</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>work  </PARAM_NAME>
+        <PARAM_NAME>work</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: working array for hot restart for quasi-Newton method. This array is automatically initialized by <VERB>optim</VERB> when <VERB>optim</VERB> is invoked. It can be used as input parameter to  speed-up the calculations.</SP>
         </PARAM_DESCRIPTION>
@@ -155,12 +154,12 @@ min costf(x) w.r.t x.
     cost function at <VERB>x</VERB>, and <VERB>g</VERB>, gradient vector of cost function at <VERB>x</VERB>.
     The variable <VERB>ind</VERB> is used by <VERB>optim</VERB> and is described below.</P>
     <P>
-    If <VERB>ind=</VERB> (resp. <VERB>3, </VERB>), <VERB>costf</VERB> must provide <VERB>f</VERB> (resp. <VERB>g, f</VERB> and <VERB>g</VERB>).</P>
+    If <VERB>ind=2</VERB> (resp. <VERB>3, 4</VERB>), <VERB>costf</VERB> must provide <VERB>f</VERB> (resp. <VERB>g, f</VERB> and <VERB>g</VERB>).</P>
     <P>
-    If <VERB>ind=</VERB> nothing is computed (used for display purposes only).</P>
+    If <VERB>ind=1</VERB> nothing is computed (used for display purposes only).</P>
     <P>
-    On output, <VERB>ind&lt;</VERB>  means that <VERB>f</VERB> cannot be evaluated at <VERB>x</VERB> and
-    <VERB>ind=</VERB> interrupts the optimization.</P>
+    On output, <VERB>ind&lt;0</VERB>  means that <VERB>f</VERB> cannot be evaluated at <VERB>x</VERB> and
+    <VERB>ind=0</VERB> interrupts the optimization.</P>
     <P>
     If <VERB>costf</VERB> is a character string, it refers to the name of a Fortran routine
     which must be linked to Scilab (see examples in the routines <VERB>foptim.f</VERB> 
@@ -170,8 +169,8 @@ min costf(x) w.r.t x.
     <P>
     Here, the generic calling sequence for the Fortran subroutine is: 
     <VERB>function costf(ind,n,x,f,g,ti,tr,td)</VERB></P>
-    <P><VERB>ind</VERB> has the same meaning as above if set to <VERB>0,1,</VERB> but the 
-    values <VERB>ind=1</VERB> and <VERB>ind=1</VERB> are now valid. 
+    <P><VERB>ind</VERB> has the same meaning as above if set to <VERB>0,1,2</VERB> but the 
+    values <VERB>ind=10</VERB> and <VERB>ind=11</VERB> are now valid. 
     These values are used for initializations (see below).</P>
     <P><VERB>n</VERB> is the dimension of <VERB>x</VERB>, <VERB>x</VERB> is an <VERB>n</VERB> vector, 
     <VERB>ti,tr,td</VERB> are working arrays.</P>
@@ -186,9 +185,9 @@ min costf(x) w.r.t x.
     <P>
     If the string <VERB>'in'</VERB> is present, initialization is done by Fortran:
     <VERB>optim</VERB> makes two calls to the Fortran function <VERB>costf</VERB>, once with
-    <VERB>ind=1</VERB> and once with <VERB>ind=1</VERB>. In this case, for <VERB>ind=1</VERB>,
+    <VERB>ind=10</VERB> and once with <VERB>ind=11</VERB>. In this case, for <VERB>ind=10</VERB>,
     <VERB>costf</VERB> must set the dimensions <VERB>nti, ntr, ntd</VERB> of <VERB>ti, tr, td</VERB> 
-    in the <VERB>common/nird/nti, ntr, ntd</VERB> and, for <VERB>ind=1</VERB>, <VERB>costf</VERB>
+    in the <VERB>common/nird/nti, ntr, ntd</VERB> and, for <VERB>ind=11</VERB>, <VERB>costf</VERB>
     must initialize the vectors <VERB>ti , tr, td</VERB> (integer vector, real vector,
     double precision vector respectively).</P>
     <P>

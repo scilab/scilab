@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tf2des  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="tf2des"> transfer function to descriptor  </SHORT_DESCRIPTION>
+  <TITLE>tf2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="tf2des"> transfer function to descriptor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>S=tf2des(G)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>S=tf2des(G,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: linear system (<VERB>syslin</VERB> list) with possibly polynomial <VERB/> matrix</SP>
+          <SP>: linear system (<VERB>syslin</VERB> list) with possibly polynomial <VERB>D</VERB> matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string <VERB>&quot;withD&quot;</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
@@ -43,9 +42,9 @@
    ]]>
     </VERBATIM>
     <P>
-    Note that <VERB>D=</VERB> if the optional parameter flag=<VERB>&quot;withD&quot;</VERB> is not
-    given. Otherwise a maximal rank <VERB/> matrix is returned in the fifth
-    entry of the list <VERB/></P>
+    Note that <VERB>D=0</VERB> if the optional parameter flag=<VERB>&quot;withD&quot;</VERB> is not
+    given. Otherwise a maximal rank <VERB>D</VERB> matrix is returned in the fifth
+    entry of the list <VERB>S</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>save  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="save"> saving variables in binary files  </SHORT_DESCRIPTION>
+  <TITLE>save</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="save"> saving variables in binary files</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>save(filename [,x1,x2,...,xn])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>save(fd [,x1,x2,...,xn])  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>filename  </PARAM_NAME>
+        <PARAM_NAME>filename</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string containing the path of the file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fd  </PARAM_NAME>
+        <PARAM_NAME>fd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a file descriptor given by a call to mopen</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xi  </PARAM_NAME>
+        <PARAM_NAME>xi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: arbitrary Scilab variable(s)</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>m_circle  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="m_circle"> M-circle plot  </SHORT_DESCRIPTION>
+  <TITLE>m_circle</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="m_circle"> M-circle plot</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> m_circle()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> m_circle(gain)  </CALLING_SEQUENCE_ITEM>
@@ -14,12 +13,12 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>gain  </PARAM_NAME>
+        <PARAM_NAME>gain</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of gains (in DB). The default value is</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>gain  </PARAM_NAME>
+              <PARAM_NAME>gain</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</SP>
               </PARAM_DESCRIPTION>

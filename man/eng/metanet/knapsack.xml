@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>knapsack  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="knapsack"> solves a 0-1 multiple knapsack problem  </SHORT_DESCRIPTION>
+  <TITLE>knapsack</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="knapsack"> solves a 0-1 multiple knapsack problem</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[earn,ind] = knapsack(profit,weight,capa,[bck])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>profit  </PARAM_NAME>
+        <PARAM_NAME>profit</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>weight  </PARAM_NAME>
+        <PARAM_NAME>weight</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>capa  </PARAM_NAME>
+        <PARAM_NAME>capa</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>bck  </PARAM_NAME>
+        <PARAM_NAME>bck</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>earn  </PARAM_NAME>
+        <PARAM_NAME>earn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>
@@ -72,13 +71,13 @@
     <VERB>q(j,i)</VERB> denotes the quantity of item <VERB>i</VERB> in knapsack <VERB>j</VERB> (in fact 
     0 or 1).</P>
     <P>
-    We want to maximize the global profit <VERB/>:
+    We want to maximize the global profit <VERB>E</VERB>:
      <VERB>E=p(1)*[x(1,1)+...+x(m,1)]+...+p(n)*[x(1,n)+...+x(m,n)]</VERB></P>
     <P>
     under the constraints:
      <VERB>[w(1)*x(j,1)+...+w(n)*x(j,m)] &lt;= c(j) ; j=1,...,m</VERB>
      <VERB>[x(1,i)+...+x(m,i)] &lt;= 1 ; i=1,...,n</VERB>
-     <VERB>x(j,i)= 0 or </VERB>
+     <VERB>x(j,i)= 0 or 1</VERB>
      <VERB>p(),w(),c()</VERB> are positive integers.</P>
   </DESCRIPTION>
   <EXAMPLE>

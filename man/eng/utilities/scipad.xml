@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>scipad</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>27-May-200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>27-May-2003</DATE>
   <SHORT_DESCRIPTION name="scipad"> Embedded Scilab text editor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>scipad(f)</CALLING_SEQUENCE_ITEM>
@@ -26,7 +25,7 @@
    Scipad is an embedded Scilab text editor written in TCL/TK. It can be started with the &quot;Editor&quot; menu or 
    from Scilab command line with the instruction <VERB>scipad()</VERB> or scipad(f). It allows Windows 
    like edition modes. The &quot;Load Into Scilab&quot; menu can be used to <VERB>exec</VERB> the file contents 
-   into Scilab.  The following shortcuts are defined </P>
+   into Scilab.  The following shortcuts are defined</P>
     <ITEMIZE>
       <ITEM label="&lt;Control-o&gt;">
         <SP>open file</SP>

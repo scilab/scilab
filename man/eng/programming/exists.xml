@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>exists  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="exists"> checks variable  existence  </SHORT_DESCRIPTION>
+  <TITLE>exists</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="exists"> checks variable  existence</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>exists(name [,where])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>where  </PARAM_NAME>
+        <PARAM_NAME>where</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an optional character string with default value <VERB>'all'</VERB></SP>
         </PARAM_DESCRIPTION>
@@ -27,13 +26,13 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>exists(name)</VERB> returns <VERB/> if the variable named <VERB>name</VERB>
-    exists and <VERB/> otherwise.</P>
+    <P><VERB>exists(name)</VERB> returns <VERB>1</VERB> if the variable named <VERB>name</VERB>
+    exists and <VERB>0</VERB> otherwise.</P>
     <P>
     Caveats: a function which uses <VERB>exists</VERB> may return a result which depends on the environment!</P>
-    <P><VERB>exists(name,'local')</VERB> returns <VERB/> if the variable named
+    <P><VERB>exists(name,'local')</VERB> returns <VERB>1</VERB> if the variable named
     <VERB>name</VERB> exists in the local environment of the current function and
-    <VERB/> otherwise.</P>
+    <VERB>0</VERB> otherwise.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>scicos_graphics  </TITLE>
-  <TYPE>Scicos data structure  </TYPE>
-  <DATE>Decembre 200</DATE>
-  <SHORT_DESCRIPTION name="scicos_graphics"> Scicos block graphics data structure  </SHORT_DESCRIPTION>
+  <TITLE>scicos_graphics</TITLE>
+  <TYPE>Scicos data structure</TYPE>
+  <DATE>Decembre 2001</DATE>
+  <SHORT_DESCRIPTION name="scicos_graphics"> Scicos block graphics data structure</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Scicos block graphics data structure contains all information relative
@@ -46,16 +45,16 @@ formal name 'graphics' and containing the following fields:</SP>
         <SP>: column vector of strings,  contains expressions answered by the user at block set time.</SP>
       </ITEM>
       <ITEM label="pin">
-        <SP>: column vector of integers. If <VERB>pin(k)&lt;&gt;</VERB> then <VERB>k</VERB>th input port is connected to the block numbered <VERB>pin(k)</VERB>, else the port is unconnected. If no input port exist <VERB>pin==[]</VERB>.</SP>
+        <SP>: column vector of integers. If <VERB>pin(k)&lt;&gt;0</VERB> then <VERB>k</VERB>th input port is connected to the block numbered <VERB>pin(k)</VERB>, else the port is unconnected. If no input port exist <VERB>pin==[]</VERB>.</SP>
       </ITEM>
       <ITEM label="pout">
-        <SP>: column vector of integers.  If <VERB>pout(k)&lt;&gt;</VERB> then <VERB>k</VERB>th output port is connected to the block numbered <VERB>pout(k)</VERB>, else the port is unconnected. If no output port exist <VERB>pout==[]</VERB>.</SP>
+        <SP>: column vector of integers.  If <VERB>pout(k)&lt;&gt;0</VERB> then <VERB>k</VERB>th output port is connected to the block numbered <VERB>pout(k)</VERB>, else the port is unconnected. If no output port exist <VERB>pout==[]</VERB>.</SP>
       </ITEM>
       <ITEM label="pein">
-        <SP>: column vector of ones. If <VERB>pein(k)&lt;&gt;</VERB> then  <VERB>k</VERB>th event input port is connected to the block numbered <VERB>pein(k)</VERB>, else the port is unconnected. If no event input port exist <VERB>pein==[]</VERB>.</SP>
+        <SP>: column vector of ones. If <VERB>pein(k)&lt;&gt;0</VERB> then  <VERB>k</VERB>th event input port is connected to the block numbered <VERB>pein(k)</VERB>, else the port is unconnected. If no event input port exist <VERB>pein==[]</VERB>.</SP>
       </ITEM>
       <ITEM label="peout">
-        <SP>: column vector of integers.  If <VERB>peout(k)&lt;&gt;</VERB> then <VERB>k</VERB>th event output port is connected to the block numbered <VERB>peout(k)</VERB>, else the port is unconnected. If no event output port exist <VERB>peout==[]</VERB>.</SP>
+        <SP>: column vector of integers.  If <VERB>peout(k)&lt;&gt;0</VERB> then <VERB>k</VERB>th event output port is connected to the block numbered <VERB>peout(k)</VERB>, else the port is unconnected. If no event output port exist <VERB>peout==[]</VERB>.</SP>
       </ITEM>
       <ITEM label="gr_i">
         <SP>: column vector of strings,  contains Scilab instructions used to customize the block graphical aspect. This field may be set with <VERB>&quot;Icon&quot;</VERB> sub_menu.</SP>

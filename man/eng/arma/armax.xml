@@ -1,67 +1,66 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>armax  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="armax"> armax identification   </SHORT_DESCRIPTION>
+  <TITLE>armax</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="armax"> armax identification</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: output process  y(ny,n); ( ny: dimension of y , n : sample size)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: input process   u(nu,n); ( nu: dimension of u , n : sample size)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r and s  </PARAM_NAME>
+        <PARAM_NAME>r and s</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: auto-regression orders r &gt;=0 et s &gt;=-</SP>
+          <SP>: auto-regression orders r &gt;=0 et s &gt;=-1</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b0f  </PARAM_NAME>
+        <PARAM_NAME>b0f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>prf  </PARAM_NAME>
+        <PARAM_NAME>prf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional parameter for display control. If prf =1, the default value,  a display of the identified Arma is given.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>arc  </PARAM_NAME>
+        <PARAM_NAME>arc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab arma object (see armac)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>la  </PARAM_NAME>
+        <PARAM_NAME>la</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is the list(a,a+eta,a-eta) ( la = a in dimension 1) ; where eta is the estimated standard deviation.  , a=[Id,a1,a2,...,ar] where each ai is a matrix of size (ny,ny)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>lb  </PARAM_NAME>
+        <PARAM_NAME>lb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is the list(b,b+etb,b-etb) (lb =b in dimension 1) ; where etb is the estimated standard deviation. b=[b0,.....,b_s] where each bi is a matrix of size (nu,nu)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sig  </PARAM_NAME>
+        <PARAM_NAME>sig</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is the estimated standard deviation of the noise and resid=[ sig*e(t0),....] (</SP>
         </PARAM_DESCRIPTION>
@@ -134,7 +133,7 @@ Arma1est=armax(2,-1,y,[]);
       <LINK>time_id</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>arl</LINK>
+      <LINK>arl2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>armax</LINK>

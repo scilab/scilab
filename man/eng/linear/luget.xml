@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lufact  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="luget"> extraction of sparse LU factors  </SHORT_DESCRIPTION>
+  <TITLE>lufact</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="luget"> extraction of sparse LU factors</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,L,U,Q]=luget(hand)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>hand  </PARAM_NAME>
+        <PARAM_NAME>hand</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: handle, output of <VERB>lufact</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse permutation matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>L</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix, lower triangular if <VERB>hand</VERB> is obtained from a  non singular matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square non singular upper triangular sparse matrix with ones along the main diagonal</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse permutation matrix</SP>
         </PARAM_DESCRIPTION>
@@ -46,16 +45,16 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>[P,L,U,Q]=luget(hand)</VERB> with <VERB>hand</VERB> obtained by
-    the command <VERB>[hand,rk]=lufact(A)</VERB> with <VERB/> a sparse matrix
-    returns four sparse matrices such that <VERB>P*L*U*Q=</VERB>.</P>
+    the command <VERB>[hand,rk]=lufact(A)</VERB> with <VERB>A</VERB> a sparse matrix
+    returns four sparse matrices such that <VERB>P*L*U*Q=A</VERB>.</P>
     <P>
     The A matrix needs not be full rank but must be square 
     (since A is assumed sparse one may add zeros if necessary to squaring
     down A).</P>
     <P>
-    If <VERB/> is singular, the <VERB/> matrix is column compressed (with
+    If <VERB>A</VERB> is singular, the <VERB>L</VERB> matrix is column compressed (with
     <VERB>rk</VERB> independent nonzero columns):  the nonsingular sparse 
-    matrix <VERB>Q'*inv(U)</VERB> column compresses <VERB/>.</P>
+    matrix <VERB>Q'*inv(U)</VERB> column compresses <VERB>A</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

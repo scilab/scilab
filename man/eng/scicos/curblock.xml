@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>curblock  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="curblock"> get current block index in a Scicos simulation function  </SHORT_DESCRIPTION>
+  <TITLE>curblock</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="curblock"> get current block index in a Scicos simulation function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>k=curblock()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, index of the block corresponding to the Scilab simulation function where this function is called.</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
     the <VERB>corinv</VERB> table (see scicos_cpr).</P>
     <P>
     For block with a computational function written in C user may uses the
-    C function  <VERB>k=C2F(getcurblock)()</VERB>. Where <VERB>C2</VERB> is the C
+    C function  <VERB>k=C2F(getcurblock)()</VERB>. Where <VERB>C2F</VERB> is the C
     compilation macro defined in <VERB>&lt;SCIDIR&gt;/routines/machine.h</VERB></P>
     <P>
     For block with a computational function written in Fortran user may uses the

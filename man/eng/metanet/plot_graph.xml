@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plot_graph  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph   </SHORT_DESCRIPTION>
+  <TITLE>plot_graph</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="plot_graph"> general plot of a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plot_graph(g,[rep,rep1])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rep  </PARAM_NAME>
+        <PARAM_NAME>rep</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of 13 values for the parameters of the plot</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rep</PARAM_NAME>
+        <PARAM_NAME>rep1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of 4 values defining the plotting rectangle</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>plot_graph</VERB> plots graph <VERB>g</VERB> in a Scilab graphical window.
-    The optional arguments <VERB>rep</VERB> and <VERB>rep</VERB> define the parameters
+    The optional arguments <VERB>rep</VERB> and <VERB>rep1</VERB> define the parameters
     of the plot. If there are not given, a dialog box for the definition
     of these parameters is opened.</P>
     <P><VERB>rep</VERB> must be a row vector with 13 integer numbers which must be 1 or 2.
@@ -68,8 +67,8 @@
     Plotting edge weight: 1 = yes, 2 = no</P>
     <P>
     If <VERB>rep(1)</VERB> is 2, the frame definition must be given by
-    <VERB>rep</VERB>. Otherwise, <VERB>rep</VERB>can be omitted.
-    <VERB>rep</VERB> must be a row vector <VERB>[orx,ory,w,h]</VERB> giving respectively the coordinates of the upper-left point, the width and the height of the
+    <VERB>rep1</VERB>. Otherwise, <VERB>rep1</VERB>can be omitted.
+    <VERB>rep1</VERB> must be a row vector <VERB>[orx,ory,w,h]</VERB> giving respectively the coordinates of the upper-left point, the width and the height of the
     plotting rectangle.</P>
   </DESCRIPTION>
   <EXAMPLE>

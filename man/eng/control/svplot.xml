@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>svplot  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="svplot"> singular-value sigma-plot  </SHORT_DESCRIPTION>
+  <TITLE>svplot</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="svplot"> singular-value sigma-plot</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[SVM]=svplot(sl,[w])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (continuous, discrete or sampled system)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>w  </PARAM_NAME>
+        <PARAM_NAME>w</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (optional parameter)</SP>
         </PARAM_DESCRIPTION>
@@ -46,8 +45,8 @@ or
     <VERB>[A,B,C,D]</VERB> in state-space form. <VERB>sl</VERB> can be continous or
     discrete time or sampled system.</P>
     <P>
-    The <VERB>i</VERB>-th column of the output matrix <VERB>SV</VERB> contains the singular
-    values of <VERB/> for the <VERB>i</VERB>-th frequency value <VERB>w(i)</VERB>.</P>
+    The <VERB>i</VERB>-th column of the output matrix <VERB>SVM</VERB> contains the singular
+    values of <VERB>G</VERB> for the <VERB>i</VERB>-th frequency value <VERB>w(i)</VERB>.</P>
     <VERBATIM>
 <![CDATA[
 SVM = svplot(sl)

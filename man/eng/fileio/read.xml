@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>read  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="read"> matrices read  </SHORT_DESCRIPTION>
+  <TITLE>read</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="read"> matrices read</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x]=read(file-desc,m,n,[format])     </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[x]=read(file-desc,m,n,k,format)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file-desc  </PARAM_NAME>
+        <PARAM_NAME>file-desc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string specifying the file name or integer value specifying logical unit (see file).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m, n  </PARAM_NAME>
+        <PARAM_NAME>m, n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers (dimensions of the matrix x). Set m=-1 if you do not know the numbers of rows, so the whole file is read.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>format : character string, specifies a &quot;Fortran&quot; format. This  </PARAM_NAME>
+        <PARAM_NAME>format : character string, specifies a &quot;Fortran&quot; format. This</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>character string must begin with a right parenthesis and end with a left parenthesis.  Formats cannot mix floating point or character edition modes.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer or vector of integer</SP>
         </PARAM_DESCRIPTION>
@@ -42,7 +41,7 @@
   <DESCRIPTION>
     <P>
     reads row after row
-    the <VERB>mxn</VERB> matrix <VERB>x</VERB> (<VERB>n=</VERB> for character chain) in the
+    the <VERB>mxn</VERB> matrix <VERB>x</VERB> (<VERB>n=1</VERB> for character chain) in the
     file <VERB>file-desc</VERB> (string or integer).  Each row of the matrix <VERB>x</VERB>
     begin in a new line of <VERB>file-desc</VERB> file. Depending on <VERB>format</VERB>, a
     given row of the <VERB>x</VERB> matrix may be read from more than one line

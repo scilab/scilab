@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>TK_SetVar  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
-  <SHORT_DESCRIPTION name="TK_SetVar"> Set a tcl/tk variable value  </SHORT_DESCRIPTION>
+  <TITLE>TK_SetVar</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="TK_SetVar"> Set a tcl/tk variable value</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TK_SetVar(varname, value)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>varname  </PARAM_NAME>
+        <PARAM_NAME>varname</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string character Contains the name of the tcl/tk variable to set.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>value  </PARAM_NAME>
+        <PARAM_NAME>value</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string character Contains the value to set up in the tcl/tk variable</SP>
         </PARAM_DESCRIPTION>
@@ -58,5 +57,5 @@ TK_SetVar('tvar','This text has been set directly within scilab');
       <LINK>TK_GetVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

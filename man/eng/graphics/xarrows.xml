@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xarrows  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xarrows"> draw a set of arrows  </SHORT_DESCRIPTION>
+  <TITLE>xarrows</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xarrows"> draw a set of arrows</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xarrows(nx,ny,[arsize,style])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nx,ny  </PARAM_NAME>
+        <PARAM_NAME>nx,ny</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vectors or matrices of same size.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>arsize  </PARAM_NAME>
+        <PARAM_NAME>arsize</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar, size of the arrow head. The default value can be obtained  by setting arsize to -1.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>style  </PARAM_NAME>
+        <PARAM_NAME>style</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix or scalar. If <VERB>style</VERB> is a positive scalar  it gives the color to use for all arrows. If it is a negative scalar  then the current color is used. If it is a vector <VERB>style(i)</VERB> gives the color to use for arrow <VERB>i</VERB>.</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>setmenu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>December 199</DATE>
-  <SHORT_DESCRIPTION name="setmenu"> interactive button or menu activation  </SHORT_DESCRIPTION>
+  <TITLE>setmenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>December 1995</DATE>
+  <SHORT_DESCRIPTION name="setmenu"> interactive button or menu activation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>setmenu(button [,nsub])   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>setmenu(gwin,button [,nsub])  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>button  </PARAM_NAME>
+        <PARAM_NAME>button</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. The button name</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>gwin  </PARAM_NAME>
+        <PARAM_NAME>gwin</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer. The number of graphic window where the button is  installed</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nsub  </PARAM_NAME>
+        <PARAM_NAME>nsub</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer. The number of submenu to de-activate (if any). If button has no sub-menu, <VERB>nsub</VERB> is ignored</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdfbet  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdfbet"> cumulative distribution function Beta distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdfbet</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfbet"> cumulative distribution function Beta distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdfbet(&quot;PQ&quot;,X,Y,A,B)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[X,Y]=cdfbet(&quot;XY&quot;,A,B,P,Q)  </CALLING_SEQUENCE_ITEM>
@@ -16,7 +15,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,X,Y,A,</PARAM_NAME>
+        <PARAM_NAME>P,Q,X,Y,A,B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: five real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -28,9 +27,9 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: 1-</SP>
+          <SP>: 1-P</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>

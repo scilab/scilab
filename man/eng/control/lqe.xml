@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lqe  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>lqe</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="lqe"> linear quadratic estimator (Kalman Filter)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[K,X]=lqe(P21)   </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P2</PARAM_NAME>
+        <PARAM_NAME>P21</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>K, </PARAM_NAME>
+        <PARAM_NAME>K, X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices</SP>
         </PARAM_DESCRIPTION>
@@ -29,9 +28,9 @@
   <DESCRIPTION>
     <P><VERB>lqe</VERB> returns the Kalman gain for the filtering
     problem in continuous or discrete time.</P>
-    <P><VERB>P2</VERB> is a <VERB>syslin</VERB> list representing the system <VERB>P21=[A,B1,C2,D21]</VERB></P>
+    <P><VERB>P21</VERB> is a <VERB>syslin</VERB> list representing the system <VERB>P21=[A,B1,C2,D21]</VERB></P>
     <P>
-    The input to <VERB>P2</VERB> is a white noise with variance:</P>
+    The input to <VERB>P21</VERB> is a white noise with variance:</P>
     <VERBATIM>
 <![CDATA[
      [B1 ]               [Q  S]
@@ -39,8 +38,8 @@ BigV=[   ] [ B1' D21'] = [    ]
      [D21]               [S' R]
    ]]>
     </VERBATIM>
-    <P><VERB/> is the solution of the stabilizing Riccati 
-    equation and <VERB>A+K*C</VERB> is stable.</P>
+    <P><VERB>X</VERB> is the solution of the stabilizing Riccati 
+    equation and <VERB>A+K*C2</VERB> is stable.</P>
     <P>
     In continuous time:</P>
     <VERBATIM>

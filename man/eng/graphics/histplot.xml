@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>histplot  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="histplot"> plot a histogram  </SHORT_DESCRIPTION>
+  <TITLE>histplot</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="histplot"> plot a histogram</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>histplot(npoint,data,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>npoint  </PARAM_NAME>
+        <PARAM_NAME>npoint</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer or a row vector of increasing values.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>data  </PARAM_NAME>
+        <PARAM_NAME>data</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
+        <PARAM_NAME>style,strf,leg,rect,nax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: see <VERB>plot2d</VERB>.</SP>
         </PARAM_DESCRIPTION>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rubberbox  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
+  <TITLE>rubberbox</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
   <SHORT_DESCRIPTION name="rubberbox"> Rubberband box for rectangle selection</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>initial_rect  </PARAM_NAME>
+        <PARAM_NAME>initial_rect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector with two or four entries. With four entries it gives the
   initial rectangle  defined by [x_left, y_top, width, height], with
@@ -23,13 +22,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>final_rect  </PARAM_NAME>
+        <PARAM_NAME>final_rect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:a rectangle defined by [x_left, y_top, width, height]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>btn  </PARAM_NAME>
+        <PARAM_NAME>btn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:an integer, the number of the mouse button clicked</SP>
         </PARAM_DESCRIPTION>

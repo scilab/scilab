@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>DLR_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
+  <TITLE>DLR_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
   <SHORT_DESCRIPTION name="DLR_f"> Scicos discrete-time linear system (transfer function)  </SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>

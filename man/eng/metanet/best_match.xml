@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>best_match  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="best_match"> best matching of a graph  </SHORT_DESCRIPTION>
+  <TITLE>best_match</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="best_match"> best matching of a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[card,match] = best_match(g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>card  </PARAM_NAME>
+        <PARAM_NAME>card</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>match  </PARAM_NAME>
+        <PARAM_NAME>match</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector</SP>
         </PARAM_DESCRIPTION>

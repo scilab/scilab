@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>colon  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="colon"> (:) colon operator  </SHORT_DESCRIPTION>
+  <TITLE>colon</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="colon"> (:) colon operator</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   Colon symbol <VERB>:</VERB> can be used to form implicit
@@ -25,10 +24,10 @@
     columns and elements of vectors and matrices (see also <LINK>extraction</LINK>,<LINK>insertion</LINK>)</P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="A(:)">
-        <SP>is the vector of all the elements of <VERB/>  regarded as a single column.</SP>
+        <SP>is the vector of all the elements of <VERB>A</VERB>  regarded as a single column.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="A(:,j)">
-        <SP>ys the <VERB>j</VERB>-th column of <VERB/></SP>
+        <SP>ys the <VERB>j</VERB>-th column of <VERB>A</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="A(j:k)">
         <SP>is <VERB>[A(j),A(j+1),...,A(k)]</VERB></SP>
@@ -38,7 +37,7 @@
   <VERB>[A(:,j),A(:,j+1),...,A(:,k)] </VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="A(:)=w">
-        <SP>fills the matrix <VERB/> with entries of <VERB>w</VERB> (taken column by column if <VERB>w</VERB> is a matrix).</SP>
+        <SP>fills the matrix <VERB>A</VERB> with entries of <VERB>w</VERB> (taken column by column if <VERB>w</VERB> is a matrix).</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>trans_closure  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="trans_closure"> transitive closure  </SHORT_DESCRIPTION>
+  <TITLE>trans_closure</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="trans_closure"> transitive closure</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = trans_closure(g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
@@ -27,7 +26,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>trans_closure</VERB> returns as a new graph list <VERB>g</VERB> the transitive
+    <P><VERB>trans_closure</VERB> returns as a new graph list <VERB>g1</VERB> the transitive
     closure of the graph <VERB>g</VERB>. This graph must be directed and connected.
     If <VERB>&lt;name&gt;</VERB> if the name of graph <VERB>g</VERB>, 
     <VERB>&lt;name&gt;_trans_closure</VERB> is the name of the transitive closure.</P>

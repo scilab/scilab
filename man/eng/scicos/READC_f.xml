@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>READC_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="READC_f"> Scicos &quot;read from C binary file&quot; block   </SHORT_DESCRIPTION>
+  <TITLE>READC_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1999</DATE>
+  <SHORT_DESCRIPTION name="READC_f"> Scicos &quot;read from C binary file&quot; block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block allows user to read datas in a C file.  <VERB>Output record
@@ -50,7 +49,7 @@
         <SP>: a scalar. This fixes the first record of the file to use.</SP>
       </ITEM>
       <ITEM label="Swap mode">
-        <SP>: With <VERB>Swap mode=</VERB>  the file is supposed to be coded in &quot;little endian IEEE format&quot; and data are swaped if necessary to match the IEEE format of the processor. If <VERB>Swap mode=</VERB>  then automatic bytes swap is disabled.</SP>
+        <SP>: With <VERB>Swap mode=1</VERB>  the file is supposed to be coded in &quot;little endian IEEE format&quot; and data are swaped if necessary to match the IEEE format of the processor. If <VERB>Swap mode=0</VERB>  then automatic bytes swap is disabled.</SP>
       </ITEM>
     </ITEMIZE>
   </SECTION>

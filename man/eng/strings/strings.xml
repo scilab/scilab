@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>strings  </TITLE>
-  <TYPE>Scilab Object  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="strings"> Scilab Object, character strings  </SHORT_DESCRIPTION>
+  <TITLE>strings</TITLE>
+  <TYPE>Scilab Object</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="strings"> Scilab Object, character strings</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Strings are defined as <VERB>'string'</VERB> (between quotes) or 
     <VERB>&quot;string&quot;</VERB> (between doublequotes);
     matrices of strings are defined as usual constant matrices.</P>
     <P>
-    Concatenation of two strings is made by a <VERB>+</VERB> : <VERB>string1+string</VERB>.</P>
+    Concatenation of two strings is made by a <VERB>+</VERB> : <VERB>string1+string2</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,33 +1,32 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>addinter  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="addinter"> new functions interface incremental linking at run time  </SHORT_DESCRIPTION>
+  <TITLE>addinter</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1995</DATE>
+  <SHORT_DESCRIPTION name="addinter"> new functions interface incremental linking at run time</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>addinter(files,spname,fcts)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>files  </PARAM_NAME>
+        <PARAM_NAME>files</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string or a vector of character string contain object files used to define the new Scilab interface routine (interface code, user routines or libraries, system libraries).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>spname  </PARAM_NAME>
+        <PARAM_NAME>spname</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. Name of interface routine entry point</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fcts  </PARAM_NAME>
+        <PARAM_NAME>fcts</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vector of character strings. The name of new Scilab function implemented in the new interface (in <VERB> fin </VERB> the order ).</SP>
+          <SP>: vector of character strings. The name of new Scilab function implemented in the new interface (in <VERB> fin</VERB> the order ).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

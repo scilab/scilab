@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ffilt  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ffilt"> coefficients of FIR low-pass  </SHORT_DESCRIPTION>
+  <TITLE>ffilt</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ffilt"> coefficients of FIR low-pass</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x]=ffilt(ft,n,fl,fh)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>ft  </PARAM_NAME>
+        <PARAM_NAME>ft</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: filter type where <VERB>ft</VERB> can take the values</SP>
           <PARAM_INDENT>
@@ -45,25 +44,25 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of filter samples desired)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fl  </PARAM_NAME>
+        <PARAM_NAME>fl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (low frequency cut-off)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fh  </PARAM_NAME>
+        <PARAM_NAME>fh</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (high frequency cut-off)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of filter coefficients</SP>
         </PARAM_DESCRIPTION>

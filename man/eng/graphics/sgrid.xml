@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sgrid  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jun 199</DATE>
+  <TITLE>sgrid</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jun 1997</DATE>
   <SHORT_DESCRIPTION name="sgrid"> s-plane grid lines.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sgrid()  </CALLING_SEQUENCE_ITEM>

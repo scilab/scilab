@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>corr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="corr"> correlation, covariance  </SHORT_DESCRIPTION>
+  <TITLE>corr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="corr"> correlation, covariance</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[cov,Mean]=corr(x,[y],nlags)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)  </CALLING_SEQUENCE_ITEM>
@@ -19,67 +18,67 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real vector, default value x.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nlags  </PARAM_NAME>
+        <PARAM_NAME>nlags</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of correlation coefficients desired.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xmacro  </PARAM_NAME>
+        <PARAM_NAME>xmacro</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a scilab external (see below).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ymacro  </PARAM_NAME>
+        <PARAM_NAME>ymacro</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a scilab external (see below), default value xmacro</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer, total size of the sequence (see below).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sect  </PARAM_NAME>
+        <PARAM_NAME>sect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: size of sections of the sequence (see below).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xi  </PARAM_NAME>
+        <PARAM_NAME>xi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>yi  </PARAM_NAME>
+        <PARAM_NAME>yi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real vector,default value xi.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cov  </PARAM_NAME>
+        <PARAM_NAME>cov</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector, the correlation coefficients</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Mean  </PARAM_NAME>
+        <PARAM_NAME>Mean</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number or vector,  the mean of x and if given y</SP>
         </PARAM_DESCRIPTION>
@@ -102,7 +101,7 @@
    ]]>
     </VERBATIM>
     <P>
-    for   m=0,..,<VERB>nlag-</VERB> and two vectors <VERB>x=[x(1),..,x(n)]</VERB>
+    for   m=0,..,<VERB>nlag-1</VERB> and two vectors <VERB>x=[x(1),..,x(n)]</VERB>
      <VERB>y=[y(1),..,y(n)]</VERB>
   </P>
     <P>
@@ -126,7 +125,7 @@
         returns a vector <VERB>xx</VERB> of dimension
         <VERB>nsect</VERB> containing the part of the sequence with
         indices from <VERB>istart</VERB> to
-        <VERB>istart+sect-</VERB>.</P>
+        <VERB>istart+sect-1</VERB>.</P>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>
             <P>
@@ -163,7 +162,7 @@
     2.  To get <VERB>nlags</VERB> coefficients a final fft must be
     performed <VERB>c=fft(w,1)/n</VERB>; <VERB>cov=c(1nlags)</VERB>
     (<VERB>n</VERB> is the size of <VERB>x (y)</VERB>).  Caution: this
-    calling sequence assumes that <VERB>xmean = ymean = </VERB>.</P>
+    calling sequence assumes that <VERB>xmean = ymean = 0</VERB>.</P>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

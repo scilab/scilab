@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>portrait  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>portrait</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="portrait"> 2 dimensional phase portrait.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[]=portrait(f,[odem,xdim,npts,pinit])  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab external which gives the field of the dynamical system. Hence  it can be a macro name which computes the field at time t and point x [y]=f(t,x,[u]) or a list list(f1,u1) where f1 is a macro of type [y]=f1(t,x,u) or a character string. The macro can be used to simulate a continuous or discrete system and in case  of discrete system the second parameter must be set to 'discrete'</SP>
         </PARAM_DESCRIPTION>
@@ -24,13 +23,13 @@
           <SP>: The other parameters are optional. If omitted they will be asked interactively</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>odem  </PARAM_NAME>
+              <PARAM_NAME>odem</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: gives the integration method to use. The value &quot;default&quot; can be used,  otherwise see ode for a complete set of possibilities</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>npts  </PARAM_NAME>
+              <PARAM_NAME>npts</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  a vector of size (2,10) [number-of-points,step] gives the step
     for integration  and the number of requested points. The solution
@@ -39,13 +38,13 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>xdim  </PARAM_NAME>
+              <PARAM_NAME>xdim</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: [xmin,xmax,ymin,ymax,zmin,zmax] the boundaries of the graphic frame.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>pinit  </PARAM_NAME>
+              <PARAM_NAME>pinit</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: initial values for integration. A set of initial points can be given in a matrix</SP>
                 <VERBATIM>

@@ -1,39 +1,38 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>colinout  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="colinout"> inner-outer factorization  </SHORT_DESCRIPTION>
+  <TITLE>colinout</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="colinout"> inner-outer factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Inn,X,Gbar]=colinout(G)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list) <VERB>[A,B,C,D]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Inn  </PARAM_NAME>
+        <PARAM_NAME>Inn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  inner factor (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Gbar  </PARAM_NAME>
+        <PARAM_NAME>Gbar</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  outer factor (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:  row-compressor of <VERB/> (<VERB>syslin</VERB> list)</SP>
+          <SP>:  row-compressor of <VERB>G</VERB> (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -41,9 +40,9 @@
   <DESCRIPTION>
     <P>
     Inner-outer factorization (and column compression) of (lxp) <VERB>G =[A,B,C,D]</VERB> with l&lt;=p.</P>
-    <P><VERB/> is assumed to be fat (<VERB>l&lt;=p</VERB>) without zero on the imaginary axis
-    and with a <VERB/> matrix which is full row rank.</P>
-    <P><VERB/> must also be stable for having <VERB>Gbar</VERB> stable.</P>
+    <P><VERB>G</VERB> is assumed to be fat (<VERB>l&lt;=p</VERB>) without zero on the imaginary axis
+    and with a <VERB>D</VERB> matrix which is full row rank.</P>
+    <P><VERB>G</VERB> must also be stable for having <VERB>Gbar</VERB> stable.</P>
     <P>
     Dual of <VERB>rowinout</VERB>.</P>
   </DESCRIPTION>

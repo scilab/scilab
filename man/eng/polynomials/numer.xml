@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>numer</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="numer"> numerator  </SHORT_DESCRIPTION>
+  <TITLE>numerX</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="numer"> numerator</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>num=numer(R)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: rational or polynomial or constant matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>num  </PARAM_NAME>
+        <PARAM_NAME>num</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix</SP>
         </PARAM_DESCRIPTION>
@@ -29,7 +28,7 @@
   <DESCRIPTION>
     <P>
     Utility fonction. <VERB>num=numer(R)</VERB> returns the numerator <VERB>num</VERB> of a rational 
-    function matrix <VERB/> (<VERB/> may be also a constant or polynomial matrix).
+    function matrix <VERB>R</VERB> (<VERB>R</VERB> may be also a constant or polynomial matrix).
     <VERB>numer(R)</VERB> is equivalent to <VERB>R(2)</VERB>, <VERB>R('num')</VERB> or <VERB>R.num</VERB></P>
   </DESCRIPTION>
   <SEE_ALSO>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>eye  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="eye"> identity matrix  </SHORT_DESCRIPTION>
+  <TITLE>eye</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="eye"> identity matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>X=eye(m,n)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>X=eye(A)  </CALLING_SEQUENCE_ITEM>
@@ -15,13 +14,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A,</PARAM_NAME>
+        <PARAM_NAME>A,X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices or <VERB>syslin</VERB> lists</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m,n  </PARAM_NAME>
+        <PARAM_NAME>m,n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers</SP>
         </PARAM_DESCRIPTION>
@@ -31,12 +30,12 @@
   <DESCRIPTION>
     <P>
     according to its arguments defines an <VERB>m</VERB>x<VERB>n</VERB> matrix with 1 along the 
-    main diagonal or an identity matrix of the same dimension as <VERB/> .</P>
+    main diagonal or an identity matrix of the same dimension as <VERB>A</VERB> .</P>
     <P>
-    Caution: <VERB>eye(10)</VERB> is interpreted as <VERB>eye(A)</VERB> with <VERB>A=1</VERB> i.e. <VERB/>.
+    Caution: <VERB>eye(10)</VERB> is interpreted as <VERB>eye(A)</VERB> with <VERB>A=10</VERB> i.e. <VERB>1</VERB>.
     (It is NOT a ten by ten identity matrix!).</P>
     <P>
-    If <VERB/> is a linear system represented by a <VERB>syslin</VERB> list, <VERB>eye(A)</VERB>
+    If <VERB>A</VERB> is a linear system represented by a <VERB>syslin</VERB> list, <VERB>eye(A)</VERB>
     returns an <VERB>eye</VERB> matrix of appropriate dimension: 
     (number of outputs x number of inputs).</P>
     <P><VERB>eye()</VERB> produces a identity matrix with undefined

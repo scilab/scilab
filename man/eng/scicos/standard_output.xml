@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>standard_output  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="standard_output"> get Scicos block output port positions  </SHORT_DESCRIPTION>
+  <TITLE>standard_output</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="standard_output"> get Scicos block output port positions</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x,y,typ]=standard_output(o)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scicos block data structure (see scicos_block)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of x coordinates of the block regular and event output ports</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of y coordinates of the block regular and event output ports</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>typ  </PARAM_NAME>
+        <PARAM_NAME>typ</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of output ports types (+1 : regular port; -1:event port)</SP>
         </PARAM_DESCRIPTION>

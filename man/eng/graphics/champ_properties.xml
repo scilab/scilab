@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>champ_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="champ_properties"> description of the 2D vector field
-   entity properties </SHORT_DESCRIPTION>
+   entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Champ entity is a leaf of the graphics entities
@@ -109,11 +108,11 @@
       <LINK>champ</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>champ</LINK>
+      <LINK>champ1</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

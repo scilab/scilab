@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sqrtm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sqrtm"> matrix square root  </SHORT_DESCRIPTION>
+  <TITLE>sqrtm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sqrtm"> matrix square root</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=sqrtm(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex  square matrix</SP>
         </PARAM_DESCRIPTION>
@@ -21,7 +20,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>y=sqrt(x)</VERB> is the matrix square root of the <VERB>x</VERB> x matrix (<VERB>x=y^</VERB>)
+    <P><VERB>y=sqrt(x)</VERB> is the matrix square root of the <VERB>x</VERB> x matrix (<VERB>x=y^2</VERB>)
     Result may not be accurate if <VERB>x</VERB> is not symmetric.</P>
   </DESCRIPTION>
   <EXAMPLE>

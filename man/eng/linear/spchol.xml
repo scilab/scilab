@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spchol  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="spchol"> sparse cholesky factorization  </SHORT_DESCRIPTION>
+  <TITLE>spchol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spchol"> sparse cholesky factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[R,P] = spchol(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: symmetric positive definite real  sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  permutation matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  cholesky factor</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>[R,P] = spchol(X)</VERB> produces a 
-    lower triangular matrix <VERB/> such that <VERB>P*R*R'*P' = </VERB>.</P>
+    lower triangular matrix <VERB>R</VERB> such that <VERB>P*R*R'*P' = X</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

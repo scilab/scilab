@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>newest  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="newest"> returns newest file of a set of files  </SHORT_DESCRIPTION>
+  <TITLE>newest</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="newest"> returns newest file of a set of files</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>k=newest(paths)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>k=newest(path1,path2,...,pathn)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the index of the newest file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>paths  </PARAM_NAME>
+        <PARAM_NAME>paths</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string vector (or list), paths(i) is the pathname of ith file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pathi  </PARAM_NAME>
+        <PARAM_NAME>pathi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string, the pathname of ith file</SP>
         </PARAM_DESCRIPTION>

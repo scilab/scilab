@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>inistate  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="inistate"> Estimates the initial state of a discrete-time system  </SHORT_DESCRIPTION>
+  <TITLE>inistate</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="inistate"> Estimates the initial state of a discrete-time system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>X0 = inistate(SYS,Y,U,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>X0 = inistate(A,B,C,Y,U);  </CALLING_SEQUENCE_ITEM>
@@ -17,25 +16,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>SY</PARAM_NAME>
+        <PARAM_NAME>SYS</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: given system, syslin(dt,A,B,C,D)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the output of the system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the input of the system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>TO</PARAM_NAME>
+        <PARAM_NAME>TOL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: TOL is the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number.</SP>
           <P>
@@ -44,7 +43,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>PRINT</PARAM_NAME>
+        <PARAM_NAME>PRINTW</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: PRINTW is a switch for printing the warning messages.</SP>
           <PARAM_INDENT>
@@ -67,19 +66,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>X</PARAM_NAME>
+        <PARAM_NAME>X0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the estimated initial state vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>V</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: orthogonal matrix which reduces the system state matrix A to  a real Schur form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rcnd  </PARAM_NAME>
+        <PARAM_NAME>rcnd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: estimate of the reciprocal condition number of the coefficient matrix of the least squares problem solved.</SP>
         </PARAM_DESCRIPTION>
@@ -115,10 +114,10 @@
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findBD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findx0B</LINK>
+      <LINK>findx0BD</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

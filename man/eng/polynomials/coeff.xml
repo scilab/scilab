@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>coeff  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="coeff"> coefficients of matrix polynomial  </SHORT_DESCRIPTION>
+  <TITLE>coeff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="coeff"> coefficients of matrix polynomial</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[C]=coeff(Mp [,v])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Mp  </PARAM_NAME>
+        <PARAM_NAME>Mp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (row or column) vector of selected degrees</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: big matrix of the coefficients</SP>
         </PARAM_DESCRIPTION>
@@ -34,8 +33,8 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>C=coeff(Mp)</VERB>
-    returns in a big matrix <VERB/> the coefficients of the
-    polynomial matrix <VERB>Mp</VERB> . <VERB/> is partitioned
+    returns in a big matrix <VERB>C</VERB> the coefficients of the
+    polynomial matrix <VERB>Mp</VERB> . <VERB>C</VERB> is partitioned
     as <VERB>C=[C0,C1,...,Ck]</VERB> 
     where the <VERB>Ci</VERB> are arranged in increasing order 
     <VERB>k = maxi(degree(Mp))</VERB></P>
@@ -53,5 +52,5 @@
       <LINK>inv_coeff</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> S. Steer INRI</AUTHOR>
+  <AUTHOR> S. Steer INRIA</AUTHOR>
 </MAN>

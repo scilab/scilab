@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>continue</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>August 200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>August 2003</DATE>
   <SHORT_DESCRIPTION name="continue"> keyword to pass control to the next
-  iteration of a loop </SHORT_DESCRIPTION>
+  iteration of a loop</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Inside a <VERB>for</VERB> or <VERB>while</VERB> loop, the command
@@ -40,5 +39,5 @@
       <LINK>return</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Serge Steer, INRI</AUTHOR>
+  <AUTHOR> Serge Steer, INRIA</AUTHOR>
 </MAN>

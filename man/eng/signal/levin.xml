@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>levin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>levin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="levin"> Toeplitz system solver by Levinson algorithm (multidimensional)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[la,sig]=levin(n,cov)  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: maximum order of the filter</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cov  </PARAM_NAME>
+        <PARAM_NAME>cov</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix containing the</SP>
           <P>
@@ -28,13 +27,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>la  </PARAM_NAME>
+        <PARAM_NAME>la</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list-type variable, giving the successively calculated Levinson polynomials (degree 1 to n), with coefficients <VERB>Ak</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sig  </PARAM_NAME>
+        <PARAM_NAME>sig</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list-type variable, giving the successive mean-square errors.</SP>
         </PARAM_DESCRIPTION>
@@ -140,5 +139,5 @@ s2=sort(imag(s2));s2=s2(1:d*n/2);//just the positive ones !
       <LINK>phc</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>G. Le Vey  </AUTHOR>
+  <AUTHOR>G. Le Vey</AUTHOR>
 </MAN>

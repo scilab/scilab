@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>flts  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>flts</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="flts"> time response (discrete time, sampled system)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y [,x]]=flts(u,sl [,x0])  </CALLING_SEQUENCE_ITEM>
@@ -14,31 +13,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix (input vector)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (linear system <VERB>syslin</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vector (initial state ; default value=<VERB/>)</SP>
+          <SP>: vector (initial state ; default value=<VERB>0</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>past  </PARAM_NAME>
+        <PARAM_NAME>past</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrix (of the past ; default value=<VERB/>)</SP>
+          <SP>: matrix (of the past ; default value=<VERB>0</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y  </PARAM_NAME>
+        <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices (state and output)</SP>
         </PARAM_DESCRIPTION>
@@ -58,7 +57,7 @@
    ]]>
     </VERBATIM>
     <P>
-    or, more generally, if <VERB/> is a polynomial matrix (<VERB>p = degree(D(z))</VERB>) :</P>
+    or, more generally, if <VERB>D</VERB> is a polynomial matrix (<VERB>p = degree(D(z))</VERB>) :</P>
     <P>
     Transfer form:</P>
     <P><VERB> y=flts(u,sl[,past])</VERB>. Here <VERB>sl</VERB> is a linear system in 

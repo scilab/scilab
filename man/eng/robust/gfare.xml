@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gfare  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gfare"> filter Riccati equation  </SHORT_DESCRIPTION>
+  <TITLE>gfare</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gfare"> filter Riccati equation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Z,H]=gfare(Sl)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sl  </PARAM_NAME>
+        <PARAM_NAME>Sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: symmetric matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>H</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
@@ -35,7 +34,7 @@
   <DESCRIPTION>
     <P>
     Generalized Filter Algebraic Riccati Equation (GFARE).
-    <VERB/> = solution, <VERB/> = gain.</P>
+    <VERB>Z</VERB> = solution, <VERB>H</VERB> = gain.</P>
     <P>
     The GFARE for <VERB>Sl=[A,B,C,D]</VERB> is:</P>
     <VERBATIM>
@@ -45,7 +44,7 @@
     </VERBATIM>
     <P>
     where <VERB>S=(eye()+D'*D)</VERB>, <VERB>Si=inv(S)</VERB>, <VERB>R=(eye()+D*D')</VERB>, <VERB>Ri=inv(R)</VERB>
-    and <VERB>H=-(B*D'+Z*C')*Ri</VERB> is such that <VERB>A+H*</VERB> is stable.</P>
+    and <VERB>H=-(B*D'+Z*C')*Ri</VERB> is such that <VERB>A+H*C</VERB> is stable.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

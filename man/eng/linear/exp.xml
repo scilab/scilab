@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>exp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="exp"> element-wise exponential  </SHORT_DESCRIPTION>
+  <TITLE>exp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="exp"> element-wise exponential</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>exp(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar,vector or matrix with real or complex entries.</SP>
         </PARAM_DESCRIPTION>
@@ -21,7 +20,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>exp(X)</VERB> is the (element-wise) exponential of the entries of <VERB/>.</P>
+    <P><VERB>exp(X)</VERB> is the (element-wise) exponential of the entries of <VERB>X</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

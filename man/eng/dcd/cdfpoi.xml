@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdfpoi  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdfpoi"> cumulative distribution function poisson distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdfpoi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfpoi"> cumulative distribution function poisson distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdfpoi(&quot;PQ&quot;,S,Xlam)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[S]=cdfpoi(&quot;S&quot;,Xlam,P,Q)  </CALLING_SEQUENCE_ITEM>
@@ -15,7 +14,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,S,Xlam  </PARAM_NAME>
+        <PARAM_NAME>P,Q,S,Xlam</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: four real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -27,13 +26,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:Upper limit of cumulation of the Poisson. Input range: [0, +infinity). Search range: [0,1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Xlam  </PARAM_NAME>
+        <PARAM_NAME>Xlam</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  Mean of the Poisson distribution. Input range: [0, +infinity). Search range: [0,1E300]</SP>
         </PARAM_DESCRIPTION>

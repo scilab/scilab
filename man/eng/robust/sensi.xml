@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sensi  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sensi"> sensitivity functions  </SHORT_DESCRIPTION>
+  <TITLE>sensi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sensi"> sensitivity functions</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Se,Re,Te]=sensi(G,K)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Si,Ri,Ti]=sensi(G,K,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,37 +13,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: standard plant (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: compensator (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string <VERB>'o'</VERB> (default value) or <VERB>'i'</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Se  </PARAM_NAME>
+        <PARAM_NAME>Se</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: output sensitivity function <VERB>(I+G*K)^-</VERB></SP>
+          <SP>: output sensitivity function <VERB>(I+G*K)^-1</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Re  </PARAM_NAME>
+        <PARAM_NAME>Re</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>K*Se</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Te  </PARAM_NAME>
+        <PARAM_NAME>Te</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>G*K*Se</VERB> (output complementary sensitivity function)</SP>
         </PARAM_DESCRIPTION>
@@ -52,7 +51,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>sensi</VERB> computes sensitivity functions. If <VERB/> and <VERB/> are
+    <P><VERB>sensi</VERB> computes sensitivity functions. If <VERB>G</VERB> and <VERB>K</VERB> are
     given in state-space form, the systems returned are generically minimal. 
     Calculation is made by <VERB>lft</VERB>, e.g., 
     <VERB>Se</VERB> can be given by the commands 

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gstacksize  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Mai 199</DATE>
-  <SHORT_DESCRIPTION name="gstacksize"> set/get scilab global stack size   </SHORT_DESCRIPTION>
+  <TITLE>gstacksize</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Mai 1999</DATE>
+  <SHORT_DESCRIPTION name="gstacksize"> set/get scilab global stack size</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>gstacksize(n)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sz=gstacksize()  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the required global stack size given in number of double precision words</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sz  </PARAM_NAME>
+        <PARAM_NAME>sz</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 2-vector [total used]</SP>
         </PARAM_DESCRIPTION>

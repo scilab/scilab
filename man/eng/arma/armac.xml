@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>eng  </LANGUAGE>
+  <LANGUAGE>eng</LANGUAGE>
   <TITLE>armac</TITLE>
   <TYPE>Scilab Function</TYPE>
-  <DATE>April 19</DATE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="armac"> Scilab description of an armax process</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[ar]=armac(a,b,d,ny,nu,sig)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[ar]=armac(a,b,d,ny,nu,sig)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>a=[Id,a1,..,a_r]</PARAM_NAME>
+        <PARAM_NAME>a=[Id,a1,..,a_r]  </PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is a matrix of size (ny,r*ny)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b=[b0,.....,b_s]</PARAM_NAME>
+        <PARAM_NAME>b=[b0,.....,b_s]  </PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is a matrix of size (ny,(s+1)*nu)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>d=[Id,d1,..,d_p]</PARAM_NAME>
+        <PARAM_NAME>d=[Id,d1,..,d_p]  </PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is a matrix of size (ny,p*ny);</SP>
         </PARAM_DESCRIPTION>
@@ -61,7 +60,7 @@ ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
     </VERBATIM>
     <P>
     and thus the coefficients of <VERB>ar</VERB> can be retrieved by e.g.
-    <VERB> ar('a')</VERB>.</P>
+    <VERB> ar('a') </VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -82,7 +81,7 @@ ar=armac(a,b,d,2,1,sig)
       <LINK>armax</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>armax</LINK>
+      <LINK>armax1</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>arsimul</LINK>

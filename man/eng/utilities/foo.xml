@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>foo</TITLE>
   <TYPE>Scilab function</TYPE>
-  <DATE>Jan 200</DATE>
+  <DATE>Jan 2003</DATE>
   <SHORT_DESCRIPTION name="foo">foo short description</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>

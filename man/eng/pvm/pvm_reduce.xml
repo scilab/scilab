@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_reduce  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="pvm_reduce"> Performs a reduce operation over members of the specified group  </SHORT_DESCRIPTION>
+  <TITLE>pvm_reduce</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm_reduce"> Performs a reduce operation over members of the specified group</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[buff, info] = pvm_reduce(func, buff, msgtag, group, rootginst)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>func :  string, defines the  operation performed  on  the global  </PARAM_NAME>
+        <PARAM_NAME>func :  string, defines the  operation performed  on  the global</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>data. Should be : Max, Min, Sum or Pro.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>buff : scalar,  local scilab variable.  On  return, the  data array on  </PARAM_NAME>
+        <PARAM_NAME>buff : scalar,  local scilab variable.  On  return, the  data array on</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>the root will  be overwritten with the result  of the reduce operation over the group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag  </PARAM_NAME>
+        <PARAM_NAME>msgtag : integer, message tag supplied by the user.  msgtag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>should  be  &gt;=  0.   It allows the user's program to              distinguish between different kinds of messages.</SP>
         </PARAM_DESCRIPTION>
@@ -37,13 +36,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rootginst  :  integer, instance number  of  group member who  gets the  </PARAM_NAME>
+        <PARAM_NAME>rootginst  :  integer, instance number  of  group member who  gets the</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>result.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info : integer, status code returned by the routine.  Values  </PARAM_NAME>
+        <PARAM_NAME>info : integer, status code returned by the routine.  Values</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>less than zero indicate an error.</SP>
         </PARAM_DESCRIPTION>

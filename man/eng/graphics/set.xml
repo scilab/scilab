@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>set  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 200</DATE>
+  <TITLE>set</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="set"> 
    set a property value of a graphic entity object or of a User Interface object.  
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>set(prop,val) </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>set(h,prop,val)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>h.prop=val </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>h.prop=val</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>set(n,prop,val)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a handle, the handle of the entity which to set the named property, <VERB>h</VERB> can be a vector of
 handles, in which case set sets the property's value for all objects identified by h(i).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>n : an integer, the handle of User Interface object which to set the named property.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>prop  </PARAM_NAME>
+        <PARAM_NAME>prop</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string name of the property to set.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>val  </PARAM_NAME>
+        <PARAM_NAME>val</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <P>
      : value to give to the property (see <LINK>graphics_entities</LINK>).</P>
@@ -109,5 +108,5 @@ handles, in which case set sets the property's value for all objects identified 
       <LINK>uicontrol</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

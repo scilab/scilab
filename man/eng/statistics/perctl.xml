@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>perctl  </TITLE>
+  <TITLE>perctl</TITLE>
   <TYPE>  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="perctl"> computation of percentils  </SHORT_DESCRIPTION>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="perctl"> computation of percentils</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>=perctl(x,y) </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of positif values between 0 and 100.</SP>
         </PARAM_DESCRIPTION>
@@ -55,11 +54,11 @@ p=perctl(x,y)
 
  ]]>
   </EXAMPLE>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>
     <P>
 HYNDMAN,Rob  J.   and FAN  Yanan,  Sample Quantiles  in
 Statistical   Packages,   The  American   Statistician,
-Nov.1996, Vol 50, No.</P>
+Nov.1996, Vol 50, No.4</P>
   </BIBLIO>
 </MAN>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>edit_graph</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="edit_graph"> graph and network graphical editor </SHORT_DESCRIPTION>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="edit_graph"> graph and network graphical editor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>num=edit_graph()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>num=edit_graph(file_name [,zoom [,wsize]])</CALLING_SEQUENCE_ITEM>
@@ -15,32 +14,32 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file_name  </PARAM_NAME>
+        <PARAM_NAME>file_name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string. The path of a &quot;graph&quot; file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a <VERB> graph-list</VERB>data structure</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>zoom  </PARAM_NAME>
+        <PARAM_NAME>zoom</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real positive scalar. The zoom factor, its default value is 1.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wsize  </PARAM_NAME>
+        <PARAM_NAME>wsize</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real positive vector <VERB> [width height]</VERB>. The initial
   window dimensions, its default value is <VERB>[600,400]</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>num  </PARAM_NAME>
+        <PARAM_NAME>num</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer scalar. The associated window number
   window dimension.</SP>

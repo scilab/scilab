@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>scicos_state  </TITLE>
-  <TYPE>Scicos data structure  </TYPE>
-  <DATE>Janvier 200</DATE>
-  <SHORT_DESCRIPTION name="scicos_state"> Initial state data structure of Scicos diagram  </SHORT_DESCRIPTION>
+  <TITLE>scicos_state</TITLE>
+  <TYPE>Scicos data structure</TYPE>
+  <DATE>Janvier 2003</DATE>
+  <SHORT_DESCRIPTION name="scicos_state"> Initial state data structure of Scicos diagram</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Initial state data structure of Scicos compiled diagram data structure

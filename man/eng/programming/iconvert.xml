@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>iconvert  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>October 9</DATE>
-  <SHORT_DESCRIPTION name="iconvert"> conversion to 1 or 4 byte integer representation  </SHORT_DESCRIPTION>
+  <TITLE>iconvert</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 99</DATE>
+  <SHORT_DESCRIPTION name="iconvert"> conversion to 1 or 4 byte integer representation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=iconvert(X,itype)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of floats or integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of integers coded on one, two or four bytes.</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>genmarkov  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="genmarkov"> generates random markov matrix with recurrent and transient classes  </SHORT_DESCRIPTION>
+  <TITLE>genmarkov</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="genmarkov"> generates random markov matrix with recurrent and transient classes</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>M=genmarkov(rec,tr)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>M=genmarkov(rec,tr,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>rec  </PARAM_NAME>
+        <PARAM_NAME>rec</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row vector (its dimension is the number of recurrent classes).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tr  </PARAM_NAME>
+        <PARAM_NAME>tr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of transient states)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real Markov matrix. Sum of entries in each row should add to one.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string <VERB>'perm'</VERB>. If given, a random permutation of the states is done.</SP>
         </PARAM_DESCRIPTION>

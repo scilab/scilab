@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>matfile2sci</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2002</DATE>
   <SHORT_DESCRIPTION name="matfile2sci"> converts  a Matlab 5 MAT-file
   into a Scilab binary file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
@@ -20,7 +19,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sci_file_path </PARAM_NAME>
+        <PARAM_NAME>sci_file_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string containing the path of the Scilab output file</SP>
         </PARAM_DESCRIPTION>

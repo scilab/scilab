@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>G_make  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="G_make"> call make or nmake   </SHORT_DESCRIPTION>
+  <TITLE>G_make</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1995</DATE>
+  <SHORT_DESCRIPTION name="G_make"> call make or nmake</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Rfiles=G_make(files,dllname)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>files  </PARAM_NAME>
+        <PARAM_NAME>files</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string or a vector of character string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dllname  </PARAM_NAME>
+        <PARAM_NAME>dllname</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Rfiles  </PARAM_NAME>
+        <PARAM_NAME>Rfiles</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of character string. <VERB>Rfiles</VERB> can be used as a first argument when calling <VERB>addinter</VERB> function.</SP>
         </PARAM_DESCRIPTION>

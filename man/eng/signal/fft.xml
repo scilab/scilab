@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>FF</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>FFT</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="fft"> fast Fourier transform.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x]=fft(a,-1)  </CALLING_SEQUENCE_ITEM>
@@ -16,25 +15,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector. Real or complex matrix (2-dim fft)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dim  </PARAM_NAME>
+        <PARAM_NAME>dim</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>incr  </PARAM_NAME>
+        <PARAM_NAME>incr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
@@ -45,7 +44,7 @@
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM>
         <P>  Short syntax (one or two dimensional fft):</P>
-        <P><VERB>x=fft(a,-1)</VERB> gives a direct transform (the <VERB>-</VERB> refers to
+        <P><VERB>x=fft(a,-1)</VERB> gives a direct transform (the <VERB>-1</VERB> refers to
     the sign of the exponent..., NOT to &quot;inverse&quot;), that is</P>
         <P>
     x(k)=sum over m from 1 to n  of a(m)*exp(-2i*pi*(m-1)*(k-1)/n)</P>
@@ -64,7 +63,7 @@
         <P>
     If a is a real or complex vector implicitly indexed by
     <VERB>x1,x2,..,xp</VERB> i.e. <VERB>a(x1,x2,..,xp)</VERB> where <VERB>x</VERB>1 lies in 
-    <VERB>1..dim1,</VERB> <VERB>x</VERB> in <VERB>1.. dim2,...</VERB> one gets 
+    <VERB>1..dim1,</VERB> <VERB>x2</VERB> in <VERB>1.. dim2,...</VERB> one gets 
     a p-dimensional FFT p by calling p times <VERB>fft</VERB> as follows</P>
         <VERBATIM>
 <![CDATA[

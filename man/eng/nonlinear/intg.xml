@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>intg  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="intg"> definite integral  </SHORT_DESCRIPTION>
+  <TITLE>intg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="intg"> definite integral</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[v,err]=intg(a,b,f [,ea [,er])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>a,b  </PARAM_NAME>
+        <PARAM_NAME>a,b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real numbers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or list or string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ea, er  </PARAM_NAME>
+        <PARAM_NAME>ea, er</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real numbers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ea  </PARAM_NAME>
+        <PARAM_NAME>ea</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: absolute error required on the result. Default value: </SP>
+          <SP>: absolute error required on the result. Default value: 0</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>er  </PARAM_NAME>
+        <PARAM_NAME>er</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: relative error required on the result. Default value: 1.d-</SP>
+          <SP>: relative error required on the result. Default value: 1.d-8</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: estimated absolute error on the result.</SP>
         </PARAM_DESCRIPTION>

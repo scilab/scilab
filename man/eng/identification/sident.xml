@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sident  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sident"> discrete-time state-space realization and Kalman gain  </SHORT_DESCRIPTION>
+  <TITLE>sident</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="sident"> discrete-time state-space realization and Kalman gain</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>   [(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>                                              Ci,printw))  </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>meth  </PARAM_NAME>
+        <PARAM_NAME>meth</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to determine the method to use:</SP>
           <PARAM_INDENT>
@@ -40,7 +39,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>job  </PARAM_NAME>
+        <PARAM_NAME>job</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to determine the calculation to be performed:</SP>
           <PARAM_INDENT>
@@ -72,55 +71,55 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>s  </PARAM_NAME>
+        <PARAM_NAME>s</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the number of block rows in the processed input and output block Hankel matrices.  s &gt; 0.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the order of the system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>l  </PARAM_NAME>
+        <PARAM_NAME>l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of the system outputs</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the 2*(m+l)*s-by-2*(m+l)*s part of  R  contains the processed upper triangular factor  R  from the QR factorization of the concatenated block-Hankel matrices, and further details needed for computing system matrices.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) tolerance used for estimating the rank of matrices. If  tol &gt; 0,  then the given value of  tol  is used as a lower bound for the reciprocal condition number; an m-by-n matrix whose estimated condition number is less than  1/tol  is considered to be of full rank. Default:    m*n*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the total number of samples used for calculating the covariance matrices.  Either t = 0, or t &gt;= 2*(m+l)*s. This parameter is not needed if the covariance matrices and/or the Kalman predictor gain matrix are not desired. If t = 0, then K, Q, Ry, and S are not computed. Default:    t = 0.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Ai  </PARAM_NAME>
+        <PARAM_NAME>Ai</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Ci  </PARAM_NAME>
+        <PARAM_NAME>Ci</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>printw  </PARAM_NAME>
+        <PARAM_NAME>printw</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) switch for printing the warning messages.</SP>
           <PARAM_INDENT>
@@ -143,55 +142,55 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix, kalman gain</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the n-by-n positive semidefinite state covariance matrix used as state weighting matrix when computing the Kalman gain.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>R</PARAM_NAME>
+        <PARAM_NAME>RY</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the l-by-l positive (semi)definite output covariance matrix used as output weighting matrix when computing the Kalman gain.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the n-by-l state-output cross-covariance matrix used as cross-weighting matrix when computing the Kalman gain.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rcnd  </PARAM_NAME>
+        <PARAM_NAME>rcnd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) vector of length lr, containing estimates of the reciprocal condition numbers of the matrices involved in rank decisions, least squares, or Riccati equation solutions, where   lr = 4,  if Kalman gain matrix K is not required, and  lr = 12, if Kalman gain matrix K is required.</SP>
         </PARAM_DESCRIPTION>
@@ -291,7 +290,7 @@ xbasc();plot2d((1:nsmp)',[Y',Y1'])
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findBD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sorder</LINK>

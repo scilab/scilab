@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvmd</TITLE>
-  <TYPE>pvm daemon  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="pvmd3"> PVM  daemon  </SHORT_DESCRIPTION>
+  <TITLE>pvmd3</TITLE>
+  <TYPE>pvm daemon</TYPE>
+  <DATE>January 1998</DATE>
+  <SHORT_DESCRIPTION name="pvmd3"> PVM  daemon</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     pvmd3 is a daemon process which coordinates hosts in a virtual
@@ -143,13 +142,13 @@ betty
         <SP>$PVM_ROOT/lib/pvmd (or environment variable PVM_DPATH)</SP>
       </ITEM>
       <ITEM label="ep">
-        <SP>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARC</SP>
+        <SP>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</SP>
       </ITEM>
       <ITEM label="wd">
-        <SP>$HOM</SP>
+        <SP>$HOME</SP>
       </ITEM>
       <ITEM label="sp">
-        <SP>100</SP>
+        <SP>1000</SP>
       </ITEM>
       <ITEM label="bx">
         <SP>$PVM_ROOT/lib/debugger</SP>
@@ -179,7 +178,7 @@ sigi.cs
     </VERBATIM>
     <ITEMIZE>
       <ITEM label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by">
-        <SP>hand and share a homedir &amp; igor.firewall.com lo=guest2 so=ms      ep=bob/pvm3/bin/$PVM_ARC</SP>
+        <SP>hand and share a homedir &amp; igor.firewall.com lo=guest2 so=ms      ep=bob/pvm3/bin/$PVM_ARCH</SP>
       </ITEM>
     </ITEMIZE>
   </SECTION>

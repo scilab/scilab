@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>leastsq  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>leastsq</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
   <SHORT_DESCRIPTION name="leastsq"> 
     Solves non-linear least squaresproblems  
   </SHORT_DESCRIPTION>
@@ -17,51 +16,51 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>imp </PARAM_NAME>
+        <PARAM_NAME>imp</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: scalar argument used to set the trace mode. <VERB>imp=</VERB>
-    nothing (execpt errors) is reported, <VERB>imp=</VERB> initial
-    and final reports, <VERB>imp=</VERB> adds a report per iteration,
-    <VERB>imp&gt;</VERB> add reports on linear search. Warning, most
+          <SP>: scalar argument used to set the trace mode. <VERB>imp=0</VERB>
+    nothing (execpt errors) is reported, <VERB>imp=1</VERB> initial
+    and final reports, <VERB>imp=2</VERB> adds a report per iteration,
+    <VERB>imp&gt;2</VERB> add reports on linear search. Warning, most
     of these reports are written on the Scilab standard output.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fun </PARAM_NAME>
+        <PARAM_NAME>fun</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external, i.e Scilab function or string (<VERB>fun</VERB> is the
     function defining the least square probleme: see below.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (initial value of variable to be minimized).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of optimal least square value.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xopt  </PARAM_NAME>
+        <PARAM_NAME>xopt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: best value of <VERB>x</VERB> found.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>contr  </PARAM_NAME>
+        <PARAM_NAME>contr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and
     <VERB>bsup</VERB> real vectors with same dimension as
-    <VERB>x</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower
+    <VERB>x0</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower
     and upper bounds on <VERB>x</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>algo  </PARAM_NAME>
+        <PARAM_NAME>algo</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: A string with possible values :<VERB>'qn'</VERB> or
     <VERB>'gc'</VERB> or <VERB>'nd'</VERB> . This
@@ -72,14 +71,14 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>df</PARAM_NAME>
+        <PARAM_NAME>df0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first
-    iteration. (<VERB>df0=</VERB> is the default value).</SP>
+    iteration. (<VERB>df0=1</VERB> is the default value).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mem   </PARAM_NAME>
+        <PARAM_NAME>mem</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of variables used to approximate the  Hessian,
     (<VERB>algo='gc' or 'nd'</VERB>). Default value
@@ -87,7 +86,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>stop  </PARAM_NAME>
+        <PARAM_NAME>stop</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  sequence of optional parameters controlling the  convergence of
   the algorithm. 
@@ -100,34 +99,34 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>nap  </PARAM_NAME>
+              <PARAM_NAME>nap</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of calls to <VERB>fun</VERB> allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>iter  </PARAM_NAME>
+              <PARAM_NAME>iter</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of iterations allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsg  </PARAM_NAME>
+              <PARAM_NAME>epsg</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold on gradient norm.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsf  </PARAM_NAME>
+              <PARAM_NAME>epsf</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsx  </PARAM_NAME>
+              <PARAM_NAME>epsx</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold controlling variation of <VERB>x</VERB>. This vector
-        (possibly matrix) of same size as <VERB>x</VERB> can be used to
+        (possibly matrix) of same size as <VERB>x0</VERB> can be used to
         scale <VERB>x</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
@@ -142,7 +141,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>gradopt  </PARAM_NAME>
+        <PARAM_NAME>gradopt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  gradient of <VERB>fun</VERB> at <VERB>xopt</VERB></SP>
         </PARAM_DESCRIPTION>
@@ -153,7 +152,7 @@
     <P>
     Non-linear optimization routine for programs without constraints or with bound constraints: 
    </P>
-    <P><VERB>min sum(f(x)).^</VERB>  w.r.t  <VERB>x</VERB>, 
+    <P><VERB>min sum(f(x)).^2</VERB>  w.r.t  <VERB>x</VERB>, 
    Here, <VERB>f</VERB> is a function from R^n to R^m which returns <VERB>f(x)</VERB>, a
     real vector ( value of function at <VERB>x</VERB>). </P>
     <DESCRIPTION_INDENT>
@@ -187,7 +186,7 @@
           double precision x(n), td(*), y(m)
          ]]>
             </VERBATIM>
-            <P>        In </P>
+            <P>        In C</P>
             <VERBATIM>
 <![CDATA[
           void fun(int *n,int *m, double *x,double *params, double *y)

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fusee  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="fusee"> a set of Scilab macro for a landing rocket problem   </SHORT_DESCRIPTION>
+  <TITLE>fusee</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fusee"> a set of Scilab macro for a landing rocket problem</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="FUSEE">

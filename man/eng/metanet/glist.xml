@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>glist  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="glist"> graph list creation  </SHORT_DESCRIPTION>
+  <TITLE>glist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="glist"> graph list creation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g = glist(a1, ... ,a34)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

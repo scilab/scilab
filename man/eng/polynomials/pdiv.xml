@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pdivg  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pdiv"> polynomial division  </SHORT_DESCRIPTION>
+  <TITLE>pdivg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pdiv"> polynomial division</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[R,Q]=pdiv(P1,P2)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Q]=pdiv(P1,P2)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_NAME>P1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>P</PARAM_NAME>
+        <PARAM_NAME>P2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial or polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>R,</PARAM_NAME>
+        <PARAM_NAME>R,Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two polynomial matrices</SP>
         </PARAM_DESCRIPTION>
@@ -35,8 +34,8 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Element-wise euclidan division of the polynomial matrix <VERB>P</VERB>
-    by the polynomial <VERB>P</VERB> or by the polynomial matrix <VERB>P</VERB>.
+    Element-wise euclidan division of the polynomial matrix <VERB>P1</VERB>
+    by the polynomial <VERB>P2</VERB> or by the polynomial matrix <VERB>P2</VERB>.
     <VERB>Rij</VERB> is the matrix of remainders, <VERB>Qij</VERB> is the matrix
     of quotients and <VERB>P1ij = Qij*P2 + Qij</VERB> or <VERB>P1ij = Qij*P2ij + Qij</VERB>.</P>
   </DESCRIPTION>

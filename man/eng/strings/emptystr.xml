@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>emptystr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="emptystr"> zero length string  </SHORT_DESCRIPTION>
+  <TITLE>emptystr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="emptystr"> zero length string</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>s=emptystr()   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>s=emptystr(a)   </CALLING_SEQUENCE_ITEM>
@@ -15,19 +14,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: any type of matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>s  </PARAM_NAME>
+        <PARAM_NAME>s</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m,n  </PARAM_NAME>
+        <PARAM_NAME>m,n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers</SP>
         </PARAM_DESCRIPTION>

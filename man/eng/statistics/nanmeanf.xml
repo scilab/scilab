@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nanmeanf  </TITLE>
+  <TITLE>nanmeanf</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
+  <DATE>July 2000</DATE>
   <SHORT_DESCRIPTION name="nanmeanf"> mean (ignoring Nan's) with a given frequency.</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>m=nanmean(val,fre)  </CALLING_SEQUENCE_ITEM>
@@ -15,13 +14,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>val  </PARAM_NAME>
+        <PARAM_NAME>val</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fre  </PARAM_NAME>
+        <PARAM_NAME>fre</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector  or matrix with same dimensions  than
 val</SP>
@@ -31,24 +30,24 @@ val</SP>
   </PARAM>
   <DESCRIPTION>
     <P>
-    This function returns in scalar <VERB> m  </VERB> the mean of the
+    This function returns in scalar <VERB> m</VERB> the mean of the
     values (ignoring  the NANs) of a vector  or matrix <VERB> val
     </VERB>,   each counted  with   a  frequency signaled  by  the
     corresponding values of the  integer vector or matrix  <VERB>
-    fre </VERB> with the same type of <VERB>val </VERB>.</P>
+    fre</VERB> with the same type of <VERB>val</VERB>.</P>
     <P>
-    For      a  vector    or  matrix    <VERB>    val  </VERB>,   <VERB>
+    For      a  vector    or  matrix    <VERB>    val</VERB>,   <VERB>
     m=nanmeanf(val,fre)</VERB>  or  <VERB> m=nanmeanf(val,fre,'*')</VERB>
-    returns in scalar  <VERB> m </VERB>  the mean of all  the entries
-    (ignoring  the NANs) of   <VERB> val </VERB>, each  value counted
+    returns in scalar  <VERB> m</VERB>  the mean of all  the entries
+    (ignoring  the NANs) of   <VERB> val</VERB>, each  value counted
     with the multiplicity indicated by the corresponding value
-    of <VERB> fre </VERB>.</P>
+    of <VERB> fre</VERB>.</P>
     <P><VERB>m=nanmeanf(val,fre,'r')</VERB>       (or,     equivalently,
     <VERB>m=nanmeanf(val,fre,1)</VERB> ) returns in each entry of the
-    row vector <VERB>  m </VERB> of  type 1xsize(val,'c') the mean of
+    row vector <VERB>  m</VERB> of  type 1xsize(val,'c') the mean of
     each column of val (ignoring the NANs), each value counted
     with the multiplicity indicated by the corresponding value
-    of <VERB> fre </VERB>.</P>
+    of <VERB> fre</VERB>.</P>
     <P><VERB>m=nanmeanf(val,fre,'c')</VERB>  (or,      equivalently,
     <VERB>m=nanmeanf(val,fre,2)</VERB>) returns in  each entry of the
     column  vector m of  type size(val,'c')x1 the mean of each
@@ -67,7 +66,7 @@ m=nanmeanf(x,fre,1)
 m=nanmeanf(x,fre,2)
  ]]>
   </EXAMPLE>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>
     <P>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>

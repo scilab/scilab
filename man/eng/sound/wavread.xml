@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>wavread  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="wavread"> load .wav sound file  </SHORT_DESCRIPTION>
+  <TITLE>wavread</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="wavread"> load .wav sound file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=wavread(wavfile)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=wavread(wavfile,ext)  </CALLING_SEQUENCE_ITEM>
@@ -16,19 +15,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>wavfile  </PARAM_NAME>
+        <PARAM_NAME>wavfile</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (The .wav extension is appended if no extension is given)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Fs  </PARAM_NAME>
+        <PARAM_NAME>Fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, frequency sampling in Hz.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ext  </PARAM_NAME>
+        <PARAM_NAME>ext</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (<VERB>'size'</VERB>) or integer (to read n samples) or 1 x 2 integer vector [n1,n2] (to read from n1 to n2).</SP>
         </PARAM_DESCRIPTION>

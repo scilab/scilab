@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>edit_graph_menus</TITLE>
-  <TYPE>Description  </TYPE>
-  <DATE>200</DATE>
-  <SHORT_DESCRIPTION name="edit_graph_menus"> edit_graph menus description </SHORT_DESCRIPTION>
+  <TYPE>Description</TYPE>
+  <DATE>2002</DATE>
+  <SHORT_DESCRIPTION name="edit_graph_menus"> edit_graph menus description</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The edit_graph editor  supports the following menus: 

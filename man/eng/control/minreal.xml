@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>minreal  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="minreal"> minimal balanced realization  </SHORT_DESCRIPTION>
+  <TITLE>minreal</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="minreal"> minimal balanced realization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>slb=minreal(sl [,tol])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl,slb  </PARAM_NAME>
+        <PARAM_NAME>sl,slb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> lists</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (threshold)</SP>
         </PARAM_DESCRIPTION>
@@ -31,7 +30,7 @@
     returns the balanced realization of linear 
     system <VERB>sl</VERB> (<VERB>syslin</VERB> list).</P>
     <P><VERB>sl</VERB> is assumed stable.</P>
-    <P><VERB>tol</VERB> threshold used in <VERB>equil</VERB>.</P>
+    <P><VERB>tol</VERB> threshold used in <VERB>equil1</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -60,8 +59,8 @@ clean(obs_gram(slb))
       <LINK>equil</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>equil</LINK>
+      <LINK>equil1</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>S. Steer INRIA 198</AUTHOR>
+  <AUTHOR>S. Steer INRIA 1987</AUTHOR>
 </MAN>

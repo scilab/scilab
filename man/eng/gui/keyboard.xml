@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>keyboard  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="keyboard"> keyboard commands  </SHORT_DESCRIPTION>
+  <TITLE>keyboard</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="keyboard"> keyboard commands</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Let <VERB>C-</VERB> stands for the control key. The following keyboard commands are available:
@@ -43,7 +42,7 @@
         <SP>looks for last command line which begins by <VERB>beg</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="C-c">
-        <SP>interrupts Scilab and pause after carriage return. (Only functions can be interrupted). Clicking on the stop button enters a <VERB>C-</VERB>.</SP>
+        <SP>interrupts Scilab and pause after carriage return. (Only functions can be interrupted). Clicking on the stop button enters a <VERB>C-C</VERB>.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getdate  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jun 199</DATE>
-  <SHORT_DESCRIPTION name="getdate"> get date and time information  </SHORT_DESCRIPTION>
+  <TITLE>getdate</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jun 1999</DATE>
+  <SHORT_DESCRIPTION name="getdate"> get date and time information</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>dt=getdate()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>x=getdate('s')  </CALLING_SEQUENCE_ITEM>
@@ -15,15 +14,15 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>dt  </PARAM_NAME>
+        <PARAM_NAME>dt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer vector with 8 entries (see below)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: an integer containing a date coded in second from 1 Jan 197</SP>
+          <SP>: an integer containing a date coded in second from 1 Jan 1970</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

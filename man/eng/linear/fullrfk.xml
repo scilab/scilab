@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fullrfk  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="fullrfk"> full rank factorization of A^k  </SHORT_DESCRIPTION>
+  <TITLE>fullrfk</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fullrfk"> full rank factorization of A^k</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Bk,Ck]=fullrfk(A,k)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Bk,Ck  </PARAM_NAME>
+        <PARAM_NAME>Bk,Ck</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrices</SP>
         </PARAM_DESCRIPTION>
@@ -38,7 +37,7 @@
     <VERB>Bk*Ck=A^k</VERB> where <VERB>Bk</VERB> is full column rank and <VERB>Ck</VERB> full row rank.
     One has range(<VERB>Bk</VERB>)=range(<VERB>A^k</VERB>) and ker(<VERB>Ck</VERB>)=ker(<VERB>A^k</VERB>).</P>
     <P>
-    For <VERB>k=</VERB>, <VERB>fullrfk</VERB> is equivalent to <VERB>fullrf</VERB>.</P>
+    For <VERB>k=1</VERB>, <VERB>fullrfk</VERB> is equivalent to <VERB>fullrf</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

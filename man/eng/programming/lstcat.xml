@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lstcat  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="lstcat"> list concatenation  </SHORT_DESCRIPTION>
+  <TITLE>lstcat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="lstcat"> list concatenation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>lc=lstcat(l1,..ln)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>li  </PARAM_NAME>
+        <PARAM_NAME>li</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list or any other type of variable</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>lc  </PARAM_NAME>
+        <PARAM_NAME>lc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a list</SP>
         </PARAM_DESCRIPTION>

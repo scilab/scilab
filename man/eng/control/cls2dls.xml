@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cls2dls  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="cls2dls"> bilinear transform  </SHORT_DESCRIPTION>
+  <TITLE>cls2dls</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cls2dls"> bilinear transform</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sl1]=cls2dls(sl,T [,fp])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl,sl</PARAM_NAME>
+        <PARAM_NAME>sl,sl1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear systems (<VERB>syslin</VERB> lists)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>T</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number, the sampling period</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fp  </PARAM_NAME>
+        <PARAM_NAME>fp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: prevarping frequency in hertz</SP>
         </PARAM_DESCRIPTION>

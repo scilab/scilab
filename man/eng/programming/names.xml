@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>names  </TITLE>
-  <TYPE>Scilab Syntax  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="names"> scilab names syntax  </SHORT_DESCRIPTION>
+  <TITLE>names</TITLE>
+  <TYPE>Scilab Syntax</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="names"> scilab names syntax</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Names of variables and functions must begin with a letter or one of

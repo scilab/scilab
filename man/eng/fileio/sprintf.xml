@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>printf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="sprintf"> Emulator of C language sprintf function  </SHORT_DESCRIPTION>
+  <TITLE>printf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="sprintf"> Emulator of C language sprintf function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>str=sprintf(format,value_1,..,value_n)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>format  </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab string. Specifies a character string combining literal characters with conversion specifications.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>value_i  </PARAM_NAME>
+        <PARAM_NAME>value_i</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Specifies the data to be converted according to the format parameter.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: column vector of character strings</SP>
         </PARAM_DESCRIPTION>

@@ -1,67 +1,66 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ode_root  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>February 199</DATE>
-  <SHORT_DESCRIPTION name="ode_root"> ordinary differential equation solver with root finding  </SHORT_DESCRIPTION>
+  <TITLE>ode_root</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="ode_root"> ordinary differential equation solver with root finding</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y,rd[,w,iw]=ode(&quot;root&quot;,y0,t0,t [,rtol  [,atol]],f  [,jac],ng,g [,w,iw])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_NAME>y0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector or matrix (initial conditions).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_NAME>t0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar (initial time).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (times at which the solution is computed).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external i.e. function or character string or list.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rtol,atol  </PARAM_NAME>
+        <PARAM_NAME>rtol,atol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real constants or real vectors of the same size as <VERB>y</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>jac  </PARAM_NAME>
+        <PARAM_NAME>jac</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external i.e. function or character string or list.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>w,iw  </PARAM_NAME>
+        <PARAM_NAME>w,iw</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vectors.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ng  </PARAM_NAME>
+        <PARAM_NAME>ng</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external i.e. function or character string or list.</SP>
         </PARAM_DESCRIPTION>
@@ -74,7 +73,7 @@
     <VERB>ode</VERB>
     computes the solution
     of the differential equation <VERB>dy/dt=f(t,y)</VERB> until the state
-    <VERB>y(t)</VERB> crosses the surface <VERB>g(t,y)=</VERB>.</P>
+    <VERB>y(t)</VERB> crosses the surface <VERB>g(t,y)=0</VERB>.</P>
     <P><VERB>g</VERB> should give the equation of the surface.
     It is an external i.e. a function with
     specified syntax, or the name of a Fortran subroutine or a C function 

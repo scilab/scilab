@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>range  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="range"> range (span) of A^k  </SHORT_DESCRIPTION>
+  <TITLE>range</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="range"> range (span) of A^k</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X,dim]=range(A,k)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: non-singular real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dim  </PARAM_NAME>
+        <PARAM_NAME>dim</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (dimension of subspace)</SP>
         </PARAM_DESCRIPTION>
@@ -40,7 +39,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Computation of Range <VERB>A^k</VERB> ; the first dim columns of <VERB/> span the
+    Computation of Range <VERB>A^k</VERB> ; the first dim columns of <VERB>X</VERB> span the
     range of <VERB>A^k</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>

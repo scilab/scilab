@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>axes_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="axes_properties"> description of the
-   axes entity properties </SHORT_DESCRIPTION>
+   axes entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Axes entity is the second level of the graphics entities
@@ -38,7 +37,7 @@
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="grid: ">
             <SP>This field controls a grid drawning and the its color. if the
-      values is <VERB>-</VERB> grids are not drawn, else the grids are
+      values is <VERB>-1</VERB> grids are not drawn, else the grids are
       drawn using the color given indexed by the grid value.</SP>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="log_flags: ">
@@ -264,5 +263,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

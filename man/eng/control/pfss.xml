@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pfss  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pfss"> partial fraction decomposition  </SHORT_DESCRIPTION>
+  <TITLE>pfss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pfss"> partial fraction decomposition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>elts=pfss(Sl)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>elts=pfss(Sl,rmax)  </CALLING_SEQUENCE_ITEM>
@@ -36,7 +35,7 @@
     <P><VERB>Sl = S1 + S2 +... +Sn</VERB>.</P>
     <P>
     Each <VERB>Si</VERB> contains some poles of <VERB/>S according to the 
-    block-diagonalization of the <VERB/> matrix of <VERB/>.</P>
+    block-diagonalization of the <VERB>A</VERB> matrix of <VERB>S</VERB>.</P>
     <P>
     For non proper systems the polynomial part of <VERB>Sl</VERB> is put
     in the last entry of <VERB>elts</VERB>.</P>

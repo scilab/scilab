@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>DLRADAPT_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="DLRADAPT_f"> Scicos discrete-time linear adaptive system  </SHORT_DESCRIPTION>
+  <TITLE>DLRADAPT_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="DLRADAPT_f"> Scicos discrete-time linear adaptive system</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block realizes a SISO linear system represented by its rational
@@ -21,7 +20,7 @@
   <SECTION label="Dialogue parameters">
     <ITEMIZE>
       <ITEM label="Vector of p mesh points">
-        <SP>: a vector which defines <VERB>u</VERB> mesh points. Numerator roots : a matrix, each line gives the roots of the numerator at the corresponding mesh point.</SP>
+        <SP>: a vector which defines <VERB>u2</VERB> mesh points. Numerator roots : a matrix, each line gives the roots of the numerator at the corresponding mesh point.</SP>
       </ITEM>
       <ITEM label="Denominator roots">
         <SP>: a matrix, each line gives the roots of the denominator at the corresponding mesh point.</SP>

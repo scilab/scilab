@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bloc2ss  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="bloc2ss"> block-diagram to state-space conversion  </SHORT_DESCRIPTION>
+  <TITLE>bloc2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bloc2ss"> block-diagram to state-space conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sl]=bloc2ss(blocd)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>blocd  </PARAM_NAME>
+        <PARAM_NAME>blocd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
@@ -74,18 +73,18 @@ list('link','name_of_link',
     <P>
     For example</P>
     <P>
-    [1] <VERB>S1*S</VERB> with unit feedback.</P>
+    [1] <VERB>S1*S2</VERB> with unit feedback.</P>
     <P>
-    There are 3 transfers <VERB>S</VERB> (number <VERB>n_s1=</VERB>) , <VERB>S</VERB> (number <VERB>n_s2=</VERB>)
-    and an adder (number <VERB>n_add=</VERB>) with symbolic transfer 
+    There are 3 transfers <VERB>S1</VERB> (number <VERB>n_s1=2</VERB>) , <VERB>S2</VERB> (number <VERB>n_s2=3</VERB>)
+    and an adder (number <VERB>n_add=4</VERB>) with symbolic transfer 
     function <VERB>['1','1']</VERB>.</P>
     <P>
     There are 4 links. The first one (named <VERB>'U'</VERB>) links the input 
     (port 0 of fictitious block -1, omitted) to port 1 of the adder.
     The second and third one link respectively (output)port 1 
-    of the adder to (input)port 1 of system <VERB>S</VERB>, and 
-    (output)port 1 of <VERB>S</VERB> to (input)port 1 of <VERB>S</VERB>.
-    The fourth link (named <VERB>'Y'</VERB>) links (output)port 1 of <VERB>S</VERB> to 
+    of the adder to (input)port 1 of system <VERB>S1</VERB>, and 
+    (output)port 1 of <VERB>S1</VERB> to (input)port 1 of <VERB>S2</VERB>.
+    The fourth link (named <VERB>'Y'</VERB>) links (output)port 1 of <VERB>S2</VERB> to 
     the output (port 0 of fictitious block -1, omitted) and to 
     (input)port 2 of the adder.</P>
     <VERBATIM>
@@ -145,8 +144,8 @@ K=syslin('c',Ak,Bk,Ck,Dk);
    ]]>
     </VERBATIM>
     <P><VERB>bloc2exp(syst)</VERB>
-    returns the evaluation the lft of <VERB/>
-    and <VERB/>.</P>
+    returns the evaluation the lft of <VERB>P</VERB>
+    and <VERB>K</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

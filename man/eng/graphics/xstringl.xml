@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xstringl  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xstringl"> compute a box which surrounds strings  </SHORT_DESCRIPTION>
+  <TITLE>xstringl</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xstringl"> compute a box which surrounds strings</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rect=xstringl(x,y,str)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>rect  </PARAM_NAME>
+        <PARAM_NAME>rect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of 4 real scalars defining the box.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y  </PARAM_NAME>
+        <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalars, coordinates of the lower-left point of the strings.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of strings.</SP>
         </PARAM_DESCRIPTION>

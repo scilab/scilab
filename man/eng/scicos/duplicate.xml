@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>duplicate  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>200</DATE>
+  <TITLE>duplicate</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>2002</DATE>
   <SHORT_DESCRIPTION name="duplicate"> duplicates vector entries
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of real numbers of size n</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>count  </PARAM_NAME>
+        <PARAM_NAME>count</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers (usually positive integers) of size n</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers</SP>
         </PARAM_DESCRIPTION>
@@ -54,5 +53,5 @@ v=duplicate([1,%pi,-%e],[2 0 3])
       <LINK>kron</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>R. Nikoukhah  </AUTHOR>
+  <AUTHOR>R. Nikoukhah</AUTHOR>
 </MAN>

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cond  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="cond"> condition number  </SHORT_DESCRIPTION>
+  <TITLE>cond</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="cond"> condition number</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>cond(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex square matrix</SP>
         </PARAM_DESCRIPTION>
@@ -23,7 +22,7 @@
   <DESCRIPTION>
     <P>
     Condition number in 2-norm.  <VERB>cond(X)</VERB> is the  ratio  of  the
-    largest singular value of  <VERB/>  to the smallest.</P>
+    largest singular value of  <VERB>X</VERB>  to the smallest.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>translatepaths  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="translatepaths"> translate a set of Matlab M_file directories to scilab   </SHORT_DESCRIPTION>
+  <TITLE>translatepaths</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="translatepaths"> translate a set of Matlab M_file directories to scilab</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>translatepaths(dirs_path ,res_path)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>dir_path  </PARAM_NAME>
+        <PARAM_NAME>dir_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string vector which gives the paths of Matlab M_file directories  to translate</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>res_path  </PARAM_NAME>
+        <PARAM_NAME>res_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string  which gives the path of the directory  where the scilab functions are written to.</SP>
         </PARAM_DESCRIPTION>
@@ -38,5 +37,5 @@
       <LINK>mfile2sci</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Serge Steer, INRI</AUTHOR>
+  <AUTHOR>Serge Steer, INRIA</AUTHOR>
 </MAN>

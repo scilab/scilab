@@ -1,33 +1,32 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>squarewave  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Sept 199</DATE>
-  <SHORT_DESCRIPTION name="squarewave">  generates a square wave with period 2*%pi  </SHORT_DESCRIPTION>
+  <TITLE>squarewave</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Sept 1999</DATE>
+  <SHORT_DESCRIPTION name="squarewave">  generates a square wave with period 2*%pi</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>x=squarewave(t [,percent])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector, time discretization</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector, the wave value at each time point in set (-1,+1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>percent  </PARAM_NAME>
+        <PARAM_NAME>percent</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real positive scalar, the percent of the period in which the signal is positive. Defaut value is 5</SP>
+          <SP>: real positive scalar, the percent of the period in which the signal is positive. Defaut value is 50</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

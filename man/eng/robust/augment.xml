@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>augment  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="augment"> augmented plant  </SHORT_DESCRIPTION>
+  <TITLE>augment</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="augment"> augmented plant</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,r]=augment(G)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[P,r]=augment(G,flag1)  </CALLING_SEQUENCE_ITEM>
@@ -15,33 +14,33 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list), the nominal plant</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_NAME>flag1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: one of the following (upper case) character string: <VERB> 'S' </VERB>, <VERB> 'R' </VERB>, <VERB> 'T' </VERB> <VERB> 'SR' </VERB>, <VERB> 'ST' </VERB>, <VERB> 'RT' </VERB> <VERB> 'SRT' </VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_NAME>flag2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: one of the following character string: <VERB> 'o' </VERB> (stands for 'output', this is the default value) or <VERB>'i'</VERB> (stands for 'input').</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list), the ``augmented'' plant</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r  </PARAM_NAME>
+        <PARAM_NAME>r</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: 1x2 row vector, dimension of <VERB>P22 = </VERB></SP>
+          <SP>: 1x2 row vector, dimension of <VERB>P22 = G</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -59,13 +58,13 @@ P = [ 0 |  G]   -->'T'
    ]]>
     </VERBATIM>
     <P><VERB> 'S' </VERB>, <VERB> 'R' </VERB>, <VERB> 'T' </VERB> refer to the first three (block) rows
-    of <VERB/> respectively.</P>
+    of <VERB>P</VERB> respectively.</P>
     <P>
-    If one of these letters is absent in <VERB>flag</VERB>, the corresponding
-    row in <VERB/> is missing.</P>
+    If one of these letters is absent in <VERB>flag1</VERB>, the corresponding
+    row in <VERB>P</VERB> is missing.</P>
     <P>
-    If <VERB/> is given in state-space form, the returned <VERB/> is minimal.
-    <VERB/> is calculated by: <VERB>[I,0,0;0,I,0;-I,0,I;I,0,0]*[I,-G;0,I;I,0]</VERB>.</P>
+    If <VERB>G</VERB> is given in state-space form, the returned <VERB>P</VERB> is minimal.
+    <VERB>P</VERB> is calculated by: <VERB>[I,0,0;0,I,0;-I,0,I;I,0,0]*[I,-G;0,I;I,0]</VERB>.</P>
     <P>
     The augmented plant associated with input sensitivity functions, namely</P>
     <VERBATIM>
@@ -79,13 +78,13 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
     </VERBATIM>
     <P>
     is obtained by the command <VERB>[P,r]=augment(G,flag,'i')</VERB>. For
-    state-space <VERB/>, this <VERB/>
+    state-space <VERB>G</VERB>, this <VERB>P</VERB>
     is calculated by: <VERB>[I,-I;0,0;0,I;0,0]+[0;I;0;I]*G*[I,-I]</VERB>
     and is thus generically minimal.</P>
     <P>
     Note that weighting functions can be introduced by left-multiplying
-    <VERB/> by a diagonal system of appropriate dimension, e.g.,
-    <VERB> P = sysdiag(W1,W2,W3,eye(G))*</VERB>.</P>
+    <VERB>P</VERB> by a diagonal system of appropriate dimension, e.g.,
+    <VERB> P = sysdiag(W1,W2,W3,eye(G))*P</VERB>.</P>
     <P>
     Sensitivity functions can be calculated by <VERB>lft</VERB>. One has:</P>
     <P>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>stabil  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="stabil"> stabilization  </SHORT_DESCRIPTION>
+  <TITLE>stabil</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="stabil"> stabilization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>F=stabil(A,B,alfa)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>K=stabil(Sys,alfa,beta)  </CALLING_SEQUENCE_ITEM>
@@ -14,37 +13,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square real matrix (<VERB>nx x nx</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  real matrix (<VERB>nx x nu</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>alfa, beta  </PARAM_NAME>
+        <PARAM_NAME>alfa, beta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  real or complex vector (in conjugate pairs) or real number.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix (<VERB>nx x nu</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Sys  </PARAM_NAME>
+        <PARAM_NAME>Sys</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list) (<VERB>m</VERB> inputs, <VERB>p</VERB> outputs).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>p</VERB> inputs, <VERB>m</VERB> outputs)</SP>
         </PARAM_DESCRIPTION>
@@ -52,14 +51,14 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>F=stabil(A,B,alfa)</VERB> returns a gain matrix <VERB/> such that
-    <VERB>A+B*</VERB> is stable if pair <VERB>(A,B)</VERB> is stabilizable. 
+    <P><VERB>F=stabil(A,B,alfa)</VERB> returns a gain matrix <VERB>F</VERB> such that
+    <VERB>A+B*F</VERB> is stable if pair <VERB>(A,B)</VERB> is stabilizable. 
     Assignable poles are set to <VERB>alfa(1),alfa(2),...</VERB>.
     If <VERB>(A,B)</VERB> is not stabilizable a warning is given
     and assignable poles are set to <VERB>alfa(1),alfa(2),...</VERB>.
     If <VERB>alfa</VERB> is a number all eigenvalues are set to this
-    <VERB>alfa</VERB> (default value is <VERB>alfa=-</VERB>).</P>
-    <P><VERB>K=stabil(Sys,alfa,beta)</VERB> returns <VERB/>, a compensator for <VERB>Sys</VERB>
+    <VERB>alfa</VERB> (default value is <VERB>alfa=-1</VERB>).</P>
+    <P><VERB>K=stabil(Sys,alfa,beta)</VERB> returns <VERB>K</VERB>, a compensator for <VERB>Sys</VERB>
     such that <VERB>(A,B)</VERB>-controllable eigenvalues are set to 
     <VERB>alfa</VERB> and <VERB>(C,A)</VERB>-observable eigenvalues are set to <VERB>beta</VERB>.</P>
     <P>

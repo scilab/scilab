@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>SUPER_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="SUPER_f"> Scicos Super block  </SHORT_DESCRIPTION>
+  <TITLE>SUPER_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="SUPER_f"> Scicos Super block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block opens up a new Scicos window for editing a new block

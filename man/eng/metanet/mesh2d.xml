@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mesh2d  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="mesh2d"> triangulation of n points in the plane  </SHORT_DESCRIPTION>
+  <TITLE>mesh2d</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="mesh2d"> triangulation of n points in the plane</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[nutr,A] = mesh2d(x,y,[front])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real row array</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real row array</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>front  </PARAM_NAME>
+        <PARAM_NAME>front</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer row array</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nutr  </PARAM_NAME>
+        <PARAM_NAME>nutr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse 0-1 matrix</SP>
         </PARAM_DESCRIPTION>
@@ -49,8 +48,8 @@
     The arrays <VERB>x</VERB> and <VERB>y</VERB> are the coordinates of n points in the plane.
     <VERB>mesh2d</VERB> returns a matrix <VERB>nutr(3,nbt)</VERB> of the numbers of the
     nodes of the <VERB>nbt</VERB> triangles of the triangulation of the points.
-    It returns also a sparse matrix <VERB/> representing the connections 
-    between the nodes (<VERB>A(i,j)=</VERB> if <VERB>(i,j)</VERB> is a side of one of 
+    It returns also a sparse matrix <VERB>A</VERB> representing the connections 
+    between the nodes (<VERB>A(i,j)=1</VERB> if <VERB>(i,j)</VERB> is a side of one of 
     the triangles or <VERB>i=j</VERB>).
     In the case of 3 parameters <VERB>front</VERB> is the array defining the
     boundary: it is the array of the indices of the points located on the

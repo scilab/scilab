@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>intersect  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="intersect"> returns the vector of common values of two vectors  </SHORT_DESCRIPTION>
+  <TITLE>intersect</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="intersect"> returns the vector of common values of two vectors</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[v, [ka,kb]]=intersect(a,b)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
@@ -14,31 +13,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers or strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b  </PARAM_NAME>
+        <PARAM_NAME>b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers or strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector  of real numbers or strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ka  </PARAM_NAME>
+        <PARAM_NAME>ka</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector  of integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>kb  </PARAM_NAME>
+        <PARAM_NAME>kb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector  of integers</SP>
         </PARAM_DESCRIPTION>

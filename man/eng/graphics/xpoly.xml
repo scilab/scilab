@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xpoly  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xpoly"> draw a polyline or a polygon  </SHORT_DESCRIPTION>
+  <TITLE>xpoly</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xpoly"> draw a polyline or a polygon</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xpoly(xv,yv [,dtype [,close]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xv,yv  </PARAM_NAME>
+        <PARAM_NAME>xv,yv</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of the same size (points of the polyline).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dtype  </PARAM_NAME>
+        <PARAM_NAME>dtype</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (drawing style). default value is &quot;lines&quot;.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>close  </PARAM_NAME>
+        <PARAM_NAME>close</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer. If close=1, the polyline is closed; default value is 0.</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>artest  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lotest"> demo of the Lorenz attractor  </SHORT_DESCRIPTION>
+  <TITLE>artest</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lotest"> demo of the Lorenz attractor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[]=lotest([f_l,odem,xdim,npts,pinit])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[y]=lorenz(t,x)  </CALLING_SEQUENCE_ITEM>
@@ -16,7 +15,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f_l  </PARAM_NAME>
+        <PARAM_NAME>f_l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: can be <VERB>&quot;loren&quot;</VERB> or <VERB>lorenz</VERB>. it
   is the name of the external for  the Lorenz
@@ -28,13 +27,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ilof, ilo  </PARAM_NAME>
+        <PARAM_NAME>ilof, ilo</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:are used to fix the parameters of the Fortran and Scilab code version of the  Lorenz system.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>odem,xdim,npts  </PARAM_NAME>
+        <PARAM_NAME>odem,xdim,npts</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: are optional arguments. Their meaning and syntax can be found in the portr3d   help</SP>
         </PARAM_DESCRIPTION>

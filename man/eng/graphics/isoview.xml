@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>isoview  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>isoview</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="isoview"> set scales for isometric plot (do not change the size of the window)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>isoview(xmin,xmax,ymin,ymax)  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xmin,xmax,ymin,ymax  </PARAM_NAME>
+        <PARAM_NAME>xmin,xmax,ymin,ymax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: four real values</SP>
         </PARAM_DESCRIPTION>
@@ -22,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    This function is obsolete, use preferably the <VERB>frameflag=</VERB> plot2d
+    This function is obsolete, use preferably the <VERB>frameflag=4</VERB> plot2d
     option which enable window resizing.</P>
     <P><VERB>isoview</VERB> is used to have isometric scales on the x and y axes. 
     It does not change the size of the graphics window. The rectangle

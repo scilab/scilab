@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>plot3d</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="plot3d1"> 3D gray or color level plot of a surface  </SHORT_DESCRIPTION>
+  <TITLE>plot3d1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="plot3d1"> 3D gray or color level plot of a surface</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
@@ -25,7 +24,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>plot3d</VERB> plots a surface with colors depending on the z-level of the surface.</P>
+    <P><VERB>plot3d1</VERB> plots a surface with colors depending on the z-level of the surface.</P>
     <P>
     Enter the command <VERB>plot3d1()</VERB> to see a demo.</P>
   </DESCRIPTION>

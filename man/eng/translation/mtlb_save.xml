@@ -1,30 +1,29 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_save  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>mtlb_save</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="mtlb_save"> save variables on file with matlab4 format.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii -double   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii -double -tabs  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname X</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii -double</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>mtlb_save fname X Y Z  -ascii -double -tabs</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>fname  </PARAM_NAME>
+        <PARAM_NAME>fname</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a file name</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>X Y </PARAM_NAME>
+        <PARAM_NAME>X Y Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: variable names</SP>
         </PARAM_DESCRIPTION>
@@ -40,10 +39,10 @@
         <SP>have corresponding matlab type to the binary &quot;MAT-file&quot; named <VERB>fname.mat</VERB>. The data may be retrieved with <VERB>mtlb_load</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="mtlb_save fname X ">
-        <SP>saves only variable <VERB/>.</SP>
+        <SP>saves only variable <VERB>X</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="mtlb_save fname X Y Z">
-        <SP>saves variables <VERB/>, <VERB/>, and <VERB/>.</SP>
+        <SP>saves variables <VERB>X</VERB>, <VERB>Y</VERB>, and <VERB>Z</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="mtlb_save fname X Y Z  -ascii">
         <SP>uses 8-digit ASCII form instead of binary.</SP>

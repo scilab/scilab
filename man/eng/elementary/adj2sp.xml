@@ -1,40 +1,39 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>adj2sp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>JUN 199</DATE>
+  <TITLE>adj2sp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>JUN 1997</DATE>
   <SHORT_DESCRIPTION name="adj2sp"> converts adjacency form into  sparse matrix.  </SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xadj  </PARAM_NAME>
+        <PARAM_NAME>xadj</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector of length (n+1).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>adjncy  </PARAM_NAME>
+        <PARAM_NAME>adjncy</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector of length nz containing the row indices     for the corresponding elements in anz</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>anz  </PARAM_NAME>
+        <PARAM_NAME>anz</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:  column vector of length nz, containing the non-zero     elements of </SP>
+          <SP>:  column vector of length nz, containing the non-zero     elements of A</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mn  </PARAM_NAME>
+        <PARAM_NAME>mn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector with 2 entries, <VERB>mn=size(A)</VERB> (optional).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  real or complex sparse matrix (nz non-zero entries)</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>isempty  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="isempty">  check if a variable as real or complex entries  </SHORT_DESCRIPTION>
+  <TITLE>isempty</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="isempty">  check if a variable as real or complex entries</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>t=isempty(x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>SFAC</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sfact"> discrete time spectral factorization  </SHORT_DESCRIPTION>
+  <TITLE>SFACT</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sfact"> discrete time spectral factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>F=sfact(P)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real polynomial matrix</SP>
         </PARAM_DESCRIPTION>
@@ -22,9 +21,9 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Finds <VERB/>, a spectral factor of
-    <VERB/>. <VERB/> is a polynomial matrix such that
-    each root of <VERB/> has a mirror image w.r.t the unit
+    Finds <VERB>F</VERB>, a spectral factor of
+    <VERB>P</VERB>. <VERB>P</VERB> is a polynomial matrix such that
+    each root of <VERB>P</VERB> has a mirror image w.r.t the unit
     circle. Problem is singular if a root is on the unit circle.</P>
     <P><VERB>sfact(P)</VERB> returns a polynomial matrix
     <VERB>F(z)</VERB> which is antistable and such that</P>

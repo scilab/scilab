@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>abcd  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="abcd"> state-space matrices  </SHORT_DESCRIPTION>
+  <TITLE>abcd</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="abcd"> state-space matrices</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[A,B,C,D]=abcd(sl)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list) in state-space or transfer form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>A,B,C,</PARAM_NAME>
+        <PARAM_NAME>A,B,C,D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices of appropriate dimensions</SP>
         </PARAM_DESCRIPTION>
@@ -28,12 +27,12 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    returns the <VERB>A,B,C,</VERB> matrices from a linear system <VERB>Sl</VERB>.</P>
+    returns the <VERB>A,B,C,D</VERB> matrices from a linear system <VERB>Sl</VERB>.</P>
     <P>
     Utility function. For transfer matrices <VERB>Sl</VERB> is converted
     into state-space form by <VERB>tf2ss</VERB>.</P>
     <P>
-    The matrices <VERB>A,B,C,</VERB> are the elements <VERB/> to <VERB/> of
+    The matrices <VERB>A,B,C,D</VERB> are the elements <VERB>2</VERB> to <VERB>5</VERB> of
     the <VERB>syslin</VERB> list <VERB>Sl</VERB>, i.e. <VERB>[A,B,C,D] = Sl(2:5)</VERB> .</P>
   </DESCRIPTION>
   <EXAMPLE>

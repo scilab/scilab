@@ -1,47 +1,46 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>window  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="window"> symmetric window  </SHORT_DESCRIPTION>
+  <TITLE>window</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="window"> symmetric window</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[win_l,cwp]=window(wtype,n,par)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>wtype  </PARAM_NAME>
+        <PARAM_NAME>wtype</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: window type (<VERB>re,tr,hn,hm,kr,ch</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: window length</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>par  </PARAM_NAME>
+        <PARAM_NAME>par</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: parameter 2-vector (kaiser window:
-  <VERB>par(1)=beta&gt;</VERB>) (Chebychev window <VERB>par
+  <VERB>par(1)=beta&gt;0</VERB>) (Chebychev window <VERB>par
   =[dp,df])</VERB>, <VERB>dp</VERB> =main lobe  width
-  (<VERB>0&lt;dp&lt;.</VERB>), <VERB>df</VERB>=side lobe height
-  (<VERB>df&gt;</VERB>)</SP>
+  (<VERB>0&lt;dp&lt;.5</VERB>), <VERB>df</VERB>=side lobe height
+  (<VERB>df&gt;0</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>win  </PARAM_NAME>
+        <PARAM_NAME>win</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: window</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cwp  </PARAM_NAME>
+        <PARAM_NAME>cwp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: unspecified Chebyshev window parameter</SP>
         </PARAM_DESCRIPTION>

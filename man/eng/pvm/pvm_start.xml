@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_start  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="pvm_start"> Start the PVM daemon  </SHORT_DESCRIPTION>
+  <TITLE>pvm_start</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm_start"> Start the PVM daemon</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[info] = pvm_start([&quot;hostfile&quot;])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>hostfile  </PARAM_NAME>
+        <PARAM_NAME>hostfile</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: name of the hostfile describing the configuration for each host of the virtual machine.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, status code returned by the routine. Values less than zero indicate an error.</SP>
         </PARAM_DESCRIPTION>
@@ -27,7 +26,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>pvm_start</VERB>  starts the <VERB>Pvmd</VERB> daemon process  which
+    <P><VERB>pvm_start</VERB>  starts the <VERB>Pvmd3</VERB> daemon process  which
     coordinates  unix hosts in a  virtual machine.  One  pvmd3 must run on
     each host component of the virtual machine. They provide  the
     communication and process 
@@ -65,7 +64,7 @@ pvm_start()
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>pvmd</LINK>
+      <LINK>pvmd3</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>pvm_halt</LINK>

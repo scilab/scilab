@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ddp  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ddp"> disturbance decoupling  </SHORT_DESCRIPTION>
+  <TITLE>ddp</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ddp"> disturbance decoupling</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)  </CALLING_SEQUENCE_ITEM>
@@ -14,43 +13,43 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sys  </PARAM_NAME>
+        <PARAM_NAME>Sys</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list containing the matrices <VERB>(A,B2,C,D2)</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>zeroed  </PARAM_NAME>
+        <PARAM_NAME>zeroed</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector, indices of outputs of <VERB>Sys</VERB> which are zeroed.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>B</PARAM_NAME>
+        <PARAM_NAME>B1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_NAME>D1</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real matrix. <VERB>B</VERB> and <VERB>D</VERB> have the same number of columns.</SP>
+          <SP>: real matrix. <VERB>B1</VERB> and <VERB>D1</VERB> have the same number of columns.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string <VERB>'ge'</VERB> or <VERB>'st'</VERB> (default) or <VERB>'pp'</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>alfa  </PARAM_NAME>
+        <PARAM_NAME>alfa</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector (loc. of closed loop poles)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>beta  </PARAM_NAME>
+        <PARAM_NAME>beta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector (loc. of closed loop poles)</SP>
         </PARAM_DESCRIPTION>
@@ -65,7 +64,7 @@
     transfer function from w to z is zero.
     <VERB>Sys</VERB> is a linear system {A,B2,C,D2} with one input and two outputs 
     ( i.e.  Sys: u--&gt;(z,y) ), part the following system defined from <VERB>Sys</VERB>
-    and <VERB>B1,D</VERB>:</P>
+    and <VERB>B1,D1</VERB>:</P>
     <VERBATIM>
 <![CDATA[
   xdot =  A x + B1  w + B2  u
@@ -83,9 +82,9 @@
    ]]>
     </VERBATIM>
     <P>
-    The matrix <VERB>D</VERB> is partitioned similarly as <VERB>D1=[D11;D21]</VERB>
+    The matrix <VERB>D1</VERB> is partitioned similarly as <VERB>D1=[D11;D21]</VERB>
     with <VERB>D11=D1(zeroed,:)</VERB>.
-    The control is u=Fx+Gw and one  looks for matriced <VERB>F,</VERB> such that the 
+    The control is u=Fx+Gw and one  looks for matriced <VERB>F,G</VERB> such that the 
     closed loop system: w--&gt;z given by</P>
     <VERBATIM>
 <![CDATA[

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mput  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="mput"> writes  byte or word in a given binary format  </SHORT_DESCRIPTION>
+  <TITLE>mput</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="mput"> writes  byte or word in a given binary format</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mput(x [,type,fd])   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of floating point or integer type numbers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fd  </PARAM_NAME>
+        <PARAM_NAME>fd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar. The <VERB>fd</VERB> parameter returned by the function.  Default value is -1 which stands for the last (<VERB>mopen</VERB>) opened file.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>type  </PARAM_NAME>
+        <PARAM_NAME>type</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string. Give the binary format used to write all the entries of x.</SP>
         </PARAM_DESCRIPTION>

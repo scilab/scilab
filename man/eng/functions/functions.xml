@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>functions  </TITLE>
-  <TYPE>Scilab Data type  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="functions"> Scilab procedures and Scilab objects  </SHORT_DESCRIPTION>
+  <TITLE>functions</TITLE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="functions"> Scilab procedures and Scilab objects</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     Functions are Scilab procedures (&quot;macro&quot;, &quot;function&quot; and &quot;procedure&quot;
@@ -42,7 +41,7 @@
     <P>
     Usually function calling syntax is <VERB>[y1,...,yn]=foo(x1,...,xm)</VERB>. Shorter input or output argument list than definition ones may be used. In such cases, only the first variables from the left are used of set. The <VERB>argn</VERB> function may be used to get the actual number of calling arguments.</P>
     <P>
-    It is also possible to use &quot;named argument&quot; to specify input arguments: suppose function <VERB>fun</VERB> defined as <VERB>function y1=fun1(x1,x2,x3)</VERB> then it call be called with a syntax like  <VERB>y=fun1(x1=33,x3=[1 2 3])</VERB> within <VERB>fun</VERB> x2 will be undefined. It is possible to check for defined variables with the <VERB>exists</VERB> function</P>
+    It is also possible to use &quot;named argument&quot; to specify input arguments: suppose function <VERB>fun1</VERB> defined as <VERB>function y1=fun1(x1,x2,x3)</VERB> then it call be called with a syntax like  <VERB>y=fun1(x1=33,x3=[1 2 3])</VERB> within <VERB>fun1</VERB> x2 will be undefined. It is possible to check for defined variables with the <VERB>exists</VERB> function</P>
     <P>
     When a function has no left hand side argument and is called only with character string arguments, the callling syntax may be simplified <VERB>fun('a','toto','a string')</VERB> can be replaced by <VERB>fun a toto 'a string'</VERB></P>
   </SECTION>

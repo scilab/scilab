@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>chain_struct  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="chain_struct"> chained structure from adjacency lists of a graph  </SHORT_DESCRIPTION>
+  <TITLE>chain_struct</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="chain_struct"> chained structure from adjacency lists of a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[fe,che,fn,chn] = chain_struct(g)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[fe,che,fn,chn] = chain_struct(lp,la,ls)  </CALLING_SEQUENCE_ITEM>
@@ -14,49 +13,49 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>lp  </PARAM_NAME>
+        <PARAM_NAME>lp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector, pointer array of the adjacency lists description of the graph  (its size is the number of nodes of the graph + 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>la  </PARAM_NAME>
+        <PARAM_NAME>la</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector, arc array of the adjacency lists description of the graph  (its size is the number of edges of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ls  </PARAM_NAME>
+        <PARAM_NAME>ls</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector, node array of the adjacency lists description of the graph  (its size is the number of edges of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fe  </PARAM_NAME>
+        <PARAM_NAME>fe</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of the numbers of the first edges starting from nodes (its size is the number of nodes of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>che  </PARAM_NAME>
+        <PARAM_NAME>che</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of the numbers of the chained edges  (its size is the number of edges of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fn  </PARAM_NAME>
+        <PARAM_NAME>fn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of the numbers of the first nodes reached by the edges of  <VERB>fe</VERB> (its size is the number of nodes of the graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>chn  </PARAM_NAME>
+        <PARAM_NAME>chn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of the nodes reached by the edges of <VERB>che</VERB></SP>
         </PARAM_DESCRIPTION>
@@ -75,7 +74,7 @@
     <P><VERB>fe(i))</VERB> is the number of the first edge starting from node i</P>
     <P><VERB>che(fe(i))</VERB> is the number of the second edge starting from
     node i, <VERB>che(che(fe(i)))</VERB> is the number of the third edge starting from
-    node i and so on until the value is </P>
+    node i and so on until the value is 0</P>
     <P><VERB>fn(i)</VERB> is the number of the first node reached from node i</P>
     <P><VERB>ch(i)</VERB> is the number of the node reached by edge <VERB>che(i)</VERB>.</P>
   </DESCRIPTION>

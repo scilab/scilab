@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_gettid  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="pvm_gettid"> returns the tid of the process identified by a group name and instance number  </SHORT_DESCRIPTION>
+  <TITLE>pvm_gettid</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm_gettid"> returns the tid of the process identified by a group name and instance number</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[tid] = pvm_gettid(group, inum)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>group  </PARAM_NAME>
+        <PARAM_NAME>group</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, string that contains the name of an existing group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>inum  </PARAM_NAME>
+        <PARAM_NAME>inum</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, instance number of the process in the group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tid  </PARAM_NAME>
+        <PARAM_NAME>tid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>

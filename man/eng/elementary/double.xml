@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>double  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>October 9</DATE>
-  <SHORT_DESCRIPTION name="double"> conversion from integer to double precision  representation  </SHORT_DESCRIPTION>
+  <TITLE>double</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 99</DATE>
+  <SHORT_DESCRIPTION name="double"> conversion from integer to double precision  representation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=double(X)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=int16(X)  </CALLING_SEQUENCE_ITEM>
@@ -18,13 +17,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of floats or integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of floats</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
   <DESCRIPTION>
     <P>
     converts  data stored using  one, two or four bytes integers into
-    double precision floating point representation. If <VERB/> entries are already 
+    double precision floating point representation. If <VERB>X</VERB> entries are already 
     double precision floats, nothing is done.</P>
   </DESCRIPTION>
   <EXAMPLE>
@@ -45,7 +44,7 @@ double(x)
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>int</LINK>
+      <LINK>int8</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>inttype</LINK>

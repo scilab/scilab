@@ -1,34 +1,33 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spcompack  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>JUN 199</DATE>
-  <SHORT_DESCRIPTION name="spcompack"> converts a compressed adjacency representation  </SHORT_DESCRIPTION>
+  <TITLE>spcompack</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>JUN 1997</DATE>
+  <SHORT_DESCRIPTION name="spcompack"> converts a compressed adjacency representation</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xadj  </PARAM_NAME>
+        <PARAM_NAME>xadj</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector of length (n+1).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xlindx  </PARAM_NAME>
+        <PARAM_NAME>xlindx</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector of length n+1 (pointers).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>lindx  </PARAM_NAME>
+        <PARAM_NAME>lindx</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>adjncy  </PARAM_NAME>
+        <PARAM_NAME>adjncy</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer vector</SP>
         </PARAM_DESCRIPTION>

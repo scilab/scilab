@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lsslist  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="lsslist"> Scilab linear state space function definition  </SHORT_DESCRIPTION>
+  <TITLE>lsslist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="lsslist"> Scilab linear state space function definition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>lsslist()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>lsslist(a1,....an)    </CALLING_SEQUENCE_ITEM>

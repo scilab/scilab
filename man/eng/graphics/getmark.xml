@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getmark  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>getmark</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="getmark"> dialog to select mark (symbol)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[mark,mrkSize]=getmark()  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>mark  </PARAM_NAME>
+        <PARAM_NAME>mark</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of the selected mark</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mrkSize  </PARAM_NAME>
+        <PARAM_NAME>mrkSize</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the size of the selected mark</SP>
         </PARAM_DESCRIPTION>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ss2ss  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ss2ss"> state-space to state-space conversion, feedback, injection  </SHORT_DESCRIPTION>
+  <TITLE>ss2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ss2ss"> state-space to state-space conversion, feedback, injection</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sl  </PARAM_NAME>
+        <PARAM_NAME>Sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list) in state-space form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>T</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square (non-singular) matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Sl1, right, left  </PARAM_NAME>
+        <PARAM_NAME>Sl1, right, left</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear systems (syslin lists) in state-space form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix (state feedback gain)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix (output injection gain)</SP>
         </PARAM_DESCRIPTION>
@@ -47,33 +46,33 @@
   <DESCRIPTION>
     <P>
     Returns the linear system <VERB>Sl1=[A1,B1,C1,D1]</VERB>
-    where <VERB>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=</VERB>.
+    where <VERB>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</VERB>.
   </P>
     <P>
-    Optional parameters <VERB/> and <VERB/> are state feedback
+    Optional parameters <VERB>F</VERB> and <VERB>G</VERB> are state feedback
     and output injection respectively. 
   </P>
     <P>
     For example,
-    <VERB>Sl1=ss2ss(Sl,T,F)</VERB> returns <VERB>Sl</VERB> with:
+    <VERB>Sl1=ss2ss(Sl,T,F)</VERB> returns <VERB>Sl1</VERB> with:
   </P>
     <P>
     and <VERB>right</VERB> is a non singular linear system such that <VERB>Sl1=Sl*right</VERB>.
   </P>
     <P><VERB>Sl1*inv(right)</VERB> is a factorization of <VERB>Sl</VERB>.
   </P>
-    <P><VERB>Sl1=ss2ss(Sl,T,0*F,G)</VERB> returns <VERB>Sl</VERB> with:
+    <P><VERB>Sl1=ss2ss(Sl,T,0*F,G)</VERB> returns <VERB>Sl1</VERB> with:
   </P>
     <P>
-    and <VERB>left</VERB> is a non singular linear system such that <VERB>Sl1=left*Sl</VERB> (<VERB>right=Id</VERB> if <VERB>F=</VERB>).
+    and <VERB>left</VERB> is a non singular linear system such that <VERB>Sl1=left*Sl</VERB> (<VERB>right=Id</VERB> if <VERB>F=0</VERB>).
   </P>
     <P>
-    When both <VERB/> and <VERB/> are given, <VERB>Sl1=left*Sl*right</VERB>.
+    When both <VERB>F</VERB> and <VERB>G</VERB> are given, <VERB>Sl1=left*Sl*right</VERB>.
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="-">
-        <SP>When <VERB>flag</VERB> is used and <VERB>flag=</VERB> an output injection  as follows is used 
-    and then a feedback is performed, <VERB/> must be of size <VERB>(m+p,n)</VERB></SP>
+        <SP>When <VERB>flag</VERB> is used and <VERB>flag=1</VERB> an output injection  as follows is used 
+    and then a feedback is performed, <VERB>F</VERB> must be of size <VERB>(m+p,n)</VERB></SP>
         <P>
     ( x is in R^n , y in R^p, u in R^m ). 
   </P>
@@ -86,8 +85,8 @@
         </VERBATIM>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>When <VERB>flag</VERB> is used and <VERB>flag=</VERB> a feedback
-  (<VERB/> must be of  size <VERB>(m,n)</VERB>) is performed
+        <SP>When <VERB>flag</VERB> is used and <VERB>flag=2</VERB> a feedback
+  (<VERB>F</VERB> must be of  size <VERB>(m,n)</VERB>) is performed
   and then the above output injection is applied. <VERB>right</VERB>
   and <VERB>left</VERB> have  the following property:</SP>
         <VERBATIM>

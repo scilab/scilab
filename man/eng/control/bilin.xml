@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bilin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="bilin"> general bilinear transform  </SHORT_DESCRIPTION>
+  <TITLE>bilin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="bilin"> general bilinear transform</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sl1]=bilin(sl,v)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl,sl</PARAM_NAME>
+        <PARAM_NAME>sl,sl1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear systems (<VERB>syslin</VERB> lists)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector with 4 entries (<VERB>v=[a,b,c,d]</VERB>)</SP>
         </PARAM_DESCRIPTION>
@@ -29,10 +28,10 @@
   <DESCRIPTION>
     <P>
     Given a linear system in state space form, <VERB>sl=syslin(dom,A,B,C,D)</VERB> 
-    (<VERB>syslin</VERB> list), <VERB>sl1=bilin(sl,v)</VERB>  returns in <VERB>sl</VERB> a 
+    (<VERB>syslin</VERB> list), <VERB>sl1=bilin(sl,v)</VERB>  returns in <VERB>sl1</VERB> a 
     linear system with matrices <VERB>[A1,B1,C1,D1]</VERB> such that
-    the transfer function <VERB>H1(s)=C1*inv(s*eye()-A1)*B1+D</VERB> is
-    obtained from <VERB>H(z)=C*inv(z*eye()-A)*B+</VERB> by replacing <VERB>z</VERB>
+    the transfer function <VERB>H1(s)=C1*inv(s*eye()-A1)*B1+D1</VERB> is
+    obtained from <VERB>H(z)=C*inv(z*eye()-A)*B+D</VERB> by replacing <VERB>z</VERB>
     by <VERB>z=(a*s+b)/(c*s+d)</VERB>.
     One has <VERB>w=bilin(bilin(w,[a,b,c,d]),[d,-b,-c,a])</VERB></P>
   </DESCRIPTION>

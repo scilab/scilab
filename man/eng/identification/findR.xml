@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>find</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="findR"> Preprocessor for estimating the matrices of a linear time-invariant dynamical system  </SHORT_DESCRIPTION>
+  <TITLE>findR</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="findR"> Preprocessor for estimating the matrices of a linear time-invariant dynamical system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[R,N [,SVAL,RCND]] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[R,N] = findR(S,Y)  </CALLING_SEQUENCE_ITEM>
@@ -14,36 +13,36 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the number of block rows in the block-Hankel matrices.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>MET</PARAM_NAME>
+        <PARAM_NAME>METH</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an option for the method to use:</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  MOESP method with past inputs and outputs;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  N4SI15     0     1     1  1000D method.</SP>
               </PARAM_DESCRIPTION>
@@ -55,24 +54,24 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>AL</PARAM_NAME>
+        <PARAM_NAME>ALG</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an option for the algorithm to compute the triangular factor of the concatenated block-Hankel matrices built from the input-output data:</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:   Cholesky algorithm on the correlation matrix;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:   fast QR algorithm;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:   standard QR algorithm.</SP>
               </PARAM_DESCRIPTION>
@@ -84,7 +83,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>JOB</PARAM_NAME>
+        <PARAM_NAME>JOBD</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an option to specify if the matrices B and D should later be computed using the MOESP approach:</SP>
           <PARAM_INDENT>
@@ -107,12 +106,12 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>TO</PARAM_NAME>
+        <PARAM_NAME>TOL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of length 2 containing tolerances:</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>TO</PARAM_NAME>
+              <PARAM_NAME>TOL</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>(1) is the tolerance for estimating the rank of matrices. If  TOL(1) &gt; 0,  the given value of  TOL(1)  is used as a lower bound for the reciprocal condition number.</SP>
                 <P>
@@ -121,7 +120,7 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>TO</PARAM_NAME>
+              <PARAM_NAME>TOL</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>(2) is the tolerance for estimating the system order. If  TOL(2) &gt;= 0,  the estimate is indicated by the index of the last singular value greater than or equal to  TOL(2).  (Singular values less than  TOL(2) are considered as zero.)</SP>
                 <P>
@@ -133,7 +132,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>PRINT</PARAM_NAME>
+        <PARAM_NAME>PRINTW</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a switch for printing the warning messages.</SP>
           <PARAM_INDENT>
@@ -156,25 +155,25 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>N</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the order of the discrete-time realization</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>SVA</PARAM_NAME>
+        <PARAM_NAME>SVAL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: singular values SVAL, used for estimating the order.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RCN</PARAM_NAME>
+        <PARAM_NAME>RCND</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of length 2 containing the reciprocal condition numbers of the matrices involved in rank decisions or least squares solutions.</SP>
         </PARAM_DESCRIPTION>
@@ -232,16 +231,16 @@ N
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>findABC</LINK>
+      <LINK>findABCD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findA</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findAC</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>findBD</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findBDK</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sorder</LINK>

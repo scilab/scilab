@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>square  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>square</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="square"> set scales for isometric plot (change the size of the window)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>square(xmin,ymin,xmax,ymax)  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xmin,xmax,ymin,ymax  </PARAM_NAME>
+        <PARAM_NAME>xmin,xmax,ymin,ymax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: four real values</SP>
         </PARAM_DESCRIPTION>

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hank  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="hank"> covariance to hankel matrix  </SHORT_DESCRIPTION>
+  <TITLE>hank</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hank"> covariance to hankel matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[hk]=hank(m,n,cov)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: number of bloc-rows</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: number of bloc-columns</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cov  </PARAM_NAME>
+        <PARAM_NAME>cov</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sequence of covariances; it must be given as :[R0 R1 R2...Rk]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>hk  </PARAM_NAME>
+        <PARAM_NAME>hk</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: computed hankel matrix</SP>
         </PARAM_DESCRIPTION>
@@ -74,5 +73,5 @@ H=hank(4,5,c);
       <LINK>toeplitz</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>G. Le Vey  </AUTHOR>
+  <AUTHOR>G. Le Vey</AUTHOR>
 </MAN>

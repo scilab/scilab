@@ -1,48 +1,47 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spaninter  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="spaninter"> subspace intersection  </SHORT_DESCRIPTION>
+  <TITLE>spaninter</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spaninter"> subspace intersection</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X,dim]=spaninter(A,B [,tol])    </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A, </PARAM_NAME>
+        <PARAM_NAME>A, B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real or complex matrices with equal number of rows</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: orthogonal or unitary square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dim  </PARAM_NAME>
+        <PARAM_NAME>dim</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integer, dimension of subspace range(<VERB/>) inter range(<VERB/>)</SP>
+          <SP>: integer, dimension of subspace range(<VERB>A</VERB>) inter range(<VERB>B</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    computes the intersection of range(<VERB/>) and range(<VERB/>).</P>
+    computes the intersection of range(<VERB>A</VERB>) and range(<VERB>B</VERB>).</P>
     <P>
-    The first <VERB>dim</VERB> columns of <VERB/> span this intersection i.e.
+    The first <VERB>dim</VERB> columns of <VERB>X</VERB> span this intersection i.e.
     <VERB>X(:,1:dim)</VERB> is an orthogonal basis for</P>
     <P>
-    range(<VERB/>) inter range(<VERB/>)</P>
+    range(<VERB>A</VERB>) inter range(<VERB>B</VERB>)</P>
     <P>
-    In the <VERB/> basis <VERB/> and <VERB/> are respectively represented by:</P>
-    <P><VERB>X'*</VERB> and <VERB>X'*</VERB>.</P>
+    In the <VERB>X</VERB> basis <VERB>A</VERB> and <VERB>B</VERB> are respectively represented by:</P>
+    <P><VERB>X'*A</VERB> and <VERB>X'*B</VERB>.</P>
     <P><VERB>tol</VERB> is a threshold (<VERB>sqrt(%eps)</VERB> is the default value).</P>
   </DESCRIPTION>
   <EXAMPLE>

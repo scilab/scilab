@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>MCLOCK_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="MCLOCK_f"> Scicos 2 frequency event clock  </SHORT_DESCRIPTION>
+  <TITLE>MCLOCK_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="MCLOCK_f"> Scicos 2 frequency event clock</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block is a Super Block constructed by feeding back the outputs

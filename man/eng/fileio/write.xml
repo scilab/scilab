@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>write  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="write">  write in a formatted file  </SHORT_DESCRIPTION>
+  <TITLE>write</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="write">  write in a formatted file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>write(file-desc,a,[format])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>write(file-desc,a,k,format)    </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file-desc  </PARAM_NAME>
+        <PARAM_NAME>file-desc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string specifying the file name or integer value specifying logical unit (see file).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix or column vector of character strings.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>format  </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string, specifies a &quot;Fortran&quot; format. This character string must begin with a right parenthesis and end with a left parenthesis. Formats cannot mix floating point , integer or character edition modes</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector</SP>
         </PARAM_DESCRIPTION>

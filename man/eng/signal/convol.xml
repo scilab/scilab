@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>convol  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="convol"> convolution  </SHORT_DESCRIPTION>
+  <TITLE>convol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="convol"> convolution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y]=convol(h,x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[y,e1]=convol(h,x,e0)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x,h  </PARAM_NAME>
+        <PARAM_NAME>x,h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:input sequences (<VERB>h</VERB> is a &quot;short&quot; sequence, <VERB>x</VERB> a &quot;long&quot; one)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>e</PARAM_NAME>
+        <PARAM_NAME>e0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: old tail to overlap add (not used in first call)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: output of convolution</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>e</PARAM_NAME>
+        <PARAM_NAME>e1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: new tail to overlap add (not used in last call)</SP>
         </PARAM_DESCRIPTION>

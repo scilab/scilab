@@ -1,55 +1,54 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>srfaur  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="srfaur"> square-root algorithm  </SHORT_DESCRIPTION>
+  <TITLE>srfaur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="srfaur"> square-root algorithm</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h, f, g  </PARAM_NAME>
+        <PARAM_NAME>h, f, g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: convenient matrices of the state-space model.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r</PARAM_NAME>
+        <PARAM_NAME>r0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: E(yk*yk').</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: number of iterations.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p  </PARAM_NAME>
+        <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: estimate of the solution after n iterations.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>s, t, l  </PARAM_NAME>
+        <PARAM_NAME>s, t, l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: intermediate matrices for  successive iterations;</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rt, tt  </PARAM_NAME>
+        <PARAM_NAME>rt, tt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: gain matrices of the filter model after <VERB>n</VERB> iterations.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p, s, t, l  </PARAM_NAME>
+        <PARAM_NAME>p, s, t, l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: may be given as input if more than one recursion is desired (evaluation of intermediate values of <VERB>p</VERB>).</SP>
         </PARAM_DESCRIPTION>

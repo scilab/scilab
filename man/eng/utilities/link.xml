@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>link  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="link"> dynamic link  </SHORT_DESCRIPTION>
+  <TITLE>link</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="link"> dynamic link</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>link(files, sub-name)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>link(files, sub-name, flag)  </CALLING_SEQUENCE_ITEM>
@@ -20,37 +19,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>files  </PARAM_NAME>
+        <PARAM_NAME>files</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string or a vector of character strings. <VERB>ld</VERB> files used to define the new entry point (compiled routines, user libraries, system libraries,..)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sub-name  </PARAM_NAME>
+        <PARAM_NAME>sub-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. Name of the entry point in <VERB>files</VERB> to be linked.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sub-names  </PARAM_NAME>
+        <PARAM_NAME>sub-names</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string or a vector of character strings . Name of the entry points in <VERB>files</VERB> to be linked.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer which gives the id of a shared library linked into Scilab with a previous call to <VERB>link</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string <VERB>'f'</VERB> or <VERB>'c'</VERB> for Fortran (default) or C code.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>names  </PARAM_NAME>
+        <PARAM_NAME>names</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of character string. Names of dynamically linked entry points.</SP>
         </PARAM_DESCRIPTION>
@@ -153,7 +152,7 @@ link('test.o','g');
   </P>
       </ITEM>
       <ITEM label="show:">
-        <SP>The command <VERB>lst=link('show')</VERB> will report information about  linked shared libraries and linked functions. The return value of the function <VERB>lst</VERB> is <VERB/> or <VERB/>.  If the return value is <VERB/> then the extended calling sequence  described as <VERB>Link extensions for machines using ``dlopen'' </VERB> are  accepted.</SP>
+        <SP>The command <VERB>lst=link('show')</VERB> will report information about  linked shared libraries and linked functions. The return value of the function <VERB>lst</VERB> is <VERB>1</VERB> or <VERB>0</VERB>.  If the return value is <VERB>1</VERB> then the extended calling sequence  described as <VERB>Link extensions for machines using ``dlopen'' </VERB> are  accepted.</SP>
       </ITEM>
       <ITEM label="unlink :">
         <SP>(dlopen version) If the function <VERB>f</VERB> is changed and one wants to link  the new version, it is necessary to use unlink to get rid of  previous loaded versions of the function <VERB>f</VERB></SP>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>genlib  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Nov 200</DATE>
-  <SHORT_DESCRIPTION name="genlib"> build library from all functions in given directory  </SHORT_DESCRIPTION>
+  <TITLE>genlib</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Nov 2000</DATE>
+  <SHORT_DESCRIPTION name="genlib"> build library from all functions in given directory</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>genlib(lib-name [,dir-name, [ force [,verbose]]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -25,7 +24,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>force,verbose  </PARAM_NAME>
+        <PARAM_NAME>force,verbose</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean values (default values <VERB>%f</VERB>).</SP>
         </PARAM_DESCRIPTION>

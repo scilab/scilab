@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spanplus  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="spanplus"> sum of subspaces  </SHORT_DESCRIPTION>
+  <TITLE>spanplus</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="spanplus"> sum of subspaces</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X,dim,dima]=spanplus(A,B[,tol])   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A, </PARAM_NAME>
+        <PARAM_NAME>A, B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real or complex matrices with equal number of rows</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: orthogonal or unitary square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dim, dima  </PARAM_NAME>
+        <PARAM_NAME>dim, dima</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers, dimension of subspaces</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: nonnegative real number</SP>
         </PARAM_DESCRIPTION>
@@ -42,11 +41,11 @@
     <P>
     computes a  basis X such that:</P>
     <P>
-    the first <VERB>dima</VERB> columns of <VERB/> span Range(<VERB/>)
-    and the following (<VERB>dim-dima</VERB>) columns make a basis of <VERB>A+</VERB>
-    relative to <VERB/>.</P>
+    the first <VERB>dima</VERB> columns of <VERB>X</VERB> span Range(<VERB>A</VERB>)
+    and the following (<VERB>dim-dima</VERB>) columns make a basis of <VERB>A+B</VERB>
+    relative to <VERB>A</VERB>.</P>
     <P>
-    The <VERB>dim</VERB> first columns of <VERB/> make a basis for <VERB>A+</VERB>.</P>
+    The <VERB>dim</VERB> first columns of <VERB>X</VERB> make a basis for <VERB>A+B</VERB>.</P>
     <P>
     One has the following canonical form for <VERB>[A,B]</VERB>:</P>
     <VERBATIM>

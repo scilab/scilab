@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>projspec  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="projspec"> spectral operators   </SHORT_DESCRIPTION>
+  <TITLE>projspec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="projspec"> spectral operators</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[S,P,D,i]=projspec(A)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>S, P, </PARAM_NAME>
+        <PARAM_NAME>S, P, D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>i  </PARAM_NAME>
+        <PARAM_NAME>i</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integer (index of the zero eigenvalue of <VERB/>).</SP>
+          <SP>: integer (index of the zero eigenvalue of <VERB>A</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    Spectral characteristics of <VERB/> at 0.</P>
-    <P><VERB/> = reduced resolvent at 0 (<VERB/> = -Drazin_inverse(<VERB/>)).</P>
-    <P><VERB/> = spectral projection at 0.</P>
-    <P><VERB/> = nilpotent operator at 0.</P>
+    Spectral characteristics of <VERB>A</VERB> at 0.</P>
+    <P><VERB>S</VERB> = reduced resolvent at 0 (<VERB>S</VERB> = -Drazin_inverse(<VERB>A</VERB>)).</P>
+    <P><VERB>P</VERB> = spectral projection at 0.</P>
+    <P><VERB>D</VERB> = nilpotent operator at 0.</P>
     <P><VERB>index</VERB> = index of the 0 eigenvalue.</P>
     <P>
     One has <VERB>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s - S - s*S^2 -...</VERB>

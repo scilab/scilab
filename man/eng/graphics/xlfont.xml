@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xlfont  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xlfont"> load a font in the graphics context or query loaded font  </SHORT_DESCRIPTION>
+  <TITLE>xlfont</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xlfont"> load a font in the graphics context or query loaded font</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xlfont(font-name,font-id)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>fonts=xlfont()  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>font-name  </PARAM_NAME>
+        <PARAM_NAME>font-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, name of the font family.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>font-id  </PARAM_NAME>
+        <PARAM_NAME>font-id</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer between 0 and 6.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fonts  </PARAM_NAME>
+        <PARAM_NAME>fonts</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a column vector of currently loaded font names.</SP>
         </PARAM_DESCRIPTION>
@@ -55,7 +54,7 @@
         <SP>if it contains the character &quot;%&quot;, it is supposed to be an  X11 font name with %s in the size field of the name, for example <VERB>&quot;-b&amp;h-lucidabright-demibold-r-normal--%s-*-75-75-p-*-iso8859-1&quot;</VERB></SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>if it does not contain the character &quot;%&quot;, it is supposed  to be an alias name and the fonts aliased by <VERB>font-name08,...,font-name2</VERB> are loaded.</SP>
+        <SP>if it does not contain the character &quot;%&quot;, it is supposed  to be an alias name and the fonts aliased by <VERB>font-name08,...,font-name24</VERB> are loaded.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="font-id">
         <SP>: give the id <VERB>font-id</VERB> to the loaded font <VERB>font-name</VERB>.</SP>

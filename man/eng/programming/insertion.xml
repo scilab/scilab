@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>insertion  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>September 199</DATE>
+  <TITLE>insertion</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1996</DATE>
   <SHORT_DESCRIPTION name="insertion">  partial variable assignation
-  or   modification  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="assignation"> partial variable assignation </SHORT_DESCRIPTION>
+  or   modification</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="assignation"> partial variable assignation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>x(i,j)=a  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>x(i)=a  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>l(i)=a  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)=a   or l(list(k1,...,kn,list(i,j))=a  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i,j)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>x(i)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(i)=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i)=a or l(list(k1,...,kn,i))=a</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>l(k1)...(kn)(i,j)=a   or l(list(k1,...,kn,list(i,j))=a</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix  of any  kind (constant, sparse, polynomial,...)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>l  </PARAM_NAME>
+        <PARAM_NAME>l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>i,j  </PARAM_NAME>
+        <PARAM_NAME>i,j</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: indices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k1,...kn  </PARAM_NAME>
+        <PARAM_NAME>k1,...kn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: indices  with integer value</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: new entry value</SP>
         </PARAM_DESCRIPTION>
@@ -73,7 +72,7 @@
               <DESCRIPTION_ITEM>
                 <P> if <VERB>a</VERB> is a scalar
            <VERB>x(i,j)=a</VERB> returns a new <VERB>x</VERB> matrix
-           such as <VERB>x(int(i(l)),int(j(k)))=a </VERB> for
+           such as <VERB>x(int(i(l)),int(j(k)))=a</VERB> for
            <VERB>l</VERB> from 1 to <VERB>size(i,'*')</VERB>
            and <VERB>k</VERB> from 1 to
            <VERB>size(j,'*')</VERB>, other initial entries
@@ -118,7 +117,7 @@
           </P>
                 <DESCRIPTION_INDENT>
                   <DESCRIPTION_ITEM label="if">
-                    <SP><VERB>x</VERB> is a 1x</SP>
+                    <SP><VERB>x</VERB> is a 1x1</SP>
                     <P>
               matrix <VERB>a</VERB> may be a row (respectively a
               column) vector with dimension
@@ -216,7 +215,7 @@
             <P>
               <VERB>lkn-1(kn) = lkn</VERB>
               <VERB> ..  = ..  </VERB>
-              <VERB>l(k1) = lk</VERB>
+              <VERB>l(k1) = lk1</VERB>
             </P>
             <P>
         And the <VERB>l(k1)...(kn)(i,j)=a</VERB> and  <VERB>l(list(k1,...,kn,list(i,j))=a</VERB> 
@@ -232,7 +231,7 @@
             <P>
               <VERB>lkn-1(kn) = lkn</VERB>
               <VERB> ..  = ..  </VERB>
-              <VERB>l(k1)= lk</VERB>
+              <VERB>l(k1)= lk1</VERB>
             </P>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ftest  </TITLE>
+  <TITLE>ftest</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="ftest"> Fischer ratio  </SHORT_DESCRIPTION>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="ftest"> Fischer ratio</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>f=ftest(samples)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[f,p]=ftest(samples)  </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>samples  </PARAM_NAME>
+        <PARAM_NAME>samples</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrix of type nr X nc</SP>
         </PARAM_DESCRIPTION>
@@ -50,5 +49,5 @@ samples=[46 55 54;
       <LINK>ftuneq</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

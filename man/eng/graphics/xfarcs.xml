@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xfarcs  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xfarcs"> fill parts of a set of ellipses  </SHORT_DESCRIPTION>
+  <TITLE>xfarcs</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xfarcs"> fill parts of a set of ellipses</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xfarcs(arcs,[style])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>arcs  </PARAM_NAME>
+        <PARAM_NAME>arcs</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of size (6,n) describing the ellipses.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>style  </PARAM_NAME>
+        <PARAM_NAME>style</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of size n giving the colors to use.</SP>
         </PARAM_DESCRIPTION>

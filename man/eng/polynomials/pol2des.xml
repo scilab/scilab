@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pol2des  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pol2des"> polynomial matrix to descriptor form  </SHORT_DESCRIPTION>
+  <TITLE>pol2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pol2des"> polynomial matrix to descriptor form</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[N,B,C]=pol2des(Ds)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Ds  </PARAM_NAME>
+        <PARAM_NAME>Ds</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>N, B, </PARAM_NAME>
+        <PARAM_NAME>N, B, C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: three real matrices</SP>
         </PARAM_DESCRIPTION>
@@ -29,10 +28,10 @@
   <DESCRIPTION>
     <P>
     Given the polynomial matrix <VERB>Ds=D_0 +D_1 s +D_2 s^2 +... +D_k s^k</VERB>,
-    <VERB>pol2des</VERB> returns three  matrices <VERB>N, B, </VERB>, with <VERB/> nilpotent 
+    <VERB>pol2des</VERB> returns three  matrices <VERB>N, B, C</VERB>, with <VERB>N</VERB> nilpotent 
     such that:</P>
     <P>
-      <VERB>Ds = C (s*N-eye())^-1 </VERB>
+      <VERB>Ds = C (s*N-eye())^-1 B</VERB>
     </P>
   </DESCRIPTION>
   <EXAMPLE>

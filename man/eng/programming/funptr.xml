@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>funptr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>funptr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="funptr"> coding of  primitives ( wizard stuff )  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> [numptr] = funptr(name)  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string, the name of a primitive</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>numptr  </PARAM_NAME>
+        <PARAM_NAME>numptr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the internal routine number of the primitive</SP>
         </PARAM_DESCRIPTION>

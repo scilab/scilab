@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>REME</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="remez"> Remez's algorithm  </SHORT_DESCRIPTION>
+  <TITLE>REMEZ</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="remez"> Remez's algorithm</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[an]=remez(nc,fg,ds,wt)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nc  </PARAM_NAME>
+        <PARAM_NAME>nc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of cosine functions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fg,ds,wt  </PARAM_NAME>
+        <PARAM_NAME>fg,ds,wt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vectors</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fg  </PARAM_NAME>
+        <PARAM_NAME>fg</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: grid of frequency points in [0,.5)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ds  </PARAM_NAME>
+        <PARAM_NAME>ds</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: desired magnitude on grid <VERB>fg</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wt  </PARAM_NAME>
+        <PARAM_NAME>wt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: weighting function on error on grid <VERB>fg</VERB></SP>
         </PARAM_DESCRIPTION>

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sysconv  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sysconv"> system conversion  </SHORT_DESCRIPTION>
+  <TITLE>sysconv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sysconv"> system conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[s1,s2]=sysconv(s1,s2)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>s1,s</PARAM_NAME>
+        <PARAM_NAME>s1,s2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (linear <VERB>syslin</VERB> systems)</SP>
         </PARAM_DESCRIPTION>
@@ -22,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    Converts <VERB>s</VERB> and <VERB>s</VERB> into common representation in order that
+    Converts <VERB>s1</VERB> and <VERB>s2</VERB> into common representation in order that
     system interconnexion operations can be applied. Utility function for
     experts. The conversion rules in given in the following table.
   </P>
@@ -37,7 +36,7 @@
         <SP>: sampled system with sampling period n</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="[]">
-        <SP>: system with undefined time domain  For mixed systems <VERB>s</VERB> and <VERB>s</VERB> are put in state-space representation.</SP>
+        <SP>: system with undefined time domain  For mixed systems <VERB>s1</VERB> and <VERB>s2</VERB> are put in state-space representation.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <VERBATIM>

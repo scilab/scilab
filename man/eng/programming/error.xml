@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>error  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="error"> error messages   </SHORT_DESCRIPTION>
+  <TITLE>error</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="error"> error messages</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>error('string' [,n])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>error(m)  </CALLING_SEQUENCE_ITEM>
@@ -17,7 +16,7 @@
     and stops the current instruction.</P>
     <P>
     If <VERB>n</VERB> is given, it is associated to the number of the error. <VERB>n</VERB> should
-    be larger than <VERB>1000</VERB> (default value).</P>
+    be larger than <VERB>10000</VERB> (default value).</P>
     <P><VERB>error(m) </VERB> prints the message associated with the error number <VERB>m</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>

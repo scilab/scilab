@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>realtime  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="realtimeinit">set  time unit  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="realtime">set  dates origin or waits until date   </SHORT_DESCRIPTION>
+  <TITLE>realtime</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="realtimeinit">set  time unit</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="realtime">set  dates origin or waits until date</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>realtime(t)</CALLING_SEQUENCE_ITEM>
@@ -15,13 +14,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>time_unit </PARAM_NAME>
+        <PARAM_NAME>time_unit</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real number. The number of seconds associated to the <VERB>realtime</VERB> argument</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real number.  A date</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
    associated to the <VERB>realtime</VERB> argument <VERB>t</VERB></P>
     <P>
    first call to <VERB>realtime(t0)</VERB> sets current date to
-   (<VERB>t</VERB>).
+   (<VERB>t0</VERB>).
    subsequent calls to <VERB>realtime(t)</VERB> wait till date <VERB>t</VERB> is
    reached.</P>
   </DESCRIPTION>

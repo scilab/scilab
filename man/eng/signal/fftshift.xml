@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fftshift  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>200</DATE>
-  <SHORT_DESCRIPTION name="fftshift"> rearranges the fft output, moving the zero frequency to the center of the spectrum  </SHORT_DESCRIPTION>
+  <TITLE>fftshift</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>2001</DATE>
+  <SHORT_DESCRIPTION name="fftshift"> rearranges the fft output, moving the zero frequency to the center of the spectrum</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=fftshift(x [,job])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>job  </PARAM_NAME>
+        <PARAM_NAME>job</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, dimension selection, or string 'all'</SP>
         </PARAM_DESCRIPTION>

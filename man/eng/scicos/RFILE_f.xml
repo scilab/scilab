@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>RFILE_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="RFILE_f"> Scicos &quot;read from file&quot; block  </SHORT_DESCRIPTION>
+  <TITLE>RFILE_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="RFILE_f"> Scicos &quot;read from file&quot; block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block allows user to read  datas in a file, in formatted or binary

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>contract_edge  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="contract_edge"> contracts edges between two nodes  </SHORT_DESCRIPTION>
+  <TITLE>contract_edge</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="contract_edge"> contracts edges between two nodes</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = contract_edge(i,j,g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>i  </PARAM_NAME>
+        <PARAM_NAME>i</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of start or end node of edge</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>j  </PARAM_NAME>
+        <PARAM_NAME>j</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of end or start node of edge</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph</SP>
         </PARAM_DESCRIPTION>
@@ -39,7 +38,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>contract_edge</VERB> returns the graph <VERB>g</VERB>, the edges between the nodes
+    <P><VERB>contract_edge</VERB> returns the graph <VERB>g1</VERB>, the edges between the nodes
     number <VERB>i</VERB> and <VERB>j</VERB> being deleted, the nodes being reduced to one
     node with the same name as node <VERB>i</VERB> and located at the middle point 
     between the 2 previous nodes.</P>

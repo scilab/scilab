@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>odedc  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="odedc"> discrete/continuous ode solver  </SHORT_DESCRIPTION>
+  <TITLE>odedc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="odedc"> discrete/continuous ode solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>yt=odedc(y0,nd,stdel,t0,t,f)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_NAME>y0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real column vector (initial conditions), <VERB>y0=[y0c;y0d]</VERB> where <VERB>y0d</VERB> has <VERB>nd</VERB> components.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nd  </PARAM_NAME>
+        <PARAM_NAME>nd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, dimension of <VERB>y0d</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>stdel  </PARAM_NAME>
+        <PARAM_NAME>stdel</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real vector with one or two entries, <VERB>stdel=[h, delta]</VERB> (with <VERB>delta=</VERB> as default value).</SP>
+          <SP>: real vector with one or two entries, <VERB>stdel=[h, delta]</VERB> (with <VERB>delta=0</VERB> as default value).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_NAME>t0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar (initial time).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (row) vector, instants where <VERB>yt</VERB> is calculated .</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external i.e. function or character string or list with calling sequence: <VERB>yp=f(t,yc,yd,flag)</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -85,10 +84,10 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
     <P>
     The calling parameters of <VERB>f</VERB> are fixed: <VERB>ycd=f(t,yc,yd,flag)</VERB>;
     this function must return either the derivative of the vector <VERB>yc</VERB> if
-    <VERB>flag=</VERB> or the update of <VERB>yd</VERB> if <VERB>flag=</VERB>.</P>
+    <VERB>flag=0</VERB> or the update of <VERB>yd</VERB> if <VERB>flag=1</VERB>.</P>
     <P><VERB>ycd=dot(yc)</VERB> must be a vector with same dimension as <VERB>yc</VERB> 
-    if <VERB>flag=</VERB> and <VERB>ycd=update(yd)</VERB> must be a vector with same 
-    dimension as <VERB>yd</VERB> if <VERB>flag=</VERB>.</P>
+    if <VERB>flag=0</VERB> and <VERB>ycd=update(yd)</VERB> must be a vector with same 
+    dimension as <VERB>yd</VERB> if <VERB>flag=1</VERB>.</P>
     <P><VERB>t</VERB> is a vector of instants where the solution <VERB>y</VERB> is computed.</P>
     <P><VERB>y</VERB> is the vector <VERB>y=[y(t(1)),y(t(2)),...]</VERB>.
     This function can be called with the same optional parameters as the

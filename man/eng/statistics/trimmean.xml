@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>trimmean  </TITLE>
+  <TITLE>trimmean</TITLE>
   <TYPE>  </TYPE>
-  <DATE>October 200</DATE>
-  <SHORT_DESCRIPTION name="trimmean"> trimmed mean of a vector or a matrix  </SHORT_DESCRIPTION>
+  <DATE>October 2002</DATE>
+  <SHORT_DESCRIPTION name="trimmean"> trimmed mean of a vector or a matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>m=trimmean(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>m=trimmean(x,discard,'r') or m=trimmean(x,discard,1)  </CALLING_SEQUENCE_ITEM>
@@ -72,8 +71,8 @@
     For      a      vector      or     matrix      <VERB>x</VERB>,
     <VERB>t=trimmean(x,discard)</VERB>  returns in  scalar <VERB>t</VERB>
     the  mean   of  all  the  entries   of  <VERB>x</VERB>,  after
-    discarding    <VERB>discard/</VERB>   highest    values   and
-    <VERB>discard/</VERB> lowest values.</P>
+    discarding    <VERB>discard/2</VERB>   highest    values   and
+    <VERB>discard/2</VERB> lowest values.</P>
     <P><VERB>t=trimmean(x,discard,'r')</VERB>    (or,   equivalently,
     <VERB>t=trimmean(x,discard,1)</VERB>) returns in each entry of
     the row vector <VERB>t</VERB>  the trimmed mean of each column
@@ -84,24 +83,24 @@
     of <VERB>x</VERB>.</P>
     <P>
     This function computes the  trimmed mean of a vector or
-    matrix <VERB> x </VERB>.</P>
+    matrix <VERB> x</VERB>.</P>
     <P>
-    For a vector or matrix <VERB> x </VERB>, <VERB> m=trimmean(x) </VERB>
-    returns in scalar <VERB> m  </VERB> the trimmedmean of all the
-    entries of <VERB> x </VERB>.</P>
+    For a vector or matrix <VERB> x</VERB>, <VERB> m=trimmean(x) </VERB>
+    returns in scalar <VERB> m</VERB> the trimmedmean of all the
+    entries of <VERB> x</VERB>.</P>
     <P><VERB>   m=trimmean(x,'r')  </VERB>  (or,   equivalently,  <VERB>
     m=trimmean(x,1) </VERB>)  returns in each entry  of the row
-    vector <VERB> m </VERB> the trimmed mean of each column of <VERB>
-    x </VERB>.</P>
+    vector <VERB> m</VERB> the trimmed mean of each column of <VERB>
+    x</VERB>.</P>
     <P>
     q<VERB>  m=trimmean(x,'c')   </VERB>  (or,  equivalently,  <VERB>
     m=trimmean(x,2)  </VERB>)  returns  in  each entry  of  the
-    column vector <VERB> m </VERB> the trimmed mean of each row of
-    <VERB> x </VERB>.</P>
+    column vector <VERB> m</VERB> the trimmed mean of each row of
+    <VERB> x</VERB>.</P>
   </DESCRIPTION>
   <SECTION label="References">
     <P>
-     Luis  Angel   Garcia-Escudero  and  Alfonso  Gordaliza, Robustness Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept 1999, pp956-96</P>
+     Luis  Angel   Garcia-Escudero  and  Alfonso  Gordaliza, Robustness Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept 1999, pp956-969</P>
   </SECTION>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

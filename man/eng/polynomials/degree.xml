@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>degree  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="degree"> degree of polynomial matrix  </SHORT_DESCRIPTION>
+  <TITLE>degree</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="degree"> degree of polynomial matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[D]=degree(M)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer matrix</SP>
         </PARAM_DESCRIPTION>
@@ -28,7 +27,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    returns the matrix of highest degrees of <VERB/>.</P>
+    returns the matrix of highest degrees of <VERB>M</VERB>.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>

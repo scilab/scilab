@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>external  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="external"> Scilab Object, external function or routine  </SHORT_DESCRIPTION>
+  <TITLE>external</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="external"> Scilab Object, external function or routine</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     External function or routine for use with specific commands.</P>
@@ -52,7 +51,7 @@ optim(list(costfunc,a1,b1,c1),....
     The name of the routine is given to the high-level primitive
     as a character string. The calling sequence of the routine 
     is also imposed. Examples are given in the <VERB>routines/default</VERB> directory 
-    (see the <VERB>READM</VERB> file).</P>
+    (see the <VERB>README</VERB> file).</P>
     <P>
     External Fortran or C routines can also be dynamically linked (see <VERB>link</VERB>)</P>
   </DESCRIPTION>

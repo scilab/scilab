@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>varn  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="varn"> symbolic variable of a polynomial  </SHORT_DESCRIPTION>
+  <TITLE>varn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="varn"> symbolic variable of a polynomial</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[symb]=varn(p)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[pm]=varn(x,var)  </CALLING_SEQUENCE_ITEM>
@@ -14,31 +13,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>p  </PARAM_NAME>
+        <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial (or matrix polynomial)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>symb  </PARAM_NAME>
+        <PARAM_NAME>symb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial or polynomial matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>var  </PARAM_NAME>
+        <PARAM_NAME>var</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: symbolic variable (character string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pm  </PARAM_NAME>
+        <PARAM_NAME>pm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix or polynomial matrix</SP>
         </PARAM_DESCRIPTION>

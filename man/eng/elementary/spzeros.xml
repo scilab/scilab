@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spzeros  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="spzeros">  sparse zero matrix  </SHORT_DESCRIPTION>
+  <TITLE>spzeros</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="spzeros">  sparse zero matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sp=spzeros(nrows,ncols)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sp=spzeros(A)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nrows  </PARAM_NAME>
+        <PARAM_NAME>nrows</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of rows)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ncols  </PARAM_NAME>
+        <PARAM_NAME>ncols</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number os columns)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sp  </PARAM_NAME>
+        <PARAM_NAME>sp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse zero matrix</SP>
         </PARAM_DESCRIPTION>
@@ -44,7 +43,7 @@
     with <VERB>nrows</VERB> rows, <VERB>ncols</VERB> columns. 
     (Equivalent to <VERB>sparse([],[],[nrow,ncols])</VERB>)</P>
     <P><VERB>sp=spzeros(A)</VERB> returns a sparse zero matrix with same
-    dimensions as <VERB/>. If <VERB>[m,n]=size(A)</VERB>, <VERB>spzeros(m,n)</VERB> and
+    dimensions as <VERB>A</VERB>. If <VERB>[m,n]=size(A)</VERB>, <VERB>spzeros(m,n)</VERB> and
     <VERB>spzeros(A)</VERB> are equivalent. In particular <VERB>spzeros(3)</VERB> is not
     equivalent to <VERB>spzeros(3,3)</VERB>.</P>
   </DESCRIPTION>

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>delete_arcs  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="delete_arcs"> deletes all the arcs or edges between a set of nodes  </SHORT_DESCRIPTION>
+  <TITLE>delete_arcs</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="delete_arcs"> deletes all the arcs or edges between a set of nodes</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = delete_arcs(ij,g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>ij  </PARAM_NAME>
+        <PARAM_NAME>ij</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of integers (number of nodes)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph without the arcs or edges defined by ij</SP>
         </PARAM_DESCRIPTION>
@@ -35,7 +34,7 @@
   <DESCRIPTION>
     <P>
     If <VERB>g</VERB> is a directed graph,
-    <VERB>delete_arcs</VERB> returns the graph <VERB>g</VERB> with the arcs defined 
+    <VERB>delete_arcs</VERB> returns the graph <VERB>g1</VERB> with the arcs defined 
     by matrix <VERB>ij</VERB> being deleted.
     <VERB>ij</VERB> must be a n x 2 matrix of node numbers: the n arcs to be
     deleted are defined by couples of nodes (<VERB>ij(i,1)</VERB>, <VERB>ij(i,2)</VERB>).</P>

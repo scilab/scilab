@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>SIMP_MOD</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>July 199</DATE>
-  <SHORT_DESCRIPTION name="simp_mode"> toggle rational simplification   </SHORT_DESCRIPTION>
+  <TITLE>SIMP_MODE</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 1996</DATE>
+  <SHORT_DESCRIPTION name="simp_mode"> toggle rational simplification</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mod=simp_mode()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>simp_mode(mod)  </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>mod  </PARAM_NAME>
+        <PARAM_NAME>mod</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a boolean</SP>
         </PARAM_DESCRIPTION>

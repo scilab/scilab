@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>secto3d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="secto3d"> 3D surfaces conversion  </SHORT_DESCRIPTION>
+  <TITLE>secto3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="secto3d"> 3D surfaces conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[m[,x]]=secto3d(seclist,npas)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[m]=secto3d(seclist ,x)   </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>seclist  </PARAM_NAME>
+        <PARAM_NAME>seclist</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a list whose elements are (2,.) matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>npas  </PARAM_NAME>
+        <PARAM_NAME>npas</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector</SP>
         </PARAM_DESCRIPTION>

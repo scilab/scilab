@@ -1,34 +1,33 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>figure  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
-  <SHORT_DESCRIPTION name="figure"> create a figure  </SHORT_DESCRIPTION>
+  <TITLE>figure</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="figure"> create a figure</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>h : integer Handle of the window to create. If not specified, the first free handle is used</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>prop{1, 2 ...} : character string name of a property to set</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>val{1, 2 ...} : scilab object value to give to the corresponding property</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>hn : handle of the newly created window</SP>
         </PARAM_DESCRIPTION>
@@ -79,5 +78,5 @@ close(h);
       <LINK>gcf</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

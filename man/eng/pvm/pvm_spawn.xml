@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_spawn  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>January 199</DATE>
+  <TITLE>pvm_spawn</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>January 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_spawn"> Starts new Scilab processes.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[tids, numt] = pvm_spawn(task,  ntask, [nw], [where])  </CALLING_SEQUENCE_ITEM>
@@ -13,31 +12,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>task : string, which is the file name of the scilab script (see exec) to be  </PARAM_NAME>
+        <PARAM_NAME>task : string, which is the file name of the scilab script (see exec) to be</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>started. The Scilab script must already reside on the host on which it is to be started.  The name must an absolute path.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ntask  </PARAM_NAME>
+        <PARAM_NAME>ntask</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, specifying the number of copies of the  scilab script to start.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>win  </PARAM_NAME>
+        <PARAM_NAME>win</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (optional). If win is  equal to ``nw'' the Scilab process will be spawned in background with out any window coming up.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>where  </PARAM_NAME>
+        <PARAM_NAME>where</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (optional), can be a host name such as ``tequila.ens-lyon.fr'' or a PVM architecture class such as ``SUN4''.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>numt  </PARAM_NAME>
+        <PARAM_NAME>numt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the actual number of tasks started. Values less than zero indicate a system error.</SP>
         </PARAM_DESCRIPTION>
@@ -59,8 +58,8 @@
     On systems that support environment,
     <VERB>pvm_spawn</VERB> passes selected variables from parent
     environment to children tasks. 
-    If set, the envar <VERB>PVM_EXPOR</VERB> is passed.
-    If <VERB>PVM_EXPOR</VERB> contains other names (separated by
+    If set, the envar <VERB>PVM_EXPORT</VERB> is passed.
+    If <VERB>PVM_EXPORT</VERB> contains other names (separated by
     ':') they will 
     be passed too. This is useful for e.g.:</P>
     <VERBATIM>

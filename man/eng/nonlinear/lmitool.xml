@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lmitool  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lmitool"> tool for solving linear matrix inequations  </SHORT_DESCRIPTION>
+  <TITLE>lmitool</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lmitool"> tool for solving linear matrix inequations</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>lmitool()  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
@@ -17,31 +16,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>filename  </PARAM_NAME>
+        <PARAM_NAME>filename</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string referring to a <VERB>.sci</VERB> function</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>probname  </PARAM_NAME>
+        <PARAM_NAME>probname</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string containing the name of the problem</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>varlist  </PARAM_NAME>
+        <PARAM_NAME>varlist</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string containing the names of the unknown matrices (separated by commas if there are more than one)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>datalist  </PARAM_NAME>
+        <PARAM_NAME>datalist</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  a string containing the names of  data matrices (separated by commas if there are more than one)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>txt  </PARAM_NAME>
+        <PARAM_NAME>txt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string providing information on what the user should do next</SP>
         </PARAM_DESCRIPTION>

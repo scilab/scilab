@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>TK_EvalFile  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 02 June 199</DATE>
-  <SHORT_DESCRIPTION name="TK_EvalFile"> Reads and evaluate a tcl/tk file  </SHORT_DESCRIPTION>
+  <TITLE>TK_EvalFile</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 02 June 1998</DATE>
+  <SHORT_DESCRIPTION name="TK_EvalFile"> Reads and evaluate a tcl/tk file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>TK_EvalFile(filename)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>filename  </PARAM_NAME>
+        <PARAM_NAME>filename</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string character Contains the name of the file to read and evaluate.</SP>
         </PARAM_DESCRIPTION>
@@ -57,5 +56,5 @@ TK_EvalFile(SCI+'/demos/tk/puzzle')
       <LINK>TK_SetVar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hess  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="hess"> Hessenberg form  </SHORT_DESCRIPTION>
+  <TITLE>hess</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hess"> Hessenberg form</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>H = hess(A)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[U,H] = hess(A)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>H</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex square matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: orthogonal or unitary square matrix</SP>
         </PARAM_DESCRIPTION>
@@ -35,9 +34,9 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>[U,H] = hess(A)</VERB> produces a unitary matrix
-    <VERB/> and a Hessenberg matrix <VERB/> so that
-    <VERB>A = U*H*U'</VERB> and <VERB>U'*</VERB> =
-    Identity.  By itself, <VERB>hess(A)</VERB> returns <VERB/>.</P>
+    <VERB>U</VERB> and a Hessenberg matrix <VERB>H</VERB> so that
+    <VERB>A = U*H*U'</VERB> and <VERB>U'*U</VERB> =
+    Identity.  By itself, <VERB>hess(A)</VERB> returns <VERB>H</VERB>.</P>
     <P>
     The Hessenberg form of a matrix is zero below the first
     subdiagonal. If the matrix is symmetric or Hermitian, the form is

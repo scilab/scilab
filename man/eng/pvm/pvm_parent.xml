@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_parent  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_parent</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_parent"> tid of the process that spawned the calling process.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>tid = pvm_parrent()  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>tid  </PARAM_NAME>
+        <PARAM_NAME>tid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the task identifier of the parent of the calling process.</SP>
         </PARAM_DESCRIPTION>
@@ -27,7 +26,7 @@
     If the calling process was
     not created with <VERB>pvm_spawn</VERB>, 
     then <VERB>tid</VERB> is set to
-    <VERB>PvmNoParent=-2</VERB></P>
+    <VERB>PvmNoParent=-23</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

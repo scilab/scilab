@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>phasemag  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="phasemag"> phase and magnitude computation  </SHORT_DESCRIPTION>
+  <TITLE>phasemag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="phasemag"> phase and magnitude computation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[phi,db]=phasemag(z [,mod])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix or row vector of complex numbers.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mod  </PARAM_NAME>
+        <PARAM_NAME>mod</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string</SP>
           <PARAM_INDENT>
@@ -39,13 +38,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phi  </PARAM_NAME>
+        <PARAM_NAME>phi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: phases (in degree) of <VERB>z</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>db  </PARAM_NAME>
+        <PARAM_NAME>db</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: magnitude (in Db)</SP>
         </PARAM_DESCRIPTION>

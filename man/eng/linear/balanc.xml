@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>balanc  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="balanc"> matrix or pencil balancing  </SHORT_DESCRIPTION>
+  <TITLE>balanc</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="balanc"> matrix or pencil balancing</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Ab,X]=balanc(A)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Eb,Ab,X,Y]=balanc(E,A)  </CALLING_SEQUENCE_ITEM>
@@ -28,7 +27,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>E:  </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>a real square matrix (same dimension as <VERB/>)</SP>
+          <SP>a real square matrix (same dimension as <VERB>A</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -44,13 +43,13 @@
     Balance a square matrix to improve
     its condition number.</P>
     <P><VERB>[Ab,X] = balanc(A)</VERB> finds a similarity transformation
-    <VERB/> such that</P>
-    <P><VERB>Ab = inv(X)*A*</VERB> has approximately equal row and column norms.</P>
+    <VERB>X</VERB> such that</P>
+    <P><VERB>Ab = inv(X)*A*X</VERB> has approximately equal row and column norms.</P>
     <P>
     For matrix pencils,balancing is done for improving the
     generalized eigenvalue problem.</P>
-    <P><VERB>[Eb,Ab,X,Y] = balanc(E,A)</VERB> returns left and right transformations <VERB/> and <VERB/>
-    such that <VERB>Eb=inv(X)*E*Y,  Ab=inv(X)*A*</VERB></P>
+    <P><VERB>[Eb,Ab,X,Y] = balanc(E,A)</VERB> returns left and right transformations <VERB>X</VERB> and <VERB>Y</VERB>
+    such that <VERB>Eb=inv(X)*E*Y,  Ab=inv(X)*A*Y</VERB></P>
   </DESCRIPTION>
   <SECTION label="Remark">
     <P>

@@ -1,39 +1,38 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fsolve  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>August 199</DATE>
-  <SHORT_DESCRIPTION name="fsolve"> find a zero of a system of n nonlinear functions  </SHORT_DESCRIPTION>
+  <TITLE>fsolve</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>August 1993</DATE>
+  <SHORT_DESCRIPTION name="fsolve"> find a zero of a system of n nonlinear functions</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (initial value of function argument).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fct  </PARAM_NAME>
+        <PARAM_NAME>fct</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (i.e function or list or string).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fjac  </PARAM_NAME>
+        <PARAM_NAME>fjac</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (i.e function or list or string).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real scalar. precision tolerance: termination occurs when the algorithm estimates that the relative error between x and the solution is at most tol. (<VERB>tol=1.d-1</VERB> is the default value).</SP>
+          <SP>: real scalar. precision tolerance: termination occurs when the algorithm estimates that the relative error between x and the solution is at most tol. (<VERB>tol=1.d-10</VERB> is the default value).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -49,36 +48,36 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  termination indicator</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>0</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: improper input parameters.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: algorithm estimates that the relative error between x and the solution  is at most tol.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: number of calls to fcn reached</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: tol is too small. No further improvement in the approximate solution  x is possible.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>4</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: iteration is not making good progress.</SP>
               </PARAM_DESCRIPTION>

@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>segs_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="segs_properties"> description of the
-   Segments entity properties </SHORT_DESCRIPTION>
+   Segments entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Segs entity is a leaf of the graphics entities
@@ -129,5 +128,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDMOUCHE</AUTHOR>
 </MAN>

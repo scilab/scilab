@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>correl  </TITLE>
+  <TITLE>correl</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="correl">  correlation of two variables  </SHORT_DESCRIPTION>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="correl">  correlation of two variables</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rho=correl(x,y,fre)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fre  </PARAM_NAME>
+        <PARAM_NAME>fre</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of type length(x) x length(y)</SP>
         </PARAM_DESCRIPTION>
@@ -55,5 +54,5 @@ rho=correl(x,h,fre)
       <LINK>covar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

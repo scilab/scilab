@@ -1,87 +1,86 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>int3d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="int3d"> definite 3D integral by quadrature and cubature method  </SHORT_DESCRIPTION>
+  <TITLE>int3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="int3d"> definite 3D integral by quadrature and cubature method</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[result,err]=int3d(X,Y,Z,f [,nf[,params]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a 4 by <VERB>NUMTE</VERB> array containing the abscissae of the vertices   of the <VERB>NUMTE</VERB> tetrahedrons.</SP>
+          <SP>: a 4 by <VERB>NUMTET</VERB> array containing the abscissae of the vertices   of the <VERB>NUMTET</VERB> tetrahedrons.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a 4 by <VERB>NUMTE</VERB> array containing the ordinates of the vertices   of the <VERB>NUMTE</VERB> tetrahedrons.</SP>
+          <SP>: a 4 by <VERB>NUMTET</VERB> array containing the ordinates of the vertices   of the <VERB>NUMTET</VERB> tetrahedrons.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a 4 by <VERB>NUMTE</VERB> array containing the third coordinates of the vertices   of the <VERB>NUMTE</VERB> tetrahedrons.</SP>
+          <SP>: a 4 by <VERB>NUMTET</VERB> array containing the third coordinates of the vertices   of the <VERB>NUMTET</VERB> tetrahedrons.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or list or string) defining the integrand <VERB>f(xyz,nf)</VERB>, where <VERB>xyz</VERB> is the vector of a point coordinates and nf the number functions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nf  </PARAM_NAME>
+        <PARAM_NAME>nf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the number of function to integate (default is 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>params  </PARAM_NAME>
+        <PARAM_NAME>params</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector <VERB>[minpts, maxpts, epsabs, epsrel]</VERB>. default value is <VERB>[0, 1000, 0.0, 1.d-5]</VERB>.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>epsabs  </PARAM_NAME>
+              <PARAM_NAME>epsabs</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: Desired bound on the absolute error.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsrel  </PARAM_NAME>
+              <PARAM_NAME>epsrel</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: Desired bound on the relative error.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>minpts  </PARAM_NAME>
+              <PARAM_NAME>minpts</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: Minimum number of function evaluations.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>maxpts  </PARAM_NAME>
+              <PARAM_NAME>maxpts</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: Maximum number of function evaluations.  The number of function evaluations over each subregion is 4</SP>
+                <SP>: Maximum number of function evaluations.  The number of function evaluations over each subregion is 43</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>result  </PARAM_NAME>
+        <PARAM_NAME>result</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the integral value,or vector of the integral values.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Estimates of absolute errors.</SP>
         </PARAM_DESCRIPTION>
@@ -115,13 +114,13 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
     <VERB>ABS(I(K)-RESULT(K))&lt;=MAX(EPSABS,EPSREL*ABS(I(K)))</VERB></P>
     <P><VERB>int3d</VERB> repeatedly subdivides the tetrahedrons with greatest
     estimated errors and estimates the integrals and the errors over the
-    new subtetrahedrons until the error request is met or <VERB>MAXPT</VERB>
+    new subtetrahedrons until the error request is met or <VERB>MAXPTS</VERB>
     function evaluations have been used.</P>
     <P>
     A 43 point integration rule with all evaluation points inside the
     tetrahedron is applied. The rule has polynomial degree 8.</P>
     <P>
-    If the values of the input parameters <VERB>EPSAB</VERB> or <VERB>EPSRE</VERB> are
+    If the values of the input parameters <VERB>EPSABS</VERB> or <VERB>EPSREL</VERB> are
     selected great enough, an integration rule is applied over each
     tetrahedron and the results are added up to give the approximations
     <VERB>RESULT(K)</VERB>. No further subdivision of the tetrahedrons will then

@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm  </TITLE>
-  <TYPE>Scilab description  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="pvm"> communications with other applications using Parallel Virutal Machine  </SHORT_DESCRIPTION>
+  <TITLE>pvm</TITLE>
+  <TYPE>Scilab description</TYPE>
+  <DATE>Jan 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm"> communications with other applications using Parallel Virutal Machine</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     is a software system that enables a collection of heterogeneous
@@ -18,7 +17,7 @@
     workstations, that may be interconnected by a variety of networks,
     such as ethernet, FDDI.</P>
     <P>
-    Daemon programs (<VERB>pvmd</VERB>) provide communication and process control
+    Daemon programs (<VERB>pvmd3</VERB>) provide communication and process control
     between computers (see PVM manpage and manual for more details).</P>
     <P>
     Most important functions of the PVM communication library are included in Scilab.</P>

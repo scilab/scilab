@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bool2s  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>September 199</DATE>
+  <TITLE>bool2s</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1997</DATE>
   <SHORT_DESCRIPTION name="bool2s"> convert boolean matrix to a zero one matrix.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>bool2s(x)  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a boolean vector or a boolean matrix or a constant matrix</SP>
         </PARAM_DESCRIPTION>

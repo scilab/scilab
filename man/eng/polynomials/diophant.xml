@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>diophant  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="diophant"> diophantine (Bezout) equation  </SHORT_DESCRIPTION>
+  <TITLE>diophant</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="diophant"> diophantine (Bezout) equation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x,err]=diophant(p1p2,b)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>p1p</PARAM_NAME>
+        <PARAM_NAME>p1p2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial vector <VERB>p1p2 = [p1 p2]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b  </PARAM_NAME>
+        <PARAM_NAME>b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial vector [x1;x2]</SP>
         </PARAM_DESCRIPTION>
@@ -34,10 +33,10 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB> diophant</VERB> solves the bezout equation:</P>
-    <P><VERB>p1*x1+p2*x2=b</VERB> with  <VERB>p1p</VERB> a polynomial vector.
+    <P><VERB>p1*x1+p2*x2=b</VERB> with  <VERB>p1p2</VERB> a polynomial vector.
     If the equation is not solvable</P>
     <P>
-    else <VERB>err=</VERB></P>
+    else <VERB>err=0</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

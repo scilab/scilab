@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>chart  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="chart"> Nichols chart  </SHORT_DESCRIPTION>
+  <TITLE>chart</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chart"> Nichols chart</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>chart([flags])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>chart(gain [,flags])  </CALLING_SEQUENCE_ITEM>
@@ -15,42 +14,42 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>gain  </PARAM_NAME>
+        <PARAM_NAME>gain</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector ( gains (in DB))</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phase  </PARAM_NAME>
+        <PARAM_NAME>phase</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (phases (in degree))</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flags  </PARAM_NAME>
+        <PARAM_NAME>flags</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a list of at most 4 flags list(sup [,leg [,cm [,cphi]]])</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>sup  </PARAM_NAME>
+              <PARAM_NAME>sup</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: 1 indicates superposition on the previous plot   0 no superposition is done</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>leg  </PARAM_NAME>
+              <PARAM_NAME>leg</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: 1 indicates that legends are drawn, o: no legends</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>cm  </PARAM_NAME>
+              <PARAM_NAME>cm</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: color number (see plot2d) for gain curves</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>cphi  </PARAM_NAME>
+              <PARAM_NAME>cphi</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  color number (see plot2d) for phase curves</SP>
               </PARAM_DESCRIPTION>

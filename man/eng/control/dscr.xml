@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>dscr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="dscr">  discretization of linear system  </SHORT_DESCRIPTION>
+  <TITLE>dscr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="dscr">  discretization of linear system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sld [,r]]=dscr(sl,dt [,m])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list containing <VERB>[A,B,C,D]</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dt  </PARAM_NAME>
+        <PARAM_NAME>dt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number, sampling period</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: covariance of the input noise (continuous time)(default value=0)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r  </PARAM_NAME>
+        <PARAM_NAME>r</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: covariance of the output noise (discrete time) given if <VERB>m</VERB> is  given as input</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sld  </PARAM_NAME>
+        <PARAM_NAME>sld</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sampled (discrete-time) linear system, <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>

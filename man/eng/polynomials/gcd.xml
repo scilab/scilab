@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gcd  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gcd"> gcd calculation  </SHORT_DESCRIPTION>
+  <TITLE>gcd</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gcd"> gcd calculation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[pgcd,U]=gcd(p)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>p  </PARAM_NAME>
+        <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial row vector <VERB>p=[p1,..,pn]</VERB></SP>
         </PARAM_DESCRIPTION>
@@ -23,7 +22,7 @@
   <DESCRIPTION>
     <P>
     computes the gcd  of components of <VERB>p</VERB> and a unimodular 
-    matrix (with polynomial inverse) <VERB/>, with minimal degree such that</P>
+    matrix (with polynomial inverse) <VERB>U</VERB>, with minimal degree such that</P>
     <P>
       <VERB>p*U=[0 ... 0 pgcd]</VERB>
     </P>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>TCLSS_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="TCLSS_f"> Scicos jump continuous-time linear state-space system  </SHORT_DESCRIPTION>
+  <TITLE>TCLSS_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="TCLSS_f"> Scicos jump continuous-time linear state-space system</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block realizes a continuous-time linear state-space system

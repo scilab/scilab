@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>atan  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="atan"> 2-quadrant and 4-quadrant inverse tangent  </SHORT_DESCRIPTION>
+  <TITLE>atan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>July 2001</DATE>
+  <SHORT_DESCRIPTION name="atan"> 2-quadrant and 4-quadrant inverse tangent</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>phi=atan(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>phi=atan(y,x)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex scalar, vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phi  </PARAM_NAME>
+        <PARAM_NAME>phi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex scalar, vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x, y  </PARAM_NAME>
+        <PARAM_NAME>x, y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalars, vectors or matrices of the same size</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phi  </PARAM_NAME>
+        <PARAM_NAME>phi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar, vector or matrix</SP>
         </PARAM_DESCRIPTION>
@@ -51,7 +50,7 @@
     Fortran), this is, it returns the argument (angle) of the complex
     number <VERB>x+i*y</VERB>.  The range of <VERB>atan(y,x)</VERB> is (-pi, pi].</P>
     <P>
-    For real arguments, both forms yield identical values if <VERB>x&gt;</VERB>.</P>
+    For real arguments, both forms yield identical values if <VERB>x&gt;0</VERB>.</P>
     <P>
     In case of vector or matrix arguments, the evaluation is done
     element-wise, so that <VERB>phi</VERB> is a vector or matrix of the same size

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>contourf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="contourf"> filled level curves of a surface on a 2D plot  </SHORT_DESCRIPTION>
+  <TITLE>contourf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="contourf"> filled level curves of a surface on a 2D plot</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>contourf(x,y,z,nz,[style,strf,leg,rect,nax])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y  </PARAM_NAME>
+        <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real row vectors of size n1 and n2: the grid.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix of size (n1,n2), the values of the function.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nz  </PARAM_NAME>
+        <PARAM_NAME>nz</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the level values or the number of levels.</SP>
           <PARAM_INDENT>
@@ -59,7 +58,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>style,strf,leg,rect,nax  </PARAM_NAME>
+        <PARAM_NAME>style,strf,leg,rect,nax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: see <VERB>plot2d</VERB>. The argument <VERB>style</VERB> gives the colors which are to be used for level curves. It must have the same size as the number of levels.</SP>
         </PARAM_DESCRIPTION>

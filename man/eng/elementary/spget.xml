@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>spget  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="spget"> retrieves entries of sparse matrix  </SHORT_DESCRIPTION>
+  <TITLE>spget</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="spget"> retrieves entries of sparse matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[ij,v,mn]=spget(sp)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sp  </PARAM_NAME>
+        <PARAM_NAME>sp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ij  </PARAM_NAME>
+        <PARAM_NAME>ij</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two columns integer matrix (indices of non-zeros entries)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mn  </PARAM_NAME>
+        <PARAM_NAME>mn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer vector with two entries (row-dimension, column-dimension)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: column vector</SP>
         </PARAM_DESCRIPTION>

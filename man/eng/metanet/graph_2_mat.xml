@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_2_mat  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="graph_2_mat"> node-arc or node-node incidence matrix of a graph  </SHORT_DESCRIPTION>
+  <TITLE>graph_2_mat</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="graph_2_mat"> node-arc or node-node incidence matrix of a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>a = graph_2_mat(g,mat)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mat  </PARAM_NAME>
+        <PARAM_NAME>mat</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional string, 'node-arc' or 'node-node' matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse node-arc or node-node incidence matrix</SP>
         </PARAM_DESCRIPTION>
@@ -46,17 +45,17 @@
     sparse matrix of size <VERB>(n,m)</VERB>.</P>
     <P>
     It is defined as follows. If the graph is directed:</P>
-    <P><VERB>a(i,j) = +</VERB> if node <VERB>i</VERB> is the tail of arc <VERB>j</VERB></P>
-    <P><VERB>a(i,j) = -</VERB> if node <VERB>i</VERB> is the head of arc <VERB>j</VERB></P>
+    <P><VERB>a(i,j) = +1</VERB> if node <VERB>i</VERB> is the tail of arc <VERB>j</VERB></P>
+    <P><VERB>a(i,j) = -1</VERB> if node <VERB>i</VERB> is the head of arc <VERB>j</VERB></P>
     <P>
     If the graph is undirected:</P>
-    <P><VERB>a(i,j) = </VERB> if node <VERB>i</VERB> is the tail or the head of arc <VERB>j</VERB></P>
+    <P><VERB>a(i,j) = 1</VERB> if node <VERB>i</VERB> is the tail or the head of arc <VERB>j</VERB></P>
     <P>
     If <VERB>n</VERB> is the number of nodes of the graph, the node-node matrix is a 
     Scilab sparse matrix of size <VERB>(n,n)</VERB>.</P>
     <P>
     It is defined as follows:</P>
-    <P><VERB>a(i,j) = </VERB> if there is an arc from node <VERB>i</VERB> to node <VERB>j</VERB></P>
+    <P><VERB>a(i,j) = 1</VERB> if there is an arc from node <VERB>i</VERB> to node <VERB>j</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

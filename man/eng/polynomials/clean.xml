@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>clean  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>clean</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="clean"> cleans matrices (round to zero small entries)    </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[B]=clean(A [,epsa [,epsr]])  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a numerical matrix (scalar, polynomial, sparse...)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>epsa,epsr  </PARAM_NAME>
+        <PARAM_NAME>epsa,epsr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real numbers (default values resp. 1.d-10 and 1.d-10)</SP>
         </PARAM_DESCRIPTION>
@@ -34,10 +33,10 @@
     in a polynomial (possibly matrix polynomial or rational
     matrix).</P>
     <P>
-    Default  values are <VERB>epsa=1.d-1</VERB> and <VERB>epsr=1.d-10;</VERB></P>
+    Default  values are <VERB>epsa=1.d-10</VERB> and <VERB>epsr=1.d-10;</VERB></P>
     <P>
     For a constant (non polynomial) matrix <VERB>clean(A,epsa)</VERB> sets to zero all
-    entries of <VERB/> smaller than <VERB>epsa</VERB>.</P>
+    entries of <VERB>A</VERB> smaller than <VERB>epsa</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>trisolve  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="trisolve"> symbolic linear system solver  </SHORT_DESCRIPTION>
+  <TITLE>trisolve</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="trisolve"> symbolic linear system solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x [,sexp]] = trisolve(A,b [,sexp])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A,b  </PARAM_NAME>
+        <PARAM_NAME>A,b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of strings</SP>
         </PARAM_DESCRIPTION>
@@ -22,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    symbolically solves <VERB>A*x =b</VERB> , <VERB/> being assumed to be
+    symbolically solves <VERB>A*x =b</VERB> , <VERB>A</VERB> being assumed to be
     upper triangular.</P>
     <P><VERB>sexp</VERB> is a vector of common subexpressions in <VERB>A, b, x</VERB>.</P>
   </DESCRIPTION>
@@ -43,5 +42,5 @@ inv(evstr(A))*evstr(b)
       <LINK>solve</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F.D, S.</AUTHOR>
+  <AUTHOR>F.D, S.S</AUTHOR>
 </MAN>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>kroneck  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="kroneck"> Kronecker form of matrix pencil  </SHORT_DESCRIPTION>
+  <TITLE>kroneck</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="kroneck"> Kronecker form of matrix pencil</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)  </CALLING_SEQUENCE_ITEM>
@@ -14,31 +13,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real matrix pencil <VERB>F=s*E-</VERB></SP>
+          <SP>: real matrix pencil <VERB>F=s*E-A</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>E,</PARAM_NAME>
+        <PARAM_NAME>E,A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real matrices of same dimensions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Q,</PARAM_NAME>
+        <PARAM_NAME>Q,Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two square orthogonal matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Qd,Zd  </PARAM_NAME>
+        <PARAM_NAME>Qd,Zd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two vectors of integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>numbeps,numeta  </PARAM_NAME>
+        <PARAM_NAME>numbeps,numeta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two vectors of integers</SP>
         </PARAM_DESCRIPTION>
@@ -48,7 +47,7 @@
   <DESCRIPTION>
     <P>
     Kronecker form of matrix pencil: <VERB>kroneck</VERB> computes two
-    orthogonal matrices <VERB>Q, </VERB> which put the pencil <VERB>F=s*E -</VERB> into
+    orthogonal matrices <VERB>Q, Z</VERB> which put the pencil <VERB>F=s*E -A</VERB> into
     upper-triangular form:</P>
     <VERBATIM>
 <![CDATA[
@@ -77,11 +76,11 @@ Q(sE-A)Z = |---------------------------------|----------------------------|
     the pencil</P>
     <P>
     The structure of epsilon and eta blocks are given by:</P>
-    <P><VERB>numbeps(1)</VERB> = # of eps blocks of size 0 x </P>
-    <P><VERB>numbeps(2)</VERB> = # of eps blocks of size 1 x </P>
+    <P><VERB>numbeps(1)</VERB> = # of eps blocks of size 0 x 1</P>
+    <P><VERB>numbeps(2)</VERB> = # of eps blocks of size 1 x 2</P>
     <P><VERB>numbeps(3)</VERB> = # of eps blocks of size 2 x 3     etc...</P>
-    <P><VERB>numbeta(1)</VERB> = # of eta blocks of size 1 x </P>
-    <P><VERB>numbeta(2)</VERB> = # of eta blocks of size 2 x </P>
+    <P><VERB>numbeta(1)</VERB> = # of eta blocks of size 1 x 0</P>
+    <P><VERB>numbeta(2)</VERB> = # of eta blocks of size 2 x 1</P>
     <P><VERB>numbeta(3)</VERB> = # of eta blocks of size 3 x 2     etc...</P>
     <P>
     The code is taken from T. Beelen (Slicot-WGS group).</P>

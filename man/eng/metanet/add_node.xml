@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>add_node  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="add_node"> adds a disconnected node to a graph  </SHORT_DESCRIPTION>
+  <TITLE>add_node</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="add_node"> adds a disconnected node to a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = add_node(g,[xy,name])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xy  </PARAM_NAME>
+        <PARAM_NAME>xy</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional row vector of coordinates of new node</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional name of the added node</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph with the added node</SP>
         </PARAM_DESCRIPTION>
@@ -40,7 +39,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>add_node</VERB> adds a disconnected node to graph <VERB>g</VERB> and returns the new
-    graph <VERB>g</VERB>.</P>
+    graph <VERB>g1</VERB>.</P>
     <P>
     The coordinates of the new node can be given as a row vector of
     coordinates in <VERB>xy</VERB>. If the nodes of graph <VERB>g</VERB> have no

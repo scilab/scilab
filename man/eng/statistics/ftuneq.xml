@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ftuneq  </TITLE>
+  <TITLE>ftuneq</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
+  <DATE>July 2000</DATE>
   <SHORT_DESCRIPTION name="ftuneq"> Fischer ratio for samples of unequal size.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>f=ftuneq(sample1[,sample2[,sample3]...]])  </CALLING_SEQUENCE_ITEM>
@@ -63,5 +62,5 @@ samples=[46 55 54;53 54 50; 49 58 51;50 61 51;46 52 49]
       <LINK>ftuneq</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

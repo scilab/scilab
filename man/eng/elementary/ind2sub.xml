@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>ind2sub</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>20-Aug-200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>20-Aug-2003</DATE>
   <SHORT_DESCRIPTION name="ind2sub">linear index to matrix subscript values</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[i1,i2,..] =ind2sub(dims,I)</CALLING_SEQUENCE_ITEM>
@@ -20,7 +19,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>I</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector: the given linear index</SP>
         </PARAM_DESCRIPTION>
@@ -28,7 +27,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>i1,i2,..</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the subscript values (same matrix shape as <VERB/>)</SP>
+          <SP>: the subscript values (same matrix shape as <VERB>I</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -44,9 +43,9 @@
   corresponding to a given single index into an array.
 
   <VERB>[i1,i2,..] = ind2sub(dims,I)</VERB> returns the arrays
-  <VERB>i</VERB>, <VERB>i</VERB>, ... containing the equivalent row,
+  <VERB>i1</VERB>, <VERB>i2</VERB>, ... containing the equivalent row,
   column, ... subscripts corresponding to the index matrix
-  <VERB/> for a matrix of size <VERB>dims</VERB>.
+  <VERB>I</VERB> for a matrix of size <VERB>dims</VERB>.
   
   <VERB>Mi=ind2sub(dims,I)</VERB> returns a matrix <VERB>Mi</VERB>
   whose columns are the arrays <VERB>i1(:)</VERB>, <VERB>i2(:)</VERB>,

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>select  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="select"> select keyword   </SHORT_DESCRIPTION>
+  <TITLE>select</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="select"> select keyword</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <VERBATIM>
 <![CDATA[
@@ -29,7 +28,7 @@
         <SP>The only constraint is that each &quot;then&quot;  keyword  must be on  the same line line as corresponding &quot;case&quot; keyword.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>The keyword &quot;then&quot;  can be replaced by a carriage return or a comma.   <VERB>instructions</VERB> are executed if <VERB>expr1=expr</VERB>, etc.</SP>
+        <SP>The keyword &quot;then&quot;  can be replaced by a carriage return or a comma.   <VERB>instructions1</VERB> are executed if <VERB>expr1=expr</VERB>, etc.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
     <P>

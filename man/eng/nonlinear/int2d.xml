@@ -1,66 +1,65 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>int2d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="int2d"> definite 2D integral by quadrature and cubature method  </SHORT_DESCRIPTION>
+  <TITLE>int2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="int2d"> definite 2D integral by quadrature and cubature method</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[I,err]=int2d(X,Y,f [,params])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a 3 by N array containing the abscissae of the vertices   of the N triangles.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a 3 by N array containing the ordinates of the vertices   of the N triangles.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or list or string) defining the integrand <VERB>f(u,v)</VERB>;</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>params  </PARAM_NAME>
+        <PARAM_NAME>params</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector <VERB>[tol, iclose, maxtri, mevals, iflag]</VERB>. default value is <VERB>[1.d-10, 1, 50, 4000, 1]</VERB>.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>tol  </PARAM_NAME>
+              <PARAM_NAME>tol</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>:the desired bound on the error.  If <VERB>iflag=</VERB>, <VERB>tol</VERB> is interpreted as a bound on the relative error; if <VERB>iflag=</VERB>1, the bound is on the absolute error.</SP>
+                <SP>:the desired bound on the error.  If <VERB>iflag=0</VERB>, <VERB>tol</VERB> is interpreted as a bound on the relative error; if <VERB>iflag=</VERB>1, the bound is on the absolute error.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>iclose  </PARAM_NAME>
+              <PARAM_NAME>iclose</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>:an integer parameter that determines the selection of LQM0 or LQM1 methods.  If <VERB>iclose=</VERB> then LQM1 is used. Any other value of <VERB>iclose</VERB> causes LQM0 to be used. LQM0 uses function values only at interior points of the triangle.  LQM1 is usually more accurate than LQM0 but involves evaluating the integrand at more points including some on the boundary of the triangle.  It will usually be better to use LQM1 unless the integrand has singularities on the boundary of the triangle.</SP>
+                <SP>:an integer parameter that determines the selection of LQM0 or LQM1 methods.  If <VERB>iclose=1</VERB> then LQM1 is used. Any other value of <VERB>iclose</VERB> causes LQM0 to be used. LQM0 uses function values only at interior points of the triangle.  LQM1 is usually more accurate than LQM0 but involves evaluating the integrand at more points including some on the boundary of the triangle.  It will usually be better to use LQM1 unless the integrand has singularities on the boundary of the triangle.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>maxtri  </PARAM_NAME>
+              <PARAM_NAME>maxtri</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:the maximum number of triangles in the final triangulation of the region</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>mevals  </PARAM_NAME>
+              <PARAM_NAME>mevals</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: the maximum number of function evaluations to be allowed.  This number will be effective in limiting the computation only if it is less than 94*<VERB>maxtri</VERB>  when LQM1 is specified or 56*<VERB>maxtri</VERB> when LQM0 is specified.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>iflag  </PARAM_NAME>
+              <PARAM_NAME>iflag</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:</SP>
               </PARAM_DESCRIPTION>
@@ -69,13 +68,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>I</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the integral value</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the estimated error</SP>
         </PARAM_DESCRIPTION>
@@ -133,5 +132,5 @@ deff('z=f(x,y)','z=cos(x+y)')
       <LINK>mesh2d</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTA</AUTHOR>
+  <AUTHOR>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</AUTHOR>
 </MAN>

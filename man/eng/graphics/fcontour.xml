@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fcontour  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="fcontour"> level curves on a 3D surface defined by a function  </SHORT_DESCRIPTION>
+  <TITLE>fcontour</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fcontour"> level curves on a 3D surface defined by a function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>fcontour(xr,yr,f,nz,&lt;opt_args&gt;)  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xr,yr  </PARAM_NAME>
+        <PARAM_NAME>xr,yr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real row vectors of size n1 and n2.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is an external which defines the surface <VERB>z=f(x,y)</VERB>. It is first computed on the grid specified by <VERB>xr,yr</VERB>. Then, control is passed to the routine <VERB>contour</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -32,7 +31,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>theta,alpha,leg,flag,ebox,zlev  </PARAM_NAME>
+        <PARAM_NAME>theta,alpha,leg,flag,ebox,zlev</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: see <VERB>contour</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -52,7 +51,7 @@
     <VERB>f</VERB>. See <VERB>contour</VERB>.</P>
     <P>
     The optional arguments <VERB>theta,alpha,leg ,flag,ebox, zlev</VERB>, can be
-    passed by a sequence of statements <VERB>key1=value1, key2=value</VERB>,</P>
+    passed by a sequence of statements <VERB>key1=value1, key2=value2</VERB>,</P>
     <P><VERB>flag</VERB>,<VERB>ebox</VERB>,<VERB>zlev</VERB>. In this case, the order has no special
     meaning.</P>
     <P>

@@ -1,55 +1,54 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fit_dat  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Feb 199</DATE>
-  <SHORT_DESCRIPTION name="fit_dat"> Parameter identification based on measured data  </SHORT_DESCRIPTION>
+  <TITLE>fit_dat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Feb 1998</DATE>
+  <SHORT_DESCRIPTION name="fit_dat"> Parameter identification based on measured data</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[p,err]=fit_dat(G,p0,Z [,W] [,pmin,pmax] [,DG])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scilab function (e=G(p,z), e: nex1, p: npx1, z: nzx1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_NAME>p0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: initial guess (size npx1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix [z_1,z_2,...z_n] where z_i (nzx1) is the ith measurement</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>W</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: weighting matrix of size nexne (optional; default 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pmin  </PARAM_NAME>
+        <PARAM_NAME>pmin</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: lower bound on p (optional; size npx1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pmax  </PARAM_NAME>
+        <PARAM_NAME>pmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: upper bound on p (optional; size npx1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_NAME>DG</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: partial of G wrt p (optional; S=DG(p,z), S: nexnp)</SP>
         </PARAM_DESCRIPTION>

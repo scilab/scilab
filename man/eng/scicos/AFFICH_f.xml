@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>AFFICH_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="AFFICH_f"> Scicos numerical display  </SHORT_DESCRIPTION>
+  <TITLE>AFFICH_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="AFFICH_f"> Scicos numerical display</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block  displays the value of its unique input inside the block

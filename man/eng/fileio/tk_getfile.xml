@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tk_getfile  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="tk_getfile"> dialog to get a file path  </SHORT_DESCRIPTION>
+  <TITLE>tk_getfile</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1996</DATE>
+  <SHORT_DESCRIPTION name="tk_getfile"> dialog to get a file path</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>path=tk_getfile([title='string'])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>path=tk_getfile(file_mask,[title='string'])  </CALLING_SEQUENCE_ITEM>
@@ -16,19 +15,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file_mask  </PARAM_NAME>
+        <PARAM_NAME>file_mask</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string which gives the file mask to use for file selection. <VERB>file_mask</VERB> is written with Unix convention. the default value is '*'.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dir  </PARAM_NAME>
+        <PARAM_NAME>dir</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string which gives the initial directory used for file search. by default tk_getfile uses the previously selected directory.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>path  </PARAM_NAME>
+        <PARAM_NAME>path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is the user selected file path if user answers &quot;Ok&quot; or the &quot; &quot; string if user answers &quot;Cancel&quot;</SP>
         </PARAM_DESCRIPTION>

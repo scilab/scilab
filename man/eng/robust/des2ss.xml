@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>des2ss  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="des2ss"> descriptor to state-space  </SHORT_DESCRIPTION>
+  <TITLE>des2ss</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="des2ss"> descriptor to state-space</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(A,B,C,D,E [,tol])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Sl]=des2ss(Des)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A,B,C,D,</PARAM_NAME>
+        <PARAM_NAME>A,B,C,D,E</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices of appropriate dimensions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Des  </PARAM_NAME>
+        <PARAM_NAME>Des</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Sl  </PARAM_NAME>
+        <PARAM_NAME>Sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real parameter (threshold) (default value <VERB>100*%eps</VERB>).</SP>
         </PARAM_DESCRIPTION>
@@ -50,7 +49,7 @@
     for higher index pencils <VERB>rowshuff</VERB> is used.</P>
     <P><VERB>Sl=des2ss(Des)</VERB> with <VERB>Des=list('des',A,B,C,D,E)</VERB> returns
     a linear system <VERB>Sl</VERB> in state-space form with possibly 
-    a polynomial <VERB/> matrix.</P>
+    a polynomial <VERB>D</VERB> matrix.</P>
     <P>
     A generalized Leverrier algorithm is used.</P>
   </DESCRIPTION>

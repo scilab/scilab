@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>matrix  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="matrix"> reshape a vector or a matrix to a different size matrix  </SHORT_DESCRIPTION>
+  <TITLE>matrix</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="matrix"> reshape a vector or a matrix to a different size matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=matrix(v,n,m)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>y=matrix(v,[sizes])  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector, a matrix or an hypermatrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n,m  </PARAM_NAME>
+        <PARAM_NAME>n,m</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sizes  </PARAM_NAME>
+        <PARAM_NAME>sizes</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector, a matrix or hypermatrix</SP>
         </PARAM_DESCRIPTION>

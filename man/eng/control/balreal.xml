@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>balreal  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="balreal"> balanced realization  </SHORT_DESCRIPTION>
+  <TITLE>balreal</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="balreal"> balanced realization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[slb [,U] ] = balreal(sl)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl,slb  </PARAM_NAME>
+        <PARAM_NAME>sl,slb</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear systems (<VERB>syslin</VERB> lists)</SP>
         </PARAM_DESCRIPTION>
@@ -57,7 +56,7 @@ W0=clean(obs_gram(slb))
       <LINK>equil</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>equil</LINK>
+      <LINK>equil1</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

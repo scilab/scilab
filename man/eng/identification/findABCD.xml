@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findABC</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="findABCD"> discrete-time system subspace identification  </SHORT_DESCRIPTION>
+  <TITLE>findABCD</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="findABCD"> discrete-time system subspace identification</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>SYS = findABCD(S,N,L,R,METH)   </CALLING_SEQUENCE_ITEM>
@@ -17,48 +16,48 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of block rows in the block-Hankel matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>N</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the system order</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>L</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of output</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>MET</PARAM_NAME>
+        <PARAM_NAME>METH</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, an option for the method to use</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  MOESP method with past inputs and outputs;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  N4SID method;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  combined method: A and C via MOESP, B and D via N4SID.</SP>
               </PARAM_DESCRIPTION>
@@ -70,30 +69,30 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>NSMP</PARAM_NAME>
+        <PARAM_NAME>NSMPL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the total number of samples used for calculating the covariance matrices and the Kalman predictor gain. This parameter is not needed if the covariance matrices and/or the Kalman predictor gain matrix are not desired. If NSMPL = 0, then K, Q, Ry, and S are not computed. Default:    NSMPL = 0.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>TO</PARAM_NAME>
+        <PARAM_NAME>TOL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>PRINT</PARAM_NAME>
+        <PARAM_NAME>PRINTW</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, switch for printing the warning messages.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>PRINT</PARAM_NAME>
+              <PARAM_NAME>PRINTW</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= 1: print warning messages;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>PRINT</PARAM_NAME>
+              <PARAM_NAME>PRINTW</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= 0: do not print warning messages.</SP>
               </PARAM_DESCRIPTION>
@@ -105,37 +104,37 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>SY</PARAM_NAME>
+        <PARAM_NAME>SYS</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: computes a state-space realization SYS = (A,B,C,D) (an syslin object)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the Kalman predictor gain K (if NSMPL &gt; 0)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  state covariance</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Ry  </PARAM_NAME>
+        <PARAM_NAME>Ry</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: output covariance</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: state-output cross-covariance</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RCN</PARAM_NAME>
+        <PARAM_NAME>RCND</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector, reciprocal condition numbers of the matrices involved in rank decisions, least squares or Riccati equation solutions</SP>
         </PARAM_DESCRIPTION>
@@ -207,16 +206,16 @@ xbasc();plot2d((1:nsmp)',[Y',Y1'])
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>findA</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findAC</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>findBD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>find</LINK>
+      <LINK>findBDK</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findR</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sorder</LINK>

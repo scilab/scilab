@@ -1,20 +1,19 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findB</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="findBD"> initial state and system matrices B and D of a discrete-time system  </SHORT_DESCRIPTION>
+  <TITLE>findBD</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="findBD"> initial state and system matrices B and D of a discrete-time system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),Y</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>                                      (,U,tol,printw,ldwork))  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>jobx</PARAM_NAME>
+        <PARAM_NAME>jobx0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to specify whether or not the initial state  should be computed:</SP>
           <PARAM_INDENT>
@@ -34,7 +33,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>comuse  </PARAM_NAME>
+        <PARAM_NAME>comuse</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to specify whether the system matrices B and D should be computed or used:</SP>
           <PARAM_INDENT>
@@ -60,7 +59,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>job  </PARAM_NAME>
+        <PARAM_NAME>job</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer option to determine which of the system matrices B and D should be computed or used:</SP>
           <PARAM_INDENT>
@@ -83,43 +82,43 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: state matrix of the given system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>B</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optionnal, input matrix of the given system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: output matrix of the given system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optionnal, direct feedthrough of the given system</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the t-by-l output-data sequence matrix.  Column  j  of  Y  contains the  t  values of the j-th output component for consecutive time increments.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the t-by-m input-data sequence matrix (input when jobx0 = 1  and comuse = 2, or comuse = 1).  Column  j  of  U  contains the  t  values of the j-th input component for consecutive time increments.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optionnal, tolerance used for estimating the rank of
   matrices. If  tol &gt; 0,  then the given value of  tol  is used as
@@ -130,7 +129,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>printw  </PARAM_NAME>
+        <PARAM_NAME>printw</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:optionnal, switch for printing the warning messages.</SP>
           <PARAM_INDENT>
@@ -153,37 +152,37 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ldwork  </PARAM_NAME>
+        <PARAM_NAME>ldwork</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the workspace size. Default :   computed by the formula LDWORK = MAX( minimum workspace size needed, 2*CSIZE/3, CSIZE - ( m + l )*t - 2*n*( n + m + l ) - l*m ) where CSIZE is the cache size in double precision words.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: initial state vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Br  </PARAM_NAME>
+        <PARAM_NAME>Br</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: system input matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Dr  </PARAM_NAME>
+        <PARAM_NAME>Dr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: system direct feedthrough matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>V</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the n-by-n orthogonal matrix which reduces A to a real Schur form (output when jobx0 = 1 or comuse = 1).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rcnd  </PARAM_NAME>
+        <PARAM_NAME>rcnd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (optional) the reciprocal condition numbers of the matrices involved in rank decisions.</SP>
         </PARAM_DESCRIPTION>
@@ -291,16 +290,16 @@ xbasc();plot2d((1:nsmp)',[Y',Y1'])
       <LINK>inistate</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findx0B</LINK>
+      <LINK>findx0BD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findABC</LINK>
+      <LINK>findABCD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findA</LINK>
+      <LINK>findAC</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findBD</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>V. Sima, Katholieke Univ. Leuven, Belgium, May 2000.  

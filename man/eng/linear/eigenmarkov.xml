@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>eigenmarkov  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="eigenmarkov"> normalized left and right Markov eigenvectors   </SHORT_DESCRIPTION>
+  <TITLE>eigenmarkov</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="eigenmarkov"> normalized left and right Markov eigenvectors</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[M,Q]=eigenmarkov(P)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real N x N Markov matrix. Sum of entries in each row should add to one.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix with N columns.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix with N rows.</SP>
         </PARAM_DESCRIPTION>
@@ -43,7 +42,7 @@
     k-th recurrent class.
     Q(x,k) is the probability to end in the k-th recurrent class starting
     from x. If <VERB>P^k</VERB> converges for large <VERB>k</VERB> (no eigenvalues on the
-    unit circle except 1), then the limit is <VERB>Q*</VERB> (eigenprojection).</P>
+    unit circle except 1), then the limit is <VERB>Q*M</VERB> (eigenprojection).</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>exec  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="exec"> script file execution  </SHORT_DESCRIPTION>
+  <TITLE>exec</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="exec"> script file execution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>exec(path [,mode])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>exec(fun [,mode])  </CALLING_SEQUENCE_ITEM>
@@ -16,25 +15,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>path  </PARAM_NAME>
+        <PARAM_NAME>path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string, the path of the script file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mode  </PARAM_NAME>
+        <PARAM_NAME>mode</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer scalar, the execution mode (see below)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fun  </PARAM_NAME>
+        <PARAM_NAME>fun</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a scilab function</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ierr  </PARAM_NAME>
+        <PARAM_NAME>ierr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, 0 or error number</SP>
         </PARAM_DESCRIPTION>

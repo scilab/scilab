@@ -1,35 +1,34 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pen2ea  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pen2ea"> pencil to E,A conversion  </SHORT_DESCRIPTION>
+  <TITLE>pen2ea</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pen2ea"> pencil to E,A conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[E,A]=pen2ea(Fs)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Fs  </PARAM_NAME>
+        <PARAM_NAME>Fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrix pencil <VERB>s*E-</VERB></SP>
+          <SP>: matrix pencil <VERB>s*E-A</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>E,</PARAM_NAME>
+        <PARAM_NAME>E,A</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: two matrices such that <VERB>Fs=s*E-</VERB></SP>
+          <SP>: two matrices such that <VERB>Fs=s*E-A</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-    Utility function. Given the pencil <VERB>Fs=s*E-</VERB>,
-    returns the matrices <VERB/> and <VERB/>.</P>
+    Utility function. Given the pencil <VERB>Fs=s*E-A</VERB>,
+    returns the matrices <VERB>E</VERB> and <VERB>A</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

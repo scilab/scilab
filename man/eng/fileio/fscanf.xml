@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fscanf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="fscanf"> Converts formatted input read on a file  </SHORT_DESCRIPTION>
+  <TITLE>fscanf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1994</DATE>
+  <SHORT_DESCRIPTION name="fscanf"> Converts formatted input read on a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> [v_1,...v_n]=fscanf (file,format)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>format  </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:Specifies the format conversion.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>file  </PARAM_NAME>
+        <PARAM_NAME>file</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:Specifies the input file name or file number.</SP>
         </PARAM_DESCRIPTION>

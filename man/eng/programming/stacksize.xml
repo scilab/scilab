@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>stacksize  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>October 199</DATE>
-  <SHORT_DESCRIPTION name="stacksize"> set scilab stack size   </SHORT_DESCRIPTION>
+  <TITLE>stacksize</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 1995</DATE>
+  <SHORT_DESCRIPTION name="stacksize"> set scilab stack size</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>stacksize(n)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>sz=stacksize()  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the required stack size given in number of double precision words</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sz  </PARAM_NAME>
+        <PARAM_NAME>sz</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 2-vector [total used]</SP>
         </PARAM_DESCRIPTION>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_bufinfo  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_bufinfo</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_bufinfo"> Returns information about a message buffer.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[bytes, msgtag, tid, info] = pvm_bufinfo(bufid)  </CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>bufid  </PARAM_NAME>
+        <PARAM_NAME>bufid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:   integer, specifying   a  particular  message buffer  identifier.</SP>
         </PARAM_DESCRIPTION>
@@ -25,20 +24,20 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msgtag </PARAM_NAME>
+        <PARAM_NAME>msgtag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer,  label of the  message.  Useful when the message was 
     received with a wildcard msgtag.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tid </PARAM_NAME>
+        <PARAM_NAME>tid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, task ID of the source of the message.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, status code returned by  the routine. Values less than 
     zero indicate an error.</SP>

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>RESID</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="residu"> residue   </SHORT_DESCRIPTION>
+  <TITLE>RESIDU</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="residu"> residue</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[V]=residu(P,Q1,Q2)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P, Q1, Q</PARAM_NAME>
+        <PARAM_NAME>P, Q1, Q2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomials or matrix polynomials with real or complex coefficients.</SP>
         </PARAM_DESCRIPTION>
@@ -21,7 +20,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>V=residu(P,Q1,Q2)</VERB> returns the matrix <VERB/>
+    <P><VERB>V=residu(P,Q1,Q2)</VERB> returns the matrix <VERB>V</VERB>
     such that <VERB>V(i,j)</VERB> is the sum of the residues of the
     rational fraction <VERB>P(i,j)/(Q1(i,j)*Q2(i,j))</VERB> calculated
     at the zeros of <VERB>Q1(i,j)</VERB>.</P>
@@ -62,5 +61,5 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
       <LINK>gtild</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> F.Delebecque INRI</AUTHOR>
+  <AUTHOR> F.Delebecque INRIA</AUTHOR>
 </MAN>

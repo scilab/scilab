@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdfnor  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdfnor"> cumulative distribution function normal distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdfnor</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfnor"> cumulative distribution function normal distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnor(&quot;PQ&quot;,X,Mean,Std)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[X]=cdfnor(&quot;X&quot;,Mean,Std,P,Q)  </CALLING_SEQUENCE_ITEM>
@@ -16,7 +15,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,X,Mean,Std  </PARAM_NAME>
+        <PARAM_NAME>P,Q,X,Mean,Std</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: six real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -28,19 +27,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:Upper limit of integration of the normal-density. Input range: ( -infinity, +infinity)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Mean  </PARAM_NAME>
+        <PARAM_NAME>Mean</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  The mean of the normal density. Input range: (-infinity, +infinity)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Sd  </PARAM_NAME>
+        <PARAM_NAME>Sd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  Standard Deviation of the normal density. Input range: (0, +infinity).</SP>
         </PARAM_DESCRIPTION>

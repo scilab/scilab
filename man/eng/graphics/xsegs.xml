@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xsegs  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xsegs"> draw unconnected segments  </SHORT_DESCRIPTION>
+  <TITLE>xsegs</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xsegs"> draw unconnected segments</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xsegs(xv,yv,[style])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xv,yv  </PARAM_NAME>
+        <PARAM_NAME>xv,yv</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of the same size.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>style  </PARAM_NAME>
+        <PARAM_NAME>style</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or scalar. If <VERB>style</VERB> is a positive scalar, it gives the color to use for all segments. If <VERB>style</VERB> is a negative  scalar, then current color is used. If <VERB>style</VERB> is a vector,  then <VERB>style(i)</VERB> gives the color to use for segment <VERB>i</VERB>.</SP>
         </PARAM_DESCRIPTION>

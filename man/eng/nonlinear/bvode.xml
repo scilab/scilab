@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>bvode  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>June 199</DATE>
-  <SHORT_DESCRIPTION name="bvode"> boundary value problems for OD</SHORT_DESCRIPTION>
+  <TITLE>bvode</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>June 1993</DATE>
+  <SHORT_DESCRIPTION name="bvode"> boundary value problems for ODE</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>   [z]=bvode(points,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM> fsub1,dfsub1,gsub1,dgsub1,guess1)  </CALLING_SEQUENCE_ITEM>
@@ -14,43 +13,43 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>The solution of the ode evaluated on the mesh given by points</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>points  </PARAM_NAME>
+        <PARAM_NAME>points</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>an array which gives the points for which we want the solution</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ncomp  </PARAM_NAME>
+        <PARAM_NAME>ncomp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>number of differential equations   (ncomp &lt;= 20)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m  </PARAM_NAME>
+        <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>a vector of size <VERB>ncomp</VERB>. <VERB>m(j)</VERB> gives the  order of the j-th differential equation</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>aleft  </PARAM_NAME>
+        <PARAM_NAME>aleft</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>left end of interval</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>aright  </PARAM_NAME>
+        <PARAM_NAME>aright</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>right end of interval</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>zeta  </PARAM_NAME>
+        <PARAM_NAME>zeta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP><VERB>zeta(j)</VERB> gives j-th side condition point (boundary point). must have</SP>
           <P>
@@ -62,7 +61,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ipar  </PARAM_NAME>
+        <PARAM_NAME>ipar</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>an integer array dimensioned at least 11. a list of the parameters in <VERB>ipar</VERB> and their meaning follows some parameters are renamed in bvode; these new names are given in parentheses.</SP>
           <PARAM_INDENT>
@@ -80,7 +79,7 @@
                   <VERB>max m(i) &lt;=  k &lt;= 7 .</VERB>
                 </P>
                 <P>
-    if <VERB>ipar(2)=</VERB> then bvode sets  
+    if <VERB>ipar(2)=0</VERB> then bvode sets  
   </P>
                 <P>
                   <VERB>k = max ( max m(i)+1, 5-max m(i) )</VERB>
@@ -90,7 +89,7 @@
             <PARAM_ITEM>
               <PARAM_NAME>ipar(3)  </PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= number of subintervals in the initial mesh  ( = n ). if <VERB>ipar(3) = </VERB> then bvode arbitrarily sets <VERB>n = </VERB>.</SP>
+                <SP>= number of subintervals in the initial mesh  ( = n ). if <VERB>ipar(3) = 0</VERB> then bvode arbitrarily sets <VERB>n = 5</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
@@ -122,19 +121,19 @@
                 <SP>output control ( = iprint )</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= -</PARAM_NAME>
+                    <PARAM_NAME>= -1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>for full diagnostic printout</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 0</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>for selected printout</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>for no printout</SP>
                     </PARAM_DESCRIPTION>
@@ -148,18 +147,18 @@
                 <SP>( = iread )</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 0</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>causes bvode to generate a uniform initial mesh.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= xx  </PARAM_NAME>
+                    <PARAM_NAME>= xx</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>Other values are not implemented yet in Scilab</SP>
                       <PARAM_INDENT>
                         <PARAM_ITEM>
-                          <PARAM_NAME>= </PARAM_NAME>
+                          <PARAM_NAME>= 1</PARAM_NAME>
                           <PARAM_DESCRIPTION>
                             <SP>if the initial mesh is provided by the user.  it is defined in fspace as follows:  the mesh</SP>
                             <P>
@@ -168,9 +167,9 @@
                           </PARAM_DESCRIPTION>
                         </PARAM_ITEM>
                         <PARAM_ITEM>
-                          <PARAM_NAME>= 2 if the initial mesh is supplied by the user  </PARAM_NAME>
+                          <PARAM_NAME>= 2 if the initial mesh is supplied by the user</PARAM_NAME>
                           <PARAM_DESCRIPTION>
-                            <SP>as with <VERB>ipar(8)=</VERB>, and in addition no adaptive mesh selection is to be done.</SP>
+                            <SP>as with <VERB>ipar(8)=1</VERB>, and in addition no adaptive mesh selection is to be done.</SP>
                           </PARAM_DESCRIPTION>
                         </PARAM_ITEM>
                       </PARAM_INDENT>
@@ -185,31 +184,31 @@
                 <SP>( = iguess )</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 0</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if no initial guess for the solution is provided.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if an initial guess is provided by the user in subroutine  <VERB>guess</VERB>.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 2</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if an initial mesh and approximate solution coefficients are provided by the user in fspace. (the former and new mesh are the same).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 3</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if a former mesh and approximate solution coefficients are provided by the user in fspace, and the new mesh is to be taken twice as coarse; i.e.,every second point from the former mesh.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 4</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if in addition to a former initial mesh and approximate solution coefficients, a new mesh is provided in fspace as well. (see description of output for further details on iguess = 2, 3, and 4.)</SP>
                     </PARAM_DESCRIPTION>
@@ -222,19 +221,19 @@
               <PARAM_DESCRIPTION>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 0</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if the problem is regular</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if the first relax factor is =rstart, and the nonlinear iteration does not rely on past covergence (use for an extra sensitive nonlinear problem only).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>= </PARAM_NAME>
+                    <PARAM_NAME>= 2</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>if we are to return immediately upon  (a) two successive nonconvergences, or  (b) after obtaining error estimate for the first time.</SP>
                     </PARAM_DESCRIPTION>
@@ -257,7 +256,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ltol  </PARAM_NAME>
+        <PARAM_NAME>ltol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>an array of dimension <VERB>ipar(4)</VERB>. <VERB>ltol(j) =
   l</VERB>  specifies that the j-th tolerance in  tol  controls the
@@ -266,7 +265,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>an array of dimension <VERB>ipar(4)</VERB>. <VERB>tol(j)</VERB> is the error tolerance on the <VERB>ltol(j)</VERB> -th component of <VERB>z(u)</VERB>. thus, the code attempts to satisfy for j=1,...,ntol  on each subinterval</SP>
           <P>
@@ -275,13 +274,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fixpnt  </PARAM_NAME>
+        <PARAM_NAME>fixpnt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>an array of dimension <VERB>ipar(11)</VERB>. it contains the points, other than <VERB>aleft</VERB> and <VERB>aright</VERB>, which are to be included in every mesh.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>externals  </PARAM_NAME>
+        <PARAM_NAME>externals</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>The function <VERB>fsub,dfsub,gsub,dgsub,guess</VERB> are Scilab
   externals i.e. functions (see syntax below) or the name of a Fortran
@@ -291,7 +290,7 @@
   are specified in the file <VERB>fcol.f</VERB>.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>fsub  </PARAM_NAME>
+              <PARAM_NAME>fsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating</SP>
                 <P>
@@ -303,13 +302,13 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>dfsub  </PARAM_NAME>
+              <PARAM_NAME>dfsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating the Jacobian of <VERB>f(x,z(u))</VERB> at a point x.  it should have the heading <VERB>[df]=dfsub (x , z )</VERB> where <VERB>z(u(x))</VERB> is defined as for <VERB>fsub</VERB> and the (<VERB>ncomp</VERB>) by (<VERB>mstar</VERB>) array df should be filled by the partial derivatives of  f, viz, for a particular call one calculates</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>gsub  </PARAM_NAME>
+              <PARAM_NAME>gsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating the i-th component of</SP>
                 <P>
@@ -324,7 +323,7 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>dgsub  </PARAM_NAME>
+              <PARAM_NAME>dgsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating the i-th row of the Jacobian of
   <VERB>g(x,u(x))</VERB>.  it should have the heading <VERB>[dg]=dgsub
@@ -334,13 +333,13 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>guess  </PARAM_NAME>
+              <PARAM_NAME>guess</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine to evaluate the initial approximation for
   <VERB>z(u(x))</VERB> and for <VERB>dmval(u(x))</VERB>= vector of the
   mj-th derivatives of <VERB>u(x)</VERB>. it should have the heading
   <VERB>[z,dmval]= guess (x )</VERB> note that this subroutine is used
-  only if  <VERB>ipar(9) = </VERB>, and then all  <VERB>mstar</VERB>
+  only if  <VERB>ipar(9) = 1</VERB>, and then all  <VERB>mstar</VERB>
   components of z and  ncomp  components of  dmval  should be
   specified for any x,</SP>
                 <P>
@@ -361,7 +360,7 @@
     the boundary points satisfy</P>
     <P>
     the orders mi of the differential equations satisfy</P>
-    <P><VERB>1&lt;=m(i)&lt;=</VERB>.</P>
+    <P><VERB>1&lt;=m(i)&lt;=4</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -409,5 +408,5 @@ z-z1
       <LINK>dassl</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>u. ascher, department of computer science, university of british; columbia, vancouver, b. c., canada   v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f  </AUTHOR>
+  <AUTHOR>u. ascher, department of computer science, university of british; columbia, vancouver, b. c., canada   v6t 1w5; g. bader, institut f. angewandte mathematik university of heidelberg; im neuenheimer feld 294d-6900 heidelberg 1 ; ; Fortran subroutine colnew.f</AUTHOR>
 </MAN>

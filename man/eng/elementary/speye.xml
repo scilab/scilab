@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>speye  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="speye">  sparse identity matrix  </SHORT_DESCRIPTION>
+  <TITLE>speye</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1995</DATE>
+  <SHORT_DESCRIPTION name="speye">  sparse identity matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Isp=speye(nrows,ncols)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>Isp=speye(A)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nrows  </PARAM_NAME>
+        <PARAM_NAME>nrows</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of rows)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ncols  </PARAM_NAME>
+        <PARAM_NAME>ncols</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number os columns)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sp  </PARAM_NAME>
+        <PARAM_NAME>sp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse identity matrix</SP>
         </PARAM_DESCRIPTION>
@@ -44,7 +43,7 @@
     with <VERB>nrows</VERB> rows, <VERB>ncols</VERB> columns. (Non square identity matrix
     have a maximal number of ones along the main diagonal).</P>
     <P><VERB>Isp=speye(A)</VERB> returns a sparse identity matrix with same
-    dimensions as <VERB/>. If <VERB>[m,n]=size(A)</VERB>, <VERB>speye(m,n)</VERB> and
+    dimensions as <VERB>A</VERB>. If <VERB>[m,n]=size(A)</VERB>, <VERB>speye(m,n)</VERB> and
     <VERB>speye(A)</VERB> are equivalent. In particular <VERB>speye(3)</VERB> is not
     equivalent to <VERB>speye(3,3)</VERB>.</P>
   </DESCRIPTION>

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ell1mag  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ell1mag"> magnitude of elliptic filter  </SHORT_DESCRIPTION>
+  <TITLE>ell1mag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ell1mag"> magnitude of elliptic filter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[v]=ell1mag(eps,m1,z)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>eps  </PARAM_NAME>
+        <PARAM_NAME>eps</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: passband ripple=<VERB>1/(1+eps^2)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>m</PARAM_NAME>
+        <PARAM_NAME>m1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: stopband ripple=<VERB>1/(1+(eps^2)/m1)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sample vector of values in the complex plane</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: elliptic filter values at sample points</SP>
         </PARAM_DESCRIPTION>

@@ -1,33 +1,32 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>readmps  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>MAY 199</DATE>
-  <SHORT_DESCRIPTION name="readmps"> reads a file in MPS format   </SHORT_DESCRIPTION>
+  <TITLE>readmps</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>MAY 1998</DATE>
+  <SHORT_DESCRIPTION name="readmps"> reads a file in MPS format</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> mps= readmps (file-name,bounds [,maxsizes]);   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>file-name  </PARAM_NAME>
+        <PARAM_NAME>file-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:
     character string, path of the MPS file</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>bounds  </PARAM_NAME>
+        <PARAM_NAME>bounds</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 2-vector
     <VERB>[lowbound,upbound]</VERB> , default lower ans upper bounds</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>maxsizes  </PARAM_NAME>
+        <PARAM_NAME>maxsizes</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 3-vector <VERB>[maxm,maxn,maxnza]</VERB>
   Maximum number of contraints and variables, maximum number of
@@ -36,7 +35,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mps  </PARAM_NAME>
+        <PARAM_NAME>mps</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: tlist with following fields</SP>
           <PARAM_INDENT>
@@ -89,31 +88,31 @@
                 <SP>: integer vector,  row types:</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>row type is &quot;=&quot;</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>2</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>:  row type is &quot;&gt;=&quot;</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>3</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>:  row type is &quot;&lt;=&quot;</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>4</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>:  objective row</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>5</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>:  other free row</SP>
                     </PARAM_DESCRIPTION>
@@ -122,18 +121,18 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>rowcode  </PARAM_NAME>
+              <PARAM_NAME>rowcode</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: real matrix <VERB>[hdrowcd,lnkrow]</VERB> with</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>hdrowcd  </PARAM_NAME>
+                    <PARAM_NAME>hdrowcd</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: real vector (Header to the linked list of rows with the same codes).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>lnkrow  </PARAM_NAME>
+                    <PARAM_NAME>lnkrow</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: integer vector (Linked list of rows with the same codes).</SP>
                     </PARAM_DESCRIPTION>
@@ -142,18 +141,18 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>colcode  </PARAM_NAME>
+              <PARAM_NAME>colcode</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: real matrix <VERB>[hdcolcd,lnkcol]</VERB> with</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>hdcolcd  </PARAM_NAME>
+                    <PARAM_NAME>hdcolcd</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: integer vector (Header to the linked list of columns with the same codes).</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>lnkcol  </PARAM_NAME>
+                    <PARAM_NAME>lnkcol</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: integer vector (Linked list of columns with the same codes).</SP>
                     </PARAM_DESCRIPTION>
@@ -162,48 +161,48 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>rownmbs  </PARAM_NAME>
+              <PARAM_NAME>rownmbs</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: integer vector (Row numbers of nonzeros in columns of matrix A.)</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>colpnts  </PARAM_NAME>
+              <PARAM_NAME>colpnts</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: integer vector (Pointers to the beginning of columns of matrix A).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>acoeff  </PARAM_NAME>
+              <PARAM_NAME>acoeff</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: real vector (Array of nonzero elements for each column).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>rhs  </PARAM_NAME>
+              <PARAM_NAME>rhs</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:real vector ( Right hand side of the linear program).</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>ranges  </PARAM_NAME>
+              <PARAM_NAME>ranges</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: real vector of constraint ranges.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>bounds  </PARAM_NAME>
+              <PARAM_NAME>bounds</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: real matrix <VERB>[lbounds,ubounds]</VERB> with</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>ubounds  </PARAM_NAME>
+                    <PARAM_NAME>ubounds</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: full column vector of upper bounds</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>lbounds  </PARAM_NAME>
+                    <PARAM_NAME>lbounds</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: full column vector of lower bounds</SP>
                     </PARAM_DESCRIPTION>
@@ -212,54 +211,54 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>stavar  </PARAM_NAME>
+              <PARAM_NAME>stavar</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: full column vector of variable status</SP>
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>0</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>:standard (non negative) variable</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>1</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: upper bounded variable</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>2</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: lower bounded variable</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>3</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: lower and upper bounded variable</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>4</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: minus infinity type variable  i.e -inf&lt;x&lt;=u</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>5</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: plus infinity type variable  i.e l&lt;=x&lt; inf</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME/>
+                    <PARAM_NAME>6</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: fixed type variable  i.e l=x=u</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                   <PARAM_ITEM>
-                    <PARAM_NAME>-k  </PARAM_NAME>
+                    <PARAM_NAME>-k</PARAM_NAME>
                     <PARAM_DESCRIPTION>
                       <SP>: free variable</SP>
                     </PARAM_DESCRIPTION>

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>get_function_path  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 200</DATE>
-  <SHORT_DESCRIPTION name="get_function_path"> get source file path of a library function  </SHORT_DESCRIPTION>
+  <TITLE>get_function_path</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 2000</DATE>
+  <SHORT_DESCRIPTION name="get_function_path"> get source file path of a library function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>path=get_function_path(fun_name)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>fun_name  </PARAM_NAME>
+        <PARAM_NAME>fun_name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string, the name of the function</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>path  </PARAM_NAME>
+        <PARAM_NAME>path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string, the absolute pathname of the function source file (.sci) or [].</SP>
         </PARAM_DESCRIPTION>

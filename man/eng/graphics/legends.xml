@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>legends  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="legends"> draw graph legend  </SHORT_DESCRIPTION>
+  <TITLE>legends</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="legends"> draw graph legend</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>legends(strings,style [,opt])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>legends(strings,style,xy)  </CALLING_SEQUENCE_ITEM>
@@ -15,7 +14,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>strings  </PARAM_NAME>
+        <PARAM_NAME>strings</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: n vector of strings, strings(i) is the legend of the ith curve</SP>
         </PARAM_DESCRIPTION>
@@ -27,29 +26,29 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>opt  </PARAM_NAME>
+        <PARAM_NAME>opt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= Upper right-hand corner  2  = Upper left-hand corner</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>3</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= Lower left-hand corner</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>4</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= Lower right-hand corner</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME/>
+              <PARAM_NAME>5</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= Interactive placement with the mouse    (default)</SP>
               </PARAM_DESCRIPTION>
@@ -58,7 +57,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xy  </PARAM_NAME>
+        <PARAM_NAME>xy</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector [x,y] which gives the coordinates of the upper left corner of the legend box.</SP>
         </PARAM_DESCRIPTION>

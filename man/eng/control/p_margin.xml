@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>p_margin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="p_margin"> phase margin  </SHORT_DESCRIPTION>
+  <TITLE>p_margin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="p_margin"> phase margin</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[phm,fr]=p_margin(h)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>phm=p_margin(h)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: SISO linear system (<VERB>syslin</VERB> list).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phm  </PARAM_NAME>
+        <PARAM_NAME>phm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: phase margin (in degree)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fr  </PARAM_NAME>
+        <PARAM_NAME>fr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: corresponding frequency (hz)</SP>
         </PARAM_DESCRIPTION>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lqg2stan  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lqg2stan"> LQG to standard problem  </SHORT_DESCRIPTION>
+  <TITLE>lqg2stan</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lqg2stan"> LQG to standard problem</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,r]=lqg2stan(P22,bigQ,bigR)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P2</PARAM_NAME>
+        <PARAM_NAME>P22</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (nominal plant) in state-space form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>big</PARAM_NAME>
+        <PARAM_NAME>bigQ</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>[Q,S;S',N]</VERB> (symmetric) weighting matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>big</PARAM_NAME>
+        <PARAM_NAME>bigR</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>[R,T;T',V]</VERB> (symmetric) covariance matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r  </PARAM_NAME>
+        <PARAM_NAME>r</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: <VERB/>x<VERB/> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <VERB/>)</SP>
+          <SP>: <VERB>1</VERB>x<VERB>2</VERB> row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <VERB>P</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (augmented plant)</SP>
         </PARAM_DESCRIPTION>
@@ -69,14 +68,14 @@
     <P>
     The (instantaneous) cost function is <VERB>[x' u'] bigQ [x;u]</VERB>.</P>
     <P>
-    The covariance of <VERB>[w1;w2]</VERB> is <VERB>E[w1;w2] [w1',w2'] = big</VERB></P>
+    The covariance of <VERB>[w1;w2]</VERB> is <VERB>E[w1;w2] [w1',w2'] = bigR</VERB></P>
     <P>
-    If <VERB>[B1;D21]</VERB> is a factor of <VERB>big</VERB>, <VERB>[C1,D12]</VERB>
-    is a factor of <VERB>big</VERB> and <VERB>[A,B2,C2,D22]</VERB> is
-    a realization of P22, then <VERB/> is a realization of
+    If <VERB>[B1;D21]</VERB> is a factor of <VERB>bigQ</VERB>, <VERB>[C1,D12]</VERB>
+    is a factor of <VERB>bigR</VERB> and <VERB>[A,B2,C2,D22]</VERB> is
+    a realization of P22, then <VERB>P</VERB> is a realization of
     <VERB>[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]</VERB>.
-    The (negative) feedback computed by <VERB>lqg</VERB> stabilizes <VERB>P2</VERB>,
-    i.e. the poles of <VERB>cl=P22/.</VERB> are stable.</P>
+    The (negative) feedback computed by <VERB>lqg</VERB> stabilizes <VERB>P22</VERB>,
+    i.e. the poles of <VERB>cl=P22/.K</VERB> are stable.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

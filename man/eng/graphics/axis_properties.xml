@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>axis_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="axis_properties"> description of the
-   axis entity properties </SHORT_DESCRIPTION>
+   axis entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The Axis entity is a leaf of the graphics entities hierarchy.
@@ -95,7 +94,7 @@
               <DESCRIPTION_ITEM>
                 <P><VERB>&quot;i&quot;</VERB>. In this case the vector given tics positions is of 
 	 size 4, <VERB>[k1,k2,a,n]</VERB> then values are increasing between
-	  <VERB>k1*10^a</VERB> and  <VERB>k2*10^a </VERB>, n is the number of intervals.
+	  <VERB>k1*10^a</VERB> and  <VERB>k2*10^a</VERB>, n is the number of intervals.
          </P>
               </DESCRIPTION_ITEM>
             </DESCRIPTION_INDENT>
@@ -191,5 +190,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

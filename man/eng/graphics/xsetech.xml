@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xsetech  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xsetech"> set the sub-window of a graphics window for plotting  </SHORT_DESCRIPTION>
+  <TITLE>xsetech</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xsetech"> set the sub-window of a graphics window for plotting</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xsetech(wrect,[frect,logflag])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>xsetech(wrect=[...],frect=[..],logflag=&quot;..&quot;, arect=[...])   </CALLING_SEQUENCE_ITEM>
@@ -15,25 +14,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>wrect  </PARAM_NAME>
+        <PARAM_NAME>wrect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size 4, defining the sub-window to use.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>frect  </PARAM_NAME>
+        <PARAM_NAME>frect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size 4.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>logflag  </PARAM_NAME>
+        <PARAM_NAME>logflag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string of size 2 &quot;xy&quot;, where x and y can be &quot;n&quot; or &quot;l&quot;. &quot;n&quot; stands for  normal and &quot;l&quot; stands for logscale. x stands for the x-axis and y stands for the y-axis.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>arect  </PARAM_NAME>
+        <PARAM_NAME>arect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size 4.</SP>
         </PARAM_DESCRIPTION>
@@ -52,7 +51,7 @@
     <P><VERB>xsetech</VERB> also set the current graphics scales for 2D plotting and
     can be used in conjunction with graphics routines which request the
     current graphics scale (for instance <VERB>strf=&quot;x0z&quot;</VERB>
-    or<VERB>frameflag=</VERB> in <VERB>plot2d</VERB>).</P>
+    or<VERB>frameflag=0</VERB> in <VERB>plot2d</VERB>).</P>
     <P><VERB>frect=[xmin,ymin,xmax,ymax]</VERB> is used to set the graphics scale
     and is just like the <VERB>rect</VERB> argument of <VERB>plot2d</VERB>. If
     <VERB>frect</VERB> is not given the current value of the graphic scale

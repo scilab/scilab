@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>locate  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="locate"> mouse selection of a set of points   </SHORT_DESCRIPTION>
+  <TITLE>locate</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="locate"> mouse selection of a set of points</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>x=locate([n,flag])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of size (2,n1). n1=n if the parameter n is given.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n,flag  </PARAM_NAME>
+        <PARAM_NAME>n,flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer values.</SP>
         </PARAM_DESCRIPTION>
@@ -40,7 +39,7 @@
     <P>
     x=locate() is the same as <VERB>x=locate(-1)</VERB>.</P>
     <P>
-    If <VERB>flag=</VERB> a cross is drawn at the points where the mouse is clicked.</P>
+    If <VERB>flag=1</VERB> a cross is drawn at the points where the mouse is clicked.</P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
@@ -50,5 +49,5 @@
       <LINK>xgetmouse</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>S.S. &amp; J.Ph.</AUTHOR>
+  <AUTHOR>S.S. &amp; J.Ph.C</AUTHOR>
 </MAN>

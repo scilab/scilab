@@ -1,15 +1,14 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>slash  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="slash"> (/) right division and feed back  </SHORT_DESCRIPTION>
+  <TITLE>slash</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="slash"> (/) right division and feed back</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
-    Right division.  <VERB>x=A / b</VERB> is the solution of <VERB>x*b=</VERB> .</P>
+    Right division.  <VERB>x=A / b</VERB> is the solution of <VERB>x*b=A</VERB> .</P>
     <P><VERB>b/a = (a' \ b')'</VERB> .</P>
     <P><VERB>a ./  b</VERB> is the matrix with entries <VERB>a(i,j)/ b(i,j)</VERB>.
     If <VERB>b</VERB> is scalar (1x1 matrix) this operation is the same
@@ -20,10 +19,10 @@
     <P>
     Backslash stands for left division.</P>
     <P>
-    System feed back.  <VERB>S=G/.</VERB> evaluates <VERB>S=G*(eye()+K*G)^(-1)</VERB>
+    System feed back.  <VERB>S=G/.K</VERB> evaluates <VERB>S=G*(eye()+K*G)^(-1)</VERB>
     this operator avoid simplification problem.</P>
     <P>
-    Remark that <VERB>G/.</VERB> is interpreted as <VERB>G/(.5)</VERB>. In such 
+    Remark that <VERB>G/.5</VERB> is interpreted as <VERB>G/(.5)</VERB>. In such 
     cases dot is part of the number, not of the operator.</P>
     <P>
     Comment <VERB>//</VERB> comments a line i.e lines which begin by <VERB>//</VERB> are

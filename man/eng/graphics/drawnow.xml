@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>drawnow  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 200</DATE>
+  <TITLE>drawnow</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="drawnow"> 
    draw hidden graphics entities.
   </SHORT_DESCRIPTION>
@@ -17,7 +16,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a handle, the handle of an axes entity.</SP>
         </PARAM_DESCRIPTION>
@@ -81,5 +80,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>modulo  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="modulo"> symetric arithmetic remainder modulo m  </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="pmodulo"> positive arithmetic remainder modulo m  </SHORT_DESCRIPTION>
+  <TITLE>modulo</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="modulo"> symetric arithmetic remainder modulo m</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="pmodulo"> positive arithmetic remainder modulo m</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>i=modulo(n,m)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>i=pmodulo(n,m)  </CALLING_SEQUENCE_ITEM>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>delmenu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>December 199</DATE>
-  <SHORT_DESCRIPTION name="delmenu"> interactive button or menu deletion  </SHORT_DESCRIPTION>
+  <TITLE>delmenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>December 1995</DATE>
+  <SHORT_DESCRIPTION name="delmenu"> interactive button or menu deletion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>delmenu(button)   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>delmenu(gwin,button)  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>button  </PARAM_NAME>
+        <PARAM_NAME>button</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. The button name. On Windows operating systems (not X_window), an @ should be placed before the character in the name used for keyboard shortcut; this character is underlined on the GUI.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>gwin  </PARAM_NAME>
+        <PARAM_NAME>gwin</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer. The number of graphic window where the button is required to be installed</SP>
         </PARAM_DESCRIPTION>

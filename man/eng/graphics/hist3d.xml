@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hist3d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="hist3d"> 3D representation of a histogram  </SHORT_DESCRIPTION>
+  <TITLE>hist3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hist3d"> 3D representation of a histogram</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>hist3d(f,[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])  </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of size (m,n) defining the histogram <VERB>f(i,j)=F(x(i),y(j))</VERB>,  where <VERB>x</VERB> and <VERB>y</VERB>  are taken as  <VERB>0:m</VERB> and <VERB>0:n</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -26,7 +25,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>theta,alpha,leg,flag,ebox  </PARAM_NAME>
+        <PARAM_NAME>theta,alpha,leg,flag,ebox</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: see <VERB>plot3d</VERB>.</SP>
         </PARAM_DESCRIPTION>

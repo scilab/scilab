@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>glever  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="glever"> inverse of matrix pencil   </SHORT_DESCRIPTION>
+  <TITLE>glever</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="glever"> inverse of matrix pencil</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=glever(E,A [,s])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>E, </PARAM_NAME>
+        <PARAM_NAME>E, A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two real square matrices of same dimensions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>s  </PARAM_NAME>
+        <PARAM_NAME>s</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string (default value '<VERB>s</VERB>')</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Bfs,Bis  </PARAM_NAME>
+        <PARAM_NAME>Bfs,Bis</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two polynomial matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>chis  </PARAM_NAME>
+        <PARAM_NAME>chis</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial</SP>
         </PARAM_DESCRIPTION>
@@ -42,7 +41,7 @@
     <P>
     Computation of</P>
     <P>
-    (s*E-A)^-</P>
+    (s*E-A)^-1</P>
     <P>
      by generalized Leverrier's algorithm for a matrix pencil.</P>
     <VERBATIM>
@@ -53,7 +52,7 @@
     <P><VERB>chis</VERB> = characteristic polynomial (up to a multiplicative constant).</P>
     <P><VERB>Bfs</VERB>  = numerator polynomial matrix.</P>
     <P><VERB>Bis</VERB>
-    = polynomial matrix ( - expansion of <VERB>(s*E-A)^-</VERB> at infinity).</P>
+    = polynomial matrix ( - expansion of <VERB>(s*E-A)^-1</VERB> at infinity).</P>
     <P>
     Note the - sign before <VERB>Bis</VERB>.</P>
   </DESCRIPTION>

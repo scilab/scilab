@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_kill  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>January 199</DATE>
+  <TITLE>pvm_kill</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>January 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_kill">  Terminates a specified PVM process.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[infos] = pvm_kill(tids)  </CALLING_SEQUENCE_ITEM>
@@ -13,13 +12,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>tids  </PARAM_NAME>
+        <PARAM_NAME>tids</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row of integer, task identifier of the PVM process to be killed (not yourself).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>infos  </PARAM_NAME>
+        <PARAM_NAME>infos</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row of integer, status code returned by the routine. Values less than zero indicate an error.</SP>
         </PARAM_DESCRIPTION>
@@ -28,7 +27,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>pvm_kill</VERB> 
-    sends a terminate (<VERB>SIGTER</VERB>) signal
+    sends a terminate (<VERB>SIGTERM</VERB>) signal
     to the PVM process identified by <VERB>tids</VERB>.</P>
     <P>
     In the case of multiprocessors the terminate signal is replaced

@@ -1,61 +1,60 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pspect  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pspect"> cross-spectral estimate between 2 series  </SHORT_DESCRIPTION>
+  <TITLE>pspect</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pspect"> cross-spectral estimate between 2 series</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: data if vector, amount of input data if scalar</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: data if vector, amount of input data if scalar</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sec_step  </PARAM_NAME>
+        <PARAM_NAME>sec_step</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: offset of each data window</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sec_leng  </PARAM_NAME>
+        <PARAM_NAME>sec_leng</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: length of each data window</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wtype  </PARAM_NAME>
+        <PARAM_NAME>wtype</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: window type <VERB>(re,tr,hm,hn,kr,ch)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wpar  </PARAM_NAME>
+        <PARAM_NAME>wpar</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: optional parameters  for <VERB>wtype='kr', wpar&gt;</VERB>  for <VERB>wtype='ch', 0&lt;wpar(1)&lt;.5, wpar(2)&gt;</VERB></SP>
+          <SP>: optional parameters  for <VERB>wtype='kr', wpar&gt;0</VERB>  for <VERB>wtype='ch', 0&lt;wpar(1)&lt;.5, wpar(2)&gt;0</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sm  </PARAM_NAME>
+        <PARAM_NAME>sm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: power spectral estimate in the interval <VERB>[0,1]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cwp  </PARAM_NAME>
+        <PARAM_NAME>cwp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: unspecified Chebyshev window parameter</SP>
         </PARAM_DESCRIPTION>

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph_sum  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="graph_sum"> sum of two graphs  </SHORT_DESCRIPTION>
+  <TITLE>graph_sum</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="graph_sum"> sum of two graphs</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g2 = graph_sum(g,g1)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
-        <PARAM_DESCRIPTION>
-          <SP>: graph list</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-      <PARAM_ITEM>
         <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: graph list</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+        <PARAM_NAME>g2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph</SP>
         </PARAM_DESCRIPTION>
@@ -33,10 +32,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>graph_sum</VERB> creates a graph <VERB>g</VERB> with an adjacency matrix  
+    <P><VERB>graph_sum</VERB> creates a graph <VERB>g2</VERB> with an adjacency matrix  
     equal to the sum of the adjacency matrices of the two graphs <VERB>g</VERB> and 
-    <VERB>g</VERB>.
-    <VERB>g</VERB> and <VERB>g</VERB> are supposed to be simple graphs (use <VERB>graph_simp</VERB> 
+    <VERB>g1</VERB>.
+    <VERB>g</VERB> and <VERB>g1</VERB> are supposed to be simple graphs (use <VERB>graph_simp</VERB> 
     before calling <VERB>graph_complement</VERB> if necessary) and to have the same 
     number of nodes.</P>
   </DESCRIPTION>

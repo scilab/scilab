@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xget  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xget"> get current values of the graphics context  </SHORT_DESCRIPTION>
+  <TITLE>xget</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xget"> get current values of the graphics context</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x1]=xget(str,[flag])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>xget()  </CALLING_SEQUENCE_ITEM>
@@ -14,13 +13,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional. Set to 1 gives a verbose mode.</SP>
         </PARAM_DESCRIPTION>
@@ -72,7 +71,7 @@
         <SP>: Get the color number for hidden faces in plot3d.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="pat=xget(&quot;lastpattern&quot;)">
-        <SP>: Get the id of the last available pattern or color, with the current  colormap of  the current window. In fact <VERB>pat+</VERB> and <VERB>pat+</VERB> are also available and stand respectively for black and white pattern.</SP>
+        <SP>: Get the id of the last available pattern or color, with the current  colormap of  the current window. In fact <VERB>pat+1</VERB> and <VERB>pat+2</VERB> are also available and stand respectively for black and white pattern.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="type=xget(&quot;line mode&quot;)">
         <SP>: Get the line drawing mode.  type=1 is absolute mode and type=0 is relative mode. (Warning: the mode type=0 is has bugs)</SP>

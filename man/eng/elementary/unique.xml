@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>unique  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="unique"> extract unique components of a vector  </SHORT_DESCRIPTION>
+  <TITLE>unique</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="unique"> extract unique components of a vector</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[N, [k]]=unique(M)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers or strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>N</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of real numbers or strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector  of integers</SP>
         </PARAM_DESCRIPTION>
@@ -34,7 +33,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>unique(M)</VERB> returns a vector which retains the unique entries of  <VERB/>
+    <P><VERB>unique(M)</VERB> returns a vector which retains the unique entries of  <VERB>M</VERB>
     in ascending order.</P>
     <P>
     If required the output argument <VERB>k</VERB> contains the position of the

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>expm  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="expm"> square matrix exponential  </SHORT_DESCRIPTION>
+  <TITLE>expm</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="expm"> square matrix exponential</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>expm(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: square matrix with real or complex entries.</SP>
         </PARAM_DESCRIPTION>
@@ -21,12 +20,12 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB/> is a square matrix <VERB>expm(X)</VERB> is the matrix</P>
+    <P><VERB>X</VERB> is a square matrix <VERB>expm(X)</VERB> is the matrix</P>
     <P>
     expm(X) = I + X + X^2 /2 + ...</P>
     <P>
     The computation is performed by first 
-    block-diagonalizing <VERB/> and then applying a Pade approximation 
+    block-diagonalizing <VERB>X</VERB> and then applying a Pade approximation 
     on each block.</P>
   </DESCRIPTION>
   <EXAMPLE>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rtitr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>rtitr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="rtitr"> discrete time response (transfer matrix)  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y]=rtitr(Num,Den,u [,up,yp])  </CALLING_SEQUENCE_ITEM>
@@ -13,28 +12,28 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Num,Den  </PARAM_NAME>
+        <PARAM_NAME>Num,Den</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial  matrices (resp. dimensions : <VERB>n</VERB>x<VERB>m</VERB> and <VERB>n</VERB>x<VERB>n</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix (dimension <VERB>m</VERB>x<VERB>(t+1)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>up,yp  </PARAM_NAME>
+        <PARAM_NAME>up,yp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices (<VERB>up</VERB> dimension <VERB>m</VERB>x<VERB>
-  (maxi(degree(Den)))</VERB> (default values=<VERB/>) ,
+  (maxi(degree(Den)))</VERB> (default values=<VERB>0</VERB>) ,
   <VERB>yp</VERB> dimension <VERB>n</VERB>x<VERB>
   (maxi(degree(Den)))</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix</SP>
         </PARAM_DESCRIPTION>
@@ -71,7 +70,7 @@
    ]]>
     </VERBATIM>
     <P>
-    The outputs at <VERB>t=0,1,...,T+d1-d</VERB> are the columns of the matrix <VERB>y</VERB>:</P>
+    The outputs at <VERB>t=0,1,...,T+d1-d2</VERB> are the columns of the matrix <VERB>y</VERB>:</P>
     <VERBATIM>
 <![CDATA[
   y=[y(0), y(1),  .... y(T+d1-d2)]
@@ -85,7 +84,7 @@
    ]]>
     </VERBATIM>
     <P>
-    Depending on the relative values of <VERB>d</VERB> and <VERB>d</VERB>, some of the
+    Depending on the relative values of <VERB>d1</VERB> and <VERB>d2</VERB>, some of the
     leftmost components of <VERB>up</VERB>, <VERB>yp</VERB> are ignored.
     The default values of <VERB>up</VERB> and <VERB>yp</VERB> are zero:
     <VERB>up = 0*ones(m,d1), yp=0*ones(n,d1)</VERB></P>

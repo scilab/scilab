@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>errcatch  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="errcatch"> error trapping  </SHORT_DESCRIPTION>
+  <TITLE>errcatch</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="errcatch"> error trapping</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>errcatch(n [,'action'] [,'option'])   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>action, option  </PARAM_NAME>
+        <PARAM_NAME>action, option</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: strings</SP>
         </PARAM_DESCRIPTION>
@@ -32,10 +31,10 @@
     <VERB>n</VERB> has the following meaning:
   </P>
     <P>
-    if <VERB>n&gt;</VERB>, <VERB>n</VERB> is the error number to trap
+    if <VERB>n&gt;0</VERB>, <VERB>n</VERB> is the error number to trap
   </P>
     <P>
-    if <VERB>n&lt;</VERB>  all errors are to be trapped
+    if <VERB>n&lt;0</VERB>  all errors are to be trapped
   </P>
     <P><VERB>action</VERB> is one of the following character strings:
   </P>

@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nearfloat  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 200</DATE>
-  <SHORT_DESCRIPTION name="nearfloat"> get previous or next floating-point number  </SHORT_DESCRIPTION>
+  <TITLE>nearfloat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2001</DATE>
+  <SHORT_DESCRIPTION name="nearfloat"> get previous or next floating-point number</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xnear = nearfloat(dir, x)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>dir  </PARAM_NAME>
+        <PARAM_NAME>dir</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (&quot;succ&quot; or &quot;pred&quot;)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar, vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>xnear  </PARAM_NAME>
+        <PARAM_NAME>xnear</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar, vector or matrix</SP>
         </PARAM_DESCRIPTION>

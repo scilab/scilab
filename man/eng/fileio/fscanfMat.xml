@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fscanfMat  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Aug 199</DATE>
+  <TITLE>fscanfMat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Aug 1999</DATE>
   <SHORT_DESCRIPTION name="fscanfMat"> Reads a Matrix from a text file.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>M=fscanfMat(filename);  </CALLING_SEQUENCE_ITEM>
@@ -20,7 +19,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>M</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Output variable. A matrix of real numbers.</SP>
         </PARAM_DESCRIPTION>

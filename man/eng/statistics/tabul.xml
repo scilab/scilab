@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>tabul  </TITLE>
+  <TITLE>tabul</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
+  <DATE>July 2000</DATE>
   <SHORT_DESCRIPTION name="tabul"> frequency of values of a matrix or vector</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[m]=tabul(X [,order])</CALLING_SEQUENCE_ITEM>
@@ -13,7 +12,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or matrix (of real or complex numbers or strings)</SP>
         </PARAM_DESCRIPTION>
@@ -27,8 +26,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>m</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a 2 columns matrix (if <VERB/> is a numerical vector or matrix) or 
-      a list with 2 members (if <VERB/> is a string vector or matrix).</SP>
+          <SP>: a 2 columns matrix (if <VERB>X</VERB> is a numerical vector or matrix) or 
+      a list with 2 members (if <VERB>X</VERB> is a string vector or matrix).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -36,13 +35,13 @@
   <DESCRIPTION>
     <P>
    This function computes the frequency of values of 
-   the components of a vector or matrix <VERB/> of numbers or
+   the components of a vector or matrix <VERB>X</VERB> of numbers or
    string characters :
    </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="if X is a numerical vector or matrix">
         <SP>then <VERB>m</VERB>  is a  two column matrix who contains in 
-           the first column the distinct values of <VERB/> 
+           the first column the distinct values of <VERB>X</VERB> 
            and  in the other column the number of occurrences 
            of those values (m(i,2) is the number of occurrences
            of m(i,1)).</SP>
@@ -50,7 +49,7 @@
       <DESCRIPTION_ITEM label="if X is a string vector or matrix">
         <SP>then <VERB>m</VERB> is  a list whose  first member is a 
            string (column) vector composed with the distinct 
-           values of <VERB/> and the second member is a 
+           values of <VERB>X</VERB> and the second member is a 
            (column) vector whose components are the number of 
            occurrences of those values ( m(i)(2) is the number 
            of occurrences of the string m(i)(1) ).</SP>

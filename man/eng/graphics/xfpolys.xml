@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xfpolys  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xfpolys"> fill a set of polygons  </SHORT_DESCRIPTION>
+  <TITLE>xfpolys</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xfpolys"> fill a set of polygons</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xfpolys(xpols,ypols,[fill])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xpols,ypols  </PARAM_NAME>
+        <PARAM_NAME>xpols,ypols</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of the same size (p,n) (points of the polygons).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fill  </PARAM_NAME>
+        <PARAM_NAME>fill</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size n.</SP>
         </PARAM_DESCRIPTION>
@@ -37,13 +36,13 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="-">
-        <SP>if <VERB>fill(i)&lt;</VERB>, the polygon is filled with pattern id <VERB>-fill(i)</VERB>.</SP>
+        <SP>if <VERB>fill(i)&lt;0</VERB>, the polygon is filled with pattern id <VERB>-fill(i)</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>if <VERB>fill(i)=</VERB>, the polygon is drawn with the current dash style (or current color).</SP>
+        <SP>if <VERB>fill(i)=0</VERB>, the polygon is drawn with the current dash style (or current color).</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>if <VERB>fill(i)&gt;</VERB>, the polygon is filled with pattern id <VERB>fill(i)</VERB>.  Then its contour is drawn with the current dash (or color) and closed if necessary.</SP>
+        <SP>if <VERB>fill(i)&gt;0</VERB>, the polygon is filled with pattern id <VERB>fill(i)</VERB>.  Then its contour is drawn with the current dash (or color) and closed if necessary.</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

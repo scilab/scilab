@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>formatman  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>january 200</DATE>
-  <SHORT_DESCRIPTION name="formatman"> translates old NROFF man files in a directory into ascii, tex, html or xml  </SHORT_DESCRIPTION>
+  <TITLE>formatman</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>january 2001</DATE>
+  <SHORT_DESCRIPTION name="formatman"> translates old NROFF man files in a directory into ascii, tex, html or xml</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>formatman(path [,to])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>path  </PARAM_NAME>
+        <PARAM_NAME>path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string, giving the path of the directory</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>to  </PARAM_NAME>
+        <PARAM_NAME>to</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string with possible values &quot;ascii&quot;, &quot;tex&quot;, &quot;html&quot;, &quot;xml&quot;</SP>
         </PARAM_DESCRIPTION>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>eqfir  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="eqfir"> minimax approximation of FIR filter  </SHORT_DESCRIPTION>
+  <TITLE>eqfir</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="eqfir"> minimax approximation of FIR filter</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[hn]=eqfir(nf,bedge,des,wate)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nf  </PARAM_NAME>
+        <PARAM_NAME>nf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: number of output filter points desired</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>bedge  </PARAM_NAME>
+        <PARAM_NAME>bedge</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Mx2 matrix giving a pair of edges for each band</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>des  </PARAM_NAME>
+        <PARAM_NAME>des</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: M-vector giving desired magnitude for each band</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wate  </PARAM_NAME>
+        <PARAM_NAME>wate</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: M-vector giving relative weight of error in each band</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>hn  </PARAM_NAME>
+        <PARAM_NAME>hn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: output of linear-phase FIR filter coefficients</SP>
         </PARAM_DESCRIPTION>

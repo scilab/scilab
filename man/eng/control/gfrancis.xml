@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gfrancis  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gfrancis"> Francis equations for tracking  </SHORT_DESCRIPTION>
+  <TITLE>gfrancis</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gfrancis"> Francis equations for tracking</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[L,M,T]=gfrancis(Plant,Model)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Plant  </PARAM_NAME>
+        <PARAM_NAME>Plant</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Model  </PARAM_NAME>
+        <PARAM_NAME>Model</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>L,M,</PARAM_NAME>
+        <PARAM_NAME>L,M,T</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices</SP>
         </PARAM_DESCRIPTION>
@@ -50,7 +49,7 @@
    ]]>
     </VERBATIM>
     <P>
-    the goal is for the plant to track the model i.e. <VERB>e = y - ym ---&gt; </VERB>
+    the goal is for the plant to track the model i.e. <VERB>e = y - ym ---&gt; 0</VERB>
     while keeping stable the state x(t) of the plant. 
     <VERB>u</VERB> is given by feedforward and feedback</P>
     <VERBATIM>
@@ -69,7 +68,7 @@
    ]]>
     </VERBATIM>
     <P>
-    The matrix <VERB/> must be chosen as stabilizing the pair <VERB>(F,G)</VERB>
+    The matrix <VERB>K</VERB> must be chosen as stabilizing the pair <VERB>(F,G)</VERB>
     See example of use in directory <VERB>demos/tracking</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>

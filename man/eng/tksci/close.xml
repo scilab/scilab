@@ -1,16 +1,15 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>close  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
-  <SHORT_DESCRIPTION name="close"> close a figure  </SHORT_DESCRIPTION>
+  <TITLE>close</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="close"> close a figure</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>h : integer Handle of the window to close</SP>
         </PARAM_DESCRIPTION>
@@ -51,5 +50,5 @@ close(h);
       <LINK>gcf</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

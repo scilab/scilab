@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>Advanced  </TITLE>
-  <TYPE>Scilab description  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="AdCommunications"> advanced communication toolbox for parallel programming  </SHORT_DESCRIPTION>
+  <TITLE>Advanced</TITLE>
+  <TYPE>Scilab description</TYPE>
+  <DATE>January 1998</DATE>
+  <SHORT_DESCRIPTION name="AdCommunications"> advanced communication toolbox for parallel programming</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This the beta version of the Advanced Communications Toolbox (ACT).</P>

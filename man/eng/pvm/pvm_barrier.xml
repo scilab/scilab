@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_barrier  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_barrier</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_barrier"> blocks the calling process until all processes in a group have called it.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[info] = pvm_barrier(group,count)  </CALLING_SEQUENCE_ITEM>
@@ -13,19 +12,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>type  </PARAM_NAME>
+        <PARAM_NAME>type</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string,  name of an existing group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>count  </PARAM_NAME>
+        <PARAM_NAME>count</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, specifying the number of group members that must call pvm_barrier before they are all released.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>info  </PARAM_NAME>
+        <PARAM_NAME>info</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, status code returned by the routine.</SP>
         </PARAM_DESCRIPTION>

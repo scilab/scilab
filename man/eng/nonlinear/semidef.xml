@@ -1,55 +1,54 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>semidef  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="semidef"> semidefinite programming  </SHORT_DESCRIPTION>
+  <TITLE>semidef</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="semidef"> semidefinite programming</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: m x 1 real column vector (must be strictly primal feasible, see below)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Z</PARAM_NAME>
+        <PARAM_NAME>Z0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: L x 1 real vector (compressed form of a strictly feasible dual matrix, see below)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>F</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: L x (m+1) real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>blck_szs  </PARAM_NAME>
+        <PARAM_NAME>blck_szs</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:  p x 2 integer matrix (sizes of the blocks) defining the dimensions  of the (square) diagonal blocks <VERB>size(Fi(j)=blck_szs(j) j=1,...,m+</VERB>.</SP>
+          <SP>:  p x 2 integer matrix (sizes of the blocks) defining the dimensions  of the (square) diagonal blocks <VERB>size(Fi(j)=blck_szs(j) j=1,...,m+1</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>c  </PARAM_NAME>
+        <PARAM_NAME>c</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: m x 1 real vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>options  </PARAM_NAME>
+        <PARAM_NAME>options</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector with five entries <VERB>[nu,abstol,reltol,0,maxiters]</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ul  </PARAM_NAME>
+        <PARAM_NAME>ul</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector with two entries</SP>
         </PARAM_DESCRIPTION>
@@ -78,7 +77,7 @@
     <P>
     It interfaces L. Vandenberghe and S. Boyd sp.c program.</P>
     <P>
-    The <VERB>Fi's</VERB> matrices are stored columnwise in <VERB/> in
+    The <VERB>Fi's</VERB> matrices are stored columnwise in <VERB>F</VERB> in
     compressed format: if F_i^j, i=0,..,m, j=1,...,L denote the jth 
     (symmetric) diagonal block of F_i, then</P>
     <VERBATIM>
@@ -90,9 +89,9 @@ F=  [   ...       ...          ...              ]
    ]]>
     </VERBATIM>
     <P>
-    where <VERB>pack(M)</VERB>, for symmetric <VERB/>, is the vector 
+    where <VERB>pack(M)</VERB>, for symmetric <VERB>M</VERB>, is the vector 
     <VERB>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</VERB>
-    (obtained by scanning columnwise the lower triangular part of <VERB/>).</P>
+    (obtained by scanning columnwise the lower triangular part of <VERB>M</VERB>).</P>
     <P><VERB>blck_szs</VERB> gives the size of block <VERB>j</VERB>, ie, 
     <VERB>size(F_i^j)=blck_szs(j)</VERB>.</P>
     <P>
@@ -101,13 +100,13 @@ F=  [   ...       ...          ...              ]
     Every block is stored using packed storage of the lower triangular part.</P>
     <P>
     The 2 vector <VERB>ul</VERB> contains the primal objective value <VERB>c'*x</VERB>
-    and the dual objective value <VERB>-Tr F_0*</VERB>.</P>
+    and the dual objective value <VERB>-Tr F_0*Z</VERB>.</P>
     <P>
     The entries of <VERB>options</VERB> are respectively:
     <VERB>nu</VERB> = a real parameter which ntrols the rate of convergence.
     <VERB>abstol</VERB> =   absolute tolerance.
     <VERB>reltol</VERB> =  relative tolerance (has a special meaning when negative).
-    <VERB>tv</VERB>  target value, only referenced if <VERB>reltol &lt; </VERB>.
+    <VERB>tv</VERB>  target value, only referenced if <VERB>reltol &lt; 0</VERB>.
     <VERB>iters</VERB> =  on entry: maximum number of iterations &gt;= 0, on exit: 
     the number of iterations taken.</P>
     <P><VERB>info</VERB>  returns 1 if maxiters exceeded,  2 if absolute accuracy

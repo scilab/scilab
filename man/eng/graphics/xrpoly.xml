@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xrpoly  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xrpoly">  draw a regular polygon  </SHORT_DESCRIPTION>
+  <TITLE>xrpoly</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xrpoly">  draw a regular polygon</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xrpoly(orig,n,r,[theta])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>orig  </PARAM_NAME>
+        <PARAM_NAME>orig</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size 2.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of sides.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r  </PARAM_NAME>
+        <PARAM_NAME>r</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>theta  </PARAM_NAME>
+        <PARAM_NAME>theta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real, angle in radian; 0 is the default value.</SP>
         </PARAM_DESCRIPTION>

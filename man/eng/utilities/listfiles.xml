@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>listfiles  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="listfiles"> list files   </SHORT_DESCRIPTION>
+  <TITLE>listfiles</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="listfiles"> list files</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>files= listfiles(paths [,flag,flagexpand])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>paths  </PARAM_NAME>
+        <PARAM_NAME>paths</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string matrix giving a set of pathnames (eventually  ended by a pattern built with <VERB>*</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag,flagexpand  </PARAM_NAME>
+        <PARAM_NAME>flag,flagexpand</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean optional parameters. (default value <VERB>%t</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>files  </PARAM_NAME>
+        <PARAM_NAME>files</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string matrix.</SP>
         </PARAM_DESCRIPTION>
@@ -45,7 +44,7 @@
     if <VERB>flag</VERB> is true the pathnames given by <VERB>paths</VERB> are 
     converted according to the MSDOS value (See <VERB>pathconvert</VERB>). 
     Moreover, if <VERB>flagexpand</VERB> is true leading strings like
-    <VERB>HOM</VERB>, <VERB>SC</VERB> or <VERB>~</VERB> are expanded using environment
+    <VERB>HOME</VERB>, <VERB>SCI</VERB> or <VERB>~</VERB> are expanded using environment
     variables.</P>
   </DESCRIPTION>
   <EXAMPLE>

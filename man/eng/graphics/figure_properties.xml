@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>figure_properties</TITLE>
-  <TYPE>Scilab Data type </TYPE>
-  <DATE> 200</DATE>
+  <TYPE>Scilab Data type</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="figure_properties"> description of the
-   graphics figure entity properties </SHORT_DESCRIPTION>
+   graphics figure entity properties</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
   The figure entity is the top level of the graphics entities
@@ -61,10 +60,10 @@
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="color_map: ">
             <SP>Property which defines the colormap used by this figure. The
-     colormap is a <VERB>m</VERB> by <VERB/> matrix.
+     colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.
      <VERB>m</VERB> is the number of colors. Color number i is given
-     as a 3-uple <VERB/>, <VERB/>, <VERB/> corresponding
-     respectively to red, green and blue intensity between 0 and </SP>
+     as a 3-uple <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+     respectively to red, green and blue intensity between 0 and 1</SP>
           </DESCRIPTION_ITEM>
           <DESCRIPTION_ITEM label="background: ">
             <SP>This property controls the figure window background color. IT takes as value
@@ -221,5 +220,5 @@
       <LINK>axes_properties</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR>Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mtlb_sparse  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>January 199</DATE>
-  <SHORT_DESCRIPTION name="mtlb_sparse">  convert sparse matrix   </SHORT_DESCRIPTION>
+  <TITLE>mtlb_sparse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>January 1999</DATE>
+  <SHORT_DESCRIPTION name="mtlb_sparse">  convert sparse matrix</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>Y=mtlb_sparse(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: sparse matrix in Matlab format</SP>
         </PARAM_DESCRIPTION>
@@ -27,8 +26,8 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>Y=mtlb_sparse(X)</VERB> is used to convert <VERB/>, a Scilab sparse matrix, to 
-    Matlab format. <VERB/> is the a variable with type 7,
+    <P><VERB>Y=mtlb_sparse(X)</VERB> is used to convert <VERB>X</VERB>, a Scilab sparse matrix, to 
+    Matlab format. <VERB>Y</VERB> is the a variable with type 7,
     i.e. <VERB>type(Y)</VERB> is equal to 7.
     This function should be used in mexfiles (a Matlab mexfile containing sparse
     matrices can be used only if the Scilab sparse matrices are converted

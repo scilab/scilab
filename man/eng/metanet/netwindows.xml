@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>netwindows  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="netwindows"> gets the numbers of edit_graph windows  </SHORT_DESCRIPTION>
+  <TITLE>netwindows</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="netwindows"> gets the numbers of edit_graph windows</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>l = netwindows()  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>l  </PARAM_NAME>
+        <PARAM_NAME>l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>

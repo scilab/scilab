@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>newfun  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="newfun"> add a name in the table of functions  </SHORT_DESCRIPTION>
+  <TITLE>newfun</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="newfun"> add a name in the table of functions</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>newfun(&quot;function-name&quot;,nameptr)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -18,7 +17,7 @@
     <VERB>100*fun+fin</VERB> where <VERB>fun</VERB> and <VERB>fin</VERB> is the internal coding of
     the primitive <VERB>&quot;function-name&quot;</VERB>.
     This function is useful to associate a primitive to a routine
-    interfaced in <VERB>&quot;matusr.f&quot;</VERB> (<VERB>fun=1</VERB>).
+    interfaced in <VERB>&quot;matusr.f&quot;</VERB> (<VERB>fun=14</VERB>).
     Used with <VERB>funptr</VERB> and <VERB>clearfun</VERB> one can redefine a primitive
     by a function with same name.</P>
   </DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ode  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>February 199</DATE>
-  <SHORT_DESCRIPTION name="ode"> ordinary differential equation solver  </SHORT_DESCRIPTION>
+  <TITLE>ode</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>February 1998</DATE>
+  <SHORT_DESCRIPTION name="ode"> ordinary differential equation solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=ode(y0,t0,t,f)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])  </CALLING_SEQUENCE_ITEM>
@@ -16,67 +15,67 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y</PARAM_NAME>
+        <PARAM_NAME>y0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector or matrix (initial conditions).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t</PARAM_NAME>
+        <PARAM_NAME>t0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalar (initial time).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (times at which the solution is computed).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or character string or list).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>type  </PARAM_NAME>
+        <PARAM_NAME>type</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: one of the following character string: <VERB>&quot;adams&quot; &quot;stiff&quot; &quot;rk&quot; &quot;rkf&quot; &quot;fix&quot; &quot;discrete&quot; &quot;roots&quot;</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rtol,atol  </PARAM_NAME>
+        <PARAM_NAME>rtol,atol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real constants or real vectors of the same size as <VERB>y</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>jac  </PARAM_NAME>
+        <PARAM_NAME>jac</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or character string or list).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>w,iw  </PARAM_NAME>
+        <PARAM_NAME>w,iw</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vectors.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ng  </PARAM_NAME>
+        <PARAM_NAME>ng</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: external (function or character string or list).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k</PARAM_NAME>
+        <PARAM_NAME>k0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (initial time). kvect : integer vector.</SP>
         </PARAM_DESCRIPTION>
@@ -128,7 +127,7 @@
     <P>
     The simplest call of <VERB>ode</VERB> is:
     <VERB>y=ode(y0,t0,t,f)</VERB>
-    where <VERB>y</VERB> is the vector of initial conditions, <VERB>t</VERB> is the
+    where <VERB>y0</VERB> is the vector of initial conditions, <VERB>t0</VERB> is the
     initial time, <VERB>t</VERB> is the vector of times at which the solution 
     <VERB>y</VERB> is computed and <VERB>y</VERB> is matrix of solution vectors 
     <VERB>y=[y(t(1)),y(t(2)),...]</VERB>.</P>
@@ -153,7 +152,7 @@ ydot = f(t,y)
     This routine must have the following calling
     sequence: <VERB>f(n,t,y,ydot)</VERB>. It can be dynamically linked to Scilab
     by the <VERB>link</VERB> function. Examples of such programs can be seen in
-    the files <VERB>SCIDIR/routines/default/READM</VERB> and 
+    the files <VERB>SCIDIR/routines/default/README</VERB> and 
     <VERB>SCIDIR/routines/default/Ex-ode.f</VERB>.</P>
     <P>
     The <VERB>f</VERB> argument can also be a list:
@@ -177,8 +176,8 @@ ydot = f(t,y,u1,u2,...,un)
     <P>
     The function <VERB>f</VERB> can return a <VERB>p x q</VERB> matrix instead of a vector. 
     With this matrix notation, we solve the <VERB>n=p+q</VERB> ODE's 
-    system <VERB>dY/dt=F(t,Y)</VERB> where <VERB/> is a <VERB>p x q</VERB> matrix.
-    Then initial conditions, <VERB>Y</VERB>, must also be
+    system <VERB>dY/dt=F(t,Y)</VERB> where <VERB>Y</VERB> is a <VERB>p x q</VERB> matrix.
+    Then initial conditions, <VERB>Y0</VERB>, must also be
     a <VERB>p x q</VERB> matrix and the result of <VERB>ode</VERB> is the
     <VERB>p x q(T+1)</VERB> matrix <VERB>[Y(t_0),Y(t_1),...,Y(t_T)]</VERB>.</P>
     <P>
@@ -197,8 +196,8 @@ rtol(i)*abs(y(i))+atol(i)
     If <VERB>rtol</VERB> and/or <VERB>atol</VERB> is a constant <VERB>rtol(i)</VERB> and/or 
     <VERB>atol(i)</VERB> are
     set to this constant value. Default values for <VERB>rtol</VERB> and <VERB>atol</VERB>
-    are respectively <VERB>rtol=1.d-</VERB> and <VERB>atol=1.d-</VERB> for most
-    solvers and <VERB>rtol=1.d-</VERB> and <VERB>atol=1.d-</VERB> for <VERB>&quot;rfk&quot;</VERB> and 
+    are respectively <VERB>rtol=1.d-5</VERB> and <VERB>atol=1.d-7</VERB> for most
+    solvers and <VERB>rtol=1.d-3</VERB> and <VERB>atol=1.d-4</VERB> for <VERB>&quot;rfk&quot;</VERB> and 
     <VERB>&quot;fix&quot;</VERB>.</P>
     <P>
     For stiff problems, it is better to give the Jacobian of the RHS
@@ -215,7 +214,7 @@ J=jac(t,y)
     </VERBATIM>
     <P>
     where <VERB>t</VERB> is a real scalar (time) and <VERB>y</VERB> a real vector (state).
-    The result matrix <VERB/> must evaluate to df/dx i.e. 
+    The result matrix <VERB>J</VERB> must evaluate to df/dx i.e. 
     <VERB>J(k,i) = dfk /dxi</VERB> with <VERB>fk</VERB> = kth component of f.</P>
     <P>
     If <VERB>jac</VERB> is a character string it refers to the name of a Fortran
@@ -233,7 +232,7 @@ J=jac(t,y)
     in its previous stop.</P>
     <P>
     More options can be given to ODEPACK solvers by using
-    <VERB>%ODEOPTION</VERB> variable. See odeoptions help.</P>
+    <VERB>%ODEOPTIONS</VERB> variable. See odeoptions help.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
@@ -305,7 +304,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
   </SEE_ALSO>
   <AUTHORS>
     <AUTHORS_ITEM label="Alan C. Hindmarsh">,  mathematics and statistics division, l-316
-                      livermore, ca 94550.1</AUTHORS_ITEM>
+                      livermore, ca 94550.19</AUTHORS_ITEM>
   </AUTHORS>
   <BIBLIO>
     <P>

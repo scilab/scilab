@@ -1,18 +1,17 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>not  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="not"> (~) logical not  </SHORT_DESCRIPTION>
+  <TITLE>not</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="not"> (~) logical not</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>~</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>~A</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
-    <P><VERB>~</VERB>  gives the element-wise negation of the elements of the  boolean 
-    matrix  <VERB/>.</P>
+    <P><VERB>~A</VERB>  gives the element-wise negation of the elements of the  boolean 
+    matrix  <VERB>A</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>des2tf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="des2tf"> descriptor to transfer function conversion  </SHORT_DESCRIPTION>
+  <TITLE>des2tf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="des2tf"> descriptor to transfer function conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[S]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Bfs,Bis,chis]=des2tf(sl)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (linear system in descriptor form)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Bfs, Bis  </PARAM_NAME>
+        <PARAM_NAME>Bfs, Bis</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two polynomial matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>chis  </PARAM_NAME>
+        <PARAM_NAME>chis</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: rational matrix</SP>
         </PARAM_DESCRIPTION>

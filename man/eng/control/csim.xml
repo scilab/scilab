@@ -1,49 +1,48 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>csim  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="csim"> simulation (time response) of linear system  </SHORT_DESCRIPTION>
+  <TITLE>csim</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="csim"> simulation (time response) of linear system</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y [,x]]=csim(u,t,sl,[x0 [,tol]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: function, list or string (control)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>t  </PARAM_NAME>
+        <PARAM_NAME>t</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector specifying times  with, <VERB>t(1)</VERB> is the initial  time (<VERB>x0=x(t(1))</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (<VERB>syslin</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a  matrix such that   <VERB>y=[y(t(i)]</VERB>, i=1,..,n</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a  matrix such that   <VERB>x=[x(t(i)]</VERB>, i=1,..,n</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a 2 vector [atol rtol] defining absolute and relative tolerances for ode solver (see ode)</SP>
         </PARAM_DESCRIPTION>
@@ -55,7 +54,7 @@
     simulation of the controlled linear system <VERB>sl</VERB>.
     <VERB>sl</VERB> is assumed to be a continuous-time system 
     represented by a <VERB>syslin</VERB> list.</P>
-    <P><VERB>u</VERB> is the control and <VERB>x</VERB> the initial state.</P>
+    <P><VERB>u</VERB> is the control and <VERB>x0</VERB> the initial state.</P>
     <P><VERB>y</VERB> is the output and <VERB>x</VERB> the state.</P>
     <P>
     The control can be:</P>
@@ -66,11 +65,11 @@
     <VERB>inputs=ut(t,parameter1,....,parametern)</VERB> (<VERB>ut</VERB> is a function)</P>
     <P>
     3. the string <VERB>&quot;impuls&quot;</VERB> for impulse response calculation
-    (here <VERB>sl</VERB> is assumed SISO without direct feed through and <VERB>x0=</VERB>)</P>
+    (here <VERB>sl</VERB> is assumed SISO without direct feed through and <VERB>x0=0</VERB>)</P>
     <P>
     4. the string <VERB>&quot;step&quot;</VERB> for step response calculation 
     (here <VERB>sl</VERB> is assumed SISO without direct feed-through and
-    <VERB>x0=</VERB>)</P>
+    <VERB>x0=0</VERB>)</P>
     <P>
     5. a vector giving the values of u correponding to each t value.</P>
   </DESCRIPTION>

@@ -1,61 +1,60 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>min_lcost_cflow  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="min_lcost_cflow"> minimum linear cost constrained flow  </SHORT_DESCRIPTION>
+  <TITLE>min_lcost_cflow</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="min_lcost_cflow"> minimum linear cost constrained flow</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[c,phi,v,flag] = min_lcost_cflow(i,j,cv,g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>i  </PARAM_NAME>
+        <PARAM_NAME>i</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, source node number</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>j  </PARAM_NAME>
+        <PARAM_NAME>j</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, sink node number</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cv  </PARAM_NAME>
+        <PARAM_NAME>cv</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar, value of constrained flow</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>c  </PARAM_NAME>
+        <PARAM_NAME>c</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of cost</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>phi  </PARAM_NAME>
+        <PARAM_NAME>phi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of the values of flow on the arcs</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of flow from source to sink</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: feasible constrained flow flag (0 or 1)</SP>
         </PARAM_DESCRIPTION>
@@ -122,10 +121,10 @@ show_graph(g1);
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>min_lcost_flow</LINK>
+      <LINK>min_lcost_flow1</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>min_lcost_flow</LINK>
+      <LINK>min_lcost_flow2</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>min_qcost_flow</LINK>

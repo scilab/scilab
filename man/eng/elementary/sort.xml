@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sort  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sort"> decreasing order sorting  </SHORT_DESCRIPTION>
+  <TITLE>sort</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sort"> decreasing order sorting</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[s, [k]]=sort(v,'r')  </CALLING_SEQUENCE_ITEM>
@@ -15,19 +14,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector/matrix; sparse vector; character string vector/matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>s  </PARAM_NAME>
+        <PARAM_NAME>s</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix; sparse vector; character string vector/matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or matrix of integers</SP>
         </PARAM_DESCRIPTION>
@@ -52,7 +51,7 @@
     the indices such that <VERB>v(i,k(i,:))=s(i,:)</VERB> for each row index <VERB>i</VERB>.</P>
     <P>
     Complex matrices or vectors are sorted w.r.t their magnitude.</P>
-    <P><VERB>y=sort(A)</VERB> is valid when <VERB/> is a sparse vector. Column/row
+    <P><VERB>y=sort(A)</VERB> is valid when <VERB>A</VERB> is a sparse vector. Column/row
     sorting is not implemented for sparse matrices.</P>
   </DESCRIPTION>
   <EXAMPLE>

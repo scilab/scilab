@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>genfac3d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>October 199</DATE>
-  <SHORT_DESCRIPTION name="genfac3d"> compute facets of a 3D surface  </SHORT_DESCRIPTION>
+  <TITLE>genfac3d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>October 1995</DATE>
+  <SHORT_DESCRIPTION name="genfac3d"> compute facets of a 3D surface</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[xx,yy,zz]=genfac3d(x,y,z,[mask])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xx,yy,zz  </PARAM_NAME>
+        <PARAM_NAME>xx,yy,zz</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of size (4,n-1xm-1). <VERB>xx(:,i)</VERB> ,<VERB>yy(:,i)</VERB> and <VERB>zz(:,i)</VERB>  are respectively the x-axis, y-axis and z-axis coordinates of the 4 points of  the ith four sided facet.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: x-axis coordinates vector of size m.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: y-axis coordinates vector of size n.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>z  </PARAM_NAME>
+        <PARAM_NAME>z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of size (m,n). <VERB>z(i,j)</VERB> is the value of the surface at the point (x(i),y(j)).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>mask  </PARAM_NAME>
+        <PARAM_NAME>mask</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean optional matrix with same size as <VERB>z</VERB> used to select  the entries of <VERB>z</VERB> to be represented by facets.</SP>
         </PARAM_DESCRIPTION>

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>fspecg  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="fspecg"> stable factorization  </SHORT_DESCRIPTION>
+  <TITLE>fspecg</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="fspecg"> stable factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[gm]=fspecg(g).  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>g,gm  </PARAM_NAME>
+        <PARAM_NAME>g,gm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> lists (linear systems in state-space representation)</SP>
         </PARAM_DESCRIPTION>
@@ -22,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    returns <VERB>gm</VERB> with <VERB>gm</VERB> and <VERB>gm^-</VERB> stable such that:</P>
+    returns <VERB>gm</VERB> with <VERB>gm</VERB> and <VERB>gm^-1</VERB> stable such that:</P>
     <VERBATIM>
 <![CDATA[
 gtild(g)*g = gtild(gm)*gm

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graphics  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="Graphics"> graphics library overview  </SHORT_DESCRIPTION>
+  <TITLE>graphics</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="Graphics"> graphics library overview</SHORT_DESCRIPTION>
   <SECTION label="2d plotting">
     <ITEMIZE>
       <ITEM label="plot2d">
@@ -31,7 +30,7 @@
         <SP>: 2D vector field with colored arrows</SP>
       </ITEM>
       <ITEM label="fchamp">
-        <SP>: direction field of a 2D first order OD</SP>
+        <SP>: direction field of a 2D first order ODE</SP>
       </ITEM>
       <ITEM label="contour2d">
         <SP>: level curves of a surface on a 2D plot</SP>

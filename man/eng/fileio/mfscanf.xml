@@ -1,14 +1,13 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mfscanf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="mscanf"> interface to the C scanf function   </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="mfscanf"> interface to the C fscanf function   </SHORT_DESCRIPTION>
-  <SHORT_DESCRIPTION name="msscanf"> interface to the C sscanf function   </SHORT_DESCRIPTION>
+  <TITLE>mfscanf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>May 1999</DATE>
+  <SHORT_DESCRIPTION name="mscanf"> interface to the C scanf function</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="mfscanf"> interface to the C fscanf function</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="msscanf"> interface to the C sscanf function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[n,v_1,...v_n]=mfscanf([niter,]fd,format)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>L=mfscanf([niter,] fd,format)  </CALLING_SEQUENCE_ITEM>
@@ -22,7 +21,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>format  </PARAM_NAME>
+        <PARAM_NAME>format</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab string describing the format to use to write the
   remaining operands.  The format operand follows, as close as
@@ -30,7 +29,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fd  </PARAM_NAME>
+        <PARAM_NAME>fd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:The fd parameter returned by the function <VERB>mopen</VERB> is
   used as a file descriptor (it's a positive integer). When
@@ -39,27 +38,27 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>str  </PARAM_NAME>
+        <PARAM_NAME>str</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a Scilab string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>niter  </PARAM_NAME>
+        <PARAM_NAME>niter</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer, the number of times the format as to
   be used.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer, the number of data read or -1 if EOL has been
   encountered before any datum has been read.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v_i  </PARAM_NAME>
+        <PARAM_NAME>v_i</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Each function reads characters, interprets them according to a
   format, and stores the results in its output arguments.  If more
@@ -68,7 +67,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>L</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: if all data are homogeneous they are stored in a unique vector 
     which is returned else subsequences of same date type are 
@@ -88,7 +87,7 @@
     <P>
     The <VERB>niter</VERB> optional argument specifies how many time
     the format has to used. One iteration produces one line in the
-    output matrix. If <VERB>niter==-</VERB> the function iterates up
+    output matrix. If <VERB>niter==-1</VERB> the function iterates up
     to the end of file. The <VERB>niter</VERB> default value is 1.</P>
   </DESCRIPTION>
   <EXAMPLE>

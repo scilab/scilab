@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lyap  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lyap"> Lyapunov equation  </SHORT_DESCRIPTION>
+  <TITLE>lyap</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lyap"> Lyapunov equation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[X]=lyap(A,C,'c')  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[X]=lyap(A,C,'d')  </CALLING_SEQUENCE_ITEM>
@@ -14,9 +13,9 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>A, </PARAM_NAME>
+        <PARAM_NAME>A, C</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real square matrices, <VERB/> must be symmetric</SP>
+          <SP>: real square matrices, <VERB>C</VERB> must be symmetric</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -31,8 +30,8 @@
    ]]>
     </VERBATIM>
     <P>
-Note that a unique solution exist if and only if an eigenvalue of <VERB/> is
-not an eigenvalue of <VERB>-</VERB> (<VERB>flag='c'</VERB>)  or 1 over an eigenvalue of <VERB/> 
+Note that a unique solution exist if and only if an eigenvalue of <VERB>A</VERB> is
+not an eigenvalue of <VERB>-A</VERB> (<VERB>flag='c'</VERB>)  or 1 over an eigenvalue of <VERB>A</VERB> 
 (<VERB>flag='d'</VERB>).</P>
   </DESCRIPTION>
   <EXAMPLE>

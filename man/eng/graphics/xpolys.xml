@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>xpolys  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="xpolys"> draw a set of polylines or polygons  </SHORT_DESCRIPTION>
+  <TITLE>xpolys</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="xpolys"> draw a set of polylines or polygons</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>xpolys(xpols,ypols,[draw])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>xpols,ypols  </PARAM_NAME>
+        <PARAM_NAME>xpols,ypols</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrices of the same size (p,n) (points of the polylines).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>draw  </PARAM_NAME>
+        <PARAM_NAME>draw</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of size n.</SP>
         </PARAM_DESCRIPTION>

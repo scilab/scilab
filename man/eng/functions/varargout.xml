@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>varargout  </TITLE>
-  <TYPE>Scilab keyword  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="varargout">  variable numbers of arguments in an output argument list  </SHORT_DESCRIPTION>
+  <TITLE>varargout</TITLE>
+  <TYPE>Scilab keyword</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="varargout">  variable numbers of arguments in an output argument list</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     A function whose output argument list contains  <VERB>varargout</VERB> must be

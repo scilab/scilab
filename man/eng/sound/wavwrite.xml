@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>wavwrite  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="wavwrite"> writes .wav sound file  </SHORT_DESCRIPTION>
+  <TITLE>wavwrite</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="wavwrite"> writes .wav sound file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>wavwrite(y,wavfile)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>wavwrite(y,Fs,wavfile)  </CALLING_SEQUENCE_ITEM>
@@ -15,31 +14,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector or matrix with entries in [-1,1].</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wavfile  </PARAM_NAME>
+        <PARAM_NAME>wavfile</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (The .wav extension is appended if no extension is given)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Fs  </PARAM_NAME>
+        <PARAM_NAME>Fs</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, frequency sampling in Hz.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>bits  </PARAM_NAME>
+        <PARAM_NAME>bits</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, number of bits in the encoding.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>method  </PARAM_NAME>
+        <PARAM_NAME>method</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string , <VERB>'mu'</VERB> (default) or <VERB>'linear'</VERB>, encoding method.</SP>
         </PARAM_DESCRIPTION>

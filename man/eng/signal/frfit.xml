@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>frfit  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="frfit"> frequency response fit  </SHORT_DESCRIPTION>
+  <TITLE>frfit</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="frfit"> frequency response fit</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sys=frfit(w,fresp,order)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[num,den]=frfit(w,fresp,order)  </CALLING_SEQUENCE_ITEM>
@@ -16,31 +15,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>w  </PARAM_NAME>
+        <PARAM_NAME>w</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: positive real vector of frequencies (Hz)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fresp  </PARAM_NAME>
+        <PARAM_NAME>fresp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: complex vector of frequency responses (same size as <VERB>w</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>order  </PARAM_NAME>
+        <PARAM_NAME>order</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (required order, degree of <VERB>den</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>weight  </PARAM_NAME>
+        <PARAM_NAME>weight</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: positive real vector (default value <VERB>ones(w)</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>num,den  </PARAM_NAME>
+        <PARAM_NAME>num,den</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: stable polynomials</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>EVTDLY_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="EVTDLY_f"> Scicos event delay block  </SHORT_DESCRIPTION>
+  <TITLE>EVTDLY_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="EVTDLY_f"> Scicos event delay block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     One event is generated <VERB>Delay</VERB> after an event enters the unique input
@@ -19,7 +18,7 @@
         <SP>: scalar. Time delay between input and output event.</SP>
       </ITEM>
       <ITEM label="Auto-exec">
-        <SP>:  scalar. If <VERB>Auto-exec&gt;=</VERB>  block initially generates an output event at date <VERB>Auto-exec</VERB>.</SP>
+        <SP>:  scalar. If <VERB>Auto-exec&gt;=0</VERB>  block initially generates an output event at date <VERB>Auto-exec</VERB>.</SP>
       </ITEM>
     </ITEMIZE>
   </SECTION>

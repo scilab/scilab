@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gen_net  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="gen_net"> interactive or random generation of a network  </SHORT_DESCRIPTION>
+  <TITLE>gen_net</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="gen_net"> interactive or random generation of a network</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g = gen_net(name,directed,v)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>g = gen_net()  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>name  </PARAM_NAME>
+        <PARAM_NAME>name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, the name of the graph</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>directed  </PARAM_NAME>
+        <PARAM_NAME>directed</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  integer, 0 (undirected graph) or 1 (directed graph)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector with 12 values for defining the network</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
@@ -70,9 +69,9 @@
     <P>
     Maximum capacity</P>
     <P>
-    Percentage of edges with costs: between 0 and 10</P>
+    Percentage of edges with costs: between 0 and 100</P>
     <P>
-    Percentage of edges with capacities: between 0 and 10</P>
+    Percentage of edges with capacities: between 0 and 100</P>
     <P>
     The cost of edges without cost are put to minimum cost.
     The maximum capacity of edges without capacity are put to maximum upply</P>

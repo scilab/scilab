@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>deff  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="deff"> on-line definition of function  </SHORT_DESCRIPTION>
+  <TITLE>deff</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="deff"> on-line definition of function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -25,13 +24,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>text  </PARAM_NAME>
+        <PARAM_NAME>text</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of character strings</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>opt  </PARAM_NAME>
+        <PARAM_NAME>opt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional character string</SP>
           <PARAM_INDENT>

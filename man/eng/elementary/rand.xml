@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rand  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="rand"> random number generator  </SHORT_DESCRIPTION>
+  <TITLE>rand</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rand"> random number generator</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rand(m1,m2,.. [,key])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>rand(x [, key])  </CALLING_SEQUENCE_ITEM>
@@ -20,19 +19,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>mi  </PARAM_NAME>
+        <PARAM_NAME>mi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>key  </PARAM_NAME>
+        <PARAM_NAME>key</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string with value in <VERB>&quot;uniform&quot;</VERB>, <VERB>&quot;normal&quot;</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a matrix. Only its dimensions are taken into account.</SP>
         </PARAM_DESCRIPTION>
@@ -49,10 +48,10 @@
   </P>
     <DESCRIPTION_INDENT>
       <DESCRIPTION_ITEM label="rand(m1,m2)">
-        <SP>is a random matrix of dimension <VERB>m</VERB> by <VERB>m</VERB>.</SP>
+        <SP>is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand(m1,m2,..,mn)">
-        <SP>is a random matrix of dimension <VERB>m</VERB> by <VERB>m</VERB>,.. by <VERB>mn</VERB>.</SP>
+        <SP>is a random matrix of dimension <VERB>m1</VERB> by <VERB>m2</VERB>,.. by <VERB>mn</VERB>.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand(a)">
         <SP>is a random matrix of same size as a. <VERB>rand(a)</VERB> is complex if  <VERB>a</VERB> is a complex matrix</SP>
@@ -84,7 +83,7 @@
         <SP>returns the current value of the seed.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="rand('seed',n)">
-        <SP>puts the seed to <VERB>n</VERB>. (<VERB>n=</VERB> at first call).</SP>
+        <SP>puts the seed to <VERB>n</VERB>. (<VERB>n=0</VERB> at first call).</SP>
       </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>

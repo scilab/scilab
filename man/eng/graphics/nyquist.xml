@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nyquist  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="nyquist"> nyquist plot  </SHORT_DESCRIPTION>
+  <TITLE>nyquist</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="nyquist"> nyquist plot</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>nyquist( sl,[fmin,fmax] [,step] [,comments] )  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>nyquist( sl, frq [,comments] )  </CALLING_SEQUENCE_ITEM>
@@ -16,43 +15,43 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (SIMO linear system in continuous or discrete time )</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fmin,fmax  </PARAM_NAME>
+        <PARAM_NAME>fmin,fmax</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real scalars (frequency bounds (in Hz))</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>step  </PARAM_NAME>
+        <PARAM_NAME>step</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (logarithmic discretization step)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>comments  </PARAM_NAME>
+        <PARAM_NAME>comments</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string vector (captions).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>frq  </PARAM_NAME>
+        <PARAM_NAME>frq</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or matrix of frequencies (in Hz) (one row for each output of <VERB>sl</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>db,phi  </PARAM_NAME>
+        <PARAM_NAME>db,phi</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices of modulus (in Db) and phases (in degree) (one row for each output of <VERB>sl</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>repf  </PARAM_NAME>
+        <PARAM_NAME>repf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of complex numbers. Frequency response (one row for aech output of <VERB>sl</VERB>)</SP>
         </PARAM_DESCRIPTION>
@@ -66,7 +65,7 @@
     <P>
     For continous time systems <VERB>sl(2*%i*%pi*w)</VERB> is plotted.
     For discrete time system or discretized systems <VERB>sl(exp(2*%i*%pi*w*fd)</VERB> 
-    is used ( <VERB>fd=</VERB> for discrete time systems and <VERB>fd=sl('dt')</VERB> for discretized systems )</P>
+    is used ( <VERB>fd=1</VERB> for discrete time systems and <VERB>fd=sl('dt')</VERB> for discretized systems )</P>
     <P><VERB>sl</VERB> can be a continuous-time or discrete-time SIMO system (see <VERB>syslin</VERB>).
     In case of multi-output the outputs are plotted with different
     symbols.</P>
@@ -81,8 +80,8 @@
     <P><VERB>repf</VERB> is a matrix of complex numbers. One row for each response.</P>
     <P>
     Default values for <VERB>fmin</VERB> and <VERB>fmax</VERB> are
-    <VERB>1.d-</VERB>, <VERB>1.d+</VERB> if <VERB>sl</VERB> is continuous-time
-    or <VERB>1.d-</VERB>, <VERB>0.</VERB> if <VERB>sl</VERB> is discrete-time.</P>
+    <VERB>1.d-3</VERB>, <VERB>1.d+3</VERB> if <VERB>sl</VERB> is continuous-time
+    or <VERB>1.d-3</VERB>, <VERB>0.5</VERB> if <VERB>sl</VERB> is discrete-time.</P>
     <P>
     Automatic discretization of frequencies is made by <VERB>calfrq</VERB>.</P>
   </DESCRIPTION>

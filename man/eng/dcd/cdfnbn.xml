@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdfnbn  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdfnbn"> cumulative distribution function  negative binomial distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdfnbn</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfnbn"> cumulative distribution function  negative binomial distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdfnbn(&quot;PQ&quot;,S,Xn,Pr,Ompr)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[S]=cdfnbn(&quot;S&quot;,Xn,Pr,Ompr,P,Q)  </CALLING_SEQUENCE_ITEM>
@@ -16,7 +15,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,S,Xn,Pr,Ompr  </PARAM_NAME>
+        <PARAM_NAME>P,Q,S,Xn,Pr,Ompr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: six real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -28,27 +27,27 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: The upper limit of cumulation of the binomial distribution. There are F or fewer failures before the XNth success. Input range: [0, +infinity). Search range: [0, 1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Xn  </PARAM_NAME>
+        <PARAM_NAME>Xn</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:   The number of successes. Input range: [0, +infinity). Search range: [0, 1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Pr  </PARAM_NAME>
+        <PARAM_NAME>Pr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:   The probability of success in each binomial trial. Input range: [0,1]. Search range: [0,1].</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Ompr  </PARAM_NAME>
+        <PARAM_NAME>Ompr</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>:   1-PR Input range: [0,1]. Search range: [0,1] PR + OMPR = 1.</SP>
+          <SP>:   1-PR Input range: [0,1]. Search range: [0,1] PR + OMPR = 1.0</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -65,7 +64,7 @@
     <P>
     The individual term of the negative binomial is the probability of
     S failures before XN successes and is
-    Choose( S, XN+S-1 ) * PR^(XN) * (1-PR)^</P>
+    Choose( S, XN+S-1 ) * PR^(XN) * (1-PR)^S</P>
     <P>
     Formula   26.5.26   of   Abramowitz  and  Stegun,  Handbook   of
     Mathematical Functions (1966) is used  to  reduce calculation of

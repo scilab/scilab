@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>syslin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="syslin"> linear system definition  </SHORT_DESCRIPTION>
+  <TITLE>syslin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="syslin"> linear system definition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sl]=syslin(dom,A,B,C [,D [,x0] ])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[sl]=syslin(dom,N,D)  </CALLING_SEQUENCE_ITEM>
@@ -15,37 +14,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>dom  </PARAM_NAME>
+        <PARAM_NAME>dom</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string (<VERB>'c'</VERB>, <VERB>'d'</VERB>), or <VERB>[]</VERB> or a scalar.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>A,B,C,</PARAM_NAME>
+        <PARAM_NAME>A,B,C,D</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: matrices of the state-space representation (<VERB/> optional with default value zero matrix). For improper systems <VERB/> is a polynomial matrix.</SP>
+          <SP>: matrices of the state-space representation (<VERB>D</VERB> optional with default value zero matrix). For improper systems <VERB>D</VERB> is a polynomial matrix.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x</PARAM_NAME>
+        <PARAM_NAME>x0</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vector (initial state; default value is <VERB/>)</SP>
+          <SP>: vector (initial state; default value is <VERB>0</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>N, </PARAM_NAME>
+        <PARAM_NAME>N, D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>H</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: rational matrix or linear state space representation</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: tlist (&quot;<VERB>syslin</VERB>&quot; list) representing the linear system</SP>
         </PARAM_DESCRIPTION>
@@ -79,7 +78,7 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
     <VERB>
     sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)
     </VERB>
-    Note that <VERB/> is allowed to be a polynomial matrix (improper systems).</P>
+    Note that <VERB>D</VERB> is allowed to be a polynomial matrix (improper systems).</P>
     <P>
     Transfer matrix representation:</P>
     <VERBATIM>

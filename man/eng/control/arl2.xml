@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ARL</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="arl2"> SISO model realization by L2 transfer approximation  </SHORT_DESCRIPTION>
+  <TITLE>ARL2</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="arl2"> SISO model realization by L2 transfer approximation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>h=arl2(y,den0,n [,imp])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>h=arl2(y,den0,n [,imp],'all')  </CALLING_SEQUENCE_ITEM>
@@ -16,49 +15,49 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real vector or polynomial in <VERB>z^-</VERB>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)</SP>
+          <SP>: real vector or polynomial in <VERB>z^-1</VERB>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>den</PARAM_NAME>
+        <PARAM_NAME>den0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a polynomial which gives an initial guess of the solution, it may be <VERB>poly(1,'z','c')</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>n  </PARAM_NAME>
+        <PARAM_NAME>n</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the degree of approximating transfer function (degree of den)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>imp  </PARAM_NAME>
+        <PARAM_NAME>imp</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer in <VERB>(0,1,2)</VERB> (verbose mode)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: transfer function <VERB>num/den</VERB> or transfer matrix (column vector) when flag <VERB>'all'</VERB> is given.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>den  </PARAM_NAME>
+        <PARAM_NAME>den</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial or vector of polynomials, contains the denominator(s) of the solution(s)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>num  </PARAM_NAME>
+        <PARAM_NAME>num</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial or vector of polynomials, contains the numerator(s) of the solution(s)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real constant or vector , the l2-error achieved for each solutions</SP>
         </PARAM_DESCRIPTION>
@@ -84,7 +83,7 @@
     <P><VERB>[den,num,err]=arl2(y,den0,n [,imp],'all') </VERB>  returns in the
     vectors of polynomials <VERB>num</VERB> and <VERB>den</VERB>  a set of local
     optimums for the problem. The solutions are sorted with increasing
-    errors <VERB>err</VERB>. In this case <VERB>den</VERB> is already assumed to be 
+    errors <VERB>err</VERB>. In this case <VERB>den0</VERB> is already assumed to be 
     <VERB>poly(1,'z','c')</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>

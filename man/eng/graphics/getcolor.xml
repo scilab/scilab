@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getcolor  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="getcolor"> dialog to select colors in the current colormap  </SHORT_DESCRIPTION>
+  <TITLE>getcolor</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="getcolor"> dialog to select colors in the current colormap</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>c=getcolor(title,[cini])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>c=getcolor()  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>title  </PARAM_NAME>
+        <PARAM_NAME>title</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, dialog title.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cini  </PARAM_NAME>
+        <PARAM_NAME>cini</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of initial selected color ids. Default value is current color</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>c  </PARAM_NAME>
+        <PARAM_NAME>c</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of selected color ids, or [] if the user has clicked on the &quot;Cancel&quot; button.</SP>
         </PARAM_DESCRIPTION>

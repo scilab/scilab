@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>standard_draw  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="standard_draw"> Scicos block drawing function  </SHORT_DESCRIPTION>
+  <TITLE>standard_draw</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="standard_draw"> Scicos block drawing function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>standard_draw(o)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scicos block data structure (see scicos_block)</SP>
         </PARAM_DESCRIPTION>

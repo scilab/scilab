@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nand2mean  </TITLE>
+  <TITLE>nand2mean</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
+  <DATE>July 2000</DATE>
   <SHORT_DESCRIPTION name="nand2mean"> difference of the means of
-  two independent samples  </SHORT_DESCRIPTION>
+  two independent samples</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[dif]=nand2mean(sample1,sample2)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[dif]=nand2mean(sample1,sample2,conf)  </CALLING_SEQUENCE_ITEM>
@@ -15,21 +14,21 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sample</PARAM_NAME>
+        <PARAM_NAME>sample1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sample</PARAM_NAME>
+        <PARAM_NAME>sample2</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>conf  </PARAM_NAME>
+        <PARAM_NAME>conf</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>real scalar between 0 and </SP>
+          <SP>real scalar between 0 and 1</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

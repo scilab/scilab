@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pinv  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="pinv"> pseudoinverse  </SHORT_DESCRIPTION>
+  <TITLE>pinv</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="pinv"> pseudoinverse</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>pinv(A,[tol])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tol  </PARAM_NAME>
+        <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real number</SP>
         </PARAM_DESCRIPTION>
@@ -27,10 +26,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>X = pinv(A)</VERB> produces a matrix <VERB/> of the
+    <P><VERB>X = pinv(A)</VERB> produces a matrix <VERB>X</VERB> of the
     same dimensions as <VERB>A'</VERB> such that:</P>
-    <P><VERB>A*X*A = A, X*A*X = </VERB>  and both
-    <VERB>A*</VERB> and <VERB>X*</VERB> are Hermitian .</P>
+    <P><VERB>A*X*A = A, X*A*X = X</VERB>  and both
+    <VERB>A*X</VERB> and <VERB>X*A</VERB> are Hermitian .</P>
     <P>
     The computation is  based  on SVD and  any  singular values 
     lower than a tolerance are treated   as zero: this  tolerance 

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>paramfplot2d  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="paramfplot2d"> animated 2D plot, curve defined by a function  </SHORT_DESCRIPTION>
+  <TITLE>paramfplot2d</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="paramfplot2d"> animated 2D plot, curve defined by a function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>paramfplot2d(f,x,theta)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>paramfplot2d(f,x,theta,flag)  </CALLING_SEQUENCE_ITEM>
@@ -15,31 +14,31 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>f  </PARAM_NAME>
+        <PARAM_NAME>f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: function <VERB>y=f(x,t)</VERB> . f is a Scilab function or a dynamically linked routine (referred to as a string).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>theta  </PARAM_NAME>
+        <PARAM_NAME>theta</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector (set of parameters).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string <VERB>'no'</VERB> or <VERB>'yes'</VERB>: If &quot;yes&quot; screen is cleared  between two consecutive plots.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>rect  </PARAM_NAME>
+        <PARAM_NAME>rect</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: &quot;rectangle&quot; [xmin, xmax, ymin, ymax] (1 x 4 real vector),</SP>
         </PARAM_DESCRIPTION>

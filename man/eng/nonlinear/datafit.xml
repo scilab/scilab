@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>datafit  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Feb 199</DATE>
-  <SHORT_DESCRIPTION name="datafit"> Parameter identification based on measured data  </SHORT_DESCRIPTION>
+  <TITLE>datafit</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Feb 1999</DATE>
+  <SHORT_DESCRIPTION name="datafit"> Parameter identification based on measured data</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>     [work],[stop],['in'])  </CALLING_SEQUENCE_ITEM>
@@ -14,57 +13,57 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>imp  </PARAM_NAME>
+        <PARAM_NAME>imp</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: scalar argument used to set the trace mode. <VERB>imp=</VERB> nothing (execpt errors) is reported, <VERB>imp=</VERB> initial and final reports, <VERB>imp=</VERB> adds a report per iteration, <VERB>imp&gt;</VERB> add reports on linear search. Warning, most of these reports are written on the Scilab standard output.</SP>
+          <SP>: scalar argument used to set the trace mode. <VERB>imp=0</VERB> nothing (execpt errors) is reported, <VERB>imp=1</VERB> initial and final reports, <VERB>imp=2</VERB> adds a report per iteration, <VERB>imp&gt;2</VERB> add reports on linear search. Warning, most of these reports are written on the Scilab standard output.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>G</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: function descriptor (e=G(p,z), e: ne x 1, p: np x 1, z: nz x 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>D</PARAM_NAME>
+        <PARAM_NAME>DG</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: partial of G wrt p function descriptor (optional; S=DG(p,z), S: ne x np)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>Z</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix [z_1,z_2,...z_n] where z_i (nz x 1) is the ith measurement</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>W</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: weighting matrix of size ne x ne (optional; defaut no ponderation)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>contr  </PARAM_NAME>
+        <PARAM_NAME>contr</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and <VERB>bsup</VERB> real vectors with same dimension as <VERB>p</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower and upper bounds on <VERB>p</VERB>.</SP>
+          <SP>: <VERB>'b',binf,bsup</VERB>  with <VERB>binf</VERB> and <VERB>bsup</VERB> real vectors with same dimension as <VERB>p0</VERB>. <VERB>binf</VERB> and <VERB>bsup</VERB> are lower and upper bounds on <VERB>p</VERB>.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p</PARAM_NAME>
+        <PARAM_NAME>p0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: initial guess (size np x 1)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>algo  </PARAM_NAME>
+        <PARAM_NAME>algo</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>'qn'</VERB> or <VERB>'gc'</VERB> or <VERB>'nd'</VERB> . This string stands for quasi-Newton (default),  conjugate gradient or non-differentiable respectively.  Note that <VERB>'nd'</VERB> does not accept bounds on <VERB>x</VERB> ).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>df</PARAM_NAME>
+        <PARAM_NAME>df0</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first iteration. (<VERB>df0=</VERB> is the default value).</SP>
+          <SP>: real scalar. Guessed decreasing of <VERB>f</VERB> at first iteration. (<VERB>df0=1</VERB> is the default value).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -74,7 +73,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>stop  </PARAM_NAME>
+        <PARAM_NAME>stop</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  sequence of optional parameters controlling the  convergence of the algorithm. <VERB> stop=  'ar',nap, [iter [,epsg [,epsf [,epsx]]]]</VERB></SP>
           <PARAM_INDENT>
@@ -85,33 +84,33 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>nap  </PARAM_NAME>
+              <PARAM_NAME>nap</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of calls to <VERB>fun</VERB> allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>iter  </PARAM_NAME>
+              <PARAM_NAME>iter</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: maximum number of iterations allowed.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsg  </PARAM_NAME>
+              <PARAM_NAME>epsg</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold on gradient norm.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsf  </PARAM_NAME>
+              <PARAM_NAME>epsf</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: threshold controlling decreasing of <VERB>f</VERB></SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>epsx  </PARAM_NAME>
+              <PARAM_NAME>epsx</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) of same size as <VERB>x</VERB> can be used to scale <VERB>x</VERB>.</SP>
+                <SP>: threshold controlling variation of <VERB>x</VERB>. This vector (possibly matrix) of same size as <VERB>x0</VERB> can be used to scale <VERB>x</VERB>.</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
           </PARAM_INDENT>
@@ -124,13 +123,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p  </PARAM_NAME>
+        <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Column vector, optimal solution found</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>err  </PARAM_NAME>
+        <PARAM_NAME>err</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: scalar, least square error.</SP>
         </PARAM_DESCRIPTION>
@@ -140,7 +139,7 @@
   <DESCRIPTION>
     <P><VERB>datafit</VERB> is used for fitting data to a model.
     For a given function <VERB>G(p,z)</VERB>, this function finds the best vector 
-    of parameters <VERB>p</VERB> for approximating <VERB>G(p,z_i)=</VERB> for a set of measurement
+    of parameters <VERB>p</VERB> for approximating <VERB>G(p,z_i)=0</VERB> for a set of measurement
     vectors <VERB>z_i</VERB>. Vector <VERB>p</VERB> is found by minimizing
     <VERB>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</VERB></P>
     <P><VERB>datafit</VERB> is an improved version of <VERB>fit_dat</VERB>.</P>

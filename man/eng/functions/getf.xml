@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="getf"> defining a function from a file  </SHORT_DESCRIPTION>
+  <TITLE>getf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="getf"> defining a function from a file</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>getf(file-name [,opt])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>filename  </PARAM_NAME>
+        <PARAM_NAME>filename</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scilab string.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>opt  </PARAM_NAME>
+        <PARAM_NAME>opt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional character string</SP>
           <PARAM_INDENT>
@@ -72,7 +71,7 @@ function [y1,...,yn]=foo(x1,...,xm)
     Many functions may be written in the same file. A function is
     terminated by an <VERB>endfunction</VERB> keyword. For compatibility with
     previous versions a function may also be terminated by  the following
-    <VERB>function</VERB> keyword or the <VERB>EO</VERB> mark.</P>
+    <VERB>function</VERB> keyword or the <VERB>EOF</VERB> mark.</P>
     <P><VERB>getf</VERB> is an old way for loading functions into scilab from a file, If functions in a file are terminated by an <VERB>endfunction</VERB> keyword, the file maybe loaded using the <VERB>exec</VERB> function instead of <VERB>getf</VERB>. In this case default option <VERB>opt</VERB> is used.</P>
   </DESCRIPTION>
   <EXAMPLE>

@@ -1,13 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>vectorfind</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>24-Jun-200</DATE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>24-Jun-2003</DATE>
   <SHORT_DESCRIPTION name="vectorfind">finds in a matrix rows or columns
-  matching a vector </SHORT_DESCRIPTION>
+  matching a vector</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ind = vectorfind(m,v,job)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -57,10 +56,10 @@
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK> find </LINK>
+      <LINK> find</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK> gsort </LINK>
+      <LINK> gsort</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>

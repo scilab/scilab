@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>findA</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="findAC"> discrete-time system subspace identification  </SHORT_DESCRIPTION>
+  <TITLE>findAC</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1999</DATE>
+  <SHORT_DESCRIPTION name="findAC"> discrete-time system subspace identification</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)   </CALLING_SEQUENCE_ITEM>
@@ -14,42 +13,42 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, the number of block rows in the block-Hankel matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>N</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>L</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>MET</PARAM_NAME>
+        <PARAM_NAME>METH</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, an option for the method to use</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  MOESP method with past inputs and outputs;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:  N4SID method;</SP>
               </PARAM_DESCRIPTION>
@@ -61,24 +60,24 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>TO</PARAM_NAME>
+        <PARAM_NAME>TOL</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>PRINT</PARAM_NAME>
+        <PARAM_NAME>PRINTW</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, switch for printing the warning messages.</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>PRINT</PARAM_NAME>
+              <PARAM_NAME>PRINTW</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= 1: print warning messages;</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>= </PARAM_NAME>
+              <PARAM_NAME>= 0</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: do not print warning messages.</SP>
               </PARAM_DESCRIPTION>
@@ -90,19 +89,19 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix, state system matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>C</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix, output system matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>RCN</PARAM_NAME>
+        <PARAM_NAME>RCND</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of length 4,  condition numbers of the matrices involved in rank decision</SP>
         </PARAM_DESCRIPTION>
@@ -153,16 +152,16 @@ METH=3;TOL=-1;
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>findABC</LINK>
-    </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>findB</LINK>
+      <LINK>findABCD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>findBD</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>find</LINK>
+      <LINK>findBDK</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>findR</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>sorder</LINK>

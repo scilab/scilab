@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rref  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="rref"> computes  matrix row echelon form by lu transformations  </SHORT_DESCRIPTION>
+  <TITLE>rref</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rref"> computes  matrix row echelon form by lu transformations</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>R=rref(A)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  m x n matrix with scalar entries</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>R</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  m x n matrix,row echelon form of a</SP>
         </PARAM_DESCRIPTION>
@@ -29,8 +28,8 @@
   <DESCRIPTION>
     <P><VERB>rref</VERB> computes the row echelon form of the given matrix by left lu
     decomposition. If ones need the transformation used just call
-    <VERB>X=rref([A,eye(m,m)])</VERB> the row echelon form <VERB/> is <VERB>X(:,1:n)</VERB> and
-    the left transformation <VERB/> is given by <VERB>X(:,n+1:n+m)</VERB> such as <VERB>L*A=</VERB></P>
+    <VERB>X=rref([A,eye(m,m)])</VERB> the row echelon form <VERB>R</VERB> is <VERB>X(:,1:n)</VERB> and
+    the left transformation <VERB>L</VERB> is given by <VERB>X(:,n+1:n+m)</VERB> such as <VERB>L*A=R</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

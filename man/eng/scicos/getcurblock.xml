@@ -1,16 +1,15 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>getcurblock  </TITLE>
-  <TYPE>Scicos function  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="getcurblock"> get Scicos current block number while running  </SHORT_DESCRIPTION>
+  <TITLE>getcurblock</TITLE>
+  <TYPE>Scicos function</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="getcurblock"> get Scicos current block number while running</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>blk  </PARAM_NAME>
+        <PARAM_NAME>blk</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the index of the Scicos block which has called <VERB>getcurblock</VERB></SP>
         </PARAM_DESCRIPTION>

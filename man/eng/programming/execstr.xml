@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>execstr  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="execstr"> execute Scilab code in strings  </SHORT_DESCRIPTION>
+  <TITLE>execstr</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="execstr"> execute Scilab code in strings</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>execstr(instr)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>ierr=execstr(instr,'errcatch' [,msg])  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>instr  </PARAM_NAME>
+        <PARAM_NAME>instr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of character strings, Scilab instruction to be executed.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ierr  </PARAM_NAME>
+        <PARAM_NAME>ierr</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, 0 or error number.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>msg  </PARAM_NAME>
+        <PARAM_NAME>msg</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string with values <VERB>'m'</VERB> or <VERB>'n'</VERB>.  Default value is <VERB>'n'</VERB>.</SP>
         </PARAM_DESCRIPTION>

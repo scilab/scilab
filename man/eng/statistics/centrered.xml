@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>wcenter  </TITLE>
+  <TITLE>wcenter</TITLE>
   <TYPE>  </TYPE>
-  <DATE>March 200</DATE>
-  <SHORT_DESCRIPTION name="wcenter">  center and weight  </SHORT_DESCRIPTION>
+  <DATE>March 2001</DATE>
+  <SHORT_DESCRIPTION name="wcenter">  center and weight</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>s=wcenter(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>s=wcenter(x,'r') or s=wcenter(x,1)  </CALLING_SEQUENCE_ITEM>
@@ -36,14 +35,14 @@
     s=wcenter(x,1)</VERB>)  is the  rowwise centre  reduction of
     the  values  of <VERB>x</VERB>.   It  returns  in  the entry  <VERB>
     s(i,j)</VERB> the value <VERB>(x(i,j)-xbarv(j))/sigmav(j)</VERB> with
-    <VERB>xbarv(j)</VERB>  the mean  of the  values of  the  <VERB>j </VERB>
+    <VERB>xbarv(j)</VERB>  the mean  of the  values of  the  <VERB>j</VERB>
     column and  <VERB>sigmav(j)</VERB> the standard  deviation of the
     <VERB>j</VERB> column of <VERB>x</VERB>.</P>
     <P><VERB>s=wcenter(x,'c')</VERB>     (or,     equivalently,    <VERB>
     s=wcenter(x,2)</VERB>) is the columnwise centre reduction of
     the  values  of <VERB>x</VERB>.   It  returns  in  the entry  <VERB>
     s(i,j)</VERB> the value <VERB>(x(i,j)-xbarh(i))/sigmah(i)</VERB> with
-    <VERB>xbarh(i)</VERB> the mean of the  values of the <VERB>i </VERB> row
+    <VERB>xbarh(i)</VERB> the mean of the  values of the <VERB>i</VERB> row
     and <VERB>sigmah(i)</VERB> the  standard deviation of the <VERB>i</VERB>
     row of <VERB>x</VERB>.</P>
   </DESCRIPTION>

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>subgraph  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="subgraph"> subgraph of a graph   </SHORT_DESCRIPTION>
+  <TITLE>subgraph</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="subgraph"> subgraph of a graph</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g1 = subgraph(v,ind,g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector, numbers of nodes or edges</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, 'nodes' or 'edges'</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g</PARAM_NAME>
+        <PARAM_NAME>g1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list of the new graph</SP>
         </PARAM_DESCRIPTION>
@@ -39,11 +38,11 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>subgraph</VERB> returns the graph <VERB>g</VERB>, built with the numbers given by the
+    <P><VERB>subgraph</VERB> returns the graph <VERB>g1</VERB>, built with the numbers given by the
     the row vector <VERB>v</VERB>. 
-    If <VERB>ind</VERB> is the string <VERB>'nodes'</VERB>, <VERB>g</VERB> is built with the node 
+    If <VERB>ind</VERB> is the string <VERB>'nodes'</VERB>, <VERB>g1</VERB> is built with the node 
     numbers given by <VERB>v</VERB> and the connected edges of these nodes in <VERB>g</VERB>. 
-    If <VERB>ind</VERB> is the string <VERB>'edges'</VERB>, <VERB>g</VERB> is built with the edge 
+    If <VERB>ind</VERB> is the string <VERB>'edges'</VERB>, <VERB>g1</VERB> is built with the edge 
     numbers given by <VERB>v</VERB> and the tail-head nodes of these edges in <VERB>g</VERB>.</P>
     <P>
     All the characteristics of the old nodes and edges of <VERB>g</VERB> are preserved.</P>

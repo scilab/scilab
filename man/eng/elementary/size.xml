@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>size  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="size"> size of objects  </SHORT_DESCRIPTION>
+  <TITLE>size</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="size"> size of objects</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>y=size(x [,sel])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[nr,nc]=size(x)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix (including transfer matrix) or list or linear system (<VERB>syslin</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: <VERB> 1x</VERB> integer vector or integer number</SP>
+          <SP>: <VERB> 1x2</VERB> integer vector or integer number</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sel  </PARAM_NAME>
+        <PARAM_NAME>sel</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a scalar or a character string</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nr,nc  </PARAM_NAME>
+        <PARAM_NAME>nr,nc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two integers</SP>
         </PARAM_DESCRIPTION>
@@ -44,7 +43,7 @@
       <DESCRIPTION_ITEM label="Applied to :">
         <SP>a matrix (constant, polynomial, string, boolean, rational)
     <VERB>x</VERB>, with only one lhs argument <VERB>size</VERB>
-    returns a <VERB/>x<VERB/> vector [number of rows,
+    returns a <VERB>1</VERB>x<VERB>2</VERB> vector [number of rows,
     number of columns].  Called with LHS=2, returns <VERB>nr,nc</VERB>
     = [number of rows, number of columns].  <VERB>sel</VERB> may be
     used to specify what dimension to get:</SP>
@@ -70,7 +69,7 @@
      <VERB>(nr,nc)=(y(1),y(2)</VERB>).  If <VERB>x</VERB> is a linear
      system in state-space form, then <VERB> [nr,nc,nx]=size(x)
      </VERB> returns in addition the dimension <VERB>nx</VERB> of the
-     <VERB/> matrix of <VERB>x</VERB>.</P>
+     <VERB>A</VERB> matrix of <VERB>x</VERB>.</P>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM>
         <P>label='Applied to:'&gt; 

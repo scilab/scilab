@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>canon  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="canon"> canonical controllable form  </SHORT_DESCRIPTION>
+  <TITLE>canon</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="canon"> canonical controllable form</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Ac,Bc,U,ind]=canon(A,B)    </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Ac,Bc  </PARAM_NAME>
+        <PARAM_NAME>Ac,Bc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: canonical form</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: current basis (square nonsingular matrix)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of integers, controllability indices</SP>
         </PARAM_DESCRIPTION>
@@ -36,7 +35,7 @@
     <P>
     gives the canonical controllable form of the pair <VERB>(A,B)</VERB>.</P>
     <P>
-      <VERB>Ac=inv(U)*A*U, Bc=inv(U)*</VERB>
+      <VERB>Ac=inv(U)*A*U, Bc=inv(U)*B</VERB>
     </P>
     <P>
     The vector <VERB>ind</VERB> is made of the <VERB>epsilon_i</VERB>'s indices
@@ -53,7 +52,7 @@ Ac=   [0,1,0,0,0]        Bc=[0]
     </VERBATIM>
     <P>
     If <VERB>(A,B)</VERB> is controllable, by an appropriate choice 
-    of <VERB/> the <VERB>*</VERB> entries of <VERB>Ac+Bc*</VERB> 
+    of <VERB>F</VERB> the <VERB>*</VERB> entries of <VERB>Ac+Bc*F</VERB> 
     can be arbitrarily set to desired values (pole placement).</P>
   </DESCRIPTION>
   <EXAMPLE>

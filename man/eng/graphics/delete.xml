@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>delete  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 200</DATE>
+  <TITLE>delete</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 2002</DATE>
   <SHORT_DESCRIPTION name="delete"> 
    delete  a graphic entity and its children.
   </SHORT_DESCRIPTION>
@@ -18,7 +17,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a handle, the handle of the entity  to delete. <VERB>h</VERB> can be a vector of
      handles, in which case all objects identified by h(i) will be deleted.</SP>
@@ -79,5 +78,5 @@
       <LINK>graphics_entities</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Djalel ABDEMOUCH</AUTHOR>
+  <AUTHOR> Djalel ABDEMOUCHE</AUTHOR>
 </MAN>

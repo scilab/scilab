@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>chol  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="chol"> Cholesky factorization  </SHORT_DESCRIPTION>
+  <TITLE>chol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chol"> Cholesky factorization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[R]=chol(X)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a symmetric positive definite real or complex matrix.</SP>
         </PARAM_DESCRIPTION>
@@ -22,9 +21,9 @@
   </PARAM>
   <DESCRIPTION>
     <P>
-    If <VERB/> is positive definite, then <VERB>R = chol(X)</VERB> produces an upper 
-    triangular matrix <VERB/> such that <VERB>R'*R = </VERB>.</P>
-    <P><VERB>chol(X)</VERB> uses only the diagonal and upper triangle of <VERB/>.
+    If <VERB>X</VERB> is positive definite, then <VERB>R = chol(X)</VERB> produces an upper 
+    triangular matrix <VERB>R</VERB> such that <VERB>R'*R = X</VERB>.</P>
+    <P><VERB>chol(X)</VERB> uses only the diagonal and upper triangle of <VERB>X</VERB>.
     The lower triangular is assumed to be the (complex conjugate) 
     transpose of the upper.</P>
   </DESCRIPTION>

@@ -1,43 +1,42 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>remezb  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="remezb"> Minimax approximation of magnitude response  </SHORT_DESCRIPTION>
+  <TITLE>remezb</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="remezb"> Minimax approximation of magnitude response</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[an]=remezb(nc,fg,ds,wt)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nc  </PARAM_NAME>
+        <PARAM_NAME>nc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Number of cosine functions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fg  </PARAM_NAME>
+        <PARAM_NAME>fg</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Grid of frequency points in [0,.5)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ds  </PARAM_NAME>
+        <PARAM_NAME>ds</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Desired magnitude on grid <VERB>fg</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>wt  </PARAM_NAME>
+        <PARAM_NAME>wt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Weighting function on error on grid <VERB>fg</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>an  </PARAM_NAME>
+        <PARAM_NAME>an</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Cosine filter coefficients</SP>
         </PARAM_DESCRIPTION>

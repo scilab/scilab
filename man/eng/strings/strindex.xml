@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>strindex  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>strindex</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="strindex"> search position of a character string in an other string.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>ind=strindex(str1,str2)  </CALLING_SEQUENCE_ITEM>
@@ -13,19 +12,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_NAME>str1</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a character string. The string where to search occurrences of <VERB>str</VERB></SP>
+          <SP>: a character string. The string where to search occurrences of <VERB>str2</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>str</PARAM_NAME>
+        <PARAM_NAME>str2</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a character string or character string vector . The string(s) to search in <VERB>str</VERB></SP>
+          <SP>: a character string or character string vector . The string(s) to search in <VERB>str1</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ind  </PARAM_NAME>
+        <PARAM_NAME>ind</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of indexes</SP>
         </PARAM_DESCRIPTION>
@@ -33,14 +32,14 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>strindex </VERB> searches indexes where <VERB>str2(i)</VERB> is found in
-    <VERB>str</VERB></P>
+    <P><VERB>strindex</VERB> searches indexes where <VERB>str2(i)</VERB> is found in
+    <VERB>str1</VERB></P>
     <P>
     for each <VERB>k</VERB> it exist a <VERB>i</VERB><VERB> shuch that
     part(str1,ind(k)+(0:length(str2(i))-1))</VERB> is the same string than
     <VERB>str2(i)</VERB></P>
     <P>
-    When str2 is a vector and str</P>
+    When str2 is a vector and str2</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>CLSS_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="CLSS_f"> Scicos continuous-time linear state-space system  </SHORT_DESCRIPTION>
+  <TITLE>CLSS_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1996</DATE>
+  <SHORT_DESCRIPTION name="CLSS_f"> Scicos continuous-time linear state-space system</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block realizes a continuous-time linear state-space system.
@@ -28,13 +27,13 @@ y   =C*x+D*u
         <SP>: square matrix. The A matrix</SP>
       </ITEM>
       <ITEM label="B">
-        <SP>: the <VERB/> matrix, <VERB>[]</VERB> if system has no input</SP>
+        <SP>: the <VERB>B</VERB> matrix, <VERB>[]</VERB> if system has no input</SP>
       </ITEM>
       <ITEM label="C">
-        <SP>: the <VERB/> matrix , <VERB>[]</VERB> if system has no output</SP>
+        <SP>: the <VERB>C</VERB> matrix , <VERB>[]</VERB> if system has no output</SP>
       </ITEM>
       <ITEM label="D">
-        <SP>: the <VERB/> matrix, <VERB>[]</VERB> if system has no <VERB/> term.</SP>
+        <SP>: the <VERB>D</VERB> matrix, <VERB>[]</VERB> if system has no <VERB>D</VERB> term.</SP>
       </ITEM>
       <ITEM label="x0">
         <SP>vector. The initial state of the system.</SP>

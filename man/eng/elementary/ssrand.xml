@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ssrand  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ssrand"> random system generator  </SHORT_DESCRIPTION>
+  <TITLE>ssrand</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ssrand"> random system generator</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sl=ssrand(nout,nin,nstate)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[sl,U]=ssrand(nout,nin,nstate,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,37 +13,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>nout  </PARAM_NAME>
+        <PARAM_NAME>nout</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of output)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nin  </PARAM_NAME>
+        <PARAM_NAME>nin</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (number of input)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nstate  </PARAM_NAME>
+        <PARAM_NAME>nstate</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (dimension of state-space)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list made of one character string and one or several integers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>U</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>square <VERB>(nstate x nstate)</VERB> nonsingular matrix</SP>
         </PARAM_DESCRIPTION>
@@ -53,7 +52,7 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>sl=ssrand(nout,nin,nstate)</VERB> returns a random strictly proper 
-    (<VERB>D=</VERB>) state-space system of size <VERB>[nout,nint]</VERB> represented 
+    (<VERB>D=0</VERB>) state-space system of size <VERB>[nout,nint]</VERB> represented 
     by a <VERB>syslin</VERB> list and with <VERB>nstate</VERB> state variables.</P>
     <P><VERB>[sl,U]=ssrand(nout,nin,nstate,flag)</VERB> returns a test linear system
     with given properties specified by <VERB>flag</VERB>.

@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>max_cap_path  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="max_cap_path"> maximum capacity path  </SHORT_DESCRIPTION>
+  <TITLE>max_cap_path</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>September 1995</DATE>
+  <SHORT_DESCRIPTION name="max_cap_path"> maximum capacity path</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[p,cap] = max_cap_path(i,j,g)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>i,j  </PARAM_NAME>
+        <PARAM_NAME>i,j</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integers, node numbers</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: graph list</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>p  </PARAM_NAME>
+        <PARAM_NAME>p</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row vector of integer numbers of the arcs of the path if it exists</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>cap  </PARAM_NAME>
+        <PARAM_NAME>cap</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: value of the capacity of the path</SP>
         </PARAM_DESCRIPTION>

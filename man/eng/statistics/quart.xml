@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>quart  </TITLE>
+  <TITLE>quart</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
+  <DATE>July 2000</DATE>
   <SHORT_DESCRIPTION name="quart"> computation of quartiles
   </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
@@ -16,7 +15,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
@@ -58,7 +57,7 @@ q=quart(x,'c')
 
  ]]>
   </EXAMPLE>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>
     <P>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>

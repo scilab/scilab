@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>kpure  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="kpure"> continuous SISO system limit feedback gain  </SHORT_DESCRIPTION>
+  <TITLE>kpure</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="kpure"> continuous SISO system limit feedback gain</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>g=kpure(sys)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sys  </PARAM_NAME>
+        <PARAM_NAME>sys</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: SISO linear system (syslin)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>g  </PARAM_NAME>
+        <PARAM_NAME>g</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: constant</SP>
         </PARAM_DESCRIPTION>
@@ -45,7 +44,7 @@ roots(denom(hf))
       <LINK>evans</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK>krac</LINK>
+      <LINK>krac2</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

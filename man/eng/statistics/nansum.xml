@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>nansum  </TITLE>
+  <TITLE>nansum</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="nansum"> sum  ignoring Nan's </SHORT_DESCRIPTION>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="nansum"> sum  ignoring Nan's</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>s=nansum(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>s=nansum(x,'r') (or s=nansum(x,1))  </CALLING_SEQUENCE_ITEM>
@@ -15,7 +14,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector or matrix</SP>
         </PARAM_DESCRIPTION>
@@ -51,7 +50,7 @@ m=nansum(x,1)
 m=nansum(x,2)
  ]]>
   </EXAMPLE>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
   <BIBLIO>
     <P>
     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</P>

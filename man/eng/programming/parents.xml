@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>parents  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="parents">  ( ) left and right parenthesis  </SHORT_DESCRIPTION>
+  <TITLE>parents</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="parents">  ( ) left and right parenthesis</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>(expression)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[...]=func(e1,e2,...)  </CALLING_SEQUENCE_ITEM>
@@ -18,25 +17,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: matrix of any  possible type</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>v  </PARAM_NAME>
+        <PARAM_NAME>v</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: row or column vector of any  possible type</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>l  </PARAM_NAME>
+        <PARAM_NAME>l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list variable</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>func  </PARAM_NAME>
+        <PARAM_NAME>func</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: any function name</SP>
         </PARAM_DESCRIPTION>

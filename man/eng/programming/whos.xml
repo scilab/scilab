@@ -1,27 +1,26 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>whos  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Jan 199</DATE>
-  <SHORT_DESCRIPTION name="whos"> listing of variables in long form  </SHORT_DESCRIPTION>
+  <TITLE>whos</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Jan 1997</DATE>
+  <SHORT_DESCRIPTION name="whos"> listing of variables in long form</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>whos()  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>whos -type typ  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>whos -name nam  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>whos -type typ</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>whos -name nam</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>typ  </PARAM_NAME>
+        <PARAM_NAME>typ</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: name of selected variable type (see typeof)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>nam  </PARAM_NAME>
+        <PARAM_NAME>nam</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: first characters of selected names</SP>
         </PARAM_DESCRIPTION>
@@ -30,8 +29,8 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>whos()</VERB> displays all current variable names, types and memory used</P>
-    <P><VERB>whos -type typ </VERB> displays all current variables with specified type</P>
-    <P><VERB>whos -name nam </VERB> displays all current variables whose names begin with <VERB>nam</VERB></P>
+    <P><VERB>whos -type typ</VERB> displays all current variables with specified type</P>
+    <P><VERB>whos -name nam</VERB> displays all current variables whose names begin with <VERB>nam</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>graph-list  </TITLE>
-  <TYPE>Scilab type  </TYPE>
-  <DATE>September 199</DATE>
-  <SHORT_DESCRIPTION name="graph-list"> description of graph list  </SHORT_DESCRIPTION>
+  <TITLE>graph-list</TITLE>
+  <TYPE>Scilab type</TYPE>
+  <DATE>September 1996</DATE>
+  <SHORT_DESCRIPTION name="graph-list"> description of graph list</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     A graph in Scilab is represented by a Scilab typed list. 
@@ -225,7 +224,7 @@ g.name='toto';
         <SP>- row vector of the size of the font used to draw the name of the node</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>you can choose 8, 10, 12, 14, 18 or 2</SP>
+        <SP>you can choose 8, 10, 12, 14, 18 or 24</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
         <SP>default is the value of element <VERB>default_font_size</VERB></SP>
@@ -234,7 +233,7 @@ g.name='toto';
         <SP>- row vector of the node demands</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_name:">
         <SP>- row vector of the edge names</SP>
@@ -270,7 +269,7 @@ g.name='toto';
         <SP>- row vector of the size of the fonts used to draw the name of the edge</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>you can choose 8, 10, 12, 14, 18 or 2</SP>
+        <SP>you can choose 8, 10, 12, 14, 18 or 24</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
         <SP>default is the value of element <VERB>default_font_size</VERB></SP>
@@ -279,43 +278,43 @@ g.name='toto';
         <SP>- row vector of the edge lengths</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_cost:">
         <SP>- row vector of the edge costs</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_min_cap:">
         <SP>- row vector of the edge minimum capacities</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_max_cap:">
         <SP>- row vector of the edge maximum capacities</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_q_weight:">
         <SP>- row vector of the edge quadratic weights</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_q_orig:">
         <SP>- row vector of the edge quadratic origins</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="edge_weight:">
         <SP>- row vector of the edge weights</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is </SP>
+        <SP>default is 0</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="default_node_diam:">
         <SP>- default size of the node diameters of the graph</SP>
@@ -345,7 +344,7 @@ g.name='toto';
         <SP>- default size of the font used to draw the names of nodes and edges</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="-">
-        <SP>default is 1</SP>
+        <SP>default is 12</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="node_label:">
         <SP>- row vector of node labels</SP>

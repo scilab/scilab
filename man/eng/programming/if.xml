@@ -1,18 +1,17 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>if</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="if"> conditional execution  </SHORT_DESCRIPTION>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="if"> conditional execution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>if expr1 then statements  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>elseif expri then statements  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>if expr1 then statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>elseif expri then statements</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>  ....  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>else  statements  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>end  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>else  statements</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>end</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <P>

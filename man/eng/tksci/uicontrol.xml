@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>uicontrol  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 04 June 199</DATE>
-  <SHORT_DESCRIPTION name="uicontrol"> create a Graphic User Interface object  </SHORT_DESCRIPTION>
+  <TITLE>uicontrol</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 04 June 1998</DATE>
+  <SHORT_DESCRIPTION name="uicontrol"> create a Graphic User Interface object</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>h=uicontrol([prop1,val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>h=uicontrol(f,[prop1, val1] [,prop2, val2] ...)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>f : integer handle of the figure which will contain the control</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>prop{1, 2 ...} : character string name of a property to set</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>val{1, 2 ...} : scilab object value to give to the corresponding property</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>h : handle of the created object</SP>
         </PARAM_DESCRIPTION>
@@ -213,5 +212,5 @@ close();
       <LINK>uimenu</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

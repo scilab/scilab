@@ -1,34 +1,33 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>uimenu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE> 05 June 199</DATE>
-  <SHORT_DESCRIPTION name="uimenu"> Create a menu or a submenu in a figure  </SHORT_DESCRIPTION>
+  <TITLE>uimenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE> 05 June 1998</DATE>
+  <SHORT_DESCRIPTION name="uimenu"> Create a menu or a submenu in a figure</SHORT_DESCRIPTION>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>parent : integer Handle of menu's parent</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>propi : string character name of a property to set up</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>vali : scilab object value to affect to the corresponding property</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>o  </PARAM_NAME>
+        <PARAM_NAME>o</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>h : integer handle of the corresponding menu</SP>
         </PARAM_DESCRIPTION>
@@ -75,5 +74,5 @@ close(f);
       <LINK>get</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Bertrand Guiheneuf  </AUTHOR>
+  <AUTHOR>Bertrand Guiheneuf</AUTHOR>
 </MAN>

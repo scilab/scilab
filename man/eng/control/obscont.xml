@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>obscont  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="obscont"> observer based controller  </SHORT_DESCRIPTION>
+  <TITLE>obscont</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="obscont"> observer based controller</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[K]=obscont(P,Kc,Kf)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[J,r]=obscont(P,Kc,Kf)  </CALLING_SEQUENCE_ITEM>
@@ -14,37 +13,37 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>P</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (nominal plant) in state-space form, continuous  or discrete time</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Kc  </PARAM_NAME>
+        <PARAM_NAME>Kc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix, (full state) controller gain</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Kf  </PARAM_NAME>
+        <PARAM_NAME>Kf</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrix, filter gain</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>K</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (controller)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>J</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list (extended controller)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r  </PARAM_NAME>
+        <PARAM_NAME>r</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: 1x2 row vector</SP>
         </PARAM_DESCRIPTION>
@@ -53,36 +52,36 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>obscont</VERB>  returns the observer-based controller associated with a 
-    nominal plant <VERB/> with matrices <VERB>[A,B,C,D]</VERB> (<VERB>syslin</VERB> list).</P>
+    nominal plant <VERB>P</VERB> with matrices <VERB>[A,B,C,D]</VERB> (<VERB>syslin</VERB> list).</P>
     <P>
     The full-state control gain is <VERB>Kc</VERB> and the filter gain is <VERB>Kf</VERB>.
     These gains can be computed, for example, by pole placement.</P>
-    <P><VERB>A+B*Kc</VERB> and <VERB>A+Kf*</VERB> are (usually) assumed stable.</P>
-    <P><VERB/> is a state-space representation of the 
-    compensator <VERB> K: y-&gt;u </VERB> in:</P>
+    <P><VERB>A+B*Kc</VERB> and <VERB>A+Kf*C</VERB> are (usually) assumed stable.</P>
+    <P><VERB>K</VERB> is a state-space representation of the 
+    compensator <VERB> K: y-&gt;u</VERB> in:</P>
     <P>
       <VERB> xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z</VERB>
     </P>
-    <P><VERB/> is a linear system (<VERB>syslin</VERB> list) with matrices given by:
+    <P><VERB>K</VERB> is a linear system (<VERB>syslin</VERB> list) with matrices given by:
      <VERB>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</VERB>.</P>
     <P>
-    The closed loop feedback system <VERB> Cl: v -&gt;y </VERB> with
-    (negative) feedback <VERB/> (i.e. <VERB>y = P u, u = v - K y</VERB>, or <VERB>xdot
+    The closed loop feedback system <VERB> Cl: v -&gt;y</VERB> with
+    (negative) feedback <VERB>K</VERB> (i.e. <VERB>y = P u, u = v - K y</VERB>, or <VERB>xdot
     = A x + B u, y = C x + D u, zdot = (A + Kf C) z - Kf y + B u, u = v -F z</VERB>)
     is given by <VERB>Cl = P/.(-K)</VERB></P>
     <P>
     The poles of <VERB>Cl</VERB> (<VERB> spec(cl('A')) </VERB>) are located at the eigenvalues of <VERB>A+B*Kc</VERB>
-    and <VERB>A+Kf*</VERB>.</P>
+    and <VERB>A+Kf*C</VERB>.</P>
     <P>
     Invoked with two output arguments <VERB>obscont</VERB> returns a
-    (square) linear system <VERB/> which parametrizes all the stabilizing
+    (square) linear system <VERB>K</VERB> which parametrizes all the stabilizing
     feedbacks via a LFT.</P>
     <P>
-    Let <VERB/> an arbitrary stable linear system of dimension <VERB>r(2)</VERB>x<VERB>r(1)</VERB>
-    i.e. number of inputs x number of outputs in <VERB/>.
-    Then any stabilizing controller <VERB/> for <VERB/> can be expressed as
-    <VERB>K=lft(J,r,Q)</VERB>. The controller which corresponds to <VERB>Q=</VERB> is
-    <VERB>K=J(1:nu,1:ny)</VERB> (this <VERB/> is returned by <VERB>K=obscont(P,Kc,Kf)</VERB>).
+    Let <VERB>Q</VERB> an arbitrary stable linear system of dimension <VERB>r(2)</VERB>x<VERB>r(1)</VERB>
+    i.e. number of inputs x number of outputs in <VERB>P</VERB>.
+    Then any stabilizing controller <VERB>K</VERB> for <VERB>P</VERB> can be expressed as
+    <VERB>K=lft(J,r,Q)</VERB>. The controller which corresponds to <VERB>Q=0</VERB> is
+    <VERB>K=J(1:nu,1:ny)</VERB> (this <VERB>K</VERB> is returned by <VERB>K=obscont(P,Kc,Kf)</VERB>).
     <VERB>r</VERB> is <VERB>size(P)</VERB> i.e the vector [number of outputs, number of inputs];</P>
   </DESCRIPTION>
   <EXAMPLE>

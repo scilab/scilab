@@ -1,76 +1,75 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>drawaxis  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 200</DATE>
-  <SHORT_DESCRIPTION name="drawaxis"> draw an axis   </SHORT_DESCRIPTION>
+  <TITLE>drawaxis</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 2000</DATE>
+  <SHORT_DESCRIPTION name="drawaxis"> draw an axis</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>drawaxis([options])   </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>dir=string  </PARAM_NAME>
+        <PARAM_NAME>dir=string</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: used to specify the tics direction. <VERB>string</VERB> can be chosen among   'u','r','d','l' and 'l' is the default value. the values 'u','r','d','l' stands respectively for up, right, down, left</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tics=string  </PARAM_NAME>
+        <PARAM_NAME>tics=string</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: A flag which describes how the tics are given.   <VERB>string</VERB> can be chosen among 'v','r', and 'i', and, 'v' is the default value</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y  </PARAM_NAME>
+        <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: two vectors which give tics positions.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>val= string matrix  </PARAM_NAME>
+        <PARAM_NAME>val= string matrix</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: A string matrix, which, when given, gives the string to be drawn along the axis at tics positions.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>fontsize=int  </PARAM_NAME>
+        <PARAM_NAME>fontsize=int</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: specifies the fontsize to use for displaying values along the axis. Default value is <VERB>-</VERB> which stands for current fontsize</SP>
+          <SP>: specifies the fontsize to use for displaying values along the axis. Default value is <VERB>-1</VERB> which stands for current fontsize</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>format_n=string  </PARAM_NAME>
+        <PARAM_NAME>format_n=string</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: format to use for displaying numbers along the axis</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>seg= 1 or </PARAM_NAME>
+        <PARAM_NAME>seg= 1 or 0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: A flag which controls the display of the base segment of the axis (default value is 1).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sub_int=integer  </PARAM_NAME>
+        <PARAM_NAME>sub_int=integer</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: an integer which gives the number of sub-intervals to draw  between large tics.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>textcolor=integer  </PARAM_NAME>
+        <PARAM_NAME>textcolor=integer</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: specify the color to use for displaying values along the axis. Default value is <VERB>-</VERB> which stands for current color.</SP>
+          <SP>: specify the color to use for displaying values along the axis. Default value is <VERB>-1</VERB> which stands for current color.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ticscolor=integer  </PARAM_NAME>
+        <PARAM_NAME>ticscolor=integer</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: specify the color to use for tics drawing. Default value is <VERB>-</VERB> which stands for current color.</SP>
+          <SP>: specify the color to use for tics drawing. Default value is <VERB>-1</VERB> which stands for current color.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

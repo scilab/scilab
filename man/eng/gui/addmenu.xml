@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>addmenu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>December 199</DATE>
-  <SHORT_DESCRIPTION name="addmenu"> interactive button or menu definition  </SHORT_DESCRIPTION>
+  <TITLE>addmenu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>December 1995</DATE>
+  <SHORT_DESCRIPTION name="addmenu"> interactive button or menu definition</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>addmenu(button [,submenus] [,action])   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>addmenu(gwin,button [,submenus] [,action])   </CALLING_SEQUENCE_ITEM>
@@ -14,7 +13,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>button  </PARAM_NAME>
+        <PARAM_NAME>button</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string. The button name. On Windows operating
   systems (not X_window), an &amp; can be placed before the character
@@ -23,36 +22,36 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>submenus  </PARAM_NAME>
+        <PARAM_NAME>submenus</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a vector of character string. The sub_menus items names</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>action  </PARAM_NAME>
+        <PARAM_NAME>action</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a list with 2 elements action=list(flag,proc_name)</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>flag  </PARAM_NAME>
+              <PARAM_NAME>flag</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: an integer (default value is 0)</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>flag==</PARAM_NAME>
+              <PARAM_NAME>flag==0</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>the action is defined by a scilab instruction</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>flag==</PARAM_NAME>
+              <PARAM_NAME>flag==1</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>the action is defined by a C or Fortran procedure</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>flag==</PARAM_NAME>
+              <PARAM_NAME>flag==2</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: the action is defined by a scilab function</SP>
               </PARAM_DESCRIPTION>
@@ -99,7 +98,7 @@
         <SP><VERB>action</VERB> argument is set to 1 <VERB>proc_name</VERB>
     designes a C or Fortran procedure, this procedure may be
     interfaced in Fortran subroutine default/fbutn.f or dynamically
-    linked with scilab using the <VERB>link </VERB> function. The C
+    linked with scilab using the <VERB>link</VERB> function. The C
     calling sequence is: <VERB>(char* button_name, int* gwin,int
     *k)</VERB></SP>
       </DESCRIPTION_ITEM>

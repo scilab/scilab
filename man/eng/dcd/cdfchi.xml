@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cdfchi  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>Dec 199</DATE>
-  <SHORT_DESCRIPTION name="cdfchi"> cumulative distribution function chi-square distribution   </SHORT_DESCRIPTION>
+  <TITLE>cdfchi</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>Dec 1997</DATE>
+  <SHORT_DESCRIPTION name="cdfchi"> cumulative distribution function chi-square distribution</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P,Q]=cdfchi(&quot;PQ&quot;,X,Df)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[X]=cdfchi(&quot;X&quot;,Df,P,Q);  </CALLING_SEQUENCE_ITEM>
@@ -15,7 +14,7 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>P,Q,Xn,Df  </PARAM_NAME>
+        <PARAM_NAME>P,Q,Xn,Df</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: four real vectors of the same size.</SP>
         </PARAM_DESCRIPTION>
@@ -27,13 +26,13 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Upper limit of integration of the non-central chi-square distribution. Input range: [0, +infinity). Search range: [0,1E300]</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Df  </PARAM_NAME>
+        <PARAM_NAME>Df</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  Degrees of freedom of the chi-square distribution. Input range: (0, +infinity). Search range: [ 1E-300, 1E300]</SP>
         </PARAM_DESCRIPTION>

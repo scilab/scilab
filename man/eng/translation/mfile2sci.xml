@@ -1,37 +1,36 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>mfile2sci  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="mfile2sci"> Matlab M_file to scilab translation function  </SHORT_DESCRIPTION>
+  <TITLE>mfile2sci</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1998</DATE>
+  <SHORT_DESCRIPTION name="mfile2sci"> Matlab M_file to scilab translation function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>mfile2sci(M_file_path [,result_path [,Imode [,Recmode]]])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>M_file_path  </PARAM_NAME>
+        <PARAM_NAME>M_file_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string which gives the path of Matlab M_file to translate</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>result_path  </PARAM_NAME>
+        <PARAM_NAME>result_path</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a character string which gives the directory where the result has to be written. Default value is current directory.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Imode  </PARAM_NAME>
+        <PARAM_NAME>Imode</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Boolean flag, If true mfile2sci ask user for variable type and sizes when he cannot infer them. Default value : %f</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Recmode  </PARAM_NAME>
+        <PARAM_NAME>Recmode</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Boolean flag, used by translatepaths function. Must be %f to translate a single mfile.</SP>
         </PARAM_DESCRIPTION>
@@ -146,5 +145,5 @@ m=rand(4,2);rot90(m,1)
       <LINK>translatepaths</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>Serge Steer, INRI</AUTHOR>
+  <AUTHOR>Serge Steer, INRIA</AUTHOR>
 </MAN>

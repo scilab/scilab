@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sci2map  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sci2map"> Scilab to Maple variable conversion  </SHORT_DESCRIPTION>
+  <TITLE>sci2map</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sci2map"> Scilab to Maple variable conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>txt=sci2map(a,Map-name)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>a  </PARAM_NAME>
+        <PARAM_NAME>a</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: Scilab object (matrix, polynomial, list, string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Map-name  </PARAM_NAME>
+        <PARAM_NAME>Map-name</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string (name of the Maple variable)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>txt  </PARAM_NAME>
+        <PARAM_NAME>txt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector of strings containing the corresponding Maple code</SP>
         </PARAM_DESCRIPTION>

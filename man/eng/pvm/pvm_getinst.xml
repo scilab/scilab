@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_getinst  </TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
+  <TITLE>pvm_getinst</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
   <SHORT_DESCRIPTION name="pvm_getinst"> returns the instance number in a group of a PVM process.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[inum] = pvm_getinst(group, tid)  </CALLING_SEQUENCE_ITEM>
@@ -13,19 +12,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>group  </PARAM_NAME>
+        <PARAM_NAME>group</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: string, string group name of an existing group.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>tid  </PARAM_NAME>
+        <PARAM_NAME>tid</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, task identifier of a PVM process.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>inum  </PARAM_NAME>
+        <PARAM_NAME>inum</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer, instance number returned by the routine.</SP>
         </PARAM_DESCRIPTION>

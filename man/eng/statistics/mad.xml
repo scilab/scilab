@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>cmoment  </TITLE>
+  <TITLE>cmoment</TITLE>
   <TYPE>  </TYPE>
-  <DATE>July 200</DATE>
-  <SHORT_DESCRIPTION name="mad">  mean absolute deviation  </SHORT_DESCRIPTION>
+  <DATE>July 2000</DATE>
+  <SHORT_DESCRIPTION name="mad">  mean absolute deviation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>s2=mad(x)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>s2=mad(x,'r') or s2=mad(x,1)  </CALLING_SEQUENCE_ITEM>
@@ -25,17 +24,17 @@
   <DESCRIPTION>
     <P>
     This function computes   the mean absolute deviation of  a
-    real or complex vector or matrix <VERB> x </VERB>.</P>
+    real or complex vector or matrix <VERB> x</VERB>.</P>
     <P>
-    For  a  vector  or matrix  <VERB>   x </VERB>, <VERB> s2=mad(x)  </VERB>
-    returns in scalar <VERB> s</VERB> the mean absolute  deviation
-    of all the entries of <VERB> x </VERB>.</P>
+    For  a  vector  or matrix  <VERB>   x</VERB>, <VERB> s2=mad(x)  </VERB>
+    returns in scalar <VERB> s2</VERB> the mean absolute  deviation
+    of all the entries of <VERB> x</VERB>.</P>
     <P><VERB> s2=mad(x,'r')  </VERB> (or, equivalently,  <VERB> s2=mad(x,1)
-    </VERB>) returns in each entry of the column vector <VERB> s</VERB>
-    the mean absolute deviation of each column of <VERB> x </VERB>.</P>
+    </VERB>) returns in each entry of the column vector <VERB> s2</VERB>
+    the mean absolute deviation of each column of <VERB> x</VERB>.</P>
     <P><VERB> s2=mad(x,'c')  </VERB> (or, equivalently,  <VERB> s2=mad(x,2)
-    </VERB>) returns in each entry of the column vector <VERB> s</VERB>
-    the mean absolute deviation of each row of <VERB> x </VERB>.</P>
+    </VERB>) returns in each entry of the column vector <VERB> s2</VERB>
+    the mean absolute deviation of each row of <VERB> x</VERB>.</P>
   </DESCRIPTION>
   <BIBLIO>
     <P>

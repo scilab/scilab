@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>chaintest  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="chaintest"> a three-species food chain model   </SHORT_DESCRIPTION>
+  <TITLE>chaintest</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="chaintest"> a three-species food chain model</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>chaintest([f_l,b1,odem,xdim,npts])  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[xdot]=chain(t,x)  </CALLING_SEQUENCE_ITEM>
@@ -16,13 +15,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>f_l  </PARAM_NAME>
+        <PARAM_NAME>f_l</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: the name of the macro which code the three-species food chain model (default value <VERB> chain</VERB>).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>odem,xdim,npts  </PARAM_NAME>
+        <PARAM_NAME>odem,xdim,npts</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: are optional arguments. Their meaning and syntax can be found in the <VERB>portr3d</VERB>  help</SP>
         </PARAM_DESCRIPTION>
@@ -52,7 +51,7 @@
    ]]>
     </VERBATIM>
     <P>
-    The default value for <VERB>b</VERB> is 3.0.</P>
+    The default value for <VERB>b1</VERB> is 3.0.</P>
     <P>
     The Scilab macros <VERB>chain(t,x)</VERB>,<VERB>f1(u),f2(u)</VERB> code the dynamical system</P>
   </DESCRIPTION>

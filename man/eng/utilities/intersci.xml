@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>intersci  </TITLE>
-  <TYPE>Scilab Tool  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="intersci"> scilab tool to interface C of Fortran functions with scilab  </SHORT_DESCRIPTION>
+  <TITLE>intersci</TITLE>
+  <TYPE>Scilab Tool</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="intersci"> scilab tool to interface C of Fortran functions with scilab</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     All scilab primitive functions are defined in a set of interface

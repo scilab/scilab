@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ss2des  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ss2des"> (polynomial) state-space to descriptor form  </SHORT_DESCRIPTION>
+  <TITLE>ss2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ss2des"> (polynomial) state-space to descriptor form</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>S=ss2des(Sl)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>S=ss2des(Sl,flag)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sl  </PARAM_NAME>
+        <PARAM_NAME>Sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list: proper or improper linear system.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: character string <VERB>&quot;withD&quot;</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>S</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list</SP>
         </PARAM_DESCRIPTION>
@@ -36,7 +35,7 @@
   <DESCRIPTION>
     <P>
     Given the linear system in state-space representation 
-    <VERB>Sl</VERB> (<VERB>syslin</VERB> list), with a <VERB/> matrix which is either
+    <VERB>Sl</VERB> (<VERB>syslin</VERB> list), with a <VERB>D</VERB> matrix which is either
     polynomial or constant, but not zero <VERB>ss2des</VERB>
     returns a descriptor system as <VERB>list('des',A,B,C,0,E)</VERB>
     such that:</P>
@@ -47,7 +46,7 @@ Sl=C*(s*E-A)^(-1)*B
     </VERBATIM>
     <P>
     If the flag <VERB>&quot;withD&quot;</VERB> is given, <VERB> S=list('des',A,B,C,D,E) </VERB>
-    with a <VERB/> matrix of maximal rank.</P>
+    with a <VERB>D</VERB> matrix of maximal rank.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

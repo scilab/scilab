@@ -1,33 +1,32 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>gr_menu  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="gr_menu"> simple interactive graphic editor  </SHORT_DESCRIPTION>
+  <TITLE>gr_menu</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="gr_menu"> simple interactive graphic editor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[sd1]=gr_menu([sd,flag,no_frame])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sd  </PARAM_NAME>
+        <PARAM_NAME>sd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (output of <VERB>gr_menu</VERB>), or vector of  length four <VERB>[xmin,ymin,xmax,ymax]</VERB> (boundaries of the plot).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sd</PARAM_NAME>
+        <PARAM_NAME>sd1</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: list (graphical objects created under <VERB>gr_menu</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag,noframe  </PARAM_NAME>
+        <PARAM_NAME>flag,noframe</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integers with 0, 1 value. Use <VERB>flag=</VERB> for non interactive mode  (i.e to redraw saved <VERB>gr_menu</VERB> graphics) and <VERB>no_frame=</VERB> to  avoid a frame around <VERB>gr_menu</VERB> graphics.</SP>
+          <SP>: integers with 0, 1 value. Use <VERB>flag=1</VERB> for non interactive mode  (i.e to redraw saved <VERB>gr_menu</VERB> graphics) and <VERB>no_frame=1</VERB> to  avoid a frame around <VERB>gr_menu</VERB> graphics.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

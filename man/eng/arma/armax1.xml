@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>armax</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="armax1"> armax identification  </SHORT_DESCRIPTION>
+  <TITLE>armax1</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="armax1"> armax identification</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[arc,resid]=armax1(r,s,q,y,u [,b0f])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -19,48 +18,48 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>u  </PARAM_NAME>
+        <PARAM_NAME>u</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: input signal</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r,s,q  </PARAM_NAME>
+        <PARAM_NAME>r,s,q</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: auto regression orders with r &gt;=0, s &gt;=-1.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b0f  </PARAM_NAME>
+        <PARAM_NAME>b0f</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional parameter. Its default value is 0 and it means that the coefficient b0 must be identified. if bof=1 the b0 is supposed to be zero and is not identified</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>arc  </PARAM_NAME>
+        <PARAM_NAME>arc</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: is tlist with type &quot;ar&quot; and fields a,  b,  d,  ny,  nu,  sig</SP>
           <PARAM_INDENT>
             <PARAM_ITEM>
-              <PARAM_NAME>a  </PARAM_NAME>
+              <PARAM_NAME>a</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: is the vector [1,a1,...,a_r]</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>b  </PARAM_NAME>
+              <PARAM_NAME>b</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: is the vector [b0,......,b_s]</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>d  </PARAM_NAME>
+              <PARAM_NAME>d</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: is the vector [1,d1,....,d_q]</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>sig  </PARAM_NAME>
+              <PARAM_NAME>sig</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>:   resid=[ sig*echap(1),....,];</SP>
               </PARAM_DESCRIPTION>

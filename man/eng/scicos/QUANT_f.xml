@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>QUANT_f  </TITLE>
-  <TYPE>Scicos Block  </TYPE>
-  <DATE>Janvier 199</DATE>
-  <SHORT_DESCRIPTION name="QUANT_f"> Scicos Quantization block  </SHORT_DESCRIPTION>
+  <TITLE>QUANT_f</TITLE>
+  <TYPE>Scicos Block</TYPE>
+  <DATE>Janvier 1997</DATE>
+  <SHORT_DESCRIPTION name="QUANT_f"> Scicos Quantization block</SHORT_DESCRIPTION>
   <DESCRIPTION>
     <P>
     This block outputs the quantization of the input according to a choice
@@ -15,18 +14,18 @@
     <P>
     for <VERB>Round</VERB> method 
   </P>
-    <P><VERB>y(i)=Step*(int(u(i)/Step+0.5)-0.5)</VERB> if <VERB>u(i)&lt;</VERB>.
+    <P><VERB>y(i)=Step*(int(u(i)/Step+0.5)-0.5)</VERB> if <VERB>u(i)&lt;0</VERB>.
   </P>
-    <P><VERB>y(i)=Step*(int(u(i)/Step-0.5)+0.5)</VERB>. if <VERB>u(i)&gt;=</VERB>.
+    <P><VERB>y(i)=Step*(int(u(i)/Step-0.5)+0.5)</VERB>. if <VERB>u(i)&gt;=0</VERB>.
   </P>
     <P>
   </P>
     <P>
     For truncation method
   </P>
-    <P><VERB>y(i)=Step*(int(u(i)/Step+0.5))</VERB> if <VERB>u(i)&lt;</VERB>.
+    <P><VERB>y(i)=Step*(int(u(i)/Step+0.5))</VERB> if <VERB>u(i)&lt;0</VERB>.
   </P>
-    <P><VERB>y(i)=Step*(int(u(i)/Step-0.5))</VERB> if <VERB>u(i)&gt;=</VERB>.
+    <P><VERB>y(i)=Step*(int(u(i)/Step-0.5))</VERB> if <VERB>u(i)&gt;=0</VERB>.
   </P>
     <P>
   </P>
@@ -49,7 +48,7 @@
         <SP>: scalar, Quantization step</SP>
       </ITEM>
       <ITEM label="Quantization method">
-        <SP>: scalar with possible values 1,2,3 or </SP>
+        <SP>: scalar with possible values 1,2,3 or 4</SP>
       </ITEM>
       <ITEM label="1">
         <SP>: Round method</SP>

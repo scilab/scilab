@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>diag  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="diag"> diagonal including or extracting   </SHORT_DESCRIPTION>
+  <TITLE>diag</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="diag"> diagonal including or extracting</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y]=diag(vm, [k])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>vm  </PARAM_NAME>
+        <PARAM_NAME>vm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or matrix (full or sparse storage)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>k  </PARAM_NAME>
+        <PARAM_NAME>k</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: integer (default value 0)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>y  </PARAM_NAME>
+        <PARAM_NAME>y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vector or matrix</SP>
         </PARAM_DESCRIPTION>
@@ -37,8 +36,8 @@
     for <VERB>vm</VERB> a (row or column) n-vector <VERB>diag(vm)</VERB> returns a diagonal
     matrix with entries of <VERB>vm</VERB> along the main diagonal.</P>
     <P><VERB>diag(vm,k)</VERB> is a  <VERB>(n+abs(k))x(n+abs(k))</VERB> matrix with the entries 
-    of <VERB>vm</VERB>  along the kth diagonal.  <VERB>k=</VERB>  is the main diagonal 
-    <VERB>k&gt;</VERB>  is for upper diagonals and <VERB>k&lt;</VERB> for lower
+    of <VERB>vm</VERB>  along the kth diagonal.  <VERB>k=0</VERB>  is the main diagonal 
+    <VERB>k&gt;0</VERB>  is for upper diagonals and <VERB>k&lt;0</VERB> for lower
     diagonals.</P>
     <P>
     For a matrix <VERB>vm</VERB>, <VERB>diag(vm,k)</VERB> is the column vector made of entries
@@ -50,8 +49,8 @@
     <P>
     To construct a diagonal linear system, use <VERB>sysdiag</VERB>.</P>
     <P>
-    Note that <VERB>eye(A).*</VERB> returns a diagonal matrix made with the
-    diagonal entries of <VERB/>. This is valid for any matrix (constant,
+    Note that <VERB>eye(A).*A</VERB> returns a diagonal matrix made with the
+    diagonal entries of <VERB>A</VERB>. This is valid for any matrix (constant,
     polynomial, rational, state-space linear system,...).</P>
   </DESCRIPTION>
   <EXAMPLE>

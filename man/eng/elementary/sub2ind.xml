@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>sub2ind</TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>20-Aug-200</DATE>
-  <SHORT_DESCRIPTION name="sub2ind">matrix  subscript values to linear index </SHORT_DESCRIPTION>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>20-Aug-2003</DATE>
+  <SHORT_DESCRIPTION name="sub2ind">matrix  subscript values to linear index</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>I = sub2ind(dims,i1,i2,...)</CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>J = sub2ind(dims,Mi)</CALLING_SEQUENCE_ITEM>
@@ -22,7 +21,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>i1,i2,...</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the subscript value arrays(same matrix shape as <VERB/>)</SP>
+          <SP>: the subscript value arrays(same matrix shape as <VERB>I</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
@@ -32,7 +31,7 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>I</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>:  the  linear index array</SP>
         </PARAM_DESCRIPTION>
@@ -44,13 +43,13 @@
 corresponding to a given set of subscript values.
 
 <VERB>I = sub2ind(dims,i1,i2,..)</VERB> returns the linear index equivalent to the
-row,  column, ... subscripts in the arrays <VERB>i</VERB>, <VERB>i</VERB>,..  for an matrix of
-size <VERB>dims</VERB>. In this case <VERB>i</VERB>, <VERB>i</VERB>,.. must have the same shape and the
-result <VERB/> has the same matrix shape.
+row,  column, ... subscripts in the arrays <VERB>i1</VERB>, <VERB>i2</VERB>,..  for an matrix of
+size <VERB>dims</VERB>. In this case <VERB>i1</VERB>, <VERB>i2</VERB>,.. must have the same shape and the
+result <VERB>I</VERB> has the same matrix shape.
 
 <VERB>I = sub2ind(dims,Mi)</VERB> returns the linear index
 equivalent to the subscripts in the columns of the matrix <VERB>Mi</VERB> for a matrix
-of size <VERB>dims</VERB>. in this case <VERB/> is a column vector</P>
+of size <VERB>dims</VERB>. in this case <VERB>I</VERB> is a column vector</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

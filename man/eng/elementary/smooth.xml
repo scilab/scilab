@@ -1,31 +1,30 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>smooth  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="smooth"> smoothing by spline functions  </SHORT_DESCRIPTION>
+  <TITLE>smooth</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="smooth"> smoothing by spline functions</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[pt]=smooth(ptd [,step])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>ptd  </PARAM_NAME>
+        <PARAM_NAME>ptd</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (2xn) real vector</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>step  </PARAM_NAME>
+        <PARAM_NAME>step</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real (discretization step of abscissae)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>pt  </PARAM_NAME>
+        <PARAM_NAME>pt</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: (2xn) real vector</SP>
         </PARAM_DESCRIPTION>
@@ -39,7 +38,7 @@
     The  coordinates  are   <VERB>(ptd(1,i),ptd(2,i))</VERB>.  The
     components <VERB>ptd(1,:)</VERB> must be in ascending order.
     The default value for the step is
-    <VERB>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/10</VERB></P>
+    <VERB>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</VERB></P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[

@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>regress  </TITLE>
+  <TITLE>regress</TITLE>
   <TYPE>  </TYPE>
-  <DATE>February 200</DATE>
-  <SHORT_DESCRIPTION name="regress"> regression coefficients of two variables  </SHORT_DESCRIPTION>
+  <DATE>February 2001</DATE>
+  <SHORT_DESCRIPTION name="regress"> regression coefficients of two variables</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>coefs=regress(x,y)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x,y  </PARAM_NAME>
+        <PARAM_NAME>x,y</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex vector</SP>
         </PARAM_DESCRIPTION>
@@ -25,7 +24,7 @@
     This function  computes the regresion  coefficients of two
     variables <VERB>x</VERB>  and <VERB>y</VERB>, both  numerical vectors of
     same number  of elements  <VERB>n</VERB>. <VERB>coefs=[a b]</VERB>  be a
-    1x2 matrix such that  <VERB>Y=a+b</VERB> will be the equation of
+    1x2 matrix such that  <VERB>Y=a+bX</VERB> will be the equation of
     the ordinary least square approximation to our data.</P>
   </DESCRIPTION>
   <SECTION label="References">
@@ -44,5 +43,5 @@ coefs=regress(x,y)
       <LINK>covar</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR> Carlos Klimann  </AUTHOR>
+  <AUTHOR> Carlos Klimann</AUTHOR>
 </MAN>

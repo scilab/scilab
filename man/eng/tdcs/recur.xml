@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>recur  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="recur"> a bilinear recurrent equation   </SHORT_DESCRIPTION>
+  <TITLE>recur</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="recur"> a bilinear recurrent equation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[y]=recur(x0,var,k,n)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[integr]=logr(k,var)  </CALLING_SEQUENCE_ITEM>
@@ -20,7 +19,7 @@ x(i+1)=-x(i)*(k + sqrt(var)*br(i))
    ]]>
     </VERBATIM>
     <P>
-    with initial value <VERB>x</VERB> and driven by a white noise 
+    with initial value <VERB>x0</VERB> and driven by a white noise 
     of variance <VERB>var</VERB>.</P>
     <P>
     Trajectories are drawn and the empirical Lyapunov exponent 

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>besselj  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>September 199</DATE>
+  <TITLE>besselj</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September 1997</DATE>
   <SHORT_DESCRIPTION name="besselj">  Modified J sub ALPHA Bessel functions of the first kind.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM> y = besselj(alpha,x)  </CALLING_SEQUENCE_ITEM>
@@ -13,21 +12,21 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>x  </PARAM_NAME>
+        <PARAM_NAME>x</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector with non negative entries</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>alpha  </PARAM_NAME>
+        <PARAM_NAME>alpha</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real vector with non negative entries regularly spaced with increment equal to one <VERB>alpha=alpha0+(n1:n2)</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>ice  </PARAM_NAME>
+        <PARAM_NAME>ice</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: integer flag, with default value </SP>
+          <SP>: integer flag, with default value 1</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

@@ -1,11 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pathconvert  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
+  <TITLE>pathconvert</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
   <SHORT_DESCRIPTION name="pathconvert"> pathnames convertion between posix and windows.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])  </CALLING_SEQUENCE_ITEM>
@@ -13,19 +12,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>paths  </PARAM_NAME>
+        <PARAM_NAME>paths</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string matrix giving a set of pathnames</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flagtrail,flagexpand  </PARAM_NAME>
+        <PARAM_NAME>flagtrail,flagexpand</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: boolean optional parameters (default value depends on  the MSDOS variable).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>type  </PARAM_NAME>
+        <PARAM_NAME>type</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a string <VERB>'u'</VERB> or <VERB>'w'</VERB>.</SP>
         </PARAM_DESCRIPTION>
@@ -38,8 +37,8 @@
     filename to posix-style pathnames and back. The target style 
     is given by the optional string <VERB>type</VERB> which can be 
     <VERB>'u'</VERB> for Unix or <VERB>'w'</VERB> for Windows. The default 
-    style is set according to the value of <VERB>MSDO</VERB>. 
-    If <VERB>MSDO</VERB> is true (resp. false ) then default type is <VERB>'w'</VERB>
+    style is set according to the value of <VERB>MSDOS</VERB>. 
+    If <VERB>MSDOS</VERB> is true (resp. false ) then default type is <VERB>'w'</VERB>
     (resp.  <VERB>'u'</VERB>).</P>
     <P>
     Windows pathnames starting with <VERB>name:</VERB> are converted to 
@@ -49,7 +48,7 @@
     is true a trailing separator (<VERB>'\'</VERB> or <VERB>'/'</VERB>) is added 
     at the end of the path.</P>
     <P><VERB>flagexpand</VERB> is an optional boolean parameter. When its value 
-    is true leading strings like  <VERB>HOM</VERB>, <VERB>SC</VERB> or <VERB>~</VERB> are 
+    is true leading strings like  <VERB>HOME</VERB>, <VERB>SCI</VERB> or <VERB>~</VERB> are 
     expanded using environment variables.</P>
   </DESCRIPTION>
   <EXAMPLE>

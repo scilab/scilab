@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>ss2tf  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="ss2tf"> conversion from state-space to transfer function  </SHORT_DESCRIPTION>
+  <TITLE>ss2tf</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="ss2tf"> conversion from state-space to transfer function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[h]=ss2tf(sl)   </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[Ds,NUM,chi]=ss2tf(sl)  </CALLING_SEQUENCE_ITEM>
@@ -23,13 +22,13 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>h  </PARAM_NAME>
+        <PARAM_NAME>h</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: transfer matrix</SP>
         </PARAM_DESCRIPTION>
@@ -39,7 +38,7 @@
   <DESCRIPTION>
     <P>
     Called with three outputs <VERB>[Ds,NUM,chi]=ss2tf(sl)</VERB> returns 
-    the numerator polynomial matrix <VERB>NU</VERB>, the characteristic
+    the numerator polynomial matrix <VERB>NUM</VERB>, the characteristic
     polynomial <VERB>chi</VERB> and the polynomial part <VERB>Ds</VERB> separately i.e.:</P>
     <VERBATIM>
 <![CDATA[
@@ -50,8 +49,8 @@ h=NUM/chi + Ds
     Method:</P>
     <P>
     One uses the characteristic polynomial and 
-    <VERB>det(A+Eij)=det(A)+C(i,j)</VERB> where <VERB/> is the adjugate 
-    matrix of <VERB/>.</P>
+    <VERB>det(A+Eij)=det(A)+C(i,j)</VERB> where <VERB>C</VERB> is the adjugate 
+    matrix of <VERB>A</VERB>.</P>
     <P>
     With <VERB>rmax</VERB> or <VERB>&quot;b&quot;</VERB> argument uses a block diagonalization of
     sl.A matrix and applies &quot;Leverrier&quot; algorithm on blocks.

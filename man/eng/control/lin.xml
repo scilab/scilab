@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lin  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lin"> linearization  </SHORT_DESCRIPTION>
+  <TITLE>lin</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lin"> linearization</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[A,B,C,D]=lin(sim,x0,u0)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[sl]=lin(sim,x0,u0)  </CALLING_SEQUENCE_ITEM>
@@ -14,25 +13,25 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>sim  </PARAM_NAME>
+        <PARAM_NAME>sim</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: function</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>x0, u</PARAM_NAME>
+        <PARAM_NAME>x0, u0</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: vectors of compatible dimensions</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>A,B,C,</PARAM_NAME>
+        <PARAM_NAME>A,B,C,D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>sl  </PARAM_NAME>
+        <PARAM_NAME>sl</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: <VERB>syslin</VERB> list</SP>
         </PARAM_DESCRIPTION>
@@ -42,7 +41,7 @@
   <DESCRIPTION>
     <P>
     linearization of the non-linear system <VERB>[y,xdot]=sim(x,u)</VERB>
-    around <VERB>x0,u</VERB>.</P>
+    around <VERB>x0,u0</VERB>.</P>
     <P><VERB>sim</VERB> is a function which computes <VERB>y</VERB> and <VERB>xdot</VERB>.</P>
     <P>
     The output is a linear system (<VERB>syslin</VERB> list) <VERB>sl</VERB> or the 

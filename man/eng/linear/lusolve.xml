@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>lusolve  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="lusolve"> sparse linear system solver  </SHORT_DESCRIPTION>
+  <TITLE>lusolve</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="lusolve"> sparse linear system solver</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>lusolve(hand,b)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>lusolve(A,b)  </CALLING_SEQUENCE_ITEM>
@@ -14,19 +13,19 @@
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>b  </PARAM_NAME>
+        <PARAM_NAME>b</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: full real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real square sparse invertible matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>hand  </PARAM_NAME>
+        <PARAM_NAME>hand</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: handle to a previously computed sparse lu factors (output of lufact)</SP>
         </PARAM_DESCRIPTION>

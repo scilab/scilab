@@ -1,19 +1,18 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>rcond  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="rcond">  inverse condition number  </SHORT_DESCRIPTION>
+  <TITLE>rcond</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="rcond">  inverse condition number</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rcond(X)   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>X</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: real or complex square matrix</SP>
         </PARAM_DESCRIPTION>
@@ -22,9 +21,9 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>rcond(X)</VERB> is an estimate for the reciprocal of the
-    condition of <VERB/> in the 1-norm.</P>
+    condition of <VERB>X</VERB> in the 1-norm.</P>
     <P>
-    If <VERB/> is well conditioned, <VERB>rcond(X)</VERB> is close to 1.
+    If <VERB>X</VERB> is well conditioned, <VERB>rcond(X)</VERB> is close to 1.
     If not, <VERB>rcond(X)</VERB> is close to 0.</P>
     <P><VERB>[r,z]=rcond(X)</VERB> sets <VERB>r</VERB> to
     <VERB>rcond(X)</VERB> and returns <VERB>z</VERB> such that

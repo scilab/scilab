@@ -1,51 +1,50 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>aff2ab  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="aff2ab"> linear (affine) function to A,b conversion  </SHORT_DESCRIPTION>
+  <TITLE>aff2ab</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="aff2ab"> linear (affine) function to A,b conversion</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[A,b]=aff2ab(afunction,dimX,D [,flag])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>afunction  </PARAM_NAME>
+        <PARAM_NAME>afunction</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a scilab function <VERB> Y =fct(X,D) </VERB> where <VERB>X, D, </VERB> are <VERB>list</VERB> of matrices</SP>
+          <SP>: a scilab function <VERB> Y =fct(X,D) </VERB> where <VERB>X, D, Y</VERB> are <VERB>list</VERB> of matrices</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>dim</PARAM_NAME>
+        <PARAM_NAME>dimX</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a p x 2 integer matrix (<VERB>p</VERB> is the number of matrices in <VERB/>)</SP>
+          <SP>: a p x 2 integer matrix (<VERB>p</VERB> is the number of matrices in <VERB>X</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>D</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a <VERB>list</VERB> of real matrices (or any other valid Scilab object).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>flag  </PARAM_NAME>
+        <PARAM_NAME>flag</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: optional parameter (<VERB>flag='f'</VERB> or <VERB>flag='sp'</VERB>)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME/>
+        <PARAM_NAME>A</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: a real matrix</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>b  </PARAM_NAME>
+        <PARAM_NAME>b</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: a real vector having same row dimension as <VERB/></SP>
+          <SP>: a real vector having same row dimension as <VERB>A</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -57,15 +56,15 @@
     <VERB> Y=afunction(X,D) </VERB> where <VERB> X=list(X1,X2,...,Xp) </VERB> is
     a list of p real matrices, and <VERB> Y=list(Y1,...,Yq) </VERB> is
     a list of q real real matrices which depend linearly of
-    the <VERB> Xi</VERB>'s. The (optional) input <VERB> </VERB> contains 
+    the <VERB> Xi</VERB>'s. The (optional) input <VERB> D</VERB> contains 
     parameters needed to compute Y as a function of X. 
     (It is generally a list of matrices).</P>
-    <P><VERB> dim</VERB> is a p x 2 matrix: <VERB>dimX(i)=[nri,nci]</VERB>
+    <P><VERB> dimX</VERB> is a p x 2 matrix: <VERB>dimX(i)=[nri,nci]</VERB>
     is the actual number of rows and columns of matrix <VERB>Xi</VERB>.
     These dimensions determine <VERB>na</VERB>, the column dimension of 
-    the resulting matrix <VERB/>: <VERB>na=nr1*nc1 +...+ nrp*ncp</VERB>.</P>
+    the resulting matrix <VERB>A</VERB>: <VERB>na=nr1*nc1 +...+ nrp*ncp</VERB>.</P>
     <P>
-    If the optional parameter <VERB>flag='sp'</VERB> the resulting <VERB/>
+    If the optional parameter <VERB>flag='sp'</VERB> the resulting <VERB>A</VERB>
     matrix is returned as a sparse matrix.</P>
     <P>
     This function is useful to solve a system of linear equations

@@ -1,23 +1,22 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>hat  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="hat"> (^) exponentiation  </SHORT_DESCRIPTION>
+  <TITLE>hat</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="hat"> (^) exponentiation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>A^b  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>A^b</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <DESCRIPTION>
     <P>
     Exponentiation of matrices or vectors by a constant vector.</P>
     <P>
-    If <VERB/> is a vector or a rectangular matrix the exponentiation is done
+    If <VERB>A</VERB> is a vector or a rectangular matrix the exponentiation is done
     element-wise, with the usual meaning.</P>
     <P>
-    For square <VERB/> matrices the exponentiation is done in the matrix sense.</P>
+    For square <VERB>A</VERB> matrices the exponentiation is done in the matrix sense.</P>
     <P>
     For boolean, polynomial and rational matrices, the exponent must be an
     integer</P>

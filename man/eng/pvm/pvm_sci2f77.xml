@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>pvm_sci2f7</TITLE>
-  <TYPE>Scilab function  </TYPE>
-  <DATE>May 199</DATE>
-  <SHORT_DESCRIPTION name="pvm_sci2f77"> Convert complex scalar into F7</SHORT_DESCRIPTION>
+  <TITLE>pvm_sci2f77</TITLE>
+  <TYPE>Scilab function</TYPE>
+  <DATE>May 1998</DATE>
+  <SHORT_DESCRIPTION name="pvm_sci2f77"> Convert complex scalar into F77</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[res] = pvm_sci2f77(var)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>var : local scilab variable.  On  return, the  variable will  be  </PARAM_NAME>
+        <PARAM_NAME>var : local scilab variable.  On  return, the  variable will  be</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>overwritten with the result  of conversion operation.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>res  </PARAM_NAME>
+        <PARAM_NAME>res</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: if the parameter var is not a variable, the result of the conversion  is returned in res.</SP>
         </PARAM_DESCRIPTION>
@@ -27,7 +26,7 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>pvm_sci2f7</VERB>  converts all the complex of a scilab variable
+    <P><VERB>pvm_sci2f77</VERB>  converts all the complex of a scilab variable
     (array, list...) in the F77 representation. MAy be useful if an
     application is sendind data to a non scilab application (direcvtly to
     a C or F77 program for example).</P>

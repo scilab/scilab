@@ -1,25 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>sm2des  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="sm2des"> system matrix to descriptor  </SHORT_DESCRIPTION>
+  <TITLE>sm2des</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="sm2des"> system matrix to descriptor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Des]=sm2des(Sm);  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
       <PARAM_ITEM>
-        <PARAM_NAME>Sm  </PARAM_NAME>
+        <PARAM_NAME>Sm</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: polynomial matrix (pencil system matrix)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>Des  </PARAM_NAME>
+        <PARAM_NAME>Des</PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: descriptor system (<VERB>list('des',A,B,C,D,E)</VERB>)</SP>
         </PARAM_DESCRIPTION>

@@ -1,12 +1,11 @@
-<?xml version="1.0" standalone="no"?>
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>specfact  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>April 199</DATE>
-  <SHORT_DESCRIPTION name="specfact"> spectral factor  </SHORT_DESCRIPTION>
+  <TITLE>specfact</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="specfact"> spectral factor</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[W0,L]=specfact(A,B,C,D)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -19,8 +18,8 @@
      R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
    ]]>
     </VERBATIM>
-    <P><VERB>specfact</VERB> computes  <VERB>W</VERB> and <VERB/> such 
-    that  <VERB>W(s)=W0+L*(s*I-A)^-1*</VERB>  is a
+    <P><VERB>specfact</VERB> computes  <VERB>W0</VERB> and <VERB>L</VERB> such 
+    that  <VERB>W(s)=W0+L*(s*I-A)^-1*B</VERB>  is a
     spectral factor of of <VERB>PHI(s)</VERB>, i.e.</P>
     <P>
       <VERB>phi(s)=W'(-s)*W(s)</VERB>
