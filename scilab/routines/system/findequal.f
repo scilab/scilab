@@ -11,7 +11,7 @@ c     Author Serge Steer, Copyright INRIA
 
       integer semi,equal,eol,lparen,rparen,dot,quote
       integer blank,comma,left,right,less,great,not
-      integer name,num
+      integer name,num,cmt
 c     
       integer psym
       integer pcount,strcnt,bcount,qcount,pchar
@@ -19,7 +19,7 @@ c
       data blank/40/,semi/43/,equal/50/,eol/99/,comma/52/
       data lparen/41/,rparen/42/,left/54/,right/55/,less/59/,great/60/
       data quote/53/,dot/51/,not/61/
-      data name/1/,num/0/
+      data name/1/,num/0/,cmt/2/
 
 c     
 c initialize counters (parenthesis, quote and brackets)      
@@ -30,7 +30,7 @@ c initialize counters (parenthesis, quote and brackets)
  10   psym=sym
       call getsym
       if(strcnt.ne.0) then
-         if(sym.eq.eol) then
+         if(sym.eq.eol.or.sym.eq.cmt) then
             call error(3)
             return
          endif
@@ -80,7 +80,8 @@ c     .           single equal sign found
                endif
             endif
          endif
-         if(sym.eq.eol .or. sym.eq.comma .or. sym.eq.semi) then
+         if(sym.eq.eol.or.sym.eq.comma.or.
+     $        sym.eq.semi.or.sym.eq.cmt) then
 c     .           single equal sign not found
                   found=.false.
                   return
@@ -88,21 +89,23 @@ c     .           single equal sign not found
 
 c     .  next line for recursive index
          if(sym.eq.lparen) goto 10
-      else if(sym.eq.eol) then
-         if(bcount.eq.0) then
-c     .  end of line reached before all brakets are closed
-            found=.false.
-c           call error(3)
-            return
-         else
-            if(lpt(4).eq.lpt(6))  then
-               call getlin(1,0)
-               if(err.gt.0) return
-            else
-               lpt(4)=lpt(4)+1
-               call getsym
-            endif
-         endif
+      else if(sym.eq.eol.or.sym.eq.cmt) then
+         found=.false.
+         return
+C          if(bcount.eq.0) then
+C c     .  end of line reached before all brakets are closed
+C             found=.false.
+C c           call error(3)
+C             return
+C          else
+C             if(lpt(4).eq.lpt(6))  then
+C                call getlin(1,0)
+C                if(err.gt.0) return
+C             else
+C                lpt(4)=lpt(4)+1
+C                call getsym
+C             endif
+C          endif
       endif
       goto 10
 

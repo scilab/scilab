@@ -10,18 +10,18 @@ c
       integer lrecl,id(nsiz),retu(6),icount
       integer slash,dot,blank,equal,lparen,rparen
       integer comma,semi,less,great,left,right
-      integer name,eol
-      integer ssym,schar
+      integer name,cmt,eol
+      integer ssym,schar,slpt(6)
       integer first,ierr
       integer iadr,sadr
-      logical maj,isinstring
+      logical maj,isinstring,incomment
 
       external getfastcode
       integer  getfastcode
 c     
       data slash/48/,dot/51/,blank/40/,equal/50/,lparen/41/,rparen/42/
       data comma/52/,semi/43/,less/59/,great/60/,left/54/,right/55/
-      data name/1/,eol/99/,lrecl/512/
+      data name/1/,cmt/2/,eol/99/,lrecl/512/
       data retu/27,14,29,30,27,23/
 
 c     ennd/14,23,13/
@@ -36,15 +36,11 @@ c
       endif
 c     
       job=0
-      l1=lpt(1)
-      l2=lpt(2)
-      l4=lpt(3)
-      l6=lpt(6)
-      lpt(1)=l6+1
-      lpt(5)=lpt(3)
-c     
+      call icopy(6,lpt,1,slpt,1)
       ssym=sym
       schar=char1
+      lpt(1)=lpt(6)+1
+      lpt(5)=lpt(3)
 c
       n=1
       first=1
@@ -73,7 +69,8 @@ c     acquisition d'une ligne du fichier
 
       l0=l
       nlines=nlines+1
-      
+      incomment=.false.
+
       if(n.le.0) then
          if(first.eq.1) goto 11
          goto 28
@@ -112,34 +109,20 @@ c
 
       if(buf(j+1:j+1).ne.buf(j:j)) goto 23
       if(k.eq.slash) then
-c     .    check if // occurs in a string
-         if(first.eq.0.and.isinstring(istk(l0),l-l0+1)) then
-c     .     // is part of a string
-            if(l+1.gt.lmax) then
-               ierr=5
-               goto 90
-            endif
-            istk(l)=slash
-            istk(l+1)=slash
-            j=j+1
-            l=l+2
-            goto 17
-         else
-c     .     // marks beginning of a comment
-            if(first.eq.1) then
+         if(first.eq.1) then
 c     .     // comments before declaration line
-               if(j.eq.1) goto 11
-               if(buf(1:j-1).eq.' ') goto 11
+            if(j.eq.1) goto 11
+            if(buf(1:j-1).eq.' ') goto 11
 c     .     // comments at the end of declaration line
-               goto 40
-            endif
-            goto 28
+            goto 26
+         else
+            if(.not.isinstring(istk(l0),l-l0+1)) incomment=.true.
          endif
       endif
 c
-      if (k.eq.dot) then
-c     on a trouve ..
-c     c'est une ligne suite si on a que des . ou //
+      if (k.eq.dot.and. .not.incomment) then
+c     .. found, it is a continuation line only if next chars are dots or
+c     comments mark (//)
          jj=j+1
  22      continue
          if(jj.ge.n) then
@@ -154,8 +137,9 @@ c     c'est une ligne suite si on a que des . ou //
             goto 11
          endif
       endif
+
  23   continue
-c     ce n'est pas une carte suite            
+c     it is not a continuation line
       if(first.eq.1) goto 24
       istk(l) = k
 c     
@@ -166,7 +150,7 @@ c
       endif
       goto 17
 
-c     premiere ligne
+c     first line
  24   if(l.gt.lpt(1)) goto 26
       if(buf(m:m+7).eq.'function'.or.buf(m:m+7).eq.'FUNCTION') then
          j=m+6
@@ -188,7 +172,7 @@ c     premiere ligne
       endif
       goto 17
 c     
-c     fin de conversion de la ligne
+c     line conversion finished
  27   if(first.eq.1) goto 40
 
  28   l=l-1
@@ -203,8 +187,8 @@ c     fin de conversion de la ligne
          endif
       endif
       do 29 i=0,icount
-c     la gestion de icount a ete ajoute pour maintenir un compteur de ligne
-c     correct malgre les lignes suite
+c     .  add as many end of lines to make line count taking continuation
+C     .  lines into account
          istk(l)=eol
          istk(l+1)=blank
          l=l+2
@@ -360,7 +344,7 @@ c
       endif
       if(char1.eq.semi.or.char1.eq.comma) goto 46
       call getsym
-      if(sym.eq.eol) goto 46
+      if(sym.eq.eol.or.sym.eq.cmt) goto 46
       if(sym.ne.lparen) then
          ierr=4
          goto  90
@@ -381,14 +365,23 @@ c
          goto  90
       endif
       call getsym
-      if(sym.ne.eol.and.sym.ne.semi.and.sym.ne.comma) then
+      if(sym.ne.eol.and.sym.ne.semi.and.
+     $     sym.ne.comma.and.sym.ne.cmt) then
          ierr=4
          goto  90
       endif 
- 46   istk(il)=mrhs
+ 46   continue
+      istk(il)=mrhs
 c     
       il=l
       l=l+1
+      if (sym.eq.cmt) then
+         call icopy(lpt(6)-lpt(4)+3,lin(lpt(4)-3),1,istk(l),1)
+         l=l+lpt(6)-lpt(4)+3
+         istk(l)=eol
+         l=l+1
+         sym=eol
+      endif
       if(lunit.eq.0) goto 33
       first=0
       goto 11
@@ -412,15 +405,9 @@ c
       lpt(1)=l1
       call putid(idstk(1,top),id)
 c
- 62   lpt(1)=l1
-      lpt(6)=l6
-      lpt(4)=l4
-      lpt(3)=l4
-      lpt(2)=l2
-      char1=semi
-      sym=semi
-c      char1=schar
-c      sym=ssym
+ 62   call icopy(6,slpt,1,lpt,1)
+      sym=ssym
+      char1=schar
       fin=job
       return
 
@@ -429,11 +416,7 @@ c
 c gestion des erreurs
 c
 c     on retablit les pointeurs de ligne pour le gestionnaire d'erreur
-      lpt(1)=l1
-      lpt(6)=l6
-      lpt(4)=l4
-      lpt(3)=l4
-      lpt(2)=l2
+      call icopy(6,slpt,1,lpt,1)
       goto(91,92,93,94,95),ierr-1
 c
  91   continue
@@ -445,7 +428,7 @@ c     buffer limit
       call error(26)
       return
  93   continue
-c     invalid syntaxe
+c     invalid syntax
       err=nlines
       call error(37)
       return

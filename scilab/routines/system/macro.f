@@ -304,10 +304,12 @@ c     .  set output variable name
                fin=0
                call stackg(istk(l0))
                if(fin.eq.0) then
-                  call putid(ids(1,pt+1),istk(l0))
-                  call error(4)
-                  if(err.gt.0) return
-                  return
+                  if(err1.le.0) then
+c     .              call error only if it has not been already called
+                     call putid(ids(1,pt+1),istk(l0))
+                     call error(4)
+                     if(err.gt.0) return
+                  endif
                endif
                l0=l0+nsiz
  41         continue

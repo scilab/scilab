@@ -146,7 +146,8 @@ c
       if(ddt.lt.-1) write(6,'(i7)') op
       goto(20,25,40,42,30,41,45,50,50,60,
      &     15,90,90,90,90,100,12,101,102,90,
-     &     103,104,105,106,107,108,110,90,115,116) ,op
+     &     103,104,105,106,107,108,110,90,115,116,
+     &     117) ,op
 c     
 c     
 c     matfns
@@ -1293,6 +1294,31 @@ c     .  rhsi
  116  continue
 c     skip logical evaluation
       lc=lc+3
+      goto 10
+ 117  continue
+c     comment
+      n=istk(lc+1)
+      il=iadr(lr)
+      istk(il)=10
+      istk(il+1)=1
+      istk(il+2)=2
+      istk(il+3)=0
+      istk(il+4)=1
+      istk(il+5)=istk(il+4)+2
+      istk(il+6)=istk(il+5)+n
+      l=il+7
+c     type 31
+      istk(l)=3
+      istk(l+1)=1
+      l=l+2
+      call icopy(n,istk(lc+2),1,istk(l),1)
+      l=l+n
+      l=sadr(l)
+      istk(ilr)=istk(ilr-1)+l-lr
+      lr=l
+      ilr=ilr+1
+c
+      lc=lc+2+n
       goto 10
 c
   120 format('(f',i2,'.',i2,')')

@@ -17,14 +17,15 @@ C
       integer cmd(nsiz,cmdl),a,blank,name
       integer id(nsiz),ennd(nsiz),sel(nsiz),while(nsiz),for(nsiz)
       integer iff(nsiz),func(nsiz),endfunc(nsiz)
-      integer semi,comma,eol,percen,lparen,count,equal,nchar,pchar
+      integer semi,comma,eol,percen,lparen,slash
+      integer count,equal,nchar,pchar
       logical eqid,cresmat
       integer iadr
       common/cmds/cmd
       save cmds
 C     
       data a/10/
-      data eol/99/,semi/43/,comma/52/,lparen/41/,equal/50/
+      data eol/99/,semi/43/,comma/52/,lparen/41/,equal/50/,slash/48/
       data blank/40/,name/1/,percen/56/
       data ennd/671946510,nz1*673720360/
       data sel/236260892,673717516,nz2*673720360/
@@ -128,6 +129,7 @@ c     if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
          endif
       else
          if(char1.eq.comma.or.char1.eq.semi.or.char1.eq.eol) return
+         if (char1.eq.slash.and.lin(lpt(4)).eq.slash) return
          call cmdstr
       endif
       return

@@ -27,12 +27,12 @@ function txt=fun2string(fun,nam)
   crp=ins2sci(lst,4)
   //add the function header
   select size(outputs,'*')
-    case 0 then outputs='[]'
-    case 1 then outputs=outputs
+  case 0 then outputs='[]'
+  case 1 then outputs=outputs
   else outputs=lhsargs(outputs)
   end
   select size(inputs,'*')
-    case 0 then inputs=''
+  case 0 then inputs=''
   else inputs=rhsargs(inputs)
   end
 
@@ -69,7 +69,7 @@ function txt=cla2sci(clause)
   //write(6,'cla2sci '+typ(1))
   level;level(1)=level(1)+1
   select typ(1)
-    case 'if' then
+  case 'if' then
     ncl=size(clause)
     ncas=(ncl-2)/2
     tg=''
@@ -94,14 +94,14 @@ function txt=cla2sci(clause)
     t1=ins2sci(clause(ncl),1)
     if or(t1<>'') then txt=catcode(txt,catcode('else ',indentsci(t1)));end
     txt=catcode(tg,catcode(txt,'end,'))
-    case 'while' then 
+  case 'while' then 
     level(2)=1
     [t1,t2,ilst]=exp2sci(clause(2),1)
     t1=t1(1);
     txt=catcode('while ',catcode(splitexp(t1(1)),' then'))
     t1=ins2sci(clause(3),1)
     txt=catcode(txt,catcode(indentsci(t1),'end,'))
-    case 'for' then
+  case 'for' then
     name=typ(2)
     sciexp=1
     level(2)=1
@@ -111,7 +111,7 @@ function txt=cla2sci(clause)
     sciexp=0;
     t1=ins2sci(clause(3),1)
     txt=catcode(txt,catcode(indentsci(t1),'end'))
-    case 'select' then
+  case 'select' then
     ncas=(size(clause)-3)/2
     tg=''
     level(2)=1
@@ -149,8 +149,7 @@ function [txt,ilst]=cod2sci(lst,ilst)
     op=lst(ilst)
     if type(op)==15 then return,end
     select op(1)
-      case '1' then //stackp 
-      // retained for compatibility with 2.7 and earlier version
+    case '1' then //stackp (retained for compatibility with 2.7 and earlier version)
       prev=lst(ilst-1)
       if size(prev,'*')==1 then prev=[prev ' '],end
       if and(prev(1:2)==['5','25'])|prev(1)=='20' then
@@ -199,19 +198,19 @@ function [txt,ilst]=cod2sci(lst,ilst)
 	  lcount=lcount+1
 	end
       end
-      case '12' then //pause
+    case '12' then //pause
       txt=catcode(txt,'pause,')
-      case '13' then //break
+    case '13' then //break
       txt=catcode(txt,'break,')
-      case '14' then //abort
+    case '14' then //abort
       txt=catcode(txt,'abort,')
-      case '15' then ,//eol
+    case '15' then ,//eol
       txt($+1)=''
-      case '18' then  
-      case '25' then   
-      case '28' then //continue
+    case '18' then  
+    case '25' then   
+    case '28' then //continue
       txt=catcode(txt,'continue,')
-      case '29' then //affectation
+    case '29' then //affectation
       ip=','//code2str(evstr(op(2)))
       op=matrix(op(3:$),2,-1)
       lhs=size(op,2)
@@ -242,7 +241,9 @@ function [txt,ilst]=cod2sci(lst,ilst)
       else
 	txt=catcode(txt,LHS+' = '+RHS+ip)
       end
-      case '99' then //return
+    case '31' then //comment
+      txt=catcode(txt,'//'+op(2))
+    case '99' then //return
       txt=catcode(txt,'return,')
     else
       [stk,t1,ilst]=exp2sci(lst,ilst);
@@ -272,9 +273,9 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
     if type(op)==10 then
       if prod(size(op))==1 then op=[op ' '],end
       select op(1)
-	case '0' then
+      case '0' then
 	
-	case '2' then //stackg
+      case '2' then //stackg
 	if (op(3)=='-3'&op(4)<>'0') then
 	  [stk,top]=get2sci(op(2),stk,top)
 	elseif (op(3)=='-2'&op(4)<>'0') then
@@ -309,16 +310,16 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	  end
 	end
 	t1=[]
-	case '3' then //string
+      case '3' then //string
 	quote=''''
 	dqote='""'
 	top=top+1
 	st=strsubst(strsubst(op(2),quote,quote+quote),dquote,dquote+dquote)
 	stk(top)=list(quote+st+quote,'0')
-	case '4' then //matrice vide
+      case '4' then //matrice vide
 	top=top+1
 	stk(top)=list('[]','0')
-	case '5' then //allops
+      case '5' then //allops
 	t1=[]
 	iop=evstr(op(2))
 	top1=top
@@ -326,52 +327,52 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	stk(top)=stkr
 	txt=catcode(txt,t1)
 	t1=''
-	case '6' then //num
+      case '6' then //num
 	[stk,top]=num2sci(op(2),stk)
-	case '20' then //functions
+      case '20' then //functions
 	[stk,top]=func2sci(op,stk)
-	case '15' then 
+      case '15' then 
 	if top>0 then 
 	  stk(top)(1)=stk(top)(1)+CR      
 	else
 	  txt($+1)=''
 	end
-	case '18' then  //named variable
+      case '18' then  //named variable
 	stk(top)(1)=op(2)+'='+ stk(top)(1)
-	case '19' then  // mkindx
-			// replace all variables describing path by a single list
-			n=evstr(op(2))
-			m=evstr(op(3));
-			if m>1&n>0 then
-			  l=list(m),pos=top-m
-			  for k=1:m,l($+1)=stk(pos+k),end
-			  top=pos+1
-			  stk(top)=l
-			  //for k=2:m,stk(top+1)=null(),end
-			end
-			nn=n;if n==0 then nn=m,end
-			l=list(nn),pos=top-nn
-			for k=1:nn,l($+1)=stk(pos+k),end
+      case '19' then  // mkindx
+		      // replace all variables describing path by a single list
+		      n=evstr(op(2))
+		      m=evstr(op(3));
+		      if m>1&n>0 then
+			l=list(m),pos=top-m
+			for k=1:m,l($+1)=stk(pos+k),end
 			top=pos+1
 			stk(top)=l
-			//for k=size(stk):-1:top+1,stk(k)=null(),end
-	case '23' then   
+			//for k=2:m,stk(top+1)=null(),end
+		      end
+		      nn=n;if n==0 then nn=m,end
+		      l=list(nn),pos=top-nn
+		      for k=1:nn,l($+1)=stk(pos+k),end
+		      top=pos+1
+		      stk(top)=l
+		      //for k=size(stk):-1:top+1,stk(k)=null(),end
+      case '23' then   
 	top=top+1
 	stk(top)=list(quote+op(2)+quote,'0')
-	case '24' then   
+      case '24' then   
 	top=top+1
 	stk(top)=list('','0')  //list('null()','0')
-	case '25' then  
-	case '26' then 
+      case '25' then  
+      case '26' then 
 	//      vector of string
 	quote=''''
 	dqote='""'
 	if lst(ilst+1)(1)=='20'&lst(ilst+1)(2)=='deff' then
 	  st=op(4:$)
 	  txt=catcode(txt,['function '+strsubst(strsubst(stk(top)(1),quote,''),dquote,'')
-	       indentsci(st(:))
-	       'endfunction'
-	       ''])
+			   indentsci(st(:))
+			   'endfunction'
+			   ''])
 	  lst(ilst+1)(1)='0'
 	  lst(ilst+2)(1)='0'
 	  stk(top)=list('','-2'),top=top-1
@@ -394,7 +395,7 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	  end
 	  stk(top)=list(st,'0')
 	end
-	case '27' then
+      case '27' then
 	// funptr variable
 	top=top+1
 	stk(top)=list(op(4),'0')
@@ -420,7 +421,7 @@ function [stk,top]=func2sci(op,stk)
 
   // add lhs expression to the stack
   top=top-rhs
-//  for k=size(stk):-1:(top-rhs+1), stk(top)=null(),end
+  //  for k=size(stk):-1:(top-rhs+1), stk(top)=null(),end
   if lhs>1 then
     for k=1:lhs
       top=top+1

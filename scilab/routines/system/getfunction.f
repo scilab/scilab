@@ -5,13 +5,13 @@ c     Copyright INRIA
       integer cblock,rblock,fcount
       parameter (rblock=30,cblock=rblock*50)
       integer quote,eol,equal,lparen,rparen,comma,semi,left,right,dot
-      integer blank
+      integer blank,slash
       integer psym,qcount,strcnt,pchar
       integer func(nsiz),endfunc(nsiz),iadr,sadr
       logical cresmat,eqid,last,eof
-      integer name,num
-      data quote/53/,eol/99/,name/1/,num/0/
-      data equal/50/,lparen/41/,rparen/42/
+      integer name,num,cmt
+      data quote/53/,eol/99/,name/1/,num/0/,cmt/2/
+      data equal/50/,lparen/41/,rparen/42/,slash/48/
       data comma/52/,semi/43/,left/54/,right/55/,dot/51/,blank/40/
 
 
@@ -33,7 +33,6 @@ c
       endif
 c     syntax line
       l4=lpt(4)-1
-c      n=lpt(6)-lpt(4)+1
 c     analysing syntax to get the end of syntax definition
       call getsym
       if(sym.eq.name) then
@@ -62,7 +61,8 @@ c     lhs analyzed
 c     
       if(char1.eq.semi.or.char1.eq.comma) goto 46
       call getsym
-      if(sym.eq.eol) goto 46
+      if(sym.eq.eol.or.sym.eq.cmt) goto 46
+
       if(sym.ne.lparen) goto 50
  44   call getsym
       if(sym.ne.name) goto  45
@@ -70,9 +70,14 @@ c
       if(sym.eq.comma) goto  44
  45   if(sym.ne.rparen) goto 50
       call getsym
-      if(sym.ne.eol.and.sym.ne.semi.and.sym.ne.comma) goto 50
+      if(sym.ne.eol.and.sym.ne.semi.and.
+     $     sym.ne.comma.and.sym.ne.cmt) goto 50
  46   continue
 c     rhs analyzed
+      if(sym.eq.cmt)  then
+         lpt(4)=lpt(6)
+         sym=eol
+      endif
       n=lpt(4)-l4
       goto 60
  50   continue
@@ -117,8 +122,8 @@ c     statements of the function
          return
       endif
       istk(ilp)=1
+      strcnt=0
       
-
       if(sym.eq.eol) then
          if (lpt(4).ge.lpt(6)) then
             if(comp(1).ne.0) then 
@@ -138,7 +143,7 @@ c     statements of the function
       endif
       l4=lpt(4)-1
       psym=sym
-      strcnt=0
+     
 
  71   continue
       psym=sym
@@ -170,7 +175,7 @@ c     statements of the function
             if(fcount.eq.1) then 
                last=.true.
                n=lpt(3)-1-l4
-               lpt(4)=lpt(4)-1
+c               lpt(4)=lpt(4)-1
                goto 72
             endif
             fcount=fcount-1
@@ -188,6 +193,10 @@ c     .     endfunction omitted
                return
             endif
          endif
+         goto 72
+      elseif(sym.eq.cmt) then
+         lpt(4)=lpt(6)
+         n=lpt(4)-l4
          goto 72
       else
          goto 71
@@ -218,7 +227,6 @@ c     . allocate memory for cblock more characters
          ilp=ilp1
       endif
       istk(ilp+nr+1)=istk(ilp+nr)+n
-      
       call icopy(n,lin(l4),1,istk(ilc+nc),1)
       nc=nc+n
       nr=nr+1
@@ -235,7 +243,8 @@ c     . allocate memory for cblock more characters
          goto 71
       endif
 c
- 73   call getsym
+ 73   continue
+c      call getsym
       il=ilc
       ilp1=il+2
       ilc1=ilp1+nr+1

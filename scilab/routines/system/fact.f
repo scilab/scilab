@@ -8,17 +8,22 @@ c     Copyright INRIA
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eqid,eptover
-      integer semi,eol,blank,r,excnt,lparen,rparen,num,name,percen,psym
+      integer r,excnt,psym,chars
       integer id(nsiz),op,fun1
-      integer star,dstar,comma,quote,cconc,extrac,rconc
-      integer left,right,hat,dot,equal,colon
+      integer star,dstar,semi,eol,blank,percen
+      integer comma,lparen,rparen,hat,dot,equal
+      integer quote,left,right,colon,slash
+      integer num,name,cmt
+      integer cconc,extrac,rconc
       logical recurs,compil,first,dotsep,nullarg,ok
       integer setgetmode
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
-      data num/0/,name/1/,comma/52/,lparen/41/,rparen/42/
-      data quote/53/,left/54/,right/55/,cconc/1/,extrac/3/,rconc/4/
-      data hat/62/,dot/51/,equal/50/,colon/44/
+      data comma/52/,lparen/41/,rparen/42/, hat/62/,dot/51/,equal/50/
+      data quote/53/,left/54/,right/55/,colon/44/,slash/48/
+
+      data num/0/,name/1/,cmt/2/
+      data cconc/1/,extrac/3/,rconc/4/
 c     
 c     
       r = rstk(pt)
@@ -87,37 +92,7 @@ c
 c     
 c     --- matrix defined by bracket operators
 c     
- 20   if(char1.eq.right) then
-c     create an empty matrix
-         call getsym
-         call defmat
-         if(err.gt.0) return
-         call getsym
-         goto 60
-      endif
-
- 201  if(char1.eq.eol.or.char1.eq.semi) then
-         call getsym
-         if(sym.eq.eol) then
-            if(comp(1).ne.0) call seteol
-            if(lpt(4).eq.lpt(6))  then
-               call getlin(0,0) 
-            else
-               lpt(4)=lpt(4)+1
-               call getsym
-            endif
-         endif
-         if(char1.eq.right) then
-c     create an empty matrix
-            call getsym
-            call defmat
-            if(err.gt.0) return
-            call getsym
-            goto 60
-         endif
-         goto 201
-      endif
-      
+ 20   continue
       if (eptover(0,psiz-3))  return
       pt=pt+1
       rstk(pt)=0
@@ -128,7 +103,8 @@ c
       pstk(pt)=0
       call getsym
 c     
- 22   if (sym.eq.semi .or. sym.eq.eol .or.sym.eq.right) go to 27
+ 22   if (sym.eq.cmt) call parsecomment
+      if (sym.eq.semi .or. sym.eq.eol .or.sym.eq.right) go to 27
       if (sym .eq. num .and.char1.eq.dot.and.
      $     lin(lpt(4)-2).ne.blank) then
 c     .  to return an error on [1.000.3,...] 
@@ -136,7 +112,12 @@ c     .  to return an error on [1.000.3,...]
          call error(276)
          return
       endif
-      if (sym .eq. comma) call getsym
+
+      if (sym .eq. comma) then
+         call getsym
+c        comment next line to disallow Matlab syntax like [1,2,,;3,4]  
+         goto 22
+      endif
  
       rstk(pt) = 301
 c     get next entry or block
@@ -183,6 +164,10 @@ c     *call* allops(rconc)
          go to 60
       endif
       if (sym .ne. right) go to 21
+      if (pstk(pt).le.0) then
+         call defmat
+         if(err.gt.0) return
+      endif
       pt=pt-1
       call getsym
       go to 60

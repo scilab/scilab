@@ -232,6 +232,8 @@ int C2F(run)()
   case 28:  goto L97;
   case 29:  goto L230;
   case 30:  goto L240;
+  case 31:  goto L241;
+
   }
   if (op >= 100) {
     /* ------------- primitive call (matfn's) -------------- */
@@ -1209,6 +1211,11 @@ int C2F(run)()
     }
   }
   lc += 3;
+  goto L10;
+ /*     comment */
+ L241:
+
+  lc += 2+Istk[1 + lc];
   goto L10;
 
  L998:

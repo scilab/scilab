@@ -1429,6 +1429,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
+
       call ref2val
       if(rstk(pt).eq.901) goto 61
 c
@@ -1474,6 +1475,9 @@ c
       l = l + nsiz*mrhs + 2
       pt=pt+1
       ids(1,pt)=l
+      ids(2,pt)=sym
+      ids(3,pt)=char1
+
       pstk(pt)=fin
       fin=lstk(top)
       sym=semi
@@ -1485,6 +1489,8 @@ c
 c     *call* parse  macro
       return
  61   l=ids(1,pt)
+      sym=ids(2,pt)
+      char1=ids(3,pt)
       pt=pt-1
       if(err1.ne.0) then
          comp(3)=0
@@ -1519,7 +1525,6 @@ c     *call* parse  macro
       if(err.gt.0.or.err1.gt.0) goto 999
       top=top+1
       call objvide('comp',top)
-c
       lhs=0
 c     
  999  return

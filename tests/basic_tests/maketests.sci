@@ -1,6 +1,7 @@
 function tests=testslist()
   tests = ['parse.tst'
 	   'clause.tst';
+	   'comment.tst';
 	   'global.tst';
 	   'listextraction.tst';
 	   'listinsertion.tst';

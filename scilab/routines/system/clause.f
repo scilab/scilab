@@ -7,14 +7,14 @@ c     Copyright INRIA
       integer while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
       integer do(nsiz),thenn(nsiz),cas(nsiz),sel(nsiz)
       integer elsif(nsiz)
-      integer semi,equal,eol,blank,comma,name
+      integer semi,equal,eol,blank,comma,name,cmt
       integer lparen,rparen
       integer r,r1
       logical eqid,istrue,ok,first,eptover
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       parameter (iif=1,iwhile=2,iselect=3)
       data semi/43/,equal/50/,eol/99/,blank/40/
-      data comma/52/,name/1/
+      data comma/52/,name/1/,cmt/2/
       data lparen/41/,rparen/42/
       data do/673716237,nz1*673720360/, else/236721422,nz1*673720360/
       data ennd/671946510,nz1*673720360/
@@ -106,6 +106,10 @@ c     .  for matlab compatiblity: for (k=1:n)
       if(sym.eq.comma.or.sym.eq.semi) then
          sym = semi
          pstk(pt) = lpt(4) - 1
+      elseif( sym.eq.cmt) then
+         call parsecomment
+         sym=semi
+         pstk(pt) = lpt(4)
       elseif( sym.eq.eol) then
          sym=semi
          pstk(pt) = lpt(4)
@@ -152,7 +156,7 @@ c     fin for
  20   continue
       pt = pt-2
       icall=7
-      char1 = blank
+c      char1 = blank
       return
 c     
 c     while  if  select/case or if/elseif
@@ -168,6 +172,7 @@ c
 C      call putid(ids(1,pt),syn)
 
       pstk(pt) = lpt(4)-1
+
       if(ids(1,pt).eq.iwhile) then
 c     .  while, look for the end to be sure all lines are loaded
          call skpins(1)
@@ -187,18 +192,22 @@ c     .  while, look for the end to be sure all lines are loaded
 c     *call* expr
       return
  40   if (ids(1,pt).ne.iselect) goto 46
-c     select case
+c     select expression evaluated
  41   continue
+c     skip following commas or semi columns if any
       if(sym.eq.comma.or.sym.eq.semi) then
          call getsym
          goto 41
-      elseif(sym.eq.eol) then
+      endif
+c     end of line reached?
+      if(sym.eq.eol.or.sym.eq.cmt) then
+         if(sym.eq.cmt) call parsecomment
          if(macr.gt.0.and.lin(lpt(4)+1).eq.eol) then
             call error(47)
             return
          endif
          if(comp(1).ne.0) call seteol()
-c     get the following line
+c    .    get the following line
          if(lpt(4).eq.lpt(6))  then
             call getlin(1,0)
          else
@@ -207,7 +216,9 @@ c     get the following line
          endif
          call getsym
          goto 41
-      elseif(sym.eq.name.and.eqid(syn,cas)) then
+      endif
+c     looking for the "case" keyword
+      if(sym.eq.name.and.eqid(syn,cas)) then
          rstk(pt)=807
          if(comp(1).ne.0) then
             call compcl
@@ -255,6 +266,9 @@ c     *call* allops(==)
       return
  46   if (eqid(syn,do) .or. eqid(syn,thenn)
      &     .or.sym.eq.comma.or.sym.eq.semi.or.sym.eq.eol) then
+         sym = semi
+      elseif(sym.eq.cmt) then
+         call parsecomment
          sym = semi
       elseif(lin(lpt(3)-2).eq.blank) then
          sym=semi

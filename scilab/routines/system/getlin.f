@@ -26,7 +26,7 @@ c
       integer lrecl,eol,slash,dot,blank,comma
       integer retu(6)
       integer r,quit(4),lnblnk
-      logical isinstring,eof,continued
+      logical isinstring,eof,continued,incomment
       character*20 tmp
       external isinstring,lnblnk, getfastcode
       integer getfastcode
@@ -107,6 +107,7 @@ c        check if getlin is call in a macro or an exec
       endif
 c
 c     loop on read characters
+      incomment=.false.
       j=0
  17   j=j+1
       if(j.gt.n) goto 45
@@ -120,24 +121,10 @@ c     special cases        //    ..
 
       if(k.eq.slash) then
 c     .  check if // occurs in a string
-         if(isinstring(lin(l0),l-l0+1)) then
-c     .     // is part of a string
-            if (l+1.ge.lsiz) then
-               call error(108)
-               return
-            endif
-            lin(l)=slash
-            lin(l+1)=slash
-            j=j+1
-            l=l+2
-            goto 40
-         else
-c     .     // marks beginning of a comment
-            goto 45
-         endif
+         if(.not.isinstring(lin(l0),l-l0+1)) incomment=.true.
       endif
 c
-      if(k.ne.dot) goto 31
+      if(k.ne.dot.or.incomment) goto 31
       if(j.eq.1) goto 70
 c     . .. find
 c     check if .. is followed by more dots or //

@@ -17,12 +17,12 @@ c
       integer cas(nsiz),sel(nsiz),elsif(nsiz)
       integer clcnt,strcnt,qcount,bcount
       integer rparen,left,right,quote,percen,dot
-      integer eol,blank,name,num,psym,pchar
+      integer eol,blank,name,num,cmt,psym,pchar
       logical eqid
 c
       data rparen/42/,left/54/,right/55/,quote/53/,percen/56/,dot/51/
       data eol/99/,blank/40/
-      data num/0/,name/1/
+      data num/0/,name/1/,cmt/2/
       data else/236721422,nz1*673720360/
       data ennd/671946510,nz1*673720360/, for/672864271,nz1*673720360/
       data iff/673713938,nz1*673720360/
@@ -55,6 +55,13 @@ c     get the following line
                lpt(4)=lpt(4)+1
                char1=blank
             endif
+         else if (sym.eq.cmt) then
+c     .     look for eol
+            l=lpt(4)-1;
+ 11         l=l+1
+            if (lin(l).ne.eol.and.l.le.lpt(6)) goto 11
+            lpt(4)=l-1
+            char1=eol
          else if (sym.eq.left) then
             bcount=bcount+1
          else if (sym.eq.right) then
@@ -96,11 +103,11 @@ c
             return
          elseif (sym.eq.quote) then
             qcount=0
- 11         qcount=qcount+1
-            if(abs(char1).ne.quote) goto 12
+ 14         qcount=qcount+1
+            if(abs(char1).ne.quote) goto 15
             call getsym
-            goto 11
- 12         continue
+            goto 14
+ 15         continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0
          endif
       endif

@@ -61,14 +61,17 @@
       implicit none
       include '../stack.h'
       double precision syv
-      integer namecd(nlgh), chcnt, io
-      integer blank,    dot,    percen,    name,   num
+      integer namecd(nlgh), chcnt, io 
+      integer blank, dot, percen, slash, comma,eol
+      integer name, num, cmt
 
 *     STATEMENTS FUNCTIONS
       integer c
       logical isDigit, isAlphaNum, isBlank
-      data    blank/40/,dot/51/,percen/56/,name/1/,num/0/
+      data    blank/40/,dot/51/,percen/56/,slash/48/,comma/52/,eol/99/
+      data    name/1/, num/0/, cmt/2/
 
+ 
       isDigit(c)    = abs(c) .le. 9
       isAlphaNum(c) = abs(c) .lt. blank
       isBlank(c)    = abs(c) .eq. blank
@@ -106,12 +109,17 @@
 *        encoding of the name
          call namstr(syn,namecd,chcnt,0)
 
+
       else
 *        -> special character (eol, operator, part of an operator, .... 
 *           but in case of a dot following by a digit it is a number)
          sym = abs(char1)
          call getch
-         if (sym.eq.dot .and. isDigit(char1)) then
+         if (sym.eq.slash .and. abs(char1).eq.slash) then
+            sym=2
+            call getch
+            return
+         elseif (sym.eq.dot .and. isDigit(char1)) then
 *           -> it is a number (beginning with a dot => 2d arg of getval : dotdet = .true.)
             sym = num
             call getval(syv, .true.)
@@ -131,6 +139,8 @@
          call basout(io,wte,buf(1:11))
       else if (sym .eq. name) then
          call prntid(syn(1),1,wte)
+      else if (sym .eq. cmt) then
+         call basout(io,wte,'//')
       else if (sym .lt. csiz) then
          call basout(io,wte,alfa(sym+1))
       else

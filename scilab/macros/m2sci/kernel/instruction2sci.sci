@@ -15,6 +15,9 @@ elseif or(typeof(mtlb_instr)==["ifthenelse","selectcase","for","while"]) then
   [converted_instr,nblines]=clause2sci(mtlb_instr,nblines)
 elseif or(typeof(mtlb_instr)==["funcall","cste","operation","variable"]) then
   [converted_instr]=expression2sci(mtlb_instr)
+elseif typeof(mtlb_instr)=="comment" then
+  [converted_instr]=mtlb_instr
+  
 else
   error("instruction2sci: unknown instruction type "+typeof(mtlb_instr))
 end

@@ -260,9 +260,27 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index);
   - 0 if execution succeeds
   - not null if execution fails
 ****************************************************************/
+
+static int CreateCommentTList(int *data,int *index);
+/****************************************************************
+ Function name:  CreateCommentTList
+ Decription: 
+  Create on Scilab stack a "comment" tlist:
+  tlist(["comment","text"],text_of_comment)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current integer in data
+ Output:
+  - No output
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
+
+****************************************************************/
 static int CreateRecursiveIndexList(int *data,int *index);
 
 /****************************************************************
+
  Function name: VCopyObj
  Decription: 
   Copy an object in Scilab stack

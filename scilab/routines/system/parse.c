@@ -33,10 +33,13 @@ static int c_n1 = -1;
 #define great  60
 #define dot  51
 #define name  1
+#define cmt  2
 #define insert  2
 #define extrac  3
 #define blank  40
 #define semi  43
+#define slash  48
+
 #define equal  50
 #define eol  99
 #ifndef max 
@@ -83,6 +86,8 @@ extern int C2F(seteol)();
 extern int C2F(allops)();
 extern int C2F(run)();
 extern int C2F(name2var)();
+extern void C2F(parsecomment)();
+
 void handle_onprompt(int *n);
 
 void Msgs(int n,int ierr)
@@ -336,6 +341,9 @@ int C2F(parse)()
     SciError(1);
     goto L98;
   } else if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol) {
+    goto L77;
+  } else if (C2F(com).sym == cmt) {
+    C2F(parsecomment)();
     goto L77;
   } else if (C2F(com).sym == name) {
     lpts = Lpt[3] - 1;
@@ -775,7 +783,7 @@ int C2F(parse)()
       goto L98;
     }
   }
-  if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol) {
+  if (C2F(com).sym == semi || C2F(com).sym == comma || C2F(com).sym == eol|| C2F(com).sym == cmt) {
     goto L70;
   }
   SciError(276);
@@ -971,7 +979,10 @@ int C2F(parse)()
   C2F(errgst).toperr = Top;
   /*     fin instruction */
   if (C2F(com).sym != eol) {
-    goto L15;
+    if (C2F(com).sym == cmt){
+      C2F(parsecomment)();}
+    else
+      goto L15;
   }
   /*     gestion des points d'arrets dynamiques */
   if (C2F(dbg).wmac != 0) {
@@ -1643,5 +1654,47 @@ int C2F(syncexec)(str, ns, ierr, seq, str_len)
 } /* syncexec */
 
 
+void C2F(parsecomment)()
+/*     Copyright INRIA */
+
+{
+
+  static int *Lstk    = C2F(vstk).lstk-1;
+  static int *Lin     = C2F(iop).lin-1;
+  static int *Lpt     = C2F(iop).lpt-1;
+  static int *Comp    = C2F(com).comp-1;
+  static int *Istk    = (int *)( C2F(stack).Stk)-1;
+
+
+  static integer l, ll, lkp, l0,c1=1;
+  /* look for eol */
+  l0=Lpt[4]-1;
+  if(Lin[l0]==slash&&Lin[l0-1]==slash&Lin[l0+1]==eol) 
+    l0=l0+1;
+    
+  l=l0;
+  while (Lin[l]!=eol) l++;
+  ll = l - l0;
+  if (Comp[1] == 0) {
+    /* ignore all characters up to the end */
+  } 
+  else {
+    /* compilation [30 number-of-char chars-vector] */
+    lkp = C2F(com).comp[0];
+    C2F(iop).err = (lkp + 2 + ll) / 2 + 1 - Lstk[C2F(vstk).bot];
+    if (C2F(iop).err > 0) {
+      SciError(17);
+      return ;
+    }
+    Istk[lkp] = 31;
+    Istk[lkp+1] = ll;
+    C2F(icopy)(&ll, &(Lin[l0]), &c1, &(Istk[lkp+2]), &c1);
+    Comp[1] = lkp + 2 + ll;
+  }
+  Lpt[4] = l;
+  C2F(com).char1 = eol;
+  C2F(com).sym = eol;
+  return ;
+} /* parsecomment */
 
 

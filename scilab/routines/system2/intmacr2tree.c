@@ -198,8 +198,6 @@ int C2F(macr2tree) _PARAMS((char *fname))
 	  /* Error handling (S. Steer) */
 	  if (Err>0 || C2F(errgst).err1>0)
 	    {
-	      Scierror(999,"macr2tree: error found while getting instruction\r\n");
-
 	      /* Free memory */
 	      free(name[0]);
 	      name[0]=NULL;
@@ -555,6 +553,11 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
     /* This code is ignored */
     *index += 2;
     break;
+  case 31: /* comment */
+     CreateCommentTList(data,index);
+    *addinstr=1;
+    break;
+
   case 99: /* return */
     CreateFuncallTList("datacode",data,index);
     *addinstr=1;
@@ -567,7 +570,7 @@ static int GetInstruction(int *data,int *index,int *nblines,int *addinstr)
       }
     else
       {
-	Scierror(999,"GetInstruction: unknown code %d\r\n",data[*index]);
+	Scierror(999,"GetInstruction: unknown code %d at index %d \r\n",data[*index],*index );
 	return 0;
       }
     break;
@@ -943,6 +946,7 @@ static int CreateCsteTList(char *type,int *data,int *index)
       free(int_str);
       int_str=NULL;
     }
+
   else if(!strncmp(type,"code23",5))
     {
       strlgth=nlgh;
@@ -1645,6 +1649,46 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index)
 
   return 0;
 }
+/****************************************************************
+ Function name: CreateCommentTList
+****************************************************************/
+static int CreateCommentTList(int *data,int *index)
+{
+  char *fun_tlist[] = {"comment","text"};
+  int m_fun_tlist = 1;
+  int n_fun_tlist = 2;
+
+  int strlgth;
+
+  char *text=NULL;
+  int job1 = 1;
+
+  int one = 1;
+
+   /* First item of returned list */
+  str2sci(fun_tlist,m_fun_tlist,n_fun_tlist);
+
+  /* Create data to write in field 'text' */
+  (*index)++;
+  strlgth = data[*index];
+  (*index)++;   
+  /* Memory allocation */
+  if((text=(char *)calloc(1,sizeof(char)*(strlgth+1)))==NULL)
+    {
+      Scierror(999,"CreateCsteTList: No more memory available\r\n");
+      return 0;
+    }
+  CvStr(&strlgth,&(data[*index]),text,&job1,strlgth);
+  text[strlgth]='\0';
+  str2sci(&text,one,one);
+  *index = *index + strlgth-1;
+  /* Free memory */
+  free(text);
+  text=NULL;
+
+  C2F(mktlist)(&n_fun_tlist);
+  return 0;
+}
 
 /****************************************************************
  Function name: CreateRecursiveIndexList
@@ -1841,6 +1885,10 @@ int complexity(int *data,int *index,int *lgth)
 	case 30: /* Expression evaluation short circuiting */
 	  /* This code is ignored */
 	  cur_ind = cur_ind + 3;
+	  break;
+	case 31: /* comment */
+	  cur_ind = cur_ind + 2 + data[cur_ind+1];
+	  count++;
 	  break;
 	case 99: /* return */
 	  cur_ind++;
