@@ -72,7 +72,7 @@ end
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
-LANGUAGE="eng" // default language
+LANGUAGE="eng"
 args=sciargs(); larg=find(args=="-l")
 if larg<>[] & larg<=size(args,"*") then
   L=args(larg+1)
@@ -119,7 +119,7 @@ predef('all')
 // Set the preferred browser  ==========================================
 global %browsehelp
 if with_tk()
-  %browsehelp="tcltk";
+  %browsehelp="Scilab Browser";
 elseif with_gtk()
   %browsehelp="help widget";
 end

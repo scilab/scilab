@@ -31,7 +31,7 @@ function  browsehelp_configure(job)
 		  'mozilla/netscape (gnome-moz-remote)';
 		  'opera'
 		  'quanta (kde)'];
-    if with_tk() then browse_modes=[browse_modes;'tcltk'];end
+    if with_tk() then browse_modes=[browse_modes;'Scilab Browser'];end
     if with_gtk() then browse_modes=['help widget';browse_modes];end
     
     
@@ -49,7 +49,7 @@ function  browsehelp_configure(job)
     
     if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
     browse_modes=['Default Windows Browser';];
-    if with_tk() then browse_modes=[browse_modes;'tcltk'];end
+    if with_tk() then browse_modes=[browse_modes;'Scilab Browser'];end
     if %browsehelp<>[] then //help mode already selected
       if and(browse_modes<>%browsehelp) then
 	warning('Unhandled  help browser '+%browsehelp)
@@ -86,7 +86,7 @@ function run_help(path,key)
     unix_s(%browsehelp + " --unique file://" +path+ '&');
    case 'Default Windows Browser' then
    	openbrowser(path);
-   case 'tcltk' then 
+   case 'Scilab Browser' then 
    if MSDOS then
    	tcltk_help(path,key);
    else
