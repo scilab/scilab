@@ -6921,7 +6921,7 @@ ConstructFigure (XGC)
   /* data for scilab function getwindowdim getpopupdim ... */
   integer verbose = 0;
   integer x[2];
-  integer narg = 0, dummy=0; 
+  integer narg = 0, dummy=0, m; 
 
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
@@ -6963,8 +6963,9 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC;
   
-  /** the colormap is 32x3 by default  21/11/2002 */
-  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (32 * 3 * sizeof (double))) == (double *) NULL)
+  /** the colormap is mx3 matrix */
+  m = sciGetNumColors (pobj);
+  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pobj);
       FREE(pobj->pfeatures);
