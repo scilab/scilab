@@ -9,12 +9,8 @@
  * No representations are made about the suitability of this software for 
  * any purpose.  It is provided "as is" without express or implied warranty."
  */
-
-#ifdef sgi
-#ifdef  __STDC__
-#undef __STDC__
-#endif
-#define __STDC__ 1
+#if defined  sgi && ! defined  __STDC__
+#define __STDC__ 
 #endif
 
 #include "wf_fig.h"
