@@ -230,7 +230,7 @@ c
          istk(ilr)=10
          istk(ilr+1)=1
          istk(ilr+2)=1
-         istk(ilr+3)=1
+         istk(ilr+3)=0
          istk(ilr+4)=1
          istk(ilr+5)=1+vol
          l=ilr+6
@@ -257,7 +257,7 @@ c
          istk(ilr)=10
          istk(ilr+1)=1
          istk(ilr+2)=1
-         istk(ilr+3)=1
+         istk(ilr+3)=0
          istk(ilr+4)=1
          istk(ilr+5)=1+vol
          l=ilr+6
