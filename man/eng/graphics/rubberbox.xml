@@ -9,6 +9,9 @@
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
   <PARAM>
  <PARAM_INDENT>
 
@@ -40,9 +43,11 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    <VERB>rubberbox</VERB>  tracks a rubberband box in
+    <VERB>rubberbox(initial_rect)</VERB>  tracks a rubberband box in
     the current graphic window, following the mouse. When a button is clicked <VERB>rubberbox</VERB> returns the final
-    rectangles definition  in <VERB>final_Rect</VERB>.
+    rectangles definition  in <VERB>final_Rect</VERB>. If the argument
+    <VERB>initial_rect</VERB> user has to click to fix the initial
+    corner position.
 
   </P>
   <P>
@@ -50,7 +55,8 @@
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 xsetech(frect=[0,0,100,100])
-[x,y]=xclick();rubberbox([x;y;30;10])
+rubberbox([x;y;30;10])
+rubberbox()
 xrect(r)
  ]]></EXAMPLE>
   <SEE_ALSO>
