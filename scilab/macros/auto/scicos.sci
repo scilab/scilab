@@ -197,7 +197,7 @@ if ~super_block then
     if MSDOS then choose=tk_choose; else
       deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
     end
-    getcolor=tk_getcolor;
+    funcprot(0);getcolor=tk_getcolor;funcprot(1);
   else
     deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
     savefile=getfile;
