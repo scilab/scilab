@@ -4,6 +4,8 @@
 #include <locale.h>
 #include <stdio.h>
 #include "../stack-c.h"
+extern int C2F(cluni0) __PARAMS((char *in_name, char *out_name, int *out_n));
+
 int C2F(intfilestat)(fname)
 char * fname;
 {
@@ -13,17 +15,20 @@ char * fname;
 #else
    struct stat buf;
 #endif
-   int result, m1, n1, l1 , l2,one=1;
+   int result, m1, n1, l1 , l2,one=1,n;
 
    CheckRhs(1,1);
    CheckLhs(1,2);
    GetRhsVar(1, "c", &m1, &n1, &l1); /* get file name */
 
+   n=m1*n1+256;
+   CreateVar(2,"c",&one,&n,&l2);
+   C2F(cluni0)(cstk(l1), cstk(l2), &m1);
    /* Get data associated with "given file": */
 #ifdef WIN32
-   result = _stat(cstk(l1), &buf );
+   result = _stat(cstk(l2), &buf );
 #else
-   result = stat(cstk(l1), &buf );
+   result = stat(cstk(l2), &buf );
 #endif
    /* Check if statistics are valid: */
    if( result != 0 ) {
