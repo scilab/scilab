@@ -16960,7 +16960,7 @@ void  sci_update_frame_bounds(int cflag, char* logflag,double *value_min,
  * @author Djalel Abdemouche 10/2003
  * Should be in Plo2dEch.c file
  */
-void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double alpha,double theta, double *ebox)
+void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double theta,double alpha, double *ebox)
 {
   double xmin,xmax,ymin,ymax,zmin,zmax; 
   double lmin,lmax;

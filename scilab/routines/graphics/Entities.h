@@ -1512,7 +1512,7 @@ extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
-extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double alpha,double theta, double *ebox);/* DJ.A 2003 */
+extern void update_3dbounds(sciPointObj *pobj,integer *flag,double *x,double *y,double *z,integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3,double theta,double alpha, double *ebox);/* DJ.A 2003 */
 
 extern void  sci_update_frame_bounds(int cflag, char* xf,double *value_min,double *value_max, integer *aaint, char *strflag); /* F.Leray 02.04.04*/
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
