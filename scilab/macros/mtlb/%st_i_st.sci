@@ -114,7 +114,7 @@ function M=%st_i_st(varargin)
       case 0 then
 	Ndims=[1,1]
       case 1 then
-        k=find(olddims<>1)
+        k=find(olddims<>1&olddims<>0)
 	if k==[] // M was a scalar
 	  if mtlb_mode() then
 	    Ndims=[1,Ndims]
