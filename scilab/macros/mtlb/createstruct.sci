@@ -15,7 +15,11 @@ if type(index)==15 then
       // First index is a numerical value
       if type(index(1))==1 then
 	// X(p).f = y  -> index=list(p,f)
-	Dims=[index(1) 1]
+	if mtlb_mode() then
+	  Dims=[1 index(1)]
+	else
+	  Dims=[index(1) 1]
+	end
 	M=mlist(["st","dims",index(2)],int32(Dims));
 	nmax=prod(Dims);
 	Li=list();
@@ -55,7 +59,11 @@ if type(index)==15 then
 	if type(index(2))==15 then // index=list(f,list(p,q[,...])) 
 	  Dims=list2vec(index(2))'
 	else // index=list(f,p)
-	  Dims=[index(2) 1]
+	  if mtlb_mode() then
+	    Dims=[1 index(2)]
+	  else
+	    Dims=[index(2) 1]
+	  end
 	end
 	kmax=prod(Dims)
 	z=list()
@@ -87,7 +95,11 @@ if type(index)==15 then
 	  if type(index($))==15 then
 	    Dims=list2vec(index($))'
 	  else
-	    Dims=[index($) 1]
+	    if mtlb_mode() then
+	      Dims=[1 index($)]
+	    else
+	      Dims=[index($) 1]
+	    end
 	  end
 	  kmax=prod(Dims)
 	  z=list()
@@ -106,7 +118,11 @@ if type(index)==15 then
 	  if type(index($))==15 then
 	    Dims=list2vec(index($))'
 	  else
-	    Dims=[index($) 1]
+	    if mtlb_mode() then
+	      Dims=[1 index($)]
+	    else
+	      Dims=[index($) 1]
+	    end
 	  end
 	  kmax=prod(Dims)
 	  z=list()

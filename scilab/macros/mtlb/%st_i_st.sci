@@ -99,7 +99,11 @@ function M=%st_i_st(varargin)
       case 0 then
       Ndims=[1,1]
       case 1 then
-      Ndims=[Ndims,1]
+      if mtlb_mode() then
+	Ndims=[1,Ndims]
+      else
+	Ndims=[Ndims,1]
+      end
     else 
       Ndims=matrix(Ndims,1,-1)
     end
