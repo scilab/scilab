@@ -98,6 +98,15 @@ c     profile
          istk(l+1)=val1(1)
          istk(l+2)=0
          comp(1)=l+3
+      elseif(code.eq.27) then
+c     varfunptr <27,fun,fin,id>
+         err=sadr(l+(nsiz+3))-lstk(bot)
+         if(err.gt.0) goto 90
+         istk(l)=code
+         istk(l+1)=val2
+         istk(l+2)=val3
+         call putid(istk(l+3),val1)
+         comp(1)=l+3+nsiz
       elseif(code.eq.29) then
 c     affectation <29,n,print,name1,rhs1,...,name,rhsn>
          lhs=val1(1)
