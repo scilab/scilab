@@ -56,13 +56,12 @@ case 'set' then
     if ok then
       // AVERIFIER
       if funtyp==3 then needcompile=4;end
-      //
       model.sim=list(junction_name,funtyp);
       model.state=xx
-        model.dstate=z
-        model.rpar=rpar
-        model.ipar=ipar
-//      needcompile=4     AVERIFIER CANEMARCHEQUAVECFORTRAN
+      model.dstate=z
+      model.rpar=rpar
+      model.ipar=ipar
+      //      needcompile=4     AVERIFIER CANEMARCHEQUAVECFORTRAN
       model.firing=auto0
       model.dep_ut=dep_ut
       arg1.model=model
@@ -90,12 +89,13 @@ case 'define' then
   model.firing=[]
   model.dep_ut=['y' 'n']
   model.label=[junction_name;sci2exp(model.blocktype);
-        sci2exp(model.in);sci2exp(model.out);
-        sci2exp(model.evtin);sci2exp(model.evtout);
-        sci2exp(model.state);sci2exp(model.dstate);
-        sci2exp(model.rpar);sci2exp(model.ipar);
-        sci2exp(model.firing);model.dep_ut(1);model.dep_ut(2)];
+	       sci2exp(model.in);sci2exp(model.out);
+	       sci2exp(model.evtin);sci2exp(model.evtout);
+	       sci2exp(model.state);sci2exp(model.dstate);
+	       sci2exp(model.rpar);sci2exp(model.ipar);
+	       sci2exp(model.firing);model.dep_ut(1);model.dep_ut(2)];
   gr_i=['xstringb(orig(1),orig(2),''GENERIC'',sz(1),sz(2),''fill'');']
   x=standard_define([2 2],model,model.label,gr_i)
 end
 endfunction
+
