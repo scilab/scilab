@@ -1,3 +1,13 @@
+      subroutine createref1(topk)
+      include '../stack.h'
+      integer topk,sz
+      integer iadr,sadr
+c
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      call createref(iadr(lstk(topk)),topk,lstk(topk+1)-lstk(topk))
+      end
       subroutine createref(il,topk,sz)
 c =============================================================
 c     create a reference to a variable at the top of the stack

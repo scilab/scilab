@@ -16,7 +16,7 @@ OBJSF = allops.o  banier.o diary.o\
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \
 	getval.o inisci.o \
-	logops.o macro.o mname.o nextj.o parse.o print.o \
+	logops.o macro.o mname.o nextj.o parse.o findequal.o print.o \
 	prompt.o putid.o  run.o savlod.o  stackg.o stackgl.o \
 	ref2val.o stackp.o terme.o  scirun.o \
 	majmin.o whatln.o \

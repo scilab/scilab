@@ -17,7 +17,7 @@ c
       integer id(nsiz),ans(nsiz)
       integer pts,psym,excnt,p,r,topk,where
       integer pcount,strcnt,bcount,qcount,pchar,schar
-      logical dotsep
+      logical dotsep,found
       character*50 tmp
 c
       integer otimer,ntimer,stimer,ismenu
@@ -161,30 +161,75 @@ c     pauses termination
       goto 15
 
  18   lhs = 1
+      excnt=0
       call putid(id,ans)
+c     preserve current character position 
+      lpts = lpt(4)-1
+      pts =  pt
 c     
       call getsym
-      if (sym.eq.right) call getsym
-      if (sym.eq.colon) call getsym
-      if (sym.eq.semi .or. sym.eq.comma .or. sym.eq.eol) goto 75
-      if (sym.eq.name) goto 20
-      if (sym.eq.left) goto 40
-      goto 60
+      if (sym.eq.right.or.sym.eq.rparen.or.
+     $     sym.eq.less.or.sym.eq.great) then 
+         call error(1)
+         goto 98
+      elseif (sym.eq.semi .or. sym.eq.comma .or. sym.eq.eol) then
+         goto 77
+      elseif (sym.eq.name) then
+         lpts = lpt(3)-1
+c     .  try to avoid the comand call whenever it is possible
+         if (char1 .eq. equal) goto 25
+c         if (char1 .eq. lparen) then
+c           one can get this case with "if ( ) then"
+c         endif
+         if (char1.eq.dot) then
+c     .     name.x
+            schar=char1
+            goto 30
+         endif
+         goto 20
+      elseif (sym.eq.left) then
+c     .  is there an explicit affectation
+         lpts = lpt(3)-1
+         lpt(4)=lpts
+         lpt(3)=lpts
+         char1=blank
+         call findequal(found)
+         if(err.gt.0) goto 98
+         if(found) then
+c     .     multiple lhs
+            goto 40
+         else
+c     .     no ==> implicit lhs
+            goto 50
+         endif
+      else
+c     .  not lhs defined
+c     .  set ans for lhs      
+         if ( eptover(1,psiz))  goto 98
+         call putid(ids(1,pt),ans)
+         lhs=1
+         pstk(pt) = 0
+c     .  go to rhs analysis
+         goto 60
+      endif
 c     
 c     lhs begins with name
 c-------------------------
+c     check if it is a simple command like clear,...
  20   call comand(syn)
       if (err .gt. 0) goto 98
+      if (fin.eq.0) goto 21
+
       if (fun .eq. 99) return
       if (fun .ne. 0) goto 93
       if (fin .lt. 0) goto 80
       if (fin .eq. 2) goto 88
       if (fin .eq. 3) goto 16
       if (fin .eq. 4) goto 05
-      if (fin .gt. 0) goto 75
+      if (fin .gt. 0) goto 77
+
+c     name is not a command
  21   rhs = 0
-c      fin=0
-c      call funtab(syn,fin,1)
       fin=-5
 c IL y a p avec fin=-5 (on ne trouve pas les macros parce que l'on ne
 c veut pas que les macros sans arg soient vues comme des commandes
@@ -193,141 +238,88 @@ c il faut faire disp()
       fun=0
       call funs(syn)
       if (fin .gt. 0) then
-c        name est le nom d'une primitive
+c        name is a builtin name
          if(char1.eq.equal) then
+c           fun=expr is not allowed
             call putid(ids(1,pt+1),syn)
             call error(25)
             goto 98
          endif
-c        name is a function, must be rhs
+c        skip lhs analysis
+         if ( eptover(1,psiz))  goto 98
+         call putid(ids(1,pt),id)
+         lhs=1
+         pstk(pt)=0
+c     .  go to rhs analysis
          goto 60
       endif
 c     
 c     peek one character ahead
       if (char1.eq.semi .or. char1.eq.comma .or. char1.eq.eol)
      $     call putid(id,syn)
-      if (char1 .eq. equal) goto 25
-      if (char1 .eq. lparen.or.char1.eq.dot) then
+      if (char1 .eq. lparen) then
          schar=char1
          goto 30
       endif
+c     instruction is just "name", skip lhs analysis
+c     record name as lhs
+      if ( eptover(1,psiz))  goto 98
+      call putid(ids(1,pt),id)
+      lhs=1
+      pstk(pt)=0
+c     go to rhs analysis
       goto 60
 c     
-c     lhs is simple variable
-c---------------------------
+c     name = expr  or name == expr syntax
+c----------------------------------------
  25   call putid(id,syn)
       lpts=lpt(2)
       call getsym
-      if(char1.eq.equal) then
-c     logical equality
-         lpt(4)=lpts
-         lpt(2)=lpts
-         lpt(3)=lpts
-         call putid(id,ans)
-         char1=blank
-         sym=blank
+      if(char1.eq.equal) then 
+c     .  name == expr syntax ==> implicit lhs 
+         goto 50
+      else
+c     .  lhs found
+c     .  record it
+         if ( eptover(1,psiz))  goto 98
+         call putid(ids(1,pt),id)
+         lhs=1
+         pstk(pt)=0
+         call getsym
+c     .  go to rhs analysis
+         goto 60
       endif
-      call getsym
-      goto 60
 c     
 c     lhs is name(...) or name.x...
-c---------------------
+c-----------------------------------
  30   lpt(5) = lpt(4)
       call putid(id,syn)
 c     
 c     looking for equal to check if it is really an lhs
-      pcount=0
-      strcnt=0
-      bcount=0
- 31   psym=sym
-      call getsym
-      if(strcnt.ne.0) then
-         if(sym.eq.eol) then
-            call error(3)
-            goto 98
-         endif
-         if(sym.eq.quote) then
-            qcount=0
- 311        qcount=qcount+1
-            if(abs(char1).ne.quote) goto 312
-            call getsym
-            goto 311
- 312        continue
-            if(2*int(qcount/2).ne.qcount)  strcnt=0
-         endif
-      else if(sym.eq.lparen) then
-         pcount=pcount+1
-      else if(sym.eq.rparen) then
-         pcount=pcount-1
-         if(pcount.lt.0) then
-            call error(2)
-            goto 98
-         endif
-      else if(sym.eq.quote) then
-c     .  check if transpose or beginning of a string
-         pchar=lin(lpt(3)-2)
-         if(abs(pchar).eq.blank) then
-            strcnt=1
-         elseif(psym.ne.num.and.psym.ne.name.and.psym.ne.rparen.and.
-     $           psym.ne.right.and.psym.ne.dot.and.psym.ne.quote) then
-            strcnt=1
-         endif
-      else if(sym.eq.left) then
-         bcount=bcount+1
-      else if(sym.eq.right) then
-         bcount=bcount-1
-         if(bcount.lt.0) then
-            call error(2)
-            goto 98
-         endif
-      else if(pcount.eq.0) then
-         if(sym.eq.equal) then
-            if(char1.eq.equal) then
-               call getsym
-            else
-               if(psym.ne.less.and.psym.ne.great.and.
-     $              psym.ne.not)  goto 32
-            endif
-         endif
-         if(sym.eq.eol .or. sym.eq.comma .or. sym.eq.semi) goto 50
-c     .  next line for recursive index
-         if(sym.eq.lparen) goto 31
-      else if(sym.eq.eol) then
-         if(bcount.eq.0) then
-            call error(3)
-            goto 98
-         else
-            if(lpt(4).eq.lpt(6))  then
-               call getlin(1)
-               if(err.gt.0) goto 98
-            else
-               lpt(4)=lpt(4)+1
-               call getsym
-            endif
-         endif
-      endif
-      goto 31
-c     
- 32   continue
+      call findequal(found)
+      if(err.gt.0) goto 98
+      if(.not.found) goto 50
 c     It is really a lhs (insertion syntax)
+
+
+ 32   continue
       lpt(4)=lpt(5)
       char1=schar
 c
 c35     call parseindexlist(excnt)
 c     if(err.gt.0) goto 98
 
-      if(comp(1).ne.0) then
-         if (compil(21,0,0,0,0)) then 
-            if (err.gt.0) return
-         endif
+      if (compil(21,0,0,0,0)) then 
+         if (err.gt.0) return
       endif
+
 c     begin the index lists
       icount=0
 
       call getsym
 c
  33   continue
-c     begin a new index list (...) or .name
+c     begin a new index list (.,..) or .name
       icount=icount+1
 c
       dotsep=sym.eq.dot
@@ -354,7 +346,7 @@ c         icount=icount+1
          goto 36
       endif
 
-c     --> new index list is (...)
+c     --> new index list is (.,..)
  34   continue
 c     add a new index in index list (i,...)
       excnt = excnt+1
@@ -424,61 +416,126 @@ c     .  form  list with individual indexes
          excnt=1
       endif
 c     end of code for recursive index
-      goto 60
+
+      if(rstk(pt).eq.711) goto 42
 c     
-c     multiple lhs
-c-----------------
- 40   lpt(5) = lpt(4)
-      pts = pt
-      call getsym
- 41   if (sym .ne. name) goto 43
-      call putid(id,syn)
-      call getsym
-      if (sym .eq. right) goto 42
-      if (sym .eq. comma) call getsym
-      if ( eptover(1,psiz)) goto 98
-      lhs = lhs+1
-      pstk(pt) = 0
-      rstk(pt) = 0
-      call putid(ids(1,pt),id)
-      goto 41
- 42   call getsym
-      if (sym .eq. equal) then
-         if(char1.eq.equal) goto 43
+      if(sym.eq.equal) then
+c     .  name(...) = expr syntax 
+c     .  record name as lhs
+         if ( eptover(1,psiz)) goto 98
+         call putid(ids(1,pt),id)
+         pstk(pt) = excnt
+         lhs=1
+         call getsym
+c     .  go to rhs analysis
+         goto 60
+      else
+c     . this should never happen. this case has been detected above 
+c     . when lookin for equal sign
+         print *, 'SHOULD NOT APPEAR'
+c     .  name(...) syntax ==> really an rhs
+         if ( eptover(1,psiz))  goto 98
+         call putid(ids(1,pt),ans)
+         lhs=1
+         pstk(pt) = 0
          goto 60
       endif
- 43   lpt(4) = lpt(5)
+
+c     
+c     multiple lhs [a,...]= or [a(..),..]
+c----------------------------------------
+ 40   lpt(4)= lpts
+      lpt(3)= lpts
+      char1 = blank
+      lhs   = 0
+      call getsym
+c     start lhs arguments list
+      call getsym
+
+
+ 41   continue
+c     begin analysis of a new lhs argument
+      if (sym .ne. name) then
+         buf='lhs: waiting for a variable name'
+         call error(997)
+         goto 98
+      endif
+
+      call putid(id,syn)
+      excnt=0
+
+      next=lin(lpt(4)-2)
+      if (next.eq.blank.or.char1.eq.comma.or.char1.eq.right) then
+c     .  argument followed by a blank, a comma or a ] ==> it is a simple name
+         call getsym
+         goto 44
+      elseif (char1.ne.lparen.and.char1.ne.dot) then
+c     .  invalid lhs
+         buf='invalid lhs'
+         call error(997)
+         goto 98
+      endif
+c     lhs argument is name(..) or name.xx
+      if ( eptover(1,psiz)) goto 98
+      rstk(pt)=711
+      lpt(5) = lpt(4)
+      schar=char1
+      goto 32
+c     *parse* index
+ 42   continue
+      pt=pt-1
+      goto 44
+
+
+ 44   continue
+c     record current lhs arg      
+      if ( eptover(1,psiz)) goto 98
+      call putid(ids(1,pt),id)
+      lhs = lhs+1
+      pstk(pt) = excnt
+      rstk(pt) = 0
+
+c     end analysis of a current lhs arg
+      if (sym .eq. right) goto 46
+      if (sym .eq. comma) call getsym
+
+c     loop on lhs args
+      goto 41
+c
+ 46   call getsym
+      if (sym .eq. equal.and.char1.ne.equal) then
+c        really found a lhs go to  the rhs analysis part
+         call getsym
+         goto 60
+      endif
+
+c     lhs revealed to be an rhs
+c-------------------------------------
+ 50   continue
+c     no equal symbol 
+      goto 51
+
+ 51   continue
+c     lhs is in fact an  rhs
+c     1 - reinititialise the parser at the instruction beginning
       pt = pts
+      lpt(4)=lpts
+      lpt(3)=lpts
+      char1=blank
+ 52   call getsym
+c      if(sym.eq.comma.or.sym.eq.semi) goto 52
+c     2 - make "ans" the lhs
+      if ( eptover(1,psiz))  goto 98
+      call putid(ids(1,pt),ans)
+      pstk(pt) = 0
       lhs = 1
-      sym = left
-      char1 = lin(lpt(4)-1)
-      call putid(id,ans)
+c     3 - go to the rhs analysis part
       goto 60
-c     
-c     
-c     lhs is really rhs
-c-----------------------
- 50   lpt(4)=lpt(5)
-      char1=schar
-      sym=name
-      call putid(syn,id)
-      call putid(id,ans)
-      goto 61
+
 c     
 c     lhs finished, start rhs
 c----------------------------
- 60   if (sym .eq. equal) call getsym
-c      fun=0
-c      if(sym.eq.name) then
-c     check if name is a function
-c         fin=-2
-c         call funs(syn)
-c      endif
-
- 61   if ( eptover(1,psiz))  goto 98
-      call putid(ids(1,pt),id)
-
-      pstk(pt) = excnt
+ 60   continue
       rstk(pt) = 703
 c     *call* expr
       goto 81
@@ -500,20 +557,72 @@ c     store  new variable as "named" at the top of the stack
 c     
 c     store results
 c-------------------
- 70   rhs = pstk(pt)
-      if(err1.ne.0) goto 74
-      if(rhs.eq.0) goto 72
+ 70   continue
+      if (compil(29,lhs,sym,0,0)) then 
+         if (err.gt.0) return
+         pt=pt-lhs
+         lhs=0
+         goto 77
+      endif
+      ndel=0
+ 71   rhs = pstk(pt)
+      lastindpos=(top-lhs-ndel)
+      if(err1.ne.0) goto 76
+
+      if(rhs.eq.0) then
+c     .  goto simple affectation
+         call stackp(ids(1,pt),0)
+         if (err .gt. 0 ) goto 98
+         if(err1.gt.0) then
+            pt=pt-1
+            lhs=lhs-1
+            goto 98
+         endif
+c     .  topk points on the newly saved variable
+         topk=fin
+c     .  go to print
+         goto 73
+      endif
+
+c     partial variable affectation (insertion)
+      if(lastindpos+1.ne.top) then
+c     .  create reference variables to get index1,...,indexn, value at
+C     .  the top of the stack in this order
+c     .  create reference variables pointing to the  indices
+         do ir=1,rhs
+            call createref1(lastindpos-rhs+ir)
+         enddo
+c     .  create reference variable pointing to the value
+         call createref1(top-rhs)
+c     .  remind to remove the original indices
+         ndel=ndel+rhs
+      endif
+      lastindpos=lastindpos-rhs
+
+c     put a reference to the lhs variable
       fin=-3
       call stackg(ids(1,pt))
       if (err .gt. 0) goto 98
-      rhs=rhs+2
+c     perform insertion operation
+c     index1,...,indexn, value ==> updated lhs value (or pointer to)
+      if ( eptover(1,psiz))  goto 98
       pstk(pt)=lhs
+      call putid(ids(1,pt),ids(1,pt-1))
+      ids(1,pt-1)=ndel
+      ids(2,pt-1)=lastindpos
       rstk(pt)=704
+      rhs=rhs+2
       fin=insert
 c     *call* allops(insert)
       goto 91
- 71   lhs=pstk(pt)
- 72   call stackp(ids(1,pt),0)
+ 72   lhs=pstk(pt)
+      ndel=ids(1,pt-1)
+      lastindpos=ids(2,pt-1)
+      call putid(ids(1,pt-1),ids(1,pt))
+      pt=pt-1
+
+c     store the updated value 
+      call stackp(ids(1,pt),0)
       if (err .gt. 0 ) goto 98
       if(err1.gt.0) then
          pt=pt-1
@@ -522,34 +631,45 @@ c     *call* allops(insert)
       endif
 c     topk points on the newly saved variable
       topk=fin
+
+c     remove variable containing the value if required
+      if (lastindpos.ne.top) top=top-1
+
+
+
+ 73   continue
 c     print if required
 c----------------------
-      if(lct(4).lt.0.or.fin.eq.0) goto 74
+      if(lct(4).lt.0.or.fin.eq.0) goto 76
       if(.not.((sym.ne.semi.and.lct(3).eq.0).or.
-     &     (sym.eq.semi.and.lct(3).eq.1))) goto 74
- 73   call print(ids(1,pt),topk,wte)
+     &     (sym.eq.semi.and.lct(3).eq.1))) goto 76
+ 74   call print(ids(1,pt),topk,wte)
       if (err .gt. 0) goto 98
-      if(topk.eq.0) goto 74
+      if(topk.eq.0) goto 76
 c     overloaded display, call a macro
       if ( eptover(1,psiz))  goto 98
       rstk(pt)=708
       pstk(pt)=sym
       ids(1,pt)=sym
+      ids(2,pt)=ndel
+      ids(3,pt)=lhs
       if(fun.eq.0) goto 88
       goto 85
- 731  continue
+ 75   continue
       sym=pstk(pt)
+      ndel=ids(2,pt)
+      lhs=ids(3,pt)
       pt=pt-1
-      goto 73
+      goto 74
 c     
- 74   pt = pt-1
-      lhs = lhs-1
-      if (lhs .gt. 0) goto 70
-
+ 76   pt   = pt-1
+      lhs  = lhs-1
+      if (lhs .gt. 0) goto 71
+      top=top-ndel
 c     
 c     finish statement
 c---------------------
- 75   fin = 0
+ 77   fin = 0
       p = 0
       r = 0
       if (pt .gt. 0) p = pstk(pt)
@@ -589,7 +709,7 @@ c     gestion des points d'arrets dynamiques
       if(wmac.ne.0) then
          call whatln(lpt(1),lpt(2)-1,lpt(6),nlc,l1,ifin)
          
-         do 76 ibpt=lgptrs(wmac),lgptrs(wmac+1)-1
+         do  ibpt=lgptrs(wmac),lgptrs(wmac+1)-1
             if(lct(8)-nlc.eq.bptlg(ibpt)) then
                call cvname(macnms(1,wmac),buf(1:nlgh),1)
                write(buf(nlgh+2:nlgh+7),'(i5)') lct(8)-nlc
@@ -597,11 +717,11 @@ c     gestion des points d'arrets dynamiques
                call cvstr(ifin-l1+1,lin(l1),buf,1)
                call basout(io,wte,buf(1:ifin-l1+1))
                iflag=.true.
-               goto 77
+               goto 79
             endif
- 76      continue
+         enddo
       endif
- 77   continue
+ 79   continue
 c
       if(comp(1).ne.0) then
          call seteol
@@ -722,14 +842,17 @@ c
       goto(81,82,83,91,88,90,92,80,85),r
       goto 99
 c     
- 92   goto(17,35,65,71,65,97,94,731,99,14) rstk(pt)-700
+ 92   goto(17,35,65,72,65,97,94,75,99,14) rstk(pt)-700
       goto 99
 c     
  93   continue
 c     command like function and macro call
+
+c     store ans as lhs
       if ( eptover(1,psiz)) goto 98
-      pstk(pt)=1
       call putid(ids(1,pt),ans)
+      pstk(pt)=0
+c
       rstk(pt)=707
       if (fun .gt. 0)  then
 c        *call* matfns
@@ -746,7 +869,9 @@ c           *call* macro
             goto 88
          endif
       endif
- 94   goto 71
+ 94   continue
+c     go to store code
+      goto 70
 c
  96   continue
 c     asynchronous events handling

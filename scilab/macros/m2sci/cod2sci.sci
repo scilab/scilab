@@ -104,6 +104,46 @@ while ilst<nlst then
     txt=[txt;' ']
     lcount=lcount+1
   case '18' then   
+  
+  case '29' then
+    ip=','//code2str(evstr(op(2)))
+    op=matrix(op(3:$),2,-1)
+    lhs=size(op,2)
+    LHS=[]
+    iind=0;NV=[]
+    for k=1:lhs
+      name0=op(1,k)
+      if funptr(name0)<>0 then name='%'+name0,else name=name0,end
+      nv=find(name0==vnms(:,2))
+      if nv==[] then nv=size(vnms,1)+1,end
+      nv=nv($)
+      vnms(nv,:)=[name,name0]
+      NV(k)=nv
+      
+      rhs=evstr(op(2,k))
+      if rhs==0 then
+	LHS=[name,LHS]
+      else
+	I=[];
+	for i=1:rhs, iind=iind+1,I=[I,stk(iind)(1)];end
+	LHS=[name+'('+strcat(I,',')+')',LHS]
+      end
+    end
+    if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
+    
+    RHS=stk(iind+1)(1),
+    for k=1:lhs
+      expk=stk(iind+k)
+      nv=NV(k)
+      vtps(nv)=list(expk(5),expk(3),expk(4),0)
+    end
+
+    if LHS=='ans' then
+      txt=[txt;RHS+ip]
+    else
+      txt=[txt;LHS+' = '+RHS+ip]
+    end
+ 
   case '99' then //return
     txt=[txt;'return']
   else

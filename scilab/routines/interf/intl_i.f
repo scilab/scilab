@@ -432,8 +432,11 @@ c     .  set lstk pointers to the newly created variable
 c     .  store it
             lhs=1
 c     .     modification according to those in run.f 22/08/00
-            if(rstk(pt).eq.601) then
+            if(rstk(pt).eq.607) then
 c     .        called by run
+               call stackp(istk(pstk(pt)),0)
+            elseif(rstk(pt).eq.601) then
+c     .        called by run version 2.7 and earlier
                call stackp(istk(pstk(pt)+1),0)
             else
 c     .        called by parse

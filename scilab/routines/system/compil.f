@@ -98,6 +98,21 @@ c     profile
          istk(l+1)=val1(1)
          istk(l+2)=0
          comp(1)=l+3
+      elseif(code.eq.29) then
+c     affectation <29,n,print,name1,rhs1,...,name,rhsn>
+         lhs=val1(1)
+         err=sadr(l+lhs*(nsiz+1)+3)-lstk(bot)
+         if(err.gt.0) goto 90
+         istk(l)=code  
+         istk(l+1)=lhs
+         istk(l+2)=val2
+         li=l+3
+         do i=lhs,1,-1
+            call putid(istk(li),ids(1,pt-lhs+i))
+            istk(li+nsiz)=pstk(pt-lhs+i)
+            li=li+(nsiz+1)
+         enddo
+         comp(1)=li
       elseif(code.ge.100) then
 c     appel des fonctions <100*fun rhs lhs fin>
          err=sadr(l+(nsiz+3))-lstk(bot)

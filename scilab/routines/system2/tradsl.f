@@ -146,8 +146,9 @@ c     nouvelle 'operation'
       op=istk(lc)
 c     
       if(ddt.lt.-1) write(6,'(i7)') op
-      goto(20,25,40,42,30,41,45,50,50,60,15,90,90,90,90,100,
-     &     12,101,102,90,103,104,105,106,107,108,110,90) ,op
+      goto(20,25,40,42,30,41,45,50,50,60,
+     &     15,90,90,90,90,100,12,101,102,90,
+     &     103,104,105,106,107,108,110,90,115) ,op
 c     
 c     
 c     matfns
@@ -1249,8 +1250,49 @@ c
       lc=lc+3+nsiz
       goto 10
 c
+ 115  continue
+c     affectation
+      nlhs=istk(lc+1)
+      print *, 'affectation'
+      il=iadr(lr)
+      istk(il)=10
+      istk(il+1)=1
+      istk(il+2)=2+2*nlhs
+      istk(il+3)=0
+      istk(il+4)=1
 
+      l=il+5+istk(il+2)
+c     type 
+      call intstr(istk(lc),istk(l),ni,1)
+      istk(il+5)=istk(il+4)+ni
+      l=l+ni
+c     sym
+      call intstr(istk(lc+2),istk(l),ni,1)
+      istk(il+6)=istk(il+5)+ni
+      l=l+ni
+c
+      li=lc+3
+      do i=0,nlhs-1
+c     .  namei
+         call namstr(istk(li),istk(l),ni,1)
+         istk(il+7+2*i)=istk(il+6+2*i)+ni
+         l=l+ni
+c     .  rhsi
+         call intstr(istk(li+nsiz),istk(l),ni,1)
+         istk(il+8+2*i)=istk(il+7+2*i)+ni
+         l=l+ni
 
+         li=li+nsiz+1
+      enddo
+
+      l=sadr(l)
+      istk(ilr)=istk(ilr-1)+l-lr
+      lr=l
+      ilr=ilr+1
+
+      lc=li
+      goto 10
+c
   120 format('(f',i2,'.',i2,')')
   130 format('(1pd',i2,'.',i2,')')
 

@@ -128,6 +128,11 @@ c     vector of strings
 c     varfun
             lc=lc+3+nsiz
             goto 10
+         elseif(op.eq.29) then
+c     affectation
+            n=istk(lc+1)
+            lc=lc+3+n*(nsiz+1)
+            goto 10
          elseif(op.ge.100) then
 c     matfns
             lc=lc+4

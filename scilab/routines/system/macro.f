@@ -31,8 +31,8 @@ c
 c     
  10   continue
       if(r.eq.701.or.r.eq.902.or.r.eq.604) goto 50
-c     initialisation de l'execution d'une macro
-c----------------------------------------------
+c     initialize macro execution
+c-------------------------------
 c     
       ilk=iadr(fin)
 c     
@@ -223,8 +223,8 @@ c     *call* parse
       go to 99
 c     
  40   continue
-c     fin de l'execution d'une macro
-c-----------------------------------
+c     terminate macro execution
+c------------------------------
 c     handle errcatch
       exec=rstk(pt-1).eq.909.or.rstk(pt-1).eq.903
       if(errct.ne.0.and.errpt.ge.pt.and..not.exec) then
@@ -257,9 +257,9 @@ c
          goto 47
       endif
       if(istk(ilk).ne.10.and..not.exec) then
-c     recopie des variables de sorties en haut de la pile
+c     .  copy output variables at the top of the stack
          l0=ilk+1
-c     set output variable name
+c     .  set output variable name
          mlhs=istk(l0)
          if(mlhs.eq.0.and.lhs.le.1) lhs=0
 
@@ -286,7 +286,7 @@ c     set output variable name
             rhs=mrhs
          endif
          if(lhs1.lt.lhs) then
-c     extract required output variables out of varargout
+c    .   extract required output variables out of varargout
             nv=lhs-mlhs+1
             call stackgl(istk(l0),nv)
             if(err.gt.0) return
@@ -298,33 +298,48 @@ c
       if(istk(ilk).eq.10.or.exec) goto 48
       bot=lin(k+5)
       if(lhsr.ne.0) then
-c     gestion des variables retournees par resume
+c     .   handle variables returned by resume
          lpt(1)=lin(k+1)
          top1=top
          top=top-lhs
          count=0
 c     
          if(rstk(pt).eq.501) then
-c     dans les macros compilees
+c     .     resume in a "compiled" macro
             count=pstk(pt+2)
-            lc=ids(1,pt+1)+1
+            lc=ids(1,pt+1)
+            if(istk(lc).eq.29) then
+               lc=lc+3
+               i27=0
+            elseif(istk(lc).eq.1) then
+c     .        retained for 2.7 and earlier version compatibility (old affectation)
+               lc=lc+1
+               i27=1
+            endif
 c     .     preserve names stored in the macro if macro is moved
             if(pt+lhsr.gt.psiz) then
                call error(26)
                return
             endif
             do 43 i=1,lhsr
+C                if(istk(lc+nsiz).ne.0) then
+C                   top=top1
+C                   macr=macr+1
+C                   buf='Index not allowed in the lhs of resume'
+C                   call error(997)
+C                   return
+C                endif
                call putid(ids(1,pt+i),istk(lc))
                lc=lc+nsiz+1
-c     .        next line to skip print opcode (test for compatibility)
-               if(istk(lc-1).eq.22) lc=lc+2
+c     .        retained for 2.7 and earlier version compatibility (old affectation)
+               if(i27.ne.0.and.istk(lc-1).eq.22) lc=lc+2
  43         continue
             do 44 i=1,lhsr
                call stackp(ids(1,pt+i),0)
                if(err.gt.0) return
  44         continue
          else
-c     dans les macros non compilees
+c     .     resume in "uncompiled" macros
             ptr=pstk(pt+1)
             count=pstk(pt+2)
             do 45 i=1,lhsr
@@ -334,21 +349,23 @@ c     dans les macros non compilees
  45         continue
          endif
 c
-c      on depile les variables relatives au for ou select eventuels
-
-
+c     .  remove top variables relatives to for or select if any
          top=top-count
 c     
          if(lhs.gt.0) then
-c     remise en place  des variables de sorties la macros 
+c     .     move macro output variables at the top of the stack
             top1=top1-lhs
-            do 46 i=1,lhs
-               top1=top1+1
-               top=top+1
-               call unsfdcopy(lstk(top1+1)-lstk(top1),stk(lstk(top1)),1,
-     1              stk(lstk(top)),1)
-               lstk(top+1)=lstk(top)+lstk(top1+1)-lstk(top1)
- 46         continue
+            if(top1.ne.top) then
+               do 46 i=1,lhs
+                  top1=top1+1
+                  top=top+1
+                  call unsfdcopy(lstk(top1+1)-lstk(top1),stk(lstk(top1))
+     $                 ,1,stk(lstk(top)),1)
+                  lstk(top+1)=lstk(top)+lstk(top1+1)-lstk(top1)
+ 46            continue
+            else
+               top=top+lhs
+            endif
          endif
       endif
 c     

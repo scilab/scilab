@@ -10,7 +10,7 @@ c
       integer op,equal,r,ix(2),m
       equivalence (x,ix(1))
       logical logops,ok,iflag,istrue,ptover,cremat,cresmat,
-     $     vcopyobj
+     $     vcopyobj, eptover
       integer p,lr,nlr,lcc,id(nsiz)
       integer extrac,insert,semi
       common /basbrk/ iflag
@@ -43,7 +43,7 @@ c
       r=rstk(pt)
       ir=r/100
       if(ir.ne.6) goto 01
-      goto(33,66,82,92,58,116),r-600
+      goto(33,66,82,92,58,116,232),r-600
 c     
 c     debut d'une macro compilee
  01   continue
@@ -69,18 +69,19 @@ c
 c     nouvelle 'operation'
  11   continue
       op=istk(lc)
+c     label 49 retains to be able issue a compatibility error message
       goto(20, 25, 40, 42, 30, 41, 45, 49, 49, 55,
      &     15, 90, 95, 100,105,110,120,130,140,150,
-     &     160,170,180,190,200,210,220,97) ,op
+     &     160,170,180,190,200,210,220,97,230) ,op
 c     matfns
       if(op.ge.100) goto 80
 c     return
       if(op.eq.99) then
-c     le return s'est-il produit dans un for (si oui il faut depiler la variable
-c     de boucle
+c     .  check is "return" occured in a for loop
          p=pt+1
  12      p=p-1
          if(rstk(p).eq.612) then
+c     .     yes, remove the for loop variable
             top=top-1
             goto 12
          else if(rstk(p).ne.501) then
@@ -100,6 +101,7 @@ c     nop
       return
 c     
  20   continue
+c     retained for 2.7 and earlier versions compatibility
       call stackp(istk(lc+1),0)
 c     store info if printing is required see code 22
       call putid(id,istk(lc+1))
@@ -148,6 +150,8 @@ c           call error(110)
       goto 26
  28   lc=lc+nsiz+3
       if(fin.gt.0) goto 65
+
+
       goto 10
 c     
 c     allops 
@@ -169,12 +173,17 @@ c     allops
       pt=pt+1
       rstk(pt)=601
       ids(1,pt)=tref
+      ids(3,pt)=l0
+      ids(4,pt)=nc
       icall=4
+c     pstk(pt) is used by allops to get the name of output variable (insertion)
       pstk(pt)=lc
 c     *call* allops
       return
  33   continue
       tref=ids(1,pt)
+      l0=ids(3,pt)
+      nc=ids(4,pt)
       lc=pstk(pt)
       pt=pt-1
       goto 70
@@ -259,60 +268,16 @@ c     fin for
       pt=pt-1
       goto 70
 c     
-c     if - while  (Anciennes versions maintenue pour compatibilite)
+c     Very old if - while (removed)
  49   continue
-      li=lc
-      if(istk(li+1).lt.0) goto 55
-      if ( ptover(1,psiz)) then 
-         lc=lc+1+istk(lc+2)+istk(lc+3)+istk(lc+4)
-         goto 10
-      endif
-c     evaluation de l'expression logique
-      nc=istk(li+2)
-      lc=li+5
-      pstk(pt)=lct(8)
- 51   kc=0
-      rstk(pt)=613
-      ids(1,pt)=li
-      l0=lc
-      ids(2,pt)=kc
-      ids(3,pt)=toperr
-      goto 10
-c
- 52   if(kc.eq.0) then
-         lhs=0
-         toperr=top
-         if(istk(li+1).gt.0) then
-c     cet appel permet de garder la compatibilite avec les macro compilees
-c     precedemment a l'existence des booleens.
-            ok=logops(istk(li+1))
-         else
-            ok=istrue(1)
-         endif
-         if(ok) then
-c     evaluation des instructions du then
-            lct(8)=pstk(pt)
-            nc=istk(li+3)
-            kc=1
-         else
-            nc=istk(li+4)
-            lc=lc+istk(li+3)
-            kc=2
-         endif
-         l0=lc
-         ids(2,pt)=kc
-         goto 10
-      endif
+      if(istk(lc+1).lt.0) goto 55
+ 52   continue
+      buf='Functions compiled with very old versions are'//
+     $     ' no more handled'
+      call error(997)
+      return
 c     
-      if(kc.ne.2.and.istk(li).eq.9) goto 51
-      lct(8)=pstk(pt)
-      toperr=ids(3,pt)
-      lc=li+5+istk(li+2)
-      lc=lc+istk(li+3)+istk(li+4)
-      pt=pt-1
-      goto 70
-c     
-c     select - case  ou nouveau "if elseif else end"
+c     "select- case"  or  "if elseif else end"
  55   continue
       if ( ptover(1,psiz)) then 
          lc=lc+abs(istk(lc+1))
@@ -429,6 +394,8 @@ c
       pstk(pt)=lc
       ids(1,pt)=wmac
       ids(2,pt)=tref
+      ids(3,pt)=l0
+      ids(4,pt)=nc
       icall=5
       fun=0
 c     *call* macro
@@ -436,6 +403,8 @@ c     *call* macro
  66   lc=pstk(pt)
       wmac=ids(1,pt)
       tref=ids(2,pt)
+      l0= ids(3,pt)
+      nc=ids(4,pt)
       pt=pt-1
       goto 70
 c     
@@ -456,7 +425,7 @@ c     retour d'une boucle interne ou d'une macro vers un for
       l0=ids(1,pt)
       nc=istk(l0-1-nsiz)
       goto 10
-c     retour  d'une boucle interne ou d'une macro vers un if/while
+c     retour  d'une boucle interne ou d'une macro vers un if/while
  72   li=ids(1,pt)
       kc=ids(2,pt)
       nc=istk(li+2)
@@ -490,16 +459,18 @@ c
       icall=9
       ids(2,pt)=0
       ids(3,pt)=tref
+      ids(4,pt)=l0
+      ids(5,pt)=nc
 c     *call* matfns
       return
  82   continue
+c     warning if builtin is "resume" control is passed to macro and not here
       lc=pstk(pt)
       tref=ids(3,pt)
+      l0=ids(4,pt)
+      nc=ids(5,pt)
       pt=pt-1
-      if(ids(2,pt+1).eq.0) goto 70
-c     fin resume
-      lhs=ids(2,pt+1)
-      goto 999
+      goto 70
 c     
 c     pause
  90   lc=lc+1
@@ -515,6 +486,9 @@ c     pause
       ids(1,pt)=lc
       ids(2,pt)=top
       ids(3,pt)=tref
+      ids(4,pt)=l0
+      ids(5,pt)=nc
+      
       rstk(pt)=604
       icall=5
 c     *call* macro
@@ -522,6 +496,8 @@ c     *call* macro
  92   lc=ids(1,pt)
       top=ids(2,pt)
       tref=ids(3,pt)
+      l0=ids(4,pt)
+      nc=ids(5,pt)
       rio=pstk(pt)
       pt=pt-1
       goto 70
@@ -569,7 +545,7 @@ c     continue in a while
          l0=pstk(p)
          lc=l0
          pt=p
-         goto 51
+         goto 57
       else
          goto 98
       endif
@@ -779,6 +755,96 @@ c     character string vector
 c     varfun
       call varfunptr(istk(lc+3),istk(lc+1),istk(lc+2))
       lc=lc+3+nsiz
+      goto 10
+
+ 230  continue
+c     affectation
+      lhs=istk(lc+1)
+      ip=istk(lc+2)
+      li=lc+3
+      lc=li+(nsiz+1)*lhs
+c     following code is an adaptation of corresponding code in parse.f
+      ndel=0
+ 231  rhs = istk(li+nsiz)
+      lastindpos=(top-lhs-ndel)
+      if(err1.ne.0) goto 233
+
+      if(rhs.eq.0) then
+c     .  goto simple affectation
+         call stackp(istk(li),0)
+         if (err .gt. 0 ) return
+         if(err1.gt.0) goto 233
+c     .  fin points on the newly saved variable
+         if(lct(4).ge.0.and.ip.ne.semi.and.fin.ne.0) then
+            call print(istk(li),fin,wte)
+         endif
+         goto 233
+      endif
+c     partial variable affectation (insertion)
+      if(lastindpos+1.ne.top) then
+c     .  create reference variables to get index1,...,indexn, value at
+C     .  the top of the stack in this order
+c     .  create reference variables pointing to the  indices
+         do ir=1,rhs
+            call createref1(lastindpos-rhs+ir)
+         enddo
+c     .  create reference variable pointing to the value
+         call createref1(top-rhs)
+c     .  remind to remove the original indices
+         ndel=ndel+rhs
+      endif
+      lastindpos=lastindpos-rhs
+
+c     put a reference to the lhs variable
+      fin=-3
+      call stackg(istk(li))
+      if (err .gt. 0) return
+c     perform insertion operation
+c     index1,...,indexn, value ==> updated lhs value (or pointer to)
+
+      call adjustrhs
+
+      if ( eptover(1,psiz))  return
+c     pstk(pt) is used by allops to get the name of output variable
+      pstk(pt)=li
+      ids(1,pt)=ndel
+      ids(2,pt)=lastindpos
+      ids(3,pt)=tref
+      ids(4,pt)=l0
+      ids(5,pt)=lhs
+      ids(6,pt)=nc
+      rstk(pt)=607
+      rhs=rhs+2
+      lhs=1
+      icall=4
+      fin=insert
+c     *call* allops(insert)
+      return
+ 232  li=pstk(pt)
+      ndel=ids(1,pt)
+      lastindpos=ids(2,pt)
+      tref=ids(3,pt)
+      l0=ids(4,pt)
+      lhs=ids(5,pt)
+      nc=ids(6,pt)
+      pt=pt-1
+
+c     store the updated value 
+      call stackp(istk(li),0)
+      if (err .gt. 0 )  return
+      if(err1.gt.0) goto 233
+c     fin points on the newly saved variable
+      if(lct(4).ge.0.and.ip.ne.semi.and.fin.ne.0) then
+         call print(istk(li),fin,wte)
+      endif
+
+c     remove variable containing the value if required
+      if (lastindpos.ne.top) top=top-1
+ 233  li=li+nsiz+1
+      lhs=lhs-1
+      if (lhs .gt. 0) goto 231
+      top=top-ndel
+      lc=li
       goto 10
 
 c

@@ -19,7 +19,7 @@ OBJSF = allops.obj  banier.obj diary.obj\
 	defmat.obj eqid.obj error.obj showstack.obj expr.obj fact.obj funs.obj \
 	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj \
 	getval.obj inisci.obj \
-	logops.obj macro.obj mname.obj nextj.obj parse.obj print.obj \
+	logops.obj macro.obj mname.obj nextj.obj parse.obj findequal.obj print.obj \
 	prompt.obj putid.obj  run.obj savlod.obj  stackg.obj stackgl.obj \
 	ref2val.obj stackp.obj terme.obj  scirun.obj \
 	majmin.obj whatln.obj \
