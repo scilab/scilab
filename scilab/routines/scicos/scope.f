@@ -37,6 +37,7 @@ c      character*(4) logf
       data frect / 0.00d0,0.00d0,1.00d0,1.00d0/
       data cur/0/,verb/0/
 
+      call dr("xinfo","inside the scope",v,v,v,v,v,v,dv,dv,dv,dv)
 c     
       if(nipar.lt.16) then
 c     compatibility
@@ -94,12 +95,14 @@ c     plot 1:K points of the buffer
 c         call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
 c     &        0,0,v,dv,dv,dv,dv)
          if(K.gt.0) then
+            call scicosclip(1)
             do 10 i=1,nu
 c               if(ipar(3+i).ge.0.or.flag.eq.1) then
                   call dr1('xpolys'//char(0),'v'//char(0),v,v,
      &                 ipar(3+i),1,K,v,z(2),z(2+N+(i-1)*N),dv,dv)
 c               endif
  10         continue
+            call scicosclip(0)
          endif
 c     shift buffer left
          z(2)=z(1+K)
@@ -130,7 +133,6 @@ c     clear window
 c            call dr1('xset'//char(0),'clipping-p'//char(0),-1.0d0,
 c     &           -1.0d0,200000.0d0,200000.0d0,v,dv,dv,dv,dv)
             call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
-            call scicosclip(1)
 c            call dr('xset'//char(0),'clipping'//char(0),rect(1),rect(2),
 c     &           rect(3),rect(4),v,v,dv,dv,dv,dv)
          endif
@@ -208,9 +210,11 @@ c     to force dimensions update
          endif
 c         call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
 c     &        0,0,v,dv,dv,dv,dv)
+         call scicosclip(1)
          do 30 i=1,nu
             call dr1('xpolys'//char(0),'v'//char(0),v,v,ipar(3+i),
      &           1,K,v,z(2),z(2+N+(i-1)*N),dv,dv)
  30      continue
+         call scicosclip(0)
       endif
       end
