@@ -140,5 +140,8 @@ void ExportBMP(struct BCG *ScilabGC,char *pszflname);
 void ExportEMF(struct BCG *ScilabGC,char *pszflname);
 int GetScreenProperty(char *prop, char *value);
 
+integer GetCurrentFigureWindows(void);
+void SetCurrentFigureWindows(integer win);
+
 #endif /* __WGRAPH__ */
 /*-----------------------------------------------------------------------------------*/

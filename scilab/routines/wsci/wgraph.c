@@ -48,21 +48,22 @@ EXPORT void WINAPI GraphRedraw (struct BCG *ScilabGC)
  ****************************************/
 void NewCopyClip (struct BCG *ScilabGC)
 {
-  
   TCHAR   szDesc[] = "Scilab\0Image\0\0";
   LPGW lpgw;
   
   RECT rect;
   HANDLE hmf;
-  
    
   HWND hwnd;
   HDC hdc;
+  integer SaveCurrentWindow=0;
 
+  SaveCurrentWindow=GetCurrentFigureWindows();
 
   if (scig_buzy == 1) return;
   scig_buzy = 1;
 
+  SetCurrentFigureWindows (ScilabGC->CurWindow);
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
 
@@ -90,6 +91,8 @@ void NewCopyClip (struct BCG *ScilabGC)
   SetClipboardData (CF_ENHMETAFILE, hmf);
   CloseClipboard ();
 
+  SetCurrentFigureWindows (SaveCurrentWindow);
+
   scig_buzy = 0;
   return;
 
@@ -110,10 +113,15 @@ void CopyClip (struct BCG *ScilabGC)
   LPMETAFILEPICT lpMFP;
   HWND hwnd;
   HDC hdc;
+  integer SaveCurrentWindow=0;
 
+  SaveCurrentWindow=GetCurrentFigureWindows();
 
   if (scig_buzy == 1) return;
   scig_buzy = 1;
+
+  SetCurrentFigureWindows (ScilabGC->CurWindow);
+
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
   /* view the window */
@@ -174,7 +182,11 @@ void CopyClip (struct BCG *ScilabGC)
   SetClipboardData (CF_METAFILEPICT, hGMem);
   SetClipboardData (CF_BITMAP, bitmap);
   CloseClipboard ();
+  
+  SetCurrentFigureWindows (SaveCurrentWindow);
+  
   scig_buzy = 0;
+
   return;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -210,8 +222,15 @@ int CopyPrint (struct BCG *ScilabGC)
   RECT rect,RectRestore;
   PRINT pr;
 
+  integer SaveCurrentWindow=0;
+
+  SaveCurrentWindow=GetCurrentFigureWindows();
+
   if (scig_buzy == 1) return TRUE;
   scig_buzy = 1;
+
+  SetCurrentFigureWindows (ScilabGC->CurWindow);
+
   lpgw = ScilabGC->lpgw;
   hwnd = ScilabGC->CWindow;
 #ifdef __GNUC__
@@ -351,6 +370,9 @@ PrintAbortProc);
   SetWindowLong (hwnd, 4, (LONG) (0L));
   SetWindowLong (ScilabGC->hWndParent, 4, (LONG) (0L));
   PrintUnregister ((LP_PRINT) & pr);
+
+  SetCurrentFigureWindows (SaveCurrentWindow);
+
   scig_buzy = 0;
   return bError || pr.bUserAbort;
 }
@@ -1455,11 +1477,15 @@ relHwndDc:
 void ExportBMP(struct BCG *ScilabGC,char *pszflname)
 {
   RECT rect;
-   
+  integer SaveCurrentFigure=0; 
   HWND hwnd;
- 
+
+  SaveCurrentFigure=GetCurrentFigureWindows();
+
   if (scig_buzy == 1) return;
   scig_buzy = 1;
+
+  SetCurrentFigureWindows (ScilabGC->CurWindow);
 
   hwnd = ScilabGC->CWindow;
   
@@ -1472,6 +1498,9 @@ void ExportBMP(struct BCG *ScilabGC,char *pszflname)
   GetClientRect (hwnd, &rect);
   scig_replay_hdc ('C', ScilabGC->CurWindow, GetDC (hwnd),rect.right - rect.left, rect.bottom - rect.top, 1);
   HwndToBmpFile(hwnd,pszflname);
+
+  SetCurrentFigureWindows (SaveCurrentFigure);
+
   scig_buzy = 0;
   
 }
@@ -1482,9 +1511,14 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
   HWND hwnd;
   HDC hdc;
 
+  integer SaveCurrentFigure=0; 
+
+  SaveCurrentFigure=GetCurrentFigureWindows();
 
   if (scig_buzy == 1) return;
   scig_buzy = 1;
+
+  SetCurrentFigureWindows (ScilabGC->CurWindow);
 
   hwnd = ScilabGC->CWindow;
 
@@ -1507,7 +1541,7 @@ void ExportEMF(struct BCG *ScilabGC,char *pszflname)
 
   CloseEnhMetaFile (hdc);  
 
- 
+  SetCurrentFigureWindows (SaveCurrentFigure);
 
   scig_buzy = 0;
   return;
@@ -1680,5 +1714,20 @@ int XSaveNative _PARAMS((char *fname, unsigned long fname_len))
 	LhsVar(1)=0;
 	return 0;
 
+}
+/*-----------------------------------------------------------------------------------*/
+integer GetCurrentFigureWindows(void)
+{
+	integer verb = 0;
+	integer CurrentWindow=0;
+	integer na=0;
+	/* Backup Current Figure */
+	C2F (dr) ("xget", "window", &verb, &CurrentWindow, &na, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+	return CurrentWindow;
+}
+/*-----------------------------------------------------------------------------------*/
+void SetCurrentFigureWindows(integer win)
+{
+	scig_sel (win);
 }
 /*-----------------------------------------------------------------------------------*/

@@ -61,15 +61,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      break;
 	    case COPYCLIP:
 		{
-			integer verb = 0;
-			integer SaveCurrentWindow=0;
-			integer na=0;
-			C2F (dr) ("xget", "window", &verb, &SaveCurrentWindow, &na, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-
-			scig_sel (ScilabGC->CurWindow);
 			NewCopyClip (ScilabGC);
-			scig_sel (SaveCurrentWindow);
-
 			s++;
 		}
 	      break;
@@ -906,6 +898,8 @@ BOOL ExportStyle (struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 static void SavePs (struct BCG *ScilabGC)
 {
+  
+
   char *d, ori;
   BYTE *s;
   char str[] = "[SAVESCG]XScilab Postscript[EOS]*[EOS]";
@@ -924,11 +918,13 @@ static void SavePs (struct BCG *ScilabGC)
       return;
     }
   *d = '\0';
-/** sciprint(" file name [%s] color=%d\r\n",filename,ls.colored); **/
+
+  
+
   switch (ls.ps_type)
     {
     case 0:
-/** postscript Epsf file **/
+	  /** postscript Epsf file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       wininfo ("Epsf file generation");
       dos2win32 (filename, filename1);
@@ -945,7 +941,7 @@ static void SavePs (struct BCG *ScilabGC)
       SetCursor (LoadCursor (NULL, IDC_CROSS));
       break;
     case 2:
-/** Epsf + Tex file **/
+	  /** Epsf + Tex file **/
       SetCursor (LoadCursor (NULL, IDC_WAIT));
       wininfo ("Epsf and LaTeX files generation");
       dos2win32 (filename, filename1);
@@ -986,6 +982,8 @@ static void SavePs (struct BCG *ScilabGC)
       SetCursor (LoadCursor (NULL, IDC_CROSS));
 	  break;
     }
+	
+	
 }
 /*-----------------------------------------------------------------------------------*/
 static void dos2win32 (char *filename, char *filename1)
