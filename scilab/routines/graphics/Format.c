@@ -17,6 +17,15 @@
 #include <stdio.h>
 #include "Math.h"
 
+/* Add those lines for FD algo on Theticks */
+#define ROUND(x) (x<0?ceil((x)-0.5):floor((x)+0.5))
+#define  ABS(a)  ((a) < 0.0 ? -(a) : (a))
+
+static double spans[18] = {10,12,14,15,16,18,20,25,30,35,40,45,50,60,70,80,90,100};
+static int ticks[18] = {11,7,8,4,9,10,11,6,7,8,9,10,11,7,8,9,10,11};
+static double width[18] = {1,2,2,5,2,2,2,5,5,5,5,5,5,10,10,10,10,10};
+/* end here */
+
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
 static void FormatPrec __PARAMS((char *fmt, integer *desres, double xmin, double xmax, 
@@ -31,6 +40,13 @@ static void graduate1 __PARAMS((double *xmi,double * xma,double * xi,double * xa
 static void gradua __PARAMS(( double *xmi, double *xma,integer * kminr,integer *kmaxr,integer *ar,integer *npr,integer *b));
 static void decompSup __PARAMS((double x,integer * xk,integer *  xa,integer   b));
 static void decompInf __PARAMS((double x,integer * xk,integer *  xa,integer   b));
+
+static void flexpo1  __PARAMS((double *x, double *f, double *sg, double *scale));
+static void newbnds  __PARAMS((double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale));
+static int  gradu    __PARAMS((double *xmin, double *xmax, double *grads, int *nticks, double *thewidth, int *tst0, double *scal));
+static int  gradu2   __PARAMS((double *xmax, double *thewidth, double *scal));
+static void grds     __PARAMS((double *xminv, double *xmaxv, double *gr, int *nticks, double *thewidth, int *tst0, double *scal));
+static int  agrandir __PARAMS((double *xmin, double *xmax, double *xlow, double *xup));
 
 /*----------------------------------------------------
  * ChoixFormatE returns a format ("%.*f" or "%.*e")
@@ -532,3 +548,285 @@ C2F(dr)() {} ;
 
 
 
+
+
+/* Francois' algo for Theticks */
+
+void flexpo1(double *x, double *f, double *sg, double *scale)
+{
+  /*    x = sg*f*scale, sg=+-1; scale=10^n; 10 <= f < 100  */
+  double xa, k, un=1;
+  *sg=un;  xa=*x;
+  if (xa<0) {xa=-xa;*sg=-1;}
+  *f=xa;*scale=un;
+  if (xa<10) 
+    {
+      for (k=0;++k;)
+	{
+	  *scale=*scale/10;
+	  *f=*f*10;
+	  if (*f >= 10) break;
+	}
+      return;
+    }
+  if (xa>100) 
+    {
+      for (k=0;++k;)
+	{
+	  *scale=*scale*10;
+	  *f=*f/10;
+	  if (*f <= 100) break;
+	}
+      return;
+    }
+}
+
+
+void  newbnds(double *xminv,double *xmaxv,double *xmin, double *xmax, double *scale)
+{
+  double fmin, fmax, sgmin, sgmax, sclmax,sclmin, arguc, arguf, scl;
+  flexpo1(xminv,&fmin,&sgmin,&sclmin);
+  flexpo1(xmaxv,&fmax,&sgmax,&sclmax);
+    if ( ABS(*xmaxv) > ABS(*xminv)) 
+    {scl=sclmax;}
+  else
+    {scl=sclmin;}
+  arguc=*xmaxv/scl;arguf=*xminv/scl;
+  *xmax=ceil(arguc); *xmin=floor(arguf); *scale=scl;
+    }
+
+int gradu(xmin, xmax, grads, nticks, thewidth, tst0, scal)
+double *xmin, *xmax, *grads, *thewidth, *scal;
+int *nticks, *tst0;
+{
+  int i1;
+  static double f,x,sg,scale;
+  static int k, w;
+
+  *tst0 = *xmin == 0;
+  x = *xmax - *xmin;
+  flexpo1(&x, &f, &sg, &scale);
+  for (k = 1; k <= 18; ++k) {
+    w = k;
+    if (f <= spans[k - 1]) break;
+  }
+  *nticks = ticks[w - 1];
+  *thewidth = width[w - 1];
+  *scal=scale;
+
+  grads[0] = *xmin;
+  i1 = *nticks - 1;
+  for (k = 0; k < i1; ++k) {
+    grads[k + 1] = grads[k] + *thewidth * scale;
+    if (grads[k + 1] == 0) *tst0=1; 
+  }
+  return 0;
+}
+
+
+int gradu2(xmax, thewidth, scal)
+double *xmax, *thewidth, *scal;
+{
+  
+  static double f,x,sg,scale;
+  static int k, w;
+
+  x = *xmax;
+  flexpo1(&x, &f, &sg, &scale);
+  for (k = 1; k <= 18; ++k) {
+    w = k;
+    if (f <= spans[k - 1]) break;
+  }
+  *thewidth = width[w - 1];
+  *scal=scale;
+  return 0;
+}
+
+
+void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
+     double *xminv, *xmaxv, *gr, *thewidth, *scal;
+     int *nticks, *tst0;
+{
+  double span,width,low,up;
+  double nup,nlow;
+  int res,k;
+  span=*xmaxv-*xminv;
+  res=gradu2(&span, thewidth, scal);
+  width=*thewidth* *scal;
+
+  nlow= ROUND(*xminv/ width);low=nlow* width;
+  nup = ROUND(*xmaxv/ width);up = nup* width;
+
+  if (low>*xminv) {nlow=floor(*xminv/width);low=nlow*width;}
+  /* printf("%e %e %e %e %e\n", *xmaxv-up, *scal, nup, width, *thewidth); */
+  if (up<*xmaxv) {nup=ceil(*xmaxv/width);up=nup*width;}
+  
+  *nticks= nup-nlow+1;
+  gr[0]=low;gr[*nticks-1]=up;
+  for (k=1; k<*nticks-1; ++k)
+    {
+      gr[k]=gr[k-1]+width;
+    }
+}
+
+int agrandir(xmin, xmax, xlow, xup)
+     double *xmin, *xmax, *xlow, *xup;
+{
+  int i1;
+  static double work[20], thewidth, scal;
+  static int i, j, s, nticks, tst0;
+
+  for (s = 0; s <= 100; ++s) {
+    i1 = s;
+    for (i = 0; i <= i1; ++i) {
+      j = s - i;
+      *xup = *xmax + (double) i;
+      *xlow = *xmin - (double) j;
+      gradu(xlow, xup, work, &nticks, &thewidth, &tst0, &scal);
+      if (tst0) {
+	return 0;
+      }
+    }
+  }
+  return 0;
+}
+
+
+int C2F(theticks)(xminv, xmaxv, grads, ngrads)
+     double *xminv, *xmaxv, *grads;
+     int *ngrads;
+/*   Function used to calculate ticks locations for plotting    *
+ *   real values located between xminv and xmaxv.               *
+ *   grads is a vector with at most 20 components such that     *
+ *   grads(1:ngrads) = linspace(xl, xu, ngrads)                 *
+ *   xl <= xminv, xu >= xmaxv;                                  *
+ *   If xminv<0 and xmaxv>0 one of the ticks is at zero.        *
+ *   Auteur/Copyright FD. J'ai fais ce programme parce que      *
+ *   j'en avais marre de pas voir le zero sur les graduations   */
+
+{
+  double d1, d2;  int i1;
+  static double xmin, xmax, work[20], xlow, thewidth, xup, scale, scal;
+  static int k, tst0;
+
+  /*  if ( (ABS(*xminv)+1) == ABS(*xminv)) */ /* Not really necessary and void bug plot2d([10^60 10^60+1])*/
+/*     { */
+/*       *ngrads=1;grads[0]=*xminv; return 1; */
+/*     } */
+  if (*xminv != *xminv) {
+   *ngrads=1;grads[0]=*xminv; return 1; 
+  }
+  if (*xmaxv != *xmaxv) {
+   *ngrads=1;grads[0]=*xmaxv; return 1; 
+  }
+
+  if (*xminv == *xmaxv) {
+    xmin=floor(*xminv);xmax=ceil(*xmaxv);
+    if (xmin==xmax) {
+      xmax=xmax+1;
+      xmin=xmin-1;
+      *ngrads=3;grads[0]=xmin;grads[1]=xmin+1;grads[2]=xmax;return 1;
+    }
+    C2F(theticks)(&xmin,&xmax,grads,ngrads);
+    return 0;
+  }
+  if (*xminv >= 0 && *xmaxv > 0) {
+    if (*xminv > *xmaxv) {
+      xmin=*xmaxv;xmax=*xminv;
+      grds(&xmin,&xmax,grads,ngrads, &thewidth, &tst0, &scal);
+      return 0;
+    }
+    grds(xminv, xmaxv, grads, ngrads, &thewidth, &tst0, &scal);
+    return 0;
+  }
+  if (*xminv < 0 && *xmaxv <= 0) {
+    d1 = -(*xmaxv);	d2 = -(*xminv);
+    if (*xmaxv < *xminv) {d1= -(*xminv); d2 = -(*xmaxv);}
+    grds(&d1, &d2, work, ngrads, &thewidth, &tst0, &scal);
+    i1 = *ngrads;
+    for (k = 0; k < i1; ++k) {
+      grads[k] = -work[*ngrads - k -1];
+    }
+    return 0;
+  }
+  if (*xminv > 0 && *xmaxv <0)
+    {
+      /*  should never happen ...   */
+      d1=*xmaxv; d2=*xminv;
+      C2F(theticks)(&d1, &d2, grads, ngrads);
+      return 0;
+    }
+  newbnds(xminv, xmaxv, &xmin, &xmax, &scale);
+  agrandir(&xmin, &xmax, &xlow, &xup);
+  gradu(&xlow, &xup, grads, ngrads, &thewidth, &tst0, &scal);
+  i1 = *ngrads;
+  for (k = 0; k < i1; ++k) {
+    grads[k] = scale * grads[k];
+  }
+  return 0;
+} 
+
+/* /\* */
+/* link ./theticks.o theticks C */
+
+/* function grads=theticks(xminv,xmaxv) */
+/* [grads,ngrads]=call('theticks',xminv,1,'d',xmaxv,2,'d','out',... */
+/* [1,40],3,'d',[1,1],4,'i'); */
+/* grads=grads(1:ngrads); */
+/* endfunction */
+ 
+/* *\/ */
+
+
+/* I encapsulate C2F(theticks) routine inside TheTicks (this one) because 
+   we need to perform a test if the returned grads is a single scalar */
+
+int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads)
+{
+  double tmp = 0.;
+  double epsilon = exp10(-15);
+
+  C2F(theticks)(xminv, xmaxv, grads, ngrads);
+  
+  if(*ngrads == 1)
+    {
+      /* unfortunately there is only 1 graduation (normally this case 
+	 happens when handling small intervals with huge numbers (i.e. [10^60 10^60+1]) */
+      /* What I do is to enlarge this interval */
+      
+      tmp = grads[0];
+      grads[0] = (1-epsilon)*tmp;
+      grads[1] = tmp;
+      grads[2] = (1+epsilon)*tmp;
+      
+      *ngrads = 3;
+    }
+  else if(GradEqual(grads,ngrads)==0)
+    {
+      tmp = grads[0];
+      grads[0] = (1-epsilon)*tmp;
+      grads[1] = tmp;
+      grads[2] = (1+epsilon)*tmp;
+      
+      *ngrads = 3;
+    }
+  
+  return 0;
+}
+
+int GradEqual(double * grads, int *ngrads)
+{
+  int i;
+  double tmp = 0.;
+  double old_tmp = grads[0];
+  
+  for(i=1;i<(*ngrads);i++)
+    {
+      tmp = grads[i];
+      if(tmp == old_tmp)
+	return 0; /* 2 consecutive grads at least are equal */
+	break;
+    }
+  
+  return 1;
+}
