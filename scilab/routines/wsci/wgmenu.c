@@ -60,8 +60,18 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	      s++;
 	      break;
 	    case COPYCLIP:
-	      NewCopyClip (ScilabGC);
-	      s++;
+		{
+			integer verb = 0;
+			integer SaveCurrentWindow=0;
+			integer na=0;
+			C2F (dr) ("xget", "window", &verb, &SaveCurrentWindow, &na, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L);
+
+			scig_sel (ScilabGC->CurWindow);
+			NewCopyClip (ScilabGC);
+			scig_sel (SaveCurrentWindow);
+
+			s++;
+		}
 	      break;
 	    case COPYCLIP1:
 	      CopyClip (ScilabGC);
