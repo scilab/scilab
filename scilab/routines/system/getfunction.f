@@ -5,6 +5,7 @@ c     Copyright INRIA
       integer cblock,rblock,fcount
       parameter (rblock=30,cblock=rblock*50)
       integer quote,eol,equal,lparen,rparen,comma,semi,left,right
+      integer psym,qcount,strcnt
       integer func(nsiz),endfunc(nsiz),iadr,sadr
       logical cresmat,eqid,last,eof
       data quote/53/,eol/99/,name/1/
@@ -120,12 +121,40 @@ c     statements of the function
          eof=fin.eq.-2
       endif
       l4=lpt(4)-1
+      psym=eol
+      strcnt=0
 
- 71   call getsym
-      if(sym.eq.name) then
-         if(eqid(syn,func)) then
+ 71   continue
+      psym=sym
+      call getsym
+      if(sym.eq.quote) then
+         if(strcnt.ne.0) then
+            qcount=0
+ 311        qcount=qcount+1
+            if(abs(char1).ne.quote) goto 312
+            call getsym
+            goto 311
+ 312        continue
+            if(2*int(qcount/2).ne.qcount)  strcnt=0
+         else
+            pchar=lin(lpt(3)-2)
+            if(abs(pchar).eq.blank) then
+               strcnt=1
+            elseif(psym.ne.num.and.psym.ne.name.and.psym.ne.rparen.and.
+     $              psym.ne.right.and.psym.ne.dot.and.psym.ne.quote)
+     $              then
+               strcnt=1
+            endif
+         endif
+         if(psym.ne.num.and.psym.ne.name.and.psym.ne.rparen.and.
+     $        psym.ne.right.and.psym.ne.dot.and.psym.ne.quote) then
+            strcnt=1
+         endif
+         goto 71
+      elseif(sym.eq.name) then
+         if(strcnt.eq.0.and.eqid(syn,func)) then
             fcount=fcount+1
-         elseif(eqid(syn,endfunc)) then
+         elseif(strcnt.eq.0.and.eqid(syn,endfunc)) then
             if(fcount.eq.1) then 
                last=.true.
                n=lpt(3)-1-l4
