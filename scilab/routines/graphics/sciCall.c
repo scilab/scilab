@@ -320,6 +320,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   
   /* Force psubwin->is3d to TRUE: we are in 3D mode */
   pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
+  pSUBWIN_FEATURE (psubwin)->project[2] = 1; /* to force z axis display */
 
   ppsubwin = pSUBWIN_FEATURE(psubwin);
   /* F.Leray 25.04.05 replace the default labels by the user labels if specified */
@@ -377,8 +378,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
   if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
-    pSUBWIN_FEATURE (psubwin)->project[2]= 1;
-    pSUBWIN_FEATURE (psubwin)->is3d  = TRUE;
+/*     pSUBWIN_FEATURE (psubwin)->project[2]= 1; */
+/*     pSUBWIN_FEATURE (psubwin)->is3d  = TRUE; */
 /*     pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
     pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
