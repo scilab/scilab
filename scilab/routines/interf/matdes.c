@@ -790,6 +790,7 @@ int sciparam3d(fname, fname_len)
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
+  integer m3n = 0, n3n = 0; // F.Leray 19.03.04
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
 			    {-1,"ebox","?",0,0,0},
 			    {-1,"flag","?",0,0,0},
@@ -836,7 +837,7 @@ int sciparam3d(fname, fname_len)
   isfac=-1;
   izcol=0;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3);//Adding F.Leray 12.03.04
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);//Adding F.Leray 12.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&ix1,&one,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -861,7 +862,7 @@ int sciparam3d1(fname, fname_len)
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n, n3n, l3n, m3l, n3l, l3l;
+  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l;
   static rhs_opts opts[]= { {-1,"alpha","?",0,0,0},
 			    {-1,"ebox","?",0,0,0},
 			    {-1,"flag","?",0,0,0},
@@ -940,7 +941,7 @@ int sciparam3d1(fname, fname_len)
   /* NG beg */
   isfac=-1;
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3); //Adding F.Leray 12.03.04
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m1,&n1,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n); //Adding F.Leray 12.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -1044,7 +1045,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   integer m1, n1, l1, m2, n2, l2, m3, n3, l3;
-  integer m3n, n3n, l3n, m3l, n3l, l3l;
+  integer m3n = 0, n3n = 0, l3n, m3l, n3l, l3l; //F.Leray 19.03.04 m3n and n3n set to 0.
 
   integer izcol, *zcol=NULL, isfac;
 
@@ -1154,7 +1155,7 @@ int sciplot3d_G(fname, func, func1, func2, func3,fname_len)
     isfac=0;
 
   if (version_flag() == 0)
-        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3);//Adding F.Leray 12.03.04
+        Objplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox,&m1,&n1,&m2,&n2,&m3,&n3,&m3n,&n3n);//Adding F.Leray 12.03.04 and 19.03.04
   else
         Xplot3d (fname,&isfac,&izcol,stk(l1),stk(l2),stk(l3),zcol,&m3,&n3,theta,alpha,Legend,iflag,ebox);
   /* NG end */
@@ -4655,10 +4656,17 @@ int gset(fname,fname_len)
 
   //F.Leray Adding some tmp variable for SCI_SURFACE / data case
   integer m3tl, n3tl, l3tl; //,m3l, n3l, l3l;
-  int numrow[4];
+  int numrow[4],i;
   int numcol[4], lxyzcol[4];
   int flagc = -1;
 
+
+  // F.Leray Init. to 0
+  for(i=0;i<4;i++){
+    numrow[i] = 0;
+    numcol[i] = 0;
+    lxyzcol[i] = 0;
+  }
 
   CheckRhs(2,3);
   CheckLhs(0,1);
@@ -5723,9 +5731,44 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"rotation_angles property does not exist for this handle");return -1;}
   }
   /*DJ.A merge*/
-  else if (strcmp(marker,"color_mode") == 0) {
+  else if (strcmp(marker,"color_mode") == 0) {    
     if (sciGetEntityType (pobj) == SCI_SURFACE) {
-	pSURFACE_FEATURE (pobj)->flag[0]=(integer) stk(*value)[0];       
+      int N,M3N,N3N,j;
+      pSURFACE_FEATURE (pobj)->flag[0]= (integer) stk(*value)[0];
+      
+
+      M3N = pSURFACE_FEATURE (pobj)->m3n;
+      N3N = pSURFACE_FEATURE (pobj)->n3n;
+      if(M3N * N3N == 0)
+	{
+	  N = (pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
+	  FREE(pSURFACE_FEATURE(pobj)->zcol); pSURFACE_FEATURE(pobj)->zcol = NULL;
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+	    strcpy(error_message,"Not enough memory");
+	    return -1;
+	  }
+	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
+	  for (i=0;i<N;i++) 
+	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
+	  
+	  pSURFACE_FEATURE (pobj)->izcol = 2;
+	}
+      /*
+      // F/Leray Adding here
+      if(surfcompteur == 1)
+      {
+	  int N=0,i,j;
+	  FREE(pSURFACE_FEATURE(pobj)->zcol);
+	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
+	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+	    strcpy(error_message,"Not enough memory");
+	    return -1;
+	    }
+	    j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
+	  for (i=0;i<N;i++) 
+	  pSURFACE_FEATURE(pobj)->zcol[i]=j;
+	}
+      */
     }
     else
       {strcpy(error_message,"color_mode property does not exist for this handle");return -1;}
@@ -5740,74 +5783,63 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	pSURFACE_FEATURE (pobj)->flagcolor= (int)stk(*value)[0];
       }
       else if (pSURFACE_FEATURE (pobj)->typeof3d==SCI_FAC3D) {
-	int oldflagcolor,N,j,flagcolor=(int)stk(*value)[0];
-	int *zcol;
+	int oldflagcolor,N,M3N,N3N,j,flagcolor=(int)stk(*value)[0];
+	/*int *zcol;*/
+	//F.Leray psurf for debug
+	/*	sciSurface * psurf = pSURFACE_FEATURE (pobj);*/
+
 	if ((*stk(*value)<0)||(*stk(*value)>3))
 	  {strcpy(error_message,"Second argument must be 0 1 2 or 3");return -1;}
+
+
+	// F.Leray 18.03.04 Something goes wrong here: No need to re-build/re-alloc zcol normally!!
+	
+
 
 	if (pSURFACE_FEATURE (pobj)->flagcolor == stk(*value)[0])
 	  return 0;
 	oldflagcolor = pSURFACE_FEATURE (pobj)->flagcolor;
-        if (oldflagcolor < 2  && flagcolor < 2) {}
-        else if (flagcolor < 2) {
-	  FREE(pSURFACE_FEATURE(pobj)->zcol);
-	}
 
-	else if (oldflagcolor < 2 && flagcolor ==3) {
-	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-	    strcpy(error_message,"Not enough memory");
-	    return -1;
+
+	if(flagcolor == 0)
+	  {
+	    pSURFACE_FEATURE (pobj)->izcol = 0;
 	  }
-	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
-	  for (i=0;i<N;i++) 
-	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
-	  pSURFACE_FEATURE (pobj)->izcol=1;
-	}
-	else if (oldflagcolor < 2 && flagcolor ==2) {
-	  N=pSURFACE_FEATURE (pobj)->dimzy;
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL) {
-	    strcpy(error_message,"Not enough memory");
-	    return -1;
+	else if(flagcolor == 1)
+	  {
+	    pSURFACE_FEATURE (pobj)->izcol = 0;
 	  }
-	  j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
-	  for (i=0;i<N;i++) 
-	    pSURFACE_FEATURE(pobj)->zcol[i]=j;
-	  pSURFACE_FEATURE (pobj)->izcol=1;
-	}
-	else if (oldflagcolor == 2 && flagcolor ==3) {
-	  N=(pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
-	  zcol=pSURFACE_FEATURE(pobj)->zcol;
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-	    strcpy(error_message,"Not enough memory");
-	    pSURFACE_FEATURE(pobj)->zcol=zcol;
-	    return -1;
+	else if(flagcolor == 2 || flagcolor == 3)
+	  {
+	    M3N = pSURFACE_FEATURE (pobj)->m3n;
+	    N3N = pSURFACE_FEATURE (pobj)->n3n;
+	    if( M3N * N3N == 0) // i.e. There is no color matrix/vect. in input
+	      {
+		N = (pSURFACE_FEATURE (pobj)->dimzx * pSURFACE_FEATURE (pobj)->dimzy);
+		FREE(pSURFACE_FEATURE(pobj)->zcol); pSURFACE_FEATURE(pobj)->zcol = NULL;
+		if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
+		  strcpy(error_message,"Not enough memory");
+		  return -1;
+		}
+		j=abs(pSURFACE_FEATURE(pobj)->flag[0]);
+		for (i=0;i<N;i++) 
+		  pSURFACE_FEATURE(pobj)->zcol[i]=j;
+
+		pSURFACE_FEATURE (pobj)->izcol = 2;
+	      }
+	    else
+	      {
+		// Then there is a color vector or matrix
+		// It has been set and we use it
+	      }
+	   
 	  }
-	  for (i=0;i<pSURFACE_FEATURE(pobj)->dimzy;i++) {
-	    for (j=0;j<pSURFACE_FEATURE(pobj)->dimzx;j++) 
-	      pSURFACE_FEATURE(pobj)->zcol[(pSURFACE_FEATURE (pobj)->dimzx)*i+j]=zcol[i];
-	  }
-	}
-	else if (oldflagcolor == 3 && flagcolor ==2) {
-	  N=pSURFACE_FEATURE (pobj)->dimzy;
-	  zcol=pSURFACE_FEATURE(pobj)->zcol;
-	  if ((pSURFACE_FEATURE(pobj)->zcol = malloc (N* sizeof (int))) == NULL){
-	    strcpy(error_message,"Not enough memory");
-	    pSURFACE_FEATURE(pobj)->zcol=zcol;
-	    return -1;
-	  }
-	  for (i=0;i<N;i++) {
-	    dtmp=0.0;
-	    for (j=0;j<pSURFACE_FEATURE(pobj)->dimzx;j++) 
-	      dtmp=dtmp+zcol[(pSURFACE_FEATURE (pobj)->dimzx)*i+j];
-	    pSURFACE_FEATURE(pobj)->zcol[i]= (int)(dtmp/pSURFACE_FEATURE(pobj)->dimzx);
-	  }
-	}
+
 	pSURFACE_FEATURE (pobj)->flagcolor= flagcolor;
       }
     }
     else
-      {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
+    {strcpy(error_message,"color_flag property does not exist for this handle");return -1;}
   }
 
   else if (strcmp(marker,"surface_color") == 0) {
@@ -7506,16 +7538,17 @@ static int get3ddata(sciPointObj *pobj)
   int n_variable_tlist = 0;
   //int n_variable_tlist = 1;
 
-  int one = 1, nc;
-  int four = 4;
+  int flag_c;
+  /*int one = 1;
+    int four = 4;*/
   int  numrow, numcol,l;
 
   // F.Leray debug
   //sciSurface * psurf = pSURFACE_FEATURE (pobj);
   
   // tests a faire sur presence et taille color
-  nc = pSURFACE_FEATURE (pobj)->nc;
-  if(nc !=0)
+  flag_c = pSURFACE_FEATURE (pobj)->m3n;
+  if(flag_c !=0)
     {
       m_variable_tlist = 1;
       n_variable_tlist = 5;
@@ -7539,10 +7572,13 @@ static int get3ddata(sciPointObj *pobj)
 	  CreateListVarFromPtr(Rhs+1, 2, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecx);
 	  CreateListVarFromPtr(Rhs+1, 3, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecy);
 	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-      
+
+	  numrow = pSURFACE_FEATURE (pobj)->m3n;
+	  numcol = pSURFACE_FEATURE (pobj)->n3n;
+	  /* see if problems here F.Leray 19.03.04*/ 
 	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) // nc=dimzy; // one color per facet
 	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &one,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
 	  else  // //one color per edge 
 	    {
@@ -7555,7 +7591,7 @@ static int get3ddata(sciPointObj *pobj)
 	{
 	  /* Add 'variable' tlist items to stack */
 	  CreateVar(Rhs+1,"t",&n_variable_tlist,&m_variable_tlist,&l);
-	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist);
+	  CreateListVarFromPtr(Rhs+1, 1, "S", &m_variable_tlist, &n_variable_tlist, variable_tlist_color);
 	  
 	  numrow = pSURFACE_FEATURE (pobj)->m1;
 	  numcol = pSURFACE_FEATURE (pobj)->n1; // but here m1!=m2!=m3 and n1!=n2!=n3
@@ -7568,20 +7604,22 @@ static int get3ddata(sciPointObj *pobj)
 	  numrow = pSURFACE_FEATURE (pobj)->m3;
 	  numcol = pSURFACE_FEATURE (pobj)->n3;
 	  CreateListVarFromPtr(Rhs+1, 4, "d", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->pvecz);
-
 	  
+	  numrow = pSURFACE_FEATURE (pobj)->m3n;
+	  numcol = pSURFACE_FEATURE (pobj)->n3n;
+	  /* see if problems here F.Leray 19.03.04*/ 
 	  if(pSURFACE_FEATURE (pobj)->flagcolor == 2) //nc=nz; /* one color per facet */
 	    {
 	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
-	  else  //  nc=nz*4; /*one color per edge */
+	  else//  nc=nz*4; /*one color per edge */
 	    {
-	      CreateListVarFromPtr(Rhs+1, 5, "i", &four,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
+	      CreateListVarFromPtr(Rhs+1, 5, "i", &numrow,&numcol, &pSURFACE_FEATURE (pobj)->zcol);
 	    }
 	  /* copy the x value in stk(lr) */
 	}
     }
-  else // no color
+  else /* no color provided in input*/
     {
       m_variable_tlist = 1;
       n_variable_tlist = 4;
@@ -7633,7 +7671,7 @@ static int get3ddata(sciPointObj *pobj)
 // set3ddata(pobj,cstk(l2), &l3, &numrow3, &numcol3)
 static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, int flagc, char *fname)
 {
-  int i=0;
+  int i=0,j,N;
   sciSurface * psurf = pSURFACE_FEATURE (pobj);
 
 
@@ -7684,16 +7722,17 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
  
   if(flagc == 1)
     {
-      psurf->nc = 1;
+      //psurf->nc = 1;  // Wrong!! 
+      psurf->nc = m3n*n3n;
       izcol = 1;
       if (   m3n*n3n == m3*n3 ) izcol=2  ;
+      psurf->izcol = izcol;
     }
   else
-    psurf->nc = 0;
-  
-  psurf->izcol = izcol;
- 
-
+    {
+      psurf->nc = 0;
+      psurf->izcol = 0;
+    }
 
   if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1) /* NG beg */
     {//isfac=1;
@@ -7754,8 +7793,19 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
       }
 
       for(i=0;i< m3n*n3n;i++)
-	zcol[i] = istk(l3n)[i];
-      
+	zcol[i] =  istk(l3n)[i];
+
+    }
+  else // else we put the value of the color_mode flag[0]
+    {
+      N=(psurf->dimzx * psurf->dimzy);
+      if ((zcol = malloc (N* sizeof (int))) == NULL){
+	strcpy(error_message,"Not enough memory");
+	return -1;
+      }
+      j=abs(psurf->flag[0]);
+      for (i=0;i<N;i++) 
+	zcol[i]=j;
     }
   
   psurf->pvecx = pvecx;
@@ -7770,6 +7820,9 @@ static int set3ddata(sciPointObj *pobj, int *value, int *numrow, int *numcol, in
   psurf->n1 = n1;
   psurf->n2 = n2;
   psurf->n3 = n3;
+  psurf->m3n = m3n; // If m3n and n3n are 0, then it means that no color matrix/vector was in input
+  psurf->n3n = n3n;
+      
   // Update of the dimzx, dimzy depends on  m3, n3:
   psurf->dimzx = m3;
   psurf->dimzy = n3;
