@@ -10,8 +10,8 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 QUIET= > /dev/null 
 LANGUAGE=fr
 
-#XSLFILE=html-jpc.xsl
-XSLFILE=html.xsl
+#XSLFILE=html.xsl
+XSLFILE=html-rev.xsl
 
 man: 	
 	@echo "Creating html help files" 
