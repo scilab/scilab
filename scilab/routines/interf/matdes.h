@@ -11,7 +11,8 @@ extern void HomeFunction(void);
 extern int ClearScreenConsole _PARAMS((char *fname));
 extern int scisetposfigdim  _PARAMS((char *fname, unsigned long fname_len));
 extern int scixname  _PARAMS((char *fname, unsigned long fname_len));
-int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, int ypos,int ym,int yn,unsigned long int xl,unsigned long int yl,  int *ntics));
+int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
+/*int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, int ypos,int ym,int yn,unsigned long int xl,unsigned long int yl,  int *ntics));*/
 
 
 extern int C2F(matdes)  _PARAMS((void));
