@@ -1,6 +1,8 @@
 // This is the builder.sce 
 // must be run from this directory 
 
+lines(0);
+
 ilib_name  = 'libexamples' 		// interface library name 
 
 
