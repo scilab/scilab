@@ -39,7 +39,8 @@
 
           <DESCRIPTION_ITEM label="figure_size: ">
             <SP>This property controls the size in pixel of the screen's
-            graphics window. The size is the vector <VERB>[width,height]</VERB>.</SP>
+            graphics window. The size is the vector <VERB>[width,height]
+            </VERB>.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_size: ">
@@ -85,6 +86,17 @@
             takes as value an index relative to the current colormap.</SP>
           </DESCRIPTION_ITEM>
 
+          <DESCRIPTION_ITEM label="immediate_drawing: ">
+            <SP>This property controls the figure display. Its value can be
+            <VERB>"on"</VERB> (default mode) or <VERB>"off"</VERB>. It is used
+            to delay a huge succession of graphics commands (implying several
+            drawings or redrawings). Note that, when using
+            <VERB>drawlater</VERB> or <VERB>drawnow</VERB> commands, it
+            affects the property value of the current figure (which is
+            respectively turned to <VERB>'off'</VERB> or
+            <VERB>'on'</VERB>).</SP>
+          </DESCRIPTION_ITEM>
+
           <DESCRIPTION_ITEM label="pixmap: ">
             <SP>This property controls the pixmap status of a Graphic Window.
             If this property value is <VERB>"off"</VERB> the graphics are
@@ -123,8 +135,8 @@
         <DESCRIPTION_INDENT>
           <DESCRIPTION_ITEM label="visible: ">
             <SP>This field rules if the contents of the figure as to be
-            redrawn when descendants change. Its value should be
-            <VERB>"on"</VERB> or <VERB>"off"</VERB>.</SP>
+            redrawn. Its value should be <VERB>"on"</VERB> or
+            <VERB>"off"</VERB>.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="rotation_style: ">
