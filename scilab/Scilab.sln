@@ -407,6 +407,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "man\BuildHelp.
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modelicac", "ocaml\Modelicac.vcproj", "{BB476641-07F4-488E-AA87-21795FFA8F4A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -991,6 +995,10 @@ Global
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Pentium_Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release.ActiveCfg = Release|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug.ActiveCfg = Debug|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Pentium_Release.ActiveCfg = Release|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.PIV_Release.ActiveCfg = Release|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
