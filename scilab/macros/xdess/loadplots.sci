@@ -795,6 +795,12 @@ function txt=%xcall1_string(rec)
     case 'xaxis' then
         txt=['xaxis('+sci2exp(rec.dx1)+','+sci2exp(rec.x2)+','+..
 	     sci2exp(rec.dx2)+','+sci2exp(rec.dx3)+')']
+    case 'xlines' then
+        txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
+	     ',''lines'','+sci2exp(rec.x4)+')']
+    case 'xmarks' then
+        txt=['xpoly('+sci2exp(rec.dx1)+','+sci2exp(rec.dx2)+..
+	     ',''marks'','+sci2exp(rec.x4)+')']
   else
     error('%xcall1_string, unknown keyword: '+rec.fname)
   end
