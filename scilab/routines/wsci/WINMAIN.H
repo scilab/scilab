@@ -219,5 +219,8 @@ extern char * ChooseAnotherWindowScilab(void);
 
 extern void sci_tk_activate(void);
 int GetOSVersion(void);
+
+BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix);
+BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
 /*-----------------------------------------------------------------------------------*/
 #endif /*  __WINMAIN_H__ */
