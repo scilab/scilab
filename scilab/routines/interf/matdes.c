@@ -426,34 +426,38 @@ static int get_zminmax(fname,pos,opts)
 }
 
 /* added by bruno 1/02/2001 on the model of get_nax */
-#define GetColminmax(pos,opts) if ( get_colminmax(pos,opts)==0 ) return 0;
+#define GetColminmax(pos,opts) if ( get_colminmax(fname,pos,opts)==0 ) return 0;
 
 static int def_colminmax[]={1,1};
 static int *Colminmax;
-static int get_colminmax(pos,opts) 
+static int get_colminmax(fname,pos,opts) 
+     char *fname;
      int pos;
      rhs_opts opts[];
 {
   int m,n,l,first_opt=FirstOpt(),kopt;
 
-  if (pos < first_opt) {
-    if (VarType(pos)) {
-      GetRhsVar(pos, "i", &m, &n, &l);
-      CheckLength(pos,m*n,2);
+  if (pos < first_opt) 
+    {
+      if (VarType(pos)) 
+	{
+	  GetRhsVar(pos, "i", &m, &n, &l);
+	  CheckLength(pos,m*n,2);
+	  Colminmax=istk(l);
+	}
+      else
+	{
+	  /** global value can be modified  **/
+	  def_colminmax[0] = def_colminmax[1] = 1;
+	  Colminmax=def_colminmax;
+	}
+    }
+  else if ((kopt=FindOpt("colminmax",opts))) 
+    {
+      GetRhsVar(kopt, "i", &m, &n, &l);
+      CheckLength(kopt,m*n,2);
       Colminmax=istk(l);
     }
-    else
-      {
-	/** global value can be modified  **/
-	def_colminmax[0] = def_colminmax[1] = 1;
-	Colminmax=def_colminmax;
-      }
-  }
-  else if ((kopt=FindOpt("colminmax",opts))) {
-    GetRhsVar(kopt, "i", &m, &n, &l);
-    CheckLength(kopt,m*n,2);
-    Colminmax=istk(l);
-  }
   else 
     {
       /** global value can be modified  **/
@@ -3556,12 +3560,12 @@ int scifec(fname,fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,m3,n3,l3,m4,n4,l4,  mn1;
 
-  static rhs_opts opts[]= { {-1,"leg","?",0,0,0},
+  static rhs_opts opts[]= { {-1,"colminmax","?",0,0,0},
+                            {-1,"leg","?",0,0,0},
 		            {-1,"nax","?",0,0,0},
 			    {-1,"rect","?",0,0,0},
 			    {-1,"strf","?",0,0,0},
 			    {-1,"zminmax","?",0,0,0},
-			    {-1,"colminmax","?",0,0,0},
 			    {-1,NULL,NULL,0,0}};
   if (Rhs <= 0) {
     sci_demo (fname," exec(\"SCI/demos/graphics/fec/fec.ex1\");",&one);
