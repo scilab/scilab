@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.9  2003/10/22 09:03:27  steer
+     ifdef added for intel compiler
+
      Revision 1.8  2002/09/12 12:24:47  chanceli
      updates
 
@@ -88,6 +91,9 @@
      Premier commit pour les control process PVM
 
 ***/
+#if defined(__EDG__)
+#include <time.h>
+#endif
 #include <sys/stat.h>
 #include <signal.h>
 #include <stdio.h>
@@ -100,6 +106,7 @@
 #ifndef WIN32 
 #include <unistd.h>
 #endif 
+
 
 #ifdef WIN32 
 #ifndef __ABSC__
