@@ -47,6 +47,7 @@ GraphList=ge_complete_defaults(GraphList)
 
 //initialize graphics
 xset('window',win);
+set("figure_style","old")
 xselect();driver('Rec');
 pixmap=%f
 

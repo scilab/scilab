@@ -170,7 +170,7 @@ end
 //initialize graphics
 //xdel(curwin)
 xset('window',curwin);
-
+set("figure_style","old")
 xset('default')
 xbasc();
 
