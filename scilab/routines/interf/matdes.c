@@ -7125,8 +7125,8 @@ if ((pobj == (sciPointObj *)NULL) &&
       numcol=4;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->ARect[0];
-      stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[2];
-      stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[1];
+      stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[1];
+      stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[2];
       stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
     }
     else
