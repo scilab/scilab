@@ -105,7 +105,7 @@ else
       inservar=sci_instr.lhs(k).operands(1)
       [bval,index]=isdefinedvar(inservar)
       if ~bval then
-	m2sci_info("L."+string(nblines)+": variable "+inservar.name+" added to varslist before insertion.",verbose_mode)
+	// Variable added to varslist before insertion
 	if funptr(inservar.name)<>0 then
 	  varslist($+1)=M2scivar("%"+inservar.name,inservar.name,Infer())
 	else
