@@ -665,9 +665,10 @@ sciInitGraphicContext (sciPointObj * pobj)
  	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
  	  (sciGetGraphicContext(pobj))->isline    = TRUE;
 	  (sciGetGraphicContext(pobj))->markstyle = 0;
-	  (sciGetGraphicContext(pobj))->marksize = 4; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksize = 0; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksizeunit = 2; /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
 	}
       else
 	{
@@ -683,6 +684,8 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(pfiguremdl))->marksize; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(pfiguremdl))->markbackground; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(pfiguremdl))->markforeground; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksizeunit = (sciGetGraphicContext(pfiguremdl))->marksizeunit; /* New F.Leray 22.02.05 */
+	  
 	}
       return 0;
       break;
@@ -701,6 +704,7 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->marksize = 	sciGetMarkSize (sciGetParent (pobj)); /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksizeunit = 	sciGetMarkSizeUnit (sciGetParent (pobj)); /* New F.Leray 22.02.05 */ /* 1 : points, 2 : tabulated */
 	}
       else
 	{
@@ -716,6 +720,7 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(paxesmdl))->marksize; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(paxesmdl))->markbackground; /* New F.Leray 21.01.05 */
 	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(paxesmdl))->markforeground; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->marksizeunit = (sciGetGraphicContext(paxesmdl))->marksizeunit; /* New F.Leray 22.02.05 */
 	}
       return 0;
       break;
@@ -744,6 +749,7 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->marksize  = sciGetMarkSize  (sciGetParent (pobj));
       (sciGetGraphicContext(pobj))->markbackground  = sciGetMarkBackground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->markforeground  = sciGetMarkForeground (sciGetParent (pobj)) - 1;
+      (sciGetGraphicContext(pobj))->marksizeunit  = sciGetMarkSizeUnit  (sciGetParent (pobj));
       return 0;
       break;
     case SCI_AGREG:

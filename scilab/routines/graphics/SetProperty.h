@@ -36,6 +36,7 @@ extern int sciSetLineStyle (sciPointObj * pobj, int linestyle); /* SET */
 extern int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
 extern int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
 extern int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
+extern int sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit); /* SET */
 extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */

@@ -187,8 +187,11 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       sciSetCurrentObj (ConstructLegend
 			((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 			 legend, strlen(legend), n1, styl, &pptabofpointobj)); 
+
+      sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
       sciSetIsMark(pptabofpointobj, TRUE);
       sciSetMarkStyle (pptabofpointobj, *styl);
+
       sciDrawObjIfRequired(sciGetCurrentObj ()); 
       DrawAxesIfRequired(sciGetCurrentObj ()); /* force axes redrawing */
       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 

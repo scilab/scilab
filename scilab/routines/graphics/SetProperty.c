@@ -1161,6 +1161,82 @@ sciSetMarkSize (sciPointObj * pobj, int marksize)
   return 0;
 }
 
+/**sciSetMarkSizeUnit
+ * @memo Sets the mark size unit
+ * 1 : points, 2 : tabulated
+ */
+int
+sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit)
+{
+
+  if (marksizeunit < 0)
+    {
+      sciprint ("the mark size unit must be greater than 0\n");
+      return -1;
+    }
+  else
+    {
+      switch (sciGetEntityType (pobj))
+	{
+	case SCI_FIGURE:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_SUBWIN:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_ARC:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_POLYLINE:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_RECTANGLE:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_SURFACE:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_AXES:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break;
+	case SCI_LEGEND:
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break; 
+	case SCI_SEGS: 
+	  (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
+	  return 0;
+	  break; 
+	case SCI_FEC: 
+	case SCI_GRAYPLOT:
+	case SCI_MENU:
+	case SCI_MENUCONTEXT:
+	case SCI_STATUSB:
+	case SCI_LIGHT:
+	case SCI_AGREG:
+	case SCI_PANNER:
+	case SCI_SBH:
+	case SCI_SBV:
+	case SCI_TEXT:
+	case SCI_TITLE:
+	case SCI_LABEL: /* F.Leray 28.05.04 */
+	default:
+	  /* pas de context graphics */
+	  sciprint ("This object have no mark \n");
+	  return -1;
+	  break;
+	}
+    }
+  return 0;
+}
+
 /**sciSetIsLine
  * @memo Sets the line style existence
  */

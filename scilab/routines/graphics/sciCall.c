@@ -521,7 +521,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
 	    sciSetIsLine(sciGetCurrentObj(),  TRUE);
 	  }
 	  else {
-	    sciSetIsMark(sciGetCurrentObj(),TRUE);
+	    sciSetMarkSizeUnit(sciGetCurrentObj(),2); /* force switch to tabulated mode : old syntax */
+ 	    sciSetIsMark(sciGetCurrentObj(),TRUE);
 	    sciSetIsLine(sciGetCurrentObj(),FALSE);
 	    sciSetMarkStyle(sciGetCurrentObj(),-zcol[i]);
 	  }

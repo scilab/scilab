@@ -37,6 +37,7 @@ extern int sciGetLineStyle (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 extern int sciGetMarkStyle (sciPointObj * pobj); /* GET */
 extern int sciGetMarkSize (sciPointObj * pobj); /* GET */
+extern int sciGetMarkSizeUnit (sciPointObj * pobj); /* GET */
 extern int sciGetFillStyle (sciPointObj * pobj); /* GET */
 extern int sciGetFillColor (sciPointObj * pobj); /* GET */
 extern int sciGetFillFlag (sciPointObj * pobj); /* GET */

@@ -1200,7 +1200,7 @@ sciGetMarkSize (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->marksize;
       break;
     case SCI_SUBWIN:
-      return sciGetMarkSize (sciGetParent (pobj));
+      return (sciGetGraphicContext(pobj))->marksize;
       break;
     case SCI_ARC:
       return (sciGetGraphicContext(pobj))->marksize;
@@ -1243,6 +1243,62 @@ sciGetMarkSize (sciPointObj * pobj)
   return 0;
 }
 
+
+/**sciGetMarkSizeUnit
+ * @memo Gets the mark size unit
+ * 1 : points, 2 : tabulated
+ */
+int
+sciGetMarkSizeUnit (sciPointObj * pobj)
+{
+  switch (sciGetEntityType (pobj))
+    {
+    case SCI_FIGURE:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_SUBWIN:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_ARC:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_POLYLINE:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_RECTANGLE:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_SURFACE:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_AXES:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break;
+    case SCI_SEGS:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break; 
+    case SCI_LEGEND:
+      return (sciGetGraphicContext(pobj))->marksizeunit;
+      break; 
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
+    case SCI_LIGHT:
+    case SCI_MENU:
+    case SCI_MENUCONTEXT:
+    case SCI_STATUSB:
+    case SCI_PANNER:		/* pas de context graphics */
+    case SCI_SBH:		/* pas de context graphics */
+    case SCI_SBV:		/* pas de context graphics */
+    case SCI_AGREG:
+    case SCI_TEXT:
+    case SCI_TITLE:
+    case SCI_LABEL: /* F.Leray 28.05.04 */
+    default:
+      return -1;
+      break;
+    }
+  return 0;
+}
 
 /**sciGetIsLine
  * @memo Returns the line drawing existence
@@ -4095,7 +4151,8 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"line_mode", 9) == 0) {return 10;}
   else if (strncmp(marker,"surface_mode", 12) == 0) {return 10;}
   else if (strncmp(marker,"mark_style", 10) == 0) {return 1;}	
-  else if (strcmp(marker,"mark_size") == 0) {return 1;}	
+  else if (strcmp(marker,"mark_size") == 0) {return 1;}
+  else if (strcmp(marker,"mark_size_unit") == 0) {return 10;}
   else if (strncmp(marker,"mark_mode", 9) == 0)   {return 10;}
   else if (strncmp(marker,"mark_foreground", 15) == 0)   {return 1;}
   else if (strncmp(marker,"mark_background", 15) == 0)   {return 1;}

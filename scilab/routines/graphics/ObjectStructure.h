@@ -313,6 +313,8 @@ typedef struct
   /** */
   int marksize;
   /** */
+  int marksizeunit;
+  /** */
   int markbackground;
   /** */
   int markforeground;
