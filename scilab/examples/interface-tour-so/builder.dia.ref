@@ -171,6 +171,7 @@ ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags)
    compilation of ex15f
    compilation of ex16intc
    compilation of ex17intc
+   building shared library (be patient)
  
  
  
