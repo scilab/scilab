@@ -9,8 +9,12 @@ str = convstr(ColorString);
 // 1) COLORS
 
 //Colors
-Table      = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black'     'k' 'white' 'none' 'auto']
-//ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+Table      = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' ..
+	'k' 'white'     'none' 'auto' 'flat' 'interp']
+//ColorVal = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' ..
+//      'black' 'white' 'none' 'auto' 'flat' 'interp']
+//                                      |       |
+//                                  only used with 'surf' command
 
 //color management
 //difficulty here since we have to allow every kind of writings:
