@@ -82,7 +82,7 @@ function save_graphichandle(h,fd)
     
     mput(bool2s(h.box=='on'),'c',fd)
     mput(size(h.sub_tics,'*'),'c',fd);mput(h.sub_tics,'c',fd);
-    mput(h.tics_color,'il',fd)
+    mput(-1,'il',fd) // tics_color is removed F.Leray 15.03.05
     mput(h.font_style,'c',fd)
     mput(h.font_size,'c',fd)
     mput(h.font_color,'il',fd)

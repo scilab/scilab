@@ -134,7 +134,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(a,"box"                  , toggle(mget(1,'c',fd)))
     set(a,"sub_tics"             , mget(mget(1,'c',fd),'c',fd))
-    set(a,"tics_color"           , mget(1,'il',fd));
+    mget(1,'il',fd); // tics_color is removed F.Leray 15.03.05
     set(a,"font_style"           , mget(1,'c',fd));
     set(a,"font_size"            , mget(1,'c',fd));
     set(a,"font_color"           , mget(1,'il',fd));
