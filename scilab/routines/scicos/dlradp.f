@@ -60,7 +60,6 @@ c     init
          m=ipar(1)
          n=ipar(2) 
          if(m.gt.50.or.n.gt.50) then
-            write(6,'(''dlradp ordrer must be less than 50'')')
             iflag=-1
             return
          endif

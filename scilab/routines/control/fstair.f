@@ -425,7 +425,7 @@ C
      *            IERR)
 C
       IF (IERR .NE. 0) then
-      write(6,*) 'error: fstair failed!'
+c      write(6,*) 'error: fstair failed!'
       return
       endif
 C

@@ -24,7 +24,6 @@ c
          call error(999)
          return
       endif
-      write(*,*) 'read done','m=',m,'n=',n,'ncol=',ncol
 c
       it=11
       ilp=iadr(lstk(top))

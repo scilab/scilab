@@ -145,7 +145,6 @@ c     .  get geometry of the block
       sadr(l)=(l/2)+1
       ret=scistring(rhs+1, 'getgeom',1,0)
       il=iadr(lstk(top+1))
-      write(6,'(10(i3,1x))') (istk(il+i),i=0,3)
       l=sadr(il+4)
       call dcopy(5,stk(l),1,g,1)
 c      top=top-1
