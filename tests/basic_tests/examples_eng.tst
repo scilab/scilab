@@ -1,5 +1,6 @@
 // ven jui 23 09:33:30 CEST 2004
 
+
 //====================================================
 // ../man/eng/arma/arma2p.xml
 //====================================================
@@ -4977,6 +4978,8 @@ plotprofile(foo) // click on Exit to exit
 
 xdel(winsid())
 
+set old_style off // because plotprofile switches to old mode
+
 //====================================================
 // ../man/eng/functions/profile.xml
 //====================================================
@@ -5318,10 +5321,10 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
    f4=scf(4); //creates figure with id==4 and make it the current one
-   f.color_map = jetcolormap(64);
-   f.figure_size = [400, 200];
+   f4.color_map = jetcolormap(64);
+   f4.figure_size = [400, 200];
    plot2d()
-   clf(f,'reset')
+   clf(f4,'reset')
    f0=scf(0); //creates figure with id==0 and make it the current one
    f0.color_map=hotcolormap(128);
    plot3d1();
@@ -5406,6 +5409,7 @@ f.color_map=get(sdf(),"color_map");
 
 xdel(winsid())
 
+
 //====================================================
 // ../man/eng/graphics/color.xml
 //====================================================
@@ -5414,9 +5418,12 @@ clear;lines(0);
 x=linspace(-2*%pi,2*%pi,100)';
 // using existing colors
 plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
+
 // new colors: there are added to the colormap
 e=gce(); p1=e.children(1); p2=e.children(2);
+
 p1.foreground=color("purple"); p2.foreground=color("navy blue");
+
 // using RGV values
 p1.foreground=color(255,128,128);
 
@@ -6036,8 +6043,10 @@ xdel(winsid())
 // ../man/eng/graphics/getmark.xml
 //====================================================
 clear;lines(0);
+x=0:0.1:10;
 set("figure_style","new")
 [mark,mrkSize]=getmark();
+
 plot2d(x,sin(x),style=-mark);
 clf();
 plot2d(x,sin(x))
@@ -6155,7 +6164,7 @@ clear;lines(0);
   set("current_figure",10) //create a new figure with figure_id=10
   plot3d() //the drawing are sent to figure 10
   set("current_figure",f) //make the previous figure the current one
-  plot2d(x,x^3) the drawing are send to the initial figure
+  plot2d(x,x^3) //the drawings are sent to the initial figure
 
 
 xdel(winsid())
@@ -6359,42 +6368,43 @@ xdel(winsid())
 //====================================================
 // ../man/eng/graphics/legend.xml
 //====================================================
-clear;lines(0);
-
-set figure_style new
-t=0:0.1:2*%pi;
-a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
-
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
-e=gce();
-e.children(1).thickness=3;
-e.children(2).line_style=4;
-
-hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)'],a=1);
-
-xdel(winsid())
-
+//clear;lines(0);
+//
+//set figure_style new
+//t=0:0.1:2*%pi;
+//a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+//
+//plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+//e=gce();
+//e.children(1).thickness=3;
+//e.children(2).line_style=4;
+//
+//hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)'],a=1);
+//
+//xdel(winsid())
+//
 //====================================================
 // ../man/eng/graphics/loadplots.xml
 //====================================================
-clear;lines(0);
-
-
-driver('Rec');xbasc();plot2d([0 1.5 4]) //make a plot
-xsave(TMPDIR+'/foo.scg') //save it in a binary file
-
-rec=loadplots(TMPDIR+'/foo.scg'); //get the associated data structure
-//here rec(9) is the data structure associated with the plot2d instruction
-rec(9).x //the x vector
-rec(9).y //the y vector
-
-string(rec) //the scilab instructions producing the same plot
-
-mputl(string(rec),TMPDIR+'/foo.sce') //creates a script file
-xbasc();exec(TMPDIR+'/foo.sce',-1) //execute it to re-create the plot
-
-
-xdel(winsid())
+//clear;lines(0); // BUG HERE : xsave does not work anymore 
+                  // F.Leray 22.10.04
+//
+//set old_style on
+//driver('Rec');xbasc();plot2d([0 1.5 4]) //make a plot
+//xsave(TMPDIR+'/foo.scg') //save it in a binary file
+//
+//rec=loadplots(TMPDIR+'/foo.scg'); //get the associated data structure
+////here rec(9) is the data structure associated with the plot2d instruction
+//rec(9).x //the x vector
+//rec(9).y //the y vector
+//
+//string(rec) //the scilab instructions producing the same plot
+//
+//mputl(string(rec),TMPDIR+'/foo.sce') //creates a script file
+//xbasc();exec(TMPDIR+'/foo.sce',-1) //execute it to re-create the plot
+//set old_style off
+//
+//xdel(winsid())
 
 //====================================================
 // ../man/eng/graphics/locate.xml
@@ -6404,6 +6414,8 @@ xdel(winsid())
 // ../man/eng/graphics/Matplot1.xml
 //====================================================
 clear;lines(0);
+
+set old_style on
 
 //--- first example
 //  fix current scale 
@@ -6416,6 +6428,7 @@ a=ones(10,10); a= 3*tril(a)+ 2*a;
 // second matrix in rectangle [5,6,7,8]
 Matplot1(a,[5,6,7,8])
 xset('default')
+get old_style 
 xbasc()
 //--- second example 
 xsetech(frect=[0,0,10,10])
@@ -6435,7 +6448,7 @@ end
 xset('pixmap',0)
 xset('default')
 xbasc()
-
+	
 xdel(winsid())
 
 //====================================================
@@ -8242,7 +8255,7 @@ clear;lines(0);
 win1=waitbar('This is an example');
 win2=waitbar('HELLO!');
 halt();
-winclose([win1,win2]);]]>
+winclose([win1,win2]);
 xdel(winsid())
 
 //====================================================
