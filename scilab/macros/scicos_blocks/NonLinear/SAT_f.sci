@@ -20,8 +20,6 @@ case 'set' then
     if ~ok then break,end
     if maxp<=0  then
       message('Max must be strictly positive')
-    elseif minp>=0  then
-      message('Min must be strictly negative')
     elseif pente<=0 then
       message('Slope must be strictly positive')
     else
