@@ -8,6 +8,9 @@ variable DEMODIR [pwd]
 cd $pwd
 
 
+global MySciPath
+set MySciPath [file join  "$env(SCIPATH)"]
+
 
 variable DEMODIR
 
@@ -35,6 +38,7 @@ global curgedobject
 global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox ncolors
 
+global datastring
 
 # set ncolors 32
 # set nbcol 2
@@ -126,7 +130,6 @@ pack $comb  -in $w.frame.view  -fill x
 eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
-
 
 #Notebook:create $uf.n -pages {Style Aspect Data} -pad 20     -height 520 -width 600
 Notebook:create $uf.n -pages {Style Data Clipping} -pad 20 -height 520 -width 600
@@ -295,10 +298,28 @@ $w.frame.c configure -scrollregion [$w.frame.c bbox all] -yscrollincrement 0.1i
 pack  $w.frame.ysbar -side right -fill y
 pack  $w.frame.c
 
+frame $w.scicom1
+pack $w.scicom1 -side top -fill x -pady 2m
+
+label $w.scicom1.label1 -text "Scilab Command Interface for data:"
+pack  $w.scicom1.label1 -in $w.scicom1 -side left
+
+frame $w.scicom
+pack $w.scicom -side top -fill x -pady 2m
+
+label $w.scicom.label1 -text "polyline_handle.data = "
+pack  $w.scicom.label1 -in $w.scicom -side left
+
+entry $w.scicom.text1 -relief sunken -textvariable scicomint_data
+set_balloon $w.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a Nx2 or Nx3 matrix)\n to initialize the \"data\" field."
+bind  $w.scicom.text1 <Return> "sciCommandData"
+
+pack $w.scicom.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
 pack $w.sep -fill both -pady 10m
+
 
 #exit button
 frame $w.buttons
@@ -551,4 +572,19 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
     }
 }
 
+
+proc sciCommandData {} {
+    global scicomint_data
+
+    set longueur [expr [string length $scicomint_data]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a real matrix\n or use a macro call (defining a Nx2 or Nx3 matrix)\n to initialize the \"data\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.data=$scicomint_data;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
 

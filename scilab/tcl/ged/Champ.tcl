@@ -38,6 +38,7 @@ global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
 
 global curcolored nbrow nbcol champVAL
+global scicomint_data
 
 set ww .axes
 catch {destroy $ww}
@@ -225,32 +226,50 @@ for {set i 1} {$i<=$nbrow} {incr i} {
     }
 }
 
- $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -yscrollincrement 0.1i -xscrollincrement 0.1i
+$w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -yscrollincrement 0.1i -xscrollincrement 0.1i
 # $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -xscrollincrement 0.1i
 
 #pack  $w3.frame2.ysbar.scrollh -side bottom -fill x
- pack  $w3.frame2.ysbar -side right -fill y
- pack  $w3.frame2.xsbar -side bottom -fill x
- pack  $w3.frame2.c1
+pack  $w3.frame2.ysbar -side right -fill y
+pack  $w3.frame2.xsbar -side bottom -fill x
+pack  $w3.frame2.c1
+
+frame $w3.scicom1
+pack $w3.scicom1 -side top -fill x -pady 2m
+
+label $w3.scicom1.label1 -text "Scilab Command Interface for data:"
+pack  $w3.scicom1.label1 -in $w3.scicom1 -side left
+
+frame $w3.scicom
+pack $w3.scicom -side top -fill x -pady 2m
+
+label $w3.scicom.label1 -text "champ_handle.data = "
+pack  $w3.scicom.label1 -in $w3.scicom -side left
+
+entry $w3.scicom.text1 -relief sunken -textvariable scicomint_data
+set_balloon $w3.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+bind  $w3.scicom.text1 <Return> "sciCommandData"
+
+pack $w3.scicom.text1  -side left  -fill both -expand yes
 
 #sep bar
- frame $w3.sep -height 2 -borderwidth 1 -relief sunken
- pack $w3.sep -fill both  -pady 10m
+frame $w3.sep -height 2 -borderwidth 1 -relief sunken
+pack $w3.sep -fill both  -pady 10m
 
 
  #exit button
- frame $w3.buttons
- button $w3.b -text Quit -command "destroy $ww"
- pack $w3.b -side bottom 
+frame $w3.buttons
+button $w3.b -text Quit -command "destroy $ww"
+pack $w3.b -side bottom 
 
 
-########### Clipping onglet #########################################
+########### Clipping onglet #######################################
 ###################################################################
 
  set w9 [Notebook:frame $uf.n Clipping]
 
- frame $w9.frame -borderwidth 0
- pack $w9.frame -anchor w -fill both
+frame $w9.frame -borderwidth 0
+pack $w9.frame -anchor w -fill both
 
 set letext ""
 
@@ -451,3 +470,19 @@ proc setData { i j } {
 global champVAL
 ScilabEval "execstr(\"global ged_handle; ged_handle.data($i,$j)=$champVAL($i,$j);\",\'errcatch\',\'n\');"
 }
+
+
+
+proc sciCommandData {} {
+    global scicomint_data
+    
+    if { $scicomint_data == "" } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing a real matrix\n or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.data=$scicomint_data;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
+

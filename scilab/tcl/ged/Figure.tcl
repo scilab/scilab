@@ -7,6 +7,8 @@ cd [file dirname [info script]]
 variable DEMODIR [pwd]
 cd $pwd
 
+global MySciPath
+set MySciPath [file join  "$env(SCIPATH)"]
 
 
 variable DEMODIR
@@ -38,6 +40,8 @@ global figure_xsiz figure_ysiz figure_xaxesiz figure_yaxesiz
 global curvis
 global ncolors
 global curpix curpdm currotation_style
+
+global scicomint_colormap
 
 set ww .axes
 catch {destroy $ww}
@@ -108,6 +112,7 @@ pack $comb  -in $w.frame.view  -fill x
 eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
+
 
 Notebook:create  $uf.n -pages {Style Mode Colormap} -pad 20   -height 520 -width 600
 pack  $uf.n -fill both -expand 1
@@ -377,10 +382,30 @@ $w.frame.c configure -scrollregion [$w.frame.c bbox all] -yscrollincrement 0.1i
 pack  $w.frame.ysbar -side right -fill y
 pack  $w.frame.c
 
+
+frame $w.scicom1
+pack $w.scicom1 -side top -fill x -pady 2m
+
+label $w.scicom1.label1 -text "Scilab Command Interface for colormap:"
+pack  $w.scicom1.label1 -in $w.scicom1 -side left
+
+frame $w.scicom
+pack $w.scicom -side top -fill x -pady 2m
+
+
+label $w.scicom.label1 -text "figure_handle.color_map = "
+pack  $w.scicom.label1 -in $w.scicom -side left
+
+#text $w.scicom.text1 -height 3m -width 50 -relief sunken -yscrollcommand "$w.scicom.scroll set"
+entry $w.scicom.text1 -relief sunken -textvariable scicomint_colormap
+set_balloon $w.scicom.text1 "Enter a graycolormap(COLOR_NUMBER), hotcolormap(COLOR_NUMBER)\n or jetcolormap(COLOR_NUMBER) call to initialize the \"colormap\" field."
+bind  $w.scicom.text1 <Return> "sciCommandColormap"
+
+pack $w.scicom.text1  -side left -fill both -expand yes
+
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 12m
-
+pack $w.sep -fill both -pady 10m
 
 #exit button
 frame $w.buttons
@@ -549,5 +574,21 @@ proc setBlueColor { w i } {
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
     set aa [expr 10+(4*150) - 60]
     $w.frame.c create rectangle $aa [expr $bb-10] [expr $aa+20] [expr $bb+10] -fill $color
+}
+
+
+proc sciCommandColormap {} {
+    global scicomint_colormap
+
+    set longueur [expr [string length $scicomint_colormap]]
+    
+    if { $longueur == 0 } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify an entry (such as graycolormap(COLOR_NUMBER), hotcolormap(COLOR_NUMBER) or jetcolormap(COLOR_NUMBER) or...) to initialize the \"colormap\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.color_map=$scicomint_colormap;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
 }
 

@@ -34,6 +34,7 @@ global curgedobject
 global curvis curdatamapping
 global nbrowX nbrowY grayplotXVAL grayplotYVAL grayplotZVAL grayplotCOLORVAL flagCOLOR
 global nbrowZ nbcolZ nbrowCOLOR nbcolCOLOR ncolors
+global scicomint_dataX scicomint_dataY scicomint_dataZ
 
 set ww .axes
 catch {destroy $ww}
@@ -105,7 +106,7 @@ eval $w.frame.selgedobject list insert end $lalist
 
 
 
-Notebook:create $uf.n -pages {"Style" "X vector" "Y vector" "Z matrix" } -pad 20 -height 540 -width 600
+Notebook:create $uf.n -pages {"Style" "X vector" "Y vector" "Z matrix" "Scilab Command Interface"} -pad 20 -height 540 -width 600
 pack $uf.n -in $uf -fill both -expand yes
 
 ########### Style onglet ##########################################
@@ -294,12 +295,73 @@ pack $w.buttons -side bottom
   button $w3.b -text Quit -command "destroy $ww"
   pack $w3.b -side bottom 
 
+########### Scilab Command Interface ##############################
+###################################################################
+set w5 [Notebook:frame $uf.n "Scilab Command Interface"]
+
+frame $w5.frame -borderwidth 0
+pack $w5.frame -anchor w -fill both
+
+
+frame $w5.scicom1
+pack $w5.scicom1 -side top -fill x -pady 2m
+
+label $w5.scicom1.label1 -text "Scilab Command Interface for data:"
+pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
+
+frame $w5.scicomX
+pack $w5.scicomX -side top -fill x -pady 2m
+
+label $w5.scicomX.label1 -text "grayplot_handle.data.x =      "
+pack  $w5.scicomX.label1 -in $w5.scicomX -side left
+
+entry $w5.scicomX.text1 -relief sunken -textvariable scicomint_dataX
+set_balloon $w5.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"X data\" field."
+bind  $w5.scicomX.text1 <Return> "sciCommandData"
+
+pack $w5.scicomX.text1  -side left  -fill both -expand yes
+
+
+frame $w5.scicomY
+pack $w5.scicomY -side top -fill x -pady 2m
+
+label $w5.scicomY.label1 -text "grayplot_handle.data.y =      "
+pack  $w5.scicomY.label1 -in $w5.scicomY -side left
+
+entry $w5.scicomY.text1 -relief sunken -textvariable scicomint_dataY
+set_balloon $w5.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or use a macro call\n to initialize the \"Y data\" field."
+bind  $w5.scicomY.text1 <Return> "sciCommandData"
+
+pack $w5.scicomY.text1  -side left  -fill both -expand yes
+
+
+frame $w5.scicomZ
+pack $w5.scicomZ -side top -fill x -pady 2m
+
+label $w5.scicomZ.label1 -text "grayplot_handle.data.z =       "
+pack  $w5.scicomZ.label1 -in $w5.scicomZ -side left
+
+entry $w5.scicomZ.text1 -relief sunken -textvariable scicomint_dataZ
+set_balloon $w5.scicomZ.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call\n to initialize the \"Z data\" field."
+bind  $w5.scicomZ.text1 <Return> "sciCommandData"
+
+pack $w5.scicomZ.text1  -side left  -fill both -expand yes
+
+
+#sep bar
+frame $w5.sep -height 2 -borderwidth 1 -relief sunken
+pack $w5.sep -fill both -pady 10m
+
+
+#exit button
+frame $w5.buttons
+button $w5.b -text Quit -command "destroy $ww"
+pack $w5.b -side bottom 
+
 
 pack $sw $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes
 pack $topf -fill both -pady 2 -expand yes
-
-
 
 
 #proc associes
@@ -347,4 +409,19 @@ ScilabEval "execstr(\"global ged_handle; ged_handle.data($i+1,$j+1)=$grayplotZVA
 proc SelectDataMapping {w args} {
 global curdatamapping
 ScilabEval "global ged_handle; ged_handle.data_mapping='$curdatamapping'"
+}
+
+proc sciCommandData {} {
+    global scicomint_dataX scicomint_dataY scicomint_dataZ
+    
+    if { ($scicomint_dataX == "") || ($scicomint_dataY == "") ||
+	 ($scicomint_dataZ == "")  } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must fill in all the fields using variables defined in Scilab Console\n to initialize the \"data\" field."
+    } else {
+	
+	ScilabEval "setGrayplot($scicomint_dataX,$scicomint_dataY,$scicomint_dataZ)" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+	
+    }
 }

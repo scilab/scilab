@@ -38,6 +38,7 @@ global curclipstate Xclipbox Yclipbox Wclipbox Hclipbox letext
 global old_Xclipbox old_Yclipbox old_Wclipbox old_Hclipbox
 
 global nbrow nbcol zbmin zbmax nbrowTri nbcolTri
+global scicomint_data scicomint_triangles
 
 set ww .axes
 catch {destroy $ww}
@@ -109,7 +110,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Triangles} -pad 40 -height 540 -width 600
+Notebook:create $uf.n -pages {Style Data Triangles "Scilab Command Interface"} -pad 40 -height 540 -width 600
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -357,6 +358,57 @@ pack $w4.b -side bottom
 # pack $w9.b -side bottom 
 
 
+########### Scilab Command Interface ##############################
+###################################################################
+set w5 [Notebook:frame $uf.n "Scilab Command Interface"]
+
+frame $w5.frame -borderwidth 0
+pack $w5.frame -anchor w -fill both
+
+
+frame $w5.scicom1
+pack $w5.scicom1 -side top -fill x -pady 2m
+
+label $w5.scicom1.label1 -text "Scilab Command Interface for data and triangles:"
+pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
+
+frame $w5.scicom
+pack $w5.scicom -side top -fill x -pady 2m
+
+label $w5.scicom.label1 -text "fec_handle.data =         "
+pack  $w5.scicom.label1 -in $w5.scicom -side left
+
+entry $w5.scicom.text1 -relief sunken -textvariable scicomint_data
+set_balloon $w5.scicom.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+bind  $w5.scicom.text1 <Return> "sciCommandData"
+
+pack $w5.scicom.text1  -side left  -fill both -expand yes
+
+
+frame $w5.scicomT
+pack $w5.scicomT -side top -fill x -pady 2m
+
+label $w5.scicomT.label1 -text "fec_handle.triangles =   "
+pack  $w5.scicomT.label1 -in $w5.scicomT -side left
+
+entry $w5.scicomT.text1 -relief sunken -textvariable scicomint_triangles
+set_balloon $w5.scicomT.text1 "Enter an integer matrix defined in Scilab Console representing\n the indexes of the nodes which constitute\n each triangle to initialize the \"triangles\" field."
+bind  $w5.scicomT.text1 <Return> "sciCommandTriangles"
+
+pack $w5.scicomT.text1  -side left  -fill both -expand yes
+
+
+
+#sep bar
+frame $w5.sep -height 2 -borderwidth 1 -relief sunken
+pack $w5.sep -fill both -pady 10m
+
+
+#exit button
+frame $w5.buttons
+button $w5.b -text Quit -command "destroy $ww"
+pack $w5.b -side bottom 
+
 pack $sw $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes
 pack $topf -fill both -pady 2 -expand yes
@@ -470,3 +522,31 @@ proc setZb {} {
 global zbmin zbmax
 ScilabEval "setZb($zbmin, $zbmax);"
 }
+
+proc sciCommandData {} {
+    global scicomint_data
+    
+    if { $scicomint_data == "" } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable  defined in Scilab Console representing a real matrix\n or use a macro call (defining a matrix)\n to initialize the \"data\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.data=$scicomint_data;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
+    
+    
+proc sciCommandTriangles {} {
+    global scicomint_triangles
+    
+    if { $scicomint_triangles == "" } {
+	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify a variable defined in Scilab Console representing the indexes of the nodes\n which constitute each triangle to initialize the \"triangles\" field."
+    } else {
+	
+	ScilabEval "global ged_handle;ged_handle.triangles=$scicomint_triangles;" "seq"
+	#Refresh now !
+	ScilabEval "tkged();" "seq"
+    }
+}
+
