@@ -539,9 +539,21 @@ proc Setposition { name value } {
 		set realh [expr $realh -2]; 
 		$path configure -borderwidth 0 -width $realh  -showvalue 0 -orient horizontal;
 		
-	    } else {
-		"$path" configure  -length $w$u -width $h$u -sliderlength [expr $w/10] 
+	    } else { # modif bruno (en copiant le cas default: en tk la position est fct 
+                     # du coin sup gauche, il faut donc faire un y <- h(figure) - y(scilab) )
+                     # enfin pour un slider le width ne comprends que le slider lui-meme
+                     # sans compter la taille de son bord : ici j'impose un bord de 1 ....
+                     # sans doute a revoir ....
+		global Win;
+		set parent $Win([set "$name\(parent)"]);
+		global "$parent";
+		set parent_path [set "$parent\(path)"];
+                set h [expr $h -2];  # a explique...
+		"$path" configure  -borderwidth 1 -length $w$u -width $h$u -sliderlength [expr $w/5]; 
 		
+		set pheight [winfo reqheight $parent_path];
+		#set pheight [winfo height $parent_path];
+		set y [expr $pheight -  $y -$h -3 ];  
 		place "$path" -x $x$u -y $y$u 
 		
 	    }
@@ -685,7 +697,3 @@ proc Setvalue { name  str} {
      
   }
 }
-
-
-
-

@@ -120,7 +120,7 @@ proc CreateUIControl {hparent control} {
 	  set "$name\(fontname)" "helvetica";
 	  set "$name\(fontangle)" "normal";
 	  set "$name\(fontweight)" "normal";
-	  $path configure -anchor nw -borderwidth 1 -bg #a0a0a0 -padx 0 -pady 0;
+	  $path configure -borderwidth 1 -bg #a0a0a0 -padx 0 -pady 0;
 	  SetField  [set "$name\(handle)" ] position "20|40|40|20"; 
       }
 
@@ -163,7 +163,7 @@ proc CreateUIControl {hparent control} {
       }   
 
       # popupmenu 
-      "popumenu" { 
+      "popupmenu" { 
 	  set "$name\(fontunits)" "pixels";
 	  set "$name\(fontsize)" 12;
 	  set "$name\(fontname)" "helvetica";
@@ -206,8 +206,3 @@ proc CloseUIControl { FigPath } {
     unset "$name";
     unset "Win($h)";
     
-    
-}
-
-
-
