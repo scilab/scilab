@@ -5,7 +5,12 @@ function help(key)
   global %gtkhelp;
   
   // set of possible modes for gtk
-  gtk_modes=['help widget';'nautilus';'mozilla';'netscape';'opera'];
+  gtk_modes=['help widget';
+	     'nautilus';
+	     'mozilla/netscape (gnome-moz-remote)';
+	     'opera'
+	     'quanta (kde)'];
+  
   if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
     
   [lhs,rhs]=argn(0);
@@ -134,13 +139,18 @@ function gtk_help(path,key)
   global LANGUAGE INDEX 
   global %gtkhelp
   select %gtkhelp 
-   case 'nautilus' then  unix_s("nautilus --no-desktop "+path+ '&'); 
-   case 'help widget' 
+   case 'help widget' then 
     help_gtk(SCI+"/man/",LANGUAGE,path);
-   case 'tcltl' then  tcltk_help(path,key); 
-   case 'mozilla' then unix_s(%gtkhelp + " file://" +path+ '&'); 
-   case 'netscape' then unix_s(%gtkhelp + " file://" +path+ '&'); 
-   case 'opera' then unix_s(%gtkhelp + " file://" +path+ '&'); 
+   case 'nautilus' then  
+    unix_s("nautilus --no-desktop "+path+ '&'); 
+   case 'mozilla/netscape (gnome-moz-remote)' then 
+    unix_s("gnome-moz-remote --raise  file://"+path+ '&'); 
+   case 'opera' then 
+    unix_s(%gtkhelp + " file://" +path+ '&'); 
+   case 'quanta' then 
+    unix_s(%gtkhelp + " --unique file://" +path+ '&'); 
+   case 'tcltk' then  
+    tcltk_help(path,key); 
   else
      write(%io(2),mgetl(path))
   end
@@ -204,7 +214,8 @@ function change_old_man()
 endfunction
 
 function gtk_mode=gtk_help_ask(modes)
-  n=x_choose(modes,['Choose the help browser';'you want to use']);
+  n=x_choose(modes,['Choose the help browser';'you want to use';
+		   'use %gtkhelp=[] to reset your choice']);
   if n<>0 then 
     gtk_mode=modes(n)
   else    

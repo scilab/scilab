@@ -206,7 +206,7 @@ if test "$rest" = "yes"; then
           nos="yes"
           ;;
       -debug) 
-          prevarg="debug"
+          debug="yes"
           ;;
       -nw)
           now="yes"

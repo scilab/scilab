@@ -127,6 +127,13 @@ end
 clear ans  %b_h_s
 predef('all') 
 
+// this variable is used to store the preferred browser 
+// for a --with-gtk version 
+if %gtk then 
+  global %gtkhelp
+end 
+
+
 // Define scicos palettes of blocks, scicos_menus and shortcuts
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
 %scicos_display_mode=0  // =1 if pixmap to be used for display
