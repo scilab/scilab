@@ -881,12 +881,12 @@ function txt=%plot3d_string(rec)
   y='y'
 
 
-  txt=[txt;sci2exp(matrix(rec.z,p,q),'x')]
+  txt=[txt;sci2exp(matrix(rec.z,p,q),'z')]
   z='z'
 
 
   txt=[txt;rec.name+'('+x+','+y+','+z+','+sci2exp(rec.teta)+','+..
-       sci2exp(rec.alpha)+'""'+rec.legend+'"",'+sci2exp(rec.flag)+','+..
+       sci2exp(rec.alpha)+',""'+rec.legend+'"",'+sci2exp(rec.flag)+','+..
        sci2exp(rec.bbox)+')']
 endfunction
 
@@ -967,6 +967,26 @@ function %nscale_p(rec)
   
   disp(string(rec))
 endfunction
+
+function txt=%scale_string(rec)
+// Copyright INRIA
+// Author: Serge Steer
+  
+  txt=[]
+  if rec.logflag=='n' then rec.logflag='nn',end
+  logflag=sci2exp(rec.logflag,'logflag')
+  wrect=sci2exp(rec.Wrect,'wrect')
+  frect=sci2exp(rec.Frect,'frect')
+  txt='xsetech('+strcat([wrect,frect,logflag],',')+')'
+endfunction
+
+function %scale_p(rec)
+// Copyright INRIA
+// Author: Serge Steer
+  
+  disp(string(rec))
+endfunction
+
 
 function txt=%colormap_string(rec)
 // Copyright INRIA
