@@ -683,7 +683,16 @@ EventProc(widget, number, event)
 int scig_click_handler_none (win,x,y,ibut,motion,release)int win,x,y,ibut,motion,release;
 {return 0;};
 
-static Scig_click_handler scig_click_handler = scig_click_handler_none;
+int scig_click_handler_sci (win,x,y,ibut,motion,release)
+int win,x,y,ibut,motion,release;
+{
+static char buf[256];
+   sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+   StoreCommand(buf);
+};
+
+static Scig_click_handler scig_click_handler = scig_click_handler_sci;
+/*static Scig_click_handler scig_click_handler = scig_click_handler_none;*/
 
 Scig_click_handler set_scig_click_handler(f) 
      Scig_click_handler f;
@@ -695,7 +704,8 @@ Scig_click_handler set_scig_click_handler(f)
 
 void reset_scig_click_handler() 
 {
-  scig_click_handler = scig_click_handler_none;
+/*  scig_click_handler = scig_click_handler_none;*/
+scig_click_handler = scig_click_handler_sci;
 }
 
 
