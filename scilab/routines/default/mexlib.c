@@ -20,6 +20,7 @@ extern int  C2F(mxgetn) __PARAMS((    Matrix *ptr));
 extern void C2F(xscisrn) __PARAMS((char *str,int *n,int  dummy));
 extern int  C2F(erro)  __PARAMS((char *str,int dummy));
 extern int  C2F(hmcreate)  __PARAMS((int *lw,int *nz,int *sz,int *typv,int *iflag,int *retval));
+extern int  C2F(structcreate)  __PARAMS((int *lw1,int *ndim,int *dims, int *nfields, char **field_names, int *retval));
 extern double C2F(dlamch)  __PARAMS((char *CMACH, unsigned long int));
 
 #define DOUBLEMATRIX 1
@@ -733,6 +734,21 @@ int mxIsClass(Matrix *ptr, char *name)
     return 0;
   }
   return 0;
+}
+mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_names)
+{
+  static int lw,lw1;
+  int retval;
+  Nbvars++;
+  lw = Nbvars;
+  lw1 = lw + Top - Rhs;
+/* int C2F(structcreate)(lw, nz, sz, nf, fnames,retval) */
+  C2F(structcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
+  if( !retval) {
+    return (Matrix *) 0;
+  }
+  C2F(intersci).ntypes[lw-1]=AsIs;
+  return (Matrix *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
 Matrix *mxCreateNumericArray(int ND, int *size, int CLASS, int cmplx)
