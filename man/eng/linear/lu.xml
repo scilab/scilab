@@ -64,11 +64,17 @@
 
 
    <EXAMPLE><![CDATA[
+a=rand(4,4);
+[l,u]=lu(a)
+norm(l*u-a)
+
+
 [h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
-[P,L,U,Q]=luget(h)
+[P,L,U,Q]=luget(h);
 ludel(h)
 P=full(P);L=full(L);U=full(U);Q=full(Q); 
-// P,Q sont des matrices de permutation telles que P*L*U*Q=A 
+norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
+
  ]]></EXAMPLE>
 
   <SEE_ALSO>
