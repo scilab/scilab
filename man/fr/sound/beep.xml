@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+
+  <TITLE>beep</TITLE>
+
+  <TYPE>Fonction Scilab</TYPE>
+
+  <DATE>Aout 2004</DATE>
+
+  <SHORT_DESCRIPTION name="beep">Produit le son "beep"</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>beep();</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>beep('on')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>beep('off')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>s=beep()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>beep()</VERB> produit le son "beep".</P>
+
+    <P><VERB>beep('on')</VERB> active le "beep"</P>
+
+    <P><VERB>beep('off')</VERB> desactive le "beep"</P>
+
+    <P><VERB>s=beep()</VERB> retourne le mode courantreturns the current beep
+    mode (on or off).</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

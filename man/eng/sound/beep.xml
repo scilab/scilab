@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>beep</TITLE>
+
+  <TYPE>Scilab Function</TYPE>
+
+  <DATE>August 2004</DATE>
+
+  <SHORT_DESCRIPTION name="beep">Produce a beep sound</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>beep();</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>beep('on')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>beep('off')</CALLING_SEQUENCE_ITEM>
+
+    <CALLING_SEQUENCE_ITEM>s=beep()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <DESCRIPTION>
+    <P><VERB>beep()</VERB> produces your computer's default beep sound.</P>
+
+    <P><VERB>beep('on')</VERB> turns the beep on</P>
+
+    <P><VERB>beep('off')</VERB> turns the beep off</P>
+
+    <P><VERB>s=beep()</VERB> returns the current beep mode (on or off).</P>
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>A.C</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
