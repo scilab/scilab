@@ -136,6 +136,8 @@ BINDISTFILES = \
 	$(SCIBASE)/man/eng/*/*.htm \
 	$(SCIBASE)/man/fr/*/*.htm \
 	$(SCIBASE)/man/fr/*.htm \
+	$(SCIBASE)/man/*.dtd \
+	$(SCIBASE)/man/*/*.xsl \
 	$(SCIBASE)/maple \
 	$(SCIBASE)/routines/*.h \
 	$(SCIBASE)/routines/f2c/*.h \
