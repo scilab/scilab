@@ -7,10 +7,10 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/sound.lib
 
-#RIPOLE= bt-int.obj bytedecoders.obj logger.obj ole.obj olestream-unwrap.obj pldstr.obj ripole.obj
+#RIPOLE= xls.obj bt-int.obj bytedecoders.obj logger.obj ole.obj olestream-unwrap.obj pldstr.obj ripole.obj
 
 OBJSC = sound.obj raw.obj wav.obj  sox.obj libst.obj misc.obj fileio.obj soundI.obj \
-	xls.obj $(RIPOLE)
+	$(RIPOLE)
 
 OBJSF = 
 
@@ -46,7 +46,7 @@ sox.obj: sox.c st.h wav.h ../machine.h sox.h
 sprintf_ptr.obj: sprintf_ptr.c ../machine.h
 wav.obj: wav.c st.h wav.h ../machine.h
 
-xls.obj: ../machine.h
+#xls.obj: ../machine.h
 
 #ripole-0.1.4 files 
 #bt-int.obj: bt-int.c bt-int.h
