@@ -1,104 +1,144 @@
       subroutine getsym
-c     get a symbol
-C     cette fonction modifie 
-C     fin ?
-C     char : caractere courant lu 
-C     syn(nsiz) : codage du symbole lu 
-C     sym : flag de type du symbole lu 
-C     stk(lstk(isiz)) si le symbole est un nombre 
-C     lpt(6) : mystere 
-C     buf : buffer pour imprimer 
-c*------------------------------------------------------------------
-c     Copyright INRIA
+*
+*     PURPOSE 
+*       get the next symbol (a name, a number, an operator, ...)
+*       of the current line for the parser 
+*
+*     INPUT
+*       The "character flow" of the current line :
+*       the current character is stored in the global (integer) var char1 ; 
+*       the routine getch put the next char in char1 (getch also update 
+*       lpt(4) which points to the following char if char1 is not eol)
+*
+*     OUTPUT (global vars) :
+*       sym            : flag (type of the gotten symbol : num, name, ....)
+*       syn(nsiz)      : in case of a name, the integer array syn (nsiz = 6) 
+*                        store the "encoding of the name" : only the nlgh 
+*                        (=4*nsiz=24) first letters of each name are taken 
+*                        into account, then they are encoded in syn (by the 
+*                        routine namstr) 
+*       stk(lstk(isiz)): in case of a number, the routine getval converts it
+*                        as a double float which is stored in this array cell.
+*       lpt(6)         : mystere (something like "line pointers" no ?)
+*       buf            : buffer to print 
+*
+*     REMARK
+*       cette fonction modifie fin ? : a priori yes if the symbol is a number
+*       as getval.f put fin=0 and the first instruction here is fin=1
+*
+*     COPYRIGHT INRIA 
+*       (Modified by Bruno for using the new getval.f routine : now getval.f 
+*       will do all the job instead of getting only "integers" : so some
+*       part of getsym which worked with the old getval to get number have 
+*       been removed ; also the goto 's flow chart have been replaced by 
+*       some do while, if then else, ... in hoping that all pass current
+*       f77 compilers (normaly it is OK))
+*
+*     A SUB-PART OF THE SCILAB CODED CHAR TABLE (char -> code)
+*       In Scilab, chars are first converted as integers (positives and some
+*       negatives) and we have :
+*
+*        code | 0  1 .... 9 | 10  11 ...  35 | 36  37  38  39 | 40
+*        -----+-------------+----------------+----------------+------
+*        char | 0  1 .... 9 |  a   b ...   z |  _   #   !   $ | blank
+*        ============================================================
+*        char |             |  A   B ...   Z |          ?     | tab
+*        -------------------+----------------+----------------+------
+*        code |             |-10 -11 ... -35 |         -38    ! -40
+*
+*       In fact (for the mapping code -> char), code = -1 
+*       to -9 correspond also to chars 1 to 9 and code = -36,-37,-39 
+*       to the char 0
+*
+*       So if c is a scilab coded char then :
+*
+*           abs(c) <= 9  => c is a digit
+*           abs(c) < 40  => c is an alphanum Scilab char (which
+*                           comprise _ but also # ! $ ?). Moreover
+*                           Scilab names may begin with % 
+*           abs(c) == 40 => c is a blank "like" (blank or tab) char  
+*
+      implicit none
       include '../stack.h'
-      double precision syv,s
-      integer blank,dot,d,e,plus,minus,name,num,sign,chcnt,eol,achar1
-      integer star,slash,bslash,ss,percen,hat,quote
-      integer rparen,right
-      integer io
-      integer namecd(nlgh)
-      data blank/40/,dot/51/,d/13/,e/14/,eol/99/,plus/45/
-      data minus/46/,name/1/,num/0/,star/47/,slash/48/,bslash/49/
-      data percen/56/,hat/62/,quote/53/
-      data rparen/42/,right/55/
-      fin=1
- 10   if (abs(char1) .ne. blank) go to 20
-      call getch
-      go to 10
- 20   lpt(2) = lpt(3)
-      lpt(3) = lpt(4)
-      if (abs(char1) .le. 9) go to 50
-      if (abs(char1) .lt. blank.or. char1.eq.percen) go to 30
-c     
-c     special character
-      ss = abs(sym)
-      sym = abs(char1)
-      call getch
-      if (sym .ne. dot) go to 90
+      double precision syv
+      integer namecd(nlgh), chcnt, io
+      integer blank,    dot,    percen,    name,   num
+      data    blank/40/,dot/51/,percen/56/,name/1/,num/0/
 
-c     is dot part of number or operator
-      achar1=abs(char1)
-      if ((char1 .ge. 0 .and. char1 .le. 9)) then 
-c     part of number
-         syv=0.0d0
-         goto 55
+*     STATEMENTS FUNCTIONS
+      integer c
+      logical isDigit, isAlphaNum, isBlank
+      isDigit(c)    = abs(c) .le. 9
+      isAlphaNum(c) = abs(c) .lt. blank
+      isBlank(c)    = abs(c) .eq. blank
+
+      fin=1
+
+*     go to the first "no like blank" char
+      do while ( isBlank(char1) )
+         call getch
+      end do
+
+*     update some pointers (indices) onto the array lin
+      lpt(2) = lpt(3)
+      lpt(3) = lpt(4)
+
+      if ( isDigit(char1) ) then 
+*        -> number (beginning with a digit => 2d arg of getval : dotdet = .false.)
+         sym = num
+         call getval(syv, .false.)
+         stk(lstk(isiz)) = syv
+
+      elseif ( isAlphaNum(char1) .or. char1.eq.percen) then
+*        -> name
+         sym = name 
+         chcnt = 1
+         namecd(chcnt) = char1
+         call getch
+         do while ( isAlphaNum(char1) )
+            if (chcnt.lt.nlgh) then
+               chcnt = chcnt + 1
+               namecd(chcnt) = char1
+            endif
+            call getch
+         end do
+*        encoding of the name
+         call namstr(syn,namecd,chcnt,0)
+
       else
-c     part of operator
-         goto 90
+*        -> special character (eol, operator, part of an operator, .... 
+*           but in case of a dot following by a digit it is a number)
+         sym = abs(char1)
+         call getch
+         if (sym.eq.dot .and. isDigit(char1)) then
+*           -> it is a number (beginning with a dot => 2d arg of getval : dotdet = .true.)
+            sym = num
+            call getval(syv, .true.)
+            stk(lstk(isiz)) = syv
+         endif
       endif
-c     
-c     name
- 30   sym = name 
-      chcnt=1
-      namecd(chcnt)=char1
- 40   call getch
-      if (abs(char1).ge.blank) goto 45
-      if(chcnt.lt.nlgh) then
-         chcnt = chcnt+1
-         namecd(chcnt)=char1
-      endif
-      go to 40
- 45   call namstr(syn,namecd,chcnt,0)
-      go to 90
-c     
-c     number
- 50   call getval(syv)
-      if (char1 .ne. dot) go to 60
-      l4=lpt(4)
-      call getch
-      if (abs(char1).eq.d .or. abs(char1).eq.e) goto 61
-c      if (abs(char1).gt.9.and.char1.ne.rparen
-c     $     .and.char1.ne.right) then
-c     .  dot is part of an operator
-c         lpt(4)=l4
-c         char1=dot
-c         goto 70
-c      endif
- 55   chcnt = lpt(4)
-      call getval(s)
-      chcnt = lpt(4) - chcnt
-      if (char1 .eq. eol) chcnt = chcnt+1
-      syv = syv + s/10.0d+0**chcnt
- 60   if (abs(char1).ne.d .and. abs(char1).ne.e) go to 70
- 61   call getch
-      sign = char1
-      if (sign.eq.minus .or. sign.eq.plus) call getch
-      call getval(s)
-      if (sign .ne. minus) syv = syv*10.0d+0**s
-      if (sign .eq. minus) syv = syv/10.0d+0**s
- 70   stk(lstk(isiz)) = syv
-      sym = num
-c     
- 90   if (abs(char1) .ne. blank) go to 99
-      call getch
-      go to 90
- 99   if (ddt .lt. 3) return
-      if (sym.gt.name .and. sym.lt.csiz) call basout(io,wte,alfa(sym+1))
-      if (abs(sym) .ge. csiz) call basout(io,wte, ' eol')
-      if (sym .eq. name) call prntid(syn(1),1,wte)
+
+*     eat blanks
+      do while ( isBlank(char1) )
+         call getch
+      end do
+
+      if (ddt .lt. 3) return
+
       if (sym .eq. num) then
          write(buf(1:11),'(1x,e10.3))') syv
          call basout(io,wte,buf(1:11))
+      else if (sym .eq. name) then
+         call prntid(syn(1),1,wte)
+      else if (sym .lt. csiz) then
+         call basout(io,wte,alfa(sym+1))
+      else
+         call basout(io,wte, ' eol')
       endif
-      return
+
       end
+
+
+
+
+
