@@ -70,9 +70,7 @@ EXE=modelicac
 
 
 
-all : 
-	make depend
-	make opt
+all : depend opt
 
 
 opt:  $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
@@ -84,12 +82,12 @@ bytecode: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
 	@$(OCAMLC) $(OCAMLFLAGS) -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
 
 
-debug: OCAMLFLAGS+=-g
-debug: bytecode
+debug: depend $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo)
+	@$(OCAMLC) $(OCAMLFLAGS) -g  -o $(EXE) $(LFLAGS) $(LIBS) $(MLS:.ml=.cmo)
 
-
-prof: OCAMLOPTFLAGS+=-p
-prof: opt
+prof:  $(MLIS:.mli=.cmi) $(MLS:.ml=.cmx)
+	@$(OCAMLOPT) -p  -o $(EXE) $(LFLAGS) $(LIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+	@cp -p $(EXE) ../bin/
 
 
 doc:    $(DOCS)
@@ -114,7 +112,7 @@ depend: $(MLS) $(MLIS)
 	@$(OCAMLDEP) $(MLS) $(MLIS) > .depend
 
 
--include .depend
+include .depend
 
 
 clean:
@@ -128,7 +126,6 @@ clean:
 	@$(RM) -f parser.ml
 	@$(RM) -f lexer.ml
 	@$(RM) -f $(EXE)
-	@$(RM) -f .depend
 
 
 distclean : clean
