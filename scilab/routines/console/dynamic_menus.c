@@ -40,6 +40,11 @@ extern BOOL IsToThePrompt(void);
 extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 extern int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
 extern int	InterfaceWindowsClipboard _PARAMS((char *fname));
+extern int	InterfaceWindowsDDEopen _PARAMS((char *fname));
+extern int	InterfaceWindowsDDEclose _PARAMS((char *fname));
+extern int	InterfaceWindowsDDEexec _PARAMS((char *fname));
+extern int	InterfaceWindowsDDEpoke _PARAMS((char *fname));
+extern int	InterfaceWindowsDDEreq _PARAMS((char *fname));
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
@@ -445,5 +450,41 @@ int C2F(intddereq) _PARAMS((char *fname))
 #endif
 	C2F(putlhsvar)();
 	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(intsleep) _PARAMS((char *fname))
+{
+	integer m1,n1,l1,sec=0;
+
+	CheckRhs(-1,1);
+	if (Rhs == 1) 
+	{ 
+		GetRhsVar(1,"d",&m1,&n1,&l1);
+		CheckScalar(1,m1,n1);
+		sec = (integer) *stk(l1);
+	
+	#ifdef WIN32
+		{
+			int ms = (sec)/1000; /** time is specified in microseconds in scilab**/
+			if (ms != 0) Sleep(ms); /* Number of milliseconds to sleep. */
+		}
+	#else
+		{
+			unsigned useconds;
+			useconds=(unsigned) sec;
+			if (useconds != 0)  
+				#ifdef HAVE_USLEEP
+					{ usleep(useconds); }
+				#else
+					#ifdef HAVE_SLEEP
+					{  sleep(useconds/1000000); }
+					#endif
+				#endif
+		}
+	#endif
+     }
+	 LhsVar(1)=0;
+	 C2F(putlhsvar)();
+	 return 0;
 }
 /*-----------------------------------------------------------------------------------*/
