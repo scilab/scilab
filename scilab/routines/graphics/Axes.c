@@ -390,7 +390,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
      char logflag;
      int seg_flag;
 {
-  int Nx,Ny;
+  int Nx,Ny,debug;
   double angle=0.0,vxx,vxx1;
   int vx[2],vy[2],xm[2],ym[2];
   char c_format[5];
@@ -434,8 +434,8 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   if (version_flag() == 0) 
 	  // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
 	  // meaning of x and y ?
-      { while (x[3]>10)  x[3]=floor(x[3]/2);
-        while (y[3]>10)  y[3]=floor(y[3]/2); } 
+   /*   { while (x[3]>10)  x[3]=floor(x[3]/2);
+        while (y[3]>10)  y[3]=floor(y[3]/2); } */ //Wrong!! => but need something... F.Leray 25.02.04
   /** Real to Pixel values **/
   switch ( xy_type ) 
     {
@@ -468,6 +468,10 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 	case 'r' : ChoixFormatE (c_format,x[0],x[1],(x[1]-x[0])/x[2]);break;
 	}
       /** the horizontal segment **/
+
+	//F.Leray 26.02.04
+	debug = version_flag();
+
       vx[0] =  XScale(x_convert(xy_type, x , 0));
       vx[1] =  XScale(x_convert(xy_type, x , Nx-1));
       vy[0]= vy[1] = ym[0] = YScale(y[0]);
