@@ -22,9 +22,6 @@ ADDEDOBJ	= 	xdr_mem.o xdr_floa.o xdr.o pvmwin.o ming_pvmregex.o ming_regex.o
 
 HOSTER_MING=-void
 
-# added for hoster 
-
-REXECOBJ	= pvmwinrexec.o pvmwinrsh.o
 
 # files to be added for mingw 
 
