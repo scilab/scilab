@@ -1,20 +1,20 @@
-// [x, err, iter, flag, res] = pcg(A, b, x, M, max_it, tol)
+// [x, flag, err, iter, res] = pcg(A, b, x, M, maxIter, tol)
 //
 // pcg.m solves the symmetric positive definite linear system Ax=b 
 // using the Preconditionned Conjugate Gradient.
 //
 // input   A        REAL symmetric positive definite matrix or function
-//         x        REAL initial guess vector
 //         b        REAL right hand side vector
+//         x        REAL initial guess vector
 //         M        REAL preconditioner matrix (default: none)
-//         max_it   INTEGER maximum number of iterations (default: 50)
+//         maxIter  INTEGER maximum number of iterations (default: 50)
 //         tol      REAL error tolerance (default: 1e-8)
 //
 // output  x        REAL solution vector
-//         err      REAL final residual norm
-//         iter     INTEGER number of iterations performed
 //         flag     INTEGER: 0 = solution found to tolerance
-//                           1 = no convergence given max_it
+//                           1 = no convergence given maxIter
+//         err      REAL final relative norm of the residual
+//         iter     INTEGER number of iterations performed
 //         res      REAL residual vector
 
 //     Details of this algorithm are described in 
@@ -22,7 +22,7 @@
 //     "Templates for the Solution of Linear Systems: Building Blocks 
 //     for Iterative Methods", 
 //     Barrett, Berry, Chan, Demmel, Donato, Dongarra, Eijkhout,
-//     Pozo, Romine, and van der Vorst, SIAM Publications, 1993
+//     Pozo, Romine, and Van der Vorst, SIAM Publications, 1993
 //     (ftp netlib2.cs.utk.edu; cd linalg; get templates.ps).
 //
 //     "Iterative Methods for Sparse Linear Systems, Second Edition"
@@ -37,11 +37,11 @@ function [x, err, iter, flag, res] = pcg(A, varargin)
 // Parsing input arguments
 // -----------------------
 [lhs,rhs] = argn(0);
+if (rhs < 2),
+  error("pcg: not enough input arguments"); // error 77 ??
+end
 
 // Parsing the matrix A
-if (rhs == 0),
-  error("pcg: matrix or function is expected");
-end
 select type(A)
 case 1 then
   matrixType = 1;
@@ -65,9 +65,6 @@ if (matrixType == 1),
 end
 
 // Parsing the right hand side b
-if (rhs == 1),
-  error("pcg: right hand side vector b is expected");
-end  
 b=varargin(1);
 if (size(b,2) ~= 1),
   error("pcg: right hand side b must be a column vector");
@@ -78,29 +75,36 @@ if (matrixType ==1),
   end 
 end
 
-// Parsing the initial vector x
+// Parsing of the error tolerance tol
 if (rhs >= 3),
-   x=varargin(2);
-   if (size(x,2) ~= 1),
-      error("pcg: initial guess x0 must be a column vector");
+   tol=varargin(2);
+   if (size(tol) ~= [1 1]),
+      error("pcg: tol must be a scalar");
    end
-   if (size(x,1) ~= size(b,1)),
-     error("pcg: initial guess x0 must have the size of b");
+else
+   tol=1e-8;
+end
+
+// Parsing of the maximum number of iterations max_it
+if (rhs >= 4),
+   maxIter = varargin(3);
+   if (size(maxIter) ~= [1 1]),
+      error("pcg: maxIter must be a scalar");
    end 
 else
-  x=zeros(b);
+   maxIter = min(size(b,1),50);
 end
 
 // Parsing the preconditioner M
-if (rhs >=4),
-  M = varargin(3);
+if (rhs >=5),
+  M = varargin(4);
   select type(M)
   case 1 then
     precondType = 1;
   case 5 then
     precondType = 1;
   case 13 then
-    precondType = 0;
+    precondType = 2;
   else
     error("pcg: unknown type for preconditionner");
   end 
@@ -113,27 +117,20 @@ if (rhs >=4),
     end
   end
 else
-  precondType = 2;
+  precondType = 0; //no preconditionner
 end
 
-// Parsing of the maximum number of iterations max_it
-if (rhs >= 5),
-   maxIter = varargin(4);
-   if (size(maxIter) ~= [1 1]),
-      error("pcg: maxIter must be a scalar");
+// Parsing the initial vector x
+if (rhs >= 6),
+   x=varargin(5);
+   if (size(x,2) ~= 1),
+      error("pcg: initial guess x0 must be a column vector");
+   end
+   if (size(x,1) ~= size(b,1)),
+     error("pcg: initial guess x0 must have the size of b");
    end 
 else
-   maxIter = min(size(b,1),50);
-end
-
-// Parsing of the error tolerance tol
-if (rhs >= 6),
-   tol=varargin(5);
-   if (size(tol,1) ~= [1 1]),
-      error("pcg: tol must be a scalar");
-   end
-else
-   tol=1e-8;
+  x=zeros(b);
 end
 
 // input arguments are parsed !
@@ -173,7 +170,7 @@ for i = 1:maxIter,
   // z  = M \ r;
   if (precondType == 1),
     z = M \ r;
-  elseif (precondType == 0),
+  elseif (precondType == 2),
     z = M(r);
   else
     z = r;
@@ -205,8 +202,8 @@ for i = 1:maxIter,
   if (i == maxIter ), 
     iter=i;
   end
-
 end
+
 // test for convergence
 if (err > tol),
   flag = 1; 

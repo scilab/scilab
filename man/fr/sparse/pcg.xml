@@ -12,8 +12,8 @@
   <SHORT_DESCRIPTION name="pcg">gradient conjugué préconditionné
   </SHORT_DESCRIPTION>
 
-  <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, err, iter, flag, res] = pcg(A,
-  b, x0, M, maxit, tol) </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
+  <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A,
+  b, tol, maxit, M, x0) </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
 
   <PARAM><PARAM_INDENT> 
     <PARAM_ITEM>
@@ -26,8 +26,13 @@
       <PARAM_DESCRIPTION>: vecteur de droite (taille: n)</PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
-      <PARAM_NAME>x0</PARAM_NAME>
-      <PARAM_DESCRIPTION>: solution initiale (par défaut: zeros(n,1))
+      <PARAM_NAME>tol</PARAM_NAME>
+      <PARAM_DESCRIPTION>: tolérance (par défaut: 1e-8)
+      </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>maxi</PARAM_NAME>
+      <PARAM_DESCRIPTION>: nompbre maximum d'iterations (par défaut: n)
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
@@ -37,18 +42,19 @@
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
-      <PARAM_NAME>maxi</PARAM_NAME>
-      <PARAM_DESCRIPTION>: nompbre maximum d'iterations (par défaut: n)
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>tol</PARAM_NAME>
-      <PARAM_DESCRIPTION>: tolérance (par défaut: 1e-8)
+      <PARAM_NAME>x0</PARAM_NAME>
+      <PARAM_DESCRIPTION>: solution initiale (par défaut: zeros(n,1))
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>x</PARAM_NAME>
       <PARAM_DESCRIPTION>: vecteur solution</PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>flag</PARAM_NAME>
+      <PARAM_DESCRIPTION>: 0 si <VERB>pcg</VERB> a convergé à la tolérance
+      voulue avant <VERB>maxi</VERB> itérations, 1 autrement
+      </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>err</PARAM_NAME>
@@ -57,12 +63,6 @@
     <PARAM_ITEM>
       <PARAM_NAME>iter</PARAM_NAME>
       <PARAM_DESCRIPTION>: nombre d'itérations exécutées</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>flag</PARAM_NAME>
-      <PARAM_DESCRIPTION>: 0 si <VERB>pcg</VERB> a convergé à la tolérance
-      voulue avant <VERB>maxi</VERB> itérations, 1 autrement
-      </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>res</PARAM_NAME>

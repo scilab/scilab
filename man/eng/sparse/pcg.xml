@@ -12,8 +12,8 @@
   <SHORT_DESCRIPTION name="pcg">precondioned conjugate gradient
   </SHORT_DESCRIPTION>
 
-  <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, err, iter, flag, res] = pcg(A,
-  b, x0, M, maxit, tol) </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
+  <CALLING_SEQUENCE><CALLING_SEQUENCE_ITEM>[x, flag, err, iter, res] = pcg(A,
+  b, tol, maxit, M, x) </CALLING_SEQUENCE_ITEM></CALLING_SEQUENCE>
 
   <PARAM><PARAM_INDENT> 
     <PARAM_ITEM>
@@ -26,8 +26,13 @@
       <PARAM_DESCRIPTION>: right hand side vector (size: n)</PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
-      <PARAM_NAME>x0</PARAM_NAME>
-      <PARAM_DESCRIPTION>: initial guess vector (default: zeros(n,1))
+      <PARAM_NAME>tol</PARAM_NAME>
+      <PARAM_DESCRIPTION>: error tolerance (default: 1000*%eps)
+      </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>maxi</PARAM_NAME>
+      <PARAM_DESCRIPTION>: maximum number of iterations (default: n)
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
@@ -37,13 +42,8 @@
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
-      <PARAM_NAME>maxi</PARAM_NAME>
-      <PARAM_DESCRIPTION>: maximum number of iterations (default: n)
-      </PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>tol</PARAM_NAME>
-      <PARAM_DESCRIPTION>: error tolerance (default: 1000*%eps)
+      <PARAM_NAME>x0</PARAM_NAME>
+      <PARAM_DESCRIPTION>: initial guess vector (default: zeros(n,1))
       </PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
@@ -51,18 +51,18 @@
       <PARAM_DESCRIPTION>: solution vector</PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
-      <PARAM_NAME>err</PARAM_NAME>
-      <PARAM_DESCRIPTION>: final residual norm</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
-      <PARAM_NAME>iter</PARAM_NAME>
-      <PARAM_DESCRIPTION>: number of iterations performed</PARAM_DESCRIPTION>
-    </PARAM_ITEM>
-    <PARAM_ITEM>
       <PARAM_NAME>flag</PARAM_NAME>
       <PARAM_DESCRIPTION>: 0 if <VERB>pcg</VERB> converged to the desired
       tolerance within <VERB>maxi</VERB> iterations, 1 else
       </PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>err</PARAM_NAME>
+      <PARAM_DESCRIPTION>: final relative norm of the residual</PARAM_DESCRIPTION>
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+      <PARAM_NAME>iter</PARAM_NAME>
+      <PARAM_DESCRIPTION>: number of iterations performed</PARAM_DESCRIPTION>
     </PARAM_ITEM>
     <PARAM_ITEM>
       <PARAM_NAME>res</PARAM_NAME>
