@@ -30,9 +30,6 @@ function files= listfiles(paths,flag,flagexpand)
 	if dirs(i) <> '.' then 
 	  filesi= dirs(i)+'\'+filesi
 	end
-	// dir *.xml will return also *.xml2 *.xml22 etc... 
-	ind = grep(filesi,'xml2');
-	filesi(ind)=[];
       end
       files=[files;filesi];
     end

@@ -124,7 +124,13 @@ function gener_whatis(title)
   lines(0);
   // look for .xml files
   xml = listfiles('*.xml');
-
+  if MSDOS then 
+    // on MSDOS listfiles *.xml also 
+    // returns *.xml* !!!!!
+    ind = grep(xml,'xml2');
+    xml(ind)=[];
+  end
+  
   if rhs == 1 then 
     whatis_title= title 
   else
