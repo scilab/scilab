@@ -1,5 +1,5 @@
 
-/* $Id: pvmwin.h,v 1.3 2002/10/15 07:40:10 chanceli Exp $ */
+/* $Id: pvmwin.h,v 1.4 2005/01/04 15:34:03 cornet Exp $ */
 
 /*
  *         PVM version 3.4:  Parallel Virtual Machine System
@@ -37,6 +37,10 @@
 
 #ifdef WIN32
 #define __fortran __stdcall
+#endif
+
+#ifdef WIN32
+#undef  STRICT
 #endif
 
 #define STRICT

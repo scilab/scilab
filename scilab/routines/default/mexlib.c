@@ -2226,7 +2226,7 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
 {
   int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
-  if (C2F(objptr)(var_name,&lw,&fin,strlen(var_name))) 
+  if (C2F(objptr)((char*)var_name,&lw,&fin,strlen(var_name))) 
     {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
@@ -2246,7 +2246,7 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
 {
   int lw, fin, new ; int *header;
   /* mxArray *mxPointed; */
-  if (C2F(objptr)(name,&lw,&fin,strlen(name))) {
+  if (C2F(objptr)((char*)name,&lw,&fin,strlen(name))) {
     /*    mxPointed = (mxArray *) lw;   */
     Nbvars++; new=Nbvars; 
     CreateData(new, 4*sizeof(int));

@@ -13,7 +13,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
   wininfo (" ");
   if ((buf = LocalAlloc (LPTR, MAXSTR + 1)) == (char *) NULL)
     return;
-  if (m >= NUMMENU || m < 0)
+  if (m >= NUMMENU || (int)m < 0)
     return;
   s = ScilabGC->lpmw.macro[m];
   d = buf;
@@ -1047,7 +1047,7 @@ static void scig_command_scilabgc (int number, void f (struct BCG *))
 /*-----------------------------------------------------------------------------------*/
 void scig_h_winmeth_print (integer number)
 {
-  scig_command_scilabgc (number, CopyPrint);
+  scig_command_scilabgc (number,CopyPrint);
 }
 /*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip (integer number)

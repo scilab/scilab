@@ -1173,7 +1173,7 @@ ffilecopy(FILE *infp, FILE *outfp)
 #endif
 {
     while (!feof (infp)) {
-	register c = getc (infp);
+	register int c = getc (infp);
 	if (!feof (infp))
 	putc (c, outfp);
     } /* while */

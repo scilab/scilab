@@ -788,6 +788,7 @@ int gdImageSymb(im, f, x, y, c, color)
 		cx = 0;
 		cy++;
 	}
+	return(1); /* Correction Warning missing return statement at end of non-void function */
 }
 
 

@@ -1,6 +1,10 @@
 #include "scicos_block.h"
 #include <math.h>
 
+#if WIN32
+extern void sciprint();
+#endif
+
 void edgetrig(scicos_block *block,int flag)
 {
   double z= block->z[0],u=block->inptr[0][0];

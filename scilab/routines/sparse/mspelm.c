@@ -40,6 +40,7 @@ extern  int C2F(icopy)();
 extern  int C2F(error)();
 extern  int C2F(dset)();
 extern  int C2F(int2db)();
+extern  int empty();
 
 int C2F(intmsparse)(integer *id)
 {

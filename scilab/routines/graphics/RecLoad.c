@@ -64,6 +64,8 @@ static int LoadChamp __PARAMS((void));
 static int LoadXcall1 __PARAMS((void)); 
 static int LoadEch __PARAMS((void)); 
 
+extern void C2F(syncexec)(char * str, int *ns, int *ierr, int *seq);
+
 /*---------------------------------------------------------------------
  * reload a xcall1 statement 
  *---------------------------------------------------------------------------*/

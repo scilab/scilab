@@ -542,7 +542,7 @@ void SendMacro (LPTW lptw, UINT m)
   LPMW lpmw = lptw->lpmw;
   if ((buf = LocalAlloc (LPTR, MAXSTR + 1)) == (char *) NULL)
     return;
-  if (m >= NUMMENU || m < 0)
+  if (m >= NUMMENU || (int)m < 0)
     return;
   s = lpmw->macro[m];
   d = buf;

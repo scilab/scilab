@@ -8,6 +8,10 @@
 
 #include <string.h>
 #include <stdio.h>
+#ifdef WIN32
+#include <stdlib.h>
+#endif
+
 #include "../stack-c.h"
 #undef Lstk
 #undef Infstk

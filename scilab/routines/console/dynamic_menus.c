@@ -267,7 +267,6 @@ int iswaitingforinputend()
 /* Open Web Browser Allan CORNET*/
 int C2F(winopen) _PARAMS((char *fname))
 {
-	#define FILENAME_MAX 4096 
 	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
 	char filename[FILENAME_MAX];
 	int m1,n1,l1;

@@ -324,7 +324,7 @@ setfmt(struct Labelblock *lp)
 	int n, parity;
 	char *s0;
 	register char *s, *se, *t;
-	register k;
+	register int k;
 
 	s0 = s = lexline(&n);
 	se = t = s + n;

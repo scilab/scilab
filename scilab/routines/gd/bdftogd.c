@@ -21,6 +21,7 @@ int GetTag(s,tag)
 	return i++;
       }
    }
+  return i; /* Correction warning missing return statement at end of non-void function */
  }
 
 void dispchar(C,height,width)

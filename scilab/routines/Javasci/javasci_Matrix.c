@@ -298,7 +298,7 @@ JNIEXPORT void JNICALL Java_javasci_Matrix_scilabExec(JNIEnv *env , jclass cl, j
 /********************************************************************************************************/
 static void Initialize() 
 {
-  static env[1024];
+  static char env[1024];
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static int iflag=-1, stacksize = 1000000, ierr=0;
 

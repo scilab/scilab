@@ -18,7 +18,10 @@
 #include <math.h>
 #include <stdlib.h>
 /* #include <stdio.h> */
-
+#if WIN32
+#undef min
+#undef max
+#endif
 #define min(a,b) ((a) < (b) ? (a) : (b))
 #define max(a,b) ((a) < (b) ? (b) : (a))
 #define sign(a) ((a) < 0 ? -1 : 1)

@@ -10,6 +10,8 @@ extern void C2F(skipvars)();
 extern void C2F(scitod)();
 extern void C2F(list2vars)();
 extern void C2F(ltopadj)();
+extern void C2F(scifunc)();
+extern void C2F(mklist)();
 
 void 
 sciblk2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

@@ -53,6 +53,11 @@ void set_pointer_xproperty(int* pointer);
 void * scicos_malloc(size_t );
 void scicos_free(void *p);
 
+#if WIN32
+#undef min
+#undef max
+#endif
+
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 

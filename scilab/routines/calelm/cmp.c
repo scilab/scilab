@@ -54,7 +54,7 @@ static void   idcmp_equal(double x[],double y[],int *n,int res[])
       else 
 	res[i]= x[i]== y[i]; 
 #else 
-      res[i]= x[i]== y[i]; 
+    res[i]= x[i]== y[i]; 
 #endif 
     }
 }

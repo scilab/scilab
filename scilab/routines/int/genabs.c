@@ -45,5 +45,6 @@ int *dx;
     ABS(unsigned int);
     break;
   }
+  return 1; /* Warning missing return statement at end of non-void */
 }
 

@@ -8,7 +8,7 @@
 void  sciprint(char *fmt,...);
 #else
 /*VARARGS0*/
-void sciprint();
+void sciprint(char *, ...);
 #endif  
  
 extern int C2F(cdfbet) __PARAMS((int *,double *,double *,double *,double *,double *,double *, int *,double *));
