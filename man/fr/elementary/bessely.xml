@@ -26,24 +26,37 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
-  </P>
-  <P>
-    <VERB>bessely(alpha,x)</VERB> Calcule la fonction Y de Bessel modifiée de deuxième espèce d&apos;indice réel et non négatif<VERB>alpha</VERB> et d&apos;argument <VERB>x</VERB>.  <VERB>alpha</VERB>  et <VERB>x</VERB> peuvent être des vecteurs.
-    Cette fonction renvoie une matrice de taille <VERB>m</VERB>-par-<VERB>n</VERB> avec <VERB>m = size(x,&apos;*&apos;)</VERB>,
+  <P><VERB>bessely(alpha,x)</VERB> Calcule la fonction Y de Bessel modifiée de
+      deuxième espèce d&apos;indice réel et non négatif<VERB>alpha</VERB> et
+      d&apos;argument <VERB>x</VERB>.  <VERB>alpha</VERB>  et <VERB>x</VERB>
+      peuvent être des vecteurs. 
+    Cette fonction renvoie une matrice de taille
+      <VERB>m</VERB>-par-<VERB>n</VERB> avec <VERB>m =
+	size(x,&apos;*&apos;)</VERB>, 
     <VERB>n = size(alpha,&apos;*&apos;)</VERB> dont la composante <VERB>(i,j)</VERB> vaut
-    <VERB>bessely(alpha(j),x(i))</VERB>.
-  </P>
-  <P>
-  </P>
-  <P>
-  </P>
+    <VERB>bessely(alpha(j),x(i))</VERB>.</P>
+ <P>Les fonctions de Bessel Y_alpha et J_alpha (voir <LINK>besselj</LINK>) sont
+      2 solutions indŽépendantes de l'Žéquation diffŽérentielle de Bessel :</P>
+    <VERBATIM>
+<![CDATA[
+          2               2        2
+         x  y" + x y' + (x  - alpha ) y = 0 ,  alpha >= 0
+     ]]>
+    </VERBATIM>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
-bessely(0.5:3,1:4)
-
+// exemple : Visualisation de quelques fonctions Y de Bessel.
+x = linspace(0.1,40,5000)'; // les fonctions Y de  Bessel ne sont pas
+                            //bornŽées pour x -> 0+
+y = bessely(0:4,x);
+xbasc()
+plot2d(x,y, style=2:6, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
+xtitle("Quelques fonctions Y de Bessel")
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>besseli</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besselk</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>besselj</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>besseli</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>besselk</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>besselj</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+  <AUTHOR>W. J. Cody (code from Netlib (specfun))</AUTHOR>
 </MAN>
