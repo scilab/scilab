@@ -71,8 +71,8 @@ cd .. &gt;nul
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\$(IntDir)"
-			IntermediateDirectory=".\$(IntDir)"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
 			ConfigurationType="4"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -90,9 +90,9 @@ cd .. &gt;nul
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile=".\$(IntDir)/libf2c.pch"
-				AssemblerListingLocation=".\$(IntDir)/"
+				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\$(IntDir)/"
-				ProgramDataBaseFileName=".\$(IntDir)/"
+				ProgramDataBaseFileName=".\Release/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
 				CompileAs="0"/>
