@@ -16,7 +16,13 @@ if rhs<3 then %wsiz=[],end
 
 //Initialisation
 [Menus,Shorts]=initial_editgraph_tables()
-win=max(winsid())+1
+
+if winsid()<>[] then 
+  old=xget('window');win=max(winsid())+1
+else
+  old=[];win=0
+end
+
 edited=%f
 %path='./'
 
@@ -58,8 +64,6 @@ EGdata=tlist(['egdata','GraphList','Cmenu','Win','Zoom', ...
 	     'Wsize','Menus','Edited','ArcId','NodeId','ShortCuts','Sel'],GraphList,'NewNode', ...
 	    win,%zoom,%wsiz,[],edited,0,0,[],selection)
 ge_set_winsize()
-xset('window',win)
-
 
 //keyboard shortcuts
 execstr('load .editgraph_short','errcatch')  
@@ -80,5 +84,6 @@ if xget('pixmap') then xset('wshow'),end
 //create the menu buttons
 ge_create_menus(win)
 seteventhandler('ge_eventhandler')   
+if old<>[] then xset('window',old),end
 endfunction
 

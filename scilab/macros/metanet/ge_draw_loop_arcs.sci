@@ -29,8 +29,8 @@ function ge_draw_loop_arcs(loops)
     costheta= ((-2*DX^2+2*sqrt(DX^4-uni^2*DX^2+uni^2*DY^2)).*DY/2)./(-uni*DX^2+uni*DY^2)
     da=180-180*acos((uni*costheta-DY)./DY)/%pi
     arcs(1:6,jj)=[x1-DX/2; y1+DY;DX;DY;64*(-90+da);64*(360-2*da)];
-    X(jj)=x1*ones(jj)
-    Y(jj)=(y1+DY)
+    X(1,jj)=x1*ones(jj)
+    Y(1,jj)=(y1+DY)
   end 
   for w=uwidth
     k=find(width==w)

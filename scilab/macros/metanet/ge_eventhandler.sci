@@ -1,20 +1,28 @@
 function ge_eventhandler(win,x,y,ibut)
 //Copyright INRIA
 //Author : Serge Steer 2002
+  if or(win==winsid()) then //check if the windows still exists
+    old=xget('window'); xset('window',win)
+    seteventhandler("")  
+  else
+    ge_do_quit()
+  end
+
   if ibut<0 then 
     if ibut==-1000 then ge_do_quit(),end//the window has been closed
     return,
   end
-  old=xget('window');xset('window',win)
+  old=xget('window'); xset('window',win)
   seteventhandler("")  
+
   w=string(win)
   if ibut>2 then 
-    if ~ge_shortcut(ibut) then seteventhandler("ge_eventhandler"), xset('window',old);return;end
+    if ~ge_shortcut(ibut) then seteventhandler("ge_eventhandler"),xset('window',old),return;end
   end
 
   execstr('global EGdata_'+w+'; Cmenu=EGdata_'+w+'.Cmenu')
 
-  if Cmenu==[]  then seteventhandler("ge_eventhandler"), xset('window',old);return,end
+  if Cmenu==[]  then seteventhandler("ge_eventhandler"),xset('window',old), return,end
 
   [x,y]=xchange(x,y,'i2f')
   GL='EGdata_'+w+'.GraphList';
