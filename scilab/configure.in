@@ -1,8 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-
-AC_REVISION($Revision: 1.3 $)dnl
+AC_REVISION($Revision: 1.4 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -45,6 +44,9 @@ AC_ARG_WITH(pvm,
 
 AC_ARG_WITH(tk,
     [  --with-tk               compile with TCL/TK ])
+
+AC_ARG_WITH(gtk,
+    [  --with-gtk              use Gtk widgets ])
 
 #################################
 ## check this is a source version
@@ -1205,6 +1207,20 @@ fi
 fi
 
 #################
+## GTK
+#################
+
+if test "$with_gtk" = yes; then
+# XXXXX add here a test for gtk 
+  AC_DEFINE(WITH_GTK)
+  GTKLIB="\`gtk-config --libs\`"
+  GTKINC="\`gtk-config --cflags\`"
+  GUILIB="gtksci gzvt"
+  MENUSOBJS=GOBJS
+  PERIFILE=periGtk.o
+fi
+
+#################
 ## Tcl/Tk library
 #################
 
@@ -1297,6 +1313,8 @@ AC_SUBST(XMULIB)
 AC_SUBST(XAW_LOCAL_SUBDIR)
 AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
+AC_SUBST(GTKINC)
+AC_SUBST(GTKLIB)
 AC_SUBST(TERMCAPLIB)
 AC_SUBST(MAIN)
 AC_SUBST(MAKEFILE_TARGET)
