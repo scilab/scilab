@@ -74,9 +74,9 @@ int C2F(intcpass2)(fname)
   static int l1,l2,m1,m2,m3; 
   static int n1,n2,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16;
   static int n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30;
-  static int minlhs=4, maxlhs=4, minrhs=5, maxrhs=5;
+  static int minlhs=5, maxlhs=5, minrhs=5, maxrhs=5;
   static int one=1,deux=2;
-  static int n33,n34,n35,n36,n37,n38,n1111,n41;
+  static int n33,n34,n35,n36,n37,n38,n1111,n41,n42,*y40,l40,l39;
   int m31=8,n31=1,l31,n32=8;
   static int *header,*li,*le1,*le11,*le2,*le3,*le4,*le5,*le6,*le7,*le8,*le9;
   static int *le10,*le12,*le13,*header1,*lii;
@@ -94,7 +94,7 @@ int C2F(intcpass2)(fname)
 			"nblk","ndcblk","subscr","funtyp","iord","labels"};
   int m33=30,n39=1,l32,n40=30;
   char *y36,**y8,*y37;
-  int i,j,k;
+  int i,j,k,ok,zeros=0;
   int *bllst2,*bllst3,*bllst4,*bllst5,*bllst12,*bllst9;
   int *bllst2ptr,*bllst3ptr,*bllst4ptr,*bllst112,*bllst6ptr,*bllst7ptr;
   int *bllst5ptr,*typ_x,*bllst8ptr,*bllst9ptr;
@@ -474,7 +474,21 @@ int C2F(intcpass2)(fname)
 	 &bllst11ptr,&connectmat,&clkconnect,&corinvec,&corinvptr,
 	 &iz0,&tevts,&evtspt,&pointi,&outtb,&izptr,&outlnk,&inplnk,
 	 &lnkptr,&ordptr,&execlk,&ordclk,&cord,&oord,&zord,&critev,&nb,&ztyp,
-	 &nblk,&ndcblk,&subscr,&iord);
+	 &nblk,&ndcblk,&subscr,&iord,&ok);
+  if (!ok) 
+    {
+      CreateVar(11,"i", &one, &zeros, &l31);
+      CreateVar(12,"i", &one, &zeros, &l32);
+      CreateVar(13,"i", &one, &zeros, &l33);
+      CreateVar(14,"i", &one, &zeros, &l39);
+      CreateVar(15,"i", &one, &zeros, &l40);
+      LhsVar(1) = 11;
+      LhsVar(2) = 12;
+      LhsVar(3) = 13;
+      LhsVar(4) = 14;
+      LhsVar(5) = 15;
+      return 0;
+    }
   if (nb > nblk)
     {
       if ((bllst111=(char**)realloc(bllst111,sizeof(char*)*(nb+1))) == NULL )  return 0;
@@ -733,14 +747,24 @@ int C2F(intcpass2)(fname)
   for (i = 1; i <= nb; i++)
     free(bllst111[i]);
   free(bllst111);
-  free(corinvec);
-  free(corinvptr);
+  
   if ((solverptr=malloc(sizeof(int))) ==NULL )  return 0;		  
   solverptr[0]=solver;
   y39=solverptr;
   CreateVarFromPtr(9, "i", &one, &one, &y39);
   LhsVar(4) = 9;
   free(solverptr);
+
+  CreateVar(10,"l", &nb, &one, &l40);
+  for (i=1; i < nb+1; i++)
+    {      
+      y40=(int*) (corinvec+corinvptr[i]);
+      n42=corinvptr[i+1]-corinvptr[i];
+      CreateListVarFromPtr(10,i,"i", &one, &n42, &y40); 
+    }
+  LhsVar(5) = 10;
+  free(corinvec);
+  free(corinvptr);
   return 0;
 }
 

@@ -67,7 +67,7 @@ int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l);
 int cleanup(int** clkconnect);
 int paksazi(int** bllst2,int** bllst3,char*** bllst10,int** bllst12,int** bllst2ptr,int** bllst3ptr,
 	    int* bllst5ptr,int** connectmat,int** clkconnect,int** typ_l,
-	    int* typ_m,int* done,int* ok,int* need_newblk);
+	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr);
 int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,
                  int* clkconnect,int** lnkptr,int** inplnk,int** outlnk,int** typ_z,int** typ_s,int** typ_m,
