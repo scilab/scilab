@@ -5287,7 +5287,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->fontsize = *stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (psubwin)->axes.fontsize = *stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.fontsize = *stk(*value);
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -5295,7 +5295,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->textcolor=*stk(*value);
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (psubwin)->axes.textcolor=*stk(*value);
+      pSUBWIN_FEATURE (pobj)->axes.textcolor=*stk(*value);
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
   }	
@@ -6349,7 +6349,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.fontsize;
+      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -6359,7 +6359,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
     else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (psubwin)->axes.textcolor;
+      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
   }
