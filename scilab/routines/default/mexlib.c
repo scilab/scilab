@@ -297,32 +297,32 @@ mxClassID mxGetClassID(const mxArray *ptr)
 }
 
 
-bool mxIsInt8(mxArray *ptr)
+bool mxIsInt8(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxINT8_CLASS;
 }
 
-bool mxIsInt16(mxArray *ptr)
+bool mxIsInt16(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxINT16_CLASS;
 }
 
-bool mxIsInt32(mxArray *ptr)
+bool mxIsInt32(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxINT32_CLASS;
 }
 
-bool mxIsUint8(mxArray *ptr)
+bool mxIsUint8(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxUINT8_CLASS;
 }
 
-bool mxIsUint16(mxArray *ptr)
+bool mxIsUint16(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxUINT16_CLASS;
 }
 
-bool mxIsUint32(mxArray *ptr)
+bool mxIsUint32(const mxArray *ptr)
 {
   return mxGetClassID(ptr)==mxUINT32_CLASS;
 }
@@ -350,28 +350,28 @@ y=x/x;
   return y;
 }
 
-int mxIsInf(double x)
+bool mxIsInf(double x)
 {
   if (x == x+1)
     return 1;
   else return 0;
 }
 
-int mxIsFinite(double x)
+bool mxIsFinite(double x)
 {
   if (x < x+1)
     return 1;
   else return 0;
 }
 
-int mxIsNaN(double x)
+bool mxIsNaN(double x)
 {
   if ( x != x ) 
     return 1;
   else return 0;
 }
 
-int *RawHeader(mxArray *ptr)
+int *RawHeader(const mxArray *ptr)
 {
   /* Utility function : return an integer pointer to   *
    * a Scilab variable. The variable can be            *
@@ -380,7 +380,7 @@ int *RawHeader(mxArray *ptr)
   return header;
 }
 
-int Is1x1(mxArray *ptr)
+int Is1x1(const mxArray *ptr)
 {
   int proddims,k;
   int *header = RawHeader(ptr);
@@ -409,7 +409,7 @@ mxArray *mxCreateData(int m)
 }
 
 
-int mxGetNumberOfElements(mxArray *ptr)
+int mxGetNumberOfElements(const mxArray *ptr)
 {
   int m, commonlength;
   int *header=Header(ptr);
@@ -430,7 +430,7 @@ int mxGetNumberOfElements(mxArray *ptr)
 }
 
 
-double *mxGetPr(mxArray *ptr)
+double *mxGetPr(const mxArray *ptr)
 {
   double *value;
   int *header = Header(ptr);
@@ -460,7 +460,7 @@ double *mxGetPr(mxArray *ptr)
 
 
 
-double *mxGetPi(mxArray *ptr)
+double *mxGetPi(const mxArray *ptr)
 { 
   int debut; int m,n,it;
   /*  double *value = (double *) stkptr((long int)ptr); */
@@ -489,7 +489,7 @@ double *mxGetPi(mxArray *ptr)
  }
 }
 
-int mxGetNumberOfDimensions(mxArray *ptr)
+int mxGetNumberOfDimensions(const mxArray *ptr)
 {
   int *header1;
   int *header = Header(ptr);
@@ -511,7 +511,7 @@ int mxGetNumberOfDimensions(mxArray *ptr)
   }
 }
 
-int *mxGetDimensions(mxArray *ptr)
+int *mxGetDimensions(const mxArray *ptr)
 {
   int *header1;
   int *header = Header(ptr);
@@ -534,7 +534,7 @@ int *mxGetDimensions(mxArray *ptr)
   return 0;
 }
 
-int mxGetM(mxArray *ptr)
+int mxGetM(const mxArray *ptr)
 {
   int *header1;
   int *header = Header(ptr);
@@ -593,7 +593,7 @@ void mxSetM(mxArray *ptr, int M)
 }
 
 
-int *mxGetJc(mxArray *ptr)
+int *mxGetJc(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] != SPARSEMATRIX) {
@@ -603,7 +603,7 @@ int *mxGetJc(mxArray *ptr)
   return &header[5];
 }
 
-int *mxGetIr(mxArray *ptr)
+int *mxGetIr(const mxArray *ptr)
 {
   int *header = Header(ptr);
   /* ... N=header[2],  nzmax=header[4]; then Jc,  then Ir   */
@@ -658,7 +658,7 @@ void mxSetNzmax(mxArray *array_ptr, int nzmax)
   ChangeToRef(arr2num(array_ptr),Nbvars);
 }
 
-int mxGetN(mxArray *ptr)
+int mxGetN(const mxArray *ptr)
 {
   int ret;int j;
   int *header1;
@@ -729,7 +729,7 @@ void mxSetN(mxArray *ptr, int N)
 }
 
 
-int mxIsString(mxArray *ptr)
+bool mxIsString(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] == STRINGMATRIX) 
@@ -737,7 +737,7 @@ int mxIsString(mxArray *ptr)
   else return 0;
 } 
 
-int mxIsChar(mxArray *ptr)
+bool mxIsChar(const mxArray *ptr)
 {
   int *header = Header(ptr);
   switch (header[0]) {
@@ -755,7 +755,7 @@ int mxIsChar(mxArray *ptr)
   } 
 }
 
-int mxIsNumeric(mxArray *ptr)
+bool mxIsNumeric(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] != STRINGMATRIX)
@@ -764,7 +764,7 @@ int mxIsNumeric(mxArray *ptr)
     return 0;
 }
 
-int mxIsDouble(mxArray *ptr)
+bool mxIsDouble(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if ((header[0] == DOUBLEMATRIX) | (header[0] == SPARSEMATRIX) | ( (header[0] == MLIST) && (header[6+2*(header[4]-1)] == DOUBLEMATRIX)))
@@ -773,7 +773,13 @@ int mxIsDouble(mxArray *ptr)
     return 0;
 }
 
-int mxIsEmpty(mxArray *ptr)
+bool mxIsSingle(const mxArray *ptr)
+{
+  mexPrintf("Routine mxIsSingle not implemented \r\n");
+  exit(1);  /* TO BE DONE */
+}
+
+bool mxIsEmpty(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if ( (header[0] == DOUBLEMATRIX) | (header[0] == SPARSEMATRIX) ) 
@@ -782,7 +788,7 @@ int mxIsEmpty(mxArray *ptr)
     return 0;
 }
 
-int mxIsFull(mxArray *ptr)
+bool mxIsFull(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if ( header[0] != SPARSEMATRIX)
@@ -791,7 +797,7 @@ int mxIsFull(mxArray *ptr)
     return 0;
 }
 
-int mxIsSparse(mxArray *ptr)
+bool mxIsSparse(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0] == SPARSEMATRIX) 
@@ -800,7 +806,7 @@ int mxIsSparse(mxArray *ptr)
     return 0;
 }
 
-int mxIsLogical(mxArray *ptr)
+bool mxIsLogical(const mxArray *ptr)
 {
   int *header = Header(ptr);
   /*     TO BE DONE ND Array */
@@ -824,7 +830,7 @@ void mxClearLogical(mxArray *ptr)
   header[0] = DOUBLEMATRIX;
 }
 
-int mxIsComplex(mxArray *ptr)
+bool mxIsComplex(const mxArray *ptr)
 {
   int *header = Header(ptr);
   switch (header[0]) {
@@ -839,7 +845,7 @@ int mxIsComplex(mxArray *ptr)
   }
 }
 
-double mxGetScalar(mxArray *ptr)
+double mxGetScalar(const mxArray *ptr)
 { 
   double *value;
   int *header = Header(ptr);
@@ -856,12 +862,12 @@ double mxGetScalar(mxArray *ptr)
   }
 }
 
-void *mxGetData(mxArray *ptr)
+void *mxGetData(const mxArray *ptr)
 {
   return mxGetPr(ptr);
 }
 
-void *mxGetImagData(mxArray *ptr)
+void *mxGetImagData(const mxArray *ptr)
 {
   return mxGetPi(ptr);
 }
@@ -877,12 +883,12 @@ void mxAssert(int expr, char *error_message)
   if (!expr) mexErrMsgTxt(error_message);
 }
 
-mxArray *mxCreateDoubleMatrix(int m, int n, int it)
+mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it)
 {
   static int lw, lr, lc;
   int k;
   lw = Nbvars + 1;
-  if (! C2F(createcvar)(&lw, "d", &it, &m, &n, &lr, &lc, 1L)) {
+  if (! C2F(createcvar)(&lw, "d", (int *) &it, &m, &n, &lr, &lc, 1L)) {
     mexErrMsgTxt("No more memory available: increase stacksize");
   }
   for ( k=0; k<m*n*(it+1); k++ ) {
@@ -899,7 +905,7 @@ mxArray *mxCreateDoubleScalar(double value)
   return (mxArray *) pa;
 }
 
-int mxIsClass(mxArray *ptr, char *name)
+bool mxIsClass(const mxArray *ptr, const char *name)
 {
   int *header = Header(ptr);
   switch (header[0]) {
@@ -928,14 +934,14 @@ int mxIsClass(mxArray *ptr, char *name)
   return 0;
 }
 
-mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_names)
+mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char **field_names)
 {
   static int lw,lw1;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(stcreate)(&lw1, &ndim, dims, &nfields, field_names, &retval);
+  C2F(stcreate)(&lw1, &ndim, (int *) dims, &nfields, (char **) field_names, &retval);
   if( !retval) {
     return (mxArray *) 0;
   }
@@ -943,7 +949,7 @@ mxArray *mxCreateStructArray(int ndim, int *dims, int nfields, char **field_name
   return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];
 }
 
-mxArray *mxCreateStructMatrix(int m, int n, int nfields, char **field_names)
+mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
 {
   static int lw,lw1;
   int ndim; 
@@ -955,7 +961,7 @@ mxArray *mxCreateStructMatrix(int m, int n, int nfields, char **field_names)
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(stcreate)(&lw1, (ndim=2, &ndim), dims, &nfields, field_names, &retval);
+  C2F(stcreate)(&lw1, (ndim=2, &ndim), dims, &nfields, (char **) field_names, &retval);
   if( !retval) {
     return (mxArray *) 0;
   }
@@ -991,14 +997,14 @@ void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray
     }
 }
 
-void mxSetField(mxArray *array_ptr, int index, char *field_name, mxArray *value)
+void mxSetField(mxArray *array_ptr, int index, const char *field_name, mxArray *value)
 {
   int field_num;
   field_num = mxGetFieldNumber(array_ptr, field_name);
   mxSetFieldByNumber(array_ptr, index, field_num, value);
 }
 
-char *mxGetFieldNameByNumber(mxArray *array_ptr, int field_number)
+const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
 {
   int k, longueur, istart, nf, job;
   int *headerstr;
@@ -1030,14 +1036,14 @@ int IsReference(mxArray *array_ptr)
     return 0;
 }
 
-mxArray *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
+mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComplexity cmplx)
 {
   static int lw,lw1;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ndim, dims, &CLASS, &cmplx,&retval);
+  C2F(hmcreate)(&lw1, &ndim, (int *) dims, (int *) &CLASS, (int *) &cmplx,&retval);
   if( !retval) {
     return (mxArray *) 0;
   }
@@ -1045,14 +1051,24 @@ mxArray *mxCreateNumericArray(int ndim, int *dims, int CLASS, int cmplx)
   return (mxArray *) C2F(vstk).Lstk[lw + Top - Rhs - 1 ];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-mxArray *mxCreateCharArray(int ndim, int *dims)
+mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, int cmplx)
+{
+  int two=2;int dims[2];
+  if (CLASS==mxDOUBLE_CLASS)
+    return mxCreateDoubleMatrix(m, n, mxREAL);
+  else
+    dims[0] = m; dims[1] = n;
+  return mxCreateNumericArray( two, dims, CLASS, (mxComplexity) cmplx); 
+}
+
+mxArray *mxCreateCharArray(int ndim, const int *dims)
 {
   static int lw,lw1, CLASS, cmplx;
   int retval;
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(hmcreate)(&lw1, &ndim, dims, (CLASS=11, &CLASS),(cmplx=0, &cmplx),&retval);
+  C2F(hmcreate)(&lw1, &ndim, (int *) dims, (CLASS=11, &CLASS),(cmplx=0, &cmplx),&retval);
   if( !retval) {
     return (mxArray *) 0;
   }
@@ -1060,7 +1076,7 @@ mxArray *mxCreateCharArray(int ndim, int *dims)
   return (mxArray *) C2F(vstk).Lstk[lw+ Top - Rhs - 1];  /* C2F(intersci).iwhere[lw-1])  */
 }
 
-mxArray *mxCreateCellArray(int ndim, int *dims)
+mxArray *mxCreateCellArray(int ndim, const int *dims)
 {
   static int lw,lw1;
   int retval;
@@ -1068,7 +1084,7 @@ mxArray *mxCreateCellArray(int ndim, int *dims)
   Nbvars++;
   lw = Nbvars;
   lw1 = lw + Top - Rhs;
-  C2F(stcreate)(&lw1, &ndim, dims, (nfields=1,&nfields), field_names , &retval);
+  C2F(stcreate)(&lw1, &ndim, (int *) dims, (nfields=1,&nfields), field_names , &retval);
   if( !retval) {
     return (mxArray *) 0;
   }
@@ -1083,7 +1099,7 @@ mxArray *mxCreateCellMatrix(int nrows, int ncols)
   return mxCreateCellArray(two, dims);
 }
 
-mxArray *mxGetCell(mxArray *ptr, int index)
+mxArray *mxGetCell(const mxArray *ptr, int index)
 {
   int kk,lw,isize;
   int *headerlist,*headerobj,*headerobjcopy;
@@ -1106,7 +1122,7 @@ mxArray *mxGetCell(mxArray *ptr, int index)
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
-int mxGetFieldNumber(mxArray *ptr, char *string)
+int mxGetFieldNumber(const mxArray *ptr, const char *string)
 {
   int nf, longueur, istart, k, ilocal, retval;
   int *headerstr;
@@ -1128,7 +1144,7 @@ int mxGetFieldNumber(mxArray *ptr, char *string)
   return retval;
 }
 
-mxArray *mxGetField(mxArray *ptr, int index, char *string)
+mxArray *mxGetField(const mxArray *ptr, int index, const char *string)
 {
   int kk,lw,isize,fieldnum;
   int *headerlist, *headerobj, *headerobjcopy;
@@ -1155,7 +1171,7 @@ mxArray *mxGetField(mxArray *ptr, int index, char *string)
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
-mxArray *mxGetFieldByNumber(mxArray *ptr, int index, int field_number)
+mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number)
 {
   int kk,lw,isize,fieldnum;  /* maxfieldnum, maxindex; */
   int *headerlist, *headerobj, *headerobjcopy;
@@ -1186,7 +1202,7 @@ mxArray *mxGetFieldByNumber(mxArray *ptr, int index, int field_number)
   return (mxArray *) C2F(intersci).iwhere[lw-1];
 }
 
-int mxGetNumberOfFields(mxArray *ptr)
+int mxGetNumberOfFields(const mxArray *ptr)
 {
   int *header = Header(ptr);
   if (header[0]==MLIST) return header[1]-2;
@@ -1198,30 +1214,32 @@ int mxGetNumberOfFields(mxArray *ptr)
  * but what does it means since size can be anythink 
  * we initialize to zero for double and int data types 
  *----------------------------------------------------*/
-
-void *mxCalloc(unsigned int n, unsigned int size)
+/*  void *mxRealloc(void *ptr, size_t size);  */
+void *mxCalloc(size_t n, size_t size)
 {
   int m;  vraiptrst lrd; 
   static int one=1; int N;
-  static double zero =0.0;
-  m = (n * size) /sizeof(double) + 1;
+  static double zero = 0.0;
+  int nsize;
+  nsize=n*size;
+  m = nsize /sizeof(double) + 1;
   if (! C2F(createstkptr)( &m, &lrd)) {
     return 0;
   }
   if ( size ==  sizeof(double)) 
     {
-      N=(int) n; C2F(dset)(&N,&zero,(double *) lrd,&one);
+      N=(int) n; C2F(dset)(&N, &zero, (double *) lrd,&one);
     }
   else 
     {
       int i;
-      for (i=0; i < n*size ; i++) ((char *) lrd)[i]=0;
+      for (i=0; i < nsize ; i++) ((char *) lrd)[i]=0;
     }
   return (void *) lrd;
 }
 
-
-void *mxMalloc(unsigned int nsize)
+/*  void *mxMalloc(unsigned int nsize)  */
+void *mxMalloc(size_t nsize)
 {
   int m;  vraiptrst lrd;
   m = (nsize) /sizeof(double) + 1;
@@ -1345,7 +1363,7 @@ static void mxFree_m_all() {
  * we initialize to zero for double and int data types 
  *----------------------------------------------------*/
 
-int mxIsCell(mxArray *ptr)
+bool mxIsCell(const mxArray *ptr)
 {
   int *header1; int l;
   int *header = Header(ptr);
@@ -1361,7 +1379,7 @@ int mxIsCell(mxArray *ptr)
   else return 0;
 }
 
-int mxIsStruct(mxArray *ptr)
+bool mxIsStruct(const mxArray *ptr)
 {
   int *header1; int nfplus2, l;
   int *header = Header(ptr);
@@ -1398,11 +1416,10 @@ int IsstOrce(mxArray *ptr)
  * string Matrix pointed to by ptr ( ptr is assumed to be a String Matrix )
  **************************************************************/
 
-int mxGetString(mxArray *ptr, char *str, int strl)
+int mxGetString(const mxArray *ptr, char *str, int strl)
 {
   int commonlength, firstchain, nrows; 
   int *header = Header(ptr);
-
   /*  int ncols = header[2]; This is 1 */
   /* commonlength=nrows*(header[5]-header[4]); */
   nrows = header[1];
@@ -1645,13 +1662,13 @@ int mexAtExit(mxArray *ptr)
   return 0;
 }
 
-mxArray *mxCreateSparse(int m, int n, int nzmax, int cmplx)
+mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
 {
   static int lw, iprov;
   Nbvars++;
   lw=Nbvars;
   iprov = lw + Top - Rhs;
-  if( ! C2F(mspcreate)(&iprov, &m, &n, &nzmax, &cmplx)) {
+  if( ! C2F(mspcreate)(&iprov, &m, &n, &nzmax, (int *) &cmplx)) {
     return (mxArray *) 0;
   }
   C2F(intersci).ntypes[lw-1]=AsIs;
@@ -1802,11 +1819,11 @@ static int mexCallSCI(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *
 }
 
 
-int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, char *name) {
-  return mexCallSCI(nlhs,plhs,nrhs,prhs,name,1); 
+int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name) {
+  return mexCallSCI(nlhs,plhs,nrhs,prhs,(char *) name,1); 
 }
 
-int mxCalcSingleSubscript(mxArray *ptr, int nsubs, int *subs)
+int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
 {
   int k, retval, coeff;
   int *dims = mxGetDimensions(ptr);
@@ -1857,7 +1874,7 @@ int sci_gateway(char *fname, GatefuncS F)
   return 0;
 }
 
-int mxGetElementSize(mxArray *ptr)
+int mxGetElementSize(const mxArray *ptr)
 { int k, it; 
  int *header = Header(ptr);
  switch (header[0]) {
@@ -1885,7 +1902,7 @@ int mxGetElementSize(mxArray *ptr)
  return 0;
 }
 
-mxArray *mxCreateCharMatrixFromStrings(int m, char **str)
+mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
 {
   static int i, lr1, lw, ilocal, n, k,kk, nmax;
   nmax = strlen(str[0]);
@@ -1904,7 +1921,7 @@ mxArray *mxCreateCharMatrixFromStrings(int m, char **str)
   for (k=0; k<m; ++k) {
     n=strlen(str[k]);
     /* fill with blanks (40) if n<nmax !!*/
-    C2F(cvstr)(&n, istk(lr1), str[k], (ilocal=0, &ilocal),i);
+    C2F(cvstr)(&n, istk(lr1), (char *) str[k], (ilocal=0, &ilocal),i);
     if (nmax>n) {
       for (kk=0; kk<nmax-n; ++kk) *istk(lr1+n+kk)=40;
     };
@@ -1974,6 +1991,12 @@ int mexPutVariable(const char *workspace, char *var_name, mxArray *array_ptr)
 void mxSetName(mxArray *array_ptr, const char *name)
 {
   mexPrintf("Routine mxSetName  not implemented \r\n");
+  exit(1);  /* TO BE DONE */
+}
+
+void mxSetData(mxArray *array_ptr, void *data_ptr)
+{
+  mexPrintf("Routine mxSetData  not implemented \r\n");
   exit(1);  /* TO BE DONE */
 }
 
@@ -2481,4 +2504,14 @@ int C2F(mxcopyptrtocomplex16)(mxArray *ptr, mxArray *pti, double *y, integer *n)
 
 /* mxCreateLogicalArray
  * mxIsLogicalScalar
- * mxIsLogicalScalarTrue  */
+ * mxIsLogicalScalarTrue */
+
+/* *mxRealloc(void *ptr, size_t size);
+    mxGetNChars(const mxArray *pa, char *buf, int nChars);
+    char *mxArrayToString(const mxArray *pa);
+    mxArray *mxCreateStringFromNChars(const char *str, int n);
+    int mxSetClassName(mxArray *pa, const char *classname);
+    int mxAddField(mxArray *pa, const char *fieldname);
+    void mxRemoveField(mxArray *pa, int field);
+    void mxSetCopyInCell(mxArray *pa, int i, mxArray *value);  */
+
