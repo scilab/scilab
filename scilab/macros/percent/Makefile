@@ -154,13 +154,14 @@ BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci
 
 CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci %c_tril.sci %c_triu.sci 
 
-LSSFUNS= %lss_eye.sci %lss_inv.sci %lss_ones.sci %lss_rand.sci %lss_size.sci
+LSSFUNS= %lss_eye.sci %lss_inv.sci %lss_ones.sci %lss_rand.sci %lss_size.sci\
+	 %lss_norm.sci
 
 PFUNS =  %p_det.sci %p_inv.sci %p_prod.sci %p_simp.sci %p_string.sci %p_sum.sci
 
 RFUNS =  %r_clean.sci %r_det.sci %r_diag.sci %r_eye.sci %r_inv.sci \
 	 %r_ones.sci %r_rand.sci %r_simp.sci %r_size.sci %r_string.sci \
-	 %r_tril.sci %r_triu.sci
+	 %r_tril.sci %r_triu.sci %r_norm.sci
 
 SFUNS =  %s_pow.sci %s_simp.sci %s_sort.sci %s_and.sci %s_matrix.sci %s_or.sci
 
