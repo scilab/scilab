@@ -1727,7 +1727,6 @@ sciGetMarkStyle (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     default:
-      sciprint ("This object has no mark\n");
       return -1;
       break;
     }
@@ -8105,6 +8104,8 @@ DestroyGrayplot (sciPointObj * pthis)
     FREE (pGRAYPLOT_FEATURE (pthis)->pvecy);
   FREE (pGRAYPLOT_FEATURE (pthis)->pvecz);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1)
+    return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* on peut alors destroyer le parent */
@@ -8282,6 +8283,8 @@ DestroyFec (sciPointObj * pthis)
   FREE (pFEC_FEATURE (pthis)->zminmax);  
   FREE (pFEC_FEATURE (pthis)->colminmax);
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
+  if (sciDelHandle (pthis) == -1)
+    return -1;
   FREE (sciGetPointerToFeature (pthis));
   FREE (pthis);
   /* on peut alors destroyer le parent */
@@ -13343,12 +13346,12 @@ BOOL sciIsAreaZoom(box,box1,section)
 
 }
 /*** 26/11/2002 ****/
-void DeleteObjs(integer win_num)
+void DeleteObjs()
 {
   sciPointObj *figure;
   struct BCG *Xgc; 
   
-  figure = (sciPointObj *)  sciIsExistingFigure(&win_num);
+  figure = (sciPointObj *)  sciGetCurrentFigure();
   if (  figure != (sciPointObj *) NULL )
     {
       Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;

@@ -3485,12 +3485,10 @@ int scidelw(fname,fname_len)
       {
 	win = (integer) *stk(l1+i);
 	C2F(deletewin)(&win); 
-        if (version_flag() == 0) DeleteObjs(win); /* NG */
       }
   } else {
     C2F(dr)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
     C2F(deletewin)(&win);
-    if (version_flag() == 0) DeleteObjs(win);  /* NG */
   }
   LhsVar(1)=0;
   return 0;
