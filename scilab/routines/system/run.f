@@ -112,6 +112,7 @@ c     store info if printing is required see code 22
       goto 10
 c     
  25   fin=istk(lc+nsiz+1)
+      ifin=fin
       rhs=istk(lc+nsiz+2)
       lname=lc+1
  26   call stackg(istk(lname))
@@ -133,20 +134,30 @@ c
          else
 c     .     referenced name was function at compile time it is now a
 c     .     primitive. Modify the code for further use
+            if (ifin.ne.-4.and.ifin.ne.0) then
+c     .        function call
 
-c     .     change current  opcode to nop 
-            istk(lc)=0
-            istk(lc+1)=nsiz+3
-            lc=lc+nsiz+3
-c     .     change the following to matfn
-            
-            op=fun*100
-            istk(lc)=op
-            istk(lc+1)=istk(lc+2)-1
-            istk(lc+2)=istk(lc+3)
-            istk(lc+3)=fin
-            goto 80
-c           call error(110)
+c     .        change current  opcode to nop 
+               istk(lc)=0
+               istk(lc+1)=nsiz+3
+               lc=lc+nsiz+3
+c     .        change the following opcode to matfn opcode
+               op=fun*100
+               istk(lc)=op
+               istk(lc+1)=istk(lc+2)-1
+               istk(lc+2)=istk(lc+3)
+               istk(lc+3)=fin
+               goto 80
+            else
+c     .        only reference to a function
+c     .        stackg opcode replaced by varfun opcode
+               istk(lc)=27
+               istk(lc+1)=fun
+               istk(lc+2)=fin
+               call putid(istk(lc+3),ids(1,pt+1))
+               goto 10
+
+            endif
          endif
          lc=lc+nsiz+3
          goto 10   

@@ -8,9 +8,8 @@ c     Copyright INRIA
       integer id(nsiz),id1(nsiz),istr(nlgh)
 c
       logical eqid,cresmat
-      integer srhs,percen,blank,fptr,mode(2),eye(nsiz),sfun,slhs
+      integer srhs,percen,blank,fptr,mode(2),sfun,slhs
       integer iadr
-      data eye/672014862,nz1*673720360/
       data nclas/29/,percen/56/,blank/40/
 c
       iadr(l)=l+l-1
@@ -22,12 +21,10 @@ c
 c     
 c     if special compilation mode skip primitive functions
 c      if (comp(3).eq.1) then
-      if (comp(1).ne.0.and.comp(3).ne.2) then
-         if(.not.eqid(id,eye)) then
-            fin=0
-            fun=0
-            return
-         endif
+c      if (comp(1).ne.0.and.comp(3).ne.2) then
+      if (comp(1).ne.0) then
+         fin=0
+         fun=0
       endif
 c
 c     look for name in primitive functions

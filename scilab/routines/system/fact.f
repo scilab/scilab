@@ -9,7 +9,7 @@ c
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eqid,eptover
       integer semi,eol,blank,r,excnt,lparen,rparen,num,name,percen,psym
-      integer id(nsiz),eye(nsiz),rand(nsiz),ones(nsiz),op,fun1
+      integer id(nsiz),op,fun1
       integer star,dstar,comma,quote,cconc,extrac,rconc
       integer left,right,hat,dot,equal,colon
       logical recurs,compil,first,dotsep,nullarg,ok
@@ -19,10 +19,6 @@ c
       data num/0/,name/1/,comma/52/,lparen/41/,rparen/42/
       data quote/53/,left/54/,right/55/,cconc/1/,extrac/3/,rconc/4/
       data hat/62/,dot/51/,equal/50/,colon/44/
-c     
-      data eye/672014862,nz1*673720360/
-      data rand/219613723,nz1*673720360/
-      data ones/470685464,nz1*673720360/
 c     
 c     
       r = rstk(pt)
@@ -212,40 +208,39 @@ c     .     it is really x(....)
       fin=0
       rhs = 0
 c     
-      if(comp(1).eq.0) then
 c     -- put a named variable in the stack
 c     check for indirect loading
-         fin=setgetmode(id)
-         call stackg(id)
-         if (err .gt. 0) return
-         if(fin.ne.0.or.err1.ne.0) goto 60
-      endif
-c     
-c     -- check for eye, rand ones function special call
-      fun1=fun
-      call funs(id)
-      if(err.gt.0) return
-      if (fun .gt. 0) then
-         call varfunptr(id,fun,fin)
-         goto 60
-      endif
-c     this should never happen???
-      if (eqid(id,eye).or.eqid(id,rand)) then
-         call funs(id)
-         goto 53
-      endif
-      fun=fun1
-c      fin=0
       fin=setgetmode(id)
       call stackg(id)
       if (err .gt. 0) return
-      if (fin .eq. 0) then
-         if(err1.ne.0) goto 60
-         call  putid(ids(1,pt+1),id)
-         call error(4)
-         if (err .gt. 0) return
+      if(fin.ne.0.or.err1.ne.0) goto 60
+c     
+      if(comp(1).eq.0) then
+         fun1=fun
+         call funs(id)
+         if(err.gt.0) return
+         if (fun .gt. 0) then
+            call varfunptr(id,fun,fin)
+            goto 60
+         endif
       endif
-      go to 60
+C c     this should never happen???
+C       if (eqid(id,eye).or.eqid(id,rand)) then
+C          call funs(id)
+C          goto 53
+C       endif
+C       fun=fun1
+C c      fin=0
+C       fin=setgetmode(id)
+C       call stackg(id)
+C       if (err .gt. 0) return
+C       if (fin .eq. 0) then
+C          if(err1.ne.0) goto 60
+C          call  putid(ids(1,pt+1),id)
+C          call error(4)
+C          if (err .gt. 0) return
+C       endif
+C       go to 60
 c     
  36   continue
 c     --- function evaluation or variable element   x(...)
