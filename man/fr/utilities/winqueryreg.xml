@@ -43,7 +43,7 @@
     "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[winqueryreg 'HKEY_CLASSES_ROOT' 'mwsamp.mwsampctrl.2\clsid'
+  <EXAMPLE><![CDATA[winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
 lines(-1);
 mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
 len=size(mousechar);

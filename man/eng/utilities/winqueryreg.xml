@@ -13,17 +13,20 @@
   registry</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name', 'rootkey','subkey')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('name',
+    'rootkey','subkey')</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey', 'subkey','valname')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey',
+    'subkey','valname')</CALLING_SEQUENCE_ITEM>
 
-    <CALLING_SEQUENCE_ITEM>value = winqueryreg('rootkey','subkey')</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>value =
+    winqueryreg('rootkey','subkey')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
   <DESCRIPTION>
     <P>value = winqueryreg('name', 'rootkey', 'subkey') returns the key names
-    in <VERB>rootkey\subkey</VERB> in a matrix of strings. The first argument is the
-    literal quoted string, 'name'.</P>
+    in <VERB>rootkey\subkey</VERB> in a matrix of strings. The first argument
+    is the literal quoted string, 'name'.</P>
 
     <P>If the value retrieved from the registry is a string, winqueryreg
     returns a string. If the value is a 32-bit integer, winqueryreg returns
@@ -39,7 +42,7 @@
     are case-sensitive. The subkey and valname arguments are not.</P>
   </DESCRIPTION>
 
-  <EXAMPLE><![CDATA[winqueryreg 'HKEY_CLASSES_ROOT' 'mwsamp.mwsampctrl.2\clsid'
+  <EXAMPLE><![CDATA[winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
 lines(-1);
 mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
 len=size(mousechar);
