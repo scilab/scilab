@@ -1,6 +1,4 @@
 toplevel $pad
-# the following update makes the initial textarea reactive to dnd!
-update
 
 set winopened 1
 set radiobuttonvalue 1
@@ -113,6 +111,9 @@ if {![info exists classNewId]} {
 
 set undo_id [new textUndoer $textareacur]
 set listundo_id("$textareacur") $undo_id
+
+# the following update makes the initial textarea reactive to dnd!
+update
 
 # Drag and drop feature using TkDnD
 if {$TkDnDloaded == "true"} {
