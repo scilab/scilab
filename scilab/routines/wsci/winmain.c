@@ -1105,7 +1105,7 @@ EXPORT int CALLBACK  ShutDown (void)
 /* scilex peut donc etre executé seul */
 static void SciEnv ()
 {
-	char *p, *p1;
+	char *p;
 	char modname[MAX_PATH + 1];
 	char env[MAX_PATH + 1 + 10];
 	if (!GetModuleFileName (NULL, modname + 1, MAX_PATH))
@@ -1117,7 +1117,6 @@ static void SciEnv ()
 	/* Set SCI variable */
 	if ((p = strrchr (modname + 1, '\\')))
 	{
-		char ShortPath[MAX_PATH];
 		*p = 0;
 		for (p = modname + 1; *p; p++)
 		{
@@ -1127,7 +1126,7 @@ static void SciEnv ()
 		p = modname + 1;
 
 		set_sci_env(p,(char *) 0);
-
+/*
 		if ((p1 = getenv ("TCL_LIBRARY")) == (char *) 0)
 		{
 			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
@@ -1139,6 +1138,14 @@ static void SciEnv ()
 			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
 			putenv (env);
 		}
+*/
+
+		// Bug 763 Pour le moment, on force a utiliser la librairie TCL/TK que l'on embarque
+		wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
+		putenv (env);
+
+		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
+		putenv (env);
 
 
 	}
