@@ -12,7 +12,7 @@ return;
 end
 if rhs == 5 then tol=1.e-8;end
 [ns,ns] = size(a);
-if norm(e,1) < %eps then s1=syslin([],0*a,0*b,0*c,-c/a*b + d);return;end
+if norm(e,1) < %eps then s1=syslin([],[],[],[],-c/a*b + d);return;end
 [ue,se,ve,rk] = svd(e,tol*norm(e,1));
 k=ns-rk;
 if k==0 then ei=inv(e),s1=syslin([],ei*a,ei*b,c,d),return,end
