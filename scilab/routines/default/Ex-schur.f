@@ -364,6 +364,136 @@ C *** Last line of ZB02MW ***
 
 
 
+      LOGICAL FUNCTION ZB02OW( ALPHA, BETA )
+C
+C     RELEASE 4.0, WGS COPYRIGHT 2000.
+C
+C     PURPOSE
+C
+C     To select the stable generalized eigenvalues for the
+C     continuous-time.
+C
+C     ARGUMENTS
+C
+C     Input/Output Parameters
+C
+C     ALPHAR  (input) DOUBLE PRECISION
+C             The real part of the numerator of the current eigenvalue 
+C             considered.
+C
+C     ALPHAI  (input) DOUBLE PRECISION
+C             The imaginary part of the numerator of the current 
+C             eigenvalue considered.
+C
+C     BETA    (input) DOUBLE PRECISION
+C             The (real) denominator of the current eigenvalue 
+C             considered. It is assumed that BETA <> 0 (regular case).
+C
+C     METHOD
+C
+C     The function value ZB02OW is set to .TRUE. for a stable eigenvalue
+C     and to .FALSE., otherwise.
+C
+C     REFERENCES
+C
+C     None.
+C
+C     NUMERICAL ASPECTS
+C
+C     None.
+C
+C     CONTRIBUTOR
+C
+C
+C     REVISIONS
+C
+C     -
+C
+C     KEYWORDS
+C
+C     Algebraic Riccati equation, closed loop system, continuous-time
+C     system, optimal regulator, Schur form.
+C
+C     ******************************************************************
+C
+      DOUBLE PRECISION   ZERO
+      PARAMETER          ( ZERO = 0.0D0 )
+C     .. Scalar Arguments ..
+      COMPLEX*16         ALPHA, BETA
+      INTRINSIC          DREAL
+C     .. Executable Statements ..
+C
+      ZB02OW =  DREAL(ALPHA/BETA).LT.ZERO 
+C
+      RETURN
+C *** Last line of zb02ow ***
+      END
+
+
+      LOGICAL FUNCTION ZB02OX( ALPHA, BETA )
+C
+C     RELEASE 4.0, WGS COPYRIGHT 1999.
+C
+C     PURPOSE
+C
+C     To select the stable generalized eigenvalues for the
+C     discrete-time algebraic.
+C
+C     ARGUMENTS
+C
+C     Input/Output Parameters
+C
+C     ALPHAR  (input) DOUBLE PRECISION
+C             The real part of the numerator of the current eigenvalue 
+C             considered.
+C
+C     ALPHAI  (input) DOUBLE PRECISION
+C             The imaginary part of the numerator of the current 
+C             eigenvalue considered.
+C
+C     BETA    (input) DOUBLE PRECISION
+C             The (real) denominator of the current eigenvalue 
+C             considered.
+C
+C     METHOD
+C
+C     The function value ZB02OX is set to .TRUE. for a stable eigenvalue
+C     (i.e., with modulus less than one) and to .FALSE., otherwise.
+C
+C     REFERENCES
+C
+C     None.
+C
+C     NUMERICAL ASPECTS
+C
+C     None.
+C
+C     CONTRIBUTOR
+C
+C     REVISIONS
+C
+C     -
+C
+C     KEYWORDS
+C
+C     Algebraic Riccati equation, closed loop system, continuous-time
+C     system, optimal regulator, Schur form.
+C
+C     ******************************************************************
+C
+C     .. Scalar Arguments ..
+      COMPLEX*16         ALPHA, BETA
+C     .. External Functions ..
+C     .. Intrinsic Functions ..
+      INTRINSIC          ABS
+C     .. Executable Statements ..
+C
+      ZB02OX = ABS( ALPHA ).LT.ABS( BETA )
+C
+      RETURN
+C *** Last line of ZB02OX ***
+      END
+
 
 
 

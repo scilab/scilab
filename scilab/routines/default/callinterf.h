@@ -63,6 +63,7 @@ extern void    /* 42  */ C2F(intpvm)();
 #endif
 extern void    /* 43  */ C2F(intelm)();
 extern void    /* 44  */ C2F(intlapack)();
+extern void    /* 45  */ C2F(intslicot)();
 
 static OpTab Interfaces[] ={
             /* 01  */ {C2F(matlu)},
@@ -109,4 +110,5 @@ static OpTab Interfaces[] ={
 	    /* 42  */ {PVMINTERF},
             /* 43  */ {C2F(intelm)},
             /* 44  */ {C2F(intlapack)},
+            /* 44  */ {C2F(intslicot)},
 };
