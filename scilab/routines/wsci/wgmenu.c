@@ -43,31 +43,39 @@ extern TW textwin;
 #define MACROLEN 5000
 /* #define NUMMENU 256  defined in wresourc.h */
 #define MENUDEPTH 3
-/* menu tokens */
 
-#define CMDMIN 129
-#define ZOOM 129
-#define UNZOOM 130
+/* menu tokens */
+#define CMDMIN 131
+/**********************/
 /** Warning must be like OPEN and SAVE in the wmenu.c file */
-#define LOADSCG 131
-#define SAVESCG 132
-#define COPYCLIP 133
-#define COPYCLIP1 134
-#define REDRAW 135
-#define ROT3D 136
-#define PRINT 137
-#define CLEARWG 138
-#define EOS     139
-#define SCIPS   140
-#define SCIPR   141
-#define SCIGSEL 142
-#define UPDINI  143
-#define CLOSE   144
-#define CMDMAX 144
+#define LOADSCG CMDMIN /*131*/
+#define SAVESCG CMDMIN+1 /*132*/
+#define NEWFIG	CMDMIN+2
+#define CLOSE   CMDMIN+3
+#define SCIPS   CMDMIN+4
+#define SCIPR   CMDMIN+5
+#define PRINT   CMDMIN+6
+#define UPDINI  CMDMIN+7
+/**********************/
+#define SCIGSEL UPDINI+1
+#define TOOLBARGRAPH SCIGSEL+1
+#define REDRAW	SCIGSEL+2
+#define CLEARWG SCIGSEL+3
+#define COPYCLIP SCIGSEL+4
+#define COPYCLIP1 SCIGSEL+5
+/**********************/
+#define ZOOM COPYCLIP1+1
+#define UNZOOM ZOOM+1
+#define ROT3D ZOOM+2
+/**********************/
+#define EOS     ROT3D+1
+/**********************/
+#define CMDMAX EOS
+/**********************/
 
 static char *keyword[] =
 {
-  "[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
+  "[TOOLBARGRAPH]","[NEWFIG]","[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
   "[REDRAW]", "[LOADSCG]", "[SAVESCG]", "[CLEARWG]", "[SCIPS]", "[SCIPR]",
   "[SCIGSEL]", "[UPDINI]", "[EOS]", "[CLOSE]",
   "{ENTER}", "{ESC}", "{TAB}",
@@ -79,7 +87,7 @@ static char *keyword[] =
 
 static BYTE keyeq[] =
 {
-  ZOOM, UNZOOM, ROT3D, PRINT, COPYCLIP, COPYCLIP1,
+  TOOLBARGRAPH,NEWFIG,ZOOM, UNZOOM, ROT3D, PRINT, COPYCLIP, COPYCLIP1,
   REDRAW, LOADSCG, SAVESCG, CLEARWG, SCIPS, SCIPR, SCIGSEL, UPDINI, EOS,
   CLOSE,
   13, 27, 9,
@@ -132,6 +140,14 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 /** Special cases **/
 	  switch (*s)
 	    {
+		  case TOOLBARGRAPH:
+			  MessageBox(NULL,"ToolBar ON OFF"," ",MB_OK);
+			  s++;
+	      break;
+		case NEWFIG:
+			MessageBox(NULL,"Nouvelle Fenetre Graphique"," ",MB_OK);
+			s++;
+	      break;
 	    case ZOOM:
 	      scig_2dzoom (ScilabGC->CurWindow);
 	      s++;
@@ -1174,4 +1190,43 @@ void scig_print (integer number)
 void scig_export (integer number)
 {
   scig_command_scilabgc (number, SavePs);
+}
+
+void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode)
+{
+	#define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
+	#define FILEGRAPHMENUENGLISH "wgscilabE.mnu"
+	
+	
+	char szModuleName[MAX_PATH];
+	LPSTR tail;
+	
+	HINSTANCE hInstance=NULL;
+
+	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+	
+	
+	GetModuleFileName (hInstance,szModuleName, MAX_PATH);
+	
+	if ((tail = strrchr (szModuleName, '\\')) != (LPSTR) NULL)
+	{
+		tail++;
+		*tail = '\0';
+	}
+	
+	if (ScilabGC->lpgw->szMenuName!=NULL) free(ScilabGC->lpgw->szMenuName);
+	ScilabGC->lpgw->szMenuName = (LPSTR) malloc (strlen (szModuleName) + strlen (FILEGRAPHMENUENGLISH) + 1);
+	strcpy (ScilabGC->lpgw->szMenuName, szModuleName);
+
+	
+	switch (LangCode)
+	{
+		case 1:
+			strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUFRENCH);
+		break;
+		default : case 0:
+			strcat (ScilabGC->lpgw->szMenuName, FILEGRAPHMENUENGLISH);
+		break;
+	}
+	
 }

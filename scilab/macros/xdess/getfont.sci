@@ -26,11 +26,14 @@ if ~MSDOS then
   delmenu(win,'Zoom')
   delmenu(win,'File')
 else
-  delmenu(win,'3D &Rot.')
-  delmenu(win,'&UnZoom')
-  delmenu(win,'&Zoom')
+ // French
+  delmenu(win,'&Fichier')
+  delmenu(win,'&Editer')
+  delmenu(win,'&Utilitaires')
+  // English
   delmenu(win,'&File')
-end
+  delmenu(win,'&Edit')
+  delmenu(win,'&Tools')end
 
 
 x=2;

@@ -24,10 +24,15 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
     delmenu(curwin,'Zoom')
     //  delmenu(curwin,'File')
   else
-    delmenu(curwin,'3D &Rot.')
-    delmenu(curwin,'&UnZoom')
-    delmenu(curwin,'&Zoom')
-    //  delmenu(curwin,'&File')
+     // French
+     // delmenu(curwin,'&Fichier')
+  	delmenu(curwin,'&Editer')
+  	delmenu(curwin,'&Utilitaires')
+     // English
+     //	delmenu(curwin,'&File')
+  	delmenu(curwin,'&Edit')
+  	delmenu(curwin,'&Tools')
+    
   end
 
   if pixmap then xset('pixmap',1),end,xbasc();

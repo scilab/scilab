@@ -179,6 +179,10 @@ static void set_current_clip (void);
 static void set_clip_after_scroll (void) ;
 
 
+extern BOOL GraphToolBarDefault;
+extern int LanguageCode;
+extern void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode);
+
 /************************************************
  * dealing with hdc : when using the Rec driver 
  * each command in xcall is ``encadree'' with 
@@ -4039,6 +4043,19 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   MoveWindow(ScilabXgc->Statusbar, 0, rect.bottom -( rect1.bottom - rect1.top),
 	     rect.right,  ( rect1.bottom - rect1.top), TRUE) ;
   sprintf((char *)winname,"BG%d", (int)WinNum);
+
+
+   if (GraphToolBarDefault)
+  {
+	  ScilabXgc->lpmw.ShowToolBar=TRUE;
+	  //graphwin.ButtonHeight=32;
+  }
+  else
+  {
+	  ScilabXgc->lpmw.ShowToolBar=FALSE;
+	  //graphwin.ButtonHeight=0;
+  }
+
   ScilabXgc->CWindowWidth =  rect.right;
   ScilabXgc->CWindowHeight = rect.bottom - ( rect1.bottom - rect1.top);
   ScilabXgc->CWindow = CreateWindow(szGraphClass, winname,
@@ -4082,12 +4099,14 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
     }
 
   /* modify the system menu to have the new items we want */
-  sysmenu = GetSystemMenu(ScilabXgc->hWndParent,0);
+  /*sysmenu = GetSystemMenu(ScilabXgc->hWndParent,0);
   AppendMenu(sysmenu, MF_SEPARATOR, 0, NULL);
-  AppendMenu(sysmenu, MF_STRING, M_ABOUT, "&About");
+  AppendMenu(sysmenu, MF_STRING, M_ABOUT, "&About");*/
   ShowWindow(ScilabXgc->CWindow, SW_SHOWNORMAL);
   ShowWindow(ScilabXgc->hWndParent,  SW_SHOWNORMAL);
   graphwin.resized = FALSE;
+
+  UpdateFileGraphNameMenu( ScilabXgc,LanguageCode);
   LoadGraphMacros( ScilabXgc);
   /** Default value is without Pixmap **/
   ScilabXgc->CurPixmapStatus = 0;

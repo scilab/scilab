@@ -1092,6 +1092,9 @@ cd .. &gt;nul
 				RelativePath=".\Winmain.h">
 			</File>
 			<File
+				RelativePath=".\Wmenu.h">
+			</File>
+			<File
 				RelativePath="wresource.h">
 			</File>
 			<File

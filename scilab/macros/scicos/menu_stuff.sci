@@ -6,11 +6,15 @@ if ~MSDOS then
   delmenu(curwin,'Zoom')
   delmenu(curwin,'File')
 else
-  delmenu(curwin,'3D &Rot.')
-  delmenu(curwin,'&UnZoom')
-  delmenu(curwin,'&Zoom')
+ // French
+  delmenu(curwin,'&Fichier')
+  delmenu(curwin,'&Editer')
+  delmenu(curwin,'&Utilitaires')
+  // English
   delmenu(curwin,'&File')
-end
+  delmenu(curwin,'&Edit')
+  delmenu(curwin,'&Tools')
+  end
 menuss=menus;
 menuss(1)=menus(1)(2:$);
 menubar(curwin,menuss)

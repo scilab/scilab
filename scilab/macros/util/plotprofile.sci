@@ -110,11 +110,15 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       delmenu(curwin,'Zoom')
       delmenu(curwin,'File')
     else
-      delmenu(curwin,'3D &Rot.')
-      delmenu(curwin,'&UnZoom')
-      delmenu(curwin,'&Zoom')
-      delmenu(curwin,'&File')
-    end     
+ 	// French
+  	delmenu(curwin,'&Fichier')
+  	delmenu(curwin,'&Editer')
+  	delmenu(curwin,'&Utilitaires')
+  	// English
+  	delmenu(curwin,'&File')
+  	delmenu(curwin,'&Edit')
+  	delmenu(curwin,'&Tools')
+  	end     
     
     xsetech(wrect=[0 0 1 1],frect=[0 0 400 600],arect=[0.1 0 0 0])
     w=xstringl(0,0,t);h=w(4);w=max(400,w(3))
