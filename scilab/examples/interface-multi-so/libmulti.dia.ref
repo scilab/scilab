@@ -11,16 +11,6 @@ shared archive loaded
 
 Link done
 
-Linking libmulti1 
-
-Interface 0 libmulti1
-
-Linking libmulti2 
-
-Interface 0 libmulti1
-
-Interface 1 libmulti2
-
  
  
 if f1(89)<>89+2 then bugmes();quit;end
