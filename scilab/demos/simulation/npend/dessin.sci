@@ -2,7 +2,7 @@ function []=chaind(p,r,rect)
 //draw chain given sequence of points
 //!
 //
-// Copyright INRIA
+// Copyright ENPC
 n=maxi(size(p));
 arcs=[ -r ,r,2*r,2*r,0,64*360].*.ones(n,1);
 arcs=[ p , 0*ones(n,4)] + arcs;

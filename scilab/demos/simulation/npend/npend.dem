@@ -1,10 +1,11 @@
 mode(-1);
-// Copyright INRIA
+// Copyright ENPC
 
 path="SCI/demos/npend";
 
 getf(path+'/macros.sci');
 getf(path+'/dessin.sci');
+
 xbasc();
 flag1=x_choose(['Read a precomputed trajectory';
         'Simulation with ode (needs f77 and link. may fail. see help link)'],...
@@ -13,25 +14,7 @@ flag1=x_choose(['Read a precomputed trajectory';
 select flag1,
 case 2 then 
   mode(1)
-  if MSDOS then
-    TMPDIR=getenv('TMPDIR')
-    cur_wd = getcwd();
-    chdir(SCI+"/demos/npend/Maple");
-    if (getenv('COMPILER','NO') == 'VC++')
-      host("nmake /f Makefile.mak TEMP="+TMPDIR);
-    else
-      host("amake /f Makefile.amk TEMP="+TMPDIR);
-    end
-    chdir(cur_wd);
-    if ~c_link('npend') then link(TMPDIR+'\npend.dll','npend');end
-    if ~c_link('ener')  then link(TMPDIR+'\ener.dll','ener');end
-    if ~c_link('np')  then link(TMPDIR+'\np.dll','np');end
-  else 
-    host("cd $"+path+"; make ");
-    if ~c_link('npend') then link('/tmp/npend.o','npend');end
-    if ~c_link('ener')  then link('/tmp/ener.o','ener');end
-    if ~c_link('np')  then link('/tmp/np.o','np');end
-  end
+  npend_build_and_load() ;
   n=np();
   r=1*ones(1,n);m=1*ones(1,n);j=1*ones(1,n);g=9.81;
   y0=0*ones(2*n,1);
