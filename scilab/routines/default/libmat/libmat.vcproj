@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="7.10"
-	Name="WScilex"
-	ProjectGUID="{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
+	Name="libmat"
+	ProjectGUID="{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -14,15 +14,16 @@
 			Name="Debug|Win32"
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -31,11 +32,13 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/WScilex.exe"
+				OutputFile="../../../bin/libmat.dll"
 				LinkIncremental="2"
+				ModuleDefinitionFile="libmat.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/WScilex.pdb"
+				ProgramDatabaseFile="$(OutDir)/libmat.pdb"
 				SubSystem="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -62,62 +65,14 @@
 			Name="Release|Win32"
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="FALSE"
-				DebugInformationFormat="0"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="../../../bin/WScilex.exe"
-				LinkIncremental="1"
-				GenerateDebugInformation="TRUE"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="PIV_Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="3"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -126,60 +81,14 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/WScilex.exe"
+				OutputFile="../../../bin/libmat.dll"
 				LinkIncremental="1"
+				ModuleDefinitionFile="libmat.def"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Pentium_Release|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				FavorSizeOrSpeed="1"
-				OptimizeForProcessor="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				RuntimeLibrary="4"
-				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
-			<Tool
-				Name="VCCustomBuildTool"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="../../../bin/WScilex.exe"
-				LinkIncremental="1"
-				GenerateDebugInformation="TRUE"
-				SubSystem="2"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -206,16 +115,18 @@
 			Name="Debug with Atlas|Win32"
 			OutputDirectory=".\Debug with Atlas"
 			IntermediateDirectory=".\Debug with Atlas"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
+				AssemblerListingLocation=".\Debug with Atlas/"
 				ObjectFile=".\Debug with Atlas/"
 				ProgramDataBaseFileName=".\Debug with Atlas/vc70.pdb"
 				WarningLevel="3"
@@ -225,11 +136,120 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../../bin/WScilex.exe"
+				OutputFile="../../../bin/libmat.dll"
 				LinkIncremental="2"
+				ModuleDefinitionFile="libmat.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="$(OutDir)/WScilex.pdb"
+				ProgramDatabaseFile=".\Debug with Atlas/libmat.pdb"
 				SubSystem="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="PIV_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				OptimizeForProcessor="3"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/libmat.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmat.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Pentium_Release|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/libmat.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmat.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"/>
@@ -261,7 +281,7 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\WScilex.c">
+				RelativePath=".\libmat.c">
 			</File>
 		</Filter>
 		<Filter
@@ -269,110 +289,68 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
-				RelativePath="..\resource.h">
+				RelativePath="..\..\callinter.h">
 			</File>
 			<File
-				RelativePath=".\resource.h">
+				RelativePath="..\..\machine-abs.h">
+			</File>
+			<File
+				RelativePath="..\..\machine.h">
+			</File>
+			<File
+				RelativePath="..\..\mex.h">
+			</File>
+			<File
+				RelativePath="..\..\stack-abs.h">
+			</File>
+			<File
+				RelativePath="..\..\stack-c.h">
+			</File>
+			<File
+				RelativePath="..\..\stack-def.h">
+			</File>
+			<File
+				RelativePath="..\..\stack.h">
+			</File>
+			<File
+				RelativePath="..\..\version.h">
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
-			<File
-				RelativePath="..\Icones Scilab\3DROT.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Bin.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\CHDIR.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\CONSOLE.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\COPY.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Cos.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Cosf.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Dem.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\exit24.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\fonts.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Graph.ICO">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\HELP.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\metanet24.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\NEW.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\OPEN.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\PASTE.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\PRINT.ico">
-			</File>
-			<File
-				RelativePath="..\Rscilab.rc">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Sav.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\SAVE.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Sce.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Sci.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\scicos24.ico">
-			</File>
-			<File
-				RelativePath="..\scilab.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\scilab.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\scilab24.ico">
-			</File>
-			<File
-				RelativePath="..\scilab_logo.bmp">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Tst.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\UNZOOM.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\Vide.ico">
-			</File>
-			<File
-				RelativePath="..\Icones Scilab\ZOOM.ico">
-			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\bin\atlas.lib">
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="PIV_Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Pentium_Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+		</File>
+		<File
+			RelativePath="..\..\..\bin\LibScilab.lib">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

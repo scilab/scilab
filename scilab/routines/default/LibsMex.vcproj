@@ -34,6 +34,18 @@
 				CleanCommandLine="nmake /f &quot;makemexlib.mak&quot; clean /a"
 				Output="LibsMex.exe"/>
 		</Configuration>
+		<Configuration
+			Name="Debug with Atlas|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;makemexlib.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makemexlib.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makemexlib.mak&quot; clean /a"
+				Output="LibsMex.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>

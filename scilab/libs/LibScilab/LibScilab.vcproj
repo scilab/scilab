@@ -306,6 +306,76 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Debug with Atlas|Win32"
+			OutputDirectory=".\Debug with Atlas"
+			IntermediateDirectory=".\Debug with Atlas"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				OptimizeForProcessor="0"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include,../../pvm3/include,../../pvm3/src"
+				PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="4"
+				PrecompiledHeaderFile=".\Debug with Atlas/LibScilab.pch"
+				AssemblerListingLocation=".\Debug with Atlas/"
+				ObjectFile=".\Debug with Atlas/"
+				ProgramDataBaseFileName=".\Debug with Atlas/"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="odbc32.lib odbccp32.lib comctl32.lib wsock32.lib oldnames.lib libcpmt.lib"
+				OutputFile="../../bin/LibScilab.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				IgnoreDefaultLibraryNames="libcmt.lib,msvcrt.lib,libcd.lib,libcmtd.lib,msvcrtd.lib"
+				ModuleDefinitionFile="..\LibScilab.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				ImportLibrary="../../bin/LibScilab.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="TRUE"
+				SuppressStartupBanner="TRUE"
+				TargetEnvironment="1"
+				TypeLibraryName=".\Debug/LibScilab.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="if EXIST ..\libg2c.def del ..\libg2c.def &gt;nul
+copy ..\*.def ..\LibScilab.def &gt;nul
+copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -347,6 +417,15 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 						Optimization="2"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_MBCS;_USRDLL;LIBSCILAB_EXPORTS;__MSC__;STRICT;WITH_TK;WITH_PVM;$(NoInherit)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions="_WINDOWS;_USRDLL;LIBSCILAB_EXPORTS;_DEBUG;WIN32;_MBCS;__MSC__;STRICT;WITH_TK;WITH_PVM;$(NoInherit)"
+						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -461,6 +540,13 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas|Win32">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+						AdditionalIncludeDirectories="\scilab-2.7.2\routines\wsci"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\..\routines\wsci\Icones Scilab\Sav.ico">
@@ -536,6 +622,33 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 				RelativePath="..\..\routines\version.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\bin\atlas.lib">
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="PIV_Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Pentium_Release|Win32"
+				ExcludedFromBuild="TRUE">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+		</File>
 		<File
 			RelativePath="C:\Program Files\Intel\Fortran\compiler80\IA32\LIB\IFCONSOL.LIB">
 		</File>
