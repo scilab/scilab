@@ -1326,17 +1326,10 @@ c
             buf(m+1:m+18)=' of function     '
             m=m+13
             if (km.le.isiz) then
-               call cvname(idstk(1,km),buf(m+1:m+nlgh),1)
-c Francois VOGEL, August 2004 - Bug 803
-c function name is now limited to the useful length
-c instead of being the full nlgh size with trailing spaces
-c               call funnamestore(buf(m+1:m+nlgh),nlgh) 
-               leng=lnblnk(buf(m+1:m+nlgh))
+               call cvnamel(idstk(1,km),buf(m+1:m+nlgh),1,leng)
                call funnamestore(buf(m+1:m+nlgh),leng) 
+               m=m+leng
             endif
-c Francois VOGEL, August 2004 - Bug 803
-c            m=m+nlgh
-            m=m+leng
          else
             buf='in  execstr instruction'
             m=26
