@@ -22,7 +22,7 @@ MACROS = acos.sci acosm.sci acosh.sci acoshm.sci asin.sci asinm.sci \
 	erf.sci erfc.sci erfcx.sci binomial.sci \
 	speye.sci spzeros.sci sprand.sci spones.sci \
 	intsplin.sci inttrap.sci GLoad.sci \
-	isinf.sci isnan.sci median.sci mean.sci st_deviation.sci\
+	isinf.sci isnan.sci \
 	lex_sort.sci unique.sci union.sci setdiff.sci intersect.sci \
 	isempty.sci isequal.sci nextpow2.sci convertindex.sci
 
