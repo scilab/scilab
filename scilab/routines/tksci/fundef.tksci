@@ -11,6 +11,5 @@
 {"figure",		IN_tksci,	11,	3},
 {"close",		IN_tksci,	12,	3},
 {"uimenu",		IN_tksci,	13,	3},
-{"gcf",			IN_tksci,	14,	3},
 {"setgvar",		IN_tksci,	16,	3},
 {"getgvar",		IN_tksci,	17,	3},

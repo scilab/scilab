@@ -12,7 +12,7 @@
 #include "tksci.h"
 #include "TK_uicontrol.h"
 
-
+extern int cf_type;
 
 void LAB_figure()
 
@@ -34,7 +34,7 @@ void LAB_figure()
   int FirstField=0;
   
   NbParam = Interf.NbParamIn;
-  
+  cf_type=0;/* current figure is a tksci one */
   if ( (NbParam >0) && MatrixIsNumeric(Interf.Param[0]) )
     /* the first parameter is a figure handle */
     {

@@ -20,7 +20,7 @@ extern void LAB_get();
 extern void LAB_figure();
 extern void LAB_close();
 extern void LAB_uimenu();
-extern void LAB_gcf();
+/*extern void LAB_gcf();*/
 extern void LAB_setgvar();
 extern void LAB_getgvar();
 
@@ -38,7 +38,7 @@ voidf FuncI[] ={
   LAB_figure,
   LAB_close,
   LAB_uimenu,
-  LAB_gcf,
+  LAB_get,
   LAB_setgvar,
   LAB_getgvar
 };
