@@ -2345,8 +2345,14 @@ int scixget(fname,fname_len)
     {
       int i; 
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
-      CreateVar(Rhs+1,"d",&one,&x2,&l3);
-      for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+      if (x2 > 0) {
+	CreateVar(Rhs+1,"d",&one,&x2,&l3);
+	for (i = 0 ; i < x2 ; ++i) *stk(l3 + i ) = (double) x1[i];      
+      }
+      else {
+        x2=0;
+	CreateVar(Rhs+1,"d",&x2,&x2,&l3);
+      }
       LhsVar(1)=Rhs+1;
     }
   return 0;
