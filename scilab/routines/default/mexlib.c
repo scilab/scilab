@@ -196,6 +196,7 @@ int theMLIST(int *loci)
 mxClassID mxGetClassID(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: 
     return mxDOUBLE_CLASS;
@@ -301,12 +302,15 @@ int mxIsNaN(double x)
 int *mxGetHeader(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   return &loci[0];
 }
+
 int mxGetNumberOfElements(Matrix *ptr)
 {
-  int *loci = (int *) stkptr((long int) ptr);
   int m, commonlength;
+  int *loci = (int *) stkptr((long int) ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
     return loci[1]*loci[2];
@@ -326,11 +330,13 @@ int mxGetNumberOfElements(Matrix *ptr)
 
 double *mxGetPr(Matrix *ptr)
 {
-  double *loc = (double *) stkptr((long int)ptr);
+  double *loc;
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX:
-    return (loci[1]==0 || loci[2] == 0) ? NULL : &loc[2];
+    /*    return (loci[1]==0 || loci[2] == 0) ? NULL : &loci[4]; */
+    return (loci[1]==0 || loci[2] == 0) ? NULL : (double *) &loci[4];
   case MLIST:
     switch (loci[6+2*(loci[4]-1)]){
     case DOUBLEMATRIX: case INTMATRIX:
@@ -341,8 +347,10 @@ double *mxGetPr(Matrix *ptr)
       return 0;
     }
   case STRINGMATRIX:
+    loc = (double *) loci;
     return &loc[i2sadr(5 + loci[2])];
   case SPARSEMATRIX:
+    loc = (double *) loci;
     return &loc[ i2sadr(5+loci[2]+loci[4]) ];
   default:
     return 0;
@@ -350,21 +358,19 @@ double *mxGetPr(Matrix *ptr)
 }
 
 
+
 double *mxGetPi(Matrix *ptr)
 { 
   int debut; int m,n,it;
-  double *loc = (double *) stkptr((long int)ptr);
+  /*  double *loc = (double *) stkptr((long int)ptr); */
+  double *loc;
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  loc = (double *) loci;
   switch (loci[0]) {
-  case DOUBLEMATRIX: 
-    if (loci[1]==0 || loci[2] == 0) return NULL;
-    if (loci[3]==0 ) 
-      return &loc[2]; 
-    else 
-      return  &loc[2 + loci[1] * loci[2]]; /* imag part */ 
-  case INTMATRIX:
+  case DOUBLEMATRIX: case INTMATRIX:
     if (loci[3]==0 || loci[1]==0 || loci[2] == 0) return NULL;
-    return  &loc[2];/* &loc[2 + loci[1] * loci[2]];*/  /*  ?  */
+    return  &loc[2 + loci[1] * loci[2]]; 
   case MLIST:
     debut=6+2*(loci[4]-1);
     switch (loci[debut]){
@@ -387,6 +393,7 @@ int mxGetNumberOfDimensions(Matrix *ptr)
 {
   int *loci1;
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
     return 2;
@@ -412,6 +419,7 @@ int *mxGetDimensions(Matrix *ptr)
 {
   int *loci1;
   int *loci = (int *) stkptr((long int) ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX:
     return &loci[1];
@@ -433,7 +441,8 @@ int *mxGetDimensions(Matrix *ptr)
 int mxGetM(Matrix *ptr)
 {
   int *loci1;
-  int *loci= (int *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case STRINGMATRIX: case SPARSEMATRIX:
     return loci[1];
@@ -454,8 +463,9 @@ int mxGetM(Matrix *ptr)
 
 void mxSetM(Matrix *ptr, int m)
 {
-  int *loci = (int *) stkptr((long int)ptr);
   int oldM; int commonlength; int j;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
     loci[1]=m;
@@ -476,7 +486,8 @@ void mxSetM(Matrix *ptr, int m)
 
 int *mxGetJc(Matrix *ptr)
 {
-  int *loci= (int *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] != SPARSEMATRIX) {
     return 0;}
   /*  loci[0]=7;  M=loci[1];  N=loci[2];  it =loci[3];  nzmax=loci[4];
@@ -486,18 +497,19 @@ int *mxGetJc(Matrix *ptr)
 
 int *mxGetIr(Matrix *ptr)
 {
-  int *loci= (int *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   /* ... N=loci[2],  nzmax=loci[4]; then Jc,  then Ir   */
   return &loci[5+loci[2]+1];
 }
-
 
 int mxGetN(Matrix *ptr)
 {
   int ret;int j;
   int *loci1;
-  int *loci= (int *) stkptr((long int)ptr);
   int numberofdim;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
 
   switch (loci[0]) {
   case DOUBLEMATRIX: case INTMATRIX: case SPARSEMATRIX:
@@ -525,11 +537,11 @@ int mxGetN(Matrix *ptr)
   }
 }
 
-
 void mxSetN(Matrix *ptr, int n)
 {
-  int *loci = (int *) stkptr((long int)ptr);
   int i,m;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case STRINGMATRIX:
     m=loci[1];
@@ -547,9 +559,11 @@ void mxSetN(Matrix *ptr, int n)
   }
 }
 
+
 int mxIsString(Matrix *ptr)
 {
-  int *loci=(int *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] == STRINGMATRIX) 
     return 1;
   else return 0;
@@ -557,7 +571,8 @@ int mxIsString(Matrix *ptr)
 
 int mxIsChar(Matrix *ptr)
 {
-  int *loci=(int *) stkptr((long int)ptr);
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case STRINGMATRIX:
     return 1;
@@ -576,6 +591,7 @@ int mxIsChar(Matrix *ptr)
 int mxIsNumeric(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] != STRINGMATRIX)
     return 1;
   else
@@ -585,6 +601,7 @@ int mxIsNumeric(Matrix *ptr)
 int mxIsDouble(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if ((loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) | ( (loci[0] == MLIST) && (loci[6+2*(loci[4]-1)] == DOUBLEMATRIX)))
     return 1;
   else 
@@ -594,6 +611,7 @@ int mxIsDouble(Matrix *ptr)
 int mxIsEmpty(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if ( (loci[0] == DOUBLEMATRIX) | (loci[0] == SPARSEMATRIX) ) 
     return 1-loci[1]*loci[2];
   else 
@@ -603,6 +621,7 @@ int mxIsEmpty(Matrix *ptr)
 int mxIsFull(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if ( loci[0] != SPARSEMATRIX)
     return 1;
   else
@@ -612,6 +631,7 @@ int mxIsFull(Matrix *ptr)
 int mxIsSparse(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] == SPARSEMATRIX) 
     return 1;
   else
@@ -621,6 +641,7 @@ int mxIsSparse(Matrix *ptr)
 int mxIsLogical(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] == LOGICAL) 
     return 1;
   else
@@ -630,12 +651,14 @@ int mxIsLogical(Matrix *ptr)
 void mxSetLogical(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   loci[0] = LOGICAL;
 }
 
 void mxClearLogical(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0] != LOGICAL)
     mexErrMsgTxt("Variable is not logical");
   loci[0] = DOUBLEMATRIX;
@@ -644,6 +667,7 @@ void mxClearLogical(Matrix *ptr)
 int mxIsComplex(Matrix *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX:
     return loci[3];
@@ -656,11 +680,12 @@ int mxIsComplex(Matrix *ptr)
   }
 }
 
-
 double mxGetScalar(Matrix *ptr)
 { 
-  double *loc = (double *) stkptr((long int)ptr);
+  double *loc;
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  loc = (double *) loci;
   if (loci[0] == DOUBLEMATRIX) {
     return  loc[2];
   }
@@ -672,7 +697,6 @@ double mxGetScalar(Matrix *ptr)
     return 0;
   }
 }
-
 
 void *mxGetData(Matrix *ptr)
 {
@@ -726,6 +750,7 @@ Matrix *mxCreateFull(int m, int n, int it)
 int mxIsClass(Matrix *ptr, char *name)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   switch (loci[0]) {
   case DOUBLEMATRIX: 
     if ( strcmp(name,"double") == 0) return 1;
@@ -815,9 +840,10 @@ Matrix *mxCreateCellArray(int ndim, int *dims)
 
 Matrix *mxGetCell(Matrix *ptr, int index)
 {
+  int kk,lw,isize;
   int *locilist,*lociobj,*lociobjcopy;
   int *loci = (int *) stkptr((long int)ptr);
-  int kk,lw,isize;
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   locilist = listentry(loci,3);
   lociobj = listentry(locilist,index+1);
   isize=2*(locilist[index+3]-locilist[index+2]);
@@ -834,10 +860,11 @@ Matrix *mxGetCell(Matrix *ptr, int index)
 
 int mxGetFieldNumber(mxArray *ptr, char *string)
 {
-  int *locistr;
-  int *loci = (int *) stkptr((long int)ptr);
   int nf, longueur, istart, k, ilocal, retval;
+  int *locistr;
   char *str= (char *) malloc(24*sizeof(char));
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   locistr = listentry(loci,1);
   nf=locistr[1]*locistr[2]-2;  /* number of fields */
   retval=-1;
@@ -855,9 +882,10 @@ int mxGetFieldNumber(mxArray *ptr, char *string)
 
 Matrix *mxGetField(mxArray *ptr, int index, char *string)
 {
-  int *locilist,*lociobj,*lociobjcopy;
-  int *loci = (int *) stkptr((long int)ptr);
   int kk,lw,isize,fieldnum;
+  int *locilist, *lociobj, *lociobjcopy;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   fieldnum=mxGetFieldNumber(ptr, string);
   locilist = listentry(loci,3+fieldnum);
   lociobj = listentry(locilist,index+1);
@@ -876,6 +904,7 @@ Matrix *mxGetField(mxArray *ptr, int index, char *string)
 int mxGetNumberOfFields(mxArray *ptr)
 {
   int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   if (loci[0]==17) return loci[1]-2;
   else return 0;
 }
@@ -1036,8 +1065,9 @@ static void mxFree_m_all() {
 
 int mxIsCell(Matrix *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
   int *loci1; int l;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   /* mlist(["ce","dims","entries"],[d1,..,dk],list(...)) */
   if (loci[0]==17) {
     loci1 = (int *) listentry(loci,1);
@@ -1051,8 +1081,9 @@ int mxIsCell(Matrix *ptr)
 
 int mxIsStruct(Matrix *ptr)
 {
-  int *loci = (int *) stkptr((long int)ptr);
   int *loci1; int nfplus2, l;
+  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   /* mlist(["st","dims","field1",...,"fieldp"],[d1,..,dk],list1(...),listp(...)) */
   if (loci[0]==17) {
     loci1 = (int *) listentry(loci,1);
@@ -1072,11 +1103,12 @@ int mxIsStruct(Matrix *ptr)
 
 int mxGetString(Matrix *ptr, char *str, int strl)
 {
+  int commonlength, firstchain, nrows; 
   int *loci = (int *) stkptr((long int)ptr);
-  int commonlength, firstchain; 
-  int nrows = loci[1];
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
   /*  int ncols = loci[2]; This is 1 */
   /* commonlength=nrows*(loci[5]-loci[4]); */
+  nrows = loci[1];
   commonlength=loci[5]-loci[4];
   firstchain=5+nrows;
   C2F(in2str)(&commonlength, &loci[firstchain], str,0L);
@@ -1318,6 +1350,7 @@ int sci_gateway(char *fname, GatefuncS F)
 int mxGetElementSize(Matrix *ptr)
 { int k, it; 
  int *loci = (int *) stkptr((long int)ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
  switch (loci[0]) {
  case DOUBLEMATRIX: case SPARSEMATRIX:
    return sizeof(double);
@@ -1404,6 +1437,51 @@ mxArray *mexGetArray(char *name, char *workspace)
   return (mxArray *) lw;
 }
 
+int mexPutArray(mxArray *array_ptr, char *workspace)
+{
+  /* TO BE DONE */
+  return 1;
+}
+
+void mxSetName(mxArray *array_ptr, const char *name)
+{
+  /* TO BE DONE */
+}
+
+void mxSetPr(mxArray *array_ptr, double *pr)
+{
+  /* TO BE DONE */
+}
+
+void mxSetPi(mxArray *array_ptr, double *pi)
+{
+  /* TO BE DONE */
+}
+
+const char *mxGetName(const mxArray *array_ptr)
+{
+  /* TO BE DONE */
+}
+
+int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
+{
+  /* TO BE DONE */
+}
+
+const char *mxGetClassName(const mxArray *array_ptr)
+{
+  /* TO BE DONE */
+}
+
+void mxSetCell(mxArray *array_ptr, int index, mxArray *value)
+{
+  /* TO BE DONE */
+}
+
+const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
+{
+  /* TO BE DONE */
+}
 
 
 int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
@@ -1546,8 +1624,11 @@ int mexCheck(char *str,int nbvars) {
 
 double * C2F(mxgetpr)(Matrix *ptr)
 {
-  double *loc = (double *) stkptr(*ptr);
+  /*  double *loc = (double *) stkptr(*ptr); */
+  double *loc;
   int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  loc = (double *) loci;
   if (loci[0]==DOUBLEMATRIX) {
     return &loc[2];
   }
@@ -1563,37 +1644,45 @@ double * C2F(mxgetpr)(Matrix *ptr)
 
 double * C2F(mxgetpi)(Matrix *ptr)
 {
-  double *loc = (double *) stkptr(*ptr);
+  /*  double *loc = (double *) stkptr(*ptr); */
+  double *loc;
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  loc = (double *) loci;
   return &loc[2 +  C2F(mxgetm)(ptr) *  C2F(mxgetn)(ptr)];
 }
 
 int  C2F(mxgetm)(Matrix *ptr)
 {
-  int *loc= (int *) stkptr(*ptr);
-  return loc[1] ;
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  return loci[1] ;
 }
 
 int  C2F(mxgetn)(Matrix *ptr)
 {
-  int *loc = (int *) stkptr(*ptr);
-  if ( loc[0] == STRINGMATRIX) {
-    return loc[5]-1;
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if ( loci[0] == STRINGMATRIX) {
+    return loci[5]-1;
   }
-  return loc[2] ;
+  return loci[2] ;
 }
 
 int  C2F(mxisstring)(Matrix *ptr)
 {
-  int *loc=(int *) stkptr(*ptr);
-  if (loc[0] == STRINGMATRIX) 
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if (loci[0] == STRINGMATRIX) 
     return 1;
   else return 0;
 } 
 
 int  C2F(mxisnumeric)(Matrix *ptr)
 {
-  int *loc = (int *) stkptr(*ptr);
-  if ( loc[0] == DOUBLEMATRIX) 
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if ( loci[0] == DOUBLEMATRIX) 
     return 1;
   else 
     return 0;
@@ -1601,8 +1690,9 @@ int  C2F(mxisnumeric)(Matrix *ptr)
 
 int  C2F(mxisfull)(Matrix *ptr)
 {
-  int *loc = (int *) stkptr(*ptr);
-  if ( loc[0] == DOUBLEMATRIX) {
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if ( loci[0] == DOUBLEMATRIX) {
     return 1;
   }
   return 0;
@@ -1610,8 +1700,9 @@ int  C2F(mxisfull)(Matrix *ptr)
 
 int  C2F(mxissparse)(Matrix *ptr)
 {
-  int *loc = (int *) stkptr(*ptr);
-  if (loc[0] == SPARSEMATRIX) {
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if (loci[0] == SPARSEMATRIX) {
     return 1;
   }
   return 0;
@@ -1620,23 +1711,26 @@ int  C2F(mxissparse)(Matrix *ptr)
 
 int  C2F(mxiscomplex)(Matrix *ptr)
 {
-  int *loc = (int *) stkptr(*ptr);
-  if (loc[3] == DOUBLEMATRIX) {
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  if (loci[3] == DOUBLEMATRIX) {
     return 1;
   }
   return 0;
 }
 
 double  C2F(mxgetscalar)(Matrix *ptr)
-{ static int N,nnz;
- double *loc = (double *) stkptr(*ptr);
- int *loci = (int *) stkptr(*ptr);
+{ 
+  static int N,nnz;
+  double *loc;
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  loc = (double *) loci;
  if (loci[0] == DOUBLEMATRIX) {
    return  loc[2];
  }
  else if (loci[0] == SPARSEMATRIX) {
-   nnz = loci[4];
-   N = loci[2];
+   nnz = loci[4];   N = loci[2];
    return loc[(5+nnz+N)/2+1];
  }
  else {
@@ -1688,11 +1782,13 @@ unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size)
 
 int  C2F(mxgetstring)(Matrix *ptr, char *str, int *strl)
 {
-  int *loc = (int *) stkptr(*ptr);
-  int commonlength;  int nrows = loc[1];
+  int commonlength; int nrows;
+  int *loci = (int *) stkptr(*ptr);
+  if (loci[0] < 0) loci = (int *) stk(loci[1]);
+  nrows = loci[1];
   /*  int ncols = loc[2]; This is 1 */
-  commonlength=nrows*(loc[5]-loc[4]);
-  C2F(in2str)(&commonlength, &loc[5+nrows], str,0L);
+  commonlength=nrows*(loci[5]-loci[4]);
+  C2F(in2str)(&commonlength, &loci[5+nrows], str,0L);
   *strl = Min(*strl,commonlength);
   return 0;
 }
@@ -1755,6 +1851,7 @@ int C2F(mxcopyptrtocomplex16)(Matrix *ptr, Matrix *pti, double *y, integer *n)
   C2F(dcopy)(n,locim,&one,++y,&two);
   return 0;
 }
+
 
 
 
