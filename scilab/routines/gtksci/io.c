@@ -82,9 +82,16 @@ void  sciprint(char *fmt,...)
   va_start(ap,fmt);
   /* next three lines added for diary SS*/
   (void ) vsprintf(s_buf, fmt, ap );
-  lstr=strlen(s_buf);
-  C2F(diary)(s_buf,&lstr,0L);
   printf("%s",s_buf); 
+  
+  lstr=strlen(s_buf);
+  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
+    {
+      s_buf[lstr-2]= '\n';
+      s_buf[lstr-1]= '\0';
+      lstr--;
+    }
+  C2F(diary)(s_buf,&lstr,0L);
   va_end(ap);
 }
 
@@ -102,6 +109,12 @@ int  sciprint2(int iv,char *fmt,...)
   /* next three lines added for diary SS*/
   (void ) vsprintf(s_buf, fmt, ap );
   lstr=strlen(s_buf);
+  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
+    {
+      s_buf[lstr-2]= '\n';
+      s_buf[lstr-1]= '\0';
+      lstr--;
+    }
   C2F(diary)(s_buf,&lstr,0L);
   retval= vfprintf(stdout, fmt, ap );
   va_end(ap);

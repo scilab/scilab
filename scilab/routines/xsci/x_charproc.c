@@ -638,7 +638,6 @@ void sciprint(va_alist) va_dcl
   /* next three lines added for diary SS*/
   (void ) vsprintf(s_buf, fmt, ap );
   lstr=strlen(s_buf);
-  C2F(diary)(s_buf,&lstr,0L);
 
   C2F(xscion)(&i);
   if (i == 0) 
@@ -647,11 +646,18 @@ void sciprint(va_alist) va_dcl
     }
   else 
     {
-      /*(void ) vsprintf(s_buf, fmt, ap );  SS
-	lstr=strlen(s_buf);*/
+      lstr=strlen(s_buf);
       C2F(xscisncr)(s_buf,&lstr,0L);
-
     }
+  /* \r\n -> \n for diary */ 
+  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
+    {
+      s_buf[lstr-2]= '\n';
+      s_buf[lstr-1]= '\0';
+      lstr--;
+    }
+  C2F(diary)(s_buf,&lstr,0L);
+
   va_end(ap);
 }
 
