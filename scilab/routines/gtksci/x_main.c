@@ -597,5 +597,3 @@ static void nsp_create_gtk_toplevel(gint argc, gchar *argv[])
 } 
 
 
-
-

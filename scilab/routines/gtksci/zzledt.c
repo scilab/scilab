@@ -1123,5 +1123,19 @@ int get_one_char(char *prompt) {
   return buffer[0];
 }
 
+
+/*----------------------------------------------------------------------
+ * clear the screen 
+ *----------------------------------------------------------------------*/
+
+void HomeFunction(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
+
+void ClearScreenConsole(void)
+{
+  sciprint("Not yet implemented. \r\n");
+}
      
 

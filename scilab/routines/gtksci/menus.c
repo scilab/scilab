@@ -812,7 +812,7 @@ static void * sci_window_initial_menu()
   char *control_entries[] = { "Resume||$resume",
 			      "Abort||$abort",
 			      "Restart||$restart",
-			      "Stop||$stop" } ;
+			      "Stop||$stop" };
   char *graphic_entries[] = { "Create or Select||$gwselect",
 			      "Raise||$gwraise", 
 			      "Delete||$gwdelete",
@@ -1031,7 +1031,7 @@ static void sci_menu_fileops()
   rep = sci_get_file_window(NULL,&file,".",0,1,&ierr,"File operations");
   if ( ierr == 0 && rep == TRUE ) 
     { 
-      StoreCommand(file); 
+      StoreCommand1(file,1);  /* we want the command to appear in the window */
       free(file); 
       file =NULL; 
     }
@@ -1185,10 +1185,10 @@ static int call_predefined_callbacks(char *name, int winid)
   else if (strcmp(name,"$gwplus")== 0)  sci_menu_gwplus();
   else if (strcmp(name,"$gwminus")== 0)  sci_menu_gwminus();
   else if (strcmp(name,"$about")== 0)  create_scilab_about ();
-  else if (strcmp(name,"$resume")== 0)  StoreCommand("resume");
-  else if (strcmp(name,"$abort")== 0)   StoreCommand("abort");
-  else if (strcmp(name,"$restart")== 0) StoreCommand("exec SCI/scilab.star;");
-  else if (strcmp(name,"$quit")== 0) StoreCommand("quit;");
+  else if (strcmp(name,"$resume")== 0) StoreCommand1("resume",1);
+  else if (strcmp(name,"$abort")== 0)  StoreCommand1("abort",1); 
+  else if (strcmp(name,"$restart")== 0) StoreCommand1("exec SCI/scilab.star;",1);
+  else if (strcmp(name,"$quit")== 0)  StoreCommand1("quit;",1);
   else return 0;
   return 1;
 }

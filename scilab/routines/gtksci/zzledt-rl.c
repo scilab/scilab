@@ -157,6 +157,20 @@ void sci_get_screen_size (int *rows,int *cols)
 }
 
 /*----------------------------------------------------------------------
+ * clear the screen 
+ *----------------------------------------------------------------------*/
+
+void HomeFunction(void)
+{
+  rl_clear_screen(0,0);
+}
+
+void ClearScreenConsole(void)
+{
+  rl_clear_screen (0,0);
+}
+
+/*----------------------------------------------------------------------
  * changing the prompt 
  *----------------------------------------------------------------------*/
 
@@ -196,8 +210,8 @@ static char **scilab_completion (const char *, int, int);
 static void initialize_readline ()
 {
   /* Tell the completer that we want a crack first. */
-  /* I remove the completion since it troubles the cup and paste 
-   * of data with tabs 
+  /* I remove the completion since it troubles the cut and paste 
+   * of data with tabs jpc 2003 
    */
   /*  rl_attempted_completion_function = scilab_completion; */
 }
