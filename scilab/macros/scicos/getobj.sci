@@ -10,6 +10,7 @@ for i=1:n //loop on objects
   o=scs_m.objs(i)
   if typeof(o)=='Block'|typeof(o)=='Text' then
     [orig,sz]=(o.graphics.orig,o.graphics.sz)
+    orig=orig-eps;sz=sz+2*eps;
     data=[(orig(1)-x)*(orig(1)+sz(1)-x),(orig(2)-y)*(orig(2)+sz(2)-y)]
     if data(1)<0&data(2)<0 then k=i,break,end
   elseif typeof(o)=='Link' then
