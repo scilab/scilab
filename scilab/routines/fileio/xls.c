@@ -266,10 +266,10 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
   /*---------------Déclaration Des Variables*--------------------*/
   cur_pos=0;
 
-  if (get_oleheader(fd)) {
+  /*  if (get_oleheader(fd)) {
     *err=1;
     return;
-  }
+    }*/
   C2F(mtell) (fd, &pos, err);
   cur_pos=(int)pos;
   init_pos=cur_pos;
