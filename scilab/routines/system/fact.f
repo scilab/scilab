@@ -223,24 +223,20 @@ c
             call varfunptr(id,fun,fin)
             goto 60
          endif
+c     this should never happen???
+         fun=fun1
+         fin=setgetmode(id)
+         call stackg(id)
+         if (err .gt. 0) return
+         if (fin .eq. 0) then
+            if(err1.ne.0) goto 60
+            call  putid(ids(1,pt+1),id)
+            call error(4)
+            if (err .gt. 0) return
+         endif
+         go to 60
       endif
-C c     this should never happen???
-C       if (eqid(id,eye).or.eqid(id,rand)) then
-C          call funs(id)
-C          goto 53
-C       endif
-C       fun=fun1
-C c      fin=0
-C       fin=setgetmode(id)
-C       call stackg(id)
-C       if (err .gt. 0) return
-C       if (fin .eq. 0) then
-C          if(err1.ne.0) goto 60
-C          call  putid(ids(1,pt+1),id)
-C          call error(4)
-C          if (err .gt. 0) return
-C       endif
-C       go to 60
+      
 c     
  36   continue
 c     --- function evaluation or variable element   x(...)
