@@ -22,7 +22,8 @@
         <PARAM_NAME>name</PARAM_NAME>
 
         <PARAM_DESCRIPTION>
-          <SP>: Points to the name of an environment variable .</SP>
+          <SP>: Points to the name of an environment variable . (name is a
+          string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
@@ -31,7 +32,7 @@
 
         <PARAM_DESCRIPTION>
           <SP>: Points to the value to be assigned to the environment
-          variable.</SP>
+          variable. (value is a string)</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 
