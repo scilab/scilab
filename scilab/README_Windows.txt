@@ -18,8 +18,7 @@ I - TO RUN SCILAB (BINARY VERSION)
  
     2 - Run Scilab by executing "Scilab 3.0" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
-        so you can run Scilab by executing directly "wscilex.exe",
-	or "Scilab.bat".
+        so you can run Scilab by executing directly "wscilex.exe".
 	If you want use Visual Studio (6,.NET) with Scilab 3.0,
 	execute "Scilab 3.0 (requires Visual Studio)" from the startup menu.
  
@@ -146,7 +145,6 @@ VI - SOME IMPORTANT FILES AND DIRECTORIES
  
  bin/	   : executable code and scripts.
 
- 		scilab.bat : shell-script to call Scilab.
  		scilex  : executable code of Scilab (Console version).
 		wscilex  : executable code of Scilab (Windows version).
         	intersci: generator of interface program between Scilab and 
