@@ -115,7 +115,7 @@ int StoreCommand1 (command, flag)
 	/* send something to make  gchar_no_echo() return */
 	/* if (i) write_scilab(" ");*/
       }
-#ifdef MSDOS
+#ifdef WIN32
       else if (flag==2) { /* for windows ?????*/
 	write_scilab ("\n");
       }

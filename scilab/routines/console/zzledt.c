@@ -10,6 +10,8 @@
  **********************************************************************/
 #include "../machine.h" 
 
+static char Sci_Prompt[10];
+
 #ifdef WITH_GTK
 #ifdef WITH_READLINE 
 /* this file is unused */ 
@@ -197,7 +199,7 @@ static int interrupted=0;
 /*  ---- end of interruption handling ---*/
 
 static int sendprompt=1;
-static char Sci_Prompt[10];
+/*static char Sci_Prompt[10];*/
 
 extern int groundtable[]; /* character table */ 
 
@@ -1045,4 +1047,20 @@ void ClearScreenConsole(char *fname)
 
 
 #endif /* The win32 version is defined in the wsci directory **/
+
+/************************************************************************
+ * setprlev : set the current prompt string
+ ***********************************************************************/
+
+void C2F(setprlev)( int *pause)
+{
+  if ( *pause == 0 ) 
+    sprintf(Sci_Prompt,"-->");
+  else if ( *pause > 0 )
+    sprintf(Sci_Prompt,"-%d->",*pause);
+  else
+    sprintf(Sci_Prompt,">>");
+}
+
+
 #endif /* the gtk readline version is in gtk */ 
