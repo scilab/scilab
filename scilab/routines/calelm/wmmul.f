@@ -1,47 +1,49 @@
-C/MEMBR ADD NAME=WMMUL,SSI=0
-c     Copyright INRIA
-      subroutine wmmul(ar,ai,na,br,bi,nb,cr,ci,nc,l,m,n)
-c!but
-c     ce sous programme effectue le produit matriciel:
-c     c=a*b .
-c!liste d'appel
-c
-c      subroutine wmmul(ar,ai,na,br,bi,nb,cr,ci,nc,l,m,n)
-c      double precision ar(*),ai(*),br(*),bi(*),cr(*),ci(*)
-c      integer i,j,k,ia,ib,ic
-c
-c     a            tableau de taille na*m contenant la matrice a
-c     na           nombre de lignes du tableau a dans le programme appel
-c     b,nb,c,nc    definitions similaires a celles de a,na
-c     l            nombre de ligne des matrices a et c
-c     m            nombre de colonnes de a et de lignes de b
-c     n            nombre de colonnes de b et c
-c!sous programmes utilises
-c     neant
-c!
-      double precision ar(*),ai(*),br(*),bi(*),cr(*),ci(*)
-      double precision tr,ti
-      integer na,nb,nc,l,m,n
-      integer i,j,k,ia,ib,ic
-c
-      ib=0
-      ic=0
-      do 30 j=1,n
-         do 20 i=1,l
-         ia=i
-         tr=0.0d+0
-         ti=0.0d+0
-            do 10 k=1,m
-            ib=ib+1
-            tr=tr+ar(ia)*br(ib)-ai(ia)*bi(ib)
-            ti=ti+ar(ia)*bi(ib)+ai(ia)*br(ib)
-            ia=ia+na
-   10       continue
-         ib=ib-m
-         cr(ic+i)=tr
-   20    ci(ic+i)=ti
-      ic=ic+nc
-      ib=ib+nb
-   30 continue
-      return
+      subroutine wmmul(Ar,Ai,na,Br,Bi,nb,Cr,Ci,nc,l,m,n)
+*
+*     PURPOSE
+*        computes the matrix product C = A * B where the
+*        matrices are complex with the scilab storage
+*            C   =   A   *   B
+*          (l,n)   (l,m) * (m,n)
+*       
+*     PARAMETERS
+*        input 
+*        -----
+*        Ar, Ai : real and imaginary part of the matrix A
+*                 (double) arrays (l, m) with leading dim na
+*                 
+*        Br, Bi : real and imaginary part of the matrix B
+*                 (double) arrays (m, n) with leading dim nb
+*    
+*        na, nb, nc, l, m, n : integers
+*
+*        output 
+*        ------
+*        Cr, Ci : real and imaginary part of the matrix C
+*                 (double) arrays (l, n) with leading dim nc
+*
+*     METHOD
+*        Cr = Ar * Br - Ai * Bi
+*        Ci = Ar * Bi + Ai * Br
+*
+*     NOTE
+*        modification of the old wmmul to use blas calls
+*
+      implicit none
+
+      integer na, nb, nc, l, m, n
+      double precision Ar(na,m), Ai(na,m), Br(nb,n), Bi(nb,n), 
+     $                 Cr(nc,n), Ci(nc,n)
+
+*     Cr <-  1*Ar*Br + 0*Cr
+      call dgemm('n','n', l, n, m, 1.d0, Ar, na, Br, nb, 0.d0, Cr, nc)
+*     Cr <- -1*Ai*Bi + 1*Cr
+      call dgemm('n','n', l, n, m,-1.d0, Ai, na, Bi, nb, 1.d0, Cr, nc)
+*     Ci <-  1*Ar*Bi + 0*Ci
+      call dgemm('n','n', l, n, m, 1.d0, Ar, na, Bi, nb, 0.d0, Ci, nc)
+*     Ci <-  1*Ai*Br + 1*Ci
+      call dgemm('n','n', l, n, m, 1.d0, Ai, na, Br, nb, 1.d0, Ci, nc)
+
       end
+
+

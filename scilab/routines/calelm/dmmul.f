@@ -1,33 +1,33 @@
-      subroutine dmmul(a,na,b,nb,c,nc,l,m,n)
-c!
-c     
-c     c=a*b .
-c!
-c
-c     subroutine dmmul(a,na,b,nb,c,nc,l,m,n)
-c     double precision a(na,m),b(nb,n),c(nc,n)
-c     integer na,nb,nc,l,m,n
-c
-c     a            workspace of size na*m containing a
-c     na           number of rows of array a in calling program
-c     b,nb,c,nc    idem for b and c
-c     l            # of rows of matrix  a and c
-c     m            # of columns of a and rows of b
-c     n            # of columns of b and c
-c!
-c     Copyright INRIA
-      double precision a(*),b(*),c(*)
-      double precision ddot
-      integer na,nb,nc,l,m,n
-      integer i,j,ib,ic
-c
-      ib=1
-      ic=0
-      do 30 j=1,n
-         do 20 i=1,l
-   20    c(ic+i)=ddot(m,a(i),na,b(ib),1)
-      ic=ic+nc
-      ib=ib+nb
-   30 continue
-      return
+      subroutine dmmul(A , na, B, nb, C, nc, l, m, n)
+*
+*     PURPOSE
+*        computes the matrix product C = A * B
+*            C   =   A   *   B
+*          (l,n)   (l,m) * (m,n)
+*       
+*     PARAMETERS
+*        input 
+*        -----
+*        A : (double) array (l, m) with leading dim na
+*                 
+*        B : (double) array (m, n) with leading dim nb
+*    
+*        na, nb, nc, l, m, n : integers
+*
+*        output 
+*        ------
+*        C : (double) array (l, n) with leading dim nc
+*
+*     NOTE
+*        (original version substituted by a call to the blas dgemm)
+
+      implicit none
+
+      integer na, nb, nc, l, m, n
+      double precision A(na,m), B(nb,n), C(nc,n)
+
+      call dgemm('n','n', l, n, m, 1.d0, A, na, B, nb, 0.d0, C, nc)
+
       end
+
+

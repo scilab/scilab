@@ -625,11 +625,13 @@ c     .  matrix*matrix
             return
          endif
          if(it1*it2.ne.1) then
-            call dmmul(stk(l1),m1,stk(l2),m2,stk(lr),m1,m1,n1,n2)
-            if(it1.eq.1) call dmmul(stk(l1+mn1),m1,stk(l2),m2
-     $           ,stk(lr+m1*n2),m1,m1,n1,n2)
-            if(it2.eq.1) call dmmul(stk(l1),m1,stk(l2+mn2),m2
-     $           ,stk(lr+m1*n2),m1,m1,n1,n2)
+*           remplacement de dmmul par dgemm (Bruno le 31/10/2001)
+            call dgemm('n','n',m1,n2,n1,1.d0,stk(l1),m1,stk(l2),m2,
+     $           0.d0,stk(lr),m1)
+            if(it1.eq.1) call dgemm('n','n',m1,n2,n1,1.d0,stk(l1+mn1),
+     $           m1,stk(l2),m2,0.d0,stk(lr+m1*n2),m1)
+            if(it2.eq.1) call dgemm('n','n',m1,n2,n1,1.d0,stk(l1),m1,
+     $           stk(l2+mn2),m2,0.d0,stk(lr+m1*n2),m1)      
          else
 c     .     a et a2 sont complexes
             call wmmul(stk(l1),stk(l1+mn1),m1,stk(l2),stk(l2
