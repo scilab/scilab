@@ -33,9 +33,10 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P>
-    The <VERB>save</VERB> command can be used to save Scilab current variables 
-     in a binary file. The file can be given either by its paths or
+    <P>The <VERB>save</VERB> command can be used to save Scilab current variables 
+     in a binary file. If a variable is a graphic handle, the <VERB>save</VERB> function
+      saves all the corresponding <LINK>graphics_entities</LINK> definition. </P>
+    <P>The file can be given either by its paths or
     by its descriptor previously given by <VERB>mopen</VERB>.</P>
     <P><VERB>save(filename)</VERB> saves all current variables in the file defined
     by  <VERB>filename</VERB>.</P>
@@ -43,8 +44,7 @@
     by  the descriptor <VERB>fd</VERB>.</P>
     <P><VERB>save(filename,x,y)</VERB> or <VERB>save(fd,x,y)</VERB> saves only named
     variables <VERB>x</VERB> and <VERB>y</VERB>.</P>
-    <P>
-    Saved  variables can be reloaded by the <VERB>load</VERB> command.</P>
+    <P>Saved  variables can be reloaded by the <VERB>load</VERB> command.</P>
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
