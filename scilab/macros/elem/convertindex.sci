@@ -1,9 +1,9 @@
-function [ndims,I]=convertindex(dims,varargin)
+function [Newdims,I]=convertindex(dims,varargin)
 //convert N-D indexes given in varargin to 1-D index.
 //if indexes exceed matrix dimensions given in dims, dimensions are
-//extented and new dimensions are returned in ndims
+//extented and new dimensions are returned in Newdims
 // Copyright INRIA
-  ndims=[]
+  Newdims=[]
   I=0
   iimp=0
   for k=size(varargin):-1:1
@@ -24,16 +24,16 @@ function [ndims,I]=convertindex(dims,varargin)
 	end
       end
     end
-    ndims(k)=max([max(ik),dims(k)])
+    Newdims(k)=max([max(ik),dims(k)])
     if size(ik,'*')>1 then
       ik=ik(:)
       if size(I,'*')>1 then
-	I=(ndims(k)*I).*.ones(ik)+ones(I).*.(ik-1)
+	I=(Newdims(k)*I).*.ones(ik)+ones(I).*.(ik-1)
       else
-	I=ndims(k)*I+ik-1
+	I=Newdims(k)*I+ik-1
       end
     else
-      I=ndims(k)*I+ik-1
+      I=Newdims(k)*I+ik-1
     end
   end
 endfunction
