@@ -129,7 +129,7 @@ c     check if .. is followed by more dots or //
       if(jj.eq.n)goto 29
       jj=jj+1
       if(buf(jj:jj).eq.buf(j:j)) goto 28
-      if(buf(jj:jj).eq.' ') goto 28
+      if(buf(jj:jj).eq.' '.or.buf(jj:jj).eq.char(9)) goto 28
       if(buf(jj:jj).ne.'/') goto 31
       if(jj.eq.n) goto 31
       if(buf(jj+1:jj+1).eq.'/') goto 29
