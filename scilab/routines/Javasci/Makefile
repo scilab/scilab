@@ -23,15 +23,15 @@ CFLAGS = $(CC_OPTIONS) $(JAVAINC)
 
 OBJS = $(OBJSC)
 
-all:: class
+all:: class all1
 
 all1:: $(LIBRARY)
-
+# options compilation a modifier sous hp & solaris
 $(LIBRARY): $(OBJS)
 	@echo Creation of $(LIBRARY)
 	@$(RM) $@;
 	@echo "linking";
-	@$(FC) -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
+	@$(FC) -Wl,-shared -g -o $@ $(OBJS) $(DEFAULTS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
 
 class::	
 	$(JAVAC) -d $(SCIDIR)/bin $(SOURCESJ)
