@@ -104,7 +104,6 @@ int C2F (deletewin) (integer * number)
   /* delete the windows and resources */
   scig_deletegwin_handler (*number);
   DeleteSGWin (*number);
-  if (version_flag() == 0) DeleteObjs(win_num);
   return (0);
 }
 
