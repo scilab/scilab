@@ -9,7 +9,12 @@
 #endif
 
 #include "../machine.h"
+
+#ifdef WIN32 
+#include <windows.h>
+#else 
 #include "values.h"
+#endif
 
 #if defined(netbsd)
 #include <ieeefp.h>
