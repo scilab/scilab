@@ -662,7 +662,6 @@ typedef struct
   int hiddencolor;
   int hiddenstate;
   BOOL facetmerge; 
-  double brect[6];
   int with_leg; /* Adding F.Leray 07.05.04 */ /* for strflag[0] support : not needed today */
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
   BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/

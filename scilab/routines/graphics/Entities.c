@@ -7829,15 +7829,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
      
 
       /* ppsubwin =  pSUBWIN_FEATURE (pobj); */ /* debug */
-      /* Adding F.Leray 21.04.04 */
-      pSUBWIN_FEATURE (pobj)->brect[0] = pSUBWIN_FEATURE (paxesmdl)->brect[0];
-      pSUBWIN_FEATURE (pobj)->brect[1] = pSUBWIN_FEATURE (paxesmdl)->brect[1];
-      pSUBWIN_FEATURE (pobj)->brect[2] = pSUBWIN_FEATURE (paxesmdl)->brect[2];
-      pSUBWIN_FEATURE (pobj)->brect[3] = pSUBWIN_FEATURE (paxesmdl)->brect[3];
-      pSUBWIN_FEATURE (pobj)->brect[4] = pSUBWIN_FEATURE (paxesmdl)->brect[4];
-      pSUBWIN_FEATURE (pobj)->brect[5] = pSUBWIN_FEATURE (paxesmdl)->brect[5];
-      /* END  Adding F.Leray 21.04.04 */ 
-
+     
       pSUBWIN_FEATURE (pobj)->isselected = pSUBWIN_FEATURE (paxesmdl)->isselected;  
       pSUBWIN_FEATURE (pobj)->visible = pSUBWIN_FEATURE (paxesmdl)->visible; 
       pSUBWIN_FEATURE (pobj)->isclip = pSUBWIN_FEATURE (paxesmdl)->isclip;
@@ -8105,15 +8097,6 @@ int C2F(graphicsmodels) ()
   for (i=0 ; i<7 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
   
-
-  pSUBWIN_FEATURE (paxesmdl)->brect[0]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[1]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[2]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[3]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[4]   = -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[5]   = 1.0;  
-
-
   pSUBWIN_FEATURE (paxesmdl)->cube_scaling = FALSE;
   for (i=0 ; i<3 ; i++)  pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
   pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
@@ -16509,14 +16492,6 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->visible = sciGetVisibility(pfiguremdl); 
   pSUBWIN_FEATURE (paxesmdl)->isclip = -1;  
   pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
-
-  pSUBWIN_FEATURE (paxesmdl)->brect[0]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[1]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[2]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[3]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[4]   = -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->brect[5]   = 1.0;  
-
 
   /* Les SRect sont rentrés dans l'ordre: 
      [xmin ymin zmin xmax ymax zmax] */

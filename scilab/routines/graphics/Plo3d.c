@@ -1410,49 +1410,15 @@ void I3dRotation(void)
 		  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
 		  Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
 
-		  /* Modification HERE: F.Leray 21.04.04 */
-		  if ( pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=0 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=1 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=3 &&  pSUBWIN_FEATURE (psubwin)->axes.flag[1]!=5) /* means we uses computed data bounds */
-		    {
-		      Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
-		      Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
-		      Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
-		      Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
-		      Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
-		      Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
-		    }
-		  else
-		    {
-		      /* F.Leray 19.04.04 : Normally means we use ebox HERE !! */
-		      /* But I don't know the surface object yet to do:
-			 dbox[0] =  pSURFACE_FEATURE (psubwin)->ebox[0]... */
-		      /* so temporarily I put the default ebox here */
-		      
-		      /* F.Leray 21.04.04 : Now I do better by storing the brect (dim = 4 in 2D and 6 in 3D)
-		        inside the field brect[6] in sciSubWindow Object*/
-
-		      if( ((pSUBWIN_FEATURE (psubwin)->brect[0] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[2] != 0.)) &&
-			  ((pSUBWIN_FEATURE (psubwin)->brect[1] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[3] != 0.)))
-			/* &&
-			   ((pSUBWIN_FEATURE (psubwin)->brect[4] != -1.) || (pSUBWIN_FEATURE (psubwin)->brect[5] != 1.)))*/
-			{
-			  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->brect[0]; 
-			  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->brect[1]; 
-			  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->brect[2]; 
-			  Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->brect[3]; 
-			  Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->brect[4]; 
-			  Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->brect[5]; 
-			}
-		      else
-			{
-			  Cscale.bbox1[0] =  0.0;
-			  Cscale.bbox1[1] =  1.0;
-			  Cscale.bbox1[2] =  0.0;
-			  Cscale.bbox1[3] =  1.0;
-			  Cscale.bbox1[4] =  -1.0;
-			  Cscale.bbox1[5] =  1.0;
-			}
-		    }
-		
+		  /* Modif. HERE F.Leray 24.05.04 : we take advantage of update_specification_bounds and update_3dbounds previous call */
+		  /* brect variable should not exist any more.*/
+		  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->FRect[0]; 
+		  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->FRect[2];
+		  Cscale.bbox1[2] = pSUBWIN_FEATURE (psubwin)->FRect[1];
+		  Cscale.bbox1[3] = pSUBWIN_FEATURE (psubwin)->FRect[3];
+		  Cscale.bbox1[4] = pSUBWIN_FEATURE (psubwin)->FRect[4];
+		  Cscale.bbox1[5] = pSUBWIN_FEATURE (psubwin)->FRect[5];
+		  
 		  cube_scaling =  pSUBWIN_FEATURE (psubwin)->cube_scaling;
 		  if(cube_scaling == TRUE)
 		    {
@@ -1463,25 +1429,6 @@ void I3dRotation(void)
 		      Cscale.bbox1[4] =  0.;
 		      Cscale.bbox1[5] =  1.;
 		    }
-		  
-		  /*  if (pSUBWIN_FEATURE (psubwin)->isoview) */
-		  /* 		    { */
-/* 		      Cscale.bbox1[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0];  */
-/* 		      Cscale.bbox1[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2]; */
-/* 		      Cscale.bbox1[2] =  pSUBWIN_FEATURE (psubwin)->FRect[1]; */
-/* 		      Cscale.bbox1[3] =  pSUBWIN_FEATURE (psubwin)->FRect[3]; */
-/* 		      Cscale.bbox1[4] =  pSUBWIN_FEATURE (psubwin)->FRect[4]; */
-/* 		      Cscale.bbox1[5] =  pSUBWIN_FEATURE (psubwin)->FRect[5]; */
-/* 		    } */
-/* 		  else */
-/* 		    { Cscale.bbox1[0] =  0.0;  */
-/* 		      Cscale.bbox1[1] =  1.0; */
-/* 		      Cscale.bbox1[2] =  0.0; */
-/* 		      Cscale.bbox1[3] =  1.0; */
-/* 		      Cscale.bbox1[4] =  -1.0; */
-/* 		      Cscale.bbox1[5] =  1.0;} */
-
-
 		}
 	      else
               {
