@@ -128,7 +128,7 @@
     matrix) and the corresponding computation <VERB>y(x)</VERB> is done
     implicitly.</P>
 
-    <P>The <VERB>LineSpec</VERB> and <VERB>PropertySpec</VERB> arguments sould
+    <P>The <VERB>LineSpec</VERB> and <VERB>GlobalProperty</VERB> arguments sould
     be used to customize the plot. Here is a complete list of the available
     options.</P>
 
@@ -163,14 +163,14 @@
         </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
 
-      <DESCRIPTION_ITEM label="PropertySpec">
+      <DESCRIPTION_ITEM label="GlobalProperty">
         <SP>: This option may be used to specify how all the curves are
         plotted using more option than via <VERB>LineSpec</VERB>. It must
         always be a couple statement constituted of a string defining the
         <VERB>PropertyName</VERB>, and its associated value
         <VERB>PropertyValue</VERB> (which can be a string or an integer or...
         as well depending on the type of the <VERB>PropertyName</VERB>). Using
-        <VERB>PropertySpec</VERB>, you can set multiple properties : every
+        <VERB>GlobalProperty</VERB>, you can set multiple properties : every
         properties available via LineSpec and more : the marker color
         (foreground and background), the visibility, clipping and thickness of
         the curves. (see <LINK>GlobalProperty</LINK>)</SP>
@@ -302,7 +302,7 @@ leg.font_style = 9;
 leg.foreground = 6;
 a.isoview='off'; 
 
-//LineSpec and PropertySpec examples:
+//LineSpec and GlobalProperty examples:
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
