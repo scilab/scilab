@@ -27,11 +27,16 @@ function h=%s_i_h(i,v,h)
       end
     end
     if type(index)==15 then
-      hdl=hdl(index(:))
+      if get(hdl,'type')=="children" then
+	hdl=hdl(index(:))
+      else // the index is relative to the property
+	prop=get(hdl,i($))
+	prop(index(:))=v
+        v=prop
+      end
     else
       hdl=hdl(index)
     end
-
     set(hdl,i($),v)
   else
     error('Invalid path')

@@ -16,29 +16,24 @@ function %h_p(h)
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
-	 "polyline_style: "+string(h.polyline_style)
+	 "visible: "+string(h.visible)
+	 "data: "+d
+	 "line_style: "+string(h.line_style)
 	 "thickness: "+string(h.thickness)
+	 "polyline_style: "+string(h.polyline_style)
 	 "mark_mode: "+string(h.mark_mode)
 	 "mark_style: "+string(h.mark_style)
-	 "line_style: "+string(h.line_style)
-	 "fill_mode: "+string(h.fill_mode)
+	 "mark_size: "+string(h.mark_size)
 	 "foreground: "+string(h.foreground)
-	 "data: "+d
-	 "visible: "+string(h.visible)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box)]
       case "Patch"
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
-	 "thickness: "+string(h.thickness)
-	 "mark_mode: "+string(h.mark_mode)
-	 "mark_style: "+string(h.mark_style)
-	 "line_style: "+string(h.line_style)
-	 "fill_mode: "+string(h.fill_mode)
-	 "foreground: "+string(h.foreground)
-	 "data: "+d
 	 "visible: "+string(h.visible)
+	 "data: "+d
+	 "foreground: "+string(h.foreground)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box)]
       case "Agregation"
@@ -46,33 +41,34 @@ function %h_p(h)
 	 "children: "+sci2exp(h.children.type,0)]
       case "Axes"
       t=[t;
-	 "children: "+sci2exp(h.children.type,0)
-	 "foreground: "+string(h.foreground)
-	 "data: "+sci2exp(h.data,0)
 	 "visible: "+string(h.visible)
-	 ""
-	 "clip_state: "+string(h.clip_state)
-	 "clip_box: "+sci2exp(h.clip_box)
-	 ""
 	 "axes_visible: "+string(h.axes_visible)
 	 "grid: "+sci2exp(h.grid)
-	 "tight_limits: "+h.tight_limits
-	 "tics_color: "+string(h.tics_color)
-	 "tics_style: "+h.tics_style
-	 "tics_textsize: "+string(h.tics_textsize)
+	 "log_flags: "+h.log_flags
 	 "x_location: "+h.x_location
 	 "y_location: "+h.y_location
-	 "sub_tics: "+sci2exp(h.sub_tics)
-	 ""
-	 "log_flags: "+h.log_flags
+	 "tics_color: "+string(h.tics_color)
+	 "labels_font_size: "+string(h.labels_font_size)
+	 "labels_font_color: "+string(h.labels_font_color)
+	 "sub_tics: "+sci2exp(h.sub_tics,0)
+	 "tight_limits: "+h.tight_limits
+	 "data_bounds: "+sci2exp(h.data_bounds,0)
+	 "axes_bounds: "+sci2exp(h.axes_bounds,0)
+	 "foreground: "+string(h.foreground)
+	 "children: "+sci2exp(h.children.type,0)
+	 " "
 	 "auto_clear: "+h.auto_clear
 	 "auto_scale: "+h.auto_scale
-	 ""
-	 "mark_mode: "+string(h.mark_mode)
-	 "mark_style: "+string(h.mark_style)
+	 " "
 	 "line_style: "+string(h.line_style)
-	 "fill_mode: "+string(h.fill_mode)
-	 "pixel_drawing_mode: "+string(h.pixel_drawing_mode)
+	 "thickness: "+string(h.thickness)
+	 "fill_mode: "+h.fill_mode
+	 "mark_mode: "+string(h.mark_mode)
+	 "mark_style: "+sci2exp(h.mark_style,0)
+	 "mark_size: "+sci2exp(h.mark_size,0)
+	 "foreground: "+sci2exp(h.foreground,0)
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)
 	]
       case "Legend"
       t=[t;
@@ -91,6 +87,17 @@ function %h_p(h)
 	 "thickness: "+string(h.thickness)
 	 "mark_mode: "+string(h.mark_mode)
 	 "mark_style: "+string(h.mark_style)
+	 "mark_size: "+string(h.mark_size)
+	 "line_style: "+string(h.line_style)
+	 "fill_mode: "+string(h.fill_mode)
+	 "foreground: "+string(h.foreground)
+	 "data: "+sci2exp(h.data,0)
+	 "visible: "+string(h.visible)
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)]
+      case "Arc"
+      t=[t;
+	 "thickness: "+string(h.thickness)
 	 "line_style: "+string(h.line_style)
 	 "fill_mode: "+string(h.fill_mode)
 	 "foreground: "+string(h.foreground)
@@ -99,25 +106,34 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
       case "Figure"
+      c=sci2exp(h.children.type,0)
+      if length(c)>70 then c="matrix "+strcat(string(size(h.children)),'x'),end
       t=[t;
-	 "children: "+sci2exp(h.children.type,0)
+	 "figure_style: "+h.figure_style
 	 "figure_position: "+sci2exp(h.figure_position,0)
 	 "figure_size: "+sci2exp(h.figure_size,0)
+	 "axes_size: "+sci2exp(h.axes_size,0)
+	 "auto_resize: "+h.auto_resize
 	 "figure_name: "+h.figure_name
 	 "figure_id: "+sci2exp(h.figure_id,0)
-	 "axes_size: "+sci2exp(h.axes_size,0)
-	 "thickness: "+string(h.thickness)
-	 "mark_mode: "+string(h.mark_mode)
-	 "mark_style: "+string(h.mark_style)
-	 "line_style: "+string(h.line_style)
+         "color_map: matrix "+strcat(string(size(h.color_map)),'x')
 	 "background: "+string(h.background)
-	 "auto_clear: "+h.auto_clear
+	 "pixel_drawing_mode: "+sci2exp(h.pixel_drawing_mode,0)
+	 "children: "+c
+	 " "
 	 "auto_scale: "+h.auto_scale
+	 "auto_clear: "+h.auto_clear
 	 "visible: "+string(h.visible)
+	 "line_style: "+string(h.line_style)
+	 "thickness: "+string(h.thickness)
+	 "fill_mode: "+h.fill_mode
+	 "mark_mode: "+string(h.mark_mode)
+	 "mark_style: "+sci2exp(h.mark_style,0)
+	 "mark_size: "+sci2exp(h.mark_size,0)
+	 "foreground: "+sci2exp(h.foreground,0)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)
-	 "data: "+sci2exp(h.data,0)
-	 "color_map: matrix "+strcat(string(size(h.color_map)),'x')]
+	 ]
       case "Grayplot"
       t=[t;
 	 "visible: "+string(h.visible) 
@@ -137,8 +153,43 @@ function %h_p(h)
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
       case "Segs"
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      c=sci2exp(h.segs_color,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.segs_color)),'x'),end
+	
       t=[t;
 	 "visible: "+string(h.visible) 
+	 "data: "+d
+	 "line_style: "+string(h.line_style)
+	 "thickness: "+string(h.thickness)
+	 "arrow_size: "+string(h.arrow_size)
+	 "segs_color: "+c
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)]
+      case "Champ"
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      t=[t;
+	 "visible: "+string(h.visible) 
+	 "data: "+d
+	 "line_style: "+string(h.line_style)
+	 "thickness: "+string(h.thickness)
+	 "colored: "+h.colored
+	 "clip_state: "+string(h.clip_state)
+	 "clip_box: "+sci2exp(h.clip_box,0)]
+      case "Text"
+      t=sci2exp(h.text,0)
+      if length(t)>70 then d="string array '+strcat(string(size(h.text)),'x'),end
+      t=[t;
+	 "visible: "+string(h.visible) 
+	 "text: "+sci2exp(h.text,0)
+	 "data: "+sci2exp(h.data,0)
+	 "foreground: "+string(h.foreground)
+	 "font_style: "+string(h.font_style)
+	 "font_size: "+string(h.font_size)
+	 "font_angle: "+string(h.font_angle)
+	 "font_name: "+h.font_name
 	 "clip_state: "+string(h.clip_state)
 	 "clip_box: "+sci2exp(h.clip_box,0)]
       case "Plot3d"
