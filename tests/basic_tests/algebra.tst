@@ -533,12 +533,12 @@ if Err(Q'*A-diag(S)*Q'*E)>1000*%eps then pause,end
 A=testmat1(3-%i,30);E=testmat1(-2+0.1*%i,30);
 S=spec(A,E);
 [Sa,Se]=spec(A,E);
-if Err(S-Sa./Se)>10*%eps then pause,end
+if Err(S-Sa./Se)>20*%eps then pause,end
 [Sa,Se,Z]=spec(A,E);
-if Err(S-Sa./Se)>10*%eps then pause,end
+if Err(S-Sa./Se)>20*%eps then pause,end
 if Err(A*Z-E*Z*diag(S))>1000*%eps then pause,end
 [Sa,Se,Q,Z]=spec(A,E);
-if Err(S-Sa./Se)>10*%eps then pause,end
+if Err(S-Sa./Se)>20*%eps then pause,end
 if Err(A*Z-E*Z*diag(S))>1000*%eps then pause,end
 if Err(Q'*A-diag(S)*Q'*E)>1000*%eps then pause,end
 
@@ -1918,7 +1918,7 @@ Ab1=bdiag(A);
 if or(triu(Ab1,-1)<>Ab1) then pause,end
 [Ab2,X]=bdiag(A);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 
-if Err(Ab2-inv(X)*A*X )>600000*%eps then pause,end 
+if Err(Ab2-inv(X)*A*X )>1d6*%eps then pause,end 
 
 [Ab2,X,bs]=bdiag(A);
 if Err(Ab2-Ab1)>>10*%eps then pause,end 

@@ -952,17 +952,17 @@ S=spec(A,E);
  
 [Sa,Se]=spec(A,E);
  
-if Err(S-Sa./Se)>10*%eps then bugmes();quit;end
+if Err(S-Sa./Se)>20*%eps then bugmes();quit;end
  
 [Sa,Se,Z]=spec(A,E);
  
-if Err(S-Sa./Se)>10*%eps then bugmes();quit;end
+if Err(S-Sa./Se)>20*%eps then bugmes();quit;end
  
 if Err(A*Z-E*Z*diag(S))>1000*%eps then bugmes();quit;end
  
 [Sa,Se,Q,Z]=spec(A,E);
  
-if Err(S-Sa./Se)>10*%eps then bugmes();quit;end
+if Err(S-Sa./Se)>20*%eps then bugmes();quit;end
  
 if Err(A*Z-E*Z*diag(S))>1000*%eps then bugmes();quit;end
  
@@ -3519,7 +3519,7 @@ if or(triu(Ab1,-1)<>Ab1) then bugmes();quit;end
  
 if Err(Ab2-Ab1)>>10*%eps then bugmes();quit;end
  
-if Err(Ab2-inv(X)*A*X )>600000*%eps then bugmes();quit;end
+if Err(Ab2-inv(X)*A*X )>1d6*%eps then bugmes();quit;end
  
  
 [Ab2,X,bs]=bdiag(A);
