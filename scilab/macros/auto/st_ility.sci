@@ -12,9 +12,9 @@ typ='c';if dom<>'c' then typ='d',end
 if rhs==1 then 
   if [a,b]~=[] then reltol=1.d-10*norm([a,b],1);else reltol=0;end
   //[a,b,u,n]=contr(a,b,reltol);
-	[n,U,ind,V,a,b]=contr(a,b,reltol);
+	[n,u,ind,V,a,b]=contr(a,b,reltol);
          //else [a,b,u,n]=contr(a,b,tol);
-	else [n,U,ind,V,a,b]=contr(a,b,tol);
+	else [n,u,ind,V,a,b]=contr(a,b,tol);
 end;
 n=sum(n);nc=n;
 if lhs==4 then c=c*u;x0=u'*x0;end
