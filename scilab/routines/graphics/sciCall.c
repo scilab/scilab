@@ -297,13 +297,28 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   strcpy(loc,legend);
   
   legx=strtok(loc,"@");
-  sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
+  if(legx == NULL) {
+    char empty[]= "";
+    sciSetText(ppsubwin->mon_x_label, empty , strlen(empty));
+  }
+  else
+    sciSetText(ppsubwin->mon_x_label, legx , strlen(legx));
    
   legy=strtok((char *)0,"@");
+  if(legy == NULL) {
+    char empty[]= "";
+    sciSetText(ppsubwin->mon_y_label, empty , strlen(empty));
+  }
+  else
   sciSetText(ppsubwin->mon_y_label, legy , strlen(legy));
  
   legz=strtok((char *)0,"@");
-  sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
+  if(legz == NULL) {
+    char empty[]= "";
+    sciSetText(ppsubwin->mon_z_label, empty , strlen(empty));
+  }
+  else
+    sciSetText(ppsubwin->mon_z_label, legz , strlen(legz));
    
   /* Force psubwin->logflags to linear */
   pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
