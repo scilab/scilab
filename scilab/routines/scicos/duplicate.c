@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../stack-c.h"
 #include "../machine.h"
 
@@ -43,6 +44,12 @@ int C2F(intduplicate)(fname)
   GetRhsVar(1,"d",&m1,&n1,&l1);
   GetRhsVar(2,"d",&m2,&n2,&l2);
   n=m1*n1;
+  if (n==0) {
+    m3=0;
+    CreateVar(3, "d", &m3, &m3, &l3);
+    LhsVar(1) = 3;
+    return 0;
+  }
   if (n!=m2*n2) 
     {
       Scierror(999,"%s: 1st and 2nd argument must have equal size \r\n",fname);
