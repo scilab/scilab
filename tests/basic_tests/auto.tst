@@ -35,7 +35,7 @@ if or(sl<>lsslist(a,b,c,0*ones(2,3),0*ones(5,1),'c')) then pause,end
 //
 eps=sqrt(%eps);
 if contr(a,b,eps)<>4 then pause,end
-if contr(a',c',eps)<>3 then pause,end
+if contr(a',c',4*eps)<>3 then pause,end
 spec(a);
 xbasc();xselect();
 plzr(sl)

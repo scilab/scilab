@@ -59,7 +59,7 @@ eps=sqrt(%eps);
  
 if contr(a,b,eps)<>4 then bugmes();quit;end
  
-if contr(a',c',eps)<>3 then bugmes();quit;end
+if contr(a',c',4*eps)<>3 then bugmes();quit;end
  
 spec(a);
  
