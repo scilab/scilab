@@ -661,7 +661,7 @@ void grds(xminv, xmaxv, gr, nticks, thewidth, tst0, scal)
   /* printf("%e %e %e %e %e\n", *xmaxv-up, *scal, nup, width, *thewidth); */
   if (up<*xmaxv) {nup=ceil(*xmaxv/width);up=nup*width;}
   
-  *nticks= nup-nlow+1;
+  *nticks=(int) (nup-nlow+1);
   gr[0]=low;gr[*nticks-1]=up;
   for (k=1; k<*nticks-1; ++k)
     {

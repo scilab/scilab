@@ -32,8 +32,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2001/10/16 09:48:07 $
- *  $Revision: 1.2 $
+ *  $Date: 2005/01/08 21:19:21 $
+ *  $Revision: 1.3 $
  */
 
 
@@ -240,7 +240,9 @@
  *      the routines have been integrated in and are running smoothly, this
  *      option should be turned off.
  */
-
+#ifdef WIN32
+#undef delete
+#endif
 /* Begin options. */
 #define  REAL                           YES
 #define  EXPANDABLE                     YES
