@@ -38,8 +38,8 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak all
 cd ..\
 
-echo "Inside mex-examples\mex-with-so"
-cd mex-examples\mex-with-so
+echo "Inside mex-examples"
+cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak all
 cd ..\..\
 
@@ -70,8 +70,8 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak clean
 cd ..\
 
-echo "Inside mex-examples\mex-with-so"
-cd mex-examples\mex-with-so
+echo "Inside mex-examples"
+cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak clean 
 cd ..\..\
 
@@ -100,8 +100,8 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak distclean
 cd ..\
 
-echo "Inside mex-examples\mex-with-so"
-cd mex-examples\mex-with-so
+echo "Inside mex-examples"
+cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak distclean 
 cd ..\..\
 
@@ -130,8 +130,8 @@ cd link-examples-so
  nmake /nologo /C /f Makefile.mak tests
 cd ..\
 
-echo "Inside mex-examples\mex-with-so"
-cd mex-examples\mex-with-so
+echo "Inside mex-examples"
+cd mex-examples/cmex
  nmake /nologo /C /f Makefile.mak tests 
 cd ..\..\
 
