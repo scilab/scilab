@@ -39,13 +39,16 @@ c     .  specified number of lines
          endif
          li=ili+m+1
          istk(ili)=1
+         mr=m
          do 10 i=1,m
             call readnextline(lunit,buf,bsiz,mn,nr,info)
             if(info.eq.-1) then
-               err=i
-               call error(62)
-               if(.not.opened) call clunit(-lunit,buf,mode)
-               return
+               mr=i-1
+               goto 10
+c               err=i
+c               call error(62)
+c               if(.not.opened) call clunit(-lunit,buf,mode)
+c               return
             endif
             mn=max(0,mn-1)
             err=sadr(li+mn)-lstk(bot)
@@ -58,10 +61,23 @@ c     .  specified number of lines
             ili=ili+1
             istk(ili)=istk(ili-1)+mn
  10      continue
-         istk(il)=10
-         istk(il+1)=m
-         istk(il+2)=1
-         lstk(top+1)=sadr(li)
+         if(mr.eq.0) then
+            istk(il)=1
+            istk(il+1)=0
+            istk(il+2)=0
+            istk(il+3)=0
+            lstk(top+1)=sadr(il+4)
+         else
+            istk(il)=10
+            istk(il+1)=mr
+            istk(il+2)=1
+            if(mr.lt.m) then
+               nc=istk(il+4+mr)-1
+               call icopy(nc,istk(il+4+m+1),1,istk(il+4+mr+1),1)
+               li=il+4+mr+nc
+            endif
+            lstk(top+1)=sadr(li)
+         endif
       elseif(m.eq.0) then
          istk(il)=1
          istk(il+1)=0
