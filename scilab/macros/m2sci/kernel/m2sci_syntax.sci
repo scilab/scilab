@@ -82,6 +82,9 @@ for k=1:n
     ksym=kop(l)+offset+1
     while part(tk,ksym)==" "
       ksym=ksym+1
+      if ksym>length(tk) then
+	break
+      end
     end
     if part(tk,ksym)=="-" then
       endoftk=part(tk,ksym+1+offset:length(tk))
@@ -102,6 +105,9 @@ for k=1:n
     ksym=kop(l)+offset+1
     while part(tk,ksym)==" "
       ksym=ksym+1
+      if ksym>length(tk) then
+	break
+      end
     end
     if part(tk,ksym)=="+" then
       tk=part(tk,1:ksym-1)+part(tk,ksym+1:length(tk))
