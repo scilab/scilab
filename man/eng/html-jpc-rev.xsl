@@ -15,7 +15,7 @@
  <body bgcolor="#FFFFFF">
  <center><xsl:value-of select="./TYPE"/></center>
  <xsl:for-each select="./SHORT_DESCRIPTION">
-   <p><b><xsl:value-of select="@name"/></b> - <xsl:value-of select="text()"/></p>
+   <p><b><xsl:value-of select="@name"/></b> - <xsl:apply-templates/></p>
  </xsl:for-each>
  <xsl:apply-templates/>
  </body>

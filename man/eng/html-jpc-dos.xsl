@@ -13,7 +13,7 @@
         <CENTER><xsl:value-of select="./TYPE"/></CENTER>
 	<P></P>
 <xsl:for-each select="./SHORT_DESCRIPTION">
-	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b>- <xsl:value-of select="text()"/></td></tr></table>
+	<table width="100%" bgcolor="lightblue"><tr><td><b><tt><xsl:value-of select="@name"/></tt></b>- <xsl:apply-templates/></td></tr></table>
 </xsl:for-each>
 
 <xsl:if test="./CALLING_SEQUENCE">
