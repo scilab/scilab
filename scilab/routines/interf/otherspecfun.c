@@ -84,12 +84,12 @@ static intlegendre(char *fname)
    *      norm_flag : optionnal. When it is present and equal to "norm"
    *                  it is a normalised version which is computed
     */
-  int minlhs=1, maxlhs=1, minrhs=3, maxrhs=4;
   int it, lc, mM, nM, lM, m1, m2, mN, nN, lN, n1, n2, mx, nx, lx, mnx, ms, ns, ls;
   int M_is_scalar = 0, N_is_scalar = 0, normalised, MNp1, lpqa, lipqa, *ipqa;
   double *x,/* theta,*/ xx, dnu1, *pqa;
   int id, ierror, i, j, nudiff;
 
+  CheckLhs(1,1); CheckRhs(3,4);
   GetRhsVar(1, "d", &mN, &nN, &lN);
 
   if ( ! verify_cstr(stk(lN), mN*nN, &n1, &n2) )
@@ -210,11 +210,11 @@ static intbeta(char *fname)
    *   The switch limit have been set by using the gp-pari software.
    *
    */
-  int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2;
   int mx, nx, itx, lx, lxc, my, ny, ity, ly, lyc,/* it,*/ lz, i;
   double *x, *y, *z, xpy;
   double switch_limit = 2;
 
+  CheckLhs(1,1); CheckRhs(2,2);
   GetRhsCVar(1, "d", &itx, &mx, &nx, &lx, &lxc); x = stk(lx);
   GetRhsCVar(2, "d", &ity, &my, &ny, &ly, &lyc); y = stk(ly);
   CheckSameDims(1,2,mx,nx,my,ny);
