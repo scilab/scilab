@@ -29,6 +29,7 @@ PROTO11 = sci_dos.sci sci_unix.sci
 PROTO12 = sci_who.sci sci_whos.sci
 PROTO13 = sci_all.sci sci_any.sci
 PROTO14 = sci_acos.sci
+PROTO15 = sci_nargin.sci sci_nargout.sci
 
 OTHERS = sci_atan2.sci sci_balance.sci sci_break.sci sci_cd.sci sci_cell.sci sci_chol.sci sci_clear.sci sci_clock.sci sci_continue.sci \
          sci_cputime.sci sci_det.sci sci_diag.sci sci_diary.sci sci_diff.sci sci_dir.sci sci_display.sci sci_disp.sci \
@@ -46,7 +47,7 @@ OTHERS = sci_atan2.sci sci_balance.sci sci_break.sci sci_cd.sci sci_cell.sci sci
 MACROS = $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
          $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
          $(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14) \
-	 $(OTHERS)
+	 $(PROTO15) $(OTHERS)
 
 
 

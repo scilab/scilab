@@ -15,6 +15,7 @@ PROTO11 = sci_dos.sci sci_unix.sci
 PROTO12 = sci_who.sci sci_whos.sci
 PROTO13 = sci_all.sci sci_any.sci
 PROTO14 = sci_acos.sci 
+PROTO15 = sci_nargin.sci sci_nargout.sci
 
 # Files generated from file : sci_PROTO0.g
 sci_abs.sci: sci_PROTO0.g
@@ -158,12 +159,19 @@ sci_all.sci: sci_PROTO13.g
 sci_acos.sci: sci_PROTO14.g
 	@./GEN $? acos acos > $@
 
+# Files generated from file : sci_PROTO15.g
+sci_nargin.sci: sci_PROTO15.g
+	@./GEN $? nargin nargin > $@
+sci_nargout.sci: sci_PROTO15.g
+	@./GEN $? nargout nargout > $@
+
 all: $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) \
 	$(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) \
-	$(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14)
+	$(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14) \
+	$(PROTO15)
 
 distclean ::
-	-rm -f $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) $(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14)
+	-rm -f $(PROTO0) $(PROTO1) $(PROTO2) $(PROTO3) $(PROTO4) $(PROTO5) $(PROTO6) $(PROTO7) $(PROTO8) $(PROTO9) $(PROTO10) $(PROTO11) $(PROTO12) $(PROTO13) $(PROTO14) $(PROTO15)
 
 
 
