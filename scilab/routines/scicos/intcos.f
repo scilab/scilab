@@ -82,6 +82,13 @@ c       --   subvariable outtb(state) --
         n1e8 = istk(il1e8+1)
         nout = n1e8
         l1e8 = sadr(il1e8+4)
+
+c      
+c       --   subvariable mod(state) --
+        il1e9=iadr(l1+istk(il1+10)-1)
+        n1e9 = istk(il1e9+1)
+        l1e9 = sadr(il1e9+4)
+
 c       checking variable tcur (number 2)
 c       
         il2 = iadr(lstk(top-rhs+2))
@@ -303,6 +310,14 @@ c       --   subvariable labels(sim) --
            nlab=1
            call iset(n4e30,1,istk(labptr),1)
         endif
+
+c       --   subvariable modptr(sim) --
+        il4e31=iadr(l4+istk(il4+32)-1)
+        n4e31 = istk(il4e31+1)
+        l4e31 = sadr(il4e31+4)
+c      
+c 
+
 c
 c       checking variable flag (number 5)
         il5 = iadr(lstk(top-rhs+5))
@@ -420,7 +435,7 @@ c       cross equal output variable checking
 c       not implemented yet
         call entier(n4e3,stk(l4e3),istk(iadr(l4e3)))
         call entier(n4e4,stk(l4e4),istk(iadr(l4e4)))
-c        call entier(n1e4,stk(l1e4),istk(iadr(l1e4)))
+        call entier(n1e9,stk(l1e9),istk(iadr(l1e9)))
         call entier(n4e5,stk(l4e5),istk(iadr(l4e5)))
         call entier(n1e6,stk(l1e6),istk(iadr(l1e6)))
         call entier(n4e6,stk(l4e6),istk(iadr(l4e6)))
@@ -433,7 +448,7 @@ c        call entier(n1e4,stk(l1e4),istk(iadr(l1e4)))
         call entier(n4e14,stk(l4e14),istk(iadr(l4e14)))
         call entier(n4e15,stk(l4e15),istk(iadr(l4e15)))
         call entier(n4e16,stk(l4e16),istk(iadr(l4e16)))
-c        call entier(n4e17*m4e17,stk(l4e17),istk(iadr(l4e17)))
+        call entier(n4e31,stk(l4e31),istk(iadr(l4e31)))
         call entier(n4e18*m4e18,stk(l4e18),istk(iadr(l4e18)))
         call entier(n4e19*m4e19,stk(l4e19),istk(iadr(l4e19)))
         call entier(n4e20*m4e20,stk(l4e20),istk(iadr(l4e20)))
@@ -523,6 +538,7 @@ c
 c
         call scicos(stk(l1e2),istk(iadr(l4e3)),stk(l1e3),
      $       stk(l1e4),istk(ilinp),
+     $       istk(iadr(l1e9)),istk(iadr(l4e31)),
      &       istk(llab),istk(labptr),stk(l2),stk(l3),stk(l1e5),
      $       istk(iadr(l1e6)),n1e5,pointi,stk(l1e8),nout,
      $       istk(lfunpt),istk(iadr(l4e28)),istk(linpptr),
@@ -590,6 +606,8 @@ c     change iz to double
 c           call int2db(n1e4,istk(iadr(l1e4)),-1,stk(l1e4),-1)
 c     change evtspt to double
            call int2db(n1e6,istk(iadr(l1e6)),-1,stk(l1e6),-1)
+c     change mod to double
+           call int2db(n1e9,istk(iadr(l1e9)),-1,stk(l1e9),-1)
            top=top+1
         endif
 c     

@@ -133,7 +133,7 @@ static integer *block_error;
 
 /* Subroutine */ 
 int C2F(scicos)
-     (x_in, xptr_in, z__, work,zptr, iz, izptr, t0_in, tf_in, tevts_in, 
+     (x_in, xptr_in, z__, work,zptr,mod,modptr, iz, izptr, t0_in, tf_in, tevts_in, 
       evtspt_in, nevts, pointi_in, outtb_in, nout1, funptr, funtyp_in, inpptr_in, outptr_in, 
       inplnk_in, outlnk_in, lnkptr_in, nlnkptr, rpar, rpptr, ipar, ipptr, clkptr_in, 
       ordptr_in, nordptr1, ordclk_in, cord_in, ncord1, iord_in, niord1, oord_in, noord1, 
@@ -141,6 +141,7 @@ int C2F(scicos)
       flag__, ierr_out)
      double *x_in,*z__;
      void **work;
+     integer *mod,*modptr;
      integer *xptr_in;
      integer *zptr, *iz, *izptr;
      double *t0_in, *tf_in, *tevts_in;
@@ -412,7 +413,12 @@ int C2F(scicos)
     }
     
     Blocks[kf].work=(void **)(((double *)work)+kf);
-    Blocks[kf].mode=0;
+    if (modptr[kf]==0) {
+      Blocks[kf].mode=NULL;
+    } else {
+      Blocks[kf].mode=&(mod[modptr[kf]-1]);
+    }
+    Blocks[kf].nmode=modptr[kf+nblk];
   }
 
 
@@ -423,7 +429,7 @@ int C2F(scicos)
   }
 
 
-  C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1], iz, &izptr[1], 
+  C2F(makescicosimport)(x, &xptr[1], &zcptr[1], z__, &zptr[1],mod,&modptr[1], iz, &izptr[1], 
 			&inpptr[1], &inplnk[1], &outptr[1], &outlnk[1], &lnkptr[1], 
 			nlnkptr, rpar, &rpptr[1], ipar, &ipptr[1], &nblk, outtb, 
 			&nout, subscr, nsubs, &tevts[1], &evtspt[1], nevts, pointi, 
@@ -1116,7 +1122,7 @@ int C2F(scicos)
 		  }
 		  /*     .              update state */
 		  if (Blocks[C2F(curblk).kfun-1].nx +
-		      Blocks[C2F(curblk).kfun-1].mode > 0) {
+		      Blocks[C2F(curblk).kfun-1].nmode > 0) {
 		    /*     .              call corresponding block to update state */
 		    flag__ = 2;
 		    nclock = -kev;
@@ -1155,7 +1161,7 @@ int C2F(scicos)
 		      }
 		    }
 		  }
-		  Blocks[C2F(curblk).kfun - 1].mode=i;
+		  Blocks[C2F(curblk).kfun - 1].mode[0]=i;
 		  /* a decider si il faut propager initialisation par synchors
 		  i3=i+ clkptr[C2F(curblk).kfun] - 1;
 		  putevs(told, &i3, &ierr1);*/
@@ -1705,7 +1711,7 @@ int C2F(scicos)
 		  }
 		  /*     .              update state */
 		  if (Blocks[C2F(curblk).kfun-1].nx +
-		      Blocks[C2F(curblk).kfun-1].mode> 0) {
+		      Blocks[C2F(curblk).kfun-1].nmode> 0) {
 		    /*     .              call corresponding block to update state */
 		    flag__ = 2;
 		    nclock = -kev;
@@ -1740,7 +1746,7 @@ int C2F(scicos)
 		      }
 		    }
 		  }
-		  Blocks[C2F(curblk).kfun - 1].mode=i;
+		  Blocks[C2F(curblk).kfun - 1].mode[0]=i;
 		  /* a decider
 		  i3 = i + clkptr[C2F(curblk).kfun] - 1;
 		  putevs(told, &i3, &ierr1);*/
@@ -2125,6 +2131,11 @@ int C2F(scicos)
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
 	++(*urg);
+
+	/* update mode due to event */
+	Blocks[C2F(curblk).kfun - 1].mode[0] = i;
+	/*  end change */
+
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -2185,7 +2196,7 @@ int C2F(scicos)
 	++urg;
 	/*i2 = Blocks[C2F(curblk).kfun - 1].nevout + clkptr[C2F(curblk).kfun] - 1;*/
 
-	i2 = Blocks[C2F(curblk).kfun - 1].mode + clkptr[C2F(curblk).kfun] - 1;
+	i2 = Blocks[C2F(curblk).kfun - 1].mode[0] + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
@@ -2276,7 +2287,7 @@ int C2F(scicos)
 		  Blocks[C2F(curblk).kfun - 1].nevout),1);
       }
       ++urg;
-      Blocks[C2F(curblk).kfun - 1].mode=i;
+      Blocks[C2F(curblk).kfun - 1].mode[0]=i;
       i2 =i+ clkptr[C2F(curblk).kfun] - 1;
       putevs(told, &i2, &ierr1);
       if (ierr1 != 0) {
@@ -2292,7 +2303,7 @@ int C2F(scicos)
   /*     .  re-initialize */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
-    if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].mode > 0) {
+    if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nmode > 0) {
       flag__ = 7;
       nclock = oord[ii + noord];
       pointer_xproperty=&scicos_xproperty[-1+xptr[C2F(curblk).kfun]];
@@ -2310,7 +2321,7 @@ int C2F(scicos)
     keve = iwa[i];
     for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
       C2F(curblk).kfun = ordclk[ii ];
-      if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].mode > 0) {
+      if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nmode > 0) {
 	flag__ = 7;
 	nclock = abs(ordclk[ii + nordclk]);
 	n_pointer_xproperty=Blocks[C2F(curblk).kfun-1].nx;
@@ -2383,7 +2394,7 @@ int C2F(scicos)
 	  }else{
 	   /* Blocks[C2F(curblk).kfun - 1].nevout=
 	      mode[C2F(curblk).kfun - 1];*/
-	    i=Blocks[C2F(curblk).kfun - 1].mode;
+	    i=Blocks[C2F(curblk).kfun - 1].mode[0];
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1){
@@ -2394,7 +2405,7 @@ int C2F(scicos)
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }else{
 	    /*Blocks[C2F(curblk).kfun - 1].nevout=*/
-	    i=Blocks[C2F(curblk).kfun - 1].mode;
+	    i=Blocks[C2F(curblk).kfun - 1].mode[0];
 	     
 	  }
 	}
@@ -2464,7 +2475,7 @@ int C2F(scicos)
 	  }else{
 	   /* Blocks[C2F(curblk).kfun - 1].nevout=
 	      mode[C2F(curblk).kfun - 1];*/
-	    i=Blocks[C2F(curblk).kfun - 1].mode;
+	    i=Blocks[C2F(curblk).kfun - 1].mode[0];
 	  }
 	} else if (funtyp[C2F(curblk).kfun] == -2) {
 	  if (phase==1){
@@ -2475,7 +2486,7 @@ int C2F(scicos)
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
 	  }else{
 	    /*Blocks[C2F(curblk).kfun - 1].nevout=*/
-	    i=Blocks[C2F(curblk).kfun - 1].mode;
+	    i=Blocks[C2F(curblk).kfun - 1].mode[0];
 	  }
 	}
 	++(urg);
@@ -2531,29 +2542,29 @@ int C2F(scicos)
       if (funtyp[C2F(curblk).kfun] > 0) {
 	flag__ = 9;
 	nclock = zord[ii +nzord];
-	mode_save=Blocks[C2F(curblk).kfun - 1].mode;
+/*TO CHECK LATER (not neede if do_cold_restart is used)	mode_save=Blocks[C2F(curblk).kfun - 1].mode;*/
 
 	callf(told, xtd, xt, xtd,g,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
 	  return;
 	}
-	if(mode_save != Blocks[C2F(curblk).kfun - 1].mode){
+/*TO CHECK LATER	if(mode_save != Blocks[C2F(curblk).kfun - 1].mode){
 	  hot=0;
-	}
+	}*/
       }else{
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  g[zcptr[C2F(curblk).kfun]-1]=outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]];
 	  if(phase==1){
 	    if (g[zcptr[C2F(curblk).kfun]-1] <= 0.) {
-	      if(Blocks[C2F(curblk).kfun - 1].mode != 2){
+	      if(Blocks[C2F(curblk).kfun - 1].mode[0] != 2){
 		hot=0;
-		Blocks[C2F(curblk).kfun - 1].mode = 2;
+		Blocks[C2F(curblk).kfun - 1].mode[0] = 2;
 	      }
 	    } else {
-	      if(Blocks[C2F(curblk).kfun - 1].mode != 1){
+	      if(Blocks[C2F(curblk).kfun - 1].mode[0] != 1){
 		hot=0;
-		Blocks[C2F(curblk).kfun - 1].mode = 1;
+		Blocks[C2F(curblk).kfun - 1].mode[0] = 1;
 	      }
 	    }
 	  }
@@ -2567,9 +2578,9 @@ int C2F(scicos)
 	    j=max(min((integer) 
 		      outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		      Blocks[C2F(curblk).kfun - 1].nevout),1);
-	    if(Blocks[C2F(curblk).kfun - 1].mode != j){
+	    if(Blocks[C2F(curblk).kfun - 1].mode[0] != j){
 	      hot=0;
-	      Blocks[C2F(curblk).kfun - 1].mode= j;
+	      Blocks[C2F(curblk).kfun - 1].mode[0]= j;
 	    }
 	  }
 	}
@@ -2584,29 +2595,29 @@ int C2F(scicos)
 	if (funtyp[C2F(curblk).kfun] > 0) {
 	  flag__ = 9;
 	  nclock = abs(ordclk[ii + nordclk]);
-	  mode_save = Blocks[C2F(curblk).kfun-1].mode;
+	  /*	  mode_save = Blocks[C2F(curblk).kfun-1].mode;*/
 	  callf(told, xtd, xt, xtd,g,&flag__);
 	  
 	  if (flag__ < 0) {
 	    *ierr = 5 - flag__;
 	    return;
 	  }
-	  if(mode_save != Blocks[C2F(curblk).kfun-1].mode){
+	 /* if(mode_save != Blocks[C2F(curblk).kfun-1].mode){
 	    hot=0;
-	  }
+	  }*/
 	}else{
 	  if (funtyp[C2F(curblk).kfun] == -1) {
 	    g[zcptr[C2F(curblk).kfun]-1]=outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]];
 	    if(phase==1){
 	      if (g[zcptr[C2F(curblk).kfun]-1] <= 0.) {
-		if(Blocks[C2F(curblk).kfun - 1].mode != 2){
+		if(Blocks[C2F(curblk).kfun - 1].mode[0] != 2){
 		  hot=0;
-		  Blocks[C2F(curblk).kfun - 1].mode = 2;
+		  Blocks[C2F(curblk).kfun - 1].mode[0] = 2;
 		}
 	      } else {
-		if(Blocks[C2F(curblk).kfun - 1].mode != 1){
+		if(Blocks[C2F(curblk).kfun - 1].mode[0] != 1){
 		  hot=0;
-		  Blocks[C2F(curblk).kfun - 1].mode = 1;
+		  Blocks[C2F(curblk).kfun - 1].mode[0] = 1;
 		}
 	      }
 	    }
@@ -2620,9 +2631,9 @@ int C2F(scicos)
 	      j=max(min((integer) 
 			outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 			Blocks[C2F(curblk).kfun - 1].nevout),1);
-	      if(Blocks[C2F(curblk).kfun - 1].mode != j){
+	      if(Blocks[C2F(curblk).kfun - 1].mode[0] != j){
 		hot=0;
-		Blocks[C2F(curblk).kfun - 1].mode= j;
+		Blocks[C2F(curblk).kfun - 1].mode[0]= j;
 	      }
 	    }
 	  }

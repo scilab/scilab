@@ -38,6 +38,7 @@ case 'define' then
   model.blocktype='l'
   model.firing=[-1 -1]
   model.dep_ut=[%t %f]
+  model.nmode=1
   
   gr_i=['txt=[''If in>0'';'' '';'' then    else''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']

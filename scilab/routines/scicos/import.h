@@ -5,6 +5,8 @@ typedef struct {
   integer* zcptr;  /* vector of pointers on block zero crosses */
   double* z;      /* discrete state */
   integer* zptr;  /* vector of pointers on block states */
+  integer* mod;      /* modes of the blocks */
+  integer* modptr;  /* vector of pointers */
   integer* iz;      /* unused */
   integer* izptr;  /* vector of pointers on iz */
   integer* inpptr; /* vector of pointers on block inputs */

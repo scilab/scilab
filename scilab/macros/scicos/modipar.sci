@@ -53,7 +53,7 @@ function [%state0,state,sim]=modipar(newparameters,%state0,state,sim,scs_m,cor)
     else
       statekd=[]
       om=o.model
-      [fun,statek,dstatek,rpark,ipark,nscross]=(om.sim,om.state,om.dstate,om.rpar,om.ipar,om.nzcross);
+      [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
       if type(fun)==15 then
 	if (fun(2)==3 | fun(2)==5 |  fun(2)==10005) then 
 	  if rpark<>[] then rpark=var2vec(rpark); end

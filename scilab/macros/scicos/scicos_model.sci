@@ -1,4 +1,4 @@
-function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15)
+function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16)
 //initialisation de model mlist
   if exists('sim','local')==0 then sim='',end
   if exists('in','local')==0 then in=[],end
@@ -14,11 +14,12 @@ function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15)
   if exists('dep_ut','local')==0 then dep_ut=[%f %f],end
   if exists('label','local')==0 then label='',end
   if exists('nzcross','local')==0 then nzcross=0,end
+  if exists('nmode','local')==0 then nmode=0,end
   if exists('equations','local')==0 then equations=list(),end
   
   model=mlist(['model','sim','in','out','evtin','evtout','state','dstate',..
 	       'rpar','ipar','blocktype','firing','dep_ut','label','nzcross',..
-	       'equations'],..
+	       'nmode','equations'],..
 	      sim,in,out,evtin,evtout,state,dstate,..
-	      rpar,ipar,blocktype,firing,dep_ut,label,nzcross,equations)
+	      rpar,ipar,blocktype,firing,dep_ut,label,nzcross,nmode,equations)
 endfunction

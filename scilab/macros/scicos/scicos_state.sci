@@ -1,4 +1,4 @@
-function state=scicos_state(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
+function state=scicos_state(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11)
 //initialisation de state mlist
   if exists('x','local')==0 then x=[],end
   if exists('z','local')==0 then z=[],end
@@ -6,7 +6,8 @@ function state=scicos_state(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
   if exists('tevts','local')==0 then tevts=[],end
   if exists('evtspt','local')==0 then evtspt=[],end
   if exists('pointi','local')==0 then pointi=1,end
-  if exists('outtb','local')==0 then outtb,end
-  state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb'],..
-	    x,z,iz,tevts,evtspt,pointi,outtb)
+  if exists('outtb','local')==0 then outtb=[],end
+  if exists('mod','local')==0 then mod=[],end
+  state=tlist(['xcs','x','z','iz','tevts','evtspt','pointi','outtb','mod'],..
+	    x,z,iz,tevts,evtspt,pointi,outtb,mod)
 endfunction

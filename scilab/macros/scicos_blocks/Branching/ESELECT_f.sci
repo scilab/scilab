@@ -39,7 +39,8 @@ case 'define' then
   model.blocktype='l'
   model.firing=-ones(out,1);
   model.dep_ut=[%f %f]
-  
+   model.nmode=1
+   
   gr_i=['txt=[''event select''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
   exprs=string(2)

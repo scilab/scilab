@@ -29,7 +29,8 @@ typedef struct {
   int *jroot;
   char *label;
   void **work;
-  int mode;
+  int nmode;
+  int *mode;
 } scicos_block;
 
 

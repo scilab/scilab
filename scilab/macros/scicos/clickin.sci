@@ -80,7 +80,7 @@ if typeof(o)=='Block' then
 	  // type 'c','d','z','l' or dep_ut changed
 	  needcompile=4
 	end
-	if (model.nzcross<>model_n.nzcross) then 
+	if (model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
 	  // size of zero cross changed
 	  needcompile=4
 	end

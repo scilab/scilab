@@ -14,6 +14,8 @@ ScicosImport  scicos_imp={
 (integer *) NULL,  /* zcptr */
 (double *) NULL,   /* z */
 (integer *) NULL,  /* zptr */
+(integer *) NULL,   /* mod */
+(integer *) NULL,  /* modptr */
 (integer *) NULL,  /* iz */
 (integer *) NULL,  /* izptr */
 
@@ -51,7 +53,7 @@ ScicosImport  scicos_imp={
 };
 
 void  
-C2F(makescicosimport)(x,xptr,zcptr,z,zptr,iz,izptr,
+C2F(makescicosimport)(x,xptr,zcptr,z,zptr,mod,modptr,iz,izptr,
      inpptr,inplnk,outptr,outlnk,lnkptr,nlnkptr,
      rpar,rpptr,ipar,ipptr,nblk,outtb,nout,subs,nsubs,
      tevts,evtspt,nevts,pointi,oord,zord,
@@ -68,6 +70,8 @@ integer *evtspt,*nevts,*pointi,*oord,*zord,*funptr,*funtyp,*ztyp,*cord,*ordclk,*
     scicos_imp.zcptr=zcptr;
     scicos_imp.z=z;
     scicos_imp.zptr=zptr;
+    scicos_imp.mod=mod;
+    scicos_imp.modptr=modptr;
     scicos_imp.iz=iz;
     scicos_imp.izptr=izptr;
 
@@ -118,6 +122,8 @@ C2F(clearscicosimport)()
     scicos_imp.zcptr=(integer *) NULL;
     scicos_imp.z=(double *) NULL;
     scicos_imp.zptr=(integer *) NULL;
+    scicos_imp.mod=(double *) NULL;
+    scicos_imp.modptr=(integer *) NULL;
     scicos_imp.iz=(integer *) NULL;
     scicos_imp.izptr=(integer *) NULL;
 
