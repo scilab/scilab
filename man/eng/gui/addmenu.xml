@@ -18,39 +18,48 @@
     : a character string. The button name. On Windows operating systems (not X_window), an &amp; can be placed before the character in the name to be used for keyboard shortcut; this character will be underlined on the GUI. 
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>submenus  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : a vector of character string. The sub_menus items names
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
+
   <PARAM_ITEM>
   <PARAM_NAME>action  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : a list with 2 elements action=list(flag,proc_name)
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>flag  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : an integer (default value is 0)
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- <PARAM_INDENT>
-  <PARAM_ITEM>
-  <PARAM_NAME>flag==0  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : the action is defined by a scilab instruction
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
-  <PARAM_ITEM>
-  <PARAM_NAME>flag==1  </PARAM_NAME>
-  <PARAM_DESCRIPTION>
-    : the action is defined by a C or Fortran procedure
-  </PARAM_DESCRIPTION> 
-  </PARAM_ITEM>
- </PARAM_INDENT>
+
+    <PARAM_INDENT>
+    <PARAM_ITEM>
+	  <PARAM_NAME>flag  </PARAM_NAME>
+	  <PARAM_DESCRIPTION>
+          : an integer (default value is 0)
+          </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    <PARAM_INDENT>
+    <PARAM_ITEM>
+	    <PARAM_NAME>flag==0  </PARAM_NAME>
+	    <PARAM_DESCRIPTION>
+            : the action is defined by a scilab instruction
+            </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    <PARAM_ITEM>
+    <PARAM_NAME>flag==1  </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       : the action is defined by a C or Fortran procedure
+     </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+   <PARAM_ITEM>
+    <PARAM_NAME>flag==2  </PARAM_NAME>
+    <PARAM_DESCRIPTION>
+       : the action is defined by a scilab function
+     </PARAM_DESCRIPTION> 
+    </PARAM_ITEM>
+    </PARAM_INDENT>
   <PARAM_ITEM>
   <PARAM_NAME>proc_name  </PARAM_NAME>
   <PARAM_DESCRIPTION>
@@ -71,42 +80,47 @@
     The function allows the user to add new buttons or menus in the main
     window or graphics windows command panels.
   </P>
-  <P>
-    If <VERB>action</VERB> is not given the action associated with a button must
-    be defined by a scilab instruction given by the character string
-    variable which name is  
-  </P>
- 
 
-  <DESCRIPTION_ITEM  label='button'> 
-    for a main window command
-  </DESCRIPTION_ITEM>
+   <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM label='If'>
+    action argument is not given the action associated
+    with a button must be defined by a scilab instruction given by the
+    character string variable which name is
 
-  <DESCRIPTION_ITEM  label='button_gwin'> 
-    for a graphic window command
-  </DESCRIPTION_ITEM>
-  <P>
-    If <VERB>proc_name</VERB> designes a C or Fortran procedure, this procedure
-    may be interfaced in Fortran subroutine default/fbutn.f or dynamically
-    linked with scilab using the <VERB>link function</VERB>. the calling sequence
-    is in C: <VERB>(char* name, int* win,int *entry)</VERB>
-  </P>
-  <P>
-  </P>
-  <P>
-    Actions associated with the kth sub_menu must be defined by  scilab
-    instructions stored in the kth element of the character string
-    variable which name is  
-  </P>
+   <DESCRIPTION_INDENT>
 
-  <DESCRIPTION_ITEM  label='button'> 
-    for a main window command
-  </DESCRIPTION_ITEM>
+     <P> +  <VERB>button</VERB> for a main window command</P>
+     <P> +  <VERB>button_gwin</VERB> for a graphic window command</P>
+   </DESCRIPTION_INDENT>
+   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='button_gwin'> 
-    for a graphic window command
-  </DESCRIPTION_ITEM>
- 
+    <DESCRIPTION_ITEM label='If'>
+    action argument is set to 0 <P><VERB>proc_name</VERB>
+    should be the name of a Scilab string vector.  Actions associated
+    with the kth sub_menu must be defined by scilab instructions
+    stored in the kth element of the character string variable.</P>
+    </DESCRIPTION_ITEM>
+    
+    <DESCRIPTION_ITEM label='If'>
+     action argument is set to 1 <P><VERB>proc_name</VERB>
+    designes a C or Fortran procedure, this procedure may be
+    interfaced in Fortran subroutine default/fbutn.f or dynamically
+    linked with scilab using the <VERB>link </VERB> function. The C
+    calling sequence is: </P> <P><VERB>(char* button_name, int* gwin,int
+    *k)</VERB></P>
+    </DESCRIPTION_ITEM>
+    <DESCRIPTION_ITEM label='If'>
+    action argument is set to 2 <P><VERB>proc_name</VERB>
+    designes a Scilab function. This function calling sequence should
+    be:</P>
+    <DESCRIPTION_INDENT>
+    <P> +  <VERB>proc_name(k)</VERB>for a main window command</P>
+    <P> +  <VERB>proc_name(k,gwin)</VERB>for a graphic window
+    commandor a main window command</P>
+    </DESCRIPTION_INDENT>
+   </DESCRIPTION_ITEM>
+   </DESCRIPTION_INDENT>
+
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 addmenu('foo')
