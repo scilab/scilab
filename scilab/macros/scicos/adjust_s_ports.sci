@@ -103,20 +103,9 @@ if nclkout>0 then
   cout=cout(k)
 end
 if ok then
-  
-  [model,graphics,ok]=check_io(model,graphics,in,out,cin,cout)
+  [model,graphics,ok]=check_io(model,graphics,in,out,cin,cout,in_implicit,out_implicit)
 else
   message(mess)
-end
-I='E';
-graphics.in_implicit=I(ones(model.in));
-graphics.out_implicit=I(ones(model.out));
-for i=1:length(in_implicit)
-  graphics.in_implicit(in_implicit(i))='I'
-end
-
-for i=1:length(out_implicit)
-  graphics.out_implicit(out_implicit(i))='I'
 end
 
 if ok then

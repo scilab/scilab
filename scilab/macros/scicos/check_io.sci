@@ -1,4 +1,4 @@
-function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
+function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout,in_implicit,out_implicit)
 // check_io first check if given number of ports agree with block connection
 // and then changes block structure
 //%parameters
@@ -8,12 +8,16 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
 // nout    : new output ports sizes
 // nclkin  : new event input ports sizes
 // nclkout : new event output ports sizes
+// in_impl : index of implicit input ports, the other ports are supposed to be explicit
+// out_impl: index of implicit output ports , the other ports are supposed to be explicit
 // ok      : error flag
 //           ok==%f : some of input parameters are incorrects or
 //                    attempt to add/delete ports when some are connected
 //           ok==%t  : changes of block structure has been performed
 //!
 // Copyright INRIA
+  if argn(2)<=6 then in_implicit=[],out_implicit=[],end
+// check_io first check if given number of ports agree with block connection
   in=int(in(:));nin=size(in,1)
 
   out=int(out(:));nout=size(out,1);
@@ -39,7 +43,7 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
 
 
   [label,ip1,op1,cip1,cop1]=(graphics.exprs,graphics.pin,graphics.pout,..
-			     graphics.pein,graphics.peout)
+					    graphics.pein,graphics.peout)
 
   [in1,out1,clkin1,clkout1]=(model.in,model.out,model.evtin,model.evtout)
 
@@ -91,22 +95,44 @@ function [model,graphics,ok]=check_io(model,graphics,in,out,clkin,clkout)
     cop1=[cop1;zeros(n-n1,1)];
   end
 
+  I='E';
+  in_impl=I(ones(ip1)); in_impl(in_implicit)='I';
+  k=find(ip1<>0) //connected links
+  
+  if graphics.in_implicit<>[]&or(graphics.in_implicit(k)<>in_impl(k)) then
+    message('Connected ports types cannot be changed')
+    ok=%f
+    return
+  end
+  
+  out_impl=I(ones(op1));  out_impl(out_implicit)='I';
+  k=find(op1<>0) //connected links
+  if graphics.out_implicit<>[]&or(graphics.out_implicit(k)<>out_impl(k)) then
+    message('Connected ports types cannot be changed')
+    ok=%f
+    return
+  end
+  
   ok=%t
 
   graphics.pin=ip1
   graphics.pout=op1
   graphics.pein=cip1
   graphics.peout=cop1
-
+  graphics.in_implicit=in_impl
+  graphics.out_implicit=out_impl
+  
   if size(in1,2)<=1 then
     model.in=in
-  elseif size(in1,2)==2 then
+  elseif size(in1,2)==2 then //This appears not to be useful, retained if case of?
+    disp("check_io : unexpected case")
     model.in=[in,2*ones(in)];
   end
   
   if size(out1,2)<=1 then
     model.out=out
-  elseif size(out1,2)==2 then
+  elseif size(out1,2)==2 then //This appears not to be useful, retained if case of?
+    disp("check_io : unexpected case")
     model.out=[out,2*ones(out)];
   end
   model.evtin=clkin
