@@ -9,7 +9,7 @@ function r=not_a_vector(A)
 n=size(A.dims)
 nb=0
 for k=1:n
-  if A.dims(k)>1 then
+  if A.dims(k)>1 | A.dims(k)==SupToOne then
     nb=nb+1
   end
 end
