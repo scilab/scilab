@@ -441,6 +441,13 @@ c      call showstack()
       call basout(io,wte,' Formal variable name has been truncated')
       goto 9999
  205  continue
+      if(fin.eq.29) then
+         call basout(io,wte,'xget: unknown key <'//buf(1:ierr)//
+     &        '> ignored')
+      else
+         call basout(io,wte,'xset: unknown key <'//buf(1:ierr)//
+     &        '> ignored')
+      endif
       goto 9999
  206  continue
       goto 9999
