@@ -235,6 +235,18 @@ function GetSetValue(h)
 endfunction
 function tkged()
   global h
+
+  //color_map array for color sample display
+  f=gcf();
+  for i=1:size(get(gcf(),'color_map'),1)
+    redname= "RED("+string(i)+")";
+    TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+    grename= "GREEN("+string(i)+")";
+    TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+    bluname= "BLUE("+string(i)+")";
+    TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+  end
+
   select h.type
     case "Polyline"
     TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
@@ -279,16 +291,6 @@ function tkged()
     TK_SetVar("yToggle",part(h.log_flags,2))
     TK_SetVar("xGrid",string(h.grid(1)))
     TK_SetVar("yGrid",string(h.grid(2)))
-    //color_map array for color sample display
-    f=gcf();
-    for i=1:size(get(gcf(),'color_map'),1)
-      redname= "RED("+string(i)+")";
-      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
-      grename= "GREEN("+string(i)+")";
-      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
-      bluname= "BLUE("+string(i)+")";
-      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
-    end
     select h.view
      case "2d"
     TK_SetVar("zGrid","-1")
