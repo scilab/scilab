@@ -25,7 +25,7 @@ OBJSF = lstelm.o lstelmi.o  matdsr.o matelm.o matold.o\
 	isany.o complexify.o issymmetric.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
 	hmcreate.o lapackf.o lapackf2.o fmexslicot.o fscislicot.o \
-	intlinmeq.o
+	intlinmeq.o 
 
 
 include ../../Makefile.incl
