@@ -38,8 +38,8 @@ elseif type(Dfun)==15 then
 else
   J=%f
 end
-//looking for x0 in varargin
-if J then kr=2,else kr=1,end
+kr=1
+
 if varargin(kr)=='b' then kr=kr+3,end
 x0=varargin(kr)
 
@@ -89,6 +89,5 @@ else
       'g=2*(gf''*ff(:))'])
 end
 
-if J then kr=2,else kr=1,end
 [f,x,g]=optim(%opt,varargin(kr:$),imp=imp)
 endfunction
