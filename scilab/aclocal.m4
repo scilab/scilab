@@ -291,7 +291,7 @@ dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/t
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 
-TK_PLUS="-l$NAME_LIB_TCL -lX11"
+TK_PLUS=  $TCL_LIB -lX11
 
 case $host_os in
   darwin* | rhapsody*) 
@@ -398,7 +398,7 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
   # Check for tk header file
   AC_MSG_CHECKING([for header file tk.h])
-  dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include /sw/include"
+  dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include /sw/include /usr/include/tcl8.*"
   for i in $dirs ; do
 	if test -r $i/tk.h; then 
 		AC_MSG_RESULT([found in $i ])
