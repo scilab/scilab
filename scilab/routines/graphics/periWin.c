@@ -3129,6 +3129,12 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
      integer n2;
 {
   integer i,j,verbose=0,narg,fill[1],cpat,xz[2];
+  /* WARNING: this routine is provided here to accelerate 
+   * multiple rectangles drawing 
+   * since it is not called the usual way i.e through 
+   * dr we must add here SetWinhdc and ReleaseWinHdc 
+   */ 
+  SetWinhdc();
   C2F(getpattern)(&verbose,&cpat,&narg,vdouble);
   C2F(getwindowdim)(&verbose,xz,&narg,vdouble);
   for (i = 0 ; i < (n1)-1 ; i++)
@@ -3144,6 +3150,7 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
 	  Rectangle(hdc,(int) x[j],(int) y[i],(int) w + x[j]+1 ,(int) h + y[i]+1 );
       }
   C2F(setpattern)(&cpat,PI0,PI0,PI0);
+  ReleaseWinHdc();
 }
 
 /*----------------------
