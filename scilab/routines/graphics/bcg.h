@@ -164,6 +164,3 @@ typedef struct BCG
 
 
 extern struct BCG *GetWindowXgcNumber  (int i);
-
-cNumber  (int i);
-
