@@ -5162,10 +5162,11 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /********************** context graphique ******************************/
   else if (strncmp(marker,"background", 10) == 0)
     {
-      if (sciGetEntityType (pobj) == SCI_SUBWIN) /**DJ.Abdemouche 2003**/
-       pSUBWIN_FEATURE (pobj)->cubecolor=(integer)stk(*value)[0];
-      /* I add this line under:*/
-      sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {/**DJ.Abdemouche 2003**/
+	pSUBWIN_FEATURE (pobj)->cubecolor=(integer)stk(*value)[0];
+	/* I add this line under:*/
+	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
+      }
       else  
 	sciSetBackground((sciPointObj *)pobj, (int)stk(*value)[0]);
     }
