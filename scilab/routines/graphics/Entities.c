@@ -10480,6 +10480,7 @@ sciDrawObj (sciPointObj * pobj)
 	      psonstmp = psonstmp->pprev;
 	    }
 	  triedre(pobj,xbox,ybox,zbox,InsideU,InsideD);
+	  wininfo("alpha=%.1f,theta=%.1f",pSUBWIN_FEATURE (pobj)->alpha,pSUBWIN_FEATURE (pobj)->theta); 
 	}/***/
       else 
 	{
@@ -10518,7 +10519,7 @@ sciDrawObj (sciPointObj * pobj)
 #ifdef WIN32
 	  if ( flag == 1) ReleaseWinHdc();
 #endif
-	  
+	  wininfo("");  
 	}
       break;  /**DJ.Abdemouche 2003**/                       
 	  /******************/
@@ -13875,7 +13876,7 @@ void sciXbasc()
    
   if ((masousfen = ConstructSubWin (mafigure, 'o')) != NULL)
     sciSetOriginalSubWin (mafigure, masousfen);
-  sciDrawObj(sciGetCurrentFigure ());       
+  sciDrawObj(sciGetCurrentFigure ());      
 } 	
 
 void sciXclear()
