@@ -67,7 +67,7 @@ global %tableau
 if ~super_block then // global variables
   %zoom=1.8
   pal_mode=%f // Palette edition mode
-  newblocks=[] // table of added functions in pal_mode
+//  newblocks=[] // table of added functions in pal_mode
   super_path=[] // path to the currently opened superblock
 
   scicos_paltmp=scicos_pal;

@@ -14,13 +14,12 @@ function sys=lincos(scs_m,x0,u0,param)
 // scs_m: a Scicos data structure
 // x0: column vector. Continuous state around which linearization to be done (default 0)
 // u0: column vector. Input around which linearization to be done (default 0)
-// state: state of scicos diagram 
 // param: list with two elements (default list(1.d-6,0))
 //   param(1): scalar. Perturbation level for linearization; the following variation is used
 //             del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i
 //   param(2): scalar. Time t.
 //
-// sys: state-state 
+// sys: state-space system
 //
 // DESCRIPTION
 // Constructs by linearization a linear state-space 
