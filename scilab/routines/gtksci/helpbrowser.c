@@ -952,10 +952,20 @@ static void write_scilab_example(char *example)
 	}
       if ( *pos == '&') 
 	{
-	  if ( strncmp(pos,"&#10",4) ==0) 
+	  if ( strncmp(pos,"&#10;",5) ==0) 
 	    {
 	      putc('\n',fd);
-	      pos = pos +4;
+	      pos = pos +5;
+	    }
+	  else if ( strncmp(pos,"&quot;",6) ==0) 
+	    {
+	      putc('"',fd);
+	      pos = pos +6;
+	    }
+	  else if ( strncmp(pos,"&amp;",5) ==0) 
+	    {
+	      putc('&',fd);
+	      pos = pos +5;
 	    }
 	  else 
 	    {
