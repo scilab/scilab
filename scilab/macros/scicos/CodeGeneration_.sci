@@ -1205,6 +1205,10 @@ function  [ok,XX]=do_compile_superblock(XX)
   maxnout=max(outptr(2:$)-outptr(1:$-1))
   
   maxtotal=max([maxnrpar;maxnipar;maxnx;maxnz;maxnin;maxnout]);
+  if maxtotal< length(cpr(2).outtb) then
+    maxtotal=length(cpr(2).outtb)
+  end
+  
 
   //************************************************************************
   //generate the call to the blocks and blocs simulation function prototypes
@@ -1649,19 +1653,15 @@ if standalone then
 	      '  switch (*flag) {'
 	      '  case 2 : ' 
 	      '    if(*nevprt>0) {/* get the input value */'
-	      '	for (k=0;k<*nu;k++) {printf(""Realtime run'
-	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
+	      '      for (k=0;k<*nu;k++) {printf(""Actuator:'
+	      ' time=%f, u(%d) of actuator %d is %f \n"", *t, k, *nport, u[k]);}  '
 	      '    } ;'
 	      '    break;'
 	      '  case 4 : /* actuator initialisation */'
 	      '    /* do whatever you want to initialize the actuator */ '
-	      '	for (k=0;k<*nu;k++) {printf(""Realtime initialisation'
-	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
 	      '    break;'
 	      '  case 5 : /* actuator ending */'
 	      '    /* do whatever you want to end the actuator */'
-	      '	for (k=0;k<*nu;k++) {printf(""Realtime ending'
-	      ' %f %f %i %i %i \n"", *t, u[k], *flag, *nevprt, *nport);}  '
 	      '    break;'
 	      '  }']
 else
@@ -1995,6 +1995,7 @@ function Code=make_outevents()
   else
     newszclkIN=szclkIN;
   end 
+
   Code=[ '/*'+part('-',ones(1,40))+'  External events handling function */ ';
 	 'void '
 	 rdnom+'_events(int *nevprt,double *t)';
@@ -2007,13 +2008,23 @@ function Code=make_outevents()
 	 ''
 	 '    int i,p,b[]={'+strcat(z(ones(1,newszclkIN)),',')+'};'
 	 ''
-	 '    b[0]=1;'
-	 '    *t = *t + 0.1;'
-	 '    *nevprt=0;p=1;'
-	 '    for (i=0;i<'+string(newszclkIN)+';i++) {'
-	 '      *nevprt=*nevprt+b[i]*p;'
-	 '      p=p*2;}'
-	 '}']
+	 '/* this is an example for the activation of events ports */'
+	 '    b[0]=1;']
+  if newszclkIN>1 then
+    for bb=2:newszclkIN
+      Code($+1)='    b['+string(bb-1)+']=1;'
+    end
+  end
+  Code=[Code;' '
+	'/* definition of the step time  */'
+	'    *t = *t + 0.1;'
+	' '
+	'/* External events handling process */'
+	'    *nevprt=0;p=1;'
+	'    for (i=0;i<'+string(newszclkIN)+';i++) {'
+	'      *nevprt=*nevprt+b[i]*p;'
+	'      p=p*2;}'
+	'}']
 endfunction
 function Code=make_sensor(standalone)
 // Generating the routine for sensors interfacing
@@ -2031,7 +2042,7 @@ comments=['     /*'
 	  '      *         from the top to the bottom ) '
 	  '      * nevprt: indicates if an activation had been received'
 	  '      *         0 = no activation'
-	  '      *         1 = activation'
+	  '      *         1 = activation '
 	  '      * t     : the current time value'
 	  '      * y     : the vector outputs value'
 	  '      * ny    : the output  vector size'
@@ -2043,32 +2054,20 @@ dcl=['     integer *flag,*nevprt,*nport;'
      '{'
      '  int k;'];
 if standalone then
+
   a_sensor=['  switch (*flag) {'
-	    '  case 1 : /* set the ouput value */'
-	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
-	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
-	    'puts(""Please set the sensor ouput values""); '
-	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
-	    '    break;'
-	    '  case 2 : /* Update internal discrete state if any */'
-	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
-	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
-	    'puts(""Please set the sensor ouput values""); '
-	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
+	    '  case 1 : /* set the output value */'
+	    '    printf(""Require outputs of sensor number %d\n"", *nport);'
+	    '    printf(""time is: %f\n"", *t);'
+	    '    printf(""size of the sensor output is: %d\n"", *ny);'
+	    '    puts(""Please set the sensor output values""); '
+	    '    for (k=0;k<*ny;k++) scanf(""%lf"", &(y[k]));'
 	    '    break;'
 	    '  case 4 : /* sensor initialisation */'
 	    '    /* do whatever you want to initialize the sensor */'
-	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
-	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
-	    'puts(""Please set the sensor ouput values""); '
-	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  case 5 : /* sensor ending */'
 	    '    /* do whatever you want to end the sensor */'
-	    'printf(""(Realtime) size of the sensor ouput is: %i\n"", *ny);'
-	    'printf(""(Realtime) the number of the sensor is: %i\n"", *nport);'
-	    'puts(""Please set the sensor ouput values""); '
-	    '	for (k=0;k<*ny;k++) {scanf("" %f "", &(y[k]));}'
 	    '    break;'
 	    '  }']
 else
@@ -2134,28 +2133,31 @@ function Code=make_standalone()
 
   if size(z,1) <> 0 then
     for i=1:(length(zptr)-1) 
-      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
-      if zptr(i+1)-zptr(i)>0 & and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
-	Code($+1)=' ';	
-	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
-	//Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
+      
+      if zptr(i+1)-zptr(i)>0 then
+	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	if and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
+	  Code($+1)=' ';	
+	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	  Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	  //Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
 	//Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
-	  Code($+1)='Compiled structure index: '+strcat(string(i));
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
-	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
-	  end
-	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
-	    Code=[Code;
-		  cformatline('Identification: '+..
-			      strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
-	    
-	  end
-	  Code=[Code;cformatline('z= {'+strcat(string(z(zptr(i):zptr(i+1)-1)),",")+'};',70)];
-	  Code($+1)='*/';
+	Code($+1)='Compiled structure index: '+strcat(string(i));
+	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	end
+	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	  Code=[Code;
+		cformatline('Identification: '+..
+			    strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	  
+	end
+	Code=[Code;cformatline('z= {'+strcat(string(z(zptr(i):zptr(i+1)-1)),",")+'};',70)];
+	Code($+1)='*/';
+	end
       end
     end
   end
@@ -2289,37 +2291,38 @@ function Code=make_static_standalone()
   nrpar=size(rpar,1);nipar=size(ipar,1);
   
   
-  Code=[]
+  Code=[];nbrpa=0;
   if size(rpar,1) <> 0 then
     
     Code=[Code;'static double RPAR1[ ] = {'];		
-    nbrpa=0;
+    
     for i=1:(length(rpptr)-1) 
-      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
-      if rpptr(i+1)-rpptr(i)>0  & and(aaa+bbb~= ['INPUTPORTEVTS'; ...
-		    'OUTPUTPORTEVTS';'EVTGEN_f']) then
-	
-	nbrpa=nbrpa+1;
-	Code($+1)=' ';
-	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	Code($+1)='   Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
-	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
-	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
-	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
-	  Code=[Code;
-		cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+      if rpptr(i+1)-rpptr(i)>0  then
+	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	if and(aaa+bbb~= ['INPUTPORTEVTS'; ...
+			  'OUTPUTPORTEVTS';'EVTGEN_f']) then
 	  
+	  nbrpa=nbrpa+1;
+	  Code($+1)=' ';
+	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	  Code($+1)='   Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	    Code=[Code;
+		  cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	    
+	  end
+	  Code=[Code;'rpar= '];
+	  Code($+1)='*/';
+	  Code=[Code;cformatline(strcat(string(rpar(rpptr(i):rpptr(i+1)-1))+','),70)];
 	end
-	Code=[Code;'rpar= '];
-	Code($+1)='*/';
-	Code=[Code;cformatline(strcat(string(rpar(rpptr(i):rpptr(i+1)-1))+','),70)];
       end
     end
-    
     Code($+1)='};';
     //    strcat(string(rpar),",")+'};',70)] 
   else
@@ -2327,38 +2330,40 @@ function Code=make_static_standalone()
   end
   
   Code($+1)='static integer NRPAR1  = '+string(nbrpa)+';';  
-  
+  nbipa=0;
   if size(ipar,1) <> 0 then
     
     Code=[Code;'static integer IPAR1[ ] = {'];		
-    nbipa=0;
+    
     for i=1:(length(ipptr)-1) 
-      aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
-      if ipptr(i+1)-ipptr(i)>0  & and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
-	nbipa=nbipa+1;
-	Code($+1)=' ';
-	Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
-	Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
-	// Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
-	// Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
-	Code($+1)='Compiled structure index: '+strcat(string(i));
-	if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
-	  Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+      
+      if ipptr(i+1)-ipptr(i)>0  then
+	aaa=scs_m.objs(cpr.corinv(i)).gui;bbb=emptystr(3,1);
+	if and(aaa+bbb~= ['INPUTPORTEVTS';'OUTPUTPORTEVTS';'EVTGEN_f']) then
+	  nbipa=nbipa+1;
+	  Code($+1)=' ';
+	  Code($+1)='/* Routine name of block: '+strcat(string(cpr.sim.funs(i)));
+	  Code($+1)=' Gui name of block: '+strcat(string(scs_m.objs(cpr.corinv(i)).gui));
+	  // Code($+1)='/* Name block: '+strcat(string(cpr.sim.funs(i)));
+	  // Code($+1)='Object number in diagram: '+strcat(string(cpr.corinv(i)));
+	  Code($+1)='Compiled structure index: '+strcat(string(i));
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).model.label)~=emptystr() then	    
+	    Code=[Code;cformatline('Label: '+strcat(string(scs_m.objs(cpr.corinv(i)).model.label)),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
+	    Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
+	  end
+	  if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
+	    Code=[Code;
+		  cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
+	    
+	  end
+	  Code=[Code;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];
+	  Code($+1)='*/';
+	  Code=[Code;cformatline(strcat(string(ipar(ipptr(i):ipptr(i+1)-1))+','),70)];
 	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.exprs)~=emptystr() then
-	  Code=[Code;cformatline('Exprs: '+strcat(scs_m.objs(cpr.corinv(i)).graphics.exprs,","),70)];
-	end
-	if stripblanks(scs_m.objs(cpr.corinv(i)).graphics.id)~=emptystr() then
-	  Code=[Code;
-		cformatline('Identification: '+strcat(string(scs_m.objs(cpr.corinv(i)).graphics.id)),70)];
-	  
-	end
-	Code=[Code;cformatline('ipar= {'+strcat(string(ipar(ipptr(i):ipptr(i+1)-1)),",")+'};',70)];
-	Code($+1)='*/';
-	Code=[Code;cformatline(strcat(string(ipar(ipptr(i):ipptr(i+1)-1))+','),70)];
       end
     end
-    
     Code($+1)='};';
     //Code=[Code;cformatline('static integer IPAR1[ ]= {'+..
     //		   strcat(string(ipar),",")+'};',70)] 
