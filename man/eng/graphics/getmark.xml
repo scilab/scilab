@@ -44,12 +44,12 @@
   <EXAMPLE><![CDATA[x=0:0.1:10;
 set("figure_style","new")
 [mark,mrkSize]=getmark();
-plot2d(x,sin(x),style=mark);
+plot2d(x,sin(x),style=-mark);
 clf();
 plot2d(x,sin(x))
 e=gce(); // store the agregation containing the plot
-mark=getmark();
-e.children(1).mark_style = mark(1);
+[mark,mrkSize]=getmark();
+e.children(1).mark_style = mark;
 
 ]]></EXAMPLE>
 

@@ -35,9 +35,6 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[set("figure_style","new")
-k=getlinestyle();
-plot2d(1:10,1:10,style=k)
-clf();
 x=0:0.1:10;
 plot2d(x,sin(x))
 e=gce(); // store the agregation containing the plot
