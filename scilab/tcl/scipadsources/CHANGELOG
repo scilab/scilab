@@ -918,3 +918,10 @@ Francois VOGEL, 23/03/05
      - Control-Button1 binding fixed - can now be pressed before drag start
      - fixed wrong behavior with quick drags (selection was sometimes extended)
  * version --> 3.55
+
+Francois VOGEL, 24/03/05
+ * Last minute drag and drop improvements:
+     - restored cursor blinking on Windows (found a tricky workaround for
+       tk bug 1169429)
+     - further fix for quick drags, on Linux this time
+ * version --> 3.56

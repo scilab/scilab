@@ -1,18 +1,24 @@
 proc tkdndbind {w} {
 # Drag and drop feature using TkDnD
-    global TkDnDloaded savedsel extendsel
+    global TkDnDloaded savedsel extendsel cursorblink
     if {$TkDnDloaded == "true"} {
 
+# To ensure that the widgets have been created before binding to them
+        update idletasks
+
 # Drag and drop files or directories to Scipad - Just two lines!
-        dnd bindtarget $w text/uri-list <Drop> {openlistoffiles %D}
-        dnd bindtarget $w text/uri-list <Drag> {return %A}
+        dnd bindtarget $w text/uri-list <Drop> "openlistoffiles %D"
+        dnd bindtarget $w text/uri-list <Drag> "return %A"
 
 # Drag and drop text within Scipad - More complicated!
         dnd bindtarget $w text/plain <Drop> { \
             if {"%A" == "copy"} { \
                 %W tag remove sel 0.0 end \
             } ; \
-            puttext %W %D \
+            puttext %W %D ; \
+            if {$cursorblink == "true"} { \
+                %W configure -insertofftime 500 \
+            } \
         }
         dnd bindsource $w text/plain { \
             if {[%W tag ranges sel] != ""} { \
@@ -45,10 +51,11 @@ proc tkdndbind {w} {
                 set tk::Priv(x) %x ; \
                 set tk::Priv(y) %y ; \
                 tk::TextSelectTo %W %x %y \
-            } else { ; \
+            } elseif {$extendsel == "false"} { ; \
                 if {[%W tag ranges sel] != ""} { \
                     if { [%W compare sel.first <= [%W index @%x,%y]] && \
                          [%W compare [%W index @%x,%y] <= sel.last] } { \
+                        set extendsel "ignoremotion" ; \
                         dnd drag %W -actions {copy move} \
                     } \
                 } ; \
@@ -61,12 +68,19 @@ proc tkdndbind {w} {
 }
 
 proc Button1BindText { w x y } {
-    global extendsel
+# What is inside the if {$cursorblink == "true"} is needed to ensure that
+# the cursor is on during a drag. This is a workaround to avoid tk bug 1169429
+    global extendsel cursorblink
     set extendsel "true"
     tk::TextButton1 $w $x $y ; \
     if {[$w tag ranges sel] != ""} { \
         if { [$w compare sel.first <= [$w index @$x,$y]] && \
              [$w compare [$w index @$x,$y] <= sel.last] } { \
+            if {$cursorblink == "true"} { \
+                $w configure -insertofftime 2 ; update ; \
+                after 5 ; \
+                $w configure -insertofftime 0 ; update \
+            } ; \
             dnd drag $w -actions {copy move} \
         } \
     } ; \

@@ -72,10 +72,8 @@ text $pad.new$winopened -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" 
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
         -selectbackground $SELCOLOR -exportselection 1
-if {$tcl_platform(platform) != "unix"} {
-# <TODO> restore the blinking of the cursor once drag and drop problem is cleared
-#    $textareacur configure -insertofftime 500 -insertontime 500
-    $textareacur configure -insertofftime 0
+if {$cursorblink == "true"} {
+    $textareacur configure -insertofftime 500 -insertontime 500
 } else {
     $textareacur configure -insertofftime 0
 }

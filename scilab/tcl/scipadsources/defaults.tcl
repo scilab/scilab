@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.55"
+set version "Version 3.56"
 
 # all one needs in order to add a new retrievable preference is:
 #  - add the variable name to $listofpref below, if it is not a list
@@ -55,6 +55,11 @@ set tabinserts "spaces"    ;# "spaces" or "tabs"
 # other non-pref initial settings
 if { ![info exists lang] } { set lang "eng" }
 set Scheme scilab
+if {$tcl_platform(platform) != "unix"} {
+    set cursorblink "true"
+} else {
+    set cursorblink "false"
+}
 
 # source the user preferences file if any
 set preffilename $env(HOME)/.SciPadPreferences.tcl
