@@ -31,7 +31,8 @@ function [x,y,typ]=DEMUX_f(job,arg1,arg2)
 		'and size 0 is not allowed']   )
 	  ok=%f
 	else
-	  [model,graphics,ok]=check_io(model,graphics,0,out(:),[],[])
+	  if min(out)<0 then nin=0,else nin=sum(out),end
+	  [model,graphics,ok]=check_io(model,graphics,nin,out(:),[],[])
 	  if ok then out=size(out,'*'),end
 	end
       end
