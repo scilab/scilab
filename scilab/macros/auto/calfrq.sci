@@ -99,7 +99,7 @@ l10=log(10)
 // Locate singularities to avoid them
 // ----------------------------------
 if dom=='c' then
-  c=2*%pi
+  c=2*%pi;
   //selection function for singularities in the frequency range
   deff('f=%sel(r,fmin,fmax,tol)',['f=[],';
   'if prod(size(r))==0 then return,end';
@@ -121,11 +121,11 @@ else
   'end']);
 end
 
-sing=[];zers=[]
+sing=[];zers=[];
 fmin=c*fmin,fmax=c*fmax;
 
 for i=1:m
-  sing=[sing;%sel(roots(denh(i)),fmin,fmax,tol)]
+  sing=[sing;%sel(roots(denh(i)),fmin,fmax,tol)];
 end
 
 pp=sort(sing');npp=size(pp,'*');//'
@@ -162,9 +162,11 @@ nfrq=size(frqs,'*');
 // Evaluate bounds of nyquist plot
 //-------------------------------
 
-xt=[];
+xt=[];Pas=[]
 for i=1:2:nfrq-1
-  xt=[xt,logspace(log(frqs(i))/log(10),log(frqs(i+1))/log(10),100)]
+  w=logspace(log(frqs(i))/log(10),log(frqs(i+1))/log(10),100);
+  xt=[xt,w]
+  Pas=[Pas w(2)-w(1)]
 end
 if dom=='c' then 
   rf=freq(h('num'),h('den'),%i*xt);
@@ -172,41 +174,49 @@ else
   rf=freq(h('num'),h('den'),exp(%i*xt));
 end
 //
-xmin=mini(real(rf));xmax=maxi(real(rf))
-ymin=mini(imag(rf));ymax=maxi(imag(rf))
-bnds=[xmin xmax ymin ymax]
-dx=max([xmax-xmin,1]);dy=max([ymax-ymin,1])
+xmin=mini(real(rf));xmax=maxi(real(rf));
+ymin=mini(imag(rf));ymax=maxi(imag(rf));
+bnds=[xmin xmax ymin ymax];
+dx=max([xmax-xmin,1]);dy=max([ymax-ymin,1]);
 
 // Compute discretization with a step adaptation method
 // ----------------------------------------------------
-frq=[]
-i=1,
-nptr=nptmax // number of unused discretization points
-l10last=log10(frqs($))
+frq=[];
+i=1;
+nptr=nptmax; // number of unused discretization points
+l10last=log10(frqs($));
 while i<nfrq
   f0=frqs(i);fmax=frqs(i+1);
   while f0==fmax do
-    i=i+2
-    f=frqs(i);fmax=frqs(i+1)
+    i=i+2;
+    f=frqs(i);fmax=frqs(i+1);
   end
-  frq=[frq,f0]
-  pas=(fmax-f0)/100
-  splitf=[splitf size(frq,'*')]
+  frq=[frq,f0];
+  pas=Pas(i)
+  splitf=[splitf size(frq,'*')];
 
-  f=mini(f0+pas,fmax),
+  f=mini(f0+pas,fmax);
 
   if dom=='c' then //cas continu
     while f0<fmax
-      rf0=freq(h('num'),h('den'),(%i*f0))
+      rf0=freq(h('num'),h('den'),(%i*f0));
       rfc=freq(h('num'),h('den'),%i*f);
       // compute prediction error
       epsd=pas/100;//epsd=1.d-8
       
       rfd=(freq(h('num'),h('den'),%i*(f0+epsd))-rf0)/(epsd);
-      rfp=rf0+pas*rfd
+      rfp=rf0+pas*rfd;
 
       e=maxi([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
-      if (e>k) then
+      if (e>k) then rf0=freq(h('num'),h('den'),(%i*f0));
+      rfc=freq(h('num'),h('den'),%i*f);
+      // compute prediction error
+      epsd=pas/100;//epsd=1.d-8
+
+      rfd=(freq(h('num'),h('den'),%i*(f0+epsd))-rf0)/(epsd);
+      rfp=rf0+pas*rfd;
+
+      e=maxi([abs(imag(rfp-rfc))/dy;abs(real(rfp-rfc))/dx])
 	// compute minimum frequency logarithmic step to ensure a maximum 
 	//of nptmax points to discretize
 	pasmin=f0*(10^((l10last-log10(f0))/(nptr+1))-1)
