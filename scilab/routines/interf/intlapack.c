@@ -230,36 +230,11 @@ int intchol(fname)
   CmplxA=header1[3];   
   switch (CmplxA) {
   case 0:   
-    ret = C2F(intdgecon)("chol",4L);
+    ret = C2F(intdpotrf)("chol",4L);
     return;
     break;
   case 1:
-    ret = C2F(intzgecon)("chol",4L);
-    return;
-    break;
-  default:
-    Scierror(999,"%s: Invalid input! \r\n",fname);
-    return 0;
-    break;
-  }
-}
-
-int intrank(fname)
-  char *fname;
-{
-  int *header1;
-  int CmplxA;int ret;
-
-  /*   rank(A)  */
-  header1 = (int *) GetData(1);    
-  CmplxA=header1[3];   
-  switch (CmplxA) {
-  case 0:   
-    ret = C2F(intdgecon)("rank",4L);
-    return;
-    break;
-  case 1:
-    ret = C2F(intzgecon)("rank",4L);
+    ret = C2F(intzpotrf)("chol",4L);
     return;
     break;
   default:
