@@ -1,6 +1,6 @@
 #****************************************************************************
 #                          Maple to Scilab interface
-#                        Version 1.1.1 (2 May 2004)
+#                        Version 1.1.2 (7 July 2004)
 #                       Copyright (C) 1997-2004 INRIA 
 #
 #                                Claude Gomez				    
@@ -421,9 +421,16 @@ end:
   d := length(stro) + l - (maxl - 2);
   if d <= 0 then _scilab_buffer := cat(_scilab_buffer,e);
   else
-    _scilab_buffer := cat(stro,substring(e,1..l-d),`..`);
-    `maple2scilab/lprint`(_scilab_buffer);
-    _scilab_buffer := substring(e,l-d+1..l);
+    if substring(e,l-d)=`.` then
+      # problem if we cut at a point
+      _scilab_buffer := cat(stro,substring(e,1..l-d-1),`..`);
+      `maple2scilab/lprint`(_scilab_buffer);
+      _scilab_buffer := substring(e,l-d..l);
+    else
+      _scilab_buffer := cat(stro,substring(e,1..l-d),`..`);
+      `maple2scilab/lprint`(_scilab_buffer);
+      _scilab_buffer := substring(e,l-d+1..l);
+    fi
   fi
 end:
 
