@@ -271,6 +271,9 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * ================================================= */
   psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
 
+  /* Force psubwin->is3d to TRUE: we are in 3D mode */
+  pSUBWIN_FEATURE (psubwin)->is3d = TRUE;
+  
   /* Force psubwin->logflags to linear */
   pSUBWIN_FEATURE (psubwin)->logflags[0]='n';
   pSUBWIN_FEATURE (psubwin)->logflags[1]='n';
@@ -282,8 +285,12 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     else
       pSUBWIN_FEATURE (psubwin)->axes.flag[1] = iflag[1]-6; /* type: scaling (no more useful)  */
   }
-  pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
 
+  if( pSUBWIN_FEATURE (psubwin)->FirstPlot == FALSE && (iflag[2] == 0 || iflag[2] == 1))
+    { /* Nothing to do: we leave as before */}
+  else
+    pSUBWIN_FEATURE (psubwin)->axes.flag[2] = iflag[2]; /* box: frame around the plot      */
+  
   pSUBWIN_FEATURE (psubwin)->alpha  = *alpha;
   pSUBWIN_FEATURE (psubwin)->theta  = *theta; 
 
@@ -321,7 +328,7 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
       drect[5] = (double) Maxi(z, mn); /*zmax*/
       break;
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(iflag[1]==7 || iflag[1]==8)) { /* merge psubwin->Srect and drect */
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot ) { /* merge psubwin->Srect and drect */
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
@@ -332,10 +339,10 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
     if (iflag[1] != 0) update_specification_bounds(psubwin, drect,3);
   } 
 
-  pSUBWIN_FEATURE(psubwin)->isoview = (BOOL)( iflag[1] == 3 || iflag[1] == 4 ||
-					      iflag[1] == 5 || iflag[1] == 6);
-
-
+  if(iflag[1] != 0)
+    pSUBWIN_FEATURE(psubwin)->isoview = (BOOL)( iflag[1] == 3 || iflag[1] == 4 ||
+						iflag[1] == 5 || iflag[1] == 6);
+  
   /* =================================================
    * Analyze arguments to find entity type 
    * ================================================= */
