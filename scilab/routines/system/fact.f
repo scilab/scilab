@@ -579,7 +579,9 @@ c     *call* allops(quote) or allops(dot+quote)
       return
  62   pt=pt-1
       call getsym
- 63   if(sym.eq.hat) then
+
+ 63   continue
+      if(sym.eq.hat) then
          op=dstar
       elseif(sym.eq.dot.and.char1.eq.hat) then
          call getsym
@@ -591,11 +593,19 @@ c     *call* allops(quote) or allops(dot+quote)
          call getsym
          fin=dot+quote
          goto 61
+      elseif(sym.eq.name) then
+         i = lpt(3) - 2
+         if (abs(lin(i)) .ne. blank) then
+            lpt(2)=lpt(3)+1
+            call error(276)
+            if (err.gt.0) return
+         endif
+         goto 90
       else
          goto 90
       endif
       call getsym
-      if ( eptover(1,psiz-1))  return
+ 64   if ( eptover(1,psiz-1))  return
       rstk(pt) = 311
       pstk(pt) = op
       icall=3
