@@ -4872,10 +4872,13 @@ sciGetFigurePosY (sciPointObj * pobj)
     {
     case SCI_FIGURE:
       /* synchronize figure position with its actual value */
+      num=pFIGURE_FEATURE(pobj)->number; /* Adding this line to dix bug scf() F.Leray 08.12.04 */
       C2F(dr)("xget","window",&y,&cur,&na,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       C2F(dr)("xset","window",&num,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
       C2F(dr)("xget","wpos",&y,x,&y,PI0,PI0,PI0,&d,PD0,PD0,PD0,4L,4L);
       C2F(dr)("xset","window",&cur,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
       pFIGURE_FEATURE (pobj)->inrootposy=x[1];
       return pFIGURE_FEATURE (pobj)->inrootposy;
       break;
