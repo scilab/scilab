@@ -1599,7 +1599,7 @@ proc toggleZ {} {
 global zToggle
 ScilabEval "LogtoggleZ('$zToggle')"
 }
-proc toggleLimits {} {
+proc toggleLimits { frame } {
     global limToggle
     ScilabEval "global ged_handle;ged_handle.tight_limits='$limToggle'"
 
