@@ -205,12 +205,18 @@
  ******************************************************************************
  II - REMARKS
  *******************************
-    0 - Note that C routines are not all ANSI.
+    0 - This binary version has been compiled with "libc.so.6" linked to 
+        "libc-2.3.X.so". So it may not work on old Linux distributions where 
+        "libc.so.6" is linked to older "libc" libraries.
+
+        A binary version for old "libc.so.6" libraries will be available soon.
+
+    1 - Note that C routines are not all ANSI.
  
-    1 - If there is something wrong when you open the scilab window 
+    2 - If there is something wrong when you open the scilab window 
         check your ".Xdefault" or ".Xresource" file.
  
-    2 - Athena Widgets libraries libXaw.a and libXmu.a (and corresponding 
+    3 - Athena Widgets libraries libXaw.a and libXmu.a (and corresponding 
         include files) are not systematically provided in some X11 
         installations. If you are using X11R5 or X11R6, these libraries are 
         provided for convenience with Scilab.
@@ -220,13 +226,13 @@
         You can impose the use of local Athena Widgets libraries by using
         the option "--with-local-Xaw" with "configure".
  
-    3 - For HP workstation, programs to be incrementally linked should
+    4 - For HP workstation, programs to be incrementally linked should
         be compiled with the option "+z" or "+Z".
  
-    4 - Binary versions compiled with Scilab's tcl/tk interface include TCL/TK
+    5 - Binary versions compiled with Scilab's tcl/tk interface include TCL/TK
         libraries in "tcl" directory.
 
-    5 - If you have any problem or suggestion to improve Scilab
+    6 - If you have any problem or suggestion to improve Scilab
         
           http://www.scilab.org/cgi-bin/bugzilla_bug/index.cgi
  
