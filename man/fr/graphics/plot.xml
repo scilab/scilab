@@ -284,8 +284,8 @@ a.y_location ="right";
 clf()
 
 // axis centered at (0,0)
-plot(x-4,sin(x)) 
-a=gca() // Handle on axes entity
+plot(x-4,sin(x),x+2,cos(x))
+a=gca(); // Handle on axes entity
 a.x_location = "middle"; 
 a.y_location = "middle"; 
 
