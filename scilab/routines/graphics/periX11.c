@@ -3521,9 +3521,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       ScilabXgc= NewXgc;
     }
   CreatePopupWindow(WinNum,toplevel,ScilabXgc,&DefaultForeground,&DefaultBackground) ;
-
-  AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
-  /*** XXXX ScilabXgc->CWindow = Find_TK_Window(WinNum); **/
+ /*** XXXX ScilabXgc->CWindow = Find_TK_Window(WinNum); **/
   if (EntryCounter == 0)
     {
       /** Initialize default Scilab Xgc **/
@@ -3532,11 +3530,10 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   XGetWindowAttributes(dpy,ScilabXgc->CWindow,&war); 
   ScilabXgc->CWindowWidth =  war.width;
   ScilabXgc->CWindowHeight =  war.height;
+
+
+
   /** Default value is without Pixmap **/
-
-
- 
-
   ScilabXgc->CurPixmapStatus = 0; 
   ScilabXgc->CurResizeStatus = 1; 
   ScilabXgc->CurWindow = WinNum;
@@ -3559,6 +3556,9 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
   StoreXgc(WinNum);
   EntryCounter=Max(EntryCounter,WinNum);
   EntryCounter++;
+  AddMenu(&WinNum,"Edit", EditMenus, &ne, &menutyp, "ged", &ierr);
+ 
+
   XSync(dpy,0);
   
 }
