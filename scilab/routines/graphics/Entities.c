@@ -11413,7 +11413,7 @@ sciDrawObj (sciPointObj * pobj)
     return -1;
   }
   /*pfigure = sciGetCurrentFigure ();
-    psubwin = sciGetSelectedSubWin (pfigure);*//*  printf("before currentsubwin init.\n"); */
+    psubwin = sciGetSelectedSubWin (pfigure);*/ /*  printf("before currentsubwin init.\n"); */
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   /*  printf("currentsubwin = %d\n\n",currentsubwin); */ /* debug F.Leray 23.07.04 */
 /*   fflush(NULL); */
@@ -13116,27 +13116,11 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	  pPOLYLINE_FEATURE (pthis)->n1=n1;
 
 
-	  //	  if (*numcol == 3)
+	  /* if (*numcol == 3) */
 	  pPOLYLINE_FEATURE (pthis)->pvz=pvz;
 	}
       else
 	{
-/* 	  //	  if (*numcol == 3){ */
-/* 	  if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL)  */
-/* 	    return -1; */
-/* 	  for (i = 0; i < *numrow; i++)  /\* Init. to 0. if no z is specified *\/ */
-/* 	    pvz[i] = 0.; */
-/* 	    // } */
-
-
-/* 	  else{ */
-/* 	    /\* same number of row but numcol==2 (case where z value is not specified) *\/ */
-/* 	    //    if(pPOLYLINE_FEATURE (pthis)->pvz != NULL){ */
-	  
-/* 	    pPOLYLINE_FEATURE (pthis)->pvz = pvz; */
-/* 	    //	    } */
-/* 	  } */
-	  
 	  for (i=0;i < *numrow;i++)
 	    {
 	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
@@ -13158,9 +13142,9 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    }
 	  
 	  
-	    
-	    //	  if (*numcol == 3)
-	    //	  pPOLYLINE_FEATURE (pthis)->pvz = pvz; /* ..and here we put pvz...*/
+	  
+	  /*	  if (*numcol == 3)
+	    	  pPOLYLINE_FEATURE (pthis)->pvz = pvz; */ /* ..and here we put pvz...*/
 	}
       
 
@@ -14528,7 +14512,7 @@ sciPointObj *sciIsExistingFigure(value)
 	      C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&figGC,&dv,&dv,&dv,5L,10L);
 	  }
 
-  if ((figGC != (struct BCG *) NULL) && (figGC->mafigure != (sciPointObj *) NULL)) // ajout F.Leray 22.07.04
+  if ((figGC != (struct BCG *) NULL) && (figGC->mafigure != (sciPointObj *) NULL)) /* ajout F.Leray 22.07.04 */
     return figGC->mafigure;
   else
     return  (sciPointObj *) NULL;    
