@@ -1243,7 +1243,7 @@ int C2F(initmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
  * A set of utility functions 
  ****************************************************/
 
-vraiptrst C2F(locptr)(__builtin_va_list x)
+vraiptrst C2F(locptr)(void * x)
 {
   return((vraiptrst) x);
 }
