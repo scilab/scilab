@@ -43,7 +43,7 @@ static int  no_window = 0;
 static char * initial_script = NULL;
 static int  initial_script_type = 0; /* 0 means filename 1 means code */
 
-extern int C2F(initcom)(int *,int*);
+/* extern int C2F(initcom)(int *,int*); */
 extern int scilab_main (int argc,char **argv,char *pname,int no_window,int no_startup, char *display);
 extern int C2F(nofpex)(void);
 extern int C2F(getarg)(int *,char *,long int l);
@@ -83,10 +83,11 @@ void C2F(realmain)()
 	} 
       else if ( strcmp(argv[i],"-pipes") == 0) 
 	{
+	  /*
 	  int p1,p2;
-	  p1 = atoi(argv[++i]);
+  	  p1 = atoi(argv[++i]);
 	  p2 = atoi(argv[++i]); 
-	  C2F(initcom)(&p1, &p2);
+	  C2F(initcom)(&p1, &p2); */
 	}
     }
   

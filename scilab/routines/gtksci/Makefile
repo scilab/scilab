@@ -8,17 +8,21 @@ LIBRARY = $(SCIDIR)/libs/gtksci.a
 
 OBJSC =	click.o command.o  io.o \
 	menus.o x_VTPrsTbl.o x_main.o \
-	zzledt.o about.o
+	zzledt.o about.o queue.o helpbrowser.o 
 
 OBJSF  = 
 
 include ../../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH)
-
 FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib
+
+# need gnome includes 
+
+helpbrowser.o : helpbrowser.c 
+	$(CC) $(CC_OPTIONS) `gnome-config --cflags gnome` -c helpbrowser.c 
 
 
 version.h: version.g $(SCIDIR)/Version.incl
@@ -29,7 +33,7 @@ version.h: version.g $(SCIDIR)/Version.incl
 
 OBJTEST = x_test_loop.o
 
-# $(SCIDIR)/libs/xgc.a 
+# test 
 
 test: $(OBJTEST) $(OBJSC) ../sun/zzledt.o ../sun/flags.o ../sun/h_help_data.o ../sun/men_Sutils.o ../sun/tmpdir.o ../sun/timer.o
 	cd ../graphics; make ;cd ../xsci
@@ -45,27 +49,6 @@ clean::
 distclean::
 	$(RM) $(OBJTEST) test
 
-OBJWFTEST = wf_xcommand.o
-
-wf_test: $(OBJWFTEST) $(OBJS)
-	$(RM) $@
-	$(CC) -o $@ $(OBJWFTEST) $(OBJS) $(CC_LDFLAGS) $(XLIBS) -lm
-
-clean::
-	$(RM) $(OBJWFTEST)
-distclean::
-	$(RM) $(OBJWFTEST) wf_test
-
-h_main_help.o: h_display.h
-
-help_test: h_main_help.o h_help.o
-	$(RM) $@
-	$(CC) -o $@ h_main_help.o h_help.o $(CC_LDFLAGS) $(XLIBS) -lm
-
-clean::
-	$(RM) h_main_help.o
-distclean::
-	$(RM) h_main_help.o help_test
 
 # generated with gcc -MMD 
 
@@ -82,7 +65,7 @@ jpc_xwidgets.o: jpc_xwidgets.c ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h
 menus.o: menus.c ../graphics/Math.h ../machine.h ../graphics/Graphics.h \
   ../graphics/periGtk-bcg.h  All-extern.h \
-  ../sun/h_help.h ../sun/Sun.h 
+   ../sun/Sun.h 
 x_main.o: x_main.c version.h ../machine.h ../graphics/Math.h \
   ../graphics/Graphics.h x_ptyxP.h x_ptyx.h x_error.h x_menu.h \
   All-extern.h
