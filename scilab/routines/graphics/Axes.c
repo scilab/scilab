@@ -432,10 +432,13 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
     }
   /**** 01/07/2002 ***/ 
   if (version_flag() == 0) 
-	  // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
+  {
+	   // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
 	  // meaning of x and y ?
-   /*   { while (x[3]>10)  x[3]=floor(x[3]/2);
+/*while (x[3]>10)  x[3]=floor(x[3]/2);
         while (y[3]>10)  y[3]=floor(y[3]/2); } */ //Wrong!! => but need something... F.Leray 25.02.04
+  }
+  
   /** Real to Pixel values **/
   switch ( xy_type ) 
     {
@@ -448,7 +451,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
       break;
     case 'i' : 
       switch ( pos ) {
-      case 'u' : case 'd' : Nx = (int) x[3]+1; break;
+      case 'u' : case 'd' : Nx = (int) x[3]+1; break; 
       case 'r' : case 'l' : Ny = (int) y[3]+1; break;
       }
       break;
