@@ -99,7 +99,7 @@ while %t do
       nv=prod(size(v))
       if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
     case 'row'
-      ierr=evstr('v=['+str(k)+']','errcatch');
+      ierr=execstr('v=['+str(k)+']','errcatch');
       if ierr<>0 then nok=-k;break,end
       if type(v)<>1 then nok=-k,break,end
       sz=typ(2*k);if type(sz)==10 then sz=evstr(sz),end
@@ -123,7 +123,7 @@ while %t do
       end
       [mv,nv]=size(v)
       if nv<>1 then nok=k,break,end,
-      if sz(1)>=0 then if nv<>sz(1) then nok=k,break,end,end
+      if sz(1)>=0 then if mv<>sz(1) then nok=k,break,end,end
     case 'str'
       s=str1(k)
       spe=find(str2code(str1(k))==99)
