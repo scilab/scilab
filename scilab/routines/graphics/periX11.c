@@ -2533,21 +2533,23 @@ void C2F(displaystring)(char *string, integer *x, integer *y, integer *v1, integ
     {
       int dir,asc,dsc,xpos;
       XCharStruct charret;
-      XQueryTextExtents(dpy,ScilabXgc->FontXID,
-			string,strlen(string),&dir,&asc,&dsc,&charret);
-      xpos= *x+ (charret.width)/(2.0*strlen(string));
-      XDrawString(dpy, ScilabXgc->Cdrawable,gc,(int) *x,(int) *y-dsc,
-		  string,strlen(string));
-      if ( *flag == 1) 
-	{
-	  integer rect[4];
-	  rect[0]= *x ;
-	  rect[1]= *y-asc-dsc;
-	  rect[2]= charret.width;
-	  rect[3]= asc+dsc;
-	  C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3,
-			     PI0,PI0,PD0,PD0,PD0,PD0);
-	}
+      if(strlen(string) !=0) {
+	XQueryTextExtents(dpy,ScilabXgc->FontXID,
+			  string,strlen(string),&dir,&asc,&dsc,&charret);
+	xpos= *x+ (charret.width)/(2.0*strlen(string));
+	XDrawString(dpy, ScilabXgc->Cdrawable,gc,(int) *x,(int) *y-charret.descent,
+		    string,strlen(string));
+	if ( *flag == 1) 
+	  {
+	    integer rect[4];
+	    rect[0]= *x ;
+	    rect[1]= *y-charret.ascent-charret.descent;
+	    rect[2]= charret.width;
+	    rect[3]= charret.ascent+charret.descent;
+	    C2F(drawrectangle)(string,rect,rect+1,rect+2,rect+3,
+			       PI0,PI0,PD0,PD0,PD0,PD0);
+	  }
+      }
     }
   else 
     C2F(DispStringAngle)(x,y,string,angle);
@@ -2598,12 +2600,20 @@ void C2F(boundingbox)(char *string, integer *x, integer *y, integer *rect, integ
 { 
   int dir,asc,dsc;
   XCharStruct charret;
+  if (strlen(string) !=0) {
   XQueryTextExtents(dpy,ScilabXgc->FontXID,
 		    string,strlen(string),&dir,&asc,&dsc,&charret);
   rect[0]= *x ;
-  rect[1]= *y-asc-dsc;
+  rect[1]= *y-charret.ascent-charret.descent;
   rect[2]= charret.width;
-  rect[3]= asc+dsc;
+  rect[3]= charret.ascent+charret.descent;
+  }
+  else {
+    rect[0]= *x ;
+    rect[1]= *y;
+    rect[2]= 0;
+    rect[3]= 0;
+  }
 }
 
 /*------------------------------------------------
