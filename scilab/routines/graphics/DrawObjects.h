@@ -145,7 +145,18 @@ extern void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge);  /* DRAWINGS
 
 extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym);
 extern void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym);
+extern int CheckPixelStatus(void);
 
-
+extern int DrawMark_FullDot(int x1, int yy1, int size, int foreground, int background);
+extern int DrawMark_Plus(int xmi, int ymi, int size, int foreground, int pixel_offset);
+extern int DrawMark_Cross(int xmi, int ymi, int size, int foreground, int pixel_offset);
+extern int DrawMark_FullDiamond(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullTriangleUp(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullTriangleDown(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offset);
+extern int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullTriangleRight(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground, int background);
+extern int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background);
 
 #endif /* __SCI_DRAWINGS__ */

@@ -591,6 +591,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
       C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
       C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       /* We are in axis_3ddraw() and sciGetEntityType (pobj) == SCI_SUBWIN*/
+      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4,PI0,PD0,PD0,PD0,PD0, 5L, 6L);
       C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); /* F.Leray 05.03.04 Useless too*/
       C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -4345,7 +4346,8 @@ int labels2D_draw(sciPointObj * psubwin)
   if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
     C2F(dr1)("xstringtt",sciGetText(ppsubwin->mon_y_label),&rect1[0],&rect1[1],&rect1[2],&rect1[3],&v,&v,&dv,&dv,&dv,&dv,10L,0L);
   
-  
+  C2F (dr) ("xset", "dashes", &old_foreground, &old_foreground, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
   C2F (dr) ("xset", "foreground", &old_foreground, &old_foreground, x+4, x+4, x+4, &v,
 	    &dv, &dv, &dv, &dv, 5L, 4096);
   
@@ -6201,7 +6203,9 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      
 	      markidsizenew[0] = sciGetMarkStyle(pobj);
 	      markidsizenew[1] = sciGetMarkSize (pobj);
-
+	      
+	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	      
@@ -6714,7 +6718,9 @@ sciDrawObj (sciPointObj * pobj)
 		
 		markidsizenew[0] =  sciGetMarkStyle(pobj);
 		markidsizenew[1] =  sciGetMarkSize(pobj);
-			      
+		
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);     
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 		
@@ -6753,6 +6759,9 @@ sciDrawObj (sciPointObj * pobj)
 		    
 		    markidsizenew[0] =  sciGetMarkStyle(pobj);
 		    markidsizenew[1] =  sciGetMarkSize(pobj);
+
+		    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
 		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			      &dv, &dv, &dv, &dv, 5L, 4096);
 		    
@@ -6783,7 +6792,9 @@ sciDrawObj (sciPointObj * pobj)
 		    
 		    markidsizenew[0] =  sciGetMarkStyle(pobj);
 		    markidsizenew[1] =  sciGetMarkSize(pobj);
-		    
+
+		    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			      &dv, &dv, &dv, 5L, 4096);
 		    C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			      &dv, &dv, &dv, &dv, 5L, 4096);
 		    
@@ -6934,7 +6945,9 @@ sciDrawObj (sciPointObj * pobj)
 		
 		markidsizenew[0] =  sciGetMarkStyle(pobj);
 		markidsizenew[1] =  sciGetMarkSize(pobj);
-		
+
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 		
@@ -6965,6 +6978,8 @@ sciDrawObj (sciPointObj * pobj)
 		markidsizenew[0] =  sciGetMarkStyle(pobj);
 		markidsizenew[1] =  sciGetMarkSize(pobj);
 		
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 		
@@ -7569,7 +7584,9 @@ sciDrawObj (sciPointObj * pobj)
 	       
 		markidsizenew[0] = sciGetMarkStyle(pobj);
 		markidsizenew[1] = sciGetMarkSize (pobj);
-     
+		
+		C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			  &dv, &dv, &dv, 5L, 4096);
 		C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			  &dv, &dv, &dv, &dv, 5L, 4096);
 	       
@@ -7838,7 +7855,9 @@ sciDrawObj (sciPointObj * pobj)
 	       
 	      markidsizenew[0] =  sciGetMarkStyle(pobj);
 	      markidsizenew[1] =  sciGetMarkSize(pobj);
-	     
+	      
+	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	     
@@ -7917,7 +7936,9 @@ sciDrawObj (sciPointObj * pobj)
 		 
 	      markidsizenew[0] =  sciGetMarkStyle(pobj);
 	      markidsizenew[1] =  sciGetMarkSize(pobj);
-	     
+
+	      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+			&dv, &dv, &dv, 5L, 4096);
 	      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 			&dv, &dv, &dv, &dv, 5L, 4096);
 	     
@@ -8152,12 +8173,10 @@ sciDrawObj (sciPointObj * pobj)
 extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 {
   int style = sciGetMarkStyle(pobj);
-  int size = sciGetMarkSize(pobj);
+  double size = (double) sciGetMarkSize(pobj);
   int foreground = sciGetMarkForeground(pobj);
   int background = sciGetMarkBackground(pobj);
   int i;
-  integer angle1 = 0;
-  integer angle2 = 64*360;
 
   int x[4],v,closeflag=0;
   double dv;
@@ -8166,12 +8185,31 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 
   int thick = 1;
   int linestyle[6];
-  
+  int tabulated_marksize[] = {8,10,12,14,18,24}; /* {3,5,7,9,11,13}; */
+
   integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
   
+  int pixel_offset = CheckPixelStatus();
+  
   linestyle[0] = 1;
+  
+  if(sciGetMarkSizeUnit(pobj) == 2){ /* tabulated */ /* size is given relative to the array tabulated_marksize */
+    if( (int) size <= 5){
+      size = tabulated_marksize[(int) size];
+    }   
+    else{
+      size = tabulated_marksize[5];
+    }
+  }
+  
 
- C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
+  /* size is specified in 'points' */
+  /* we draw in pixel */
+  /* Here is a size conversion provided we have dpi == 75 */
+
+  size = size * (75/72);
+
+  C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
 	    &v, &dv, &dv, &dv, &dv, 5L, 4096);
   
   C2F(dr)("xget","thickness",&verbose,&old_thick,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -8195,537 +8233,116 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
 	int xmasterix[2];
 	int ymasterix[2];
 	
+	C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+		  &dv, &dv, &dv, 5L, 4096);
 	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
 		  &dv, &dv, &dv, &dv, 5L, 4096);
 	
 	xmasterix[0] = xm[i];
-	xmasterix[1] = xm[i] +1;
+	xmasterix[1] = xm[i] + pixel_offset;
 	ymasterix[0] = 	ymasterix[1] = ym[i];
 	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
       }
     return 0;
   }
   
-  
+  foreground = sciGetMarkForeground(pobj);
+  background = sciGetMarkBackground(pobj);
+
   switch(style){
   case 0:
     /* represents a simple full dot with editable foreground */
     for(i=0;i<n1;i++)
-      {
-	int x1 = xm[i] - size/2;
-	int yy1= ym[i] - size/2;
-	int w1 = size;
-	int h1 = size;
-	char str[2] = "xv";
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-	
-	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      }
+      DrawMark_FullDot(xm[i], ym[i], size, foreground, foreground);
+    
     break;
   case 1:
     /* represents a plus with editable foreground */
-    size = size/2;
     for(i=0;i<n1;i++)
-      {
-	int deux = 2;
-	int xmasterix[2];
-	int ymasterix[2];
-	
-/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	/* the "+" */
-	xmasterix[0] = xm[i] - size;
-	xmasterix[1] = xm[i] + size +1;
-	ymasterix[0] = 	ymasterix[1] = ym[i];
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	
-	xmasterix[0] = xmasterix[1] = xm[i];
-	ymasterix[0] = ym[i] - size;
-	ymasterix[1] = ym[i] + size +1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-      }
+      DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
+    
     break;
   case 2:
     /* represents a cross with editable foreground */
-    size = (size-1)/2;
     for(i=0;i<n1;i++)
-      {
-	int deux = 2;
-	int xmasterix[2];
-	int ymasterix[2];
-	
-/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	
-	/* the "/" */
-	xmasterix[0] = xm[i] - ceil(size);
-	xmasterix[1] = xm[i] + ceil(size)+1;
-	ymasterix[0] = ym[i] + ceil(size);
-	ymasterix[1] = ym[i] - ceil(size)-1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-	
-	/* the "\" */
-	xmasterix[0] = xm[i] - ceil(size);
-	xmasterix[1] = xm[i] + ceil(size)+1;
-	ymasterix[0] = ym[i] - ceil(size);
-	ymasterix[1] = ym[i] + ceil(size)+1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-      }
+	DrawMark_Cross(xm[i], ym[i], size/2, foreground, pixel_offset);
     
     break;
   case 3:
     /* represents a circle AND a plus within this circle with editable foreground and background */
     for(i=0;i<n1;i++)
       {
-	int x1 = xm[i] - size/2;
-	int yy1= ym[i] - size/2;
-	int w1 = size;
-	int h1 = size;
-	int deux = 2;
-	int xmasterix[2];
-	int ymasterix[2];
-	int sizeplus;
-	char str[2] = "xv";
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-	
-/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	sizeplus = size/2;
-	/* the "+" */
-	xmasterix[0] = xm[i] - sizeplus;
-	xmasterix[1] = xm[i] + sizeplus +1;
-	ymasterix[0] = 	ymasterix[1] = ym[i];
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	
-	xmasterix[0] = xmasterix[1] = xm[i];
-	ymasterix[0] = ym[i] - sizeplus;
-	ymasterix[1] = ym[i] + sizeplus +1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
+	DrawMark_FullDot(xm[i], ym[i], size, foreground, background);
+	DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
       }
     break;
   case 4:
-    size = size/2;
     /* represents a diamond with background == foreground  */
     for(i=0;i<n1;i++)
-      {	
-	int quatre = 4, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-		
-	xmdiamond[0] = xm[i] - size;
-	xmdiamond[1] = xm[i];
-	xmdiamond[2] = xm[i] + size;
-	xmdiamond[3] = xm[i];
-	
-	ymdiamond[0] = ym[i];
-	ymdiamond[1] = ym[i] + size;
-	ymdiamond[2] = ym[i];
-	ymdiamond[3] = ym[i] - size;
-	
-/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	C2F (dr) ("xlines", "xv", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
+      DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, foreground);
+
     break;
   case 5:
-    size = size/2;
     /* represents a diamond with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int quatre = 4, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	
-	
-	xmdiamond[0] = xm[i] - size;
-	xmdiamond[1] = xm[i];
-	xmdiamond[2] = xm[i] + size;
-	xmdiamond[3] = xm[i];
-	
-	ymdiamond[0] = ym[i];
-	ymdiamond[1] = ym[i] + size;
-	ymdiamond[2] = ym[i];
-	ymdiamond[3] = ym[i] - size;
-	
- /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-
-	C2F (dr) ("xlines", "xv", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
+      DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, background);
+    
     break;
   case 6:
     /* represents an upward-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int trois = 3, un=1;
-	int xmtriangle[3];
-	int ymtriangle[3];
-
-	xmtriangle[0] = (int) (xm[i] - size/2);
-	xmtriangle[1] = (int) (xm[i] + size/2);
-	xmtriangle[2] = xm[i];
-	
-	ymtriangle[0] = (int) (ym[i] + size/3);
-	ymtriangle[1] = (int) (ym[i] + size/3);
-	ymtriangle[2] = (int) (ym[i] - 2*size/3);
-		
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-
-	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
+      DrawMark_FullTriangleUp(xm[i], ym[i], size, foreground, background);
+    
     break;
   case 7:
     /* represents a downward-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int trois = 3, un=1;
-	int xmtriangle[3];
-	int ymtriangle[3];
-	
-	xmtriangle[0] = (int) (xm[i] - size/2);
-	xmtriangle[1] = (int) (xm[i] + size/2);
-	xmtriangle[2] = (int) (xm[i]);
-	
-	ymtriangle[0] = (int) (ym[i] - size/3);
-	ymtriangle[1] = (int) (ym[i] - size/3);
-	ymtriangle[2] = (int) (ym[i] + 2*size/3);
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-
-	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
+      DrawMark_FullTriangleDown(xm[i], ym[i], size, foreground, background);
+    
     break;
   case 8:
-    size = size/2;
     /* represents a diamond with a plus inside with both editable foreground and background  */
     for(i=0;i<n1;i++)
       {	
-	int quatre = 4, un=1;
-	int xmdiamond[4];
-	int ymdiamond[4];
-	int deux = 2;
-	int xmasterix[2];
-	int ymasterix[2];
-	
-	xmdiamond[0] = xm[i] - size;
-	xmdiamond[1] = xm[i];
-	xmdiamond[2] = xm[i] + size;
-	xmdiamond[3] = xm[i];
-	
-	ymdiamond[0] = ym[i];
-	ymdiamond[1] = ym[i] + size;
-	ymdiamond[2] = ym[i];
-	ymdiamond[3] = ym[i] - size;
-	
- /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xlines", "xv", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	
-	/* the "+" */
-	xmasterix[0] = xm[i] - size;
-	xmasterix[1] = xm[i] + size +1;
-	ymasterix[0] = 	ymasterix[1] = ym[i];
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	
-	xmasterix[0] = xmasterix[1] = xm[i];
-	ymasterix[0] = ym[i] - size;
-	ymasterix[1] = ym[i] + size +1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
+	DrawMark_FullDiamond(xm[i], ym[i], size/2, foreground, background);
+	DrawMark_Plus(xm[i], ym[i], size/2, foreground, pixel_offset);
       }
     break;
   case 9:
     /* represents a circle with editable foreground and background */
     for(i=0;i<n1;i++)
-      {
-	int x1 = xm[i] - size/2;
-	int yy1= ym[i] - size/2;
-	int w1 = size;
-	int h1 = size;
-	char str[2] = "xv";
-
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-		
-	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	       
-	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      }
+      DrawMark_FullDot(xm[i], ym[i], size, foreground, background);
 
     break;
   case 10:
-    /* Asterix case : we can modify aonly the foreground (background changes have no impact) */
-    size = size/2;
+    /* Asterix case : we can modify only the foreground (background changes have no impact) */
     for(i=0;i<n1;i++)
-      {
-	int deux = 2;
-	int xmasterix[2];
-	int ymasterix[2];
-	int sizecross = 0.8*size;
-/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	/* the "+" */
-	xmasterix[0] = xm[i] - size;
-	xmasterix[1] = xm[i] + size +1;
-	ymasterix[0] = 	ymasterix[1] = ym[i];
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	
-	xmasterix[0] = xmasterix[1] = xm[i];
-	ymasterix[0] = ym[i] - size;
-	ymasterix[1] = ym[i] + size +1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-
-	/* the "/" */
-	xmasterix[0] = xm[i] - ceil(sizecross);
-	xmasterix[1] = xm[i] + ceil(sizecross)+1;
-	ymasterix[0] = ym[i] + ceil(sizecross);
-	ymasterix[1] = ym[i] - ceil(sizecross)-1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-	
-	/* the "\" */
-	xmasterix[0] = xm[i] - ceil(sizecross);
-	xmasterix[1] = xm[i] + ceil(sizecross)+1;
-	ymasterix[0] = ym[i] - ceil(sizecross);
-	ymasterix[1] = ym[i] + ceil(sizecross)+1;
-	C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	/* end */
-		
-      }
+      DrawMark_Asterisk(xm[i], ym[i], size/2, foreground, pixel_offset);
+    
     break;
   case 11:
     /* represents a square with editable foreground and background */
     for(i=0;i<n1;i++)
-      {
-	int x1 = xm[i] - size/2;
-	int yy1= ym[i] - size/2;
-	int w1 = size;
-	int h1 = size;
-	char str[2] = "xv";
+      DrawMark_FullSquare(xm[i], ym[i], size, foreground, background);
 
-/* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xfrect", str, &x1, &yy1, &w1, &h1, PI0, PI0, PD0, PD0, PD0,PD0, 5L, 0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xrect", str, &x1, &yy1, &w1, &h1, PI0, PI0, PD0, PD0, PD0,PD0, 5L, 0L);
-	
-      }
     break;
   case 12:
     /* represents a right-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int trois = 3, un=1;
-	int xmtriangle[3];
-	int ymtriangle[3];
-
-	xmtriangle[0] = (int) (xm[i] - size/3);
-	xmtriangle[1] = (int) (xm[i] - size/3);
-	xmtriangle[2] = (int) (xm[i] + 2*size/3);
-	
-	ymtriangle[0] = (int) (ym[i] - size/2);
-	ymtriangle[1] = (int) (ym[i] + size/2);
-	ymtriangle[2] = ym[i] ;
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-
-	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
+      DrawMark_FullTriangleRight(xm[i], ym[i], size, foreground, background);
+    
     break;
   case 13:
     /* represents a left-pointing triangle with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int trois = 3, un=1;
-	int xmtriangle[3];
-	int ymtriangle[3];
-	
-	xmtriangle[0] = (int) (xm[i] + size/3);
-	xmtriangle[1] = (int) (xm[i] + size/3);
-	xmtriangle[2] = (int) (xm[i] - 2*size/3);
-	
-	ymtriangle[0] = (int) (ym[i] - size/2);
-	ymtriangle[1] = (int) (ym[i] + size/2);
-	ymtriangle[2] = ym[i] ;
-	
- /* 	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
+      DrawMark_FullTriangleLeft(xm[i], ym[i], size, foreground, background);
 
-	C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      }
     break;
   case 14:
-    size = size/2;
     /* represents a pentagram with both editable foreground and background  */
     for(i=0;i<n1;i++)
-      {	
-	int dix= 10, un=1;
-	int xmpoints1[5],ympoints1[5];
-	int xmpoints2[5],ympoints2[5];
-	int xmpoints[10], ympoints[10];
-	
-	double r2 = size*cos(72*M_PI/180)/cos(36*M_PI/180);
+      DrawMark_FullPentagram(xm[i], ym[i], size/2, foreground, background);
 
-	xmpoints1[0] = xm[i] - size*cos(54*M_PI/180);
-	ympoints1[0] = ym[i] + size*sin(54*M_PI/180);
-	
-	xmpoints1[1] = xm[i] + size*cos(54*M_PI/180);
-	ympoints1[1] = ym[i] + size*sin(54*M_PI/180);
-	
-	xmpoints1[2] = xm[i] + (xmpoints1[1] - xm[i]) *cos(72*M_PI/180) + (ympoints1[1] - ym[i]) *sin(72*M_PI/180);
-	ympoints1[2] = ym[i] - (xmpoints1[1] - xm[i]) *sin(72*M_PI/180) + (ympoints1[1] - ym[i]) *cos(72*M_PI/180);
-
-	xmpoints1[3] = xm[i];
-	ympoints1[3] = ym[i] - size;
-
-	xmpoints1[4] = xm[i] + (xmpoints1[0] - xm[i]) *cos(-72*M_PI/180) + (ympoints1[0] - ym[i]) *sin(-72*M_PI/180);
-	ympoints1[4] = ym[i] - (xmpoints1[0] - xm[i]) *sin(-72*M_PI/180) + (ympoints1[0] - ym[i]) *cos(-72*M_PI/180);
-
-	
-	xmpoints2[0] = xm[i] - r2*sin(36*M_PI/180);
-	ympoints2[0] = ym[i] - size*cos(72*M_PI/180);
-
-	xmpoints2[1] = xm[i] + r2*sin(36*M_PI/180);
-	ympoints2[1] = ym[i] - size*cos(72*M_PI/180);
-
-	xmpoints2[2] = xm[i] + (xmpoints2[1] - xm[i])*cos(-72*M_PI/180) + (ympoints2[1] - ym[i]) *sin(-72*M_PI/180);
-	ympoints2[2] = ym[i] - (xmpoints2[1] - xm[i])*sin(-72*M_PI/180) + (ympoints2[1] - ym[i]) *cos(-72*M_PI/180);
-
-	xmpoints2[3] = xm[i];
-	ympoints2[3] = ym[i] + r2;
-
-	xmpoints2[4] = xm[i] + (xmpoints2[0] - xm[i])*cos(72*M_PI/180) + (ympoints2[0] - ym[i]) *sin(72*M_PI/180);
-	ympoints2[4] = ym[i] - (xmpoints2[0] - xm[i])*sin(72*M_PI/180) + (ympoints2[0] - ym[i]) *cos(72*M_PI/180);
-
-	
-	xmpoints[0] = xmpoints2[4];
-	ympoints[0] = ympoints2[4];
-
-	xmpoints[1] = xmpoints1[0];
-        ympoints[1] = ympoints1[0];
-
-	xmpoints[2] = xmpoints2[3];
-	ympoints[2] = ympoints2[3];
-
-	xmpoints[3] = xmpoints1[1];
-	ympoints[3] = ympoints1[1];
-
-	xmpoints[4] = xmpoints2[2];
-	ympoints[4] = ympoints2[2];
-
-	xmpoints[5] = xmpoints1[2];
-	ympoints[5] = ympoints1[2];
-
-	xmpoints[6] = xmpoints2[1];
-	ympoints[6] = ympoints2[1];
-
-	xmpoints[7] = xmpoints1[3];
-	ympoints[7] = ympoints1[3];
-
-	xmpoints[8] = xmpoints2[0];
-	ympoints[8] = ympoints2[0];
-
-	xmpoints[9] = xmpoints1[4];
-	ympoints[9] = ympoints1[4];
-
-
-	
-/*  	C2F(dr)("xset","thickness",&thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	
-	C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-	
-	C2F (dr) ("xarea", "v", &dix, xmpoints, ympoints, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
-	
-	C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
-		  &dv, &dv, &dv, &dv, 5L, 4096);
-
-	C2F (dr) ("xlines", "xv", &dix, xmpoints, ympoints, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-
-      }
     break;
   default:
     break;
@@ -8736,11 +8353,11 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   
   C2F(dr)("xset","thickness",&old_thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   
+  C2F (dr) ("xset", "dashes", &old_foreground, &old_foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
   C2F (dr) ("xset", "foreground", &old_foreground, &old_foreground, x+4, x+4, x+4, &v,
 	    &dv, &dv, &dv, &dv, 5L, 4096);
   
-  /*   C2F(dr)("xset","thickness",&old_thick,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
-	    
   return 0; 
 }
 
@@ -8757,6 +8374,8 @@ void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym)
     markidsizenew[0] = sciGetMarkStyle(pobj);
     markidsizenew[1] = sciGetMarkSize (pobj);
     
+    C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	      &dv, &dv, &dv, 5L, 4096);
     C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 	      &dv, &dv, &dv, &dv, 5L, 4096);
     
@@ -8765,4 +8384,473 @@ void DrawMarks3D(sciPointObj *pobj, int n1, int *xm, int *ym)
     
     DrawNewMarks(pobj,n1,xm,ym);
   }
+}
+
+
+
+/* F.Leray 25.02.05 */
+/* This function is used to determine how the pixel data*/
+/* is given to Xt method (like XDrawLines) */
+/* 0 : pixel itself */
+/* 1 : pixel's interval */
+/* Explanation :*/
+/* i.e.in X11 (same thing using Win32 driver), with x2=x1+1 and y1=y2, we have : */
+/*   XDrawLine(x1,y1,x1,y1)  does nothing (no pixel lit) */
+/*   XDrawLine(x1,y1,x2,y2)  ONE pixel lit */
+/* BUT the corresponding function with driver Gtk, Gif (and others?) give us: */
+/*   GTKDrawLine(x1,y1,x1,y1)  ONE pixel lit */
+/*   GTKDrawLine(x1,y1,x2,y2)  TWO pixels lit */
+/* for now (and only for marks), I make a trick using a pixel_offset set to 0 or 1 */
+/* depending on the driver. */
+int CheckPixelStatus(void)
+{
+  if(GetDriverId() == 0) /* X11 or Win32 driver */
+    return 1;
+  else
+    return 0;
+}
+
+
+
+/* center : xmi,ymi */
+/* diameter : size */
+int DrawMark_FullDot(int xmi, int ymi, int size, int foreground, int background)
+{
+  int x1 = xmi - size/2;
+  int yy1= ymi - size/2;
+  int w1 = size;
+  int h1 = size;
+  char str[2] = "xv";
+  int x[4];
+  integer v;
+  double dv;
+  
+  integer angle1 = 0;
+  integer angle2 = 64*360;
+  
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+  
+  C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+  
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+  
+  return 0;
+}
+
+/* center : xmi,ymi */
+/* "+" half-size (minus centered pixel) : size */
+int DrawMark_Plus(int xmi, int ymi, int size, int foreground, int pixel_offset)
+{
+  int deux = 2;
+  int xmasterix[2];
+  int ymasterix[2];
+  int x[4],v,closeflag=0;
+  double dv;
+  
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+  
+  /* the "+" */
+  xmasterix[0] = xmi -((int) size) ;
+  xmasterix[1] = xmi +(int) size + pixel_offset;
+  ymasterix[0] = 	ymasterix[1] = ymi;
+  C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  xmasterix[0] = xmasterix[1] = xmi;
+  ymasterix[0] = ymi - (int) size;
+  ymasterix[1] = ymi + (int) size + pixel_offset;
+  C2F(dr)("xsegs","v", xmasterix, ymasterix, &deux,&foreground,&closeflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+ 
+  return 0;
+}
+
+/* center : xmi,ymi */
+/* "x" half-size (minus centered pixel) : size */
+int DrawMark_Cross(int xmi, int ymi, int size, int foreground, int pixel_offset)
+{
+  int deux = 2;
+  int xmasterix[2];
+  int ymasterix[2];
+  int x[4],v,closeflag=0;
+  double dv;
+  
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+  
+  /* the "/" */
+  xmasterix[0] = (int) (xmi - size);
+  xmasterix[1] = (int) (xmi + size + pixel_offset);
+  ymasterix[0] = (int) (ymi + size);
+  ymasterix[1] = (int) (ymi - size - pixel_offset);
+
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  /* end */
+	
+  /* the "\" */
+  xmasterix[0] = (int) (xmi - size);
+  xmasterix[1] = (int) (xmi + size + pixel_offset);
+  ymasterix[0] = (int) (ymi - size);
+  ymasterix[1] = (int) (ymi + size + pixel_offset);
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  /* end */
+
+  return 0;
+}
+
+/* center : xmi,ymi */
+/* represents a diamond with both editable foreground and background  */
+int DrawMark_FullDiamond(int xmi, int ymi, int size, int foreground, int background)
+{
+  int quatre = 4, un=1;
+  int xmdiamond[4];
+  int ymdiamond[4];
+  int x[4],v;
+  double dv;
+	
+  xmdiamond[0] = xmi - size;
+  xmdiamond[1] = xmi;
+  xmdiamond[2] = xmi + size;
+  xmdiamond[3] = xmi;
+	
+  ymdiamond[0] = ymi;
+  ymdiamond[1] = ymi + size;
+  ymdiamond[2] = ymi;
+  ymdiamond[3] = ymi - size;
+  
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarea", "v", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+  
+  if(foreground != background){
+    C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	      &dv, &dv, &dv, 5L, 4096);
+    C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	      &dv, &dv, &dv, &dv, 5L, 4096);
+    
+    C2F (dr) ("xlines", "xv", &quatre, xmdiamond, ymdiamond, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  }
+  
+  return 0;
+}
+
+
+int DrawMark_FullTriangleUp(int xmi, int ymi, int size, int foreground, int background)
+{
+  int trois = 3, un=1;
+  int xmtriangle[3];
+  int ymtriangle[3];
+  int x[4],v;
+  double dv;
+   
+  xmtriangle[0] = (int) (xmi - size/2);
+  xmtriangle[1] = (int) (xmi + size/2);
+  xmtriangle[2] = xmi;
+	
+  ymtriangle[0] = (int) (ymi + size/3);
+  ymtriangle[1] = (int) (ymi + size/3);
+  ymtriangle[2] = (int) (ymi - 2*size/3);
+
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+
+  if(foreground != background){
+    C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	      &dv, &dv, &dv, &dv, 5L, 4096);
+    
+    C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  }
+  
+  return 0;
+}
+      
+
+int DrawMark_FullTriangleDown(int xmi, int ymi, int size, int foreground, int background)
+{
+  int trois = 3, un=1;
+  int xmtriangle[3];
+  int ymtriangle[3];
+  int x[4],v;
+  double dv;
+   	
+  xmtriangle[0] = (int) (xmi - size/2);
+  xmtriangle[1] = (int) (xmi + size/2);
+  xmtriangle[2] = (int) (xmi);
+  
+  ymtriangle[0] = (int) (ymi - size/3);
+  ymtriangle[1] = (int) (ymi - size/3);
+  ymtriangle[2] = (int) (ymi + 2*size/3);
+  
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+  
+  C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+  
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+  
+  C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  
+  return 0;
+}
+      
+int DrawMark_Asterisk(int xmi, int ymi, int size, int foreground, int pixel_offset)
+{
+  int deux = 2;
+  int xmasterix[2];
+  int ymasterix[2];
+  int sizecross = 0.8*size;
+  int x[4],v,closeflag=0;
+  double dv;
+  
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  /* the "+" */
+  xmasterix[0] = xmi - size;
+  xmasterix[1] = xmi + size +pixel_offset;
+  ymasterix[0] = ymasterix[1] = ymi;
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	
+  xmasterix[0] = xmasterix[1] = xmi;
+  ymasterix[0] = ymi - size;
+  ymasterix[1] = ymi + size +pixel_offset;
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  /* end */
+
+  /* the "/" */
+  xmasterix[0] = xmi - ceil(sizecross);
+  xmasterix[1] = xmi + ceil(sizecross)+pixel_offset;
+  ymasterix[0] = ymi + ceil(sizecross);
+  ymasterix[1] = ymi - ceil(sizecross)-pixel_offset;
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  /* end */
+	
+  /* the "\" */
+  xmasterix[0] = xmi - ceil(sizecross);
+  xmasterix[1] = xmi + ceil(sizecross)+pixel_offset;
+  ymasterix[0] = ymi - ceil(sizecross);
+  ymasterix[1] = ymi + ceil(sizecross)+pixel_offset;
+  C2F (dr) ("xlines", "xv", &deux, xmasterix, ymasterix, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+  /* end */
+
+  return 0;
+}
+
+
+int DrawMark_FullSquare(int xmi, int ymi, int size, int foreground, int background)
+{
+  int x1 = xmi - size/2;
+  int yy1= ymi - size/2;
+  int w1 = size;
+  int h1 = size;
+  char str[2] = "xv";
+  int x[4],v;
+  double dv;
+  
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xfrect", str, &x1, &yy1, &w1, &h1, PI0, PI0, PD0, PD0, PD0,PD0, 5L, 0L);
+	
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xrect", str, &x1, &yy1, &w1, &h1, PI0, PI0, PD0, PD0, PD0,PD0, 5L, 0L);
+	
+
+  return 0;
+}
+
+
+int DrawMark_FullTriangleRight(int xmi, int ymi, int size, int foreground, int background)
+{
+  int trois = 3, un=1;
+  int xmtriangle[3];
+  int ymtriangle[3];
+  int x[4],v;
+  double dv;
+  
+  xmtriangle[0] = (int) (xmi - size/3);
+  xmtriangle[1] = (int) (xmi - size/3);
+  xmtriangle[2] = (int) (xmi + 2*size/3);
+	
+  ymtriangle[0] = (int) (ymi - size/2);
+  ymtriangle[1] = (int) (ymi + size/2);
+  ymtriangle[2] = ymi;
+	
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+
+  C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
+  return 0;
+}
+
+
+int DrawMark_FullTriangleLeft(int xmi, int ymi, int size, int foreground, int background)
+{
+
+  int trois = 3, un=1;
+  int xmtriangle[3];
+  int ymtriangle[3];
+  int x[4],v;
+  double dv;
+  
+  xmtriangle[0] = (int) (xmi + size/3);
+  xmtriangle[1] = (int) (xmi + size/3);
+  xmtriangle[2] = (int) (xmi - 2*size/3);
+	
+  ymtriangle[0] = (int) (ymi - size/2);
+  ymtriangle[1] = (int) (ymi + size/2);
+  ymtriangle[2] = ymi;
+
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarea", "v", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+
+  C2F (dr) ("xlines", "xv", &trois, xmtriangle, ymtriangle, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
+  
+  return 0;
+}
+
+
+int DrawMark_FullPentagram(int xmi, int ymi, int size, int foreground, int background)
+{
+  int dix= 10, un=1;
+  int xmpoints1[5],ympoints1[5];
+  int xmpoints2[5],ympoints2[5];
+  int xmpoints[10], ympoints[10];
+  int x[4],v;
+  double dv;
+	
+  double r2 = size*cos(72*M_PI/180)/cos(36*M_PI/180);
+
+  xmpoints1[0] = xmi - size*cos(54*M_PI/180);
+  ympoints1[0] = ymi + size*sin(54*M_PI/180);
+	
+  xmpoints1[1] = xmi + size*cos(54*M_PI/180);
+  ympoints1[1] = ymi + size*sin(54*M_PI/180);
+	
+  xmpoints1[2] = xmi + (xmpoints1[1] - xmi) *cos(72*M_PI/180) + (ympoints1[1] - ymi) *sin(72*M_PI/180);
+  ympoints1[2] = ymi - (xmpoints1[1] - xmi) *sin(72*M_PI/180) + (ympoints1[1] - ymi) *cos(72*M_PI/180);
+
+  xmpoints1[3] = xmi;
+  ympoints1[3] = ymi - size;
+
+  xmpoints1[4] = xmi + (xmpoints1[0] - xmi) *cos(-72*M_PI/180) + (ympoints1[0] - ymi) *sin(-72*M_PI/180);
+  ympoints1[4] = ymi - (xmpoints1[0] - xmi) *sin(-72*M_PI/180) + (ympoints1[0] - ymi) *cos(-72*M_PI/180);
+
+	
+  xmpoints2[0] = xmi - r2*sin(36*M_PI/180);
+  ympoints2[0] = ymi - size*cos(72*M_PI/180);
+
+  xmpoints2[1] = xmi + r2*sin(36*M_PI/180);
+  ympoints2[1] = ymi - size*cos(72*M_PI/180);
+
+  xmpoints2[2] = xmi + (xmpoints2[1] - xmi)*cos(-72*M_PI/180) + (ympoints2[1] - ymi) *sin(-72*M_PI/180);
+  ympoints2[2] = ymi - (xmpoints2[1] - xmi)*sin(-72*M_PI/180) + (ympoints2[1] - ymi) *cos(-72*M_PI/180);
+
+  xmpoints2[3] = xmi;
+  ympoints2[3] = ymi + r2;
+
+  xmpoints2[4] = xmi + (xmpoints2[0] - xmi)*cos(72*M_PI/180) + (ympoints2[0] - ymi) *sin(72*M_PI/180);
+  ympoints2[4] = ymi - (xmpoints2[0] - xmi)*sin(72*M_PI/180) + (ympoints2[0] - ymi) *cos(72*M_PI/180);
+
+	
+  xmpoints[0] = xmpoints2[4];
+  ympoints[0] = ympoints2[4];
+
+  xmpoints[1] = xmpoints1[0];
+  ympoints[1] = ympoints1[0];
+
+  xmpoints[2] = xmpoints2[3];
+  ympoints[2] = ympoints2[3];
+
+  xmpoints[3] = xmpoints1[1];
+  ympoints[3] = ympoints1[1];
+
+  xmpoints[4] = xmpoints2[2];
+  ympoints[4] = ympoints2[2];
+
+  xmpoints[5] = xmpoints1[2];
+  ympoints[5] = ympoints1[2];
+
+  xmpoints[6] = xmpoints2[1];
+  ympoints[6] = ympoints2[1];
+
+  xmpoints[7] = xmpoints1[3];
+  ympoints[7] = ympoints1[3];
+
+  xmpoints[8] = xmpoints2[0];
+  ympoints[8] = ympoints2[0];
+
+  xmpoints[9] = xmpoints1[4];
+  ympoints[9] = ympoints1[4];
+
+
+  C2F (dr) ("xset", "dashes", &background, &background, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &background, &background, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+	
+  C2F (dr) ("xarea", "v", &dix, xmpoints, ympoints, &un, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	
+  C2F (dr) ("xset", "dashes", &foreground, &foreground, x+4, x+4, x+4, &v, &dv,
+	    &dv, &dv, &dv, 5L, 4096);
+  C2F (dr) ("xset", "foreground", &foreground, &foreground, x+4, x+4, x+4, &v,
+	    &dv, &dv, &dv, &dv, 5L, 4096);
+
+  C2F (dr) ("xlines", "xv", &dix, xmpoints, ympoints, &un, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+
+  return 0;
 }
