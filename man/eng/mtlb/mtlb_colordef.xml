@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_colordef</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_colordef">Matlab colordef emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent function for Matlab <VERB>colordef</VERB> but there are equivalent instructions.</P>
+
+    <P>
+    The function <VERB>h = mtlb_colordef(color_option)</VERB> or 
+    <VERB>h = mtlb_colordef(fig,color_option)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>colordef(color_option)</VERB> or 
+    <VERB>colordef(fig,color_option)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_colordef</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called with one input parameter, if <VERB>color_option</VERB> is equal to "black" or "none"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig = gcf();fig.background = -1;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one input parameter, if <VERB>color_option</VERB> is equal to "white"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig = gcf();fig.background = -2;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two input parameters, if <VERB>fig</VERB> is a graphic handle and 
+	<VERB>color_option</VERB> is equal to "black" or "none"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig.background = -1;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two input parameters, if <VERB>fig</VERB> is a graphic handle and 
+	<VERB>color_option</VERB> is equal to "white"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig.background = -2;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two input parameters, if <VERB>fig</VERB> is equal to "new" and
+	<VERB>color_option</VERB> is equal to "black" or "none"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig = scf(max(winsid())+1);fig.background = -1;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with two input parameters, if <VERB>fig</VERB> is equal to "new" and
+	<VERB>color_option</VERB> is equal to "white"
+        <VERB>mtlb_colordef(color_option)</VERB> may be replaced by <VERB>fig = scf(max(winsid())+1);fig.background = -2;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        When called with one output parameter <VERB>h</VERB>, just add <VERB>h = fig;</VERB> after equivalent instructions.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_colordef</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>figure_properties</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_box</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_box">Matlab box emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>There is no Scilab equivalent function for Matlab <VERB>box</VERB> but it can be easyly replaced.</P>
+
+    <P>
+    The function <VERB>mtlb_box([axes_handle[,val]])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>box([axes_handle[,va]]l)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_box</VERB> calls:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        When called without input parameters,
+        <VERB>mtlb_box()</VERB> may be replaced by <VERB>a=gca();if a.box=="on" then a.box="off";else a.box="on";end;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>axes_handle</VERB> is a character string,
+        <VERB>mtlb_box(axes_handle)</VERB> may be replaced by <VERB>a=gca();a.box=convstr(axes_handle,"l");</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>axes_handle</VERB> is a graphic handle
+        <VERB>mtlb_box(axes_handle)</VERB> may be replaced by 
+	<VERB>if axes_handle.box=="on" then axes_handle.box="off";else axes_handle.box="on";end;</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        If <VERB>axes_handle</VERB> is a graphic handle and <VERB>val</VERB> is a character string
+        <VERB>mtlb_box(axes_handle,val)</VERB> may be replaced by <VERB>axes_handle.box=convstr(val,"l");</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_box</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>axes_properties</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

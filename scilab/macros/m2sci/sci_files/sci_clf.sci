@@ -1,0 +1,24 @@
+function [tree]=sci_clf(tree)
+// Copyright INRIA
+// M2SCI function
+// Conversion function for Matlab clf()
+// Input: tree = Matlab funcall tree
+// Ouput: tree = Scilab equivalent for tree
+// V.C.
+
+if rhs<1 then
+  set_infos("All children will be deleted, no HandleVisibility property in Scilab graphics.",2);
+end
+
+// f=gcf()
+if tree.lhs(1).name<>"ans" then
+  f=tree.lhs(1)
+else
+  f=gettempvar()
+end
+insert(Equal(list(f),Funcall("gcf",1,list(),list())))
+
+tree.name="delete"
+tree.rhs=list(Operation("ext",list(f,Cste("children")),list()))
+tree.lhs(1).name="ans"
+endfunction
