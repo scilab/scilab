@@ -437,8 +437,8 @@ function ged_rectangle(h)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
   ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
-  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
-  "circle2" "asterisk" "square" "diamond2"];
+  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
   TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TK_SetVar("curmarkmode",h.mark_mode)
   TK_SetVar("curmarksize",string(h.mark_size))
@@ -502,8 +502,8 @@ function ged_polyline(h)
     ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
     TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
     ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
-    "diamond" "triangle up" "triangle down" "trefle" "circle" ..
-    "circle2" "asterisk" "square" "diamond2"];
+    "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+    "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
     TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
     TK_SetVar("curmarkmode",h.mark_mode)
@@ -560,8 +560,8 @@ function ged_plot3d(h)
   TK_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
-  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
-  "circle2" "asterisk" "square" "diamond2"];
+  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
   TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TK_SetVar("curmarkmode",h.mark_mode)
@@ -622,8 +622,8 @@ function ged_fac3d(h)
   TK_SetVar("curthick",string(h.thickness))
 
   ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
-  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
-  "circle2" "asterisk" "square" "diamond2"];
+  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
   TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TK_SetVar("curmarkmode",h.mark_mode)
@@ -781,9 +781,11 @@ function ged_segs(h)
   TK_SetVar("curthick",string(h.thickness))
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
+
   ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
-  "diamond" "triangle up" "triangle down" "trefle" "circle" ..
-  "circle2" "asterisk" "square" "diamond2"];
+  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+  "asterisk" "square" "triangle right" "triangle left" "pentagram"];
+
   TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
   TK_SetVar("curmarkmode",h.mark_mode)
   TK_SetVar("curmarksize",string(h.mark_size))
@@ -1219,9 +1221,8 @@ endfunction
 function setMarkStyle(sty)
   global ged_handle; h=ged_handle
   h.mark_style=find(sty==["dot" "plus" "cross" "star" "diamond fill" ..
-                    "diamond" "triangle up" "triangle down" "trefle" ..
-		    "circle" "circle2" "asterisk" "square" "diamond2"])-1
-   
+  "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
+  "asterisk" "square" "triangle right" "triangle left" "pentagram"])-1
 endfunction
 function setFontStyle(ftn)
   global ged_handle; h=ged_handle

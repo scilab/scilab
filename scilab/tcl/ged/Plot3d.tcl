@@ -235,7 +235,8 @@ combobox $w.frame.markstyle \
     -textvariable curmarkstyle \
     -editable false \
     -command [list SelectMarkStyle ]
-eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle" "circle2" "asterisk" "square" "diamond2"]
+eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "diamond plus" "circle" "asterisk" "square" "triangle right" "triangle left" "pentagram"]
+
 
 pack $w.frame.markstylelabel  -in $w.frame.linemarkst   -side left
 pack $w.frame.markstyle   -in $w.frame.linemarkst   -expand 1 -fill x -pady 2m -padx 2m
