@@ -340,7 +340,7 @@ let rec bufferize_rhs model_info tabs modes_on lhs expr =
     | HyperbolicTangent expr' -> bufferize_unary_function expr "tanh" expr'
     | If (expr1, expr2, expr3) -> bufferize_if expr expr1 expr2 expr3
     | DiscreteVariable i when i < 0 ->
-        Printf.bprintf model_info.code_buffer "u[0][%d]" (-1 - i)
+        Printf.bprintf model_info.code_buffer "u[%d][0]" (-1 - i)
     | DiscreteVariable i -> Printf.bprintf model_info.code_buffer "z[%d]" i
     | Logarithm expr' -> bufferize_unary_function expr "log" expr'
     | Multiplication exprs' -> bufferize_multiplication expr exprs'
@@ -640,7 +640,7 @@ let bufferize_outputs model_info =
         match variable.output with
           | None -> ()
           | Some j ->
-              let lhs = "y[0][" ^ (string_of_int j) ^ "] = " in
+              let lhs = "y[" ^ (string_of_int j) ^ "][0] = " in
               let equation = model_info.model.equations.(i) in
               if equation.solved then
                 bufferize_rhs model_info 3 modes_on lhs equation.expression
