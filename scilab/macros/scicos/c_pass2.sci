@@ -1709,9 +1709,11 @@ function [bouclalg,vec,primary]=ordo2(blk,port,clkconnect,connectmat,primary)
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
 	primary1=primary(i,1)
-	//w=allchildren2(allchildren2ptr(primary(i)):allchildren2ptr(primary(i)+1)-1)
-	w=get_allchildren2port(primary1)
-	//w=[]
+if typ_l(primary1) then   //RN
+	  w=get_allchildren2port(primary1)
+	else
+	  w=[]
+end
 	w=[primary(i,:);w]
 	//on cherche d'où vient l'entrée des blocs: g
 	if dep_ut(primary1,1) then
@@ -1785,8 +1787,11 @@ function [bouclalg,vec,primary]=ordo3(blk,port,clkconnect,connectmat)
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
 	w0=primary(i,:)
-	//w=allchildren2(allchildren2ptr(primary(i)):allchildren2ptr(primary(i)+1)-1)
+if typ_l(primary(i,1)) then   //RN
 	w=get_allchildren2port(primary(i,1))
+else
+  w=[]
+end
 	//on enleve les blocs du primary qui se trouve dans w
 	n_w=size(w,1)
 	if n_w>0 then
@@ -1927,7 +1932,11 @@ function [bouclalg,vec,primary,typ_l,clkconnect,connectmat,bllst,dep_ut,corinv,b
     while ~fromfixe & ~bouclalg & ~find_gap(vec(primary(:,1)))
       for i=1:n_p
 	w0=primary(i,:)
+if typ_l(primary(i,1)) then //RN	
 	w=get_allchildren2port(primary(i,1))
+else
+  w=[]
+end
 	//on enleve les blocs du primary qui se trouve dans w
 	n_w=size(w,1)
 	if n_w>0 then
