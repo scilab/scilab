@@ -2,8 +2,8 @@ function []=evans(n,d,kmax)
 //seuil maxi et mini (relatifs) de discretisation
 // en espace
 // Copyright INRIA
-smax=0.01;smin=smax/3;
-nptmax=500 //nbre maxi de pt de discretisation en k
+smax=0.002;smin=smax/3;
+nptmax=2000 //nbre maxi de pt de discretisation en k
 //
 //analyse de la liste d'appel
 [lhs,rhs]=argn(0)
@@ -104,7 +104,7 @@ while fin=='no' then
     if nr>nptmax then fin='nptmax',end
   end
 end
-//taille du cadre graphique
+//draw the axis
 x1 =[nroots;matrix(racines,md*nr,1)];
 xmin=mini(real(x1));xmax=maxi(real(x1))
 ymin=mini(imag(x1));ymax=maxi(imag(x1))
@@ -112,30 +112,25 @@ dx=abs(xmax-xmin)*0.05
 dy=abs(ymax-ymin)*0.05
 
 rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
+plot2d([],[],rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy],frameflag=7)
 
 dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
-//trace des lieux des zeros
+//plot the zeros locations
 xx=xget("mark")
 xset("mark",xx(1),xx(1)+3);
 
 if nroots<>[] then
-  plot2d(real(nroots),imag(nroots),[-5,4],"151",...
-      'open loop zeroes',rect);
-  strf="100"
-else
-  strf="151"
+  plot2d(real(nroots),imag(nroots),style=[-5,4],..
+	 leg='open loop zeroes',frameflag=0,axesflag=0)
 end
-//trace des lieu des poles en boucle ouverte
+//plot the poles locations
 if racines<>[] then
-  plot2d(real(racines(:,1)),imag(racines(:,1)),[-2,5],strf,...
-      'open loop poles',rect);
-  strf='100';else strf='151';
-end
-// trace des branches asymptotiques
-plot2d(0,0,[1,2],strf,'asymptotic directions');
-xtitle('Evans root locus','Real axis','Imag. axis');
+  plot2d(real(racines(:,1)),imag(racines(:,1)),style=[-2,5],..
+      leg='open loop poles',frameflag=0,axesflag=0)
 
-xset("clipgrf");
+end
+
+//computes and draw the asymptotic lines
 m=degree(n);q=md-m
 if q>0 then
   la=0:q-1;
@@ -144,30 +139,30 @@ if q>0 then
   if prod(size(la))<>1 then
     ang1=%pi/q*(ones(la)+2*la)
     x1=dx*cos(ang1),y1=dx*sin(ang1)
-    //     ang2=%pi/q*2*la
-    //     x2=dx*cos(ang2),y2=dx*sin(ang2)
   else
-    x1=0,y1=0,//x2=0,y2=0,
+    x1=0,y1=0,
   end
   if md==2,
     if coeff(d,md)<0 then
       x1=0*ones(2),y1=0*ones(2)
-      //        x2=0*ones(2),y2=0*ones(2),
     end,
   end;
   if maxi(k)>0 then
+    plot2d(i1,i2,style=[1,2],leg='asymptotic directions',frameflag=0, ...
+	   axesflag=0);
+    xset("clipgrf");
     for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
+    xclip();
   end
-  // if mini(k)<0 then
-  //     for i=1:q,xsegs([i1,x2(i)+i1],[i2,y2(i)+i2]),end,
-// end
 end;
-xclip();
+
 
 //lieu de evans
 [n1,n2]=size(racines);
-plot2d(real(racines)',imag(racines)',3*ones(1,n2),"100",...
-    'closed-loop poles loci');
+plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
+xtitle('Evans root locus','Real axis','Imag. axis');
+
+
 if fin=='nptmax' then
   write(%io(2),'evans : too many points required')
 end
