@@ -89,12 +89,7 @@ function xmltohtml(dirs,titles,xsl,step)
 	    mprintf('  Processing file %s.xml\n',fb);
 	    xslpath=xslprefix+pathconvert(SCI+'/man/'+LANGUAGE)+xsl;
 
-	    if  MSDOS then 
-	    // added by HUYNH Olivier on the 09/03/2004, run the xml parser under Windows OS.
-	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
-	    else
 	    ierr=execstr('unix_s(''sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm'');','errcatch')
-	    end
 	    
 	    if ierr<>0 then 
 	      write(%io(2),'     Warning '+fb+'.xml does not follow dtd','(a)')
@@ -210,7 +205,7 @@ function gener_index(dirs,txt)
 // 
   lines(0);
   find_links;
-  sep="/";if MSDOS then sep="\",end
+  sep="/";// if MSDOS then sep="\",end
   path=get_absolute_file_path("html.xsl")+"html.xsl"
   [lhs,rhs]=argn(0) 
   if rhs <= 0 then 
@@ -235,6 +230,7 @@ function gener_index(dirs,txt)
       return 
     end 
     l=l+1;
+    w=strsubst(w,'\','/');
     w=strsubst(w,'//','/');
     line(l)="<dd><A HREF="""+w+""">"+txt(k)+"</A></dd>"
   end
@@ -298,6 +294,7 @@ function gener_contents(dirs1)
 	   full_whatis_name=[full_whatis_name;lkey];
 	 end
 	 whatis=strsubst(whatis,"HREF=""","HREF="""+base(k)+"/");
+	 whatis=strsubst(whatis,'//','/');
 	 full_whatis=[full_whatis;whatis];
       end 
     end
@@ -325,6 +322,7 @@ function gener_contents(dirs1)
 	    d=base(k)+"/";
 	 end
 	 whatis=strsubst(whatis,"HREF=""","HREF="""+d);
+	 whatis=strsubst(whatis,'//','/');
 	 full_whatis=[full_whatis;whatis];
       end 
     end
@@ -373,9 +371,10 @@ function gener_hh(dirs,titles)
     // look for .xml files
     files = listfiles(base(k)+'/*.xml');
     fbase = basename(files);
+    name = strsubst(base(k)+"\"+fbase,"\\","/");
     items=[items;
 	   "<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-	   + base(k)+"\"+fbase+ ...
+	   + name +  ...
 	 ".htm""><param name=""Name"" value="""+ fbase+"""></OBJECT>"];
     names=[names;files];
   end
@@ -397,9 +396,9 @@ function gener_hh(dirs,titles)
   // produce a scilab.hhc file 
   // (contents) 
   //--------------------------------------
-
+  name = strsubst(base(k)+"\","\\","/");  
   items="<LI><OBJECT type=""text/sitemap""><param name=""Local"" value=""" ...
-      + base+"\whatis.htm""><param name=""Name"" value=""" ...
+      + name+"whatis.htm""><param name=""Name"" value=""" ...
       + titles+"""></OBJECT>";
 
   contents=["<UL><LI><OBJECT type=""text/sitemap"">";
@@ -416,7 +415,6 @@ function gener_hh(dirs,titles)
   // produce a scilab.hhp file 
   // XXXXXXXXXXX A finir 
   //--------------------------------------
-
        
   head=["[OPTIONS]";
 	"Compatibility=1.1";
@@ -434,7 +432,7 @@ function gener_hh(dirs,titles)
       "sciman=""Scilab Documentation"",""sciman.hhc"",""sciman.hhk"",""index.htm"",""index.htm"",,,,,0x2520,220,0x384e,[84,16,784,504],,,,0,,,0";
       "";      "[FILES]"];
 
-  items=base+"\*.htm";
+  items=base+"*.htm";
        
   mputl([head;items],'sciman.hhp')      
 endfunction
