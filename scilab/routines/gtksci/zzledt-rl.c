@@ -15,16 +15,17 @@
 #include <setjmp.h>
 
 #include "../machine.h" 
+#include "All-extern.h"
 
 extern void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof, int * inter, int * modex,long int  dummy1);
+			int * eof, int *menusflags, int * modex,long int  dummy1);
 #define TRUE 1 
 #define FALSE 0
 static int fd=0;              /* file number for standard in */
 static char Sci_Prompt[24];
 static int  use_prompt=1;
 static int hist = 1; /* flag to add to history */
-static int interrupt;
+static int interrupt=1; 
 
 /***********************************************************************
  * line editor
@@ -40,7 +41,7 @@ static jmp_buf my_env;
 
 static int my_getc (FILE *dummy) 
 { 
-  int i= Xorgetchar();
+  int i= Xorgetchar(interrupt);
   if (interrupt&&( C2F (ismenu) () == 1))
     { 
       /* abort current line aquisition*/
@@ -81,12 +82,15 @@ int get_one_char(char *prompt)
 
 
 void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
-			int * eof, int * inter, int * modex,long int  dummy1)
+		 int * eof, int *inter_flag, int * modex,long int  dummy1)
 {
+  static char saved_buf[512];/* use to save data when zzledt is interupted 
+				rl_stuff is limited to 512 */
+  static int saved_buf_flag = 0;
   static int init_flag = TRUE;
   char * line ; 
   static int tty =0;
-  interrupt=*inter;
+  interrupt=*inter_flag;
 
    if(init_flag) {
      initialize_readline();
@@ -119,10 +123,20 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
    if ( setjmp(my_env)) {
      /** return from longjmp **/
      *eof = -1;
-     use_prompt=0;
+     use_prompt=1;
      buffer[0]=0;
+     *len_line= strlen(line);
+     strncpy(saved_buf,rl_line_buffer,512);
+     saved_buf_flag=1;
      return;
    } else {
+     int i; 
+     if ( saved_buf_flag == 1 ) 
+       {
+	 for ( i = 0 ; i < strlen(saved_buf); i++) 
+	   rl_stuff_char(saved_buf[i]);
+	 saved_buf_flag=0;
+       }
      line = readline((use_prompt) ? Sci_Prompt : "" );
      use_prompt=1;
    }
@@ -147,6 +161,9 @@ void C2F(zzledt)(char *buffer,int * buf_size,int * len_line,
    set_is_reading(FALSE);
    return;
 }
+
+
+
 
 /*----------------------------------------------------------------------
  * initialise the io sequences
