@@ -33,14 +33,17 @@ int C2F(structcreate)(lw, nz, sz, nf, fnames,retval)
 integer *lw, *nz, *sz, *nf, *retval;
 char *fnames[];
 {
-    integer i1,next,k,lr;
+    integer next,k,lr;
 
     static integer l;
-    static integer l0, n1, n2, n3, il;
+    static integer l0, n1, il;
 
     *retval = 0;
     l0 = *lstk(*lw);
-    printf("l0=%d\n",l0);
+
+    C2F(intersci).ntypes[*lw -Top + Rhs - 1] = '$';
+    C2F(intersci).iwhere[*lw -Top + Rhs - 1] = *lstk(*lw);
+
     if (*lw > intersiz) {
       Scierror(998,"Too many arguments in the stack edit stack.h and enlarge intersiz\r\n");
 	return 1;
