@@ -113,7 +113,7 @@ int C2F(intcpass2)(fname)
   int m31=8,n31=1,l31,n32=8;
   static int *header,*li,*le1,*le11,*le2,*le3,*le4,*le5,*le6,*le7,*le8,*le9;
   static int *le10,*le12,*le13,*header1,*lii,*le14;
-  static int m,me12,ne2,ne3,ne4,ne5,ne6,ne7,ne8,ne9,ne11,ne12;
+  static int m,me12,ne2,ne3,ne4,ne5,ne6,ne7,ne8,ne9,ne11,ne12,ne71,ne81;
   static double *le66,*le77,*le88,*le1111,*le121,*le22,*le33,*le44,*le55,*le71;
   static double *le81,*le99,*xd0k,*lc1,*rpark,*le1414;
   static int *le1010,*le111,*le1313,nc1,mc1,l33,l3,m4,*vecnull;
@@ -140,6 +140,7 @@ int C2F(intcpass2)(fname)
   double *bllst6,*bllst7,*bllst8,*bllst11,*tevts,*xcd0,*ppd;
   char **bllst111,**bllst10,**bllst13;
   unsigned long str_len;
+  int moinsun=-1;
 
   xcd0=NULL;
   ppd=NULL;
@@ -344,22 +345,18 @@ int C2F(intcpass2)(fname)
 	{
 	  if (ne7 != 0)
 	    {
-	      if ((xd0k=(double*)malloc(sizeof(double)*(ne7+3))) ==NULL )  return 0;
-	      ((int *) xd0k)[0]=ne7+2;
+	      ne71=li[8+2]-li[8+1];
+	      if ((xd0k=(double*)malloc(sizeof(double)*(ne71+1))) ==NULL )  return 0;
+	      ((int *) xd0k)[0]=ne71;
 	      
-	      xd0k[1]=le71[0] ;
-	      xd0k[2]=le71[1];
-	      for (j=0; j< ne7; j++)
-		{
-		  xd0k[j+3]=le77[j];
-		}
-	      bllst7ptr[k+1]=bllst7ptr[k]+ne7+2;
-	      if ((bllst7=realloc(bllst7,sizeof(double)*(((int *) bllst7)[0]+ne7+3))) ==NULL )  return 0;
-	      for (j=1; j< ne7+3; j++)
+	      C2F(unsfdcopy)(&ne71,le71,&moinsun,(xd0k+1),&moinsun);
+	      bllst7ptr[k+1]=bllst7ptr[k]+ne71;
+	      if ((bllst7=realloc(bllst7,sizeof(double)*(((int *) bllst7)[0]+ne71+1))) ==NULL )  return 0;
+	      for (j=1; j< ne71+1; j++)
 		{
 		  bllst7[((int *) bllst7)[0]+j]=xd0k[j];
 		}
-	      ((int *) bllst7)[0]=((int *) bllst7)[0]+ne7+2;
+	      ((int *) bllst7)[0]=((int *) bllst7)[0]+ne71;
 	      free(xd0k);
 	    }
 	  else
@@ -368,21 +365,18 @@ int C2F(intcpass2)(fname)
 	    }
 	  if (ne8 != 0)
 	    {
-	      if ((rpark=(double*)malloc(sizeof(double)*(ne8+3))) ==NULL )  return 0;
-	      ((int *) rpark)[0]=ne8+2;
-	      rpark[1]=le81[0] ;
-	      rpark[2]=le81[1];
-	      for (j=0; j< ne8; j++)
-		{
-		  rpark[j+3]=le88[j];
-		}
-	      bllst8ptr[k+1]=bllst8ptr[k]+ne8+2;
-	      if ((bllst8=realloc(bllst8,sizeof(double)*(((int *) bllst8)[0]+ne8+3))) ==NULL )  return 0;
-	      for (j=1; j< ne8+3; j++)
+	      ne81=li[9+2]-li[9+1];
+	      if ((rpark=(double*)malloc(sizeof(double)*(ne81+1))) ==NULL )  return 0;
+	      ((int *) rpark)[0]=ne81;
+	      C2F(unsfdcopy)(&ne81,le81,&moinsun,(rpark+1),&moinsun);
+	      
+	      bllst8ptr[k+1]=bllst8ptr[k]+ne81;
+	      if ((bllst8=realloc(bllst8,sizeof(double)*(((int *) bllst8)[0]+ne81+1))) ==NULL )  return 0;
+	      for (j=1; j< ne81+1; j++)
 		{
 		  bllst8[((int *) bllst8)[0]+j]=rpark[j];
 		}
-	      ((int *) bllst8)[0]=((int *) bllst8)[0]+ne8+2;
+	      ((int *) bllst8)[0]=((int *) bllst8)[0]+ne81;
 	      free(rpark);
 	    }
 	  else
