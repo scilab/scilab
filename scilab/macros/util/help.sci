@@ -107,28 +107,34 @@ function path=make_index()
 endfunction
 
 function change_old_man()
+  // Given an old fashion help chapter, this function translate it in an 
+  // HTML version located in TMPDIR/man<number>/ where <number> is the
+  // index of the chapter in %help
   global %helps
   for k=1:size(%helps,1)
     if fileinfo(%helps(k,1)+"/whatis")<>[] then
       txt=mgetl(%helps(k,1)+"/whatis")
       whatispath=TMPDIR+"/man"+string(k)
+
       if MSDOS then
-	unix_s("mkdir "+strsubst(whatispath,'/','\'))
+	p=strsubst(whatispath,'/','\')
       else
-	unix_s("mkdir "+whatispath)
+	p=whatispath
       end
+      if fileinfo(p)==[] then unix_s("mkdir "+p),end
+      
       name=[],fil=[],def=[]
       for i=1:size(txt,1)
 	p=strindex(txt(i)," - ")
 	if p<>[] then
-	name(i)=part(txt(i),1:p(1))
+	name(i)=stripblanks(part(txt(i),1:p(1)))
 	q=strindex(txt(i),'@')
 	if q==[] then
 	  fil(i)=name(i)
 	  q=length(txt(i))+1
 	else
 	  q=q(1)
-	  fil(i)=part(txt(i),q+1:length(txt(i)))
+	  fil(i)=stripblanks(part(txt(i),q+1:length(txt(i))))
 	end
 	def(i)=part(txt(i),p(1)+3:q-1)
 	mputl(["<html><pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html>"],whatispath+'/'+fil(i)+'.html')
