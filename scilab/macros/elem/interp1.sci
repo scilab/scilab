@@ -9,18 +9,17 @@ function yi=interp1(varargin)
 // xi : a vector, matrix, or hypermatrix of reals 
 // Output
 // yi : reals vector, matrix or hypermatrix, the values corresponding to xi by interpolation defined by x and y
-// if size(y)=[C,N1,N2,N3,....] and size(xi)=[M1,M2,M3,M4] also size(xi)=[M1,M2,M3,M4,N1,N2,N3,N4,..], and length of x must be equal to C. 
-// Several kind of intepolations may be computed by selecting the appropriate  method  parameter:
-//
+// if size(y)=[C,N1,N2,N3,....] and size(xi)=[M1,M2,M3,M4] then size(xi)=[M1,M2,M3,M4,N1,N2,N3,N4,..], and length of x must be equal to C. 
+// Several kind of intepolations may be computed by selecting the appropriate method  parameter:
 // The methods are:
 // linear : this is the default method (using the interp Scilab function) 
 // spline : this is the cubic spline interpolation  (using interpln and splin Scilab functions)
 // nearest : yi take the values corresponding to the nearest neighbor of xi  
 //
 // Several kind of extrapolations may be computed :
-// 'extrap' : the extrapolation points is performed by the defined method (for spline), else for the linear and nearest method the 
-// extrapolation points are equal to nan
-// you can also enter a numeric value for example 0 or 5 but too nan and inf
+// 'extrap' : the extrapolation points is performed by the defined method 
+//  real value : you can choose a real value for extrapolation, in this way yp(i) takes this value for xp(i) not in [x1,xn] interval, for example 0 (but also nan or inf).
+// by default the extrapolation is performed by the defined method (for spline method), and by nan for linear and nearest method. 
 // F.B
 
 rhs=size(varargin)
