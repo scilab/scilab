@@ -136,6 +136,8 @@ if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
  
 //
  
+Leps=2.e-4;
+ 
 bs=[5 5];bi=-bs;x0=1.05*[1 1];xopt=[1 1];
  
 deff('[f,g,ind]=rose(x,ind)', 'a=x(2)-x(1)^2 , b=1-x(2) ,...
