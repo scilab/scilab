@@ -59,7 +59,7 @@ extern void setcolordef  __PARAMS((int screenc));
 /* extern void initColors  __PARAMS((void));   */
 extern void main_sci  __PARAMS((int argc, char **argv));  
 extern int clear_ieee_warnings  __PARAMS((void));  
-extern voidsci_clear_and_exit  __PARAMS((integer n));  
+extern void sci_clear_and_exit  __PARAMS((integer n));  
 extern int C2F(clearexit)  __PARAMS((int *n));  
 extern int GetBytesAvailable  __PARAMS((int fd));  
 extern int kill_process_group  __PARAMS((int pid, int sig)); 
