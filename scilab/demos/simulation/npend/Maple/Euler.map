@@ -1,10 +1,18 @@
 # Copyright ENPC
-# Jean-Philippe Chancelier 
-
 with(share):
 
-readshare(tex,system):
-readshare(macrofor,numerics):
+
+release:=interface(version):
+if SearchText(`Release 4`,release)<> 0 or
+   SearchText(`Release 5`,release)<> 0 then
+	with(`tex`):
+	with(`macrofor`):
+else
+# use the file provided in Scilab  
+   read(`macrofort.mpl`);
+   read(`tex.mpl`);
+fi:
+
 
 #----------------------------------------------------------------------------
 #     GENERAL PART
@@ -84,15 +92,14 @@ euler_equations:=proc(L,q,qd,qdd)
 # used to compute Euler equations 
 #---------------------------------------------------------------
 
-	ttvar:=proc(xx)
-    		if type(xx,`indexed`) 
-		then cat(op(0,xx),`d`)[op(xx)]
-		else cat(xx,`d`) fi
-	end:
-
+ttvar:=proc(xx)
+	if type(xx,`indexed`) 
+	then cat(op(0,xx),`d`)[op(xx)]
+	else cat(xx,`d`) fi
+end:
 
 time_diff:=proc(phi,q,qd,qdd)
-	local phi_copy,k,ttvar,diff_phi:
+	local phi_copy,k,diff_phi:
 	# subtitution to specify that q,qd ,qdd depends on time 
 	phi_copy:=phi:
 	phi_copy:=subs(map( xx-> xx=xx(t),[op(q),op(qd)]),phi_copy):
