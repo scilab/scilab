@@ -14503,7 +14503,7 @@ sciPointObj *sciIsExistingFigure(value)
   integer v=0;
   double dv=0.0; 
 
-  if(GetDriver() == 0) /* driver Win32 or X11 F.Leray 26.08.04 */
+  if(GetDriverId() == 0) /* driver Win32 or X11 F.Leray 26.08.04 */
       figGC=GetWindowXgcNumber(*value);
   else
       {
