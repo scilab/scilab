@@ -11,6 +11,9 @@
    HISTORY
      fleury - Nov 6, 1997: Created.
      $Log: pvm_proc_ctrl.c,v $
+     Revision 1.8  2002/09/12 12:24:47  chanceli
+     updates
+
      Revision 1.7  2002/07/31 11:35:08  chanceli
      scilex-> scilab for gtk
 
@@ -366,26 +369,13 @@ void C2F(scipvmspawn)(char *task,  int *l1,
     where = NULL;
   else
     flag = PvmTaskHost;
-
-#ifdef __MSC__  
-  if (path = getenv("WSCI")) {
-    strcpy(cmd, path);
-    strcat(cmd, "\\bin\\scilex.exe");
-  }
-  else {
-    if (path = getenv("SCI")) {
-      strcpy(cmd,path);
-      strcat(cmd,"/bin/scilex");
-    }
-    else {
-      strcpy(cmd, "scilex");
-    }
-  }
+#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
+  strcpy(cmd, "scilex.exe");
 #else
   /* I really need scilab here for gtk -version */
   strcpy(cmd, "scilab");
 #endif 
-#if (defined __MSC__) || (defined __ABSC__)
+#if (defined __MSC__) || (defined __ABSC__) || defined(__MINGW32__) 
   if ( _stricmp(task,"null") != 0) 
 #else 
   if (strcasecmp(task, "null")) 
