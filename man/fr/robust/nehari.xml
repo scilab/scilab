@@ -33,7 +33,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    returns the Nehari approximant of <VERB>R</VERB>.
+     <VERB>[x]=nehari(R [,tol])returns</VERB> the Nehari approximant of <VERB>R</VERB>.
   </P>
   <P>
     <VERB>R</VERB> = linear system in state-space representation (<VERB>syslin</VERB> list).
@@ -46,9 +46,5 @@
     || R - X ||oo = min || R - Y ||oo
                   Y in Hoo
    ]]></VERBATIM>
-  <P>
-  </P>
-  <P>
-  </P>
   </DESCRIPTION>
 </MAN>

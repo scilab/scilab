@@ -66,17 +66,15 @@
             Ik = (val(k), val(k+1)] for 1 < k <= n-1 ;
          ]]></VERBATIM>
          <DESCRIPTION_INDENT>
-         <ITEMIZE>
-           <ITEM label='ind(i)'>
+         <DESCRIPTION_ITEM label='ind(i)'>
               is the interval number of X(i) (0 if X(i) is not in [val(1),val(n)])
-           </ITEM>
-           <ITEM label='occ(k)'>
+         </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM label='occ(k)'>
               is the number of components of X which are in Ik
-           </ITEM>
-           <ITEM label='info'>
+         </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM label='info'>
               is the number of components of X which are not in [val(1),val(n)]
-           </ITEM>
-         </ITEMIZE>
+        </DESCRIPTION_ITEM>
          </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
       <P></P>
@@ -85,18 +83,16 @@
          this is the discrete case, for each X(i) search if it is equal to one val(k)
          </P>
          <DESCRIPTION_INDENT>
-         <ITEMIZE>
-            <ITEM label='ind(i)'>
+            <DESCRIPTION_ITEM label='ind(i)'>
                is equal to the index of the component of val which matches X(i) 
                (ind(i) = k if X(i)=val(k)) or 0 if X(i) is not in val.
-            </ITEM>
-            <ITEM label='occ(k)'>
+            </DESCRIPTION_ITEM>
+            <DESCRIPTION_ITEM label='occ(k)'>
                is the number of components of X equal to val(k)
-            </ITEM>
-            <ITEM label='info'>
+            </DESCRIPTION_ITEM>
+            <DESCRIPTION_ITEM label='info'>
                is the number of components of X which are not in val     
-            </ITEM>
-         </ITEMIZE>
+            </DESCRIPTION_ITEM>
          </DESCRIPTION_INDENT>
       </DESCRIPTION_ITEM>
   </DESCRIPTION>

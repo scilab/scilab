@@ -26,7 +26,6 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
      <VERB>erf</VERB> calcule la fonction erreur:
    <VERBATIM><![CDATA[
                      /x     2
@@ -35,8 +34,6 @@
           sqrt(pi)  /0
 
     ]]></VERBATIM>
-
-  </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');

@@ -21,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    calcule une matrice de polynômes <VERB>n</VERB> et 
+    <VERB>[n,d]=cmndred(num,den)</VERB> calcule une matrice de polynômes <VERB>n</VERB> et 
     un dénominateur commun <VERB>d</VERB> tels que :
   </P>
   <P>
@@ -32,6 +32,7 @@
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -57,12 +57,14 @@
   <P>
   </P>
   <P>
-    returns <VERB>ro</VERB> in <VERB>[romin,romax]</VERB> and the central controller 
-    <VERB>Sk</VERB> in the same representation as <VERB>P</VERB>.
+    <VERB>[Sk,ro]=H_inf(P,r,romin,romax,nmax)</VERB> returns
+    <VERB>ro</VERB> in <VERB>[romin,romax]</VERB> and the central
+    controller <VERB>Sk</VERB> in the same representation as
+    <VERB>P</VERB>.
   </P>
   <P>
-    (All calculations are made in state-space, i.e conversion to state-space
-    is done by the function, if necessary).
+    (All calculations are made in state-space, i.e conversion to
+    state-space is done by the function, if necessary).
   </P>
   <P>
   </P>
@@ -70,17 +72,18 @@
     Invoked with three LHS parameters,
   </P>
   <P>
-    returns <VERB>ro</VERB> and the Parameterization of all stabilizing 
+    <VERB>[Sk,rk,ro]=H_inf(P,r,romin,romax,nmax)</VERB> returns
+    <VERB>ro</VERB> and the Parameterization of all stabilizing
     controllers:
   </P>
   <P>
-    a stabilizing controller <VERB>K</VERB> is obtained by 
-    <VERB>K=lft(Sk,r,PHI)</VERB> where <VERB>PHI</VERB> is a linear system with 
-    dimensions <VERB>r&apos;</VERB> and satisfy:
+    a stabilizing controller <VERB>K</VERB> is obtained by
+    <VERB>K=lft(Sk,r,PHI)</VERB> where <VERB>PHI</VERB> is a linear
+    system with dimensions <VERB>r&apos;</VERB> and satisfy:
   </P>
   <P>
-    <VERB>H_norm(PHI) &lt; gamma</VERB>.
-    <VERB>rk (=r)</VERB> is the size of the <VERB>Sk22</VERB> block and <VERB>ro = 1/gama^2</VERB> 
+    <VERB>H_norm(PHI) &lt; gamma</VERB>.  <VERB>rk (=r)</VERB> is the
+    size of the <VERB>Sk22</VERB> block and <VERB>ro = 1/gama^2</VERB>
     after <VERB>nmax</VERB> iterations.
   </P>
   <P>
@@ -89,7 +92,9 @@
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>gamitg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ccontrg</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>leqr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>gamitg</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ccontrg</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>leqr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F.D. (1990)  </AUTHOR>
+  <AUTHOR>F.Delebecque INRIA (1990)  </AUTHOR>
 </MAN>

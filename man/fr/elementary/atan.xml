@@ -85,8 +85,8 @@ atan(-%i)
   </SEE_ALSO>
 
   <AUTHORS>
-    <AUTHOR_ITEM>B.P.</AUTHOR_ITEM> 
-    <AUTHOR_ITEM>L.V.D.</AUTHOR_ITEM> 
+    <AUTHORS_ITEM>B.P.</AUTHORS_ITEM> 
+    <AUTHORS_ITEM>L.V.D.</AUTHORS_ITEM> 
     <EM>(authors of the complex atan function).</EM>
   </AUTHORS>
 </MAN>

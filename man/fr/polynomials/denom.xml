@@ -27,11 +27,16 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie le dénominateur d&apos;une matrice rationnelle <VERB>R</VERB> (<VERB>R</VERB> peut aussi être une matrice constante ou une matrice de polynômes).
+    <VERB>den=denom(r)</VERB> renvoie le dénominateur d&apos;une
+    matrice rationnelle <VERB>R</VERB> (<VERB>R</VERB> peut aussi être
+    une matrice constante ou une matrice de polynômes).
   </P>
   <P>
-    Puisque dans Scilab les matrices rationnelles sont représentées comme <VERB>r=list([&apos;r&apos;,&apos;num&apos;,&apos;den&apos;,&apos;dt&apos;],num,den,[])</VERB>,
-    <VERB>denom(r</VERB>) est équivalent à <VERB>r(3)</VERB>, <VERB>r(&apos;den&apos;)</VERB> ou <VERB>r.den)</VERB>.
+    Puisque dans Scilab les matrices rationnelles sont représentées
+    comme
+    <VERB>r=list([&apos;r&apos;,&apos;num&apos;,&apos;den&apos;,&apos;dt&apos;],num,den,[])</VERB>,
+    <VERB>denom(r</VERB>) est équivalent à <VERB>r(3)</VERB>,
+    <VERB>r(&apos;den&apos;)</VERB> ou <VERB>r.den)</VERB>.
   </P>
   </DESCRIPTION>
   <SEE_ALSO>

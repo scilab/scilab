@@ -26,7 +26,7 @@
     par rapport au cercle unité. Le problème est singulier si une racine se trouve sur le cercle unité.
   </P>
   <P>
-    renvoie une matrice de polynômes <VERB>F(z)</VERB> antistable et telle que
+    <VERB>sfact(P)</VERB>  renvoie une matrice de polynômes <VERB>F(z)</VERB> antistable et telle que
   </P>
   <P>
     <VERB>P = F(z)* F(1/z) *z^n</VERB>
@@ -62,6 +62,7 @@ roots(f)    // f est stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) est égal à p(s) 
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>gtild</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>fspecg</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -84,16 +84,16 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    Minimize <VERB>p&apos;*x</VERB>
+    <VERB>[x,lagr,f]=linpro(p,C,b [,x0])</VERB> Minimize <VERB>p&apos;*x</VERB>
     under the constraints  <VERB>C*x &lt;= b</VERB>
   </P>
   <P>
   </P>
   <P>
-    Minimize <VERB>p&apos;*x</VERB> under the constraints  <VERB>C*x &lt;= b </VERB>, <VERB>ci &lt;= x &lt;= cs</VERB>
+    <VERB>[x,lagr,f]=linpro(p,C,b,ci,cs [,x0])</VERB> Minimize <VERB>p&apos;*x</VERB> under the constraints  <VERB>C*x &lt;= b </VERB>, <VERB>ci &lt;= x &lt;= cs</VERB>
   </P>
   <P>
-    Minimize <VERB>p&apos;*x</VERB>
+    <VERB>[x,lagr,f]=linpro(p,C,b,ci,cs,me [,x0])</VERB> Minimize <VERB>p&apos;*x</VERB>
     under the constraints 
   </P>
   <VERBATIM><![CDATA[

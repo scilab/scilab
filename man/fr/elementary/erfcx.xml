@@ -26,7 +26,6 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
      <VERB>erfcx</VERB> calcule la fonction erreur complémentaire
      normalisée.
    <VERBATIM><![CDATA[
@@ -38,7 +37,6 @@
               x sqrt(pi)
     ]]></VERBATIM>
 
-  </P>
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM><LINK>erf</LINK></SEE_ALSO_ITEM>

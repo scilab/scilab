@@ -26,7 +26,6 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
      <VERB>erfc</VERB> calcule la fonction erreur complémentaire.
    <VERBATIM><![CDATA[
                     /+oo    2
@@ -38,7 +37,6 @@
       y = 1 - erf(x)
     ]]></VERBATIM>
 
-  </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 erf([0.5,0.2])+erfc([0.5,0.2])

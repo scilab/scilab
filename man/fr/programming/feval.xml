@@ -33,12 +33,12 @@
  
 
   <DESCRIPTION_ITEM  label='z=feval(x,f)'> 
-    renvoie le vecteur <VERB>z</VERB> défini par
-  </DESCRIPTION_ITEM>
+    renvoie le vecteur <VERB>z</VERB> défini par <VERB>z(i)=f(x(i)
+</VERB>  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM  label='z=feval(x,y,f)'> 
-    renvoie lka matrice 
-  </DESCRIPTION_ITEM>
+    renvoie la matrice <VERB>z</VERB> telle que  <VERB>z(i,j)=f(x(i),y(j))
+</VERB>  </DESCRIPTION_ITEM>
   <P>
   </P>
   <P>
@@ -58,10 +58,13 @@ feval(1:10,1:5,f)
 feval(1:10,1:5,'parab')   // voir le fichier ffeval.f
 feval(1:10,'parab')
 // Pour le lien dynamique (voir l'exemple ftest dans ffeval.f)
-// on peut utiliser la commande "link" (les paramètres dépendent de la machine):
-// unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest') 
+// on peut utiliser la commande "link" 
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>evstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>horner</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>execstr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>external</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>link</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

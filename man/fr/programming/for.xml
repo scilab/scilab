@@ -11,6 +11,12 @@
     Utilisé pour spécifier une boucle. La syntaxe est la suivante :
   </P>
   <P>
+<VERB>for variable=expression ,instruction,   ,instruction,end</VERB>
+  </P>
+  <P>
+<VERB>for variable=expression do instruction,   ,instruction,end</VERB>
+  </P>
+  <P>
     Si <VERB>expression</VERB> est une matrice ou un vecteur ligne, <VERB>variable</VERB>
     prend successivement les valeurs de chaque colonne de la matrice.
   </P>

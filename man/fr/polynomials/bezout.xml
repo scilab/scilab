@@ -21,7 +21,7 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    calcule le PGCD <VERB>pgcd</VERB> de <VERB>p1</VERB> et <VERB>p2</VERB> et de plus une matrice
+    <VERB>[thegcd,U]=bezout(p1,p2)</VERB> calcule le PGCD <VERB>pgcd</VERB> de <VERB>p1</VERB> et <VERB>p2</VERB> et de plus une matrice
     unimodulaire (2x2) <VERB>U</VERB> telle que :
   </P>
   <P>
@@ -44,6 +44,10 @@ ppcm=p1*U(1,2)
 lcm([p1,p2])
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>roots</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>simp</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>clean</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

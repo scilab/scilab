@@ -27,18 +27,21 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie le déterminant d&apos;une matrice réelle de polynômes (calculs fait par FFT).
+    <VERB>res=determ(W [,k])</VERB> renvoie le déterminant d&apos;une
+    matrice réelle de polynômes (calculs fait par FFT).
   </P>
   <P>
-    <VERB>k</VERB> est un entier plus grand que le degré effectif du déterminant.
-    de <VERB>W</VERB>.
+    <VERB>k</VERB> est un entier plus grand que le degré effectif du
+    déterminant.  de <VERB>W</VERB>.
   </P>
   <P>
-    La valeur par défaut de <VERB>k</VERB> est la plus petite puissance de 2 plus grande que <VERB>n*maxi(degree(W))</VERB>.
+    La valeur par défaut de <VERB>k</VERB> est la plus petite
+    puissance de 2 plus grande que <VERB>n*maxi(degree(W))</VERB>.
   </P>
   <P>
-    Méthode : évaluation du déterminant de <VERB>W</VERB> aux fréquences de Fourier
-    et FFT inverse appliquée aux coefficients du déterminant.
+    Méthode : évaluation du déterminant de <VERB>W</VERB> aux
+    fréquences de Fourier et FFT inverse appliquée aux coefficients du
+    déterminant.
   </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -48,7 +51,9 @@ determ(w)
 det(coeff(w,1))*s^10
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>detr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>detr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>coffg</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>F.D.  </AUTHOR>
+  <AUTHOR>F. Delebecque  </AUTHOR>
 </MAN>

@@ -8,31 +8,37 @@
   <SHORT_DESCRIPTION name="while"> mot-clé utilisé dans une structure while ... end  </SHORT_DESCRIPTION>
   <DESCRIPTION>
   <P>
-    Mot-clé <VERB>while</VERB>. Doit être terminé par <VERB>&quot;end&quot;</VERB>
+    Mot-clé <VERB>while</VERB>. Doit être terminé par
+    <VERB>&quot;end&quot;</VERB>
   </P>
   <P>
-    Notes:
+<VERB>while expr ,instructions,...[,else instructions], end</VERB>
   </P>
- 
+  <P>
+<VERB>while expr do instructions,...[,else instructions], end</VERB>
+  </P>
+  <P>
+<VERB>while expr then instructions,...[,else instructions], end</VERB>
+  </P>
 
-  <DESCRIPTION_ITEM  label='-'> 
+    Notes:
+    <DESCRIPTION_INDENT>
+  <DESCRIPTION_ITEM> 
     La seule contrainte est que chaque mot-clé <VERB>then</VERB> ou <VERB>do</VERB> soit sur la même ligne que le <VERB>hile</VERB> correspondant.
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='-'> 
+  <DESCRIPTION_ITEM> 
     Les mot-clés <VERB>then</VERB> et <VERB>do</VERB> peuvent être remplacés par un passage à la ligne ou une virgule.
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='-'> 
+  <DESCRIPTION_ITEM> 
     La construction <VERB>,else instructions</VERB> permet de spécifier des instructions à exécuter si l&apos;expression <VERB>expr</VERB> est fausse. 
   </DESCRIPTION_ITEM>
+ </DESCRIPTION_INDENT>
   <P>
     Attention : le nombre de caractères constituant le corps d&apos;une instruction conditionnelle (if while for ou select/case) est limité à 16k..
   </P>
-  <P>
-  </P>
-  <P>
-  </P>
+
  
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
@@ -41,6 +47,10 @@ while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
 e,k
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>select</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>for</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>select</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>break</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>return</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>pause</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

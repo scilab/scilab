@@ -41,11 +41,14 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie les facteurs minimaux de p i.e. <VERB>f=[f0 f1 ... fn]</VERB> tel que 
-    <VERB>p=prod(f)</VERB> 
+    <VERB>f=polfact(p)</VERB> renvoie les facteurs minimaux de p
+    i.e. <VERB>f=[f0 f1 ... fn]</VERB> tel que <VERB>p=prod(f)</VERB>
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>cmndred</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>factors</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>lcm</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>cmndred</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>factors</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+<AUTHOR> S. Steer INRIA </AUTHOR> 
 </MAN>

@@ -35,9 +35,8 @@
   <P>
     <VERB>C=coeff(Mp)</VERB>
     renvoie dans une grosse matrice <VERB>C</VERB> les coefficients de la
-    matrice de polynômes <VERB>Mp</VERB>. <VERB>C</VERB> est partitionnée comme
-  </P>
-  <P>
+    matrice de polynômes <VERB>Mp</VERB>. <VERB>C</VERB> est
+    partitionnée comme <VERB>C=[C0,C1,...,Ck]</VERB> 
     où les <VERB>Ci</VERB> sont arrangés dans l&apos;ordre décroissant .
     <VERB>k = maxi(degree(Mp))</VERB>
   </P>
@@ -47,6 +46,8 @@
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>degree</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>inv_coeff</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>poly</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>degree</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>inv_coeff</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

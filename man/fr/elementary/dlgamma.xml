@@ -27,7 +27,6 @@
  </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-  <P>
     <VERB>dlgamma(x)</VERB> calcule la dérivée de la fonction gammaln
     pour chaque composante de <VERB>x</VERB>. 
 
@@ -35,12 +34,9 @@
           d/dx (gamma(x)) / gamma(x) = d/dx (ln gamma(x))
       ]]></VERBATIM>
 
-    <VERB>x</VERB> doit être réel. Cette fonction est aussi conuue
-    sius le nom de fonction psi
+    <VERB>x</VERB> doit être réel. Cette fonction est aussi connue
+    sous le nom de fonction psi
 
-  </P>
-  <P>
-  </P>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
 dlgamma(0.5)

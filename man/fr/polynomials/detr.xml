@@ -21,10 +21,12 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    renvoie le déterminant <VERB>d</VERB> de la matrice <VERB>h</VERB>. Basé sur l&apos;algorithme de Leverrier.
+   <VERB>d=detr(h)</VERB> renvoie le déterminant <VERB>d</VERB> de la
+   matrice <VERB>h</VERB>. Basé sur l&apos;algorithme de Leverrier.
   </P>
   </DESCRIPTION>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>determ</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>det</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>determ</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

@@ -31,7 +31,6 @@
     <VERB>x</VERB> doit être à composantes réelles. La fonction
     <VERB>gamma(x)</VERB> est définie par:
   </P>
-  <P>
     <VERBATIM><![CDATA[
                      /+oo
                      |   x-1  -t
@@ -39,7 +38,6 @@
                      /0
      ]]></VERBATIM>
 
-  </P>
   <P>
    et généralise la factorielle  pour les nombres réels <VERB>gamma(n+1) = n!</VERB>
   </P>

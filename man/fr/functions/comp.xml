@@ -27,13 +27,13 @@
   </PARAM>
   <DESCRIPTION>
   <P>
-    &quot;compile&quot; la fonction <VERB>function</VERB>.
+    <VERB>comp(function)</VERB> &quot;compile&quot; la fonction <VERB>function</VERB>.
     Les fonctions &quot;compilées&quot; et interprétées sont équivalentes mais les
     fonctions &quot;compilées&quot; sont plus rapides.
     Les fonctions fournies dans les librairies standard de Scilab sont &quot;compilées&quot;.
   </P>
   <P>
-    La commande :
+    La commande <VERB>getf('filename')</VERB> 
   </P>
   <P>
     charge les fonctions du fichier <VERB>&apos;filename&apos;</VERB> et les &quot;compile&quot;.
@@ -42,14 +42,7 @@
     L&apos;option opt==1 est spécifique à des problèmes d&apos;analyse de code (voir macr2lst).
   </P>
   </DESCRIPTION>
-  <ITEMIZE label='REMARQUES'>
-  <P>
-    les commandes 
-  </P>
-  <P>
-    ne peuvent pas être &quot;compilées&quot;.
-  </P>
-  </ITEMIZE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>deff</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>getf</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>whereis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>macr2lst</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>lib</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
