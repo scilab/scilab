@@ -997,17 +997,17 @@ int mexCallSCILAB(nlhs, plhs, nrhs, prhs, name)
 }
 
 int mxCalcSingleSubscript(ptr, nsubs, subs)
-Matrix *ptr; int nsubs; int *subs;
+     Matrix *ptr; int nsubs; int *subs;
 
 {
-int k, retval, coeff;
-int *dims = mxGetDimensions(ptr);
-retval=0;coeff=1;
-for  (k=0; k<nsubs; k++) {
-	retval=retval+subs[k]*coeff;
-	coeff=coeff*dims[k];
-}
-return retval;
+  int k, retval, coeff;
+  int *dims = mxGetDimensions(ptr);
+  retval=0;coeff=1;
+  for  (k=0; k<nsubs; k++) {
+    retval=retval+subs[k]*coeff;
+    coeff=coeff*dims[k];
+  }
+  return retval;
 }
 
 int C2F(mexcallscilab)(nlhs, plhs, nrhs, prhs, name, namelen)

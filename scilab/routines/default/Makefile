@@ -19,7 +19,7 @@ OBJS =  FTables.o $(EXAMPLES) mainsci.o matusr.o matus2.o Funtab.o  \
 
 all:: $(OBJS)
 
-FTables.o : FTables.h 
+FTables.o : FTables.h  FTables0.h 
 
 FTables.h : Flist 
 	./FCreate

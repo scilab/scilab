@@ -12,10 +12,10 @@ extern void C2F(lcomp)(ARGS_fydot);
 FTAB FTab_fydot[] ={
 {"arnol", (voidf)  C2F(arnol)},
 {"bcomp", (voidf)  C2F(bcomp)},
-{"fex", (voidf)  C2F(fex)},
 {"fex2", (voidf)  C2F(fex2)},
 {"fex3", (voidf)  C2F(fex3)},
 {"fexab", (voidf)  C2F(fexab)},
+{"fex", (voidf)  C2F(fex)},
 {"lcomp", (voidf)  C2F(lcomp)},
 {"loren", (voidf)  C2F(loren)},
 {(char *) 0, (voidf) 0}};
@@ -24,8 +24,8 @@ extern void C2F(parab)(ARGS_ffeval);
 extern void C2F(parabc)(ARGS_ffeval);
  
 FTAB FTab_ffeval[] ={
-{"parab", (voidf)  C2F(parab)},
 {"parabc", (voidf)  C2F(parabc)},
+{"parab", (voidf)  C2F(parab)},
 {(char *) 0, (voidf) 0}};
 /**************** fres ***************/
 extern void C2F(resid)(ARGS_fres);
@@ -149,8 +149,8 @@ extern void C2F(phis)(ARGS_fydot2);
 extern void C2F(phit)(ARGS_fydot2);
  
 FTAB FTab_fydot2[] ={
-{"fcd", (voidf)  C2F(fcd)},
 {"fcd1", (voidf)  C2F(fcd1)},
+{"fcd", (voidf)  C2F(fcd)},
 {"fexcd", (voidf)  C2F(fexcd)},
 {"phis", (voidf)  C2F(phis)},
 {"phit", (voidf)  C2F(phit)},
@@ -211,8 +211,8 @@ FTAB FTab_interf[] ={
 {"foubare", (voidf)  C2F(foubare)},
 {"icomp", (voidf)  C2F(icomp)},
 {"icscof", (voidf)  C2F(icscof)},
-{"icse", (voidf)  C2F(icse)},
 {"icse0", (voidf)  C2F(icse0)},
+{"icse", (voidf)  C2F(icse)},
 {"loset", (voidf)  C2F(loset)},
 {(char *) 0, (voidf) 0}};
 /***********************************/
