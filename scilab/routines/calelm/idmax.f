@@ -1,37 +1,43 @@
-      integer function idmax(n,dx,incx)
-c
-c     finds the index of element having max. value.
-c     derived from idamax (blas)
-c
-      double precision dx(*),dmax
-      integer i,incx,ix,n
-c
-      idmax = 0
-      if( n.lt.1 .or. incx.le.0 ) return
+      integer function idmax(n, x, incx)
+*
+*     PURPOSE
+*        finds the index of element having maximum value
+*        without taking into account the nan(s)...
+*
+*     NOTES
+*        - original version modified by Bruno (for the nan problem...)
+*          (01/01/2003)
+*        - this function return 1 if x has only nan components : may be
+*          this is not a good behavior
+*        - this function doesn't test if n<1 or incx<1 : this is done
+*          by the scilab interface
+*
+      implicit none
+      integer n, incx
+      double precision x(incx,*)
+
+      double precision xmax
+      integer i, j
+      external isanan
+      integer  isanan
+
       idmax = 1
-      if(n.eq.1)return
-      if(incx.eq.1)go to 20
-c
-c        code for increment not equal to 1
-c
-      ix = 1
-      dmax = dx(1)
-      ix = ix + incx
-      do 10 i = 2,n
-         if(dx(ix).le.dmax) go to 5
-         idmax = i
-         dmax = dx(ix)
-    5    ix = ix + incx
-   10 continue
-      return
-c
-c        code for increment equal to 1
-c
-   20 dmax = dx(1)
-      do 30 i = 2,n
-         if(dx(i).le.dmax) go to 30
-         idmax = i
-         dmax = dx(i)
-   30 continue
-      return
+
+*     initialize the max with the first component being not a nan
+      j = 1      
+      do while ( isanan(x(1,j)) .eq. 1 )
+         j = j + 1
+         if ( j .gt. n ) return
+      enddo
+      xmax = x(1,j)
+      idmax = j
+
+*     the usual loop
+      do i = j+1, n
+         if ( x(1,i) .gt. xmax) then  ! a test with a nan must always return false
+            xmax = x(1,i)
+            idmax = i
+         endif
+      enddo
+ 
       end
