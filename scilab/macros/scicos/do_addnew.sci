@@ -33,10 +33,35 @@ function [scs_m,fct]=do_addnew(scs_m)
   end
 
   //define the block
-  if execstr('blk='+name+'(''define'')','errcatch') <>0 then
+  ierror=execstr('blk='+name+'(''define'')','errcatch')
+  if ierror <>0 & ierror <>4 then
     message(['Error in GUI function';lasterror()] )
     fct=[]
     return
+  end
+  if ierror==4 then
+    irr=message(['Error in GUI function--could be an old GUI';
+	     'Should I try to translate (no garantee)?'],['yes','no'])
+    if irr==2 then fct=[];return
+    else
+      funcprot_val=funcprot()
+      funcprot(0)
+      standard_define=standard_define_old;
+      funcprot(funcprot_val)
+      ierror=execstr('blk='+name+'(''define'')','errcatch')
+      if ierror <>0 then
+	message("Translation did not work, sorry" )
+	fct=[]
+	return
+      end
+      do_version;
+      ierror=execstr('blk=up_to_date(blk)','errcatch');
+      if ierror <>0 then
+	message("Translation did not work, sorry" )
+	fct=[]
+	return
+      end
+    end
   end
   
   xinfo('Choose block position in the window')
@@ -76,3 +101,75 @@ function [scs_m,fct]=do_addnew(scs_m)
 
   scs_m.objs($+1)=blk
 endfunction
+
+
+function objsi =up_to_date(o)
+  if size(o(2)) > 8 then
+    if type(o(2)(9))==15 then 
+      gr_io=o(2)(9)(1);
+      if o(2)(9)(2)<>[] then
+	back_col=o(2)(9)(2);,
+      end
+    else
+      gr_io=o(2)(9);
+      back_col=8
+    end
+    gr_i=convert_gri(o(5),gr_io);
+    if gr_i==[] then gr_i=gr_io;, end
+  elseif size(o(2)) < 9 then
+    gr_i=[];
+    back_col=8
+  end
+  gr_i=list(gr_i,back_col)
+  
+  mdl=o(3);
+  if size(o(3))<=12 then 
+    mdl(13)=''; mdl(14)=[] ; mdl(15)='';
+  elseif size(o(3))<=13 then 
+    mdl(14)=[] ; mdl(15)='';
+  elseif size(o(3))<=14 then 
+    mdl(15)='';
+  end
+  
+  if mdl(1)(1)=='super'|mdl(1)(1)=='csuper' then
+    if type(mdl(8))==15 then
+      mdl(8)=do_version27(mdl(8))
+    end
+  end
+  
+  graphics=scicos_graphics(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
+			   exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
+			   pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
+			   id=mdl(15)) 	       
+  
+  
+  model=scicos_model(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
+		     evtout=mdl(5),state=mdl(6),dstate=mdl(7),..
+		     rpar=mdl(8),ipar=mdl(9),blocktype=mdl(10),..
+		     firing=mdl(11),dep_ut=mdl(12),label=mdl(13))
+  
+  
+  objsi=scicos_block(graphics=graphics,model=model,gui=o(5),..
+		     doc=mdl(14))
+  if objsi.gui=='ESELECT_f' then objsi.model.sim(2)=-2,end
+endfunction
+
+function o=standard_define_old(sz,model,label,gr_i)
+//initialize graphic part of the block data structure
+// Copyright INRIA
+[lhs,rhs]=argn(0)
+if rhs<4 then gr_i=[],end
+[nin,nout,ncin,ncout]=model(2:5)
+nin=size(nin,1);if nin>0 then pin(nin,1)=0,else pin=[],end
+nout=size(nout,1);if nout>0 then pout(nout,1)=0,else pout=[],end
+ncin=size(ncin,1);if ncin>0 then pcin(ncin,1)=0,else pcin=[],end
+ncout=size(ncout,1);if ncout>0 then pcout(ncout,1)=0,else pcout=[],end
+graphics=list([0,0],sz,%t,label,pin,pout,pcin,pcout,gr_i)
+if model(1)(1)=='super' then
+   o=list('Block',graphics,model,' ','SUPER_f')
+else
+  [ln,mc]=where()
+  o=list('Block',graphics,model,' ',mc(2))
+end
+endfunction
+
