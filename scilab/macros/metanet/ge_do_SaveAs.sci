@@ -21,6 +21,15 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
   if GraphList.node_name==[] then
     GraphList.node_name=string(1:size(GraphList.node_x,'*'))
   else
+    GraphList.edge_name=stripblanks(GraphList.edge_name)
+    k=find(GraphList.edge_name=='')
+    if k<>[] then
+      ge_hilite_arcs(k,GraphList)
+      x_message(['Hilited arcs have no name'
+		 'Graph has not been saved'])
+      ok=%f
+      return
+    end
     GraphList.node_name=stripblanks(GraphList.node_name)
     conflicts=ge_check_names(GraphList)
     if conflicts(1)<>[] then
