@@ -13,6 +13,8 @@ static char *TMP_a[] = {  "TMPDIR/", "tmpdir/","TMPDIR\\", "tmpdir\\", "$TMPDIR"
 void GetenvB __PARAMS(( char *name,char *env, int len));
 static int Cluni0 __PARAMS((char *env,char **alias,char* in_name,char *out_name, long int lin));
 
+extern int UpdateEnvVar; /* see setenvc.c */
+static int n=0;
 /************************************************
  * expand  in_name to produce out_name 
  *       
@@ -23,11 +25,15 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
   int  nc= MAX_ENV;
   static char SCI[MAX_ENV],HOME[MAX_ENV],TMP[MAX_ENV];
   static int k;
-
-  GetenvB("SCI",SCI,nc);
-  GetenvB("HOME",HOME,nc);
-  GetenvB("TMPDIR",TMP,nc);
   
+  if ( ( n==0 ) || (UpdateEnvVar == 1) )
+  {
+	  GetenvB("SCI",SCI,nc);
+	  GetenvB("HOME",HOME,nc);
+      GetenvB("TMPDIR",TMP,nc);
+	  n=n+1;
+	  UpdateEnvVar=0;
+  }
   /* in_name[lin]='\0';*/
   if ( Cluni0(SCI,SCI_a,in_name,out_name,lin) == 0 )
     if ( Cluni0(HOME,HOME_a,in_name,out_name,lin) == 0 )

@@ -4,6 +4,7 @@
 #include <string.h>
 
 static char *env=NULL;
+int UpdateEnvVar=0;
 /*-----------------------------------------------------------------------------------*/
 /* returns 0 if there is a problem else 1 */
 int setenvc(char *string,char *value)
@@ -15,12 +16,20 @@ int setenvc(char *string,char *value)
 
 	#if linux
 		if ( setenv(string,value,1) ) ret=FALSE;
-		else ret=TRUE;
+		else 
+		{
+			ret=TRUE;
+			UpdateEnvVar=1;
+		}
 	#else /* others HP Solaris WIN32*/
 		env=(char*)malloc((strlen(string)+strlen(value)+2)*sizeof(char));
 		sprintf(env,"%s=%s",string,value);
 		if ( putenv(env) ) ret=FALSE;
-		else ret=TRUE;
+		else 
+		{
+			ret=TRUE;
+			UpdateEnvVar=1;
+		}
 		#ifdef WIN32
 		if (env)
 		{
