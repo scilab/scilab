@@ -120,16 +120,3 @@ getdate.obj: ../machine.h
 intlapack.obj: ../machine.h ../stack-c.h
 intslicot.obj: ../machine.h ../stack-c.h ../mex.h
 intarpack.obj: ../machine.h ../stack-c.h ../mex.h
-
-
-
-Makefile.mak	: Makefile
-	$(SCIDIR)/util/Mak2VCMak Makefile
-
-Makefile.amk	: Makefile
-	$(SCIDIR)/util/Mak2ABSMak Makefile
-
-# some versions of g77 on sparc will compile intmgetl.f
-# but the code does not execute properly.
-intmgetl.obj: intmgetl.f ../stack.h
-	$(FC) $(FC_OPTIONS_O0) -c intmgetl.f -o intmgetl.obj
