@@ -208,8 +208,8 @@ void Callback_CHDIR(void)
 	 	SHGetPathFromIDList(pidl, chemin); 
 	 	SendCTRLandAKey(CTRLU);
 		wsprintf(command,"chdir('%s');",chemin);
-		//StoreCommand (command);
-		WriteIntoScilab(lptw,command);
+		StoreCommand (command);
+		//WriteIntoScilab(lptw,command);
 	}
 
 }

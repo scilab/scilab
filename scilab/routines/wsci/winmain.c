@@ -1117,6 +1117,7 @@ static void SciEnv ()
 	/* Set SCI variable */
 	if ((p = strrchr (modname + 1, '\\')))
 	{
+		char ShortPath[MAX_PATH];
 		*p = 0;
 		for (p = modname + 1; *p; p++)
 		{
@@ -1124,17 +1125,20 @@ static void SciEnv ()
 		}
 
 		p = modname + 1;
-		set_sci_env(p,(char *) 0);
+
+		GetShortPathName(p ,ShortPath,MAX_PATH);
+
+		set_sci_env(ShortPath,(char *) 0);
 
 		if ((p1 = getenv ("TCL_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", p);
+			wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", ShortPath);
 			putenv (env);
 		}
 
 		if ((p1 = getenv ("TK_LIBRARY")) == (char *) 0)
 		{
-			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", p);
+			wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", ShortPath);
 			putenv (env);
 		}
 

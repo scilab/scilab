@@ -3427,7 +3427,7 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand)
 {
 	BOOL retour=FALSE;
 	
-	if  ( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) )
+	if  (( ( C2F (ismenu) () == 1 ) || ( lptw->bGetCh == FALSE ) ) && (!get_is_reading()) )
 	{
 		StoreCommand(StringCommand);
 	}
