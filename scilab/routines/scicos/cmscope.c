@@ -299,13 +299,15 @@ void cmscope(scicos_block *block,int flag)
     
     ilt = ipar[2] + 8;
     it = 0;
-    n1 = (int) (t / per);
-    if (t <= 0.) {
-      --n1;
-    }
+    n1 =  (int) (z__[k + 1] / per);
+
     /*     loop on input ports */
     i__1 = nwid;
     for (kwid = 1; kwid <= i__1; ++kwid) {
+      rect[0] = per * (n1 );
+      rect[1] = rpar[(kwid << 1) + 1];
+      rect[2] = per * (n1 + 1);
+      rect[3] = rpar[(kwid << 1) + 2];
       frect[0] = 0.;
       frect[1] = (kwid - 1) * (1. / nwid);
       frect[2] = 1.;
