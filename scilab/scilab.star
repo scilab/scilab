@@ -173,7 +173,12 @@ end
 //=================================
 
 [fd,ierr]=mopen(SCI+'/contrib/loader.sce');
-if ierr== 0 then;mclose(fd); exec(SCI+'/contrib/loader.sce');end
+if ierr== 0 then;
+	mclose(fd); 
+	global %toolboxes
+	global %toolboxes_dir
+	exec(SCI+'/contrib/loader.sce');
+	end
 clear fd ierr
 
 // calling user initialization
