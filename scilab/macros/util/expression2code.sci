@@ -17,11 +17,6 @@ sumops=["+","-","&","|"] //1
 prodops=["*","/",".*","./","\",".\","^",".^"] //2
 othops=["==",">=","<=","~=",">","<","~",".''",".''",":"] //3
 
-// Commands names (Type what in Scilab to get commands names)
-commands=["quit","exit","return","help","what","who","pause","clear","resume","then","do","apropos","abort","break","continue"];
-mtlb_commands=["diary","dir"]
-commands=[commands,mtlb_commands]
-
 C=[]
 select typeof(e)
   // ---------
@@ -112,6 +107,10 @@ case "operation" then
     C($)=C($)+"]"
   // Extraction
   elseif operator=="ext" then
+    if size(e.operands)==1 then
+      C=e.operands(1).name
+      return
+    end
     if type(e.operands(2))==15 then // Recursive extraction
       C=operands(1)+operands(2)
     else
@@ -252,8 +251,14 @@ case "string" then
   // FUNCALL
   // -------
 case "funcall" then
-  if size(e.rhs)==0 & ~isempty(grep(commands,e.name)) then
+  if size(e.rhs)==0 then
     C=e.name
+    [l,mac]=where()
+    if size(grep(mac,"expression2code"),"*")>1 then
+      C=C+"()"
+    elseif I.lhs(1).name<>"ans" then // I is defined in instruction2code
+      C=C+"()"
+    end
   else
     C=e.name+"("+rhs2code(e.rhs)+")"
   end
