@@ -1,5 +1,5 @@
 XMLINTCHECK="..\check.bat"
-DIRECTORY=arma control dcd elementary fileio functions graphics gui identification linear metanet mtlb nonlinear polynomials programming pvm robust signal sound statistics strings tdcs tksci translation translation utilities
+DIRECTORY=arma control dcd elementary fileio functions graphics gui identification linear metanet mtlb nonlinear polynomials programming pvm robust signal sound statistics strings tdcs tksci translation translation utilities sparse
 
 all :: $(DIRECTORY)
 

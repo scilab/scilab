@@ -44,6 +44,7 @@ clean::
 	-del eng\tksci\*.htm /s
 	-del eng\translation\*.htm /s
 	-del eng\utilities\*.htm /s
+	-del eng\sparse\*.htm /s
 # -del eng\scicos\*.htm /s
 
 	-del fr\arma\*.htm /s
@@ -71,6 +72,7 @@ clean::
 	-del fr\tksci\*.htm /s
 	-del fr\translation\*.htm /s
 	-del fr\utilities\*.htm /s
+	-del fr\sparse\*.htm /s
 # -del fr\scicos\*.htm /s
 # -del *.htm /s
 # -del *.xml2* /s
