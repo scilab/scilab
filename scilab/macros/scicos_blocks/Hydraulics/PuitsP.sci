@@ -29,11 +29,11 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,P0,T0,H0,option_temperature,exprs]=getvalue('Paramètres du puit',..
+    [ok,P0,T0,H0,option_temperature,exprs]=getvalue('Paramètres du puit', ..
        ['Pression de la source : P0 (Pa)';..
        'Temperature de la source : T0 (K)';..
        'Enthalpie spécifique de la source : H0 (J/kg)';..
-       '1:température fixée - 2:enthalpie fixée : option_temperature'],..
+       '1:température fixée - 2:enthalpie fixée : option_temperature'], ..
        list('vec',-1,'vec',-1,'vec',-1,'vec',-1),exprs)
     if ~ok then break,end
     model.rpar=[P0;T0;H0;option_temperature]

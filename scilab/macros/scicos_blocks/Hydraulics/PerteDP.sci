@@ -20,7 +20,7 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,L,D,lambda,z1,z2,p_rho,exprs]=getvalue('Paramètres du tuyau',..
+    [ok,L,D,lambda,z1,z2,p_rho,exprs]=getvalue('Parametres du tuyau', ..
     			   ['Longueur du tube : L (m)';..
     			   'Diamètre interne du tube : D (m)';..
     			   'Coefficient de perte de charge-frottement(S.U) : lambda';..

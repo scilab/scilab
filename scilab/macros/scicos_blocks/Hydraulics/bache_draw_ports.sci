@@ -51,7 +51,7 @@ function bache_draw_ports(o)
         xfpoly(out1(:,1)+ones(4,1)*(orig(1)+sz(1)),..
         out1(:,2)+ones(4,1)*(orig(2)+sz(2)-dy*k),1)
       else
-        if outporttype(k)=='E' then
+        if outporttype(k) == 'E' then
           xfpoly(out1(:,1)+ones(4,1)*(orig(1)+sz(1)),..
 	       	out1(:,2)+ones(4,1)*(orig(2)+6*sz(2)/10),1)
 	      elseif outporttype(k)=='I' then
