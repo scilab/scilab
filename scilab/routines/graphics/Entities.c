@@ -14,7 +14,6 @@
 #include <stdarg.h>
 #include <time.h>
 
-
 #define spINSIDE_SPARSE /* F.Leray to have LARGEST_REAL*/
 #if defined(THINK_C) || defined (__MWERKS__)
 #include "::sparse:spConfig.h" 
@@ -64,6 +63,10 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 					 integer *arsize,integer *colored,double *x,double *y,
                                          double  *fx,double *fy,integer *n1,integer *n2,double *arfact));
 int DestroyAgregation (sciPointObj * pthis);
+char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
+double * AllocUserGrads(double * u_xgrads, int nb);
+int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
+char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
 extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 /*************************************************************************************************/
 /* DJ.A 08/01/04 */
@@ -124,7 +127,7 @@ extern double C2F(dsort)();/*DJ.A merge*/
 static char error_message[70]; /* DJ.A 08/01/04 */
 
 #ifdef WIN32
-static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction récursive DrawObj*/
+static int flag_DO; /* F.Leray 16.02.04 flag global pour la fonction recursive DrawObj*/
 #endif
 /**sciGetPointerToFeature
  * @memo Returns the pointer to features structure from this object Used only for functions FREE or to use void pointer
@@ -5305,7 +5308,7 @@ sciGetSelectedSubWin (sciPointObj * pparent)
 int
 sciSetSelectedSubWin (sciPointObj * psubwinobj)
 {
-  sciPointObj *pselectedsuwin;
+  sciPointObj *pselectedsubwin;
 
   /* on verifie que l'entite passee en argument est bien une sous fenetre */
   if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
@@ -5319,20 +5322,16 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
 
   /* sinon on recherche la sous fenetre deja selectionnee */
   /* dans l'ensemble des sous fenetres du parent SCI_FIGURE */
-  if ((pselectedsuwin = (sciPointObj *)sciGetSelectedSubWin(sciGetParent(psubwinobj))) != (sciPointObj *)NULL)
+  if ((pselectedsubwin = (sciPointObj *)sciGetSelectedSubWin(sciGetParent(psubwinobj))) != (sciPointObj *)NULL)
     /* puis on la deselectionne */
-    pSUBWIN_FEATURE (pselectedsuwin)->isselected = FALSE;
+    pSUBWIN_FEATURE (pselectedsubwin)->isselected = FALSE;
 
   /* puis on selectionne la sous fenetre passee en argument */
   pSUBWIN_FEATURE (psubwinobj)->isselected = TRUE;
 
 
-  /*  set_scale ("tttftf", pSUBWIN_FEATURE (psubwinobj)->WRect,
+  set_scale ("tttftt", pSUBWIN_FEATURE (psubwinobj)->WRect,
 	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
-	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL);*/
-
-  set_scale ("tttttt", pSUBWIN_FEATURE (psubwinobj)->WRect,
-	     pSUBWIN_FEATURE (psubwinobj)->FRect, pSUBWIN_FEATURE (psubwinobj)->axes.aaint,
 	     pSUBWIN_FEATURE(psubwinobj)->logflags, pSUBWIN_FEATURE (psubwinobj)->ARect);
   
 
@@ -7937,9 +7936,10 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 
   char dir;
   int i;
-
   sciPointObj *pobj = (sciPointObj *) NULL;
   sciSubWindow * ppsubwin = NULL; 
+  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl); 
+  
 
   if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
     {
@@ -7971,11 +7971,11 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
 
       sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pSUBWIN_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pSUBWIN_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-      pSUBWIN_FEATURE (pobj)->callback = (char *)NULL;
-      pSUBWIN_FEATURE (pobj)->callbacklen = 0;
-      pSUBWIN_FEATURE (pobj)->callbackevent = 100;
+      ppsubwin->relationship.psons = (sciSons *) NULL;
+      ppsubwin->relationship.plastsons = (sciSons *) NULL;
+      ppsubwin->callback = (char *)NULL;
+      ppsubwin->callbacklen = 0;
+      ppsubwin->callbackevent = 100;
 
       if (sciInitGraphicContext (pobj) == -1)
 	{
@@ -8004,100 +8004,148 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  return (sciPointObj *) NULL;
 	}
 
-      dir= pSUBWIN_FEATURE (paxesmdl)->logflags[0];
-      pSUBWIN_FEATURE (pobj)->logflags[0] = dir;
-      dir= pSUBWIN_FEATURE (paxesmdl)->logflags[1]; 
-      pSUBWIN_FEATURE (pobj)->logflags[1] = dir;
+      dir= ppaxesmdl->logflags[0];
+      ppsubwin->logflags[0] = dir;
+      dir= ppaxesmdl->logflags[1]; 
+      ppsubwin->logflags[1] = dir;
 
-      pSUBWIN_FEATURE (pobj)->axes.ticscolor  = pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor;
-      pSUBWIN_FEATURE (pobj)->axes.subint[0]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[0];   
-      pSUBWIN_FEATURE (pobj)->axes.subint[1]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]; 
-      pSUBWIN_FEATURE (pobj)->axes.subint[2]  = pSUBWIN_FEATURE (paxesmdl)->axes.subint[2];
+      ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
+      ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];   
+      ppsubwin->axes.subint[1]  = ppaxesmdl->axes.subint[1]; 
+      ppsubwin->axes.subint[2]  = ppaxesmdl->axes.subint[2];
 
-      dir= pSUBWIN_FEATURE (paxesmdl)->axes.xdir; 
-      pSUBWIN_FEATURE (pobj)->axes.xdir = dir; 
-      dir= pSUBWIN_FEATURE (paxesmdl)->axes.ydir; 
-      pSUBWIN_FEATURE (pobj)->axes.ydir = dir;
+      dir= ppaxesmdl->axes.xdir; 
+      ppsubwin->axes.xdir = dir; 
+      dir= ppaxesmdl->axes.ydir; 
+      ppsubwin->axes.ydir = dir;
  
-      pSUBWIN_FEATURE (pobj)->axes.rect  = pSUBWIN_FEATURE (paxesmdl)->axes.rect;
+      ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
       for (i=0 ; i<7 ; i++)
-	pSUBWIN_FEATURE (pobj)->axes.limits[i]  = pSUBWIN_FEATURE (paxesmdl)->axes.limits[i] ;
+	ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
  
       for (i=0 ; i<3 ; i++)
-	pSUBWIN_FEATURE (pobj)->grid[i]  = pSUBWIN_FEATURE (paxesmdl)->grid[i] ;
-      pSUBWIN_FEATURE (pobj)->isaxes  = pSUBWIN_FEATURE (paxesmdl)->isaxes;
-      pSUBWIN_FEATURE (pobj)->alpha  = pSUBWIN_FEATURE (paxesmdl)->alpha;
-      pSUBWIN_FEATURE (pobj)->theta  = pSUBWIN_FEATURE (paxesmdl)->theta;
-      pSUBWIN_FEATURE (pobj)->alpha_kp  = pSUBWIN_FEATURE (paxesmdl)->alpha_kp;
-      pSUBWIN_FEATURE (pobj)->theta_kp  = pSUBWIN_FEATURE (paxesmdl)->theta_kp;
-      pSUBWIN_FEATURE (pobj)->is3d  = pSUBWIN_FEATURE (paxesmdl)->is3d;
+	ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
+      ppsubwin->alpha  = ppaxesmdl->alpha;
+      ppsubwin->theta  = ppaxesmdl->theta;
+      ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
+      ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
+      ppsubwin->is3d  = ppaxesmdl->is3d;
        
       for (i=0 ; i<4 ; i++)
         {  
-	  pSUBWIN_FEATURE (pobj)->axes.xlim[i]= pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]; 
-	  pSUBWIN_FEATURE (pobj)->axes.ylim[i]= pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]; 
+	  ppsubwin->axes.xlim[i]= ppaxesmdl->axes.xlim[i]; 
+	  ppsubwin->axes.ylim[i]= ppaxesmdl->axes.ylim[i]; 
 	}
-      pSUBWIN_FEATURE (pobj)->axes.zlim[0]= pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0];
-      pSUBWIN_FEATURE (pobj)->axes.zlim[1]= pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1];
-      pSUBWIN_FEATURE (pobj)->axes.flag[0]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[0];
-      pSUBWIN_FEATURE (pobj)->axes.flag[1]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[1];
-      pSUBWIN_FEATURE (pobj)->axes.flag[2]= pSUBWIN_FEATURE (paxesmdl)->axes.flag[2];
-      pSUBWIN_FEATURE (pobj)->project[0]= pSUBWIN_FEATURE (paxesmdl)->project[0];
-      pSUBWIN_FEATURE (pobj)->project[1]= pSUBWIN_FEATURE (paxesmdl)->project[1];
-      pSUBWIN_FEATURE (pobj)->project[2]= pSUBWIN_FEATURE (paxesmdl)->project[2];
-      pSUBWIN_FEATURE (pobj)->hiddencolor= pSUBWIN_FEATURE (paxesmdl)->hiddencolor;
-      pSUBWIN_FEATURE (pobj)->hiddenstate= pSUBWIN_FEATURE (paxesmdl)->hiddenstate;
-      pSUBWIN_FEATURE (pobj)->isoview= pSUBWIN_FEATURE (paxesmdl)->isoview;
-      pSUBWIN_FEATURE (pobj)->facetmerge = pSUBWIN_FEATURE (paxesmdl)->facetmerge; 
-      pSUBWIN_FEATURE (pobj)->WRect[0]   = pSUBWIN_FEATURE (paxesmdl)->WRect[0];
-      pSUBWIN_FEATURE (pobj)->WRect[1]   = pSUBWIN_FEATURE (paxesmdl)->WRect[1];
-      pSUBWIN_FEATURE (pobj)->WRect[2]   = pSUBWIN_FEATURE (paxesmdl)->WRect[2];
-      pSUBWIN_FEATURE (pobj)->WRect[3]   = pSUBWIN_FEATURE (paxesmdl)->WRect[3];
 
-      pSUBWIN_FEATURE (pobj)->ARect[0]   = pSUBWIN_FEATURE (paxesmdl)->ARect[0];
-      pSUBWIN_FEATURE (pobj)->ARect[1]   = pSUBWIN_FEATURE (paxesmdl)->ARect[1];
-      pSUBWIN_FEATURE (pobj)->ARect[2]   = pSUBWIN_FEATURE (paxesmdl)->ARect[2];
-      pSUBWIN_FEATURE (pobj)->ARect[3]   = pSUBWIN_FEATURE (paxesmdl)->ARect[3];
+      /* F.Leray 22.09.04 */
 
-      pSUBWIN_FEATURE (pobj)->FRect[0]   = pSUBWIN_FEATURE (paxesmdl)->FRect[0];
-      pSUBWIN_FEATURE (pobj)->FRect[1]   = pSUBWIN_FEATURE (paxesmdl)->FRect[1] ;
-      pSUBWIN_FEATURE (pobj)->FRect[2]   = pSUBWIN_FEATURE (paxesmdl)->FRect[2];
-      pSUBWIN_FEATURE (pobj)->FRect[3]   = pSUBWIN_FEATURE (paxesmdl)->FRect[3];
-      pSUBWIN_FEATURE (pobj)->FRect[4]   = pSUBWIN_FEATURE (paxesmdl)->FRect[4] ;
-      pSUBWIN_FEATURE (pobj)->FRect[5]   = pSUBWIN_FEATURE (paxesmdl)->FRect[5];
-     
+      ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
+      ppsubwin->axes.u_ylabels = (char **) NULL; /* init. ci-apres */
+      ppsubwin->axes.u_zlabels = (char **) NULL; /* init. ci-apres */
+      ppsubwin->axes.u_xgrads  = (double *)NULL;
+      ppsubwin->axes.u_ygrads  = (double *)NULL;
+      ppsubwin->axes.u_zgrads  = (double *)NULL;
+       
 
-      /* ppsubwin =  pSUBWIN_FEATURE (pobj); */ /* debug */
-     
-      pSUBWIN_FEATURE (pobj)->isselected = pSUBWIN_FEATURE (paxesmdl)->isselected;  
-      pSUBWIN_FEATURE (pobj)->visible = pSUBWIN_FEATURE (paxesmdl)->visible; 
-      pSUBWIN_FEATURE (pobj)->isclip = pSUBWIN_FEATURE (paxesmdl)->isclip;
-
-      /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
-      pSUBWIN_FEATURE (pobj)->axes.aaint[0] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0];
-      pSUBWIN_FEATURE (pobj)->axes.aaint[1] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1];
-      pSUBWIN_FEATURE (pobj)->axes.aaint[2] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2];
-      pSUBWIN_FEATURE (pobj)->axes.aaint[3] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3];
-
-      pSUBWIN_FEATURE (pobj)->cube_scaling = pSUBWIN_FEATURE (paxesmdl)->cube_scaling;
-
-
-      pSUBWIN_FEATURE (pobj)->SRect[0]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[0];
-      pSUBWIN_FEATURE (pobj)->SRect[1]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[1];
-      pSUBWIN_FEATURE (pobj)->SRect[2]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[2];
-      pSUBWIN_FEATURE (pobj)->SRect[3]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[3];
-      pSUBWIN_FEATURE (pobj)->SRect[4]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[4];
-      pSUBWIN_FEATURE (pobj)->SRect[5]  =  pSUBWIN_FEATURE (paxesmdl)->SRect[5];
+      (ppsubwin->axes).axes_visible[0] = ppaxesmdl->axes.axes_visible[0];
+      (ppsubwin->axes).axes_visible[1] = ppaxesmdl->axes.axes_visible[1];
+      (ppsubwin->axes).axes_visible[2] = ppaxesmdl->axes.axes_visible[2];
+      (ppsubwin->axes).reverse[0] = ppaxesmdl->axes.reverse[0];
+      (ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
+      (ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
+      ppsubwin->flagNax = ppaxesmdl->flagNax;
+      (ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
+      (ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
+      (ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
       
-      pSUBWIN_FEATURE (pobj)->tight_limits = pSUBWIN_FEATURE (paxesmdl)->tight_limits;
-      pSUBWIN_FEATURE (pobj)->FirstPlot = pSUBWIN_FEATURE (paxesmdl)->FirstPlot;
-      pSUBWIN_FEATURE (pobj)->with_leg =  pSUBWIN_FEATURE (paxesmdl)->with_leg;
+      for(i=0;i<(ppsubwin->axes).nxgrads;i++) ppsubwin->axes.xgrads[i] = ppaxesmdl->axes.xgrads[i];
+      for(i=0;i<(ppsubwin->axes).nygrads;i++) ppsubwin->axes.ygrads[i] = ppaxesmdl->axes.ygrads[i];
+      for(i=0;i<(ppsubwin->axes).nzgrads;i++) ppsubwin->axes.zgrads[i] = ppaxesmdl->axes.zgrads[i];
+     
+      (ppsubwin->axes).u_nxgrads = ppaxesmdl->axes.u_nxgrads;
+      (ppsubwin->axes).u_nygrads = ppaxesmdl->axes.u_nygrads;
+      (ppsubwin->axes).u_nzgrads = ppaxesmdl->axes.u_nzgrads;
+      (ppsubwin->axes).u_xgrads  = AllocUserGrads(ppsubwin->axes.u_xgrads,ppaxesmdl->axes.u_nxgrads);
+      CopyUserGrads(ppaxesmdl->axes.u_xgrads,
+		    ppsubwin->axes.u_xgrads,
+		    ppsubwin->axes.u_nxgrads);
+      (ppsubwin->axes).u_ygrads  = AllocUserGrads(ppsubwin->axes.u_ygrads,ppaxesmdl->axes.u_nygrads);
+      CopyUserGrads(ppaxesmdl->axes.u_ygrads,
+		    ppsubwin->axes.u_ygrads,
+		    ppsubwin->axes.u_nygrads);
+      (ppsubwin->axes).u_zgrads  = AllocUserGrads(ppsubwin->axes.u_zgrads,ppaxesmdl->axes.u_nzgrads);
+      CopyUserGrads(ppaxesmdl->axes.u_zgrads,
+		    ppsubwin->axes.u_zgrads,
+		    ppsubwin->axes.u_nzgrads);
+      (ppsubwin->axes).u_xlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_xlabels,
+								ppaxesmdl->axes.u_xlabels,
+								ppsubwin->axes.u_nxgrads);
+
+      (ppsubwin->axes).u_ylabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_ylabels,
+								ppaxesmdl->axes.u_ylabels,
+								ppsubwin->axes.u_nygrads);
+      
+      (ppsubwin->axes).u_zlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_zlabels,
+								ppaxesmdl->axes.u_zlabels,
+								ppsubwin->axes.u_nzgrads);
+
+      (ppsubwin->axes).auto_ticks[0] = ppaxesmdl->axes.auto_ticks[0];
+      (ppsubwin->axes).auto_ticks[1] = ppaxesmdl->axes.auto_ticks[1];
+      (ppsubwin->axes).auto_ticks[2] = ppaxesmdl->axes.auto_ticks[2];
+      /* end 22.09.04 */
+
+      ppsubwin->axes.zlim[0]= ppaxesmdl->axes.zlim[0];
+      ppsubwin->axes.zlim[1]= ppaxesmdl->axes.zlim[1];
+      ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
+      ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
+      ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
+      ppsubwin->project[0]= ppaxesmdl->project[0];
+      ppsubwin->project[1]= ppaxesmdl->project[1];
+      ppsubwin->project[2]= ppaxesmdl->project[2];
+      ppsubwin->hiddencolor= ppaxesmdl->hiddencolor;
+      ppsubwin->hiddenstate= ppaxesmdl->hiddenstate;
+      ppsubwin->isoview= ppaxesmdl->isoview;
+      ppsubwin->facetmerge = ppaxesmdl->facetmerge; 
+      ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
+      ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
+      ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
+      ppsubwin->WRect[3]   = ppaxesmdl->WRect[3];
+
+      ppsubwin->ARect[0]   = ppaxesmdl->ARect[0];
+      ppsubwin->ARect[1]   = ppaxesmdl->ARect[1];
+      ppsubwin->ARect[2]   = ppaxesmdl->ARect[2];
+      ppsubwin->ARect[3]   = ppaxesmdl->ARect[3];
+
+      ppsubwin->FRect[0]   = ppaxesmdl->FRect[0];
+      ppsubwin->FRect[1]   = ppaxesmdl->FRect[1] ;
+      ppsubwin->FRect[2]   = ppaxesmdl->FRect[2];
+      ppsubwin->FRect[3]   = ppaxesmdl->FRect[3];
+      ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
+      ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
+     
+
+      ppsubwin->isselected = ppaxesmdl->isselected;  
+      ppsubwin->visible = ppaxesmdl->visible; 
+      ppsubwin->isclip = ppaxesmdl->isclip;
+
+      ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
+
+
+      ppsubwin->SRect[0]  =  ppaxesmdl->SRect[0];
+      ppsubwin->SRect[1]  =  ppaxesmdl->SRect[1];
+      ppsubwin->SRect[2]  =  ppaxesmdl->SRect[2];
+      ppsubwin->SRect[3]  =  ppaxesmdl->SRect[3];
+      ppsubwin->SRect[4]  =  ppaxesmdl->SRect[4];
+      ppsubwin->SRect[5]  =  ppaxesmdl->SRect[5];
+      
+      ppsubwin->tight_limits = ppaxesmdl->tight_limits;
+      ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
+      ppsubwin->with_leg =  ppaxesmdl->with_leg;
       
       if (sciSetSelectedSubWin(pobj) != 1) 
 	return (sciPointObj *)NULL; 
       
       /* Construction des labels: x,y,z et Title */
-      ppsubwin =  pSUBWIN_FEATURE (pobj);
 
       if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
 	sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
@@ -8211,7 +8259,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       sciSetVisibility(ppsubwin->mon_z_label, sciGetVisibility(pSUBWIN_FEATURE(paxesmdl)->mon_z_label));
       
       
-      pSUBWIN_FEATURE (pobj)->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
+      ppsubwin->pPopMenu = (sciPointObj *)NULL;/* initialisation of popup menu*/
       return (sciPointObj *)pobj;
       
     }
@@ -8233,6 +8281,32 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 int
 DestroySubWin (sciPointObj * pthis)
 { 
+  /* Add. grads arrays */ /* F.Leray 11.10.04 */
+  /* specific user arrays */
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pthis);
+
+
+  FREE( ppsubwin->axes.u_xgrads); ppsubwin->axes.u_xgrads = (double *) NULL;
+  FREE( ppsubwin->axes.u_ygrads); ppsubwin->axes.u_ygrads = (double *) NULL;
+  FREE( ppsubwin->axes.u_zgrads); ppsubwin->axes.u_zgrads = (double *) NULL;
+  ppsubwin->axes.u_xlabels = FreeUserLabels(ppsubwin->axes.u_xlabels, &ppsubwin->axes.u_nxgrads);
+  ppsubwin->axes.u_ylabels = FreeUserLabels(ppsubwin->axes.u_ylabels, &ppsubwin->axes.u_nygrads);
+  ppsubwin->axes.u_zlabels = FreeUserLabels(ppsubwin->axes.u_zlabels, &ppsubwin->axes.u_nzgrads);
+
+  ppsubwin->axes.u_xlabels = NULL;
+  ppsubwin->axes.u_ylabels = NULL;
+  ppsubwin->axes.u_zlabels = NULL;
+
+  ppsubwin->axes.u_nxgrads = 0;
+  ppsubwin->axes.u_nygrads = 0;
+  ppsubwin->axes.u_nzgrads = 0;
+ 
+ 
+  /* auto (computed) arrays are defined with max. length == 20 */
+  ppsubwin->axes.nxgrads = 0;
+  ppsubwin->axes.nygrads = 0;
+  ppsubwin->axes.nzgrads = 0;
+
   sciDelThisToItsParent (pthis, sciGetParent (pthis));
   if (sciDelHandle (pthis) == -1)
     return -1;
@@ -8253,6 +8327,9 @@ int C2F(graphicsmodels) ()
   sciHandleTab *newhd1, *newhd2;
   sciPointObj * pobj = NULL;
   sciSubWindow * ppobj = NULL;
+  double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
+  sciSubWindow * ppaxesmdl = NULL;
+ /*  sciSubWindow * ppaxesmdl = NULL; */
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
     {
@@ -8394,11 +8471,12 @@ int C2F(graphicsmodels) ()
       return 0;
     }
   sciSetCurrentSon (paxesmdl, (sciPointObj *) NULL);
-  pSUBWIN_FEATURE (paxesmdl)->relationship.psons = (sciSons *) NULL;
-  pSUBWIN_FEATURE (paxesmdl)->relationship.plastsons = (sciSons *) NULL;
-  pSUBWIN_FEATURE (paxesmdl)->callback = (char *)NULL;
-  pSUBWIN_FEATURE (paxesmdl)->callbacklen = 0;
-  pSUBWIN_FEATURE (paxesmdl)->callbackevent = 100;
+  ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
+  ppaxesmdl->relationship.psons = (sciSons *) NULL;
+  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
+  ppaxesmdl->callback = (char *)NULL;
+  ppaxesmdl->callbacklen = 0;
+  ppaxesmdl->callbackevent = 100;
   
   if (sciInitGraphicContext (paxesmdl) == -1)
     {
@@ -8431,95 +8509,127 @@ int C2F(graphicsmodels) ()
       return 0;
     }
   
-  pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
-  pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
+  ppaxesmdl->logflags[0] = 'n';
+  ppaxesmdl->logflags[1] = 'n';
   
   
   /* axes labelling values*/
-  pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
+  ppaxesmdl->axes.ticscolor  = -1;
   /* F.Leray 08.04.04 : No need anymore:  */
-  /*pSUBWIN_FEATURE (paxesmdl)->axes.textcolor  = -1;
-    pSUBWIN_FEATURE (paxesmdl)->axes.fontsize  = -1;  */
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
-  pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';
-  
-  /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = 10;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = 10;
-   
-  pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
+  /*ppaxesmdl->axes.textcolor  = -1;
+    ppaxesmdl->axes.fontsize  = -1;  */
+  ppaxesmdl->axes.subint[0]  = 1;   
+  ppaxesmdl->axes.subint[1]  = 1; 
+  ppaxesmdl->axes.subint[2]  = 1;
+  ppaxesmdl->axes.xdir='d'; 
+  ppaxesmdl->axes.ydir='l';
+     
+  ppaxesmdl->axes.rect  = 1;
   for (i=0 ; i<7 ; i++)
-    pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+    ppaxesmdl->axes.limits[i]  = 0;
   
-  pSUBWIN_FEATURE (paxesmdl)->cube_scaling = FALSE;
-  for (i=0 ; i<3 ; i++)  pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
-  pSUBWIN_FEATURE (paxesmdl)->alpha  = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->theta  = 270.0;
-  pSUBWIN_FEATURE (paxesmdl)->alpha_kp  = 45.0;
-  pSUBWIN_FEATURE (paxesmdl)->theta_kp  = 215.0;
-  pSUBWIN_FEATURE (paxesmdl)->is3d  = FALSE;
-  pSUBWIN_FEATURE (paxesmdl)->FirstPlot = TRUE;
-  pSUBWIN_FEATURE (paxesmdl)->with_leg = 0;
+  ppaxesmdl->cube_scaling = FALSE;
+  for (i=0 ; i<3 ; i++)  ppaxesmdl->grid[i]  = -1;
+  ppaxesmdl->alpha  = 0.0;
+  ppaxesmdl->theta  = 270.0;
+  ppaxesmdl->alpha_kp  = 45.0;
+  ppaxesmdl->theta_kp  = 215.0;
+  ppaxesmdl->is3d  = FALSE;
+  ppaxesmdl->FirstPlot = TRUE;
+  ppaxesmdl->with_leg = 0;
 
-  dir= 'd'; pSUBWIN_FEATURE (paxesmdl)->axes.xdir=dir;
-  dir= 'l'; pSUBWIN_FEATURE (paxesmdl)->axes.ydir=dir;      
+  dir= 'd'; ppaxesmdl->axes.xdir=dir;
+  dir= 'l'; ppaxesmdl->axes.ydir=dir;      
+
+  /* BU HERE */
+/*   ppaxesmdl = ppaxesmdl; */
   for (i=0 ; i<4 ; i++){  
-    pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i]; 
-    pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]= Cscale.ytics[i]; }
+    ppaxesmdl->axes.xlim[i]=  Cscale.xtics[i];
+    ppaxesmdl->axes.ylim[i]=  Cscale.ytics[i]; }
   
-  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0]= -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1]= 1.0;
+  /* F.Leray 22.09.04 */
+  (ppaxesmdl->axes).axes_visible[0] = FALSE;
+  (ppaxesmdl->axes).axes_visible[1] = FALSE;
+  (ppaxesmdl->axes).axes_visible[2] = FALSE;
+  (ppaxesmdl->axes).reverse[0] = FALSE;
+  (ppaxesmdl->axes).reverse[1] = FALSE;
+  (ppaxesmdl->axes).reverse[2] = FALSE;
+  ppaxesmdl->flagNax = FALSE;
+  (ppaxesmdl->axes).nxgrads = 0;
+  (ppaxesmdl->axes).nygrads = 0;
+  (ppaxesmdl->axes).nzgrads = 0;
+
+  (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
+  (ppaxesmdl->axes).nygrads = 11;
+  (ppaxesmdl->axes).nzgrads = 3;
   
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[0]= 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[1]= 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[2]= 4;
+  for(i=0;i<11;i++) (ppaxesmdl->axes).xgrads[i] = tab[i];
+  for(i=0;i<11;i++) (ppaxesmdl->axes).ygrads[i] = tab[i];
+  (ppaxesmdl->axes).zgrads[0] = -1.;
+  (ppaxesmdl->axes).zgrads[1]  = 0.;
+  (ppaxesmdl->axes).zgrads[2]  = 1.;
+
+  (ppaxesmdl->axes).u_nxgrads = 0;
+  (ppaxesmdl->axes).u_nygrads = 0;
+  (ppaxesmdl->axes).u_nzgrads = 0;
+  (ppaxesmdl->axes).u_xgrads = (double *)NULL;
+  (ppaxesmdl->axes).u_ygrads = (double *)NULL;
+  (ppaxesmdl->axes).u_zgrads = (double *)NULL;
+  (ppaxesmdl->axes).u_xlabels= (char **) NULL;
+  (ppaxesmdl->axes).u_ylabels= (char **) NULL;
+  (ppaxesmdl->axes).u_zlabels= (char **) NULL;
+  (ppaxesmdl->axes).auto_ticks[0] = TRUE;
+  (ppaxesmdl->axes).auto_ticks[1] = TRUE;
+  (ppaxesmdl->axes).auto_ticks[2] = TRUE;
+  /* end 22.09.04 */
+  
+  ppaxesmdl->axes.zlim[0]= -1.0;
+  ppaxesmdl->axes.zlim[1]= 1.0;
+  
+  ppaxesmdl->axes.flag[0]= 2;
+  ppaxesmdl->axes.flag[1]= 2;
+  ppaxesmdl->axes.flag[2]= 4;
  
-  pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
-  pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
-  pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
-  pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
-  pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0;
-  pSUBWIN_FEATURE (paxesmdl)->isoview= FALSE; 
-  pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE;
+  ppaxesmdl->project[0]= 1;
+  ppaxesmdl->project[1]= 1;
+  ppaxesmdl->project[2]= 0;
+  ppaxesmdl->hiddencolor=4;
+  ppaxesmdl->hiddenstate=0;
+  ppaxesmdl->isoview= FALSE; 
+  ppaxesmdl->facetmerge = FALSE;
 
-  pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[2]   = 1;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[3]   = 1;
+  ppaxesmdl->WRect[0]   = 0;
+  ppaxesmdl->WRect[1]   = 0;
+  ppaxesmdl->WRect[2]   = 1;
+  ppaxesmdl->WRect[3]   = 1;
 
-  pSUBWIN_FEATURE (paxesmdl)->ARect[0]   = 0.125;
-  pSUBWIN_FEATURE (paxesmdl)->ARect[1]   = 0.125;
-  pSUBWIN_FEATURE (paxesmdl)->ARect[2]   = 0.125;
-  pSUBWIN_FEATURE (paxesmdl)->ARect[3]   = 0.125;
+  ppaxesmdl->ARect[0]   = 0.125;
+  ppaxesmdl->ARect[1]   = 0.125;
+  ppaxesmdl->ARect[2]   = 0.125;
+  ppaxesmdl->ARect[3]   = 0.125;
   
-  pSUBWIN_FEATURE (paxesmdl)->FRect[0]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->FRect[1]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->FRect[2]   = 1.0;
-  pSUBWIN_FEATURE (paxesmdl)->FRect[3]   = 1.0;
-  pSUBWIN_FEATURE (paxesmdl)->FRect[4]   = -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->FRect[5]   = 1.0;
+  ppaxesmdl->FRect[0]   = 0.0;
+  ppaxesmdl->FRect[1]   = 0.0;
+  ppaxesmdl->FRect[2]   = 1.0;
+  ppaxesmdl->FRect[3]   = 1.0;
+  ppaxesmdl->FRect[4]   = -1.0;
+  ppaxesmdl->FRect[5]   = 1.0;
   
-  pSUBWIN_FEATURE (paxesmdl)->SRect[0]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->SRect[1]   = 1.0;
-  pSUBWIN_FEATURE (paxesmdl)->SRect[2]   = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->SRect[3]   = 1.0;
-  pSUBWIN_FEATURE (paxesmdl)->SRect[4]   = -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->SRect[5]   = 1.0;  
+  ppaxesmdl->SRect[0]   = 0.0;
+  ppaxesmdl->SRect[1]   = 1.0;
+  ppaxesmdl->SRect[2]   = 0.0;
+  ppaxesmdl->SRect[3]   = 1.0;
+  ppaxesmdl->SRect[4]   = -1.0;
+  ppaxesmdl->SRect[5]   = 1.0;  
   
-  pSUBWIN_FEATURE (paxesmdl)->tight_limits = FALSE;
+  ppaxesmdl->tight_limits = FALSE;
   
-  pSUBWIN_FEATURE (paxesmdl)->isselected = FALSE;
+  ppaxesmdl->isselected = FALSE;
 
-  pSUBWIN_FEATURE (paxesmdl)->visible = sciGetVisibility(pfiguremdl); 
-  pSUBWIN_FEATURE (paxesmdl)->isclip = -1;
+  ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
+  ppaxesmdl->isclip = -1;
   
-  pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
+  ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
   
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
@@ -11397,6 +11507,8 @@ sciDrawObj (sciPointObj * pobj)
   /* variable pour le set_scale update_frame_bounds*/
   double subwin[4], framevalues[4];
 
+  BOOL isaxes = FALSE;
+
   subwin[0]    = 0;
   subwin[1]    = 0;
   subwin[2]   = 1;
@@ -11405,18 +11517,18 @@ sciDrawObj (sciPointObj * pobj)
   framevalues[1] = 0;
   framevalues[2] = 1;
   framevalues[3] = 1;
- 
+  
   /* driver test */
   
   if((GetDriverId() != 0) && (xinitxend_flag == 1)){
-/*     printf("I DO NOTHING !!\n"); */
+    /*     printf("I DO NOTHING !!\n"); */
     return -1;
   }
   /*pfigure = sciGetCurrentFigure ();
     psubwin = sciGetSelectedSubWin (pfigure);*/ /*  printf("before currentsubwin init.\n"); */
   currentsubwin = (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
   /*  printf("currentsubwin = %d\n\n",currentsubwin); */ /* debug F.Leray 23.07.04 */
-/*   fflush(NULL); */
+  /*   fflush(NULL); */
  switch (sciGetEntityType (pobj))
    {
    case SCI_FIGURE: 
@@ -11450,13 +11562,19 @@ sciDrawObj (sciPointObj * pobj)
      break;
    case SCI_SUBWIN: 
 	ppsubwin = pSUBWIN_FEATURE (pobj);
+	
+	isaxes = GetIsAxes(pobj);
+	/* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 */
+	
+/* 	ppsubwin->axes.reverse[0] = TRUE; /\* reverse X axis *\/ */
+/* 	ppsubwin->axes.reverse[1] = FALSE; */
+   
      if (!sciGetVisibility(pobj)) break;
      sciSetSelectedSubWin(pobj); 
-     
-     set_scale ("tttttt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
-		pSUBWIN_FEATURE (pobj)->axes.aaint, pSUBWIN_FEATURE (pobj)->logflags, 
+          
+     set_scale ("tttftt", pSUBWIN_FEATURE (pobj)->WRect, pSUBWIN_FEATURE (pobj)->FRect,
+		NULL, pSUBWIN_FEATURE (pobj)->logflags, 
 		pSUBWIN_FEATURE (pobj)->ARect); 
-     
      
      if (pSUBWIN_FEATURE (pobj)->is3d) 
        {  /* 3D Coordinates */ /* verifier si c'est encore utile SS */
@@ -11511,15 +11629,16 @@ sciDrawObj (sciPointObj * pobj)
 	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 
-	 sci_update_frame_bounds(0);
+	 sci_update_frame_bounds();
 	 
-	 if (pSUBWIN_FEATURE (pobj)->isaxes) {
+	 if (isaxes) {
 	   char STRFLAG[4];
 	   rebuild_strflag(pobj,STRFLAG);
 	   axis_draw (STRFLAG); 
-	   labels2D_draw(pobj);
-	   
 	 }
+	 
+	 labels2D_draw(pobj); /* F.Leray 18.10.04 : move here to allow labels drawing with isaxes==FALSE */
+	   
 	 /** walk subtree **/
 	 psonstmp = sciGetLastSons (pobj);
 	 while (psonstmp != (sciSons *) NULL) {
@@ -14481,7 +14600,7 @@ sciUnAgregation (sciPointObj * pobj)
   static sciPointObj *masousfen;
    
   InitScilabXgc=(struct BCG *)pointXGC; */
-  /*  si le ScilabXgc a été initialisé et s'il est different de celui pocedé par la figure courante
+  /*  si le ScilabXgc a ÂŽétÂŽé initialisÂŽé et s'il est different de celui pocedÂŽé par la figure courante
    *  construire une nouvelle fenetre et une sous fenetre 
    * une autre facon de comparer c'est de voir est ce que InitScilabXgc->mafigure n'est pas vide (!=NULL */
 /*  if (tmpScilabXgc != InitScilabXgc)
@@ -14822,7 +14941,8 @@ int sciType (marker, pobj)
   else if (strncmp(marker,"tics_style", 10) == 0) {return 10;} 
   else if (strncmp(marker,"format_n", 9) == 0)    {return 10;}    
   else if (strncmp(marker,"tics_labels", 11) == 0){return 10;}  
-  else if (strncmp(marker,"sub_tics", 8) == 0)    {return 1;}	
+  else if (strncmp(marker,"sub_tics", 8) == 0)    {return 1;}
+  else if (strncmp(marker,"sub_ticks",9) == 0)    {return 1;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
   else if (strncmp(marker,"zoom_box", 8) == 0)    {return 1;}	
   else if (strncmp(marker,"zoom_state", 9) == 0)  {return 10;}  
   else if (strncmp(marker,"clip_box", 8) == 0)    {return 1;}	
@@ -14863,7 +14983,11 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"y_label") == 0)    {return 9;} 
   else if (strcmp(marker,"z_label") == 0)    {return 9;} 
   else if (strcmp(marker,"title") == 0)    {return 9;} 
-
+  else if (strcmp(marker,"x_ticks") == 0)    {return 16;} 
+  else if (strcmp(marker,"y_ticks") == 0)    {return 16;} 
+  else if (strcmp(marker,"z_ticks") == 0)    {return 16;} 
+  else if (strncmp(marker,"auto_ticks", 10) == 0){return 10;} 
+  
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes
@@ -14927,7 +15051,13 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
             
   dir= 'd'; pSUBWIN_FEATURE (psubwin)->axes.xdir=dir;
   dir= 'l'; pSUBWIN_FEATURE (psubwin)->axes.ydir=dir;
-  pSUBWIN_FEATURE (psubwin)->isaxes  = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[0] = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[1] = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).axes_visible[2] = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).reverse[0] = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).reverse[1] = FALSE;
+  (pSUBWIN_FEATURE (psubwin)->axes).reverse[2] = FALSE;
+  
   pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  
   pSUBWIN_FEATURE (psubwin)->axes.ticscolor = -1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[0] =  1;
@@ -15187,7 +15317,9 @@ sciGetIdFigure (int *vect, int *id, int *flag)
   *id=0;
   while (hdl != NULL)
     { 
+      sciFigure * ppfigure = NULL; 
       pobj=(sciPointObj *) sciGetPointerFromHandle (hdl->index);
+      ppfigure = pFIGURE_FEATURE(pobj);
       if (sciGetEntityType(pobj) == SCI_FIGURE)
 	{
 	  if (*flag) vect[*id] = sciGetNum(pobj);
@@ -15248,20 +15380,20 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
   pSUBWIN_FEATURE (psubwin)->theta  = theta;
   pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
   if ((alpha == 0.0 ) || (alpha == 180.0 ) || (alpha == -180.0 ))  /* DJ.A 30/12 */
-    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+    pSUBWIN_FEATURE (psubwin)->project[2]= 0; /* no z to display */
   else 
     {
-      pSUBWIN_FEATURE (psubwin)->project[2]= 1;
+      pSUBWIN_FEATURE (psubwin)->project[2]= 1; /* z must be displayed */
       if (((alpha == 90.0 ) || (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))
 	  && ((theta == 90.0 ) || (theta == -90.0 )
 	      || (theta == 270.0 )|| (theta == -270.0 )))
-	pSUBWIN_FEATURE (psubwin)->project[1]= 0;
+	pSUBWIN_FEATURE (psubwin)->project[1]= 0; /* no y to display */
       else
 	{
 	  pSUBWIN_FEATURE (psubwin)->project[1]= 1;
 	  if (((alpha == 90.0 )|| (alpha == 270.0 )|| (alpha == -90.0) || (alpha == -270.0 ))  
 	      && ((theta == 0.0 ) || (theta == 180.0 )|| (alpha == -180.0 )))
-	    pSUBWIN_FEATURE (psubwin)->project[0]= 0;
+	    pSUBWIN_FEATURE (psubwin)->project[0]= 0; /* BUG evreywhere when theta == 0 */
 	  else
 	    pSUBWIN_FEATURE (psubwin)->project[0]= 1;
 	}
@@ -15341,8 +15473,13 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   integer wmax,hmax,ind2,ind3,ind,tmpind;
   integer ixbox[8],iybox[8],xind[8],dash[6];
   integer background,zero=0, color_old; /* Adding color_old 04.03.04*/
+/*   sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj); */
   
   BOOL cube_scaling; 
+  BOOL isaxes = GetIsAxes(pobj);
+
+/*   printf("DEBUT DE axis_3ddraw\n"); */
+/*   fflush(NULL); */
 
   /* Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04*/
   for(i=0;i<5;i++) x[i] = -1000;
@@ -15354,8 +15491,8 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 
  
       dbox[0] =  pSUBWIN_FEATURE (pobj)->FRect[0]; /*xmin*/
-      dbox[1] =  pSUBWIN_FEATURE (pobj)->FRect[2]; /*ymin*/
-      dbox[2] =  pSUBWIN_FEATURE (pobj)->FRect[1]; /*xmax*/
+      dbox[1] =  pSUBWIN_FEATURE (pobj)->FRect[2]; /*ymin*/ /* FAUX */ /* c'est xmax */
+      dbox[2] =  pSUBWIN_FEATURE (pobj)->FRect[1]; /*xmax*/ /* FAUX */ /* c'est ymin */
       dbox[3] =  pSUBWIN_FEATURE (pobj)->FRect[3]; /*ymax*/
       dbox[4] =  pSUBWIN_FEATURE (pobj)->FRect[4]; /*zmin*/
       dbox[5] =  pSUBWIN_FEATURE (pobj)->FRect[5]; /*zmax*/
@@ -15394,40 +15531,47 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	    Cscale.bbox1[ib]=dbox[ib];
 	}
 
-      xbox[0]=TRX(dbox[0],dbox[2],dbox[4]);
-      ybox[0]=TRY(dbox[0],dbox[2],dbox[4]);
-      zbox[0]=TRZ(dbox[0],dbox[2],dbox[4]);
-      xbox[1]=TRX(dbox[0],dbox[3],dbox[4]);
-      ybox[1]=TRY(dbox[0],dbox[3],dbox[4]);
-      zbox[1]=TRZ(dbox[0],dbox[3],dbox[4]);
-      xbox[2]=TRX(dbox[1],dbox[3],dbox[4]);
-      ybox[2]=TRY(dbox[1],dbox[3],dbox[4]);
-      zbox[2]=TRZ(dbox[1],dbox[3],dbox[4]);
-      xbox[3]=TRX(dbox[1],dbox[2],dbox[4]);
-      ybox[3]=TRY(dbox[1],dbox[2],dbox[4]);
-      zbox[3]=TRZ(dbox[1],dbox[2],dbox[4]);
-      xbox[4]=TRX(dbox[0],dbox[2],dbox[5]);
-      ybox[4]=TRY(dbox[0],dbox[2],dbox[5]);
-      zbox[4]=TRZ(dbox[0],dbox[2],dbox[5]);
-      xbox[5]=TRX(dbox[0],dbox[3],dbox[5]);
-      ybox[5]=TRY(dbox[0],dbox[3],dbox[5]);
-      zbox[5]=TRZ(dbox[0],dbox[3],dbox[5]);
-      xbox[6]=TRX(dbox[1],dbox[3],dbox[5]);
-      ybox[6]=TRY(dbox[1],dbox[3],dbox[5]);
-      zbox[6]=TRZ(dbox[1],dbox[3],dbox[5]);
-      xbox[7]=TRX(dbox[1],dbox[2],dbox[5]);
-      ybox[7]=TRY(dbox[1],dbox[2],dbox[5]);
-      zbox[7]=TRZ(dbox[1],dbox[2],dbox[5]);
+      xbox[0]=TRX(dbox[0],dbox[2],dbox[4]); /* transfo. 3D of [xmin,ymin,zmin] */
+      ybox[0]=TRY(dbox[0],dbox[2],dbox[4]); /* into [xbox[0],ybox[0],zbox[0] ] */
+      zbox[0]=TRZ(dbox[0],dbox[2],dbox[4]); /*                                 */ 
+
+      xbox[1]=TRX(dbox[0],dbox[3],dbox[4]); /* transfo. 3D of [xmin,ymax,zmin] */
+      ybox[1]=TRY(dbox[0],dbox[3],dbox[4]); /* into [xbox[1],ybox[1],zbox[1] ] */
+      zbox[1]=TRZ(dbox[0],dbox[3],dbox[4]); /*                                 */
+
+      xbox[2]=TRX(dbox[1],dbox[3],dbox[4]); /* transfo. 3D of [xmax,ymax,zmin] */
+      ybox[2]=TRY(dbox[1],dbox[3],dbox[4]); /* into [xbox[2],ybox[2],zbox[2] ] */
+      zbox[2]=TRZ(dbox[1],dbox[3],dbox[4]); /*                                 */
+
+      xbox[3]=TRX(dbox[1],dbox[2],dbox[4]); /* transfo. 3D of [xmax,ymin,zmin] */
+      ybox[3]=TRY(dbox[1],dbox[2],dbox[4]); /* into [xbox[3],ybox[3],zbox[3] ] */
+      zbox[3]=TRZ(dbox[1],dbox[2],dbox[4]); /*                                 */
+
+      xbox[4]=TRX(dbox[0],dbox[2],dbox[5]); /* transfo. 3D of [xmin,ymin,zmax] */
+      ybox[4]=TRY(dbox[0],dbox[2],dbox[5]); /* into [xbox[4],ybox[4],zbox[4] ] */
+      zbox[4]=TRZ(dbox[0],dbox[2],dbox[5]); /*                                 */
+
+      xbox[5]=TRX(dbox[0],dbox[3],dbox[5]); /* transfo. 3D of [xmin,ymax,zmax] */
+      ybox[5]=TRY(dbox[0],dbox[3],dbox[5]); /* into [xbox[5],ybox[5],zbox[5] ] */
+      zbox[5]=TRZ(dbox[0],dbox[3],dbox[5]); /*                                 */
+
+      xbox[6]=TRX(dbox[1],dbox[3],dbox[5]); /* transfo. 3D of [xmax,ymax,zmax] */
+      ybox[6]=TRY(dbox[1],dbox[3],dbox[5]); /* into [xbox[6],ybox[6],zbox[6] ] */
+      zbox[6]=TRZ(dbox[1],dbox[3],dbox[5]); /*                                 */
+
+      xbox[7]=TRX(dbox[1],dbox[2],dbox[5]); /* transfo. 3D of [xmax,ymin,zmax] */
+      ybox[7]=TRY(dbox[1],dbox[2],dbox[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
+      zbox[7]=TRZ(dbox[1],dbox[2],dbox[5]); /*                                 */
 
 
       /** Calcul des echelles en fonction de la taille du dessin **/
-      if ( flag == 1 || flag == 3 )
+      if ( flag == 1 || flag == 3 ) /* ALL the expanded cases : flag[1] = 1 or 2 or 5 or 6 */
 	{
-	  xmmin=  (double) Mini(xbox,8L);xmmax= (double) Maxi(xbox,8L);
-	  ymmax=  (double) - Mini(ybox,8L);
+	  xmmin=  (double) Mini(xbox,8L);xmmax= (double) Maxi(xbox,8L); /* search for x Min/Max on all the edges (there are 8 edges that compose the box) F.Leray 13.10.04 */
+	  ymmax=  (double) - Mini(ybox,8L); /* same thing on ybox vector ( 1) why - (minus) ? see 2) )*/
 	  ymmin=  (double) - Maxi(ybox,8L);
 	}
-      if ( flag == 2 || flag == 3 )
+      if ( flag == 2 || flag == 3 ) /* ALL the isometric cases : flag[1] = 3 or 4 or 5 or 6 */
 	{
 	  /* get current window size */
 	  C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15435,7 +15579,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	  wmax=linint((double)wdim[0] * WRect[2]);
 	  hmax=linint((double)wdim[1] * WRect[3]); 
 	}
-      if ( flag == 2 )
+      if ( flag == 2 ) /* the "NON expanded isometric" cases : flag[1] = 3 or 4 */
 	{
 	  /* radius and center of the sphere circumscribing the box */
 	  dx=dbox[1]-dbox[0]; dy=dbox[3]-dbox[2]; dz=dbox[5]-dbox[4];
@@ -15465,79 +15609,114 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	      ymmax=ymmax+(hy1-hy)/2.0;
 	    }
 	}
-      if (flag !=0 )
+      if (flag !=0 ) /* != using current 3D scale */
 	{
-	  FRect[0]=xmmin;FRect[1]= -ymmax;FRect[2]=xmmax;FRect[3]= -ymmin;
+	  FRect[0]=xmmin;FRect[1]= -ymmax;FRect[2]=xmmax;FRect[3]= -ymmin; /* 2) ... (why - (minus) ? )*/
 	  set_scale("tftttf",NULL,FRect,aaint,"nn",NULL);
 	  Cscale.metric3d=flag; 
 	}
            
       /* F.Leray 23.02.04 Mise a 0 du tableau xind pour corriger bug*/
       /* dans le cas ind < 3 ET ybox[tmpind] < ybox[tmpind]*/
-	for(i=0;i<8;i++) xind[i] = 0;
+      for(i=0;i<8;i++) xind[i] = 0;
 
       /******/
-      if(pSUBWIN_FEATURE (pobj)->isaxes)
-	{  
-	  flag = pSUBWIN_FEATURE (pobj)->axes.flag[2];
-	  /* indices */
-	  xmaxi=((double) Maxi(xbox,8L));
-	  ind= -1;
-	  MaxiInd(xbox,8L,&ind,xmaxi);
-	  if ( ind > 3)
-	    xind[0]=ind;
-	  tmpind=ind;  
-	  MaxiInd(xbox,8L,&ind,xmaxi);
-	  if ( ind > 3)
-	    xind[0]=ind;
-	  if (ybox[tmpind] > ybox[ind] )
-	    xind[0]=tmpind; 	 
+	if(isaxes)
+	  {  
+	    flag = pSUBWIN_FEATURE (pobj)->axes.flag[2];
+	  
 	   
-	  if (ind < 0 || ind > 8) 
-	    {
-	      Scistring("xind out of bounds");
-	      xind[0]=0;
-	    }
-	  Nextind(xind[0],&ind2,&ind3);
-	  if (ybox[ind2] > ybox[ind3]) 
-	    {
-	      xind[1]=ind2;InsideU[0]=ind3;
-	    }
-	  else 
-	    {
-	      xind[1]=ind3;InsideU[0]=ind2;
-	    }
-	  Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
-	  InsideU[2]=ind2; 
-	  if (InsideU[0] > 3 )
-	    InsideU[3]=InsideU[0]-4; 
-	  else
-	    InsideU[3]=InsideU[0]+4; 
-	  xind[2]=ind2;
-	  /* le pointeger en bas qui correspond */	  
-	  if (ind2 > 3 )
-	    xind[3]=ind2-4;
-	  else
-	    xind[3]=ind2+4;
-	  Nextind(xind[3],&ind2,&ind3);
-	  if (ybox[ind2] < ybox[ind3]) 
-	    {
-	      xind[4]=ind2;InsideD[0]=ind3;
-	    }
-	  else  
-	    {
-	      xind[4]=ind3;InsideD[0]=ind2;
-	    }
-	  Nextind(ind2,&ind2,&ind3);
-	  InsideD[1]=xind[3];
-	  InsideD[2]=ind2;
-	  if (InsideD[0] > 3 )
-	    InsideD[3]=InsideD[0]-4;
-	  else
-	    InsideD[3]=InsideD[0]+4;
-	  xind[5]=ind2;
+	    if(Teta==0){
+	      /* to avoid bug at limit when theta == 0 */
+	      /* I recompute temp value xyzbox with theta == 0.1 */
+	      /* to have a correct xind, InsideU et InsideD */
+	      ComputeCorrectXindAndInsideUD(Teta,Alpha,dbox,xind,InsideU,InsideD);}
+	    else
+	      {
+		/* indices */
+		xmaxi=((double) Maxi(xbox,8L));
+		ind= -1;
+		MaxiInd(xbox,8L,&ind,xmaxi);
+		if ( ind > 3)
+		  xind[0]=ind;
+		tmpind=ind;  
+		MaxiInd(xbox,8L,&ind,xmaxi);
+		if ( ind > 3)
+		  xind[0]=ind;
+		if (ybox[tmpind] > ybox[ind] )
+		  xind[0]=tmpind; 	 
+	   
+		if (ind < 0 || ind > 8) 
+		  {
+		    Scistring("xind out of bounds");
+		    xind[0]=0;
+		  }
+		Nextind(xind[0],&ind2,&ind3);
+		if (ybox[ind2] > ybox[ind3]) 
+		  {
+		    xind[1]=ind2;InsideU[0]=ind3;
+		  }
+		else 
+		  {
+		    xind[1]=ind3;InsideU[0]=ind2;
+		  }
+		Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
+		InsideU[2]=ind2; 
+		if (InsideU[0] > 3 )
+		  InsideU[3]=InsideU[0]-4; 
+		else
+		  InsideU[3]=InsideU[0]+4; 
+		xind[2]=ind2;
+		/* le pointeger en bas qui correspond */	  
+		if (ind2 > 3 )
+		  xind[3]=ind2-4;
+		else
+		  xind[3]=ind2+4;
+		Nextind(xind[3],&ind2,&ind3);
+		if (ybox[ind2] < ybox[ind3]) 
+		  {
+		    xind[4]=ind2;InsideD[0]=ind3;
+		  }
+		else  
+		  {
+		    xind[4]=ind3;InsideD[0]=ind2;
+		  }
+		Nextind(ind2,&ind2,&ind3);
+		InsideD[1]=xind[3];
+		InsideD[2]=ind2;
+		if (InsideD[0] > 3 )
+		  InsideD[3]=InsideD[0]-4;
+		else
+		  InsideD[3]=InsideD[0]+4;
+		xind[5]=ind2;
 
-	  /* F.Leray Rajout 02.04.04 :*/
+	      }
+
+	    /* BUG Event A ESSAYER SOUS WINDOWS !! */
+	    /* sous X11, un event X11 declenche par sciprint -> puis scig_resize fait que l'on */
+	    /* lance axis_3ddraw 2 fois de suite SANS QUE le premier est le temps de */
+	    /* terminer completement !!*/
+	    /* pour le voir decommenter la ligne ci-dessous et les lignes de printf : */
+	    /* DEBUT DE axis_3ddraw */
+	    /* DEBUT DE Axes3dStrings2 */
+	    
+/* 	    for(i=0;i<50000;i++) sciprint("i= %d \n", i); */
+	    
+
+/* 	    printf("INFO HERE \n"); */
+/* 	    sciprint("alpha = %lf \t theta = %lf",Alpha,Teta); */
+/* 	    sciprint("xind vaut:\n"); */
+/* 	    for(i=0;i<8;i++) sciprint("xind[%d] = %d\n",i,xind[i]); */
+/* 	    sciprint("InsideD & InsideU vallent:\n"); */
+/* 	    for(i=0;i<4;i++) sciprint("InsideD[%d] = %d \t InsideU[%d]=%d \n",i,InsideD[i],i,InsideU[i]); */
+/* 	    sciprint("fin \n\n"); */
+
+
+
+
+
+
+	    /* F.Leray Rajout 02.04.04 :*/
 	  background=sciGetBackground(pobj);
 	  
 	  for (i=0; i < 6 ; i++)
@@ -15563,7 +15742,9 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	      if (zbox[InsideU[0]] > zbox[InsideD[0]])
 		DrawAxis(xbox,ybox,InsideD,hiddencolor);
 	      else 
-		DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
+		{
+		  DrawAxis(xbox,ybox,InsideU,hiddencolor); 	
+		}
 	      if (Ishidden(pobj))
 		pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideU[0] % 4);
 	      else
@@ -15601,7 +15782,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	    if (flag >=3){C2F(dr)("xpolys","v",ixbox,iybox,x,&n,&p,PI0,PD0,PD0,PD0,PD0,0L,0L);}
 	  /** graduation ***/
 	/*   if (flag>=3) {Axes3dStrings(ixbox,iybox,xind,legend);} */
-	  if (flag>=3) {Axes3dStrings(ixbox,iybox,xind);}
+	  if (flag>=3) {Axes3dStrings2(ixbox,iybox,xind);}
 	}
       C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -15611,13 +15792,14 @@ void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, intege
 {
   integer  x[5],narg = 0;
   integer color_kp,verbose = 0,thick_kp,style_kp;
+  BOOL isaxes = GetIsAxes(pobj);
 
   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray Replacement*/
   C2F(dr)("xget","thickness",&verbose,&thick_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
   C2F(dr)("xget","line style",&verbose,&style_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /*F.Leray addings here*/
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN) 
-    if(pSUBWIN_FEATURE (pobj)->isaxes)
+    if(isaxes)
       if(pSUBWIN_FEATURE (pobj)->axes.rect== 1)
 	{ 
 	  x[0] = sciGetForeground (pobj);	
@@ -15772,9 +15954,9 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind)
       char str[100];
       integer Ticsdir[2];
       subtics=pSUBWIN_FEATURE (psubwin)->axes.subint[2];
-      Ticsdir[0]=ixbox[3]-ixbox[4];
-      Ticsdir[1]=iybox[3]-iybox[4];
-      BBoxToval(&fx,&fy,&fz,xind[3],bbox);
+      Ticsdir[0]=ixbox[3]-ixbox[4]; /* <=> en pixel direction/vecteur non normÂŽée des tics en x */
+      Ticsdir[1]=iybox[3]-iybox[4]; /* <=> idem pour y */
+      BBoxToval(&fx,&fy,&fz,xind[3],bbox); /* xind[3] <=> en bas a gauche <=> zmin */
       NumberFormat(str,((integer) zz[0]),((integer) zz[2]));
       C2F(dr)("xstringl",str,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
       x=ixbox[2]-(xz[0]+xz[1])/20;y=(iybox[3]+iybox[2])/2;/* DJ.A 2003 */
@@ -15790,6 +15972,10 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind)
 	vzz = exp10(zz[2])*(zz[0] + i*ceil((zz[1]-zz[0])/zz[3]));
 	trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz);
 	vx[0]=xm;vy[0]=ym;
+
+	/* bug with theta == 0 here before */ /* F.Leray 15.10.04 */
+/* 	if(ppsubwin->theta == 0) */
+
 	if ((ym >= iybox[2]) && (ym <= iybox[3]))
 	  {
 	    barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
@@ -16361,34 +16547,1607 @@ int Axes3dStrings(integer *ixbox, integer *iybox, integer *xind)
   return 0;
 }
 
+
+
+/**Axes3dStrings
+ * @author F.Leray 18.10.04
+ * Should be in Axes.c file
+ */
+/* int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind, char *legend) */
+int Axes3dStrings2(integer *ixbox, integer *iybox, integer *xind)
+{
+  integer verbose=0,narg,xz[2],fontid[2],fontsize_kp,color_kp,size;
+  integer iof,barlengthx = 0,barlengthy = 0, posi[2]; 
+  char *legx = NULL;
+  char *legy = NULL;
+  char *legz = NULL;
+  char *title = NULL;
+  integer rect[4],flag=0,x=0,y=0;
+  double ang=0.0, bbox[6];
+  int fontsize=-1,textcolor=-1,ticscolor=-1, doublesize ;
+  int fontstyle=0; /* F.Leray 08.04.04 */
+  sciPointObj *psubwin = NULL;
+  sciSubWindow * ppsubwin = NULL;
+  int ns=2,style=0,iflag=0,gstyle,trois=3,dash[6];
+  double xx[4],yy[4],zz[4],vxx1,vyy1,vzz1;
+  integer i,xm,ym,vx[2],vy[2],xg[2],yg[2],j;
+  integer fontid_old[2], textcolor_old;
+
+  int lastzindex = 0, lastxindex = 0, lastyindex = 0;
+  double xminval, yminval, zminval, xmaxval, ymaxval, zmaxval;
+  int nbtics = 0;
+  int nbsubtics = 0;
+  
+/*   printf("DEBUT DE Axes3dStrings2\n"); */
+/*   fflush(NULL); */
+
+  psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+  ppsubwin = pSUBWIN_FEATURE (psubwin);
+
+  title= sciGetText(ppsubwin->mon_title);
+  legx = sciGetText(ppsubwin->mon_x_label);
+  legy = sciGetText(ppsubwin->mon_y_label);
+  legz = sciGetText(ppsubwin->mon_z_label);
+
+  /** le cot\'e gauche ( c'est tjrs un axe des Z **/
+  xz[0]=Cscale.WIRect1[2] ;
+  xz[1]= Cscale.WIRect1[2];
+  iof = (xz[0]+xz[1])/50;
+  /*x=ixbox[2]-(xz[0]+xz[1])/20 ;y=0.5*iybox[3]+0.5*iybox[2];*/
+  
+/*   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); */
+  ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+  textcolor=sciGetFontForeground(psubwin);
+  fontsize=sciGetFontDeciWidth(psubwin)/100;
+  fontstyle=sciGetFontStyle(psubwin);
+  
+  if(sciGetEntityType (psubwin) != SCI_SUBWIN) { 
+    sciprint("Impossible case\n");
+    return 0;
+  }
+
+  bbox[0] =  xminval = pSUBWIN_FEATURE (psubwin)->FRect[0]; /*xmin*/
+  bbox[1] =  xmaxval = pSUBWIN_FEATURE (psubwin)->FRect[2]; /*xmax*/
+  bbox[2] =  yminval = pSUBWIN_FEATURE (psubwin)->FRect[1]; /*ymin*/
+  bbox[3] =  ymaxval = pSUBWIN_FEATURE (psubwin)->FRect[3]; /*ymax*/ 
+  bbox[4] =  zminval = pSUBWIN_FEATURE (psubwin)->FRect[4]; /*zmin*/
+  bbox[5] =  zmaxval = pSUBWIN_FEATURE (psubwin)->FRect[5]; /*zmax*/
+  
+  C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  fontid[0]= fontstyle;
+  fontsize_kp = fontid[1] ;
+  if( fontsize == -1 ){ 
+    fontid[1]= 1; doublesize = 2;
+    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  else {
+    fontid[1] = fontsize ;
+    doublesize = 2*fontsize;
+    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  if ( textcolor != -1 || ticscolor != -1 ) 
+    C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
+ 
+  for (i=0; i<3 ; i++) {
+    xx[i]=pSUBWIN_FEATURE (psubwin)->axes.xlim[i];
+    yy[i]=pSUBWIN_FEATURE (psubwin)->axes.ylim[i];
+    zz[i]=pSUBWIN_FEATURE (psubwin)->axes.zlim[i];
+  } 
+
+  /* main title */ /* We fix the title always at the top */
+  rect[0]= Cscale.WIRect1[0];
+  rect[1]= Cscale.WIRect1[1];
+  rect[2]= Cscale.WIRect1[2];
+  rect[3]= Cscale.WIRect1[3]/6;
+  textcolor_old = textcolor;
+  fontid_old[0] = fontid[0];
+  fontid_old[1] = fontid[1];
+
+  textcolor = sciGetFontForeground(ppsubwin->mon_title);
+  fontid[0] = sciGetFontStyle(ppsubwin->mon_title);
+  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_title)/100;
+  
+  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  if( sciGetVisibility(ppsubwin->mon_title) == TRUE)
+    C2F(dr1)("xstringtt",title,&rect[0],&rect[1],&rect[2],&rect[3],PI0,PI0,PD0,PD0,PD0,PD0,10L,0L);
+  
+  textcolor = textcolor_old;
+  fontid[0] = fontid_old[0];
+  fontid[1] = fontid_old[1];
+
+  size = xz[0]>=xz[1] ? (integer) (xz[1]/50.0) : (integer) (xz[0]/50.0); 
+
+  /********************/
+  /*** le z scaling ***/ /* DISPLAY Z graduations */
+  /********************/
+
+
+  if (pSUBWIN_FEATURE (psubwin)->project[2]==1)
+    {
+      double fx,fy,fz; 
+      char c_format[5];
+
+
+      integer Ticsdir[2];
+      Ticsdir[0]=ixbox[3]-ixbox[4]; /* <=> en pixel direction/vecteur non normÂŽée des tics en x */
+      Ticsdir[1]=iybox[3]-iybox[4]; /* <=> idem pour y */
+      BBoxToval(&fx,&fy,&fz,xind[3],bbox); /* xind[3] <=> en bas a gauche <=> zmin */
+      x=ixbox[2]-(xz[0]+xz[1])/20;
+      y=(iybox[3]+iybox[2])/2;
+  
+      /*       NumberFormat(str,((integer) zz[0]),((integer) zz[2])); */
+  
+      if(ppsubwin->axes.auto_ticks[2] == FALSE)
+	{
+	  /* we display the z tics specified by the user*/
+	  nbtics = ppsubwin->axes.u_nzgrads;
+	  nbsubtics = ppsubwin->axes.nbsubtics[2];
+
+	  for(i=0;i<nbtics;i++)
+	    {
+	      char *foo = ppsubwin->axes.u_zlabels[i]; 
+	      double ztmp = ppsubwin->axes.u_zgrads[i];
+	      
+	      if(ztmp<zminval || ztmp>zmaxval) 
+		{
+		  /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		  /* donc autant ne pas aller plus loin dans l'algo... */
+		}
+	      	  
+
+	      /***************************************************************/
+	      /************************* COMMON PART *************************/
+	      /***************************************************************/
+	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
+	      vx[0]=xm;vy[0]=ym;
+	      
+	      if ((ym >= iybox[2]) && (ym <= iybox[3]))
+		{
+		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  vx[1]=vx[0]+barlengthx;
+		  vy[1]=vy[0]+barlengthy;
+		  
+		  /* foo is set above with sprintf(foo,c_format,xtmp); */
+		  
+		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  posi[0] = inint( xm+2*barlengthx - rect[2]); 
+		  posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
+
+		  if(ppsubwin->axes.axes_visible[2] == TRUE){
+		    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+		  /* grid to put here */
+		  if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
+		    {
+		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[2];
+		      if ((ym != iybox[3]) && (ym != iybox[2]))
+			{
+			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]= ixbox[3];yg[0]= ym;
+			  if (Ishidden(psubwin))
+			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
+			  else
+			    {xg[1]=ixbox[1];  yg[1]= iybox[1]- iybox[2]+ym;}
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]=xg[1];  ; xg[1] =ixbox[0];
+			  yg[0]=yg[1]; yg[1]= ym- iybox[3]+ iybox[5];
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			}
+		    }
+		  
+		  /* and subtics */
+		  if(i != nbtics-1)
+		    {
+		      double xtmp = ppsubwin->axes.u_zgrads[i];
+		      double dx = (ppsubwin->axes.u_zgrads[i+1] - ppsubwin->axes.u_zgrads[i]) / nbsubtics;
+		      for(j=0;j<nbsubtics;j++)
+			{
+			  vzz1=xtmp+dx*j;
+			  
+			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
+			  
+			  trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
+			  vx[0]=xm;vy[0]=ym;
+			  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+			  if ((ym <= iybox[3]) && (ym >= iybox[2]))
+			    if(ppsubwin->axes.axes_visible[2] == TRUE)
+			      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			}
+		      
+		    }
+		}
+	      
+	      /***************************************************************/
+	      /************************* END OF COMMON PART ******************/
+	      /***************************************************************/
+	      
+	    }
+
+
+
+	}
+      else /* we display the computed tics */
+	{
+
+	  AdaptGraduations('z',psubwin,zminval,zmaxval,fx,fy,0.); /* fait */
+	  lastzindex = ppsubwin->axes.nzgrads - 1;
+	  
+	  ChoixFormatE(c_format,
+		       ppsubwin->axes.zgrads[0],
+		       ppsubwin->axes.zgrads[lastzindex],
+		       ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex));
+	  
+
+	  nbtics = ppsubwin->axes.nzgrads;
+	  nbsubtics = ppsubwin->axes.nbsubtics[2];
+
+	  /* 	  if(nbtics == 3) */
+	  /* 	    sciprint("\n nbtics vaut: %d ", nbtics); */
+	  
+	  for(i=0;i<nbtics;i++)
+	    {
+	      char foo[256]; 
+	      double ztmp = ppsubwin->axes.zgrads[i];
+	      
+	      if(ztmp<zminval || ztmp>zmaxval) 
+		{
+		  /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		  continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		  /* donc autant ne pas aller plus loin dans l'algo... */
+		}
+	      
+	      sprintf(foo,c_format,ztmp);
+
+	      /***************************************************************/
+	      /************************* COMMON PART *************************/
+	      /***************************************************************/
+	      trans3d(psubwin,1,&xm,&ym,&fx,&fy,&ztmp);
+	      vx[0]=xm;vy[0]=ym;
+
+	      if ((ym >= iybox[2]) && (ym <= iybox[3]))
+		{
+		  barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		  vx[1]=vx[0]+barlengthx;
+		  vy[1]=vy[0]+barlengthy;
+		  
+		  /* foo is set above with sprintf(foo,c_format,xtmp); */
+
+		  C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  posi[0] = inint( xm+2*barlengthx - rect[2]); 
+		  posi[1]=inint( ym + 2*barlengthy + rect[3]/2);
+
+		  if(ppsubwin->axes.axes_visible[2] == TRUE){
+		    C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+		    C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }
+		  /* grid to put here */
+		  if (pSUBWIN_FEATURE (psubwin)->grid[2] > -1)
+		    {
+		      gstyle = pSUBWIN_FEATURE (psubwin)->grid[2];
+		      if ((ym != iybox[3]) && (ym != iybox[2]))
+			{
+			  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]= ixbox[3];yg[0]= ym;
+			  if (Ishidden(psubwin))
+			    {  xg[1]=ixbox[4];  yg[1]= iybox[4]- iybox[3]+ym;}
+			  else
+			    {xg[1]=ixbox[1];  yg[1]= iybox[1]- iybox[2]+ym;}
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  xg[0]=xg[1];  ; xg[1] =ixbox[0];
+			  yg[0]=yg[1]; yg[1]= ym- iybox[3]+ iybox[5];
+			  C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			}
+		    }
+		  
+		  /* and subtics */
+	
+		  if(i != nbtics-1)
+		    {
+		      double ztmp = ppsubwin->axes.zgrads[i];
+		      double dz = (ppsubwin->axes.zgrads[i+1] - ppsubwin->axes.zgrads[i]) / nbsubtics;
+		      for(j=0;j<nbsubtics;j++)
+			{
+			  vzz1=ztmp+dz*j;
+			  
+			  if(vzz1<zminval || vzz1>zmaxval) continue;	 
+			  		
+			  trans3d(psubwin,1,&xm,&ym,&fx,&fy,&vzz1);
+			  vx[0]=xm;vy[0]=ym;
+			  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+			  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+			  if ((ym <= iybox[3]) && (ym >= iybox[2]))
+			    if(ppsubwin->axes.axes_visible[2] == TRUE)
+			      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			}
+		    }
+		}
+	      
+	      /***************************************************************/
+	      /************************* END OF COMMON PART ******************/
+	      /***************************************************************/
+	      
+	    }
+	}
+    }
+  
+  if (legz != 0)
+    {
+      /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+      /* legend to be the same as those used for the numbers for the axes*/
+	  
+      textcolor_old = textcolor;
+      fontid_old[0] = fontid[0];
+      fontid_old[1] = fontid[1];
+	  
+      textcolor = sciGetFontForeground(ppsubwin->mon_z_label);
+      fontid[0] = sciGetFontStyle(ppsubwin->mon_z_label);
+      fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_z_label)/100;
+	  
+      C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xstringl",legz,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if( sciGetVisibility(ppsubwin->mon_z_label) == TRUE)
+	C2F(dr)("xstring",legz,(x=x - rect[3],&x),&y,PI0,&flag
+		,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+      textcolor = textcolor_old;
+      fontid[0] = fontid_old[0];
+      fontid[1] = fontid_old[1];
+    }
+   
+
+
+  /***********************/ /** bottom right side ***/
+  /*** le  x-y scaling ***/ /* DISPLAY x or y graduations */
+  /***********************/
+
+
+  if (( xind[4]+xind[5] == 3) || ( xind[4]+xind[5] == 11))
+    {
+      if (pSUBWIN_FEATURE (psubwin)->project[0]==1) /* x HERE */
+	{
+	  double fx,fy,fz;
+	  char c_format[5];
+
+	  integer Ticsdir[2]; 
+	  Ticsdir[0]=ixbox[4]-ixbox[3];
+	  Ticsdir[1]=iybox[4]-iybox[3];
+	  BBoxToval(&fx,&fy,&fz,xind[4],bbox);
+	  x=inint((ixbox[4]+ixbox[5])/2+1.5*rect[2] +iof);
+	  y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+1.5*rect[3]+iof);
+  	  
+	  if(ppsubwin->axes.auto_ticks[0] == FALSE)
+	    {
+	      /* we display the x tics specified by the user*/
+	      nbtics = ppsubwin->axes.u_nxgrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[0];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char *foo = ppsubwin->axes.u_xlabels[i]; 
+		  double xtmp = ppsubwin->axes.u_xgrads[i];
+		  
+		  if(xtmp<xminval || xtmp>xmaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  vx[0]=xm;vy[0]=ym; 
+		  
+		  if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx);
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+		      if(ppsubwin->axes.axes_visible[0] == TRUE){    
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
+			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin)) 
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }	
+			} 
+
+		      /* and subtics */
+		      
+		      if(i != nbtics-1)
+			{
+			  double xtmp = ppsubwin->axes.u_xgrads[i];
+			  double dx = (ppsubwin->axes.u_xgrads[i+1] - ppsubwin->axes.u_xgrads[i]) / nbsubtics;
+			  
+			  for (j=1;j<nbsubtics;j++)
+			    {  
+			      vxx1=xtmp+dx*j;
+			      
+			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			  
+			      trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      
+			      if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4])) 
+				if(ppsubwin->axes.axes_visible[0] == TRUE)   
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		  
+		  /***************************************************************/
+		  /************************* END OF COMMON PART ******************/
+		  /***************************************************************/
+		  
+		}
+	    }
+	  else /* we display the computed tics */
+	    {
+	      AdaptGraduations('x',psubwin,xminval,xmaxval,0.,fy,fz);
+	      
+	      lastxindex = ppsubwin->axes.nxgrads - 1;
+	      
+	      ChoixFormatE(c_format,
+			   ppsubwin->axes.xgrads[0],
+			   ppsubwin->axes.xgrads[lastxindex],
+			   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+	      
+	      nbtics = ppsubwin->axes.nxgrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[0];
+	      
+	      /* 	  if(nbtics == 3) */
+	      /* 	    sciprint("\n nbtics vaut: %d ", nbtics); */
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char foo[256]; 
+		  double xtmp = ppsubwin->axes.xgrads[i];
+		  
+		  if(xtmp<xminval || xtmp>xmaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+		  
+		  sprintf(foo,c_format,xtmp);
+
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		 
+		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  vx[0]=xm;vy[0]=ym; 
+		  
+		  if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx);
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+		      if(ppsubwin->axes.axes_visible[0] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
+			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin)) 
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }	
+			}
+
+		      /* and subtics */
+		      
+		      if(i != nbtics-1)
+			{
+			  double xtmp = ppsubwin->axes.xgrads[i];
+			  double dx = (ppsubwin->axes.xgrads[i+1] - ppsubwin->axes.xgrads[i]) / nbsubtics;
+			  
+			  for (j=1;j<nbsubtics;j++)
+			    {  
+			      vxx1=xtmp+dx*j;
+			      
+			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			  
+			      trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      
+			      if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4])) 
+				if(ppsubwin->axes.axes_visible[0] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		
+		  /***************************************************************/
+		  /************************* END OF COMMON PART ******************/
+		  /***************************************************************/
+		  
+		}
+	    }
+	}
+      if (legx != 0)
+	{
+	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	  /* legend to be the same as those used for the numbers for the axes*/
+	  
+	  textcolor_old = textcolor;
+	  fontid_old[0] = fontid[0];
+	  fontid_old[1] = fontid[1];
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	  fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
+	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+	    C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
+		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  textcolor = textcolor_old;
+	  fontid[0] = fontid_old[0];
+	  fontid[1] = fontid_old[1];
+	  
+	}
+    }
+  else
+    {
+      if ( pSUBWIN_FEATURE (psubwin)->project[1]==1) /* y is HERE */
+	{
+	  double fx,fy,fz; 
+	  char c_format[5];
+      
+	  integer Ticsdir[2];
+	  Ticsdir[0]=ixbox[4]-ixbox[3];
+	  Ticsdir[1]=iybox[4]-iybox[3];
+	  BBoxToval(&fx,&fy,&fz,xind[4],bbox);
+	  
+	  x=inint((ixbox[4]+ixbox[5])/2+1.5*rect[2] +iof);
+	  y=inint(((2/3.0)*iybox[4]+(1/3.0)*iybox[5])+1.5*rect[3]+iof);
+
+	  if(ppsubwin->axes.auto_ticks[1] == FALSE)
+	    {
+	      /* we display the y tics specified by the user*/
+	      nbtics = ppsubwin->axes.u_nygrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[1];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char *foo = ppsubwin->axes.u_ylabels[i]; 
+		  double ytmp = ppsubwin->axes.u_ygrads[i];
+		  
+		  if(ytmp<yminval || ytmp>ymaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+	      	  
+
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+
+		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  vx[0]=xm;vy[0]=ym;
+	      
+		  if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      /* 	NumberFormat(foo,((integer) (yy[0] + i*ceil((yy[1]-yy[0])/yy[3]))), */
+		      /* 			     ((integer) yy[2])); */
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{ 
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx - rect[2]/2);
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+
+		      if(ppsubwin->axes.axes_visible[1] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
+			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+
+		      /* and subtics */
+		  
+		      if(i != nbtics-1)
+			{
+			  double ytmp = ppsubwin->axes.u_ygrads[i];
+			  double dy = (ppsubwin->axes.u_ygrads[i+1] - ppsubwin->axes.u_ygrads[i]) / nbsubtics;
+			  for(j=0;j<nbsubtics;j++)
+			    {
+			      vyy1=ytmp+dy*j;
+			  
+			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			  
+			      trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+			  
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[1] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		  
+		  /***************************************************************/
+		  /************************* END OF COMMON PART ******************/
+		  /***************************************************************/
+		}
+	    }
+	  else /* we display the computed tics */
+	    {
+	      AdaptGraduations('y',psubwin,yminval,ymaxval,fx,0.,fz);
+	      
+	      lastyindex = ppsubwin->axes.nygrads - 1;
+	      
+	      ChoixFormatE(c_format,
+			   ppsubwin->axes.ygrads[0],
+			   ppsubwin->axes.ygrads[lastyindex],
+			   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+
+	      nbtics = ppsubwin->axes.nygrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[1];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char foo[256]; 
+		  double ytmp = ppsubwin->axes.ygrads[i];
+	      
+		  if(ytmp<yminval || ytmp>ymaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+	      
+		  sprintf(foo,c_format,ytmp);
+
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+
+		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  vx[0]=xm;vy[0]=ym;
+	      
+		  if ((xm <= ixbox[5]) && (xm >= ixbox[4]) && (ym >= iybox[5]) && (ym <= iybox[4]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		    
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{ 
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx - rect[2]/2);
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+
+		      if(ppsubwin->axes.axes_visible[1] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
+			  if ((xm != ixbox[5]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[2] -iybox[3]+ym; }
+			      else
+				{xg[1]= ixbox[3] - ixbox[4] +xm; yg[1]= iybox[3] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[3] - ixbox[4] +xm; 
+			      yg[1]=  iybox[2] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+
+		      /* and subtics */
+		  
+		      if(i != nbtics-1)
+			{
+			  double ytmp = ppsubwin->axes.ygrads[i];
+			  double dy = (ppsubwin->axes.ygrads[i+1] - ppsubwin->axes.ygrads[i]) / nbsubtics;
+			  for(j=0;j<nbsubtics;j++)
+			    {
+			      vyy1=ytmp+dy*j;
+			  
+			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+			  
+			      trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+			  
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[5]) && (ym <= iybox[4]) && (xm <= ixbox[5]) && (xm >= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[1] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+	      
+		  /***************************************************************/
+		  /************************* END OF COMMON PART ******************/
+		  /***************************************************************/
+	      
+		}
+	    }
+	}
+      if (legy != 0) 
+	{ 
+	  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	  /* legend to be the same as those used for the numbers for the axes*/
+	  
+	  textcolor_old = textcolor;
+	  fontid_old[0] = fontid[0];
+	  fontid_old[1] = fontid[1];
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	  fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
+	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); /* Adding F.Leray too */
+	  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
+	    C2F(dr)("xstring",legy,&x,&y,PI0,&flag,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  textcolor = textcolor_old;
+	  fontid[0] = fontid_old[0];
+	  fontid[1] = fontid_old[1];
+	}
+    }
+  
+  /***********************/ /** bottom left side ***/
+  /*** le  x-y scaling ***/ /* DISPLAY x or y graduations */
+  /***********************/
+  
+  if (( xind[3]+xind[4] == 3) || ( xind[3]+xind[4] == 11))
+    {
+      if (pSUBWIN_FEATURE (psubwin)->project[0]==1) /* x HERE */
+	{
+	  double fx,fy,fz;
+	  char c_format[5];
+
+	  
+	  integer Ticsdir[2];
+	  Ticsdir[0]=ixbox[4]-ixbox[5];
+	  Ticsdir[1]=iybox[4]-iybox[5];
+	  BBoxToval(&fx,&fy,&fz,xind[3],bbox);
+
+	  x=inint((ixbox[3]+ixbox[4])/2.0 -rect[2] -iof);
+	  y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+ iof+ 1.5*rect[3]); 
+	  
+	  if(ppsubwin->axes.auto_ticks[0] == FALSE)
+	    {
+	      /* we display the x tics specified by the user*/
+	      nbtics = ppsubwin->axes.u_nxgrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[0];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char *foo = ppsubwin->axes.u_xlabels[i]; 
+		  double xtmp = ppsubwin->axes.u_xgrads[i];
+		  
+		  if(xtmp<xminval || xtmp>xmaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  vx[0]=xm;vy[0]=ym;
+
+		  if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx-rect[2]); 
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+
+		      if(ppsubwin->axes.axes_visible[0] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
+			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+
+		      /* and subtics */
+		      if(i != nbtics-1)
+			{
+			  double xtmp = ppsubwin->axes.u_xgrads[i];
+			  double dx = (ppsubwin->axes.u_xgrads[i+1] - ppsubwin->axes.u_xgrads[i]) / nbsubtics;
+			  
+			  for (j=1;j<nbsubtics;j++)
+			    {  
+			      vxx1=xtmp+dx*j;
+			      
+			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[3]) && (ym <= iybox[4]) && (xm >= ixbox[3]) && (xm <= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[0] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+
+		}
+	      
+	    }
+	  else /* we display the computed tics */
+	    {
+	      AdaptGraduations('x',psubwin,xminval,xmaxval,0.,fy,fz);
+	      
+	      lastxindex = ppsubwin->axes.nxgrads - 1;
+	      
+	      ChoixFormatE(c_format,
+			   ppsubwin->axes.xgrads[0],
+			   ppsubwin->axes.xgrads[lastxindex],
+			   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex));
+	    
+	      nbtics = ppsubwin->axes.nxgrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[0];
+	           
+	      for(i=0;i<nbtics;i++)
+		{
+		  char foo[256]; 
+		  double xtmp = ppsubwin->axes.xgrads[i];
+		  
+		  if(xtmp<xminval || xtmp>xmaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+		  
+		  sprintf(foo,c_format,xtmp);
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		  trans3d(psubwin,1,&xm,&ym,&xtmp,&fy,&fz);
+		  vx[0]=xm;vy[0]=ym;
+
+		  if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		     
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx-rect[2]); 
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+
+		      if(ppsubwin->axes.axes_visible[0] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[0] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[0];
+			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+
+		      /* and subtics */
+		      if(i != nbtics-1)
+			{
+			  double xtmp = ppsubwin->axes.xgrads[i];
+			  double dx = (ppsubwin->axes.xgrads[i+1] - ppsubwin->axes.xgrads[i]) / nbsubtics;
+			  
+			  for (j=1;j<nbsubtics;j++)
+			    {  
+			      vxx1=xtmp+dx*j;
+			      
+			      if(vxx1<xminval || vxx1>xmaxval) continue;	 
+			      trans3d(psubwin,1,&xm,&ym,&vxx1,&fy,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[3]) && (ym <= iybox[4]) && (xm >= ixbox[3]) && (xm <= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[0] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		}
+	    }
+	}
+
+      if (legx != 0)
+	{ /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	  /* legend to be the same as those used for the numbers for the axes*/
+	  
+	  textcolor_old = textcolor;
+	  fontid_old[0] = fontid[0];
+	  fontid_old[1] = fontid[1];
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_x_label);
+	  fontid[0] = sciGetFontStyle(ppsubwin->mon_x_label);
+	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_x_label)/100;
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",legx,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if( sciGetVisibility(ppsubwin->mon_x_label) == TRUE)
+	    C2F(dr)("xstring",legx,(x=x-rect[2],&x),&y,PI0,&flag
+		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  textcolor = textcolor_old;
+	  fontid[0] = fontid_old[0];
+	  fontid[1] = fontid_old[1];
+	}
+    }
+  else 
+    {
+      if  (pSUBWIN_FEATURE (psubwin)->project[1]==1) /* y is HERE */
+	{
+	  double fx,fy,fz;
+	  char c_format[5];
+
+	  integer Ticsdir[2];
+	  Ticsdir[0]=ixbox[4]-ixbox[5];
+	  Ticsdir[1]=iybox[4]-iybox[5];
+	  BBoxToval(&fx,&fy,&fz,xind[3],bbox);
+	  
+	  x=inint((ixbox[3]+ixbox[4])/2.0 -rect[2] -iof);
+	  y=inint((1/3.0)*iybox[3]+(2/3.0)*iybox[4]+ iof + 1.5*rect[3]);  
+	  
+	  if(ppsubwin->axes.auto_ticks[1] == FALSE)
+	    {
+	      /* we display the y tics specified by the user*/
+	      nbtics = ppsubwin->axes.u_nygrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[1];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char *foo = ppsubwin->axes.u_ylabels[i]; 
+		  double ytmp = ppsubwin->axes.u_ygrads[i];
+		  
+		  if(ytmp<yminval || ytmp>ymaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+	      	  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  vx[0]=xm;vy[0]=ym; 
+		  
+		  if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		     
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx-rect[2]/2); 
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+
+		      if(ppsubwin->axes.axes_visible[1] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
+			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+		    
+		      /* and subtics */
+		      if(i != nbtics-1)
+			{
+			  double ytmp = ppsubwin->axes.u_ygrads[i];
+			  double dy = (ppsubwin->axes.u_ygrads[i+1] - ppsubwin->axes.u_ygrads[i]) / nbsubtics;
+			  for(j=0;j<nbsubtics;j++)
+			    {
+			      vyy1=ytmp+dy*j;
+			      
+			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+
+			      trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[3]) && (ym <= iybox[4]) && (ym >= ixbox[3]) && (xm <= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[1] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		}
+	    }
+	  else /* we display the computed tics */
+	    {
+	   
+	      AdaptGraduations('y',psubwin,yminval,ymaxval,fx,0.,fz);
+	      
+	      lastyindex = ppsubwin->axes.nygrads - 1;
+	      
+	      ChoixFormatE(c_format,
+			   ppsubwin->axes.ygrads[0],
+			   ppsubwin->axes.ygrads[lastyindex],
+			   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex));
+	      
+	      nbtics = ppsubwin->axes.nygrads;
+	      nbsubtics = ppsubwin->axes.nbsubtics[1];
+	      
+	      for(i=0;i<nbtics;i++)
+		{
+		  char foo[256]; 
+		  double ytmp = ppsubwin->axes.ygrads[i];
+	      
+		  if(ytmp<yminval || ytmp>ymaxval) 
+		    {
+		      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+		      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichÂŽées de tte facon */
+		      /* donc autant ne pas aller plus loin dans l'algo... */
+		    }
+		  
+		  sprintf(foo,c_format,ytmp);
+		  
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		  
+		  trans3d(psubwin,1,&xm,&ym,&fx,&ytmp,&fz);
+		  vx[0]=xm;vy[0]=ym; 
+		  
+		  if ((xm <= ixbox[4]) && (xm >= ixbox[3]) && (ym <= iybox[4]) && (ym >= iybox[3]))
+		    {
+		      barlengthx= (integer) (( Ticsdir[0])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		      barlengthy= (integer) (( Ticsdir[1])/sqrt((double) Ticsdir[0]*Ticsdir[0]+Ticsdir[1]*Ticsdir[1])*size);
+		     
+		      C2F(dr)("xstringl",foo,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      if (IsDownAxes(psubwin)){
+			vx[1]=vx[0];
+			vy[1]=vy[0]+iof/2;
+			posi[0] = inint(xm-rect[2]/2); 
+			posi[1]=inint( vy[0] + iof + rect[3]);}
+		      else{
+			vx[1]=vx[0]+barlengthx;
+			vy[1]=vy[0]+barlengthy;
+			posi[0] = inint( xm+2*barlengthx-rect[2]/2); 
+			posi[1]=inint( ym + 2*barlengthy + rect[3]);}
+		      
+		      if(ppsubwin->axes.axes_visible[1] == TRUE){
+			C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&ang, PD0,PD0,PD0,0L,0L);
+			C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);   
+			C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		      }
+		      /* grid to put here */
+		      if (pSUBWIN_FEATURE (psubwin)->grid[1] > -1)
+			{
+			  gstyle = pSUBWIN_FEATURE (psubwin)->grid[1];
+			  if ((xm != ixbox[3]) && (xm != ixbox[4]))
+			    { 
+			      xg[0]= xm;  yg[0]= ym;  
+			      if (Ishidden(psubwin))
+				{ xg[1]= xm; yg[1]= iybox[0] -iybox[5]+ym; }
+			      else
+				{xg[1]= ixbox[1] - ixbox[3] +xm; yg[1]= iybox[5] - iybox[4] +ym; } 
+			      C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      xg[0]= xg[1]; yg[0]= yg[1];
+			      xg[1] = ixbox[1] - ixbox[3] +xm; yg[1]=  iybox[0] - iybox[4] +ym;
+			      C2F(dr)("xsegs","v", xg, yg, &ns,&gstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			      C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);  
+			    }
+			}
+		    
+		      /* and subtics */
+		      if(i != nbtics-1)
+			{
+			  double ytmp = ppsubwin->axes.ygrads[i];
+			  double dy = (ppsubwin->axes.ygrads[i+1] - ppsubwin->axes.ygrads[i]) / nbsubtics;
+			  for(j=0;j<nbsubtics;j++)
+			    {
+			      vyy1=ytmp+dy*j;
+			      
+			      if(vyy1<yminval || vyy1>ymaxval) continue;	 
+
+			      trans3d(psubwin,1,&xm,&ym,&fx,&vyy1,&fz);
+			      if (IsDownAxes(psubwin))
+				{
+				  vx[1]=vx[0]=xm;
+				  vy[0]=ym;
+				  vy[1]=vy[0]+iof/4;
+				}
+			      else
+				{
+				  vx[0]=xm;vy[0]=ym;
+				  vx[1]= (integer) (vx[0]+barlengthx/2.0);
+				  vy[1]= (integer) (vy[0]+barlengthy/2.0);
+				}
+			      if ((ym >= iybox[3]) && (ym <= iybox[4]) && (ym >= ixbox[3]) && (xm <= ixbox[4]))
+				if(ppsubwin->axes.axes_visible[1] == TRUE)
+				  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+			    }
+			}
+		    }
+
+		  /***************************************************************/
+		  /************************* COMMON PART *************************/
+		  /***************************************************************/
+		}
+	    }
+	}
+      
+      if (legy != 0)
+	{  /* F.Leray Adding 1 line here ("xset","pattern") to force the color and style of the */
+	  /* legend to be the same as those used for the numbers for the axes*/
+	  
+	  textcolor_old = textcolor;
+	  fontid_old[0] = fontid[0];
+	  fontid_old[1] = fontid[1];
+	  
+	  textcolor = sciGetFontForeground(ppsubwin->mon_y_label);
+	  fontid[0] = sciGetFontStyle(ppsubwin->mon_y_label);
+	  fontid[1] = sciGetFontDeciWidth(ppsubwin->mon_y_label)/100;
+	  
+	  C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstringl",legy,&x,&y,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if( sciGetVisibility(ppsubwin->mon_y_label) == TRUE)
+	    C2F(dr)("xstring",legy,(x=x-rect[2],&x),&y,PI0,&flag
+		    ,PI0,PI0,&ang,PD0,PD0,PD0,0L,0L);
+	  
+	  textcolor = textcolor_old;
+	  fontid[0] = fontid_old[0];
+	  fontid[1] = fontid_old[1];
+	}
+    }
+  /* reset font to its current size & to current color*/ 
+  if ( fontsize != -1 ){
+    fontid[1] = fontsize_kp;
+    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+  if ( textcolor != -1 || ticscolor != -1 ) 
+    C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  /***/
+  /* FREE(loc); */
+
+  
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, double *y,double *z)
 {
   integer i;
   double tmpx,tmpy,tmpz;
   /* TEST F.Leray 20.04.04: I fix HERE temporarily BOOL cube_scaling = FALSE; */
   BOOL cube_scaling;
+  /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
+/*   int u; */
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(pobj);
+  /*  double xmin = Mini(x,n); */
+  /*   double xmax = Maxi(x,n); */
 
+  /*   double xmoy = (xmax+xmin)/2; */
+  
+/*   double xmoy = (ppsubwin->FRect[0] + ppsubwin->FRect[2])/2; */
+  
+  double *xtmp = NULL;
+  double *ytmp = NULL;
+  
+  xtmp = MALLOC(n*sizeof(double));
+  ytmp = MALLOC(n*sizeof(double));
+
+
+/*   for(u=0;u<n;u++) */
+/*     { */
+/*       xtmp[u] = x[u]-2*(x[u]-xmoy); */
+/*     } */
+  
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
 
     cube_scaling = pSUBWIN_FEATURE(pobj)->cube_scaling;
 
     /*if (pSUBWIN_FEATURE (pobj)->isoview)*/
+
+    
+
     if(cube_scaling == FALSE)
       {
 	if (z == (double *) NULL)
 	  for ( i=0 ; i < n ; i++)
 	    {
-	      xm[i]= TX3D(x[i],y[i],0.0);
-	      ym[i]= TY3D(x[i],y[i],0.0);
+	      /* F.Leray 19.10.04 */
+	      /* Test to export logscale in 3D */
+
+	      if(ppsubwin->logflags[0] == 'l')
+		tmpx = log10(x[i]);
+	      else
+		tmpx = x[i];
+	      
+	      if(ppsubwin->logflags[1] == 'l')
+		tmpy = log10(y[i]);
+	      else
+		tmpy = y[i];
+
+	      xm[i]= TX3D(tmpx,tmpy,0.0);
+	      ym[i]= TY3D(tmpx,tmpy,0.0);
+
+	    /*   xm[i]= TX3D(xtmp[i],ytmp[i],0.0); */
+/* 	      ym[i]= TY3D(xtmp[i],ytmp[i],0.0); */
 	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
 	else
 	  for ( i=0 ; i < n ; i++)
 	    {
-	      xm[i]= TX3D(x[i],y[i],z[i]);
-	      ym[i]= TY3D(x[i],y[i],z[i]);
-	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+
+	      /* F.Leray 19.10.04 */
+	      /* Test to export logscale in 3D */
+
+	      if(ppsubwin->logflags[0] == 'l')
+		tmpx = log10(x[i]);
+	      else
+		tmpx = x[i];
+	      
+	      if(ppsubwin->logflags[1] == 'l')
+		tmpy = log10(y[i]);
+	      else
+		tmpy = y[i];
+
+	      /* Test to enable reverse axis in 3D */ /* F.Leray 14.10.04 */
+	      /* suite */
+	   /*    ppsubwin->axes.reverse[0] = TRUE; */
+	      
+/* 	      if(ppsubwin->axes.reverse[0] == TRUE) */
+/* 		{ */
+		
+/* 		  xm[i]= TX3D(xtmp[i],y[i],z[i]); */
+/* 		  ym[i]= TY3D(xtmp[i],y[i],z[i]); */
+/* 		  if ( finite(xz1)==0||finite(yz1)==0 ) return(0); */
+		  
+/* 		} */
+/* 	      else */
+/* 		{ */
+		  
+		  xm[i]= TX3D(tmpx,tmpy,z[i]);
+		  ym[i]= TY3D(tmpx,tmpy,z[i]);
+		  if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
+	/* 	} */
 	    }
+	FREE(xtmp); xtmp = NULL; FREE(ytmp); ytmp = NULL;
       }
     else
       {
@@ -16407,8 +18166,18 @@ int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doubl
 	      tmpx=(x[i]-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	      tmpy= (y[i]-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
 	      tmpz= (z[i]-pSUBWIN_FEATURE (pobj)->FRect[4])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]); /* Adding F.Leray 28.04.04 */
+
+	      if(ppsubwin->logflags[0] == 'l')
+		tmpx = log10(tmpx);
+	     
+	      if(ppsubwin->logflags[1] == 'l')
+		tmpy = log10(tmpy);
+
 	      xm[i]= TX3D(tmpx,tmpy,tmpz);
 	      ym[i]= TY3D(tmpx,tmpy,tmpz);
+
+	   /*    xm[i]= TX3D(tmpx,tmpy,tmpz); */
+/* 	      ym[i]= TY3D(tmpx,tmpy,tmpz); */
 	      if ( finite(xz1)==0||finite(yz1)==0 ) return(0);
 	    }
       }
@@ -16430,21 +18199,26 @@ BOOL Ishidden(sciPointObj *pobj)
   }
   return FALSE;
 }
+
+/* When alpha is close to a singularity (90,-90,270...), use to determine how to draw the x and y graduations */
+/* depending on cof */
 BOOL IsDownAxes(sciPointObj *pobj)
 {
   double alpha,cof;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
   
   if (sciGetEntityType(pobj) == SCI_SUBWIN){
     alpha = pSUBWIN_FEATURE (pobj)->alpha;   
     if (!(pSUBWIN_FEATURE (pobj)->isoview))
       cof=10.0;
     else
-		/* Correction Warnings Attention Precision*/
-      cof= (double) (Min(5.0,ceil(Max(
-				    abs((int)pSUBWIN_FEATURE (pobj)->axes.xlim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.xlim[0])/
-				    abs((int)pSUBWIN_FEATURE (pobj)->axes.ylim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.ylim[0]),
-				    abs((int)pSUBWIN_FEATURE (pobj)->axes.ylim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.ylim[0])/
-				    abs((int)pSUBWIN_FEATURE (pobj)->axes.xlim[1]-(int)pSUBWIN_FEATURE (pobj)->axes.xlim[0])))));
+      cof = 5.0; /* F.Leray : hard fixed here */
+      /* Correction Warnings Attention Precision*/
+    /*   cof= (double) (Min(5.0,ceil(Max( */
+/* 				      abs((int)ppsubwin->axes.xlim[1]-(int)ppsubwin->axes.xlim[0])/ */
+/* 				      abs((int)ppsubwin->axes.ylim[1]-(int)ppsubwin->axes.ylim[0]), */
+/* 				      abs((int)ppsubwin->axes.ylim[1]-(int)ppsubwin->axes.ylim[0])/ */
+/* 				      abs((int)ppsubwin->axes.xlim[1]-(int)ppsubwin->axes.xlim[0]))))); */
     if (cof == 0 ) cof =5;
     if ((alpha <=(-90.0+cof) ) && (alpha >= (-90.0-cof))) 
       return TRUE;
@@ -16545,21 +18319,85 @@ void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, dou
     } 
 }
 
-double Fill_XYdec01_TLO_and_ISO_case(int Xdec3, double val)
+int GradLog(double _min, double _max, double *_grads, int * n_grads)
 {
- 
-  return (double) (val / (exp10(Xdec3)));
+  int i;
+  int log_min, log_max;
+  int /*  * tab= NULL, */ size;
+  
+/*   sciprint("En entrÂŽée de GradLog, _min = %lf ; _max= %lf\n",_min,_max); */
+  
+
+  *n_grads = 0;
+  log_max =  ceil(_max);
+  log_min =  floor(_min);
+  
+  size = log_max - log_min +1;
+ /*  tab=(int *)MALLOC(size*sizeof(int)); */
+  
+/*   for(i=0;i<size;i++) tab[i]=log_min+i; */
+
+
+  if(size<=7)
+    {
+      for(i=0;i<size;i++)
+	{
+	  /*    _grads[i] = exp10(tab[i]); */
+	  _grads[i] = log_min+i;
+	  *n_grads = (*n_grads) + 1;
+/* 	  sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
+	}
+    }
+  else
+    {
+      int pas = 0, old_pas= 0,j;
+      int val = size, passed = 0;
+      
+      for(j=val-1;j>1;j--)
+	if(val%j == 0){
+	  old_pas = pas;
+	  pas=j; 
+	  passed = 1;
+
+	  if((7*pas)<=val){ 
+	    if(old_pas != 0) {pas = old_pas; }
+	    break;
+	  }
+	}
+      
+      if(passed != 1 || (size/pas)>15 ) pas = size;
+            
+      if(pas==size)
+	{
+	  _grads[0] = log_min;
+	  _grads[1] = log_max;
+	  *n_grads =2;
+	}
+      else
+	for(i=0;i<=(int )(size/pas);i=i++)
+	  {
+	    _grads[i] = log_min+(i*pas);
+	    
+	    *n_grads = (*n_grads) + 1;
+	    /* 	    sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
+	  }
+    }
+  
+  return 0;
 }
 
+
+
+/* F.Leray au 13.10.04 completly review for new axes graduations */
 /*** F.Leray 02.04.04 */
 /* FUNCTION FOR 2D UPDATE ONLY !!!!! <=> beginning of axis_3ddraw (in 2d HERE of course! ) */
 /* Copy on update_frame_bounds */
-void  sci_update_frame_bounds(int cflag)
+void  sci_update_frame_bounds()
 {
-  double xmax, xmin, ymin, ymax,xmax_tmp, xmin_tmp, ymin_tmp, ymax_tmp;
+  double xmax, xmin, ymin, ymax;
   double hx,hy,hx1,hy1;
-  int Xdec[3],Ydec[3],i;
-  double dXdec[3], dYdec[3]; /* double HERE F.Leray 03.06.04 */
+  int i;
+
   sciPointObj *subwindowtmp; 
   sciSubWindow * ppsubwin ;
   double FRect[4],WRect[4],ARect[4]; 
@@ -16567,6 +18405,9 @@ void  sci_update_frame_bounds(int cflag)
 
   subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure());
   ppsubwin =  pSUBWIN_FEATURE (subwindowtmp); 
+
+  /* nbtics on z put to 0 */
+/*   ppsubwin->axes.nzgrads = 0; */
 
 
   /*****************************************************************
@@ -16584,8 +18425,9 @@ void  sci_update_frame_bounds(int cflag)
     xmax = ppsubwin->SRect[1];
     ymax = ppsubwin->SRect[3];
   }
- 
- 
+  
+  
+   
   /*****************************************************************
    * modify  bounds and aaint  if using log scaling X axis
    *****************************************************************/
@@ -16597,9 +18439,7 @@ void  sci_update_frame_bounds(int cflag)
 	Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
 	xmax= 1; xmin= 0;
       }
-      ppsubwin->axes.aaint[0]=1;
-      ppsubwin->axes.aaint[1]=inint(xmax-xmin);
-    }
+   }
 
    /*****************************************************************
    * modify  bounds and aaint  if using log scaling Y axis
@@ -16609,179 +18449,127 @@ void  sci_update_frame_bounds(int cflag)
 	ymax= ceil(log10(ymax)); ymin= floor(log10(ymin));
       }
       else {
-	Scistring(" Can't use Log on y-axis ymin is negative \n");
+	Scistring(" Can't use Log on Y-axis ymin is negative \n");
 	ymax= 1; ymin= 0;
       }
-      ppsubwin->axes.aaint[2]=1;
-      ppsubwin->axes.aaint[3]=inint(ymax-ymin);
    }
    
-   /*****************************************************************
-   * modify  bounds to get pretty graduations if required
+
+
+   /* _grad Init. to 0. */
+   for(i=0;i<20;i++) 
+     {
+       ppsubwin->axes.xgrads[i] = 0.;
+       ppsubwin->axes.ygrads[i] = 0.;
+     }
+   
+ 
+   if ( ppsubwin->logflags[0]=='n') { /* x-axis */
+     TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+   }
+   else{ /* log. case */
+     GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+   }
+   
+   if ( ppsubwin->logflags[1]=='n') { /* y-axis */
+     TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+   }
+   else{ /* log. case */
+     GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+   }
+   
+   if(ppsubwin->tight_limits == FALSE )
+     {
+       xmin = ppsubwin->axes.xgrads[0];
+       xmax = ppsubwin->axes.xgrads[ ppsubwin->axes.nxgrads - 1];
+       ymin = ppsubwin->axes.ygrads[0];
+       ymax = ppsubwin->axes.ygrads[ ppsubwin->axes.nygrads - 1];
+     }
+
+  /*****************************************************************
+   * modify  bounds if  isoview requested 
    *****************************************************************/
+  if ( ppsubwin->isoview == TRUE) {      
+    int verbose=0,wdim[2],narg; 
+        
+    C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    hx=xmax-xmin;
+    hy=ymax-ymin;
+    getscale2d(WRect,FRect,logscale,ARect);
+    
+    wdim[0]=linint((double)wdim[0] *WRect[2]);
+    wdim[1]=linint((double)wdim[1] *WRect[3]);
+    
+    if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) {
+      hx1=wdim[0]*hy/wdim[1];
+      xmin=xmin-(hx1-hx)/2.0;
+      xmax=xmax+(hx1-hx)/2.0;
+    }
+    else {
+      hy1=wdim[1]*hx/wdim[0];
+      ymin=ymin-(hy1-hy)/2.0;
+      ymax=ymax+(hy1-hy)/2.0;
+    }
+    
+    /* F.Leray 28.09.04 */
+    /* I need to recompute the correct xgrads and ygrads vector to have a good display */
+     
+    if ( ppsubwin->logflags[0]=='n') { /* x-axis */
+      TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'n',NULL, ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+    }
+    else{ /* log. case */
+      GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+    }
+
+ 
+
+   if ( ppsubwin->logflags[1]=='n') { /* y-axis */
+     TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+   }
+   else{ /* log. case */
+     GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+   }
+   
+   
+   /* END ISO if */
+  }
   
-   ppsubwin->axes.xlim[0]=inint(xmin);
-   ppsubwin->axes.xlim[1]=inint(xmax);
+   /* Changement ci-dessous F.Leray 21.09.04 */
+   ppsubwin->axes.xlim[0]=xmin;
+   ppsubwin->axes.xlim[1]=xmax;
    ppsubwin->axes.xlim[2]=0;
-   ppsubwin->axes.ylim[0]=inint(ymin);
-   ppsubwin->axes.ylim[1]=inint(ymax);
+   ppsubwin->axes.ylim[0]=ymin;
+   ppsubwin->axes.ylim[1]=ymax;
    ppsubwin->axes.ylim[2]=0;
-
-   /* default values in the case where graduate is not called  1/2 */
-   /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax);Xdec[2]=0; */
-   /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax);Ydec[2]=0; */
-
-   Xdec[2]=0;
-   Ydec[2]=0;
    
-   /* I need to know the good power value axes.x/ylim[2] to draw correctly in draw_axis */
-   /* This value is correctly computed above: pb. there is a if instruction but I still */
-   /* need to know the axes.x/ylim[2] even if I am not in tight_limits == FALSE && 
-      isoview == FALSE*/
-   /* I DO IT NOW :*/
-
-   if ( ppsubwin->tight_limits == TRUE){
-     if(ppsubwin->logflags[0] == 'n'){
-       C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
-       ppsubwin->axes.xlim[2]=Xdec[2];
-       dXdec[0] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmin);
-       dXdec[1] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmax);
-       dXdec[2] = (double) Xdec[2];
-
-     }
-     else{
-       dXdec[0] = xmin;
-       dXdec[1] = xmax;
-       dXdec[2] = 0;
-     }
-   
-     if(ppsubwin->logflags[1] == 'n'){
-       C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
-       ppsubwin->axes.ylim[2]=Ydec[2];
-       dYdec[0] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymin);
-       dYdec[1] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymax);
-       dYdec[2] = (double) Ydec[2];
-     }
-     else{
-       dYdec[0] = ymin;
-       dYdec[1] = ymax;
-       dYdec[2] = 0;
-     }
-   }
-
-  
-   /* default values in the case where graduate is no called  2/2 */
-   /*  Xdec[0]=inint(xmin);Xdec[1]=inint(xmax); */
-   /*    Ydec[0]=inint(ymin);Ydec[1]=inint(ymax); */
-   
-
-   if ( ppsubwin->tight_limits == FALSE) {
-     if ( ppsubwin->logflags[0]=='n') { /* x-axis */
-       C2F(graduate)(&xmin,&xmax,&xmin_tmp,&xmax_tmp,&(ppsubwin->axes.aaint[0]),&(ppsubwin->axes.aaint[1]),Xdec,Xdec+1,Xdec+2);
-       for (i=0; i < 3 ; i++ ) ppsubwin->axes.xlim[i]=Xdec[i];
-       xmin=xmin_tmp;xmax=xmax_tmp;
-       dXdec[0] = (double) Xdec[0];
-       dXdec[1] = (double) Xdec[1];
-       dXdec[2] = (double) Xdec[2];
-     }
-     else{
-       dXdec[0] = xmin;
-       dXdec[1] = xmax;
-       dXdec[2] = 0;
-     }
-
-     if ( ppsubwin->logflags[1]=='n') { /* y-axis */
-       C2F(graduate)(&ymin,&ymax,&ymin_tmp,&ymax_tmp,&(ppsubwin->axes.aaint[2]),&(ppsubwin->axes.aaint[3]),Ydec,Ydec+1,Ydec+2);
-       for (i=0; i < 3 ; i++ ) ppsubwin->axes.ylim[i]=Ydec[i];
-       ymin=ymin_tmp;ymax=ymax_tmp;
-       dYdec[0] = (double) Ydec[0];
-       dYdec[1] = (double) Ydec[1];
-       dYdec[2] = (double) Ydec[2];
-     }
-     else{
-       dYdec[0] = ymin;
-       dYdec[1] = ymax;
-       dYdec[2] = 0;
-     }
-   }
-   
-   
-
-   
-   /*****************************************************************
-    * modify  bounds if  isoview requested 
-    *****************************************************************/
-   if ( ppsubwin->isoview == TRUE) {      
-     int verbose=0,wdim[2],narg; 
-     C2F(dr)("xget","wdim",&verbose,wdim,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-     hx=xmax-xmin;
-     hy=ymax-ymin;
-     getscale2d(WRect,FRect,logscale,ARect);
-     
-     wdim[0]=linint((double)wdim[0] *WRect[2]);
-     wdim[1]=linint((double)wdim[1] *WRect[3]);
-     
-     if ( hx/(double)wdim[0]  <hy/(double) wdim[1] ) {
-       hx1=wdim[0]*hy/wdim[1];
-       xmin=xmin-(hx1-hx)/2.0;
-       xmax=xmax+(hx1-hx)/2.0;
-     }
-     else {
-       hy1=wdim[1]*hx/wdim[0];
-       ymin=ymin-(hy1-hy)/2.0;
-       ymax=ymax+(hy1-hy)/2.0;
-     }
-
-     dXdec[0] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmin);
-     dXdec[1] = Fill_XYdec01_TLO_and_ISO_case(Xdec[2], xmax);
-     dYdec[0] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymin);
-     dYdec[1] = Fill_XYdec01_TLO_and_ISO_case(Ydec[2], ymax);
-   }
-   
-   /*   Xdec[0]=xmin;Xdec[1]=xmax; */ /* F.Leray 03.06.04 */
-/*    Ydec[0]=ymin;Ydec[1]=ymax; */
    
    
    /*****************************************************************
     * set the actual bounds in subwindow data structure
     *****************************************************************/
-
+   
+   
    ppsubwin->FRect[0]=xmin;
    ppsubwin->FRect[2]=xmax;
    ppsubwin->FRect[1]=ymin;
    ppsubwin->FRect[3]=ymax;
+   
+   ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
+   ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
+   
+   ppsubwin->axes.reverse[0] = FALSE; /*TRUE;*/  /* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 */
+   ppsubwin->axes.reverse[1] = FALSE; /*TRUE;*/ 
+   
 
-   ppsubwin->axes.xlim[3] = ppsubwin->axes.aaint[1];
-   ppsubwin->axes.ylim[3] = ppsubwin->axes.aaint[3];
-
-    /* Faut-il garder la suite ? */
-
-  /* Update the current scale */
-  set_scale("tftttf",NULL,ppsubwin->FRect,ppsubwin->axes.aaint,ppsubwin->logflags,NULL); 
-
-
-  /* Should be added to set_scale */
-
-  /* A voir s'il faut garder en + de update_graduation */
-  for (i=0; i < 3 ; i++ ) Cscale.xtics[i] = dXdec[i];
-  for (i=0; i < 3 ; i++ ) Cscale.ytics[i] = dYdec[i];
-  Cscale.xtics[3] = ppsubwin->axes.aaint[1];
-  Cscale.ytics[3] = ppsubwin->axes.aaint[3]; 
-
-
-  
-  for (i=0 ; i<4 ; i++) {  
-    ppsubwin->axes.xlim[i]=Cscale.xtics[i]; 
-    ppsubwin->axes.ylim[i]=Cscale.ytics[i];
-  } 
-  
-
- /*  sciprint("DANS sci_update_framebounds\n"); */
-/*   sciprint("Cscale.ytics[0] = %f\n",Cscale.ytics[0]); */
-/*   sciprint("Cscale.ytics[1] = %f\n",Cscale.ytics[1]); */
-/*   sciprint("Cscale.ytics[2] = %f\n",Cscale.ytics[2]); */
-/*   sciprint("Cscale.ytics[3] = %f\n",Cscale.ytics[3]); */
-  
+   set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
 
 }
 
@@ -16792,11 +18580,10 @@ void  sci_update_frame_bounds(int cflag)
 void update_3dbounds(sciPointObj *pobj)
 {
   double xmin,xmax,ymin,ymax,zmin,zmax; 
-  double lmin,lmax;
-  integer min,max,puiss,deux=2,dix=10,n1,n2;
-  sciSubWindow * ppsubwin ;
- 
-  ppsubwin =  pSUBWIN_FEATURE (pobj); 
+  int i;
+/*   double lmin,lmax; */
+/*   integer min,max,puiss,deux=2,dix=10,n1,n2; */
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); 
 
   /*****************************************************************
    * get initial bounds
@@ -16819,64 +18606,162 @@ void update_3dbounds(sciPointObj *pobj)
     zmax=ppsubwin->SRect[5];
   }
 
-  ppsubwin->axes.limits[1]=xmin;
-  ppsubwin->axes.limits[3]=xmax;
+  ppsubwin->axes.limits[1]=xmin; /* set a quoi?? au final ca saute normalement...*/
+  ppsubwin->axes.limits[3]=xmax; /* F.Leray 19.10.04 */
   ppsubwin->axes.limits[2]=ymin;
   ppsubwin->axes.limits[4]=ymax;
   ppsubwin->axes.limits[5]=zmin;
   ppsubwin->axes.limits[6]=zmax;
 
-  if ( ppsubwin->tight_limits == FALSE) {
-    n1=deux;n2=dix;
-    C2F(graduate)(&xmin, &xmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ; 
-    ppsubwin->axes.xlim[0]=min;
-    ppsubwin->axes.xlim[1]=max;
-    ppsubwin->axes.xlim[2]=puiss;
-    ppsubwin->axes.xlim[3]=n2;
-    ppsubwin->FRect[0]=lmin;
-    ppsubwin->FRect[2]=lmax;
+
+
+
+  /*****************************************************************
+   * modify  bounds and aaint  if using log scaling X axis
+   *****************************************************************/
+  if ( ppsubwin->logflags[0]=='l') {
+    if ( xmin >  0) {
+      xmax=ceil(log10(xmax));  xmin=floor(log10(xmin));
+    }
+    else {
+      Scistring("Warning: Can't use Log on X-axis xmin is negative \n");
+      xmax= 1; xmin= 0;
+    }
+  }
+  
+  /*****************************************************************
+   * modify  bounds and aaint  if using log scaling Y axis
+   *****************************************************************/
+  if ( ppsubwin->logflags[1]=='l') {
+    if ( ymin > 0 ) {
+      ymax= ceil(log10(ymax)); ymin= floor(log10(ymin));
+    }
+    else {
+      Scistring(" Can't use Log on Y-axis ymin is negative \n");
+      ymax= 1; ymin= 0;
+    }
+  }
+  
+
+   /* _grad Init. to 0. */
+   for(i=0;i<20;i++) 
+     {
+       ppsubwin->axes.xgrads[i] = 0.;
+       ppsubwin->axes.ygrads[i] = 0.;
+       ppsubwin->axes.zgrads[i] = 0.;
+     }
+   
+  
+  if ( ppsubwin->logflags[0]=='n') { /* x-axis */
+    TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */
+  }
+  else{ /* log. case */
+    GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
+    ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+  }
+  
+  /*    if ( ppsubwin->logflags[1]=='n') { /\* y-axis *\/ */
+  TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
+  ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */
+  /*   } */
+  /*    else{ /\* log. case *\/ */
+  /*      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads); */
+  /*      ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0); */
+  /*    } */
+   
+  /* RAJOUT POUR Z*/
+  TheTicks(&zmin, &zmax, &(ppsubwin->axes.zgrads[0]), &ppsubwin->axes.nzgrads);
+  ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(pobj,ppsubwin->axes.nzgrads,'n',NULL, ppsubwin->axes.nbsubtics[2]); /* Nb of subtics computation and storage */
+
+  if(ppsubwin->tight_limits == FALSE )
+    {
+      xmin = ppsubwin->axes.xgrads[0];
+      xmax = ppsubwin->axes.xgrads[ ppsubwin->axes.nxgrads - 1];
+      ymin = ppsubwin->axes.ygrads[0];
+      ymax = ppsubwin->axes.ygrads[ ppsubwin->axes.nygrads - 1];
+      zmin = ppsubwin->axes.zgrads[0];
+      zmax = ppsubwin->axes.zgrads[ ppsubwin->axes.nzgrads - 1];
+    }
+
+  ppsubwin->axes.xlim[0]=xmin;
+  ppsubwin->axes.xlim[1]=xmax;
+  ppsubwin->axes.xlim[2]=0;
+  ppsubwin->axes.ylim[0]=ymin;
+  ppsubwin->axes.ylim[1]=ymax;
+  ppsubwin->axes.ylim[2]=0;
+  ppsubwin->axes.zlim[0]=zmin; /* rajout pour z */
+  ppsubwin->axes.zlim[1]=zmax;
+  ppsubwin->axes.zlim[2]=0;
+     
+  ppsubwin->FRect[0]=xmin;
+  ppsubwin->FRect[2]=xmax;
+  ppsubwin->FRect[1]=ymin;
+  ppsubwin->FRect[3]=ymax;
+  ppsubwin->FRect[4]=zmin;
+  ppsubwin->FRect[5]=zmax;
+    
+  ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
+  ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
+  ppsubwin->axes.zlim[3] = ppsubwin->axes.nzgrads;
+   
+     
+  ppsubwin->axes.reverse[0] = FALSE; /*TRUE;*/
+  ppsubwin->axes.reverse[1] = FALSE; /*TRUE;*/ 
+  ppsubwin->axes.reverse[2] = FALSE; /*TRUE;*/ 
+     
+
+  /*   if ( ppsubwin->tight_limits == FALSE) { */
+  /*    n1=deux;n2=dix; */
+  /*     C2F(graduate)(&xmin, &xmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
+  /*     ppsubwin->axes.xlim[0]=min; */
+  /*     ppsubwin->axes.xlim[1]=max; */
+  /*     ppsubwin->axes.xlim[2]=puiss; */
+  /*     ppsubwin->axes.xlim[3]=n2; */
+  /*     ppsubwin->FRect[0]=lmin; */
+  /*     ppsubwin->FRect[2]=lmax; */
 
  
-    n1=deux;n2=dix;
-    C2F(graduate)(&ymin, &ymax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ; 
-    ppsubwin->axes.ylim[0]=min;
-    ppsubwin->axes.ylim[1]=max;
-    ppsubwin->axes.ylim[2]=puiss;
-    ppsubwin->axes.ylim[3]=n2;
-    ppsubwin->FRect[1]=lmin;
-    ppsubwin->FRect[3]=lmax;
+  /*     n1=deux;n2=dix; */
+  /*     C2F(graduate)(&ymin, &ymax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
+  /*     ppsubwin->axes.ylim[0]=min; */
+  /*     ppsubwin->axes.ylim[1]=max; */
+  /*     ppsubwin->axes.ylim[2]=puiss; */
+  /*     ppsubwin->axes.ylim[3]=n2; */
+  /*     ppsubwin->FRect[1]=lmin; */
+  /*     ppsubwin->FRect[3]=lmax; */
       
 
-    n1=deux;n2=dix;
-    C2F(graduate)(&zmin, &zmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ; 
-    ppsubwin->axes.zlim[0]=min;
-    ppsubwin->axes.zlim[1]=max;
-    ppsubwin->axes.zlim[2]=puiss;
-    ppsubwin->axes.zlim[3]=n2;
-    ppsubwin->FRect[4]=lmin;
-    ppsubwin->FRect[5]=lmax;}
-  else {
-   ppsubwin->axes.xlim[0]=inint(xmin);
-   ppsubwin->axes.xlim[1]=inint(xmax);
-   ppsubwin->axes.xlim[2]=0;
-   ppsubwin->axes.xlim[3]=10;
-   ppsubwin->FRect[0]=xmin;
-   ppsubwin->FRect[2]=xmax;
+  /*     n1=deux;n2=dix; */
+  /*     C2F(graduate)(&zmin, &zmax,&lmin,&lmax,&n1,&n2,&min,&max,&puiss) ;  */
+  /*     ppsubwin->axes.zlim[0]=min; */
+  /*     ppsubwin->axes.zlim[1]=max; */
+  /*     ppsubwin->axes.zlim[2]=puiss; */
+  /*     ppsubwin->axes.zlim[3]=n2; */
+  /*     ppsubwin->FRect[4]=lmin; */
+  /*     ppsubwin->FRect[5]=lmax;} */
+  /*   else { */
+  /*    ppsubwin->axes.xlim[0]=inint(xmin); */
+  /*    ppsubwin->axes.xlim[1]=inint(xmax); */
+  /*    ppsubwin->axes.xlim[2]=0; */
+  /*    ppsubwin->axes.xlim[3]=10; */
+  /*    ppsubwin->FRect[0]=xmin; */
+  /*    ppsubwin->FRect[2]=xmax; */
 
 
-   ppsubwin->axes.ylim[0]=inint(ymin);
-   ppsubwin->axes.ylim[1]=inint(ymax);
-   ppsubwin->axes.ylim[2]=0;
-   ppsubwin->axes.ylim[3]=10;
-   ppsubwin->FRect[1]=ymin;
-   ppsubwin->FRect[3]=ymax;
+  /*    ppsubwin->axes.ylim[0]=inint(ymin); */
+  /*    ppsubwin->axes.ylim[1]=inint(ymax); */
+  /*    ppsubwin->axes.ylim[2]=0; */
+  /*    ppsubwin->axes.ylim[3]=10; */
+  /*    ppsubwin->FRect[1]=ymin; */
+  /*    ppsubwin->FRect[3]=ymax; */
 
-   ppsubwin->axes.zlim[0]=inint(zmin);
-   ppsubwin->axes.zlim[1]=inint(zmax);
-   ppsubwin->axes.zlim[2]=0;
-   ppsubwin->axes.zlim[3]=10;
-   ppsubwin->FRect[4]=zmin;
-   ppsubwin->FRect[5]=zmax;}
+  /*    ppsubwin->axes.zlim[0]=inint(zmin); */
+  /*    ppsubwin->axes.zlim[1]=inint(zmax); */
+  /*    ppsubwin->axes.zlim[2]=0; */
+  /*    ppsubwin->axes.zlim[3]=10; */
+  /*    ppsubwin->FRect[4]=zmin; */
+  /*    ppsubwin->FRect[5]=zmax;} */
 
   wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
       
@@ -17018,88 +18903,119 @@ int InitAxesModel()
 { 
   char dir;
   int i;
+  double tab[] = {0.,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.}; /* graduations init. tmptab */
   sciPointObj * pobj = NULL;
   sciSubWindow * ppobj = NULL;
-  
+  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+
+
   sciInitGraphicContext (paxesmdl);
   sciInitGraphicMode (paxesmdl);
   sciInitFontContext (paxesmdl);  /* F.Leray 10.06.04 */
-  pSUBWIN_FEATURE (paxesmdl)->cube_scaling = FALSE;
-  pSUBWIN_FEATURE (paxesmdl)->callback = (char *)NULL;
-  pSUBWIN_FEATURE (paxesmdl)->callbacklen = 0;
-  pSUBWIN_FEATURE (paxesmdl)->callbackevent = 100;  
-  pSUBWIN_FEATURE (paxesmdl)->logflags[0] = 'n';
-  pSUBWIN_FEATURE (paxesmdl)->logflags[1] = 'n';
-  pSUBWIN_FEATURE (paxesmdl)->axes.ticscolor  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[0]  = 1;   
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[1]  = 1; 
-  pSUBWIN_FEATURE (paxesmdl)->axes.subint[2]  = 1;
-  pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
-  pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';  
-  pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
-
-  /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = 10;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = 10;
+  ppaxesmdl->cube_scaling = FALSE;
+  ppaxesmdl->callback = (char *)NULL;
+  ppaxesmdl->callbacklen = 0;
+  ppaxesmdl->callbackevent = 100;  
+  ppaxesmdl->logflags[0] = 'n';
+  ppaxesmdl->logflags[1] = 'n';
+  ppaxesmdl->axes.ticscolor  = -1;
+  ppaxesmdl->axes.subint[0]  = 1;   
+  ppaxesmdl->axes.subint[1]  = 1; 
+  ppaxesmdl->axes.subint[2]  = 1;
+  ppaxesmdl->axes.xdir='d'; 
+  ppaxesmdl->axes.ydir='l';  
+  ppaxesmdl->axes.rect  = 1;
   
   for (i=0 ; i<7 ; i++)
-    pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
+    ppaxesmdl->axes.limits[i]  = 0;
 
   for (i=0 ; i<3 ; i++)
-    pSUBWIN_FEATURE (paxesmdl)->grid[i]  = -1;
-  pSUBWIN_FEATURE (paxesmdl)->isaxes  = FALSE;
-  pSUBWIN_FEATURE (paxesmdl)->alpha  = 0.0;
-  pSUBWIN_FEATURE (paxesmdl)->theta  = 270.0;
-  pSUBWIN_FEATURE (paxesmdl)->alpha_kp  = 45.0;
-  pSUBWIN_FEATURE (paxesmdl)->theta_kp  = 215.0;
-  pSUBWIN_FEATURE (paxesmdl)->is3d  = FALSE;  
-  dir= 'd'; pSUBWIN_FEATURE (paxesmdl)->axes.xdir=dir;
-  dir= 'l'; pSUBWIN_FEATURE (paxesmdl)->axes.ydir=dir;      
+    ppaxesmdl->grid[i]  = -1;
+  ppaxesmdl->alpha  = 0.0;
+  ppaxesmdl->theta  = 270.0;
+  ppaxesmdl->alpha_kp  = 45.0;
+  ppaxesmdl->theta_kp  = 215.0;
+  ppaxesmdl->is3d  = FALSE;  
+  dir= 'd'; ppaxesmdl->axes.xdir=dir;
+  dir= 'l'; ppaxesmdl->axes.ydir=dir;      
   for (i=0 ; i<4 ; i++)
     {  
-      pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i]; 
-      pSUBWIN_FEATURE (paxesmdl)->axes.ylim[i]= Cscale.ytics[i]; 
+      ppaxesmdl->axes.xlim[i]= Cscale.xtics[i]; 
+      ppaxesmdl->axes.ylim[i]= Cscale.ytics[i]; 
     }
-  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[0]= -1.0;
-  pSUBWIN_FEATURE (paxesmdl)->axes.zlim[1]= 1.0;  
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[0]= 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[1]= 2;
-  pSUBWIN_FEATURE (paxesmdl)->axes.flag[2]= 4; 
-  pSUBWIN_FEATURE (paxesmdl)->project[0]= 1;
-  pSUBWIN_FEATURE (paxesmdl)->project[1]= 1;
-  pSUBWIN_FEATURE (paxesmdl)->project[2]= 0;
-  pSUBWIN_FEATURE (paxesmdl)->hiddencolor=4;
-  pSUBWIN_FEATURE (paxesmdl)->hiddenstate=0; 
-   pSUBWIN_FEATURE (paxesmdl)->isoview= FALSE;/*TRUE;*/
- 
-  pSUBWIN_FEATURE (paxesmdl)->facetmerge = FALSE; 
-  pSUBWIN_FEATURE (paxesmdl)->WRect[0]   = 0;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[1]   = 0;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[2]   = 1;
-  pSUBWIN_FEATURE (paxesmdl)->WRect[3]   = 1;  
-  pSUBWIN_FEATURE (paxesmdl)->FRect[0]   = 0.0; /* xmin */
-  pSUBWIN_FEATURE (paxesmdl)->FRect[1]   = 0.0; /* ymin */
-  pSUBWIN_FEATURE (paxesmdl)->FRect[2]   = 1.0; /* xmax */
-  pSUBWIN_FEATURE (paxesmdl)->FRect[3]   = 1.0; /* ymax */
-  pSUBWIN_FEATURE (paxesmdl)->FRect[4]   = -1.0;/* zmin */
-  pSUBWIN_FEATURE (paxesmdl)->FRect[5]   = 1.0;   /* zmax */
-  pSUBWIN_FEATURE (paxesmdl)->isselected = FALSE;
-  pSUBWIN_FEATURE (paxesmdl)->visible = sciGetVisibility(pfiguremdl); 
-  pSUBWIN_FEATURE (paxesmdl)->isclip = -1;  
-  pSUBWIN_FEATURE (paxesmdl)->pPopMenu = (sciPointObj *)NULL;
 
-  /* Les SRect sont rentrés dans l'ordre: 
+  /* F.Leray 22.09.04 */
+  (ppaxesmdl->axes).axes_visible[0] = FALSE;
+  (ppaxesmdl->axes).axes_visible[1] = FALSE;
+  (ppaxesmdl->axes).axes_visible[2] = FALSE;
+  (ppaxesmdl->axes).reverse[0] = FALSE;
+  (ppaxesmdl->axes).reverse[1] = FALSE;
+  (ppaxesmdl->axes).reverse[2] = FALSE;
+  ppaxesmdl->flagNax = FALSE;
+
+  (ppaxesmdl->axes).nxgrads = 11; /* computed ticks */
+  (ppaxesmdl->axes).nygrads = 11;
+  (ppaxesmdl->axes).nzgrads = 3;
+
+  for(i=0;i<11;i++) (ppaxesmdl->axes).xgrads[i] = tab[i];
+  for(i=0;i<11;i++) (ppaxesmdl->axes).ygrads[i] = tab[i];
+  (ppaxesmdl->axes).zgrads[0] = -1.;
+  (ppaxesmdl->axes).zgrads[1]  = 0.;
+  (ppaxesmdl->axes).zgrads[2]  = 1.;
+
+  (ppaxesmdl->axes).u_xgrads = (double *)NULL;
+  (ppaxesmdl->axes).u_ygrads = (double *)NULL;
+  (ppaxesmdl->axes).u_zgrads = (double *)NULL;
+  (ppaxesmdl->axes).u_nxgrads = 0; /* user ticks */
+  (ppaxesmdl->axes).u_nygrads = 0;
+  (ppaxesmdl->axes).u_nzgrads = 0;
+  (ppaxesmdl->axes).u_xlabels= (char **) NULL;
+  (ppaxesmdl->axes).u_ylabels= (char **) NULL;
+  (ppaxesmdl->axes).u_zlabels= (char **) NULL;
+
+  (ppaxesmdl->axes).auto_ticks[0] = TRUE;
+  (ppaxesmdl->axes).auto_ticks[1] = TRUE;
+  (ppaxesmdl->axes).auto_ticks[2] = TRUE;
+  /* end 22.09.04 */
+
+  ppaxesmdl->axes.zlim[0]= -1.0;
+  ppaxesmdl->axes.zlim[1]= 1.0;  
+  ppaxesmdl->axes.flag[0]= 2;
+  ppaxesmdl->axes.flag[1]= 2;
+  ppaxesmdl->axes.flag[2]= 4; 
+  ppaxesmdl->project[0]= 1;
+  ppaxesmdl->project[1]= 1;
+  ppaxesmdl->project[2]= 0;
+  ppaxesmdl->hiddencolor=4;
+  ppaxesmdl->hiddenstate=0; 
+  ppaxesmdl->isoview= FALSE;/*TRUE;*/
+ 
+  ppaxesmdl->facetmerge = FALSE; 
+  ppaxesmdl->WRect[0]   = 0;
+  ppaxesmdl->WRect[1]   = 0;
+  ppaxesmdl->WRect[2]   = 1;
+  ppaxesmdl->WRect[3]   = 1;  
+  ppaxesmdl->FRect[0]   = 0.0; /* xmin */
+  ppaxesmdl->FRect[1]   = 0.0; /* ymin */
+  ppaxesmdl->FRect[2]   = 1.0; /* xmax */
+  ppaxesmdl->FRect[3]   = 1.0; /* ymax */
+  ppaxesmdl->FRect[4]   = -1.0;/* zmin */
+  ppaxesmdl->FRect[5]   = 1.0;   /* zmax */
+  ppaxesmdl->isselected = FALSE;
+  ppaxesmdl->visible = sciGetVisibility(pfiguremdl); 
+  ppaxesmdl->isclip = -1;  
+  ppaxesmdl->pPopMenu = (sciPointObj *)NULL;
+
+  /* Les SRect sont rentrÂŽés dans l'ordre: 
      [xmin ymin zmin xmax ymax zmax] */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[0]   = 0.0; /* xmin */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[1]   = 1.0; /* xmax */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[2]   = 0.0; /* ymin */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[3]   = 1.0; /* ymax */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[4]   = -1.0;/* zmin */
-  pSUBWIN_FEATURE (paxesmdl)->SRect[5]   = 1.0;  /* zmax */
+  ppaxesmdl->SRect[0]   = 0.0; /* xmin */
+  ppaxesmdl->SRect[1]   = 1.0; /* xmax */
+  ppaxesmdl->SRect[2]   = 0.0; /* ymin */
+  ppaxesmdl->SRect[3]   = 1.0; /* ymax */
+  ppaxesmdl->SRect[4]   = -1.0;/* zmin */
+  ppaxesmdl->SRect[5]   = 1.0;  /* zmax */
   
-  pSUBWIN_FEATURE (paxesmdl)->tight_limits = FALSE;
+  ppaxesmdl->tight_limits = FALSE;
 
   /* F.Leray 10.06.04 */
   /* Adding default Labels inside Axes */
@@ -17392,7 +19308,8 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
 {
 
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-  
+  BOOL isaxes = GetIsAxes(psubwin);
+
   /* strflag[0]*/
   STRFLAG[0] = '0'; /* flag for caption display unused here so set to NULL by default */
   if( pSUBWIN_FEATURE (psubwin)->with_leg == 1)
@@ -17414,7 +19331,7 @@ void rebuild_strflag( sciPointObj * psubwin, char * STRFLAG)
   
   /* strflag[2]*/
   STRFLAG[2] = '1'; /* Init with y-axis on the left AND axes is on*/
-  if(ppsubwin->isaxes == TRUE)
+  if(isaxes == TRUE)
     {
       if(ppsubwin->axes.ydir =='l')
 	STRFLAG[2] = '1';
@@ -18305,5 +20222,379 @@ void delete_sgwin_entities(int win_num,int v_flag)
     }
 }
 
+
+
+
+
+
+
+int ResetFigureToDefaultValues(sciPointObj * pobj)
+{
+  integer i , m, n;
+  integer x[2], verbose=0, narg=0; 
+  struct BCG *XGC=NULL;
+  
+
+  if(sciGetEntityType(pobj)!=SCI_FIGURE) /* MUST BE used for figure entities only */
+    return -1;
+
+  XGC = pFIGURE_FEATURE (pobj)->pScilabXgc;
+  
+  pFIGURE_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
+  pFIGURE_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
+  /*   pFIGURE_FEATURE (pobj)->pScilabXgc = XGC; */
+  
+  /** Initialize the colormap */
+  n=3;
+  m = pFIGURE_FEATURE (pfiguremdl)->numcolors;
+  /* try to install the colormap in the graphic context */
+  C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,
+	 pFIGURE_FEATURE(pfiguremdl)->pcolormap,PD0,PD0,PD0,0L,0L);
+  if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (XGC->Numcolors * n * sizeof (double))) == (double *) NULL)
+    {
+      sciDelHandle (pobj);
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return -1;
+    }  
+
+  if (XGC->Numcolors == m) { 
+    /* xset('colormap') was  able to install the colormap */
+    for (i=0; i <m*n ; i++) {
+      pFIGURE_FEATURE(pobj)->pcolormap[i] = pFIGURE_FEATURE(pfiguremdl)->pcolormap[i];
+    }
+  }
+  else {
+    m=XGC->Numcolors;
+    for (i=0; i <m*n ; i++)
+      pFIGURE_FEATURE(pobj)->pcolormap[i] = defcolors[i]/255.0;
+  }
+
+  sciSetNumColors (pobj,m);
+   
+  /* initialisation de context et mode graphique par defaut (figure model)*/
+  if (sciInitGraphicContext (pobj) == -1)
+    {
+      sciDelHandle (pobj);
+      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return -1;
+    }
+  if (sciInitGraphicMode (pobj) == -1)
+    {
+      sciDelHandle (pobj);    
+      FREE(pFIGURE_FEATURE(pobj)->pcolormap);
+      FREE(pobj->pfeatures);
+      FREE(pobj);
+      return -1;
+    }   
+
+  /* F.Leray 08.04.04 */
+  if (sciInitFontContext (pobj) == -1)
+    {
+      sciDelHandle (pobj);
+      FREE(pobj->pfeatures);	  
+      FREE(pobj);
+      return -1;
+    }
+  sciSetNum (pobj, &(XGC->CurWindow));		   
+  sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
+  sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
+  pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
+  pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
+  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
+	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
+  pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
+  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
+	  &(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
+  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
+  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
+  x[1]=(pFIGURE_FEATURE (pfiguremdl)->inrootposy <0)?x[1]:pFIGURE_FEATURE (pfiguremdl)->inrootposy;
+  sciSetFigurePos (pobj,x[0],x[1]);
+  pFIGURE_FEATURE (pobj)->isiconified = pFIGURE_FEATURE (pfiguremdl)->isiconified;
+  pFIGURE_FEATURE (pobj)->isselected = pFIGURE_FEATURE (pfiguremdl)->isselected; 
+  pFIGURE_FEATURE (pobj)->rotstyle = pFIGURE_FEATURE (pfiguremdl)->rotstyle;
+  pFIGURE_FEATURE (pobj)->visible = pFIGURE_FEATURE (pfiguremdl)->visible;
+  pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
+  pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
+  pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
+
+  return 0;
+}
+
+
+
+
+int ComputeNbSubTics(sciPointObj * pobj, int nbtics, char logflag, double * grads, int nbsubtics_input)
+{
+  int ticsval[] =    {2 ,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+  int subticsval[] = {10,7,5,5,4,4,3,2,2 ,2 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 ,1 };
+  int i;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj);
+
+
+  if(logflag =='l'){
+    if((grads[1]-grads[0])==1) /* intervalle de type ...10^n 10^(n+1)...*/
+      {
+	return 9; /* 9 subtics to have a pretty tics/grid in log.*/
+      }
+    else
+      {
+	return 1; /* no subtics at all (1 but draw on a tics place) */
+      }
+  }
+  else{
+    if(ppsubwin->flagNax == FALSE) /* if auto subtics mode == ON */
+      { 
+	for(i=0;i<19;i++)
+	  if(nbtics == ticsval[i])
+	    {
+	      return subticsval[i];
+	    }
+      }
+    else /* if auto subtics mode == OFF already computed in Plo2dn.c, Champ.c routines... */
+      {  /* or given via a.subtics=[nbsubtics_on_x, nbsubtics_on_y, nbsubtics_on_z] command */
+	return nbsubtics_input;
+      }
+  }
+  
+  return -1;
+}
+
+
+BOOL GetIsAxes(sciPointObj *psubwin)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  
+  if((ppsubwin->axes.axes_visible[0] == FALSE)
+     && (ppsubwin->axes.axes_visible[1] == FALSE)
+     && (ppsubwin->axes.axes_visible[0] == FALSE))
+    return FALSE;
+  else
+    return TRUE;
+}
+
+
+
+int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integer *xind, integer *InsideU, integer *InsideD)
+{
+  
+  static double cost=0.5,sint=0.5,cosa=0.5,sina=0.5;
+  integer ind2,ind3,ind,tmpind;
+  double xmaxi;
+  double xbox[8], ybox[8], zbox[8];
+
+  if(Teta != 0){
+    sciprint("Error: Theta must be 0. to trigger this algo");
+    return -1;
+  }
+  
+  Teta = 0.1; /* Little offset to compute correct values for xind,  InsideU and InsideD */
+
+  cost=cos((Teta)*M_PI/180.0);cosa=cos((Alpha)*M_PI/180.0);
+  sint=sin((Teta)*M_PI/180.0);sina=sin((Alpha)*M_PI/180.0);
+  
+  Cscale.m[0][0]= -sint    ;    Cscale.m[0][1]= cost      ;    Cscale.m[0][2]= 0;
+  Cscale.m[1][0]= -cost*cosa;   Cscale.m[1][1]= -sint*cosa;    Cscale.m[1][2]= sina;
+  Cscale.m[2][0]=  cost*sina;   Cscale.m[2][1]= sint*sina;     Cscale.m[2][2]= cosa;
+  
+  xbox[0]=TRX(dbox[0],dbox[2],dbox[4]); /* transfo. 3D of [xmin,ymin,zmin] */
+  ybox[0]=TRY(dbox[0],dbox[2],dbox[4]); /* into [xbox[0],ybox[0],zbox[0] ] */
+  zbox[0]=TRZ(dbox[0],dbox[2],dbox[4]); /*                                 */ 
+  
+  xbox[1]=TRX(dbox[0],dbox[3],dbox[4]); /* transfo. 3D of [xmin,ymax,zmin] */
+  ybox[1]=TRY(dbox[0],dbox[3],dbox[4]); /* into [xbox[1],ybox[1],zbox[1] ] */
+  zbox[1]=TRZ(dbox[0],dbox[3],dbox[4]); /*                                 */
+  
+  xbox[2]=TRX(dbox[1],dbox[3],dbox[4]); /* transfo. 3D of [xmax,ymax,zmin] */
+  ybox[2]=TRY(dbox[1],dbox[3],dbox[4]); /* into [xbox[2],ybox[2],zbox[2] ] */
+  zbox[2]=TRZ(dbox[1],dbox[3],dbox[4]); /*                                 */
+  
+  xbox[3]=TRX(dbox[1],dbox[2],dbox[4]); /* transfo. 3D of [xmax,ymin,zmin] */
+  ybox[3]=TRY(dbox[1],dbox[2],dbox[4]); /* into [xbox[3],ybox[3],zbox[3] ] */
+  zbox[3]=TRZ(dbox[1],dbox[2],dbox[4]); /*                                 */
+  
+  xbox[4]=TRX(dbox[0],dbox[2],dbox[5]); /* transfo. 3D of [xmin,ymin,zmax] */
+  ybox[4]=TRY(dbox[0],dbox[2],dbox[5]); /* into [xbox[4],ybox[4],zbox[4] ] */
+  zbox[4]=TRZ(dbox[0],dbox[2],dbox[5]); /*                                 */
+  
+  xbox[5]=TRX(dbox[0],dbox[3],dbox[5]); /* transfo. 3D of [xmin,ymax,zmax] */
+  ybox[5]=TRY(dbox[0],dbox[3],dbox[5]); /* into [xbox[5],ybox[5],zbox[5] ] */
+  zbox[5]=TRZ(dbox[0],dbox[3],dbox[5]); /*                                 */
+  
+  xbox[6]=TRX(dbox[1],dbox[3],dbox[5]); /* transfo. 3D of [xmax,ymax,zmax] */
+  ybox[6]=TRY(dbox[1],dbox[3],dbox[5]); /* into [xbox[6],ybox[6],zbox[6] ] */
+  zbox[6]=TRZ(dbox[1],dbox[3],dbox[5]); /*                                 */
+  
+  xbox[7]=TRX(dbox[1],dbox[2],dbox[5]); /* transfo. 3D of [xmax,ymin,zmax] */
+  ybox[7]=TRY(dbox[1],dbox[2],dbox[5]); /* into [xbox[7],ybox[7],zbox[7] ] */
+  zbox[7]=TRZ(dbox[1],dbox[2],dbox[5]); /*                                 */
+  
+  
+  
+  /* indices */
+  xmaxi=((double) Maxi(xbox,8L));
+  ind= -1;
+  MaxiInd(xbox,8L,&ind,xmaxi);
+  if ( ind > 3)
+    xind[0]=ind;
+  tmpind=ind;  
+  MaxiInd(xbox,8L,&ind,xmaxi);
+  if ( ind > 3)
+    xind[0]=ind;
+  if (ybox[tmpind] > ybox[ind] )
+    xind[0]=tmpind; 	 
+	   
+  if (ind < 0 || ind > 8) 
+    {
+      Scistring("xind out of bounds");
+      xind[0]=0;
+    }
+  Nextind(xind[0],&ind2,&ind3);
+  if (ybox[ind2] > ybox[ind3]) 
+    {
+      xind[1]=ind2;InsideU[0]=ind3;
+    }
+  else 
+    {
+      xind[1]=ind3;InsideU[0]=ind2;
+    }
+  Nextind(ind2,&ind2,&ind3); InsideU[1]=xind[0];
+  InsideU[2]=ind2; 
+  if (InsideU[0] > 3 )
+    InsideU[3]=InsideU[0]-4; 
+  else
+    InsideU[3]=InsideU[0]+4; 
+  xind[2]=ind2;
+  /* le pointeger en bas qui correspond */	  
+  if (ind2 > 3 )
+    xind[3]=ind2-4;
+  else
+    xind[3]=ind2+4;
+  Nextind(xind[3],&ind2,&ind3);
+  if (ybox[ind2] < ybox[ind3]) 
+    {
+      xind[4]=ind2;InsideD[0]=ind3;
+    }
+  else  
+    {
+      xind[4]=ind3;InsideD[0]=ind2;
+    }
+  Nextind(ind2,&ind2,&ind3);
+  InsideD[1]=xind[3];
+  InsideD[2]=ind2;
+  if (InsideD[0] > 3 )
+    InsideD[3]=InsideD[0]-4;
+  else
+    InsideD[3]=InsideD[0]+4;
+  xind[5]=ind2;
+
+
+  return 0;
+}
+
+
+int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+/*   static int flag = 0; */
+  int xmmin = -1, ymmin = -1;
+  int xmmax = -1, ymmax = -1;
+  int x,y;
+  int pixel_size = -1;
+  int *nbgrads = NULL;
+  double * grads = NULL;
+  int * nbsubtics = NULL;
+
+  if(xyz=='x'){
+    nbgrads = &ppsubwin->axes.nxgrads;
+    nbsubtics = &ppsubwin->axes.nbsubtics[0];
+    grads   = ppsubwin->axes.xgrads;
+    trans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /* fx is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz);
+  }
+  else if (xyz=='y'){
+    nbgrads = &ppsubwin->axes.nygrads;
+    nbsubtics = &ppsubwin->axes.nbsubtics[1];
+    grads   = ppsubwin->axes.ygrads;
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /* fy is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz);
+  }
+  else if (xyz=='z'){
+    nbgrads = &ppsubwin->axes.nzgrads;
+    nbsubtics = &ppsubwin->axes.nbsubtics[2];
+    grads   = ppsubwin->axes.zgrads;
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /* fz is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval);
+  }
+  else{
+    sciprint("Error in AdaptGraduations call\n");
+    return -1;
+  }
+    
+  x = xmmax - xmmin;
+  y = ymmax - ymmin;
+  
+  pixel_size = (int) sqrt(x*x + y*y);
+
+/*   sciprint("ymmax = %d et ymmin = %d",ymmin,ymmax); */
+/*   sciprint(" pixel_size = %d", pixel_size); */
+  
+  if(pixel_size > 120) /* nothing to adapt : 10 graduations can be displayed */
+    return 0;          /* and the corresponding computed subtics number can be used too */
+  else if(pixel_size <= 70 ) /* 3 graduations only are necessary */
+    {
+      grads[0] = grads[0];
+      grads[1] = (grads[0] + grads[(*nbgrads)-1])/2;
+      grads[2] = grads[(*nbgrads)-1];
+      *nbgrads = 3;
+      if(ppsubwin->flagNax == FALSE) *nbsubtics = 3;
+    }
+  else if(pixel_size > 70)
+    {
+      FindGrads(grads, nbgrads);
+      if(ppsubwin->flagNax == FALSE) *nbsubtics = 2;
+      
+    }
+
+  /* flag = 0; */
+
+
+  return 0;
+}
+
+int FindGrads(double *grads,int * n_grads)
+{
+  int nbgrads = *n_grads,i;
+  double pas = 0.;
+  double min = -1.;
+/*   double grads_tmp[20]; */
+
+  if((nbgrads % 2)!= 0 ) /* nombre impair de grads */
+    {
+      for(i=0;i<(int) (nbgrads+1)/2;i=i++) {
+	grads[i] = grads[2*i];
+      }
+      
+      *n_grads = (int) (nbgrads+1)/2; /* (7+1)/2 = 4, (9+1)/2 = 5 ...*/
+    }
+  else
+    {
+      min = grads[0];
+      pas = (grads[nbgrads-1] - grads[0]) / ((nbgrads-1) / 2);
+      
+      for(i=0;i<(int)(nbgrads/2);i++) {
+	grads[i] = min + i*pas;
+      }
+      
+      *n_grads = (int) (nbgrads)/2; /* 6/2=3, 12/2 = 6 ...*/
+    }
+    
+  return 0;
+}
 
 
