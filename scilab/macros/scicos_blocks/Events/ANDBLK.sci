@@ -11,6 +11,7 @@ case 'getoutputs' then
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
 case 'set' then
+  x=arg1
 case 'define' then
   andlog=ANDLOG_f('define')
     andlog.graphics.orig=[194,133]
