@@ -1631,15 +1631,27 @@ void set_default_colormap1(int m)
 {
   int i;
   Colormap cmap;
-  Pixel *c, pix;
-  float *r, *g, *b;
+  Pixel *c = (Pixel *) NULL ;
+  Pixel pix;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   unsigned int red, green, blue;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  if(ScilabXgc->Colors != (Pixel *) NULL) //F.Leray
+    c = ScilabXgc->Colors;
+  
+  if(ScilabXgc->Red != (float *) NULL)
+    r = ScilabXgc->Red;
+  
+  if(ScilabXgc->Green != (float *) NULL)
+    g = ScilabXgc->Green;
+  
+  if(ScilabXgc->Blue != (float *) NULL)
+    b = ScilabXgc->Blue;
+  /* End save old color vectors*/
+  
 
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
@@ -3380,6 +3392,7 @@ void C2F(initgraphic)(char *string, integer *v2, integer *v3, integer *v4, integ
       arrowcursor  = XCreateFontCursor (dpy, (char)0x2e);
       normalcursor = XCreateFontCursor (dpy, XC_X_cursor);
     }
+
   NewXgc = AddNewWindowToList();
   if ( NewXgc == (struct BCG *) 0) 
     {
@@ -4560,3 +4573,4 @@ int CheckScilabXgc(void)
 {
   return( ScilabXgc != (struct BCG *) 0);
 }
+

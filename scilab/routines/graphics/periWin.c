@@ -2215,8 +2215,10 @@ void set_default_colormap()
 {
   int i,m;
   unsigned long maxcol;
-  COLORREF *c;
-  float *r, *g, *b;
+  COLORREF *c = (COLORREF *) NULL;
+  float *r = (float *) NULL;
+  float *g = (float *) NULL;
+  float *b = (float *) NULL;
   /** XXXXX Trouver une doc sur les pallettes **/
   int iPlanes = GetDeviceCaps(hdc,PLANES);
   int iBitsPixel = GetDeviceCaps(hdc,BITSPIXEL);
@@ -2238,11 +2240,18 @@ void set_default_colormap()
   m = DEFAULTNUMCOLORS;
 
   /* Save old color vectors */
-  c = ScilabXgc->Colors;
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  if(ScilabXgc->Colors != (COLORREF *) NULL) // F.Leray
+    c = ScilabXgc->Colors;
+  
+  if(ScilabXgc->Red != (float *) NULL)
+    r = ScilabXgc->Red;
+  
+  if(ScilabXgc->Green != (float *) NULL)
+    g = ScilabXgc->Green;
 
+  if(ScilabXgc->Blue != (float *) NULL)
+    b = ScilabXgc->Blue;
+  
   if (!XgcAllocColors(ScilabXgc,m)) {
     ScilabXgc->Colors = c;
     ScilabXgc->Red = r;
@@ -3973,6 +3982,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 	}
       /** Read or use default values **/
     }
+  
   if (( NewXgc = AddNewWindowToList()) == (struct BCG *) 0)
     {
       Scistring("initgraphics: unable to alloc\n");
