@@ -156,6 +156,7 @@ BINDISTFILES = \
 	$(SCIBASE)/routines/intersci/sparse.h \
 	$(SCIBASE)/routines/menusX/*.h \
 	$(SCIBASE)/routines/scicos/scicos.h \
+	$(SCIBASE)/routines/scicos/scicos_block.h \
 	$(SCIBASE)/routines/sun/*.h \
 	$(SCIBASE)/routines/xsci/*.h \
 	$(SCIBASE)/scripts \
