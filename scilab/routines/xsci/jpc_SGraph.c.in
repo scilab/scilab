@@ -29,13 +29,13 @@
 
 
 #include <string.h>
-#include <malloc.h>
 /** getpid **/
 #ifdef __STDC__
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 #else 
+#include <malloc.h>
 extern char * getenv();
 extern int getpid();
 #endif
