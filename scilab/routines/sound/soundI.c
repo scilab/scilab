@@ -5,12 +5,11 @@
 	#pragma comment(lib, "winmm.lib")
 #else
 /*
-	/* pour la fonction beep mais semble ne pas fonctionner sur le PC de Vincent ??? */
-	/*#include <stdlib.h>
+	#include <stdlib.h>
 	#include <sys/types.h>
 	#include <fcntl.h>
 	#include <sys/ioctl.h>
-	#include <linux/kd.h>*/
+	#include <linux/kd.h>
 */
 #endif
 
@@ -175,7 +174,7 @@ void BeepLinuxWindows(void)
    arg = (time<<16)+(1193180/freq);
    ioctl(fd,KDMKTONE,arg);
    */
-	system("echo -e \"\a"\"");
+	system("echo -e \"\a\"");
 	#endif
 }
 /******************************************
@@ -217,7 +216,7 @@ int intBeep (char *fname)
 	if (BeepON) BeepLinuxWindows();
 	}
 
-	output=(char*)malloc(MAX_PATH*sizeof(char));
+	output=(char*)malloc(6*sizeof(char));
 	n1=1;
 
 	if (BeepON) strcpy(output,"on");
