@@ -28,6 +28,8 @@ COMPILER	=	VISUALC++
 
 LIBDIR	=	c:\progra~1\devstudio\vc\lib		######## to be changed
 INCLUDE	=	c:\progra~1\devstudio\vc\include	######## to be changed
+LIBDIR	=	c:\progra~1\micros~2\vc98\lib		######## to be changed
+INCLUDE	=	c:\progra~1\micros~2\vc98\include	######## to be changed
 
 cc		=	cl.exe
 fc		=	fl32.exe
