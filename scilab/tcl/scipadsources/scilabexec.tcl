@@ -105,9 +105,8 @@ proc execselection {} {
             regsub -all -line "\"" $comm "\"\"" dispcomm
             regsub -all -line "'" $dispcomm "''" dispcomm1
             unset dispcomm
-            if {"$tcl_platform(platform)" == "unix"} {
-             		ScilabEval "disp(\"$dispcomm1\")" }
-	          ScilabEval $comm
+            ScilabEval "disp(\"$dispcomm1\")" 
+	    ScilabEval $comm
           }
         }
      }
