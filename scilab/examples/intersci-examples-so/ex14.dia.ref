@@ -56,7 +56,6 @@ ilib_build(ilib_name,table,files,libs);
  
 exec loader.sce;
 shared archive loaded
-
  
  
 //[4] test the loaded function
@@ -75,34 +74,22 @@ spai=sparse(a+%i*ai);
  
 b=spt1(spa);
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 
-
  
 if norm(full(b- spa)) > %eps then bugmes();quit;end
  
  
 b=spt1(spai);
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 +i9.000000
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 +i6.000000
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 +i7.000000
-
  
 if norm(full(b- spai)) > %eps then bugmes();quit;end
  
@@ -112,34 +99,22 @@ if norm(full(b- spai)) > %eps then bugmes();quit;end
  
 b=spt3(spa);
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 
-
  
 if norm(full(b(1)- spa)) > %eps then bugmes();quit;end
  
  
 b=spt3(spai);
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 +i9.000000
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 +i6.000000
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 +i7.000000
-
  
 if norm(full(b(1)- spai)) > %eps then bugmes();quit;end
  
@@ -176,34 +151,22 @@ if norm(full(b(1)- 2*spai)) > %eps then bugmes();quit;end
  
 b=spt7(list(spa));
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 
-
  
 if norm(full(b- spa)) > %eps then bugmes();quit;end
  
  
 b=spt7(list(spai));
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 +i9.000000
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 +i6.000000
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 +i7.000000
-
  
 if norm(full(b- spai)) > %eps then bugmes();quit;end
  
@@ -213,34 +176,22 @@ if norm(full(b- spai)) > %eps then bugmes();quit;end
  
 b=spt9(list(spa));
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 
-
  
 if norm(full(b(1)- spa)) > %eps then bugmes();quit;end
  
  
 b=spt9(list(spai));
 Row 1, 1 non nul elements
-
 (1,3) -> 1.230000 +i9.000000
-
 Row 2, 1 non nul elements
-
 (2,2) -> 2.320000 +i6.000000
-
 Row 3, 1 non nul elements
-
 (3,1) -> 3.450000 +i7.000000
-
  
 if norm(full(b(1)- spai)) > %eps then bugmes();quit;end
  
