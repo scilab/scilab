@@ -73,11 +73,16 @@ function [value,ArrayName]=ReadmiMatrix(fd)
     FieldNameLength=double(ReadSimpleElement(fd,1))
     FieldNames=matrix(ReadSimpleElement(fd),FieldNameLength,-1)
     NumberOfFields=size(FieldNames,2)
-    Fields=list();Fnams=[]
+    Fnams=[];Fields=list();
     for k=1:NumberOfFields
-      l=find(FieldNames(:,k)==0,1)-1
-      Fnams=[Fnams,stripblanks(ascii(double(FieldNames(1:l,k))))]
-      Fields(k)=ReadmiMatrix(fd)
+      l=find(FieldNames(:,k)==0,1)-1;
+      Fnams=[Fnams,stripblanks(ascii(double(FieldNames(1:l,k))))];
+      Fields(k)=list();
+    end
+    for i=1:prod(DimensionArray)
+       for k=1:NumberOfFields
+	 Fields(k)($+1)=ReadmiMatrix(fd);
+       end
     end
     //Form Scilab representation
     value=tlist(['st' 'dims' Fnams],int32(DimensionArray),Fields(:))
