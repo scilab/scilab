@@ -304,11 +304,11 @@ function Code=make_edoit1()
 	nxx=lnkptr(inplnk(inpptr(fun)));
 	if funtyp(fun)==-1 then
 	  Code=[Code;
-		'    if (outtb['+string(nxx)+']<0) {';
-		'      ntvecm=2;';
+		'    if (outtb['+string(nxx)+']>0) {';
+		'      ntvecm=1;';
 		'    }';
 		'    else {';
-		'      ntvecm=1;';
+		'      ntvecm=2;';
 		'    }']
 	elseif funtyp(fun)==-2 then
 	  Code=[Code;
