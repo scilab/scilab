@@ -224,7 +224,7 @@ c     necessary while matdsr and matdsc cannot be called by reference
       m1=1
       n1=mn1
       itr=min(it1,istk(il1+3))
-      it1=itr
+      it1=istk(il1+3)
       lw=l1+mn1*(it1+1)
       ref=.false.
       ilr=il1
