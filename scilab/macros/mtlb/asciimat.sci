@@ -4,13 +4,27 @@ function y=asciimat(x)
 // Returned value have same size as input value instead of last dim !
 // Fonction created because ascii() Scilab function returns a row vector
 
-xsize=size(x);
-
-if size(x,1)<>1 then
-  xsize=[xsize(1:$-1),-1]
-  xsize=xsize($:-1:1)
-  y=matrix(ascii(x),xsize)';
-else
-  y=matrix(ascii(x),[xsize(1:$-1),-1]);
+if size(size(x),"*")>2 then
+  error("Not yet implemented")
 end
+
+if type(x)==10 then
+  xsize=size(x);
+  
+  if size(x,1)<>1 then
+    xsize=[xsize(1:$-1),-1]
+    xsize=xsize($:-1:1)
+    y=matrix(ascii(x),xsize)';
+  else
+    y=matrix(ascii(x),[xsize(1:$-1),-1]);
+  end
+elseif type(x)==1 then
+  y=[]
+  for k=1:size(x,1)
+    y(k)=ascii(x(k,:))
+  end
+else
+  error("Not yet implemented")
+end
+  
 endfunction
