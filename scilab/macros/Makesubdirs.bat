@@ -87,4 +87,8 @@ cd ..
 cd tksci
 echo Macros compilation tksci
 nmake /C /f Makefile.mak %1 
+cd ..
+cd texmacs
+echo Macros compilation texmacs
+nmake /C /f Makefile.mak %1 
 cd ..\..
