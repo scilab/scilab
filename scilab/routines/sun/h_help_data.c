@@ -168,8 +168,10 @@ int Sci_Help(char *name)
     SetAproposTopics(c_name);
   else if ( cti >=1 && cti <= nInfo) 
     setHelpTopicInfo(cti);
-  if ( ok == 0) 
-    sciprint("No man for %s\r\n",name);
+  if ( ok == 0) {
+    sciprint("No man for %s, looking for it in apropos\r\n",name);
+    Sci_Apropos(name);
+  }
   return(0);
 }
 
