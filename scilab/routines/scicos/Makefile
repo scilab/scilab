@@ -36,13 +36,12 @@ BLOCKS_CODE=evtdly.o cstblk.o \
 BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	readau.o plusblk.o slider.o 
 
-OBJSF=intcos.o coselm.o sciblk.o  addevt.o doit.o odoit.o zdoit.o scicos.o \
-	cosini.o cossim.o cosend.o \
+OBJSF=intcos.o coselm.o sciblk.o  addevt.o   \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
 	list2vars.o dtosci.o itosci.o scitoi.o scitod.o vvtosci.o \
-	scitovv.o cosiord.o $(BLOCKS_CODE)
+	scitovv.o  $(BLOCKS_CODE)
 
-OBJSC=callf.o import.o sciblk2.o sciblk2i.o simblk.o grblk.o realtime.o \
+OBJSC=scicos.o import.o sciblk2.o sciblk2i.o  realtime.o \
 	intrealtime.o duplicate.o blocks.o cpass2.o scicosclip.o $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
@@ -72,14 +71,13 @@ distclean::
 
 #--------------dependencies 
 
-callf.o: blocks.h ../machine.h ../sun/link.h scicos.h
 scifunc.o : ../stack.h ../callinter.h
 selector.o: ../machine.h
 import.o: ../machine.h import.h
 prod.o: ../machine.h
 sciblk2.o: ../machine.h
 sum.o: ../machine.h
-switchn.0: ../machine.h
+switchn.o: ../machine.h
 
 sciblk.o : ../stack.h ../callinter.h
 dtosci.o: ../stack.h
@@ -98,7 +96,7 @@ writef.o: ../stack.h
 writeau.o: ../stack.h ../machine.h
 readau.o: ../machine.h
 grblk.o: ../machine.h import.h
-simblk.o: ../machine.h import.h
+scicos.o: ../machine.h import.h blocks.h ../sun/link.h scicos.h
 coselm.o : ../stack.h
 intcos.o : ../stack.h
 cpass2.o: ../machine.h

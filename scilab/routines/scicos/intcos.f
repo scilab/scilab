@@ -488,7 +488,7 @@ c     .    see also paragraph f below.
 c     .    nout is for flag 6 point fix iteration and
 c     .    temp storage in cossim
 c     .    22+ncst*max(16,ncst + 9)+3*ng is for lsodar RWORK
-           nn42=nout+22+ncst*max(16,ncst + 9)+3*ng 
+           nn42=max(nout,ng)+22+ncst*max(16,ncst + 9)+3*ng 
            lw42=lw
            lw=lw+nn42
 c     .    lsodar IWORK 20 + neq
@@ -503,7 +503,7 @@ c     .    last ng is for the zcross mask
 c     .    daskr
            ncst=ncst/2
            MAXORD=5
-           nn42=nout+60+max(MAXORD+4,7)*ncst+ncst**2+3*ng
+           nn42=max(nout,ng)+60+max(MAXORD+4,7)*ncst+ncst**2+3*ng
            lw42=lw
            lw=lw+nn42
            nn43=40 +ncst+ ncst + 2*ng +ng

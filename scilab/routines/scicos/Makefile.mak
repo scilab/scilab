@@ -39,13 +39,12 @@ BLOCKS_CODE=evtdly.obj cstblk.obj \
 BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj writeau.obj \
 	readau.obj plusblk.obj slider.obj 
 
-OBJSF=intcos.obj coselm.obj sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj scicos.obj \
-	cosini.obj cossim.obj cosend.obj \
+OBJSF=intcos.obj coselm.obj sciblk.obj  addevt.obj   \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
 	list2vars.obj dtosci.obj itosci.obj scitoi.obj scitod.obj vvtosci.obj \
-	scitovv.obj cosiord.obj $(BLOCKS_CODE)
+	scitovv.obj  $(BLOCKS_CODE)
 
-OBJSC=callf.obj import.obj sciblk2.obj sciblk2i.obj simblk.obj grblk.obj realtime.obj \
+OBJSC=scicos.obj import.obj sciblk2.obj sciblk2i.obj  realtime.obj \
 	intrealtime.obj duplicate.obj blocks.obj cpass2.obj scicosclip.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
@@ -75,14 +74,13 @@ distclean::
 
 #--------------dependencies 
 
-callf.obj: blocks.h ../machine.h ../sun/link.h scicos.h
 scifunc.obj : ../stack.h ../callinter.h
 selector.obj: ../machine.h
 import.obj: ../machine.h import.h
 prod.obj: ../machine.h
 sciblk2.obj: ../machine.h
 sum.obj: ../machine.h
-switchn.0: ../machine.h
+switchn.obj: ../machine.h
 
 sciblk.obj : ../stack.h ../callinter.h
 dtosci.obj: ../stack.h
@@ -101,7 +99,7 @@ writef.obj: ../stack.h
 writeau.obj: ../stack.h ../machine.h
 readau.obj: ../machine.h
 grblk.obj: ../machine.h import.h
-simblk.obj: ../machine.h import.h
+scicos.obj: ../machine.h import.h blocks.h ../sun/link.h scicos.h
 coselm.obj : ../stack.h
 intcos.obj : ../stack.h
 cpass2.obj: ../machine.h
