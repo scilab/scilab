@@ -563,9 +563,9 @@
 				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderFile="$(IntDir)/Tomake.pch"
-				AssemblerListingLocation=".\Release with Atlas/"
-				ObjectFile=".\Release with Atlas/"
-				ProgramDataBaseFileName=".\Release with Atlas/"
+				AssemblerListingLocation=".\Release with Atlas without Java/"
+				ObjectFile=".\Release with Atlas without Java/"
+				ProgramDataBaseFileName=".\Release with Atlas without Java/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"/>
 			<Tool
