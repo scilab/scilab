@@ -56,6 +56,7 @@ extern sci_hist *cur_entry;
 /* Use for SearchInHistory --> ! */
 extern sci_hist *research_knot_last;
 extern BOOL NewSearchInHistory; /* rlgets wsci\command.c */
+extern int savehistoryafterncommands(int N);
 /*-----------------------------------------------------------------------------------*/
 /* char *ASCIItime(const struct tm *timeptr); */
 /* void GetCommentDateSession(char *line,int BeginSession); */

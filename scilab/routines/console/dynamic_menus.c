@@ -39,6 +39,7 @@ extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
 extern BOOL IsToThePrompt(void);
 extern void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 extern int InterfaceWindowsQueryRegistry _PARAMS((char *fname));
+extern int	InterfaceWindowsClipboard _PARAMS((char *fname));
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));

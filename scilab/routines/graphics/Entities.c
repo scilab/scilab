@@ -4,6 +4,7 @@
  *    newGraph Library fonctions
  *    Matthieu PHILIPPE, INRIA 1999-2001
  *    Djalel ABDEMOUCHE, INRIA 2001-2004
+ *    Fabrice LERAY, INRIA 2004-xxxx
  --------------------------------------------------------------------------*/
 
 #include <stdio.h> 
@@ -14318,7 +14319,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 sciPointObj *
 ConstructAgregationSeq (int number) 
 {
-  sciSons *sons, *lastsons,*stmp;
+  sciSons *sons, *lastsons;
   sciPointObj *pobj;
   int i;
 
