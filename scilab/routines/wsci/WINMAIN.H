@@ -179,6 +179,7 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 /* Retourne un numéro valide pour nommer les fenetres associées à ce process */
 int FindFreeScilexNumber(void);
 
+void RenameConsole(void);
 
 /* Suivant la commande Via menu ouvre, edit, imprime ...*/
 extern void ReplaceSlash(char *pathout,char *pathin);

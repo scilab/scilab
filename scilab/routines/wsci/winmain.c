@@ -52,6 +52,23 @@ int MAIN__ ()
 	return (0);
 }
 /*-----------------------------------------------------------------------------------*/
+void RenameConsole(void)
+{
+	char CurrentConsoleName[MAX_PATH];
+	char CurrentConsoleNameTmp[MAX_PATH];
+
+	GetConsoleTitle(CurrentConsoleName,MAX_PATH);
+	strncpy(CurrentConsoleNameTmp,CurrentConsoleName,strlen(NameConsole));
+	CurrentConsoleNameTmp[strlen(NameConsole)]='\0';
+
+	if ( strcmp(CurrentConsoleNameTmp,NameConsole) != 0)	 
+	{
+		wsprintf(ScilexConsoleName,"%s",NameConsole);
+		SetConsoleTitle(ScilexConsoleName);
+	}
+
+}
+/*-----------------------------------------------------------------------------------*/
 int Console_Main(int argc, char **argv)
 {
   LPSTR tail;
@@ -63,15 +80,15 @@ int Console_Main(int argc, char **argv)
 
   WindowMode=FALSE;
   
-  
+  RenameConsole();
+
   for (i=0;i<argc;i++)
   {
 	  my_argv[i] = argv[i];
   }
   my_argc =argc;
 
-  //wsprintf(ScilexConsoleName,"%s",NameConsole);
-  //SetConsoleTitle(ScilexConsoleName);
+
 
   os.dwOSVersionInfoSize = sizeof (os);
   GetVersionEx (&os);
@@ -204,6 +221,8 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	int Current_Number_of_Scilex=-1; 
 
 	char *pFullCmdLine=NULL;
+	char *pFullCmdLineTmp=NULL;
+	char *pPathCmdLine=NULL;
 
 
 	WindowMode=TRUE;
@@ -281,8 +300,45 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	graphwin.IniFile = textwin.IniFile;
 	graphwin.IniSection = textwin.IniSection;
 
-	pFullCmdLine=GetCommandLine();
-	
+	pFullCmdLineTmp=GetCommandLine();
+	{
+		char LineCommand[MAX_PATH];
+		char LineCommandBis[MAX_PATH];
+
+		char ShortPath[MAX_PATH];
+		char *pPathCmdLine=NULL;
+		char PathCmdLineCopy[1024];
+		
+
+		strcpy(LineCommand,pFullCmdLineTmp);
+		LineCommand[strlen(LineCommand)]='\0';
+		strcpy(LineCommandBis,pFullCmdLineTmp);
+		LineCommandBis[strlen(LineCommandBis)]='\0';
+
+		pPathCmdLine=strstr(LineCommand,"wscilex.exe\" ");
+		
+		if ( (pPathCmdLine != NULL) && ( strlen(pPathCmdLine)-strlen("wscilex.exe\" ")-1 > 0) ) 
+		{
+			char LINE[1024];
+
+			strcpy(PathCmdLineCopy,pPathCmdLine);	
+			if ( PathCmdLineCopy[strlen("wscilex.exe\" ")-2] == '\"' ) PathCmdLineCopy[strlen("wscilex.exe\" ")-2] = ' ';
+			strncpy(LINE,&LineCommandBis[1],strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1);
+			LINE[strlen(LineCommandBis)-strlen(PathCmdLineCopy)-1]='\0';
+		
+			GetShortPathName(LINE,ShortPath,MAX_PATH);
+			strcat(ShortPath,PathCmdLineCopy);
+		
+			pFullCmdLine=(char*)malloc(sizeof(char)*(strlen(ShortPath)+1));
+			strcpy(pFullCmdLine,ShortPath);
+		}
+		else
+		{
+			pFullCmdLine=(char*)malloc(sizeof(char)*(strlen(LineCommandBis)+1));
+			strcpy(pFullCmdLine,LineCommandBis);
+		}
+		
+	}
 	
 	my_argv[++my_argc] = strtok (pFullCmdLine, " ");
 	while (my_argv[my_argc] != NULL)
@@ -399,7 +455,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	AllocConsole();
 	SetConsoleTitle(ScilexConsoleName);
-	HideScilex(); /* Cache la fenetre Console Scilex (x) */
+	HideScilex(); /* Cache la fenetre Console */
 
 	/* Modification Allan CORNET 18/07/03 */
 	/* Splashscreen*/
@@ -433,7 +489,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 		printf(line);
 	}
 
-	
+	HideScilex(); /* Cache la fenetre Console */
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
 
 	fclose(stdout);
@@ -1467,6 +1523,9 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 									
 				/*	PrintFileText(fichier);*/
 				strcpy(Cmd," ");
+				exit(0);
+
+
 				}
 			break;
 			case 0:default: /* Open -O*/
