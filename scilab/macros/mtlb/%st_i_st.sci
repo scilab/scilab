@@ -35,7 +35,7 @@ function M=%st_i_st(varargin)
       dims(nd+1:rhs-2)=1;
     elseif rhs-2<nd  then //less indices than M number of dims
       dims=[dims(1:rhs-3) prod(dims(rhs-2:$))]
-      if prod(dims)>1 then reduced_index=%t,end
+      if size(find(dims>1),'*')>1 then reduced_index=%t,end
     end
     //convert N-dimensionnal indexes to 1-D and extend dims if necessary
     [Ndims,I]=convertindex(dims,varargin(1:$-2));Ndims=matrix(Ndims,1,-1)
@@ -111,13 +111,19 @@ function M=%st_i_st(varargin)
     else
       while  Ndims($)==1 then Ndims($)=[],end
       select size(Ndims,'*')
-	case 0 then
+      case 0 then
 	Ndims=[1,1]
-	case 1 then
-	if mtlb_mode() then
-	  Ndims=[1,Ndims]
-	else
-	  Ndims=[Ndims,1]
+      case 1 then
+        k=find(olddims<>1)
+	if k==[] // M was a scalar
+	  if mtlb_mode() then
+	    Ndims=[1,Ndims]
+	  else
+	    Ndims=[Ndims,1]
+	  end
+	else // M was a vector
+	  olddims(k)=Ndims
+	  Ndims=olddims;
 	end
       else 
 	Ndims=matrix(Ndims,1,-1)
