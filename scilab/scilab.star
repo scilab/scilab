@@ -114,7 +114,10 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni")&(sciargs()<>"--texmacs") then
   addmenu("Help",list(2,"help"))
   if with_tk() then
     delmenu("Editor")
-    addmenu("Editor",list(2,"scipad"))
+//retricted to Windows version because of problems on some unix platform	
+    if MSDOS then  
+      addmenu("Editor",list(2,"scipad")),
+    end
   end
 end
 
