@@ -25,6 +25,8 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     char pvm[]="pvm";
     char gtk[]="gtk";
     char ocaml[]="ocaml";
+	char atlas[]="atlas";
+
 	#ifdef __TIME__
 	char TimeBuild[]=__TIME__;
 	#endif
@@ -46,6 +48,10 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     if (irep) {Str[n1]=tk;n1++;}
     C2F(withocaml)(&irep);
     if (irep) {Str[n1]=ocaml;n1++;}
+
+	#ifdef WITH_ATLAS
+	{Str[n1]=atlas;n1++;}
+	#endif
 
 	#ifdef __TIME__
 	{Str[n1]=DateBuild;n1++;}
