@@ -2,7 +2,6 @@
 tutorial_path=get_file_path('libtutorial.tst');
  
 shared archive loaded
-
  
  
  
@@ -520,11 +519,9 @@ ex8c_1([1;2;3;4],[3,4,5,6],[6;7;8;9],90,rand(5,5))
  
 ex8c_2([1,2,2]);
 1 is a scalar matrix
-
  
 ex8c_2('foo');
 1 is a string
-
  
  
 // overload case
@@ -534,7 +531,6 @@ deff('[]=%sp_ex8c_2(sp)','disp(''sparse overloaded'')');
  
 ex8c_2(sparse([1,2,3]));
 1 is a sparse trying to overload
-
  
  sparse overloaded   
  
@@ -570,7 +566,6 @@ Mystr='My string';
  
 ex9c_3()
 Mystr= "My string", length 9 
-
  
  
 //--------------------------------------------------
@@ -632,7 +627,6 @@ H=ex10c_1();
  
 ex10c_2(H);
 Test structure : int = 10 , y = My string
-
  
  
 deff('[]=%myh_p(H)','ex10c_4(H)')
@@ -643,7 +637,6 @@ H
  H  =
  
 Test structure : int = 10 , y = My string
-
  
  
  
@@ -1025,9 +1018,7 @@ if ~c_link('f3c') then
    building shared library (be patient)
   exec f3cloader.sce;
 shared archive loaded
-
 Link done
-
 end
  
  
@@ -1108,9 +1099,7 @@ if ~c_link('f3f') then
    building shared library (be patient)
   exec f3floader.sce;
 shared archive loaded
-
 Link done
-
 end
  
  
