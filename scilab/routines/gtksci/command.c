@@ -57,11 +57,11 @@ int StoreCommand( char *command)
 
   /** first check if we have a special handler set for commands **/
   if ( scig_command_handler(command) == 1) return 0;
-  /* if (get_is_reading()) 
+  if (get_is_reading()) 
     { 
       write_scilab(command);
       return 0;
-    }*/
+    }
   p = (CommandRec *) malloc( sizeof(CommandRec));
   if ( p == (CommandRec *) 0 ) 
     {
@@ -85,8 +85,10 @@ int StoreCommand( char *command)
 	q = r;
       q->next = p;
     }
+  /* 
   if (get_is_reading()) 
     write_scilab(" ");
+  */
   return(0);
 }
 
