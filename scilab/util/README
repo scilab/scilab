@@ -19,7 +19,7 @@
     * scicomp generates a .bin file correspondig to a scilab function
          ascii .sci file	
 
-    * scidem executes a batch scilab instructions file
+    * scidem executes a batch scilab instructions file.
 
     * scidoc used for documentation generation
 
