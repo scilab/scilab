@@ -89,12 +89,18 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 		#ifdef WIN32
 			SetSciEnv();
 		#else
-			setenvc("SCI",DefaultSCIenv);
+		{
+			char env[2048];
+			sprintf(env,"SCI=%s",SCIpath);
+			putenv(env);
+		}
 		#endif
 	}
 	else
 	{
-		setenvc("SCI",SCIpath);
+		char env[2048];
+		sprintf(env,"SCI=%s",SCIpath);
+		putenv(env);
 	}
 
 	if (ScilabStartup==NULL)
@@ -118,6 +124,9 @@ int StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 	}
 
 	/* Scilab Initialization */ 
+	#ifdef WITH_TK
+	  initTCLTK(); /* TCLTK Init. */
+    #endif
 	C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
 
 	if ( ierr > 0 ) 
