@@ -1588,8 +1588,6 @@ proc toggleBox { frame } {
 proc toggleX {} {
     global xToggle
     ScilabEval "LogtoggleX('$xToggle')"
-    
-    OnOffForeground $frame $xToggle
 }
 proc toggleY {} {
 global yToggle
