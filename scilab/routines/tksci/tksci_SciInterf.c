@@ -23,6 +23,7 @@ extern void LAB_uimenu();
 /*extern void LAB_gcf();*/
 extern void LAB_setgvar();
 extern void LAB_getgvar();
+extern void sci_tk_activate(void);
 
 voidf FuncI[] ={
   LAB_uicontrol,
@@ -60,6 +61,7 @@ void C2F(tksciInterf)()
 	    }
 	}
     }
+
   (*FuncI[Interf.FuncIndex -1])();
   InterfDone();
 
