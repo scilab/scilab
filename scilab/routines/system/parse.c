@@ -9,7 +9,7 @@
 #undef Lstk
 #undef Infstk
 
-typedef long int logical;
+typedef int logical;
 
 IMPORT struct {
   logical iflag, interruptible;
