@@ -1,0 +1,213 @@
+
+                   Three-D Athena Widgets (Xaw3d)
+                          Kaleb S. KEITHLEY
+                         kaleb@opengroup.org
+
+
+NOTICE:
+
+    This file must be included with any source or binary version of Xaw3d 
+    or any Xaw-like library based on Xaw3d. If you hack the sources and 
+    distribute libraries from your hacked sources, you MUST include this 
+    file as is, without modification, with your libraries. NO EXCEPTIONS. 
+
+
+Features:
+
+    This is Release 1.5 (14 May, 1998) of a set of 3-D widgets based 
+    on the R6.1/R6.3/R6.4 Athena Widget set.  The Three-D Athena may be 
+    used as a general replacement for the Athena (Xaw) Widget set.
+
+    In general, you may relink almost any Athena Widget based application 
+    with the Three-D Athena Widget set and obtain a three dimensional 
+    appearance on some of the widgets. On systems with shared libraries, 
+    you can usually replace your shared libXaw with libXaw3d and obtain 
+    the three dimensional appearance without even relinking.
+
+    Top and bottom shadow colors, shadow width, top and bottom shadow 
+    contrast should be self explanatory, and may be set via the usual 
+    and customary methods, e.g. app-defaults, .Xdefaults, programmatically, 
+    with editres, etc.  The user data resource may be used to "hang" 
+    application specific data on a widget, and is only settable 
+    programmatically.
+
+
+Changes in this release:
+
+    Some bug fixes.
+
+
+Known problems:
+
+    o You may not be be able to replace shared libXaw with libXaw3d on 
+      systems with SVR3 style shared libraries.
+
+    o Xaw3d pixel allocation doesn't behave well when beNiceToColormap
+      is False and the Default Colormap is full.
+
+    o The samples in Layout.h are wrong and don't work.  Example programs
+      written by Keith Packard that use the Layout widget are available
+      on ftp://ftp.x.org/R5contrib/Layout.tar.Z
+
+    o The lexer in the Layout widget doesn't work well when a program 
+      that uses the Layout widget is linked with GNU malloc. This 
+      is a problem on older releases of Linux, where the libc malloc 
+      is GNU malloc. It's also a problem on older releases of FreeBSD 
+      if you have specified "ExtraLibraries -lgnumalloc" in your imake
+      config FreeBSD.cf file. (Undoubtedly this is also a problem on the 
+      other BSDen too, but I don't know this for a fact.) The solution 
+      for FreeBSD is to delete the ExtraLibraries in your vendor.cf file, 
+      or edit the Makefile to not link with -lgnumalloc. I don't have a 
+      solution for Linux users, nor do I have the time (or the inclination) 
+      to track this down. If you do, and you discover a fix, you're more 
+      than welcome to send it to me.
+
+    o If your program subclasses Athena's Simple or Sme classes, or 
+      subclasses thereof, then there's a definite chance that Xaw3d 
+      isn't source-code compatible with your widgets. Sorry. I have no 
+      plans to fix this.
+
+
+Notes on Building Xaw3d Outside an X Source Tree:
+
+    The source is intended to be built inside an R6.[134] source tree.
+    You can use an X Consortium source tree (R6.1, R6.3), an X Project
+    Team source tree (R6.4), or any XFree86 source tree that corresponds
+    to one of the X Consortium or X Project Team source trees.  
+
+    You might be able to build it outside the source tree, but if you 
+    try, (pay attention here) YOU'RE ON YOUR OWN. Don't send me email
+    about it. Don't send me email telling me you "...know you're on 
+    your own, but..." It's hard enough to find time to put out these 
+    releases, I don't have time for handholding if you choose to 
+    disregard this advice. 
+
+    If you don't have a source tree, for whatever reason, plan on using 
+    binaries built by someone else. I'm sorry, that's just the way it has 
+    to be. 
+
+    Some people have written to me and told me that if you add the
+    following line to the Imakefile:
+
+      EXTRA_INCLUDES=-I.
+
+    then you can build it anywhere you want, i.e. outside the R6 source 
+    tree. If this works for you, great. If not, see above. To simplify
+    things a bit I've already added this line to the Imakefile. Just
+    uncomment it (by deleting the '#' at the beginning of the line.
+
+
+Additions, bug-fixes, improvements, etc.:
+
+    Many people have written to me with enhancements and bug fixes.
+    If your enhancement or bug fix didn't make it into this release
+    then please understand that I'm very busy with other work and I 
+    have very little time to devote to Xaw3d. Your enhancement may 
+    appear in some future release.
+
+
+xterm:
+
+    A comment that appears in the xterm source:
+      *
+      * ...There be serious and nasty dragons here.
+      *
+
+    xterm is, well, xterm.  The auto-scroll in the arrow-style scrollbar 
+    doesn't work in xterm because it relies on XtTimeouts.  xterm, perhaps 
+    in the name of speed, circumvents XtAppNextEvent() and goes direct to 
+    XNextEvent() to get it's XEvents, with the unfortunate side effect of 
+    completely ignoring "other sources" like timeouts.  At this time I
+    do not have a patch to fix the R6 xterm. There is a patch to the R5 
+    xterm on ftp://ftp.x.org/contrib/widgets/Xaw3d/R5. It shouldn't be 
+    hard to integrate it into the R6 sources.
+
+
+Getting:
+
+    Xaw3d may be found on:
+
+    ftp://ftp.x.org/contrib/widgets/Xaw3d/R6.3/Xaw3d-1.5.tar.gz
+
+    and mirror sites around the world. 
+
+
+Building:  
+
+    Untar the distribution from the base of your X Consortium or XFree86
+    source tree with the command:
+
+      `gunzip -c Xaw3d-1.5.tar.gz | tar xpf -`
+
+    or (if your system's tar supports the 'z' option)
+
+      `tar xzpf Xaw3d-1.5.tar.gz`
+
+
+    (PAY ATTENTION HERE: If you don't know where the base of your 
+    source tree is, don't send me email asking -- I don't know where 
+    you put it. If you don't know, my guess is that you don't have one.)
+
+    This will create the directory .../xc/lib/Xaw3d.  'cd' there and
+    enter the following commands:
+
+      `../../config/imake/imake -I../../config/cf -DTOPDIR=../.. -DCURRENTDIR=lib/Xaw3d`
+      `make includes; make depend; make; make install`  
+
+
+Building with Arrow Scrollbars:
+
+    The default Xaw3d does not use arrow scrollbars. The Imakefile 
+    contains the line:
+
+      #    EXTRA_DEFINES = -DARROW_SCROLLBAR -DUSEGRAY
+
+    If you want the arrow-scrollbar, then uncomment the line by deleting 
+    the '#'. -DUSEGRAY will do something different with the shadows. If
+    you don't want it, edit the line accordingly.
+
+    The Imakefile uses the Xaw symbols in .../xc/config/cf, so if you have 
+    debugging, profiling, shared libs, etc. specified for Xaw, you'll get 
+    them in Xaw3d too.
+
+
+Using:
+
+    Just relink your Xaw based application with -lXaw3d.
+
+    To obtain an appearance similar to another well know widget set, use the 
+    following resources:
+      *background:        LightSkyBlue
+      *shapeStyle:        Rectangle
+      *beNiceToColormap:  False
+
+    By default, Label widgets do not have shadows drawn for them.  You can
+    force shadows to be drawn for specifying:
+      *Label*shadowWidth: 2
+
+    If you'd like the default behavior (i.e. not 3-D) on pulldown menus, use:
+      *SmeBSB*shadowWidth: 0
+
+
+Credits (in chronological order of their contribution):
+
+    All the people at the X Consortium
+
+    Achille Hui (eillihca@drizzle.stanford.edu)
+    Robert Withrow (witr@rwwa.com)
+    Malcolm Strickland (chuck-strickland@orl.mmc.com
+    David Flanagan (david@ora.com)
+    Jamie Zawinski (jwz@netscape.com)
+    Frank Terhaar-Yonkers (fty@bizarre.trpnc.epa.gov)
+    Mike Schulze (mike@cs.curtin.edu.au)
+    Gustaf Neumann (neumann@mohegan.wi-inf.uni-essen.de)
+    Jerry Whelan (guru@stasi.bradley.edu)
+    Mark Rawling (mwr@mel.dit.csiro.au)
+    Tim Theisen (tim@cs.wisc.edu)
+    Mitch Trachtenberg (mitch@mta.com)
+    Keith Packard (keithp@ncd.com)
+    Dimitrios P. Bouras (dbouras@hol.gr)
+    Uri Blumenthal (uri@watson.ibm.com)
+    Heiko Schroeder (heiko@pool.informatik.rwth-aachen.de)
+
+
