@@ -19,7 +19,9 @@ while k+yc(k)<size(xc,'*')
     c=c+1;level=xc(k),
   end
   execstr('plot2d(xc(k+(1:n)),yc(k+(1:n)),'+opts+')')
-  xstring(xc(k+1+n/2),yc(k+1+n/2),sprintf(fpf,level))
+  if stripblanks(fpf)<>'' then
+    xstring(xc(k+1+n/2),yc(k+1+n/2),sprintf(fpf,level))
+  end
   k=k+n+1;
 end
 endfunction
