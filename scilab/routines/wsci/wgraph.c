@@ -1268,14 +1268,14 @@ EXPORT LRESULT CALLBACK
       DragAcceptFiles (hwnd, FALSE);
       break;
     case WM_CLOSE:
-/** The Graphic window will do the job **/
+      /** The Graphic window will do the job **/
       SendMessage (ScilabGC->CWindow, WM_CLOSE, 0, 0);
       return 0;
     }
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
-int SciEventHandler(win,x,y,ibut)
-     int win,x,y,ibut;
+
+int SciEventHandler(int win,int x,int y,int ibut)
 {
   static char buf[256];
   sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
@@ -1284,13 +1284,9 @@ int SciEventHandler(win,x,y,ibut)
 }
 
 
-void C2F(seteventhandler)(win_num,job,ierr)
-     int *win_num;
-     int *ierr;
-     int *job;
+void C2F(seteventhandler)(int *win_num,int *job,int *ierr)
 {  
   struct BCG *SciGc;
-
   /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
   *ierr = 0;
   SciGc = GetWindowXgcNumber(*win_num);
