@@ -64,6 +64,29 @@ $(LIBRARY_NAME).def : $(OBJS)
 	@$(RM) Defs
 
 
+.SUFFIXES: .F .F90 .f90 $(SUFFIXES)
+
+FCOMPILE = echo "to be done" 
+
+.f.o:
+	@echo "compiling $< with f2c (g77 pbs with dllimport)"
+	@$(SCIDIR)/bin/f2c $(INCLUDES) -A $< ;  \
+	$(CC) $(INCLUDES) -I"$(SCIDIR)/routines/f2c" $(CFLAGS) -c $*.c; \
+	$(RM) $*.c 
+
+.F.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.F90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+.f90.o:
+	@echo "compiling $<"
+	@$(FCOMPILE)  -c $<
+
+
 
 
 
