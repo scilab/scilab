@@ -61,7 +61,7 @@
     <SEE_ALSO_ITEM> <LINK> set</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK> get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK> gcf</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> graphics_properties</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK> graphics_entities</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHOR>
