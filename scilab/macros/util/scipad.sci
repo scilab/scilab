@@ -14,7 +14,11 @@ function scipad(f)
     end
     TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
     if argn(2)==1 then       
-      if type(f)==10 then TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}'),end
+      if type(f)==10 then 
+        TK_EvalStr('scipad eval {openfile '+pathconvert(f,%f,%t)+'}')
+// close "Untitled.sce" opened as default
+        TK_EvalStr('scipad eval {closefile $pad.textarea}')
+      end
     end
   else
     error(' Scilab has not been built with tk: scipad unavailable')
