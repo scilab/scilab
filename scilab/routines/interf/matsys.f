@@ -3147,6 +3147,19 @@ c     set
       return
       end
 
+      integer function isbyref(ifun)
+      parameter (mxbyptr=40)
+      integer byptr(mxbyptr),nbyptr
+      common /ippty/ byptr,nbyptr
+      do 10 i=1,nbyptr
+         if(byptr(i).eq.ifun) then
+            isbyref=1
+            return
+         endif
+ 10   continue
+      isbyref=0
+      end
+
       subroutine useascommand(fname)
 c     Copyright INRIA
       include '../stack.h'
