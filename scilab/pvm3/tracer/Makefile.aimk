@@ -1,5 +1,5 @@
 #
-# $Id: Makefile.aimk,v 1.1 2002/10/14 15:00:40 chanceli Exp $
+# $Id: Makefile.aimk,v 1.2 2002/10/14 15:15:38 chanceli Exp $
 #
 
 #
@@ -145,9 +145,9 @@ again:
 
 clean:
 	- rm -f *.o
+	- rm -f tracer$(EXESFX) trcsort$(EXESFX) $(LIBPVMTRC)
 
 veryclean:  clean
-	- rm -f tracer$(EXESFX) trcsort$(EXESFX) $(LIBPVMTRC)
 
 
 #

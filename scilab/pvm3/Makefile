@@ -1,7 +1,7 @@
 include ../Path.incl
 
 #
-# $Id: Makefile,v 1.2 2002/10/14 14:46:32 chanceli Exp $
+# $Id: Makefile,v 1.3 2002/10/14 15:15:37 chanceli Exp $
 #
 # top-level PVM3 makefile
 #
@@ -19,12 +19,15 @@ clean:
 	@PVM_ROOT=$(SCIDIR)/pvm3; export PVM_ROOT; ./lib/aimk $(AIMKSTR) clean
 
 # distclean clean removes *.o and other remaining executables 
+# 
+distclean:: clean
 
-distclean:: clean 
-	arch=`./lib/pvmtmparch` ;\
-	$(RM) -rf lib/$$arch bin/$$arch pvmgs/$$arch  
+# this is not a good idea since some $$arch directories 
+# contains Makefiles to be preserved 
+#arch=`./lib/pvmtmparch` ;\
+#	$(RM) -rf lib/$$arch bin/$$arch pvmgs/$$arch  
 
-ALL_ARCH = HPPA SGI ALPHA LINUXALPHA LINUX LINUXSPARC SUN4SOL2 SUNMP WIN32 MINGW
+ALL_ARCH = HPPA SGI ALPHA LINUXALPHA LINUX LINUXSPARC SUN4SOL2 SUNMP 
 
 # make a distclean on one architecture and removes binaries for other 
 # architectures 
