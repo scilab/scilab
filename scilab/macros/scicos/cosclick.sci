@@ -15,7 +15,6 @@ function [btn,xc,yc,win,Cmenu]=cosclick(flag)
     TK_EvalStr('set d [winfo ismapped .scicoslhb.edit]');t=TK_GetVar('d');
     done=t=='0'
     end
-    disp(btn)
     return
     
   elseif btn==-100 then  
