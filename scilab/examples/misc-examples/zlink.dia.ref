@@ -151,25 +151,19 @@ files=G_make(['/tmp/res22.o'],'res22.dll');
  
 link(files,'res22');
 shared archive loaded
-
 Link done
-
  
 files=G_make(['/tmp/jac22.o'],'jac22.dll');
  
 link(files,'jac22');
 shared archive loaded
-
 Link done
-
  
 files=G_make(['/tmp/gr22.o'],'gr22.dll');
  
 link(files,'gr22');
 shared archive loaded
-
 Link done
-
  
 //
  
@@ -413,17 +407,13 @@ files=G_make(["/tmp/wfex.o"],"wfex.dll");
  
 iwfex=link(files,"wfex");
 shared archive loaded
-
 Link done
-
  
 files=G_make(["/tmp/wjex.o"],"wjex.dll");
  
 iwjex=link(files,"wjex");
 shared archive loaded
-
 Link done
-
  
 //     jacobian is not given
  
@@ -595,9 +585,7 @@ files=G_make(["/tmp/wfexab.o"],'wfexab.dll');
  
 link(files,"wfexab");
 shared archive loaded
-
 Link done
-
  
 if norm(x-ode(ones(10,1),0,[1,2,3],'wfexab')) > 10000*%eps then bugmes();quit;end
  
