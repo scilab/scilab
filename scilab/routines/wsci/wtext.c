@@ -3524,7 +3524,7 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
     		case 0:default:
 			SetWindowText(hwnd,"Warning:");
 			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,
-"This Scilab version uses, by default, the new graphics mode.\n\nYou can go back to the old graphic entering the instruction:\n\tset old_style on\n\nNote however that the animations should be adapted to the new graphics.\n\nFor more information, see \"graphics_entities\" help page.\n\n\nPlease notice that the old graphics mode will be obsolete in future releases.");
+"This Scilab version uses, by default, the new graphics mode.\n\nYou can go back to the old graphics entering the instruction:\n\tset old_style on\n\nNote however that the animations should be adapted to the new graphics.\n\nFor more information, see \"graphics_entities\" help page.\n\n\nPlease notice that the old graphics mode will be obsolete in future releases.");
 			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Don't show this screen at startup");
     		break;
 		}
