@@ -13,6 +13,22 @@ global("varslist")
 from=tree.operands($)
 to=tree.operands(1)
 
+// Special case for varargin/varargout
+if or(to.name==["varargin","varargout"]) then
+  ind=tree.operands(2)
+  if type(ind)<>15 then
+    tree=Variable(to.name,Infer())
+  else
+    if type(ind(1))==15 | ind(1).vtype<>String then
+      tree.operands(2)(2)=null() // Del 'entries'
+    else
+      tree.operands(2)(1)=null() // Del 'entries'
+    end
+  end
+  return
+end
+
+
 // Ajust rhs value (variable and value to insert are part of rhs)
 rhs=rhs-2
 
