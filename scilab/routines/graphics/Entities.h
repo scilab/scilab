@@ -850,6 +850,7 @@ typedef struct
   int m1,n1;
   int m2,n2;
   int m3,n3;
+  int m3n,n3n;
 
   POINT2D *pproj;			/* projections on 2d */
   integer flag[3];
@@ -1382,9 +1383,11 @@ extern sciPointObj *ConstructRectangle (sciPointObj * pparentfigure, double x,
 					double vertcurvature, int fillflag, int fillcolor, int str);
 extern int DestroyRectangle (sciPointObj * pthis);
 extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
-				  double * pvecx, double * pvecy, double * pvecz,
-				  integer *zcol, integer izcol, integer dimzx, integer dimzy, 
-                                  integer *flag, double *ebox, integer flagcolor, integer *isfac, integer *m1, integer *n1, integer *m2, integer *n2, integer *m3, integer *n3);
+				      double * pvecx, double * pvecy, double * pvecz,
+				      integer *zcol, integer izcol, integer dimzx, integer dimzy, 
+				      integer *flag, double *ebox, integer flagcolor, integer *isfac,
+				      integer *m1, integer *n1, integer *m2, integer *n2, 
+				      integer *m3, integer *n3, integer *m3n, integer *n3n);
 extern int DestroySurface (sciPointObj * pthis);
 extern sciPointObj *ConstructMerge (sciPointObj * pparentsubwin, double * pvecx, double * pvecy, double * pvecz,
 				  integer dimzx, integer dimzy, long *tab);/*DJ.A*/
