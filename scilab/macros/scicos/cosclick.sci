@@ -11,7 +11,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
   end
   %pt=[xc,yc]
   
-  if btn==2 then
+  if btn==2|btn==5 then
     if win ==curwin then
       [k,wh]=getobj(scs_m,[xc;yc])
       if k<>[] then
@@ -54,7 +54,7 @@ function [btn,%pt,win,Cmenu]=cosclick(flag)
       return
     end
     
-  elseif btn==0&(win<>curwin) then
+  elseif (btn==0|btn=3)&(win<>curwin) then
     jj=find(windows(:,2)==win)
     if jj <> [] then
       if Cmenu_orig=='Copy Region' then
