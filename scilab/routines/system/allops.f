@@ -32,11 +32,11 @@ c
  01   ir=r/100
       if(ir.eq.4) then
          if (r.eq.401) then 
+            pt=pt-1
             call putid(syn(1),ids(1,pt))
             pt=pt-1
          elseif (r.eq.402) then 
             pt=pt-1
-C         elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
          elseif (r.ge.403.and.r.le.407) then
             goto 51
          elseif (r.eq.408) then
@@ -75,6 +75,9 @@ c     .        extraction reveals to be  function execution
                fin=istk(il+1)
                top=top-1
                rhs=rhs-1
+               if (ptover(1,psiz)) return
+               call putid(ids(1,pt),bl)
+               rstk(pt)=0
                if (ptover(1,psiz)) return
                call putid(ids(1,pt),bl)
                rstk(pt)=401
@@ -190,6 +193,9 @@ c     .  *call* matfns
       else
 c         call ref2val
          fin=lstk(fin)
+         if (ptover(1,psiz)) return
+         call putid(ids(1,pt),syn)
+         rstk(pt)=0
          if (ptover(1,psiz)) return
          call putid(ids(1,pt),id)
          rstk(pt)=401
