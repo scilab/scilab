@@ -839,7 +839,7 @@ c     get arg1
          return
       endif
       if (istk(il1).eq.10.or.istk(il1).eq.15) then
-         top=top0
+         top=topin
          fin=-fin
          return
       endif
