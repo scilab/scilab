@@ -28,15 +28,15 @@ c     sqrt log   ^  sign clean floor ceil expm cumsum  cumprod testmatrix
 c      27   28   29  30   31     32   33   34    35      36      37
 c     isreal frexp zeros tan  log1p imult  asin acos number_properties
 c       38     39    40   41     42    43   44   45      46
-c     nearfloat dsearch isequal
-c       47        48      49
+c     nearfloat dsearch isequal spones
+c       47        48      49     50
 c!
 c
       goto (10 ,15 ,20 ,25 ,30 ,35 ,40 ,45 ,50 ,60,
      1      61 ,62 ,70 ,72 ,71 ,90 ,91 ,105,110,110,
      2      110,130,140,150,160,170,180,190,200,210,
      3      220,37 ,39 ,173,46 ,47, 230,240,250,260,
-     4      165,195,196,152,154,300,310,320,330     ),fin
+     4      165,195,196,152,154,300,310,320,330,340 ),fin
 
  10   continue
       call intabs(id)
@@ -292,6 +292,11 @@ c
 c     isequal
 c
  330  call intisequal(id)
+      goto 900
+c
+c     spones
+c
+ 340  call intspones('spones',id)
       goto 900
 c
  900  return
@@ -5446,6 +5451,58 @@ c variables are different
       istk(il+3)=0
       lstk(top+1)=sadr(il+4)
       return
+      end
 
+      subroutine intspones(fname,id)
+c     WARNING : argument of this interface may be passed by reference
+      INCLUDE '../stack.h'
+      character*(*) fname
+      integer id(nsiz)
+      logical ref
+      integer iadr,sadr
+c     
+      iadr(l)=l+l-1
+      sadr(l)=(l/2)+1
+c
+      if (lhs .ne. 1) then
+         call error(41)
+         return
+      endif
+      if( rhs.ne.1) then
+         call error(39)
+         return
+      endif
+      
+      il=iadr(lstk(top))
+      ilr=il
+      if(istk(il).lt.0) then
+         il=iadr(istk(il+1))
+         ref=.true.
+      else
+         ref=.false.
+      endif
 
+      if (istk(il).ne.5 .and. istk(il).ne.6) then
+         buf=fname//': argument must be a sparse matrix'
+         call error(999)
+         return
+      endif
+      m=istk(il+1)
+      nel=istk(il+4)
+      lr = sadr(ilr+5+m+nel)
+      lfin = lr + nel
+      err = lfin - lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
+
+      if ( ref ) then
+         call icopy(5+m+nel,istk(il),1,istk(ilr),1)
+      endif
+      istk(ilr) = 5   ! type = sparse
+      istk(ilr+3) = 0 ! it = 0
+      call dset(nel, 1.d0, stk(lr), 1)
+      lstk(top+1) = lfin
+      return
       end
