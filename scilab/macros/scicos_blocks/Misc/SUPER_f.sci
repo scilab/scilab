@@ -28,7 +28,7 @@ case 'set' then
       %r=message(['SUPER BLOCK needs to be edited;';
 		  'Edit or exit by removing all edition'],['Edit'; ...
 		    'Exit'])
-      if %r=2 then 
+      if %r==2 then 
 //	edited=resume(%f),
 	typ=list()
 	return,
