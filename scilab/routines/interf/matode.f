@@ -949,7 +949,7 @@ c form state output
          inc=1
          if(ly.gt.lyp) inc=-1
 
-         if(iadr(ly+ny*nn).gt.ilroot) then
+         if(meth.eq.3.and.iadr(ly+ny*nn).gt.ilroot) then
 c     preserve jroot table
             ilr1=iadr(lyp+ny*nn)
             err=sadr(ilr1)-lstk(bot)
