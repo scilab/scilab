@@ -21,7 +21,7 @@ case 'set' then
   spath=list('model','rpar','objs',path)
   xx=arg1(spath)// get the block
   execstr('xxn='+xx.gui+'(''set'',xx)')
-  if xxn<>xx then
+  if or(xxn<>xx) then
     // parameter or states changed
     arg1(spath)=xxn// Update
     newpar(size(newpar)+1)=path// Notify modification
