@@ -6,7 +6,8 @@ demolist=['LQG',               'lqg/lqg.dem'
 	  'PID'                'pid.dem'
 	  'Inverted pendulum', 'pendulum/pendule.dem'
 	  'Flat systems',      'flat/flat.dem'
-	  'Tracking',          'tracking/track.dem']
+	  'Tracking',          'tracking/track.dem'
+	  'Robust control',    'robust/rob.dem']
 
 deff('[]=demoex(num)','exec(path+demolist(num,2),-1)')
 
