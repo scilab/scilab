@@ -4,6 +4,7 @@
 /** only used to force the linker to load all system functions **/
 
 extern void 
+      C2F(intversion)(),
       C2F(scichdir)(),
       C2F(scigetcwd)(),
       C2F(ref2val)(),
@@ -85,6 +86,7 @@ void System_contents( int x)
 {
   if ( x== 1) 
     {
+      C2F(intversion)();
       C2F(scichdir)();
       C2F(scigetcwd)();
       C2F(ref2val)();

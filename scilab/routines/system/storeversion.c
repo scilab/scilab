@@ -13,7 +13,7 @@ int C2F(intversion)(fname,fname_len)
   Rhs=Max(0,Rhs);
   CheckRhs(0,0);
   CheckLhs(1,1);
-  CreateVarFromPtr( 1, "c",(m1=stren(Version), &m1),&n1,&v);
+  CreateVarFromPtr( 1, "c",(m1=strlen(Version), &m1),&n1,&v);
   LhsVar(1) = 1;
   C2F(putlhsvar)();
   return(0);
