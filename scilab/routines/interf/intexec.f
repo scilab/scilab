@@ -69,7 +69,13 @@ c     .        error control
          call basout(io,wte,
      $        'step-by-step mode: enter carriage return to proceed')
       endif
-
+      il=iadr(lstk(top))
+      if(istk(il).eq.1.or.istk(il).eq.10) then
+c     .  opening file
+         call v2cunit(top,'rb',lunit,opened,ierr)
+         if(ierr.gt.0)  return
+         top=top-1
+      endif
 
       pt=pt+1
 c     error control
@@ -89,14 +95,8 @@ c     error control
          if(num.lt.0) errct=-errct
       endif
 
-      il=iadr(lstk(top))
-      if(istk(il).eq.11.or.istk(il).eq.13) goto 15
-c     opening file
-      call v2cunit(top,'rb',lunit,opened,ierr)
-c     exec accepte les fichiers ouverts par C ou Fortran
-      if(ierr.gt.0)  return
-      top=top-1
 
+      if(istk(il).eq.11.or.istk(il).eq.13) goto 15
       pstk(pt)=rio
       rio = lunit
       rstk(pt)=902
