@@ -1110,7 +1110,7 @@ static int call_predefined_callbacks(char *name, int winid)
   else if (strcmp(name,"$about")== 0)  create_scilab_about ();
   else if (strcmp(name,"$resume")== 0)  StoreCommand("resume");
   else if (strcmp(name,"$abort")== 0)   StoreCommand("abort");
-  else if (strcmp(name,"$restart")== 0) StoreCommand("exec scilab.star;");
+  else if (strcmp(name,"$restart")== 0) StoreCommand("exec SCI/scilab.star;");
   else if (strcmp(name,"$quit")== 0) StoreCommand("quit;");
   else return 0;
   return 1;
