@@ -59,7 +59,7 @@
 
     drawnow // ...now!
 
-
+    e.children(1).visible='on';
 
 
 
