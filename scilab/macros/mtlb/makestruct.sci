@@ -1,0 +1,55 @@
+function s=makestruct(varargin)
+// Copyright INRIA
+// Equivalent for Matlab struct function
+// Author: V. Couvert
+
+rhs=argn(2)
+if rhs<2 then
+  error("Wrong number of inputs");
+end
+
+nbfields=size(varargin)/2
+
+fields=["st","dims"]
+dims=[]
+for kf=1:2:size(varargin)
+  fields=[fields varargin(kf)]
+end
+
+dims=[1 1]
+// Search struct size
+for kf=2:2:size(varargin)
+  if typeof(varargin(kf))=="ce" then
+    if or(double(varargin(kf).dims)<>[1 1]) then
+      dims=varargin(kf).dims
+      break
+    end
+  end
+end
+s=mlist(fields,dims)
+
+// Search if one value is a scalar cell
+fnb=3
+for kf=2:2:size(varargin)
+  if typeof(varargin(kf))<>"ce" then
+    value=list()
+    for kk=1:prod(double(dims))
+      value(kk)=varargin(kf)
+    end
+  elseif and(double(varargin(kf).dims)==[1 1]) then
+    value=list()
+    for kk=1:prod(double(dims))
+      value(kk)=varargin(kf).entries
+    end
+  else
+    value=varargin(kf).entries
+  end
+  if prod(double(dims))==1 then
+  setfield(fnb,value(1),s)
+  else
+    setfield(fnb,value,s)
+  end
+  fnb=fnb+1
+end
+
+endfunction
