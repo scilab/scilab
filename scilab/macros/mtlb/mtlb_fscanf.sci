@@ -1,23 +1,42 @@
 function [a,nvarst] = mtlb_fscanf(fid,fmt,sz)
+// Copyright INRIA
+// Emulation function for fscanf() Matlab function
+// S.S. V.C.
+
 [lhs,rhs]=argn()
-if rhs<3 then sz=%inf,end
+
+// If sz not given then read all file data
+if rhs<3 then
+  sz=%inf
+end
+
 nmx=prod(sz)
 nvars=0
-//replicate the format many times to emulate Matlab format reuse
-nfmt=size(strindex(fmt,'%'),'*')
+
+// Replicate the format many times to emulate Matlab format reuse
+nfmt=size(strindex(fmt,"%"),"*")
 fmt=strcat(fmt(ones(1,20/nfmt)))
-a=[];typ=10;nvt=0,nvarst=0
+
+a=[];
+typ=10;
+nvt=0;
+nvarst=0;
+
 while %t do
+  // 20 values are read
   lvars=mfscanf(fid,fmt);
-  if lvars==-1 then
+
+  if lvars==[] then // End of file
     break
   else
-    nvars=size(lvars)
+    nvars=size(lvars,2)
     nvarst=nvarst+nvars
     nv=min(nvars,nmx)
     if nv<>0 then
       if typ==10 then 
-	for k=1:nv,typ=min(typ,type(lvars(k))),end
+	for k=1:nv
+	  typ=min(typ,type(lvars(k)))
+	end
       end
       if typ==1&type(a)==10 then
 	a=ascii(a)'
@@ -30,7 +49,6 @@ while %t do
 	    a=[a;ascii(lvars(k))']
 	  end
 	end
-
       else
 	for k=1:nv
 	  a=[a;lvars(k)]
@@ -41,21 +59,26 @@ while %t do
     nvt=nvt+nv
   end
 end
+
 nv=nvt
 if typ==1 then
-  if size(sz,'*')<>1 then 
-    nv=size(a,'*')
+  if size(sz,"*")<>1 then 
+    nv=size(a,"*")
     n=ceil(nv/sz(1))
-    if n*sz(1)>nv then a(n*sz(1))=0;end
+    if n*sz(1)>nv then 
+      a(n*sz(1))=0
+    end
     a=matrix(a,sz(1),n),
   end
 else
-  if size(sz,'*')<>1 then
+  if size(sz,"*")<>1 then
     if sz(1)<=nv then
       A=ascii(a)'
-      nv=size(A,'*')
+      nv=size(A,"*")
       n=ceil(nv/sz(1))
-      if n*sz(1)>nv then A(nv+1:n*sz(1))=ascii(' ');end
+      if n*sz(1)>nv then 
+	A(nv+1:n*sz(1))=ascii(" ")
+      end
       A=matrix(A,sz(1),n)
       a=[]
       for l=1:sz(1)
