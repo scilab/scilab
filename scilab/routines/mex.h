@@ -179,7 +179,7 @@ typedef enum {
 	mxUNKNOWN_CLASS = -1
 } mxClassID;
 
-mxClassID mxGetClassID __PARAMS((mxArray *ptr));
+mxClassID mxGetClassID __PARAMS((const mxArray *ptr));
 
 typedef enum {
   mxREAL,
