@@ -25,6 +25,7 @@ typedef enum {
   sci_sparse= 5  ,
   sci_boolean_sparse= 6,
   sci_ints= 8,
+  sci_handles=9,
   sci_strings= 10,
   sci_u_function= 11,
   sci_c_function= 13 ,
