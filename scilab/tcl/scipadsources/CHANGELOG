@@ -911,3 +911,10 @@ Francois VOGEL, 21/03/05
  * No more blinking of the cursor on Windows (temporary patch because of a
    glitch with drag and drop)
  * version --> 3.54
+
+Francois VOGEL, 23/03/05
+ * Again drag and drop improvements:
+     - restored dnd for text/uri-list that was broken on Linux
+     - Control-Button1 binding fixed - can now be pressed before drag start
+     - fixed wrong behavior with quick drags (selection was sometimes extended)
+ * version --> 3.55
