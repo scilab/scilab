@@ -7,9 +7,6 @@ void scicos_free(void *p);
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 
-extern int s_copy();
-extern int s_cmp();
-
 void  mswitch(scicos_block *block,int flag)
 {
   int i,j;

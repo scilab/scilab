@@ -33,7 +33,6 @@ void cscope(scicos_block *block,int flag)
   static double rect[4];
   extern int C2F(getlabel)(), C2F(dset)();
   static double ymin, ymax;
-  static char strf[40];
   static int i__, k, n, v;
   static double tsave;
   static int n1, n2;
@@ -159,15 +158,13 @@ void cscope(scicos_block *block,int flag)
 		     c__0, &v, &dv, &dv, &dv, &dv);
 	    C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &
 		    dv, &dv);
-	    s_copy(buf, "t@ @input and output\000",40,21);
-	    s_copy(strf, "011\000",40,4);
 	    rect[0] = per * (n1 + 1);
 	    rect[1] = ymin;
 	    rect[2] = per * (n1 + 2);
 	    rect[3] = ymax;
 	    C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, 
 		     &v, &dv, &dv, &dv, &dv);
-	    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax,
+	    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "011", buf, rect, nax,
 			&c__4, &c__21);
 	}
 	t = tsave;
@@ -225,11 +222,9 @@ void cscope(scicos_block *block,int flag)
 	     dv);
     C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	    dv);
-    s_copy(buf, "t@ @input and output\000",40,21);
-    s_copy(strf, "011\000",40,4);
     C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, &v, 
 	     &dv, &dv, &dv, &dv);
-    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax, &
+    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "011", buf, rect, nax, &
 		c__4, &c__21);
     C2F(scicosclip)(&c__1);
     nxname = 40;
@@ -239,7 +234,7 @@ void cscope(scicos_block *block,int flag)
       nxname = 39;
     }
     i__1 = nxname;
-    s_copy(buf + i__1, "\000", nxname + 1 - i__1,1);
+    *(buf+i__1)=*"\000";
     if ((nxname == 1 && *(unsigned char *)buf == ' ') || (nxname == 0)) {
     } else {
       C2F(dr)("xname\000", buf, &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv);

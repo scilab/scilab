@@ -28,7 +28,6 @@ void bouncexy(scicos_block *block,int flag)
   static double rect[4];
   extern /* Subroutine */ int C2F(getlabel)();
   static double xmin, ymin, xmax, ymax;
-  static char strf[40];
   extern /* Subroutine */ int C2F(sxevents)();
   static int i__, n, v;
   extern /* Subroutine */ int C2F(plot2d)();
@@ -90,7 +89,7 @@ void bouncexy(scicos_block *block,int flag)
     rect[1] = ymin;
     rect[2] = xmax;
     rect[3] = ymax;
-    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax);
+    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "030", buf, rect, nax);
     /*     draw new point */
     i__1 = nu;
     for (i__ = 1; i__ <= i__1; ++i__) {
@@ -156,12 +155,11 @@ void bouncexy(scicos_block *block,int flag)
 	     dv);
     C2F(dr)("xstart\000", "v\000", &wid, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
 	    dv);
-    s_copy(strf, "030\000", 40, 4);
     C2F(dr1)("xset\000", "thickness\000", &c__1, &v, &v, &v, &v, &v, &dv, &dv,
 	     &dv, &dv);
     C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, &v, 
 	     &dv, &dv, &dv, &dv);
-    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, strf, buf, rect, nax);
+    C2F(plot2d)(rect, &rect[1], &c__1, &c__1, &c_n1, "030", buf, rect, nax);
 
     zz[0] = xmin;
     zz[1] = xmin;
@@ -183,7 +181,7 @@ void bouncexy(scicos_block *block,int flag)
       nxname = 39;
     }
     i__1 = nxname;
-    s_copy(buf + i__1, "\000", nxname + 1 - i__1, 1);
+    *(buf+i__1)=*"\000";
     if (nxname == 1 && *(unsigned char *)buf == ' ' || nxname == 0) {
     } else {
       C2F(dr)("xname\000", buf, &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &dv);
