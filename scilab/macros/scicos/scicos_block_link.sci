@@ -11,7 +11,7 @@ function ok=scicos_block_link(funam,txt,flag)
   ilib_compile=ilib_compile;//load ilib_for_link and its subfunctions
   ilib_link_gen_loader(funam,flag,'loader.sce',[],"");
   ilib_link_gen_Make(funam,funam+'.o',[],'Makelib',"",...
-		     "","","","");
+		     "","","","",flag);
   [make_command,lib_name_make,lib_name,path,makename,files]= ...
       ilib_compile_get_names('lib'+funam,'Makelib',funam+'.o')
   ierr= execstr('unix_s(make_command+makename + '' ''+ files)',..
