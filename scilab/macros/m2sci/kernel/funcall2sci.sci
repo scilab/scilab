@@ -54,7 +54,7 @@ else
     if path==[] then
       sci_equiv=default_trad(mtlb_expr)
     elseif or(funname==nametbl)
-      sci_equiv=sci_gener(mtlb_expr)
+      sci_equiv=sci_generic(mtlb_expr)
     else
       fnam=funname
       scipath=res_path+fnam+".sci"

@@ -30,7 +30,7 @@ KERNEL = allunknown.sci clause2sci.sci convert2double.sci \
 	 isdefinedvar.sci is_empty.sci isinstring.sci is_real.sci m2sci_info.sci \
 	 m2sci.sci m2sci_syntax.sci mtlbtree2sci.sci multi_fun_file.sci no_equiv.sci \
 	 not_a_scalar.sci not_a_vector.sci not_empty.sci operation2sci.sci \
-	 repl_poss.sci replace_brackets.sci sci_gener.sci sci_m2scideclare.sci sciparam.sci set_infos.sci \
+	 repl_poss.sci replace_brackets.sci sci_generic.sci sci_m2scideclare.sci sciparam.sci set_infos.sci \
 	 update_instr_list.sci updatevarslist.sci
 
 MACROS= $(TLIST_CREATE) $(TLIST_e) $(TLIST_6) $(INSER) $(KERNEL) 

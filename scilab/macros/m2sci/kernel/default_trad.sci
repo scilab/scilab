@@ -12,5 +12,5 @@ if funptr(tree.name)<>0 then
   set_infos("Name conflict: function name changed from "+tree.name+" to "+name1,0)
   tree.name=name1
 end
-[tree]=sci_gener(tree)
+[tree]=sci_generic(tree)
 endfunction
