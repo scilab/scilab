@@ -5015,9 +5015,9 @@ void DrawAxesIfRequired(sciPointObj * pobj)
 {
   sciPointObj * pfigure = sciGetParentFigure(pobj);
   
-  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE)
+  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE && pFIGURE_FEATURE(pfigure)->visible == TRUE)
     DrawAxes(pobj);
-
+  
 }
 
 /* Routine used inside Plo2dn.c, Champ.c, Gray.c... */
@@ -6261,7 +6261,7 @@ sciDrawObjIfRequired (sciPointObj * pobj)
 {
   sciPointObj * pfigure = sciGetParentFigure(pobj);
 
-  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE)
+  if(pFIGURE_FEATURE(pfigure)->auto_redraw == TRUE && pFIGURE_FEATURE(pfigure)->visible == TRUE)
     sciDrawObj(pobj);
 
   return 0;
