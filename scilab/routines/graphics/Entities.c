@@ -14906,13 +14906,12 @@ integer i,j;
      break;
    } 
 }
-
 /**update_3dbounds
  * @author Djalel Abdemouche 10/2003
  * Should be in Plo2dEch.c file
  */
    
-void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer n1, integer n2,double theta,double alpha)
+void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta)
 {
   double xmin,xmax,ymin,ymax,zmin,zmax; 
   double lmin,lmax;
@@ -14938,9 +14937,14 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
 	{
 	  xmin= x[0];xmax=x[n1-1];
 	}
-      pSUBWIN_FEATURE (pobj)->axes.limits[1]=xmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[1],xmin);
-      pSUBWIN_FEATURE (pobj)->axes.limits[3]=xmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[3],xmax);
-      
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[1] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[3] !=0 ))
+	{
+	  xmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[1],xmin);
+	  xmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[3],xmax);
+	}
+      pSUBWIN_FEATURE (pobj)->axes.limits[1]=xmin;
+      pSUBWIN_FEATURE (pobj)->axes.limits[3]=xmax;
+
       C2F(graduate)(&xmin, &xmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; 
       pSUBWIN_FEATURE(pobj)->axes.xlim[0]=min;
       pSUBWIN_FEATURE(pobj)->axes.xlim[1]=max;
@@ -14956,8 +14960,13 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
 	{
 	  ymin=  y[0];ymax=  y[n2-1];
 	}
-      pSUBWIN_FEATURE (pobj)->axes.limits[2]=ymin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[2],ymin);
-      pSUBWIN_FEATURE (pobj)->axes.limits[4]=ymax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[4],ymax);
+       if ((pSUBWIN_FEATURE (pobj)->axes.limits[2] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[4] !=0 ))
+	{
+	  ymin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[2],ymin);
+	  ymax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[4],ymax);
+	}
+       pSUBWIN_FEATURE (pobj)->axes.limits[2]=ymin;
+       pSUBWIN_FEATURE (pobj)->axes.limits[4]=ymax;
 
        C2F(graduate)(&ymin, &ymax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; 
       pSUBWIN_FEATURE(pobj)->axes.ylim[0]=min;
@@ -14965,10 +14974,16 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       pSUBWIN_FEATURE(pobj)->axes.ylim[2]=puiss;
       pSUBWIN_FEATURE (pobj)->FRect[1]=lmin;
       pSUBWIN_FEATURE (pobj)->FRect[3]=lmax;
-      	 
-      zmin=(double) Mini(z,mn);zmax=(double) Maxi(z,mn);
-      pSUBWIN_FEATURE (pobj)->axes.limits[5]=zmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[5],zmin);
-      pSUBWIN_FEATURE (pobj)->axes.limits[6]=zmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[6],zmax);
+      
+  
+      zmin=(double) Mini(z,mn);zmax=(double) Maxi(z,mn);   
+      if ((pSUBWIN_FEATURE (pobj)->axes.limits[5] !=0 ) &&(pSUBWIN_FEATURE (pobj)->axes.limits[6] !=0 ))
+	{
+	  zmin=(double) Min(pSUBWIN_FEATURE (pobj)->axes.limits[5],zmin);
+	  zmax=(double) Max(pSUBWIN_FEATURE (pobj)->axes.limits[6],zmax);
+	} 
+      pSUBWIN_FEATURE (pobj)->axes.limits[5]=zmin;
+      pSUBWIN_FEATURE (pobj)->axes.limits[6]=zmax;
       
       C2F(graduate)(&zmin, &zmax,&lmin,&lmax,&deux,&dix,&min,&max,&puiss) ; 
       pSUBWIN_FEATURE(pobj)->axes.zlim[0]=min;
@@ -14976,7 +14991,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       pSUBWIN_FEATURE(pobj)->axes.zlim[2]=puiss;
       pSUBWIN_FEATURE (pobj)->FRect[4]=lmin;
       pSUBWIN_FEATURE (pobj)->FRect[5]=lmax;
-
+      
       if ((pSUBWIN_FEATURE (pobj)->alpha == 0.0)
 	  && (pSUBWIN_FEATURE (pobj)->theta == 270.0)){
 	pSUBWIN_FEATURE (pobj)->alpha  = alpha;
@@ -14989,6 +15004,7 @@ void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double
       
     }
 }
+
 
 /**search
  * @author Djalel Abdemouche 10/2003
