@@ -672,10 +672,10 @@ void sciprint (char *fmt,...)
       TextPutS (&textwin, buf);
     }
   /* \r\n -> \n for diary */ 
-  if ( lstr >= 2 && s_buf[lstr-1]== '\n' && s_buf[lstr-2]== '\r') 
+  if ( lstr >= 2 && buf[lstr-1]== '\n' && buf[lstr-2]== '\r') 
     {
-      s_buf[lstr-2]= '\n';
-      s_buf[lstr-1]= '\0';
+      buf[lstr-2]= '\n';
+      buf[lstr-1]= '\0';
       lstr--;
     }
 
