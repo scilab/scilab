@@ -2,7 +2,7 @@ c     Example for colnew
 c     ------------------
 c     See also Flist and tests/colnew.sci 
 
-c     Copyright INRIA
+c     Copyright ENPC
 c................................................................
       subroutine cngu (x, z, dmval)
       implicit double precision  (a-h,o-z)

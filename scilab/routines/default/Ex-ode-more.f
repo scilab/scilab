@@ -6,7 +6,7 @@ c     lorentz : loren and loset
 C     Competition model : icomp lcomp bcomp 
 c-----------------------------------------------------------------
 
-c     Copyright INRIA
+c     Copyright ENPC
       subroutine arnol (neq, t, y, ydot)
 C------------------------------------------------
 C     a system due to Arnold
