@@ -9,11 +9,10 @@ function [tree]=%g2sci(tree)
 // Overloading functions in $SCI/macros/mtlb/:
 // - %b_g_s.sci
 // - %s_g_b.sci
+// These functions are not used to get the same output value as Matlab one with empty matrices
 
 // %s_g_s is also defined but no more used (hard coded)
 
-// To have good size for result with String as input
-// And overloading functions are not written for Strings
 [A,B] = getoperands(tree)
 
 // Short circuiting OR
@@ -32,13 +31,10 @@ if (typeof(B)=="variable" & B.name=="%shortcircuit") then
   return
 end
 
-
-if or(A.vtype==[String,Unknown]) then
-  A = convert2double(A)
-end
-if or(B.vtype==[String,Unknown]) then
-  B = convert2double(B)
-end
+// To have good size for result with String as input
+// And overloading functions are not written for Strings
+A = convert2double(A)
+B = convert2double(B)
 tree.operands=list(A,B)
 
 tree.out(1).type=Type(Boolean,Real)
