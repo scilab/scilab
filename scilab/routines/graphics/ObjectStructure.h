@@ -303,11 +303,19 @@ typedef struct
   /** associeted to PEN or mark size */
   int linewidth;
   /** */
+  BOOL isline;
+  /** */
   int linestyle;
   /** */
   BOOL ismark;
   /** */
   int markstyle;
+  /** */
+  int marksize;
+  /** */
+  int markbackground;
+  /** */
+  int markforeground;
 }/** */
 sciGraphicContext;  
 
@@ -516,6 +524,7 @@ sciLegendPlace;
  */
 typedef struct
 {
+  sciGraphicContext graphiccontext; /* used to draw the line and marks of the curve F.Leray 21.01.05 */
   /** */
   int nblegends;
   /** */

@@ -662,9 +662,12 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->linewidth = 1;
 	  (sciGetGraphicContext(pobj))->linestyle = PS_SOLID;
-	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
+ 	  (sciGetGraphicContext(pobj))->ismark    = FALSE;
+ 	  (sciGetGraphicContext(pobj))->isline    = TRUE;
 	  (sciGetGraphicContext(pobj))->markstyle = 0;
-	  
+	  (sciGetGraphicContext(pobj))->marksize = 1; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
 	}
       else
 	{
@@ -674,9 +677,13 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pfiguremdl))->fillcolor;
 	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(pfiguremdl))->linewidth;
 	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(pfiguremdl))->linestyle;
-	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(pfiguremdl))->ismark ;
+ 	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(pfiguremdl))->ismark ;
+ 	  (sciGetGraphicContext(pobj))->isline    = (sciGetGraphicContext(pfiguremdl))->isline ;
 	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(pfiguremdl))->markstyle;
-	}  
+	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(pfiguremdl))->marksize; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(pfiguremdl))->markbackground; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(pfiguremdl))->markforeground; /* New F.Leray 21.01.05 */
+	}
       return 0;
       break;
     case SCI_SUBWIN:
@@ -688,8 +695,12 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(pobj))->backgroundcolor;
 	  (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
 	  (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
-	  (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
+ 	  (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
+ 	  (sciGetGraphicContext(pobj))->isline    =	sciGetIsLine (sciGetParent (pobj));
 	  (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
+	  (sciGetGraphicContext(pobj))->marksize = 	sciGetMarkSize (sciGetParent (pobj)); /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markbackground = -3; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markforeground = -2; /* New F.Leray 21.01.05 */
 	}
       else
 	{
@@ -699,8 +710,12 @@ sciInitGraphicContext (sciPointObj * pobj)
 	  (sciGetGraphicContext(pobj))->fillcolor = (sciGetGraphicContext(paxesmdl))->fillcolor;
 	  (sciGetGraphicContext(pobj))->linewidth = (sciGetGraphicContext(paxesmdl))->linewidth;
 	  (sciGetGraphicContext(pobj))->linestyle = (sciGetGraphicContext(paxesmdl))->linestyle;
-	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(paxesmdl))->ismark;
+ 	  (sciGetGraphicContext(pobj))->ismark    = (sciGetGraphicContext(paxesmdl))->ismark;
+ 	  (sciGetGraphicContext(pobj))->isline    = (sciGetGraphicContext(paxesmdl))->isline;
 	  (sciGetGraphicContext(pobj))->markstyle = (sciGetGraphicContext(paxesmdl))->markstyle;
+	  (sciGetGraphicContext(pobj))->marksize = (sciGetGraphicContext(paxesmdl))->marksize; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markbackground = (sciGetGraphicContext(paxesmdl))->markbackground; /* New F.Leray 21.01.05 */
+	  (sciGetGraphicContext(pobj))->markforeground = (sciGetGraphicContext(paxesmdl))->markforeground; /* New F.Leray 21.01.05 */
 	}
       return 0;
       break;
@@ -716,6 +731,7 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB: 
+    case SCI_LEGEND: /* Adding a graphic context to legend object F.Leray 21.01.05 */
       (sciGetGraphicContext(pobj))->backgroundcolor =	sciGetBackground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->foregroundcolor =	sciGetForeground (sciGetParent (pobj)) - 1;
       (sciGetGraphicContext(pobj))->fillstyle =	sciGetFillStyle (sciGetParent (pobj));
@@ -723,13 +739,16 @@ sciInitGraphicContext (sciPointObj * pobj)
       (sciGetGraphicContext(pobj))->linewidth =	sciGetLineWidth (sciGetParent (pobj));
       (sciGetGraphicContext(pobj))->linestyle =	sciGetLineStyle (sciGetParent (pobj));
       (sciGetGraphicContext(pobj))->ismark    =	sciGetIsMark (sciGetParent (pobj));
+      (sciGetGraphicContext(pobj))->isline    =	sciGetIsLine (sciGetParent (pobj));
       (sciGetGraphicContext(pobj))->markstyle =	sciGetMarkStyle (sciGetParent (pobj));
+      (sciGetGraphicContext(pobj))->marksize  = sciGetMarkSize  (sciGetParent (pobj));
+      (sciGetGraphicContext(pobj))->markbackground  = sciGetMarkBackground (sciGetParent (pobj)) - 1;
+      (sciGetGraphicContext(pobj))->markforeground  = sciGetMarkForeground (sciGetParent (pobj)) - 1;
       return 0;
       break;
     case SCI_AGREG:
     case SCI_TEXT:
     case SCI_TITLE:
-    case SCI_LEGEND:
     case SCI_PANNER:		/* pas de context graphics */
     case SCI_SBH:		/* pas de context graphics */
     case SCI_SBV:		/* pas de context graphics */
@@ -775,6 +794,7 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_STATUSB:
+      
       (sciGetFontContext(pobj))->backgroundcolor/*  = aa[0] */ =  sciGetFontBackground (sciGetParent (pobj)) -1;
       (sciGetFontContext(pobj))->foregroundcolor/*  = aa[1] */ =  sciGetFontForeground (sciGetParent (pobj)) -1;
       (sciGetFontContext(pobj))->fonttype       /*  = aa[2] */ =  (sciGetFontContext(sciGetParent(pobj)))->fonttype; 

@@ -31,9 +31,13 @@ extern int sciUpdateBaW (sciPointObj * pobj, int flag, int value);  /* SET */
 extern int sciSetBackground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetLineWidth (sciPointObj * pobj, int linewidth);  /* SET */
+extern int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
 extern int sciSetLineStyle (sciPointObj * pobj, int linestyle); /* SET */
 extern int sciSetIsMark (sciPointObj * pobj, BOOL ismark);  /* SET */
 extern int sciSetMarkStyle (sciPointObj * pobj, int markstyle); /* SET */
+extern int sciSetMarkSize (sciPointObj * pobj, int marksize); /* SET */
+extern int sciSetMarkBackground (sciPointObj * pobj, int colorindex);  /* SET */
+extern int sciSetMarkForeground (sciPointObj * pobj, int colorindex);  /* SET */
 extern int sciSetFillStyle (sciPointObj * pobj, int fillstyle); /* SET */
 extern int sciSetFillColor (sciPointObj * pobj, int fillcolor); /* SET */
 extern int sciSetFillFlag (sciPointObj * pobj, int fillflag); /* SET */

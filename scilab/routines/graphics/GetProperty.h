@@ -32,13 +32,14 @@ extern int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
 extern int sciGetBackground (sciPointObj * pobj); /* GET */
 extern int sciGetForeground (sciPointObj * pobj); /* GET */
 extern int sciGetLineWidth (sciPointObj * pobj); /* GET */
+extern BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
 extern int sciGetLineStyle (sciPointObj * pobj); /* GET */
 extern BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 extern int sciGetMarkStyle (sciPointObj * pobj); /* GET */
+extern int sciGetMarkSize (sciPointObj * pobj); /* GET */
 extern int sciGetFillStyle (sciPointObj * pobj); /* GET */
 extern int sciGetFillColor (sciPointObj * pobj); /* GET */
 extern int sciGetFillFlag (sciPointObj * pobj); /* GET */
-
 
 /* Text Functions */
 extern sciFont *sciGetFontContext (sciPointObj * pobj);  /* GET */
@@ -49,9 +50,13 @@ extern unsigned int sciGetTextLength (sciPointObj * pobj); /* GET */
 
 extern int sciGetFontBackground (sciPointObj * pobj); /* GET */
 extern int sciGetFontForeground (sciPointObj * pobj); /* GET */
+extern int sciGetMarkBackground (sciPointObj * pobj); /* GET */
+extern int sciGetMarkForeground (sciPointObj * pobj); /* GET */
 /* F.Leray 09.04.04*/
-extern int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
 extern int sciGetFontBackgroundToDisplay (sciPointObj * pobj); /* GET */
+extern int sciGetFontForegroundToDisplay (sciPointObj * pobj); /* GET */
+extern int sciGetMarkBackgroundToDisplay (sciPointObj * pobj); /* GET */
+extern int sciGetMarkForegroundToDisplay (sciPointObj * pobj); /* GET */
 
 extern int sciGetFontStyle (sciPointObj * pobj); /* GET */
 extern char *sciGetFontName (sciPointObj * pobj); /* GET */
