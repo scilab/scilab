@@ -6,7 +6,7 @@
 
 
 # A Notebook widget for Tcl/Tk
-# $Revision: 1.2 $
+# $Revision: 1.3 $
 #
 # Copyright (C) 1996,1997,1998 D. Richard Hipp
 #
@@ -292,7 +292,7 @@ global  curvis cubToggle viewToggle
 global xlabel_foreground ylabel_foreground zlabel_foreground titlelabel_foreground
 global xlabel_fontsize ylabel_fontsize zlabel_fontsize  titlelabel_fontsize
 
-global ncolors fcolor curthick curvis curfontsize
+global ncolors fcolor curthick curvis curfontsize curfontcolor
 
 #axes_visible
 global visToggle
@@ -301,44 +301,45 @@ global xGrif yGrid zGrid
 
 global viewToggle isoToggle cubToggle
 
+
 # add for XF init only : to remove after...
 
 
-#   set ncolors 32
-#   set curcolor 4
-#   set curfontsize 1
-#   set curfontcolor 7
-#   set curthick 1
+#    set ncolors 32
+#    set curcolor 4
+#    set curfontsize 1
+#    set curfontcolor 7
+#    set curthick 1
 
-#   set xToggle "n"
-#   set yToggle "n"
+#    set xToggle "n"
+#    set yToggle "n"
 
-#   set xlabel_foreground 1
-#   set ylabel_foreground 1
-#   set zlabel_foreground 1
-#   set titlelabel_foreground 1
+#    set xlabel_foreground 1
+#    set ylabel_foreground 1
+#    set zlabel_foreground 1
+#    set titlelabel_foreground 1
 
-#   set xlabel_fontsize 1
-#   set ylabel_fontsize 1
-#   set zlabel_fontsize 1
-#   set titlelabel_fontsize 1
+#    set xlabel_fontsize 1
+#    set ylabel_fontsize 1
+#    set zlabel_fontsize 1
+#    set titlelabel_fontsize 1
 
 
-#   set xGrid -1
-#   set yGrid -1
-#   set zGrid -1
+#    set xGrid -1
+#    set yGrid -1
+#    set zGrid -1
 
-#   set boxToggle "on"
+#    set boxToggle "on"
 
-#   set fcolor -1
-#   set bcolor -2
+#    set fcolor -1
+#    set bcolor -2
 
-#   set viewToggle "2D"
-#   set isoToggle "off"
-#   set limToggle "off"
-#   set cubToggle "off"
-#   set visToggle "on"
-#   set curvis "on"
+#    set viewToggle "2D"
+#    set isoToggle "off"
+#    set limToggle "off"
+#    set cubToggle "off"
+#    set visToggle "on"
+#    set curvis "on"
 
 
 set ww .axes
@@ -378,9 +379,10 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setXFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  -in  $w.frame.fontcol  -fill x
+pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $xlabel_foreground
 
 
@@ -433,9 +435,10 @@ pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setXGridColor $w.frame.gridcolor" -tickinterval 0 
+frame $w.frame.sample -height 1.2c -width 1c
 
-pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor  -in  $w.frame.gridcol  -fill x
+pack $w.frame.gridcolorlabel -in  $w.frame.gridcol -side left 
+pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $xGrid
 
 #Scale log or linear
@@ -481,9 +484,10 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setYFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  -in  $w.frame.fontcol  -fill x
+pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $ylabel_foreground
 
 
@@ -535,9 +539,10 @@ pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setYGridColor $w.frame.gridcolor" -tickinterval 0 
+frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor  -in  $w.frame.gridcol  -fill x
+pack $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $yGrid
 
 #Scale log or linear
@@ -583,9 +588,10 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setZFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  -in  $w.frame.fontcol  -fill x
+pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $zlabel_foreground
 
 
@@ -637,9 +643,10 @@ pack $w.frame.gridcol  -in $w.frame -side top   -fill x
 label $w.frame.gridcolorlabel -height 0 -text "Grid Color: " -width 0 
 scale $w.frame.gridcolor -orient horizontal -from -1 -to $ncolors \
 	 -resolution 1.0 -command "setZGridColor $w.frame.gridcolor" -tickinterval 0 
+frame $w.frame.sample -height 1.2c -width 1c
 
 pack $w.frame.gridcolorlabel  -in  $w.frame.gridcol -side left 
-pack $w.frame.gridcolor  -in  $w.frame.gridcol  -fill x
+pack  $w.frame.gridcolor  $w.frame.sample  -in  $w.frame.gridcol   -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.gridcolor set $zGrid
 
 #Scale log or linear
@@ -685,9 +692,10 @@ pack $w.frame.fontcol  -in $w.frame -side top   -fill x
 label $w.frame.fontcolorlabel -height 0 -text "     Color: " -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setTitleFontLabelColor $w.frame.fontcolor" -tickinterval 0 
+frame $w.frame.samplelabel -height 1.2c -width 1c
 
 pack $w.frame.fontcolorlabel  -in  $w.frame.fontcol -side left 
-pack $w.frame.fontcolor  -in  $w.frame.fontcol  -fill x
+pack $w.frame.fontcolor  $w.frame.samplelabel -in  $w.frame.fontcol -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fontcolor set $titlelabel_foreground
 
 
@@ -762,9 +770,11 @@ pack $w.frame.fontclr   -in $w.frame -side top  -fill x
 label $w.frame.fontcolorlabel -height 0 -text "Font Color" -width 0 
 scale $w.frame.fontcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setFontColor $w.frame.fontcolor" -tickinterval 0 
+frame $w.frame.samplefont -height 1.2c -width 1c
+
 pack $w.frame.fontcolorlabel -in $w.frame.fontclr -side left
-pack $w.frame.fontcolor  -in $w.frame.fontclr -fill x
-#$w.frame.fontcolor set $curfontcolor
+pack $w.frame.fontcolor  $w.frame.samplefont -in  $w.frame.fontclr -side left -expand 1 -fill x -pady 2m -padx 2m
+$w.frame.fontcolor set $curfontcolor
 
 #Fontsize scale
 frame $w.frame.fontssz  -borderwidth 0
@@ -780,25 +790,29 @@ $w.frame.fontsize set $curfontsize
 
 #Color scale foregound
 frame $w.frame.clrf  -borderwidth 0
-pack $w.frame.clrf -side top -fill x
+pack $w.frame.clrf  -in $w.frame -side top  -fill x
 label $w.frame.fcolorlabel -height 0 -text "Foreground\n   Color: " -width 0 
 
-scale $w.frame.fcolor -orient horizontal -length 284 -from -2 -to $ncolors \
+scale $w.frame.fcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setForeColor $w.frame.fcolor" -tickinterval 0 
+frame $w.frame.samplefore -height 1.2c -width 1c
+
 pack $w.frame.fcolorlabel -in $w.frame.clrf -side left
-pack $w.frame.fcolor  -in $w.frame.clrf  -expand yes -fill x
+pack $w.frame.fcolor  $w.frame.samplefore -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.fcolor set $fcolor
 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
-pack $w.frame.clrb  -side top -fill x
+pack $w.frame.clrb  -in $w.frame -side top  -fill x
 label $w.frame.bcolorlabel -height 0 -text "Background\n   Color: " -width 0 
 
-scale $w.frame.bcolor -orient horizontal -length 284 -from -2 -to $ncolors \
+scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0 
+frame $w.frame.sampleback -height 1.2c -width 1c
+
 pack $w.frame.bcolorlabel -in $w.frame.clrb -side left
-pack $w.frame.bcolor  -in $w.frame.clrb  -expand yes -fill x
+pack $w.frame.bcolor  $w.frame.sampleback -in  $w.frame.clrb -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.bcolor set $bcolor
 
 
@@ -898,24 +912,129 @@ pack $w.b -side bottom
 
 
 # les proc associes:
-proc setForeColor {w colorindex} {    
-global red green blue color
-ScilabEval "global h;h.foreground=$colorindex;"
+proc setForeColor {w index} {  
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f4.frame.samplefore config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f4.frame.samplefore config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f4.frame.samplefore config -background $color
+    } else { 
+	ScilabEval "global h; h.foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f4.frame.samplefore config -background $color
+	
+    }
 }
 
-
-proc setBackColor {w colorindex} {    
-global red green blue color
-ScilabEval "global h;h.background=$colorindex;"
+proc setBackColor {w index} {  
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.background=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f4.frame.sampleback config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.background=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f4.frame.sampleback config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.background=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f4.frame.sampleback config -background $color
+    } else { 
+	ScilabEval "global h; h.background=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f4.frame.sampleback config -background $color
+	
+    }
 }
+
 
 proc setColor {w colorindex} {    
 global red green blue color
 ScilabEval "global h;h.foreground=$colorindex;"
 }
-proc setFontColor {w colorindex} {    
-global red green blue color
-ScilabEval "global h;h.font_color=$colorindex;"
+proc setFontColor {w index} {    
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.font_color=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f4.frame.samplefont config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.font_color=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f4.frame.samplefont config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.font_color=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f4.frame.samplefont config -background $color
+    } else { 
+	ScilabEval "global h; h.font_color=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f4.frame.samplefont config -background $color
+	
+    }
 }
 proc setThickness {w thick} {
 ScilabEval "global h;h.thickness=$thick;"
@@ -968,68 +1087,236 @@ global limToggle
 ScilabEval "global h;h.tight_limits='$limToggle'"
 }
 
+
 # X LABEL
 proc setXGridColor {w index} {
-    #ScilabEval "global h;h.grid(1)=$index;" # test bloquant ici seulement pour h.grid(1)=... pourquoi ca marche avec a.grid(2)  (manque de coherence) ???
-ScilabEval  "global h; Grid2d3d('x',h,$index);"
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -1 } {
+	ScilabEval "global h; h.grid(1)=$index;"
+	#nothing to draw: grey color used
+	set color [format \#e6e7e6]
+	.axes.n.f0.frame.sample config -background $color
+    } 
+    
+    if { $index == 0 } {
+	ScilabEval "global h; h.grid(1)=$index;"
+	#like $index==1: display black color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f0.frame.sample config -background $color
+    }
+    
+    if { ( $index != -1) && ( $index != 0) } {
+	ScilabEval "global h; h.grid(1)=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f0.frame.sample config -background $color
+	
+    }
 }
+
 
 proc setXlabel {} {
 global xlabel
 ScilabEval "global h;h.x_label.text='$xlabel'"
 }
 
-# proc setXFontLabelSize {w xlabel_size} {
-# ScilabEval "global h;h.x_label.font_size='$xlabel_size'"
-# }
-
 proc setXFontLabelSize {w siz} {
 ScilabEval "global h;h.x_label.font_size=$siz"
 }
 
-# proc setXFontLabelColor {w  xlabel_foreground} {
-# ScilabEval "global h;h.x_label.foreground='$xlabel_foreground'"
-# }
-
-proc setXFontLabelColor {w  col} {
-ScilabEval "global h;h.x_label.foreground=$col"
+proc setXFontLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.x_label.foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f0.frame.samplelabel config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.x_label.foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f0.frame.samplelabel config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.x_label.foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f0.frame.samplelabel config -background $color
+    } else { 
+	ScilabEval "global h; h.x_label.foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f0.frame.samplelabel config -background $color
+	
+    }
 }
-
 
 
 # Y LABEL
 proc setYGridColor {w index} {
-#ScilabEval "global h;h.grid(2)=$gridcolorindex;"
-ScilabEval "global h; Grid2d3d('y',h,$index);"
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -1 } {
+	ScilabEval "global h; h.grid(2)=$index;"
+	#nothing to draw: grey color used
+	set color [format \#e6e7e6]
+	.axes.n.f1.frame.sample config -background $color
+    } 
+    
+    if { $index == 0 } {
+	ScilabEval "global h; h.grid(2)=$index;"
+	#like $index==1: display black color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f1.frame.sample config -background $color
+    }
+    
+    if { ( $index != -1) && ( $index != 0) } {
+	ScilabEval "global h; h.grid(2)=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f1.frame.sample config -background $color
+	
+    }
 }
+
+
+
+
+
+
+
+
 
 proc setYlabel {} {
 global ylabel
 ScilabEval "global h;h.y_label.text='$ylabel'"
 }
 
-# proc setYFontLabelSize {w ylabel_size} {
-# ScilabEval "global h;h.y_label.font_size='$ylabel_size'"
-# }
-
 proc setYFontLabelSize {w siz} {
 ScilabEval "global h;h.y_label.font_size=$siz"
 }
 
-# proc setYFontLabelColor {w  ylabel_foreground} {
-# ScilabEval "global h;h.y_label.foreground='$ylabel_foreground'"
-# }
-
-
-proc setYFontLabelColor {w  col} {
-ScilabEval "global h;h.y_label.foreground=$col"
+proc setYFontLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.y_label.foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f1.frame.samplelabel config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.y_label.foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f1.frame.samplelabel config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.y_label.foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f1.frame.samplelabel config -background $color
+    } else { 
+	ScilabEval "global h; h.y_label.foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f1.frame.samplelabel config -background $color
+	
+    }
 }
 
 
 # Z LABEL
 proc setZGridColor {w index} {
-ScilabEval "global h;h.grid(3)=$index;"
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -1 } {
+	ScilabEval "global h; h.grid(3)=$index;"
+	#nothing to draw: grey color used
+	set color [format \#e6e7e6]
+	.axes.n.f2.frame.sample config -background $color
+    } 
+    
+    if { $index == 0 } {
+	ScilabEval "global h; h.grid(3)=$index;"
+	#like $index==1: display black color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f2.frame.sample config -background $color
+    }
+    
+    if { ( $index != -1) && ( $index != 0) } {
+	ScilabEval "global h; h.grid(3)=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f2.frame.sample config -background $color
+	
+    }
 }
+
 
 
 proc setZlabel {} {
@@ -1037,23 +1324,50 @@ global zlabel
 ScilabEval "global h;h.z_label.text='$zlabel'"
 }
 
-
-# proc setZFontLabelSize {w zlabel_size} {
-# ScilabEval "global h;h.z_label.font_size='$zlabel_size'"
-# }
-
 proc setZFontLabelSize {w siz} {
 ScilabEval "global h;h.z_label.font_size=$siz"
 }
 
-# proc setZFontLabelColor {w  zlabel_foreground} {
-# ScilabEval "global h;h.z_label.foreground='$zlabel_foreground'"
-# }
-
-
-proc setZFontLabelColor {w  col} {
-ScilabEval "global h;h.z_label.foreground=$col"
+proc setZFontLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.z_label.foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f2.frame.samplelabel config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.z_label.foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f2.frame.samplelabel config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.z_label.foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f2.frame.samplelabel config -background $color
+    } else { 
+	ScilabEval "global h; h.z_label.foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f2.frame.samplelabel config -background $color
+	
+    }
 }
+
 
 
 
@@ -1063,26 +1377,49 @@ global tlabel
 ScilabEval "global h;h.title.text='$tlabel'"
 }
 
-# proc setTitleFontLabelSize {w titlelabel_size} {
-# ScilabEval "global h;h.title.font_size='$titlelabel_size'"
-# }
-
-
 proc setTitleFontLabelSize {w siz} {
 ScilabEval "global h;h.title.font_size=$siz"
 }
 
-
-# proc setTitleFontLabelColor {w  titlelabel_foreground} {
-# ScilabEval "global h;h.title.foreground='$titlelabel_foreground'"
-# }
-
-
-
-proc setTitleFontLabelColor {w  col} {
-ScilabEval "global h;h.title.foreground=$col"
+proc setTitleFontLabelColor {w  index} {
+    global RED BLUE GREEN
+    variable REDCOL 
+    variable GRECOL 
+    variable BLUCOL
+    
+    #ScilabEval "global h;"
+    if { $index == -2 } {
+	ScilabEval "global h; h.title.foreground=$index;"
+	#like $index==-2: display white color
+	set color [format \#%02x%02x%02x 255 255 255]
+	.axes.n.f3.frame.samplelabel config -background $color
+    } elseif { $index == -1 } {
+	ScilabEval "global h; h.title.foreground=$index;"
+	#like $index==-1: display black color
+	set color [format \#%02x%02x%02x 0 0 0]
+	.axes.n.f3.frame.samplelabel config -background $color
+    } elseif { $index == 0 } {
+	ScilabEval "global h; h.title.foreground=$index;"
+	#like $index==1: display first color
+	set REDCOL $RED(1) 
+	set GRECOL $GREEN(1) 
+	set BLUCOL $BLUE(1) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	.axes.n.f3.frame.samplelabel config -background $color
+    } else { 
+	ScilabEval "global h; h.title.foreground=$index;"
+	
+	set REDCOL $RED($index) 
+	set GRECOL $GREEN($index) 
+	set BLUCOL $BLUE($index) 
+	
+	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
+	
+	.axes.n.f3.frame.samplelabel config -background $color
+	
+    }
 }
-
 
 
 
