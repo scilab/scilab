@@ -19,14 +19,14 @@ function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
     if size(mo.parameters)==2 then
       for l=1:np
 	Pars=[Pars;'P'+string(size(Pars,1)+1)]
-	rpar=[rpar;mo.parameters(2)(l)(:)]
+	rpar=[rpar;matrix(mo.parameters(2)(l),-1,1)]
 	ipar(k)=ipar(k)+size(mo.parameters(2)(l),'*')
 	P=[P;mo.parameters(1)(l)+'='+Pars($)];
       end
     else
       for l=1:np
 	Pars=[Pars;'P'+string(size(Pars,1)+1)]
-	rpar=[rpar;mo.parameters(2)(l)(:)]
+	rpar=[rpar;matrix(mo.parameters(2)(l),-1,1)]
 	ipar(k)=ipar(k)+size(mo.parameters(2)(l),'*')
 	if mo.parameters(3)(l)==0 then
 	  P=[P;mo.parameters(1)(l)+'='+Pars($)];
