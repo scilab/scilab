@@ -50,7 +50,8 @@ OBJSC = AllCmap.o \
 	UpdMapHint.o \
 	VisCmap.o \
 	WidgetNode.o \
-	Xct.o
+	Xct.o \
+	Clip.o ExtAgent.o
 
 OBJSF =
 
