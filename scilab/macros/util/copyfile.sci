@@ -72,7 +72,7 @@ function [status,msg]=copyfile(varargin)
      if MSDOS then
        cmd='copy '+Src+' '+Dest;
        ver=OS_Version();
-       if ver == 'Windows 98' | ver == 'Windows 95' then
+       if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
          batchlog = ' >'+ TMPDIR+'\copyfile.out';
        else
          batchlog = ' >'+ TMPDIR+'\copyfile.out' +' 2>'+TMPDIR+'\copyfile.err';
@@ -86,7 +86,7 @@ function [status,msg]=copyfile(varargin)
      if (status~=0) then
        if MSDOS then
          ver=OS_Version();
-         if ver == 'Windows 98' | ver == 'Windows 95' then
+         if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
            msg='Error :'+cmd;
          else
            msg='Error : '+mgetl(TMPDIR+'\copyfile.err');
@@ -106,7 +106,7 @@ function [status,msg]=copyfile(varargin)
        if MSDOS then
          ver=OS_Version();
          cmd='attrib -r '+ Dest;
-         if ver == 'Windows 98' | ver == 'Windows 95' then
+         if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
            batchlog = ' >'+ TMPDIR+'\attrib.out';
          else
            batchlog = ' >'+ TMPDIR+'\attrib.out' +' 2>'+TMPDIR+'\attrib.err';

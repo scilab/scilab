@@ -23,7 +23,7 @@ function [rep,stat]=unix_g(cmd)
 
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' then
+    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	tmp=TMPDIR+'\unix.out';
@@ -33,8 +33,7 @@ function [rep,stat]=unix_g(cmd)
      tmp=TMPDIR+'/unix.out';
      cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
   end 
-  
-  
+   
   stat=host(cmd1);
   
   select stat
@@ -46,7 +45,7 @@ function [rep,stat]=unix_g(cmd)
     rep=emptystr()
   else
   if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
      		write(%io(2),'unix_g: shell error');
        		rep=emptystr()
      	else
@@ -61,7 +60,7 @@ function [rep,stat]=unix_g(cmd)
      end 
   end
   if MSDOS then
-  	if ver == 'Windows 98' | ver == 'Windows 95' then
+  	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     		host('if exist '+tmp+' del '+tmp);
     	else
     		host('if exist '+tmp+' del '+tmp);

@@ -22,7 +22,7 @@ function unix_s(cmd)
   // done in scilab.star TMPDIR=getenv('TMPDIR')
   if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' then
+    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	cmd1=cmd +'>'+ ' NUL' +' 2>'+TMPDIR+'\unix.err';
@@ -42,7 +42,7 @@ function unix_s(cmd)
     error(85)
   else //sh failed
      if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
        		error('unix_s: shell error');
        	else
        		msg=read(TMPDIR+'\unix.err',-1,1,'(a)');

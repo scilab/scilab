@@ -53,7 +53,7 @@ function [status,msg]=mkdir(varargin)
     case 1
       if MSDOS then
         ver=OS_Version();
-        if ver == 'Windows 98' | ver == 'Windows 95' then
+        if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
           batchlog = ' >'+ TMPDIR+'\mkdir.out';
         else
           batchlog = ' >'+ TMPDIR+'\mkdir.out' +' 2>'+TMPDIR+'\mkdir.err';
@@ -69,7 +69,7 @@ function [status,msg]=mkdir(varargin)
       if (status~=0) then
         if MSDOS then
       	  ver=OS_Version();
-          if ver == 'Windows 98' | ver == 'Windows 95' then
+          if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
             msg='Error :'+cmd;
           else
             msg='Error : '+mgetl(TMPDIR+'\mkdir.err');

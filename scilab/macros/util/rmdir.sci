@@ -34,7 +34,7 @@ function [status,msg]=rmdir(varargin)
   
   if MSDOS then
     ver=OS_Version();
-    if ver == 'Windows 98' | ver == 'Windows 95' then
+    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
       batchlog = ' >'+ TMPDIR+'\rmdir.out';
     else
       batchlog = ' >'+ TMPDIR+'\rmdir.out' +' 2>'+TMPDIR+'\rmdir.err';
@@ -58,7 +58,7 @@ function [status,msg]=rmdir(varargin)
   if (status~=0) then
     if MSDOS then
       ver=OS_Version();
-      if ver == 'Windows 98' | ver == 'Windows 95' then
+      if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
          msg='Error :'+cmd;
       else
          msg='Error : '+mgetl(TMPDIR+'\rmdir.err');

@@ -21,7 +21,7 @@ ver=OS_Version();
 
 if MSDOS then 
     tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-    if ver == 'Windows 98' | ver == 'Windows 95' then
+    if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
     	cmd1= cmd + ' > '+ tmp;
     else
     	tmp=TMPDIR+'\unix.out';
@@ -40,7 +40,7 @@ case -1 then // host failed
   error(85)
 else //sh failed
 if MSDOS then 
-     	if ver == 'Windows 98' | ver == 'Windows 95' then
+     	if ver == 'Windows 98' | ver == 'Windows 95' | ver == 'Windows ME' then
      		error('unix_x: shell error');
      	else
      		msg=read(TMPDIR+'\unix.err',-1,1,'(a)')
