@@ -6,63 +6,36 @@
 #include <string.h> 
 #include "../stack-c.h"
 /*-----------------------------------------------------------------------------------*/
-extern int setenvc(char *envstring);
+extern int setenvc(char *string,char * value);
 static int ReturnValueSetenv(int value);
 /*-----------------------------------------------------------------------------------*/
 int	C2F(intsetenv) _PARAMS((char *fname))
 {
 	static int l1,n1,m1;
-	
+	int TypeVar1=GetType(1);
+	int TypeVar2=GetType(2);
+
 	Rhs=Max(0,Rhs);
-	CheckRhs(1,2);
+	CheckRhs(2,2);
 	CheckLhs(0,1);
 
-	if (Rhs == 2)
+	if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
 	{
-		int TypeVar1=GetType(1);
-		int TypeVar2=GetType(2);
+		char *param1=NULL,*param2=NULL;
 
-		if ( (TypeVar1 == sci_strings) && (TypeVar2 == sci_strings) )
-		{
-			char *param1=NULL,*param2=NULL;
-			char *env=NULL;
-
-			GetRhsVar(1,"c",&m1,&n1,&l1);
-			param1=cstk(l1);
+		GetRhsVar(1,"c",&m1,&n1,&l1);
+		param1=cstk(l1);
 			
-			GetRhsVar(2,"c",&m1,&n1,&l1);
-			param2=cstk(l1);
+		GetRhsVar(2,"c",&m1,&n1,&l1);
+		param2=cstk(l1);
 
-			env=(char*)malloc((strlen(param1)+strlen(param2)+2)*sizeof(char));
-			sprintf(env,"%s=%s",param1,param2);
-
-			ReturnValueSetenv(setenvc(env));
-
-			if (env) free(env);
-		}
-		else
-		{
-			Scierror(999,"Invalid type : string recquired");
-		}
+		ReturnValueSetenv(setenvc(param1,param2));
 	}
 	else
 	{
-		/* Rhs == 1 */
-		int TypeVar1=GetType(1);
-		if (TypeVar1 == sci_strings)
-		{
-			char *param1=NULL;
-		
-			GetRhsVar(1,"c",&m1,&n1,&l1);
-			param1=cstk(l1);
-
-			ReturnValueSetenv(setenvc(param1));
-		}
-		else
-		{
-			Scierror(999,"Invalid type : string recquired");
-		}
+		Scierror(999,"Invalid type : string recquired");
 	}
+
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/
