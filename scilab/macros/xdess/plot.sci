@@ -19,6 +19,12 @@ if ~rhs
   plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
   subplot(212)
   plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+  disp("clf();")
+  disp("t=0:%pi/20:2*%pi;");
+  disp("subplot(211)")
+  disp("plot(t,sin(t),''ro-.'',t,cos(t),''cya+'',t,abs(sin(t)),''--mo'')");
+  disp("subplot(212)");
+  disp("plot([t ;t],[sin(t) ;cos(t)],''xdat'',[1:2])")
   return;
 end
 
