@@ -13,6 +13,8 @@ function [s]=covar(x,y,fre)
 //
 //date: 2000-04-14
 //
+//small correction (bug number 1072) date : 8 nov 2004
+//
   if x==[] | y==[] then s=%nan; return, end
   [lhs,rhs]=argn(0)
   if rhs <> 3 then error('covar requires three arguments.'), end
@@ -24,8 +26,8 @@ function [s]=covar(x,y,fre)
   fre(isnan(fre))=0
   lx=lx*cx;
   cy=ly*cy;
-  if lx<>cfre then error('inconsistent dimensions'), end
-  if cy<>lfre then error('inconsistent dimensions'), end
+  if lx<>lfre then error('inconsistent dimensions'), end
+  if cy<>cfre then error('inconsistent dimensions'), end
   x=matrix(x,lx,1);
   y=matrix(y,1,cy);
   fr=fre/sum(fre)
