@@ -1,158 +1,231 @@
-function h=mtlb_plot(X1,X2,X3,X4,X5,X6,X7,X8,X9)
-global mtlb_log_mod
+function h=mtlb_plot(varargin)
 // Copyright INRIA
-if mtlb_log_mod==[] then 
-  log_mod='nn'
-else
-  log_mod=mtlb_log_mod
+// Emulation function for Matlab plot()
+// V.C.
+
+// Default for Matlab graphics
+mtlbColorOrder=[..
+	0    0    1   ;..
+	0    0.5  0   ;..
+	1    0    0   ;..
+	0    0.75 0.75;..
+	0.75 0    0.75;..
+	0.75 0.75 0   ;..
+	0.25 0.25 0.25].*255;
+
+// red green blue cyan magenta yellow black white
+mtlbcolors=["r"  ,"g"    ,"b"   ,"c"   ,"m"      ,"y"     ,"k"    ,"w"    ]
+scicolors= ["red","green","blue","cyan","magenta","yellow","black","white"]
+
+mtlbmarkers=["+","o","*",".","x","s","d","^","v",">","<","p","h"]
+scimarkers= [ 1 , 9 , 3 , 0 , 2 , -1, 5 , 6 , 7 , -1, -1, -1, -1]
+
+mtlblinestyles=["-","--",":","-."]
+scilinestyles= [ 0 , 2  , -1, 5  ]
+
+// plot(axes_handle,...)
+if type(varargin(1))==9 then
+  set("current_axes",varargin(1))
+  varargin(1)=null()
 end
-h=[]
-[lhs,rhs]=argn(0)
-global ('%MTLBHOLD')
-if %MTLBHOLD==[] then %MTLBHOLD=%f,end
-if ~%MTLBHOLD then
-  strf='061'
-  xbasc()
-else
-  strf='000'
-end 
+
+
+mtlbColor=mtlbColorOrder(1,:)
+colorIndex=1
+
+// plot(Y)
+if lstsize(varargin)==1 then
+  mtlb_plotY(varargin(1))
+elseif lstsize(varargin)==2 then
   
-if rhs==1 then
-  mtlb_plt1(X1,'k-')
-elseif rhs==2 then
-  if type(X2)==10 then
-    mtlb_plt1(X1,X2)
-  else   
-    mtlb_plt2(X1,X2)
+  // plot(Y,Linespec)
+  if type(varargin(2))==10 then
+    mtlb_plotY(varargin(1))
+    curh=gce()
+    curh=curh.children(1)
+    mstyl=linespec2sci(varargin(2),curh)
+    if ~isempty(mstyl) then
+      mtlb_plotY(varargin(1))
+      a=gca()
+      markplot=a.children(1)
+      markplot.children(1).mark_mode="on"
+      markplot.children(1).mark_style=mstyl
+    end
+    if colorIndex<>7 then 
+      colorIndex=colorIndex+1;
+    else
+      colorIndex=1;
+    end
+    mtlbColor=mtlbColorOrder(colorIndex,:);
+  // plot(X,Y)
+  else
+    mtlb_plotXY(varargin(1),varargin(2))
+    if colorIndex<>7 then 
+      colorIndex=colorIndex+1;
+    else
+      colorIndex=1;
+    end
+    mtlbColor=mtlbColorOrder(colorIndex,:);
   end
-elseif rhs==3&type(X3)==10 then
-  mtlb_plt2(X1,X2,X3)
+// plot(X,Y,Linespec)  
+elseif lstsize(varargin)==3 & type(varargin(3))==10 then
+  mtlb_plotXY(varargin(1),varargin(2))
+  curh=gce()
+  curh=curh.children(1)
+  mstyl=linespec2sci(varargin(3),curh)
+  if ~isempty(mstyl) then
+    mtlb_plotXY(varargin(1),varargin(2))
+    a=gca()
+    markplot=a.children(1)
+    markplot.children(1).mark_mode="on"
+    markplot.children(1).mark_style=mstyl
+  end
+  if colorIndex<>7 then 
+    colorIndex=colorIndex+1;
+  else
+    colorIndex=1;
+  end
+  mtlbColor=mtlbColorOrder(colorIndex,:);
 else
   k=1
-  kc=[],cstyl=[]
-  while k<=rhs-1 
-    kc=[kc;[k k+1]]
-    if k+2>rhs then
-      cstyl=[cstyl,'k-']
-    else
-      execstr('tp=type(X'+string(k+2)+')')
-      if tp==10 then
-        execstr('st=X'+string(k+2))
-        cstyl=[cstyl,st]
-        k=k+3
+  while k<=lstsize(varargin)
+    if k<lstsize(varargin) & type(varargin(k))<>10 then
+      mtlb_plotXY(varargin(k),varargin(k+1))
+      set(gca(),"auto_clear","off")
+      X=varargin(k)
+      Y=varargin(k+1)
+      lineplot=gce()
+      markplot=lineplot
+      k=k+2
+      if colorIndex<>7 then 
+	colorIndex=colorIndex+1;
       else
-        cstyl=[cstyl,'k-']
-        k=k+2
+	colorIndex=1;
+      end
+      mtlbColor=mtlbColorOrder(colorIndex,:);
+    elseif k<=lstsize(varargin) & type(varargin(k))==10 then
+      opt=varargin(k)
+      opt=convstr(opt,"l")
+      if ~isempty(strindex("linestyle",opt)) then
+	curh=lineplot.children(1)
+	linespec2sci(varargin(k+1),curh)
+	k=k+2
+      elseif ~isempty(strindex("linewidth",opt)) then
+	lineplot.children(1).thickness=varargin(k+1)
+	k=k+2
+      elseif ~isempty(strindex("marker",opt)) then
+	curh=markplot.children(1)
+	linespec2sci(varargin(k+1),curh)
+	k=k+2
+      elseif ~isempty(strindex("markeredgecolor",opt)) then
+	warning("MarkerEdgeColor option ignored");
+	k=k+2
+      elseif ~isempty(strindex("markerfacecolor",opt)) then
+	curh=markplot.children(1)
+	linespec2sci(varargin(k+1),curh)
+	k=k+2
+      elseif ~isempty(strindex("markersize",opt)) then
+	scimarksize=[8 10 12 14 18 24]
+	markplot.children(1).mark_size=scimarksize(max(find(scimarksize<varargin(k+1))))
+	k=k+2
+      else
+	curh=lineplot.children(1)
+	mstyl=linespec2sci(varargin(k),curh)
+	if ~isempty(mstyl) then
+	  mtlb_plotXY(X,Y)
+	  a=gca()
+	  markplot=a.children(1)
+	  markplot.children(1).mark_mode="on"
+	  markplot.children(1).mark_style=mstyl
+	end
+	k=k+1
       end
     end
   end
-  nc=size(cstyl,'*')
-  xmx=-10^20
-  xmn=10^20
-  ymx=-10^20
-  ymn=10^20
-  for k=1:nc
-    kx=kc(k,1)
-    ky=kc(k,2)
-    execstr('xmx=max(xmx,max(X'+string(kx)+'))')
-    execstr('xmn=min(xmn,min(X'+string(kx)+'))')
-    execstr('ymx=max(ymx,max(X'+string(ky)+'))')
-    execstr('ymn=min(ymn,min(X'+string(ky)+'))')
-  end
-  if  ~%MTLBHOLD then
-    xsetech([0,0,1.0,1.0],[xmn,ymn,xmx,ymx])
-    strf='001'
-  else
-    strf='000'
-  end
-
-  for k=1:nc
-    kx=kc(k,1)
-    ky=kc(k,2)
-    execstr('mtlb_plt2(X'+string(kx)+',X'+string(ky)+',cstyl(k))')
-  end
 end
-mtlb_log_mod=[]
-
+a=gca()
+a.auto_clear="on"
+h=a.children
 endfunction
-function mtlb_plt1(X1,mtlb_style)
-[lhs,rhs]=argn(0)
-p=xget('pattern')
-mclrs=['y','m','c','r','g','b','w','k']
-sclrs=[33 ,22 ,17 ,5  ,11 ,12 ,33 ,1  ]
-mltyp=['.','o','x','+','-','*',':','-.','--']
-sltyp=[0  ,9  ,2,   1,  -1  3   -1  -1   -1]
-clr=sclrs(find(part(mtlb_style,1)==mclrs))
-ltyp=find(mltyp==part(mtlb_style,size(clr,'*')+1:length(mtlb_style)))
-if clr==[] then clr=1,end
-if ltyp>0 then
-  style=-ltyp+1
-else
-  style=clr
-end
-if norm(imag(X1),1)==0 then
-  if min(size(X1))==1 then
-    plot2d1('e'+log_mod,0,X1(:),style,strf)
-  else
-    plot2d1('e'+log_mod,0,X1,style*ones(1,size(X1,2)),strf)
-  end
-else
-  if min(size(X1))==1 then
-    plot2d1('g'+log_mod,real(X1(:)),imag(X1(:)),style,strf)
-  else
-    plot2d1('g'+log_mod,real(X1),imag(X1),style*ones(1,size(X1,2)),strf)
-  end
-end
-xset('pattern',p)
 
+function mtlb_plotY(Y)
+  if norm(Y,1)==0 then
+    plot2d(Y)
+  else
+    plot2d(real(Y),imag(Y))
+  end
+  e=gce()
+  e.children(1).foreground=color(mtlbColor(1),mtlbColor(2),mtlbColor(3))
+  e.children(1).line_style=0
 endfunction
-function mtlb_plt2(X1,Y1,mtlb_style)
-[lhs,rhs]=argn(0)
-p=xget('pattern')
-if rhs==3 then
-  mclrs=['y','m','c','r','g','b','w','k']
-  sclrs=[33 ,22 ,17 ,5  ,11 ,12 ,33 ,1  ]
-  mltyp=['.','o','x','+','-','*',':','-.','--']
-  sltyp=[0  ,9  ,2,   1,  -1  3   -1  -1   -1]
-  for k=1:length(mtlb_style)
-    clr=sclrs(find(part(mtlb_style,k)==mclrs))
-    if clr<>[] then 
-      mtlb_style=part(mtlb_style,1:k-1)+part(mtlb_style,k+1:length(mtlb_style))
-      break,
-    end
-  end
-  ltyp=sltyp(find(mtlb_style==mltyp))
-  if clr==[] then clr=1,end
-  if ltyp>0 then
-    xset('pattern',clr)
-    style=-ltyp+1
-  else
-    style=clr
-  end
-else
-  style=[]
-end
-[mx1,nx1]=size(X1)
-[my1,ny1]=size(Y1)
-if min(size(X1))==1&min(size(Y1))==1 then
-  X1=X1(:);Y1=Y1(:)
-  n=min(size(X1,1),size(Y1,1))
-  if style==[] then style=1,end
-  plot2d1('g'+log_mod,X1(1:n),Y1(1:n),style,strf)
-elseif min(size(X1))==1 then
-  nx1=mx1*nx1
-  if my1<>nx1&ny1==nx1 then Y1=Y1.', end
-  if style==[] then style=1:size(Y1,2),else style=style*ones(1,size(Y1,2)),end
-  plot2d1('o'+log_mod,X1(:),Y1,style,strf)  
-elseif min(size(Y1))==1 then
-  if style==[] then style=1,end
-  plot2d1('o'+log_mod,X1(:),Y1,style*ones(1,size(Y1,2)),strf)  
-else
-  if style==[] then 
-    plot2d1('g'+log_mod,X1,Y1,1:size(Y1,2),strf)
-  else
-    plot2d1('g'+log_mod,X1,Y1,style*ones(1,size(Y1,2)),strf)
+
+function mtlb_plotXY(X,Y)
+  plot2d(X,Y)
+  e=gce()
+  e.children(1).foreground=color(mtlbColor(1),mtlbColor(2),mtlbColor(3))
+  e.children(1).line_style=0
+endfunction
+
+function mark=linespec2sci(linespec,cur_handle)
+mtlbColor=mtlbColor;
+linep=%F
+// line style
+ind=[]
+for k=1:size(mtlblinestyles,"*")
+  found=strindex(linespec,mtlblinestyles(k))
+  if ~isempty(found) then
+    ind=k
+    linep=%T
   end
 end
-xset('pattern',p)
+styl=scilinestyles(ind)
+if styl>=0 then
+  cur_handle.line_style=styl
+elseif ~isempty(ind) then
+  warning("Unknown line style found in ''"+linespec+"'' -> set to 6");
+  cur_handle.line_style=6
+end
+
+// color
+ind=[]
+for k=1:size(mtlbcolors,"*")
+  found=strindex(linespec,mtlbcolors(k))
+  if ~isempty(found) then
+    ind=k
+    break
+  end
+end
+clr=scicolors(ind)
+if ~isempty(clr) then
+  cur_handle.foreground=color(clr)
+  mtlbColor=name2rgb(clr)
+elseif ~isempty(ind) then
+  warning("Unknown color found in ''"+linespec+"'' -> set to black");
+  cur_handle.foreground=color("black")
+  mtlbColor=name2rgb("black")
+end
+
+// marker
+ind=[]
+for k=1:size(mtlbmarkers,"*")
+  found=strindex(linespec,mtlbmarkers(k))
+  if ~isempty(found) then
+    ind=k
+    break
+  end
+end
+mark=scimarkers(ind)
+if ~linep & mark>=0 & ~isempty(mark) then
+  cur_handle.mark_mode="on"
+  cur_handle.mark_style=mark
+  cur_handle.mark_size=1
+elseif ~linep & mark>=0 & ~isempty(mark) then
+  cur_handle.mark_mode="on"
+  cur_handle.mark_style=4
+  cur_handle.mark_size=1
+elseif ~isempty(ind) then
+  mark=4
+end
+mtlbColor=resume(mtlbColor)
 endfunction
+
