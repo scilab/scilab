@@ -151,8 +151,9 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) != SCI_AXES)        &&
      (sciGetEntityType(pobj) != SCI_MENU)        &&
      (sciGetEntityType(pobj) != SCI_MENUCONTEXT) &&
-     (sciGetEntityType(pobj) != SCI_STATUSB)     &&
-     (sciGetEntityType(pobj) != SCI_LABEL))
+     (sciGetEntityType(pobj) != SCI_STATUSB)) 
+    /* &&
+       (sciGetEntityType(pobj) != SCI_LABEL)) */
     {
       if(old_m +1 == sciGetForeground(pobj)){         /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
