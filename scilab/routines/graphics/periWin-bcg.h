@@ -18,6 +18,7 @@ struct BCG
   HDC hdcCompat ;  /** for pixmap version */
   HBITMAP hbmCompat ;  /** for pixmap version */
   MW  lpmw;        /** graphic window menu **/
+  int in_sizemove ;   /** graphic window is in resize move */
   int CurWindow ;   /** Id of window **/
   int CWindowWidth ; /** graphic window width **/
   int CWindowHeight ; /** graphic window height **/
