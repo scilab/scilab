@@ -119,5 +119,4 @@ stack0.obj stack1.obj stack2.obj: ../stack.h
 getdate.obj: ../machine.h
 intlapack.obj: ../machine.h ../stack-c.h
 intslicot.obj: ../machine.h ../stack-c.h ../mex.h
-intmgetl.obj: ../stack.h
-
+intmgetl.obj:  ../stack.h
