@@ -287,7 +287,7 @@ if test "$rest" = "yes"; then
   fi
 
   if test -n "$debug"; then 
-     gdb -e $SCI/bin/scilex
+     gdb  $SCI/bin/scilex
   else	
       $sci_exe $sci_args 
   fi 
