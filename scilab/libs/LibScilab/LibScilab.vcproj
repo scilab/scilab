@@ -506,7 +506,31 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
 			<File
+				RelativePath="..\..\routines\callinter.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\machine.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\mex.h">
+			</File>
+			<File
 				RelativePath="..\..\routines\wsci\resource.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\stack-abs.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\stack-c.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\stack-def.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\stack.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\version.h">
 			</File>
 		</Filter>
 		<File
