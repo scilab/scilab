@@ -61,9 +61,10 @@ M5 =    cell.sci struct.sci  \
 
 
 PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci \
-	mtlb_hold.sci mtlb_ishold.sci mtlb_mesh.sci mtlb_meshdom.sci \
+	mtlb_hold.sci mtlb_mesh.sci mtlb_meshdom.sci \
 	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
-	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci mtlb_box.sci mtlb_colordef.sci
+	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci mtlb_box.sci mtlb_colordef.sci \
+	mtlb_close.sci
 
 UTIL=enlarge_shape.sci makecell.sci firstnonsingleton.sci asciimat.sci mstr2sci.sci
 
