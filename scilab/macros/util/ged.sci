@@ -243,6 +243,13 @@ function tkged()
     TK_SetVar("curvis",h.visible)
     TK_SetVar("curstyle",string(h.polyline_style))
     TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+    case "Rectangle"
+    TK_SetVar("ncolors",string(size(get(gcf(),'color_map'),1)))
+    TK_SetVar("curcolor",string(h.foreground))
+    TK_SetVar("curthick",string(h.thickness))
+    TK_SetVar("curvis",h.visible)
+    TK_SetVar("curstyle",string(h.line_style))
+    TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
     case "Axes"
     TK_SetVar("xlabel",h.x_label.text)
     TK_SetVar("ylabel",h.y_label.text)
@@ -263,6 +270,13 @@ function setStyle(sty)
   global h;h.polyline_style=find(sty==['interpolated','staircase', ...
 		    'barplot','arrowed','filled'])
 endfunction
+function setLineStyle(sty)
+  global h;
+  h.line_style=find(sty==[ "solid" "dash" "dash dot" "longdash dot" ..
+		    "bigdash dot" "bigdash longdash"])
+  
+endfunction
+
 function setFontStyle(ftn)
   
   global h;
