@@ -25,8 +25,31 @@ function ged(k,win)
     case 3 then //erase
     xbasc()
     case 4 then //edit current figure properties
+
+    //color_map array for color sample display
+    f=gcf();
+    for i=1:size(f.color_map,1)
+      redname= "RED("+string(i)+")";
+      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+      grename= "GREEN("+string(i)+")";
+      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+      bluname= "BLUE("+string(i)+")";
+      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+    end
+    
     ged_figure(gcf())
     case 5 then //edit current axes
+    //color_map array for color sample display
+    f=gcf();
+    for i=1:size(f.color_map,1)
+      redname= "RED("+string(i)+")";
+      TK_EvalStr('set '+redname+" "+string(int(255*f.color_map(i,1))));
+      grename= "GREEN("+string(i)+")";
+      TK_EvalStr('set '+grename+" "+string(int(255*f.color_map(i,2))));
+      bluname= "BLUE("+string(i)+")";
+      TK_EvalStr('set '+bluname+" "+string(int(255*f.color_map(i,3))));
+    end
+
     ged_axes(gca())
     case 6 then //start Entity picker
     seteventhandler("ged_eventhandler")
@@ -41,6 +64,7 @@ endfunction
 
 function ged_figure(h)
   global ged_handle;ged_handle=h;
+
   TK_SetVar("background",string(h.background))
   TK_SetVar("rotation_style",h.rotation_style)
   TK_SetVar("figure_name",h.figure_name)
@@ -49,7 +73,7 @@ endfunction
 
 function ged_axes(h)
   global ged_handle;ged_handle=h;
-  f=h.parent
+ 
   TK_SetVar("msdos",string(MSDOS))
   TK_SetVar("xlabel",h.x_label.text)
   TK_SetVar("ylabel",h.y_label.text)
@@ -106,6 +130,7 @@ endfunction
 
 function ged_rectangle(h)
   global ged_handle; ged_handle=h
+
   f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   TK_SetVar("ncolors",string(size(f.color_map,1)))
   TK_SetVar("curcolor",string(h.foreground))
