@@ -1,5 +1,9 @@
 mode(-1)
 // Copyright INRIA
+if ~with_pvm() then
+  x_message('Sorry this version has not been built with pvm interface')
+  return
+end
 demos_name=[
     'Master and slave'
     ]
