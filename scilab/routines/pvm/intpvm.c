@@ -13,7 +13,6 @@
  *-----------------------------------------------------------------------*/
 
 #include <string.h> 
-#include "pvm3.h"
 #include "../mex.h"
 #include "../stack-c.h"
 #include "sci_pvm.h"

@@ -9,12 +9,11 @@
      
    HISTORY
      fleury - Nov 19, 1997: Created.
-     $Id: pvm_recv.c,v 1.2 2002/07/25 08:42:44 chanceli Exp $
+     $Id: pvm_recv.c,v 1.3 2003/11/04 09:12:19 steer Exp $
 ***/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "pvm3.h"
 #include "../machine.h"
 #include "../stack-c.h"
 #include "../calelm/sci_tools.h"
