@@ -436,6 +436,7 @@ c      call showstack()
      &     ' in the Schur form no longer satisfy criterion')
       goto 9999
  204  continue
+      call basout(io,wte,' Formal variable name has been truncated')
       goto 9999
  205  continue
       goto 9999
