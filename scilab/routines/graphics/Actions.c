@@ -20,7 +20,7 @@
  *            
  ********************************************************/
 extern int versionflag; /* NG */
-extern void sciSwitchWindow  __PARAMS((int *winnum));/* NG */
+extern int sciSwitchWindow  __PARAMS((int *winnum));/* NG */
 extern void sciGetIdFigure __PARAMS((int *vect, int *id, int *iflag));/* NG */
 #if !defined(WIN32) && !defined(WITH_GTK)
 extern int WithBackingStore();
