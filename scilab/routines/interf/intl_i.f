@@ -398,6 +398,7 @@ c     realize insertion A3(i1)..(ik)=Temp1
 c     .  insertion has been done in place, 
          top3=top1+2
          if(rstk(pt).eq.407) then
+            il3=iadr(lstk(top3))
             top=top-1
             call copyvar(il3,lstk(top3+1)-lstk(top3))
             if(err.gt.0) return
