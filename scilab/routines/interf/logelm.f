@@ -13,16 +13,19 @@ c
       endif
 
 c     functions/fin
-c     1      2 
-c   find   bool2s
+c     1      2     3    4
+c   find   bool2s  or  and
 c
 c
 c
-      goto (10,20) fin
+      goto (10,20,30,40) fin
  10   call intsfind
       return
  20   call intsbool2s
       return
+ 30   call intor('or')
+      return
+ 40   call intand('and')
       end
 c
       subroutine intsfind
@@ -30,6 +33,7 @@ c
 
       double precision tv
 c
+      logical ref
       integer sadr,iadr
 c
       iadr(l)=l+l-1
@@ -48,13 +52,25 @@ c
       endif
 
       il1=iadr(lstk(top))
+      ilr=il1
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      ref=ilr.ne.il1
 
       if(istk(il1).eq.1) then
 c     argument is a standard matrix
          m1=istk(il1+1)
          mn1=istk(il1+1)*istk(il1+2)
          l1=sadr(il1+4)
-         l=l1
+         if(ref) then
+            err=sadr(ilr+4)+mn1-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call icopy(4,istk(il1),1,istk(ilr),1)
+         endif
+         lr=sadr(ilr+4)
+         l=lr
          if(mn1.gt.0) then
             do 11 k=0,mn1-1
                if(stk(l1+k).ne.0.0d0) then
@@ -62,8 +78,7 @@ c     argument is a standard matrix
                   l=l+1
                endif
  11         continue
-
-            nt=l-l1
+            nt=l-lr
          else
             nt=0
          endif
@@ -71,27 +86,31 @@ c     argument is a standard matrix
 c     argument is a full boolean matrix
          m1=istk(il1+1)
          mn1=istk(il1+1)*istk(il1+2)
-         il=max(il1+3+mn1,iadr(lstk(top)+mn1*lhs)+8)
-         err=sadr(il+mn1)-lstk(bot)
-         if(err.gt.0) then
-            call error(17)
-            return
+         if(.not.ref) then
+            il=max(il1+3+mn1,iadr(lstk(top)+mn1*lhs)+8)
+            err=sadr(il+mn1)-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call icopy(mn1,istk(il1+3),1,istk(il),1)
+         else
+            il=il1+3
          endif
-         call icopy(mn1,istk(il1+3),1,istk(il),1)
-         istk(il1)=1
-         l1=sadr(il1+4)
+         istk(ilr)=1
+         lr=sadr(ilr+4)
          if(mn1.gt.0) then
-            l=l1
+            l=lr
             do 13 k=0,mn1-1
                if(istk(il+k).ne.1) goto 13
                stk(l)=float(k+1)
                l=l+1
  13         continue
-            nt=l-l1
+            nt=l-lr
          else
             nt=0
          endif
-      elseif(istk(il1).eq.6.) then
+      elseif(istk(il1).eq.6) then
 c     argument is a sparse boolean matrix
          goto 20
       elseif(istk(il1).eq.5) then
@@ -102,10 +121,10 @@ c     argument is a sparse  matrix
          fun=-1
          return
       endif
-      istk(il1+1)=min(1,nt)
-      istk(il1+2)=nt
-      istk(il1+3)=0
-      lstk(top+1)=l1+nt
+      istk(ilr+1)=min(1,nt)
+      istk(ilr+2)=nt
+      istk(ilr+3)=0
+      lstk(top+1)=lr+nt
       if(lhs.eq.1) goto 999
       top=top+1
       il2=iadr(lstk(top))
@@ -117,43 +136,57 @@ c     argument is a sparse  matrix
       lstk(top+1)=l2+nt
       if(nt.eq.0) goto 999
       do 15 k=0,nt-1
-         stk(l2+k)=float(int((stk(l1+k)-1.0d0)/m1)+1)
-         stk(l1+k)=stk(l1+k)-(stk(l2+k)-1.0d+0)*m1
+         stk(l2+k)=float(int((stk(lr+k)-1.0d0)/m1)+1)
+         stk(lr+k)=stk(lr+k)-(stk(l2+k)-1.0d+0)*m1
  15   continue
       goto 999
 c
  20   continue
 c     sparse matrix find
-
       m1=istk(il1+1)
       n1=istk(il1+2)
       nel1=istk(il1+4)
 c
-      li=sadr(il1+4)
-      ilj=iadr(li+nel1)
-      lj=sadr(ilj+4)
-      lw=max(lw,lj+nel1)
-      ilr=iadr(lw)
-      lw=sadr(ilr+m1+nel1)
-      err=lw-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
+
+      if(.not.ref) then
+         li=sadr(il1+4)
+         ilj=iadr(li+nel1)
+         lj=sadr(ilj+4)
+         lw=max(lw,lj+nel1)
+         ilr1=iadr(lw)
+         lw=sadr(ilr1+m1+nel1)
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call icopy(m1+nel1,istk(il1+5),1,istk(ilr1),1)
+         call int2db(nel1,istk(ilr1+m1),1,stk(lj),1)
+      else
+         li=sadr(ilr+4)
+         ilj=iadr(li+nel1)
+         lj=sadr(ilj+4)
+         lw=max(lw,lj+nel1)
+         ilr1=il1+5
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         call int2db(nel1,istk(ilr1+m1),1,stk(lj),1)
       endif
-      call icopy(m1+nel1,istk(il1+5),1,istk(ilr),1)
-      call int2db(nel1,istk(ilr+m1),1,stk(lj),1)
       i1=0
       do 30 i=0,m1-1
-         if(istk(ilr+i).ne.0) then
+         if(istk(ilr1+i).ne.0) then
             tv=i+1
-            call dset(istk(ilr+i),tv,stk(li+i1),1)
-            i1=i1+istk(ilr+i)
+            call dset(istk(ilr1+i),tv,stk(li+i1),1)
+            i1=i1+istk(ilr1+i)
          endif
  30   continue
-      istk(il1)=1
-      istk(il1+1)=1
-      istk(il1+2)=nel1
-      istk(il1+3)=0
+      istk(ilr)=1
+      istk(ilr+1)=1
+      istk(ilr+2)=nel1
+      istk(ilr+3)=0
       lstk(top+1)=li+nel1
       if(lhs.eq.1) then
          do 31 i=0,nel1-1
@@ -176,6 +209,7 @@ c
       subroutine intsbool2s
       include '../stack.h'
 
+      logical ref
       integer sadr,iadr
 c
       iadr(l)=l+l-1
@@ -194,18 +228,21 @@ c
       endif
 
       il1=iadr(lstk(top))
-      if(istk(il1).lt.0) il1=istk(il1+1)
+      ilr=il1
+      if(istk(il1).lt.0) il1=iadr(istk(il1+1))
+      ref=ilr.ne.il1
       mn1=istk(il1+1)*istk(il1+2)
-      ilr=iadr(lstk(top))
-      lr=sadr(ilr+4)
-      err=lr+mn1-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
-      endif
 
       if(istk(il1).eq.4) then
+
 c     argument is a full boolean matrix
+         lr=sadr(ilr+4)
+         err=lr+mn1-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+
          do 13 k=mn1-1,0,-1
             stk(lr+k)=istk(il1+3+k)
  13      continue
@@ -219,8 +256,15 @@ c     argument is a sparse boolean matrix
          m1=istk(il1+1)
          n1=istk(il1+2)
          nel1=istk(il1+4)
-c
-         call icopy(m1+nel1,istk(il1+5),1,istk(ilr+5),1)
+c   
+         if(ref) then
+            err=sadr(ilr+5+m1+nel1)+nel1-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call icopy(m1+nel1,istk(il1+5),1,istk(ilr+5),1)
+         endif
          lj=sadr(ilr+5+m1+nel1)
          call dset(nel1,1.0d0,stk(lj),1)
          istk(ilr)=5
@@ -237,8 +281,17 @@ c
             istk(ilr+3)=0
             lstk(top+1)=lr
          else
+            l1=sadr(il1+4)
+            lr=sadr(ilr+4)
+            if(ref) then
+               err=lr+mn1-lstk(bot)
+               if(err.gt.0) then
+                  call error(17)
+                  return
+               endif
+            endif
             do 20 k=mn1-1,0,-1
-               if(stk(lr+k).ne.0.0d0) then
+               if(stk(l1+k).ne.0.0d0) then
                   stk(lr+k)=1.0d0
                else
                   stk(lr+k)=0.0d0
@@ -256,7 +309,14 @@ c     argument is a sparse matrix
          n1=istk(il1+2)
          nel1=istk(il1+4)
 c
-         call icopy(m1+nel1,istk(il1+5),1,istk(ilr+5),1)
+         if(ref) then
+            err=sadr(ilr+5+m1+nel1)+nel1-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call icopy(m1+nel1,istk(il1+5),1,istk(ilr+5),1)
+         endif
          lj=sadr(ilr+5+m1+nel1)
          call dset(nel1,1.0d0,stk(lj),1)
          istk(ilr)=5
@@ -272,4 +332,4 @@ c
       endif
       end
 
-
+      

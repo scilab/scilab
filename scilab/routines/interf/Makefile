@@ -5,7 +5,9 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/interf.a
 
-OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o intlapack.o intslicot.o matdes.o
+OBJSC = Interf.o ctest.o  cs2st.o getdate.o stack1.o stack2.o stack3.o \
+	intlapack.o intslicot.o matdes.o intorand.o 
+
 
 OBJSF = lstelm.o lstelmi.o matdsc.o matdsr.o matelm.o\
 	lstops.o intl_e.o intl_i.o \
