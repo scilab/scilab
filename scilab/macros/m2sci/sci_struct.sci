@@ -1,7 +1,7 @@
 function [stk,txt,top]=sci_struct()
 // Copyright INRIA
 txt=[]
-names=[''struct''];vals
+names=['struct'];vals=[]
 for k=1:2:rhs-1
   names=[names;stk(top-rhs+k)(1)]
 end
