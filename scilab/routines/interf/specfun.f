@@ -451,7 +451,11 @@ c     checking variable x (number 1)
          call error(52)
          return
       endif
-
+      if (setslatecjmp().ne.0) then
+         buf='Slatec fatal error'
+         call error(999)
+         return
+      endif
       
       do 10 i=0,n1*m1-1
          stk(lr1+i)=dgamma(stk(lr1+i))
@@ -487,7 +491,11 @@ c     checking variable x (number 1)
          call error(52)
          return
       endif
-
+      if (setslatecjmp().ne.0) then
+         buf='Slatec fatal error'
+         call error(999)
+         return
+      endif
       
       do 10 i=0,n1*m1-1
          stk(lr1+i)=dlgama(stk(lr1+i))

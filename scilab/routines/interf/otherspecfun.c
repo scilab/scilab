@@ -49,7 +49,7 @@ extern void  C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2, double *
 			int *id, double *pqa, int *ipqa, int *ierror);
 extern void C2F(msgs)(int *n, int* ierr);
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);
-
+extern int C2F(setslatecjmp)();
 
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax)
 {
@@ -1074,6 +1074,10 @@ static TabF Tab[]={
 int C2F(otherspfunlib)(void)
 {
   Rhs = Max(0, Rhs);
+  if (C2F(setslatecjmp)()) { 
+    Scierror(999,"%s: arguments must be positive \r\n", Tab[Fin-1].name);
+    return 0;
+  }
   (*(Tab[Fin-1].f))(Tab[Fin-1].name);
   C2F(putlhsvar)();
   return 0;
