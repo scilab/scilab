@@ -557,7 +557,7 @@ c     store  new variable as "named" at the top of the stack
          endif
       endif
       if (sym.eq.semi .or. sym.eq.comma .or. sym.eq.eol) goto 70
-      call error(40)
+      call error(276)
       goto 98
 c     
 c     store results

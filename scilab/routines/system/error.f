@@ -1235,8 +1235,8 @@ C     errors from semidef
       call msgout(io,lunit, 'varargout keyword cannot be used here')
       goto 999
  276  continue
+      call msgout(io,lunit, 'Missing operator, comma, or semicolon')
       goto 999
-
  277  continue
       goto 999
  278  continue
