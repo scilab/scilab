@@ -159,15 +159,17 @@ HMFUNS = %hm_abs.sci %hm_ceil.sci %hm_conj.sci \
 	 %hm_zeros.sci %hm_bool2s.sci %hm_find.sci %hm_isnan.sci \
 	 %hm_isreal.sci %hm_iconvert.sci
 
-BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci %b_iconvert.sci
+BFUNS =  %b_diag.sci %b_tril.sci %b_triu.sci %b_string.sci %b_iconvert.sci \
+	%b_matrix.sci
 
-CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci %c_tril.sci %c_triu.sci \
-	%c_matrix.sci
+CFUNS =  %c_diag.sci %c_eye.sci %c_mclose.sci %c_ones.sci %c_rand.sci \
+	%c_tril.sci %c_triu.sci %c_matrix.sci
 
 LSSFUNS= %lss_eye.sci %lss_inv.sci %lss_ones.sci %lss_rand.sci %lss_size.sci\
 	 %lss_norm.sci
 
-PFUNS =  %p_det.sci %p_inv.sci %p_prod.sci %p_simp.sci %p_string.sci %p_sum.sci
+PFUNS =  %p_det.sci %p_inv.sci %p_prod.sci %p_simp.sci %p_string.sci %p_sum.sci \
+	%p_matrix.sci
 
 RFUNS =  %r_clean.sci %r_det.sci %r_diag.sci %r_eye.sci %r_inv.sci \
 	 %r_ones.sci %r_rand.sci %r_simp.sci %r_size.sci %r_string.sci \
@@ -184,7 +186,7 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci %i_ascii.sci \
 	%i_matrix.sci
 
-HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci
+HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci %h_matrix.sci
 
 FUNS =   %cblock_p.sci %choose.sci %l_isequal.sci
 

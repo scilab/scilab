@@ -35,7 +35,7 @@ for k=rhs-2:-1:1
   end
 end
 //
-if prod(dims1)>size(v,'*') then v(prod(dims1))=0,end
+if prod(dims1)>size(v,'*') then v(prod(dims1))=%f,end
 v(I+1)=N(:)
 
 
