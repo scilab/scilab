@@ -176,7 +176,7 @@ else
 end
 clear startup ierr
 
-// working dirr startup (if any)
+// working dir startup (if any)
 if  home<>PWD then
   [startup,ierr]=mopen('.scilab','r')
   if ierr==0 then
