@@ -38,7 +38,7 @@ case 'set' then
    end	   
     if ok then
       graphics.exprs=exprs;
-      model.dstate=[zz0;told];model.rpar=T/(size(zz0,'*'));
+      model.dstate=[zz0(:);told];model.rpar=T/(size(zz0,'*'));
       x.graphics=graphics;x.model=model
       break
     end

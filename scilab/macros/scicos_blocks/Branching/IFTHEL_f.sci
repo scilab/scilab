@@ -15,16 +15,21 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   if exprs==[] then exprs=string(1);end
+  if size(exprs,'*')==1 then exprs(2)=string(1);end
   while %t do
-    [ok,inh,exprs]=getvalue('Set parameters',..
-	['Inherit (1: no, 0: yes)'],list('vec',1),exprs)
+    [ok,inh,nmod,exprs]=getvalue('Set parameters',..
+	['Inherit (1: no, 0: yes)';'zero-crossing (0: no, 1: yes)'],..
+				 list('vec',1,'vec',1),exprs)
     if ~ok then break,end
+    if nmod<>0 then nmod=1,end
     if inh==0 then inh=[]; else inh=1;end
     [model,graphics,ok]=check_io(model,graphics,1,[],inh,[1;1])
       if ok then
 	graphics.exprs=exprs;
 	model.evtin=inh;
 	model.sim(2)=-1
+	model.nmode=nmod
+	model.nzcross=nmod
 	x.graphics=graphics;x.model=model
 	break
       end
@@ -39,10 +44,11 @@ case 'define' then
   model.firing=[-1 -1]
   model.dep_ut=[%t %f]
   model.nmode=1
+  model.nzcross=1
   
   gr_i=['txt=[''If in>0'';'' '';'' then    else''];';
     'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']
-  exprs=string(1);
+  exprs=[string(model.in);string(model.nmode)];
   x=standard_define([3 3],model,exprs,gr_i)
 end
 endfunction

@@ -150,6 +150,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   if show_trace then disp('c_pass51:'+string(timer())),end
   //form scicos arguments
+
   nb=size(typ_z,'*');
   zcptr=ones(nb+1,1);
   modptr=ones(nb+1,1);
@@ -297,9 +298,9 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
  
   //ext_cord=unique(ext_cord1(:,1)');
   
-  for i=ext_cord
-    if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
-  end  // adding zero crossing surfaces to cont. time synchros
+  //for i=ext_cord
+  //  if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
+  //end  // adding zero crossing surfaces to cont. time synchros
   
   //a supprimer
   [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
@@ -313,6 +314,8 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   if ~ok then disp('serious bug, report.');pause;end
   // ext_cord=ext_cord(n+1:$);
 
+  typ_z_save=typ_z
+  
   fin=0
   while ~fin
     fin=1
@@ -338,7 +341,7 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   ind=find(typ_x(cord(:,1)));
   oord=cord(ind,:)
   
-
+typ_z=typ_z_save
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
   //des discontinuites quand l'evenement se produit
