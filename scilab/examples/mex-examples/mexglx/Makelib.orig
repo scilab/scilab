@@ -1,0 +1,9 @@
+# ------------------------------------------------------
+SCIDIR = ../../../
+OBJS =  libtst.o
+LIBRARY = libtst.a
+include $(SCIDIR)/Makefile.incl
+CFLAGS = $(CC_OPTIONS) 
+FFLAGS = $(FC_OPTIONS) 
+EXTRA_LDFLAGS = 
+include $(SCIDIR)/config/Makeso.incl
