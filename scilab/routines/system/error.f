@@ -244,7 +244,7 @@ c
    18 call msgout(io,lunit,'too many variables!')
       go to 999
    19 call msgout(io,lunit,
-     &           'singular matrix')
+     &           'Problem is singular')
       go to 999
    20 if(err.ne.1) then
          write(buf(1:3),'(i3)') err
