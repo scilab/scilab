@@ -1,32 +1,33 @@
-function x=%hm_mini(varargin)
+function [x,k]=%hm_mini(varargin)
 n=size(varargin)
 if n==1 then
-  x=min(varargin(1).entries)
+  [x,k1]=min(varargin(1).entries)
+  if argn(1)>1 then k=ind2sub(varargin(1).dims,k1(1)),end
 else
   if n==2 then
     d=varargin(2)
     if type(d)==1|type(d)==10 then
-      x=%hm_oriented_min(varargin(1),d)
+      [x,k]=%hm_oriented_min(varargin(1),d)
       return
     end
   end
   x=varargin(1).entries
   dims=varargin(1).dims
-  for k=2:n
-    if or(dims<>varargin(k).dims) then 
-      if prod(dims)<>1&prod(varargin(k).dims)<>1 then
+  for kk=2:n
+    if or(dims<>varargin(kk).dims) then 
+      if prod(dims)<>1&prod(varargin(kk).dims)<>1 then
 	error(42)
       end
-      if prod(dims)==1 then dims=varargin(k).dims,end
+      if prod(dims)==1 then dims=varargin(kk).dims,end
     end
-    x=min(x,varargin(k).entries)
+    [x,k]=min(x,varargin(kk).entries)
   end
   x=hypermat(dims,x)
+  k=hypermat(dims,k)
 end
-
-
 endfunction
-function x=%hm_oriented_min(m,d)
+
+function [x,k]=%hm_oriented_min(m,d)
 if d=='r' then 
   d=1
 elseif d=='c' then
@@ -44,7 +45,7 @@ I=ind*ones(deb)+ones(ind)*deb
 ind=(0:p2:prod(dims)-1);
 I=ones(ind).*.I+ind.*.ones(I)
 
-x=min(matrix(m.entries(I),dims(d),-1),'r')
+[x,k]=min(matrix(m.entries(I),dims(d),-1),'r')
 
 dims(d)=1
 if d==N then
@@ -53,10 +54,12 @@ else
   dims(d)=1
 end
 if size(dims,'*')==2 then
-  if flag==1 then dims=int32(dims);return;end
+  if flag==1 then dims=int32(dims);end
   x=matrix(x,dims(1),dims(2))
+  k=matrix(k,dims(1),dims(2))
 else
-  if flag==1 then dims=int32(dims);return;end
+  if flag==1 then dims=int32(dims);end
   x=hypermat(dims,x)
+  k=hypermat(dims,matrix(k,-1,1))
 end
 endfunction
