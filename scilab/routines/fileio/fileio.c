@@ -35,6 +35,18 @@ extern int  sciprint2(int iv,char *fmt,...) ;
 extern int sciprint2() ;
 #endif 
 
+void *mymalloc(int n) {
+  int z;
+  if ( n < 0) {
+    sciprint("BUG");
+    z=9;
+  }
+  return malloc(n);
+}
+
+#define malloc mymalloc 
+
+
 /* extern int sciprint2 __PARAMS((int i,char *fmt, ...));*/
 
 static int do_printf __PARAMS((char *fname,FILE * fp, char *format,int n_args,
@@ -419,7 +431,7 @@ int int_objsscanf(char *fname)
   while (1) {
     rowcount++;
     if ((maxrow >= 0) && (rowcount >= maxrow)) break;
-
+    if ( k >= m1*n1 ) break;
     skip=*istk(ild1+k)-1;
     SciStrtoStr(istk(il1+skip),&n_count,istk(ild1+k),&str);
     k +=n_count;
