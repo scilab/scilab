@@ -9,7 +9,6 @@ function [tree]=sci_cell(tree)
 if rhs==0 then
   tree.lhs(1).dims=list(0,0)
   tree.lhs(1).type=Type(Cell,Unknown)
-  tree.lhs(1).contents=cell()
   return
 end
 

@@ -61,5 +61,5 @@ else
 end
 tree.out(1).dims=list(sr,sc)
 tree.out(1).type=Type(ck.vtype,prop)
-tree.out(1).contents=list()
+tree.out(1).contents=Contents()
 endfunction

@@ -47,7 +47,6 @@ rhs=rhs-1
 // One index value
 if rhs==1 then
   ind=tree.operands(2)
-  
   // --- Recursive extraction ---
   if type(ind)==15 then
     for kind=1:lstsize(ind)
@@ -70,7 +69,11 @@ if rhs==1 then
     error("%e2sci: recursive extraction from a variable "+var.name+" of type "+string(var.vtype))
   elseif var.vtype==String then // Character string extraction
     tree=Funcall("part",1,Rhs(var,ind),tree.out)
-    tree.lhs(1).dims=list(1,1)
+    if is_a_scalar(ind) then
+      tree.lhs(1).dims=list(1,1)
+    else
+      tree.lhs(1).dims=list(1,ind.dims(2))
+    end
     tree.lhs(1).type=var.type
   else // Extraction x(i)
     if var.vtype==Unknown then // Unknown type -> can be String

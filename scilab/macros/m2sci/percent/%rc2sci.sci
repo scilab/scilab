@@ -83,7 +83,7 @@ else
   tree.out(1).type=Type(String,Real)
   tree=Operation("+",tree.operands,tree.out)
 end
-tree.out(1).contents=list()
+tree.out(1).contents=Contents()
 endfunction
 
 

@@ -27,8 +27,6 @@ end
 
 tree.lhs(1).dims=dims
 
-tree.lhs(1).contents=struct()
-
 // Update contents
 dims=[0 0]
 allnotcells=%T
@@ -41,11 +39,11 @@ if allnotcells then
 else
   for k=1:2:rhs
     if tree.rhs(k+1).vtype==Cell then
-      if double(tree.rhs(k+1).infer.contents.dims(1))>dims(1) then
-	dims(1)=double(tree.rhs(k+1).infer.contents.dims(1))
+      if double(tree.rhs(k+1).dims(1))>dims(1) then
+	dims(1)=double(tree.rhs(k+1).dims(1))
       end
-      if double(tree.rhs(k+1).infer.contents.dims(2))>dims(2) then
-	dims(2)=double(tree.rhs(k+1).infer.contents.dims(2))
+      if double(tree.rhs(k+1).dims(2))>dims(2) then
+	dims(2)=double(tree.rhs(k+1).dims(2))
       end
     end
   end
@@ -57,13 +55,18 @@ for k=1:2:rhs
   for kd1=1:dims(1)
     for kd2=1:dims(2)
       if tree.rhs(k+1).vtype==Cell then
-	if prod(double(tree.rhs(k+1).infer.contents.dims))<>1 then
-	  tree.lhs(1).contents(kd1,kd2)(tree.rhs(k).value)=tree.rhs(k+1).infer.contents(kd1,kd2).entries
+	
+	if tree.rhs(k+1).dims(1)*tree.rhs(k+1).dims(2)<>1 then
+	  tree.lhs(1).contents.index($+1)=list(list(Cste(kd1),Cste(kd2)),tree.rhs(k))
+	  tree.lhs(1).contents.data($+1)=get_contents_infer(tree.rhs(k+1),list(list(Cste(kd1),Cste(kd2)),Cste("entries")))
 	else
-	  tree.lhs(1).contents(kd1,kd2)(tree.rhs(k).value)=tree.rhs(k+1).infer.contents.entries
+	  tree.lhs(1).contents.index($+1)=list(list(Cste(kd1),Cste(kd2)),tree.rhs(k))
+	  tree.lhs(1).contents.data($+1)=get_contents_infer(tree.rhs(k+1),list(list(Cste(1),Cste(1)),Cste("entries")))
 	end
+      
       else
-	tree.lhs(1).contents(tree.rhs(k).value)=tree.rhs(k+1).infer
+	tree.lhs(1).contents.index($+1)=list(list(Cste(1),Cste(1)),tree.rhs(k))
+	tree.lhs(1).contents.data($+1)=tree.rhs(k+1).infer
       end
     end
   end

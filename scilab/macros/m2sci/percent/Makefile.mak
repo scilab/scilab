@@ -22,7 +22,7 @@ STRUCT =  %i_st2sci.sci %e_st2sci.sci
 
 CELL = %cc_cell2sci.sci %rc_cell2sci.sci %i_ce2sci.sci %e_ce2sci.sci
 
-UTIL = can_infer.sci rc_ce2list.sci 
+UTIL = get_contents_infer.sci
 
 MACROS = $(OP) $(CELL) $(UTIL) $(STRUCT) 
 

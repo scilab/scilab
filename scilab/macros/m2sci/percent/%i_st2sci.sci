@@ -15,25 +15,17 @@ to=tree.operands(1)
 
 // Insertion of a struct in a not-struct array
 if typeof(to)=="variable" & to.vtype<>Struct then
-  
   // To be sure that variable will now be of type Struct
   [bval,index]=isdefinedvar(to)
   varslist(index).infer.type.vtype=Struct
-  
-  // No more needed
-  // insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
-  
-  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),struct())
+  varslist(index).infer.contents=Contents()
+  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),Contents())
 elseif typeof(to)=="operation" & to.vtype<>Struct then
-  
   // To be sure that variable will now be of type Struct
   [bval,index]=isdefinedvar(to.operands(1))
   varslist(index).infer.type.vtype=Struct
-
-  // No more needed
-  // insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
-  
-  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),struct())
+  varslist(index).infer.contents=Contents()
+  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),Contents())
 end
 
 // Just one index value
@@ -42,90 +34,120 @@ if rhs==1 then
   // --- Insertion with just one index ---
   if type(ind)<>15 then
     // --- Insertion in a struct with just one index ---
-    if ind.vtype==String then
-      if to.vtype<>Struct then
-	to.type=Type(Struct,Unknown)
-	to.contents=struct(ind.value,from.infer)
-      end
-      to.dims=list(1,1)
-      tree.out(1).infer=to.infer
-      tree.out(1).contents(ind.value)=from.infer
+    if ind.vtype==String then // A.f
+      tree.out(1).dims=list(1,1);
+      tree.out(1).vtype=Struct
+      tree.out(1).contents.index($+1)=list(list(Cste(1),Cste(1)),ind)
+      tree.out(1).contents.data($+1)=from.infer
     else
       if from.vtype<>Double then // X(p)=struct(...)
 	tree.operands(2)=list(Cste(1),tree.operands(2))
+	tree.out(1).vtype=Struct
 	if typeof(ind)=="cste" then
 	  if ind.vtype<>String then // Not :
 	    tree.out(1).dims=list(1,ind.value)
-	    if typeof(tree.out(1).contents)<>"st" & from.vtype==Struct then
-	      tree.out(1).contents=struct()
-	    else
-	      tree.out(1).contents=cell()
+	    
+	    tree.out(1).contents.index($+1)=list(Cste(1),ind)
+	    
+	    // Update contents for an extraction of type: z = X(p)
+	    CONT=Contents()
+	    for k=1:lstsize(from.infer.contents.index)
+	      if type(from.contents.index(k)(1))==15 then
+		CONT.index($+1)=list(from.contents.index(k)(2))
+	      else
+		CONT.index($+1)=list(from.contents.index(k))
+	      end
+	      CONT.data($+1)=from.contents.data(k)
 	    end
-	    execstr("tree.out(1).contents("+expression2code(tree.operands(2))+")=from.contents")
+	    tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Struct,Unknown),CONT)
+
+	    // Update contents for extraction of type: z = X(p).f
+	    for k=1:lstsize(from.infer.contents.index)
+	      if type(from.contents.index(k)(1))==15 then
+		tree.out(1).contents.index($+1)=list(list(Cste(1),ind),from.contents.index(k)(2))
+	      else
+		tree.out(1).contents.index($+1)=list(list(Cste(1),ind),from.contents.index(k))
+	      end
+	      tree.out(1).contents.data($+1)=from.contents.data(k)
+	    end
 	  else
 	    tree.out(1).dims=from.dims
-	    execstr("tree.out(1).contents=from.contents.entries")
+	    tree.out(1).contents=from.contents
 	  end
-	else
-	  execstr("tree.out(1).contents=Infer()")
 	end
-	tree.out(1).vtype=Struct
       else
 	if is_empty(from) then // Clear element: A(p)=[]
-	  execstr("tree.out(1).contents("+expression2code(tree.operands(2))+")=[]")
+	  // Nothing done
 	else // Change type of variable
 	  error("Not yet implemented");
 	end
       end
     end
-  // --- Insertion with more than one index value (index is a list) --- 
+  // --- Insertion with more than one index value (index is a recursive index list) --- 
   else
   
     // Change index value if just one double
     for k=1:lstsize(ind)
       //ind(k+1) <-> tree.operands(2)(k+1)
-      if typeof(ind(k))=="cste" then 
+      if typeof(ind(k))=="cste" | (typeof(ind(k))<>"list" & is_a_scalar(ind(k))) then 
 	if ind(k).vtype<>String then
 	  tree.operands(2)(k)=list(Cste(1),tree.operands(2)(k))
 	end
       end
     end
-
-    if can_infer(tree.operands(2)) then
-      // Inference can be done
+    ind=tree.operands(2);
+    
+    if typeof(ind($))=="list" | ind($).vtype~=String then // X.p(m,n)=y
+      tmp=gettempvar()
+      oplist=list()
       
-      tree.out(1).infer=to.infer
-      
-      infertree=tree.operands(2)
-      
-      // A(x,y,...).f
-      if typeof(infertree(1))=="list" then
-	possible_dims=infertree(1)
-	infdims=tree.out(1).dims
-	if lstsize(infdims)<lstsize(possible_dims) then
-	  for k=lstsize(infdims)+1:lstsize(possible_dims)
-	    infdims(k)=Unknown
-	  end
-	end
-	for k=1:lstsize(possible_dims)
-	  if infdims(k)<>Unknown & infdims(k)<possible_dims(k).value then
-	    infdims(k)=possible_dims(k).value
-	  end
-	end
-	execstr("tree.out(1).contents"+expression2code(infertree)+"=1") // Should be removed
-	execstr("tree.out(1).contents"+expression2code(infertree)+"=from.infer")
-	// A.f
-      else
-	infdims=list(1,1)
-	tree.out(1).contents=struct()
-	tree.out(1).contents(infertree(1).value)=Infer()
+      tmpind=ind
+      tmpind($)=null()
+      if or(get_contents_infer(tree.operands(1),tmpind)<>Infer()) then
+	tmp.infer=get_contents_infer(tree.operands(1),tmpind)
       end
-      tree.out(1).type=Type(Struct,Unknown)
+      oplist(1)=tmp
+
+      for kind=1:size(ind($))
+	oplist($+1)=ind($)(kind)
+      end
+
+      oplist($+1)=tree.operands($)
+      
+      newop=Operation("ins",oplist,list(tmp))
+      newop=%i2sci(newop)
+      tree.out(1).infer.contents.index($+1)=tmpind
+      tree.out(1).infer.contents.data($+1)=newop.out(1).infer
+    end
+    
+    infertree=tree.operands(2)
+      
+    // A(x,y,...).f
+    if typeof(infertree(1))=="list" then
+      possible_dims=infertree(1)
+      infdims=tree.out(1).dims
+      if lstsize(infdims)<lstsize(possible_dims) then
+	for k=lstsize(infdims)+1:lstsize(possible_dims)
+	  infdims(k)=Unknown
+	end
+      end
+      for k=1:lstsize(possible_dims)
+	if typeof(possible_dims(k))<>"cste" then
+	  infdims(k)=Unknown
+        elseif infdims(k)<>Unknown & infdims(k)<possible_dims(k).value then
+	  infdims(k)=possible_dims(k).value
+	end
+      end
+      tree.out(1).infer.contents.index($+1)=ind
+      tree.out(1).infer.contents.data($+1)=from.infer
       tree.out(1).dims=infdims
-    else
-      // Inference can not be done
       tree.out(1).type=Type(Struct,Unknown)
-      tree.out(1).dims=list(Unknown,Unknown)
+      // A.b.f
+    else 
+      tree.out(1).dims=list(1,1)
+      tree.out(1).type=Type(Struct,Unknown)
+      tree.out(1).infer.contents.index($+1)=ind
+      tree.out(1).infer.contents.data($+1)=from.infer
     end
     
   end
@@ -143,7 +165,7 @@ else
 	if to.dims(kdim)<=tree.operands(kdim+1).value then
 	  tree.out(1).dims(kdim)=tree.operands(kdim+1).value;
 	else
-	  tree.out(1).dims(kdim)=to.dims(k)
+	  tree.out(1).dims(kdim)=to.dims(kdim)
 	end
       end
     end
@@ -151,34 +173,13 @@ else
   tree.out(1).type=from.type
     
   // Update contents
+  ind=tree.operands
+  ind(1)=null()
+  ind($)=null()
+  tree.out(1).infer.contents.index($+1)=ind
+  tree.out(1).infer.contents.data($+1)=from.infer
 
-  //Verify that all indexes are constants
-  cste_nb=0
-  for kind=1:size(tree.operands)-2
-    if typeof(tree.operands(kind+1))=="cste" then
-      cste_nb=cste_nb+1
-    end
-  end
-  
-  if cste_nb==size(tree.operands)-2 then
-    indexes=[]
-    for kind=1:size(tree.operands)-2
-      indexes=[indexes,string(tree.operands(kind+1).value)]
-    end
-    ind=tree.operands
-    ind(1)=null()
-    ind($)=null()
-    indexes=strcat(indexes,",")
-    if typeof(to.contents)<>"constant" then
-      tree.out(1).contents=to.contents
-    else
-       execstr("tree.out(1).contents"+expression2code(ind)+"=1"); // Should be removed
-    end
-    
-    execstr("tree.out(1).contents"+expression2code(ind)+"=from.infer.contents");
-  end
 end
-errclear();
 endfunction
 
   

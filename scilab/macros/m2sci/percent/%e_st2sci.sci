@@ -29,60 +29,62 @@ if rhs==1 then
       lastisnotfield=ind($).vtype<>String
     end
       
-    // Inference can be done (all indexes values are known)
-    if can_infer(ind) then
-      infertree=tree.operands(2)
-      if lastisnotfield then // Last index is not a fieldname, ignored here
-	infertree($)=null()
-      end
-      indtxt=expression2code(infertree)
-      
-      [bval,index]=isdefinedvar(var)
-      if ~bval then
-	error("M2sci bug: extraction from unknown variable "+var.name+" in varslist")
-      else
-	INFER=varslist(index).infer
-	ierr=execstr("INFER=varslist(index).infer.contents"+expression2code(infertree),"errcatch");
-	if ierr<>0 | typeof(INFER)<>"infer" then // infer==[] or non-exsisting index in inference data
-	  // Inference can not be done
-	else
-	  tree.out(1).type=INFER.type
-	  tree.out(1).dims=INFER.dims
-	end
-      end
-    else
-      // Inference can not be done
+    // Inference
+    infertree=tree.operands(2)
+    if lastisnotfield then // Last index is not a fieldname, ignored here
+      infertree($)=null()
     end
-    
-    // Convert last extraction operation is not already done
-    if lastisnotfield then
-      newtree=tree
-      newtree.operands(2)($)=null()
-      tmp=gettempvar()
-      insert(Equal(list(tmp),newtree))
-      // tmp variable added to varslist so that inference can be done
-      varslist($+1)=M2scivar(tmp.name,tmp.name,newtree.infer)
-      
-      // Change index
-      IND=list()
-      tmp.infer=newtree.infer
-      IND(1)=tmp
-      if typeof(tree.operands(2)($))=="list" then
-	for k=1:lstsize(tree.operands(2)($))
-	  IND($+1)=tree.operands(2)($)(k)
+    // Change index value if just one double
+    for k=1:lstsize(infertree)
+      if typeof(infertree(k))=="cste" | (typeof(infertree(k))<>"list" & is_a_scalar(infertree(k))) then 
+	if infertree(k).vtype<>String then
+	  infertree(k)=list(Cste(1),infertree(k))
 	end
-      else
-	IND(2)=tree.operands(2)($)
       end
-      tree=Operation("ext",IND,tree.out)
-      rhs=lstsize(IND) // Done in operation2sci for other cases
-      tree=%e2sci(tree)
+    end
+      
+    [bval,index]=isdefinedvar(var)
+    if ~bval then
+      error("M2SCI bug: extraction from unknown variable "+var.name+" in varslist")
+    else
+      tmp=get_contents_infer(var,infertree);
+      tree.out(1).dims=tmp.dims
+      tree.out(1).type=tmp.type
+      tree.out(1).contents=tmp.contents
     end
 
+    // Convert last extraction operation is not already done
+    if lastisnotfield then
+      [inftlist,pos]=get_contents_infer(var,infertree)
+      tmp=gettempvar()
+      tmp.infer=inftlist
+      varslist($+1)=M2scivar(tmp.name,tmp.name,tmp.infer)
+     
+      oplist=list()
+      oplist(1)=tmp
+      infertree=tree.operands($)($)
+      if typeof(infertree)<>"list" & infertree.vtype<>String then 
+	infertree=list(infertree);
+      end
+      for k=1:size(infertree)
+	oplist($+1)=infertree(k)
+      end
+      newop=Operation("ext",oplist,tree.out)
+      rhs=size(newop.operands)
+      newop=%e2sci(newop)
+      if typeof(newop)=="operation" then
+	tree.out(1).dims=newop.out(1).dims
+	tree.out(1).type=newop.out(1).type
+	tree.out(1).contents=newop.out(1).contents
+      else
+	tree.out(1).dims=newop.lhs(1).dims
+	tree.out(1).type=newop.lhs(1).type
+	tree.out(1).contents=newop.lhs(1).contents
+      end
+    end
   else
     // extraction from struct
     // this case should happen only if var(ind.value) contains only one value
-    
     [bval,index]=isdefinedvar(var)
     if ~bval then
       error("M2sci bug: extraction from unknown variable "+var.name+" in varslist")
@@ -90,20 +92,23 @@ if rhs==1 then
       if varslist(index).vtype<>Struct then
 	// variable not defined as a struct, modify inference
 	varslist(index).infer.vtype=Struct
-	varslist(index).infer.contents=struct()
       end
-      INFER=varslist(index).infer
     end
-    INF=INFER
-    ierr=execstr("INF=INFER.contents(ind.value)","errcatch")
-    if ierr<>0 then
-      tree.out(1).vtype=Struct
-    elseif typeof(INF)<>"infer" then
-      tree.out(1).vtype=Struct
-    else
-      tree.out(1).dims=INF.dims
-      tree.out(1).type=INF.type
-      tree.out(1).contents=INF.contents
+    outdims=list(Unknown,Unknown)
+    if ind.dims(1)==1 then // a scalar or a vector
+      outdims=list(1,ind.dims(2))
+    end
+    if typeof(ind)=="cste" | (typeof(ind)<>"list" & is_a_scalar(ind)) then 
+      if ind.vtype<>String then
+	ind=list(Cste(1),ind)
+      end
+    end
+    if typeof(ind)<>"list" then
+      ind=list(ind);
+    end
+    tree.out(1).infer=get_contents_infer(var,ind)
+    if tree.out(1).dims==list(Unknown,Unknown) then
+      tree.out(1).dims=outdims
     end
   end
 // More than one index value
@@ -128,34 +133,12 @@ else
 
   tree.out(1).dims=dims
   tree.out(1).type=var.type
+
+  IND=tree.operands
+  IND(1)=null() // Variable is not an index
   
-  cste_nb=0
-  indexes=[]
-  for kind=2:size(tree.operands)
-    if typeof(tree.operands(kind))=="cste" then
-      cste_nb=cste_nb+1
-      indexes=[indexes,string(tree.operands(kind).value)]
-    else
-      break
-    end
-  end
-  indexes=strcat(indexes,",")
-  
-  if cste_nb==size(tree.operands)-1 then // Inference can be done
-    if ~isempty(indexes) then
-      ierr=execstr("CONT=var.contents("+indexes+")","errcatch")
-    else
-      CONT=var.contents
-      ierr=0;
-    end
-    if ierr<>0 then // Unknown index in contents
-      tree.out(1).contents=list()
-    else
-      tree.out(1).contents=CONT
-    end
-  else
-    tree.out(1).contents=list()
-  end
+  tree.out(1).contents.index($+1)=IND
+  tree.out(1).contents.data($+1)=get_contents_infer(tree.operands(1),IND)
 end
 endfunction
 

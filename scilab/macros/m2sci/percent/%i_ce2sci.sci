@@ -10,21 +10,21 @@ from=tree.operands($)
 to=tree.operands(1)
 
 // Verify that to is not a struct (cell of struct)
-inds=tree.operands(2:$-1)
+inds=tree.operands;inds(1)=null();inds($)=null()
 if type(inds)<>15 then
   inds=list(inds)
 end
 for kinds=1:lstsize(inds)
-  if inds(kinds).vtype==String & typeof(inds(kinds))=="cste" & inds(kinds).value<>":" then
+  if typeof(inds(kinds))<>"list" & inds(kinds).vtype==String & typeof(inds(kinds))=="cste" & inds(kinds).value<>":" then
     tree=%i_st2sci(tree)
     return
   end
 end
-disp(to.name)
+
 if and(to.vtype<>[Cell,Unknown]) then
   if to.vtype==Double & and(to.dims==list(0,0)) then
     insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
-    // To be sure that variable will now be of type Struct
+    // To be sure that variable will now be of type Cell
     [bval,index]=isdefinedvar(to)
     varslist(index).infer.type.vtype=Cell
   else
@@ -32,7 +32,7 @@ if and(to.vtype<>[Cell,Unknown]) then
   end
 elseif to.vtype==Unknown then
   insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
-  // To be sure that variable will now be of type Struct
+  // To be sure that variable will now be of type Cell
   [bval,index]=isdefinedvar(to)
   varslist(index).infer.type.vtype=Cell
 end
@@ -41,22 +41,28 @@ end
 if rhs==1 then
   ind=tree.operands(2)
   if type(ind)<>15 then // One value index A(xx)={...}
+    tree.operands(2)=list(Cste(1),ind)
+    tree.out(1).vtype=Cell
     if typeof(ind)=="cste" then
       if ind.vtype<>String then // Not :
 	tree.out(1).dims=list(1,ind.value)
+	
+	// Data added so that extraction of a cell element can also be infered
+	tree.out(1).contents.index($+1)=tree.operands(2)
+	tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Cell,Unknown),from.contents)
+	
+	if lstsize(from.contents.data)==1 then
+	  tree.out(1).contents.index($+1)=list(tree.operands(2),Cste("entries"))
+	  tree.out(1).contents.data($+1)=from.contents.data(1)
+	else
+	  error("Not yet implemented");
+	end
       else
-	tree.out(1).dims=from.dims
-	execstr("tree.out(1).contents=from.contents")
+	tree.out(1).infer=from.infer
       end
     else
       tree.out(1).dims=list(1,Unknown)
     end
-    tree.operands(2)=list(Cste(1),ind)
-    if can_infer(tree.operands(2)) then
-      execstr("tree.out(1).contents"+expression2code(tree.operands(2))+".entries=1") // Remove this line when Scilab bug is corrected
-      execstr("tree.out(1).contents"+expression2code(tree.operands(2))+".entries=from.contents.entries")
-    end
-    tree.out(1).vtype=Cell
   else // --- Insertion with more than one index value (index is a list) ---
     // Cell array of struct A{p,q,...}.name... or recursive index A{p,q,...}(1,2)...
     for kind=1:lstsize(tree.operands(2))
@@ -66,41 +72,55 @@ if rhs==1 then
 	end
       end
     end
-    
     IND=tree.operands(2)(1)
     // Update cell dims for inference
-    if can_infer(IND) then
+    if typeof(IND)=="list" then
       if lstsize(IND)>lstsize(tree.out(1).dims) then
 	for kd=lstsize(tree.out(1).dims):lstsize(IND)
 	  tree.out(1).dims(kd)=Unknown
 	end
       end
       for kd=1:lstsize(tree.out(1).dims)
-	if tree.out(1).dims(kd)<>Unknown & tree.out(1).dims(kd)<IND(kd).value then
+	if typeof(IND(kd))=="cste" & tree.out(1).dims(kd)<>Unknown & tree.out(1).dims(kd)<IND(kd).value then
 	  tree.out(1).dims(kd)=IND(kd).value
 	end
       end
+    else
+      tree.out(1).dims=list(1,1)
+    end
+     
+    tree.out(1).type=Type(Cell,Unknown)
+
+    ind=tree.operands(2)
+    if typeof(ind($))=="list" | ind($).vtype~=String then // X.p(m,n)=y
+      tmp=gettempvar()
+      oplist=list()
+      
+      tmpind=ind
+      tmpind($)=null()
+      if or(get_contents_infer(tree.operands(1),tmpind)<>Infer()) then
+	tmp.infer=get_contents_infer(tree.operands(1),tmpind)
+      end
+      oplist(1)=tmp
+
+      for kind=1:size(ind($))
+	oplist($+1)=ind($)(kind)
+      end
+
+      oplist($+1)=tree.operands($)
+      
+      newop=Operation("ins",oplist,list(tmp))
+      newop=%i2sci(newop)
+      tree.out(1).infer.contents.index($+1)=tmpind
+      tree.out(1).infer.contents.data($+1)=newop.out(1).infer
+    elseif ind($).vtype==String then
+      tree.out(1).type=Type(Struct,Unknown)
     end
     
     // Update cell contents
-    if can_infer(tree.operands(2)) then
-      infertree=tree.operands(2)
-      endind=1
-      if typeof(tree.operands(2)(1))=="cste" then
-	if tree.operands(2)(1).vtype<>String then
-	  endind=2
-	end
-      elseif typeof(tree.operands(2)(1))=="list" then
-	endind=2
-      end
-      tree.out(1).contents=to.contents
-      index=expression2code(infertree)
-      execstr("tree.out(1).contents"+index+"=1") // Remove this line when Scilab bug corrected
-      execstr("tree.out(1).contents"+index+"=from.infer")
-    else
-      tree.out(1).contents=cell()
-    end
-    tree.out(1).vtype=Cell
+    infertree=tree.operands(2)
+    tree.out(1).contents.index($+1)=infertree
+    tree.out(1).contents.data($+1)=from.infer
   end
 // Two indexes: to(ind1,ind2,...)=from or more
 else
@@ -116,24 +136,32 @@ else
 	if to.dims(kdim)<=tree.operands(kdim+1).value then
 	  tree.out(1).dims(kdim)=tree.operands(kdim+1).value;
 	else
-	  tree.out(1).dims(kdim)=to.dims(k)
+	  tree.out(1).dims(kdim)=to.dims(kdim)
 	end
       end
     end
   end
   tree.out(1).type=from.type
-
+  
   // Update contents...
   infertree=tree.operands
   infertree(1)=null()
   infertree($)=null()
-  if can_infer(infertree) then
-    index=expression2code(infertree)
-    execstr("tree.out(1).contents"+index+".entries=1"); // Remove this line when Scilab bug corrected
-    execstr("tree.out(1).contents"+index+".entries=from.contents.entries");
+  
+  // Data added so that extraction of a cell element can also be infered
+  tree.out(1).contents.index($+1)=infertree
+  tree.out(1).contents.data($+1)=Infer(list(1,1),Type(Cell,Unknown),Contents())
+  
+  infertree=list(infertree,Cste("entries"))
+  if lstsize(from.contents.index)==1 then
+    tree.out(1).contents.index($+1)=infertree
+    tree.out(1).contents.data($+1)=from.contents.data(1);
+  elseif lstsize(from.contents.index)==0 then
+    tree.out(1).contents=Contents()
+  else
+    error("Not yet implemented")
   end
 end
-errclear();
 endfunction
 
   

@@ -159,12 +159,12 @@ else
 	  if to.dims(kdim)<=tree.operands(kdim+1).value then
 	    tree.out(1).dims(kdim)=tree.operands(kdim+1).value;
 	  else
-	    tree.out(1).dims(kdim)=to.dims(k)
+	    tree.out(1).dims(kdim)=to.dims(kdim)
 	  end
 	end
       end
     end
-    if is_empty(to) then
+   if is_empty(to) then
       // a(k,:)=b with a==[] is converted by a(1,1:length(b))=b
       if lstsize(tree.operands)-2 == 2 & typeof(tree.operands($-1))=="cste" & tree.operands($-1).value==":" then
 	length_funcall=Funcall("length",1,Rhs(tree.operands($)),list())
@@ -179,7 +179,6 @@ else
     tree.out(1).type=from.type
   end
 end
-errclear();
 endfunction
 
   
