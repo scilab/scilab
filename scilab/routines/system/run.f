@@ -9,12 +9,13 @@ c
       double precision x
       integer op,equal,r,ix(2),m
       equivalence (x,ix(1))
-      logical logops,ok,iflag,istrue,ptover,cremat,cresmat,
-     $     vcopyobj, eptover
+      logical logops,ok,istrue,ptover,cremat,cresmat,vcopyobj, eptover
+      external istrue,ptover,cremat,cresmat,vcopyobj, eptover
       integer p,lr,nlr,lcc,id(nsiz)
       integer extrac,insert,semi
-      common /basbrk/ iflag
-      integer otimer,ntimer,stimer,ismenu,getendian,gettype
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
+      integer otimer,ntimer,stimer,ismenu,getendian,gettype,getmen
       integer tref,t,fclock
       integer iadr,sadr
       external stimer,ismenu,getendian
@@ -297,7 +298,7 @@ c
             if (ntimer.ne.otimer) then
                call sxevents()
                otimer=ntimer
-               if (ismenu().eq.1) goto 115
+               if (ismenu().eq.1.and.interruptible) goto 115
             endif
          endif
          goto 10
@@ -399,7 +400,7 @@ c
             if (ntimer.ne.otimer) then
                call sxevents()
                otimer=ntimer
-               if (ismenu().eq.1) goto 115
+               if (ismenu().eq.1.and.interruptible) goto 115
             endif
          endif
          goto 10
@@ -454,7 +455,7 @@ c
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if (ismenu().eq.1) goto 115
+            if (ismenu().eq.1.and.interruptible) goto 115
          endif
       endif
       r=rstk(pt)-610
@@ -659,7 +660,7 @@ c
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if (ismenu().eq.1) goto 115
+            if (ismenu().eq.1.and.interruptible) goto 115
          endif
       endif
       goto 10
@@ -677,10 +678,11 @@ c
 c     gestion des evements asynchrones "interpretes"
 c
  115  continue
-      call getmen(buf,lb,nentry)
+      interruptible=(getmen(buf,lb,nentry).eq.0)
       call bexec(buf(1:lb),lb,ierr)
       if(ierr.ne.0) goto 10
       pt=pt+1
+      print *,'run:Entree callback', pt,interruptible,ierr,buf(1:lb)
       ids(1,pt)=lc
       ids(2,pt)=l0
       ids(3,pt)=nc
@@ -689,7 +691,9 @@ c
       icall=5
 c     *call* macro
       return
- 116  lc=ids(1,pt)
+ 116  interruptible=.true.
+      print *,'run:sortie callback', pt
+      lc=ids(1,pt)
       l0=ids(2,pt)
       nc=ids(3,pt)
       tref=ids(4,pt)

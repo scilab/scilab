@@ -7,8 +7,8 @@ c     Copyright INRIA
       parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
       logical compil,eptover,eqid
 c     
-      logical iflag
-      common /basbrk/ iflag
+      logical iflag,interruptible
+      common /basbrk/ iflag,interruptible
       integer semi,equal,eol,lparen,rparen,colon,dot
       integer blank,comma,left,right,less,great,not
       integer quote,percen
@@ -20,8 +20,8 @@ c
       logical dotsep,found
       character*50 tmp
 c
-      integer otimer,ntimer,stimer,ismenu
-      external stimer,ismenu
+      integer otimer,ntimer,stimer,ismenu,getmen
+      external stimer,ismenu,getmen
       save otimer
       data otimer/0/
 c     
@@ -128,7 +128,7 @@ c------------------------------------------------------------
          if (ntimer.ne.otimer) then
             call sxevents()
             otimer=ntimer
-            if(ismenu().eq.1) then
+            if(ismenu().eq.1.and.interruptible) then
                iret=1
                goto 96
             endif
@@ -889,8 +889,10 @@ c     go to store code
 c
  96   continue
 c     asynchronous events handling
-      call getmen(buf,lb,nentry)
+      interruptible=(getmen(buf,lb,nentry).eq.0)
       call bexec(buf(1:lb),lb,ierr)
+     
+
       if(ierr.ne.0) goto 15
       if ( eptover(1,psiz)) goto 98
       pstk(pt)=top
@@ -899,6 +901,7 @@ c     asynchronous events handling
 c     *call* macro
       goto 88
  97   top=pstk(pt)-1
+      interruptible=.true.
       iret=ids(1,pt)
       pt=pt-1
       if(iret.eq.1) then
@@ -918,6 +921,7 @@ c     .      go ahead with interrupted continuation line
       endif
       
  98   continue
+      interruptible=.true.
 c     error recovery
 c-------------------
       imode=abs(errct)/100000
