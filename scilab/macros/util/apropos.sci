@@ -1,5 +1,4 @@
 function apropos(key)
-  [lhs,rhs]=argn(0);
-  if rhs<>1 then error(39), end
-  help(key,'apropos');
+  if argn(2)<>1 then error(39), end
+  help_apropos(key);
 endfunction 
