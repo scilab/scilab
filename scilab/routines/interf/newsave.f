@@ -209,9 +209,9 @@ c     .  get table of requested variable names
       top=top+1
 
 c     load all variables stored in a file
-      il=iadr(lstk(top))
       kvar=0
  10   continue
+      il=iadr(lstk(top))
  21   call loadvar(fd,id,il,nn,ierr)
       if(ierr.gt.0) return
       if(ierr.lt.0) goto 50
