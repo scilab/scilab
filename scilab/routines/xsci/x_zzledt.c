@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: x_zzledt.c,v 1.4 2003/12/11 14:20:01 steer Exp $
+ * $Id: x_zzledt.c,v 1.5 2003/12/12 12:44:20 steer Exp $
  * $Log: x_zzledt.c,v $
+ * Revision 1.5  2003/12/12 12:44:20  steer
+ * to add sciprint_nd prototype
+ *
  * Revision 1.4  2003/12/11 14:20:01  steer
  * diary rewritten in C to be compatible with mprintf
  *
@@ -117,7 +120,7 @@ static int  search_line_backward(),search_line_forward();
 void  set_echo_mode(),set_is_reading();
 int   get_echo_mode();
 extern int C2F(ismenu) ();
-extern void sciprint __PARAMS((char *fmt,...));
+extern void sciprint_nd __PARAMS((char *fmt,...));
 
 static int sendprompt=1;
 extern char Sci_Prompt[10];
