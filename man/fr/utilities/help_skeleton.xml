@@ -8,7 +8,7 @@
   <SHORT_DESCRIPTION name="help_skeleton">build the skeleton of the
   xml help file associated to a Scilab function</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
-    <CALLING_SEQUENCE_ITEM>txt = help_skeleton(funname)</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>txt = help_skeleton(funname [,path])</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -19,9 +19,17 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
+        <PARAM_NAME>path</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: character string : the path where the file will be create if
+	    required. If this argument is not given the skeleton is returned as
+	  a string.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+      <PARAM_ITEM>
         <PARAM_NAME>txt</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the XML code</SP>
+          <SP>: the XML code or the complete xml file path</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -29,13 +37,21 @@
   <DESCRIPTION>
     <P><VERB>txt = help_skeleton(funname)</VERB> generates a vector of
    strings containing the skeleton of the XML code describing the help
-   of the function <VERB>funname</VERB>. The</P>
+   of the function <VERB>funname</VERB>.</P>
+
+   <P><VERB>fullpath = help_skeleton(funname,dirpath)</VERB> generates the 
+      XML code describing the help of the function <VERB>funname</VERB> 
+      in a file named <VERB>funname.xml</VERB> in
+      the directory specified by the path <VERB>dirpath</VERB>. In this case the
+    function returns the file path.</P>
+
+
   </DESCRIPTION>
   <EXAMPLE>
 <![CDATA[
    function [y,z]=foo(a,b),y=a+b,z=1,endfunction
-   mputl(help_skeleton('foo'),'foo.xml')
-   scipad foo.xml
+    p=help_skeleton('foo',TMPDIR)
+    scipad(p)
   ]]>
   </EXAMPLE>
   <SEE_ALSO>

@@ -18,6 +18,12 @@
   </DESCRIPTION>
   <SECTION label="How to write a simple xml scilab help page">
     <ITEMIZE>
+      <ITEM label="lazzy way">
+	<SP>If one want to write the xml file associated to a new scilab function
+	he may use the Scilab function <LINK>help_skeleton</LINK> to produce
+	the skeleton of the xml file. In most cases the user will not be
+	required to know xml syntax.</SP>
+      </ITEM>
       <ITEM label="introduction">
         <SP>An XML file resembles to an HTML file but with both a more rigid and free syntax.
      Free because you may build your own tags : the set of tags together with its rules
@@ -219,12 +225,21 @@
       example is given. The method used required some tools (see the README file) but must work
       on Unix and Windows.</P>
   </SECTION>
+  <EXAMPLE><![CDATA[
+    function y=foo(a,b,c),y=a+2*b+c,endfunction
+    path=help_skeleton('foo',TMPDIR)
+    scipad(path)
+  ]]></EXAMPLE>
+
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>apropos</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>help</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>help_skeleton</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
