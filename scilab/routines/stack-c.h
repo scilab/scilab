@@ -220,7 +220,19 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
 
 #define  GetListRhsCVar(n,m,ct,it,m1e1,n1e1,l1e1,l1e2)  if(!C2F(getlistrhscvar)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,m1e1,n1e1,(integer *) l1e1,(integer *) l1e2,1L)) {return 0;}
 
+#ifdef WIN32
+#define CheckRhs(minrhs,maxrhs)  \
+  if (! C2F(checkrhs)(fname,(c_local = minrhs,&c_local),(c1_local=maxrhs,&c1_local),\
+		      (unsigned long)strlen(fname))) { \
+      return 0;\
+  }
 
+#define CheckLhs(minlhs,maxlhs)  \
+  if (! C2F(checklhs)(fname,(c_local = minlhs,&c_local),(c1_local=maxlhs,&c1_local),\
+		      (unsigned long)strlen(fname))) { \
+      return 0;\
+  }
+#else
 #define CheckRhs(minrhs,maxrhs)  \
   if (! C2F(checkrhs)(fname,(c_local = minrhs,&c_local),(c1_local=maxrhs,&c1_local),\
 		      strlen(fname))) { \
@@ -233,6 +245,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
       return 0;\
   }
 
+#endif
 /** used for conversion to Scilab internal format **/
 
 #define Convert2Sci(x)  C2F(convert2sci)((c_local=x,&c_local))
