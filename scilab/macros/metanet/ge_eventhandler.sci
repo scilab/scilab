@@ -6,12 +6,26 @@ function ge_eventhandler(win,x,y,ibut)
     old=xget('window'); xset('window',win)
     seteventhandler("")  
   else //window has been deleted by an asynchronous xdel()
-    ge_do_quit()
+    ok=ge_do_quit()
+    if ~ok then //re_create editgraph window with its menus
+      xset('window',win);
+      ge_create_menus(win)
+      seteventhandler('ge_eventhandler')  
+    end
     return
+      
   end
 
   if ibut<0 then 
-    if ibut==-1000 then ge_do_quit(),end//the window has been closed
+    if ibut==-1000 then //the window has been closed by the window manager
+      ok=ge_do_quit(),
+      if ~ok then //re_create editgraph window with its menus
+	xset('window',win);
+	ge_create_menus(win)
+	seteventhandler('ge_eventhandler')   
+      end
+      return
+    end
     seteventhandler("ge_eventhandler"),return,
     
   end

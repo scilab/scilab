@@ -73,7 +73,11 @@ function r=ge_graph(kmen,win)
     seteventhandler("ge_eventhandler") ;xset('window',old)
     
   case "Quit" then
-    ge_do_quit()
-    xdel(win)
+    old=xget('window');xset('window',win);seteventhandler("")  
+    if ge_do_quit() then 
+      xdel(win),
+    else
+      seteventhandler("ge_eventhandler") ;xset('window',old)
+    end
   end
 endfunction
