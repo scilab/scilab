@@ -9,7 +9,7 @@ function varargout=ind2sub(dims,I)
 //   Mi=ind2sub(dims,I) returns a matrix Mi whose columns are the arrays i1(:), i2(:), ... 
 //Author Serge Steer, Copyright INRIA  
   varargout=list()
-  d=cumprod(dims)
+  d=cumprod(double(dims))
   k1=I
   k=[];k1=k1-1;
   for i=size(d,'*')-1:-1:1
