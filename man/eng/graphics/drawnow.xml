@@ -14,38 +14,14 @@
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>drawnow()</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>drawnow(h)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>drawnow("all")</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a handle or a list of handles of type axes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>"all"</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: string keyword (optional).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
   <DESCRIPTION>
-    <P>This function can be used to draw the hidden graphics entities and all
-    its chidren. The Visibility property of the <VERB>current axes</VERB> (no
-    argument), or the axes entity(ies) (represented by the handle
-    <VERB>h</VERB> or list of handles) or the current figure
-    (<VERB>'all'</VERB>) is set to <VERB>"on" </VERB>.</P>
+    <P>Considering the current figure, this function can be used to draw the
+    hidden graphics entities and all its chidren, that may have been postponed
+    by a previous call to <VERB>drawlater</VERB>. The
+    <VERB>immadiate_draw</VERB> property of the <VERB>current figure</VERB> is
+    set to <VERB>"on" </VERB>.</P>
 
     <P>It can specially be used with the <VERB>drawlater</VERB> function.</P>
   </DESCRIPTION>
@@ -56,26 +32,21 @@
   set("figure_style","new") // select entity based graphics
   f=get("current_figure") // handle of the current figure
   
-  drawlater();
+  drawlater()
   subplot(221);
-  drawlater();
   t=1:10;plot2d(t,t.^2)
   subplot(222);
-  drawlater();
   x=0:1:7;plot2d(x,cos(x),2) 
   subplot(234);
-  drawlater();
   plot2d(t,cos(t),3);
   subplot(235);
-  drawlater();
   plot2d(x,sin(2*x),5); 
   subplot(236);
-  drawlater();
   plot2d(t,tan(2*t));  
  
-  drawnow(); //draw the current axes
-  drawnow(f.children([3 4])); // draw the specified axes
-  drawnow("all"); // draw the current figure
+  draw(gca()); //draw the current axes and its children
+  draw(f.children([3 4])); // draw the specified axes and their children
+  drawnow(); // draw the current figure
 
  
   ]]></EXAMPLE>

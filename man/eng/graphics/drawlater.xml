@@ -14,58 +14,23 @@
 
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>drawlater()</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>drawlater(h)</CALLING_SEQUENCE_ITEM>
-
-    <CALLING_SEQUENCE_ITEM>drawlater('all')</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 
-  <PARAM>
-    <PARAM_INDENT>
-      <PARAM_ITEM>
-        <PARAM_NAME>h</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: a handle or a list of handles of type axes.</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-
-      <PARAM_ITEM>
-        <PARAM_NAME>"all"</PARAM_NAME>
-
-        <PARAM_DESCRIPTION>
-          <SP>: string keyword (optional).</SP>
-        </PARAM_DESCRIPTION>
-      </PARAM_ITEM>
-    </PARAM_INDENT>
-  </PARAM>
-
   <DESCRIPTION>
-    <P>This function can be used to not display on the screen all graphics
-    objects called by its basic drawing commands. The Visibility property of
-    the <VERB>current axes</VERB> (no argument specified), or the axes entity
-    (represented by the handle <VERB>h</VERB>) or the current figure
-    (<VERB>'all'</VERB>) is set to <VERB>"off" </VERB>. Therefore, all
-    children of these axes or figure will not be displayed too.</P>
+    <P>This function can be used not to display immediatly onto the
+    <VERB>current figure</VERB> the next created graphics objects - i.e. by
+    calling high level functions such as plotting functions or setting
+    properties to existant objects. The <VERB>immadiate_draw</VERB> property
+    of the current figure is set to <VERB>'off'</VERB> in order to postpon the
+    next drawings.</P>
 
     <P>It can specially be used with the <VERB>drawnow</VERB> function.</P>
 
-    <P>To return to the visible mode, it will be necessary to set a Visibility
-    property back to <VERB>"on"</VERB> value using the <VERB>drawnow</VERB>
-    function. As a mirror, you can use:</P>
+    <P>To enable back the <VERB>immadiate_draw</VERB> for the current figure,
+    you can use <VERB>drawnow</VERB> function.</P>
 
-    <P>-<VERB>drawnow()</VERB> to display the <VERB>current axes</VERB>.
-    Warning : note that between drawlater and drawnow calls, the current
-    figure and/or current axes may have changed. Therefore, the use of
-    drawlater/drawnow commands without argument must be used carefully.</P>
-
-    <P>-<VERB>drawnow(h)</VERB> to display the axes reprensented by the handle
-    <VERB>h</VERB>.</P>
-
-    <P>-<VERB>drawnow('all')</VERB> to display the<VERB> current
-    figure</VERB>. Warning : note that between drawlater and drawnow calls,
-    the current figure may have changed. Therefore, this must be used
-    carefully.</P>
+    <P> Warning : note that between drawlater and drawnow calls, the current
+    figure may have changed. Therefore, this must be used carefully.</P>
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
@@ -96,14 +61,15 @@
 
   subplot(212)
   a=gca();
-  drawlater(a) // what will be present in this axes will be displayed later
+  drawlater // what will be present in this axes will be displayed later
   plot2d // draw these axes and children later...
 
   subplot(211) // Warning: we change the axes
   plot2d1 // default drawing mode
 
-  drawnow(a) // ...now!
+  draw(a) // ...axes only is visible providing you not redraw the window
 
+ drawnow() // all is visible
   ]]></EXAMPLE>
 
   <SEE_ALSO>
