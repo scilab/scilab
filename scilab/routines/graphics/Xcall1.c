@@ -754,7 +754,7 @@ static void xstringb (char *string, integer x, integer y, integer w, integer h)
       strcpy(loc,string);
       loc1=strtok(loc,"@");
 
-	  for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0. for preventing Windows RunTime 'error' in debug mode F.Leray 06.04.04 */
+      for(i=0;i<4;i++) rect[i] = 0; /* Init. to 0 to prevent Windows RunTime 'warning/error' in debug mode F.Leray 06.04.04 */
 
       while ( loc1 != ( char * ) 0) 
 	{  
