@@ -86,15 +86,15 @@
   </DESCRIPTION>
 
   <SECTION label="Debugger">
-    Scipad 2.0 and later includes a debugger (for .sci files only). 
-    The user can:
+    <P>Scipad 2.0 and later includes a debugger (for .sci files only). 
+    The user can:</P>
   <ITEMIZE>
 
-     <ITEM label="1. Set/remove breakpoints anywhere in the buffer">.
-       This is just text tags management (nice pink background, etc.).  
+     <ITEM label="1. Set/remove breakpoints anywhere in the buffer"><SP>.
+       This is just text tags management (nice pink background, etc.).</SP> 
      </ITEM>
 
-     <ITEM label="2. Configure execution">.
+     <ITEM label="2. Configure execution"><SP>.
        The user has to provide the function name to  
        execute, its variable names, and variable values. To ease this step, 
        a scan of the currently displayed buffer is implemented to look for
@@ -107,57 +107,57 @@
        are displayed in listboxes. The user can also add or remove a new
        variable. This is in case the user changes the input variables of his
        function in the file, and he does not want to scan the buffer again
-       (which causes all the variable values to reset to "").
+       (which causes all the variable values to reset to "").</SP>
      </ITEM>
 
-     <ITEM label="3. Launch execution with breakpoints">.
+     <ITEM label="3. Launch execution with breakpoints"><SP>.
        Scipad execs the <VERB>current</VERB> buffer to
        Scilab, sends to Scilab the <LINK>setbpt</LINK> instructions relative to the
        <VERB>function selected at step 2</VERB> (which may be different from the one he
        sees in the displayed buffer), and executes the selected function with
        the provided input variable values. Then the execution is automagically
-       stopped by Scilab at the first breakpoint.
+       stopped by Scilab at the first breakpoint.</SP>
      </ITEM>
 
-     <ITEM label="4">. Now there are several possibilities for the user:
+     <ITEM label="4"><SP>. Now there are several possibilities for the user:</SP>
      </ITEM>
 
-     <ITEM label="4.1. Continue up to next breakpoint">
+     <ITEM label="4.1. Continue up to next breakpoint"><SP>.
        Just a <LINK>resume</LINK> sent to Scilab, and an update of the active breakpoint display.
-       The active breakpoint is underlined in Scipad.
+       The active breakpoint is underlined in Scipad.</SP>
      </ITEM>
 
-     <ITEM label="4.2. Insert/Remove a new breakpoint during the debug">.
-       Scipad sends a <LINK>setbpt</LINK> (or <LINK>delbpt</LINK>).
+     <ITEM label="4.2. Insert/Remove a new breakpoint during the debug"><SP>.
+       Scipad sends a <LINK>setbpt</LINK> (or <LINK>delbpt</LINK>).</SP>
      </ITEM>
 
-     <ITEM label="4.3. Step by step execution">. 
+     <ITEM label="4.3. Step by step execution"><SP>.
        This is what I'm currently fighting at (it
        is disabled in the Debug menu for the time being).
        See proc stepbystep_bp in SCI/tcl/scipadsources/debugger.tcl for further details about the problems I
-       encounter.
+       encounter.</SP>
      </ITEM>
 
-     <ITEM label="4.4. Continue ignoring any breakpoint">. Finish 
+     <ITEM label="4.4. Continue ignoring any breakpoint"><SP>. Finish 
        execution as if there
        was no breakpoint: Breakpoints are removed from Scilab but kept in Scipad.
        Scipad sends adequate <LINK>delbpt</LINK>, 
-       then <LINK>resume</LINK>.
+       then <LINK>resume</LINK>.</SP>
      </ITEM>
 
-     <ITEM label="4.5. Display call stack">. Scipad sends a <LINK>whereami</LINK> 
-       to Scilab. Sometimes useful.
+     <ITEM label="4.5. Display call stack"><SP>. Scipad sends a <LINK>whereami</LINK> 
+       to Scilab. Sometimes useful.</SP>
      </ITEM>
 
-     <ITEM label="4.6. Abort debug">: Scipad sends adequate <LINK>delbpt</LINK>, 
-       then sends <LINK>abort</LINK> to Scilab.
+     <ITEM label="4.6. Abort debug"><SP>: Scipad sends adequate <LINK>delbpt</LINK>, 
+       then sends <LINK>abort</LINK> to Scilab.</SP>
      </ITEM>
 
-     <ITEM label="5. Remove all breakpoints">. This is a command to remove 
+     <ITEM label="5. Remove all breakpoints"><SP>. This is a command to remove 
        all the breakpoints in Scilab, in case something did not run as expected.
        Currently, this may be useful in case of loss of first characters sent
        by <LINK>ScilabEval</LINK>, which still may occur, and which produce errors in the
-       Scilab shell.
+       Scilab shell.</SP>
        </ITEM>
     </ITEMIZE>
 
