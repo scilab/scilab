@@ -87,20 +87,25 @@ void Objpoly (x,y,n,closed,mark,hdl)
 void Objfpoly (x,y,n,style,hdl)
     integer n,style;
     double *x,*y;
-    long *hdl;
+    long * hdl;
 { 
-  
-  sciSetCurrentObj (ConstructPolyline
-		    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
-                     1,n,1,5)); 
+  long hdltab[2];
 
+    sciSetCurrentObj (ConstructPolyline
+		      ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
+		       1,n,1,5)); 
+    sciSetForeground (sciGetCurrentObj(), abs(style));
+    hdltab[0]=sciGetHandle(sciGetCurrentObj ()); 
  
-  if (style < 0)
-      sciSetForeground (sciGetCurrentObj(), -(style));
-   else
-      sciSetForeground (sciGetCurrentObj(), style);
-  *hdl=sciGetHandle(sciGetCurrentObj ()); 
+    if (style > 0) {
+      sciSetCurrentObj (ConstructPolyline
+			((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
+			 1,n,1,0)); 
+      hdltab[1]=sciGetHandle(sciGetCurrentObj ()); 
+      sciSetCurrentObj(ConstructAgregation (hdltab, 2)); }
+
   sciDrawObj(sciGetCurrentObj ());
+  *hdl=sciGetHandle(sciGetCurrentObj ()); 
  
 }
 
