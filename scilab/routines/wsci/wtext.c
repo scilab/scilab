@@ -3516,16 +3516,16 @@ BOOL CALLBACK MessageBoxNewGraphicModeDlgProc(HWND hwnd,UINT Message, WPARAM wPa
     		case 1:
 			SetWindowText(hwnd,"Remarque Importante");
 			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,
-"Le nouveau mode graphique est désormais en standard le mode orienté objet.\n\nPour changer de mode graphique :\n\tset old_style on\n\tset old_style off (mode par défaut)\n\nVeuillez noter que l'ancien mode sera obselete dans les futures versions.");
+"Cette version de Scilab utilise par défaut le nouveau mode graphique.\n\nVous pouvez revenir à l'ancien mode par l'instruction :\n\tset old_style on\n\nCependant les animations doivent être adaptées au nouveau mode graphique.\n\nPour plus d'information, consulter l'aide en ligne de \"graphics_entities\".\n\n\nVeuillez noter que l'ancien mode sera obsolète dans les futures versions.");
 
     		SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Ne plus afficher ce message");
     		break;
 
     		case 0:default:
-			SetWindowText(hwnd,"Important remark");
+			SetWindowText(hwnd,"Warning:");
 			SetDlgItemText(hwnd,IDC_NEWGRAPHICMESSAGE,
-"The new object oriented graphics is now\nScilab standard graphics.\n\nSwitch the graphics mode using the following command:\n\tset old_style on\n\tset old_style off (default mode)\n\nPlease notice that the old one will be obsolete\nin future releases.");
-			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Don't Show this screen at startup");
+"This Scilab version uses, by default, the new graphics mode.\n\nYou can go back to the old graphic entering the instruction:\n\tset old_style on\n\nNote however that the animations should be adapted to the new graphics.\n\nFor more information, see \"graphics_entities\" help page.\n\n\nPlease notice that the old graphics mode will be obsolete in future releases.");
+			SetDlgItemText(hwnd,IDC_CHECKNEWGRAPHIC,"Don't show this screen at startup");
     		break;
 		}
       return TRUE;
