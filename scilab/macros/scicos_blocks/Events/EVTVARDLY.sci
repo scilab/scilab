@@ -33,7 +33,7 @@ case 'define' then
   model.blocktype='d'
   model.firing=-1
   model.blocktype='c'
-  model.dep_ut=[%f %f]
+  model.dep_ut=[%t %f]
   exprs=string(model.firing)
   gr_i=['xstringb(orig(1),orig(2),[''Event'';''Delay''],sz(1),sz(2),''fill'');']
   x=standard_define([1.5 2],model,exprs,gr_i)
