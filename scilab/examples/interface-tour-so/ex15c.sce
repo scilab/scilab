@@ -81,7 +81,7 @@ if norm(Z2 - Zref2) > %eps then pause,end
 if ~c_link('f3c') then 
   // see link-examples-so for link examples 
   ilib_for_link('f3c','f3c.o',[],'c','f3cmake','f3cloader.sce');
-  exec f3cloader.sce
+  exec f3cloader.sce;
 end
 
 // Calling ex15c with the C argument function fp3
