@@ -102,8 +102,10 @@ c     compilation [3 number-of-char chars-vector]
          rhs = rhs+1
       endif
 
- 15   call getch
-      if (abs(char1) .eq. blank) go to 15
+ 15   if (abs(char1) .eq. blank) then
+         call getch
+         go to 15
+      endif
 
 c     Check for end of argument list
       last=last.or.char1.eq.eol.or.char1.eq.comma.or.char1.eq.semi
