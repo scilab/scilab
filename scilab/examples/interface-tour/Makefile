@@ -108,13 +108,14 @@ message:
 	@echo "------------------------------------------";
 
 clean	::
-	@$(RM) *.o *~ so_locations
+	@$(RM) *.o *.obj *~ so_locations
 	@$(RM) $(GATEWAY)_gateway.c $(STARTUP).sce
 	@$(RM) *.dia
 	@$(RM) $(GATEWAY).tst
 	@$(RM) format file args
 
 distclean	:: clean 
+	@$(RM) *.dll
 
 
 EXAMPLES = ex1c.sce ex2c.sce ex3456c.sce ex7c.sce ex8c.sce ex9c.sce ex10c.sce \

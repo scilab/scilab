@@ -14,6 +14,7 @@ SUBDIRS1 = interface-tour-so interface-tutorial-so \
 	intersci-examples-so \
 	link-examples-so \
 	interface-general \
+	interface-multi-so \
 	mex-examples/mex-with-so
 
 SUBDIRS2 = interface-tour interface-tutorial \

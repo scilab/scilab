@@ -100,11 +100,12 @@ message:
 	@echo "------------------------------------------";
 
 clean	::
-	@$(RM) *.o *~ so_locations
+	@$(RM) *.o *.obj *~ so_locations
 	@$(RM) $(GATEWAY)_gateway.c $(STARTUP).sce
 	@$(RM) *.dia
 
 distclean	:: clean 
+	@$(RM) *.dll
 
 tests	: $(GATEWAY).dia
 

@@ -19,15 +19,14 @@ tests	: all
 
 clean	::
 	@echo Cleaning 
-	@$(RM) -f -r *.o *.lo *.la *.so *.sl *.a *.dia .job.sce so_locations
-	@$(RM) -f -r .libs f3cloader.sce f3cmake f3floader.sce f3fmake
+	@$(RM) -f -r *.o *.lo *.la *.so *.dll *.sl *.a *.dia .job.sce so_locations
+	@$(RM) -f -r .libs libmex.c 
 	@cd lib ; make clean
 
 distclean:: clean 
 	@$(RM) -f *.dia  *_gateway.c 
 	@$(RM) -f Makelib 
 	@cd lib ; make distclean 
-
 
 message:
 	@echo "------------------------------------------";
