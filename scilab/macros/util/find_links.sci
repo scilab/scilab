@@ -67,19 +67,22 @@ function t=getlink(name,absolute_path)
 endfunction
 
 function p=relative_path(path,relative)
-  if MSDOS then sep='\',else sep='/',end
+  // path here are html path thus the 
+  // correct sep is always '/' 
+  path=strsubst(path,'\','/');
+  relative=strsubst(relative,'\','/');
   cpath=str2code(path)
   crelative=str2code(relative)
   n=min(size(cpath,"*"),size(crelative,"*"))
   ncommon=find((cpath(1:n)==crelative(1:n))==%F)
   ncommon=ncommon(1)-1
   strcommon=part(path,[1:ncommon])
-  k=strindex(strcommon,sep)
+  k=strindex(strcommon,'/')
   ncommon=k($)
-  ndir=size(strindex(part(relative,[ncommon+1:length(relative)]),sep),"*")
+  ndir=size(strindex(part(relative,[ncommon+1:length(relative)]),'/'),"*")
   p=""
   for i=1:ndir
-    p=p+".."+sep
+    p=p+"../"
   end
   p=p+part(path,[ncommon+1:length(path)])
 endfunction
