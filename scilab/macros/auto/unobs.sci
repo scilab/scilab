@@ -7,7 +7,7 @@ function [dim,x]=unobs(A,C,tol)
 // 
 //    C*X = [0,*]
 // Copyright INRIA
-[p,p]=size(A);tol=1.d-10;
+[p,p]=size(A);tol=1.d-10*norm([A;C],1);
 [n,w]=contr(A',C',tol);
 x=[w(:,n+1:p),w(:,1:n)];
 dim=p-n;

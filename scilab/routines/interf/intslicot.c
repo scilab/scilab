@@ -36,6 +36,8 @@ int intab01od(fname)
   double theTOL=0;
   int minlhs=1, minrhs=2, maxlhs=6, maxrhs=3;
 
+  /*     [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B,[TOL])   */
+
   CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
 
   GetRhsVar(1,"d",&mA,&nA,&ptrA);   A=1;        /*     A */
@@ -86,7 +88,7 @@ static GenericTable Tab[]={
   {(Myinterfun) fortran_mex_gateway, C2F(sorder),"sorder"},
   {(Myinterfun) fortran_mex_gateway, C2F(findbd),"findbd"},
   {(Myinterfun) sci_gateway, intrankqr,"rankqr"},
-  {(Myinterfun) sci_gateway, intab01od,"ab01od"},
+  {(Myinterfun) sci_gateway, intab01od,"contr"},
 };
  
 int C2F(intslicot)()

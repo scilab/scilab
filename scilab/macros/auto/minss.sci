@@ -14,7 +14,7 @@ if tol<>[] then
    [nc,u1]=contr(a',c',tol)
  else
    if [a;c]==[] then reltol=0;else reltol=1.d-10*norm([a;c],1);end
-   [nc,u1]=contr(a',c',[reltol,1.d-10])
+   [nc,u1]=contr(a',c',reltol)
 end
 u=u1(:,1:nc)
 c=c*u;a=u'*a*u;b=u'*b,x0=u'*x0;
@@ -22,7 +22,7 @@ if tol<>[] then
   [no,u2]=contr(a,b,tol)
 else
   if [a,b]==[] then reltol=0;else reltol=1.d-10*norm([a,b],1);end
-  [no,u2]=contr(a,b,[reltol,1.d-10])
+  [no,u2]=contr(a,b,reltol)
 end
 u=u2(:,1:no)
 a=u'*a*u;b=u'*b;c=c*u

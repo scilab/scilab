@@ -166,7 +166,6 @@
 {"ricc",		IN_matric,	3,	2},	
 {"sylv",		IN_matric,	2,	2},	
 #define  IN_matnew  10  
-{"contr",		IN_matnew,	1,	2},	
 {"freq",		IN_matnew,	4,	2},	
 {"ltitr",		IN_matnew,	5,	2},	
 {"ppol",		IN_matnew,	2,	2},	
@@ -542,4 +541,4 @@
 {"sorder",		IN_intslicot,	2,	3},
 {"findbd",		IN_intslicot,	3,	3},
 {"rankqr",		IN_intslicot,	4,	3},
-{"ab01od",		IN_intslicot,	5,	3},
+{"contr",		IN_intslicot,	5,	3},

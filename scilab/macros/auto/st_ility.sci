@@ -11,7 +11,7 @@ typ='c';if dom<>'c' then typ='d',end
 // controllable part
 if rhs==1 then 
   if [a,b]~=[] then reltol=1.d-10*norm([a,b],1);else reltol=0;end
-  [a,b,u,n]=contr(a,b,[reltol,1.d-10])
+  [a,b,u,n]=contr(a,b,reltol)
          else [a,b,u,n]=contr(a,b,tol)
 end;
 n=sum(n);nc=n;
