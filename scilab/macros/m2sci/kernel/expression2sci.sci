@@ -87,7 +87,12 @@ case "list"
     if typeof(mtlb_expr(k))=="cste" then
       mtlb_expr(k)=Cste(mtlb_expr(k).value)
     elseif typeof(mtlb_expr(k))=="variable" then
-      mtlb_expr(k)=Variable(mtlb_expr(k).name,Infer())
+      [isvar,index]=isdefinedvar(mtlb_expr(k))
+      if isvar then
+	mtlb_expr(k)=Variable(mtlb_expr(k).name,varslist(index).infer)
+      else
+	mtlb_expr(k)=Variable(mtlb_expr(k).name,Infer())
+      end
     elseif typeof(mtlb_expr(k))=="list" then
       [mtlb_expr(k)]=expression2sci(mtlb_expr(k),lhslist)
     elseif typeof(mtlb_expr(k))=="operation" then
