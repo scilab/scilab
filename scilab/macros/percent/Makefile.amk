@@ -18,7 +18,7 @@ A =     %c_a_c.sci %hm_a_hm.sci %hm_a_s.sci %ip_a_s.sci \
 	%p_a_lss.sci %p_a_r.sci %r_a_lss.sci %r_a_p.sci \
 	%r_a_r.sci %r_a_s.sci %s_a_hm.sci %s_a_ip.sci \
 	%s_a_lss.sci %s_a_r.sci %s_a_sp.sci %sp_a_s.sci \
-	%sp_a_sp.sci %i_a_i.sci 
+	%sp_a_sp.sci %i_a_i.sci
 
 B =      %b_i_b.sci %s_g_b.sci %s_h_b.sci %s_i_b.sci \
 	 %spb_c_b.sci %spb_f_b.sci %spb_g_b.sci %spb_h_b.sci \
@@ -181,7 +181,7 @@ RFUNS =  %r_clean.sci %r_det.sci %r_diag.sci %r_eye.sci %r_inv.sci \
 SFUNS =  %s_pow.sci %s_simp.sci %s_sort.sci %s_and.sci %s_matrix.sci %s_or.sci
 
 SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
-	 %sp_imag.sci %sp_int.sci %sp_inv.sci %sp_norm.sci %sp_real.sci \
+	 %sp_int.sci %sp_inv.sci %sp_norm.sci \
 	 %sp_round.sci %sp_sin.sci %sp_sort.sci %sp_sqrt.sci %sp_sum.sci \
 	 %sp_tril.sci %sp_triu.sci %spb_diag.sci %spb_tril.sci %spb_triu.sci\
 	 %sp_and.sci %sp_or.sci %spb_and.sci %spb_or.sci %sp_length.sci
