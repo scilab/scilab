@@ -34,8 +34,9 @@ typedef struct {
 
 
 void do_cold_restart();
-int get_phase_simulation();
-int* get_pointer_xproperty();
-double get_scicos_time();
+int get_phase_simulation(int p);
+int* get_pointer_xproperty(int p);
+double get_scicos_time(double p);
 int get_block_number();
 void set_block_error(int);
+void set_pointer_xproperty(int* pointer,int n);

@@ -384,7 +384,7 @@ int C2F(scicos)
       Blocks[kf].outsz[out]=lnkptr[lprt+1]-lnkptr[lprt];
     }
     Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
-    if ((Blocks[kf].evout=malloc(sizeof(double)*Blocks[kf].nevout))== NULL ){
+    if ((Blocks[kf].evout=calloc(Blocks[kf].nevout,sizeof(double)))== NULL ){
       free_blocks();
       *ierr =5;
       return 0;
@@ -394,7 +394,12 @@ int C2F(scicos)
     Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
     Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
 
-
+    if ((Blocks[kf].res=malloc(sizeof(double)*Blocks[kf].nx))== NULL ){
+      free_blocks();
+      *ierr =5;
+      return 0;
+    }
+    
     i1=izptr[kf+2]-izptr[kf+1];
     if ((Blocks[kf].label=malloc(sizeof(char)*(i1+1)))== NULL ){
       free_blocks();
@@ -403,7 +408,12 @@ int C2F(scicos)
     }
     Blocks[kf].label[i1]='\0';
     C2F(cvstr)(&i1,&(iz[izptr[kf+1]-1]),Blocks[kf].label,&job,i1);    
-
+    if ((Blocks[kf].jroot=calloc(Blocks[kf].ng,sizeof(int)))== NULL ){
+      free_blocks();
+      *ierr =5;
+      return 0;
+    }
+    
     Blocks[kf].work=(void **)(((double *)work)+kf);
     Blocks[kf].mode=0;
   }
@@ -3205,13 +3215,13 @@ void free_blocks()
 }
   
   
-int get_phase_simulation()
+int get_phase_simulation(int p)
 
 {
   return phase;
 }
 
-int* get_pointer_xproperty()
+int* get_pointer_xproperty(int p)
 
 {
   return pointer_xproperty;
@@ -3224,7 +3234,7 @@ void do_cold_restart()
   return;
 }
 
-double get_scicos_time()
+double get_scicos_time(double p)
 
 {
   return scicos_time;
