@@ -1195,26 +1195,24 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 /* Double le caractere \ dans un chemin */
 void DoubleDoubleSlash(char *pathout,char *pathin)
 {
-	int l=0;
-	int i=0;
-	for (i=0;i < strlen(pathin);i++)
-		{
-
-			if (pathin[i]=='\\')
-			{
-				pathout[l]=pathin[i];
-				pathout[l+1]='\\';
-				l=l+2;
-
-			}
-			else
-			{
-				pathout[l]=pathin[i];
-				l++;
-			}
-
-		}
-		pathout[l]='\0';
+  int l=0;
+  unsigned int i=0;
+  for (i=0;i < strlen(pathin);i++)
+    {
+      
+      if (pathin[i]=='\\')
+	{
+	  pathout[l]=pathin[i];
+	  pathout[l+1]='\\';
+	  l=l+2;
+	}
+      else
+	{
+	  pathout[l]=pathin[i];
+	  l++;
+	}
+    }
+  pathout[l]='\0';
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -1226,7 +1224,7 @@ void DoubleDoubleSlash(char *pathout,char *pathin)
  * flag == FALSE : in case of cancel 
  ****************************************/
 
-BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, *char **d, int *ierr)
+BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, char **d, int *ierr)
 {
   int i, nChar;
   OPENFILENAME ofn;
@@ -1234,7 +1232,7 @@ BOOL SciOpenSave (HWND hWndParent, BYTE ** s,BOOL save, *char **d, int *ierr)
   char *szFile;
   char *szFileTitle;
   char *szFilter;
-  BOOL save, flag;
+  BOOL flag;
   NEWSTRING (szTitle);
   NEWSTRING (szFile);
   NEWSTRING (szFileTitle);
