@@ -67,6 +67,7 @@ char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 double * AllocUserGrads(double * u_xgrads, int nb);
 int CopyUserGrads(double *u_xgrad_SRC, double *u_xgrad_DEST, int dim);
 char ** AllocAndSetUserLabelsFromMdl(char ** u_xlabels, char ** u_xlabels_MDL, int u_nxgrads);
+
 extern int cf_type; /* used by gcf to determine if current figure is a graphic (1) or a tksci (0) one */
 /*************************************************************************************************/
 /* DJ.A 08/01/04 */
@@ -9564,29 +9565,6 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       /**DJ.Abdemouche 2003**/
       if (pvecz == (double *) NULL)
 	{
-	  /* Change here: F.Leray 25.06.04 */
-	  /* Whenever pvecz == NULL, we create a 0. array of size n1 */
-	  /* in order to better allow 3d switching with all polyline_style modes*/
-	  /* Indeed, some modes require pvz knowledge. */
-
-	  /*ppoly->pvz = (double *) NULL;*/
-/* 	  if ((ppoly->pvz = MALLOC (n1 * sizeof (double))) == NULL) */
-/* 	    { */
-/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvx); */
-/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvector); */
-/* 	      FREE(pPOLYLINE_FEATURE (pobj)->pvy); */
-/* 	      sciDelThisToItsParent (pobj, sciGetParent (pobj)); */
-/* 	      sciDelHandle (pobj); */
-/* 	      FREE(pPOLYLINE_FEATURE(pobj)); */
-/* 	      FREE(pobj); */
-/* 	      return (sciPointObj *) NULL; */
-/* 	    }  */
-/* 	  for (i = 0; i < n1; i++) */
-/* 	    ppoly->pvz[i] = 0.; */
-
-	  /* F.Leray 02.090.04: FINALLY not to prevent allocating useless memory
-	   in case we always deal with 2d objects 
-	   pPOLYLINE_FEATURE (pobj)->pvz will be allowed in sciSetPoints if necesseray */
 	  pPOLYLINE_FEATURE (pobj)->pvz=NULL;
 
 	  ppoly->zmin   = 0.;
@@ -11475,7 +11453,10 @@ sciDrawObj (sciPointObj * pobj)
 {
   char str[2] = "xv"/*,locstr*/;
   integer n,n1,uc,verbose=0,narg,xz[10],na,arssize,sflag=0,un=1;
-  integer *xm, *ym,*zm,n2 = 1, xtmp[4], ytmp[4], *pstyle/*,rect1[4]*/;
+  integer *xm = NULL;
+  integer *ym = NULL;
+  integer *zm = NULL;
+  integer n2 = 1, xtmp[4], ytmp[4], *pstyle = NULL/*,rect1[4]*/;
   integer closeflag = 0,ias,ias1;
   integer width, height;
   double anglestr,w2,h2,as;
@@ -11493,7 +11474,10 @@ sciDrawObj (sciPointObj * pobj)
   sciPointObj /* *psubwin, */ *currentsubwin;
 /*   double locx,locy,loctit; */
   char logflags[4];
-  double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
+  double xbox[8],ybox[8],zbox[8];
+  double *xzz = NULL;
+  double *yzz = NULL;
+  double *zzz = NULL;
   static integer InsideU[4],InsideD[4];
   	
   integer xxx[6];
@@ -11507,6 +11491,11 @@ sciDrawObj (sciPointObj * pobj)
   /* variable pour le set_scale update_frame_bounds*/
   double subwin[4], framevalues[4];
 
+  int nb_curves = 0, *curves_size = NULL, jk; /* for SCI_POLYLINE */
+  double **xvect = (double **) NULL;
+  double **yvect = (double **) NULL;
+  double **zvect = (double **) NULL;
+  
   BOOL isaxes = FALSE;
 
   subwin[0]    = 0;
@@ -12038,8 +12027,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  break;
 	}
       break; 
-    case SCI_POLYLINE: 
-     
+   case SCI_POLYLINE: 
       if (!sciGetVisibility(pobj)) break;
 
       /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
@@ -12058,10 +12046,13 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       v = 0;
       dv = 0;
       logflags[0]='g';
-      logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0];
+      logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0]; /* F.Leray 26.10.04 Pb when logscale on and data is <= 0 for clipping */
       logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
-
-
+      
+      /* //////////////////////////////////////////////////////////////// */
+      BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
+      /* //////////////////////////////////////////////////////////////// */
+      
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc();
 #endif
@@ -12083,114 +12074,170 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       n2 = pPOLYLINE_FEATURE (pobj)->n2;
       closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
       
-      if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-      if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-      if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-      if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-      if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
       /***/
       sciClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
       flag_DO = MaybeSetWinhdc ();
 #endif
 
-      /**DJ.Abdemouche 2003**/
-      switch (pPOLYLINE_FEATURE (pobj)->plot)
-	{
-	case 0:
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz);
-	  else
-	    C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); 
-	  /**DJ.Abdemouche 2003**/
-	  break; 
-	case 1:
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz);
-	  else
-	    Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  
-	  break;
-	case 2:
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    {
-	      Plo2dTo3d(2,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz);
-	      trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-	    }
-	  else
-	    {
-	      Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);
-	    }
-	  n1=n1*2;
-	  break;
-	case 3:  
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    {
-	      Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz);
-	      trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-	    }
-	  else
-	    {
-	      Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags); 
-	    }
-	  for ( j = 0 ; j < n2 ; j++)
-	    {
-	      lstyle=x[0];
-	      iflag=0; nn1= n1*2;
-	      C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	    }
-	  /**DJ.Abdemouche 2003**/
-	  n1=n2;
-	  break;
-	case 4: 
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    {
-	      Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz);
-	      trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-	    }
-	  else
-	    {
-	      Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  
-	    }
-	  nn2=2*(n1)-1;
-	  arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
-	  arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
-	  for ( j = 0 ; j < n2 ; j++)
-	    {
-	      integer lstyle=sciGetMarkStyle(pobj) ,iflag=0;
-	      C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
-	    } 
-	  break;
-	case 5:
-	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	    trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,
-		    pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz);
-	  else
-	    C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,
-			     pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);
-	  sciClip(sciGetIsClipping(pobj));
-	  C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 
-	  break;
-	default:
-	  sciprint ("This Polyline cannot be drawn !\n");
+  
+
+      for(jk=0;jk<nb_curves;jk++)
+	{
+	  n1 = curves_size[jk];
+	  
+	  if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
+	  if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
+	  if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	  if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	  if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	  
+	  /**DJ.Abdemouche 2003**/
+	  switch (pPOLYLINE_FEATURE (pobj)->plot)
+	    {
+	    case 0:
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+
+	      else
+		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);  */
+		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L); 
+	   
+	      /**DJ.Abdemouche 2003**/
+	      break; 
+	    case 1:
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+
+	      else
+/* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
+		Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+	      break;
+	    case 2:
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		{
+		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		    FREE(zzz); zzz = (double *) NULL;
+		  
+/* 		  Plo2dTo3d(2,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  Plo2dTo3d(2,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+		}
+	      else
+		{
+/* 		  Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags); */
+		  Plo2d2RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+		}
+	      n1=n1*2;
+	      break;
+	    case 3:  
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		{
+		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		    FREE(zzz); zzz = (double *) NULL;
+		  
+	/* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  Plo2dTo3d(3,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+		}
+	      else
+		{
+/* 		  Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
+		  Plo2d3RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+		}
+	      for ( j = 0 ; j < n2 ; j++)
+		{
+		  lstyle=x[0];
+		  iflag=0; nn1= n1*2;
+		  C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
+	      /**DJ.Abdemouche 2003**/
+	      n1=n2;
+	      break;
+	    case 4: 
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		{
+		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		    FREE(zzz); zzz = (double *) NULL;
+			  
+/* 		  Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		  Plo2dTo3d(4,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		  trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+		}
+	      else
+		{
+/* 		  Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
+		  Plo2d4RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags); 
+		}
+	      nn2=2*(n1)-1;
+	      arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
+	      arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
+	      for ( j = 0 ; j < n2 ; j++)
+		{
+		  integer lstyle=sciGetMarkStyle(pobj) ,iflag=0;
+		  C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
+		} 
+	      break;
+	    case 5:
+	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+		
+		/* 	trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx, */
+		/* 			pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+	      else
+		
+		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx, */
+		/* 				 pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); */
+		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L);
+	      
+	      sciClip(sciGetIsClipping(pobj));
+	      C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	      
+	      break;
+	    default:
+	      sciprint ("This Polyline cannot be drawn !\n");
+#ifdef WIN32 
+	      if ( flag_DO == 1) ReleaseWinHdc ();
+#endif  
+	      break;     
+	    }
+      
+      
+            
+	  if (! sciGetIsMark(pobj))
+	    C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	  else
+	    C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
 #ifdef WIN32 
 	  if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
-	  break;     
+	  sciUnClip(sciGetIsClipping(pobj));
+
+
+	  FREE(xzz); xzz = (double *) NULL;
+	  FREE(yzz); yzz = (double *) NULL;
+	  FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
+	  
+	  FREE (xm); xm = (integer *) NULL;
+	  FREE (ym); ym = (integer *) NULL;
+	  
 	}
-      FREE(xzz); xzz = (double *) NULL;
-      FREE(yzz); yzz = (double *) NULL;
-      FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
-      if (! sciGetIsMark(pobj))
-	C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-      else
-	C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif  
-      sciUnClip(sciGetIsClipping(pobj));
-      FREE (xm); xm = (integer *) NULL;
-      FREE (ym); ym = (integer *) NULL;
+      
+      for(i=0;i<nb_curves;i++){
+	FREE(xvect[i]); xvect[i] = (double *) NULL;
+	FREE(yvect[i]); yvect[i] = (double *) NULL;
+	FREE(zvect[i]); zvect[i] = (double *) NULL;
+      }
+      FREE(xvect); xvect = (double **) NULL;
+      FREE(yvect); yvect = (double **) NULL;
+      /*   if(zvect != (double **) NULL) */
+      FREE(zvect); zvect = (double **) NULL;
+      
+      FREE(curves_size); curves_size = NULL;
+
       break;
     case SCI_ARC: 
      
@@ -19765,10 +19812,10 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 }
 
 
-int AdaptGraduations(char xyz, sciPointObj * psubwin, double minval, double maxval, double fx, double fy, double fz)
+int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
-/*   static int flag = 0; */
+  /*   static int flag = 0; */
   int xmmin = -1, ymmin = -1;
   int xmmax = -1, ymmax = -1;
   int x,y;
@@ -19781,22 +19828,22 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double minval, double maxv
     nbgrads = &ppsubwin->axes.nxgrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[0];
     grads   = ppsubwin->axes.xgrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&maxval,&fy,&fz); /* fx is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&minval,&fy,&fz);
+    trans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /* fx is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz);
   }
   else if (xyz=='y'){
     nbgrads = &ppsubwin->axes.nygrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[1];
     grads   = ppsubwin->axes.ygrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&maxval,&fz); /* fy is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&minval,&fz);
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /* fy is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz);
   }
   else if (xyz=='z'){
     nbgrads = &ppsubwin->axes.nzgrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[2];
     grads   = ppsubwin->axes.zgrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&maxval); /* fz is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&minval);
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /* fz is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval);
   }
   else{
     sciprint("Error in AdaptGraduations call\n");
@@ -19809,7 +19856,7 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double minval, double maxv
   pixel_size = (int) sqrt(x*x + y*y);
 
   /*   sciprint("ymmax = %d et ymmin = %d",ymmin,ymmax); */
-/*   sciprint(" pixel_size = %d", pixel_size); */
+  /*   sciprint(" pixel_size = %d", pixel_size); */
   
   if(pixel_size > 120) /* nothing to adapt : 10 graduations can be displayed */
     return 0;          /* and the corresponding computed subtics number can be used too */
@@ -19834,6 +19881,7 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double minval, double maxv
   return 0;
 }
 
+
 int FindGrads(double *grads,int * n_grads)
 {
   int nbgrads,i;
@@ -19848,9 +19896,9 @@ int FindGrads(double *grads,int * n_grads)
 
   if((nbgrads % 2)!= 0 ) /* nombre impair de grads */
     {
-	  for(i=0;i<(int) (nbgrads+1)/2;i++) {
-	    grads[i] = grads_tmp[2*i];
-	  }
+      for(i=0;i<(int) (nbgrads+1)/2;i++) {
+	grads[i] = grads_tmp[2*i];
+      }
       
       *n_grads = (int) (nbgrads+1)/2; /* (7+1)/2 = 4, (9+1)/2 = 5 ...*/
     }
@@ -19869,4 +19917,229 @@ int FindGrads(double *grads,int * n_grads)
   return 0;
 }
 
+
+/* F.Leray 02.11.04 */
+/* BuildXYZvectForClipping_IfNanOrLogON : this function is used for polylines to determine if we have to cut the polyline data for 2 reasons: */
+/* - clipping is forced because we have a Nan inside the data columns */
+/* - clipping is forced because we have a log scale on an axis and polyline data < 0 on this axis (clipping on X11 or Win is based on pixel we compute so if */
+/* the algo tried to evaluate log(-5.6) (for example) and then we tried to make a Xscale (or logXscale) on it, it doesn't work at all!! */
+/* What we do is: we cut the polyline into several polylines and reject Nan values and data<0 if axis is in log scale */
+int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPointObj * psubwin, int * nb_curves, double *** xvect, double *** yvect, double *** zvect,int ** curves_size)
+{
+  int i,j,k;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  sciPolyline * pppolyline = pPOLYLINE_FEATURE( ppolyline);
+  int *indexGoodPoints = NULL;
+  
+  int valeur = 0;
+  int nb = 0;
+  
+  int **store_data = (int) NULL;
+
+  if ((store_data = (int **) MALLOC ((3)*sizeof (int *))) == NULL) return -1;
+  for(i=0;i<3;i++) 
+    if ((store_data[i] = MALLOC ((pppolyline->n1)*sizeof (int))) == NULL) return -1;
+  
+  if ((indexGoodPoints = MALLOC ((pppolyline->n1)*sizeof (integer))) == NULL) return -1;
+  for(i=0;i<pppolyline->n1;i++) indexGoodPoints[i] = pppolyline->n1 + 1000;
+  
+  /* ICI dans mon exemple plot2d indexGoodPoints[i] = 63+1 = 64 */
+  
+  /*  we search for != %nan */
+  for(i=0;i<pppolyline->n1;i++)
+    {
+      if (pppolyline->pvz == (double *) NULL)
+	{
+	  if((finite(pppolyline->pvx[i]) == 1) &&
+	     (finite(pppolyline->pvy[i]) == 1))
+	    indexGoodPoints[i] = 1;  /* x and y are finite numbers */
+	  else
+	    indexGoodPoints[i] = -1;
+	} 
+      else
+	{
+	  if((finite(pppolyline->pvx[i]) == 1) &&
+	     (finite(pppolyline->pvy[i]) == 1) &&
+	     (finite(pppolyline->pvz[i]) == 1))
+	    indexGoodPoints[i] = 1;
+	  else
+	    indexGoodPoints[i] = -1;
+	  
+	}
+    }
+  
+
+  /* we search for values <= 0 */
+  for(i=0;i<pppolyline->n1;i++)
+    {
+      if(ppsubwin->logflags[0] == 'l') /* for now, logflags does not exist on z */
+	{
+	  if((indexGoodPoints[i] == 1) && (pppolyline->pvx[i] <= 0))
+	    indexGoodPoints[i] = -1;
+	}
+      
+      if(ppsubwin->logflags[1] == 'l') 
+	{
+	  if((indexGoodPoints[i] == 1) && (pppolyline->pvy[i] <= 0))
+	    indexGoodPoints[i] = -1;
+	}
+      
+      /* if ... z case when z wil have a logflag...*/
+    }
+  
+  valeur = indexGoodPoints[0]; /* -1 ou 1 */
+  
+  
+  *nb_curves = 0;
+  if(valeur == 1){ /* we begin by a draw point/line */
+    *nb_curves = 0;
+    
+    j=0;
+    
+    while(j<pppolyline->n1)
+      {
+       	
+	for(i=j;i<pppolyline->n1;i++)
+	  if(indexGoodPoints[i] == 1)
+	    continue;
+	  else
+	    break;
+
+	store_data[0][(*nb_curves)] = j;
+	store_data[1][(*nb_curves)] = i;
+	store_data[2][(*nb_curves)] = i-j;
+
+	*nb_curves = *nb_curves + 1; /* STOCKER AUSSI LES INDEXES EXTREMITES OU C'EST EGAL A  1 !! */
+	
+
+	for(k=i;k<pppolyline->n1;k++)
+	  if(indexGoodPoints[k] == -1)
+	    continue;
+	  else
+	    break;
+      
+	j=k;
+
+      }
+  }
+  else if(valeur == -1){/* we begin with a not drawn point/line */
+    *nb_curves = 0;
+    
+    j=0;
+    
+    while(j<pppolyline->n1)
+      {
+       	
+	for(i=j;i<pppolyline->n1;i++)
+	  if(indexGoodPoints[i] == -1)
+	    continue;
+	  else
+	    break;
+
+	for(k=i;k<pppolyline->n1;k++)
+	  if(indexGoodPoints[k] == 1)
+	    continue;
+	  else
+	    break;
+
+	store_data[0][(*nb_curves)] = i;
+	store_data[1][(*nb_curves)] = k;
+	store_data[2][(*nb_curves)] = k-i;
+	
+
+	*nb_curves = *nb_curves + 1;
+	j=k;
+
+      }
+  }
+  else{
+    printf("Impossible case in CheckClippingNanLogON\n");
+  }
+  
+  
+  nb = *nb_curves;
+
+  /* XYZ vect building */
+  if (( (*xvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
+  if (( (*yvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
+  
+  /*  if (pppolyline->pvz == (double *) NULL) */
+  /*     (*zvect) = (double **) NULL; */
+  /*   else */
+  if (( (*zvect) = (double **) MALLOC ((nb)*sizeof (double *))) == NULL) return -1;
+  
+
+  
+  
+  for(i=0;i<nb;i++)
+    {
+      int cmpteur = 0;
+      /* Allocating arrays x, y and zvect */
+      if (( (*xvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+      if (( (*yvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+      if (( (*zvect)[i] = (double *) MALLOC ((store_data[2][i])*sizeof (double))) == NULL) return -1;
+      
+      for(j=store_data[0][i];j<store_data[1][i];j++)
+	{
+	  (*xvect)[i][cmpteur] = pppolyline->pvx[j];
+	  (*yvect)[i][cmpteur] = pppolyline->pvy[j];
+	  if(pppolyline->pvz == NULL)
+	    (*zvect)[i] = NULL;
+	  else
+	    (*zvect)[i][cmpteur] = pppolyline->pvz[j];
+	  
+	  cmpteur++;
+	  
+	}
+    }
+  
+  
+  /*   for(i=0;i<nb;i++) */
+  /*     { */
+  /*       printf("Broken line %d\n",i); */
+  /*       printf("Les X\n"); */
+  /*       for(j=0;j<store_data[2][i];j++){ */
+  /* 	printf("xvect[%d][%d] = %lf\n",i,j,(*xvect)[i][j]); */
+  /* 	//	printf("zvect[%d][%d] = %lf\n",i,j); */
+  /*       } */
+
+  /*       printf("Les Y\n"); */
+  /*       for(j=0;j<store_data[2][i];j++){ */
+  /* 	printf("yvect[%d][%d] = %lf\n",i,j,(*yvect)[i][j]); */
+  /* 	//	printf("zvect[%d][%d] = %lf\n",i,j); */
+  /*       } */
+  /*     } */
+  
+  if (( (*curves_size) = (int *) MALLOC ((nb)*sizeof (int))) == NULL) return -1;
+  
+  for(i=0;i<nb;i++)
+    {
+      (*curves_size)[i] = store_data[2][i];
+    }
+  
+  
+  for(i=0;i<3;i++){
+    FREE(store_data[i]); 
+    store_data[i] = (int *) NULL;
+  }
+  
+  FREE(store_data); store_data = (int **) NULL;
+  FREE(indexGoodPoints); indexGoodPoints = (int *) NULL;
+  return 0;
+}
+
+
+/* don't waste time on %NaN */
+int CheckIfiisNan(int j, int dim, int * tab)
+{
+  int i;
+  
+  for(i=0;i<dim;i++)
+    {
+      if(tab[i] == j)
+	return -1;
+    }
+  
+  return 0;
+}
 
