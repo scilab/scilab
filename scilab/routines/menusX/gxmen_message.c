@@ -8,8 +8,7 @@
 
 extern SciMess ScilabMessage;
 
-#define OK 1
-#define CANCEL 2
+typedef enum { pOK, pCANCEL , RESET } state; 
 
 extern void ShellFormCreate(char *, Widget *, Widget *, Display **);
 int ExposeMessageWindow(void);
@@ -17,18 +16,21 @@ int ExposeMessageWindow1(void);
 
 #include <gtk/gtk.h>
 
+static GtkWidget *window = NULL; 
 
 static void sci_message_ok(GtkWidget *widget,
 			  int *answer)
 {
-  *answer = OK;
+  gtk_widget_destroy(window); 
+  *answer = pOK;
   gtk_main_quit();
 }
 
 static void sci_message_cancel(GtkWidget *widget,
 			      int *answer)
 {
-  *answer = CANCEL;
+  gtk_widget_destroy(window); 
+  *answer = pCANCEL;
   gtk_main_quit();
 }
 
@@ -40,23 +42,26 @@ int ExposeMessageWindow1(void)
 
 int ExposeMessageWindow(void)
 {
-  GtkWidget *window = NULL;
   GtkWidget *box1;
   GtkWidget *box2;
   GtkWidget *button;
   GtkWidget *separator;
   GtkWidget *scrolled_window;
   GtkWidget *label;
-  static int answer ;
+  static int answer  = RESET ;
+
   start_sci_gtk(); /* in case gtk was not initialized */
+  /* do not accept a reenter mode */ 
+  if ( window != NULL) return FALSE ; 
+
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_widget_set_name (window, "Scilab message");
   gtk_widget_set_usize (window, 300,300);
   gtk_window_set_policy (GTK_WINDOW(window), TRUE, TRUE, FALSE);
 
   gtk_signal_connect (GTK_OBJECT (window), "destroy",
-		      GTK_SIGNAL_FUNC(gtk_widget_destroyed),
-		      &window);
+		      GTK_SIGNAL_FUNC(sci_message_cancel),
+		      &answer);
 
   gtk_window_set_title (GTK_WINDOW (window), "Scilab message");
   gtk_container_set_border_width (GTK_CONTAINER (window), 0);
@@ -106,8 +111,16 @@ int ExposeMessageWindow(void)
     }
 
   gtk_widget_show (window);
-  gtk_main();
-  gtk_widget_destroy(window);
-  return answer ;
+
+
+  while (1) 
+    {
+      /* here we only want to quit gtk_main after a selection in 
+       */
+      gtk_main();
+      if ( answer != RESET ) break;
+    }
+  window = NULL;
+  return (answer == pOK) ? 1 : 2;
 }
 
