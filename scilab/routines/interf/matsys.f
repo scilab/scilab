@@ -952,17 +952,14 @@ c
       subroutine intschdir(fname)
       character*(*) fname
       logical createvar,  putlhsvar
-      logical checkrhs,checklhs,getsmat
+      logical checkrhs,checklhs,getrhsvar
       include '../stack.h'
       nbvars=0
       if(.not.checkrhs(fname,1,1)) return
       if(.not.checklhs(fname,1,1)) return
-
-      if(.not.getsmat(fname,top,top,m1,n1,1,1,lr,m)) return
-      call cvstr(m,istk(lr),buf,1)
+      if(.not.getrhsvar(1,'c',m1,n1,lr)) return 
       if(.not.createvar(2,'i',1,1,l2)) return
-      buf(m+1:m+1)=char(0)
-      call scichdir(buf(1:m+1),istk(l2))
+      call scichdir(cstk(lr:lr+m1*n1),istk(l2))
       if(istk(l2) .gt. 0) then 
          buf = fname // ': Internal Error' 
          call error(998)
