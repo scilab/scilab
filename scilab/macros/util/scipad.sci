@@ -11,6 +11,9 @@ global TMPDIR
       TK_EvalStr("scipad eval {wm withdraw .}")
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
+    if exists("home") then
+      TK_EvalStr("scipad eval { set env(HOME) """+home+""" }")
+    end
     if exists("LANGUAGE") then 
       TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
     end
