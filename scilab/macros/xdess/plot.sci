@@ -14,12 +14,11 @@ isold=get('figure_style')=='old'
 
 if isold
   T = varargin
-  str = [];
-  for i=1:size(varargin)-1
-    str = str+sci2exp(T(i))+','
+  data = [];
+  for i=1:size(varargin)
+    data = [data T(i)];
   end
-  str = str+sci2exp(T($))
-  execstr("oldplot("+str+")");
+  oldplot(data);
   return;
 end
 
