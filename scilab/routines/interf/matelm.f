@@ -307,8 +307,8 @@ c     Interface for rand function
       character*(20) randtype
       logical phase
       save    phase
-      data    phase /.true./
       integer iadr,sadr
+      data    phase /.true./
 c
       iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
