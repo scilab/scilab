@@ -4,6 +4,8 @@ typedef short integer2;
 /*     Copyright INRIA */
 static integer c1 = 1;
 
+extern int C2F(gendot)(integer *typ,integer *n,void *dx,integer *incx,void *dy,integer *incy); /* Defined in SCI/routines/int/gendot.c */
+
 #define MMUL(Type) {\
 Type *A;\
 Type *B;\
@@ -56,5 +58,6 @@ int *c;
     MMUL(unsigned int);
     break;
   }
+  return 0;
 }
 
