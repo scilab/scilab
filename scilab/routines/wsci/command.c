@@ -68,20 +68,21 @@ static char * rlgets (char *s, int n, char *prompt)
     free (line);
 
   line = readline_win (prompt);
-   /* Rappel Commande avec ! 
+  
+   /* Rappel Commande avec ! */
    if (line[0]=='!')
   	{
 	  struct hist *P=NULL;
   		if (strlen(line)>1)
   		{
   			P=SearchBackwardInHistory(&line[1]);
-			if (P != NULL) {
-			  write_scilab(P->line);
-			  add_history_sci(P->line);
+			if (P != NULL) 
+			{
+			  write_scilab_synchro(P->line);
 			}
   		}
   		return NULL;
-		}  supprime par serge Steer (reporte dans readline)*/
+	} 
   NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
   if (line)

@@ -24,7 +24,6 @@ char *ASCIItime(const struct tm *timeptr)
 /*-----------------------------------------------------------------------------------*/
 void GetCommentDateSession(char *line,int BeginSession)
 {
-
 	time_t timer;
   	timer=time(NULL);
   	
@@ -32,9 +31,7 @@ void GetCommentDateSession(char *line,int BeginSession)
 		sprintf(line,"// Begin Session : %s ",ASCIItime(localtime(&timer)) );
 	else
 		sprintf(line,"// End Session : %s  ",ASCIItime(localtime(&timer)) );
-	
 }
-
 /*-----------------------------------------------------------------------------------*/
 /* add line to the history at the end of history*/
 void add_history_sci (char *line)
@@ -49,9 +46,7 @@ void add_history_sci (char *line)
   	}
   	
   }
-  
-  /*  entry = (struct hist *) alloc ((unsigned long) sizeof (struct hist), "history");
-      entry->line = alloc ((unsigned long) (strlen (line) + 1), "history"); SS */
+ 
   entry = (struct hist *) malloc ((unsigned long) sizeof (struct hist));
   entry->line = malloc ((unsigned long) (strlen (line) + 1)); 
   strcpy (entry->line, line);
@@ -87,7 +82,7 @@ struct hist * SearchBackwardInHistory(char *line)
 		Parcours=history;
 	}
 	
-	while (Parcours)
+	while (Parcours->prev)
 	{
 		int len=strlen(line);
 		strncpy(LineComp,Parcours->line,len);
@@ -96,7 +91,6 @@ struct hist * SearchBackwardInHistory(char *line)
 		if (strcmp(LineComp,line)==0)
 		{
 			if (Parcours->prev) research_knot_last=GoPrevKnot(Parcours);
-			/*write_scilab(Parcours->line);*/
 			return Parcours;
 		}
 		Parcours=GoPrevKnot(Parcours);
@@ -106,10 +100,10 @@ struct hist * SearchBackwardInHistory(char *line)
 	return (struct hist *)NULL;
 
 }
+/*-----------------------------------------------------------------------------------*/
 struct hist * SearchForwardInHistory(char *line)
 /* Effectue la recherche via ! dans l'historique*/
 {
-
 	struct hist *Parcours=NULL;
 	char LineComp[MAXBUF];
 	
@@ -127,7 +121,7 @@ struct hist * SearchForwardInHistory(char *line)
 		Parcours=history;
 	}
 	
-	while (Parcours)
+	while (Parcours->next)
 	{
 		int len=strlen(line);
 		strncpy(LineComp,Parcours->line,len);
@@ -136,7 +130,6 @@ struct hist * SearchForwardInHistory(char *line)
 		if (strcmp(LineComp,line)==0)
 		{
 			if (Parcours->next) research_knot_last=GoNextKnot(Parcours);
-			/*write_scilab(Parcours->line);*/
 			return Parcours;
 		}
 		Parcours=GoNextKnot(Parcours);
@@ -146,7 +139,6 @@ struct hist * SearchForwardInHistory(char *line)
 	return (struct hist *)NULL;
 
 }
-
 /*-----------------------------------------------------------------------------------*/
 struct hist * GoFirstKnot(struct hist * CurrentKnot)
 {
@@ -159,7 +151,6 @@ struct hist * GoLastKnot(struct hist * CurrentKnot)
 	while(CurrentKnot->next) CurrentKnot=GoNextKnot(CurrentKnot);
 	return (struct hist *) CurrentKnot;
 }
-
 /*-----------------------------------------------------------------------------------*/
 struct hist * GoPrevKnot(struct hist * CurrentKnot)
 {
@@ -172,8 +163,6 @@ struct hist * GoNextKnot(struct hist * CurrentKnot)
 	CurrentKnot=CurrentKnot->next;
 	return (struct hist *) CurrentKnot;
 }
-/*-----------------------------------------------------------------------------------*/
-
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function savehistory  */
 int C2F(savehistory) _PARAMS((char *fname))
@@ -226,7 +215,6 @@ int C2F(savehistory) _PARAMS((char *fname))
 	C2F(objvide)(fname,&(Top),strlen(fname));
 	return 0;
 }
-
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function resethistory  */
 int C2F(resethistory) _PARAMS((char *fname))
@@ -314,9 +302,11 @@ int C2F(gethistory) _PARAMS((char *fname))
   static int l1, m1, n1;	
   int indice=0;
   struct hist *Parcours = history;
-  
-   if (Rhs == 0) /* aucun parametre --> affichage de la liste de l'historique */
+
+
+   if (Rhs <= 0) /* aucun parametre --> affichage de la liste de l'historique */
     {
+  	
     	if (history)
         {
         	
@@ -388,3 +378,4 @@ int C2F(gethistory) _PARAMS((char *fname))
    return 0;
  }	
  
+/*-----------------------------------------------------------------------------------*/

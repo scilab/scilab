@@ -2,7 +2,11 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+
+#ifndef	WIN32
 #include "../stack-c.h"
+#endif
+
 /* Allan CORNET 2004 */
 /* Scilab INRIA */
 
@@ -37,15 +41,14 @@ struct hist
 /*-----------------------------------------------------------------------------------*/
 struct hist *history = NULL;	/* no history yet */
 struct hist *cur_entry = NULL;
-struct hist *research_knot_last = NULL;/* Use for SearchInHistory --> ! */
 
-
+/* Use for SearchInHistory --> ! */
+struct hist *research_knot_last = NULL;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
-
 /*-----------------------------------------------------------------------------------*/
 char *ASCIItime(const struct tm *timeptr);
 void GetCommentDateSession(char *line,int BeginSession);
-void add_history (char *line);
+void add_history_sci (char *line);
 struct hist * SearchBackwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 struct hist * SearchForwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 /*-----------------------------------------------------------------------------------*/

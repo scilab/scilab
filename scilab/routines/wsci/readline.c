@@ -152,6 +152,20 @@ static int user_puts (char *str)
   	return rv;
 }
 /*-----------------------------------------------------------------------------------*/
+static void strip_blank(char *source)
+{
+  char *p;
+  p = source;
+  /* look for end of string */
+  while(*p != '\0') p++;
+  while(p != source) {
+    p--;
+    if(*p != ' ') break;
+    *p = '\0';
+  }
+}
+
+/*-----------------------------------------------------------------------------------*/
 /* This function provides a centralized non-destructive backspace capability */
 /* M. Castro */
 static void backspace ()
@@ -572,14 +586,18 @@ char * readline_win (char *prompt)
 	      max_pos = cur_pos;
 	      break;
 	    case '\n':		/* ^J */
-	    
 	    case '\r':		/* ^M */
+	    
 	      cur_line[max_pos + 1] = '\0';
 	      putc ('\n', stdout);
 	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
 	      strcpy (new_line, cur_line);
 	
 	      return (new_line);
+	    
+	    
+		break;
+
 	    default:
 	    
 	      break;
