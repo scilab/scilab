@@ -1,6 +1,6 @@
 // [x, flag, err, iter, res] = pcg(A, b, x, M, maxIter, tol)
 //
-// pcg.m solves the symmetric positive definite linear system Ax=b 
+// PCG solves the symmetric positive definite linear system Ax=b 
 // using the Preconditionned Conjugate Gradient.
 //
 // input   A        REAL symmetric positive definite matrix or function
