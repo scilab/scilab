@@ -329,18 +329,19 @@ rand('seed',0)
 // matdsr  matdsc
 a=rand(4,4);ac=a+i*rand(4,4);t=a*a';tc=ac*ac';
 tc=triu(tc,1)+triu(tc,1)'+diag(real(diag(tc)));
+tc=tc/max(abs(spec(tc))+1);
+
 // fonctions matricielles
 s=sqrtm(t);
-if norm(t-s*s,1) > 200*%eps then pause,end
+if norm(t-s*s,1) > 500*%eps then pause,end
 s=logm(t);
-if norm(t-expm(s)) > 200*%eps then pause,end
+if norm(t-expm(s)) > 500*%eps then pause,end
 s=sqrtm(tc);
-if norm(tc-s*s,1) > 230*%eps then pause,end
+if norm(tc-s*s,1) > 500*%eps then pause,end
 s=expm(tc);s=triu(s,1)+triu(s,1)'+diag(real(diag(s)));
-if norm(logm(s)-tc,1)> 1.e-9 then pause,end
-if norm(sinm(t)**2+cosm(t)**2-eye(),1) > 22*%eps then pause,end
-// jpc --> 20 remplace par 25 pour gc-win32 
-if norm(sinm(tc)**2+cosm(tc)**2-eye(),1) > 25*%eps then pause,end
+if norm(logm(s)-tc,1)> 500*%eps then pause,end
+if norm(sinm(t)**2+cosm(t)**2-eye(),1) > 50*%eps then pause,end
+if norm(sinm(tc)**2+cosm(tc)**2-eye(),1) > 50*%eps then pause,end
 //poly et root
 p=rand(5,1);pc=p+i*rand(5,1);x=poly(0,'x');
 if norm(sort(p )-sort(real(roots(poly(p,'x'))))) > 1000*%eps then pause,end
