@@ -52,10 +52,10 @@ function ok=ge_do_save(GraphList)
     end
   end
   
- // ok=execstr('save_graph(GraphList,fname)','errcatch')==0
- //  if ~ok then
- //    x_message(lasterror())
- //  end
- ok=%t
- save_graph(GraphList,fname)
+  ok=execstr('save_graph(GraphList,fname)','errcatch')==0
+  if ~ok then
+    x_message([lasterror();'';'Graph has not been saved'])
+  end
+  ok=%t
+  save_graph(GraphList,fname)
 endfunction

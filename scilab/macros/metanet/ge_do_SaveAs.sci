@@ -55,6 +55,8 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
     if ok then 
       nf=length(fname)
       GraphList.name(2)=part(fname,1:nf-6)
+    else
+      x_message([lasterror();'';'Graph has not been saved'])
     end
     
   else
