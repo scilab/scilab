@@ -1,5 +1,8 @@
-/* Dynamic menus callbacks handling functions */
-/* Copyright ENPC - INRIA */
+/*------------------------------------------------------------------------
+ *    Copyright (C) 2001-2003 Enpc/Jean-Philippe Chancelier
+ *    jpc@cermics.enpc.fr 
+ *    Changed: steer, jpc 2004 
+ *--------------------------------------------------------------------------*/
 
 #include <malloc.h>
 #include <string.h>
@@ -8,6 +11,23 @@
 #ifndef NULL
 #define NULL 0
 #endif
+
+/*---------------------------------------------------------------------
+ *  Command queue functions
+ *  This function is used to store Scilab command in a queue 
+ *  ( the queue is checked in the Scilab Event Loop )
+ *  The queue is filled by the function related to dynamic buttons and menus 
+ *  One can also set a handler to deal with the commands 
+ *  if he wants to bypass the queue 
+ *
+ *  PUBLIC : set_scig_command_handler(Scig_command_handler f)
+ *           void reset_scig_command_handler() 
+ *           int StoreCommand( char *command)
+ *           integer C2F(ismenu)()
+ *           int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)  
+ *---------------------------------------------------------------------*/
+
+
 extern void write_scilab  __PARAMS((char *s));
 extern int get_is_reading  __PARAMS((void));
 extern void sciprint __PARAMS((char *fmt,...));
@@ -27,12 +47,6 @@ extern void  reset_scig_command_handler __PARAMS((void));
 
 static int wait_for_input_end=0; 
 
-/**************************************************************************
- *  Command queue functions
- *  This function is used to store Scilab command in a queue 
- *  ( the queue is checked in the Scilab Event Loop )
- **************************************************************************/
-
 typedef struct commandRec
 {
   char              *command;		/* command info one string two integers */
@@ -43,11 +57,9 @@ static CommandRec *commandQueue = NULL;
 static Scig_command_handler scig_command_handler = scig_command_handler_none;
 
 
-/***************************************
- * try to execute a command if we are at 
- * prompt level or add it to the end of command queue 
- * if flag == 1 a \n is added 
- ***************************************/
+/*-------------------------------------------------*
+ * changing the default command handler 
+ *-------------------------------------------------*/
 
 int  scig_command_handler_none (char *command) {return 0;};
 
@@ -63,23 +75,22 @@ void reset_scig_command_handler ()
   scig_command_handler = scig_command_handler_none;
 }
 
-int StoreCommand (command)
-     char *command;
+/*---------------------------------------------------------------
+ * try to execute a command or add it to the end of command queue 
+ *----------------------------------------------------------------*/
+
+int StoreCommand ( char *command)
 {
-  /*return (StoreCommand1 (command, 0)); gtksci/command.c */
-  return (StoreCommand1 (command, 1)); /* jpc 1->0 */
+  return (StoreCommand1 (command, 0)); /* jpc 1->0 */
 }
 
+/*---------------------------------------------------------------
+ * try to execute a command or add it to the end of command queue
+ * flag = 1 : the command is shown in scilab window (if at prompt)
+ * flag = 2 : only a new line is send in scilab window (if at prompt) 
+ *----------------------------------------------------------------*/
 
-int StoreCommand1 (command, flag)
-     /* 
-      * flag = 0 : the command is not shown in scilab window (if at prompt)
-      * flag = 1 : the command is shown in scilab window (if at prompt)
-      * flag = 2 : only a new line is send in scilab window (if at prompt) 
-      *
-      */
-     char *command;
-     int flag;
+int StoreCommand1 (char *command,int flag)
 {
   CommandRec *p, *q, *r;
 
@@ -110,12 +121,11 @@ int StoreCommand1 (command, flag)
     }
   if (get_is_reading ())
     { 
-      if (flag==3) { /* for X11 */
-	/*C2F(xscion)(&i);*/
-	/* send something to make  gchar_no_echo() return */
-	/* if (i) write_scilab(" ");*/
-      }
-#ifdef WIN32
+      if (flag == 1) 
+	{  
+	  write_scilab (command);
+	}
+#ifdef MSDOS
       else if (flag==2) { /* for windows ?????*/
 	write_scilab ("\n");
       }
@@ -124,13 +134,12 @@ int StoreCommand1 (command, flag)
   return (0);
 }
 
-/************************************************
+/*-------------------------------------------------
  * Gets info on the first queue element 
  * and remove it from the queue 
- ************************************************/
+ -------------------------------------------------*/
 
-void GetCommand (str)
-     char *str;
+void GetCommand ( char *str)
 {
 	
   if (commandQueue != NULL)
@@ -146,12 +155,10 @@ void GetCommand (str)
     }
 }
 
-
-
-/************************************************
+/*-------------------------------------------------
  * Checks if there's something on the 
  * commandQueue 
- ************************************************/
+ *-------------------------------------------------*/
 
 integer C2F(ismenu)()
 {
@@ -161,13 +168,11 @@ integer C2F(ismenu)()
     return(1);
 }
 
-/************************************************
+/*-------------------------------------------------
  * menu/button info for Scilab 
- ************************************************/
+ *-------------------------------------------------*/
 
-int C2F(getmen)(btn_cmd,lb,entry)
-     integer *entry,*lb;
-     char *btn_cmd;
+int C2F(getmen)(char * btn_cmd,integer * lb, integer * entry)
 {
   if (C2F(ismenu)()==1) 
     {
@@ -183,10 +188,17 @@ int C2F(getmen)(btn_cmd,lb,entry)
 }
 
 
+/*-------------------------------------------------
+ * ??????????????? 
+ *-------------------------------------------------*/
+
+
 void C2F(waitforinputend)( int *flag)
 {
   wait_for_input_end=*flag;
 }
+
+
 int iswaitingforinputend()
 {
   int iwait;
