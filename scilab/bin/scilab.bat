@@ -64,11 +64,13 @@ start wscilex
 goto end
 rem -----------------------------------------------------
 :Wscilex
-start %PathScilab%wscilex %*
+echo "start /d "%PathScilab%" wscilex.exe %*
+start /d "%PathScilab%" wscilex.exe %*
 goto end
 rem -----------------------------------------------------
 :Scilex
-start %PathScilab%scilex %*
+echo start /d "%PathScilab%" wscilex.exe %*
+start /d "%PathScilab%" wscilex.exe %*
 rem -----------------------------------------------------
 :end
 @echo on
