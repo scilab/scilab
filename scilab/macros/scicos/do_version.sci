@@ -1199,13 +1199,13 @@ function scs_m_new=do_version27(scs_m)
 	end
       end
 
-      graphics=scicos_graphics(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
+      graphics=scicos_graphics27(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
 			       exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
 			       pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
 			       id=mdl(15)) 	       
       
       
-      model=scicos_model(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
+      model=scicos_model27(sim=mdl(1),in=mdl(2),out=mdl(3),evtin=mdl(4),..
 			 evtout=mdl(5),state=mdl(6),dstate=mdl(7),..
 			 rpar=mdl(8),ipar=mdl(9),blocktype=mdl(10),..
 			 firing=mdl(11),dep_ut=mdl(12),label=mdl(13))
@@ -1346,3 +1346,42 @@ function scs_m_new=do_versionxx(scs_m)
 endfunction
 
 
+function model=scicos_model27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13)
+//initialisation de model mlist
+  if exists('sim','local')==0 then sim='',end
+  if exists('in','local')==0 then in=[],end
+  if exists('out','local')==0 then out=[],end
+  if exists('evtin','local')==0 then evtin=[],end
+  if exists('evtout','local')==0 then evtout=[],end
+  if exists('state','local')==0 then state=[],end
+  if exists('dstate','local')==0 then dstate=[],end
+  if exists('rpar','local')==0 then rpar=[],end
+  if exists('ipar','local')==0 then ipar=[],end
+  if exists('blocktype','local')==0 then blocktype='c',end
+  if exists('firing','local')==0 then firing=[],end
+  if exists('dep_ut','local')==0 then dep_ut=[%f %f],end
+  if exists('label','local')==0 then label='',end
+
+  model=mlist(['model','sim','in','out','evtin','evtout','state','dstate',..
+               'rpar','ipar','blocktype','firing','dep_ut','label'],..
+              sim,in,out,evtin,evtout,state,dstate,..
+              rpar,ipar,blocktype,firing,dep_ut,label)
+endfunction
+
+function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
+//initialisation de graphics mlist
+  if exists('orig','local')==0 then orig=[0 0],end
+  if exists('sz','local')==0 then sz=[20 20],end
+  if exists('flip','local')==0 then flip=%t,end
+  if exists('exprs','local')==0 then exprs=[],end
+  if exists('pin','local')==0 then pin=[],end
+  if exists('pout','local')==0 then pout=[],end
+  if exists('pein','local')==0 then pein=[],end
+  if exists('peout','local')==0 then peout=[],end
+  if exists('gr_i','local')==0 then gr_i=[],end
+  if exists('id','local')==0 then id='',end
+
+  graphics=mlist(['graphics','orig','sz','flip','exprs','pin',..
+                  'pout','pein','peout','gr_i','id'],..
+                 orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
+endfunction
