@@ -584,6 +584,7 @@ void InitWindowGraphDll(void)
    graphwin.lptw = &textwin;
    graphwin.IniFile = "scilab.ini";
    graphwin.IniSection = "SCILAB";
+   sci_tk_activate();
     
 }
 /*-----------------------------------------------------------------------------------*/

@@ -33,7 +33,7 @@
 
 
 #define MENUNAME "wscilabE.mnu"
-#define GRAPHMENUNAME "wgscilab.mnu"
+#define GRAPHMENUNAME "wgscilabE.mnu"
 
 #define MIN_STACKSIZE 180000
 

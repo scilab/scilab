@@ -1086,7 +1086,7 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC)
 	else LangCode=0;
 	ScilabGC->lpmw.CodeLanguage=LangCode;
 
-	hInstance=(HINSTANCE) GetModuleHandle(NULL);   		
+	hInstance=(HINSTANCE) GetModuleHandle("LibScilab");   		
 	
 	
 	GetModuleFileName (hInstance,szModuleName, MAX_PATH);

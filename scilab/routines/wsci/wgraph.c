@@ -1634,7 +1634,7 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndiceZOOM,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_ZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[0],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
   CreateMyTooltip (ScilabGC->lpmw.hButton[0], "Zoom"); 
 
@@ -1644,7 +1644,7 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndiceUNZOOM,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_UNZOOM,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[1],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
   CreateMyTooltip (ScilabGC->lpmw.hButton[1], "UnZoom"); 
 
@@ -1654,7 +1654,7 @@ void CreateGraphToolBar(struct BCG * ScilabGC)
 										  ButtonToolBarWeight, ToolBarHeight,
                                           ScilabGC->CWindow,(HMENU)HMENUIndice3DROT,
                                           graphwin.hInstance, NULL);
-  IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
+  IconButton=(HICON)LoadImage( GetModuleHandle("LibScilab"), (LPCSTR)IDI_3DROT,IMAGE_ICON,ButtonToolBarWeight,ToolBarHeight,LR_DEFAULTCOLOR);
   SendMessage(ScilabGC->lpmw.hButton[2],BM_SETIMAGE, IMAGE_ICON, (LPARAM)IconButton);
   CreateMyTooltip (ScilabGC->lpmw.hButton[2], "2D/3D Rotation"); 
 
