@@ -58,8 +58,8 @@ c     fclear    what    sciargs  chdir getwd ieee typename
 c     40         41       42     43     44     45    46
 c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
-c     lasterror version loadhistory savehistory gethistory resethistory
-c     53         54        55          56         57          58
+c     lasterror version loadhistory savehistory gethistory resethistory sendtobrowser
+c     53         54        55          56         57          58        59
 
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
@@ -74,7 +74,7 @@ c
      +      251,300,320,350,370,380,390,400,410,420,
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
-     +      694,695,697,698,699,700,701,702),fin
+     +      694,695,697,698,699,700,701,702,703),fin
 c     
 c     debug
  10   call intdebug()
@@ -257,6 +257,8 @@ c     mtlb_mode
       goto 999
  702  call resethistory('resethistory')
       goto 999
+ 703  call openbrowser('openbrowser')
+      goto 999    
 
  998  continue
 c     fake calls : only to force the 

@@ -3,14 +3,20 @@
  *    jpc@cermics.enpc.fr 
  *    Changed: steer, jpc 2004 
  *--------------------------------------------------------------------------*/
+#ifdef WIN32
+#include <windows.h>
+#endif
 
 #include <string.h>
 #include "../machine.h"
 #include "../graphics/Math.h"  /* malloc */
+#include "../stack-c.h"
 
 #ifndef NULL
 #define NULL 0
 #endif
+
+
 
 /*---------------------------------------------------------------------
  *  Command queue functions
@@ -208,4 +214,34 @@ int iswaitingforinputend()
   iwait=wait_for_input_end;
   wait_for_input_end=0;
   return iwait;
+}
+
+
+/* Open Web Browser Allan CORNET*/
+int C2F(openbrowser) _PARAMS((char *fname))
+{
+	#define FILENAME_MAX 4096 
+	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
+	char filename[FILENAME_MAX];
+	int m1,n1,l1;
+	int out_n;
+	long int lout;
+	HINSTANCE error=NULL;
+
+	CheckRhs(1,1);
+  
+	/*  checking variable file */
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	/*** first call to get the size **/
+	lout=FILENAME_MAX;
+	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
+
+	#ifdef WIN32
+	error = ShellExecute(NULL, "open", filename, NULL, NULL, SW_SHOWNORMAL);
+	if ( error<= (HINSTANCE)32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+	#endif
+
+	LhsVar(0)=0;
+	C2F(putlhsvar)();
+return 0;
 }

@@ -288,6 +288,9 @@ cd.. &gt;nul
 				RelativePath="FTables0.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\fundef">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

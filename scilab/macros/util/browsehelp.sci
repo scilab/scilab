@@ -46,9 +46,22 @@ function  browsehelp_configure(job)
 	%browsehelp= help_ask(browse_modes);
     end
   else //for windows 
-    //tcltk forced because it is still not possible to start another
-    //thread using unix
-    %browsehelp = 'tcltk'
+    
+    if job=='set' then oldbrowsehelp=%browsehelp;%browsehelp=[],end
+    browse_modes=['Default Windows Browser';];
+    if with_tk() then browse_modes=[browse_modes;'tcltk'];end
+    if %browsehelp<>[] then //help mode already selected
+      if and(browse_modes<>%browsehelp) then
+	warning('Unhandled  help browser '+%browsehelp)
+	%browsehelp=oldbrowsehelp; // If user select cancel
+	%browsehelp= help_ask(browse_modes);
+      end
+    else // ask for an help mode
+	%browsehelp=oldbrowsehelp; // If user select cancel
+	%browsehelp= help_ask(browse_modes);
+    end
+    
+    //%browsehelp = 'tcltk'
   end
 endfunction
 
@@ -71,9 +84,11 @@ function run_help(path,key)
     unix_s(%browsehelp + " file://" +path+ '&');
    case 'quanta' then
     unix_s(%browsehelp + " --unique file://" +path+ '&');
+   case 'Default Windows Browser' then
+   	openbrowser(path);
    case 'tcltk' then 
    if MSDOS then
-     tcltk_help(path,key);
+   	tcltk_help(path,key);
    else
      unix(SCI+'/tcl/browsehelpexe '+path+' '+INDEX+' '+LANGUAGE+ '&');
    end
