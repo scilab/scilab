@@ -265,8 +265,7 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   if and(ordptr1<>ordptr2) then disp("serious bug,report");pause;end
   //ordptr=[ordptr1,ordptr2];
 
-  zord=cord
-  oord=cord
+  
   n=size(cord,1)
 
   vec=-ones(1,nblk);
@@ -312,41 +311,33 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
   typ_z=-min(typ_z,0)
   
   if ~ok then disp('serious bug, report.');pause;end
-  ext_cord=ext_cord(n+1:$);
+  // ext_cord=ext_cord(n+1:$);
 
-
-  for iii=n:-1:1
-    i=cord(iii,1)
-    fl=%f
-    fz=%f
-    //  if typ_s(i) then fz=%t;fl=%t; end
-    for ii=[outoin(outoinptr(i):outoinptr(i+1)-1,1)',..
-	    evoutoin(evoutoinptr(i):evoutoinptr(i+1)-1,1)']
-      //ii est un block affecte par changement de sortie du 
-      //i-eme block de oord
-      //    if ii<=nxblk | ii>nb then fz=%t;end
-      if typ_z(ii) then fz=%t;end
-      if typ_x(ii) then fl=%t;end
-      if fl&fz then break,end
-      //si ii est un block integre (continu avec etat) 
-      //il faut garder i
-      //    for l=iii+1:n
-      //si ii est un block qu'on a decide de garder 
-      //il faut garder i
-      if or(ii==[zord(iii+1:$,1)',ext_cord]) then fz=%t; end
-      if or(ii==[oord(iii+1:$,1)',ext_cord]) then fl=%t; end
-      //      if fl&fz then break,end
-      //    end
-      if fl&fz then break; end
+  fin=0
+  while ~fin
+    fin=1
+    for i=ext_cord($:-1:1)
+      for ii=[outoin(outoinptr(i):outoinptr(i+1)-1,1)',..
+	      evoutoin(evoutoinptr(i):evoutoinptr(i+1)-1,1)']
+	//ii est un block affecte par changement de sortie du 
+	//i-eme block de oord
+	if typ_z(ii) then 
+	  if typ_z(i)==0 then typ_z(i)=1;fin=0;end
+	end
+	if typ_x(ii) then 
+	  if ~typ_x(i) then typ_x(i)=%t;fin=0;end
+	end
+	if typ_z(i)&typ_x(i) then break,end
+      end
     end
-    //mettre a zero si block doit etre supprimer
-    if ~fl&~typ_x(i) then oord(iii,1)=0; end
-    if ~fz&~typ_z(i) then zord(iii,1)=0; end
   end
-
   //supprimer les blocks a supprimer
-  oord=oord(oord(:,1)<>zeros(oord(:,1)),:);
-  zord=zord(zord(:,1)<>zeros(zord(:,1)),:)
+
+  ind=find(typ_z(cord(:,1)));
+  zord=cord(ind,:)
+  ind=find(typ_x(cord(:,1)));
+  oord=cord(ind,:)
+  
 
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
