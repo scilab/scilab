@@ -9,7 +9,7 @@ function connected=get_connected(scs_m,k,typ)
 
   connected=[]
   if rhs<=2 then // all connected links
-    graphics=scs_m(k).graphics
+    graphics=scs_m.objs(k).graphics
     
     ip=graphics.pin
     connected=[connected ip(find(ip>0))']
@@ -24,16 +24,16 @@ function connected=get_connected(scs_m,k,typ)
     connected=[connected cop(find(cop>0))']
   else
     if typ=='in' then 
-      ip=scs_m(k).graphics.pin
+      ip=scs_m.objs(k).graphics.pin
       connected=[connected ip(find(ip>0))'],
     elseif typ=='out' then 
-      op=scs_m(k).graphics.pout
+      op=scs_m.objs(k).graphics.pout
       connected=[connected op(find(op>0))'],
     elseif typ=='clkin' then 
-      cip=scs_m(k).graphics.pein
+      cip=scs_m.objs(k).graphics.pein
       connected=[connected cip(find(cip>0))'],
     elseif typ=='clkout' then 
-      cop=scs_m(k).graphics.peout
+      cop=scs_m.objs(k).graphics.peout
       connected=[connected cop(find(cop>0))'],
     end
   end

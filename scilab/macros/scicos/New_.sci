@@ -8,9 +8,8 @@ function New_()
     if %r==2 then
       if alreadyran then do_terminate(),end  //terminate current simulation
       alreadyran=%f
-      scs_m=empty_diagram()
-//$$$$$$$$$$$$$$$$$$$$$$$$$$
-      %wpar=scs_m(1); 
+      scs_m=scicos_diagram()
+      %wpar=scs_m.props; 
       window_set_size()
       Cmenu='Replot'
       edited=%f

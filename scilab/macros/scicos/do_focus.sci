@@ -5,7 +5,7 @@ if Cmenu<>[] then
   Cmenu=resume(Cmenu)
 end
 
-wpar=scs_m(1);wdm=wpar.wpar
+wpar=scs_m.props;wdm=wpar.wpar
 if size(wdm,'*')<6 then wdm(3)=0;wdm(4)=0;wdm(5)=wdm(1);wdm(6)=wdm(2);end
 Xshift=wdm(3)
 Yshift=wdm(4)

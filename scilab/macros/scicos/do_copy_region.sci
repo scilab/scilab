@@ -35,9 +35,9 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
   if rep(3)==2 then enablemenus();return,end
 
   scs_m_save=scs_m,nc_save=needcompile
-  n=size(scs_m)
-  for k=2:size(reg)
-    o=reg(k)
+  n=size(scs_m.objs)
+  for k=1:size(reg.objs)
+    o=reg.objs(k)
     // translate blocks and update connection index 
     if typeof(o)=='Link' then
       o.xx=o.xx-rect(1)+xc
@@ -57,7 +57,7 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
       k_conn=find(o.graphics.peout>0)
       o.graphics.peout(k_conn)=o.graphics.peout(k_conn)+n-1
     end
-    scs_m($+1)=o
+    scs_m.objs($+1)=o
     drawobj(o)
   end
   if modified then 

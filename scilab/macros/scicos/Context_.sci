@@ -1,7 +1,7 @@
 function Context_()
     Cmenu='Open/Set'
     while %t do
-      [context,ok]=do_context(scs_m(1).context)
+      [context,ok]=do_context(scs_m.props.context)
       if ~ok then break,end
       errcatch(-1,'continue')
       execstr(context) 
@@ -10,7 +10,7 @@ function Context_()
 	message('Cannot evaluate context')
 	errclear(-1)
       else
-	scs_m(1).context=context;
+	scs_m.props.context=context;
 	disablemenus()
 	[scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
 	if needcompile<>4&size(%cpr)>0 then %state0=%cpr.state,end

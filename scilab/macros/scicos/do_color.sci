@@ -19,19 +19,19 @@ function [%pt,scs_m]=do_color(%pt,scs_m)
     K=getobj(scs_m,[xc;yc])
     if K<>[] then break,end
   end
-  o=scs_m(K)
+  o=scs_m.objs(K)
   if typeof(o)=='Link' then
     [nam,pos,ct]=(o.id,o.thick,o.ct)
     c=getcolor('Choose a color',ct(1));
     if c<>[] then
       connected=connected_links(scs_m,K)
       for kc=connected
-	o=scs_m(kc);ct=o.ct
+	o=scs_m.objs(kc);ct=o.ct
 	if ct(1)<>c then
 	  drawobj(o)
 	  o.ct(1)=c;
 	  drawobj(o)
-	  scs_m(kc)=o
+	  scs_m.objs(kc)=o
 	end
       end
     end
@@ -49,7 +49,7 @@ function [%pt,scs_m]=do_color(%pt,scs_m)
       if coln<>coli then
 	drawblock(o)
 	o.graphics.gr_i(2)=coln
-	scs_m(K)=o
+	scs_m.objs(K)=o
 	drawblock(o)
       end
     end

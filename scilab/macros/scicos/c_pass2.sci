@@ -1049,29 +1049,29 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin)
   path_in=path_in(k(1))   // "to" block number
   
   if path==[] then
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
 
     ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
 		    'with  sizes that cannot be determiend by the context';
 		    'what is the size of this link'],'1'))
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
   else
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
-      hilite_obj(scs_m(path(k)))
-      scs_m=scs_m(path(k)).model.rpar;
+      hilite_obj(scs_m.objs(path(k)))
+      scs_m=scs_m.objs(path(k)).model.rpar;
       scs_show(scs_m,mxwin+k)
     end
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     ninnout=evstr(dialog(['Hilited block(s) have connected ports ';
 		    'with  sizes that cannot be determiend by the context';
 		    'what is the size of this link'],'1'))
     for k=size(path,'*'):-1:1,xdel(mxwin+k),end
     scs_m=null()
-    unhilite_obj(scs_m(path(1)))
+    unhilite_obj(scs_m.objs(path(1)))
   end
 endfunction
 

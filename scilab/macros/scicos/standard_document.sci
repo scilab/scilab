@@ -172,9 +172,9 @@ function texte = standard_document(objet, k)
     if %cpr<>list() then
       if sous_type == 'Regular Link' then 
 	while %t
-	  if scs_m(from(1)).model.sim=='lsplit' then
-	    #link=scs_m(from(1)).graphics.pin
-	    from=scs_m(#link).from
+	  if scs_m.objs(from(1)).model.sim=='lsplit' then
+	    #link=scs_m.objs(from(1)).graphics.pin
+	    from=scs_m.objs(#link).from
 	  else
 	    break
 	  end

@@ -13,16 +13,16 @@ else
 end
 bl=''
 lmax=80;
-t=lname+'=list()'
-t1=sci2exp(scs_m(1),lmax);
-t=[t;lname+'(1)='+t1(1);t1(2:$)]
+t=lname+'=mlist('+sci2exp(getfield(1,scs_m))+')'
+t1=sci2exp(scs_m.props,lmax);
+t=[t;lname+'.props='+t1(1);t1(2:$)]
 write(u,t,'(a)');t=[]
 
-for k=2:size(scs_m)
+for k=1:size(scs_m.objs)
 
-  o=scs_m(k)
+  o=scs_m.objs(k)
    if typeof(o)=='Block' then
-    lhs=lname+'('+string(k)+')='
+    lhs=lname+'.objs('+string(k)+')='
     bl1=' ';bl1=part(bl1,1:length(lhs))
     if o.model.sim=='super'| o.model.sim=='csuper' then  //Super blocks
       
@@ -30,7 +30,7 @@ for k=2:size(scs_m)
       cos2cosf(u,o.model.rpar,count);//model.rpar
 
       //open a block
-      tt= lname+'('+string(k)+')=mlist(..'
+      tt= lname+'.objs('+string(k)+')=mlist(..'
       //add the type field
       
       tt=[tt;
@@ -46,11 +46,11 @@ for k=2:size(scs_m)
       tt=[tt;bl1+sci2exp(fn,lmax-count*2)]
 
       for k=2:size(fn,'*')
-	if o.model(fn(k))<>'rpar' then
+	if fn(k)<>'rpar' then
 	  tt=catinstr(tt,sci2exp(o.model(fn(k)),lmax-count*2),length(lhs))
 	else
 	  //introduce model.rpar generated above
-	  tt=catinstr(tt,'scs_m_'+string(count+1),0) 
+	  tt=catinstr(tt,'scs_m_'+string(count+1)+'.objs',0) 
 	end
       end
       tt($)=tt($)+')' // close model list
@@ -68,25 +68,25 @@ for k=2:size(scs_m)
       write(u,t,'(a)');t=[]
     end
   else //regular blocks
-    lhs=lname+'('+string(k)+')='
+    lhs=lname+'.objs('+string(k)+')='
     t1=sci2exp(o,lmax-length(lhs))
     n1=size(t1,1)
     bl1=' ';bl1=part(bl1,1:length(lhs))
     t=[t;lhs+t1(1);bl1(ones(n1-1,1))+t1(2:$)]
     write(u,t,'(a)');t=[]
   end
-//  write(u,t,'(a)')
 end
 
 endfunction
+
 function t=catinstr(t,t1,n)
-sep=','
-dots='.'+'.';
-if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
-  t($)=t($)+sep+t1
-else
-  t($)=t($)+sep+dots
-  bl1=' ';bl1=part(bl1,1:n)
-  t=[t;bl1(ones(size(t1,1),1))+t1]
-end
+  sep=','
+  dots='.'+'.';
+  if size(t1,'*')==1&(lmax==0|maxi(length(t1))+length(t($))<lmax) then
+    t($)=t($)+sep+t1
+  else
+    t($)=t($)+sep+dots
+    bl1=' ';bl1=part(bl1,1:n)
+    t=[t;bl1(ones(size(t1,1),1))+t1]
+  end
 endfunction

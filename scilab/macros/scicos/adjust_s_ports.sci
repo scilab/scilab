@@ -1,19 +1,17 @@
-function [ok,x]=adjust_s_ports(arg1)
+function [ok,sbloc]=adjust_s_ports(sbloc)
 // Copyright INRIA
 
-  graphics=arg1.graphics;
-  model=arg1.model;
+  graphics=sbloc.graphics;
+  model=sbloc.model;
 
-  x=arg1
-  
   nin=0;nout=0;nclkin=0;nclkout=0;
   in=[],out=[],cin=[],cout=[]
   inp=[],outp=[],cinp=[],coutp=[]
 
 
-  xx=model.rpar
-  for k=2:size(xx)
-    o=xx(k)
+  scs_m=model.rpar
+  for k=1:size(scs_m.objs)
+    o=scs_m.objs(k)
     if typeof(o)=='Block' then
       modelb=o.model
       select o.gui
@@ -95,8 +93,8 @@ function [ok,x]=adjust_s_ports(arg1)
     message(mess)
   end
   if ok then
-    model.rpar=xx
-    x=arg1;x.model=model;x.graphics=graphics;
+    model.rpar=scs_m
+    sbloc.model=model;sbloc.graphics=graphics;
   end
 
 endfunction

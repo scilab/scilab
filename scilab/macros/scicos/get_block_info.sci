@@ -1,7 +1,7 @@
 function txt=get_block_info(scs_m,k)
 // Copyright INRIA
 txt=[]
-o=scs_m(k)
+o=scs_m.objs(k)
 //select o(1)
 select typeof(o)
 case 'Block' then

@@ -4,13 +4,13 @@ function path=save_csuper(scs_m,fpath)
 // Copyright INRIA
   path=[]
   scs_m=do_purge(scs_m)
-  nam=scs_m(1).title(1);
+  nam=scs_m.props.title(1);
   nam=strsubst(nam,' ','_')
   in=[];out=[];clkin=[];clkout=[];
   bl='  '
   com='/'+'/'
-  for k=2:size(scs_m)
-    o=scs_m(k)
+  for k=1:size(scs_m.objs)
+    o=scs_m.objs(k)
     if typeof(o)=='Block' then
       model=o.model
       select o.gui
@@ -69,6 +69,7 @@ function path=save_csuper(scs_m,fpath)
 	 '    for k=1:np'
 	 '      spath($+1)=''model'''
 	 '      spath($+1)=''rpar'''
+	 '      spath($+1)=''objs'''
 	 '      spath($+1)=path(k)'
 	 '    end'
 	 '    xx=arg1(spath)'+com+' get the block';

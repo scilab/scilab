@@ -1,9 +1,7 @@
 function s_port_names(sbloc)
 // Copyright INRIA
 
-  graphics=sbloc.graphics;
-  model=sbloc.model;
-  x=model.rpar
+  scs_m=sbloc.model.rpar;
   
   etiquettes_in = []
   etiquettes_out = []
@@ -13,8 +11,8 @@ function s_port_names(sbloc)
 
   xset('font',options.ID(2)(1),options.ID(2)(2))
   inp=[],outp=[],cinp=[],coutp=[]
-  for k=2:size(x)
-    o=x(k);
+  for k=1:size(scs_m.objs)
+    o=scs_m.objs(k);
 
     if typeof(o)=='Block' then
       modelb=o.model;

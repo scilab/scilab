@@ -11,20 +11,20 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   DELL=[] //table of redefined links
   while K<>[] do
     k=K(1);K(1)=[]
-    o=scs_m(k);
+    o=scs_m.objs(k);
     if find(DEL==k)==[] then typ=typeof(o);else typ='Deleted',end
 
     DEL=[DEL k]
     if typ=='Link' then
       [ct,from,to]=(o.ct,o.from,o.to)
       //  free connected ports
-      scs_m(from(1))=mark_prt(scs_m(from(1)),from(2),'out',ct(2),0)
-      scs_m(to(1))=mark_prt(scs_m(to(1)),to(2),'in',ct(2),0)
+      scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'out',ct(2),0)
+      scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'in',ct(2),0)
 
       // erase and delete link
       if gr==%t then drawobj(o),end
-      fromblock=scs_m(from(1));
-      toblock=scs_m(to(1));
+      fromblock=scs_m.objs(from(1));
+      toblock=scs_m.objs(to(1));
       
       if fromblock.gui=='SPLIT_f'|fromblock.gui=='CLKSPLIT_f' then
 	//user kills a split  output link:
@@ -37,10 +37,10 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 	  if find(connected(2)==DEL)<>[] then // delete split
 	    K=[from(1) K]
 	  else
-	    if gr==%t then drawobj(scs_m(from(1))),end // clear  split block
+	    if gr==%t then drawobj(scs_m.objs(from(1))),end // clear  split block
 	    DEL=[DEL  from(1)]       //suppress split block
-	    o1=scs_m(connected(1));from1=o1.to;
-	    o2=scs_m(connected(2));
+	    o1=scs_m.objs(connected(1));from1=o1.to;
+	    o2=scs_m.objs(connected(2));
 
 	    //create a unique link
 	    if from1(1)<>from(1) then 
@@ -62,10 +62,10 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
 	    o1.to=o2.to;
 	    DEL=[DEL connected(1)] // supress one link
 	    DELL=[DELL  connected(1)]
-	    scs_m(connected(2))=o1 //change link
-	    scs_m(to2(1))=mark_prt(scs_m(to2(1)),to2(2),'in',ct2(2),..
+	    scs_m.objs(connected(2))=o1 //change link
+	    scs_m.objs(to2(1))=mark_prt(scs_m.objs(to2(1)),to2(2),'in',ct2(2),..
 				   connected(2))
-	    scs_m(o1.from(1))=mark_prt(scs_m(o1.from(1)),o1.from(2),'out',..
+	    scs_m.objs(o1.from(1))=mark_prt(scs_m.objs(o1.from(1)),o1.from(2),'out',..
 				       o1.ct(2),connected(2))
 	  end
 	end
@@ -81,7 +81,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
       //ask for connected links deletion
       K=[K connected]
       // erase and delete block
-      if gr==%t then drawobj(scs_m(k)),end
+      if gr==%t then drawobj(scs_m.objs(k)),end
     elseif typ=='Text' then
       if gr==%t then drawobj(o),end
     elseif typ=='Deleted' then
@@ -93,5 +93,5 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
   if gr==%t then 
     if pixmap then xset('wshow'),end,
   end
-  for k=DEL,scs_m(k)=mlist('Deleted'),end
+  for k=DEL,scs_m.objs(k)=mlist('Deleted'),end
 endfunction

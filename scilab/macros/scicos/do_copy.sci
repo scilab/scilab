@@ -26,19 +26,19 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
       palette=palettes(kpal)
       k=getblocktext(palette,[xc;yc])
       if k<>[] then 
-	o=disconnect_ports(palette(k)),
+	o=disconnect_ports(palette.objs(k)),
 	break,
       end
     elseif win==curwin then //click dans la fenetre courante
       k=getblocktext(scs_m,[xc;yc])
       if k<>[] then
-	o=disconnect_ports(scs_m(k)) // mark ports disconnected
+	o=disconnect_ports(scs_m.objs(k)) // mark ports disconnected
 	break,
       end
     elseif slevel>1 then
       execstr('k=getblocktext(scs_m_'+string(windows(kc,1))+',[xc;yc])')
       if k<>[] then
-	execstr('o=scs_m_'+string(windows(kc,1))+'(k)')
+	execstr('o=scs_m_'+string(windows(kc,1))+'.objs(k)')
 	o=disconnect_ports(o)//mark ports disconnected
 	break,
       end
@@ -75,7 +75,7 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
     drawobj(o)
     if pixmap then xset('wshow'),end
     scs_m_save=scs_m,nc_save=needcompile
-    scs_m(size(scs_m)+1)=o
+    scs_m.objs($+1)=o
     needcompile=4
     [scs_m_save,nc_save,enable_undo,edited]=resume(scs_m_save,nc_save,%t,%t)
   end

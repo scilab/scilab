@@ -16,12 +16,12 @@ deff('[x,y,ok,gc]=edit_curv(x,y,job,tit,gc)','ok=%t')
 deff('[ok,tt,dep_ut]=genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
     'dep_ut=model.dep_ut;ok=%t')
 funcprot(%mprt)
-%nx=size(scs_m)
+%nx=size(scs_m.objs)
 
 
 
-for %kk=2:%nx
-  o=scs_m(%kk)
+for %kk=1:%nx
+  o=scs_m.objs(%kk)
   if typeof(o)=='Block' then
     model=o.model
     if model.sim=='super'|model.sim=='csuper' then
@@ -37,7 +37,7 @@ for %kk=2:%nx
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list())
         needcompile1=max(needcompile1,needcompile2)
         if ok then
-          scs_m(%kk).model.rpar=sblock
+          scs_m.objs(%kk).model.rpar=sblock
         end
       end        
     else
@@ -49,7 +49,7 @@ for %kk=2:%nx
 	        or(model.dep_ut<>model_n.dep_ut) then 
 	needcompile1=4
       end
-      scs_m(%kk)=o
+      scs_m.objs(%kk)=o
     end
   end
 end

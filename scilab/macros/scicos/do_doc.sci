@@ -11,7 +11,7 @@ function scs_m = do_doc(scs_m)
   numero_objet=k
   scs_m_save=scs_m
 
-  objet = scs_m(numero_objet)
+  objet = scs_m.objs(numero_objet)
   type_objet = typeof(objet)
 
   //
@@ -50,7 +50,7 @@ function scs_m = do_doc(scs_m)
     if ok then
       documentation(2)=doc
       objet.doc = documentation
-      scs_m(numero_objet) = objet
+      scs_m.objs(numero_objet) = objet
     else
       x_message(documentation(1)+'(''set'',...) failed')
     end

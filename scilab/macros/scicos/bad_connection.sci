@@ -13,34 +13,31 @@ if rhs==6 then  //two connected blocks
   path_in=path_in(k(1))   // "to" block number
   
   if path==[] then
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
 
     message(['Hilited block(s) have connected ports ';
 	'with  incompatible sizes';
 	' output port '+string(prt_out)+' size is :'+string(nout);
 	' input port '+string(prt_in)+' size is  :'+string(nin)]); 
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
   else
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
-      hilite_obj(scs_m(path(k)))
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-      //scs_m=scs_m(path(k))(3)(8);
-      scs_m=scs_m(path(k)).model.rpar;
-//*********************************************
+      hilite_obj(scs_m.objs(path(k)))
+      scs_m=scs_m.objs(path(k)).model.rpar;
       scs_show(scs_m,mxwin+k)
     end
-    hilite_obj(scs_m(path_out))
-    if or(path_in<>path_out) then hilite_obj(scs_m(path_in)),end
+    hilite_obj(scs_m.objs(path_out))
+    if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     message(['Hilited block(s) have connected ports ';
 	'with  incompatible sizes';
 	string(prt_out)+' output port size is :'+string(nout);
 	string(prt_in)+' input port size is  :'+string(nin)]); 
     for k=size(path,'*'):-1:1,xdel(mxwin+k),end
     scs_m=null()
-    unhilite_obj(scs_m(path(1)))
+    unhilite_obj(scs_m.objs(path(1)))
   end
 else // connected links do not verify block contraints
   if rhs==2 then 
@@ -53,23 +50,22 @@ else // connected links do not verify block contraints
   path_out=path_out($) //  block number
   
   if path==[] then
-    hilite_obj(scs_m(path_out))
+    hilite_obj(scs_m.objs(path_out))
     
     message(mess)
-    hilite_obj(scs_m(path_out))
+    hilite_obj(scs_m.objs(path_out))
   else
     mxwin=maxi(winsid())
     for k=1:size(path,'*')
-      hilite_obj(scs_m(path(k)))
-      //scs_m=scs_m(path(k))(3)(8);
-      scs_m=scs_m(path(k)).model.rpar;
+      hilite_obj(scs_m.objs(path(k)))
+      scs_m=scs_m.objs(path(k)).model.rpar;
       scs_show(scs_m,mxwin+k)
     end
-    hilite_obj(scs_m(path_out))
+    hilite_obj(scs_m.objs(path_out))
     message(mess)
     for k=size(path,'*'):-1:1,xdel(mxwin+k),end
     scs_m=null()
-    unhilite_obj(scs_m(path(1)))
+    unhilite_obj(scs_m.objs(path(1)))
   end
 end
 endfunction

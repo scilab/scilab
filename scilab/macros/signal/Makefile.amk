@@ -21,7 +21,7 @@ MACROS = %k.sci %asn.sci %sn.sci analpf.sci bilt.sci \
 	hilb.sci iir.sci iirgroup.sci iirlp.sci iirmod.sci intdec.sci \
 	jmat.sci kalm.sci lattn.sci lev.sci levin.sci yulewalk.sci \
 	lindquist.sci mese.sci mfft.sci mrfit.sci phc.sci pspect.sci \
-	remezb.sci sinc.sci sincd.sci srfaur.sci sskf.sci convol.sci \
+	remezb.sci  sincd.sci srfaur.sci sskf.sci convol.sci \
 	srkf.sci system.sci trans.sci wfir.sci wiener.sci \
 	wigner.sci window.sci zpbutt.sci zpch1.sci zpch2.sci zpell.sci \
 	fftshift.sci

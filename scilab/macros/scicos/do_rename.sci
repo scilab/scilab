@@ -6,12 +6,12 @@ function [scs_m,edited]=do_rename(scs_m)
     mess='Enter the new diagram name'
   end
 
-  new=dialog(mess,scs_m(1).title(1))
+  new=dialog(mess,scs_m.props.title(1))
   new=new(1)
   if new<>[] then
-    drawtitle(scs_m(1))  //erase title
-    scs_m(1).title(1)=new,
-    drawtitle(scs_m(1))  //draw title
+    drawtitle(scs_m.props)  //erase title
+    scs_m.props.title(1)=new,
+    drawtitle(scs_m.props)  //draw title
     edited=%t
   end
 endfunction

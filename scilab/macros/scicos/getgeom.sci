@@ -4,15 +4,14 @@ function g=getgeom()
 //the number of main scicos window or -1 if the block is not in the main
 //window.
 
-[%ljunk,%mac]=where()
-slevel=prod(size(find(%mac=='scicos')))
-path=%cpr.corinv(curblock())
+  [%ljunk,%mac]=where()
+  slevel=prod(size(find(%mac=='scicos')))
+  path=%cpr.corinv(curblock())
 
-if exists('windows')<>1|slevel<>1|size(path,'*')<>1 then 
-  g=[-1;zeros(4,1)],
-  return,
-end
-//orig=scs_m(path)(2)(1);sz=scs_m(path)(2)(2)
-orig=scs_m(path).graphics.orig;sz=scs_m(path).graphics.sz
-g=[windows(1,2);orig(:);sz(:)]
+  if exists('windows')<>1|slevel<>1|size(path,'*')<>1 then 
+    g=[-1;zeros(4,1)],
+    return,
+  end
+  orig=scs_m.objs(path).graphics.orig;sz=scs_m.objs(path).graphics.sz
+  g=[windows(1,2);orig(:);sz(:)]
 endfunction

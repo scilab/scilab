@@ -5,7 +5,7 @@ bllst=list();
 corinv=cpr.corinv
 for k=1:size(corinv)
   if size(corinv(k),'*')==1 then
-    bllst(k)=scs_m(corinv(k)).model;
+    bllst(k)=scs_m.objs(corinv(k)).model;
   else
     path=get_subobj_path(corinv(k));path($+1)='model';
     bllst(k)=scs_m(path);

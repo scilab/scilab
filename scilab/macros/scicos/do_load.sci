@@ -35,7 +35,7 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       message(name+' cannot be loaded.') 
       ok=%f;return
     end
-    if scs_m==[] then scs_m=x,end //for compatibility
+//    if scs_m==[] then scs_m=x,end //for compatibility
     if scicos_ver<>current_version then 
       scs_m=do_version(scs_m,scicos_ver),
       %cpr=list()
@@ -47,26 +47,28 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
     //scs_m=list()
     return
   end
+  scs_m=do_versionxx(scs_m);//TEMPORAIRE A SUPPRIMER
   scs_m=do_version26(scs_m);
-  scs_m(1).title=[scs_m(1).title(1),path]
+  scs_m.props.title=[scs_m.props.title(1),path]
 
   if typ=='diagram' then
     if %cpr<>list() then
-      for jj=1:size(%cpr.sim('funtyp'),'*')
-	if %cpr.sim('funtyp')(jj)<10000 then
-	  if %cpr.sim('funtyp')(jj)>999 then
-	    funam=%cpr.sim('funs')(jj)
+      for jj=1:size(%cpr.sim.funtyp,'*')
+	if %cpr.sim.funtyp(jj)<10000 then
+	  if %cpr.sim.funtyp(jj)>999 then
+	    funam=%cpr.sim.funs(jj)
 	    if ~c_link(funam) then
 	      qqq=%cpr.corinv(jj)
 	      path=list(qqq(1))
-	      for kkk=qqq(2:$)
-		path($+1)=3
-		path($+1)=8
+	      for kkk=qqq
+		path($+1)='model'
+		path($+1)='rpar'
+		path($+1)='objs'
 		path($+1)=kkk
 	      end
-	      path($+1)=2;path($+1)=4;path($+1)=2;
-	      tt=scs_m(path)
-	      if %cpr.sim('funtyp')(jj)>1999 then
+	      path($+1)='graphics';path($+1)='exprs';path($+1)=2;
+	      tt=scs_m.objs(path)
+	      if %cpr.sim.funtyp(jj)>1999 then
 		[ok]=do_ccomlink(funam,tt)
 	      else
 		[ok]=do_forcomlink(funam,tt)
@@ -77,4 +79,24 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
       end
     end
   end
+endfunction
+
+function scs_m_new=do_versionxx(scs_m)
+//A SUPPRIMER CF ci dessus
+  if typeof(scs_m)=='diagram' then scs_m_new=scs_m,return,end
+  if typeof(scs_m(1))<>'params' then scs_m_new=scs_m,return,end
+  scs_m_new=scicos_diagram()
+  scs_m_new.props=scs_m(1)
+  scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
+  n=size(scs_m)
+  for i=2:n //loop on objects
+    o=scs_m(i)
+    scs_m_new.objs(i)=o
+    if typeof(o)=='Block' then
+      if o.model.sim(1)=='super'| o.model.sim(1)=='csuper' then
+	scs_m_new.objs(i).model.rpar=do_versionxx(o.model.rpar)
+      end
+    end
+  end
+  edited=resume(%t)
 endfunction

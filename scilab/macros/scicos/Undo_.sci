@@ -7,8 +7,8 @@ function Undo_()
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //      %wpar=scs_m(1)
 //      %wdm=%wpar(1)
-        scs_m(1).wpar=scs_m(1)
-        %wdm=scs_m(1).wpar
+        scs_m.props.wpar=scs_m.props
+        %wdm=scs_m.props.wpar
 //**********************************
       xbasc()
       window_set_size()

@@ -1,16 +1,16 @@
 function path=save_super(scs_m,fpath)
-// given a super block definition x save_super creates a file which contains
-// this super block  handling  macro definition
+// given a super block definition scs_m save_super creates 
+// this super block's interfacing function
 // Copyright INRIA
 path=[]
 scs_m=do_purge(scs_m)
-nam=scs_m(1).title(1);
+nam=scs_m.props.title(1);
 nam=strsubst(nam,' ','_')
 in=[];out=[];clkin=[];clkout=[];
 bl='  '
 com='/'+'/'
-for k=2:size(scs_m)
-  o=scs_m(k)
+for k=1:size(scs_m.objs)
+  o=scs_m.objs(k)
   if typeof(o)=='Block' then
     model=o.model
     select o.gui

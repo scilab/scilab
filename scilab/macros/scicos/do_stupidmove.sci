@@ -25,30 +25,31 @@ function [%pt,scs_m]=do_stupidmove(%pt,scs_m)
   end
 
   scs_m_save=scs_m
-  if typeof(scs_m(k))=='Block'| typeof(scs_m(k))=='Text' then
+  if typeof(scs_m.objs(k))=='Block'| typeof(scs_m.objs(k))=='Text' then
     needreplay=replayifnecessary()
     scs_m=stupid_moveblock(scs_m,k,xc,yc)
-  elseif typeof(scs_m(k))=='Link' then
+  elseif typeof(scs_m.objs(k))=='Link' then
     scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
   end
   [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(..
 			scs_m_save,%t,%t,needcompile,needreplay)
 
 endfunction
+
 function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 // Move  block k and modify connected links if any
 //look at connected links
   dr=driver()
   connectedi=[get_connected(scs_m,k,'in'),get_connected(scs_m,k,'clkin')];
   connectedo=[get_connected(scs_m,k,'out'),get_connected(scs_m,k,'clkout')];
-  o=scs_m(k)
+  o=scs_m.objs(k)
   xx=[];yy=[];ii=[];clr=[];mx=[];my=[]
 
   // build movable segments for all connected links
   //===============================================
   xm=[];ym=[];
   for i=connectedi
-    oi=scs_m(i)
+    oi=scs_m.objs(i)
     driver(dr)
 
     draw_link_seg(oi,$-1:$) //erase link
@@ -62,7 +63,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
   end
 
   for i=connectedo
-    oi=scs_m(i)
+    oi=scs_m.objs(i)
     driver(dr)
     draw_link_seg(oi,1:2) //erase link
     if pixmap then xset('wshow'),end
@@ -109,31 +110,31 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 
     
     // update and draw block
-    if rep(3)<>2 then o.graphics.orig=xy;  scs_m(k)=o;end
+    if rep(3)<>2 then o.graphics.orig=xy;  scs_m.objs(k)=o;end
     driver(dr)
     drawobj(o)
     if pixmap then xset('wshow'),end
 
     j=0
     for i=connectedi
-      oi=scs_m(i)
+      oi=scs_m.objs(i)
       if rep(3)<>2 then 
 	j=j+1
 	oi.xx($-1:$)=xmt(:,j)
 	oi.yy($-1:$)=ymt(:,j)
-	scs_m(i)=oi
+	scs_m.objs(i)=oi
       end
       draw_link_seg(oi,$-1:$) //draw link
       if pixmap then xset('wshow'),end
     end
 
     for i=connectedo
-      oi=scs_m(i)
+      oi=scs_m.objs(i)
       if rep(3)<>2 then 
 	j=j+1
 	oi.xx(1:2)=xmt([2,1],j)
 	oi.yy(1:2)=ymt([2,1],j)
-	scs_m(i)=oi
+	scs_m.objs(i)=oi
       end
       draw_link_seg(oi,1:2) //draw link
       if pixmap then xset('wshow'),end
@@ -158,7 +159,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       xy=[xc,yc];
     end
     // update and draw block
-    if rep(3)<>2 then o.graphics.orig=xy,scs_m(k)=o,end
+    if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
     driver(dr)
     drawobj(o)
     if pixmap then xset('wshow'),end
@@ -166,7 +167,7 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
 endfunction
 
 function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
-  o=scs_m(k)
+  o=scs_m.objs(k)
   [xx,yy,ct]=(o.xx,o.yy,o.ct)
   dr=driver()
 
@@ -216,21 +217,21 @@ function scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
       yy(seg)=y1
     end
     o.xx=xx;o.yy=yy
-    scs_m(k)=o
+    scs_m.objs(k)=o
   end
   driver(dr)
   draw_link_seg(o,seg)
   if pixmap then xset('wshow'),end
 endfunction
 
-function [k,wh,objs]=stupid_getobj(objs,pt)
-  n=size(objs)
+function [k,wh,scs_m]=stupid_getobj(scs_m,pt)
+  n=size(scs_m.objs)
   wh=[];
   x=pt(1);y=pt(2)
   data=[]
   k=[]
-  for i=2:n //loop on objects
-    o=objs(i)
+  for i=1:n //loop on objects
+    o=scs_m.objs(i)
     if typeof(o)=='Block' then
       graphics=o.graphics
       [orig,sz]=(graphics.orig,graphics.sz)
@@ -238,7 +239,7 @@ function [k,wh,objs]=stupid_getobj(objs,pt)
       if data(1)<0&data(2)<0 then k=i,break,end
     elseif typeof(o)=='Link' then
       [frect1,frect]=xgetech();
-      eps=4     //0.01*min(abs(frect(3)-frect(1)),abs(frect(4)-frect(2)))
+      eps=4     
       xx=o.xx;yy=o.yy;
       [d,ptp,ind]=stupid_dist2polyline(xx,yy,pt,.85)
       if d<eps then 
@@ -250,7 +251,7 @@ function [k,wh,objs]=stupid_getobj(objs,pt)
           draw_link_seg(o,[ind,ind+1])
           o.xx=[xx(1:ind);ptp(1);xx(ind+1:$)];
 	  o.yy=[yy(1:ind);ptp(2);yy(ind+1:$)];
-          objs(i)=o
+          scs_m.objs(i)=o
 	  k=i,wh=-ind-1,break,
 	else k=i,wh=ind,draw_link_seg(o,[-ind-1:-ind+1]);break,end
       end
@@ -306,12 +307,9 @@ endfunction
 function draw_link_seg(o,seg)
   if o.thick(2)>=0 then
     d=xget('dashes');thick=xget('thickness')
-    
     t=maxi(o.thick(1),1)*maxi(o.thick(2),1)
-    
     xset('thickness',t);xset('dashes',o.ct(1))
     xpoly(o.xx(seg),o.yy(seg),'lines')
-    
     xset('dashes',d);xset('thickness',thick)
   end
 endfunction

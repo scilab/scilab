@@ -11,7 +11,7 @@ function scs_m = do_ident(scs_m)
   numero_objet=k
   scs_m_save=scs_m
 
-  objet = scs_m(numero_objet)
+  objet = scs_m.objs(numero_objet)
   type_objet = typeof(objet)
 
   //
@@ -30,7 +30,7 @@ function scs_m = do_ident(scs_m)
       drawobj(objet)
       objet.graphics.id = stripblanks(identification)
       drawobj(objet)
-      scs_m(numero_objet) = objet
+      scs_m.objs(numero_objet) = objet
     end
   elseif type_objet == 'Link' then
     identification = objet.id
@@ -48,9 +48,9 @@ function scs_m = do_ident(scs_m)
       //- set identification to all connected links
       //
       for numero = c_links
-	drawobj(scs_m(numero))
-	scs_m(numero).id = identification
-	drawobj(scs_m(numero))
+	drawobj(scs_m.objs(numero))
+	scs_m.objs(numero).id = identification
+	drawobj(scs_m.objs(numero))
       end
     end				
   else

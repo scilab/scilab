@@ -2,18 +2,17 @@ function scs_m_new=do_purge(scs_m)
 // Copyright INRIA
 
 //suppress deleted elements in a scicos data structure
-  nx=size(scs_m);
-
+  nx=size(scs_m.objs);
 
   //get index of deleted blocks
   deleted=[];
   for k=1:nx
-    typ=typeof(scs_m(k))
+    typ=typeof(scs_m.objs(k))
     if typ=='Deleted' then
       deleted=[deleted,k];
     elseif typ=='Block' then
-      if scs_m(k).model.sim=='super' then
-	scs_m(k).model.rpar=do_purge(scs_m(k).model.rpar)
+      if scs_m.objs(k).model.sim=='super' then
+	scs_m.objs(k).model.rpar=do_purge(scs_m.objs(k).model.rpar)
       end
     end
   end
@@ -26,11 +25,12 @@ function scs_m_new=do_purge(scs_m)
   retained=1:nx;retained(deleted)=[];
   //compute index cross table
   old_to_new=ones(1,nx);old_to_new(deleted)=0*deleted;
-  old_to_new=rtitr(1,%z-1,old_to_new)';//old_to_new(1)=[];
+  old_to_new=rtitr(1,%z-1,old_to_new)';
 
-  scs_m_new=list();
+  scs_m_new=scicos_diagram();
+  scs_m_new.props=scs_m.props
   for k=1:size(retained,'*')
-    o=scs_m(retained(k))
+    o=scs_m.objs(retained(k))
     if typeof(o)=='Block' then
       if o.graphics.pin<>[] then
 	o.graphics.pin=old_to_new(o.graphics.pin+1);
@@ -48,6 +48,6 @@ function scs_m_new=do_purge(scs_m)
       o.from(1)=old_to_new(o.from(1)+1);
       o.to(1)=old_to_new(o.to(1)+1);
     end
-    scs_m_new(k)=o;
+    scs_m_new.objs(k)=o;
   end
 endfunction

@@ -7,7 +7,7 @@ DEL=[] //table of deleted objects
 K0=K
 while K<>[] do
   k=K(1);K(1)=[]
-  o=scs_m(k);
+  o=scs_m.objs(k);
   if find(DEL==k)==[] then typ=typeof(o);else typ='Deleted',end
    
   DEL=[DEL k]
@@ -17,9 +17,9 @@ while K<>[] do
     tokill=[%t,%t]
 
     //disconnect to block
-    scs_m(to(1))=mark_prt(scs_m(to(1)),to(2),'in',ct(2),0)
+    scs_m.objs(to(1))=mark_prt(scs_m.objs(to(1)),to(2),'in',ct(2),0)
     //disconnect from block
-    scs_m(from(1))=mark_prt(scs_m(from(1)),from(2),'out',ct(2),0)
+    scs_m.objs(from(1))=mark_prt(scs_m.objs(from(1)),from(2),'out',ct(2),0)
     // erase and delete link
     if gr==%t then drawobj(o),end
   elseif typ=='Block' then
@@ -28,7 +28,7 @@ while K<>[] do
     //ask for connected links deletion
     K=[K connected]
     // erase and delete block
-    if gr==%t then drawobj(scs_m(k)),end
+    if gr==%t then drawobj(scs_m.objs(k)),end
   elseif typ=='Text' then
     if gr==%t then drawobj(o),end
   elseif typ=='Deleted' then
@@ -39,5 +39,5 @@ end
 if gr==%t then 
   if pixmap then xset('wshow'),end,
 end
-for k=DEL,scs_m(k)=mlist('Deleted'),end
+for k=DEL,scs_m.objs(k)=mlist('Deleted'),end
 endfunction

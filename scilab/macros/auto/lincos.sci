@@ -39,14 +39,14 @@ function sys=lincos(scs_m,x0,u0,param)
 
 [lhs,rhs]=argn(0)
 IN=[];OUT=[];
-for i=2:length(scs_m)
-  if typeof(scs_m(i))=='Block' then  
-    if scs_m(i).gui=='IN_f' then
-      scs_m(i).gui='INPUTPORT';
-      IN=[IN scs_m(i).model.ipar]
-    elseif scs_m(i).gui=='OUT_f' then
-      scs_m(i).gui='OUTPUTPORT';
-      OUT=[OUT  scs_m(i).model.ipar]
+for i=1:size(scs_m.objs)
+  if typeof(scs_m.objs(i))=='Block' then  
+    if scs_m.objs(i).gui=='IN_f' then
+      scs_m.objs(i).gui='INPUTPORT';
+      IN=[IN scs_m.objs(i).model.ipar]
+    elseif scs_m.objs(i).gui=='OUT_f' then
+      scs_m.objs(i).gui='OUTPUTPORT';
+      OUT=[OUT  scs_m.objs(i).model.ipar]
     end
   end
 end

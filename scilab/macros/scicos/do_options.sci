@@ -1,13 +1,13 @@
 function [edited,options]=do_options(opt,flag)
 //
 // Copyright INRIA
-if xget('use color')==1
+//if xget('use color')==1
   colors=string(1:xget("lastpattern")+2);
-else
-  colors=['black','pat 1','pat 2','pat 3','pat 4','pat 5','pat 6','pat 7',...
-	  'pat 8','pat 9','pat 10','pat 11','pat 12','pat 13','pat 14',..
-	  'pat 15','white'];
-end
+//else
+//  colors=['black','pat 1','pat 2','pat 3','pat 4','pat 5','pat 6','pat 7',...
+//	  'pat 8','pat 9','pat 10','pat 11','pat 12','pat 13','pat 14',..
+//	  'pat 15','white'];
+//end
 fontsSiz=['08','10','12','14','18','24'];
 fontsIds=[ 'Courrier','Symbol','Times','Times Italic','Times Bold',..
 	'Times B. It.'];

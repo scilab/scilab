@@ -1,4 +1,4 @@
-function [Tree,windows]=do_navigator(scs_m,windows)
+ function [Tree,windows]=do_navigator(scs_m,windows)
 //build the tree representation
 y0=0;x0=0;
 path=[];larg=0;
@@ -47,9 +47,10 @@ for k=1:size(xx,1)
   if k==1 then path=[]; else path=lp(k-1);end
   Path=list();
   for pk=path
-    Path=lstcat(Path,pk,'model','rpar');
+    Path=lstcat(Path,'objs',pk,'model','rpar');
   end
-  Path=lstcat(Path,1,'title',1);
+  Path=lstcat(Path,'props','title',1);
+
   xstring(x0(kx),y0,string(k)+': '+scs_m(Path))
   y0=y0-h;
   if k==20 then 

@@ -85,7 +85,7 @@ end
     xsave(graph)
   else
     xload(graph)
-    xname(palettes(kpal)(1).title(1))
+    xname(palettes(kpal).props.title(1))
   end
   xinfo('Palette: may be used to copy  blocks or regions')  
   if pixmap then xset('wshow'),end

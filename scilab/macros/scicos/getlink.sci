@@ -21,7 +21,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     end
     [kfrom,wh]=getblocklink(scs_m,[xc1;yc1])
 
-    if kfrom<>[] then o1=scs_m(kfrom);break,end
+    if kfrom<>[] then o1=scs_m.objs(kfrom);break,end
   end
   scs_m_save=scs_m,nc_save=needcompile
 
@@ -34,12 +34,12 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     end
 
     // get split type
-    [xout,yout,typout]=getoutputs(scs_m(from(1)))
+    [xout,yout,typout]=getoutputs(scs_m.objs(from(1)))
     clr=ct(1)
 
     typo=ct(2)
     if typo==1 then typp='out',else typp='evtout', end
-    szout=getportsiz(scs_m(from(1)),from(2),typp)
+    szout=getportsiz(scs_m.objs(from(1)),from(2),typp)
 
   // get initial split position
   wh=wh(1)
@@ -53,7 +53,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   //        done later, the sequel assumes that the split block is added
   //        at the end of scs_m
   ks=kfrom;
-  kfrom=size(scs_m)+1;port_number=2;
+  kfrom=size(scs_m.objs)+1;port_number=2;
   xo=d(1);yo=d(2)
   fromsplit=%t
   else //connection comes from a block
@@ -127,7 +127,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     end
     kto=getblock(scs_m,[xe;ye])
     if kto<>[] then //new point designs the "to block"
-      o2=scs_m(kto);
+      o2=scs_m.objs(kto);
       graphics2=o2.graphics;
       orig  = graphics2.orig
       sz    = graphics2.sz
@@ -273,7 +273,7 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
   //----------- update objects structure -----------------------------
   //------------------------------------------------------------------
   if fromsplit then //link comes from a split
-    nx=size(scs_m)+1
+    nx=size(scs_m.objs)+1
     //split old link
     from1=o1.from
     to1=o1.to
@@ -287,7 +287,6 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
     link2.yy   = [d(2);yy(wh+1:size(yy,1))];
     link2.from = [nx,1];
 
-    nx=size(scs_m)+1
 
     // create split block
     if typo==1 then
@@ -305,19 +304,19 @@ function [%pt,scs_m,needcompile]=getlink(%pt,scs_m,needcompile)
       CLKSPLIT_f('plot',sp)
     end
 
-    scs_m(ks)=link1;
-    scs_m(nx)=sp
-    scs_m(nx+1)=link2;
-    scs_m(from1(1))=mark_prt(scs_m(from1(1)),from1(2),'out',typ,ks)
-    scs_m(to1(1))=mark_prt(scs_m(to1(1)),to1(2),'in',typ,nx+1)
+    scs_m.objs(ks)=link1;
+    scs_m.objs(nx)=sp
+    scs_m.objs(nx+1)=link2;
+    scs_m.objs(from1(1))=mark_prt(scs_m.objs(from1(1)),from1(2),'out',typ,ks)
+    scs_m.objs(to1(1))=mark_prt(scs_m.objs(to1(1)),to1(2),'in',typ,nx+1)
   end
   
   //add new link in objects structure
-  nx=size(scs_m)+1
-  scs_m(size(scs_m)+1)=lk
+  nx=size(scs_m.objs)+1
+  scs_m.objs($+1)=lk
   //update connected blocks
-  scs_m(kfrom)=mark_prt(scs_m(kfrom),from(2),'out',typ,nx)
-  scs_m(kto)=mark_prt(scs_m(kto),to(2),'in',typ,nx)
+  scs_m.objs(kfrom)=mark_prt(scs_m.objs(kfrom),from(2),'out',typ,nx)
+  scs_m.objs(kto)=mark_prt(scs_m.objs(kto),to(2),'in',typ,nx)
 
   drawobj(lk)
 

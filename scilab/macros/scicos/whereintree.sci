@@ -38,6 +38,6 @@ path(1:n)=[]
 
 Path=list();
 for pk=path
-  Path=lstcat(Path,pk,'model','rpar');
+  Path=lstcat(Path,'objs',pk,'model','rpar');
 end
 endfunction

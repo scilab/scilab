@@ -4,8 +4,8 @@ function [scs_m,newparameters,needcompile,edited]=scicos(scs_m,menus)
 // scs_m=scicos(scs_m,job)
 //%PARAMETERS
 // scs_m    : scilab list, scicos main data structure
-//      scs_m(1) contains system name and other infos
-//      scs_m(i+1) contains description of ith block diagram element
+//      scs_m.props contains system name and other infos
+//      scs_m.objs(i) contains description of ith block diagram element
 // menus : vector of character strings,optional parameter giving usable menus 
 //!
 // Copyright INRIA
@@ -62,11 +62,6 @@ if ~super_block then // global variables
   if iserror(-1) then    
     errclear(-1)
   end
-  
-  
-  
-  
-  
 end
 //
 if rhs>=1 then
@@ -89,14 +84,11 @@ if rhs>=1 then
   end
 else
   xset('window',Main_Scicos_window);
-  scs_m=empty_diagram()
+  scs_m=scicos_diagram()
   %cpr=list();needcompile=4;alreadyran=%f;%state0=list()
 end
 //
-if type(scs_m)<>15 then error('first argument must be a scicos list'),end
-
-
-
+if typeof(scs_m)<>'diagram' then error('first argument must be a scicos diagram'),end
 
 
 
@@ -142,7 +134,7 @@ end
 
 
 //viewport
-options=scs_m(1).options
+options=scs_m.props.options
 
 if ~super_block then
   xset('window',Main_Scicos_window);
@@ -206,16 +198,16 @@ else
 end
 
 //set context (variable definition...)
-if type(scs_m(1).context)==10 then
+if type(scs_m.props.context)==10 then
   errcatch(-1,'continue','nomessage')
-  execstr(scs_m(1).context) 
+  execstr(scs_m.props.context) 
   errcatch(-1)
   if iserror(-1) then   
     message('Cannot evaluate context')
     errclear(-1)
   end
 else
-  scs_m(1).context=' ' 
+  scs_m.props.context=' ' 
 end
 drawobjs(scs_m)
 

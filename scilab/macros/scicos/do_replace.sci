@@ -18,17 +18,11 @@ while %t
   elseif win==curwin then //click dans la fenetre courante
     k=getblock(scs_m,[xc;yc])
     if k<>[] then
-    //  o=scs_m(k);graphics=o(2)
-      o=scs_m(k);graphics=o.graphics
-//      for kk=5:8
-	// mark port disconnected
-//	graphics(kk)=0*graphics(kk)
-//      end
+      o=scs_m.objs(k);graphics=o.graphics
      graphics.pin=0*graphics.pin
      graphics.pout=0*graphics.pout
      graphics.pein=0*graphics.pein
      graphics.peout=0*graphics.peout
-   //   o(2)=graphics
       o.graphics=graphics
       break,
     end
@@ -47,17 +41,13 @@ while %t do
   end
   k_n=getobj(scs_m,[xc;yc])
   if k_n<>[] then
-    o_n=scs_m(k_n)
-  //  if o_n(1)=='Block' then  break,end
+    o_n=scs_m.objs(k_n)
     if typeof(o_n)=='Block' then  break,end
   end
 end
-//o(2)(3)=o_n(2)(3) // set same flip position
 o.graphics.flip=o_n.graphics.flip // set same flip position
-//[ip,op,cip,cop]=o(2)(5:8)
 [ip,op,cip,cop]=(o.graphics.pin,o.graphics.pout,o.graphics.pein,..
 o.graphics.peout)
-//[in,out,clkin,clkout]=o(3)(2:5)
 [in,out,clkin,clkout]=(o.model.in,o.model.out,o.model.evtin,o.model.evtout)
 
 nin=size(in,'*')
@@ -65,11 +55,8 @@ nout=size(out,'*')
 nclkin=size(clkin,'*')
 nclkout=size(clkout,'*')
 
-
-//[ip_n,op_n,cip_n,cop_n]=o_n(2)(5:8)
 [ip_n,op_n,cip_n,cop_n]=(o_n.graphics.pin,o_n.graphics.pout,..
 o_n.graphics.pein,o_n.graphics.peout)
-//[in_n,out_n,clkin_n,clkout_n]=o_n(3)(2:5)
 [in_n,out_n,clkin_n,clkout_n]=(o_n.model.in,o_n.model.out,..
 o_n.model.evtin,o_n.model.evtout)
 nin_n=size(in_n,'*')
@@ -169,12 +156,6 @@ if wasconnected then
   end
 end
 
-
-//o(2)(1)=[ox_n,oy_n]
-//o(2)(5)=ip
-//o(2)(6)=op
-//o(2)(7)=cip
-//o(2)(8)=cop
 o.graphics.orig=[ox_n,oy_n]
 o.graphics.pin=ip
 o.graphics.pout=op
@@ -182,7 +163,7 @@ o.graphics.pein=cip
 o.graphics.peout=cop
 drawobj(o_n)
 drawobj(o)
-scs_m(k_n)=o
+scs_m.objs(k_n)=o
 if pixmap then xset('wshow'),end
 scs_m_save=scs_m,nc_save=needcompile
 needcompile=4

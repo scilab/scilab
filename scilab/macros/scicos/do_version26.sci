@@ -1,19 +1,21 @@
-function scs_m=do_version26(scs_m)
-  if type(scs_m(1)) <> 16 then
-    tol=scs_m(1)(3)
-    if size(tol,'*')<6 then tol(6)=0,end
-    tf=scs_m(1)(4)
-    if tf==[] then tf=100000;end
-    scs_m(1)=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
-			   tol=tol,tf=tf,..
-			   context=scs_m(1)(5),options=scs_m(1)(7),..
-			   doc=scs_m(1)(10))
-  else
-    return
+function scs_m_new=do_version26(scs_m)
+  if typeof(scs_m)=='diagram' then scs_m_new=scs_m,return,end
+  scs_m_new=scicos_diagram()
+
+  tol=scs_m(1)(3)
+  if size(tol,'*')<6 then tol(6)=0,end
+  tf=scs_m(1)(4)
+  if tf==[] then tf=100000;end
+  scs_m_new.props=scicos_params(wpar=scs_m(1)(1),title=scs_m(1)(2),..
+				tol=tol,tf=tf,..
+				context=scs_m(1)(5),options=scs_m(1)(7),..
+				doc=scs_m(1)(10))
+
+  if scs_m(1)(7).Background==[] then 
+    scs_m_new.props.options.Background=[8 1]
   end
   
-  if scs_m(1).options.Background==[] then scs_m(1).options.Background=8,end
-  
+  scs_m_new.objs(1)=mlist('Deleted') // not to change the internal numbering
   n=size(scs_m)
   for i=2:n //loop on objects
     o=scs_m(i)
@@ -67,34 +69,34 @@ function scs_m=do_version26(scs_m)
       graphics.id        = mdl(15)
 
 
-      scs_m(i)=scicos_block()
-      scs_m(i).graphics = graphics, 
-      scs_m(i).model    = model
-      scs_m(i).gui      = o(5)
-      scs_m(i).doc      = mdl(14)
+      scs_m_new.objs(i)=scicos_block()
+      scs_m_new.objs(i).graphics = graphics, 
+      scs_m_new.objs(i).model    = model
+      scs_m_new.objs(i).gui      = o(5)
+      scs_m_new.objs(i).doc      = mdl(14)
 
 
     elseif o(1)=='Link' then
-      scs_m(i)=scicos_link()
-      scs_m(i).xx=o(2),
-      scs_m(i).yy=o(3), 
-      scs_m(i).id=o(5),
-      scs_m(i).thick=o(6),
-      scs_m(i).ct=o(7),
-      scs_m(i).from=o(8),
-      scs_m(i).to=o(9)
+      scs_m_new.objs(i)=scicos_link()
+      scs_m_new.objs(i).xx=o(2),
+      scs_m_new.objs(i).yy=o(3), 
+      scs_m_new.objs(i).id=o(5),
+      scs_m_new.objs(i).thick=o(6),
+      scs_m_new.objs(i).ct=o(7),
+      scs_m_new.objs(i).from=o(8),
+      scs_m_new.objs(i).to=o(9)
     elseif o(1)=='Text' then
-      scs_m(i)=TEXT_f('define')
-      scs_m(i).model.rpar=o(3)(8)
-      scs_m(i).model.ipar=o(3)(9)
-      scs_m(i).graphics.orig=o(2)(1)
-      scs_m(i).graphics.sz=o(2)(2)
-      scs_m(i).graphics.exprs=o(2)(4)
+      scs_m_new.objs(i)=TEXT_f('define')
+      scs_m_new.objs(i).model.rpar=o(3)(8)
+      scs_m_new.objs(i).model.ipar=o(3)(9)
+      scs_m_new.objs(i).graphics.orig=o(2)(1)
+      scs_m_new.objs(i).graphics.sz=o(2)(2)
+      scs_m_new.objs(i).graphics.exprs=o(2)(4)
     elseif o(1)=='Deleted' then
-      scs_m(i)=tlist('Deleted')
+      scs_m_new.objs(i)=tlist('Deleted')
     end
   end
-  %cpr=resume(list()) // doit etre enleve
+  [%cpr,edited]=resume(list(),%t) // doit etre enleve
 endfunction
 
 function  gr_i=convert_gri(name,gri)

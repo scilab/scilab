@@ -35,7 +35,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   //initialize outputs
   blklst=list(),nb=0,cor=list(),corinv=list(),cmat=[],ccmat=[];ok=%t
   labels=[];
-  n=size(scs_m)
+  n=size(scs_m.objs)
   for k=1:n, cor(k)=0;end
 
 
@@ -44,11 +44,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   nrmsplit=[]
   nrmsum=[]
 
-  sel=2:n
+  sel=1:n
   for k=sel
-    o=scs_m(k)
+    o=scs_m.objs(k)
     if typeof(o)=='Block' then
-      sel(k-1)=0
+      sel(k)=0
       if o.gui=='CLKSPLIT_f' then
 	nsblk=nsblk+1
 	cor(k)=MaxBlock+nsblk
@@ -73,10 +73,10 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	  count=0;cnct=[]
 	  for kk=1:prod(size(connected))
 	    kc=connected(kk)
-	    if scs_m(kc).to(1)==k then  // an input link
-	      cnct=[cnct scs_m(kc).to(2)]
+	    if scs_m.objs(kc).to(1)==k then  // an input link
+	      cnct=[cnct scs_m.objs(kc).to(2)]
 	      count=count+1
-	      scs_m(kc).to(2)=count;
+	      scs_m.objs(kc).to(2)=count;
 	    end
 	  end
           o.model.in=o.model.in(cnct);
@@ -92,11 +92,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	connected=get_connected(scs_m,k)
 	for kk=1:prod(size(connected))
 	  kc=connected(kk);
-	  if scs_m(kc).to(1)==k then  // an input link
-	    scs_m(kc).to(1)=MaxBlock+nsblk; 
+	  if scs_m.objs(kc).to(1)==k then  // an input link
+	    scs_m.objs(kc).to(1)=MaxBlock+nsblk; 
 	  end
-	  if scs_m(kc).from(1)==k then  // an output link 
-	    scs_m(kc).from(1)=MaxBlock+nsblk;
+	  if scs_m.objs(kc).from(1)==k then  // an output link 
+	    scs_m.objs(kc).from(1)=MaxBlock+nsblk;
 	  end
 	end
         [blklsts,cmats,ccmats,cors,corinvs,ok]=c_pass1(o.model.rpar,..
@@ -138,11 +138,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	ok=%f
 	return
       end
-      lk=scs_m(connected)
+      lk=scs_m.objs(connected)
       //model.ipar contient le numero de port d'entree affecte
       //a ce bloc
       from=[-ksup -o.model.ipar]
-      lk.from=from;scs_m(connected)=lk
+      lk.from=from;scs_m.objs(connected)=lk
       elseif o.gui=='OUT_f' then
 	if ksup==0 then
 	  message('Output port must be only used in a Super Block')
@@ -156,11 +156,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	  ok=%f
 	  return
 	end
-	lk=scs_m(connected)
+	lk=scs_m.objs(connected)
 	//ipar=model.ipar contient le numero de port de sortie affecte
 	//a ce bloc
 	to=[-ksup -o.model.ipar]
-	lk.to=to;scs_m(connected)=lk
+	lk.to=to;scs_m.objs(connected)=lk
       elseif o.gui=='CLKIN_f'|o.gui=='CLKINV_f' then
 	if ksup==0 then
 	  message('Clock Input port must be only used in a Super Block')
@@ -174,11 +174,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	  ok=%f
 	  return
 	end
-	lk=scs_m(connected)
+	lk=scs_m.objs(connected)
 	//model.ipar contient le numero de port d'entree affecte
 	//a ce bloc
 	from=[-ksup -o.model.ipar]
-	lk.from=from;scs_m(connected)=lk
+	lk.from=from;scs_m.objs(connected)=lk
       elseif o.gui=='CLKOUT_f'|o.gui=='CLKOUTV_f' then
 	if ksup==0 then
 	  message('Clock Output port must be only used in a Super Block')
@@ -192,11 +192,11 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	  ok=%f
 	  return
 	end
-	lk=scs_m(connected)
+	lk=scs_m.objs(connected)
 	//model.ipar contient le numero de port de sortie affecte
 	//a ce bloc
 	to=[-ksup -o.model.ipar]
-	lk.to=to;scs_m(connected)=lk
+	lk.to=to;scs_m.objs(connected)=lk
     else
       //graphics=o(2)
       nb=nb+1
@@ -229,7 +229,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
       cor(k)=nb
       end
     elseif typeof(o)=='Deleted'|typeof(o)=='Text' then
-      sel(k-1)=0
+      sel(k)=0
     end
   end
   if ksup==0&nb==0 then
@@ -241,7 +241,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
   //loop on links
   sel(find(sel==0))=[]
   for k=sel
-    o=scs_m(k);
+    o=scs_m.objs(k);
     if o.from(2)<0&o.from(1)<0 then
       //fil issu d'un port d'entree d'un super block
       //on remet la valeur de from(1) au numero du superbloc dans scs_m

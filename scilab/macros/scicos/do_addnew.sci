@@ -84,5 +84,5 @@ driver(dr)
 drawobj(blk)
 if pixmap then xset('wshow'),end
 
-scs_m($+1)=blk
+scs_m.objs($+1)=blk
 endfunction

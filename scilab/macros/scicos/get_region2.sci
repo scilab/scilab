@@ -26,7 +26,21 @@ end
 
 [ox,oy,w,h,ok]=get_rectangle(xc,yc)
 if ~ok then prt=[];rect=[];return;end
-[keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h)
+
+[keep,del]=get_blocks_in_rect(scs_m,ox,oy,w,h);
+for bkeep=keep
+  if typeof(scs_m.objs(bkeep))=='Block' then
+    if or(scs_m.objs(bkeep).gui==['IN_f' 
+		    'OUT_f'
+		    'CLKINV_f'
+		    'CLKIN_f'
+		    'CLKOUTV_f'
+		    'CLKOUT_f']) then
+      message('Input/Output ports are not allowed in the region.')
+      prt=[];rect=[];return
+    end
+  end
+end
 
 //preserve information on splitted links
 prt=splitted_links(scs_m,keep,del)
@@ -47,9 +61,9 @@ ncout=0
 //add input and output ports
 
 for k=1:size(prt,1)
-  nreg=size(reg)
+  nreg=size(reg.objs)
   k1=prt(k,2)
-  o1=reg(k1)
+  o1=reg.objs(k1)
   orient=o1.graphics.flip
   if prt(k,1)==1 then //input port
     [x,y,vtyp]=getinputs(o1)
@@ -147,9 +161,9 @@ for k=1:size(prt,1)
     end
   end
   lk=scicos_link(xx=xl,yy=yl,ct=[prt(k,5),typ],from=from,to=to)
-  reg(nreg+1)=sp
-  reg(nreg+2)=lk
-  reg(k1)=o1
+  reg.objs(nreg+1)=sp
+  reg.objs(nreg+2)=lk
+  reg.objs(k1)=o1
 end
 reg=do_purge(reg)
 endfunction

@@ -1,6 +1,6 @@
 function  [%cpr,ok]=do_compile(scs_m)
 // Copyright INRIA
-par=scs_m(1);
+par=scs_m.props;
 if alreadyran then 
   //terminate current simulation
   do_terminate()
@@ -9,16 +9,16 @@ end
 timer()
 disablemenus()
 IN=[];OUT=[];
-for i=2:length(scs_m)
-  if typeof(scs_m(i))=='Block' then  
-    if scs_m(i).gui=='IN_f' then
-      scs_m(i).gui='INPUTPORT';
-      scs_m(i).model.sim='bidon'
-      IN=[IN scs_m(i).model.ipar]
-     elseif scs_m(i).gui=='OUT_f' then
-      scs_m(i).gui='OUTPUTPORT';
-      scs_m(i).model.sim='bidon'
-      OUT=[OUT  scs_m(i).model.ipar]
+for i=1:size(scs_m.objs)
+  if typeof(scs_m.objs(i))=='Block' then  
+    if scs_m.objs(i).gui=='IN_f' then
+      scs_m.objs(i).gui='INPUTPORT';
+      scs_m.objs(i).model.sim='bidon'
+      IN=[IN scs_m.objs(i).model.ipar]
+     elseif scs_m.objs(i).gui=='OUT_f' then
+      scs_m.objs(i).gui='OUTPUTPORT';
+      scs_m.objs(i).model.sim='bidon'
+      OUT=[OUT  scs_m.objs(i).model.ipar]
     end
   end
 end

@@ -22,10 +22,10 @@ function [%pt,scs_m]=do_move(%pt,scs_m)
   end
 
   scs_m_save=scs_m
-  if typeof(scs_m(k))=='Block'|typeof(scs_m(k))=='Text' then
+  if typeof(scs_m.objs(k))=='Block'|typeof(scs_m.objs(k))=='Text' then
     needreplay=replayifnecessary()
     scs_m=moveblock(scs_m,k,xc,yc)
-  elseif typeof(scs_m(k))=='Link' then
+  elseif typeof(scs_m.objs(k))=='Link' then
     if wh>0 then
       scs_m=movelink(scs_m,k,xc,yc,wh)
     else
@@ -44,13 +44,13 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 //look at connected links
   dr=driver()
   connected=get_connected(scs_m,k)
-  o=scs_m(k)
+  o=scs_m.objs(k)
   xx=[];yy=[];ii=[];clr=[];mx=[];my=[]
 
   // build movable segments for all connected links
   //===============================================
   for i=connected
-    oi=scs_m(i)
+    oi=scs_m.objs(i)
     driver(dr)
     drawobj(oi) //erase link
     if pixmap then xset('wshow'),end
@@ -180,7 +180,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     xset('pattern',pat)
   
     // update and draw block
-    if rep(3)<>2 then o.graphics.orig=xy;  scs_m(k)=o;end
+    if rep(3)<>2 then o.graphics.orig=xy;  scs_m.objs(k)=o;end
     driver(dr)
     drawobj(o)
     if pixmap then xset('wshow'),end
@@ -188,7 +188,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     xx=xx+mx*(xc-xmin)
     yy=yy+my*(yc-ymin)
     for i=1:prod(size(ii))
-      oi=scs_m(abs(ii(i)))
+      oi=scs_m.objs(abs(ii(i)))
       xl=oi.xx;yl=oi.yy;nl=prod(size(xl))
       if ii(i)>0 then
 	if nl>=4 then
@@ -222,7 +222,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xpolys(xl,yl,oi.ct(1))// erase thin link
       if rep(3)<>2 then
 	oi.xx=xl;oi.yy=yl;
-	scs_m(abs(ii(i)))=oi;
+	scs_m.objs(abs(ii(i)))=oi;
       end
       driver(dr)
       drawobj(oi)  //draw final link
@@ -248,7 +248,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       if pixmap then xset('wshow'),end
     end
     // update and draw block
-    if rep(3)<>2 then o.graphics.orig=xy,scs_m(k)=o,end
+    if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
     driver(dr)
     drawobj(o)
     if pixmap then xset('wshow'),end
@@ -259,7 +259,7 @@ endfunction
 function scs_m=movelink(scs_m,k,xc,yc,wh)
 // move the  segment wh of the link k and modify the other segments if necessary
 //!
-  o=scs_m(k)
+  o=scs_m.objs(k)
   drawobj(o) //erase link
   if pixmap then xset('wshow'),end
   dr=driver()
@@ -271,9 +271,9 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
   nl=size(o.xx,'*')  // number of link points
   if wh==1 then
     from=o.from;to=o.to;
-    if is_split(scs_m(from(1)))&is_split(scs_m(to(1)))&nl<3 then
+    if is_split(scs_m.objs(from(1)))&is_split(scs_m.objs(to(1)))&nl<3 then
       scs_m=movelink1(scs_m)
-    elseif ~is_split(scs_m(from(1)))|nl<3 then
+    elseif ~is_split(scs_m.objs(from(1)))|nl<3 then
       p=projaff(xx(1:2),yy(1:2),[xc,yc])
       X1=[xx(1);p(1);xx(2)]
       Y1=[yy(1);p(2);yy(2)]
@@ -295,7 +295,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       xpolys(xx,yy,ct(1)) // erase thin link
       if rep(3)<>2 then 
 	o.xx=xx;o.yy=yy
-	scs_m(k)=o
+	scs_m.objs(k)=o
       end
       driver(dr)
       drawobj(o)
@@ -305,7 +305,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
     end
   elseif wh>=nl-1 then
     to=o.to
-    if ~is_split(scs_m(to(1)))|nl<3 then
+    if ~is_split(scs_m.objs(to(1)))|nl<3 then
       p=projaff(xx($-1:$),yy($-1:$),[xc,yc])
       X1=[xx($-1);p(1);xx($)]
       Y1=[yy($-1);p(2);yy($)]
@@ -327,7 +327,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       xpolys(xx,yy,ct(1)) // erase thin link
       if rep(3)<>2 then 
 	o.xx=xx;o.yy=yy
-	scs_m(k)=o
+	scs_m.objs(k)=o
       end
       driver(dr)
       drawobj(o)
@@ -357,7 +357,7 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
     xpolys(xx,yy,ct(1)) // erase thin link
     if rep(3)<>2 then
       o.xx=xx;o.yy=yy
-      scs_m(k)=o
+      scs_m.objs(k)=o
     end
     driver(dr)
     drawobj(o)
@@ -390,7 +390,7 @@ function scs_m=movelink4(scs_m)
   xpolys(xx(wh+2:$),yy(wh+2:$),ct(1))
   if rep(3)<>2 then 
     o.xx(wh-1:wh+2)=x1;o.yy(wh-1:wh+2)=y1;
-    scs_m(k)=o
+    scs_m.objs(k)=o
   end
   driver(dr)
   drawobj(o)
@@ -415,7 +415,7 @@ function scs_m=movelink1(scs_m)
     yy=Y1+e(2)*(yc-yc1)
   end
   if rep(3)<>2 then o.xx=xx;o.yy=yy;end
-  scs_m(k)=o
+  scs_m.objs(k)=o
   driver(dr)
   drawobj(o)
   if pixmap then xset('wshow'),end
@@ -425,15 +425,15 @@ function scs_m=movelink1(scs_m)
   connected=[get_connected(scs_m,from(1)),get_connected(scs_m,to(1))]
 
   for j=find(connected<>k),
-    drawobj(scs_m(connected(j))),//erase  other connected links
+    drawobj(scs_m.objs(connected(j))),//erase  other connected links
   end
-  drawobj(scs_m(from(1)))//erase split
-  drawobj(scs_m(to(1)))//erase split
+  drawobj(scs_m.objs(from(1)))//erase split
+  drawobj(scs_m.objs(to(1)))//erase split
   
   // change links
   if connected(1)<>k then
     //update links coordinates
-    o=scs_m(connected(1));
+    o=scs_m.objs(connected(1));
     if size(o.xx,'*')>2 then
       if o.xx($)==o.xx($-1) then
 	o.xx($-1:$)=o.xx($-1:$)+e(1)*(xc-xc1);
@@ -449,13 +449,13 @@ function scs_m=movelink1(scs_m)
       o.xx($)=o.xx($)+e(1)*(xc-xc1);
       o.yy($)=o.yy($)+e(2)*(yc-yc1);
     end
-    scs_m(connected(1))=o;
+    scs_m.objs(connected(1))=o;
     drawobj(o) //redraw link
   end
   for kk=2:size(connected,'*')
     if connected(kk)<>k then
       //update links coordinates
-      o=scs_m(connected(kk))
+      o=scs_m.objs(connected(kk))
       if size(o.xx,'*')>2 then
 	if o.xx(1)==o.xx(2) then
 	  o.xx(1:2)=o.xx(1:2)+e(1)*(xc-xc1)
@@ -471,21 +471,21 @@ function scs_m=movelink1(scs_m)
 	o.xx(1)=o.xx(1)+e(1)*(xc-xc1)
 	o.yy(1)=o.yy(1)+e(2)*(yc-yc1)
       end
-      scs_m(connected(kk))=o;
+      scs_m.objs(connected(kk))=o;
       drawobj(o)//redraw link
     end
   end
   //update split coordinates
-  o=scs_m(from(1))
+  o=scs_m.objs(from(1))
   o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
   o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
   drawobj(o)//redraw split
-  scs_m(from(1))=o
-  o=scs_m(to(1))
+  scs_m.objs(from(1))=o
+  o=scs_m.objs(to(1))
   o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
   o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
   drawobj(o)//redraw split
-  scs_m(to(1))=o
+  scs_m.objs(to(1))=o
 
 endfunction
 
@@ -513,7 +513,7 @@ function scs_m=movelink2(scs_m)
   if rep(3)<>2 then
     o.xx(1:3)=x1;o.yy(1:3)=y1;
   end
-  scs_m(k)=o
+  scs_m.objs(k)=o
   driver(dr)
   drawobj(o)
   if pixmap then xset('wshow'),end
@@ -523,14 +523,14 @@ function scs_m=movelink2(scs_m)
   connected=get_connected(scs_m,from(1))
 
   for j=find(connected<>k),
-    drawobj(scs_m(connected(j))),//erase  other connected links
+    drawobj(scs_m.objs(connected(j))),//erase  other connected links
   end
-  drawobj(scs_m(from(1)))//erase split
+  drawobj(scs_m.objs(from(1)))//erase split
 			 
   // change links
   if connected(1)<>k then
     //update links coordinates
-    o=scs_m(connected(1));
+    o=scs_m.objs(connected(1));
     if size(o.xx,'*')>2 then
       if o.xx($)==o.xx($-1) then
 	o.xx($-1:$)=o.xx($-1:$)+e(1)*(xc-xc1);
@@ -546,13 +546,13 @@ function scs_m=movelink2(scs_m)
       o.xx($)=o.xx($)+e(1)*(xc-xc1);
       o.yy($)=o.yy($)+e(2)*(yc-yc1);
     end
-    scs_m(connected(1))=o;
+    scs_m.objs(connected(1))=o;
     drawobj(o) //redraw link
   end
   for kk=2:size(connected,'*')
     if connected(kk)<>k then
       //update links coordinates
-      o=scs_m(connected(kk))
+      o=scs_m.objs(connected(kk))
       if size(o.xx,'*')>2 then
 	if o.xx(1)==o.xx(2) then
 	  o.xx(1:2)=o.xx(1:2)+e(1)*(xc-xc1)
@@ -568,16 +568,16 @@ function scs_m=movelink2(scs_m)
 	o.xx(1)=o.xx(1)+e(1)*(xc-xc1)
 	o.yy(1)=o.yy(1)+e(2)*(yc-yc1)
       end
-      scs_m(connected(kk))=o;
+      scs_m.objs(connected(kk))=o;
       drawobj(o)//redraw link
     end
   end
   //update split coordinates
-  o=scs_m(from(1))
+  o=scs_m.objs(from(1))
   o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
   o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
   drawobj(o)//redraw split
-  scs_m(from(1))=o
+  scs_m.objs(from(1))=o
   if pixmap then xset('wshow'),end
 endfunction
 
@@ -603,7 +603,7 @@ function scs_m=movelink3(scs_m)
   if pixmap then xset('wshow'),end
   if rep(3)<>2 then
     o.xx($-2:$)=x1;o.yy($-2:$)=y1;
-    scs_m(k)=o
+    scs_m.objs(k)=o
   end
   driver(dr)
   drawobj(o)
@@ -613,13 +613,13 @@ function scs_m=movelink3(scs_m)
   //move split block and update other connected links
   connected=get_connected(scs_m,to(1))
   for j=find(connected<>k),
-    drawobj(scs_m(connected(j))),//erase connected links
+    drawobj(scs_m.objs(connected(j))),//erase connected links
   end
-  drawobj(scs_m(to(1))) //erase split
+  drawobj(scs_m.objs(to(1))) //erase split
 
   for kk=2:size(connected,'*')
     //update links coordinates
-    o=scs_m(connected(kk))
+    o=scs_m.objs(connected(kk))
     if size(o.xx,'*')>2 then
       if o.xx(1)==o.xx(2) then
 	o.xx(1:2)=o.xx(1:2)+e(1)*(xc-xc1)
@@ -635,20 +635,20 @@ function scs_m=movelink3(scs_m)
       o.xx(1)=o.xx(1)+e(1)*(xc-xc1)
       o.yy(1)=o.yy(1)+e(2)*(yc-yc1)
     end
-    scs_m(connected(kk))=o;
+    scs_m.objs(connected(kk))=o;
     drawobj(o) // redraw connected links
   end
-  o=scs_m(to(1))
+  o=scs_m.objs(to(1))
   o.graphics.orig(1)=o.graphics.orig(1)+e(1)*(xc-xc1);
   o.graphics.orig(2)=o.graphics.orig(2)+e(2)*(yc-yc1);
   drawobj(o) //redraw split
-  scs_m(to(1))=o
+  scs_m.objs(to(1))=o
   if pixmap then xset('wshow'),end
 
 endfunction
 
 function scs_m=movecorner(scs_m,k,xc,yc,wh)
-  o=scs_m(k)
+  o=scs_m.objs(k)
   [xx,yy,ct]=(o.xx,o.yy,o.ct)
   if wh==-1|wh==-size(xx,'*') then //link endpoint choosen
     scs_m=movelink(scs_m,k,xc,yc,-wh)
@@ -705,7 +705,7 @@ function scs_m=movecorner(scs_m,k,xc,yc,wh)
   xpolys(xx,yy,ct(1)) //erase thin link
   if rep(3)<>2 then
     o.xx=xx;o.yy=yy
-    scs_m(k)=o
+    scs_m.objs(k)=o
   end
   driver(dr)
   drawobj(o)

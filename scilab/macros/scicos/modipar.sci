@@ -27,7 +27,7 @@ nb=prod(size(rpptr))-1
 for k=newparameters
   if prod(size(k))==1 then //parameter of a sImple block
     statekd=[]
-    om=scs_m(k).model
+    om=scs_m.objs(k).model
     [fun,statek,dstatek,rpark,ipark]=(om.sim,om.state,om.dstate,om.rpar,om.ipar);
     if type(fun)==15 then
       if fun(2)==3 then 

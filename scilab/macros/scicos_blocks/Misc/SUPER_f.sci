@@ -15,18 +15,30 @@ case 'set' then
   while %t do
     [x,newparameters,needcompile,edited]=scicos(arg1.model.rpar)
     arg1.model.rpar=x
+    x=arg1
     [ok,arg1]=adjust_s_ports(arg1)
     if ok then
       x=arg1
       y=needcompile
       typ=newparameters
-      break
+      return
+//      edited=resume(edited)
+    else
+      %r=2
+      %r=message(['SUPER BLOCK needs to be edited;';
+		  'Edit or exit by removing all edition'],['Edit'; ...
+		    'Exit'])
+      if %r=2 then 
+//	edited=resume(%f),
+	typ=list()
+	return,
+      end
     end
   end
-  edited=resume(edited)
+  
 case 'define' then
-  scs=empty_diagram()
-  scs(1).title='Super Block'
+  scs=scicos_diagram()
+  scs.props.title='Super Block'
   model=scicos_model()
   model.sim='super'
   model.in=1

@@ -21,13 +21,13 @@ if get_connected(scs_m,k)<>[] then
   message('Connected block can''t be tilded')
   return
 end
-o=scs_m(k)
+o=scs_m.objs(k)
 drawobj(o)
 if pixmap then xset('wshow'),end
 //geom=o(2);geom(3)=~geom(3);o(2)=geom;
 geom=o.graphics;geom.flip=~geom.flip;o.graphics=geom;
 drawobj(o)
 scs_m_save=scs_m
-scs_m(k)=o
+scs_m.objs(k)=o
 [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t)
 endfunction

@@ -10,7 +10,7 @@ while %t
   K=getblock(scs_m,[xc;yc])
   if K<>[] then break,end
 end
-o=scs_m(K)
+o=scs_m.objs(K)
 model=o.model
 lab=model.label
 lab=dialog('Give block label',lab)
@@ -19,7 +19,7 @@ if lab<>[] then
   if length(lab)==0 then lab=' ',end
   model.label=lab
   o.model=model
-  scs_m(K)=o
+  scs_m.objs(K)=o
   mod=%t
 end
 endfunction

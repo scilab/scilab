@@ -1,14 +1,13 @@
-function [rect]=dig_bound(objs)
+function [rect]=dig_bound(scs_m)
 // Copyright INRIA
-  n=size(objs)
+  n=size(scs_m.objs)
   if n<=1 then rect=[];return;end
   xmin=100000;
   xmax=-xmin;
   ymin=xmin;
   ymax=-xmin;
-
-  for i=2:n //loop on objects
-    o=objs(i)
+  for i=1:n //loop on objects
+    o=scs_m.objs(i)
     if typeof(o)=='Block'|typeof(o)=='Text' then
       if execstr('orig=o.graphics.orig','errcatch')<>0 then pause,end
       sz=o.graphics.sz
@@ -24,6 +23,5 @@ function [rect]=dig_bound(objs)
       ymax=max([ymax;yy])
     end
   end
-  
   rect=[xmin,ymin,xmax,ymax]
 endfunction

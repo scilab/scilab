@@ -1,14 +1,12 @@
 function draw(scs_m)
 // Copyright INRIA
-nx=size(scs_m)
-for k=2:nx
-   o=scs_m(k)
- //  if o(1)<>'Link' then
-   if typeof(o)<>'Link' then
-    // execstr(o(5)+'(''plot'',o)')
-     execstr(o.id+'(''plot'',o)')
-   else
-     drawlink(o)
-   end
-end
+  nx=size(scs_m.objs)
+  for k=1:nx
+    o=scs_m.objs(k)
+    if typeof(o)<>'Link' then
+      execstr(o.id+'(''plot'',o)')
+    else
+      drawlink(o)
+    end
+  end
 endfunction

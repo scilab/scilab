@@ -45,7 +45,7 @@ end
 
 
 scs_m;
-scs_m(1).title=[name,path] // Change the title
+scs_m.props.title=[name,path] // Change the title
 // save
 if ext=='cos' then
   save(u,scicos_ver,scs_m,%cpr)
@@ -67,11 +67,11 @@ else
 end
 file('close',u)
 
-drawtitle(scs_m(1))  // draw the new title
+drawtitle(scs_m.props)  // draw the new title
 
 edited=%f
 if pal_mode then 
-  scicos_pal=update_scicos_pal(path,scs_m(1).title(1),fname),
+  scicos_pal=update_scicos_pal(path,scs_m.props.title(1),fname),
   scicos_pal=resume(scicos_pal)
 end
 endfunction

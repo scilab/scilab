@@ -17,13 +17,13 @@ function  CodeGeneration_()
     end
     k=getobj(scs_m,[xc;yc])
     if k<>[] then
-      if scs_m(k).model.sim(1)=='super' then
+      if scs_m.objs(k).model.sim(1)=='super' then
 	disablemenus()
-	XX=scs_m(k);
+	XX=scs_m.objs(k);
 	[ok,XX]=do_compile_superblock(XX)
 	enablemenus()
 	if ok then 
-	  scs_m(k)=XX
+	  scs_m.objs(k)=XX
 	  edited=%t;
 	  needcompile=4
 	  Cmenu='Replot';
@@ -1032,38 +1032,38 @@ function  [ok,XX]=do_compile_superblock(XX)
 //Author : Rachid Djenidi
 
   scs_m=XX.model.rpar
-  par=scs_m(1);
+  par=scs_m.props;
   if alreadyran then 
     //terminate current simulation
     do_terminate()
   end
-  hname=scs_m(1).title(1) //superblock name
+  hname=scs_m.props.title(1) //superblock name
   //***********************************************************
   //Check blocks properties and adapt them if necessary
   //***********************************************************
 
   IN=[];OUT=[];clkIN=[];numa=[];numc=[];
-  for i=2:length(scs_m)
-    if typeof(scs_m(i))=='Block' then  
-      if scs_m(i).gui=='IN_f' then
+  for i=1:size(scs_m.objs)
+    if typeof(scs_m.objs(i))=='Block' then  
+      if scs_m.objs(i).gui=='IN_f' then
 	//replace input ports by sensor blocks
 	numc=numc+1
-	scs_m(i).gui='INPUTPORTEVTS';
-	scs_m(i).model.evtin=1
-	scs_m(i).model.sim(1)='capteur'+string(numc)
-	IN=[IN scs_m(i).model.ipar]
-      elseif scs_m(i).gui=='OUT_f' then
+	scs_m.objs(i).gui='INPUTPORTEVTS';
+	scs_m.objs(i).model.evtin=1
+	scs_m.objs(i).model.sim(1)='capteur'+string(numc)
+	IN=[IN scs_m.objs(i).model.ipar]
+      elseif scs_m.objs(i).gui=='OUT_f' then
 	//replace output ports by actuator blocks
 	numa=numa+1
-	scs_m(i).gui='OUTPUTPORTEVTS';
-	scs_m(i).model.sim(1)='actionneur'+string(numa)
-	OUT=[OUT  scs_m(i).model.ipar]
-      elseif scs_m(i).gui=='CLKINV_f' then
+	scs_m.objs(i).gui='OUTPUTPORTEVTS';
+	scs_m.objs(i).model.sim(1)='actionneur'+string(numa)
+	OUT=[OUT  scs_m.objs(i).model.ipar]
+      elseif scs_m.objs(i).gui=='CLKINV_f' then
 	//replace event input ports by  fictious block
-	scs_m(i).gui='EVTGEN_f';
-	scs_m(i).model.sim(1)='bidon'
-	clkIN=[clkIN scs_m(i).model.ipar];
-      elseif scs_m(i).model.firing(2)==%t then
+	scs_m.objs(i).gui='EVTGEN_f';
+	scs_m.objs(i).model.sim(1)='bidon'
+	clkIN=[clkIN scs_m.objs(i).model.ipar];
+      elseif scs_m.objs(i).model.firing(2)==%t then
 	//check for time dependency PAS IICI
 	ok=%f;%cpr=list()
 	message('a block have time dependence.')
@@ -1262,21 +1262,21 @@ function  [ok,XX]=do_compile_superblock(XX)
   while %t do
     [okk,rdnom,rpat,archname,label1]=getvalue(..
 			'PLEASE, GIVE US SOME INFORMATION. ',..
-		        ['New bloc''s name :';
+		        ['New block''s name :';
 		        'Created files Path';
 		        'Other object files to link with ( if any)'],..
 		        list('str',1,'str',1,'str',1),label1);
-  
+pause
     if okk==%f then ok=%f;return; end
   
     dirinfo=fileinfo(rpat)
     if dirinfo==[] then
       ok=mkdir(rpat)    
       if ~ok then 
-	x_message('Directory '+rpath+' cannot be created');
+	x_message('Directory '+rpat+' cannot be created');
       end
     elseif filetype(dirinfo(2))<>'Directory' then
-      ok=%f;x_message(rpath+' is not a directory');
+      ok=%f;x_message(rpat+' is not a directory');
     end
 
     if stripblanks(rdnom)==emptystr() then 
@@ -1346,8 +1346,8 @@ function  [ok,XX]=do_compile_superblock(XX)
   Total_rdcpr=cpr.sim;Total_rdcpr.funs=rdcpr;
   //
   tcur=0;
-  tf=scs_m(1).tf;
-  tolerances=scs_m(1).tol;
+  tf=scs_m.props.tf;
+  tolerances=scs_m.props.tol;
   [state,t]=scicosim(cpr.state,tcur,tf,Total_rdcpr,'start',tolerances);
   cpr.state=state;
   z=cpr.state.z;outtb=cpr.state.outtb;
@@ -1409,12 +1409,12 @@ function [CCode,FCode]=gen_blocks()
   for i=1:size(kdyn,'*')
     //get the block data structure in the initial scs_m structure
     if size(corinv(kdyn(i)),'*')==1 then
-      O=scs_m(corinv(kdyn(i)));
+      O=scs_m.objs(corinv(kdyn(i)));
     else
       path=list();
       for l=corinv(kdyn(i))(1:$-1),path($+1)=l;path($+1)='model';path($+1)='rpar';end
       path($+1)=corinv(kdyn(i))($);
-      O=scs_m(path);
+      O=scs_m.objs(path);
     end
     if funtyp(kdyn(i))>2000 then
       //C block

@@ -10,7 +10,7 @@ while %t do
   elseif cwin==curwin then 
     k=getobj(scs_m,[xc;yc])
     if k<>[] then
-      o=scs_m(k)
+      o=scs_m.objs(k)
       name=o.gui
       nm=0
       break

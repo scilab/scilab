@@ -6,7 +6,7 @@ function Replot_()
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
    // %wdm=scs_m(1)(1)
 
-    %wdm=scs_m(1).wpar
+    %wdm=scs_m.props.wpar
 //*****************************************
 
     window_set_size()

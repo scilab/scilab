@@ -22,7 +22,7 @@ elseif alreadyran then
 else
   choix=[]
 end
-tolerances=scs_m(1).tol
+tolerances=scs_m.props.tol
 solver=tolerances(6)
 
 // update parameters or compilation results
@@ -61,7 +61,7 @@ if choix<>[] then
     errcatch(-1,'continue')
     state=%cpr.state
     needstart=%t
-    tf=scs_m(1).tf;
+    tf=scs_m.props.tf;
     [state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'finish',tolerances)
     %cpr.state=state
     alreadyran=%f
@@ -100,7 +100,7 @@ if needstart then //scicos initialisation
   end
   %tcur=0
   %cpr.state=%state0
-  tf=scs_m(1).tf;
+  tf=scs_m.props.tf;
   if tf*tolerances==[] then 
     x_message(['Simulation parameters not set';'use setup button']);
     return;
@@ -137,7 +137,7 @@ needreplay=%t
 
 // simulation
 
-  tf=scs_m(1).tf;
+  tf=scs_m.props.tf;
 disablemenus()
 setmenu(curwin,'stop')
 timer()

@@ -13,7 +13,7 @@ case 'getorigin' then
 case 'set' then
   path = 3
   newpar=list();
-  xx=arg1.model.rpar(path)// get the evtdly block
+  xx=arg1.model.rpar.objs(path)// get the evtdly block
   exprs=xx.graphics.exprs
   model=xx.model;
   t0_old=model.firing
@@ -32,7 +32,7 @@ case 'set' then
       model.rpar=dt
       model.firing=t0
       xx.model=model
-      arg1.model.rpar(path)=xx// Update
+      arg1.model.rpar.objs(path)=xx// Update
       break
     end
   end
@@ -50,8 +50,8 @@ case 'set' then
       evtdly.graphics.sz=[40,40]
       evtdly.graphics.flip=%t
       evtdly.graphics.exprs=['0.1';'0.1']
-      evtdly.graphics.pein=7
-      evtdly.graphics.peout=4
+      evtdly.graphics.pein=6
+      evtdly.graphics.peout=3
       evtdly.model.rpar=0.1
       evtdly.model.firing=0.1
     
@@ -60,13 +60,13 @@ case 'set' then
       output_port.graphics.sz=[20,20]
       output_port.graphics.flip=%t
       output_port.graphics.exprs='1'
-      output_port.graphics.pein=6
+      output_port.graphics.pein=5
       output_port.model.ipar=1
       
     split=CLKSPLIT_f('define')
       split.graphics.orig=[380.71066;172]
-      split.graphics.pein=4,
-      split.graphics.peout=[6;7]
+      split.graphics.pein=3,
+      split.graphics.peout=[5;6]
       
     gr_i=list(['wd=xget(''wdim'').*[1.016,1.12];';
 	       'thick=xget(''thickness'');xset(''thickness'',2);';
@@ -85,27 +85,28 @@ case 'set' then
 	       '  orig(2)+1.8*ry  orig(2)+ry+0.6*ry*sin(%pi/6)];';
 	       'xsegs(xx,yy,scs_color(10));';
 	       'xset(''thickness'',thick);'],[])
-    
+    diagram=scicos_diagram();
+      diagram.objs(1)=output_port   
+      diagram.objs(2)=evtdly
+      diagram.objs(3)=scicos_link(xx=[340;340;380.71],..
+				  yy=[226.29;172;172],..
+				  ct=[5,-1],from=[2,1],to=[4,1])  
+      diagram.objs(4)=split
+      diagram.objs(5)=scicos_link(xx=[380.71;399],yy=[172;172],..
+				  ct=[5,-1],from=[4,1],to=[1,1])  
+      diagram.objs(6)=scicos_link(xx=[380.71;380.71;340;340],..
+				  yy=[172;302;302;277.71],..
+				  ct=[5,-1],from=[4,2],to=[2,1]) 
     x=scicos_block()
-    x.gui='CLOCK_f'
-    x.graphics.sz=[2,2]
-    x.graphics.gr_i=gr_i
-    x.graphics.peout=0
-    x.model.sim='csuper'
-    x.model.evtout=1
-    x.model.blocktype='h'
-    x.model.firing=%f
-    x.model.dep_ut=[%f %f]
-    x.model.rpar=empty_diagram();
-    x.model.rpar(2)=output_port   
-    x.model.rpar(3)=evtdly
-    x.model.rpar(4)=scicos_link(xx=[340;340;380.71],yy=[226.29;172;172],..
-				ct=[5,-1],from=[3,1],to=[5,1])  
-    x.model.rpar(5)=split
-    x.model.rpar(6)=scicos_link(xx=[380.71;399],yy=[172;172],..
-				ct=[5,-1],from=[5,1],to=[2,1])  
-    x.model.rpar(7)=scicos_link(xx=[380.71;380.71;340;340],yy=[172;302;302;277.71],..
-				ct=[5,-1],from=[5,2],to=[3,1])  
-    
+      x.gui='CLOCK_f'
+      x.graphics.sz=[2,2]
+      x.graphics.gr_i=gr_i
+      x.graphics.peout=0
+      x.model.sim='csuper'
+      x.model.evtout=1
+      x.model.blocktype='h'
+      x.model.firing=%f
+      x.model.dep_ut=[%f %f]
+      x.model.rpar=diagram
 end
 endfunction

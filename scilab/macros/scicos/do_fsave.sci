@@ -17,7 +17,7 @@ else
 end
 
 // Change the name in the structure
-scs_m(1)(2)=[name,path]
+scs_m.props(2)=[name,path]
 
 //open the file
 errcatch(240,'continue','nomessage')
@@ -46,6 +46,6 @@ cos2cosf(u,scs_m)
 file('close',u)
 enablemenus()
 ok=%t
-if pal_mode then update_scicos_pal(path,scs_m(1)(2)(1),fname),end
+if pal_mode then update_scicos_pal(path,scs_m.props(2)(1),fname),end
     
 endfunction

@@ -23,11 +23,10 @@ while %t
     //click in navigator
     [%Path,%kk,ok]=whereintree(%Tree,%xc,%yc)
     if ok&%kk<>[] then %Path($)=null();%Path($)=null();end
-      if ~ok then %kk=[],end
+    if ~ok then %kk=[],end
   else
-
     %kk=getobj(scs_m,[%xc;%yc])
-    %Path=%kk
+    %Path=list('objs',%kk)
   end
   if %kk<>[] then
     super_path=[super_path,%kk] 
@@ -46,16 +45,22 @@ while %t
       if pixmap then xset('pixmap',1); end
       xset('pattern',1)
       xset('dashes',1)
-      //if ~set_cmap(options('Cmap')) then // add colors if required
-	//options('3D')(1)=%f //disable 3D block shape
-      if ~set_cmap(scs_m(1).options('Cmap')) then // add colors if required
-	scs_m(1).options('3D')(1)=%f //disable 3D block shape
+      if ~set_cmap(scs_m.props.options('Cmap')) then // add colors if required
+	scs_m.props.options('3D')(1)=%f //disable 3D block shape
       end
       if pixmap then xset('wwpc');end
       xbasc();xselect()
       %dr=driver();driver('Rec');
       set_background()
-      
+      rect=dig_bound(scs_m);
+
+      if rect<>[] then 
+	%wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
+      else
+	%wsiz=[600/%zoom,400/%zoom]
+      end
+      // 1.3 to correct for X version
+      xset('wpdim',min(1000,%zoom*%wsiz(1)),min(800,%zoom*%wsiz(2)))
       window_set_size()
       
       xset('alufunction',6)
@@ -94,10 +99,9 @@ while %t
       scs_m=update_redraw_obj(scs_m,%Path,o)
       
     end
-    
+
     //note if block parameters have been modified
     if modified&~pal_mode  then
-      //model=o(3)
       newparameters=mark_newpars(%kk,newparametersb,newparameters)
     end
   end
