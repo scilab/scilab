@@ -59,12 +59,13 @@ for k=newparameters
   if kc>0 then
     //Change continuous state
     nek=prod(size(statek))-(xptr(kc+1)-xptr(kc))
-    if nek<>0&kc<>nb then
-      st(nek+(xptr(kc+1):xptr($)-1))=st((xptr(kc+1):xptr($)-1))
-      st0(nek+(xptr(kc+1):xptr($)-1))=st0((xptr(kc+1):xptr($)-1))
+    sel=xptr(kc+1):xptr($)-1
+    if nek<>0&sel<>[] then
+      st(nek+sel)=st(sel)
+      st0(nek+sel)=st0(sel)
       if Impl then
-	std(nek+(xptr(kc+1):xptr($)-1))=std((xptr(kc+1):xptr($)-1))
-	std0(nek+(xptr(kc+1):xptr($)-1))=std0((xptr(kc+1):xptr($)-1))
+	std(nek+sel)=std(sel)
+	std0(nek+sel)=std0(sel)
       end
     end
     xptr(kc+1:$)=xptr(kc+1:$)+nek
@@ -77,9 +78,10 @@ for k=newparameters
     end
     //Change discrete  state
     nek=prod(size(dstatek))-(zptr(kc+1)-zptr(kc))
-    if nek<>0&kc<>nb then
-      dst(nek+(zptr(kc+1):zptr($)-1))=dst((zptr(kc+1):zptr($)-1))
-      dst0(nek+(zptr(kc+1):zptr($)-1))=dst0((zptr(kc+1):zptr($)-1))
+    sel=zptr(kc+1):zptr($)-1
+    if nek<>0&sel<>[] then
+      dst(nek+sel)=dst(sel)
+      dst0(nek+sel)=dst0(sel)
     end
     zptr(kc+1:$)=zptr(kc+1:$)+nek
     dst(zptr(kc):zptr(kc+1)-1)=dstatek(:),
@@ -87,8 +89,9 @@ for k=newparameters
 
     //Change real parameters
     nek=prod(size(rpark))-(rpptr(kc+1)-rpptr(kc))
-    if nek<>0&kc<>nb then
-      rpar(nek+(rpptr(kc+1):rpptr($)-1))=rpar((rpptr(kc+1):rpptr($)-1))
+    sel=rpptr(kc+1):rpptr($)-1
+    if nek<>0&sel<>[] then
+      rpar(nek+sel)=rpar(sel)
     end
     rpptr(kc+1:$)=rpptr(kc+1:$)+nek
     rpar(rpptr(kc):rpptr(kc+1)-1)=rpark,
@@ -96,8 +99,9 @@ for k=newparameters
     //Change integer parameters
     if type(ipark)==1 then   //scifunc
       nek=prod(size(ipark))-(ipptr(kc+1)-ipptr(kc))
-      if nek<>0&kc<>nb then
-	ipar(nek+(ipptr(kc+1):ipptr($)-1))=ipar((ipptr(kc+1):ipptr($)-1))
+      sel=ipptr(kc+1):ipptr($)-1
+      if nek<>0&sel<>[] then
+	ipar(nek+sel)=ipar(sel)
       end
       ipptr(kc+1:$)=ipptr(kc+1:$)+nek
       ipar(ipptr(kc):ipptr(kc+1)-1)=ipark,
