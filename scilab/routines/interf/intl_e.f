@@ -240,7 +240,8 @@ c     .  form the sublist
       ids(1,pt)=icount
       ids(2,pt)=m1
       ids(4,pt)=lhs
-      lhs=1
+c     only last index may select many lhs elements
+      if (icount.ne.m1) lhs=1
       fun=0
       fin=-fin
       rstk(pt)=403
@@ -260,10 +261,14 @@ c     restore context
       pt=pt-1
       if(icount.eq.m1) then
 c     .  put the result at the top of the stack and return
-         vol=lstk(top+1)-lstk(top)
-         call unsfdcopy(vol,stk(lstk(top)),1,stk(lstk(top-2)),1) 
+         vol=lstk(top+1)-lstk(top-lhs+1)
+         im=lstk(top-lhs+1)-lstk(top-lhs-1)
+        call unsfdcopy(vol,stk(lstk(top-lhs+1)),1,
+     $        stk(lstk(top-lhs-1)),1) 
          top=top-2
-         lstk(top+1)=lstk(top)+vol
+         do 46 k=1,lhs
+            lstk(top-lhs+k+1)=lstk(top-lhs+k+3)-im
+ 46      continue
          return
       else
 c     .  move result ajust after the index
