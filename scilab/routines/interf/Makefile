@@ -22,7 +22,7 @@ OBJSF = lstelm.o lstelmi.o matdsc.o matdsr.o matelm.o\
 	intg.o int2d.o int3d.o feval.o bva.o comm.o specfun.o\
 	isany.o \
 	followpath.o newsave.o insertfield.o v2unit.o v2cunit.o \
-	hmcreate.o lapackf.o slicotf.f
+	hmcreate.o lapackf.o slicotf.o
 
 
 include ../../Makefile.incl
