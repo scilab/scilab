@@ -59,147 +59,9 @@
    This function starts a network graphical editor.   Each time <VERB>editgraph</VERB> is
   executed, a new editor window  is created.
 
-  The editor supports the following menus: <P></P>
-  <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM label='Graph/New: '><P></P>
-    This menu erases the currently edited network. 
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Zoom: '><P></P>
-    This menu allows to set the scale factor for the display
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Replot: '><P></P>
-    This menu erases and re-displays the network.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/SaveAs: '><P></P>
-    This menu  allows to save the graph under a specified name
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Save: '><P></P>
-     This menu  allows to save the graph under its current name
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Load: '><P></P>
-    This menu  allows to load a "graph" file.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Options: '><P></P>
-    This menu  allows to set global graph properties
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Defaults: '><P></P>
-    This menu  allows to set default values for node diameter, node
-    border width, edge width, and font size.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Default names: '><P></P>
-    This menu automatically sets the node and egde names properties to
-    node and egde internal number.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Graph/Quit: '><P></P>
-    Use this menu to exit out of the editor.
-    </DESCRIPTION_ITEM>
+  The editor capabilities and menus are described in <LINK>editgraph_menus</LINK>
 
-    <DESCRIPTION_ITEM label='Edit/NewNode: '><P></P>
-    This menu set the current edition mode to "node addition".  To
-    add a node just click on its desired position. This edition mode
-    can also be entered pressing the "n" key while locator is in the
-    edition window (Under windows, the edition window should also have
-    the focus). This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/NewArc: '><P></P>
-    This menu set the current edition mode to "edge addition". To
-    add an edge between two nodes just left click on the initial node and
-    on the final node (click on right button cancels current edge
-    addition). 
 
-    This edition mode
-    can also be entered pressing the "a" key while locator is in the
-    edition window (Under windows, the edition window should also have
-    the focus). This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Move: '><P></P>
-    This menu set the current edition mode to "move node". To
-    move a node just left click on the selected node move the mouse up
-    to the final position and left click  (click on right button
-    cancels move). 
-    <P></P>
-    This edition mode  can also be entered pressing the "m" key while locator is in the
-    edition window. 
-    <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Move Region: '><P></P>
-    This menu set the current edition mode to "move region mode". To
-    move a rectangular region just click left on a rectangle corner,
-    drag rectangle to the desired area, click left to validate the
-    area (click on right button cancels move) then move the rectangle
-    to the desired position and click to validate.
-
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Copy: '><P></P>
-    This menu set the current edition mode to "copy node mode" . To
-    copy a node just left click on the selected node move the mouse up
-    to the desired position and left click to copy (click on right button
-    cancels move). 
-    <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Copy Region To ClipBoard: '><P></P>
-    This menu set the current edition mode to "copy region to
-    clipboard mode". To copy a rectangular region into the editgraph
-    clipboard just click left on a rectangle corner, drag rectangle to
-    the desired area, click left to validate the area (click on right
-    button cancels copy) .
-    <P></P>
-    The editgraph clipboard is shared by all editgraph editors.
-     <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Paste: '><P></P>
-    This menu set the current edition mode to "paste from clipboard mode" to
-    clipboard mode". To paste clipboard into the editgraph editor
-     click left to select the editor window, drag rectangle to
-    the desired area, click left to validate the position (click on right
-    button cancels copy) .
-    <P></P>
-    This edition mode  can also be entered pressing the "p" key while locator is in the
-    edition window. 
-    <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Delete: '><P></P>
-    This menu set the current edition mode to "delete object mode". To
-    delete a node or an edge just left click on the selected object. 
-    <P></P>
-    This edition mode  can also be entered pressing the "d" key while locator is in the
-    edition window. 
-    <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Delete Region'><P></P>
-    This menu set the current edition mode to "delete region mode". To
-    delete a rectangular region just click left on a rectangle corner,
-    drag rectangle to the desired area, click left to validate the
-    area (click on right button cancels selection).
-    <P></P>
-    Note that the deleted region is not send to the clipboard
-    <P></P>
-    This mode remains active until an other edition mode is selected.
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Properties: '><P></P>
-     This menu set the current edition mode to "set object
-     properties". To set a node or an edge properties, just left click
-     on the selected object; a popup dialog appears.  <P></P> This
-     mode remains active until an other edition mode is selected.
-      <P></P>
-    This edition mode  can also be entered pressing the "p" key while locator is in the
-    edition window. 
-    </DESCRIPTION_ITEM>
-    <DESCRIPTION_ITEM label='Edit/Undo: '><P></P>
-     This menu set the current edition mode to "undo previous
-     edition". It can be used recursively.
-        <P></P>
-    This edition mode  can also be entered pressing the "u" key while locator is in the
-    edition window. 
-    </DESCRIPTION_ITEM>
-    Note that Under windows, the shortcuts are taken into accound only if
-    the edition  have  the focus.
-  </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
  ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
@@ -214,6 +76,7 @@
     <SEE_ALSO_ITEM> <LINK>netclose</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>show_graph</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>netwindow</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>editgraph_menus</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
 
