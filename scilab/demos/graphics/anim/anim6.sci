@@ -16,10 +16,13 @@ function chainap(yt)
   plot2d(0,0,[0],"012"," ",rect);
   pix=xget('pixmap')
   if driver()=='Pos' then st=3;xset('pixmap',1);else st=1;end
-  for j=1:st:n2,
+  J=1:st:n2;
+  realtimeinit(0.05)
+  for j=1:size(J,'*')
+    realtime(j)
     xset("wwpc");
     xpoly(rect([1 3 3 1]),rect([2,2,4,4]),'lines',1)
-    chaindp([x(:,j),y(:,j)],rr,rect);
+    chaindp([x(:,J(j)),y(:,J(j))],rr,rect);
     xset("wshow");
   end
   xset('pixmap',pix)

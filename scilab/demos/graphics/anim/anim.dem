@@ -9,7 +9,7 @@ demolist=['Rotation of a 3D Surface (plot3d1)';
 	  'Rotation of a 3D contour';
 	  'Evolution of a 3D surface (plot3d)';
 	  'N link pendulum movement';
-	  'plot3d1 with xtape';
+	  'Riemann surface';
           'Shell'];
 deff('[]=demoexc(fil)','exec(path+fil)')
 while %t then
