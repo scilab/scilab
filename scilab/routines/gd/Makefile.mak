@@ -25,3 +25,5 @@ Makefile.mak	: Makefile
 Makefile.amk	: Makefile
 	$(SCIDIR)/util/Mak2ABSMak Makefile
 
+bdftogd.obj : gd.h
+gd.obj: gd.h
