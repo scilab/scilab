@@ -15,9 +15,9 @@ to=tree.operands(1)
 
 // Insertion of a struct in a not-struct array
 if to.vtype<>Struct then
-  insert(Equal(list(to),Funcall("makestruct",1,list(),list(to))))
-  //to.infer=Infer(list(0,0),Type(Struct,Unknown),makestruct())
-  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),makestruct())
+  insert(Equal(list(to),Funcall("struct",1,list(),list(to))))
+  //to.infer=Infer(list(0,0),Type(Struct,Unknown),struct())
+  tree.out(1).infer=Infer(list(0,0),Type(Struct,Unknown),struct())
 end
 
 // Just one index value
@@ -29,7 +29,7 @@ if rhs==1 then
     if ind.vtype==String then
       if to.vtype<>Struct then
 	to.type=Type(Struct,Unknown)
-	to.contents=makestruct(ind.value,from.infer)
+	to.contents=struct(ind.value,from.infer)
       end
       to.dims=list(1,1)
       tree.out(1).infer=to.infer
@@ -41,7 +41,7 @@ if rhs==1 then
 	if ind.vtype<>String then // Not :
 	  tree.out(1).dims=list(1,ind.value)
 	  if typeof(tree.out(1).contents)<>"st" then
-	    tree.out(1).contents=makestruct()
+	    tree.out(1).contents=struct()
 	  end
 	  execstr("tree.out(1).contents"+expression2code(tree.operands(2))+"=from.contents")
 	else
@@ -92,7 +92,7 @@ if rhs==1 then
 	// A.f
       else
 	infdims=list(1,1)
-	tree.out(1).contents=makestruct()
+	tree.out(1).contents=struct()
 	tree.out(1).contents(infertree(1).value)=Infer()
       end
       tree.out(1).type=Type(Struct,Unknown)
