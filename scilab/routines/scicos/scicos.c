@@ -346,7 +346,7 @@ int C2F(scicos)
       *ierr =5;
       return 0;
     }
-    if ((Blocks[kf].inptr=malloc(sizeof(int*)*Blocks[kf].nin))== NULL ){
+    if ((Blocks[kf].inptr=malloc(sizeof(double*)*Blocks[kf].nin))== NULL ){
       free_blocks();
       *ierr =5;
       return 0;
@@ -1287,6 +1287,7 @@ int C2F(scicos)
 	if (C2F(cosdebug).cosd >= 3) {
 	  sciprint("****daskr from: %f to %f\r\n", *told, t);
 	}
+	/*sciprint("mask=%d   t=%f  \r\n",mask[0],*told);*/
 	/*     Warning rpar and ipar are used here as dummy pointers */
 	C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd, &t, 
 		    info, &rtol, &Atol, &istate, &rhot[1], &
