@@ -38,10 +38,12 @@
 		Select &All
 			[SELECTALL]
 		-- 	
-        	&Copy	Ctrl+INS
+        &Copy	Ctrl+C
 			[MCOPY]
-		&Paste	Shift+INS
+		&Paste	Ctrl+V
 			[PASTE]
+		&Empty Clipboard
+			[EMPTYCLIPBOARD]	
 		--	
 		[Menu]
 		&History

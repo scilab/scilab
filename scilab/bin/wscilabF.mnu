@@ -37,10 +37,12 @@
 		Sélectio&nner tout
 			[SELECTALL]
 		--
-		&Copier	Ctrl+INS
+		&Copier	Ctrl+C
 			[MCOPY]
-		C&oller	Shift+INS
+		C&oller	Ctrl+V
 			[PASTE]
+		&Vider Presse-papier
+			[EMPTYCLIPBOARD]
 		--	
 		[Menu]
 		&Historique

@@ -56,7 +56,8 @@
 #define FRENCH			MCOPY+4
 #define ENGLISH			MCOPY+5
 #define CHOOSETHEFONT	MCOPY+6
-#define SELECTALL		MCOPY+7
+#define EMPTYCLIPBOARD	MCOPY+7
+#define SELECTALL		MCOPY+8
 /**********************/
 #define RESTART 		SELECTALL+1
 #define PAUSE 			RESTART+1
@@ -130,7 +131,7 @@
 */
 char *keyword[] =
 {
-  "[SELECTALL]","[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
+  "[EMPTYCLIPBOARD]","[SELECTALL]","[CLEARHISTORY]","[CONFIGBROWSER]","[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
   "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
@@ -146,7 +147,8 @@ char *keyword[] =
 
 BYTE keyeq[] =
 {
-  SELECTALL,CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
+  EMPTYCLIPBOARD,SELECTALL,CLEARHISTORY,CONFIGBROWSER,OPEN,FRENCH,ENGLISH,
+  TOOLBAR,NEWSGROUP,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
   MCOPY,PASTE,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
@@ -175,8 +177,6 @@ static void SendCountRaise ();
 static void SendCountDelete ();
 
 
-
-
 /*--------------------------------*/
 void Callback_NEWSCILAB(void);
 void Callback_EXEC(void);
@@ -186,6 +186,8 @@ void Callback_LOAD(void);
 void Callback_SAVE(void);
 void Callback_CHDIR(void);
 void Callback_GETCWD(void);
+void Callback_SELECTALL(void);
+void Callback_EMPTYCLIPBOARD(void);
 void Callback_MCOPY(void);
 void Callback_PASTE(void);
 void Callback_PRINT(void);

@@ -500,6 +500,15 @@ void Callback_SELECTALL(void)
 	SelectAll(lptw,TRUE);
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_EMPTYCLIPBOARD(void)
+{
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	CleanClipboard(lptw);
+
+}
+/*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
  * lptw : text window 
@@ -583,7 +592,10 @@ void SendMacro (LPTW lptw, UINT m)
 	    		Callback_PASTE();
 	    	        return;
 	    	break; 
-	    	
+	    	case EMPTYCLIPBOARD:
+				Callback_EMPTYCLIPBOARD();
+				return;
+			break;
 	    	case PRINT:
 	    		Callback_PRINT();
 	    		return;

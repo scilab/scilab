@@ -252,6 +252,7 @@ void SwitchConsole(void);
 void PasteFunction(LPTW lptw,BOOL special);
 BOOL IsEmptyClipboard(LPTW lptw);
 /*--------------------------*/
+void CleanClipboard(LPTW lptw);
 void SelectAll(LPTW lptw,BOOL DoAMark);
 void UnSelect(LPTW lptw);
 void HelpOn(LPTW lptw);

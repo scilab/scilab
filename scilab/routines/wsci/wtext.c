@@ -3670,4 +3670,18 @@ void UnSelect(LPTW lptw)
 	  }
 }
 /*-----------------------------------------------------------------------------------*/
+void CleanClipboard(LPTW lptw)
+{
+	if (ThreadPasteRunning)
+	{
+		SuspendThread(hThreadPaste);
+		TerminateThread(hThreadPaste,1);
+        ThreadPasteRunning=FALSE;
+        CloseHandle( hThreadPaste );
+	}
 
+	OpenClipboard(lptw->hWndParent);
+	EmptyClipboard();
+	CloseClipboard();
+}
+/*-----------------------------------------------------------------------------------*/
