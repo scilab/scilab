@@ -416,6 +416,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibsMex", "routines\default
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77} = {9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "routines\Javasci\Javasci.vcproj", "{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64BC155E-292F-484F-9404-76EE6AE67A43} = {64BC155E-292F-484F-9404-76EE6AE67A43}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -1012,6 +1017,14 @@ Global
 		{3BF083B1-AE91-40FC-989F-3901D9D46D2A}.PIV_Release.Build.0 = Release|Win32
 		{3BF083B1-AE91-40FC-989F-3901D9D46D2A}.Release.ActiveCfg = Release|Win32
 		{3BF083B1-AE91-40FC-989F-3901D9D46D2A}.Release.Build.0 = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.ActiveCfg = Debug|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.Build.0 = Debug|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.ActiveCfg = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.Build.0 = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.ActiveCfg = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.Build.0 = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release.ActiveCfg = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
