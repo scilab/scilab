@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_close</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juillet 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_close">Fonction d'émulation de la fonction Matlab close</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Suivant le type de la figure courante (uicontrol ou graphique), l'équivalent Scilab pour
+    la fonction Matlab <VERB>close</VERB> est différent :</P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si la figure courante est de type uicontrol : l'équivalent Scilab pour la fonction Matlab 
+	<VERB>close</VERB> est <VERB>close</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si la fenêtre courante est une fenêtre graphique : l'équivalent Scilab pour la fonction Matlab 
+	<VERB>close</VERB> est <VERB>xdel</VERB> ou <VERB>delete</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+	Dans Scilab on ne récupère pas de statut d'erreur.
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>
+    La fonction <VERB>mtlb_close([h])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>close([h])</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_close</VERB> :
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Si <VERB>h</VERB> est une figure de type uicontrol,
+        <VERB>mtlb_close(h)</VERB> peut être remplacé par <VERB>close(h)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Si <VERB>h</VERB> est une figure graphique,
+        <VERB>mtlb_close(h)</VERB> peut être remplacé par <VERB>delete(h)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_close</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xdel</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>winsid</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>close</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
