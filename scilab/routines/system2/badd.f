@@ -117,7 +117,6 @@ c
       fun=0
 c     
       icall=5
-      krec=26
 c
       include '../callinter.h'
 c     

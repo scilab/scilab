@@ -54,7 +54,7 @@ c     Macro execution
 c     
 c     
       icall=5
-      krec=18
+
       include '../callinter.h'
 c     
  200  lhs=ids(1,pt)

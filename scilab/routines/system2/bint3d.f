@@ -119,7 +119,7 @@ c
 c     
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
 c     
  200  lhs=ids(1,pt)

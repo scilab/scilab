@@ -62,7 +62,7 @@ c     Macro execution
       fun=0
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
@@ -146,7 +146,7 @@ c     Macro execution
       fun=0
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
@@ -228,7 +228,7 @@ c     Macro execution
       fun=0
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
@@ -311,7 +311,7 @@ c     Macro execution
       fun=0
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
@@ -392,7 +392,7 @@ c     Macro execution
       fun=0
 c     
       icall=5
-      krec=12
+
       include '../callinter.h'
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)

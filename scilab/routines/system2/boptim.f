@@ -99,7 +99,7 @@ c
       fun=0
 c     
       icall=5
-      krec=11
+
       include '../callinter.h'
 c     
  200  lhs=ids(1,pt)
