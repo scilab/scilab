@@ -26,14 +26,20 @@ function Load_()
 	%now_win=xget('window')
 
 	[%scicos_context,ierr]=script2var(scs_m.props.context,%scicos_context)
-      
-      if ierr  <>0 then
+	//for backward compatibility for scifunc
+	if ierr==0 then
+	  %mm=getfield(1,%scicos_context)
+	  for %mi=%mm(3:$)
+	    ierr=execstr(%mi+'=%scicos_context(%mi)','errcatch')
+	    if ierr<>0 then
+	      break
+	    end
+	  end
+	end
+	//end of for backward compatibility for scifunc
+	if ierr  <>0 then
 	  message(['Error occur when evaluating context:'
 		   lasterror() ])
-	//else
-	  //disablemenus()
-	  //[scs_m,%cpr,needcompile,ok]=do_eval(scs_m,%cpr)
-	  //enablemenus()
 	end
 	xset('window',%now_win)
       else

@@ -10,7 +10,17 @@ function Context_()
 	%scicos_context=struct()
       end
       [%scicos_context,ierr]=script2var(context,%scicos_context)
-      
+      //for backward compatibility for scifunc
+      if ierr==0 then
+	%mm=getfield(1,%scicos_context)
+	for %mi=%mm(3:$)
+	  ierr=execstr(%mi+'=%scicos_context(%mi)','errcatch')
+	  if ierr<>0 then
+	    break
+	  end
+	end
+      end
+      //end of for backward compatibility for scifunc
       if ierr <>0 then
 	message(['Error occur when evaluating context:'
 		 lasterror() ])
