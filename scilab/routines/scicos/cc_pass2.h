@@ -63,10 +63,10 @@ int mini_extract_info(int* bllst2,int** bllst4,char **bllst10,int* bllst12,int* 
 
 int pak_ersi(int** clkconnect,int* typ_r,int* typ_l,int* outoin,int* outoinptr,int* tblock,
 	     int* typ_cons,int* bllst5ptr,int** exe_cons,int nblk);
-int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l);
+int make_ptr(char** bllst10,int** bllst4ptr,int** bllst5ptr,int** typ_l,int** typ_m);
 int cleanup(int** clkconnect);
 int paksazi(char*** bllst111,int** bllst112,int** bllst2,int** bllst3,int**bllst9,char*** bllst10,int** bllst12,
-	    int** bllst2ptr,int** bllst3ptr,int* bllst5ptr,int** bllst9ptr,int** connectmat,int** clkconnect,int** typ_l,
+	    int** bllst2ptr,int** bllst3ptr,int* bllst5ptr,int** bllst9ptr,int** connectmat,int** clkconnect,int* typ_l,
 	    int* typ_m,int* done,int* ok,int* need_newblk,int** corinvec,int** corinvptr);
 int extract_info(int* bllst3,int* bllst5,char **bllst10,double* bllst11,int* bllst12,char** bllst13,int* bllst2ptr,
 		 int* bllst3ptr,int* bllst4ptr,int* bllst5ptr,int* bllst11ptr,int* connectmat,

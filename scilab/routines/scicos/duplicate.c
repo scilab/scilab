@@ -192,7 +192,8 @@ int C2F(intcpass2)(fname)
 	  le11=(int*) listentry(le1,1); //sim(1)
 	  if (le11[0] == 13)
 	    {
-	      if ((bllst111[k]=(char*) malloc(sizeof(char)*8)) ==NULL )  return 0;	      
+	      if ((bllst111[k]=(char*) malloc(sizeof(char)*9)) ==NULL )  return 0;
+	      ((char*) bllst111[k])[8]='\0';
 	      strcpy (bllst111[k],"sciblock");
 	      bllst112[k]=3;
 	    }
@@ -491,6 +492,15 @@ int C2F(intcpass2)(fname)
     }
   if (nb > nblk)
     {
+      //<<<<<<< duplicate.c
+      /*if ((bllst111=(char**)realloc(bllst111,sizeof(char*)*(nb+1))) == NULL )  return 0;
+      ((int*) bllst111)[0]=nb;
+      if ((bllst112=realloc(bllst112,sizeof(int)*(nb+1))) ==NULL )  return 0;		  
+      bllst112[0]=nb;
+      if ((bllst9ptr=realloc(bllst9ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
+      bllst9ptr[0]=nb+1;*/
+//=======
+//>>>>>>> 1.6
       if ((bllst8ptr=realloc(bllst8ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
       bllst8ptr[0]=nb+1;
       if ((bllst7ptr=realloc(bllst7ptr,sizeof(int)*(nb+2))) ==NULL )  return 0;		  
@@ -499,6 +509,14 @@ int C2F(intcpass2)(fname)
       bllst6ptr[0]=nb+1;
       for (i=nblk+1; i<nb+1; i++)
 	{
+//<<<<<<< duplicate.c
+	  /*if ((bllst111[i]=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
+	  ((char*) bllst111[k])[6]='\0';
+	  strcpy(bllst111[i],"ifthel");
+	  bllst112[i]=-1;
+	  bllst9ptr[i+1]=bllst9ptr[i];*/
+//=======
+//>>>>>>> 1.6
 	  bllst8ptr[i+1]=bllst8ptr[i];
 	  bllst7ptr[i+1]=bllst7ptr[i];
 	  bllst6ptr[i+1]=bllst6ptr[i];
