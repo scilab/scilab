@@ -799,7 +799,7 @@ c%%%%
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
-      double precision pythag
+      double precision dlapy2
       logical ref
       integer head
       integer iadr,sadr
@@ -865,7 +865,7 @@ c
       else
          k1=l1+mn
          do 13 i=1,mn
-            stk(lr1+i)=pythag(stk(l1+i),stk(k1+i))
+            stk(lr1+i)=dlapy2(stk(l1+i),stk(k1+i))
  13      continue
          istk(ilr+3)=0
       endif
@@ -3838,7 +3838,7 @@ c     argument is a complex matrix
       INCLUDE '../stack.h'
       integer id(nsiz)
 
-      double precision sr,si,pythag
+      double precision sr,si,dlapy2
       integer iadr,sadr
 c
       iadr(l)=l+l-1
@@ -3898,7 +3898,7 @@ c     argument is passed by reference
  10      continue
       else
          do 20 i=0,mn-1
-            sr=pythag(stk(l+i),stk(l+mn+i))
+            sr=dlapy2(stk(l+i),stk(l+mn+i))
             if(sr.eq.0) then
                stk(lr+i)=0.0d0
                stk(lr+mn+i)=0.0d0
@@ -3915,7 +3915,7 @@ c     argument is passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
 
-      double precision sr,si,pythag,epsa,epsr,norm,eps
+      double precision sr,si,dlapy2,epsa,epsr,norm,eps
       double precision dasum,wasum
       integer iadr,sadr
 c
