@@ -122,7 +122,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 480x720
+wm geometry $ww 500x720
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
