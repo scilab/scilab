@@ -3524,7 +3524,8 @@ void C2F(drawpolylines)(str, vectsx, vectsy, drawvect, n, p, v7, dv1, dv2, dv3, 
 	{ /** we use the markid : drawvect[i] **/
 	  NDvalue = - drawvect[i] ;
 	  C2F(xsetmark)(&NDvalue,symb+1,PI0,PI0);
-	  C2F(setpattern)(Dvalue+6,PI0,PI0,PI0);
+	  // C2F(setpattern)(Dvalue+6,PI0,PI0,PI0);// F.Leray Correction here to have the right color
+	  xset_pattern(&NDvalue,PI0,PI0,PI0);
 	  C2F(drawpolymark)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else
