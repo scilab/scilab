@@ -23,10 +23,12 @@ lib  :   $(MACROS)
 	else echo "Compilation failed";$(RM) `cat tmp_Bin` ;exit 1; \
 	fi
 	@echo End of compilation
+
 clean::
 	@$(RM) tmp_* 
-distclean::
-	$(RM) *.bin lib names Lib.mak Macros.mak  genlib 
+
+distclean:: clean 
+	@$(RM) *.bin lib names Lib.mak Macros.mak  genlib 
 
 # generates the names file and a Scilab script genlib 
 # for building lib 
