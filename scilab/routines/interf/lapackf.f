@@ -2392,6 +2392,12 @@ c
          return
       endif
       if(MA .ne. MB) then
+         if(NB*MB .eq. 1) then
+c     .     1\A
+            fun=0
+            fin=-fin
+            return
+         endif
          call error(265)
          return
       endif
@@ -2515,6 +2521,12 @@ c     .  for backwar compatibility
          return
       endif
       if(NA .ne. NB) then
+         if(NB*MB .eq. 1) then
+c     .     1/A
+            fun=0
+            fin=-fin
+            return
+         endif
          call error(266)
          return
       endif
@@ -2667,6 +2679,11 @@ c
          return
       endif
       if(NA .ne. NB) then
+         if(NB*MB .eq. 1) then
+            fun=0
+            fin=-fin
+            return
+         endif
          call error(266)
          return
       endif
@@ -2815,6 +2832,12 @@ c
          return
       endif
       if(MA .ne. MB) then
+         if(NB*MB .eq. 1) then
+c     .     1\A
+            fun=0
+            fin=-fin
+            return
+         endif
          call error(265)
          return
       endif

@@ -693,7 +693,7 @@ c     .  a/[] or []/a
          top = top+1
          rhs = 2        
          call intslash('slash')
-         call putlhsvar()
+         if (fin.ge.0) call putlhsvar()
 c         if (m2 .eq. n2) fun = 1
 c         if (m2 .ne. n2) fun = 4
 c         fin = -1
@@ -793,7 +793,7 @@ c     .  a\[] or []\a
          top = top+1
          rhs = 2 
          call intbackslash('backslash')
-         call putlhsvar()
+         if (fin.ge.0) call putlhsvar()
 c         if (m1 .eq. n1) fun = 1
 c         if (m1 .ne. n1) fun = 4
 c         fin = -2
