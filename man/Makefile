@@ -7,7 +7,7 @@ all::
 	$(SCIDIR)/bin/scilab -nw -f "format.sci"
 
 distclean::
-	$(RM)  $(FILES_TO_CLEAN)
-
-cleanall:
 	$(RM)  $(FILES_TO_CLEAN) */*.cat
+
+clean::
+	$(RM)  $(FILES_TO_CLEAN) 
