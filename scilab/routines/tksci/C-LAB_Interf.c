@@ -15,11 +15,11 @@
 /* ----------------------------------------------------------- */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-/* 	$Id: C-LAB_Interf.c,v 1.1 2001/04/26 07:49:00 scilab Exp $	 */
+/* 	$Id: C-LAB_Interf.c,v 1.2 2002/01/16 09:55:27 steer Exp $	 */
 
 /*
 #ifndef lint
-static char vcid[] = "$Id: C-LAB_Interf.c,v 1.1 2001/04/26 07:49:00 scilab Exp $";
+static char vcid[] = "$Id: C-LAB_Interf.c,v 1.2 2002/01/16 09:55:27 steer Exp $";
 #endif 
 */
 
@@ -301,7 +301,7 @@ int MatrixIsString( m )
 {
   integer *prefix;    /* virtual variable to read the matrix properties */
   prefix = (integer *)m;
-  return( ((prefix[0]==10) && (prefix[2]==1) && (prefix[2]==1) && (prefix[3]==0)) );
+  return( ((prefix[0]==10) && (prefix[1]==1) && (prefix[2]==1) );
 }
 
 /********** MatrixIsList  **********/
