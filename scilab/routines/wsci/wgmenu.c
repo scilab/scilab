@@ -282,16 +282,9 @@ void ScilabMenuAction (char *buf)
 
 void write_scilab (char *buf)
 {
-  char *d;
-  if (buf[0] != '\0')
-    {
-      d = buf;
-      while (*d)
-	{
-	  SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
-	  d++;
-	}
-    }
+  if ( IsWindowInterface() ) Write_Scilab_Window(buf);
+  else Write_Scilab_Console(buf);
+  
 }
 
 /************************************

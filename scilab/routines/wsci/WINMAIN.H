@@ -190,4 +190,6 @@ BOOL IsWindowInterface();
 
 void ExtensionFileIntoLowerCase(char *fichier);
 
+
+
 /*-----------------------------------------------------------------------------------*/

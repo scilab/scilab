@@ -113,6 +113,39 @@ extern int C2F(ismenu) ();
 static int sendprompt=1;
 #define SV_BUF_SIZE 5000
 static char tosearch[SV_BUF_SIZE] = "";/* place to store search string */
+
+extern void GetCurrentPrompt(char *CurrentPrompt);
+/*-----------------------------------------------------------------------------------*/
+/************************************
+ * Send a string to scilab interaction window
+ * as if it was typed by the user 
+  ************************************/
+#ifdef USE_CONSOLE
+void Write_Scilab_Console (char *buf)
+#else
+void Write_Scilab_Window (char *buf)
+#endif
+{
+	#ifdef USE_CONSOLE
+	char prompt[10];
+	GetCurrentPrompt(prompt);
+	clear_line (prompt);
+	copy_line (buf);
+	#else
+	char *d;
+	if (buf[0] != '\0')
+    {
+      d = buf;
+      while (*d)
+		{
+			SendMessage (textwin.hWndText, WM_CHAR, *d, 1L);
+			d++;
+		}
+	}
+	#endif
+
+}
+
 /*-----------------------------------------------------------------------------------*/
 /* user_putc and user_puts should be used in the place of
  * fputc(ch,stdout) and fputs(str,stdout) for all output
@@ -385,25 +418,25 @@ char * readline_nw (char *prompt, int interrupt)
 	      break;
 	    case '\n':		/* ^J */
 	    case '\r':		/* ^M */
-	      cur_line[max_pos + 1] = '\0';
-              /* added by  Serge Steer feb 04*/
-	      strip_blank(cur_line);
-	      if (cur_line[0]=='!') { /* search backward */
-		strcpy(tosearch,cur_line); /* memorise search key for further use */
-		cur_entry=SearchBackwardInHistory(tosearch+1);
-		if(cur_entry != NULL) {
-		  strcpy(cur_line,cur_entry->line);
-		}
-		else {
-		  cur_line[0]='\0';
-		}
+			cur_line[max_pos + 1] = '\0';
+	      	if (cur_line[0]=='!')
+			{ 
+				struct hist *P=NULL;
+				P=SearchBackwardInHistory(&cur_line[1]);
+				clear_line (prompt);
+				if (P != NULL) copy_line (P->line);
+			}
+		    else
+			{
+				putc ('\n', stdout);
+				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
+				strcpy (new_line, cur_line);
+				return (new_line);
+			}
 		break;
-	      }
-	      /* end addition */
-	      putc ('\n', stdout);
-	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-	      strcpy (new_line, cur_line);
-	      return (new_line);
+	      
+	    
+	    
 	    default:
 	      break;
 	    }
@@ -587,19 +620,25 @@ char * readline_win (char *prompt,int interrupt)
 	      break;
 	    case '\n':		/* ^J */
 	    case '\r':		/* ^M */
-	    
-	      cur_line[max_pos + 1] = '\0';
-	      putc ('\n', stdout);
-	      new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
-	      strcpy (new_line, cur_line);
-	
-	      return (new_line);
-	    
-	    
+			cur_line[max_pos + 1] = '\0';
+	      	if (cur_line[0]=='!')
+			{ 
+				struct hist *P=NULL;
+				P=SearchBackwardInHistory(&cur_line[1]);
+				clear_line (prompt);
+				if (P != NULL) copy_line (P->line);
+			}
+		    else
+			{
+				putc ('\n', stdout);
+				new_line = (char *) alloc ((unsigned long) (strlen (cur_line) + 1), "history");
+				strcpy (new_line, cur_line);
+				return (new_line);
+			}
 		break;
 
 	    default:
-	    
+ 
 	      break;
 	    }
 	}

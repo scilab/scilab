@@ -1271,6 +1271,34 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     /* Gestion ScrollBar en deplacement et autres*/
       switch (LOWORD (wParam))
 	{
+		case SB_TOP:
+			nYinc = -lptw->ScrollPos.y;
+		break;
+		case SB_BOTTOM:
+			nYinc = lptw->ScrollMax.y - lptw->ScrollPos.y;
+		break;
+		case SB_LINEUP:
+			nYinc = -lptw->CharSize.y;
+		break;
+		case SB_LINEDOWN:
+			nYinc = lptw->CharSize.y;
+		break;
+		case SB_PAGEUP:
+			nYinc = min(-1,-lptw->ClientSize.y);
+		break;
+		case SB_PAGEDOWN:
+			nYinc = max(1,lptw->ClientSize.y);
+		break;
+		case SB_THUMBPOSITION:
+			nYinc = LOWORD(lParam) - lptw->ScrollPos.y;
+		break;
+		case SB_THUMBTRACK:
+			nYinc = HIWORD (wParam) - lptw->ScrollPos.y;
+		break;
+		default:
+			nYinc = 0;
+		break;
+		/*
 		case SB_BOTTOM:
 		{
 			nYinc = 0;
@@ -1331,6 +1359,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		}
 		
 		break;
+		*/
 	}
 	
 	if ((nYinc = max (-lptw->ScrollPos.y,
@@ -1351,7 +1380,28 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     /* Gestion ScrollBar en deplacement et autres*/
       switch (LOWORD (wParam))
 	{
-		case SB_ENDSCROLL:
+		case SB_LINEUP:
+					nXinc = -lptw->CharSize.x;
+					break;
+				case SB_LINEDOWN:
+					nXinc = lptw->CharSize.x;
+					break;
+				case SB_PAGEUP:
+					nXinc = min(-1,-lptw->ClientSize.x);
+					break;
+				case SB_PAGEDOWN:
+					nXinc = max(1,lptw->ClientSize.x);
+					break;
+				case SB_THUMBPOSITION:
+					nXinc = LOWORD(lParam) - lptw->ScrollPos.x;
+					break;
+				case SB_THUMBTRACK:
+					nXinc = HIWORD (wParam) - lptw->ScrollPos.x;
+				break;
+				default:
+					nXinc = 0;
+				break;
+	/*	case SB_ENDSCROLL:
 		{
 			nXinc = 0;
 		}
@@ -1406,7 +1456,7 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 		break;
 		default:
 	  		nXinc = 0;
-	  	break;
+	  	break;*/
 	}
 		
 	if ((nXinc = max (-lptw->ScrollPos.x,

@@ -68,23 +68,6 @@ static char * rlgets (char *s, int n, char *prompt, int interrupt)
     free (line);
 
   line = readline_win (prompt,interrupt);
-  
-   /* Rappel Commande avec ! */
-   if (line[0]=='!')
-  	{
-	  struct hist *P=NULL;
-  		if (strlen(line)>1)
-  		{
-  			P=SearchBackwardInHistory(&line[1]);
-
-			if (P != NULL) 
-			{
-			  write_scilab_synchro(P->line);
-
-			}
-  		}
-  		return NULL;
-	} 
   NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
   if (line)
@@ -102,15 +85,14 @@ static char * rlgets (char *s, int n, char *prompt, int interrupt)
  * version with readline and no textwindow scilab -nw *
  **********************************************/
 
-static char *
-rlgets_nw (char *s, int n, char *prompt, int interrupt)
+static char * rlgets_nw (char *s, int n, char *prompt, int interrupt)
 {
   static char *line = (char *) NULL;
 
   /* If we already have a line, first free it */
-  if (line != (char *) NULL)
-    free (line);
+  if (line != (char *) NULL)   free (line);
   line = readline_nw (prompt, interrupt);
+  NewSearchInHistory=TRUE;	
   /* If it's not an EOF */
   if (line)
     {
