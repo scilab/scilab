@@ -26,3 +26,6 @@ WScilex.exe
 tk84.dll
 tcl84.lib
 tk84.lib
+libmat.dll
+libmex.dll
+libmx.dll
