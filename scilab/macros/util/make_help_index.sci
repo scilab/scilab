@@ -2,7 +2,7 @@ function path=make_help_index()
 //we create a new index file each time to take into account dynamically
 //loaded toolboxes
 // Copyright INRIA   
-  global LANGUAGE
+  global LANGUAGE %helps
   path=TMPDIR+"/index.htm";
   i_lines=["<html>";
 	 "<head>";

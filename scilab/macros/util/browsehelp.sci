@@ -1,6 +1,6 @@
 function browsehelp(path,key)
 // when %browsehelp is [] a  menu proposes to select a browser
-  global LANGUAGE INDEX
+  global LANGUAGE INDEX %helps
   global %browsehelp
   
   browsehelp_configure()
