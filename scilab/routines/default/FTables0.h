@@ -207,6 +207,26 @@ typedef void (*fsolvjf)(ARGS_fsolvj);
 typedef void (*fsolvjf)();
 #endif 
 
+/***********************************
+ * Search Table for lsqrsolve 
+ ***********************************/
+
+#if defined(__STDC__)
+#define ARGS_lsqrsolvf integer*,integer*,double *,double*,integer*
+typedef void (*lsqrsolvff)(ARGS_lsqrsolvf);
+#else
+#define ARGS_lsqrsolvf /**/
+typedef void (*lsqrsolvff)();
+#endif 
+
+#if defined(__STDC__)
+#define ARGS_lsqrsolvj integer*,integer*,double*,double*,integer*,integer*
+typedef void (*lsqrsolvjf)(ARGS_lsqrsolvj);
+#else
+#define ARGS_lsqrsolvj /**/
+typedef void (*lsqrsolvjf)();
+#endif 
+
 
 /***********************************
  * Search Table for foptim 

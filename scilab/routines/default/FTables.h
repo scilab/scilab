@@ -247,4 +247,16 @@ FTAB FTab_interf[] ={
 {"icse0", (voidf)  C2F(icse0)},
 {"loset", (voidf)  C2F(loset)},
 {(char *) 0, (voidf) 0}};
+/**************** lsqrsolvf ***************/
+extern void C2F(lsqrsol1)(ARGS_lsqrsolvf);
+ 
+FTAB FTab_lsqrsolvf[] ={
+{"lsqrsol1", (voidf)  C2F(lsqrsol1)},
+{(char *) 0, (voidf) 0}};
+/**************** lsqrsolvj ***************/
+extern void C2F(lsqrsolj1)(ARGS_lsqrsolvj);
+ 
+FTAB FTab_lsqrsolvj[] ={
+{"lsqrsolj1", (voidf)  C2F(lsqrsolj1)},
+{(char *) 0, (voidf) 0}};
 /***********************************/

@@ -47,6 +47,12 @@ fint3d_list=int3dex
 
 fsolvf_list= fsol1
 fsolvj_list= fsolj1
+# -------------------------------------------------
+# predefined function(s) for lsqrsolve 
+# --------------------------------------------------
+
+lsqrsolvf_list= lsqrsol1
+lsqrsolvj_list= lsqrsolj1
 
 # -------------------------------------------------
 # predefined function(s) for schur

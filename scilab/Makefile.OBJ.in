@@ -30,6 +30,7 @@ DEFAULTS = \
         $(SCIDIR)/routines/default/Ex-corr.o \
         $(SCIDIR)/routines/default/Ex-feval.o \
         $(SCIDIR)/routines/default/Ex-fsolve.o \
+        $(SCIDIR)/routines/default/Ex-lsqrsolve.o \
         $(SCIDIR)/routines/default/Ex-impl.o \
         $(SCIDIR)/routines/default/Ex-intg.o \
         $(SCIDIR)/routines/default/Ex-int2d.o \

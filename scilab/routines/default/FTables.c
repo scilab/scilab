@@ -394,6 +394,47 @@ void C2F(setfsolvj)(char *name, int *rep)
   fsolvjfonc = (fsolvjf) SetFunction(name,rep,FTab_fsolvj);
 }
 
+/***********************************
+ * Search Table for fsolve 
+ *    uses : lsqrsolvf and lsqrsolvj 
+ ***********************************/
+
+/** the current function fixed by setsolvf **/
+
+static lsqrsolvff lsqrsolvffonc ;
+
+/** function call : lsqrsolvf  **/
+
+void C2F(lsqrsolvf)(integer *m, integer *n, double *x, double *fvec, integer *iflag)
+{
+  (*lsqrsolvffonc)(m,n,x,fvec,iflag);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setlsqrsolvf)(char *name, int *rep)
+{
+  lsqrsolvffonc = (lsqrsolvff) SetFunction(name,rep,FTab_lsqrsolvf);
+}
+
+/** the current function fixed by setfsolvj **/
+
+static lsqrsolvjf lsqrsolvjfonc ;
+
+/** function call   **/
+
+void C2F(lsqrsolvj)(integer *m, integer *n, double *x, double *fjac, integer *ldfjac, integer *iflag)
+{
+  (*lsqrsolvjfonc)(m,n,x,fjac,ldfjac,iflag);
+}
+
+/** fixes the function associated to name **/
+
+void C2F(setlsqrsolvj)(char *name, int *rep)
+{
+  lsqrsolvjfonc = (lsqrsolvjf) SetFunction(name,rep,FTab_lsqrsolvj);
+}
+
 
 /***********************************
  * Search Table for optim 

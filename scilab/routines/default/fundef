@@ -177,7 +177,8 @@
 {"rtitr",		IN_matnew,	6,	2},	
 {"tr_zer",		IN_matnew,	3,	2},	
 #define  IN_matopt  11  
-{"fsolve",		IN_matopt,	4,	2},	
+{"fsolve",		IN_matopt,	4,	2},
+{"lsqrsolve",		IN_matopt,	5,	2},
 {"optim",		IN_matopt,	1,	2},	
 {"qpqpqp",		IN_matopt,	2,	2},	
 {"semidef",		IN_matopt,	3,	3},	
