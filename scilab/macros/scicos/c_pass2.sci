@@ -29,7 +29,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   show_trace=%f
   if show_trace then disp('c_pass1:'+string(timer())),end
 
-  //???
   global need_newblk
   need_newblk=%t
 
