@@ -17,7 +17,7 @@ function s_port_names(sbloc)
     if typeof(o)=='Block' then
       modelb=o.model;
       ident = o.graphics.id
-      if ident<>emptystr()&ident<>[] then
+      //if ident<>emptystr()&ident<>[] then
 	select o.gui
 	  case 'IN_f' then
 	  inp=[inp modelb.ipar];
@@ -38,7 +38,7 @@ function s_port_names(sbloc)
 	  coutp=[coutp modelb.ipar];
 	  etiquettes_clkout = [etiquettes_clkout; ident];
 	end
-      end
+      //end
     end
   end
   if inp<>[] then
