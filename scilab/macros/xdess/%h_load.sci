@@ -2,9 +2,12 @@ function h=%h_load(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
+  cur_draw_mode = f.immediate_drawing;
   h=load_graphichandle(fd)
-  f=gcf();f.visible='on'
-  draw(f)
+//  f=gcf();f.visible='on'
+//  draw(f)
+  f=gcf(); f.immediate_drawing = cur_draw_mode;
+
 endfunction
 
 function   h=load_graphichandle(fd)
@@ -167,13 +170,16 @@ function   h=load_graphichandle(fd)
     set(a,"auto_clear"           , toggle(mget(1,'c',fd)))
     set(a,"auto_scale"           , toggle(mget(1,'c',fd)))
     set(a,"hiddencolor"          , mget(1,'il',fd)),
+    set(a,"line_mode"            , toggle(mget(1,'c',fd))),
     set(a,"line_style"           , mget(1,'c',fd))
     set(a,"thickness"            , mget(1,'sl',fd)),
     set(a,"mark_mode"            , toggle(mget(1,'c',fd))),
     set(a,"mark_style"           , mget(1,'c',fd))
     set(a,"mark_size"            , mget(1,'c',fd))
-    set(a,"background"           , mget(1,'il',fd)),
+    set(a,"mark_foreground"      , mget(1,'il',fd)),
+    set(a,"mark_background"      , mget(1,'il',fd)),
     set(a,"foreground"           , mget(1,'il',fd)),
+    set(a,"background"           , mget(1,'il',fd)),
     clip_state                   = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then set(a,"clip_box",mget(4,'dl',fd)),end
     set(a,"clip_state"           ,clip_state);
@@ -190,6 +196,7 @@ function   h=load_graphichandle(fd)
   case 'Polyline'
     visible=toggle(mget(1,'c',fd))
     sz=mget(2,'il',fd); data=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    line_mode      = toggle(mget(1,'c',fd))
     line_style     = mget(1,'c',fd);
     thickness      = mget(1,'sl',fd);
     polyline_style = mget(1,'c',fd);
@@ -197,6 +204,8 @@ function   h=load_graphichandle(fd)
     mark_style     = mget(1,'c',fd);
     mark_size      = mget(1,'c',fd);
     foreground     = mget(1,'il',fd);
+    mark_foreground= mget(1,'il',fd);
+    mark_background= mget(1,'il',fd);
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd)
@@ -207,6 +216,7 @@ function   h=load_graphichandle(fd)
     h=get('hdl')
     set(h,"data",data)
     set(h,"visible",visible)
+    set(h,"line_mode",line_mode),
     set(h,"line_style",line_style)
     set(h,"thickness",thickness)
     set(h,"polyline_style",max(1,polyline_style)),
@@ -214,15 +224,24 @@ function   h=load_graphichandle(fd)
     set(h,"mark_size",mark_size),
     set(h,"mark_mode",mark_mode)
     set(h,"foreground",foreground),
+    set(h,"mark_foreground",mark_foreground),
+    set(h,"mark_background",mark_background)
     if clip_state =='' then clip_state='clipgrf',end
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
   case "Plot3d" then
     visible=toggle(mget(1,'c',fd))
+    surface_mode   = toggle(mget(1,'c',fd))
     foreground     = mget(1,'il',fd);
     thickness      = mget(1,'sl',fd);
+    mark_mode      = toggle(mget(1,'c',fd))
+    mark_style     = mget(1,'c',fd);
+    mark_size      = mget(1,'c',fd);
+    mark_foreground= mget(1,'il',fd);
+    mark_background= mget(1,'il',fd);
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
+
     sz=mget(2,'il',fd);x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd);y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd);z=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
@@ -237,18 +256,31 @@ function   h=load_graphichandle(fd)
     end
     h=gce();
     set(h,"visible",visible)
+    set(h,"surface_mode",surface_mode)
     set(h,"thickness",thickness)
     set(h,"foreground",foreground),
     set(h,"color_mode",color_mode),
-
+    set(h,"mark_style",mark_style),
+    set(h,"mark_size",mark_size),
+    set(h,"mark_mode",mark_mode)
+    set(h,"mark_foreground",mark_foreground),
+    set(h,"mark_background",mark_background)
+    
     set(h,"color_flag",color_flag),
     set(h,"hiddencolor",hiddencolor),
   case "Fac3d" then
     visible=toggle(mget(1,'c',fd))
+    surface_mode   = toggle(mget(1,'c',fd))
     foreground     = mget(1,'il',fd);
     thickness      = mget(1,'sl',fd);
+    mark_mode      = toggle(mget(1,'c',fd))
+    mark_style     = mget(1,'c',fd);
+    mark_size      = mget(1,'c',fd);
+    mark_foreground= mget(1,'il',fd);
+    mark_background= mget(1,'il',fd);
     color_mode     = mget(1,'c',fd);
     color_flag     = mget(1,'c',fd);
+ 
     sz=mget(2,'il',fd);x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd);y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd);z=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
@@ -263,12 +295,18 @@ function   h=load_graphichandle(fd)
     end
     h=gce();
     set(h,"visible",visible)
+    set(h,"surface_mode",surface_mode)
     set(h,"thickness",thickness)
     set(h,"foreground",foreground),
     set(h,"color_mode",color_mode),
-
     set(h,"color_flag",color_flag),
     set(h,"hiddencolor",hiddencolor),
+    set(h,"mark_style",mark_style),
+    set(h,"mark_size",mark_size),
+    set(h,"mark_mode",mark_mode)
+    set(h,"mark_foreground",mark_foreground),
+    set(h,"mark_background",mark_background)
+    
   case "Agregation"
     n=mget(1,'il',fd)
     H=[]
@@ -281,7 +319,10 @@ function   h=load_graphichandle(fd)
     thickness      = mget(1,'sl',fd);
     mark_mode      = toggle(mget(1,'c',fd))
     mark_style     = mget(1,'c',fd);
-    mark_size      = mget(1,'c',fd);      
+    mark_size      = mget(1,'c',fd);   
+    mark_foreground= mget(1,'il',fd);
+    mark_background= mget(1,'il',fd);
+    line_mode   = toggle(mget(1,'c',fd))
     line_style     = mget(1,'c',fd);      
     fill_mode      = toggle(mget(1,'c',fd))
     foreground     = mget(1,'il',fd);
@@ -302,6 +343,9 @@ function   h=load_graphichandle(fd)
     set(h,"line_style",line_style)
     set(h,"fill_mode",fill_mode)
     set(h,"foreground",foreground),
+    set(h,"mark_foreground",mark_foreground),
+    set(h,"mark_background",mark_background)
+    set(h,"line_mode",line_mode)
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
   case "Arc"
@@ -335,11 +379,19 @@ function   h=load_graphichandle(fd)
     if size(data,2)==3 then
       h.data=data
     end
+    set(h,"line_mode" ,toggle(mget(1,'c',fd)))
     set(h,"line_style",mget(1,'c',fd));
     set(h,"thickness",mget(1,'sl',fd))
     set(h,"arrow_size",mget(1,'dl',fd))
+    
     n=mget(1,'il',fd)
     set(h,"segs_color",mget(n,'il',fd))
+    set(h,"mark_mode" ,toggle(mget(1,'c',fd)))
+    set(h,"mark_style"           , mget(1,'c',fd))
+    set(h,"mark_size"            , mget(1,'c',fd))
+    set(h,"mark_foreground"      , mget(1,'il',fd)),
+    set(h,"mark_background"      , mget(1,'il',fd)),
+    
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd))
