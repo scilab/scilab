@@ -7215,8 +7215,8 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       /***/
       pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
       pSUBWIN_FEATURE (pobj)->theta  = 270.0;
-      pSUBWIN_FEATURE (pobj)->alpha_kp  = 35.0;
-      pSUBWIN_FEATURE (pobj)->theta_kp  = 225.0;
+      pSUBWIN_FEATURE (pobj)->alpha_kp  = 45.0;
+      pSUBWIN_FEATURE (pobj)->theta_kp  = 215.0;
       pSUBWIN_FEATURE (pobj)->is3d  = FALSE;
      
       dir= 'd'; pSUBWIN_FEATURE (pobj)->axes.xdir=dir;
@@ -13917,7 +13917,6 @@ void Obj_RedrawNewAngle(sciPointObj *psubwin,double theta,double alpha)
 /*2004*/
 BOOL Check3DObjs(sciPointObj *pobj)
 {  
-  sciPointObj *pobj;
   sciSons *psonstmp;
 
   psonstmp = sciGetSons (pobj); 
@@ -14773,7 +14772,6 @@ void trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x, doub
 	   {
 	     tmpx=(x[i]-pSUBWIN_FEATURE (pobj)->FRect[0])/(pSUBWIN_FEATURE (pobj)->FRect[2]-pSUBWIN_FEATURE (pobj)->FRect[0]);
 	     tmpy= (y[i]-pSUBWIN_FEATURE (pobj)->FRect[1])/(pSUBWIN_FEATURE (pobj)->FRect[3]-pSUBWIN_FEATURE (pobj)->FRect[1]);
-	     tmpz= (z[i]-pSUBWIN_FEATURE (pobj)->FRect[5])/(pSUBWIN_FEATURE (pobj)->FRect[5]-pSUBWIN_FEATURE (pobj)->FRect[4]);/*2004*/
 	     xm[i]= TX3D(tmpx,tmpy,z[i]);
 	     ym[i]= TY3D(tmpx,tmpy,z[i]);
 	     }
@@ -14914,7 +14912,7 @@ integer i,j;
  * Should be in Plo2dEch.c file
  */
    
-void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer n1, integer n2,double alpha,double theta)
+void update_3dbounds(sciPointObj *pobj,integer *flag, double *x,double *y,double *z,integer n1, integer n2,double theta,double alpha)
 {
   double xmin,xmax,ymin,ymax,zmin,zmax; 
   double lmin,lmax;
