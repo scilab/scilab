@@ -666,7 +666,6 @@ typedef struct
   /* I think I have to add the field : F.Leray 02.04.04 previous thinking...*/
   double value_min[3]; /* Contain the x,y and z min data */
   double value_max[3]; /* Contain the x,y and z max data */
-  int flag_min_max;
 
   double brect[6];
 
