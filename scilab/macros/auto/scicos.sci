@@ -232,6 +232,11 @@ if pixmap then xset('wshow'),end
 Cmenu='Open/Set'
 while %t
   while %t do
+    [%stack]=stacksize()
+    if %stack(2)/%stack(1)>.3 then
+      stacksize(2*%stack(1))
+      disp('stacksize increased to '+string(2*%stack(1)))
+    end
     if Cmenu==[]&%pt==[] then
       [btn,%xc,%yc,%win_1,Cmenu]=cosclick()
       if Cmenu<> [] then 
