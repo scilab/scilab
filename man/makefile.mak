@@ -6,7 +6,7 @@ check:
 fr	:
 	@cd fr
 	@echo Creation de l'aide (Francais)
-	@..\..\bin\scilex -nb -nwni -l fr -e xmltohtml([],[],'html-jpc-rev.xsl');exit;
+	@..\..\bin\scilex -nb -nwni -l fr -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
 
 eng	:	
