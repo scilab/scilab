@@ -4,19 +4,37 @@
 // With a Mesh of amdba type 
 // Copyright INRIA
 
+
+
 path=get_absolute_file_path('fec.ex2');
 getf(path+'macros.sci')
+xbasc()
+xselect()
+new_style = get("figure_style")=="new";
 
+xset("colormap",jetcolormap(128))
+if new_style then, drawlater(), end
 amdbaR(path+'MESH')
 meshvisu()
-halt()
+xtitle("a mesh (click to continue)")
+if new_style then, drawnow("all"), end
+xclick()
+
 xbasc()
 xset("use color",1)
+if new_style then, drawlater(), end
 emc2C(1,6,path+'MESH.VAL')
-halt()
+xtitle("display a fem solution (click to continue)")
+if new_style then, drawnow("all"), end
+xclick()
+
 xbasc()
 xset("use color",1)
+if new_style then, drawlater(), end
 emc2C(1,6,path+'MESH.VAL',[-2,-2,2,2])
-//emc2V(2,3,6,20,path+'MESH.VAL',[-0.5,-0.5,2,0.5])
-//halt()
-//xbasc()
+emc2V(2,3,6,20,path+'MESH.VAL',[-2,-2,2,2])
+xtitle("display a zoom of the solution together with the velocity field")
+if new_style then, drawnow("all"), end
+
+
+
