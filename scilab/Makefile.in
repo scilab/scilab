@@ -19,7 +19,7 @@ include Makefile.incl
 
 all:: bin/scilex  
 
-# Add the object files that are used to compile Scilex
+# Add the object files that are used to compile Scilex @JAVAC_PATH@ @JAVA_INCL@
 include Makefile.OBJ
 
 include config/@MAKEFILE_TARGET@
