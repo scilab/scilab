@@ -80,14 +80,15 @@ c     .     Initialize tvec
             if(funtyp(kfun).eq.-1) then
 c     
                if (ntvec.eq.2) then
-                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                  if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
                else
-                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
-     $                 nclk),1)
+                  ntvec=max(min(int(outtb(
+     $                 lnkptr(inplnk(inpptr(kfun))))),
+     $                 ntvec),1)
                endif
                urg=urg+1
                call putevs(tevts,evtspt,nevts,pointi,
@@ -175,14 +176,15 @@ c
             if(funtyp(kfun).eq.-1) then
 c     
                if (ntvec.eq.2) then
-                  if (outtb(inplnk(inpptr(kfun))).le.0) then
+                  if (outtb(lnkptr(inplnk(inpptr(kfun)))).le.0) then
                      ntvec=2
                   else
                      ntvec=1
                   endif
                else
-                  ntvec=max(min(int(outtb(inplnk(inpptr(kfun)))),
-     $                 nclk),1)
+                  ntvec=max(min(int(outtb(
+     $                 lnkptr(inplnk(inpptr(kfun))))),
+     $                 ntvec),1)
                endif
                urg=urg+1
                call putevs(tevts,evtspt,nevts,pointi,
