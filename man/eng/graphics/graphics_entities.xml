@@ -97,12 +97,22 @@
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Fec'>
+  The Fec entity is a leaf of the graphics entities hierarchy. It
+  represents 2D finite elements plots . See <LINK>fec_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Grayplot'>
+  The Grayplot entity is a leaf of the graphics entities hierarchy. It
+  represents 2D plots of surface using colors and images. See
+  <LINK>grayplot_properties</LINK> for details.
   </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Legend'>
+  The Legend entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for legends drawn
+  below <VERB>plot2dx</VERB> graphs. This entity requires further
+  developments. See <LINK>legend_properties</LINK> for details.
+
  </DESCRIPTION_ITEM>
 
   <DESCRIPTION_ITEM label='Segs'>
