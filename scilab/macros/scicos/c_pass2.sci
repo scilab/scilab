@@ -1412,8 +1412,9 @@ function [critev]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 
   critev=zeros(clkptr($)-1,1);
   for bb=1:size(clkptr,1)-1
-    for i=[clkptr(bb):clkptr(bb+1)-1]
-      if or(typ_zx(clkconnect(find(clkconnect(:,1)==bb),3))) then
+    for i=clkptr(bb):clkptr(bb+1)-1
+     if or(typ_zx(clkconnect(find((clkconnect(:,1)==bb)&..
+	  (clkconnect(:,2)==i-clkptr(bb)+1)),3))) then
 	critev(i)=1
       end
     end
