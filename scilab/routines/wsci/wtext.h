@@ -222,6 +222,19 @@ EXPORT void WINAPI TextDeleteLine (LPTW lptw);
 EXPORT void WINAPI TextScrollReverse (LPTW lptw);
 
 
+extern void CreateThreadPaste(char *Text);
+extern BOOL IsReadyForAnewLign(void);
+extern void SetReadyOrNotForAnewLign(BOOL Ready);
+extern void PasteFunction(LPTW lptw,BOOL special);
+extern BOOL IsEmptyClipboard(LPTW lptw);
+extern void TextCopyClip(LPTW lptw);
+extern void CleanClipboard(LPTW lptw);
+extern HANDLE GetHandleThreadPaste(void);
+extern BOOL GetThreadPasteRunning(void);
+extern void SetThreadPasteRunning(BOOL Running);
+
+
+
 /*--------------------------*/
 /* voir fichier winmain.c*/
 extern char ScilexConsoleName[MAX_PATH];
@@ -249,8 +262,6 @@ void HideScilex(void);
 void ShowScilex(void);
 /*--------------------------*/
 void SwitchConsole(void);
-void PasteFunction(LPTW lptw,BOOL special);
-BOOL IsEmptyClipboard(LPTW lptw);
 /*--------------------------*/
 void CleanClipboard(LPTW lptw);
 void SelectAll(LPTW lptw,BOOL DoAMark);
@@ -270,12 +281,6 @@ void CleanPromptFromText(char *Text);
 /*--------------------------*/
 int ReplacePrompt(char *Text,char *prompt);
 /* retourne TRUE si Text a été modifié */
-/*--------------------------*/
-void CreateThreadPaste(char *Text);
-/*--------------------------*/
-BOOL IsReadyForAnewLign();
-/*--------------------------*/
-void SetReadyOrNotForAnewLign(BOOL Ready);
 /*--------------------------*/
 void ForceToActiveWindowParent(void);
 /*--------------------------*/

@@ -483,6 +483,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
 	ForceToActiveWindowParent();
+	HideScilex(); /* Cache la fenetre Console */
 
 	sci_windows_main (nowin, &startupf, path,pathtype, &lpath,memory);
 
