@@ -37,7 +37,7 @@
       <DESCRIPTION_ITEM label="number=xget(&quot;alufunction&quot;)">
         <SP>: Get the logical function number used for drawing. See <VERB>xset</VERB>.</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="str=xset(&quot;auto clear&quot;)">
+      <DESCRIPTION_ITEM label="str=xget(&quot;auto clear&quot;)">
         <SP>: Get the auto clear status (<VERB>&quot;on&quot;</VERB> or <VERB>&quot;off&quot;</VERB>).</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="color=xget(&quot;background&quot;)">

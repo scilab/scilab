@@ -37,7 +37,7 @@
     : Opérateur logique utilisé pour les dessins Voir <VERB>xset</VERB>.
   </DESCRIPTION_ITEM>
 
-  <DESCRIPTION_ITEM  label='str=xset(&quot;auto clear&quot;)'> 
+  <DESCRIPTION_ITEM  label='str=xget(&quot;auto clear&quot;)'> 
     : donne le mode d&apos;effacement automatique (<VERB>&quot;on&quot;</VERB> ou <VERB>&quot;off&quot;</VERB>).
   </DESCRIPTION_ITEM>
 
