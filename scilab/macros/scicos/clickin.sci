@@ -10,20 +10,31 @@ function [o,modified,newparameters,needcompile,edited]=clickin(o)
 
 modified=%f;newparameters=list();needcompile=0;
 if typeof(o)=='Block' then
-  //find output port location projected on the block
-  [%xout,%yout,typout]=getoutputports(o)
-  if %xout<>[] then
-    %xxyymax=o.graphics.orig(:)+o.graphics.sz(:)
-     %xout=max(min(%xout,%xxyymax(1)),o.graphics.orig(1))
-    %yout=max(min(%yout,%xxyymax(2)),o.graphics.orig(2))
-    // how close to the port is considered a link (/5)
-    if or(abs(%xc-%xout)<o.graphics.sz(1)/5&abs(%yc-%yout)<o.graphics.sz(2)/5) then
-      //we have clicked near a port
-      [Cmenu]=resume('Link')
+  orig=o.graphics.orig;sz=o.graphics.sz;
+  orig=orig(:);sz=sz(:);
+  eps=sz/5
+  orig=orig+eps;sz=sz-2*eps;
+  data=[(orig(1)-%xc)*(orig(1)+sz(1)-%xc),..
+	(orig(2)-%yc)*(orig(2)+sz(2)-%yc)]
+  if data(1)<0&data(2)<0 then
+    // we have cliked inside the block so it is probably not a link
+  else
+    //find output port location projected on the block
+    [%xout,%yout,typout]=getoutputports(o)
+    if %xout<>[] then
+      %xxyymax=o.graphics.orig(:)+o.graphics.sz(:)
+      %xout=max(min(%xout,%xxyymax(1)),o.graphics.orig(1))
+      %yout=max(min(%yout,%xxyymax(2)),o.graphics.orig(2))
+      // how close to the port is considered a link (/5)
+      %center=orig+sz/2;
+      if or((%xc-%xout).^2+(%yc-%yout).^2 <(%xc-%center(1)).^2+...
+	    (%yc-%center(2)).^2) then
+	//we have clicked near a port
+	[Cmenu]=resume('Link')
+      end
     end
   end
-      
-
+  
   if o.model.sim=='super' then
     lastwin=curwin
     curwin=get_new_window(windows)
