@@ -14,11 +14,7 @@ isold=get('figure_style')=='old'
 
 if isold
   T = varargin
-  data = [];
-  for i=1:size(varargin)
-    data = [data T(i)];
-  end
-  oldplot(data);
+  oldplot(T(:));
   return;
 end
 
