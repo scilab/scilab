@@ -4,9 +4,10 @@ function who_user()
 p=predef(); //number of system variable
 st=stacksize()
 nams=nams(1:$-p+1);mem=mem(1:$-p+1);
-modifiable system variables
+//modifiable system variables
 excluded=['demolist','scicos_pal','%scicos_menu',..
-	'%scicos_short','%helps','MSDOS','who_user'];
+	'%scicos_short','%helps','MSDOS','who_user','%scicos_display_mode', ...
+	  '%scicos_help','%xpager','%pager'];
 ke=grep(nams,excluded)
 nams(ke)=[];mem(ke)=[];
 
