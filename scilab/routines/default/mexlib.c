@@ -156,7 +156,7 @@ int theMLIST(int *header)
  *    
  *-----------------------------------------------------------------
  *                       INTMATRIX                               
- *   header[0]= INTMATRIX =8                                       
+ *   header[0] = INTMATRIX =8                                       
  *   header[1]= M (number of rows)                                 
  *   header[2]= N (number of cols)                                 
  *   header[3]= TYPE                                               
@@ -165,16 +165,21 @@ int theMLIST(int *header)
  *   value[2] = real part                                               
  *
  *------------------------------------------------------------------
- *                    SPARSEMATRIX                                    
+ *                    SPARSEMATRIX     
+ *   int *header = Header(ptr);
+ *   value = (double *) header;
  *   header[0]= SPARSEMATRIX  =7 (converted from 8)                     
  *   header[1]= M (number of rows)                                      
  *   header[2]= N (number of cols)                                      
  *   header[3]= mxComplexity  (0 real, 1 complex)                       
  *   header[4]=nzmax                                                    
- *   header[5]=Jc[0]                                                    
- *   header[5+header[2]+1]=Ir[0]                                         
- *   value[(5+header[2]+header[4])/2 + 1] = real part                       
- *   value[(5+header[2]+header[4])/2 + 1 + M*N] = imag part                 
+ *   header[5]=Jc[0]  ... header[5+N]=Jc[N]
+ *   header[5+N+1]=Ir[0]  ... header[5+N+nzmax]=Ir[nzmax];
+ *   value[(5+N+nzmax)/2 + 1] = Pr[0]  ... 
+ *   value[(5+N+nzmax)/2 + nzmax] = Pr[nzmax]
+ *   value[(5+N+nzmax)/2 + 1 + nzmax+1] = Pi[0]
+ *   value[(5+N+nzmax)/2 + 1 + nzmax+nzmax] = Pi[nzmax]
+ *   (5 + (N+1) + nzmax)*sizeof(int) + nzmax*sizeof(double) * (1+mxComplx)
  *
  *-------------------------------------------------------------------
  *                    STRINGMATRIX                                        
