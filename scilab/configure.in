@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.31 $)dnl
+AC_REVISION($Revision: 1.32 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1280,7 +1280,8 @@ PVMSCIDIR=
 PVMSCILIB=
 PVMTARGET=pvm-bidon
 PVMROOT=
-PVMROOTR=
+# need an non empty default value for scilab script 
+PVMROOTR='$SCI/pvm3'
 PVMINST=
 
 if test "$with_pvm" != no; then
@@ -1295,12 +1296,12 @@ else
   PVMTARGET=scilex-lib
   PVMINST='$(PVMBINDISTFILES)'
 fi
+
 PVMINCLUDE=$PVMROOT/include
 AC_ARG_WITH(pvm-include,
     [  --with-pvm-include=DIR  PVM include files are in DIR ],
     [  PVMINCLUDE=$withval
     ])
-
 
 AC_CACHE_CHECK([for PVM architecture],ac_cv_PVM_arch,
 [
