@@ -1177,7 +1177,8 @@ int sciplot2d(fname, fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  static char str[]="x=0:0.1:2*%pi,plot2d([x;x;x]',[sin(x);sin(2*x);sin(3*x)]',[-1,-2,3],'151','L1@L2@L3',[0,-2,2*%pi,2]);";
+  static char str[]="x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],frameflag=5,rect=[0,-2,2*%pi,2]);";
+
   integer m1, n1, l1, m2, n2, l2, lt;
   int test,i,j,iskip;
   int frame_def=8;
@@ -1345,6 +1346,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
   int *axes=&axes_def;
   integer iskip,test;
   integer m1,n1,l1, m2, n2, l2, lt, i, j ;
+  static char str[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],frameflag=5,rect=[0,-2,2*%pi,2]);";
 
   static rhs_opts opts[]= { {-1,"axesflag","?",0,0,0},
                             {-1,"frameflag","?",0,0,0},
@@ -1357,8 +1359,7 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
                             {-1,NULL,NULL,0,0}};
 
   if (Rhs <= 0) {
-    sprintf(C2F(cha1).buf,"x=0:0.1:2*%%pi;%s('gnn',[x;x;x]',[sin(x);sin(2*x);sin(3*x)]',[-1,-2,3],'151','L1@L2@L3',[0,-2,2*%%pi,2]);",fname);
-    sci_demo(fname,C2F(cha1).buf,&one);
+    sci_demo(fname,str,&one);
     return 0;
   }
   CheckRhs(2,9);
