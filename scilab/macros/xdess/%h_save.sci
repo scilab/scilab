@@ -218,7 +218,7 @@ function save_graphichandle(h,fd)
     mput(size(h.data),'il',fd);mput(h.data,'dl',fd)
     mput(h.line_style,'c',fd)
     mput(h.thickness,'sl',fd)
-    mput(h.arrow_size,'sl',fd)
+    mput(h.arrow_size,'dl',fd)
     mput(size(h.segs_color,'*'),'il',fd);mput(h.segs_color,'il',fd)
     mput(length(h.clip_state),'c',fd);mput(ascii(h.clip_state),'c',fd);
     if h.clip_state=='on' then

@@ -307,7 +307,7 @@ function   h=load_graphichandle(fd)
     else
       clip_box=[]
     end
-    xarcs(data');
+    xarc(data(1),data(2),data(3),data(4),data(5),data(6));
     h=get('hdl')
     set(h,"visible",visible)
     set(h,"thickness",thickness)
@@ -327,7 +327,7 @@ function   h=load_graphichandle(fd)
     end
     set(h,"line_style",mget(1,'c',fd));
     set(h,"thickness",mget(1,'sl',fd))
-    set(h,"arrow_size",mget(1,'sl',fd))
+    set(h,"arrow_size",mget(1,'dl',fd))
     n=mget(1,'il',fd)
     set(h,"segs_color",mget(n,'il',fd))
     clip_state     = ascii(mget(mget(1,'c',fd),'c',fd))
