@@ -36,7 +36,6 @@ function [k]=dist2polylines(xp,yp,pt)
     d_x=( dy.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dx.*(dx*pt(1)+dy*pt(2)))./d_d;
     d_y=(-dx.*(-x(:,2).*y(:,1)+x(:,1).*y(:,2))+dy.*(dx*pt(1)+dy*pt(2)))./d_d;
     [d,k]=min((d_x-pt(1)).^2+(d_y-pt(2)).^2) //distance with all points
-    disp(d)
     if d<2 then
       k=floor((ki(k)-1)/size(xp,1))+1
     else
