@@ -1108,7 +1108,7 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 	      	
 			}
 		}
-
+	return 0;
     case WM_CHAR:
       check_pointer_win(&x,&y,&iwin);
       PushClickQueue (ScilabGC->CurWindow, x,y,wParam,0,0);
