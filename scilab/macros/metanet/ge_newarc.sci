@@ -40,6 +40,9 @@ function GraphList=ge_newarc(GraphList,xc1,yc1)
     kto=ge_getnode(GraphList,rep(1:2))
     if kto<>[] then // a destination node selected
       break
+    else
+      xpoly([xl;xe],[yl;ye],'lines')
+      if xget('pixmap') then xset('wshow'),end
     end
   end
 
