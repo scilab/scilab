@@ -15,7 +15,8 @@ MACROS= BOUNCE.sci        DIFF_f.sci      SPLIT_f.sci     m_sin.sci\
 	CLKSPLIT_f.sci    IMPSPLIT_f.sci  TEXT_f.sci     RELATIONALOP.sci\
 	CONSTRAINT_f.sci  MEMORY_f.sci    func_block.sci \
 	LOGICAL_OP.sci    CBLOCK.sci      HYSTHERESIS.sci RATELIMITER.sci\
-	BACKLASH.sci      DEADBAND.sci    EXPRESSION.sci  DEBUG_SCICOS.sci
+	BACKLASH.sci      DEADBAND.sci    EXPRESSION.sci  DEBUG_SCICOS.sci \
+	EDGETRIGGER.sci   EDGE_TRIGGER.sci Extract_Activation.sci
 
 
 include ../../Make.lib
