@@ -1145,7 +1145,7 @@ BOOL ConvertPathWindowsToUnixFormat(char *pathwindows,char *pathunix)
 	if ( (pathunix) && (pathwindows) )
 	{
 		int i=0;
-		wsprintf(pathunix,"%s",pathwindows);
+		strcpy(pathunix,pathwindows);
 		for (i=0;i<(int)strlen(pathunix);i++)
 		{
 			if (pathunix[i]=='\\') pathunix[i]='/';
@@ -1163,7 +1163,7 @@ BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows)
 	if ( (pathunix) && (pathwindows) )
 	{
 		int i=0;
-		wsprintf(pathwindows,"%s",pathunix);
+		strcpy(pathwindows,pathunix);
 		for (i=0;i<(int)strlen(pathwindows);i++)
 		{
 			if (pathwindows[i]=='/') pathwindows[i]='\\';
@@ -1187,7 +1187,7 @@ void set_sci_env(char *p, char *wsci)
 
 	if (p)
 	{
-		ptemp=(char*)malloc(sizeof(char)*strlen(p));
+		ptemp=(char*)malloc(sizeof(char)*(strlen(p)+1));
 	}
 	/* to be sure that it's unix format */
 	ConvertPathWindowsToUnixFormat(p,ptemp);
@@ -1198,7 +1198,7 @@ void set_sci_env(char *p, char *wsci)
 		if ( GetVersion() < 0x80000000 )
 		{
 			/* Windows NT */
-			char ShortPath[MAX_PATH];
+			char ShortPath[MAX_PATH+1];
 			GetShortPathName(ptemp ,ShortPath,MAX_PATH);
 			sprintf (env, "SCI=%s",ShortPath);
 		}
@@ -1216,27 +1216,23 @@ void set_sci_env(char *p, char *wsci)
 	{
 		if ( wsci != NULL)
 		{
-			char *wscitmp=NULL;
-			wscitmp=(char*)malloc(sizeof(char)*strlen(wsci));
+			char wscitmp[MAX_PATH+1];
 
 			/* to be sure that it's windows format */
 			ConvertPathUnixToWindowsFormat(wsci,wscitmp);
 
 			sprintf (env, "WSCI=%s", wscitmp);
-			free(wscitmp);
-			wscitmp=NULL;
+			
 		}
 		else
 		{
-			char *wscitmp=NULL;
-			wscitmp=(char*)malloc(sizeof(char)*strlen(p));
+			char wscitmp[MAX_PATH+1];
 
 			/* to be sure that it's windows format */
 			ConvertPathUnixToWindowsFormat(p,wscitmp);
 
 			sprintf (env, "WSCI=%s", wscitmp);
-            free(wscitmp);
-			wscitmp=NULL;
+			
 		}
 
 		putenv (env);
@@ -1259,16 +1255,13 @@ void set_sci_env(char *p, char *wsci)
 	/* PVM_ROOT variable Environment */
 	if ((p1 = getenv ("PVM_ROOT")) == (char *) 0)
 	{
-		char *wscitmp=NULL;
-		wscitmp=(char*)malloc(sizeof(char)*strlen(p));
+		char wscitmp[MAX_PATH+1];
 
 		/* to be sure that it's windows format */
 		ConvertPathUnixToWindowsFormat(p,wscitmp);
 
 		sprintf (env, "PVM_ROOT=%s\\pvm3", wscitmp);
-        free(wscitmp);
-		wscitmp=NULL;
-		
+        
 		putenv (env);
 	}
 
@@ -1284,15 +1277,14 @@ void set_sci_env(char *p, char *wsci)
 	{
 		if ((p1 = getenv ("TEMP")) == (char *) 0)
 		{
-			char PathTmp[MAX_PATH];
+			char PathTmp[MAX_PATH+1];
 			GetTempPath(MAX_PATH,PathTmp);
 			sprintf (env, "PVM_TMP=%s",PathTmp);
 			putenv (env);
 		}
 		else
 		{
-			char *p1tmp=NULL;
-			p1tmp=(char*)malloc(sizeof(char)*strlen(p1));
+			char p1tmp[MAX_PATH+1];
 			
 			/* to be sure that it's windows format */
 			ConvertPathUnixToWindowsFormat(p1,p1tmp);
@@ -1306,8 +1298,7 @@ void set_sci_env(char *p, char *wsci)
 	// Bug 763 Pour le moment, on force a utiliser la librairie TCL/TK que l'on embarque
 	if (wsci == NULL)
 	{
-		char *wscitmp=NULL;
-		wscitmp=(char*)malloc(sizeof(char)*strlen(p));
+		char wscitmp[MAX_PATH+1];
 
 		/* to be sure that it's windows format */
 		ConvertPathUnixToWindowsFormat(p,wscitmp);
@@ -1317,14 +1308,10 @@ void set_sci_env(char *p, char *wsci)
 
 		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", wscitmp);
 		putenv (env);
-
-		free(wscitmp);
-		wscitmp=NULL;
 	}
 	else
 	{
-		char *wscitmp=NULL;
-		wscitmp=(char*)malloc(sizeof(char)*strlen(wsci));
+		char wscitmp[MAX_PATH+1];
 
 		/* to be sure that it's windows format */
 		ConvertPathUnixToWindowsFormat(wsci,wscitmp);
@@ -1335,8 +1322,6 @@ void set_sci_env(char *p, char *wsci)
 		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", wscitmp);
 		putenv (env);
 
-		free(wscitmp);
-		wscitmp=NULL;
 	}
 	
 	/* COMPILER variable Environment */
