@@ -14,12 +14,6 @@ if size(scs_m(1)(3),'*')<6 then solver =0,else solver=scs_m(1)(3)(6),end
 wpar=scs_m(1);tolerances=wpar(3)
 if size(tolerances,'*')<6 then tolerances(6) =0,end
 solver=tolerances(6)
-if %cpr(2).xptr($)-1<size(%cpr(1).x,'*') & solver<100 then
-  message(['Diagram has been compiled for implicit solver'
-	   'switching to implicit Solver'])
-  solver=100
-  tolerances(6)=solver
-end
 
 
 if needcompile==4 then 
@@ -43,6 +37,15 @@ if or(%state0_n<>%state0) then //initial state has been changed
 //  %cpr(1)=%state0
   if choix(1)=='Continue' then choix(1)=[],end
 end
+
+if %cpr(2).xptr($)-1<size(%cpr(1).x,'*') & solver<100 then
+  message(['Diagram has been compiled for implicit solver'
+	   'switching to implicit Solver'])
+  solver=100
+  tolerances(6)=solver
+end
+
+
   
 // ask user what to do
 if choix<>[] then
