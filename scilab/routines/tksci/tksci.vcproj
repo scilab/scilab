@@ -1801,6 +1801,9 @@ cd .. &gt;nul
 				RelativePath="tksci.h">
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\fundef.tksci">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
