@@ -118,13 +118,13 @@ int RandI( char* fname)
   CheckLhs(minlhs,maxlhs);
   if ( GetType(1) != 1) 
     {
-     int un=1,deux=2, dim_state_mt=625, dim_state_4=4;
+     int un=1,deux=2, dim_state_mt=625, dim_state_fsultra = 40, dim_state_4=4;
       GetRhsVar(1,"c",&ms,&ns,&ls);
       if ( strcmp(cstk(ls),"getsd")==0) 
 	{
-	  if ( Rhs != 1) 
+	  if ( Rhs != 1  ||  Lhs != 1) 
 	    {
-	      Scierror(999,"Rhs should be 1 for 'getsd' option\n\r");
+	      Scierror(999,"Lhs and Rhs should be 1 for 'getsd' option\n\r");
 	      return 0;
 	    }
 	      switch(current_gen)
@@ -148,10 +148,9 @@ int RandI( char* fname)
 		case(URAND) : 
 		  CreateVar(2,"d",&un,&un,&lr);
 		  get_state_urand(stk(lr));
-		  /* *stk(lr) = C2F(com).ran[0]; */ 
 		  break;
 		case(FSULTRA) : 
-		  CreateVar(2,"d",&deux,&un,&lr);
+		  CreateVar(2,"d",&dim_state_fsultra,&un,&lr);
 		  get_state_fsultra(stk(lr));
 		  break;
 		};
@@ -210,6 +209,35 @@ int RandI( char* fname)
 		  return 0;
 		};
 	      break;
+
+	    case(FSULTRA) :  
+	      if ( Rhs == 2 ) /* init via a "complete" state */ 
+		{
+		  GetRhsVar(2,"d",&m1,&n1,&l1);
+		  if ( m1 != 40  ||  n1 != 1)
+		    {
+		      Scierror(999,"the state for fsultra must be a 40x1 vector !\n\r");
+		      return 0;
+		    };
+		  if (! set_state_fsultra(stk(l1)) ) {Error(999); return(0);}; 
+		}
+	      else if ( Rhs == 3 ) /* init with 2 integers (like before) */
+		{
+		  GetRhsVar(2,"d",&m1,&n1,&l1);
+		  if ( m1*n1 != 1) 
+		    { Scierror(999,"second argument must be scalar\r\n"); return 0;};
+		  GetRhsVar(3,"d",&m1,&n1,&l2);
+		  if ( m1*n1 != 1) 
+		    { Scierror(999,"third argument must be scalar\r\n"); return 0;};
+		  if (! set_state_fsultra_simple(*stk(l1),*stk(l2)) ) {Error(999); return(0);}; 
+		}
+	      else
+		{
+		  Scierror(999,"Rhs should be 2 or 3 for 'setsd' option with the fsultra generator\n\r");
+		  return 0;
+		}
+	      break;
+
 	    case(KISS) :
 	    case(CLCG4) :
 	      if ( Rhs != 5 ) 
@@ -235,11 +263,11 @@ int RandI( char* fname)
 		{if (! set_seed_clcg4(current_clcg4,*stk(l1),*stk(l2),*stk(l3),*stk(l4)))
 		  {Error(999); return 0;};}
 	      break;
+
 	    case(CLCG2) :
-	    case(FSULTRA) :
 	      if ( Rhs != 3 ) 
 		{
-		  Scierror(999,"Rhs should be 3 for 'setsd'  option with the clcg2 or fsultra generator\n\r");
+		  Scierror(999,"Rhs should be 3 for 'setsd' option with the clcg2 generator\n\r");
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
@@ -248,17 +276,10 @@ int RandI( char* fname)
 	      GetRhsVar(3,"d",&m1,&n1,&l2);
 	      if ( m1*n1 != 1) 
 		{ Scierror(999,"third argument must be scalar\r\n"); return 0;};
-	      if (current_gen == CLCG2) 
-		{
-		  if (! set_state_clcg2(*stk(l1),*stk(l2))) 
-		    { Error(999); return 0;};
-		}
-	      else 
-		{
-		  if (! set_state_fsultra(*stk(l1),*stk(l2))) 
-		    { Error(999); return 0;};
-		}
+	      if (! set_state_clcg2(*stk(l1),*stk(l2))) 
+		{ Error(999); return 0;};
 	      break;
+
 	    case(URAND) :
 	      if ( Rhs != 2 ) 
 		{
@@ -266,21 +287,21 @@ int RandI( char* fname)
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
-	      /* CheckScalar(2,m1,n1);  */ 
-	      /* C2F(com).ran[0]= (int) *stk(l1); */
+	      if ( m1*n1 != 1) 
+		{ Scierror(999,"second argument must be scalar\r\n"); return 0;};
 	      if (! set_state_urand(*stk(l1))) 
 		{Error(999); return 0;};
 	      break;
 	    };
 	  LhsVar(1) = 0;
 	  PutLhsVar();
-	  return(0);
+	  return 0;
 	}
       else if (strcmp("phr2sd",cstk(ls)) == 0) 
 	{
-	  if ( Rhs != 2) 
+	  if ( Rhs != 2  ||  Lhs > 1 ) 
 	    {
-	      Scierror(999,"Rhs should be 2 for 'phr2sd' option\n\r");
+	      Scierror(999,"Rhs should be 2 for 'phr2sd' option and Lhs should be 1\n\r");
 	      return 0;
 	    }
 	  GetRhsVar(2,"c",&m1,&n1,&l1);
