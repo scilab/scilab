@@ -596,7 +596,8 @@ proc openoninit {textarea thefile} {
 }
 	    
 #added by Matthieu PHILIPPE 21/11/2001 from linenum.pth
-tkTextSetCursor $textareacur "1.0"
+$textareacur mark set insert "1.0"
+#tkTextSetCursor $textareacur "1.0"
 keyposn $textareacur
 ##geometry in what units? The width is more than 65 columns, though it's resized proportionally
 #wm geometry $pad 65x24 
@@ -1193,7 +1194,8 @@ proc FindIt {w} {
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
-	    tkTextSetCursor [gettextareacur] $SearchPos
+	    [gettextareacur] mark set insert $SearchPos
+#	    tkTextSetCursor [gettextareacur] $SearchPos
 	    [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
 	    
 	    if {$SearchDir == "forwards"} {
@@ -1416,7 +1418,8 @@ proc gotoline {} {
 	global textareacur
 	global gotlnCommand
 	set gotlnCommand [$prnt.top.gotln get]
-	tkTextSetCursor [gettextareacur] "$gotlnCommand.0"
+	[gettextareacur] mark set insert "$gotlnCommand.0"
+#	tkTextSetCursor [gettextareacur] "$gotlnCommand.0"
 	catch {keyposn [gettextareacur]}
 	destroy $prnt
     }
