@@ -40,6 +40,19 @@ exec `which wish` "$0" "$@"
 # cursor is red
 # cursor is positioned at 1.1 when opening an existing file 
 
+#ES 18/9/2003
+# *changed $Size to Size in the option menu entries - the correct radiobutton is tagged at startup
+# *commented #destroy $textarea in proc closefile - seems to solve the shrink bug (if the initial
+#   Untitled.sce is closed, then the next setfontscipadN, openfile, newfile command causes the window
+#   to shrink to its minimal size). Not sure it is the right thing to do. The bug is cured and the
+#   only apparent side effect is that thw window does not resize upon font change (was never exact 
+#   anyway) 
+# *fixed tagging of radiobuttons in the windows menu when files are closed 
+# *added comment selection command (glitch - adds // after the last newline also when the selection
+#   ends there)
+# *added uncomment selection command (glitch - removes also the white space between beginning 
+#   of line and //)
+
 # default global values
 #global .
 
@@ -76,10 +89,9 @@ set listoffile("$pad.textarea",save) 0; # set flag to know if the editing file w
 set listoffile("$pad.textarea",new) 1; # is not an opened file from disk
 set listoffile("$pad.textarea",thetime) 0; # set the time of the last modify
 set listoftextarea $pad.textarea
-## ES changet from 0 to 1, no effect?
-set winopened 1
+set winopened 0
 set radiobuttonvalue 0
-###
+
 # main window settings
 eval destroy [winfo child $pad]
 wm title $pad "$winTitle - $listoffile("$pad.textarea",filename)"
@@ -209,6 +221,9 @@ if {$lang == "eng"} {
     $pad.filemenu.edit add command -label "Select All" -underline 7 -command "selectall" -accelerator Ctrl+/
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
     $pad.filemenu.edit add separator
+    $pad.filemenu.edit add command -label "Comment selection" -underline 3 -command "CommentSel" -accelerator Ctrl+m
+    $pad.filemenu.edit add command -label "Uncomment selection" -underline 1 -command "UnCommentSel" -accelerator Ctrl+M
+    $pad.filemenu.edit add separator
     $pad.filemenu.edit add check -label "Word Wrap" -underline 5 -command "wraptext"
 } else {
     $pad.filemenu add cascade -label "Edition" -underline 0 -menu $pad.filemenu.edit
@@ -222,6 +237,9 @@ if {$lang == "eng"} {
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add command -label "Selectionner tout" -underline 7 -command "selectall" -accelerator Ctrl+/
 #    $pad.filemenu.edit add command -label "Time/Date" -underline 5 -command "printtime"
+    $pad.filemenu.edit add separator
+    $pad.filemenu.edit add command -label "Commenter selection" -underline 3 -command "CommentSel" -accelerator Ctrl+m
+    $pad.filemenu.edit add command -label "Decommenter selection" -underline 0 -command "UnCommentSel" -accelerator Ctrl+M
     $pad.filemenu.edit add separator
     $pad.filemenu.edit add check -label "Retour à la ligne automatique" -underline 5 -command "wraptext"
 } 
@@ -255,22 +273,22 @@ if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Fenêtres" -underline 0 -menu $pad.filemenu.wind
     #$pad.filemenu.wind add command -label "$listoffile("$pad.textarea",filename)" -command "montretext $pad.textarea"
 }
-$pad.filemenu.wind add radiobutton -label "$listoffile("$pad.textarea",filename)"  -value 0 -variable radiobuttonvalue -command "montretext $pad.textarea"
+$pad.filemenu.wind add radiobutton -label "$listoffile("$pad.textarea",filename)"  -value $winopened -variable radiobuttonvalue -command "montretext $pad.textarea"
 # options menu
 if {$lang == "eng"} {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
     $pad.filemenu add cascade -label "Options" -underline 0 -menu $pad.filemenu.options
     $pad.filemenu.options add command -label "font size" -foreground red 
-    $pad.filemenu.options add radiobutton -label "small" -value 0  -variable $Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "medium" -value 4  -variable $Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "large" -value 12  -variable $Size -command "setfontscipad12"
+    $pad.filemenu.options add radiobutton -label "small" -value 0  -variable Size -command "setfontscipad0"
+    $pad.filemenu.options add radiobutton -label "medium" -value 4  -variable Size -command "setfontscipad4"
+    $pad.filemenu.options add radiobutton -label "large" -value 12  -variable Size -command "setfontscipad12"
 } else {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
     $pad.filemenu add cascade -label "Options" -underline 0 -menu $pad.filemenu.options
     $pad.filemenu.options add command -label "taille de fontes" -foreground red 
-    $pad.filemenu.options add radiobutton -label "petit" -value 0  -variable $Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "moyen" -value 4  -variable $Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "grand" -value 12  -variable $Size -command "setfontscipad12"
+    $pad.filemenu.options add radiobutton -label "petit" -value 0  -variable Size -command "setfontscipad0"
+    $pad.filemenu.options add radiobutton -label "moyen" -value 4  -variable Size -command "setfontscipad4"
+    $pad.filemenu.options add radiobutton -label "grand" -value 12  -variable Size -command "setfontscipad12"
 }
 ##ES: whats this?
 ##set Size 2
@@ -334,7 +352,7 @@ $pad configure -menu $pad.filemenu
 set taille [expr [font measure $textFont " "] *3]
 
 # creates the default textarea 
-##ES was here: added inserttime 0 and exportselection
+##ES was here: added insertofftime 0 and exportselection
 text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
@@ -750,7 +768,7 @@ proc closefile {textarea} {
     proc byebye {textarea} {
 	global listoftextarea
 	global listoffile
-	global pad
+	global pad winopened radiobuttonvalue
 	if {  [ llength $listoftextarea ] > 1 } {
 	    # delete the textarea entry in the listoftextarea
 	    set listoftextarea [lreplace $listoftextarea [lsearch $listoftextarea $textarea] [lsearch $listoftextarea $textarea]]
@@ -762,9 +780,16 @@ proc closefile {textarea} {
 	    unset listoffile("$textarea",new) 
 	    unset listoffile("$textarea",thetime) 
 	    # delete the textarea entry in Undoerr
-	    destroy $textarea
+##ES: the text widget was opened for $pad.textarea. If that is destroyed, the next change font,
+## new file or open file command causes the window to shrink. On the other side, the only side
+## effect of not destroying it which I see is that font changes do not resize the window (so 
+## what? -- the resizing was not exact anyway)
+#	    destroy $textarea
 	    # place as current textarea the last 
 	    montretext [lindex $listoftextarea end]
+##ES 17/9/03
+            set radiobuttonvalue $winopened
+##
 	} else {
 	    killwin $pad 
             unset pad
@@ -1229,8 +1254,8 @@ proc FindIt {w} {
 	set len [string length $SearchString]
 	if {$SearchPos != ""} {
 	    [gettextareacur] see $SearchPos
-#	    tkTextSetCursor [gettextareacur] $SearchPos
-	    [gettextareacur] mark set insert $SearchPos
+	    tkTextSetCursor [gettextareacur] $SearchPos
+#	    [gettextareacur] mark set insert $SearchPos
 	    [gettextareacur] tag add sel $SearchPos  "$SearchPos + $len char"
 	    
 	    if {$SearchDir == "forwards"} {
@@ -1570,6 +1595,10 @@ bind $pad <Control-g> {gotoline}
 bind $pad <Control-p> {selectprint}
 bind $pad <Control-P> {printseupselection}
 bind $pad <Control-S> {filesaveascur}
+
+##ES 17/9/03
+bind $pad <Control-m> {CommentSel}
+bind $pad <Control-M> {UnCommentSel}
 
 
 ###################################################################
@@ -2064,6 +2093,63 @@ proc puttext {w text} {
 ###added by ES
 #    modifiedtitle $w
     $w see insert
+}
+
+##ES 17/9/2003
+## this is ok, but is undone by as many ^z as lines (and not recolorized properly if undone)
+#proc CommentSelx {} {
+#    global textareacur
+#    set seltexts [selection own]
+#    if {$seltexts != "" } {
+#	if [catch {selection get -selection PRIMARY} sel] {	    
+#	} else {	    
+#            set i1 [$textareacur index sel.first]
+#            set i2 [$textareacur index sel.last]
+#            set i3 $i1
+#            while {$i3<$i2} {
+#                   $textareacur insert $i3 "//" 
+#                   set i3 [$textareacur index "$i3+1l linestart"]                   
+#                 }
+#            if {$i1 != $i2 } {
+#	        colorize $textareacur $i1 [$textareacur index "$i2+1l linestart"]
+#            }
+#            $textareacur tag add sel $i1 $i2
+#         }
+#    }
+#}
+
+## this is undone by only two ^z but comments also after the last newline
+proc CommentSel {} {
+    global textareacur
+    set seltexts [selection own]
+    if {$seltexts != "" } {
+	if [catch {selection get -selection PRIMARY} sel] {	    
+	} else {
+            set uctext [selection get]	    
+            set i1 [$textareacur index sel.first]
+            set i2 [$textareacur index sel.last]
+#I thought this shouldn't match a newline als last character of the string...
+            regsub -all -line "(?!.\Z)^" $uctext  "//" ctext
+            puttext $textareacur $ctext
+            $textareacur tag add sel $i1 $i2+2c
+         }
+    }
+}
+
+proc UnCommentSel {} {
+    global textareacur
+    set seltexts [selection own]
+    if {$seltexts != "" } {
+	if [catch {selection get -selection PRIMARY} sel] {	    
+	} else {
+            set ctext [selection get]	    
+            set i1 [$textareacur index sel.first]
+            set i2 [$textareacur index sel.last]
+            regsub -all -line "^\\s*//" $ctext  "" uctext
+            puttext $textareacur $uctext
+            $textareacur tag add sel $i1 $i2
+         }
+    }
 }
 
 ###added by ES 28/7/2003
