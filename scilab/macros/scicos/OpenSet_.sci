@@ -50,15 +50,8 @@ while %t
 	driver('Rec');
       end
       set_background()
-      rect=dig_bound(scs_m);
-
-      if rect<>[] then 
-	%wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
-      else
-	%wsiz=[600/%zoom,400/%zoom]
-      end
-      // 1.3 to correct for X version
-      xset('wpdim',min(1000,%zoom*%wsiz(1)),min(800,%zoom*%wsiz(2)))
+      
+      pwindow_set_size()
       window_set_size()
       
       xset('alufunction',6)

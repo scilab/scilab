@@ -3,7 +3,7 @@ function Eval_()
     disablemenus()
     %now_win=xget('window')
 
-    [%scicos_context,ierr]=script2var(context,%scicos_context)
+    [%scicos_context,ierr]=script2var(scs_m.props.context,%scicos_context)
     
     
     xset('window',%now_win)

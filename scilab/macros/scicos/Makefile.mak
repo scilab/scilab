@@ -90,7 +90,7 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	do_icon_edit.sci CFORTR.sci FORTR.sci getblocktext.sci getblocklink.sci \
 	do_export.sci systexport.sci do_doc.sci dig_bound.sci under_connection.sci \
 	cosclick.sci window_set_size.sci replayifnecessary.sci getgeom.sci \
-        %model_p.sci  %graphics_p.sci \
+        %model_p.sci  %graphics_p.sci  pwindow_set_size.sci \
 	%Block_p.sci  %params_p.sci %diagram_p.sci\
 	tk_mpopup.sci tk_mpopupX.sci tk_getcolor.sci tk_choose.sci tk_getvalue.sci \
 	sci2tcl.sci do_Displaymode.sci loadpallibs.sci script2var.sci \

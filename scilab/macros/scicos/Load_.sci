@@ -17,6 +17,7 @@ function Load_()
       xset('alufunction',3);xbasc();xselect();
       set_background()
       
+      pwindow_set_size()
       window_set_size()
       
       xselect();

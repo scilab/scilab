@@ -1,6 +1,6 @@
 function Zoomout_()
     Cmenu='Open/Set'
-    xinfo('Zoom in')
+    xinfo('Zoom out')
     %zoom=%zoom/1.2
     window_set_size()
     drawobjs(scs_m),

@@ -106,7 +106,7 @@ needreplay=%f
 global %tableau  
 
 if ~super_block then // global variables
-  %zoom=1.8
+  %zoom=1.4
   pal_mode=%f // Palette edition mode
 //  newblocks=[] // table of added functions in pal_mode
   super_path=[] // path to the currently opened superblock
@@ -243,16 +243,7 @@ xbasc();xselect()
 %dr=driver();driver('Rec');
 set_background()
 
-rect=dig_bound(scs_m);
-
-if rect<>[] then 
-  %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
-else
-  %wsiz=[600/%zoom,400/%zoom]
-end
-// 1.3 to correct for X version
-xset('wpdim',min(1000,%zoom*%wsiz(1)),min(800,%zoom*%wsiz(2)))
-
+pwindow_set_size()
 window_set_size()
 
 xset('alufunction',6)
