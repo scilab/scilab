@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------
 function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
   nv=size(varargin);
-  
+
   if (getos()~='Windows') then // Unix
   	HomeDirectory=getenv('HOME','ndef');
     if (HomeDirectory == 'ndef') then
@@ -21,20 +21,20 @@ function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
     end
     setenv('HOME',HomeDirectory);
   end
-  
+
   if nv==0 then // no Argument by default
     if MSDOS then
       ScilabHomeDirectory=HomeDirectory+'\Scilab\'+getversion();
     else
       ScilabHomeDirectory=HomeDirectory+'/.Scilab/'+getversion();
     end
-    
+
     if (ExistScilabHomeDirectory(ScilabHomeDirectory)==%F) then
       ScilabHomeDirectory=CreateScilabHomeDirectory(HomeDirectory,ScilabHomeDirectory);
     end
-   
+
   else
-  
+
     if nv==1 then // to set Scilab home with a path
   		UserScilabHome=varargin(1);
   		if (type(UserScilabHome) == 10) then
@@ -49,9 +49,9 @@ function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
     else
       error('Error number of parameters incorrect.',999);
     end
-    
+
   end
-  
+
   setenv('SCIHOME',ScilabHomeDirectory);
 endfunction
 //------------------------------------------------------------------------------
@@ -69,12 +69,19 @@ function ScilabHome=CreateScilabHomeDirectory(Home,SciHome)
     HomeScilabLvl1=HomeDirectory+'\Scilab';
     HomeScilabLvl2=HomeScilabLvl1+'\'+getversion();
   else
-  	HomeScilabLvl1=HomeDirectory+'/.Scilab';
+    HomeScilabLvl1=HomeDirectory+'/.Scilab';
     HomeScilabLvl2=HomeScilabLvl1+'/'+getversion();
   end
-  
+
+  nameScilab='';
+  if MSDOS then
+    nameScilab='Scilab'
+  else
+    nameScilab='.Scilab'
+  end
+
   if ( fileinfo(HomeScilabLvl1) == [] ) then
-    if ( mkdir(HomeDirectory,'Scilab')==0 ) then
+    if ( mkdir(HomeDirectory,nameScilab)==0 ) then
       disp('No right to write in '+HomeDirectory);
       ScilabHome=SCI;
     else
@@ -93,6 +100,6 @@ function ScilabHome=CreateScilabHomeDirectory(Home,SciHome)
       end
     end
   end
-  
+
 endfunction
 //------------------------------------------------------------------------------
