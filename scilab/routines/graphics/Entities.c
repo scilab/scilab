@@ -12042,8 +12042,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       flag_DO = MaybeSetWinhdc ();
 #endif
       sciClip(sciGetIsClipping(pobj));
-
-      if (pTEXT_FEATURE (pobj)->wh==(double *)NULL) {
+      if (pTEXT_FEATURE (pobj)->fill<0) {
 	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
 	  {trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,
 		   &pTEXT_FEATURE (pobj)->x,&pTEXT_FEATURE (pobj)->y,&pTEXT_FEATURE (pobj)->z);}
@@ -14808,6 +14807,8 @@ int sciType (marker, pobj)
   else if (strcmp(marker,"labels_font_size") == 0)   {return 1;}
   else if (strcmp(marker,"labels_font_color") == 0)   {return 1;}
   else if (strncmp(marker,"text", 4) == 0)        {return 10;}	 
+  else if (strncmp(marker,"text_box", 8) == 0)        {return 1;}	 
+  else if (strncmp(marker,"text_box_mode", 13) == 0)        {return 1;}	 
   else if (strncmp(marker,"old_style", 9) == 0)   {return 10;}
   else if (strncmp(marker,"figure_style", 12) == 0)   {return 10;}        
   else if (strncmp(marker,"visible", 7) == 0)     {return 10;} 
