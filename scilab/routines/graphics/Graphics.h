@@ -129,7 +129,7 @@ extern int C2F(graduate)  __PARAMS((double *,double *,double *,double *,integer 
 /* Theticks F.Leray 21.09.04 */
 extern int C2F(theticks) __PARAMS((double *xminv, double *xmaxv, double *grads, int *ngrads));
 extern int TheTicks( double *xminv, double * xmaxv, double * grads, int * ngrads);
-extern int GradEqual(double * grads, int *ngrads);
+extern int GradEqual(const double * grads,const int *ngrads);
 
 extern void Cscale2default  __PARAMS((void)); 
 
