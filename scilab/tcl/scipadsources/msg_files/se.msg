@@ -1,5 +1,5 @@
 # Scipad texts in Swedish
-# in sync at least with v3.52
+# in sync at least with v3.56
 # provided by Gunnar Lindholm
 
 # commons
@@ -84,7 +84,7 @@
 
 # filecommands.tcl
 ::msgcat::mcset se "New Script" "Nytt Script"
-::msgcat::mcset se "The contents of" "Innehållet kan ha ändrats, vill du spara dina ändringar?"
+::msgcat::mcset se "The contents of" "Innehållet kan ha ändrats, vill du spara dina ändringar"
     ::msgcat::mcset se "may have changed, do you wish to save your changes?" "?"
 ::msgcat::mcset se "Save Confirm?" "Bekräfta spara ?"
 ::msgcat::mcset se "Weird drag&drop" "Konstig drag och släpp"
@@ -200,7 +200,7 @@
     ::msgcat::mcset se "Select &All" "Markera &Allt"
     ::msgcat::mcset se "Insert &Time/Date" "Infoga datum och &Tid"
     ::msgcat::mcset se "Co&mment selection" "Ko&mmentera markering"
-    ::msgcat::mcset se "U&ncomment selection" "&Avkommentera markeringen"
+    ::msgcat::mcset se "U&ncomment selection" "A&vkommentera markeringen"
     ::msgcat::mcset se "&Indent selection" "&Indentera markeringen"
     ::msgcat::mcset se "Unin&dent selection" "Oin&dentera markeringen"
 
@@ -216,10 +216,10 @@
 
     # menues.tcl - Debug menu
     ::msgcat::mcset se "&Insert/Remove breakpoint" "Lägg t&ill tabort brytpunkt"
-    ::msgcat::mcset se "Remove &all breakpoints" "Tabort &alla brytpunkter"
+    ::msgcat::mcset se "Remove &all breakpoints" "&Tabort alla brytpunkter"
     ::msgcat::mcset se "&Configure execution..." "Konfigurera exekveringen..."
     ::msgcat::mcset se "Go to next b&reakpoint" "Gå till nästa b&rytpunkt"
-    ::msgcat::mcset se "&Step by step" "&Steg för steg"
+    ::msgcat::mcset se "&Step by step" "S&teg för steg"
     ::msgcat::mcset se "Step &into" "Kliv &in i"
     ::msgcat::mcset se "Step o&ver" "Kliv &över"
     ::msgcat::mcset se "Step &out" "Kliv ut &ur"
@@ -242,16 +242,16 @@
         ::msgcat::mcset se "m&edium" "lago&m"
         ::msgcat::mcset se "&large" "&stor"
     ::msgcat::mcset se "&Colors" "&Färger"
-    ::msgcat::mcset se "&Tabs and indentation" "&Tabbar och indentering"
+    ::msgcat::mcset se "&Tabs and indentation" "Tabbar och &indentering"
         ::msgcat::mcset se "Tab inserts &spaces" "Tab blir mellanslag"
         ::msgcat::mcset se "&Indentation spaces" "&Indragsutrymme"
     ::msgcat::mcset se "Colorize \'&strings\'" "Färga \'&strängar\'"
     ::msgcat::mcset se "Word &Wrap" "&Bryt ej långa rader"
-    ::msgcat::mcset se "File&names" "&Filnamn"
+    ::msgcat::mcset se "File&names" "Fil&namn"
         ::msgcat::mcset se "&Full path" "&Hela sökvägen"
         ::msgcat::mcset se "Full path if &ambiguous" "Hela sökvägen är tvetydig"
         ::msgcat::mcset se "&Unambiguous pruned path" "&Entydig sökväg"
-    ::msgcat::mcset se "&Recent files" "&Senaste filerna"
+    ::msgcat::mcset se "&Recent files" "S&enaste filerna"
 
     # menues.tcl - Windows menu
     ::msgcat::mcset se "Opened Files" "Öppna filer"
