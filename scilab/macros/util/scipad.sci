@@ -12,12 +12,16 @@ global TMPDIR
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
     if exists("home") then
-      TK_EvalStr("scipad eval { set env(HOME) """+home+""" }")
+      if MSDOS then
+        TK_EvalStr("scipad eval { set env(HOME) """+strsubst(home,"\","/")+""" }")
+      else
+        TK_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
+      end
     end
     if exists("LANGUAGE") then 
       TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
     end
-    if MSDOS then 
+    if MSDOS then
       TK_EvalStr("scipad eval { set tmpdir """+strsubst(TMPDIR,"\","/")+""" }")
     else
       TK_EvalStr("scipad eval { set tmpdir """+pathconvert(TMPDIR,%f,%t)+""" }")
