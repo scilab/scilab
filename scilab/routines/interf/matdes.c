@@ -5871,8 +5871,19 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       
       if (*numrow * *numcol == 6)
 	{
-	  pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
-	  pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
+    	  if(pSUBWIN_FEATURE (pobj)->logflags[2] == 'n'){  /* General case for z : logflag='n' */
+	    pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
+	    pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
+	  }
+	  else{/* log. case */
+	    /*zmin*/
+	    if(stk(*value)[4] <= 0. || stk(*value)[5] <= 0.)
+	      {sciprint("Error: bounds on z axis must be strictly positive to use logarithmic mode\n");return -1;}
+	    else{
+	      pSUBWIN_FEATURE (pobj)->SRect[4]=stk(*value)[4];
+	      pSUBWIN_FEATURE (pobj)->SRect[5]=stk(*value)[5];
+	    }
+	  }
 	}
       /* to inform plotxx function to take this boundary into account */
       pSUBWIN_FEATURE (pobj)->FirstPlot = FALSE;
@@ -5931,8 +5942,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	strcpy(error_message,"Value must have two elements (three if 3D universe) ");return -1;}
       pSUBWIN_FEATURE (pobj)->flagNax = TRUE;
       for (i = 0; i < *numcol;i++){
-	/* temp test here while z has no logflag flag ; F.Leray 12.10.04 */
-	char logflag = (i!=2)?pSUBWIN_FEATURE (pobj)->logflags[i]:'n';
+	char logflag = pSUBWIN_FEATURE (pobj)->logflags[i];
 	
 	if(logflag == 'l') {
 	  /* 	  sciprint("Subtics number can not be set while using logarithmic scaling\n"); */
@@ -6201,7 +6211,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       char *flags;
       flags=cstk(*value);
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	if ((*numrow * *numcol ==2 )&& 
+	if (((*numrow * *numcol == 2) || (*numrow * *numcol == 3)) && 
 	    (flags[0]=='n'||flags[0]=='l')&&
 	    (flags[1]=='n'||flags[1]=='l')) {
 	 
@@ -6232,6 +6242,27 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 /* 	      ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[1], flags[1],'y'); */
 	      pSUBWIN_FEATURE (pobj)->logflags[1]=flags[1];
 	    }
+
+	  /* third new case (for z) F.Leray 03.11.04 */
+	  if((*numrow * *numcol == 3) &&
+	     (flags[2]=='n'||flags[2]=='l')){
+	    if( (pSUBWIN_FEATURE (pobj)->SRect[4] <= 0. || pSUBWIN_FEATURE (pobj)->SRect[5] <= 0.) 
+		&& flags[2] == 'l')
+	      {strcpy(error_message,"Error: data_bounds on z axis must be strictly positive to switch to logarithmic mode");return -1;}
+	    else
+	      {
+		sciSubWindow * pppsubwin = pSUBWIN_FEATURE (pobj);
+		pSUBWIN_FEATURE (pobj)->axes.u_zlabels = ReBuildUserTicks( pSUBWIN_FEATURE (pobj)->logflags[2], flags[2],  pSUBWIN_FEATURE (pobj)->axes.u_zgrads, 
+									   &pSUBWIN_FEATURE (pobj)->axes.u_nzgrads, pSUBWIN_FEATURE (pobj)->axes.u_zlabels);
+		
+		/*  ReBuildUserTicks( pobj, pSUBWIN_FEATURE (pobj)->logflags[0], flags[0],'x'); */
+		pSUBWIN_FEATURE (pobj)->logflags[2]=flags[2];
+	      }
+	    
+	    
+	  }
+
+
 	}
 	else 
 	  {strcpy(error_message,"incorrect log_flags value");return -1;}
@@ -7270,10 +7301,12 @@ if ((pobj == (sciPointObj *)NULL) &&
   else if (strncmp(marker,"log_flags", 9) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
-	numrow = 1;numcol   = 2;
+	numrow = 1;numcol   = 3;
 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
-	*cstk(outindex)=pSUBWIN_FEATURE (pobj)->logflags[0];
-	*cstk(outindex+1)=pSUBWIN_FEATURE (pobj)->logflags[1];
+	*cstk(outindex)  = pSUBWIN_FEATURE (pobj)->logflags[0];
+	*cstk(outindex+1)= pSUBWIN_FEATURE (pobj)->logflags[1];
+	*cstk(outindex+2)= pSUBWIN_FEATURE (pobj)->logflags[2];
+	
       }
       else 	
 	{strcpy(error_message,"log_flag property undefined for this object");return -1;}
@@ -9159,7 +9192,6 @@ int getticks(char * xyztick, sciPointObj* psubwin)
   char **  ticklabel = (char**) NULL;
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
   double *tmp= NULL;
-  int lastzindex = 0; /* TO REMOVE when z has a logflag : see below */
   
   /* x */
   if(strcmp(xyztick,"x_ticks")==0)
@@ -9233,7 +9265,7 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	    {  
 	      char foo[100];
 	      	     
-	      sprintf(foo,c_format,ppsubwin->axes.ygrads[i]);
+	      sprintf(foo,c_format,tmp[i]);
 	      
 	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
 		sciprint("No more place for allocating ticklabel");
@@ -9264,26 +9296,19 @@ int getticks(char * xyztick, sciPointObj* psubwin)
   /* z */
   else if(strcmp(xyztick,"z_ticks")==0)
     {
-      int tmp = (ppsubwin->axes.auto_ticks[2] == TRUE)?ppsubwin->axes.nzgrads:ppsubwin->axes.u_nzgrads;
+  /*     int test_tmp = (ppsubwin->axes.auto_ticks[2] == TRUE)?ppsubwin->axes.nzgrads:ppsubwin->axes.u_nzgrads; */
       
-      if(tmp == 0) 
-	{
-	  int zero = 0;
-	  BuildTListForTicks(NULL,NULL, zero);
+/*       if(test_tmp == 0)  */
+/* 	{ */
+/* 	  int zero = 0; */
+/* 	  BuildTListForTicks(NULL,NULL, zero); */
 
 	  
-	  return 0;
-	}
+/* 	  return 0; */
+/* 	} */
       /* compute the c_format used for convert double to char (for labels) */
-      lastzindex = ppsubwin->axes.nzgrads - 1;
-
-      /* TO PUT when z has a logflag */ /* F.Leray 05.01.04 */
-/*       ChooseGoodFormat(c_format,ppsubwin->logflags[2],ppsubwin->axes.zgrads,ppsubwin->axes.nzgrads); */
-      
-      ChoixFormatE(c_format,
-		   ppsubwin->axes.zgrads[0],
-		   ppsubwin->axes.zgrads[lastzindex],
-		   ((ppsubwin->axes.zgrads[lastzindex])-(ppsubwin->axes.zgrads[0]))/(lastzindex)); /* Adding F.Leray 06.05.04 */
+ 
+      ChooseGoodFormat(c_format,ppsubwin->logflags[2],ppsubwin->axes.zgrads,ppsubwin->axes.nzgrads);
       
       if(ppsubwin->axes.auto_ticks[2] == TRUE)
 	{
@@ -9295,14 +9320,14 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	  }
 	  
 
-/* 	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.zgrads); */
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.zgrads);
 	  
 
 	  for(i=0;i<nbtics;i++)
 	    {  
 	      char foo[100];
-	      	     
-	      sprintf(foo,c_format,ppsubwin->axes.zgrads[i]);
+	      
+	      sprintf(foo,c_format,tmp[i]);
 	      
 	      if((ticklabel[i]=(char *)MALLOC((strlen(foo)+1)*sizeof(char )))==NULL){
 		sciprint("No more place for allocating ticklabel");
@@ -9313,21 +9338,21 @@ int getticks(char * xyztick, sciPointObj* psubwin)
 	    }
 	  
 	  /* construction de la tlist */
-	  BuildTListForTicks(ppsubwin->axes.zgrads,ticklabel, nbtics);
-
+	  BuildTListForTicks(tmp,ticklabel, nbtics);
+	  
 	  FREE(ticklabel); ticklabel = (char **) NULL;
-	 /*  FREE(tmp); tmp = (double *) NULL; */
+	  FREE(tmp); tmp = (double *) NULL;
 	}
       else /* we display the z tics specified by the user*/
 	{
 	  nbtics = ppsubwin->axes.u_nzgrads;
-
-/* 	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.u_zgrads); */
 	  
-
-	  BuildTListForTicks(ppsubwin->axes.u_zgrads,ppsubwin->axes.u_zlabels, nbtics);
-
-	  /*  FREE(tmp); tmp = (double *) NULL; */
+	  tmp = ReBuildTicksLog2Lin(ppsubwin->logflags[2],nbtics,ppsubwin->axes.u_zgrads);
+	  
+	  
+	  BuildTListForTicks(tmp,ppsubwin->axes.u_zlabels, nbtics);
+	  
+	  FREE(tmp); tmp = (double *) NULL;
 	}
     }
   else
@@ -9430,15 +9455,17 @@ int setticks(char * xyztick, sciPointObj* psubwin, int * ptrindex, int * numrow,
       if((ppsubwin->axes.u_zgrads=(double *) MALLOC(prod*sizeof(double)))==NULL) return -1;
       
 
-   /*    if(ppsubwin->logflags[2]=='l') /\* Not for now: y logscale does not exist F.Leray 29.09.4 *\/ */
-/* 	{ */
-/* 	  for(i=0;i< prod;i++) */
-/* 	    ppsubwin->axes.u_zgrads[i] = log10(stk(ptrindex[0])[i]); */
-/* 	} */
-/*       else */
-      for(i=0;i< prod;i++)
-	ppsubwin->axes.u_zgrads[i] = stk(ptrindex[0])[i];
-      ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(psubwin,ppsubwin->axes.u_nzgrads,'n',NULL,ppsubwin->axes.nbsubtics[2]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+      if(ppsubwin->logflags[2]=='l')
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_zgrads[i] = log10(stk(ptrindex[0])[i]);
+	}
+      else
+	{
+	  for(i=0;i< prod;i++)
+	    ppsubwin->axes.u_zgrads[i] = stk(ptrindex[0])[i];
+	  ppsubwin->axes.nbsubtics[2] = ComputeNbSubTics(psubwin,ppsubwin->axes.u_nzgrads,'n',NULL,ppsubwin->axes.nbsubtics[2]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+	}
       
       if(ppsubwin->axes.u_zlabels != NULL)
 	for(i=0;i<old_prod;i++) { /* we free the old vector components (size == old_prod) */
