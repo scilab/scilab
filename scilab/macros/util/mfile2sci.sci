@@ -103,7 +103,7 @@ m2sci_info(mss,-1);
 
 // Read in the file as text
 m2sci_info("M-file reading...",-1);
-txt=readmfile(fil)
+txt=mgetl(fil);
 m2sci_info("M-file reading: Done",-1);
 
 // Replace TAB by SPACE
@@ -148,7 +148,7 @@ if txt~=[] then
 	"         "+mname+".sci, "+mname+".cat and sci_"+mname+".sci will be generated !"]
     m2sci_info(mss,-1);
   end
-  
+
   // Compilation
   execstr("comp("+mname+",1)")
   funcprot(fprot)
