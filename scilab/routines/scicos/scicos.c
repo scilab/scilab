@@ -283,7 +283,7 @@ int C2F(scicos)
   }
 
   if((Blocks=malloc(sizeof(scicos_block)*nblk))== NULL ){
-    *ierr =10000;
+    *ierr =5;
     return 0;
   }
   for (kf = 0; kf < nblk; ++kf) {
@@ -297,10 +297,12 @@ int C2F(scicos)
 	break;
       case 1:
 	sciprint("type 1 function not allowed for scilab blocks\r\n");
+	*ierr =1000+kf+1;
 	free_blocks();
 	return 0;
       case 2:
 	sciprint("type 2 function not allowed for scilab blocks\r\n");
+	*ierr =1000+kf+1;
 	free_blocks();
 	return 0;
       case 3:
@@ -313,6 +315,7 @@ int C2F(scicos)
 	break;
       default :
 	sciprint("Undefined Function type\r\n");
+	*ierr =1000+kf+1;
 	free_blocks();
 	return 0;
       }
@@ -325,6 +328,7 @@ int C2F(scicos)
       GetDynFunc(i,&Blocks[kf].funpt);
       if ( Blocks[kf].funpt == (voidf) 0) {
 	sciprint("Function not found\r\n");
+	*ierr =1000+kf+1;
 	free_blocks();
 	return 0;
       }
@@ -339,10 +343,12 @@ int C2F(scicos)
     Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
     if ((Blocks[kf].insz=malloc(sizeof(int)*Blocks[kf].nin))== NULL ){
       free_blocks();
+      *ierr =5;
       return 0;
     }
     if ((Blocks[kf].inptr=malloc(sizeof(int*)*Blocks[kf].nin))== NULL ){
       free_blocks();
+      *ierr =5;
       return 0;
     }
     for(in=0;in<Blocks[kf].nin;in++) {
@@ -352,10 +358,12 @@ int C2F(scicos)
     }
     if ((Blocks[kf].outsz=malloc(sizeof(int)*Blocks[kf].nout))== NULL ){
       free_blocks();
+      *ierr =5;
       return 0;
     }
     if ((Blocks[kf].outptr=malloc(sizeof(double*)*Blocks[kf].nout))== NULL ){
       free_blocks();
+      *ierr =5;
       return 0;
     }
     for(out=0;out<Blocks[kf].nout;out++) {
@@ -378,6 +386,7 @@ int C2F(scicos)
 
   if((iwa=malloc(sizeof(int)*(*nevts)))== NULL ){
     free_blocks();
+    *ierr =5;
     return 0;
   }
 
@@ -424,6 +433,7 @@ int C2F(scicos)
       if((W=malloc(sizeof(double)*nx))== NULL ){
 	free(iwa);
 	free_blocks();
+	*ierr =5;
 	return 0;
       }
     
@@ -436,7 +446,7 @@ int C2F(scicos)
   }
   free(iwa);
   free_blocks(); 
-  *ierr=0;
+
   C2F(clearscicosimport)();
   return 0;
 } /* scicos_ */
@@ -2627,7 +2637,6 @@ void free_blocks()
     }
   }
   free(Blocks);
-  *ierr=1000;
   return;
 }
   

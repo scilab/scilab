@@ -563,6 +563,9 @@ c
            elseif(ierr.eq.4) then
               buf='algrebraic loop detected'
               kfun=0
+           elseif(ierr.eq.5) then
+              buf='cannot allocate memory'
+              kfun=0
            else
               buf='scicos unexpected error,please report...'
               kfun=0
