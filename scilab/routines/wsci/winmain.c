@@ -282,6 +282,9 @@ int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 static int my_argc = 0;
 static LPSTR my_argv[MAXCMDTOKENS];
 
+/* global var */
+int  sci_show_banner=1;
+
 #ifndef __ABSC__
 int WINAPI 
 WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
@@ -403,6 +406,7 @@ WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	nowin = 1;
       else if (strcmp (my_argv[argcount], "-ns") == 0)
 	startupf = 1;
+      else if ( strcmp(argv[argcount],"-nb") == 0) { sci_show_banner = 0; }
       else if (strcmp (my_argv[argcount], "-nwni") == 0)
 	{
 	  nowin = 1;

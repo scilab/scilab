@@ -3,9 +3,11 @@
 
 extern void sciprint __PARAMS((char *fmt,...));
 
+extern int sci_show_banner ; 
+
 int C2F(banier)(integer *flag)
 {
-  if (*flag != 999) {
+  if (*flag != 999 && sci_show_banner == 1) {
     sciprint("                    ==========\r\n");
     sciprint("                      Scilab\r\n");
     sciprint("                    ==========\r\n\r\n");

@@ -114,6 +114,9 @@ static int  no_window = 0;
 static char * initial_script = NULL;
 static int  initial_script_type = 0; /* 0 means filename 1 means code */
 extern void settexmacs();
+
+int  sci_show_banner=1;
+
 void C2F(realmain)()
 {
   int ierr, argc,i;
@@ -140,6 +143,7 @@ void C2F(realmain)()
 	  sprintf(dpy,"DISPLAY=%s",display);
 	  putenv(dpy);
 	} 
+      else if ( strcmp(argv[i],"-nb") == 0) { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { memory = Max(atoi(argv[++i]),MIN_STACKSIZE );} 
       else if ( strcmp(argv[i],"-f") == 0) { initial_script = argv[++i];} 

@@ -16,11 +16,19 @@ if old(1)<>newstacksize then stacksize(newstacksize),end
 clear old newstacksize
 
 // Startup message
-t=[' '
-' '
-'Startup execution:'];
-write(%io(2),t)
-clear t;
+if sciargs()<>"-nb" then 
+  verbose=%t;
+else  
+   verbose=%f;
+end
+
+if verbose then 
+  t=[' '
+     ' '
+     'Startup execution:'];
+  write(%io(2),t)
+  clear t;
+end
 
 // Special variables definition
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
@@ -35,8 +43,10 @@ if getenv('WIN32','NO')=='OK' then
 end
 
 // Load scilab functions libraries
-write(%io(2),'  loading initial environment')
-
+if verbose then 
+  write(%io(2),'  loading initial environment')
+end 
+clear verbose
 load('SCI/macros/util/lib')
 load('SCI/macros/elem/lib')
 load('SCI/macros/int/lib')
@@ -159,6 +169,12 @@ if (sciargs()<>"-nw")&(sciargs()<>"-nwni") then
   end
 end
 
+// load contrib menu if present 
+//=================================
+
+//[fd,ierr]=mopen(SCI+'/contrib/loader.sce');
+//if ierr== 0 then;mclose(fd); exec(SCI+'/contrib/loader.sce');end
+//clear fd ierr
 
 // calling user initialization
 //=============================
@@ -186,5 +202,8 @@ if  home<>PWD then
      end
   end
 end
+
+
+
 clear startup ierr
 
