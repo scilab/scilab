@@ -1,9 +1,21 @@
-function r=mtlb_cumsum(a)
+function B=mtlb_cumsum(A,dim)
 // Copyright INRIA
-if type(a)==4 then a=bool2s(a);end
-if size(a,1)==1|size(a,2)==1 then
-  r=cumsum(a)
+// Emulation function for Matlab cumsum()
+// V.C.
+
+[lhs,rhs]=argn()
+
+if rhs==1 then
+  if size(a,1)==1|size(a,2)==1 then
+    r=cumsum(a)
+  else
+    r=cumsum(a,firstnonsingleton(A))
+  end
 else
-  r=cumsum(a,1)
+  if dim<=size(size(A),"*") then
+    B=cumsum(A,dim)
+  else
+    B=A
+  end
 end
 endfunction
