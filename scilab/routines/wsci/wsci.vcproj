@@ -1083,6 +1083,9 @@ cd .. &gt;nul
 				RelativePath="wcommon.h">
 			</File>
 			<File
+				RelativePath=".\wgmenu.h">
+			</File>
+			<File
 				RelativePath="wgnuplib.h">
 			</File>
 			<File

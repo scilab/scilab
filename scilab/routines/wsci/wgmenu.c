@@ -1,123 +1,9 @@
-/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
-/* Scilab wgmenu.c 
+#include "wgmenu.h"
 
- *  Menus for graphic window ( from wmenu.c ) 
- *  Jean-Philippe Chancelier 
- */
-
-#include <stdio.h>
-#ifndef STRICT
-#define STRICT
-#endif
-/*#include <windows.h>
-  #include <windowsx.h>*/
-#include <string.h>		/* only use  items */
-
-#ifdef __CYGWIN32__
-#include <unistd.h>		/* for getpid */
-#endif
-#if (defined __MSC__) || (defined __MINGW32__)
-#include <process.h>		/* for getpid */
-#endif
-
-#ifdef __ABSC__
-#define getpid() getpid_()
-#endif
-
-#ifdef __STDC__
-#include <stdlib.h>
-#else
-int system ();
-#endif
-
-/*#include "wgnuplib.h"*/
-#include "wresource.h"
-#include "wcommon.h"
-#include <commdlg.h>
-#include "../graphics/Graphics.h"
-#include "../sun/men_Sutils.h"
-extern TW textwin;
-
-/* limits */
-#define MAXSTR 255
-#define MACROLEN 5000
-/* #define NUMMENU 256  defined in wresourc.h */
-#define MENUDEPTH 3
-
-/* menu tokens */
-#define CMDMIN 131
-/**********************/
-/** Warning must be like OPEN and SAVE in the wmenu.c file */
-#define LOADSCG CMDMIN /*131*/
-#define SAVESCG CMDMIN+1 /*132*/
-#define NEWFIG	CMDMIN+2
-#define CLOSE   CMDMIN+3
-#define SCIPS   CMDMIN+4
-#define SCIPR   CMDMIN+5
-#define PRINT   CMDMIN+6
-#define UPDINI  CMDMIN+7
-/**********************/
-#define SCIGSEL UPDINI+1
-#define TOOLBARGRAPH SCIGSEL+1
-#define REDRAW	SCIGSEL+2
-#define CLEARWG SCIGSEL+3
-#define COPYCLIP SCIGSEL+4
-#define COPYCLIP1 SCIGSEL+5
-/**********************/
-#define ZOOM COPYCLIP1+1
-#define UNZOOM ZOOM+1
-#define ROT3D ZOOM+2
-/**********************/
-#define EOS     ROT3D+1
-/**********************/
-#define CMDMAX EOS
-/**********************/
-
-static char *keyword[] =
-{
-  "[TOOLBARGRAPH]","[NEWFIG]","[ZOOM]", "[UNZOOM]", "[ROT3D]", "[PRINT]", "[COPYCLIP]", "[COPYCLIP1]",
-  "[REDRAW]", "[LOADSCG]", "[SAVESCG]", "[CLEARWG]", "[SCIPS]", "[SCIPR]",
-  "[SCIGSEL]", "[UPDINI]", "[EOS]", "[CLOSE]",
-  "{ENTER}", "{ESC}", "{TAB}",
-  "{^A}", "{^B}", "{^C}", "{^D}", "{^E}", "{^F}", "{^G}", "{^H}",
-  "{^I}", "{^J}", "{^K}", "{^L}", "{^M}", "{^N}", "{^O}", "{^P}",
-  "{^Q}", "{^R}", "{^S}", "{^T}", "{^U}", "{^V}", "{^W}", "{^X}",
-  "{^Y}", "{^Z}", "{^[}", "{^\\}", "{^]}", "{^^}", "{^_}",
-  NULL};
-
-static BYTE keyeq[] =
-{
-  TOOLBARGRAPH,NEWFIG,ZOOM, UNZOOM, ROT3D, PRINT, COPYCLIP, COPYCLIP1,
-  REDRAW, LOADSCG, SAVESCG, CLEARWG, SCIPS, SCIPR, SCIGSEL, UPDINI, EOS,
-  CLOSE,
-  13, 27, 9,
-  1, 2, 3, 4, 5, 6, 7, 8,
-  9, 10, 11, 12, 13, 14, 15, 16,
-  17, 18, 19, 20, 21, 22, 23, 24,
-  25, 26, 28, 29, 30, 31,
-  0 /* NULL */ };
-
-static void dos2win32 (char *filename, char *filename1);
-static void ExploreMenu (HMENU hmen, BYTE ** macro);
-static void SciDelMenu (LPMW lpmw, char *name);
-static void SciChMenu (LPMW lpmw, char *name, char *new_name);
-static void SciSetMenu (HMENU hmen, char *name, int num, int flag);
-static void SciChMenu (LPMW lpmw, char *name, char *new_name);
-static void SciDelMenu (LPMW lpmw, char *name);
-static void SavePs (struct BCG *ScilabGC);
-static void PrintPs (struct BCG *ScilabGC);
-
-
-extern BOOL IsWindowInterface();
-extern void Write_Scilab_Console (char *buf);
-extern void Write_Scilab_Window (char *buf);
-extern void ResetMenu(void);
-
-BOOL GraphToolBarDefault=TRUE;
+/*-----------------------------------------------------------------------------------*/
 /*********************************
  * Send a macro to the text window 
  *********************************/
-
 void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 {
   BYTE *s;
@@ -243,7 +129,7 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
   ScilabMenuAction (buf);
   LocalFree (buf);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /******************************
  * The following function 
  * for standard buf : stores expression in a Queue via the StoreCommand 
@@ -297,19 +183,18 @@ void ScilabMenuAction (char *buf)
 	StoreCommand1 (buf, 1);
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /************************************
  * Send a string to scilab interaction window
  * as if it was typed by the user 
  ************************************/
-
 void write_scilab (char *buf)
 {
   if ( IsWindowInterface() ) Write_Scilab_Window(buf);
   else Write_Scilab_Console(buf);
   
 }
-
+/*-----------------------------------------------------------------------------------*/
 /************************************
  * Translate string to tokenized macro 
  ************************************/
@@ -329,16 +214,10 @@ static void TranslateMacro (char *string)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /**************************************************
  * Load Macros, and create Menu from Menu file
  **************************************************/
-
-#define BUGGOTOCLEAN(str) \
-      wsprintf(buf,str,nLine,ScilabGC->lpgw->szMenuName); \
-      MessageBox(ScilabGC->hWndParent,(LPSTR) buf,ScilabGC->lpgw->Title,MB_ICONEXCLAMATION);\
-      goto errorcleanup;
-
 void LoadGraphMacros (struct BCG *ScilabGC)
 {
   GFILE *menufile;
@@ -491,12 +370,11 @@ cleanup:
     Gfclose (menufile);
   return;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /************************************
  * Find a free position for storing 
  * a new menu data
  ************************************/
-
 int WGFindMenuPos (BYTE ** macros)
 {
   int i;
@@ -507,12 +385,11 @@ int WGFindMenuPos (BYTE ** macros)
     }
   return (NUMMENU);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /************************************
  * Cleaning everything : used 
  * A Rajouter quand on d'etruit une fenetre graphique XXXXX 
  ************************************/
-
 void CloseGraphMacros (struct BCG *ScilabGC)
 {
   int i;
@@ -534,7 +411,7 @@ void CloseGraphMacros (struct BCG *ScilabGC)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /***********************************
  * functions to change the menu state 
  ***********************************/
@@ -561,8 +438,8 @@ static void ExploreMenu (HMENU hmen, BYTE ** hmacro)
 	}
     }
 }
+/*-----------------------------------------------------------------------------------*/
 
-extern struct BCG *GetWindowXgcNumber (integer i);
 
 /***********************************
  * activate or deactivate a menu (scilab interface)
@@ -589,7 +466,7 @@ int C2F (setmen) (integer * win_num, char *button_name,
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 int C2F (unsmen) (integer * win_num, char *button_name, integer * entries,
 		  integer * ptrentries, integer * ne, integer * ierr)
 {
@@ -610,7 +487,7 @@ int C2F (unsmen) (integer * win_num, char *button_name, integer * entries,
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void SciSetMenu (HMENU hmen, char *name, int num, int flag)
 {
   int i, is, Nums = GetMenuItemCount (hmen);
@@ -638,7 +515,7 @@ static void SciSetMenu (HMENU hmen, char *name, int num, int flag)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /***********************************
  * change a name in a top level menu 
  * used for keeping track of the graphic window 
@@ -664,7 +541,7 @@ int C2F (chmenu) (integer * win_num, char *old_name, char *new_name)
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void SciChMenu (LPMW lpmw, char *name, char *new_name)
 {
   int i, is, id, Nums = GetMenuItemCount (lpmw->hMenu);
@@ -680,7 +557,7 @@ static void SciChMenu (LPMW lpmw, char *name, char *new_name)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /***********************************
  * delete a menu (scilab interface)
  ***********************************/
@@ -704,7 +581,7 @@ int C2F (delbtn) (integer * win_num, char *button_name)
     }
   return (0);
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void SciDelMenu (LPMW lpmw, char *name)
 {
   int i, is, id, Nums = GetMenuItemCount (lpmw->hMenu);
@@ -765,7 +642,7 @@ static void SciDelMenu (LPMW lpmw, char *name)
 	}
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 /*********************************************************
    Add a menu in  window  number wun_num or in Main window
    win_num     : graphic window number or -1 for main scilab window
@@ -887,7 +764,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
     }
   DrawMenuBar (hwnd);
 }
-
+/*-----------------------------------------------------------------------------------*/
 /* Scilab interface for the AddMenu function 
    Add a menu in  window  number win_num or in Main window
 
@@ -924,38 +801,7 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
   else AddMenu (win_num, button_name, menu_entries, ne, typ, fname, ierr);
   return (0);
 }
-
-/********************************************
- *  save to Postscript or Send to A printer 
- *  for Xwindow the associated code is in jpc_SGraph + menusX 
- ****************************************/
-
-/*****************************
-  menu for exporting to ps or xfig 
-  ***************************/
-
-typedef struct tagLS
-{
-  int colored;
-  int land;
-  int use_printer;
-  int ps_type;
-}
-LS;
-
-static LS ls =
-{1, 0, 0, 0};
-
-static char *Print_Formats[] =
-{
-  "Postscript",
-  "Postscript No Preamble",
-  "Postscript-Latex",
-  "Xfig",
-  "GIF",
-  "PPM",
-};
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Event handler function for the line style window 
  * uses GetWindowLong(hwnd, 4) and SetWindowLong
@@ -1016,7 +862,7 @@ EXPORT BOOL CALLBACK
     }
   return FALSE;
 }
-
+/*-----------------------------------------------------------------------------------*/
 /****************************************************
  * Export style dialog box 
  ****************************************************/
@@ -1036,9 +882,7 @@ BOOL ExportStyle (struct BCG * ScilabGC)
     }
   return status;
 }
-
-static char filename[MAXSTR], filename1[MAXSTR];
-
+/*-----------------------------------------------------------------------------------*/
 static void SavePs (struct BCG *ScilabGC)
 {
   char *d, ori;
@@ -1110,7 +954,7 @@ static void SavePs (struct BCG *ScilabGC)
       break;
     }
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void dos2win32 (char *filename, char *filename1)
 {
 #ifdef CVT_PATH_BEG
@@ -1130,7 +974,7 @@ static void dos2win32 (char *filename, char *filename1)
     }
   *filename1 = '\0';
 }
-
+/*-----------------------------------------------------------------------------------*/
 static void PrintPs (struct BCG *ScilabGC)
 {
   char *p1;
@@ -1158,7 +1002,7 @@ static void PrintPs (struct BCG *ScilabGC)
     }
 /** filename is destroyed when we quit scilab **/
 }
-
+/*-----------------------------------------------------------------------------------*/
 /* used by command_handler in metanet */
 
 static void scig_command_scilabgc (int number, void f (struct BCG *))
@@ -1167,31 +1011,32 @@ static void scig_command_scilabgc (int number, void f (struct BCG *))
   if (ScilabGC != NULL && ScilabGC->CWindow && IsWindow (ScilabGC->CWindow))
     f (ScilabGC);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void scig_h_winmeth_print (integer number)
 {
   scig_command_scilabgc (number, CopyPrint);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip (integer number)
 {
   scig_command_scilabgc (number, NewCopyClip);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void scig_h_copyclip1 (integer number)
 {
   scig_command_scilabgc (number, CopyClip);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void scig_print (integer number)
 {
   scig_command_scilabgc (number, PrintPs);
 }
+/*-----------------------------------------------------------------------------------*/
 void scig_export (integer number)
 {
   scig_command_scilabgc (number, SavePs);
 }
-
+/*-----------------------------------------------------------------------------------*/
 void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode)
 {
 	#define FILEGRAPHMENUFRENCH "wgscilabF.mnu"
@@ -1230,3 +1075,4 @@ void UpdateFileGraphNameMenu(struct BCG *ScilabGC,int LangCode)
 	}
 	
 }
+/*-----------------------------------------------------------------------------------*/
