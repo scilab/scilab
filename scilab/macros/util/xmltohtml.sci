@@ -79,7 +79,7 @@ function xmltohtml(dirs,titles,xsl,step)
       xml = listfiles('*.xml');
       if xml <> [] then 
 	for k1=1:size(xml,'*')  // loop on .xml files 
-	  xmlfiletohtml(xml(k1))
+	  xmlfiletohtml(xml(k1),xsl)
 	end 
       end
       chdir('../')
