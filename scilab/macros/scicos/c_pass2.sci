@@ -57,7 +57,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   // heritage block !
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   
-  critev_p=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+  [critev,typ_c]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,typ_zx,outoin,outoinptr,clkptr)
   
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,dep_ut,typ_r,..
@@ -78,9 +78,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     
     if show_trace then disp('c_pass3011:'+string(timer())),end
     
-    [ok,done,bllst,connectmat,clkconnect,typ_l,typ_m,..
+    [ok,done,bllst,connectmat,clkconnect,typ_l,typ_m,typ_c,critev,..
      corinv]=paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,typ_l,..
-		     typ_m,dep_ut)
+		     typ_m,typ_c,critev,dep_ut)
     
     if show_trace then disp('c_pass300011:'+string(timer())),end
     if ~ok then
@@ -89,6 +89,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     end
   end
 
+  
   if show_trace then disp('c_pass31:'+string(timer())),end
 
   //extract various info from bllst
@@ -97,6 +98,13 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
    typ_z,typ_s,typ_x,typ_m,funs,funtyp,initexe,labels,..
    bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect);
   typ_z0=typ_z;
+  
+  for ii=find(typ_c)
+    for i=[clkptr(ii):clkptr(ii+1)-1]
+      critev(i)=0
+    end
+  end
+  
 
   if ~ok then
      message('Problem in port size');
@@ -126,12 +134,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   // Set execution scheduling tables 
   [ordptr,ordclk,cord,iord,oord,zord,..
-   critev,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk,execlk0,..
+   typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk,execlk0,..
 			execlk_cons,ordptr1,outoin,outoinptr,..
 			evoutoin,evoutoinptr,typ_z,typ_x,typ_s,..
 			bexe,boptr,blnk,blptr);
-  critev=zeros(critev);
-  critev(1:size(critev_p,1))=critev_p;
+//  critev=zeros(critev);
+//  critev(1:size(critev_p,1))=critev_p;
   
 
   if ~ok then 
@@ -200,7 +208,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   clearglobal need_newblk
 endfunction
 
-function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
+function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
       scheduler(inpptr,..
 		outptr,clkptr,execlk,execlk0,execlk_cons,ordptr1,outoin,outoinptr,..
 		evoutoin,evoutoinptr,typ_z,typ_x,typ_s,bexe,boptr,blnk,blptr);
@@ -272,8 +280,25 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
   vec(cord(:,1))=0;
   
   typp=zeros(typ_s);typp(typ_s)=1
-  [ext_cord,ok]=new_tree3(vec,dep_ut,typp);
+  
+  ext_cord1=cord;
+  j=1
+  while %t
+    ii=ext_cord1(j,1)
+    if typ_s(ii)
+      for i=[clkptr(ii):clkptr(ii+1)-1]
+	 ext_cord1=[ext_cord1;ordclk([ordptr1(i):ordptr1(i+1)-1],:)];
+      end
+    end
+    j=j+1
+    if j>size(ext_cord1,1) then break;end
+  end
 
+  ext_cord=ext_cord1(:,1);
+  //a supprimer
+  [ext_cord_old,ok]=new_tree3(vec,dep_ut,typp);
+  if or(sort(ext_cord)<>sort(ext_cord1(:,1))) then pause,end
+  //
   //pour mettre a zero les typ_z qui ne sont pas dans ext_cord
   //noter que typ_z contient les tailles des nzcross (peut etre >1)
   typ_z(ext_cord)=-typ_z(ext_cord)
@@ -319,14 +344,14 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
   //critev: vecteur indiquant si evenement est important pour tcrit
   //Donc les blocks indiques sont des blocks susceptibles de produire
   //des discontinuites quand l'evenement se produit
-  maX=max([cord(:,1);ordclk(:,1)])+1;
-  cordX=cord(:,1)*maX+cord(:,2);
+  maX=max([ext_cord1(:,1);ordclk(:,1)])+1;
+  cordX=ext_cord1(:,1)*maX+ext_cord1(:,2);
 
   // 1: important; 0:non
   n=clkptr(nblk+1)-1 //nb d'evenement
 		     
   //a priori tous les evenemets sont non-importants
-  critev=zeros(n,1)
+  //critev=zeros(n,1)
   for i=1:n
     fl=%f
     for hh=ordptr1(i):ordptr1(i+1)-1
@@ -347,7 +372,7 @@ function [ordptr2,ordclk,cord,iord,oord,zord,critev,typ_z,ok]=..
       end
 //      if fl then break;end
     end
-    if fl then critev(i,1)=1; end
+//    if fl then critev(i,1)=1; end
   end
 endfunction
 
@@ -383,9 +408,9 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
   ord(find(k==1))=[];
 endfunction
 
-function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,corinv]=..
+function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,typ_c,critev,corinv]=..
       paksazi(bllst,connectmat,clkconnect,corinv,clkptr,cliptr,..
-	      typ_l,typ_m,dep_ut)
+	      typ_l,typ_m,typ_c,critev,dep_ut)
   global need_newblk  
   okk=%t
   nblk=length(bllst)
@@ -427,6 +452,8 @@ function [okk,done,bllst,connectmat,clkconnect,typ_l,typ_m,corinv]=..
 	  disp('Synchro block cannot have more than 1 input')
 	end
 	for k=2:nn
+	  critev=[critev;critev(clkptr(lb):clkptr(lb+1)-1)]
+	  typ_c($+1)=typ_c(lb)
 	  clkconnect(indx(k),3)=nblk+1;
 	  bllst(nblk+1)=bllst(lb);
 	  corinv(nblk+1)=corinv(lb);
@@ -1358,10 +1385,10 @@ endfunction
 
 
 
-function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
+function [critev,typ_c]=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
 				 typ_l,typ_zx,outoin,outoinptr,clkptr)
 
- 
+ typ_c=typ_l<>typ_l;
   typ_r=typ_r|dep_ut(:,2)
   
   done1=%f
@@ -1390,11 +1417,11 @@ function critev=critical_events(connectmat,clkconnect,dep_ut,typ_r,..
     done=%f;
     while ~done
       done=%t;
-      for jj=find(typ_l);
+      for jj=find(typ_l&(~typ_c));
 	if ~or(jj==clkconnect(:,3)) then
 	  typ_r(clkconnect(find(jj==clkconnect(:,1)),3))=%t
 	  clkconnect(find(jj==clkconnect(:,1)),:)=[];
-	  typ_l(jj)=%f;
+	  typ_c(jj)=%t;
 	  done1=%f
 	  done=%f
 	end
