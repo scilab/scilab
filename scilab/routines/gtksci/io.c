@@ -95,7 +95,7 @@ void  sciprint(char *fmt,...)
 
 int  sciprint2(int iv,char *fmt,...) 
 {
-  int retval;
+  int retval,lstr;
   va_list ap;
   char s_buf[1024];
   va_start(ap,fmt);
@@ -103,7 +103,6 @@ int  sciprint2(int iv,char *fmt,...)
   (void ) vsprintf(s_buf, fmt, ap );
   lstr=strlen(s_buf);
   C2F(diary)(s_buf,&lstr,0L);
-
   retval= vfprintf(stdout, fmt, ap );
   va_end(ap);
   return retval;
