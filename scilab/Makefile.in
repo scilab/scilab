@@ -105,7 +105,8 @@ distclean::
 	conftest conftest.c so_locations
 
 # SCIBASE for scilab binaries generation
-SCIBASE = scilab-3.0
+SCIBASE = scilab
+SCIBASE = `cat Version.incl | grep 'SCIVERSION='  | sed -e 's/SCIVERSION=//g'` # comment all this line if you don't use cvsCompile
 
 PVMBINDISTFILES = \
 	$(SCIBASE)/pvm3/Readme \
