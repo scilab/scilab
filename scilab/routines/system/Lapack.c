@@ -226,6 +226,8 @@ Lapack_contents(x)
 	C2F(zlarz)();
 	C2F(dgeev)();
 	C2F(zgeev)();
+	C2F(dtrevc)();
+	C2F(ztrevc)();
 }
 }
 
