@@ -1,7 +1,6 @@
 typedef void (*voidg)();
 
 typedef struct {
-  double time;
   int nevprt;
   voidg funpt ;
   int type;
@@ -29,7 +28,6 @@ typedef struct {
   int ztyp;
   int *jroot;
   char *label;
-  int mode;
   void **work;
 } scicos_block;
 
@@ -37,3 +35,7 @@ typedef struct {
 void do_cold_restart();
 int get_phase_simulation();
 int* get_pointer_xproperty();
+double get_scicos_time();
+int get_mode();
+int get_mode();
+void set_mode(int);

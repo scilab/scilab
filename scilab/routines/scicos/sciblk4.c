@@ -44,8 +44,6 @@ integer flag;
   
   str2sci(str,1,30);
 
-  C2F(dtosci)(&Blocks[0].time,&one,&one);
-  if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(&Blocks[0].nevprt,&one,&one);
   if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(&Blocks[0].funpt,&zero,&one);
