@@ -1559,8 +1559,8 @@ extern int trans3d(sciPointObj *pobj,integer n,integer *xm,integer *ym,double *x
 extern BOOL Ishidden(sciPointObj *pobj);
 extern BOOL IsDownAxes(sciPointObj *pobj);
 extern void Plo2dTo3d(integer type, integer *n1, integer *n2, double *x, double *y, double *z, double *x1, double *y1, double *z1);
-extern void update_3dbounds(sciPointObj *pobj);
-extern void  sci_update_frame_bounds();
+extern BOOL sci_update_frame_bounds_3d(sciPointObj *pobj); /* rename update_3dbounds into sci_update_frame_bounds_3d */
+extern BOOL sci_update_frame_bounds_2d(sciPointObj *pobj);
 extern double graphic_search(double *id, double *tab1, double *tab2, integer *n);
 extern void update_graduation(sciPointObj *pobj);
 /***/

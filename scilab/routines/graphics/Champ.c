@@ -18,9 +18,9 @@ extern void Champ2DRealToPixel __PARAMS((integer *xm,integer *ym,integer *zm,int
 extern void initsubwin();
 /* extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect); */
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
-extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -53,7 +53,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
   integer *style;
   integer i;
   double drect[6];
-	 
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
+
   /* get default dash for arrows **/
   integer verbose=0,narg,xz[10],uc;
 
@@ -123,15 +125,23 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
 	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
 	}
-	    
-	if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
-
-      } 
+	
+	if (strflag[1] != '0')
+	  bounds_changed = update_specification_bounds(psubwin, drect,2);
+      }
+      
+      if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+      
       pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
-      strflag2axes_properties(psubwin, strflag);
+      
+      axes_properties_changed = strflag2axes_properties(psubwin, strflag);
 
-      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /* ???? */
-
+      if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+	sciDrawObj(sciGetCurrentFigure ());
+      /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
+      /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
+      /* because of the tics graduation that are outside the axes refresh area */
+      
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = 0.5;
 
@@ -145,7 +155,8 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
 				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
-      sciDrawObj(sciGetCurrentFigure ()); /* Adding F.Leray 13.05.04 to insure the drawing */
+ /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
+      sciDrawObj(sciGetCurrentObj ()); 
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
       pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;

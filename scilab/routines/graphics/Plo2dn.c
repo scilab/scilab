@@ -21,9 +21,9 @@ extern void initsubwin();
 void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);
 extern double  sciFindLogMinSPos(double *x, int n);
 void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 int re_index_brect(double * brect, double * drect);
-extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 extern char ** FreeUserLabels(char ** u_xlabels, int *u_nxgrads);
 extern double * FreeUserGrads(double * u_xgrads);
 extern double * AllocUserGrads(double * u_xgrads, int nb);
@@ -91,7 +91,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   double drect[6];
   char dataflag/*,frameflag*/;
   sciSubWindow * ppsubwin = NULL;
-
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
 
   psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
   ppsubwin = pSUBWIN_FEATURE(psubwin);
@@ -171,13 +172,16 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
       
     }
-    if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
-
+    if (strflag[1] != '0')
+      bounds_changed = update_specification_bounds(psubwin, drect,2);
   } 
-
+  
+  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+  
   pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
-  strflag2axes_properties(psubwin, strflag);
-
+  
+  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+  
   with_leg= (strflag[0] == '1');
   pSUBWIN_FEATURE (psubwin)->with_leg = with_leg;
 
@@ -198,9 +202,13 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
   
-  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));/* ???? */ 
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+    sciDrawObj(sciGetCurrentFigure ());
+  /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
+  /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
+  /* because of the tics graduation that are outside the axes refresh area */
   
-  /*---- Drawing the curves and the legengs ----*/
+  /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
     frame_clip_on ();
     if ((hdltab = malloc ((*n1+2) * sizeof (long))) == NULL) {
@@ -251,11 +259,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct agregation ----*/
     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt)); 
     FREE(hdltab);
-    if (ok==1) Merge3d(psubwin);
-    sciDrawObj(sciGetCurrentFigure ()); /*A.Djalel 3D axes*/
+    if (ok==1) {
+      Merge3d(psubwin);
+      /*   sciDrawObj(sciGetCurrentFigure ()); /\*A.Djalel 3D axes*\/ */
+      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); /*A.Djalel 3D axes*/
+    }
     return(0);
   }
-  sciDrawObj(sciGetCurrentFigure ());
+  /*  sciDrawObj(sciGetCurrentFigure ());*/
   return(0);
 }
 
@@ -394,19 +405,30 @@ void compute_data_bounds(cflag,dataflag,x,y,n1,n2,drect)
   if ( drect[0] == LARGEST_REAL ) { drect[0] = 0.0; drect[1] = 10.0 ;} 
 
 }
-void update_specification_bounds(psubwin, rect,flag)
+BOOL update_specification_bounds(psubwin, rect,flag)
      sciPointObj  *psubwin;
      double *rect;
      int flag;
 {
-    pSUBWIN_FEATURE (psubwin)->SRect[0]=rect[0];
-    pSUBWIN_FEATURE (psubwin)->SRect[1]=rect[1];
-    pSUBWIN_FEATURE (psubwin)->SRect[2]=rect[2];
-    pSUBWIN_FEATURE (psubwin)->SRect[3]=rect[3];
-    if (flag==3) {
-      pSUBWIN_FEATURE (psubwin)->SRect[4]=rect[4];
-      pSUBWIN_FEATURE (psubwin)->SRect[5]=rect[5];
-    }
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+  BOOL haschanged = FALSE;
+  
+  ppsubwin->SRect[0] = rect[0];
+  ppsubwin->SRect[1] = rect[1];
+  ppsubwin->SRect[2] = rect[2];
+  ppsubwin->SRect[3] = rect[3];
+  if (flag==3) {
+    ppsubwin->SRect[4] = rect[4];
+    ppsubwin->SRect[5] = rect[5];
+  }
+  
+  if(flag != 3)
+    haschanged = sci_update_frame_bounds_2d(psubwin);
+  else
+    haschanged = sci_update_frame_bounds_3d(psubwin);
+  
+  
+  return haschanged;
 }
 
 
@@ -427,9 +449,10 @@ int re_index_brect(double * brect, double * drect)
 /* F.Leray 07.05.04 */
 /* Dispatch info contained in strflag to all the flag available in
    sciSubwin object (tight_limits, isoview, isaxes...) */
-void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
+BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 {
-      
+  BOOL haschanged = FALSE;
+  
   /* F.Leray 07.05.04 */
   /* strflag[1] Isoview & tight_limits flags management*/
   switch (strflag[1])  {
@@ -437,15 +460,24 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     /* no changes */
     break;
   case '1' : case '2' : case '7' : case '8' :
-    pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;
+    if(pSUBWIN_FEATURE (psubwin)->tight_limits != TRUE){
+      pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;
+      haschanged = TRUE;
+    }
     /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE; */
     break;
   case '3' : case '4' :
     /*pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;*/
-    pSUBWIN_FEATURE (psubwin)->isoview      = TRUE;
+    if(pSUBWIN_FEATURE (psubwin)->isoview != TRUE){
+      pSUBWIN_FEATURE (psubwin)->isoview = TRUE;
+      haschanged = TRUE;
+    }
     break;
   case '5' : case '6' :
-    pSUBWIN_FEATURE (psubwin)->tight_limits = FALSE; /* pretty axes */
+    if(pSUBWIN_FEATURE (psubwin)->tight_limits != FALSE){
+      pSUBWIN_FEATURE (psubwin)->tight_limits = FALSE; /* pretty axes */
+      haschanged = TRUE;
+    }
     /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE;*/
     break;
   }
@@ -454,56 +486,92 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
   /* strflag[2] */
   switch (strflag[2])  {
   case '0': 
-    if( pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE){
+    if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE){
       /*       pSUBWIN_FEATURE (psubwin)->isaxes = FALSE; */
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;
       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = FALSE; /* also trigger z axis */
+      haschanged = TRUE;
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
     break;
   case '1' : 
  /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    pSUBWIN_FEATURE (psubwin)->axes.ydir ='l';
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'l'){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      pSUBWIN_FEATURE (psubwin)->axes.ydir ='l';
+      haschanged = TRUE;
+    }
     break;
   case '2' : 
   /*   pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    /* Case not implemented yet : the plot is surrounded by a box without tics. */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      /* Case not implemented yet : the plot is surrounded by a box without tics. */
+      haschanged = TRUE;
+    }
     break;
   case '3' : 
- /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    pSUBWIN_FEATURE (psubwin)->axes.ydir ='r';
+    /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'r'){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      pSUBWIN_FEATURE (psubwin)->axes.ydir ='r';
+      haschanged = TRUE;
+    }
     break;
   case '4' :
-/*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
+    /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
+      haschanged = TRUE;
+    }
     break;
   case '5' :
  /*    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-    pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
-    pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.xdir != 'c' ||
+       pSUBWIN_FEATURE (psubwin)->axes.ydir != 'c'){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
+      pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
+      haschanged = TRUE;
+    }
     break;
   case '9' :
     /*     pSUBWIN_FEATURE (psubwin)->isaxes = TRUE; */
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
-    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] != TRUE ||
+       pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] != TRUE){
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+      pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      haschanged = TRUE;
+    }
   }
+  return haschanged;
 }
 
 

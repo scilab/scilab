@@ -11668,7 +11668,7 @@ sciDrawObj (sciPointObj * pobj)
 	 C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	 
-	 sci_update_frame_bounds();
+	 sci_update_frame_bounds_2d(pobj);
 	 
 	 if (isaxes) {
 	   char STRFLAG[4];
@@ -15671,7 +15671,7 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     {  
-      update_3dbounds(pobj);
+      sci_update_frame_bounds_3d(pobj);
       /*update_graduation(pobj);*/
 
  
@@ -19123,28 +19123,38 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
 /*** F.Leray 02.04.04 */
 /* FUNCTION FOR 2D UPDATE ONLY !!!!! <=> beginning of axis_3ddraw (in 2d HERE of course! ) */
 /* Copy on update_frame_bounds */
-void  sci_update_frame_bounds()
+BOOL sci_update_frame_bounds_2d(sciPointObj *pobj)
 {
   double xmax, xmin, ymin, ymax;
   double hx,hy,hx1,hy1;
   int i;
-
-  sciPointObj *subwindowtmp; 
-  sciSubWindow * ppsubwin ;
+  
+  sciSubWindow * ppsubwin =  pSUBWIN_FEATURE (pobj);
   double FRect[4],WRect[4],ARect[4]; 
-  char logscale[2];                  
+  char logscale[2];
+  
+  /* Temp variables only used when called from update_specification_bounds */
+  /* to know if we have to redraw all the figure */
+  double ExistingFRect[4]; /* the Existing FRect at start to be compared at the end of this routine */
+  /* in order to determine wheter or not the bounds have changed... */
+  int nbsubtics[2];
+  int nbgrads[2];
+  /* End of Temp variables */
+  
+  for(i=0;i<4;i++) ExistingFRect[i] =  ppsubwin->FRect[i]; /* store old initial bounds*/
 
-  subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure());
-  ppsubwin =  pSUBWIN_FEATURE (subwindowtmp); 
-
+  for(i=0;i<2;i++) nbsubtics[i] = ppsubwin->axes.nbsubtics[i];
+  nbgrads[0] = ppsubwin->axes.nxgrads;
+  nbgrads[1] = ppsubwin->axes.nygrads;
+  
   /* nbtics on z put to 0 */
-/*   ppsubwin->axes.nzgrads = 0; */
-
+  /*   ppsubwin->axes.nzgrads = 0; */
+  
 
   /*****************************************************************
    * get initial bounds
    *****************************************************************/
-  if(sciGetZooming(subwindowtmp) == TRUE) {
+  if(sciGetZooming(pobj) == TRUE) {
     xmin= ppsubwin->ZRect[0]; 
     ymin= ppsubwin->ZRect[1]; 
     xmax= ppsubwin->ZRect[2];
@@ -19202,20 +19212,20 @@ void  sci_update_frame_bounds()
  
    if ( ppsubwin->logflags[0]=='n') { /* x-axis */
      TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
-     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL,ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
    }
    else{ /* log. case */
      GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
-     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+     ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
    }
    
    if ( ppsubwin->logflags[1]=='n') { /* y-axis */
      TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
-     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
    }
    else{ /* log. case */
      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
-     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
    }
    
    if(ppsubwin->tight_limits == FALSE )
@@ -19256,22 +19266,22 @@ void  sci_update_frame_bounds()
      
     if ( ppsubwin->logflags[0]=='n') { /* x-axis */
       TheTicks(&xmin, &xmax, &(ppsubwin->axes.xgrads[0]), &ppsubwin->axes.nxgrads);
-      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'n',NULL, ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'n',NULL, ppsubwin->axes.nbsubtics[0]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
     }
     else{ /* log. case */
       GradLog(xmin,xmax,ppsubwin->axes.xgrads,&ppsubwin->axes.nxgrads);
-      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
+      ppsubwin->axes.nbsubtics[0] = ComputeNbSubTics(pobj,ppsubwin->axes.nxgrads,'l',ppsubwin->axes.xgrads,0);
     }
 
  
 
    if ( ppsubwin->logflags[1]=='n') { /* y-axis */
      TheTicks(&ymin, &ymax, &(ppsubwin->axes.ygrads[0]), &ppsubwin->axes.nygrads);
-     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'n',NULL, ppsubwin->axes.nbsubtics[1]); /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
    }
    else{ /* log. case */
      GradLog(ymin,ymax,ppsubwin->axes.ygrads,&ppsubwin->axes.nygrads);
-     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(subwindowtmp,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
+     ppsubwin->axes.nbsubtics[1] = ComputeNbSubTics(pobj,ppsubwin->axes.nygrads,'l',ppsubwin->axes.ygrads,0);
    }
    
    
@@ -19301,19 +19311,36 @@ void  sci_update_frame_bounds()
    ppsubwin->axes.xlim[3] = ppsubwin->axes.nxgrads;
    ppsubwin->axes.ylim[3] = ppsubwin->axes.nygrads;
    
- /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/  /\* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 *\/ */
-/*    ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
+   /*   ppsubwin->axes.reverse[0] = FALSE; /\*TRUE;*\/  /\* TEST en DUR F.Leray ICIIIIIIIIIIIII 12.10.04 *\/ */
+   /*    ppsubwin->axes.reverse[1] = FALSE; /\*TRUE;*\/  */
    
-
+   
    set_scale("tftftf",NULL,ppsubwin->FRect,NULL,ppsubwin->logflags,NULL); 
-
+   
+   
+   for(i=0;i<4;i++)
+     if(ppsubwin->FRect[i] != ExistingFRect[i]){
+       return TRUE;
+       break;
+     } 
+   
+   for(i=0;i<2;i++) 
+     if(nbsubtics[i] != ppsubwin->axes.nbsubtics[i]){
+       return TRUE;
+       break;
+     }
+   
+   if(nbgrads[0] != ppsubwin->axes.nxgrads) return TRUE;
+   if(nbgrads[1] != ppsubwin->axes.nygrads) return TRUE;
+   
+   return FALSE;
 }
 
-/**update_3dbounds
+/**update_3dbounds -> renammed sci_update_frame_bounds_3d
  * @author Djalel Abdemouche 10/2003
  * Should be in Plo2dEch.c file
  */
-void update_3dbounds(sciPointObj *pobj)
+BOOL sci_update_frame_bounds_3d(sciPointObj *pobj)
 {
   double xmin,xmax,ymin,ymax,zmin,zmax; 
   int i;
@@ -19321,6 +19348,21 @@ void update_3dbounds(sciPointObj *pobj)
 /*   integer min,max,puiss,deux=2,dix=10,n1,n2; */
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); 
 
+  /* Temp variables only used when called from update_specification_bounds */
+  /* to know if we have to redraw all the figure */
+  double ExistingFRect[6]; /* the Existing FRect at start to be compared at the end of this routine */
+  /* in order to determine wheter or not the bounds have changed... */
+  int nbsubtics[3];
+  int nbgrads[3];
+  /* End of Temp variables */
+
+  for(i=0;i<6;i++) ExistingFRect[i] =  ppsubwin->FRect[i]; /* store old initial bounds*/
+  
+  for(i=0;i<3;i++) nbsubtics[i] = ppsubwin->axes.nbsubtics[i];
+  nbgrads[0] = ppsubwin->axes.nxgrads;
+  nbgrads[1] = ppsubwin->axes.nygrads;
+  nbgrads[2] = ppsubwin->axes.nzgrads;
+  
   /*****************************************************************
    * get initial bounds
    *****************************************************************/
@@ -19466,7 +19508,24 @@ void update_3dbounds(sciPointObj *pobj)
 /*   ppsubwin->axes.reverse[2] = FALSE; /\*TRUE;*\/  */
      
   wininfo("alpha=%.1f,theta=%.1f",ppsubwin->alpha,ppsubwin->theta); 
-      
+    
+  for(i=0;i<6;i++)
+    if(ppsubwin->FRect[i] != ExistingFRect[i]){
+      return TRUE;
+      break;
+    } 
+    
+  for(i=0;i<3;i++) 
+    if(nbsubtics[i] != ppsubwin->axes.nbsubtics[i]){
+      return TRUE;
+      break;
+    }
+  
+  if(nbgrads[0] != ppsubwin->axes.nxgrads) return TRUE;
+  if(nbgrads[1] != ppsubwin->axes.nygrads) return TRUE;
+  if(nbgrads[2] != ppsubwin->axes.nzgrads) return TRUE;
+  
+  return FALSE;  
 }
 
 
