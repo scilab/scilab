@@ -4,6 +4,7 @@
 # for examples: replace the line ``include ../Make.lib'' by 
 # ``include ../../config/Makeso.incl in file 
 # routines/calelm/Makefile to produce a calelm.so shared libary 
+# Copyright Enpc (Jean-Philippe Chancelier)
 #-----------------------------------------------------------------
 
 top_builddir = $(SCIDIR)
@@ -43,7 +44,7 @@ LIBRARY_NAME = $(LIBRARY:.a=)
 all:: $(LIBRARY_NAME).la 
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .F .f .F90 .f90
+.SUFFIXES: .c .lo .o .F .f .F90 .f90 .cc 
 
 $(LIBRARY_NAME).la : $(OBJECTS) 
 	@echo linking 
@@ -72,6 +73,14 @@ $(LIBRARY_NAME).dia	: $(LIBRARY_NAME).la $(LIBRARY_NAME).tst
 	@$(COMPILE)  -c $<
 
 .c.lo :
+	@echo "Compiling $<"
+	@$(LTCOMPILE) -c $<
+
+.cc.o:
+	@echo "compiling $<"
+	@$(COMPILE)  -c $<
+
+.cc.lo :
 	@echo "Compiling $<"
 	@$(LTCOMPILE) -c $<
 
