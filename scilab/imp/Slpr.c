@@ -56,9 +56,7 @@ char * UsageStr[]={
 
 char entete[160];
 
-int main(argc, argv)
-     int argc;
-     char *argv[];
+int main(int argc, char **argv)
 {
   char *env;
   double x,y,w,h;
@@ -121,9 +119,7 @@ int main(argc, argv)
  file et en ecrivant sur stdout
 -------------------------------------------------------*/
 
-static void Sed(file,strin1,strout1,strin2,strout2,strin3,strout3)
-     char file[],strin1[],strout1[],strout3[];
-     char strin2[],strout2[],strin3[];
+static void Sed(char *file, char *strin1, char *strout1, char *strin2, char *strout2, char *strin3, char *strout3)
 {
   FILE *fd;
 
@@ -213,9 +209,7 @@ static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
   dans (*w,*h)
 -----------------------------------------------------*/
 
-static void ComputeSize(num,i,x,y,w,h)
-     int num,i;
-     double *x,*y,*w,*h;
+static void ComputeSize(int num, int i, double *x, double *y, double *w, double *h)
 {
   switch (num)
     {

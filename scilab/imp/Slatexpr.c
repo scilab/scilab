@@ -38,9 +38,7 @@ char file1[256],file2[256];
 extern void SciEnv(void);
 #endif 
 
-int main(argc, argv)
-     int argc;
-     char *argv[];
+int main(int argc, char **argv)
 {
   double xs=1.0,ys=1.0;
   char orientation='p';
@@ -111,8 +109,7 @@ void sciprint(va_alist) va_dcl
 #endif 
 
 
-static  void dos2win32(filename,filename1)
-char *filename,*filename1;
+static  void dos2win32(char *filename, char *filename1)
 {
 #ifdef CVT_PATH_BEG
   if ( filename[1] == ':' ) 
@@ -141,9 +138,7 @@ char *filename,*filename1;
 
 static char entete[256],base[54];
 
-int ScilabPsToTeX(orientation,filein,fileout,xs,ys)
-char orientation,*filein,*fileout;
-double xs,ys;
+int ScilabPsToTeX(char orientation, char *filein, char *fileout, double xs, double ys)
 {
   double wide,high,widecm,highcm,hscale,vscale;
   int flag = 0,rep;
@@ -290,8 +285,7 @@ double xs,ys;
  * and name = "ffff"
  ****************************************/
 
-static void FileNameChange(filein,fileout,name,suf)
-     char *filein,*fileout,*name,*suf;
+static void FileNameChange(char *filein, char *fileout, char *name, char *suf)
 {
   char *p=filein,*p1;
   p1=strchr(p,'/');
@@ -324,11 +318,7 @@ static void FileNameChange(filein,fileout,name,suf)
  * copies file to fileo performing some substitutions 
  **************************************************/
 
-static int Sed(flag,file,fileo,strin1,strout1,strin2,strout2,strin3,strout3)
-     char file[],strin1[],strout1[],strout3[];
-     char strin2[],strout2[],strin3[];
-     FILE *fileo;
-     int flag;
+static int Sed(int flag, char *file, FILE *fileo, char *strin1, char *strout1, char *strin2, char *strout2, char *strin3, char *strout3)
 {
   FILE *fd;
 

@@ -33,9 +33,7 @@ char * UsageStr[]={
 
 char entete[160];
 
-void WriteTeX(filename,wide,height)
-     double wide,height;
-     char filename[];
+void WriteTeX(char *filename, double wide, double height)
 {
   char filename1[255];
   FILE *fdo;
@@ -88,10 +86,7 @@ void WriteTeX(filename,wide,height)
  file et en ecrivant sur fdo
 -------------------------------------------------------*/
 
-void Sed(file,strin1,strout1,strin2,strout2,strin3,strout3,fdo)
-     FILE *fdo;
-     char file[],strin1[],strout1[],strout3[];
-     char strin2[],strout2[],strin3[];
+void Sed(char *file, char *strin1, char *strout1, char *strin2, char *strout2, char *strin3, char *strout3, FILE *fdo)
 {
   FILE *fd;
 
@@ -182,9 +177,7 @@ static void readOneLine(char *buff,int *stop,FILE *fd,int *buflen)
   (*wt et *ht sont la hauteur totale et la argeur totale)
 -----------------------------------------------------*/
 
-void ComputeSize(num,i,x,y,w,h,wt,ht)
-     int num,i;
-     double *x,*y,*w,*h,*wt,*ht;
+void ComputeSize(int num, int i, double *x, double *y, double *w, double *h, double *wt, double *ht)
 {
   switch (num)
     {
@@ -263,10 +256,7 @@ void ComputeSize(num,i,x,y,w,h,wt,ht)
 
 
 
-int main(argc, argv)
-     int argc;
-     char *argv[];
-
+int main(int argc, char **argv)
 {
   char *env;
   char filename1[255];
