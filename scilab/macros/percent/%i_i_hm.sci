@@ -1,13 +1,12 @@
-function M=%hm_i_hm(varargin)
+function M=%i_i_hm(varargin)
 // Copyright INRIA
-//insertion of a matrix in an hypermatrix
-  [lhs,rhs]=argn(0)
-  M=varargin(rhs)
+//insertion of an integer matrix in an hypermatrix
+  rhs=argn(2)
+  M=varargin(rhs)// destination matrix
   N=varargin(rhs-1)//inserted matrix
-  dims=M.dims(:);
-
-  v=M.entries;v=v(:)
-
+  
+  dims=M('dims')(:);
+  v=M('entries');v=v(:)
 
   nd=size(dims,'*')
   if rhs-2>nd then dims(nd+1:rhs-2)=1;end  
@@ -15,8 +14,8 @@ function M=%hm_i_hm(varargin)
   //convert N-dimensionnal indexes to 1-D
   [ndims,I]=convertindex(dims,varargin(1:$-2))
 
+  //extend resulting matrix if necessary
   if or(ndims>dims) then
-    //extend the destination matrix
     I1=0
     for k=size(ndims,'*'):-1:1
       ik1=(1:dims(k))'
@@ -32,24 +31,16 @@ function M=%hm_i_hm(varargin)
 	end
       end
     end
-    select type(v)
-      case 1
-      v1=zeros(prod(ndims),1)
-      case 2 then
-      v1=zeros(prod(ndims),1)
-      case 4 then
-      v1=(zeros(prod(ndims),1)==1)
-      case 8 then
-      v1=iconvert(zeros(prod(ndims),1),inttype(v))
-      case 10 then
-      v1=emptystr(prod(ndims),1)
-    end
+    v1=iconvert(zeros(prod(ndims),1),inttype(N))
     v1(I1+1)=v;v=v1
   end
 
-  v(I+1)=N.entries(:)
+  //insert the elements
+  v(I+1)=N(:)
 
+  //reduce the dimensionality if possible
   while  ndims($)==1 then ndims($)=[],end
+
   select size(ndims,'*')
     case 0
     M=v
