@@ -837,6 +837,16 @@ int C2F(scicos)
 		    &Atol, &itask, &istate, &iopt, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, &jdum, &jt, 
 		    C2F(grblk), &ng, jroot);
+	if (*ierr > 5) {
+	      /*     !           singularity in block */
+	      free(rhot);
+	      free(ihot);
+	      free(jroot);
+	      free(mask);
+	      free(zcros);
+	      free(W);
+	      return;
+	}
 	phase=1;
 	if (C2F(cosdebug).cosd >= 3) {
 	  sciprint("****lsodar reached: %f",*told);
@@ -858,6 +868,16 @@ int C2F(scicos)
 			rtol, &Atol, &itask, &istate, &
 			c__1, &rhot[1], &nrwp, &ihot[1], &
 			niwp, &jdum, &jt, C2F(grblk), &ng, jroot);
+	    if (*ierr > 5) {
+	      /*     !           singularity in block */
+	      free(rhot);
+	      free(ihot);
+	      free(jroot);
+	      free(mask);
+	      free(zcros);
+	      free(W);
+	      return;
+	    }
 	    phase=1;
 	    rhot[5] = (float)0.;
 	    hot = 0;
@@ -1301,6 +1321,16 @@ int C2F(scicos)
 		    info, &rtol, &Atol, &istate, &rhot[1], &
 		    nrwp, &ihot[1], &niwp, rpardummy, ipardummy
 		    , &jdum, rpardummy, C2F(grblkdassl), &ng, jroot);
+	if (*ierr > 5) {
+	  /*     !           singularity in block */
+	  free(rhot);
+	  free(ihot);
+	  free(jroot);
+	  free(mask);
+	  free(zcros);
+	  free(W);
+	  return;
+	}
 	phase=1;
 	if (C2F(cosdebug).cosd >= 3) {
 	  sciprint("****daskr reached: %f\r\n",*told);
@@ -1324,6 +1354,16 @@ int C2F(scicos)
 			istate, &rhot[1], &nrwp, &ihot[1], &
 			niwp, rpardummy, ipardummy, &jdum, rpardummy
 			, C2F(grblkdassl), &ng, jroot);
+	    if (*ierr > 5) {
+	      /*     !           singularity in block */
+	      free(rhot);
+	      free(ihot);
+	      free(jroot);
+	      free(mask);
+	      free(zcros);
+	      free(W);
+	      return;
+	    }
 	    phase=1;
 	    hot = 0;
 	    if (istate <= 0) {
@@ -2484,7 +2524,7 @@ int C2F(simblkdassl)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
   C2F(ierode).iero = 0;
   odoit(residual, xc, xcdot,t);
   C2F(ierode).iero = *ierr;
-  if(C2F(ierode).iero != 0) *ires=-2;
+  if(C2F(ierode).iero != 0) *ires=-1;
   return 0;
   /*printf("after t xc xcdot %f %f %f\n", *t, *xc,*xcdot);
     printf("residual %f \n", *residual);  */  
