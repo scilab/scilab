@@ -15405,7 +15405,8 @@ int version_flag()
 
   C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L); /* ajout cast ???*/
   CurrentScilabXgc=(struct BCG *)XGC;
-  if (CurrentScilabXgc==(struct BCG *)NULL) return 1;
+ /*  if (CurrentScilabXgc==(struct BCG *)NULL) return 1; */
+  if (CurrentScilabXgc==(struct BCG *)NULL) return 0; /* New Graphic mode returned by default F.Leray 11.06.04 */
 
   return (CurrentScilabXgc->graphicsversion == 0) ? 1 : 0; 
 }
