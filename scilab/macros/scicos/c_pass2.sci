@@ -286,8 +286,14 @@ function [ordptr2,ordclk,cord,iord,oord,zord,typ_z,ok]=..
     j=j+1
     if j>size(ext_cord1,1) then break;end
   end
-
-  ext_cord=unique(ext_cord1(:,1)');
+  
+  // code to replace faulty unique which reorders
+  yy=ext_cord1(:,1)'
+  [xx,kkn]=unique(yy);
+  ext_cord=yy(-sort(-kkn))
+  
+ 
+  //ext_cord=unique(ext_cord1(:,1)');
   
   for i=ext_cord
     if typ_s(i) then typ_z(i)=clkptr(i+1)-clkptr(i)-1;end
