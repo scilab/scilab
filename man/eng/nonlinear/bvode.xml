@@ -93,7 +93,7 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>ipar(4)  </PARAM_NAME>
+              <PARAM_NAME>ipar(4)</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>= number of solution and derivative tolerances.  ( = ntol ) we require</SP>
                 <P>
@@ -102,21 +102,35 @@
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>ipar(5)  </PARAM_NAME>
+              <PARAM_NAME>ipar(5)</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= dimension of <VERB>fspace</VERB> ( = ndimf ) a real work array. its size provides a constraint on nmax. choose ipar(5) according to the formula</SP>
+                <SP>= dimension of <VERB>fspace</VERB> ( = ndimf ) a
+                real work array. its size provides a constraint on
+                nmax. choose ipar(5) according to the formula:
+                <P> <VERB>ipar(5)>=nmax*nsizef</VERB> </P>
+                where
+                <P> <VERB>nsizef=4+3*mstar+(5+kd)*kdm+(2*mstar-nrec)*2*mstar</VERB>.</P>
+                </SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>ipar(6)  </PARAM_NAME>
+              <PARAM_NAME>ipar(6)</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>= dimension of ispace ( = ndimi )an integer work array. its size
-  provides a constraint on nmax, the maximum number of
-  subintervals. choose <VERB>ipar(6)</VERB> according to the formula</SP>
+                <SP>= dimension of ispace ( = ndimi )an integer work
+                 array. its size provides a constraint on nmax, the
+                 maximum number of subintervals. choose
+                 <VERB>ipar(6)</VERB> according to the formula:
+                 <P> <VERB>ipar(6)>=nmax*nsizei</VERB></P>
+                  where
+                 <VERB>nsizei=3 + kdm</VERB> with
+                 <VERB>kdm=kd+mstar</VERB> ; <VERB>kd=k*ncomp </VERB>;
+                 <VERB>nrec</VERB>=number of right end boundary
+                 conditions.
+               </SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>ipar(7)  </PARAM_NAME>
+              <PARAM_NAME>ipar(7) </PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>output control ( = iprint )</SP>
                 <PARAM_INDENT>
@@ -258,16 +272,30 @@
       <PARAM_ITEM>
         <PARAM_NAME>ltol</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>an array of dimension <VERB>ipar(4)</VERB>. <VERB>ltol(j) =
-  l</VERB>  specifies that the j-th tolerance in  tol  controls the
-  error in the l-th component of <VERB>z(u)</VERB>.   also require
-  that</SP>
+          <SP>an array of dimension <VERB>ipar(4)</VERB>.
+          <VERB>ltol(j) = l</VERB> specifies that the j-th tolerance
+          in tol controls the error in the l-th component of
+          <VERB>z(u)</VERB>.  also require that:
+          <P>
+          <VERB>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
+          &lt;= mstar</VERB> 
+          </P>
+          </SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
         <PARAM_NAME>tol</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>an array of dimension <VERB>ipar(4)</VERB>. <VERB>tol(j)</VERB> is the error tolerance on the <VERB>ltol(j)</VERB> -th component of <VERB>z(u)</VERB>. thus, the code attempts to satisfy for j=1,...,ntol  on each subinterval</SP>
+          <SP>an array of dimension
+          <VERB>ipar(4)</VERB>. <VERB>tol(j)</VERB> is the error
+          tolerance on the <VERB>ltol(j)</VERB> -th component of
+          <VERB>z(u)</VERB>. thus, the code attempts to satisfy for
+          <VERB>j=1:ntol</VERB>  on each subinterval
+<VERBATIM>
+        abs(z(v)-z(u))       &lt;=     tol(j)*abs(z(u))     +tol(j)
+                     ltol(j)                       ltol(j)
+</VERBATIM>
+          </SP>
           <P>
     if <VERB>v(x)</VERB> is the approximate solution vector.
   </P>
@@ -293,9 +321,18 @@
               <PARAM_NAME>fsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>name of subroutine for evaluating</SP>
+<VERBATIM>
+                                                t
+                f(x,z(u(x))) =    (f ,...,f     )  
+                                    1      ncomp
+</VERBATIM>
                 <P>
     at a point x in <VERB>(aleft,aright)</VERB>. it should have the heading  <VERB>[f]=fsub(x,z)</VERB>  where <VERB>f</VERB> is the vector containing the value of <VERB>fi(x,z(u))</VERB> in the i-th component and 
   </P>
+ <VERBATIM>
+                                                    t
+                         z(u(x))=(z(1),...,z(mstar))
+</VERBATIM>
                 <P>
     is defined as above under  purpose .
   </P>
@@ -304,21 +341,38 @@
             <PARAM_ITEM>
               <PARAM_NAME>dfsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>name of subroutine for evaluating the Jacobian of <VERB>f(x,z(u))</VERB> at a point x.  it should have the heading <VERB>[df]=dfsub (x , z )</VERB> where <VERB>z(u(x))</VERB> is defined as for <VERB>fsub</VERB> and the (<VERB>ncomp</VERB>) by (<VERB>mstar</VERB>) array df should be filled by the partial derivatives of  f, viz, for a particular call one calculates</SP>
+                <SP>name of subroutine for evaluating the Jacobian of
+                <VERB>f(x,z(u))</VERB> at a point x.  it should have
+                the heading <VERB>[df]=dfsub (x , z )</VERB> where
+                <VERB>z(u(x))</VERB> is defined as for
+                <VERB>fsub</VERB> and the (<VERB>ncomp</VERB>) by
+                (<VERB>mstar</VERB>) array df should be filled by the
+                partial derivatives of  f, viz, for a particular call
+                one calculates
+
+ <VERBATIM>
+                    df(i,j) = dfi / dzj, i=1,...,ncomp
+                                         j=1,...,mstar.
+</VERBATIM>
+</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
               <PARAM_NAME>gsub</PARAM_NAME>
               <PARAM_DESCRIPTION>
-                <SP>name of subroutine for evaluating the i-th component of</SP>
-                <P>
-    at a point <VERB>x = zeta(i)</VERB>  where 
-  </P>
-                <P>
+                <SP>name of subroutine for evaluating the i-th
+                component of
+                 <VERB>g(x,z(u(x))) = g (zeta(i),z(u(zeta(i)))) </VERB>
+                 at a point <VERB>x = zeta(i)</VERB> where
                   <VERB>1&lt;=i&lt;=mstar.</VERB>
-                </P>
+                </SP>
                 <P>
-    it should have the heading<VERB>[g]=gsub (i , z)</VERB> where <VERB>z(u)</VERB> is as for fsub, and i and g=gi  are as above. note that in contrast to f in  fsub , here only one value per call is returned in g.
+                it should have the heading<VERB>[g]=gsub (i ,
+                 z)</VERB> where <VERB>z(u)</VERB> is as for
+                 <VERB>fsub</VERB>, and <VERB>i</VERB> and
+                 <VERB>g=gi</VERB> are as above. Note that in contrast
+                 to <VERB>f</VERB> in <VERB>fsub</VERB> , here only one value per
+                 call is returned in <VERB>g</VERB>.
   </P>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
@@ -356,10 +410,51 @@
     <P>
     this package solves a multi-point boundary value
     problem for a mixed order system of ode-s given by</P>
-    <P>
-    the boundary points satisfy</P>
-    <P>
-    the orders mi of the differential equations satisfy</P>
+<VERBATIM>
+       (m(i))
+       u       =  f  ( x; z(u(x)) )      i = 1, ... ,ncomp
+        i          i                     aleft &lt; x  &lt; aright,
+                                        
+</VERBATIM>
+
+<VERBATIM>
+       g  ( zeta(j); z(u(zeta(j))) ) = 0   j = 1, ... ,mstar
+        j
+      mstar = m(1)+m(2)+...+m(ncomp),
+</VERBATIM>
+ where
+<VERBATIM>
+                                        t
+             u = (u , u , ... ,u     )   
+                   1   2        ncomp    
+</VERBATIM>
+is the exact solution vector
+<VERBATIM>
+              (mi)
+             u     is the mi=m(i) th  derivative of u
+              i                                      i
+</VERBATIM> 
+<VERBATIM>                                     
+
+                                (1)        (m1-1)       (mncomp-1)
+             z(u(x)) = ( u (x),u  (x),...,u    (x),...,u      (x) )
+                          1     1          1            ncomp
+</VERBATIM> 
+<VERBATIM>  
+              f (x,z(u))   
+               i
+</VERBATIM>
+    is a (generally) nonlinear function of <VERB>z(u)=z(u(x))</VERB>.
+<VERBATIM> 
+              g (zeta(j);z(u))  
+               j
+</VERBATIM>
+       is a (generally) nonlinear function   used to represent a boundary condition.
+
+    <P> the boundary points satisfy</P>
+
+     <P><VERB>aleft &lt;= zeta(1)  &lt;= ..  &lt;= zeta(mstar)  &lt;= aright</VERB>. </P>
+    <P> the orders <VERB>mi</VERB> of the differential equations satisfy</P>
     <P><VERB>1&lt;=m(i)&lt;=4</VERB>.</P>
   </DESCRIPTION>
   <EXAMPLE>
