@@ -82,7 +82,7 @@ function draw_chain_from_coordinates(x,y,job)
   xsegs([x(1:$-1,1)';x(2:$,1)'],[y(1:$-1,1)';y(2:$,1)'],1:n1-1)
   p=gce();p.thickness=4;
   xpoly(x(:,1),y(:,1),'lines');
-  p1=gce();p1.mark_style=3;p1.mark_size=1;
+  p1=gce();p1.mark_style=3;p1.mark_size_unit='point';p1.mark_size=6;
   if job==1 then
     //bound trajectory
      xpoly(x($,1)*ones(2,1),y($,1)*ones(2,1),'lines');
