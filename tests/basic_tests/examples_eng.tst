@@ -4534,7 +4534,7 @@ clear;lines(0);
    a.labels_font_color=5;
    a.children.children.thickness=4;
    a.children.children.polyline_style=3;
-   a.view="3d"; //return te the 3d view
+   a.view="3d"; //return te the 3d view // F.Leray Pb here because of thickness and polyline_style
    a.children.children.thickness=1;
    a.children.children.foreground=2;
    a.grid=[1 6 3]; //make z-grid
@@ -5647,13 +5647,32 @@ clear;lines(0);
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
  
-   h=a.children //get the handle of the param3d entity
-   h.rotation_angles=[65,75];
-   h.surface_color=[3 5];
-   h.flag=[1,2,3];
-   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-   h.flag=[2 5 0];
-   h.thickness = 2;
+  // h=a.children //get the handle of the param3d entity
+  // h.rotation_angles=[65,75];
+  // h.surface_color=[3 5];
+  // h.flag=[1,2,3];
+  // h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+  // h.flag=[2 5 0];
+  // h.thickness = 2;
+
+  // F.Leray Corrections
+  // F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
+  // Pb comes when wanting to access the fields "surface_color" or "flag" for example
+  // in function sciSet (cf. matdes.c). 
+  // Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
+  // Question 2: Is "flag" obsolete and replaced by "color_mode"?
+  // see sciCall.c and matdes.c
+
+     a.rotation_angles=[65,75];
+     h=a.children(1) //get the handle of the Agregation composed of 2
+     // Polyline (SCI_PARAM3D1 only generates polylines!)
+     //h.surface_color=[3 5];
+     //h.flag=[1,2,3];
+     a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+     //h.flag=[2 5 0];
+     //h.thickness = 2;	// changed by F.Leray to:
+     h.children.thickness = 2;
+
   
 
 xdel(winsid())
