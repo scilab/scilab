@@ -1,6 +1,17 @@
 function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprint)
 // Copyright INRIA
-// This function translates Matlab interpreted code of a function to Scilab
+// Scilab Project - V. Couvert
+// This function translates Matlab interpreted code tree of a function to Scilab
+// Input arguments:
+//  - mtlbtree: tree (returned by macr2tree) representing Matlab function compiled code
+//  - nam: name of Matlb function
+//  - Recmode: boolean flag for recursive conversion if TRUE
+//  - prettyprint: boolean flag for pretty printed output file if TRUE
+// Output arguments:
+//  - scitree: Scilab equivalent for mtlbtree
+//  - trad: code of function sci_<nam>
+//  - txt: Scilab equivalent function code (function declaration and varaibles initialisation)
+//  - crp: Scilab equivalent function code (function body)
 
 [lhs,rhs]=argn(0)
 if rhs==1 then
@@ -54,6 +65,7 @@ varslist($+1)=M2scivar("%inf","inf",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("$","end",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%pi","pi",Infer(list(1,1),Type(Double,Real)))
 varslist($+1)=M2scivar("%eps","eps",Infer(list(1,1),Type(Double,Real)))
+varslist($+1)=M2scivar("%shortcircuit","%shortcircuit",Infer(list(1,1),Type(Double,Real))) // Used for short circuiting operators
 
 // Translated function output arguments
 maclhs=size(mtlbtree.outputs)
