@@ -638,7 +638,8 @@ void ShowWindowFunction (char *fname)
 
 int GetScreenProperty(char *prop, char *value)
 { 
-  
+  /* be sure a gtk_init is started */
+  start_sci_gtk();
   GdkScreen *screen =  gdk_screen_get_default();
   
   if(!strcmp(prop,"screensize_px"))
