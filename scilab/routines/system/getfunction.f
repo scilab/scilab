@@ -23,6 +23,7 @@ c
 
 c
       last=.false.
+
       fcount=1
       if(top+3.ge.bot) then
          call error(18)
@@ -117,11 +118,19 @@ c     statements of the function
       
 
       if(sym.eq.eol) then
-         call getlin(2)
-         eof=fin.eq.-2
+         if (lpt(4).ge.lpt(6)) then
+            call getlin(2)
+            eof=fin.eq.-2
+         else
+            eof=.false.
+            lpt(4)=lpt(4)+1
+            call getsym
+         endif
+      else
+         eof=.false.
       endif
       l4=lpt(4)-1
-      psym=eol
+      psym=sym
       strcnt=0
 
  71   continue
@@ -201,9 +210,15 @@ c     . allocate memory for cblock more characters
       nc=nc+n
       nr=nr+1
       if(.not.last) then
-         call getlin(2)
-         eof=fin.eq.-2
-         l4=lpt(1)
+         if(lpt(4).ge.lpt(6)) then
+            call getlin(2)
+            eof=fin.eq.-2
+            l4=lpt(1)
+         else
+            lpt(4)=lpt(4)+1
+            call getsym
+            l4=lpt(4)
+         endif
          goto 71
       endif
 c
