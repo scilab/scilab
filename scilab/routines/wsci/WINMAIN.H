@@ -1,3 +1,6 @@
+#ifndef __WINMAIN_H__
+#define __WINMAIN_H__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -208,3 +211,4 @@ extern char * ChooseAnotherWindowScilab(void);
 
 extern void sci_tk_activate(void);
 /*-----------------------------------------------------------------------------------*/
+#endif /*  __WINMAIN_H__ */

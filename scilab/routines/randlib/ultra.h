@@ -1,3 +1,5 @@
+#ifndef __ULTRA_H__
+#define __ULTRA_H__
 /* 
 FSU - ULTRA	The greatest random number generator that ever was
 		or ever will be.  Way beyond Super-Duper.
@@ -36,3 +38,5 @@ extern char	i8bit(void),	i7bit(void),	i1bit(void);
 extern void	rinit(long unsigned congx, long unsigned shrgx);
 extern char	swbstate[];
 extern int	swbsize;
+
+#endif __ULTRA_H__

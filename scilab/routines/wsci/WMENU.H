@@ -1,3 +1,6 @@
+#ifndef __WMENU_H__
+#define  __WMENU_H__
+
 #ifdef __MINGW32__
 #ifndef __WIN32_IE
 #define _WIN32_IE 0x0300
@@ -282,3 +285,5 @@ static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
 /*--------------------------------*/
 void SetLanguageMenu(char *Language);
 /*--------------------------------*/
+
+#endif /*  __WMENU_H__ */

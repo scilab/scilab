@@ -8,6 +8,8 @@
  *   Modelled after the original PostScript Driver in periPos.c
  *   Copyright (C) 1999, Tom Leitner, tom@finwds01.tu-graz.ac.at
  *--------------------------------------------------------------------------*/
+#ifndef __PERIGIF_H__
+#define __PERIGIF_H__
 
  extern void  C2F(drawarcGif)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(fillarcsGif)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
@@ -41,4 +43,6 @@
  extern void  C2F(drawarrowsGif)(char *str, integer *vx, integer *vy, integer *n, integer *as, integer *style, integer *iflag, double *dv1, double *dv2, double *dv3, double *dv4); 
  extern void  C2F(loadfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(queryfamilyGif)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
+#endif /* __PERIGIF_H__ */
+
 

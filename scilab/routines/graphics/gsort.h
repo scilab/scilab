@@ -3,6 +3,8 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#ifndef __SCI_GSORT_GRAPH__
+#define __SCI_GSORT_GRAPH__
 
 static void CNAME(ColSort,TYPE)();
 static void CNAME(RowSort,TYPE)();
@@ -383,6 +385,6 @@ static void CNAME(sorttest,TYPE)()
 #endif
 
 
-
+#endif /*__SCI_GSORT_GRAPH__*/
 
 

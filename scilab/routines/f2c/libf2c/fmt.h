@@ -1,3 +1,6 @@
+#ifndef __FMT_H__
+#define __FMT_H__
+
 struct syl
 {	int op,p1,p2,p3;
 };
@@ -97,3 +100,5 @@ extern char *f__icvt();
 #else
 extern char *f__icvt(longint, int*, int*, int);
 #endif
+
+#endif /* __FMT_H__ */

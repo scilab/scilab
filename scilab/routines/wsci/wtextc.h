@@ -1,3 +1,5 @@
+#ifndef __WTEXTC_H__
+#define __WTEXTC_H__
 /************************************
  * redefine functions that use console 
  * Scilab 1997
@@ -52,3 +54,4 @@
 /* now for the prototypes */
 
 
+#endif /*  __WTEXTC_H__ */

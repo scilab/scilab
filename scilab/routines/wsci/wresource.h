@@ -1,3 +1,6 @@
+#ifndef __WRESOURCE_H__
+#define __WRESOURCE_H__
+
 /*******************************************
  * Original source : GNUPLOT - win/wresourc.h 
  * modified for Scilab 
@@ -140,3 +143,4 @@
 
 #define IDC_STATIC                      -1
 
+#endif /*  __WRESOURCE_H__ */

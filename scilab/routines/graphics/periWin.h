@@ -4,6 +4,9 @@
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
 
+#ifndef __PERIWIN_H__
+#define __PERIWIN_H__
+
  extern void C2F(drawarc)();
  extern void C2F(fillarcs)();
  extern void C2F(drawarcs)();
@@ -40,5 +43,6 @@
  extern void  C2F(queryfamily)();
  extern void C2F(xinfo)();
 
+#endif /* __PERIWIN_H__ */
 
 

@@ -1,3 +1,6 @@
+#ifndef __WTEXT_H__
+#define  __WTEXT_H__
+
 /*******************************************
  * Original source : GNUPLOT - win/wtext.h
  * modified for Scilab 
@@ -298,3 +301,5 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 /*--------------------------*/
 BOOL IsToThePrompt(void);
+
+#endif /*  __WTEXT_H__ */

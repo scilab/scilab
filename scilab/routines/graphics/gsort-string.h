@@ -3,6 +3,10 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+
+#ifndef __GSORT_STRING__
+#define __GSORT_STRING__
+
 static void CNAME(ColSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
 static void CNAME(RowSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
 static void CNAME(GlobalSort,char)(char ** a, int * ind, int flag, int n, int p,char dir);
@@ -348,5 +352,5 @@ static void CNAME(sorttest,char)()
 
 
 
-
+#endif /*__GSORT_STRING__*/
 

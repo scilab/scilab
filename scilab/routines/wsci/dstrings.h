@@ -1,4 +1,5 @@
-
+#ifndef __DSTRINGS_H__
+#define __DSTRINGS_H__
 /*
  * The structure defined below is used to hold dynamic strings.  The only
  * field that clients should use is the string field, and they should
@@ -33,3 +34,6 @@ void Sci_DStringFree( Sci_DString *dsPtr);
 
 #define SCI_OK 1
 #define SCI_ERROR 0
+
+
+#endif /*  __DSTRINGS_H__ */

@@ -1,3 +1,6 @@
+#ifndef __CC_PASS2_H__
+#define __CC_PASS2_H__
+
 #define true  1
 #define false 0
 #define TEST (bllst2==NULL) && (bllst3==NULL) && (bllst4==NULL) && (bllst5==NULL) && (bllst10==NULL) && (bllst11==NULL) && (bllst12==NULL) && (bllst13==NULL)  
@@ -100,6 +103,7 @@ int tree3(int*vec,int nb,int* deput,int* typl,int* bexe,int* boptr,int* blnk,int
 
 
 
+#endif /* __CC_PASS2_H__ */
 
 
 

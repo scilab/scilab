@@ -1,5 +1,6 @@
 /* Copyright INRIA */
-
+#ifndef __CALLINTERF__
+#define __CALLINTERF__
 /********************************************************
  * Table of hard coded Scilab interface 
  *  to add a new interface add a declaration and a new entry 
@@ -117,3 +118,5 @@ static OpTab Interfaces[] ={
             /* 46  */ {C2F(intarpack)},
 	    /* 47  */ {C2F(intcscicos)},
 };
+
+#endif /*__CALLINTERF__*/

@@ -3,6 +3,8 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#ifndef __GSORT_INT__
+#define __GSORT_INT__
 
 static void CNAME(ColSort,int)( int * a, int *ind, int flag, int  n, int p,char dir);
 
@@ -350,6 +352,7 @@ static void CNAME(sorttest,int)()
   afficherint(ind,"lexico Row ind",n,1);
 }
 
+#endif /*__GSORT_INT__*/
 
 
 

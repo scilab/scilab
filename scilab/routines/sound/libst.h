@@ -1,3 +1,6 @@
+#ifndef __LIBST_H__
+#define __LIBST_H__
+
 /* libst.h - include file for portable sound tools library
 **
 ** Copyright (C) 1989 by Jef Poskanzer.
@@ -40,3 +43,5 @@ int st_Alaw_to_linear(  unsigned char ulawbyte  );
 #ifdef	USG
 #define	setbuffer(x,y,z)
 #endif
+
+#endif /*  __LIBST_H__ */

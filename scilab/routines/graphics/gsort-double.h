@@ -3,6 +3,9 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#ifndef __GSORT_DOUBLE__
+#define __GSORT_DOUBLE__
+
 static void CNAME(ColSort,double)( double * a, int * ind, int flag,
 				   int n, int p, char dir);
 static void CNAME(RowSort,double)( double * a, int * ind, int flag,
@@ -360,7 +363,7 @@ static void CNAME(sorttest,double)()
 }
 
 
-
+#endif /* __GSORT_DOUBLE__ */
 
 
 

@@ -1,3 +1,6 @@
+#ifndef __SCICOS_BLOCK_H__
+#define __SCICOS_BLOCK_H__
+
 #ifdef __STDC__
 #include <stdlib.h>
 #else 
@@ -55,3 +58,6 @@ void scicos_free(void *p);
 
 extern int s_copy();
 extern int s_cmp();
+
+
+#endif /* __SCICOS_BLOCK_H__ */

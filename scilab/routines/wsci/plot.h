@@ -1,3 +1,6 @@
+#ifndef __PLOT_H__
+#define __PLOT_H__
+
 #define PROMPT "Scilab> "
 
 #define TRUE 1
@@ -12,4 +15,5 @@
 /* Windows needs to redefine stdin/stdout functions */
 #include "wtext.h"
 
+#endif /*  __PLOT_H__ */
 

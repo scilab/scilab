@@ -1,3 +1,6 @@
+#ifndef __LIO_H__
+#define __LIO_H__
+
 /*	copy of ftypes from the compiler */
 /* variable types
  * numeric assumptions:
@@ -72,3 +75,5 @@ extern int z_rnew(void);
 #endif
 #endif
 extern ftnint L_len;
+
+#endif /* __LIO_H__ */

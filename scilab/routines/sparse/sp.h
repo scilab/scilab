@@ -1,3 +1,5 @@
+#ifndef __SP_H__
+#define __SP_H__
 
 #define SQR(x) ((x)*(x))
 #define MAX(x,y)  ((x) > (y) ? (x) : (y))
@@ -36,3 +38,5 @@ int sp( /* int m, int L, double *F, int *blck_szs, double *c,
            double *x, double *Z, double *ul, double nu, double abstol, 
            double reltol, double tv, int *iters, double *work, 
            int lwork, int *iwork, int *info */ );
+
+#endif /* __SP_H__ */

@@ -1,3 +1,6 @@
+#ifndef __IMPORT_H__
+#define __IMPORT_H__
+
 /* Copyright INRIA */
 typedef struct {
   double* x;      /* continuous  state */
@@ -41,3 +44,5 @@ typedef struct {
   integer *iwa; /* integer work space 2*nblk */
   integer *mask; /* integer work space ng for mask */
 } ScicosImport;
+
+#endif /* __IMPORT_H__ */

@@ -3,6 +3,8 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#ifndef __PERIPOS_H__
+#define __PERIPOS_H__
 
  extern void  C2F(drawarcPos)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(fillarcsPos)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
@@ -37,3 +39,5 @@
  extern void  C2F(loadfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void  C2F(queryfamilyPos)(char *name, integer *j, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
 /*----------------------------------END---------------------------*/
+
+#endif /*__PERIPOS_H__*/

@@ -1,5 +1,8 @@
 /* Copyright ENPC */
 
+#ifndef __MEN_CHOICE_H__
+#define __MEN_CHOICE_H__
+
 /* Data structure to deal with a set of choices */
 
 typedef struct {
@@ -28,3 +31,4 @@ extern SciStuff **Everything ;
 
 
 
+#endif /* __MEN_CHOICE_H__*/

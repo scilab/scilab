@@ -1,3 +1,6 @@
+#ifndef __FTABLES0__
+#define __FTABLES0__
+
 #include "../machine.h"
 
 #define OK 1
@@ -391,3 +394,4 @@ typedef integer * (*interff1)(ARGS_interf1);
 typedef integer * (*interff1)();
 #endif 
 
+#endif /*__FTABLES0__*/

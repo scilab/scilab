@@ -3,6 +3,8 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+#ifndef __PERIFIG_H__
+#define __PERIFIG_H__
 
  extern void  C2F(drawarcXfig)();
  extern void  C2F(fillarcsXfig)();
@@ -39,3 +41,4 @@
  extern void  C2F(loadfamilyXfig)();
  extern void  C2F(queryfamilyXfig)() ;
 
+#endif /*__PERIFIG_H__*/

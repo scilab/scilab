@@ -1,4 +1,7 @@
 /* Copyright INRIA */
+#ifndef __SPD_H__
+#define __SPD_H__
+
 #include "../machine.h"
 
 #define SQR(x) ((x)*(x))
@@ -39,3 +42,5 @@ int sp( /* int m, int L, double *F, int *blck_szs, double *c,
            double *x, double *Z, double *ul, double nu, double abstol, 
            double reltol, double tv, int *iters, double *work, 
            int lwork, int *iwork, int *info */ );
+
+#endif /* __SPD_H__ */

@@ -1,3 +1,5 @@
+#ifndef __FTABLES__
+#define __FTABLES__
 /******* Please do not edit *************/
 /**************** fydot ***************/
 extern void C2F(fex)(ARGS_fydot);
@@ -260,3 +262,4 @@ FTAB FTab_lsqrsolvj[] ={
 {"lsqrsolj1", (voidf)  C2F(lsqrsolj1)},
 {(char *) 0, (voidf) 0}};
 /***********************************/
+#endif /*__FTABLES__*/

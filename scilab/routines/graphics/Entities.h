@@ -5,7 +5,8 @@
  *    Matthieu PHILIPPE, INRIA 2001-2002
  *    Djalel ABDEMOUCHE, INRIA 2002-2004
  --------------------------------------------------------------------------*/
-
+#ifndef __SCI_ENTITIES__
+#define __SCI_ENTITIES__
 
 
 #ifdef WIN32
@@ -1554,3 +1555,5 @@ extern int labels2D_draw(sciPointObj * psubwin);
 extern sciPointObj * ConstructLabel (sciPointObj * pparentsubwin, char *text, int type);
 extern int DestroyLabel (sciPointObj * pthis);
 extern int ComputeC_format(sciPointObj * pobj, char * c_format);
+
+#endif /*__SCI_ENTITIES__*/

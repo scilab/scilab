@@ -1,5 +1,8 @@
 /* Copyright ENPC */
 
+#ifndef __WMEN_SCILAB_H__
+#define __WMEN_SCILAB_H__
+
 #ifndef STRICT 
 #define STRICT
 #endif
@@ -216,3 +219,5 @@ extern int ExposePrintdialogWindow  __PARAMS((int flag, int *colored, int *orien
 /*  Global variable to keep track of the last position of a popup menu */
 
 extern RECT SciMenusRect ;
+
+#endif /* __WMEN_SCILAB_H__ */

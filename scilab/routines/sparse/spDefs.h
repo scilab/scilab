@@ -1,3 +1,6 @@
+#ifndef __SPDEFS_H__
+#define __SPDEFS_H__
+
 /*
  *  DATA STRUCTURE AND MACRO DEFINITIONS for Sparse.
  *
@@ -25,8 +28,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2001/04/26 07:48:07 $
- *  $Revision: 1.1 $
+ *  $Date: 2004/08/27 13:55:54 $
+ *  $Revision: 1.2 $
  */
 
 
@@ -885,3 +888,5 @@ struct  MatrixFrame
     struct FillinListNodeStruct *LastFillinListNode;
 };
 typedef  struct MatrixFrame  *MatrixPtr;
+
+#endif /* __SPDEFS_H__*/

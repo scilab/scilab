@@ -1,5 +1,7 @@
 /*-------------BEGIN--------------------------------------------------------
 ---------------------------------------------------------------------------*/
+#ifndef __PERIX11_H__
+#define __PERIX11_H__
 
  extern void C2F(drawarc)(char *str, integer *x, integer *y, integer *width, integer *height, integer *angle1, integer *angle2, double *dv1, double *dv2, double *dv3, double *dv4);
  extern void C2F(fillarcs)(char *str, integer *vects, integer *fillvect, integer *n, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4);
@@ -38,5 +40,6 @@
  extern void C2F(setpopupname)(char *x0, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, integer *v7, double *dv1, double *dv2, double *dv3, double *dv4); 
 
 /*---------------------END------------------------------*/
+#endif /* __PERIX11_H__ */
 
 

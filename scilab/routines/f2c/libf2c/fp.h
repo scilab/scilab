@@ -1,3 +1,6 @@
+#ifndef __FP_H__
+#define __FP_H__
+
 #define FMAX 40
 #define EXPMAXDIGS 8
 #define EXPMAX 99999999
@@ -26,3 +29,6 @@
 #define MAXINTDIGS 308
 #endif
 #endif
+
+#endif /*__FP_H__*/
+

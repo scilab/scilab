@@ -1,3 +1,6 @@
+#ifndef __WGNUPLIB_H__
+#define __WGNUPLIB_H__
+
 /* /wgnuplib.h */
 /* from GNUPLOT - win/wgnuplib.h */
 /*
@@ -246,3 +249,4 @@ typedef GW *  LPGW;
 
 /*************************/
 
+#endif /*  __WGNUPLIB_H__ */

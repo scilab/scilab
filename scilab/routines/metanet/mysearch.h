@@ -1,3 +1,7 @@
+#ifndef __MYSEARCH_H__
+#define  __MYSEARCH_H__
+
+
 /*-
  * Copyright (c) 1990, 1993
  *	The Regents of the University of California.  All rights reserved.
@@ -49,3 +53,6 @@ typedef enum {
 int	 myhcreate();
 void	 myhdestroy();
 ENTRY	*myhsearch();
+
+#endif /* __MYSEARCH_H__ */
+

@@ -1,3 +1,6 @@
+#ifndef __GIFFONTS__
+#define __GIFFONTS__
+
 #include "../gd/gdcourR08.h"
 #include "../gd/gdcourR10.h"
 #include "../gd/gdcourR12.h"
@@ -39,3 +42,5 @@
 #include "../gd/gdtimR14.h"
 #include "../gd/gdtimR18.h"
 #include "../gd/gdtimR24.h"
+
+#endif /*__GIFFONTS__*/

@@ -1,3 +1,6 @@
+#ifndef __SPMATRIX_H__
+#define __SPMATRIX_H__
+
 /*
  *  EXPORTS for sparse matrix routines.
  *
@@ -30,8 +33,8 @@
  *  software for any purpose.  It is provided `as is', without express
  *  or implied warranty.
  *
- *  $Date: 2001/04/26 07:48:07 $
- *  $Revision: 1.1 $
+ *  $Date: 2004/08/27 13:55:54 $
+ *  $Revision: 1.2 $
  */
 
 
@@ -365,3 +368,5 @@ extern  void     spWhereSingular();
 #endif /* defined(__STDC__) */
 
 #endif  /* spOKAY */
+
+#endif /*  __SPMATRIX_H__ */

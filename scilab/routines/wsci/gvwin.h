@@ -1,3 +1,6 @@
+#ifndef __GVWIN_H__
+#define __GVWIN_H__
+
 /*
  * 
  */
@@ -119,3 +122,6 @@ StartDocPrinterW(
 #endif // !UNICODE
 
 #endif /* __GNUC__ */
+
+#endif /*  __GVWIN_H__ */
+
