@@ -4028,9 +4028,13 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   /** ReadGraphIni takes care of graphwin.Origin and  graphwin.Size **/
   /** ScilabXgc is send to CreateWindow and this information is used 
     in WndGraphProc **/
+
+  /* Probleme graphwin peut etre locké par une autre fonction */
+  /* Faire une copie serait preferable */
   ScilabXgc->lpgw = &graphwin;
-  if (EntryCounter == 0) { ReadGraphIni(ScilabXgc);};
+
   sprintf(popupname,"ScilabGraphic%d", (int)WinNum);
+  if (EntryCounter == 0) { ReadGraphIni(ScilabXgc);};
   ScilabXgc->Inside_init=1; /** to know that we are inside init code **/
   ScilabXgc->hWndParent = CreateWindow(szParentGraphClass, popupname,
 				       WS_OVERLAPPEDWINDOW,
@@ -4129,7 +4133,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   EntryCounter++;
   
   CreateAToolBar(ScilabXgc) ;
-  if (GraphToolBarDefault)
+  if (ScilabXgc->lpmw.ShowToolBar)
 	{
 		ShowGraphToolBar(ScilabXgc);
 	}

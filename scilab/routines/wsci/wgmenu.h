@@ -157,6 +157,10 @@ extern void Write_Scilab_Console (char *buf);
 extern void Write_Scilab_Window (char *buf);
 extern void ResetMenu(void);
 extern struct BCG *GetWindowXgcNumber (integer i);
+extern void HideGraphToolBar(struct BCG * ScilabGC);
+extern void ShowGraphToolBar(struct BCG * ScilabGC);
+
+
 
 void SendGraphMacro (struct BCG *ScilabGC, UINT m);
 void ScilabMenuAction (char *buf);

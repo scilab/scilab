@@ -428,7 +428,7 @@ void ReadTextIni (LPTW lptw)
 	}
 	
 		
-	
+	lptw->lpmw->LockToolBar=FALSE;
 
 	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
 
@@ -1490,8 +1490,11 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 	      	break;
 	      	case VK_F3:
 	      	{
-	      		lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
-	      		ToolBarOnOff(lptw);
+			if (lptw->lpmw->LockToolBar == FALSE)
+				{
+					lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
+	      			ToolBarOnOff(lptw);
+				}
 	      		
 	      	}
 	      	break;
@@ -2554,8 +2557,8 @@ void OnRightClickMenu(LPTW lptw)
   		/*AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_CUT, "C&ut	Ctrl+X");*/
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_COPY_CLIP, "&Copy	Ctrl+C");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_PASTE, "&Paste	Ctrl+V");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "&Special Paste	Shft+V");
-  		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Print Selection...");
+  		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED, M_SPECIALPASTE, "&Special Paste	Shft+V");
+  		//AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_PRINTSELECTION, "&Print Selection...");
   		AppendMenu (lptw->hPopMenu, MF_SEPARATOR, 0, NULL);
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_EVALSELECTION, "&Evaluate Selection");
   		AppendMenu (lptw->hPopMenu, MF_STRING|MF_GRAYED,M_OPENSELECTION, "&Open Selection");
@@ -3297,7 +3300,7 @@ void ExitWindow(void)
            				           				
         StoreCommand1 ("abort;", 2);
         SendCTRLandAKey(CTRLU);
-   		StoreCommand1 ("quit;\n", 1);
+   		StoreCommand1 ("quit;",1);
    					
   
         Kill_Scilex();
@@ -3312,7 +3315,7 @@ void ExitWindow(void)
    	WriteTextIni (lptw);
    	StoreCommand1 ("abort;", 2);
    	SendCTRLandAKey(CTRLU);
-   	StoreCommand1 ("quit;\n", 1);
+   	StoreCommand1 ("quit;", 1);
    }
 	   	
 }

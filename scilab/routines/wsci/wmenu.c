@@ -236,8 +236,11 @@ void Callback_TOOLBAR(void)
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 	
-	lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
-	ToolBarOnOff(lptw);
+	if (lptw->lpmw->LockToolBar == FALSE)
+		{
+			lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
+			ToolBarOnOff(lptw);
+		}
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_FRENCH(void)
@@ -2168,6 +2171,7 @@ int HideToolBarWin32(int WinNum)
 
 				HideToolBar(lptw);
 				lptw->lpmw->ShowToolBar=FALSE;
+				lptw->lpmw->LockToolBar=TRUE;
   			}
 			else
 			{
@@ -2181,6 +2185,7 @@ int HideToolBarWin32(int WinNum)
 			if (ScilabGC != (struct BCG *) 0)
 			{
 				HideGraphToolBar(ScilabGC);
+				ScilabGC->lpmw.LockToolBar=TRUE;
   			}
 		}
 

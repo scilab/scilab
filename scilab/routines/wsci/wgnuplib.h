@@ -110,6 +110,7 @@ typedef struct tagMW
   BOOL		IsAIcon[BUTTONMAX];
   int		PositionX[BUTTONMAX];
   BOOL		ShowToolBar;
+  BOOL		LockToolBar;
   int		CodeLanguage;
   
 } MW;

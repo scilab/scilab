@@ -468,12 +468,14 @@ void ReadGraphIni (struct BCG *ScilabGC)
 
 	if ( RegQueryValueEx(key, "ToolBar", 0, NULL, (LPBYTE)&Toolbar, &size) !=  ERROR_SUCCESS )
   	{
-		GraphToolBarDefault = TRUE;
+		ScilabGC->lpmw.ShowToolBar = FALSE;
 	}
 	else
 	{
-		GraphToolBarDefault  = Toolbar;
+		ScilabGC->lpmw.ShowToolBar  = Toolbar;
 	}
+
+	ScilabGC->lpmw.LockToolBar=FALSE;
 
 	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
 }
@@ -1089,9 +1091,11 @@ EXPORT LRESULT CALLBACK WndGraphProc(HWND hwnd, UINT message, WPARAM wParam, LPA
 			{
 				case VK_F3:
 	      		{
-			
+				if (ScilabGC->lpmw.LockToolBar == FALSE)
+					{
 					if (ScilabGC->lpmw.ShowToolBar)	HideGraphToolBar(ScilabGC);
 					else ShowGraphToolBar(ScilabGC);
+					}
 
 				}
 				break;
@@ -1548,7 +1552,7 @@ void HideGraphToolBar(struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 void ShowGraphToolBar(struct BCG * ScilabGC)
 {
-	RECT rect,rect1,rect2;
+	RECT rect,rect1/*,rect2*/;
 	ScilabGC->lpmw.ShowToolBar=TRUE;	
 
     /* Parent */

@@ -27,7 +27,11 @@ void SendGraphMacro (struct BCG *ScilabGC, UINT m)
 	  switch (*s)
 	    {
 		  case TOOLBARGRAPH:
-			  MessageBox(NULL,"ToolBar ON OFF"," ",MB_OK);
+			  if (ScilabGC->lpmw.LockToolBar == FALSE)
+				  {
+					if (ScilabGC->lpmw.ShowToolBar)	HideGraphToolBar(ScilabGC);
+					else ShowGraphToolBar(ScilabGC);
+				  }
 			  s++;
 	      break;
 		case NEWFIG:
