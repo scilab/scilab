@@ -1080,7 +1080,7 @@ proc pastetext {} {
 
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase 
-    global textareacur
+    global textareacur pad
     [gettextareacur] tag configure sel -background green
     if {$SearchString!=""} {
 	if {$findcase=="1"} {
@@ -1152,8 +1152,9 @@ proc ReplaceAll {} {
 }
 
 proc CancelFind {w} {
-    global textareacur
+    global textareacur pad
     [gettextareacur] tag delete tg1
+    bind $pad <Expose> {};#ajout pour mettre a la fenetre Search devant le scipad !
     destroy $w
 }
 
@@ -1264,7 +1265,9 @@ proc findtext {typ} {
         bindevnt $find.l.f4.f3.down $typ $find
         bindevnt $find.l.f4.cbox1 $typ $find
 	bindevnt $find.l.f1.entry $typ $find	
-	bind $find <Control-c> "destroy $find"
+    bind $find <Control-c> "destroy $find";
+    bind $find <Visibility> {raise $find $pad};#ajout pour mettre a la fenetre Search devant le scipad !
+    bind $pad <Expose> {raise $find $pad};#ajout pour mettre a la fenetre Search devant le scipad !
 	focus $find.l.f1.entry
 	grab $find
 }
