@@ -13,8 +13,8 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-3.0-RC1.exe".
-        By default Scilab is in "C:\Program Files\scilab-3.0-RC1" directory.
+    1 - You have already installed Scilab by executing "scilab-3.0.exe".
+        By default Scilab is in "C:\Program Files\scilab-3.0" directory.
  
     2 - Run Scilab by executing "Scilab 3.0" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
@@ -28,7 +28,11 @@ I - TO RUN SCILAB (BINARY VERSION)
         All examples of incremental link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you have any problems or suggestions concerning Scilab,
+    4 - If you want use LCC-Win32 (C compiler) with Scilab 3.0
+        See Readme_LCC.txt in lcc directory.
+        You can download at http://www.cs.virginia.edu/~lcc-win32/
+    
+    5 - If you have any problems or suggestions concerning Scilab,
         http://www.scilab.org/cgi-bin/bugzilla_bug/index.cgi        
         or better post a message to newsgroup:
   	comp.soft-sys.math.scilab
@@ -39,7 +43,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
  
     To uninstall Scilab you can use the unintaller. You will find it in the 
-    "Scilab 3.0 RC1" item of the Program Group.
+    "Scilab 3.0" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
  
 ******************************************************************************
