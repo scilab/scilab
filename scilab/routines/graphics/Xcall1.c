@@ -860,8 +860,12 @@ void fillpolylines_1(char *fname, char *str, integer *v1, integer *v2, integer *
 	n,1L,p,1L,&Ivide,1L,vx,(*n)*(*p),vy,(*n)*(*p),dx3,1L,dx4,1L);
   }
   if (*v1==2) {
-    Myalloc(&px,&py,(*p)+1,&err);  
-    if (err ==  1) return;
+    px=(integer *)malloc(((*p)+1)*sizeof(integer));
+    py=(integer *)malloc(((*p)+1)*sizeof(integer));
+	if (px==NULL || py==NULL) {
+		Scistring("fillpolylines_1 : malloc No more Place\n");
+		return;
+	}    
     for (i=0 ; i< (*n) ;i++) {
         for (j=0; j<(*p); j++) {
         	px[j]=xm[(*p)*i+j];
