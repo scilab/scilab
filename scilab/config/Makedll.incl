@@ -12,12 +12,12 @@ $(LIBRARY).dll: $(OBJS)
 	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(OTHERLIBS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) $(EXTRA_LDFLAGS) /nologo /dll /out:"$*.dll" /implib:"$*.ilib" /def:"$*.def" 
 
 clean	::
-	@del *.obj
-	@del $(LIBRARY)_gateway.c
-	@del $(LIBRARY).def
-	@del $(LIBRARY).dll
-	@del $(LIBRARY).exp
-	@del $(LIBRARY).ilib
+	-del *.obj
+	-del $(LIBRARY)_gateway.c
+	-del $(LIBRARY).def
+	-del $(LIBRARY).dll
+	-del $(LIBRARY).exp
+	-del $(LIBRARY).ilib
 
 distclean:: 	clean
 
