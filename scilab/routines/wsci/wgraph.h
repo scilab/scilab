@@ -137,7 +137,7 @@ But SciClickInfo; /* for xclick and xclick_any */
  * when painting for windows with CurPixmapStatus==0.
  */ 
 static int emulate_backing_store = 1; /* to use  ScilabPaintWithBitmap*/
-static COLORREF DefaultBackground = RGB(255,255,255);
+/* static COLORREF DefaultBackground = RGB(255,255,255); define in periwin.c */
 
 
 #endif /* __WGRAPH__ */
