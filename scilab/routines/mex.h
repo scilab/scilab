@@ -148,6 +148,10 @@ void  C2F(mexprintf)  __PARAMS((char *error_msg, int len));
 void *mxCalloc __PARAMS((unsigned int n, unsigned int size));
 void *mxMalloc __PARAMS((unsigned int nsize));
 
+void *mxCalloc_m __PARAMS((unsigned int n, unsigned int size));
+void *mxMalloc_m __PARAMS((unsigned int nsize));
+void  mxFree_m __PARAMS((void *));
+
 void C2F(mexerrmsgtxt)  __PARAMS((char *error_msg, int len));
 void C2F(mxfreematrix)  __PARAMS((Matrix *ptr));
 void mexErrMsgTxt __PARAMS((char *error_msg));

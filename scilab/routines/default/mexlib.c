@@ -890,6 +890,9 @@ void *mxCalloc(unsigned int n, unsigned int size)
     return 0;
   }
   if ( size ==  sizeof(double)) C2F(dset)(&n,&zero,(double *) lrd,&one);
+
+  sciprint("mxCalloc %xl [%xl,%xl]\n",(long int) lrd,(long int)C2F(vstk).Lstk[0], (long int)C2F(vstk).Lstk[Bot-1]);
+
   return (void *) lrd;
 }
 
@@ -903,6 +906,113 @@ void *mxMalloc(unsigned int nsize)
   }
   return (void *) lrd;
 }
+
+/* a version which make use of malloc */ 
+
+typedef struct _rec_calloc { 
+  void *adr; 
+  int  keep; /* 0: free 1: allocated 2: allocated and must be preserved */
+} rec_calloc;
+
+#define rec_size 512 
+static rec_calloc calloc_table[rec_size]={0}; 
+
+void *mxCalloc_m(unsigned int n, unsigned int size) 
+{
+  void *loc = calloc(n,size);
+  if ( loc != NULL) {
+    int i;
+    for ( i = 0 ; i < rec_size ; i++) 
+      {
+	if (calloc_table[i].keep == 0 ) 
+	  {
+	    calloc_table[i].adr = loc;
+	    calloc_table[i].keep = 1;
+	    return loc ; 
+	  }
+      }
+    free(loc);
+    return NULL;
+  }
+}
+
+void *mxMalloc_m(unsigned int n)
+{
+  void *loc = malloc(n);
+  if ( loc != NULL) {
+    int i;
+    for ( i = 0 ; i < rec_size ; i++) 
+      {
+	if (calloc_table[i].keep == 0 ) 
+	  {
+	    calloc_table[i].adr = loc;
+	    calloc_table[i].keep = 1;
+	    return loc ; 
+	  }
+      }
+    free(loc);
+    return NULL;
+  }
+}
+
+
+void mexMakeMemoryPersistent(void *ptr) {
+  int i;
+  for ( i = 0 ; i < rec_size ; i++) {
+    if (calloc_table[i].adr == ptr)
+      {
+	if  (calloc_table[i].keep == 1 ) 
+	  {
+	    calloc_table[i].keep = 2;
+	  }
+      }
+  }
+}
+
+/* free : explicit free of a mxCalloc_m allocated space 
+ *        except if space is protected 
+ */ 
+
+void mxFree_m(void *ptr){ 
+  int i;
+  for ( i = 0 ; i < rec_size ; i++) {
+    if (calloc_table[i].adr == ptr)
+      {
+	/* allocated and preserved */
+	if  (calloc_table[i].keep != 0 ) 
+	  {
+	    free(ptr);
+	    calloc_table[i].keep = 0;
+	    calloc_table[i].adr = NULL;
+	  }
+      }
+  }
+}
+
+/* free : explicit free of all mxCalloc_m allocated space 
+ *        except if space is protected 
+ */ 
+
+static void mxFree_m_all() {
+  int i;
+  for ( i = 0 ; i < rec_size ; i++) {
+    if  (calloc_table[i].keep == 1 ) 
+      {
+	free(calloc_table[i].adr);
+	calloc_table[i].keep = 0;
+	calloc_table[i].adr = NULL;
+      }
+  }
+}
+
+
+/*----------------------------------------------------
+ * mxCalloc is supposed to initialize data to 0 
+ * but what does it means since size can be anythink 
+ * we initialize to zero for double and int data types 
+ *----------------------------------------------------*/
+
+
 
 int mxIsCell(Matrix *ptr)
 {
@@ -1379,6 +1489,8 @@ int C2F(endmex)(integer *nlhs, Matrix **plhs, integer *nrhs, Matrix **prhs)
 	}
     }
   C2F(putlhsvar)();
+  /** clear mxMalloc_m and and mxCalloc_m  **/
+  mxFree_m_all();
   return 0;
 }
 
