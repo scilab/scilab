@@ -470,7 +470,7 @@ c
 c
 
 c
-        ng=istk(iadr(l4e5)+n4e5-1)-1
+c        ng=istk(iadr(l4e5)+n4e5-1)-1
 
         ilinp=iadr(l4e4)
         err=lw-lstk(bot)
@@ -534,7 +534,7 @@ c
      $       istk(iadr(l4e29)),n4e29,
      $       istk(iadr(l4e20)),n4e20,istk(iadr(l4e21)),n4e21,
      $       istk(iadr(l4e22)),nblk,istk(iadr(l4e24)),istk(iadr(l4e5)),
-     $       ng,istk(iadr(l4e27)),n4e27,simpar,flag,ierr)
+     $       istk(iadr(l4e27)),n4e27,simpar,flag,ierr)
         idb=0
         if (ierr .gt. 0 ) then
            if(ierr.eq.1) then
