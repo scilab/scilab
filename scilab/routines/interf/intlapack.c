@@ -169,6 +169,31 @@ int inteig(fname)
   }
 }
 
+int intinv(fname)
+  char *fname;
+{
+  int *header1;
+  int CmplxA;int ret;
+
+  /*   inv(A)  */
+  header1 = (int *) GetData(1);    
+  CmplxA=header1[3];   
+  switch (CmplxA) {
+  case 0:   
+    ret = C2F(intdgetri)("inv",3L);
+    return;
+    break;
+  case 1:
+    ret = C2F(intzgetri)("inv",3L);
+    return;
+    break;
+  default:
+    Scierror(999,"%s: Invalid input! \r\n",fname);
+    return 0;
+    break;
+  }
+}
+
 typedef int (*des_interf) __PARAMS((char *fname,unsigned long l));
 
 typedef struct table_struct {
@@ -182,6 +207,7 @@ static LapackTable Tab[]={
   {intsvd,"lap_svd"},
   {intlsq,"lsq"},
   {inteig,"lap_spec"},
+  {intinv,"lap_inv"},
 };
 
 int C2F(intlapack)()

@@ -1324,6 +1324,114 @@ c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
 c
        end
 
+      subroutine intdgetri(fname)
+
+c     B = dgetri(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character fname*(*)
+c     
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=1
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
+
+      if(.not.getrhsvar(1,'d', M, N, lA)) return
+      if(m.ne.n) then
+         buf='dgetri'//': the matrix must be square'
+         call error(998)
+         return
+      endif
+      if(n.eq.0) then
+        lhsvar(1) = 1
+        return
+      endif
+      if(.not.createvar(2,'i',1,N,lIWORK)) return
+      LWORKMIN = MAX(1,N)
+      LWORK=maxvol(3,'d')
+      if(LWORK.le.LWORKMIN) then
+         buf='dgetri'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(3,'d',1,LWORK,lDWORK)) return
+
+      call DGETRF( N, N, stk(lA), N, istk(lIWORK), INFO )
+c     SUBROUTINE DGETRF( M, N, A, LDA, IPIV, INFO )
+      if(info.ne.0) then
+         call errorinfo("dgetrf",info)
+         return
+      endif
+      call DGETRI( N, stk(lA), N, istk(lIWORK), stk(lDWORK),
+     $     LWORK, INFO )
+c     SUBROUTINE DGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )
+
+      lhsvar(1)=1
+      
+c     
+      end
+
+      subroutine intzgetri(fname)
+
+c     B = zgetri(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+      character fname*(*)
+c     
+      minrhs=1
+      maxrhs=1
+      minlhs=1
+      maxlhs=1
+c     
+      if(.not.checkrhs(fname,minrhs,maxrhs)) return
+      if(.not.checklhs(fname,minlhs,maxlhs)) return
+
+      if(.not.getrhsvar(1,'z', M, N, lA)) return
+      if(m.ne.n) then
+         buf='zgetri'//': the matrix must be square'
+         call error(998)
+         return
+      endif
+      if(n.eq.0) then
+        lhsvar(1) = 1
+        return
+      endif
+      if(.not.createvar(2,'i',1,N,lIWORK)) return
+      LWORKMIN = MAX(1,N)
+      LWORK=maxvol(3,'z')
+      if(LWORK.le.LWORKMIN) then
+         buf='zgetri'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(3,'z',1,LWORK,lDWORK)) return
+
+      call ZGETRF( N, N, zstk(lA), N, istk(lIWORK), INFO )
+c     SUBROUTINE ZGETRF( M, N, A, LDA, IPIV, INFO )
+      if(info.ne.0) then
+         call errorinfo("zgetrf",info)
+         return
+      endif
+      call ZGETRI( N, zstk(lA), N, istk(lIWORK), zstk(lDWORK),
+     $     LWORK, INFO )
+c     SUBROUTINE ZGETRI( N, A, LDA, IPIV, WORK, LWORK, INFO )
+
+      lhsvar(1)=1
+      
+c     
+      end
+
+
+
+
+
 
 
 
