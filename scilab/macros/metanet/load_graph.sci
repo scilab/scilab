@@ -9,5 +9,4 @@ end
 g=m6loadg(path)
 g=glist(g(:))
 g($+1)=[]; g($+1)=[]
-g.name(2)=part(path,1:length(path)-6)
 endfunction

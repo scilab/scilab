@@ -1,4 +1,4 @@
-function [ok,GraphList,edited]=ge_do_load(fname)
+function [ok,GraphList,edited,fname]=ge_do_load(fname)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -18,8 +18,11 @@ function [ok,GraphList,edited]=ge_do_load(fname)
     select ext
     case 'graph'
       ierr=execstr('GraphList=load_graph(fname)','errcatch')
+      if(ierr<>0) then
+	x_message(lasterror());ok=%f
+	return
+      end
       version=editgraph_ver()
-      GraphList.name(2)=part(fname,1:length(fname)-6)
       ok=%t
     else
       message(['Only *.graph (formatted) files allowed'])

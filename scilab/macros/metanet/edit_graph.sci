@@ -27,6 +27,7 @@ edited=%f
 %path='./'
 
 //initial graph data structure
+%fil=''
 if rhs>=1 then 
   if type(GraphList)==10 then //diagram is given by its filename
     %fil=GraphList
@@ -61,8 +62,8 @@ xset('wpdim',%wsiz(1),%wsiz(2))
 
 selection=tlist(['Sel','Nodes','Arcs'],[],[])
 EGdata=tlist(['egdata','GraphList','Cmenu','Win','Zoom', ...
-	     'Wsize','Menus','Edited','ArcId','NodeId','ShortCuts','Sel'],GraphList,[], ...
-	    win,%zoom,%wsiz,[],edited,0,0,[],selection)
+	     'Wsize','Menus','Edited','ArcId','NodeId','ShortCuts','Sel','Path'],GraphList,[], ...
+	    win,%zoom,%wsiz,[],edited,0,0,[],selection,%fil)
 ge_set_winsize()
 
 //keyboard shortcuts

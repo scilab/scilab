@@ -1,13 +1,21 @@
-function [GraphList,ok]=ge_do_SaveAs(GraphList)
+function [GraphList,ok,fname]=ge_do_SaveAs(GraphList,fname)
 //Copyright INRIA
 //Author : Serge Steer 2002
 
 //
 // Copyright INRIA
   tit='Select a file path'
-  fname=xgetfile('*.graph',emptystr(),tit)
   fname=stripblanks(fname)
-  if fname==emptystr() then return,end
+  if fname=='' then
+    path=fname
+  else
+    [path,name,ext]=splitfilepath(fname)
+  end
+  
+  fname=xgetfile('*.graph',path,tit)
+   
+  fname=stripblanks(fname)
+  if fname==emptystr() then ok=%f,return,end
 
   [path,name,ext]=splitfilepath(fname)
   GraphList.node_number=size(GraphList.node_x,'*')
@@ -60,14 +68,9 @@ function [GraphList,ok]=ge_do_SaveAs(GraphList)
 	unix_s('rm '+fname)
       end
     end
-    path_s=GraphList.name(2);
-    GraphList.name= GraphList.name(1)
     ok=execstr('save_graph(GraphList,fname)','errcatch')==0
-    GraphList.name(2)=path_s
     if ok then 
-      nf=length(fname)
-      GraphList.name(1)=name
-      GraphList.name(2)=part(fname,1:nf-6)
+      GraphList.name=name
     else
       x_message([lasterror();'';'Graph has not been saved'])
     end

@@ -1,4 +1,4 @@
-function ok=ge_do_save(GraphList)   
+function ok=ge_do_save(GraphList,path)   
 //Copyright INRIA
 //Author : Serge Steer 2002
 
@@ -6,13 +6,7 @@ function ok=ge_do_save(GraphList)
 //!
 // Copyright INRIA
 
-  if size(GraphList.name,'*')<2 then 
-    path='./'
-  else
-    path=GraphList.name(2)
-    GraphList.name=GraphList.name(1)
-  end
-  //open file
+
   
   GraphList.node_number=size(GraphList.node_x,'*')
   
@@ -52,7 +46,7 @@ function ok=ge_do_save(GraphList)
     
   end
 
-  fname=path+GraphList.name+'.graph'
+  fname=path
   if fileinfo(fname)<>[] then
     if MSDOS then
       unix_s('del '+fname)
