@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# From configure.in Revision: 1.8 
+# From configure.in Revision: 1.9 
 
 
 
@@ -1059,7 +1059,7 @@ case "$host" in
   alpha*-dec-osf4.*)
     # standard compilers
     CC=cc
-    CC_OPTIONS='-O -ieee_with_inexact'
+    CC_OPTIONS='-std -O -ieee_with_inexact'
     CC_LDFLAGS='-ieee_with_inexact'
     if test "$G77" != yes; then    
       # Extract the first word of "f77", so it can be a program name with args.
@@ -1104,7 +1104,7 @@ fi
     LD=ld
     LD_LDFLAGS=
     if test "$enable_debug" = yes; then 
-      CC_OPTIONS='-g -ieee_with_inexact'
+      CC_OPTIONS='-std -g -ieee_with_inexact'
       FC_OPTIONS='-g -fpe3'
     fi
     # GNU compilers
