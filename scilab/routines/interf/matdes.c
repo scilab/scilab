@@ -4859,7 +4859,7 @@ int gset(fname,fname_len)
 	{
 	  if ((strncmp(cstk(l2),"old_style",9) !=0) && 
 	      (strncmp(cstk(l2),"current_figure",14) !=0)) C2F(sciwin)();
-	  if (version_flag() == 0)	
+	  if (version_flag() == 0 && (strncmp(cstk(l2),"old_style",9) !=0)) /* Change here : F.Leray 11.06.04 */
 	    if ((strncmp(cstk(l2),"zoom_",5) !=0) && 
 		(strncmp(cstk(l2),"auto_",5) !=0) && 
 		(strncmp(cstk(l2),"clip_box",8) !=0) )   
