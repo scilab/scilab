@@ -115,10 +115,7 @@ if grep(args,'scilex') <>[] then
     addmenu("Help",["Help browser","Apropos","Configure"],list(2,"help_menu"))
     if with_tk() then
       delmenu("Editor")
-      //retricted to Windows version because of problems on some unix platform	
-      if MSDOS then  
-	addmenu("Editor",list(2,"scipad")),
-      end
+      addmenu("Editor",list(2,"scipad")),
     end
   end
 end
