@@ -1,6 +1,7 @@
 # This Makefile is used to build sci_funname.sci files from PROTOx.g
 
-PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_gamma.sci sci_imag.sci sci_real.sci
+PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci\
+	 sci_erfcx.sci sci_gamma.sci sci_gammaln.sci sci_imag.sci sci_real.sci
 PROTO1 = sci_max.sci sci_min.sci
 PROTO2 = sci_cumprod.sci sci_cumsum.sci 
 PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci 
@@ -26,8 +27,14 @@ sci_cosh.sci: sci_PROTO0.g
 	@./GEN $? cosh cosh > $@
 sci_erf.sci: sci_PROTO0.g
 	@./GEN $? erf erf > $@
+sci_erfc.sci: sci_PROTO0.g
+	@./GEN $? erfc erfc > $@
+sci_erfcx.sci: sci_PROTO0.g
+	@./GEN $? erfcx erfcx > $@
 sci_gamma.sci: sci_PROTO0.g
 	@./GEN $? gamma gamma > $@
+sci_gammaln.sci: sci_PROTO0.g
+	@./GEN $? gammaln gammaln > $@
 sci_imag.sci: sci_PROTO0.g
 	@./GEN $? imag imag > $@
 sci_real.sci: sci_PROTO0.g
