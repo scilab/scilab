@@ -73,6 +73,8 @@ case "variable"
       if typeof(lhslist(1))=="variable" & sci_expr.name==lhslist(1).name then // Used for commands such as keyboard, cputime...
 	// keyboard in an M-file is represented in tree by an equal with lhs=keyboard and expression=keyboard
         sci_expr.lhs(1).name="ans"
+      elseif typeof(lhslist(1))=="variable" & mtlb_expr.name==lhslist(1).name then // When command converted by mtlb(cmd_name)
+        sci_expr.lhs(1).name="ans"
       end
       if sci_expr.name<>"mtlb" then
 	[sci_expr]=funcall2sci(sci_expr)
