@@ -32,7 +32,8 @@ proc showpopupsource {ind} {
     set numy [winfo pointery .]
     catch {destroy $pad.popsource}
     if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set lrange [$textareacur tag prevrange libfun $ind]
+    set lrange [$textareacur tag prevrange libfun "$ind+1c"]
+    if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
           set curterm [string trim $curterm]

@@ -568,20 +568,23 @@ proc revertsaved {} {
 
 proc savepreferences {} {
   global env listofpref
-  set preffilename $env(HOME)/.SciPadPreferences.tcl
-  set preffile [open $preffilename w]
-  foreach opt $listofpref {
-      global $opt  
-      puts $preffile [concat "set $opt" [set $opt]] 
+  set preffilename [file join $env(HOME) .SciPadPreferences.tcl]
+  catch {
+    set preffile [open $preffilename w]
+    foreach opt $listofpref {
+        global $opt
+        puts $preffile [concat "set $opt" [set $opt]]
+    }
+    close $preffile
   }
-  close $preffile
 }
 
 proc openlibfunsource {ind} {
     global textareacur
 #exit if the cursor is not by a libfun keyword
     if {[lsearch [$textareacur tag names $ind] "libfun"] ==-1} return
-    set lrange [$textareacur tag prevrange libfun $ind]
+    set lrange [$textareacur tag prevrange libfun "$ind+1c"]
+    if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
           set curterm [string trim $curterm]

@@ -127,30 +127,29 @@ proc colorize {w cpos iend} {
            while {[set ind [$w search -count displ -regexp $sciChset \
                   last ende]] != {}} {
              if {[$w compare $ind >= last]} {
-                set res ""
-                regexp $sciChset+ [$w get $ind "$ind lineend"] res
-                if {$res != ""} {
-                   set num [string length $res]
-                   $w mark set last "$ind +$displ c -1c"
+                set kword ""
+                regexp $sciChset+ [$w get $ind "$ind lineend"] kword
+                if {$kword != ""} {
+                   set num [string length $kword]
+                   $w mark set last $ind
                    $w mark set next "$ind + $num c"
-                   set word $res
 #		 tk_messageBox -message "$ind $displ $num *$res*"
-                   set initial [string range $word 0 0]
+                   set initial [string range $kword 0 0]
                    if {[string first $initial $chset(scilab.col1)]>=0} {
                         if {[lsearch -exact $words(scilab.col1.$initial) \
-                              $word] != -1} {
+                              $kword] != -1} {
                             $w tag add keywords last next
                         }
 		   }
                    if {[string first $initial $chset(scilab.predef)]>=0} {
                         if {[lsearch -exact $words(scilab.predef.$initial) \
-                              $word] != -1} {
+                              $kword] != -1} {
                             $w tag add predef last next
                         }
 		   }
                    if {[string first $initial $chset(scilab.libfun)]>=0} {
                         if {[lsearch -exact $words(scilab.libfun.$initial) \
-                              $word] != -1} {
+                              $kword] != -1} {
                             $w tag add libfun last next
                         }
                    }
