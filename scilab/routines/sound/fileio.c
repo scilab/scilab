@@ -612,7 +612,7 @@ int int_objfprintfMat(char *fname)
     }
   fclose(f);
   LhsVar(1)=0 ; /** no return value **/
-  FreeRhsSVar(Str2);
+  if ( Rhs >= 4) FreeRhsSVar(Str2);
   PutLhsVar();
   return 0;
 }  
@@ -698,7 +698,7 @@ int int_objfscanfMat(char *fname)
   /** second pass to read data **/
   rewind(f);
   /** skip non numeric lines **/
-  if ( Lhs >= 2) {
+  if ( Lhs >= 2 && vl != 0 ) {
     if ((Str = malloc((vl+1)*sizeof(char *)))==NULL) {
       Scierror(999,"Error: in function %s, no more memory \r\n", fname);
       return 0;
@@ -722,10 +722,15 @@ int int_objfscanfMat(char *fname)
     }
 
   if ( Lhs >= 2) {
-    int un=1;
-    CreateVarFromPtr(Rhs+2,"S",&vl,&un,Str);
+    int un=1,zero=0,l;
+    if ( vl > 0 ) 
+      {
+	CreateVarFromPtr(Rhs+2,"S",&vl,&un,Str);
+	FreeRhsSVar(Str);
+      }
+    else 
+      {CreateVar(Rhs+2,"c",&zero,&zero,&l);}
     LhsVar(2)=Rhs+2;
-    FreeRhsSVar(Str);
   }
 
   for (i=0; i < rows ;i++)
