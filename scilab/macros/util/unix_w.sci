@@ -13,34 +13,32 @@ function unix_w(cmd)
 // host unix_x unix_s unix_g
 //!
 // Copyright INRIA
-if prod(size(cmd))<>1 then   error(55,1),end
-
-if MSDOS then 
-  tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
-  cmd1= cmd + ' > '+ tmp;
-else 
-  tmp=TMPDIR+'/unix.out';
-  cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
-end 
-stat=host(cmd1);
-select stat
-case 0 then
-  write(%io(2),read(tmp,-1,1,'(a)'))
-case -1 then // host failed
-  error(85)
-else
+  if prod(size(cmd))<>1 then   error(55,1),end
 
   if MSDOS then 
-          error('unix_w: shell error');
+    tmp=strsubst(TMPDIR,'/','\')+'\unix.out';
+    cmd1= cmd + ' > '+ tmp;
   else 
-	  msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
-	  error('unix_w: '+msg(1))
+     tmp=TMPDIR+'/unix.out';
+     cmd1='('+cmd+')>'+ tmp +' 2>'+TMPDIR+'/unix.err;';
   end 
-
-end
-if MSDOS then
-  host('del '+tmp);
-else
-  host('rm -f '+tmp);
-end
+  stat=host(cmd1);
+  select stat
+   case 0 then
+    write(%io(2),read(tmp,-1,1,'(a)'))
+   case -1 then // host failed
+    error(85)
+  else
+     if MSDOS then 
+       error('unix_w: shell error');
+     else 
+	msg=read(TMPDIR+'/unix.err',-1,1,'(a)')
+	error('unix_w: '+msg(1))
+     end 
+  end
+  if MSDOS then
+    host('del '+tmp);
+  else
+     host('rm -f '+tmp);
+  end
 endfunction
