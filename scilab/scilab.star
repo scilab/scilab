@@ -1,4 +1,4 @@
-// Main Scilab initialisation file 
+// Main Scilab initifalisation file 
 // Copyright INRIA
 mode(-1);  // silent execution mode
 
@@ -127,7 +127,7 @@ clear %browsehelp //remove the local variable
 
 // Define Scicos data tables ===========================================
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,..
-	%scicos_display_mode,modelica_libs]=initial_scicos_tables()
+	%scicos_display_mode,modelica_libs,scicos_pal_libs]=initial_scicos_tables()
 clear initial_scicos_tables
 
 

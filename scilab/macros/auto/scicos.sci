@@ -17,9 +17,9 @@ super_block=slevel>1
 if ~super_block then
   // define scicos libraries
   if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 |..
-	exists('%scicos_display_mode')==0 then 
-    [scicos_pal_0,%scicos_menu_0,%scicos_short_0,%scicos_help_0,%scicos_display_mode_0,modelica_libs_0]= ...
-	initial_scicos_tables()
+	exists('%scicos_display_mode')==0| exists('scicos_pal_libs') ==0 then 
+    [scicos_pal_0,%scicos_menu_0,%scicos_short_0,%scicos_help_0,..
+     %scicos_display_mode_0,modelica_libs_0,scicos_pal_libs_0]=initial_scicos_tables()
     if exists('scicos_pal')==0 then
       x_message(['scicos_pal not defined';
 		 'using default values'])
@@ -48,8 +48,13 @@ if ~super_block then
     
     if exists('modelica_libs')==0 then
       x_message(['modelica_libs not defined';
-		 'using default values'])
+		 'using default values']) 
       modelica_libs=modelica_libs_0
+    end
+    if exists('scicos_pal_libs')==0 then
+      x_message(['scicos_pal_libs not defined';
+		 'using default values']) 
+      scicos_pal_libs=scicos_pal_libs_0
     end
   end
   
