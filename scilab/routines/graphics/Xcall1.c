@@ -760,7 +760,7 @@ void xclick_1(char *fname, char *str, integer *ibutton, integer *iflag, integer 
 { 
   integer x1,yy1,n=1;
   C2F(dr)(fname,str,ibutton,&x1,&yy1,iflag,istr,x7,PD0,PD0,dx3,dx4,lx0,lx1);
-  C2F(echelle2d)(x,y,&x1,&yy1,&n,&n,"i2f",3L);
+  if (*ibutton != -100) C2F(echelle2d)(x,y,&x1,&yy1,&n,&n,"i2f",3L);
 }
 /*-----------------------------------------------------------------------------
  *  click_any
