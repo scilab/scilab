@@ -1,7 +1,8 @@
-function [files]= basename(files,flag,flagexpand) 
-// strip directory and suffix from filenames
+function [files]= dirname(files,flag,flagexpand) 
+// return the dirname of files 
 // if flag == %t files are first converted 
-// according to MSDOS 
+// according to MSDOS. if flagexpand is also true 
+// HOME SCI or ~ are also expanded. 
 // Copyright Enpc 
   
   [lhs,rhs]=argn(0) 
@@ -22,11 +23,9 @@ function [files]= basename(files,flag,flagexpand)
     fname = files(i) 
     pref_pos = strindex(fname,sep); 
     if pref_pos <> [] then 
-      fname = part(fname,pref_pos($) +1:length(fname)); 
-    end
-    suf_pos = strindex(fname,'.'); 
-    if suf_pos <> [] then 
-      fname =  part(fname,1:suf_pos($)-1);
+      fname = part(fname,1:pref_pos($));
+    else
+       fname = emptystr();
     end
     files(i)= fname; 
   end

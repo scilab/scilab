@@ -38,6 +38,7 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	isdir.sci newest.sci mputl.sci dispfiles.sci input.sci readc_.sci\
 	printf.sci fprintf.sci sprintf.sci scanf.sci fscanf.sci sscanf.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
-	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci
+	ilib_mex_build.sci listfiles.sci pathconvert.sci basename.sci \
+	dirname.sci
 
 include ../Make.lib

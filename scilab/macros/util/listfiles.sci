@@ -20,9 +20,17 @@ function files= listfiles(paths,flag,flagexpand)
   end 
   
   if MSDOS then
-    paths= '""'+ strcat(paths,'"" ""')+'""';
-    files=unix_g('dir /B /OD '+paths);
-    files=files($:-1:1)
+    dirs= dirname(paths,flag,flagexpand);
+    files=[];
+    for i=1:size(paths,'*') 
+      // dir returns names with the dirname 
+      filesi=unix_g('dir /B /OD ""'+paths(i)+'""');
+      if filesi<>"" & filesi<>[] then 
+	filesi=filesi($:-1:1)
+	filesi= dirs(i)+filesi
+      end
+      files=[files;filesi];
+    end
   else
     paths=  strcat(paths,' ');
     files=unix_g('ls  -t1 '+paths);
