@@ -107,7 +107,6 @@ function legends(leg, style, opt, with_box)
     rect=dragrect([xmax-width-drx/5,ymax-dy/60,width,height])
     pos=rect(1:2)
   end
-  disp(pos)
  
   x=pos(1)+drx/5
   y=pos(2)-dy/60
