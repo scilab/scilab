@@ -683,12 +683,19 @@ EventProc(widget, number, event)
 int scig_click_handler_none (win,x,y,ibut,motion,release)int win,x,y,ibut,motion,release;
 {return 0;};
 
-int scig_click_handler_sci (win,x,y,ibut,motion,release)
+nt scig_click_handler_sci (win,x,y,ibut,motion,release)
 int win,x,y,ibut,motion,release;
 {
-static char buf[256];
-   sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
-   StoreCommand(buf);
+  static char buf[256];
+  struct BCG *SciGc;
+
+  SciGc = GetWindowXgcNumber(win);
+  if (SciGc->EventHandler!=(EVTHANDLER) NULL) {
+    sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+    StoreCommand(buf);
+    return 1;}
+  else
+    return 0;
 };
 
 static Scig_click_handler scig_click_handler = scig_click_handler_sci;
