@@ -10,9 +10,8 @@ disp("")
 disp("")
 
 lines(0);
-// a ajouter quand corrrigé: 654,656,
 // dans la variable num_test mettre tous les numéros de bugs corrigés dans la version 3.0
-num_test = [790,793,55,71,461,464,467,470,474,475,476,477,480,487,488,498,502,650,681,683]
+num_test = [654,656,790,793,55,71,461,464,467,470,474,475,476,477,480,487,488,498,502,650,681,683]
 
 for k = num_test
    exec('bug' + string(k) + '.sci')
