@@ -27,7 +27,7 @@ c!origin
 c Serge Steer INRIA 1996
 c!
 c     Copyright INRIA
-      integer n,iv,ierr
+      integer n,iv,ierr,ierr1
       double precision vr(*),vi(*),p(*),rr(*),ri(*)
 c
       ierr=0
@@ -38,8 +38,9 @@ c
       iip=1
       iir=1
       do 20 i=1,n
-         call wdpowe(vr(ii),vi(ii),p(iip),rr(iir),ri(iir),ierr)
+         call wdpowe(vr(ii),vi(ii),p(iip),rr(iir),ri(iir),ierr1)
 c         if(ierr.ne.0) return
+         ierr=max(ierr,ierr1)
          ii=ii+iv
          iip=iip+ip
          iir=iir+ir

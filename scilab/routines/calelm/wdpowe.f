@@ -19,7 +19,7 @@ c!
 
 c     Copyright INRIA
       integer ierr
-      double precision vr,vi,p,sr,si,rr,ri
+      double precision vr,vi,p,sr,si,rr,ri,infinity
 c
       ierr=0
 c

@@ -15,7 +15,7 @@ c Serge Steer INRIA 1996
 c!
 c     Copyright INRIA
       integer p ,ierr
-      double precision v,r
+      double precision v,r,infinity
 c
       ierr=0
 c
