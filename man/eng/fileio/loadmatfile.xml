@@ -22,16 +22,16 @@
      <PARAM_ITEM>
        <PARAM_NAME>format</PARAM_NAME>
        <PARAM_DESCRIPTION>
-         <SP>: file format (if not given and file has extension ".mat", file is considered to be binary)</SP>
+         <SP>: file format (if not given and file has extension &quot;.mat&quot;, file is considered to be binary)</SP>
          <PARAM_INDENT>
            <PARAM_ITEM>
-             <PARAM_NAME>"-mat"</PARAM_NAME>
+             <PARAM_NAME>&quot;-mat&quot;</PARAM_NAME>
              <PARAM_DESCRIPTION>
                 <SP>: binary file</SP>
               </PARAM_DESCRIPTION>
             </PARAM_ITEM>
             <PARAM_ITEM>
-              <PARAM_NAME>"-ascii"</PARAM_NAME>
+              <PARAM_NAME>&quot;-ascii&quot;</PARAM_NAME>
               <PARAM_DESCRIPTION>
                 <SP>: option to force Scilab to read file as an ASCII file</SP>
               </PARAM_DESCRIPTION>
@@ -55,6 +55,12 @@
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
       <LINK>load</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>savematfile</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>save</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>mfile2sci</LINK>
