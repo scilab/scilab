@@ -108,4 +108,3 @@ sciCall.o: sciCall.c Entities.h ../stack-c.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../stack-def.h ../interf/stack1.h \
   ../interf/stack2.h ../interf/stack3.h PloEch.h
 
-
