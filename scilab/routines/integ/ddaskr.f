@@ -1424,7 +1424,7 @@ C***FIRST EXECUTABLE STATEMENT  DDASKR
 C
 C
       IF(INFO(1).NE.0) GO TO 100
-C
+c
 C-----------------------------------------------------------------------
 C     This block is executed for the initial call only.
 C     It contains checking of inputs and initializations.
@@ -1514,7 +1514,7 @@ C     Otherwise, verify inputs required for iterative solver.
 C
       IF (INFO(11) .EQ. 0) GO TO 30
       IF (INFO(17) .EQ. 0) THEN
-        IWORK(LMXNIT) = 5
+        IWORK(LMXNIT) = 1
         IF (INFO(12) .GT. 0) IWORK(LMXNIT) = 15
         IWORK(LMXNJ) = 6
         IF (INFO(12) .GT. 0) IWORK(LMXNJ) = 2
@@ -1815,6 +1815,8 @@ C     nonlinear solver, depending on INFO(12).  The location of the work
 C     arrays SAVR, YIC, YPIC, PWK also differ in the two cases.
 C     For use in stopping tests, pass TSCALE = TDIST if INDEX = 0.
 C
+      
+
       NWT = 1
       EPCONI = RWORK(LEPIN)*RWORK(LEPCON)
       TSCALE = 0.0D0
@@ -1879,8 +1881,8 @@ C
       IF (INFO(8) .NE. 0) THEN
          H0 = RWORK(LH)
          GO TO 360
-         ENDIF
-C
+      ENDIF
+C     
       H0 = 0.001D0*TDIST
       YPNORM = DDWNRM(NEQ,YPRIME,RWORK(LVT),RPAR,IPAR)
       IF (YPNORM .GT. 0.5D0/H0) H0 = 0.5D0/YPNORM
@@ -2899,9 +2901,9 @@ C     are input, and initial guesses for the unknown components
 C     must also be provided as input.
 C
 C     The external routine NLSIC solves the resulting nonlinear system.
-C
+C 
 C     The parameters represent
-C
+C 
 C     X  --        Independent variable.
 C     Y  --        Solution vector at X.
 C     YPRIME --    Derivative of solution vector.
@@ -3100,8 +3102,8 @@ C----------------------- END OF SUBROUTINE DYYPNW ----------------------
      *  EPLI,SQRTN,RSQRTN,EPCON,IPHASE,JCALC,JFLG,K,KOLD,NS,NONNEG,
      *  NTYPE,NLS)
 C
-C***BEGIN PROLOGUE  DDSTP
-C***REFER TO  DDASPK
+C***BEGIN PROLOGUE  DDSTP2
+C***REFER TO  DDASPK 
 C***DATE WRITTEN   890101   (YYMMDD)
 C***REVISION DATE  900926   (YYMMDD)
 C***REVISION DATE  940909   (YYMMDD) (Reset PSI(1), PHI(*,2) at 690)
@@ -3889,7 +3891,8 @@ C
       IF(VMAX .LE. 0.0D0) GO TO 30
       SUM = 0.0D0
       DO 20 I = 1,NEQ
-20      SUM = SUM + ((V(I)*RWT(I))/VMAX)**2
+ 20      SUM = SUM + ((V(I)*RWT(I))/VMAX)**2
+
       DDWNRM = VMAX*SQRT(SUM/NEQ)
 30    CONTINUE
       RETURN
@@ -4023,40 +4026,41 @@ C     where G(X,Y,YPRIME) = 0.
 C
       NJ = NJ + 1
       IWM(LNJE)=IWM(LNJE)+1
+
       CALL DMATD(NEQ,X,Y,YPRIME,DELTA,CJ,H,IERJ,WT,R,
      *              WM,IWM,RES,IRES,UROUND,JACD,RPAR,IPAR)
       IF (IRES .LT. 0 .OR. IERJ .NE. 0) GO TO 370
-C
+C     
 C     Call the nonlinear Newton solver for up to MXNIT iterations.
-C
+C     
       CALL DNSID(X,Y,YPRIME,NEQ,ICOPT,ID,RES,WT,RPAR,IPAR,DELTA,R,
      *     YIC,YPIC,WM,IWM,CJ,TSCALE,EPCON,RATEMX,MXNIT,STPTOL,
      *     ICNFLG,ICNSTR,IERNEW)
 C
+
       IF (IERNEW .EQ. 1 .AND. NJ .LT. MXNJ) THEN
-C
-C        MXNIT iterations were done, the convergence rate is < 1,
-C        and the number of Jacobian evaluations is less than MXNJ.
-C        Call RES, reevaluate the Jacobian, and try again.
-C
+C     
+C     MXNIT iterations were done, the convergence rate is < 1,
+C     and the number of Jacobian evaluations is less than MXNJ.
+C     Call RES, reevaluate the Jacobian, and try again.
+C     
+
          IWM(LNRE)=IWM(LNRE)+1
          CALL RES(X,Y,YPRIME,CJ,DELTA,IRES,RPAR,IPAR)
          IF (IRES .LT. 0) GO TO 370
          GO TO 300
-         ENDIF
-C
+      ENDIF
       IF (IERNEW .NE. 0) GO TO 380
-
       RETURN
-C
-C
+C     
+C     
 C     Unsuccessful exits from nonlinear solver.
 C     Compute IERNLS accordingly.
-C
-370   IERNLS = 2
+C     
+ 370  IERNLS = 2
       IF (IRES .LE. -2) IERNLS = -1
       RETURN
-C
+C     
 380   IERNLS = MIN(IERNEW,2)
       RETURN
 C
@@ -4148,6 +4152,7 @@ C
 C
 C     Initializations.  M is the Newton iteration counter.
 C
+
       LSOFF = IWM(LLSOFF)
       M = 0
       RATE = 1.0D0
@@ -4157,18 +4162,21 @@ C     Compute a new step vector DELTA by back-substitution.
 C
       CALL DSLVD (NEQ, DELTA, WM, IWM)
 C
+
 C     Get norm of DELTA.  Return now if norm(DELTA) .le. EPCON.
 C
       DELNRM = DDWNRM(NEQ,DELTA,WT,RPAR,IPAR)
       FNRM = DELNRM
       IF (TSCALE .GT. 0.0D0) FNRM = FNRM*TSCALE*ABS(CJ)
+      
+
       IF (FNRM .LE. EPCON) RETURN
 C
 C     Newton iteration loop.
-C
+C     
  300  CONTINUE
       IWM(LNNI) = IWM(LNNI) + 1
-C
+C     
 C     Call linesearch routine for global strategy and set RATE
 C
       OLDFNM = FNRM
@@ -4178,14 +4186,19 @@ C
      *             ID, R, YIC, YPIC, ICNFLG, ICNSTR, RLX, RPAR, IPAR)
 C
       RATE = FNRM/OLDFNM
-C
+C     
 C     Check for error condition from linesearch.
       IF (IRET .NE. 0) GO TO 390
 C
 C     Test for convergence of the iteration, and return or loop.
-C
+C     ------------------------------------------
+      IERNEW = 1
+      RETURN
+
+C     ------------------------------------------
+c     here epcon=0.33
       IF (FNRM .LE. EPCON) RETURN
-C
+C     
 C     The iteration has not yet converged.  Update M.
 C     Test whether the maximum number of iterations have been tried.
 C
@@ -4201,6 +4214,7 @@ C
 C
 C     The maximum number of iterations was done.  Set IERNEW and return.
 C
+c     here ratemx =0.8
  380  IF (RATE .LE. RATEMX) THEN
          IERNEW = 1
       ELSE
@@ -4295,115 +4309,121 @@ C
       DIMENSION YNEW(*), YPNEW(*), P(*), ICNSTR(*)
       DIMENSION RPAR(*), IPAR(*)
       CHARACTER MSG*80
-C
+C     
       PARAMETER (LNRE=12, LKPRIN=31)
-C
+C     
       SAVE ALPHA, ONE, TWO
       DATA ALPHA/1.0D-4/, ONE/1.0D0/, TWO/2.0D0/
-C
+C     
       KPRIN=IWM(LKPRIN)
-C
+C     
       F1NRM = (FNRM*FNRM)/TWO
       RATIO = ONE
       IF (KPRIN .GE. 2) THEN
-        MSG = '------ IN ROUTINE DLINSD-- PNRM = (R1)'
-        CALL XERRWD(MSG, 38, 901, 0, 0, 0, 0, 1, PNRM, 0.0D0)
-        ENDIF
+         MSG = '------ IN ROUTINE DLINSD-- PNRM = (R1)'
+         CALL XERRWD(MSG, 38, 901, 0, 0, 0, 0, 1, PNRM, 0.0D0)
+      ENDIF
       TAU = PNRM
       RL = ONE
+       
 C-----------------------------------------------------------------------
-C Check for violations of the constraints, if any are imposed.
-C If any violations are found, the step vector P is rescaled, and the 
-C constraint check is repeated, until no violations are found.
+C     Check for violations of the constraints, if any are imposed.
+C     If any violations are found, the step vector P is rescaled, and the 
+C     constraint check is repeated, until no violations are found.
 C-----------------------------------------------------------------------
-      IF (ICNFLG .NE. 0) THEN
- 10      CONTINUE
-         CALL DYYPNW (NEQ,Y,YPRIME,CJ,RL,P,ICOPT,ID,YNEW,YPNEW)
-         CALL DCNSTR (NEQ, Y, YNEW, ICNSTR, TAU, RLX, IRET, IVAR)
-         IF (IRET .EQ. 1) THEN
-            RATIO1 = TAU/PNRM
-            RATIO = RATIO*RATIO1
-            DO 20 I = 1,NEQ
- 20           P(I) = P(I)*RATIO1
-            PNRM = TAU
-            IF (KPRIN .GE. 2) THEN
-              MSG = '------ CONSTRAINT VIOL., PNRM = (R1), INDEX = (I1)'
-              CALL XERRWD(MSG, 50, 902, 0, 1, IVAR, 0, 1, PNRM, 0.0D0)
+c     here ICNFLG=0!
+      IF(ICNFLG .NE. 0) THEN
+ 10     CONTINUE
+        CALL DYYPNW (NEQ,Y,YPRIME,CJ,RL,P,ICOPT,ID,YNEW,YPNEW)
+        CALL DCNSTR (NEQ, Y, YNEW, ICNSTR, TAU, RLX, IRET, IVAR)
+        IF (IRET .EQ. 1) THEN
+           RATIO1 = TAU/PNRM
+           RATIO = RATIO*RATIO1
+           DO 20 I = 1,NEQ
+ 20          P(I) = P(I)*RATIO1
+             PNRM = TAU
+             IF(KPRIN .GE. 2) THEN
+             MSG = '------ CONSTRAINT VIOL., PNRM = (R1), INDEX = (I1)'
+             CALL XERRWD(MSG, 50, 902, 0, 1, IVAR, 0, 1, PNRM, 0.0D0)
               ENDIF
-            IF (PNRM .LE. STPTOL) THEN
-              IRET = 1
-              RETURN
+              IF (PNRM .LE. STPTOL) THEN
+                 IRET = 1
+                 RETURN
               ENDIF
-            GO TO 10
-            ENDIF
+              GO TO 10
+           ENDIF
+        ENDIF
+C     
+         SLPI = (-TWO*F1NRM)*RATIO
+         RLMIN = STPTOL/PNRM
+         IF (LSOFF .EQ. 0 .AND. KPRIN .GE. 2) THEN
+            MSG = '------ MIN. LAMBDA = (R1)'
+            CALL XERRWD(MSG, 25, 903, 0, 0, 0, 0, 1, RLMIN, 0.0D0)
          ENDIF
-C
-      SLPI = (-TWO*F1NRM)*RATIO
-      RLMIN = STPTOL/PNRM
-      IF (LSOFF .EQ. 0 .AND. KPRIN .GE. 2) THEN
-        MSG = '------ MIN. LAMBDA = (R1)'
-        CALL XERRWD(MSG, 25, 903, 0, 0, 0, 0, 1, RLMIN, 0.0D0)
-        ENDIF
 C-----------------------------------------------------------------------
-C Begin iteration to find RL value satisfying alpha-condition.
-C If RL becomes less than RLMIN, then terminate with IRET = 1.
+C     Begin iteration to find RL value satisfying alpha-condition.
+C     If RL becomes less than RLMIN, then terminate with IRET = 1.
 C-----------------------------------------------------------------------
- 100  CONTINUE
-      CALL DYYPNW (NEQ,Y,YPRIME,CJ,RL,P,ICOPT,ID,YNEW,YPNEW)
-      CALL DFNRMD (NEQ, YNEW, T, YPNEW, R, CJ, TSCALE, WT, RES, IRES,
-     *              FNRMP, WM, IWM, RPAR, IPAR)
-      IWM(LNRE) = IWM(LNRE) + 1
-      IF (IRES .NE. 0) THEN
-        IRET = 2
-        RETURN
-        ENDIF
-      IF (LSOFF .EQ. 1) GO TO 150
-C
-      F1NRMP = FNRMP*FNRMP/TWO
-      IF (KPRIN .GE. 2) THEN
-        MSG = '------ LAMBDA = (R1)'
-        CALL XERRWD(MSG, 20, 904, 0, 0, 0, 0, 1, RL, 0.0D0)
-        MSG = '------ NORM(F1) = (R1),  NORM(F1NEW) = (R2)'
-        CALL XERRWD(MSG, 43, 905, 0, 0, 0, 0, 2, F1NRM, F1NRMP)
-        ENDIF
-      IF (F1NRMP .GT. F1NRM + ALPHA*SLPI*RL) GO TO 200
+ 100     CONTINUE
+c     ----------------------------------------------------------
+         CALL DYYPNW (NEQ,Y,YPRIME,CJ,RL,P,ICOPT,ID,YNEW,YPNEW)
+         CALL DFNRMD (NEQ, YNEW, T, YPNEW, R, CJ, TSCALE, WT, RES, IRES,
+     *        FNRMP, WM, IWM, RPAR, IPAR)
+
+         IWM(LNRE) = IWM(LNRE) + 1
+         IF (IRES .NE. 0) THEN
+            IRET = 2
+            RETURN
+         ENDIF
+
+         IF (LSOFF .EQ. 1) GO TO 150
+
+         F1NRMP = FNRMP*FNRMP/TWO
+         IF (KPRIN .GE. 2) THEN
+            MSG = '------ LAMBDA = (R1)'
+            CALL XERRWD(MSG, 20, 904, 0, 0, 0, 0, 1, RL, 0.0D0)
+            MSG = '------ NORM(F1) = (R1),  NORM(F1NEW) = (R2)'
+            CALL XERRWD(MSG, 43, 905, 0, 0, 0, 0, 2, F1NRM, F1NRMP)
+         ENDIF
+         IF (F1NRMP .GT. F1NRM + ALPHA*SLPI*RL) GO TO 200
 C-----------------------------------------------------------------------
-C Alpha-condition is satisfied, or linesearch is turned off.
-C Copy YNEW,YPNEW to Y,YPRIME and return.
+C     Alpha-condition is satisfied, or linesearch is turned off.
+C     Copy YNEW,YPNEW to Y,YPRIME and return.
 C-----------------------------------------------------------------------
- 150  IRET = 0
-      CALL DCOPY (NEQ, YNEW, 1, Y, 1)
-      CALL DCOPY (NEQ, YPNEW, 1, YPRIME, 1)
-      FNRM = FNRMP
-      IF (KPRIN .GE. 1) THEN
-        MSG = '------ LEAVING ROUTINE DLINSD, FNRM = (R1)'
-        CALL XERRWD(MSG, 42, 906, 0, 0, 0, 0, 1, FNRM, 0.0D0)
-        ENDIF
-      RETURN
+ 150     IRET = 0
+
+         CALL DCOPY (NEQ, YNEW, 1, Y, 1)
+         CALL DCOPY (NEQ, YPNEW, 1, YPRIME, 1)
+         FNRM = FNRMP
+         IF (KPRIN .GE. 1) THEN
+            MSG = '------ LEAVING ROUTINE DLINSD, FNRM = (R1)'
+            CALL XERRWD(MSG, 42, 906, 0, 0, 0, 0, 1, FNRM, 0.0D0)
+         ENDIF
+         RETURN
 C-----------------------------------------------------------------------
-C Alpha-condition not satisfied.  Perform backtrack to compute new RL
-C value.  If no satisfactory YNEW,YPNEW can be found sufficiently 
-C distinct from Y,YPRIME, then return IRET = 1.
+C     Alpha-condition not satisfied.  Perform backtrack to compute new RL
+C     value.  If no satisfactory YNEW,YPNEW can be found sufficiently 
+C     distinct from Y,YPRIME, then return IRET = 1.
 C-----------------------------------------------------------------------
- 200  CONTINUE
-      IF (RL .LT. RLMIN) THEN
-        IRET = 1
-        RETURN
-        ENDIF
-C
-      RL = RL/TWO
-      GO TO 100
-C
-C----------------------- END OF SUBROUTINE DLINSD ----------------------
-      END
+ 200     CONTINUE
+         IF (RL .LT. RLMIN) THEN
+            IRET = 1
+            RETURN
+         ENDIF
+C     
+         RL = RL/TWO
+         GO TO 100
+C     
+C-----------------------END OF SUBROUTINE DLINSD ----------------------
+         END
       SUBROUTINE DFNRMD (NEQ, Y, T, YPRIME, R, CJ, TSCALE, WT,
-     *                   RES, IRES, FNORM, WM, IWM, RPAR, IPAR)
-C
-C***BEGIN PROLOGUE  DFNRMD
-C***REFER TO  DLINSD
-C***DATE WRITTEN   941025   (YYMMDD)
-C***REVISION DATE  000628   TSCALE argument added.
-C
+     *     RES, IRES, FNORM, WM, IWM, RPAR, IPAR)
+C     
+C***  BEGIN PROLOGUE  DFNRMD
+C***  REFER TO  DLINSD
+C***  DATE WRITTEN   941025   (YYMMDD)
+C***  REVISION DATE  000628   TSCALE argument added.
+C     
 C
 C-----------------------------------------------------------------------
 C***DESCRIPTION
@@ -4448,12 +4468,12 @@ C     Calculate norm of R.
 C-----------------------------------------------------------------------
       FNORM = DDWNRM(NEQ,R,WT,RPAR,IPAR)
       IF (TSCALE .GT. 0.0D0) FNORM = FNORM*TSCALE*ABS(CJ)
-C
+C     
       RETURN
-C----------------------- END OF SUBROUTINE DFNRMD ----------------------
-      END
+C-----------------------END OF SUBROUTINE DFNRMD ----------------------
+       END
       SUBROUTINE DNEDD(X,Y,YPRIME,NEQ,RES,JACD,PDUM,H,WT,
-     *   JSTART,IDID,RPAR,IPAR,PHI,GAMMA,DUMSVR,DELTA,E,
+     *     JSTART,IDID,RPAR,IPAR,PHI,GAMMA,DUMSVR,DELTA,E,
      *   WM,IWM,CJ,CJOLD,CJLAST,S,UROUND,DUME,DUMS,DUMR,
      *   EPCON,JCALC,JFDUM,KP1,NONNEG,NTYPE,IERNLS)
 C
@@ -4970,10 +4990,10 @@ C
       NROW=0
       SQUR = SQRT(UROUND)
       DO 210 I=1,NEQ
-         DEL=SQUR*MAX(ABS(Y(I)),ABS(H*YPRIME(I)),
+         DEL=SQUR*MAX(1,ABS(Y(I)),ABS(H*YPRIME(I)),
      *     ABS(1.D0/EWT(I)))
          DEL=SIGN(DEL,H*YPRIME(I))
-         DEL=(Y(I)+DEL)-Y(I)
+         DEL=(Y(I)+DEL)-Y(I)         
          YSAVE=Y(I)
          YPSAVE=YPRIME(I)
          Y(I)=Y(I)+DEL
@@ -4982,19 +5002,22 @@ C
          CALL RES(X,Y,YPRIME,CJ,E,IRES,RPAR,IPAR)
          IF (IRES .LT. 0) RETURN
          DELINV=1.0D0/DEL
-         DO 220 L=1,NEQ
-220        WM(NROW+L)=(E(L)-DELTA(L))*DELINV
-      NROW=NROW+NEQ
-      Y(I)=YSAVE
-      YPRIME(I)=YPSAVE
-210   CONTINUE
-C
-C
+         DO 220 L=1,NEQ  
+            WM(NROW+L)=(E(L)-DELTA(L))*DELINV
+            RS= WM(NROW+L)
+ 220     CONTINUE    
+         NROW=NROW+NEQ
+         Y(I)=YSAVE
+         YPRIME(I)=YPSAVE
+ 210  CONTINUE
+C     
+C     
 C     Do dense-matrix LU decomposition on J.
-C
-230      CALL DGEFA(WM,NEQ,NEQ,IWM(LIPVT),IER)
+C     
+      
+ 230  CALL DGEFA(WM,NEQ,NEQ,IWM(LIPVT),IER)
       RETURN
-C
+C     
 C
 C     Dummy section for IWM(MTYPE)=3.
 C
@@ -5096,7 +5119,12 @@ C
       GO TO(100,100,300,400,400),MTYPE
 C
 C     Dense matrix.
-C
+
+    
+
+c     subroutine dgesl(a,lda,n,ipvt,b,job)
+c     a*x=b  => b<-x
+c     (WM*X=DELTA)
 100   CALL DGESL(WM,NEQ,NEQ,IWM(LIPVT),DELTA,0)
       RETURN
 C
@@ -5593,7 +5621,7 @@ C-----------------------------------------------------------------------
             PNRM = TAU
             IF (KPRIN .GE. 2) THEN
               MSG = '------ CONSTRAINT VIOL., PNRM = (R1), INDEX = (I1)'
-              CALL XERRWD(MSG, 50, 922, 0, 1, IVAR, 0, 1, PNRM, 0.0D0)
+              CALL XERRWD (MSG, 50, 922, 0, 1, IVAR, 0, 1, PNRM, 0.0D0)
               ENDIF
             IF (PNRM .LE. STPTOL) THEN
               IRET = 1
@@ -7110,3 +7138,4 @@ C
 C
 C------END OF SUBROUTINE DHELS------------------------------------------
       END
+
