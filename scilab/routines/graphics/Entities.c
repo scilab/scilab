@@ -9832,11 +9832,12 @@ sciDrawObj (sciPointObj * pobj)
 	  Cscale.logflag[1]=pSUBWIN_FEATURE (pobj)->logflags[1];
 
 	  axis_draw (pSUBWIN_FEATURE (pobj)->strflag);
-	  if (pSUBWIN_FEATURE (pobj)->grid != -1)
-	    {
-	      style[0] = pSUBWIN_FEATURE (pobj)->grid;
-	      C2F(xgrid)(style);  
-	    }  
+	  /* DA 21/01/2003 */
+	  /*if (pSUBWIN_FEATURE (pobj)->grid != -1)
+	   * {
+	   *  style[0] = pSUBWIN_FEATURE (pobj)->grid;
+	   *  C2F(xgrid)(style);  
+	   }*/  
 	}                         
       /******************/
 

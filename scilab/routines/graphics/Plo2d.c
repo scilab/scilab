@@ -116,26 +116,26 @@ int C2F(xgrid)(style)
   integer closeflag=0,n=2,vx[2],vy[2],i,j;
   double pas;
   integer verbose=0,narg,xz[10];
-  /* Recording command */
   if (version_flag() == 0)
     {
       sciPointObj *psubwin;
       psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
       pSUBWIN_FEATURE (psubwin)->grid = *style;
-      Cscale.Waaint1[1]= Cscale.xtics[3];
-      Cscale.Waaint1[3]= Cscale.ytics[3];
+      sciDrawObj(psubwin);
+      return(0);
     }
   else
-    if (GetDriver()=='R') StoreGrid("xgrid",style);
+    {   /* Recording command */
+      if (GetDriver()=='R') StoreGrid("xgrid",style);
 
-  /* changes dash style if necessary */
-  C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  /** Get current scale **/
-  pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
-  /** x-axis grid (i.e vertical lines ) */
-  for ( i=0 ; i < Cscale.Waaint1[1]; i++)
-    {
+      /* changes dash style if necessary */
+      C2F(dr)("xget","color",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      C2F(dr)("xset","color",style,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      /** Get current scale **/
+      pas = ((double) Cscale.WIRect1[2]) / ((double) Cscale.Waaint1[1]);
+      /** x-axis grid (i.e vertical lines ) */
+      for ( i=0 ; i < Cscale.Waaint1[1]; i++)
+	{
       vy[0]=Cscale.WIRect1[1];
       vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
       vx[0]=vx[1]= Cscale.WIRect1[0] + inint( ((double) i)*pas);
@@ -150,12 +150,12 @@ int C2F(xgrid)(style)
 	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
-    }
-  /** y-axis grid (i.e horizontal lines ) **/
-  pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
-  for ( i=0 ; i < Cscale.Waaint1[3]; i++)
-    {
-      vx[0]=Cscale.WIRect1[0];
+	}
+      /** y-axis grid (i.e horizontal lines ) **/
+      pas = ((double) Cscale.WIRect1[3]) / ((double) Cscale.Waaint1[3]);
+      for ( i=0 ; i < Cscale.Waaint1[3]; i++)
+	{
+	  vx[0]=Cscale.WIRect1[0];
       vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2];
       vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i)*pas);
       if (i!=0)  C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -166,11 +166,12 @@ int C2F(xgrid)(style)
 	  for (j= jinit; j < 10 ; j++)
 	    {
 	      vy[0]=vy[1]= Cscale.WIRect1[1] + inint( ((double) i+1)*pas)- inint(log10(((double)j))*pas);
-	       C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xlines","void",&n, vx, vy,&closeflag,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	    }
 	}
+	}
+      C2F(dr)("xset","color",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
-  C2F(dr)("xset","color",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   return(0);
 }
 
@@ -341,7 +342,7 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
 	case '6' : strflag[1]='5';break;
 	}
     }
-	  
+
   if ( (int)strlen(strflag) >=2 && ( strflag[1]=='5' || strflag[1]=='6' ))
     {
       /* recherche automatique des bornes et graduations */
@@ -378,8 +379,8 @@ void update_frame_bounds(cflag, xf, x, y, n1, n2, aaint, strflag, FRect)
     subwindowtmp = sciGetSelectedSubWin(sciGetCurrentFigure()); 
     for (i=0 ; i<4 ; i++)
       {  
-               pSUBWIN_FEATURE (subwindowtmp)->axes.xlim[i]=Cscale.xtics[i]; 
-    	       pSUBWIN_FEATURE (subwindowtmp)->axes.ylim[i]=Cscale.ytics[i];
+	pSUBWIN_FEATURE (subwindowtmp)->axes.xlim[i]=Cscale.xtics[i]; 
+	pSUBWIN_FEATURE (subwindowtmp)->axes.ylim[i]=Cscale.ytics[i];
       } 
     }
   /* NG end */ 

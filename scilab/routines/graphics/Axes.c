@@ -389,7 +389,9 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
   /*** 01/07/2002 ***/
-  double xmin,xmax,ymin, ymax; 
+  double xmin,xmax,ymin, ymax;
+   /*** MAJ Djalel A 21/01/2003 ***/
+   integer pstyle;
 
 
  if (version_flag() == 0)
@@ -522,6 +524,17 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /*** MAJ Djalel.A 21/01/2003 ***/ 
+	  if (version_flag() == 0) 
+	    if ((vx[0] != Cscale.WIRect1[0]) && (vx[0] != (Cscale.WIRect1[0]+ Cscale.WIRect1[2])))
+	      if (pSUBWIN_FEATURE (psubwin)->grid > -1)
+		{
+		  pstyle=pSUBWIN_FEATURE (psubwin)->grid ;
+		vy[0]=Cscale.WIRect1[1];
+		vy[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];  
+		C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
+	  /***/
 	  /* subtics */
 	  if ( i < Nx-1 ) 
 	    {
@@ -654,6 +667,16 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
 
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /*** MAJ Djalel.A 21/01/2003 ***/ 
+	  if (version_flag() == 0)
+            if ((vy[0] != Cscale.WIRect1[1]) && (vy[0] != (Cscale.WIRect1[1]+ Cscale.WIRect1[3])))
+	      if (pSUBWIN_FEATURE (psubwin)->grid > -1)
+		{
+		  pstyle=pSUBWIN_FEATURE (psubwin)->grid ;
+		  vx[0]=Cscale.WIRect1[0];
+		  vx[1]=Cscale.WIRect1[0]+Cscale.WIRect1[2]; 
+		C2F(dr)("xsegs","v", vx, vy, &ns,&pstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		}
 	  /* subtics */
 	  if ( i < Ny-1 ) 
 	    {
