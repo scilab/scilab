@@ -32,9 +32,10 @@ void axis_draw(strflag)
      char strflag[];
 { 
   /* using foreground to draw axis */
-  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp;
+  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; // F.Leray verbose=1 interesting here!!!
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  //sciprint("APRES xget foreground IN axis_draw------------------------------------------"); //F.Leray printf to see...
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -46,9 +47,11 @@ void axis_draw(strflag)
     ixbox[1]=ixbox[0];iybox[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3];
     ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1];
     ixbox[3]=ixbox[2];iybox[3]=iybox[0]; 
-    C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);    
-    C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  
+    C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+   // C2F (dr) ("xset","foreground",&color,&color,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);	  
+	C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
     C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+    //C2F (dr) ("xset","foreground",&fg,&fg,&verbose,&verbose,&verbose,PI0,PD0,PD0,PD0,PD0,5L,4096);
     C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  
   }
 
@@ -72,6 +75,8 @@ void axis_draw(strflag)
     }
   C2F(dr)("xset","line style",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",xz+1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+
 }
 
 /*--------------------------------------------------------------
@@ -435,8 +440,8 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,ticsco
   {
 	   // Pb here, dim of x and y can be lesser than 4 (ie in example_eng.tst : nx = 6 and ny = 1) F.Leray 25.02.04
 	  // meaning of x and y ?
-/*while (x[3]>10)  x[3]=floor(x[3]/2);
-        while (y[3]>10)  y[3]=floor(y[3]/2); } */ //Wrong!! => but need something... F.Leray 25.02.04
+while (x[3]>10)  x[3]=floor(x[3]/2);
+while (y[3]>10)  y[3]=floor(y[3]/2);  //Wrong!! => but need something... F.Leray 25.02.04 Pb here: DOES NOT WORK PROPERLY !!!! NEED MODIFICATIONS !!
   }
   
   /** Real to Pixel values **/
