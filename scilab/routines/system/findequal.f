@@ -30,7 +30,7 @@ c initialize counters (parenthesis, quote and brackets)
  10   psym=sym
       call getsym
       if(strcnt.ne.0) then
-         if(sym.eq.eol.or.sym.eq.cmt) then
+         if(sym.eq.eol) then
             call error(3)
             return
          endif
