@@ -1,3 +1,140 @@
+function ged(k,win)
+  //xset, xget used because ged should handle both old and new style
+  cur=xget('window')
+  xset('window',win) 
+  if  get('figure_style')=='old' then 
+    message('Edit menu does not apply to old style graphics')
+    unsetmenu(win,'Edit')
+    xset('window',cur)
+    return
+  end
+  TK_EvalStr("set isgedinterp [interp exists ged]")
+  if TK_GetVar("isgedinterp")=='0' then    
+    TK_EvalStr("interp create ged")
+    TK_EvalStr("load {'+gettklib()+'} Tk ged")
+    TK_EvalStr("ged eval {wm withdraw .}")
+  end
+
+  select k
+    case 1 then //edit current figure properties
+    ged_figure(gcf())
+    //to be done
+    case 2 then //edit current axes
+    ged_axes(gca())
+    case 3 then //start Entity picker
+    seteventhandler("ged_eventhandler")
+    case 4 then //stop Entity picker
+    seteventhandler("")
+  end
+  xset('window',cur)
+endfunction
+
+
+
+
+function ged_figure(h)
+  global ged_handle;ged_handle=h;
+  message('to be defined')
+endfunction
+
+function ged_axes(h)
+  global ged_handle;ged_handle=h;
+  f=h.parent
+  TK_SetVar("msdos",string(MSDOS))
+  TK_SetVar("xlabel",h.x_label.text)
+  TK_SetVar("ylabel",h.y_label.text)
+  TK_SetVar("zlabel",h.z_label.text)
+  TK_SetVar("tlabel",h.title_label.text)
+  TK_SetVar("xlabel_foreground",string(h.x_label.foreground))
+  TK_SetVar("ylabel_foreground",string(h.y_label.foreground))
+  TK_SetVar("zlabel_foreground",string(h.z_label.foreground))
+  TK_SetVar("titlelabel_foreground",string(h.title.foreground))
+  TK_SetVar("xlabel_fontsize",string(h.x_label.font_size))
+  TK_SetVar("ylabel_fontsize",string(h.y_label.font_size))
+  TK_SetVar("zlabel_fontsize",string(h.z_label.font_size))
+  TK_SetVar("titlelabel_fontsize",string(h.title.font_size))
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("fcolor",string(h.foreground))
+  TK_SetVar("bcolor",string(h.background))
+  TK_SetVar("curthick",string(h.thickness))
+  TK_SetVar("curvis",h.visible)
+  TK_SetVar("curfontsize",string(h.font_size))
+  TK_SetVar("curfontcolor",string(h.font_color))
+  TK_SetVar("visToggle",h.axes_visible)
+  TK_SetVar("limToggle",h.tight_limits)
+  TK_SetVar("isoToggle",h.isoview)
+  TK_SetVar("cubToggle",h.cube_scaling)
+  TK_SetVar("viewToggle",h.view)
+  TK_SetVar("boxToggle",h.box)
+  TK_SetVar("xToggle",part(h.log_flags,1))
+  TK_SetVar("yToggle",part(h.log_flags,2))
+  TK_SetVar("xGrid",string(h.grid(1)))
+  TK_SetVar("yGrid",string(h.grid(2)))
+
+  
+  select h.view
+    case "2d" 
+    h.view='3d'
+    TK_SetVar("zGrid",string(h.grid(3)))
+    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
+    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+    h.view='2d'
+    case "3d"
+    TK_SetVar("zGrid",string(h.grid(3)))
+    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
+    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
+    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
+    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
+    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
+  end
+  TK_EvalFile(SCI+'/tcl/ged/Axes.tcl')
+endfunction
+
+function ged_rectangle(h)
+  global ged_handle; ged_handle=h
+  f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curcolor",string(h.foreground))
+  TK_SetVar("curthick",string(h.thickness))
+  TK_SetVar("curvis",h.visible)
+  TK_SetVar("curstyle",string(h.line_style))
+  TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
+endfunction
+
+function ged_polyline(h)
+    global ged_handle; ged_handle=h
+    f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
+    TK_SetVar("ncolors",string(size(f.color_map,1)))
+    TK_SetVar("curcolor",string(h.foreground))
+    TK_SetVar("curthick",string(h.thickness))
+    TK_SetVar("curvis",h.visible)
+    TK_SetVar("curstyle",string(h.polyline_style))
+    TK_SetVar("nbrow",string(size(h.data,1)))
+    // pass the data matrix
+    for i=1:size(h.data,1)
+      val= "polyVAL("+string(i)+",1)";
+      TK_EvalStr('set '+val+" "+string(h.data(i,1)));
+      val= "polyVAL("+string(i)+",2)";
+      TK_EvalStr('set '+val+" "+string(h.data(i,2)));
+      if(get(getparaxe(h),'view') == '3d')
+	val= "polyVAL("+string(i)+",3)";
+	TK_EvalStr('set '+val+" "+string(h.data(i,3)));
+      end
+    end
+    select get(getparaxe(h),'view')
+      case "2d"
+      TK_SetVar("nbcol",string(2));
+      case "3d"
+      TK_SetVar("nbcol",string(3));
+    end
+    TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
+endfunction
+
+
 function h=ged_getobject(pt)
   h=[]
 
@@ -139,71 +276,7 @@ function ged_eventhandler(win,x,y,ibut)
 //  seteventhandler("ged_eventhandler")  
 endfunction
 
-function ged_men()
-  addmenu(xget("window'),'Edit',list(2,'ged_edit'))
-endfunction
-
-function ged(win)
-  if argn(2)<1 then
-    win=xget("window")
-  end
-  old=xget("window")
-  xset("window",win)
-  if get("figure_style")=="new" then
-    seteventhandler("ged_eventhandler")
-  end
-  
-  TK_EvalStr("set isgedinterp [interp exists ged]")
-  if TK_GetVar("isgedinterp")=='0' then    
-    TK_EvalStr("interp create ged")
-    TK_EvalStr("load {'+gettklib()+'} Tk ged")
-    TK_EvalStr("ged eval {wm withdraw .}")
-  end
-  xset("window",old)
-endfunction
-
-
-  
-function Set(h)
-  if size(h,'*')>1 then
-    error('vector of handle is not allowed')
-  else
-    t='Handle of type ""'+h.type+'"" with properties:'
-    select h.type
-      case "Polyline"
-      labels=[ "polyline_style"
-	       "thickness"
-	       "line_style"
-	       "fill_mode"
-	       "foreground"
-	       "visible"
-	       "clip_state"
-	       "clip_box"]
-      [ini,typs]=build_args(labels)
-//      k=find(labels=="data")-1
-//      typs(2*k+1)="mat";typs(2*k+2)=[-1,2]
-      k=find(labels=="clip_box")-1
-      typs(2*k+2)=4
-      GetSetValue(h)
-
-      case "Patch"
-      case "Agregation"
-      case "Axes"
-      case "Legend"
-      case "Rectangle"
-      case "Figure"
-      case "Grayplot"
-      case "Matplot"
-      case "Fec"
-      case "Segs"
-      case "Plot3d"
-      case "Plot3d1" 
-      case "Fac3d" 
-      case "Fac3d2" 
-      case "Fac3d3" 
-    end
-  end
-endfunction
+ 
 function [ini,typs]=build_args(labels)
   n=size(labels,'*')
   ini=[]
@@ -255,92 +328,12 @@ function tkged()
 
   select h.type
     case "Polyline"
-    TK_SetVar("ncolors",string(size(f.color_map,1)))
-    TK_SetVar("curcolor",string(h.foreground))
-    TK_SetVar("curthick",string(h.thickness))
-    TK_SetVar("curvis",h.visible)
-    TK_SetVar("curstyle",string(h.polyline_style))
-    TK_SetVar("nbrow",string(size(h.data,1)))
+     ged_polyline(h)
 
-    // pass the data matrix
-    for i=1:size(h.data,1)
-     val= "polyVAL("+string(i)+",1)";
-     TK_EvalStr('set '+val+" "+string(h.data(i,1)));
-      val= "polyVAL("+string(i)+",2)";
-     TK_EvalStr('set '+val+" "+string(h.data(i,2)));
-     if(get(getparaxe(h),'view') == '3d')
-      val= "polyVAL("+string(i)+",3)";
-      TK_EvalStr('set '+val+" "+string(h.data(i,3)));
-     end
-    end
-    select get(getparaxe(h),'view')
-     case "2d"
-      TK_SetVar("nbcol",string(2));
-     case "3d"
-      TK_SetVar("nbcol",string(3));
-    end
-
-    TK_EvalFile(SCI+'/tcl/ged/Polyline.tcl')
     case "Rectangle"
-    TK_SetVar("ncolors",string(size(f.color_map,1)))
-    TK_SetVar("curcolor",string(h.foreground))
-    TK_SetVar("curthick",string(h.thickness))
-    TK_SetVar("curvis",h.visible)
-    TK_SetVar("curstyle",string(h.line_style))
-    TK_EvalFile(SCI+'/tcl/ged/Rectangle.tcl')
+    ged_rectangle(h)
     case "Axes"
-    TK_SetVar("msdos",string(MSDOS))
-    TK_SetVar("xlabel",h.x_label.text)
-    TK_SetVar("ylabel",h.y_label.text)
-    TK_SetVar("zlabel",h.z_label.text)
-    TK_SetVar("tlabel",h.title_label.text)
-    TK_SetVar("xlabel_foreground",string(h.x_label.foreground))
-    TK_SetVar("ylabel_foreground",string(h.y_label.foreground))
-    TK_SetVar("zlabel_foreground",string(h.z_label.foreground))
-    TK_SetVar("titlelabel_foreground",string(h.title.foreground))
-    TK_SetVar("xlabel_fontsize",string(h.x_label.font_size))
-    TK_SetVar("ylabel_fontsize",string(h.y_label.font_size))
-    TK_SetVar("zlabel_fontsize",string(h.z_label.font_size))
-    TK_SetVar("titlelabel_fontsize",string(h.title.font_size))
-    TK_SetVar("ncolors",string(size(f.color_map,1)))
-    TK_SetVar("fcolor",string(h.foreground))
-    TK_SetVar("bcolor",string(h.background))
-    TK_SetVar("curthick",string(h.thickness))
-    TK_SetVar("curvis",h.visible)
-    TK_SetVar("curfontsize",string(h.font_size))
-    TK_SetVar("curfontcolor",string(h.font_color))
-    TK_SetVar("visToggle",h.axes_visible)
-    TK_SetVar("limToggle",h.tight_limits)
-    TK_SetVar("isoToggle",h.isoview)
-    TK_SetVar("cubToggle",h.cube_scaling)
-    TK_SetVar("viewToggle",h.view)
-    TK_SetVar("boxToggle",h.box)
-    TK_SetVar("xToggle",part(h.log_flags,1))
-    TK_SetVar("yToggle",part(h.log_flags,2))
-    TK_SetVar("xGrid",string(h.grid(1)))
-    TK_SetVar("yGrid",string(h.grid(2)))
-
-   
-    select h.view
-     case "2d" 
-    h.view='3d'
-    TK_SetVar("zGrid",string(h.grid(3)))
-    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
-    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
-    TK_SetVar("dbzmin",string(h.data_bounds(1,3)))
-    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
-    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
-    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
-    h.view='2d'
-     case "3d"
-    TK_SetVar("zGrid",string(h.grid(3)))
-    TK_SetVar("dbxmin",string(h.data_bounds(1,1)))
-    TK_SetVar("dbymin",string(h.data_bounds(1,2)))
-    TK_SetVar("dbxmax",string(h.data_bounds(2,1)))
-    TK_SetVar("dbymax",string(h.data_bounds(2,2)))
-    TK_SetVar("dbzmax",string(h.data_bounds(2,3)))
-    end
-    TK_EvalFile(SCI+'/tcl/ged/Axes.tcl')
+    ged_axes(h)
   end
 endfunction
 function setStyle(sty)
