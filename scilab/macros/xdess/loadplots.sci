@@ -58,7 +58,7 @@ function rec=LoadTPlot(typ)
 	 "xgrid","LoadGrid"]
   k=find(typ==table(:,1))
   if k==[] then
-    disp('Unknown key '+typ);pause,
+    error('LoadTPlot, unknown key '+typ)
   else
     execstr('rec='+table(k,2)+'()')
   end
@@ -792,9 +792,11 @@ function txt=%xcall1_string(rec)
     case 'xfarcs' then 
         txt=[sci2exp(matrix(rec.dx1,6,-1),'arcs')
 	 'xfarcs(arcs,'+sci2exp(rec.x2)+')']
+    case 'xaxis' then
+        txt=['xaxis('+sci2exp(rec.dx1)+','+sci2exp(rec.x2)+','+..
+	     sci2exp(rec.dx2)+','+sci2exp(rec.dx3)+')']
   else
-    txt=rec.fname
-    pause
+    error('%xcall1_string, unknown keyword: '+rec.fname)
   end
 endfunction
 
@@ -1083,7 +1085,7 @@ function txt=%contour2_string(rec)
      txt=[txt;
 	  'contour2d('+strcat(args,',')+')']
   else
-    pause,
+    error('%contour2_string, unknown name: '+rec.name)
   end
 endfunction
 
