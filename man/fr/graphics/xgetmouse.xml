@@ -1,96 +1,137 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <!DOCTYPE MAN SYSTEM "../../manrev.dtd">
 <MAN>
-  <LANGUAGE>fr</LANGUAGE>
-  <TITLE>xgetmouse  </TITLE>
-  <TYPE>Scilab Function  </TYPE>
-  <DATE>September  1994  </DATE>
-  <SHORT_DESCRIPTION name="xgetmouse"> récupère les évenements et la position courante de la souris  </SHORT_DESCRIPTION>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>xgetmouse</TITLE>
+  <TYPE>Scilab Function</TYPE>
+  <DATE>September  1994</DATE>
+  <SHORT_DESCRIPTION name="xgetmouse"> get the mouse events and current position</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>rep=xgetmouse([flag], [sel])  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
-
       <PARAM_ITEM>
-	<PARAM_NAME>flag  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : entier. S&apos;il est présent, la queue d&apos;évènements des clics de la souris n&apos;est pas vidée préalablement.
-	  </SP>
-	</PARAM_DESCRIPTION> 
+        <PARAM_NAME>flag</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: integer. If present, the mouse click event queue is not cleared when entering  xgetmouse.</SP>
+        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-
       <PARAM_ITEM>
-	<PARAM_NAME>sel  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteur booleen <VERB>[getmotion, getrelease]</VERB>. La valeur par
-	    défaut est  <VERB>[%t, %f]</VERB>
-	  </SP>
-	</PARAM_DESCRIPTION> 
+        <PARAM_NAME>sel</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: boolean vector <VERB>[getmotion, getrelease]</VERB>. default
+  value is <VERB>[%t, %f]</VERB></SP>
+        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-
       <PARAM_ITEM>
-	<PARAM_NAME>rep  </PARAM_NAME>
-	<PARAM_DESCRIPTION>
-	  <SP>
-	    : vecteur de taille 3, [x,y,ibutton].
-	  </SP>
-	</PARAM_DESCRIPTION> 
+        <PARAM_NAME>rep</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: vector of size 3, [x,y,ibutton].</SP>
+        </PARAM_DESCRIPTION>
       </PARAM_ITEM>
-
-
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
     <P>
-      Si le pointeur est dans la fenêtre graphique courante, <VERB>xgetmouse</VERB> renvoie
-      dans <VERB>rep</VERB> sa position (x,y) et la valeur <VERB>ibutton</VERB>.
-    </P>
-    <P>
-      <VERB>ibutton</VERB> indique le type d'évenement :
-    </P>
-    
+    If the mouse pointer is located in the current graphics window, <VERB>xgetmouse</VERB> returns
+    in <VERB>rep</VERB> the current pointer position (x,y) and the value <VERB>ibutton</VERB>.
+     
+    The <VERB>ibutton</VERB> value indicates the event type:
+  </P>
     <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM  label='- si ibutton = -1 un déplacement de la
-      souris a été détecté'> <SP>(si <VERB>getmotion</VERB> a été affecté à %thas been set to %t) .</SP>
-    </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==0">
+            <SP>: Left mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==1">
+            <SP>: Middle mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==2">
+            <SP>: Right mouse button has been pressed</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
 
+	  <DESCRIPTION_ITEM label="ibutton==3">
+            <SP>: Left mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==4">
+            <SP>: Middle mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==5">
+            <SP>: Right mouse button has been clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM  label='- si ibutton = -5, -4 ou -2 un des 3
-      boutons a été relaché'> <SP>(si <VERB>getrelease</VERB> a été affecté à %t).</SP>
-    </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==10">
+            <SP>: Left mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==11">
+            <SP>: Middle mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==12">
+            <SP>: Right mouse button has been double-clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
 
-    <DESCRIPTION_ITEM label='- si ibutton = 0, 1 ou 2, l&apos;un des
-      trois boutons a été pressé'> <SP></SP>
-    </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-5">
+            <SP>: Left mouse button has been released</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-4">
+            <SP>: Middle mouse button has been released</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-3">
+            <SP>: Right mouse button has been released</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton==-1">
+            <SP>: pointer has moved</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton &gt; =32">
+            <SP>: key with ascii code ascii(ibutton) has been pressed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton &lt; =-32">
+            <SP>: key with ascii code ascii(-ibutton)   has been released</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+	
+          <DESCRIPTION_ITEM label="ibutton &gt; =1000+32">
+            <SP>: key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+	    key pressed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-1000">
+            <SP>: graphic window has been closed</SP>
+          </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
-    <SP>Si le curseur n&apos;est pas
-    positionné dans la fenêtre graphique courante,
-    <VERB>xgetmouse</VERB> se met en état d&apos;attente.  Attention
-    : <VERB>xgetmouse</VERB> renvoie son résultat de façon synchrone
-    avec les mouvements du curseur, i.e. s&apos;il n&apos;y a aucun
-    mouvement du curseur <VERB>xgetmouse</VERB> attend.</SP>
-
-    
   </DESCRIPTION>
-  <EXAMPLE><![CDATA[
-    xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
-    xset("alufunction",6)
-    xtitle(" On dessine un rectangle ")
-    [b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
-    xrect(x0,y0,x-x0,y-y0)
-    while rep(3)==-1 then
+  <EXAMPLE>
+<![CDATA[
+xselect(); xbasc(); xsetech([0 0 1 1],[0 0 100 100])
+xset("alufunction",6)
+xtitle(" drawing a rectangle ")
+[b,x0,y0]=xclick(); rep=[x0,y0,-1]; x=x0; y=y0;
+xrect(x0,y0,x-x0,y-y0)
+while rep(3)==-1 then
     rep=xgetmouse(0)
     xrect(x0,y0,x-x0,y0-y)
     x=rep(1); y=rep(2);
     xrect(x0,y0,x-x0,y0-y)
-    end
-    xset("alufunction",3)
-    ]]></EXAMPLE>
+end
+xset("alufunction",3)
+ ]]>
+  </EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>locate</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>locate</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xclick</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>seteventhandler</LINK>
+    </SEE_ALSO_ITEM>
   </SEE_ALSO>
-  <AUTHOR>S. Steer  </AUTHOR>
+  <AUTHOR>S. Steer</AUTHOR>
 </MAN>

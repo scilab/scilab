@@ -40,22 +40,70 @@
     The <VERB>ibutton</VERB> value indicates the event type:
   </P>
     <DESCRIPTION_INDENT>
-      <DESCRIPTION_ITEM label="-">
-        <SP>if ibutton is -1 then a mouse motion'  was
-  got (if <VERB>getmotion</VERB> has been set to %t) .</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-">
-        <SP>if ibutton is -5 -4 or -2 then left , middle or right button'
-    was released (if <VERB>getrelease</VERB> has been set to %t).</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="-">
-        <SP>if ibutton is 0, 1 or 2, then the left,
-    middle or right button'&gt; was pressed.  If the mouse is not located
-    in the current graphics window, <VERB>xgetmouse</VERB>
-    waits. Moreover, <VERB>xgetmouse</VERB> works in a synchonous way, i.e. waits
-    for a mouse event (click or pointer movement) to occur before
-    exiting.</SP>
-      </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==0">
+            <SP>: Left mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==1">
+            <SP>: Middle mouse button has been pressed</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==2">
+            <SP>: Right mouse button has been pressed</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="ibutton==3">
+            <SP>: Left mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==4">
+            <SP>: Middle mouse button has been clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==5">
+            <SP>: Right mouse button has been clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+	  <DESCRIPTION_ITEM label="ibutton==10">
+            <SP>: Left mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==11">
+            <SP>: Middle mouse button has been double-clicked</SP>
+          </DESCRIPTION_ITEM>
+	  <DESCRIPTION_ITEM label="ibutton==12">
+            <SP>: Right mouse button has been double-clicked</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton==-5">
+            <SP>: Left mouse button has been released</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-4">
+            <SP>: Middle mouse button has been released</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-3">
+            <SP>: Right mouse button has been released</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton==-1">
+            <SP>: pointer has moved</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="ibutton &gt; =32">
+            <SP>: key with ascii code ascii(ibutton) has been pressed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton &lt; =-32">
+            <SP>: key with ascii code ascii(-ibutton)   has been released</SP>
+	    <P></P>
+          </DESCRIPTION_ITEM>
+	
+          <DESCRIPTION_ITEM label="ibutton &gt; =1000+32">
+            <SP>: key with ascii code ascii(ibutton-1000) has been pressed while CTRL
+	    key pressed</SP>
+          </DESCRIPTION_ITEM>
+          <DESCRIPTION_ITEM label="ibutton==-1000">
+            <SP>: graphic window has been closed</SP>
+          </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
   <EXAMPLE>
@@ -80,6 +128,9 @@ xset("alufunction",3)
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xclick</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>seteventhandler</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
   <AUTHOR>S. Steer</AUTHOR>
