@@ -18,6 +18,10 @@ exec `which wish` "$0" "$@"
 # - Recolorization of a cuted and pasted text
 # - Multiple opened files.
 
+# ES 23/7/2003: 
+# changed helvetica text font to courier
+# added accelerators Ctrl-w, Ctrl-n, Ctrl-q, Ctrl-p, Ctrl-P, Ctrl-S,  
+
 # default global values
 #global .
 
@@ -923,8 +927,8 @@ proc filetosave {textarea} {
 	set msgChanged "The contents of $listoffile("$textarea",filename) has changed on Disk, Save it anyway ?"
 	set msgTitle "File has changed !"
     } else {
-	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changè sur le disque, étes-vous sur de vouloir le sauvegarder ?"
-	set msgTitle "Le fichie a changè"
+	set msgChanged "Le contenu de $listoffile("$textarea",filename) a changé sur le disque, étes-vous sur de vouloir le sauvegarder ?"
+	set msgTitle "Le fichier a changé"
     }
 
     # save the opened file from disk, if not, user has to get a file name.
@@ -1485,6 +1489,17 @@ if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
 
 bind $textareacur <KeyRelease> {keyposn %W}
 bind $textareacur <ButtonRelease> {keyposn %W}
+
+###### added by ES 24/7/2003
+
+bind $pad <Control-w> {closecur}
+bind $pad <Control-n> {filesetasnewmat}
+bind $pad <Control-q> {exitapp}
+bind $pad <Control-g> {gotoline}
+bind $pad <Control-p> {selectprint}
+bind $pad <Control-P> {printseupselection}
+bind $pad <Control-S> {filesaveascur}
+
 
 ###################################################################
 #set zed_dir [file dirname [info script]] 
