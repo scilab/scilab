@@ -74,8 +74,8 @@ c     select
             nc=istk(lc+1)
             lc=lc+nc
             goto 10
-         elseif(op.ge.12.and.op.le.15) then
-c     pause,break,abort,eol
+         elseif((op.ge.12.and.op.le.15).or.op.eq.28) then
+c     pause,break,abort,eol,continue
             lc=lc+1
             goto 10
          elseif(op.eq.16) then 
