@@ -32,50 +32,7 @@
       <DESCRIPTION_ITEM label="data_bounds: ">
         <SP>This field contains the boundary values for the x, y and z
     coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>.</SP>
-      </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="flags: ">
-        <SP>A real vector of size three <VERB>flag=[type,box,unused]</VERB>.  
-    <VERB>type</VERB>is an integer (scaling) where:</SP>
-        <DESCRIPTION_INDENT>
-          <DESCRIPTION_ITEM>
-            <P>
-        if type=0  the plot is made using the current 3D scaling (set
-        by a previous call to <VERB>param3d</VERB>,<VERB>plot3d</VERB>
-        <VERB>plot3d</VERB> 
-	</P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-        type=1 :rescales automatically 3d boxes with extreme
-        aspect ratios, the boundaries are specified by the value of
-        the property  <VERB>data_bounds</VERB>. 
-        </P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-         type=2 :rescales automatically 3d boxes with extreme
-        aspect ratios, the boundaries are computed using the given
-        data. 
-        </P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-         type=3 :3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
-	 </P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-        type=4 :3d isometric bounds  derived from the data.
-	</P>
-          </DESCRIPTION_ITEM>
-          <DESCRIPTION_ITEM>
-            <P>
-	type=5 :3d expanded isometric bounds  with box bounds given
-        by the property <VERB>data_bounds</VERB>. 
-	</P>
-          </DESCRIPTION_ITEM>
-        </DESCRIPTION_INDENT>
-      </DESCRIPTION_ITEM>
+      </DESCRIPTION_ITEM> 
       <DESCRIPTION_ITEM label="thickness: ">
         <SP>This field contains the default  <VERB>thickness</VERB> value 
        of the lines used to draw the axes and the curves. It should
@@ -90,10 +47,6 @@
         <SP>This field is the vector <VERB>[theta,alpha]</VERB>. These two
       values give  the spherical coordinates of the observation points (in degree).</SP>
       </DESCRIPTION_ITEM>
-      <DESCRIPTION_ITEM label="surface_color: ">
-        <SP>This property contains the vector of color indices used to draw each
-      curve.</SP>
-      </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="parent: ">
         <SP>This property contains the handle of the parent. The parent of the 3D curves
       entity should be of the type <VERB>&quot;Axes&quot;</VERB> .</SP>
@@ -107,15 +60,16 @@
    a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
- 
-   h=a.children //get the handle of the param3d entity
-   h.rotation_angles=[65,75];
-   h.surface_color=[3 5];
-   h.flag=[1,2,3];
-   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-   h.flag=[2 5 0];
-   h.thickness = 2;
   
+   a.rotation_angles=[65,75]; 
+   a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   a.thickness = 2;
+   h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
+   h.children(1).foreground = 3 // first curve
+   curve2 = h.children(2);
+   curve2.foreground = 6;
+   curve2.mark_style = 2;
+
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
