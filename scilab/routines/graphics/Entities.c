@@ -10193,8 +10193,18 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  else if(flagcolor==2 && !( *m3n==1 || *n3n ==1)) /* it means we have a matrix in Color input: 1 color per vertex in input*/
 	    {
 	      /* We have too much information and we take only the first dimzy colors to fill the pSURFACE_FEATURE (pobj)->zcol array*/
+	      /* NO !! Let's do better; F.Leray 08.05.04 : */
+	      /* We compute the average value (sum of the value of the nf=m3n vertices on a facet) / (nb of vertices per facet which is nf=m3n) */
+	      /* in our example: m3n=4 and n3n=400 */
 	      for (j = 0;j < nc; j++)   /* nc value is dimzy*/
-		pSURFACE_FEATURE (pobj)->zcol[j]= pSURFACE_FEATURE (pobj)->inputCMoV[j];
+		{
+		  double tmp = 0;
+		  int ii=0;
+		  for(ii=0;ii<(*m3n);ii++)
+		    tmp = tmp +  pSURFACE_FEATURE (pobj)->inputCMoV[j*(*m3n) + ii];
+		  tmp = tmp / (*m3n);
+		  pSURFACE_FEATURE (pobj)->zcol[j]= tmp;
+		}
 	    }
 	  /* case flagcolor == 3*/
 	  else if(flagcolor==3 && ( *m3n==1 || *n3n ==1)) /* it means we have a vector in Color input: 1 color per facet in input*/
