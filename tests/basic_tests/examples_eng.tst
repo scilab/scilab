@@ -5750,21 +5750,19 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
    
-
    set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
- 
-   h=a.children //get the handle of the param3d entity
-   hh=h.parent;
-   hh.rotation_angles=[65,75];
-   //h.surface_color=[3 5];
-   //hh.flag=[1,2,3];
-   hh.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-   //hh.flag=[2 5 0];
-   hh.thickness = 2;
   
+   a.rotation_angles=[65,75]; 
+   a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   a.thickness = 2;
+   h=a.children //get the handle of the param3d entity: an agregation composed of 2 curves
+   h.children(1).foreground = 3 // first curve
+   curve2 = h.children(2);
+   curve2.foreground = 6;
+   curve2.mark_style = 2;
 
 xdel(winsid())
 
@@ -6418,7 +6416,7 @@ clear;lines(0);
 
    set("figure_style","new") //create a figure
    a=get("current_axes"); 
-   a.data_bounds=[-2,-4,2,4];
+   a.data_bounds=[-2,-4;2,4];
    a.axes_visible="on"; 
    a.box="off"; 
 
