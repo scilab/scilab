@@ -1,6 +1,7 @@
 /* copyright Enpc: Jean-Philippe Chancelier  */
 
 #include "../stack-c.h" 
+#include "../sun/Sun.h" /* isanan */ 
 
 #ifdef WIN32 
 /* vc++ pbs with nan and comparisons */ 
