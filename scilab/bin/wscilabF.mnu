@@ -162,15 +162,21 @@ E&diteur
 		Dé&monstrations Scilab 
 			[DEMOS]
 		--
-		Signaler un &bug
-			[BUGZILLA]
+		[Menu]
+			Liens Web
+				Site &Internet Scilab
+					[WEB]
+				--	
+				&Contributions
+					[CONTRIBUTIONS]
+				--
+				Signaler un &bug
+					[BUGZILLA]
+				--
+				&Newsgroup Scilab
+					[NEWSGROUP]
+ 		[EndMenu]
 		--
-		Site &Internet Scilab
-			[WEB]
-		--
-		&Newsgroup Scilab
-			[NEWSGROUP]
-		--	
 		&A propos
 			[ABOUT]
 [EndMenu]

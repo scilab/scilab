@@ -454,6 +454,12 @@ void Callback_WEB(void)
 	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_CONTRIBUTIONS(void)
+{
+	int error =(int)ShellExecute(NULL, "open", URLCONTRIBUTIONS, NULL, NULL, SW_SHOWNORMAL);
+	if (error<= 32) MessageBox(NULL,"Couldn't Open Web Browser","Warning",MB_ICONWARNING);
+}
+/*-----------------------------------------------------------------------------------*/
 void Callback_BUGZILLA(void)
 {
 	int error =(int)ShellExecute(NULL, "open", URLBUGZILLA, NULL, NULL, SW_SHOWNORMAL);
@@ -696,6 +702,10 @@ void SendMacro (LPTW lptw, UINT m)
 	    	case WEB:
 			Callback_WEB();
 			return;
+	    	break;
+			case CONTRIBUTIONS:
+	    		Callback_CONTRIBUTIONS();
+	    		return;
 	    	break;
 	    	case BUGZILLA:
 	    		Callback_BUGZILLA();

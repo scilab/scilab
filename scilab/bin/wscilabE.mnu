@@ -167,14 +167,20 @@
 		Scilab De&mos
 			[DEMOS]
 		--
-		&Report a bug or a request
-			[BUGZILLA]
-		--
-		Scilab &Web Site
-			[WEB]
-		--
-		Scilab &Newsgroup
-			[NEWSGROUP]
+		[Menu]
+			Web Links
+				Scilab &Web Site
+					[WEB]
+				--	
+				&Contributions
+					[CONTRIBUTIONS]
+				--
+				&Report a bug or a request
+					[BUGZILLA]
+				--
+				Scilab &Newsgroup
+					[NEWSGROUP]
+ 		[EndMenu]
 		--	
 		&About
 			[ABOUT]

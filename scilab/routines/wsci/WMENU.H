@@ -83,8 +83,9 @@
 #define NEWSGROUP		HELP+3
 #define EMAIL 			HELP+4
 #define WEB  			HELP+5
-#define BUGZILLA		HELP+6
-#define ABOUT 			HELP+7
+#define CONTRIBUTIONS	HELP+6
+#define BUGZILLA		HELP+7
+#define ABOUT 			HELP+8
 /**********************/
 #define EOS 			ABOUT+1
 /**********************/
@@ -107,6 +108,7 @@
 #define CMDMAX 			CLEARHISTORY
 /**********************/
 #define URLNEWSGROUP "http://groups.google.com/groups?dq=&num=25&hl=en&lr=&ie=UTF-8&group=comp.soft-sys.math.scilab"
+#define URLCONTRIBUTIONS "http://scilabsoft.inria.fr/contrib/index_contrib.php?page=howto.html"
 #define URL "http://www.scilab.org"
 #define URLBUGZILLA "http://scilabsoft.inria.fr/cgi-bin/bugzilla_bug/index.cgi"
 #define MAILTO "Scilab@inria.fr"
@@ -140,7 +142,7 @@ char *keyword[] =
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
   "[SET]","[RAISE]","[DELETESCIW]","[PLUS]","[MINUS]","[XBASC]",
   "[SCIPAD]",
-  "[HELP]","[DEMOS]","[WEB]","[EMAIL]","[BUGZILLA]","[ABOUT]",
+  "[HELP]","[DEMOS]","[WEB]","[EMAIL]","[CONTRIBUTIONS]","[BUGZILLA]","[ABOUT]",
   "{ENTER}", "{ESC}", "{TAB}",
   "[M_CTRL_A]", "[M_CTRL_B]", "[M_CTRL_C]", "[M_CTRL_D]", "[M_CTRL_E]", "[M_CTRL_F]", "{^G}", "[M_CTRL_H]",
   "{^I}", "{^J}", "[M_CTRL_K]", "[M_CTRL_L]", "{^M}", "[M_CTRL_N]", "{^O}", "[M_CTRL_P]",
@@ -156,7 +158,7 @@ BYTE keyeq[] =
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
   SCIPAD,
-  HELP,DEMOS,WEB,EMAIL,BUGZILLA,ABOUT,
+  HELP,DEMOS,WEB,EMAIL,CONTRIBUTIONS,BUGZILLA,ABOUT,
   13, 27, 9,
   M_CTRL_A, M_CTRL_B, M_CTRL_C, M_CTRL_D, M_CTRL_E, M_CTRL_F, 7, M_CTRL_H,
   9, 10, M_CTRL_K, M_CTRL_L, 13, M_CTRL_N, 15, M_CTRL_P,
@@ -207,6 +209,7 @@ void Callback_SCIPAD(void);
 void Callback_HELP(void);
 void Callback_DEMOS(void);
 void Callback_WEB(void);
+void Callback_CONTRIBUTIONS(void);
 void Callback_BUGZILLA(void);
 void Callback_EMAIL(void);
 void Callback_NEWSGROUP(void);
