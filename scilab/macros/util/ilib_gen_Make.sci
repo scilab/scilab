@@ -75,8 +75,9 @@ function ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags
   mfprintf(fd,"LIBRARY = %s.a\n",name);
   mfprintf(fd,"include $(SCIDIR)/Makefile.incl\n");
   if getenv('WIN32','NO')=='OK' then
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -DmexFunction=mex_$* "+cflags+ "\n");
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -Dmexfunction=mex$* "+fflags+ "\n");
+    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"" -DmexFunction=mex_$* "+cflags+ "\n");
+    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/routines\"" +...
+	     " -Dmexfunction=mex$* "+fflags+ "\n");
   else
      mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DmexFunction=mex_$* "+cflags+ "\n");
      mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -Dmexfunction=mex$* "+fflags+ "\n");
