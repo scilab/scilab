@@ -274,6 +274,31 @@ deff("[J]=Jacobian(t,y)","J=A")
 ode("stiff",[0;1],0,1,f,Jacobian)
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>ode_discrete</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ode_root</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>dassl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>impl</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>odedc</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>odeoptions</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>csim</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>ltitr</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>rtitr</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>ode_discrete</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>ode_root</LINK> </SEE_ALSO_ITEM>  
+    <SEE_ALSO_ITEM> <LINK>dassl</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>impl</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>odedc</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>odeoptions</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>csim</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>ltitr</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>rtitr</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
+
+ <AUTHORS>
+<AUTHORS_ITEM label='Alan C. Hindmarsh'>,  mathematics and statistics division, l-316
+                      livermore, ca 94550.19
+</AUTHORS>
+<BIBLIO>
+Alan C. Hindmarsh,  lsode and lsodi, two new initial value
+ordinary differential equation solvers,
+acm-signum newsletter, vol. 15, no. 4 (1980), pp. 10-11.
+</BIBLIO>
+
+<USED_FUNCTION>
+Les sous programmes associés se trouvent dans le repertoire  routines/integ:
+<P>
+lsode.f lsodar.f
+</P>
+</USED_FUNCTION>
 </MAN>
