@@ -30,6 +30,7 @@ select type(%str)
     end
 case 1 then
    %val=%str
+   %ierr=0
 else 
    error('waiting for: matrix of strings or list'),
 end
