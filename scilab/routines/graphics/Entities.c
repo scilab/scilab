@@ -17642,7 +17642,7 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 {
   int N,i,j,index,p,max_p,n1,npoly;
   double * dist;
-  double X[4],Y[4],Z[4];
+  double X[5],Y[5],Z[5];
   double *x,*y,*z;
   sciPointObj *pobj; 
   int *locindex;
