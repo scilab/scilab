@@ -5229,6 +5229,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       xtmp = (int) *stk(*value);
       sciSetFontForeground((sciPointObj *) pobj, xtmp);
     }
+  else if (strcmp(marker,"font_color") == 0)	{
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      pAXES_FEATURE (pobj)->textcolor=(int)*stk(*value);
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      sciSetFontForeground(pobj,(int)*stk(*value));} /* F.Leray 08.04.04 */
+    else
+      {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
+  }	
   else if (strncmp(marker,"font_style", 10) == 0)
     {
       xtmp = (int) *stk(*value);
@@ -5488,14 +5496,16 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       {strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
     
   }
-  else if (strncmp(marker,"tics_textsize", 13) == 0) {   
-    if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->fontsize= (int) stk(*value)[0]; 
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) stk(*value)[0];
-    else
-      {strcpy(error_message,"tics_textsize property does not exist for this handle");return -1;}
-  }
+  /* F.Leray 08.04.04 */
+  /* Obsolete property "tics_textsize"*/
+ /*  else if (strncmp(marker,"tics_textsize", 13) == 0) {    */
+/*     if (sciGetEntityType (pobj) == SCI_AXES) */
+/*       pAXES_FEATURE (pobj)->fontsize= (int) stk(*value)[0];  */
+/*     else if (sciGetEntityType (pobj) == SCI_SUBWIN) */
+/*       pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) stk(*value)[0]; */
+/*     else */
+/*       {strcpy(error_message,"tics_textsize property does not exist for this handle");return -1;} */
+/*   } */
   else if (strncmp(marker,"format_n", 8) == 0)
     {
       strncpy(pAXES_FEATURE (pobj)->format,cstk(*value),1);   
@@ -5511,20 +5521,29 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     }
 
   else if (strcmp(marker,"labels_font_size") == 0)	{
+    xtmp =  100 * (int) *stk(*value);
     if (sciGetEntityType (pobj) == SCI_AXES)
-      pAXES_FEATURE (pobj)->fontsize = (int) *stk(*value);
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) *stk(*value);
+      pAXES_FEATURE (pobj)->fontsize = xtmp;
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      /* pSUBWIN_FEATURE (pobj)->axes.fontsize = (int) *stk(*value);*/
+      sciSetFontDeciWidth(pobj,xtmp);} /* F.Leray 08.04.04 */
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
   else if (strcmp(marker,"labels_font_color") == 0)	{
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->textcolor=(int)*stk(*value);
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      pSUBWIN_FEATURE (pobj)->axes.textcolor=(int)*stk(*value);
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      /* pSUBWIN_FEATURE (pobj)->axes.textcolor=(int)*stk(*value);*/
+      sciSetFontForeground(pobj,(int)*stk(*value));} /* F.Leray 08.04.04 */
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
+  }	
+  else if (strcmp(marker,"labels_font_style") == 0)	{ /* Adding F.Leray 09.04.04 : For the moment sciAxes have no style property*/
+    if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE)
+      sciSetFontStyle(pobj,(int)*stk(*value));
+    else
+      {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
   }	
   else if (strncmp(marker,"tics_labels", 11) == 0) 
     { 
@@ -6439,6 +6458,16 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"i",&numrow,&numcol,&outindex);
       *istk(outindex) = sciGetFontForeground((sciPointObj *)pobj);
     }
+ else if (strcmp(marker,"font_color") == 0)	{ /* F.Leray 09.04.04 : Added for FIGURE and SUBWIN objects */
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    if (sciGetEntityType (pobj) == SCI_AXES)
+      *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      *stk(outindex) = sciGetFontForegroundToDisplay(pobj);} /* F.Leray 08.04.04 */
+    else
+      {strcpy(error_message,"font_color property does not exist for this handle");return -1;}
+  }
   else if (strncmp(marker,"font_style", 10) == 0)
     {
       numrow = 1; numcol = 1;
@@ -6761,15 +6790,17 @@ if ((pobj == (sciPointObj *)NULL) &&
       else
 	{strcpy(error_message,"sub_tics property does not exist for this handle");return -1;}
     }
-  else if (strncmp(marker,"tics_textsize", 13) == 0) 
-    {
-      numrow   = 1;numcol   = 1;
-      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-      if (sciGetEntityType (pobj) == SCI_AXES)
-	*stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
-      else
-	*stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;
-    }
+/* F.Leray 08.04.04 */
+/* Obsolete property "tics_textsize"*/
+/*   else if (strncmp(marker,"tics_textsize", 13) == 0)  */
+/*     { */
+/*       numrow   = 1;numcol   = 1; */
+/*       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex); */
+/*       if (sciGetEntityType (pobj) == SCI_AXES) */
+/* 	*stk(outindex) = pAXES_FEATURE (pobj)->fontsize; */
+/*       else */
+/* 	*stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize; */
+/*     } */
   else if (strncmp(marker,"tics_segment", 12) == 0) 
     {
       if (sciGetEntityType (pobj) == SCI_AXES) {
@@ -6788,8 +6819,9 @@ if ((pobj == (sciPointObj *)NULL) &&
     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->fontsize;
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.fontsize;*/
+      *stk(outindex) = sciGetFontDeciWidth(pobj)/100;} /* F.Leray 08.04.04 */
     else
       {strcpy(error_message,"labels_font_size property does not exist for this handle");return -1;}
   }
@@ -6798,10 +6830,20 @@ if ((pobj == (sciPointObj *)NULL) &&
     CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
     if (sciGetEntityType (pobj) == SCI_AXES)
       *stk(outindex) = pAXES_FEATURE (pobj)->textcolor;
-    else if (sciGetEntityType (pobj) == SCI_SUBWIN)
-      *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;
+    else if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){
+      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;*/
+      *stk(outindex) = sciGetFontForegroundToDisplay(pobj);} /* F.Leray 08.04.04 */
     else
       {strcpy(error_message,"labels_font_color property does not exist for this handle");return -1;}
+  }
+  else if (strcmp(marker,"labels_font_style") == 0)	{ /* Adding F.Leray 09.04.04 */
+    numrow   = 1;numcol   = 1;
+    CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+    if (sciGetEntityType (pobj) == SCI_SUBWIN || sciGetEntityType (pobj) == SCI_FIGURE){ /* F.Leray 09.04.04: For the moment sciAxes have no font_style property*/
+      /* *stk(outindex) = pSUBWIN_FEATURE (pobj)->axes.textcolor;*/
+      *stk(outindex) = sciGetFontStyle(pobj);} /* F.Leray 08.04.04 */
+    else
+      {strcpy(error_message,"labels_font_style property does not exist for this handle");return -1;}
   }
   else if (strncmp(marker,"format_n", 9) == 0)	{
     if (sciGetEntityType (pobj) == SCI_AXES) {
