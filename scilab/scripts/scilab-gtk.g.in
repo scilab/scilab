@@ -48,8 +48,8 @@ export NETHELPDIR
 do_help()
 {
 echo "Usage:"
-echo     "	scilab [-ns -nw -display display -f file -args arguments]"
-echo     "	scilab [-ns -nw -display display -e expression]"
+echo     "	scilab [-ns -nw -nwni -display display -f file -args arguments]"
+echo     "	scilab [-ns -nw -nwni -display display -e expression]"
 echo     "	scilab -help <key>"
 echo     "	scilab -k <key>"
 echo     "	scilab -xk <key>"
@@ -327,6 +327,9 @@ if test "$rest" = "yes"; then
           prevarg="debug"
           ;;
       -nw)
+          now="yes"
+          ;;
+      -nwni)
           now="yes"
           ;;
       -display|-d)

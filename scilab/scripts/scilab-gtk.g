@@ -329,6 +329,9 @@ if test "$rest" = "yes"; then
       -nw)
           now="yes"
           ;;
+      -nwni)
+          now="yes"
+          ;;
       -display|-d)
           prevarg="display"
           ;;
