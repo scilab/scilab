@@ -56,7 +56,7 @@ sciblk4(Blocks,flag)
   if (C2F(scierr)()!=0) goto err;
   C2F(itosci)(&Blocks[0].nz,&one,&one);
   if (C2F(scierr)()!=0) goto err;
-  if(Blocks[0].scsptr<0){
+  if(Blocks[0].scsptr>0){
     C2F(vvtosci)(Blocks[0].z,&Blocks[0].nz);
     if (C2F(scierr)()!=0) goto err; 
   }  else{
@@ -101,7 +101,7 @@ sciblk4(Blocks,flag)
   if (C2F(scierr)()!=0) goto err; 
   C2F(itosci)(&Blocks[0].nrpar,&one,&one);
   if (C2F(scierr)()!=0) goto err;
-  if(Blocks[0].scsptr<0){
+  if(Blocks[0].scsptr>0){
     C2F(vvtosci)(Blocks[0].rpar,&Blocks[0].nrpar);
     if (C2F(scierr)()!=0) goto err; 
   }  else{
@@ -194,7 +194,7 @@ sciblk4(Blocks,flag)
       /* 6ieme element de la tlist z */
       if (Blocks[0].nz != 0){
 	le1=(int*) listentry(header,7);
-	if(Blocks[0].scsptr<0){
+	if(Blocks[0].scsptr>0){
 	  le111=(double*) listentry(header,7);
 	  ne1=header[7+2]-header[7+1];
 	} else{
@@ -236,7 +236,7 @@ sciblk4(Blocks,flag)
   case 4 :
     if (Blocks[0].nz != 0){
       le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr<0){
+      if(Blocks[0].scsptr>0){
 	le111=(double*) listentry(header,7);
 	ne1=header[7+2]-header[7+1];
       } else{
@@ -263,7 +263,7 @@ sciblk4(Blocks,flag)
   case 5 :
     if (Blocks[0].nz != 0){
       le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr<0){
+      if(Blocks[0].scsptr>0){
 	le111=(double*) listentry(header,7);
 	ne1=header[7+2]-header[7+1];
       } else{
@@ -291,7 +291,7 @@ sciblk4(Blocks,flag)
     /* 6ieme element de la tlist z */
     if (Blocks[0].nz != 0){
       le1=(int*) listentry(header,7);
-      if(Blocks[0].scsptr<0){
+      if(Blocks[0].scsptr>0){
 	le111=(double*) listentry(header,7);
 	ne1=header[7+2]-header[7+1];
 	} else{
