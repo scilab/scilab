@@ -285,8 +285,12 @@ case "list"
     end
   end
   C=strsubst(C,")(",",")
+  // -----
+  // EQUAL (can occur fir disp(a=1) for example)
+  // -----
+case "equal"
+  C=instruction2code(e)
 else
-  disp(e)
   error("expression2code(): "+typeof(e)+" is not yet implemented !");
 end
 
