@@ -697,3 +697,13 @@ Francois VOGEL, 13/02/05
  * Open function source is now binded to Ctrl+/ instead of F8 (reserved for
    the debugger step by step commands) 
  * version --> 3.27
+
+ES 15/2/05
+ * added a void fallback definition of ScipadEval and sciprompt in scipad.tcl.
+   This is useful for running scipad independently of scilab, e.g. in wish,
+   in order to debug the tcl code.
+ * void fallback chset(scilab.predef) and chset(scilab.libfun) in colorize.tcl
+ * moved a few toplevel code lines from scipad.tcl to mainwindow.tcl and
+   slighly reedited the latter
+ * version --> 3.28
+  

@@ -36,19 +36,18 @@ if { [info exists pad] } {
     source [file join $sourcedir menues.tcl]
     source [file join $sourcedir bindings.tcl]
 
-
-#added by Matthieu PHILIPPE 21/11/2001 from linenum.pth
-    $textareacur mark set insert "1.0"
-#tkTextSetCursor $textareacur "1.0"
-    keyposn $textareacur
-##geometry in what units? The width is more than 65 columns, though it's 
-## resized proportionally
-#wm geometry $pad 65x24 
-
-# catch the kill of the windowmanager
-    wm protocol $pad WM_DELETE_WINDOW exitapp
+#define ScilabEval to a void function, if it is unknown. This is
+# useful in order to run scipad outside of scilab (e.g. to debug it)
+    if {[catch {ScilabEval ";"}] != 0} {
+	proc ScilabEval args { showinfo "NOT CONNECTED TO SCILAB" }
+        set sciprompt 0
+    }
 
     load_words
+
+    #tkTextSetCursor $textareacur "1.0"
+    keyposn $textareacur
+
     update idletasks
 }
 

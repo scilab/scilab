@@ -24,6 +24,17 @@ set radiobuttonvalue 0
 eval destroy [winfo child $pad]
 wm title $pad "$winTitle - $listoffile("$pad.textarea",filename)"
 wm iconname $pad $winTitle
+# catch the kill of the windowmanager
+wm protocol $pad WM_DELETE_WINDOW exitapp
+##geometry in what units? The width is more than 65 columns, though it's 
+## resized proportionally
+#wm geometry $pad 65x24 
+##ES 13/6/2004
+wm minsize $pad 1 1 
+#strange: this on corrects reopen size when in setgrid 1 mode
+#tk_messageBox -message $WMGEOMETRY;
+wm geometry $pad $WMGEOMETRY
+
 
 #create main menu
 menu $pad.filemenu -tearoff 0
@@ -79,7 +90,6 @@ text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 0 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertbackground $CURCOLOR \
         -selectbackground $SELCOLOR -exportselection 1
-set textareacur $pad.textarea  
 if {$tcl_platform(platform) != "unix"} {
     $textareacur configure -insertofftime 500 -insertontime 500
 } else {
@@ -93,6 +103,7 @@ pack $pad.yscroll -in $pad.bottomrightmenu -side right -expand 1 -fill both
 pack $pad.xscroll -in $pad.bottombottommenu -expand 1 -fill x 
 focus $textareacur
 TextStyles $textareacur
+
 
 ## the following comes from infomessages.tcl v2.5
 
@@ -112,11 +123,8 @@ pack $pad.statusind2 $pad.statusind -in $pad.bottombottommenu -side right\
     -expand 0
 pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x
 
-##ES 13/6/2004
-wm minsize $pad 1 1 
-#strange: this on corrects reopen size when in setgrid 1 mode
-#tk_messageBox -message $WMGEOMETRY;
-wm geometry $pad $WMGEOMETRY
+#added by Matthieu PHILIPPE 21/11/2001 from linenum.pth
+$textareacur mark set insert "1.0"
 
 
 #the following comes from undoredo.tcl v2.5

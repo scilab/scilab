@@ -25,6 +25,8 @@ proc load_words {} {
         close $f
 # ask to scilab about keywords: the scripts sets at run time
 #  chset(scilab.predef.$) and chset(scilab.libfun.$)
+       set chset(scilab.predef) {}
+       set chset(scilab.libfun) {}
        ScilabEval "exec $ownpath/dynamickeywords.sce;" "seq"
 }
 
