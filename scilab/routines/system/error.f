@@ -1077,9 +1077,10 @@ C     errors from semidef
       goto 999
  246  continue
       call cvname(ids(1,pt+1),buf,1)
-      call msgout(io,lunit,'impossible to overload this function for'//
+      call msgout(io,lunit,'function not defined for'//
      &     ' given argument type(s)')
-      call msgout(io,lunit,'       undefined function '//buf(1:nlgh))
+      call msgout(io,lunit,'Check arguments or define function '
+     &     //buf(1:nlgh)//' for overloading')
       goto 999
  247  continue
       goto 999
