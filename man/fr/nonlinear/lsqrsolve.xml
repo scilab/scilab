@@ -66,17 +66,19 @@ nonlinear functions, levenberg-marquardt algorithm</SHORT_DESCRIPTION>
           <PARAM_ITEM>
             <PARAM_NAME>gtol</PARAM_NAME>
             <PARAM_DESCRIPTION>
-            <SP>: A positive real number, termination occurs when the
-            relative error between two consecutive iterates is at most
-            xtol. therefore, xtol measures the relative error desired
-            in the approximate solution.</SP>
+            <SP>: A nonnegative input variable. termination
+		  occurs when the cosine of the angle between fct(x) and
+		  any column of the jacobian is at most gtol in absolute
+		  value. therefore, gtol measures the orthogonality
+		  desired between the function vector and the columns
+		  of the jacobian.</SP>
            </PARAM_DESCRIPTION>
           </PARAM_ITEM>
           <PARAM_ITEM>
             <PARAM_NAME>maxfev</PARAM_NAME>
             <PARAM_DESCRIPTION>
             <SP>: A positive integer, termination occurs when the
-             number of calls to fcn is at least maxfev by the end of
+             number of calls to fct is at least maxfev by the end of
              an iteration.</SP>
            </PARAM_DESCRIPTION>
           </PARAM_ITEM>
@@ -287,4 +289,8 @@ norm(v)
       <LINK>fsolve</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
+ 
+ <USED_FUNCTIONS>
+    <SP>lmdif, lmder from  minpack, Argonne National Laboratory.</SP>
+ </USED_FUNCTIONS>
 </MAN>
