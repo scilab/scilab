@@ -4,9 +4,6 @@
 
 # Copyright INRIA
 
-if test "$PRINTERS" = ""; then
-  PRINTERS="lp"
-fi
 #############################################################################
 #                                                                           #
 #                       DO NOT MODIFY BELOW THIS LINE                       #
@@ -20,10 +17,6 @@ if test "$DISPLAY" = ""; then
   DISPLAY="unix:0.0"
 fi
 export DISPLAY
-
-export PRINTERS
-VERSION="SCILAB_VERSION"
-export VERSION
 
 if test "$PVM_ROOT" = ""; then
   PVM_ROOT="@PVMROOTR@"

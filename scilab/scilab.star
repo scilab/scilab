@@ -79,8 +79,11 @@ if MSDOS then
 else
   // path of scilab main directory
   SCI=getenv('SCI')
+  if getenv('PRINTERS','ndef')=="ndef" then
+    setenv("PRINTERS","lp")
+  end
 end
-
+ setenv("VERSION",getversion())
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE

@@ -6,9 +6,6 @@
 # XXXXX : Attention quand on est en mingwin on veut des 
 # env avec c: pas /cygdrive 
 # de plus en cygwin scilab peut se lancer sans script 
-if test "$PRINTERS" = ""; then
-  PRINTERS="lp"
-fi
 
 #############################################################################
 #                                                                           #
@@ -30,10 +27,6 @@ export WSCI
 
 PWD=`pwd`
 export PWD
-
-export  PRINTERS
-VERSION="SCILAB_VERSION"
-export VERSION
 
 do_scilex()
 {
