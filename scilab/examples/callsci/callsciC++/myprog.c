@@ -16,13 +16,25 @@
 
 static void Initialize() 
 {
+  char *p1;
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static iflag=-1, stacksize = 1000000, ierr=0;
-  /* je fixe des variables d'environement
-   * ici pour pas avoir de callsci a ecrire 
-   */ 
+#ifdef WIN32
+  /* The next statements have no effect with msvc++, I don't know why */
+  _putenv("SCI=c:\\softs\\scilab\\scilab-2.6");
+  _putenv("TMPDIR=c:\\tmp");
+#else
   setenv("SCI",SCI,1);
   setenv("TMPDIR","/tmp",1);
+#endif 
+  
+  if ((p1 = getenv ("SCI")) != (char *) 0)
+    {
+      fprintf (stderr, "voila SCI=%s\n", p1);
+    }
+  else
+    fprintf (stderr, "pas de SCI", p1);
+
   /* Scilab Initialization */ 
   C2F(inisci)(&iflag,&stacksize,&ierr);
   if ( ierr > 0 ) 
