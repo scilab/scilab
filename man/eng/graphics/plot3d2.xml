@@ -83,29 +83,37 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-		  <PARAM_NAME>mode&gt;0</PARAM_NAME>
-                    <PARAM_DESCRIPTION><SP> the surface
-                    is painted with color <VERB>"mode"</VERB> ; the boundary
-                    of the facet is drawn with current line style and
-                    color.</SP></PARAM_DESCRIPTION>
+                    <PARAM_NAME>mode&gt;0</PARAM_NAME>
+
+                    <PARAM_DESCRIPTION>
+                      <SP>: the surface is painted with color
+                      <VERB>"mode"</VERB> ; the boundary of the facet is drawn
+                      with current line style and color.</SP>
+                    </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>mode=0</PARAM_NAME>
+                    <PARAM_NAME>mode=0:</PARAM_NAME>
+
                     <PARAM_DESCRIPTION>
                       <SP> a mesh of the surface is drawn.</SP>
                     </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-		  <PARAM_NAME>mode&lt;0</PARAM_NAME>
-                    <PARAM_DESCRIPTION><SP> the surface
-                    is painted with color <VERB>"-mode"</VERB> ; the boundary
-                    of the facet is not drawn.</SP><P> Note that the surface
-                    color treatement can be done using <VERB>color_mode</VERB>
-                    and <VERB>color_flag</VERB> options through the surface
-                    entity properties (see
-                    <LINK>surface_properties</LINK>).</P></PARAM_DESCRIPTION>
+                    <PARAM_NAME>mode&lt;0:</PARAM_NAME>
+
+                    <PARAM_DESCRIPTION>
+                      <SP> the surface is painted with color
+                      <VERB>"-mode"</VERB> ; the boundary of the facet is not
+                      drawn.</SP>
+
+                      <P>Note that the surface color treatement can be done
+                      using <VERB>color_mode</VERB> and
+                      <VERB>color_flag</VERB> options through the surface
+                      entity properties (see
+                      <LINK>surface_properties</LINK>).</P>
+                    </PARAM_DESCRIPTION>
                   </PARAM_ITEM>
                 </PARAM_INDENT>
               </PARAM_DESCRIPTION>
@@ -119,7 +127,7 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=0</PARAM_NAME>
+                    <PARAM_NAME>type=0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>the plot is made using the current 3D scaling (set
@@ -130,7 +138,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=1</PARAM_NAME>
+                    <PARAM_NAME>type=1:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>rescales automatically 3d boxes with extreme aspect
@@ -140,7 +148,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=2</PARAM_NAME>
+                    <PARAM_NAME>type=2:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>rescales automatically 3d boxes with extreme aspect
@@ -150,7 +158,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=3</PARAM_NAME>
+                    <PARAM_NAME>type=3:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric with box bounds given by optional
@@ -160,7 +168,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=4</PARAM_NAME>
+                    <PARAM_NAME>type=4:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d isometric bounds derived from the data, to
@@ -169,7 +177,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=5</PARAM_NAME>
+                    <PARAM_NAME>type=5:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds with box bounds given
@@ -179,7 +187,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>type=6</PARAM_NAME>
+                    <PARAM_NAME>type=6:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>3d expanded isometric bounds derived from the data,
@@ -202,7 +210,7 @@
 
                 <PARAM_INDENT>
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=0</PARAM_NAME>
+                    <PARAM_NAME>box=0:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>nothing is drawn around the plot.</SP>
@@ -210,7 +218,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=1</PARAM_NAME>
+                    <PARAM_NAME>box=1:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>unimplemented (like box=0).</SP>
@@ -218,7 +226,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=2</PARAM_NAME>
+                    <PARAM_NAME>box=2:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>only the axes behind the surface are drawn.</SP>
@@ -226,7 +234,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=3</PARAM_NAME>
+                    <PARAM_NAME>box=3:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn and captions
@@ -235,7 +243,7 @@
                   </PARAM_ITEM>
 
                   <PARAM_ITEM>
-                    <PARAM_NAME>box=4</PARAM_NAME>
+                    <PARAM_NAME>box=4:</PARAM_NAME>
 
                     <PARAM_DESCRIPTION>
                       <SP>a box surrounding the surface is drawn, captions and
@@ -262,10 +270,11 @@
           together with <VERB>type</VERB> in <VERB>flag</VERB> : if it is set
           to <VERB>1</VERB>, <VERB>3</VERB> or <VERB>5</VERB> (see above to
           see the corresponding behaviour). If <VERB>flag</VERB> is missing,
-          <VERB>ebox</VERB> is not taken into acoount. Note that, when
-          specified, the <VERB>ebox</VERB> argument acts on the
-          <VERB>data_bounds</VERB> field that can also be reset through the
-          axes entity properties (see <LINK>axes_properties</LINK>).</SP>
+          <VERB>ebox</VERB> is not taken into acoount. </SP>
+
+          <P>Note that, when specified, the <VERB>ebox</VERB> argument acts on
+          the <VERB>data_bounds</VERB> field that can also be reset through
+          the axes entity properties (see <LINK>axes_properties</LINK>).</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
