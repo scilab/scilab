@@ -1,5 +1,5 @@
 load SCI/macros/scicos/lib;
-load SCI/macros/scicos_blocks/lib;
+exec(loadpallibs,-1) 
 getf SCI/tests/scicos_tests.sci;
 options=default_options();
 Blocs=string(blockslib);Blocs=Blocs(2:$);

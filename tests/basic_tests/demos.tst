@@ -39,7 +39,7 @@ names=['choosefile';
 for k=1:size(names,'r')
   getf('SCI/macros/scicos/'+names(k)+'.sci')
 end
-getf('SCI/macros/scicos_blocks/scifunc_block.sci')
+getf('SCI/macros/scicos_blocks/Misc/scifunc_block.sci')
 lines(0)
 clearfun('lines')
 deff('x=lines(x)','x=0 ')
