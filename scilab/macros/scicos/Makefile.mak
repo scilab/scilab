@@ -38,6 +38,15 @@ COMPAT= %Block_e.sci %graphics_e.sci %model_e.sci %model_e.sci \
 CONSTRUCTORS= scicos_params.sci scicos_cpr.sci scicos_sim.sci \
 	scicos_state.sci scicos_block.sci scicos_graphics.sci \
 	scicos_model.sci scicos_link.sci scicos_diagram.sci
+SIMPA = Modelica_.sci build_block.sci build_modelica_block.sci  \
+	buildmodelicac.sci compile_modelica.sci create_modelica.sci  \
+	create_modelica1.sci extract_implicit.sci gen_modelica.sci  \
+	genmoc.sci getoutputports.sci hilite_path.sci  \
+	is_modelica_block.sci modelica.sci modelica_libs.sci  \
+	modelicac_path.sci point2pixel.sci scicos_flat.sci  \
+	scs_full_path.sci standard_draw_ports.sci \
+	standard_draw_ports_up.sci value2modelica.sci  \
+	width2pixel.sci  
 
 MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci \
 	getblock.sci getinputs.sci getlink.sci getobj.sci \
@@ -85,6 +94,6 @@ MACROS=	clickin.sci draw.sci drawblock.sci drawlink.sci drawobj.sci drawobjs.sci
 	%Block_p.sci  %params_p.sci %diagram_p.sci\
 	tk_mpopup.sci tk_mpopupX.sci tk_getcolor.sci tk_choose.sci tk_getvalue.sci \
 	sci2tcl.sci \
-	$(MENU) $(COMPAT) $(CONSTRUCTORS)
+	$(MENU) $(COMPAT) $(CONSTRUCTORS) $(SIMPA)
 
 include ../Make.lib.mak
