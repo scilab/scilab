@@ -188,7 +188,9 @@ In C:          void fun(int *m, int *n, double *x, double *params, double *y)
             at <EM>x</EM>) and <VERB>params</VERB> is a vector which contains the optional parameters 
             <EM>opt_par1, opt_par2, ...</EM> (each parameter may be a vector, for instance if <EM>opt_par1</EM> 
             has 3 components, the description of <EM>opt_par2</EM> begin from <TT>params(4)</TT> (fortran case),
-            and from  <TT>params[3]</TT> (C case), etc...</SP>
+            and from  <TT>params[3]</TT> (C case), etc... Note that even if <VERB>fun</VERB> doesn't need
+            supplementary parameters you must anyway write the fortran code with a <TT>params</TT> argument
+            (which is then unused in the subroutine core).</SP>
           </ITEM>
          </ITEMIZE>
 
@@ -295,7 +297,15 @@ xinf = [-%inf,-%inf]; xsup = [%inf, %inf];
 [f,xopt, gropt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0,"ar",40,8,0.01,0.1)
 
 
-// 7- now we want to define fun and dfun in fortran
+// 7 and 8: now we want to define fun and dfun in fortran then in C
+// CAUTION: the "compile and link to scilab" method of these 2 examples
+//          is unix specific (and has been verified only on linux).
+//          For Windows you must adapt it (in particular the scilab
+//          command link is restricted to link dll on Windows so you
+//          must create a dll and not simply an object file as in these
+//          2 examples).
+ 
+// 7- fun and dfun in fortran
 
 // 7-1/ write in a file myfun.f the following lines:
       subroutine myfun(m,n,x,param,f)
@@ -333,7 +343,7 @@ link("myfun.o",["myfun" "mydfun"])
 [f,xopt, gropt] = leastsq(list("myfun",m,tm,ym,wm),"mydfun",x0) // with Jacobian
 
 
-// 8- finally we define fun and dfun in C
+// 8- last example: fun and dfun in C
 
 // 8-1/ write in a file myfunc.c the following lines:
 void myfunc(int *m,int *n, double *x, double *param, double *f)
