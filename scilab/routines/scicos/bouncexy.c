@@ -85,6 +85,8 @@ void bouncexy(scicos_block *block,int flag)
       C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
 	       &dv, &dv);
     }
+    C2F(dr1)("xsetdr\000", "X11\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     /*     erase first point */
     if (ipar[2] == 0) {
       C2F(dr1)("xfarcs\000", "v\000", &v, &ipar[3], &n, &v, &v, &v, &z__[1],

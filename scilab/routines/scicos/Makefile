@@ -38,7 +38,8 @@ BLOCKSC=selector.o sum.o prod.o switchn.o relay.o readc.o writec.o writeau.o \
 	switch2.o variable_delay.o time_delay.o cscope.o cmscope.o \
 	satur.o step_func.o integral_func.o absolute_value.o bounce_ball.o \
 	bouncexy.o extractor.o scalar2vector.o minmax.o signum.o product.o \
-	summation.o multiplex.o gainblk.o relationalop.o modulo_count.o
+	summation.o multiplex.o gainblk.o relationalop.o modulo_count.o \
+	hystheresis.o ratelimiter.o backlash.o deadband.o ramp.o
 
 OBJSF=intcos.o coselm.o sciblk.o  \
 	sctree.o ftree2.o ftree3.o ftree4.o skipvars.o scierr.o scifunc.o \
@@ -124,3 +125,8 @@ multiplex.o : scicos_block.h ../machine.h
 gainblk.o: scicos_block.h ../machine.h
 relationalop.o: scicos_block.h ../machine.h
 modulo_count.o: scicos_block.h ../machine.h
+hystheresis.o: scicos_block.h ../machine.h
+ratelimiter.o: scicos_block.h ../machine.h
+backlash.o: scicos_block.h ../machine.h
+deadband.o: scicos_block.h ../machine.h
+ramp.o: scicos_block.h ../machine.h

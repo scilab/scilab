@@ -131,6 +131,8 @@ void cmscope(scicos_block *block,int flag)
 	     v, &dv, &dv, &dv, &dv);
     C2F(dr1)("xset\000", "dashes\000", &c__0, &c__0, &c__0, &c__0, &c__0, &v, 
 	     &dv, &dv, &dv, &dv);
+    C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     ilt = ipar[2] + 8;
     it = 0;
     /*     loop on input ports */
@@ -239,6 +241,8 @@ void cmscope(scicos_block *block,int flag)
       C2F(dr1)("xset\000", "wdim\000", &ipar[iwd], &ipar[iwd + 1], &v, &v, &
 	       v, &v, &dv, &dv, &dv, &dv);
     }
+    C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     C2F(dr1)("xset\000", "use color\000", &c__1, &c__0, &c__0, &c__0, &c__0, &
 	     v, &dv, &dv, &dv, &dv);
     C2F(dr1)("xset\000", "alufunction\000", &c__3, &c__0, &c__0, &c__0, &c__0,

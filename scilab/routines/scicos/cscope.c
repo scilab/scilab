@@ -130,6 +130,8 @@ void cscope(scicos_block *block,int flag)
       C2F(dr1)("xset\000", "window\000", &wid, &v, &v, &v, &v, &v, &dv, &dv,
 	       &dv, &dv);
     }
+    C2F(dr1)("xsetdr\000", "Rec\000", &v, &v, &v, &v, &v, &v, &dv, &dv, &dv, &
+	     dv);
     if (k > 0) {
       C2F(scicosclip)(&c__1);
       for (i__ = 0; i__ < nu; ++i__) {

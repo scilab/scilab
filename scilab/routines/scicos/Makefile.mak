@@ -41,7 +41,8 @@ BLOCKSC=selector.obj sum.obj prod.obj switchn.obj relay.obj readc.obj writec.obj
 	switch2.obj variable_delay.obj time_delay.obj cscope.obj cmscope.obj \
 	satur.obj step_func.obj integral_func.obj absolute_value.obj bounce_ball.obj \
 	bouncexy.obj extractor.obj scalar2vector.obj minmax.obj signum.obj product.obj \
-	summation.obj multiplex.obj gainblk.obj relationalop.obj modulo_count.obj
+	summation.obj multiplex.obj gainblk.obj relationalop.obj modulo_count.obj \
+	hystheresis.obj ratelimiter.obj backlash.obj deadband.obj ramp.obj
 
 OBJSF=intcos.obj coselm.obj sciblk.obj  \
 	sctree.obj ftree2.obj ftree3.obj ftree4.obj skipvars.obj scierr.obj scifunc.obj \
@@ -126,3 +127,9 @@ summation.obj : scicos_block.h ../machine.h
 multiplex.obj : scicos_block.h ../machine.h
 gainblk.obj: scicos_block.h ../machine.h
 relationalop.obj: scicos_block.h ../machine.h
+modulo_count.obj: scicos_block.h ../machine.h
+hystheresis.obj: scicos_block.h ../machine.h
+ratelimiter.obj: scicos_block.h ../machine.h
+backlash.obj: scicos_block.h ../machine.h
+deadband.obj: scicos_block.h ../machine.h
+ramp.obj: scicos_block.h ../machine.h

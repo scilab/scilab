@@ -84,6 +84,7 @@ c     add new point to the buffer
             return
          endif
 c     
+
 c     plot 1:K points of the buffer
          call dr1('xget'//char(0),'window'//char(0),verb,cur,na,v,v,v,
      $        dv,dv,dv,dv)
@@ -91,6 +92,8 @@ c     plot 1:K points of the buffer
             call dr1('xset'//char(0),'window'//char(0),wid,v,v,v,v,v,
      $           dv,dv,dv,dv)
          endif
+         call dr1('xsetdr'//char(0),'Rec'//char(0),v,v,v,v,v,v,
+     $        dv,dv,dv,dv)
 c         call dr1('xset'//char(0),'use color'//char(0),ipar(2),0,0,
 c     &        0,0,v,dv,dv,dv,dv)
          if(K.gt.0) then
