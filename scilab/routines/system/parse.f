@@ -181,6 +181,9 @@ c     .  try to avoid the comand call whenever it is possible
 c         if (char1 .eq. lparen) then
 c           one can get this case with "if ( ) then"
 c         endif
+         if(lpt(4).ge.2) then
+            if (lin(lpt(4)-2).eq.blank) goto 20
+         endif
          if (char1.eq.dot) then
 c     .     name.x
             schar=char1
