@@ -494,7 +494,6 @@ c
 c     
 c
 c     Warning rpar and ipar are used here as dummy pointers
-            write(6,*) neq(1),rtol,atol,nrwp,niwp
             call DDASRT (simblkdassl,neq,told,x,x(neq(1)+1),t,info,
      *           rtol,atol,istate,rhot,nrwp,ihot,niwp,rpar,ipar,
      *           jdum,grblkdassl,ng,jroot)
