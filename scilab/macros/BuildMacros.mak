@@ -1,5 +1,5 @@
 
-all:: algebre arma auto calpol elem int m2sci metanet mtlb optim percent robust sci2for signal sound statistics tdcs texmacs tksci util xdess scicos scicos_blocks
+all:: algebre arma auto calpol elem int metanet mtlb optim percent robust sci2for signal sound statistics tdcs texmacs tksci util xdess scicos scicos_blocks m2sci
 
 algebre	:
 	@cd algebre
@@ -37,12 +37,7 @@ int	:
 	@makemacros > nul
 	@cd..
 
-m2sci	:	
-	@cd m2sci
-	@echo Creation of m2sci (Macros)
-	@makemacros > nul
-	@cd..
-	
+
 metanet	:	
 	@cd metanet
 	@echo Creation of metanet (Macros)
@@ -137,6 +132,12 @@ scicos_blocks	:
 	@cd scicos_blocks
 	@echo Creation of scicos_blocks (Macros)
 	@buildmacros.bat > nul
+	@cd..
+
+m2sci	:	
+	@cd m2sci
+	@echo Creation of m2sci (Macros)
+	@buildmacros > nul
 	@cd..
 	
 clean::

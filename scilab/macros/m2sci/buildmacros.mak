@@ -14,6 +14,9 @@ sci_files:
 	@cd sci_files
 	@makemacros.bat
 	@cd ..
+
+
+
 clean::
 	-del *.bin /s
 	-del names.* /s
