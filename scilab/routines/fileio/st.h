@@ -215,6 +215,18 @@ IMPORT int soxpreview;	/* Preview mode: be fast and ugly */
 #define WRITEBINARY	"wb"
 #endif
 
+/* default values */ 
+#ifndef READBINARY 
+#define READBINARY "r"
+#endif
+
+#ifndef WRITEBINARY
+#define WRITEBINARY "w"
+#endif
+
+ 
+
+
 /* Error code reporting */
 #ifdef	QNX
 #include <errno.h>
