@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA/Enpc
 
-AC_REVISION($Revision: 1.66 $)dnl
+AC_REVISION($Revision: 1.67 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -616,14 +616,14 @@ case "$host" in
        GCC=no
        CC=$ICC
        FC=$IFC
-       CC_OPTIONS='-O -Dlinux -DNARROWPROTO -mp -pc64 '
+       CC_OPTIONS='-O -Dlinux -DNARROWPROTO -mp'
        CC_PICFLAGS="-fPIC"
 # -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-       FC_OPTIONS="-O -cm -w90 -w95 -mp -pc64"
-       FC_OPTIONS_O0="-cm  -w90 -w95 -mp -pc64"
+       FC_OPTIONS="-O -cm -w90 -w95 -mp "
+       FC_OPTIONS_O0="-cm  -w90 -w95 -mp "
        if test "$enable_debug" = yes; then 
-         CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp -pc64'
-         FC_OPTIONS="-g -cm  -w90 -w95 -mp -pc64"
+         CC_OPTIONS='-g -Wall -Dlinux  -DNARROWPROTO  -mp '
+         FC_OPTIONS="-g -cm  -w90 -w95 -mp "
        fi
        CC_LDFLAGS="$LIEEELIB  -Wl,-relax"
        FC_LDFLAGS="$LIEEELIB -ldl  -lPEPCF90 -Wl,-relax "
