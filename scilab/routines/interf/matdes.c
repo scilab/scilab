@@ -5397,10 +5397,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    exp10( Cscale.xtics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[3]/ (exp10( Cscale.xtics[2])))); 
 	  pSUBWIN_FEATURE (pobj)->FRect[3]=  
 	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
-                 
+	  /* We have pSUBWIN_FEATURE (paxesmdl)->axes.xlim[i]= Cscale.xtics[i] so what follows should be OK: */ 
+	  /* Adding F.Leray 21.04.04 */
+	  pSUBWIN_FEATURE (pobj)->FRect[4]=  
+	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (floor(pSUBWIN_FEATURE (pobj)->axes.limits[5]/ 
+								 (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
+	  pSUBWIN_FEATURE (pobj)->FRect[5]=  
+	    exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2]) * (ceil(pSUBWIN_FEATURE (pobj)->axes.limits[6]/ 
+								 (exp10( pSUBWIN_FEATURE (pobj)->axes.zlim[2])))); 
+
 	  pSUBWIN_FEATURE (pobj)->axes.limits[0] = 0;} 
       else if ((strncmp(cstk(*value),"on", 2) == 0)){
-	for (i=0;i<4 ; i++) 
+	for (i=0;i<6 ; i++) /* F.Leray 21.04.04 : We have to go till 6 for z coord. too !! */
 	  pSUBWIN_FEATURE (pobj)->FRect[i]
 	    = pSUBWIN_FEATURE (pobj)->axes.limits[i+1];
 	pSUBWIN_FEATURE (pobj)->axes.limits[0] = 1; }            
@@ -5484,7 +5492,6 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     else
       {strcpy(error_message,"margins property does not exist for this handle");return -1;}
   }
-
   else if (strncmp(marker,"tics_color", 10) == 0) {   
     if (sciGetEntityType (pobj) == SCI_AXES)
       pAXES_FEATURE (pobj)->ticscolor = (int)stk(*value)[0];
@@ -5702,6 +5709,23 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       }
       else
 	{strcpy(error_message,"isoview property does not exist for this handle");return -1;}
+     
+    }  /**/
+  else if  (strncmp(marker,"cube_scaling", 12) == 0)  /* F.Leray 22.04.04 */
+    {  
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+	if(pSUBWIN_FEATURE (pobj)->is3d == FALSE)
+	  sciprint("Warning: cube_scaling property is only used in 3D mode\n");
+	
+	if ((strncmp(cstk(*value),"on", 2) == 0)) 
+	  pSUBWIN_FEATURE (pobj)->cube_scaling= TRUE; 
+	else if ((strncmp(cstk(*value),"off", 3) == 0))  
+	  pSUBWIN_FEATURE (pobj)->cube_scaling= FALSE;
+	else
+	  {strcpy(error_message,"Value must be 'on' or 'off' / Only use for 3D mode");return -1;}
+      }
+      else
+	{strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
      
     }  /**/
   else if (strncmp(marker,"log_flags", 9) == 0)
@@ -6782,16 +6806,14 @@ if ((pobj == (sciPointObj *)NULL) &&
   else if (strcmp(marker,"margins") == 0) {
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
       /**SS  2004**/
-	numrow   = 1;
-	numcol=4;
-	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	  stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->ARect[0];
-	  stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[2];
-	  stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[1];
-	  stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
-
+      numrow   = 1;
+      numcol=4;
+      CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
+      stk(outindex)[0] = pSUBWIN_FEATURE (pobj)->ARect[0];
+      stk(outindex)[1] = pSUBWIN_FEATURE (pobj)->ARect[2];
+      stk(outindex)[2] = pSUBWIN_FEATURE (pobj)->ARect[1];
+      stk(outindex)[3] = pSUBWIN_FEATURE (pobj)->ARect[3];
     }
-
     else
       {strcpy(error_message,"data_bounds property does not exist for this handle");return -1;}
   } 
@@ -6999,6 +7021,18 @@ if ((pobj == (sciPointObj *)NULL) &&
     }
     else
       {strcpy(error_message,"isoview property does not exist for this handle");return -1;}
+   }
+  else if (strncmp(marker,"cube_scaling", 12) == 0) {
+    if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+      numrow   = 1;numcol   = 3;
+      CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
+      if (pSUBWIN_FEATURE (pobj)->cube_scaling)
+	strncpy(cstk(outindex),"on", numrow*(numcol-1)); 
+      else 
+	strncpy(cstk(outindex),"off", numrow*numcol);  
+    }
+    else
+      {strcpy(error_message,"cube_scaling property does not exist for this handle");return -1;}
   }
  /**************** SEGS  *********************/
   else if (strncmp(marker,"arrow_size", 10) == 0)
