@@ -807,7 +807,13 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   end  
   //
   [ok,bllst]=adjust_inout(bllst,connectmat)
-  if ~ok then return;end
+  if ~ok then 
+    lnkptr=[]=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
+	  xptr=[],zptr=[],rpptr=[],ipptr=[],xc0=[],xcd0=[],xd0=[],rpar=[],ipar=[],dep_ut=[],..
+	  typ_z=[],typ_s=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],labels=[],..
+	  bexe=[],boptr=[],blnk=[],blptr=[],
+    return;
+  end
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
   lnkbsz=[]
