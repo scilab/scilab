@@ -1,16 +1,21 @@
+DIRS = arma control dcd elementary fileio functions graphics gui \
+	linear metanet nonlinear polynomials programming pvm robust \
+	signal sound strings tdcs tksci translation utilities mtlb
+
 all:: eng fr
 
-
+check:
+  @Makesubdirs.bat
 fr	:
 	@cd fr
 	@echo Creation de l'aide (Francais)
-	..\..\bin\scilex -nb -nwni -l fr -e xmltohtml([],[],'html-rev.xsl');exit;
+	@..\..\bin\scilex -nb -nwni -l fr -e xmltohtml([],[],'html-jpc-rev.xsl');exit;
 	@cd..
 
 eng	:	
 	@cd eng
 	@echo Creation of the help (English)
-	..\..\bin\scilex -nb -nwni -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
+	@..\..\bin\scilex -nb -nwni -l eng -e xmltohtml([],[],'html-rev.xsl');exit;
 	@cd..
 
 distclean::	
