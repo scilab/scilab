@@ -15,6 +15,6 @@ MACROS = tk_getfile.sci tk_getdir.sci tk_savefile.sci \
 	config.sci editvar.sci progressionbar.sci waitbar.sci winlist.sci sciGUIhelp.sci\
 	sciGUI_init.sci  TK_EvalFile.sci TK_EvalStr.sci TK_GetVar.sci TK_SetVar.sci\
 	figure.sci GetUiControlPropertyName.sci IsAScalar.sci GetUiControlValueType.sci\
-	uimenu.sci
+	uimenu.sci GetUiControlStyleName.sci
 
 include ../Make.lib
