@@ -911,8 +911,8 @@ void C2F(setgccolormapGif)(struct BCG *Xgc,integer m, double *a)
   /* next line added to change the pixel color index for pixel painted with 
      the default white and black*/
 
-  for (i=0;i<Xgc->CWindowWidth-1;i++) {
-    for (j=0;j<Xgc->CWindowHeight-1;j++) {
+  for (i=0;i<Xgc->CWindowWidth;i++) {
+    for (j=0;j<Xgc->CWindowHeight;j++) {
       c=gdImageGetPixel(GifIm, i, j);
       if(c==old_white)
 	gdImageSetPixel(GifIm, i, j,col_index[m+1]);
