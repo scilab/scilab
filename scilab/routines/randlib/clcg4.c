@@ -1,10 +1,48 @@
-/* 
- *  The following code is from L'Ecuyer and Andres "A Randow Number based
- *  on the combinaison of Four LCG" (distributed at the Pierre L'Ecuyer
- *  home page).
+/*
+ *  PURPOSE
+ *     clcg4 generator stuff
  *
- *  The original code was slightly modified by Bruno Pincon for inclusion
- *  in Scilab.
+ *  AUTHORS
+ *     The following code is from L'Ecuyer and Andres "A Randow Number based
+ *     on the combinaison of Four LCG" (distributed at the Pierre L'Ecuyer
+ *     home page with a corresponding paper).
+ *
+ *  NOTES
+ *     The original code was slightly modified by Bruno Pincon for inclusion
+ *     in Scilab. 
+ *
+ *     list of main modifs :
+ *
+ *       - lot of routine 's names have changed to have some kind of
+ *         uniformity with the others generators 
+ *
+ *       - add a var is_init so that initialisation is performed inside
+ *         this module (to simplify the interface). And bring modif in
+ *         the different routines :
+ *            if (!is_init) then proceed to initialisation ...
+ *
+ *       - add a routine advance_state_clcg4 (for compatibility with the
+ *         old package (Scilab used this feature))
+ *
+ *       - I have change the generator (clcg4 routine) so as it has the
+ *         form (1) in place of (2) (see the joined paper of L'Ecuyer &
+ *         Andres) :
+ *
+ *         From the 4 LCG :
+ *
+ *            x_{j,n} = a_j * x_{j,n-1} mod m_j    0 <= j <= 3
+ *
+ *         The output with form (2) (original form in this code) :
+ *         
+ *            z_n = ( sum_j  delta_j * x_{j,n} / m_j ) mod 1
+ *
+ *         have been changed in the form (1) :
+ *
+ *           z_n = ( sum_j  delta_j * x_{j,n} ) mod m_1 (then u_n = z_n / m_1)
+ *         
+ *         to have some "uniformity" with all the others generators (which
+ *         gives integers). Also it is better for the uin(a,b) generation
+ *         to start from integers.
  */
 
 
@@ -14,7 +52,7 @@
 
 #include "../graphics/Math.h" /* to use sciprint */
 #include "clcg4.h"
-#include <math.h>
+#include <math.h>             /* for floor */
 
 /***********************************************************************/
 /* Private part.                                                       */
@@ -92,7 +130,9 @@ void init_clcg4(long v, long w)
 {
   /* currently the scilab interface don't let the user chooses
    * v and w (always v_default and w_default) so this routine
-   * is in the "private" part
+   * is in the "private" part (also because initialisation is
+   * always perform inside this module, depending of the var
+   * is_init)
    */
   double sd[4] = {11111111., 22222222., 33333333., 44444444.};
   comp_aw_and_avw(v, w);
@@ -116,11 +156,10 @@ int verif_seeds_clcg4(double s0, double s1, double s2, double s3)
 void display_info_clcg4()
 {
   /* display the seeds range (in case of error) */
-  sciprint("\n\r bad seeds for clcg4 : must be integers with :");
-  sciprint("\n\r                       1 <= s1 <= 2147483646");
-  sciprint("\n\r                       1 <= s2 <= 2147483542");
-  sciprint("\n\r                       1 <= s3 <= 2147483422");
-  sciprint("\n\r                       1 <= s4 <= 2147483322");
+  sciprint("\n\r bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]");
+  sciprint("\n\r                                             s2 in [1, 2147483542]");
+  sciprint("\n\r                                             s3 in [1, 2147483422]");
+  sciprint("\n\r                                             s4 in [1, 2147483322]");
 }
 
 
@@ -176,6 +215,23 @@ void init_generator_clcg4(int g, SeedType Where)
     }
 }
 
+void advance_state_clcg4(int g, int k)
+{
+  long int b[4];
+  int i, j;
+
+  if (! is_init ) {init_clcg4(v_default,w_default); is_init = 1; };
+
+  for ( j = 0 ; j < 4 ; j++ )
+    {
+      b[j] = a[j];
+      for ( i = 1 ; i <= k ; i++ )
+	b[j] = MultModM( b[j], b[j], m[j]);
+      Ig[j][g] = MultModM ( b[j], Cg[j][g], m[j] );
+    }
+  init_generator_clcg4(g, InitialSeed);
+}
+  
 int set_initial_seed_clcg4(double s0, double s1, double s2, double s3)
 {
   int g, j;
@@ -203,42 +259,43 @@ int set_initial_seed_clcg4(double s0, double s1, double s2, double s3)
   return ( 1 );
 }
 
-
-
-double clcg4(int g)
+unsigned long clcg4(int g)
 {
+  /* Modif Bruno : the generator have now the form (1) in place of (2) */
+
   long k,s;
   double u;
 
   if (! is_init ) {init_clcg4(v_default,w_default); is_init = 1; };
 
-  u = 0.0;
-
+  /*  advance the 4 LCG */
   s = Cg [0][g];  k = s / 46693;
   s = 45991 * (s - k * 46693) - k * 25884;
   if (s < 0) s = s + 2147483647;  Cg [0][g] = s;
-  u = u + 4.65661287524579692e-10 * s;
  
   s = Cg [1][g];  k = s / 10339;
   s = 207707 * (s - k * 10339) - k * 870;
   if (s < 0) s = s + 2147483543;  Cg [1][g] = s;
-  u = u - 4.65661310075985993e-10 * s;
-  if (u < 0) u = u + 1.0;
 
   s = Cg [2][g];  k = s / 15499;
   s = 138556 * (s - k * 15499) - k * 3979;
   if (s < 0) s = s + 2147483423;  Cg [2][g] = s;
-  u = u + 4.65661336096842131e-10 * s;
-  if (u >= 1.0) u = u - 1.0;
 
   s = Cg [3][g];  k = s / 43218;
   s = 49689 * (s - k * 43218) - k * 24121;
   if (s < 0) s = s + 2147483323;  Cg [3][g] = s;
-  u = u - 4.65661357780891134e-10 * s;
-  if (u < 0) u = u + 1.0;
 
-  return (u);
-  }
+  /*  final step */
+  u = (double)(Cg[0][g] - Cg[1][g]) + (double)(Cg[2][g] - Cg[3][g]);
+  /*  we must do  u mod 2147483647 with u in [- 4294966863 ; 4294967066 ] : */
+  if (u < 0) u += 2147483647;
+  if (u < 0) u += 2147483647;
+  if (u >= 2147483647) u -= 2147483647;
+  if (u >= 2147483647) u -= 2147483647;
+
+  return ((unsigned long) u );
+
+}
 
 
 

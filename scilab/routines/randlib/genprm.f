@@ -17,6 +17,7 @@ C                         INTEGER LARRAY
 C
 C     Modification by Bruno to handle permutation of a double precision 
 C     array (15/11/2001) and to handle the changes in ignuin
+C
 C**********************************************************************
       implicit none
 C     .. Scalar Arguments ..

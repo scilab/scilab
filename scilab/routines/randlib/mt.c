@@ -25,7 +25,15 @@
 /* Vol. 8, No. 1, January 1998, pp 3--30.                          */
 
 
-/* slightly modified par Bruno Pincon for inclusion in scilab */
+/*   
+ *  NOTES
+ *    slightly modified par Bruno Pincon for inclusion in scilab 
+ *      - names have changed (for uniformity with the others genators)
+ *      - add get state routine
+ *      - add a little verif when the state is changed with the simple
+ *        procedure
+ */
+
 #include <math.h>
 #include "../graphics/Math.h" /* to use sciprint */
 #include "grand.h"            /* to check prototypes */
@@ -52,7 +60,7 @@ static unsigned long mt[N]; /* the array for the state vector  */
 static int mti=N+1; /* mti==N+1 means mt[N] is not initialized */
 
 
-double randmt()
+unsigned long randmt()
 {
     unsigned long y;
     static unsigned long mag01[2]={0x0, MATRIX_A};
@@ -84,7 +92,7 @@ double randmt()
     y ^= TEMPERING_SHIFT_T(y) & TEMPERING_MASK_C;
     y ^= TEMPERING_SHIFT_L(y);
 
-    return ( (double)y * 2.3283064365386963e-10 ); /* reals: [0,1)-interval */
+    return ( y );
 }
 
 /* initializing the array with a NONZERO seed */
@@ -94,8 +102,6 @@ int set_state_mt_simple(double s)
    *   the generator Line 25 of Table 1 in
    *   [KNUTH 1981, The Art of Computer Programming
    *   Vol. 2 (2nd Ed.), pp102]                 
-   *
-   *   Au niveau de l'interface verifier que s est bien un entier
    */
   unsigned long seed;
 
@@ -110,7 +116,7 @@ int set_state_mt_simple(double s)
     }
   else
     {
-      sciprint("\n\r bad seed for mt : must be an integer with : 1 <= s <= 4294967295 \n\r");
+      sciprint("\n\r bad seed for mt, must be an integer in [1, 2^32-1] \n\r");
       return ( 0 );
     }
 }

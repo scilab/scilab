@@ -4,6 +4,7 @@
  *    jpc@cermics.enpc.fr 
  *    stuff to deal with several generators added 
  *         by Bruno Pincon (12/11/2001) 
+ *
  --------------------------------------------------------------------------*/
 #include <string.h>
 #include "../stack-c.h"
@@ -17,46 +18,88 @@
 
 enum {MT, KISS, CLCG4, CLCG2, URAND};
 
-static int current_gen = MT;   /* the current generator */
-static int current_clcg4 = 0;  /* for clcg4 : the current virtual gen */
-/* 0 <= current_clcg4 <= Maxgen = 100 defined in clcg4.h */ 
-double clcg4_with_gen();
+/* the current generator : */
+static int current_gen = MT;  
 
-#define NbGenInScilab 5
+/* for clcg4 : the current virtual gen (current_clcg4 in [0, Maxgen]) */
+static int current_clcg4 = 0; 
 
-double sci_urand() { return C2F(urand)(&C2F(com).ran[0]);};
-
-double  (*gen[NbGenInScilab])() = { randmt, kiss, clcg4_with_gen, clcg2 ,sci_urand };
-static char *names_gen[]= { "mt", "kiss","clcg4", "clcg2", "urand" };
-
-double  clcg4_with_gen(void)
+/* clcg4 must be called with the virtual generator number */
+unsigned long int clcg4_with_gen(void)
 {
   return ( clcg4(current_clcg4) );
 }
 
-double C2F(ranf)(void)
+#define NbGenInScilab 5
+
+/*  pointers onto the generators func */
+unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urand };
+
+/*  names at the scilab level */
+static char *names_gen[NbGenInScilab] = { "mt",  "kiss","clcg4", "clcg2", "urand" };
+
+/* all the generators provided integers in [0, RngMaxInt] :        */
+static
+unsigned long RngMaxInt[NbGenInScilab] = { 4294967295ul,  /* mt    */
+					   4294967295ul,  /* kiss  */
+					   2147483646ul,  /* clcg4 */
+					   2147483561ul,  /* clcg2 */
+					   2147483647ul };/* urand */
+
+/* the factors (1/(RngMaxInt+1)) to get reals in [0,1) :           */
+static
+double factor[NbGenInScilab] = { 2.3283064365386963e-10,  /* mt    */
+				 2.3283064365386963e-10,  /* kiss  */
+                                 4.6566128752457969e-10,  /* clcg4 */
+		                 4.6566130595601735e-10,  /* clcg2 */
+		                 4.6566128730773926e-10}; /* urand */
+
+
+double C2F(ranf)(void)   
 {
-  return ( gen[current_gen]() );
+  /* random deviate from U[0,1) */
+  return ( (double) gen[current_gen]() * factor[current_gen] );
 }
 
 double ignlgi(void)
 {
-  /* pour compatibilite avec l'ancien systeme... 
-   *  => donne des entiers sur [1, 2147483562]
-   */
-  return ( 1.0 + floor( 2147483563.0* gen[current_gen]() ) );
+  /* random deviate from Ui[0,RngMaxInt] (direct output of the current gen) */
+  return ( (double) gen[current_gen]() );
 }
 
 double C2F(ignuin)(double *a, double *b)
 {
-  /* genere une realisation de U[a,b] (intervalle d'entiers!)
-   *  => on suppose qu'au niveau appelant les verifs ont ete
-   *     faites : a et b sont des entiers (mais stockes en
-   *     double) et b-a+1 n'est pas trop grand (<= 2147483562
-   *     cette contrainte provenant de clcg2 mais voir aussi
-   *     pour clcg4)
-   */
-  return ( *a + floor((*b-*a+1.0)*gen[current_gen]()));
+  /*  random deviate from Ui[a,b] 
+   *  it is assumed that : (i)  a and b are integers (stored in double) 
+   *                       (ii) b-a+1 <= RngMaxInt[current_gen]
+   *  (these verif are done at the calling level)
+   *
+   *  We use the classic method with a minor difference : to choose
+   *  uniformly an integer in [a,b] (ie d=b-a+1 numbers) with a generator
+   *  which provides uniformly integers in [0,RngMaxInt] (ie m=RngMaxInt+1
+   *  numbers) we do the Euclidian division :
+   *                                           m = q d + r,   r in [0,d-1]
+   * 
+   *  and accept only numbers l in [0, qd-1], then the output is k = a + (l mod d)
+   *  (ie numbers falling in [qd , RngMaxInt] are rejected).
+   *  The problem is that RngMaxInt is 2^32-1 for mt and kiss so that RngMaxInt+1 = 0
+   *  with the 32 bits unsigned integer arithmetic. So in place of rejected r
+   *  numbers we reject r+1 by using RngMaxInt in place of m. The constraint is
+   *  then that (b-a+1) <= RngMaxInt and if we doesn't want to deal we each generator
+   *  we take (b-a+1) <= Min RngMaxInt =  2147483561 (clcg2)
+   */                 
+  unsigned long k, d = (unsigned long)((*b-*a)+1), qd;
+  
+  if ( d == 1)
+    return (*a);
+
+  qd = RngMaxInt[current_gen] - RngMaxInt[current_gen] % d;
+  do 
+    { 
+      k = ignlgi();
+    } 
+  while ( k >= qd );
+  return ( *a + (double)(k % d) );
 }
 
 /**************************************************
@@ -75,7 +118,7 @@ int RandI( char* fname)
   CheckLhs(minlhs,maxlhs);
   if ( GetType(1) != 1) 
     {
-      int un=1,deux=2, dim_state_mt=624, dim_state_4=4;
+     int un=1,deux=2, dim_state_mt=624, dim_state_4=4;
       GetRhsVar(1,"c",&ms,&ns,&ls);
       if ( strcmp(cstk(ls),"getsd")==0) 
 	{
@@ -104,7 +147,8 @@ int RandI( char* fname)
 		  break;
 		case(URAND) : 
 		  CreateVar(2,"d",&un,&un,&lr);
-		  *stk(lr) = C2F(com).ran[0]; 
+		  get_state_urand(stk(lr));
+		  /* *stk(lr) = C2F(com).ran[0]; */ 
 		  break;
 		};
 	      LhsVar(1) = 2;
@@ -152,7 +196,7 @@ int RandI( char* fname)
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
-	      if ( m1*n1 == 1)  /* simple init of mt */
+	      if ( m1*n1 == 1)          /* simple init of mt     */
 		{ if (! set_state_mt_simple(*stk(l1)) ) {Error(999); return(0);}; }
 	      else if ( m1*n1 == 624 )  /* init of all the state */
 		{ if (! set_state_mt(stk(l1))) {Error(999); return(0);}; }
@@ -166,7 +210,7 @@ int RandI( char* fname)
 	    case(CLCG4) :
 	      if ( Rhs != 5 ) 
 		{
-		  Scierror(999,"Rhs should be 5 for 'setsd'  option with the kiss or clcg4 generator\n\r");
+		  Scierror(999,"Rhs should be 5 for 'setsd' option with the kiss or clcg4 generator\n\r");
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
@@ -209,8 +253,10 @@ int RandI( char* fname)
 		  return 0;
 		}
 	      GetRhsVar(2,"d",&m1,&n1,&l1);
-	      CheckScalar(2,m1,n1); 
-	      C2F(com).ran[0]= (int) *stk(l1);
+	      /* CheckScalar(2,m1,n1);  */ 
+	      /* C2F(com).ran[0]= (int) *stk(l1); */
+	      if (! set_state_urand(*stk(l1))) 
+		{Error(999); return 0;};
 	      break;
 	    };
 	  LhsVar(1) = 0;
@@ -277,14 +323,22 @@ int RandI( char* fname)
 	}
       else if (strcmp("advnst",cstk(ls))==0) 
 	{
-	  /* A VOIR ca fait rien pour le moment */
+	  int k;
+	  if ( current_gen != CLCG4 )
+	    sciprint("the 'advnst' option affect only the clcg4 generator !\n\r");
 	  if ( Rhs != 2) 
 	    {
 	      Scierror(999,"Rhs should be 2 for 'advnst' option\n\r");
 	      return 0;
 	    }
 	  GetRhsVar(2,"i",&m1,&n1,&l1);
-	  sciprint(" grand('advnst',k) ne fait rien pour le moment ... \n\r");
+	  k = *istk(l1);
+	  if ( k < 1 )
+	    {
+	      Scierror(999,"parameter K must be > 0 for 'advnst' option\n\r");
+	      return 0;
+	    }
+	  advance_state_clcg4(current_clcg4, k);
 	  LhsVar(1) = 2;
 	  PutLhsVar();
 	  return 0;
@@ -325,7 +379,7 @@ int RandI( char* fname)
 	    current_gen = URAND;
 	  else
 	    {
-	      Scierror(999,"this generator is unknown (possible generators are : mt,kiss,clcg4,clcg2)\n\r");
+	      Scierror(999,"unknown generator (choose among : mt kiss clcg4 clcg2 urand) \n\r");
 	      return 0;
 	    }
 	  LhsVar(1) = 2;
@@ -539,7 +593,7 @@ int RandI( char* fname)
 	  return 0;
 	}
       for ( i=0 ; i < ResL*ResC ; i++) 
-	*stk(lr+i)= low + (high - low)*gen[current_gen](); /* to avoid a call ... */
+	*stk(lr+i)= low + (high - low)* C2F(ranf)();
       LhsVar(1) = suite+2;
       PutLhsVar();
       return 0;
@@ -554,9 +608,9 @@ int RandI( char* fname)
       GetRhsVar(suite+1, "d", &m1, &n1, &lb);
       if ( m1*n1 != 1) { Scierror(999,"High must be scalar\r\n");return 0;}
       a = *stk(la) ; b = *stk(lb);
-      if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483562 )
+      if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483561 )
 	{
-	  Scierror(999," a and b must integers with (b-a+1) <= 2147483562");
+	  Scierror(999," a and b must integers with (b-a+1) <= 2147483561");
 	  return 0;
 	}
       CreateVar(suite+2,"d",&ResL,&ResC,&lr);
@@ -765,8 +819,7 @@ int RandI( char* fname)
 	  for ( i=0 ; i < nn ; i++) 
 	    {
 	      int niv=0;
-	      double dmi=0.0e0, dma=1.0e0;
-	      double rr = C2F(genunf)(&dmi,&dma);
+	      double rr = C2F(ranf)();
 	      while ( rr >= *stk(lr1+ icur +m1*niv) && niv < n1p1 ) 
 		{
 		  niv++;
@@ -880,6 +933,26 @@ int RandI( char* fname)
       for ( i=0 ; i < ResL*ResC ; i++) 
 	{
 	  *stk(lr+i)= (double) C2F(ignpoi)(stk(la));
+	}
+      LhsVar(1) = suite+1;
+      PutLhsVar();
+      return 0;
+    }
+  else if ( strcmp(cstk(ls),"geom")==0)
+    {
+      double p;
+      if ( Rhs != suite ) 
+	{ Scierror(999,"Missing p for Geometric law\r\n");
+	return 0;}
+      GetRhsVar(suite, "d", &m1, &n1, &la);
+      if ( m1*n1 != 1) { Scierror(999,"p must be scalar\r\n");return 0;}
+      p = *stk(la);
+      if ( p < 1.3e-307 || p > 1 ) { Scierror(999,"p must be in [pmin,1]\r\n");return 0;}
+      
+      CreateVar(suite+1,"d",&ResL,&ResC,&lr);
+      for ( i=0 ; i < ResL*ResC ; i++) 
+	{
+	  *stk(lr+i)= igngeom(p);
 	}
       LhsVar(1) = suite+1;
       PutLhsVar();

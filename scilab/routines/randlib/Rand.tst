@@ -1,3 +1,8 @@
+// tests for randlib
+
+// for "continuous law"
+
+generators = ["mt" "kiss" "clcg2" "clcg4" "urand"];
 
 // test for beta random deviate 
 
@@ -9,7 +14,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfbet("PQ",RdevS,1-RdevS,A*ones(RdevS),B*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for f 
 
@@ -21,7 +26,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdff("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for mul
  
@@ -36,7 +41,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfgam("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for nor 
 
@@ -48,7 +53,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfnor("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for unf 
 
@@ -60,7 +65,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=RdevS-A;
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for uin ( a finir ) 
 
@@ -72,7 +77,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=RdevS-A;
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for lgi 
 
@@ -84,7 +89,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=RdevS-A;
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 
 // test fo perm 
@@ -103,7 +108,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfnbn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 
 // test for bin 
@@ -116,7 +121,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfbin("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for mn 
 
@@ -130,7 +135,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=RdevS;
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for nch or chn 
 
@@ -142,7 +147,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfchn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for nf or fnc
 
@@ -154,7 +159,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdffnc("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),C*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for chi 
 
@@ -166,7 +171,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfchi("PQ",RdevS,A*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 // test for poi 
 
@@ -178,7 +183,7 @@ PS=(1:N)'/N;
 // theorical result 
 [P]=cdfpoi("PQ",RdevS,A*ones(RdevS));
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 
 
 // test for exp 
@@ -191,5 +196,5 @@ PS=(1:N)'/N;
 // theorical result 
 P=1-exp(-RdevS/A);
 //plot2d(RdevS,P,2,"000")
-norm(P-PS)
+norm(P-PS,"inf")
 

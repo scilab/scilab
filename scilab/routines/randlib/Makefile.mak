@@ -7,9 +7,9 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/rand.lib
 
-OBJSC = Rand.obj mt.obj kiss.obj clcg2.obj clcg4.obj
+OBJSC = Rand.obj mt.obj kiss.obj clcg2.obj clcg4.obj urand.obj igngeom.obj
 
-OBJSF =  genbet.obj genchi.obj genexp.obj genf.obj gengam.obj genmn.obj genmul.obj gennch.obj gennf.obj gennor.obj genprm.obj genunf.obj ignbin.obj ignnbn.obj ignpoi.obj lennob.obj phrtsd.obj sdot.obj setgmn.obj sexpo.obj sgamma.obj snorm.obj spofa.obj 
+OBJSF =  genbet.obj genchi.obj genexp.obj genf.obj gengam.obj genmn.obj genmul.obj gennch.obj gennf.obj gennor.obj genprm.obj ignbin.obj ignnbn.obj ignpoi.obj lennob.obj phrtsd.obj sdot.obj setgmn.obj sexpo.obj sgamma.obj snorm.obj spofa.obj
 
 include ../../Makefile.incl.mak
 

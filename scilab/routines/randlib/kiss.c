@@ -1,13 +1,32 @@
 /* 
- *   the kiss generator of Marsaglia (adapted from
- *   ...)
+ *   PURPOSE
+ *      the kiss generator of G. Marsaglia
+ *      generate random integers (uint) in [0, 2^32 - 1]
+ *      the state is given by 4 integers (z, w, jsr, jcong)
  *
- *   kiss generate random int (uint) in 0 2^32 - 1
+ *   NOTES
+ *      The code was given by G. Marsaglia at the end of  a
+ *      thread  concerning  RNG  in C in several newsgroups
+ *      (whom sci.math.num-analysis) "My offer of RNG's for
+ *      C  was an invitation to dance..."
+ *
+ *      Slight modifications by Bruno Pincon for inclusion in
+ *      Scilab (added set/get state routines)
+ *
+ *      kiss is made of combinaison of severals  others but  
+ *      they  are not interfaced at the scilab level.
+ *
+ *      Need that it is assumed that the 
+ *         unsigned long arithmetic is the classic 32 bits 
+ *         unsigned arithmetic modulo 2^32 (ie all is exact
+ *         modulo 2^32) 
+ *
  */
 
 #include "../graphics/Math.h" /* to use sciprint */
-#include <math.h>
+#include <math.h>             /* to use floor    */
 
+/* The Marsaglia 's macros : */
 #define znew  (z=36969*(z&65535)+(z>>16))
 #define wnew  (w=18000*(w&65535)+(w>>16))
 #define MWC   ((znew<<16)+wnew )
@@ -15,16 +34,12 @@
 #define SHR3  (jsr^=(jsr<<17), jsr^=(jsr>>13), jsr^=(jsr<<5))
 #define KISS  ((MWC^CONG)+SHR3)
 
-/*  
- *  Global static variables:  there are in fact the seeds of kiss 
- *  any (?) int in [0,2^32-1] are OK
- */
-
+/*  the kiss 's state  (any int in [0,2^32-1] are OK ?) */
 static unsigned long z=362436069, w=521288629, jsr=123456789, jcong=380116160;
 
-double kiss()
+unsigned long kiss()
 {
-  return ( (double) KISS * 2.3283064370807974e-10 );
+  return ( KISS );
 }
 
 int set_state_kiss(double g1, double g2, double g3, double g4)
@@ -44,7 +59,7 @@ int set_state_kiss(double g1, double g2, double g3, double g4)
     }
   else
     {
-      sciprint("\n\r bad seeds for kiss : must be integers with \n\r");
+      sciprint("\n\r bad seeds for kiss, must be integers in [0,2^32-1]\n\r");
       return ( 0 );
     }
 }
