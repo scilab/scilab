@@ -243,17 +243,29 @@ void Callback_CHOOSETHEFONT(void)
 /*-----------------------------------------------------------------------------------*/
 void Callback_RESTART(void)
 {
+	#define TEMPOTOUCHE  1
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
 
 	SendCTRLandAKey(CTRLU);
+	//SendCTRLandAKey(CTRLC);
+
 	ClearCommandWindow(lptw,TRUE);
+
 	SendCTRLandAKey(CTRLU);
-	write_scilab("abort;\n");
+	StoreCommand1("abort;",0);
+
+
 	SendCTRLandAKey(CTRLU);
-	write_scilab("exec('SCI/scilab.star',-1);\n");
+	StoreCommand1("savehistory();",0);
+
 	SendCTRLandAKey(CTRLU);
+	StoreCommand1("resethistory();",0);
+
+	SendCTRLandAKey(CTRLU);
+	StoreCommand1("exec('SCI/scilab.star',-1);\n",1);
+	
 }
 /*-----------------------------------------------------------------------------------*/
 void Callback_ABORT(void)

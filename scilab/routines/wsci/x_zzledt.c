@@ -16,22 +16,24 @@
 #include "wresource.h"
 #include "wcommon.h"
 #include "plot.h"
+/*-----------------------------------------------------------------------------------*/
+char save_prompt[10];
+/* Fonction Récuperant la ligne à executer par Scilab */
 
+extern void InvalidateCursor( void ); 
 extern char input_line[MAX_LINE_LEN + 1];
+extern BOOL ScilabIsStarting;
+extern void SetReadyOrNotForAnewLign(BOOL Ready);
+extern void GetCurrentPrompt(char *CurrentPrompt);
 
+void ChangeCursorWhenScilabIsReady(void);
+/*-----------------------------------------------------------------------------------*/
 /***********************************************************************
  * line editor win32 version 
  * Input function for Scilab 
  * zzledt1 for scilab 
  * zzledt  for scilab -nw 
  **********************************************************************/
-char save_prompt[10];
-/* Fonction Récuperant la ligne à executer par Scilab */
-
-
-
-extern void SetReadyOrNotForAnewLign(BOOL Ready);
-extern void GetCurrentPrompt(char *CurrentPrompt);
 
 /**** Warning here : eof can be true  ***/
 #ifdef __STDC__
@@ -50,6 +52,9 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
   int i;
  
   GetCurrentPrompt(save_prompt);
+
+  ChangeCursorWhenScilabIsReady();
+
   if (*modex) SetReadyOrNotForAnewLign(TRUE); /* Pret à recevoir depuis la thread Coller */
   set_is_reading (TRUE);
   i = read_line (save_prompt,*interrupt);
@@ -70,3 +75,21 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, interrupt, modex, dummy1)
 
   return;
 }
+/*-----------------------------------------------------------------------------------*/
+void ChangeCursorWhenScilabIsReady(void)
+{
+  if ( (IsWindowInterface()) && (ScilabIsStarting) )
+  {
+	extern char ScilexWindowName[MAX_PATH];
+	HCURSOR hCursor;
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+	hCursor=LoadCursor(  lptw->hInstance,IDC_ARROW);
+	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
+	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 
+	InvalidateCursor(); 
+	ScilabIsStarting=FALSE;
+  }
+
+}
+/*-----------------------------------------------------------------------------------*/

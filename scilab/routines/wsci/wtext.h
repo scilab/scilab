@@ -237,6 +237,7 @@ void ReAllocScreenBuffer(LPTW lptw);
 void InitScreenBuffer(LPTW lptw);
 void ReorganizeScreenBuffer(LPTW lptw);
 
+
 extern BOOL IsWindowInterface(void);
 extern void ReplaceSlash(char *pathout,char *pathin);
 extern BOOL IsAFile(char *chainefichier);
@@ -257,6 +258,7 @@ void OpenSelection(LPTW lptw);
 void CutSelection(LPTW lptw);
 void EvaluateSelection(LPTW lptw);
 void OnRightClickMenu(LPTW lptw);
+void InvalidateCursor( void ); 
 /*--------------------------*/
 BOOL HasAZoneTextSelected(LPTW lptw);
 /*--------------------------*/

@@ -33,6 +33,7 @@
 
 #include "winmain.h"
 
+BOOL ScilabIsStarting=TRUE;
 BOOL WindowMode;
 extern int getdiary();
 void C2F(diary) __PARAMS((char *str,int *n));
@@ -204,7 +205,10 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	char *pFullCmdLine=NULL;
 
+
 	WindowMode=TRUE;
+	ScilabIsStarting=TRUE;
+
 	strcpy(FileName,"Empty");
 
 	
@@ -409,6 +413,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	
 	ShowWindow (textwin.hWndParent, SW_SHOWNORMAL);
+
 	
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
     freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/

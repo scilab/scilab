@@ -82,7 +82,7 @@ static void CreateTextClass (LPTW lptw)
   wndclass.cbWndExtra = 2 * sizeof (void FAR *);
   wndclass.hInstance = lptw->hInstance;
   wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-  wndclass.hCursor = LoadCursor (NULL, IDC_ARROW);
+  wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
   wndclass.hbrBackground = NULL;
   lptw->hbrBackground = CreateSolidBrush (lptw->bSysColors ?
 				GetSysColor (COLOR_WINDOW) : RGB (0, 0, 0));
@@ -95,12 +95,15 @@ static void CreateTextClass (LPTW lptw)
   wndclass.lpfnWndProc = WndParentProc;
   wndclass.cbClsExtra = 0;
   wndclass.cbWndExtra = 2 * sizeof (void FAR *);
+
   wndclass.hInstance = lptw->hInstance;
+
   if (lptw->hIcon)
     wndclass.hIcon = lptw->hIcon;
   else
     wndclass.hIcon = LoadIcon (NULL, IDI_APPLICATION);
-  wndclass.hCursor = LoadCursor (NULL, IDC_ARROW);
+
+  wndclass.hCursor = LoadCursor (NULL, IDC_WAIT);
   wndclass.hbrBackground = (HBRUSH) GetStockObject (WHITE_BRUSH);
   wndclass.lpszMenuName = NULL;
   wndclass.lpszClassName = szParentClass;
@@ -1204,6 +1207,9 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
   lptw = (LPTW) GetWindowLong (hwnd, 0);
   switch (message)
     {
+	case WM_SETCURSOR :
+         SetCursor( LoadCursor( NULL, IDC_ARROW ) );
+     break;
     case WM_SETFOCUS:
       lptw->bFocus = TRUE;
       CreateCaret (hwnd, 0, lptw->CharSize.x, 2 + lptw->CaretHeight);
@@ -1613,6 +1619,8 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
     
     break;
     case WM_MOUSEMOVE:
+
+		 
       if ((wParam & MK_LBUTTON) && lptw->Marking)
 	{
 		
@@ -3362,4 +3370,11 @@ int ShowWindowFunction _PARAMS((char *fname))
 return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+void InvalidateCursor( void ) 
+{
+	POINT pt; // Screen coordinates!
+	GetCursorPos( &pt );
+	SetCursorPos( pt.x, pt.y );
+}
+
 
