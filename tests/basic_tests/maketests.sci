@@ -17,7 +17,6 @@ function tests=testslist()
 	   'algebra.tst'
 	   'saveload.tst';
 	   'arma.tst';
-	   
 	   'basiclink.tst';
 	   'binary.tst';
 	   'breakpoints.tst';
@@ -61,7 +60,8 @@ function tests=testslist()
 	   'slicot.tst';
 	   'fptr.tst';
 	   'scicos.tst';
-	   'auto.tst'
+	   'auto.tst';
+	   'opcode.tst'
 	   ];
 
 if MSDOS then
