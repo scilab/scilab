@@ -2891,7 +2891,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  nww[j]=ww[ind[j]]-ww[ind[1]];
 			  }
-		      if (Sum(nww)==0 && nout>0)
+		      if (Norm(nww)==0 && nout>0)
 			{
 			  wwi[connectmat[jj+3*connectmat[0]/4]]=nout;
 			  for (j=bllst2ptr[connectmat[jj+connectmat[0]/2]];j<bllst2ptr[connectmat[jj+connectmat[0]/2]+1];j++)
@@ -2910,7 +2910,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			  kint=(int) k;
 			  free(nww1);
 			  free(ind1);
-			  if (k == (double) kint)
+			  if (k == (double) kint && k>0)
 			    {
 			      for (j=1;j<ind[0]+1;j++)
 				{
@@ -2992,7 +2992,7 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			{
 			  nww[j]=ww[ind[j]]-ww[ind[1]];
 			}
-		      if (Sum(nww)==0 && nin>0)
+		      if (Norm(nww)==0 && nin>0)
 			{
 			  wwi[connectmat[jj+connectmat[0]/4]]=nin;
 			  for (j=bllst3ptr[connectmat[jj]];j<bllst3ptr[connectmat[jj]+1];j++)
@@ -3007,11 +3007,11 @@ int adjust_inout(int* bllst2,int* bllst3,int* bllst2ptr,int* bllst3ptr,int* nzcr
 			      nww1[j]=ww[ind1[j]];
 			    }
 			  free(ind1);
-			  k1=nout-Sum(nww1);
+			  k1=nin-Sum(nww1);
 			  k=k1/nww[0];
 			  free(nww1);
 			  kint=(int)k;
-			  if (k==(double) kint)
+			  if (k==(double) kint && k>0)
 			    {
 			      for (j=1;j<ind[0]+1;j++)
 				{
@@ -4281,14 +4281,18 @@ int Sum (int *vect)
   return sum;
 }
 
-int Prod (int *vect) 
+int Norm (int *vect) 
 {
-  int i,prod=1;        
+  int i,sum=0; 
   for (i = 1; i <= vect[0]; i++)
     {
-      prod *=vect[i];
+      if(vect[i]>=0) {
+	sum+=vect[i];
+      }else{
+	sum+=-vect[i];
+      }
     }
- return prod;
+  return sum;
 }
 
 void CumSum (int* vect) 
@@ -4300,42 +4304,13 @@ void CumSum (int* vect)
     }
 }
 
-int* Test(int* vect,int val)
-{
-  int* vectr;
-  int i;
-  if ((vectr=(int*)malloc(sizeof(int))) == NULL ) return (int*) NULL;
-  vectr[0]=0;
-  for(i=1; i<vect[0]+1;i++)
-    {
-      if(vect[i]==val)
-        { 
-          if ((vectr=(int*)realloc(vectr,sizeof(int)*(vectr[0]+2))) == NULL ) return (int*) NULL;
-          vectr[i]=1;
-          vectr[0]++;
-        }
-    }
-  return (int*) vectr;
-}
+
 
 int* VecEg1 (int* vect) 
 {  
   int *vectr;        
   if ((vectr=(int*)malloc(sizeof(int)*(vect[0]+1))) == NULL ) return (int*) NULL;
   vectr=memcpy(vectr,vect,(vect[0]+1)*sizeof(int));
-  return (int*) vectr;
-}
-
-int* VecEg2 (int* vect) 
-{
-  int i,*vectr;
-  if ((vectr=(int*)malloc(sizeof(int)*(2*vect[0]+1))) == NULL ) return (int*) NULL;
-  vectr[0]=2*vect[0];
-  for (i = 1; i <= vect[0]; i++)
-    {
-      vectr[i]=vect[i];
-      vectr[i+vect[0]]=vect[i];
-      }
   return (int*) vectr;
 }
 
