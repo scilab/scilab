@@ -1596,6 +1596,9 @@ extern int  BuildXYZvectForClipping_IfNanOrLogON(sciPointObj *ppolyline, sciPoin
 extern int ComputeGoodTrans3d( sciPointObj * psubwin, int n, int *xm, int *ym, double * fx, double *fy, double *fz);
 extern double InvAxis(double min, double max, double u);
 extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1);
+extern int ReverseDataFor3DXonly(sciPointObj * psubwin, double * xvect, int n1);
+extern int ReverseDataFor3DYonly(sciPointObj * psubwin, double * yvect, int n1);
+extern int ReverseDataFor3DZonly(sciPointObj * psubwin, double * zvect, int n1);
 extern void DrawAxes(sciPointObj*);
 extern void CleanRectangle(sciPointObj * psubwin);
 /* extern void EraseAndOrRedraw(sciPointObj * pobj); */ /* inhibit EraseAndOrRedraw for now F.Leray 20.12.04 */

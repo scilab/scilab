@@ -36,63 +36,13 @@ void C2F(plot3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *p
   ytmp = MALLOC((*q)*sizeof(double));
   ztmp = MALLOC((*p)*(*q)*sizeof(double));
   
-  /* I didn't useReverseDataFor3D because dim n1 is not the same for x, y and z  */
-  if(ppsubwin->axes.reverse[0] == TRUE){ 
-    /* agir sur x */
-    if(ppsubwin->logflags[0]=='l'){
-      for(u=0;u<(*p);u++){
-	xtmp[u] = x[u];
-	xtmp[u] = log10(xtmp[u]);
-      	xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],xtmp[u]);
-      	xtmp[u] = exp10(xtmp[u]);
-      }
-    }
-    else
-      for(u=0;u<(*p);u++)
-	xtmp[u] = InvAxis(ppsubwin->FRect[0],ppsubwin->FRect[2],x[u]);
-  }
-  else{
-    for(u=0;u<(*p);u++)
-      xtmp[u] = x[u];
-  }
+  for(u=0;u<(*p);u++) xtmp[u] = x[u];
+  for(u=0;u<(*q);u++) ytmp[u] = y[u];
+  for(u=0;u<(*p)*(*q);u++) ztmp[u] = z[u];
   
-  if(ppsubwin->axes.reverse[1] == TRUE){ 
-    /* agir sur y */
-    if(ppsubwin->logflags[1]=='l'){
-      for(u=0;u<(*q);u++){
-	ytmp[u] = y[u];
-	ytmp[u] = log10(ytmp[u]);
-	ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],ytmp[u]);
-      	ytmp[u] = exp10(ytmp[u]);
-      }
-    }
-    else
-      for(u=0;u<(*q);u++)
-	ytmp[u] = InvAxis(ppsubwin->FRect[1],ppsubwin->FRect[3],y[u]);
-  }
-  else{
-    for(u=0;u<(*q);u++)
-      ytmp[u] = y[u];
-  }
-  
-  if(ppsubwin->axes.reverse[2] == TRUE){ 
-    /* agir sur z */
-    if(ppsubwin->logflags[2]=='l'){
-      for(u=0;u<(*p)*(*q);u++){
-	ztmp[u] = z[u];
-	ztmp[u] = log10(ztmp[u]);
-	ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],ztmp[u]);
-      	ztmp[u] = exp10(ztmp[u]);
-      }
-    }
-    else
-      for(u=0;u<(*p)*(*q);u++)
-	ztmp[u] = InvAxis(ppsubwin->FRect[4],ppsubwin->FRect[5],z[u]);
-  }
-  else{
-    for(u=0;u<(*p)*(*q);u++)
-      ztmp[u] = z[u];
-  }
+  ReverseDataFor3DXonly(psubwin, xtmp, (*p));
+  ReverseDataFor3DYonly(psubwin, ytmp, (*q));
+  ReverseDataFor3DZonly(psubwin, ztmp, (*p)*(*q));
   
   zmin  = pSUBWIN_FEATURE(psubwin)->SRect[4]; /*zmin*/
   zmax  = pSUBWIN_FEATURE(psubwin)->SRect[5]; /*zmax*/
