@@ -46,7 +46,7 @@ function path=gethelpfile(key)
   key=stripblanks(key)
   l=length(key)
   for k=1:size(%helps,1)
-    [fd,ierr]=mopen(%helps(k,1)+sep+"whatis.html","r");
+    [fd,ierr]=mopen(%helps(k,1)+sep+"whatis.htm","r");
     if ierr<>0 then
       warning(" whatis file missing in "+%helps(k,1)+". Directory ignored")
     else
@@ -160,14 +160,14 @@ function path=make_index()
 //we create a new index file each time to take into account dynamically
 //loaded toolboxes
   global LANGUAGE
-  path=TMPDIR+"/index.html";
+  path=TMPDIR+"/index.htm";
   i_lines=["<html>";
 	 "<head>";
 	 "  <meta http-equiv=""Content-Type"" content=""text/html; charset=ISO-8859-1"">";
 	 "    <title>Index</title>";
 	 "</head>";
 	 "<body bgcolor=""FFFFFF"">";
-	 "<BR><A HREF="""+%helps(:,1)+"/whatis.html"">"+%helps(:,2)+"</A>";
+	 "<BR><A HREF="""+%helps(:,1)+"/whatis.htm"">"+%helps(:,2)+"</A>";
 	 "</body></html>"]
 	];
   mputl(i_lines,path)
@@ -204,10 +204,10 @@ function change_old_man()
 	  fil(i)=stripblanks(part(txt(i),q+1:length(txt(i))))
 	end
 	def(i)=part(txt(i),p(1)+3:q-1)
-	mputl(["<html><pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html>"],whatispath+'/'+fil(i)+'.html')
+	mputl(["<html><pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html>"],whatispath+'/'+fil(i)+'.htm')
 	end
       end
-      mputl("<BR><A HREF="""+fil+".html"">"+name+"</A> - "+def,whatispath+'/whatis.html')
+      mputl("<BR><A HREF="""+fil+".htm"">"+name+"</A> - "+def,whatispath+'/whatis.htm')
       %helps(k,1)=whatispath
     end
   end

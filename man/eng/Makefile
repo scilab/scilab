@@ -10,7 +10,7 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 QUIET= > /dev/null 
 
 XSLFILE=../html-jpc.xsl
-XSLFILE=../html.xsl
+#XSLFILE=../html.xsl
 
 man: whatis html index contents
 
@@ -32,7 +32,7 @@ html:
 		for j in *.xml2; \
 		do if [ $$j != "*.xml2" ]; then \
 			echo "   processing $${j%.*}.xml"; \
-			sabcmd $(XSLFILE) $$j $${j%.*}.html 2> sabcmd.tmp; \
+			sabcmd $(XSLFILE) $$j $${j%.*}.htm 2> sabcmd.tmp; \
 			if (grep Error sabcmd.tmp $(QUIET)) then \
 				echo "   bad syntax in file: $$j"; \
 			fi; \

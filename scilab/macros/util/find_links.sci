@@ -31,7 +31,7 @@ name=stripblanks(name)
 if MSDOS then sep='\',else sep='/',end
 man=[]
 for k=1:size(%helps,1)
-  whatis=mgetl(%helps(k,1)+sep+'whatis.html')
+  whatis=mgetl(%helps(k,1)+sep+'whatis.htm')
   f=grep(whatis,name)
   if f<>[] then
     for k1=f

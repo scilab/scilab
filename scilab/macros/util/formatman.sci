@@ -14,8 +14,8 @@ case 'tex'
   convert=man2tex
   getwhatis=texwhatis
 case 'html'
-  ext='.html'
-  whatis='index.html'
+  ext='.htm'
+  whatis='index.'+ext
   convert=man2html
   getwhatis=htmlwhatis
 case 'xml'
@@ -778,7 +778,7 @@ if f==[] then f=$+1,end
 wh=txt(d:d+f(1)-2)
 k=find(part(wh,1:3)=='.nf'|part(wh,1:3)=='.fi')
 if k<>[] then wh(k)=[];end
-fnam=fnam+'.html'
+fnam=fnam+'.htm'
 for k=1:size(wh,1)
   whk=stripblanks(wh(k))
   p=strindex(wh(k),' - ');
@@ -914,7 +914,7 @@ while ~and(ok)&k<nh
 end
 undef=find(t=='')
 t(undef)=nm(undef)
-t=t+'.html'
+t=t+'.htm'
 
 function t=table2html(tab)
 t='<table BORDER NOSAVE >'

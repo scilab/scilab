@@ -12,7 +12,7 @@ full_whatis=[];
 full_whatis_name=[];
 
 for k=std
-  [fd,ierr]=mopen(%helps(k,1)+"/whatis.html","r");
+  [fd,ierr]=mopen(%helps(k,1)+"/whatis.htm","r");
   if ierr<>0 then
     warning(" whatis file missing in "+%helps(k,1)+". Directory ignored")
   else
@@ -31,7 +31,7 @@ for k=std
 end
 
 for k=nstd
-  [fd,ierr]=mopen(%helps(k,1)+"/whatis.html","r");
+  [fd,ierr]=mopen(%helps(k,1)+"/whatis.htm","r");
   if ierr<>0 then
     warning(" whatis file missing in "+%helps(k,1)+". Directory ignored")
   else
@@ -63,6 +63,6 @@ full_whatis=["<html>"
 	     "</body></html>"
 	    ];
 
-mputl(full_whatis,'contents.html')
+mputl(full_whatis,'contents.htm')
 
 quit

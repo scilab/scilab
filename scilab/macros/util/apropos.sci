@@ -4,7 +4,7 @@ global %helps LANGUAGE INDEX
 if funptr("TK_EvalStr")==0 then
   write(%io(2),..
       ["Help works only with TCL/TK.";
-      "Use your favorite browser to browse SCI/man/"+LANGUAGE+"/index.html"],..
+      "Use your favorite browser to browse SCI/man/"+LANGUAGE+"/index.htm"],..
       "(a)")
   return
 end
@@ -16,7 +16,7 @@ key=stripblanks(key)
 l=length(key)
 found=[];foundkey=[]
 for k=1:size(%helps,1)
-  [fd,ierr]=mopen(%helps(k,1)+sep+"whatis.html","r");
+  [fd,ierr]=mopen(%helps(k,1)+sep+"whatis.htm","r");
   if ierr==0 then
     whatis=mgetl(fd);mclose(fd)
     f=grep(whatis,key)

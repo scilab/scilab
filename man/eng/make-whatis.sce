@@ -37,12 +37,12 @@ for k1=1:size(xml,'*')  // loop on .xml files
       name=part(tt,i(1)+1:i(2)-1);
       i1=strindex(tt,">"); i2=strindex(tt,"<");
       desc=stripblanks(part(tt,i1(1)+1:i2(2)-1));
-      l=l+1; fname=part(path,[1:length(path)-4])+".html";
+      l=l+1; fname=part(path,[1:length(path)-4])+".htm";
       line(l)="<BR><A HREF="""+fname+""">"+name+"</A> - "+desc;
     end
   end
 end
 line = [line;"</body></html>"]
-mputl(sort(line),"whatis.html");
+mputl(sort(line),"whatis.htm");
 quit
 

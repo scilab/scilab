@@ -93,7 +93,7 @@ static HelpPage pages[] =
     NULL,
     NULL,
     NULL,
-    "contents.html"
+    "contents.htm"
   },
 
   {
@@ -102,7 +102,7 @@ static HelpPage pages[] =
     NULL,
     NULL,
     NULL,
-    "index.html"
+    "index.htm"
   },
 
   {
@@ -111,7 +111,7 @@ static HelpPage pages[] =
     NULL,
     NULL,
     NULL,
-    "introduction.html"
+    "introduction.htm"
   }
 };
 
@@ -706,11 +706,15 @@ open_browser_dialog (gchar *help_path,
    */
   index= g_strconcat (help_path, G_DIR_SEPARATOR_S,
 		      locale,G_DIR_SEPARATOR_S,
-		      "index.html",NULL);
+		      "index.htm",NULL);
   if (access (index, R_OK) != 0)
-    return 1; 
-  
-  g_free (index);
+    {
+      sciprint("Cannot start help browser %s not found\r\n",index);
+      g_free (index);
+      return 1; 
+    }
+  else 
+    g_free (index);
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",
