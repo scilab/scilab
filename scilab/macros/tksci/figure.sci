@@ -21,7 +21,7 @@ function h=figure(varargin)
  		      error('figure : invalid value type',999) 
  		    else
  		      h=TCL_scf(0);
-					for i=1:Rhs:2
+					for i=1:2:Rhs
 					  if ( type(varargin(i+1)) <> GetUiControlValueType(GetUiControlPropertyName(varargin(i))) ) then
 					    if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
 					      error(string(varargin(i+1))+' Value must be a string.',999);
@@ -37,7 +37,7 @@ function h=figure(varargin)
  		    // nbr params impaire
  		    if (IsAScalar(varargin(1))==%T) then
  		      h=TCL_scf(varargin(1));
-    		  for i=2:Rhs:2
+    		  for i=2:2:Rhs
 					   if ( type(varargin(i+1)) <> GetUiControlValueType(GetUiControlPropertyName(varargin(i))) ) then
 					     if ( GetUiControlValueType(GetUiControlPropertyName(varargin(i))) == 10) then
 					       error(string(varargin(i+1))+' Value must be a string.',999);
