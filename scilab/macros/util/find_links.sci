@@ -20,6 +20,8 @@ function flag=find_links(filein,fileout)
       else
 	l="unknown";
       end
+      // jpc 17 sept 2003
+      l=strsubst(l,"//","/")
       tt=part(tt,[1:l1(1)-1])+..
 	 "<A href="""+l+"""><VERB>"+name+"</VERB></A>"+..
 	 part(tt,[l2(1)+7:length(tt)])
