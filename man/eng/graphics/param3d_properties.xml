@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>param3d_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="param3d_properties"> description of the
+   3D curves entities properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Param3d entity is a leaf of the graphics entities
+  hierarchy.  This entity is still under developpement
+  and will problably evolve a lot. In particular we intend to extend
+  the Axes data structure to 3D and split the Axes properties and
+  Param3d drawing properties similarily to the 2D case.
+
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the curves are drawn, If
+   <VERB>"off"</VERB> the  curves are  not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+   <DESCRIPTION_ITEM label='data: '>
+    This field contains the coordinates of the 3d curves. it is the
+    matrix <VERB>[X,Y,Z]</VERB> such as  <VERB>X(:,i)</VERB>,
+    <VERB>Y(:,i)</VERB>, <VERB>Z(:,i)</VERB> contains the 3D
+    coordinates of the <VERB>i</VERB>th curve.
+   </DESCRIPTION_ITEM>
+
+   <DESCRIPTION_ITEM label='data_bounds: '>
+    This field contains the boundary values for the x, y and z
+    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>
+   </DESCRIPTION_ITEM>
+
+   <DESCRIPTION_ITEM label='flags: '>
+    a real vector of size three <VERB>flag=[type,box,unused]</VERB>.
+      <DESCRIPTION_INDENT>
+       <DESCRIPTION_ITEM label='type'>
+        an integer (scaling).
+        if type=0  the plot is made using the current 3D scaling (set
+        by a previous call to <VERB>param3d</VERB>,
+        <VERB>plot3d</VERB>
+        <P></P>
+         if type=1  rescales automatically 3d boxes with extreme
+        aspect ratios, the boundaries are specified by the value of
+        the property  <VERB>data_bounds</VERB>. 
+        <P></P>
+         if type=2  rescales automatically 3d boxes with extreme
+        aspect ratios, the boundaries are computed using the given
+        data. 
+        <P></P>
+         if  type=3 3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
+        
+        <P></P>
+        if type=4  3d isometric bounds  derived from the data
+       <P></P>
+        if type=5  3d expanded isometric bounds  with box bounds given
+        by the property <VERB>data_bounds</VERB>. 
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='thickness: '>
+       This field contains the  <VERB>thickness</VERB> of the lines
+       used to draw the axes and the curves. It's value should
+       be a non negative integer..
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the color index used to draw the axes and
+       the curves.  It's value should be a color index (relative to
+       the current colormap)
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='rotation_angles: '>
+      This field is the vector <VERB>[theta,alpha]</VERB>. These two
+      values give  the spherical coordinates of the observation point (in degree).  
+     </DESCRIPTION_ITEM>
+
+ 
+
+     <DESCRIPTION_ITEM label='surface_color: '>
+     This property contains the vector of color indices used for  each
+      curve.
+     </DESCRIPTION_ITEM>
+
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+
+   t=[0:0.1:5*%pi]';
+   param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+
+   h=get("hdl") //get handle on current entity (here the param3d)
+
+   h.rotation_angles=[30,70];
+   h.surface_color=[3 5];
+   h.flag=[1 1 0];
+   h.flag=[1,2,4];
+
+
+   h.flag=[2 5 4]; //boundaries given by data_bounds
+   h.data_bounds=[-1,-1,-1;1,1,2]       
+   
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>param3d</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>param3d1</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+
