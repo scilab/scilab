@@ -463,6 +463,7 @@ Global
 		Release = Release
 		Release with Atlas = Release with Atlas
 		Release with Atlas without Java = Release with Atlas without Java
+		Release with Debug Information = Release with Debug Information
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Debug.ActiveCfg = Debug|Win32
@@ -485,6 +486,8 @@ Global
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug.ActiveCfg = Debug|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug.Build.0 = Debug|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -505,6 +508,8 @@ Global
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug.ActiveCfg = Debug|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug.Build.0 = Debug|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -525,6 +530,8 @@ Global
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug.ActiveCfg = Debug|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug.Build.0 = Debug|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -545,6 +552,8 @@ Global
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug.ActiveCfg = Debug|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug.Build.0 = Debug|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -565,6 +574,8 @@ Global
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug.ActiveCfg = Debug|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug.Build.0 = Debug|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -585,6 +596,8 @@ Global
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug.ActiveCfg = Debug|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug.Build.0 = Debug|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -605,6 +618,8 @@ Global
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug.ActiveCfg = Debug|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug.Build.0 = Debug|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -625,6 +640,8 @@ Global
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug.ActiveCfg = Debug|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug.Build.0 = Debug|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -645,6 +662,8 @@ Global
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug.ActiveCfg = Debug|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug.Build.0 = Debug|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -665,6 +684,8 @@ Global
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug.ActiveCfg = Debug|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug.Build.0 = Debug|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -685,6 +706,8 @@ Global
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug.ActiveCfg = Debug|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug.Build.0 = Debug|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -705,6 +728,8 @@ Global
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug.ActiveCfg = Debug|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug.Build.0 = Debug|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -725,6 +750,8 @@ Global
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug.ActiveCfg = Debug|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug.Build.0 = Debug|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -745,6 +772,8 @@ Global
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug.ActiveCfg = Debug|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug.Build.0 = Debug|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -765,6 +794,8 @@ Global
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug.ActiveCfg = Debug|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug.Build.0 = Debug|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -785,6 +816,8 @@ Global
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug.ActiveCfg = Debug|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug.Build.0 = Debug|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -805,6 +838,8 @@ Global
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug.ActiveCfg = Debug|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug.Build.0 = Debug|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -825,6 +860,8 @@ Global
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug.ActiveCfg = Debug|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug.Build.0 = Debug|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -845,6 +882,8 @@ Global
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug.ActiveCfg = Debug|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug.Build.0 = Debug|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -865,6 +904,8 @@ Global
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug.ActiveCfg = Debug|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug.Build.0 = Debug|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -885,6 +926,8 @@ Global
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug.ActiveCfg = Debug|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug.Build.0 = Debug|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -905,6 +948,8 @@ Global
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug.ActiveCfg = Debug|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug.Build.0 = Debug|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -925,6 +970,8 @@ Global
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug.ActiveCfg = Debug|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug.Build.0 = Debug|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -945,6 +992,8 @@ Global
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug.ActiveCfg = Debug|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug.Build.0 = Debug|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -965,6 +1014,8 @@ Global
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug.ActiveCfg = Debug|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug.Build.0 = Debug|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -985,6 +1036,8 @@ Global
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug.ActiveCfg = Debug|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug.Build.0 = Debug|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1005,6 +1058,8 @@ Global
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug.ActiveCfg = Debug|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug.Build.0 = Debug|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1025,6 +1080,8 @@ Global
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug.ActiveCfg = Debug|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug.Build.0 = Debug|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1045,6 +1102,8 @@ Global
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug.ActiveCfg = Debug|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug.Build.0 = Debug|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1065,6 +1124,8 @@ Global
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug.ActiveCfg = Debug|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug.Build.0 = Debug|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1085,6 +1146,8 @@ Global
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug.ActiveCfg = Debug|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug.Build.0 = Debug|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1105,6 +1168,8 @@ Global
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug.ActiveCfg = Debug|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug.Build.0 = Debug|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1125,6 +1190,8 @@ Global
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug.ActiveCfg = Debug|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug.Build.0 = Debug|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1145,6 +1212,8 @@ Global
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug.ActiveCfg = Debug|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug.Build.0 = Debug|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1165,6 +1234,8 @@ Global
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug.ActiveCfg = Debug|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug.Build.0 = Debug|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1185,6 +1256,8 @@ Global
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug.ActiveCfg = Debug|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug.Build.0 = Debug|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1205,6 +1278,8 @@ Global
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug.ActiveCfg = Debug|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug.Build.0 = Debug|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1225,6 +1300,8 @@ Global
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug.ActiveCfg = Debug|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug.Build.0 = Debug|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1245,6 +1322,8 @@ Global
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug.ActiveCfg = Debug|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug.Build.0 = Debug|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1265,6 +1344,8 @@ Global
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug.ActiveCfg = Debug|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug.Build.0 = Debug|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1285,6 +1366,8 @@ Global
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug.ActiveCfg = Debug|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug.Build.0 = Debug|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1305,6 +1388,8 @@ Global
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug.ActiveCfg = Debug|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug.Build.0 = Debug|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1325,6 +1410,8 @@ Global
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug.ActiveCfg = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug.Build.0 = Debug|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1345,6 +1432,8 @@ Global
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug.ActiveCfg = Debug|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug.Build.0 = Debug|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1365,6 +1454,8 @@ Global
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug.ActiveCfg = Debug|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug.Build.0 = Debug|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1385,6 +1476,8 @@ Global
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug.ActiveCfg = Debug|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug.Build.0 = Debug|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1405,6 +1498,8 @@ Global
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug.ActiveCfg = Debug|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug.Build.0 = Debug|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1425,6 +1520,8 @@ Global
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug.ActiveCfg = Debug|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug.Build.0 = Debug|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1445,6 +1542,8 @@ Global
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug.ActiveCfg = Debug|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug.Build.0 = Debug|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1465,6 +1564,8 @@ Global
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug.ActiveCfg = Debug|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug.Build.0 = Debug|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1485,6 +1586,8 @@ Global
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug.ActiveCfg = Debug|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug.Build.0 = Debug|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1505,6 +1608,8 @@ Global
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug.ActiveCfg = Debug|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug.Build.0 = Debug|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1525,6 +1630,8 @@ Global
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug.ActiveCfg = Debug|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug.Build.0 = Debug|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1545,6 +1652,8 @@ Global
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug.ActiveCfg = Debug|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug.Build.0 = Debug|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1565,6 +1674,8 @@ Global
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug.ActiveCfg = Debug|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug.Build.0 = Debug|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1585,6 +1696,8 @@ Global
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug.ActiveCfg = Debug|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug.Build.0 = Debug|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1605,6 +1718,8 @@ Global
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug.ActiveCfg = Debug|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug.Build.0 = Debug|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1625,6 +1740,8 @@ Global
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug.ActiveCfg = Debug|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug.Build.0 = Debug|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1645,6 +1762,8 @@ Global
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug.ActiveCfg = Debug|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug.Build.0 = Debug|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1665,6 +1784,8 @@ Global
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug.ActiveCfg = Debug|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug.Build.0 = Debug|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1685,6 +1806,8 @@ Global
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug.ActiveCfg = Debug|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
@@ -1695,6 +1818,7 @@ Global
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release.ActiveCfg = Release|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
+		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug.ActiveCfg = Debug|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug.Build.0 = Debug|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1715,6 +1839,8 @@ Global
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug.ActiveCfg = Debug|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug.Build.0 = Debug|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1735,6 +1861,8 @@ Global
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.ActiveCfg = Debug|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug.Build.0 = Debug|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1755,6 +1883,8 @@ Global
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.ActiveCfg = Debug|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug.Build.0 = Debug|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1775,6 +1905,8 @@ Global
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.ActiveCfg = Debug|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug.Build.0 = Debug|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1795,6 +1927,8 @@ Global
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.ActiveCfg = Debug|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug.Build.0 = Debug|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1815,6 +1949,8 @@ Global
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.ActiveCfg = Debug|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug.Build.0 = Debug|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1835,6 +1971,8 @@ Global
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.ActiveCfg = Debug|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug.Build.0 = Debug|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1855,6 +1993,8 @@ Global
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.ActiveCfg = Debug|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug.Build.0 = Debug|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1875,6 +2015,8 @@ Global
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug.ActiveCfg = Debug|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug.Build.0 = Debug|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1895,6 +2037,8 @@ Global
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug.ActiveCfg = Debug|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
@@ -1905,6 +2049,7 @@ Global
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug.ActiveCfg = Debug|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug with Atlas without Java.ActiveCfg = Debug with Atlas without Java|Win32
@@ -1915,6 +2060,7 @@ Global
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release.ActiveCfg = Release|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.ActiveCfg = Debug|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.Build.0 = Debug|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1932,6 +2078,8 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.ActiveCfg = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1952,6 +2100,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.ActiveCfg = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1972,6 +2122,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.ActiveCfg = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug.Build.0 = Debug|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
@@ -1992,6 +2144,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.Build.0 = Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.ActiveCfg = Release with Atlas without Java|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas without Java.Build.0 = Release with Atlas without Java|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug.ActiveCfg = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.ActiveCfg = Debug|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Debug with Atlas.Build.0 = Debug|Win32
@@ -2007,6 +2161,7 @@ Global
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas.Build.0 = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas without Java.ActiveCfg = Release|Win32
 		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Atlas without Java.Build.0 = Release|Win32
+		{AAFF2053-3F1E-4B8B-B174-4407A6B98FA5}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug.ActiveCfg = Debug|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug.Build.0 = Debug|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Debug with Atlas.ActiveCfg = Debug|Win32
@@ -2027,6 +2182,8 @@ Global
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Atlas.Build.0 = Release|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Atlas without Java.ActiveCfg = Release|Win32
 		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Atlas without Java.Build.0 = Release|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Debug.ActiveCfg = Debug|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Debug.Build.0 = Debug|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Debug with Atlas.ActiveCfg = Debug|Win32
@@ -2047,6 +2204,8 @@ Global
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas.Build.0 = Release|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas without Java.ActiveCfg = Release|Win32
 		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Atlas without Java.Build.0 = Release|Win32
+		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
+		{DE0A9A62-5A35-4F99-86CE-69B0C36792BA}.Release with Debug Information.Build.0 = Release with Debug Information|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug.ActiveCfg = Debug|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas.ActiveCfg = Debug|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Debug with Atlas without Java.ActiveCfg = Debug|Win32
@@ -2057,6 +2216,7 @@ Global
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release.ActiveCfg = Release|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas.ActiveCfg = Release|Win32
 		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Atlas without Java.ActiveCfg = Release|Win32
+		{1697EEE6-935C-4B9D-AD6A-5707DC120A1A}.Release with Debug Information.ActiveCfg = Release with Debug Information|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

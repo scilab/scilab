@@ -609,6 +609,68 @@ cd .. &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;Skip_f2c_Undefs;_POSIX_SOURCE;MSDOS"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation=".\Release with Debug Information/"
+				ObjectFile=".\Release with Debug Information/"
+				ProgramDataBaseFileName=".\Release with Debug Information/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../../libs/libf2c.lib"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def libf2c.def &gt;nul
+copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -702,6 +764,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="backspace.c">
@@ -783,6 +853,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -876,6 +954,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_cos.c">
@@ -957,6 +1043,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1050,6 +1144,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_exp.c">
@@ -1131,6 +1233,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1224,6 +1334,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_sin.c">
@@ -1305,6 +1423,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1398,6 +1524,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="cabs.c">
@@ -1479,6 +1613,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1572,6 +1714,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_abs.c">
@@ -1653,6 +1803,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1746,6 +1904,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_asin.c">
@@ -1827,6 +1993,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1920,6 +2094,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_atn2.c">
@@ -2001,6 +2183,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2094,6 +2284,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_cos.c">
@@ -2175,6 +2373,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2268,6 +2474,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_dim.c">
@@ -2349,6 +2563,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2442,6 +2664,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_imag.c">
@@ -2523,6 +2753,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2616,6 +2854,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_lg10.c">
@@ -2697,6 +2943,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2790,6 +3044,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_mod.c">
@@ -2871,6 +3133,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -2964,6 +3234,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_prod.c">
@@ -3045,6 +3323,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -3138,6 +3424,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_sin.c">
@@ -3219,6 +3513,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -3312,6 +3614,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_sqrt.c">
@@ -3393,6 +3703,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -3486,6 +3804,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_tanh.c">
@@ -3567,6 +3893,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -3660,6 +3994,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="derfc_.c">
@@ -3741,6 +4083,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -3834,6 +4184,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="dolio.c">
@@ -3915,6 +4273,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4008,6 +4374,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ef1asc_.c">
@@ -4089,6 +4463,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4182,6 +4564,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="endfile.c">
@@ -4263,6 +4653,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4356,6 +4754,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="erfc_.c">
@@ -4437,6 +4843,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4530,6 +4944,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="exit.c">
@@ -4611,6 +5033,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4704,6 +5134,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="fmt.c">
@@ -4785,6 +5223,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -4878,6 +5324,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ftell_.c">
@@ -4959,6 +5413,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5052,6 +5514,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="getenv_.c">
@@ -5133,6 +5603,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5226,6 +5704,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_dim.c">
@@ -5307,6 +5793,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5400,6 +5894,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_indx.c">
@@ -5481,6 +5983,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5574,6 +6084,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_mod.c">
@@ -5655,6 +6173,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5748,6 +6274,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_sign.c">
@@ -5829,6 +6363,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -5922,6 +6464,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="hl_gt.c">
@@ -6003,6 +6553,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6096,6 +6654,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="hl_lt.c">
@@ -6177,6 +6743,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6270,6 +6844,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_dim.c">
@@ -6351,6 +6933,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6444,6 +7034,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_indx.c">
@@ -6525,6 +7123,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6618,6 +7224,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_mod.c">
@@ -6699,6 +7313,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6792,6 +7414,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_sign.c">
@@ -6873,6 +7503,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -6966,6 +7604,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="iio.c">
@@ -7047,6 +7693,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -7140,6 +7794,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="inquire.c">
@@ -7221,6 +7883,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -7314,6 +7984,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="l_gt.c">
@@ -7395,6 +8073,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -7488,6 +8174,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="l_lt.c">
@@ -7569,6 +8263,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -7662,6 +8364,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="lbitshft.c">
@@ -7743,6 +8453,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -7836,6 +8554,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="lwrite.c">
@@ -7917,6 +8643,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8010,6 +8744,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_ci.c">
@@ -8091,6 +8833,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8184,6 +8934,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_di.c">
@@ -8265,6 +9023,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8358,6 +9124,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_ii.c">
@@ -8439,6 +9213,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8532,6 +9314,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_zi.c">
@@ -8613,6 +9403,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8706,6 +9504,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_abs.c">
@@ -8787,6 +9593,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -8880,6 +9694,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_asin.c">
@@ -8961,6 +9783,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9054,6 +9884,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_atn2.c">
@@ -9135,6 +9973,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9228,6 +10074,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_cos.c">
@@ -9309,6 +10163,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9402,6 +10264,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_dim.c">
@@ -9483,6 +10353,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9576,6 +10454,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_imag.c">
@@ -9657,6 +10543,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9750,6 +10644,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_lg10.c">
@@ -9831,6 +10733,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -9924,6 +10834,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_mod.c">
@@ -10005,6 +10923,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10098,6 +11024,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_sign.c">
@@ -10179,6 +11113,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10272,6 +11214,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_sinh.c">
@@ -10353,6 +11303,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10446,6 +11404,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_tan.c">
@@ -10527,6 +11493,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10620,6 +11594,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="rdfmt.c">
@@ -10701,6 +11683,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10794,6 +11784,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="rsfe.c">
@@ -10875,6 +11873,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -10968,6 +11974,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="rsne.c">
@@ -11049,6 +12063,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -11142,6 +12164,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_cmp.c">
@@ -11223,6 +12253,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -11316,6 +12354,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_paus.c">
@@ -11397,6 +12443,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -11490,6 +12544,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_stop.c">
@@ -11571,6 +12633,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -11664,6 +12734,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="sig_die.c">
@@ -11745,6 +12823,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -11838,6 +12924,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="sue.c">
@@ -11919,6 +13013,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12012,6 +13114,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="typesize.c">
@@ -12093,6 +13203,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12186,6 +13304,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="util.c">
@@ -12267,6 +13393,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12360,6 +13494,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="wref.c">
@@ -12441,6 +13583,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12534,6 +13684,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="wsfe.c">
@@ -12615,6 +13773,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12708,6 +13874,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="wsne.c">
@@ -12789,6 +13963,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -12882,6 +14064,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_abs.c">
@@ -12963,6 +14153,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -13056,6 +14254,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_div.c">
@@ -13137,6 +14343,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -13230,6 +14444,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_log.c">
@@ -13311,6 +14533,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -13404,6 +14634,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_sqrt.c">
@@ -13485,6 +14723,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

@@ -130,6 +130,68 @@
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="1">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				OptimizeForProcessor="1"
+				PreprocessorDefinitions="NDEBUG;WIN32;_CONSOLE;_MBCS;UNICODE"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderThrough=""
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation=".\Release with Debug Information/"
+				ObjectFile=".\Release with Debug Information/"
+				ProgramDataBaseFileName=".\Release with Debug Information/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/OPT:REF"
+				OutputFile=".\xmlint.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				ProgramDatabaseFile=".\Release/xmlint.pdb"
+				SubSystem="1"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\Release/xmlint.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -156,6 +218,14 @@
 						PreprocessorDefinitions=""
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="xmlint.cpp">
@@ -169,6 +239,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

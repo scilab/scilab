@@ -4,6 +4,7 @@
 	Version="7.10"
 	Name="Autorun"
 	ProjectGUID="{9446DC61-9C1E-458D-A4CF-6E53CECA7EEE}"
+	RootNamespace="Autorun"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -218,6 +219,53 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="../../Autorun.exe"
+				LinkIncremental="1"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;"
+				RuntimeLibrary="4"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/OPT:REF"
 				OutputFile="../../Autorun.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"

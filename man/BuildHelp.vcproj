@@ -102,6 +102,18 @@
 				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
 				Output="BuildHelp.exe"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				ReBuildCommandLine="nmake /f &quot;makefile.mak&quot; build /a"
+				CleanCommandLine="nmake /f &quot;makefile.mak&quot; clean /a"
+				Output="BuildHelp.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>

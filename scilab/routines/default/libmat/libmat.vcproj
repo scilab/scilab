@@ -606,6 +606,68 @@ del libmattemp.def &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				OptimizeForProcessor="1"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				AssemblerListingLocation=".\Release with Debug Information/"
+				ObjectFile=".\Release with Debug Information/"
+				ProgramDataBaseFileName=".\Release with Debug Information/vc70.pdb"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/OPT:REF"
+				OutputFile="../../../bin/libmat.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmat.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmat.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmattemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmat.def &gt;nul
+del libmattemp.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -699,6 +761,12 @@ del libmattemp.def &gt;nul
 			</FileConfiguration>
 			<FileConfiguration
 				Name="Release with Atlas without Java|Win32">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release with Debug Information|Win32"
+				ExcludedFromBuild="TRUE">
 				<Tool
 					Name="VCCustomBuildTool"/>
 			</FileConfiguration>

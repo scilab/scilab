@@ -603,6 +603,68 @@
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Release with Debug Information|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="0"
+				PrecompiledHeaderFile=""
+				AssemblerListingLocation=".\Release with Debug Information/"
+				ObjectFile=".\Release with Debug Information/"
+				ProgramDataBaseFileName=".\Release with Debug Information/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/OPT:REF"
+				OutputFile="../../bin/intersci-n.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				ProgramDatabaseFile=".\Release/intersci-n.pdb"
+				SubSystem="1"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\Release/interscin.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -686,6 +748,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\crerhs.c">
@@ -758,6 +827,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -840,6 +916,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\fornames.c">
@@ -912,6 +995,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -994,6 +1084,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\intersci-n.c">
@@ -1066,6 +1163,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1148,6 +1252,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\out.c">
@@ -1220,6 +1331,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1302,6 +1420,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\read.c">
@@ -1379,6 +1504,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\variables.c">
@@ -1451,6 +1583,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release with Debug Information|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
