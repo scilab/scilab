@@ -2,14 +2,14 @@
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>comments</TITLE>
+  <TITLE>head_comments</TITLE>
   <TYPE>Scilab Function  </TYPE>
   <DATE>7-Nov-2003</DATE>
   <SHORT_DESCRIPTION name="comments">display scilab function header comments</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
-  <CALLING_SEQUENCE_ITEM>comments(name)</CALLING_SEQUENCE_ITEM>   
-  <CALLING_SEQUENCE_ITEM>comments(name,%paths)</CALLING_SEQUENCE_ITEM>   
+  <CALLING_SEQUENCE_ITEM>head_comments(name)</CALLING_SEQUENCE_ITEM>   
+  <CALLING_SEQUENCE_ITEM>head_comments(name,%paths)</CALLING_SEQUENCE_ITEM>   
   </CALLING_SEQUENCE>
 
   <PARAM>
@@ -44,7 +44,7 @@
   </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
-   comments sinc
+   head_comments sinc
   ]]></EXAMPLE>
 
   <SEE_ALSO>
