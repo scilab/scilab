@@ -8,6 +8,9 @@ function texte = standard_document(objet, k)
   //
   select type_objet
 
+   case 'Text' then
+    texte='This is a TEXT block'
+    
     case 'Block' then
     //- Initialisations 
     modele = objet.model
