@@ -5291,6 +5291,33 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"font_name", 9) == 0) {
     sciSetFontName((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
+
+  else if (strncmp(marker,"text_box_mode", 13) == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_TEXT) {
+	if (strncmp(cstk(*value),"off", 3) == 0)
+	  pTEXT_FEATURE (pobj)->fill =  -1;
+	else if  (strncmp(cstk(*value),"centered", 8) == 0)
+	  pTEXT_FEATURE (pobj)->fill =  0;
+	else if  (strncmp(cstk(*value),"filled",6) ==  0)
+	  pTEXT_FEATURE (pobj)->fill =  1;
+	else  
+	  {strcpy(error_message,"Value must be 'off', 'centered' or 'filled'");
+	  return -1;}
+      }
+      else
+	{strcpy(error_message,"text_box_mode property does not exist for this handle");
+	return -1;}
+    }
+  else if (strncmp(marker,"text_box", 8) == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_TEXT) {
+	pTEXT_FEATURE (pobj)->wh[0]=*stk(*value);
+	pTEXT_FEATURE (pobj)->wh[1]=*stk(*value+1);
+      }
+      else
+	{strcpy(error_message,"text_box property does not exist for this handle");return -1;}
+    }
   else if (strncmp(marker,"text", 4) == 0) {
     sciSetText((sciPointObj *)pobj, cstk(*value), (*numcol)*(*numrow));
   }
@@ -6547,32 +6574,65 @@ if ((pobj == (sciPointObj *)NULL) &&
       CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex);
       strncpy(cstk(outindex), sciGetFontName((sciPointObj *)pobj), numrow*numcol);
     }
-  else if (strncmp(marker,"text", 4) == 0)
-    {
-      numrow = 1;
-      numcol = sciGetTextLength((sciPointObj *)pobj);
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
-    }
-  else if (strncmp(marker,"auto_clear", 10) == 0)
-    {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if (!sciGetAddPlot((sciPointObj *)pobj))
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
-	strncpy(cstk(outindex),"off",numrow*numcol);
-    }
-  else if (strncmp(marker,"auto_scale", 10) == 0)
-    {
-      numrow = 1;numcol = 3;
-      CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
-      if ( sciGetAutoScale((sciPointObj *)pobj))
-	strncpy(cstk(outindex),"on", numrow*(numcol-1));
-      else
-	strncpy(cstk(outindex),"off",numrow*numcol);
-    }
-  else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
+ else if (strncmp(marker,"text_box_mode", 13) == 0)
+   {
+     if (sciGetEntityType (pobj) == SCI_TEXT) {
+       numrow = 1;
+       if (pTEXT_FEATURE (pobj)->fill == -1) {
+	 numcol = 3;
+	 CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	 strncpy(cstk(outindex),"off", numcol);}
+       else if (pTEXT_FEATURE (pobj)->fill == 0) {
+	 numcol = 8;
+	 CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	 strncpy(cstk(outindex),"centered", numcol);}
+       else {
+	 numcol = 6;
+	 CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+	 strncpy(cstk(outindex),"filled", numcol);}
+     }
+     else
+       {strcpy(error_message,"text_box_mode property does not exist for this handle");return -1;}
+   }
+ else if (strncmp(marker,"text_box", 8) == 0)
+   {
+     if (sciGetEntityType (pobj) == SCI_TEXT) {
+       numrow = 1;
+       numcol = 2;
+       CreateVar(Rhs+1,"d", &numrow, &numcol, &outindex);
+       *stk(outindex)= pTEXT_FEATURE (pobj)->wh[0];
+       *stk(outindex+1)= pTEXT_FEATURE (pobj)->wh[1];
+     }
+     else
+       {strcpy(error_message,"text_box property does not exist for this handle");return -1;}
+   }
+ else if (strncmp(marker,"text", 4) == 0)
+   {
+     numrow = 1;
+     numcol = sciGetTextLength((sciPointObj *)pobj);
+     CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+     strncpy(cstk(outindex), sciGetText((sciPointObj *)pobj), numrow*numcol);
+   }
+
+ else if (strncmp(marker,"auto_clear", 10) == 0)
+   {
+     numrow = 1;numcol = 3;
+     CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+     if (!sciGetAddPlot((sciPointObj *)pobj))
+       strncpy(cstk(outindex),"on", numrow*(numcol-1));
+     else
+       strncpy(cstk(outindex),"off",numrow*numcol);
+   }
+ else if (strncmp(marker,"auto_scale", 10) == 0)
+   {
+     numrow = 1;numcol = 3;
+     CreateVar(Rhs+1,"c", &numrow, &numcol, &outindex);
+     if ( sciGetAutoScale((sciPointObj *)pobj))
+       strncpy(cstk(outindex),"on", numrow*(numcol-1));
+     else
+       strncpy(cstk(outindex),"off",numrow*numcol);
+   }
+ else if ((strncmp(marker,"zoom_box", 8) == 0) && (sciGetEntityType (pobj) == SCI_SUBWIN))
     {
       if (!sciGetZooming((sciPointObj *)pobj))
 	{
