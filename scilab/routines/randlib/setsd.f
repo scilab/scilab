@@ -25,6 +25,8 @@ C     ISEED2 -> Second integer seed
 C                                   INTEGER ISEED1
 C
 C**********************************************************************
+      include '../stack.h'
+
 C     .. Parameters ..
       INTEGER numg
       PARAMETER (numg=32)
@@ -60,8 +62,8 @@ C     ..
 C     .. Executable Statements ..
 C     Abort unless random number generator initialized
       IF (qrgnin()) GO TO 10
-      call basout(io,wte,"SETSD called before random number generator")
-      call basout(io,wte,"initialized")
+      call basout(io,wte,"Warning: grand('setsd',..) called before ")
+      call basout(io,wte,"  random number generator initialized.")
       return
    10 CALL getcgn(g)
       ig1(g) = iseed1
