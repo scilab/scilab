@@ -4,27 +4,22 @@
   <LANGUAGE>fr</LANGUAGE>
   <TITLE>mtlb_dir</TITLE>
   <TYPE>Fonction M2SCI</TYPE>
-  <DATE>Mars 2004</DATE>
+  <DATE>Juin 2004</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_dir">Fonction d'émulation de la fonction Matlab dir</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
 
-    <P>Dans plusieurs cas particuliers, la fonction <VERB>dir</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
+    <P>La fonction <VERB>dir</VERB> se comporte différemment dans Matlab et dans Scilab :</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-        Avec un argument d'entrée : La fonction Scilab <VERB>unix_w</VERB> peut être utilisée pour avoir un équivalent
-        </SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-        Avec deux arguments d'entrée :  La fonction Scilab <VERB>listfiles</VERB> peut aider à trouver des solutions
-	mais n'est pas un équivalent.
+        Quand le résultat est stocké dans une variable: La fonction Matlab <VERB>dir</VERB> renvoie une structure
+	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les données ne peuvent être
+	extraites de la même manière.
         </SP>
       </ITEM>
     </ITEMIZE>
@@ -32,48 +27,16 @@
     </DESCRIPTION_INDENT>
 
     <P>
-    La fonction <VERB>mtlb_dir(path)</VERB> est utilisée par
-    <VERB>mfile2sci</VERB> pour remplacer <VERB>dir(path)</VERB> parce que le programme convertit peut être exécuté sur
-    uen plateforme différente de celle utilisée pour convertir le code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <VERB>mtlb_dir</VERB> :
+    La fonction <VERB>mtlb_dir([path])</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>dir([path])</VERB> quand la sortie est stockée dans une variable.
+    Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <VERB>dir</VERB>) 
+    les données ne pourront pas être extraites comme dans Matlab. Par exemple, l'équivalent Scilab pour l'instruction Matlab 
+    <VERB>L=dir;file_name=L(1).name;</VERB> est <VERB>L=dir();file_name=L.name(1);</VERB>.
     </P>
-
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-        Si le programme est toujours exécuté sous Windows
-        <VERB>mtlb_dir(path)</VERB> peut être remplacé par <VERB>unix_w("dir")</VERB>
-        </SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-         Si le programme est toujours exécuté sous Unix/linux
-        <VERB>mtlb_dir(path)</VERB> peut être remplacé par <VERB>unix_w("ls")</VERB>
-        </SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-	Si le programme peut être exécuté sous Unix/linux et sous Windows
-	<VERB>mtlb_dir(path)</VERB> peut être remplacé par
-	<VERB>if MSDOS then unix_w("dir");else unix_w("ls");end</VERB>
-	</SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
 
     <P>Attention : <VERB>mtlb_dir</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
 
   </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>unix_w</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
 
   <AUTHORS>
     <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>

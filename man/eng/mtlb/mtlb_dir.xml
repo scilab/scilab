@@ -4,75 +4,38 @@
   <LANGUAGE>eng</LANGUAGE>
   <TITLE>mtlb_dir</TITLE>
   <TYPE>M2SCI function</TYPE>
-  <DATE>March 2004</DATE>
+  <DATE>June 2004</DATE>
 
   <SHORT_DESCRIPTION name="mtlb_dir">Matlab dir emulation function</SHORT_DESCRIPTION>
 
   <DESCRIPTION>
-  
-    <P>Scilab equivalent for Matlab <VERB>dir</VERB> depends on plateform on which the program is executed and on inputs:</P>
+
+    <P>Matlab and Scilab <VERB>dir</VERB> behave differently:</P>
 
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <ITEMIZE>
       <ITEM>
         <SP>
-	With one input: Scilab <VERB>unix_w</VERB> can be used to have an equivalent
-	</SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-	With two inputs: Scilab <VERB>listfiles</VERB> can help you to find solutions but is not an equivalent
-	</SP>
+        When result is stored in a variable: Matlab <VERB>dir</VERB> returns a structure but Scilab
+	<VERB>dir</VERB> returns a 'dir' tlist, so data can not be extracted in the same way.
+        </SP>
       </ITEM>
     </ITEMIZE>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
 
     <P>
-    The function <VERB>mtlb_dir(path)</VERB> is used by
-    <VERB>mfile2sci</VERB> to replace <VERB>dir(path)</VERB> because converted program can be run on a different plateform
-    from the one used while porting Matlab code to Scilab. This function will
-    determine the correct command at run time. If you want to have a
-    more efficient code it is possible to replace <VERB>mtlb_dir</VERB> calls:
+    The function <VERB>mtlb_dir([path])</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>dir([path])</VERB> when output is stored in a variable.
+    There is no replacement possibility for it, else (when <VERB>mtlb_dir</VERB> is replaced by <VERB>dir</VERB>)
+    data can not be extracted like in Matlab. For example, Scilab equivalent for Matlab
+    <VERB>L=dir;file_name=L(1).name;</VERB> is <VERB>L=dir();file_name=L.name(1);</VERB>.
     </P>
-
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <ITEMIZE>
-      <ITEM>
-        <SP>
-	If program is always run under Windows
-	<VERB>mtlb_dir(path)</VERB> may be replaced by <VERB>unix_w("dir")</VERB>
-	</SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-	If program is always run under Unix/linux
-	<VERB>mtlb_dir(path)</VERB> may be replaced by <VERB>unix_w("ls")</VERB>
-	</SP>
-      </ITEM>
-
-      <ITEM>
-        <SP>
-	If program can be run under Unix/linux and under Windows
-	<VERB>mtlb_dir(path)</VERB> may be replaced by
-	<VERB>if MSDOS then unix_w("dir");else unix_w("ls");end</VERB>
-	</SP>
-      </ITEM>
-    </ITEMIZE>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
 
     <P>Caution: <VERB>mtlb_dir</VERB> has not to be used for hand coded functions.</P>
 
   </DESCRIPTION>
-
-  <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>unix_w</LINK> </SEE_ALSO_ITEM>
-  </SEE_ALSO>
 
   <AUTHORS>
     <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
