@@ -1,7 +1,7 @@
 function %hm_p(M)
 // Copyright INRIA
 // hypermatrix display
-dims=M('dims')
+dims=double(M('dims'))
 nd=size(dims,'*')
 if nd<3 then
   if nd==1 then
