@@ -1,6 +1,6 @@
 function [iperm,mrepi,profil,ierr]=bandwr(a,b,c,d)
 //case 1 : a is a sparse matrix and b is (option) iopt
-//case 2 : a is lp, b is ls, c is n the dimension and d is (option) iopt
+//case 2 : a is lp, b is ln, c is n the dimension and d is (option) iopt
 [lhs,rhs]=argn(0)
 if (rhs>4|rhs<1) then error(39), end;
 if (rhs<3) then
@@ -28,13 +28,13 @@ a=a+pea+pea';a=triu(a);
 [ij,v,mn]=spget(a);
 end
 // 
-  [lp,la,ls]=m6ta2lpd(ij(:,1)',ij(:,2)',n+1,n);
+  [lp,la,ln]=m6ta2lpd(ij(:,1)',ij(:,2)',n+1,n);
 else
-  lp=a;ls=b;n=c;
+  lp=a;ln=b;n=c;
   if (rhs == 3) then iopt=0;end;
   if (rhs == 4) then iopt=d;end;
-  v=ones(ls)';n=size(lp,2)-1;
-  [ta,he]=m6lp2tad(lp,la,ls,n);
+  v=ones(ln)';n=size(lp,2)-1;
+  [ta,he]=m6lp2tad(lp,la,ln,n);
   amem=sparse([ta' he'],v,[n,n]);
 end;
 if(n < 3) then 
@@ -48,7 +48,7 @@ lrwork=n*n+1;
 // max for lrwork; can be chosen smaller : k*nz with k=10 e.g.;
 rwork=zeros(1,lrwork);
 iwork(1:(n+1))=lp;
-iwork((2*n+2):(2*n+2+nz-1))=ls;
+iwork((2*n+2):(2*n+2+nz-1))=ln;
 rwork(1:nz)=v';
 [iperm,mrepi,profil,ierr]=m6bandred(n,nz,liwork,iwork,lrwork,rwork,iopt);
 if(ierr == 0) then
@@ -88,14 +88,14 @@ pea=sparse([ini' ini'+1], ones(ini'),mn);
 a=a+pea+pea';a=triu(a);
 [ij,v,mn]=spget(a);
 end;
-[lp,la,ls]=m6ta2lpd(ij(:,1)',ij(:,2)',n+1,n);
-v=ones(ls)';nz=size(v,'*');
+[lp,la,ln]=m6ta2lpd(ij(:,1)',ij(:,2)',n+1,n);
+v=ones(ln)';nz=size(v,'*');
 liwork=2*n+2+2*nz+6*n+3+3*n;
 iwork=zeros(1,liwork);
 lrwork=n*n+1;
 rwork=zeros(1,lrwork);
 iwork(1:(n+1))=lp;
-iwork((2*n+2):(2*n+2+nz-1))=ls;
+iwork((2*n+2):(2*n+2+nz-1))=ln;
 rwork(1:nz)=v';
 [iperm,mrepi,profil,ierr]=m6bandred(n,nz,liwork,iwork,lrwork,rwork,iopt);
 if(ierr == 0) then 

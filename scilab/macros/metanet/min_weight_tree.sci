@@ -18,13 +18,13 @@ else
 end
 // check g
 check_graph(g)
-// compute lp, la and ls
+// compute lp, la and ln
 n=g('node_number')
 ma=prod(size(g('tail')))
 if g('directed')==1 then
-  [lp,la,ls]=m6ta2lpd(g('tail'),g('head'),n+1,n)
+  [lp,la,ln]=m6ta2lpd(g('tail'),g('head'),n+1,n)
 else
-  [lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+  [lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 end
 // value of weight
 if g('edge_weight')==[] then
@@ -34,13 +34,13 @@ else
 end
 // compute minimal spanning tree
 if g('directed')==1 then
-  alf=m6dmtree(i,la,lp,ls,n,w)
-  t=m6prevn2st(alf,la,lp,ls)
+  alf=m6dmtree(i,la,lp,ln,n,w)
+  t=m6prevn2st(alf,la,lp,ln)
 else 
   if ma<0.5*n*n then 
-    alf=m6umtree1(la,lp,ls,n,w)
+    alf=m6umtree1(la,lp,ln,n,w)
   else 
-    alf=m6umtree(la,lp,ls,n,w)
+    alf=m6umtree(la,lp,ln,n,w)
   end
   t=m6edge2st(alf) 
 end

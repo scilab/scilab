@@ -18,7 +18,7 @@ g1=add_node(g,[270 140])
 ta=[2 3 3 5 3 4 4 5 8];
 he=[1 2 4 2 6 6 7 7 4];
 g=make_graph('foo',1,8,ta,he);
-[lp,la,ls]=adj_lists(1,g('node_number'),ta,he)
+[lp,la,ln]=adj_lists(1,g('node_number'),ta,he)
 
 // arc_graph
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
@@ -43,7 +43,7 @@ ta=[2  1 3 2 2 4 4 5 6 7 8 8 9 10 10 10 10 11 12 13 13 14 15 16 16 17 17];
 he=[1 10 2 5 7 3 2 4 5 8 6 9 7 7 11 13 15 12 13  9 14 11 16 1 17 14 15];
 g=make_graph('foo',0,17,ta,he);
 n=g('node_number');
-[lp,la,ls] = adj_lists(1,n,g('tail'),g('head'));
+[lp,la,ln] = adj_lists(1,n,g('tail'),g('head'));
 aa=graph_2_mat(g);
 ij=[g('tail')' g('head')']; v=1*ones(g('tail')');
 vv=sparse(ij,v,[n n]);
@@ -56,8 +56,8 @@ for i=1:n, for j=1:n,
 yy(i,j)=ww1(mrepi(i),mrepi(j));end;end;
 [ij,v,mn]=spget(ww);
 g1=make_graph('foo',0,n,ij(:,1)',ij(:,2)');
-[lp,la,ls] = adj_lists(1,n,g1('tail'),g1('head'));
-[iperm,mrepi,profil,ierr]=bandwr(lp,ls,n,0)
+[lp,la,ln] = adj_lists(1,n,g1('tail'),g1('head'));
+[iperm,mrepi,profil,ierr]=bandwr(lp,ln,n,0)
 
 // best_match
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
@@ -72,8 +72,8 @@ g=make_graph('foo',0,n,ta,he);
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
 g=make_graph('foo',1,8,ta,he);
-[lp,la,ls]=adj_lists(1,g('node_number'),ta,he);
-[fe,che,fn,chn] = chain_struct(lp,la,ls)
+[lp,la,ln]=adj_lists(1,g('node_number'),ta,he);
+[fe,che,fn,chn] = chain_struct(lp,la,ln)
 
 // check_graph
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];

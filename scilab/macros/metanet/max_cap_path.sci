@@ -11,13 +11,13 @@ if prod(size(j))<>1 then
 end
 // check g
 check_graph(g)
-// compute lp, la and ls
+// compute lp, la and ln
 n=g('node_number')
 ma=prod(size(g('tail')))
 if g('directed')==1 then
-  [lp,la,ls]=m6ta2lpd(g('tail'),g('head'),n+1,n)
+  [lp,la,ln]=m6ta2lpd(g('tail'),g('head'),n+1,n)
 else
-  [lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+  [lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 end
 // check max capacity
 if g('edge_max_cap')==[] then
@@ -26,7 +26,7 @@ if g('edge_max_cap')==[] then
   return
 end
 // compute max capacity path
-[c,v]=m6chcm(i,la,lp,ls,n,g('edge_max_cap'))
-p=m6prevn2p(i,j,v,la,lp,ls,g('directed'))
+[c,v]=m6chcm(i,la,lp,ln,n,g('edge_max_cap'))
+p=m6prevn2p(i,j,v,la,lp,ln,g('directed'))
 cap=c(j)
 endfunction

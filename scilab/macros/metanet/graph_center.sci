@@ -7,9 +7,9 @@ ma=prod(size(g('tail')))
 n=g('node_number')
 head=g('head');
 if g('directed')==1 then
-  [lp,la,ls]=m6ta2lpd(g('tail'),head,n+1,n)
+  [lp,la,ln]=m6ta2lpd(g('tail'),head,n+1,n)
   // compute fe, che, fn, chn
-  [fe,che,fn,chn]=chain_struct(lp,la,ls)
+  [fe,che,fn,chn]=chain_struct(lp,la,ln)
   // value of length
   if g('edge_length')==[] then
     len=ones(1,ma)
@@ -23,9 +23,9 @@ if g('directed')==1 then
   end
 else
   tail=[g('tail') head];head=[head g('tail')]; 
-  [lp,la,ls]=m6ta2lpd(tail,head,n+1,n);
+  [lp,la,ln]=m6ta2lpd(tail,head,n+1,n);
   // compute fe, che, fn, chn
-  [fe,che,fn,chn]=chain_struct(lp,la,ls)
+  [fe,che,fn,chn]=chain_struct(lp,la,ln)
   // value of length
   if g('edge_length')==[] then
     len=ones(1,2*ma)

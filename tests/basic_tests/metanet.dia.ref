@@ -433,8 +433,8 @@ he=[1 2 4 2 6 6 7 7 4];
  
 g=make_graph('foo',1,8,ta,he);
  
-[lp,la,ls]=adj_lists(1,g('node_number'),ta,he)
- ls  =
+[lp,la,ln]=adj_lists(1,g('node_number'),ta,he)
+ ln  =
  
 !   1.    2.    4.    6.    6.    7.    2.    7.    4. !
  la  =
@@ -673,7 +673,7 @@ g=make_graph('foo',0,17,ta,he);
  
 n=g('node_number');
  
-[lp,la,ls] = adj_lists(1,n,g('tail'),g('head'));
+[lp,la,ln] = adj_lists(1,n,g('tail'),g('head'));
  
 aa=graph_2_mat(g);
  
@@ -731,9 +731,9 @@ yy(i,j)=ww1(mrepi(i),mrepi(j));end;end;
  
 g1=make_graph('foo',0,n,ij(:,1)',ij(:,2)');
  
-[lp,la,ls] = adj_lists(1,n,g1('tail'),g1('head'));
+[lp,la,ln] = adj_lists(1,n,g1('tail'),g1('head'));
  
-[iperm,mrepi,profil,ierr]=bandwr(lp,ls,n,0)
+[iperm,mrepi,profil,ierr]=bandwr(lp,ln,n,0)
  ierr  =
  
     0.  
@@ -811,9 +811,9 @@ he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
  
 g=make_graph('foo',1,8,ta,he);
  
-[lp,la,ls]=adj_lists(1,g('node_number'),ta,he);
+[lp,la,ln]=adj_lists(1,g('node_number'),ta,he);
  
-[fe,che,fn,chn] = chain_struct(lp,la,ls)
+[fe,che,fn,chn] = chain_struct(lp,la,ln)
  chn  =
  
  

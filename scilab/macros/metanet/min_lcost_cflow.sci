@@ -58,11 +58,11 @@ verif=find(demand<>0)
 if verif<>[] then 
   error('Demands must be equal to zero')
 end
-// compute lp, la and ls
+// compute lp, la and ln
 if g('directed')==1 then
-  [lp,la,ls]=m6ta2lpd(g('tail'),g('head'),n+1,n)
+  [lp,la,ln]=m6ta2lpd(g('tail'),g('head'),n+1,n)
 else
-  [lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+  [lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 end
 // compute constrained min cost flow by Busacker and Goven algorithm
 [v,phi,flag]=m6busack(i,j,cv,maxcap,g('head'),g('tail'),la,lp,n,costs)

@@ -19,13 +19,13 @@ end
   end
 // check g
 check_graph(g)
-// compute lp, la and ls
+// compute lp, la and ln
 n=g('node_number')
 ma=prod(size(g('tail')))
 if g('directed')==1 then
-  [lp,la,ls]=m6ta2lpd(g('tail'),g('head'),n+1,n)
+  [lp,la,ln]=m6ta2lpd(g('tail'),g('head'),n+1,n)
 else
-  [lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+  [lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 end
 // value of length
 if g('edge_length')==[] then
@@ -36,21 +36,21 @@ end
 // compute shortest path according to typ
 select typ
 case 'arc' then
-  [l,v]=m6pcchna(i,lp,ls,n)
-  p=m6prevn2p(i,j,v,la,lp,ls,g('directed'))
+  [l,v]=m6pcchna(i,lp,ln,n)
+  p=m6prevn2p(i,j,v,la,lp,ln,g('directed'))
   lp=l(j)
 case 'length'
   lneg=find(len<0)
   if lneg<>[] then 
-    [l,v]=m6ford(i,la,len,lp,ls,n)
+    [l,v]=m6ford(i,la,len,lp,ln,n)
   else   
     if ma<0.5*n*n then 
-      [l,v]=m6johns(i,la,len,lp,ls,n)
+      [l,v]=m6johns(i,la,len,lp,ln,n)
     else 
-      [l,v]=m6dijkst(i,la,len,lp,ls,n)
+      [l,v]=m6dijkst(i,la,len,lp,ln,n)
     end
   end
-  p=m6prevn2p(i,j,v,la,lp,ls,g('directed'))
+  p=m6prevn2p(i,j,v,la,lp,ln,g('directed'))
   lp=l(j)
 else
   error('Unknown type ""'+typ+'""')

@@ -1,4 +1,4 @@
-function [lp,la,ls]=adj_lists(g,n,tail,head)
+function [lp,la,ln]=adj_lists(g,n,tail,head)
 // Copyright INRIA
 [lhs,rhs]=argn(0)
 if rhs==1 then
@@ -38,10 +38,10 @@ else
     error('""tail"" and ""head"" do not represent a graph')
   end
 end
-// compute lp, la and ls
+// compute lp, la and ln
 if directed==1 then
-  [lp,la,ls]=m6ta2lpd(tail,head,n+1,n)
+  [lp,la,ln]=m6ta2lpd(tail,head,n+1,n)
 else
-  [lp,la,ls]=m6ta2lpu(tail,head,n+1,n,2*ma)
+  [lp,la,ln]=m6ta2lpu(tail,head,n+1,n,2*ma)
 end
 endfunction

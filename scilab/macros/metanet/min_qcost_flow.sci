@@ -49,9 +49,9 @@ verif=find(demand<>0)
 if verif<>[] then 
   error('Demands must be equal to zero')
 end
-// compute lp, la and ls
+// compute lp, la and ln
 // always consider the graph as undirected!
-[lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+[lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 // compute min quadratic cost flow
 [phi,flag]=m6floqua(p,mincap,maxcap,g('head'),g('tail'),la,lp,n,qorig,qweight)
 c=sum(qweight.*(phi-qorig).*(phi-qorig))/2

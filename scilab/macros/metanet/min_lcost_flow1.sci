@@ -51,9 +51,9 @@ verif=find(demand<>0)
 if verif<>[] then 
   error('Demands must be equal to zero')
 end
-// compute lp, la and ls
+// compute lp, la and ln
 // always consider the graph as undirected!
-[lp,la,ls]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
+[lp,la,ln]=m6ta2lpu(g('tail'),g('head'),n+1,n,2*ma)
 // compute linear min cost flow by out-of-kilter algorithm
 [phi,flag]=m6kilter(mincap,maxcap,g('head'),g('tail'),la,lp,n,costs)
 c=costs*phi'
