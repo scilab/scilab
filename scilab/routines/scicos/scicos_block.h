@@ -29,6 +29,7 @@ typedef struct {
   int *jroot;
   char *label;
   void **work;
+  int mode;
 } scicos_block;
 
 
@@ -36,6 +37,4 @@ void do_cold_restart();
 int get_phase_simulation();
 int* get_pointer_xproperty();
 double get_scicos_time();
-int get_mode();
-int get_mode();
-void set_mode(int);
+int get_block_number();
