@@ -3310,12 +3310,18 @@ int scixtitle(fname,fname_len)
 	    sciSetText(pSUBWIN_FEATURE(psubwin)->mon_y_label, C2F(cha1).buf , strlen(C2F(cha1).buf));
 	    break;
 	  }
-	  sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ()));
-	  sciRedrawFigure();
+	  /*  sciRedrawFigure(); */
 	}
       else
 	Xtitle (C2F(cha1).buf,narg);
     }
+
+  if (version_flag() == 0){
+    sciSetCurrentObj( sciGetSelectedSubWin (sciGetCurrentFigure ()));
+    CleanRectangle(psubwin);
+    sciDrawObj(psubwin);
+  }
+  
   LhsVar(1)=0;
   return 0;
 }
