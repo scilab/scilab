@@ -31,9 +31,13 @@
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_visible: ">
-            <SP>This property specifies whether the axes are drawn or not. Its
-            value should be <VERB>"on" </VERB> or <VERB>"off"</VERB>. The
-            scaling data and if required the grids are drawn if the value is
+            <SP>A <VERB>1x3</VERB> string vector. This property specifies
+            whether each axis is drawn or not. Its value should be <VERB>"on"
+            </VERB> or <VERB>"off"</VERB> for a global setting.To act on a
+            single axis, the syntax is <VERB>axes_visible(N)</VERB> where
+            <VERB>N</VERB> is <VERB>1,2</VERB> or <VERB>3</VERB> corresponding
+            to the <VERB> x,y</VERB> or <VERB>z</VERB> axis. The scaling data
+            and if required the grids are drawn if the value is
             <VERB>"on"</VERB>. Note that when creating a simple axes entity
             using the <VERB>gca()</VERB> (shorcut for
             <VERB>get"current_axes")</VERB>) or <VERB>gcf()</VERB> (shortcut
@@ -157,7 +161,7 @@
             labels.</SP>
           </DESCRIPTION_ITEM>
 
-          <DESCRIPTION_ITEM label="sub_tics: ">
+          <DESCRIPTION_ITEM label="sub_ticks: ">
             <SP>This field sets the number of tics to draw between two main
             tics. The field value is the vector <VERB>[nx,ny]</VERB> where
             <VERB>nx</VERB> is the number of sub tics for the x-axis and
@@ -223,6 +227,69 @@
             handle on a Label structure (see <LINK>label_properties</LINK>).
             This field defines a label on z axis with options on this
             label.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="auto_ticks: ">
+            <SP>A <VERB>1x3</VERB> string vector giving the auto_ticks status
+            for each axis. This property specifies whether each axis is
+            graduated using a computational algorithm or not (graduations are
+            set by the user). Its value should be <VERB>"on"</VERB> or
+            <VERB>"off"</VERB> for a global setting.To act on a single axis,
+            the syntax is <VERB>auto_ticks(N)</VERB> where <VERB>N</VERB> is
+            <VERB>1,2</VERB> or <VERB>3</VERB> corresponding to the <VERB>x,
+            y</VERB> or <VERB>z</VERB> axis. Note that editing labels via
+            <VERB>x_ticks.labels, y_ticks.labels</VERB> or
+            <VERB>z_ticks.labels</VERB> automatically set
+            <VERB>auto_ticks</VERB> to <VERB>"on"</VERB> for the corresponding
+            axes.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="x_ticks.locations: ">
+            <SP>A real vector containing the locations for the graduations on
+            x axis. This property can be edited specifying a new real vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>x_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> x_ticks.labels</VERB> string vector too.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="y_ticks.locations: ">
+            <SP>A real vector containing the locations for the graduations on
+            y axis. This property can be edited specifying a new real vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>y_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> y_ticks.labels</VERB> string vector too.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="z_ticks.locations: ">
+            <SP>A real vector containing the locations for the graduations on
+            z axis. This property can be edited specifying a new real vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>z_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> z_ticks.labels</VERB> string vector too.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="x_ticks.labels: ">
+            <SP>A string vector containing the labels for the graduations on x
+            axis. This property can be edited specifying a new string vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>x_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> x_ticks.locations</VERB> real vector too.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="y_ticks.labels: ">
+            <SP>A string vector containing the labels for the graduations on y
+            axis. This property can be edited specifying a new string vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>y_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> y_ticks.locations</VERB> real vector too.</SP>
+          </DESCRIPTION_ITEM>
+
+          <DESCRIPTION_ITEM label="z_ticks.labels: ">
+            <SP>A string vector containing the labels for the graduations on z
+            axis. This property can be edited specifying a new string vector
+            (of the same size). To specify greater or lesser graduations, man
+            can act on the <VERB>z_ticks</VERB> <VERB>tlist</VERB> defining a
+            corresponding<VERB> z_ticks.locations</VERB> real vector too.</SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="children: ">
