@@ -2,21 +2,25 @@ function h=%h_load(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'c',fd)
-  cur_draw_mode = f.immediate_drawing;
-  h=load_graphichandle(fd)
+  immediate_drawing="";
+  [h,immediate_drawing] = load_graphichandle(fd)
 //  f=gcf();f.visible='on'
 //  draw(f)
-  f=gcf(); f.immediate_drawing = cur_draw_mode;
-
+  f=gcf(); 
+  f.immediate_drawing = immediate_drawing;
 endfunction
 
-function   h=load_graphichandle(fd)
+function [h,immediate_drawing] = load_graphichandle(fd)
 //Author S. Steer Sept 2004, Copyright INRIA
   typ=ascii(mget(mget(1,'c',fd),'c',fd))
-  if typ<>'Figure' then f=gcf();f.visible='off';end
+  if typ<>'Figure'
+    f=gcf();
+    immediate_drawing = f.immediate_drawing;
+    f.immediate_drawing ='off';
+  end
   select typ
   case "Figure"
-
+    
     if xload_mode then
       h=gcf()
       visible=toggle(mget(1,'c',fd));
@@ -29,6 +33,8 @@ function   h=load_graphichandle(fd)
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3)
       pixmap=toggle(mget(1,'c',fd));
       pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd))
+      immediate_drawing=toggle(mget(1,'c',fd)); // init. global variable immediate_drawing
+      h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd)
       rotation_style=ascii(mget(mget(1,'c',fd),'c',fd))
     else
@@ -40,6 +46,7 @@ function   h=load_graphichandle(fd)
       figure_name=ascii(mget(mget(1,'c',fd),'c',fd))
       figure_id=mget(1,'sl',fd);
       h=scf(figure_id)
+      h.visible=visible; // can be set now as we act on immediate_drawing everywhere else F.Leray 18.02.05
       h.figure_position=figure_position
       h.figure_size=figure_size
       h.axes_size=axes_size
@@ -48,6 +55,8 @@ function   h=load_graphichandle(fd)
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3)
       h.pixmap=toggle(mget(1,'c',fd));
       h.pixel_drawing_mode=ascii(mget(mget(1,'c',fd),'c',fd))
+      immediate_drawing=toggle(mget(1,'c',fd)); // init. global variable immediate_drawing
+      h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd);
       h.rotation_style=ascii(mget(mget(1,'c',fd),'c',fd))
     end
@@ -133,15 +142,15 @@ function   h=load_graphichandle(fd)
  
     cube_scaling    = toggle(mget(1,'c',fd))
     rotation_angles = mget(2,'dl',fd);
-
+    
     if a.view=='2d' then
       set(a,"view"               , view);
     end
     if a.view=='3d' then
-       set(a,"cube_scaling"      , cube_scaling)
-       if view=='3d' then
-	 set(a,"rotation_angles"   , rotation_angles)
-       end
+      set(a,"cube_scaling"      , cube_scaling)
+      if view=='3d' then
+	set(a,"rotation_angles"   , rotation_angles)
+      end
     end
     if and(version==[3 0 0 0]) then
       set(a,"log_flags"            , ascii(mget(2,'c',fd)));
@@ -249,11 +258,20 @@ function   h=load_graphichandle(fd)
          sz=mget(2,'il',fd);clr=matrix(mget(prod(sz),'il',fd),sz(1),-1);
     end
     hiddencolor    = mget(1,'il',fd);
+    
+    // plot3d modify the given rotation angles
+    // trick to force keeping the good rotation angles F.Leray 18.02.05
+    a=gca();
+    rotation_angles = a.rotation_angles;
+    
     if or(color_flag==[2 5]) then
       plot3d1(x,y,list(z,clr))
     else
       plot3d(x,y,z)
     end
+    
+    a.rotation_angles = rotation_angles;
+    
     h=gce();
     set(h,"visible",visible)
     set(h,"surface_mode",surface_mode)
@@ -288,11 +306,20 @@ function   h=load_graphichandle(fd)
          sz=mget(2,'il',fd);clr=matrix(mget(prod(sz),'il',fd),sz(1),-1);
     end
     hiddencolor    = mget(1,'il',fd);
+    
+    // plot3d modify the given rotation angles
+    // trick to force keeping the good rotation angles F.Leray 18.02.05
+    a=gca();
+    rotation_angles = a.rotation_angles;
+        
     if or(color_flag==[2 5]) then
       plot3d1(x,y,list(z,clr))
     else
       plot3d(x,y,z)
     end
+    
+    a.rotation_angles = rotation_angles;
+    
     h=gce();
     set(h,"visible",visible)
     set(h,"surface_mode",surface_mode)
@@ -311,7 +338,8 @@ function   h=load_graphichandle(fd)
     n=mget(1,'il',fd)
     H=[]
     for k=1:n
-      H=[H load_graphichandle(fd)]
+      htmp = load_graphichandle(fd)
+      H=[H htmp]
     end
     h=glue(H)
   case "Rectangle"
@@ -485,6 +513,7 @@ function   h=load_graphichandle(fd)
   end
 
 endfunction
+
 function r=toggle(k)
 //Author S. Steer Sept 2004, Copyright INRIA
   r=emptystr(k)+'on'
