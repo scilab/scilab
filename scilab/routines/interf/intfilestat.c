@@ -30,14 +30,23 @@ char * fname;
      n1=0;
      CreateVar(2,"d",&n1,&n1,&l2);}
    else   {
-     n1 = 6;
+     n1 = 13;
      CreateVar(2,"d",&one,&n1,&l2);
-     *stk(l2+0) = (double) buf.st_size;
-     *stk(l2+1) = (double) buf.st_mode;
-     *stk(l2+2) = (double) buf.st_uid;
-     *stk(l2+3) = (double) buf.st_gid;
-     *stk(l2+4) = (double) buf.st_dev;
-     *stk(l2+5) = (double) buf.st_mtime;
+     *stk(l2+0) = (double) buf.st_size;/* total size, in bytes */
+     *stk(l2+1) = (double) buf.st_mode;/* protection */
+     *stk(l2+2) = (double) buf.st_uid;/* user ID of owner */
+     *stk(l2+3) = (double) buf.st_gid;/* group ID of owner */
+     *stk(l2+4) = (double) buf.st_dev;/* device */
+     *stk(l2+5) = (double) buf.st_mtime;/* time of last modification */
+     *stk(l2+6) = (double) buf.st_ctime;/* time of last change */
+     *stk(l2+7) = (double) buf.st_atime;/* time of last access */
+     *stk(l2+8) = (double) buf.st_rdev;/* device type (if inode device) */
+     *stk(l2+9) = (double) buf.st_blksize;/* blocksize for filesystem I/O */
+     *stk(l2+10) = (double) buf.st_blocks;/* number of blocks allocated */
+     *stk(l2+11) = (double) buf.st_ino;/* inode */
+     *stk(l2+12) = (double) buf.st_nlink;/* number of hard links */
+
+       
    }
   LhsVar(1) = 2;
   if (Lhs==2) {
