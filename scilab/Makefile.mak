@@ -44,11 +44,13 @@ Javasci:
 clean::
 	Makesubdirs.bat routines-clean
 	Makesubdirs.bat macros-clean
+	Makesubdirs.bat libs-clean
 
 distclean::
 	Makesubdirs.bat routines-distclean 
 	Makesubdirs.bat macros-distclean 
 	Makesubdirs.bat man-distclean 
+	Makesubdirs.bat libs-distclean
 
 # win32 
 LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \

@@ -17,7 +17,8 @@ if "%1" == "man" goto man
 if "%1" == "tcl" goto tcl
 if "%1" == "man-clean" goto man-clean
 if "%1" == "man-distclean" goto man-distclean
-
+if "%1" == "libs-distclean" goto libs-distclean
+if "%1" == "libs-clean" goto libs-clean
 
 echo Unknown target %1 
 goto end
@@ -108,14 +109,14 @@ cd routines\default
  @del /Q mexlib.dll
  @del /Q mexlib.ilib
  @del /Q mexlib.exp
-cd ../.. 
+cd ..\.. 
 goto end
 
 :Javasci
 cd routines\javasci
  echo making all Javasci
  nmake /C /f makefile.mak all /a
-cd ../.. 
+cd ..\.. 
 goto end
 
 
@@ -128,15 +129,29 @@ goto end
 
 :man-clean
 cd man
- echo making all in man
+ echo making clean in man
  nmake /C /f makehelp.mak clean 
 cd ..
 goto end
 
 :man-distclean
 cd man
- echo making all in man
+ echo making distclean in man
  nmake /C /f makehelp.mak distclean 
+cd ..
+goto end
+
+:libs-distclean
+cd libs
+echo making distclean in libs
+nmake /C /f Makefile.mak distclean
+cd ..
+goto end
+
+:libs-clean
+cd libs
+echo making clean in libs
+nmake /C /f Makefile.mak clean
 cd ..
 goto end
 

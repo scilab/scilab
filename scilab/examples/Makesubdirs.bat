@@ -145,12 +145,12 @@ cd link-examples-so
 cd ..\
 
 echo "Inside mex-examples/cmex"
-cd mex-examples/cmex
+cd mex-examples\cmex
  nmake /nologo /C /f Makefile.mak tests 
 cd ..\..\
 
 echo "Inside mex-examples/cppmex"
-cd mex-examples/cppmex
+cd mex-examples\cppmex
  nmake /nologo /C /f Makefile.mak tests 
 cd ..\..\
 
