@@ -3351,6 +3351,10 @@ A=testmat3(10000,5);
 if Err(diag(diag(X))-X)>100*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>100*%eps then bugmes();quit;end
+ warning
+ matrix is close to singular or badly scaled. rcond =    1.0000D-14
+computing least squares solution. (see lsq)
+ 
  
  
 //Complex Case
@@ -3362,6 +3366,10 @@ A=testmat3(10000+0.01*%i,5);
 if Err(diag(diag(X))-X)>100*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>100*%eps then bugmes();quit;end
+ warning
+ matrix is close to singular or badly scaled. rcond =    2.2737D-13
+computing least squares solution. (see lsq)
+ 
  
  
 //LArge dimension
@@ -3373,6 +3381,10 @@ A=testmat3(10000,30);
 if Err(diag(diag(X))-X)>100*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>1000*%eps then bugmes();quit;end
+ warning
+ matrix is close to singular or badly scaled. rcond =    1.0000D-20
+computing least squares solution. (see lsq)
+ 
  
  
 //Complex Case
@@ -3384,6 +3396,10 @@ A=testmat3(10000+0.01*%i,30);
 if Err(diag(diag(X))-X)>100*%eps then bugmes();quit;end
  
 if Err(Ab-inv(X)*A*X)>1000*%eps then bugmes();quit;end
+ warning
+ matrix is close to singular or badly scaled. rcond =    8.6736D-19
+computing least squares solution. (see lsq)
+ 
  
  
 // PENCILS
