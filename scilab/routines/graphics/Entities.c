@@ -19765,7 +19765,7 @@ int  ComputeCorrectXindAndInsideUD(double Teta,double Alpha, double *dbox, integ
 }
 
 
-int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _maxval, double fx, double fy, double fz)
+int AdaptGraduations(char xyz, sciPointObj * psubwin, double minval, double maxval, double fx, double fy, double fz)
 {
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
 /*   static int flag = 0; */
@@ -19781,22 +19781,22 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _ma
     nbgrads = &ppsubwin->axes.nxgrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[0];
     grads   = ppsubwin->axes.xgrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&_maxval,&fy,&fz); /* fx is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&_minval,&fy,&fz);
+    trans3d(psubwin,1,&xmmax,&ymmax,&maxval,&fy,&fz); /* fx is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&minval,&fy,&fz);
   }
   else if (xyz=='y'){
     nbgrads = &ppsubwin->axes.nygrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[1];
     grads   = ppsubwin->axes.ygrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&_maxval,&fz); /* fy is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&_minval,&fz);
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&maxval,&fz); /* fy is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&minval,&fz);
   }
   else if (xyz=='z'){
     nbgrads = &ppsubwin->axes.nzgrads;
     nbsubtics = &ppsubwin->axes.nbsubtics[2];
     grads   = ppsubwin->axes.zgrads;
-    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&_maxval); /* fz is useless */
-    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&_minval);
+    trans3d(psubwin,1,&xmmax,&ymmax,&fx,&fy,&maxval); /* fz is useless */
+    trans3d(psubwin,1,&xmmin,&ymmin,&fx,&fy,&minval);
   }
   else{
     sciprint("Error in AdaptGraduations call\n");
@@ -19808,7 +19808,7 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _ma
   
   pixel_size = (int) sqrt(x*x + y*y);
 
-/*   sciprint("ymmax = %d et ymmin = %d",ymmin,ymmax); */
+  /*   sciprint("ymmax = %d et ymmin = %d",ymmin,ymmax); */
 /*   sciprint(" pixel_size = %d", pixel_size); */
   
   if(pixel_size > 120) /* nothing to adapt : 10 graduations can be displayed */
@@ -19836,16 +19836,21 @@ int AdaptGraduations(char xyz, sciPointObj * psubwin, double _minval, double _ma
 
 int FindGrads(double *grads,int * n_grads)
 {
-  int nbgrads = *n_grads,i;
+  int nbgrads,i;
   double pas = 0.;
   double min = -1.;
-/*   double grads_tmp[20]; */
+  double grads_tmp[20];
+
+  nbgrads = *n_grads;
+
+
+  for(i=0;i<20;i++) grads_tmp[i] = grads[i];
 
   if((nbgrads % 2)!= 0 ) /* nombre impair de grads */
     {
-      for(i=0;i<(int) (nbgrads+1)/2;i=i++) {
-	grads[i] = grads[2*i];
-      }
+	  for(i=0;i<(int) (nbgrads+1)/2;i++) {
+	    grads[i] = grads_tmp[2*i];
+	  }
       
       *n_grads = (int) (nbgrads+1)/2; /* (7+1)/2 = 4, (9+1)/2 = 5 ...*/
     }
