@@ -1936,7 +1936,7 @@ proc PopUp { w numpage} {
     #visibility of X axis
     frame $fen1.frame.vis -borderwidth 0
     pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 1.m
-    label $fen1.frame.vislabel  -text "           Visibility:    "
+    label $fen1.frame.vislabel  -text "           Visibility:  "
     checkbutton $fen1.frame.visb  -textvariable Xaxes_visibleToggle  \
         -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityX" 
@@ -2051,7 +2051,7 @@ proc PopUp { w numpage} {
     #visibility of Y axis
     frame $fen2.frame.vis -borderwidth 0
     pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 1.m
-    label $fen2.frame.vislabel  -text "           Visibility:    "
+    label $fen2.frame.vislabel  -text "           Visibility:  "
     checkbutton $fen2.frame.visb  -textvariable Yaxes_visibleToggle  \
         -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityY" 
@@ -2164,7 +2164,7 @@ proc PopUp { w numpage} {
     #visibility of Z axis
     frame $fen3.frame.vis -borderwidth 0
     pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 1.m
-    label $fen3.frame.vislabel  -text "           Visibility:    "
+    label $fen3.frame.vislabel  -text "           Visibility:  "
     checkbutton $fen3.frame.visb  -textvariable Zaxes_visibleToggle  \
         -variable Zaxes_visibleToggle  -onvalue "on" -offvalue "off" \
         -command "toggleVisibilityZ" 
