@@ -76,7 +76,6 @@ TextMessage1 (int ctrlflag)
 void
 TextMessage2()
 {
-  MSG msg;
 #ifdef WITH_TK
   flushTKEvents ();
 #else 
