@@ -1,3 +1,9 @@
+#ifdef __MINGW32__
+#ifndef __WIN32_IE
+#define _WIN32_IE 0x0300
+#endif 
+#endif 
+
 #include <windows.h>
 #include <commdlg.h>
 #include <stdio.h>
@@ -8,7 +14,6 @@
 /*#include "wgnuplib.h"*/
 #include "wresource.h"
 #include "wcommon.h"
-
 #include "wtext.h"
 
 
@@ -27,7 +32,7 @@
 
 
 /* limits */
-#define MAXSTR 255
+/* #define MAXSTR 255 : already in wtext.h */ 
 #define MACROLEN 5000
 /* #define NUMMENU 256  defined in wresourc.h */
 #define MENUDEPTH 3
@@ -184,7 +189,7 @@ BOOL OpenSaveSCIFile(HWND hWndParent,char *titre,BOOL read,char *FileExt,char *f
 /* Double le caractere \ dans un chemin */
 void DoubleDoubleSlash(char *pathout,char *pathin);
 /* WTEXT.C*/
-extern void PasteFunction(LPTW lptw);
+/* extern void PasteFunction(LPTW lptw); */
 extern void SwitchConsole(void);
 /*--------------------------------*/
 /* Envoye le signal CTRL+une touche */
@@ -200,7 +205,6 @@ int EntetePage(HDC hdc,LPSTR Entete,int numero);
 HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,int iDeciPtWidth, int iAttributes, BOOL fLogRes);
 HDC GetPrinterDC(void);
 /*--------------------------------*/
-extern void ClearCommandWindow(LPTW lptw);
 void ResetMenu(void);
 /*--------------------------------*/
 void ShowToolBar(LPTW lptw);

@@ -2859,8 +2859,8 @@ void InitScreenBuffer(LPTW lptw)
     	}
 	
         /* Réinitialisation des dimensions */
-	/*lptw->ScreenSize.x = ScrollSize.x; /* 80 par défaut*/
-  	/*lptw->ScreenSize.y = ScrollSize.y; /* 360 par défaut*/
+	/*lptw->ScreenSize.x = ScrollSize.x; / * 80 par défaut*/
+  	/*lptw->ScreenSize.y = ScrollSize.y; / * 360 par défaut*/
 	
      	lptw->ScrollMax.y = max (0, lptw->CharSize.y * lptw->ScreenSize.y - lptw->ClientSize.y);
       	lptw->ScrollPos.y = min (lptw->ScrollPos.y, lptw->ScrollMax.y);
@@ -3139,7 +3139,7 @@ void ReAllocScreenBuffer(LPTW lptw)
 	if (CopyOfScreenBuffer == NULL)
     	{
       		MessageBox ((HWND) NULL, szNoMemory, (LPSTR) NULL, MB_ICONHAND | MB_SYSTEMMODAL);
-      		return (1);
+      		return;
     	}
     	/* Copie des caracteres dans un buffer intermédiaire */
 	strncpy(CopyOfScreenBuffer,(LPSTR)lptw->ScreenBuffer,NombredeCaracteres);

@@ -24,7 +24,6 @@
 
 #include "wmenu.h"
 
-
 #ifndef STRICT
 #define STRICT
 #endif
@@ -61,8 +60,8 @@ void SendMacro (LPTW lptw, UINT m)
     {
       if (*s >= CMDMIN && *s <= CMDMAX)
 	{
-	  int ierr = 0;
-/** Special cases **/
+	  /* int ierr = 0; */
+	  /** Special cases **/
 	  switch (*s)
 	    {
 	    	case NEWSCILAB:
@@ -206,7 +205,7 @@ void SendMacro (LPTW lptw, UINT m)
 			s++;
 	    	break;
 	    	case PASTE:
-	    		if ( !IsEmptyClipboard(lptw) ) PasteFunction(lptw);
+	    		if ( !IsEmptyClipboard(lptw) ) PasteFunction(lptw,FALSE);
 	    		else MessageBox(lptw->hWndParent,"Clipboard is empty","Info.",MB_ICONINFORMATION);
 	    	        return;
 	    	break; 
@@ -930,9 +929,6 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
         HDC hdc,hdcMemory;
         HICON hIcon;	
 	lpmw = lptw->lpmw;
-	
-	
-
  
 //lpmw->hButton[index] = CreateWindow("button",IDI_GRAPH,WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | BS_ICON,index * ButtonSizeX, 0,  ButtonSizeX, ButtonSizeY,lptw->hWndParent, (HMENU) index,lptw->hInstance,  NULL);
 
@@ -948,7 +944,7 @@ ShowWindow(lpmw->hButton[index],1);
 	lpmw->lpfnButtonProc[index] = (WNDPROC) GetWindowLong (lpmw->hButton[index], GWL_WNDPROC);
       	SetWindowLong (lpmw->hButton[index], GWL_WNDPROC, (LONG) lpmw->lpfnMenuButtonProc);			       
 }	
-	/*
+ / *
 	
 	#define ID_STATIC1 100
 	LPMW lpmw;
@@ -1038,7 +1034,6 @@ ShowWindow(lpmw->hButton[index],1);
  /* Modifications Allan CORNET ToolBar */
 EXPORT LRESULT CALLBACK MenuButtonProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  
   LPTW lptw;
   LPMW lpmw;
   LONG n = GetWindowLong (hwnd, GWL_ID);
