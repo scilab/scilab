@@ -1,9 +1,5 @@
 function scs_m=do_version26(scs_m)
-  if type(scs_m(1))==16 then 
-    message(['Intermediate version, please save it in cosf format "
-	     "and reload"])
-    return
-  elseif type(scs_m(1)) <> 17 then
+  if type(scs_m(1)) <> 16 then
     tol=scs_m(1)(3)
     if size(tol,'*')<6 then tol(6)=0,end
     tf=scs_m(1)(4)
