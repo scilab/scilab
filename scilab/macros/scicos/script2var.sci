@@ -9,10 +9,6 @@ function [%ll,%ierr]=script2var(%txt,%ll)
     end
   end
   
-  //  deff('%toto_()',%txt)
-  //  %ierr=exec(%toto_,'errcatch',-1)
-  //  %mm=macrovar(%toto_)
-  //  %mm=%mm(5)
   [%ll,%ierr]=getvardef(%txt,%ll)
   if %ierr<>0 then 
     return,
@@ -30,6 +26,8 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
   %nww2=size(%mm,'*')
   %mm=%mm(1:%nww2-%nww)
   for %mi=%mm(:)'
-    %ll(%mi)=evstr(%mi)
+    if type(evstr(%mi)) <> 13 then
+      %ll(%mi)=evstr(%mi)
+    end
   end
 endfunction
