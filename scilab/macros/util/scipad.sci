@@ -18,8 +18,8 @@ global TMPDIR
         TK_EvalStr("scipad eval { set env(HOME) """+pathconvert(home,%f,%t)+""" }")
       end
     end
-    if ~exists("%scipad_language") then 
-      if exists("LANGUAGE") then
+    if %scipad_language==[] then 
+      if "LANGUAGE"<>[] then
         %scipad_language=LANGUAGE
       else
         %scipad_language="eng"
