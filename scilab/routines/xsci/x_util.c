@@ -38,6 +38,7 @@
 #include <stdio.h>
 
 extern int IsConsoleMode(void);
+extern void DisplayInit(char *string,Display **dpy,Widget * toplevel);
 
 static void horizontal_copy_area();
 static void vertical_copy_area();
@@ -1076,37 +1077,40 @@ int XClearScreenConsole(char *fname)
 /* V.C. 08/2004 */
 int GetScreenProperty(char *prop, char *value)
 {
-  register TScreen *screen = &term->screen;
+  Display *dpy;
+  Widget toplevel;
+  DisplayInit("",&dpy,&toplevel);
+ 
   
   if(!strcmp(prop,"screensize_px"))
     {
       sprintf(value,"%f|%f|%f|%f",(float)1,(float)1,
-	      (float)DisplayWidth(screen->display,DefaultScreen(screen->display)),
-	      (float)DisplayHeight(screen->display,DefaultScreen(screen->display)));
+	      (float)DisplayWidth(dpy,DefaultScreen(dpy)),
+	      (float)DisplayHeight(dpy,DefaultScreen(dpy)));
     }
   else if(!strcmp(prop,"screensize_mm"))
     {
       sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
-	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display)),
-	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display)));
+	      (float)DisplayWidthMM(dpy,DefaultScreen(dpy)),
+	      (float)DisplayHeightMM(dpy,DefaultScreen(dpy)));
     }
   else if(!strcmp(prop,"screensize_cm"))
     {
       sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
-	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display))/10,
-	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display))/10);
+	      (float)DisplayWidthMM(dpy,DefaultScreen(dpy))/10,
+	      (float)DisplayHeightMM(dpy,DefaultScreen(dpy))/10);
     }
   else if(!strcmp(prop,"screensize_in"))
     {
       sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
-	      ((float)DisplayWidthMM(screen->display,DefaultScreen(screen->display)))/25.4,
-	      ((float)DisplayHeightMM(screen->display,DefaultScreen(screen->display)))/25.4);
+	      ((float)DisplayWidthMM(dpy,DefaultScreen(dpy)))/25.4,
+	      ((float)DisplayHeightMM(dpy,DefaultScreen(dpy)))/25.4);
     }
   else if(!strcmp(prop,"screensize_pt"))
     {
       sprintf(value,"%f|%f|%f|%f",(float)0,(float)0,
-	      (float)DisplayWidthMM(screen->display,DefaultScreen(screen->display))/25.4*72,
-	      (float)DisplayHeightMM(screen->display,DefaultScreen(screen->display))/25.4*72);
+	      (float)DisplayWidthMM(dpy,DefaultScreen(dpy))/25.4*72,
+	      (float)DisplayHeightMM(dpy,DefaultScreen(dpy))/25.4*72);
     }
   else if(!strcmp(prop,"screensize_norm"))
     {
@@ -1125,7 +1129,10 @@ int GetScreenProperty(char *prop, char *value)
 /* return the x/y DPI */
 int GetScreenDPI(int *ixres, int *iyres)
 {
-  TScreen *screen = &term->screen;
+  Display *dpy;
+  Widget toplevel;
+  DisplayInit("",&dpy,&toplevel);
+  
   double xres, yres;
   
   /*
@@ -1136,10 +1143,10 @@ int GetScreenDPI(int *ixres, int *iyres)
    *         = N * 25.4 pixels / M inch
    */
   
-  xres = ((((double) DisplayWidth(screen->display,DefaultScreen(screen->display))) * 25.4) / 
-	  ((double) DisplayWidthMM(screen->display,DefaultScreen(screen->display))));
-  yres = ((((double) DisplayHeight(screen->display,DefaultScreen(screen->display))) * 25.4) / 
-	  ((double) DisplayHeightMM(screen->display,DefaultScreen(screen->display))));
+  xres = ((((double) DisplayWidth(dpy,DefaultScreen(dpy))) * 25.4) / 
+	  ((double) DisplayWidthMM(dpy,DefaultScreen(dpy))));
+  yres = ((((double) DisplayHeight(dpy,DefaultScreen(dpy))) * 25.4) / 
+	  ((double) DisplayHeightMM(dpy,DefaultScreen(dpy))));
   
   *ixres = (int) (xres + 0.5);
   *iyres = (int) (yres + 0.5);
