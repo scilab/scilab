@@ -34,7 +34,7 @@ D =      %hm_d_hm.sci %hm_d_s.sci %p_d_p.sci %p_d_r.sci \
 	 %s_d_r.sci %s_d_sp.sci %sp_d_s.sci %sp_d_sp.sci %i_d_i.sci
 
 E =      %c_e.sci %hm_e.sci %lss_e.sci %p_e.sci %r_e.sci %s_e.sci \
-	 %sp_e.sci %spb_e.sci %cblock_e.sci
+	 %sp_e.sci %spb_e.sci %cblock_e.sci %h_e.sci
 
 F =      %b_f_spb.sci %c_f_s.sci %hm_f_hm.sci %lss_f_lss.sci \
 	 %lss_f_p.sci %lss_f_r.sci %lss_f_s.sci %p_f_lss.sci \
@@ -56,7 +56,7 @@ I =      %b_i_s.sci %b_i_sp.sci %b_i_spb.sci %c_i_lss.sci \
 	 %r_i_p.sci %r_i_r.sci %r_i_s.sci %s_i_hm.sci \
 	 %s_i_lss.sci %s_i_p.sci %s_i_r.sci %s_i_s.sci \
 	 %s_i_sp.sci %s_i_spb.sci %sp_i_s.sci %sp_i_sp.sci \
-	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci
+	 %i_i_hm.sci %i_i_s.sci %b_i_hm.sci %s_i_h.sci %c_i_h.sci 
 
 J =      %hm_j_hm.sci %hm_j_s.sci %p_j_s.sci %r_j_s.sci
 
@@ -181,6 +181,7 @@ SPFUNS = %sp_ceil.sci %sp_cos.sci %sp_diag.sci %sp_exp.sci %sp_floor.sci \
 
 IFUNS =  %i_and.sci %i_or.sci %i_round.sci %i_prod.sci %i_length.sci 
 
+HFUNS = %h_delete.sci %h_draw.sci %h_get.sci %h_set.sci
 
 FUNS =   %cblock_p.sci %choose.sci    
 
