@@ -1,5 +1,5 @@
 RM = @RM@
-AR = @AR@
+AR = @AR@ @AR_FLAGS@
 FILES_TO_CLEAN = @FILES_TO_CLEAN@
 
 all::
