@@ -145,11 +145,8 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
     }
     
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
-      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
-      CleanRectangle(psubwin);
-      sciDrawObj(psubwin);
-    }
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      EraseAndOrRedraw(psubwin);
     
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
@@ -336,11 +333,8 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
   /*   sciDrawObj(psubwin); /\* ???? *\/ */
     
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
-      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
-      CleanRectangle(psubwin);
-      sciDrawObj(psubwin);
-    }
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      EraseAndOrRedraw(psubwin);
     
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)

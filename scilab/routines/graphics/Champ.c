@@ -136,12 +136,9 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       
       axes_properties_changed = strflag2axes_properties(psubwin, strflag);
       
-      if(bounds_changed == TRUE || axes_properties_changed == TRUE){
-	sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
-	CleanRectangle(psubwin);
-	sciDrawObj(psubwin);
-      }
-            
+      if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+	EraseAndOrRedraw(psubwin);
+      
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = 0.5;
 

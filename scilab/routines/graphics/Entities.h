@@ -439,6 +439,8 @@ typedef struct
   int pixmap; /* DJ.A 30/12 */
   int wshow ;
   
+  BOOL allredraw;
+
   sciFont fontcontext; /* F.Leray 08.04.04 */
   
 }/** */
@@ -1596,5 +1598,6 @@ extern double InvAxis(double min, double max, double u);
 extern int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, double * zvect, int n1);
 extern void DrawAxes(sciPointObj*);
 extern void CleanRectangle(sciPointObj * psubwin);
+extern void EraseAndOrRedraw(sciPointObj * pobj);
 
 #endif /*__SCI_ENTITIES__*/

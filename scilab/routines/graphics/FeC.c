@@ -163,11 +163,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
     }
 
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
-      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
-      CleanRectangle(psubwin);
-      sciDrawObj(psubwin);
-    }
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+      EraseAndOrRedraw(psubwin);
     
     sciSetCurrentObj (ConstructFec 
 		      ((sciPointObj *)

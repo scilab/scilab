@@ -35,7 +35,7 @@ void Objrect (x,y,width,height,fillflag,fillcolor,n,hdl,flagstring)
   *hdl=sciGetHandle(sciGetCurrentObj ()); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
+    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
   /*      sciDrawObj(sciGetCurrentFigure ());} */
   else
     sciDrawObj(sciGetCurrentObj ());
@@ -97,7 +97,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
   *hdl=sciGetHandle(pobj); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0){
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
+   EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
   /*      sciDrawObj(sciGetCurrentFigure ());} */
   else
     sciDrawObj(pobj);
@@ -129,7 +129,7 @@ void Objfpoly (x,y,n,style,hdl)
   
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
+    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
   /*   sciDrawObj(sciGetCurrentFigure ());} */
   else
     sciDrawObj(sciGetCurrentObj ());
@@ -157,7 +157,7 @@ void Objsegs (style,flag,n1,x,y,arsize)
 				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact)); 
   if (pSUBWIN_FEATURE(psubwin)->surfcounter>0) {
     Merge3d(psubwin); /* an addtomerge function should be much more efficient */
-    sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
+    EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));}
   /*      sciDrawObj(sciGetCurrentFigure ());} */
   else
     sciDrawObj(sciGetCurrentObj ());  
@@ -499,8 +499,8 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
    * Redraw Figure
    * ================================================= */
 
-/*   sciDrawObj(sciGetCurrentFigure ()); */
-  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
+  /*   sciDrawObj(sciGetCurrentFigure ()); */
+  EraseAndOrRedraw(sciGetSelectedSubWin (sciGetCurrentFigure ()));
   pSUBWIN_FEATURE(psubwin)->FirstPlot=FALSE;
    
   FREE(loc); loc = NULL;

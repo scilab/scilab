@@ -7832,6 +7832,8 @@ ConstructFigure (XGC)
   pFIGURE_FEATURE (pobj)->numsubwinselected = pFIGURE_FEATURE (pfiguremdl)->numsubwinselected;
   pFIGURE_FEATURE (pobj)->pixmap = pFIGURE_FEATURE (pfiguremdl)->pixmap ; 
   pFIGURE_FEATURE (pobj)->wshow = pFIGURE_FEATURE (pfiguremdl)->wshow ; 
+  pFIGURE_FEATURE (pobj)->allredraw = pFIGURE_FEATURE (pfiguremdl)->allredraw;
+
   return pobj;
 }
 
@@ -8443,6 +8445,8 @@ int C2F(graphicsmodels) ()
       strcpy(error_message,"Default figure cannot be create");
       return 0;
     }
+
+  pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
   
   strncpy (pFIGURE_FEATURE (pfiguremdl)->name, "Scilab Graphic (%d)", sizeof ("Scilab Graphic (%d)") + 4);
   pFIGURE_FEATURE (pfiguremdl)->namelen = Min (60, 19); 
@@ -19636,6 +19640,7 @@ int InitFigureModel()
 { 
   int i, m = NUMCOLORS_SCI;
   /*sciPointObj *pfiguremdl = (sciPointObj *) NULL;*/ /* DJ.A 08/01/04 */
+  pFIGURE_FEATURE (pfiguremdl)->allredraw = FALSE;
 
   sciInitGraphicContext (pfiguremdl);
   sciInitGraphicMode (pfiguremdl);
@@ -22240,7 +22245,7 @@ void CleanRectangle(sciPointObj * psubwin)
   C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   
-  color = sciGetBackground(psubwin);
+  color = sciGetBackground(sciGetParentFigure (psubwin));
   
   ixbox[0] = ixbox[4] = ppsubwin->WRect[0] * ppfigure->windowdimwidth;
   iybox[0] = iybox[4] = ppsubwin->WRect[1] * ppfigure->windowdimheight;
@@ -22267,4 +22272,21 @@ void CleanRectangle(sciPointObj * psubwin)
   C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
   C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+}
+
+
+void EraseAndOrRedraw(sciPointObj * pobj)
+{
+  sciPointObj * pfigure = sciGetParentFigure (pobj);
+  
+  if(pFIGURE_FEATURE (pfigure)->allredraw == TRUE || sciGetEntityType(pobj) == SCI_FIGURE)
+    {
+      sciDrawObj(sciGetParentFigure(pobj));
+    }
+  else
+    {
+      sciPointObj * psubwin = sciGetParentSubwin(pobj);
+      CleanRectangle(psubwin);
+      sciDrawObj(psubwin);
+    }
 }

@@ -201,12 +201,9 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
   
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE){
-    sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
-    CleanRectangle(psubwin);
-    sciDrawObj(psubwin);
-  }
-
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
+    EraseAndOrRedraw(psubwin);
+  
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
     frame_clip_on ();
