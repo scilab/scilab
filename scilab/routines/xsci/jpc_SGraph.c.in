@@ -680,11 +680,11 @@ EventProc(widget, number, event)
  * he want the queue to be used 
  *********************************************/
 
-int scig_click_handler_none (win,x,y,ibut,motion,release)int win,x,y,ibut,motion,release;
+int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release)
 {return 0;};
 
-nt scig_click_handler_sci (win,x,y,ibut,motion,release)
-int win,x,y,ibut,motion,release;
+int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
+
 {
   static char buf[256];
   struct BCG *SciGc;
@@ -711,8 +711,8 @@ Scig_click_handler set_scig_click_handler(f)
 
 void reset_scig_click_handler() 
 {
-/*  scig_click_handler = scig_click_handler_none;*/
-scig_click_handler = scig_click_handler_sci;
+  /*  scig_click_handler = scig_click_handler_none;*/
+  scig_click_handler = scig_click_handler_sci;
 }
 
 
