@@ -2937,10 +2937,16 @@ void *GetData(lw)
      int lw;
 {
   int lw1 = lw + Top - Rhs ;
-  int *loci = (int *) stk( *lstk(lw1));
+  int l1 = *lstk(lw1);
+  int *loci = (int *) stk(l1);
+  if (loci[0] < 0) 
+    {
+      l1 = loci[1];
+      loci = (int *) stk(l1);
+    }
   C2F(intersci).ntypes[lw - 1] = '$';
-  C2F(intersci).iwhere[lw - 1] = *lstk(lw1);
-  C2F(intersci).lad[lw - 1] = *lstk(lw1);
+  C2F(intersci).iwhere[lw - 1] = l1;
+  C2F(intersci).lad[lw - 1] = l1;
   return loci;
 }
 
