@@ -414,7 +414,11 @@ function t=fmtchildren(c)
   if c==[] then 
     t='[]'
   else
-    t=sci2exp(c.type,0)
-    if length(t)>70 then t="matrix "+strcat(string(size(c)),'x'),end 
+    if size(c,'*')<10 then
+      t=sci2exp(c.type,0)
+      if length(t)>70 then t="matrix "+strcat(string(size(c)),'x'),end 
+    else
+      t="matrix "+strcat(string(size(c)),'x')   
+    end
   end
 endfunction
