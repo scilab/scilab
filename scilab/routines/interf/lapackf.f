@@ -491,7 +491,7 @@ c
 c     [U,S,V]=dgesvd(A)
 c     s = dgesvd(A)
 
-      include 'stack.h'
+      include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
 
@@ -582,7 +582,7 @@ c
 c     [U,S,V]=dgesvd(A)
 c     s = dgesvd(A)
 
-      include 'stack.h'
+      include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
 
@@ -673,7 +673,7 @@ c
 c     [U,S,V]=zgesvd(A)
 c     s = zgesvd(A)
 
-      include 'stack.h'
+      include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
  
@@ -767,7 +767,7 @@ c
 c     [U,S,V]=zgesvd(A)
 c     s = zgesvd(A)
 
-      include 'stack.h'
+      include '../stack.h'
       logical getrhsvar,createvar
       logical checklhs,checkrhs
  
