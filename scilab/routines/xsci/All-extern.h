@@ -19,12 +19,6 @@ extern int C2F(scirun)  __PARAMS((char * startup, int lstartup));
 extern int sci_exit __PARAMS((int n));
 extern int  Scierror  __PARAMS((int iv,char *fmt,...));
 
-/*  "h_help-n.c.X1"*/
-extern void initHelpActions  __PARAMS((XtAppContext appContext));  
-extern void popupHelpPanel __PARAMS((void));  
-extern void changeHelpList  __PARAMS((int i));  
-extern void setHelpShellState  __PARAMS((int state));  
-extern char *getWidgetString  __PARAMS((Widget widget));  
 
 /*  "jpc_SGraph-n.c.X1"*/
 

@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <sys/file.h>
 
+#include "../stack-def.h"
+
 #ifndef hppa
 #include <dlfcn.h>
 #else
@@ -63,10 +65,11 @@
 
 #include <string.h>
 
-
 #define round(x,s) (((x) + ((s)-1)) & ~((s)-1))
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
+
+#define debug C2F(iop).ddt==1
 
 /* extern char *strchr();  */
 extern int Use_cpp_code;
@@ -219,7 +222,7 @@ static int Sci_dlopen(char **loaded_files,int global)
 	   && strstr(loaded_files[0],SHARED_SUF)!= NULL)
 	{
 	  strcpy(tmp_file,loaded_files[0]);
-	  sciprint_nd("Loading shared executable %s\r\n",loaded_files[0]);
+	  if (debug) sciprint_nd("Loading shared executable %s\r\n",loaded_files[0]);
 	}
       else 
 	{
@@ -305,14 +308,14 @@ static int CreateShared(char **loaded_files, char *tmp_file)
   char *libs,*tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  sciprint_nd("linking files ");
+  if (debug) sciprint_nd("linking files ");
   while ( loaded_files[i] != NULL) 
     {
-      sciprint_nd("%s ",loaded_files[i]);
+      if (debug) sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  sciprint_nd(" to create a shared executable\r\n");
+  if (debug) sciprint_nd(" to create a shared executable\r\n");
   count++;
   /* be sure that tmpdir exists */
   tmpdir = get_sci_tmp_dir();
@@ -395,14 +398,14 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
   char *libs, *exec_cpp, *tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  sciprint_nd("linking files ");
+  if (debug) sciprint_nd("linking files ");
   while ( loaded_files[i] != NULL) 
     {
-      sciprint_nd("%s ",loaded_files[i]);
+      if (debug) sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  sciprint_nd(" to create a shared executable\r\n");
+  if (debug) sciprint_nd(" to create a shared executable\r\n");
   count++;
   tmpdir = get_sci_tmp_dir();
   sprintf(tmp_file, "%s/SL_%d_XXXXXX",tmpdir,(int) getpid()); /*,count);*/
@@ -520,7 +523,7 @@ static int Sci_dlsym(char *ename, int ishared, char *strf)
   else 
     {
       /* we don't add the _ in the table */
-      sciprint("Linking %s \r\n",ename);
+      if (debug) sciprint("Linking %s \r\n",ename);
       strncpy(EP[NEpoints].name,ename,MAXNAME);
       EP[NEpoints].Nshared = ish;
       NEpoints++;

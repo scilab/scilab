@@ -126,7 +126,6 @@ extern int TestChoose(void);
 extern int TestmDialogWindow();
 extern int TestmChoiceWindow();
 extern int TestGetFile() ;
-extern void DoHelpDialog();
 extern BOOL  DialogWindow();
 extern void  test_mouse();
 extern int  TestChoice();
@@ -223,10 +222,6 @@ extern int ClearClickQueue(int win);
 extern void Tape_Replay(char *,integer *,integer *,integer *,integer *,integer *,integer *,double *,double *,double *,double *);
 extern void C2F(SetDriver)();
 extern int C2F(dr)();
-
-/* wmhelp */
-
-extern void DoHelpDialog();
 
 /* wmprint */
 

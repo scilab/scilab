@@ -9,25 +9,25 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/system.lib
 
-OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj helpap.obj \
+OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj
 
 OBJSF = allops.obj  banier.obj diary.obj\
 	clause.obj comand.obj compcl.obj   \
 	defmat.obj eqid.obj error.obj showstack.obj expr.obj fact.obj funs.obj \
 	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj \
-	getval.obj helpmg.obj inisci.obj \
+	getval.obj inisci.obj \
 	logops.obj macro.obj mname.obj nextj.obj parse.obj print.obj \
 	prompt.obj putid.obj  run.obj savlod.obj  stackg.obj stackgl.obj \
 	ref2val.obj stackp.obj terme.obj  scirun.obj \
-	majmin.obj apropo.obj whatln.obj \
+	majmin.obj whatln.obj \
 	seteol.obj setlnb.obj skpins.obj msgs.obj prntid.obj \
 	cvname.obj cvstr.obj compil.obj ptover.obj ptrback.obj \
 	isbrk.obj  bexec.obj scilines.obj \
 	mrknmd.obj mkindx.obj mklist.obj cmdstr.obj setgetmode.obj\
 	typ2cod.obj israt.obj funnam.obj dspdsp.obj lspdsp.obj wspdsp.obj \
 	xerbla.obj algebre.obj storeglobal.obj setippty.obj allowptr.obj copyvar.obj \
-	lst2vars.obj createref.obj getfunction.obj varfunptr.obj
+	lst2vars.obj createref.obj getfunction.obj varfunptr.obj tksynchro.obj
 
 include ../../Makefile.incl.amk
 
@@ -55,7 +55,6 @@ Intersci.obj: ../machine.h
 Blas.obj: ../machine.h
 msgstore.obj: ../machine.h ../stack-c.h
 allops.obj: ../stack.h
-apropo.obj: ../stack.h
 bexec.obj: ../stack.h
 clause.obj: ../stack.h
 cmdstr.obj: ../stack.h
@@ -77,7 +76,6 @@ getnum.obj: ../stack.h
 getstr.obj: ../stack.h
 getsym.obj: ../stack.h
 getval.obj: ../stack.h
-helpmg.obj: ../stack.h
 inisci.obj: ../stack.h
 israt.obj: ../stack.h
 logops.obj: ../stack.h
@@ -114,4 +112,4 @@ whatln.obj: ../stack.h
 xchar.obj: ../stack.h
 refval2.obj: ../stack.h
 xerbla.obj: ../stack.h
-
+tksynchro.obj: ../machine.h ../tksci/tksci.h

@@ -10,7 +10,7 @@ OBJSF = bashos.obj basin.obj basout.obj \
 	fgetarg.obj getpro.obj inibrk.obj sigbas.obj 
 
 OBJSC  = getenvc.obj link.obj systemc.obj zzledt.obj  csignal.obj getpidc.obj timer.obj \
-	flags.obj men_Sutils.obj addinter.obj h_help_data.obj tmpdir.obj cluni0.obj \
+	flags.obj men_Sutils.obj addinter.obj tmpdir.obj cluni0.obj \
 	inffic.obj isanan.obj texmacs.obj
 
 include ../../Makefile.incl.mak

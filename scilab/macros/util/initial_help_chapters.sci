@@ -1,30 +1,47 @@
-function %helps=initial_help_chapters()
-%helps =['/man/programming'	,'Scilab Programming';
-	'/man/graphics'		,'Graphic Library';
-	'/man/elementary'	,'Elementary Functions';
-	'/man/fileio'	        ,'Input/Output Functions';
-	'/man/functions'	,'Handling of functions and libraries'
-	'/man/strings'          ,'Character string manipulations';
-	'/man/gui'              ,'Dialogs'
-	'/man/utilities'        ,'Utilities'
-	'/man/time-date'        ,'Time and date'
-	'/man/linear'		,'Linear Algebra functions';
-	'/man/polynomials'	,'Polynomial calculations';
-	'/man/dcd'		,'Cumulative Distribution Functions; Inverses, grand';
-	'/man/control'		,'General System and Control functions';
-	'/man/robust'		,'Robust control toolbox';
-	'/man/nonlinear'	,'Non-linear tools (optimization and simulation)';
-	'/man/signal'		,'Signal Processing toolbox';
-	'/man/arma'		,'Arma modelisation and simulation toolbox';
-	'/man/metanet'		,'Metanet: graph and network toolbox';
-	'/man/scicos'		,'Scicos: Bloc diagram editor and simulator';
-	'/man/sound'		,'Sound file handling';
-	'/man/translation'	,'Language or data translations';
-	'/man/pvm'		,'PVM parallel toolbox';
-	'/man/comm'		,'GECI communication toolbox';
-	'/man/tksci'		,'TCL/Tk interface';
-	'/man/identification'	,'Identification toolbox';
-	'/man/tdcs'		,'TdCs']
-
-%helps=[ SCI+%helps(:,1),%helps(:,2)];
-endfunction
+function %helps=initial_help_chapters(language)
+[lhs,rhs]=argn(0)
+if rhs==0 then
+  language="eng"
+else
+  if rhs<>1 then error(39), end
+end
+dirs=["programming";"graphics";"elementary";"fileio";"functions";"strings";
+      "gui";"utilities";"linear";"polynomials";"dcd";"control";"robust";
+      "nonlinear";"signal";"arma";"metanet";"scicos";"sound";"translation";
+      "pvm";"tdcs";"tksci"];
+sep="/";if MSDOS then sep="\",end
+%helps=sep+"man"+sep+language+sep+dirs; 
+select language
+case "eng"
+  %helps=[%helps,..
+      ["Programming";"Graphics Library";"Elementary Functions";
+	  "Input/Output Functions";"Handling of functions and libraries";
+	  "Character string manipulations";"Dialogs";"Utilities";
+	  "Linear Algebra";"Polynomial calculations";
+	  "Cumulative Distribution Functions; Inverses, grand";
+	  "General System and Control";"Robust control toolbox";
+	  "Optimization and simulation";
+	  "Signal Processing toolbox";
+	  "Arma modelisation and simulation toolbox";
+	  "Metanet: graph and network toolbox";
+	  "Scicos: Bloc diagram editor and simulator";"Sound file handling";
+	  "Language or data translations";"PVM parallel toolbox";"TdCs";
+	  "TCL/Tk interface"]];
+  case "fr"
+  %helps=[%helps,..
+      ["Programmation";"Librairie graphique";"Fonctions élémentaires";
+	  "Entrées-sorties";"Manipulation des fonctions et des librairies";
+	  "Manipulations de chaînes de caractères";"Dialogues";"Utilitaires";
+	  "Algèbre linéaire";"Calculs sur les polynômes";
+	  "Fonctions de distributions statistiques";
+	  "Contrôle et théorie des systèmes";"Contrôle robuste";
+	  "Optimisation et simulation";
+	  "Traitement du signal";"Modélisation et simulation ARMA";
+	  "Metanet : graphes et réseaux";
+	  "Scicos : éditeur et simulateur de blocs diagrammes";
+	  "Manipulation de fichiers sons";
+	  "Génération de code, traduction de données";
+	  "Calcul parallèle avec PVM";"TdCs";
+	  "Interface TCL/Tk"]];
+end
+%helps=[SCI+%helps(:,1),%helps(:,2)];

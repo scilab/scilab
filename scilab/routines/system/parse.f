@@ -90,10 +90,12 @@ c-------------------
                   top=0
                endif
             endif
+            call tksynchro(paus)
          endif
       endif
  13   continue
       call getlin(job)
+      call tksynchro(-1)
       if(fin .eq. -1) then
 c     Continuation line handling when scilab is called as a routine
          fun=99

@@ -7,7 +7,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/metanet.lib
 
-OBJSC = metanet.obj loadg.obj saveg.obj show.obj connex.obj dmtree.obj paths.obj \
+OBJSC = loadg.obj saveg.obj connex.obj dmtree.obj paths.obj \
 	transc.obj files.obj myhsearch.obj
 
 OBJSF = metane.obj arbor.obj bandred.obj bmatch.obj busack.obj carete.obj \
@@ -29,10 +29,8 @@ FFLAGS = $(FC_OPTIONS)
 
 include ../Make.lib.amk
 
-metanet.obj: ../machine.h ../libcomm/libCalCom.h ../libcomm/libCom.h
 loadg.obj: ../machine.h mysearch.h defs.h
 saveg.obj: ../machine.h
-show.obj: ../machine.h ../libcomm/libCalCom.h ../libcomm/libCom.h netcomm.h
 connex.obj: ../machine.h
 dmtree.obj: ../machine.h
 paths.obj: ../machine.h

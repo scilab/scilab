@@ -40,15 +40,6 @@ extern void
       SciLibLoad(),
       C2F(addinter)(),
       C2F(userlk)(),
-      HelpActivate(),
-      HelpGetPath(),
-      Help_Init(),
-      SciCallHelp(),
-      Sci_Apropos(),
-      Sci_Help(),
-      SetAproposTopics(),
-      initHelpDatas(),
-      setHelpTopicInfo(),
       C2F(settmpdir)(),
       C2F(tmpdirc)(),
       C2F(cluni0)(),
@@ -111,15 +102,6 @@ void Sun_contents( int x)
       SciLibLoad();
       C2F(addinter)();
       C2F(userlk)();
-      HelpActivate();
-      HelpGetPath();
-      Help_Init();
-      SciCallHelp();
-      Sci_Apropos();
-      Sci_Help();
-      SetAproposTopics();
-      initHelpDatas();
-      setHelpTopicInfo();
       C2F(settmpdir)();
       C2F(tmpdirc)();
       C2F(cluni0)();

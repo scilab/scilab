@@ -56,6 +56,15 @@ int OpenTksci()
 
   Display *XTKdisplay;
 
+#ifdef TCL_MAJOR_VERSION
+#ifdef TCL_MINOR_VERSION
+#if TCL_MAJOR_VERSION >= 8
+#if TCL_MINOR_VERSION > 0
+  Tcl_FindExecutable(NULL);
+#endif
+#endif
+#endif
+#endif
   SciPath=getenv("SCI");
   
   /* test SCI validity) */

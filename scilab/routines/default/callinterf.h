@@ -41,7 +41,7 @@ extern void    /* 29  */ C2F(matodc)();
 extern void    /* 30  */ C2F(defint)();
 extern void    /* 31  */ C2F(feval)();
 extern void    /* 32  */ C2F(bva)();
-extern void    /* 33  */ C2F(comm)();
+/* 33  */ /* FREE */
 extern void    /* 34  */ C2F(soundi)();
 extern void    /* 35  */ C2F(coselm)();
 extern void    /* 36  */ C2F(specfun)();
@@ -98,7 +98,7 @@ static OpTab Interfaces[] ={
 	    /* 30  */ {C2F(defint)},
 	    /* 31  */ {C2F(feval)},
 	    /* 32  */ {C2F(bva)},
-	    /* 33  */ {C2F(comm)},
+     	    /* 33  */ {C2F(matus2)}, /* free position may be used */
 	    /* 34  */ {C2F(soundi)},
 	    /* 35  */ {C2F(coselm)},
 	    /* 36  */ {C2F(specfun)},

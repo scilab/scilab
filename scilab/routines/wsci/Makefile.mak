@@ -4,7 +4,7 @@ SCIDIR1=..\..
 LIBRARY = $(SCIDIR)/libs/wsci.lib
 
 OBJSC1 =wtext.obj wgnuplib.obj wmenu.obj wprinter.obj wpause.obj wgraph.obj winmain.obj \
-	wmhelp.obj wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj
+	wgmenu.obj wstatbar.obj gvwprn.obj wmprint.obj wmtex.obj
 
 OBJSC2 =readwin.obj wtloop.obj misc.obj \
 	command.obj readcons.obj x_zzledt.obj jpc_Xloop.obj sh.obj \
@@ -23,7 +23,6 @@ include ../Make.lib.mak
 #================== dependencies 
 
 wgraph.obj : ../graphics/periWin-bcg.h
-wmhelp.obj : ../sun/h_help.h ../graphics/periWin-bcg.h ../machine.h
 $(OBJSC) : wgnuplib.h
 
 #================= resources 

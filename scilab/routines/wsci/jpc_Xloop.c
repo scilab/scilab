@@ -1,6 +1,4 @@
-
-
-/* Copyright (C) 1998-2002 Chancelier Jean-Philippe */
+/* Copyright (C) 1998 Chancelier Jean-Philippe */
 /*
  * jpc_Xloop.c : 
  * (1997) : Jean-Philippe Chancelier 
@@ -26,9 +24,9 @@ extern void flushTKEvents ();
 /** do I want a scilab or an xscilab (here it means Windows ) */
 
 int INXscilab = 0;
-/**  XXXX just to use zzledt1 **/
+		 /**  XXXX just to use zzledt1 **/
 
-void 
+void
 SetXsciOn ()
 {
   switch_rlgets (1);
@@ -53,10 +51,7 @@ int C2F (xscion) (int *i)
 extern int INXscilab;
 extern TW textwin;
 
-extern HWND HelpModeless;	/* the modeless Help Window */
-
-
-void 
+void
 TextMessage1 (int ctrlflag)
 {
   MSG msg;
@@ -67,26 +62,26 @@ TextMessage1 (int ctrlflag)
     {
 #ifdef WITH_TK
       if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
-	{
+	  {
 #endif
-	  PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
-	  if (ctrlflag == 1)
-	    CtrlCHit (&textwin);
-/** test if Modeless help exists **/
-	  if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	    {
-	      TranslateMessage (&msg);
-	      DispatchMessage (&msg);
-	    }
+		  PeekMessage (&msg, 0, 0, 0, PM_REMOVE);
+		  if (ctrlflag == 1)
+			  CtrlCHit (&textwin);
+		  /** test if Modeless help exists **/
+		  /** if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
+		  {**/
+			  TranslateMessage (&msg);
+			  DispatchMessage (&msg);
+		 /** }**/
 #ifdef WITH_TK
-	}
+	  }
 #endif
-    }
+  }
 }
 
 /** function used in wtext.c in function TextGetCh  must wait for an event **/
 
-void 
+void
 TextMessage2 ()
 {
   MSG msg;
@@ -94,18 +89,19 @@ TextMessage2 ()
   flushTKEvents ();
 #endif
   GetMessage (&msg, 0, 0, 0);
+  //PeekMessage (&msg, 0, 0, 0, PM_NOREMOVE);
 #ifdef WITH_TK
-  if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
-    {
+  //if (Tcl_DoOneEvent (TCL_DONT_WAIT) != 1)
+  //{
 #endif
-/** test if Modeless help exists **/
-      if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
-	{
-	  TranslateMessage (&msg);
-	  DispatchMessage (&msg);
-	}
+      /** test if Modeless help exists **/
+      /**if (HelpModeless == 0 || !IsDialogMessage (HelpModeless, &msg))
+	  {**/
+		  TranslateMessage (&msg);
+		  DispatchMessage (&msg);
+	 /** }**/
 #ifdef WITH_TK
-    }
+  //}
 #endif
 }
 
@@ -124,7 +120,7 @@ int C2F (sxevents) ()
  * For Fortran call 
  **********************************************************************/
 
-static void 
+static void
 strip_blank (source)
      char *source;
 {
@@ -164,7 +160,7 @@ void C2F (winsci) (char *pname, int *nos, int *idisp, char *display,
   /* XXXXXX main_sci(argc,argv); */
 }
 
-void 
+void
 sigblock ()
 {
 }
@@ -214,7 +210,7 @@ reset_scig_command_handler ()
   scig_command_handler = scig_command_handler_none;
 }
 
-int 
+int
 StoreCommand (command)
      char *command;
 {
@@ -222,7 +218,7 @@ StoreCommand (command)
 }
 
 
-int 
+int
 StoreCommand1 (command, flag)
      char *command;
      int flag;
@@ -270,7 +266,7 @@ StoreCommand1 (command, flag)
  * and remove it from the queue 
  ************************************************/
 
-void 
+void
 GetCommand (str)
      char *str;
 {
@@ -304,8 +300,10 @@ integer C2F (ismenu) ()
  ************************************************/
 
 int C2F (getmen) (btn_cmd, lb, entry)
-     integer *entry, *lb;
-     char *btn_cmd;
+     integer *
+     entry, *lb;
+     char *
+       btn_cmd;
 {
   if (C2F (ismenu) () == 1)
     {

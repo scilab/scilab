@@ -7,7 +7,7 @@ function k=newest(varargin)
 n=size(varargin)
 if n==1 then names=varargin(1),else names=varargin,end
 n=prod(size(names))
-dt=zeros(1,n)
+dat=zeros(1,n)
 for k=1:prod(size(names))
   nk=names(k)
   if strindex(nk,['SCI/','SCI\','sci/','sci\'])==1 then
@@ -17,11 +17,10 @@ for k=1:prod(size(names))
   end
   info=fileinfo(nk)
   if info==[] then 
-    dt(k)=0
+    dat(k)=0
   else
-    dt(k)=info(6)
+    dat(k)=info(6)
   end
 end
-[dt,k]=sort(dt)
+[dat,k]=sort(dat)
 k=k(1)
-endfunction

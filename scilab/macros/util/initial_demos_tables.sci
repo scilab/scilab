@@ -56,8 +56,7 @@ else
       'Arma','arma/arma.dem';
       'Tracking','tracking/track.dem';
       'Robust control','robust/rob.dem';
-      'LMITOOL','lmitool/lmi.dem';
-      'METANET','metanet/meta.dem';
+      'LMITOOL','lmitool/lmi.dem';//      'METANET','metanet/meta.dem';
       'Control examples','control/cont.dem';
       'Scicos','scicos/scicos.dem';
       'Sounds','sound/sound.dem';

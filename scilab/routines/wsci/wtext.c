@@ -86,8 +86,6 @@ static COLORREF TextColorTable[16] =
  * message Loop 
  *********************************************/
 
-extern HWND HelpModeless;	/* the modeless Help Window */
-
 EXPORT void WINAPI
 TextMessage (void)
 {

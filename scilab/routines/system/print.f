@@ -420,22 +420,6 @@ c     ------------macros---- a changer
       il=il+1
 C     cas ou l'object macro est au top ( pas ds une liste )
       if (mactop.eq.1) then 
-c$$$  c        compiled macro [ display of source code ]
-c$$$  if(istk(ilm).eq.13) then 
-c$$$  call cvnamel(idstk(1,lk),mmname,1,lname)
-c$$$  call xscion(iflag)
-c$$$  if(iflag.eq.0) then
-c$$$  buf='$SCI/bin/scilab -macro "'//mmname(1:lname)//'"  '
-c$$$  call bashos(buf,27+lname,ls,ierr)
-c$$$  else
-c$$$  buf='$SCI/bin/scilab -macro "'//mmname(1:lname)//
-c$$$  $              '" | $SCI/bin/xless &   '
-c$$$  call bashos(buf,45+lname,ls,ierr)
-c$$$  endif
-c$$$  goto 68 
-c$$$  endif
-C     we supress the display of the code of a non compiled macro with
-c     goto 68
          isncf=1
          if (isncf.eq.1) goto 68
          l=il

@@ -39,7 +39,6 @@
 #endif
 
 #include "jpc_global.h"
-#include "../sun/h_help.h" 
 #include "../sun/Sun.h" 
 #include "All-extern-x1.h" 
 #include "../graphics/Graphics.h" 
@@ -62,7 +61,6 @@ static char	savedCommand[LINESIZ] = "";
 static void DoIt  __PARAMS((Widget w, XtPointer command, XtPointer ));  
 static void Do_Kill  __PARAMS((Widget w, XtPointer command, XtPointer ));  
 static void Do_Stop  __PARAMS((Widget w, XtPointer command, XtPointer ));  
-static void Do_Help  __PARAMS((Widget w, XtPointer command, XtPointer ));  
 static void info_handler  __PARAMS((Widget w, caddr_t , XEvent *));  
 static void AddInfoHandler  __PARAMS((Widget , char *));  
 static void CreateButtons  __PARAMS((Widget parent));  
@@ -110,22 +108,6 @@ static void Do_Stop (w, command, call_data)
   int j = SIGINT;
   C2F(sigbas)(&j);
   if (get_is_reading()) write_scilab("\n");
-}
-
-extern void   popupHelpPanel();
-
-static void Do_Help (w, command, call_data)
-    Widget w;
-    XtPointer command;
-    XtPointer call_data;
-{
-  static int status=0;
-  if ( status == 0) 
-    {
-      initHelpActions(app_con); status=1;
-    };
-  popupHelpPanel();
-  /* status=system("$SCI/bin/scilab -xhelp"); */
 }
 
 
@@ -252,9 +234,6 @@ static void CreateButtons (parent)
   AddInfoHandler(menuentry,"Exec demos");
 
   CreateFormWithButtons(parent);
-
-  menuentry = AddButton (parent, "Help", Do_Help," ");
-  AddInfoHandler(menuentry,"Open Help Window");
 }
 
 

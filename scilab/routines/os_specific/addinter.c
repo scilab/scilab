@@ -12,6 +12,7 @@
 #include "addinter.h" 
 #include "Sun.h"
 
+#include "../stack-def.h"
 
 extern int C2F(namstr) __PARAMS((integer *id, integer *str, integer *n, integer *job));
 extern int C2F(funtab) __PARAMS((int *id, int *fptr, int *job));  
@@ -29,6 +30,8 @@ extern void GetenvB __PARAMS(( char *name,char *env, int len));
 
 #define MAXINTERF 50
 #define INTERFSIZE 25 
+
+#define debug C2F(iop).ddt==1
 
 typedef struct 
 {
@@ -216,7 +219,7 @@ static void ShowInterf(void)
   for ( i = 0 ; i < LastInterf ; i++ ) 
     {
       if ( DynInterf[i].ok == 1 ) 
-	sciprint("Interface %d %s\r\n",i,DynInterf[i].name);
+	if (debug) sciprint("Interface %d %s\r\n",i,DynInterf[i].name);
     }
 }
 

@@ -15,11 +15,11 @@
 /* ----------------------------------------------------------- */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-/* 	$Id: C-LAB_Interf.c,v 1.3 2002/01/16 11:49:30 steer Exp $	 */
+/* 	$Id: C-LAB_Interf.c,v 1.4 2002/07/12 12:22:09 steer Exp $	 */
 
 /*
 #ifndef lint
-static char vcid[] = "$Id: C-LAB_Interf.c,v 1.3 2002/01/16 11:49:30 steer Exp $";
+static char vcid[] = "$Id: C-LAB_Interf.c,v 1.4 2002/07/12 12:22:09 steer Exp $";
 #endif 
 */
 
@@ -37,7 +37,7 @@ extern int C2F(cvstr)  __PARAMS((integer *n, integer *line, char *str, integer *
 void InterfError( mesg )
      char *mesg;
 {
-  Cout("ERROR IN INTERFACE ROUTINE");
+  /* Cout("ERROR IN INTERFACE ROUTINE");*/
   cerro(mesg);
   /*  cout( mesg );*/
 }

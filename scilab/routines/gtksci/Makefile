@@ -6,7 +6,7 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/gtksci.a
 
-OBJSC =	click.o command.o help.o io.o \
+OBJSC =	click.o command.o  io.o \
 	menus.o x_VTPrsTbl.o x_main.o \
 	zzledt.o about.o
 

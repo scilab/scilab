@@ -47,28 +47,6 @@ C2F(dcd)()
 
 #endif 
 
-#ifdef NOMETANET 
-
-void C2F(metane) ()
-{
-  int Error=9999;
-  sciprint("Metanet interface not loaded \n");
-  Error(9999);
-  return;
-}
-
-
-/** initcom.c tries to call to Scilab **/ 
-
-int nNetwindows=0;
-char *Netwindows[];
-
-CloseNetwindow()
-{
-}
-
-#endif 
-
 #ifdef NOSCICOS 
 
 static char scicos_name[MAX_ENV];

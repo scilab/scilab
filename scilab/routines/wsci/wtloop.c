@@ -44,7 +44,6 @@
 #include "wgnuplib.h"
 #include "wresource.h"
 #include "wcommon.h"
-#include "../sun/h_help.h"
 #include "../sun/Sun.h"
 #include "../stack-c.h" 
 
@@ -399,7 +398,7 @@ command (char *com)
 	  C2F (sxevents) ();
 	};
     }
-  else if (strncmp (com, "help", 4) == 0)
+  /*else if (strncmp (com, "help", 4) == 0)
     {
       sciprint ("help [%s]\r\n", com + 5);
       Sci_Help (com + 5);
@@ -408,7 +407,7 @@ command (char *com)
     {
       sciprint ("apropos [%s]\r\n", com + 8);
       Sci_Apropos (com + 8);
-    }
+      }*/
   else if (strncmp (com, "sci", 3) == 0)
     {
       sciprint ("test %s\r\n", com + 4);
@@ -492,10 +491,6 @@ command (char *com)
       sciprint ("Rep :%d\n", rep);
     }
 
-  else if (Equals (com, "menuhelp"))
-    {
-      DoHelpDialog ();
-    }
   else if (Equals (com, "dialog"))
     {
       TestDialog ();

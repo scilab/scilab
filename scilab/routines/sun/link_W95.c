@@ -12,6 +12,10 @@
 #define Min(x,y)	(((x)<(y))?(x):(y))
 #define Max(x,y)	(((x)>(y))?(x):(y))
 
+#include "../stack-def.h"
+
+#define debug C2F(iop).ddt==1
+
 extern char *strchr();
 
 
@@ -169,7 +173,7 @@ int Sci_dlsym(ename,ishared,strf)
   else 
     {
       /* we don't add the _ in the table */
-      sciprint("Linking %s \r\n",ename);
+      if (debug) sciprint("Linking %s \r\n",ename);
       strncpy(EP[NEpoints].name,ename,MAXNAME);
       EP[NEpoints].Nshared = ish;
       NEpoints++;

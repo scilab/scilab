@@ -15,7 +15,6 @@
 #include "../graphics/Math.h"
 #include "../graphics/periGtk-bcg.h" 
 #include "../graphics/Graphics.h" 
-#include "../sun/h_help.h" 
 #include "../sun/Sun.h" 
 #include "../menusX/men_scilab.h"
 #include "All-extern.h"

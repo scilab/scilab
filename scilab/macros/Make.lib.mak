@@ -4,7 +4,6 @@ lib 	: $(MACROS)
 	$(SCIDIR1)\macros\Lib @<< 
 $(MACROS)
 <<
-	@del *.bin
 	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f tmp_Macros
 	$(SCIDIR1)\bin\scilex.exe -nwni -ns -f genlib
 	@del tmp_*

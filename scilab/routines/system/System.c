@@ -8,7 +8,6 @@ extern void
       C2F(scigetcwd)(),
       C2F(ref2val)(),
       C2F(allops)(),
-      C2F(apropo)(),
       C2F(banier)(),
       C2F(bexec)(),
       C2F(clause)(),
@@ -35,9 +34,6 @@ extern void
       C2F(getstr)(),
       C2F(getsym)(),
       C2F(getval)(),
-      C2F(isciap)(),
-      C2F(iscihelp)(),
-      C2F(helpmg)(),
       C2F(crebmatvar)(),
       C2F(crematvar)(),
       C2F(inisci)(),
@@ -93,7 +89,6 @@ void System_contents( int x)
       C2F(scigetcwd)();
       C2F(ref2val)();
       C2F(allops)();
-      C2F(apropo)();
       C2F(banier)();
       C2F(bexec)();
       C2F(clause)();
@@ -120,9 +115,6 @@ void System_contents( int x)
       C2F(getstr)();
       C2F(getsym)();
       C2F(getval)();
-      C2F(isciap)();
-      C2F(iscihelp)();
-      C2F(helpmg)();
       C2F(crebmatvar)();
       C2F(crematvar)();
       C2F(inisci)();

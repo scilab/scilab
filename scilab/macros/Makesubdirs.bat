@@ -16,10 +16,6 @@ cd calpol
 echo Macros compilation calpol
 nmake /C /f Makefile.mak %1 
 cd ..
-cd comm
-echo Macros compilation comm
-nmake /C /f Makefile.mak %1
-cd ..
 cd elem
 echo Macros compilation elem
 nmake /C /f Makefile.mak %1

@@ -12,9 +12,12 @@ void C2F(tksynchro)(l)
 {
 #ifdef WITH_TK
   char str[128];
-  int RET;
+
+
   if (TK_Started) {
 #ifdef WIN32 
+    int RET;
+
     sprintf(str,"scipad eval {set sciprompt %d}",*l);
     RET=Tcl_Eval(TKinterp,str);
 #else

@@ -2,9 +2,9 @@ SHELL = /bin/sh
 
 include ../Makefile.incl
 
-SCIDIRS = graphics calelm blas comm control default integ interf intersci \
+SCIDIRS = graphics calelm blas  control default integ interf intersci \
 	lapack slicot \
-	libcomm metanet optim poly signal sparse sun system system2 \
+	metanet optim poly signal sparse sun system system2 \
 	menusX scicos sound dcd randlib slicot \
 	gd int @GUILIB@ @XDRLIB@ @TKSCIDIR@ @PVMSCIDIR@ @GZVT@
 

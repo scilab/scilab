@@ -5,7 +5,7 @@ include ../Makefile.incl
 
 CFLAGS = $(CC_OPTIONS) 
 
-SUBDIRS = algebre arma auto calpol comm \
+SUBDIRS = algebre arma auto calpol \
 	elem metanet optim percent robust sci2for \
 	signal tdcs util xdess scicos scicos_blocks sound \
 	m2sci mtlb int

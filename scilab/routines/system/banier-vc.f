@@ -15,11 +15,11 @@ c ================================== ( inria    ) =============
          call basout(io,wwte,' ')
          call basout(io,wwte,' ')
          call basout(io,wwte,
-     $'                          scilab-20-june-2002')
+     $'                          scilab-2.7-CVS')
          call basout(io,wwte,
-     $'                  Copyright (C) 1989-2001 INRIA/ENPC')
+     $'                  Copyright (C) 1989-2002 INRIA/ENPC')
 
       endif
-      call storeversion('scilab-20-june-2002')
+      call storeversion('scilab-2.7-CVS')
       return 
       end

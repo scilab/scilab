@@ -1,37 +1,3 @@
-m6inimet	datanet	dwidth	dheight
-datanet	string	l
-window	scalar
-dwidth	scalar
-dheight	scalar
-
-inimet	window	datanet	l	dwidth	dheight
-window	integer
-datanet	char
-l	integer
-dwidth	integer
-dheight	integer
-
-out	sequence	window
-************************************************
-netwindow	window
-window	scalar
-
-netwindow	window
-window	integer
-
-out	empty
-************************************************
-netwindows
-scrs	row	nscrs
-cscr	scalar
-
-netwindows	scrs	 nscrs	cscr
-scrs	cintf
-nscrs	integer
-cscr	integer
-
-out	list	scrs	cscr
-************************************************
 m6loadg	path
 path	string	lpath
 name	string	lname
@@ -151,82 +117,6 @@ ma	integer
 
 out	empty
 ************************************************
-m6showg	g	name	ma	window	sup	scale	is_nlabel	is_elabel
-g	tlist	graph
-name	string	lname
-ma	scalar
-window	scalar
-sup	scalar
-scale	scalar
-is_nlabel	scalar
-is_elabel	scalar
-
-showg	name	lname	directed(g)	node_number(g)	tail(g)	head(g)  node_name(g)	node_type(g) node_x(g) node_y(g) node_color(g) node_diam(g)	node_border(g)	node_font_size(g)	node_demand(g) edge_name(g)	edge_color(g) edge_width(g)	edge_hi_width(g)	edge_font_size(g)	edge_length(g) edge_cost(g) edge_min_cap(g) edge_max_cap(g) edge_q_weight(g) edge_q_orig(g) edge_weight(g)	default_node_diam(g)	default_node_border(g)	default_edge_width(g)	default_edge_hi_width(g)	default_font_size(g)	is_nlabel node_label(g)	is_elabel edge_label(g)	ma	window	sup	scale
-name	char
-lname	integer
-directed(g)	integer
-node_number(g)	integer
-tail(g)	integer
-head(g)	integer
-node_name(g)	Cstringv
-node_type(g)	integer
-node_x(g)	integer
-node_y(g)	integer
-node_color(g)	integer
-node_diam(g)	integer
-node_border(g)	integer
-node_font_size(g)	integer
-node_demand(g)	double
-edge_name(g)	Cstringv
-edge_color(g)	integer
-edge_width(g)	integer
-edge_hi_width(g)	integer
-edge_font_size(g)	integer
-edge_length(g)	double
-edge_cost(g)	double
-edge_min_cap(g)	double
-edge_max_cap(g)	double
-edge_q_weight(g)	double
-edge_q_orig(g)	double
-edge_weight(g)	double
-default_node_diam(g)	integer
-default_node_border(g)	integer
-default_edge_width(g)	integer
-default_edge_hi_width(g)	integer
-default_font_size(g)	integer
-node_label(g)	Cstringv
-edge_label(g)	Cstringv
-is_nlabel	integer
-is_elabel	integer
-ma	integer
-window	integer
-sup	integer
-scale	double
-
-out empty
-************************************************
-m6showns	ns	sup
-ns	row	nsize
-sup	scalar
-
-showns	ns	nsize	sup
-ns	integer
-nsize	integer
-sup	integer
-
-out	empty
-**************************************************
-m6showp	p	sup
-p	row	psize
-sup	scalar
-
-showp	p	psize	sup
-p	integer
-psize	integer
-sup	integer
-
-out	empty
-**************************************************
 m6prevn2p	i	j	pln	la	lp	ls	direct
 i	scalar
 j	scalar
@@ -1004,16 +894,6 @@ head	integer
 
 out	sequence	tail	head
 **************************************************
-m6metasync	s
-s	scalar
-res	scalar
-
-metasync	s	res
-s	integer
-res	integer
-
-out	sequence	res
-**************************************************
 m6dfs2	i0	lp	ls	n
 i0	scalar
 lp	row	n1
@@ -1633,14 +1513,6 @@ nsinkv	integer
 
 out	sequence	ntype	m	tail	head	xnod	ynod	cap	cost
 **************************************************
-netclose	window
-window	scalar
-
-netclose	window
-window	integer
-
-out	empty
-************************************************
 m6ford	i0	la	length	lp	ls	n
 i0	scalar
 la	row	m

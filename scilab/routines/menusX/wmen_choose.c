@@ -9,7 +9,6 @@
 #include "wmen_scilab.h"
 
 static HWND ChooseModeless = (HWND) 0 ; /* the modeless Choose Window */
-extern HWND HelpModeless  ; /* the modeless Help Window */
 static ChooseMenu *Ch ;
 
 /****************************************************
@@ -110,11 +109,8 @@ int ExposeChooseWindow( ChooseMenu *PCh)
 	}
       if (  ChooseModeless ==0 || ! IsDialogMessage(ChooseModeless,&msg)) 
 	{
-	  if ( HelpModeless == 0 || ! IsDialogMessage(HelpModeless,&msg) )
-	    {
 	      TranslateMessage(&msg);
 	      DispatchMessage(&msg);
-	    }
 	}
     }
   SetWindowLong(textwin.hWndParent, 4, (LONG)(0L));

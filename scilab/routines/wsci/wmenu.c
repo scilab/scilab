@@ -149,10 +149,6 @@ SendMacro (LPTW lptw, UINT m)
 		    *d++ = lpmw->szAnswer[i];
 		}
 	      break;
-	    case HELPDIALOG:
-	      DoHelpDialog ();
-	      s++;
-	      break;
 	    case PLUS:
 	      Countp ();
 	      s++;

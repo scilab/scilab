@@ -6,25 +6,26 @@ include ../../Version.incl
 
 LIBRARY = $(SCIDIR)/libs/system.a
 
-OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o helpap.o \
-	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o
+
+OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
+	scicurdir.o readline.o msgstore.o storeversion.o
 
 OBJSF = allops.o  banier.o diary.o\
 	clause.o comand.o compcl.o   \
 	defmat.o eqid.o error.o showstack.o expr.o fact.o funs.o \
 	getch.o  getlin.o getnum.o getstr.o getsym.o \
-	getval.o helpmg.o inisci.o \
+	getval.o inisci.o \
 	logops.o macro.o mname.o nextj.o parse.o print.o \
 	prompt.o putid.o  run.o savlod.o  stackg.o stackgl.o \
 	ref2val.o stackp.o terme.o  scirun.o \
-	majmin.o apropo.o whatln.o \
+	majmin.o whatln.o \
 	seteol.o setlnb.o skpins.o msgs.o prntid.o \
 	cvname.o  compil.o ptover.o ptrback.o \
 	isbrk.o  bexec.o scilines.o \
 	mrknmd.o mkindx.o mklist.o cmdstr.o setgetmode.o\
 	typ2cod.o israt.o funnam.o dspdsp.o lspdsp.o wspdsp.o \
 	xerbla.o algebre.o storeglobal.o setippty.o allowptr.o copyvar.o \
-	lst2vars.o createref.o getfunction.o varfunptr.o
+	lst2vars.o createref.o getfunction.o varfunptr.o tksynchro.o
 
 include ../../Makefile.incl
 
@@ -52,7 +53,6 @@ Intersci.o: ../machine.h
 Blas.o: ../machine.h
 msgstore.o: ../machine.h ../stack-c.h
 allops.o: ../stack.h
-apropo.o: ../stack.h
 bexec.o: ../stack.h
 clause.o: ../stack.h
 cmdstr.o: ../stack.h
@@ -74,7 +74,6 @@ getnum.o: ../stack.h
 getstr.o: ../stack.h
 getsym.o: ../stack.h
 getval.o: ../stack.h
-helpmg.o: ../stack.h
 inisci.o: ../stack.h
 israt.o: ../stack.h
 logops.o: ../stack.h
@@ -111,4 +110,4 @@ whatln.o: ../stack.h
 xchar.o: ../stack.h
 refval2.o: ../stack.h
 xerbla.o: ../stack.h
-
+tksynchro.o: ../machine.h ../tksci/tksci.h

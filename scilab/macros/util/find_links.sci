@@ -7,12 +7,12 @@ d=grep(txt,"<LINK>");
 if d==[] then mputl(txt,fileout); return; end
 for k=d
   tt=txt(k);
-  l1=strindex(tt,"<LINK>")
-  l2=strindex(tt,"</LINK>")
+  l1=strindex(tt,"<LINK>");
+  l2=strindex(tt,"</LINK>");
   nlink=size(l1,"*")
   for i=1:nlink
     name=part(tt,[l1(1)+6:l2(1)-1])
-    path=get_absolute_file_path(filein)+sep+filein
+    path=get_absolute_file_path(filein)+filein
     l=getlink(name,path)
     tt=part(tt,[1:l1(1)-1])+..
 	"<A href="""+l+"""><VERB>"+name+"</VERB></A>"+..
@@ -54,6 +54,7 @@ for k=1:size(%helps,1)
 end
 if man==[] then
   write(%io(2),"Bad LINK "+name+""" in this man");
+  t=[]
   return;
 end
 t=relative_path(man,absolute_path)

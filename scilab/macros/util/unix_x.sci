@@ -1,12 +1,12 @@
 function unix_x(cmd)
-//unix_x - shell command execution, results redirected in an xless window
+//unix_x - shell command execution, results redirected in a window
 //%Syntax
 // unix_x(cmd)
 //%Parameters
 // cmd - a character string
 //%Description
 // cmd instruction is passed to shell, the standard output is redirected 
-// to  a background xless window
+// to  a  window
 //%Examples
 // unix_x("ls")
 //%See also
@@ -24,12 +24,8 @@ else
 end 
 stat=host(cmd1);
 select stat
-case 0 then
-  if MSDOS then 
-  	host(""""+strsubst(SCI,'/','\')+'\bin\xless.exe"" '+ tmp);
-  else 
-  	host('$SCI/bin/xless '+tmp+' & 2>/dev/null;')
-  end
+  case 0 then
+   x_message_modeless(mgetl(tmp))
 case -1 then // host failed
   error(85)
 else //sh failed
@@ -40,11 +36,4 @@ else //sh failed
 	  error('unix_x: '+msg(1))
   end 
 end
-// do not delete file because it is possible xless has not yet been
-// launched. CLG
-//if MSDOS then
-//  host('del '+tmp);
-//else
-//  host('rm -f '+tmp);
-//end
 endfunction

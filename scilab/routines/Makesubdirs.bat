@@ -34,10 +34,6 @@ cd blas
 echo Making %1 in directory  blas
  nmake /C /f Makefile.mak %1
 cd ..
-cd comm
-echo Making %1 in directory  comm
- nmake /C /f Makefile.mak %1
-cd ..
 cd control
 echo Making %1 in directory  control
  nmake /C /f Makefile.mak %1
@@ -64,10 +60,6 @@ echo Making %1 in directory  lapack
 cd ..
 cd slicot
 echo Making %1 in directory  scicot
- nmake /C /f Makefile.mak %1
-cd ..
-cd libcomm
-echo Making %1 in directory  libcomm
  nmake /C /f Makefile.mak %1
 cd ..
 cd metanet

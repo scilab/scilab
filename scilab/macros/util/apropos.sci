@@ -1,5 +1,6 @@
 function apropos(key)
 global %helps LANGUAGE INDEX
+ INDEX=make_index()
 if funptr("TK_EvalStr")==0 then
   write(%io(2),..
       ["Help works only with TCL/TK.";

@@ -83,7 +83,6 @@ extern void exit();
 char *ProgramName;
 
 extern void sci_clear_and_exit (int);
-extern int C2F(initcom) (int *,int*);
 extern int C2F(nofpex) (void);
 extern int C2F(getarg) (int *,char *,long int l);
 extern int C2F(iargc) (void);
@@ -96,10 +95,8 @@ extern void do_kill();
 extern void sci_usr1_signal(int n) ;
 
 static void Syntax  __PARAMS((char *badOption));  
-static void Help  __PARAMS((void));  
 static void strip_blank  __PARAMS((char *source));  
 static void Syntax  (char *badOption);  
-static void Help  (void);  
 static char ** create_argv(int *argc);
 static void strip_blank(char *source);
 
@@ -151,13 +148,6 @@ void C2F(realmain)()
 	  initial_script = argv[++i];
 	  initial_script_type = 1;
 	} 
-      else if ( strcmp(argv[i],"-pipes") == 0) 
-	{
-	  int p1,p2;
-	  p1 = atoi(argv[++i]);
-	  p2 = atoi(argv[++i]); 
-	  C2F(initcom)(&p1, &p2);
-	}
       else if ( strcmp(argv[i],"--texmacs") == 0)  { no_window = 1;settexmacs();}
 
     }
@@ -754,35 +744,6 @@ static void Syntax (badOption)
   fprintf (stderr, "\r\n\nType %s -help for a full description.\r\n\n",
 	   ProgramName);
   exit (1);
-}
-
-/*-------------------------------------------------------
- * Help utility function 
- *-------------------------------------------------------*/
-
-static char *message[] = {
-  "Options that start with a plus sign (+) restore the default.",
-  NULL
-};
-
-static void Help ()
-{
-  struct _options *opt;
-  char **cpp;
-
-  fprintf (stderr, "usage:\n        %s [-options ...] \n\n",
-	   ProgramName);
-  fprintf (stderr, "where options include:\n");
-  for (opt = options; opt->opt; opt++) {
-    fprintf (stderr, "    %-28s %s\n", opt->opt, opt->desc);
-  }
-  putc ('\n', stderr);
-  for (cpp = message; *cpp; cpp++) {
-    fputs (*cpp, stderr);
-    putc ('\n', stderr);
-  }
-  putc ('\n', stderr);
-  exit (0);
 }
 
 

@@ -52,7 +52,7 @@ c     newfun clearfun  funptr  macr2lst setbpt delbpt dispbpt
 c     19      20       21       22       23     24      25
 c     funcprot whereis where   timer         havewindow stacksize
 c     26         27    28      29       30       31       32
-c     mtlb_mode  link     ulink  c_link addinter  fhelp  fapropos
+c     mtlb_mode  link     ulink  c_link addinter <free>   <free>
 c     33         34        35     36    37       38        39
 c     fclear    what    sciargs  chdir getcwd ieee typename
 c     40         41       42     43     44     45    46
@@ -215,9 +215,9 @@ c     mtlb_mode
       goto 999
  630  call scidint("addinter")
       goto 999
- 640  call scifhelp("fhelp")
+ 640  return
       goto 999
- 650  call scifapr("fapropos")
+ 650  return
       goto 999
  660  call intclear("clear")
       goto 999
@@ -532,63 +532,6 @@ c      integer m3,n3,lr3,nlr3,m2,n2,il2,ild2,m1,n1,il1,ild1
       end
 
 
-      subroutine scifhelp(fname)
-c     =============================
-c     fhelp(name)
-      character*(*) fname
-      character*80 h
-      logical checkrhs,checklhs,getsmat,checkval,cresmat2,bufstore
-      include '../stack.h'
-      integer a, blank,percent
-      data a/10/,blank/40/,percen/56/
-c
-      rhs = max(0,rhs)
-      lbuf = 1
-      if(.not.checkrhs(fname,0,1)) return
-      if(rhs.eq.0) then
-         h='help'
-         h(5:5)= char(0)
-         call iscihelp(buf,h,ierr)
-      else
-         if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-         if(.not.checkval(fname,m1*n1,1)) return
-         if(nlr1.gt.0) then
-            ic=abs(istk(lr1))
-            if(.not.((ic.ge.a.and.ic.lt.blank) .or. ic.eq.percen)) then
-               h='symbols'
-               h(8:8)= char(0)
-               call iscihelp(buf,h,ierr)
-            else
-               if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1))
-     $              return
-               call iscihelp(buf,buf(lbufi1:lbuff1),ierr)
-            endif
-         endif
-      endif
-      call objvide(fname,top)
-      return
-      end
-c
-      subroutine scifapr(fname)
-c     =============================
-c     fapropos(name)
-      character*(*) fname
-      logical checkrhs,checklhs,getsmat,checkval,cresmat2,bufstore
-      include '../stack.h'
-      rhs = max(0,rhs)
-      lbuf = 1
-      if(.not.checkrhs(fname,1,1)) return
-      if(.not.getsmat(fname,top,top-rhs+1,m1,n1,1,1,lr1,nlr1)) return
-      if(.not.checkval(fname,m1*n1,1)) return
-c     conversion to lower case
-      do 10 i=0,nlr1-1
-         istk(lr1+i)=abs(istk(lr1+i))
- 10   continue
-      if(.not.bufstore(fname,lbuf,lbufi1,lbuff1,lr1,nlr1)) return
-      call isciap(buf,buf(lbufi1:lbuff1),ierr)
-      call objvide(fname,top)
-      return
-      end
 
       subroutine intfort(fname)
 c     =====================================
