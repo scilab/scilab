@@ -301,6 +301,15 @@ c     [m,n] given
       if(nel.gt.0) then
          call entier(nel*2,stk(lij),istk(ilij))
       endif
+c     test if indices are all strictly positive
+      do 05 i=0,2*nel-1
+         if (istk(ilij+i).le.0) then
+            call error(21)
+            return
+         endif
+ 05   continue
+
+c     compute number of rows if is not given
       if(rhs.eq.2) then
          mm=0
          do 10 i=0,nel-1
