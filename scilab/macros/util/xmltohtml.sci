@@ -92,7 +92,7 @@ function xmltohtml(dirs,titles,xsl,step)
 	    
 	    if  MSDOS then 
 	    // added by HUYNH Olivier on the 09/03/2004, run the xml parser under Windows OS.
-	    disp('--'+'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
+	    //disp('--'+'sabcmd '+xslpath+' '+fb+'.xml2 '+fb+'.htm');
 	    ierr=execstr('unix_s(WSCI+''\Win95-util\sablotron\sabcmd ''+xslpath+'' ''+fb+''.xml2 ''+fb+''.htm'');','errcatch')
 	    else
 	    
