@@ -173,6 +173,9 @@ a=p(1),b=p(2),c=p(3);plot2d(X',FF(X)',12,'002')
  ]]>
   </EXAMPLE>
   <SEE_ALSO>
+   <SEE_ALSO_ITEM>
+      <LINK>lsqrsolve</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>optim</LINK>
     </SEE_ALSO_ITEM>
