@@ -65,7 +65,7 @@ int OpenTksci()
 #ifdef TCL_MINOR_VERSION
 #if TCL_MAJOR_VERSION >= 8
 #if TCL_MINOR_VERSION > 0
-  Tcl_FindExecutable(NULL);
+  Tcl_FindExecutable(" ");
 #endif
 #endif
 #endif
