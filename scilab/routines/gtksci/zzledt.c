@@ -1,8 +1,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.4 2001/06/27 08:56:12 chanceli Exp $
+ * $Id: zzledt.c,v 1.5 2001/09/19 08:32:29 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.5  2001/09/19 08:32:29  chanceli
+ * update
+ *
  * Revision 1.4  2001/06/27 08:56:12  chanceli
  * updates
  *
@@ -991,8 +994,6 @@ static void init_io()
   setvbuf(stdin, NULL, _IONBF, 0); /* ehrlich juin 2001 */
 
 }
-#ifdef TERMCAP
-
 
 /* a adapter pour que ca marche partout XXXXXX */ 
 
@@ -1006,6 +1007,7 @@ void sci_get_screen_size (int *rows,int *cols)
     }
 }
 
+#ifdef TERMCAP
 
 
 /************************************************************************
