@@ -38,6 +38,8 @@ c
             pt=pt-1
          elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
             goto 50
+         elseif (r.eq.408) then
+            goto 60
          endif
          return
       endif
@@ -66,7 +68,6 @@ c     .     a() -->a
       endif
       do 03 i=1,nt
          vt1=abs(ogettype(top+1-i))
-c         if(vt1.eq.129.and.fin.eq.extrac) vt1=2
          if(vt1.gt.vt) vt=vt1
  03   continue
 
@@ -113,6 +114,8 @@ c     .  *call* matfns
          return
       endif
 c
+      if(icall.eq.5) return
+
       if(fin.le.0) then
          op=-fin
          fin=-fin
