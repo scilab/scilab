@@ -103,9 +103,10 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 	if ~ok then return,end
 	nbs=size(blklsts)
 	for kk=1:nbs
-	  blklst(nb+kk)=blklsts(kk)
+	  //blklst(nb+kk)=blklsts(kk)
 	  corinv(nb+kk)=[k,corinvs(kk)]
 	end
+	blklst=lstcat(blklst,blklsts)
 	cors=shiftcors(cors,nb)
 	if cmats<>[] then
 	  f=find(cmats(:,2)>0)
