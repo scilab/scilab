@@ -10,8 +10,11 @@
    HISTORY
      fleury - Dec 17, 1997: Created.
      $Log: sci_tools.c,v $
-     Revision 1.1  2001/04/26 07:47:34  scilab
-     Initial revision
+     Revision 1.2  2001/06/11 17:53:43  delebecq
+     f772sci with 2 pointers
+
+     Revision 1.1.1.1  2001/04/26 07:47:34  scilab
+     Imported sources
 
      Revision 1.5  1998/03/27 12:20:22  fleury
      Version pvm OK.
@@ -143,3 +146,68 @@ F77ToSci(ptr, size, lda)
 
   free(tab);
 } /* F77ToSci */
+
+
+/* double2z and z2double : same as above with two pointers dest and src 
+   double2z ptr = src, ptr77z = dest (z format)     
+   z2double ptr = src (z format) , ptrsci = dest */  
+
+#ifdef __STDC__
+void 
+(double2z)(double *ptr,  double *ptr77z, int size, int lda)
+#else
+void 
+double2z(ptr, ptr77z, size, lda)
+  double *ptr; double *ptr77z; 
+  int size;
+  int lda;
+#endif 
+{
+  int i;
+  double *tab;
+  
+  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+    (void) fprintf(stderr, "Double2z: Error malloc\n");
+    return;
+  }
+
+  memcpy(tab, ptr, size * sizeof(double));
+
+  for (i = 0; i < size; ++i) {
+    ptr77z[2*i] = tab[i];
+    ptr77z[2*i+1] = ptr[lda+i];
+  }
+
+  free(tab);
+} 
+
+
+#ifdef __STDC__
+void 
+(z2double)(double *ptrz, double *ptrsci, int size, int lda)
+#else
+void 
+z2double(ptrz, ptrsci, size, lda)
+  double *ptrz; double *ptrsci;
+  int size;
+  int lda;
+#endif 
+{
+  int i;
+  double *tab;
+  
+  if ((tab = (double *) malloc(size * sizeof(double))) == NULL) {
+    (void) fprintf(stderr, "z2double: Error malloc\n");
+    return;
+  }
+  
+  for (i = 0; i < size; ++i) {
+    tab[i] = ptrz[2*i+1];
+    ptrsci[i] = ptrz[2*i];
+  }
+
+  memcpy(ptrsci + lda, tab, size * sizeof(double));
+
+  free(tab);
+} 
+
