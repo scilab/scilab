@@ -110,7 +110,7 @@ int intlsq(fname)
       break;
     case 1 :
       /* A real, b complex : to be done */
-      ret = C2F(intzgelsy)("lsq",3L);
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     default:
@@ -121,7 +121,7 @@ int intlsq(fname)
     switch (Cmplxb) {
     case 0 :
       /* A complex, b real : to be done */
-      ret = C2F(intzgelsy)("lsq",3L);
+      Scierror(999,"%s: Invalid input! \r\n",fname);
       return;
       break;
     case 1 :
