@@ -141,7 +141,7 @@ extern  void * GetFuncPtr __PARAMS((char *,int,void *,void (*f)(),int *,int*,int
         { return 0;  }
 
 
-#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx, 1L))\
+#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx))\
         { return 0;  }
 
 #define CreateData(n,nx) if(! C2F(createdata)((c_local=n,&c_local),nx))\
