@@ -593,7 +593,7 @@ int RandI( char* fname)
     }
   else if ( strcmp(cstk(ls),"unf")==0) 
     {
-      int low, high;
+      double low, high;
       if ( Rhs != suite + 1) 
 	{ Scierror(999,"Missing Low and High for Uniform Real law\r\n");return 0;}
       GetRhsVar(suite, "d", &m1, &n1, &la);
