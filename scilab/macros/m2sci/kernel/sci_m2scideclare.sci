@@ -137,7 +137,7 @@ if strindex(name,".")<>[] then // Cell or Struct m2scideclare
     
     err=%F
     for kd=1:min([lstsize(vardims) lstsize(infereddims)])
-      if infereddims(kd)~=vardims(kd) then
+      if infereddims(kd)~=vardims(kd) & infereddims(kd)<>Unknown then
 	err=%T
 	break
       end
@@ -198,7 +198,7 @@ else // Variable m2scideclare
     
     err=%F
     for kd=1:min([lstsize(dims) lstsize(infereddims)])
-      if infereddims(kd)~=dims(kd) then
+      if infereddims(kd)~=dims(kd) & infereddims(kd)<>Unknown then
 	err=%T
 	break
       end
@@ -210,12 +210,12 @@ else // Variable m2scideclare
 	  "   Current dimension: "+dims2str(infereddims)
 	  "   m2scideclare IGNORED"],2)
     else
-      varslist(index).dims=dims
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(dims,varslist(index).type))
     end
     
     // Update vtype
     if varslist(index).type.vtype==Unknown then
-      varslist(index).type.vtype=vtype
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(vtype,varslist(index).type.property)))
     elseif varslist(index).type.vtype~=vtype then
       set_infos(["Type current value and m2scideclare statements conflict for: "+name
 	  "   m2scideclare given type: "+tp2str(vtype)
@@ -225,7 +225,7 @@ else // Variable m2scideclare
     
     // Update property
     if varslist(index).type.property==Unknown then
-      varslist(index).type.property=property
+      varslist(index)=M2scivar(varslist(index).matname,varslist(index).sciname,Infer(varslist(index).dims,Type(varslist(index).type.vtype,property)))
     elseif varslist(index).type.property~=property then
       set_infos(["Property current value and m2scideclare statements conflict for: "+name
 	  "   m2scideclare given type: "+prop2str(property)
