@@ -13,7 +13,7 @@ exec ex15fi_builder.sce
 //    Note that the file loader.sce 
 //    is changed each time you run a demo 
 //    if several .desc are present in a directory
-exec loader.sce 
+exec loader.sce; 
 
 //[4] test the loaded function 
 a=[0,0,1.23;0,2.32,0;3.45,0,0];

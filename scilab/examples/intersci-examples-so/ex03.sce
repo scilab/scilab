@@ -13,7 +13,7 @@ exec ex03fi_builder.sce
 //    Note that the file loader.sce 
 //    is changed each time you run a demo 
 //    if several .desc are present in a directory
-exec loader.sce 
+exec loader.sce; 
 
 //[4] test the loaded function 
 n=3;a=13;incx=2;incy=3;x=1:10;y=2*x;

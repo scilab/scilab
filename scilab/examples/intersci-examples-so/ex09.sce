@@ -13,7 +13,7 @@ exec ex09fi_builder.sce
 //    Note that the file loader.sce 
 //    is changed each time you run a demo 
 //    if several .desc are present in a directory
-exec loader.sce 
+exec loader.sce; 
 
 //[4] test the loaded function 
 //calc7: function with two optional values, a string and a scilab variable.
