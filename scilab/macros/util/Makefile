@@ -34,7 +34,7 @@ MACROS = sysconv.sci  lin.sci halt.sci bloc2exp.sci \
 	get_absolute_file_path.sci get_function_path.sci \
 	ilib_for_link.sci ilib_unix_soname.sci scitest.sci \
 	tokenpos.sci tokens.sci justify.sci stripblanks.sci eval.sci evstr.sci \
-	fun2string.sci sci2exp.sci\
+	fun2string.sci sci2exp.sci ascii2string.sci \
 	isdir.sci newest.sci mputl.sci dispfiles.sci input.sci readc_.sci\
 	printf.sci fprintf.sci sprintf.sci scanf.sci fscanf.sci sscanf.sci \
 	profile.sci get_profile.sci showprofile.sci plotprofile.sci \
