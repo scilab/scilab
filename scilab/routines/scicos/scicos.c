@@ -1289,7 +1289,7 @@ int C2F(scicos)
 		sciprint("**** daskr failed to initialize ->try again *****/r/n" );
 	      }
 	    }
-	    //-------------------------------------
+	    /*-------------------------------------*/
 	    /* saving the previous modes*/
 	    for (jj = 0; jj < nmod; ++jj) {
 	      Mode_save[jj] = mod[jj];
@@ -1302,7 +1302,7 @@ int C2F(scicos)
 		return; 
 	      }
 	    }
-	    //------------------------------------
+	    /*------------------------------------*/
 	    Mode_change=0;
 	    for (jj = 0; jj < nmod; ++jj) {
 	      if(Mode_save[jj] != mod[jj])
