@@ -1,5 +1,5 @@
-                Scilab version 2.7 for Windows (NT/2000/95/98)
-                **********************************************
+                Scilab version 2.7 for Windows (95/98/NT/2000/XP)
+                *************************************************
  
  ******************************************************************************
  0 - COPYRIGHT NOTICE
@@ -98,9 +98,11 @@
  Signal.ps.gz, Signal.pdf: Signal Processing Toolbox
  Intersci.ps.gz, Intersci.pdf: Interfacing Tool
  
- ******************************************************************************
- VI - SOME IMPORTANT FILES AND DIRECTORIES
- *****************************************
+ Note that these documents are not uptodate.
+
+******************************************************************************
+VI - SOME IMPORTANT FILES AND DIRECTORIES
+******************************************
  
  scilab.star: startup file for Scilab instructions in this file
               are executed when Scilab is executed. Note that
@@ -125,7 +127,7 @@
              (control, polynomials,...). Each subdirectory contains 
              the source code of the macros (files *.sci). 
  
-libs/	   : directory of libraries: archives of object files needed 
+ libs/	   : directory of libraries: archives of object files needed 
              to link Scilab.
  
  routines/ : directory of fortran or C routines. Divided into subdirectories

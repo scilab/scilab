@@ -4,16 +4,17 @@ THANKS
 ======
 Scilab group wants to thank the increasing number of people who have
 contributed to this new version of Scilab, with special mention to 
-Anders Blomdell,  Stephane Mottelet, Dan McMahill
+Anders Blomdell, Stéphane Mottelet, Dan McMahill
 Ton van Overbeek, Bruno Pincon and Enrico Segre.
 
 
 NEW FUNCTIONALITIES
 ===================
-Slicot based control routines have been introduced with a special attention 
+Slicot based control routines (www.win.tue.nl/wgs/slicot.html)
+have been introduced with a special attention 
 to identification functions, lyapunov, sylvester and riccati equation solvers.
 
-Interface with TeXmacs  (www.texmacs.org) a high level scientific text editor. 
+Interface with TeXmacs (www.texmacs.org) a high level scientific text editor. 
 The editor allows you to write structured documents via a wysiwyg interface 
 including Scilab sessions ans results.
 
@@ -24,29 +25,38 @@ C Code generation from Scicos discrete models
 
 Blocks defining DAE are now usable in Scicos.
 
-Statistic toolbox added (labostat)
+Statistic toolbox added (labostat).
 
 An Entity oriented graphics mode has been developped. It allows to edit 
-the drawn graphics properties in a easy to use way. 
+the drawn graphics properties in a easy to use way (see help
+of graphics_entities).
 
 OTHERS IMPROVEMENTS
 ===================
-Linear algebra primitives now based on Lapack instead of Linpack/Eispack
-Basic functions revised (thanks to B Pincon)
+Linear algebra primitives now based on Lapack instead of Linpack/Eispack.
+
+Basic functions revised (thanks to B Pincon).
+
 stacksize use is no more restricted.
+
 Hypertext, xml based, online help.
+
 Binary Matlab file .mat loader (loadmatfile) added.
-possibility to customize graphics window event handlers (seteventhandler).
+
+Possibility to customize graphics window event handlers (seteventhandler).
+
 PVM interface now also works with Windows versions.
-xmetanet replaced by a portable graph editor (edit_graph).
+
+edit_graph, a graph editor for Metanet toolbox, written in Scilab, replaces
+xmetanet. It works on both Unix and Windows.
 
 INCOMPATIBLITIES
-==============
+================
 It is higly recommended to rebuild user's scilab functions libraries. This 
 can be done as follow:
 predef(0);genlib('mylib','mylib_path',%t)
 
-gschur and gspec functions are now obsolete and replaced by schur and spec
+gschur and gspec functions are now obsolete and replaced by schur and spec.
 
 Geci and the communication library have been removed. Use PVM interface instead.
 
