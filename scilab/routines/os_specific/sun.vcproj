@@ -304,9 +304,6 @@ cd .. &gt;nul
 			<File
 				RelativePath=".\tmpdir.c">
 			</File>
-			<File
-				RelativePath=".\zzledt.c">
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
