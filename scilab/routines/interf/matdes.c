@@ -5087,12 +5087,12 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	  pSUBWIN_FEATURE (psubwin)->FRect[3]=  
 	    exp10( Cscale.ytics[2]) * (ceil(pSUBWIN_FEATURE (psubwin)->axes.limits[4]/ (exp10( Cscale.ytics[2])))); 
                  
-	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0;} 
+	  pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1;} 
       else if ((strncmp(cstk(*value),"off", 3) == 0)){
 	for (i=0;i<4 ; i++) 
 	  pSUBWIN_FEATURE (psubwin)->FRect[i]
 	    = pSUBWIN_FEATURE (psubwin)->axes.limits[i+1];
-	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 1; }            
+	pSUBWIN_FEATURE (psubwin)->axes.limits[0] = 0; }            
       else
 	{strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
     } 
@@ -5949,7 +5949,7 @@ int sciGet(sciPointObj *pobj,char *marker)
     if (sciGetEntityType (pobj) == SCI_SUBWIN) {
 	numrow   = 2;numcol   = 2;
 	CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
-	for (i=0;i<numcol;i++) {
+	for (i=0;i<numcol*numrow;i++) {
 	  stk(outindex)[i] = pSUBWIN_FEATURE (pobj)->FRect[i];
 	}
     }
