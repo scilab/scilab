@@ -56,6 +56,7 @@ files=basename('SCI/macros\util/poo.sci')
 files=basename('SCI/macros\util/poo.sci.k')
  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>listfiles</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>pathexpand</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>listfiles</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>pathconvert</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
