@@ -1118,6 +1118,35 @@ int C2F(createlistcvarfromptr)(lnumber, number, typex,it, m, n, iptr, iptc, type
 
 
 /*---------------------------------------------------------------------
+ * use the rest of the stack as working area 
+ * the allowed size (in double) is returned in m
+ *---------------------------------------------------------------------*/
+
+int C2F(creatework)(number, lr,m)
+     integer *number, *lr,*m;
+{
+  int n,it=0,lw1,lcs,il;
+  char *fname = Get_Iname();
+  if (*number > intersiz) {
+    Scierror(999,"%s: (creatework) too many arguments in the stack edit stack.h and enlarge intersiz\r\n",
+	     fname);
+    return FALSE_ ;
+  }
+  Nbvars = Max(*number,Nbvars);
+  lw1 = *number + Top - Rhs;
+  if (lw1 < 0) {
+    Scierror(999,"%s: bad call to creatework! (1rst argument)\r\n",
+	     fname);
+    return FALSE_ ;
+  }
+  il = iadr(*lstk(lw1));
+  *m = *lstk(Bot ) - sadr(il+4);
+  n = 1;
+  if (! C2F(cremat)(fname, &lw1, &it, m, &n, lr, &lcs, nlgh))    return FALSE_;
+  return TRUE_; 
+}
+
+/*---------------------------------------------------------------------
  * getmatdims :
  *     check if argument number <<number>> is a matrix and 
  *     returns its dimensions
@@ -2535,7 +2564,7 @@ int C2F(putlhsvar)()
 static int C2F(mvfromto)(itopl, ix)
      integer *itopl, *ix;
 {
-  integer ix1, m,n,it,lcs,lrs ,il,l,ilp;
+  integer ix1, m,n,it,lcs,lrs,l,ilp;
   unsigned char Type ;
   double wsave;
 
