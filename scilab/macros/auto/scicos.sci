@@ -220,6 +220,7 @@ end
 //initialize graphics
 //xdel(curwin)
 xset('window',curwin);
+olds=get('old_style')
 set("figure_style","old")
 xset('default')
 
@@ -310,6 +311,7 @@ while %t
   if Cmenu=='Quit' then do_exit();break;end
   if pixmap then xset('wshow'),end
 end
+  set('old_style',stripblanks(olds))
 
   
 endfunction
