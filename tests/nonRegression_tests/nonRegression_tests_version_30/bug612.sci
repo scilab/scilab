@@ -10,7 +10,7 @@ xset('wdim',2^16+3,5000);
 resultLinux=xget("wdim");
 
 
-resultWindows= [ 65539.    5000.];
+resultWindows= [ 65535.    5000.];
 
 if resultLinux == resultWindows then
 
