@@ -30,7 +30,7 @@ OBJSF = lspops.obj spelm.obj spops.obj \
 	spcho1.obj spcho2.obj blkslv.obj blkfct.obj inpnv.obj symfct.obj ordmmd.obj \
 	blkfc1.obj spind.obj spcompack.obj \
 	intreadmps.obj rdmps1.obj rdmpsz.obj spreshape.obj spt.obj spextr.obj spextr1.obj \
-	spif.obj spifp.obj sputil.obj 
+	spif.obj spifp.obj sputil.obj  spif1b.obj
 
 OBJS =  $(OBJSF) $(OBJSC)
 
