@@ -280,7 +280,7 @@ typedef struct tagTabF {
 #define CheckSquare(pos,m,n) if (! check_square(pos,m,n)) return 0;
 #define CheckVector(pos,m,n) if (! check_vector(pos,m,n)) return 0;
 #define CheckRow(pos,m,n) if (! check_row(pos,m,n)) return 0;
-#define CheckColumn(pos,m,n) if (! check_column(pos,m,n)) return 0;
+#define CheckColumn(pos,m,n) if (! check_col(pos,m,n)) return 0;
 #define CheckScalar(pos,m,n) if (! check_scalar(pos,m,n)) return 0;
 #define CheckDims(pos,m,n,m1,n1) if (! check_dims(pos,m,n,m1,n1)) return 0;
 #define CheckLength(pos,m,m1) if (! check_length(pos,m,m1)) return 0;
