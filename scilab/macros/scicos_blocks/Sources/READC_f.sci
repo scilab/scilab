@@ -93,7 +93,7 @@ case 'define' then
   N=20;
   M=1
   rpar=[]
-  tmask=[]
+  tmask=0
   swap=0
   offset=1
   outmask=1
