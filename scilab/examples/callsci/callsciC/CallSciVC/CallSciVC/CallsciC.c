@@ -1,6 +1,8 @@
+/* Allan CORNET */
+/* Scilab, INRIA 2004 */
+/*-----------------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../../bin/libScilab.lib")
-
-
+/*-----------------------------------------------------------------------------------*/
 #ifndef SCI 
 #define SCI "D:\\SCILAB"
 #endif 
@@ -9,23 +11,32 @@
 #include <math.h>
 #include <stdio.h> 
 #include <string.h> 
+#include <conio.h> 
 
 #include "../../../../../routines/machine.h"
 #include "../../../../../routines/stack-c.h"
-
+/*-----------------------------------------------------------------------------------*/
 extern void InitWindowGraphDll(void);
+extern int C2F(sxevents)();
 extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
 extern void set_sci_env(char *p, char *wsci);
-
+extern void add_sci_argv(char *p);
+/*-----------------------------------------------------------------------------------*/
 static void Initialize() 
 {
-
+  char env[MAX_PATH + 1 + 10];
   char *p1;
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
   static iflag=-1, stacksize = 1000000, ierr=0;
+
+  wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", SCI);
+  putenv (env);
+
+  wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", SCI);
+  putenv (env);
 
   if ((p1 = getenv ("SCI")) == (char *) 0)
     {
@@ -35,8 +46,6 @@ static void Initialize()
     {
       set_sci_env(p1,NULL);
     }
-
-
   
   /* Scilab Initialization */ 
   C2F(inisci)(&iflag,&stacksize,&ierr);
@@ -51,20 +60,18 @@ static void Initialize()
   InitWindowGraphDll();
 
   /* running the startup */ 
-  C2F(scirun)(initstr,strlen(initstr));
+  C2F(scirun)(initstr,(int)strlen(initstr));
 }
-
+/*-----------------------------------------------------------------------------------*/
 void send_scilab_job(char *job) 
 {
   static char buf[1024],
   format[]="Err=execstr('%s','errcatch','n');quit;";
-  int m,n,lp;
   sprintf(buf,format,job);
-  C2F(scirun)(buf,strlen(buf));
+  C2F(scirun)(buf,(int)strlen(buf));
 }
-
-
-static int exemple()
+/*-----------------------------------------------------------------------------------*/
+static int exemple1()
 {
   static double A[]={1,2,3,4};  int mA=2,nA=2;
   static double b[]={4,5};  int mb=2,nb=1;
@@ -90,20 +97,55 @@ static int exemple()
 	  }
 	  free(cxtmp);
   }
-
+  
   return 1;
 } 
-
-
-void main(void)
-
+/*-----------------------------------------------------------------------------------*/
+static int exemple2()
 {
-  Initialize(); /* initialize Scilab */
-  exemple(); 
-  C2F(sciquit)(); /* terminate Scilab */
+	send_scilab_job("plot2d();");
+	printf("\nPress a key to close this example.\n");
+	while( !_kbhit() )
+	{
+		C2F (sxevents) ();
+		Sleep(1);
+	}
+	return 1;
+}
+/*-----------------------------------------------------------------------------------*/
+static int exemple3()
+{
+	send_scilab_job("scipad()");
+	printf("\nPress a key to close this example.\n");
+	while( !_kbhit() )
+	{
+		C2F (sxevents) ();
+		Sleep(1);
+	}
+	return 1;
+}
+/*-----------------------------------------------------------------------------------*/
+int MAIN__(void) 
+{
+#ifdef WIN32
+  static char nw[]="-nw";
+  static char nb[]="-nb";
+  add_sci_argv(nw);
+  add_sci_argv(nb);
+#endif 	
+
+  Initialize();
+
+  exemple1();
+  exemple2();
+
+  /*exemple3();*/
+
+  C2F(sciquit)();
+
   return 0;
 }
-
+/*-----------------------------------------------------------------------------------*/
 
 
 
