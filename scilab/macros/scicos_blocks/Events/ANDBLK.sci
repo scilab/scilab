@@ -10,8 +10,7 @@ case 'getoutputs' then
   [x,y,typ]=standard_outputs(arg1)
 case 'getorigin' then
   [x,y]=standard_origin(arg1)
- case 'set' then
-  x=arg1
+case 'set' then
 case 'define' then
   andlog=ANDLOG_f('define')
     andlog.graphics.orig=[194,133]
@@ -59,29 +58,28 @@ case 'define' then
   
     
   diagram=scicos_diagram()
-    diagram.objs(2)=andlog
-    diagram.objs(3)=input_port1
-    diagram.objs(4)=output_port
-    diagram.objs(5)=scicos_link(xx=[169;214;214],yy=[297;297;198.71],..
+    diagram.objs(1)=andlog
+    diagram.objs(2)=input_port1
+    diagram.objs(3)=output_port
+    diagram.objs(4)=scicos_link(xx=[169;214;214],yy=[297;297;198.71],..
 				ct=[5,-1],from=[2,1],to=[1,1])  
-    diagram.objs(6)=input_port2
-    diagram.objs(7)=scicos_link(xx=[161;234;234],yy=[340;340;275.78],..
+    diagram.objs(5)=input_port2
+    diagram.objs(6)=scicos_link(xx=[161;234;234],yy=[340;340;275.78],..
 				ct=[5,-1],from=[5,1],to=[10,1])  
-    diagram.objs(8)=ifthel
-    diagram.objs(9)=scicos_link(xx=[351;351;450],yy=[131.29;93;93],..
+    diagram.objs(7)=ifthel
+    diagram.objs(8)=scicos_link(xx=[351;351;450],yy=[131.29;93;93],..
 				ct=[5,-1],from=[7,1],to=[3,1])  
-    diagram.objs(10)=scicos_link(xx=[262.57;322.43],yy=[163;167],..
+    diagram.objs(9)=scicos_link(xx=[262.57;322.43],yy=[163;167],..
 				 ct=[1,1],from=[1,1],to=[7,1])  
-    diagram.objs(11)=split
-    diagram.objs(12)=scicos_link(xx=[234;234],yy=[275.78;198.71],..
+    diagram.objs(10)=split
+    diagram.objs(11)=scicos_link(xx=[234;234],yy=[275.78;198.71],..
 				 ct=[5,-1],from=[10,1],to=[1,2])   
-    diagram.objs(13)=scicos_link(xx=[234;361;361],yy=[275.78;275.78;202.71],..
+    diagram.objs(12)=scicos_link(xx=[234;361;361],yy=[275.78;275.78;202.71],..
 				 ct=[5,-1],from=[10,2],to=[7,1])   
-  x=scicos_block()
+    x=scicos_block()
     x.gui='ANDBLK'
     x.graphics.sz=[2,2]
-    x.graphics.gr_i=list('xstringb(orig(1),orig(2),''ANDBLK'',sz(1),s"+...
-			 " z(2),''fill'')',8)
+    x.graphics.gr_i=list('xstringb(orig(1),orig(2),''ANDBLK'',sz(1),sz(2),''fill'')',8);
     x.model.sim='csuper'
     x.model.evtin=[1;1]
     x.model.evtout=1
