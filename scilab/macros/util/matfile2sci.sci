@@ -25,7 +25,7 @@ function matfile2sci(mat_file_path,result_file_path)
 
   //--loop on the stored variables
   while %t 
-    [Matrix,Name]=ReadmiMatrix(fdi) //read next variable
+    //[Matrix,Name]=ReadmiMatrix(fdi) //read next variable
     ierr=execstr('[Matrix,Name]=ReadmiMatrix(fdi)','errcatch') //read next variable
     if ierr<>0 then mclose(fdi),mclose(fdo),return,end 
     if meof(fdi) then  break,end //EOF reached 
