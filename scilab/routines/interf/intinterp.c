@@ -288,7 +288,7 @@ static int intsplin(char * fname)
     {
     case(FAST) : case(FAST_PERIODIC) :
       nwk1 = 1;
-      C2F(deriv) (x, y, d, &n, &nwk1, &spline_type);
+      C2F(derivd) (x, y, d, &n, &nwk1, &spline_type);
       break;
 
     case(MONOTONE) :

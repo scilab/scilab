@@ -55,7 +55,7 @@
       endif
 
       if (n .eq. 3  .and.  type .eq. NOT_A_KNOT) then
-         call deriv(x, y, d, n, 1, FAST)
+         call derivd(x, y, d, n, 1, FAST)
          return
       endif
  
@@ -567,15 +567,15 @@
 
          ! p = du/dx
          do j = 1, ny
-            call deriv(x, u(1,j), p(1,j), nx, 1, type)
+            call derivd(x, u(1,j), p(1,j), nx, 1, type)
          enddo
          ! q = du/dy
          do i = 1, nx
-            call deriv(y, u(i,1), q(i,1), ny, nx, type)
+            call derivd(y, u(i,1), q(i,1), ny, nx, type)
          enddo
          ! r = d2 u/ dx dy  approchee via  dq / dx
          do j = 1, ny
-            call deriv(x, q(1,j), r(1,j), nx, 1, type)
+            call derivd(x, q(1,j), r(1,j), nx, 1, type)
          enddo
 
       endif
@@ -631,7 +631,7 @@
       end  ! subroutine BiCubicSpline
 
 
-      subroutine deriv(x, u, du, n, inc, type)
+      subroutine derivd(x, u, du, n, inc, type)
 *
 *     PURPOSE
 *        given functions values u(i) at points x(i),  i = 1, ..., n

@@ -4,7 +4,7 @@
  */
      
 /* from somespline.f */
-int C2F(deriv) (double *x, double *y, double *d, int *n, int *inc, int *type);
+int C2F(derivd) (double *x, double *y, double *d, int *n, int *inc, int *type);
 
 int C2F(dpchim) (int *n, double *x, double *y, double *d, int *inc);
 
