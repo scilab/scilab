@@ -17207,13 +17207,14 @@ void DrawMerge3d(sciPointObj *psubwin, sciPointObj *pmerge)
 	      C2F(dr)("xliness","str",polyx,polyy,fill,&npoly,&p ,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      break;
 	    case 3:
+	      p--;
 	      if ( (p) != 3 && (p) !=4 ) {
 		Scistring("Interpolated shading is only allowed for polygons with 3 or 4 vertices\n");
 		return;
 	      } 
 	      else  {
-		for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];
-		shade(polyx,polyy,fill,p,pSURFACE_FEATURE (pobj)->flag[0]);
+		/*for ( k1= 0 ; k1 < p ; k1++) fill[k1]=pSURFACE_FEATURE (pobj)->zcol[index];*/
+		shade(polyx,polyy,&(pSURFACE_FEATURE (pobj)->zcol[p*index]),p,pSURFACE_FEATURE (pobj)->flag[0]);
 	      }
 	      break;
 	    }
