@@ -107,7 +107,6 @@ xbasc(); plot_graph(g);
 xset("thickness",4);
 xbasc();
 plot_graph(g);
-xset('default');
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>show_graph</LINK> </SEE_ALSO_ITEM>
