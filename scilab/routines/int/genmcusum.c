@@ -5,7 +5,6 @@ typedef short integer2;
 static integer c__1 = 1;
 #define MCUSUM(Type) {\
 Type *A;\
-Type *V;\
     A=(Type *)a;\
     if (*job == 0) {\
 	 C2F(gencusum)(typ,&mn, A, &c__1);\
@@ -49,4 +48,5 @@ int C2F(genmcusum)(typ,job, a, na, m, n)
     MCUSUM(unsigned int);
     break;
   }
+  return 0;
 }

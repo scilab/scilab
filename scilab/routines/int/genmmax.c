@@ -43,7 +43,7 @@ int *dx;
 int *dy;
 int *dk;
 {
-  static integer i, ix, iy, l, k, kk, *DK;
+  static integer ix, iy, l, k, kk, *DK;
 
   DK=--dk;
   ix = *incx;
@@ -69,5 +69,6 @@ int *dk;
     MMAX(unsigned int);
     break;
   }
+  return 0;
 }
 

@@ -28,7 +28,7 @@ integer *typ;
 int *dx;
 int *dy;
 {
-  static integer i, ix, iy, mn;
+  static integer i, ix, mn;
 
   if (*k >= 0) 
     mn=Max(0,Min(*m,*n-*k));
@@ -55,5 +55,6 @@ int *dy;
     MDIAG(unsigned int);
     break;
   }
+  return 0;
 }
 
