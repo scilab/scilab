@@ -119,8 +119,12 @@ c     statements of the function
 
       if(sym.eq.eol) then
          if (lpt(4).ge.lpt(6)) then
-            call getlin(2)
-            eof=fin.eq.-2
+            if(comp(1).ne.0) then 
+               eof=.true.
+            else
+               call getlin(2)
+               eof=fin.eq.-2
+            endif
          else
             eof=.false.
             lpt(4)=lpt(4)+1
