@@ -2812,8 +2812,7 @@ static int Scierror_internal(n,buffer)
       C2F(errstore)(n);
       len=strlen(buffer);
       C2F(msgstore)(buffer,&len);
-      sciprint(buffer);
-
+      if (C2F(iop).lct[0] != -1) sciprint(buffer);
       C2F(iop).lct[0] = 0;
     }
   /*     handle the error */
