@@ -47,7 +47,7 @@ function ge_eventhandler(win,x,y,ibut)
     edited=%t
   elseif Cmenu=="NewArc" then
     execstr(GL+'=ge_newarc('+GL+',x,y)')
-  elseif Cmenu=="Move" then  
+  elseif Cmenu=="Move Node" then  
     execstr(GL+'=ge_do_move('+GL+',x,y)')
   elseif Cmenu=="Move Region" then  
     execstr(GL+'=ge_do_move_region('+GL+',x,y)')
