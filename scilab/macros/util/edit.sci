@@ -6,11 +6,11 @@ function res=edit(macroname,editor)
   [lhs,rhs]=argn(0)
   //
   finded=%f;tmp=%f
-
+  // tmpdir will have trailing / or \
+  tmpdir= pathconvert(TMPDIR);
+  tmpfile= tmpdir+macroname+'.sci';
   if MSDOS then 
-    write(%io(2),'edit: Not implemented on win32');
-    res=evstr(macroname);
-    return;
+    default_editor="emacs ";
   end
 
   if rhs>=1 then // macroname is given
@@ -19,33 +19,45 @@ function res=edit(macroname,editor)
     end
     libr=whereis(macroname)
     if libr<>[] then // macroname is the name of a defined function
-      w=string(evstr(libr));w=w(1)
-      if part(w,1:4)=='SCI/' then //substitute SCI/ with the scilab path
-	w=SCI+'/'+part(w,5:length(w))
-      end
-      //if file is not writable create a copy in TMPDIR
-      rep=unix_g("if [ -w '+w+macroname+'.sci '+' ]; then echo ok ;else echo nok; fi")
-      if part(rep,1:2)=='ok' then
-	fname=w+macroname+'.sci'
-      else
-	fname=TMPDIR+'/'+macroname+'.sci'
-	unix_s("cp "+w+macroname+'.sci '+fname+'; chmod +w '+fname )
-	tmp=%t
+      path=string(evstr(libr));
+      path=path(1)
+      // convert path according to MSDOS value and expand SCI
+      path=pathconvert(path);
+      fname= path+macroname+'.sci';
+      // check if writable 
+      // if MSDOS is true we assume here that file is writable
+      if ~MSDOS then 
+	rep=unix_g("if [ -w "+ fname +" ]; then echo ok ;else echo nok; fi")
+	if part(rep,1:3)=='nok' then
+	  //if file is not writable create a copy in TMPDIR
+	  //unix_s("cp "+ fname + " " + tmpfile ); fname=tmpfile;
+	  txt = mgetl(fname,-1);fname=tmpfile; mputl(txt,fname);
+	  tmp=%t
+	end 
       end
       finded=%t
-    end  
+    elseif isdef(macroname) 
+       if typeof(macroname)=='function' then 
+	 // macro name was defined online 
+	 txt = fun2string(evstr(macroname)) 
+	 fname=tmpfile
+	 mputl([txt,'endfunction'],fname);
+	 tmp=%t
+	 finded=%t
+       end
+    end
   else //no macroname specified
     macroname='untitled', 
     finded=%f
   end
 
   if ~finded then // macroname is the name of an undefined function
-    comment='/'+'/'
-    fname=TMPDIR+'/'+macroname+'.sci'
-    head='function []='+macroname+'()'
-    execstr('write(fname,head)','errcatch')
+    fname=tmpfile
+    txt=['function []='+macroname+'()';'endfunction'];
+    mputl(txt,fname);
     tmp=%t
   end
+
   // call the editor with the filename
   if rhs<=1, editor =default_editor ;end
   unix_s(editor+' '+fname);
