@@ -2733,6 +2733,10 @@ int C2F(mspcreate)(lw, m, n, nzMax, it)
   ir = jc + *n + 1;
   ix1 = il + 4 + (*n + 1) + *nzMax;
   *lstk(*lw +1) = sadr(ix1) + (*it + 1) * *nzMax + 1;
+  C2F(intersci).ntypes[*lw-Top+Rhs-1] = '$';
+  C2F(intersci).iwhere[*lw-Top+Rhs-1] = *lstk(*lw);
+    /* C2F(intersci).lad[*lw-Top+Rhs-1] = should point to numeric data */
+
   return TRUE_;
 }
 
