@@ -2,17 +2,16 @@
 <!DOCTYPE MAN SYSTEM "../../man.dtd">
 <MAN>
   <LANGUAGE>eng</LANGUAGE>
-  <TITLE>grayplot_properties</TITLE>
+  <TITLE>fec_properties</TITLE>
   <TYPE>Scilab Data type </TYPE>
   <DATE> 2002 </DATE>
-  <SHORT_DESCRIPTION name="grayplot_properties"> description of the
-   grayplot entities properties </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="fec_properties"> description of the
+   fec entities properties </SHORT_DESCRIPTION>
  
   <DESCRIPTION>
-  The Grayplot entity is a leaf of the graphics entities hierarchy. It
-  represents 2D plots of surface using colors and images (see
-  <VERB>grayplot</VERB>, <VERB>Matplot</VERB> and
-  <VERB>Matplot1</VERB>).
+  The Fec entity is a leaf of the graphics entities hierarchy. It
+  represents 2D finite elements plots  (see
+  <VERB>fec</VERB>, <VERB>Sgrayplot</VERB>.
 
 
   
@@ -26,8 +25,16 @@
 
 
    <DESCRIPTION_ITEM label='data: '>
-    This filed is not yet available.
+    This is a three column matrix <VERB>[x,y,f]</VERB>. <VERB>x(i)</VERB>
+    and <VERB>y(i)</VERB> are the coordinates of the  <VERB>i</VERB>th
+    node. <VERB>f(i)</VERB> is the value associated to the node <VERB>i</VERB>.
    </DESCRIPTION_ITEM>
+   <DESCRIPTION_ITEM label='triangles: '>
+    This is a five column matrix
+    <VERB>[tn,n1,n2,n3,flag]</VERB>. <VERB>tn(j)</VERB> is the
+    triangle number, <VERB>n1(j)</VERB>, <VERB>n2(j)</VERB>,
+    <VERB>n3(j)</VERB>, are the index of the nodes which constitutes
+    the triangle.  <VERB>flag(j)</VERB> is not used.
 
       <DESCRIPTION_ITEM label='clip_state: '>
       This field contains the <VERB>clip_state</VERB> property
@@ -56,46 +63,27 @@
      </DESCRIPTION_ITEM>
   
 
-     <DESCRIPTION_ITEM label='data_mapping: '>
-     If this property value is <VERB>"scaled"</VERB> the indices of
-     painting colors are proportional to the value <VERB>z</VERB>
-     coordinates. If this property value is <VERB>"direct"</VERB> and
-     if the plot is a grayplot, the indices of painting colors are
-     given by the data.
-     </DESCRIPTION_ITEM>
-
+   
   
 
   </DESCRIPTION>
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
 
-   m=5;n=7;
-   M=round(32*rand(m,n));
-   grayplot(1:m,1:n,M)
-
+   x=-10:10; y=-10:10;m =rand(21,21);
+   Sgrayplot(x,y,m)
    a=get("current_axes");
-   h=a.children
-
-   xbasc()
-   Matplot()
-   a=get("current_axes");
-   h=a.children;
-
-   m=5,n=7;
-   h.data=round(32*rand(m,n));
-   a.data_bounds=[0,n;0,m]+0.5;
-
+   f=a.children.children(2)
+   f.data(:,3)=(1:size(f.data,1))'
+ 
 
  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>grayplot</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Matplot</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK>Matplot1</LINK> </SEE_ALSO_ITEM>
-
+    <SEE_ALSO_ITEM> <LINK>fec</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>Sgrayplot</LINK> </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
 
   </SEE_ALSO>

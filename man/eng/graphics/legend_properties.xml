@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>legend_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="legend_properties"> description of the
+   Legend entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Legend entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for legends drawn
+  below <VERB>plot2dx</VERB> graphs. This entity requires further
+  developments.
+
+  filled legends.
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the legend is drawn, If
+   <VERB>"off"</VERB> the legend is not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the color index used to draw or fill the
+      legend.  It's value should be a color index 
+      (relative to the current colormap)
+     </DESCRIPTION_ITEM>
+
+ 
+  </DESCRIPTION>
+ 
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+

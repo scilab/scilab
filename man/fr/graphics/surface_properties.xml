@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>surface_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="surface_properties"> description of the
+   3D entities properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Surface entity is a leaf of the graphics entities
+  hierarchy. It has  sub_types Fac3d  Plot3d . This entity is still under developpement
+  and will problably evolve a lot. In particular we intend to extend
+  the Axes data structure to 3D and split the Axes propteies and
+  Surface drawing properties similarily to the 2D case.
+
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the surface is drawn, If
+   <VERB>"off"</VERB> the surface is not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+   <DESCRIPTION_ITEM label='data: '>
+     This field is not yet available.
+   </DESCRIPTION_ITEM>
+
+   <DESCRIPTION_ITEM label='data_bounds: '>
+    This field contains the boundary values for the x, y and z
+    coordinates. It is the matrix <VERB>[xmin,xmax;ymin,ymax;zmin,zmax]</VERB>
+   </DESCRIPTION_ITEM>
+
+   <DESCRIPTION_ITEM label='flags: '>
+    a real vector of size three <VERB>flag=[mode,type,box]</VERB>.
+      <DESCRIPTION_INDENT>
+        <DESCRIPTION_ITEM label='mode'>
+         string (treatment of hidden parts). If  mode&gt;0  
+         the hidden parts of the surface are removed and the surface is painted  with color <VERB>mode</VERB>.
+         <P></P>
+         if mode=0  the hidden parts of the surface are drawn.
+         <P></P>
+         if mode&lt;0 
+         only the backward facing facets are painted with color or
+         pattern id <VERB>-mode</VERB>.
+       </DESCRIPTION_ITEM>
+       <DESCRIPTION_ITEM label='type'>
+        an integer (scaling).
+        if type=0  the plot is made using the current 3D scaling (set
+        by a previous call to <VERB>param3d</VERB>,
+        <VERB>plot3d</VERB>, <VERB>contour</VERB> or
+        <VERB>plot3d1</VERB>). 
+        <P></P>
+         if type=1  rescales automatically 3d boxes with extreme
+        aspect ratios, the boundaries are specified by the value of
+        the property  <VERB>data_bounds</VERB>. 
+        <P></P>
+         if type=2  rescales automatically 3d boxes with extreme
+        aspect ratios, the boundaries are computed using the given
+        data. 
+        <P></P>
+         if  type=3 3d isometric with box bounds given by the property <VERB>data_bounds</VERB>. 
+        
+        <P></P>
+        if type=4  3d isometric bounds  derived from the data
+       <P></P>
+        if type=5  3d expanded isometric bounds  with box bounds given
+        by the property <VERB>data_bounds</VERB>. 
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='thickness: '>
+       This field contains the  <VERB>thickness</VERB> of the lines
+       used to draw the axes and the facets contours. It's value should
+       be a non negative integer..
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the color index used to draw the axes and the facets contours.  
+      It's value should be a color index 
+      (relative to the current colormap)
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='rotation_angles: '>
+      This field is the vector <VERB>[theta,alpha]</VERB>. These two
+      values give  the spherical coordinates of the observation point (in degree).  
+     </DESCRIPTION_ITEM>
+
+       <DESCRIPTION_ITEM label='color_flag: '>
+      This field is used to specify the algorithm used to set facet
+      colors.
+       <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==0</VERB> then all facets are painted
+         using the color index defined by <VERB>flag(1)</VERB> (see
+         above).
+        </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==1</VERB> then all facets are painted
+         using the color index proportional to <VERB>z</VERB>. The minimum
+         <VERB>z</VERB> value is painted using the index 1 color while The maximum
+         <VERB>z</VERB> value is painted using highest color index.
+        </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==2</VERB> then all facets are painted
+         using the color index given in the
+         <VERB>surface_color</VERB> property (one color per
+         facet). 
+         <P></P>
+         This option is available only with <VERB>Fac3d</VERB> entity type.
+        </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==3</VERB> then facets painting results of
+         interpolation of  facet boundary colors. The facet boundary
+         colors indices are given in the
+         <VERB>surface_color</VERB> property (one color per
+         facet boundary). 
+         <P></P>
+         This option is available only with <VERB>Fac3d</VERB> entity type.
+        </DESCRIPTION_ITEM>
+       </DESCRIPTION_INDENT>
+       </DESCRIPTION_ITEM>
+
+       <DESCRIPTION_ITEM label='surface_color: '>
+      If <VERB>color_flag</VERB> is equal to 2 or 3 this property
+      contains the index of the color used to paint the facets.
+     <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==2</VERB> then the property value is a
+         vector of indices. One color index per facet.
+        </DESCRIPTION_ITEM>
+         <DESCRIPTION_ITEM>
+         If <VERB>color_flag==3</VERB> then the property value is a
+         matrix of indices. One column per facet. for each facet one
+         color index is given for each boundary.
+        </DESCRIPTION_ITEM>
+     </DESCRIPTION_ITEM>
+
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+
+
+   t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');[xx,yy,zz]=genfac3d(t,t,z);
+   plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+
+   h=get("hdl") //get handle on current entity (here the surface)
+
+   h.rotation_angles=[30,70];
+   h.flag=[2 2 0];
+   h.flag=[2 2 4];
+
+   h.flag=[2 5 4]; //boundaries given by data_bounds
+   h.data_bounds=[-6,6;6,-0.9961646;0,4.997495];
+
+   //change the figure colormap
+   f=get("current_figure");f.color_map=hotcolormap(64); 
+   
+   h.color_flag=1; //color according to z
+   h.flag=[-2 5 4]; //remove the facets boundary 
+
+   h.color_flag=2; //color according to given colors
+   h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
+
+   f.color_map=hotcolormap(404); 
+   h.color_flag=3; //shaded 
+   c=[1:400,1:400];
+   h.surface_color=[c;c+1;c+2;c+3];
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>plot3d</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>plot3d1</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>plot3d2</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+
