@@ -916,14 +916,14 @@ static void set_cbreak()
 #ifdef B42UNIX
   arg.sg_flags |= CBREAK;
   arg.sg_flags &= ~ECHO; 
-  arg.sg_flags &= ~CRMOD;
+  /* arg.sg_flags &= ~CRMOD; */
   ioctl(fd, TIOCSETN, &arg);
 #endif
 
 #ifdef ATTUNIX
   arg.c_lflag &= ~ICANON;
   arg.c_lflag &= ~ECHO;
-  arg.c_iflag &= ~ICRNL;
+  /* arg.c_iflag &= ~ICRNL; */
   arg.c_oflag &= ~OPOST;
   arg.c_cc [VMIN] = 1;
   arg.c_cc [VTIME] = 0;

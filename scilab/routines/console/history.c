@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------
+ *    Copyright (C) Inria 
+ *    readline support added jpc 2004 
+ *--------------------------------------------------------------------------*/
+
 #include "history.h"
 
 sci_hist *history = NULL;	/* no history yet */
@@ -5,7 +10,11 @@ sci_hist *cur_entry = NULL;
 /* Use for SearchInHistory --> ! */
 sci_hist *research_knot_last = NULL;
 BOOL NewSearchInHistory=FALSE; /* rlgets wsci\command.c */
-static char *HistoryFileNamePath = "~/history.scilab";
+
+/* static char *HistoryFileNamePath = "~/history.scilab"; supposed to be in inffic.c !!! */
+#define HISTORY_ID 3
+extern char *get_sci_data_strings(int n);
+
 #include  "../stack-c.h"
 #ifndef Max 
 #define Max(x,y)	(((x)>(y))?(x):(y))
@@ -15,7 +24,7 @@ extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int n
 			        long int nams_len));  
 
 /*-----------------------------------------------------------------------------------*/
-char *ASCIItime(const struct tm *timeptr)
+static char *ASCIItime(const struct tm *timeptr)
 {
     static char wday_name[7][3] = {
         "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
@@ -37,7 +46,7 @@ char *ASCIItime(const struct tm *timeptr)
     return result;
 }
 /*-----------------------------------------------------------------------------------*/
-void GetCommentDateSession(char *line,int BeginSession)
+static void GetCommentDateSession(char *line,int BeginSession)
 {
 	time_t timer;
   	timer=time(NULL);
@@ -48,7 +57,8 @@ void GetCommentDateSession(char *line,int BeginSession)
 		sprintf(line,"// End Session : %s  ",ASCIItime(localtime(&timer)) );
 }
 /*-----------------------------------------------------------------------------------*/
-/* add line to the history at the end of history*/
+/* adds string line to the end of history 
+ */
 void AddHistory (char *line)
 {
   sci_hist *entry;
@@ -76,8 +86,8 @@ void AddHistory (char *line)
   
 }
 /*-----------------------------------------------------------------------------------*/
+/* Backward search in history (used by key ! ) */
 sci_hist * SearchBackwardInHistory(char *line)
-/* Effectue la recherche via ! dans l'historique*/
 {
 
 	sci_hist *Parcours=NULL;
@@ -116,8 +126,8 @@ sci_hist * SearchBackwardInHistory(char *line)
 
 }
 /*-----------------------------------------------------------------------------------*/
+/* Forward search in history */
 sci_hist * SearchForwardInHistory(char *line)
-/* Effectue la recherche via ! dans l'historique*/
 {
 	sci_hist *Parcours=NULL;
 	char LineComp[MAXBUF];
@@ -180,12 +190,13 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot)
 }
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function savehistory  */
+
 int C2F(savehistory) _PARAMS((char *fname))
 {
   
   char  line[MAXBUF];
   char *Path;
-  int l1, m1, n1, out_n, lout;
+  int l1, m1, n1, out_n;
   
   Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
@@ -194,7 +205,7 @@ int C2F(savehistory) _PARAMS((char *fname))
 	
   if (Rhs == 0)
   {
-    Path=HistoryFileNamePath;
+    Path=get_sci_data_strings(HISTORY_ID);
   }
   else
   {
@@ -202,27 +213,27 @@ int C2F(savehistory) _PARAMS((char *fname))
     Path=cstk(l1);
   }
 
-  if (history)
-  {
-    lout=MAXBUF;
-    C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),lout);
-    Path=line;
-  }
+  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
 
-  save_history(Path);
+  write_history (line);
 
   LhsVar(1)=0;
   C2F(putlhsvar)();
   return 0;
 }
+
 /*-----------------------------------------------------------------------------------*/
-void save_history(char *filename)
+/* save history in filemane: */
+
+#ifndef WITH_READLINE
+
+static void write_history(char *filename)
 {
 	FILE * pFile;
 	sci_hist *Parcours = history;
 	char  line[MAXBUF];
 	BOOL SaveLine=TRUE;
-
+	if ( history == NULL) return;
 	pFile = fopen (filename,"wt");
 	if (pFile)
     {
@@ -265,31 +276,23 @@ void save_history(char *filename)
 		fclose(pFile);
 	}
 }
+#endif 
+
 /*-----------------------------------------------------------------------------------*/
 char * getfilenamehistory(void)
 {
-	char  *filename=NULL;
-	int out_n, lout;
-
-	filename=(char*)malloc(MAXBUF*sizeof(char));
-	lout=MAXBUF;
-    C2F(cluni0)(HistoryFileNamePath, filename, &out_n,(long)strlen(HistoryFileNamePath),lout);
-
-	return filename;
+  char  *history_name = get_sci_data_strings(HISTORY_ID);
+  char  *filename= malloc(MAXBUF*sizeof(char));
+  int out_n;
+  if ( filename == NULL ) return NULL;
+  C2F(cluni0)(history_name, filename, &out_n,(long)strlen(history_name),MAXBUF);
+  return filename;
 }
+
 /*-----------------------------------------------------------------------------------*/
-/*interface routine for Scilab function resethistory  */
-int C2F(resethistory) _PARAMS((char *fname))
-{
-  Rhs=Max(Rhs,0);
-  CheckRhs(0,0) ;
-  CheckLhs(0,1) ;
-  reset_history();
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
-}
-/*-----------------------------------------------------------------------------------*/
+
+#ifndef WITH_READLINE
+
 void reset_history(void)
 {
   if (history)
@@ -317,31 +320,88 @@ void reset_history(void)
     }
 
 }
+#else 
+
+static void reset_history(void)
+{
+  register HIST_ENTRY **the_list;
+  register int i;
+  the_list = history_list ();
+  if (the_list)
+    {
+      int count;
+      for (count = 0; the_list[count]; count++) ;
+      for ( i = count ; i >= 0 ; i--)
+	{
+	  HIST_ENTRY *entry = remove_history (i);
+	  if (entry)
+	    {
+	      free (entry->line);
+	      free (entry);
+	    }
+	}
+    }
+}
+
+#endif 
+
+/*-----------------------------------------------------------------------------------*/
+/*interface routine for Scilab function resethistory  */
+
+static void reset_history(void);
+
+int C2F(resethistory) _PARAMS((char *fname))
+{
+  Rhs=Max(Rhs,0);
+  CheckRhs(0,0) ;
+  CheckLhs(0,1) ;
+  reset_history();
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
+}
+
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function loadhistory  */
+
+#ifndef  WITH_READLINE
+static void read_history(char *filename);
+#endif 
+
 int C2F(loadhistory) _PARAMS((char *fname))
 {
-  FILE * pFile;
   char  line[MAXBUF];
   char  *Path;
-  int l1, m1, n1, out_n, lout;
+  int l1, m1, n1, out_n;
   Rhs=Max(Rhs,0);
   CheckRhs(0,1) ;
   CheckLhs(0,1) ;
 	
 
   if (Rhs == 0) {
-    Path=HistoryFileNamePath;
+    Path=get_sci_data_strings(HISTORY_ID);
   }
   else {
     GetRhsVar(1,"c",&m1,&n1,&l1);
     Path=cstk(l1);
   }
+  
+  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),MAXBUF);
 
-  lout=MAXBUF;
-  C2F(cluni0)(Path, line, &out_n,(long)strlen(Path),lout);
-  pFile = fopen (line,"rt");
+  read_history (line);
 
+  LhsVar(1)=0;
+  C2F(putlhsvar)();
+  return 0;
+}
+
+#ifndef  WITH_READLINE
+
+static void read_history(char *filename)
+{
+  char  line[MAXBUF];
+  FILE * pFile;
+  pFile = fopen (filename,"rt");
   if (pFile)
     {
       sci_hist *Parcours = history;
@@ -360,13 +420,15 @@ int C2F(loadhistory) _PARAMS((char *fname))
 
   GetCommentDateSession(line,TRUE);		
   AddHistory (line);  
-	
-  LhsVar(1)=0;
-  C2F(putlhsvar)();
-  return 0;
 }
+
+#endif 
+
 /*-----------------------------------------------------------------------------------*/
 /*interface routine for Scilab function gethistory  */
+
+static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
+
 int C2F(gethistory) _PARAMS((char *fname))
 {
 
@@ -415,7 +477,7 @@ int C2F(gethistory) _PARAMS((char *fname))
 }	
  
 /*-----------------------------------------------------------------------------------*/
-int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
+static int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
 {
   int ix1, il, nnchar, kij, ilp, lw;
   int pos;
@@ -473,3 +535,4 @@ int CreSmatFromHist(char *fname, int number, sci_hist *Parcours)
   C2F(intersci).ntypes[number - 1] = '$';
   return TRUE_;
 } 
+

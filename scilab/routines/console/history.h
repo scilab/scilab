@@ -13,6 +13,14 @@
 #include "../stack-c.h"
 #endif
 
+#ifdef  WITH_READLINE
+#include <readline/readline.h>
+#include <readline/history.h>
+#else 
+extern void write_history(char *filename); 
+extern void reset_history(void);
+#endif 
+
 #ifndef STRICT
   #define STRICT
 #endif
@@ -49,8 +57,8 @@ extern sci_hist *cur_entry;
 extern sci_hist *research_knot_last;
 extern BOOL NewSearchInHistory; /* rlgets wsci\command.c */
 /*-----------------------------------------------------------------------------------*/
-char *ASCIItime(const struct tm *timeptr);
-void GetCommentDateSession(char *line,int BeginSession);
+/* char *ASCIItime(const struct tm *timeptr); */
+/* void GetCommentDateSession(char *line,int BeginSession); */
 void AddHistory (char *line);
 sci_hist * SearchBackwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
 sci_hist * SearchForwardInHistory(char *line); /* Effectue la recherche via ! dans l'historique*/
@@ -62,13 +70,10 @@ sci_hist * GoNextKnot(sci_hist * CurrentKnot);
 
 /*-----------------------------------------------------------------------------------*/
 int C2F(resethistory) _PARAMS((char *fname));
-void reset_history(void);
 int C2F(loadhistory) _PARAMS((char *fname));
 int C2F(savehistory) _PARAMS((char *fname));
-void save_history(char *filename);
 char * getfilenamehistory(void);
 int C2F(gethistory) _PARAMS((char *fname)); /* Affiche le contenu de l'historique */
-int CreSmatFromHist(char *fname, int number, sci_hist *Parcours);
 /*-----------------------------------------------------------------------------------*/
 
 #endif 
