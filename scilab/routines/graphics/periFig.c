@@ -1431,8 +1431,8 @@ void C2F(drawpolylinesXfig)(char *str, integer *vectsx, integer *vectsy, integer
 	{ /** on utilise la marque de numero associ\'ee **/
 	  NDvalue = - drawvect[i] ;
 	  C2F(setcursymbolXfig)(&NDvalue,symb+1,PI0,PI0);
-	  /* C2F(setdashXfig)(Dvalue,PI0,PI0,PI0);*/ /* F.Leray Correction here to have the right color*/
-	  C2F(setdashXfig)(&NDvalue,PI0,PI0,PI0);
+	  C2F(setdashXfig)(Dvalue,PI0,PI0,PI0);
+	 
 	  C2F(drawpolymarkXfig)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
       else 

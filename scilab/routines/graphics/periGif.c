@@ -1611,8 +1611,8 @@ void C2F(drawpolylinesGif)(char *str, integer *vectsx, integer *vectsy, integer 
       if (drawvect[i] <= 0)
 	{ /** on utilise la marque de numero associ\'ee **/
 	  NDvalue = - drawvect[i];
-	  /*C2F(setdashGif)((j=1,&j),PI0,PI0,PI0); */ /* F.Leray Don't know if it is supported bu should be: C2F(setdashGif)(&NDvalue,PI0,PI0,PI0); 05.03.04*/
-	  C2F(setdashGif)(&NDvalue,PI0,PI0,PI0);
+	  C2F(setdashGif)((j=1,&j),PI0,PI0,PI0);
+	 
 	  C2F(xsetmarkGif)(&NDvalue,symb+1,PI0,PI0);
 	  
 	  C2F(drawpolymarkGif)(str,p,vectsx+(*p)*i,vectsy+(*p)*i,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
