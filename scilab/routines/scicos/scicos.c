@@ -1264,6 +1264,7 @@ int C2F(scicos)
 	t = min(*told + deltat,min(t,*tf + ttol));
 
 	if (info[0] == 0) {
+	  cdoit(told);
 	  for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; 
 	       ++C2F(curblk).kfun) {
 	    if (Blocks[C2F(curblk).kfun-1].nx  > 0) {
@@ -1287,7 +1288,7 @@ int C2F(scicos)
 	if (C2F(cosdebug).cosd >= 3) {
 	  sciprint("****daskr from: %f to %f\r\n", *told, t);
 	}
-	/*sciprint("mask=%d   t=%f  \r\n",mask[0],*told);*/
+	/*sciprint("t=%f  mask=%d hot= %d   \r\n",*told,mask[0],info[0]);*/
 	/*     Warning rpar and ipar are used here as dummy pointers */
 	C2F(ddaskr)(C2F(simblkdassl), neq, told, x, xd, &t, 
 		    info, &rtol, &Atol, &istate, &rhot[1], &
