@@ -91,9 +91,7 @@ static char *pmodes[] =
 #define NULL 0
 #endif 
 
-#if WIN32
 extern int C2F(dsort) _PARAMS((double *count, int *n, int *index));
-#endif
 
 extern void setposfig __PARAMS((integer *i,integer *j));
 extern int C2F (deletewin) __PARAMS((integer *number));  
@@ -5102,17 +5100,18 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      versionflag = 1;
 	      sciXbasc();
 	      C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
-	      figure = (sciPointObj *) sciGetCurrentFigure();                       
-	      XGC = (struct BCG *) pFIGURE_FEATURE (figure)->pScilabXgc;
-	      XGC->mafigure = (sciPointObj *)NULL; 
-	      DestroyFigure (figure);
+	      C2F(dr)("xget","gc",&verb,&v,&v,&v,&v,&v,(double *)&XGC,&dv,&dv,&dv,5L,10L);
+	      if (XGC->mafigure != (sciPointObj *)NULL) {
+		DestroyFigure (XGC->mafigure);
+		XGC->mafigure = (sciPointObj *)NULL; 
+	      }
 	    }
 	  }
 	  else if ((strncmp(cstk(*value),"new", 3) == 0)) {   
 	    if (version_flag() == 1)  {
 	      C2F(dr1)("xset","default",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);      
 	      C2F(dr1)("xclear","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
-	      C2F(dr1)("xget","window",&v,&num,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L); 
+	      C2F(dr)("xget","window",&verb,&num,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L); 
 	      C2F(dr)("xstart","v",&num,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,7L,2L);
 	      XGC=(struct BCG *) sciGetCurrentScilabXgc ();
 	      if ((figure = ConstructFigure (XGC)) != NULL) {
