@@ -27,6 +27,7 @@ c
  10      continue
          i1=i1+4
  15   continue
+      n=nlgh
       return
 c     
  20   continue
