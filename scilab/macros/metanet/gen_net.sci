@@ -60,5 +60,5 @@ ns20=ns*20;ns30=ns*30;
 g=glist(name,directed,n,tail(1:ma),head(1:ma),string(1:n),..
     ntype,x,y,[],[],[],[],[],[],[],..
     [],[],[],[],cost(1:ma),[],cap(1:ma),[],[],[],..
-    [],[],[],[],[],[],[])
+    [],10,1,1,1,1,[],[])
 endfunction
