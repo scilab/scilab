@@ -1,4 +1,5 @@
       subroutine zbeskg (x1r,x1i, alpha, kode, n, yr,yi, nz,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends cbesk for the case where alpha is negative
       double precision alpha
       double precision x1r, x1i, yr(n), yi(n)
@@ -70,6 +71,7 @@ c     .      swap the result to have it in correct order
       end
 
       subroutine zbeskv (xr,xi,nx,alpha,na, kode,yr,yi,wr,wi,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute besseli function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha contains negative
 C         values

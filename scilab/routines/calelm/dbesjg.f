@@ -1,4 +1,5 @@
       subroutine dbesjg (x1, alpha, n, y, nz,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends dbesj for the case where alpha is negative
 c     if alpha is negative and non integer and x1 is negative:error
       double precision x1,alpha,y(n),w(n)
@@ -112,6 +113,7 @@ c     .     this code is taken from the alpha>0 case above
 
 
       subroutine dbesjv (x,nx,alpha,na,kode,y,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute besselj function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha contains negative
 C         values

@@ -1,4 +1,5 @@
       subroutine dbesig (x1, alpha, kode, n, y, nz,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends dbesi for the case where alpha is negative
       double precision x1,alpha,y(n),w(n)
       integer kode,n,nz,ierr
@@ -103,6 +104,7 @@ c     .  compute for positive value of alpha+k is any (note that x>0)
       end
 
       subroutine dbesiv (x,nx,alpha,na, kode,y,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute besseli function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha contains negative
 C         values

@@ -8,6 +8,7 @@
  *
  *   AUTHOR
  *      Bruno Pincon <Bruno.Pincon@iecn.u-nancu.fr>
+ *      Serge Steer Serge.Steer@inria.fr (bessel functions)
  *             
  */
 #include <string.h> /*pour strcmp */
@@ -267,6 +268,7 @@ static int intbeta(char *fname)
 
 
 int intbesselk(fname,fname_len)
+     /* Author Serge Steer, Copyright INRIA 2005 */
      char *fname;
      unsigned long fname_len;
 {
@@ -426,6 +428,7 @@ int intbesselk(fname,fname_len)
   return 0;
 }  
 int intbesseli(fname,fname_len)
+     /* Author Serge Steer, Copyright INRIA 2005 */
      char *fname;
      unsigned long fname_len;
 {
@@ -594,6 +597,7 @@ int intbesseli(fname,fname_len)
 }  
 
 int intbesselj(fname,fname_len)
+     /* Author Serge Steer, Copyright INRIA 2005 */
      char *fname;
      unsigned long fname_len;
 {
@@ -761,6 +765,7 @@ int intbesselj(fname,fname_len)
 }  
 
 int intbessely(fname,fname_len)
+     /* Author Serge Steer, Copyright INRIA 2005 */
      char *fname;
      unsigned long fname_len;
 {

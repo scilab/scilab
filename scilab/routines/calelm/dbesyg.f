@@ -1,4 +1,5 @@
       subroutine dbesyg (x1, alpha, n, y, nz,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends dbesy for the case where alpha is negative
 c     x is assumed to be >0 (if negative bessely(alpha,x) is complex)
       double precision x1,alpha,y(n),w(n)
@@ -90,6 +91,7 @@ c     .  compute for positive value of alpha+k is any
       end
 
       subroutine dbesyv (x,nx,alpha,na,kode,y,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute bessely function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha contains negative
 C         values

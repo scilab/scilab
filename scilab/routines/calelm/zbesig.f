@@ -1,4 +1,5 @@
       subroutine zbesig (x1r,x1i, alpha, kode, n, yr,yi, nz,wr,wi,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends cbesi for the case where alpha is negative
       double precision alpha
       double precision x1r, x1i, yr(n), yi(n), wr(n),wi(n)
@@ -118,6 +119,7 @@ c     .  compute for positive value of alpha+k is any (note that x>0)
       end
 
       subroutine zbesiv (xr,xi,nx,alpha,na, kode,yr,yi,wr,wi,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute besseli function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha
 C     contains negative

@@ -1,4 +1,5 @@
       subroutine dbeskg (x1, alpha, kode, n, y, nz,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     extends dbesk for the case where alpha is negative
 c     x is supposed to be positive (besselk,with x<0 is complex)
       double precision x1,alpha,y(n)
@@ -46,6 +47,7 @@ c     .  swap the result to have it in correct order
       end
 
       subroutine dbeskv (x,nx,alpha,na, kode,y,w,ierr)
+c     Author Serge Steer, Copyright INRIA, 2005
 c     compute besseli function for x and alpha given by vectors
 c     w : working array of size 2*na (used only if nz>0 and alpha contains negative
 C         values
