@@ -4057,10 +4057,9 @@ sciSetDim (sciPointObj * pobj, int *pwidth, int *pheight)
       /* selectionner le xgc correspondant puis */
       pFIGURE_FEATURE (pobj)->figuredimwidth = *pwidth;
       pFIGURE_FEATURE (pobj)->figuredimheight = *pheight;
-      /*** 25/01/2002 ***/
-      /** voir pourquoi redimentionner la fenetre lors de sa creation ***/
-      GPopupResize (sciGetScilabXgc (pobj), pwidth, pheight);
-      /*****************/
+
+      /* GPopupResize (sciGetScilabXgc (pobj), pwidth, pheight); commented out SS 03/01/03 */
+
       break;
     case SCI_SUBWIN:
       pSUBWIN_FEATURE (pobj)->windimwidth = *pwidth;
