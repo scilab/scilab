@@ -2594,3 +2594,104 @@ void SetLanguageMenu(char *Language)
 		// No Message
 	}
 }
+/*-----------------------------------------------------------------------------------*/
+int ToolBarWin32(int WinNum,char *onoff)
+{
+	int bON;
+   	if (WinNum == -1)
+ 		{
+			if (IsWindowInterface())
+			{
+				extern char ScilexWindowName[MAX_PATH];
+				LPTW lptw;
+				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+				if (strcmp(onoff,"off")==0)
+				{
+					if (!lptw->lpmw->LockToolBar)
+					{
+						lptw->lpmw->ShowToolBar=FALSE;
+						ToolBarOnOff(lptw);
+					}
+				}
+
+				if (strcmp(onoff,"on")==0)
+				{
+					if (!lptw->lpmw->LockToolBar)
+					{
+						lptw->lpmw->ShowToolBar=TRUE;
+						ToolBarOnOff(lptw);
+					}
+				}
+				
+				bON=lptw->lpmw->ShowToolBar;
+  			}
+			else
+			{
+ 				sciprint("Not in Console mode\n");
+				bON=FALSE;
+			}
+		}
+	else
+		{
+			struct BCG *ScilabGC=NULL;
+			ScilabGC = GetWindowXgcNumber (WinNum);
+			if (ScilabGC != (struct BCG *) 0)
+			{
+				if (strcmp(onoff,"off")==0)
+				{
+					if (!ScilabGC->lpmw.LockToolBar)
+					{
+						HideGraphToolBar(ScilabGC);
+					}
+					
+				}
+
+				if (strcmp(onoff,"on")==0)
+				{
+					if (!ScilabGC->lpmw.LockToolBar)
+					{
+						ShowGraphToolBar(ScilabGC);
+					}
+				}
+
+				bON=(ScilabGC->lpmw.ShowToolBar);
+  			}
+			else bON=FALSE;
+		}
+ return bON;
+}
+/*-----------------------------------------------------------------------------------*/
+int GetStateToolBarWin32(int WinNum)
+{
+	int bAns;
+   	if (WinNum == -1)
+ 		{
+			if (IsWindowInterface())
+			{
+				extern char ScilexWindowName[MAX_PATH];
+				LPTW lptw;
+				lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+				bAns=lptw->lpmw->ShowToolBar;
+  			}
+			else
+			{
+ 				sciprint("Not in Console mode\n");
+				bAns=FALSE;
+			}
+		}
+	else
+		{
+			struct BCG *ScilabGC=NULL;
+			ScilabGC = GetWindowXgcNumber (WinNum);
+			if (ScilabGC != (struct BCG *) 0)
+			{
+				bAns=(ScilabGC->lpmw.ShowToolBar);
+  			}
+			else bAns=FALSE;
+		}
+
+	return bAns;
+}
+/*-----------------------------------------------------------------------------------*/

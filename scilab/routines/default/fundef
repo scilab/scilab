@@ -270,6 +270,7 @@
 {"getos",	IN_matsys,	73,	2},
 {"getlongpathname",	IN_matsys,	74,	2},
 {"getshortpathname",	IN_matsys,	75,	2},
+{"toolbar",	IN_matsys,	76,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  

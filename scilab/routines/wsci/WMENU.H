@@ -285,5 +285,6 @@ static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
 /*--------------------------------*/
 void SetLanguageMenu(char *Language);
 /*--------------------------------*/
-
+extern BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows);
+/*--------------------------------*/
 #endif /*  __WMENU_H__ */

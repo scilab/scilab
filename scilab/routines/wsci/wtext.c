@@ -1248,7 +1248,8 @@ EXPORT LRESULT CALLBACK WndTextProc (HWND hwnd, UINT message, WPARAM wParam, LPA
 			if (lptw->lpmw->LockToolBar == FALSE)
 				{
 					lptw->lpmw->ShowToolBar=!lptw->lpmw->ShowToolBar;
-	      			ToolBarOnOff(lptw);
+					
+						ToolBarOnOff(lptw);
 				}
 	      		
 	      	}
