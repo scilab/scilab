@@ -851,6 +851,15 @@ void ignore_expose(widget,event2)
       FDEBUG((stderr,"Expose ignores : count = %d\n",((XExposeEvent *) event2)->count));
     }
 }
+void ignore_StructureNotify(widget,event2) 
+     Widget widget;
+     XEvent *event2;
+{
+  while (XCheckWindowEvent(XtDisplay(widget),XtWindow(widget), StructureNotifyMask,event2)==True)
+    { 
+      FDEBUG((stderr,"StructureNotify ignores : count = %d\n",((XExposeEvent *) event2)->count));
+    }
+}
 
 static XtEventHandler
 EventProc1(widget, number, event)
@@ -890,6 +899,7 @@ EventProc1(widget, number, event)
 	scig_replay(win_num);
       /** I ignore the following expose events **/
       ignore_expose(widget,&event2);
+      ignore_StructureNotify(widget,&event2);
       break; 
     case CreateNotify  :
       FDEBUG((stderr,"XXX: CreateNotify\r\n"));
