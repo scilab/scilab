@@ -973,6 +973,6 @@ int C2F(intlapack)()
 {  
   Rhs = Max(0, Rhs);
   (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
-  C2F(putlhsvar)();
+  if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
   return 0;
 }
