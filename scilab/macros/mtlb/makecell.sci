@@ -19,6 +19,6 @@ if prod(dims)==1 then
 else
   listentries=varargin
   listentries(1)=null()
-  s=mlist(["ce","dims","entries"],int32(dims),list(listentries(:)))
+  s=mlist(["ce","dims","entries"],int32(dims($:-1:1)),listentries)'
 end
 endfunction
