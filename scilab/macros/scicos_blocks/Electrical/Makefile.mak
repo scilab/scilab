@@ -23,7 +23,7 @@ MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 
 all  :: $(MACROS) $(MODELS)
 	@dir /B $(MACROS) >names
-	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genlib.sce -args "$(NAME) $(NAM)"
+	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genlib.sce -args $(NAME) $(NAM)
 	@dir /B $(MODELS) >models
 	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genmoc.sce
 clean::
