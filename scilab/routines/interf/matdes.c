@@ -2471,15 +2471,16 @@ int scixend(fname,fname_len)
      fflush(NULL); */
   if(version_flag() == 0) {
     xinitxend_flag = 0;   /* we DO draw now into the file/memory (depending on the driver type) */
-    sciDrawObj(sciGetCurrentFigure());
+    figure = sciGetCurrentFigure();
+    sciDrawObj(figure);
     xinitxend_flag = 1;
   }
   C2F(dr1)("xend","v",&v,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,5L,2L);
   if(version_flag() == 0) {
-    figure = sciGetCurrentFigure();
+    /* figure already defined above */
     Xgc = (struct BCG *) pFIGURE_FEATURE(figure)->pScilabXgc;
     DestroyAllGraphicsSons (figure);
-    DestroyFigure (figure);
+    DestroyFigure (figure); figure = (sciPointObj *) NULL;
     Xgc->mafigure = (sciPointObj *) NULL;
   }
   LhsVar(1)=0;
@@ -4423,12 +4424,9 @@ int nscixaxis(fname, fname_len)
   return 0;
 }
 
-int check_xy(fname,dir,mn,xpos,xm,xn,xl,ypos,ym,yn,yl,ntics)
-     char *fname;
-     char dir;
-     int mn,xpos,xm,xn,ypos,ym,yn;
-     unsigned long int xl,yl;
-     int *ntics;
+int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn, 
+	     long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, 
+	     int *ntics)
 {
   switch ( dir ) 
     {
