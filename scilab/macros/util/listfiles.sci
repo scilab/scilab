@@ -34,7 +34,8 @@ function files= listfiles(paths,flag,flagexpand)
       files=[files;filesi];
     end
   else
-    paths=  strcat(paths,' ');
+    paths=strsubst(stripblanks(paths),' ','\ ')
+    paths=stripblanks(strcat(paths,' '))
     files=unix_g('ls  -t1 '+paths);
   end
 endfunction
