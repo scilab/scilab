@@ -282,10 +282,16 @@ int C2F(winopen) _PARAMS((char *fname))
 
 	#ifdef WIN32
 	error = ShellExecute(NULL, "open", filename, NULL, NULL, SW_SHOWNORMAL);
-	if ( error<= (HINSTANCE)32) MessageBox(NULL,"Couldn't Open this document","Warning",MB_ICONWARNING);
+	if ( error<= (HINSTANCE)32)
+	{
+		Scierror(999,"Couldn't Open this document\r\n");
+		return 0;
+	}
+	else LhsVar(0)=0;
+	#else
+		LhsVar(0)=0;
 	#endif
 
-	LhsVar(0)=0;
 	C2F(putlhsvar)();
 return 0;
 }
@@ -490,7 +496,7 @@ int C2F(intsleep) _PARAMS((char *fname))
 	
 	#ifdef WIN32
 		{
-			int ms = (sec)/1000; /** time is specified in microseconds in scilab**/
+			int ms = (sec); /** time is specified in milliseconds in scilab**/
 			if (ms != 0) Sleep(ms); /* Number of milliseconds to sleep. */
 		}
 	#else
@@ -502,7 +508,7 @@ int C2F(intsleep) _PARAMS((char *fname))
 					{ usleep(useconds); }
 				#else
 					#ifdef HAVE_SLEEP
-					{  sleep(useconds/1000000); }
+					{  sleep(useconds/1000); }
 					#endif
 				#endif
 		}
