@@ -13065,24 +13065,18 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	    return -1;
 	  }
 	  if (*numcol == 3)
-	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	      if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		FREE(pvx); pvx = (double *) NULL;
-		FREE(pvy); pvy = (double *) NULL;
-		FREE(pvector); pvector = (POINT2D *) NULL;
-		return -1;
-	      }
+	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
+	      FREE(pvx); pvx = (double *) NULL;
+	      FREE(pvy); pvy = (double *) NULL;
+	      FREE(pvector); pvector = (POINT2D *) NULL;
+	      return -1;
+	    }
 	  
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
 	  FREE(pPOLYLINE_FEATURE (pthis)->pvector); pPOLYLINE_FEATURE (pthis)->pvector = NULL;
-	  if ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	      && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))
-	    {
-	      FREE(pPOLYLINE_FEATURE (pthis)->pvz); 
-	      pPOLYLINE_FEATURE (pthis)->pvz = NULL;
-	    }
-
+	  FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
+	  
 	  /* Adding F.Leray 07.04.04 : Init. phase*/
 	  xmin=xmax=tab[0];
 	  ymin=ymax=tab[0+ (*numrow)];
@@ -13119,9 +13113,16 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	}
       else
 	{
-	  if (*numcol == 3)
+	  if (*numcol == 3){
 	    if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) 
 	      return -1;
+	  }
+	  else{
+	    /* same number of row but numcol==2 (case where z value is not specified) */
+	    for (i = 0; i < *numrow; i++)
+	      pPOLYLINE_FEATURE (pthis)->pvz[i] = 0.;
+	  }
+	  
 	  
 	  /* Adding F.Leray 07.04.04 : Init. phase*/
 	  xmin=xmax=tab[0];
