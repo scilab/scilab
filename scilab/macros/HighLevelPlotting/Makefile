@@ -29,7 +29,7 @@ colormap.sci             lighten.sci                  parseFontSize.sci         
 computeLight.sci         loadDefaultColormap.sci      parseGrid.sci               redcolormap.sci         ylabel.sci \
 coolcolormap.sci         loadDefaultGraphicState.sci  parseHiddenMode.sci         saveGraphicState.sci \
 coppercolormap.sci       loadGlobalGraphicState.sci   parseHideMode.sci           semilogx.sci \
-delete.sci               loadGraphicState.sci         parseLabel.sci              semilogy.sci \
+loadGraphicState.sci         parseLabel.sci              semilogy.sci \
 diffuse.sci              loglog.sci                   parseLegend.sci             setCurrentViewport.sci
 
 include ../Make.lib
