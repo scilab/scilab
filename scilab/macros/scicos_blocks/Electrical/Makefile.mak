@@ -6,6 +6,8 @@ SCIDIR1=..\..\..
 
 include ../../../Makefile.incl.mak
 
+MODELICAC=$(SCIDIR1)\bin\modelicac.exec
+
 NAME = scselectricallib
 NAM = SCI/macros/scicos_blocks/Electrical
 
@@ -21,6 +23,8 @@ MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 	Diode.mo NPN.mo Resistor.mo VsourceDC.mo \
 	OutPort.mo VVsourceAC.mo 
 
+BINMODELS = $(MODELS:.mo=.moc)
+
 #for Modelica extern functions
 OBJS  =
 LIBRARY = libElectrical
@@ -29,11 +33,18 @@ EXTRA_LDFLAGS =
 #uncomment next line if OBJECTS is not empty
 #include ..\..\..\config\Makedll.incl
 
-all  :: $(MACROS) $(MODELS)
+all  :: 
 	@dir /B $(MACROS) >names
 	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genlib.sce -args $(NAME) $(NAM)
+	
+all  ::
 	@dir /B $(MODELS) >models
 	@$(SCIDIR1)\bin\scilex.exe -ns -nb -nwni -f $(SCIDIR1)\util\genmoc.sce
+
+# must recompile the models if modelicac changed 
+
+$(BINMODELS) : $(MODELICAC) 
+
 clean::
 
 distclean::

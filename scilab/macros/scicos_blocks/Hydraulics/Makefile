@@ -3,7 +3,9 @@ SHELL = /bin/sh
 SCIDIR=../../..
 SCIDIR1=..\..\..
 
-include ../../../Makefile.incl
+include $(SCIDIR)/Makefile.incl
+
+MODELICAC=$(SCIDIR)/bin/modelicac
 
 NAME = scshydraulicslib
 NAM = SCI/macros/scicos_blocks/Hydraulics
@@ -16,6 +18,9 @@ MACROS= Bache.sci VanneReglante.sci  vanne_draw_ports.sci \
 MODELS=Bache.mo PortPHQ1.mo Puits.mo  ThermoCarre.mo \
 	PerteDP.mo PortPHQ2.mo Source.mo VanneReglante.mo 
 
+BINMODELS = $(MODELS:.mo=.moc)
+
+
 #for Modelica extern functions 
 OBJECTS  =
 LIBRARY = libHydrau.a
@@ -24,11 +29,18 @@ EXTRA_LDFLAGS =
 #uncomment next line if OBJECTS is not empty
 #include $(SCIDIR)/config/Makeso.incl
 
-all  :: $(MACROS) $(MODELS)
+all  :: 
 	@ls $(MACROS) >names
 	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
+	
+all  ::
 	@ls $(MODELS) >models
 	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genmoc.sce
+
+# must recompile the models if modelicac changed 
+
+$(BINMODELS) : $(MODELICAC) 
+
 clean::
 
 

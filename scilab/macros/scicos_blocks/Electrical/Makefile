@@ -3,7 +3,7 @@ SHELL = /bin/sh
 SCIDIR=../../..
 SCIDIR1=..\..\..
 
-include ../../../Makefile.incl
+include $(SCIDIR)/Makefile.incl
 
 NAME = scselectricallib
 NAM = SCI/macros/scicos_blocks/Electrical
@@ -13,12 +13,15 @@ MACROS= Capacitor.sci Ground.sci NPN.sci VVsourceAC.sci \
 	CurrentSensor.sci Resistor.sci VoltageSensor.sci \
 	Diode.sci  VsourceAC.sci 
 
+MODELICAC=$(SCIDIR)/bin/modelicac
 
 MODELS=Capacitor.mo Ground.mo OutPutPort.mo VariableResistor.mo \
 	ConstantVoltage.mo InPutPort.mo Pin.mo VoltageSensor.mo \
 	CurrentSensor.mo Inductor.mo PotentialSensor.mo VsourceAC.mo \
 	Diode.mo NPN.mo Resistor.mo VsourceDC.mo \
 	OutPort.mo VVsourceAC.mo 
+
+BINMODELS = $(MODELS:.mo=.moc)
 
 #for Modelica extern functions
 OBJECTS  =
@@ -29,11 +32,17 @@ EXTRA_LDFLAGS =
 #include $(SCIDIR)/config/Makeso.incl
 
 
-all  :: $(MACROS) $(MODELS)
+all  :: 
 	@ls $(MACROS) >names
 	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genlib.sce -args "$(NAME) $(NAM)"
+
+all  ::
 	@ls $(MODELS) >models
 	@$(SCIDIR)/bin/scilab -ns -nb -nw -f $(SCIDIR)/util/genmoc.sce
+
+# must recompile the models if modelicac changed 
+
+$(BINMODELS) : $(MODELICAC) 
 
 clean::
 
