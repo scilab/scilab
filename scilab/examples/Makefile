@@ -13,6 +13,7 @@ info	:
 SUBDIRS = interface-tour interface-tour-so \
 	interface-tutorial interface-tutorial-so \
 	interface-lapack intersci-examples intersci-examples-so \
+	interface-general \
 	link-examples link-examples-so \
 	misc-examples man-examples macros-examples mex-examples 
 
