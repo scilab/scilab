@@ -1,4 +1,4 @@
-// ven jan 24 12:52:37 CET 2003
+// mar jan 28 16:00:01 CET 2003
 
 //====================================================
 // ../man/eng/arma/arma.xml
@@ -3739,10 +3739,11 @@ clear;lines(0);
 
    xarc(-1.5,1.5,3,3,0,360*64)
 
-   p=a.children
-   p.fill_mode="on";
-   p.foreground=5;
-   p.data(3,:)=[0 90*64];
+   arc=get("hdl"); //get handle on current entity (here the arc entity)
+   arc.fill_mode="on";
+   arc.foreground=5;
+   arc.data(3,:)=[2 270*64];
+   arc.visible="off";
 
 xdel(winsid())
 
@@ -3755,8 +3756,42 @@ clear;lines(0);
    a.axes_visible="on"; // makes the axes visible
    a.tics_textsize=3; //set the tics label font size
    a.x_location="top"; //set the x axis position
-   a.sub_tics=[0,5];
-   a.grid=3;
+   a.data_bounds=[-100,100;-2,2]; //set the boundary values for the x and y coordinates.
+   a.sub_tics=[5,0];
+   a.labels_font_color=5;
+   a.grid=2;
+   a.box="off";
+xdel(winsid())
+
+//====================================================
+// ../man/eng/graphics/axis_properties.xml
+//====================================================
+clear;lines(0);
+
+  set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-1,-1,10,10];
+
+  drawaxis(x=2:7,y=4,dir='u');
+  a1=a.children(1)
+  a1.xtics_coord=[1 4 5  8 10];
+  a1.tics_color=2;
+  a1.labels_font_size=3;
+  a1.tics_direction="bottom";
+  a1.tics_labels= [" February" "May"  "june" "August"  "October"];
+  
+  drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
+  a2=get("hdl")
+  a2.sub_tics=0;
+  a2.tics_segments="off";
+  a2.ytics_coord=4;
+  
+  drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
+  a3=get("hdl");
+  a3.tics_labels= 'B'  +string(0:7);
+  a3.tics_direction="left";
+
+   
 xdel(winsid())
 
 //====================================================
@@ -3809,17 +3844,17 @@ xdel(winsid())
 // ../man/eng/graphics/champ_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
+  
+  set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-10,-10,10,10];
    champ(-5:5,-5:5,rand(11,11),rand(11,11))
 
-   p=a.children
+   c=a.children
 
-   p.colored="on";
-   p.thickness=2;
-
-  
+   c.colored="on";
+   c.thickness=2;
+   a.data_bounds=[-5,-5,5,5];
 
 xdel(winsid())
 
@@ -3912,13 +3947,20 @@ xdel(winsid())
 // ../man/eng/graphics/delete.xml
 //====================================================
 clear;lines(0);
-  set("figure_style","new") // select entity based graphics
+
+  set("figure_style","new") // select entity based graphics  
+  subplot(211);
   t=1:10;plot2d(t,t.^2),
-  h=get("current_figure") //gets handle on the current figure
-  a=h.children
-  delete(a.children)
-  delete(a)
-  delete(h)
+  subplot(223);
+  plot3d();
+  subplot(224);
+  plot2d();
+  xfrect(1,0,3,1);
+  a=get("current_axes") 
+  delete(); //delete the graphics object newly created
+  delete(a.children); //delete all children of the current axes
+  delete(a); //delete the axes
+  delete("all"); //delete all the graphics objects of the figure
 
 xdel(winsid())
 
@@ -3986,11 +4028,26 @@ xdel(winsid())
 clear;lines(0);
 
   set("figure_style","new") // select entity based graphics
-
-  h=get("current_figure") //gets handle on the current figure
-  drawlater()
-  t=1:10;plot2d(t,t.^2)
-  drawnow()
+  drawlater(); 
+  xfarc(.25,.55,.1,.15,0,64*360);
+  xfarc(.55,.55,.1,.15,0,64*360);
+  xfrect(.3,.8,.3,.2); 
+  xfrect(.2,.7,.5,.2);  
+  xfrect(.32,.78,.1,.1);
+  xfrect(.44,.78,.14,.1);
+  xfrect(-.2,.4,1.5,.8);
+  xstring(0.33,.9,"A Scilab Car");    
+  a=get("current_axes");
+  a.children(1).font_size=4;
+  a.children(1).font_style=4;  
+  a.children(1).foreground=5;
+  a.children(3).foreground=8;
+  a.children(4).foreground=8; 
+  a.children(5).foreground=17;
+  a.children(6).foreground=17; 
+  a.children(7).foreground=25;
+  a.children(8).foreground=25;
+  xclick();drawnow();
 
 xdel(winsid())
 
@@ -4000,11 +4057,24 @@ xdel(winsid())
 clear;lines(0);
 
   set("figure_style","new") // select entity based graphics
-
-  h=get("current_figure") //gets handle on the current figure
-  drawlater()
+  f=get("current_figure") // handle of the current figure
+  
+  drawlater();
+  subplot(221);
   t=1:10;plot2d(t,t.^2)
-  drawnow()
+  subplot(222);
+  x=0:1:7;plot2d(x,cos(x),2) 
+  subplot(234);
+  plot2d(t,cos(t),3);
+  subplot(235);
+  plot2d(x,sin(2*x),5); 
+  subplot(236);
+  plot2d(t,tan(2*t));  
+ 
+  drawnow();
+  drawnow(f.children());
+  drawnow(f.children([3 4]));
+  drawnow("all");
 
 xdel(winsid())
 
@@ -4121,13 +4191,16 @@ xdel(winsid())
 // ../man/eng/graphics/fec_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
+
+   set("figure_style","new"); //create a figure
 
    x=-10:10; y=-10:10;m =rand(21,21);
-   Sgrayplot(x,y,m)
+   Sgrayplot(x,y,m);
    a=get("current_axes");
    f=a.children.children(2)
-   f.data(:,3)=(1:size(f.data,1))'
+   f.data(:,3)=(1:size(f.data,1))';
+   a.parent.color_map=hotcolormap(64);
+
 xdel(winsid())
 
 //====================================================
@@ -4224,19 +4297,46 @@ xdel(winsid())
 // ../man/eng/graphics/get.xml
 //====================================================
 clear;lines(0);
+
   // for graphics entities
-  set("figure_style","new") // select entity based graphics
-  t=1:10;plot2d(t,t.^2),
-  h=get("current_figure") //gets handle on the current figure
-  get(h,"figure_size")
-  h.children.foreground
+    xbasc()
+    get("old_style") // check the state of the graphics' style
+    set("figure_style","new") //create a figure
+    get("figure_style") // check the style of the graphics' figure
+
+    // simple graphics objects  
+    subplot(121);
+    x=[-.2:0.1:2*%pi]';
+    plot2d(x-2,x.^2);
+    subplot(122);
+    xrect(.2,.7,.5,.2);     
+    xrect(.3,.8,.3,.2);
+    xfarc(.25,.55,.1,.15,0,64*360);
+    xfarc(.55,.55,.1,.15,0,64*360);
+    xstring(0.2,.9,"Example <<A CAR>>");
+ 
+    h=get("hdl") //get the object newly created
+    h.font_size=3;
+ 
+    f=get("current_figure") //get the current figure 
+    f.figure_size
+    f.figure_size=[700 500];
+    f.children
+    f.children(2).type
+    f.children(2).children
+    f.children(2).children.children.thickness=4; 
+ 
+    a=get("current_axes") //get the current axes
+    a.children.type
+    a.children.foreground //get the foreground color of a set of graphics objects
+    a.children.foreground=9;
 
   // for  User Interface objects
-
    h=uicontrol('string', 'Button'); // Opens a window with a  button.
    p=get(h,'position'); // get the geometric qspect of the button
    disp('Button width: ' + string(p(3))); // print the width of the button
    close(); // close figure
+
 xdel(winsid())
 
 //====================================================
@@ -4338,22 +4438,31 @@ xdel(winsid())
 clear;lines(0);
    set("figure_style","new") //create a figure
 
-   m=5;n=7;
+
+   m=5;n=5;
    M=round(32*rand(m,n));
    grayplot(1:m,1:n,M)
 
    a=get("current_axes");
+   a.data_bounds=  [-1,-1,7,7]
    h=a.children
 
+   h.data_mapping="direct";
+   
+   // A 2D ploting of a matrix using colors 
    xbasc()
-   Matplot()
    a=get("current_axes");
-   h=a.children;
-
-   m=5,n=7;
-   h.data=round(32*rand(m,n));
-   a.data_bounds=[0,n;0,m]+0.5;
-
+   a.data_bounds=  [0,0,4,4];
+  
+   b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
+   Matplot1(b,[1,1,3,3])  ;
+  
+   h=a.children
+   for i=1:7
+    xclick(); // click the mouse to sets Matplot data
+    h.data=h.data+4;
+   end
+   
 
 xdel(winsid())
 
@@ -4412,6 +4521,17 @@ xdel(winsid())
 //====================================================
 // ../man/eng/graphics/legend_properties.xml
 //====================================================
+clear;lines(0);
+
+  set("figure_style","new") //create a figure
+   plot2d();
+   a=get("current_axes");
+   l=a.children.children(1)
+   l.text="sin(x)@sin(2*x)@sin(3*x)";
+   l.visible="off";
+    
+
+xdel(winsid())
 
 //====================================================
 // ../man/eng/graphics/legends.xml
@@ -4530,23 +4650,20 @@ xdel(winsid())
 // ../man/eng/graphics/param3d_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
 
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
-
-   h=get("hdl") //get handle on current entity (here the param3d)
-
-   h.rotation_angles=[30,70];
+ 
+   h=a.children //get the handle of the param3d entity
+   h.rotation_angles=[65,75];
    h.surface_color=[3 5];
-   h.flag=[1 1 0];
-   h.flag=[1,2,4];
-
-
-   h.flag=[2 5 4]; //boundaries given by data_bounds
-   h.data_bounds=[-1,-1,-1;1,1,2]       
-   
-
+   h.flag=[1,2,3];
+   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   h.flag=[2 5 0];
+   h.thickness = 2;
+  
 xdel(winsid())
 
 //====================================================
@@ -4562,14 +4679,18 @@ xdel(winsid())
 // ../man/eng/graphics/patch_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
+  
+  set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-2,-2,2,2];
 
    xfpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5))
-   p=a.children
-   p.foreground=5;
-   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'] 
+   p=get("hdl"); //get handle on current entity (here the pacth entity)
+   p.foreground=14;
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+   p.clip_box=[-2, .5, 4,1]
+   p.clip_state
+   p.clip_state="off";
 
 
 xdel(winsid())
@@ -4822,20 +4943,23 @@ xdel(winsid())
 // ../man/eng/graphics/polyline_properties.xml
 //====================================================
 clear;lines(0);
+
    set("figure_style","new") //create a figure
    a=get("current_axes")//get the handle of the newly created axes
    a.data_bounds=[-2,-2,2,2];
 
-   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",1)
-   p=a.children
-   p.foreground=5;
-   p.mark_style=9; //
-   p.mark_mode="off";
-   p.line_style=3;
+   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+   p=get("hdl"); //get handle on current entity (here the polyline entity)
+   p.foreground=2;
+   p.thickness=3;
+   p.mark_style=9;
    d=p.data;d(1,:)=[0 0];p.data=d;
 
-   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'] 
-   p.polyline_style=3
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+   p.mark_mode="off";
+   p.polyline_style=3;
+   p.line_style=4;
+
 
 xdel(winsid())
 
@@ -4853,12 +4977,17 @@ clear;lines(0);
 
    xrect(-1,1,2,2)
 
-   p=a.children
-   p.fill_mode="on";
-   p.foreground=5;
-   p.clip_box=[-1 1;1 1];
-   p.clip_state="off"
-   p.data(:,2)=[1/2;1/2];    
+   r=get("hdl");//get handle on current entity (here the rectangle entity)
+   r.type
+   r.parent.type
+   r.foreground=13;
+   r.line_style=2;
+   r.fill_mode="on";
+   r.clip_box=[-1 1;1 1];
+   r.clip_state="off"
+   r.data(:,2)=[1/2;1/2];
+   r.data(:,1)=[1/2;1/2];
+      
 xdel(winsid())
 
 //====================================================
@@ -4908,24 +5037,31 @@ xdel(winsid())
 // ../man/eng/graphics/segs_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
+
+  set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
    a.data_bounds=[-10,-10,10,10];
    x=2*%pi*(0:7)/8;
-   xv=[sin(x);9*sin(x)];
-   yv=[cos(x);9*cos(x)];
+   xv=[2*sin(x);9*sin(x)];
+   yv=[2*cos(x);9*cos(x)];
    xsegs(xv,yv,1:8)
 
-   p=a.children
+   s=a.children
+   s.arrow_size=1;
+    s.segs_color=15:22;
+    for j=1:2
+      for i=1:8
+        h=s.data(i*2,j);
+        s.data(i*2,j)=s.data(i*2-1,j);
+        s.data(i*2-1,j)=  h;
+       end
+    end
 
+   s.segs_color=5; //set all the colors to 5
 
-   p.segs_color=9:16;
-   p.arrow_size=1;
-   p.segs_color=5; //set all the colors to 5
-
-   p.clip_box=[-4,4,8,8];
-   xrect(p.clip_box)
-   a.children(1).thickness=2;
+   s.clip_box=[-4,4,8,8];
+   a.thickness=4;
+   xrect(s.clip_box);
 
 xdel(winsid())
 
@@ -4933,11 +5069,29 @@ xdel(winsid())
 // ../man/eng/graphics/set.xml
 //====================================================
 clear;lines(0);
-  set("figure_style","new") // select entity based graphics
-  t=1:10;plot2d(t,t.^2),
-  h=get("current_figure") //gets handle on the current figure
-  set(h,"figure_size",[300,200])
-  set(h,"background",addcolor([0.3,0.3,0.3]))
+
+   xbasc()
+   set("figure_style","new") //create a figure
+   set("auto_clear","off") ;
+   // Exemple of a Plot 2D
+   x=[-.2:0.1:2*%pi]';
+   plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
+   a=get("current_axes");
+   p1=a.children.children(1);
+   p2=a.children.children(2);
+   // set the named properties to the specified values on the objects
+   set(p2,"foreground",13);
+   set(p2,"polyline_style",2);
+   set(a,'tight_limits',"on");
+   set(a,"box","off");
+   set(a,"sub_tics",[ 7 0 ]);
+   set(a,"y_location","middle")
+   set(p2,'thickness',2);
+   set(p1,'mark_mode',"on");
+   set(p1,'mark_style',3);
+   plot2d(x-2,x.^2/20);
+   p3= a.children(1).children;
+   set([a p1 p2 p3],"foreground",5)
 
 xdel(winsid())
 
@@ -4989,26 +5143,29 @@ clear;lines(0);
 
    h=get("hdl") //get handle on current entity (here the surface)
 
-   h.rotation_angles=[30,70];
-   h.flag=[2 2 0];
-   h.flag=[2 2 4];
+   h.rotation_angles=[40,70];
 
-   h.flag=[2 5 4]; //boundaries given by data_bounds
-   h.data_bounds=[-6,6;6,-0.9961646;0,4.997495];
 
-   //change the figure colormap
-   f=get("current_figure");f.color_map=hotcolormap(64); 
-   
+    h.flag=[2 5 4]; //boundaries given by data_bounds
+    h.data_bounds=[-6,6;6,-1;0,5];
+    h.flag=[2 5 0]; //axes are hidden
+
+ 
+   f=get("current_figure");//get the handle of the parent figure    
+   f.color_map=hotcolormap(64); //change the figure colormap
+
    h.color_flag=1; //color according to z
-   h.flag=[-2 5 4]; //remove the facets boundary 
+   h.flag=[-2 5 0]; //remove the facets boundary
+   h.flag=[-2 2 0]; //boundaries computed using the given data 
 
    h.color_flag=2; //color according to given colors
    h.surface_color=[modulo(1:400,64),modulo(1:400,64)];
 
-   f.color_map=hotcolormap(404); 
-   h.color_flag=3; //shaded 
+   f.color_map=hotcolormap(512);
+   h.color_flag=3; //shaded
    c=[1:400,1:400];
    h.surface_color=[c;c+1;c+2;c+3];
+
 
 xdel(winsid())
 
@@ -5016,17 +5173,44 @@ xdel(winsid())
 // ../man/eng/graphics/text_properties.xml
 //====================================================
 clear;lines(0);
-   set("figure_style","new") //create a figure
-   a=get("current_axes");//get the handle of the newly created axes
+
+  set("figure_style","new") //create a figure
+   a=get("current_axes");
    a.data_bounds=[0,0,1,1];
 
-   xstring(0.5,0.5,"Scilab is not esilaB",0,1)
+   xstring(0.5,0.6,"Scilab is not esilaB",0,0)
 
-   p=a.children
+   t=get("hdl")   //get the handle of the newly created object
 
-   p.foreground=9;
-   p.font_size=3;
+   t.foreground=9;
+   t.font_size=5;
+   t.font_style=5;
+   t.text="SCILAB";
+   t.font_angle=90;
 
+xdel(winsid())
+
+//====================================================
+// ../man/eng/graphics/title_properties.xml
+//====================================================
+clear;lines(0);
+
+   set("figure_style","new") //create a figure
+   a=get("current_axes"); 
+   a.data_bounds=[-2,-4,2,4];
+   a.axes_visible="on"; 
+   a.box="off"; 
+
+   xtitle(['Titre';'Principal'],'x','y');
+   t=a.children.children;
+   t.text
+   t.font_size=4;
+   T=t(3)
+   T.text="A title entity"  
+   T.font_style=5;
+   a.x_location="middle"; 
+   a.y_location="right";
+  
 
 xdel(winsid())
 
@@ -6043,6 +6227,13 @@ xdel(winsid())
 //====================================================
 // ../man/eng/linear/lu.xml
 //====================================================
+clear;lines(0);
+[h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+[P,L,U,Q]=luget(h)
+ludel(h)
+P=full(P);L=full(L);U=full(U);Q=full(Q); 
+// P,Q sont des matrices de permutation telles que P*L*U*Q=A 
+xdel(winsid())
 
 //====================================================
 // ../man/eng/linear/ludel.xml
@@ -6351,20 +6542,20 @@ function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
 
 //the same function in Fortran (a Compiler is required)
-ftn=['integer function mytest(ar,ai,b)' //the fortran code
+ftn=['integer function mytestf(ar,ai,b)' //the fortran code
       'double precision ar,ai,b'
-      'mytest=0'
-      'if(ar.lt.0.0d0) mytest=1'
+      'mytestf=0'
+      'if(ar.lt.0.0d0) mytestf=1'
       'end']
-mputl('      '+ftn,TMPDIR+'/mytest.f')
+mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
-lp=ilib_for_link('mytest','mytest.o',[],'F',TMPDIR+'/Makefile');
-link(lp,'mytest','f'); 
+lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytestf','f'); 
 
 //run it
 
-[As,Es,Z,dim] = schur(A,E,'mytest')
+[As,Es,Z,dim] = schur(A,E,'mytestf')
 xdel(winsid())
 
 //====================================================
@@ -7900,10 +8091,6 @@ z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
 z1=[];for x=res,z1=[z1,trusol(x)]; end;  
 z-z1
 xdel(winsid())
-
-//====================================================
-// ../man/eng/nonlinear/colnew.xml
-//====================================================
 
 //====================================================
 // ../man/eng/nonlinear/dasrt.xml
@@ -11941,11 +12128,6 @@ xdel(winsid())
 //====================================================
 // ../man/eng/utilities/c_link.xml
 //====================================================
-clear;lines(0);
-if c_link('foo') then link('foo.o','foo');end
-// to unlink all the shared libarries which contain foo
-a=%t; while a ;[a,b]=c_link('foo'); ulink(b);end
-xdel(winsid())
 
 //====================================================
 // ../man/eng/utilities/chdir.xml
@@ -12347,9 +12529,9 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
-m=meanf(x)
-m=meanf(x,'r')
-m=meanf(x,'c')
+m=meanf(x,rand(x))
+m=meanf(x,[10 10 10;1 1 1],'r')
+m=meanf(x,[10 10 10;1 1 1],'c')
 xdel(winsid())
 
 //====================================================
@@ -12402,8 +12584,8 @@ xdel(winsid())
 clear;lines(0);
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmax(x)
-m=nanmax(x,1)
-m=nanmax(x,2)
+m=nanmax(x,'r')
+m=nanmax(x,'c')
 xdel(winsid())
 
 //====================================================
@@ -12432,9 +12614,9 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
-m=nanmedianf(x,fre)
-m=nanmedianf(x,fre,1)
-m=nanmedianf(x,fre,2)
+m=nanmedian(x)
+m=nanmedian(x,1)
+m=nanmedian(x,2)
 xdel(winsid())
 
 //====================================================
@@ -12443,8 +12625,8 @@ xdel(winsid())
 clear;lines(0);
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 m=nanmin(x)
-m=nanmin(x,1)
-m=nanmin(x,2)
+m=nanmin(x,'r')
+m=nanmin(x,'c')
 xdel(winsid())
 
 //====================================================
@@ -12452,7 +12634,9 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-x=[0.2113249 0.0002211 0.6653811;0.7560439 %nan 0.6283918]
+x=[0.2113249 0.0002211 0.6653811;
+   0.7560439 %nan      0.6283918;
+   0.3       0.2       0.5      ];
 s=nanstdev(x)
 s=nanstdev(x,'r')
 s=nanstdev(x,'c')
@@ -12589,12 +12773,6 @@ xdel(winsid())
 //====================================================
 // ../man/eng/statistics/trimmean.xml
 //====================================================
-clear;lines(0);
-x=[0.2113249 0.0002211 0.6653811;0.7560439 0.3303271 0.6283918]
-m=trimmean(x)
-m=trimmean(x,'r')
-m=trimmean(x,'c')
-xdel(winsid())
 
 //====================================================
 // ../man/eng/statistics/variance.xml
