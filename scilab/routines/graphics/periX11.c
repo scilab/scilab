@@ -1788,7 +1788,8 @@ void set_default_colormap3(int m)
   int missing_col_mess=-1;
   Colormap cmap,dcmap,ocmap;
   XColor color;
-  Pixel *pixels, *c;
+  Pixel *pixels = (Pixel *) NULL;
+  Pixel *c = (Pixel *) NULL;
   float *r = (float *) NULL;
   float *g = (float *) NULL;
   float *b = (float *) NULL;
