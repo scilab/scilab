@@ -7,7 +7,12 @@ DIRS = arma control dcd elementary fileio functions graphics gui \
 	linear metanet nonlinear polynomials programming pvm robust \
 	scicos signal sound strings tdcs tksci translation utilities
 
-man: whatis html index
+QUIET= > /dev/null 
+
+XSLFILE=../html-jpc.xsl
+#XSLFILE=../html.xsl
+
+man: whatis html index contents
 
 # whatis must be done before html
 whatis:
@@ -15,7 +20,7 @@ whatis:
 	do \
 		(cd $$i ;\
 		echo "Creating whatis.html in $$i"; \
-		$(SCIDIR)/bin/scilab -nw -f "../make-whatis.sce" > /dev/null) \
+		$(SCIDIR)/bin/scilab -nw -f "../make-whatis.sce" $(QUIET)) \
 	done
 
 html:
@@ -23,18 +28,14 @@ html:
 	do \
 		(cd $$i ;\
 		echo "Processing chapter $$i"; \
-		$(SCIDIR)/bin/scilab -nw -l fr -f "../make-links.sce" > /dev/null; \
+		$(SCIDIR)/bin/scilab -nw -l eng -f ../make-links.sce  $(QUIET); \
 		for j in *.xml2; \
 		do if [ $$j != "*.xml2" ]; then \
-			xslfile="html.xsl"; \
 			echo "   processing $${j%.*}.xml"; \
-			if (grep "<LANGUAGE>eng" $$j > /dev/null) then \
-				xslfile="../eng/html.xsl"; \
+			sabcmd $(XSLFILE) $$j $${j%.*}.html 2> sabcmd.tmp; \
+			if (grep Error sabcmd.tmp $(QUIET)) then \
+				echo "   bad syntax in file: $$j"; \
 			fi; \
-			sabcmd ../$$xslfile $$j $${j%.*}.html 2> sabcmd.tmp; \
-				if (grep Error sabcmd.tmp > /dev/null) then \
-					echo "   bad syntax in file: $$j"; \
-				fi; \
 			rm -f sabcmd.tmp; \
 		fi; done; \
 		rm -f *.xml2); \
@@ -42,7 +43,12 @@ html:
 
 index:
 	@echo "Creating index.html"
-	@$(SCIDIR)/bin/scilab -nw -l fr -f "make-index.sce" > /dev/null
+	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-index.sce" $(QUIET)
+
+
+contents: 
+	@echo "Creating contents.html"
+	@$(SCIDIR)/bin/scilab -nw -l eng -f "make-contents.sce" $(QUIET)
 
 check:
 	@for i in $(DIRS) ;\
@@ -50,7 +56,7 @@ check:
 		(cd $$i ; echo "Checking xlm in $$i"; \
 		for j in *.xml; \
 		do xmllint --noout --valid $$j 2> xmllint.tmp; \
-			if (grep error xmllint.tmp > /dev/null) then \
+			if (grep error xmllint.tmp $(QUIET)) then \
 				echo "   bad syntax in file: $$j"; \
 			fi; \
 			rm -f xmllint.tmp; \
