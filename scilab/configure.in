@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.45 $)dnl
+AC_REVISION($Revision: 1.46 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1330,7 +1330,14 @@ if test "$ac_cv_PVM_arch" = UNKNOWN; then
 else
   AC_DEFINE(WITH_PVM)
   PVMARCH="$ac_cv_PVM_arch"
-	
+
+  case "$host" in
+      *-*-mingw32*)
+        PVMARCH=MINGW
+    ;;
+  esac
+
+
   PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
   AC_ARG_WITH(pvm-library,
   	[  --with-pvm-library=DIR  PVM library files are in DIR ],
