@@ -222,11 +222,10 @@
       </ITEM>
 
       <ITEM label="Remove all breakpoints.">
-         This allows to quickly remove all the breakpoints from both Scilab and Scipad. 
+        <SP>This allows to quickly remove all the breakpoints from both Scilab
+        and Scipad. </SP>
 
         <P></P>
-
-         
       </ITEM>
     </ITEMIZE>
 
@@ -259,13 +258,12 @@
       <ITEM label="Known Issues:">
         <P></P>
 
-        <EM>Execute selection</EM>
-
-        <SP> deals only with selections containing less than a reasonable
-        number of characters (~4000 on Linux, or ~500 on Windows). It gets
-        confused if the selection contains a <VERB>function</VERB> not
-        terminated by an <VERB>endfunction</VERB>. The commands passed are
-        output on the Scilab window, but are not recorded in the history.</SP>
+        <SP>Execute selection deals only with selections containing less than
+        a reasonable number of characters (~4000 on Linux, or ~500 on
+        Windows). It gets confused if the selection contains a
+        <VERB>function</VERB> not terminated by an <VERB>endfunction</VERB>.
+        The commands passed are output on the Scilab window, but are not
+        recorded in the history.</SP>
 
         <P></P>
       </ITEM>
