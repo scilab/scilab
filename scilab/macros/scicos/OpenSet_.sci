@@ -34,6 +34,7 @@ while %t
     [o,modified,newparametersb,needcompileb,editedb]=clickin(scs_m(%Path))
     if Cmenu=='Link' then
       %pt=[%xc,%yc];
+      super_path($)=[]
       enablemenus()
       break
     end
