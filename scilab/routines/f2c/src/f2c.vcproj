@@ -369,6 +369,66 @@
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="PIV_Release with Atlas|Win32"
+			OutputDirectory=".\PIV_Release with Atlas"
+			IntermediateDirectory=".\PIV_Release with Atlas"
+			ConfigurationType="1"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="3"
+				PreprocessorDefinitions="NDEBUG;WIN32;_CONSOLE;__MSC__;STRICT;MSDOS"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				PrecompiledHeaderFile=".\PIV_Release with Atlas/f2c.pch"
+				AssemblerListingLocation=".\PIV_Release with Atlas/"
+				ObjectFile=".\PIV_Release with Atlas/"
+				ProgramDataBaseFileName=".\PIV_Release with Atlas/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/f2c.exe"
+				LinkIncremental="1"
+				SuppressStartupBanner="TRUE"
+				AdditionalLibraryDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				ProgramDatabaseFile=".\PIV_Release with Atlas/f2c.pdb"
+				SubSystem="1"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\Release/f2c.tlb"
+				HeaderFileName=""/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -422,6 +482,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="data.c">
@@ -464,6 +531,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -516,6 +590,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="error.c">
@@ -558,6 +639,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -610,6 +698,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="expr.c">
@@ -652,6 +747,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -704,6 +806,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="formatdata.c">
@@ -746,6 +855,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -798,6 +914,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="init.c">
@@ -840,6 +963,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -892,6 +1022,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="io.c">
@@ -934,6 +1071,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -986,6 +1130,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="main.c">
@@ -1028,6 +1179,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1080,6 +1238,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="misc.c">
@@ -1122,6 +1287,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1174,6 +1346,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="niceprintf.c">
@@ -1216,6 +1395,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1268,6 +1454,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="p1output.c">
@@ -1310,6 +1503,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1362,6 +1562,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pread.c">
@@ -1404,6 +1611,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1456,6 +1670,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="put.c">
@@ -1498,6 +1719,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1550,6 +1778,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="sysdep.c">
@@ -1592,6 +1827,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1644,6 +1886,13 @@
 						Optimization="2"
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="version.c">
@@ -1686,6 +1935,13 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

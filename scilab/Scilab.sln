@@ -440,6 +440,7 @@ Global
 		Debug with Atlas = Debug with Atlas
 		Pentium_Release = Pentium_Release
 		PIV_Release = PIV_Release
+		PIV_Release with Atlas = PIV_Release with Atlas
 		Release = Release
 		Release with Atlas = Release with Atlas
 	EndGlobalSection
@@ -452,6 +453,8 @@ Global
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.PIV_Release.Build.0 = PIV_Release|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release.ActiveCfg = Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release.Build.0 = Release|Win32
 		{CCD80549-EB9C-42AA-9B86-D687377E94F6}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -464,6 +467,8 @@ Global
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.PIV_Release.Build.0 = PIV_Release|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release.ActiveCfg = Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release.Build.0 = Release|Win32
 		{114F3B77-2A32-4EC8-AC23-B3F910622BD9}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -476,6 +481,8 @@ Global
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release.Build.0 = PIV_Release|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release.ActiveCfg = Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release.Build.0 = Release|Win32
 		{78BD64CE-181D-4D3F-9254-5C4F55C1EDC9}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -488,6 +495,8 @@ Global
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.PIV_Release.Build.0 = PIV_Release|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release.ActiveCfg = Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release.Build.0 = Release|Win32
 		{25F06272-3E27-46E4-BEE0-8D24F60CE451}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -500,6 +509,8 @@ Global
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{B678A0CA-E006-415A-83E4-46F6060282C4}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release.ActiveCfg = Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release.Build.0 = Release|Win32
 		{B678A0CA-E006-415A-83E4-46F6060282C4}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -512,6 +523,8 @@ Global
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.PIV_Release.Build.0 = PIV_Release|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release.ActiveCfg = Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release.Build.0 = Release|Win32
 		{4467FBE5-45A6-4CA7-AD8C-48419B656137}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -524,6 +537,8 @@ Global
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.PIV_Release.Build.0 = PIV_Release|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{836EC214-02DD-474F-91C9-C8C46C183D48}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release.ActiveCfg = Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release.Build.0 = Release|Win32
 		{836EC214-02DD-474F-91C9-C8C46C183D48}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -536,6 +551,8 @@ Global
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.PIV_Release.Build.0 = PIV_Release|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{104D88A6-C72A-411C-B32F-D6819DDBB737}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release.ActiveCfg = Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release.Build.0 = Release|Win32
 		{104D88A6-C72A-411C-B32F-D6819DDBB737}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -548,6 +565,8 @@ Global
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release.ActiveCfg = Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release.Build.0 = Release|Win32
 		{DAA1FD4E-02E2-4E85-B60A-81B067E8FBA0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -560,6 +579,8 @@ Global
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release.Build.0 = PIV_Release|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release.ActiveCfg = Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release.Build.0 = Release|Win32
 		{A64E873A-FFEE-4B49-9633-24DEF5E26EE1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -572,6 +593,8 @@ Global
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.PIV_Release.Build.0 = PIV_Release|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{66F2FB48-5D68-4445-A856-119F685A371B}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release.ActiveCfg = Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release.Build.0 = Release|Win32
 		{66F2FB48-5D68-4445-A856-119F685A371B}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -584,6 +607,8 @@ Global
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.PIV_Release.Build.0 = PIV_Release|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{5B110267-7C18-437C-B87D-DBA2B50729E9}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release.ActiveCfg = Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release.Build.0 = Release|Win32
 		{5B110267-7C18-437C-B87D-DBA2B50729E9}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -596,6 +621,8 @@ Global
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.PIV_Release.Build.0 = PIV_Release|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release.ActiveCfg = Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release.Build.0 = Release|Win32
 		{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -608,6 +635,8 @@ Global
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.PIV_Release.Build.0 = PIV_Release|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release.ActiveCfg = Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release.Build.0 = Release|Win32
 		{19342CBB-EEB1-425C-A91D-EABAD8A115AF}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -620,6 +649,8 @@ Global
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.PIV_Release.Build.0 = PIV_Release|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release.ActiveCfg = Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release.Build.0 = Release|Win32
 		{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -632,6 +663,8 @@ Global
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release.ActiveCfg = Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release.Build.0 = Release|Win32
 		{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -644,6 +677,8 @@ Global
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.PIV_Release.Build.0 = PIV_Release|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{64BC155E-292F-484F-9404-76EE6AE67A43}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release.ActiveCfg = Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release.Build.0 = Release|Win32
 		{64BC155E-292F-484F-9404-76EE6AE67A43}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -656,6 +691,8 @@ Global
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.PIV_Release.Build.0 = PIV_Release|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release.ActiveCfg = Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release.Build.0 = Release|Win32
 		{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -668,6 +705,8 @@ Global
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.PIV_Release.Build.0 = PIV_Release|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release.ActiveCfg = Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release.Build.0 = Release|Win32
 		{C352587B-F5E4-457C-80EE-A1AEAB176C8E}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -680,6 +719,8 @@ Global
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.PIV_Release.Build.0 = PIV_Release|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release.ActiveCfg = Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release.Build.0 = Release|Win32
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -692,6 +733,8 @@ Global
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release.Build.0 = PIV_Release|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release.ActiveCfg = Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release.Build.0 = Release|Win32
 		{7B77E45C-9E80-4DDA-A3C8-C6C8FEBAA190}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -704,6 +747,8 @@ Global
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release.Build.0 = PIV_Release|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release.ActiveCfg = Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release.Build.0 = Release|Win32
 		{4C0B22D1-F74D-42DF-B90D-71CBC1B43DC4}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -716,6 +761,8 @@ Global
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.PIV_Release.Build.0 = PIV_Release|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release.ActiveCfg = Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release.Build.0 = Release|Win32
 		{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -728,6 +775,8 @@ Global
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.PIV_Release.Build.0 = PIV_Release|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release.ActiveCfg = Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release.Build.0 = Release|Win32
 		{C7865CAA-EC7C-41EB-8324-2B81C384CA20}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -740,6 +789,8 @@ Global
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.PIV_Release.Build.0 = PIV_Release|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release.ActiveCfg = Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release.Build.0 = Release|Win32
 		{FD0F48D8-9D0B-42A8-A743-B57198FAB41E}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -752,6 +803,8 @@ Global
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.PIV_Release.Build.0 = PIV_Release|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release.ActiveCfg = Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release.Build.0 = Release|Win32
 		{F01314E9-62D5-4A6E-891B-0F9E16B838E2}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -764,6 +817,8 @@ Global
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.PIV_Release.Build.0 = PIV_Release|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release.ActiveCfg = Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release.Build.0 = Release|Win32
 		{3A131FDF-BDA9-4216-91AD-DFFCEF46F89A}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -776,6 +831,8 @@ Global
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.PIV_Release.Build.0 = PIV_Release|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{3DBBFF93-F344-4484-A317-14F985434BBC}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release.ActiveCfg = Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release.Build.0 = Release|Win32
 		{3DBBFF93-F344-4484-A317-14F985434BBC}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -788,6 +845,8 @@ Global
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.PIV_Release.Build.0 = PIV_Release|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{DFA0D75B-F7EF-4D02-B33F-486829405315}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release.ActiveCfg = Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release.Build.0 = Release|Win32
 		{DFA0D75B-F7EF-4D02-B33F-486829405315}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -800,6 +859,8 @@ Global
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.PIV_Release.Build.0 = PIV_Release|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release.ActiveCfg = Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release.Build.0 = Release|Win32
 		{1311C068-7314-4C3D-9C00-7F5EB4AA4DBB}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -812,6 +873,8 @@ Global
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.PIV_Release.Build.0 = PIV_Release|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{73AA7612-4297-4339-B521-8C2870E7BEC1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release.ActiveCfg = Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release.Build.0 = Release|Win32
 		{73AA7612-4297-4339-B521-8C2870E7BEC1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -824,6 +887,8 @@ Global
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.PIV_Release.Build.0 = PIV_Release|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release.ActiveCfg = Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release.Build.0 = Release|Win32
 		{53AAB5BC-2C08-4BBA-9793-C36140A404F8}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -836,6 +901,8 @@ Global
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release.Build.0 = PIV_Release|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{F230A0FD-8B40-4112-B458-1947D48348FD}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release.ActiveCfg = Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release.Build.0 = Release|Win32
 		{F230A0FD-8B40-4112-B458-1947D48348FD}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -848,6 +915,8 @@ Global
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.PIV_Release.Build.0 = PIV_Release|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release.ActiveCfg = Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release.Build.0 = Release|Win32
 		{6638C3BC-D85D-414D-8AC3-9BD514CA23E1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -860,6 +929,8 @@ Global
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.PIV_Release.Build.0 = PIV_Release|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{4A98D3E0-692D-4F80-877F-7441FC107C09}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release.ActiveCfg = Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release.Build.0 = Release|Win32
 		{4A98D3E0-692D-4F80-877F-7441FC107C09}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -872,6 +943,8 @@ Global
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.PIV_Release.Build.0 = PIV_Release|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{45CA5B12-7601-4968-AE16-16069FD1A152}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release.ActiveCfg = Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release.Build.0 = Release|Win32
 		{45CA5B12-7601-4968-AE16-16069FD1A152}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -884,6 +957,8 @@ Global
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.PIV_Release.Build.0 = PIV_Release|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{E9741474-5C3A-4101-8B85-AC5221018C05}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release.ActiveCfg = Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release.Build.0 = Release|Win32
 		{E9741474-5C3A-4101-8B85-AC5221018C05}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -896,6 +971,8 @@ Global
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release.Build.0 = PIV_Release|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release.ActiveCfg = Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release.Build.0 = Release|Win32
 		{1D5E735D-176E-4C6D-B980-3C2EC7051F90}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -908,6 +985,8 @@ Global
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.PIV_Release.Build.0 = PIV_Release|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release.ActiveCfg = Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release.Build.0 = Release|Win32
 		{425B887B-9FC5-4CD2-B632-DBFC000E3E25}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -920,6 +999,8 @@ Global
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.PIV_Release.Build.0 = PIV_Release|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{1D219098-007C-4F76-9AE6-271ABBB7D393}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release.ActiveCfg = Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release.Build.0 = Release|Win32
 		{1D219098-007C-4F76-9AE6-271ABBB7D393}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -932,6 +1013,8 @@ Global
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.PIV_Release.Build.0 = PIV_Release|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release.ActiveCfg = Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release.Build.0 = Release|Win32
 		{3A72C3ED-98F7-49C7-B59C-2C6C47FF9390}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -944,6 +1027,8 @@ Global
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.PIV_Release.Build.0 = PIV_Release|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{63352867-3983-48E3-94FE-DD8F0D6E921F}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release.ActiveCfg = Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release.Build.0 = Release|Win32
 		{63352867-3983-48E3-94FE-DD8F0D6E921F}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -956,6 +1041,8 @@ Global
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.PIV_Release.Build.0 = PIV_Release|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release.ActiveCfg = Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release.Build.0 = Release|Win32
 		{4F703D1F-8ADC-46A9-A4A2-1C69541BC6C1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -968,6 +1055,8 @@ Global
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.PIV_Release.Build.0 = PIV_Release|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release.ActiveCfg = Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release.Build.0 = Release|Win32
 		{34F8E361-D2D9-43B0-93D2-F6CF5FAF6CEB}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -980,6 +1069,8 @@ Global
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.PIV_Release.Build.0 = PIV_Release|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release.ActiveCfg = Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release.Build.0 = Release|Win32
 		{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -992,6 +1083,8 @@ Global
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{B7A0273E-8E71-4663-8497-0895945ED54D}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release.ActiveCfg = Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release.Build.0 = Release|Win32
 		{B7A0273E-8E71-4663-8497-0895945ED54D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1004,6 +1097,8 @@ Global
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.PIV_Release.Build.0 = PIV_Release|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{566E524B-D327-4416-A865-9C83503FAB7B}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release.ActiveCfg = Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release.Build.0 = Release|Win32
 		{566E524B-D327-4416-A865-9C83503FAB7B}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1016,6 +1111,8 @@ Global
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.PIV_Release.Build.0 = PIV_Release|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{959384FC-016C-4B01-B848-1B18D26B6CC4}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release.ActiveCfg = Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release.Build.0 = Release|Win32
 		{959384FC-016C-4B01-B848-1B18D26B6CC4}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1028,6 +1125,8 @@ Global
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.PIV_Release.Build.0 = PIV_Release|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release.ActiveCfg = Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release.Build.0 = Release|Win32
 		{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1040,6 +1139,8 @@ Global
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.PIV_Release.Build.0 = PIV_Release|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release.ActiveCfg = Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release.Build.0 = Release|Win32
 		{4FC72D4A-80EE-4B1A-8724-0201C1A35621}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1052,6 +1153,8 @@ Global
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.PIV_Release.Build.0 = PIV_Release|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{51240B08-5E4E-439B-B745-C870D5B513BF}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release.ActiveCfg = Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release.Build.0 = Release|Win32
 		{51240B08-5E4E-439B-B745-C870D5B513BF}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1064,6 +1167,8 @@ Global
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.PIV_Release.Build.0 = PIV_Release|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release.ActiveCfg = Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release.Build.0 = Release|Win32
 		{13082624-97F9-47DB-A9A1-AD7D6BF3856A}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1076,6 +1181,8 @@ Global
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.PIV_Release.Build.0 = PIV_Release|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release.ActiveCfg = Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release.Build.0 = Release|Win32
 		{7AF6C45E-142F-436C-A23D-1FC79C9599BE}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1088,6 +1195,8 @@ Global
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.PIV_Release.Build.0 = PIV_Release|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release.ActiveCfg = Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release.Build.0 = Release|Win32
 		{972C50F5-FE25-4FCF-A43F-D5934DAEE634}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1100,6 +1209,8 @@ Global
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{5DB1307C-6079-4C25-AA66-92B9569274B0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release.ActiveCfg = Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release.Build.0 = Release|Win32
 		{5DB1307C-6079-4C25-AA66-92B9569274B0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1112,6 +1223,8 @@ Global
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release.ActiveCfg = Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release.Build.0 = Release|Win32
 		{1BE7DEBD-2F93-4FB7-BE2C-052B4139B7B0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1124,6 +1237,8 @@ Global
 		{89630A5F-60FB-424E-AD60-330607086D56}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.PIV_Release.Build.0 = PIV_Release|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{89630A5F-60FB-424E-AD60-330607086D56}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release.ActiveCfg = Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release.Build.0 = Release|Win32
 		{89630A5F-60FB-424E-AD60-330607086D56}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1136,6 +1251,8 @@ Global
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release.ActiveCfg = Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release.Build.0 = Release|Win32
 		{55250DE7-CFDE-45F4-A766-8A46E2B3CDF0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1148,6 +1265,8 @@ Global
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.PIV_Release.Build.0 = PIV_Release|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release.ActiveCfg = Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release.Build.0 = Release|Win32
 		{2652D55A-391C-4341-A299-6B7BDCE45F0C}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1160,6 +1279,8 @@ Global
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.PIV_Release.Build.0 = PIV_Release|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{3396F078-1296-47EB-B817-78CB36265DD1}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release.ActiveCfg = Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release.Build.0 = Release|Win32
 		{3396F078-1296-47EB-B817-78CB36265DD1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1172,6 +1293,8 @@ Global
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release.Build.0 = PIV_Release|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release.ActiveCfg = Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release.Build.0 = Release|Win32
 		{7C349E84-E25E-496F-93EC-14C0F42FDE3B}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1180,6 +1303,7 @@ Global
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Pentium_Release.ActiveCfg = Pentium_Release|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.PIV_Release.ActiveCfg = PIV_Release|Win32
+		{90CE268B-D7EF-4E88-B899-717989F6DD62}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release.ActiveCfg = Release|Win32
 		{90CE268B-D7EF-4E88-B899-717989F6DD62}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Debug.ActiveCfg = Debug|Win32
@@ -1190,6 +1314,8 @@ Global
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.PIV_Release.Build.0 = PIV_Release|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release.ActiveCfg = Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release.Build.0 = Release|Win32
 		{D531CDB2-CCA6-4C50-BE29-D7822BB83ECF}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1202,6 +1328,8 @@ Global
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release.Build.0 = PIV_Release|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release.ActiveCfg = Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release.Build.0 = Release|Win32
 		{9BA6F7E4-AE64-4FD9-A5A7-0996A8B73B77}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1214,6 +1342,8 @@ Global
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release.Build.0 = PIV_Release|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.ActiveCfg = Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release.Build.0 = Release|Win32
 		{500443BC-F67D-442B-8713-8E2A03BB3C8D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1226,6 +1356,8 @@ Global
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.ActiveCfg = Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release.Build.0 = Release|Win32
 		{B0817AEC-2DA0-4C95-9599-4E01F2B547CD}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1238,6 +1370,8 @@ Global
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release.Build.0 = PIV_Release|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{495C9E8A-439A-426E-AA2C-0B22653875F9}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.ActiveCfg = Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release.Build.0 = Release|Win32
 		{495C9E8A-439A-426E-AA2C-0B22653875F9}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1250,6 +1384,8 @@ Global
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.ActiveCfg = Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release.Build.0 = Release|Win32
 		{B50F726C-8536-4DAC-8CEF-D97706ACACCC}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1262,6 +1398,8 @@ Global
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release.Build.0 = PIV_Release|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.ActiveCfg = Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release.Build.0 = Release|Win32
 		{798D5602-CF39-4B2F-B780-0EF282E7CEA0}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1274,6 +1412,8 @@ Global
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release.Build.0 = PIV_Release|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.ActiveCfg = Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release.Build.0 = Release|Win32
 		{6F1E57AB-01D9-488D-9E7A-A5065848D693}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1286,6 +1426,8 @@ Global
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release.Build.0 = PIV_Release|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.ActiveCfg = Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release.Build.0 = Release|Win32
 		{B5945471-7E91-43B1-8728-37E37ADB7EE2}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1298,6 +1440,8 @@ Global
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release.Build.0 = PIV_Release|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release.ActiveCfg = Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release.Build.0 = Release|Win32
 		{BC23A846-75D6-4375-A5AB-F5A8EFEFE290}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1306,12 +1450,14 @@ Global
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Pentium_Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release.ActiveCfg = Release|Win32
+		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release.ActiveCfg = Release|Win32
 		{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug.ActiveCfg = Debug|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Debug with Atlas.ActiveCfg = Debug with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Pentium_Release.ActiveCfg = Release|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.PIV_Release.ActiveCfg = Release|Win32
+		{BB476641-07F4-488E-AA87-21795FFA8F4A}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release.ActiveCfg = Release|Win32
 		{BB476641-07F4-488E-AA87-21795FFA8F4A}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Debug.ActiveCfg = Debug|Win32
@@ -1322,6 +1468,8 @@ Global
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Pentium_Release.Build.0 = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.ActiveCfg = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release.Build.0 = Release|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release.ActiveCfg = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release.Build.0 = Release|Win32
 		{0BD503EF-5CB6-4277-BAC4-8955C97F247D}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1334,6 +1482,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.Build.0 = PIV_Release|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.ActiveCfg = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.Build.0 = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1346,6 +1496,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.Build.0 = PIV_Release|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.ActiveCfg = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.Build.0 = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.ActiveCfg = Release with Atlas|Win32
@@ -1358,6 +1510,8 @@ Global
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Pentium_Release.Build.0 = Pentium_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.ActiveCfg = PIV_Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release.Build.0 = PIV_Release|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.ActiveCfg = PIV_Release with Atlas|Win32
+		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.PIV_Release with Atlas.Build.0 = PIV_Release with Atlas|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.ActiveCfg = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release.Build.0 = Release|Win32
 		{0AEC8745-BB5B-4E66-A59A-7251412C3605}.Release with Atlas.ActiveCfg = Release with Atlas|Win32

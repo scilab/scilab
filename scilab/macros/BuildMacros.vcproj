@@ -96,6 +96,20 @@
 				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
 				Output="BuildMacros.exe"/>
 		</Configuration>
+		<Configuration
+			Name="PIV_Release with Atlas|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;BuildMacros.mak&quot; /a"
+				CleanCommandLine="nmake /f &quot;BuildMacros.mak&quot; clean /a"
+				Output="BuildMacros.exe"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>

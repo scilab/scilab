@@ -371,6 +371,67 @@ cd .. &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="PIV_Release with Atlas|Win32"
+			OutputDirectory=".\PIV_Release with Atlas"
+			IntermediateDirectory=".\PIV_Release with Atlas"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="3"
+				AdditionalIncludeDirectories="../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="NDEBUG;WIN32;_LIB;__MSC__;STRICT;WITH_TK;WITH_PVM"
+				StringPooling="TRUE"
+				RuntimeLibrary="4"
+				EnableFunctionLevelLinking="TRUE"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile=".\PIV_Release with Atlas/tksci.pch"
+				AssemblerListingLocation=".\PIV_Release with Atlas/"
+				ObjectFile=".\PIV_Release with Atlas/"
+				ProgramDataBaseFileName=".\PIV_Release with Atlas/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/tksci.lib"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def tksci1.def &gt;nul
+copy tksci1.def ..\..\..\libs\tksci.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -430,6 +491,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="gvar.c">
@@ -477,6 +546,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -536,6 +613,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_figure.c">
@@ -583,6 +668,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -642,6 +735,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_gcf.c">
@@ -689,6 +790,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -748,6 +857,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_getgvar.c">
@@ -795,6 +912,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -854,6 +979,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_set.c">
@@ -901,6 +1034,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -960,6 +1101,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_TK_DoOneEvent.c">
@@ -1007,6 +1156,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1066,6 +1223,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_TK_EvalStr.c">
@@ -1113,6 +1278,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1172,6 +1345,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_TK_SetVar.c">
@@ -1219,6 +1400,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1278,6 +1467,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="LAB_uimenu.c">
@@ -1325,6 +1522,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1384,6 +1589,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="TK_uicontrol.c">
@@ -1431,6 +1644,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"
@@ -1490,6 +1711,14 @@ cd .. &gt;nul
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="tksci_SciInterf.c">
@@ -1537,6 +1766,14 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release with Atlas|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="2"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="PIV_Release with Atlas|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="2"

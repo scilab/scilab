@@ -364,6 +364,64 @@ del libmextemp.def &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="PIV_Release with Atlas|Win32"
+			OutputDirectory=".\PIV_Release with Atlas"
+			IntermediateDirectory=".\PIV_Release with Atlas"
+			ConfigurationType="2"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				OptimizeForProcessor="3"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11"
+				PreprocessorDefinitions="STRICT;WITH_TK;WITH_PVM;mexFunction=mex_libmx;mexfunction_=mexlibmx_;__MSC__;WIN32;FORDLL"
+				RuntimeLibrary="0"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLinkerTool"
+				OutputFile="../../../bin/libmex.dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="libmex.def"
+				GenerateDebugInformation="TRUE"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				ImportLibrary="$(OutDir)/libmex.lib"
+				TargetMachine="1"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="cd $(IntDir) &gt; nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def ..\libmextemp.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+copy *.def libmex.def &gt;nul
+del libmextemp.def &gt;nul
+"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCWebDeploymentTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -441,6 +499,11 @@ del libmextemp.def &gt;nul
 			</FileConfiguration>
 			<FileConfiguration
 				Name="Release with Atlas|Win32">
+				<Tool
+					Name="VCCustomBuildTool"/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="PIV_Release with Atlas|Win32">
 				<Tool
 					Name="VCCustomBuildTool"/>
 			</FileConfiguration>
