@@ -10,6 +10,7 @@ OTHERS IMPROVEMENTS
 ===================
 Linear algebra primitives now based on Lapack instead of Linpack/Eispack
 Basic functions revised (thanks to B Pincon)
+stacksize use is no more restricted
 
 INCOMPATIBLITY
 ==============
