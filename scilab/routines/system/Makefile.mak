@@ -12,7 +12,7 @@ LIBRARY = $(SCIDIR)/libs/system.lib
 
 OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj cvstr.obj \
-	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj getpathname.obj
+	inisci-c.obj diary.obj  parse.obj run.obj Sparse.obj
 
 OBJSF = allops.obj  banier.obj\
 	clause.obj comand.obj compcl.obj   \
@@ -110,7 +110,6 @@ typ2cod.obj:  ../stack.h
 varfunptr.obj:  ../stack.h
 whatln.obj:  ../stack.h
 xerbla.obj:  ../stack.h
-getpathname.obj:  ../stack.h
 Blas.obj: Blas.c ../machine.h
 Calelm.obj: Calelm.c ../machine.h
 Intersci.obj: Intersci.c ../machine.h

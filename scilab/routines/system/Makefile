@@ -10,7 +10,7 @@ LIBRARY = $(SCIDIR)/libs/system.a
 OBJSC = System.o System2.o Calelm.o Sun.o Intersci.o Blas.o Lapack.o \
 	Sparse.o \
 	scicurdir.o readline.o msgstore.o storeversion.o cvstr.o \
-	inisci-c.o diary.o  parse.o run.o Sparse.o getpathname.o
+	inisci-c.o diary.o  parse.o run.o Sparse.o
 
 OBJSF = allops.o  banier.o\
 	clause.o comand.o compcl.o   \
@@ -108,7 +108,6 @@ typ2cod.o:  ../stack.h
 varfunptr.o:  ../stack.h
 whatln.o:  ../stack.h
 xerbla.o:  ../stack.h
-getpathname.o:  ../stack.h
 Blas.o: Blas.c ../machine.h
 Calelm.o: Calelm.c ../machine.h
 Intersci.o: Intersci.c ../machine.h
