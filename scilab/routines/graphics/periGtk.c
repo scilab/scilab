@@ -2049,9 +2049,18 @@ void C2F(drawarrows)(char *str, integer *vx, integer *vy, integer *n, integer *a
       if ( (int) *iflag == 1) {
 	NDvalue = style[i];
 	xset_line_style(&NDvalue,PI0,PI0,PI0);}
-      else if (*style >= 1)
-	xset_line_style(style,PI0,PI0,PI0);
-      
+      else
+	{
+	  /* modif bruno : dans ce cas la variable NDvalue n'etait pas
+             definie => je l'ai mise a 1 (du quick & dirty) mais il y
+             a certainement mieux a faire. D'autre part il y a le meme
+             probleme avec le driver X11 pur (cette variable n'est pas
+             initialisee dans ce cas) mais le bug ne se reproduit pas !!!)
+           */
+	  NDvalue = 1;
+	  if (*style >= 1)
+	    xset_line_style(style,PI0,PI0,PI0);
+	}
       /* xset_pattern(&NDvalue,PI0,PI0,PI0); commented out 13/09/00 ss */
       if ( ScilabXgc->Cdrawable == ScilabXgc->drawing->window) 
 	gdk_draw_line(ScilabXgc->pixmap,ScilabXgc->wgc,vx[2*i],vy[2*i],vx[2*i+1],vy[2*i+1]);

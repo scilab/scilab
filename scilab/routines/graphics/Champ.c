@@ -162,7 +162,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
   integer *na,*arsize,*colored;
   integer *n1,*n2;
   double *x, *y, *fx, *fy;
-  double*arfact;
+  double *arfact;
 {  
  
   integer i,j;
@@ -213,10 +213,14 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
-	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]);
-	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]);
-	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]);
-	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]);
+/* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
+/* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
+/* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
+/* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
+	  xm[1+2*j]= (int)(sfx*fx[i]+xm[2*i]);
+	  xm[2*j]  = (int)(xm[2*i]);
+ 	  ym[1+2*j]= (int)(-sfy*fy[i]+ym[2*i]);
+	  ym[2*j]  = (int)(ym[2*i]);
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
 	    {
@@ -239,10 +243,26 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  double nor= sqrt(sfx2*fx[i]*fx[i]+sfy2*fy[i]*fy[i]);
 	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
 	  nor= sqrt(fx[i]*fx[i]+fy[i]*fy[i]);
-	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]);
-	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]);
-	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]);
-	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]);
+
+/*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
+ *        at the point (before the arrow was placed such as the corresponding
+ *        point was at the middle of the arrow)       
+ *
+ *        this is the old code :
+ *
+ * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
+ * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
+ * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
+ * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
+ *
+ *        the new code :
+ */
+	  xm[1+2*j]= (int)(sfx*fx[i]/(nor)+xm[2*i]);
+	  xm[2*j]  = (int)(xm[2*i]);
+	  ym[1+2*j]= (int)(-sfy*fy[i]/(nor)+ym[2*i]);
+	  ym[2*j]  = (int)(ym[2*i]);
+ /* end of the modif */
+
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
 	    {
@@ -254,6 +274,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       *na=2*j;
     }
 }
+
 
 
 
