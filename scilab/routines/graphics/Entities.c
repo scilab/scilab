@@ -4136,10 +4136,14 @@ void
 sciSetDefaultValues ()
 {
   if ((sciInitGraphicContext (sciGetCurrentFigure()) == -1) ||
-      (sciInitGraphicMode (sciGetCurrentFigure()) == -1))
+      (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
+      (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
     sciprint("\r\n default values cant not be loaded !");
   else
-    C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L); 
+    {
+      C2F(dr)("xset","default",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,7L); 
+      sciGetScilabXgc (sciGetCurrentFigure())->graphicsversion = 1; /* To Re enable the NG -> graphicsversion = 1*/
+    }
 }
 
 /**sciSetGraphicsStyle
