@@ -7,7 +7,7 @@ c     Copyright INRIA
       parameter (nz1=nsiz-1,nz2=nsiz-2)
 c     
       integer op,r,blank,sign,plus,minus,name,colon,eye(nsiz),ou,et
-      integer equal,less,great,not,eol,p
+      integer equal,less,great,not,eol,p,gettype
       logical eptover, istrue,skip, compil,ifexpr
       data colon/44/,blank/40/,plus/45/,minus/46/,ou/57/,et/58/
       data equal/50/,less/59/,great/60/,not/61/
@@ -137,7 +137,7 @@ c     .     evaluation shortcut
                   if (err.gt.0) return
                   ids(1,pt)=comp(1)
                endif
-            elseif (istrue(0)) then
+            elseif (gettype(top).ne.8 .and. istrue(0)) then
 c     .        first term is true there is no use to evaluate the other
                ids(1,pt)=1
 c     .        err1 <>0 sets interpretation without evaluation
@@ -201,7 +201,7 @@ c          . logical expression evaluation shortcut
                   if (err.gt.0) return
                   ids(1,pt)=comp(1)
                endif
-            elseif (.not.istrue(0)) then
+            elseif (gettype(top).ne.8 .and. .not.istrue(0)) then
 c     .        first term is false there is no use to evaluate the other
                ids(1,pt)=1
 c     .        err1 <>0 sets interpretation without evaluation

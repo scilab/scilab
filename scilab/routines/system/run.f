@@ -863,10 +863,10 @@ c     logical expression shortcircuit
  240  continue
       if(istk(lc+1).eq.1) then
 c     .  | case
-         if(istrue(0)) lc=lc+istk(lc+2)
+         if(gettype(top).ne.8 .and. istrue(0)) lc=lc+istk(lc+2)
       else
 c     .  & case
-         if(.not.istrue(0)) lc=lc+istk(lc+2)
+         if(gettype(top).ne.8 .and..not.istrue(0)) lc=lc+istk(lc+2)
       endif
       lc=lc+3
       goto 10
