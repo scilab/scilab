@@ -3,9 +3,12 @@ mode(-1)
 oldln=lines()
 lines(0)
 
-deff('[]=xdemo(info,str)',['x_message([info;str]);xbasc();';
-                           'execstr(str)']);
-xset("default");
+function xdemo(info,str)
+  x_message([info;str])	
+  set('figure_style','new')
+  xbasc()
+  execstr(str)
+endfunction
 
 exec('SCI/demos/graphics/dessin-1.dem');
 

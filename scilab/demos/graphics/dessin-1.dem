@@ -49,13 +49,15 @@ str_l(12)=['fplot3d1();';
       'title=[''fplot3d : z=f(x,y), f external''];';
       'xtitle(title,'' '','' '');'];
 
-str_l(13)=['contour();';
-      'title=[''contour ''];';
-      'xtitle(title,'' '','' '');'];
+str_l(13)=['set(''figure_style'',''old'')';
+	   'contour();';
+	   'title=''contour '';';
+	   'xtitle(title,'' '','' '');'];
 
-str_l(14)=['fcontour();'; 
-      'title=[''fcontour ''];';
-      'xtitle(title,'' '','' '');'];
+str_l(14)=['set(''figure_style'',''old'')';
+	   'fcontour();'; 
+	   'title=[''fcontour ''];';
+	   'xtitle(title,'' '','' '');'];
 
 str_l(15)=['champ();';
       'title=[''champ ''];';
