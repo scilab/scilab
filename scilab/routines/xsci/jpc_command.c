@@ -221,7 +221,7 @@ static void CreateButtons (parent)
   Startup=(char *) malloc( (38+nc+2)*(sizeof(char)));
   strcpy(Startup,"abort;\nsavehistory();\nresethistory();\n");
   C2F(inffic)(&iopt, &(Startup[38]),&nc);strcat(Startup,"\n");
-  menuentry = AddInMenu(menu1, "Restart", DoIt,(XtPointer)Startup); 
+  /*menuentry = AddInMenu(menu1, "Restart", DoIt,(XtPointer)Startup); */
   /*  AddInfoHandler(menuentry,"Clear everything"); */
   menuentry = AddInMenu(menu1, "Stop", Do_Stop, " ");
   /* AddInfoHandler(menuentry,"Stop execution"); */
