@@ -93,3 +93,8 @@ menubutgoonignorimage   copy butgoonignorimage_o   -subsample $subsamplex $subsa
 menubutwatchimage       copy butwatchimage_o       -subsample $subsamplex $subsampley
 menubutbreakimage       copy butbreakimage_o       -subsample $subsamplex $subsampley
 menubutcancelimage      copy butcancelimage_o      -subsample $subsamplex $subsampley
+
+# Committed versions should have this attribute set to false
+# In that case, the Run to Cursor and Break commands are hidden
+# since there are issues with them in the Scilab parsers
+set dev_debug "false"

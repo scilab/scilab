@@ -670,3 +670,10 @@ ES 3/02/05
  * catched the saving of the preference file, so no error is reported
    if it cannot be written
  * version 3.24
+
+Francois VOGEL, 09/02/05
+ * Debugger commands Run to cursor and Break are now temporarily disabled
+   since parser issues in Scilab are not solved. Bugs 1086 and 1120 must
+   be solved first. These commands can be quickly activated again for debug
+   or development by setting dev_debug to "true" in db_init.tcl
+ * version --> 3.25
