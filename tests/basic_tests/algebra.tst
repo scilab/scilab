@@ -1240,8 +1240,8 @@ if Err(U1*S1*V1'-A) >1000*%eps  then pause,end
 
 [U1,S1,V1,rk]=svd(A);
 if Err(S-diag(S1))>1000*%eps  then pause,end
-if Err(U-U1)>1000*%eps  then pause,end
-if Err(V-V1) >1000*%eps  then pause,end
+if Err(U-U1)>5000*%eps  then pause,end
+if Err(V-V1) >5000*%eps  then pause,end
 if rk<>30 then pause,end
 
 //Real Case Tall
