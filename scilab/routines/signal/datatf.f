@@ -200,8 +200,8 @@ c
       top=top+1
       il=iadr(lstk(top))
       istk(il)=1
-      istk(il+1)=n0
-      istk(il+2)=m0
+      istk(il+1)=m0
+      istk(il+2)=n0
       istk(il+3)=0
       l=sadr(il+4)
       call unsfdcopy(mn0,stk(lr(k)),1,stk(l),1)
