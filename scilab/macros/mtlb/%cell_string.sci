@@ -1,9 +1,10 @@
 function str=%cell_string(c)
+str=[];
   val=c.entries
-  dims=c.dims;  
+  dims=double(c.dims);  
   for k=1:size(val)
     tp=typeof(val(k))
-    if tp=="struct" then
+    if tp=="st" then
       str=%struct_string(val(k))
     else
       sz=size(val(k))

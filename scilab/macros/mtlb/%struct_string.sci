@@ -6,9 +6,9 @@ for k=2:size(f,'*')
   var=f(k)
   value=s(var)
   tp=typeof(value)
-  if tp=="cell" then
+  if tp=="ce" then
     t=[t;%cell_string(value)]
-  elseif tp=="struct" then
+  elseif tp=="st" then
     t=[t;%struct_string(value)]
   else
     str=sci2exp(value,ll(1))
