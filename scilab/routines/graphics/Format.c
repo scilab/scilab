@@ -799,9 +799,11 @@ int GradEqual(double * grads, int *ngrads)
   for(i=1;i<(*ngrads);i++)
     {
       tmp = grads[i];
-      if(tmp == old_tmp)
+      if(tmp == old_tmp){
 	return 0; /* 2 consecutive grads at least are equal */
 	break;
+      }
+      old_tmp = tmp;
     }
   
   return 1;
