@@ -556,7 +556,7 @@ int C2F(intcpass2)(fname)
   free(tevts);
   free(evtspt);
   free(outtb);
-  /********************** sim *****************
+  /********************** sim *****************/
   CreateVar(7,"t", &m33, &n39, &l32);
   CreateListVarFromPtr(7,1,"S", &one, &n40, Str2);
   y8=(char**) (bllst111+1);
