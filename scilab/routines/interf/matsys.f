@@ -504,7 +504,7 @@ c      integer m3,n3,lr3,nlr3,m2,n2,il2,ild2,m1,n1,il1,ild1
       logical checkrhs,crebmat,getscalar,getsmat,cremat
       iadr(l)=l+l-1
       if (.not.checkrhs(fname,1,2)) return
-      if (.not.checkrhs(fname,1,2)) return
+      if (.not.checklhs(fname,1,2)) return
       topk=top
       if (rhs.eq.2) then 
          if(.not.getscalar(fname,topk,top,lr))return
@@ -2901,7 +2901,7 @@ c
             job=0
             top=top-1
             n=1
-         else
+         else 
             if(.not.getscalar('getdate', top,top, lr)) return
             dt=stk(lr)
             call convertdate(dt,w)
