@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forwin", "Forwin.vcproj", "{028FD534-A8B6-4ED9-87EA-3E4316D1904A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{028FD534-A8B6-4ED9-87EA-3E4316D1904A}.Debug.ActiveCfg = Debug|Win32
+		{028FD534-A8B6-4ED9-87EA-3E4316D1904A}.Debug.Build.0 = Debug|Win32
+		{028FD534-A8B6-4ED9-87EA-3E4316D1904A}.Release.ActiveCfg = Release|Win32
+		{028FD534-A8B6-4ED9-87EA-3E4316D1904A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

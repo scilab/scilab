@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gengatsce", "Gengatsce.vcproj", "{B9489630-7D8D-4187-ACA5-1D993062548C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B9489630-7D8D-4187-ACA5-1D993062548C}.Debug.ActiveCfg = Debug|Win32
+		{B9489630-7D8D-4187-ACA5-1D993062548C}.Debug.Build.0 = Debug|Win32
+		{B9489630-7D8D-4187-ACA5-1D993062548C}.Release.ActiveCfg = Release|Win32
+		{B9489630-7D8D-4187-ACA5-1D993062548C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
