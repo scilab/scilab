@@ -11,7 +11,7 @@
 
 extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 
-int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint,integer lstr1,integer lstr2);
+int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer *n2,integer *style,char *strflag,char *legend,double *brect,integer *aaint, BOOL flagNax, integer lstr1,integer lstr2);
 
 /*------------------------------------------------
  * Objrect : 
@@ -207,39 +207,42 @@ void Objtitle(str,n,hdl)
  *  plot2d 
  *-----------------------------------------------*/   
 
-void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint)
+void Objplot2d (ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax)
      double x[],y[],brect[];
      int ptype;
      integer *n1,*n2,style[],aaint[];
      char legend[],strflag[],logflags[];
+     BOOL flagNax;
 { 
      
-     plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,4L,bsiz); 
+     plot2dn(ptype,logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,flagNax,4L,bsiz); 
          
 }
 
 /*------------------------------------------------
  *  grayplot
  *-----------------------------------------------*/   
-void Objgrayplot (x,y,z,n1,n2,strflag,brect,aaint) 
+void Objgrayplot (x,y,z,n1,n2,strflag,brect,aaint,flagNax) 
      double x[],y[],z[],brect[];
      integer *n1,*n2,aaint[];
      char strflag[];
+     BOOL flagNax;
 { 
      
-     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, bsiz);
+     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, flagNax, bsiz );
      
          
 }/*------------------------------------------------
  *  Matplot
  *-----------------------------------------------*/   
-void Objmatplot (z,n1,n2,strflag,brect,aaint) 
+void Objmatplot (z,n1,n2,strflag,brect,aaint,flagNax) 
      double z[],brect[];
      integer *n1,*n2,aaint[];
      char strflag[];
+     BOOL flagNax;
 { 
      
-     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, bsiz);
+     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, flagNax, bsiz);
      
          
 }
@@ -357,7 +360,11 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox,m
   if (pSUBWIN_FEATURE(psubwin)->FirstPlot) {
     pSUBWIN_FEATURE (psubwin)->project[2]= 1;
     pSUBWIN_FEATURE (psubwin)->is3d  = TRUE;
-    pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+/*     pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE; */
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = TRUE;
+    pSUBWIN_FEATURE (psubwin)->axes.axes_visible[2] = TRUE;
+
   }
 
   ok=0;  
@@ -518,12 +525,13 @@ void Objnumb(fname,fname_len,n,flag,x,y,angle,box)
 /*------------------------------------------------
  * fec
  *-----------------------------------------------*/   
-void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax)
+void Objfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax,flagNax)
      double x[],y[],brect[],noeud[],Zminmax[];
      integer *n,*m,aaint[],Colminmax[];
      char legend[],strflag[];
      double *fun;
+     BOOL flagNax;
 { 
   C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-	   Zminmax,Colminmax,4L,bsiz);
+	   Zminmax,Colminmax,flagNax,4L,bsiz);
 }
