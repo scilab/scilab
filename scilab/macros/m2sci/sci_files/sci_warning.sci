@@ -25,8 +25,8 @@ elseif rhs<=2 then
     tree.rhs(2)=null()
   end
 
-  if or(convstr(tree.rhs(1).value)==["""on""","""off""","""backtrace""","""debug""","""once""","""always"""]) then
-    if tree.lhs(1).name<>"" then
+  if typeof(tree.rhs(1))=="cste" & or(convstr(tree.rhs(1).value)==["""on""","""off""","""backtrace""","""debug""","""once""","""always"""]) then
+    if tree.lhs(1).name<>"ans" then
       no_equiv(expression2code(tree)+": Output value set to ""on"".")
       tree=Cste("on")
     else
