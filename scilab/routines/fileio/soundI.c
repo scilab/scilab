@@ -124,10 +124,10 @@ int intsloadwave(char *fname)
 int C2F(playsound)(char * filename)
 {
 	#ifdef WIN32
-	// Stop Playing
+  /* Stop Playing*/
 	PlaySound(NULL,NULL,SND_PURGE);	
 
-	// Play Wav file	
+	/* Play Wav file	*/
     PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
     #endif
      	
