@@ -3221,7 +3221,7 @@ int scixstring(fname,fname_len)
 
     if ((flagx == 1) && (*stk(l4) == 0)) {
       double dx1= y - yi ;
-      Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect);
+      Objrect (&x,&yi,&wc,&dx1,0,0,1,&hdlrect,TRUE);
     }
     /** construct agregation and make it current object **/ 
     if ((flagx == 1) && (*stk(l4) == 0))
@@ -4653,9 +4653,9 @@ int scirect(fname,fname_len)
       /* version_flag()  == "0" correspond aux graphics de la version 25001 */
       if (version_flag() == 0)
          if (strcmp(fname,"xrect")==0) 
-	    Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),0,0,0,&hdl);
+	    Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),0,0,0,&hdl,FALSE);
          else
-            Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),1,0,0,&hdl);
+            Objrect (stk(l1),stk(l1+1),stk(l1+2),stk(l1+3),1,0,0,&hdl,FALSE);
        else
         Xrect(fname,fname_len,stk(l1),stk(l1+1),stk(l1+2),stk(l1+3));
       break;
@@ -4666,9 +4666,9 @@ int scirect(fname,fname_len)
       GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4);
       if (version_flag() == 0)
           if (strcmp(fname,"xrect")==0) 
-             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),0,0,0,&hdl);
+             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),0,0,0,&hdl,FALSE);
           else
-             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),1,0,0,&hdl);
+             Objrect (stk(l1),stk(l2),stk(l3),stk(l4),1,0,0,&hdl,FALSE);
       else
         Xrect(fname,fname_len,stk(l1),stk(l2),stk(l3),stk(l4));
       break;
@@ -4722,14 +4722,14 @@ int scirects(fname,fname_len)
       j = (i==0) ? 0 : 1;
       if (*istk(l2+i) == 0)  
 	/** fil(i) = 0 rectangle i is drawn using the current line style (or color).**/
-	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i-j),0,&hdl);
+	Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i-j),0,&hdl,FALSE);
       else  
 	if (*istk(l2+i) < 0)  
 	  /** fil(i) < 0 rectangle i is drawn using the line style (or color) **/
-	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i),0,&hdl); 
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),0,*istk(l2+i),0,&hdl,FALSE);
 	else         
 	  /** fil(i) > 0   rectangle i is filled using the pattern (or color) **/
-	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),1,*istk(l2+i),0,&hdl); 
+	  Objrect (stk(l1+(4*i)),stk(l1+(4*i)+1),stk(l1+(4*i)+2),stk(l1+(4*i)+3),1,*istk(l2+i),0,&hdl,FALSE);
     }
     /** construct agregation and make it current object **/
     sciSetCurrentObj (ConstructAgregationSeq (n1));  
@@ -4995,7 +4995,8 @@ int gset(fname,fname_len)
       if (VarType(3) == 10) 
 	{ if ((strncmp(cstk(l2),"tics_labels",11) !=0)
 	      && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
-	      && ((strncmp(cstk(l2),"axes_visible",12)) !=0))
+	      && ((strncmp(cstk(l2),"axes_visible",12)) !=0)
+	      && ((strncmp(cstk(l2),"axes_reverse",12)) !=0))
 	  {GetRhsVar(3,"c",&numrow3,&numcol3,&l3);} 
 	else
 	  GetRhsVar(3,"S",&numrow3,&numcol3,&l3); }
@@ -5044,7 +5045,8 @@ int gset(fname,fname_len)
       if ( (VarType(2) == 10) ) {
 	if ((strncmp(cstk(l2),"tics_labels",11) !=0)
 	    && ((strncmp(cstk(l2),"auto_ticks",10)) !=0)
-	    && ((strncmp(cstk(l2),"axes_visible",12)) !=0))
+	    && ((strncmp(cstk(l2),"axes_visible",12)) !=0)
+	    && ((strncmp(cstk(l2),"axes_reverse",12)) !=0))
 	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
 	else 
 	  GetRhsVar(2,"S",&numrow3,&numcol3,&l3);
@@ -5870,6 +5872,44 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=FALSE;
 	    else if ((strncmp(ptr[i],"on", 2) == 0))
 	      pSUBWIN_FEATURE (pobj)->axes.auto_ticks[i]=TRUE;
+	    else
+	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+	  }	
+      }
+      else
+	{strcpy(error_message,"Number of the second argument must be taken between 1 to 3");return -1;}
+    }
+  else if (strncmp(marker,"axes_reverse", 12) == 0) 
+    {
+      if(*numcol == 1){
+	
+	ptr= *(char ***)value;
+	
+	if ((strncmp(ptr[0],"off", 3) == 0)) 
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[0]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[1]=FALSE;
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[2]=FALSE;
+	  }
+	else if ((strncmp(ptr[0],"on", 2) == 0))
+	  {
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[0]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[1]=TRUE;
+	    pSUBWIN_FEATURE (pobj)->axes.reverse[2]=TRUE;
+	  }
+	else
+	  {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
+      }
+      else if (*numcol == 2 || *numcol == 3){
+
+	ptr= *(char ***)value;
+	
+	for (i = 0; i < *numcol; i++ )
+	  {
+	    if ((strncmp(ptr[i],"off", 3) == 0)) 
+	      pSUBWIN_FEATURE (pobj)->axes.reverse[i]=FALSE;
+	    else if ((strncmp(ptr[i],"on", 2) == 0))
+	      pSUBWIN_FEATURE (pobj)->axes.reverse[i]=TRUE;
 	    else
 	      {strcpy(error_message,"Second argument must be 'on' or 'off'");return -1;}
 	  }	
@@ -7526,33 +7566,38 @@ if ((pobj == (sciPointObj *)NULL) &&
       else
 	{strcpy(error_message,"auto_ticks property does not exist for this handle");return -1;}
     }
-/*   else if (strncmp(marker,"y_auto_ticks", 12) == 0) */
-/*     { */
-/*       if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
-/* 	numrow   = 1;numcol   = 3; */
-/* 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
-/* 	if (pSUBWIN_FEATURE (pobj)->axes.yauto_ticks == TRUE) */
-/* 	  strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
-/* 	else  */
-/* 	  strncpy(cstk(outindex),"off", numrow*numcol);       */
-/*       } */
-/*       else */
-/* 	{strcpy(error_message,"y_auto_ticks property does not exist for this handle");return -1;} */
-/*     } */
-/*    else if (strncmp(marker,"z_auto_ticks", 12) == 0) */
-/*     { */
-/*       if (sciGetEntityType (pobj) == SCI_SUBWIN) { */
-/* 	numrow   = 1;numcol   = 3; */
-/* 	CreateVar(Rhs+1,"c",&numrow,&numcol,&outindex); */
-/* 	if (pSUBWIN_FEATURE (pobj)->axes.zauto_ticks == TRUE) */
-/* 	  strncpy(cstk(outindex),"on", numrow*(numcol-1));  */
-/* 	else  */
-/* 	  strncpy(cstk(outindex),"off", numrow*numcol);       */
-/*       } */
-/*       else */
-/* 	{strcpy(error_message,"z_auto_ticks property does not exist for this handle");return -1;} */
-/*     } */
-    /**DJ.Abdemouche 2003**/
+  else if (strncmp(marker,"axes_reverse",12) == 0)
+    {
+      if (sciGetEntityType (pobj) == SCI_SUBWIN) {
+	char ** foo = (char **) NULL;
+	int i;
+	sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pobj); /* debug */
+	numrow   = 1;numcol   = 3;
+	
+	if((foo=malloc(numcol*(sizeof(char *))))==NULL){
+	  strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
+	
+	
+	for(i=0;i<numcol;i++)
+	  if( pSUBWIN_FEATURE (pobj)->axes.reverse[i] == TRUE)
+	    {
+	      if((foo[i]=malloc(3*(sizeof(char))))==NULL){
+		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
+	      strcpy(foo[i],"on");
+	    }
+	  else
+	    {
+	      if((foo[i]=malloc(4*(sizeof(char))))==NULL){
+		strcpy(error_message,"No memory left for allocating temporary reverse");return -1;}
+	      strcpy(foo[i],"off");
+	    }    
+      	
+	CreateVarFromPtr(Rhs+1,"S",&numrow,&numcol,foo);
+	
+      }
+      else
+	{strcpy(error_message,"reverse property does not exist for this handle");return -1;}
+    }
   else if (strncmp(marker,"view", 4) == 0)
     {
       if (sciGetEntityType (pobj) == SCI_SUBWIN) {
