@@ -61,7 +61,7 @@ void Objpoly (x,y,n,closed,mark,hdl)
     int mark;
 { 
   sciSetCurrentObj (ConstructPolyline
-         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,
+		    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
                      closed,n,1,0)); 
   if (mark <= 0)
     { 
@@ -231,10 +231,13 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
      double x[],y[],z[];
      double *theta,*alpha,*ebox;
      integer *isfac,*n,*m,*iflag,*izcol,*zcol;
-     char *fname,*legend;
+     char *fname,*legend; 
 {  
     sciTypeOf3D typeof3d;
-    integer flagcolor;
+    integer flagcolor;  
+    long *hdltab;
+    int i;
+    sciPointObj *psubwin;
      
       
     if (*isfac== 1) { 
@@ -272,13 +275,33 @@ void Objplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
     else {
       typeof3d = SCI_PARAM3D1 ;
       flagcolor=1;
-    }
-    
-    sciSetCurrentObj (ConstructSurface
-		       ((sciPointObj *)
-			sciGetSelectedSubWin (sciGetCurrentFigure ()), typeof3d,
-			x, y, z, zcol, *izcol, *m, *n, *theta, *alpha, legend,iflag,ebox,flagcolor));
-     sciDrawObj(sciGetCurrentObj ());
+    }/*2004*/
+    psubwin= (sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ());
+     if ((sciGetGraphicMode (psubwin)->autoscaling))
+       update_3dbounds(psubwin,isfac,x,y,z,*m,*n,*theta, *alpha);
+    if ( typeof3d != SCI_PARAM3D1 )
+      sciSetCurrentObj (ConstructSurface
+			((sciPointObj *)
+			 psubwin, typeof3d,
+			 x, y, z, zcol, *izcol, *m, *n, iflag,ebox,flagcolor));
+    else
+      {
+	if ((hdltab = malloc (*n * sizeof (long))) == NULL) {
+	  Scierror(999,"%s: No more memory available\r\n",fname);
+	  return; 
+	}
+	for (i = 0; i < *n; ++i) {
+	  sciSetCurrentObj (ConstructPolyline
+			    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),
+			     &(x[*m * i]),&(y[*m * i]),&(z[*m * i]),0,*m,1,0));  
+	  if (*n > 1) sciSetForeground (sciGetCurrentObj(), zcol[i]);
+	  hdltab[i]=sciGetHandle(sciGetCurrentObj ()); 
+	} 
+	/** construct agregation and make it current object**/
+	if ( *n>1 ) sciSetCurrentObj (ConstructAgregation (hdltab, *n));  
+	FREE(hdltab);
+      }
+    sciDrawObj(sciGetCurrentFigure ());/*dj2004*/
      
        
 }

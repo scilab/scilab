@@ -284,9 +284,11 @@ void Xplot3d (fname,isfac,izcol,x,y,z,zcol,m,n,theta,alpha,legend,iflag,ebox)
       C2F(plot3d1)(x,y,z,m,n,theta,alpha,legend,iflag,ebox,bsiz);
       else
         C2F(plot3d)(x,y,z,m,n,theta,alpha,legend,iflag,ebox,bsiz);
-     }
-       else
-	 C2F(param3d1)(x, y, z,m,n,izcol,zcol,theta, alpha,legend,iflag,ebox, bsiz);
+    }
+   else 
+     C2F(param3d1)(x, y, z,m,n,izcol,zcol,theta, alpha,legend,iflag,ebox, bsiz); 
+    
+   
          
 }
 /*------------------------------------------------
