@@ -45,7 +45,8 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axis Object"
 wm iconname $ww "SO"
-wm geometry $ww 545x650
+wm geometry $ww 435x600
+#wm geometry $ww 545x600
 #wm geometry $ww 650x700
 
 set topf  [frame $ww.topf]
@@ -108,7 +109,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Xtics Ytics Clipping} -pad 40 -height 510 -width 420
+Notebook:create $uf.n -pages {Style Xtics Ytics Clipping} -pad 40 -height 450 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -206,7 +207,7 @@ pack  $w.frame.subticslab  $w.frame.subtics  -in  $w.frame.cas   -side left -fil
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 15m
+pack $w.sep -fill both  -pady 5m
 
 #exit button
 button $w.buttons -text Quit -command "destroy $ww" 
@@ -265,7 +266,7 @@ if { $nbcolX == 1} {
 
     #sep bar
     frame $w.sep -height 2 -borderwidth 1 -relief sunken
-    pack $w.sep -fill both  -pady 50m
+    pack $w.sep -fill both  -pady 30m
     
 
 } else {
@@ -354,7 +355,7 @@ if { $nbcolY == 1} {
 
     #sep bar
     frame $w.sep -height 2 -borderwidth 1 -relief sunken
-    pack $w.sep -fill both  -pady 50m
+    pack $w.sep -fill both  -pady 30m
     
 } else {
     frame $w.frame.cas2_0 -borderwidth 0

@@ -43,7 +43,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Text Object"
 wm iconname $ww "TO"
-wm geometry $ww 530x550
+wm geometry $ww 435x520
 #wm geometry $ww 650x700
 
 set topf  [frame $ww.topf]
@@ -108,7 +108,7 @@ eval $w.frame.selgedobject list insert end $lalist
 
 
 
-Notebook:create $uf.n -pages {Style "Data & Mode" "Clipping"} -pad 40 -height 350
+Notebook:create $uf.n -pages {Style "Data & Mode" "Clipping"} -pad 20 -height 350 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -121,7 +121,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility: "
+label $w.frame.vislabel  -text " Visibility:   "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -312,7 +312,7 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: "
+label $w9.frame.labelw -text "            W: "
 entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
 label $w9.frame.labelh -text "             H: "
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox

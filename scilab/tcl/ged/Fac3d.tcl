@@ -48,7 +48,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Fac3d Object"
 wm iconname $ww "FE"
-wm geometry $ww 690x690
+wm geometry $ww 435x520
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -111,7 +111,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {"Style" "Data"} -pad 20 -height 800 -width 600
+Notebook:create $uf.n -pages {"Style" "Data"} -pad 20 -height 400 -width 350
 
 pack $uf.n -in $uf -fill both -expand yes
 
@@ -125,7 +125,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility:   "
+label $w.frame.vislabel  -text "        Visibility:    "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -198,10 +198,10 @@ pack $w.frame.scalesw.radio2 -in  $w.frame.scalesw -side left
 pack $w.frame.scalesw.radio3 -in  $w.frame.scalesw -side left 
 
 
-
+	
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 25m
+pack $w.sep -fill both  -pady  5m
 
 #exit button
 frame $w.buttons
@@ -356,7 +356,7 @@ pack $w.scicomCOLOR.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 10m
+pack $w.sep -fill both  -pady 5m
 
 
 #exit button
@@ -364,257 +364,6 @@ frame $w.buttons
 button $w.b -text Quit -command "destroy $ww"
 pack $w.b -side bottom 
 
-
-
-# # ########### Y matrix onglet #######################################
-# # ###################################################################
-#   set w2 [Notebook:frame $uf.n "Y matrix"]
-
-#   frame $w2.frame2 -borderwidth 0
-#   pack $w2.frame2 -anchor w -fill both
-
-#   frame $w2.frame2.fdata -borderwidth 0
-#   pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
-
-
-#   canvas $w2.frame2.c1 -width 8i -height 4i  -xscrollcommand {$w2.frame2.xsbar set}
-#  scrollbar $w2.frame2.xsbar -orient horizontal -command   {$w2.frame2.c1 xview}
-
-#  #$w2.frame2.c1 create text 160 10 -anchor c -text "Y matrix"
-
-#  for {set i 1} {$i<=$nbrowY} {incr i} {
-#  #    puts $i
-#      set bb [expr 10+(25*$i)]
-#      $w2.frame2.c1 create text 10 $bb -anchor c -text $i
-#      for {set j 1} {$j<=$nbcolY} {incr j} {
-#  #	puts $j
-#  	set aa [expr 10+($j*150)]
-#  	$w2.frame2.c1 create text $aa 10 -anchor c -text $j
-#  	set tmp $w2.frame2.c1.data$i
-#  	set tmp $tmp+"_"
-#  	entry  $tmp$j  -relief sunken  -textvariable fac3dYVAL($i,$j)
-#  	bind   $tmp$j <Return> "setYData $i $j"
-# #location help balloon	
-# 	set_balloon $tmp$j "Row: $i Column: $j"
-
-#  	$w2.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
-#      }
-#  }
-
-
-#  #  for {set i 1} {$i<=$nbrowY} {incr i} {
-#  #      set bb [expr 10+(25*$i)]
-#  #      $w2.frame2.c1 create text 10 $bb -anchor c -text $i
-#  #      entry  $w2.frame2.c1.data$i  -relief sunken  -textvariable fac3dYVAL($i)
-#  #      bind  $w2.frame2.c1.data$i <Return> "setYData $i "
-    
-#  #      $w2.frame2.c1 create window 160 $bb -anchor c -window $w2.frame2.c1.data$i
-#  #  }
-
-#   $w2.frame2.c1 configure -scrollregion [$w2.frame2.c1 bbox all] -xscrollincrement 0.1i
-
-#   pack  $w2.frame2.xsbar -side bottom -fill x
-#   pack  $w2.frame2.c1
-
-# #sep bar
-#   frame $w2.sep -height 2 -borderwidth 1 -relief sunken
-#   pack $w2.sep -fill both  -pady 10m
-
-
-
-#   #exit button
-#   frame $w2.buttons
-#   button $w2.b -text Quit -command "destroy $ww"
-#   pack $w2.b -side bottom 
-
-
-
-#  ########### Z matrix onglet #######################################
-#  ###################################################################
-#   set w3 [Notebook:frame $uf.n "Z matrix"]
-
-#   frame $w3.frame2 -borderwidth 0
-#   pack $w3.frame2 -anchor w -fill both
-
-#   frame $w3.frame2.fdata -borderwidth 0
-#   pack $w3.frame2.fdata  -in $w3.frame2 -side top   -fill x
-
-
-#  canvas $w3.frame2.c1 -width 8i -height 4i -xscrollcommand {$w3.frame2.xsbar set}
-# # scrollbar $w3.frame2.ysbar -orient vertical -command   {$w3.frame2.c1 yview}
-#  scrollbar $w3.frame2.xsbar -orient horizontal -command   {$w3.frame2.c1 xview}
-#  #scrollbar $w3.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
-#  #pack configure $w3.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
-   
-
-#  for {set i 1} {$i<=$nbrowZ} {incr i} { 
-#  #    puts $i
-#      set bb [expr 10+(25*$i)]
-#      $w3.frame2.c1 create text 10 $bb -anchor c -text $i
-#      for {set j 1} {$j<=$nbcolZ} {incr j} {
-#  #	puts $j
-#  	set aa [expr 10+($j*150)]
-#  	$w3.frame2.c1 create text $aa 10 -anchor c -text $j
-#  	set tmp $w3.frame2.c1.data$i
-#  	set tmp $tmp+"_"
-#  	entry  $tmp$j  -relief sunken  -textvariable fac3dZVAL($i,$j)
-#  	bind   $tmp$j <Return> "setZData $i $j"
-# #location help balloon	
-# 	set_balloon $tmp$j "Row: $i Column: $j"
-
-#  	$w3.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
-#      }
-#  }
-
-#   $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all]  -xscrollincrement 0.1i
-#  # $w3.frame2.c1 configure -scrollregion [$w3.frame2.c1 bbox all] -xscrollincrement 0.1i
-
-#  #pack  $w3.frame2.ysbar.scrollh -side bottom -fill x
- 
-#   pack  $w3.frame2.xsbar -side bottom -fill x
-#   pack  $w3.frame2.c1
-
-
-# #sep bar
-#   frame $w3.sep -height 2 -borderwidth 1 -relief sunken
-#   pack $w3.sep -fill both  -pady 10m
-
-
-#   #exit button
-#   frame $w3.buttons
-#   button $w3.b -text Quit -command "destroy $ww"
-#   pack $w3.b -side bottom 
-
-
-#  if {$flagCOLOR == 1} {
-#  ########### Color matrix onglet ###################################
-#  ###################################################################
-#  set w4 [Notebook:frame $uf.n "Color data"]
-
-#  frame $w4.frame2 -borderwidth 0
-#  pack $w4.frame2 -anchor w -fill both
-
-#   frame $w4.frame2.fdata -borderwidth 0
-#   pack $w4.frame2.fdata  -in $w4.frame2 -side top   -fill x
-
-#  canvas $w4.frame2.c1 -width 8i -height 4i   -xscrollcommand {$w4.frame2.xsbar set}
-#  scrollbar $w4.frame2.xsbar -orient horizontal -command   {$w4.frame2.c1 xview}
-#  #scrollbar $w4.frame2.ysbar.scrollh -orient horizontal -command {$w.frame2.c1 xview}
-#  #pack configure $w4.frame2.ysbar.scrollh -side bottom -fill x -expand 1 
- 
-
-#  for {set i 1} {$i<=$nbrowCOLOR} {incr i} {
-#  #    puts $i
-#      set bb [expr 10+(25*$i)]
-#      $w4.frame2.c1 create text 10 $bb -anchor c -text $i
-#      for {set j 1} {$j<=$nbcolCOLOR} {incr j} {
-#  #	puts $j
-#  	set aa [expr 10+($j*150)]
-#  	$w4.frame2.c1 create text $aa 10 -anchor c -text $j
-#  	set tmp $w4.frame2.c1.data$i
-#  	set tmp $tmp+"_"
-#  	entry  $tmp$j  -relief sunken  -textvariable fac3dCOLORVAL($i,$j)
-#  	bind   $tmp$j <Return> "setColorData $i $j"
-# #location help balloon	
-# 	set_balloon $tmp$j "Row: $i Column: $j"
-
-#  	$w4.frame2.c1 create window $aa $bb -anchor c -window $tmp$j
-#      }
-#  }
-
-#   $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all]  -xscrollincrement 0.1i
-#  # $w4.frame2.c1 configure -scrollregion [$w4.frame2.c1 bbox all] -xscrollincrement 0.1i
-
-#  #pack  $w4.frame2.ysbar.scrollh -side bottom -fill x
-#   pack  $w4.frame2.xsbar -side bottom -fill x
-#   pack  $w4.frame2.c1
-
-# #sep bar
-#   frame $w4.sep -height 2 -borderwidth 1 -relief sunken
-#   pack $w4.sep -fill both  -pady 10m
-
-#   #exit button
-#   frame $w4.buttons
-#   button $w4.b -text Quit -command "destroy $ww"
-#   pack $w4.b -side bottom 
-#  }
-
-# ########### Scilab Command Interface ##############################
-# ###################################################################
-# set w5 [Notebook:frame $uf.n "Scilab Command Interface"]
-
-# frame $w5.frame -borderwidth 0
-# pack $w5.frame -anchor w -fill both
-
-
-# frame $w5.scicom1
-# pack $w5.scicom1 -side top -fill x -pady 2m
-
-# label $w5.scicom1.label1 -text "Scilab Command Interface for data:"
-# pack  $w5.scicom1.label1 -in $w5.scicom1 -side left
-
-# frame $w5.scicomX
-# pack $w5.scicomX -side top -fill x -pady 2m
-
-# label $w5.scicomX.label1 -text "fac3d_handle.data.x =      "
-# pack  $w5.scicomX.label1 -in $w5.scicomX -side left
-
-# entry $w5.scicomX.text1 -relief sunken -textvariable scicomint_dataX
-# set_balloon $w5.scicomX.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector or matrix)\n to initialize the \"X data\" field."
-# bind  $w5.scicomX.text1 <Return> "sciCommandData"
-
-# pack $w5.scicomX.text1  -side left  -fill both -expand yes
-
-
-# frame $w5.scicomY
-# pack $w5.scicomY -side top -fill x -pady 2m
-
-# label $w5.scicomY.label1 -text "fac3d_handle.data.y =      "
-# pack  $w5.scicomY.label1 -in $w5.scicomY -side left
-
-# entry $w5.scicomY.text1 -relief sunken -textvariable scicomint_dataY
-# set_balloon $w5.scicomY.text1 "Enter a variable defined in Scilab Console representing\n a real vector or matrix or use a macro call (defining a vector or matrix)\n to initialize the \"Y data\" field."
-# bind  $w5.scicomY.text1 <Return> "sciCommandData"
-
-# pack $w5.scicomY.text1  -side left  -fill both -expand yes
-
-
-# frame $w5.scicomZ
-# pack $w5.scicomZ -side top -fill x -pady 2m
-
-# label $w5.scicomZ.label1 -text "fac3d_handle.data.z =       "
-# pack  $w5.scicomZ.label1 -in $w5.scicomZ -side left
-
-# entry $w5.scicomZ.text1 -relief sunken -textvariable scicomint_dataZ
-# set_balloon $w5.scicomZ.text1 "Enter a variable defined in Scilab Console representing\n a real matrix or use a macro call (defining a matrix)\n to initialize the \"Z data\" field."
-# bind  $w5.scicomZ.text1 <Return> "sciCommandData"
-
-# pack $w5.scicomZ.text1  -side left  -fill both -expand yes
-
-
-# frame $w5.scicomCOLOR
-# pack $w5.scicomCOLOR -side top -fill x -pady 2m
-
-# label $w5.scicomCOLOR.label1 -text "fac3d_handle.data.color = "
-# pack  $w5.scicomCOLOR.label1 -in $w5.scicomCOLOR -side left
-
-# entry $w5.scicomCOLOR.text1 -relief sunken -textvariable scicomint_dataCOLOR
-# set_balloon $w5.scicomCOLOR.text1 "Enter a variable defined in Scilab Console representing\n a integer matrix or use a macro call (defining a matrix)\n to initialize the \"Color data\" field."
-# bind  $w5.scicomCOLOR.text1 <Return> "sciCommandData"
-
-# pack $w5.scicomCOLOR.text1  -side left  -fill both -expand yes
-
-
-
-# #sep bar
-# frame $w5.sep -height 2 -borderwidth 1 -relief sunken
-# pack $w5.sep -fill both -pady 10m
-
-
-# #exit button
-# frame $w5.buttons
-# button $w5.b -text Quit -command "destroy $ww"
-# pack $w5.b -side bottom 
 
 pack $sw $pw1 -fill both -expand yes
 pack $titf1 -padx 4 -side left -fill both -expand yes

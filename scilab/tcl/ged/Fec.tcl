@@ -48,8 +48,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Fec Object"
 wm iconname $ww "FO"
-wm geometry $ww 690x690
-#wm geometry $ww 650x700
+wm geometry $ww 435x520
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -112,7 +111,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data } -pad 40 -height 540 -width 600
+Notebook:create $uf.n -pages {Style Data } -pad 40 -height 300 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -149,7 +148,7 @@ bind  $w.frame.zbmax <Return> {setZb}
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 50m
+pack $w.sep -fill both  -pady 5m
 
 #exit button
 button $w.buttons -text Quit -command "destroy $ww" 
@@ -241,7 +240,7 @@ pack $w.scicomT.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 10m
+pack $w.sep -fill both  -pady 5m
 
 
 #exit button

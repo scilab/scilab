@@ -46,7 +46,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Arc Object"
 wm iconname $ww "AO"
-wm geometry $ww 530x550
+wm geometry $ww 435x530
 #wm geometry $ww 650x700
 
 set topf  [frame $ww.topf]
@@ -110,7 +110,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 20  -height 400
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 20  -height 400 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -247,7 +247,7 @@ pack $w.frame.lb4  -in $w.frame -side top   -fill x
 frame $w.frame.lb41 -borderwidth 0
 pack $w.frame.lb41  -in $w.frame -side top   -fill x
 
-label $w.frame.labelw -text "     W: "
+label $w.frame.labelw -text "    W: "
 entry $w.frame.dataw -relief sunken  -textvariable Wval 
 label $w.frame.labelh -text "     H: "
 entry $w.frame.datah -relief sunken  -textvariable Hval 
@@ -363,7 +363,7 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: "
+label $w9.frame.labelw -text "            W: "
 entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
 label $w9.frame.labelh -text "             H: "
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox

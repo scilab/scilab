@@ -62,7 +62,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Polyline Editor"
 wm iconname $ww "PE"
-wm geometry $ww 690x650
+wm geometry $ww 435x520
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -125,8 +125,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-#Notebook:create $uf.n -pages {Style Aspect Data} -pad 20     -height 520 -width 600
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 20 -height 520 -width 600
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 20 -height 400 -width 350
 pack $uf.n -fill both -expand yes
 
 ########### Style onglet ##########################################
@@ -242,7 +241,7 @@ $w.frame.thickness set $curthick
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 20m  
+pack $w.sep -fill both -pady 5m  
 
 #exit button
 frame $w.buttons
@@ -280,7 +279,7 @@ pack $w.frame.polydata   -in $w.frame.curdataframe  -expand 1 -fill x -pady 2m -
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both -pady 10m
+pack $w.sep -fill both -pady 25m
 
 
 #exit button
@@ -356,7 +355,7 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: "
+label $w9.frame.labelw -text "            W: "
 entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
 label $w9.frame.labelh -text "             H: "
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox
@@ -375,7 +374,7 @@ pack $w9.frame.warning -in $w9.frame
 
 #sep bar
 frame $w9.sep -height 2 -borderwidth 1 -relief sunken
-pack $w9.sep -fill both  -pady 30m
+pack $w9.sep -fill both  -pady 15m
 
 
 #exit button

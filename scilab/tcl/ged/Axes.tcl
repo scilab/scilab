@@ -122,7 +122,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 530x750
+wm geometry $ww 435x720
 #wm geometry $ww 650x700
 #wm maxsize  $ww 450 560
 
@@ -193,7 +193,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 430
+Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis" Title Style Aspect Viewpoint} -pad 20   -height 600 -width 350
 pack $uf.n -fill both -expand yes
 
 
@@ -205,26 +205,6 @@ frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
 
-#visibility of X axis
-frame $w.frame.vis -borderwidth 0
-pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislabel  -text "Visibility:  on axis   "
-checkbutton $w.frame.visb  -textvariable Xaxes_visibleToggle  \
-    -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilityX" 
-pack $w.frame.vislabel -in $w.frame.vis -side left
-pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
-
-frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "               on label   "
-checkbutton $w.frame.vislabb  -textvariable xlabel_visibility \
-    -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabx" 
-pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
-
-
 #x label
 frame $w.frame.lbx -borderwidth 0
 pack $w.frame.lbx  -in $w.frame -side top   -fill x -pady 2m
@@ -234,6 +214,16 @@ entry $w.frame.xlabel1 -relief sunken  -textvariable xlabel
 pack $w.frame.xlabel -in  $w.frame.lbx -side left
 pack $w.frame.xlabel1  -in  $w.frame.lbx  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xlabel1 <Return> {setXlabel} 
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "  Visibility:   "
+checkbutton $w.frame.vislabb  -textvariable xlabel_visibility \
+    -variable xlabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylabx" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
+
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -367,27 +357,6 @@ pack $w.b -side bottom
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
-
-#visibility of Y axis
-frame $w.frame.vis -borderwidth 0
-pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislabel  -text "Visibility:  on axis   "
-checkbutton $w.frame.visb  -textvariable Yaxes_visibleToggle  \
-    -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilityY" 
-pack $w.frame.vislabel -in $w.frame.vis -side left
-pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
-
-frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "               on label   "
-checkbutton $w.frame.vislabb  -textvariable ylabel_visibility \
-    -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylaby" 
-pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
-
-
 #y label
 frame $w.frame.lby -borderwidth 0
 pack $w.frame.lby  -in $w.frame -side top   -fill x  -pady 2m
@@ -397,6 +366,15 @@ entry $w.frame.ylabel1 -relief sunken  -textvariable ylabel
 pack $w.frame.ylabel -in  $w.frame.lby -side left
 pack $w.frame.ylabel1  -in  $w.frame.lby  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.ylabel1 <Return> {setYlabel} 
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "  Visibility:   "
+checkbutton $w.frame.vislabb  -textvariable ylabel_visibility \
+    -variable ylabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylaby" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -522,26 +500,6 @@ pack $w.b -side bottom
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
-
-#visibility of Z axis
-frame $w.frame.vis -borderwidth 0
-pack $w.frame.vis  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislabel  -text "Visibility:  on axis   "
-checkbutton $w.frame.visb  -textvariable Zaxes_visibleToggle \
-    -variable Zaxes_visibleToggle -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilityZ" 
-pack $w.frame.vislabel -in $w.frame.vis -side left
-pack $w.frame.visb  -in $w.frame.vis  -side left  -fill x
-
-frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "               on label   "
-checkbutton $w.frame.vislabb  -textvariable zlabel_visibility \
-    -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitylabz" 
-pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
-
 #z label
 frame $w.frame.lbz -borderwidth 0
 pack $w.frame.lbz  -in $w.frame -side top   -fill x -pady 2m
@@ -551,6 +509,15 @@ entry $w.frame.zlabel1 -relief sunken  -textvariable zlabel
 pack $w.frame.zlabel -in  $w.frame.lbz -side left
 pack $w.frame.zlabel1  -in  $w.frame.lbz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.zlabel1 <Return> {setZlabel} 
+
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "  Visibility:   "
+checkbutton $w.frame.vislabb  -textvariable zlabel_visibility \
+    -variable zlabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitylabz" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -677,17 +644,6 @@ pack $w.b -side bottom
 frame $w.frame -borderwidth 0
 pack $w.frame -anchor w -fill both
 
-#visibility of label ONLY
-frame $w.frame.vislab -borderwidth 0
-pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.vislablabel  -text "Visibility:  on label   "
-checkbutton $w.frame.vislabb  -textvariable titlelabel_visibility \
-    -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
-    -command "toggleVisibilitytitle" 
-pack $w.frame.vislablabel -in $w.frame.vislab -side left
-pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
-
-
 #title label
 frame $w.frame.lbtitle -borderwidth 0
 pack $w.frame.lbtitle  -in $w.frame -side top   -fill x -pady 2m
@@ -697,6 +653,16 @@ entry $w.frame.titlelabel1 -relief sunken  -textvariable tlabel
 pack $w.frame.titlelabel -in  $w.frame.lbtitle -side left
 pack $w.frame.titlelabel1  -in  $w.frame.lbtitle  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.titlelabel1 <Return> {setTitleLabel} 
+
+#visibility for title
+frame $w.frame.vislab -borderwidth 0
+pack $w.frame.vislab  -in $w.frame -side top -fill x -pady 1.m
+label $w.frame.vislablabel  -text "  Visibility:   "
+checkbutton $w.frame.vislabb  -textvariable titlelabel_visibility \
+    -variable titlelabel_visibility  -onvalue "on" -offvalue "off" \
+    -command "toggleVisibilitytitle" 
+pack $w.frame.vislablabel -in $w.frame.vislab -side left
+pack $w.frame.vislabb  -in $w.frame.vislab  -side left  -fill x
 
 #Font color
 frame $w.frame.fontcol  -borderwidth 0
@@ -897,7 +863,7 @@ pack $w.frame  -anchor w -fill both
 #auto clear
 frame $w.frame.clear -borderwidth 0
 pack $w.frame.clear  -in $w.frame  -side top  -fill x -pady 1.m
-label $w.frame.clearlabel  -text "  Auto clear:  "
+label $w.frame.clearlabel  -text "   Auto clear:  "
 checkbutton $w.frame.clearib  -textvariable curautoclear \
     -variable curautoclear  -onvalue "on" -offvalue "off" \
     -command "toggleClear" 
@@ -907,7 +873,7 @@ pack $w.frame.clearib  -in $w.frame.clear    -side left -fill x -pady 1.m -padx 
 #auto scal
 frame $w.frame.scal -borderwidth 0
 pack $w.frame.scal  -in $w.frame  -side top -fill x -pady 1.m
-label $w.frame.scallabel  -text "  Auto scale:  "
+label $w.frame.scallabel  -text "   Auto scale:  "
 checkbutton $w.frame.scalib  -textvariable curautoscale \
     -variable curautoscale  -onvalue "on" -offvalue "off" \
     -command "toggleScale" 
@@ -917,7 +883,7 @@ pack $w.frame.scalib  -in $w.frame.scal    -side left  -fill x -pady 1.m -padx 1
 #box
 frame $w.frame.bxd -borderwidth 0
 pack $w.frame.bxd  -in $w.frame  -side top -fill x -pady 1.m
-label $w.frame.boxlabel  -text "        Boxed:  "
+label $w.frame.boxlabel  -text "         Boxed:  "
 checkbutton $w.frame.box  -textvariable boxToggle  \
     -variable boxToggle  -onvalue "on" -offvalue "off" \
     -command "toggleBox" 
@@ -927,7 +893,7 @@ pack $w.frame.box  -in $w.frame.bxd    -side left -fill x -pady 1.m -padx 1.m
 #isoview
 frame $w.frame.iso -borderwidth 0
 pack $w.frame.iso  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.isolabel  -text "      Isoview: "
+label $w.frame.isolabel  -text "        Isoview: "
 checkbutton $w.frame.isob  -textvariable isoToggle  \
     -variable isoToggle  -onvalue "on" -offvalue "off" \
     -command "toggleIsoview" 
@@ -937,7 +903,7 @@ pack $w.frame.isob  -in $w.frame.iso  -side left -fill x -pady 1.m -padx 1.m
 #Tight Limits
 frame $w.frame.lim  -borderwidth 0
 pack $w.frame.lim  -in $w.frame -side top -fill x -pady 1.m
-label $w.frame.limitlabel -text " Tight limits: "
+label $w.frame.limitlabel -text "   Tight limits: "
 checkbutton $w.frame.limit  -textvariable limToggle  \
     -variable limToggle  -onvalue "on" -offvalue "off" \
     -command "toggleLimits" 
@@ -1034,14 +1000,14 @@ pack $w.frame.marg2  -in $w.frame -side top   -fill x
 frame $w.frame.marg21 -borderwidth 0
 pack $w.frame.marg21  -in $w.frame -side top   -fill x
 
-label $w.frame.labelleft -text  "          Left:  "
+label $w.frame.labelleft -text  "           Left: "
 entry $w.frame.datamargl -relief sunken  -textvariable Lmargins
-label $w.frame.labelleftaxesbounds -text  "   Left: "
+label $w.frame.labelleftaxesbounds -text  "    Left:  "
 entry $w.frame.dataleftaxesbounds -relief sunken  -textvariable axes_boundsL
 
 label $w.frame.labelright -text "         Right:"
 entry $w.frame.datamargr -relief sunken  -textvariable Rmargins
-label $w.frame.labelupaxesbounds -text  "      Up: "
+label $w.frame.labelupaxesbounds -text  "      Up:  "
 entry $w.frame.dataupaxesbounds -relief sunken  -textvariable axes_boundsU
 
 pack $w.frame.labelleft  $w.frame.datamargl  $w.frame.labelleftaxesbounds $w.frame.dataleftaxesbounds -in  $w.frame.marg2 -side left  -fill x -pady 1.m -padx 1.m
@@ -1064,7 +1030,7 @@ entry $w.frame.datawidthaxesbounds -relief sunken  -textvariable axes_boundsW
 
 label $w.frame.labelbottom -text "      Bottom:"
 entry $w.frame.datamargb -relief sunken  -textvariable Bmargins
-label $w.frame.labelheightaxesbounds -text    "Height: "
+label $w.frame.labelheightaxesbounds -text    "  Height:"
 entry $w.frame.dataheightaxesbounds -relief sunken  -textvariable axes_boundsH
 
 pack $w.frame.labeltop     $w.frame.datamargt $w.frame.labelwidthaxesbounds  $w.frame.datawidthaxesbounds -in  $w.frame.marg4  -side left -fill x -pady 1.m -padx 1.m
@@ -1904,6 +1870,7 @@ proc PopUp { w numpage} {
     global SubticksEntryX SubticksEntryY SubticksEntryZ
     global XautoticksToggle YautoticksToggle ZautoticksToggle
     global StepEntryX StepEntryY StepEntryZ
+    global Xaxes_visibleToggle Yaxes_visibleToggle Zaxes_visibleToggle
 
     set frameaxes $w
 
@@ -1917,7 +1884,8 @@ proc PopUp { w numpage} {
     wm deiconify $www
     
     wm title $www  "Edit Axes Ticks"
-    wm geometry $www 530x750
+    wm geometry $www 405x690
+#    wm geometry $www 530x750
     wm iconname $www "TE"
     grab set $www
 #    bell -displayof $w
@@ -1946,7 +1914,7 @@ proc PopUp { w numpage} {
     pack $fra  -anchor w -fill both
 
     
-    Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis"} -pad 20   -height 600 -width 430
+    Notebook:create $uf.n -pages {"X Axis" "Y Axis" "Z Axis"} -pad 20   -height 560 -width 330
     pack $uf.n -in $uf -fill both -expand yes
 
     Notebook:raise.page $uf.n $numpage
@@ -1963,6 +1931,17 @@ proc PopUp { w numpage} {
     
     frame $fen1.frame -borderwidth 0
     pack $fen1.frame -anchor w -fill both
+
+
+    #visibility of X axis
+    frame $fen1.frame.vis -borderwidth 0
+    pack $fen1.frame.vis  -in $fen1.frame -side top -fill x -pady 1.m
+    label $fen1.frame.vislabel  -text "           Visibility:    "
+    checkbutton $fen1.frame.visb  -textvariable Xaxes_visibleToggle  \
+        -variable Xaxes_visibleToggle  -onvalue "on" -offvalue "off" \
+        -command "toggleVisibilityX" 
+    pack $fen1.frame.vislabel -in $fen1.frame.vis -side left
+    pack $fen1.frame.visb  -in $fen1.frame.vis  -side left  -fill x
 
     frame $fen1.frame.xautoticks -borderwidth 0
     pack $fen1.frame.xautoticks  -in $fen1.frame -side top -fill x -pady 1.m
@@ -1996,16 +1975,16 @@ proc PopUp { w numpage} {
     pack $fen1.frame.fdata  -in $fen1.frame -side top   -fill x
     
     scrollbar $fen1.frame.ysbar -orient vertical -command   {$fen1.frame.c yview}
-    canvas $fen1.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen1.frame.ysbar set}
+    canvas $fen1.frame.c -width 8i -height 3i  -yscrollcommand {$fen1.frame.ysbar set}
     
-    $fen1.frame.c create text 160 10 -anchor c -text "Locations"
-    $fen1.frame.c create text 310 10 -anchor c -text "Labels"
+    $fen1.frame.c create text 100 10 -anchor c -text "Locations"
+    $fen1.frame.c create text 230 10 -anchor c -text "Labels"
       
     for {set i 1} {$i<=$nbticks_x} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen1.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 10+(1*150)]
+	set aa [expr 100]
 	entry  $fen1.frame.c.locationsdata$i  -relief sunken  -justify right \
 	    -background white -textvariable LOCATIONS_X($i)
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2015,7 +1994,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 10+(2*150)]
+	set aa [expr 230]
 	entry  $fen1.frame.c.labelsdata$i  -relief sunken   -justify left \
 	    -background white -textvariable LABELS_X($i)
 	#	bind  $fen1.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2030,19 +2009,9 @@ proc PopUp { w numpage} {
     pack  $fen1.frame.c
     
     
-    frame $fen1.boutons -borderwidth 0
-    pack $fen1.boutons -anchor w -fill both  -side top   -fill x
-    
-    #Insert/ Delete buttons
-    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes "
-    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes "
-    pack $fen1.boutons.buttoninsert $fen1.boutons.buttondelete -in  $fen1.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
-    
-    
     #sep bar
     frame $fen1.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen1.sep -fill both -pady 10m  
+    pack $fen1.sep -fill both -pady 5m  
 
     
      #exit button
@@ -2055,6 +2024,16 @@ proc PopUp { w numpage} {
     pack $fen1.buttons.apply  $fen1.buttons.b -in  $fen1.buttons \
 	-side left   -fill x  -expand 1 -pady 2m
 
+    frame $fen1.boutons -borderwidth 0
+    pack $fen1.boutons -anchor w -fill both  -side bottom   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen1.boutons.buttoninsert -text Insert -command "TicksInsertX $fen1 $frameaxes "
+    button $fen1.boutons.buttondelete -text Delete -command "TicksDeleteX $fen1 $frameaxes "
+    pack $fen1.boutons.buttoninsert $fen1.boutons.buttondelete -in  $fen1.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+    
 
     ########### Y onglet ##############################################
     ###################################################################
@@ -2068,6 +2047,16 @@ proc PopUp { w numpage} {
 
     frame $fen2.frame -borderwidth 0
     pack $fen2.frame -anchor w -fill both
+
+    #visibility of Y axis
+    frame $fen2.frame.vis -borderwidth 0
+    pack $fen2.frame.vis  -in $fen2.frame -side top -fill x -pady 1.m
+    label $fen2.frame.vislabel  -text "           Visibility:    "
+    checkbutton $fen2.frame.visb  -textvariable Yaxes_visibleToggle  \
+        -variable Yaxes_visibleToggle  -onvalue "on" -offvalue "off" \
+        -command "toggleVisibilityY" 
+    pack $fen2.frame.vislabel -in $fen2.frame.vis -side left
+    pack $fen2.frame.visb  -in $fen2.frame.vis  -side left  -fill x
 
     frame $fen2.frame.yautoticks -borderwidth 0
     pack $fen2.frame.yautoticks  -in $fen2.frame -side top -fill x -pady 1.m
@@ -2099,17 +2088,17 @@ proc PopUp { w numpage} {
     frame $fen2.frame.fdata -borderwidth 0
     pack $fen2.frame.fdata  -in $fen2.frame -side top   -fill x
   
-    canvas $fen2.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen2.frame.ysbar set}
+    canvas $fen2.frame.c -width 8i -height 3i  -yscrollcommand {$fen2.frame.ysbar set}
     scrollbar $fen2.frame.ysbar -orient vertical -command   {$fen2.frame.c yview}
     
-    $fen2.frame.c create text 160 10 -anchor c -text "Locations"
-    $fen2.frame.c create text 310 10 -anchor c -text "Labels"
+    $fen2.frame.c create text 100 10 -anchor c -text "Locations"
+    $fen2.frame.c create text 230 10 -anchor c -text "Labels"
       
     for {set i 1} {$i<=$nbticks_y} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen2.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 10+(1*150)]
+	set aa [expr 100]
 	entry  $fen2.frame.c.locationsdata$i  -relief sunken  -justify right \
 	    -background white -textvariable LOCATIONS_Y($i)
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2119,7 +2108,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 10+(2*150)]
+	set aa [expr 230]
 	entry  $fen2.frame.c.labelsdata$i  -relief sunken   -justify left \
 	    -background white -textvariable LABELS_Y($i)
 	#	bind  $fen2.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2133,21 +2122,9 @@ proc PopUp { w numpage} {
     pack  $fen2.frame.ysbar -side right -fill y
     pack  $fen2.frame.c
     
-#    puts "2. fen2 vaut: $fen2"
-
-    frame $fen2.boutons -borderwidth 0
-    pack $fen2.boutons -anchor w -fill both  -side top   -fill x
-    
-    #Insert/ Delete buttons
-    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes "
-    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes "
-    pack $fen2.boutons.buttoninsert $fen2.boutons.buttondelete -in  $fen2.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
-    
-    
     #sep bar
     frame $fen2.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen2.sep -fill both -pady 10m  
+    pack $fen2.sep -fill both -pady 5m  
 
     
      #exit button
@@ -2160,8 +2137,16 @@ proc PopUp { w numpage} {
     pack $fen2.buttons.apply  $fen2.buttons.b -in  $fen2.buttons \
 	-side left   -fill x  -expand 1 -pady 2m
     
-#    puts "3. fen2 vaut: $fen2"
-
+    frame $fen2.boutons -borderwidth 0
+    pack $fen2.boutons -anchor w -fill both  -side bottom   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen2.boutons.buttoninsert -text Insert -command "TicksInsertY $fen2 $frameaxes "
+    button $fen2.boutons.buttondelete -text Delete -command "TicksDeleteY $fen2 $frameaxes "
+    pack $fen2.boutons.buttoninsert $fen2.boutons.buttondelete -in  $fen2.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
+    
 
 
      ########### Z onglet ##############################################
@@ -2175,6 +2160,16 @@ proc PopUp { w numpage} {
 
     frame $fen3.frame -borderwidth 0
     pack $fen3.frame -anchor w -fill both
+
+    #visibility of Z axis
+    frame $fen3.frame.vis -borderwidth 0
+    pack $fen3.frame.vis  -in $fen3.frame -side top -fill x -pady 1.m
+    label $fen3.frame.vislabel  -text "           Visibility:    "
+    checkbutton $fen3.frame.visb  -textvariable Zaxes_visibleToggle  \
+        -variable Zaxes_visibleToggle  -onvalue "on" -offvalue "off" \
+        -command "toggleVisibilityZ" 
+    pack $fen3.frame.vislabel -in $fen3.frame.vis -side left
+    pack $fen3.frame.visb  -in $fen3.frame.vis  -side left  -fill x
 
     frame $fen3.frame.zautoticks -borderwidth 0
     pack $fen3.frame.zautoticks  -in $fen3.frame -side top -fill x -pady 1.m
@@ -2206,17 +2201,17 @@ proc PopUp { w numpage} {
     frame $fen3.frame.fdata -borderwidth 0
     pack $fen3.frame.fdata  -in $fen3.frame -side top   -fill x
   
-    canvas $fen3.frame.c -width 8i -height 3.5i  -yscrollcommand {$fen3.frame.ysbar set}
+    canvas $fen3.frame.c -width 8i -height 3i  -yscrollcommand {$fen3.frame.ysbar set}
     scrollbar $fen3.frame.ysbar -orient vertical -command   {$fen3.frame.c yview}
     
-    $fen3.frame.c create text 160 10 -anchor c -text "Locations"
-    $fen3.frame.c create text 310 10 -anchor c -text "Labels"
+    $fen3.frame.c create text 100 10 -anchor c -text "Locations"
+    $fen3.frame.c create text 230 10 -anchor c -text "Labels"
       
     for {set i 1} {$i<=$nbticks_z} {incr i} {
 	set bb [expr 10+(25*$i)]
 	$fen3.frame.c create text 10 $bb -anchor c -text $i
 	#Locations
-	set aa [expr 10+(1*150)]
+	set aa [expr 100]
 	entry  $fen3.frame.c.locationsdata$i  -relief sunken  -justify right \
 	    -background white -textvariable LOCATIONS_Z($i)
 	#	bind  $w.frame.c.locationsdata$i <Return> "setTicksLocations $w $i "
@@ -2226,7 +2221,7 @@ proc PopUp { w numpage} {
 	
 	
 	#Labels
-	set aa [expr 10+(2*150)]
+	set aa [expr 230]
 	entry  $fen3.frame.c.labelsdata$i  -relief sunken   -justify left \
 	    -background white -textvariable LABELS_Z($i)
 	#	bind  $fen3.frame.c.labelsdata$i <Return> "setTicksLabels $w $i "
@@ -2240,19 +2235,10 @@ proc PopUp { w numpage} {
     pack  $fen3.frame.ysbar -side right -fill y
     pack  $fen3.frame.c
     
-    frame $fen3.boutons -borderwidth 0
-    pack $fen3.boutons -anchor w -fill both  -side top   -fill x
-    
-    #Insert/ Delete buttons
-    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes "
-    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes "
-    pack $fen3.boutons.buttoninsert $fen3.boutons.buttondelete -in  $fen3.boutons \
-	-side left   -fill x  -expand 1 -pady 2m
-    
     
     #sep bar
     frame $fen3.sep -height 2 -borderwidth 1 -relief sunken
-    pack $fen3.sep -fill both -pady 10m  
+    pack $fen3.sep -fill both -pady 5m  
 
     
      #exit button
@@ -2265,7 +2251,15 @@ proc PopUp { w numpage} {
     pack $fen3.buttons.apply  $fen3.buttons.b -in  $fen3.buttons \
 	-side left   -fill x  -expand 1 -pady 2m
     
-
+    frame $fen3.boutons -borderwidth 0
+    pack $fen3.boutons -anchor w -fill both  -side bottom   -fill x
+    
+    #Insert/ Delete buttons
+    button $fen3.boutons.buttoninsert -text Insert -command "TicksInsertZ $fen3 $frameaxes "
+    button $fen3.boutons.buttondelete -text Delete -command "TicksDeleteZ $fen3 $frameaxes "
+    pack $fen3.boutons.buttoninsert $fen3.boutons.buttondelete -in  $fen3.boutons \
+	-side left   -fill x  -expand 1 -pady 2m
+    
 
 
     pack $sw $pw1 -fill both -expand yes
@@ -2682,7 +2676,7 @@ proc ReLoadTicks { } {
     global LOCATIONS_Z LABELS_Z
     global nbticks_x nbticks_y nbticks_z
 
-    ScilabEval "global ged_handle; LoadTicks2TCL(ged_handle); " "sync" "seq"
+    ScilabEval "global ged_handle; ReLoadTicks2TCL(ged_handle); " "sync" "seq"
 }
 
 proc toggleXautoticks { w numpage } {

@@ -31,6 +31,7 @@ global lalist
 global curgedindex
 global curgedobject
 
+global curdata
 global curvis
 global curarrowsize curthick curlinestyle segsVAL nbcolsegscolor segscolorVAL
 global RED GREEN BLUE ncolors
@@ -44,7 +45,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Segs Object"
 wm iconname $ww "SO"
-wm geometry $ww 545x650
+wm geometry $ww 435x520
 #wm geometry $ww 650x700
 
 set topf  [frame $ww.topf]
@@ -108,7 +109,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Color Clipping} -pad 40 -height 510 -width 420
+Notebook:create $uf.n -pages {Style Data Color Clipping} -pad 20 -height 400 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -121,7 +122,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "         Visibility:    "
+label $w.frame.vislabel  -text "          Visibility:    "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -170,7 +171,7 @@ bind  $w.frame.arrow <Return> {SelectArrowSize}
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 40m
+pack $w.sep -fill both  -pady 10m
 
 #exit button
 frame $w.buttons
@@ -183,40 +184,25 @@ pack $w.buttons.dismiss  -side bottom -expand 1
 ###################################################################
 set w [Notebook:frame $uf.n Data]
 
-frame $w.frame -borderwidth 0
-pack $w.frame -anchor w -fill both
+frame $w.frame2 -borderwidth 0
+pack $w.frame2 -anchor w -fill both
 
-frame $w.frame.fdata -borderwidth 0
-pack $w.frame.fdata  -in $w.frame -side top   -fill x
 
-scrollbar $w.frame.ysbar -orient vertical -command   {$w.frame.c yview}
-canvas $w.frame.c -width 8i -height 4i  -yscrollcommand {$w.frame.ysbar set}
+frame $w.frame2.curdataframeX  -borderwidth 0
+pack $w.frame2.curdataframeX  -in $w.frame2  -side top  -fill x
 
-$w.frame.c create text 160 10 -anchor c -text "X"
-$w.frame.c create text 310 10 -anchor c -text "Y"
-
-set nbcol 2
-
-for {set i 1} {$i<=$nbrow} {incr i} {
-    set bb [expr 10+(25*$i)]
-    $w.frame.c create text 10 $bb -anchor c -text $i
-    for {set j 1} {$j<=$nbcol} {incr j} {
-	set aa [expr 10+($j*150)]
-	set tmp $w.frame.c.data$i
-	set tmp $tmp+"_"
-	entry  $tmp$j  -relief sunken  -textvariable segsVAL($i,$j)
-	bind  $tmp$j <Return> "setData $i $j"
-#location help balloon	
-	set_balloon $tmp$j "Row: $i Column: $j"
-
-	$w.frame.c create window $aa $bb -anchor c -window $tmp$j
-    }
-}
-
-$w.frame.c configure -scrollregion [$w.frame.c bbox all] -yscrollincrement 0.1i
-
-pack  $w.frame.ysbar -side right -fill y
-pack  $w.frame.c
+label $w.frame2.polydatalabelX  -height 0 -text " X and Y Data :   " -width 0 
+combobox $w.frame2.polydataX \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curdata \
+    -editable false \
+    -command [list SelectData ]
+eval $w.frame2.polydataX list insert end [list $curdata "----" "Edit data..."]
+pack $w.frame2.polydatalabelX -in $w.frame2.curdataframeX  -side left
+pack $w.frame2.polydataX   -in $w.frame2.curdataframeX  -expand 1 -fill x -pady 2m -padx 2m
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
@@ -240,7 +226,7 @@ frame $w2.frame2.fdata -borderwidth 0
 pack $w2.frame2.fdata  -in $w2.frame2 -side top   -fill x
 
 
-canvas $w2.frame2.c1 -width 8i -height 4i  -yscrollcommand {$w2.frame2.ysbar set}
+canvas $w2.frame2.c1 -width 8i -height 3i  -yscrollcommand {$w2.frame2.ysbar set}
 scrollbar $w2.frame2.ysbar -orient vertical -command   {$w2.frame2.c1 yview}
 
 $w2.frame2.c1 create text 160 10 -anchor c -text "Segs color"
@@ -264,7 +250,7 @@ pack  $w2.frame2.c1
 
 #sep bar
 frame $w2.sep -height 2 -borderwidth 1 -relief sunken
-pack $w2.sep -fill both  -pady 10m
+pack $w2.sep -fill both  -pady 5m
 
 
 #exit button
@@ -340,7 +326,7 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: "
+label $w9.frame.labelw -text "            W: "
 entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
 label $w9.frame.labelh -text "             H: "
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox
@@ -359,7 +345,7 @@ pack $w9.frame.warning -in $w9.frame
 
 #sep bar
 frame $w9.sep -height 2 -borderwidth 1 -relief sunken
-pack $w9.sep -fill both  -pady 30m
+pack $w9.sep -fill both  -pady 5m
 
 
 #exit button
@@ -471,3 +457,21 @@ ScilabEval "global ged_handle;ged_handle.clip_state='$curclipstate';"
     }
 }
 
+
+proc SelectData  {w args} {
+    global curdata
+    variable mycurdata
+    set mycurdata $curdata
+    set finddbarray -1
+    set dbarray "double array"
+    set finddbarray [expr [string first $dbarray $mycurdata]]
+#    puts "finddbarray = $finddbarray"
+
+    if { ($mycurdata == "----") || ($finddbarray != -1) } {
+	#	puts "nothing to do"
+    } else {
+	if { $mycurdata ==  "Edit data..." } {
+	    ScilabEval "global ged_handle;ged_handle.data=EditData(ged_handle.data)" "seq"
+	}
+    }
+}

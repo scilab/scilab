@@ -35,7 +35,8 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Agregation Editor"
 wm iconname $ww "AE"
-wm geometry $ww 530x500
+wm geometry $ww 435x500
+
 
 
 set topf  [frame $ww.topf]
@@ -99,7 +100,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
-Notebook:create $uf.n -pages {Style} -pad 20 
+Notebook:create $uf.n -pages {Style} -pad 20 -height 300 -width 350
 pack $uf.n -fill both -expand 1
 
 ########### Style onglet ##########################################

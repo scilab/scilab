@@ -48,8 +48,9 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Champ Object"
 wm iconname $ww "CO"
-wm geometry $ww 545x690
-#wm geometry $ww 650x700
+
+wm geometry $ww 435x520
+
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -112,7 +113,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {Style Data Clipping} -pad 40 -height 540 -width 420
+Notebook:create $uf.n -pages {Style Data Clipping} -pad 40 -height 350 -width 350
 pack $uf.n -in $uf -fill both -expand 1
 
 ########### Style onglet ##########################################
@@ -125,7 +126,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "         Visibility:    "
+label $w.frame.vislabel  -text "          Visibility:    "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -175,7 +176,7 @@ bind  $w.frame.arrow <Return> {SelectArrowSize}
 #colored
 frame $w.frame.col -borderwidth 0
 pack $w.frame.col  -in $w.frame  -side top -fill x
-label $w.frame.collabel  -text "           Colored:    "
+label $w.frame.collabel  -text "           Colored:   "
 checkbutton $w.frame.colored  -textvariable curcolored  \
     -variable curcolored  -onvalue "on" -offvalue "off" \
     -command "toggleCol" 
@@ -185,7 +186,7 @@ pack $w.frame.colored  -in $w.frame.col    -side left -fill x
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 40m
+pack $w.sep -fill both  -pady 5m
 
 #exit button
 button $w.b -text Quit -command "destroy $ww" 
@@ -351,7 +352,7 @@ pack $w9.frame.lb4  -in $w9.frame -side top   -fill x
 frame $w9.frame.lb41 -borderwidth 0
 pack $w9.frame.lb41  -in $w9.frame -side top   -fill x
 
-label $w9.frame.labelw -text "             W: "
+label $w9.frame.labelw -text "            W: "
 entry $w9.frame.dataw -relief sunken  -textvariable Wclipbox
 label $w9.frame.labelh -text "             H: "
 entry $w9.frame.datah -relief sunken  -textvariable Hclipbox
@@ -370,7 +371,7 @@ pack $w9.frame.warning -in $w9.frame
 
 #sep bar
 frame $w9.sep -height 2 -borderwidth 1 -relief sunken
-pack $w9.sep -fill both  -pady 30m
+pack $w9.sep -fill both  -pady 10m
 
 
 #exit button

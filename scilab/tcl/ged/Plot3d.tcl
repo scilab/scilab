@@ -49,7 +49,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Plot3d Object"
 wm iconname $ww "PE"
-wm geometry $ww 690x690
+wm geometry $ww 435x520
 
 set topf  [frame $ww.topf]
 set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor"]
@@ -112,7 +112,7 @@ eval $w.frame.selgedobject list insert end $lalist
 #pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
-Notebook:create $uf.n -pages {"Style" "Data"} -pad 20 -height 540 -width 600
+Notebook:create $uf.n -pages {"Style" "Data"} -pad 20 -height 400 -width 350
 
 pack $uf.n -in $uf -fill both -expand yes
 
@@ -126,7 +126,7 @@ pack $w.frame -anchor w -fill both
 #visibility
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
-label $w.frame.vislabel  -text "       Visibility:   "
+label $w.frame.vislabel  -text "        Visibility:    "
 checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
@@ -198,7 +198,7 @@ pack $w.frame.scalesw.radio1  -in  $w.frame.scalesw    -side left
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 25m
+pack $w.sep -fill both  -pady 5m
 
 #exit button
 button $w.buttons -text Quit -command "destroy $ww" 
@@ -356,7 +356,7 @@ pack $w.scicomCOLOR.text1  -side left  -fill both -expand yes
 
 #sep bar
 frame $w.sep -height 2 -borderwidth 1 -relief sunken
-pack $w.sep -fill both  -pady 15m
+pack $w.sep -fill both  -pady 5m
 
 
 #exit button
