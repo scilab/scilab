@@ -14,7 +14,7 @@ c
       integer p,lr,nlr,lcc,id(nsiz)
       integer extrac,insert,semi
       common /basbrk/ iflag
-      integer otimer,ntimer,stimer,ismenu,getendian
+      integer otimer,ntimer,stimer,ismenu,getendian,gettype
       integer tref,t,fclock
       integer iadr,sadr
       external stimer,ismenu,getendian
@@ -159,14 +159,12 @@ c           call error(110)
 c     .  instruction reduced to <name> with name not a function, replace
 C     .  next two op code by a single store 
 c     .  skip extract op-code <5 3 1 1>
-c         print *, istk(lc)
          if (istk(lc).ne.5.or.istk(lc+1).ne.3) then
             buf='Unexpected opcode, please report'
             call error(9999)
             return
          endif
          lc=lc+4
-c         print *, istk(lc)
 c     .  skip assignment op_code <29 43 ans 0>   
          if (istk(lc).ne.29) then
             buf='Unexpected opcode, please report'
@@ -177,7 +175,6 @@ c     .  skip assignment op_code <29 43 ans 0>
 c     .  store
          call stackp(istk(lname),0)
          if (err .gt. 0 ) return
-c         print *, 'fin',istk(lc)
          goto 10
       endif
       lc=lc+nsiz+3
