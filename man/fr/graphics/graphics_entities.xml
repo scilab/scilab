@@ -18,7 +18,7 @@
     redisplay, zoom and rotations. In the <VERB>"new"</VERB> mode, each
     graphics window and the drawing it contains are represented by hierchical
     entities. The hierachy top level is the Figure. Each Figure defines at
-    least one children of type Axes. Each Axes entity contains a set of leaf
+    least one child of type Axes. Each Axes entity contains a set of leaf
     entities which are the basic graphics objects like Polylines, Rectangles,
     Arcs, Segs,... It can also contain an Agregation type which are recursive
     sets of entities. The main interest of the new graphic mode is to make
@@ -241,6 +241,10 @@
 
     <SEE_ALSO_ITEM>
       <LINK>delete</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>object_editor</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>
