@@ -2,8 +2,11 @@
 /***********************************************************************
  * zzledt.c - last line editing routine
  *
- * $Id: zzledt.c,v 1.1 2001/06/18 11:38:48 chanceli Exp $
+ * $Id: zzledt.c,v 1.2 2001/07/25 14:00:11 chanceli Exp $
  * $Log: zzledt.c,v $
+ * Revision 1.2  2001/07/25 14:00:11  chanceli
+ * declarations
+ *
  * Revision 1.1  2001/06/18 11:38:48  chanceli
  * zzledt moved here
  *
@@ -29,6 +32,7 @@
 
 #ifdef __STDC__
 #include <stdlib.h>
+#include <unistd.h>
 #endif
 
 int gchar_no_echo();

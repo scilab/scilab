@@ -1,18 +1,19 @@
-/* Copyright (C) 1998 Chancelier Jean-Philippe */
+/*--------------------------------------------------
+ * Copyright (C) 1998 Chancelier Jean-Philippe 
+ *--------------------------------------------------*/
+
 #ifdef SYSV
 #include <string.h>
 #else
 #include <strings.h>
 #endif
+
 #include "x_ptyxP.h"
 #include "x_data.h"
 #include "../machine.h"
 #include "All-extern-x.h"
 #include "All-extern.h"
-/* 
-   write_scilab set a scilab command to be executed and displayed at prompt time
-   works only with xsci interface
-*/
+
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
@@ -35,6 +36,10 @@
 #endif
 
 #include "../sun/Sun.h"
+
+extern int  Scierror __PARAMS((int iv,char *fmt,...));
+
+
 #define LF                    0x000a
 #define MAXBUFFSIZE 256
 static int ClickMenu=0;
@@ -44,15 +49,15 @@ static int posinbuff=0;
 extern int Xscilab  __PARAMS((Display **dpy, Widget *topwid));  
 extern void xevents1  __PARAMS((void));  
 
-/****************************************
+/*-------------------------------------------------------
  * Functions to set or to get the scilab status 
  * is it a scilab or a scilab -nw 
- *************************************/
+ *-------------------------------------------------------*/
 
 static int INXscilab=0;
 static int intoemacs;
 
-void SetXsciOn()
+void SetXsciOn(void)
 {
 #ifdef WITH_TK
   inittk();
@@ -65,39 +70,38 @@ int IntoEmacs(void )
   return(strcmp(getenv("TERM"),"dumb")==0);
 }
 
-int C2F(xscion)(i)
-     int *i;
+int C2F(xscion)(int *i)
 {
   *i=INXscilab;
   return(0);
 }
 
 
- int pty_mask = 1;
- int X_mask =16;
- int Select_mask;
- int select_mask = 0;
- int write_mask = 2;
- int Write_mask = 2;
- int max_plus1 = 5;
+int pty_mask = 1;
+int X_mask =16;
+int Select_mask;
+int select_mask = 0;
+int write_mask = 2;
+int Write_mask = 2;
+int max_plus1 = 5;
 
 Display *the_dpy = (Display *) NULL;
 int BasicScilab = 1;
 XtAppContext app_con;
 int IsClick_menu(void);
 void Click_menu(int n);
-int charfromclick(void);
+static int charfromclick(void);
 
 static String bgfallback_resources[] = {
 #include "../xsci/Xscilab.ad.h"
-    NULL,
-  };
+  NULL,
+};
 
-/******************************************
+/*-------------------------------------------------------
  * Display Init :
  * This function is initialize only Once  
  * the scilab display 
- ******************************************/
+ *-------------------------------------------------------*/
 
 void DisplayInit(string, dpy, toplevel)
      char *string;
@@ -127,8 +131,8 @@ void DisplayInit(string, dpy, toplevel)
     {
       int Xsocket,fd ;
       *toplevel=toplevel1=XtAppInitialize (&app_con,"Xscilab",optionDescList,
-				       0,&argc, (String *)argv,
-				       bgfallback_resources,(ArgList) NULL,(Cardinal) 0);
+					   0,&argc, (String *)argv,
+					   bgfallback_resources,(ArgList) NULL,(Cardinal) 0);
       the_dpy = *dpy=dpy1=XtDisplay(toplevel1);
       BasicScilab = 0;
       Xsocket = ConnectionNumber(dpy1);
@@ -144,7 +148,7 @@ void DisplayInit(string, dpy, toplevel)
 }
 
 
-/******************************************************
+/*-------------------------------------------------------
  * 
  *  Xorgetchar : function used while in the scilab -nw mode 
  *      by zzledt to get the next typed char (in stdin)
@@ -158,7 +162,7 @@ void DisplayInit(string, dpy, toplevel)
  *  Additionally, the case of emacs-shell is added
  *                the case of calling from user graphical menu is added
  *                now it is possible to run scicos from -nw mode
- *******************************************************/
+ *-------------------------------------------------------*/
 
 int Xorgetchar()
 {
@@ -167,56 +171,56 @@ int Xorgetchar()
   static int state=0;
   if ( BasicScilab) return(getchar());
   for( ; ; ) {
-	XFlush(the_dpy); /* always flush writes before waiting */
-	/* Update the masks and, unless X events are already in the queue,
-	   wait for I/O to be possible. */
-	select_mask = Select_mask;
-	write_mask  = Write_mask;
-	select_timeout.tv_sec = 1;
-	select_timeout.tv_usec = 0;
-	i = select(max_plus1, (fd_set *)&select_mask, 
-		   (fd_set *) &write_mask, (fd_set *)NULL,
-		   QLength(the_dpy) ? &select_timeout
-		   : (struct timeval *) NULL);
-	if (i < 0) {
-	    if (errno != EINTR)
-	      		  { 
-			    Scistring("Error\n");
-			    exit(0);
-			    continue;
-			  }
-	} 
-	if (write_mask & Write_mask) {	  fflush(stdout);}
-
-	/* if there's something to read */
-        if ((select_mask & pty_mask) || IsClick_menu()) 
-           state=1;
-        else
-           if (QLength(the_dpy) || (select_mask & X_mask) ||!(intoemacs))
-             state=0;
-
-	if (state) {
-         if(IsClick_menu())
-            i=charfromclick();
-         else
-            i=getchar();
-         if (i==LF) state=0;
-     	  return(i);
+    XFlush(the_dpy); /* always flush writes before waiting */
+    /* Update the masks and, unless X events are already in the queue,
+       wait for I/O to be possible. */
+    select_mask = Select_mask;
+    write_mask  = Write_mask;
+    select_timeout.tv_sec = 1;
+    select_timeout.tv_usec = 0;
+    i = select(max_plus1, (fd_set *)&select_mask, 
+	       (fd_set *) &write_mask, (fd_set *)NULL,
+	       QLength(the_dpy) ? &select_timeout
+	       : (struct timeval *) NULL);
+    if (i < 0) {
+      if (errno != EINTR)
+	{ 
+	  Scistring("Error\n");
+	  exit(0);
+	  continue;
 	}
+    } 
+    if (write_mask & Write_mask) {	  fflush(stdout);}
+
+    /* if there's something to read */
+    if ((select_mask & pty_mask) || IsClick_menu()) 
+      state=1;
+    else
+      if (QLength(the_dpy) || (select_mask & X_mask) ||!(intoemacs))
+	state=0;
+
+    if (state) {
+      if(IsClick_menu())
+	i=charfromclick();
+      else
+	i=getchar();
+      if (i==LF) state=0;
+      return(i);
+    }
 	
-	/* if there are X events already in our queue, it
-	   counts as being readable */
-	if (QLength(the_dpy) || (select_mask & X_mask)) 
-	  { C2F(sxevents)();	}
+    /* if there are X events already in our queue, it
+       counts as being readable */
+    if (QLength(the_dpy) || (select_mask & X_mask)) 
+      { C2F(sxevents)();	}
   }
 }
 
-/***************************************************
+/*-------------------------------------------------------
  *  Dealing with X11 Events.
  *  xevents is called by Xorgetchar and also by DispatchEvents in 
  *  routines/system 
  *  xevents must work for scilab and scilab -nw 
- *****************************************************/
+ *-------------------------------------------------------*/
 
 int C2F(sxevents)()
 {
@@ -241,7 +245,7 @@ int C2F(sxevents)()
 }
 
 
-/**************************************************************************
+/*-------------------------------------------------------*
  *  Command queue functions
  *  This function is used to store Scilab command in a queue 
  *  ( the queue is checked in the Scilab Event Loop )
@@ -249,7 +253,7 @@ int C2F(sxevents)()
  *
  *  One can also set a handler to deal with the commands 
  *  if he wants to bypass the queue
- **************************************************************************/
+ *-------------------------------------------------------*/
 
 typedef struct commandRec {
   char                *command;  /* command info one string two integers */
@@ -291,7 +295,7 @@ int StoreCommand(command)
     { 
       write_scilab(command);
       C2F(xscion)(&i);
-       if (i) write_scilab("\n");
+      if (i) write_scilab("\n");
       return 0;
     }
   p = (CommandRec *) malloc( sizeof(CommandRec));
@@ -376,23 +380,23 @@ int C2F(getmen)(btn_cmd,lb,entry)
 void Click_menu(int n);
 
 static void str_to_xterm ( string, nbytes)
-    register char *string;
-    int nbytes;
+     register char *string;
+     int nbytes;
 {
-    register TScreen *screen = &term->screen;
-    StringInput(screen,string,strlen(string));
+  register TScreen *screen = &term->screen;
+  StringInput(screen,string,strlen(string));
 }
 
 
 static void str_to_xterm_nw ( string, nbytes)
-    register char *string;
-    int nbytes;
+     register char *string;
+     int nbytes;
 {
   posinbuff=0;
   if (nbytes>MAXBUFFSIZE-1)
     {
-     Scierror(1020,"%s\n", "The menu  name is too long  to be strored");
-     return;
+      Scierror(1020,"%s\n", "The menu  name is too long  to be strored");
+      return;
     }
   sprintf(buffstring,string);
   buffstring[nbytes]='\n';
@@ -401,15 +405,15 @@ static void str_to_xterm_nw ( string, nbytes)
 }
 
 void write_scilab(s)
-    char   *s;
+     char   *s;
 {
-    int  i;
-    C2F(xscion)(&i);
-    if (i==1)
-	str_to_xterm(s,strlen(s));
-    else
-       	str_to_xterm_nw(s,strlen(s));
-    /*      	printf(" asynchronous actions are not supported with -nw option\n");*/
+  int  i;
+  C2F(xscion)(&i);
+  if (i==1)
+    str_to_xterm(s,strlen(s));
+  else
+    str_to_xterm_nw(s,strlen(s));
+  /*      	printf(" asynchronous actions are not supported with -nw option\n");*/
 }
 
 int IsClick_menu(void)
@@ -423,15 +427,21 @@ void Click_menu(int n)
   return;
 }
 
-int charfromclick()
+static int charfromclick(void)
 {
   if (posinbuff==lenbuffstring-1)
-  {
-    ClickMenu=0;
-  }
+    {
+      ClickMenu=0;
+    }
   if (posinbuff==lenbuffstring)
     return(9999);
   else
-     return(buffstring[posinbuff++]);
+    return(buffstring[posinbuff++]);
 }
   
+
+
+
+
+
+

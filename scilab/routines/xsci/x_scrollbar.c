@@ -463,7 +463,7 @@ static int params_to_pixels (screen, params, n)
     String *params;
     int n;
 {
-    register mult = 1;
+    register int mult = 1;
     register char *s;
 
     switch (n > 2 ? 2 : n) {

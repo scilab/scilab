@@ -1992,7 +1992,7 @@ void unparseputc(c, fd)
   int fd;
 {
   char buf[2];
-  register i = 1;
+  register int i = 1;
   extern XtermWidget term;
 
   if ((buf[0] = c) == '\r' && (term->flags & LINEFEED))

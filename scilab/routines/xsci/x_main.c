@@ -98,7 +98,6 @@ extern void sci_usr1_signal(int n) ;
 static void Syntax  __PARAMS((char *badOption));  
 static void Help  __PARAMS((void));  
 static void strip_blank  __PARAMS((char *source));  
-static void clear_exit __PARAMS((int));
 static void Syntax  (char *badOption);  
 static void Help  (void);  
 static char ** create_argv(int *argc);
@@ -444,7 +443,6 @@ Widget initColors(realToplevel_w)
 
 void main_sci (int argc,char ** argv, char *startup, int lstartup,int memory)
 {
-  int nostartup=0;
   XtermWidget CreateSubWindows();
   register TScreen *screen;
   register int  pty;
@@ -628,7 +626,7 @@ static void strip_blank(char *source)
  * call sciquit which call clear_exit
  *-------------------------------------------------------*/
 
-int C2F(sciquit)()            /* used at Fortran level */
+int C2F(sciquit)(void)            /* used at Fortran level */
 {
   int status = 0;
   /* fprintf(stderr,"I Quit Scilab through sciquit\n"); */
@@ -638,6 +636,7 @@ int C2F(sciquit)()            /* used at Fortran level */
       C2F(scirun)(quit_script,strlen(quit_script));
     }
   sci_exit(status) ;
+  return 0;
 } 
 
 void sci_clear_and_exit(int n) /* used with handlers */ 

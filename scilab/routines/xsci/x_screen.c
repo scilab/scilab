@@ -275,7 +275,7 @@ void ScrnDeleteChar(sb, row, col, n, size)
 {
   register Char *ptr = sb[2 * row];
   register Char *attrs = sb[2 * row + 1];
-  register nbytes = (size - n - col);
+  register int nbytes = (size - n - col);
   int wrappedbit = attrs[0] & LINEWRAPPED;
 
   bcopy(ptr + col + n, ptr + col, nbytes);

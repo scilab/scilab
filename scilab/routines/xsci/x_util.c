@@ -558,11 +558,11 @@ void DeleteChar (screen, n)
  */
 
 void ClearAbove (screen)
-register TScreen *screen;
+     register TScreen *screen;
 {
-	register top, height;
+  register int top, height;
 
-	if(screen->cursor_state)
+  if(screen->cursor_state)
 		HideCursor();
 	if((top = -screen->topline) <= screen->max_row) {
 		if(screen->scroll_amt)
@@ -588,7 +588,7 @@ register TScreen *screen;
 void ClearBelow (screen)
 register TScreen *screen;
 {
-	register top;
+  register int top;
 
 	ClearRight(screen);
 	if((top = screen->cur_row - screen->topline) <= screen->max_row) {
