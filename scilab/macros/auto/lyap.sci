@@ -8,5 +8,5 @@ function X = lyap(A,C,flag)
   else
     error(36)
   end
-  X=linmeq(2,A,C,flag)
+  X=linmeq(2,A,C,part(flag,1))
 endfunction
