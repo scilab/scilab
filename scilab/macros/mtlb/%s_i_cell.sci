@@ -1,20 +1,56 @@
 function M=%s_i_cell(varargin)
 // Copyright INRIA
-//insertion of a matrix in an hypermatrix
+//insertion of a matrix in an cell M(i,j...)=N
 [lhs,rhs]=argn(0)
-M=varargin(rhs)
+M=varargin(rhs)//
 N=varargin(rhs-1)//inserted matrix
 dims=M('dims')(:);
 
 v=M('entries');
 
-ndims=rhs-2
+nindex=rhs-2
 nd=size(dims,'*')
-if ndims>nd then dims(nd+1:ndims)=0;end  
+to_reshape=%f
+//
+if nindex==1 then 
+  dims_save=dims,dims=prod(dims);
+  nd=1
+  to_reshape=%t
+elseif nindex<nd then
+  for k=nindex+1:nd, varargin(k)=1;end
+  nindex=nd
+elseif  nindex>nd then 
+  dims(nd+1:nindex)=0
+end
 
+// Compute resulting matrix dimension (max of each index)
+[I,dims1]=maxindex(dims,varargin(1:nindex))
+
+if or(dims1>dims) then // at least on dimension has increased
+  v=enlarge_shape(dims,dims1,v)
+end
+//insert the object N nindex times at each location given by I
+for i=1:size(I,'*'), v(I(i)+1)=N,end
+
+if to_reshape&dims1==dims then dims1=dims_save,end
+
+// remove higher dimensions equal to 1
+while  dims1($)==1 then dims1($)=[],end
+if size(dims1,'*')<2 then dims1(2)=1,end
+
+//form the resulting data structure
+M=mlist(['cell','dims','entries'],dims1,v)
+endfunction
+
+function [I,dims1]=maxindex(dims,varargin)
+//
+// I vector of 1D indexes, 
+// dims1: maximum value of each individual index
+nindex=size(dims,'*')
 dims1=[]
 I=0;I1=0
-for k=ndims:-1:1
+
+for k=nindex:-1:1
   ik=varargin(k)//the kth subscript
   if type(ik)==2 |type(ik)==129 then // size implicit subscript $...
     ik=horner(ik,dims(k)) // explicit subscript
@@ -25,7 +61,7 @@ for k=ndims:-1:1
   elseif mini(size(ik))<0 then // :
     ik=1:dims(k)
     dims1(k,1)=max(max(ik),dims(k))
-    if k==ndims then
+    if k==nindex then
       if k<nd then
 	ik=1:prod(dims(k:$))
 	dims1(k:nd,1)=dims(k:nd)
@@ -45,8 +81,23 @@ for k=ndims:-1:1
     I=dims1(k)*I+ik-1
   end
 end
-if or(dims1>dims) then
-  I1=0
+endfunction
+
+function v1=enlarge_shape(dims,dims1,v)
+//dims :  vector of old dimensions
+//dims1 : vector of new dimensions
+//v     : list of entries
+//v1    : new list of entries
+//
+// undefined elements are set to []
+// and(dims1>=dims) must be true
+ki=find(dims1>dims)
+if ki==nd then // the last dimension -> add empty entries at the end
+  for k=prod(dims)+1:prod(dims1),v(k)=[];v1=v;end
+else // enlarge and merge
+  v1=list();for k=1:prod(dims1),v1(k)=[],end
+  //merge compute the new index of M entries into enlarged cell
+  I1=[];
   for k=size(dims1,'*'):-1:1
     ik1=(1:dims(k))'
     if ik1<>[] then
@@ -61,18 +112,7 @@ if or(dims1>dims) then
       end
     end
   end
-  v1=list();for iw=1:prod(dims1),v1(iw)=[],end
-  for iw=1:size(I1,'*')
-    v1(I1(iw)+1)=v(iw);
-  end
-  v=v1
+  for iw=1:size(I1,'*'),v1(I1(iw)+1)=v(iw);end
 end
-
-for i=1:size(I,'*'), v(I(i)+1)=N,end
-
-
-while  dims1($)==1 then dims1($)=[],end
-if size(dims1,'*')<2 then dims1(2)=1,end
-M=mlist(['cell','dims','entries'],dims1,v)
 
 endfunction
