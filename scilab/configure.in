@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.25 $)dnl
+AC_REVISION($Revision: 1.26 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1350,8 +1350,8 @@ fi
 #################
 
 if test "$with_gtk" = yes; then
-  AC_PATH_PROG(GTK_CONFIG,gtk-config,none)
-  AC_PATH_PROG(GNOME_CONFIG,gnome-config,none)
+  AC_CHECK_PROG(GTK_CONFIG,gtk-config,none)
+  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,none)
 
   AC_MSG_CHECKING([if gtk is version 1.2 or later])
   GTK_VER=`$GTK_CONFIG --version`
@@ -1363,10 +1363,14 @@ if test "$with_gtk" = yes; then
      AC_MSG_ERROR([you need at least version 1.2 of gtk])
      ;;
     * )
+     # we have cheched above that gtk-config is in the 
+     # path, then we don't want to generate a full path 
+     # for gtk-config or to directly generate the 
+     # result of `gtk-config --cflags`. Idem for gnome
      AC_MSG_RESULT([$GTK_VER])
-     GTKCFLAGS=`$GTK_CONFIG --cflags` 
-     GTKLIBS=`$GTK_CONFIG --libs`
-     GTKINC=`$GNOME_CONFIG --includedir` 
+     GTKCFLAGS='`gtk-config --cflags`'
+     GTKLIBS='`gtk-config --libs`'
+     GNOMECFLAGS='`gnome-config --cflags gnome`'
      ;;
   esac    
   AC_DEFINE(WITH_GTK)
@@ -1487,7 +1491,7 @@ AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
 AC_SUBST(GTKCFLAGS)
 AC_SUBST(GTKLIB)
-AC_SUBST(GTKINC)
+AC_SUBST(GNOMECFLAGS)
 AC_SUBST(TERMCAPLIB)
 AC_SUBST(MAIN)
 AC_SUBST(MAKEFILE_TARGET)
