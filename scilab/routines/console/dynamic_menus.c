@@ -96,6 +96,13 @@ int StoreCommand1 (char *command,int flag)
 
   /** first check if we have a special handler set for commands **/
   if (scig_command_handler (command) == 1)  return 0;
+
+  if (flag==1 && get_is_reading ())
+    {
+      write_scilab (command);
+      return 0;
+    }
+
   p = (CommandRec *) malloc (sizeof (CommandRec));
   if (p == (CommandRec *) 0)
     {
@@ -121,10 +128,6 @@ int StoreCommand1 (char *command,int flag)
     }
   if (get_is_reading ())
     { 
-      if (flag == 1) 
-	{  
-	  write_scilab (command);
-	}
 #ifdef MSDOS
       else if (flag==2) { /* for windows ?????*/
 	write_scilab ("\n");
