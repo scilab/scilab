@@ -10,7 +10,7 @@ C
       integer lunit,mode(2)
 C     
       integer cmdl
-      parameter (cmdl = 25)
+      parameter (cmdl = 27)
       parameter (nz1 = nsiz-1, nz2 = nsiz-2, nz3 = nsiz-3)
 C     
       integer cmd(nsiz,cmdl),a,blank,name
@@ -41,7 +41,8 @@ C     who
 C     pause     clear     resume
 C               then      do
 C     apropos   abort     break
-C     elseif    pwd
+C     elseif    pwd       clc
+C     continue
 C     
       data ((cmd(i,j), i = 1,nsiz), j = 1,10)/
      &     673713938,nz1*673720360,
@@ -65,12 +66,14 @@ C
      &     673716237,nz1*673720360,
      &     404429066,672929817,nz2*673720360,
      &     454560522,673720349,nz2*673720360/
-      data ((cmd(i,j), i = 1,nsiz), j = 21,25)/
+      data ((cmd(i,j), i = 1,nsiz), j = 21,27)/
      &     168696587,673720340,nz2*673720360,
      &     236721422,673713938,nz2*673720360,
      &     671948825,nz1*673720360,
      &     202841615,387453469,nz2*673720360,
-     &     252516110,487331614,672602130,nz3*673720360/
+     &     252516110,487331614,672602130,nz3*673720360,
+     &     671880460,nz1*673720360,
+     &     488052748,236853010,nz2*673720360/
 C     
 
       iadr(l) = l + l - 1
@@ -80,13 +83,16 @@ C
         call basout(io,wte,' comand   : '//buf(1:nlgh))
       endif
 C     
+      kcont=27
+      kbrk=21
 
       fun = 0
 
 
       do 10 k = 1,cmdl
         if (eqid(id,cmd(1,k))) then
-           if(k.eq.15.or.(k.ge.11.and.k.le.13).or.k.eq.19) goto 11
+           if(k.eq.15.or.(k.ge.11.and.k.le.13).or.k.eq.19.or.
+     *          k.eq.26) goto 11
            goto 15
         endif
  10   continue
@@ -132,7 +138,7 @@ C     mots cles if  then else for do  while end case selec
       goto (42,42) k-16
 C     
       goto (50,55,45,16,16,16,20,16,45,16,
-     &      16,16,120,130,38,140,150,16) k-7
+     &      16,16,120,130,38,140,150,16,16,130) k-7
  16   call error(16)
       return
 C     
@@ -368,20 +374,26 @@ C
 C     break
 C------
  130  continue
+      kcmd=k
 c     if special compilation mode skip  comands
       if (comp(3).eq.1) then
          fin=0
          fun=0
          return
       endif
-      if (compil(13,0,0,0,0)) return
+      if(kcmd.eq.kcont) then
+C     compilation de continue:<13>
+         if(compil(13,0,0,0,0)) return
+      else
 C     compilation de break:<13>
+         if (compil(13,0,0,0,0)) return
+      endif
       count = 0
       pt = pt + 1
  131  pt = pt - 1
       if (pt .eq. 0) then
         pt = 1
-        call putid(ids(1,pt),cmd(1,21))
+        call putid(ids(1,pt),cmd(1,kcmd))
         call error(72)
         return
       endif
@@ -389,7 +401,7 @@ C
       ir = rstk(pt) / 100
 c96
       if (ir .eq. 5) then
-         call putid(ids(1,pt),cmd(1,21))
+         call putid(ids(1,pt),cmd(1,kcmd))
          call error(72)
          return
       endif
@@ -397,18 +409,26 @@ c
       if (ir .ne. 8) goto 131
       count = count + 1
       if (rstk(pt) .eq. 802) then
-C     break dans un for
-        top = top - 1
-        pt = pt - 2
+C     .  break or continue in a for loop
+         if (kcmd.eq.kbrk) then
+            top = top - 1
+            pt = pt - 2
+         endif
       elseif(eqid(ids(1,pt),sel)) then
-c     discard select variable
-         top = top - 1
-         goto 131
+        if (kcmd.eq.kbrk) then
+c     .    discard select variable
+           top = top - 1
+           goto 131
+        else
+           call putid(ids(1,pt),cmd(1,kcmd))
+           call error(72)
+           return
+        endif
       elseif (eqid(ids(1,pt),while)) then
-C     break dans un while
-        pt = pt - 1
+C     .  break or continue in a  while
+         if (kcmd.eq.kbrk) pt = pt - 1
       elseif (int(rstk(pt)/100) .eq. 5) then
-        call putid(ids(1,pt),cmd(1,21))
+        call putid(ids(1,pt),cmd(1,kcmd))
         call error(72)
         return
       else
@@ -437,7 +457,11 @@ C     gestion des clause sur plusieurs lignes
       count = count - 1
       if (count .gt. 0) goto 132
 C      char1=blank
-      fin = 1
+      if (kcmd.eq.kbrk) then
+         fin = 1
+      else
+         fin = -1
+      endif
       return
       
 
