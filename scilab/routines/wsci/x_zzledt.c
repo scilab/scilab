@@ -115,6 +115,8 @@ void ChangeCursorWhenScilabIsReady(void)
 	SetClassLong(lptw->hWndParent, GCL_HCURSOR,	(LONG) hCursor); 
 	SetClassLong(lptw->hWndText,GCL_HCURSOR,(LONG) hCursor); 
 	InvalidateCursor(); 
+	EnableMenus(lptw);
+	EnableToolBar(lptw);
 	ScilabIsStarting=FALSE;
   }
 

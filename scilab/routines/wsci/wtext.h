@@ -301,5 +301,8 @@ BOOL WriteIntoScilab(LPTW lptw,char *StringCommand);
 void WriteIntoKeyBuffer(LPTW lptw,char *StringCommand);
 /*--------------------------*/
 BOOL IsToThePrompt(void);
-
+void EnableMenus(LPTW lptw);
+void DisableMenus(LPTW lptw);
+void EnableToolBar(LPTW lptw);
+void DisableToolBar(LPTW lptw);
 #endif /*  __WTEXT_H__ */

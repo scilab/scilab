@@ -200,7 +200,11 @@ EXPORT int WINAPI TextInit (LPTW lptw)
 
   if (lptw->lpmw)    LoadMacros (lptw);
   ReLoadMenus(lptw);
+
+  DisableMenus(lptw);
+
   ToolBarOnOff(lptw);
+  DisableToolBar(lptw);
   OnRightClickMenu(lptw);
 
   ShowWindow (lptw->hWndText, SW_SHOWNORMAL);
@@ -3333,5 +3337,53 @@ BOOL IsToThePrompt(void)
 	else retour=TRUE;
 
 	return retour;
+}
+/*-----------------------------------------------------------------------------------*/
+void EnableMenus(LPTW lptw)
+{
+  int i=0;
+  int Nums = GetMenuItemCount (lptw->lpmw->hMenu);
+
+  for(i=0;i<Nums;i++)
+  {
+	  EnableMenuItem (lptw->lpmw->hMenu, i, MF_ENABLED| MF_BYPOSITION);
+  }
+  DrawMenuBar(lptw->hWndParent); 	
+}
+/*-----------------------------------------------------------------------------------*/
+void DisableMenus(LPTW lptw)
+{
+  int i=0;
+  int Nums = GetMenuItemCount (lptw->lpmw->hMenu);
+
+  for(i=0;i<Nums;i++)
+  {
+	  EnableMenuItem (lptw->lpmw->hMenu, i, MF_GRAYED| MF_BYPOSITION);
+  }
+  DrawMenuBar(lptw->hWndParent); 
+}
+/*-----------------------------------------------------------------------------------*/
+void EnableToolBar(LPTW lptw)
+{
+	int i=0;
+	if (lptw->lpmw->ShowToolBar)
+	{
+		for (i = 0; i < lptw->lpmw->nButton; i++)
+		{
+			ShowWindow( lptw->lpmw->hButton[i] , SW_SHOWNORMAL );
+		}
+	}
+}
+/*-----------------------------------------------------------------------------------*/
+void DisableToolBar(LPTW lptw)
+{
+	int i=0;
+	if (lptw->lpmw->ShowToolBar)
+	{
+		for (i = 0; i < lptw->lpmw->nButton; i++)
+		{
+			ShowWindow( lptw->lpmw->hButton[i] , SW_HIDE );
+		}
+	}
 }
 /*-----------------------------------------------------------------------------------*/

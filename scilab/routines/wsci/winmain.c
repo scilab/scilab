@@ -81,15 +81,11 @@ int Console_Main(int argc, char **argv)
 
   WindowMode=FALSE;
   
-  RenameConsole();
-
   for (i=0;i<argc;i++)
   {
 	  my_argv[i] = argv[i];
   }
   my_argc =argc;
-
-
 
   os.dwOSVersionInfoSize = sizeof (os);
   GetVersionEx (&os);
@@ -198,11 +194,15 @@ int Console_Main(int argc, char **argv)
   SciEnv ();
   if (nowin == 1)
     {
+	  SaveConsoleColors();
+	  if (nointeractive!=1)
+	  {
+		  RenameConsole();
+		  UpdateConsoleColors();
+	  }
 
-      SaveConsoleColors();
-	  UpdateConsoleColors();
 	  start_sci_gtk() ;
-      sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
+	  sci_windows_main (nowin, &startupf,path,pathtype, &lpath,memory);
 	 
     }
   else
@@ -224,11 +224,9 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 	
 	HANDLE hOut = NULL;
 
-
 	char *pFullCmdLine=NULL;
 	char *pFullCmdLineTmp=NULL;
 	char *pPathCmdLine=NULL;
-
 
 	WindowMode=TRUE;
 	ScilabIsStarting=TRUE;
@@ -237,8 +235,6 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 
 	/* New Graphics Mode Warning */
 	MessageBoxNewGraphicMode();
-
-
 	
 	szModuleName = (LPSTR) malloc (MAXSTR + 1);
 	CheckMemory (szModuleName);
@@ -502,6 +498,7 @@ int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmd
 /*-----------------------------------------------------------------------------------*/
 void CreateScilabConsole(int ShowBanner)
 {
+	HMENU hmenuConsole = NULL;
 	int Current_Number_of_Scilex=-1; 
 
 	Windows_Console_State=0; /* Console DOS Cachée par défaut */
@@ -514,6 +511,10 @@ void CreateScilabConsole(int ShowBanner)
 	CreateConsoleScreenBuffer(GENERIC_READ|GENERIC_WRITE,FILE_SHARE_WRITE,NULL,CONSOLE_TEXTMODE_BUFFER,NULL);
     freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
 	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
+
+	// Desactive croix dans la console
+	hmenuConsole=GetSystemMenu(FindWindow(NULL,ScilexConsoleName), FALSE);
+	DeleteMenu(hmenuConsole, SC_CLOSE, MF_BYCOMMAND);
 	
 	if (ShowBanner)
 	{
@@ -1751,5 +1752,7 @@ int GetOSVersion(void)
 	if(osvi.dwMajorVersion==5 && osvi.dwMinorVersion==0 && osvi.dwPlatformId==VER_PLATFORM_WIN32_NT)  return OS_WIN32_WINDOWS_2000;
 	if(osvi.dwMajorVersion==5 && osvi.dwMinorVersion==1 && osvi.dwPlatformId==VER_PLATFORM_WIN32_NT)  return OS_WIN32_WINDOWS_XP;
 	if(osvi.dwMajorVersion==5 && osvi.dwMinorVersion==2 && osvi.dwPlatformId==VER_PLATFORM_WIN32_NT)  return OS_WIN32_WINDOWS_SERVER_2003_FAMILY;
+
+	return OS_ERROR;
 }
 /*-----------------------------------------------------------------------------------*/
