@@ -25,9 +25,9 @@ This is done by the following commands:
 
 2/link the (almost empty) .so files with Scilab
 
--->link ./libmx.so;
--->link ./libmex.so;
--->link ./libmat.so;
+//-->link ./libmx.so;
+//-->link ./libmex.so;
+//-->link ./libmat.so;
 
 3/link foo.mexglx with Scilab
 -->link ./foo.mexglx;
