@@ -42,7 +42,9 @@
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="MakeJavaClass.bat"/>
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd .."/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -90,7 +92,9 @@
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="MakeJavaClass.bat"/>
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd .."/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -142,7 +146,9 @@
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="MakeJavaClass.bat"/>
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd .."/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -192,7 +198,9 @@
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="MakeJavaClass.bat"/>
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd .."/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
@@ -243,7 +251,9 @@
 				Name="VCMIDLTool"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="MakeJavaClass.bat"/>
+				CommandLine="cd classes
+MakeJavaClass.bat
+cd .."/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
 			<Tool
