@@ -3,8 +3,6 @@
 clear;
 
 a(2,3,2)='y' 
-
-exec("affich_result.sci");
  
 if a == []   then
 

@@ -1,8 +1,7 @@
 // exec( "bug570.sce");
 
 
- clear;
- exec("affich_result.sci");
+clear;
 iErrorCode=execstr('a(2,3,2)=''x''','errcatch');
  
 //disp(' code retour = ' + string(iErrorCode));

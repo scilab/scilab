@@ -13,7 +13,8 @@ num_test = [1014,1004,1003,979,946,945,943,942,925,924,862,859,857,853,800,793,7
 // 683,973
 
 for k = num_test
-   exec('bug' + string(k) + '.sci')
+	exec('bug' + string(k) + '.sci')
+	clear k
 end
 
 disp("") 
@@ -21,3 +22,5 @@ disp("Tests de non-régression pour Scilab-3.0 : fin");
 disp("")
 
 quit;
+
+cd ../../Dev-Tools/testNonReg/nonreg_3
