@@ -15,11 +15,11 @@ C=full(adj2sp(mps('colpnts'),mps('rownmbs'),mps('acoeff'),[m,n]))
 p=C(kobj,:)'
 
 C(kge,:)=-C(kge,:)
-C=C([keq;kle;kge],:)
-
+C=C([keq,kle,kge],:) // modif [keq,kle,kge] in place of [keq;kle;kge]
+                     // this is because find return row index vector
 b=mps('rhs');
 b(kge,:)=-b(kge,:)
-b=b([keq;kle;kge],:)
+b=b([keq,kle,kge],:) // same modif
 
 ci=mps('bounds')(:,1)
 cs=mps('bounds')(:,2)
