@@ -518,6 +518,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       ppsubwin->axes.ydir ='l';
+      ppsubwin->axes.rect = 1;
       haschanged = TRUE;
     }
     break;
@@ -530,7 +531,6 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[1] = FALSE;
       ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
       ppsubwin->axes.rect = 1;
-      /* Case not implemented yet : the plot is surrounded by a box without tics. */
       haschanged = TRUE;
     }
     break;
@@ -555,6 +555,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = TRUE;
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.rect = 1;
       /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
       haschanged = TRUE;
     }
@@ -571,6 +572,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
       ppsubwin->axes.xdir ='c';
       ppsubwin->axes.ydir ='c';
+      ppsubwin->axes.rect = 1;
       haschanged = TRUE;
     }
     break;
@@ -582,6 +584,7 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
       ppsubwin->axes.axes_visible[0] = TRUE;
       ppsubwin->axes.axes_visible[1] = TRUE;
       ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+      ppsubwin->axes.rect = 1;
       haschanged = TRUE;
     }
   }

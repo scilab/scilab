@@ -239,7 +239,7 @@ int C2F(graphicsmodels) ()
   ppaxesmdl->axes.xdir='d'; 
   ppaxesmdl->axes.ydir='l';
      
-  ppaxesmdl->axes.rect  = 1;
+  ppaxesmdl->axes.rect  = 0;
   for (i=0 ; i<7 ; i++)
     ppaxesmdl->axes.limits[i]  = 0;
   
@@ -990,7 +990,7 @@ void initsubwin()  /* Interesting / F.Leray 05.04.04 */
   (pSUBWIN_FEATURE (psubwin)->axes).reverse[1] = FALSE;
   (pSUBWIN_FEATURE (psubwin)->axes).reverse[2] = FALSE;
   
-  pSUBWIN_FEATURE (psubwin)->axes.rect = 1;  
+  pSUBWIN_FEATURE (psubwin)->axes.rect = 0;  
   pSUBWIN_FEATURE (psubwin)->axes.ticscolor = -1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[0] =  1;
   pSUBWIN_FEATURE (psubwin)->axes.subint[1] =  1;
@@ -1072,7 +1072,7 @@ int InitAxesModel()
   ppaxesmdl->axes.subint[2]  = 1;
   ppaxesmdl->axes.xdir='d'; 
   ppaxesmdl->axes.ydir='l';  
-  ppaxesmdl->axes.rect  = 1;
+  ppaxesmdl->axes.rect  = 0;
   
   for (i=0 ; i<7 ; i++)
     ppaxesmdl->axes.limits[i]  = 0;
