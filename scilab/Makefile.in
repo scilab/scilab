@@ -283,8 +283,8 @@ install:
 DESTDIR=$(PREFIX)/lib
 
 postinstall: 
-	@echo "creating Path.incl SCIDIR=$(DESTDIR)/lib/$(SCIBASE)"
-	@echo "SCIDIR=$(DESTDIR)/lib/$(SCIBASE)"  > Path.incl
+	@echo "creating Path.incl SCIDIR=$(DESTDIR)/$(SCIBASE)"
+	@echo "SCIDIR=$(DESTDIR)/$(SCIBASE)"  > Path.incl
 	@cd scripts; make 
 	@cd tests ; make distclean > /dev/null
 	@cd examples ; make distclean > /dev/null
