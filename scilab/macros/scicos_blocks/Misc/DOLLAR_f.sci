@@ -14,12 +14,20 @@ case 'set' then
   x=arg1;
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
+  //backward compatibility
+  if size(exprs,'*')<2 then exprs(2)='0';end
   while %t do
-    [ok,a,exprs]=getvalue('Set dollar block parameters',..
-	'initial condition',list('vec',-1),exprs)
+    [ok,a,inh,exprs]=getvalue('Set 1/z block parameters',..
+	['initial condition';'Inherit (no:0, yes:1)'],...
+			      list('vec',-1,'vec',-1),exprs)
     if ~ok then break,end
     out=size(a,'*');if out==0 then out=[],end
     in=out
+    
+    if ok then
+      [model,graphics,ok]=check_io(model,graphics,-1,-1,ones(1-inh,1),[])
+    end
+  
     if ok then
       graphics.exprs=exprs;
       model.dstate=a;model.in=in;model.out=out
@@ -29,13 +37,14 @@ case 'set' then
   end
 case 'define' then
   z=0
+  inh=0
   in=1
-  exprs=string(z)
+  exprs=string([z;inh])
   model=scicos_model()
   model.sim='dollar'
   model.in=in
   model.out=in
-  model.evtin=1
+  model.evtin=1-inh
   model.dstate=z
   model.blocktype='d'
   model.dep_ut=[%f %f]
