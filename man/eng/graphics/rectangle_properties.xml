@@ -121,7 +121,7 @@
   <EXAMPLE><![CDATA[
    set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-2,2,-2,2];
+   a.data_bounds=[-2,2;-2,2];
 
    xrect(-1,1,2,2)
 

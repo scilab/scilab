@@ -33,7 +33,7 @@
    
     set("figure_style","new") //create a figure entity
     a=gca() //get the handle of the newly created axes
-    a.data_bounds=[1,10,1,10];
+    a.data_bounds=[1,10;1,10];
     for i=1:5
       xfrect(7-i,9-i,3,3);
       e=gce();

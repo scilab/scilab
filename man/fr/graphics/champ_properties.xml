@@ -83,14 +83,14 @@
   
   set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-10,-10,10,10];
+   a.data_bounds=[-10,-10;10,10];
    champ(-5:5,-5:5,rand(11,11),rand(11,11))
 
    c=a.children
 
    c.colored="on";
    c.thickness=2;
-   a.data_bounds=[-5,-5,5,5];
+   a.data_bounds=[-5,-5;5,5];
 
  ]]>
   </EXAMPLE>

@@ -96,7 +96,7 @@
 
   set("figure_style","new") //create a figure
    a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-10,10,-10,10];
+   a.data_bounds=[-10,10;-10,10];
    x=2*%pi*(0:7)/8;
    xv=[2*sin(x);9*sin(x)];
    yv=[2*cos(x);9*cos(x)];

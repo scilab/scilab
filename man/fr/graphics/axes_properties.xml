@@ -294,7 +294,7 @@
    a.axes_visible="on"; // makes the axes visible
    a.font_size=3; //set the tics label font size
    a.x_location="top"; //set the x axis position
-   a.data_bounds=[-100,100,-2,2,-1,1]; //set the boundary values for the x, y and z coordinates.
+   a.data_bounds=[-100,100;-2,2;-1,1]; //set the boundary values for the x, y and z coordinates.
    a.sub_tics=[5,0];
    a.labels_font_color=5;
    a.grid=2;
@@ -336,7 +336,7 @@
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
    a=gca(); 
    a.rotation_angles=[45 45];
-   a.data_bounds=[-20,20, -3,3, -2,2];
+   a.data_bounds=[-20,20; -3,3; -2,2];
    xrect([-4 0.5 8 1]);
    a.isoview="on"; // isoview mode
    xrect([-2 0.25 4 0.5]);
@@ -352,7 +352,7 @@
    s.segs_color=5;
    a.data_bounds //the boundary values for the x,y and z coordinates
    a.view="2d";
-   a.data_bounds=[-10,10, -1,1]; // set the boundary values for the two-dimensional views
+   a.data_bounds=[-10,10; -1,1]; // set the boundary values for the two-dimensional views
  ]]></EXAMPLE>
   <SEE_ALSO>
    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
