@@ -1,13 +1,21 @@
+#ifdef WIN32
+	#include <windows.h>
+#else
+	#include <stdio.h>
+	#include <sys/utsname.h>
+#endif
+
 #include <string.h>
 #include "../machine.h" 
 #include "../sun/Sun.h" 
 
 #ifdef WIN32
-#include <windows.h>
-BOOL FileExist(char *filename);
-BOOL ExistModelicac(void);
-BOOL ExistJavaSciWin(void);
+	BOOL FileExist(char *filename);
+	BOOL ExistModelicac(void);
+	BOOL ExistJavaSciWin(void);
 #endif
+
+
 /*************************************************************************************************/
 /*-------------------------------------------
  *  get configure options used for compilation 
@@ -157,17 +165,18 @@ int ExistJavaSciUnix(void)
 #ifndef WIN32
 	#define JavaSciName "libjavasci"
 
+	struct utsname uname_pointer;
+	FILE *fp;
+
 	char OperatinSystem[256];
 	char Release[256];
 	char extension[5];
-	struct utsname uname_pointer;
-	FILE *fp;
 
 	uname(&uname_pointer);
 	sprintf(OperatinSystem,"%s",uname_pointer.sysname);
 	sprintf(Release,"%s",uname_pointer.release);
 
-	if (strcmp(OperatinSystem,"HP-UX")==0)
+	if ( strcmp(OperatinSystem,"HP-UX") == 0 )
 	{
 		strcpy(extension,".sl");
 	}
@@ -175,7 +184,7 @@ int ExistJavaSciUnix(void)
 	{
 		strcpy(extension,".so");
 	}
-	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)strlen(extension)+1)*sizeof(char));
+	fullpathJavaSci=(char*)malloc((strlen(SCIPATH)+strlen("/bin/")+strlen(JavaSciName)+strlen(extension)+1)*sizeof(char));
 	sprintf(fullpathJavaSci,"%s/bin/%s%s",SCIPATH,JavaSciName,extension);
 	fp=fopen(fullpathJavaSci,"r");
 	if (fp)
