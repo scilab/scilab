@@ -35,14 +35,11 @@ c
 c
       if(istk(il).lt.0) il=istk(il+1)
 
-      if(istk(il).eq.1) then
+      if(istk(il).eq.1.or.istk(il).eq.8) then
 c     Index is a vector of scalars
          m=istk(il+1)
          n=istk(il+2)
-         if(istk(il+3).ne.0) then 
-            call error(21)
-            return
-         endif
+ 
          if(m.ge.1) then
 c     .     general case
             l=sadr(il+4)
@@ -53,7 +50,15 @@ c     .     general case
                call error(17)
                return
             endif
-            call entier(m*n,stk(l),istk(ilr))
+            if (istk(il).eq.1) then
+               if(istk(il+3).ne.0) then 
+                  call error(21)
+                  return
+               endif
+               call entier(m*n,stk(l),istk(ilr))
+            else
+               call tpconv(istk(il+3),4,m*n,istk(il+4),1,istk(ilr),1)
+            endif
             mi=m*n
             mx=0
             do 05 i=0,m*n-1

@@ -3,6 +3,7 @@ c     given il the adress of the begining of a scilab variable
 c     in istk isany returns true if one of the variable entry is non
 c     zero or true
       include '../stack.h'
+      integer genisany
       integer iadr,sadr
 c
       iadr(l)=l+l-1
@@ -21,6 +22,11 @@ c
          do 20 i=1,mn
             if(istk(il+2+i).eq.1) goto 30
  20      continue
+      elseif(istk(il).eq.8) then
+         mn=istk(il+1)*istk(il+2)
+         is=istk(il+3)
+         it=genisany(is, mn,istk(il+4) ,1)
+         isany=it.eq.1
       endif
       isany=.false.
       return
