@@ -2589,6 +2589,7 @@ void C2F(setbackground)(num, v2, v3, v4)
       C2F(setalufunction1)(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
       px = (ScilabXgc->Colors == NULL) ? DefaultBackground 
 	         :  ScilabXgc->Colors[ScilabXgc->NumBackground];
+
       /** A finir XXXX 
 	      if (ScilabXgc->Cdrawable != (Drawable) ScilabXgc->CWindow ) 
 	{
@@ -3742,6 +3743,7 @@ struct BCG *AddNewWindow(listptr)
          (*listptr)->winxgc.hBrush  = (HBRUSH) 0;
 	 (*listptr)->winxgc.hbmCompat = (HBITMAP) 0;
 	 (*listptr)->winxgc.hdcCompat = (HDC) 0;
+	 (*listptr)->winxgc.CurColor = 32; // Adding here F.Leray set the current color to black (i.e.: 32+1=33)
          (*listptr)->next = (struct WindowList *) NULL ;
          return(&((*listptr)->winxgc));
        }
@@ -4204,14 +4206,14 @@ static void InitMissileXgc (integer *v1,integer *v2,integer *v3,integer *v4)
   C2F(setthickness)((i=0,&i),PI0,PI0,PI0);
   /* initialisation de la couleur par defaut */ 
   ScilabXgc->CurColorStatus = 1;
-  set_default_colormap();
+  set_default_colormap(); //F.Leray This call initializes ScilabXgc->NumForeground = 32 and ScilabXgc->NumBackground = 33
   C2F(setalufunction1)((i=3,&i),PI0,PI0,PI0);
   C2F(setpattern)((i=DefaultForeground,&i),PI0,PI0,PI0);
   C2F(setpattern)((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
   C2F(setthickness)((i=1,&i),PI0,PI0,PI0);
   /*** XXXXX a faire aussi pour le n&b plus haut ***/
   C2F(setforeground)((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
-  C2F(setbackground)((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0);
+  C2F(setbackground)((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0); // F.Leray Check if OK here may be Pb here... 04.03.04
   C2F(sethidden3d)((i=4,&i),PI0,PI0,PI0);
   /* Choix du mode par defaut (decide dans initgraphic) */
   getcolordef(&i);
