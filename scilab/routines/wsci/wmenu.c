@@ -1925,14 +1925,16 @@ void ConfigureScilabStar(int LangCode)
 	char scilabstarfullpath[MAX_PATH];
 	char scilabstartmpfullpath[MAX_PATH];
 	char *WSCIPath=NULL;
-
+	char wscitmp[MAX_PATH+1];
+	
 	int CodeRetour=-2;
 
-	WSCIPath=getenv("WSCI");
+	WSCIPath=getenv("SCI");
+	ConvertPathUnixToWindowsFormat(WSCIPath,wscitmp);
 	
 	if (WSCIPath)
 	{
-		strcpy(scilabstarfullpath,WSCIPath);
+		strcpy(scilabstarfullpath,wscitmp);
 		strcat(scilabstarfullpath,"\\");
 		strcat(scilabstarfullpath,SCILABSTAR);
 

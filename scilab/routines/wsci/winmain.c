@@ -1125,7 +1125,7 @@ static void SciEnv ()
 
 		p = modname + 1;
 
-		set_sci_env(p,(char *) 0);
+		set_sci_env(p);
 	}
 }
 /********************************************************************************************************/
@@ -1169,151 +1169,65 @@ BOOL ConvertPathUnixToWindowsFormat(char *pathunix,char *pathwindows)
 * set env variables (used when calling scilab from
 * other programs)
 *----------------------------------------------------*/
-void set_sci_env(char *p, char *wsci)
+void set_sci_env(char *p)
 {
-	char *ptemp=NULL;
-	char *p1=NULL;
+	char *environmentTemp=NULL;
+	char *CopyOfp=NULL;
 	char env[MAX_PATH + 1 + 10];
 
 	if (p)
 	{
-		ptemp=(char*)malloc(sizeof(char)*(strlen(p)+1));
+		CopyOfp=(char*)malloc(sizeof(char)*(strlen(p)+1));
 	}
+	else
+	{
+		/* Error */
+		exit(0);
+	}
+
 	/* to be sure that it's unix format */
-	ConvertPathWindowsToUnixFormat(p,ptemp);
+	ConvertPathWindowsToUnixFormat(p,CopyOfp);
 
 	/* SCI variable Environment */
-	if ((p1 = getenv ("SCI")) == (char *) 0)
+	if ((environmentTemp = getenv ("SCI")) == (char *) 0)
 	{
 		if ( GetVersion() < 0x80000000 )
 		{
 			/* Windows NT */
 			char ShortPath[MAX_PATH+1];
-			GetShortPathName(ptemp ,ShortPath,MAX_PATH);
+			GetShortPathName(CopyOfp ,ShortPath,MAX_PATH);
 			sprintf (env, "SCI=%s",ShortPath);
 		}
 		else
 		{
 			/* Win32s, Win95,Win98,WinME */
-			sprintf (env, "SCI=%s",ptemp);
-		}
-
-		putenv (env);
-	}
-
-	/* WSCI variable Environment */
-	if ((p1 = getenv ("WSCI")) == (char *) 0)
-	{
-		if ( wsci != NULL)
-		{
-			char wscitmp[MAX_PATH+1];
-
-			/* to be sure that it's windows format */
-			ConvertPathUnixToWindowsFormat(wsci,wscitmp);
-
-			sprintf (env, "WSCI=%s", wscitmp);
-			
-		}
-		else
-		{
-			char wscitmp[MAX_PATH+1];
-
-			/* to be sure that it's windows format */
-			ConvertPathUnixToWindowsFormat(p,wscitmp);
-
-			sprintf (env, "WSCI=%s", wscitmp);
-			
+			sprintf (env, "SCI=%s",CopyOfp);
 		}
 
 		putenv (env);
 	}
 
 	/* HOME variable Environment */
-	if ((p1 = getenv ("HOME")) == (char *) 0)
+	if ((environmentTemp = getenv ("HOME")) == (char *) 0)
 	{
-		sprintf (env, "HOME=%s", ptemp);
+		sprintf (env, "HOME=%s", CopyOfp);
 		putenv (env);
-	}
-
-	/* PWD variable Environment */
-	if ((p1 = getenv ("PWD")) == (char *) 0)
-	{
-		sprintf (env, "PWD=%s", ptemp);
-		putenv (env);
-	}
-
-	/* PVM_ROOT variable Environment */
-	if ((p1 = getenv ("PVM_ROOT")) == (char *) 0)
-	{
-		char wscitmp[MAX_PATH+1];
-
-		/* to be sure that it's windows format */
-		ConvertPathUnixToWindowsFormat(p,wscitmp);
-
-		sprintf (env, "PVM_ROOT=%s\\pvm3", wscitmp);
-        
-		putenv (env);
-	}
-
-	/* PVM_ARCH variable Environment */
-	if ((p1 = getenv ("PVM_ARCH")) == (char *) 0)
-	{
-		sprintf (env, "PVM_ARCH=WIN32");
-		putenv (env);
-	}
-
-	/* PVM_TMP variable Environment */
-	if ((p1 = getenv ("PVM_TMP")) == (char *) 0)
-	{
-		if ((p1 = getenv ("TEMP")) == (char *) 0)
-		{
-			char PathTmp[MAX_PATH+1];
-			GetTempPath(MAX_PATH,PathTmp);
-			sprintf (env, "PVM_TMP=%s",PathTmp);
-			putenv (env);
-		}
-		else
-		{
-			char p1tmp[MAX_PATH+1];
-			
-			/* to be sure that it's windows format */
-			ConvertPathUnixToWindowsFormat(p1,p1tmp);
-
-			sprintf (env, "PVM_TMP=%s", p1tmp);
-			putenv (env);
-		}
-	}
-
-	/* TCL/TK  variables Environment */
-	// Bug 763 Pour le moment, on force a utiliser la librairie TCL/TK que l'on embarque
-	if (wsci == NULL)
-	{
-		char wscitmp[MAX_PATH+1];
-
-		/* to be sure that it's windows format */
-		ConvertPathUnixToWindowsFormat(p,wscitmp);
-
-		wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", wscitmp);
-		putenv (env);
-
-		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", wscitmp);
-		putenv (env);
-	}
-	else
-	{
-		char wscitmp[MAX_PATH+1];
-
-		/* to be sure that it's windows format */
-		ConvertPathUnixToWindowsFormat(wsci,wscitmp);
-
-		wsprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", wscitmp);
-		putenv (env);
-
-		wsprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", wscitmp);
-		putenv (env);
-
 	}
 	
+	/* TK_LIBRARY variable Environment */
+	if ((environmentTemp = getenv ("TK_LIBRARY")) == (char *) 0)
+	{
+		sprintf (env, "TK_LIBRARY=%s\\tcl\\tk8.4", CopyOfp);
+		putenv (env);
+	}
+
+	/* TCL_LIBRARY variable Environment */
+	if ((environmentTemp = getenv ("TCL_LIBRARY")) == (char *) 0)
+	{
+		sprintf (env, "TCL_LIBRARY=%s\\tcl\\tcl8.4", CopyOfp);
+		putenv (env);
+	}
+
 	/* COMPILER variable Environment */
 	#ifdef __MSC__
 	putenv ("COMPILER=VC++");
@@ -1325,8 +1239,18 @@ void set_sci_env(char *p, char *wsci)
 	putenv ("COMPILER=ABSOFT");
 	#endif
 
-	/* Add lcc to path */
-	if ((p1 = getenv ("PATH")) == (char *) 0)
+	/* WIN32 variable Environment */
+    #ifdef _WIN32
+	putenv ("WIN32=OK");
+	#endif
+
+	/* WIN64 variable Environment */
+    #ifdef _WIN64
+	putenv ("WIN64=OK");
+	#endif
+
+/* Add lcc to path */
+	if ((environmentTemp = getenv ("PATH")) == (char *) 0)
 	{
 		MessageBox(NULL,"No PATH environment ...","Error",MB_ICONWARNING);
 		exit(1);
@@ -1334,11 +1258,11 @@ void set_sci_env(char *p, char *wsci)
 	else
 	{
 		char *NewPath=NULL;
-		char *PathWsci= getenv ("WSCI");
+		char *PathWsci= getenv ("SCI");
 
 		if ( PathWsci == (char *)0 )
 		{
-			MessageBox(NULL,"WSCI not defined","Error",MB_ICONWARNING);
+			MessageBox(NULL,"SCI not defined","Error",MB_ICONWARNING);
 			exit(1);
 		}
 		else
@@ -1350,8 +1274,8 @@ void set_sci_env(char *p, char *wsci)
 			if ( IsAFile(LCCFILE) )
 			{
 			wsprintf(PathsLCC,"%s%s;%s%s;%s%s",PathWsci,LCCBIN,PathWsci,LCCINCLUDE,PathWsci,LCCLIB);
-			NewPath=(char*)malloc( (strlen("PATH=;;")+strlen(p1)+strlen(PathsLCC)+1)*sizeof(char));
-			wsprintf(NewPath,"PATH=%s;%s;",p1,PathsLCC);
+			NewPath=(char*)malloc( (strlen("PATH=;;")+strlen(environmentTemp)+strlen(PathsLCC)+1)*sizeof(char));
+			wsprintf(NewPath,"PATH=%s;%s;",environmentTemp,PathsLCC);
 			putenv (NewPath);
 
 			free(NewPath);
@@ -1361,22 +1285,11 @@ void set_sci_env(char *p, char *wsci)
 	
 	}
 
-	/* WIN32 variable Environment */
-    #ifdef _WIN32
-	putenv ("WIN32=OK");
-	#endif
-
-	/* WIN64 variable Environment */
-    #ifdef _WIN64
-	putenv ("WIN64=OK");
-	#endif
-
-	if (ptemp)
+	if (CopyOfp)
 	{
-		free(ptemp);
-		ptemp=NULL;
+		free(CopyOfp);
+		CopyOfp=NULL;
 	}
-
 }
 /*-----------------------------------------------------------------------------------*/
 /*---------------------------------------------------

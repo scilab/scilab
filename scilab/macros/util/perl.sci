@@ -34,7 +34,7 @@ function [resultat,status] = perl(varargin)
       else
         if MSDOS then
           // Pour Windows
-          CheminPerl= fullfile(WSCI, '\perl\bin\');
+          CheminPerl= fullfile(pathconvert(SCI,%f,%f,'w'),'\perl\bin\');
           
           [x,ierr]=fileinfo(CheminPerl+'perl.exe');
           if (x == []) then

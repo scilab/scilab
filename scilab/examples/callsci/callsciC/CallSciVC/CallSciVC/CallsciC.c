@@ -22,7 +22,7 @@ extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
-extern void set_sci_env(char *p, char *wsci);
+extern void set_sci_env(char *p);
 extern void add_sci_argv(char *p);
 /*-----------------------------------------------------------------------------------*/
 static void Initialize() 
@@ -40,11 +40,11 @@ static void Initialize()
 
   if ((p1 = getenv ("SCI")) == (char *) 0)
     {
-      set_sci_env(SCI,NULL);
+      set_sci_env(SCI);
     }
   else
     {
-      set_sci_env(p1,NULL);
+      set_sci_env(p1);
     }
   
   /* Scilab Initialization */ 

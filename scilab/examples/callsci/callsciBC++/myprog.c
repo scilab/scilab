@@ -17,7 +17,7 @@ static void Initialize()
   _control87(0x0008001F,0x0008001F); // Remove floating point exception
 
   /* Chemins à modifier suivant votre configuration */
-  set_sci_env("..\\",NULL);
+  set_sci_env("..\\");
 
   /* Scilab Initialization */
   C2F(settmpdir)();

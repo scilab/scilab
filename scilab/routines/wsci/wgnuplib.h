@@ -42,7 +42,7 @@
 #define MyGetProcAddress(strProc,Proc) Proc 
 #endif
 
-#define WSCILABVERSION  "3.0   2004"
+#define WSCILABVERSION  "3.0   2005"
 
 EXPORT BOOL CheckWScilabVersion(LPSTR str);
 

@@ -27,7 +27,7 @@ extern int C2F(inisci)(int *,int *,int *);
 extern int C2F (sciquit) (void);
 extern void C2F(settmpdir) (void);
 extern int C2F(scirun)(char * startup, int lstartup);
-extern void set_sci_env(char *p, char *wsci);
+extern void set_sci_env(char *p);
 #ifdef WIN32
 extern void add_sci_argv(char *p);
 #endif
@@ -80,7 +80,7 @@ static void SetEnv(void)
   SCIPATH[strlen(SCIPATH)-1]='\0';
 	
   /* set scilab variables environment */
-  set_sci_env(SCIPATH,WSCIPATH);
+  set_sci_env(SCIPATH);
 }
 #endif
 /*------------------------------------------------------------*/

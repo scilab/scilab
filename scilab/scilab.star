@@ -59,18 +59,28 @@ load('SCI/macros/sparse/lib')
 //load('SCI/macros/HighLevelPlotting/lib')
 
 // Create some configuration variables ================================
+
+// use MSDOS syntax?
+MSDOS = (getos() == "Windows")
 TMPDIR=getenv('TMPDIR')
 PWD = getcwd()
 home= getenv('HOME','ndef');
 if home=='ndef',home=unix_g('cd; pwd');end 
-// use MSDOS syntax?
-MSDOS = (getos() == "Windows")
-
-SCI=getenv('SCI')  // path of scilab main directory
 if MSDOS then
+  // path of scilab main directory
+	SCI=getshortpathname(getenv('SCI'))
   // path of scilab main directory for Windows
-  WSCI=getshortpathname(pathconvert(SCI,%f,%f,'w'))
+  WSCI=getlongpathname(pathconvert(SCI,%f,%f,'w'))
+  if with_pvm() then
+    setenv("PVM_ROOT",pathconvert(SCI,%f,%f,'w')+"\pvm3")
+    setenv("PVM_ARCH","WIN32")
+    setenv("PVM_TMP",getenv("TEMP"))
+  end
+else
+  // path of scilab main directory
+  SCI=getenv('SCI')
 end
+
 // Set LANGUAGE  ======================================================
 // used mainly for on-line help
 global LANGUAGE
