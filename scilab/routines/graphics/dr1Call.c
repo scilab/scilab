@@ -229,7 +229,7 @@ void Xgrayplot (x,y,z,n1,n2,strflag,brect,aaint)
      char strflag[];
 { 
   
-     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, bsiz);
+     C2F(xgray)(x,y,z,n1,n2,strflag, brect, aaint, 0,bsiz);
      
 }
 /*------------------------------------------------
@@ -241,7 +241,7 @@ void Xmatplot (z,n1,n2,strflag,brect,aaint)
      char strflag[];
 { 
   
-     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, bsiz);
+     C2F(xgray1)(z,n1,n2,strflag, brect, aaint, 0,bsiz);
      
 }
 /*------------------------------------------------
@@ -317,6 +317,6 @@ void Xfec (x,y,noeud,fun,n,m,strflag,legend,brect,aaint,Zminmax,Colminmax)
 { 
     
      C2F(fec)(x,y,noeud,fun,n,m,strflag,legend,brect,aaint,
-         Zminmax,Colminmax,4L,bsiz);
+         Zminmax,Colminmax,0,4L,bsiz);
      
 }

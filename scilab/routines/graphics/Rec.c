@@ -2395,7 +2395,7 @@ static void ReplayFec(char *theplot)
   C2F(fec)(plfec->x,plfec->y,plfec->triangles,plfec->func,
 	   &plfec->Nnode,&plfec->Ntr,
 	   plfec->strflag,plfec->legend,plfec->brect,plfec->aaint,
-	   plfec->zminmax, plfec->colminmax,    /* added by bruno */
+	   plfec->zminmax, plfec->colminmax,0,    /* added by bruno */
 	   0L,0L);
 }
 
@@ -2423,7 +2423,7 @@ static void ReplayGray(char *theplot)
   struct gray_rec *pl3d;
   pl3d= (struct gray_rec *)theplot;
   C2F(xgray)(pl3d->x,pl3d->y,pl3d->z,&pl3d->n1,&pl3d->n2,
-	     pl3d->strflag,pl3d->brect,pl3d->aaint,0L);
+	     pl3d->strflag,pl3d->brect,pl3d->aaint,0,0L);
 }
 
 
@@ -2433,7 +2433,7 @@ static void ReplayGray1(char *theplot)
   struct gray_rec *pl3d;
   pl3d= (struct gray_rec *)theplot;
   C2F(xgray1)(pl3d->z,&pl3d->n1,&pl3d->n2,
-	     pl3d->strflag,pl3d->brect,pl3d->aaint,0L);
+	     pl3d->strflag,pl3d->brect,pl3d->aaint,0,0L);
 }
 
 
