@@ -137,32 +137,58 @@ int ExposeMessageWindow(void)
 
 int ExposeMessageWindow1(void)
 {
+  int ok=FALSE;
   GtkWidget *dialog;
+  gchar *msg_utf8 =NULL;
+
+  if (!  g_utf8_validate(ScilabMessage.string,-1,NULL) )
+    {
+      msg_utf8= g_locale_to_utf8 (ScilabMessage.string, -1, NULL, NULL, NULL);
+      ok = TRUE;
+    }
+  else 
+    {
+      msg_utf8 = ScilabMessage.string;
+    }
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (window),
 				   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
 				   GTK_MESSAGE_INFO,
 				   GTK_BUTTONS_OK,
-				   ScilabMessage.string);
+				   msg_utf8);
   g_signal_connect (dialog, "response",  G_CALLBACK (gtk_widget_destroy),  NULL);
   gtk_widget_show (dialog);
+  if ( ok == TRUE) g_free (msg_utf8);
   return 1;
 }
 
 
 int ExposeMessageWindow(void)
 {
+  int ok=FALSE;
   GtkWidget *dialog;
   GtkWidget *hbox;
   GtkWidget *stock;
   GtkWidget *label;
   gint response;
   char *ok_mess, *cancel_mess;
+  gchar *msg_utf8 =NULL;
 
   ok_mess = ScilabMessage.pButName[0]; 
   if ( strcasecmp(ok_mess,"Ok")==0 ) ok_mess = GTK_STOCK_OK; 
-  
 
+
+  /* convert message to utf8 */ 
+  if (!  g_utf8_validate(ScilabMessage.string,-1,NULL) )
+    {
+      msg_utf8= g_locale_to_utf8 (ScilabMessage.string, -1, NULL, NULL, NULL);
+      ok = TRUE;
+    }
+  else 
+    {
+      msg_utf8 = ScilabMessage.string;
+    }
+  
   switch ( ScilabMessage.nb ) 
     {
     case 0: return 1 ; break;
@@ -189,18 +215,19 @@ int ExposeMessageWindow(void)
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-
+  
   if ( ScilabMessage.nb >= 2) 
     stock = gtk_image_new_from_stock (GTK_STOCK_DIALOG_QUESTION, GTK_ICON_SIZE_DIALOG);
   else
     stock = gtk_image_new_from_stock (GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_DIALOG);
   gtk_box_pack_start (GTK_BOX (hbox), stock, FALSE, FALSE, 0);
   gtk_widget_show (stock);
-  label = gtk_label_new (ScilabMessage.string);
+  label = gtk_label_new (msg_utf8);
   gtk_box_pack_start (GTK_BOX (hbox),label, TRUE, TRUE, 0);
   gtk_widget_show (label);
   response = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
+  if ( ok == TRUE) g_free (msg_utf8);
   if (response == GTK_RESPONSE_OK)
     return 1; 
   else 
