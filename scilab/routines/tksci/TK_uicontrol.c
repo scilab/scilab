@@ -18,7 +18,8 @@ int Str2ListStr();
 
 char *ListStr2Str();
 
-char *UiStyleName[] = {"button", "checkbutton", "checkbutton", "entry", "label", "scale", "frame", "scrolllistbox"};
+char *UiStyleName[] = {"button", "checkbutton", "checkbutton", "entry", "label",
+		       "scale", "frame", "scrolllistbox", "popupmenu"};
 
 
 
@@ -63,7 +64,7 @@ int TK_UiSet(Handle, Mfield, Mvalue)
     if (MatrixIsString(Mvalue))
      {
        StrValue = MatrixReadString(Mvalue);
-       nocase(StrValue);
+       /* nocase(StrValue);  (modif Bruno 14/1/2001) */
      }
     else if (MatrixIsReal(Mvalue))
       StrValue = Mat2Str(Mvalue);
