@@ -13,7 +13,7 @@ end
   		if TK_GetVar("isscipadinterp")<>'0' then 
     			TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
     			if TK_GetVar("isscipadopen")<>'0' then
-      				TK_EvalStr('scipad eval {exitapp}')
+      				TK_EvalStr('scipad eval {catch {exitapp} }')
     			end
   		end
 	end	
