@@ -3124,55 +3124,55 @@ int scixset(fname,fname_len)
           } 
       } 
      else if ( strncmp(cstk(l1),"auto scale",10) == 0) {
-        if ( x[0] == 1 )
-	  {
+       if ( x[0] == 1 )
+	 {
            sciSetAutoScale(subwin, TRUE); 
            sciSetAutoScale(sciGetParent(subwin), TRUE);  
-          }
-        else  
-	  {
+	 }
+       else  
+	 {
            sciSetAutoScale(subwin, FALSE); 
            sciSetAutoScale(sciGetParent(subwin), FALSE);  
-          } 
-      }
-     else if ( strncmp(cstk(l1),"wresize",6) == 0) {
+	 } 
+     }
+      else if ( strncmp(cstk(l1),"wresize",6) == 0) {
         if ( x[0] == 1 )
 	  {
-           sciSetResize(subwin, TRUE); 
-           sciSetResize(sciGetParent(subwin), TRUE);  
+	    sciSetResize(subwin, TRUE); 
+	    sciSetResize(sciGetParent(subwin), TRUE);  
           }
         else  
 	  {
-           sciSetResize(subwin, FALSE); 
-           sciSetResize(sciGetParent(subwin), FALSE);  
+	    sciSetResize(subwin, FALSE); 
+	    sciSetResize(sciGetParent(subwin), FALSE);  
           }
-     }
-    else if ( strncmp(cstk(l1),"wpos",4) == 0) {
+      }
+      else if ( strncmp(cstk(l1),"wpos",4) == 0) {
         sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
 	 
       }
-    else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
-      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
-      pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
-	 
+      else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
+	pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
+      
       } 
-   else if ( strncmp(cstk(l1),"wdim",4) == 0) {
-     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
-     pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
-	 
-   } /*Ajout A.Djalel le 10/11/03 */
-   else if ( strncmp(cstk(l1),"pixmap",6) == 0) {
-     pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
-     /*if(x[0] == 1) 
-       sciSetVisibility (sciGetParent(subwin), FALSE);
-     else{
-       sciSetVisibility (sciGetParent(subwin), TRUE);
-       pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}*/
-       }  
+      else if ( strncmp(cstk(l1),"wdim",4) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
+	pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
+	
+      } /*Ajout A.Djalel le 10/11/03 */
+      else if ( strncmp(cstk(l1),"pixmap",6) == 0) {
+	pFIGURE_FEATURE(sciGetParent(subwin))->pixmap=x[0];
+	/*if(x[0] == 1) 
+	  sciSetVisibility (sciGetParent(subwin), FALSE);
+	  else{
+	  sciSetVisibility (sciGetParent(subwin), TRUE);
+	  pFIGURE_FEATURE(sciGetParent(subwin))->wshow=0;}*/
+      }  
       else if ( strncmp(cstk(l1),"wshow",5) == 0) { /* a supprimer ce n'est pas une propriete mais une action */
-     pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
-     sciSetVisibility (subwin, TRUE); 
-     }
+	pFIGURE_FEATURE(sciGetParent(subwin))->wshow=1;
+	sciSetVisibility (subwin, TRUE); 
+      }
       sciRedrawFigure();   
     }
   /***/
