@@ -129,6 +129,7 @@ c     clear window
 c            call dr1('xset'//char(0),'clipping-p'//char(0),-1.0d0,
 c     &           -1.0d0,200000.0d0,200000.0d0,v,dv,dv,dv,dv)
             call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
+            call scicosclip(1)
 c            call dr('xset'//char(0),'clipping'//char(0),rect(1),rect(2),
 c     &           rect(3),rect(4),v,v,dv,dv,dv,dv)
          endif
@@ -181,6 +182,7 @@ c     to force dimensions update
          call dr1('xset'//char(0),'dashes'//char(0),0,0,0,
      &        0,0,v,dv,dv,dv,dv)
          call plot2d(rect(1),rect(2),1,1,-1,strf,buf,rect,nax,4,21)
+         call scicosclip(1)
          n=40
          call getlabel(kfun,buf,n)
          if(n.gt.39) n=39

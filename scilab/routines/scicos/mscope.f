@@ -115,12 +115,16 @@ c     loop on input ports
                frect(3)=1.0d0
                frect(4)=(1.0d0/nwid)
                call  setscale2d(frect,rect,'nn'//char(0))
+               call scicosclip(1)
+
 c     loop on input port elements
                do 10 i=1,ipar(7+kwid)
                   call dr1('xpolys'//char(0),'v'//char(0),v,v,
      $                 ipar(ilt+it),1,K,v,z(2),z(2+N+it*N),dv,dv)
                   it=it+1
  10            continue
+            call scicosclip(0)
+
  11         continue
          endif
 c     shift buffer left
@@ -252,12 +256,15 @@ c     loop on input ports
             frect(3)=1.0d0
             frect(4)=(1.0d0/nwid)
             call  setscale2d(frect,rect,'nn'//char(0))
+            call scicosclip(1)
+
 c     loop on input port elements
             do 30 i=1,ipar(7+kwid)
                call dr1('xpolys'//char(0),'v'//char(0),v,v,ipar(ilt
      $              +it),1,K-1,v,z(2),z(2+N+it*N),dv,dv)
                it=it+1
  30         continue
+               call scicosclip(0)
  35      continue
       endif
 

@@ -46,7 +46,7 @@ OBJSF=intcos.obj coselm.obj sciblk.obj  addevt.obj doit.obj odoit.obj zdoit.obj 
 	scitovv.obj cosiord.obj $(BLOCKS_CODE)
 
 OBJSC=callf.obj import.obj sciblk2.obj sciblk2i.obj simblk.obj grblk.obj realtime.obj \
-	intrealtime.obj duplicate.obj blocks.obj cpass2.obj $(BLOCKSC)
+	intrealtime.obj duplicate.obj blocks.obj cpass2.obj scicosclip.obj $(BLOCKSC)
 
 BLOCKS=$(BLOCKSF) $(BLOCKSC)
 
