@@ -187,7 +187,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
        if ((valeur=(void*) malloc((capacite+1)*sizeof(double)))==NULL)  goto ErrL;
        if ((*chainesind=(int *) malloc((capacite+1)*sizeof(int)))==NULL)  goto ErrL;
        for (i=0;i<=capacite;i++) {
-	 (*chainesind)[i]=-1;
+	 (*chainesind)[i]=0;
 	 valeur[i]=return_a_nan();
        }
        break;
