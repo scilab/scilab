@@ -1,7 +1,10 @@
-function show_nodes(p,sup)
+function show_nodes(p,sup,leg)
 //Copyright INRIA
 //Author : Serge Steer 2002
   if argn(2)<2 then sup='no',end
+  if exists('leg','local')==0 then leg='',end
+  opt=find(['Number','Name','Demand','Label']==leg)
+  if opt==[] then opt=0,end
   sup=sup=='sup'
   //get current editgraph window
   global EGcurrent
@@ -12,6 +15,7 @@ function show_nodes(p,sup)
   execstr(['global EGdata_'+w
 	   'if typeof(EGdata_'+w+')==''egdata'' then';
 	   'EGdata=EGdata_'+w
+	   'EGdata.NodeId=opt'
 	   'GraphList=EGdata.GraphList'
 	   'if ~sup then xbasc();ge_set_winsize();ge_drawobjs(GraphList),end'
 	   'b=GraphList.node_border(p)'
