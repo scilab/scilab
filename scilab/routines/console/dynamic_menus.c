@@ -14,6 +14,7 @@
 #include "../machine.h"
 #include "../graphics/Math.h"  /* malloc */
 #include "../stack-c.h"
+#include "../version.h"
 
 #ifndef NULL
 #define NULL 0
@@ -56,6 +57,8 @@ extern int	InterfaceWindowsDDEIsOpen _PARAMS((char *fname));
 extern int ToolBarWin32(int WinNum,char *onoff);
 extern int GetStateToolBarWin32(int WinNum);
 #endif /*WIN32*/
+
+extern void banner(void);
 
 extern void write_scilab  __PARAMS((char *s));
 extern int get_is_reading  __PARAMS((void));
@@ -834,6 +837,20 @@ int C2F(inttoolbar) _PARAMS((char *fname))
 	LhsVar(1) = 1;
 	C2F(putlhsvar)();	
 	if (Output) {free(Output);Output=NULL;}
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+int C2F(intbanner) _PARAMS((char *fname))
+{
+	Rhs=Max(Rhs,0);
+	CheckRhs(0,0) ;
+	CheckLhs(0,1) ;
+
+	banner();
+
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();	
+	
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

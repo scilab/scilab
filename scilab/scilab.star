@@ -16,7 +16,8 @@ clear old newstacksize
 
 // Startup message  ===================================================
 verbose=sciargs()<>"-nb"
-if verbose then 
+if verbose then
+  banner(); 
   write(%io(2),[' ';' ';'Startup execution:'])
 end
 

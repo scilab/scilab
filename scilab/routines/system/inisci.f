@@ -150,7 +150,7 @@ c     .  hio =unit for history output (no more used)
 c     
 c     .  banner 
 c     .  ------
-      call banier(wte)
+c     call banier(wte)
       rio=rte
 c     
 c     .  Control-C recovery

@@ -5,10 +5,8 @@ extern void sciprint __PARAMS((char *fmt,...));
 
 extern int sci_show_banner ; 
 
-int C2F(banier)(integer *flag)
+void banner(void)
 {
-  if (*flag != 999 && sci_show_banner == 1)
-  {
 	#ifdef WIN32
 	sciprint("        ___________________________________________\r\n");
 	#else
@@ -24,6 +22,13 @@ int C2F(banier)(integer *flag)
 	#else
     sciprint("        -------------------------------------------\r\n");
 	#endif
+}
+
+int C2F(banier)(integer *flag)
+{
+  if (*flag != 999 && sci_show_banner == 1)
+  {
+	banner();
   }
   return 0;
 } 
