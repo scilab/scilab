@@ -43,7 +43,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 //!
 //look at connected links
   dr=driver()
-  connected=get_connected(scs_m,k)
+  connected=unique(get_connected(scs_m,k))
   o=scs_m.objs(k)
   xx=[];yy=[];ii=[];clr=[];mx=[];my=[]
 
@@ -56,14 +56,18 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     if pixmap then xset('wshow'),end
     // [xl,yl,ct,from,to]=oi([2,3,7:9])
     [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
-    clr=[clr ct(1)]
+   
     nl=prod(size(xl))
     
     if dr=='Rec' then driver('X11'),end
     xpolys(xl,yl,ct(1))// redraw thin link
+    clr=[clr ct(1)]
     
-    if from(1)==k then
-      ii=[ii i]
+    if from(1)==k&to(1)==k then
+      //move all link
+      ii=[ii 0]
+    elseif from(1)==k then
+      ii=[ii 1]
       // build movable segments for this link
       if nl>=4 then
 	x1=xl(1:4)
@@ -100,8 +104,8 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 	end
       end
       xx=[xx x1];yy=[yy y1]  //store  movable segments for this link
-    elseif to(1)==k then
-      ii=[ii -i]
+    else
+      ii=[ii -1]
       // build movable segments
       if nl>=4 then
 	x1=xl(nl:-1:nl-3)
@@ -156,8 +160,14 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     driver(dr)
     drawobj(o)
     if dr=='Rec' then driver('X11'),end
+    full_move=connected(find(ii==0))
 
-    xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr)// erase moving part of links
+    xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr)// erase moving part of  links
+    for i=full_move
+      oi=scs_m.objs(i)
+      xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1))// erase  links
+    end
+    
     pat=xget('pattern')
     xset('pattern',default_color(0))
     while rep(3)==-1 ,  // move loop
@@ -166,6 +176,11 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xrect(xc,yc+sz(2),sz(1),sz(2))
       // draw moving links
       xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr)
+      for i=full_move
+	oi=scs_m.objs(i)
+	xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1))
+      end
+
       // get new position
       if pixmap then xset('wshow'),end    
       rep=xgetmouse( 0);
@@ -173,6 +188,11 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xrect(xc,yc+sz(2),sz(1),sz(2))
       // clear moving part of links
       xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr)
+      for i=full_move
+	oi=scs_m.objs(i)
+	xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1))
+      end
+
       xc=rep(1);yc=rep(2)
       xy=[xc,yc];
     end
@@ -183,6 +203,11 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     end
 
     xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr) 
+    for i=full_move
+      oi=scs_m.objs(i)
+      xpolys(oi.xx+(xc-xmin),oi.yy+(yc-ymin),oi.ct(1))
+    end
+
     xset('pattern',pat)
   
     // update and draw block
@@ -193,10 +218,12 @@ function scs_m=moveblock(scs_m,k,xc,yc)
     //udate moved links in scicos structure
     xx=xx+mx*(xc-xmin)
     yy=yy+my*(yc-ymin)
-    for i=1:prod(size(ii))
-      oi=scs_m.objs(abs(ii(i)))
+    i=0;
+    for i1=1:prod(size(ii))
+      oi=scs_m.objs(connected(i1))
       xl=oi.xx;yl=oi.yy;nl=prod(size(xl))
-      if ii(i)>0 then
+      if ii(i1)>0 then
+	i=i+1
 	if nl>=4 then
 	  xl(1:4)=xx(:,i)
 	  yl(1:4)=yy(:,i)
@@ -207,7 +234,8 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 	  xl=xx(:,i)
 	  yl=yy(:,i)
 	end
-      else
+      elseif ii(i1)<0 then
+	i=i+1
 	if nl>=4 then
 	  xl(nl-3:nl)=xx(4:-1:1,i)
 	  yl(nl-3:nl)=yy(4:-1:1,i)
@@ -218,6 +246,9 @@ function scs_m=moveblock(scs_m,k,xc,yc)
 	  xl=xx(4:-1:1,i)
 	  yl=yy(4:-1:1,i)
 	end
+      else //full move
+	xl=xl+(xc-xmin)
+	yl=yl+(yc-ymin)
       end
       nl=prod(size(xl))
       //eliminate double points
@@ -228,7 +259,7 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xpolys(xl,yl,oi.ct(1))// erase thin link
       if rep(3)<>2 then
 	oi.xx=xl;oi.yy=yl;
-	scs_m.objs(abs(ii(i)))=oi;
+	scs_m.objs(connected(i1))=oi;
       end
       driver(dr)
       drawobj(oi)  //draw final link

@@ -45,22 +45,25 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
   // build movable segments for all connected links
   //===============================================
   xm=[];ym=[];  jj=0;
-  connected=get_connected(scs_m,k)
+  connected=unique(get_connected(scs_m,k))
   for l=1:length(connected)
     i=connected(l);
     oi=scs_m.objs(i)
     driver(dr)
     if pixmap then xset('wshow'),end
     [xl,yl,ct,from,to]=(oi.xx,oi.yy,oi.ct,oi.from,oi.to)
-    clr=[clr ct(1)]
+   
     nl=prod(size(xl))
     if dr=='Rec' then driver('X11'),end
     if from(1)==k then
       xm=[xm,[xl(2);xl(1)]];ym=[ym,[yl(2);yl(1)]];
       draw_link_seg(oi,1:2) //erase link
-    else
+      clr=[clr ct(1)]
+    end
+    if to(1)==k then
       xm=[xm,xl($-1:$)];ym=[ym,yl($-1:$)];
       draw_link_seg(oi,$-1:$) //erase link
+      clr=[clr ct(1)]
     end
   end
 
@@ -116,13 +119,15 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       for l=1:length(connected)
 	i=connected(l);
 	oi=scs_m.objs(i);
-	[from,to]=(oi.from,oi.to);
-	j=j+1
+	[xl,from,to]=(oi.xx,oi.from,oi.to);
 	if from(1)==k then
+	  j=j+1
 	  oi.xx(1:2)=xmt([2,1],j)
 	  oi.yy(1:2)=ymt([2,1],j)
 	  draw_link_seg(oi,1:2) //draw link
-	else
+	end
+	if to(1)==k then
+	  j=j+1
 	  oi.xx($-1:$)=xmt(:,j)
 	  oi.yy($-1:$)=ymt(:,j)
 	  draw_link_seg(oi,$-1:$)//draw link
