@@ -25,13 +25,14 @@ function [s,index] = nanmax(x,orient)
 //
 //date: 2000-01-14
 //
+// correction of bug 1239 (Bruno)
     
   if argn(2)==1 then  orient='*',end
   if orient==1 then orient='r',end
   if orient==2 then orient='c',end
   if x==[]|(size(x,'*')==1&isnan(x)) then s=[],index=[],return,end
   isn=isnan(x)
-  x(isn)=%inf
+  x(isn)=-%inf
   [s,index]=max(x,orient)
   s(find(and(isn,orient)))=%nan
 
