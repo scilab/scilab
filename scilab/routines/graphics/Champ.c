@@ -136,12 +136,12 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
       
       axes_properties_changed = strflag2axes_properties(psubwin, strflag);
       
-      if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-	sciDrawObj(sciGetCurrentFigure ());
-      /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
-      /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
-      /* because of the tics graduation that are outside the axes refresh area */
-      
+      if(bounds_changed == TRUE || axes_properties_changed == TRUE){
+	sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+	CleanRectangle(psubwin);
+	sciDrawObj(psubwin);
+      }
+            
       flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
       arsize1 = 0.5;
 
@@ -157,6 +157,7 @@ void champg(char *name, integer colored, double *x, double *y, double *fx, doubl
 
  /*      sciDrawObj(sciGetCurrentFigure ()); /\* Adding F.Leray 13.05.04 to insure the drawing *\/ */
       sciDrawObj(sciGetCurrentObj ()); 
+      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
       /* F.Leray Libération de style[dim = Nbr1]*/
       if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
   }

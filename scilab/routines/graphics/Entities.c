@@ -11596,6 +11596,9 @@ sciDrawObj (sciPointObj * pobj)
      psonstmp = sciGetLastSons (pobj);
      while (psonstmp != (sciSons *) NULL) {
        if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN) sciDrawObj (psonstmp->pointobj);
+       
+       /* redessin de l'axe a ce niveau je pense !! */
+
        psonstmp = psonstmp->pprev;
      }
      break;
@@ -11684,6 +11687,12 @@ sciDrawObj (sciPointObj * pobj)
 	   sciDrawObj (psonstmp->pointobj);
 	   psonstmp = psonstmp->pprev;
 	 }
+
+	 x[0] = sciGetForeground (pobj);
+	 x[2] = sciGetLineWidth (pobj);
+	 x[3] = sciGetLineStyle (pobj);
+	 markidsizenew[0] = sciGetMarkStyle(pobj);
+	 markidsizenew[1] = sciGetLineWidth (pobj);x[4] = 0;v = 0;dv = 0;
 	 
 	 /* F.Leray 07.12.04 */
 	 /* TO CORRECT the bug 1115 : Big object (grayplots) could cover axes*/
@@ -11695,7 +11704,7 @@ sciDrawObj (sciPointObj * pobj)
 	 if (isaxes) {
 	   char STRFLAG[4];
 	   rebuild_strflag(pobj,STRFLAG);
-	   reaxesplot(STRFLAG,pobj); /* same thing as axesplot without displaying ticks*/
+	   axis_draw2 (STRFLAG);
 	 }
 	 /* END */
 	 
@@ -22192,4 +22201,78 @@ int ReverseDataFor3D(sciPointObj * psubwin, double * xvect, double * yvect, doub
   }
   
   return 0;
+}
+
+
+
+/* Routine used inside Plo2dn.c, Champ.c, Gray.c... */
+/* to force the drawing of the axes after a new object is created */
+void DrawAxes(sciPointObj * pobj)
+{
+  sciPointObj * psubwin = sciGetParentSubwin(pobj);
+  char STRFLAG[4];
+  integer x[6], v, markidsizenew[2];
+  double dv;
+
+  x[0] = sciGetForeground (psubwin);
+  x[2] = sciGetLineWidth (psubwin);
+  x[3] = sciGetLineStyle (psubwin);
+  markidsizenew[0] = sciGetMarkStyle(psubwin);
+  markidsizenew[1] = sciGetLineWidth (psubwin);
+  x[4] = 0;
+  v = 0;
+  dv = 0;
+  
+  /* F.Leray 07.12.04 */
+  /* TO CORRECT the bug 1115 : Big object (grayplots) could cover axes*/
+  C2F (dr) ("xset","dashes",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
+  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset","mark",&markidsizenew[0],&markidsizenew[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  
+  rebuild_strflag(psubwin,STRFLAG);
+  axis_draw2 (STRFLAG); /* Axes is rebuilt here to avoid being covered by the new created object */
+}
+
+/* Rectangle for cleaning area */
+void CleanRectangle(sciPointObj * psubwin)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  sciFigure * ppfigure = pFIGURE_FEATURE(sciGetParentFigure (psubwin));
+
+  integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; 
+  
+  C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+  
+  color = sciGetBackground(psubwin);
+  
+  ixbox[0] = ixbox[4] = ppsubwin->WRect[0] * ppfigure->windowdimwidth;
+  iybox[0] = iybox[4] = ppsubwin->WRect[1] * ppfigure->windowdimheight;
+  ixbox[1] = ixbox[0];
+  ixbox[2] = (ppsubwin->WRect[0] + ppsubwin->WRect[2]) * ppfigure->windowdimwidth;
+  iybox[1] = (ppsubwin->WRect[1] + ppsubwin->WRect[3]) * ppfigure->windowdimheight;
+  iybox[2] = iybox[1];
+  ixbox[3] = ixbox[2];
+  iybox[3] = iybox[0];
+  
+/*   /\* a l'ancienne *\/ */
+/*   ixbox[0]=ixbox[4]= Cscale.subwin_rect[0] * Cscale.wdim[0];  /\*Cscale.WIRect1[0];*\/ */
+/*   iybox[0]=iybox[4]= Cscale.subwin_rect[1] * Cscale.wdim[1];  /\*Cscale.WIRect1[1];*\/ */
+/*   ixbox[1]=ixbox[0]; */
+/*   ixbox[2]=(Cscale.subwin_rect[0] + Cscale.subwin_rect[2]) * Cscale.wdim[0]; /\* Cscale.subwin_rect[0] * Cscale.WIRect1[0] + Cscale.subwin_rect[2] * Cscale.WIRect1[2]; *\/ */
+/*   iybox[1]=(Cscale.subwin_rect[1] + Cscale.subwin_rect[3]) * Cscale.wdim[1];  /\*Cscale.subwin_rect[1] * Cscale.WIRect1[1] + Cscale.subwin_rect[3] * Cscale.WIRect1[3];*\/ */
+/*   iybox[2]=iybox[1]; */
+/*   ixbox[3] = ixbox[2]; */
+/*   iybox[3] = iybox[0]; */
+  
+
+  C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+/*   color = 5; */
+  C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+  C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }

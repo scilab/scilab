@@ -88,17 +88,9 @@ void axis_draw(strflag)
 	      ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       break;
     default :
-    /*   /\* F.Leray 11.05.04 : EN DUR pour l'instant ici: *\/ */
-/*       if (version_flag() == 0) { */
-/* 	if(pSUBWIN_FEATURE(psubwin)->isoview == FALSE) */
-/* 	  isoflag = -10; */
-/* 	else */
-/* 	  isoflag = 10; */
-/*       } */
 
       if (version_flag() == 0)
 	{
-/* 	  aplotv1(strflag); /\* use 'i' xy_type *\/ */
 	  axesplot(strflag,psubwin);
 	  break;
 	}
@@ -120,6 +112,57 @@ void axis_draw(strflag)
   C2F(dr)("xset","color",xz+1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
 
+}
+
+/* F.Leray 16.12.04 */
+/* Same thing as axis_draw without the background area set */
+/* Only used in NG mode */
+void axis_draw2(strflag)
+     char strflag[];
+{ 
+  /* using foreground to draw axis */
+  integer verbose=0,narg,xz[10],fg,i,color; 
+ /*  int isoflag = -1; */
+  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
+  C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","line style",(i=1,&i),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xget","color",&verbose,xz+1,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","color",&fg,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
+
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+  
+  /* F.Leray test on color here*/
+  color=sciGetBackground(psubwin);
+  
+  
+/*   ixbox[0]=ixbox[4]=Cscale.WIRect1[0];iybox[0]=iybox[4]=Cscale.WIRect1[1]; */
+/*   ixbox[1]=ixbox[0];iybox[1]=Cscale.WIRect1[1]+Cscale.WIRect1[3]; */
+/*   ixbox[2]=Cscale.WIRect1[0]+Cscale.WIRect1[2];iybox[2]=iybox[1]; */
+/*   ixbox[3]=ixbox[2];iybox[3]=iybox[0];  */
+/*   C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/*   C2F(dr)("xset","pattern",&color,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	  */
+/*   C2F(dr)("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L); */
+/*   C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	   */
+/* } */
+
+  switch ( c) 
+    {
+    case '0' :
+      break ;
+    case '2' :
+      pSUBWIN_FEATURE (psubwin)->axes.rect = 1;
+      
+      C2F(dr)("xrect","xv",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3]
+	      ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      break;
+    default :
+      axesplot(strflag,psubwin);
+      break;
+    }
+
+  C2F(dr)("xset","line style",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xset","color",xz+1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
 
 /*--------------------------------------------------------------
@@ -1500,299 +1543,6 @@ static void axesplot(strflag, psubwin)
 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   }
 }
-
-
-
-
-/* F.Leray 07.12.04 */
-/* Routine only used to have a better esthetic (called only in sciDrawObj) */
-/* RE-axesplot after all plots have been performed in sciDrawObj */
-/* to avoid bug 1115 with objects such as grayplots. */
-/* Equivalent to axesplot routine without the tics building */
-extern void reaxesplot(strflag, psubwin)
-     char * strflag;
-     sciPointObj * psubwin;
-{
-  char dir = 'l';
-  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
-  int seg=0;
-  int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
-  int fontstyle= 0;
-  double  x1,y1;
-  char xstr,ystr; 
-  char dirx = 'd';
-
-  int lastxindex = 0, lastyindex = 0;
-  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
-
-  seg=0; 
-  
-  if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
-    {
-      switch ( c ) 
-	{ 
-	case '3' : /* right axis */
-	  x1= ppsubwin->axes.xlim[1];
-	  y1= ppsubwin->axes.ylim[0];
-	  dir = 'r';
-	  break;
-	case '4' : /* centred axis */
-	  seg=1;
-	  x1= (ppsubwin->axes.xlim[0]+ppsubwin->axes.xlim[1])/2.0;
-	  y1= (ppsubwin->axes.ylim[0]+ppsubwin->axes.ylim[1])/2.0;
-	  break ;
-	case '5': /* centred at (0,0) */
-	  seg=1;
-	  x1 = y1 = 0.0; 
-	  break;
-	case '1' : /* left axis */
-	default :  
-	  x1=  ppsubwin->axes.xlim[0];
-	  y1=  ppsubwin->axes.ylim[1];
-	  break;
-	}
-    }
-  else  /* tight_limits == FALSE */
-    {
-      lastxindex = ppsubwin->axes.nxgrads - 1;
-      lastyindex = ppsubwin->axes.nygrads - 1;
-     
-        switch ( c ) 
-	{ 
-	case '3' : /* right axis */
-	  x1= ppsubwin->axes.xgrads[lastxindex];
-	  y1= ppsubwin->axes.ygrads[0];
-	  dir = 'r';
-	  break;
-	case '4' : /* centred axis */
-	  seg=1;
-	  x1= (ppsubwin->axes.xgrads[0]+ppsubwin->axes.xgrads[lastxindex])/2.0;
-	  y1= (ppsubwin->axes.ygrads[0]+ppsubwin->axes.ygrads[lastyindex])/2.0;
-	  break ;
-	case '5': /* centred at (0,0) */
-	  seg=1;
-	  x1 = y1 = 0.0; 
-	  break;
-	case '1' : /* left axis */
-	default :  
-	  x1= ppsubwin->axes.xgrads[0];
-	  y1= ppsubwin->axes.ygrads[0];
-	break;
-	}
-    }
-       
-
-
-  if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
-    {
-      if (c != '4')
-	{  
-	  xstr=ppsubwin->axes.xdir;
-	  if(ppsubwin->axes.reverse[1] == FALSE)
-	    { /* y reverse axis : NO */
-	      switch (xstr) 
-		{
-		case 'u':  
-		  y1= ppsubwin->axes.ylim[1];
-		  dirx='u';   
-		  break;
-		case 'c':  
-		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
-		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
-		  break;
-		default :  
-		  y1= ppsubwin->axes.ylim[0];
-		  dirx ='d'; 
-		  break;
-		}
-	    }
-	  else
-	    { /* y reverse axis : YES */
-	      switch (xstr) 
-		{
-		case 'u':  
-		  y1= ppsubwin->axes.ylim[0];
-		  dirx='u';
-		  break;
-		case 'c':  
-		  y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
-		  y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
-		  break;
-		default :  
-		  y1= ppsubwin->axes.ylim[1];
-		  dirx ='d'; 
-		  break;
-		}
-	    }
-
-	  ystr=ppsubwin->axes.ydir;
-	  if(ppsubwin->axes.reverse[0] == FALSE)
-	    { /* x reverse axis : NO */
-	      switch (ystr) 
-		{
-		case 'r': 
-		  x1= ppsubwin->axes.xlim[1];
-		  dir='r';    
-		  break;
-		case 'c': 
-		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
-		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
-		  x1= ppsubwin->axes.xlim[0];
-		  dir ='l';  
-		  break;
-		}
-	    }
-	  else
-	    { /* x reverse axis : YES */
-	      switch (ystr) 
-		{
-		case 'r': 
-		  x1= ppsubwin->axes.xlim[0];
-		  dir='r';    
-		  break;
-		case 'c': 
-		  x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
-		  x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
-		  x1= ppsubwin->axes.xlim[1];
-		  dir ='l';  
-		  break;
-		}
-	    }
-	}
-    }
-  else  /* tight_limits == FALSE */
-    {
-      lastxindex = ppsubwin->axes.nxgrads - 1;
-      lastyindex = ppsubwin->axes.nygrads - 1;
-      
-      if (c != '4')
-	{  
-	  xstr=ppsubwin->axes.xdir;
-	  if(ppsubwin->axes.reverse[1] == FALSE)
-	    { /* y reverse axis : NO */
-	      switch (xstr) 
-		{
-		case 'u':  
-		  y1=ppsubwin->axes.ygrads[lastyindex];
-		  dirx='u';   
-		  break;
-		case 'c':  
-		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
-		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
-		  seg =1; 
-		  dirx ='d';                           
-	      break;
-		default :  
-		  y1= ppsubwin->axes.ygrads[0];
-		  dirx ='d'; 
-		  break;
-		}
-	    }
-	  else
-	    { /* y reverse axis : YES */
-	      switch (xstr) 
-		{
-		case 'u':  
-		  y1=ppsubwin->axes.ygrads[0];
-		  dirx='u';   
-		  break;
-		case 'c':  
-		  y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
-		  y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
-		  seg =1; 
-		  dirx ='d';
-		  break;
-		default :  
-		  y1= ppsubwin->axes.ygrads[lastyindex];
-		  dirx ='d';
-		  break;
-		}
-	    }
-	  
-	  ystr=ppsubwin->axes.ydir;
-	  if(ppsubwin->axes.reverse[0] == FALSE)
-	    { /* x reverse axis : NO */
-	      switch (ystr) 
-		{
-		case 'r': 
-		  x1= ppsubwin->axes.xgrads[lastxindex];
-		  dir='r';    
-		  break;
-		case 'c': 
-		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
-		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
-		  x1= ppsubwin->axes.xgrads[0];
-		  dir ='l';  
-		  break;
-		}
-	    } 
-	  else 
-	    { /* x reverse axis : YES */
-	      switch (ystr) 
-		{
-		case 'r': 
-		  x1= ppsubwin->axes.xgrads[0];
-		  dir='r';    
-		  break;
-		case 'c': 
-		  x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
-		  x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
-		  seg =1; 
-		  dir ='l';                              
-		  break; 
-		default : 
-		  x1= ppsubwin->axes.xgrads[lastxindex];
-		  dir ='l';  
-		  break;
-		}
-	    }
-	}
-    }
-  
-  ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
-  textcolor=sciGetFontForeground(psubwin);
-  fontsize=sciGetFontDeciWidth(psubwin)/100;
-  fontstyle=sciGetFontStyle(psubwin);
- 
-/*   /\** x-axis **\/ */
-/*   SciAxisNew(dirx,psubwin,y1,fontsize,fontstyle,textcolor,ticscolor,seg); */
-  
-/*   /\** y-axis **\/ */
-/*   SciAxisNew(dir,psubwin,x1,fontsize,fontstyle,textcolor,ticscolor,seg); */
-
-  /* Once the 2 axes are plotted, we can draw :
-     1. the axes lines
-     2. the box lines over if necessary (i.e. seg == 1) */
-  SciDrawLines(dirx,psubwin,y1,textcolor,ticscolor);
-  SciDrawLines(dir, psubwin,x1,textcolor,ticscolor);
-  
-  
-  if ( c != '4' && c != '5' ) {
-    if (pSUBWIN_FEATURE (psubwin)->axes.rect == 0)
-      seg=1;
-    else
-      /** frame rectangle **/
-      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
-	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  }
-}
-
 
 
 /****************************************************************************/

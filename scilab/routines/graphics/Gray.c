@@ -145,17 +145,18 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
     }
     
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      sciDrawObj(sciGetCurrentFigure ());
-    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
-    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
-    /* because of the tics graduation that are outside the axes refresh area */
-  
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
+      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+      CleanRectangle(psubwin);
+      sciDrawObj(psubwin);
+    }
+    
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       x,y,z,*n1,*n2,0));
-    sciDrawObj(sciGetCurrentObj ()); 
+    sciDrawObj(sciGetCurrentObj ());
+    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
   }
 
   else { 
@@ -335,17 +336,18 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 
   /*   sciDrawObj(psubwin); /\* ???? *\/ */
     
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      sciDrawObj(sciGetCurrentFigure ());
-    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
-    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
-    /* because of the tics graduation that are outside the axes refresh area */
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
+      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+      CleanRectangle(psubwin);
+      sciDrawObj(psubwin);
+    }
     
     sciSetCurrentObj (ConstructGrayplot 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       NULL,NULL,z,*n1 + 1,*n2 + 1,1)); 
-    sciDrawObj(sciGetCurrentObj ()); 
+    sciDrawObj(sciGetCurrentObj ());
+    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
   }
   else { /* NG end */
     /** Boundaries of the frame **/
@@ -403,6 +405,7 @@ int C2F(xgray2)(double *z, integer *n1, integer *n2, double *xrect)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
 		       xrect,&y,z,*n1+1,*n2+1,2));
     sciDrawObj(sciGetCurrentObj ()); 
+    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
   }
   else { /* NG end */
     double xx[2],yy[2];

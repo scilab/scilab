@@ -48,6 +48,8 @@ extern void Sci_Axis __PARAMS((char,char,double *,int *,double *,int*,char *str[
 extern void sci_axis __PARAMS((char,char,double *,int *,double *,int*,char *str[],int subtics,char *format,
 			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag));
 extern void axis_draw  __PARAMS(( char strflag[]));
+extern void axis_draw2  __PARAMS(( char strflag[]));
+
 extern void ChoixFormatE  __PARAMS((char *fmt,double xmin,double xmax,double xpas)); 
 extern void ChoixFormatE1  __PARAMS((char *fmt,double *x,integer nx)); 
 extern void C2F(aplot)  __PARAMS((integer *,double *,double *,double *,double *,integer *,integer *,char *)); 

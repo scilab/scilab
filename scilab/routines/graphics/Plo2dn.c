@@ -99,7 +99,6 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   ok=0;  
   if (sciGetSurface(psubwin) != (sciPointObj *) NULL)   ok=1;
 
-
   if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
     initsubwin(); 	/* Pb here Re-init for the psubwin does not work properly F.Leray 24.02.04*/
@@ -202,12 +201,12 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       sciprint("Warning : Nax does not work with logarithmic scaling\n");}
   }
   
-  if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-    sciDrawObj(sciGetCurrentFigure ());
-  /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
-  /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
-  /* because of the tics graduation that are outside the axes refresh area */
-  
+  if(bounds_changed == TRUE || axes_properties_changed == TRUE){
+    sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+    CleanRectangle(psubwin);
+    sciDrawObj(psubwin);
+  }
+
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
     frame_clip_on ();
@@ -236,7 +235,8 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 	sciSetMarkStyle (sciGetCurrentObj(),-(style[jj]));
       } 
       if (with_leg) pptabofpointobj[jj] = sciGetCurrentObj();
-      sciDrawObj(sciGetCurrentObj ()); 
+      sciDrawObj(sciGetCurrentObj ());
+      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
       hdl=sciGetHandle(sciGetCurrentObj ());   
       hdltab[cmpt]=hdl;
       cmpt++;

@@ -163,12 +163,12 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
 	sciprint("Warning : Nax does not work with logarithmic scaling\n");}
     }
 
-    if(bounds_changed == TRUE || axes_properties_changed == TRUE)
-      sciDrawObj(sciGetCurrentFigure ());
-    /* F.Leray 10.12.04 : we are obliged to apply the redraw on the figure  */
-    /* and not on the sciGetSelectedSubWin(sciGetCurrentFigure ()) */
-    /* because of the tics graduation that are outside the axes refresh area */
-     
+    if(bounds_changed == TRUE || axes_properties_changed == TRUE){
+      sciPointObj * psubwin = sciGetSelectedSubWin(sciGetCurrentFigure ());
+      CleanRectangle(psubwin);
+      sciDrawObj(psubwin);
+    }
+    
     sciSetCurrentObj (ConstructFec 
 		      ((sciPointObj *)
 		       sciGetSelectedSubWin (sciGetCurrentFigure ()),
@@ -176,7 +176,8 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
     pptabofpointobj = sciGetCurrentObj();
     hdltab[cmpt]=sciGetHandle(pptabofpointobj);   
     cmpt++;   
-    sciDrawObj(sciGetCurrentObj ());  
+    sciDrawObj(sciGetCurrentObj ());
+    DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
     /** Drawing the Legends **/
     if ((int)strlen(strflag) >=1  && strflag[0] == '1'){
       n1=1; styl[0]=1;styl[1]=0;
@@ -186,9 +187,10 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, integer *Nno
       sciSetIsMark(pptabofpointobj, TRUE);
       sciSetMarkStyle (pptabofpointobj, *styl);
       sciDrawObj(sciGetCurrentObj ()); 
+      DrawAxes(sciGetCurrentObj ()); /* force axes redrawing */
       hdltab[cmpt]=sciGetHandle(sciGetCurrentObj ()); 
       cmpt++;
-    } 
+    }
     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt));  /** construct agregation **/
   }
   else { /* NG end */
