@@ -44,7 +44,7 @@ void graphic_alloc_free __PARAMS((void));
 /* Axes.c */
 
 extern void Sci_Axis __PARAMS((char,char,double *,int *,double *,int*,char *str[],int subtics,char *format,
-			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag ));
+			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag , int axisbuild_flag));
 extern void sci_axis __PARAMS((char,char,double *,int *,double *,int*,char *str[],int subtics,char *format,
 			      int fontsize,int textcolor,int fontstyle,int ticscolor,char logflag,int seg_flag));
 extern void axis_draw  __PARAMS(( char strflag[]));
