@@ -41,7 +41,7 @@
 
 #define WSCILABVERSION  "1.0   1996"
 
-EXPORT BOOL WINAPI CheckWScilabVersion(LPSTR str);
+EXPORT BOOL CheckWScilabVersion(LPSTR str);
 
 /*****************************************
  * wprinter.c - windows printer routines 

@@ -318,7 +318,7 @@ NotTTyRead (char *prompt, char *buffer, int buf_size, int *eof)
     }
   if (!tty)
     {
-/** We are reading a file ==> no prompts : XXXXX to test **/
+      /** We are reading a file ==> no prompts : XXXXX to test **/
       fputs ("-->", stdout);
       /* read a line into the buffer, but not too* big */
       *eof = (fgets (buffer, buf_size, stdin) == NULL);

@@ -66,8 +66,7 @@ NoDll (HINSTANCE hInstance)
  * and dll
  ********************************************/
 
-EXPORT BOOL WINAPI 
-CheckWScilabVersion (LPSTR str)
+EXPORT BOOL CheckWScilabVersion (LPSTR str)
 {
   char mess[256];
   LPSTR version;

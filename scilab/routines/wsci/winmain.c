@@ -276,6 +276,15 @@ int SciWinGetPlatformId ()
  * The WinMain function 
  *---------------------------------------------------*/
 
+int MyWinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
+	 LPSTR szCmdLine, int iCmdShow)
+{
+  WinMain (hInstance,hPrevInstance, szCmdLine,iCmdShow);
+  return 0;
+}
+
+
+
 #ifndef __ABSC__
 int WINAPI 
 WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,

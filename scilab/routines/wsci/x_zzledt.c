@@ -68,7 +68,7 @@ void C2F (zzledt) (buffer, buf_size, len_line, eof, dummy1)
   i = read_line (save_prompt);
   strncpy (buffer, input_line, *buf_size);
   *len_line = strlen (buffer);
-/** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
+  /** fprintf(stderr,"[%s,%d]\n",buffer,*len_line); **/
   *eof = (i == 1) ? TRUE : FALSE;
   set_is_reading (FALSE);
   return;
