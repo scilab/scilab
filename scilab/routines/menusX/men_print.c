@@ -17,7 +17,7 @@ static char *Print_Formats[] = {
   "Postscript-Latex",
   "Xfig",
   "Gif",
-  'PPM'
+  "PPM",
 };
 
 static int nF=5;
