@@ -19,7 +19,7 @@ othops=["==",">=","<=","~=",">","<","~",".''",".''",":"] //3
 
 // Commands names (Type what in Scilab to get commands names)
 commands=["quit","exit","return","help","what","who","pause","clear","resume","then","do","apropos","abort","break","continue"];
-mtlb_commands=["diary","dir","tic","toc"]
+mtlb_commands=["diary","dir"]
 commands=[commands,mtlb_commands]
 
 C=[]
