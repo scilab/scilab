@@ -37,8 +37,6 @@ exec loader.sce
 ext3f_path=get_file_path('loader.sce');
  
 link(ext3f_path+'/libext3f.so',['ext3f'],'f');
-Loading shared executable0./libext3f.so
-
 shared archive loaded
 
 Linking ext3f 

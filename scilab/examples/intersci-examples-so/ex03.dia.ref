@@ -58,8 +58,6 @@ functions=[ 'scilabdaxpy';
 ];
  
 addinter(libex03fi_path+'/libex03fi.so','libex03fi',functions);
-Loading shared executable0./libex03fi.so
-
 shared archive loaded
 
 Linking libex03fi 

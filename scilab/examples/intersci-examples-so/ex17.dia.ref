@@ -59,8 +59,6 @@ functions=[ 'ex17';
 ];
  
 addinter(libex17fi_path+'/libex17fi.so','libex17fi',functions);
-Loading shared executable0./libex17fi.so
-
 shared archive loaded
 
 Linking libex17fi 

@@ -79,8 +79,6 @@ functions=[ 'mat1';
 ];
  
 addinter(libex15fi_path+'/libex15fi.so','libex15fi',functions);
-Loading shared executable0./libex15fi.so
-
 shared archive loaded
 
 Linking libex15fi 

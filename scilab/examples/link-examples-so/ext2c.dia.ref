@@ -37,8 +37,6 @@ exec loader.sce
 ext2c_path=get_file_path('loader.sce');
  
 link(ext2c_path+'/libext2c.so',['ext2c'],'c');
-Loading shared executable0./libext2c.so
-
 shared archive loaded
 
 Linking ext2c 

@@ -39,8 +39,6 @@ exec loader.sce
 ext13ic_path=get_file_path('loader.sce');
  
 link(ext13ic_path+'/libext13ic.so',['ext13ic','ext13oc'],'c');
-Loading shared executable0./libext13ic.so
-
 shared archive loaded
 
 Linking ext13ic 

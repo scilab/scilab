@@ -47,8 +47,6 @@ functions=[ 'ext1c';
 ];
  
 addinter(libex01fi_path+'/libex01fi.so','libex01fi',functions);
-Loading shared executable0./libex01fi.so
-
 shared archive loaded
 
 Linking libex01fi 

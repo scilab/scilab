@@ -100,25 +100,6 @@ files=G_make([ifile,ufiles],'zallfi.dll');
 !calc8        !
 !             !
 !calc9        !
-linking files 
-zallfi.o 
-/tmp/ex1c.o 
-/tmp/ex2f.o 
-/tmp/ex4f.o 
-/tmp/ex5f.o 
-/tmp/ex6c.o 
-/tmp/ex7f.o 
-/tmp/ex8c.o 
-/tmp/ex9f.o 
-/tmp/ex10f.o 
-/tmp/ex11c.o 
-/tmp/ex12c.o 
-/tmp/ex13c.o 
-/tmp/ex14c.o 
-/tmp/ex15c.o 
-/tmp/ex16c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking zallfi 

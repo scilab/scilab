@@ -37,8 +37,6 @@ exec loader.sce
 ext4c_path=get_file_path('loader.sce');
  
 link(ext4c_path+'/libext4c.so',['ext4c'],'c');
-Loading shared executable0./libext4c.so
-
 shared archive loaded
 
 Linking ext4c 

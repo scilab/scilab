@@ -37,8 +37,6 @@ exec loader.sce
 ext9f_path=get_file_path('loader.sce');
  
 link(ext9f_path+'/libext9f.so',['ext9f'],'f');
-Loading shared executable0./libext9f.so
-
 shared archive loaded
 
 Linking ext9f 

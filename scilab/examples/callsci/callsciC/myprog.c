@@ -15,10 +15,19 @@
 #define SCI "../.."
 #endif 
 
+#include <string.h> 
+
+extern int C2F(inisci)(int *,int *,int *);
+extern int C2F (sciquit) (void);
+extern void C2F(settmpdir) (void);
+extern int C2F(scirun)(char * startup, int lstartup);
+extern void C2F(storeversion)(char *str,int n);
+
+
 static void Initialize() 
 {
   static char initstr[]="exec(\"SCI/scilab.star\",-1);quit;";
-  static iflag=-1, stacksize = 1000000, ierr=0;
+  static int iflag=-1, stacksize = 1000000, ierr=0;
   /* je fixe des variables d'environement
    * ici pour pas avoir de callsci a ecrire 
    */ 
@@ -101,6 +110,7 @@ int troisieme_exemple()
   /* pour que scilab <<linke>> mon_edo */
   /* appel de ode */
   send_scilab_job("y=ode(x,0,time,''mon_ode''),");
+  return 0;
 }
 
 
@@ -121,6 +131,7 @@ int MAIN__(void)
   deuxieme_exemple() ;
   troisieme_exemple() ;
   C2F(sciquit)();
+  return 0;
 }
 
 

@@ -37,8 +37,6 @@ exec loader.sce
 ext12f_path=get_file_path('loader.sce');
  
 link(ext12f_path+'/libext12f.so',['ext12f'],'f');
-Loading shared executable0./libext12f.so
-
 shared archive loaded
 
 Linking ext12f 

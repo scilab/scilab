@@ -37,8 +37,6 @@ exec loader.sce
 ext5c_path=get_file_path('loader.sce');
  
 link(ext5c_path+'/libext5c.so',['ext5c'],'c');
-Loading shared executable0./libext5c.so
-
 shared archive loaded
 
 Linking ext5c 

@@ -59,8 +59,6 @@ functions=[ 'ext11c';
 ];
  
 addinter(libex11fi_path+'/libex11fi.so','libex11fi',functions);
-Loading shared executable0./libex11fi.so
-
 shared archive loaded
 
 Linking libex11fi 

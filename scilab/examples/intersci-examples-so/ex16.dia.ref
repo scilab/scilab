@@ -73,8 +73,6 @@ functions=[ 'ext16ca';
 ];
  
 addinter(libex16fi_path+'/libex16fi.so','libex16fi',functions);
-Loading shared executable0./libex16fi.so
-
 shared archive loaded
 
 Linking libex16fi 

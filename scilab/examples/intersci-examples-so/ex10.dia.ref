@@ -59,8 +59,6 @@ functions=[ 'calc10';
 ];
  
 addinter(libex10fi_path+'/libex10fi.so','libex10fi',functions);
-Loading shared executable0./libex10fi.so
-
 shared archive loaded
 
 Linking libex10fi 

@@ -9,12 +9,6 @@ auxiliary="";
 files=G_make(["tutorial_gateway.o","tutorial.a", auxiliary],"void(Win)");
  
 addinter(files,"tutorial_gateway",scilab_functions);
-linking files 
-tutorial_gateway.o 
-tutorial.a 
- 
- to create a shared executable
-
 shared archive loaded
 
 Linking tutorial_gateway 

@@ -39,8 +39,6 @@ exec loader.sce
 ext13if_path=get_file_path('loader.sce');
  
 link(ext13if_path+'/libext13if.so',['ext13if','ext13of'],'f');
-Loading shared executable0./libext13if.so
-
 shared archive loaded
 
 Linking ext13if 

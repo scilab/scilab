@@ -37,8 +37,6 @@ exec loader.sce
 ext8c_path=get_file_path('loader.sce');
  
 link(ext8c_path+'/libext8c.so',['ext8c'],'c');
-Loading shared executable0./libext8c.so
-
 shared archive loaded
 
 Linking ext8c 

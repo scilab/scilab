@@ -37,8 +37,6 @@ exec loader.sce
 ext1f_path=get_file_path('loader.sce');
  
 link(ext1f_path+'/libext1f.so',['ext1f'],'f');
-Loading shared executable0./libext1f.so
-
 shared archive loaded
 
 Linking ext1f 

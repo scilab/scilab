@@ -39,8 +39,6 @@ exec loader.sce
 ext14fi_path=get_file_path('loader.sce');
  
 link(ext14fi_path+'/libext14fi.so',['ext14fi'],'f');
-Loading shared executable0./libext14fi.so
-
 shared archive loaded
 
 Linking ext14fi 

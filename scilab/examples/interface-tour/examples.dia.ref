@@ -1,10 +1,4 @@
  
-linking files 
-examples_gateway.o 
-examples.a 
- 
- to create a shared executable
-
 shared archive loaded
 
 Linking examples_gateway 
@@ -381,10 +375,6 @@ if norm(Z2 - Zref2) > %eps then bugmes();quit;end
 if ~c_link('f3c') then
   files=G_make(['f3c.o'],'f3c.dll');
   link(files,'f3c','C') ;
-linking files 
-f3c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking f3c 
@@ -681,10 +671,6 @@ if norm(Z2 - Zref2) > %eps then bugmes();quit;end
 if ~c_link('f3f') then
   files=G_make(['f3f.o'],'f3f.dll');
   link(files,'f3f','f') ;
-linking files 
-f3f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking f3f 

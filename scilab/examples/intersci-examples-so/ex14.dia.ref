@@ -71,8 +71,6 @@ functions=[ 'spt1';
 ];
  
 addinter(libex14fi_path+'/libex14fi.so','libex14fi',functions);
-Loading shared executable0./libex14fi.so
-
 shared archive loaded
 
 Linking libex14fi 

@@ -37,8 +37,6 @@ exec loader.sce
 ext7f_path=get_file_path('loader.sce');
  
 link(ext7f_path+'/libext7f.so',['ext7f'],'f');
-Loading shared executable0./libext7f.so
-
 shared archive loaded
 
 Linking ext7f 

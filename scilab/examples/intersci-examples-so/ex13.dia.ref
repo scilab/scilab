@@ -59,8 +59,6 @@ functions=[ 'ext13c';
 ];
  
 addinter(libex13fi_path+'/libex13fi.so','libex13fi',functions);
-Loading shared executable0./libex13fi.so
-
 shared archive loaded
 
 Linking libex13fi 

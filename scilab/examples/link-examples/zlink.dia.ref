@@ -7,10 +7,6 @@
 files=G_make(['/tmp/ext1c.o'],'ext1c.dll');
  
 link(files,'ext1c','C');
-linking files 
-/tmp/ext1c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext1c 
@@ -36,10 +32,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext1f.o'],'ext1f.dll');
  
 link(files,'ext1f');
-linking files 
-/tmp/ext1f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext1f 
@@ -64,10 +56,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext2c.o'],'ext2c.dll');
  
 link(files,'ext2c','C');
-linking files 
-/tmp/ext2c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext2c 
@@ -91,10 +79,6 @@ if norm(c-(sin(a)+cos(b))) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext2f.o'],'ext2f.dll');
  
 link(files,'ext2f');
-linking files 
-/tmp/ext2f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext2f 
@@ -118,10 +102,6 @@ if norm(c-(sin(a)+cos(b))) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext3c.o'],'ext3c.dll');
  
 link(files,'ext3c','C');
-linking files 
-/tmp/ext3c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext3c 
@@ -149,10 +129,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext3f.o'],'ext3f.dll');
  
 link(files,'ext3f');
-linking files 
-/tmp/ext3f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext3f 
@@ -180,10 +156,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext4c.o'],'ext4c.dll');
  
 link(files,'ext4c','C');
-linking files 
-/tmp/ext4c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext4c 
@@ -213,10 +185,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext4f.o'],'ext4f.dll');
  
 link(files,'ext4f');
-linking files 
-/tmp/ext4f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext4f 
@@ -246,10 +214,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext5c.o'],'ext5c.dll');
  
 link(files,'ext5c','C');
-linking files 
-/tmp/ext5c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext5c 
@@ -273,10 +237,6 @@ if norm(c-(Amatrix+2*b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext5f.o'],'ext5f.dll');
  
 link(files,'ext5f');
-linking files 
-/tmp/ext5f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext5f 
@@ -302,10 +262,6 @@ if norm(c-(a+2*b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext6c.o'],'ext6c.dll');
  
 link(files,'ext6c','C');
-linking files 
-/tmp/ext6c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext6c 
@@ -331,10 +287,6 @@ if norm(c-(a+2*b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext6f.o'],'ext6f.dll');
  
 link(files,'ext6f');
-linking files 
-/tmp/ext6f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext6f 
@@ -359,10 +311,6 @@ if norm(c-(a+2*b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext7c.o'],'ext7c.dll');
  
 link(files,'ext7c','C');
-linking files 
-/tmp/ext7c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext7c 
@@ -397,10 +345,6 @@ if d<>"test" then bugmes();quit;end
 files=G_make(['/tmp/ext7f.o'],'ext7f.dll');
  
 link(files,'ext7f');
-linking files 
-/tmp/ext7f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext7f 
@@ -437,10 +381,6 @@ if d<>"test" then bugmes();quit;end
 files=G_make(['/tmp/ext8c.o'],'ext8c.dll');
  
 link(files,'ext8c','C');
-linking files 
-/tmp/ext8c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext8c 
@@ -472,10 +412,6 @@ if norm(param(1)-18.0) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext8f.o'],'ext8f.dll');
  
 link(files,'ext8f');
-linking files 
-/tmp/ext8f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext8f 
@@ -505,10 +441,6 @@ if norm(param(1)-18.0) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext9c.o'],'ext9c.dll');
  
 link(files,'ext9c','C');
-linking files 
-/tmp/ext9c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext9c 
@@ -535,10 +467,6 @@ ode([1;0;0],0,[0.4,4],'ext9c')
 files=G_make(['/tmp/ext9f.o'],'ext9f.dll');
  
 link(files,'ext9f');
-linking files 
-/tmp/ext9f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext9f 
@@ -560,10 +488,6 @@ ode([1;0;0],0,[0.4,4],'ext9f')
 files=G_make(['/tmp/ext10c.o'],'ext10c.dll');
  
 link(files,'ext10c','C');
-linking files 
-/tmp/ext10c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext10c 
@@ -589,10 +513,6 @@ y=ode([1;0;0],0,[0.4,4],list('ext10c',param))
 files=G_make(['/tmp/ext10f.o'],'ext10f.dll');
  
 link(files,'ext10f');
-linking files 
-/tmp/ext10f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext10f 
@@ -620,10 +540,6 @@ y=ode([1;0;0],0,[0.4,4],list('ext10f',param))
 files=G_make(['/tmp/ext11c.o'],'ext11c.dll');
  
 link(files,'ext11c','C');
-linking files 
-/tmp/ext11c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext11c 
@@ -652,10 +568,6 @@ y=ode([1;0;0],0,[0.4,4],'ext11c')
 files=G_make(['/tmp/ext11f.o'],'ext11f.dll');
  
 link(files,'ext11f');
-linking files 
-/tmp/ext11f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext11f 
@@ -682,10 +594,6 @@ y=ode([1;0;0],0,[0.4,4],'ext11f');
 files=G_make(['/tmp/ext12c.o'],'ext12c.dll');
  
 link(files,'ext12c','C');
-linking files 
-/tmp/ext12c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext12c 
@@ -711,10 +619,6 @@ y=ode([1;0;0],0,[0.4,4],'ext12c');
 files=G_make(['/tmp/ext12f.o'],'ext12f.dll');
  
 link(files,'ext12f');
-linking files 
-/tmp/ext12f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext12f 
@@ -738,10 +642,6 @@ y=ode([1;0;0],0,[0.4,4],'ext12f');
 files=G_make(['/tmp/ext13c.o'],'ext13c.dll');
  
 link(files,['ext13ic','ext13oc'],'C');  //Must be linked together
-linking files 
-/tmp/ext13c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext13ic 
@@ -774,10 +674,6 @@ if norm(c-a) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext13f.o'],'ext13f.dll');
  
 link(files,['ext13if','ext13of']);  //Must be linked together
-linking files 
-/tmp/ext13f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext13if 
@@ -811,10 +707,6 @@ if norm(c-a) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext14c.o'],'ext14c.dll');
  
 link(files,'ext14cI','C');
-linking files 
-/tmp/ext14c.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext14cI 
@@ -840,10 +732,6 @@ if norm(c-(a+b)) > %eps then bugmes();quit;end
 files=G_make(['/tmp/ext14f.o'],'ext14f.dll');
  
 link(files,'ext14fi');
-linking files 
-/tmp/ext14f.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking ext14fi 

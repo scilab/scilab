@@ -37,8 +37,6 @@ exec loader.sce
 ext6c_path=get_file_path('loader.sce');
  
 link(ext6c_path+'/libext6c.so',['ext6c'],'c');
-Loading shared executable0./libext6c.so
-
 shared archive loaded
 
 Linking ext6c 

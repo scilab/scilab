@@ -61,8 +61,6 @@ functions=[ 'calc6a';
 ];
  
 addinter(libex06fi_path+'/libex06fi.so','libex06fi',functions);
-Loading shared executable0./libex06fi.so
-
 shared archive loaded
 
 Linking libex06fi 

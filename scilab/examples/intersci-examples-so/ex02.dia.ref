@@ -60,8 +60,6 @@ functions=[ 'som';
 ];
  
 addinter(libex02fi_path+'/libex02fi.so','libex02fi',functions);
-Loading shared executable0./libex02fi.so
-
 shared archive loaded
 
 Linking libex02fi 

@@ -1,10 +1,4 @@
  
-linking files 
-lapackscilab_gateway.o 
-lapackscilab.a 
- 
- to create a shared executable
-
 shared archive loaded
 
 Linking lapackscilab_gateway 

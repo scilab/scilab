@@ -150,10 +150,6 @@ if abs(nn(1)-162.57763) > Eps then bugmes();quit;end
 files=G_make(['/tmp/res22.o'],'res22.dll');
  
 link(files,'res22');
-linking files 
-/tmp/res22.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking res22 
@@ -164,10 +160,6 @@ Link done
 files=G_make(['/tmp/jac22.o'],'jac22.dll');
  
 link(files,'jac22');
-linking files 
-/tmp/jac22.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking jac22 
@@ -178,10 +170,6 @@ Link done
 files=G_make(['/tmp/gr22.o'],'gr22.dll');
  
 link(files,'gr22');
-linking files 
-/tmp/gr22.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking gr22 
@@ -430,10 +418,6 @@ yref=[0.9851721 0.9055180;0.0000339 0.0000224;0.0147940 0.0944596];
 files=G_make(["/tmp/wfex.o"],"wfex.dll");
  
 iwfex=link(files,"wfex");
-linking files 
-/tmp/wfex.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking wfex 
@@ -444,10 +428,6 @@ Link done
 files=G_make(["/tmp/wjex.o"],"wjex.dll");
  
 iwjex=link(files,"wjex");
-linking files 
-/tmp/wjex.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking wjex 
@@ -624,10 +604,6 @@ x=ode(ones(10,1),0,[1,2,3],f);
 files=G_make(["/tmp/wfexab.o"],'wfexab.dll');
  
 link(files,"wfexab");
-linking files 
-/tmp/wfexab.o 
- to create a shared executable
-
 shared archive loaded
 
 Linking wfexab 
