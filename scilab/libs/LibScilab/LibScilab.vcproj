@@ -21,7 +21,6 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/LD "
 				Optimization="0"
 				OptimizeForProcessor="0"
 				AdditionalIncludeDirectories="../../routines/f2c,../../tcllib/include/X11,../../tcllib/include,../../pvm3/include,../../pvm3/src"
@@ -352,6 +351,9 @@ copy ..\LibScilab.def ..\..\bin\LibScilab.def &gt;nul
 			</File>
 			<File
 				RelativePath="..\..\routines\default\callinterf.h">
+			</File>
+			<File
+				RelativePath="..\..\routines\f2c\libf2c\Dllmain.c">
 			</File>
 			<File
 				RelativePath="..\..\routines\default\FTables.c">
