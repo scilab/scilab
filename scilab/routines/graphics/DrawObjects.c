@@ -3682,8 +3682,6 @@ int GradLog(double _min, double _max, double *_grads, int * n_grads)
   int log_min, log_max;
   int /*  * tab= NULL, */ size;
   
-/*   sciprint("En entrÂŽée de GradLog, _min = %lf ; _max= %lf\n",_min,_max); */
-  
 
   *n_grads = 0;
   log_max =  (int) ceil(_max);
