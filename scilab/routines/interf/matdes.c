@@ -2341,9 +2341,9 @@ int scixget(fname,fname_len)
        LhsVar(1)=Rhs+1;          
       }   /* NG end*/
   else 
-
     {
       int i; 
+      x2=0;
       C2F(dr1)("xget",cstk(l1),&flagx,x1,&x2,&v,&v,&v,&dv,&dv,&dv,&dv,5L,bsiz);
       if (x2 > 0) {
 	CreateVar(Rhs+1,"d",&one,&x2,&l3);
