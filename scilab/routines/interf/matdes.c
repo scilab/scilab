@@ -3428,8 +3428,8 @@ int scixstringl(fname,fname_len)
   cur_font_[0] = font_[0];
   cur_font_[1] = font_[1];
  
-  if (Rhs >= 4) { GetRhsVar(4,"i",&m4,&n4,&l4); font_[0]  = *istk(l4);}
-  if (Rhs >= 5) { GetRhsVar(5,"i",&m5,&n5,&l5); font_[1] = *istk(l5);}
+  if (Rhs >= 4) { GetRhsVar(4,"i",&m4,&n4,&l4); CheckLength(4,m4*n4,1); font_[0]  = *istk(l4);}
+  if (Rhs >= 5) { GetRhsVar(5,"i",&m5,&n5,&l5); CheckLength(5,m5*n5,1); font_[1] = *istk(l5);}
   
   C2F(dr1)("xset","font",&font_[0],&font_[1],PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   
