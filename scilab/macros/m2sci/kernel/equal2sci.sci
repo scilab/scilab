@@ -137,7 +137,19 @@ else
 
 end
 
-
+// Result is displayed or not ?
+if ~batch & or(mtlb_instr.endsymbol==[",",""]) then
+  if sci_instr.lhs(1).name=="ans" then // Variable to display
+    sci_instr.expression=Funcall("disp",1,list(sci_instr.expression),list())
+  else // Instruction lhs to display
+    sci_instr.endsymbol=","
+    displhs=list()
+    for klhs=size(sci_instr.lhs):-1:1
+      displhs($+1)=sci_instr.lhs(klhs)
+    end
+    m2sci_to_insert_a($+1)=Equal(list(Variable("ans",Infer())),Funcall("disp",1,displhs,list()))
+  end
+end
 endfunction
 
 
