@@ -3990,13 +3990,14 @@ int nscixaxis(fname, fname_len)
 
   if ( opts[8].position != -1 ) 
     { 
-      val = (char **) opts[8].l;
+      //val = (char **) opts[8].l; // F.Leray Pb here: Return address with stack not used? 08.03.04
+      val = (((char **) C2F(stack).Stk) + opts[8].l -1 ); // Sstk(opts[8].l); // F.Leray Solution ??? 08.03.04
     } 
 
   if ( opts[9].position != -1 ) 
     { 
       x = stk(opts[9].l);
-      nx = opts[9].m * opts[9].n ;
+      nx = opts[9].m * opts[9].n ;  // F.Leray OK here opts[9].m and opts[9].n are integers.
     }
   else 
     {
