@@ -891,6 +891,7 @@ int C2F (addmen) (integer * win_num, char *button_name, integer * entries,
 		  integer * ierr)
 {
   char **menu_entries;
+  menu_entries=NULL;
   *ierr = 0;
   if (*ne != 0)
     {
