@@ -57,8 +57,15 @@
   <P>
     calcule :
   </P>
-  <P>
-  </P>
+
+<VERBATIM><![CDATA[
+                       /x1
+                      [
+                  x = I  f(v)dv
+                      ]
+                     /x0
+]]></VERBATIM>
+
   <P>
     L&apos;approximation satisfait (on l&apos;espère) l&apos;affirmation suivante sur l&apos;erreur :
     <VERB>abs(I-x)&lt;= max(ea,er*abs(I))</VERB> où I représente la valeur exacte de l&apos;intégrale.
