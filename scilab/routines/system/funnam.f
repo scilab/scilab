@@ -7,7 +7,6 @@ c     Copyright INRIA
       integer name(nlgh),name1(nlgh)
       integer percen,under
       data percen/56/,under/36/
-
       name(1)=percen
       i=2
       call typ2cod(il1,name(i),n1)

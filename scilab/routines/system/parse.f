@@ -4,7 +4,7 @@ c     Scilab parsing function
 c     ====================================================================
 c     Copyright INRIA
       include '../stack.h'
-      parameter (nz1=nsiz-1,nz2=nsiz-2)
+      parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
       logical compil,eptover
 c     
       logical iflag
@@ -15,7 +15,7 @@ c
       integer name,num,insert,extrac
 c     
       integer id(nsiz),ans(nsiz)
-      integer pts,psym,excnt,p,r,topk
+      integer pts,psym,excnt,p,r,topk,where
       integer pcount,strcnt,bcount,qcount,pchar,schar
       logical dotsep
       character*50 tmp
@@ -101,7 +101,13 @@ c     Continuation line handling when scilab is called as a routine
       endif
       job=0
       err = 0
-c     
+c
+      if(pt.ne.0) goto 15
+ 14   call handleonprompt(where)
+      if(err.gt.0) goto 98
+      goto(85,88) where
+
+
 c     Beginning of a new statement, clause expression or command
 c------------------------------------------------------------
  15   continue
@@ -702,7 +708,7 @@ c
       goto(81,82,83,91,88,90,92,80,85),r
       goto 99
 c     
- 92   goto(17,35,65,71,65,97,94,731) rstk(pt)-700
+ 92   goto(17,35,65,71,65,97,94,731,99,14) rstk(pt)-700
       goto 99
 c     
  93   continue
@@ -780,7 +786,55 @@ c
 
       end
 
+      subroutine handleonprompt(where)
+c     checks if an implicit execution is required on the prompt
+c     where : returned indicator
+c     where = 0 : no implicit execution is required
+c     where = 1 : implicit execution is a primitive
+c     where = 2 : implicit execution is a Scilab function
 
+c     Copyright INRIA
+      include '../stack.h'
+      parameter (nz1=nsiz-1,nz2=nsiz-2,nz3=nsiz-3)
+
+      integer where,onprompt(nsiz)
+      data onprompt/420943928,420878363,673720349,nz3*673720360/
+      where=0
+      if(pt.gt.0) then
+c     .  back from %onprompt
+         errct=pstk(pt)
+         pt=pt-1
+         err2=0
+         top=0
+         fin=0
+         fun=0
+      else
+c     .  on prompt implicit execution
+         fun=0
+         call funs(onprompt)
+         if(err.gt.0) return
+         if(fun.le.0.and.fin.eq.0) return
+c     .  %onprompt function exists
+         rhs=0
+         lhs=1
+         pt=pt+1
+         pstk(pt)=errct
+         rstk(pt)=710
+c     .  set error catch with mode continue
+         errct=-100001
+         errpt=1
+         if(fun.gt.0) then
+c     .  %onprompt is a primitive *call* matfns
+            where=1
+         else
+c     .  %onprompt is a Scilab function *call*  macro
+            fin=lstk(fin)
+            where=2
+         endif
+      endif
+      return
+      end
+c     
 
 
 

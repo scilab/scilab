@@ -204,7 +204,6 @@ c     and not 0
       endif
 c     
       ids(6,pt)=toperr
-
       toperr=top
       if(istk(ilk).eq.13) then
          lct(8)=1

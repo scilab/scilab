@@ -189,7 +189,8 @@ c
      +     240,241,242,243,244,245,246,247,248,249,
      +     250,251,252,253,254,255,256,257,258,259,
      +     260,261,262,263,264,265,266,267,268,269,
-     +     270),n-199
+     +     270,271,272,273,274,275,276,277,278,279,
+     +     280),n-199
       if(n.ge.10000) return
       goto 998
 c
@@ -1203,7 +1204,37 @@ C     errors from semidef
      +        'argument eigenvalues modulus must be less than one')
       endif
       goto 999
-c
+
+ 271  continue
+      if(err.ne.1) then
+         write(buf(1:3),'(i3)') err
+         call msgout(io,lunit,buf(1:3)//
+     +        'Size varying argument a*eye(), (arg '//buf(1:3)//
+     +        ') not allowed here')
+      else
+         call msgout(io,lunit,'Size varying argument a*eye()'//
+     +        ' not allowed here')
+      endif
+      goto 999
+ 272  continue
+      goto 999
+ 273  continue
+      goto 999
+ 274  continue
+      goto 999
+ 275  continue
+      goto 999
+ 276  continue
+      goto 999
+
+ 277  continue
+      goto 999
+ 278  continue
+      goto 999
+ 279  continue
+      goto 999
+ 280  continue
+      goto 999
 c
 c---------------------------------------------------------------------
  998  continue

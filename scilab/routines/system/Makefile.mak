@@ -12,14 +12,14 @@ LIBRARY = $(SCIDIR)/libs/system.lib
 OBJSC = System.obj System2.obj Calelm.obj Sun.obj Intersci.obj Blas.obj Lapack.obj helpap.obj \
 	scicurdir.obj readline.obj msgstore.obj storeversion.obj
 
-OBJSF = allops.obj  banier.obj sascii.obj diary.obj\
+OBJSF = allops.obj  banier.obj diary.obj\
 	clause.obj comand.obj compcl.obj   \
 	defmat.obj eqid.obj error.obj showstack.obj expr.obj fact.obj funs.obj \
 	getch.obj  getlin.obj getnum.obj getstr.obj getsym.obj \
 	getval.obj helpmg.obj inisci.obj \
 	logops.obj macro.obj mname.obj nextj.obj parse.obj print.obj \
 	prompt.obj putid.obj  run.obj savlod.obj  stackg.obj stackgl.obj \
-	ref2val.obj stackp.obj terme.obj xchar.obj  scirun.obj \
+	ref2val.obj stackp.obj terme.obj  scirun.obj \
 	majmin.obj apropo.obj whatln.obj \
 	seteol.obj setlnb.obj skpins.obj msgs.obj prntid.obj \
 	cvname.obj cvstr.obj compil.obj ptover.obj ptrback.obj \
@@ -98,7 +98,6 @@ ptover.obj: ../stack.h
 ptrback.obj: ../stack.h
 putid.obj: ../stack.h
 run.obj: ../stack.h
-sascii.obj: ../stack.h
 savlod.obj: ../stack.h
 scilines.obj: ../stack.h
 sciquit.obj: ../stack.h
