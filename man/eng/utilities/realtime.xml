@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>realtime  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 1993  </DATE>
+  <SHORT_DESCRIPTION name="realtimeinit">set dates origin and time unit  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="realtime(t)"> waits until date   </SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>realtimeinit(time_unit)
+  <CALLING_SEQUENCE_ITEM>realtime(t)
+  </CALLING_SEQUENCE_ITEM>
+
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+  <PARAM_INDENT>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>time_unit </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real number. The number of seconds associated to the <VERB>realtime</VERB> argument 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>t  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : a real number. A date relative to the origin set by  <VERB>realtimeinit</VERB>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+   These two functions can be used to handle real time into Scilab.
+   <P></P> 
+
+   <VERB>realtimeinit(time_unit)</VERB> set the date origin
+   (<VERB>t0</VERB>) to the current date and defines the time unit
+   associated to the <VERB>realtime</VERB> argument <VERB>t</VERB>
+   <P></P> 
+
+   <VERB>realtime(t)</VERB> waits til date <VERB>t0+t</VERB> is
+   reached.
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   //next instruction outputs a dot each 1/2 seconds
+   realtimeinit(1/2);realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+ 
+  //next instruction outputs a dot each 2 seconds
+   realtimeinit(2); realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+
+   realtimeinit(1);realtime(0);
+   dt=getdate('s'); realtime(10);   getdate('s')-dt
+
+
+
+ ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>getdate</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
