@@ -7553,7 +7553,7 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
   pFIGURE_FEATURE (pfiguremdl)->numcolors=  NUMCOLORS_SCI;
   /** the colormap is mx3 matrix */
-  m = NUMCOLORS;
+  m = NUMCOLORS_SCI;
   if((pFIGURE_FEATURE(pfiguremdl)->pcolormap = (double *) MALLOC (m * 3 * sizeof (double))) == (double *) NULL)
     {
       sciDelHandle (pfiguremdl);
@@ -16252,7 +16252,7 @@ sciPointObj *sciGetMerge(sciPointObj *psubwin)
 /* DJ.A 08/01/04 */
 int InitFigureModel()
 { 
-  int i, m = NUMCOLORS;
+  int i, m = NUMCOLORS_SCI;
   
   sciInitGraphicContext (pfiguremdl);
   sciInitGraphicMode (pfiguremdl);
