@@ -14,7 +14,7 @@ for k=1:size(corinv)
     end
   else
     m=scicos_model();
-    pause
+
     //here it is assumed that modelica blocs have only scalar inputs/outputs
     m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k))
     m.out=ones(1,sim.outptr(k+1)-sim.outptr(k))

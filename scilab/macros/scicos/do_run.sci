@@ -11,29 +11,31 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 
 // Copyright INRIA
 
-  if needcompile==4 then 
-    do_terminate(),alreadyran=%f
-  end
-  
-  if alreadyran&needcompile<=1 then
-    choix=['Continue';'Restart';'End']
-  elseif alreadyran then
-    choix=['Restart';'End']
-  else
-    choix=[]
-  end
+//  if needcompile==4 then 
+//    do_terminate(),alreadyran=%f
+//  end
+
+
   tolerances=scs_m.props.tol
   solver=tolerances(6)
 
   // update parameters or compilation results
-  [%cpr,%state0_n,needcompile,ok]=do_update(%cpr,%state0,needcompile)
+  [%cpr,%state0_n,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
   if ~ok then %tcur=[],alreadyran=%f,return,end
-   //~isequal(%state0_n,%state0) then //initial state has been changed
+  
+  if alreadyran then
+    choix=['Continue';'Restart';'End']
+  else
+    choix=[]
+  end
+  
+  
   if or(%state0_n<>%state0) then //initial state has been changed
     %state0=%state0_n
-    //  %cpr.state=%state0
-    if choix(1)=='Continue' then choix(1)=[],end
+    [alreadyran,%cpr]=do_terminate()
+    choix=[]
   end
+
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
     message(['Diagram has been compiled for implicit solver'
 	     'switching to implicit Solver'])
@@ -52,13 +54,13 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     to_do=choose(choix,'What do you want to do')
     if to_do==0 then ok=%f,return,end
     select choix(to_do)
-      case 'Continue' then 
+     case 'Continue' then 
       needstart=%f
       state=%cpr.state
-      case 'Restart' then 
+     case 'Restart' then 
       needstart=%t
       state=%state0
-      case 'End' then 
+     case 'End' then 
       state=%cpr.state
       needstart=%t
       tf=scs_m.props.tf;
@@ -87,12 +89,12 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     needstart=%t
     state=%state0
   end
-
+  
   win=xget('window')
-
+  
   if needstart then //scicos initialisation
     if alreadyran then
-      do_terminate()
+      [alreadyran,%cpr]=do_terminate()
       alreadyran=%f
     end
     %tcur=0
@@ -143,8 +145,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     alreadyran=%t
     if tf-t<tolerances(3) then
       needstart=%t
-      do_terminate()
-      alreadyran=%f
+      [alreadyran,%cpr]=do_terminate()
     else
       %tcur=t
     end

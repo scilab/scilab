@@ -1,17 +1,17 @@
-function [%cpr,%state0,needcompile,ok]=do_update(%cpr,%state0,needcompile)
+function [%cpr,%state0,needcompile,alreadyran,ok]=do_update(%cpr,%state0,needcompile)
 //Update an already compiled scicos diagram compilation result according to 
 //parameter changes
 //!
 // Copyright INRIA
 ok=%t 
 select needcompile
-case 0 then  // only parameter changes 
+ case 0 then  // only parameter changes 
   if size(newparameters)<>0 then
     cor=%cpr.cor
     [%state0,state,sim]=modipar(newparameters,%state0,%cpr.state,%cpr.sim)
     %cpr.state=state,%cpr.sim=sim
   end
-case 1 then // parameter changes and/or port sizes change
+ case 1 then // parameter changes and/or port sizes change
   if size(newparameters)<>0 then
     // update parameters or states
     cor=%cpr.cor
@@ -56,25 +56,18 @@ case 1 then // parameter changes and/or port sizes change
     needcompile=0
   end
  
-case 2 then // partial recompilation
+ case 2 then // partial recompilation
+  alreadyran=do_terminate()
   [%cpr,ok]=c_pass3(scs_m,%cpr)
   %state0=%cpr.state
   if ~ok then return,end
   needcompile=0
-  alreadyran=%f
-case 4 then  // full compilation
-  needstart=%t
+ case 4 then  // full compilation
+  alreadyran=do_terminate()
   [%cpr,ok]=do_compile(scs_m)
   if ok then
     %state0=%cpr.state
-    newparameters=list()
-    %tcur=0 //temps courant de la simulation
-    alreadyran=%f
     needcompile=0
-  else
-    alreadyran=%f
-    %tcur=0
-    //%state0=%cpr.state
   end
 end
 endfunction
