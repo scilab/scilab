@@ -15,11 +15,13 @@ model=o.model
 lab=model.label
 lab=dialog('Give block label',lab)
 if lab<>[] then
+  drawblock(o);
   lab=stripblanks(lab)
   if length(lab)==0 then lab=' ',end
   model.label=lab
   o.model=model
   scs_m.objs(K)=o
   mod=%t
+  drawblock(o);
 end
 endfunction
