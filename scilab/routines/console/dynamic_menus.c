@@ -202,6 +202,10 @@ int GetCommand ( char *str)
       commandQueue = p->next;
       free (p->command);
       free (p);
+	  if (C2F(iop).ddt==-1) {
+		if (flag==0) { sciprint("   Unqueuing %s - No option\r\n",str); }
+		else         { sciprint("   Unqueuing %s - seq\r\n",str); }
+	  }
     }
   return flag;
 }

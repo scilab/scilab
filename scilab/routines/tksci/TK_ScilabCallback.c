@@ -25,7 +25,13 @@ int TK_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int  objc,char
       int ns=strlen(argv[1]); 
       int seq=(argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0);
       int ierr,l=0;
+	  if (C2F(iop).ddt==-1) {
+		sciprint("   Execution starts for %s\r\n",argv[1]);
+	  }
       C2F(syncexec)(argv[1],&ns,&ierr,&seq);
+      if (C2F(iop).ddt==-1) {
+        sciprint("   Execution ends for %s\r\n",argv[1]);
+	  }
       if (ierr != 0) return TCL_ERROR;
 	}
     else {
