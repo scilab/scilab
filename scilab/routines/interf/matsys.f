@@ -1231,6 +1231,19 @@ c     .     clear within a macro, an exec or a pause
 c     .  clear all variable
 
 c     .  preserve %help and scicos_pal variables
+         i1=bbot
+         fin=-1
+         call stackg(helps)
+         if(err.gt.0) return
+         if (fin.gt.0) i1=min(fin,i1)
+
+         fin=-1
+         call stackg(scspal)
+         if(err.gt.0) return
+         if (fin.gt.0) i1=min(fin,i1)
+         bot = i1
+         if(bot.eq.bbot) goto 02
+         
          fin=0
          call stackg(helps)
          if(err.gt.0) return
