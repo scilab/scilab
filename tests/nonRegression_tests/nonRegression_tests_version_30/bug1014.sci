@@ -3,7 +3,7 @@
 clear all
 a=%nan;
 b=1/a;
-affich_result( b == %nan , 1014)
+affich_result( isnan(b) == %T , 1014)
 clear all
 
 
