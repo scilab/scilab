@@ -124,7 +124,7 @@ function Code=make_ddoit1()
 	 '  integer ordclk_dim1, ordclk_offset, i2; '; 
 	 ' '; 
 	 '  /* Local variables */ '; 
-	 '  integer flag, keve, nport; ';
+	 '  integer flag, keve, kiwa, nport; ';
 	 '  double  tvec['+string(sztvec)+']; '; 
 	 '  double  rdouttb['+string(size(outtb,1)+1)+']; ';
 	 '  double  *args[100]; '; 
@@ -156,7 +156,7 @@ function Code=make_ddoit1()
 	 '  --outtb; ';
 	 ' '; 
 	 '  /* Function Body */ '; 
-	 '  iwa['+string(nblk)+'] = 0; ';
+	 '  kiwa = 0; ';
 	 '  urg = 0; '];
 
   //////////////////////////////////////////////////
@@ -173,8 +173,8 @@ function Code=make_ddoit1()
 	'  *pointi = evtspt[keve]; '; 
 	'  evtspt[keve] = -1; ';
 	' ';
-	'  ++iwa['+string(nblk)+']; ';
-	'  iwa[iwa['+string(nblk)+']] = keve;';
+	'  ++kiwa; ';
+	'  iwa[kiwa] = keve;';
 	' '];
 
   maxkeve=size(evtspt,1);
@@ -247,7 +247,8 @@ function Code=make_ddoit1()
 		    '&ordclk[ordclk_offset], nordcl, &rpar[1], '+..
 		    '&ipar[1], &funptr[1], &funtyp[1], '+..
 		    '&(z['+string(size(z,1)+1)+']), &urg, '+..
-		    '(int *)(z+'+string(size(z,1)+size(outtb,1)+1)+'));',70);
+		    '(int *)(z+'+string(size(z,1)+size(outtb,1)+1)+..
+		    '),&kiwa);',70);
 	'    if (urg > 0) {';
 	'      goto L43;';
 	'    }';
@@ -279,7 +280,7 @@ function Code=make_edoit1()
 	 'int '
 	 cformatline(rdnom+'edoit1( z, zptr, told,tevts, evtspt, nevts, '+..
 		    'pointi,  outptr, clkptr, ordptr, ordclk, nordcl, '+..
-		    'rpar, ipar, funptr, funtyp, outtb, urg, iwa)',70)
+		    'rpar, ipar, funptr, funtyp, outtb, urg, iwa, kiwa)',70)
 	'     double  *z; ';
 	'     integer *zptr; ';
 	'     double  *told,  *tevts; ';
@@ -287,7 +288,7 @@ function Code=make_edoit1()
 	'     integer *clkptr, *ordptr, *ordclk, *nordcl; ';
 	'     double  *rpar, *outtb; ';
 	'     integer *ipar,  *funptr, *funtyp; ';
-	'     integer *urg,  *iwa; ';
+	'     integer *urg,  *iwa, *kiwa; ';
 	'{ ';
 	'  /* System generated locals */ ';
 	'  integer ordclk_dim1, ordclk_offset, i2; ';
@@ -332,8 +333,8 @@ function Code=make_edoit1()
 	'  if (nord == 0) { ';
 	'    return 0; ';
 	'  } ';
-	'  ++(iwa['+string(nblk)+']);   ';
-	'  iwa[iwa['+string(nblk)+']] = keve;   ';
+	'  ++(*kiwa);   ';
+	'  iwa[*kiwa] = keve;   ';
 	'  switch(keve) {'];
 
   for keve=1:maxkeve
@@ -436,7 +437,7 @@ function Code=c_make_doit2(cpr);
 	'  integer  i1, i; '; 
 	' '; 
 	'  /* Local variables */ '; 
-	'  integer flag, keve, nport; '; 
+	'  integer flag, keve, kiwa, nport; '; 
 	'  double  tvec['+string(sztvec)+']; '; 
 	'  double  rdouttb['+string(size(outtb,1)+1)+']; ';
 	'  double  *args[100]; '; 
@@ -464,10 +465,10 @@ function Code=c_make_doit2(cpr);
 	'  /* Function Body */ '; 
 	' '
 	'  /*update continuous and discrete states on event */';
-	'  if (iwa['+string(nblk)+'] == 0) {';
+	'  if (kiwa == 0) {';
 	'    return 0 ;';
 	'  }';
-	'  i1 = iwa['+string(nblk)+'];';
+	'  i1 = kiwa;';
 	'  for (i = 1; i <= i1; ++i) {';
 	'    keve = iwa[i];';
 	'    switch(keve) {'];
@@ -1517,7 +1518,7 @@ function ok=gen_gui();
 	'  '+sci2exp(actt(:,3),'out',70); //output ports sizes
 	'  '+sci2exp(z,'z',70); //initial state
 	'  '+sci2exp(outtb,'outtb',70); //initial link values
-	'  iwa=zeros('+string(nblk)+',1)';
+	'  iwa=zeros('+string(clkptr($)-1)+',1)';
 	'  Z=[z;outtb;iwa]';
         '  '+sci2exp(cpr.sim.rpar,'rpar',70); //real parameters
         '  '+sci2exp(cpr.sim.ipar,'ipar',70);//integer parameters
@@ -1877,7 +1878,7 @@ function Code=make_decl()
 		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
 		    " int *clkptr, int *ordptr, int *ordclk, int *nordcl, double *"+...
 		    " rpar, int *ipar, int *funptr, int *funtyp, double"+...
-		    " *outtb, int * urg, int *iwa)  ;',70);	
+		    " *outtb, int * urg, int *iwa, int *kiwa)  ;',70);	
 	' ';
 	cformatline('int '+rdnom+'_initi(double *z, int * zptr, double *t, double"+...
 		    " *tevts, int *evtspt, int * nevts, int *pointi, int * outptr,"+...
@@ -2148,7 +2149,7 @@ function Code=make_standalone()
 //Author : Rachid Djenidi
 
 //Generates simulation routine for standalone simulation
-  iwa=zeros(nblk,1),Z=[z;outtb;iwa]';
+  iwa=zeros(clkptr($)-1,1),Z=[z;outtb;iwa]';
 Code=[ '/*Main program */'
        'int main()'
        '{'

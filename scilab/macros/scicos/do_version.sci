@@ -1073,7 +1073,7 @@ function scs_m_new=do_version27(scs_m)
 	  mdl(8)=do_version27(mdl(8))
 	end
       end
-      
+
       graphics=scicos_graphics(orig=o(2)(1),sz=o(2)(2),flip=o(2)(3),..
 			       exprs=o(2)(4),pin=o(2)(5),pout=o(2)(6),..
 			       pein=o(2)(7),peout=o(2)(8),gr_i=gr_i,..
@@ -1088,6 +1088,7 @@ function scs_m_new=do_version27(scs_m)
       
       objsi=scicos_block(graphics=graphics,model=model,gui=o(5),..
 			 doc=mdl(14))
+      if objsi.gui=='ESELECT_f' then objsi.model.sim(2)=-2,end
       scs_m_new.objs(i)=objsi
       
     elseif o(1)=='Link' then
