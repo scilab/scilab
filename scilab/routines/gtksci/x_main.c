@@ -690,3 +690,11 @@ int GetScreenProperty(char *prop, char *value)
 #endif
 }
 
+/* no comments .... */
+
+int XSaveNative _PARAMS((char *fname))
+{
+  sciprint("Not yet for Linux\n");
+  LhsVar(1)=0;
+  return 0;
+}
