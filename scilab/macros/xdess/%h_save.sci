@@ -20,7 +20,9 @@ function save_graphichandle(h,fd)
     mput(h.figure_id,'sl',fd);
     mput(size(h.color_map,'*'),'il',fd);mput(h.color_map,'dl',fd)
     mput(bool2s(h.pixmap=='on'),'c',fd)
-    mput(length(h.pixel_drawing_mode),'c',fd);mput(ascii(h.pixel_drawing_mode),'c',fd);
+    mput(length(h.pixel_drawing_mode),'c',fd);
+    mput(ascii(h.pixel_drawing_mode),'c',fd);
+    mput(bool2s(h.immediate_drawing=='on'),'c',fd)
     mput(h.background,'il',fd)
     mput(length(h.rotation_style),'c',fd);mput(ascii(h.rotation_style),'c',fd);
     c=h.children;
