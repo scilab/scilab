@@ -42,7 +42,7 @@
   </PARAM_DESCRIPTION> 
   </PARAM_ITEM>
   <PARAM_ITEM>
-  <PARAM_NAME>nitem  </PARAM_NAME>
+  <PARAM_NAME>niter  </PARAM_NAME>
   <PARAM_DESCRIPTION>
     : an integer, the number of times the format as to
   be used.
