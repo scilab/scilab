@@ -1,55 +1,62 @@
 function h=%s_i_h(i,v,h)
+  hsave=h
   if v==[] then
     error('Field property cannot be []')
   end
-  if type(i)==10 then
-    set(h,i,v)
-  elseif type(i)==15 then
-    hdl=h
-    p=i($)
-    if type(p)==1|type(p)==4|type(p)==2|type(p)==129|type(p)==15 then
-      index=p
-      i($)=null()
+  if type(i)==10 then set(h,i,v),return,end
+  if type(i)<>15 then  error('Invalid path'),end
+
+  if and(type(i($))<>[1 4 2 129 15]) then
+    i($+1)=: 
+  end
+  n=lstsize(i)
+  
+  hdl=h;hind=[]
+  for k=1:lstsize(i)// walk down in the handle tree
+    p=i(k)
+    lasthandle=hdl,
+    if type(p)==10 then
+      hdl=get(hdl,p),
+    elseif or(type(p)==[1 4 2 129]) then
+      hdl=hdl(p)
+    elseif type(p)==15 then
+      hdl=hdl(p(:))
     else
-      index=:
+      error('Invalid path')
     end
-    n=lstsize(i)
-    for k=1:n-1
-      p=i(k)
-      if type(p)==10 then
-	hdl=get(hdl,p),
-      elseif type(p)==1|type(p)==4|type(p)==2|type(p)==129 then
-	hdl=hdl(p)
-      elseif type(p)==15 then
-	hdl=hdl(p(:))
+    
+    if type(hdl)<>9 then //a leaf found
+      property=hdl
+      hdl=lasthandle
+      hind=p
+      if (k+1)==size(i) then
+	index=i($)
       else
-	error('Invalid path')
+	index=list(i(k+1:$))
       end
+      break
     end
-//    pause
-    if type(index)==15 then
-      if get(hdl,'type')=="children" then
-	hdl=hdl(index(:))
-      else // the index is relative to the property
-	if index<>: then
-	  prop=get(hdl,i($))
-	  prop(index(:))=v
-	  v=prop
-	end
-      end
-    elseif type(i($))==10 then // the index is relative to the property
-      if index<>: then
-	prop=get(hdl,i($))
-	prop(index(:))=v
-	v=prop
-      end
+  end
+
+  if hind<>[] then // a property found
+    if type(index)==15 & and(type(property)<>[15 16 17]) then
+      property(index(:))=v
     else
-      hdl=hdl(index)
+      property(index)=v
     end
-    set(hdl,i($),v)
+    if size(hdl,'*')==1 then //a single handle
+      hdl(hind)=property
+    else //mutiple handle 
+      np=size(hdl,'*')
+      for k=1:np
+	h=hdl(k);h(hind)=property
+      end
+      
+    end
   else
     error('Invalid path')
   end
+ h= hsave
 endfunction
 
-  
+
