@@ -133,12 +133,18 @@ function tcltk_help(path,key)
 
 
   if MSDOS then
+    TK_EvalStr('set isbrowsehelpinterp [interp exists browsehelp]');
+    if TK_GetVar("isbrowsehelpinterp")=='0' then    
+      TK_EvalStr("interp create browsehelp")
+      TK_EvalStr("load {"+SCI+"/bin/tk83.dll} Tk browsehelp")
+      TK_EvalStr("browsehelp eval {wm withdraw .}")
+    end
     TK_EvalStr("browsehelp eval {set lang "+LANGUAGE+"}")
     TK_EvalStr("browsehelp eval {set SciPath """+SCI+"""}")
     TK_EvalStr("browsehelp eval {set Home """+INDEX+"""}")
     TK_EvalStr("browsehelp eval {set sciw .scihelp-"+key1+"}")
     TK_EvalStr("browsehelp eval {set manpath """+path+"""}")
-    TK_EvalStr("browsehelp eval {source $SciPath/tcl/browsehelp.tcl}")
+    TK_EvalStr("browsehelp eval {source '+SCI+'/tcl/browsehelp.tcl}")
   else
      TK_SetVar("lang",LANGUAGE)
      TK_SetVar("Home",INDEX)
@@ -248,7 +254,7 @@ endfunction
 
 function md=help_ask(modes)
   n=0
-  while n=0 then
+  while n==0 then
     n=x_choose(modes,['Choose the help browser';'you want to use']);
   end
   md=modes(n)
