@@ -11,7 +11,7 @@ OBJSC = periWin.obj periPos.obj periFig.obj periGif.obj Xcall.obj Xcall1.obj \
 	Plo2d1.obj Plo2d2.obj Plo2d3.obj Plo2d4.obj Plo2dEch.obj Rec.obj Gray.obj \
 	Alloc.obj FeC.obj RecLoad.obj RecSave.obj Tests.obj Actions.obj \
 	gsort.obj qsort.obj nues1.obj  Format.obj \
-	Entities.obj dr1Call.obj sciCall.obj Plo2dn.obj
+	Entities.obj dr1Call.obj sciCall.obj Plo2dn.obj Plo3dn.obj
 
 OBJSF = 
 
@@ -48,6 +48,7 @@ Plo2d4.obj: Plo2d4.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2d.obj: Plo2d.c Math.h ../machine.h Graphics.h PloEch.h
 Plo2dEch.obj: Plo2dEch.c Math.h ../machine.h Graphics.h PloEch.h
 Plo3d.obj: Plo3d.c Math.h ../machine.h Graphics.h PloEch.h
+Plo3dn.obj : Plo3dn.c Math.h ../machine.h Graphics.h PloEch.h  Entities.h ../stack-c.h ../graphics/Math.h
 qsort.obj: qsort.c
 Rec.obj: Rec.c Math.h ../machine.h Graphics.h Rec.h PloEch.h
 RecLoad.obj: RecLoad.c Math.h ../machine.h Graphics.h Rec.h
