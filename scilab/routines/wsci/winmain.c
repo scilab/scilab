@@ -1596,7 +1596,9 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			break;
 			case 0:default: /* Open -O*/
 				{
-					if (! HaveAnotherWindowScilab())
+					wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
+
+					/*if (! HaveAnotherWindowScilab())
 					{
 						wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
 					}
@@ -1617,7 +1619,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 							wsprintf(Cmd,"%s -e scipad('%s'); ",PathWScilex,FinalFileName);
 						}
 						
-					}
+					}*/
 				}
 			break;
 		
