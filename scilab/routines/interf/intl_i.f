@@ -66,12 +66,7 @@ c     get arg2
       il2=iadr(lstk(top))
       il2r=il2
       if(istk(il2).lt.0) then
-         k=istk(il2+2)
-         if(k.ne.0) then
-            vol2=lstk(k+1)-lstk(k)
-         else
-            vol2=istk(il2+3)
-         endif
+         vol2=istk(il2+3)
          il2=iadr(istk(il2+1))
       else
          vol2=lstk(top+1)-lstk(top)
