@@ -260,7 +260,7 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
   double xbox[8],ybox[8],zbox[8],*polyz;
   static integer cache;
   static double zmin,zmax;
-  integer i;
+  integer i,flag_det=0,flag_det0=0,flag_det1=0,flag_det2=0,flag_det3=0;
   /** If Record is on **/
   if (GetDriver()=='R' && version_flag() != 0) 
     StoreFac3D(name,x,y,z,cvect,p,q,teta,alpha,legend,flag,bbox);
@@ -371,11 +371,32 @@ static void C2F(fac3dg)(char *name, int iflag, double *x, double *y, double *z, 
 	     to a (*p) times (*q) matrix, in order to do interpolated shading.
 	     
 	     The new added function are located at the end of thecurrent file (Plo3d.c) */
-
-	  if ( *p >= 2 && ((polyx[1]-polyx[0])*(polyy[2]-polyy[0])-
-			   (polyy[1]-polyy[0])*(polyx[2]-polyx[0])) <  0) 
-	    {
-	      fill[0] = (flag[0] > 0 ) ? fg1 : -fg1 ;
+		 
+      if (*p > 2) { /* Detection of facet orientation,    */
+        double determ;     /* improved by Mottelet 25/01/2005    */ 
+        determ =         /* to take in account quadrilaterals. */
+          ((polyx[1] - polyx[0]) * (polyy[2] - polyy[0]) -
+           (polyy[1] - polyy[0]) * (polyx[2] - polyx[0]));
+        flag_det1 = (determ < 0); /* First test for a triangle */
+        if (*p > 3) { /* Second test for the quadrilateral case */
+          determ =
+            ((polyx[2] - polyx[0]) * (polyy[3] - polyy[0]) -
+             (polyy[2] - polyy[0]) * (polyx[3] - polyx[0]));
+          flag_det3 = (determ < 0);
+          determ =
+            ((polyx[2] - polyx[1]) * (polyy[3] - polyy[1]) -
+             (polyy[2] - polyy[1]) * (polyx[3] - polyx[1]));
+          flag_det2 = (determ < 0);
+          determ =
+            ((polyx[3] - polyx[1]) * (polyy[0] - polyy[1]) -
+             (polyy[3] - polyy[1]) * (polyx[0] - polyx[1]));
+          flag_det0 = (determ < 0);
+        }
+/*        printf("%d %d %d %d\n",flag_det0,flag_det1,flag_det2,flag_det3); */
+	  }
+	  flag_det=flag_det0+flag_det1+flag_det2+flag_det3;
+      if (flag_det > 3 || (flag_det==1 && (*p)==3)) {	      
+	    fill[0] = (flag[0] > 0 ) ? fg1 : -fg1 ;
 	      /* 
 		 The following test fixes a bug : when flag[0]==0 then only the
 		 wire frame has to be drawn, and the "shadow" of the surface does
