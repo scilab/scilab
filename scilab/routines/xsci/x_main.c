@@ -133,7 +133,10 @@ void C2F(realmain)()
   /* scanning options */
   for ( i=0 ; i < argc ; i++) 
     {
-      if ( strcmp(argv[i],"-nw") == 0) { no_window = 1; } 
+      if ( strcmp(argv[i],"-nw") == 0) 
+	{ no_window = 1; } 
+      if ( strcmp(argv[i],"-nwni") == 0) 
+	{ no_window = 1; } 
       else if ( strcmp(argv[i],"-display") == 0) 
 	{ 
 	  char dpy[128];
@@ -296,6 +299,7 @@ static XrmOptionDescRec optionDescList[] = {
 {"-tm",		"*ttyModes",  XrmoptionSepArg,	(caddr_t) NULL},
 {"-tn",		"*termName",  XrmoptionSepArg,	(caddr_t) NULL},
 {"-nw",		"*noWindow",  XrmoptionNoArg,	(caddr_t) "on"},
+{"-nwni",		"*noWindow",  XrmoptionNoArg,	(caddr_t) "on"},
 {"-ns",		"*noStartup", XrmoptionNoArg,	(caddr_t) "on"},
 };
 
@@ -306,6 +310,7 @@ static struct _options {
   { "-help",                 "print out this message" },
   { "-ns",                   "no startup mode " },
   { "-nw",                   "no window mode " },
+  { "-nwni",                 "no window mode also" },
   { "-display displayname",  "X server to contact" },
   { "-name string",          "client instance, icon, and title strings" },
   { "-xrm resourcestring",   "additional resource specifications" },
