@@ -841,6 +841,7 @@ c
       integer cosd
       character*(*) fname
 c
+      rhs = max(0,rhs)
       if(.not.checklhs(fname,1,1)) return
       if(.not.checkrhs(fname,-1,1)) return
       if (rhs.eq.1) then
@@ -848,8 +849,9 @@ c
          cosd=istk(i)
          lhsvar(1)=0
       else
-         if(.not.createvar(1,'i',1,1,ipr1)) return
-         istk(ipr1)=cosd
+         if(.not.createvar(1,'d',1,1,ipr1)) return
+         stk(ipr1)=cosd
          lhsvar(1)=1 
       endif
+
       end
