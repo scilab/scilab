@@ -28,6 +28,10 @@ function [%pt,scs_m]=do_move(%pt,scs_m)
       scs_m=movecorner(scs_m,k,xc,yc,wh)
     end
   end
+    if Cmenu=='Quit' then
+      //active window has been closed
+      [%win,Cmenu]=resume(%win,Cmenu)
+  end
   [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(..
 		       scs_m_save,%t,%t,needcompile,needreplay)
 
@@ -172,6 +176,12 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xc=rep(1);yc=rep(2)
       xy=[xc,yc];
     end
+
+    if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
     xpolys(xx+mx*(xc-xmin),yy+my*(yc-ymin),clr) 
     xset('pattern',pat)
   
@@ -243,6 +253,11 @@ function scs_m=moveblock(scs_m,k,xc,yc)
       xy=[xc,yc];
       if pixmap then xset('wshow'),end
     end
+    if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
     // update and draw block
     if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
     driver(dr)
@@ -285,6 +300,11 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
 	x1(2)=X1(2)-(xc-xc1)
 	y1(2)=Y1(2)-(yc-yc1)
       end
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
       xpolys(x1,y1,ct(1))//draw moving part of the link
       xx=[xx(1);x1(2);xx(2:$)]
       yy=[yy(1);y1(2);yy(2:$)]
@@ -317,6 +337,11 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
 	x1(2)=X1(2)-(xc-xc1)
 	y1(2)=Y1(2)-(yc-yc1)
       end
+          if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
       xpolys(x1,y1,ct(1))//draw moving part of the link
       xx=[xx(1:$-1);x1(2);xx($)]
       yy=[yy(1:$-1);y1(2);yy($)]
@@ -347,6 +372,11 @@ function scs_m=movelink(scs_m,k,xc,yc,wh)
       x1(2)=X1(2)-(xc-xc1)
       y1(2)=Y1(2)-(yc-yc1)
     end
+        if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
     xpolys(x1,y1,ct(1))//draw moving part of the link
     xx=[xx(1:wh);x1(2);xx(wh+1:$)]
     yy=[yy(1:wh);y1(2);yy(wh+1:$)]
@@ -382,6 +412,11 @@ function scs_m=movelink4(scs_m)
     y1(2:3)=Y1(2:3)+e(2)*(yc-yc1)
   end
   //erase rest of the link
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
   xpolys(xx(1:wh-1),yy(1:wh-1),ct(1))
   xpolys(xx(wh+2:$),yy(wh+2:$),ct(1))
   if rep(3)<>2 then 
@@ -410,6 +445,11 @@ function scs_m=movelink1(scs_m)
     xx=X1+e(1)*(xc-xc1)
     yy=Y1+e(2)*(yc-yc1)
   end
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
   if rep(3)<>2 then o.xx=xx;o.yy=yy;end
   scs_m.objs(k)=o
   driver(dr)
@@ -504,6 +544,11 @@ function scs_m=movelink2(scs_m)
     x1(1:2)=X1(1:2)+e(1)*(xc-xc1)
     y1(1:2)=Y1(1:2)+e(2)*(yc-yc1)
   end
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
   xpolys(xx(3:$),yy(3:$),ct(1)) // erase rest of initial  link
   if pixmap then xset('wshow'),end
   if rep(3)<>2 then
@@ -595,6 +640,11 @@ function scs_m=movelink3(scs_m)
     y1($-1:$)=Y1($-1:$)+e(2)*(yc-yc1)
     if pixmap then xset('wshow'),end
   end
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
   xpolys(xx(1:$-2),yy(1:$-2),ct(1))//erase rest of the link
   if pixmap then xset('wshow'),end
   if rep(3)<>2 then
@@ -674,6 +724,11 @@ function scs_m=movecorner(scs_m,k,xc,yc,wh)
     x1(2)=X1(2)-(xc-xc1)
     y1(2)=Y1(2)-(yc-yc1)
   end
+      if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
+
   [frect1,frect]=xgetech();
   eps=16        //0.04*min(abs(frect(3)-frect(1)),abs(frect(4)-frect(2)))
   if abs(x1(1)-x1(2))<eps then

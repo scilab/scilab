@@ -61,6 +61,11 @@ function [%pt,scs_m,needcompile]=do_copy(%pt,scs_m,needcompile)
       xy=[xc,yc];
     end
     driver(dr)
+
+    if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
     // update and draw block
     if rep(3)==2 then
       if pixmap then xset('wshow'),end

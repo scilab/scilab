@@ -26,6 +26,10 @@ function [%pt,scs_m]=do_stupidmove(%pt,scs_m)
   elseif typeof(scs_m.objs(k))=='Link' then
     scs_m=stupid_movecorner(scs_m,k,xc,yc,wh)
   end
+  if Cmenu=='Quit' then
+      //active window has been closed
+      [%win,Cmenu]=resume(%win,Cmenu)
+  end
   [scs_m_save,enable_undo,edited,nc_save,needreplay]=resume(..
 			scs_m_save,%t,%t,needcompile,needreplay)
 endfunction
@@ -130,6 +134,10 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
       xpolys(xmt,ymt,clr)// erase moving part of links
       xc=rep(1);yc=rep(2)      
     end
+        if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
     xy=[xc-dx,yc-dy];
     // update and draw block
     if rep(3)==2 then //user cancels move
@@ -217,6 +225,10 @@ function scs_m=stupid_moveblock(scs_m,k,xc,yc)
      xc=rep(1);yc=rep(2)
      xy=[xc,yc];
    end
+       if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
    // update and draw block
    if rep(3)<>2 then o.graphics.orig=xy,scs_m.objs(k)=o,end
    driver(dr)
@@ -253,6 +265,10 @@ while rep(3)==-1 do
   x1(2)=X1(2)-(xc-xc1)
   y1(2)=Y1(2)-(yc-yc1)
 end
+    if xget('window')<>curwin then
+      //active window has been closed
+      [%win,Cmenu]=resume(curwin,'Quit')
+    end
 if rep(3)<>2 then
   if abs(x1(1)-x1(2))<rela*abs(y1(1)-y1(2)) then
     x1(2)=x1(1)

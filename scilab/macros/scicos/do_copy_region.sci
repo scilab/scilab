@@ -32,6 +32,10 @@ function [scs_m,needcompile]=do_copy_region(scs_m,needcompile)
     xc=rep(1);yc=rep(2)
     xy=[xc,yc];
   end
+  if xget('window')<>curwin then
+    //active window has been closed
+    [%win,Cmenu]=resume(curwin,'Quit')
+  end
 
   driver(dr);xset('pattern',pat)
   if rep(3)==2 then enablemenus();return,end
