@@ -4,11 +4,11 @@ c     Calling function according to arguments type
 c ======================================================================
 c     Copyright INRIA
       include '../stack.h'
-      integer ogettype, vt,vt1,id(nsiz),r,op,extrac
+      integer ogettype, vt,vt1,id(nsiz),r,op,extrac,bl(nsiz)
       logical compil,ptover
       integer iadr,sadr
 
-      data extrac/3/
+      data extrac/3/,bl/nsiz*673720360/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -46,10 +46,11 @@ C         elseif (r.eq.403.or.r.eq.404.or.r.eq.406.or.r.eq.407) then
       endif
       if(err1.gt.0) return
  02   vt=0
-      icall=0
+
 
       if(fin.eq.2) then
 c     . insertions
+         icall=0
          nt=2
          vt1=abs(ogettype(top))
          if(vt1.eq.15.or.vt1.eq.16) then
@@ -58,11 +59,50 @@ c     . every thing can be inserted in a list
          endif
       elseif(fin.eq.3) then
 c     .  extraction
-         if(rhs.eq.1) then
+         if(icall.ne.4) then
+            if(rhs.eq.1) then
 c     .     a() -->a
-            goto 81
+               goto 81
+            endif
+            nt=1
+            icall=0
+         else
+            icall=0
+            vt1=abs(ogettype(top))
+            if (vt1.eq.11.or.vt1.eq.13) then
+c     .        extraction reveals to be  function execution
+               il=iadr(lstk(top))
+               fin=istk(il+1)
+               top=top-1
+               rhs=rhs-1
+               if (ptover(1,psiz)) return
+               call putid(ids(1,pt),bl)
+               rstk(pt)=401
+
+               icall=5
+c     .  *call* macro
+               return
+            elseif (vt1.eq.130) then
+c     .        extraction reveals to be primitive function execution
+               il=iadr(lstk(top))
+               il=iadr(istk(il+1))
+               fun=istk(il+1)
+               fin=istk(il+2)
+               top=top-1
+               rhs=rhs-1
+               if (ptover(1,psiz)) return
+               rstk(pt)=402
+               icall=9
+c     .  *call* matfns
+               return
+            else
+               if(rhs.eq.1) then
+c     .     a() -->a
+                  goto 81
+               endif
+               nt=1
+            endif
          endif
-         nt=1
       else
          call ref2val
          nt=rhs
