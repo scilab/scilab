@@ -2189,12 +2189,40 @@ EXPORT BOOL CALLBACK AboutDlgProc (HWND hDlg, UINT wMsg, WPARAM wParam, LPARAM l
 
 			{
 			char buffer[MAX_PATH];
-
+			int cpubuild=_M_IX86;
 			wsprintf(buffer,"%s %s","Copyright ® ",DEFAULT_MES);
 			SetDlgItemText(hDlg,IDC_VERSION_SPLASH,VERSION);
 			SetDlgItemText(hDlg,IDC_COPYRIGHT_SPLASH,buffer);
 			wsprintf(buffer,"%s %s",__DATE__,__TIME__);
 			SetDlgItemText(hDlg,IDC_BUILD,buffer);
+			#if _DEBUG
+			strcpy(buffer,"Debug ");
+			#else
+			strcpy(buffer,"Release ");
+			#endif
+
+			#if _DEBUG
+			strcat(buffer,"Blend");
+			#else
+			switch(cpubuild)
+			{
+			case 500: // Pentium
+				strcat(buffer,"Pentium");
+				break;
+			case 600: // Pentium Pro
+				strcat(buffer,"Pentium II and more");
+				break;
+			case 400: // 486
+				strcat(buffer,"486");
+				break;
+			case 300: // 386
+				strcat(buffer,"386");
+				break;
+			}
+			#endif
+			
+
+			SetDlgItemText(hDlg,IDC_COMPILMODE,buffer);
 			}
 		return TRUE;
 

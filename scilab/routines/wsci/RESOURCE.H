@@ -43,6 +43,7 @@
 #define IDC_LISTCHOOSEASCILAB           1007
 #define IDC_BUTTON1                     1008
 #define IDC_OK                          1008
+#define IDC_COMPILMODE                  1009
 
 // Next default values for new objects
 // 
@@ -51,7 +52,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        143
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1009
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
