@@ -2,6 +2,10 @@
 #include <math.h>
 #include "../machine.h"
 
+#if WIN32
+#define NULL    0
+#endif
+
 extern void sciprint __PARAMS((char *fmt,...));
 
 void variable_delay(scicos_block *block,int flag)

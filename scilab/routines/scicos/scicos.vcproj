@@ -263,6 +263,9 @@ cd .. &gt;nul
 				RelativePath=".\absolute_value.c">
 			</File>
 			<File
+				RelativePath=".\backlash.c">
+			</File>
+			<File
 				RelativePath=".\blocks.c">
 			</File>
 			<File
@@ -281,10 +284,16 @@ cd .. &gt;nul
 				RelativePath=".\cscope.c">
 			</File>
 			<File
+				RelativePath=".\deadband.c">
+			</File>
+			<File
 				RelativePath=".\extractor.c">
 			</File>
 			<File
 				RelativePath=".\gainblk.c">
+			</File>
+			<File
+				RelativePath=".\hystheresis.c">
 			</File>
 			<File
 				RelativePath=".\import.c">
@@ -324,6 +333,12 @@ cd .. &gt;nul
 			</File>
 			<File
 				RelativePath=".\product.c">
+			</File>
+			<File
+				RelativePath=".\ramp.c">
+			</File>
+			<File
+				RelativePath=".\ratelimiter.c">
 			</File>
 			<File
 				RelativePath=".\readau.c">
