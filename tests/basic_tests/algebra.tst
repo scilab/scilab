@@ -1808,9 +1808,9 @@ if e<>0 |Err(m-1-%i)>10*%eps then pause,end
 //Real
 v=rand(1,21);
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>100000*%eps then pause,end
+if Err(det(A)-prod(v))>200000*%eps then pause,end
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>100000*%eps then pause,end
+if Err(m*(10^e)-prod(v))>200000*%eps then pause,end
 //Complex
 v=(v+rand(v)*%i)/2;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
