@@ -8,6 +8,12 @@ source [file join $sourcedir Combobox.tcl]
 package require combobox 2.3
 catch {namespace import combobox::*}
 
+global SELOBJECT
+global ged_handle_list_size
+global lalist
+global curgedindex
+global curgedobject
+
 global  visToggle limToggle boxToggle isoToggle gridToggle 
 global  xToggle yToggle red green blue color 
 global  xlabel ylabel zlabel tlabel
@@ -77,6 +83,40 @@ wm title $ww "Axes Editor"
 wm iconname $ww "AE"
 wm geometry $ww 450x450
 #wm maxsize  $ww 450 560
+
+
+set w $ww
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+
+#Hierarchical selection
+set lalist ""
+for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
+append lalist "\""
+append lalist "$SELOBJECT($i)" 
+append lalist "\" "
+}
+
+set curgedobject $SELOBJECT($curgedindex)
+
+
+#Hiereachical viewer
+frame $w.frame.view  -borderwidth 0
+pack $w.frame.view  -in $w.frame  -side top  -fill x
+
+label $w.frame.selgedobjectlabel  -height 0 -text "Edit Properties for:    " -width 0 
+combobox $w.frame.selgedobject \
+    -borderwidth 2 \
+    -highlightthickness 3 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curgedobject \
+    -editable false \
+    -background white \
+    -command [list SelectObject ]
+eval $w.frame.selgedobject list insert end $lalist
+pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
+pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 Notebook:create .axes.n -pages {X Y Z Title Style Axes_Aspect} -pad 20 
 pack .axes.n -fill both -expand 1
@@ -716,6 +756,21 @@ pack $w.b -side bottom
 
 
 # les proc associes:
+proc SelectObject {w args} {
+    global curgedobject;
+    global ged_handle_list_size;
+    global SELOBJECT
+    
+    set index 1
+
+    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
+	if {$curgedobject==$SELOBJECT($i)} {
+	    set index $i
+	}
+    }
+    ScilabEval "Get_handle_from_index($index);"
+}
+
 proc setXdb {} {
 global dbxmin dbxmax
 ScilabEval "setXdb($dbxmin, $dbxmax);"

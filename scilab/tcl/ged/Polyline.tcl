@@ -9,6 +9,12 @@ catch {namespace import combobox::*}
 global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
 global polyVAL nbcol nbrow
 
+global SELOBJECT
+global ged_handle_list_size
+global lalist
+global curgedindex
+global curgedobject
+
 
 # set ncolors 32
 # set nbcol 2
@@ -40,6 +46,38 @@ wm title $ww "Polyline Editor"
 wm iconname $ww "PE"
 wm geometry $ww 650x700
 
+set w $ww
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+
+#Hierarchical selection
+set lalist ""
+for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
+append lalist "\""
+append lalist "$SELOBJECT($i)" 
+append lalist "\" "
+}
+
+set curgedobject $SELOBJECT($curgedindex)
+
+
+#Hiereachical viewer
+frame $w.frame.view  -borderwidth 0
+pack $w.frame.view  -in $w.frame  -side top  -fill x
+
+label $w.frame.selgedobjectlabel  -height 0 -text "Edit Properties for:    " -width 0 
+combobox $w.frame.selgedobject \
+    -borderwidth 2 \
+    -highlightthickness 3 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curgedobject \
+    -editable false \
+    -background white \
+    -command [list SelectObject ]
+eval $w.frame.selgedobject list insert end $lalist
+pack $w.frame.selgedobjectlabel -in $w.frame.view   -side left
+pack $w.frame.selgedobject   -in $w.frame.view   -fill x
 
 
 Notebook:create .axes.n -pages {Style Data} -pad 20 
@@ -209,6 +247,21 @@ pack $w.b -side bottom
 
 
 #les proc asssocies
+proc SelectObject {w args} {
+    global curgedobject;
+    global ged_handle_list_size;
+    global SELOBJECT
+    
+    set index 1
+
+    for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
+	if {$curgedobject==$SELOBJECT($i)} {
+	    set index $i
+	}
+    }
+    ScilabEval "Get_handle_from_index($index);"
+}
+
 proc setData { i j } {
 global polyVAL
 ScilabEval "execstr(\"global ged_handle; ged_handle.data($i,$j)=$polyVAL($i,$j);\",\'errcatch\',\'n\');"

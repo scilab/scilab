@@ -26,6 +26,10 @@ function ged(k,win)
     xbasc()
     case 4 then //edit current figure properties
 
+   // hierarchical viewer
+    TK_send_handles_list(gcf())
+    TK_SetVar("curgedindex",string(Get_handle_pos_in_list(gcf())))
+
     //color_map array for color sample display
     f=gcf();
     for i=1:size(f.color_map,1)
@@ -41,6 +45,10 @@ function ged(k,win)
 
     ged_figure(gcf())
     case 5 then //edit current axes
+    // hierarchical viewer
+    TK_send_handles_list(gcf())
+    TK_SetVar("curgedindex",string(Get_handle_pos_in_list(gca())))
+
     //color_map array for color sample display
     f=gcf();
     for i=1:size(f.color_map,1)
@@ -59,6 +67,139 @@ function ged(k,win)
     seteventhandler("")
   end
   xset('window',cur)
+endfunction
+
+
+function curgedindex = Get_handle_pos_in_list(h)
+handles = Get_handles_list(gcf())
+ for i=1:size(handles,1)
+  if(h==handles(i))
+   curgedindex = i;
+  end
+ end
+endfunction
+
+
+
+
+
+function TK_send_handles_list(h)
+iFig = 0;
+iAxe = 0;
+iAgr = 0;
+iPol = 0;
+iPl3 = 0;
+iFac = 0;
+iRec = 0;
+
+f=getparfig(h);
+handles = Get_handles_list(f)
+
+TK_SetVar("ged_handle_list_size",string(size(handles,1)));
+
+for i=1:size(handles,1)
+ SelObject="SELOBJECT("+string(i)+")";
+ hand = handles(i);
+ select  hand.type
+   case "Figure"
+    iFig = iFig+1;
+    figname= "Figure("+string(iFig)+")";
+    TK_EvalStr('set '+SelObject+" "+figname);
+   case "Axes"
+    iAxe = iAxe+1;
+    axename= "Axes("+string(iAxe)+")";
+    TK_EvalStr('set '+SelObject+" "+axename);
+   case "Agregation"
+    iAgr = iAgr+1;
+    agrname= "Agregation("+string(iAgr)+")";
+    TK_EvalStr('set '+SelObject+" "+agrname);
+   case "Polyline"
+    iPol = iPol+1;
+    polname= "Polyline("+string(iPol)+")";
+    TK_EvalStr('set '+SelObject+" "+polname);
+   case "Plot3d"
+    iPl3 = iPl3+1;
+    pl3name= "Plot3d("+string(iPl3)+")";
+    TK_EvalStr('set '+SelObject+" "+pl3name);
+  case "Fac3d"
+    iFac = iFac+1;
+    Facname= "Fac3d("+string(iFac)+")";
+    TK_EvalStr('set '+SelObject+" "+Facname);
+   case "Rectangle"
+    iRec = iRec+1;
+    Recname= "Rectangle("+string(iRec)+")";
+    TK_EvalStr('set '+SelObject+" "+Recname);
+
+  end
+end
+//TK_SetVar("handle_figure",string(f));
+endfunction
+
+
+//function h=Get_handle_from_index(index)
+function Get_handle_from_index(index)
+   global ged_handle;
+   hl = Get_handles_list(gcf());
+
+   ged_handle = hl(index);
+//   h=ged_handle;
+   tkged();
+
+endfunction
+
+
+////////////////////////////////////////////
+function  hfig= getparfig( h )
+
+htmp = h;
+hfig= []
+while htmp.type<>'Figure' do
+  htmp=htmp.parent
+end
+
+hfig = htmp;
+endfunction
+
+
+function h_out_list=Get_handles_list(h);
+
+global ged_handle_out;
+
+f=getparfig(h);
+ged_handle_out=[f];
+
+List_handles(f);
+
+//disp(ged_handle_out);
+
+h_out_list=ged_handle_out;
+
+endfunction
+
+
+function List_handles(h)
+
+global ged_handle_out;
+i = 1;
+
+psonstmp = h.children(1);
+//pause
+while((psonstmp <>[]) & ((i) <=size(psonstmp.parent.children,1)))
+  i = i+1;
+  ged_handle_out = [ged_handle_out;  psonstmp];
+  List_handles(psonstmp);
+//  disp("Processus recursif RETOUR")
+//  disp("    ici 1");
+//  pause
+  if((i) <=size(psonstmp.parent.children,1)) then
+    psonstmp = psonstmp.parent.children(i);
+   else
+    psonstmp=[];
+  end
+//  disp("    ici 2");
+//  pause
+end
+
 endfunction
 
 
@@ -391,6 +532,10 @@ function tkged()
   global ged_handle
   h=ged_handle
 
+  // hierarchical viewer
+  TK_send_handles_list(gcf())
+  TK_SetVar("curgedindex",string(Get_handle_pos_in_list(h)))
+
   //color_map array for color sample display
   f=getparfig(h);
   for i=1:size(f.color_map,1)
@@ -410,6 +555,8 @@ function tkged()
     ged_rectangle(h)
     case "Axes"
     ged_axes(h)
+    case "Figure"
+    ged_figure(h)
   end
 endfunction
 function setStyle(sty)
