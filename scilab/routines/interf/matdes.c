@@ -4469,7 +4469,9 @@ static MatdesTable Tab[]={
   {draw,"draw"}, /* NG end */
   {scixs2gif,"xs2gif"},
   {scixs2ppm,"xs2ppm"},
-  {scixs2ps,"xs2ps"}	
+  {scixs2ps,"xs2ps"},
+  {ClearScreenConsole,"clc"},	
+  {HomeFunction,"tohome"}	
 };
 
 /* interface for the previous function Table */ 

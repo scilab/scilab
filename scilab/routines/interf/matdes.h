@@ -1,6 +1,13 @@
 #ifndef MATDES_SCI 
 #define MATDES_SCI 
 
+/* Allan CORNET le 20/08/03 */
+/* voir wsci\wtext.c */
+/* & voir xsc/x_screen.c */
+extern void HomeFunction(void);
+extern void ClearScreenConsole(void);
+
+
 int check_xy _PARAMS((char *fname, char dir, int mn, int xpos, int xm, int xn, long unsigned int xl, int ypos, int ym, int yn, long unsigned int yl, int *ntics));
 
 extern int C2F(matdes)  _PARAMS((void));
