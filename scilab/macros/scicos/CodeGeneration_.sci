@@ -68,7 +68,6 @@ function [ok,Makename]=buildstandalone()
   if ierr==0 then mclose(fd),files=[files,rdnom+'f'],end
   
     Makename=gen_make(rdnom,files,archname,rpat+'/'+rdnom+'_Makefile')
-    pause
     libn=ilib_compile('lib'+rdnom,Makename)
 
     //unlink if necessary
@@ -1266,7 +1265,6 @@ function  [ok,XX]=do_compile_superblock(XX)
 		        'Created files Path';
 		        'Other object files to link with ( if any)'],..
 		        list('str',1,'str',1,'str',1),label1);
-pause
     if okk==%f then ok=%f;return; end
   
     dirinfo=fileinfo(rpat)
@@ -1509,8 +1507,8 @@ function ok=gen_gui();
 	'  [x,y]=standard_origin(arg1)';
 	'case ''set'' then';
 	'  x=arg1;';
-	'  graphics=arg1(2);label=graphics(4)';
-	'  model=arg1(3);';
+	'  graphics=arg1.graphics;label=graphics.exprs';
+	'  model=arg1.model;';
 	'case ''define'' then'
 	'  '+sci2exp(capt(:,3),'in',70); //input ports sizes
 	'  '+sci2exp(actt(:,3),'out',70); //output ports sizes
@@ -1521,10 +1519,12 @@ function ok=gen_gui();
         '  '+sci2exp(cpr.sim.rpar,'rpar',70); //real parameters
         '  '+sci2exp(cpr.sim.ipar,'ipar',70);//integer parameters
 	'  '+sci2exp(clkinput,'clkinput',70);
-	'  model=scicos_model(sim=list('''+rdnom+''',1),in=in,out=out,evtin=clkinput,..'
-	'          dstate=Z,rpar=rpar,ipar=ipar,blocktype=''c'',dep_ut=[%t %f])'
+	'  model=scicos_model(sim=list('''+rdnom+''',1),in=in,out=out,..'
+	'          evtin=clkinput,dstate=Z,rpar=rpar,ipar=ipar,..'
+	'          blocktype=''c'',dep_ut=[%t %f])'
 	'  label=string(in)';
-	'  gr_i=''xstringb(orig(1),orig(2),'''''+rdnom+''''',sz(1),sz(2),''''fill'''')''';
+	'  gr_i=''xstringb(orig(1),orig(2),'''''+rdnom+''''',sz(1),..'
+	'         sz(2),''''fill'''')''';
 	'  x=standard_define([2 2],model,label,gr_i)';
 	'end'
         'endfunction'];
