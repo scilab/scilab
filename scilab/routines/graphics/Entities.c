@@ -5319,10 +5319,11 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
 	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
 	     pSUBWIN_FEATURE(psubwinobj)->logflags, NULL);*/
 
-  set_scale ("tttftt", pSUBWIN_FEATURE (psubwinobj)->WRect,
-	     pSUBWIN_FEATURE (psubwinobj)->FRect, NULL,
+  set_scale ("tttttt", pSUBWIN_FEATURE (psubwinobj)->WRect,
+	     pSUBWIN_FEATURE (psubwinobj)->FRect, pSUBWIN_FEATURE (psubwinobj)->axes.aaint,
 	     pSUBWIN_FEATURE(psubwinobj)->logflags, pSUBWIN_FEATURE (psubwinobj)->ARect);
   
+
   return 1;
 }
 
