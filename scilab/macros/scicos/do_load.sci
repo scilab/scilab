@@ -59,15 +59,16 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 	    funam=%cpr.sim.funs(jj)
 	    if ~c_link(funam) then
 	      qqq=%cpr.corinv(jj)
-	      path=list(qqq(1))
-	      for kkk=qqq
+	      path=list('objs',qqq(1))
+	      for kkk=qqq(1:$-1)
 		path($+1)='model'
 		path($+1)='rpar'
 		path($+1)='objs'
 		path($+1)=kkk
 	      end
+	      pause
 	      path($+1)='graphics';path($+1)='exprs';path($+1)=2;
-	      tt=scs_m.objs(path)
+	      tt=scs_m(path)
 	      if %cpr.sim.funtyp(jj)>1999 then
 		[ok]=scicos_block_link(funam,tt,'c')
 	      else
