@@ -2296,11 +2296,11 @@ int scixfpolys(fname,fname_len)
       if (*istk(l3+i) == 0) {
 	/** fil(i) = 0 poly i is drawn using the current line style (or color).**/
 	color= ((i==0) ? 1: sciGetForeground(sciGetPointerFromHandle((long) hdltab[i-1])));
-	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n2*m2,1,color,&hdl);
+	Objpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,1,color,&hdl);
       }
       else   
 	/** poly i is drawn using the line style (or color) **/  
-	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m2)),n2*m2,*istk(l3+i),&hdl);
+	Objfpoly (stk(l1+(i*m1)),stk(l2+(i*m1)),m1,*istk(l3+i),&hdl);
       hdltab[i]=hdl;
     }
     /** construct agregation and make it current object**/
