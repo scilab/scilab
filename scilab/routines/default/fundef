@@ -14,7 +14,6 @@
 {"spec",		IN_MatdsRC,	3,	2},	
 #define  IN_matsvd  3  
 {"cond",		IN_matsvd,	3,	2},	
-{"norm",		IN_matsvd,	4,	0},	
 {"pinv",		IN_matsvd,	2,	2},	
 {"rank",		IN_matsvd,	5,	2},	
 {"sva",			IN_matsvd,	6,	2},	
@@ -76,7 +75,8 @@
 {"maxi",		IN_matelm,	16,	0},	
 {"min",			IN_matelm,	17,	0},	
 {"mini",		IN_matelm,	17,	0},	
-{"number_properties",	IN_matelm,      46,     0},                                
+{"number_properties",	IN_matelm,      46,     0},
+{"norm",		IN_matelm,	47,	0},	
 {"ones",		IN_matelm,	15,	0},	
 {"prod",		IN_matelm,	9,	0},	
 {"rand",		IN_matelm,	14,	0},	
