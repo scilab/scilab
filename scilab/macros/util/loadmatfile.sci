@@ -1,9 +1,16 @@
 function loadmatfile(varargin)
-// Loads all the variables in a Matlab binary or ASCII file into Scilab
+// Loads variables in a Matlab binary or ASCII file into Scilab
 // This function has been developped following the 'MAT-File Format' description:
 // www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf 
 // Copyright INRIA
-// Authors: Serge Steer, Vincent Couvert
+// Authors: SS, VC
+
+// Verify that all inputs are character strings
+for k=1:size(varargin)
+  if type(varargin(k))<>10 then
+    error("All inputs must be character strings");
+  end
+end
 
 [lhs,rhs]=argn(0)
 
