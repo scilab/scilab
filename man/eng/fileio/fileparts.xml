@@ -65,10 +65,10 @@
   </EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK> pathconvert</LINK>
+      <LINK>pathconvert</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK> basename</LINK>
+      <LINK>basename</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>fullfile</LINK>

@@ -38,7 +38,8 @@
       <PARAM_ITEM>
         <PARAM_NAME>D, G</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: vectors of length n containing the diagonal entries of the diagonal matrices D and G, respectively, such that the matrix  Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 is negative semidefinite.</SP>
+          <SP>: vectors of length n containing the diagonal entries of the diagonal matrices D and G, respectively, 
+           such that the matrix <VERB> Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 </VERB> is negative semidefinite.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>

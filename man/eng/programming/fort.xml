@@ -82,7 +82,7 @@
         <SP>is a keyword used to separate input variables from output variables. when this key word is present it is assumes that  the long form will be used and when it is not prsent, the short form is used.</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="[ny1, my1]">
-        <SP>are the size (# of rows and columns. For 'c' arguments,<VERB>m1*n1</VERB> is the number of charaters )  of output variables and</SP>
+        <SP>are the size (number of rows and columns. For 'c' arguments,<VERB>m1*n1</VERB> is the number of charaters )  of output variables and</SP>
       </DESCRIPTION_ITEM>
       <DESCRIPTION_ITEM label="py1, ...">
         <SP>are the positions of output variables (possibly equal to <VERB>pxi</VERB> ) in the calling sequence of the routine. The <VERB>pyi</VERB>'s integers must be in increasing order.</SP>

@@ -45,20 +45,23 @@
     </VERBATIM>
     <P>
     Cost function:</P>
-    <P>
+    <VERBATIM>
       /+oo
                    |
           J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
            lqg     |
-                   / 0</P>
+                   / 0
+    </VERBATIM>
     <P>
     The lqg/ltr approach looks for <VERB>L,mu,H,ro</VERB> such that:
     J(lqg) = J(freq) where</P>
-    <P>
+    <VERBATIM>
+
                   /+oo        *  *           *
           J    =  | tr[S  W  W  S ] + tr[T  T]dw
            freq   |
-                  /0</P>
+                  /0
+    </VERBATIM>
     <P>
     and</P>
     <VERBATIM>

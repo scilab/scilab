@@ -66,10 +66,10 @@ if dirs is  [] then already defined help directories
   </DESCRIPTION>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK> help</LINK>
+      <LINK>help</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
-      <LINK> help_skeleton</LINK>
+      <LINK>help_skeleton</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

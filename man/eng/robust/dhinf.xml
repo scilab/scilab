@@ -5,7 +5,7 @@
   <TITLE>dhinf</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1999</DATE>
-  <SHORT_DESCRIPTION name="dhinf"> H_infinity design of discrete-time systems</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="dhinf"> <VERB>H_infinity</VERB> design of discrete-time systems</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[AK,BK,CK,DK,(RCOND)] = dishin(A,B,C,D,ncon,nmeas,gamma)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -50,7 +50,7 @@
       <PARAM_ITEM>
         <PARAM_NAME>gamma</PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: the parameter gamma used in H_infinity design. It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.</SP>
+          <SP>: the parameter gamma used in <VERB>H_infinity</VERB> design. It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>

@@ -17,10 +17,10 @@
   </P>
     <P>
     The name of the daemon executable is pvmd3. It is usually started by a
-    shell script, $PVM_ROOT/lib/pvmd.
+    shell script, <VERB>$PVM_ROOT/lib/pvmd</VERB>.
   </P>
     <P>
-    Local daemon may also be started by the scilab instruction pvm_start()
+    Local daemon may also be started by the scilab instruction <VERB>pvm_start()</VERB>
     and remote daemons may also be started by the scilab function 
     pvm_addhosts
   </P>
@@ -84,7 +84,7 @@
       </ITEM>
     </ITEMIZE>
     <P>
-    Lines beginning with a splat ( # ), optionally preceded by whitespace, are ignored.
+    Lines beginning with a splat ( <VERB>#</VERB> ), optionally preceded by whitespace, are ignored.
   </P>
     <P>
      A simple host file might look like:
@@ -129,7 +129,7 @@ betty
       </ITEM>
     </ITEMIZE>
     <P>
-     A dollar sign ( $ ) in an option introduces a variable name, for example $PVM_ARCH. Names are expanded from environment variables by each pvmd.  Each of the flags above has a default value. These are: 
+     A dollar sign ( <VERB>$</VERB> ) in an option introduces a variable name, for example <VERB>$PVM_ARCH</VERB>. Names are expanded from environment variables by each pvmd.  Each of the flags above has a default value. These are: 
   </P>
     <ITEMIZE>
       <ITEM label="lo">
@@ -139,19 +139,19 @@ betty
         <SP>Nothing</SP>
       </ITEM>
       <ITEM label="dx">
-        <SP>$PVM_ROOT/lib/pvmd (or environment variable PVM_DPATH)</SP>
+        <SP><VERB>$PVM_ROOT/lib/pvmd</VERB> (or environment variable PVM_DPATH)</SP>
       </ITEM>
       <ITEM label="ep">
-        <SP>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</SP>
+        <SP><VERB>pvm3/bin/$PVM_ARCH:$PVM_ROOT/bin/$PVM_ARCH</VERB></SP>
       </ITEM>
       <ITEM label="wd">
-        <SP>$HOME</SP>
+        <SP><VERB>$HOME</VERB></SP>
       </ITEM>
       <ITEM label="sp">
         <SP>1000</SP>
       </ITEM>
       <ITEM label="bx">
-        <SP>$PVM_ROOT/lib/debugger</SP>
+        <SP><VERB>$PVM_ROOT/lib/debugger</VERB></SP>
       </ITEM>
     </ITEMIZE>
     <P>
@@ -174,13 +174,10 @@ betty
 # installed in /usr/local/here
 sigi.cs
      dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
+     label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by hand and share a homedir  
+     igor.firewall.com lo=guest2 so=ms  ep=bob/pvm3/bin/$PVM_ARCH
    ]]>
     </VERBATIM>
-    <ITEMIZE>
-      <ITEM label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by">
-        <SP>hand and share a homedir &amp; igor.firewall.com lo=guest2 so=ms      ep=bob/pvm3/bin/$PVM_ARCH</SP>
-      </ITEM>
-    </ITEMIZE>
   </SECTION>
   <SECTION label="Manual STARTUP">
     <P>

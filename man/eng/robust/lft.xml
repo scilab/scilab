@@ -9,7 +9,7 @@
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[P1]=LFT(P,K)  </CALLING_SEQUENCE_ITEM>
     <CALLING_SEQUENCE_ITEM>[P1]=LFT(P,r,K)  </CALLING_SEQUENCE_ITEM>
-    <CALLING_SEQUENCE_ITEM>[P1,r1]=LFT(P,r,P#,r#)  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[P1,r1]=LFT(P,r,Ps,rs)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
   <PARAM>
     <PARAM_INDENT>
@@ -32,15 +32,15 @@
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>P#  </PARAM_NAME>
+        <PARAM_NAME>Ps  </PARAM_NAME>
         <PARAM_DESCRIPTION>
           <SP>: linear system (<VERB>syslin</VERB> list), implicitly partitioned into four blocks (two input ports and two output ports).</SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
       <PARAM_ITEM>
-        <PARAM_NAME>r#  </PARAM_NAME>
+        <PARAM_NAME>rs  </PARAM_NAME>
         <PARAM_DESCRIPTION>
-          <SP>: 1x2 row vector, dimension of <VERB>P#22</VERB></SP>
+          <SP>: 1x2 row vector, dimension of <VERB>Ps22</VERB></SP>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
     </PARAM_INDENT>
@@ -48,10 +48,10 @@
   <DESCRIPTION>
     <P>
     Linear fractional transform between two standard plants
-    <VERB>P</VERB> and <VERB>P#</VERB> in state space form or in
+    <VERB>P</VERB> and <VERB>Ps</VERB> in state space form or in
     transfer form (<VERB>syslin</VERB> lists).</P>
     <P>
-      <VERB>r= size(P22) r#=size(P22#)</VERB>
+      <VERB>r= size(P22) rs=size(P22s)</VERB>
     </P>
     <P><VERB>LFT(P,r, K)</VERB> is the linear fractional transform
     between <VERB>P</VERB> and a controller <VERB>K</VERB>
@@ -62,8 +62,8 @@
     <P>
       <VERB>P1= P11+P12*K* (I-P22*K)^-1 *P21</VERB>
     </P>
-    <P><VERB>[P1,r1]=LFT(P,r,P#,r#)</VERB> returns the generalized (2
-    ports) lft of <VERB>P</VERB> and <VERB>P#</VERB>.</P>
+    <P><VERB>[P1,r1]=LFT(P,r,Ps,rs)</VERB> returns the generalized (2
+    ports) lft of <VERB>P</VERB> and <VERB>Ps</VERB>.</P>
     <P><VERB>P1</VERB> is the pair two-port interconnected plant and the
     partition of <VERB>P1</VERB> into 4 blocks in given by
     <VERB>r1</VERB> which is the dimension of the <VERB>22</VERB>

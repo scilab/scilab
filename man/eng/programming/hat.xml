@@ -5,7 +5,7 @@
   <TITLE>hat</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="hat"> (^) exponentiation</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="hat"> (<VERB>^</VERB>) exponentiation</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>A^b</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

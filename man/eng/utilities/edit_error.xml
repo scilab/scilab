@@ -58,9 +58,9 @@
    ]]></EXAMPLE>
 
    <SEE_ALSO>
-     <SEE_ALSO_ITEM> <LINK> scipad</LINK> </SEE_ALSO_ITEM>
-     <SEE_ALSO_ITEM> <LINK> lasterror</LINK> </SEE_ALSO_ITEM>
-     <SEE_ALSO_ITEM> <LINK> errclear</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>scipad</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>lasterror</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>errclear</LINK> </SEE_ALSO_ITEM>
    </SEE_ALSO>
 
 

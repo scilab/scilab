@@ -5,7 +5,7 @@
   <TITLE>backslash</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="backslash">(\) left matrix division.  </SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="backslash">(<VERB>\</VERB>) left matrix division.  </SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>x=A\b</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>

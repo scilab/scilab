@@ -5,7 +5,7 @@
   <TITLE>h_inf_st</TITLE>
   <TYPE>Scilab Function</TYPE>
   <DATE>April 1993</DATE>
-  <SHORT_DESCRIPTION name="h_inf_st"> static H_infinity problem</SHORT_DESCRIPTION>
+  <SHORT_DESCRIPTION name="h_inf_st"> static <VERB>H_infinity</VERB> problem</SHORT_DESCRIPTION>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>[Kopt,gamaopt]=h_inf_stat(D,r)  </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -35,7 +35,7 @@
     <P>
     computes a matrix <VERB>Kopt</VERB> such that largest singular value of:</P>
     <P><VERB>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</VERB>
-    is minimal (Static H-infinity four blocks problem).</P>
+    is minimal (Static <VERB>H_infinity</VERB> four blocks problem).</P>
     <P>
     D is partionned as <VERB>D=[D11 D12; D21 D22]</VERB>
     where <VERB>size(D22)=r=[r1 r2]</VERB></P>

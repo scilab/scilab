@@ -82,7 +82,7 @@
         <TABLE_NEW_COLUMN>boolean sparse</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>spb</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>tlist</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>tlist_type</TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN><VERB>tlist_type</VERB></TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
     </TABLE>
     <P><VERB>&lt;op_code&gt;</VERB> is a single character associated with each operator as
@@ -96,7 +96,7 @@
         <TABLE_NEW_COLUMN>char code</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>     '       </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>'</VERB>       </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    t</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    +        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    a</TABLE_NEW_COLUMN>
@@ -108,13 +108,13 @@
         <TABLE_NEW_COLUMN>    m</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    /        </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>/</VERB>        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    r</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    \        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    l</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    ^        </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>^</VERB>       </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    p</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>   .*        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    x</TABLE_NEW_COLUMN>
@@ -132,7 +132,7 @@
         <TABLE_NEW_COLUMN>    y</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>   .\.       </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>.\.</VERB>       </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    z</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    :        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    b</TABLE_NEW_COLUMN>
@@ -144,7 +144,7 @@
         <TABLE_NEW_COLUMN>    v</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>
-        <TABLE_NEW_COLUMN>    \.       </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>\.</VERB>        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    w</TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>   [a,b]     </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    c</TABLE_NEW_COLUMN>
@@ -170,7 +170,7 @@
       <TABLE_NEW_ROW>
         <TABLE_NEW_COLUMN>    &amp;        </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    h</TABLE_NEW_COLUMN>
-        <TABLE_NEW_COLUMN>    .^       </TABLE_NEW_COLUMN>
+        <TABLE_NEW_COLUMN>    <VERB>.^</VERB>       </TABLE_NEW_COLUMN>
         <TABLE_NEW_COLUMN>    j</TABLE_NEW_COLUMN>
       </TABLE_NEW_ROW>
       <TABLE_NEW_ROW>

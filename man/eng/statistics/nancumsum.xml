@@ -83,8 +83,8 @@ s=nancumsum(a,'c')
   </EXAMPLE>
 
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK> nansum</LINK> </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM> <LINK> cumsum</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>nansum</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>cumsum</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
   <AUTHOR>

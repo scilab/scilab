@@ -172,7 +172,7 @@
   <xsl:for-each select="./TABLE_NEW_ROW">
   <tr align="center">
     <xsl:for-each select="./TABLE_NEW_COLUMN">
-      <td><xsl:value-of select="./text()"/></td>
+      <td><xsl:apply-templates/></td>
     </xsl:for-each>
         </tr>
   </xsl:for-each>
