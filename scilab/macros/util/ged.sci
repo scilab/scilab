@@ -436,7 +436,7 @@ function ged_rectangle(h)
   TK_SetVar("curvis",h.visible)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
   TK_SetVar("curmarkstyle",ged_markstylearray(abs(h.mark_style)+1))
@@ -501,7 +501,7 @@ function ged_polyline(h)
     TK_SetVar("curpolylinestyle",ged_polylinestylearray(max(h.polyline_style,1)))
     ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"];
     TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
-    ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+    ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
     "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
     "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
@@ -559,7 +559,7 @@ function ged_plot3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
-  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
@@ -621,7 +621,7 @@ function ged_fac3d(h)
   TK_SetVar("curhiddencolor",string(h.hiddencolor))
   TK_SetVar("curthick",string(h.thickness))
 
-  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
@@ -782,7 +782,7 @@ function ged_segs(h)
   ged_linestylearray=["solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]; 
   TK_SetVar("curlinestyle",ged_linestylearray(max(h.line_style,1)))
 
-  ged_markstylearray=["dot" "plus" "cross" "star" "diamond fill" ..
+  ged_markstylearray=["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"];
 
@@ -1220,7 +1220,7 @@ function setLineStyle(sty)
 endfunction
 function setMarkStyle(sty)
   global ged_handle; h=ged_handle
-  h.mark_style=find(sty==["dot" "plus" "cross" "star" "diamond fill" ..
+  h.mark_style=find(sty==["dot" "plus" "cross" "star" "filled diamond" ..
   "diamond" "triangle up" "triangle down" "diamond plus" "circle" ..
   "asterisk" "square" "triangle right" "triangle left" "pentagram"])-1
 endfunction
