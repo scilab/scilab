@@ -26,7 +26,6 @@
 #include "periX11.h"
 #include "../version.h"
 #include "color.h"
-#include "../intersci/cerro.h" 
 #include "bcg.h"
 
 /** jpc_SGraph.c **/
@@ -271,7 +270,7 @@ void sci_pixmap_resize(struct BCG *Xgc,int x,int y)
     XFreePixmap(dpy,(Pixmap)Xgc->Cdrawable);
   Xgc->Cdrawable = (Drawable) XCreatePixmap(dpy, root,Max(x,400),Max(y,300),depth);
   if ( Xgc->Cdrawable == (Drawable) 0) 
-    sciprint("No more space to create Pixmaps\r\n");
+    sciprint("Not enough memory  to allocate pixmap\r\n");
   else
     {
       PixmapClear(Xgc,0,0,x,y);
@@ -1986,9 +1985,7 @@ extern void setcolormapg(struct BCG *XGC,integer *v1, integer *v2, double *a)
   char merror[128];
   /* 2 colors reserved for black and white */
   if (*v2 != 3 || *v1 < 0 || *v1 > maxcol - 2) {
-    sprintf(merror,"Colormap must be a m x 3 array with m <= %ld\r\n",
-	    maxcol-2);
-    cerro(merror);
+    sciprint("Colormap must be a m x 3 array with m <= %ld, previous one kept\r\n",maxcol-2);
     return;
   }
   m = *v1;
