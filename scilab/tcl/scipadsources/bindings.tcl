@@ -122,5 +122,5 @@ bind Text <Control-/> ""
 bind Text <Control-a> ""
 bind $pad <Control-a> {selectall}
 
-bind Text <Control-/> {set ind [%W index insert]; openlibfunsource $ind}
+bind Text <Control-slash> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Control-Button-1> {set ind [%W index current]; showpopupsource $ind}
