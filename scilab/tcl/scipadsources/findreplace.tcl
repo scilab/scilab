@@ -156,7 +156,7 @@ proc ReplaceIt {once_or_all} {
 # FV 13/05/04
             reshape_bp
             focus [gettextareacur]
-            return "Done"
+            return [list "Done" $SearchPos]
         } else {
 # Francois VOGEL, 21/04/04, added message box
 #	    set SearchPos "0.0"
@@ -168,7 +168,7 @@ proc ReplaceIt {once_or_all} {
                     tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée" -parent $find -title "Remplacer"
                 }
             }
-            return "No_match"
+            return [list "No_match" $SearchPos]
         }
     } else {
 # Francois VOGEL, 21/04/04
@@ -191,9 +191,20 @@ proc ReplaceAll {} {
 #          }
 #      }
     if {$SearchString != ""} {
-        set anotherone [ReplaceIt once]
+# Francois VOGEL, 17/10/04
+# The following has been a little bit reworked to account for the possibility that the user,
+# without checking the Match case box, tries to replace a string S1 with a string S2 that is
+# only different from S1 by the character case 
+        set ReplaceItResult [ReplaceIt once]
+        set anotherone [lindex $ReplaceItResult 0]
+        set RefPos [lindex $ReplaceItResult 1]
         while {$anotherone != "No_match"} {
-            set anotherone [ReplaceIt all]
+            set ReplaceItResult [ReplaceIt all]
+            set anotherone [lindex $ReplaceItResult 0]
+            set NewPos [lindex $ReplaceItResult 1]
+            if {$NewPos == $RefPos} {
+                set anotherone "No_match"
+            }
         }
     } else {
         if {$lang == "eng"} {

@@ -1,6 +1,5 @@
 proc checkscilabbusy {{mb "message"}} {
     global sciprompt lang
-    return "OK"
     if [ expr [string compare $sciprompt -1] == 0 ] {
         if {$mb != "nomessage"} {
             if {$lang == "eng"} {
@@ -61,31 +60,31 @@ proc execfile_bp {} {
                     }
                 }
             }
-# Leading spaces here to avoid possible loss of first characters
-# However this does not work for long lines created by execfile (i.e.
-# lines that take a long time to display or execute in Scilab window)
             if {$setbpcomm != ""} {
                 setdbstate "DebugInProgress"
                 set commnvars [createsetinscishellcomm]
                 set watchsetcomm [lindex $commnvars 0]
                 if {$watchsetcomm != ""} {
-                    ScilabEval "     $watchsetcomm"  "sync"
+                    ScilabEval "$watchsetcomm"  "seq"
                 }
-                ScilabEval "     $setbpcomm; $funnameargs,$removecomm"  "seq"
-#		while {[checkscilabbusy "nomessage"] == "busy"} {}
-                set filename [creategetfromshellcomm]
-                if {$filename != "emptyfile"} {
-                    ScilabEval "     exec(\"$filename\");"   "sync"
+# <TODO> A ScilabEval "seq" never causes an error, this only happens with "sync"
+#        It would be a good idea to arrange for an error to be reported even with a seq,
+#        but this is outside of Scipad.
+                if {[catch {ScilabEval "$setbpcomm; $funnameargs; $removecomm"  "seq"}]} {
+                    scilaberror $funnameargs
                 }
+                getfromshell
                 updateactivebreakpoint
+                checkendofdebug_bp
             } else {
-                ScilabEval "     $funnameargs"  "sync"
+                if {[catch {ScilabEval "$funnameargs" "seq"}]} {
+                    scilaberror $funnameargs
+                }
             }
         } else {
             # <TODO> .sce case
 ##            execfile
         }
-#        showinfo " "
     }
 }
 
@@ -101,7 +100,7 @@ proc stepbystep_bp {} {
 # Moreover, all this analysis is already (and surely better) done by the
 # Scilab interpreter, therefore the best way would probably be to add a new
 # Scilab function that would return the line number of the next instruction to
-# be executed. This should no be such a tricky thing to do drawing inspiration
+# be executed. This should no be such a tricky thing to do, drawing inspiration
 # e.g. from setbpt. 
     tk_messageBox -message "Sorry, step execution not yet implemented!"
 }
@@ -114,33 +113,25 @@ proc resume_bp {} {
             set commnvars [createsetinscishellcomm]
             set watchsetcomm [lindex $commnvars 0]
             if {$watchsetcomm != ""} {
-                ScilabEval "     $watchsetcomm"  "sync"
+                ScilabEval "$watchsetcomm" "seq"
                 set returnwithvars [lindex $commnvars 1]
-                while {[checkscilabbusy "nomessage"] == "busy"} {}
     # [..]=resume(..) was bugged (see bug 818)
     # The changes made by the user in the watch window were not reflected in the calling
     # workspace in Scilab. The correction is part of CVS from 18/06/04 or later, and
-    # it will be included in Scilab 3.0
-                ScilabEval "     $returnwithvars"  "seq"
+    # it has been included in Scilab 3.0
+                ScilabEval "$returnwithvars" "seq"
             } else {
-                while {[checkscilabbusy "nomessage"] == "busy"} {}
-                ScilabEval "     resume(0)"  "seq"
+                ScilabEval "resume(0)" "seq"
             }
-            set filename [creategetfromshellcomm]
-            if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "sync"
-            }
-            while {[checkscilabbusy "nomessage"] == "busy"} {}
+            getfromshell
             updateactivebreakpoint
-            while {[checkscilabbusy "nomessage"] == "busy"} {}
             checkendofdebug_bp
         } else {
             # <TODO> .sce case
             # Sending \n is if mode(6) mode(0) is used. If pause, there is no
             # need to distinguish between .sci and .sce (resume is sent for both)
- #           ScilabEval " "
+ #           ScilabEval " " "seq"
         }
-#        showinfo " "
     }
 }
 
@@ -151,23 +142,18 @@ proc goonwo_bp {} {
         if {$funnameargs != ""} {
             [gettextareacur] tag remove activebreakpoint 1.0 end
             removescilab_bp "with_output"
-            ScilabEval "     resume(0)" 
-            while {[checkscilabbusy "nomessage"] == "busy"} {}
-            set filename [creategetfromshellcomm]
-            if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "sync"
-            }
+            ScilabEval "resume(0)" "seq"
+            getfromshell
         }
         setdbstate "ReadyForDebug"
-#        showinfo " "
     }
 }
 
-proc dispcallstack_bp {} {
-    if {[checkscilabbusy] == "OK"} {
-        ScilabEval " whereami()"
-    }
-}
+# Now obsolete since replaced by the display in the watch window
+#proc dispcallstack_bp {} {}
+#        ScilabEval "whereami()"
+#{    }
+#{}
 
 proc canceldebug_bp {} {
     global funnameargs waitmessage
@@ -175,15 +161,53 @@ proc canceldebug_bp {} {
         showinfo $waitmessage
         if {$funnameargs != ""} {
             [gettextareacur] tag remove activebreakpoint 1.0 end
+            ScilabEval "abort" "seq"
             removescilab_bp "with_output"
-            ScilabEval "     abort"
-            while {[checkscilabbusy "nomessage"] == "busy"} {}
-            set filename [creategetfromshellcomm]
-            if {$filename != "emptyfile"} {
-                ScilabEval "     exec(\"$filename\");"  "sync"
-            }
+# Next line should not be required but it is since the workspace is erased under some
+# circumstances like after the ScilabEval "abort" above. See bug #633.
+# <TODO> Once this bug is solved, getdebuggersciancillaries_bp on next line can be removed.
+            getdebuggersciancillaries_bp
+            getfromshell
         }
         setdbstate "NoDebug"
-#        showinfo " "
+    }
+}
+
+proc scilaberror {funnameargs} {
+    global errnum errline errmsg errfunc lang
+    ScilabEval "\[db_str,db_n,db_l,db_func\]=lasterror();\
+                TK_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
+                                           set errnum  \"+string(db_n)+\"; \
+                                           set errline \"+string(db_l)+\"; \
+                                           set errfunc \"+db_func+\"; \
+                                           set errmsg \"\"\"+db_str+\"\"\"}\")" \
+               "sync" "seq"
+    if {$lang == "eng"} {
+        tk_messageBox -title "Scilab execution error" \
+          -message [concat "The shell reported an error while trying to execute "\
+          $funnameargs ": error " $errnum ", " $errmsg " at line "\
+          $errline " of function " $errfunc]
+        showinfo "Debug aborted due to Scilab execution error!"
+    } else {
+        tk_messageBox -title "Erreur Scilab durant l'exécution" \
+          -message [concat "Le shell a rencontré une erreur en tentant d'exécuter "\
+          $funnameargs ": erreur " $errnum ", " $errmsg " ligne "\
+          $errline " de la fonction " $errfunc]
+        showinfo "Debug arrêté du fait d'une erreur Scilab!"
+    }
+    if {[getdbstate] == "DebugInProgress"} {
+        canceldebug_bp
+    }
+    blinkline $errline $errfunc
+}
+
+proc blinkline {li ma {nb 3}} {
+    for {set i 0} {$i < $nb} {incr i} {
+        updateactivebreakpointtag $li $ma
+        update idletasks
+        after 500
+        updateactivebreakpointtag 0 ""
+        update idletasks
+        after 500
     }
 }

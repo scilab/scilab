@@ -1,8 +1,9 @@
 proc showwatch_bp {} {
-    global pad watch lang env
+    global pad watch lang
     global lbvarname lbvarval scrolly
     global watchvars watchvarsvals buttonAddw
     global firsttimeinshowwatch watchgeom
+    global callstackwidget callstackcontent
     set watch $pad.watch
     catch {destroy $watch}
     toplevel $watch
@@ -15,7 +16,7 @@ proc showwatch_bp {} {
     }
     frame $watch.f
 
-    frame $watch.f.f2
+    frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
     frame $watch.f.f2.f2l
     if {$lang == "eng"} {
         set tl "Variable name:"
@@ -47,10 +48,10 @@ proc showwatch_bp {} {
                                       closewatch_bp $watch nodestroy}
     set scrolly $watch.f.f2.f2r.yscroll
     scrollbar $scrolly -command "scrollyboth_bp $lbvarname $lbvarval"
-    listbox $lbvarname -height 6 -yscrollcommand \
+    listbox $lbvarname -height 6 -width 12 -yscrollcommand \
                        "scrollyrightandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                        -takefocus 0
-    listbox $lbvarval -height 6 -yscrollcommand \
+    listbox $lbvarval -height 6 -width 40 -yscrollcommand \
                       "scrollyleftandscrollbar_bp $scrolly $lbvarname $lbvarval" \
                       -takefocus 0
     if {[info exists watchvars]} {
@@ -63,8 +64,24 @@ proc showwatch_bp {} {
     }
     pack $lbvarname $scrolly $lbvarval -side left \
             -expand 1 -fill both -padx 2
-    pack $watch.f.f2.f2l $watch.f.f2.f2r -side left -padx 10
-    pack $watch.f.f2 -pady 4
+    pack $watch.f.f2.f2l $watch.f.f2.f2r -side left -padx 2
+    pack $watch.f.f2 -pady 2
+
+    frame $watch.f.f6 -relief groove -borderwidth 2 -padx 2
+    if {$lang == "eng"} {
+        set csl "Call stack:"
+    } else {
+        set csl "Pile des appels:"
+    }
+    label $watch.f.f6.cslabel -text $csl
+    pack $watch.f.f6.cslabel -anchor w -pady 4
+    set callstackwidget $watch.f.f6.callstack
+    text $callstackwidget -height 5 -width 81 -state normal -background gray83
+    pack $callstackwidget
+    pack $watch.f.f6 -pady 2
+    $callstackwidget delete 1.0 end
+    $callstackwidget insert 1.0 $callstackcontent
+    $callstackwidget configure -state disabled
 
     frame $watch.f.f9
     if {$lang == "eng"} {
@@ -75,7 +92,7 @@ proc showwatch_bp {} {
     button $watch.f.f9.buttonClose -text $bl -command "closewatch_bp $watch"\
            -width 10 -height 1 -underline 0
     pack $watch.f.f9.buttonClose
-    pack $watch.f.f9 -pady 4
+    pack $watch.f.f9 -pady 2
 
     pack $watch.f
     bind $watch <Return> {Addarg_bp $watch $buttonAddw $lbvarname $lbvarval; \
@@ -95,12 +112,20 @@ proc showwatch_bp {} {
     bind $watch <Down> {scrollarrows_bp $lbvarname down}
     bind $watch <MouseWheel> {if {%D<0} {scrollarrows_bp $lbvarname down}\
                                        {scrollarrows_bp $lbvarname up}}
-    bind $watch <Enter> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
-    bind $watch <FocusOut> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
+    bind $watch <Configure> {set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]}
     if { $firsttimeinshowwatch == "true" } { 
         focus $buttonAddw
         set watchgeom [string trimleft [eval {wm geometry $watch}] 1234567890x=]
         set firsttimeinshowwatch "false"
+    }
+}
+
+proc updatewatch_bp {} {
+    global watch
+    if {[info exists watch]} {
+        if {[winfo exists $watch]} {
+            showwatch_bp
+        }
     }
 }
 
@@ -118,27 +143,9 @@ proc closewatch_bp {w {dest "destroy"}} {
     if {$dest == "destroy"} {destroy $w}
 }
 
-proc creategetfromshellcomm {} {
-#    global watchvars watchvarsvals unklabel
-#    while {[checkscilabbusy "nomessage"] == "busy"} {}
-#    set fullcomm ""
-#    foreach var $watchvars {
-#         set comm1 "if exists(\"$var\"),"
-#         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
-#         set comm3 "else"
-#         set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
-#         set comm5 "end;"
-#         set fullcomm [concat $fullcomm $comm1 $comm2 $comm3 $comm4 $comm5]
-#    }
-#    if {$fullcomm != ""} {
-#         set fullcomm [concat $fullcomm "TK_EvalStr(\"scipad eval {showwatch_bp}\");" ]
-#    }
-#    return $fullcomm
-    global watchvars watchvarsvals unklabel env tmpdir
+proc getfromshell {} {
+    global watchvars watchvarsvals unklabel callstackcontent
     set fullcomm ""
-#    set filename [file join "$env(SCIPATH)" "tcl" "scipadsources" "getwatchcomm.sce"]
-    set filename [file join "$tmpdir" "getwatchcomm.sce"]
-    set tempfile [open $filename w+]
     foreach var $watchvars {
         set comm1 "if exists(\"$var\"),"
         set comm2 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"\"+FormatStringsForDebugWatch($var)+\"\"\"}\");"
@@ -146,16 +153,12 @@ proc creategetfromshellcomm {} {
         set comm4 "TK_EvalStr(\"scipad eval {set watchvarsvals($var) \"\"$unklabel\"\"}\");"
         set comm5 "end;"
         set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5]
-        puts $tempfile $fullcomm
+        ScilabEval $fullcomm "seq"
     }
-    if {$fullcomm != ""} {
-        set fullcomm "TK_EvalStr(\"scipad eval {showwatch_bp}\");"
-        puts $tempfile $fullcomm
-    } else {
-       set filename "emptyfile"
-    }
-    close $tempfile
-    return $filename
+    set fullcomm "TK_EvalStr(\"scipad eval {set callstackcontent \"\"\"+FormatWhereForDebugWatch()+\"\"\"}\");"
+    ScilabEval $fullcomm "seq"
+    set fullcomm "TK_EvalStr(\"scipad eval {updatewatch_bp}\");"
+    ScilabEval $fullcomm "seq"
 }
 
 proc createsetinscishellcomm {} {

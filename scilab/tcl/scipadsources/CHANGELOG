@@ -365,7 +365,9 @@ Francois VOGEL, 17/06/04
    is now saved in TMPDIR instead of in SCI/tcl/scipadsources - should better cope with
    file permissions that way. TMPDIR is set for Scipad in scipad.sci
  * splitted debugger.tcl in several sub-files to ease maintainability
- * version --> 3.0 (submitted to the Scilab team under bug #559)
+ * version --> 3.0 (submitted to the Scilab team under bug #559). This is the version
+   included in Scilab 3.0, but the debugger menu is hidden in the distribution (shortcuts
+   do work however)
 
 Francois VOGEL, 07/07/04
  * simplified the use of the debugger: Scipad now maintains a state variable containing
@@ -383,7 +385,7 @@ Francois VOGEL, 07/07/04
      debug session (this copes also with colorization schemes)
    - if no debug session was initialized, the button-3 popup menu is the edit menu
      otherwise it is the debug menu - this is the 1st contextual menu in Scipad
-   - the debugger state is made known to the user from the bakground color of the message
+   - the debugger state is made known to the user from the background color of the message
      area at the bottom of the Scipad window - for improved readability, messages are now
      displayed in black instead of blue
  * getf "FormatStringsForDebugWatch.sci" moved to db_states.tcl. If the user did not open
@@ -425,3 +427,121 @@ Francois VOGEL, 07/07/04
    configure box, the next time the Add button was hit in the watch window an error poped
    out. This is now fixed
  * version --> 3.1
+
+Francois VOGEL, 18/07/04
+ * The debugger state is now reset to "NoDebug" on closing of buffers if there is no
+   pre-existing configured execution (i.e. if the configure box is empty after the buffer
+   is closed)
+ * Changed shortcuts bindings of the debugger commands so that they apply to all the
+   windows in Scipad rather than to the toplevel window only - Fixes possible problems of
+   shortcut activation on some systems with specific focus management
+ * Minor editing in words (keywords added, such as 'continue')
+ * Scipad now starts from the path of the latest opened file when opening further files
+ * Command "Display call stack" removed from the Debug menu. Instead, the call stack is
+   automatically displayed in the watch window at each stop of the debugger.
+   Note that this functionality requires that a Scilab bug in the where() function be fixed.
+   where.f as provided under bug 908 (or even better, bug 922) correction should be used.
+   This corrected where.f is part of the CVS since 3 August 04
+ * Reworked display of the watch window: now this window is updated (and opened) on the
+   screen only if it was already open (avoids undesired pop up)
+ * version --> 3.2
+
+Francois VOGEL, 20/07/04
+ * Removed file db_tagsmanagement.tcl from the distribution (was obsolete and never sourced)
+ * Bug fixed: F9 during debug could unset the active breakpoint, but could not reset it
+ * Improved visibility of the active breakpoint: added bold style and increased borderwidth
+ * Relocated the mainlevel code of the debugger in a new db_init.tcl file
+ * version --> 3.3
+
+Francois VOGEL, 17/10/04
+ * If the number of leading spaces of a line was odd, then trying to unindent the selection
+   until there is no space remaining did never remove the last space. This is now fixed
+   (just changed "^  " into "^ {1,2}" in the regsub of proc UnIndenSel)
+ * Keypress did not replace the selection after buffers were switched. This was due to the
+   clearing of the X selection that was introduced to fix another bug (see above 16/04/2004).
+   It is now fixed in proc nextbuffer and proc prevbuffer, but it required a trick since
+   there is no "selection set" command in tcl. Solution used: the sel tag is well maintained
+   inside different buffers. Therefore the selection is obtained using this tag and set
+   again to that same range using that tag, which has the desired side effect of also
+   setting the X selection.
+ * Added option -anchor w in label statusind2 so that the line number in function can always
+   be read, even if the function name is too long to fit in the (fixed) alloted space.
+ * Added textquoted tag for Scilab text between simple quotes ('). Just duplicated portion
+   of code dealing with double quotes (") in proc colorize. There is a side effect on some
+   operations using more than one matrix transpose in a single line, such as A=B'+C', but
+   this is believed to be less important than having the text strings properly colorized
+   regardless of the quote type that sets its limits, since simple quotes are widely used
+   in the current Scilab source code especially the oldest parts. Moreover, code lines such
+   as mprintf("%s",'this is a function') brakes the line number counting in functions if
+   not properly colorized as textquoted.
+ * Fixed a bug in proc checkcontbraceorbracket: lines such as mprintf('['); were detected
+   as continued lines, and that resulted in wrong line number in function displayed in
+   statusind2. Now checkcontbraceorbracket checks whether the brace or bracket found is
+   tagged as textquoted or not, which solves the issue.
+ * Added a catch {} in bindings.tcl  and proc newfilebind to avoid error popup message in
+   case listoffile("$textarea",language) has already been unset in proc byebye which is called
+   on ctrl-w to close the current buffer. Proc keyposn uses this variable, and if byebye
+   finished before or faster than the <KeyRelease> or <ButtonRelease> binding, an error
+   occurred.
+ * A bit of rework in proc ReplaceAll to account for the possibility that the user, without
+   checking the Match case box, tries to replace a string S1 with a string S2 that is only
+   different from S1 by the character case. This used to hang Scipad.
+ * Moved scipad.tcl and words in scipadsources (and changed scipad.sci to reflect it).
+ * Added the new "sync" and/or "seq" arguments to ScilabEvals whenever required
+   To do (when situation is totally clear, and as soon as ScilabEval "seq" bug is fixed on
+   Windows...):
+    - remove the extra spaces at the beginning of the seq/sync scilabevals
+    - remove the checkscilabbusy tests between ScilabEvals
+    - suppress the temporary file getwatchcomm.sce and replace by successive ScilabEvals
+      with adequate options - this is started but not yet mature
+    - find out how to close bug #885 (send multiple ScilabEvals? what about continued lines?)
+ * version --> 3.4
+
+Francois VOGEL, 20/10/04
+ * Work on proc updateactivebreakpoint and proc checkendofdebug_bp to take into account the
+   additional level in the where() output due to the "seq" option of ScilabEval.
+   There was a quirk for subroutines of the exec'ed function: for the main function, where()
+   returns the line number just before the breakpoint, but for subfunctions it returns the
+   exact line number of the breakpoint. Probably a Scilab bug, but Scipad implements a
+   workaround.
+   Note: FormatWhereForDebugWatch.sci could be slightly improved.
+ * Implemented a workaround for bug#633 (workspace erased after abort of a callback). This
+   was required to fix the command "Cancel debug".
+ * Suppressed the temporary file getwatchcomm.sce and replaced by successive ScilabEvals.
+ * Proc updateactivebreakpointtag bullet-proofed against values of $activeline. Scipad hangs
+   no more if $activeline is 0 or less, or greater than the length of $activemacro.
+ * Now a debug session seems to work fully (tested on Windows only however). The main issue
+   was that ScilabEval "sync" was called during a paused ScilabEval "seq". Currently, the
+   user still has to hit the return key in the main Scilab window in order to launch execution
+   of the ScilabEvals, but this is outside of Scipad.
+ * version --> 3.5
+
+Francois VOGEL, 21/10/04
+ * Increased character size of the active breakpoint so that it is more visible.
+ * Active breakpoint character size is now changed accordingly when other font sizes are
+   changed.
+ * Removed the extra spaces at the beginning of the seq/sync scilabevals since they are
+   no more required.
+ * Removed the checkscilabbusy tests between ScilabEvals in the debugger. Proc checkscilabbusy
+   is no more bypassed where it is useful.
+ * On trying to exec or to start debugging a file that contains an error reported by the
+   shell, this error is now trapped by Scipad, a message box is displayed explaining the
+   error, and the offending line is blinked in Scipad.
+ * version --> 3.6
+
+Francois VOGEL, 27/10/04
+ * Removed the workaround (i.e. the offset management) in proc updateactivebreakpoint
+   since I corrected bug 1054.
+ * FormatWhereForDebugWatch slightly improved to suppress display of the highest calling
+   level, i.e. the ScilabEval call to the breakpointed function to debug.
+ * Fixed bug: When the function to debug returned before the first breakpoint, the debugger
+   state did not go back to "NoDebug". 
+ * Line 1 of a function can now be tagged by proc updateactivebreakpointtag.
+ * version --> 3.7
+
+Francois VOGEL, 29/10/04
+ * Fixed bug in proc updateactivebreakpointtag. This proc could spit 'TK_EvalStr, bad text
+   index "" at line 1' when launched from the Scilab command line by TK_EvalStr("scipad eval
+   {updateactivebreakpointtag 1 foo}"). This occurred when the commented word "function" was
+   present in the buffer and function foo was not defined in that buffer.
+ * version --> 3.8

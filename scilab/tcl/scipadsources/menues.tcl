@@ -288,8 +288,8 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Show watch" \
       -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12
-    $pad.filemenu.debug add command -label "Display call stack" \
-      -underline 6 -command "dispcallstack_bp"
+#    $pad.filemenu.debug add command -label "Display call stack" \
+#      -underline 6 -command "dispcallstack_bp"
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Cancel debug" \
       -underline 5 -command "canceldebug_bp"
@@ -319,8 +319,8 @@ if {$lang == "eng"} {
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Fenêtre watch" \
       -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12
-    $pad.filemenu.debug add command -label "Montrer la pile des appels" \
-      -underline 0 -command "dispcallstack_bp"
+#    $pad.filemenu.debug add command -label "Montrer la pile des appels" \
+#      -underline 0 -command "dispcallstack_bp"
     $pad.filemenu.debug add separator
     $pad.filemenu.debug add command -label "Annuler le débug" \
       -underline 0 -command "canceldebug_bp"

@@ -2,8 +2,9 @@ SCIPAD BUGS AND WISHES LIST - Rev. 3.1
 
 Bugs:
 -----
--colorization: the regexp for the new class "numbers" is not perfect,
- e123 is caught as number.
+-colorization:
+ . the regexp for the new class "numbers" is not perfect, e123 or d1 are caught as number
+ . multiple matrix transposes in the same line are colorized as textquoted, e.g. A=A'+B'
 
 -scipad resizes (in wrong grid units) upon font change only the first 
  Untitled.sce (if still open, i.e. not destroyed). But, as now scipad 
@@ -26,6 +27,21 @@ Bugs:
    some of them containing dots and some other not
  . Nested brackets or braces in continued lines
 
+-Undo/redo stacks are sometimes not consistent with the modified flag, e.g. if the user
+ types something, then saves, then undo once and redo once, then the modified flag is
+ active. Instead of debugging the current code, the best fix would probably be to make
+ profit of the undo/redo mechanism embedded in text widgets since tcl/tk 8.4. But this
+ supposes that the minimal version is 8.4, which is true only for the binary distribution
+ of Scilab.
+
+-Control-k deletes from the insertion cursor to the end of its line; if the insertion
+ cursor is already at the end of a line, then Control-k deletes the newline character.
+ This is normal, but the buffer should be reported as modified.
+ Same issue for Control-t also, as well as for all the default bindings of the TK text
+ widget that we did not overload by our own Scipad bindings.
+ More precisely, the binded action is performed by the system, the buffer is NOT
+ reported as modified by Scipad, but the action can be undone by Ctrl-z.
+
 
 Old bugs/whishes which have been hacked but could have been done better:
 ------------------------------------------------------------------------
@@ -36,7 +52,7 @@ Old bugs/whishes which have been hacked but could have been done better:
   not proficient enough to find out why the commandStack and the cursorStack
   gain different last element index only once a paste has been performed.
   Note: tcl/tk8.4.6 now supports directly undo/redo in text widgets, and takes
-  care of the modified flag. Could therefore get rid of all this code in scipad.tcl
+  care of the modified flag. Could therefore get rid of all this code.
 
 -(the text cursor disappears every now and then while moving it around with the
   arrows) -- now hacked: the cursor is always on and red but does not blink (is
@@ -88,8 +104,8 @@ inside the master tk interpreted (perhaps in a namespace) and not in a slave int
  operation, so I could even decide a different option for each of the two.
 
 -the debugger works well for functions but shell scripts are not supported yet.
-  Step by step execution remains to be implemented, but this requires Scilab
-  core support.
+ Step by step execution remains to be implemented, but this requires Scilab
+ core support.
 
 
 Wishes:
@@ -124,6 +140,8 @@ Wishes:
 -a taylored 3rd-button popup menu (currently it is just the edit menu) - i.e.
  it includes execute selection, comment/uncomment this line, insert/delete
  breakpoints
+ Note: a first step to this has been implemented. During a debug session, the popup
+ menu is the debug menu.
 
 -Add a Revert to saved... in the file menu.
 
@@ -137,11 +155,14 @@ Wishes:
  
 -paned window, to allow for viewing two different parts of the text buffer at the
  same time, or maybe two different buffers.
+
+-tile or cascade windows inside the pad
  
 -add a 'Go to function...' entry in a menu. Upon selection, a sub-menu would open
  allowing for selection of any function found in all the currently opened buffers.
- Could also be displayed in a combobox (but tk does not support combos natively)
- which would be part of the tool bar. Or a spinbox plus a 'Go' button.
+ Could also be displayed in a combobox (but tk does not support combos natively -
+ Note however that BWidgets-1.7.0 is now part of the CVS distribution, and that it
+ includes combos!) which would be part of the tool bar. Or a spinbox plus a 'Go' button.
  The buffer search could be launched only on invocation of the spinbox arrows or
  on menu selection.
 
@@ -159,10 +180,12 @@ Wishes:
 -same with a function for opening the script which produced the lasterro(): 
  editoffendingline()
 
--"compile xml as help page" command
+-"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it has now been
+ implemented by Scilab Team
 
 -"Create help skeleton" command (invokes help_skeleton in Scilab and retrieves the
- generated text for modification in Scipad)
+ generated text for modification in Scipad). Before using this, check that the file created
+ by help_skeleton is still consistent with the latest changes in the help
 
 -In the file menu, add the list of the n more recently opened files for quick access
 
@@ -174,3 +197,28 @@ Wishes:
 
 -Improve the aesthetics of Scipad (see sciGUI)
 
+-A preferences menu (sub-menu of the options menu?) that would allow to select the background
+ color of the Scipad from a palette (this has been asked for in the ng). Could also be done
+ through the config() macro from sciGUI.
+
+-Allow the user to select whether the tab key inserts tabs or spaces, and in the latter, how
+ many. Could be part of the Options menu or Preferences submenu.
+
+-Blink (single or double) quotes. Must find a way to distinguish between opening and
+ closing quotes in proc blinkbrace. This is not that easy since these are the same
+ character, therefore the direction to search is difficult to determine.
+ Note that there is currently an old proc insquote that is never called and could be
+ removed from the Scipad source
+
+-'Matlab' colorization scheme for .m files
+
+-On successful opening of the first file after Scipad launch, automatically close the
+ unmodified empty buffer that is opened by default
+
+-Scipad defines and uses, mostly for the debugger, some variables in order to send
+ values to Scipad. All these variables currently start with the prefix db_, in order
+ to reduce the risk of the use of such variable names in Scilab for another purpose,
+ e.g. in the function to be debugged. We could use more sophisticated things to be
+ absolutely sure that the variable names instantiated by Scipad in not used in Scilab,
+ so that conflicts would always be avoided. For instance, browsing the existing known
+ variables and checking for existence, etc. could be used.

@@ -4,7 +4,7 @@
 proc load_words {} {
         global        words chset env
 
-        set ownpath "$env(SCIPATH)/tcl"
+        set ownpath "$env(SCIPATH)/tcl/scipadsources"
         set type {}
         set col {}
         set f [open $ownpath/words r]
@@ -173,6 +173,29 @@ proc colorize {w cpos iend} {
                   }          
               } else break
          }
+
+#Francois VOGEL, 17/10/04 (tag 'sometext' as textquoted)
+        $w mark set last begin
+        while { [set ind [$w search -count num -regexp \
+                          {'[^']*('|$)} last ende]] != {}} {
+              if {[$w compare $ind >= last]} {
+                  set res ""
+                  $w mark set endetext "$ind lineend"
+                  regexp {'[^']*'} [$w get last endetext] res
+                  set num [string length $res]
+                  if {$num <= 0} {
+                      $w mark set last "$ind + 1c"
+                  } else {
+                      $w mark set last "$ind + $num c"
+                 # textquoted deletes any other tag
+                      remalltags $w $ind last
+                      $w tag add textquoted $ind last
+                  }          
+              } else break
+         }
+
+
+
 # scilab remark
          if {$schema=="scilab"} {
               $w mark set last begin

@@ -62,7 +62,7 @@ proc settitle {WinTitleName} {
 proc modifiedtitle {textarea} {
 # FV 07/06/04 changed $pad.filemenu.wind index for extractindexfromlabel
 # This fixes the scipad 0 bug as well as corrects side effects on some 
-#  filenames    
+# filenames    
     global pad listoffile lang 
     set fname $listoffile("$textarea",filename)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]

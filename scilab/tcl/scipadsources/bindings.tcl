@@ -59,8 +59,11 @@ bind Text <Button-2> {copytext; selection clear;
                       %W mark set insert "@%x,%y";
                       pastetext }
 
-bind $textareacur <KeyRelease> {keyposn %W}
-bind $textareacur <ButtonRelease> {keyposn %W}
+#Francois VOGEL, 17/10/04 - Added catch {} to avoid error popup message in case
+#listoffile("$textarea",language) has already been unset in proc byebye which
+#is called on ctrl-w to close the current buffer
+bind $textareacur <KeyRelease> {catch {keyposn %W}}
+bind $textareacur <ButtonRelease> {catch {keyposn %W}}
 
 ###### added by ES 24/7/2003
 event delete <<Cut>> <Control-w>
@@ -113,15 +116,3 @@ bind $pad <Control-minus> {set FontSize [expr round($FontSize*0.9)]; \
                               setfontscipad $FontSize}
 
 bind $pad <F4> {importmatlab}
-
-# FV 13/05/04
-bind $pad <F9> {insertremove_bp}
-bind $pad <Control-F9> {removeall_bp}
-bind all <F10> {}
-bind $pad <F10> {configurefoo_bp}
-bind $pad <Control-F11> {execfile_bp}
-bind $pad <F11> {resume_bp}
-#bind $pad <Shift-F11> {insertremovedebug_bp}
-bind $pad <Shift-F12> {goonwo_bp}
-bind $pad <F12> {stepbystep_bp}
-bind $pad <Control-F12> {showwatch_bp}

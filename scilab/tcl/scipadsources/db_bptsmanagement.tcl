@@ -13,11 +13,11 @@ proc insertremove_bp {{buf "current"}} {
             set i1 "insert linestart"
             set i2 "insert lineend"
             set activetags [$textarea tag names $i1]
-            if {[string first breakpoint $activetags] == -1} {
+            if {[lsearch $activetags breakpoint] == -1} {
                 $textarea tag add breakpoint $i1 $i2
             } else {
                 $textarea tag remove breakpoint $i1 $i2
-                $textarea tag remove activebreakpoint $i1 $i2
+#                $textarea tag remove activebreakpoint $i1 $i2
             }
         }
     }
@@ -33,14 +33,14 @@ proc insertremovedebug_bp {{buf "current"}} {
         set i1 "insert linestart"
         set i2 "insert lineend"
         set activetags [$textarea tag names $i1]
-        if {[string first breakpoint $activetags] == -1} {
+        if {[lsearch $activetags breakpoint] == -1} {
             set infun [whichfun [$textarea index $i1] $textarea]
             if {$infun !={} } {
                 $textarea tag add breakpoint $i1 $i2
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set setbpcomm " setbpt(\"$funname\",$lineinfun);"
-                ScilabEval $setbpcomm  "sync"
+                ScilabEval $setbpcomm  "seq"
             } else {
                 # <TODO> .sce case
             }
@@ -50,8 +50,8 @@ proc insertremovedebug_bp {{buf "current"}} {
             # delbpt("foo",linenum) did not (bp was removed from dispbpt
             # list but execution still stopped at linenum)
             # The correction has been submitted to Scilab team (see
-            # bugzilla #718), is part of Scilab CVS and will be included
-            # in Scilab 3.0. If the patch is not installed, the following
+            # bugzilla #718), is part of Scilab CVS and is included
+            # in Scilab 3.0. If the fix is not installed, the following
             # will fail.
             set infun [whichfun [$textarea index $i1] $textarea]
             if {$infun !={} } {
@@ -60,7 +60,7 @@ proc insertremovedebug_bp {{buf "current"}} {
                 set funname [lindex $infun 0]
                 set lineinfun [expr [lindex $infun 1] - 1]
                 set delbpcomm " delbpt(\"$funname\",$lineinfun);"
-                ScilabEval $delbpcomm  "sync"
+                ScilabEval $delbpcomm  "seq"
             } else {
                 # <TODO> .sce case
             }
@@ -105,7 +105,7 @@ proc removescilab_bp {outp} {
                 }
             }
             if {$outp != "no_output"} {
-                ScilabEval " $delbpcomm"  "sync"
+                ScilabEval "$delbpcomm" "seq"
             }
         } else {
             # <TODO> .sce case

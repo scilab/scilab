@@ -118,7 +118,7 @@ proc UnIndentSel {} {
             if { $i2<$i1 } {
  		set i3 $i2; set i2 $i1; set i1 $i3
 	    }
-            regsub -all -line "^  " $ctext  "" uctext
+            regsub -all -line "^ {1,2}" $ctext  "" uctext
             puttext $textareacur $uctext
  # as above in UnCommentSel
             $textareacur tag add sel $i1 [$textareacur index insert]

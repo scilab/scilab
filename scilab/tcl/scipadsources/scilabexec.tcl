@@ -42,7 +42,9 @@ proc execfile {{buf "current"}} {
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-	    ScilabEval "     exec(\"$f\");"   "sync"
+        if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
+            scilaberror "this file"
+        }
 	}
     }
 }
@@ -162,7 +164,7 @@ proc importmatlab {} {
 	     showinfo "Scilab is converting, please hold on..." }
          if {$lang == "fr"} {
 	     showinfo "Scilab est en train de convertir, patientez SVP..." }
-         ScilabEval $impcomm
+         ScilabEval $impcomm "sync" "seq"
        }
      }
 }

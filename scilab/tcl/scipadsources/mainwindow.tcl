@@ -105,7 +105,7 @@ label $pad.statusmes -relief groove -state disabled -background $colormen \
     -width 30
 # FV 21/05/04, added a second statusind to display the line number in functions
 label $pad.statusind2 -relief groove -state disabled -background $colormen \
-    -width 24
+    -width 24 -anchor w
 pack $pad.statusind2 $pad.statusind -in $pad.bottombottommenu -side right\
     -expand 0
 pack $pad.statusmes -in $pad.bottombottommenu -side bottom -expand 0 -fill x

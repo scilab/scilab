@@ -1,7 +1,7 @@
 # new file
 # Matthieu PHILIPPE 14/12/2001
 proc filesetasnewmat {} {
-    global winopened listoffile tcl_platform fileName
+    global winopened listoffile fileName
     global listoftextarea pad radiobuttonvalue lang
 
     incr winopened
@@ -137,7 +137,7 @@ proc extenstolang {file} {
 proc openfile {file} {
     global listoffile
     global FGCOLOR BGCOLOR textFont taille wordWrap pad winopened 
-    global textareacur listoftextarea tcl_platform radiobuttonvalue lang
+    global textareacur listoftextarea radiobuttonvalue lang
     if [string compare $file ""] {
         # search for a opened existing file
         set res [lookiffileisopen "$file"]
@@ -226,8 +226,9 @@ proc notopenedfile {file} {
 proc newfilebind {} {
    global pad winopened radiobuttonvalue listundo_id
    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
-   bind $pad.new$winopened <KeyRelease> {keyposn %W}
-   bind $pad.new$winopened <ButtonRelease> {keyposn %W}
+#Francois VOGEL, 17/10/04 - Added catch {}
+   bind $pad.new$winopened <KeyRelease> {catch {keyposn %W}}
+   bind $pad.new$winopened <ButtonRelease> {catch {keyposn %W}}
    TextStyles $pad.new$winopened
    set radiobuttonvalue $winopened
 }
@@ -401,20 +402,21 @@ proc showopenwin {textarea} {
     global listoffile
     global FGCOLOR BGCOLOR textFont taille wordWrap 
     global pad winopened textareacur listoftextarea
-    global tcl_platform
-    global radiobuttonvalue lang
+    global lang startdir
     if {$lang == "eng"} {showinfo "Open file"
     } else {showinfo "Ouvrir le fichier"}
-    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad]
+# FV 18/07/04, remember the latest path used for opening files
+    if {![info exists startdir]} {set startdir [pwd]}
+    set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad -initialdir $startdir]
     #####
     if [string compare "$file" ""] {
+        set startdir [file dirname $file]
         # search for a opened existing file
         set res [lookiffileisopen "$file"]
         if {$res == 0} {
             notopenedfile $file
             set listoffile("$pad.new$winopened",thetime) [file mtime $file]
             shownewbuffer $file
-# FV 13/05/04
             reshape_bp
             showinfo " "
             newfilebind

@@ -78,7 +78,7 @@ proc scipadindent {textarea cm} {
 proc TextStyles { t } {
     global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
     global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR
-    global BREAKPOINTCOLOR
+    global BREAKPOINTCOLOR actbptextFont
 
     $t tag configure parenthesis -foreground $PARCOLOR
     $t tag configure bracket -foreground $BRAKCOLOR
@@ -92,9 +92,8 @@ proc TextStyles { t } {
     $t tag configure xmltag -foreground $XMLCOLOR
     $t tag configure number -foreground $NUMCOLOR
     scipadindent $t .8
-# FV 13/05/04
     $t tag configure breakpoint -background $BREAKPOINTCOLOR
-    $t tag configure activebreakpoint -relief raised -borderwidth 1
+    $t tag configure activebreakpoint -font $actbptextFont -relief raised -borderwidth 2
 }
 
 
@@ -104,6 +103,7 @@ proc setfontscipad {FontSize} {
     global listoftextarea
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
+    set actbptextFont -Adobe-courier-bold-R-Normal-*-[expr $FontSize + 2]-*
     $pad.filemenu configure -font $menuFont
     $pad.filemenu.files configure -font $menuFont
     $pad.filemenu.edit configure -font $menuFont
@@ -113,7 +113,10 @@ proc setfontscipad {FontSize} {
     $pad.filemenu.exec configure -font $menuFont
     $pad.filemenu.debug configure -font $menuFont
     $pad.filemenu.help configure -font $menuFont
-    foreach textarea $listoftextarea {$textarea configure -font $textFont}
+    foreach textarea $listoftextarea {
+        $textarea configure -font $textFont
+        $textarea tag configure activebreakpoint -font $actbptextFont
+    }
     $pad.statusind configure -font $menuFont
     $pad.statusind2 configure -font $menuFont
     $pad.statusmes configure -font $menuFont

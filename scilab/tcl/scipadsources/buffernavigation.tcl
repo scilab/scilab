@@ -36,6 +36,11 @@ proc nextbuffer {} {
 #    showinfo $curbuf
     set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
     montretext [lindex $listoftextarea [expr $curbuf-1]]
+#Francois VOGEL, 17/10/04 (keypress did not replace the selection if buffers were switched)
+    set existsSel [[gettextareacur] tag nextrange sel 1.0]
+    if {$existsSel != {}} {
+        [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+    }
 }
 
 proc prevbuffer {} {
@@ -52,6 +57,11 @@ proc prevbuffer {} {
 #    showinfo $curbuf
     set radiobuttonvalue [$pad.filemenu.wind entrycget $curbuf -value]
     montretext [lindex $listoftextarea [expr $curbuf-1]]
+#Francois VOGEL, 17/10/04 (keypress did not replace the selection if buffers were switched)
+    set existsSel [[gettextareacur] tag nextrange sel 1.0]
+    if {$existsSel != {}} {
+        [gettextareacur] tag add sel [lindex $existsSel 0] [lindex $existsSel 1]
+    }
 }
 
 # add gotoline option included by Matthieu PHILIPPE 21/11/2001 from gotoline.pth

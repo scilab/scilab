@@ -20,7 +20,7 @@ global TMPDIR
     end
     TK_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
     TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
-    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
+    TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipadsources/scipad.tcl""}")
     nfiles=argn(2)
     if nfiles>0 then
       onevalidfile=%f

@@ -123,7 +123,7 @@ proc configurefoo_bp {} {
     focus $buttonAddc
     grab $conf
     if {$funnames == ""} {Obtainall_bp}
-    if {$funnames == ""} {OKconf_bp $conf}
+    if {$funnames == ""} {OKconf_bp $conf;showinfo "Debugger is not yet developed for sce scripts!"; # <TODO> Do it!}
 }
 
 proc scrollyboth_bp {leftwin rightwin args} {

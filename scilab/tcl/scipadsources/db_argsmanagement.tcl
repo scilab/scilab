@@ -97,10 +97,7 @@ proc OKadda_bp {w pos leftwin rightwin} {
                 set watchvars [linsert $watchvars $pos $argname]
                 set watchvarsvals($argname) $argvalue
                 if {$argvalue == $unklabel} {
-                    set filename [creategetfromshellcomm]
-                    if {$filename != "emptyfile"} {
-                        ScilabEval "     exec(\"$filename\");" "sync"
-                    }
+                    getfromshell
                 }
             }
             $leftwin insert $pos $argname
@@ -186,6 +183,7 @@ proc removefuns_bp {textarea} {
             set funnameargs "$funname\($strargs\)"
         } else {
             set funnameargs ""
+            setdbstate "NoDebug"
         }
     }
 }

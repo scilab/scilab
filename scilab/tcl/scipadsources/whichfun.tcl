@@ -81,7 +81,8 @@ proc whichfun {indexin {buf "current"}} {
             while {[set ind [$textarea search $openchar \
                              $last $indexin]] != {}} {
                 if {[$textarea compare $ind >= $last] &&
-                    [lsearch $dottedlineslist [$textarea index "$ind linestart"]] == -1 } {
+                    [lsearch $dottedlineslist [$textarea index "$ind linestart"]] == -1 &&
+                    [lsearch [$textarea tag names $ind] "textquoted"] ==-1 } {
                     set ind2 [$textarea search $closechar $ind end]
                     if {$ind2 != {}} {
                         if {[$textarea compare "$ind2 linestart" > "$ind linestart"]} {
