@@ -831,6 +831,9 @@ void C2F(xclick_any)(char *str,integer *ibutton,integer* x1,integer * yy1,
 		     integer *iwin,integer *iflag,integer *istr,
 		     double * dv1, double *dv2,double * dv3,double * dv4)
 {
+#ifndef WITH_TK
+  MSG msg;
+#endif
   int buttons = 0,win = 0;
   win = -1;
   if ( *iflag ==1 && CheckClickQueue(&win,x1,yy1,ibutton) == 1) 
