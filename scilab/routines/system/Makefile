@@ -30,7 +30,7 @@ OBJSF = allops.o  banier.o diary.o\
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) 
+CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH)
 
 FFLAGS = $(FC_OPTIONS)
 
