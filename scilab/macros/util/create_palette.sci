@@ -105,7 +105,7 @@ function routines=create_palette(bidon)
       elseif txt=='Electrical' then
 	lisf=['Capacitor.sci';'Ground.sci';'VVsourceAC.sci';'ConstantVoltage.sci';
 	      'Inductor.sci';'PotentialSensor.sci';'VariableResistor.sci';'CurrentSensor.sci';
-	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci']
+	      'Resistor.sci';'VoltageSensor.sci';'Diode.sci';'VsourceAC.sci']
 	
       elseif txt=='Hydraulics' then
 	lisf=['Bache.sci';'VanneReglante.sci';'PerteDP.sci';'PuitsP.sci';'SourceP.sci';]

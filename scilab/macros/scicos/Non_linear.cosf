@@ -119,7 +119,7 @@ scs_m.objs(9)=mlist(["Block","graphics","model","gui","doc"],..
               mlist(..
               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
               "gr_i","id","in_implicit","out_implicit"],[140,70],[40,40],%t,..
-              ["2","1","1"],0,0,[],[],..
+              ["2";"1";"1"],0,0,[],[],..
               list(..
               ["txt=[CCC];";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"],..
               8),"","E","E"),..

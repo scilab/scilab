@@ -267,3 +267,24 @@ scs_m.objs(11)=mlist(["Block","graphics","model","gui","doc"],..
                "Diode","p","n",..
                list(["Ids","Vt","Maxexp","R"],list(1.000E-06,0.04,15,1.000E+08)),..
                list([],list()))),"Diode",list())
+scs_m.objs(12)=mlist(["Block","graphics","model","gui","doc"],..
+               mlist(..
+               ["graphics","orig","sz","flip","exprs","pin","pout","pein","peout",..
+               "gr_i","id","in_implicit","out_implicit"],[350,70],[40,40],%t,..
+               ["220";"50"],0,0,[],[],..
+               list(..
+               ["xarc(orig(1)+sz(1)*1/8,orig(2)+sz(2)*4.3/5,sz(1)*3/4,sz(2)*3/4,0,360*64);";
+               "xsegs(orig(1)+sz(1)*[0 1/8],orig(2)+sz(2)*[1/2 1/2],0)";
+               "xsegs(orig(1)+sz(1)*[7/8 1],orig(2)+sz(2)*[1/2 1/2],0)";
+               "V=string(model.rpar(1));";
+               "xstringb(orig(1),orig(2)+sz(2)*0.2,''~'',sz(1),sz(2)*0.3,''fill'')";
+               "xstringb(orig(1),orig(2)+sz(2)*0.5,V,sz(1),sz(2)*0.3,''fill'')"],..
+               8),"","I","I"),..
+               mlist(..
+               ["model","sim","in","out","evtin","evtout","state","dstate","rpar",..
+               "ipar","blocktype","firing","dep_ut","label","nzcross","nmode",..
+               "equations"],"VsourceAC",1,1,[],[],[],[],[220;50],[],"c",[],..
+               [%t,%f],"",0,0,..
+               tlist(["modelica","model","inputs","outputs","parameters"],..
+               "VsourceAC","p","n",list(["VA";"f"],list(220,50)),list([],list()))),..
+               "VsourceAC",list())
