@@ -23,7 +23,7 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
 // Copyright INRIA
 // modifs to use dsearch (Bruno Pincon 10/12/2001)
 // others modifs from Bruno (feb 2005):
-//    - may be a cleaner way to deal with optionnal arg ?
+//    - may be a cleaner and shorter way to deal with optionnal arg ?
 //    - now the histgram is drawn using only one polyline
 //      (so properties (color, thickness,...) are easier 
 //       to change with new graphics).
@@ -58,17 +58,11 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    if ~exists('normalization','local') then, normalization=%t,end
    
    // now parse optionnal arguments to be sent to plot2d
-   opts=[]
-   opt_arg_list = ["style" "strf", "leg", "rect","nax","logflag", "frameflag", "axesflag"]
-   has_opt_arg = %f
+   opt_arg_seq = []
+   opt_arg_list = ["style","strf","leg","rect","nax","logflag","frameflag","axesflag"]
    for opt_arg = opt_arg_list
       if exists(opt_arg,"local") then
-	 if has_opt_arg then
 	    opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
-	 else
-	    opt_arg_seq = opt_arg + "=" + opt_arg
-	    has_opt_arg = %t
-	 end
       end
    end
    
@@ -96,10 +90,10 @@ function histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,axesflag,norm
    X = [x(1);x(1);matrix([1;1;1]*x(2:n),-1,1);x(n+1);x(n+1)] 
    Y = [matrix([0;1;1]*y,-1,1);0]
 
-   if has_opt_arg then
-      execstr('plot2d(X,Y,'+opt_arg_seq+")")
-   else
+   if opt_arg_seq = [] then
       plot2d(X,Y)
+   else
+      execstr('plot2d(X,Y'+opt_arg_seq+")")
    end
 
 endfunction
