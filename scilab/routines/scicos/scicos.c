@@ -3017,7 +3017,6 @@ int C2F(simblkdaskr)(t,xc,xcdot,cj,residual,ires,rpar1,ipar1)
 	of the state 
      */
 { 
-
   C2F(dcopy)(neq, xcdot, &c__1, residual, &c__1);
   *ires=0;
   C2F(ierode).iero = 0;

@@ -34,11 +34,11 @@ integer flag;
   int n27=30,zero=0;
   int *le1,*le2,ne2,*le3,*le4,ne4,*le33,*le5;
   double *le22,*le44,*le111,*le333,*le55;
-  char *str[]={ "scicos_block","time","nevprt","funpt","type",
+  char *str[]={ "scicos_block","nevprt","funpt","type",
 		"scsptr","nz","z","nx","x","xd","res","nin",
 		"insz","inptr","nout","outsz","outptr","nevout",
 		"evout","nrpar","rpar","nipar","ipar","ng","g",
-		"ztyp","jroot","label","work"};
+		"ztyp","jroot","label","mode","work"};
   
   char **str1;
   
@@ -114,6 +114,8 @@ integer flag;
 
   C2F(vvtosci)(*Blocks[0].work,&zero);
   if (C2F(scierr)()!=0) goto err; 
+  C2F(itosci)(&Blocks[0].mode,&one,&one);
+  if (C2F(scierr)()!=0) goto err;
 
   C2F(mktlist)(&n27);
   if (C2F(scierr)()!=0) goto err; 
@@ -132,9 +134,9 @@ integer flag;
   case 1 :
     /* y computation */
     {
-      /* 17ieme element de la tlist y */
+      /* 16ieme element de la tlist y */
       if (Blocks[0].nout!=0) {
-	le3=(int*) listentry(header,18);
+	le3=(int*) listentry(header,17);
 	for (j=1; j <=le3[1] ; j++)
 	  {
 	    le33=(int*) listentry(le3,j); 
@@ -147,80 +149,80 @@ integer flag;
   case 0 :
     /*  x'  computation */
     {
-      /* 10 ieme element de la tlist xd */
+      /* 9 ieme element de la tlist xd */
       if (Blocks[0].nx != 0){
-	le4=(int*) listentry(header,11);
-	le44=(double *) listentry(header,11);
-	ne4=header[11+2]-header[11+1];
+	le4=(int*) listentry(header,10);
+	le44=(double *) listentry(header,10);
+	ne4=header[10+2]-header[10+1];
 	C2F(unsfdcopy)(&ne4,le44,&moinsun,Blocks[0].xd,&moinsun);
       }
       break;
     }
   case 2 :
     {
-      /* 7ieme element de la tlist z */
-      le1=(int*) listentry(header,8);
-      le111=(double*) listentry(header,8);
-      ne1=header[8+2]-header[8+1];
+      /* 6ieme element de la tlist z */
+      le1=(int*) listentry(header,7);
+      le111=(double*) listentry(header,7);
+      ne1=header[7+2]-header[7+1];
       C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
-      /* 9ieme element de la tlist x */
+      /* 8 ieme element de la tlist x */
       if (Blocks[0].nx != 0){
-	le2=(int*) listentry(header,10);
-	le22=(double *) listentry(header,10);
-	ne2=header[10+2]-header[10+1];
+	le2=(int*) listentry(header,9);
+	le22=(double *) listentry(header,9);
+	ne2=header[9+2]-header[9+1];
 	C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
       }
     }
     break;
   case 3 :
-    le5=(int*) listentry(header,20);
+    le5=(int*) listentry(header,19);
     le55=(double*) (le5+4);
     for (j=0; j<Blocks[0].nevout;j++){
       Blocks[0].evout[j]=le55[j];
     }
     break;
   case 4 :
-    le1=(int*) listentry(header,8);
-    le111=(double*) listentry(header,8);
-    ne1=header[8+2]-header[8+1];
+    le1=(int*) listentry(header,7);
+    le111=(double*) listentry(header,7);
+    ne1=header[7+2]-header[7+1];
     C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
-    /* 9ieme element de la tlist x */
+    /* 8ieme element de la tlist x */
     if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,10);
-      le22=(double *) listentry(header,10);
-      ne2=header[10+2]-header[10+1];
+      le2=(int*) listentry(header,9);
+      le22=(double *) listentry(header,9);
+      ne2=header[9+2]-header[9+1];
       C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
     }
     break;
   case 5 :
-    le1=(int*) listentry(header,8);
-    le111=(double*) listentry(header,8);
-    ne1=header[8+2]-header[8+1];
+    le1=(int*) listentry(header,7);
+    le111=(double*) listentry(header,7);
+    ne1=header[7+2]-header[7+1];
     C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
-    /* 9ieme element de la tlist x */
+    /* 8ieme element de la tlist x */
     if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,10);
-      le22=(double *) listentry(header,10);
-      ne2=header[10+2]-header[10+1];
+      le2=(int*) listentry(header,9);
+      le22=(double *) listentry(header,9);
+      ne2=header[9+2]-header[9+1];
       C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
     }
     break;
   case 6 :
-    /* 7ieme element de la tlist z */
-    le1=(int*) listentry(header,8);
-    le111=(double*) listentry(header,8);
-    ne1=header[8+2]-header[8+1];
+    /* 6ieme element de la tlist z */
+    le1=(int*) listentry(header,7);
+    le111=(double*) listentry(header,7);
+    ne1=header[7+2]-header[7+1];
     C2F(unsfdcopy)(&ne1,le111,&moinsun,Blocks[0].z,&moinsun);
-    /* 9ieme element de la tlist x */
+    /* 8ieme element de la tlist x */
     if (Blocks[0].nx != 0){
-      le2=(int*) listentry(header,10);
-      le22=(double *) listentry(header,10);
-      ne2=header[10+2]-header[10+1];
+      le2=(int*) listentry(header,9);
+      le22=(double *) listentry(header,9);
+      ne2=header[9+2]-header[9+1];
       C2F(unsfdcopy)(&ne2,le22,&moinsun,Blocks[0].x,&moinsun);
     }
-    /* 17ieme element de la tlist y */
+    /* 16ieme element de la tlist y */
     if (Blocks[0].nout!=0) {
-      le3=(int*) listentry(header,18);
+      le3=(int*) listentry(header,17);
       for (j=1; j <= Blocks[0].nout  ; j++)
 	{
 	  le33=(int*) listentry(le3,j); 
