@@ -47,18 +47,18 @@ return;end
 //!
 // Copyright INRIA
 [lhs,rhs]=argn(0)
-n=prod(size(labels))
-if lhs<>n+2&lhs<>n+1 then error(41),end
-if size(typ)<>2*n then
+%nn=prod(size(labels))
+if lhs<>%nn+2&lhs<>%nn+1 then error(41),end
+if size(typ)<>2*%nn then
   error('typ : list(''type'',[sizes],...)')
 end
 x1=[];x2=[];x3=[];x4=[];x5=[];x6=[];x7=[];x8=[];x9=[];x10=[];x11=[];x12=[];x13=[];x14=[]
-if rhs==3 then  ini=emptystr(n,1),end
+if rhs==3 then  ini=emptystr(%nn,1),end
 ok=%t
 while %t do
   str=ini;
   if str==[] then ok=%f,break,end
-  for k=1:n
+  for k=1:%nn
     cod=str2code(str(k))
     spe=find(cod==99)
     if spe<>[] then
@@ -68,7 +68,7 @@ while %t do
     end
   end
   nok=0
-  for k=1:n
+  for k=1:%nn
     select part(typ(2*k-1),1:3)
     case 'mat'
       if execstr('v=['+str(k)+']','errcatch')<>0  then 
@@ -181,7 +181,7 @@ while %t do
     break
   end 
 end
-if lhs==n+2 then
+if lhs==%nn+2 then
   execstr('x'+string(lhs-1)+'=str')
 end
 endfunction
