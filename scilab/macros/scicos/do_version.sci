@@ -16,6 +16,7 @@ if version=='scicos2.5.1' then
   disp('This is an old scicos diagram. I have to translate.')
   scs_m=do_versionxx(scs_m);scs_m=do_version27(scs_m);version='scicos2.7';
   disp('I am now going to clean your diagram. Block numbers may change.')
+  scs_m_new=do_purge(scs_m);
   disp('Save the diagram (under a different name just in case)')
   lines(ncl(2))
 end
@@ -1230,3 +1231,5 @@ function scs_m_new=do_versionxx(scs_m)
   end
   edited=resume(%t)
 endfunction
+
+

@@ -178,8 +178,7 @@ function standard_draw(o,frame)
   end
 
   if execstr(gr_i,'errcatch')<>0 then 
-    message(['Error in Icon defintion';
-	     'See error message in scilab window'])
+    message(['Error in Icon defintion';lasterror()])
   end
   xset('pattern',pat)
   xset('font',fnt(1),fnt(2))
