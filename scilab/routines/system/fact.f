@@ -133,7 +133,7 @@ c
       call getsym
 c     
  22   if (sym.eq.semi .or. sym.eq.eol .or.sym.eq.right) go to 27
-     if (sym .eq. num .and.char1.eq.dot.and.
+      if (sym .eq. num .and.char1.eq.dot.and.
      $     lin(lpt(4)-2).ne.blank) then
 c     .  to return an error on [1.000.3,...] 
          lpt(2)=lpt(4)+1
