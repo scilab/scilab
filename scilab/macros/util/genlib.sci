@@ -45,7 +45,7 @@ function genlib(nam,path,force,verbose)
 	 recompile = %t ;
        else 
 	  scif_info = fileinfo(scif); 
-	  if ( scif_info(7) > binf_info(7)) then 
+	  if ( scif_info(6) > binf_info(6)) then 
 	    recompile = %t ; 
 	  end
        end
