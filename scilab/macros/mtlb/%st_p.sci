@@ -22,7 +22,11 @@ function %st_p(s)
     value=s(var)
     tp=typeof(value)
     if tp~='st' then
-      str=sci2exp(value,ll(1))
+      if size(value,1)==1 then // This line can avoid some stacksize error when field contains a big matrix 
+	str=sci2exp(value,ll(1))
+      else
+	str='['+strcat(string(size(value)),'x')+' '+tp+']'
+      end
     else
       str="[" + strcat(string(size(value)),"x")+" struct" + "]";
     end
