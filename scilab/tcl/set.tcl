@@ -37,7 +37,7 @@ proc SetField { handle field value } {
 	    # implemented fields
 	    set KnownFunc  { backgroundcolor callback fontangle fontname fontsize \
 		    fontweight fontunits horizontalalignment listboxtop max min \
-		    parent position string units value };
+		    parent position string units value figure_name};
 	    
 	    # is it an implemented?
 	    set idx  [lsearch $KnownFunc $field];
@@ -696,4 +696,15 @@ proc Setvalue { name  str} {
     default { }
      
   }
+}
+
+######################################################################################
+# V.C. 03/08/2004 from bug 895
+proc Setfigure_name { name value } {
+# set the title of a figure
+
+  global "$name";
+  set "$name\(figure_name)" $value;
+  set path [set "$name\(path)"];
+  wm title $path $value
 }
