@@ -65,7 +65,7 @@ copy(from, len, to) char *from, *to; register long len;
 copy(FILE *from, register long len, FILE *to)
 #endif
 {
-	int k, len1;
+	int  len1;
 	char buf[BUFSIZ];
 
 	while(fread(buf, len1 = len > BUFSIZ ? BUFSIZ : (int)len, 1, from)) {

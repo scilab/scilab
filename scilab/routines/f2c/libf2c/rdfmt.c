@@ -315,7 +315,7 @@ done:
 		}
 zero:
 	if (len == sizeof(real))
-		p->pf = x;
+		p->pf =(real) x;
 	else
 		p->pd = x;
 	return(0);

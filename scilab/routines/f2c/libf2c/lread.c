@@ -595,7 +595,7 @@ l_read(ftnint *number, char *ptr, ftnlen len, ftnint type)
 			break;
 		case TYLOGICAL:
 		case TYLONG:
-			Ptr->flint=f__lx;
+			Ptr->flint=(ftnint) f__lx;
 			break;
 #ifdef Allow_TYQUAD
 		case TYQUAD:
@@ -604,15 +604,15 @@ l_read(ftnint *number, char *ptr, ftnlen len, ftnint type)
 			break;
 #endif
 		case TYREAL:
-			Ptr->flreal=f__lx;
+			Ptr->flreal= (real) f__lx;
 			break;
 		case TYDREAL:
 			Ptr->fldouble=f__lx;
 			break;
 		case TYCOMPLEX:
 			xx=(real *)ptr;
-			*xx++ = f__lx;
-			*xx = f__ly;
+			*xx++ = (real) f__lx;
+			*xx = (real )f__ly;
 			break;
 		case TYDCOMPLEX:
 			yy=(doublereal *)ptr;

@@ -36,7 +36,7 @@ char *f__icvt(longint value, int *ndigit, int *sign, int base)
 		}
 	i = MAXINTLENGTH;
 	do {
-		buf[--i] = (uvalue%base) + '0';
+		buf[--i] = (char) ((uvalue%base) + '0');
 		uvalue /= base;
 		}
 		while(uvalue > 0);

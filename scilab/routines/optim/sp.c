@@ -16,6 +16,10 @@
 #include <string.h>
 #include "spd.h"
 
+#ifdef WIN32 
+extern void Scistring (char *str);
+#endif
+
 void cngrncb(itype,n,AP,B,CP,temp)
  int itype;
  int n;

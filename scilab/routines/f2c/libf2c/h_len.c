@@ -6,5 +6,5 @@ shortint h_len(s, n) char *s; ftnlen n;
 shortint h_len(char *s, ftnlen n)
 #endif
 {
-return(n);
+return( (shortint)n);
 }
