@@ -327,7 +327,7 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 	  else
 	  {
 		  Scierror(999,"unknown first parameter.\r\n");
-		  LhsVar(1)=0;
+		  return 0;
 	  }
 	}
 	else
@@ -377,11 +377,13 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
 		  else
 		  {
 			  Scierror(999,"type of second parameter incorrect.\r\n");
+			  return 0;
 		  }
 	   }
 	  else
 	   {
 		  Scierror(999,"unknown first parameter.\r\n");
+		  return 0;
 	   }
       LhsVar(1)=0;
 	}
@@ -389,7 +391,7 @@ int	InterfaceWindowsClipboard _PARAMS((char *fname))
   else
   {
 	  Scierror(999,"Only on Windows mode.\r\n");
-	  LhsVar(1)=0;
+	  return 0;
   }
   
   return 0;

@@ -368,7 +368,7 @@ int C2F(winqueryreg) _PARAMS((char *fname))
 	InterfaceWindowsQueryRegistry(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
-	LhsVar(1)=0;
+	return 0;
 #endif
 	C2F(putlhsvar)();
 	return 0;
@@ -380,7 +380,7 @@ int C2F(clipboard) _PARAMS((char *fname))
 	InterfaceWindowsClipboard(fname);
 #else
 	Scierror(999,"Only for Windows\r\n");
-	LhsVar(1)=0;
+	return 0;
 #endif
 	C2F(putlhsvar)();
 	return 0;
