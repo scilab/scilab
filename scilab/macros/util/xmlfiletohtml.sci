@@ -5,7 +5,7 @@ function xmlfiletohtml(path,xsl)
 //file using the /man/<LANGUAGE>/html-rev.xsl xsl file
   generate_cmd='sabcmd';
   [lhs,rhs]=argn(0);
-  if rhs < 1 then xsl= 'html-rev.xsl';end //the xsl file name;
+  if rhs < 2 then xsl= 'html-rev.xsl';end //the xsl file name;
   global LANGUAGE %helps
   path=pathconvert(path,%f,%t) // convert path to host convention
   
