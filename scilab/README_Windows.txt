@@ -20,6 +20,8 @@ I - TO RUN SCILAB (BINARY VERSION)
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe",
 	or "Scilab.bat".
+	If you want use Visual Studio (6,.NET) with Scilab 3.0,
+	execute "Scilab 3.0 (requires Visual Studio)" from the startup menu.
  
     3 - Scilab has been compiled with Visual C++ .NET 2003
 	(Intel C 8.0 & Fortran 8.0, see IV below).
