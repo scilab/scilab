@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.36 $)dnl
+AC_REVISION($Revision: 1.37 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1270,6 +1270,7 @@ if test "$TERMCAPLIB" = no; then
   AC_CHECK_LIB(termcap,main,
   [TERMCAPLIB=-ltermcap])
 fi
+if test "$TERMCAPLIB" = no; then
   AC_CHECK_LIB(termlib,main,
   [TERMCAPLIB=-ltermlib])
 fi
