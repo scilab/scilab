@@ -1,6 +1,5 @@
 function k=getlinestyle()
 [lhs,rhs]=argn(0)
-curwin=xget('window')
 win=max(winsid()+1)
 xset('window',win);
 
@@ -20,50 +19,70 @@ else
   delmenu(win,'&Edit')
   delmenu(win,'&Tools')
 end
+//Event handler and menu definition
+deff('evh(gwin,x,y,ibut)',..
+     ['global pos done'
+      'if or(ibut==(0:2)) then '
+      '   [x,y]=xchange(x,y,''i2f'')'
+      '   pos=[x,y],done=0,'
+      'end'
+      'if ibut==-1000 then ,done=3,end'
+     ])
+deff('menu_ok(k,gwin)','global done;done=1')
+deff('menu_cancel(k,gwin)','global done;done=2')
 
+
+set('figure_style','new')
+f=gcf();
+a=gca();
+a.visible='off';
+a.axes_visible='off';
+a.data_bounds=[0 0;5 12];
+a.font_size=3;
 
 x=(1:5)';
-fsave=xget("font size");
-xset("font size",3);
-
-plot2d(0,0,1,"010"," ",rect=[0 0 5 12]);
-xtitle(["      Select line style k by clicking in rectangle or line"])
+xtitle("      Select line style k by clicking in rectangle or line")
+R=[]
 for k=1:6
-  xstringb(0,2*k-1,"k = "+string(k),1,2)
-  xrect(0, 2*k+1, 1, 2);
+  xstringb(0,2*k-1,"k = "+string(k),1,2);s=gce();
+  s.font_size=3;
+  xrect(0, 2*k+1, 1, 2);R=[R,gce()]
 end
-
-lsave=xget("line style");
-tsave=xget("thickness");
-xset("thickness",2);
+a.thickness=2
 for k=1:6
   xset("line style",k);
-  xpoly(x,2*k*ones(x));
+  xpoly(x,2*k*ones(x));p=gce();
+  p.mark_mode='off',p.line_style=k;
 end
+a.visible='on'; //draw on the screen
 
-xset("line style", lsave);
-xset("thickness", tsave);
-xset("font size", fsave);
+global pos done;done=-1;
+ksel=1;
+seteventhandler('evh')
+addmenu(win,'Ok',list(2,'menu_ok'));
+addmenu(win,'Cancel',list(2,'menu_cancel'));
 
-done=%f;
-addmenu(win,'File',['Ok','Cancel']);execstr('File_'+string(win)+'=[''done=%t;k=k;'';''done=%t;k=[]'']')
-
-cmdok='execstr(File_'+string(win)+'(1))'
-cmdcancel='execstr(File_'+string(win)+'(2))'
+f.pixmap='on';
 while %t
-  [c_i,cx,cy,cw,str]=xclick();
-  k=round(cy/2);
-    if c_i==-2 then
-    if str==cmdok then k=k1;break,end
-    if str==cmdcancel then k=[];break,end
-  end
-  if c_i==-100 then k=[];break, end
-  if c_i==0 then
+  select done
+  case 0 then //click somehere
+    cx=pos(1);cy=pos(2)
     k1=round(cy/2);k1=min(k1,6);k1=max(1,k1);
-    xinfo('You have chosen style number: '+string(k1))
+    R(ksel).thickness=1;
+    R(k1).thickness=3;
+    ksel=k1
+    show_pixmap()
+  case 1 then  // ok button clicked
+    k=k1;break,
+  case 2 then   // cancel button clicked
+    k=[];break,
+  case 3 then //the window has been blosed
+    k=[],
+    clearglobal pos done
+    return
   end
 end
+seteventhandler('')
 xdel(win)
-
-xset('window',curwin)
+clearglobal pos done
 endfunction

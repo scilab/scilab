@@ -13,45 +13,64 @@ function paramfplot2d(f,x,theta,flag,rect)
 //
 //rect = "rectangle" [xmin, xmax, ymin, ymax] (1 x 4 real vector),
 // containing a-priori lower and upper bounds for x and f(t,x).
-//deff('y=f(x,t)','y=t*sin(x)')
-//x=linspace(0,2*%pi,50);paramfplot2d(f,x,0:0.05:1);
+//function y=f(x,t),y=abs(cos(1.5*x+4*t)).*sin(x+10*t),endfunction
+//x=linspace(0,20*%pi,500);theta=0:0.05:5;
 [lhs,rhs]=argn(0)
 x=x(:);
-if rhs==4 then
+if rhs<5 then //compute the data bounds
    xmin=min(x);xmax=max(x);
    ymin=%inf;ymax=-%inf;
    for t=theta
       y=f(x,t); ymin=min(ymin,min(y)); ymax=max(ymax,max(y));
    end
-   rect=[xmin,ymin,xmax,ymax];
+   rect=[xmin,xmax,ymin,ymax];
 end
-
-if rhs==3 then   //set flag='no' find rect=[xmin,ymin,xmax,ymax];
-   xmin=min(x);xmax=max(x);
-   ymin=%inf;ymax=-%inf;
-   for t=theta
-        y=feval(x,t,f);// same as y=f(x,t); 
-	ymin=min(ymin,min(y)); ymax=max(ymax,max(y));
-   end
-   flag='no'
-   rect=[xmin,ymin,xmax,ymax];
-end
-
-plot2d(0,0,0,"010"," ",rect);  //First plot to set the rectangle 
-//    Animated plot
-xset('pixmap',1);
-if flag=='no' then
-  for t=theta
-    xset("wwpc");
-    plot2d(x,feval(x,t,f)) //feval(x,t,f) same as f(x,t) if f is a scilab fctn.
-    xset("wshow");
+if rhs<43 then flag='no';end
+realtimeinit(0.1);
+if get("figure_style")=="new" then
+  xbasc();
+  fig=gcf();
+  a=gca();
+  a.data_bounds=matrix(rect,2,2);
+  a.axes_visible='on';
+  fig.pixmap='on'; //double buffer mode
+  y=feval(x,theta(1),f);
+  xpoly(x,y(:));p=gce(); //the polyline handle
+  realtime(0);
+  if flag=='no' then
+    for k=1:size(theta,'*')
+      realtime(k);
+      y=feval(x,theta(k),f);
+      p.data(:,2)=y(:);
+      show_pixmap()
+    end
+  else
+    for k=1:size(theta,'*')
+       realtime(k);
+      plot2d(x,feval(x,theta(k),f))
+      show_pixmap()
+    end
   end
+  fig.pixmap='off';
 else
-  for t=theta
-    plot2d(x,feval(x,t,f)) //feval(x,t,f) same as f(x,t) if f is a scilab fctn.
-    xset("wshow");
+  plot2d(0,0,0,"010"," ",rect);  //First plot to set the rectangle 
+  //    Animated plot
+  xset('pixmap',1);
+  realtime(0);
+  if flag=='no' then
+    for k=1:size(theta,'*')
+      realtime(k);
+      xset("wwpc");
+      plot2d(x,feval(x,theta(k),f)) 
+      xset("wshow");
+    end
+  else
+    for k=1:size(theta,'*')
+      realtime(k);
+      plot2d(x,feval(x,theta(k),f)) 
+      xset("wshow");
+    end
   end
+  xset("pixmap",0);
 end
-
-xset("pixmap",0);
 endfunction

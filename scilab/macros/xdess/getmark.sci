@@ -3,7 +3,6 @@ function [k1,k2]=getmark()
 //and mark size. 
 [lhs,rhs]=argn(0)
 k1=[];k2=[];
-curwin=xget('window')
 win=max(winsid()+1)
 xset('window',win);
 
@@ -23,61 +22,82 @@ else
   delmenu(win,'&Edit')
   delmenu(win,'&Tools')
 end
+//Event handler and menu definition
+deff('evh(gwin,x,y,ibut)',..
+     ['global pos done'
+      'if or(ibut==(0:2)) then '
+      '   [x,y]=xchange(x,y,''i2f'')'
+      '   pos=[x,y],done=0,'
+      'end'
+      'if ibut==-1000 then ,done=3,end'
+     ])
+deff('menu_ok(k,gwin)','global done;done=1')
+deff('menu_cancel(k,gwin)','global done;done=2')
 
 
-x=2;
-fsave=xget("font size");
-xset("font size",3);
+set('figure_style','new')
+f=gcf();
+f.visible='off';
+a=gca();
 
-plot2d(0,0,1,"010"," ",rect=[0 0 10 20]);
-xtitle([" Select mark style k and mark size l"])
+a.axes_visible='off';
+a.data_bounds=[0 0;10 20];
+a.font_size=2;
+
+xtitle(" Select mark style k and mark size l")
 for k=0:9
-  xstringb(0,2*k-1,"k = "+string(-k),1,2)
+  xstringb(0,2*k-1,"k = "+msprintf("%2d",k),1.5,2)
   xrect(0, 2*k+1, 1.5, 2);
 end
 
 for l=1:6
-  xstringb(l+1/2, 19,"l = "+string(l-1),1,2)
-  xrect(l+1/2, 21, 1, 2);
+  xstringb(l*1.5, 19,"l = "+msprintf("%2d",l-1),1.5,2)
+  xrect(l*1.5, 21, 1.5, 2);
 end
-tsave=xget("thickness");
-xset("thickness",2);
-ms=xget("mark size");
 
-for k=-(1:9)
- for x=1:6
- xset("mark size",x-1);
- plot2d(1+x,-2*k,style=k,axesflag=0);
- end
+H=[]
+for x=1:6
+  for k=(0:9)
+    xpoly(1+x*1.5,2*k,'marks');
+    p=gce();p.mark_size=x-1;p.mark_style=k;
+    H=[H;p];
+  end
 end
-k=0;
-x=1:6;
-plot2d(1+x,0*x,style=0,axesflag=0);
+f.visible='on'
+f.pixmap='on';
 
-xset("font size",fsave);
-xset("thickness",tsave);
-xset("mark size",ms);
+seteventhandler('evh')
+addmenu(win,'Ok',list(2,'menu_ok'));
+addmenu(win,'Cancel',list(2,'menu_cancel'));
 
-done=%f;
-addmenu(win,'File',['Ok','Cancel']);execstr('File_'+string(win)+'=[''done=%t;k=[-k1,k2];'';''done=%t;k=[]'']')
 
-cmdok='execstr(File_'+string(win)+'(1))'
-cmdcancel='execstr(File_'+string(win)+'(2))'
+global pos done;done=-1;
+ksel=9;xsel=1;
 while %t
-  [c_i,cx,cy,cw,str]=xclick();
-  k=round(cy/2);
-    if c_i==-2 then
-    if str==cmdok then k1=-k1;k=[k1,k2];break,end
-    if str==cmdcancel then k=[];break,end
-  end
-  if c_i==-100 then k=[];break, end
-  if c_i==0 then
+  select done
+  case 0 then //click somehere
+    cx=pos(1);cy=pos(2)
     k1=round(cy/2);k1=min(k1,9);k1=max(0,k1);
-    k2=round(cx);k2=k2-2;k2=min(k2,5);k2=max(0,k2);
-    xinfo('You have chosen (mark, mark size) = ( '+string(-k1)+', '+string(k2)+')')
+    k2=round(cx/1.5);k2=k2-2;k2=min(k2,5);k2=max(0,k2);
+    H(ksel+1+xsel*10).foreground=-1;
+    H(k1+1+k2*10).foreground=5;
+    ksel=k1;xsel=k2;
+    show_pixmap()
+    done=-1;
+    xinfo('You have chosen mark_style = '+string(k1)+..
+	  ' , mark_size = '+string(k2))
+  case 1 then  // ok button clicked
+    k1=k1;k=[k1,k2];break,
+  case 2 then   // cancel button clicked
+    k=[];break,
+  case 3 then //the window has been blosed
+    k=[],if argn(1)==1 then k1=k,end
+    clearglobal pos done
+    return
   end
 end
+if argn(1)==1 then k1=k,end
+seteventhandler('')
 xdel(win)
-
-xset('window',curwin)
+clearglobal pos done
 endfunction
