@@ -455,6 +455,7 @@ void C2F(show)(v1, v2, v3, v4)
   if ( ScilabXgc->hdcCompat)
     {
       HDC hdc1=GetDC(ScilabXgc->CWindow);
+      sciprint("ici ");
       BitBlt (hdc1,0,0,ScilabXgc->CWindowWidth,ScilabXgc->CWindowHeight,
 	      ScilabXgc->hdcCompat,ScilabXgc->horzsi.nPos,ScilabXgc->vertsi.nPos,SRCCOPY);
       ReleaseDC(ScilabXgc->CWindow,hdc1);
@@ -2071,7 +2072,7 @@ void C2F(setpixmapOn)(num, v2, v3, v4)
 	     PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
       if ((  ScilabXgc->hdcCompat = CreateCompatibleDC (hdc)) == NULL)
 	{
-	  sciprint("Seeting pixmap on is impossible \r\n");
+	  sciprint("Setting pixmap on is impossible \r\n");
 	  return;
 	}
       else
