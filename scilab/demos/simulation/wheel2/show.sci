@@ -127,7 +127,9 @@ function []=wheel_build_and_load()
   if ~c_link('wheel') then
     cd = getcwd(); 
     chdir(TMPDIR); 
-    unix_s('cp '+SCI+'/demos/wheel2/Maple/*.f .'); 
+    fcode=mgetl(SCI+'/demos/wheel2/Maple/dlslv.f');mputl(fcode,'dlslv.f')
+    fcode=mgetl(SCI+'/demos/wheel2/Maple/wheel.f');mputl(fcode,'wheel.f')
+    fcode=mgetl(SCI+'/demos/wheel2/Maple/wheelg.f');mputl(fcode,'wheelg.f')
     files = ['wheel.o','wheelg.o','dlslv.o' ];
     ilib_for_link(['wheel';'wheelg'],files,[],"f");
     exec loader.sce 
