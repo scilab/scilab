@@ -16,7 +16,12 @@ c
 
 c     opening file
       call v2cunit(top-rhs+1,'rb',lunit,opened,ierr)
-      if(ierr.gt.0) return
+      if(ierr.lt.0) then
+         call error(244)
+         return
+      elseif(ierr.gt.0) then
+         return
+      endif
 c     
       if(rhs.eq.2) then
          if (.not.getscalar('mgetl',top,top,lr)) return
