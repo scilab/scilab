@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef SCI_MEX 
 #define SCI_MEX 
 
@@ -216,3 +220,6 @@ typedef REAL32_T real32_T;
 
 #endif /* SCI_MEX  */
 
+#ifdef __cplusplus
+}
+#endif
