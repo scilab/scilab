@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mtlb_plot</TITLE>
+  <TYPE>M2SCI function</TYPE>
+  <DATE>June 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_plot">Matlab plot emulation function</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>Matlab <VERB>plot</VERB> and Scilab <VERB>plot2d</VERB> behave differently.</P>
+
+    <P>
+    The function <VERB>mtlb_plot(varargin)</VERB> is used by
+    <VERB>mfile2sci</VERB> to replace <VERB>plot(varargin)</VERB> when it was not
+    possible to know what were the inputs while porting Matlab code to Scilab. This function will
+    determine the correct semantic at run time. If you want to have a
+    more efficient code it is possible to replace <VERB>mtlb_plot</VERB> calls when there is no output value,
+    however in this case, you have to set colors manualy:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        With one input, if <VERB>Y</VERB> is real,
+        <VERB>mtlb_plot(Y)</VERB> may be replaced by <VERB>plot2d(Y)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With one input, if <VERB>Y</VERB> is complex,
+        <VERB>mtlb_plot(Y)</VERB> may be replaced by <VERB>plot2d(real(Y),imag(Y))</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        With two inputs <VERB>X</VERB> and <VERB>Y</VERB>, if <VERB>Y</VERB> is not a character string,
+        <VERB>mtlb_plot(X,Y)</VERB> may be replaced by <VERB>plot2d(X,Y)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Caution: <VERB>mtlb_plot</VERB> has not to be used for hand coded functions.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>

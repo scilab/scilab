@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>mtlb_plot</TITLE>
+  <TYPE>Fonction M2SCI</TYPE>
+  <DATE>Juin 2004</DATE>
+
+  <SHORT_DESCRIPTION name="mtlb_plot">Fonction d'émulation de la fonction Matlab plot</SHORT_DESCRIPTION>
+
+  <DESCRIPTION>
+
+    <P>La fonction Matlab <VERB>plot</VERB> et la fonction Scilab <VERB>plot2d</VERB> se comportent différemment.</P>
+
+    <P>
+    La fonction <VERB>mtlb_plot(...)</VERB> est utilisée par
+    <VERB>mfile2sci</VERB> pour remplacer <VERB>plot(...)</VERB> quand il n'était pas
+    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    Matlab vers Scilab. Cette fonction va
+    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
+    on peut remplacer les appels à <VERB>mtlb_plot</VERB> quand il n'y a pas de valeur de sortie,
+    dans ce cas, les couleurs doivent être changées par l'utilisateur:
+    </P>
+
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+        <SP>
+        Avec un paramètre d'entrée, si <VERB>Y</VERB> est réel
+        <VERB>mtlb_plot(Y)</VERB> peut être remplacé par <VERB>plot2d(Y)</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Avec un paramètre d'entrée, si <VERB>Y</VERB> est complex
+        <VERB>mtlb_plot(Y)</VERB> peut être remplacé par <VERB>plot2d(real(Y),imag(Y))</VERB>
+        </SP>
+      </ITEM>
+
+      <ITEM>
+        <SP>
+        Avec deux paramètres d'entrée <VERB>X</VERB> et <VERB>Y</VERB>, si <VERB>Y</VERB> n'est pas une chaîne de caractères,
+        <VERB>mtlb_plot(X,Y)</VERB> peut être remplacé par <VERB>plot2d(X,Y)</VERB>
+        </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+
+    <P>Attention : <VERB>mtlb_plot</VERB> ne doit pas être utilisée pour une programmation manuelle.</P>
+
+  </DESCRIPTION>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>plot2d</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>V.C.</AUTHORS_ITEM>
+  </AUTHORS>
+</MAN>
