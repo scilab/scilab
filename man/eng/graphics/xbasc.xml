@@ -28,9 +28,16 @@
     and erases the corresponding recorded graphics. For example 
     <VERB>xbasc(1:3)</VERB> clears windows 1, 2 and 3 and erases the corresponding 
     recorded graphics. If one of the windows does not 
-    exist, then it is automatically created.</P>
+    exist, then it is automatically created.
+    </P>
+    <P>
+      With the new graphic mode prefer <LINK>clf</LINK> to  <VERB>xbasc</VERB>
+    </P>
   </DESCRIPTION>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>clf</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xclear</LINK>
     </SEE_ALSO_ITEM>
