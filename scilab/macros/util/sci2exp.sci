@@ -128,7 +128,7 @@ if m<0 then
   end
   return
 end
-a=string(a);
+a=String(a);
 dots='.'+'.'
 t=[];
 if n==1 then
@@ -218,7 +218,7 @@ for i=1:m
     y=emptystr(1)
     nul=%t
     for k=k0:(d+1),
-      s=string(v(k))
+      s=String(v(k))
       if s<>'0' then
 	nul=%f
 	if part(s,1)==' ' then s=part(s,2:length(s)),end
@@ -230,7 +230,7 @@ for i=1:m
 	  end
 	end
 	if k>1 then
-	  if string(imag(v(k)))<>'0' then s='('+s+')',end
+	  if String(imag(v(k)))<>'0' then s='('+s+')',end
 	  if s=='1' then 
 	    s=mnm
 	  elseif s=='-1' then
@@ -463,4 +463,10 @@ else
   t=[t;mn]
 end
 t($)=t($)+')'
+endfunction
+
+function x=String(a)
+  x=string(a)
+  x(find(x=='Inf'))='%inf'
+  x(find(x=='Nan'))='%nan'
 endfunction
