@@ -69,4 +69,9 @@ if MSDOS then
 	
 	affich_result(correct, 650)
 	clear
+	
+else
+
+	affich_result(%T, 650)
+	
 end
