@@ -59,8 +59,8 @@ do_scilex_now()
 do_help()
 {
 echo "Usage:"
-echo     "	scilab [-ns -nw -display display -f file  -l lang -args arguments]"
-echo     "	scilab [-ns -nw -display display -e expression]"
+echo     "	scilab [-ns -nw -nb -display display -f file  -l lang -args arguments]"
+echo     "	scilab [-ns -nw -nb -display display -e expression -l lang -args arguments]"
 echo     "	scilab -link <objects>"
 exit
 }
