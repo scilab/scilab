@@ -2,7 +2,11 @@ function r=mtlb_e(a,i)
 // Copyright INRIA
 if type(a)==10 then
   a=strcat(a);
-  r=part(a,i)
+  if i==$ then
+    r=part(a,length(a))
+  else
+    r=part(a,i)
+  end
 else
   r=a(i)
   if size(i,2)>1 then //index is a row vector
