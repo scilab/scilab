@@ -66,7 +66,6 @@ function [ok,scs_m,%cpr,edited]=do_load(fname,typ)
 		path($+1)='objs'
 		path($+1)=kkk
 	      end
-	      pause
 	      path($+1)='graphics';path($+1)='exprs';path($+1)=2;
 	      tt=scs_m(path)
 	      if %cpr.sim.funtyp(jj)>1999 then
