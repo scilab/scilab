@@ -143,6 +143,8 @@ end
 
 //viewport
 options=scs_m.props.options
+//solver
+%scicos_solver=scs_m.props.tol(6)
 
 if ~super_block then
   xset('window',Main_Scicos_window);
