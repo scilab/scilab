@@ -1107,6 +1107,234 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
 c
        end
 
+      subroutine intdgeev(fname)
+
+c     [V,D]=dgeev(A)
+c     d = dgeev(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+
+      character fname*(*)
+      character JOBVL, JOBVR
+      double precision DZERO
+      parameter ( DZERO=0.0D0 )
+      complex*16 ZERO
+      parameter ( ZERO=(0.0D0,0.0D0) )
+      complex*16 complex
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'d', M, N, lA)) return
+       if(M.ne.N) then
+         buf='dgeev'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           if(.not.createvar(2,'z', 0, 0, lD)) return
+           lhsvar(1) = 2
+           return
+         else if(lhs.eq.2) then
+           if(.not.createvar(2,'z', 0, 0, lD)) return
+           if(.not.createvar(3,'d', 0, 0, lV)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 3
+           return
+         endif
+       endif  
+       if(lhs.eq.1) then
+         if(.not.createvar(2,'z', N, 1, lD)) return
+         k = 3              
+       else if(lhs.eq.2) then
+         if(.not.createvar(2,'z', N, N, lD)) return
+         if(.not.createvar(3,'d', N, N, lVR)) return
+         if(.not.createvar(4,'z', N, N, lV)) return
+         k = 5
+       endif
+       if(.not.createvar(k,'d', N, 1, lWR)) return
+       if(.not.createvar(k+1,'d', N, 1, lWI)) return
+       LWORKMIN = 3*N
+       if(lhs.gt.1) LWORKMIN = 4*N
+       LWORK=maxvol(k+2,'d')
+       if(LWORK.le.LWORKMIN) then
+         buf='dgeev'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k+2,'d',1,LWORK,lDWORK)) return
+      JOBVL = 'N'
+      if(lhs.eq.1) then
+        JOBVR = 'N'
+      else
+        JOBVR = 'V'
+      endif 
+      call DGEEV( JOBVL, JOBVR, N, stk(lA), N, stk(lWR), stk(lWI),
+     $     stk(lDWORK), N, stk(lVR), N, stk(lDWORK), LWORK, INFO )
+c      SUBROUTINE DGEEV( JOBVL, JOBVR, N, A, LDA, WR, WI, VL, LDVL, VR, LDVR, 
+c     $     WORK, INFO )
+       if(info.ne.0) then
+         call errorinfo("dgeev",info)
+         return
+       endif
+
+      if(lhs.eq.1) then
+        call ZLASET( 'F', N, 1, ZERO, ZERO, zstk(lD), N ) 
+c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 5 i = 1, N
+           zstk(lD+i-1) = complex(stk(lWR+i-1),stk(lWI+i-1))
+  5     continue     
+      else 
+        call ZLASET( 'F', N, N, ZERO, ZERO, zstk(lD), N ) 
+c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, N
+           ii = i+(i-1)*N
+           zstk(lD+ii-1) = complex(stk(lWR+i-1),stk(lWI+i-1))
+ 10     continue   
+      
+        j = 0
+ 20     j = j+1
+           if(stk(lWI+j-1).eq.DZERO) then
+              do 30 i = 1, N
+                 ij = i+(j-1)*N
+                 zstk(lV+ij-1) = stk(lVR+ij-1)
+ 30           continue
+           else   
+              do 40 i = 1, N
+                 ij = i+(j-1)*N
+                 ij1 = i+j*N
+                 zstk(lV+ij-1) = complex(stk(lVR+ij-1),stk(lVR+ij1-1))
+                 zstk(lV+ij1-1) = complex(stk(lVR+ij-1),-stk(lVR+ij1-1)) 
+ 40           continue
+              j = j+1
+           endif
+        if(j.lt.N) go to 20
+      endif
+     
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else 
+        lhsvar(1)=4
+        lhsvar(2)=2
+      endif
+c
+       end
+
+      subroutine intzgeev(fname)
+
+c     [V,D]=zgeev(A)
+
+      include '../stack.h'
+      logical getrhsvar,createvar
+      logical checklhs,checkrhs
+  
+      character fname*(*)
+      character JOBVL, JOBVR
+      complex*16 ZERO
+      parameter ( ZERO=(0.0D0,0.0D0) )
+
+       minrhs=1
+       maxrhs=1
+       minlhs=1
+       maxlhs=2
+c
+       if(.not.checkrhs(fname,minrhs,maxrhs)) return
+       if(.not.checklhs(fname,minlhs,maxlhs)) return 
+
+       if(.not.getrhsvar(1,'z', M, N, lA)) return
+       if(M.ne.N) then
+         buf='zgeev'//': the matrix must be square'
+         call error(998)
+         return
+       endif
+       if(N.eq.0) then
+         if(lhs.eq.1) then
+           if(.not.createvar(2,'z',0,0,lD)) return
+           lhsvar(1) = 2
+           return
+         else
+           if(.not.createvar(2,'z', 0, 0, lD)) return
+           if(.not.createvar(3,'d', 0, 0, lV)) return
+           lhsvar(1) = 2
+           lhsvar(2) = 3
+           return
+         endif
+       endif  
+       if(lhs.eq.1) then
+         if(.not.createvar(2,'z', N, 1, lD)) return
+         k = 3              
+       else if(lhs.eq.2) then
+         if(.not.createvar(2,'z', N, N, lD)) return
+         if(.not.createvar(3,'z', N, N, lVR)) return
+         k = 4
+       endif
+       if(.not.createvar(k,'z', N, 1, lW)) return
+       if(.not.createvar(k+1,'d', 2*N, 1, lRWORK)) return
+       LWORKMIN = 2*N
+       LWORK=maxvol(k+2,'z')
+       if(LWORK.le.LWORKMIN) then
+         buf='zgeev'//': not enough memory (use stacksize)'
+         call error(998)
+         return
+      endif
+      if(.not.createvar(k+2,'z',1,LWORK,lDWORK)) return
+
+      JOBVL = 'N'
+      if(lhs.eq.1) then
+        JOBVR = 'N'
+      else
+        JOBVR = 'V'
+      endif 
+      call ZGEEV( JOBVL, JOBVR, N, zstk(lA), N, zstk(lW), 
+     $     zstk(lDWORK), N, zstk(lVR), N, zstk(lDWORK), LWORK,
+     $     stk(lRWORK), INFO )
+c      SUBROUTINE ZGEEV( JOBVL, JOBVR, N, A, LDA, W, VL, LDVL,
+c    $     VR, LDVR, WORK, LWORK, RWORK, INFO )
+       if(info.ne.0) then
+         call errorinfo("zgeev",info)
+         return
+       endif
+
+      if(lhs.gt.1) then
+        call ZLASET( 'F', N, N, ZERO, ZERO, zstk(lD), N ) 
+c       SUBROUTINE ZLASET( UPLO, M, N, ALPHA, BETA, A, LDA )
+
+        do 10 i = 1, N
+           ii = i+(i-1)*N
+           zstk(lD+ii-1) = zstk(lW+i-1)
+ 10     continue   
+      endif
+      
+      if(lhs.eq.1) then
+        lhsvar(1) = 2
+      else
+        lhsvar(1)=3
+        lhsvar(2)=2
+      endif
+c
+       end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
