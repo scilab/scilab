@@ -1,8 +1,12 @@
 
+#  set env(SCIPATH) "~/scilab/"
+
 set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+package require combobox 2.3
+catch {namespace import combobox::*}
 
 global  visToggle limToggle boxToggle isoToggle gridToggle 
 global  xToggle yToggle red green blue color 
@@ -24,44 +28,46 @@ global dbxmin dbxmax dbymin dbymax dbzmin dbzmax
 
 global msdos
 
+global Xlabelfontstyle Ylabelfontstyle Zlabelfontstyle TITLEfontstyle fontstyle
+
 # add for XF init only : to remove after...
 
 
-#    set ncolors 32
-#    set curcolor 4
-#    set curfontsize 1
-#    set curfontcolor 7
-#    set curthick 1
+#      set ncolors 32
+#      set curcolor 4
+#      set curfontsize 1
+#      set curfontcolor 7
+#      set curthick 1
 
-#    set xToggle "n"
-#    set yToggle "n"
+#      set xToggle "n"
+#      set yToggle "n"
 
-#    set xlabel_foreground 1
-#    set ylabel_foreground 1
-#    set zlabel_foreground 1
-#    set titlelabel_foreground 1
+#      set xlabel_foreground 1
+#      set ylabel_foreground 1
+#      set zlabel_foreground 1
+#      set titlelabel_foreground 1
 
-#    set xlabel_fontsize 1
-#    set ylabel_fontsize 1
-#    set zlabel_fontsize 1
-#    set titlelabel_fontsize 1
+#      set xlabel_fontsize 1
+#      set ylabel_fontsize 1
+#      set zlabel_fontsize 1
+#      set titlelabel_fontsize 1
 
 
-#    set xGrid -1
-#    set yGrid -1
-#    set zGrid -1
+#      set xGrid -1
+#      set yGrid -1
+#      set zGrid -1
 
-#    set boxToggle "on"
+#      set boxToggle "on"
 
-#    set fcolor -1
-#    set bcolor -2
+#      set fcolor -1
+#      set bcolor -2
 
-#    set viewToggle "2D"
-#    set isoToggle "off"
-#    set limToggle "off"
-#    set cubToggle "off"
-#    set visToggle "on"
-#    set curvis "on"
+#      set viewToggle "2D"
+#      set isoToggle "off"
+#      set limToggle "off"
+#      set cubToggle "off"
+#      set visToggle "on"
+#      set curvis "on"
 
 
 set ww .axes
@@ -69,7 +75,7 @@ catch {destroy $ww}
 toplevel $ww
 wm title $ww "Axes Editor"
 wm iconname $ww "AE"
-wm geometry $ww 450x580
+wm geometry $ww 450x450
 #wm maxsize  $ww 450 560
 
 Notebook:create .axes.n -pages {X Y Z Title Style Axes_Aspect} -pad 20 
@@ -126,12 +132,16 @@ frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
 label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"
-$w.frame.style activate 0
-bind  $w.frame.style  <<ListboxSelect>> {
-	    SelectXFontStyle [ selection get ]
-    }
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable Xlabelfontstyle \
+    -editable false \
+    -command [list SelectXFontStyle ]
+eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -fill x
 
@@ -140,13 +150,17 @@ pack $w.frame.style -in $w.frame.fontsst  -fill x
 frame $w.frame.px  -borderwidth 0
 pack $w.frame.px  -in $w.frame -side top   -fill x
 
-label $w.frame.xposlabel  -height 0 -text "  Location: " -width 0 
-listbox $w.frame.xpos  -height 0  -width 0
-$w.frame.xpos insert 0 top middle bottom
-$w.frame.xpos activate 0 
-bind  $w.frame.xpos  <<ListboxSelect>> {
-	    SelectXpos [ selection get ]
-    }
+label $w.frame.xposlabel  -height 0 -text "   Location: " -width 0 
+combobox $w.frame.xpos \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable Xlabelpos \
+    -editable false \
+    -command [list SelectXpos ]
+eval $w.frame.xpos list insert end [list "top" "middle" "bottom"]
+
 pack $w.frame.xposlabel -in  $w.frame.px -side left
 pack $w.frame.xpos  -in  $w.frame.px -fill x
 
@@ -240,30 +254,42 @@ $w.frame.fontsize set $ylabel_fontsize
 
 
 #Fonts Style
+
+
+
 frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
 label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"
-$w.frame.style activate 0
-bind  $w.frame.style  <<ListboxSelect>> {
-	    SelectYFontStyle [ selection get ]
-    }
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable Ylabelfontstyle \
+    -editable false \
+    -command [list SelectYFontStyle ]
+eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -fill x
+
 
 #Ypos
 frame $w.frame.py  -borderwidth 0
 pack $w.frame.py  -in $w.frame -side top   -fill x
 
-label $w.frame.yposlabel  -height 0 -text "  Location: " -width 0 
-listbox $w.frame.ypos  -height 0  -width 0
-$w.frame.ypos insert 0 left middle right
-$w.frame.ypos activate 0 
-bind  $w.frame.ypos  <<ListboxSelect>> {
-	    SelectYpos [ selection get ]
-    }
+label $w.frame.yposlabel  -height 0 -text "   Location: " -width 0 
+combobox $w.frame.ypos \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable Ylabelpos \
+    -editable false \
+    -command [list SelectYpos ]
+eval $w.frame.ypos list insert end [list "left" "middle" "right"]
+
 pack $w.frame.yposlabel -in  $w.frame.py -side left
 pack $w.frame.ypos  -in  $w.frame.py -fill x
 
@@ -361,28 +387,37 @@ frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
 label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"
-$w.frame.style activate 0
-bind  $w.frame.style  <<ListboxSelect>> {
-       SelectZFontStyle [ selection get ]
-    }
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable Zlabelfontstyle \
+    -editable false \
+    -command [list SelectZFontStyle ]
+eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -fill x
 
 #Zpos
-#frame $w.frame.pz  -borderwidth 0
-#pack $w.frame.pz  -in $w.frame -side top   -fill x
-#
-#label $w.frame.zposlabel  -height 0 -text "  Location: " -width 0 
-#listbox $w.frame.zpos  -height 0  -width 0
-#$w.frame.zpos insert 0 top middle bottom
-#$w.frame.zpos activate 0 
-#bind  $w.frame.zpos  <<ListboxSelect>> {
-#	    SelectZpos [ selection get ]
-#    }
-#pack $w.frame.zposlabel -in  $w.frame.pz -side left
-#pack $w.frame.zpos  -in  $w.frame.pz -fill x
+# frame $w.frame.pz  -borderwidth 0
+# pack $w.frame.pz  -in $w.frame -side top   -fill x
+
+# label $w.frame.zposlabel  -height 0 -text "   Location: " -width 0 
+# combobox $w.frame.zpos \
+#     -borderwidth 1 \
+#     -highlightthickness 1 \
+#     -maxheight 0 \
+#     -width 3 \
+#     -textvariable Zlabelpos \
+#     -editable false \
+#     -command [list SelectZpos ]
+# eval $w.frame.zpos list insert end [list "left" "middle" "right"]
+
+# pack $w.frame.zposlabel -in  $w.frame.pz -side left
+# pack $w.frame.zpos  -in  $w.frame.pz -fill x
+
 
 #Grid
 frame $w.frame.gridcol  -borderwidth 0
@@ -477,12 +512,16 @@ frame $w.frame.fontsst  -borderwidth 0
 pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
 label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"
-$w.frame.style activate 0
-bind  $w.frame.style  <<ListboxSelect>> {
-    SelectTitleFontStyle [ selection get ]
-    }
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable TITLEfontstyle \
+    -editable false \
+    -command [list SelectTitleFontStyle]
+eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -fill x
 
@@ -512,17 +551,21 @@ pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
 
 #Fonts Style
 frame $w.frame.fontsst  -borderwidth 0
-pack $w.frame.fontsst  -in $w.frame  -side top  -fill x
+pack $w.frame.fontsst  -in $w.frame -side top -fill x
 
 label $w.frame.stylelabel  -height 0 -text "Font Style: " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"
-$w.frame.style activate 0
-bind  $w.frame.style  <<ListboxSelect>> {
-    SelectFontStyle [ selection get ]
-    }
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable fontstyle \
+    -editable false \
+    -command [list SelectFontStyle]
+eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
-pack $w.frame.style -in $w.frame.fontsst   -fill x
+pack $w.frame.style -in $w.frame.fontsst  -fill x
 
 
 #FontColor scale
@@ -1221,34 +1264,45 @@ global xlabel
 ScilabEval "global ged_handle;ged_handle.x_label.text='$xlabel';ged_handle.y_label.text='$ylabel'"
 }
 
-proc SelectXpos {sel} {
-ScilabEval "global ged_handle;ged_handle.x_location='$sel'"
+proc SelectXpos {w args} {
+global Xlabelpos
+ScilabEval "global ged_handle;ged_handle.x_location='$Xlabelpos'"
 }
-proc SelectYpos {sel} {
-ScilabEval "global ged_handle;ged_handle.y_location='$sel'"
-}
-
-
-proc SelectXFontStyle {sel} {
-ScilabEval "setLabelsFontStyle('x','$sel')"
+proc SelectYpos {w args} {
+global Ylabelpos
+ScilabEval "global ged_handle;ged_handle.y_location='$Ylabelpos'"
 }
 
 
-proc SelectYFontStyle {sel} {
-ScilabEval "setLabelsFontStyle('y','$sel')"
+
+
+
+
+
+
+proc SelectXFontStyle {w args} {
+global Xlabelfontstyle
+ScilabEval "setLabelsFontStyle('x','$Xlabelfontstyle')"
+}
+
+proc SelectYFontStyle {w args} {
+global Ylabelfontstyle
+ScilabEval "setLabelsFontStyle('y','$Ylabelfontstyle')"
 }
 
 
-proc SelectZFontStyle {sel} {
-ScilabEval "setLabelsFontStyle('z','$sel')"
+proc SelectZFontStyle {w args} {
+global Zlabelfontstyle
+ScilabEval "setLabelsFontStyle('z','$Zlabelfontstyle')"
 }
 
-proc SelectTitleFontStyle {sel} {
-ScilabEval "setLabelsFontStyle('t','$sel')"
+proc SelectTitleFontStyle {w args} {
+global TITLEfontstyle
+ScilabEval "setLabelsFontStyle('t','$TITLEfontstyle')"
 }
 
 
-proc SelectFontStyle {sel} {
-ScilabEval "setFontStyle('$sel')"
+proc SelectFontStyle {w args} {
+global fontstyle
+ScilabEval "setFontStyle('$fontstyle')"
 }
-

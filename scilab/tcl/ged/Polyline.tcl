@@ -3,8 +3,10 @@ set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
 
 source [file join $sourcedir Notebook.tcl]
 source [file join $sourcedir Combobox.tcl]
+package require combobox 2.3
+catch {namespace import combobox::*}
 
-global curvis curthick RED GREEN BLUE
+global curvis curthick curpolylinestyle curlinestyle RED GREEN BLUE
 global polyVAL nbcol nbrow
 
 
@@ -62,20 +64,71 @@ pack $w.frame.visiblelabel  -in $w.frame.vis  -side left
 pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
 
 
-#Style
+#Polyline Style
 frame $w.frame.curvst  -borderwidth 0
 pack $w.frame.curvst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Line style:    " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 interpolated staircase barplot arrowed filled
-$w.frame.style activate 0
+label $w.frame.polystylelabel  -height 0 -text "Polyline_style:    " -width 0 
+combobox $w.frame.polystyle \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curpolylinestyle \
+    -editable false \
+    -command [list SelectPolylineStyle ]
+eval $w.frame.polystyle list insert end [list "interpolated" "staircase" "barplot" "arrowed" "filled"]
+pack $w.frame.polystylelabel -in $w.frame.curvst   -side left
+pack $w.frame.polystyle   -in $w.frame.curvst   -fill x
 
-bind  $w.frame.style  <<ListboxSelect>> {
-	    SelectStyle [ selection get]
-    }
-pack $w.frame.stylelabel -in $w.frame.curvst   -side left
-pack $w.frame.style   -in $w.frame.curvst   -fill x
+#Line Style
+frame $w.frame.linest  -borderwidth 0
+pack $w.frame.linest  -in $w.frame  -side top  -fill x
+
+label $w.frame.stylelabel  -height 0 -text "     Line_style:    " -width 0 
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curlinestyle \
+    -editable false \
+    -command [list SelectLineStyle ]
+eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
+pack $w.frame.stylelabel -in $w.frame.linest   -side left
+pack $w.frame.style   -in $w.frame.linest   -fill x
+
+#Mark style
+frame $w.frame.linemarkst  -borderwidth 0
+pack $w.frame.linemarkst  -in $w.frame  -side top  -fill x
+
+label $w.frame.markstylelabel  -height 0 -text "    Mark_style:    " -width 0 
+combobox $w.frame.markstyle \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curmarkstyle \
+    -editable false \
+    -command [list SelectMarkStyle ]
+eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"]
+
+
+pack $w.frame.markstylelabel  -in $w.frame.linemarkst   -side left
+pack $w.frame.markstyle   -in $w.frame.linemarkst   -fill x
+
+#Mark mode
+frame $w.frame.linemarkmode  -borderwidth 0
+pack $w.frame.linemarkmode  -in $w.frame  -side top  -fill x
+
+label $w.frame.markmodelabel -height 0 -text "    Mark_mode:   " -width 0 
+checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
+    -variable curmarkmode -onvalue "on" -offvalue "off" \
+    -command "toggleMarkmode" 
+
+pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left
+pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left -fill x
+
 
 #Color scale
 frame $w.frame.clrf  -borderwidth 0
@@ -129,13 +182,16 @@ if { $nbcol == 3 } {
     $w.frame.c create text 460 10 -anchor c -text "Z"
 }
 
+set j 1
+
 for {set i 1} {$i<=$nbrow} {incr i} {
-  
+    set bb [expr 10+(25*$i)]
+    $w.frame.c create text 10 $bb -anchor c -text $i
     for {set j 1} {$j<=$nbcol} {incr j} {
+	set aa [expr 10+($j*150)]
 	entry  $w.frame.c.data$i$j  -relief sunken  -textvariable polyVAL($i,$j)
 	bind  $w.frame.c.data$i$j <Return> "setData $i $j"
-	set aa [expr 10+($j*150)]
-	set bb [expr 10+(25*$i)]
+
 	$w.frame.c create window $aa $bb -anchor c -window $w.frame.c.data$i$j
     }
 }
@@ -212,6 +268,27 @@ ScilabEval "global ged_handle;ged_handle.visible='$curvis'"
 #ScilabEval "disp('$visToggle')"
 }
 
-proc SelectStyle {sel} {
-ScilabEval "setStyle('$sel')"
+proc SelectPolylineStyle {w args} {
+global curpolylinestyle
+ScilabEval "setStyle('$curpolylinestyle')"
+}
+
+proc SelectLineStyle {w args} {
+global curlinestyle
+ScilabEval "setLineStyle('$curlinestyle')"
+}
+
+
+proc SelectMarkStyle {w args} {
+global curmarkstyle
+global curmarkmode
+ScilabEval "setMarkStyle('$curmarkstyle')"
+set curmarkmode "on"
+#ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+
+}
+
+proc toggleMarkmode {} {
+global curmarkmode
+ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
 }

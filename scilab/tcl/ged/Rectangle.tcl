@@ -1,28 +1,38 @@
-set w .axes
-catch {destroy $w}
-toplevel $w
-wm title $w "Rectangle Editor"
-wm iconname $w "RE"
-wm geometry $w 400x340
-global  curvis red green blue color filToggle
-#set visToggle on
+
+set sourcedir [file join "$env(SCIPATH)" "tcl" "utils"]
+
+source [file join $sourcedir Notebook.tcl]
+source [file join $sourcedir Combobox.tcl]
+package require combobox 2.3
+catch {namespace import combobox::*}
+
+global  curvis red green blue color filToggle curlinestyle curmarkstyle curmarkmode
 
 
-frame $w.buttons
-pack $w.buttons -side bottom -fill x -pady 2m
-button $w.buttons.dismiss -text Quit -command "destroy $w"
-pack $w.buttons.dismiss  -side bottom -expand 1
+set ww .axes
+catch {destroy $ww}
+toplevel $ww
+wm title $ww "Rectangle Editor"
+wm iconname $ww "RE"
+wm geometry $ww 650x400
+
+
+
+Notebook:create .axes.n -pages {Style Data} -pad 20 
+pack .axes.n -fill both -expand 1
+
+########### Style onglet ##########################################
+###################################################################
+set w [Notebook:frame .axes.n Style]
 
 frame $w.frame -borderwidth 10
 pack $w.frame  -anchor w -fill both
-
-
 
 #Visibility
 frame $w.frame.vis  -borderwidth 0
 pack $w.frame.vis  -in $w.frame -side top -fill x
 
-label $w.frame.visiblelabel -height 0 -text "Visibility:  " -width 0 
+label $w.frame.visiblelabel -height 0 -text "   Visibility: " -width 0 
 checkbutton $w.frame.visible  -textvariable curvis -indicatoron 1 \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVisibility" 
@@ -34,23 +44,57 @@ pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
 frame $w.frame.rectst  -borderwidth 0
 pack $w.frame.rectst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "Style:       " -width 0 
-listbox $w.frame.style  -height 0  -width 0
-$w.frame.style insert 0 "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"
-$w.frame.style activate 0
-
-bind  $w.frame.style  <<ListboxSelect>> {
-	    SelectStyle [ $w.frame.style get [ $w.frame.style curselection]]
-    }
+label $w.frame.stylelabel  -height 0 -text "Line_style:   " -width 0 
+combobox $w.frame.style \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curlinestyle \
+    -editable false \
+    -command [list SelectLineStyle ]
+eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.stylelabel -in $w.frame.rectst   -side left
-pack $w.frame.style   -in $w.frame.rectst   -side left -fill x
+pack $w.frame.style   -in $w.frame.rectst   -fill x
+
+
+#Mark style
+frame $w.frame.rectmarkst  -borderwidth 0
+pack $w.frame.rectmarkst  -in $w.frame  -side top  -fill x
+
+label $w.frame.markstylelabel  -height 0 -text "Mark_style: " -width 0 
+combobox $w.frame.markstyle \
+    -borderwidth 1 \
+    -highlightthickness 1 \
+    -maxheight 0 \
+    -width 3 \
+    -textvariable curmarkstyle \
+    -editable false \
+    -command [list SelectMarkStyle ]
+eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamond fill" "diamond" "triangle up" "triangle down" "trefle" "circle"]
+
+
+pack $w.frame.markstylelabel  -in $w.frame.rectmarkst   -side left
+pack $w.frame.markstyle   -in $w.frame.rectmarkst   -fill x
+
+#Mark mode
+frame $w.frame.rectmarkmode  -borderwidth 0
+pack $w.frame.rectmarkmode  -in $w.frame  -side top  -fill x
+
+label $w.frame.markmodelabel -height 0 -text "Mark_mode: " -width 0 
+checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
+    -variable curmarkmode -onvalue "on" -offvalue "off" \
+    -command "toggleMarkmode" 
+
+pack $w.frame.markmodelabel  -in $w.frame.rectmarkmode  -side left
+pack $w.frame.markmode   -in $w.frame.rectmarkmode   -side left -fill x
 
 
 #filled
 frame $w.frame.fil  -borderwidth 0
 pack $w.frame.fil  -in $w.frame  -side top  -fill x
 
-label $w.frame.filledlabel -height 0 -text "Filled:      " -width 0 
+label $w.frame.filledlabel -height 0 -text "        Filled: " -width 0 
 checkbutton $w.frame.filled  -textvariable filToggle -indicatoron 1 \
     -variable filToggle  -onvalue "on" -offvalue "off" \
     -command "toggleFilled" 
@@ -62,7 +106,7 @@ pack $w.frame.filled  -in $w.frame.fil   -side left -fill x
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "Color:      " -width 0 
+label $w.frame.colorlabel -height 0 -text "        Color: " -width 0 
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0 
@@ -83,10 +127,60 @@ pack $w.frame.scalelabel -in $w.frame.thk -side left
 pack $w.frame.thickness  -in $w.frame.thk -expand yes -fill x
 $w.frame.thickness set $curthick
 
+#exit button
+frame $w.buttons
+button $w.b -text Quit -command "destroy $ww"
+pack $w.b -side bottom 
 
-#Toogles
-frame $w.frame.tgl  -borderwidth 1 -relief sunken
-pack $w.frame.tgl  -side bottom  -fill x
+########### Data onglet ###########################################
+###################################################################
+set w [Notebook:frame .axes.n Data]
+
+frame $w.frame -borderwidth 0
+pack $w.frame -anchor w -fill both
+
+#x 
+frame $w.frame.lb1 -borderwidth 0
+pack $w.frame.lb1  -in $w.frame -side top   -fill x
+label $w.frame.labelul -text "  Upper-left point coordinates "
+pack $w.frame.labelul -in  $w.frame.lb1 -side left
+
+frame $w.frame.lb2 -borderwidth 0
+pack $w.frame.lb2  -in $w.frame -side top   -fill x
+label $w.frame.labelx -text "     X: "
+entry $w.frame.datax -relief sunken  -textvariable Xval 
+label $w.frame.labely -text "     Y: "
+entry $w.frame.datay -relief sunken  -textvariable Yval 
+label $w.frame.labelz -text "     Z: "
+entry $w.frame.dataz -relief sunken  -textvariable Zval 
+
+pack $w.frame.labelx  $w.frame.datax  $w.frame.labely  $w.frame.datay $w.frame.labelz  $w.frame.dataz -in  $w.frame.lb2 -side left  -fill x
+bind  $w.frame.datax <Return> {SelectXval} 
+bind  $w.frame.datay <Return> {SelectYval} 
+bind  $w.frame.dataz <Return> {SelectZval} 
+
+#----------------------------#
+frame $w.frame.lb3 -borderwidth 0
+pack $w.frame.lb3  -in $w.frame -side top   -fill x
+label $w.frame.labelwh -text "  Width and height  "
+pack $w.frame.labelwh -in  $w.frame.lb3 -side left
+
+frame $w.frame.lb4 -borderwidth 0
+pack $w.frame.lb4  -in $w.frame -side top   -fill x
+label $w.frame.labelw -text "     W: "
+entry $w.frame.dataw -relief sunken  -textvariable Wval 
+label $w.frame.labelh -text "     H: "
+entry $w.frame.datah -relief sunken  -textvariable Hval 
+
+pack $w.frame.labelw  $w.frame.dataw $w.frame.labelh  $w.frame.datah -in  $w.frame.lb4 -side left -fill x
+bind  $w.frame.dataw <Return> {SelectWval} 
+bind  $w.frame.datah <Return> {SelectHval} 
+
+#exit button
+frame $w.buttons
+button $w.b -text Quit -command "destroy $ww"
+pack $w.b -side bottom 
+
 
 
 proc setColor {w index} {    
@@ -100,12 +194,12 @@ proc setColor {w index} {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-2: display white color
 	set color [format \#%02x%02x%02x 255 255 255]
-	.axes.frame.sample config -background $color
+	.axes.n.f0.frame.sample config -background $color
     } elseif { $index == -1 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==-1: display black color
 	set color [format \#%02x%02x%02x 0 0 0]
-	.axes.frame.sample config -background $color
+	.axes.n.f0.frame.sample config -background $color
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	#like $index==1: display first color
@@ -114,7 +208,7 @@ proc setColor {w index} {
 	set BLUCOL $BLUE(1) 
 	
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
-	.axes.frame.sample config -background $color
+	.axes.n.f0.frame.sample config -background $color
     } else { 
 	ScilabEval "global ged_handle; ged_handle.foreground=$index;"
 	
@@ -124,7 +218,7 @@ proc setColor {w index} {
 	
 	set color [format \#%02x%02x%02x $REDCOL $GRECOL $BLUCOL]
 	
-	.axes.frame.sample config -background $color
+	.axes.n.f0.frame.sample config -background $color
 	
     }
 }
@@ -142,6 +236,53 @@ global filToggle
 ScilabEval "global ged_handle;ged_handle.fill_mode='$filToggle'"
 }
 
-proc SelectStyle {sel} {
-ScilabEval "setLineStyle('$sel')"
+proc SelectLineStyle {w args} {
+global curlinestyle
+ScilabEval "setLineStyle('$curlinestyle')"
+}
+
+proc SelectMarkStyle {w args} {
+global curmarkstyle
+global curmarkmode
+ScilabEval "setMarkStyle('$curmarkstyle')"
+set curmarkmode "on"
+#ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+
+}
+
+proc toggleMarkmode {} {
+global curmarkmode
+ScilabEval "global ged_handle;ged_handle.mark_mode='$curmarkmode'"
+}
+
+
+proc SelectXval {} {
+global Xval
+ScilabEval "setXval($Xval)"
+}
+
+
+proc SelectYval {} {
+global Yval
+ScilabEval "setYval($Yval)"
+}
+
+
+proc SelectZval {} {
+global Zval
+ScilabEval "setZval($Zval)"
+}
+
+
+
+proc SelectWval {} {
+global Wval
+ScilabEval "setWval($Wval)"
+}
+
+
+
+proc SelectHval {} {
+global Hval
+ScilabEval "setHval($Hval)"
 }
