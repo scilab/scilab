@@ -12059,896 +12059,1049 @@ sciDrawObj (sciPointObj * pobj)
 
       sciUnClip(sciGetIsClipping(pobj));
       break;
-    case SCI_GRAYPLOT:  
+   case SCI_GRAYPLOT:  
+     
+     if (!sciGetVisibility(pobj)) break;
+     n1 = pGRAYPLOT_FEATURE (pobj)->nx;
+     n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
 
-      if (!sciGetVisibility(pobj)) break;
-      n1 = pGRAYPLOT_FEATURE (pobj)->nx;
-      n2 = pGRAYPLOT_FEATURE (pobj)->ny;    
-
-      switch (pGRAYPLOT_FEATURE (pobj)->type )
-	{
-	case 0:
-	  if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
-	    if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
-	    if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
-	      FREE(xm); xm = (integer *) NULL; return -1; 
-	    }
+     switch (pGRAYPLOT_FEATURE (pobj)->type )
+       {
+       case 0:
+	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
+	   if ((xm = MALLOC (n1*sizeof (integer))) == NULL)	return -1;
+	   if ((ym = MALLOC (n2*sizeof (integer))) == NULL){
+	     FREE(xm); xm = (integer *) NULL; return -1; 
+	   }
  
-	    for ( i =0 ; i < n1 ; i++)  
-	      xm[i]= XScale(pGRAYPLOT_FEATURE (pobj)->pvecx[i]);
-	    for ( i =0 ; i < n2 ; i++)  
-	      ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);
+	   for ( i =0 ; i < n1 ; i++)  
+	     xm[i]= XScale(pGRAYPLOT_FEATURE (pobj)->pvecx[i]);
+	   for ( i =0 ; i < n2 ; i++)  
+	     ym[i]= YScale(pGRAYPLOT_FEATURE (pobj)->pvecy[i]);
 	
 #ifdef WIN32
-	    flag_DO = MaybeSetWinhdc();
+	   flag_DO = MaybeSetWinhdc();
 #endif
-	    frame_clip_on(); 
+	   frame_clip_on(); 
   
-	    if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
-	      GraySquare(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); /* SS 03/01/03 */
-	    else  
-	      GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
+	   if (strncmp(pGRAYPLOT_FEATURE (pobj)->datamapping,"scaled", 6) == 0)
+	     GraySquare(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); /* SS 03/01/03 */
+	   else  
+	     GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
 
-	    frame_clip_off();  
-	    C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-		    &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	   frame_clip_off();  
+	   C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+		   &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 #ifdef WIN32
-	    if ( flag_DO == 1) ReleaseWinHdc();
+	   if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
-	    /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
-	    FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
-	    FREE(ym); ym = (integer *) NULL;
+	   /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
+	   FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
+	   FREE(ym); ym = (integer *) NULL;
 
-	  }
-	  else{
-	    /* 3D version */
-	    double * xvect = NULL;
-	    double * yvect = NULL;
-	    	    
-	    if ((xvect = MALLOC (n1*sizeof (double))) == NULL) return -1;
-	    if ((yvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	 }
+	 else{
+	   /* 3D version */
+	   double * xvect = NULL;
+	   double * yvect = NULL;
 	    
-	    for(i=0;i<n1;i++) xvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecx[i];
-	    for(i=0;i<n2;i++) yvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecy[i];
-
-
-	    if ((xm = MALLOC (n1*(n2+1)*sizeof (integer))) == NULL)	return -1;
-	    if ((ym = MALLOC (n2*(n1+1)*sizeof (integer))) == NULL){
-	      FREE(xm); xm = (integer *) NULL; return -1; 
-	    }
+	   if ((xvect = MALLOC (n1*sizeof (double))) == NULL) return -1;
+	   if ((yvect = MALLOC (n2*sizeof (double))) == NULL){
+	     FREE(xvect); xvect = (double *) NULL; return -1;
+	   }
 	    
-	    ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n1);
-	    ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n2);
+	   for(i=0;i<n1;i++) xvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecx[i];
+	   for(i=0;i<n2;i++) yvect[i] = pGRAYPLOT_FEATURE (pobj)->pvecy[i];
 
-	    for ( i =0 ; i < n1 ; i++)  /* on x*/
-	      for ( j =0 ; j < n2 ; j++)  /* on y */
-		trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n1],&ym[j+i*n2],
-			&xvect[i],&yvect[j],
-			NULL);
+
+	   if ((xm = MALLOC (n1*n2*sizeof (integer))) == NULL)	return -1;
+	   if ((ym = MALLOC (n2*n1*sizeof (integer))) == NULL){
+	     FREE(xm); xm = (integer *) NULL; return -1; 
+	   }
+	    
+	   ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n1);
+	   ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n2);
+
+	   for ( i =0 ; i < n1 ; i++)  /* on x*/
+	     for ( j =0 ; j < n2 ; j++)  /* on y */
+	       trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n1],&ym[j+i*n2],
+		       &xvect[i],&yvect[j],NULL);
 	    
 #ifdef WIN32
-	    flag_DO = MaybeSetWinhdc();
+	   flag_DO = MaybeSetWinhdc();
 #endif
-	    frame_clip_on(); 
+	   frame_clip_on(); 
 	    
-	    /* draw the filled projected rectangle */
-	  /*   for(i=0;i<(n1-1)*(n2-1);i++) */
-/* 	      { */
-	    for (i = 0 ; i < (n1)-1 ; i++)
-	      for (j = 0 ; j < (n2)-1 ; j++)
-		{
-		  integer vertexx[5], vertexy[5];
-		  int cinq = 5, un = 1;
-		  double zmoy,zmax,zmin,zmaxmin;
-		  integer verbose=0,whiteid,narg,fill[1],cpat,xz[2];
-		  double *z = pGRAYPLOT_FEATURE (pobj)->pvecz;
-		  zmin=Mini(z,(n1)*(n2));
-		  zmax=Maxi(z,(n1)*(n2));
-		  zmaxmin=zmax-zmin;
+	   /* draw the filled projected rectangle */
+	   /*   for(i=0;i<(n1-1)*(n2-1);i++) */
+	   /* 	      { */
+	   for (i = 0 ; i < (n1)-1 ; i++)
+	     for (j = 0 ; j < (n2)-1 ; j++)
+	       {
+		 integer vertexx[5], vertexy[5];
+		 int cinq = 5, un = 1;
+		 double zmoy,zmax,zmin,zmaxmin;
+		 integer verbose=0,whiteid,narg,fill[1],cpat,xz[2];
+		 double *z = pGRAYPLOT_FEATURE (pobj)->pvecz;
+		 zmin=Mini(z,(n1)*(n2));
+		 zmax=Maxi(z,(n1)*(n2));
+		 zmaxmin=zmax-zmin;
 		  
-		  if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
-		  C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 if (zmaxmin <= SMDOUBLE) zmaxmin=SMDOUBLE;
+		 C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 C2F(dr)("xget","pattern",&verbose,&cpat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 C2F(dr)("xget","wdim",&verbose,xz,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 		  
-		  /* color for current rectangle */
-		  zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
+		 /* color for current rectangle */
+		 zmoy=1/4.0*(z[i+n1*j]+z[i+n1*(j+1)]+z[i+1+n1*j]+z[i+1+n1*(j+1)]);
 		  
-		  fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));  
+		 fill[0]=1 + inint((whiteid-1)*(zmoy-zmin)/(zmaxmin));  
 		  
-		  fill[0] = - fill[0]; /* not to have contour with foreground color around the rectangle */
+		 fill[0] = - fill[0]; /* not to have contour with foreground color around the rectangle */
 
-		  vertexx[0] = xm[i+n1*j];
-		  vertexx[1] = xm[i+n1*(j+1)];
-		  vertexx[2] = xm[i+1+n1*(j+1)];
-		  vertexx[3] = xm[i+1+n1*j];
-		  vertexx[4] = xm[i+n1*j];
+		 vertexx[0] = xm[i+n1*j];
+		 vertexx[1] = xm[i+n1*(j+1)];
+		 vertexx[2] = xm[i+1+n1*(j+1)];
+		 vertexx[3] = xm[i+1+n1*j];
+		 vertexx[4] = xm[i+n1*j];
 		  
-		  vertexy[0] = ym[j+n2*i];
-		  vertexy[1] = ym[j+1+n2*i];
-		  vertexy[2] = ym[j+1+n2*(i+1)];
-		  vertexy[3] = ym[j+n2*(i+1)];
-		  vertexy[4] = ym[j+n2*i];
+		 vertexy[0] = ym[j+n2*i];
+		 vertexy[1] = ym[j+1+n2*i];
+		 vertexy[2] = ym[j+1+n2*(i+1)];
+		 vertexy[3] = ym[j+n2*(i+1)];
+		 vertexy[4] = ym[j+n2*i];
 		  
-		  C2F(dr)("xliness","str",vertexx,vertexy,fill,&un,&cinq,
-			  PI0,PD0,PD0,PD0,PD0,0L,0L);
-		}
+		 C2F(dr)("xliness","str",vertexx,vertexy,fill,&un,&cinq,
+			 PI0,PD0,PD0,PD0,PD0,0L,0L);
+	       }
 	    
-	    frame_clip_off();  
+	   frame_clip_off();  
 #ifdef WIN32
-	    if ( flag_DO == 1) ReleaseWinHdc();
+	   if ( flag_DO == 1) ReleaseWinHdc();
+#endif
+	    
+	   FREE(xm); xm = (integer *) NULL;
+	   FREE(ym); ym = (integer *) NULL;
+	   FREE(xvect); xvect = (double *) NULL;
+	   FREE(yvect); yvect = (double *) NULL;
+	 }
+	 break;
+       case 1:
+	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
+	   if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
+	     return -1;
+	   if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
+	     FREE(xm);xm = (integer *) NULL; return -1;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+	   }
+
+	   for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
+	   for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
+#ifdef WIN32
+	   flag_DO = MaybeSetWinhdc();
+#endif
+	   frame_clip_on(); 
+	   GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
+	   frame_clip_off();  
+	   C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
+		   &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#ifdef WIN32
+	   if ( flag_DO == 1) ReleaseWinHdc();
 #endif
 
-	    /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
-	    FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
-	    FREE(ym); ym = (integer *) NULL;
+	   /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
+	   FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
+	   FREE(ym); ym = (integer *) NULL;
+	 }
+	 else{
+	   /* 3D version */
+	   double * xvect = NULL;
+	   double * yvect = NULL;
+	    
+	   /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
+	   if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	   if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
+	     FREE(xvect); xvect = (double *) NULL; return -1;
+	   }
+	    
+	   for(i=0;i<n2;i++) xvect[i] = i+0.5;
+	   for(i=0;i<n1;i++) yvect[i] = n1-1-i+0.5;
+	    
 
- 
-	  }
+	   if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
+	   if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
+	     FREE(xm); xm = (integer *) NULL; return -1; 
+	   }
+	    
+	   ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
+	   ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
 
-
-	  break;
-	case 1:
-	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
-	    return -1;
-	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	    FREE(xm);xm = (integer *) NULL; return -1;  /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
-	  }
-
-          for ( j =0 ; j < n2 ; j++) xm[j]= XScale(j+0.5);
-          for ( j =0 ; j < n1 ; j++) ym[j]= YScale(((n1-1)-j+0.5));
+	    
+	   for ( i =0 ; i < n2 ; i++)  /* on x*/
+	     for ( j =0 ; j < n1 ; j++)  /* on y */
+	       trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
+		       &xvect[i],&yvect[j],NULL);
+	    
 #ifdef WIN32
-	  flag_DO = MaybeSetWinhdc();
+	   flag_DO = MaybeSetWinhdc();
 #endif
-          frame_clip_on(); 
-          GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2);  
-          frame_clip_off();  
-          C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],
-		  &Cscale.WIRect1[3],PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	   frame_clip_on(); 
+	    
+	   /* draw the filled projected rectangle */
+	   /*   for(i=0;i<(n1-1)*(n2-1);i++) */
+	   /* 	      { */
+	   for (i = 0 ; i < (n2)-1 ; i++)
+	     for (j = 0 ; j < (n1)-1 ; j++)
+	       {
+		 integer vertexx[5], vertexy[5];
+		 int cinq = 5, un = 1;
+		 integer fill;
+
+		 fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
+
+		 vertexx[0] = xm[i+n2*j];
+		 vertexx[1] = xm[i+n2*(j+1)];
+		 vertexx[2] = xm[i+1+n2*(j+1)];
+		 vertexx[3] = xm[i+1+n2*j];
+		 vertexx[4] = xm[i+n2*j];
+		  
+		 vertexy[0] = ym[j+n1*i];
+		 vertexy[1] = ym[j+1+n1*i];
+		 vertexy[2] = ym[j+1+n1*(i+1)];
+		 vertexy[3] = ym[j+n1*(i+1)];
+		 vertexy[4] = ym[j+n1*i];
+		  
+		 C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+			 PI0,PD0,PD0,PD0,PD0,0L,0L);
+	       }
+	    
+	   frame_clip_off();  
 #ifdef WIN32
-	  if ( flag_DO == 1) ReleaseWinHdc();
+	   if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-
-	  /*  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
-	  FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
-	  FREE(ym); ym = (integer *) NULL;
-          break;
-	case 2:
-	  if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
-	    return -1;
-	  if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
-	    FREE(xm);xm = (integer *) NULL; return -1; /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
-	  }
-
-	  xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
-	  xx[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[2];
-	  yy[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[1];
-	  yy[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[3];
-	  /** Boundaries of the frame **/
-	  C2F(echelle2d)(xx,yy,px1,py1,&pn1,&pn2,"f2i",3L); 
-          for ( j =0 ; j < n2 ; j++)	 
-	    xm[j]= (int) (( px1[1]*j + px1[0]*((n2-1)-j) )/(n2-1));
+	    
+	   FREE(xm); xm = (integer *) NULL;
+	   FREE(ym); ym = (integer *) NULL;
+	   FREE(xvect); xvect = (double *) NULL;
+	   FREE(yvect); yvect = (double *) NULL;
+	 }
+	 break;
+       case 2:
+	 if(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d == FALSE){
+	   if ((xm = MALLOC (n2*sizeof (integer))) == NULL) 
+	     return -1;
+	   if ((ym = MALLOC (n1*sizeof (integer))) == NULL){
+	     FREE(xm);xm = (integer *) NULL; return -1; /* F.Leray Rajout de xm = (integer *) NULL; 18.02.04*/
+	   }
+	  
+	   xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
+	   xx[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[2];
+	   yy[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[1];
+	   yy[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[3];
+	   /** Boundaries of the frame **/
+	   C2F(echelle2d)(xx,yy,px1,py1,&pn1,&pn2,"f2i",3L); 
+	   for ( j =0 ; j < n2 ; j++)	 
+	     xm[j]= (int) (( px1[1]*j + px1[0]*((n2-1)-j) )/(n2-1));
   
-	  for ( j =0 ; j < n1 ; j++)	 
-	    ym[j]= (int) (( py1[0]*j + py1[1]*((n1-1)-j) )/ (n1-1)); 
+	   for ( j =0 ; j < n1 ; j++)	 
+	     ym[j]= (int) (( py1[0]*j + py1[1]*((n1-1)-j) )/ (n1-1)); 
 #ifdef WIN32
-	  flag_DO = MaybeSetWinhdc();
+	   flag_DO = MaybeSetWinhdc();
 #endif
 
-	  frame_clip_on(); 
-	  GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
-	  frame_clip_off();
+	   frame_clip_on(); 
+	   GraySquare1(xm,ym,pGRAYPLOT_FEATURE (pobj)->pvecz,n1,n2); 
+	   frame_clip_off();
 #ifdef WIN32
-	  if ( flag_DO == 1) ReleaseWinHdc();
+	   if ( flag_DO == 1) ReleaseWinHdc();
 #endif
-	  /*	  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
-	  FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
-	  FREE(ym); ym = (integer *) NULL;
-	  break;
-	default:
-	  break;
-	}
-      break; 
+	   /*	  FREE(xm);FREE(ym); */ /* SS 03/01/03 */
+	   FREE(xm); xm = (integer *) NULL; /* F.Leray c'est mieux.*/
+	   FREE(ym); ym = (integer *) NULL;
+	 }
+	 else{
+	   /* 3D version */
+	   double * xvect = NULL;
+	   double * yvect = NULL;
+	   
+	   /* Warning here (Matplot case) : n1 becomes n2 and vice versa */
+	   if ((xvect = MALLOC (n2*sizeof (double))) == NULL) return -1;
+	   if ((yvect = MALLOC (n1*sizeof (double))) == NULL){
+	     FREE(xvect); xvect = (double *) NULL; return -1;
+	   }
+	   
+	   xx[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[0];
+	   xx[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[2];
+	   yy[0]=pGRAYPLOT_FEATURE (pobj)->pvecx[1];
+	   yy[1]=pGRAYPLOT_FEATURE (pobj)->pvecx[3];
+	   
+	   
+	   /** Boundaries of the frame **/
+	   for ( i =0 ; i < n2 ; i++)
+	     xvect[i]= (( xx[1]*i + xx[0]*((n2-1)-i) )/(n2-1));
+	   
+	   for ( j =0 ; j < n1 ; j++)
+	     yvect[j]= (( yy[0]*j + yy[1]*((n1-1)-j) )/ (n1-1)); 
+	   
+	   
+	   if ((xm = MALLOC (n2*n1*sizeof (integer))) == NULL)	return -1;
+	   if ((ym = MALLOC (n1*n2*sizeof (integer))) == NULL){
+	     FREE(xm); xm = (integer *) NULL; return -1; 
+	   }
+	   
+	   ReverseDataFor3DXonly(sciGetParentSubwin(pobj),xvect,n2);
+	   ReverseDataFor3DYonly(sciGetParentSubwin(pobj),yvect,n1);
+	   
+	   
+	   for ( i =0 ; i < n2 ; i++)  /* on x*/
+	     for ( j =0 ; j < n1 ; j++)  /* on y */
+	       trans3d(sciGetParentSubwin(pobj),1,&xm[i+j*n2],&ym[j+i*n1],
+		       &xvect[i],&yvect[j],NULL);
+	   
+#ifdef WIN32
+	   flag_DO = MaybeSetWinhdc();
+#endif
+	   frame_clip_on(); 
+	   
+	   /* draw the filled projected rectangle */
+	   for (i = 0 ; i < (n2)-1 ; i++)
+	     for (j = 0 ; j < (n1)-1 ; j++)
+	       {
+		 integer vertexx[5], vertexy[5];
+		 int cinq = 5, un = 1;
+		 integer fill;
+
+		 fill = - pGRAYPLOT_FEATURE (pobj)->pvecz[(n1-1)*i+j];
+		 
+		 vertexx[0] = xm[i+n2*j];
+		 vertexx[1] = xm[i+n2*(j+1)];
+		 vertexx[2] = xm[i+1+n2*(j+1)];
+		 vertexx[3] = xm[i+1+n2*j];
+		 vertexx[4] = xm[i+n2*j];
+		 
+		 vertexy[0] = ym[j+n1*i];
+		 vertexy[1] = ym[j+1+n1*i];
+		 vertexy[2] = ym[j+1+n1*(i+1)];
+		 vertexy[3] = ym[j+n1*(i+1)];
+		 vertexy[4] = ym[j+n1*i];
+		 
+		 C2F(dr)("xliness","str",vertexx,vertexy,&fill,&un,&cinq,
+			 PI0,PD0,PD0,PD0,PD0,0L,0L);
+	       }
+	   
+	   frame_clip_off();  
+#ifdef WIN32
+	   if ( flag_DO == 1) ReleaseWinHdc();
+#endif
+	   FREE(xm); xm = (integer *) NULL;
+	   FREE(ym); ym = (integer *) NULL;
+	   FREE(xvect); xvect = (double *) NULL;
+	   FREE(yvect); yvect = (double *) NULL;
+	 }
+	 break;
+       default:
+	 break;
+       }
+     break;
    case SCI_POLYLINE: 
-      if (!sciGetVisibility(pobj)) break;
+     if (!sciGetVisibility(pobj)) break;
+     
+     /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
+     
+     itmp[0] = 0;		/* verbose*/
+     itmp[1] = 0;		/* thickness value*/
+     itmp[2] = 1;		/* narg*/
+     
+     /* load the object foreground and dashes color */
+     x[0] = sciGetForeground (pobj);	
+     x[2] = sciGetLineWidth (pobj);
+     x[3] = sciGetLineStyle (pobj);
+     markidsizenew[0] = sciGetMarkStyle(pobj);
+     markidsizenew[1] = sciGetLineWidth (pobj);
+     x[4] = 0;
+     v = 0;
+     dv = 0;
+     logflags[0]='g';
+     logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0]; /* F.Leray 26.10.04 Pb when logscale on and data is <= 0 for clipping */
+     logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
+     logflags[3]='\0';
 
-      /*sciSetCurrentObj (pobj);	  F.Leray 25.03.04 */
-      
-      itmp[0] = 0;		/* verbose*/
-      itmp[1] = 0;		/* thickness value*/
-      itmp[2] = 1;		/* narg*/
-
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = sciGetLineStyle (pobj);
-      markidsizenew[0] = sciGetMarkStyle(pobj);
-      markidsizenew[1] = sciGetLineWidth (pobj);
-      x[4] = 0;
-      v = 0;
-      dv = 0;
-      logflags[0]='g';
-      logflags[1]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[0]; /* F.Leray 26.10.04 Pb when logscale on and data is <= 0 for clipping */
-      logflags[2]= pSUBWIN_FEATURE(sciGetParentSubwin(pobj))->logflags[1];
-      logflags[3]='\0';
-
-      /* //////////////////////////////////////////////////////////////// */
-      BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
-      /* //////////////////////////////////////////////////////////////// */
+     /* //////////////////////////////////////////////////////////////// */
+     BuildXYZvectForClipping_IfNanOrLogON(pobj,sciGetParentSubwin(pobj),&nb_curves, &xvect, &yvect, &zvect, &curves_size);
+     /* //////////////////////////////////////////////////////////////// */
       
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc();
+     flag_DO = MaybeSetWinhdc();
 #endif
-
-      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-		&dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 0L, 0L);
-      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-		PD0, PD0, 0L, 0L);   
-      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 0L, 0L);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif  
-      n1 = pPOLYLINE_FEATURE (pobj)->n1;
-      n2 = pPOLYLINE_FEATURE (pobj)->n2;
-      closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
       
-      /***/
-      sciClip(sciGetIsClipping(pobj));
+     C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
+	       &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
+	       &dv, &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+	       PD0, PD0, PD0, 0L, 0L);
+     C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+	       PD0, PD0, 0L, 0L);   
+     C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+	       PD0, PD0, PD0, 0L, 0L);
+#ifdef WIN32 
+     if ( flag_DO == 1) ReleaseWinHdc ();
+#endif  
+     n1 = pPOLYLINE_FEATURE (pobj)->n1;
+     n2 = pPOLYLINE_FEATURE (pobj)->n2;
+     closeflag = pPOLYLINE_FEATURE (pobj)->closed;    
+      
+     /***/
+     sciClip(sciGetIsClipping(pobj));
 
 
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
 
 
   
 
-      for(jk=0;jk<nb_curves;jk++)
-	{
-	  n1 = curves_size[jk];
+     for(jk=0;jk<nb_curves;jk++)
+       {
+	 n1 = curves_size[jk];
 
-	  if(n1==0) continue;
+	 if(n1==0) continue;
 	  
-	  if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-	  if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-	  if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-	  if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
-	  if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	 if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
+	 if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
+	 if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	 if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
+	 if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
 	  
-	  /**DJ.Abdemouche 2003**/
-	  switch (pPOLYLINE_FEATURE (pobj)->plot)
-	    {
-	    case 0:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
-		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+	 /**DJ.Abdemouche 2003**/
+	 switch (pPOLYLINE_FEATURE (pobj)->plot)
+	   {
+	   case 0:
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
+	       /* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
 		
-		/* axes reverse is tested and xvect, yvect are changed if needed here */
+	       /* axes reverse is tested and xvect, yvect are changed if needed here */
 		
-		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+	       ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		
-		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
-	      }
-	      else
+	       result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+	     }
+	     else
 		
-		/* In 2d, the axes reverse is done inside XScale, YScale... routines. */
-		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);  */
-		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L); 
+	       /* In 2d, the axes reverse is done inside XScale, YScale... routines. */
+	       /* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);  */
+	       C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L); 
 	      
-	      /**DJ.Abdemouche 2003**/
-	      break; 
-	    case 1:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
-		/* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+	     /**DJ.Abdemouche 2003**/
+	     break; 
+	   case 1:
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
+	       /* 		trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
 		
-		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+	       ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		
-		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+	       result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
 		
-	      }
-	      else
-		/* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
-		Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
-	      break;
-	    case 2:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
-		    FREE(zzz); zzz = (double *) NULL;
+	     }
+	     else
+	       /* 		Plo2d1RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);   */
+	       Plo2d1RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+	     break;
+	   case 2:
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	       {
+		 if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		   FREE(zzz); zzz = (double *) NULL;
 		  
-/* 		  Plo2dTo3d(2,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		 /* 		  Plo2dTo3d(2,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
 		  
-		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		 ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(2,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
-		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-		}
-	      else
-		{
-/* 		  Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags); */
-		  Plo2d2RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
-		}
-	      n1=n1*2;
-	      break;
-	    case 3:  
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
-		    FREE(zzz); zzz = (double *) NULL;
+		 Plo2dTo3d(2,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		 result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+	       }
+	     else
+	       {
+		 /* 		  Plo2d2RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags); */
+		 Plo2d2RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+	       }
+	     n1=n1*2;
+	     break;
+	   case 3:  
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	       {
+		 if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		   FREE(zzz); zzz = (double *) NULL;
 		  
-		  /* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		 /* 	  Plo2dTo3d(3,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
 		  
-		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		 ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(3,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
-		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-		}
-	      else
-		{
-/* 		  Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
-		  Plo2d3RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
-		}
-	      if(result_trans3d == 1)
-		for ( j = 0 ; j < n2 ; j++)
-		  {
-		    lstyle=x[0];
-		    iflag=0; nn1= n1*2;
-		    C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		  }
-	      /**DJ.Abdemouche 2003**/
-	      n1=n2;
-	      break;
-	    case 4: 
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-		{
-		  if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
-		    FREE(zzz); zzz = (double *) NULL;
+		 Plo2dTo3d(3,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		 result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+	       }
+	     else
+	       {
+		 /* 		  Plo2d3RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
+		 Plo2d3RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags);
+	       }
+	     if(result_trans3d == 1)
+	       for ( j = 0 ; j < n2 ; j++)
+		 {
+		   lstyle=x[0];
+		   iflag=0; nn1= n1*2;
+		   C2F(dr)("xsegs","v",&xm[2*n1*j],&ym[2*n1*j],&nn1,&lstyle,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		 }
+	     /**DJ.Abdemouche 2003**/
+	     n1=n2;
+	     break;
+	   case 4: 
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	       {
+		 if(pPOLYLINE_FEATURE (pobj)->pvz == NULL)
+		   FREE(zzz); zzz = (double *) NULL;
 		  
-		  /* 		  Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
+		 /* 		  Plo2dTo3d(4,&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz,xzz,yzz,zzz); */
 		  
-		  ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+		 ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		  
-		  Plo2dTo3d(4,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
-		  result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
-		}
-	      else
-		{
-/* 		  Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
-		  Plo2d4RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags); 
-		}
-	      nn2=2*(n1)-1;
-	      arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
-	      arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
+		 Plo2dTo3d(4,&n2,&n1,xvect[jk],yvect[jk],zvect[jk],xzz,yzz,zzz);
+		 result_trans3d = trans3d(sciGetParentSubwin(pobj),n1*2,xm,ym,xzz,yzz,zzz);
+	       }
+	     else
+	       {
+		 /* 		  Plo2d4RealToPixel(&n2,&n1,pPOLYLINE_FEATURE (pobj)->pvx,pPOLYLINE_FEATURE (pobj)->pvy,xm,ym,logflags);  */
+		 Plo2d4RealToPixel(&n2,&n1,xvect[jk],yvect[jk],xm,ym,logflags); 
+	       }
+	     nn2=2*(n1)-1;
+	     arsize1= Cscale.WIRect1[2]/70.0;arsize2= Cscale.WIRect1[3]/70.0;
+	     arsize=  (arsize1 < arsize2) ? inint(10*arsize1) : inint(10*arsize2) ;
 
-	      if(result_trans3d == 1)
-		for ( j = 0 ; j < n2 ; j++)
-		  {
-		    integer lstyle=sciGetMarkStyle(pobj) ,iflag=0;
-		    C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
-		  } 
-	      break;
-	    case 5:
-	      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
+	     if(result_trans3d == 1)
+	       for ( j = 0 ; j < n2 ; j++)
+		 {
+		   integer lstyle=sciGetMarkStyle(pobj) ,iflag=0;
+		   C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
+		 } 
+	     break;
+	   case 5:
+	     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d){
 		
-		/* 	trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx, */
-		/* 			pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
+	       /* 	trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx, */
+	       /* 			pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz); */
 		
-		ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
+	       ReverseDataFor3D(sciGetParentSubwin(pobj),xvect[jk],yvect[jk],zvect[jk],n1);
 		
-		result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
-	      }
-	      else
+	       result_trans3d = trans3d(sciGetParentSubwin(pobj),n1,xm,ym,xvect[jk],yvect[jk],zvect[jk]);
+	     }
+	     else
 		
-		/* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx, */
-		/* 				 pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); */
-		C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L);
+	       /* 	C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx, */
+	       /* 				 pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L); */
+	       C2F (echelle2d) (xvect[jk],yvect[jk], xm, ym, &n1, &n2, "f2i",3L);
 	      
-	      sciClip(sciGetIsClipping(pobj));
+	     sciClip(sciGetIsClipping(pobj));
 
-	      if(result_trans3d == 1)
-		C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	     if(result_trans3d == 1)
+	       C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
 	      
-	      break;
-	    default:
-	      sciprint ("This Polyline cannot be drawn !\n");
+	     break;
+	   default:
+	     sciprint ("This Polyline cannot be drawn !\n");
 #ifdef WIN32 
-	      if ( flag_DO == 1) ReleaseWinHdc ();
+	     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
-	      break;     
-	    }
+	     break;     
+	   }
       
-	  if(result_trans3d == 1)
-	    {
-	      if (! sciGetIsMark(pobj))
-		C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	      else
-		C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
-	    }
+	 if(result_trans3d == 1)
+	   {
+	     if (! sciGetIsMark(pobj))
+	       C2F (dr) ("xlines", "xv", &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	     else
+	       C2F (dr) ("xmarks", "xv", &n1, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 8L, 2L);
+	   }
 
-	  FREE(xzz); xzz = (double *) NULL;
-	  FREE(yzz); yzz = (double *) NULL;
-	  FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
+	 FREE(xzz); xzz = (double *) NULL;
+	 FREE(yzz); yzz = (double *) NULL;
+	 FREE(zzz); zzz = (double *) NULL;/* SS 02/04 */
 	  
-	  FREE (xm); xm = (integer *) NULL;
-	  FREE (ym); ym = (integer *) NULL;
+	 FREE (xm); xm = (integer *) NULL;
+	 FREE (ym); ym = (integer *) NULL;
 	  
-	}
+       }
       
 
       
-      for(i=0;i<nb_curves;i++){
-	int nn;
-	nn = curves_size[i];
+     for(i=0;i<nb_curves;i++){
+       int nn;
+       nn = curves_size[i];
 	
-	if(nn==0) continue;
+       if(nn==0) continue;
 	
-	FREE(xvect[i]); xvect[i] = (double *) NULL;
-	FREE(yvect[i]); yvect[i] = (double *) NULL;
-	FREE(zvect[i]); zvect[i] = (double *) NULL;
-      }
-      FREE(xvect); xvect = (double **) NULL;
-      FREE(yvect); yvect = (double **) NULL;
-      /*   if(zvect != (double **) NULL) */
-      FREE(zvect); zvect = (double **) NULL;
+       FREE(xvect[i]); xvect[i] = (double *) NULL;
+       FREE(yvect[i]); yvect[i] = (double *) NULL;
+       FREE(zvect[i]); zvect[i] = (double *) NULL;
+     }
+     FREE(xvect); xvect = (double **) NULL;
+     FREE(yvect); yvect = (double **) NULL;
+     /*   if(zvect != (double **) NULL) */
+     FREE(zvect); zvect = (double **) NULL;
       
-      FREE(curves_size); curves_size = NULL;
+     FREE(curves_size); curves_size = NULL;
 
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif  
       
-      sciUnClip(sciGetIsClipping(pobj));
+     sciUnClip(sciGetIsClipping(pobj));
       
       
-      break;
-    case SCI_ARC: 
+     break;
+   case SCI_ARC: 
    
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
-      n = 1;
+     if (!sciGetVisibility(pobj)) break;
+     /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
+     n = 1;
       
      
-      itmp[0] = 0;		/* verbose*/
-      itmp[1] = 0;		/* thickness value*/
-      itmp[2] = 1;		/* narg*/
-      C2F (dr) ("xget", "thickness", itmp, itmp+1, itmp+2, PI0, PI0,
-		PI0, PD0, PD0, PD0, PD0, 4L, 9L);
+     itmp[0] = 0;		/* verbose*/
+     itmp[1] = 0;		/* thickness value*/
+     itmp[2] = 1;		/* narg*/
+     C2F (dr) ("xget", "thickness", itmp, itmp+1, itmp+2, PI0, PI0,
+	       PI0, PD0, PD0, PD0, PD0, 4L, 9L);
 
-      /* load the object foreground and dashes color */
+     /* load the object foreground and dashes color */
       
-      x[0] = sciGetForeground (pobj);	
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = sciGetLineStyle (pobj);
-      x[4] = 0;
-      v = 0;
-      dv = 0;
+     x[0] = sciGetForeground (pobj);	
+     x[2] = sciGetLineWidth (pobj);
+     x[3] = sciGetLineStyle (pobj);
+     x[4] = 0;
+     v = 0;
+     dv = 0;
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
     
       
       
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, 
-		&dv, &dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3,&v, 
-		&dv, &dv, &dv, &dv, 5L, 10L );
-      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, 
-		PD0, PD0, PD0, PD0, 4L, 9L);   
-      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
-		PD0, PD0, PD0, PD0, 4L, 10L);
+     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, 
+	       &dv, &dv, &dv, &dv, 5L, 6L);
+     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3,&v, 
+	       &dv, &dv, &dv, &dv, 5L, 10L );
+     C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, 
+	       PD0, PD0, PD0, PD0, 4L, 9L);   
+     C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, 
+	       PD0, PD0, PD0, PD0, 4L, 10L);
       
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      /**DJ.Abdemouche 2003**/
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	{
+     /**DJ.Abdemouche 2003**/
+     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+       {
 	  
-	  double xvect;
-	  double yvect;
-	  double zvect;
+	 double xvect;
+	 double yvect;
+	 double zvect;
 	  
-	  xvect = pARC_FEATURE(pobj)->x;
-	  yvect = pARC_FEATURE(pobj)->y;
-	  zvect = pARC_FEATURE(pobj)->z;
+	 xvect = pARC_FEATURE(pobj)->x;
+	 yvect = pARC_FEATURE(pobj)->y;
+	 zvect = pARC_FEATURE(pobj)->z;
 	  
-	  ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,un);
+	 ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,un);
 	  
-	  trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&xvect,&yvect,&zvect);
-	}
-      else
-	{
-	  sciSubWindow * ppsubwin = pSUBWIN_FEATURE (sciGetParentSubwin(pobj));
-	  double tmpx = pARC_FEATURE (pobj)->x;
-	  double tmpy = pARC_FEATURE (pobj)->y;
+	 trans3d(sciGetParentSubwin(pobj),un,&x1,&yy1,&xvect,&yvect,&zvect);
+       }
+     else
+       {
+	 sciSubWindow * ppsubwin = pSUBWIN_FEATURE (sciGetParentSubwin(pobj));
+	 double tmpx = pARC_FEATURE (pobj)->x;
+	 double tmpy = pARC_FEATURE (pobj)->y;
 	  
-	  double tmpwidth = pARC_FEATURE (pobj)->width;
-	  double tmpheight= pARC_FEATURE (pobj)->height;
+	 double tmpwidth = pARC_FEATURE (pobj)->width;
+	 double tmpheight= pARC_FEATURE (pobj)->height;
 	  
-	  if(ppsubwin->axes.reverse[0] == TRUE){
-	    tmpx= tmpx + tmpwidth;
-	  }
+	 if(ppsubwin->axes.reverse[0] == TRUE){
+	   tmpx= tmpx + tmpwidth;
+	 }
 	  
-	  if(ppsubwin->axes.reverse[1] == TRUE){
-	    tmpy = tmpy - tmpheight;
-	  }
+	 if(ppsubwin->axes.reverse[1] == TRUE){
+	   tmpy = tmpy - tmpheight;
+	 }
 	  
-	  x1  = XDouble2Pixel (tmpx);
-	  yy1 = YDouble2Pixel (tmpy);
-	}
+	 x1  = XDouble2Pixel (tmpx);
+	 yy1 = YDouble2Pixel (tmpy);
+       }
 
-      w2 = pARC_FEATURE (pobj)->width;
-      h2 = pARC_FEATURE (pobj)->height; 
-      /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
-      w1 = WScale(w2);
-      h1 = HScale(h2);
+     w2 = pARC_FEATURE (pobj)->width;
+     h2 = pARC_FEATURE (pobj)->height; 
+     /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */ 
+     w1 = WScale(w2);
+     h1 = HScale(h2);
 
-      angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
-      angle2 = (integer) (pARC_FEATURE (pobj)->alphaend); 
+     angle1 = (integer) (pARC_FEATURE (pobj)->alphabegin);
+     angle2 = (integer) (pARC_FEATURE (pobj)->alphaend); 
 
-      if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
-	 && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == FALSE)){
-	angle1 = 180*64 - (angle2+angle1);
-      }
-      else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
-	      && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
-	angle1 = 180*64 + angle1;
-      }
-      else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == FALSE)
-	      && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
-	angle1 = 360*64 - (angle2+angle1);
-      }
+     if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
+	&& (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == FALSE)){
+       angle1 = 180*64 - (angle2+angle1);
+     }
+     else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == TRUE)
+	     && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
+       angle1 = 180*64 + angle1;
+     }
+     else if((pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[0] == FALSE)
+	     && (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->axes.reverse[1] == TRUE)){
+       angle1 = 360*64 - (angle2+angle1);
+     }
      
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj));
-      if (pARC_FEATURE (pobj)->fill  <= 0)
-	C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      else
-	C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
-      sciUnClip(sciGetIsClipping(pobj));
+     sciClip(sciGetIsClipping(pobj));
+     if (pARC_FEATURE (pobj)->fill  <= 0)
+       C2F (dr) ("xarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+     else
+       C2F (dr) ("xfarc", str, &x1, &yy1, &w1, &h1, &angle1, &angle2, PD0, PD0, PD0,PD0, 5L, 0L);
+     sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-      if ( flag_DO == 1)  ReleaseWinHdc ();
+     if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
-      break;
-    case SCI_RECTANGLE:
+     break;
+   case SCI_RECTANGLE:
      
-      if (!sciGetVisibility(pobj)) break;
+     if (!sciGetVisibility(pobj)) break;
 
-      /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
-      n = 1;
-      if (sciGetFillStyle(pobj) != 0)
-	{       x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
-	x[1] = 1;
-	x[2] = 0;
-	x[3] = 0;
-	x[4] = 0;
-	x[5] = sciGetFillColor(pobj);
+     /*sciSetCurrentObj (pobj); F.Leray 25.03.04 */
+     n = 1;
+     if (sciGetFillStyle(pobj) != 0)
+       {       x[0] = 64;	/*la dash est de la meme couleur que le foreground*/
+       x[1] = 1;
+       x[2] = 0;
+       x[3] = 0;
+       x[4] = 0;
+       x[5] = sciGetFillColor(pobj);
 #ifdef WIN32 
-	flag_DO = MaybeSetWinhdc ();
+       flag_DO = MaybeSetWinhdc ();
 #endif
 		 
-	C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
-		   &dv, &dv, &dv, 5L, 4096);
+       C2F (dr1) ("xset", "pattern", &x[5], x+3, x, x+1, x+3, &v, &dv,
+		  &dv, &dv, &dv, 5L, 4096);
 #ifdef WIN32 
-	if ( flag_DO == 1) ReleaseWinHdc ();
+       if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-	}
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = sciGetLineStyle (pobj);
-      x[4] = 0;
-      markidsizenew[0] =  sciGetMarkStyle(pobj);
-      markidsizenew[1] =  sciGetLineWidth (pobj);
+       }
+     /* load the object foreground and dashes color */
+     x[0] = sciGetForeground (pobj);
+     x[2] = sciGetLineWidth (pobj);
+     x[3] = sciGetLineStyle (pobj);
+     x[4] = 0;
+     markidsizenew[0] =  sciGetMarkStyle(pobj);
+     markidsizenew[1] =  sciGetLineWidth (pobj);
      
-      v = 0;
-      dv = 0; 
+     v = 0;
+     dv = 0; 
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
 
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-		&dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 0L, 0L);    
-      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 0L, 0L);
-      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
-		PD0, PD0, 0L, 0L);
+     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+	       &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+	       &dv, &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+	       PD0, PD0, PD0, 0L, 0L);    
+     C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0,
+	       PD0, PD0, PD0, 0L, 0L);
+     C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0,
+	       PD0, PD0, 0L, 0L);
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif 
-      /**DJ.Abdemouche 2003**/
-      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
-	{
-	  sciSubWindow * ppsubwin = (pSUBWIN_FEATURE (sciGetParentSubwin(pobj)));
-	  double tmpx = pRECTANGLE_FEATURE (pobj)->x;
-	  double tmpy = pRECTANGLE_FEATURE (pobj)->y;
+     /**DJ.Abdemouche 2003**/
+     if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d))
+       {
+	 sciSubWindow * ppsubwin = (pSUBWIN_FEATURE (sciGetParentSubwin(pobj)));
+	 double tmpx = pRECTANGLE_FEATURE (pobj)->x;
+	 double tmpy = pRECTANGLE_FEATURE (pobj)->y;
 	  
-	  double tmpwidth = pRECTANGLE_FEATURE (pobj)->width;
-	  double tmpheight= pRECTANGLE_FEATURE (pobj)->height;
+	 double tmpwidth = pRECTANGLE_FEATURE (pobj)->width;
+	 double tmpheight= pRECTANGLE_FEATURE (pobj)->height;
 
-	  if((ppsubwin->axes.reverse[0] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpx= tmpx + tmpwidth;
-	  }
+	 if((ppsubwin->axes.reverse[0] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
+	   tmpx= tmpx + tmpwidth;
+	 }
 	  
-	  if((ppsubwin->axes.reverse[1] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
-	    tmpy = tmpy - tmpheight;
-	  }
+	 if((ppsubwin->axes.reverse[1] == TRUE) && (pRECTANGLE_FEATURE (pobj)->flagstring == FALSE)){
+	   tmpy = tmpy - tmpheight;
+	 }
 	  
-	    x1  = XDouble2Pixel(tmpx); 
-	    yy1 = YDouble2Pixel(tmpy);
+	 x1  = XDouble2Pixel(tmpx); 
+	 yy1 = YDouble2Pixel(tmpy);
 	    
-	  /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
-	  width = WDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x,pRECTANGLE_FEATURE (pobj)->width); 
-	  height = HDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y,pRECTANGLE_FEATURE (pobj)->height);
+	 /* Nouvelles fonctions de changement d'echelle pour les longueurs --> voir PloEch.h */
+	 width = WDouble2Pixel(pRECTANGLE_FEATURE (pobj)->x,pRECTANGLE_FEATURE (pobj)->width); 
+	 height = HDouble2Pixel(pRECTANGLE_FEATURE (pobj)->y,pRECTANGLE_FEATURE (pobj)->height);
 	  
-	  if (pRECTANGLE_FEATURE (pobj)->strwidth==0)
-	    {
-	      pRECTANGLE_FEATURE (pobj)->strwidth=width;
-	      pRECTANGLE_FEATURE (pobj)->strheight=height;
+	 if (pRECTANGLE_FEATURE (pobj)->strwidth==0)
+	   {
+	     pRECTANGLE_FEATURE (pobj)->strwidth=width;
+	     pRECTANGLE_FEATURE (pobj)->strheight=height;
 	      
-	    }
-	  wstr=pRECTANGLE_FEATURE (pobj)->strwidth;
-	  hstr=pRECTANGLE_FEATURE (pobj)->strheight;
+	   }
+	 wstr=pRECTANGLE_FEATURE (pobj)->strwidth;
+	 hstr=pRECTANGLE_FEATURE (pobj)->strheight;
 	  
 	  
 #ifdef WIN32 
-	  flag_DO = MaybeSetWinhdc ();
+	 flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(sciGetIsClipping(pobj));
-	  if (! sciGetIsMark(pobj))
-	    if (pRECTANGLE_FEATURE (pobj)->str == 1)
-	      {
-		yy1 -= hstr;
-		C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      }
-	    else
-	      if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)
-		C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	      else
-		if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		  C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		else
-		  sciprint("  The value must be 1  or 0\r\n");
-	  else {
-	    n = 4;
-	    xtmp[0] = x1;
-	    xtmp[1] = x1+width;
-	    xtmp[2] = x1+width;
-	    xtmp[3] = x1;
-	    ytmp[0] = yy1;
-	    ytmp[1] = yy1;
-	    ytmp[2] = yy1+height;
-	    ytmp[3] = yy1+height;
+	 sciClip(sciGetIsClipping(pobj));
+	 if (! sciGetIsMark(pobj))
+	   if (pRECTANGLE_FEATURE (pobj)->str == 1)
+	     {
+	       yy1 -= hstr;
+	       C2F(dr)("xrect",str,&x1,&yy1,&wstr,&hstr,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     }
+	   else
+	     if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)
+	       C2F(dr)("xrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	     else
+	       if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
+		 C2F(dr)("xfrect",str,&x1,&yy1,&width,&height,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	       else
+		 sciprint("  The value must be 1  or 0\r\n");
+	 else {
+	   n = 4;
+	   xtmp[0] = x1;
+	   xtmp[1] = x1+width;
+	   xtmp[2] = x1+width;
+	   xtmp[3] = x1;
+	   ytmp[0] = yy1;
+	   ytmp[1] = yy1;
+	   ytmp[2] = yy1+height;
+	   ytmp[3] = yy1+height;
 
-	    C2F (dr) ("xmarks", str, &n, xtmp, ytmp, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
-	  }
-	  sciUnClip(sciGetIsClipping(pobj));
+	   C2F (dr) ("xmarks", str, &n, xtmp, ytmp, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
+	 }
+	 sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
+	 if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
-	}
-      else /* Rect. in 3D */
-	{ 
-	  double rectx[4],recty[4],rectz[4];
-	  int close=1;
-	  n=4;
-	  xm = graphic_alloc(0,4,sizeof(int));
-	  ym = graphic_alloc(1,4,sizeof(int));
-	  rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
-	  rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
-	  recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
-	  recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
-	  rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
+       }
+     else /* Rect. in 3D */
+       { 
+	 double rectx[4],recty[4],rectz[4];
+	 int close=1;
+	 n=4;
+	 xm = graphic_alloc(0,4,sizeof(int));
+	 ym = graphic_alloc(1,4,sizeof(int));
+	 rectx[0]= rectx[3] =pRECTANGLE_FEATURE (pobj)->x;
+	 rectx[1]= rectx[2] =pRECTANGLE_FEATURE (pobj)->x+pRECTANGLE_FEATURE (pobj)->width;   
+	 recty[0]= recty[1] =pRECTANGLE_FEATURE (pobj)->y;   
+	 recty[2]= recty[3] =pRECTANGLE_FEATURE (pobj)->y-pRECTANGLE_FEATURE (pobj)->height;
+	 rectz[0]= rectz[1]=rectz[2]= rectz[3]=pRECTANGLE_FEATURE (pobj)->z;
 
-	  ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
+	 ReverseDataFor3D(sciGetParentSubwin(pobj), rectx, recty, rectz, n);
 
-	  trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
+	 trans3d(sciGetParentSubwin(pobj),n,xm,ym,rectx,recty,rectz);
 #ifdef WIN32 
-	  flag_DO = MaybeSetWinhdc ();
+	 flag_DO = MaybeSetWinhdc ();
 #endif
-	  sciClip(sciGetIsClipping(pobj));
-	  if (! sciGetIsMark(pobj))
-	    if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
-	      C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
-	    else
-	      if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
-		C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-	      else
-		sciprint("  The value must be 1  or 0\r\n");
-	  else 
-	    {
-	      n=4;
-	      C2F (dr) ("xmarks", str, &n, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
-	    }
-	  sciUnClip(sciGetIsClipping(pobj));
+	 sciClip(sciGetIsClipping(pobj));
+	 if (! sciGetIsMark(pobj))
+	   if (pRECTANGLE_FEATURE (pobj)->fillflag == 0)	
+	     C2F (dr) ("xlines", "xv", &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0,6L,2L);
+	   else
+	     if (pRECTANGLE_FEATURE (pobj)->fillflag == 1)
+	       C2F (dr) ("xarea", str, &n, xm, ym, &close, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+	     else
+	       sciprint("  The value must be 1  or 0\r\n");
+	 else 
+	   {
+	     n=4;
+	     C2F (dr) ("xmarks", str, &n, xm, ym, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 6L, 0L);
+	   }
+	 sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-	  if ( flag_DO == 1)  ReleaseWinHdc ();
+	 if ( flag_DO == 1)  ReleaseWinHdc ();
 #endif
-	}
-      break;
-    case SCI_TEXT: 
+       }
+     break;
+   case SCI_TEXT: 
      
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
-      n = 1;
-      /* load the object foreground and dashes color */
-      x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
-      x[2] = sciGetFontDeciWidth (pobj)/100;
-      x[3] = 0;
-      x[4] = sciGetFontStyle(pobj);
-      v = 0;
-      dv = 0;
+     if (!sciGetVisibility(pobj)) break;
+     /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
+     n = 1;
+     /* load the object foreground and dashes color */
+     x[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+     x[2] = sciGetFontDeciWidth (pobj)/100;
+     x[3] = 0;
+     x[4] = sciGetFontStyle(pobj);
+     v = 0;
+     dv = 0;
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
+     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,&dv, &dv, &dv, 5L, 6L);
+     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,&dv, &dv, &dv, &dv, 5L, 10L);
+     C2F(dr)("xset","font",x+4,x+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L);
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      /**DJ.Abdemouche 2003**/
+     /**DJ.Abdemouche 2003**/
 
-      flagx = 0;
+     flagx = 0;
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
-      sciClip(sciGetIsClipping(pobj));
+     sciClip(sciGetIsClipping(pobj));
 
-      if (pTEXT_FEATURE (pobj)->fill==-1) {
-	if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	  {
+     if (pTEXT_FEATURE (pobj)->fill==-1) {
+       if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	 {
 	    
-	    double xvect;
-	    double yvect;
-	    double zvect;
+	   double xvect;
+	   double yvect;
+	   double zvect;
 	    
-	    xvect = pTEXT_FEATURE (pobj)->x;
-	    yvect = pTEXT_FEATURE (pobj)->y;
-	    zvect = pTEXT_FEATURE (pobj)->z;
+	   xvect = pTEXT_FEATURE (pobj)->x;
+	   yvect = pTEXT_FEATURE (pobj)->y;
+	   zvect = pTEXT_FEATURE (pobj)->z;
 	    
-	    ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
+	   ReverseDataFor3D(sciGetParentSubwin(pobj),&xvect,&yvect,&zvect,n);
 	    
-	    trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
-	  }
-	else {
-	  x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
-	  yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
-	}
-	anglestr = (sciGetFontOrientation (pobj)/10); 	
-	/* *10 parce que l'angle est conserve en 1/10eme de degre*/
+	   trans3d(sciGetParentSubwin(pobj),n,&x1,&yy1,&xvect,&yvect,&zvect);
+	 }
+       else {
+	 x1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->x);
+	 yy1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->y);
+       }
+       anglestr = (sciGetFontOrientation (pobj)/10); 	
+       /* *10 parce que l'angle est conserve en 1/10eme de degre*/
 
-	C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
-      }
-      else { /* SS for xstringb should be improved*/
-	integer w1, h1;
-	w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
-	h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
-        C2F(dr1)("xstringb",sciGetText (pobj),&(pTEXT_FEATURE (pobj)->fill),&v,&v,&v,&v,&v,
-		 &(pTEXT_FEATURE (pobj)->x),&(pTEXT_FEATURE (pobj)->y),
-		 &(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
-      } 
+       C2F(dr)("xstring",sciGetText (pobj),&x1,&yy1,PI0,&flagx,PI0,PI0,&anglestr, PD0,PD0,PD0,0L,0L);
+     }
+     else { /* SS for xstringb should be improved*/
+       integer w1, h1;
+       w1  = XDouble2Pixel (pTEXT_FEATURE (pobj)->wh[0]);
+       h1 = YDouble2Pixel (pTEXT_FEATURE (pobj)->wh[1]);
+       C2F(dr1)("xstringb",sciGetText (pobj),&(pTEXT_FEATURE (pobj)->fill),&v,&v,&v,&v,&v,
+		&(pTEXT_FEATURE (pobj)->x),&(pTEXT_FEATURE (pobj)->y),
+		&(pTEXT_FEATURE (pobj)->wh[0]),&(pTEXT_FEATURE (pobj)->wh[1]),9L,0L);
+     } 
 
-      sciUnClip(sciGetIsClipping(pobj));
+     sciUnClip(sciGetIsClipping(pobj));
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      break;
+     break;
    case SCI_AXES:
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
+     if (!sciGetVisibility(pobj)) break;
+     /*sciSetCurrentObj (pobj);	F.Leray 25.03.04 */
     
-      /* load the object foreground and dashes color */
+     /* load the object foreground and dashes color */
       
-      x[0] = sciGetForeground (pobj);
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = 0;
-      x[4] = 0;
-      v = 0;
-      dv = 0;
+     x[0] = sciGetForeground (pobj);
+     x[2] = sciGetLineWidth (pobj);
+     x[3] = 0;
+     x[4] = 0;
+     v = 0;
+     dv = 0;
 #ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
+     flag_DO = MaybeSetWinhdc ();
 #endif
-      C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
-		&dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
-		&dv, &dv, &dv, &dv, 5L, 4096);
-      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 0L, 0L);
-      sciClip(sciGetIsClipping(pobj));
+     C2F (dr) ("xset", "dashes", x, x, x+3, x+3, x+3, &v, &dv,
+	       &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "foreground", x, x, x+3, x+3, x+3, &v,
+	       &dv, &dv, &dv, &dv, 5L, 4096);
+     C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
+	       PD0, PD0, PD0, 0L, 0L);
+     sciClip(sciGetIsClipping(pobj));
      
-/* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 19.05.04
-   void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag, axisbuild_flag)
-   For the moment, for a simple axes ( coming from a scilab command as 'drawaxis'), we set the fontstyle to 0.
-*/
+     /* Prototype Sci_Axis HAS CHANGED:  ************* F.Leray 19.05.04
+	void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag, axisbuild_flag)
+	For the moment, for a simple axes ( coming from a scilab command as 'drawaxis'), we set the fontstyle to 0.
+     */
 
-/* variable tmpAxes init. for debugging: */
-      paxes = pAXES_FEATURE(pobj);
+     /* variable tmpAxes init. for debugging: */
+     paxes = pAXES_FEATURE(pobj);
 
 
-      Sci_Axis(pAXES_FEATURE(pobj)->dir,pAXES_FEATURE (pobj)->tics,pAXES_FEATURE(pobj)->vx,
-               &pAXES_FEATURE (pobj)->nx,pAXES_FEATURE(pobj)->vy,&pAXES_FEATURE (pobj)->ny,
-               pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
-               pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,fontstyle_zero, /* F.Leray 08.04.04 : Adding here fontstyle_zero*/
-               pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg, 1); 
+     Sci_Axis(pAXES_FEATURE(pobj)->dir,pAXES_FEATURE (pobj)->tics,pAXES_FEATURE(pobj)->vx,
+	      &pAXES_FEATURE (pobj)->nx,pAXES_FEATURE(pobj)->vy,&pAXES_FEATURE (pobj)->ny,
+	      pAXES_FEATURE(pobj)->str,pAXES_FEATURE (pobj)->subint,pAXES_FEATURE (pobj)->format,
+	      pAXES_FEATURE (pobj)->fontsize,pAXES_FEATURE (pobj)->textcolor,fontstyle_zero, /* F.Leray 08.04.04 : Adding here fontstyle_zero*/
+	      pAXES_FEATURE (pobj)->ticscolor,(char)(pAXES_FEATURE (pobj)->logscale),pAXES_FEATURE (pobj)->seg, 1); 
 #ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      sciUnClip(sciGetIsClipping(pobj));   
+     sciUnClip(sciGetIsClipping(pobj));   
 			  
-      break;
-    case SCI_MERGE: 
-      if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
+     break;
+   case SCI_MERGE: 
+     if (!(pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge)) break; 
 
-      DrawMerge3d(sciGetParentSubwin(pobj), pobj);
-      break;
-    case SCI_SURFACE:
-      ppsurface = pSURFACE_FEATURE (pobj);
+     DrawMerge3d(sciGetParentSubwin(pobj), pobj);
+     break;
+   case SCI_SURFACE:
+     ppsurface = pSURFACE_FEATURE (pobj);
 
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
-      if (!sciGetVisibility(pobj)) break;
-      itmp[0] = 0;		/* verbose*/
-      itmp[1] = 0;		/* thickness value*/
-      itmp[2] = 1;		/* narg*/
-      C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,PI0, PD0, PD0, PD0, PD0, 4L, 9L);
-      C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,PD0, PD0, PD0, PD0, 4L, 4L);
+     if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj) )->facetmerge) break;  
+     if (!sciGetVisibility(pobj)) break;
+     itmp[0] = 0;		/* verbose*/
+     itmp[1] = 0;		/* thickness value*/
+     itmp[2] = 1;		/* narg*/
+     C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,PI0, PD0, PD0, PD0, PD0, 4L, 9L);
+     C2F (dr) ("xget", "mark", &itmp[0], markidsizeold, &itmp[3], PI0, PI0, PI0,PD0, PD0, PD0, PD0, 4L, 4L);
 
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = sciGetLineStyle (pobj);
-      markidsizenew[0] = sciGetMarkStyle(pobj);
-      markidsizenew[1] = sciGetLineWidth (pobj);
-      x[4] = 0;v = 0;dv = 0; 
+     /* load the object foreground and dashes color */
+     x[0] = sciGetForeground (pobj);	
+     x[2] = sciGetLineWidth (pobj);
+     x[3] = sciGetLineStyle (pobj);
+     markidsizenew[0] = sciGetMarkStyle(pobj);
+     markidsizenew[1] = sciGetLineWidth (pobj);
+     x[4] = 0;v = 0;dv = 0; 
 #ifdef WIN32
-      flag_DO = MaybeSetWinhdc();
+     flag_DO = MaybeSetWinhdc();
 #endif
-      C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
-      C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); /*D.A 17/12/2003*/
-      C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
+     C2F (dr) ("xset", "dashes",     x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 6L);
+     C2F (dr) ("xset", "foreground", x,   x,   x+4, x+4, x+4, &v, &dv, &dv, &dv, &dv, 5L, 10L);
+     C2F (dr) ("xset", "thickness",  x+2, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 5L, 9L);
+     C2F (dr) ("xset", "line style", x+3, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 0L, 0L); /*D.A 17/12/2003*/
+     C2F (dr) ("xset", "mark", &markidsizenew[0], &markidsizenew[1], PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0, 4L, 4L);
 #ifdef WIN32
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
 		
 
-      n=1;               
+     n=1;               
 #ifdef WIN32
-      flag_DO = MaybeSetWinhdc();
+     flag_DO = MaybeSetWinhdc();
 #endif     
-      switch(pSURFACE_FEATURE (pobj)->typeof3d)
-	{
-	case SCI_FAC3D:
-	  C2F(fac3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
-		      pSURFACE_FEATURE (pobj)->pvecz,
-		      pSURFACE_FEATURE (pobj)->zcol,
-		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
+     switch(pSURFACE_FEATURE (pobj)->typeof3d)
+       {
+       case SCI_FAC3D:
+	 C2F(fac3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+		     pSURFACE_FEATURE (pobj)->pvecz,
+		     pSURFACE_FEATURE (pobj)->zcol,
+		     &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
 
-	  break;
-	case SCI_PLOT3D:
-	  C2F(plot3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
-		       pSURFACE_FEATURE (pobj)->pvecz,
-		       &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
-	  break;
-	default:
-	  break;
-	}
+	 break;
+       case SCI_PLOT3D:
+	 C2F(plot3dn)(pobj,pSURFACE_FEATURE (pobj)->pvecx,pSURFACE_FEATURE (pobj)->pvecy,
+		      pSURFACE_FEATURE (pobj)->pvecz,
+		      &pSURFACE_FEATURE (pobj)->dimzx,&pSURFACE_FEATURE (pobj)->dimzy);
+	 break;
+       default:
+	 break;
+       }
 #ifdef WIN32
-      if ( flag_DO == 1) ReleaseWinHdc ();
+     if ( flag_DO == 1) ReleaseWinHdc ();
 #endif
-      break;
+     break;
    case SCI_LIGHT:
    case SCI_PANNER:
    case SCI_SBH:
