@@ -2233,7 +2233,7 @@ void VTInit1(parent)
   XtOverrideTranslations(parent, XtParseTranslationTable(xterm_trans));
   (void) XSetWMProtocols(XtDisplay(parent), XtWindow(parent),
 			 &wm_delete_window, 1);
-  set_scilab_icon();
+  /*set_scilab_icon(); Old icon... no more used V.C. 04/02/2004*/
   size_hints.min_width = 400;
   size_hints.min_height = 300;
   size_hints.flags =  PMinSize;
