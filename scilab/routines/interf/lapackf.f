@@ -1752,7 +1752,7 @@ c
          return
       endif
       if(.not.createvar(2,'i',1,N,lIPIV)) return
-      if(.not.createvar(4,'i',1,N,lIWORK)) return
+      if(.not.createvar(3,'i',1,N,lIWORK)) return
       LWORKMIN = MAX(1,N)
       LWORK=maxvol(4,'d')
       if(LWORK.le.LWORKMIN) then
@@ -1976,15 +1976,15 @@ c
 
       if(.not.createvar(2,'d', 1, 1, lRCOND)) return
       if(.not.createvar(3,'i', 1, N, lIPIV)) return
-      if(.not.createvar(5,'d', 1, 2*N, lRWORK)) return
+      if(.not.createvar(4,'d', 1, 2*N, lRWORK)) return
       LWORKMIN =  2*N
-      LWORK=maxvol(6,'z')
+      LWORK=maxvol(5,'z')
       if(LWORK.le.LWORKMIN) then
          err=2*(LWORK-LWORKMIN)
          call error(17)
          return
       endif
-      if(.not.createvar(6,'z',1,LWORK,lDWORK)) return
+      if(.not.createvar(5,'z',1,LWORK,lDWORK)) return
       ANORM = zlange( '1', N, N, zstk(lA), N, zstk(lDWORK) )
 c     DOUBLE PRECISION FUNCTION ZLANGE( NORM, M, N, A, LDA, WORK )
       call ZGETRF( N, N, zstk(lA), N, istk(lIPIV), INFO )         
