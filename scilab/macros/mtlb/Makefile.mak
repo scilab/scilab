@@ -64,7 +64,7 @@ PLOT= mtlb_plot.sci mtlb_subplot.sci mtlb_get.sci mtlb_clf.sci \
 	mtlb_semilogx.sci mtlb_semilogy.sci mtlb_loglog.sci \
 	mtlb_image.sci mtlb_pcolor.sci mtlb_axes.sci
 
-UTIL=enlarge_shape.sci makecell.sci makestruct.sci firstnonsingleton.sci
+UTIL=enlarge_shape.sci makecell.sci firstnonsingleton.sci
 
 
 MACROS =$(MTLB) $(M5) $(PLOT) $(UTIL)
