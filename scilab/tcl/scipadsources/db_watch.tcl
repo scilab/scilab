@@ -271,6 +271,8 @@ proc update_bubble {type butnum mousexy} {
     global pad watchwinicons
     set butname [lindex $watchwinicons $butnum]
     set txt [$pad.filemenu.debug entrycget $butnum -label]
+    set acc [$pad.filemenu.debug entrycget $butnum -accelerator]
+    if {$acc != ""} { set txt "$txt ($acc)" }
     set bubble $butname.bubble
     catch {destroy $bubble}
     if {$type=="enter"} {
