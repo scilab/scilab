@@ -706,7 +706,7 @@ X0=ll(6)(:)
     xptr(i+1)=xptr(i)+size(ll(6),'*')/2
   end
   
-  xptr(i+1)=xptr(i)+size(ll(6),'*')
+  //xptr(i+1)=xptr(i)+size(ll(6),'*')
   
   if funtyp(i,1)==3 then //sciblocks
     if ll(7)==[] then xd0k=[]; else xd0k=var2vec(ll(7));end
