@@ -11,7 +11,7 @@ OBJSF = bashos.obj basin.obj basout.obj \
 
 OBJSC  = getenvc.obj link.obj systemc.obj zzledt.obj  csignal.obj getpidc.obj timer.obj \
 	flags.obj men_Sutils.obj addinter.obj h_help_data.obj tmpdir.obj cluni0.obj \
-	inffic.obj isanan.obj
+	inffic.obj isanan.obj texmacs.obj
 
 include ../../Makefile.incl.mak
 
