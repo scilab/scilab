@@ -3,10 +3,8 @@
  --------------------------------------------------------------------------*/
 
 #include "../stack-c.h"
-void i_vect_or __PARAMS((int *v,int m,int n,int *r,int opt));
-void d_vect_or __PARAMS((double *v,int m,int n,int *r,int opt));
-void i_vect_and __PARAMS((int *v,int m,int n,int *r,int opt));
-void d_vect_and __PARAMS((double *v,int m,int n,int *r,int opt));
+void vect_or __PARAMS((int *v,int m,int n,int *r,int opt));
+void vect_and __PARAMS((int *v,int m,int n,int *r,int opt));
 /******************************************
  * SCILAB function : or
  ******************************************/
@@ -47,9 +45,7 @@ int C2F(intor)(fname,l)
 
  /*  checking variable a */
  typ=VarType(1);
- if (typ==1) {
-   GetRhsVar(1,"d",&m1,&n1,&l1);}
- else if (typ==4) {
+ if (typ==4) {
    GetRhsVar(1,"b",&m1,&n1,&l1);}
  else {
    lw = 1 + Top - Rhs;
@@ -64,10 +60,7 @@ int C2F(intor)(fname,l)
    CreateVar(2+nopt,"b",&mm2,&n1,&l2);}/* named: x */
  else if (opt==2) {
    CreateVar(2+nopt,"b",&m1,&mm2,&l2);}/* named: x */
- if (typ==4)
-   i_vect_or(istk(l1),m1,n1,istk(l2),opt);
- else
-   d_vect_or(stk(l1),m1,n1,istk(l2),opt);
+ vect_or(istk(l1),m1,n1,istk(l2),opt);
  LhsVar(1)= 2+nopt;
  C2F(putlhsvar)();
  return 0;
@@ -116,9 +109,7 @@ int C2F(intand)(fname,l)
 
  /*  checking variable a */
  typ=VarType(1);
- if (typ==1) {
-   GetRhsVar(1,"d",&m1,&n1,&l1);}
- else if (typ==4) {
+ if (typ==4) {
    GetRhsVar(1,"b",&m1,&n1,&l1);}
  else {
    lw = 1 + Top - Rhs;
@@ -133,17 +124,14 @@ int C2F(intand)(fname,l)
    CreateVar(2+nopt,"b",&mm2,&n1,&l2);}/* named: x */
  else if (opt==2) {
    CreateVar(2+nopt,"b",&m1,&mm2,&l2);}/* named: x */
- if (typ==4)
-   i_vect_and(istk(l1),m1,n1,istk(l2),opt);
- else
-   d_vect_and(stk(l1),m1,n1,istk(l2),opt);
+ vect_and(istk(l1),m1,n1,istk(l2),opt);
  LhsVar(1)= 2+nopt;
  C2F(putlhsvar)();
  return 0;
 }
 
 
-void i_vect_or __PARAMS((int *v,int m,int n,int *r,int opt))
+void vect_or __PARAMS((int *v,int m,int n,int *r,int opt))
 {
   int k,l,i;
   
@@ -179,44 +167,8 @@ void i_vect_or __PARAMS((int *v,int m,int n,int *r,int opt))
     }
   }
 }
-void d_vect_or __PARAMS((double *v,int m,int n,int *r,int opt))
-{
-  int k,l,i;
-  
-  if (opt==0) {
-    r[0]=0;
-    for (k=0;k<m*n;k++)
-      if (v[k]!=0.0) {
-	r[0]=1;
-	break;
-      }
-  }
-  else if (opt==1) {
 
-    for (k=0;k<n;k++) {
-      r[k]=0;i=k*m;
-      for (l=0;l<m;l++)
-	if (v[i++]!=0.0) {
-	  r[k]=1;
-	  break;
-	}
-    }
-  }
-  else if (opt==2) {
-    for (l=0;l<m;l++) {
-      r[l]=0;i=l;
-      for (k=0;k<n;k++) {
-	if (v[i]!=0.0) {
-	  r[l]=1;
-	  break;
-	}
-	i+=m;
-      }
-    }
-  }
-}
-
-void i_vect_and __PARAMS((int *v,int m, int n,int *r,int opt))
+void vect_and __PARAMS((int *v,int m, int n,int *r,int opt))
 {
   int k,l,i;
   
@@ -244,43 +196,6 @@ void i_vect_and __PARAMS((int *v,int m, int n,int *r,int opt))
       r[l]=1;i=l;
       for (k=0;k<n;k++) {
 	if (!v[i]) {
-	  r[l]=0;
-	  break;
-	}
-	i+=m;
-      }
-    }
-  }
-}
-
-void d_vect_and __PARAMS((double *v,int m, int n,int *r,int opt))
-{
-  int k,l,i;
-  
-  if (opt==0) {
-    r[0]=1;
-    for (k=0;k<m*n;k++)
-      if (v[k]==0.0) {
-	r[0]=0;
-	break;
-      }
-  }
-  else if (opt==1) {
-
-    for (k=0;k<n;k++) {
-      r[k]=1;i=k*m;
-      for (l=0;l<m;l++)
-	if (v[i++]==0.0) {
-	  r[k]=0;
-	  break;
-	}
-    }
-  }
-  else if (opt==2) {
-    for (l=0;l<m;l++) {
-      r[l]=1;i=l;
-      for (k=0;k<n;k++) {
-	if (v[i]==0.0) {
 	  r[l]=0;
 	  break;
 	}
