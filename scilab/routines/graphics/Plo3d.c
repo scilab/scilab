@@ -1064,7 +1064,7 @@ void AxesStrings(integer axflag, integer *ixbox, integer *iybox, integer *xind, 
   if (version_flag() != 0) 
     {x=ixbox[2]-iof ;y=iybox[2]-iof;}
   else
-    {x=ixbox[2]-(xz[0]+xz[1])/20 ;y=0.5*iybox[3]+0.5*iybox[2];}
+    {x = (integer) (ixbox[2]-(xz[0]+xz[1])/20) ; y = (integer) (0.5*iybox[3]+0.5*iybox[2]);}
  /*** le z scaling ***/
   if ( axflag>=4)
     {
@@ -1329,7 +1329,8 @@ void I3dRotation(void)
   double theta0,alpha0;
   static integer modes[]={1,0};/* for xgemouse only get mouse mouvement*/ 
   sciSons *psonstmp;
-  sciPointObj *psubwin, *tmpsubwin, *psurface; 
+  sciPointObj *psubwin, *tmpsubwin;
+    //  sciPointObj *psurface; 
   integer xr, yr;
 
 

@@ -17,6 +17,8 @@ typedef void (f_xcall1) __PARAMS((char *,char *,integer *,integer *,integer *,in
 typedef void (*func) __PARAMS((char *,char *,integer *,integer *,integer *,integer *,integer *,integer *,
 			       double *,double *,double *,double *,integer,integer ));
 extern int C2F(sciwin) __PARAMS((void));
+extern int version_flag();
+
 
 static void GSciString __PARAMS((int,integer *x,integer *y,char *StrMat,integer *w,integer *h));
 static void Myalloc1 __PARAMS((integer **xm,integer n,integer *err));
@@ -767,8 +769,8 @@ void xstringb_1(char *fname, char *str, integer *fflag, integer *v2, integer *v3
     }
   else 
     GSciString(0,&x,&y,str,&w,&h);
-  x = x +  (wbox - w)/2.0;
-  y = y -  (hbox - h)/2.0; 
+  x = (int) (x +  (wbox - w)/2.0);
+  y = (int) (y -  (hbox - h)/2.0); 
   GSciString(1,&x,&y,str,&w,&h);
   C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 }
@@ -814,7 +816,7 @@ void GSciString(int Dflag, integer *x, integer *y, char *StrMat, integer *w, int
 	}	
       else 
 	{
-	  yi=yi-1.2*logrect[3];
+	  yi=(int) (yi-1.2*logrect[3]);
 	}
     }
   *w = wc ;

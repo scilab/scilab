@@ -2043,7 +2043,7 @@ static void UnSCNEch(char *plot)
 /*** code added by ES 21/5/2002 ****/
 static void UnSCContour(char *plot)
 {
-  int i;
+  //  int i;
   struct contour_rec *theplot;
   theplot =   (struct contour_rec *) plot;
   {
@@ -2057,7 +2057,7 @@ static void UnSCContour(char *plot)
 
 static void UnSCFac3D(char *plot)
 {
-  int i;
+  //  int i;
   struct fac3d_rec *theplot;
   theplot =   (struct fac3d_rec *) plot;
   {
@@ -2073,7 +2073,7 @@ static void UnSCFac3D(char *plot)
 
 static void UnSCParam3D(char *plot)
 {
-  int i;
+  //  int i;
   struct param3d_rec *theplot;
   theplot =   (struct param3d_rec *) plot;
   {
@@ -2086,7 +2086,7 @@ static void UnSCParam3D(char *plot)
 
 static void UnSCParam3D1(char *plot)
 {
-  int i;
+  //  int i;
   struct param3d1_rec *theplot;
   theplot =   (struct param3d1_rec *) plot;
   {
@@ -2102,7 +2102,7 @@ static void UnSCParam3D1(char *plot)
 
 static void UnSCPlot3D(char *plot)
 {
-  int i;
+  //  int i;
   struct plot3d_rec *theplot;
   theplot =   (struct plot3d_rec *) plot;
   {

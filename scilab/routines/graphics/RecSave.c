@@ -12,6 +12,8 @@
 #include "Math.h"
 #include "Rec.h"
 
+extern void  xdrstdio_create();
+
 static int SaveTPlot __PARAMS((char *type, char *plot));
 static int SaveD  __PARAMS((double x));
 static int SaveLI __PARAMS((integer ix));

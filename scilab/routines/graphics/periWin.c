@@ -311,6 +311,10 @@ int MaybeSetWinhdc()
     {
       if ( sciGetPixmapStatus() == 1) 
 	hdc = ScilabXgc->hdcCompat;
+
+      /* 09.02.04 */
+      /* IL FAUDRA RETOURNER UNE VALEUR MAIS LAQUELLE ???*/
+      // return( ?? );
       else
 	hdc=GetDC(ScilabXgc->CWindow);
       return(1);

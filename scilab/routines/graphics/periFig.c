@@ -1323,8 +1323,8 @@ void C2F(drawarcXfig)(char *str, integer *x, integer *y, integer *width, integer
   n=Min((*angle2/64),360);
   for (k = 0; k < n; ++k) {
     alpha=((*angle1/64)+k)*fact;
-    vx[k] = *x + w*(cos(alpha)+1.0);
-    vy[k] = *y + h*(-sin(alpha)+1.0);}
+    vx[k] = (integer) (*x + w*(cos(alpha)+1.0));
+    vy[k] = (integer) (*y + h*(-sin(alpha)+1.0));}
     
   C2F(drawpolylineXfig)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);
 }
@@ -1359,19 +1359,19 @@ void C2F(fillarcXfig)(char *str, integer *x, integer *y, integer *width, integer
   kmax = n-1;
 
   if (n != 360) {
-  vx[0] = *x + w;
-  vy[0] = *y + h;
+  vx[0] = (integer) (*x + w);
+  vy[0] = (integer) (*y + h);
   k0 = 1;
   kmax = n;}
 
   for (k = k0; k <= kmax; ++k) {
     alpha=((*angle1/64)+k)*fact;
-    vx[k] = *x + w*(cos(alpha)+1.0);
-    vy[k] = *y + h*(-sin(alpha)+1.0);}
+    vx[k] = (integer) (*x + w*(cos(alpha)+1.0));
+    vy[k] = (integer) (*y + h*(-sin(alpha)+1.0));}
   if (n != 360) {
   n++;
-  vx[n] = *x + ((*width)/2.0);
-  vy[n] = *y + ((*height)/2.0); 
+  vx[n] = (integer) (*x + ((*width)/2.0));
+  vy[n] = (integer) (*y + ((*height)/2.0)); 
   n++;
   }
   C2F(fillpolylineXfig)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);

@@ -153,16 +153,16 @@ void C2F(xselgraphicGif)(char *v1, integer *v2, integer *v3, integer *v4, intege
 /** End of graphic (close the file) **/
 
 void GetDriverName(char *DriverName)
-{    integer *v2;
-     integer *v3;
-     integer *v4;
-     integer *v5;
-     integer *v6;
-     integer *v7;
-     double *dv1;
-     double *dv2;
-     double *dv3;
-     double *dv4;
+{    integer *v2 = NULL;
+     integer *v3 = NULL;
+     integer *v4 = NULL;
+     integer *v5 = NULL;
+     integer *v6 = NULL;
+     integer *v7 = NULL;
+     double *dv1 = NULL;
+     double *dv2 = NULL;
+     double *dv3 = NULL;
+     double *dv4 = NULL;
      GetDriver1(DriverName, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4);
 }
 
@@ -1541,8 +1541,8 @@ void C2F(drawarcGif)(char *str, integer *x, integer *y, integer *width, integer 
   n=Min((*angle2/64),360);
   for (k = 0; k < n; ++k) {
     alpha=((*angle1/64)+k)*fact;
-    vx[k] = *x + w*(cos(alpha)+1.0);
-    vy[k] = *y + h*(-sin(alpha)+1.0);}
+    vx[k] = (integer) (*x + w*(cos(alpha)+1.0));
+    vy[k] = (integer) (*y + h*(-sin(alpha)+1.0));}
     
   C2F(drawpolylineGif)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);
 }
@@ -1567,19 +1567,19 @@ void C2F(fillarcGif)(char *str, integer *x, integer *y, integer *width, integer 
   kmax = n-1;
 
   if (n != 360) {
-  vx[0] = *x + w;
-  vy[0] = *y + h;
+  vx[0] =  (integer) (*x + w);
+  vy[0] =  (integer) (*y + h);
   k0 = 1;
   kmax = n;}
 
   for (k = k0; k <= kmax; ++k) {
     alpha=((*angle1/64)+k)*fact;
-    vx[k] = *x + w*(cos(alpha)+1.0);
-    vy[k] = *y + h*(-sin(alpha)+1.0);}
+    vx[k] =  (integer) (*x + w*(cos(alpha)+1.0));
+    vy[k] =  (integer) (*y + h*(-sin(alpha)+1.0));}
   if (n != 360) {
   n++;
-  vx[n] = *x + ((*width)/2.0);
-  vy[n] = *y + ((*height)/2.0); 
+  vx[n] = (integer) (*x + ((*width)/2.0));
+  vy[n] = (integer) (*y + ((*height)/2.0)); 
   n++;
   }
   C2F(fillpolylineGif)(str, &n, vx, vy, &close, PI0, PI0, dv1, dv2, dv3, dv4);

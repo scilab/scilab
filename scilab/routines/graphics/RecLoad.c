@@ -42,6 +42,8 @@
 
 #define assert(ex) {if (!(ex)){ sciprint("Graphic Load/Save Error \r\n");return(0);}}
 
+extern void  xdrstdio_create();
+
 static char *SciF_version;
 static int LoadVectC(),LoadLI(),LoadVectLI(), LoadVectF(),LoadC(),LoadD();
 static int LoadTPlot();
@@ -898,7 +900,7 @@ static int LoadVectS(nx)
   assert( xdr_vector(rxdrs,(char *) &rcount,(u_int)1,(u_int) sizeof(u_int), (xdrproc_t) xdr_u_int)) ;
   if ( rcount == 0) { *nx = 0 ; return 1;} 
   if (( loc = (char **) MALLOC( (rcount+1)* sizeof(char*))) == NULL) return 0;
-  for ( i=0; i < rcount ; i++) 
+  for ( i=0; i < (int) rcount ; i++) 
     {
       if ( LoadVectC(&loc[i]) == 0 ) return 0;
     }
