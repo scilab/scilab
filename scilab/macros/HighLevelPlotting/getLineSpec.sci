@@ -1,4 +1,4 @@
-function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(ch) 
+function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(str) 
 
 Line = %T;
 LineStyle=1;
@@ -9,32 +9,43 @@ LineStyle=1;
 fail=0;
 ms=1;
 
-//s=loadGlobalGraphicState();
-//s=s.simpleColorTable;
-
 //conversion to lower format
-ch = convstr(ch);
+str = convstr(str);
 
+// 1) LINE STYLE
 // Line type modifiers
 
-if strindex(ch,'--')
-   ch=strsubst(ch,'--','');
+if strindex(str,'--')
+   str=strsubst(str,'--','');
    LineStyle=2;
-elseif strindex(ch,'-.')
-   ch=strsubst(ch,'-.','');
+elseif strindex(str,'-.')
+   str=strsubst(str,'-.','');
    LineStyle=4;
-elseif strindex(ch,':')
-   ch=strsubst(ch,':','');
+elseif strindex(str,':')
+   str=strsubst(str,':','');
    LineStyle=5;
-elseif strindex(ch,'-')
-   ch=strsubst(ch,'-','');
+elseif strindex(str,'-')
+   str=strsubst(str,'-','');
    LineStyle=1;
-end   
+end
 
 //
 
-disp("ch vaut:::::::: 1/2")
-disp(ch)
+disp("str vaut:::::::: 1/2")
+disp(str)
+
+// 2) COLORS + MARKS STYLE
+
+opt1=[];
+
+//Marks
+Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram'];
+MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14];
+MarksSizeVal =[1 3 7  1 3  3 4 3 3  3  3  3];
+
+//Colors
+Table= [Table 'red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'k' 'white']
+ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
 
 //color management
 //difficulty here since we have to allow every kind of writings:
@@ -43,162 +54,69 @@ disp(ch)
 //
 
 
-YELLOW  = ['y' 'ye' 'yel' 'yell' 'yello' 'yellow'];
-MAGENTA = ['m' 'ma' 'mag' 'mage' 'magen' 'magent' 'magenta'];
-CYAN    = ['c' 'cy' 'cya' 'cyan'];
-BLUE    = ['b' 'bl' 'blu' 'blue'];
-GREEN   = ['g' 'gr' 'gre' 'gree' 'green'];
-RED     = ['r' 're' 'red'];
+str = str+'@';
 
-BLA   =   ['k'      'bla' 'blac' 'black'];
-WHI   =   ['w' 'wh' 'whi' 'whit' 'white'];
+while length(str) > 1
+ c1 = part(str,1); // We get the first character
+ k=find(part(Table,1)==c1);
 
-COULEURS = [YELLOW MAGENTA CYAN BLUE GREEN RED BLA WHI];
-
-flag = %F;
-
-for j=length(ch):-1:1
-
- if flag == %T
-  break;
+ if(k == [] | (size(k,'*') > 1 & c1 <> 'b'))
+  disp("Error in LineSpec property : bad argument specified");
+  return;
  end
 
- res = find(length(COULEURS)==j)
-
- for i=1:size(res,'*')
-  if strindex(ch,COULEURS(res(i)))<>[] then
-   if (res(i) >= 1) & (res(i) <= 6) then
-    Color=color('yellow')
-    ch=strsubst(ch,COULEURS(res(i)),'');
-    flag = %T
-    break;
-   else if (res(i) >= 7) & (res(i) <= 13) then
-     Color=color('magenta')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 14) & (res(i) <= 17) then
-     Color=color('cyan')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 18) & (res(i) <= 21) then
-     Color=color('blue')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 22) & (res(i) <= 26) then
-     Color=color('green')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 27) & (res(i) <= 29) then
-     Color=color('red')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 30) & (res(i) <= 33) then
-     Color=color('black')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   else if (res(i) >= 34) & (res(i) <= 38) then
-     Color=color('white')
-     ch=strsubst(ch,COULEURS(res(i)),'');
-     flag = %T
-     break;
-   end, end, end, end, end, end, end, end
-  end
- end
-
- 
-end
-
-
-disp("ch vaut:::::::: 2/2")
-disp(ch)
-
-// Special shapes
-
-SQUARE    = ['s' 'sq' 'squ' 'squa' 'squar' 'square'];
-DIAMOND   = ['d' 'di' 'dia' 'diam' 'diamo' 'diamon' 'diamond'];
-PENTAGRAM = ['p' 'pe' 'pen' 'pent' 'penta' 'pentag' 'pentag' 'pentagr' 'pentagra' 'pentagram'];
-
-SPESH = [SQUARE DIAMOND PENTAGRAM]
-
-for j=length(ch):-1:1
- res = find(length(SPESH)==j)
-
- for i=1:size(res,'*')
-  if strindex(ch,SPESH(res(i)))<>[]
-   if (res(i) >= 1) & (res(i) <= 6)
-    MarkerStyle=11;
-    MarkerSize=3;
-    ch=strsubst(ch,SPESH(res(i)),'');
-    break;
-   else if (res(i) >= 7) & (res(i) <= 13)
-    MarkerStyle=5;
-    MarkerSize=4;
-    ch=strsubst(ch,SPESH(res(i)),'');
-    break;
-   else if (res(i) >= 14) & (res(i) <= 23)
-    MarkerStyle=14;
-    MarkerSize=6;
-    ch=strsubst(ch,SPESH(res(i)),'');
-    break;
-   end, end, end
-  end
- end
-
-end
-
-
-if(length(ch)>1) then
- disp("Error in LineSpec property : bad argument specified");
- return;
-end
-
-for i=1:length(ch)
-
-select part(ch,i)
-  case '.'
-     MarkerStyle=0;
-     MarkerSize=1;
-  case '+'
-     MarkerStyle=1;
-     MarkerSize=1;
-  case 'x'
-     MarkerStyle=2;
-     MarkerSize=1;
-  case '*'
-     MarkerStyle=10;
-     MarkerSize=7;
-  case '^'
-     MarkerStyle=6;
-     MarkerSize=1;
-  case 'v'
-     MarkerStyle=7;
-     MarkerSize=1;
-  case 't'
-     MarkerStyle=8;
-     MarkerSize=1;
-  case 'f'
-    MarkerStyle=4;
-    MarkerSize=1;
-  case 'o'
-     MarkerStyle=9;
-     MarkerSize=3;
+ if c1=='b' // special case here : we have to distinguish between black and blue colors
+  c2 = part(str,2);
+  if(c2 == 'l')
+   c3 = part(str,3);
+   if(c3 == 'a')
+    k=19; // k is set to black color
+   else  
+    k=15; // k is set to blue color
+   end
   else
-     fail=1;
-end // select
-end // for
+   k=15; // k is set to blue color
+  end
+ end
+
+ disp("str=")
+ disp(str)
+
+ disp("k=")
+ disp(k);
+
+ opt = Table(k);
+ for i=1:length(str)
+  if part(opt,i) <> part(str,i)
+   break;
+  end
+ end
+
+ opt1 = [opt1 k];
+ 
+ str = part(str,i:length(str));
+
+end
 
 
-if MarkerStyle == []
-   Marker = %F;
-else
-   Marker = %T;
+// LineSpec is parsed now
+
+Marker = %F;
+Line   = %T;
+
+for i=1:size(opt1,'*')
+
+ if(opt1(i) <= 12)
+  Marker = %T;
+  MarkerStyle = MarksStyleVal(opt1(i));
+  MarkerSize  = MarksSizeVal (opt1(i));
+  disp("MarkerSize =");
+  disp(MarkerSize);
+ else
+  Color = color(ColorVal(opt1(i)-12));
+ end
+
 end
 
 endfunction
-// end of getLineSpec
+// end of getLineSpec2
