@@ -9,12 +9,17 @@ if rhs~=1 then
 end
 
 dims=list()
-sz=size(value)
-for k=1:size(sz,"*")
-  dims($+1)=sz(k)
-  if type(value)==String then
-    if k==2 then
-      dims($)=sum(length(value))
+
+if value=="" then
+  dims=list(0,0)
+else
+  sz=size(value)
+  for k=1:size(sz,"*")
+    dims($+1)=sz(k)
+    if type(value)==String then
+      if k==2 then
+	dims($)=sum(length(value))
+      end
     end
   end
 end
