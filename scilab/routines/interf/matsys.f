@@ -59,13 +59,11 @@ c     40         41       42     43     44     45    46
 c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
 c     lasterror version loadhistory savehistory gethistory resethistory macr2tree
-c     53         54        55          56         57          58        60
-c     use_as_command 
-c     62          
+c     53         54        55          56         57          58        59
 c     sleep getos
-c     72    73 
-c     banner
-c     77
+c     60    61 
+c     banner fromjava
+c     62     63
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -80,7 +78,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      694,695,697,698,699,700,701,702,703,
-     +      705,706,707),fin
+     +      705,706,707,708),fin
 c     
 c     debug
  10   call intdebug()
@@ -270,6 +268,8 @@ c     mtlb_mode
  706  call intgetos('getos')
       goto 999 
  707  call intbanner('banner')
+      goto 999     
+ 708  call intfromjava('fromjava')
       goto 999     
  998  continue
 c     fake calls : only to force the 

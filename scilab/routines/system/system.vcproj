@@ -694,6 +694,9 @@ cd .. &gt;nul
 				RelativePath=".\diary.c">
 			</File>
 			<File
+				RelativePath=".\fromjava.c">
+			</File>
+			<File
 				RelativePath=".\inisci-c.c">
 			</File>
 			<File
@@ -742,6 +745,9 @@ cd .. &gt;nul
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl">
+			<File
+				RelativePath=".\fromjava.h">
+			</File>
 			<File
 				RelativePath="..\system2\intmacr2tree.h">
 			</File>

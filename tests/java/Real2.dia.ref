@@ -1,7 +1,3 @@
- 
- 
-Startup execution:
-  loading initial environment
 Matrix F=
  
 !   1.    3. !
@@ -14,14 +10,3 @@ Matrix H=
  
 !   23.    31. !
 !   34.    46. !
-        ___________________________________________
-
-                         scilab-3.0-CVS
-
-
-                  Copyright (c) 1989-2005          
-
-              Consortium Scilab (INRIA, ENPC)      
-
-        ___________________________________________
-

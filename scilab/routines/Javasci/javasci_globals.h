@@ -36,6 +36,7 @@ extern void C2F(storeversion)(char *str,int n);
 extern  int C2F(sxevents)();
 extern void sciGetIdFigure (int *vect, int *id, int *flag);
 extern int version_flag();
+extern void SetFromJavaToON(void);
 /********************************************************************************************************/
 #if WIN32
 extern char *getenv();

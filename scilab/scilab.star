@@ -14,13 +14,6 @@ old=stacksize()
 if old(1)<>newstacksize then stacksize(newstacksize),end
 clear old newstacksize
 
-// Startup message  ===================================================
-verbose=sciargs()<>"-nb"
-if verbose then
-  banner(); 
-  write(%io(2),[' ';' ';'Startup execution:'])
-end
-
 // Special variables definition =======================================
 ieee(2);%inf=1/0;ieee(0);%nan=%inf-%inf;
 
@@ -29,9 +22,20 @@ $=poly(0,'$')
 
 %T=%t;%F=%f;       // boolean variables
 
+// Startup message  ===================================================
+verbose=sciargs()<>"-nb"
+if verbose then
+  if ~fromjava() then
+    banner(); 
+    write(%io(2),[' ';' ';'Startup execution:'])
+  end
+end
+
 // Load scilab functions libraries  ===================================
 if verbose then 
-  write(%io(2),'  loading initial environment')
+  if ~fromjava() then
+    write(%io(2),'  loading initial environment')
+  end  
 end 
 clear verbose
 

@@ -96,6 +96,9 @@ void Initialize()
     start_sci_gtk() ;
   #endif
 
+  /* pour initialisation de la primitive scilab : fromjava() */
+  SetFromJavaToON();
+
   /* Chargement de Scilab.star */
   C2F(scirun)(initstr,(int)strlen(initstr));
   
