@@ -4,6 +4,38 @@ function bad_connection(path_out,prt_out,nout,path_in,prt_in,nin)
 // path_in  : Path of the "to block" in scs_m
 //!
 // Copyright INRIA
+  if type(path_out)==15 then //set of modelica blocks
+    // look for modelica bloc associated with prt_out
+    outports=list()
+    for b=path_out,
+      path=list();
+      for l=b(1:$-1),
+	path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';
+      end
+      path($+1)=b($);
+      if size(path)==1 then path=path(1),end
+      mb=scs_m.objs(path)
+      k=find(mb.graphics.out_implicit=='E')
+      for kk=k,outports($+1)=path,end
+    end
+    path_out=outports(prt_out)
+  end
+  if type(path_in)==15 then //set of modelica blocks
+    // look for modelica bloc associated with prt_in
+    inports=list()
+    for b=path_in,
+      path=list();
+      for l=b(1:$-1),
+	path($+1)=l;path($+1)='model';path($+1)='rpar';path($+1)='objs';
+      end
+      path($+1)=b($);
+      if size(path)==1 then path=path(1),end
+      mb=scs_m.objs(path)
+      k=find(mb.graphics.in_implicit=='E')
+      for kk=k,inports($+1)=path,end
+    end
+    path_in=inports(prt_in)
+  end
 
   if path_in==-1 then
     hilite_obj(scs_m.objs(path_out));
