@@ -25,7 +25,7 @@ OBJSF = lspops.o spelm.o spops.o \
 	dspmat.o wspmat.o lspmat.o sp2col.o spsort.o spord.o wperm.o \
 	spcho1.o spcho2.o blkslv.o blkfct.o inpnv.o symfct.o ordmmd.o \
 	blkfc1.o spind.o spcompack.o \
-	intreadmps.o rdmps1.o rdmpsz.o 
+	intreadmps.o rdmps1.o rdmpsz.o spreshape.o
 
 OBJS =  $(OBJSF) $(OBJSC)
 
