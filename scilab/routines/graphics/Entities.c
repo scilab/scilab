@@ -13287,6 +13287,9 @@ int sciType (marker)
   else if (strcmp(marker,"rotation_style") == 0)    {return 10;}
   else if (strcmp(marker,"triangles") == 0)    {return 1;}
   else if (strcmp(marker,"z_bounds") == 0)    {return 1;}
+  else if (strcmp(marker,"current_axes") == 0)    {return 9;}
+  else if (strcmp(marker,"children") == 0)    {return 9;}
+
   else { sciprint("\r\n Unknown property \r");return 0;}
 }
 /**sciGetAxes

@@ -4589,6 +4589,7 @@ int gset(fname,fname_len)
 	Scierror(999,"%s: uncompatible values of proprety type  '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
+      if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
 	if (strncmp(cstk(l2),"tics_labels",11) !=0) 
 	  {GetRhsVar(2,"c",&numrow3,&numcol3,&l3);} 
