@@ -49,6 +49,7 @@ do_help()
 {
 echo "Usage:"
 echo     "	scilab [-ns -nw -display display -f file -args arguments]"
+echo     "	scilab [-ns -nw -display display -e expression]"
 echo     "	scilab -help <key>"
 echo     "	scilab -k <key>"
 echo     "	scilab -xk <key>"
@@ -334,6 +335,10 @@ if test "$rest" = "yes"; then
       -f)
           prevarg="start_file"
           ;;
+      -e)
+          prevarg="start_exp"
+          ;;
+
        -args)
            prevarg="arguments"
           ;;
@@ -350,6 +355,11 @@ if test "$rest" = "yes"; then
 
   if test -n "$start_file"; then
     start_file="-f $start_file"
+  fi
+
+
+  if test -n "$start_exp"; then
+    start_file="-e $start_exp"
   fi
 
   if test -n "$debug"; then 

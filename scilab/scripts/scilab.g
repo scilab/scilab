@@ -54,6 +54,19 @@ do_scilex()
     $SCI/bin/scilex $* 
 }
 
+do_scilex_now()
+{
+    PATH=$PATH:$SCI:$SCI/util
+    export PATH
+    XAPPLRESDIR=$SCI/X11_defaults
+    export XAPPLRESDIR
+    XLESSHELPFILE=$SCI/X11_defaults/xless.help
+    export XLESSHELPFILE
+    NETHELPDIR=$SCI/X11_defaults
+    export NETHELPDIR
+    $SCI/bin/scilex $* 
+}
+
 do_geci_scilex()
 {
     PATH=$PATH:$SCI:$SCI/util
@@ -67,11 +80,24 @@ do_geci_scilex()
     tty -s && stty kill '^U' intr '^C' erase '^H' quit '^\' eof '^D' susp '^Z'
     $SCI/bin/geci -local $SCI/bin/scilex $* 
 }
+do_geci_scilex_now()
+{
+    PATH=$PATH:$SCI:$SCI/util
+    export PATH
+    XAPPLRESDIR=$SCI/X11_defaults
+    export XAPPLRESDIR
+    XLESSHELPFILE=$SCI/X11_defaults/xless.help
+    export XLESSHELPFILE
+    NETHELPDIR=$SCI/X11_defaults
+    export NETHELPDIR
+    $SCI/bin/geci -local $SCI/bin/scilex $* 
+}
 
 do_help()
 {
 echo "Usage:"
 echo     "	scilab [-ns -nw -display display -f file -args arguments]"
+echo     "	scilab [-ns -nw -display display -e expression]"
 echo     "	scilab -help <key>"
 echo     "	scilab -k <key>"
 echo     "	scilab -xk <key>"
@@ -353,7 +379,11 @@ if test "$rest" = "yes"; then
       -f)
           prevarg="start_file"
           ;;
-       -args)
+      -e)
+          prevarg="start_exp"
+          ;;
+
+      -args)
            prevarg="arguments"
           ;;
 
@@ -371,15 +401,20 @@ if test "$rest" = "yes"; then
     start_file="-f $start_file"
   fi
 
+  if test -n "$start_exp"; then
+    start_file="-e $start_exp"
+  fi
+
+
   if test -n "$nos"; then
      if test -n "$now"; then
-       do_scilex -ns -nw $start_file $arguments
+       do_scilex_now -ns -nw $start_file $arguments
      else
        do_scilex -ns $display $start_file  $arguments&
      fi
   else
      if test -n "$now"; then
-       do_geci_scilex -nw $start_file $arguments
+       do_geci_scilex_now -nw $start_file $arguments
      else
        do_geci_scilex $display $start_file  $arguments&
      fi
