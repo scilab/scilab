@@ -322,7 +322,7 @@ void reset_history(void)
 }
 #else 
 
-static void reset_history(void)
+void reset_history(void)
 {
   register HIST_ENTRY **the_list;
   register int i;

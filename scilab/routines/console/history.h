@@ -18,8 +18,8 @@
 #include <readline/history.h>
 #else 
 extern void write_history(char *filename); 
-extern void reset_history(void);
 #endif 
+extern void reset_history(void);
 
 #ifndef STRICT
   #define STRICT
