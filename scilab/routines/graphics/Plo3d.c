@@ -1324,7 +1324,6 @@ void I3dRotation(void)
   sciPointObj *psubwin, *tmpsubwin, *psurface; 
   integer xr, yr;
 
-
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (version_flag() != 0) {
     if ( Check3DPlots("v",&ww) == 0) 
@@ -1359,10 +1358,13 @@ void I3dRotation(void)
       if (version_flag() != 0)
 	C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #endif
-      if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
       if (version_flag() != 0)
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+#ifdef WIN32
+      ReleaseWinHdc();
+      SciMouseRelease();
+#endif
       theta=Cscale.theta ;
       alpha=Cscale.alpha ;
 
@@ -1412,12 +1414,10 @@ void I3dRotation(void)
 		      Cscale.bbox1[5] =  1.0;}
 		}
 	      else
-              {
-		wininfo("No 3d object selected");
-		if ( pixmode == 0) 
-		  C2F(dr1)("xset","alufunction",(in=3,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-		return;
-	      }
+		{
+		  wininfo("No 3d object selected");
+		  return;
+		}
 	    }
           else
 	    {                  
@@ -1431,6 +1431,13 @@ void I3dRotation(void)
 	      sciSetSelectedSubWin (psonstmp->pointobj);
 	    } 
 	}
+#ifdef WIN32
+      SetWinhdc();
+      SciMouseCapture();
+#endif
+      if (version_flag() != 0)
+	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+      if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
