@@ -26,7 +26,7 @@ for %kk=1:%nx
     model=o.model
     if model.sim=='super'|model.sim=='csuper' then
       sblock=model.rpar
-      context=sblock(1).context
+      context=sblock.props.context
       if execstr(context,'errcatch')<>0 then
         message(['Cannot evaluate a context';lasterror()])
       else
