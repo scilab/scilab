@@ -653,7 +653,7 @@ extern int  sciPeekMessage(MSG *msg);
 static int check_mouse(MSG *msg,integer *ibutton,integer *x1,integer *yy1,
 		       int getmouse,int getrelease);
 
-static int check_pointer_win(int *x1,int *yy1,int *win)
+int check_pointer_win(int *x1,int *yy1,int *win)
 {
   RECT lpRect;
   HWND hwnd_window_pointed;
@@ -3141,7 +3141,7 @@ void fill_grid_rectangles1(x, y, z, n1, n2)
     for (j = 0 ; j < (n2)-1 ; j++)
       {
 	integer w,h;
-	fill[0]= z[i+(n1-1)*j];
+	fill[0]= (int) z[i+(n1-1)*j];
 	C2F(setpattern)(fill,PI0,PI0,PI0);
 	w=Abs(x[j+1]-x[j]);
 	h=Abs(y[i+1]-y[i]);
@@ -3501,6 +3501,7 @@ struct BCG *AddNewWindowToList()
 struct BCG *AddNewWindow(listptr)
      WindowList **listptr;
 {
+
   if ( *listptr == (WindowList *) NULL)
     {
       *listptr = (WindowList *) MALLOC (sizeof(WindowList));
@@ -3518,7 +3519,7 @@ struct BCG *AddNewWindow(listptr)
 	 (*listptr)->winxgc.Blue = (float *) 0;
 	 (*listptr)->winxgc.Colors = (COLORREF *) 0;
 	 (*listptr)->winxgc.CmapFlag  = 1;
-	 (*listptr)->winxgc.EventHandler = (EVTHANDLER) NULL;
+	 (*listptr)->winxgc.EventHandler[0]='\0'; 
          (*listptr)->winxgc.lpgw = &graphwin;
          (*listptr)->winxgc.hPen  = (HPEN) 0;
          (*listptr)->winxgc.hBrush  = (HBRUSH) 0;
@@ -3860,6 +3861,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
 		 (LPSTR)NULL, MB_ICONHAND | MB_SYSTEMMODAL);
       return;
     }
+
   /* modify the system menu to have the new items we want */
   sysmenu = GetSystemMenu(ScilabXgc->hWndParent,0);
   AppendMenu(sysmenu, MF_SEPARATOR, 0, NULL);
@@ -3880,7 +3882,7 @@ void C2F(initgraphic)(string, v2, v3, v4, v5, v6, v7, dv1, dv2, dv3, dv4)
   GetClientRect(ScilabXgc->CWindow, &rect);
   SetViewportExtEx(hdc, rect.right, rect.bottom,NULL);
   SetTextAlign(hdc, TA_LEFT|TA_BOTTOM);
-        SetFocus( ScilabXgc->CWindow);
+  SetFocus( ScilabXgc->CWindow);
 
   if (EntryCounter == 0)
     {

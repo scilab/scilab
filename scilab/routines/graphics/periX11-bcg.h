@@ -46,7 +46,7 @@ struct BCG
   int NumBackground;  /* number of Background in the color table */
   int NumForeground; /* number of Foreground in the color table */
   int NumHidden3d;  /* color for hidden 3d facets **/
-  EVTHANDLER EventHandler; /* pointer to an event handler */
+  char EventHandler[25]; /* name of window event handler */
 };
 
 /** jpc_SGraph.c **/

@@ -28,6 +28,7 @@
 #include <X11/@XAW@/ViewportP.h>
 
 
+
 #include <string.h>
 /** getpid **/
 #ifdef __STDC__
@@ -703,8 +704,8 @@ int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
   struct BCG *SciGc;
 
   SciGc = GetWindowXgcNumber(win);
-  if (SciGc->EventHandler!=(EVTHANDLER) NULL) {
-    sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
+  if (strlen(SciGc->EventHandler)!=0) {
+    sprintf(buf,"%s(%d,%d,%d,%d)",SciGc->EventHandler,win,x,y,ibut);
     StoreCommand(buf);
     return 1;}
   else
@@ -1806,21 +1807,12 @@ static int GetChilds(win_num,nc,wL,outer,name,name_pos)
   return TRUE;
 }
 
-/* Functions to add a eventhandler to a graphic window */ 
-int SciEventHandler(win,x,y,ibut)
-     int win,x,y,ibut;
-{
-  static char buf[256];
-  sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
-  StoreCommand(buf);
-  return(0);
-}
 
 
-void C2F(seteventhandler)(win_num,job,ierr)
+void C2F(seteventhandler)(win_num,name,ierr)
      int *win_num;
      int *ierr;
-     int *job;
+     char *name;
 {  
   struct BCG *SciGc;
 
@@ -1828,10 +1820,7 @@ void C2F(seteventhandler)(win_num,job,ierr)
   *ierr = 0;
   SciGc = GetWindowXgcNumber(*win_num);
   if ( SciGc ==  NULL ) {*ierr=1;return;}
-  if (*job>0) 
-    SciGc->EventHandler=(EVTHANDLER)SciEventHandler;
-  else
-    SciGc->EventHandler=(EVTHANDLER) NULL;
+  strncpy(SciGc->EventHandler,name,24);
 }
 
 

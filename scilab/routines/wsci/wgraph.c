@@ -47,7 +47,7 @@
 extern void SetGHdc __PARAMS ((HDC lhdc, int width, int height));
 static void scig_replay_hdc (char c, integer win_num, HDC hdc, int width, int height,
 			     int scale);
-
+extern int check_pointer_win __PARAMS ((int *x1,int *y1,int *win));
 extern TW textwin;
 
 EXPORT LRESULT CALLBACK WndGraphProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -615,7 +615,23 @@ int scig_click_handler_none (int win,int x,int y,int ibut,int motion,int release
   return 0;
 };
 
-static Scig_click_handler scig_click_handler = scig_click_handler_none;
+int scig_click_handler_sci (int win,int x,int y,int ibut,int motion,int release)
+
+{
+  static char buf[256];
+  struct BCG *SciGc;
+
+  SciGc = GetWindowXgcNumber(win);
+  if (strlen(SciGc->EventHandler)!=0) {
+    sprintf(buf,"%s(%d,%d,%d,%d)",SciGc->EventHandler,win,x,y,ibut);
+    StoreCommand(buf);
+    return 1;}
+  else
+    return 0;
+};
+
+static Scig_click_handler scig_click_handler = scig_click_handler_sci;
+/*static Scig_click_handler scig_click_handler = scig_click_handler_none;*/
 
 Scig_click_handler set_scig_click_handler (f)
      Scig_click_handler f;
@@ -627,22 +643,16 @@ Scig_click_handler set_scig_click_handler (f)
 
 void reset_scig_click_handler ()
 {
-  scig_click_handler = scig_click_handler_none;
+  scig_click_handler = scig_click_handler_sci;
 }
 
 int PushClickQueue (int win,int x,int y,int ibut,int motion,int release)
 {
-  struct BCG *SciGc;
-  EVTHANDLER h;
   /* first let a click_handler do the job  */
-  /* is it a specific handler for this window ?*/
-  SciGc = GetWindowXgcNumber(win);
-  h = SciGc->EventHandler;
-  if (h == (EVTHANDLER)NULL) { /* no, use global one */
-    if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;}
-  else { /* yes, call it */
-    (*(h))(win,x,y,ibut); return 0;
-  }
+  if ( scig_click_handler(win,x,y,ibut,motion,release)== 1) return 0;
+  /* do not record motion events and release button 
+   * this is left for a futur release 
+   */
   if (motion == 1 || release == 1)
     return 0;
   if (lastc == MaxCB)
@@ -852,6 +862,7 @@ EXPORT LRESULT CALLBACK
   struct BCG *ScilabGC;
   int deltax = 0;
   int deltay = 0;
+  int x,y,iwin;
 
   SCROLLINFO vertsi;
   SCROLLINFO horzsi;
@@ -906,6 +917,11 @@ EXPORT LRESULT CALLBACK
 	    return 0;
 	  }
       return 0;
+    case WM_KEYDOWN:
+      if ( check_pointer_win(&x,&y,&iwin)==1 ) {
+	PushClickQueue (ScilabGC->CurWindow, x,y,wParam,1,0);
+      }
+      return (0);
     case WM_CHAR:
       //sciSendMessage(hwnd, WM_CHAR, wParam, lParam);
       return (0);
@@ -1272,25 +1288,18 @@ EXPORT LRESULT CALLBACK
   return DefWindowProc (hwnd, message, wParam, lParam);
 }
 
-int SciEventHandler(int win,int x,int y,int ibut)
-{
-  static char buf[256];
-  sprintf(buf,"clickhandler_%d(%d,%d,%d)",win,x,y,ibut);
-  StoreCommand(buf);
-  return(0);
-}
 
-
-void C2F(seteventhandler)(int *win_num,int *job,int *ierr)
+void C2F(seteventhandler)(win_num,name,ierr)
+     int *win_num;
+     int *ierr;
+     char *name;
 {  
   struct BCG *SciGc;
+
   /*ButtonPressMask|PointerMotionMask|ButtonReleaseMask|KeyPressMask */
   *ierr = 0;
   SciGc = GetWindowXgcNumber(*win_num);
   if ( SciGc ==  NULL ) {*ierr=1;return;}
-  if (*job>0) 
-    SciGc->EventHandler=(EVTHANDLER)SciEventHandler;
-  else
-    SciGc->EventHandler=(EVTHANDLER) NULL;
+  strncpy(SciGc->EventHandler,name,24);
 }
 

@@ -441,7 +441,13 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
 	set_client_message_off();
 	return ;
       }
-    XNextEvent (dpy, &event);
+   XNextEvent (dpy, &event);
+
+#ifdef WITH_TK
+    flushTKEvents(); 
+#endif
+
+ 
     switch ( event.type )
       {
       case  KeyPress :
@@ -504,6 +510,7 @@ void C2F(xclick_any)(char *str, integer *ibutton, integer *x1, integer *yy1, int
       default :
 	XtDispatchEvent(&event);
       }
+
     /** Check menu activation **/
     if ( *istr==1 && C2F(ismenu)()==1 ) 
       {
@@ -3004,7 +3011,7 @@ static struct BCG *AddNewWindow(WindowList **listptr)
 	  (*listptr)->winxgc.Colors = (Pixel *) 0;
 	  (*listptr)->winxgc.Cmap = (Colormap) 0 ;
 	  (*listptr)->winxgc.CmapFlag  = 1;
-	  (*listptr)->winxgc.EventHandler = (EVTHANDLER) NULL;
+	  (*listptr)->winxgc.EventHandler[0] = '\0';
 	  (*listptr)->next = (struct WindowList *) NULL ;
 	  return(&((*listptr)->winxgc));
 	}

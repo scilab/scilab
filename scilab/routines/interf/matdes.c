@@ -24,6 +24,9 @@ extern void C2F(gsorts)  __PARAMS((char **data,int *ind,int *iflag, int *m,int *
 extern int C2F(gsort)  __PARAMS((int *xI,double *xD,int *ind,int *iflag, int *m,int *n,
 				  char *type,char *iord));
 extern void ShowScales  __PARAMS((void));
+
+extern void C2F(seteventhandler) __PARAMS((int *win_num,char *name,int *ierr));
+
 static integer one = 1, zero = 0;
 
 /*-----------------------------------------------------------
@@ -3762,21 +3765,20 @@ int sciseteventhandler(fname, fname_len)
      char *fname;
      unsigned long fname_len;
 {
-  integer m1,n1,l1,job,ierr;
+  integer m1,n1,l1,ierr;
   integer verb=0,win,na,v;
   double dv;
   C2F(sciwin)();
-  CheckRhs(-1,1);
+  CheckRhs(1,1);
   CheckLhs(0,1);
   C2F(dr1)("xget","window",&verb,&win,&na,&v,&v,&v,&dv,&dv,&dv,&dv,5L,7L);
   if (Rhs == 1) 
     {
-      GetRhsVar(1,"d",&m1,&n1,&l1);CheckScalar(1,m1,n1);		
-      job = *stk(l1);
+      GetRhsVar(1,"c",&m1,&n1,&l1);
+      C2F(seteventhandler) (&win,cstk(l1),&ierr);
     }
   else
-    job = 0;
-  C2F(seteventhandler) (&win,&job,&ierr);
+    C2F(seteventhandler) (&win,"",&ierr);
   LhsVar(1)=0;
   return 0;
 } 
