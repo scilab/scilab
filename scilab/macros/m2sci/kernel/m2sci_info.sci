@@ -22,7 +22,7 @@ if verb_mode>0 then
   for k=1:size(txt,"*")
     m2sci_to_insert_b($+1)=Equal(..
 	list(Variable("ans",Infer())),..
-	Funcall("comment",1,list(Cste(" "+txt(k))),list(Variable("",Infer()))))
+	Funcall("%comment",1,list(Cste(" "+txt(k))),list(Variable("",Infer()))))
     m2sci_to_insert_b($+1)=list("EOL");
   end
 end
