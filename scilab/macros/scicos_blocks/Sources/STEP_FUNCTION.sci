@@ -24,14 +24,63 @@ case 'set' then
     end
     xx=arg1(spath)// get the block
     execstr('xxn='+xx.gui+'(''set'',xx)')
+
     if diffobjs(xxn,xx) then 
+      model=xx.model
+      model_n=xxn.model
+      if ~is_modelica_block(xx) then
+	modified=or(model.sim<>model_n.sim)|..
+		 ~isequal(model.state,model_n.state)|..
+		 ~isequal(model.dstate,model_n.dstate)|..
+		 ~isequal(model.rpar,model_n.rpar)|..
+		 ~isequal(model.ipar,model_n.ipar)|..
+		 ~isequal(model.label,model_n.label)
+	if or(model.in<>model_n.in)|or(model.out<>model_n.out) then  
+	  // input or output port sizes changed
+	  needcompile=1
+	end
+	if or(model.firing<>model_n.firing)  then 
+	  // initexe changed
+	  needcompile=2
+	end
+	if model.sim=='input'|model.sim=='output' then
+	  if model.ipar<>model_n.ipar then
+	    needcompile=4
+	  end
+	end
+	if or(model.blocktype<>model_n.blocktype)|..
+	      or(model.dep_ut<>model_n.dep_ut)  then 
+	  // type 'c','d','z','l' or dep_ut changed
+	  needcompile=4
+	end
+	if (model.nzcross<>model_n.nzcross)|(model.nmode<>model_n.nmode) then 
+	  // size of zero cross changed
+	  needcompile=4
+	end
+	if prod(size(model_n.sim))>1 then
+	  if model_n.sim(2)>1000 then  // Fortran or C Block
+	    if model.sim(1)<>model_n.sim(1) then  //function name has changed
+	      needcompile=4
+	    end
+	  end
+	end
+      else //implicit block
+	//force compilation if an implicit block has been edited
+	modified=or(model_n<>model)
+	eq=model.equations;eqn=model_n.equations;
+	if or(eq.model<>eqn.model)|or(eq.inputs<>eqn.inputs)|..
+				      or(eq.outputs<>eqn.outputs) then  
+	  needcompile=4
+	end
+      end
+      
       // parameter or states changed
       arg1(spath)=xxn// Update
       newpar(size(newpar)+1)=path// Notify modification
     end
   end
   x=arg1
-  y=0
+  y=needcompile
   typ=newpar
 case 'define' then
   model = mlist(..

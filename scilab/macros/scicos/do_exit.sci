@@ -48,4 +48,3 @@ for win=windows(size(windows,1):-1:noldwin+1,2)'
   end
 end
 endfunction
-

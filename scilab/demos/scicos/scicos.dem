@@ -13,7 +13,7 @@ demos_name=[
     'Cont.Disc-Observer.cosf'
     'Controller.cosf'
     'System-Observer.cosf'
-//    'Live demo'
+	'bouncing balls'	
     'Synchro Block demo'];
 
 if ~MSDOS then demos_name=[demos_name;'sound demo'];end
@@ -53,6 +53,8 @@ while %t do
     scicos('SCI/demos/scicos/Controller.cosf');
   case 'System-Observer.cosf' then  
     scicos('SCI/demos/scicos/System-Observer.cosf');
+  case 	'bouncing balls' then
+    scicos('SCI/demos/scicos/bounce.cosf');
   case 'Live demo' then
     getf('SCI/demos/scicos/scicos_play.sci','n')
     scicos_play('SCI/demos/scicos/live.dat')

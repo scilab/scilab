@@ -23,6 +23,28 @@ static intcscicosTable Tab[]={
   {intcpass2,"scicos_cpass2"},
   {intsetblockerror,"set_blockerror"},
 };
+/* fonction pour recuperer le nombre du champs a partir de son nom */
+int MlistGetFieldNumber(int *ptr, const char *string)
+{
+  int nf, longueur, istart, k, ilocal, retval;
+  int *headerstr;
+  static char str[24];
+ 
+  headerstr = listentry(ptr,1);
+  nf=headerstr[1]*headerstr[2]-1;  /* number of fields */
+  retval=-1;
+  for (k=0; k<nf; k++) {
+    longueur=Min(headerstr[6+k]-headerstr[5+k],24);  /* size of kth fieldname */
+    istart=5+nf+headerstr[5+k];    /* start of kth fieldname code */
+    /*    istart=8+headerstr[4+nf+k]; */
+    C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);
+    str[longueur]='\0';
+    if (strcmp(string, str) == 0) {
+      retval=k+2;
+      break;}
+  }
+  return retval;
+}
 
 /* interface for the previous function Table */ 
 
@@ -242,7 +264,8 @@ int intcpass2(fname,fname_len)
   double *bllst6,*bllst7,*bllst8,*bllst11,*tevts,*xcd0,*ppd;
   char **bllst111,**bllst10,**bllst13;
   unsigned long str_len;
-  int moinsun=-1;
+  int moinsun=-1, field_num;
+  char *field_name;
 
   xcd0=NULL;
   ppd=NULL;
@@ -323,9 +346,16 @@ int intcpass2(fname,fname_len)
   for (k=1; k <= m; k++)
     {
       li=(int*) listentry(header,k); /*le pointeur sur la kieme sous list (mlists)*/
-
-      /* 1ier element de la list sim*/
-      le1=(int*) listentry(li,2);
+      /* Le rang du champs*/
+      /* MlistGetFieldNumber*/
+      
+      /* 1ier element de la list sim*/      
+      if ((field_name=(char*) malloc(sizeof(char)*4)) ==NULL )  return 0;
+      ((char*) field_name)[3]='\0';
+      strcpy (field_name,"sim");
+      field_num=MlistGetFieldNumber(li,field_name);
+      le1=(int*) listentry(li,field_num);
+      free(field_name);
       /*si sim est une list*/
       if (le1[0] == 15)
 	{
@@ -361,7 +391,12 @@ int intcpass2(fname,fname_len)
 	  
 	}
       /* 2ieme element de la list in */
-      le2=(int*) listentry(li,3);
+      if ((field_name=(char*) malloc(sizeof(char)*3)) ==NULL )  return 0;
+      ((char*) field_name)[2]='\0';
+      strcpy (field_name,"in");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le2=(int*) listentry(li,field_num);
       ne2=le2[1];
       le22=((double *) (le2+4));
       bllst2ptr[k+1]=bllst2ptr[k]+ne2;
@@ -372,7 +407,12 @@ int intcpass2(fname,fname_len)
 	}
       bllst2[0]=bllst2[0]+ne2;
       /* 3ieme element de la list out*/
-      le3=(int*) listentry(li,4);
+      if ((field_name=(char*) malloc(sizeof(char)*4)) ==NULL )  return 0;
+      ((char*) field_name)[3]='\0';
+      strcpy (field_name,"out");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le3=(int*) listentry(li,field_num);
       ne3=le3[1];
       le33=((double *) (le3+4));
       bllst3ptr[k+1]=bllst3ptr[k]+ne3;
@@ -383,7 +423,12 @@ int intcpass2(fname,fname_len)
 	}
       bllst3[0]=bllst3[0]+ne3;
       /* 4ieme element de la list evtin*/
-      le4=(int*) listentry(li,5);
+      if ((field_name=(char*) malloc(sizeof(char)*6)) ==NULL )  return 0;
+      ((char*) field_name)[5]='\0';
+      strcpy (field_name,"evtin");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le4=(int*) listentry(li,field_num);
       ne4=le4[1];
       le44=((double *) (le4+4));
       bllst4ptr[k+1]=bllst4ptr[k]+ne4;
@@ -394,7 +439,12 @@ int intcpass2(fname,fname_len)
 	}
       bllst4[0]=bllst4[0]+ne4;
       /* 5ieme element de la list evtout*/
-      le5=(int*) listentry(li,6);
+      if ((field_name=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
+      ((char*) field_name)[6]='\0';
+      strcpy (field_name,"evtout");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le5=(int*) listentry(li,field_num);
       ne5=le5[1];
       le55=((double *) (le5+4));
       bllst5ptr[k+1]=bllst5ptr[k]+ne5;
@@ -405,7 +455,12 @@ int intcpass2(fname,fname_len)
 	}
       bllst5[0]=bllst5[0]+ne5;
       /* 6ieme element de la list state*/
-      le6=(int*) listentry(li,7);
+      if ((field_name=(char*) malloc(sizeof(char)*6)) ==NULL )  return 0;
+      ((char*) field_name)[5]='\0';
+      strcpy (field_name,"state");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le6=(int*) listentry(li,field_num);
       ne6=le6[1];
       le66=((double *) (le6+4));
       if (bllst112[k]<10000)
@@ -436,13 +491,23 @@ int intcpass2(fname,fname_len)
 	}
       if ( ne6 != 0 ) typ_x[k]=1;
       /* 7ieme element de la list dstate et le 8ieme element de la list rpar*/
-      le71=(double *) listentry(li,8);
-      le7=(int*) listentry(li,8);
+      if ((field_name=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
+      ((char*) field_name)[6]='\0';
+      strcpy (field_name,"dstate");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le71=(double *) listentry(li,field_num);      
+      le7=(int*) listentry(li,field_num);
       ne7= le7[1];
       le77=((double *) (le7+4));
       
-      le81=(double *) listentry(li,9);
-      le8=(int*) listentry(li,9);
+      if ((field_name=(char*) malloc(sizeof(char)*5)) ==NULL )  return 0;
+      ((char*) field_name)[4]='\0';
+      strcpy (field_name,"rpar");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le81=(double *) listentry(li,field_num);
+      le8=(int*) listentry(li,field_num);
       ne8=le8[1];
       le88=((double *) (le8+4));
       if ( bllst112[k] == 3 || bllst112[k] == 5 || bllst112[k] == 10005)
@@ -507,7 +572,12 @@ int intcpass2(fname,fname_len)
 	  ((int *) bllst8)[0]=((int *) bllst8)[0]+ne8;
 	}
       /* 9ieme element de la list ipar*/
-      le9=(int*) listentry(li,10);
+      if ((field_name=(char*) malloc(sizeof(char)*5)) ==NULL )  return 0;
+      ((char*) field_name)[4]='\0';
+      strcpy (field_name,"ipar");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le9=(int*) listentry(li,field_num);
       if (le9[0] == 1)
 	{
 	  ne9=le9[1];
@@ -525,13 +595,23 @@ int intcpass2(fname,fname_len)
 	  bllst9ptr[k+1]=bllst9ptr[k];
 	}
       /* 10ieme element de la list typeblock*/
-      le10=(int*) listentry(li,11);
+      if ((field_name=(char*) malloc(sizeof(char)*10)) ==NULL )  return 0;
+      ((char*) field_name)[9]='\0';
+      strcpy (field_name,"blocktype");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le10=(int*) listentry(li,field_num);
       le1010=((int *) (le10+6));      
       if ((bllst10[k]=(char*) malloc(sizeof(char)*2)) ==NULL )  return 0;
       ((char*) bllst10[k])[1]='\0';
       C2F(cvstr)(&one,le1010,bllst10[k],&one,str_len);
       /* 11ieme element de la list firing*/
-      le11=(int*) listentry(li,12);
+      if ((field_name=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
+      ((char*) field_name)[6]='\0';
+      strcpy (field_name,"firing");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le11=(int*) listentry(li,field_num);
       ne11=le11[2];
       le1111=((double *) (le11+4));
       bllst11ptr[k+1]=bllst11ptr[k]+ne11;
@@ -542,28 +622,48 @@ int intcpass2(fname,fname_len)
 	}
       ((int *) bllst11)[0]=((int *) bllst11)[0]+ne11;
       /* 12ieme element de la list dep_ut*/
-      le12=(int*) listentry(li,13);
+      if ((field_name=(char*) malloc(sizeof(char)*7)) ==NULL )  return 0;
+      ((char*) field_name)[6]='\0';
+      strcpy (field_name,"dep_ut");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le12=(int*) listentry(li,field_num);
       ne12=le12[1];
       me12=le12[2];
       /*le1212=((double *) (le12+3));*/
       bllst12[k]=le12[3];
       bllst12[k+m]=le12[4];
-      /* 13ieme element de la list labels*/
-      le13=(int*) listentry(li,14);
+      /* 13ieme element de la list label*/
+      if ((field_name=(char*) malloc(sizeof(char)*6)) ==NULL )  return 0;
+      ((char*) field_name)[5]='\0';
+      strcpy (field_name,"label");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le13=(int*) listentry(li,field_num);
       le1313=((int *) (le13+6));
 
       n1313=le13[5]-1;
       if ((bllst13[k]=(char*) malloc(sizeof(char)*(n1313+1))) ==NULL )  return 0;
       ((char*) bllst13[k])[n1313]='\0'; 
       C2F(cvstr)(&n1313,le1313,bllst13[k],&one,str_len);
-     /* 14ieme element de la list nmode*/
-      le14=(int*) listentry(li,15);
+     /* 14ieme element de la list nzcross*/
+      if ((field_name=(char*) malloc(sizeof(char)*8)) ==NULL )  return 0;
+      ((char*) field_name)[7]='\0';
+      strcpy (field_name,"nzcross");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le14=(int*) listentry(li,field_num);
       le1414=((double *) (le14+4));
-      nmode[k]=(int)le1414[0];
-     /* 15ieme element de la list nzcross*/
-      le15=(int*) listentry(li,16);
+      nzcross[k]=(int)le1414[0];
+     /* 15ieme element de la list nmode*/
+      if ((field_name=(char*) malloc(sizeof(char)*6)) ==NULL )  return 0;
+      ((char*) field_name)[5]='\0';
+      strcpy (field_name,"nmode");
+      field_num=MlistGetFieldNumber(li,field_name);
+      free(field_name);
+      le15=(int*) listentry(li,field_num);
       le1515=((double *) (le15+4));
-      nzcross[k]=(int)le1515[0];
+      nmode[k]=(int)le1515[0];
     }
   
   GetRhsVar(2, "i", &m1, &n1, &l1);
@@ -865,9 +965,9 @@ int intcpass2(fname,fname_len)
   free(bllst12);
   for(i = 1; i < ((int*) bllst13)[0]+1; i++)
     free(bllst13[i]);
-  free(bllst13);
-  free(nmode);
+  free(bllst13);  
   free(nzcross);
+  free(nmode);
   if(ndcblkptr) free(ndcblkptr);
   if (pointiptr) free(pointiptr);
   if (nbptr) free(nbptr);

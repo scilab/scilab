@@ -79,7 +79,8 @@ function create_palette(bidon)
 	lisf=['DIFF_f.sci';
 	      'DOLLAR_f.sci';'SUPER_f.sci';'scifunc_block.sci';
 	      'TEXT_f.sci';
-	      'CONSTRAINT_f.sci';'MEMORY_f.sci';'func_block.sci';'LOGICAL_OP.sci']
+	      'CONSTRAINT_f.sci';'MEMORY_f.sci';
+	      'func_block.sci';'LOGICAL_OP.sci';'RELATIONALOP.sci']
 	
       elseif txt=='Linear' then
 	lisf=['DLR_f.sci';'TCLSS_f.sci';

@@ -1,6 +1,7 @@
 #ifndef INTCSCICOS_SCI 
 #define INTCSCICOS_SCI 
 
+int MlistGetFieldNumber __PARAMS((int *ptr, const char *string));
 extern int C2F(intcscicos)  _PARAMS((void));
 extern int inttimescicos  _PARAMS((char *fname, unsigned long fname_len));
 extern int intduplicate  _PARAMS((char *fname, unsigned long fname_len));

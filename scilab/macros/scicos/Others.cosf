@@ -129,3 +129,16 @@ scs_m.objs(9)=mlist(['Block','graphics','model','gui','doc'],..
               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
               'equations'],list('logicalop',4),[-1;-1],-1,[],[],[],[],[],0,'c',..
               [],[%t,%f],emptystr(),0,0,list()),'LOGICAL_OP',list())
+scs_m.objs(10)=mlist(['Block','graphics','model','gui','doc'],..
+               mlist(..
+               ['graphics','orig','sz','flip','exprs','pin','pout','pein','peout',..
+               'gr_i','id','in_implicit','out_implicit'],[210,70],[60,40],%t,..
+               ['2';'0'],[0;0],0,[],[],..
+               list(..
+               'xstringb(orig(1),orig(2),[''Relational Op'';OPER],sz(1),sz(2),''fill'');',..
+               8),emptystr(),[],[]),..
+               mlist(..
+               ['model','sim','in','out','evtin','evtout','state','dstate','rpar',..
+               'ipar','blocktype','firing','dep_ut','label','nzcross','nmode',..
+               'equations'],list('relationalop',4),[1;1],2,[],[],[],[],[],2,'c',..
+               [],[%t,%f],emptystr(),0,0,list()),'RELATIONALOP',list())
