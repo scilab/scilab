@@ -34,6 +34,7 @@ void axis_draw(strflag)
 { 
   /* using foreground to draw axis */
   integer verbose=0,narg,xz[10],fg,i,ixbox[5],iybox[5],p=5,n=1,color,color_kp; 
+ /*  int isoflag = -1; */
   char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
   C2F(dr)("xget","foreground",&verbose,&fg,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -69,11 +70,19 @@ void axis_draw(strflag)
 	      ,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       break;
     default :
+    /*   /\* F.Leray 11.05.04 : EN DUR pour l'instant ici: *\/ */
+/*       if (version_flag() == 0) { */
+/* 	if(pSUBWIN_FEATURE(psubwin)->isoview == FALSE) */
+/* 	  isoflag = -10; */
+/* 	else */
+/* 	  isoflag = 10; */
+/*       } */
+
       if ( strflag[1] == '5' || strflag[1] =='6' )
 	/* using auto rescale */
-	aplotv1(strflag);
+	aplotv1(strflag); /* use 'i' xy_type */
       else
-	aplotv2(strflag);
+	aplotv2(strflag); /* use 'r' xy_type */
       break;
     }
   C2F(dr)("xset","line style",xz,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -431,6 +440,11 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
   int ns=2,style=0,iflag=0;
   integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
   integer pstyle;
+ /*** 01/07/2002 -> 11.05.04 ***/ /* F.Leray : Re-put the Djalel modif. for a better display 
+			 using tight_limits='on' and/or isoview='on' */
+  double xmin,xmax,ymin, ymax; 
+  sciPointObj * psubwin = NULL;
+
 
   fontid[0]= fontstyle;
   
@@ -536,7 +550,36 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
+      /******* 01/07/2002  -> 11.05.04 **********/
+      if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      if ((version_flag() == 0) 
+	  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+	  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	xmax=Cscale.frect[2];
+	xmin=Cscale.frect[0];
 
+	if(xy_type == 'i')
+	  {
+	    x[1] = floor(Cscale.frect[2] / (exp10( x[2]))) ;  
+	    x[0] =  ceil(Cscale.frect[0]  / (exp10( x[2]))) ; 
+	    x[3]=inint(x[1]-x[0]);
+	    while (x[3]>10)  x[3]=floor(x[3]/2);
+	    Nx=x[3]+1;
+	  }
+	else if (xy_type == 'r')
+	  {
+	    x[1] = floor(Cscale.frect[2]) ;  
+	    x[0] =  ceil(Cscale.frect[0]) ; 
+	    x[2]=inint(x[1]-x[0]);
+	    while (x[2]>10)  x[2]=floor(x[2]/2);
+	    Nx=x[2]+1; 
+	  }
+	else if(xy_type == 'v')
+	  {
+	    sciprint(" Normally, unavailable case \n");
+	  }
+      }
+      /**********************/
       /** loop on the ticks **/
       if (Nx==1) break;
       for (i=0 ; i < Nx ; i++)
@@ -547,12 +590,29 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	    sprintf(foo,"%s",str[i]);
 	  else if ( format == NULL) 
 	    {
-	      /*defaults format **/
+	      /* defaults format */
 	     /*  if  ( xy_type == 'i') */
-	/* 	NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])), */
+/* 		NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])), */
 /* 			     ((integer) x[2])); */
 /* 	      else */
+/* 		sprintf(foo,c_format,vxx); */
+	      if ((version_flag() == 0) 
+		  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+		  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+		if(xy_type == 'i')
+		  {
+		    NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[3])),
+				 ((integer) x[2]));
+		  }
+		else if(xy_type == 'r')
+		  {
+		    NumberFormat(foo,( (x[0] + i*(x[1]-x[0])/x[2])),
+				 0);
+		  }
+	      }
+	      else
 		sprintf(foo,c_format,vxx);
+	      
 	    }
 	  else 
 	    sprintf(foo,format,vxx);
@@ -617,7 +677,44 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 		C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	      }
 	    } 
-         
+	  /***   01/07/2002  -> 11.05.04 ****/
+	  if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+	  if ((version_flag() == 0) 
+	      && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+	      && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	    if ( i == 0 ) 
+	      {
+		int j;
+		double dx ; 
+		vxx1= x_convert(xy_type,x,i+1);
+		dx = (vxx1-vxx)/subtics;
+		for ( j = 1 ; j < subtics; j++) {  
+		  if ( vxx-dx*j > xmin){
+		    vx[0] = vx[1] = XScale(vxx-dx*j);
+		    if ( pos == 'd' ) 
+		      { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		    else 
+		      { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }}
+	      } 
+	    if ( i == Nx-1 ) 
+	      {
+		int j;
+		double dx ; 
+		vxx1= x_convert(xy_type,x,i+1);
+		dx = (vxx1-vxx)/subtics;
+		for ( j = 1 ; j < subtics; j++) {  
+		  if ( vxx+dx*j < xmax){
+		    vx[0] = vx[1] = XScale(vxx+dx*j);
+		    if ( pos == 'd' ) 
+		      { vy[0]= ym[0];vy[1]= ym[0] + barlength/2.0 ; }
+		    else 
+		      { vy[0]= ym[0];vy[1]= ym[0] - barlength/2.0; }
+		    C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+		  }}
+	      } 
+	  }
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
       break;
@@ -645,6 +742,34 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	}
 
+      if (version_flag() == 0) psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
+      if ((version_flag() == 0) 
+	  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+	  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){  
+	ymax=Cscale.frect[2];
+	ymin=Cscale.frect[0];
+
+	if(xy_type == 'i')
+	  {
+	    y[1] = floor(Cscale.frect[3] / (exp10( y[2]))) ;  
+	    y[0] =  ceil(Cscale.frect[1]  / (exp10( y[2]))) ; 
+	    y[3]=inint(y[1]-y[0]);
+	    while (y[3]>10)  y[3]=floor(y[3]/2);
+	    Nx=y[3]+1;
+	  }
+	else if (xy_type == 'r')
+	  {
+	    y[1] = floor(Cscale.frect[3]) ;  
+	    y[0] =  ceil(Cscale.frect[1]) ; 
+	    y[2]=inint(y[1]-y[0]);
+	    while (y[2]>10)  y[2]=floor(y[2]/2);
+	    Nx=y[2]+1; 
+	  }
+	else if(xy_type == 'v')
+	  {
+	    sciprint(" Normally, unavailable case \n");
+	  }
+      }
       /** loop on the ticks **/
       if (Ny==1) break; /*D.Abdemouche 16/12/2003*/
       for (i=0 ; i < Ny ; i++)
@@ -659,6 +784,21 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 /* 		NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[3])), */
 /* 			     ((integer) y[2])); */
 /* 	      else */
+	      if ((version_flag() == 0) 
+		  && (pSUBWIN_FEATURE (psubwin)->tight_limits == TRUE || pSUBWIN_FEATURE (psubwin)->isoview == TRUE )
+		  && (sciGetEntityType (sciGetCurrentObj()) != SCI_AXES)){
+		if(xy_type == 'i')
+		  {
+		    NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[3])),
+				 ((integer) y[2]));
+		  }
+		else if(xy_type == 'r')
+		  {
+		    NumberFormat(foo,( (y[0] + i*(y[1]-y[0])/y[2])),
+				 0);
+		  }
+	      }
+	      else
 		sprintf(foo,c_format,vxx);
 	    }
 	  else 
