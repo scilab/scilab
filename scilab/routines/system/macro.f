@@ -6,7 +6,7 @@ c
       parameter (nz2=nsiz-2,nz3=nsiz-3)
       double precision val
       integer eol
-      logical eqid,ptover,vargin,vargout,exec
+      logical eqid,ptover,vargin,vargout,exec,vcopyobj
       integer blank,r,ival(2),ptr,top1,count,iadr
       integer varargin(nsiz),varargout(nsiz)
       equivalence (ival(1),val)
@@ -191,10 +191,18 @@ c     and not 0
             mrhs=irhs
             rhs=0
             do 20 j=1,mrhs
-               if(infstk(top).ne.1) then
+               if(infstk(top).eq.1) then
+c     .           named variable
+                  call stackp(idstk(1,top),0)
+               elseif(infstk(top).eq.2) then
+c     .           global variable : create a local copy and save it
+c     .           instead of the original one, to avoid side effects if
+C     .           the same global variable is used inside the macro
+                  kg=istk(iadr(lstk(top))+2)
+                  if (.not.vcopyobj(' ',kg,top)) return
                   call stackp(istk(l1),0)
                else
-                  call stackp(idstk(1,top),0)
+                  call stackp(istk(l1),0)
                endif
                l1=l1-nsiz
  20         continue
