@@ -1775,7 +1775,6 @@ int C2F(scifunction)(number, ptr, mlhs, mrhs)
 {
   integer cx26 = 26;
   integer ix1, krec, iflagint, ix, k, intop, il, ir, lw;
-  
   if ( intersci_push() == 0 ) 
     {
       Scierror(999,"scifunction: Running out of memory \r\n");
@@ -1911,11 +1910,11 @@ int C2F(scifunction)(number, ptr, mlhs, mrhs)
   /* + */
   Top = intop;
   ix1 = *mlhs;
+  intersci_pop();
   for (ix = 1; ix <= ix1; ++ix) {
     lw = Top - Rhs + *number + ix - 1;
     C2F(intersci).ntypes[lw - 1] = '$';
   }
-  intersci_pop();
   return TRUE_;
 
  L9999:
@@ -2148,11 +2147,11 @@ int C2F(scibuiltin)(number, ifun, ifin, mlhs, mrhs)
   Lhs = slhs;
   Rhs = srhs;
   Top = intop;
+  intersci_pop();
   for (ix = 0 ; ix < *mlhs ; ++ix) {
     lw = Top - Rhs + *number + ix ;
     C2F(intersci).ntypes[lw - 1] = '$';
   }
-  intersci_pop();
   return TRUE_;
  L9999:
   intersci_pop();
@@ -3003,4 +3002,22 @@ static void intersci_pop()
   FREE(loc->state);
   FREE(loc);
 }
+
+/* 
+static void intersci_show()
+{
+  int i;
+  fprintf(stderr,"======================\n");
+  for ( i = 0 ; i < C2F(intersci).nbvars ; i++ ) 
+    {
+      fprintf(stderr,"%d %d %d %d\n",i,
+	      C2F(intersci).iwhere[i],
+	      C2F(intersci).nbrows[i],
+	      C2F(intersci).nbcols[i],
+	      C2F(intersci).ntypes[i]);
+    }
+  fprintf(stderr,"======================\n");
+}
+
+*/
 
