@@ -781,12 +781,14 @@ proc showopenwin {textarea} {
     if {$lang == "eng"} {
 	set types {
 	    {"Scilab files" {*.sce *.sci }} 
+	    {"XML files" {*.xml }} 
 	    {"All files" *.*}
 	}
 	#showinfo "Open file"
     } else {
 	set types {
 	    {"Fichiers Scilab" {*.sce *.sci }} 
+	    {"Fichiers XML" {*.xml }} 
 	    {"Tous les fichiers" *.*}
 	}
 	#showinfo "Ouvrir le fichier"
@@ -832,6 +834,65 @@ proc showopenwin {textarea} {
 	selection clear
     }
 }
+proc openfile {file} {
+    global listoffile
+    global FGCOLOR 
+    global BGCOLOR 
+    global textFont 
+    global taille 
+    global wordWrap 
+    global winopened
+    global textareacur
+    global listoftextarea
+    global tcl_platform
+    global listundo_id
+    global pad
+    global radiobuttonvalue
+    global lang
+    if [string compare $file ""] {
+	# search for a opened existing file
+	if { [catch {$pad.filemenu.wind index $file} res]} {
+	    # not opened file
+	    incr winopened
+	    dupWidgetOption [gettextareacur] $pad.new$winopened
+	    set listoffile("$pad.new$winopened",filename) $file
+	    set listoffile("$pad.new$winopened",new) 0
+	    if [ file exists $file ] {
+		set listoffile("$pad.new$winopened",thetime) [file mtime $file]
+		setTextTitleAsNew $pad.new$winopened
+		montretext $pad.new$winopened
+		openoninit $pad.new$winopened $file
+		outccount $pad.new$winopened
+		update
+		colorize $pad.new$winopened 1.0 end
+	    } else {
+		set listoffile("$pad.new$winopened",thetime) 0
+		setTextTitleAsNew $pad.new$winopened
+		update
+	    }
+	    set listundo_id("$pad.new$winopened") [new textUndoer $pad.new$winopened]
+	    if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
+		# more bindings
+		bind Text <Control-v> {}
+		bind $pad.new$winopened <Control-v> {pastetext}
+	    } else {
+		bind Text <Control-v> {}
+		bind $pad.new$winopened <Control-v> {pastetext}
+	    }
+	    bind $pad.new$winopened <KeyRelease> {keyposn %W}
+	    bind $pad.new$winopened <ButtonRelease> {keyposn %W}
+	    TextStyles $pad.new$winopened
+	    $pad.filemenu.wind add radiobutton -label "$file" -value $winopened -variable radiobuttonvalue  -command "montretext $pad.new$winopened"
+	    set radiobuttonvalue $winopened
+	} else {
+	    # file is already opened
+	    tk_messageBox -type ok -title "Open file" -message "This file is already opened ! save the current opened file to an another name and reopen it from disk"
+	    $pad.filemenu.wind invoke $res
+	}
+	selection clear
+    }
+}
+
 
 #open an existing file
 proc filetoopen {textarea} {
@@ -903,12 +964,14 @@ proc filesaveas {textarea} {
     if {$lang == "eng"} {
 	set types {
 	    {"Scilab files" {*.sce *.sci }} 
+	    {"XML files" {*.xml }} 
 	    {"All files" *.*}
 	}
 	showinfo "Save As"
     } else {
 	set types {
 	    {"Fichiers Scilab" {*.sce *.sci }} 
+	    {"Fichiers XML" {*.xml }} 
 	    {"Tous les fichiers" *.*}
 	}
 	showinfo "Enregistrer sous"
@@ -1796,6 +1859,20 @@ proc colorize {w cpos iend} {
 		    $w tag add keywords last-1c next
 		}
 		$w mark set last next-1c
+	    } else break
+	  }
+# XML
+	$w mark set last begin
+	while {[set ind [$w search  -regexp "<" last ende]] != {}} {
+	    if {[$w compare $ind >= last]} {
+		set res ""
+		regexp ">" [$w get $ind end] res
+		set num [string length $res]
+		$w mark set last "$ind + $num c"
+		$w mark set next {last+1c wordend}
+		$w tag add rem2 last-1c next+1c
+#		$w tag add rem2 $ind last
+		$w mark set last next+1c
 	    } else break
 	  }
 # Text
