@@ -110,24 +110,27 @@ xmin=mini(real(x1));xmax=maxi(real(x1))
 ymin=mini(imag(x1));ymax=maxi(imag(x1))
 dx=abs(xmax-xmin)*0.05
 dy=abs(ymax-ymin)*0.05
+if dx<1d-10, dx=0.01,end
+if dy<1d-10, dy=0.01,end
 
 rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
+
 plot2d([],[],rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy],frameflag=7)
 
 dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
 //plot the zeros locations
 xx=xget("mark")
 xset("mark",xx(1),xx(1)+3);
-
+legs=[],lstyle=[];
 if nroots<>[] then
-  plot2d(real(nroots),imag(nroots),style=[-5,4],..
-	 leg='open loop zeroes',frameflag=0,axesflag=0)
+  plot2d(real(nroots),imag(nroots),style=-5,frameflag=0,axesflag=0)
+  legs=[legs 'open loop zeroes'],lstyle=[lstyle [-5;0]];
 end
 //plot the poles locations
 if racines<>[] then
-  plot2d(real(racines(:,1)),imag(racines(:,1)),style=[-2,5],..
-      leg='open loop poles',frameflag=0,axesflag=0)
-
+  plot2d(real(racines(:,1)),imag(racines(:,1)),style=-2,frameflag=0, ...
+	 axesflag=0)
+  legs=[legs,'open loop poles'],lstyle=[lstyle, [-2;0]];
 end
 
 //computes and draw the asymptotic lines
@@ -148,18 +151,18 @@ if q>0 then
     end,
   end;
   if maxi(k)>0 then
-    plot2d(i1,i2,style=[1,2],leg='asymptotic directions',frameflag=0, ...
-	   axesflag=0);
+    plot2d(i1,i2,style=1,frameflag=0,axesflag=0);
+    legs=[legs,'asymptotic directions'],lstyle=[lstyle [1;1]];
     xset("clipgrf");
     for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
     xclip();
   end
 end;
 
-
 //lieu de evans
 [n1,n2]=size(racines);
 plot2d(real(racines)',imag(racines)',style=2+(1:n2),frameflag=0,axesflag=0);
+legends(legs,lstyle,1)
 xtitle('Evans root locus','Real axis','Imag. axis');
 
 
