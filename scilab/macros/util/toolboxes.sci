@@ -1,4 +1,4 @@
-function []=toolboxes(dir,flag,force) 
+function [y]=toolboxes(dir,flag,force) 
 // toolboxes loding or compiling 
 // if flag == %t then contribs are recompiled 
 //    if a loader.sce is not found or if force == %t 
@@ -6,7 +6,7 @@ function []=toolboxes(dir,flag,force)
   global %toolboxes
   global %toolboxes_dir
   [lhs,rhs]=argn(0) 
-
+  y=[];
   if rhs == 1 & typeof(dir)=="constant" then 
     // execute the toolbox loader
     y='exec("""+%toolboxes_dir+%toolboxes(dir)+"/"+"loader.sce"+""")";
