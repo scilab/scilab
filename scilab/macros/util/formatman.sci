@@ -488,10 +488,9 @@ end
 txt=strcat(txt,' ')+' '
 
 ind=strindex(txt,' ')
-
+//if part(stripblanks(txt(1)),1:3)=='The' then pause,end
 k0=1
 shift=0
-
 if length(txt)<ll then
   t=[t;txt]
 else
@@ -506,8 +505,12 @@ else
   end
   t=[t;part(txt,k0:length(txt))]
 end
-if tp then k1=2,else k1=1,end
-t(k1:$)=part(' ',ones(1,curind+1))+t(k1:$)
+if tp then //in a .TP section
+  t(2:$)=part(' ',ones(1,curind+2))+t(2:$)
+else 
+  t(2:$)=part(' ',ones(1,curind))+t(2:$)
+end
+
 
 function t=texsubstitute(t)
     t=strsubst(t,'_','\_')
