@@ -8147,11 +8147,11 @@ extern int DrawNewMarks(sciPointObj * pobj, int n1, int *xm, int *ym)
   int thick = 1;
   int linestyle[6];
   
+  integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
+  
   linestyle[0] = 1;
 
-  integer verbose = 0,old_thick, old_linestyle[6],narg = 0;
-
-  C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
+ C2F (dr) ("xget", "foreground", &flagx, &old_foreground, &v, &v, &v,
 	    &v, &dv, &dv, &dv, &dv, 5L, 4096);
   
   C2F(dr)("xget","thickness",&verbose,&old_thick,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
