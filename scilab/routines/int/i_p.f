@@ -25,6 +25,7 @@ c
       li=il+4
       if (.not.crewimat("print",topk,1,m*n+2*n,lw)) return
       call genmdsp(is,istk(li),m,m,n,lineln,wte,buf,istk(lw))
-      top=top-1
+      istk(il)=0
+      lstk(top+1)=lstk(top)+1
       return
       end

@@ -27,8 +27,6 @@ c
       mn1=m1*n1
 c
       if(istk(il1).ne.8.or.istk(il2).ne.8) then
-         if((istk(il1).eq.1.and.it1.eq.0).or.
-     &        (istk(il2).eq.1.and.it2.eq.0) ) goto 10
          top=top+1
          fin=-fin
          return
