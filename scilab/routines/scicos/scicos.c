@@ -149,7 +149,7 @@ void call_debug_scicos(double *, double *, double *, double *,double *,integer
  *,integer,integer,integer);
 
 static integer debug_block;
-
+ 
 /* Subroutine */ 
 int C2F(scicos)
      (x_in, xptr_in, z__, work,zptr,modptr_in, iz, izptr, t0_in, tf_in, tevts_in, 
@@ -559,7 +559,7 @@ int C2F(scicos)
   C2F(dset)(&jj, &c_b14, W, &c__1);
   nclock = 0;
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
-    if (funtyp[C2F(curblk).kfun] >= 0) {
+    if (funtyp[C2F(curblk).kfun] >= 0 & (C2F(curblk).kfun!= (debug_block+1))) { /* debug_block is not called here */
       flag__ = 4;
       callf(told, xd, x, x,W,&flag__);
       if (flag__ < 0 && *ierr == 0) {
@@ -579,7 +579,7 @@ int C2F(scicos)
   for (jj = 1; jj <= ncord; ++jj) {
     C2F(curblk).kfun = cord[jj];
     flag__ = 6;
-    if (funtyp[C2F(curblk).kfun] >= 0) {
+    if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
       callf(told, xd, x, x,W,&flag__);
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
@@ -594,7 +594,7 @@ int C2F(scicos)
     /*     loop on blocks */
     for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
       flag__ = 6;
-      if (funtyp[C2F(curblk).kfun] >= 0) {
+      if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
@@ -609,7 +609,7 @@ int C2F(scicos)
     for (jj = 1; jj <= ncord; ++jj) {
       C2F(curblk).kfun = cord[jj];
       flag__ = 6;
-      if (funtyp[C2F(curblk).kfun] >= 0) {
+      if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
 	callf(told, xd, x, x,W,&flag__);
 	if (flag__ < 0) {
 	  *ierr = 5 - flag__;
@@ -1503,10 +1503,9 @@ int C2F(scicos)
   *ierr = 0;
   /*     loop on blocks */
   nclock=0;
-
   for (C2F(curblk).kfun = 1; C2F(curblk).kfun <= nblk; ++C2F(curblk).kfun) {
     flag__ = 5;
-    if (funtyp[C2F(curblk).kfun] >= 0) {
+    if (funtyp[C2F(curblk).kfun] >= 0& (C2F(curblk).kfun!= (debug_block+1))) {
       callf(told, xd, x, x,x,&flag__);
       if (flag__ < 0 && *ierr == 0) {
 	*ierr = 5 - flag__;

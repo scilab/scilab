@@ -16,11 +16,11 @@ function [x,y,typ]=DEBUG_SCICOS(job,arg1,arg2)
     ok=%t
     while 1==1
       [txt]=x_dialog(['Enter scilab instructions for debugging.';
-		     ' Inputs are blocks and flag, output is blocks'],..
+		     ' Inputs are block and flag, output is block'],..
 		     textmp);
   
       if txt<>[] then
-	tt=['blocks=debug_scicos(blocks,flag)']
+	tt=['block=debug_scicos(block,flag)']
 
 	if execstr('deff(tt,txt)','errcatch')==0 then
 	  save(TMPDIR+'/debug_scicos',debug_scicos)
