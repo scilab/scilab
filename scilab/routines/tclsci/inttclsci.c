@@ -3,6 +3,10 @@
 /* INRIA 2005 */
 /* Allan CORNET */
 /*-----------------------------------------------------------------------------------*/
+extern int TK_Started;
+/*-----------------------------------------------------------------------------------*/
+extern void sci_tk_activate(void);
+/*-----------------------------------------------------------------------------------*/
 extern int C2F(intTclDoOneEvent) _PARAMS((char *fname));
 extern int C2F(intTclEvalFile) _PARAMS((char *fname));
 extern int C2F(intTclEvalStr) _PARAMS((char *fname));
@@ -33,7 +37,22 @@ extern int C2F(intTclGcf) _PARAMS((char *fname));
 /*-----------------------------------------------------------------------------------*/
 int C2F(inttclsci)()
 {  
+  static int first =0;
   Rhs = Max(0, Rhs);
+   
+  if (TK_Started != 1 )
+  {
+      if ( first == 0) 
+	  {
+	    sci_tk_activate();
+		first++;
+	    if ( TK_Started != 1 ) 
+	    {
+	      Scierror(999,"You have started Scilab in a mode in which TK not initialized.\n");
+	      return 0;
+	    }
+	  }
+  }
   (*(Tab[Fin-1].f)) (Tab[Fin-1].name,strlen(Tab[Fin-1].name));
   return 0;
 }
