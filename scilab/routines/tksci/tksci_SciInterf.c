@@ -49,7 +49,8 @@ void C2F(tksciInterf)()
   if (TK_Started==1)
     (*FuncI[Interf.FuncIndex -1])();
   else 
-    Cout("Sorry, TK has not been enabled this the session.\n");
-
+    {
+      Cout("You have started Scilab in a mode in which TK not initialized.\n");
+    }
   InterfDone();
 }
