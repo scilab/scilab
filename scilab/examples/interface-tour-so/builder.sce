@@ -93,17 +93,8 @@ table =['ex1c',		'intex1c';
 	'ex15c',	'intex15c';
 	'ex15f',	'intex15f';
 	'ex16c',	'intex16c';
-	'ex17c',	'intex17c_1';
-	'mygrep',	'intgrep';
-	'myascii',	'intascii';
-	'mycode'	'intstr2code';
-	'mydecode'	'intcode2str';
-	'myindex'	'intstrindex'; 
-	'mysubs'	'intstrsubst';
-        'mylength'      'intlength';
-        'myconv'        'intconvstr';
-        'mypart'        'intpart';
-	'myempty'       'intemptystr';       ];
+	'ex17c',	'intex17c_1']
+
 
 // extra parameters can be transmited to the linker 
 // and to the C and Fortran compilers with 
