@@ -1,6 +1,8 @@
 #ifndef MEN_SCILAB 
 #define MEN_SCILAB 
 
+#define GTK_ENABLE_BROKEN
+
 /* Copyright ENPC */
 
 #include <stdio.h>

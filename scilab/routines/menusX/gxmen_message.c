@@ -18,6 +18,8 @@ int ExposeMessageWindow1(void);
 
 static GtkWidget *window = NULL; 
 
+#if GTK_MAJOR_VERSION == 1 
+
 static void sci_message_ok(GtkWidget *widget,
 			  int *answer)
 {
@@ -33,6 +35,7 @@ static void sci_message_cancel(GtkWidget *widget,
   *answer = pCANCEL;
   gtk_main_quit();
 }
+
 
 int ExposeMessageWindow1(void)
 { 
@@ -124,3 +127,84 @@ int ExposeMessageWindow(void)
   return (answer == pOK) ? 1 : 2;
 }
 
+#endif 
+
+#if GTK_MAJOR_VERSION == 2 
+
+/*  
+ * message with just an OK button 
+ */  
+
+int ExposeMessageWindow1(void)
+{
+  GtkWidget *dialog;
+
+  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+				   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				   GTK_MESSAGE_INFO,
+				   GTK_BUTTONS_OK,
+				   ScilabMessage.string);
+  g_signal_connect (dialog, "response",  G_CALLBACK (gtk_widget_destroy),  NULL);
+  gtk_widget_show (dialog);
+  return 1;
+}
+
+
+int ExposeMessageWindow(void)
+{
+  GtkWidget *dialog;
+  GtkWidget *hbox;
+  GtkWidget *stock;
+  GtkWidget *label;
+  gint response;
+  char *ok_mess, *cancel_mess;
+
+  ok_mess = ScilabMessage.pButName[0]; 
+  if ( strcasecmp(ok_mess,"Ok")==0 ) ok_mess = GTK_STOCK_OK; 
+  
+
+  switch ( ScilabMessage.nb ) 
+    {
+    case 0: return 1 ; break;
+    case 1 : 
+      dialog = gtk_dialog_new_with_buttons ("Scilab Dialog", GTK_WINDOW (window),
+					    GTK_DIALOG_MODAL| GTK_DIALOG_DESTROY_WITH_PARENT,
+					    ok_mess, GTK_RESPONSE_OK,
+					    NULL);
+      break;
+    case 2:
+    default: 
+      cancel_mess = ScilabMessage.pButName[1]; 
+      if ( strcasecmp(cancel_mess,"Cancel")==0 ) cancel_mess = GTK_STOCK_CANCEL; 
+      dialog = gtk_dialog_new_with_buttons ("Scilab Dialog",
+					    GTK_WINDOW (window),
+					    GTK_DIALOG_MODAL| GTK_DIALOG_DESTROY_WITH_PARENT,
+					    ok_mess, GTK_RESPONSE_OK,
+					    cancel_mess,  GTK_RESPONSE_CANCEL,
+					    NULL);
+      break;
+    }
+
+  hbox = gtk_hbox_new (FALSE, 8);
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), 8);
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), hbox, FALSE, FALSE, 0);
+  gtk_widget_show (hbox);
+
+  if ( ScilabMessage.nb >= 2) 
+    stock = gtk_image_new_from_stock (GTK_STOCK_DIALOG_QUESTION, GTK_ICON_SIZE_DIALOG);
+  else
+    stock = gtk_image_new_from_stock (GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_DIALOG);
+  gtk_box_pack_start (GTK_BOX (hbox), stock, FALSE, FALSE, 0);
+  gtk_widget_show (stock);
+  label = gtk_label_new (ScilabMessage.string);
+  gtk_box_pack_start (GTK_BOX (hbox),label, TRUE, TRUE, 0);
+  gtk_widget_show (label);
+  response = gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+  if (response == GTK_RESPONSE_OK)
+    return 1; 
+  else 
+    return 2; 
+}
+
+#endif
