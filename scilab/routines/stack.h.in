@@ -42,6 +42,9 @@ c
       character cstk*(4*vsiz)
       equivalence (cstk,stk(1))
 
+      character zstk*(vsiz/2)
+      equivalence (zstk(1),stk(1))
+
       integer bot,top,idstk(nsiz,isizt),lstk(isizt),leps,bbot,bot0,isiz
       integer gbot,gtop,infstk(isizt)
       common /vstk/ bot,top,idstk,lstk,leps,bbot,bot0,infstk,
