@@ -103,6 +103,22 @@ exec `which wish` "$0" "$@"
 # * corrected bad continued line "Annuler"
 # * progress in whichfun, execselection, etc. 
 
+#ES 19/10/2003
+# * F5 Save and Run
+# * cosmetic - compacted the command passed and displayed by execselection
+# * pad remembers its geometry when quitting/reopening 
+# * moved option stuff (colors, fontsize, geometry) at the top -- later I might
+#   add that it is read from an options file
+# * the background color of found text is $SELCOLOR, as selection
+# * bug fixed: missing $textarea when printing with Ctrl-p
+
+#ES 21/10/2003
+# * added font micro (ok on my laptop)
+# * rationalized setfontscipad procedures, font size changes also menu fonts
+# * accelerator F2=Save
+# * added catch to delinfo in proc showinfo - prevents a "missing variable
+#   .pad" which apears ocasionally on reopening
+
 # default global values
 #global .
 
@@ -121,10 +137,25 @@ set winTitle "SciPad"
 set version "Version 1.2"
 set wordWrap none
 set printCommand lpr
-set BGCOLOR "snow1"
-set FGCOLOR "black"
-##ES
-set CURCOLOR "red"
+##ES: default options which can be overridden
+if { ![info exists BGCOLOR] } {set BGCOLOR "snow1"}
+if { ![info exists FGCOLOR] } {set FGCOLOR "black"}
+if { ![info exists CURCOLOR] } {set CURCOLOR "red"}
+if { ![info exists PARCOLOR] } {set PARCOLOR "magenta3"}
+if { ![info exists BRAKCOLOR] } {set BRAKCOLOR "DarkGoldenrod4"}
+if { ![info exists BRACCOLOR] } {set BRACCOLOR "red"}
+if { ![info exists PUNCOLOR] } {set PUNCOLOR "turquoise4"}
+if { ![info exists KEYWCOLOR] } {set KEYWCOLOR "blue2"}
+if { ![info exists OPCOLOR] } {set OPCOLOR "blue4"}
+if { ![info exists TXTCOLOR] } {set TXTCOLOR $FGCOLOR}
+if { ![info exists QTXTCOLOR] } {set QTXTCOLOR "darkred"}
+if { ![info exists REMCOLOR] } {set REMCOLOR "green4"}
+if { ![info exists XMLCOLOR] } {set XMLCOLOR "orange"}
+if { ![info exists NUMCOLOR] } {set NUMCOLOR "yellow4"}
+if { ![info exists SELCOLOR] } {set SELCOLOR "PaleGreen"}
+##ES: remember fontsize, pad geometry
+if { ![info exists FontSize] } {set FontSize 12 }
+if { ![info exists WMGEOMETRY] } { set WMGEOMETRY 32x36 }
 #
 set BASENAME scipad5.tcl;
 #[string range $argv0 [expr [string last "/" $argv0] + 1] end]
@@ -152,18 +183,18 @@ wm iconname $pad $winTitle
 ##set taille [font measure $textFont " "]
 ##wm grid $pad 20 60 20 60 
 #boh. "text $pad.textarea -height 1 -width 1" below
-wm geometry $pad 55x25
+wm geometry $pad $WMGEOMETRY
 wm minsize $pad 25 1 
 
 #create main menu
-menu $pad.filemenu -tearoff 0 
+menu $pad.filemenu -tearoff 0
 
 # start by setting default font sizes
 if [ expr [string compare $tcl_platform(platform) "unix"] ==0] {
-	set textFont -Adobe-courier-medium-r-Normal-*-14-*
-	set menuFont -adobe-helvetica-bold-r-normal--12-*-75-75-*-*-*-*
+	set textFont -Adobe-courier-medium-r-Normal-*-$FontSize-*
+	set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*-75-75-*-*-*-*
 } else {
-	set textFont -Adobe-Courier-medium-R-Normal-*-14-*
+	set textFont -Adobe-Courier-medium-R-Normal-*-$FontSize-*
 	#set menuFont -adobe-helvetica-bold-r-normal--12-*-75-75-*-*-*-*
 	set menuFont [$pad.filemenu cget -font]
 }
@@ -174,40 +205,22 @@ $pad.filemenu configure -font $menuFont
 # to have the possibility to launch multiple
 # browser from scilab with independant menu
 # a little uggly !!!
-##ES: remember fontsize
-if { ![info exists Size] } {set Size 4 }
 
-proc setfontscipad0 {} {
-    global textFont
+#ES: instead of several setfontscipadN{}
+proc setfontscipad {FontSize} {
+    global textFont menuFont pad
     global listoftextarea
-    global Size
-    set Size 0
-    set textFont -Adobe-courier-medium-R-Normal-*-12-*
-    foreach textarea $listoftextarea {
-	$textarea configure -font $textFont
-    }
-}
-
-proc setfontscipad4 {} {
-    global textFont
-    global listoftextarea
-    global Size
-    set Size 4
-    set textFont -Adobe-courier-medium-R-Normal-*-14-*
-    foreach textarea $listoftextarea {
-	$textarea configure -font $textFont
-    }
-}
-
-proc setfontscipad12 {} {
-    global textFont
-    global listoftextarea
-    global Size
-    set Size 12
-    set textFont -Adobe-courier-medium-R-Normal-*-18-*
-    foreach textarea $listoftextarea {
-	$textarea configure -font $textFont
-    }
+    set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
+    set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
+    $pad.filemenu configure -font $menuFont
+    $pad.filemenu.files configure -font $menuFont
+    $pad.filemenu.edit configure -font $menuFont
+    $pad.filemenu.search configure -font $menuFont
+    $pad.filemenu.wind configure -font $menuFont
+    $pad.filemenu.options configure -font $menuFont
+    $pad.filemenu.exec configure -font $menuFont
+    $pad.filemenu.help configure -font $menuFont
+    foreach textarea $listoftextarea {$textarea configure -font $textFont}
 }
 
 
@@ -396,23 +409,27 @@ if {$lang == "eng"} {
     $pad.filemenu add cascade -label "Options" -underline 0 \
 	-menu $pad.filemenu.options
     $pad.filemenu.options add command -label "font size" -foreground red 
-    $pad.filemenu.options add radiobutton -label "small" -value 0 \
-	-variable Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "medium" -value 4 \
-	-variable Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "large" -value 12\
-	-variable Size -command "setfontscipad12"
+    $pad.filemenu.options add radiobutton -label "micro" -value 10 \
+	-variable FontSize -command "setfontscipad 10"
+    $pad.filemenu.options add radiobutton -label "small" -value 12 \
+	-variable FontSize -command "setfontscipad 12"
+    $pad.filemenu.options add radiobutton -label "medium" -value 14 \
+	-variable FontSize -command "setfontscipad 14"
+    $pad.filemenu.options add radiobutton -label "large" -value 18\
+	-variable FontSize -command "setfontscipad 18"
 } else {
     menu $pad.filemenu.options -tearoff 1 -font $menuFont
     $pad.filemenu add cascade -label "Options" -underline 0 \
 	-menu $pad.filemenu.options
     $pad.filemenu.options add command -label "taille de fontes" -foreground red
-    $pad.filemenu.options add radiobutton -label "petit" -value 0 \
-	-variable Size -command "setfontscipad0"
-    $pad.filemenu.options add radiobutton -label "moyen" -value 4  \
-	-variable Size -command "setfontscipad4"
-    $pad.filemenu.options add radiobutton -label "grand" -value 12 \
-	-variable Size -command "setfontscipad12"
+    $pad.filemenu.options add radiobutton -label "micro" -value 10 \
+	-variable FontSize -command "setfontscipad 10"
+    $pad.filemenu.options add radiobutton -label "petit" -value 12 \
+	-variable FontSize -command "setfontscipad 12"
+    $pad.filemenu.options add radiobutton -label "moyen" -value 14  \
+	-variable FontSize -command "setfontscipad 14"
+    $pad.filemenu.options add radiobutton -label "grand" -value 18 \
+	-variable FontSize -command "setfontscipad 18"
 }
 
 # exec menu
@@ -442,9 +459,10 @@ proc execfile {} {
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
 	if {$lang == "eng"} {
 	    set answer [tk_messageBox -message "The contents of $listoffile("$textarea",filename) may have changed, do you wish to to save your changes?" \
-	      -title "Save Confirm?" -type yesnocancel -icon question]
+	            -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
+	    set answer [tk_messageBox -message \
+            "Voulez-vous enregistrer les modifications apportées à $listoffile("$textarea",filename) ?" \
 	     -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
@@ -457,11 +475,13 @@ proc execfile {} {
     if $doexec {
 	if [ expr [string compare $sciprompt -1] == 0 ] {
 	    if {$lang == "eng"} {
-		tk_messageBox -message "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" \
-		    -title "Scilab working" -type ok -icon info
+		tk_messageBox -message \
+                 "Scilab is working, wait for the prompt to load file $listoffile("$textarea",filename)" \
+                    -title "Scilab working" -type ok -icon info
 	    } else {
-		tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)" \
-		    -title "Scilab occupé" -type ok -icon info
+		tk_messageBox -message \
+                "Scilab est occupé, attendez le prompt pour charger le fichier $listoffile("$textarea",filename)"\
+                    -title "Scilab occupé" -type ok -icon info
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
@@ -474,10 +494,12 @@ proc execselection {} {
     global sciprompt lang textareacur
     if [ expr [string compare $sciprompt -1] == 0 ] {
 	if {$lang == "eng"} {
-	   tk_messageBox -message "Scilab is working, wait for the prompt to execute the selection" \
+	   tk_messageBox -message \
+               "Scilab is working, wait for the prompt to execute the selection" \
 	       -title "Scilab working" -type ok -icon info
 	 } else {
-	   tk_messageBox -message "Scilab est occupé, attendez le prompt pour charger la selection" \
+	   tk_messageBox -message \
+               "Scilab est occupé, attendez le prompt pour charger la selection" \
 	       -title "Scilab occupé" -type ok -icon info
 	 }
      } else {
@@ -565,13 +587,11 @@ text $pad.textarea -relief sunken -bd 2 -xscrollcommand "$pad.xscroll set" \
 	-yscrollcommand "$pad.yscroll set" -wrap $wordWrap -width 1 -height 1 \
         -fg $FGCOLOR -bg $BGCOLOR  -setgrid 1 -font $textFont -tabs $taille \
         -insertwidth 3 -insertborderwidth 2 -insertofftime 0 \
-        -insertbackground $CURCOLOR -exportselection 1
+        -insertbackground $CURCOLOR -selectbackground $SELCOLOR -exportselection 1
 set textareacur $pad.textarea  
 ####
 ##ES: remember fontsize
-if {$Size == 0} {setfontscipad0}
-if {$Size == 4} {setfontscipad4}
-if {$Size == 12} {setfontscipad12}
+setfontscipad $FontSize
 
 scrollbar $pad.yscroll -command "$textareacur yview"
 scrollbar $pad.xscroll -command "$textareacur xview" -orient horizontal
@@ -678,19 +698,20 @@ proc scipadindent {textarea cm} {
 }
 
 proc TextStyles { t } {
-    global FGCOLOR
+    global FGCOLOR PARCOLOR BRAKCOLOR BRACCOLOR PUNCOLOR KEYWCOLOR OPCOLOR
+    global TXTCOLOR QTXTCOLOR REMCOLOR XMLCOLOR NUMCOLOR
 
-    $t tag configure parenthesis -foreground magenta3
-    $t tag configure bracket -foreground DarkGoldenrod4
-    $t tag configure brace -foreground red
-    $t tag configure punct -foreground turquoise4
-    $t tag configure keywords -foreground blue2
-    $t tag configure operator -foreground Blue4
+    $t tag configure parenthesis -foreground $PARCOLOR
+    $t tag configure bracket -foreground $BRAKCOLOR
+    $t tag configure brace -foreground $BRACCOLOR
+    $t tag configure punct -foreground $PUNCOLOR
+    $t tag configure keywords -foreground $KEYWCOLOR
+    $t tag configure operator -foreground $OPCOLOR
     $t tag configure text -foreground $FGCOLOR
-    $t tag configure textquoted -foreground darkred
-    $t tag configure rem2 -foreground green4
-    $t tag configure xmltag -foreground orange
-    $t tag configure number -foreground yellow4
+    $t tag configure textquoted -foreground $QTXTCOLOR
+    $t tag configure rem2 -foreground $REMCOLOR
+    $t tag configure xmltag -foreground $XMLCOLOR
+    $t tag configure number -foreground $NUMCOLOR
     scipadindent $t .8
 }
 TextStyles $textareacur
@@ -711,7 +732,7 @@ proc showinfo {message} {
     $pad.statusmes delete 0 end 
     $pad.statusmes insert 0 "$message"
     $pad.statusmes configure -state disabled
-    after 5000 delinfo
+    after 5000 catch delinfo
 }
 
 proc blinkbrace {w pos brace} {
@@ -921,10 +942,12 @@ proc switchcase {yesfn argyesfn nofn argnofn} {
     global saveTextMsg lang
     if [ expr [string compare [getccount [gettextareacur]] 1] ==0 ] {
 	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of this file may have changed, do you wish to save your changes?" \
+	    set answer [tk_messageBox -message \
+             "The contents of this file may have changed, do you wish to save your changes?"\
 		    -title "Save Confirm?" -type yesnocancel -icon question]
 	} else {
-	    set answer [tk_messageBox -message "Voulez-vous enregistrer les modifications apportées à ce fichier ?" \
+	    set answer [tk_messageBox -message \
+                "Voulez-vous enregistrer les modifications apportées à ce fichier ?" \
 		    -title "Confirmer sauver ?" -type yesnocancel -icon question]
 	}
 	case $answer {
@@ -1014,7 +1037,7 @@ proc closefile {textarea} {
     proc byebye {textarea} {
 	global listoftextarea
 	global listoffile
-	global pad winopened radiobuttonvalue
+	global pad winopened radiobuttonvalue wm WMGEOMETRY
 	if {  [ llength $listoftextarea ] > 1 } {
 	    # delete the textarea entry in the listoftextarea
 	    set listoftextarea [lreplace $listoftextarea [lsearch \
@@ -1042,6 +1065,8 @@ proc closefile {textarea} {
             set radiobuttonvalue $lastwin
 ##
 	} else {
+#ES 18/10/2003: save the geometry for the next time
+            set WMGEOMETRY [eval {wm geometry $pad}] 
 	    killwin $pad 
             unset pad
 	}   
@@ -1542,7 +1567,7 @@ proc pastetext {} {
 proc FindIt {w} {
     global SearchString SearchPos SearchDir findcase 
     global textareacur pad
-    [gettextareacur] tag configure sel -background green
+#    [gettextareacur] tag configure sel -background green
     if {$SearchString!=""} {
 	if {$findcase=="1"} {
 	    set caset "-exact"
@@ -1941,7 +1966,7 @@ bind $pad <Control-w> {closecur}
 bind $pad <Control-n> {filesetasnewmat}
 bind $pad <Control-q> {exitapp}
 bind $pad <Control-g> {gotoline}
-bind $pad <Control-p> {selectprint}
+bind $pad <Control-p> {selectprint $textareacur}
 bind $pad <Control-P> {printseupselection}
 bind $pad <Control-S> {filesaveascur}
 
@@ -1957,6 +1982,11 @@ bind Text <Button-3> {showpopup2}
 bind Text <Shift-Button-3> {showpopup3}
 bind Text <Control-Button-3> {showpopupfont}
 bind $pad <Control-B> {showwhichfun}
+
+#ES 16/10/03
+bind $pad <F5> {filetosave %W; execfile}
+
+bind $pad <F2> {filetosave %W}
 
 
 ###################################################################
