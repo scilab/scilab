@@ -1508,7 +1508,7 @@ void  numberandsize(const mxArray  *ptr, int *number, int *size)
 {
   int kk,lst_k;
   lst_k=(int) ptr;
-  if (lst_k < C2F(vstk).bot) {
+  if (lst_k < *lstk(C2F(vstk).bot)) {
     *number=0;*size=0;
   for (kk = 1; kk <= Nbvars; kk++)
     {
