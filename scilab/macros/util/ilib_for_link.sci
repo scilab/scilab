@@ -31,6 +31,7 @@ endfunction
 
 function ilib_link_gen_loader(names,flag,loadername,libs,libname)
 //------------------------------------
+  rhs=argn(2)
   if rhs <= 4 then libname = ""; end 
   if rhs <= 3 then libs=[]; end 
   if rhs <= 2 then loadername = 'loader.sce' ; end 
