@@ -13,33 +13,29 @@ function colorbar(umin, umax, colminmax)
   //                 default : [1 nb_colors] where nb_colors is
   //                 the number of colors of the current colormap.
   //                 May be useful to deal with a part of the colormap
-  //                 (essentially with the fec function which lets
-  //                  also the user choose a part of the colormap)
+  //                 (for instance using fec or plot3d)
   //                 
   //  CAUTION
   //     this function may be used BEFORE a plot3d, fec, Sgrayplot, ...
   //     It is important because this function set and change the
-  //     frame for the plot. This way the colorbar (contrarily
-  //     to my previous colorbar func) is not part of the "associated"
-  //     plot and so is not modified by a zoom or a rotation of
-  //     the plot. (note that you may zoom the colorbar but it is
-  //     not of interest...).
+  //     frame for the plot. This way the colorbar is not part of 
+  //     the "associated" plot and so is not modified by a zoom or 
+  //     a rotation of the plot.
   //
   //  AUTHOR
   //     Bruno Pincon
   //
   //  EXAMPLES
-  //     see the demo script
+  //     see the help page
      
-  if ~exists("colminmax","local") then
-     nb_colors = size(xget("colormap"),1)
+  if ~exists("colminmax","local") then 
+     nb_colors = xget("lastpattern") // modif for bug 1122 (bruno 7 december 2004)
      colminmax = [1 nb_colors]
   else
      nb_colors = colminmax(2) - colminmax(1) + 1
   end
   
   fg_color = xget("foreground")
-  bg_color = xget("background")
 
   wr = xgetech()
   wrect_cb = [wr(1)+0.85*wr(3) , wr(2) , 0.15*wr(3) , wr(4)]
