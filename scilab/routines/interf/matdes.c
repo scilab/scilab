@@ -19,6 +19,8 @@
 #define SciWin() if(C2F(sciwin)() !=0)\
         {Scierror(999,"%s :Requested figure cannot be created \r\n",fname);return 0;  }
 
+#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
+
 
 
 /* The following NUMSETFONC and KeyTab_ definition should be coherent
@@ -2566,10 +2568,12 @@ int scixinit(fname,fname_len)
     {
       char *param1=NULL;
       GetRhsVar(1,"c",&m1,&n1,&l1);
+
       param1=cstk(l1);
       if (param1[0]=='.') SetTKGraphicalMode(TRUE);
       C2F(dr1)("xinit",cstk(l1),&v1,&v,&v,&v,&v,&v,&dv,&dv,&dv,&dv,6L,m1);
       if(version_flag() == 0) xinitxend_flag = 1; /* we do not draw now into the file/memory (depending on the driver type) */
+
     }
   LhsVar(1)=0; return 0;
 }
@@ -4799,18 +4803,18 @@ int gset(fname,fname_len)
       /* F.Leray; INFO: case 9 is considered for a matrix of graphic handles*/
       CheckRhs(3,3);
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */
-      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+      if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	{
 	  if (m1!=1||n1!=1) { 
 	    lw = 1 + Top - Rhs;
 	    C2F(overload)(&lw,"set",3);return 0;
 	  }
 	  if (version_flag() ==0)
-	    hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */ 
+	    hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */ 
 	  else
 	    hdl = (unsigned long)0;
 	  if (hdl == (unsigned long)0 )
@@ -4820,16 +4824,16 @@ int gset(fname,fname_len)
 	} 
       else 
 	{
-	  hdl = (unsigned long)*stk(l1);
+	  hdl = (unsigned long)*hstk(l1);
 	  pobj = sciGetPointerFromHandle(hdl);
 	}
       
       GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */  
-      if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
-	   &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+      if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	   &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
@@ -5011,22 +5015,22 @@ int gget(fname,fname_len)
       C2F(overload)(&lw,"get",3);return 0;
     }
     GetRhsVar(2,"c",&numrow2,&numcol2,&l2);
-    if ( *stk(l1) != sciGetHandle(pfiguremdl) && *stk(l1) != sciGetHandle(paxesmdl)
-	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
-	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
-	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
-	 &&  *stk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
+    if ( *hstk(l1) != sciGetHandle(pfiguremdl) && *hstk(l1) != sciGetHandle(paxesmdl)
+	 &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_title)
+	 &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_x_label)
+	 &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_y_label) /* Addings here F.Leray 10.06.04 */
+	 &&  *hstk(l1) != sciGetHandle(pSUBWIN_FEATURE(paxesmdl)->mon_z_label))
       {
 	if ((strncmp(cstk(l2),"old_style",9) !=0)
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
 	if (version_flag() ==0)
-	  hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle */
+	  hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle */
 	else
 	  hdl = (unsigned long)0;
       }/* DJ.A 08/01/04 */
     else 
-      hdl = (unsigned long)*stk(l1);
+      hdl = (unsigned long)*hstk(l1);
     break;
   case 10:/* string argument (string) */
     CheckRhs(1,1);
@@ -5252,14 +5256,14 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   /*************************** Handles Properties ********/
   else if (strncmp(marker,"current_obj", 11) == 0) 
     {
-      tmpobj=(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
+      tmpobj=(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *)NULL) 
 	{strcpy(error_message,"Object is not valid");return -1;}
       sciSetCurrentObj(tmpobj);
     }
   else if (strncmp(marker,"current_axes", 12) == 0) 
     {
-      tmpobj =(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
+      tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
       if (tmpobj == (sciPointObj *) NULL)
 	{strcpy(error_message,"Object is not valid");return -1;}
       if (sciGetEntityType (tmpobj) == SCI_SUBWIN)
@@ -5270,7 +5274,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
   else if (strncmp(marker,"current_figure", 14) == 0) 
     {
       if (VarType(2) != 1) {
-	tmpobj =(sciPointObj *)sciGetPointerFromHandle((long)stk(*value)[0]);
+	tmpobj =(sciPointObj *)sciGetPointerFromHandle((unsigned long)hstk(*value)[0]);
 	if (tmpobj == (sciPointObj *) NULL)
 	  {strcpy(error_message,"Object is not valid");return -1;}
 	if (sciGetEntityType (tmpobj) != SCI_FIGURE)
@@ -6624,7 +6628,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *stk(outindex) = (double )sciGetHandle(sciGetParent((sciPointObj *)pobj));
+      *hstk(outindex) = sciGetHandle(sciGetParent((sciPointObj *)pobj));
     }
   else if (strncmp(marker,"current_axes", 12) == 0)
     {
@@ -6632,7 +6636,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
       /**DJ.Abdemouche 2003**/
-      *stk(outindex) = (double )sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
+      *hstk(outindex) = sciGetHandle(sciGetSelectedSubWin(sciGetCurrentFigure()));
     }
   
   else if (strncmp(marker,"current_figure", 14) == 0)
@@ -6643,7 +6647,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow   = 1;
 	numcol   = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	*stk(outindex) = (double )sciGetHandle(sciGetCurrentFigure());
+	*hstk(outindex) = sciGetHandle(sciGetCurrentFigure());
       }
       else {
 	numrow   = 1;
@@ -6659,7 +6663,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *stk(outindex) = (double )sciGetHandle(sciGetCurrentObj());
+      *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
     }
   else if (strncmp(marker,"children", 8) == 0)
     { 
@@ -6687,8 +6691,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	    if(sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_MERGE
 	       && sciGetEntityType ((sciPointObj *)toto->pointobj) != SCI_LABEL) /* F.Leray 28.05.04 */
 	      {
-		stk(outindex)[i] = 
-		  (double )sciGetHandle((sciPointObj *)toto->pointobj);
+		hstk(outindex)[i] = sciGetHandle((sciPointObj *)toto->pointobj);
 		i++;
 	      }
 	    toto = toto->pnext;/* toto is pointer to one son */
@@ -6700,7 +6703,7 @@ if ((pobj == (sciPointObj *)NULL) &&
       numrow   = 1;
       numcol   = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      *stk(outindex) = (double ) sciGetHandle(sciGetCurrentObj());
+      *hstk(outindex) = sciGetHandle(sciGetCurrentObj());
     }
   /* DJ.A 08/01/04 */
   else if (strncmp(marker,"default_figure", 14) == 0)
@@ -6710,7 +6713,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  numrow   = 1;
 	  numcol   = 1;	
 	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *stk(outindex) =  (double )sciGetHandle(pfiguremdl);
+	  *hstk(outindex) =  sciGetHandle(pfiguremdl);
 	}
       else
 	{
@@ -6725,7 +6728,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	  numrow   = 1;
 	  numcol   = 1;
 	  CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	  *stk(outindex) = (double )sciGetHandle(paxesmdl);	
+	  *hstk(outindex) = sciGetHandle(paxesmdl);	
 	}
       else
 	{
@@ -7022,8 +7025,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow = 1;
 	numcol = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	stk(outindex)[0] = (double ) 
-	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_x_label);
+	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_x_label);
 	
       }
     }
@@ -7035,8 +7037,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow = 1;
 	numcol = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	stk(outindex)[0] = (double ) 
-	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_y_label);
+	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_y_label);
       }
     }
  else if (strncmp(marker,"z_label", 7) == 0)
@@ -7047,8 +7048,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow = 1;
 	numcol = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	stk(outindex)[0] = (double ) 
-	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
+	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_z_label);
       }
     }
  else if (strncmp(marker,"title", 5) == 0)
@@ -7059,8 +7059,7 @@ if ((pobj == (sciPointObj *)NULL) &&
 	numrow = 1;
 	numcol = 1;
 	CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-	stk(outindex)[0] = (double ) 
-	  sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_title);
+	hstk(outindex)[0] = sciGetHandle((sciPointObj *) pSUBWIN_FEATURE(pobj)->mon_title);
       }
     }
   else if (strncmp(marker,"log_flags", 9) == 0)
@@ -7647,7 +7646,7 @@ int delete(fname,fname_len)
 	C2F(overload)(&lw,"delete",6);return 0;}
       if (Rhs == 2)
 	GetRhsVar(2,"c",&m2,&n2,&l2); /* Gets the command name */
-      hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */
+      hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
       break;
     case 10: /* delete("all") */
       CheckRhs(1,1);
@@ -7721,7 +7720,7 @@ int addcb(fname,fname_len)
 	case 1: /* first is a scalar argument so it's a legend(hdl,"str1",...)*/
                 CheckRhs(3,3);
                 GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
-		hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
+		hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
 	        GetRhsVar(2,"c",&m1,&n1,&l1); /* Gets the command name  */
                 GetRhsVar(3,"i",&m2,&n2,&l2); /* Gets the mouse event */
 		break;
@@ -7767,7 +7766,7 @@ int copy(fname,fname_len)
   if (Rhs == 1)
     {
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
-      hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
+      hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
       if (pobj == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -7778,14 +7777,14 @@ int copy(fname,fname_len)
   else
     {
       GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument*/
-      hdl = (unsigned long)*stk(l1); /* on recupere le pointeur d'objet par le handle*/
+      hdl = (unsigned long)*hstk(l1); /* on recupere le pointeur d'objet par le handle*/
       pobj = sciGetPointerFromHandle(hdl);
       if (pobj == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
 	return 0;
       }
       GetRhsVar(2,"h",&m1,&n1,&l2); /* Gets the command name */
-      hdlparent = (unsigned long)*stk(l2); /* on recupere le pointeur d'objet par le handle*/
+      hdlparent = (unsigned long)*hstk(l2); /* on recupere le pointeur d'objet par le handle*/
       psubwinparenttarget = sciGetPointerFromHandle(hdlparent);
       if ( psubwinparenttarget == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -7794,8 +7793,7 @@ int copy(fname,fname_len)
     }
   numrow   = 1;numcol   = 1;
   CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-  *stk(outindex) = (double )sciGetHandle(
-					 pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
+  *hstk(outindex) = sciGetHandle(pcopyobj = sciCopyObj((sciPointObj *)pobj,(sciPointObj *)psubwinparenttarget));
   sciDrawObj((sciPointObj *)sciGetParentFigure(pcopyobj));
   LhsVar(1) = Rhs+1;
   return 0;
@@ -7828,7 +7826,7 @@ int move(fname,fname_len)
     
   GetRhsVar(1,"h",&m1,&n1,&l1); /* Gets the Handle passed as argument */    
   GetRhsVar(2,"d",&m2,&n2,&l2);
-  hdl = (unsigned long)*stk(l1); /* Puts the value of the Handle to hdl */
+  hdl = (unsigned long)*hstk(l1); /* Puts the value of the Handle to hdl */
   if (n2 != 2)
     { 
       Scierror(999,"%s: third argument is a vector,[x y] \r\n",fname);
@@ -7875,7 +7873,7 @@ int glue(fname,fname_len)
   handelsvalue = MALLOC(n*sizeof(long));
   for (i = 0; i < n;i++)
     {
-      handelsvalue[i] = (long) (stk(l1))[i];
+      handelsvalue[i] = (unsigned long) (hstk(l1))[i];
       pobj = sciGetPointerFromHandle(handelsvalue[i]);
       if (pobj == NULL) {
 	Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -7905,7 +7903,7 @@ int glue(fname,fname_len)
   numrow = 1;
   numcol = 1;
   CreateVar(Rhs+3,"h",&numrow,&numcol,&outindex);
-  stk(outindex)[0] = (double )sciGetHandle((sciPointObj *) sciGetCurrentObj());
+  hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+3;
   FREE(handelsvalue);
   return 0;
@@ -7926,7 +7924,7 @@ int unglue(fname,fname_len)
   /*  set or create a graphic window */
   SciWin();
   GetRhsVar(1,"h",&m1,&n1,&l1);
-  hdl = (unsigned long)*stk(l1);
+  hdl = (unsigned long)*hstk(l1);
   pobj = sciGetPointerFromHandle(hdl);
   if (pobj == NULL) {
     Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -7949,8 +7947,7 @@ int unglue(fname,fname_len)
       i = 0;
       while ((psonstmp != (sciSons *)NULL) && (psonstmp->pointobj != (sciPointObj *)NULL))
 	{
-	  stk(outindex)[i] = 
-	    (double )sciGetHandle((sciPointObj *)psonstmp->pointobj);
+	  hstk(outindex)[i] = sciGetHandle((sciPointObj *)psonstmp->pointobj);
 	  psonstmp = psonstmp->pnext;/* psonstmp   is pointer to one son */
 	  i++;
 	}
@@ -7990,7 +7987,7 @@ int drawnow(fname,fname_len)
 	    GetRhsVar(1,"h",&m,&n,&l); 
 	    for (i = 0; i < n*m; i++)
 	      {
-		subwin = (sciPointObj*) sciGetPointerFromHandle((long)*stk(l+i)); 
+		subwin = (sciPointObj*) sciGetPointerFromHandle((unsigned long)*hstk(l+i)); 
 		if (subwin == NULL) {
 		  Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
 		  return 0;
@@ -8058,7 +8055,7 @@ int scixclearsubwin(fname,fname_len)
       numrow = 1;
       numcol = 1;
       CreateVar(Rhs+1,"h",&numrow,&numcol,&outindex);
-      stk(outindex)[0] = (double )sciGetHandle((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()));
+      hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()));
       LhsVar(1) = Rhs+1;
       return 0;
     }
@@ -8068,7 +8065,7 @@ int scixclearsubwin(fname,fname_len)
       case 1: /* clearsubwin(handle) */
 	GetRhsVar(1,"h",&m,&n,&l); 
 	for (i = 0; i < n*m; i++) {
-	  hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
+	  hdl = (unsigned long)*hstk(l+i);            /* Puts the value of the Handle to hdl */ 
 	  subwin = sciGetPointerFromHandle(hdl);  
 	  if (subwin == NULL) {
 	    Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -8145,7 +8142,7 @@ int scixbascsubwin(fname,fname_len)
 	GetRhsVar(1,"h",&m,&n,&l); 
 	for (i = 0; i < n*m; i++)
 	  {
-            hdl = (unsigned long)*stk(l+i);            /* Puts the value of the Handle to hdl */ 
+            hdl = (unsigned long)*hstk(l+i);            /* Puts the value of the Handle to hdl */ 
             subwin = sciGetPointerFromHandle(hdl);   
 	    if (subwin == NULL) {
 	      Scierror(999,"%s :the handle is not or no more valid\r\n",fname);
@@ -8216,7 +8213,7 @@ int draw(fname,fname_len)
 	lw = 1 + Top - Rhs;
 	C2F(overload)(&lw,"draw",4);return 0;
       }
-      hdl = (unsigned long)*stk(l);            /* Puts the value of the Handle to hdl */ 
+      hdl = (unsigned long)*hstk(l);            /* Puts the value of the Handle to hdl */ 
       pobj = sciGetPointerFromHandle(hdl);   
     }
     if (pobj != ( sciPointObj *)NULL )  {  
