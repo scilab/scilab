@@ -17,12 +17,12 @@ if type(f)==11 then comp(f),end;
 //imaginary part of f(g(t))*g'(t) where g(t) is a
 //parametrization of the circle.
 deff('y=real1(t)',[
-    'z=z0+r*exp(%i*((1-t)*a+t*b))'
-    'y=real(f(z)*%i*(b-a)*z)'] )
+    'z=r*exp(%i*((1-t)*a+t*b))'
+    'y=real(f(z+z0)*%i*(b-a)*z)'] )
 
 deff('y=imag1(t)',[
-    'z=z0+r*exp(%i*((1-t)*a+t*b))'
-    'y=imag(f(z)*%i*(b-a)*z)'] )
+    'z=r*exp(%i*((1-t)*a+t*b))'
+    'y=imag(f(z+z0)*%i*(b-a)*z)'] )
 
 r=intg(0,1,real1,ea,er)+%i*intg(0,1,imag1,ea,er)       
 endfunction
