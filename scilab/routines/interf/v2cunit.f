@@ -28,7 +28,16 @@ c
             return
          endif
          call getfileinfo(fd,ifa,iswap,ltype,mod,buf,lb,info)
-         if(info.eq.0.and.ltype.eq.1) then
+         if(info.eq.1) then
+            err=1
+            ierr=1
+            call error(36)
+         elseif(info.eq.2) then
+            err=fd
+            ierr=2
+            call error(245)
+            return
+         elseif(info.eq.0.and.ltype.eq.1) then
 c     ierr=-1 line used for compatibility instead of error
             ierr=-1
             opened=.true.
