@@ -2442,6 +2442,15 @@ c     .  arg3(:)=arg2
             call unsfdcopy((it2+1)*mn2,stk(l2),1,stk(l1),1)
             lstk(top+1)=l1+mn2*(it2+1)
             return
+         elseif(mn3.eq.0) then
+            istk(ilrs)=1
+            istk(ilrs+1)=m2
+            istk(ilrs+2)=n2
+            istk(ilrs+3)=it2
+            l1=sadr(ilrs+4)
+            call unsfdcopy((it2+1)*mn2,stk(l2),1,stk(l1),1)
+            lstk(top+1)=l1+mn2*(it2+1)
+            return
          elseif(mn2.eq.1) then
             istk(ilrs)=1
             istk(ilrs+1)=m3
@@ -2823,8 +2832,36 @@ c     .     set all elements of arg4 to arg3
             call error(15)
             return
          endif
-      endif
 
+      endif
+      init4=0
+      if(m1.eq.-1.and.m4.eq.0) then
+c     .  arg4(:,i)=arg3
+         m3=m3*n3
+         n3=1
+         n4=1
+         m4=m3
+         init4=1
+         
+      elseif(m2.eq.-1.and.m4.eq.0) then
+c     .  arg4(i,:)=arg3
+         n3=m3*n3
+         m3=1
+         m4=1
+         n4=n3
+         init4=1
+      endif
+      if(init4.eq.1) then
+         err=lw-lstk(bot)
+         if(err.gt.0) then
+            call error(17)
+            return
+         endif
+         mn4=m4*n4
+         l4=lw
+         lw=l4+ mn4
+         call dset(mn4,0.0d0,stk(l4),1)
+      endif
       call indxg(il1,m4,ili,mi,mxi,lw,1)
       if(err.gt.0) return
       call indxg(il2,n4,ilj,mj,mxj,lw,1)
