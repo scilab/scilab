@@ -43,7 +43,8 @@ LIBRSCI = libs/system.lib libs/interf.lib libs/system2.lib libs/optim.lib \
 	libs/integ.lib libs/control.lib routines/control/fstair.obj \
 	routines/control/wexchn.obj routines/control/wshrsl.obj \
 	libs/scicos.lib libs/signal.lib \
-	libs/poly.lib libs/calelm.lib libs/lapack.lib libs/graphics.lib \
+	libs/poly.lib libs/calelm.lib libs/lapack.lib libs/slicot.lib \
+	libs/graphics.lib \
 	libs/sparse.lib libs/metanet.lib libs/sun.lib \
 	libs/intersci.lib libs/wsci.lib libs/graphics.lib libs/menusX.lib \
 	libs/libcomm.lib libs/comm.lib libs/sound.lib libs/dcd.lib \
