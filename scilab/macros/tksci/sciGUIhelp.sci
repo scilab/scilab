@@ -25,7 +25,7 @@ function sciGUIhelp(key)
     TK_EvalStr('sciGUIBrowseHelp -1 '+update+' ""'+tmpDir+'/browsehelp.txt""');
   elseif (argn(2)==1) then
     key=stripblanks(key)
-    if or(part(key,1)==['(',')','[',']','{','}','%','''','"',':','*','/', ...
+    if or(part(key,1)==['(',')','[',']','{','}','%','''','""',':','*','/', ...
 			'\','.','<','>','&','^','|','~']) then
       key="symbols";
     end
