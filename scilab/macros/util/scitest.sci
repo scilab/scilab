@@ -1,7 +1,14 @@
 function scitest(tstfile,force)
   [lhs,rhs]=argn(0);
   if rhs <= 1 then force = %f ; end 
-  diafile=strsubst(tstfile,'.tst','.dia')
+  // check suffix in tstfile 
+  ind=strindex(tstfile,"."); 
+  if ind==[] then 
+    diafile = tstfile+'.tst'
+  else
+     suf = part(tstfile,ind($):length(tstfile)); 
+     diafile=strsubst(tstfile,suf,'.dia')
+  end
   if newest(tstfile,diafile)==2 & force == %f  then return,end
   
   mydisp('------------------- File '+tstfile+'--------------------')
