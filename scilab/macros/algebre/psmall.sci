@@ -10,18 +10,18 @@ function [Q,M]=psmall(A,thres,flag)
 //F.D.
 //!
 // Copyright INRIA
-deff('[flag]=%csmall(x)','flag=real(x) < thres')
-
-deff('[flag]=%dsmall(x)','flag=abs(x) < thres')
-
-deff('[flag]=%cbigeig(x)','flag=real(x) >= thres')
-
-deff('[flag]=%dbigeig(x)','flag=abs(x) >= thres')
-
- [n,n]=size(A);
- thres=real(thres);
-if flag=='c' then %smallei=%csmall;%bigeig=%cbigeig;end
-if flag=='d' then %smallei=%dsmall;%bigeig=%dbigeig;end
+[n,n]=size(A);
+thres=real(thres);
+if flag=='c' then 
+  deff('[flag]=%smallei(x)','flag=real(x) < thres')
+  deff('[flag]=%bigeig(x)','flag=real(x) >= thres')
+  
+elseif flag=='d' then 
+  deff('[flag]=%smallei(x)','flag=abs(x) < thres')
+  deff('[flag]=%bigeig(x)','flag=abs(x) >= thres')
+else
+  error('Invalid flag value, it must be '"c"' or '"d"' ')
+end
 // 
  [X,dsmall] = schur(A,%smallei);
  [Y,dbig] = schur(A,%bigeig);
@@ -31,12 +31,12 @@ if flag=='d' then %smallei=%dsmall;%bigeig=%dbigeig;end
  M1=Y1(dbig+1:n,:);
  E=M1*Q;
 if rcond(E)>1.d-6 then
-     M=E\M1;return;
-                  else
-//warning('bad conditionning--> balancing')
-     [Ab,X0]=balanc(A);
-     [X,dsmall] = schur(Ab,%smallei);X1=X*X0;Q=X1(:,1:dsmall);
-     [Y,dbig] = schur(Ab,%bigeig);Y1=inv(X0)*Y';M=Y1(dbig+1:n,:);
-     E=M*Q;
-     M=E\M;
+     M=E\M1;
+else
+  //warning('bad conditionning--> balancing')
+  [Ab,X0]=balanc(A);
+  [X,dsmall] = schur(Ab,%smallei);X1=X*X0;Q=X1(:,1:dsmall);
+  [Y,dbig] = schur(Ab,%bigeig);Y1=inv(X0)*Y';M=Y1(dbig+1:n,:);
+  E=M*Q;
+  M=E\M;
 end
