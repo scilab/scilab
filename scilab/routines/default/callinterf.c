@@ -109,6 +109,7 @@ extern int   Sun_contents __PARAMS((int));
 extern int   System2_contents __PARAMS((int));
 extern int   System_contents __PARAMS((int));
 extern int  Intersci_contents __PARAMS((int));
+extern int  Sparse_contents __PARAMS((int));
 
 int ForceLink(void)
 {
@@ -119,6 +120,7 @@ int ForceLink(void)
   System2_contents(0);
   System_contents(0);
   Intersci_contents(0);
+  Sparse_contents(0);
   return 0;
 }
 
