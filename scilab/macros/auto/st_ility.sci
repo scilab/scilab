@@ -20,7 +20,7 @@ n=sum(n);nc=n;
 if lhs==4 then c=c*u;x0=u'*x0;end
 if n<>na then
 //order evals uncont. part
-  nn=n+1:na;pause;
+  nn=n+1:na;
   [v,n1]=schur(a(nn,nn),part(typ,1))
   n=n+n1
 //new realization
