@@ -1,6 +1,12 @@
 #include "scicos_block.h"
 #include <math.h>
 
+#if WIN32
+extern double asinh(double x);
+extern double acosh(double x);
+extern double atanh(double x);
+#endif
+
 void atanh_blk(scicos_block *block,int flag)
 {
   int j;

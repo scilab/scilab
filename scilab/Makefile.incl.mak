@@ -21,8 +21,8 @@ USE_MT=-MT
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
-#TCLTK=d:\scilab\tcl
-TCLTK=$(SCIDIR1)\tcl
+TCLTK=d:\scilab\tcl
+#TCLTK=$(SCIDIR1)\tcl
 
 TKSCI=libs/tksci.lib 
 
@@ -46,8 +46,8 @@ PVM=libs/pvm.lib
 # SCIDIR1 is set to . in Makefile.mak for compilation 
 # and to scilab full path when used after compilation 
 # for dynamic linking
-#PVM_ROOT=d:\scilab\pvm3
-PVM_ROOT=$(SCIDIR1)\pvm3
+PVM_ROOT=d:\scilab\pvm3
+#PVM_ROOT=$(SCIDIR1)\pvm3
 PVM_ARCH=WIN32
 PVMLIB="$(PVM_ROOT)\lib\WIN32\libpvm3.lib" "$(PVM_ROOT)\lib\WIN32\libgpvm3.lib" 
 PVM_CINCLUDE="."

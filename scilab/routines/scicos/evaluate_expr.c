@@ -1,5 +1,47 @@
 #include "scicos_block.h"
 #include <math.h>
+#if WIN32
+#include <float.h>
+#endif
+
+#if WIN32
+/*
+arcsinh z = log (z+sqrt(1+z2))
+*/
+double asinh(double x)
+{
+  return log(x+sqrt(x*x+1));
+}
+
+double acosh(double x)
+{
+  return log(x+sqrt(x*x-1));
+}
+
+/* atanh(x)
+ *      For x>=0.5
+ *                  1              2x                          x
+ *	atanh(x) = --- * log(1 + -------) = 0.5 * log1p(2 * --------)
+ *                  2             1 - x                      1 - x
+ *	
+ * 	For x<0.5
+ *	atanh(x) = 0.5*log1p(2x+2x*x/(1-x))
+ *
+ */
+
+double atanh(double x)
+{
+	if (x >=0.5) 
+	{
+		return 0.5*log((1+x)/(1-x));
+	}
+	else
+	{
+		return 0.5*log((2*x)+(2*x)*x/(1-x));
+	}
+  
+}
+#endif
 
 void evaluate_expr(scicos_block *block,int flag)
 {
@@ -456,7 +498,11 @@ void evaluate_expr(scicos_block *block,int flag)
 	}
       }
     }
-    if(isinf(stack[bottom])||isnan(stack[bottom])){
+    #if WIN32
+    if(_finite(stack[bottom])||_isnan(stack[bottom])){
+    #else
+     if(isinf(stack[bottom])||isnan(stack[bottom])){
+    #endif
       set_block_error(-2);
       return;
     }else{
