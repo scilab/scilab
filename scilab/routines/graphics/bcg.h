@@ -3,6 +3,9 @@
  *    Copyright (C) 1998-2000 Enpc/Jean-Philippe Chancelier
  *    jpc@cereve.enpc.fr 
  --------------------------------------------------------------------------*/
+# ifndef __BCG__
+#define __BCG__
+
 #include "../machine.h" /* to be sure that WITH_XXX are defined */
 
 #ifndef WIN32
@@ -167,3 +170,5 @@ typedef struct BCG
 
 
 extern struct BCG *GetWindowXgcNumber  (int i);
+
+#endif /* __BCG__ */
