@@ -12,9 +12,9 @@
 #include "Entities.h" /* F.Leray 21.04.04 : for update_2dbounds call*/
 /*extern void compute_data_bounds(int cflag,char dataflag,double *x,double *y,int n1,int n2,double *drect);*/
 extern void compute_data_bounds2(int cflag,char dataflag,char *logflags,double *x,double *y,int n1,int n2,double *drect);
-extern void update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
+extern BOOL update_specification_bounds(sciPointObj *psubwin, double *rect,int flag);
 extern int re_index_brect(double * brect, double * drect);
-extern void strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+extern BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
 typedef void (level_f) __PARAMS((integer ival, double Cont, double xncont,
 			       double yncont));
@@ -264,7 +264,9 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
   integer N[3],i;
   double drect[6];
   sciPointObj * psubwin = NULL;  /* Adding F.Leray 22.04.04 */
-
+  BOOL bounds_changed = FALSE;
+  BOOL axes_properties_changed = FALSE;
+  
   /** Boundaries of the frame **/
   if(version_flag() != 0)
     update_frame_bounds(1,"gnn",x,y,n1,n2,aaint,strflag,brect);
@@ -310,9 +312,14 @@ static int Contour2D(ptr_level_f func, char *name, double *x, double *y, double 
 	  drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
 	  drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
 	}
-	if (strflag[1] != '0') update_specification_bounds(psubwin, drect,2);
+	if (strflag[1] != '0')
+	  bounds_changed = update_specification_bounds(psubwin, drect,2);
       } 
-      strflag2axes_properties(psubwin, strflag);
+
+      if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+      
+      axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+
       pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE;
     }
   
