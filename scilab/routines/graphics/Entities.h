@@ -843,6 +843,8 @@ typedef struct
   BOOL visible; 
   int isclip;
   double z;  /** rectangle */
+
+  BOOL flagstring; /* flag used to determine wether the rectangle is used to surround a string : used when axes is reversed */
 }
 sciRectangle;  /** */
 
@@ -1431,7 +1433,7 @@ extern int DestroyArc (sciPointObj * pthis);
 extern sciPointObj *ConstructRectangle (sciPointObj * pparentfigure, double x,
 					double y, double height, double width,
 					double horzcurvature,
-					double vertcurvature, int fillflag, int fillcolor, int str);
+					double vertcurvature, int fillflag, int fillcolor, int str, BOOL flagstring);
 extern int DestroyRectangle (sciPointObj * pthis);
 extern sciPointObj *ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d, 
 				      double * pvecx, double * pvecy, double * pvecz,
