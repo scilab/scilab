@@ -690,9 +690,22 @@ endfunction
 
 function ged_text(h)
   global ged_handle; ged_handle=h
+  f=h;while stripblanks(f.type)<>"Figure" then f=f.parent,end
   TK_SetVar("curvis",h.visible)
-  disp("Warning: This type of entity is not yet implemented in the Graphic Editor")
-  TK_EvalFile(SCI+'/tcl/ged/NYI.tcl')
+  TK_SetVar("ncolors",string(size(f.color_map,1)))
+  TK_SetVar("curforeground",string(h.foreground))
+  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
+	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
+	 "Helvetica Bold" "Helvetica Bold Italic"];
+  TK_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
+  TK_SetVar("curfontsize",string(h.font_size))
+  TK_SetVar("curfontangle",string(h.font_angle))
+//TK_SetVar("curtextbox1",string(h.textbox(1)))
+//TK_SetVar("curtextbox2",string(h.textbox(2)))
+  TK_SetVar("curtextboxmode",h.text_box_mode)
+  TK_SetVar("curtext",h.text)
+
+  TK_EvalFile(SCI+'/tcl/ged/Text.tcl')
 endfunction
 
 
@@ -1004,7 +1017,6 @@ function setFontStyle(ftn)
 		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
 		   "Helvetica Bold Italic"])-1
 endfunction
-
 
 function setLabelsFontStyle(label,ftn)
    global ged_handle; h=ged_handle
