@@ -167,8 +167,9 @@ C     .. Scalar Arguments ..
       DOUBLE PRECISION   ALPHAR, ALPHAI, BETA
 C     .. Executable Statements ..
 C
-      SB02OW = ( ALPHAR.LT.ZERO .AND. BETA.GT.ZERO ) .OR.
-     $         ( ALPHAR.GT.ZERO .AND. BETA.LT.ZERO ) 
+      SB02OW = (( ALPHAR.LT.ZERO .AND. BETA.GT.ZERO ) .OR.
+     $         ( ALPHAR.GT.ZERO .AND. BETA.LT.ZERO )) .AND.
+     $          abs(BETA).GT. abs(ALPHAR)*dlamch('p')
 C
       RETURN
 C *** Last line of SB02OW ***
@@ -423,7 +424,11 @@ C     .. Scalar Arguments ..
       INTRINSIC          DREAL
 C     .. Executable Statements ..
 C
-      ZB02OW =  DREAL(ALPHA/BETA).LT.ZERO 
+      if (abs(BETA).ne.ZERO) then
+         ZB02OW =  DREAL(ALPHA/BETA).LT.ZERO 
+      else
+          ZB02OW = .FALSE.
+      endif
 C
       RETURN
 C *** Last line of zb02ow ***
