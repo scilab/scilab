@@ -29,10 +29,12 @@ extern int PushClickQueue(int win,int x,int y,int ibut,int motion,int release) ;
 extern void * graphic_initial_menu(int winid);
 extern void MenuFixCurrentWin __PARAMS(( int ivalue));
 extern void GPopupResize __PARAMS((struct BCG *ScilabXgc,int *,int *));
+
 /** Global variables to deal with X11 **/
 
 static double *vdouble = 0; /* used when a double argument is needed */
 static unsigned long maxcol;
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a);/* NG */
 
 /* These DEFAULTNUMCOLORS colors come from Xfig */
 
@@ -107,6 +109,8 @@ static xset_f xset_windowpos,xset_windowdim,xset_popupdim,xset_viewport,xset_cur
 static xset_f xset_absourel,xset_alufunction1,xset_thickness,xset_pattern,xset_dash;
 static xset_f xset_pixmapOn,xset_wresize,xset_background,xset_foreground,xset_hidden3d; 
 static xset_f xset_unclip,xset_font,xset_usecolor,xset_mark,xset_pixmapclear,xset_show,xset_dash_or_color;
+static xset_f xset_scilabxgc,xset_scilabVersion;/* NG */
+static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure);
 
 /* declaration for xget('name',...) functions */
 
@@ -116,6 +120,7 @@ static xget_f xget_absourel,xget_alufunction,xget_thickness,xget_pattern,xget_la
 static xget_f xget_usecolor,xget_pixmapOn,xget_wresize,xget_colormap,xget_background;
 static xget_f xget_foreground,xget_hidden3d;
 static xget_f xget_font,xget_mark,xget_dash_or_color;
+static xget_f xget_scilabxgc,xget_scilabFigure,xget_scilabVersion;/* NG */
 
 /* utility for points allocations */
 
@@ -1481,7 +1486,7 @@ int C2F(sedeco)(int *flag)
  *  xset('default',...) 
  */
 
-#define SETCOLOR(i,r,g,b)  ScilabXgc->Red[i]=r;ScilabXgc->Green[i]=g;ScilabXgc->Blue[i]=b ; 
+#define SETCOLOR(i,r,g,b)  ScilabXgc->Red[i]=(float)r;ScilabXgc->Green[i]=(float)g;ScilabXgc->Blue[i]=(float)b ; 
 
 void set_default_colormap(void)
 {
@@ -1529,8 +1534,27 @@ void set_default_colormap(void)
  *   a[i+2*m] = BLUE
  * v2 gives the value of m and *v3 must be equal to 3 
  */
+/* NG beg*/
+static void xset_colormap(v1,v2,v3,v4,v5,v6,a)
+     integer *v1,*v2;
+     integer *v3;
+     integer *v4,*v5,*v6;
+     double *a;
+{
 
-static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, integer *v5, integer *v6, double *a)
+  setcolormapg(ScilabXgc,v1,v2,a);
+}
+static void xset_gccolormap(v1,v2,a,XGC)
+     integer *v1,*v2;
+     double *a;
+     struct BCG *XGC;
+{
+
+  setcolormapg(XGC,v1,v2,a);
+}
+/* NG end*/
+
+void setcolormapg(struct  BCG *XGC,integer *v1,integer *v2, double *a)
 {
   int i,m;
   float *r, *g, *b;
@@ -1542,14 +1566,14 @@ static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, in
   }
   m = *v1;
   /* Save old color vectors */
-  r = ScilabXgc->Red;
-  g = ScilabXgc->Green;
-  b = ScilabXgc->Blue;
+  r = XGC->Red;
+  g = XGC->Green;
+  b = XGC->Blue;
 
-  if (!XgcAllocColors(ScilabXgc,m)) {
-    ScilabXgc->Red = r;
-    ScilabXgc->Green = g;
-    ScilabXgc->Blue = b;
+  if (!XgcAllocColors(XGC,m)) {
+    XGC->Red = r;
+    XGC->Green = g;
+    XGC->Blue = b;
     return;
   }
   /* Checking RGB values */
@@ -1557,9 +1581,9 @@ static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, in
     if (a[i] < 0 || a[i] > 1 || a[i+m] < 0 || a[i+m] > 1 ||
 	a[i+2*m] < 0 || a[i+2*m]> 1) {
       Sciprintf("RGB values must be between 0 and 1\n");
-      ScilabXgc->Red = r;
-      ScilabXgc->Green = g;
-      ScilabXgc->Blue = b;
+      XGC->Red = r;
+      XGC->Green = g;
+      XGC->Blue = b;
       return;
     }
     SETCOLOR(i, (float)  (a[i]*255), (float)(a[i+m]*255),(float) (a[i+2*m]*255));
@@ -1569,16 +1593,16 @@ static void xset_colormap(integer *v1, integer *v2, integer *v3, integer *v4, in
   SETCOLOR(m, 0,0,0);
   /* White */
   SETCOLOR(m+1, 255,255,255);
-  ScilabXgc->Numcolors = m;
-  ScilabXgc->IDLastPattern = m - 1;
-  ScilabXgc->CmapFlag = 0;
-  ScilabXgc->NumForeground = m;
-  ScilabXgc->NumBackground = m + 1;
+  XGC->Numcolors = m;
+  XGC->IDLastPattern = m - 1;
+  XGC->CmapFlag = 0;
+  XGC->NumForeground = m;
+  XGC->NumBackground = m + 1;
   xset_usecolor((i=1,&i) ,PI0,PI0,PI0);
-  xset_alufunction1(&ScilabXgc->CurDrawFunction,PI0,PI0,PI0);
-  xset_pattern((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);  
-  xset_foreground((i=ScilabXgc->NumForeground+1,&i),PI0,PI0,PI0);
-  xset_background((i=ScilabXgc->NumForeground+2,&i),PI0,PI0,PI0);
+  xset_alufunction1(&XGC->CurDrawFunction,PI0,PI0,PI0);
+  xset_pattern((i=XGC->NumForeground+1,&i),PI0,PI0,PI0);  
+  xset_foreground((i=XGC->NumForeground+1,&i),PI0,PI0,PI0);
+  xset_background((i=XGC->NumForeground+2,&i),PI0,PI0,PI0);
   FREE(r); FREE(g); FREE(b);
 }
 
@@ -1778,7 +1802,7 @@ static void xget_empty(integer *verbose, integer *v2, integer *v3, double *dummy
   if ( *verbose ==1 ) Sciprintf("\n No operation ");
 }
 
-#define NUMSETFONC 28
+#define NUMSETFONC 32
 
 /** Table in lexicographic order **/
 
@@ -1795,8 +1819,11 @@ MissileGCTab_[] = {
   {"colormap",xset_colormap,xget_colormap},
   {"dashes",xset_dash_or_color,xget_dash_or_color}, /* obsolet */ 
   {"default",InitMissileXgc, xget_empty},
+  {"figure",xset_scilabFigure,xget_scilabFigure},/* NG */
   {"font",xset_font,xget_font},
   {"foreground",xset_foreground,xget_foreground},
+  {"gc",xset_scilabxgc,xget_scilabxgc},/* NG */
+  {"gccolormap",xset_gccolormap,xget_colormap}, /* NG */
   {"hidden3d",xset_hidden3d,xget_hidden3d},
   {"lastpattern",xset_empty,xget_last},
   {"line mode",xset_absourel,xget_absourel},
@@ -1806,6 +1833,7 @@ MissileGCTab_[] = {
   {"pixmap",xset_pixmapOn,xget_pixmapOn},
   {"thickness",xset_thickness,xget_thickness},
   {"use color",xset_usecolor,xget_usecolor},
+  {"version",xset_scilabVersion,xget_scilabVersion},/* NG */
   {"viewport",xset_viewport,xget_viewport},
   {"wdim",xset_windowdim,xget_windowdim},
   {"white",xset_empty,xget_last},
@@ -2853,6 +2881,8 @@ static void InitMissileXgc (integer *v1, integer *v2, integer *v3, integer *v4)
   /** we force CurColorStatus to the opposite value of col 
       to force usecolorPos to perform initialisations 
   **/
+  ScilabXgc->graphicsversion = 0;/* NG */ /* old */
+
   ScilabXgc->CurColorStatus = (i == 1) ? 0: 1;
   xset_usecolor(&i ,PI0,PI0,PI0);
   strcpy(ScilabXgc->CurNumberDispFormat,"%-5.2g");
@@ -3931,3 +3961,40 @@ static void CreateGtkGWindow(struct BCG *ScilabXgc) {
   start_sci_gtk(); /* be sure that gtk is started */
   GTK_Open(ScilabXgc,"unix:0",600,400);
 }
+/* NG beg */
+static void xset_scilabFigure(integer *v1,integer *v2,integer *v3,integer *v4,integer *v5,integer *v6,double *figure)
+{
+ figure=(double *)ScilabXgc->mafigure;
+}
+
+static void xget_scilabFigure(integer *verbose, integer *x,integer *narg, double *figure)
+{   
+  *narg=1;
+  figure=(double *)ScilabXgc->mafigure;
+}
+
+static void xset_scilabVersion(integer *vers, integer *v2, integer *v3, integer *v4)
+{
+  ScilabXgc->graphicsversion=*vers;
+}
+
+static void xget_scilabVersion(integer *verbose, integer *vers, integer *narg, double *dummy)
+{   
+  *narg =1 ;
+  *vers = ScilabXgc->graphicsversion;
+}
+
+static void xset_scilabxgc(integer *v1, integer *v2, integer *v3, integer *v4)
+{
+
+}
+static void xget_scilabxgc(integer *verbose, integer *x,integer *narg, double *dummy)
+{   
+  double **XGC;
+  
+  XGC=(double **)dummy;
+  *XGC= (double *)ScilabXgc;
+  
+}
+/* NG end */
+
