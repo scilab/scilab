@@ -20,6 +20,7 @@ OBJSF =	ajour.o bfgsd.o calbx.o calmaj.o fmulb1.o fmuls1.o fpq2.o \
 	pasr03.o dipvtf.o icse.o icse0.o icse1.o icse2.o zthz.o icscof.o \
 	icsei.o icsec2.o \
 	dogleg.o enorm.o fdjac1.o fdjac2.o hybrd.o hybrd1.o hybrj.o hybrj1.o \
+	dpmpar.o lmder.o lmdif.o lmpar.o qrsolv.o \
 	qform.o qrfac.o r1mpyq.o r1updt.o\
 	fmc11z.o fajc1.o fretc1.o fmani1.o fcomp1.o \
 	fmlag1.o nlis0.o fcube.o fmc11a.o fmc11b.o fmc11e.o \

@@ -23,6 +23,7 @@ OBJSF =	ajour.obj bfgsd.obj calbx.obj calmaj.obj fmulb1.obj fmuls1.obj fpq2.obj 
 	pasr03.obj dipvtf.obj icse.obj icse0.obj icse1.obj icse2.obj zthz.obj icscof.obj \
 	icsei.obj icsec2.obj \
 	dogleg.obj enorm.obj fdjac1.obj fdjac2.obj hybrd.obj hybrd1.obj hybrj.obj hybrj1.obj \
+	dpmpar.obj lmder.obj lmdif.obj lmpar.obj qrsolv.obj \
 	qform.obj qrfac.obj r1mpyq.obj r1updt.obj\
 	fmc11z.obj fajc1.obj fretc1.obj fmani1.obj fcomp1.obj \
 	fmlag1.obj nlis0.obj fcube.obj fmc11a.obj fmc11b.obj fmc11e.obj \
