@@ -1136,7 +1136,6 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
-      double precision round
       logical ref
       integer iadr,sadr
 c     
@@ -1199,7 +1198,7 @@ c
       if(it.eq.1) mn=2*mn
       do 10 i=1,mn
        i1=i-1
-       stk(lr+i1)=round(stk(l+i1))
+       stk(lr+i1)=anint(stk(l+i1))
  10   continue
       lstk(top+1)=lr+mn
       return
@@ -1280,7 +1279,7 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
-      double precision t,t1,round
+      double precision t,t1
       logical ref
       integer iadr,sadr
 c     
@@ -1348,7 +1347,7 @@ c
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
-      double precision t,t1,round
+      double precision t,t1
       logical ref
       integer iadr,sadr
 c     
@@ -4316,7 +4315,7 @@ c     .  check for zero imaginary part
 c     WARNING : argument of this interface may be passed by reference
       INCLUDE '../stack.h'
       integer id(nsiz)
-      double precision t,t1,round
+      double precision t,t1
       logical ref
       integer iadr,sadr
 c     
