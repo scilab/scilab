@@ -107,10 +107,16 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
 
   sciSetIsClipping (psubwin,0); 
 
-  if (strflag[1]!='0')
+  if (strflag[1]!='0'){
     strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+  }
+  
   pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
 
+  /* Adding F.Leray 07.04.04 */
+  if((pSUBWIN_FEATURE (psubwin)->strflag[1]=='3') || (pSUBWIN_FEATURE (psubwin)->strflag[1]=='4'))  /* Then isoview mode is enabled*/
+    pSUBWIN_FEATURE (psubwin)->isoview = TRUE;
+  
   sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ()));
 
 
