@@ -1,5 +1,5 @@
-// mer jan 14 17:25:41 CET 2004
-
+// ven mar 19 11:39:08 CET 2004
+set old_style on
 //====================================================
 // ../man/eng/arma/arma.xml
 //====================================================
@@ -603,7 +603,6 @@ frq=logspace(-3,2,200);
 [Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
 xbasc();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
-[sort(trzeros(Sys)),sort(roots(Sys2('num')))]  //zeros
 [sort(spec(Sys('A'))),sort(roots(Sys2('den')))] //poles
 
 dom=1/1000; // Sampling time 
@@ -1648,8 +1647,17 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-besseli(0.5:3,1:4)
-besseli(0.5:3,1:4,2)
+// example : display some I bessel functions
+x = linspace(0.01,10,5000)';
+y = besseli(0:4,x);
+ys = besseli(0:4,x,2);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
+   xtitle("Some modified bessel functions of the first kind")
+subplot(2,1,2)
+   plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
+   xtitle("Some modified scaled bessel functions of the first kind")
 
 xdel(winsid())
 
@@ -1658,8 +1666,28 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-besselj(0.5:3,1:4)
+// example #1 : display some bessel functions
+x = linspace(0,40,5000)';
+y = besselj(0:4,x);
+xbasc()
+plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
+xtitle("Some bessel functions of the first kind")
 
+// example #2 : use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
+//              to compare the algorithm of besselj(0.5,x) with
+//              a more direct formula 
+x = linspace(0.1,40,5000)';
+y1 = besselj(0.5, x);
+y2 = sqrt(2 ./(%pi*x)).*sin(x);
+er = abs((y1-y2)./y2);
+ind = find(er > 0 & y2 ~= 0);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y1,style=2)
+   xtitle("besselj(0.5,x)")
+subplot(2,1,2)
+   plot2d(x(ind), er(ind), style=2, logflag="nl")
+   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
 
 xdel(winsid())
 
@@ -1668,8 +1696,17 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-besselk(0.5:3,1:4)
-besselk(0.5:3,1:4,2)
+// example : display some K bessel functions
+x = linspace(0.01,10,5000)';
+y = besselk(0:4,x);
+ys = besselk(0:4,x,2);
+xbasc()
+subplot(2,1,1)
+   plot2d(x,y, style=2:6, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
+   xtitle("Some modified bessel functions of the second kind")
+subplot(2,1,2)
+   plot2d(x,ys, style=2:6, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
+   xtitle("Some modified scaled bessel functions of the second kind")
 
 xdel(winsid())
 
@@ -1678,7 +1715,12 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
 
-bessely(0.5:3,1:4)
+// example : plot severals Y bessels functions
+x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
+y = bessely(0:4,x);
+xbasc()
+plot2d(x,y, style=2:6, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
+xtitle("Some bessel functions of the second kind")
 
 xdel(winsid())
 
@@ -3460,8 +3502,6 @@ u1=file('open',TMPDIR+'/foo','unknown')
 u2=mopen(TMPDIR+'/foo1','wb')
 [units,typs,nams]=file()
 
-file('close',u1)
-mclose(u2)
 xdel(winsid())
 
 //====================================================
@@ -4367,6 +4407,17 @@ showprofile(foo)
 xdel(winsid())
 
 //====================================================
+// ../man/eng/functions/tree2code.xml
+//====================================================
+clear;lines(0);
+
+tree=macr2tree(help);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)')
+
+xdel(winsid())
+
+//====================================================
 // ../man/eng/functions/varargin.xml
 //====================================================
 clear;lines(0);
@@ -4519,7 +4570,6 @@ clear;lines(0);
    a.data_bounds=[-100,100,-2,2,-1,1]; //set the boundary values for the x, y and z coordinates.
    a.sub_tics=[5,0];
    a.labels_font_color=5;
-   // Modified by F.Leray on 16.02.04 a.grid=2;
    a.grid=[2 2];
    a.box="off";
    // Example with 3D axes
@@ -4534,7 +4584,7 @@ clear;lines(0);
    a.labels_font_color=5;
    a.children.children.thickness=4;
    a.children.children.polyline_style=3;
-   a.view="3d"; //return te the 3d view // F.Leray Pb here because of thickness and polyline_style
+   a.view="3d"; //return te the 3d view
    a.children.children.thickness=1;
    a.children.children.foreground=2;
    a.grid=[1 6 3]; //make z-grid
@@ -5203,6 +5253,61 @@ clear;lines(0);
 xdel(winsid())
 
 //====================================================
+// ../man/eng/graphics/gda.xml
+//====================================================
+clear;lines(0);
+     
+    a=gda() // get the handle of the model axes 
+      // setting its' properties
+    a.background=31;
+    a.box="off";
+    a.rotation_angles=[70 10];
+    a.tics_color=2;
+    a.labels_font_size=3;
+    a.labels_font_color=5;
+    a.sub_tics=[5 5 3];
+    a.x_location="top";
+    set("figure_style","new")
+    subplot(211)
+    plot2d() //create an axes entity
+    subplot(212)
+    plot3d1() //create a second axes entity
+    a.grids=[5 5 5]; // setting other model's properties
+    xbasc()
+    t=0:0.1:5*%pi; 
+    plot2d(sin(t),cos(t),t/10) 
+    set(a,"default_values",1); // return to the  default values of the model
+                               // see sda() function
+    xbasc()
+    plot2d(sin(t),cos(t),t/10)
+
+xdel(winsid())
+
+//====================================================
+// ../man/eng/graphics/gdf.xml
+//====================================================
+clear;lines(0);
+   
+   set old_style off
+   f=gdf() // get the handle of the model figure 
+   // setting its' properties
+   f.background=7;
+   f.figure_name="Function gdf()";
+   f.figure_position=[-1 100];
+   f.auto_resize="off";
+   f.figure_size=[300 461];
+   f.axes_size=[600 400];
+   plot2d() //create a figure
+   xset("window",1)  
+   plot3d() //create a second figure
+   set(f,"default_values",1); // return to the  default values of figure's model
+                              // see sdf() function
+   xset("window",2)
+   plot2d() 
+
+xdel(winsid())
+
+//====================================================
 // ../man/eng/graphics/genfac3d.xml
 //====================================================
 clear;lines(0);
@@ -5649,32 +5754,13 @@ clear;lines(0);
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
  
-  // h=a.children //get the handle of the param3d entity
-  // h.rotation_angles=[65,75];
-  // h.surface_color=[3 5];
-  // h.flag=[1,2,3];
-  // h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-  // h.flag=[2 5 0];
-  // h.thickness = 2;
-
-  // F.Leray Corrections
-  // F.Leray Pb here: In fact we do not create a Surface but one or several 3D Polylines
-  // Pb comes when wanting to access the fields "surface_color" or "flag" for example
-  // in function sciSet (cf. matdes.c). 
-  // Question 1: Are these properties accessible from a SCI_PARAM3D1 ?
-  // Question 2: Is "flag" obsolete and replaced by "color_mode"?
-  // see sciCall.c and matdes.c
-
-     a.rotation_angles=[65,75];
-     h=a.children(1) //get the handle of the Agregation composed of 2
-     // Polyline (SCI_PARAM3D1 only generates polylines!)
-     //h.surface_color=[3 5];
-     //h.flag=[1,2,3];
-     a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
-     //h.flag=[2 5 0];
-     //h.thickness = 2;	// changed by F.Leray to:
-     h.children.thickness = 2;
-
+   h=a.children //get the handle of the param3d entity
+   h.rotation_angles=[65,75];
+   h.surface_color=[3 5];
+   h.flag=[1,2,3];
+   h.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   h.flag=[2 5 0];
+   h.thickness = 2;
   
 
 xdel(winsid())
@@ -6076,6 +6162,70 @@ xdel(winsid())
 //====================================================
 // ../man/eng/graphics/sd2sci.xml
 //====================================================
+
+//====================================================
+// ../man/eng/graphics/sda.xml
+//====================================================
+clear;lines(0);
+   
+  x=[0:0.1:2*%pi]';
+  set old_style off
+  f=get("default_figure"); // get the handle of the model figure 
+  a=get("default_axes"); // get the handle of the model axes 
+    // setting its' properties
+  f.figure_size=[1200 900];
+  f.figure_position=[0 0]; 
+  a.background=4; 
+  a.box="off";
+  a. tics_color=5;
+  a.labels_font_color=25;
+  a.labels_font_size=4;
+  a.sub_tics=[7 3];
+  a.x_location="middle";
+  a.y_location="middle";
+  a.tight_limits="on";
+  a.thickness=2;
+  a.grid=[-1 24];
+  subplot(221);
+  plot2d(x-2,sin(x))
+  subplot(222);
+  plot2d(x-6,[2*cos(x)+.7 2*cos(x)+.9 cos(2*x) .2+sin(3*x)],[-1,-2,-3 -4])
+  sda() // return to the  default values of the axes' model
+  subplot(223);
+  plot2d(x-2,sin(x))
+  subplot(224);
+  plot2d(x-6,[2*cos(x)+.7 2*cos(x)+.9 cos(2*x) .2+sin(3*x)],[-1,-2,-3 -4])
+  xdel(0)
+  plot2d(x-2,sin(x))
+  
+
+xdel(winsid())
+
+//====================================================
+// ../man/eng/graphics/sdf.xml
+//====================================================
+clear;lines(0);
+   
+   x=[0:0.1:2*%pi]';
+   set old_style off
+   f=get("default_figure"); // get the handle of the model figure 
+   a=get("default_axes"); // get the handle of the model axes 
+     // setting its' properties
+   f.background=4;
+   f.auto_resize="off";
+   f.figure_size=[400 300];
+   f.axes_size=[600 400];
+   f.figure_position=[0 -1];
+   a.x_location="top";
+   a.y_location="left";
+   for (i=1:6)
+     xset("window",i) // create a figure with the identifier i
+     plot2d(x,[sin(x) cos(x)],[i -i])
+     xclick();
+     if i == 4, sdf(); end // return to the  default values of the figure's model
+    end
+    
+xdel(winsid())
 
 //====================================================
 // ../man/eng/graphics/secto3d.xml
@@ -6602,6 +6752,22 @@ xdel(winsid())
 //====================================================
 // ../man/eng/graphics/xlfont.xml
 //====================================================
+clear;lines(0);
+
+// Caution : this example may not work if your system have not
+//           the schoolbook bold font 
+if MSDOS then
+   xlfont("Century Schoolbook Bold",10)
+else
+   xlfont("-adobe-new century schoolbook-bold-r-normal-*-%s-*-75-75-*-*-iso8859-1",10)
+end
+xbasc()
+xset("font", 6, 2)  // use helvetica at 12 pts
+plot2d()
+xset("font", 10, 4) // use Schoolbook bold at 18 pts
+xtitle("plot2d demo","x","y")
+
+xdel(winsid())
 
 //====================================================
 // ../man/eng/graphics/xload.xml
@@ -11020,6 +11186,7 @@ xdel(winsid())
 clear;lines(0);
 
 getversion()
+[version,opts]=getversion()
 
 xdel(winsid())
 
@@ -13840,6 +14007,10 @@ text='button .foo2.b -text close -command {destroy .foo2}';
 TK_EvalStr(text);
 TK_EvalStr('pack .foo2.b');
 
+//kill the windows by program
+TK_EvalStr('destroy .foo1');
+TK_EvalStr('destroy .foo2');
+
 xdel(winsid())
 
 //====================================================
@@ -13859,6 +14030,10 @@ text=TK_GetVar('tvar')
 // retrieve the variable value
 // change the entry text and repeat the last command ...
 
+//delete the toplevel TK window.
+TK_EvalStr('destroy .tst1')
+
+
 xdel(winsid())
 
 //====================================================
@@ -13873,6 +14048,11 @@ TK_EvalStr('label .tst2.l -textvariable tvar');
 TK_EvalStr('pack .tst2.l');
 // pack the label widget. It appears on the screen.
 TK_SetVar('tvar','This text has been set directly within scilab');
+
+//destroy toplevel  TK window. 
+TK_EvalStr('destroy .tst2')
+
+
 
 xdel(winsid())
 
@@ -14334,8 +14514,8 @@ xdel(winsid())
 //====================================================
 clear;lines(0);
  
-   scipad(SCI+'/scilab.star')
-
+   scipad SCI/scilab.star 
+]]>
 xdel(winsid())
 
 //====================================================
@@ -14810,18 +14990,18 @@ clear;lines(0);
    f2=[10 1 1]
    f3=[1 ; 15]
    s=samplef(15,a,f1)
-   s=samplef(15,a,f2,'c')
-   s=samplef(15,a,f3,'r')
+   s=samplef(15,a,f2,'r')
+   s=samplef(15,a,f3,'c')
 
 xdel(winsid())
 
 //====================================================
 // ../man/eng/statistics/samwr.xml
 //====================================================
-//clear;lines(0);
-//    a=[0.33 1.24 2.1 1.03]
-//    s=samwr(4,12,a)
-// xdel(winsid())
+clear;lines(0);
+    a=[0.33 1.24 2.1 1.03]
+    s=samwr(4,12,a)
+xdel(winsid())
 
 //====================================================
 // ../man/eng/statistics/st_deviation.xml

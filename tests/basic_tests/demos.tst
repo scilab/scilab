@@ -81,6 +81,9 @@ for dia=dialogs
   %IO=[I,O];
   ierr=execstr('exec(''SCI/demos/alldems.dem'')','errcatch')
   if ierr<>0 then 
+     write(%io(2),'Error had occurred at line '+sci2exp(LineCount)+' of file '+dia)
+  end
+  if ierr<>0 then 
     write(%io(2),'Error had occurred at line '+LineCount+' of file '+fil)
   end
   file('close',I)
