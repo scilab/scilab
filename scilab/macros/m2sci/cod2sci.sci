@@ -12,7 +12,6 @@ while ilst<nlst then
   select op(1)
   case '1' then //stackp
 //    write(6,'stackp '+op(2));
-
     prev=lst(ilst-1)
     if size(prev,'*')==1 then prev=[prev ' '],end
     if prev(1:2)==['5','25']|prev(1)=='20' then
@@ -106,71 +105,74 @@ while ilst<nlst then
   case '18' then   
   
   case '29' then
+    pause
     ip=','//code2str(evstr(op(2)))
     op=matrix(op(3:$),2,-1)
     lhs=size(op,2)
-    LHS=[]
-    iind=0;NV=[]
-    for k=1:lhs
-      name0=op(1,k)
-      if funptr(name0)<>0 then name='%'+name0,else name=name0,end
-      nv=find(name0==vnms(:,2))
-      if nv==[] then nv=size(vnms,1)+1,end
-      nv=nv($)
-      vnms(nv,:)=[name,name0]
-      NV(k)=nv
+    if stk($-lhs+1)(2)~='-2' then
+      LHS=[]
+      iind=0;NV=[]
+      for k=1:lhs
+	name0=op(1,k)
+	if funptr(name0)<>0 then name='%'+name0,else name=name0,end
+	nv=find(name0==vnms(:,2))
+	if nv==[] then nv=size(vnms,1)+1,end
+	nv=nv($)
+	vnms(nv,:)=[name,name0]
+	NV(k)=nv
 
-      rhs=evstr(op(2,k))
-      if rhs==0 then
-	LHS=[name,LHS]
-      else
-	I=[];
-	if rhs==1&type(stk(iind+1)(1))==1 then //stk(iind) contains a path
-	  iind=iind+1,
-	  n=stk(iind)(1)(1)
-	  m=stk(iind)(1)(2)
-	  if m>1 then n=n-1,end
-	  ex=name
-	  for kk=1:n
-	    ik=stk(iind)(kk+1)
-	    if stk(iind)(kk+1)(5)=='10' then 
-	      ex=ex+'.'+evstr(ik(1)) 
-	    else 
-	      ex=ex+'('+ik(1)+')'
-	    end
-	  end
-	  if m>1 then
-	    args=[]
-	    for kk=1:m,args=[args stk(iind)(n+1+kk)(1)],end
-	    ex=ex+'('+makeargs(args)+')'
-	  end
-	  LHS=[ex,LHS]
+	rhs=evstr(op(2,k))
+	if rhs==0 then
+	  LHS=[name,LHS]
 	else
-	  for i=1:rhs, 
+	  I=[];
+	  if rhs==1&type(stk(iind+1)(1))==1 then //stk(iind) contains a path
 	    iind=iind+1,
-	    I=[I,stk(iind)(1)];
+	    n=stk(iind)(1)(1)
+	    m=stk(iind)(1)(2)
+	    if m>1 then n=n-1,end
+	    ex=name
+	    for kk=1:n
+	      ik=stk(iind)(kk+1)
+	      if stk(iind)(kk+1)(5)=='10' then 
+		ex=ex+'.'+evstr(ik(1)) 
+	      else 
+		ex=ex+'('+ik(1)+')'
+	      end
+	    end
+	    if m>1 then
+	      args=[]
+	      for kk=1:m,args=[args stk(iind)(n+1+kk)(1)],end
+	      ex=ex+'('+makeargs(args)+')'
+	    end
+	    LHS=[ex,LHS]
+	  else
+	    for i=1:rhs, 
+	      iind=iind+1,
+	      I=[I,stk(iind)(1)];
+	    end
+	    LHS=[name+'('+strcat(I,',')+')',LHS]
 	  end
-	  LHS=[name+'('+strcat(I,',')+')',LHS]
-	end
 
+	end
       end
-    end
-    if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
-    RHS=stk(iind+1)(1),
-    for k=1:lhs
-      expk=stk(iind+k)
-      nv=NV(k)
-      vtps(nv)=list(expk(5),expk(3),expk(4),0)
-    end
-    if stripblanks(RHS)<>'' then
-      if LHS=='ans' then
-	txt=[txt;RHS]
+      if lhs>1 then  LHS='['+strcat(LHS,',')+']',end
+      RHS=stk(iind+1)(1),
+      for k=1:lhs
+	expk=stk(iind+k)
+	nv=NV(k)
+	vtps(nv)=list(expk(5),expk(3),expk(4),0)
+      end
+      if stripblanks(RHS)<>'' then
+	if LHS=='ans' then
+	  txt=[txt;RHS]
+	else
+	  txt=[txt;LHS+' = '+RHS]
+	end
       else
-	txt=[txt;LHS+' = '+RHS]
-      end
-    else
-      if ilst<nlst then
-	if lst(ilst+1)(1)=='15' then ilst=ilst+1,end
+	if ilst<nlst then
+	  if lst(ilst+1)(1)=='15' then ilst=ilst+1,end
+	end
       end
     end
   case '99' then //return
