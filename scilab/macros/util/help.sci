@@ -72,7 +72,7 @@ function browsehelp(path,key)
   global LANGUAGE INDEX 
   global %gtkhelp
 
-  // when %gtk is set we use the prefered 
+  // when Scilab is built with gtk we use the prefered 
   // broswer given by %gtkhelp
   // when %gtkhelp is [] a choose menu is given 
   global %gtkhelp;
@@ -86,12 +86,12 @@ function browsehelp(path,key)
   
   // add tcktk if scilab was compiled with tcl/tk 
   
-  if %tk then gtk_modes=[gtk_modes;'tcltk'];end 
+  if with_tk() then gtk_modes=[gtk_modes;'tcltk'];end 
     
   [lhs,rhs]=argn(0);
   
   // ask for an help mode 
-  if %gtk 
+  if with_gtk ()
     if %gtkhelp<>[] then 
       help_mode = %gtkhelp;
     else
@@ -105,15 +105,15 @@ function browsehelp(path,key)
   end
   if or(sciargs()=="-nw") then
     // the no window case 
-    if %gtk then 
+    if  with_gtk () then 
       gtk_help(path,key);
     else 
        write(%io(2),mgetl(path))
     end
   else
-     if %gtk then 
+     if with_gtk() then 
        gtk_help(path,key);
-     elseif %tk then 
+     elseif  with_tk()  then 
 	tcltk_help(path,key);
      else
 	error(999,'I cannot browse help files');
