@@ -32,7 +32,7 @@ case 'set' then
   end
 case 'define' then
   model=scicos_model()
-  model.sim=list('eselect',-1)
+  model.sim=list('eselect',-2)
   model.in=1
   model.evtin=1
   model.evtout=[1;1]
