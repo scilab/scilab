@@ -38,11 +38,11 @@ void cosini(double *);
 void idoit(double *);
 void cosend(double *);
 void cdoit(double *);
-void doit(double *,integer *);
+void doit(double *);
 void ddoit(double *);
-void edoit(double *,integer *,integer *);
+void edoit(double *,integer *);
 void odoit(double *,double *,double *,double *);
-void ozdoit(double *,double *,double *,integer *,integer *);
+void ozdoit(double *,double *,double *,integer *);
 void zdoit(double *,double *,double *,double *);
 void reinitdoit(double *,integer *);
 void cossimdaskr(double *);
@@ -144,6 +144,11 @@ integer *pointer_xproperty;
 integer n_pointer_xproperty;
 
 static integer *block_error;
+
+void call_debug_scicos(double *, double *, double *, double *,double *,integer
+ *,integer,integer,integer);
+
+static integer debug_block;
 
 /* Subroutine */ 
 int C2F(scicos)
@@ -315,6 +320,8 @@ int C2F(scicos)
       return 0;
     }
   }
+  debug_block=-1; /* no debug block for start */
+
   for (kf = 0; kf < nblk; ++kf) {
     C2F(curblk).kfun = kf+1;
     i=funptr[kf];
@@ -342,6 +349,12 @@ int C2F(scicos)
 	Blocks[kf].funpt=sciblk4;
 	Blocks[kf].type=4;
 	break;
+      case 99: /* debugging block */
+       Blocks[kf].funpt=sciblk4;
+       Blocks[kf].type=4;
+       debug_block=kf;
+       break;
+
       case 10005:
 	Blocks[kf].funpt=sciblk4;
 	Blocks[kf].type=10004;
@@ -619,7 +632,6 @@ int C2F(scicos)
   static integer flag__;
   static integer i,jj;
   static integer ierr1;
-  static integer urg;
   static integer i2;
   /*     Copyright INRIA */
 
@@ -635,8 +647,6 @@ int C2F(scicos)
 
   /*     initialisation (propagation of constant blocks outputs) */
 
-
-  urg = 0;
   for (jj = 1; jj <= niord; ++jj) {
     C2F(curblk).kfun = iord[jj];
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
@@ -662,7 +672,6 @@ int C2F(scicos)
 	  i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
-	++urg;
 	i2 =i+ clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -670,16 +679,13 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	doit(told);
+	if (*ierr != 0) {
+	  return;
+	}
       }
     }
-  }
-  
-  while (urg > 0) {
-    doit(told,&urg);
-    if (*ierr != 0) {
-      return;
-    }
-  }
+  }  
 } /* idoit_ */
 
 /* Subroutine */ void cossim(told)
@@ -1507,31 +1513,29 @@ int C2F(scicos)
   }
 } /* cosend_ */
 
-/* Subroutine */ void doit(told,urg)
+/* Subroutine */ void doit(told)
      double *told;
-     integer *urg;
 {
   /* System generated locals */
   integer i,i2;
 
   /* Local variables */
-  static integer flag__, keve, nord;
+  static integer flag__, nord;
 
   static integer ierr1;
-  static integer ii;
+  integer ii, kever;
 
   /* Function Body */
-  --(*urg);
-  keve = *pointi;
-  *pointi = evtspt[keve];
-  evtspt[keve] = -1;
+  kever = *pointi;
+  *pointi = evtspt[kever];
+  evtspt[kever] = -1;
 
-  nord = ordptr[keve + 1] - ordptr[keve];
+  nord = ordptr[kever + 1] - ordptr[kever];
   if (nord == 0) {
     return;
   }
 
-  for (ii = ordptr[keve]; ii <=ordptr[keve + 1] - 1 ; ++ii) {
+  for (ii = ordptr[kever]; ii <=ordptr[kever + 1] - 1 ; ++ii) {
     C2F(curblk).kfun = ordclk[ii];
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
       nclock = abs(ordclk[ii + nordclk]);
@@ -1543,10 +1547,7 @@ int C2F(scicos)
 	return;
       }
     }
-  }
-
-  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
-    C2F(curblk).kfun = ordclk[ii];
+  
     /*     .     Initialize tvec */
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
@@ -1561,12 +1562,15 @@ int C2F(scicos)
 	  i=max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
-	++(*urg);
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
 	  /*     !                 event conflict */
 	  *ierr = 3;
+	  return;
+	}
+	doit(told);
+	if (*ierr != 0) {
 	  return;
 	}
       }
@@ -1583,14 +1587,9 @@ int C2F(scicos)
   /* Local variables */
   static integer flag__;
   static integer ierr1;
-
   static integer i,jj;
-  static integer urg;
-
-
-
+  
   /* Function Body */
-  urg = 0;
   for (jj = 1; jj <= ncord; ++jj) {
     C2F(curblk).kfun = cord[jj];
     nclock = cord[jj + ncord];
@@ -1617,7 +1616,6 @@ int C2F(scicos)
 	  i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
-	++urg;
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -1625,14 +1623,11 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	doit(told);
+	if (*ierr != 0) {
+	  return;
+	}
       }
-    }
-  }
-
-  while (urg > 0) {
-    doit(told,&urg);
-    if (*ierr != 0) {
-      return;
     }
   }
 } /* cdoit_ */
@@ -1645,22 +1640,19 @@ int C2F(scicos)
   integer i2;
 
   /* Local variables */
-  static integer flag__, keve, kiwa;
+  static integer flag__, kiwa;
 
   static integer i;
-  static integer  ii, urg;
+  static integer  ii, keve;
 
 
   /* Function Body */
   kiwa = 0;
-  urg = 1;
- 
-  while (urg > 0) {
-    edoit(told,&urg,&kiwa);
-    if (*ierr != 0) {
-      return;
-    }
+  edoit(told,&kiwa);
+  if (*ierr != 0) {
+    return;
   }
+  
   /*     .  update continuous and discrete states on event */
   if (kiwa == 0) {
     return;
@@ -1701,34 +1693,33 @@ int C2F(scicos)
   }
 } /* ddoit_ */
 
-/* Subroutine */ void edoit(told,urg, kiwa)
+/* Subroutine */ void edoit(told,kiwa)
      double *told;
-     integer *urg, *kiwa;
+     integer *kiwa;
 {
   /* System generated locals */
   integer i2, i3;
   double d__1;
 
   /* Local variables */
-  static integer flag__, keve;
+  static integer flag__;
   static integer nord;
 
   static integer ierr1, i;
-  static integer ii;
-
+  integer kever, ii;
+  
   /* Function Body */
-  --(*urg);
-  keve = *pointi;
-  *pointi = evtspt[keve];
-  evtspt[keve] = -1;
+  kever = *pointi;
+  *pointi = evtspt[kever];
+  evtspt[kever] = -1;
 
-  nord = ordptr[keve + 1] - ordptr[keve];
+  nord = ordptr[kever + 1] - ordptr[kever];
   if (nord == 0) {
     return;
   }
-  iwa[*kiwa] = keve;
+  iwa[*kiwa] = kever;
   ++(*kiwa);
-  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
+  for (ii = ordptr[kever]; ii <= ordptr[kever + 1] - 1; ++ii) {
     C2F(curblk).kfun = ordclk[ii];
 
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
@@ -1741,10 +1732,7 @@ int C2F(scicos)
 	return;
       }
     }
-  }
-
-  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
-    C2F(curblk).kfun = ordclk[ii ];
+ 
     /*     .     Initialize tvec */
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] >= 0) {
@@ -1786,7 +1774,6 @@ int C2F(scicos)
 	  i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		    Blocks[C2F(curblk).kfun - 1].nevout),1);
 	}
-	++(*urg);
 	i2 = i + clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -1794,6 +1781,7 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	edoit(told,kiwa);
       }
     }
   }
@@ -1809,13 +1797,10 @@ int C2F(scicos)
 
   /* Local variables */
   static integer flag__, keve, kiwa;
-
   static integer ierr1, i;
   static integer ii, jj;
-  static integer urg;
-
+  
   /* Function Body */
-  urg = 0;
   kiwa = 0;
 
   for (jj = 1; jj <= noord; ++jj) {
@@ -1833,7 +1818,6 @@ int C2F(scicos)
 
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] < 0) {
-	++urg;
 	if(Blocks[C2F(curblk).kfun - 1].nmode > 0){
 	  i2 = Blocks[C2F(curblk).kfun - 1].mode[0] + 
 	    clkptr[C2F(curblk).kfun] - 1;
@@ -1856,12 +1840,11 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	ozdoit(xtd, xt,told, &kiwa);
       }
     }
   }
-  while (urg > 0) {
-    ozdoit(xtd, xt,told, &urg, &kiwa);
-  }
+  
   /*     .  update states derivatives */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
@@ -1912,25 +1895,22 @@ int C2F(scicos)
 
   static integer ierr1, i;
   static integer ii, jj;
-  static integer urg;
-
+  
   /* Function Body */
-  urg = 0;
   kiwa = 0;
-
   for (jj = 1; jj <= noord; ++jj) {
     C2F(curblk).kfun = oord[jj];
     nclock = oord[jj + noord];
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
       flag__ = 1;
       callf(told, xd, x, x,x,&flag__);
-
+      
       if (flag__ < 0) {
 	*ierr = 5 - flag__;
 	return;
       }
     }
-
+    
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
       if (funtyp[C2F(curblk).kfun] == -1) {
 	if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
@@ -1942,7 +1922,6 @@ int C2F(scicos)
 	i= max(min((integer) outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]],
 		  Blocks[C2F(curblk).kfun - 1].nevout),1);
       }
-      ++urg;
       if(Blocks[C2F(curblk).kfun - 1].nmode>0){
 	Blocks[C2F(curblk).kfun - 1].mode[0]=i;
       }
@@ -1953,11 +1932,13 @@ int C2F(scicos)
 	*ierr = 3;
 	return;
       }
+      doit(told);
+      if (*ierr != 0) {
+	return;
+      }
     }
   }
-  while (urg > 0) {
-    doit(told,&urg);
-  }
+  
   /*     .  re-initialize */
   for (ii = 1; ii <= noord; ++ii) {
     C2F(curblk).kfun = oord[ii];
@@ -1995,34 +1976,33 @@ int C2F(scicos)
   }
 } /* reinitdoit_ */
 
-/* Subroutine */ void ozdoit(xtd, xt,told,urg,  kiwa)
+/* Subroutine */ void ozdoit(xtd, xt, told, kiwa)
      double *xtd, *xt;
      double *told;
-     integer *urg, *kiwa;
+     integer *kiwa;
 {
   /* System generated locals */
   integer i2;
 
   /* Local variables */
-  static integer flag__, keve, nord;
+  static integer flag__, nord;
 
-  static integer ierr1;
-  static integer i,ii; 
+  static integer ierr1, i;
+  integer ii, kever; 
 
   /* Function Body */
-  --(*urg);
-  keve = *pointi;
-  *pointi = evtspt[keve];
-  evtspt[keve] = -1;
+  kever = *pointi;
+  *pointi = evtspt[kever];
+  evtspt[kever] = -1;
 
-  nord = ordptr[keve + 1] - ordptr[keve];
+  nord = ordptr[kever + 1] - ordptr[kever];
   if (nord == 0) {
     return;
   }
-  iwa[*kiwa] = keve;
+  iwa[*kiwa] = kever;
   ++(*kiwa);
 
-  for (ii = ordptr[keve]; ii <= ordptr[keve + 1] - 1; ++ii) {
+  for (ii = ordptr[kever]; ii <= ordptr[kever + 1] - 1; ++ii) {
     C2F(curblk).kfun = ordclk[ii];
     if (outptr[C2F(curblk).kfun + 1] - outptr[C2F(curblk).kfun] > 0) {
       nclock = abs(ordclk[ii + nordclk]);
@@ -2060,7 +2040,6 @@ int C2F(scicos)
 	    
 	  }
 	}
-	++(*urg);
 	i2 =i+clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -2068,6 +2047,7 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	ozdoit(xtd, xt,told, kiwa);
       }
     }
   }
@@ -2083,17 +2063,12 @@ int C2F(scicos)
 
   /* Local variables */
   static integer flag__, keve, kiwa;
-
   static integer ierr1, i,j;
   static integer ii, jj;
-  static integer urg;
-
+  
   /* Function Body */
   C2F(dset)(&ng, &c_b14,g , &c__1);
 
-
-
-  urg = 0;
   kiwa = 0;
   for (jj = 1; jj <= nzord; ++jj) {
     C2F(curblk).kfun = zord[jj];
@@ -2131,7 +2106,6 @@ int C2F(scicos)
 	    i=Blocks[C2F(curblk).kfun - 1].mode[0];
 	  }
 	}
-	++(urg);
 	i2 =i+clkptr[C2F(curblk).kfun] - 1;
 	putevs(told, &i2, &ierr1);
 	if (ierr1 != 0) {
@@ -2139,14 +2113,11 @@ int C2F(scicos)
 	  *ierr = 3;
 	  return;
 	}
+	ozdoit(xtd, xt,told, &kiwa);
       }
     }
   }
-  
-  
-  while (urg > 0) {
-    ozdoit(xtd, xt,told, &urg, &kiwa);
-  }
+    
   /*     .  update zero crossing surfaces */
   for (ii = 1; ii <= nzord; ++ii) {
     C2F(curblk).kfun = zord[ii];
@@ -2259,14 +2230,22 @@ callf(t,xtd,xt,residual,g,flag)
   ScicosF4 loc4;
   
   kf=C2F(curblk).kfun;
+  if(debug_block==kf-1) return;  /* a debugging block */
+
+  flagi=*flag; /* flag 7 implicit initialization */
+  if(flagi==7 && Blocks[kf-1].type<10000) *flag=0;
+
   if ( cosd > 1){
     sciprint("block %d is called ",kf);
     sciprint("with flag %d ",*flag);
     sciprint("at time %f \r\n",*t);
+    if(debug_block>-1){
+      sciprint("Entering the block \r\n");
+      call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
+    }
   }
 
-  flagi=*flag; /* flag 7 implicit initialization */
-  if(flagi==7 && Blocks[kf-1].type<10000) *flag=0;
+  
   C2F(scsptr).ptr=Blocks[kf-1].scsptr; /* set scilab function adress for sciblk */
 
   block_error=flag;
@@ -2309,6 +2288,15 @@ callf(t,xtd,xt,residual,g,flag)
 	Blocks[kf-1].xd=&xtd[xptr[kf]-1];
 	Blocks[kf-1].res=&residual[xptr[kf]-1];
 	(*loc4)(&Blocks[kf-1],*flag);
+      }
+    }
+    if ( cosd > 1){
+      sciprint("block %d is called ",kf);
+      sciprint("with flag %d ",*flag);
+      sciprint("at time %f \r\n",*t);
+      if(debug_block>-1){
+	sciprint("Leaving the block \r\n");
+	call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       }
     }
     return;
@@ -2591,9 +2579,65 @@ callf(t,xtd,xt,residual,g,flag)
   for(in=0;in<Blocks[kf-1].nevout;++in){
     Blocks[kf-1].evout[in]=Blocks[kf-1].evout[in]-*t;
   }
+  if ( cosd > 1){
+    sciprint("block %d is called ",kf);
+    sciprint("with flag %d ",*flag);
+    sciprint("at time %f \r\n",*t);
+    if(debug_block>-1){
+      sciprint("Leaving the block \r\n");
+      call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
+    }
+  }
 }
 
-/* ? */
+
+void call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,deb_blk)
+     integer *flag,kf,flagi,deb_blk;
+     double *t,*xtd,*xt,*residual,*g;
+{
+  voidf loc ; 
+  int solver=C2F(cmsolver).solver,k;
+  ScicosF4 loc4;
+
+  C2F(scsptr).ptr=Blocks[deb_blk].scsptr;
+  loc=Blocks[deb_blk].funpt;
+  scicos_time=*t;
+  Blocks[kf-1].nevprt=nclock;
+  loc4 = (ScicosF4) loc;
+  if(Blocks[kf-1].ng>0){
+    Blocks[kf-1].g=&g[zcptr[kf]-1];
+  }
+  if(Blocks[kf-1].nx==0){
+    (*loc4)(&Blocks[kf-1],*flag);
+  } 
+  else {
+    Blocks[kf-1].x=&xt[xptr[kf]-1];
+    if(*flag==0 && solver==100) {
+      Blocks[kf-1].res=&residual[xptr[kf]-1];
+      Blocks[kf-1].xd=&residual[xptr[kf]-1];
+      (*loc4)(&Blocks[kf-1],*flag);
+      Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+      if(flagi!=7) {
+	for (k=0;k<Blocks[kf-1].nx;k++) {
+	  Blocks[kf-1].res[k]=Blocks[kf-1].res[k]-Blocks[kf-1].xd[k];
+	}
+      }
+      else {
+	for (k=0;k<Blocks[kf-1].nx;k++) {
+	  Blocks[kf-1].xd[k]=Blocks[kf-1].res[k];
+	} 
+      }
+    }
+    else {
+      Blocks[kf-1].xd=&xtd[xptr[kf]-1];
+      (*loc4)(&Blocks[kf-1],*flag);
+    }
+  }
+}
+  
+
+
+
 
 integer C2F(funnum)(fname)
      char * fname;
