@@ -221,7 +221,7 @@
   <P>
     The overloading function associated to the insertion syntax
     <VERB>a(i1,...,in)=b</VERB>  has the following calling sequence: 
-    <VERB>a=%&lt;type_of_a&gt;_i_&lt;type_of_b&gt;(i1,...,in,b,a)</VERB>.
+      <VERB>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</VERB>.
   </P>
   <P>
   </P>
@@ -248,7 +248,9 @@ deff('x=%c_sin(a)','x=''sin(''+a+'')''')
 sin('2*x')
    ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>disp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>symbols</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>tlist</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>disp</LINK> </SEE_ALSO_ITEM> 
+    <SEE_ALSO_ITEM> <LINK>symbols</LINK> </SEE_ALSO_ITEM>
   </SEE_ALSO>
 
 </MAN>
