@@ -694,6 +694,7 @@ function Code=c_make_outtb()
 	'  double  rdouttb['+string(size(outtb,1)+1)+']; ';
 	'  double  *args[100]; '; 
 	'  integer sz[100]; ';
+	'  integer nport; '; 
 	'  integer ntvec; '; 
 	'  integer nevprt=0; '; 
 	' '; 
@@ -1150,7 +1151,7 @@ function  [ok,XX]=do_compile_superblock(XX)
   elseif szclkIN==[]  then
     //superblock has no Event input, add a fictious clock
     bllst($+1)=scicos_model(sim=list('bidon',1),evtout=1,..
-			    blocktype='d',dep_ut=[%f %f])
+			    firing=0,blocktype='d',dep_ut=[%f %f])
     howclk=size(bllst);
   elseif szclkIN==1  then
     howclk=allhowclk;
@@ -2046,22 +2047,27 @@ endfunction
 function Code=make_outevents()
 //generates skeleton of external world events handling function
   z='0'
+  if szclkIN==[] then
+    newszclkIN=0;
+  else
+    newszclkIN=szclkIN;
+  end 
   Code=[ '/*'+part('-',ones(1,40))+'  External events handling function */ ';
 	 'void '
 	 rdnom+'_events(int *nevprt,double *t)';
 	 '{'
 	 '/*  set next event time and associated events ports  '
-	 ' *  nevprt has binary expression b1..b'+string(szclkIN)+' where bi is a bit '
+	 ' *  nevprt has binary expression b1..b'+string(newszclkIN)+' where bi is a bit '
 	 ' *  bi is set to 1 if an activation is received by port i. Note that'
 	 ' *  more than one activation can be received simultaneously '
 	 ' *  Caution: at least one bi should be equal to one */'
 	 ''
-	 '    int i,p,b[]={'+strcat(z(ones(1,szclkIN)),',')+'};'
+	 '    int i,p,b[]={'+strcat(z(ones(1,newszclkIN)),',')+'};'
 	 ''
 	 '    b[0]=1;'
 	 '    *t = *t + 0.1;'
 	 '    *nevprt=0;p=1;'
-	 '    for (i=0;i<'+string(szclkIN)+';i++) {'
+	 '    for (i=0;i<'+string(newszclkIN)+';i++) {'
 	 '      *nevprt=*nevprt+b[i]*p;'
 	 '      p=p*2;}'
 	 '}']
