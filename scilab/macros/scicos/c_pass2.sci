@@ -3,7 +3,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 //
 // bllst: list with nblk elts where nblk denotes number of blocks.
 //        Each element must be a list with 12 elements:
-//          1- function name (in string form if fortran routine) 
+//          1- a list containing function name and function type
 //          2- vector of number of inputs
 //          3- vector of number of ouputs
 //          4- vector of number of clock inputs 
@@ -12,10 +12,16 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 //          7- vector (column) of discrete initial condition
 //          8- vector (column) of real parameters
 //          9- vector (column) of integer parameters
-//          10- string: 'l' for synchro (ifthenelse,eselect) or 'm' (memo)
+//          10- string: 'l' for synchro (ifthenelse,eselect) or 'm'
+//          (memo) or 'x' for blocks that need to be called during
+//          integration even in the absence of state (only if with workspace)
 //          11- vector of size <number of clock outputs> including
 //              preprogrammed event firing times (<0 if no firing) 
-//          12- boolean vector (1x2): 1st entry for dependence on u, 2nd on t 
+//          12- boolean vector (1x2): 1st entry for dependence on u,
+//          2nd on t 
+//          13- block label
+//          14- number of modes
+//          15- number of zero crossings
 //
 // connectmat: nx4 matrix. Each row contains, in order, the block
 //             number and the port number of an outgoing scicopath,
@@ -711,6 +717,9 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
   labels=[]
   //
   //
+  
+   [ok,bllst]=adjust_inout(bllst,connectmat)
+   // placed here to make sure nzcross and nmode correctly updated
   for i=1:nbl
     ll=bllst(i)
 
@@ -755,6 +764,12 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     xd0=[xd0;xd0k]
     zptr(i+1)=zptr(i)+size(xd0k,'*')
     typ_mod(i)=ll.nmode;
+    if typ_mod(i)<0 then
+      message('Number of modes in block '+string(i)+'cannot b"+...
+	      " e determined')
+      ok=%f
+    end
+    
     //  
     if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
       if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
@@ -772,6 +787,11 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     //
     //    typ_z(i)=ll.blocktype=='z'
     typ_z(i)=ll.nzcross
+    if typ_z(i)<0 then
+      message('Number of zero crossings in block '+string(i)+'cannot b"+...
+	      " e determined')
+      ok=%f
+    end
     typ_s(i)=ll.blocktype=='s'
     typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
                                             // need to be in oord even
@@ -820,7 +840,8 @@ function [lnkptr,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,..
     blptr=[blptr;blptr($)+size(r,1)];
   end  
   //
-  [ok,bllst]=adjust_inout(bllst,connectmat)
+
+//  [ok,bllst]=adjust_inout(bllst,connectmat)
   if ~ok then 
     lnkptr=[],inplnk=[],outlnk=[],clkptr=[],cliptr=[],inpptr=[],outptr=[],..
 	  xptr=[],zptr=[],rpptr=[],ipptr=[],xc0=[],xcd0=[],xd0=[],rpar=[],ipar=[],dep_ut=[],..
@@ -982,6 +1003,13 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	  if (ww<>[]&mini(bllst(connectmat(jj,3)).in(:))>0) then
 	    bllst(connectmat(jj,3)).out(ww)=sum(bllst(connectmat(jj,3)).in(:))
 	  end
+	  if bllst(connectmat(jj,3)).nzcross==nin then
+	    bllst(connectmat(jj,3)).nzcross=nout
+	  end
+	  if bllst(connectmat(jj,3)).nmode==nin then
+	    bllst(connectmat(jj,3)).nmode=nout
+	  end
+	  
 	  
 	elseif (nin>0&nout<0) then 
 	  ww=find(bllst(connectmat(jj,1)).out==nout)
@@ -993,6 +1021,13 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 	  ww=find(bllst(connectmat(jj,1)).in==0)
 	  if (ww<>[]&mini(bllst(connectmat(jj,1)).out(:))>0) then 
 	    bllst(connectmat(jj,1)).in(ww)=sum(bllst(connectmat(jj,1)).out)
+	  end
+	  
+	  if bllst(connectmat(jj,1)).nzcross==nout then
+	    bllst(connectmat(jj,1)).nzcross=nin
+	  end
+	  if bllst(connectmat(jj,1)).nmode==nout then
+	    bllst(connectmat(jj,1)).nmode=nin
 	  end
 
 	elseif (nin==0) then
