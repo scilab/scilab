@@ -102,7 +102,7 @@ static void aplotv2(strflag)
   int fontsize=-1,textcolor=-1,ticscolor=-1 ; /*==> use default values  */
   int fontstyle= 0; /* F.Leray 08.04.04 : New data for Axes Font*/
   int seg =0;
-  double x[3],y[3],x1,y1;
+  double x[4],y[4],x1,y1; /* F.leray 26.04.04: Before was : double x[3],y[3],x1,y1; */
   /*** Ajout D.ABDEMOUCHE ****/
   char xstr,ystr;  
   char dirx = 'd';
@@ -398,7 +398,7 @@ static void aplotv1(strflag)
 
 void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
      char pos,xy_type;        
-     double x[],y[];  
+     double *x, *y; /* F.Leray 26.04.04 : before was double x[], y[];*/
      int *nx,*ny;
      char *str[];
      int  subtics;
@@ -414,7 +414,7 @@ void sci_axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
 
 void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontstyle,ticscolor,logflag,seg_flag)
      char pos,xy_type;        
-     double x[],y[];  
+     double *x, *y; /* F.Leray 26.04.04 : before was double x[], y[];*/
      int *nx,*ny;
      char *str[];
      int  subtics;
