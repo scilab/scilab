@@ -885,18 +885,29 @@ sciInitGraphicMode (sciPointObj * pobj)
 int
 sciSetColormap (sciPointObj * pobj, double *rgbmat, integer m, integer n)
 {
-  double *pc;
+//  double *pc;
   int k;
   if (pobj != pfiguremdl)
     C2F(dr)("xset","colormap",&m,&n,PI0,PI0,PI0,PI0,rgbmat,PD0,PD0,PD0,0L,0L);
   
-  pc=pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap;
-  
+  // pc=pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap; // F.Leray Correction here 04.03.04
+/*
+  if(pc = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
+  {
+     sciprint ("Not enough memory available for colormap\n");
+	 return -1;
+  }
+  else
+  {
+      for (k=0;k<m*n;k++)
+		  pc[k] = pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap[k];
+  }
+  */
   FREE(pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap);
+  
   if((pFIGURE_FEATURE(pobj)->pcolormap = (double *) MALLOC (m * n * sizeof (double))) == (double *) NULL)
     {
       sciprint ("Not enough memory available for colormap\n");
-      pFIGURE_FEATURE( (sciPointObj *) pobj)->pcolormap=pc;
       return -1;
     }  
   for (k=0;k<m*n;k++) 
@@ -10502,7 +10513,9 @@ sciDrawObj (sciPointObj * pobj)
       flag_DO = MaybeSetWinhdc();
 #endif
       C2F (dr) ("xclear", "v", PI0, PI0, PI0, PI0, PI0, PI0, PD0, PD0, PD0, PD0,0L, 0L);
-      (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1));
+      (sciGetScilabXgc (pobj))->NumBackground = Max (0, Min (x[1] - 1, sciGetNumColors (pobj) + 1)); //F.Leray 04.03.04:  OK!
+	  //With a colormap of 32 colors,NumBackground is between 1 and 34 
+	  //(or in C value between 0 and 33 = (sciGetNumColors (pobj) + 1), so it was OK!!
       C2F (dr) ("xset", "background",x+1,x+1,x+4,x+4,x+4,&v,&dv,&dv,&dv,&dv,5L,4096);
       C2F(dr)("xset","alufunction",&(sciGetScilabXgc (pobj)->CurDrawFunction),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
@@ -14730,8 +14743,11 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
   double R,xo,yo,zo,dx,dy,dz,hx,hy,hx1,hy1,xmaxi;
   integer wmax,hmax,ind2,ind3,ind,tmpind;
   integer ixbox[8],iybox[8],xind[8],dash[6];
-  integer background,zero=0;
+  integer background,zero=0, color_old; // Addind color_old 04.03.04
   
+  // Initialisation phase for x (to detect bug): x set to -1000 F.Leray 05.03.04
+  for(i=0;i<5;i++) x[i] = -1000;
+
   if(sciGetEntityType (pobj) == SCI_SUBWIN)
     {  
       /** changement de cordoonee 3d */
@@ -14917,8 +14933,11 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 	      iybox[i]=YScale(ybox[xind[i]]);
 	    }
 	  ixbox[6]=ixbox[0];iybox[6]=iybox[0]; p=7,n=1; 
-	  C2F (dr) ("xset","foreground",&background,&background,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,5L,4096);
+	 // C2F (dr) ("xset","foreground",&background,&background,&zero,&zero,&zero,PI0,PD0,PD0,PD0,PD0,5L,4096); F.Leray 04.03.04
+	  C2F(dr)("xget","pattern",&verbose,&color_old,&zero,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xset","pattern",&background,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	 
 	  C2F (dr) ("xarea", "v", &p, ixbox, iybox, &n, PI0, PI0, PD0, PD0, PD0, PD0, 5L,0L);
+	  C2F(dr)("xset","pattern",&color_old,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  /***********/
 	  /***  hidden axis */
 	  if(pSUBWIN_FEATURE (pobj)->axes.rect== 1)
@@ -14938,12 +14957,14 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 		pSUBWIN_FEATURE (pobj)->hiddenstate=(InsideD[0] % 4);
 	    }
 	  /**  l'enveloppe cvxe*/
-	  x[0] = sciGetForeground (pobj);	
+	  x[0] = sciGetForeground (pobj);	 // F.Leray 05.03.04 Useless or not?? because we used set pattern instead of set foreground (because Windows uses BRUSH and PEN...)
+	  x[2] = sciGetLineWidth (pobj); // Adding this line 05.03.04
 	  x[3] = sciGetLineStyle (pobj);
-	  x[4] = 0; // BUG supprime ici F. Leray
-	  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  //x[4] = 0; // BUG supprime ici F. Leray // F.Leray 05.03.04 Useless too
+	  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
 	  C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);
+	  // We are in axis_3ddraw() and sciGetEntityType (pobj) == SCI_SUBWIN
+	   C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096); // F.Leray 05.03.04 Useless too
 	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  if(pSUBWIN_FEATURE (pobj)->axes.rect!= 1)
@@ -14973,7 +14994,12 @@ void axis_3ddraw(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, in
 } 
 void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, integer *InsideU, integer *InsideD)
 {
-  integer  x[5];
+  integer  x[5],narg = 0;
+  integer color_kp,verbose,thick_kp,style_kp;
+
+  C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray Replacement
+  C2F(dr)("xget","thickness",&verbose,&thick_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray addings here
+  C2F(dr)("xget","line style",&verbose,&style_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray addings here
 
   if(sciGetEntityType (pobj) == SCI_SUBWIN) 
     if(pSUBWIN_FEATURE (pobj)->isaxes)
@@ -14983,14 +15009,22 @@ void triedre(sciPointObj *pobj, double *xbox, double *ybox, double *zbox, intege
 	  x[2] = sciGetLineWidth (pobj);
 	  x[3] = sciGetLineStyle (pobj);
 	  x[4] = 0;
-	  C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);
-	  C2F (dr) ("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-	  C2F (dr) ("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+	  	 // C2F (dr) ("xset","foreground",x,x,x+4,x+4,x+4,PI0,PD0,PD0,PD0,PD0,5L,4096);
+	  C2F(dr)("xset","pattern",x,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+	  C2F(dr)("xset","thickness",x+2,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  	  C2F(dr)("xset", "line style", x+3,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
 	  if (zbox[InsideU[0]] > zbox[InsideD[0]])
 	    DrawAxis(xbox,ybox,InsideU,x[0]);
 	  else 
 	    DrawAxis(xbox,ybox,InsideD,x[0]);
 	}
+
+  C2F(dr)("xset", "line style",&style_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);//F.Leray addings here
+  C2F(dr)("xset","thickness",&thick_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);//F.Leray addings here
+  C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); //F.Leray addings here
+
 }
 
 /**Nextind
