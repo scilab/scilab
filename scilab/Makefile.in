@@ -73,7 +73,7 @@ man::
 	for i in man;\
 	do \
 		(cd $$i ; echo "making man in $$i..."; \
-			$(MAKE) $(MFLAGS) whatis); \
+			$(MAKE) $(MFLAGS) man); \
 	done
 
 
