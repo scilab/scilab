@@ -918,7 +918,7 @@ typedef struct _rec_calloc {
 } rec_calloc;
 
 #define rec_size 512 
-static rec_calloc calloc_table[rec_size]={0}; 
+static rec_calloc calloc_table[rec_size]={{0,0}}; 
 
 void *mxCalloc_m(unsigned int n, unsigned int size) 
 {
@@ -937,6 +937,7 @@ void *mxCalloc_m(unsigned int n, unsigned int size)
     free(loc);
     return NULL;
   }
+  return NULL;
 }
 
 void *mxMalloc_m(unsigned int n)
@@ -956,6 +957,7 @@ void *mxMalloc_m(unsigned int n)
     free(loc);
     return NULL;
   }
+  return NULL;
 }
 
 
