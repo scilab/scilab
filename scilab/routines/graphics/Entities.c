@@ -106,7 +106,7 @@ static sciHandleTab *pendofhandletab = (sciHandleTab *) NULL;
 /**
  * This variable is memory of the current entity selected 
  */
-static sciPointObj *pcurrentpobj = (sciPointObj *) NULL;
+static sciPointObj *pcurrentpobj = (sciPointObj *) NULL; /* test extern instead of static*/
 
 /**
  * This table is memory of the clipping associated to the objects  
@@ -8808,6 +8808,7 @@ DestroyFec (sciPointObj * pthis)
   return 0;
 }
 
+
 /**ConstructSegs
  * @memo This function creates Segments
  * @author Djalel.ABDEMOUCHE
@@ -9761,6 +9762,7 @@ DestroySurface (sciPointObj * pthis)
   FREE(pSURFACE_FEATURE (pthis)->pvecz);
   FREE(pSURFACE_FEATURE (pthis)->pvecy);
   FREE(pSURFACE_FEATURE (pthis)->pvecx);
+  FREE(pSURFACE_FEATURE (pthis)->inputCMoV); /* Adding F.Leray 24.03.04*/
   if (pSURFACE_FEATURE (pthis)->izcol != 0 ) 
     FREE(pSURFACE_FEATURE (pthis)->zcol);
 
@@ -10592,6 +10594,9 @@ sciDrawObj (sciPointObj * pobj)
   double xbox[8],ybox[8],zbox[8], *xzz,*yzz,*zzz;
   static integer InsideU[4],InsideD[4];
   	
+  /* Adding F.Leray */
+  integer xxx[6];
+  
   /* variables declarations for debugg:*/
     sciAxes *paxes = (sciAxes *) NULL;
 
@@ -10654,6 +10659,8 @@ sciDrawObj (sciPointObj * pobj)
       set_scale ("tttfff", pSUBWIN_FEATURE (pobj)->WRect, 
 		 pSUBWIN_FEATURE (pobj)->FRect,
 		 NULL, pSUBWIN_FEATURE (pobj)->logflags, NULL);      
+
+      
       /**DJ.Abdemouche 2003**/
       if (pSUBWIN_FEATURE (pobj)->is3d)
 	{  
@@ -10747,6 +10754,12 @@ sciDrawObj (sciPointObj * pobj)
       x[4] = 0;
       v = 0;
       dv = 0;
+
+      xxx[0] = sciGetFontForeground (pobj);/*la dash est de la meme couleur que le foreground*/
+      xxx[2] = sciGetFontDeciWidth (pobj)/100;
+      xxx[3] = 0;
+      xxx[4] = sciGetFontStyle(pobj);
+      
 #ifdef WIN32 
       flag_DO=MaybeSetWinhdc();
 #endif
@@ -10754,6 +10767,9 @@ sciDrawObj (sciPointObj * pobj)
 		 &dv, &dv, &dv, 5L, 4096);
       C2F (dr1) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
 		 &dv, &dv, &dv, &dv, 5L, 4096);
+
+      C2F(dr)("xset","font",xxx+4,xxx+2,&v, &v, &v, &v,&dv, &dv, &dv, &dv, 5L, 4L); /* Adding F.Leray*/
+
 
       /*permet la mise a jour des legendes correspondantes aux entites associees */
       for (i = 0; i < pLEGEND_FEATURE (pobj)->nblegends; i++)
@@ -10944,6 +10960,11 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #ifdef WIN32 
 	  flag_DO = MaybeSetWinhdc();
 #endif
+
+	  /* F.Leray Addings here 24.03.04*/
+	  if (pSEGS_FEATURE (pobj)->arrowsize > 1)
+	    arssize = (int) pSEGS_FEATURE (pobj)->arrowsize;
+	  
 	  if ( pSEGS_FEATURE (pobj)->pcolored ==0) 
 	    C2F(dr)("xarrow","v",xm,ym,&na,&arssize,xz,&sflag,&dv,&dv,&dv,&dv,0L,0L); 
 	  else
@@ -11861,7 +11882,17 @@ int
 sciSetCurrentObj (sciPointObj * pobj)
 {
   /* pcurrentobj is a static variable */
+  /*if(pcurrentpobj != NULL){
+    sciprint (" \nIN sciSetCurrentObj, BEF setting, *pcurrentpobj = %d\r\n",&(*pcurrentpobj));
+    sciprint (" IN sciSetCurrentObj, BEF setting, *pcurrentpobj->EntityType = %s\r\n\n",sciGetCharEntityType(pcurrentpobj));}
+    else
+    sciprint ("\npcurrentpobj is NULL (Only at the beginning normally)\n");*/
+  
   pcurrentpobj = pobj;
+  /*
+  sciprint (" IN sciSetCurrentObj, AFTER setting, *pcurrentpobj = %d\r\n",&(*pcurrentpobj));
+  sciprint (" IN sciSetCurrentObj, AFTER setting, *pcurrentpobj->EntityType = %s\r\n",sciGetCharEntityType(pcurrentpobj));
+  sciprint ("------------------------------------------------------------------------\n");*/
   return 0;
 }
 
@@ -14043,7 +14074,8 @@ void sciSwitchWindow(winnum)
       /** Figure winnum don't exist **/
       /** Create Figure **/ 
       C2F(dr)("xget","gc",&v,&v,&v,&v,&v,&v,(double *)&CurXGC,&dv,&dv,&dv,5L,10L);/* ????? SS*/
-      if ((mafigure = ConstructFigure (CurXGC)) != NULL)
+      /*    if ((mafigure = ConstructFigure (CurXGC)) != NULL)*/ /*F.Leray 24.03.04 */
+       if ((mafigure = ConstructFigure (CurXGC)) != NULL)
 	{
 	  CurXGC->mafigure = mafigure;
           CurXGC->graphicsversion = 1;
