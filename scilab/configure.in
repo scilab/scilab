@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.19 $)dnl
+AC_REVISION($Revision: 1.20 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -1303,10 +1303,23 @@ fi
 #################
 
 if test "$with_gtk" = yes; then
-# XXXXX add here a test for gtk 
+  AC_PATH_PROG(GTK_CONFIG,gtk-config,none)
+  AC_MSG_CHECKING([if gtk is version 1.2 or later])
+  GTK_VER=`$GTK_CONFIG --version`
+  case $GTK_VER in
+    0.* )
+     AC_MSG_ERROR([you need at least version 1.2 of gtk])
+     ;;
+    1.1* )
+     AC_MSG_ERROR([you need at least version 1.2 of gtk])
+     ;;
+    * )
+     AC_MSG_RESULT([$GTK_VER])
+     GTK_CFLAGS=`$GTK_CONFIG --cflags`
+     GTK_LIBS=`$GTK_CONFIG --libs`
+     ;;
+  esac    
   AC_DEFINE(WITH_GTK)
-  GTKLIB="\`gtk-config --libs\`"
-  GTKINC="\`gtk-config --cflags\`"
   GUILIB='gtksci'
   GZVT='gzvt'
   SCILABSCRIPT=scilab-gtk.g
@@ -1422,8 +1435,10 @@ AC_SUBST(XMULIB)
 AC_SUBST(XAW_LOCAL_SUBDIR)
 AC_SUBST(XAW_LOCAL_INCLUDES)
 AC_SUBST(XAW_LOCAL_LIB)
-AC_SUBST(GTKINC)
-AC_SUBST(GTKLIB)
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
+#AC_SUBST(GTKINC)
+#AC_SUBST(GTKLIB)
 AC_SUBST(TERMCAPLIB)
 AC_SUBST(MAIN)
 AC_SUBST(MAKEFILE_TARGET)
