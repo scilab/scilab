@@ -60,15 +60,16 @@ function xmltohtml(dirs,titles,xsl,step)
     // sabcmd does not like c:/.. path 
     xslprefix="";
     if MSDOS then  xslprefix= "file://" ; end
+    dirs=stripblanks(dirs)
     
     for k=1:size(dirs,'*');
       mprintf('Processing chapter %s\n",dirs(k));
       chdir(dirs(k));
       global %helps;
-      if and(%helps<>part(dirs(k),1:length(dirs(k))-1)) then
+      nk=length(dirs(k))
+      if or(part(dirs(k),nk)==['/','\']) then nk=nk-1,end
+      if and(%helps<>part(dirs(k),1:nk)) then
 	saved_helps=%helps;
-	//dd= pathconvert(dirs(k));
-	//%helps=[%helps;part(dd,1:length(dd)-1),"Temp"]; 
 	%helps=[%helps;'./',"Temp"];
 	rep=gener_links();
 	%helps=saved_helps;

@@ -251,8 +251,9 @@ function change_old_man()
 	      " text/html; charset=ISO-8859-1"">";
 	      "  <title>"+name(i)+"</title>";
 	      "<body>"];
-	mputl([head;"<pre>";mgetl(%helps(k,1)+"/"+fil(i)+'.cat');"</pre></html></body>"],...
-	      whatispath+'/'+fil(i)+'.htm')
+	pin=pathconvert(%helps(k,1)+"/"+fil(i)+'.cat',%f,%f)
+	pout=pathconvert(whatispath+'/'+fil(i)+'.htm',%f,%f)
+	mputl([head;"<pre>";mgetl(pin);"</pre></html></body>"],pout)
 	end
       end
       head=["<html>"
@@ -261,8 +262,9 @@ function change_old_man()
 	    "    <title>"+%helps(k,2)+"</title>"
 	    "</head>"
 	    "<body bgcolor=""FFFFFF"">"];
+      pout=pathconvert(whatispath+'/whatis.htm',%f,%f)
       mputl([head;"<BR><A HREF="""+fil+".htm"">"+name+"</A> - "+def;
-	     "</body></html>"],whatispath+'/whatis.htm')
+	     "</body></html>"],pout)
       %helps(k,1)=whatispath;
     end
   end
