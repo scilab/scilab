@@ -1080,6 +1080,10 @@ let rec rewrite_conditions_in no_event expr =
     let no_event_if_necessary expr =
       if no_event then create_blackBox "noEvent" [expr] else expr
     in match nature expr with
+    | BlackBox ("noEvent", [expr1]) when nature expr1 = BooleanValue true ->
+        rewrite_conditions_in no_event expr'
+    | BlackBox ("noEvent", [expr1]) when nature expr1 = BooleanValue false ->
+        rewrite_conditions_in no_event expr''
     | BlackBox ("noEvent", [expr1]) ->
         create_if
           (create_blackBox "noEvent" [rewrite_conditions_in true expr1])
