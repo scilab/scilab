@@ -20,8 +20,9 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 //          12- boolean vector (1x2): 1st entry for dependence on u,
 //          2nd on t 
 //          13- block label
-//          14- number of modes
-//          15- number of zero crossings
+//          14- number of zero crossings
+//          15- number of modes
+//          16- empty list (equation for modelica blocks)
 //
 // connectmat: nx4 matrix. Each row contains, in order, the block
 //             number and the port number of an outgoing scicopath,
