@@ -9,9 +9,8 @@ function M=%st_i_st(varargin)
   M=varargin($)
   N=varargin($-1)//inserted matrix
   dims=double(matrix(M.dims,1,-1));
-  
   // Dimensions modified so that convertindex works correctly
-  if mtlb_mode() then 
+  if mtlb_mode()&dims(1)~=1 then 
     dims=[dims(2) dims(1) dims(3:$)];
   end  
   
@@ -38,16 +37,16 @@ function M=%st_i_st(varargin)
       //extend the destination matrix
       I1=0
       for k=size(Ndims,'*'):-1:1
-	ik1=(1:dims(k))'
+	ik1=(1:dims(k))';
 	if ik1<>[] then
 	  if Ndims(k)>1 then
 	    if size(I1,'*')>1 then
-	      I1=(Ndims(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1)
+	      I1=(Ndims(k)*I1).*.ones(ik1)+ones(I1).*.(ik1-1);
 	    else
-	      I1=Ndims(k)*I1+ik1-1
+	      I1=Ndims(k)*I1+ik1-1;
 	    end
 	  else
-	    I1=Ndims(k)*I1+ik1-1
+	    I1=Ndims(k)*I1+ik1-1;
 	  end
 	end
       end
@@ -62,9 +61,9 @@ function M=%st_i_st(varargin)
 	w=getfield(k+2,M);if type(w)<>15 then w=list(w),end
 	for i=1:size(I1,'*'), 
 	  if w<>list() then
-	    v2(I1(i)+1)=w(i)
+	    v2(I1(i)+1)=w(i);
 	  else
-	    v2(I1(i)+1)=[]
+	    v2(I1(i)+1)=[];
 	  end
 	end
 	setfield(kf+2,v2,R);
@@ -84,15 +83,15 @@ function M=%st_i_st(varargin)
 	  
     //insert N entries into result  
     for k=1:nFN
-      kf=find(FR==FN(k))
-      v2=getfield(kf+2,R)
+      kf=find(FR==FN(k));
+      v2=getfield(kf+2,R);
       w=getfield(k+2,N);
       if type(w)<>15 then w=list(w),end
       for i=1:size(I,'*'), 
 	if w<>list() then
-	  v2(I(i))=w(i)
+	  v2(I(i))=w(i);
 	else
-	  v2(I(i))=[]
+	  v2(I(i))=[];
 	end
        end 
       if length(v2)==1 then v2=v2(1);end
@@ -105,7 +104,7 @@ function M=%st_i_st(varargin)
       case 0 then
       Ndims=[1,1]
       case 1 then
-      if mtlb_mode() then
+      if mtlb_mode()|M.dims(1)==1 then
 	Ndims=[1,Ndims]
       else
 	Ndims=[Ndims,1]

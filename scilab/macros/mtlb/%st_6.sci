@@ -5,7 +5,7 @@ function s=%st_6(varargin)
 
   nind=size(varargin)-1; //the number of indexes
   s=varargin($); // the struct
-  
+
   if size(varargin)==2 & type(varargin(1))==10 then  //X.b extraction assumed
     f=getfield(1,s);
     if or(varargin(1)==f(3:$)) then //field exists
@@ -20,13 +20,11 @@ function s=%st_6(varargin)
     //check if indexes are in the dimension bounds
     dims=s.dims
     if size(dims,'*')<nind then dims($:nind)=1;end
-    if nind==1 then
-      indmax=[1 1]
-    else
-      indmax=ones(1,nind);
-    end
+    if size(dims,'*')>nind then dims=[dims(1:nind-1) prod(dims(nind:$))];end
+ 
+    indmax=ones(1,nind);
     for k=1:nind,indmax(k)=max(varargin(k));end
-    
+   
     if and(indmax<=dims) then //Yes
       // perform standard sub-matrix extraction 
       s=%st_e(varargin(:));
@@ -43,3 +41,4 @@ function s=%st_6(varargin)
     end
   end
 endfunction
+
