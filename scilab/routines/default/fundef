@@ -144,9 +144,8 @@
 {"xgraduate",		IN_matdes,	65,	2},	
 {"xname",             	IN_matdes,      66,     2},
 {"xaxis",             	IN_matdes,      67,     2},
-{"seteventhandler",    	IN_matdes,      68,     2},
 #ifdef WITH_GTK
-{"help_gtk",           	IN_matdes,      69,     2},
+{"help_gtk",           	IN_matdes,      68,     2},
 #endif 
 #define  IN_matqz  8  
 {"ereduc",		IN_matqz,	3,	2},	
