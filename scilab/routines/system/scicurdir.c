@@ -2,6 +2,7 @@
 #include <string.h>
 #include "../machine.h"
 #ifdef WIN32 
+#include <windows.h>
 #if !(defined __CYGWIN32__) && !(defined __ABSC__)
 #include <direct.h>
 #define chdir(x) _chdir(x)
@@ -68,6 +69,7 @@ int C2F(scichdir)(char *path,int *err)
 
 int C2F(scigetcwd)(char **path,int *lpath,int *err)
 {
+
 #ifndef __ABSC__
     if (GETCWD(cur_dir, 1024) == (char*) 0)
 #else
@@ -81,12 +83,21 @@ int C2F(scigetcwd)(char **path,int *lpath,int *err)
       }
     else 
       {
-#ifndef __ABSC__
-	*path= cur_dir;
-	*lpath=strlen(cur_dir);
+#if WIN32
+		#define MAX_PATH 260
+		char ShortPath[MAX_PATH+1];
+		GetShortPathName(cur_dir ,ShortPath,MAX_PATH);
+		strcpy(cur_dir ,ShortPath);
+		*path= cur_dir;
+		*lpath=strlen(cur_dir);
 #else
-	*path=strtok(cur_dir,"  ");
-	*lpath=strlen(*path);	
+	#ifndef __ABSC__
+		*path= cur_dir;
+		*lpath=strlen(cur_dir);
+	#else
+		*path=strtok(cur_dir,"  ");
+		*lpath=strlen(*path);	
+	#endif
 #endif
 	*err=0;
       }
