@@ -1,5 +1,4 @@
-
-// Copyright INRIA
+// Copyright Enpc 
 str_l=list();
 str_l(1)=['t=(0:0.1:6*%pi);';
       'plot2d(t'',sin(t)'');'
@@ -195,3 +194,4 @@ info_l=['plot2d';
 	'fac3d1'];
 
 
+x=90

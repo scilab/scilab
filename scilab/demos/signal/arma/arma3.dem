@@ -1,6 +1,6 @@
 // Spectral power estimation 
 // ( form Sawaragi et all) 
-// Copyright INRIA
+// Copyright Enpc
 m=18
 a=[1,-1.3136,1.4401,-1.0919,+0.83527]
 b=[0.0,0.13137,0.023543,0.10775,0.03516]

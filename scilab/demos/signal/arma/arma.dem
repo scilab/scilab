@@ -1,5 +1,5 @@
 mode(-1)
-// Copyright INRIA
+// Copyright Enpc
 getf('SCI/demos/graphics/xdemo-1.dem');
 oldln=lines();
 lines(0)

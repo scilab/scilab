@@ -1,7 +1,7 @@
 // Just like anim1.dem 
 // but using the xtape command to redraw 
 // It must be faster than demo1.dem
-// Copyright INRIA
+// Copyright Enpc
 kdr=driver();
 driver("Rec");
 kp=xget("pixmap");xset("pixmap",1);

@@ -1,3 +1,5 @@
+// Copyright Enpc 
+
 getf('SCI/demos/graphics/peaks.sci');
 z=peakit();
 levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];

@@ -1,4 +1,4 @@
-// Copyright INRIA
+// Copyright Enpc
 mode(1)
 xselect();  //raise the graphic window
 kp=xget("pixmap");xset("pixmap",1)

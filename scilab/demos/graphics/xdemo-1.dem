@@ -1,5 +1,5 @@
 function []=xdemo(info,str)
-// Copyright INRIA
+// Copyright Enpc 
 x_message([info;str])
 execstr(str)
 

@@ -12,7 +12,7 @@
 // The noise in the armax is coloured and armax 
 // will give a biaised estimator 
 
-// Copyright INRIA
+// Copyright Enpc
 a=[1,-2.851,2.717,-0.865]
 b=[0,1,1,1]
 d=[1,0.7,0.2]

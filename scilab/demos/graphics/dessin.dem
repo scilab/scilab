@@ -1,5 +1,5 @@
 mode(-1)
-// Copyright INRIA
+// Copyright Enpc 
 oldln=lines()
 lines(0)
 

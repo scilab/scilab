@@ -1,4 +1,4 @@
-// Copyright INRIA
+// Copyright Enpc
 mode(1)
 t=%pi*(-5:5)/5;
 //first plot, to fix boundaries
