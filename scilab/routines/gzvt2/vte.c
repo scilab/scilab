@@ -15,7 +15,9 @@
  * License along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-/*  Adapted for scilab Jean-Philippe Chancelier Enpc 2004 */
+/* 
+ * derived from the vteapp.c file of libvte 
+ * Adapted for scilab Jean-Philippe Chancelier Enpc 2004 */
 
 #include <sys/ioctl.h>
 #include <sys/stat.h>
