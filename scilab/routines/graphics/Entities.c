@@ -13476,3 +13476,27 @@ sciGetCurrentScilabXgc ()
   CurrentScilabXgc=(struct BCG *)XGC;
   return (struct BCG *) CurrentScilabXgc;
 }
+
+void Obj_RedrawNewAngle(double theta,double alpha)
+{
+  sciPointObj *pobj;
+  pobj=(sciPointObj *) sciGetSons(sciGetSelectedSubWin(sciGetCurrentFigure ()))->pointobj;
+  if(sciGetEntityType (pobj) == SCI_SURFACE) {
+    pSURFACE_FEATURE (pobj)->theta   = theta;
+    pSURFACE_FEATURE (pobj)->alpha   = alpha;
+    sciSetReplay(1);
+    sciDrawObj(pobj);
+    sciSetReplay(0);
+  }
+}
+int Check3DObjs(int win)
+{
+  sciPointObj *pobj;
+  pobj=(sciPointObj *) sciGetSons(sciGetSelectedSubWin(sciGetCurrentFigure ()))->pointobj;
+  if(sciGetEntityType (pobj) == SCI_SURFACE) 
+    return 1;
+  else
+   return 0;
+}
+
+ 

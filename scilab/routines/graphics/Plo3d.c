@@ -21,6 +21,8 @@ extern double C2F(dsort)();
 extern char GetDriver(void);
 extern int Check3DPlots(char *, integer *);
 extern int version_flag();
+int Check3DObjs(int win);
+extern void Obj_RedrawNewAngle(double theta,double alpha);
 /** like GEOX or GEOY in PloEch.h but we keep values in xx1 and yy1 for finite check **/
 
 static double xx1,yy1;
@@ -1273,17 +1275,27 @@ void I3dRotation(void)
 
 
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ( Check3DPlots("v",&ww) == 0) 
-    {
-      wininfo("No 3d recorded plots in your graphic window");
-      return;
-    }
+  if (version_flag() != 0) {
+    if ( Check3DPlots("v",&ww) == 0) 
+      {
+	wininfo("No 3d recorded plots in your graphic window");
+	return;
+      }
+  }
+  else {
+    if ( Check3DObjs(&ww) == 0) 
+      {
+	wininfo("No 3d entities in your graphic window");
+	return;
+      }
+  }
   xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
   yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
-  if (strcmp("Rec",driver) != 0) 
+  if (strcmp("Rec",driver) != 0&& version_flag !=0) 
     {
       Scistring("\n Use the Rec driver for 3f Rotation " );
       return;
@@ -1296,9 +1308,11 @@ void I3dRotation(void)
 #ifdef WIN32
       SetWinhdc();
       SciMouseCapture();
-      C2F(SetDriver)("Int",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      if (version_flag() != 0)
+	C2F(SetDriver)("Int",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #else
-      C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
+      if (version_flag() != 0)
+	C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 #endif
       if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       C2F(dr1)("xclick","one",&ibutton,&iwait,&istr,PI0,PI0,PI0,&x0,&yy0,PD0,PD0,0L,0L);
@@ -1337,7 +1351,10 @@ void I3dRotation(void)
       ReleaseWinHdc();
       SciMouseRelease();
 #endif
-      Tape_ReplayNewAngle("v",&ww,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
+      if (version_flag() != 0)
+	Tape_ReplayNewAngle("v",&ww,PI0,PI0,iflag,flag,PI0,&theta,&alpha,bbox,PD0);
+      else
+        Obj_RedrawNewAngle(theta,alpha);
     }
 }
 
