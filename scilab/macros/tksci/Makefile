@@ -10,6 +10,8 @@ include ../../Makefile.incl
 NAME = tkscilib
 NAM = SCI/macros/tksci
 
-MACROS = tk_getfile.sci tk_getdir.sci tk_savefile.sci 
+MACROS = tk_getfile.sci tk_getdir.sci tk_savefile.sci \
+	buttondialog.sci demoplay.sci editvar_get.sci winclose.sci browsevar.sci \
+	config.sci editvar.sci progressionbar.sci waitbar.sci winlist.sci sciGUIhelp.sci
 
 include ../Make.lib
