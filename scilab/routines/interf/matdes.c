@@ -5628,6 +5628,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    pSUBWIN_FEATURE (pobj)->alpha_kp=pSUBWIN_FEATURE (pobj)->alpha;  
 	    pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
 	    pSUBWIN_FEATURE (pobj)->theta  = 270.0;
+	    sciRedrawFigure(); /* F.Leray 10.06.04 Adding 2 lines here... */
+	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
 	  } 
 	else if ((strncmp(cstk(*value),"3d", 2) == 0)){
 	  pSUBWIN_FEATURE (pobj)->is3d = TRUE;
