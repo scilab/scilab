@@ -77,6 +77,10 @@ predef('all')
 //Scilab Help Chapters, %helps is a two column matrix of strings
 %helps=initial_help_chapters()
 
+// Scilab help default pagers 
+%pager="more"
+%xpager="$SCI/bin/xless"
+
 // Define scicos palettes of blocks, scicos_menus and shortcuts
 [scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
 %scicos_display_mode=0  // =1 if pixmap to be used for display
