@@ -34,7 +34,7 @@ extern void initsubwin();
  -------------------------------------------------------------------*/
 
 void champg(char *name, integer colored, double *x, double *y, double *fx, double *fy, integer *n1, integer *n2, 
-char *strflag, double *brect, double *arfact, integer lstr)
+	    char *strflag, double *brect, double *arfact, integer lstr)
 {
   static integer aaint[]={2,10,2,10};
   integer *xm = NULL,*ym = NULL,*zm = NULL,na,n;
@@ -55,64 +55,64 @@ char *strflag, double *brect, double *arfact, integer lstr)
   else
     C2F(dr)("xget","line style",&verbose,xz,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   /** The arrowsize acording to the windowsize **/
- // n=2*(*n1)*(*n2); 
-    n=2*(*n1)*((*n2)+1); //F.Leray 17.02.04
+  // n=2*(*n1)*(*n2); 
+  n=2*(*n1)*((*n2)+1); //F.Leray 17.02.04
   xx[0]=x[0];xx[1]=x[*n1-1];
   yy[0]=y[0];yy[1]=y[*n2-1];
   /** Boundaries of the frame **/ 
   
   if (version_flag() == 0)
-  {
+    {
       if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) 
         { 
           sciXbasc();  
           initsubwin();
           sciRedrawFigure();
         }  
-  /** Boundaries of the frame **/ 
+      /** Boundaries of the frame **/ 
       if ((sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->autoscaling)
-            update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
-  }
- else
-      update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
+	update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
+    }
+  else
+    update_frame_bounds(0,"gnn",xx,yy,&nn1,&nn2,aaint,strflag,brect);
 
   /* Storing values if using the Record driver */
   if ((GetDriver()=='R') && (version_flag() != 0))
-     StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
+    StoreChamp(name,x,y,fx,fy,n1,n2,strflag,brect,arfact); 
  
   /*---- Drawing the axes ----*/
   if (version_flag() == 0)
-  {
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
-  sciSetIsClipping (psubwin,0); 
+    {
+      psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+      sciSetIsClipping (psubwin,0); 
 
-  strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
-  pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
+      strncpy(pSUBWIN_FEATURE (psubwin)->strflag, strflag, strlen(strflag));
+      pSUBWIN_FEATURE (psubwin)->isaxes  = TRUE;
 
-  sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
+      sciDrawObj(sciGetSelectedSubWin (sciGetCurrentFigure ())); 
 
-  flag = 1; // je le mets à 1 pour voir F.Leray 19.02.04
-  arsize1 = 0.5;
+      flag = 1; // je le mets à 1 pour voir F.Leray 19.02.04
+      arsize1 = 0.5;
 
-	// F.Leray Allocation de style[dim = Nbr1]
-   if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
-	  {
+      // F.Leray Allocation de style[dim = Nbr1]
+      if ((style = MALLOC ((*n1) * sizeof (integer))) == NULL)
+	{
 	  sciprint("No more memory available\n");
 	  return;
-	  }
+	}
 
-	for(i=0;i<(*n1);i++)
-		style[i]=i;
+      for(i=0;i<(*n1);i++)
+	style[i]=i;
 
 
 
-  sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
-                       type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
+      sciSetCurrentObj(ConstructSegs((sciPointObj *) sciGetSelectedSubWin (sciGetCurrentFigure ()),
+				     type,x,y,*n1,*n2,fx,fy,flag,style,arsize1,colored,*arfact)); 
 
-	// F.Leray Libération de style[dim = Nbr1]
-	if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
+      // F.Leray Libération de style[dim = Nbr1]
+      if( style != (integer *) NULL) FREE(style); style = (integer *) NULL;
 
-  }
+    }
   else 
     axis_draw(strflag);
   /** Allocation **/  xm = graphic_alloc(0,n,sizeof(int));
@@ -123,8 +123,8 @@ char *strflag, double *brect, double *arfact, integer lstr)
       return ;
     }      
   if ( colored != 0) {
-   // zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray 19.02.04
-	zm = graphic_alloc(2,n,sizeof(int));
+    // zm = graphic_alloc(2,n/2,sizeof(int)); // F.Leray 19.02.04
+    zm = graphic_alloc(2,n,sizeof(int));
     if (  zm == 0 ) 
       {
 	sciprint("Running out of memory \n");
@@ -179,11 +179,11 @@ static double MiniD(double *x, integer n)
 
 extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact)
 
-  integer *xm,*ym,*zm;
-  integer *na,*arsize,*colored;
-  integer *n1,*n2;
-  double *x, *y, *fx, *fy;
-  double *arfact;
+     integer *xm,*ym,*zm;
+     integer *na,*arsize,*colored;
+     integer *n1,*n2;
+     double *x, *y, *fx, *fy;
+     double *arfact;
 {  
  
   integer i,j;
@@ -234,10 +234,10 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       for ( i = 0 ; i < (*n1)*(*n2) ; i++)
 	{
 	  integer x1n,y1n,x2n,y2n,flag1=0;
-/* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
-/* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
-/* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
-/* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
+	  /* 	  xm[1+2*j]= (int)(sfx*fx[i]/2+xm[2*i]); */
+	  /* 	  xm[2*j]  = (int)(-sfx*fx[i]/2+xm[2*i]); */
+	  /* 	  ym[1+2*j]= (int)(-sfy*fy[i]/2+ym[2*i]); */
+	  /* 	  ym[2*j]  = (int)(sfy*fy[i]/2+ym[2*i]); */
 	  xm[1+2*j]= (int)(sfx*fx[i]+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
  	  ym[1+2*j]= (int)(-sfy*fy[i]+ym[2*i]);
@@ -265,24 +265,24 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	  zm[j] = inint( ((double) whiteid)*(1.0 - nor/maxx));
 	  nor= sqrt(fx[i]*(fx[i])+fy[i]*(fy[i]));
 
-/*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
- *        at the point (before the arrow was placed such as the corresponding
- *        point was at the middle of the arrow)       
- *
- *        this is the old code :
- *
- * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
- * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
- * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
- * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
- *
- *        the new code :
- */
+	  /*        modif bruno (juin 2003) to have the "queue" of the arrow positionned
+	   *        at the point (before the arrow was placed such as the corresponding
+	   *        point was at the middle of the arrow)       
+	   *
+	   *        this is the old code :
+	   *
+	   * 	  xm[1+2*j]= (int)(sfx*fx[i]/(2*nor)+xm[2*i]); 
+	   * 	  xm[2*j]  = (int)(-sfx*fx[i]/(2*nor)+xm[2*i]); 
+	   * 	  ym[1+2*j]= (int)(-sfy*fy[i]/(2*nor)+ym[2*i]); 
+	   * 	  ym[2*j]  = (int)(sfy*fy[i]/(2*nor)+ym[2*i]); 
+	   *
+	   *        the new code :
+	   */
 	  xm[1+2*j]= (int)(sfx*(fx[i])/(nor)+xm[2*i]);
 	  xm[2*j]  = (int)(xm[2*i]);
 	  ym[1+2*j]= (int)(-sfy*(fy[i])/(nor)+ym[2*i]);
 	  ym[2*j]  = (int)(ym[2*i]);
- /* end of the modif */
+	  /* end of the modif */
 
 	  clip_line(xm[2*j],ym[2*j],xm[2*j+1],ym[2*j+1],&x1n,&y1n,&x2n,&y2n,&flag1);
 	  if (flag1 !=0)
@@ -291,7 +291,7 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	      if (flag1==2||flag1==3) { xm[2*j+1]=x2n;ym[2*j+1]=y2n;};
 	      j++;
 	    }
-       }
+	}
       *na=2*j;
     }
 }
