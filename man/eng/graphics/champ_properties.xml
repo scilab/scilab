@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>champ_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="champ_properties"> description of the 2D vector field
+   entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Champ entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for a 2D vector field.
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the vector field is drawn, If
+   <VERB>"off"</VERB> the vector field is not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+   <DESCRIPTION_ITEM label='data: '>
+    This field is the matrix  <VERB>[x,y,fx,fy]</VERB> <VERB>x</VERB>
+    and <VERB>y</VERB> gives     the coordinates of the champ boundary.
+    If  <VERB>xv=matrix(x,2,-1)</VERB> and
+    <VERB>yv=matrix(y,2,-1)</VERB> then <VERB>xv(:,k)</VERB> and
+    <VERB>yv(:,k)</VERB> are the boundary coordinates of the segment
+    numbered  <VERB>k</VERB>.
+    <VERB>fx</VERB>     and <VERB>fy</VERB> are two square matrices
+    which are the x and y components of the fields value at each given point.
+   </DESCRIPTION_ITEM>
+ 
+ 
+    <DESCRIPTION_ITEM label='line_style: '>
+      The  <VERB>line_style</VERB> property value should be an integer in [0 9].
+       0 stands for solid the other value stands for a selection of
+       dashes. This property applies to all lines used to draw the vector field.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='thickness: '>
+       This field contains the  <VERB>thickness</VERB> property for
+       all lines used to draw the vector field. It's value should
+       be a non negative integer..
+     </DESCRIPTION_ITEM>
+
+ 
+     <DESCRIPTION_ITEM label='colored: '>
+      If this this property value is <VERB>"on"</VERB> fields vectors
+      are drawn using a color proportional to the intensity of the field.  
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_state: '>
+      This field contains the <VERB>clip_state</VERB> property
+      value for the champ.  It's value should be :
+      <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM > 
+         <VERB>"off"</VERB> this means that the vector field is not clipped
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"cliprf"</VERB> this means that the
+         vector field is clipped outside the Axes rectangle.
+         </DESCRIPTION_ITEM>
+
+        <DESCRIPTION_ITEM > 
+         <VERB>"on"</VERB> this means that the
+         vector field is clipped outside the rectangle given by property clip_box.
+         </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_box: '>
+      This field contains the  <VERB>clip_box</VERB> property.
+      It's value should be an empty matrix if
+      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+     </DESCRIPTION_ITEM>
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-10,-10,10,10];
+   champ(-5:5,-5:5,rand(11,11),rand(11,11))
+
+   p=a.children
+
+   p.colored="on";
+   p.thickness=2;
+
+  
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>champ</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>champ1</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+

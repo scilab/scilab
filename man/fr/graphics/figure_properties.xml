@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>figure_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="figure_properties"> description of the
+   graphics figure entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The figure entity is the top level of the graphics entities
+  hierarchy. This entity defines the parameters for the figure itself
+  as well as the  parameter's defaut values for the children creation
+
+
+  <DESCRIPTION_ITEM label='Figure parameters: '>
+  <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM label='figure_style: '>
+     This field contains the figure style. The value of this field
+      should be <VERB>"old"</VERB> or <VERB>"new"</VERB>.  The
+      <VERB>"new"</VERB> value sets the entity based style. The
+      <VERB>"old"</VERB> value sets the old Scilab graphic mode. In
+      this case <VERB>figure_style</VERB> is the only defined property.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='figure_position: '>
+     This field contains the position in pixel of the  graphic
+     window  on the screen. The size is the vector 
+     <VERB>[x,y]</VERB>. The point <VERB>[0,0]</VERB> if the
+     upper-left corner of the screen.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='figure_size: '>
+     This field contains the size in pixel of the screen's graphics
+     window. The size is the vector <VERB>[width,height] </VERB>.
+     </DESCRIPTION_ITEM>
+    
+     <DESCRIPTION_ITEM label='axes_size: '>
+     This field contains the size in pixel of the virtual graphics
+     window. The size is the vector <VERB>[width,height] </VERB>.
+     The  virtual graphic window should be bigger than the part really
+     visible on the screen.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='auto_resize: '>
+     This field  defines what happen when the graphics window
+     is resized. If the value is <VERB>"on"</VERB> then the
+     <VERB>axes_size</VERB> property is equaled to the
+     <VERB>figure_size</VERB> and the axes children are zoomed
+     accordingly. If the value is <VERB>"off"</VERB> then the
+     <VERB>axes_size</VERB> does not change with <VERB>figure_size</VERB>.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='figure_name: '>
+     This field contains the name of the figure. This name  is a
+     character string displayed at the top of the graphics_window.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='figure_id: '>
+     This field contains the identifier of the figure. This  is a
+     integer number. This number is set at figure creation and cannot
+     be changed after that.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='color_map: '>
+     This field contains the colormap used by this figure. The
+     colormap is a <VERB>m</VERB> by <VERB>3</VERB> matrix.
+     <VERB>m</VERB> is the number of colors. Color number i is given
+     as a 3-uple <VERB>R</VERB>, <VERB>G</VERB>, <VERB>B</VERB> corresponding
+     respectively to red, green and blue intensity between 0 and 1
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='background: '>
+     This field contains the index (relative to the current colormap) 
+     of the figure's background color.
+     </DESCRIPTION_ITEM>
+
+  
+     <DESCRIPTION_ITEM label='pixel_drawing_mode: '>
+     This fieds defines the bitwise operation used to draw the pixel
+     on the screen. The default mode is <VERB>copy</VERB> what is to
+     say the pixel is drawn as required. More generally the a bitwise
+     operation is performed between the color of the source pixel and
+     the color of the pixel already present on the screen. 
+     operations are :    
+    <VERB>"clear"</VERB>, 
+    <VERB>"and"</VERB>, 
+    <VERB>"andReverse"</VERB> , 
+    <VERB>"copy"</VERB>,  src
+    <VERB>"andInverted"</VERB> , 
+    <VERB>"noop"</VERB> , 
+    <VERB>"xor"</VERB> , 
+    <VERB>"or"</VERB> , 
+    <VERB>"nor"</VERB> , 
+    <VERB>"equiv"</VERB> , 
+    <VERB>"invert"</VERB> , 
+    <VERB>"orReverse"</VERB> , 
+    <VERB>"copyInverted"</VERB> , 
+    <VERB>"orInverted"</VERB> , 
+    <VERB>"nand"</VERB> , 
+    <VERB>"set"</VERB> , 
+
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='children: '>
+     This field contains a vector of handles. the children of the
+     figure. All these children are of type  <VERB>"Axes"</VERB>
+     </DESCRIPTION_ITEM>
+
+   </DESCRIPTION_INDENT>
+
+   <DESCRIPTION_ITEM label='Children default values: '>
+     <DESCRIPTION_INDENT>
+
+     <DESCRIPTION_ITEM label='auto_scale: '>
+     This field contains the default <VERB>auto_scale</VERB> property value
+     for axes creation. It's value should
+     be <VERB>"on" </VERB> or <VERB>"off"</VERB> 
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='auto_clear: '>
+     This field contains the default <VERB>auto_clear</VERB> property value
+     for axes creation. It's value should
+     be <VERB>"on" </VERB> or <VERB>"off"</VERB> 
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='visible: '>
+      This field contains the default <VERB>visible</VERB> property value
+     for axes creation. It's value should
+     be <VERB>"on" </VERB> or <VERB>"off"</VERB> 
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='line_style: '>
+      This field contains the default <VERB>line_style</VERB> property
+       value for Segs, Arcs, Rectangle and Polyline objects.
+       <VERB>line_style</VERB> selects the type of line to be
+       used to draw lines . It's value should be an integer in [0 9].
+       0 stands for solid the other value stands for a selection of
+       dashes.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='thickness: '>
+       This field contains the default <VERB>thickness</VERB> property
+       value for all objects using line drawing. It's value should
+       be a non negative integer.
+     </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label='fill_mode: '>
+      This field contains the default <VERB>fill_mode</VERB> property
+       value for  Rectangle, Arcs and Polyline objects.
+       It's value should be <VERB>"on" </VERB> or
+       <VERB>"off"</VERB>. if the value is "on" the object is filled
+       with  the color given by it's "foreground" property value.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='mark_mode: '>
+      This field contains the default <VERB>mark_mode</VERB> property
+       value for Segs Rectangle and Polyline objects. It's value should
+       be <VERB>"on" </VERB> or <VERB>"off"</VERB>.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='mark_style: '>
+      This field contains the default <VERB>mark_style</VERB> property
+       value for Segs Rectangle and Polyline
+       objects. <VERB>mark_style</VERB> selects the type of mark to be
+       displayed. It's value should be an integer in [0 9].
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='mark_size: '>
+      This field contains the default <VERB>mark_size</VERB> property
+       value for Segs Rectangle and Polyline objects. 
+       <VERB>mark_style</VERB> selects the font size of mark to be
+       displayed. It's value should be an integer in [0 9].
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the default <VERB>foreground</VERB> property
+      value for all objects.  It's value should be a color index
+      (relative to the current colormap)
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_state: '>
+      This field contains the default <VERB>clip_state</VERB> property
+      value for all objects.  It's value should be :
+      <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM > 
+         <VERB>"off"</VERB> this means that all  objects created after
+         that are not clipped
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"cliprf"</VERB> this means that all  objects created after
+         that are clipped outside the Axes rectangle.
+         </DESCRIPTION_ITEM>
+
+        <DESCRIPTION_ITEM > 
+         <VERB>"on"</VERB> this means that all  objects created after
+         that are clipped outside the rectangle given by property clip_box.
+         </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_box: '>
+      This field contains the default <VERB>clip_box</VERB> property
+      value for all objects.  It's value should be an empty matrix if
+      clip_state is <VERB>"off"</VERB> or the vector
+      <VERB>[x,y,w,h]</VERB> (upper-left point, width, height) 
+     </DESCRIPTION_ITEM>
+
+  </DESCRIPTION_INDENT>
+</DESCRIPTION_ITEM>
+</DESCRIPTION_ITEM>
+
+
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+   f=get("current_figure") //get the handle of the newly created figure
+   f.figure_position
+   f.figure_size=[200,200]
+   f.background=2
+
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+   <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>axes_properties</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+

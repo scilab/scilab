@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>patch_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="patch_properties"> description of the
+   Patch entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  A patch is a filled polyline.
+  The Patch entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for patchs.
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the patch is drawn, If
+   <VERB>"off"</VERB> the patch is not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+   <DESCRIPTION_ITEM label='data: '>
+    This field contains the boundary values for the x and y
+    coordinates. It is the vector <VERB>[xmin,xmax,ymin,ymax]</VERB>
+   </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the default <VERB>foreground</VERB> property
+      value for all objects.  It's value should be a color index
+      (relative to the current colormap)
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_state: '>
+      This field contains the <VERB>clip_state</VERB> property
+      value for the patch.  It's value should be :
+      <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM > 
+         <VERB>"off"</VERB> this means that the patch is not clipped
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"cliprf"</VERB> this means that the
+         patch is clipped outside the Axes rectangle.
+         </DESCRIPTION_ITEM>
+
+        <DESCRIPTION_ITEM > 
+         <VERB>"on"</VERB> this means that the
+         patch is clipped outside the rectangle given by property clip_box.
+         </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_box: '>
+      This field contains the  <VERB>clip_box</VERB> property.
+      It's value should be an empty matrix if
+      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+     </DESCRIPTION_ITEM>
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xfpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5))
+   p=a.children
+   p.foreground=5;
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)'] 
+
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+   <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>xfpoly</LINK> </SEE_ALSO_ITEM>
+   <SEE_ALSO_ITEM> <LINK>xfpolys</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+

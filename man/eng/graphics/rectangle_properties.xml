@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>rectangle_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="rectangle_properties"> description of the
+   Rectangle entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Rectangle entity is a leaf of the graphics entities
+  hierarchy. This entity defines the parameters for rectangles and
+  filled rectangles.
+
+  
+   <DESCRIPTION_ITEM label='visible: '>
+    This field contains the  <VERB>visible</VERB> property value
+   for the entity . It's value should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  . If <VERB>"on"
+   </VERB> the rectangle is drawn, If
+   <VERB>"off"</VERB> the rectangle is not drawn on the screen.
+   </DESCRIPTION_ITEM>
+
+
+   <DESCRIPTION_ITEM label='data: '>
+    This field contains the coordinates of the upper-left point of the
+    rectangle and its width and height. It is the matrix <VERB>[xleft,yup;width,height]</VERB>
+   </DESCRIPTION_ITEM>
+
+    <DESCRIPTION_ITEM label='line_style: '>
+      The  <VERB>line_style</VERB> property value should be an integer in [0 9].
+       0 stands for solid the other value stands for a selection of
+       dashes.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='thickness: '>
+       This field contains the line <VERB>thickness</VERB> property. It's value should
+       be a non negative integer..
+     </DESCRIPTION_ITEM>
+
+    <DESCRIPTION_ITEM label='mark_mode: '>
+      If   <VERB>mark_mode</VERB> property is  <VERB>"on"</VERB> and
+      <VERB>fill_mode</VERB> is <VERB>"off"</VERB> the
+      rectangle  is represented by a mark drawn at each corners.
+      points. If   <VERB>mark_mode</VERB> property is
+      <VERB>"off"</VERB> the rectangle is represented using lines or
+      paint surface.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='mark_style: '>
+      The <VERB>mark_style</VERB> property value is used to select the
+       type of mark to use when <VERB>mark_mode</VERB> property is
+       <VERB>"on" </VERB>. It's value should be an integer in [0 9]
+       which stands for: dot, plus, cross, star, diamond fill, diamond,
+       triangle up, triangle down, trefle and circle.
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='mark_size: '>
+      The <VERB>mark_size</VERB> property  is used to select the
+       type of size of the marks when <VERB>mark_mode</VERB> property is
+       <VERB>"on" </VERB>. It's value should be an integer in [0 5]
+       whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+     </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the color index used to draw or fill the
+      rectangle.  It's value should be a color index 
+      (relative to the current colormap)
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='fill_mode: '>
+      If <VERB>fill_mode</VERB> property value is <VERB>"on" </VERB>,
+      the rectangle is filled with the foreground color. If property
+      value is <VERB>"on"</VERB> only the shape of the rectangle is
+      drawn using the foreground color.
+     </DESCRIPTION_ITEM>
+
+
+     <DESCRIPTION_ITEM label='clip_state: '>
+      This field contains the <VERB>clip_state</VERB> property
+      value for the rectangle.  It's value should be :
+      <DESCRIPTION_INDENT>
+         <DESCRIPTION_ITEM > 
+         <VERB>"off"</VERB> this means that the rectangle is not clipped
+         </DESCRIPTION_ITEM>
+
+         <DESCRIPTION_ITEM > 
+         <VERB>"cliprf"</VERB> this means that the
+         rectangle is clipped outside the Axes rectangle.
+         </DESCRIPTION_ITEM>
+
+        <DESCRIPTION_ITEM > 
+         <VERB>"on"</VERB> this means that the
+         rectangle is clipped outside the rectangle given by property clip_box.
+         </DESCRIPTION_ITEM>
+      </DESCRIPTION_INDENT>
+     </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='clip_box: '>
+      This field contains the  <VERB>clip_box</VERB> property.
+      It's value should be an empty matrix if
+      clip_state is "off" or the vector <VERB>[x,y,w,h</VERB>] (upper-left point width height)
+     </DESCRIPTION_ITEM>
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+   set("figure_style","new") //create a figure
+   a=get("current_axes");//get the handle of the newly created axes
+   a.data_bounds=[-2,-2,2,2];
+
+   xrect(-1,1,2,2)
+
+   p=a.children
+   p.fill_mode="on";
+   p.foreground=5;
+   p.clip_box=[-1 1;1 1];
+   p.clip_state="off"
+   p.data(2,:)=[1 1]/2
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xfrect</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xrects</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+
+  </SEE_ALSO>
+<AUTHOR>Djamel Abdemouche  </AUTHOR>
+</MAN>
+
