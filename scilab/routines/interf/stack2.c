@@ -2513,7 +2513,19 @@ static int Check_references()
 int C2F(putlhsvar)()
 {
   integer ix2, ivar, ibufprec, ix, k, lcres, nbvars1;
+  integer plhsk;
   Check_references();
+  
+  for (k = 1; k <= Lhs; k++)
+    {
+      plhsk=*lstk(LhsVar(k)+Top-Rhs);
+      if (*istk( iadr(plhsk) ) < 0) {
+	if (*lstk(Bot) > *lstk(*istk(iadr (plhsk) +2)) )
+	LhsVar(k)=*istk(iadr(plhsk)+2);
+	/* lcres = 0 */
+      }
+    }
+
   if (C2F(iop).err > 0||C2F(errgst).err1> 0)  return TRUE_ ; 
   if (C2F(com).fun== -1 ) return TRUE_ ; /* execution continue with an 
 					    overloaded function */
@@ -2537,7 +2549,6 @@ int C2F(putlhsvar)()
       ibufprec = LhsVar(ix );
     }
   }
-
   if (! lcres) {
     /* First pass if output variables are not 
      * in increasing order 
@@ -2558,7 +2569,6 @@ int C2F(putlhsvar)()
       C2F(intersci).ntypes[nbvars1 + ivar - 1] = '$';
     }
   }
-
   /*  Second pass */
   for (ivar = 1; ivar <= Lhs ; ++ivar) 
     {
@@ -2695,7 +2705,7 @@ static int C2F(mvfromto)(itopl, ix)
     if (! C2F(cremat)("mvfromto", itopl, (it=0 ,&it), (m=1, &m), &size, &lrs, &lcs, 8L)) {
       return FALSE_;
     }
-	if ( C2F(vcopyobj)("mvfromto", &pointed, itopl, 8L) == FALSE_) 
+    if ( C2F(vcopyobj)("mvfromto", &pointed, itopl, 8L) == FALSE_) 
 	  return FALSE_;
     break;
   case 'p' :   case '$' :
@@ -3145,11 +3155,6 @@ int C2F(createreference)(number, pointed)
 /* variable number is created as a reference to variable pointed */
 {
   int offset; int point_ed; int *header;
-  if (pointed > number) 
-    {
-      Scierror(999,"Invalid pointed variable number  %i \r\n",pointed);
-      return 0;   /* The variable created (number) should point to an existing variable */
-    }
   CreateData( number, 4*sizeof(int) );
   header =  GetRawData(number);
   offset = Top -Rhs;
@@ -3158,6 +3163,22 @@ int C2F(createreference)(number, pointed)
   header[1]= *lstk(point_ed);  /* pointed adress */
   header[2]= point_ed; /* pointed variable */
   header[3]= *lstk(point_ed + 1)- *lstk(point_ed);  /* size of pointed variable */
+  C2F(intersci).ntypes[number-1]= '-';
+  return 1;
+}
+
+int C2F(changetoref)(number, pointed)
+     int number; int pointed;
+/* variable number is changed as a reference to variable pointed */
+{
+  int offset; int point_ed; int *header;
+  header =  GetRawData(number);
+  offset = Top - Rhs;
+  point_ed = offset + pointed;
+  header[0]= - *istk( iadr(*lstk( point_ed )) );  /* reference : 1st entry (type) is opposite */
+  header[1]= *lstk(point_ed);  /* pointed adress */
+  header[2]= pointed; /* pointed variable */
+  header[3]= *lstk(point_ed + 1) - *lstk(point_ed);  /* size of pointed variable */
   C2F(intersci).ntypes[number-1]= '-';
   return 1;
 }
