@@ -1351,6 +1351,7 @@ void C2F(setclip)(x, y, w, h)
   ScilabXgc->CurClipRegion[1]= *y;
   ScilabXgc->CurClipRegion[2]= *w;
   ScilabXgc->CurClipRegion[3]= *h;
+  set_current_clip();
 }
 
 

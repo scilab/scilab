@@ -783,9 +783,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
     return;
   scig_buzy = 1;
 
-  //hdc = BeginPaint(hwnd, &ps);
-  // suprime par Mat
-  hdc = BeginPaint (ScilabGC->CWindow, &ps);
+  hdc = BeginPaint(hwnd, &ps);
   if (ScilabGC->Inside_init != 1)
     {
       SetMapMode (hdc, MM_TEXT);
@@ -812,9 +810,7 @@ static void ScilabPaint (HWND hwnd, struct BCG *ScilabGC)
 			   ScilabGC->CWindowHeight, 1);
 	}
     }
-  //EndPaint(hwnd, &ps);
-  // supprime par Mat
-  EndPaint (ScilabGC->CWindow, &ps);
+  EndPaint(hwnd, &ps);
 
   scig_buzy = 0;
 }
