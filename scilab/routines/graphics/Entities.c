@@ -3984,17 +3984,18 @@ sciSetResize (sciPointObj * pobj, BOOL value)
   integer x[2];
   integer num1 = (value ? 1 : 0);
   if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
-    {
+    { 
       /* this code will coms from
        *  C2F(setwresize)((i = value, &i), PI0,PI0,PI0);
        * je changerais ce morceau de code quand tout csera OK
        */
       if (sciGetScilabXgc (pobj)->CurResizeStatus != num1)
 	{
-	  sciGetScilabXgc (pobj)->CurResizeStatus = num1;	/* a faire avant setwindowdim */
+	  C2F(dr)("xset","wresize",&(num1),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);  
 	  
-	  C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
-	  C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);
+	  /*  sciGetScilabXgc (pobj)->CurResizeStatus = num1;  
+	      C2F(dr)("xget","wpdim",&xtmp,x,&xtmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L); 
+	      C2F(dr)("xset","wpdim",&(x[0]),&(x[1]),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,5L);*/
 #ifdef WIN32
 	  /* Win function sciGetScilabXgc (pobj)->horzsi.nPos !!? BCG.horzsi.nPos*/
 	  /* SetViewportOrgEx (GetDC (sciGetScilabXgc (pobj)->CWindow),  
@@ -7195,14 +7196,15 @@ ConstructFigure (XGC)
       return (sciPointObj *) NULL;
     }   
   sciSetName(pobj, sciGetName(pfiguremdl), sciGetNameLength(pfiguremdl));
-  sciSetNum (pobj, &(XGC->CurWindow));
+  sciSetNum (pobj, &(XGC->CurWindow));		   
+   sciSetResize((sciPointObj *) pobj,sciGetResize(pobj));
   pFIGURE_FEATURE(pobj)->windowdimwidth=pFIGURE_FEATURE(pfiguremdl)->windowdimwidth;  
   pFIGURE_FEATURE(pobj)->windowdimheight=pFIGURE_FEATURE(pfiguremdl)->windowdimheight;
-  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
+  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->windowdimwidth),
 	  &(pFIGURE_FEATURE(pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
   pFIGURE_FEATURE (pobj)->figuredimwidth = pFIGURE_FEATURE (pfiguremdl)->figuredimwidth;
   pFIGURE_FEATURE (pobj)->figuredimheight = pFIGURE_FEATURE (pfiguremdl)->figuredimheight;
-  C2F(dr)("xset","wdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
+  C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE(pobj)->figuredimwidth),
 		&(pFIGURE_FEATURE(pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xget","wpos",&verbose,x,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,4L,4L);
   x[0]=(pFIGURE_FEATURE (pfiguremdl)->inrootposx <0)?x[0]:pFIGURE_FEATURE (pfiguremdl)->inrootposx;
@@ -7572,8 +7574,8 @@ int C2F(graphicsmodels) ()
   pFIGURE_FEATURE (pfiguremdl)->number=0;
   pFIGURE_FEATURE (pfiguremdl)->figuredimwidth = 610;
   pFIGURE_FEATURE (pfiguremdl)->figuredimheight = 461;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth = 610;
-  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 461;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimwidth = 600;
+  pFIGURE_FEATURE (pfiguremdl)->windowdimheight = 400;
   pFIGURE_FEATURE (pfiguremdl)->inrootposx = 197;
   pFIGURE_FEATURE (pfiguremdl)->inrootposy = 181;
   pFIGURE_FEATURE (pfiguremdl)->isiconified = FALSE;
@@ -11884,9 +11886,9 @@ sciGetPosWidth (sciPointObj * pthis)
   switch (sciGetEntityType (pthis))
     {
     case SCI_FIGURE:
-      C2F(dr)("xget","wpdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
-      pFIGURE_FEATURE (pthis)->figuredimwidth=x[0];
-      return pFIGURE_FEATURE (pthis)->figuredimwidth;
+      C2F(dr)("xget","wdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
+      pFIGURE_FEATURE (pthis)->windowdimwidth=x[0];
+      return pFIGURE_FEATURE (pthis)->windowdimwidth;
       break;
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE (pthis)->windimwidth;
@@ -12017,9 +12019,9 @@ sciGetPosHeight (sciPointObj * pthis)
   switch (sciGetEntityType (pthis))
     {
     case SCI_FIGURE:  
-      C2F(dr)("xget","wpdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
-      pFIGURE_FEATURE (pthis)->figuredimheight=x[1];
-      return pFIGURE_FEATURE (pthis)->figuredimheight;
+      C2F(dr)("xget","wdim",&itmp,x,&itmp,PI0,PI0,PI0,&xtmp2,PD0,PD0,PD0,0L,0L);
+      pFIGURE_FEATURE (pthis)->windowdimheight=x[1];
+      return pFIGURE_FEATURE (pthis)->windowdimheight;
       break;
     case SCI_SUBWIN:
       return pSUBWIN_FEATURE (pthis)->windimheight;

@@ -2862,12 +2862,12 @@ int scixset(fname,fname_len)
         sciSetFigurePos (sciGetParent(subwin), x[0], x[1]);
 	 
       }
-    else if ( strncmp(cstk(l1),"wdim",4) == 0) {
+    else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
       pFIGURE_FEATURE(sciGetParent(subwin))->figuredimwidth=x[0];  
       pFIGURE_FEATURE(sciGetParent(subwin))->figuredimheight=x[1];
 	 
       } 
-   else if ( strncmp(cstk(l1),"wpdim",4) == 0) {
+   else if ( strncmp(cstk(l1),"wdim",4) == 0) {
      pFIGURE_FEATURE(sciGetParent(subwin))->windowdimwidth=x[0];  
      pFIGURE_FEATURE(sciGetParent(subwin))->windowdimheight=x[1];
 	 
@@ -5022,9 +5022,9 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
     {
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth=stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight=stk(*value)[1];
-      /*Ajout A.Djalel wpdim au lieu de wdim*/
+      /*Ajout A.Djalel wdim au lieu de wpdim*/
       if ((sciPointObj *)pobj != pfiguremdl)
-	C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
+	C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimwidth),
 		&(pFIGURE_FEATURE((sciPointObj *)pobj)->windowdimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     } 
   else if (strncmp(marker,"figure_size", 11) == 0)
@@ -5032,7 +5032,7 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
       pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=stk(*value)[0];  
       pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=stk(*value)[1];
       if ((sciPointObj *)pobj != pfiguremdl)
-	C2F(dr)("xset","wdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
+	C2F(dr)("xset","wpdim",&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth),
 		&(pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight),PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
     }
   else if (strncmp(marker,"figure_name", 11) == 0) {
@@ -5932,14 +5932,14 @@ else if (strncmp(marker,"visible", 7) == 0) {
       numcol   = 2;
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       if ((sciPointObj *) pobj != pfiguremdl)
-	{
+	{ 
 	  stk(outindex)[0] = sciGetPosWidth ((sciPointObj *) pobj); 
 	  stk(outindex)[1] = sciGetPosHeight ((sciPointObj *) pobj); 
 	}
       else
 	{
-	  stk(outindex)[0] = pFIGURE_FEATURE (pobj)->figuredimwidth;
-	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->figuredimheight; 
+	  stk(outindex)[0] = pFIGURE_FEATURE (pobj)->windowdimwidth;
+	  stk(outindex)[1] = pFIGURE_FEATURE (pobj)->windowdimheight; 
 	}
     } 
   else if (strncmp(marker,"figure_size", 15) == 0)
@@ -5949,7 +5949,7 @@ else if (strncmp(marker,"visible", 7) == 0) {
       CreateVar(Rhs+1,"d",&numrow,&numcol,&outindex);
       if ((sciPointObj *) pobj != pfiguremdl)
 	{
-	  C2F(dr)("xget","wdim",&itmp,x,&itmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xget","wpdim",&itmp,x,&itmp,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimwidth=x[0];  
 	  pFIGURE_FEATURE((sciPointObj *)pobj)->figuredimheight=x[1]; 
 	}
