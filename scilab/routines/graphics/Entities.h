@@ -1011,7 +1011,7 @@ typedef struct
   integer Nbr2;
   integer *pstyle;
   integer iflag;      /**0 or 1, flag which control the drawing of the segment  **/
-  double arrowsize;
+  double arrowsize;  /*F.Leray units : hundreds (i.e. 100, 150,...)*/
   integer pcolored;
   double parfact;
   integer ptype;

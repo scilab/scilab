@@ -8863,6 +8863,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
    
       psegs = pSEGS_FEATURE (pobj); 
       psegs->ptype = type;
+
+      /* psegs->arrowsize = 50.;  */ /* default value F.Leray 25.03.04*/
           
       if ((psegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
 	{ 
@@ -8896,7 +8898,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       /* F.Leray Test imprortant sur type ici*/
       if (type == 0) /* attention ici type = 0 donc...*/
 	{   
-	  psegs->arrowsize = arsize;     
+	  psegs->arrowsize = arsize * 100;     
 	  if ((psegs->pstyle = MALLOC (Nbr1 * sizeof (integer))) == NULL)
 	    {
 	      FREE(pSEGS_FEATURE (pobj)->vx); 
@@ -8923,7 +8925,7 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       else /* attention ici type = 1 donc...*/
 	{ 
 	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  psegs->arrowsize = arsize;
+	  psegs->arrowsize = arsize * 100;
 	  psegs->Nbr1 = Nbr1;   
 	  psegs->Nbr2 = Nbr2;	 
 	  psegs->pcolored = colored;
