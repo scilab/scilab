@@ -11,6 +11,7 @@ function histplot(n,data,style,strf,leg,rect,nax,x1,x2,x3,x4,x5)
 // Example : enter histplot()
 //! 
 // Copyright INRIA
+// modif to use dsearch (Bruno le 10/12/2001)
 [lhs,rhs]=argn(0)
 if rhs<=0, s_mat=['histplot([-6:0.2:6],rand(1,2000,''n''),[1,-1],''011'','' '',[-6,0,6,0.5],[2,12,2,11]);';
 	 'deff(''[y]=f(x)'',''y=exp(-x.*x/2)/sqrt(2*%pi);'');';
@@ -46,32 +47,28 @@ if size(opts,2)+bool2s(isrect)+2 <rhs then  error('invalid named arguments'),end
 
   p=size(data,'*')
   data=data(:)
-//
+  //
 
   if size(n,'*')==1 then 
-     dmin=mini(data)
-     dmax=maxi(data)
-     x=(0:n)';
-     x=(1/n)*( dmax*x + dmin*(n*ones(x)-x));
-   else
+     x = linspace(min(data), max(data), n+1)';
+  else
      x=n(:)
-   end,
-   n=prod(size(x));
-   x1=x;x1(1)=x1(1)-1
-   deff('[y]=f_hist(k)','y=prod(size(find(data>x1(k)&data<=x1(k+1))))');
-                    
-   y=feval((1:n-1)',f_hist);
-   if normalization then y=y ./ (p*(x(2:$)-x(1:$-1))),end //normalization
-
-   y=[y;y(n-1)];
-   nx=maxi(min(15,prod(size(x))-1),1);
-   if ~isrect then 
+  end,
+  n=prod(size(x));
+  
+  [ind , y] = dsearch(data, x);
+  
+  if normalization then y=y ./ (p*(x(2:$)-x(1:$-1))),end //normalization
+  
+  y=[y;y(n-1)];
+  nx=maxi(min(15,prod(size(x))-1),1);
+  if ~isrect then 
      rect=[mini(x),0,maxi(x),maxi(y)];
      if rect(2)==rect(4) then rect(2)=0.0;rect(4)=1.1; end
-   end
-   opts=[opts,'rect=rect']
-   execstr('plot2d2(x,y,'+strcat(opts,',')+')')
-   execstr('plot2d3(x,y,'+strcat([opts(1),'strf='"000"''],',')+')')
+  end
+  opts=[opts,'rect=rect']
+  execstr('plot2d2(x,y,'+strcat(opts,',')+')')
+  execstr('plot2d3(x,y,'+strcat([opts(1),'strf='"000"''],',')+')')
    
 
 endfunction
