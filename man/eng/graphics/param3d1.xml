@@ -5,7 +5,7 @@
 
   <TITLE>param3d1</TITLE>
 
-  <TYPE>Scilab Function</TYPE>
+  <TYPE>Scilab Functio</TYPE>
 
   <DATE>April 1993</DATE>
 
@@ -31,10 +31,9 @@
           <VERB>list(z,colors)</VERB> instead of <VERB>z</VERB>, where
           <VERB>colors</VERB> is a vector of size <VERB>nc</VERB>. If
           <VERB>color(i)</VERB> is negative the curve is plotted using the
-          mark with id <VERB>abs(style(i))+1</VERB>; if <VERB>style(i)</VERB>
-          is strictly positive, a plain line with color id
-          <VERB>style(i)</VERB> or a dashed line with dash id
-          <VERB>style(i)</VERB> is used.</P>
+          mark with id <VERB>abs(style(i))</VERB>; if <VERB>style(i)</VERB> is
+          strictly positive, a plain line with color id <VERB>style(i)</VERB>
+          or a dashed line with dash id <VERB>style(i)</VERB> is used.</P>
         </PARAM_DESCRIPTION>
       </PARAM_ITEM>
 

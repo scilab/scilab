@@ -34,7 +34,7 @@
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>The <VERB>line_style</VERB> property value should be an integer in
         [0 6]. 0 stands for solid the other value stands for a selection of
-        dashes.</SP>
+        dashes (see <LINK>getlinestyle</LINK>).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="thickness: ">

@@ -33,9 +33,15 @@
         Polyline objects.</SP>
       </DESCRIPTION_ITEM>
 
+      <DESCRIPTION_ITEM label="line_mode: ">
+        <SP>This field contains the default <VERB>line_mode</VERB> property
+        value for the polyline. Its value should be <VERB>"on" </VERB>(line
+        drawn) or <VERB>"off"</VERB> (no line drawn).</SP>
+      </DESCRIPTION_ITEM>
+
       <DESCRIPTION_ITEM label="line_style: ">
         <SP>This field selects the type of line to be used to draw lines . Its
-        value should be an integer in [0 9]. 0 stands for solid, the other
+        value should be an integer in [0 6]. 0 stands for solid, the other
         values stand for a selection of dashes (see
         <LINK>getlinestyle</LINK>).</SP>
       </DESCRIPTION_ITEM>
@@ -67,6 +73,18 @@
         <SP>. The <VERB>mark_size</VERB> selects the font size of the mark to
         be displayed. Its value should be an integer in [0 5] whith stands for
         8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see <LINK>getmark</LINK>).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_foreground: ">
+        <SP>This field contains the <VERB>mark_foreground</VERB> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map).</SP>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="mark_background: ">
+        <SP>This field contains the <VERB>mark_background</VERB> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map).</SP>
       </DESCRIPTION_ITEM>
 
       <DESCRIPTION_ITEM label="thickness: ">
