@@ -219,7 +219,7 @@ static int Sci_dlopen(char **loaded_files,int global)
 	   && strstr(loaded_files[0],SHARED_SUF)!= NULL)
 	{
 	  strcpy(tmp_file,loaded_files[0]);
-	  sciprint("Loading shared executable %s\r\n",loaded_files[0]);
+	  sciprint_nd("Loading shared executable %s\r\n",loaded_files[0]);
 	}
       else 
 	{
@@ -305,14 +305,14 @@ static int CreateShared(char **loaded_files, char *tmp_file)
   char *libs,*tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  sciprint("linking files ");
+  sciprint_nd("linking files ");
   while ( loaded_files[i] != NULL) 
     {
-      sciprint("%s ",loaded_files[i]);
+      sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  sciprint(" to create a shared executable\r\n");
+  sciprint_nd(" to create a shared executable\r\n");
   count++;
   /* be sure that tmpdir exists */
   tmpdir = get_sci_tmp_dir();
@@ -395,14 +395,14 @@ static int CreateCppShared(char **loaded_files, char *tmp_file)
   char *libs, *exec_cpp, *tmpdir;
   libs=getenv("SYSLIBS");
    /** XXXXX **/
-  sciprint("linking files ");
+  sciprint_nd("linking files ");
   while ( loaded_files[i] != NULL) 
     {
-      sciprint("%s ",loaded_files[i]);
+      sciprint_nd("%s ",loaded_files[i]);
       i++;
     }
 
-  sciprint(" to create a shared executable\r\n");
+  sciprint_nd(" to create a shared executable\r\n");
   count++;
   tmpdir = get_sci_tmp_dir();
   sprintf(tmp_file, "%s/SL_%d_XXXXXX",tmpdir,(int) getpid()); /*,count);*/
