@@ -67,7 +67,7 @@
 #include "wcommon.h"
 	
 #ifdef USE_CONSOLE
-	#include "wtextc.h"
+/*	#include "wtextc.h"*/
 #else
 	#include "wtext.h"
 #endif

@@ -100,7 +100,7 @@ rdl-nw-test.obj: rdl-nw-test.c
 readcons.obj: readcons.c readline.c wcommon.h ../graphics/Math.h \
   ../machine.h ../graphics/Graphics.h ../graphics/bcg.h \
   ../stack-c.h ../stack-def.h ../interf/stack1.h \
-  ../interf/stack2.h ../interf/stack3.h wadd.h common.h wtextc.h
+  ../interf/stack2.h ../interf/stack3.h wadd.h common.h 
 readline.obj: readline.c ../machine.h
 readwin.obj: readwin.c readline.c wcommon.h ../graphics/Math.h ../machine.h \
   ../graphics/Graphics.h ../graphics/bcg.h \
