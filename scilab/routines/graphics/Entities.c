@@ -7934,8 +7934,11 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
       pSUBWIN_FEATURE (pobj)->visible = pSUBWIN_FEATURE (paxesmdl)->visible; 
       pSUBWIN_FEATURE (pobj)->isclip = pSUBWIN_FEATURE (paxesmdl)->isclip;
 
-      /* F.Leray 02.04.04*/
-      pSUBWIN_FEATURE (pobj)->flag_min_max = 0;
+      /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
+      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0];
+      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1];
+      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2];
+      pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3];
 
       /* F.Leray 07.04.04*/
       pSUBWIN_FEATURE (pobj)-> value_min[0] = 0;  /* xmin */
@@ -8183,7 +8186,12 @@ int C2F(graphicsmodels) ()
   pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
   pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';
   
-  
+  /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = 10;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = 10;
+   
   pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
   for (i=0 ; i<7 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
@@ -17474,6 +17482,13 @@ int InitAxesModel()
   pSUBWIN_FEATURE (paxesmdl)->axes.xdir='d'; 
   pSUBWIN_FEATURE (paxesmdl)->axes.ydir='l';  
   pSUBWIN_FEATURE (paxesmdl)->axes.rect  = 1;
+
+  /* F.Leray 26.04.04 : Pb init axes.aaint DONE HERE: default values */
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[0] = 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[1] = 10;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[2] = 2;
+  pSUBWIN_FEATURE (paxesmdl)->axes.aaint[3] = 10;
+  
   for (i=0 ; i<7 ; i++)
     pSUBWIN_FEATURE (paxesmdl)->axes.limits[i]  = 0;
 
