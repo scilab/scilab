@@ -157,7 +157,10 @@ int C2F(run)()
   case 4:  goto L92;
   case 5:  goto L58;
   case 6:  goto L116;
-  case 7:  goto L232;
+  case 7:  goto L250;
+  case 8:  Rstk[Pt]=1101;goto L251;
+  case 9:  Rstk[Pt]=1101;goto L240;
+
   }
 
   
@@ -231,8 +234,8 @@ int C2F(run)()
   case 27:  goto L220;
   case 28:  goto L97;
   case 29:  goto L230;
-  case 30:  goto L240;
-  case 31:  goto L241;
+  case 30:  goto L260;
+  case 31:  goto L261;
 
   }
   if (op >= 100) {
@@ -1101,7 +1104,7 @@ int C2F(run)()
   Rhs = Istk[6 + li];
   lastindpos = Top - Lhs - ndel;
   if (C2F(errgst).err1 != 0) {
-    goto L233;
+    goto L253;
   }
   if (Rhs == 0) {
     /* goto simple affectation */
@@ -1110,13 +1113,17 @@ int C2F(run)()
       goto L10;
     }
     if (C2F(errgst).err1 > 0) {
-      goto L233;
+      goto L253;
     }
     /* fin points on the newly saved variable */
-    if (Lct[4] >= 0 && ip != semi && C2F(com).fin != 0) {
-      C2F(print)(&Istk[li], &C2F(com).fin, &C2F(iop).wte);
-    }
-    goto L233;
+    if (!(Lct[4] >= 0 && ip != semi && C2F(com).fin != 0)) goto L253;
+    ifin=C2F(com).fin;
+    C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
+    if (Rstk[Pt]!=1101) goto L253;
+    Rstk[Pt]=609;
+    return 0;
+  L240:
+    goto L253;
   }
   /*     take rhs (number of indices) computed at runtime into account */
   C2F(adjustrhs)();
@@ -1162,8 +1169,9 @@ int C2F(run)()
   C2F(com).fin = insert;
   /*     *call* allops(insert) */
   return 0;
- L232:
+ L250:
   li = Pstk[Pt];
+  ip = Istk[li-1];
   ndel =       Ids[1 + Pt * nsiz];
   lastindpos = Ids[2 + Pt * nsiz];
   tref =       Ids[3 + Pt * nsiz];
@@ -1173,21 +1181,27 @@ int C2F(run)()
   --Pt;
   /*     store the updated value */
   C2F(stackp)(&Istk[li], &c__0);
+
   if (Err > 0 || C2F(errgst).err1 > 0) {
     goto L10;
   }
   if (C2F(errgst).err1 > 0) {
-    goto L233;
+    goto L253;
   }
   /*     fin points on the newly saved variable */
-  if (Lct[4] >= 0 && ip != semi && C2F(com).fin != 0) {
-    C2F(print)(&Istk[li], &C2F(com).fin, &C2F(iop).wte);
-  }
+  if (!(Lct[4] >= 0 && ip != semi && C2F(com).fin != 0)) goto L252;
+  ifin=C2F(com).fin;
+ L251:
+  C2F(print)(&Istk[li], &ifin, &C2F(iop).wte);
+  if (Rstk[Pt]!=1101) goto L252;
+  Rstk[Pt]=608;
+  return 0;
+
+ L252:
   /*     remove variable containing the value if required */
-  if (lastindpos != Top) {
-    --Top;
-  }
- L233:
+  if (lastindpos != Top)   --Top;
+
+ L253:
   li += 7;
   --Lhs;
   if (Lhs > 0) {
@@ -1198,7 +1212,7 @@ int C2F(run)()
   goto L10;
 
   /*     logical expression shortcircuit */
- L240:
+ L260:
   if (Istk[1 + lc] == 1) {
     /* | case */
     if (C2F(gettype)(&Top) != 8 && Istrue(0)) {
@@ -1213,7 +1227,7 @@ int C2F(run)()
   lc += 3;
   goto L10;
  /*     comment */
- L241:
+ L261:
 
   lc += 2+Istk[1 + lc];
   goto L10;
