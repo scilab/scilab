@@ -74,7 +74,11 @@ mexname='xtimesy';
 mputl(strsubst(mgetl('libtst.c'),'libtst',mexname),'lib'+mexname+'.c');
 mputl(strsubst(mgetl('Makelib'),'libtst','lib'+mexname),'Make'+mexname);
 //make -f Makextimesy
-//ld -shared -o xtimesy.so libxtimesy.o xtimesy.mexglx -rpath `pwd`
-// OR : link ./xtimesy.mexglx
-addinter('./xtimesy.so','xtimesy','xtimesy')
+// ld -shared -o xtimesy.so libxtimesy.o xtimesy.mexglx -rpath `pwd`
+//OR :
+link ./libmx.so;
+link ./libmex.so;
+link ./libmat.so;
+link ./xtimesy.mexglx;
+addinter('./libxtimesy.so','xtimesy','xtimesy')
 xtimesy(2,3)
