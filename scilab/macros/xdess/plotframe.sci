@@ -45,9 +45,9 @@ if f_subwin then
 end
 // -- trace du cadre et des echelles
 if r_flags(2) then
-	plot2d(0,0,0,'051',' ',rect,axisdata)
+	plot2d([],[],0,'051',' ',rect,axisdata)
 else
-	plot2d(0,0,0,'011',' ',rect,axisdata)
+	plot2d([],[],0,'011',' ',rect,axisdata)
 end
 // -- trace des legendes d'axes et du titre
 if f_legs then 
