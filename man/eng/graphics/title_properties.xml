@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>title_properties</TITLE>
+  <TYPE>Scilab Data type </TYPE>
+  <DATE> 2002 </DATE>
+  <SHORT_DESCRIPTION name="title_properties"> description of the
+   Title entity properties </SHORT_DESCRIPTION>
+ 
+  <DESCRIPTION>
+  The Title entity is a leaf of the graphics entities
+  hierarchy. It is associated to the axes graphics object.  
+  This entity defines the parameters for string drawing
+
+
+  
+   <DESCRIPTION_ITEM label='visible: '>  
+   This field contains the  <VERB>visible</VERB> property value
+   for the entity . It should
+   be <VERB>"on" </VERB> or <VERB>"off"</VERB>  .By default, 
+   the title is visible, the value's property is  <VERB>"on"
+   </VERB>. If <VERB>"off"</VERB> the title is not to display on the screen.
+   </DESCRIPTION_ITEM>
+
+   <DESCRIPTION_ITEM label='text: '>
+    This field is the character string vector which contains the title.
+   </DESCRIPTION_ITEM>
+
+     <DESCRIPTION_ITEM label='font_size: '>
+     The <VERB>font_size</VERB> property  is used to select the
+       type of size of the title. Its value should be an integer in between 0 and 5
+       whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+     </DESCRIPTION_ITEM>
+     <DESCRIPTION_ITEM label='font_style: '>
+     Seven differents fonts are available :
+     "Courrier", "Symbol", "Times", "Times Italic", "Times Bold",
+     "User defined". The font_size property is an index in [0 6] which
+     is associated to the previous font names.
+       </DESCRIPTION_ITEM>
+   
+
+     <DESCRIPTION_ITEM label='foreground: '>
+      This field contains the color used to display the title.
+      Its value should be a color index (relative to the current colormap).
+     </DESCRIPTION_ITEM> 
+
+     <DESCRIPTION_ITEM label='parent: '> 
+      This property contains the handle of the parent. The parent of the title
+      entity should be of the type <VERB>"Axes"</VERB> or <VERB>"Agregation"</VERB>.
+     </DESCRIPTION_ITEM>
+
+   
+  
+
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[   
+
+   set("figure_style","new") //create a figure
+   a=get("current_axes"); 
+   a.data_bounds=[-2,-4,2,4];
+   a.axes_visible="on"; 
+   a.box="off"; 
+
+   xtitle(['Titre';'Principal'],'x','y');
+   t=a.children.children;
+   t.text
+   t.font_size=4;
+   t(3).text="A title entity"  
+   t(3).font_style=5;
+   a.x_location="middle"; 
+   a.y_location="right";
+  
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>set</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>get</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>delete</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>xstring</LINK> </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM> <LINK>graphics_entities</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+<AUTHOR>Djalel ABDEMOUCHE  </AUTHOR>
+</MAN>
