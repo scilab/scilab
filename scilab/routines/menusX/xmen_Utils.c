@@ -75,7 +75,8 @@ ShellFormCreate(char *shellname, Widget *shell, Widget *form, Display **dpyh)
   DisplayInit("",dpyh,&toplevel);
 
   *shell = XtCreatePopupShell(shellname,SHELL_TYPE,toplevel,
-			     (Arg *) NULL,(Cardinal)ZERO);
+			      (Arg *) NULL,(Cardinal)ZERO); 
+
   hpaned = XtCreateManagedWidget("hpaned",panedWidgetClass,*shell,
 			     (Arg *) NULL,(Cardinal)ZERO);
 

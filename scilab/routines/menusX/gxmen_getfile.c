@@ -43,14 +43,18 @@ static void file_selection_cancel (GtkWidget *w,  state *rep)
 }
 
 /* XXXX reste a rajouter un bouton home et un bouton SCI 
- * Il faut aussi expanser les dirname 
- * on utilise ici flag pour rajouter des actions 
- * returns  a filename in file or an operator + filename  if 
- * action == 1 
+ * Il faut aussi expanser les dirname ? SCI HOME etc....
  */
 
 int GetFileWindow(char *filemask,char **file,char *dirname,
-		  int action,int *ierr,char *title)
+		  int flag,int *ierr,char *title)
+{
+ return  sci_get_file_window(filemask,file,dirname,flag,0,ierr,title);
+}
+    
+
+int  sci_get_file_window(char *filemask,char **file,char *dirname,
+			 int flag,int action,int *ierr,char *title)
 {
   static int last_choice = 0;
   GList *cbitems = NULL;
@@ -64,7 +68,7 @@ int GetFileWindow(char *filemask,char **file,char *dirname,
   window = gtk_file_selection_new (title);
 
   if ( strcmp(dirname,".") == 0) 
-    gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),"");
+    gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),"./");
   else 
     gtk_file_selection_set_filename (GTK_FILE_SELECTION (window),dirname);
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_MOUSE);

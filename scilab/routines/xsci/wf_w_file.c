@@ -182,10 +182,10 @@ void ok_prep(filemask,dirname,title,flag,err)
 {
   char newdir[PATH_MAX];
   if (file_popup) {
-/*    FirstArg(XtNtitle, title);
-    SetValues(file_popup);	*/
-      FirstArg(XtNlabel, title);
-      SetValues(labelW);
+    /*    FirstArg(XtNtitle, title);
+	  SetValues(file_popup);	*/
+    FirstArg(XtNlabel, title);
+    SetValues(labelW);
   }
 
   /* Change Accelerators to ok */

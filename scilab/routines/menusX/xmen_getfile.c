@@ -37,7 +37,8 @@ static int error=0;
  * The main function to activate the file menu 
  **********************************************************/
 
-int GetFileWindow(char *filemask, char **file, char *dirname, int flag, int *ierr, char *title)
+int GetFileWindow(char *filemask, char **file, char *dirname, int flag,
+		  int *ierr, char *title)
 {
   int err=0;
   static Display *dpy = (Display *) NULL;

@@ -5,6 +5,8 @@
 #include "men_scilab.h"
 #endif
 
+#include "../sun/Sun.h"
+
 /*************************************************     
  * test function 
  **********************************************************/
@@ -20,23 +22,31 @@ int TestGetFile(void)
 }
 
 /****************************************************
- * Scilab getfile Menu
- * interface with scilab 
+ * Scilab xgetfile command used to get a file name 
+ * through a menu 
  * res is dynamically allocated in GetFileWindow 
  *     and the routines which use xgetfile must 
  *     clear the memory ( see xawelm.f ) 
+ * dirname is <<expanded>> using cluni0 
  **********************************************************/
+
+#define MAX_PATH_STR 1024
      
-void C2F(xgetfile)(char *filemask, char *dirname, char **res, integer *ires, integer *ierr, integer *idir, integer *desc, integer *ptrdesc, integer *nd)
+void C2F(xgetfile)(char *filemask, char *dirname, char **res,
+		   integer *ires, integer *ierr, integer *idir,
+		   integer *desc, integer *ptrdesc, integer *nd)
 {
-  int flag=0,rep;
+  static char dir_expanded[MAX_PATH_STR+1];
+  int flag=0,rep,out_n;
   char *description;
   *ierr=0;
   ScilabMStr2C(desc,nd,ptrdesc,&description,ierr);
   if ( *ierr == 1) return;
   *ierr = 0;
   if ( *idir == 1) flag =1 ;
-  rep = GetFileWindow(filemask,res,dirname,flag,ierr,description);
+  C2F(cluni0)(dirname,dir_expanded,&out_n,strlen(dirname),MAX_PATH_STR);
+
+  rep = GetFileWindow(filemask,res,dir_expanded,flag,ierr,description);
   FREE(description);
   if ( *ierr >= 1 || rep == FALSE )
     {

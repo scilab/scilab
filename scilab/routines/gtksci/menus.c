@@ -916,7 +916,7 @@ static void scig_menu_save(int winid)
   char *filename;
   int ierr=0,rep;
   static char *init ="*.scg";
-  rep=GetFileWindow(init,&filename,".",0,&ierr,"Save Graphic File");
+  rep=sci_get_file_window(init,&filename,".",0,0,&ierr,"Save Graphic File");
   if ( ierr == 0 && rep == TRUE )
     {
       C2F(xsaveplots)(&winid,filename,0L);
@@ -932,7 +932,7 @@ static void scig_menu_load(int winid)
   char *filename;
   int ierr=0,rep;
   static char *init ="*.scg";
-  rep=GetFileWindow(init,&filename,".",0,&ierr,"Load Graphic File");
+  rep=sci_get_file_window(init,&filename,".",0,0,&ierr,"Load Graphic File");
   if ( ierr == 0 && rep == TRUE )
     {
       integer verb=0,cur,na;
@@ -951,7 +951,7 @@ static void sci_menu_fileops()
 {
   static char * file = NULL ;
   int rep,ierr;
-  rep = GetFileWindow(NULL,&file,".",1,&ierr,"File operations");
+  rep = sci_get_file_window(NULL,&file,".",0,1,&ierr,"File operations");
   if ( ierr == 0 && rep == TRUE ) 
     { 
       StoreCommand(file); 

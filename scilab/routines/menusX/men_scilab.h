@@ -209,6 +209,7 @@ extern int DialogWindow  __PARAMS((void));
 /* "xmen_getfile-n.c.X1" */
 
 extern int GetFileWindow  __PARAMS((char *, char **, char *, int, int *,char *));  
+extern int sci_get_file_window __PARAMS((char *, char **, char *, int,int, int *,char *));  
 extern void XtSpecialLoop  __PARAMS((void));  
 extern void cancel_getfile  __PARAMS((void));  
 extern int write_getfile  __PARAMS((char *, char *));  
