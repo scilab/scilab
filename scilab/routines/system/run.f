@@ -525,24 +525,24 @@ c     *call* macro
 c     
 c     break
  95   continue
-      pt=pt+1
- 96   pt=pt-1
-      if(pt.eq.0) then
+      p=pt+1
+ 96   p=p-1
+      if(p.eq.0) then
          lc=lc+1
          goto 10
       endif
-      if(rstk(pt).eq.612) then
+      if(rstk(p).eq.612) then
 c     break dans un for
-         l0=ids(1,pt)
+         l0=ids(1,p)
          lc=l0+istk(l0-1-nsiz)
-         pt=pt-1
+         pt=p-1
          top=top-1
          goto 70
-      elseif(rstk(pt).eq.616.and.istk(pstk(pt)).eq.9) then
+      elseif(rstk(p).eq.616.and.istk(pstk(p)).eq.9) then
 c     break dans un while 
-         l0=pstk(pt)
+         l0=pstk(p)
          lc=l0+abs(istk(l0+1))
-         pt=pt-1
+         pt=p-1
          goto 70
       else
          goto 96
