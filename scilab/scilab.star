@@ -155,6 +155,14 @@ end
 set old_style off
 show_startupinfo()
 
+// Scipad font size
+// micro=10
+// small=12
+// medium=14
+// large=18
+global %scipad_fontsize
+ %scipad_fontsize=12
+
 // calling user initialization =========================================
 // Home dir startup (if any)
 [startup,ierr]=mopen('home/.scilab','r')

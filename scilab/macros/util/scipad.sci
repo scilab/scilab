@@ -1,5 +1,6 @@
 function scipad(varargin)
 // start scipad editor
+global %scipad_fontsize;
   if with_tk() then
     TK_EvalStr("set isscipadinterp [interp exists scipad]")
     if TK_GetVar("isscipadinterp")=='0' then    
@@ -9,8 +10,9 @@ function scipad(varargin)
       TK_EvalStr("scipad alias ScilabEval ScilabEval")
     end
     if exists("LANGUAGE") then 
-         TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
+      TK_EvalStr("scipad eval { set lang """+LANGUAGE+""" }")
     end
+    TK_EvalStr("scipad eval { set FontSize """+string(%scipad_fontsize)+""" }")
     TK_EvalStr("set isscipadopen [scipad eval {info exists pad}]")
     TK_EvalStr("scipad eval {source ""'+SCI+'/tcl/scipad.tcl""}")
     nfiles=argn(2)
