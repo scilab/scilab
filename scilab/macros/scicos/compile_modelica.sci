@@ -25,7 +25,6 @@ function [ok,name,nx,nin,nout,ng,nm]=compile_modelica(fil)
   //do not update C code if needcompile==0 this allows C code
   //modifications for debugging purposes  
   updateC=needcompile <>0|fileinfo(path+name+'.c')==[]
-  
   if updateC then
     
     if execstr('unix_s(modelicac+'' ''+fil+'' -o ''+path+name+''.c'')','errcatch')<>0 then
