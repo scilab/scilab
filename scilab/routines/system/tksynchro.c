@@ -26,7 +26,7 @@ void C2F(tksynchro)(l)
 
 	if (RET==TCL_ERROR)
 	{
-		Scierror(999,"Error : tksynchro %s \r\n",fname,TCLinterp->result);
+		Scierror(999,"Error : tksynchro %s \r\n",TCLinterp->result);
 	}
 
   }
