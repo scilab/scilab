@@ -1354,7 +1354,7 @@ void I3dRotation(void)
   GetDriver1(driver,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
   if (strcmp("Rec",driver) != 0 && version_flag() !=0) 
     {
-      Scistring("\n Use the Rec driver for 3f Rotation " );
+      wininfo("Use the Rec driver for 3d Rotation" );
       return;
     }
   else 
