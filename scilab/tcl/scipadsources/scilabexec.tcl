@@ -168,7 +168,7 @@ proc helpskeleton {} {
     scan $indexin "%d.%d" ypos xpos
     set infun [whichfun $indexin]
     set funname [lindex $infun 0]
-    if [execfile]==0 {
+    if {[execfile]==0} {
         set pathprompt [mc "Please select destination path for the xml source of the help file" ]
         set dir [tk_chooseDirectory -title $pathprompt]
         if {$dir != ""} {
