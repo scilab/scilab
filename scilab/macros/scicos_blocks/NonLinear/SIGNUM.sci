@@ -19,6 +19,7 @@ function [x,y,typ]=SIGNUM(job,arg1,arg2)
 		   ['use zero_crossing (1: yes) (0:no)'],..
 		   list('vec',1),exprs)
       if ~ok then break,end
+      graphics.exprs=exprs
       if ok then
 	if zcr<>0 then 
 	  model.nmode=-1;model.nzcross=-1;
