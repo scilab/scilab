@@ -1,3 +1,22 @@
+		     Main Changes Scilab 2.6 -> ???
+		     ==============================
+
+NEW FUNCTIONALITIES
+===================
+Slicot based control routines have been introduced
+Interface with TeXmacs 
+
+OTHERS IMPROVEMENTS
+===================
+Linear algebra primitives now based on Lapack instead of Linpack/Eispack
+
+INCOMPATIBLITY
+==============
+User's Scilab function libraries must be rebuild
+gschur and gspec are now obsolete and replaced by schur and spec
+
+
+
 		     Main Changes Scilab 2.5 -> 2.6
 		     ==============================
 THANKS
