@@ -1,3 +1,4 @@
+# Generated automatically from Makefile.in by configure.
 SHELL = /bin/sh
 
 SCIDIR=../..
@@ -52,7 +53,7 @@ OBJSF = dgelqf.o dgels.o  dgeqrf.o dlae2.o dlaev2.o \
 	zungtr.o zhetd2.o zlatrd.o zungql.o zung2l.o dggev.o zggev.o \
 	zggbak.o zggbal.o zgghrd.o zhgeqz.o ztgevc.o zgges.o ztgsen.o \
 	ztgexc.o ztgsyl.o ztgex2.o ztgsy2.o zgesc2.o zgetc2.o zlatdf.o \
-	$(@IN_ATLAS@) 
+	$(LOCAL) 
 
 include ../../Makefile.incl
 
@@ -65,7 +66,7 @@ include ../Make.lib
 all:: Makefile.mak Makefile.amk
 
 dlamch.o: dlamch.f
-	$(FC) @FC_OPTIONS1@ -c dlamch.f -o dlamch.o
+	$(FC)  -c dlamch.f -o dlamch.o
 
 
 Makefile.mak	: Makefile
