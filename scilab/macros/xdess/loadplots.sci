@@ -173,7 +173,7 @@ function rec=LoadPlot()
   if part(rec.xf,1)=='g' then 
     nx=rec.n1*rec.n2,
   elseif  part(rec.xf,1)=='o' then 
-    nx=n2
+    nx=rec.n2
   else
     nx=0
   end
@@ -1205,6 +1205,18 @@ function txt=%gray2_string(rec)
 endfunction
 
 function %gray2_p(rec)
+// Copyright INRIA
+// Author: Serge Steer
+ 
+  disp(string(rec))
+endfunction
+function txt=%xgrid_string(rec)
+// Copyright INRIA
+// Author: Serge Steer
+  txt='xgrid('+sci2exp(rec.style)+')'
+endfunction
+
+function %xgrid_p(rec)
 // Copyright INRIA
 // Author: Serge Steer
  
