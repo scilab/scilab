@@ -18,8 +18,6 @@ c
       double precision x,xx
       integer op,ix(2),fptr
       equivalence (x,ix(1))
-      logical iflag
-      common /basbrk/ iflag
 c
 
       integer id(nsiz),iadr,sadr,cmplxt,pt0
