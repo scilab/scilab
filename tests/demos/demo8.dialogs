@@ -2,12 +2,12 @@
   8//Scicos
 //x_choose:  Choose a demo
   1//Simple Thermostat
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 0,80.5,329.3,1000,'void' 
 //x_mdialog: Set Contant Block
   8
   o //OK
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Edit_1000(4))' 
 0,79,341.1,1000,'void' 
 62.7,373.7,-1//xgemouse
@@ -271,57 +271,57 @@
 139,329.3,-1//xgemouse
 139.7,329.3,-1//xgemouse
 139.7,329.3,0//xgemouse
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 // x_choose:  Diagram has not been saved
 0 //dont save
 //x_choose:  Choose a demo
   2//Continuous Plant discrete controller
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   3//Simple demo
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   4//Bouncing ball
 0,261.3,235.9,1000,'void' 
 -2,0,0,-1,'execstr(Diagram_1001(16))' 
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   5//Table lookup example
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   6//Threshold
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   7//Scilab Block
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   8//Thermostat
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -100,0,0,2,'void' 
 -100,0,0,10,'void' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   9//Fibonacci
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   10//Cont.Disc-Observer.cosf
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   11//Controller.cosf
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   12//System-Observer.cosf
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   13//bouncing balls
@@ -335,23 +335,23 @@
   100001
   0
   o //OK
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   14//Synchro Block demo
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   16//Electrical circuit: RLC
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   17//Electrical circuit: Rectifier
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   18//Regulated Thermo Hydraulic plant
--2,0,0,-1,'execstr(Simulate_1000(4))' 
+-2,0,0,-1,'execstr(Simulate_1000(5))' 
 -2,0,0,-1,'execstr(Diagram_1000(16))' 
 //x_choose:  Choose a demo
   0// Cancel
