@@ -4489,7 +4489,8 @@ void C2F(xsetfont)(fontid, fontsize, v3, v4)
   fsiz = Min(FONTMAXSIZE-1,Max(*fontsize,0));
   if ( (*FontTab)[i].ok !=1 )
     { 
-      if (i != FONTNUMBER-1 )
+     // if (i != FONTNUMBER-1 ) F.Leray test here 26.02.04
+	if (i != FONTNUMBER )
 	{
 	  C2F(loadfamily)(fonttab[i].alias,&i,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);
 	}
