@@ -69,7 +69,7 @@ proc sciGUIDemoPlayDoAction { winId {action ""} } {
 		if { $runfile == 1 } {
 			set filerun $sciGUITable(win,$winId,data,filerun)
 			set filetmp $sciGUITable(win,$winId,data,filetmp)
-			ScilabEval "exec('$filetmp',$runmode);TK_SetVar('sciGUITable(win,$winId,data)','0');"
+			ScilabEval "exec('$filetmp',$runmode);TCL_SetVar('sciGUITable(win,$winId,data)','0');"
 		} else {
 			set sciGUITable(win,$winId,data) 0
 		}		

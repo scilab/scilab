@@ -37,6 +37,6 @@ setscipadwords(libfun,"libfun")
 
 
 
-//TK_EvalStr("scipad eval {tk_messageBox -message $words(scilab.predef.%)}")
+//TCL_EvalStr("scipad eval {tk_messageBox -message $words(scilab.predef.%)}")
 
 clear setscipadwords lineform

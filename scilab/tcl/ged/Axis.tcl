@@ -735,7 +735,7 @@ proc SelectXticsCoord2 { w } {
 proc SelectXticsCoord { w } {
     global xticscoord curticslabel
     ScilabEval "global ged_handle;ged_handle.xtics_coord=$xticscoord"
-    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
+    ScilabEval "global ged_handle;TCL_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
 }
 
 
@@ -749,7 +749,7 @@ proc SelectYticsCoord2 { w } {
 proc SelectYticsCoord { w } {
     global yticscoord curticslabel
     ScilabEval "global ged_handle;ged_handle.ytics_coord=$yticscoord"
-    ScilabEval "global ged_handle;TK_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
+    ScilabEval "global ged_handle;TCL_SetVar(\"curticslabel\",sci2exp(ged_handle.tics_labels,0))"
   
 }
 
