@@ -342,11 +342,7 @@ void Callback_FRENCH(void)
 	
 	if (lptw->lpmw->CodeLanguage!=1)
 		{
-			SendCTRLandAKey(CTRLU);
-			lptw->lpmw->CodeLanguage=1;
-			SwitchLanguage(lptw);
-			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
-			StoreCommand1 ("exec(SCI+'/contrib/loader.sce');",0);
+			StoreCommand1 ("setlanguage('fr');",0);
 		}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -358,11 +354,7 @@ void Callback_ENGLISH(void)
 	
 	if (lptw->lpmw->CodeLanguage!=0)
 		{
-			SendCTRLandAKey(CTRLU);
-			lptw->lpmw->CodeLanguage=0;
-			SwitchLanguage(lptw);
-			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
-			StoreCommand1 ("exec(SCI+'/contrib/loader.sce');",0);
+			StoreCommand1 ("setlanguage('eng');",0);
 		}
 }
 /*-----------------------------------------------------------------------------------*/
@@ -2572,3 +2564,30 @@ static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine)
 	}
 }
 /*-----------------------------------------------------------------------------------*/
+void SetLanguageMenu(char *Language)
+{
+	if (IsWindowInterface())
+	{
+		int LanguageCode=0;
+
+		extern char ScilexWindowName[MAX_PATH];
+		LPTW lptw;
+		lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+		if (strcmp(Language,"fr") == 0) LanguageCode=1;
+		if (strcmp(Language,"eng") == 0) LanguageCode=0;
+
+		if (lptw->lpmw->CodeLanguage != LanguageCode)
+		{
+			SendCTRLandAKey(CTRLU);
+			lptw->lpmw->CodeLanguage=LanguageCode;
+			SwitchLanguage(lptw);
+			ConfigureScilabStar(lptw->lpmw->CodeLanguage);
+			StoreCommand1 ("exec(SCI+'/contrib/loader.sce');",0);
+		}
+
+	}
+	else
+	{
+ 		sciprint("Not in Console mode\n");
+	}
+}

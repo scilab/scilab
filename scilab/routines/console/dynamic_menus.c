@@ -36,6 +36,7 @@
 #ifdef WIN32
 extern int HideToolBarWin32(int WinNum); /* see "wsci/wmenu.c" */
 extern BOOL IsToThePrompt(void);
+void SetLanguageMenu(char *Language); /* see "wsci/wmenu.c" */
 #endif /*WIN32*/
 
 extern void write_scilab  __PARAMS((char *s));
@@ -280,3 +281,40 @@ int C2F(hidetoolbar) _PARAMS((char *fname))
  return 0;
 }
 /*-----------------------------------------------------------------------------------*/
+int C2F(setlanguagemenu) _PARAMS((char *fname))
+{
+	#define LANGUAGE_MAX 1024 
+	extern int C2F(cluni0) __PARAMS((char *name, char *nams, integer *ln, long int name_len,long int nams_len)); 
+	char Language[LANGUAGE_MAX];
+	int m1,n1,l1;
+	int out_n;
+	long int lout;
+
+	CheckRhs(1,1);
+  
+	/*  checking variable file */
+	GetRhsVar(1,"c",&m1,&n1,&l1);
+	/*** first call to get the size **/
+	lout=LANGUAGE_MAX;
+	C2F(cluni0)(cstk(l1), Language, &out_n,m1*n1,lout);
+
+	if ( (strcmp(Language,"eng")!=0) && (strcmp(Language,"fr")!=0) )
+	{
+		sciprint("Unsupported language\n");
+		LhsVar(0)=0;
+		C2F(putlhsvar)();
+		return 0;
+	}
+
+	#ifdef WIN32
+		SetLanguageMenu(Language);
+	#else
+
+	#endif
+
+	LhsVar(0)=0;
+	C2F(putlhsvar)();
+
+	return 0;
+}
+ /*-----------------------------------------------------------------------------------*/

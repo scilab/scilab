@@ -279,3 +279,6 @@ extern void SaveCurrentLine(BOOL RewriteLineAtPrompt);
 extern void GetCurrentPrompt(char *CurrentPrompt);
 /*--------------------------------*/
 static void CutLineForDisplay(char *CutLine,char *Line,int NumberOfCharByLine);
+/*--------------------------------*/
+void SetLanguageMenu(char *Language);
+/*--------------------------------*/

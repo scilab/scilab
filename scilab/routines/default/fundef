@@ -247,6 +247,8 @@
 {"openbrowser",	IN_matsys,	59,	2},
 {"macr2tree",	IN_matsys,	60,	2},
 {"hidetoolbar",	IN_matsys,	61,	2},
+/*{"use_as_command",	IN_matsys,	62,	2},*/
+{"setlanguagemenu",	IN_matsys,	63,	2},
 #define  IN_matusr  14  
 {"user",		IN_matusr,	1,	1},	
 #define  IN_metane  15  

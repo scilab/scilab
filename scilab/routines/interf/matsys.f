@@ -60,8 +60,8 @@ c     global   clearglobal isglobal gstacksize getdate intppty
 c     47         48          49        50        51       52
 c     lasterror version loadhistory savehistory gethistory resethistory sendtobrowser macr2tree
 c     53         54        55          56         57          58        59            60
-c     hidetoolbar use_as_command    
-c     61             62
+c     hidetoolbar use_as_command  setlanguagemenu  
+c     61             62           63
       if (ddt .eq. 4) then
          write(buf(1:4),'(i4)') fin
          call basout(io,wte,' matsys '//buf(1:4))
@@ -76,7 +76,7 @@ c
      +      450,500,510,600,610,620,630,640,650,660,
      +      670,680,681,682,683,684,690,691,692,693,
      +      694,695,697,698,699,700,701,702,703,704,
-     +      705,706),fin
+     +      705,706,707),fin
 c     
 c     debug
  10   call intdebug()
@@ -266,8 +266,9 @@ c     mtlb_mode
  705  call hidetoolbar('hidetoolbar')
       goto 999             
  706  call useascommand('use_as_command')
-      goto 999             
-
+      goto 999
+ 707  call setlanguagemenu('setlanguagemenu')         
+      goto 999
  998  continue
 c     fake calls : only to force the 
 c     linker to load the following functions
