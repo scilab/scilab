@@ -39,5 +39,10 @@ echo Macros compilation scicos_blocks/Threshold
 nmake /C /f Makefile.mak %1 
 cd ..
 
+cd Electrical
+echo Macros compilation scicos_blocks/Electrical
+nmake /C /f Makefile.mak %1 
+cd ..
+
 
 cd ..
