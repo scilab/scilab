@@ -2735,7 +2735,8 @@ static int check_prop(mes,pos,m)
 {
   if ( m ) 
     { 
-      Scierror(20,"%s: %s %s\r\n",
+      /* XXXX moduler 999 en fn des messages */
+      Scierror(999,"%s: %s %s\r\n",
 	       Get_Iname(),
 	       ArgPosition(pos),
 	       mes);
