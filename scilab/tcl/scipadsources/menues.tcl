@@ -1,408 +1,210 @@
 #file menu
 menu $pad.filemenu.files -tearoff 0 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu  add cascade -label "File" -underline 0 \
-	-menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "New" -underline 0 \
-                   -command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Open..." -underline 0 \
-                   -command "filetoopen $textareacur" -accelerator Ctrl+o
-    $pad.filemenu.files add command -label "Save" -underline 0 \
-                   -command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Save As..." -underline 5 \
-                   -command "filesaveascur" -accelerator Ctrl+S
-    $pad.filemenu.files add command -label "Revert..." -underline 0 \
-                   -command "revertsaved" -accelerator Ctrl+R -state disabled
+    eval "$pad.filemenu  add cascade [me "&File"] \
+	               -menu $pad.filemenu.files "
+    eval "$pad.filemenu.files add command [me "&New"] \
+                   -command \"filesetasnewmat\" -accelerator Ctrl+n"
+    eval "$pad.filemenu.files add command [me "&Open..."] \
+                   -command \"filetoopen $textareacur\" -accelerator Ctrl+o"
+    eval "$pad.filemenu.files add command [me "&Save"] \
+                   -command \"filetosavecur\" -accelerator Ctrl+s"
+    eval "$pad.filemenu.files add command [me "Save &as..."]\
+                   -command \"filesaveascur\" -accelerator Ctrl+S"
+    eval "$pad.filemenu.files add command [me "&Revert..."] \
+                   -command \"revertsaved\" -state disabled -accelerator Ctrl+R"
     $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Import Matlab file..." \
-	-underline 7 -command "importmatlab" -accelerator F4
+    eval "$pad.filemenu.files add command [me "Import &Matlab file..."] \
+                   -command \"importmatlab\" -accelerator F4"
     $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Create help skeleton..." \
-	-underline 13 -command "helpskeleton" -state disabled
-    $pad.filemenu.files add command -label "Compile as help page" \
-	-underline 11 -command "xmlhelpfile" -state disabled
+    eval "$pad.filemenu.files add command [me "Create help s&keleton..."] \
+                   -command \"helpskeleton\" -state disabled "
+    eval "$pad.filemenu.files add command [me "Compile as &help page"] \
+                   -command \"xmlhelpfile\" -state disabled "
     $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Open function source" \
-         -command {openlibfunsource [[gettextareacur] index insert]}\
-         -accelerator F8 -state disabled -underline 5 
-    $pad.filemenu.files add separator
-    if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Print Setup" -underline 8 \
-                   -command "printseupselection" -accelerator Ctrl+P
-	$pad.filemenu.files add command -label "Print" -underline 0 \
-                   -command "selectprint $textareacur" -accelerator Ctrl+p
-	$pad.filemenu.files add separator
-    }
-    $pad.filemenu.files add command -label "Close" -underline 0 \
-	-command "closecur" -accelerator Ctrl+w
-    $pad.filemenu.files add command -label "Exit" -underline 1 \
-	-command "exitapp" -accelerator Ctrl+q
-} else {
-    $pad.filemenu  add cascade -label "Fichier" -underline 0 \
-	-menu $pad.filemenu.files
-    $pad.filemenu.files add command -label "Nouveau" -underline 0 \
-	-command "filesetasnewmat" -accelerator Ctrl+n
-    $pad.filemenu.files add command -label "Ouvrir..." -underline 0 \
-	-command "filetoopen $textareacur" -accelerator Ctrl+o
-    $pad.filemenu.files add command -label "Enregistrer" -underline 0 \
-	-command "filetosavecur" -accelerator Ctrl+s
-    $pad.filemenu.files add command -label "Enregistrer sous..." -underline 2 \
-	-command "filesaveascur" -accelerator Ctrl+S
-    $pad.filemenu.files add command -label "Revenir..." -underline 2 \
-                   -command "revertsaved" -accelerator Ctrl+R -state disabled
-    $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Importer fichier Matlab..." \
-                   -underline 17 -command "importmatlab" -accelerator F4
-    $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Créer un squelette d'aide XML..." \
-	-underline 9 -command "helpskeleton" -state disabled
-    $pad.filemenu.files add command -label "Compiler comme fichier d'aide" \
-	-underline 25 -command "xmlhelpfile" -state disabled
-    $pad.filemenu.files add separator
-    $pad.filemenu.files add command -label "Ouvrir le source de la fonction" \
-         -command {openlibfunsource [[gettextareacur] index insert]}\
-         -accelerator F8 -state disabled -underline 17 
+    eval "$pad.filemenu.files add command [me "Open &function source"] \
+                   -command {openlibfunsource [[gettextareacur] index insert]}\
+                   -state disabled -accelerator Ctrl+/"
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
-	$pad.filemenu.files add command -label "Mise en page" -underline 8 \
-	    -command "printseupselection" -accelerator Ctrl+P
-	$pad.filemenu.files add command -label "Imprimer" -underline 0 \
-	    -command "selectprint $textareacur" -accelerator Ctrl+p
-	$pad.filemenu.files add separator
+        eval "$pad.filemenu.files add command [me "Print Se&tup"]\
+                   -command \"printseupselection\" -accelerator Ctrl+P"
+        eval "$pad.filemenu.files add command [me "&Print"] \
+                   -command \"selectprint $textareacur\" -accelerator Ctrl+p"
+        $pad.filemenu.files add separator
     }
-    $pad.filemenu.files add command -label "Fermer" -underline 0 \
-	-command "closecur" -accelerator Ctrl+w
-    $pad.filemenu.files add command -label "Quitter" -underline 0 \
-	-command "exitapp" -accelerator Ctrl+q 
-}
+    eval "$pad.filemenu.files add command [me "&Close"]\
+                   -command \"closecur\" -accelerator Ctrl+w"
+    eval "$pad.filemenu.files add command [me "E&xit"] \
+                   -command \"exitapp\" -accelerator Ctrl+q"
 
 #edit menu
 menu $pad.filemenu.edit -tearoff 0 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Edit" -underline 0 \
-	-menu $pad.filemenu.edit
-    $pad.filemenu.edit add command -label "Undo" -underline 0 \
-	-command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "Redo" -underline 0 \
-	-command "redo_menu_proc" -accelerator Ctrl+Z
+    eval "$pad.filemenu add cascade [me "&Edit"] \
+               -menu $pad.filemenu.edit "
+    eval "$pad.filemenu.edit add command [me "&Undo"] \
+               -command \"undo_menu_proc\" -accelerator Ctrl+z"
+    eval "$pad.filemenu.edit add command [me "&Redo"] \
+               -command \"redo_menu_proc\" -accelerator Ctrl+Z"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Cut" -underline 2 \
-	-command "cuttext" -accelerator Ctrl+x
-    $pad.filemenu.edit add command -label "Copy" -underline 0 \
-	-command "copytext" -accelerator Ctrl+c
-    $pad.filemenu.edit add command -label "Paste" -underline 0 \
-	-command "pastetext" -accelerator Ctrl+v
-    $pad.filemenu.edit add command -label "Delete" -underline 0 \
-	-command "deletetext" -accelerator Del
+    eval "$pad.filemenu.edit add command [me "Cu&t"] \
+               -command \"cuttext\" -accelerator Ctrl+x"
+    eval "$pad.filemenu.edit add command [me "&Copy"] \
+               -command \"copytext\" -accelerator Ctrl+c"
+    eval "$pad.filemenu.edit add command [me "&Paste"] \
+               -command \"pastetext\" -accelerator Ctrl+v"
+    eval "$pad.filemenu.edit add command [me "&Delete"] \
+               -command \"deletetext\" -accelerator Del"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Select All" -underline 7 \
-	-command "selectall" -accelerator Ctrl+/
-#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
-#	-command "printtime"
+    eval "$pad.filemenu.edit add command [me "Select &All"] \
+               -command \"selectall\" -accelerator Ctrl+a"
+#    eval "$pad.filemenu.edit add command [me "Insert &Time/Date"] \
+#               -command \"printtime\" "
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Comment selection" -underline 3 \
-	-command "CommentSel" -accelerator Ctrl+m
-    $pad.filemenu.edit add command -label "Uncomment selection" -underline 1 \
-	-command "UnCommentSel" -accelerator Ctrl+M
+    eval "$pad.filemenu.edit add command [me "Co&mment selection"] \
+               -command \"CommentSel\" -accelerator Ctrl+m"
+    eval "$pad.filemenu.edit add command [me "U&ncomment selection"] \
+               -command \"UnCommentSel\" -accelerator Ctrl+M"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Indent selection" -underline 0 \
-	-command "IndentSel" -accelerator Ctrl+d
-    $pad.filemenu.edit add command -label "Unindent selection" -underline 4 \
-	-command "UnIndentSel" -accelerator Ctrl+D
+    eval "$pad.filemenu.edit add command [me "&Indent selection"] \
+               -command \"IndentSel\" -accelerator Ctrl+d"
+    eval "$pad.filemenu.edit add command [me "Unin&dent selection"] \
+               -command \"UnIndentSel\" -accelerator Ctrl+D"
     $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Word Wrap" -underline 5 \
-	-command "wraptext"
-} else {
-    $pad.filemenu add cascade -label "Edition" -underline 0 \
-	-menu $pad.filemenu.edit
-    $pad.filemenu.edit add command -label "Annuler" -underline 0 \
-	-command " undo_menu_proc" -accelerator Ctrl+z
-    $pad.filemenu.edit add command -label "Répéter" -underline 0 \
-	-command "redo_menu_proc" -accelerator Ctrl+Z
-    $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Couper" -underline 2 \
-	-command "cuttext" -accelerator Ctrl+x
-    $pad.filemenu.edit add command -label "Copier" -underline 0 \
-	-command "copytext" -accelerator Ctrl+c
-    $pad.filemenu.edit add command -label "Coller" -underline 2 \
-	-command "pastetext" -accelerator Ctrl+v
-    $pad.filemenu.edit add command -label "Effacer" -underline 0 \
-	-command "deletetext" -accelerator Del
-    $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Sélectionner tout" -underline 13 \
-	-command "selectall" -accelerator Ctrl+/
-#    $pad.filemenu.edit add command -label "Time/Date" -underline 5 \
-#      -command "printtime"
-    $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Commenter la sélection" -underline 3\
-	-command "CommentSel" -accelerator Ctrl+m
-    $pad.filemenu.edit add command -label "Décommenter la sélection" -underline 0\
-	-command "UnCommentSel" -accelerator Ctrl+M
-    $pad.filemenu.edit add separator
-    $pad.filemenu.edit add command -label "Indenter la sélection" -underline 0\
-	-command "IndentSel" -accelerator Ctrl+d
-    $pad.filemenu.edit add command -label "Désindenter la sélection" \
-        -underline 1 -command "UnIndentSel" -accelerator Ctrl+D
-    $pad.filemenu.edit add separator
-    $pad.filemenu.edit add check -label "Retour à la ligne automatique" \
-	-underline 12 -command "wraptext"
-} 
+    eval "$pad.filemenu.edit add check [me "Word &Wrap"] \
+               -command \"wraptext\" "
 
 #search menu
 menu $pad.filemenu.search -tearoff 0 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Search" -underline 0 \
-	-menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Find..." -underline 0 \
-	-command "findtext find" -accelerator Ctrl+f
-    $pad.filemenu.search add command -label "Find Next" -underline 5 \
-	-command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Replace..." -underline 0 \
-	-command "findtext replace" -accelerator Ctrl+r
-# add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Goto Line..." -underline 0 \
-	-command "gotoline" -accelerator Ctrl+g
-} else {
-    $pad.filemenu add cascade -label "Rechercher" -underline 0 \
-	-menu $pad.filemenu.search 
-    $pad.filemenu.search add command -label "Rechercher..." \
-	-underline 0 -command "findtext find" -accelerator Ctrl+f
-    $pad.filemenu.search add command -label "Rechercher suivant" \
-	-underline 11 -command "findnext find" -accelerator F3
-    $pad.filemenu.search add command -label "Remplacer..." -underline 3 \
-	-command "findtext replace" -accelerator Ctrl+r
-# add new menu option include by Matthieu PHILIPPE from gotoline.pth 21/11/2001
-    $pad.filemenu.search add command -label "Atteindre..." -underline 0 \
-	-command "gotoline" -accelerator Ctrl+g
-} 
+    eval "$pad.filemenu add cascade [me "&Search"] \
+               -menu $pad.filemenu.search  "
+    eval "$pad.filemenu.search add command [me "&Find..."] \
+               -command \"findtext find\" -accelerator Ctrl+f"
+    eval "$pad.filemenu.search add command [me "Find &Next"] \
+               -command \"findnext find\" -accelerator F3"
+    eval "$pad.filemenu.search add command [me "&Replace..."] \
+               -command \"findtext replace\" -accelerator Ctrl+r"
+    eval "$pad.filemenu.search add command [me "&Goto Line..."] \
+               -command \"gotoline\" -accelerator Ctrl+g"
 
 # exec menu
 menu $pad.filemenu.exec -tearoff 1 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Execute" -underline 1 \
-	-menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Load into Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl+l
-    $pad.filemenu.exec add command -label "Evaluate selection" -underline 0\
-	-command "execselection" -accelerator Ctrl+y
-} else {
-    $pad.filemenu add cascade -label "Exécuter" -underline 1 \
-	-menu $pad.filemenu.exec
-    $pad.filemenu.exec add command -label "Charger dans Scilab" -underline 0\
-	-command "execfile" -accelerator Ctrl+l
-    $pad.filemenu.exec add command -label "Evaluer la sélection" -underline 0\
-	-command "execselection" -accelerator Ctrl+y
-}
+    eval "$pad.filemenu add cascade [me "&Execute"] \
+              -menu $pad.filemenu.exec "
+    eval "$pad.filemenu.exec add command [me "&Load into Scilab"] \
+              -command \"execfile\" -accelerator Ctrl+l"
+    eval "$pad.filemenu.exec add command [me "&Evaluate selection"] \
+              -command \"execselection\" -accelerator Ctrl+y"
 
 #debug menu
 menu $pad.filemenu.debug -tearoff 1 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Debug" -underline 0 \
-	-menu $pad.filemenu.debug
-    $pad.filemenu.debug add command -label "Insert/Remove breakpoint" \
-      -underline 0 -command "insertremove_bp" -accelerator F9 \
-      -image menubutsetbptimage -compound left
-    $pad.filemenu.debug add command -label "Remove all breakpoints" \
-      -underline 7 -command "removeall_bp" -accelerator Ctrl+F9 \
-      -image menubutremoveallimage -compound left
+    eval "$pad.filemenu add cascade [me "&Debug"] \
+               -menu $pad.filemenu.debug "
+    eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
+               -command \"insertremove_bp\" -accelerator F9\
+               -image menubutsetbptimage -compound left "
+    eval "$pad.filemenu.debug add command [me "Remove &all breakpoints"] \
+               -command \"removeall_bp\" -accelerator Ctrl+F9\
+               -image menubutremoveallimage -compound left "
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Configure execution..." \
-      -underline 0 -command "configurefoo_bp" -accelerator F10 \
-      -image menubutconfigureimage -compound left
+    eval "$pad.filemenu.debug add command [me "&Configure execution..."] \
+               -command \"configurefoo_bp\" -accelerator F10\
+               -image menubutconfigureimage -compound left "
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Go to next breakpoint" \
-      -underline 12 -command "tonextbreakpoint_bp" -accelerator F11 \
-      -image menubutnextimage -compound left
+    eval "$pad.filemenu.debug add command [me "Go to next b&reakpoint"] \
+               -command \"tonextbreakpoint_bp\" -accelerator F11\
+               -image menubutnextimage -compound left "
 
     menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
-    $pad.filemenu.debug add cascade -label "Step by step" -menu $pad.filemenu.debug.step
-        $pad.filemenu.debug.step add command -label "Step into" \
-          -underline 5 -command "stepbystep_bp" -accelerator Shift+F8 \
-          -image menubutstepimage -compound left
-        $pad.filemenu.debug.step add command -label "Step over" \
-          -underline 5 -command "stepbystep_bp" -accelerator F8 \
-          -image menubutstepimage -compound left
-        $pad.filemenu.debug.step add command -label "Step out" \
-          -underline 5 -command "stepbystep_bp" -accelerator Ctrl+F8 \
-          -image menubutstepimage -compound left
+    eval "$pad.filemenu.debug add cascade [me "&Step by step"] -menu $pad.filemenu.debug.step "
+        eval "$pad.filemenu.debug.step add command [me "Step &into"] \
+                 -command \"stepbystep_bp\" -accelerator Shift+F8\
+                 -image menubutstepimage -compound left "
+        eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
+                 -command \"stepbystep_bp\" -accelerator F8\
+                 -image menubutstepimage -compound left "
+        eval "$pad.filemenu.debug.step add command [me "Step &out"] \
+                 -command \"stepbystep_bp\" -accelerator Ctrl+F8\
+                 -image menubutstepimage -compound left "
 
-    $pad.filemenu.debug add command -label "Run to cursor" \
-      -underline 8 -command "runtocursor_bp" -accelerator Ctrl+F11 \
-      -image menubutruntocursorimage -compound left
-    $pad.filemenu.debug add command -label "Go on ignoring any breakpoint" \
-      -underline 1 -command "goonwo_bp" -accelerator Shift+F12 \
-      -image menubutgoonignorimage -compound left
+    eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
+               -command \"runtocursor_bp\" -accelerator Ctrl+F11\
+               -image menubutruntocursorimage -compound left "
+    eval "$pad.filemenu.debug add command [me "G&o on ignoring any breakpoint"] \
+               -command \"goonwo_bp\" -accelerator Shift+F12\
+               -image menubutgoonignorimage -compound left "
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Show watch" \
-      -underline 5 -command "showwatch_bp" -accelerator Ctrl+F12 \
-      -image menubutwatchimage -compound left
+    eval "$pad.filemenu.debug add command [me "Show &watch"] \
+               -command \"showwatch_bp\" -accelerator Ctrl+F12\
+               -image menubutwatchimage -compound left "
     $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Break" \
-      -underline 0 -command "break_bp" -accelerator F12 \
-      -image menubutbreakimage -compound left
-    $pad.filemenu.debug add command -label "Cancel debug" \
-      -underline 5 -command "canceldebug_bp" \
-      -image menubutcancelimage -compound left
-} else {
-    $pad.filemenu add cascade -label "Débug" -underline 0 \
-	-menu $pad.filemenu.debug
-    $pad.filemenu.debug add command -label "Insérer/Supprimer un point d'arrêt" \
-      -underline 0 -command "insertremove_bp" -accelerator F9 \
-      -image menubutsetbptimage -compound left
-    $pad.filemenu.debug add command -label "Supprimer tous les points d'arrêt" \
-      -underline 10 -command "removeall_bp" -accelerator Ctrl+F9 \
-      -image menubutremoveallimage -compound left
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Configurer l'exécution..." \
-      -underline 3 -command "configurefoo_bp" -accelerator F10 \
-      -image menubutconfigureimage -compound left
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Aller jusqu'au prochain point d'arrêt" \
-      -underline 10 -command "tonextbreakpoint_bp" -accelerator F11 \
-      -image menubutnextimage -compound left
-
-    menu $pad.filemenu.debug.step -tearoff 0 -font $menuFont
-    $pad.filemenu.debug add cascade -label "Pas à pas" -menu $pad.filemenu.debug.step
-        $pad.filemenu.debug.step add command -label "Pas à pas détaillé" \
-          -underline 10 -command "stepbystep_bp" -accelerator Shift+F8 \
-          -image menubutstepimage -compound left
-        $pad.filemenu.debug.step add command -label "Pas à pas principal" \
-          -underline 10 -command "stepbystep_bp" -accelerator F8 \
-          -image menubutstepimage -compound left
-        $pad.filemenu.debug.step add command -label "Pas à pas sortant" \
-          -underline 10 -command "stepbystep_bp" -accelerator Ctrl+F8 \
-          -image menubutstepimage -compound left
-
-    $pad.filemenu.debug add command -label "Executer jusqu'au curseur" \
-      -underline 21 -command "runtocursor_bp" -accelerator Ctrl+F11 \
-      -image menubutruntocursorimage -compound left
-    $pad.filemenu.debug add command -label "Continuer sans aucun point d'arrêt" \
-      -underline 0 -command "goonwo_bp" -accelerator Shift+F12 \
-      -image menubutgoonignorimage -compound left
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Fenêtre watch" \
-      -underline 8 -command "showwatch_bp" -accelerator Ctrl+F12 \
-      -image menubutwatchimage -compound left
-    $pad.filemenu.debug add separator
-    $pad.filemenu.debug add command -label "Stop" \
-      -underline 0 -command "break_bp" -accelerator F12 \
-      -image menubutbreakimage -compound left
-    $pad.filemenu.debug add command -label "Annuler le débug" \
-      -underline 0 -command "canceldebug_bp" \
-      -image menubutcancelimage -compound left
-}
+    eval "$pad.filemenu.debug add command [me "&Break"] \
+               -command \"break_bp\" -accelerator F12\
+               -image menubutbreakimage -compound left "
+    eval "$pad.filemenu.debug add command [me "Cance&l debug"] \
+               -command \"canceldebug_bp\" \
+               -image menubutcancelimage -compound left "
 
 # options menu
-if {$lang == "eng"} {
-    menu $pad.filemenu.options -tearoff 1 -font $menuFont
-    $pad.filemenu add cascade -label "Options" -underline 0 \
-	-menu $pad.filemenu.options
-    $pad.filemenu.options add command -label "font size" -foreground red 
-    $pad.filemenu.options add radiobutton -label "micro" -value 10 \
-	-variable FontSize -command "setfontscipad 10" -underline 0
-    $pad.filemenu.options add radiobutton -label "small" -value 12 \
-	-variable FontSize -command "setfontscipad 12" -underline 0
-    $pad.filemenu.options add radiobutton -label "medium" -value 14 \
-	-variable FontSize -command "setfontscipad 14" -underline 1
-    $pad.filemenu.options add radiobutton -label "large" -value 18\
-	-variable FontSize -command "setfontscipad 18" -underline 0
+menu $pad.filemenu.options -tearoff 1 -font $menuFont
+    eval "$pad.filemenu add cascade [me "&Options"] \
+               -menu $pad.filemenu.options "
+    eval "$pad.filemenu.options add command [me "font size"] -foreground red "
+    eval "$pad.filemenu.options add radiobutton [me "&micro"] -value 10 \
+               -variable FontSize -command \"setfontscipad 10\" "
+    eval "$pad.filemenu.options add radiobutton [me "&small"] -value 12 \
+               -variable FontSize -command \"setfontscipad 12\" "
+    eval "$pad.filemenu.options add radiobutton [me "m&edium"] -value 14 \
+               -variable FontSize -command \"setfontscipad 14\" "
+    eval "$pad.filemenu.options add radiobutton [me "&large"] -value 18\
+               -variable FontSize -command \"setfontscipad 18\" "
+    eval "$pad.filemenu.options add command [me "language scheme"] -foreground red "
+    eval "$pad.filemenu.options add radiobutton [me "S&cilab"] \
+               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
+    eval "$pad.filemenu.options add radiobutton [me "&XML"] \
+               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
+    eval "$pad.filemenu.options add radiobutton [me "&none"] \
+               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
 #FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
-#     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
-#     $pad.filemenu.options add cascade -label "font size" -menu $pad.filemenu.options.fontsize
-#     $pad.filemenu.options.fontsize add radiobutton -label "micro" -value 10 \
-# 	-variable FontSize -command "setfontscipad 10" -underline 0
-#     $pad.filemenu.options.fontsize add radiobutton -label "small" -value 12 \
-# 	-variable FontSize -command "setfontscipad 12" -underline 0
-#     $pad.filemenu.options.fontsize add radiobutton -label "medium" -value 14 \
-# 	-variable FontSize -command "setfontscipad 14" -underline 1
-#     $pad.filemenu.options.fontsize add radiobutton -label "large" -value 18\
-# 	-variable FontSize -command "setfontscipad 18" -underline 0
-    $pad.filemenu.options add command -label "language scheme" -foreground red
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
+#menu $pad.filemenu.options -tearoff 1 -font $menuFont
+#    eval "$pad.filemenu add cascade [me "&Options"] \
+#               -menu $pad.filemenu.options "
+#    menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
+#    eval "$pad.filemenu.options add cascade [me "font size"] -menu $pad.filemenu.options.fontsize "
+#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&micro"] -value 10 \
+#               -variable FontSize -command \"setfontscipad 10\" "
+#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&small"] -value 12 \
+#               -variable FontSize -command \"setfontscipad 12\" "
+#    eval "$pad.filemenu.options.fontsize add radiobutton [me "m&edium"] -value 14 \
+#               -variable FontSize -command \"setfontscipad 14\" "
+#    eval "$pad.filemenu.options.fontsize add radiobutton [me "&large"] -value 18\
+#               -variable FontSize -command \"setfontscipad 18\" "
 #    menu $pad.filemenu.options.scheme -tearoff 0 -font $menuFont
-#    $pad.filemenu.options add cascade -label "language scheme" -menu $pad.filemenu.options.scheme
-} else {
-    menu $pad.filemenu.options -tearoff 1 -font $menuFont
-    $pad.filemenu add cascade -label "Options" -underline 0 \
-	-menu $pad.filemenu.options
-    $pad.filemenu.options add command -label "taille de police" -foreground red
-    $pad.filemenu.options add radiobutton -label "micro" -value 10 \
-	-variable FontSize -command "setfontscipad 10" -underline 0
-    $pad.filemenu.options add radiobutton -label "petit" -value 12 \
-	-variable FontSize -command "setfontscipad 12" -underline 0
-    $pad.filemenu.options add radiobutton -label "moyen" -value 14  \
-	-variable FontSize -command "setfontscipad 14" -underline 1
-    $pad.filemenu.options add radiobutton -label "grand" -value 18 \
-	-variable FontSize -command "setfontscipad 18" -underline 0
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
-#     menu $pad.filemenu.options.fontsize -tearoff 0 -font $menuFont
-#     $pad.filemenu.options add cascade -label "taille de police" -menu $pad.filemenu.options.fontsize
-#     $pad.filemenu.options.fontsize add radiobutton -label "micro" -value 10 \
-# 	-variable FontSize -command "setfontscipad 10" -underline 0
-#     $pad.filemenu.options.fontsize add radiobutton -label "petit" -value 12 \
-# 	-variable FontSize -command "setfontscipad 12" -underline 0
-#     $pad.filemenu.options.fontsize add radiobutton -label "moyen" -value 14  \
-# 	-variable FontSize -command "setfontscipad 14" -underline 1
-#     $pad.filemenu.options.fontsize add radiobutton -label "grand" -value 18 \
-# 	-variable FontSize -command "setfontscipad 18" -underline 0
-    $pad.filemenu.options add command -label "schéma langage" -foreground red
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
-#    menu $pad.filemenu.options.scheme -tearoff 0 -font $menuFont
-#    $pad.filemenu.options add cascade -label "schéma langage" -menu $pad.filemenu.options.scheme
-}
-#ES 27/5/04
-$pad.filemenu.options add radiobutton -label "Scilab" -underline 1 \
-     -command {changelanguage "scilab"} -variable Scheme -value "scilab"
-$pad.filemenu.options add radiobutton -label "XML" -underline 0 \
-     -command {changelanguage "xml"} -variable Scheme -value "xml"
-$pad.filemenu.options add radiobutton -label "none" -underline 0 \
-        -command {changelanguage "none"} -variable Scheme -value "none"
-#FV 27/05/04, changed for a submenu in cascade (nicer, isn't it?)
-# $pad.filemenu.options.scheme add radiobutton -label "Scilab" \
-#      -command {changelanguage "scilab"} -variable Scheme -value "scilab"
-# $pad.filemenu.options.scheme add radiobutton -label "XML" \
-#      -command {changelanguage "xml"} -variable Scheme -value "xml"
-# $pad.filemenu.options.scheme add radiobutton -label "none" \
-#         -command {changelanguage "none"} -variable Scheme -value "none"
+#    eval "$pad.filemenu.options add cascade [me "language scheme"] -menu $pad.filemenu.options.scheme "
+#    eval "$pad.filemenu.options.scheme add radiobutton [me "Scilab"] \
+#               -command {changelanguage \"scilab\"} -variable Scheme -value \"scilab\" "
+#    eval "$pad.filemenu.options.scheme add radiobutton [me "XML"] \
+#               -command {changelanguage \"xml\"} -variable Scheme -value \"xml\" "
+#    eval "$pad.filemenu.options.scheme add radiobutton [me "none"] \
+#               -command {changelanguage \"none\"} -variable Scheme -value \"none\" "
 
 # window menu
-if {$lang == "eng"} {
-    menu $pad.filemenu.wind -tearoff 1 -title "Opened Files" -font $menuFont
-    $pad.filemenu add cascade -label "Windows" -underline 0 \
-	-menu $pad.filemenu.wind
-} else {
-    menu $pad.filemenu.wind -tearoff 1 -title "Fichiers ouverts" \
-	-font $menuFont
-    $pad.filemenu add cascade -label "Fenêtres" -underline 0 \
-	-menu $pad.filemenu.wind
-}
-$pad.filemenu.wind add radiobutton \
-    -label "$listoffile("$pad.textarea",filename)"\
-    -value $winopened -variable radiobuttonvalue \
-    -command "montretext $pad.textarea"
+menu $pad.filemenu.wind -tearoff 1 -title [mc "Opened Files"] -font $menuFont
+    eval "$pad.filemenu add cascade [me "&Windows"] -menu $pad.filemenu.wind "
+    $pad.filemenu.wind add radiobutton \
+               -label "$listoffile("$pad.textarea",filename)"\
+               -value $winopened -variable radiobuttonvalue \
+               -command "montretext $pad.textarea"
 
 # help menu
-# FV 13/05/04, -accelerator Shift+F1 uncommented
 menu $pad.filemenu.help -tearoff 0 -font $menuFont
-if {$lang == "eng"} {
-    $pad.filemenu add cascade -label "Help" -underline 0 \
-        -menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "Help..." -underline 0 \
-        -command "helpme" -accelerator F1
-    $pad.filemenu.help add command -label "What's?..." -underline 0 \
-        -command "helpword" -accelerator Ctrl+F1
-    $pad.filemenu.help add command -label "About" -underline 0 \
-        -command "aboutme" -accelerator Shift+F1
-} else {
-    $pad.filemenu add cascade -label "Aide" -underline 0 \
-        -menu $pad.filemenu.help
-    $pad.filemenu.help add command -label "Aide..." -underline 0 \
-        -command "helpme" -accelerator F1
-    $pad.filemenu.help add command -label "Qu'est-ce ?..." -underline 0 \
-        -command "helpword" -accelerator Ctrl+F1
-    $pad.filemenu.help add command -label "A propos" -underline 1 \
-        -command "aboutme" -accelerator Shift+F1
-}
+    eval "$pad.filemenu add cascade [me "&Help"] \
+               -menu $pad.filemenu.help "
+    eval "$pad.filemenu.help add command [me "&Help..."] \
+               -command \"helpme\" -accelerator F1"
+    eval "$pad.filemenu.help add command [me "&What's?..."] \
+               -command \"helpword\" -accelerator Ctrl+F1"
+    eval "$pad.filemenu.help add command [me "&About"] \
+               -command \"aboutme\" -accelerator Shift+F1"
 
 # now make the menu visible
 $pad configure -menu $pad.filemenu 

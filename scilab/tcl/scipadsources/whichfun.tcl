@@ -1,5 +1,5 @@
 proc whichfun {indexin {buf "current"}} {
-    global lang listoffile
+    global listoffile
 #it is implicitely meant that indexin refers to a position in textareacur
 # FV 13/05/04, added capability for looking in a buffer which is not the current one
     if {$buf == "current"} {
@@ -104,38 +104,28 @@ proc whichfun {indexin {buf "current"}} {
         incr contlines [checkcontbraceorbracket $precfun $indexin $textarea "\[" "\]" $dottedlineslist]
 
         scan $precfun "%d." beginfunline 
-	set lineinfun [expr $ypos-$beginfunline-$contlines+1]
-# FV 13/05/04, message box commented
-#      if {$lang == "eng"} {
-#        tk_messageBox -message \
-#	   "Being at line $ypos, function $funname begins at $precfun, and there are $contlines continued lines, i.e. we are at line $lineinfun of $funname"
-#      } else {
-#        tk_messageBox -message \
-#	   "Etant à la ligne $ypos, la fonction $funname débute à $precfun, et il y a $contlines lignes multiples, i.e. nous sommes à la ligne $lineinfun de $funname"
-#      }
+        set lineinfun [expr $ypos-$beginfunline-$contlines+1]
+#       tk_messageBox -message [concat \
+#                               [mc "Being at line"] $ypos \
+#                               [mc ", function"] $funname \
+#                               [mc "begins at"] $precfun \
+#                               [mc ", and there are"] $contlines \
+#                               [mc "continued lines, i.e. we are at line"] $lineinfun \
+#                               [mc "of"] $funname ]
         return [list $funname $lineinfun $funline $precfun $contlines] 
     }
 }
 
 proc showwhichfun {} {
-    global lang
     set textarea [gettextareacur]
     set infun [whichfun [$textarea index insert]]
     if {$infun !={} } {
-	set funname [lindex $infun 0]
-	set lineinfun [lindex $infun 1]
-      if {$lang == "eng"} {
-        tk_messageBox -message "Function $funname line $lineinfun"
-      } else {
-        tk_messageBox -message "Fonction $funname ligne $lineinfun"
-      }
+        set funname [lindex $infun 0]
+        set lineinfun [lindex $infun 1]
+        tk_messageBox -message [concat [mc "Function"] $funname [mc "line"] $lineinfun] \
+                      -title [mc "Which function?"]
     } else {
-      if {$lang == "eng"} {
-        tk_messageBox -message \
-	    "The cursor is not currently inside a function body"
-      } else {
-        tk_messageBox -message \
-	    "Le curseur ne se trouve pas à l'intérieur d'une fonction"
-      }
+        tk_messageBox -message [mc "The cursor is not currently inside a function body."] \
+                      -title [mc "Which function?"]
     }
 }

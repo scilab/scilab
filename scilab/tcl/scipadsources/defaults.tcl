@@ -1,5 +1,5 @@
 set winTitle "SciPad"
-set version "Version 3.25"
+set version "Version 3.27"
 
 # all one needs in order to add a new retriavable preference is:
 #  -add the variable name to $listofpref below
@@ -28,7 +28,7 @@ set PDEFCOLOR "purple"
 set LFUNCOLOR \#006874
 set OPCOLOR "blue4"
 set TXTCOLOR $FGCOLOR
-set QTXTCOLOR "darkred"
+set QTXTCOLOR "red"
 set REMCOLOR "green4"
 set XMLCOLOR "orange"
 set NUMCOLOR "yellow4"
@@ -47,4 +47,8 @@ set Scheme scilab
 set preffilename $env(HOME)/.SciPadPreferences.tcl
 catch {source $preffilename}
 
-
+# Francois VOGEL, 12/02/05, message files added to avoid ifs on $lang
+package require msgcat
+namespace import -force msgcat::*
+::msgcat::mclocale "$lang"
+::msgcat::mcload [file join "$env(SCIPATH)" "tcl" "scipadsources" "msg_files"]

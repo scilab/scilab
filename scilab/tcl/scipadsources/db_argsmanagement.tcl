@@ -1,15 +1,10 @@
 proc Addarg_bp {w focusbut leftwin rightwin} {
-    global lang
     global argname argvalue
     set pos [$leftwin curselection]
     if {$pos == ""} {set pos -1}
     set adda $w.adda
     toplevel $adda
-    if {$lang == "eng"} {
-        wm title $adda "Add/Change"
-    } else {
-        wm title $adda "Ajouter/Modifier"
-    }
+    wm title $adda [mc "Add/Change"]
     setwingeom $adda
     set selecteditem [$leftwin curselection]
     if {$selecteditem != ""} {
@@ -21,22 +16,14 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     }
     frame $adda.f
     frame $adda.f.f1
-    if {$lang == "eng"} {
-        set tl "Variable:"
-    } else {
-        set tl "Variable :"
-    }
+    set tl [mc "Variable:"]
     label $adda.f.f1.label -text $tl -width 10
     entry $adda.f.f1.entry  -textvariable argname -width 20 
     pack $adda.f.f1.label $adda.f.f1.entry -side left
     $adda.f.f1.entry selection range 0 end
     pack $adda.f.f1
     frame $adda.f.f2
-    if {$lang == "eng"} {
-        set tl "Value:"
-    } else {
-        set tl "Valeur :"
-    }
+    set tl [mc "Value:"]
     label $adda.f.f2.label -text $tl -width 10
     entry $adda.f.f2.entry  -textvariable argvalue -width 20 
     pack $adda.f.f2.label $adda.f.f2.entry -side left
@@ -44,14 +31,10 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
     pack $adda.f.f2
     frame $adda.f.f9
     button $adda.f.f9.buttonOK -text "OK" -command "OKadda_bp $adda $pos $leftwin $rightwin"\
-           -width 10 -height 1 -underline 0
-    if {$lang == "eng"} {
-        set bl "Cancel"
-    } else {
-        set bl "Annuler"
-    }
+           -width 10 -height 1
+    set bl [mc "Cancel"]
     button $adda.f.f9.buttonCancel -text $bl -command "Canceladda_bp $adda $pos $leftwin"\
-           -width 10 -underline 0
+           -width 10 -height 1
     pack $adda.f.f9.buttonOK $adda.f.f9.buttonCancel -side left -padx 10
     pack $adda.f.f9 -pady 4
     pack $adda.f
@@ -67,7 +50,7 @@ proc Addarg_bp {w focusbut leftwin rightwin} {
 }
 
 proc OKadda_bp {w pos leftwin rightwin} {
-    global lang unklabel
+    global unklabel
     global argname argvalue
     global spin funvars funvarsvals
     global watchvars watchvarsvals

@@ -184,28 +184,16 @@ proc getdebuggersciancillaries_bp {} {
 
 proc setdbstatevisualhint_bp {} {
     global pad
-    global lang colormen
+    global colormen
     if {[getdbstate] == "NoDebug"} {
         $pad.statusmes configure -background $colormen
-        if {$lang == "eng"} {
-            showinfo "Currently no debug session"
-        } else {
-            showinfo "Pas de session de débug en cours"
-        }
+        showinfo [mc "Currently no debug session"]
     } elseif {[getdbstate] == "ReadyForDebug"} {
         $pad.statusmes configure -background SpringGreen
-        if {$lang == "eng"} {
-            showinfo "Ready to start debug"
-        } else {
-            showinfo "Prêt pour le débug"
-        }
+        showinfo [mc "Ready to start debug"]
     } elseif {[getdbstate] == "DebugInProgress"} {
         $pad.statusmes configure -background tomato3
-        if {$lang == "eng"} {
-            showinfo "Debug in progress"
-        } else {
-            showinfo "Débug en cours"
-        }
+        showinfo [mc "Debug in progress"]
     }
 }
 

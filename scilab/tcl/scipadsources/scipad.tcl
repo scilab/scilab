@@ -27,6 +27,7 @@ if { [info exists pad] } {
     source [file join $sourcedir infomessages.tcl]
     source [file join $sourcedir undoredo.tcl]
     source [file join $sourcedir debugger.tcl] 
+    source [file join $sourcedir localetools.tcl] 
 
 #ES 12/06/04: now all the pure main level code
     source [file join $sourcedir defaults.tcl]

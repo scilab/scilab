@@ -1,5 +1,5 @@
 proc showwatch_bp {} {
-    global pad watch lang
+    global pad watch
     global lbvarname lbvarval scrolly
     global watchvars watchvarsvals buttonAddw
     global firsttimeinshowwatch watchgeom
@@ -70,26 +70,14 @@ proc showwatch_bp {} {
 
     frame $watch.f.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
     frame $watch.f.f2.f2l
-    if {$lang == "eng"} {
-        set tl "Watch variables:"
-    } else {
-        set tl "Variables espions :"
-    }
+    set tl [mc "Watch variables:"]
     label $watch.f.f2.f2l.label -text $tl
-    if {$lang == "eng"} {
-        set bl "Add/Change"
-    } else {
-        set bl "Ajouter/Modifier"
-    }
+    set bl [mc "Add/Change"]
     set buttonAddw $watch.f.f2.f2l.buttonAdd
-    button $buttonAddw -text $bl -width 20 -underline 0
-    if {$lang == "eng"} {
-        set bl "Remove"
-    } else {
-        set bl "Supprimer"
-    }
+    button $buttonAddw -text $bl -width 20
+    set bl [mc "Remove"]
     set buttonRemove $watch.f.f2.f2l.buttonRemove
-    button $buttonRemove -text $bl -width 20 -underline 0
+    button $buttonRemove -text $bl -width 20
     pack $watch.f.f2.f2l.label $buttonAddw $buttonRemove -pady 4
     frame $watch.f.f2.f2r
     set lbvarname $watch.f.f2.f2r.lbvarname
@@ -122,11 +110,7 @@ proc showwatch_bp {} {
     }
 
     frame $watch.f.f6 -relief groove -borderwidth 2 -padx 2
-    if {$lang == "eng"} {
-        set csl "Call stack:"
-    } else {
-        set csl "Pile des appels:"
-    }
+    set csl [mc "Call stack:"]
     label $watch.f.f6.cslabel -text $csl
     pack $watch.f.f6.cslabel -anchor w -pady 4
     set callstackwidget $watch.f.f6.callstack
@@ -140,13 +124,9 @@ proc showwatch_bp {} {
     $callstackwidget configure -state disabled
 
     frame $watch.f.f9
-    if {$lang == "eng"} {
-        set bl "Close"
-    } else {
-        set bl "Fermer"
-    }
+    set bl [mc "Close"]
     button $watch.f.f9.buttonClose -text $bl -command "closewatch_bp $watch"\
-           -width 10 -height 1 -underline 0
+           -width 10 -height 1
     pack $watch.f.f9.buttonClose
     pack $watch.f.f9 -pady 2
 
@@ -315,45 +295,29 @@ proc update_bubble {type butnum mousexy} {
 }
 
 proc togglewatchvariablesarea {} {
-    global watch lang
+    global watch
     global showwatchvariablesarea togglewvabutton
     closewatch_bp $watch
     if {$showwatchvariablesarea == "true"} {
         set showwatchvariablesarea "false"
-        if {$lang == "eng"} {
-            set togglewvabutton "Show watch variables"
-        } else {
-            set togglewvabutton "Montrer les variables"
-        }
+        set togglewvabutton [mc "Show watch variables"]
     } else {
         set showwatchvariablesarea "true"
-        if {$lang == "eng"} {
-            set togglewvabutton "Hide watch variables"
-        } else {
-            set togglewvabutton "Cacher les variables"
-        }
+        set togglewvabutton [mc "Hide watch variables"]
     }
     showwatch_bp
 }
 
 proc togglecallstackarea {} {
-    global watch lang
+    global watch
     global showcallstackarea togglecsabutton
     closewatch_bp $watch
     if {$showcallstackarea == "true"} {
         set showcallstackarea "false"
-        if {$lang == "eng"} {
-            set togglecsabutton "Show call stack"
-        } else {
-            set togglecsabutton "Montrer la pile d'appel"
-        }
+        set togglecsabutton [mc "Show call stack"]
     } else {
         set showcallstackarea "true"
-        if {$lang == "eng"} {
-            set togglecsabutton "Hide call stack"
-        } else {
-            set togglecsabutton "Cacher la pile d'appel"
-        }
+        set togglecsabutton [mc "Hide call stack"]
     }
     showwatch_bp
 }

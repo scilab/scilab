@@ -1,0 +1,284 @@
+# Scipad texts in French
+
+
+# commons
+::msgcat::mcset fr "Cancel" "Annuler"
+::msgcat::mcset fr "Cance&l" "Annu&ler"
+::msgcat::mcset fr "OK" "OK"
+::msgcat::mcset fr "Scilab working" "Scilab occupé"
+::msgcat::mcset fr "All files" "Tous les fichiers"
+
+
+# buffernavigation.tcl
+::msgcat::mcset fr "Goto Line?" "Aller à la ligne ?"
+::msgcat::mcset fr "Goto Line: " "Aller à la ligne : "
+
+
+# colorize.tcl
+::msgcat::mcset fr "Wait seconds while recolorizing file" "Patientez un instant le temps de la colorisation"
+
+
+# db_argsmanagement.tcl
+::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
+::msgcat::mcset fr "Variable:" "Variable :"
+::msgcat::mcset fr "Value:" "Valeur :"
+
+
+# db_configureexec.tcl
+::msgcat::mcset fr "Configure execution" "Configurer l'exécution"
+::msgcat::mcset fr "Function name:" "Nom de la fonction :"
+::msgcat::mcset fr "Obtain" "Obtenir"
+::msgcat::mcset fr "Input arguments:" "Arguments d'entrée :"
+::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
+::msgcat::mcset fr "Remove" "Supprimer"
+::msgcat::mcset fr "Function name or input arguments do not match definition of the function" \
+                    "Le nom de la fonction ou ses arguments ne correspondent pas à la définition de la fonction"
+    ::msgcat::mcset fr "in the file!\n\nCheck function\
+                        name and arguments (names, order) in the configuration dialog.\
+                        \nArguments order can be changed using drag and drop with\
+                        right mouse button in the arguments listbox." \
+                       "dans le fichier!\n\n\
+                        Vérifier le nom de la fonction et ses arguments (nom, ordre\
+                        d'apparition) dans la boîte de dialogue de configuration.\n\
+                        L'ordre des arguments peut être modifié par glisser/déposer\
+                        avec le bouton droit de la souris."
+::msgcat::mcset fr "Error in selected function name or arguments" "Erreur sur la fonction sélectionnée ou ses arguments"
+
+
+# db_debugsession.tcl
+::msgcat::mcset fr "Scilab is working, wait for the prompt to issue a debugger command." "Scilab est occupé, attendez le prompt pour effectuer des commandes de débug."
+::msgcat::mcset fr "Cursor position is out of reach!" "Position du curseur hors d'atteinte!"
+::msgcat::mcset fr "Cursor must be in a function" "Le curseur doit être dans une fonction"
+::msgcat::mcset fr "No effect - The debugged file is not stuck" "Aucun effet - Le fichier en débug n'est pas bloqué"
+::msgcat::mcset fr "Scilab execution error" "Erreur Scilab durant l'exécution"
+::msgcat::mcset fr "The shell reported an error while trying to execute " "Le shell a rencontré une erreur en tentant d'exécuter "
+    ::msgcat::mcset fr " at line " " ligne "
+    ::msgcat::mcset fr " of " " de "
+::msgcat::mcset fr "Execution aborted!" "Exécution arrêtée!"
+
+
+# db_init.tcl
+::msgcat::mcset fr "Please wait..." "Veuillez patienter..."
+
+
+# db_states.tcl
+::msgcat::mcset fr "Currently no debug session" "Pas de session de débug en cours"
+::msgcat::mcset fr "Ready to start debug" "Prêt pour le débug"
+::msgcat::mcset fr "Debug in progress" "Débug en cours"
+
+
+# db_watch.tcl
+::msgcat::mcset fr "Watch variables:" "Variables espions :"
+::msgcat::mcset fr "Add/Change" "Ajouter/Modifier"
+::msgcat::mcset fr "Remove" "Supprimer"
+::msgcat::mcset fr "Call stack:" "Pile des appels:"
+::msgcat::mcset fr "Close" "Fermer"
+::msgcat::mcset fr "Show watch variables" "Montrer les variables"
+::msgcat::mcset fr "Hide watch variables" "Cacher les variables"
+::msgcat::mcset fr "Show call stack" "Montrer la pile d'appel"
+::msgcat::mcset fr "Hide call stack" "Cacher la pile d'appel"
+
+
+# filecommands.tcl
+::msgcat::mcset fr "New Script" "Nouveau script"
+::msgcat::mcset fr "The contents of" "Voulez-vous enregistrer les modifications apportées à"
+    ::msgcat::mcset fr "may have changed, do you wish to to save your changes?" "?"
+::msgcat::mcset fr "Save Confirm?" "Confirmer sauver ?"
+::msgcat::mcset fr "Open file" "Ouvrir fichier"
+::msgcat::mcset fr "The file" "Le fichier"
+    ::msgcat::mcset fr "is already opened! Save the current opened file to an another name and reopen it from disk!" "est déjà ouvert! Sauvez-le sous un autre nom et rouvrez-le à partir du disque !"
+::msgcat::mcset fr "File" "Fichier"
+    ::msgcat::mcset fr "saved" "sauvegardé"
+::msgcat::mcset fr "cannot be written!" "est en lecture seule!"
+::msgcat::mcset fr "The contents of " "Le contenu de"
+    ::msgcat::mcset fr "has changed on disk, save it anyway?" "a changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
+::msgcat::mcset fr "File has changed!" "Le fichier a changé"
+::msgcat::mcset fr "Save as" "Enregistrer sous"
+::msgcat::mcset fr "Scilab files" "Fichiers Scilab"
+::msgcat::mcset fr "XML files" "Fichiers XML"
+::msgcat::mcset fr "All files" "Tous les fichiers"
+::msgcat::mcset fr "Wait seconds while loading and colorizing file" "Patientez un instant le temps du chargement et de la colorisation"
+::msgcat::mcset fr "The contents of this file may have changed, do you wish to save your changes?" "Voulez-vous enregistrer les modifications apportées à ce fichier ?"
+::msgcat::mcset fr "Revert" "Revenir à la version enregistrée de"
+    ::msgcat::mcset fr "to saved?" "?"
+::msgcat::mcset fr "Revert Confirm?" "Confirmer revenir ?"
+
+
+# findreplace.tcl
+::msgcat::mcset fr "The string" "La chaîne"
+    ::msgcat::mcset fr "could not be found" "n'a pu être trouvée"
+::msgcat::mcset fr "Find" "Rechercher"
+::msgcat::mcset fr "No match found in the selection for" "La chaîne"
+    ::msgcat::mcset fr "\nWould you like to look for it in the entire text?" "n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?"
+::msgcat::mcset fr "You are searching for an empty string!" "La chaîne à rechercher est vide!"
+::msgcat::mcset fr "Re&place" "Rem&placer"
+::msgcat::mcset fr "Find what:" "Rechercher :"
+::msgcat::mcset fr "Replace with:" "Remplacer par :"
+::msgcat::mcset fr "Find &Next" "Rechercher suiva&nt"
+::msgcat::mcset fr "Replace &All" "Rempl&acer tout"
+::msgcat::mcset fr "&Upwards" "Vers le ha&ut"
+::msgcat::mcset fr "Downward&s" "Vers le ba&s" 
+::msgcat::mcset fr "Match &case" "Respecter la &casse"
+::msgcat::mcset fr "&Regular expression" "Expression &régulière"
+
+
+# helps.tcl
+::msgcat::mcset fr "About" "A propos"
+::msgcat::mcset fr "\nOriginated by Joseph Acosta, joeja@mindspring.com.\n\
+                    Modified by Scilab Consortium.\n\
+                    Revised by Enrico Segre 2003-2005.\n\
+                    Miscellaneous improvements, particularly debug tools, by Francois Vogel 2004-2005." \
+                   "\nCréé par Joseph Acosta, joeja@mindspring.com.\n\
+                    Modifié par le Consortium Scilab.\n\
+                    Amélioré par Enrico Segre 2003-2005.\n\
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2005."
+
+
+# infomessages.tcl
+::msgcat::mcset fr "Line:" "Ligne:"
+    ::msgcat::mcset fr "Column:" "Colonne:"
+::msgcat::mcset fr "Line" "Ligne"
+    ::msgcat::mcset fr "in" "de"
+::msgcat::mcset fr " \[ReadOnly\]" " \[LectureSeule\]"
+::msgcat::mcset fr " (modified)" " (modifié)"
+
+
+# inputtext.tcl
+::msgcat::mcset fr "No corresponding <" "Aucun <"
+    ::msgcat::mcset fr "> found!" "> correspondant trouvé !"
+::msgcat::mcset fr "Code editing is not allowed during debug!" "Impossible de modifier le code durant le débug !"
+
+
+# menues.tcl
+::msgcat::mcset fr "&File" "&Fichier"
+::msgcat::mcset fr "&Edit" "&Edition"
+::msgcat::mcset fr "&Search" "&Rechercher"
+::msgcat::mcset fr "E&xecute" "E&xécuter"
+::msgcat::mcset fr "&Debug" "&Débug"
+::msgcat::mcset fr "&Options" "&Options"
+::msgcat::mcset fr "&Windows" "&Fenêtres"
+::msgcat::mcset fr "&Help" "&Aide"
+
+    # menues.tcl - File menu
+    ::msgcat::mcset fr "&New" "&Nouveau"
+    ::msgcat::mcset fr "&Open..." "&Ouvrir..."
+    ::msgcat::mcset fr "&Save" "&Enregistrer"
+    ::msgcat::mcset fr "Save &as..." "En&registrer sous..."
+    ::msgcat::mcset fr "&Revert..." "Re&venir..."
+    ::msgcat::mcset fr "Import &Matlab file..."  "Importer fichier &Matlab..."
+    ::msgcat::mcset fr "Create help s&keleton..." "Créer un &squelette d'aide XML..."
+    ::msgcat::mcset fr "Compile as &help page" "Compiler comme fichier d'&aide"
+    ::msgcat::mcset fr "Open &function source" "Ouvrir le source &de la fonction"
+    ::msgcat::mcset fr "Print Se&tup" "Mise en pa&ge"
+    ::msgcat::mcset fr "&Print" "&Imprimer"
+    ::msgcat::mcset fr "&Close" "&Fermer"
+    ::msgcat::mcset fr "&Exit" "&Quitter"
+
+    # menues.tcl - Edit menu
+    ::msgcat::mcset fr "&Undo" "&Annuler"
+    ::msgcat::mcset fr "&Redo" "&Répéter"
+    ::msgcat::mcset fr "Cu&t" "Co&uper"
+    ::msgcat::mcset fr "&Copy" "&Copier"
+    ::msgcat::mcset fr "&Paste" "Co&ller"
+    ::msgcat::mcset fr "&Delete" "&Effacer"
+    ::msgcat::mcset fr "Select &All" "Sélectionner &tout"
+    ::msgcat::mcset fr "Insert &Time/Date" "Insérer Heure/Date"
+    ::msgcat::mcset fr "Co&mment selection" "Co&mmenter la sélection"
+    ::msgcat::mcset fr "U&ncomment selection" "&Décommenter la sélection"
+    ::msgcat::mcset fr "&Indent selection" "&Indenter la sélection"
+    ::msgcat::mcset fr "Unin&dent selection" "Dé&sindenter la sélection"
+    ::msgcat::mcset fr "Word &Wrap" "Ret&our à la ligne automatique"
+
+    # menues.tcl - Search menu
+    ::msgcat::mcset fr "&Find..." "&Rechercher..."
+    ::msgcat::mcset fr "Find &Next" "Rechercher &suivant"
+    ::msgcat::mcset fr "&Replace..." "Rem&placer..."
+    ::msgcat::mcset fr "&Goto Line..." "&Atteindre..."
+
+    # menues.tcl - Exec menu
+    ::msgcat::mcset fr "&Load into Scilab" "&Charger dans Scilab"
+    ::msgcat::mcset fr "&Evaluate selection" "&Evaluer la sélection"
+
+    # menues.tcl - Debug menu
+    ::msgcat::mcset fr "&Insert/Remove breakpoint" "&Insérer/Supprimer un point d'arrêt"
+    ::msgcat::mcset fr "Remove &all breakpoints" "Supprimer &tous les points d'arrêt"
+    ::msgcat::mcset fr "&Configure execution..." "Con&figurer l'exécution..."
+    ::msgcat::mcset fr "Go to next b&reakpoint" "Aller jusq&u'au prochain point d'arrêt"
+    ::msgcat::mcset fr "&Step by step" "&Pas à pas"
+    ::msgcat::mcset fr "Step &into" "Pas à pas &principal"
+    ::msgcat::mcset fr "Step o&ver" "Pas à pas &détaillé"
+    ::msgcat::mcset fr "Step &out" "Pas à pas &sortant"
+    ::msgcat::mcset fr "Run to c&ursor" "Executer jusqu'au cur&seur"
+    ::msgcat::mcset fr "G&o on ignoring any breakpoint" "&Continuer sans aucun point d'arrêt"
+    ::msgcat::mcset fr "Show &watch" "Fenêtre &watch"
+    ::msgcat::mcset fr "&Break" "&Stop"
+    ::msgcat::mcset fr "Cance&l debug" "&Annuler le débug"
+
+    # menues.tcl - Options menu
+    ::msgcat::mcset fr "font size" "taille de police"
+    ::msgcat::mcset fr "&micro" "&micro"
+    ::msgcat::mcset fr "&small" "&petit"
+    ::msgcat::mcset fr "m&edium" "m&oyen"
+    ::msgcat::mcset fr "&large" "&grand"
+    ::msgcat::mcset fr "language scheme" "schéma langage"
+    ::msgcat::mcset fr "S&cilab" "S&cilab"
+    ::msgcat::mcset fr "&XML" "&XML"
+    ::msgcat::mcset fr "&none" "&aucun"
+
+    # menues.tcl - Windows menu
+    ::msgcat::mcset fr "Opened Files" "Fichiers ouverts"
+
+    # menues.tcl - Help menu
+    ::msgcat::mcset fr "&Help..." "&Aide..."
+    ::msgcat::mcset fr "&What's?..." "&Qu'est-ce ?..."
+    ::msgcat::mcset fr "&About" "A &propos"
+
+
+# popupmenus.tcl
+::msgcat::mcset fr "Open the source of" "Ouvrir le source de"
+
+
+# print.tcl
+::msgcat::mcset fr "Print Command: " "Commande d'impression : "
+
+
+# scilabexec.tcl
+::msgcat::mcset fr "Scilab is working, wait for the prompt to load file" "Scilab est occupé, attendez le prompt pour charger le fichier"
+::msgcat::mcset fr "Scilab is working, wait for the prompt to execute the selection." "Scilab est occupé, attendez le prompt pour exécuter la sélection."
+::msgcat::mcset fr "Scilab is working, wait for the prompt to convert a Matlab file." "Scilab est occupé, attendez le prompt pour importer un fichier Matlab."
+::msgcat::mcset fr "Matlab file to convert" "Fichier Matlab à importer"
+::msgcat::mcset fr "Scilab is converting, please hold on..." "Scilab est en train de convertir, patientez SVP..."
+::msgcat::mcset fr "Matlab file import" "Import d'un fichier Matlab"
+::msgcat::mcset fr "Conversion of the file failed, see the Scilab window\
+                    for details -- Perhaps report the error text and the\
+                    offending Matlab file to \
+                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
+                   "La conversion du ficher a échoué, voyez dans la fenêtre\
+                    Scilab pour plus d'informations -- Veuillez communiquer le\
+                    message d'erreur et le fichier Matlab incriminé à\
+                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"
+::msgcat::mcset fr "Please select destination path for the xml source of the help file" "Veuillez choisir le chemin de destination pour le source xml du fichier d'aide"
+::msgcat::mcset fr "Older version of" "Il existe une version plus ancienne de"
+    ::msgcat::mcset fr "found!" "!"
+::msgcat::mcset fr "An old version of" "Une ancienne version de"
+    ::msgcat::mcset fr "already exists: open the old file instead?" "existe déjà : Ouvrir le fichier existant ?"
+::msgcat::mcset fr "Existing file" "Fichier existant"
+::msgcat::mcset fr "New skeleton" "Nouveau squelette d'aide"
+::msgcat::mcset fr "Scilab is working, wait for the prompt to compile the help file." "Scilab est occupé, attendez le prompt pour compiler la page d'aide."
+
+
+# textarea.tcl
+::msgcat::mcset fr "Font size" "Police taille"
+
+
+# whichfun.tcl
+::msgcat::mcset fr "Being at line" "Etant à la ligne"
+    ::msgcat::mcset fr ", function" ", la fonction"
+    ::msgcat::mcset fr "begins at" "débute en"
+    ::msgcat::mcset fr ", and there are" ", et il y a"
+    ::msgcat::mcset fr "continued lines, i.e. we are at line" "lignes multiples, i.e. nous sommes à la ligne"
+    ::msgcat::mcset fr "of" "de"
+::msgcat::mcset fr "Function" "Fonction"
+    ::msgcat::mcset fr "line" "ligne"
+::msgcat::mcset fr "The cursor is not currently inside a function body." "Le curseur ne se trouve pas à l'intérieur d'une fonction."
+::msgcat::mcset fr "Which function?" "Quelle fonction ?"

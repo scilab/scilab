@@ -66,33 +66,20 @@ proc prevbuffer {} {
 
 # add gotoline option included by Matthieu PHILIPPE 21/11/2001 from gotoline.pth
 proc gotoline {} {
-	global textareacur pad lang
+	global textareacur pad
 	set gotln $pad.gotln
 	catch {destroy $gotln}
 	toplevel $gotln
-	if {$lang == "eng"} {
-	    wm title $gotln "Goto Line?"
-	} else {
-	    wm title $gotln "Aller à la ligne"
-	}
+    wm title $gotln [mc "Goto Line?"]
 	setwingeom $gotln
 	frame $gotln.top 
 	frame $gotln.bottom
-	if {$lang == "eng"} {
-	    label $gotln.top.label -text "Goto Line: "
-	} else {
-	    label $gotln.top.label -text "Aller à la ligne : "
-	}
+    label $gotln.top.label -text [mc "Goto Line: "]
 	entry $gotln.top.gotln -textvariable gotlnsetupnew -width 10
 	$gotln.top.gotln delete 0 end 
 	button $gotln.bottom.ok -text "OK" -command "addtogotln $gotln"
-	if {$lang == "eng"} {
-	    button $gotln.bottom.cancel -text "Cancel" \
+    button $gotln.bottom.cancel -text [mc "Cancel"] \
 		-command "destroy $gotln"
-	} else {
-	    button $gotln.bottom.cancel -text "Annuler" \
-	         -command "destroy $gotln"
-	}
 	focus $gotln.top.gotln
 	pack $gotln.top -side top -expand 0 
 	pack $gotln.bottom -side bottom -expand 0 

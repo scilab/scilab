@@ -1,5 +1,5 @@
 proc blinkbrace {w pos brace} {
-	global	bracefind fno lang
+	global	bracefind fno
 
 	switch $brace {
 		\{	{ set findbs {[{}]}; set bs "\}";\
@@ -46,11 +46,7 @@ proc blinkbrace {w pos brace} {
 		selection clear
 		$w see insert
 	} else {
-            if {$lang == "eng"} {
-                showinfo "No corresponding <$bs> found!"
-            } else {
-                showinfo "Aucun <$bs> correspondant trouvé !"
-            }
+        showinfo [concat [mc "No corresponding <"] $bs [mc "> found!"] ]
 	}
 }
 
@@ -181,14 +177,8 @@ proc wraptext {} {
 }
 
 proc IsBufferEditable {} {
-    global lang
     if {[getdbstate]=="DebugInProgress"} {
-        if {$lang == "eng"} {
-            set txt "Code editing is not allowed during debug!"
-        } else {
-            set txt "Impossible de modifier le code durant le débug!"
-        }
-        showinfo $txt
+        showinfo [mc "Code editing is not allowed during debug!"]
         return "No"
     } else {
         return "Yes"

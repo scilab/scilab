@@ -5,7 +5,6 @@ set textareacur $pad.textarea
 set saveTextMsg 0
 
 # added by Matthieu PHILIPPE
-if { ![info exists lang] } { set lang "eng" }
 set chset()                 {} 
 set words()                 {}  
 set listoffile("$pad.textarea",filename)   "[pwd]/Untitled.sce"

@@ -8,24 +8,12 @@ array set watchvarsvals {}
 set callstackcontent ""
 set firsttimeinshowwatch "true"
 set showwatchvariablesarea "true"
-if {$lang == "eng" } {
-    set togglewvabutton "Hide watch variables"
-} else {
-    set togglewvabutton "Cacher les variables"
-}
+set togglewvabutton [mc "Hide watch variables"]
 set showcallstackarea "true"
-if {$lang == "eng" } {
-    set togglecsabutton "Hide call stack"
-} else {
-    set togglecsabutton "Cacher la pile d'appel"
-}
+set togglecsabutton [mc "Hide call stack"]
 # FV, 17/06/04, better do it in scipad.sci
 #ScilabEval "TK_EvalStr(\"scipad eval {set tmpdir \"+TMPDIR+\"}\");"
-if {$lang=="eng"} {
-    set waitmessage "Please wait..."
-} else {
-    set waitmessage "Veuillez patienter..."
-}
+set waitmessage [mc "Please wait..."]
 
 # Read debugger icons from gif files on disk and resize them independently of their
 # original size

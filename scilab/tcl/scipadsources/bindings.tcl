@@ -118,8 +118,9 @@ bind $pad <F4> {importmatlab}
 #ES 10/11/04
 bind $pad <Control-R> {revertsaved}
 
+bind Text <Control-/> ""
 bind Text <Control-a> ""
 bind $pad <Control-a> {selectall}
 
-bind Text <F8> {set ind [%W index insert]; openlibfunsource $ind}
+bind Text <Control-/> {set ind [%W index insert]; openlibfunsource $ind}
 bind Text <Control-Button-1> {set ind [%W index current]; showpopupsource $ind}

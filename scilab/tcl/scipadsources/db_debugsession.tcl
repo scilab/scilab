@@ -1,18 +1,11 @@
 proc checkscilabbusy {{mb "message"}} {
-    global sciprompt lang
+    global sciprompt
 # <TODO> Remove the bypass of this proc
 #return "OK"
     if [ expr [string compare $sciprompt -1] == 0 ] {
         if {$mb != "nomessage"} {
-            if {$lang == "eng"} {
-                set mes "Scilab is working, wait for the prompt to issue a\
-                     debugger command."
-                set tit "Scilab working"
-            } else {
-                set mes "Scilab est occupé, attendez le prompt pour\
-                     effectuer des commandes de débug."
-                set tit "Scilab occupé"
-            }
+            set mes [mc "Scilab is working, wait for the prompt to issue a debugger command."]
+            set tit [mc "Scilab working"]
             tk_messageBox -message $mes -title $tit -type ok -icon info
         }
         return "busy"
@@ -22,7 +15,6 @@ proc checkscilabbusy {{mb "message"}} {
 }
 
 proc runtocursor_bp {} {
-    global lang
     if {[checkscilabbusy] == "OK"} {
         set textarea [gettextareacur]
         set infun [whichfun [$textarea index insert] $textarea]
@@ -50,20 +42,12 @@ proc runtocursor_bp {} {
                 ScilabEval "flush"
             }
             if {[getdbstate] != "DebugInProgress"} {
-                if {$lang == "eng"} {
-                    tk_messageBox -message "Cursor position is out of reach!" -icon info
-                } else {
-                    tk_messageBox -message "Position du curseur hors d'atteinte!" -icon info
-                }
+                tk_messageBox -message [mc "Cursor position is out of reach!"] -icon info
             }
             insertremove_bp
         } else {
             # <TODO> .sce case
-            if {$lang == "eng"} {
-                showinfo "Cursor must be in a function"
-            } else {
-                showinfo "Le curseur doit être dans une fonction"
-            }
+            showinfo [mc "Cursor must be in a function"]
         }
     }
 }
@@ -219,7 +203,6 @@ proc goonwo_bp {} {
 }
 
 proc break_bp {} {
-    global lang
     if {[checkscilabbusy "nomessage"] != "OK"} {
         ScilabEval "flush"
         ScilabEval "pause" "seq"
@@ -229,11 +212,7 @@ proc break_bp {} {
 # Problem: Scilab does not stop at breakpoints located after the break command point!
         setdbstate "NoDebug"
     } else {
-        if {$lang == "eng"} {
-            showinfo "No effect - The debugged file is not stuck"
-        } else {
-            showinfo "Aucun effet - Le fichier en débug n'est pas bloqué"
-        }
+        showinfo [mc "No effect - The debugged file is not stuck"]
     }
 }
 
@@ -252,7 +231,7 @@ proc canceldebug_bp {} {
 }
 
 proc scilaberror {funnameargs} {
-    global errnum errline errmsg errfunc lang
+    global errnum errline errmsg errfunc
     ScilabEval "\[db_str,db_n,db_l,db_func\]=lasterror();\
                 TK_EvalStr(\"scipad eval { global errnum errline errmsg errfunc; \
                                            set errnum  \"+string(db_n)+\"; \
@@ -260,19 +239,11 @@ proc scilaberror {funnameargs} {
                                            set errfunc \"\"\"+strsubst(db_func,\"\"\"\",\"\\\"\"\")+\"\"\"; \
                                            set errmsg  \"\"\"+db_str+\"\"\"}\")" \
                "sync" "seq"
-    if {$lang == "eng"} {
-        tk_messageBox -title "Scilab execution error" \
-          -message [concat "The shell reported an error while trying to execute "\
-          $funnameargs ": error " $errnum ", " $errmsg " at line "\
-          $errline " of " $errfunc]
-        showinfo "Execution aborted!"
-    } else {
-        tk_messageBox -title "Erreur Scilab durant l'exécution" \
-          -message [concat "Le shell a rencontré une erreur en tentant d'exécuter "\
-          $funnameargs ": erreur " $errnum ", " $errmsg " ligne "\
-          $errline " de " $errfunc]
-        showinfo "Exécution arrêtée!"
-    }
+    tk_messageBox -title [mc "Scilab execution error"] \
+      -message [concat [mc "The shell reported an error while trying to execute "]\
+      $funnameargs ": error " $errnum ", " $errmsg [mc " at line "]\
+      $errline [mc " of "] $errfunc]
+    showinfo [mc "Execution aborted!"]
     if {[getdbstate] == "DebugInProgress"} {
         canceldebug_bp
     }

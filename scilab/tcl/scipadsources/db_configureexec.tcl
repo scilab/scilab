@@ -1,24 +1,16 @@
 proc configurefoo_bp {} {
-    global pad conf lang
+    global pad conf
     global listboxinput listboxinputval listboxscrolly spin buttonAddc
     global funnames funvars funvarsvals funnameargs
     set conf $pad.conf
     catch {destroy $conf}
     toplevel $conf
-    if {$lang == "eng"} {
-        wm title $conf "Configure execution"
-    } else {
-        wm title $conf "Configurer l'exécution"
-    }
+    wm title $conf [mc "Configure execution"]
     setwingeom $conf
     frame $conf.f
 
     frame $conf.f.f1
-    if {$lang == "eng"} {
-        set tl "Function name:"
-    } else {
-        set tl "Nom de la fonction :"
-    }
+    set tl [mc "Function name:"]
     label $conf.f.f1.label -text $tl -width 20
     set spin $conf.f.f1.spinbox
     spinbox $spin -width 30 -command "spinboxbuttoninvoke" \
@@ -31,39 +23,23 @@ proc configurefoo_bp {} {
         $spin set [lindex $funnames 0]
         set funname [$spin get]
     }
-    if {$lang == "eng"} {
-        set bl "Obtain"
-    } else {
-        set bl "Obtenir"
-    }
+    set bl [mc "Obtain"]
     button $conf.f.f1.buttonObtain -text $bl -command "Obtainall_bp"\
-           -width 10 -underline 1
+           -width 10
     pack $conf.f.f1.label $spin $conf.f.f1.buttonObtain \
          -side left -padx 4
     pack $conf.f.f1
 
     frame $conf.f.f2
     frame $conf.f.f2.f2l
-    if {$lang == "eng"} {
-        set tl "Input arguments:"
-    } else {
-        set tl "Arguments d'entrée :"
-    }
+    set tl [mc "Input arguments:"]
     label $conf.f.f2.f2l.label -text $tl
-    if {$lang == "eng"} {
-        set bl "Add/Change"
-    } else {
-        set bl "Ajouter/Modifier"
-    }
+    set bl [mc "Add/Change"]
     set buttonAddc $conf.f.f2.f2l.buttonAdd
-    button $buttonAddc -text $bl -width 20 -underline 0
-    if {$lang == "eng"} {
-        set bl "Remove"
-    } else {
-        set bl "Supprimer"
-    }
+    button $buttonAddc -text $bl -width 20
+    set bl [mc "Remove"]
     set buttonRemove $conf.f.f2.f2l.buttonRemove
-    button $buttonRemove -text $bl -width 20 -underline 0
+    button $buttonRemove -text $bl -width 20
     pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
@@ -93,14 +69,10 @@ proc configurefoo_bp {} {
 
     frame $conf.f.f9
     button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
-           -width 10 -height 1 -underline 0
-    if {$lang == "eng"} {
-        set bl "Cancel"
-    } else {
-        set bl "Annuler"
-    }
+           -width 10 -height 1
+    set bl [mc "Cancel"]
 #    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
-#           -width 10 -underline 0
+#           -width 10
 #    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10
     pack $conf.f.f9.buttonOK
     pack $conf.f.f9 -pady 4
@@ -281,7 +253,7 @@ proc checkarglist {funname} {
 # Because the user could add input variables (in the buffer text) to the
 # currently selected function, checking the argument list cannot just
 # rely on the latest Obtainall_bp
-    global listoftextarea funvars lang
+    global listoftextarea funvars
     set pat "\\mfunction\\M.*\\m$funname\\M"
     set orderOK "false"
     foreach textarea $listoftextarea {
@@ -316,22 +288,12 @@ proc checkarglist {funname} {
         }
     }
     if {$orderOK != "true" } {
-        if {$lang == "eng" } {
-            set mes "Function name or input arguments do not match definition\
-                     of the function $funname in the file!\n\nCheck function\
-                     name and arguments (names, order) in the configuration dialog.\
-                     \nArguments order can be changed using drag and drop with\
-                     right mouse button in the arguments listbox."
-            set tit "Error in selected function name or arguments"
-        } else {
-            set mes "Le nom de la fonction ou ses arguments ne correspondent pas\
-                     à la définition de la fonction $funname dans le fichier!\n\n\
-                     Vérifier le nom de la fonction et ses arguments (nom, ordre\
-                     d'apparition) dans la boîte de dialogue de configuration.\n\
-                     L'ordre des arguments peut être modifié par glisser/déposer\
-                     avec le bouton droit de la souris."
-            set tit "Erreur sur la fonction sélectionnée ou ses arguments"
-        }
+        set mes [concat [mc "Function name or input arguments do not match definition\
+                 of the function"] $funname [mc "in the file!\n\nCheck function\
+                 name and arguments (names, order) in the configuration dialog.\
+                 \nArguments order can be changed using drag and drop with\
+                 right mouse button in the arguments listbox."] ]
+        set tit [mc "Error in selected function name or arguments"]
         tk_messageBox -message $mes -icon warning -title $tit
     }
     return $orderOK

@@ -240,16 +240,12 @@ proc colorize {w cpos iend} {
 
 #ES 27/5/04
 proc changelanguage {newlanguage} {
-    global listoffile lang
+    global listoffile
     set textarea [gettextareacur]
     set oldlanguage $listoffile("$textarea",language)
     if {$oldlanguage != $newlanguage} {
        set listoffile("$textarea",language) $newlanguage
-       if {$lang == "eng"} {
-          showinfo "Wait seconds while recolorizing file"
-       } else {
-          showinfo "Patientez un instant le temps de la colorisation"
-       }
+       showinfo [mc "Wait seconds while recolorizing file"]
        schememenus $textarea
        colorize $textarea 1.0 end
        keyposn $textarea

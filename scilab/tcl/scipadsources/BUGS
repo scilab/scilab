@@ -215,11 +215,6 @@ Wishes:
  always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
 
--Arrange for removal of all the if {$lang="eng"} in the Scipad code, to ease
- maintainability and readability. Possible references for implementation are:
- http://wiki.tcl.tk/1488
- http://www.tcl.tk/man/tcl8.4/TclCmd/msgcat.htm
-
 -Make printing from Scipad work on Linux and implement it for Windows.
  Try to preserve the colorization in the process.
  Possible references for implementation on a Windows box are:

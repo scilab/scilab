@@ -2,7 +2,7 @@
 # Matthieu PHILIPPE 14/12/2001
 proc filesetasnewmat {} {
     global winopened listoffile fileName
-    global listoftextarea pad radiobuttonvalue lang
+    global listoftextarea pad radiobuttonvalue
 
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
@@ -18,11 +18,7 @@ proc filesetasnewmat {} {
         -value $winopened -variable radiobuttonvalue \
         -command "montretext $pad.new$winopened"
     newfilebind
-    if {$lang == "eng"} {
-        showinfo "New Script"
-    } else {
-        showinfo "Nouveau script"
-    }
+    showinfo [mc "New Script"]
     montretext $pad.new$winopened
     set fileName " "
     #inccount $pad.new$winopened
@@ -108,18 +104,11 @@ proc closefile {textarea} {
     global listoftextarea
     global listoffile
     global pad
-    global lang
     if  [ expr [string compare [getccount $textarea] 1] == 0 ] {
-        if {$lang == "eng"} {
-            set answer [tk_messageBox -message "The contents of \
-               $listoffile("$textarea",filename) may have changed, do you wish\
-                   to to save your changes?"\
-                       -title "Save Confirm?" -type yesnocancel -icon question]
-        } else {
-            set answer [tk_messageBox -message "Voulez-vous enregistrer les \
-               modifications apportées à $listoffile("$textarea",filename) ?" \
-                 -title "Confirmer sauver ?" -type yesnocancel -icon question]
-        }
+        set answer [tk_messageBox -message [ concat [mc "The contents of"] \
+           $listoffile("$textarea",filename) \
+           [mc "may have changed, do you wish to to save your changes?"] ] \
+             -title [mc "Save Confirm?"] -type yesnocancel -icon question]
         case $answer {
             yes { filetosave $textarea; byebye $textarea }
             no {byebye $textarea}
@@ -143,7 +132,7 @@ proc extenstolang {file} {
 proc openfile {file} {
     global listoffile
     global FGCOLOR BGCOLOR textFont taille wordWrap pad winopened 
-    global textareacur listoftextarea radiobuttonvalue lang
+    global textareacur listoftextarea radiobuttonvalue
     if [string compare $file ""] {
         # search for a opened existing file
         set res [lookiffileisopen "$file"]
@@ -246,17 +235,10 @@ proc newfilebind {} {
 }
 
 proc fileisopen {file} {
-   global lang
  # file is already opened
-   if {$lang == "eng"} {
-       tk_messageBox -type ok -title "Open file $file" -message \
-          "The file $file is already opened! Save the current opened\
-            file to an another name and reopen it from disk!"
-   } else {
-       tk_messageBox -type ok -title "Ouvrir fichier $file" -message \
-          "Le fichier $file est déjà ouvert! Sauvez-le sous un\
-            autre nom et rouvrez-le à partir du disque !"
-  }
+    tk_messageBox -type ok -title [concat [mc "Open file"] $file] -message [concat \
+      [mc "The file"] $file [mc "is already opened! Save the current opened\
+      file to an another name and reopen it from disk!"] ]
 }
 
 #open an existing file
@@ -272,7 +254,7 @@ proc filetoopen {textarea} {
 
 # generic save function
 proc writesave {textarea nametosave} {
-    global lang listoffile
+    global listoffile
 # if the file exists, check once more if the file is writable 
 # if it doesn't, check if the directory is writable
 #(case of Save as...) (non existant files return 0 to writable)
@@ -284,23 +266,15 @@ proc writesave {textarea nametosave} {
           [expr [file writable [file dirname $nametosave]] == 0]
     }
     if {$listoffile("$textarea",readonly)==0} {
-	set FileNameToSave [open $nametosave w+]
-	puts -nonewline $FileNameToSave [$textarea get 0.0 end]
-	close $FileNameToSave
-	outccount $textarea
-	set listoffile("$textarea",thetime) [file mtime $nametosave] 
-	if {$lang == "eng"} {
-	    set msgWait "File $nametosave saved"
-	} else {
-	    set msgWait "Fichier $nametosave sauvegardé"
-	}
+        set FileNameToSave [open $nametosave w+]
+        puts -nonewline $FileNameToSave [$textarea get 0.0 end]
+        close $FileNameToSave
+        outccount $textarea
+        set listoffile("$textarea",thetime) [file mtime $nametosave] 
+        set msgWait [concat [mc "File"] $nametosave [mc "saved"]]
         showinfo $msgWait
     } else {
-	if {$lang == "eng"} {
-	    set msgWait "$nametosave cannot be written!"
-	} else {
-	    set msgWait "$nametosave est en lecture seule!"
-	}
+        set msgWait [concat $nametosave [mc "cannot be written!"]]
         tk_messageBox -message $msgWait
         filesaveas $textarea
     }
@@ -317,17 +291,11 @@ proc filetosavecur {} {
 
 proc filetosave {textarea} {
     global listoffile
-    global lang
 
-    if {$lang == "eng"} {
-        set msgChanged "The contents of $listoffile("$textarea",filename) \
-            has changed on Disk, Save it anyway?"
-        set msgTitle "File has changed!"
-    } else {
-        set msgChanged "Le contenu de $listoffile("$textarea",filename) a\
-            changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
-        set msgTitle "Le fichier a changé"
-    }
+    set msgChanged [concat [mc "The contents of "] \
+                           $listoffile("$textarea",filename) \
+                           [mc "has changed on disk, save it anyway?"] ]
+    set msgTitle [mc "File has changed!"]
 
     # save the opened file from disk, if not, user has to get a file name.
     # we would verify if the file has not been modify by another application
@@ -358,9 +326,9 @@ proc filesaveascur {} {
 }
 
 proc filesaveas {textarea} {
-    global listoffile pad radiobuttonvalue winopened lang
+    global listoffile pad radiobuttonvalue winopened
 
-    if {$lang == "eng"} {showinfo "Save As"} else {showinfo "Enregistrer sous"}
+    showinfo [mc "Save as"]
 # FV 14/06/04, added proposedname for new functions
 # proposedname is the first function name found in the buffer
     set proposedname ""
@@ -404,20 +372,12 @@ proc filesaveas {textarea} {
 }
 
 proc knowntypes {} {
-    global lang
-    if {$lang == "eng"} {
-        set types {
-            {"Scilab files" {*.sce *.sci *.tst *.dem}} 
-            {"XML files" {*.xml }} 
-            {"All files" {*.* *}}
-        }
-    } else {
-        set types {
-            {"Fichiers Scilab" {*.sce *.sci *.tst *.dem}} 
-            {"Fichiers XML" {*.xml }} 
-            {"Tous les fichiers" {*.* *}}
-        }
-    }
+    set scifiles [mc "Scilab files"]
+    set xmlfiles [mc "XML files"]
+    set allfiles [mc "All files"]
+    set types [concat "{\"$scifiles\"" "{*.sce *.sci *.tst *.dem}}" \
+                      "{\"$xmlfiles\"" "{*.xml }}" \
+                      "{\"$allfiles\"" "{*.* *}}" ]
     return $types
 }
 
@@ -429,9 +389,8 @@ proc showopenwin {textarea} {
     global listoffile
     global FGCOLOR BGCOLOR textFont taille wordWrap 
     global pad winopened textareacur listoftextarea
-    global lang startdir
-    if {$lang == "eng"} {showinfo "Open file"
-    } else {showinfo "Ouvrir le fichier"}
+    global startdir
+    showinfo [mc "Open file"]
 # FV 18/07/04, remember the latest path used for opening files
     if {![info exists startdir]} {set startdir [pwd]}
     set file [tk_getOpenFile -filetypes [knowntypes] -parent $pad -initialdir $startdir]
@@ -458,14 +417,8 @@ proc showopenwin {textarea} {
 # proc to open files or read a pipe
 proc openoninit {textarea thefile} {
     global listoftextarea
-    global lang
 
-    if {$lang == "eng"} {
-        set msgWait "Wait seconds while loading and colorizing file"
-    } else {
-        set msgWait \
-         "Patientez un instant le temps du chargement et de la colorisation"
-    }
+    set msgWait [mc "Wait seconds while loading and colorizing file"]
     showinfo $msgWait
     lappend listoftextarea $textarea
     if [string match " " $thefile] {  
@@ -498,19 +451,12 @@ proc openoninit {textarea thefile} {
 
 # generic case switcher for message box
 proc switchcase {yesfn argyesfn nofn argnofn} {
-    global saveTextMsg lang
+    global saveTextMsg
     if [ expr [string compare [getccount [gettextareacur]] 1] ==0 ] {
-        if {$lang == "eng"} {
-            set answer [tk_messageBox -message \
-             "The contents of this file may have changed, do you wish\
-              to save your changes?"\
-                    -title "Save Confirm?" -type yesnocancel -icon question]
-        } else {
-            set answer [tk_messageBox -message \
-                "Voulez-vous enregistrer les modifications apportées à\
-                  ce fichier ?" \
-                  -title "Confirmer sauver ?" -type yesnocancel -icon question]
-        }
+        set answer [tk_messageBox -message [mc \
+         "The contents of this file may have changed, do you wish\
+          to save your changes?" ]\
+                -title [mc "Save Confirm?"] -type yesnocancel -icon question]
         case $answer {
              yes { if {[eval $yesfn $argyesfn] == 1} { $nofn $argnofn} }
              no {$nofn  $argnofn}
@@ -540,17 +486,13 @@ proc extractindexfromlabel {dm labsearched} {
 
 
 proc revertsaved {} {
-   global listoffile lang
+   global listoffile
    set textarea [gettextareacur]
    set thefile $listoffile("$textarea",filename) 
    if [ file exists $thefile ] {
-       if {$lang == "eng"} {
-           set answer [tk_messageBox -message "Revert $thefile to saved?" \
-		        -type yesno -icon question]
-       } else {
-           set answer [tk_messageBox -message "Revenir à la version enregistrée de $thefile ?" \
-		        -type yesno -icon question]
-       }
+       set answer [tk_messageBox \
+            -message [concat [mc "Revert"] $thefile [mc "to saved?"] ] \
+            -type yesno -icon question -title [mc "Revert Confirm?"] ]
        if {$answer == yes} {
             set oldfile [open $thefile r]
             $textarea delete 1.0 end 

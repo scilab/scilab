@@ -2,7 +2,7 @@ proc FindIt {w} {
 # FV 13/05/04, regexp mode added
     global SearchString SearchPos SearchDir findcase regexpcase
     global textareacur pad
-    global lang SearchEnd SearchPosI
+    global SearchEnd SearchPosI
 #    [gettextareacur] tag configure sel -background green
 # Francois VOGEL, 21/04/04
     if {[winfo exists $w]} {
@@ -56,20 +56,14 @@ proc FindIt {w} {
 # Francois VOGEL, 21/04/04, added message box
 #	    set SearchPos "0.0"
             if {$SearchEnd == "No_end"} {
-                if {$lang == "eng"} {
-                    tk_messageBox -message "No match found for $SearchString" -parent $pw -title "Find"
-                } else {
-                    tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée" -parent $pw -title "Rechercher"
-                }
+                tk_messageBox -message \
+                    [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
+                    -parent $pw -title [mc "Find"]
                 set SearchPos insert
             } else {
-                if {$lang == "eng"} {
-                    set answer [tk_messageBox -message "No match found in the selection for $SearchString\nWould you like to look for it in the entire text?" \
-                                  -parent $pw -title "Find" -type yesno -icon question]
-                } else {
-                    set answer [tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée dans la sélection.\nVoulez-vous rechercher dans la totalité du texte ?" \
-                                  -parent $pw -title "Rechercher" -type yesno -icon question]
-                }
+                set answer [tk_messageBox -message \
+                    [concat [mc "No match found in the selection for"] $SearchString [mc "\nWould you like to look for it in the entire text?"] ] \
+                    -parent $pw -title [mc "Find"] -type yesno -icon question]
                 if {![string compare $answer "yes"]} {
                     if {$SearchDir == "forwards"} {
                         set SearchPos "insert + $len char"
@@ -84,11 +78,8 @@ proc FindIt {w} {
         }
     } else {
 # Francois VOGEL, 21/04/04
-        if {$lang == "eng"} {
-            tk_messageBox -message "You are searching for an empty string!" -parent $pw -title "Find"
-        } else {
-            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $pw -title "Rechercher"
-        }
+        tk_messageBox -message [mc "You are searching for an empty string!"] \
+                      -parent $pw -title [mc "Find"]
     }
     focus [gettextareacur]
 }
@@ -97,7 +88,7 @@ proc ReplaceIt {once_or_all} {
 # FV 13/05/04, regexp mode added
     global SearchString SearchDir ReplaceString SearchPos findcase regexpcase
     global textareacur
-    global find lang SearchEnd
+    global find SearchEnd
 # Francois VOGEL, 21/04/04
     if {$SearchString != ""} {
         if {$findcase=="1"} {
@@ -162,27 +153,22 @@ proc ReplaceIt {once_or_all} {
 #	    set SearchPos "0.0"
             set SearchPos insert
             if {$once_or_all == "once"} {
-                if {$lang == "eng"} {
-                    tk_messageBox -message "No match found for $SearchString" -parent $find -title "Replace"
-                } else {
-                    tk_messageBox -message "La chaîne $SearchString n'a pu être trouvée" -parent $find -title "Remplacer"
-                }
-            }
+                tk_messageBox -message \
+                    [concat [mc "The string"] $SearchString [mc "could not be found"] ] \
+                    -parent $find -title [mc "Replace"]
+              }
             return [list "No_match" $SearchPos]
         }
     } else {
 # Francois VOGEL, 21/04/04
-        if {$lang == "eng"} {
-            tk_messageBox -message "You are searching for an empty string!" -parent $find -title "Find"
-        } else {
-            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $find -title "Rechercher"
-        }
+        tk_messageBox -message [mc "You are searching for an empty string!"] \
+                      -parent $find -title [mc "Replace"]
     }
 #    inccount [gettextareacur]
 }
 
 proc ReplaceAll {} {
-      global SearchPos SearchString lang find
+      global SearchPos SearchString find
 # Francois VOGEL, 21/04/04
 #      if {$SearchString != ""} {
 #          ReplaceIt
@@ -207,11 +193,8 @@ proc ReplaceAll {} {
             }
         }
     } else {
-        if {$lang == "eng"} {
-            tk_messageBox -message "You are searching for an empty string!" -parent $find -title "Find"
-        } else {
-            tk_messageBox -message "La chaîne à rechercher est vide!" -parent $find -title "Rechercher"
-        }
+        tk_messageBox -message [mc "You are searching for an empty string!"] \
+                      -parent $find -title [mc "Replace"]
     }
 }
 
@@ -247,16 +230,12 @@ proc ResetFind {} {
 # procedure to find text
 proc findtext {typ} {
 # FV 13/05/04, regexp mode added
-    global SearchString SearchDir ReplaceString findcase c find pad lang regexpcase
+    global SearchString SearchDir ReplaceString findcase c find pad regexpcase lang
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
     set find $pad.find
     catch {destroy $find}
     toplevel $find
-    if {$lang == "eng"} {
-        wm title $find "Find"
-    } else {
-        wm title $find "Rechercher"
-    }
+    wm title $find [mc "Find"]
     setwingeom $find
 # Francois VOGEL, 21/04/04, this is already done by invoking down radiobutton below
 # as I added -command on this radiobutton to take care of the case where find shall
@@ -264,11 +243,7 @@ proc findtext {typ} {
 #    ResetFind
     frame $find.l
     frame $find.l.f1
-    if {$lang == "eng"} {
-        label $find.l.f1.label -text "Find what:" -width 11
-    } else {
-        label $find.l.f1.label -text "Rechercher :" -width 11
-    }
+    label $find.l.f1.label -text [mc "Find what:"] -width 11
     entry $find.l.f1.entry  -textvariable SearchString -width 30 
     pack $find.l.f1.label $find.l.f1.entry -side left
     $find.l.f1.entry selection range 0 end
@@ -280,11 +255,7 @@ proc findtext {typ} {
 #
     if {$typ=="replace"} {
         frame $find.l.f2
-        if {$lang == "eng"} {
-            label $find.l.f2.label2 -text "Replace with:" -width 11
-        } else {
-            label $find.l.f2.label2 -text "Remplacer par :" -width 11
-        }
+        label $find.l.f2.label2 -text [mc "Replace with:"] -width 11
         entry $find.l.f2.entry2  -textvariable ReplaceString -width 30 
         pack $find.l.f2.label2 $find.l.f2.entry2 -side left
         pack $find.l.f1 $find.l.f2 -side top -pady 2
@@ -298,29 +269,11 @@ proc findtext {typ} {
         pack $find.l.f1 -pady 4
     }
     frame $find.f2
-    if {$lang == "eng"} {
-        button $find.f2.button1 -text "Find Next" -command "FindIt $find" \
-            -width 10 -height 1 -underline 5 
-        button $find.f2.button2 -text "Cancel" -command "CancelFind $find"\
-            -width 10 -underline 5
-    } else {
-        button $find.f2.button1 -text "Rechercher suivant" -command \
-            "FindIt $find" -width 15 -height 1 -underline 16 
-        button $find.f2.button2 -text "Annuler" \
-            -command "CancelFind $find" -width 15 -underline 4	    
-    }
+    eval "button $find.f2.button1 [bl "Find &Next"] -command \"FindIt $find\" -height 1 -width 15"
+    eval "button $find.f2.button2 [bl "Cance&l"] -command \"CancelFind $find\" -height 1 -width 15"
     if {$typ=="replace"} {
-        if {$lang == "eng"} {
-            button $find.f2.button3 -text "Replace" -command "ReplaceIt once"\
-                -width 10 -height 1 -underline 2
-            button $find.f2.button4 -text "Replace All" \
-                -command ReplaceAll -width 10 -height 1 -underline 8
-        } else {
-            button $find.f2.button3 -text "Remplacer" -command "ReplaceIt once" \
-                -width 15 -height 1 -underline 3
-            button $find.f2.button4 -text "Remplacer tout" \
-                -command ReplaceAll -width 15 -height 1 -underline 10
-        }
+        eval "button $find.f2.button3 [bl "Re&place"] -command \"ReplaceIt once\" -height 1 -width 15"
+        eval "button $find.f2.button4 [bl "Replace &All"] -command ReplaceAll -height 1 -width 15"
         pack $find.f2.button3 $find.f2.button4 $find.f2.button2  -pady 4
     } else {
         pack $find.f2.button1 $find.f2.button2  -pady 4
@@ -328,34 +281,15 @@ proc findtext {typ} {
     frame $find.l.f4
     frame $find.l.f4.f3 -borderwidth 2 -relief groove
 # Francois VOGEL 21/04/04, added -command on these two radiobuttons
-    if {$lang == "eng"} {
-        radiobutton $find.l.f4.f3.up -text "Up" -underline 0 \
-            -variable SearchDir -value "backwards" -command "ResetFind"
-        radiobutton $find.l.f4.f3.down -text "Down"  -underline 0 \
-            -variable SearchDir -value "forwards" -command "ResetFind"
-    } else {
-        radiobutton $find.l.f4.f3.up -text "Vers le haut" -underline 10 \
-            -variable SearchDir -value "backwards" -command "ResetFind"
-        radiobutton $find.l.f4.f3.down -text "Vers le bas"  -underline 9 \
-            -variable SearchDir -value "forwards" -command "ResetFind"
-    } 
+    eval "radiobutton $find.l.f4.f3.up [bl "&Upwards"] \
+        -variable SearchDir -value \"backwards\" -command \"ResetFind\" "
+    eval "radiobutton $find.l.f4.f3.down [bl "Downward&s"] \
+        -variable SearchDir -value \"forwards\" -command \"ResetFind\" "
     $find.l.f4.f3.down invoke
     pack $find.l.f4.f3.up $find.l.f4.f3.down -side left
     frame $find.l.f4.f5
-    if {$lang == "eng"} {
-        checkbutton $find.l.f4.f5.cbox1 -text "Match case" \
-            -variable findcase -underline 0
-    } else {
-        checkbutton $find.l.f4.f5.cbox1 -text "Respecter la casse" \
-            -variable findcase -underline 0
-    }
-    if {$lang == "eng"} {
-        checkbutton $find.l.f4.f5.cbox2 -text "Regular expression" \
-            -variable regexpcase -underline 0
-    } else {
-        checkbutton $find.l.f4.f5.cbox2 -text "Expression régulière" \
-            -variable regexpcase -underline 13
-    }
+    eval "checkbutton $find.l.f4.f5.cbox1 [bl "Match &case"] -variable findcase"
+    eval "checkbutton $find.l.f4.f5.cbox2 [bl "&Regular expression"] -variable regexpcase"
     pack $find.l.f4.f5.cbox1 $find.l.f4.f5.cbox2 -anchor sw
     pack $find.l.f4.f5 $find.l.f4.f3 -side left -padx 10
     pack $find.l.f4 -pady 11
@@ -365,34 +299,18 @@ proc findtext {typ} {
 
      # each widget must be bound to the events of the other widgets
     proc bindevnt {widgetnm types find} {
-        global lang
-        if {$lang == "eng"} {
-            if {$types=="replace"} {
-                bind $widgetnm <Return> "ReplaceIt once"
-                bind $widgetnm <Control-p> "ReplaceIt once"
-                bind $widgetnm <Control-a> "ReplaceAll"
-            } else {
-                bind $widgetnm <Return> "FindIt $find"
-                bind $widgetnm <Control-n> "FindIt $find"
-            }
-            bind $widgetnm <Control-m> { $find.l.f4.f5.cbox1 invoke }
-            bind $widgetnm <Control-r> { $find.l.f4.f5.cbox2 invoke }
-            bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
-            bind $widgetnm <Control-d> { $find.l.f4.f3.down invoke }
+        if {$types=="replace"} {
+            bind $widgetnm <Return> "ReplaceIt once"
+            bind $widgetnm <Control-p> "ReplaceIt once"
+            bind $widgetnm <Control-a> "ReplaceAll"
         } else {
-            if {$types=="replace"} {
-                bind $widgetnm <Return> "ReplaceIt once"
-                bind $widgetnm <Control-p> "ReplaceIt once"
-                bind $widgetnm <Control-t> "ReplaceAll"
-            } else {
-                bind $widgetnm <Return> "FindIt $find"
-                bind $widgetnm <Control-n> "FindIt $find"
-            }
-            bind $widgetnm <Control-r> { $find.l.f4.f5.cbox1 invoke }
-            bind $widgetnm <Control-g> { $find.l.f4.f5.cbox2 invoke }
-            bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
-            bind $widgetnm <Control-a> { $find.l.f4.f3.down invoke }
+            bind $widgetnm <Return> "FindIt $find"
+            bind $widgetnm <Control-n> "FindIt $find"
         }
+        bind $widgetnm <Control-c> { $find.l.f4.f5.cbox1 invoke }
+        bind $widgetnm <Control-r> { $find.l.f4.f5.cbox2 invoke }
+        bind $widgetnm <Control-u> { $find.l.f4.f3.up invoke }
+        bind $widgetnm <Control-s> { $find.l.f4.f3.down invoke }
     }
     if {$typ == "replace"} {
         bindevnt $find.f2.button3 $typ $find

@@ -102,7 +102,7 @@ proc TextStyles { t } {
 
 #ES: instead of several setfontscipadN{}
 proc setfontscipad {FontSize} {
-    global textFont menuFont lang pad
+    global textFont menuFont pad
     global listoftextarea
     set textFont -Adobe-courier-medium-R-Normal-*-$FontSize-*
     set menuFont -adobe-helvetica-bold-r-normal--$FontSize-*
@@ -123,8 +123,7 @@ proc setfontscipad {FontSize} {
     $pad.statusind configure -font $menuFont
     $pad.statusind2 configure -font $menuFont
     $pad.statusmes configure -font $menuFont
-    if {$lang=="eng"} {showinfo "Font size $FontSize"
-    } else { showinfo "Police taille $FontSize"}   
+    showinfo [concat [mc "Font size"] $FontSize ]
 }
 
 

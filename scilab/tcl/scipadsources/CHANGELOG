@@ -677,3 +677,23 @@ Francois VOGEL, 09/02/05
    be solved first. These commands can be quickly activated again for debug
    or development by setting dev_debug to "true" in db_init.tcl
  * version --> 3.25
+
+Francois VOGEL, 12/02/05
+ * Bug 1203 corrected (darkred replaced by red for QTXTCOLOR to work on HP)
+ * Implementation of message files using msgcat.
+   Reference: http://wiki.tcl.tk/1488
+   Note: Menues underlines are not yet translated, since they are not handled
+         by the msgcat package. That's why some if {$lang=="eng"} are still
+         in the code.
+ * version --> 3.26
+
+Francois VOGEL, 13/02/05
+ * Some french menues underlines changed (were duplicates or unconvenient)
+ * Menues/buttons underlines are now taken into account without if {$lang==
+   Reference: http://wiki.tcl.tk/3665 (magic ampersand)
+ * Some bindings changed in the Find and Replace dialogs. Bindings are now
+   locale-independent, as well as shortcuts (accelerators in menues).
+ * Select all is now binded to Ctrl+a instead of Ctrl+/
+ * Open function source is now binded to Ctrl+/ instead of F8 (reserved for
+   the debugger step by step commands) 
+ * version --> 3.27

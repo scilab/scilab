@@ -1,5 +1,5 @@
 proc execfile {{buf "current"}} {
-    global listoffile sciprompt lang
+    global listoffile sciprompt
 
 # FV 07/07/04, added capability for exec'ing a buffer which is not the current one
 # ES 10/1/05, added return argument 
@@ -11,17 +11,10 @@ proc execfile {{buf "current"}} {
     }
     set doexec 1
     if [ expr [string compare [getccount $textarea] 1] == 0 ] {
-	if {$lang == "eng"} {
-	    set answer [tk_messageBox -message "The contents of \
-             $listoffile("$textarea",filename) may have changed, do you wish \
-             to to save your changes?" \
-	            -title "Save Confirm?" -type yesnocancel -icon question]
-	} else {
-	    set answer [tk_messageBox -message \
-            "Voulez-vous enregistrer les modifications apportées à \
-              $listoffile("$textarea",filename) ?" \
-	     -title "Confirmer sauver ?" -type yesnocancel -icon question]
-	}
+    set answer [tk_messageBox -message [concat [mc "The contents of"] \
+                  $listoffile("$textarea",filename) \
+                  [mc "may have changed, do you wish to to save your changes?"] ] \
+	            -title [mc "Save Confirm?"] -type yesnocancel -icon question]
 	case $answer {
 	    yes { filetosave $textarea; set doexec 1 }
 	    no { set doexec 0 }
@@ -30,43 +23,30 @@ proc execfile {{buf "current"}} {
     }
 
     if $doexec {
-	if [ expr [string compare $sciprompt -1] == 0 ] {
-	    if {$lang == "eng"} {
-		tk_messageBox -message \
-                 "Scilab is working, wait for the prompt to load file \
-                  $listoffile("$textarea",filename)" \
-                    -title "Scilab working" -type ok -icon info
-	    } else {
-		tk_messageBox -message \
-                "Scilab est occupé, attendez le prompt pour charger le fichier \
-                 $listoffile("$textarea",filename)"\
-                    -title "Scilab occupé" -type ok -icon info
-                 return 1
-	    }
-	} else {
-	    set f $listoffile("$textarea",filename)
+        if [ expr [string compare $sciprompt -1] == 0 ] {
+            tk_messageBox -message [concat \
+                     [mc "Scilab is working, wait for the prompt to load file"] \
+                      $listoffile("$textarea",filename) ] \
+                        -title [mc "Scilab working"] -type ok -icon info
+            return 1
+        } else {
+            set f $listoffile("$textarea",filename)
             if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
-               scilaberror $listoffile("$textarea",filename)
-               return -1
-	    } else {
-	       return 0 
-	    }
-	}
+                scilaberror $listoffile("$textarea",filename)
+                return -1
+            } else {
+                return 0 
+            }
+        }
     }
 }
 
 proc execselection {} {
-    global sciprompt lang textareacur tcl_platform
+    global sciprompt textareacur tcl_platform
     if [ expr [string compare $sciprompt -1] == 0 ] {
-	if {$lang == "eng"} {
 	   tk_messageBox -message \
-               "Scilab is working, wait for the prompt to execute the selection" \
-	       -title "Scilab working" -type ok -icon info
-	 } else {
-	   tk_messageBox -message \
-               "Scilab est occupé, attendez le prompt pour charger la sélection" \
-	       -title "Scilab occupé" -type ok -icon info
-	 }
+               [mc "Scilab is working, wait for the prompt to execute the selection."] \
+	       -title [mc "Scilab working"] -type ok -icon info
      } else {
         set seltexts [selection own]
         if {$seltexts != "" } {
@@ -142,74 +122,46 @@ proc execselection {} {
 }
 
 proc importmatlab {} {
-    global pad listoffile sciprompt lang
+    global pad listoffile sciprompt
     if [ expr [string compare $sciprompt -1] == 0 ] {
-	if {$lang == "eng"} {
-	   tk_messageBox -message \
-             "Scilab is working, wait for the prompt to convert a Matlab file" \
-	       -title "Scilab working" -type ok -icon info
-	 } else {
-	   tk_messageBox -message \
-             "Scilab est occupé, attendez le prompt pour importer un fichier Matlab"\
-	       -title "Scilab occupé" -type ok -icon info
-	 }
+        tk_messageBox -message \
+              [mc "Scilab is working, wait for the prompt to convert a Matlab file."] \
+	        -title [mc "Scilab working"] -type ok -icon info
      } else {
-       if {$lang == "eng"} {
-	  set types {
-	    {"Matlab files" {*.m }} 
-	    {"All files" {* *.*}}
-	    }
-	  set dtitle "Matlab file to convert"
-       } else {
-	  set types {
-	    {"Fichiers Matlab" {*.m }} 
-	    {"Tous les fichiers" {*.* *}}
-	    }
-	    set dtitle "Fichier Matlab à importer"
-       }
-       set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
-       if {$sourcefile !=""} {
-	 set sourcedir [file dirname $sourcefile]
-         set destfile [file rootname $sourcefile].sci 
-	 set convcomm "execstr(\"res=mfile2sci(\"\"$sourcefile\"\",\
-                      \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
-	 set impcomm \
-	      "if $convcomm==0 then \
-                 TK_EvalStr(\"scipad eval {delinfo; openfile \"\"$destfile\"\"} \"); \
-               else; \
-                 TK_EvalStr(\"scipad eval {failmatlabimp} \");\
-               end"
-         if {$lang == "eng"} {
-	     showinfo "Scilab is converting, please hold on..." }
-         if {$lang == "fr"} {
-	     showinfo "Scilab est en train de convertir, patientez SVP..." }
-         ScilabEval $impcomm "sync" "seq"
-       }
-     }
+        set matfiles [mc "Matlab files"]
+        set allfiles [mc "All files"]
+        set types [concat "{\"$matfiles\"" "{*.m}}" \
+                          "{\"$allfiles\"" "{* *.*}}" ]
+        set dtitle [mc "Matlab file to convert"]
+        set sourcefile [tk_getOpenFile -filetypes $types -parent $pad -title "$dtitle"]
+        if {$sourcefile !=""} {
+            set sourcedir [file dirname $sourcefile]
+            set destfile [file rootname $sourcefile].sci 
+            set convcomm "execstr(\"res=mfile2sci(\"\"$sourcefile\"\",\
+                          \"\"$sourcedir\"\",%f,%f,1,%t)\",\"errcatch\",\"m\")"
+            set impcomm \
+                "if $convcomm==0 then \
+                   TK_EvalStr(\"scipad eval {delinfo; openfile \"\"$destfile\"\"} \"); \
+                 else; \
+                   TK_EvalStr(\"scipad eval {failmatlabimp} \");\
+                 end"
+            showinfo [mc "Scilab is converting, please hold on..." ]
+            ScilabEval $impcomm "sync" "seq"
+        }
+    }
 }
 
 proc failmatlabimp {} {
-  global lang
-  if {$lang == "eng"} {
-     tk_messageBox -title "Matlab file import"  \
-       -message "Conversion of the file failed, see the Scilab window\
-                for details -- Perhaps report the error text and the\
-                offending Matlab file to \
-                http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
-                -icon error
-  }
-  if {$lang == "fr"} {
-     tk_messageBox -title "Import du fichier Matlab"  \
-       -message "La conversion du ficher a échoué, voyez dans la fenêtre\
-                Scilab pour plus d'informations -- Veuillez rapporter le\
-                message d'erreur et le fichier Matlab incriminé à\
-                http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
-                -icon error
-  }
+    tk_messageBox -title [mc "Matlab file import"]  \
+      -message [mc "Conversion of the file failed, see the Scilab window\
+                    for details -- Perhaps report the error text and the\
+                    offending Matlab file to \
+                    http://scilabsoft.inria.fr/bugzilla_bug/index.cgi"] \
+      -icon error
 }
 
 proc helpskeleton {} {
-     global listoffile lang
+     global listoffile
 # first exec the file in scilab, so that the current function is
 #  really defined; then call help_skeleton, and pipe the
 # result to a new (unsaved) buffer.
@@ -221,59 +173,38 @@ proc helpskeleton {} {
     set infun [whichfun $indexin]
     set funname [lindex $infun 0]
     if [execfile]==0 {
-        if {$lang == "eng"} {
-            set pathprompt  "Path for the xml source of the help file" 
-        }
-        if {$lang == "fr"} {
-            set pathprompt "Chemin pour le source xml du fichier d'aide"
-        }
+        set pathprompt [mc "Please select destination path for the xml source of the help file" ]
         set dir [tk_chooseDirectory -title $pathprompt]
         if {$dir != ""} {
             set xmlfile [file join $dir $funname.xml]
-            if {$lang == "eng"} {
-              set warntitle "older $xmlfile found!"
-              set warnquest \
-                "The file $xmlfile alread exists: open the old file instead?"
-              set warnold "Existing file" 
-              set warnnew "New skeleton" 
+            set warntitle [concat [mc "Older version of"] $xmlfile [mc "found!"] ]
+            set warnquest [concat [mc "An old version of"] $xmlfile [mc "already exists: open the old file instead?"] ]
+            set warnold [mc "Existing file" ]
+            set warnnew [mc "New skeleton"]
+            if [file exists $xmlfile] {
+                set answer [tk_dialog .existxml $warntitle $warnquest \
+                      questhead 0 $warnold $warnnew]
+            } else {
+                set answer 1
             }
-            if {$lang == "fr"} {
-              set warntitle "Il existe une version plus ancienne de $xmlfile!"
-              set warnquest \
-                 "Le fichier $xmlfile existe déjà: Ouvrir le fichier existant?"
-              set warnold "Fichier existant"
-              set warnnew "Nouveau squelette d'aide" 
+            if $answer {
+                  ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
             }
-	    if [file exists $xmlfile] {
-		set answer [tk_dialog .existxml $warntitle $warnquest \
-                   questhead 0 $warnold $warnnew]
-	    } else {
-              set answer 1
-            }
-	    if $answer {
-              ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
-	    }
-	    openfile $xmlfile
-	}
+            openfile $xmlfile
+        }
     }
 }
 
 proc xmlhelpfile {} {
-    global listoffile sciprompt lang
+    global listoffile sciprompt
 # save the file and call xmlfiletohtml. Catch and popup the error messages.
     filetosavecur
     if [ expr [string compare $sciprompt -1] == 0 ] {
-	if {$lang == "eng"} {
-	   tk_messageBox -message \
-             "Scilab is working, wait for the prompt to compile the help file" \
-	       -title "Scilab working" -type ok -icon info
-	 } else {
-	   tk_messageBox -message \
-             "Scilab est occupé, attendez le prompt pour compiler la page d'aide"\
-	       -title "Scilab occupé" -type ok -icon info
-	 }
-     } else {
-	 set filetocomp [fullpath $listoffile("[gettextareacur]",filename)]
-       ScilabEval "xmlfiletohtml(\"$filetocomp\")"
-     }
+        tk_messageBox -message \
+              [mc "Scilab is working, wait for the prompt to compile the help file."] \
+            -title [mc "Scilab working"] -type ok -icon info
+    } else {
+        set filetocomp [fullpath $listoffile("[gettextareacur]",filename)]
+        ScilabEval "xmlfiletohtml(\"$filetocomp\")"
+    }
 }

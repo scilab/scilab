@@ -27,7 +27,7 @@ proc showpopupfont {} {
 }
 
 proc showpopupsource {ind} {
-    global pad textareacur menuFont lang
+    global pad textareacur menuFont
     set numx [winfo pointerx .]
     set numy [winfo pointery .]
     catch {destroy $pad.popsource}
@@ -36,15 +36,14 @@ proc showpopupsource {ind} {
     if {$lrange==""} {set lrange [$textareacur tag nextrange libfun $ind]}
     set curterm [$textareacur get [lindex $lrange 0] [lindex $lrange 1]]
     if {[info exists curterm]} {
-          set curterm [string trim $curterm]
-          if {$curterm!=""} {
-             set sourcecommand "scipad(get_function_path(\"$curterm\"))"
-             menu $pad.popsource -tearoff 0 -font $menuFont
-	      if {$lang=="eng"} { set plabel "Open the source of $curterm"
-	      } else { set plabel "Ouvrir le source de $curterm"}
-             $pad.popsource add command -label $plabel\
-	      -command "ScilabEval $sourcecommand"
-	  }
+        set curterm [string trim $curterm]
+        if {$curterm!=""} {
+            set sourcecommand "scipad(get_function_path(\"$curterm\"))"
+            menu $pad.popsource -tearoff 0 -font $menuFont
+            set plabel [concat [mc "Open the source of"] $curterm ]
+            $pad.popsource add command -label $plabel\
+              -command "ScilabEval $sourcecommand"
+        }
     }
     tk_popup $pad.popsource $numx $numy
 }
