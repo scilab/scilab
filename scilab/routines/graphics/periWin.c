@@ -1160,6 +1160,13 @@ void SciClick(ibutton,x1,yy1,iflag,getmouse,getrelease,dyn_men,str,lstr)
   while ( 1 ) 
     {
 #ifdef WITH_TK
+		if ( win != ScilabXgc->CurWindow)
+		{
+			win = ScilabXgc->CurWindow;
+			*x1= 0 ;  *yy1= 0;  *ibutton=-100; 
+			set_wait_click(0);
+			return;
+		}
       Sleep(1);
       if (  tcl_check_one_event() == 1) 
 	{
