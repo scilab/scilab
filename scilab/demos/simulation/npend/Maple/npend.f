@@ -1,7 +1,7 @@
 c      
 c     SUBROUTINE npend
 c   
-c     Copyright INRIA   
+c     Copyright ENPC   
       subroutine npend(neq,t,th,ydot)
         parameter (n=10)
         implicit doubleprecision (t)

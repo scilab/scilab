@@ -1,31 +1,18 @@
 mode(-1);
-// Copyright INRIA
+// Copyright ENPC 
 path="SCI/demos/wheel2";
-
-
-
 
 getf(path+'/show.sci');
 xbasc();
+
 flag1=x_choose(['Reading a precomputed trajectory';
  'Simulation with ode (needs f77 and link. may fail, see help link)'],...
-'Simulation or Visualisation ? (click below)');
+ 'Simulation or Visualisation ? (click below)');
 
 select flag1,
  case 2 then 
 	mode(0);
-	if getenv('WIN32','NO')=='OK' & getenv('COMPILER','NO')=='VC++' then 	
-		cur_wd = getcwd();
-		chdir(SCI+"/demos/wheel2/Maple");
-		host("nmake /f Makefile.mak TEMP="+TMPDIR);
-		chdir(cur_wd);
-		if ~c_link('wheel') then link(TMPDIR+'\wheel.dll ','wheel');end
-		if ~c_link('wheelg') then link(TMPDIR+'\wheelg.dll ','wheelg');end
-	else 
-		host("cd $"+path+"; make ");
-		if ~c_link('wheel') then link('/tmp/wheel.o ','wheel');end
-		if ~c_link('wheelg') then link('/tmp/wheelg.o ','wheelg');end
-	end 
+	wheel_build_and_load() 
 	wheelg=wheelgf;
 	tmin=0.0;tmax=15;nn=300;
 	times=(0:(nn-1));
@@ -61,3 +48,4 @@ select flag1,
 	wheelg=wheelgs;
 	show(x);
 end
+

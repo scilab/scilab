@@ -1,7 +1,7 @@
 c      
 c     SUBROUTINE ener
 c      
-c     Copyright INRIA
+c     Copyright ENPC
       subroutine ener(th,e)
         parameter (n=10)
         implicit doubleprecision (t)
