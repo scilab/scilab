@@ -94,7 +94,7 @@ LIBRSCI = libs/system.lib libs/console.lib libs/interf.lib \
 	libs/sound.lib libs/dcd.lib \
 	libs/rand.lib libs/blas.lib libs/xdr.lib  \
 	libs/gd.lib libs/int.lib libs/arpack.lib \
-	libs/libf2c.lib $(TKSCI) $(PVM)
+	libs/libf2c.lib libs/wintools.lib $(TKSCI) $(PVM)
 
 LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB)
 

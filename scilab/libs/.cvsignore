@@ -110,3 +110,5 @@ poly.def
 lapack.def
 integ.def
 control.def
+wintools.lib
+wintools.def
