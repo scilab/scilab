@@ -2,7 +2,7 @@ function add_palette(title,path)
   global scicos_pal
   path=pathconvert(path,%f,%t)
   if fileinfo(path)==[] then  error('file: '+path+' do not exist'),end
-  if or(filesuffix(path)==['cos','cosf']) then
+  if or(fileparts(path,'extension')==['cos','cosf']) then
     k=find(scicos_pal(:,1)==title)
     if k==[] then
       scicos_pal=[scicos_pal;title,path]
