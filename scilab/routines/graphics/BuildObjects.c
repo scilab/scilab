@@ -745,7 +745,7 @@ ConstructText (sciPointObj * pparentsubwin, char text[], int n, double x,
       pTEXT_FEATURE (pobj)->callback = (char *)NULL;
       pTEXT_FEATURE (pobj)->callbacklen = 0;
       pTEXT_FEATURE (pobj)->callbackevent = 100;
-      pTEXT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure (pobj));
+      pTEXT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin (pobj));
 
       pTEXT_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
 
@@ -832,7 +832,7 @@ ConstructTitle (sciPointObj * pparentsubwin, char text[], int type)
 
       pTITLE_FEATURE (pobj)->text.callback = (char *)NULL;
       pTITLE_FEATURE (pobj)->text.callbacklen = 0; 
-      pTITLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pTITLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
      
       if ((pTITLE_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
 	{
@@ -930,7 +930,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char text[], int n, int nblegends,
       pLEGEND_FEATURE (pobj)->text.callback = (char *)NULL;
       pLEGEND_FEATURE (pobj)->text.callbacklen = 0;
       pLEGEND_FEATURE (pobj)->text.callbackevent = 100; 
-      pLEGEND_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pLEGEND_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
       /* Allocation de la structure sciText */
       if ((pLEGEND_FEATURE (pobj)->text.ptextstring = calloc (n+1, sizeof (char))) == NULL)
@@ -1067,7 +1067,7 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
       pPOLYLINE_FEATURE (pobj)->callback = (char *)NULL;
       pPOLYLINE_FEATURE (pobj)->callbacklen = 0; 
       pPOLYLINE_FEATURE (pobj)->callbackevent = 100; 
-      pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pPOLYLINE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pPOLYLINE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
 
@@ -1243,7 +1243,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
       pARC_FEATURE (pobj)->alphabegin = alphabegin;
       pARC_FEATURE (pobj)->alphaend = alphaend;
       pARC_FEATURE (pobj)->isselected = TRUE; 
-      pARC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pARC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pARC_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       pARC_FEATURE (pobj)->fill = fill;
@@ -1329,7 +1329,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
       pRECTANGLE_FEATURE (pobj)->horzcurvature = horzcurvature;
       pRECTANGLE_FEATURE (pobj)->vertcurvature = vertcurvature;
       pRECTANGLE_FEATURE (pobj)->isselected = TRUE;
-      pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pRECTANGLE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pRECTANGLE_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
       if (sciInitGraphicContext (pobj) == -1)
@@ -1435,7 +1435,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
       pSURFACE_FEATURE (pobj)->callback = (char *)NULL;
       pSURFACE_FEATURE (pobj)->callbacklen = 0;
       pSURFACE_FEATURE (pobj)->callbackevent = 100; 
-      pSURFACE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pSURFACE_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
@@ -1732,7 +1732,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
       pGRAYPLOT_FEATURE (pobj)->callbackevent = 100;
 
       pGRAYPLOT_FEATURE (pobj)->isselected = TRUE; 
-      pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pGRAYPLOT_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       pGRAYPLOT_FEATURE (pobj)->type = type;
       pGRAYPLOT_FEATURE (pobj)->pvecx = (double *)NULL;
@@ -1852,7 +1852,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->callback = (char *)NULL;
       pAXES_FEATURE (pobj)->callbacklen = 0;
       pAXES_FEATURE (pobj)->callbackevent = 100;
-      pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
        pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
@@ -2018,7 +2018,7 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
       pFEC_FEATURE (pobj)->callbackevent = 100;
 
       pFEC_FEATURE (pobj)->isselected = TRUE; 
-      pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
    
       pfec = pFEC_FEATURE (pobj);
       
@@ -2189,8 +2189,8 @@ ConstructSegs (sciPointObj * pparentsubwin, integer type,double *vx, double *vy,
       pSEGS_FEATURE (pobj)->callbacklen = 0;
       pSEGS_FEATURE (pobj)->callbackevent = 100;
        
-      pSEGS_FEATURE (pobj)->isselected = TRUE;  
-      pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
+      pSEGS_FEATURE (pobj)->isselected = TRUE;
+      pSEGS_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj)); 
 
       pSEGS_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
      
@@ -2359,7 +2359,7 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 
   pAGREG_FEATURE (pobj)->callback = (char *)NULL;
   pAGREG_FEATURE (pobj)->callbacklen = 0;
-  pAGREG_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+  pAGREG_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
   sonsnext = (sciSons *) NULL;
 
@@ -2566,7 +2566,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
 
       pLABEL_FEATURE (pobj)->text.callback = (char *)NULL;
       pLABEL_FEATURE (pobj)->text.callbacklen = 0; 
-      pLABEL_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
+      pLABEL_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
       if ((pLABEL_FEATURE (pobj)->text.ptextstring =calloc (strlen(text)+1, sizeof (char))) == NULL)
 	{
