@@ -6,7 +6,6 @@
 #include <stdio.h>			/* For the Syntax message */
 #include <signal.h>
 #include <string.h>
-#include <malloc.h>
 #include "../graphics/Math.h"
 #include "../sun/men_Sutils.h"
 #include "../menusX/men_scilab.h"
