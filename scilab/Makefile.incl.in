@@ -83,13 +83,13 @@ WIN32LIBS=-mwindows -lwsock32 -lshell32 -lcomctl32  -lwinspool -lm
 WINLIBS = -lf2c $(WIN32LIBS)
 # Ressource compiler 
 #
-RC=/msdev/bin/rc.exe
+RC=rc.exe
 RCVARS=-r -DWIN32
 # an other free resource compiler 
 #
 #RC=/softs/lccpub/bin/lrc 
 #RCVARS=/iC:/softs/lccpub/include
 # from .res to .o  
-CVTRES= /SOFTS/gnuwin32/b18/H-i386-cygwin32/bin/cvtres.exe
+CVTRES=windres
 # link options 
 LINKEROPT=-Wl,-subsystem,console

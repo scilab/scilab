@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 ## Copyright INRIA
 
-AC_REVISION($Revision: 1.18 $)dnl
+AC_REVISION($Revision: 1.19 $)dnl
 AC_INIT(license.txt)
 SCIDIR=`pwd`
 AC_CONFIG_AUX_DIR(config)
@@ -813,7 +813,7 @@ case "$host" in
     FGETARG=fgetarg-hpux
     ;;
 # CYGWIN32 for Windows 9X/NT (NO LONGER SUPPORTED)
-  *-*-cygwin32)
+  *-*-cygwin*)
     SCILABSCRIPT=scilab-gcwin32.g
     PERIFILE=periWin.o
     MAIN='mainwin95.o'
@@ -831,7 +831,7 @@ case "$host" in
 	CC_OPTIONS='-g -DWIN32 -fwritable-strings  -Wall'
       fi
     CC_LDFLAGS=
-    FC=f77
+    FC=g77
     if test "$G77" = yes; then
       FC=g77
     fi 
