@@ -48,6 +48,7 @@ button_press_event (ZvtTerm *term, GdkEventButton *e)
 static void
 child_died_event (ZvtTerm *term)
 {
+  /* fprintf(stderr,"zterm is terminated \n"); */
   gtk_exit(0);
 }
 
@@ -281,7 +282,7 @@ int main(gint argc, gchar *argv[])
 
   while (*shm != '*')
     { 
-      sleep(1);
+      usleep(1);
     }
   xid = * ((guint32 *) (shm+1) );
   window = gtk_plug_new (xid);
@@ -291,7 +292,7 @@ int main(gint argc, gchar *argv[])
   gtk_container_set_border_width (GTK_CONTAINER (window), 0);
   gtk_container_add (GTK_CONTAINER (window), hbox);
   gtk_widget_show_all (window);
-  zvt_term_set_size (ZVT_TERM (term),80,24);
+  /* zvt_term_set_size (ZVT_TERM (term),80,24); */
   gtk_widget_grab_focus (term);
   gtk_main() ;
   gtk_exit(0);

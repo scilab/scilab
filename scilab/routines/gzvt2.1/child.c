@@ -17,7 +17,7 @@
 #include <gdk/gdkprivate.h>
 #include <gdk/gdkkeysyms.h>
 
-#include "nsp/math.h" 
+#include "../graphics/Math.h" 
 
 static GtkWidget  *window = NULL;
 static int Xorgetchar();
@@ -84,7 +84,7 @@ gint main (gint argc, gchar *argv[])
   /* a socket in which I will redirect interaction */ 
 
   socket_button = gtk_socket_new();
-  gtk_widget_set_usize(socket_button,300,100);
+  gtk_widget_set_usize(socket_button,600,400);
   gtk_box_pack_start(GTK_BOX(vbox), socket_button,TRUE,TRUE,0);
 
   /* show them all! */

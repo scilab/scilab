@@ -563,7 +563,13 @@ static void nsp_create_gtk_toplevel(gint argc, gchar *argv[])
   gtk_init(&argc, &argv);
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), "Scilab");
-  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "scilab");
+  gtk_window_set_wmclass (GTK_WINDOW (window), "scilab", "Scilab");
+
+#if GTK_MAJOR_VERSION == 2 
+  gtk_widget_set_size_request (window,600,400);
+#else 
+  gtk_widget_set_usize (window,600,400);
+#endif 
 
   /* create vbox */
   vbox = gtk_vbox_new (FALSE, 0);
@@ -578,7 +584,7 @@ static void nsp_create_gtk_toplevel(gint argc, gchar *argv[])
 
   /* a socket in which I will redirect interaction */ 
   socket_button = gtk_socket_new();
-  gtk_widget_set_usize(socket_button,300,100);
+  /* gtk_widget_set_usize(socket_button,500,300);*/
   gtk_box_pack_start(GTK_BOX(vbox), socket_button,TRUE,TRUE,0);
 
   /* show them all! */
