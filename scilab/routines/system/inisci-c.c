@@ -35,6 +35,15 @@ int C2F(withgtk)(int *rep) {
   return 0;
 }
 
+int C2F(withocaml)(int *rep) { 
+#ifdef WITH_OCAML
+  *rep =1; 
+#else 
+  *rep =0; 
+#endif 
+  return 0;
+}
+
 int C2F(getcomp)(char *buf,int *nbuf,long int lbuf)
 {
   int ierr,iflag=0,l1buf=lbuf;

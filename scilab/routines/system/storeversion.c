@@ -6,6 +6,7 @@ static char Version[]=VERSION;
 extern int C2F(withtk)(int *rep);
 extern int C2F(withpvm)(int *rep);
 extern int C2F(withgtk)(int *rep);
+extern int C2F(withocaml)(int *rep);
 extern int C2F(getcomp)(char *buf,int *nbuf,long int lbuf);
 
 int C2F(intversion)(char * fname,unsigned long fname_len)
@@ -23,6 +24,7 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     char tk[]="tk";
     char pvm[]="pvm";
     char gtk[]="gtk";
+    char ocaml[]="ocaml";
     static int irep,nbuf;
 
     n1=0;
@@ -34,6 +36,8 @@ int C2F(intversion)(char * fname,unsigned long fname_len)
     if (irep) {Str[n1]=pvm;n1++;}
     C2F(withtk)(&irep);
     if (irep) {Str[n1]=tk;n1++;}
+    C2F(withocaml)(&irep);
+    if (irep) {Str[n1]=ocaml;n1++;}
     m1=1;
     CreateVarFromPtr( 2, "S", &m1, &n1, Str);
     LhsVar(2) = 2;
