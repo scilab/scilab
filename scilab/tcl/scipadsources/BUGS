@@ -1,10 +1,12 @@
-SCIPAD BUGS AND WISHES LIST - Rev. 3.1
+SCIPAD BUGS AND WISHES LIST - Rev. 3.16
 
 Bugs:
 -----
 -colorization:
- . the regexp for the new class "numbers" is not perfect, e123 or d1 are caught as number
- . multiple matrix transposes in the same line are colorized as textquoted, e.g. A=A'+B'
+ . the regexp for the new class "numbers" is not perfect, e123 or d1 are
+   caught as number
+ . multiple matrix transposes in the same line are colorized as textquoted, 
+   e.g. A=A'+B'
 
 
 -Find in selection does not work correctly on unix.
@@ -168,14 +170,6 @@ Wishes:
 
 -subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
  should inherit the current font size
-
--"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it
- has now been implemented by Scilab Team
-
--"Create help skeleton" command (invokes help_skeleton in Scilab and 
- retrieves the generated text for modification in Scipad). Before using 
- this, check that the file created by help_skeleton is still consistent 
- with the latest changes in the help
 
 -In the file menu, add the list of the n more recently opened files for 
  quick access

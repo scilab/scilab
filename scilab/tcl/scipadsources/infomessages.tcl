@@ -44,8 +44,10 @@ proc keyposn {textarea} {
 	    } else {
 		$pad.statusind2 configure -text "Ligne $lineinfun de $funname"
 	    } 
+            $pad.filemenu.files entryconfigure 8 -state normal
 	} else {
 	    $pad.statusind2 configure -text " "
+            $pad.filemenu.files entryconfigure 8 -state disabled
 	}
     }
 }

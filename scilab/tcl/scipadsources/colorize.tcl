@@ -269,7 +269,9 @@ proc schememenus {textarea} {
         for {set i 1} {$i<=[$dm index last]} {incr i} {
             if {[$dm type $i] == "command"} {
                 $dm entryconfigure $i -state disabled
-            }
+	    }
+#disable "create help skeleton"
+            $pad.filemenu.files entryconfigure 8 -state disabled
         }
 # remove their bindings
     bind $pad <Control-l> {}
@@ -283,5 +285,10 @@ proc schememenus {textarea} {
 	bind $pad <Shift-F12> {}
 	bind $pad <F12> {}
     bind $pad <Control-F12> {}
+  }
+  if {$listoffile("$textarea",language) == "xml"} {
+        $pad.filemenu.files entryconfigure 9 -state normal
+  } else {
+        $pad.filemenu.files entryconfigure 9 -state disabled
   }
 }

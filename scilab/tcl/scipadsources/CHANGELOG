@@ -611,3 +611,8 @@ Francois VOGEL, 01/01/05
  * Added two new debug commands: "Run to cursor" and "Break". They are not yet
    working correctly due to bugs 1086 and 1120, and they should not be used.
  * version --> 3.15
+
+ES 10/1/2005
+* proc execfile returns a value (0=success, 1 scilab busy, 2 cancel, -1 fail)
+* added new commands "Create help skeleton" and "Compile as a help page"
+* version -> 3.16

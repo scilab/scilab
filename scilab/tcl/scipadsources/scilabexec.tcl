@@ -2,6 +2,8 @@ proc execfile {{buf "current"}} {
     global listoffile sciprompt lang
 
 # FV 07/07/04, added capability for exec'ing a buffer which is not the current one
+# ES 10/1/05, added return argument 
+# (0=success, 1 scilab busy, 2 cancel, -1 fail)
     if {$buf == "current"} {
         set textarea [gettextareacur]
     } else {
@@ -23,7 +25,7 @@ proc execfile {{buf "current"}} {
 	case $answer {
 	    yes { filetosave $textarea; set doexec 1 }
 	    no { set doexec 0 }
-	    cancel { set doexec 0 }
+	    cancel { set doexec 0; return 2 }
 	}
     }
 
@@ -39,12 +41,16 @@ proc execfile {{buf "current"}} {
                 "Scilab est occupé, attendez le prompt pour charger le fichier \
                  $listoffile("$textarea",filename)"\
                     -title "Scilab occupé" -type ok -icon info
+                 return 1
 	    }
 	} else {
 	    set f $listoffile("$textarea",filename)
-        if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
-            scilaberror $listoffile("$textarea",filename)
-        }
+            if {[catch {ScilabEval "exec(\"$f\");" "sync" "seq"}]} {
+               scilaberror $listoffile("$textarea",filename)
+               return -1
+	    } else {
+	       return 0 
+	    }
 	}
     }
 }
@@ -200,4 +206,46 @@ proc failmatlabimp {} {
                 http://scilabsoft.inria.fr/bugzilla_bug/index.cgi" \
                 -icon error
   }
+}
+
+proc helpskeleton {} {
+     global listoffile
+# first exec the file in scilab, so that the current function is
+#  really defined; then call help_skeleton, and pipe the
+# result to a new (unsaved) buffer.
+# NB: execing the file can have far-reaching consequences
+#  if the file does more than defining functions. 
+# Responsibility left to the user.   
+    set indexin [[gettextareacur] index insert]
+    scan $indexin "%d.%d" ypos xpos
+    set infun [whichfun $indexin]
+    set funname [lindex $infun 0]
+    if [execfile]==0 {
+        set dir [tk_chooseDirectory -title \
+		     "Path for the xml source of the help file"]
+        if {$dir != ""} {
+          ScilabEval "help_skeleton(\"$funname\",\"$dir\")" "sync"
+	    openfile [file join $dir $funname.xml]
+	}
+    }
+}
+
+proc xmlhelpfile {} {
+    global listoffile sciprompt lang
+# save the file and call xmlfiletohtml. Catch and popup the error messages.
+    filetosavecur
+    if [ expr [string compare $sciprompt -1] == 0 ] {
+	if {$lang == "eng"} {
+	   tk_messageBox -message \
+             "Scilab is working, wait for the prompt to compile the help file" \
+	       -title "Scilab working" -type ok -icon info
+	 } else {
+	   tk_messageBox -message \
+             "Scilab est occupé, attendez le prompt pour compiler la page d'aide"\
+	       -title "Scilab occupé" -type ok -icon info
+	 }
+     } else {
+	 set filetocomp [fullpath $listoffile("[gettextareacur]",filename)]
+       ScilabEval "xmlfiletohtml(\"$filetocomp\")"
+     }
 }

@@ -17,6 +17,11 @@ if {$lang == "eng"} {
     $pad.filemenu.files add command -label "Import Matlab file..." \
 	-underline 7 -command "importmatlab" -accelerator F4
     $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Create help skeleton..." \
+	-underline 13 -command "helpskeleton" -state disabled
+    $pad.filemenu.files add command -label "Compile as help page" \
+	-underline 11 -command "xmlhelpfile" -state disabled
+    $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Print Setup" -underline 8 \
                    -command "printseupselection" -accelerator Ctrl+P
@@ -44,6 +49,11 @@ if {$lang == "eng"} {
     $pad.filemenu.files add separator
     $pad.filemenu.files add command -label "Importer fichier Matlab..." \
                    -underline 17 -command "importmatlab" -accelerator F4
+    $pad.filemenu.files add separator
+    $pad.filemenu.files add command -label "Créer un squelette d'aide XML..." \
+	-underline 9 -command "helpskeleton" -state disabled
+    $pad.filemenu.files add command -label "Compiler comme fichier d'aide" \
+	-underline 25 -command "xmlhelpfile" -state disabled
     $pad.filemenu.files add separator
     if {"$tcl_platform(platform)" == "unix"} {
 	$pad.filemenu.files add command -label "Mise en page" -underline 8 \
