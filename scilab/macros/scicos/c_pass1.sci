@@ -334,12 +334,18 @@ function  [blklst,cmat,ccmat,cor,corinv,ok]=c_pass1(scs_m,ksup)
 
   cmat(to_kill,:)=[];to_kill=[]
   // strip nrmsum
+  
   [nc,nw]=size(cmat)
   if nc<>0 then 
     for ksum=nrmsum
       //link(s) coming from the nrmsum.
       //Due to previous substitutions, many links may go out of the nrmsum
       kfrom=find(cmat(:,1)==ksum); // links coming from the nrmsum
+      if kfrom==[] then
+	  message('A merge block has unconnected output--not allowed.')
+	ok=%f
+	return
+      end
       kto=find(cmat(:,3)==ksum); // links going to the nrmsum
       if ~or(to_kill==kfrom(1)) then to_kill=[to_kill,kfrom(1)];end
       cmat(kto,3:4)=cmat(kfrom(1)*ones(kto'),3:4);
