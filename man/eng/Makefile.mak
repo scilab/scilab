@@ -10,8 +10,8 @@ XSLFILE=html-jpc.xsl
 
 man: 	
 	@echo "Creating html help files" 
-	$(SCIDIR)/bin/scilab -l $(LANGUAGE) \
-		-nwni -e "xmltohtml([],[],'$(XSLFILE)');quit"
+	..\..\bin\scilex.exe -l $(LANGUAGE) \
+		-nwni -e xmltohtml([],[],'$(XSLFILE)');quit
 
 distclean::
 	$(RM)  $(FILES_TO_CLEAN)
