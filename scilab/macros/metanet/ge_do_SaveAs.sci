@@ -76,7 +76,7 @@ function [GraphList,ok,fname]=ge_do_SaveAs(GraphList,fname)
     end
     
   else
-    message('Only *.graph  files allowed');
+    x_message('Only *.graph  files allowed');
     ok=%f
     return
   end

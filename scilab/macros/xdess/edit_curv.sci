@@ -185,7 +185,7 @@ while %t then
 	  string([xmn;xmx;ymn;ymx]))
       if ~ok then break,end
       if xmn>xmx|ymn>ymx then
-	message('Les bornes sont incorrectes')
+	x_message('Les bornes sont incorrectes')
       else
 	break
       end

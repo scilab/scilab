@@ -25,13 +25,13 @@ function [ok,GraphList,edited,fname]=ge_do_load(fname)
       version=editgraph_ver()
       ok=%t
     else
-      message(['Only *.graph (formatted) files allowed'])
+      x_message(['Only *.graph (formatted) files allowed'])
       ok=%f
       return
     end
     
     if ierr<>0 then
-      message(fname+' cannot be loaded.') 
+      x_message(fname+' cannot be loaded.') 
       ok=%f;return
     end
 
