@@ -41,13 +41,14 @@
 /**********************/
 #define NEWSCILAB		CMDMIN
 #define EXEC 			CMDMIN+1
-#define GETF 			CMDMIN+2
-#define PRINTWINDOW		CMDMIN+3
-#define LOAD 			CMDMIN+4
-#define SAVE 			CMDMIN+5
-#define GETCWD 			CMDMIN+6
-#define CHDIR 			CMDMIN+7
-#define EXIT   			CMDMIN+8
+#define OPEN 			CMDMIN+2
+#define GETF 			CMDMIN+3
+#define PRINTWINDOW		CMDMIN+4
+#define LOAD 			CMDMIN+5
+#define SAVE 			CMDMIN+6
+#define GETCWD 			CMDMIN+7
+#define CHDIR 			CMDMIN+8
+#define EXIT   			CMDMIN+9
 /**********************/
 #define MCOPY 			EXIT+1
 #define PASTE 			MCOPY+1
@@ -127,7 +128,7 @@
 */
 char *keyword[] =
 {
-  "[FRENCH]","[ENGLISH]",
+  "[OPEN]","[FRENCH]","[ENGLISH]",
   "[TOOLBAR]","[NEWSGROUP]","[PRINTWINDOW]","[CLEARCOMMANDWINDOW]","[NEWSCILAB]","[EXEC]","[GETF]","[LOAD]","[SAVE]","[CHDIR]","[GETCWD]","[EXIT]",
   "[MCOPY]","[PASTE]","[PRINT]","[CHOOSETHEFONT]",
   "[RESTART]","[PAUSE]","[RESUME]","[ABORT]","[CONSOLE]",
@@ -143,7 +144,7 @@ char *keyword[] =
 
 BYTE keyeq[] =
 {
-  FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
+  OPEN,FRENCH,ENGLISH,TOOLBAR,NEWSGROUP,PRINTWINDOW,CLEARCOMMANDWINDOW,NEWSCILAB,EXEC,GETF,LOAD,SAVE,CHDIR,GETCWD,EXIT,
   MCOPY,PASTE,PRINT,CHOOSETHEFONT,
   RESTART,PAUSE,RESUME,ABORT,CONSOLE,
   SET,RAISE,DELETESCIW,PLUS,MINUS,XBASC,
@@ -177,6 +178,7 @@ static void SendCountDelete ();
 /*--------------------------------*/
 void Callback_NEWSCILAB(void);
 void Callback_EXEC(void);
+void Callback_OPEN(void);
 void Callback_GETF(void);
 void Callback_LOAD(void);
 void Callback_SAVE(void);

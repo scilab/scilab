@@ -179,6 +179,9 @@ E&diteur
 	|Ouvrir éditeur|NEW_ICON|
 		[SCIPAD]
 [Button]
+	|Ouvrir fichier|OPEN_ICON|
+		[OPEN]		
+[Button]
 	|Copier|COPY_ICON|
 		[MCOPY]
 [Button]

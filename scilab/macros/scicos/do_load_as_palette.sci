@@ -27,7 +27,7 @@ function [palettes,windows]=do_load_as_palette(palettes,windows)
      // French
      // delmenu(curwin,'&Fichier')
   	delmenu(curwin,'&Editer')
-  	delmenu(curwin,'&Utilitaires')
+  	delmenu(curwin,'&Outils')
      // English
      //	delmenu(curwin,'&File')
   	delmenu(curwin,'&Edit')

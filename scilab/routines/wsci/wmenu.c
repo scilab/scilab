@@ -56,6 +56,35 @@ void Callback_NEWSCILAB(void)
 
 }
 /*-----------------------------------------------------------------------------------*/
+void Callback_OPEN(void)
+{
+	char File[MAX_PATH];
+	char ShortFile[MAX_PATH];
+	char command[MAX_PATH];
+	char TitleText[32];
+	
+	extern char ScilexWindowName[MAX_PATH];
+	LPTW lptw;
+	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
+	switch (lptw->lpmw->CodeLanguage)
+	{
+		case 1:
+			strcpy(TitleText,"Ouvrir");
+			break;
+		case 0:default:
+			strcpy(TitleText,"Open");
+			break;
+	}
+	    			
+	if ( OpenSaveSCIFile(lptw->hWndParent,TitleText,TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",File) == TRUE)
+	{
+		GetShortPathName(File,ShortFile,MAX_PATH);
+		wsprintf(command,"scipad('%s');",ShortFile);
+		StoreCommand1(command,2);
+	}
+}
+/*-----------------------------------------------------------------------------------*/
 void Callback_EXEC(void)
 {
 	char Fichier[MAX_PATH];
@@ -64,6 +93,7 @@ void Callback_EXEC(void)
 	extern char ScilexWindowName[MAX_PATH];
 	LPTW lptw;
 	lptw = (LPTW) GetWindowLong (FindWindow(NULL,ScilexWindowName), 0);
+
 	    			
 	if ( OpenSaveSCIFile(lptw->hWndParent,"Exec",TRUE,"Files *.sce;*.sci\0*.sci;*.sce\0Files *.sci\0*.sci\0Files *.sce\0*.sce\0All *.*\0*.*\0",Fichier) == TRUE)
 	{
@@ -443,10 +473,13 @@ void SendMacro (LPTW lptw, UINT m)
 	    		Callback_NEWSCILAB();
 	    		return;
 	    	break;
+			case OPEN:
+				Callback_OPEN();
+				return;
 	    	case EXEC:
-	   		Callback_EXEC();
+	   			Callback_EXEC();
 	   		return;
-	    	break;
+	    		break;
 	    	case GETF:
 	    		Callback_GETF();
 	    		return;
@@ -1145,9 +1178,10 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
                      ( strcmp(PathIconButton,"EXIT_ICON")==0)        ||
                      ( strcmp(PathIconButton,"FONT_ICON")==0)        ||
                      ( strcmp(PathIconButton,"HELP_ICON")==0)        ||
-					 ( strcmp(PathIconButton,"NEW_ICON")==0)        ||
+					 ( strcmp(PathIconButton,"NEW_ICON")==0)         ||
 					 ( strcmp(PathIconButton,"COPY_ICON")==0)        ||
-					 ( strcmp(PathIconButton,"PASTE_ICON")==0)        ||
+					 ( strcmp(PathIconButton,"PASTE_ICON")==0)       ||
+					 ( strcmp(PathIconButton,"OPEN_ICON")==0)       ||
                      ( strcmp(PathIconButton,"SCILAB_ICON")==0)  )
                 {
                         
@@ -1215,6 +1249,11 @@ void CreateButton(LPTW lptw, char *ButtonText[BUTTONMAX], int index,int ButtonSi
 						if ( strcmp(PathIconButton,"PASTE_ICON")==0 )
                      	{
 							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_PASTE,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
+                     	}
+						else
+						if ( strcmp(PathIconButton,"OPEN_ICON")==0 )
+                     	{
+							IconButton=(HICON)LoadImage( hdllInstance, (LPCSTR)IDI_OPEN,IMAGE_ICON,24,24, LR_DEFAULTCOLOR);
                      	}
 
 						lpmw->IsAIcon[index]=TRUE;

@@ -445,6 +445,7 @@ IDI_SAVE                ICON                    "Icones Scilab\\SAVE.ico"
 IDI_SCICOS24            ICON                    "Icones Scilab\\scicos24.ico"
 IDI_SCILAB24            ICON                    "Icones Scilab\\scilab24.ico"
 IDI_UNZOOM              ICON                    "Icones Scilab\\UNZOOM.ico"
+IDI_OPEN                ICON                    "Icones Scilab\\OPEN.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////

@@ -219,6 +219,9 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
 			<File
+				RelativePath="..\resource.h">
+			</File>
+			<File
 				RelativePath=".\resource.h">
 			</File>
 		</Filter>
@@ -227,7 +230,97 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
 			<File
+				RelativePath="..\Icones Scilab\3DROT.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Bin.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\CHDIR.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\CONSOLE.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\COPY.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Cos.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Cosf.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Dem.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\exit24.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\fonts.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Graph.ICO">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\HELP.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\metanet24.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\NEW.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\OPEN.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\PASTE.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\PRINT.ico">
+			</File>
+			<File
 				RelativePath="..\Rscilab.rc">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Sav.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\SAVE.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Sce.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Sci.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\scicos24.ico">
+			</File>
+			<File
+				RelativePath="..\scilab.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\scilab.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\scilab24.ico">
+			</File>
+			<File
+				RelativePath="..\scilab_logo.bmp">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Tst.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\UNZOOM.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\Vide.ico">
+			</File>
+			<File
+				RelativePath="..\Icones Scilab\ZOOM.ico">
 			</File>
 		</Filter>
 	</Files>

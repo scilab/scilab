@@ -22,7 +22,6 @@
 #define IDI_EXIT24                      130
 #define IDI_FONTS                       131
 #define IDI_HELP                        132
-#define IDI_ICON9                       133
 #define IDI_METANET24                   133
 #define IDI_NEWFILE                     134
 #define IDI_PASTE                       135
@@ -31,6 +30,8 @@
 #define IDI_SCICOS24                    138
 #define IDI_SCILAB24                    139
 #define IDI_UNZOOM                      140
+#define IDI_ICON1                       141
+#define IDI_OPEN                        141
 #define IDC_VERSION_SPLASH              1000
 #define IDC_COPYRIGHT_SPLASH            1001
 #define IDC_STATIC_ABOUT_HTTP           1002
@@ -44,7 +45,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        141
+#define _APS_NEXT_RESOURCE_VALUE        142
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1007
 #define _APS_NEXT_SYMED_VALUE           101

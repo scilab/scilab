@@ -187,6 +187,9 @@
 	|Open Scipad|NEW_ICON|
 		[SCIPAD]
 [Button]
+	|Open file|OPEN_ICON|
+		[OPEN]				
+[Button]
 	|Copy|COPY_ICON|
 		[MCOPY]
 [Button]

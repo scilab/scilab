@@ -12,7 +12,7 @@ else
   // French
   delmenu(win,'&Fichier')
   delmenu(win,'&Editer')
-  delmenu(win,'&Utilitaires')
+  delmenu(win,'&Outils')
   // English
   delmenu(win,'&File')
   delmenu(win,'&Edit')

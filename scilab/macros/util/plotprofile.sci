@@ -113,7 +113,7 @@ function [h,M]=dispfuntxt(txt,k,h,M)
  	// French
   	delmenu(curwin,'&Fichier')
   	delmenu(curwin,'&Editer')
-  	delmenu(curwin,'&Utilitaires')
+  	delmenu(curwin,'&Outils')
   	// English
   	delmenu(curwin,'&File')
   	delmenu(curwin,'&Edit')
