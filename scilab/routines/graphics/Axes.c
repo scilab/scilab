@@ -21,8 +21,27 @@ static sciPointObj *psubwin;/* NG */
 static double  x_convert __PARAMS((char xy_type,double x[] ,int i));
 static double  y_convert __PARAMS((char xy_type,double x[] ,int i));
 extern void NumberFormat __PARAMS((char *str,integer k,integer a));
-static void aplotv1 __PARAMS((char*));
-static void aplotv2 __PARAMS((char*));
+static void aplotv1  __PARAMS((char*));
+static void aplotv2  __PARAMS((char*));
+
+
+static void axesplot(char* ,sciPointObj*);
+static int SciAxisNew(char pos,sciPointObj *psubwin, double xy,int fontsize,int fontstyle,int textcolor,int ticscolor, int seg);
+
+static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_format, int * fontid, int textcolor,int ticscolor,int color_kp, int *logrect, int smallersize);
+static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_format, int * fontid, int textcolor,int ticscolor,int color_kp, int *logrect, int smallersize);
+static int XDrawAxisLine(double xminval,double xmaxval,double xy, int ticscolor, int color_kp);
+static int YDrawAxisLine(double yminval,double ymaxval,double xy, int ticscolor, int color_kp);
+static void FindXYMinMaxAccordingTL(sciPointObj * psubwin, double *xminval,double *yminval,double *xmaxval,double *ymaxval);
+
+static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor,int color_kp);
+static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor,int color_kp);
+
+static int DrawXGrid(sciPointObj * psubwin);
+static int DrawYGrid(sciPointObj * psubwin);
+
+int SciDrawLines(char pos, sciPointObj * psubwin, double xy, int textcolor,int ticscolor);
+
 extern int version_flag();
 /*--------------------------------------------------------------
  * Draw Axis or only rectangle
@@ -43,7 +62,7 @@ void axis_draw(strflag)
 
   if (version_flag() == 0){
     psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ());
-     
+    
     /* F.Leray test on color here*/
     color=sciGetBackground(psubwin);
     
@@ -79,7 +98,8 @@ void axis_draw(strflag)
 
       if (version_flag() == 0)
 	{
-	  aplotv1(strflag); /* use 'i' xy_type */
+/* 	  aplotv1(strflag); /\* use 'i' xy_type *\/ */
+	  axesplot(strflag,psubwin);
 	  break;
 	}
       else
@@ -576,7 +596,7 @@ void Sci_Axis(pos,xy_type,x,nx,y,ny,str,subtics,format,fontsize,textcolor,fontst
       /*F.Leray 26.02.04*/
       debug = version_flag();
 
-      vx[0] =  XScale(x_convert(xy_type, x , 0));
+      vx[0] =  XScale(x_convert(xy_type, x , 0)); /* C EST LA que se calcule les positions initiales et finales (en x et y) de la barre support de l'axe des abscisses */
       vx[1] =  XScale(x_convert(xy_type, x , Nx-1));
       vy[0]= vy[1] = ym[0] = YScale(y[0]);
       if ( seg_flag == 1) 
@@ -1180,4 +1200,1146 @@ void Convex3d_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD
   C2F(dr)("xset","pattern",&pat,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static void axesplot(strflag, psubwin)
+     char * strflag;
+     sciPointObj * psubwin;
+{
+  char dir = 'l';
+  char c = (strlen(strflag) >= 3) ? strflag[2] : '1';
+  int seg=0;
+  int fontsize = -1 ,textcolor = -1 ,ticscolor = -1 ; /* default values */
+  int fontstyle= 0;
+  double  x1,y1;
+  char xstr,ystr; 
+  char dirx = 'd';
+ /*  double CSxtics[4], CSytics[4]; */
+
+
+  int lastxindex = 0, lastyindex = 0;
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+
+  seg=0; 
+  
+  if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
+    {
+      switch ( c ) 
+	{ 
+	case '3' : /* right axis */
+	  x1= ppsubwin->axes.xlim[1];
+	  y1= ppsubwin->axes.ylim[0];
+	  dir = 'r';
+	  break;
+	case '4' : /* centred axis */
+	  seg=1;
+	  x1= (ppsubwin->axes.xlim[0]+ppsubwin->axes.xlim[1])/2.0;
+	  y1= (ppsubwin->axes.ylim[0]+ppsubwin->axes.ylim[1])/2.0;
+	  break ;
+	case '5': /* centred at (0,0) */
+	  seg=1;
+	  x1 = y1 = 0.0; 
+	  break;
+	case '1' : /* left axis */
+	default :  
+	  x1=  ppsubwin->axes.xlim[0];
+	  y1=  ppsubwin->axes.ylim[1];
+	  break;
+	}
+    }
+  else  /* tight_limits == FALSE */
+    {
+      lastxindex = ppsubwin->axes.nxgrads - 1;
+      lastyindex = ppsubwin->axes.nygrads - 1;
+     
+        switch ( c ) 
+	{ 
+	case '3' : /* right axis */
+	  x1= ppsubwin->axes.xgrads[lastxindex];
+	  y1= ppsubwin->axes.ygrads[0];
+	  dir = 'r';
+	  break;
+	case '4' : /* centred axis */
+	  seg=1;
+	  x1= (ppsubwin->axes.xgrads[0]+ppsubwin->axes.xgrads[lastxindex])/2.0;
+	  y1= (ppsubwin->axes.ygrads[0]+ppsubwin->axes.ygrads[lastyindex])/2.0;
+	  break ;
+	case '5': /* centred at (0,0) */
+	  seg=1;
+	  x1 = y1 = 0.0; 
+	  break;
+	case '1' : /* left axis */
+	default :  
+	  x1= ppsubwin->axes.xgrads[0];
+	  y1= ppsubwin->axes.ygrads[0];
+	break;
+	}
+    }
+       
+
+
+  if(ppsubwin->tight_limits == TRUE || ppsubwin->isoview == TRUE)
+    {
+      if (c != '4')
+	{  
+	  xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+	  switch (xstr) 
+	    {
+	    case 'u':  
+	      y1= ppsubwin->axes.ylim[1];
+	      dirx='u';   
+	      break;
+	    case 'c':  
+	      y1= (ppsubwin->axes.ylim[0]>0.0)?ppsubwin->axes.ylim[0]:0.0;
+	      y1= (ppsubwin->axes.ylim[1]<0.0)?ppsubwin->axes.ylim[0]:y1;
+	      seg =1; 
+	      dirx ='d';                           
+	      break;
+	    default :  
+	      y1= ppsubwin->axes.ylim[0];
+	      dirx ='d'; 
+	      break;
+	    }
+	  ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+	  switch (ystr) 
+	    {
+	    case 'r': 
+	      x1= ppsubwin->axes.xlim[1];
+	      dir='r';    
+	      break;
+	    case 'c': 
+	      x1=(ppsubwin->axes.xlim[0]>0.0)?ppsubwin->axes.xlim[0]:0.0;
+	      x1=(ppsubwin->axes.xlim[1]<0.0)?ppsubwin->axes.xlim[0]:x1;
+	      seg =1; 
+	      dir ='l';                              
+	      break; 
+	    default : 
+	      x1= ppsubwin->axes.xlim[0];
+	      dir ='l';  
+	      break;
+	    }
+	}
+    }
+  else  /* tight_limits == FALSE */
+    {
+      lastxindex = ppsubwin->axes.nxgrads - 1;
+      lastyindex = ppsubwin->axes.nygrads - 1;
+      
+      if (c != '4')
+	{  
+	  xstr=pSUBWIN_FEATURE(psubwin)->axes.xdir;
+	  switch (xstr) 
+	    {
+	    case 'u':  
+	      y1=ppsubwin->axes.ygrads[lastyindex];
+	      dirx='u';   
+	      break;
+	    case 'c':  
+	      y1=(ppsubwin->axes.ygrads[0]>0.0)?ppsubwin->axes.ygrads[0]:0.0;
+	      y1=(ppsubwin->axes.ygrads[lastyindex]<0.0)?ppsubwin->axes.ygrads[0]:y1;
+	      seg =1; 
+	      dirx ='d';                           
+	      break;
+	    default :  
+	      y1= ppsubwin->axes.ygrads[0];
+	      dirx ='d'; 
+	      break;
+	    }
+	  ystr=pSUBWIN_FEATURE(psubwin)->axes.ydir;
+	  switch (ystr) 
+	    {
+	    case 'r': 
+	      x1= ppsubwin->axes.xgrads[lastxindex];
+	      dir='r';    
+	      break;
+	    case 'c': 
+	      x1=(ppsubwin->axes.xgrads[0]>0.0)?ppsubwin->axes.xgrads[0]:0.0;
+	      x1=(ppsubwin->axes.xgrads[lastxindex]<0.0)?ppsubwin->axes.xgrads[0]:x1;
+	      seg =1; 
+	      dir ='l';                              
+	      break; 
+	    default : 
+	      x1= ppsubwin->axes.xgrads[0];
+	      dir ='l';  
+	      break;
+	    }
+	}
+    }
+  
+  
+/*   if ( c != '4' && c != '5' ) { */
+/*     if (pSUBWIN_FEATURE (psubwin)->axes.rect == 0) */
+/*       seg=1; */
+/*     else */
+/*       /\** frame rectangle **\/ */
+/*       C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3],  */
+/* 	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/*   } */
+    
+  ticscolor=pSUBWIN_FEATURE (psubwin)->axes.ticscolor;
+  textcolor=sciGetFontForeground(psubwin);
+  fontsize=sciGetFontDeciWidth(psubwin)/100;
+  fontstyle=sciGetFontStyle(psubwin);
+ 
+  /** x-axis **/
+  SciAxisNew(dirx,psubwin,y1,fontsize,fontstyle,textcolor,ticscolor,seg);
+  
+  /** y-axis **/
+  SciAxisNew(dir,psubwin,x1,fontsize,fontstyle,textcolor,ticscolor,seg);
+
+  /* Once the 2 axes are plotted, we put draw :
+     1. the axes lines
+     2. the box lines over if necessary (i.e. seg == 1) */
+  SciDrawLines(dirx,psubwin,y1,textcolor,ticscolor);
+  SciDrawLines(dir, psubwin,x1,textcolor,ticscolor);
+  
+  
+  if ( c != '4' && c != '5' ) {
+    if (pSUBWIN_FEATURE (psubwin)->axes.rect == 0)
+      seg=1;
+    else
+      /** frame rectangle **/
+      C2F(dr)("xrect","v",&Cscale.WIRect1[0],&Cscale.WIRect1[1],&Cscale.WIRect1[2],&Cscale.WIRect1[3], 
+	      PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  }
+}
+
+
+
+/****************************************************************************/
+/********************************** COMMON to X and Y ***********************/
+/****************************************************************************/
+
+
+int SciDrawLines(char pos, sciPointObj * psubwin, double xy, int textcolor,int ticscolor)
+{
+  double xminval, yminval, xmaxval, ymaxval;
+  int verbose = 0, narg, color_kp;
+
+  if ( textcolor != -1 || ticscolor != -1 ) 
+    {
+      C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
+
+  if(pos=='u' || pos=='d'){ /* X */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] == TRUE)
+      XDrawAxisLine(xminval,xmaxval,xy,ticscolor,color_kp);
+  } else if(pos=='l' || pos=='r'){ /* Y */
+    if(pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] == TRUE)
+      YDrawAxisLine(yminval,ymaxval,xy,ticscolor,color_kp);
+  }
+  
+  
+  
+  
+  return 0;
+}
+
+/****************************************************************************/
+/********************************** X ***************************************/
+/****************************************************************************/
+
+
+static int DrawXSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor,int color_kp)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+   
+  int vx[2],vy[2],ym[2];
+  int barlength = 0;
+  int ns=2,style=0,iflag=0;
+  
+  int nbtics = 0,i,j;
+  int nbsubtics = ppsubwin->axes.nbsubtics[0];
+  char logflag = ppsubwin->logflags[0];
+  
+  double *grads = (double *) NULL;
+
+  ym[0] = YScale(xy);
+   
+  barlength =  (integer) (Cscale.WIRect1[3]/50.0);
+  
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need x data (ymin ymax are computed but not used after) */
+ 
+
+  if(ppsubwin->axes.auto_ticks[0] == FALSE){
+    grads =  ppsubwin->axes.u_xgrads;
+    nbtics = ppsubwin->axes.u_nxgrads;
+  }
+  else{
+    grads =  ppsubwin->axes.xgrads;
+    nbtics = ppsubwin->axes.nxgrads;
+  }
+  
+  
+  if(logflag =='l')
+    {
+      double tmp[2];
+      double pas=0;
+      double * tmp_log_grads = (double *) NULL;
+      
+      for(i=0;i<nbtics-1;i++)
+	{
+	  int k;
+	  tmp[0] = exp10(grads[i]);
+	  tmp[1] = exp10(grads[i+1]);
+	  pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
+	  
+	  if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
+	    sciprint("Error allocating tmp_log_grads\n");
+	    return -1;
+	  }
+	  
+	  for(k=0;k<nbsubtics;k++) tmp_log_grads[k] = log10(tmp[0]+(k)*pas);
+	  
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = tmp_log_grads[j];
+	      vx[0] = vx[1] = XScale(val);
+	      
+	      if(val<xminval || val>xmaxval) continue;	   
+	      
+	      if ( pos == 'd' ) 
+		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
+	      else 
+		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  
+	  FREE(tmp_log_grads); tmp_log_grads = NULL;
+	}
+    }
+  else
+    {
+      for(i=0;i<nbtics-1;i++)
+	{
+	  double xtmp = grads[i];
+	  double dx = (grads[i+1]-grads[i]) / nbsubtics;
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = xtmp+dx*j;
+	      vx[0] = vx[1] = XScale(val);
+	      
+	      if(val<xminval || val>xmaxval) continue;	   
+	      
+	      if ( pos == 'd' ) 
+		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] + 0.7*barlength) ; }
+	      else 
+		{ vy[0]= ym[0];vy[1]=  (integer) (ym[0] - 0.7*barlength) ; }
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	}
+    }
+  
+  return 0;
+}
+
+
+static int DrawXGrid(sciPointObj * psubwin)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+  int verbose=0,narg;
+
+  int vx[2],vy[2],ym[2];
+  int dash[6],trois=3;
+  int ns=2,style=0,iflag=0;
+  
+  double * grads = (double *) NULL;
+  int nbtics = 0,i,j;
+  int nbsubtics = ppsubwin->axes.nbsubtics[0];
+  char logflag = ppsubwin->logflags[0];
+   
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
+  
+  
+  ym[0] = YScale(yminval);
+  ym[1] = YScale(ymaxval);
+
+  if(ppsubwin->axes.auto_ticks[0] == FALSE){
+    grads =  ppsubwin->axes.u_xgrads;
+    nbtics = ppsubwin->axes.u_nxgrads;
+  }
+  else{
+    grads =  ppsubwin->axes.xgrads;
+    nbtics = ppsubwin->axes.nxgrads;
+  }
+  
+  /* Grid style */
+  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  style = ppsubwin->grid[0];
+  
+  /* Grid based on tics */
+  for(i=0;i<nbtics;i++)
+    {
+      double xtmp = grads[i];
+      vx[0] = vx[1] = XScale(xtmp);
+      
+      if(xtmp<xminval || xtmp>xmaxval) continue;	   
+      
+      vy[0]= ym[0];vy[1]=  ym[1];
+      
+      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+  /* Grid based on subtics : ONLY for log. case */
+  if(logflag =='l')
+    {
+      double tmp[2];
+      double pas=0;
+      double * tmp_log_grads = (double *) NULL;
+      
+      for(i=0;i<nbtics-1;i++)
+	{
+	  int k;
+	  tmp[0] = exp10(grads[i]);
+	  tmp[1] = exp10(grads[i+1]);
+	  pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
+	  
+	  if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
+	    sciprint("Error allocating tmp_log_grads\n");
+	    return -1;
+	  }
+	  
+	  for(k=0;k<nbsubtics;k++) tmp_log_grads[k] = log10(tmp[0]+(k)*pas);
+	  
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = tmp_log_grads[j];
+	      vx[0] = vx[1] = XScale(val);
+	      
+	      if(val<xminval || val>xmaxval) continue;	  
+	      
+	      vy[0]= ym[0];vy[1]=  ym[1];
+	      
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  
+	  FREE(tmp_log_grads); tmp_log_grads = NULL;
+	}
+    }
+ 
+  /* return to solid mode (in default mode) */
+  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  return 0;
+}
+
+
+
+static void DrawXTics(char pos, sciPointObj * psubwin, double xy, char * c_format, int * fontid, int textcolor,int ticscolor,int color_kp, int *logrect, int smallersize)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+  int  flag=0,xx=0,yy=0,rect[4];
+  
+  int vx[2],vy[2],xm[2],ym[2];
+  int barlength = 0;
+  int posi[2];
+  double angle=0.0;
+  int ns=2,style=0,iflag=0;
+  
+  int nbtics = 0,i;
+  char logflag = ppsubwin->logflags[0];
+
+  ym[0] = YScale(xy);
+ 
+  barlength =  (integer) (Cscale.WIRect1[3]/50.0);
+  
+  if(ppsubwin->axes.auto_ticks[0] == FALSE)
+    {
+      /* we display the x tics specified by the user*/
+      FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need x data (ymin ymax are computed but not used after) */
+      nbtics = ppsubwin->axes.u_nxgrads;
+      
+      for(i=0;i<nbtics;i++)
+	{
+	  double xtmp = ppsubwin->axes.u_xgrads[i];
+	  char *foo = ppsubwin->axes.u_xlabels[i];
+	  
+	  if(xtmp<xminval || xtmp>xmaxval) continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+	                                             /* donc autant ne pas aller plus loin dans l'algo... */
+	  
+
+	  /***************************************************************/
+	  /************************* COMMON PART *************************/
+	  /***************************************************************/
+	  
+	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
+	  
+	  vx[0] = vx[1] = xm[0] =  XScale(xtmp);
+	  posi[0] = inint( xm[0] -rect[2]/2.0);
+	  
+	  if ( pos == 'd' ) 
+	    {
+	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]);
+	      vy[0]= ym[0];vy[1]= ym[0] + barlength ;
+	    }
+	  else 
+	    { 
+	      posi[1]=inint( ym[0] - 1.2*barlength);
+	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
+	    }
+	  
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+/* 	  if ( logflag == 'l' ) */
+/* 	    { */
+/* 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]), */
+/* 		      (posi[1] += logrect[3],&posi[1]), */
+/* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
+/* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	    } */
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+	  
+	  
+	  /***************************************************************/
+	  /************************* END COMMON PART *********************/
+	  /***************************************************************/
+	  
+	}
+      
+    }
+  else
+    {
+      
+      FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need x data (ymin ymax are computed but not used after) */
+      nbtics = ppsubwin->axes.nxgrads;
+      
+
+      /* test ici */
+    /*   for(i=0;i<nbtics;i++) sciprint("xgrads(%d) = %lf\n",i,ppsubwin->axes.xgrads[i]); */
+/*       sciprint("\n\n"); */
+
+      for(i=0;i<nbtics;i++)
+	{
+	  char foo[256]; 
+	  double xtmp = ppsubwin->axes.xgrads[i];
+	  
+	  if(xtmp<xminval || xtmp>xmaxval) 
+	    {
+	    /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+	      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+	                                             /* donc autant ne pas aller plus loin dans l'algo... */
+	    }
+	  	  
+
+	  sprintf(foo,c_format,xtmp);
+	  
+	  /***************************************************************/
+	  /************************* COMMON PART *************************/
+	  /***************************************************************/
+
+	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
+	  
+	  vx[0] = vx[1] = xm[0] =  XScale(xtmp);
+	  posi[0] = inint( xm[0] -rect[2]/2.0);
+	  
+	  if ( pos == 'd' ) 
+	    {
+	      posi[1]=inint( ym[0] + 1.2*barlength + rect[3]);
+	      vy[0]= ym[0];vy[1]= ym[0] + barlength ;
+	    }
+	  else 
+	    { 
+	      posi[1]=inint( ym[0] - 1.2*barlength);
+	      vy[0]= ym[0];vy[1]= ym[0] - barlength;
+	    }
+	  
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  if ( logflag == 'l' )
+	    {
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
+		      (posi[1] += logrect[3],&posi[1]),
+		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L); /* le tic proprement dit ("petit baton") */
+
+
+	  /***************************************************************/
+	  /************************* END COMMON PART *********************/
+	  /***************************************************************/
+
+
+	}
+      
+
+    }
+  
+
+  
+
+  
+
+}
+
+
+/****************************************************************************/
+/********************************** Y ***************************************/
+/****************************************************************************/
+
+
+
+static int DrawYSubTics(char pos, sciPointObj * psubwin, double xy,int ticscolor,int color_kp)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+
+  int vx[2],vy[2],xm[2];
+  int barlength = 0;
+ int ns=2,style=0,iflag=0;
+  
+  int nbtics = 0,i,j;
+  int nbsubtics = ppsubwin->axes.nbsubtics[1];
+  char logflag = ppsubwin->logflags[1];
+  
+  double *grads = (double *) NULL;
+
+  xm[0] = XScale(xy);
+   
+  barlength =  (integer) (Cscale.WIRect1[2]/75.0);
+  
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need x data (ymin ymax are computed but not used after) */
+ 
+
+  if(ppsubwin->axes.auto_ticks[1] == FALSE){
+    grads =  ppsubwin->axes.u_ygrads;
+    nbtics = ppsubwin->axes.u_nygrads;
+  }
+  else{
+    grads =  ppsubwin->axes.ygrads;
+    nbtics = ppsubwin->axes.nygrads;
+  }
+  
+  
+  if(logflag =='l')
+    {
+      double tmp[2];
+      double pas=0;
+      double * tmp_log_grads = (double *) NULL;
+      
+      for(i=0;i<nbtics-1;i++)
+	{
+	  int k;
+	  tmp[0] = exp10(grads[i]);
+	  tmp[1] = exp10(grads[i+1]);
+	  pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
+	  
+	  if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
+	    sciprint("Error allocating tmp_log_grads\n");
+	    return -1;
+	  }
+	  
+	  for(k=0;k<nbsubtics;k++) tmp_log_grads[k] = log10(tmp[0]+(k)*pas);
+	  
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = tmp_log_grads[j];
+	      vy[0] = vy[1] = YScale(val);
+	      
+	      if(val<yminval || val>ymaxval) continue;	   
+	      
+	      if ( pos == 'r' ) 
+		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
+	      else 
+		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  
+	  FREE(tmp_log_grads); tmp_log_grads = NULL;
+	}
+    }
+  else
+    {
+      for(i=0;i<nbtics-1;i++)
+	{
+	  double xtmp = grads[i];
+	  double dx = (grads[i+1]-grads[i]) / nbsubtics;
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = xtmp+dx*j;
+	      vy[0] = vy[1] = YScale(val);
+	      
+	      if(val<yminval || val>ymaxval) continue;	   
+	      
+	      if ( pos == 'r' ) 
+		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] + 0.7*barlength) ; }
+	      else 
+		{ vx[0]= xm[0];vx[1]=  (integer) (xm[0] - 0.7*barlength) ; }
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	}
+    }
+  
+  return 0;
+}
+
+
+static int DrawYGrid(sciPointObj * psubwin)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+  int verbose=0,narg;
+
+  int vx[2],vy[2],xm[2];
+  int dash[6],trois=3;
+  int ns=2,style=0,iflag=0;
+  
+  double * grads = (double *) NULL;
+  int nbtics = 0,i,j;
+  int nbsubtics = ppsubwin->axes.nbsubtics[1];
+  char logflag = ppsubwin->logflags[1];
+   
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
+  
+  
+  xm[0] = XScale(xminval);
+  xm[1] = XScale(xmaxval);
+
+  if(ppsubwin->axes.auto_ticks[1] == FALSE){
+    grads =  ppsubwin->axes.u_ygrads;
+    nbtics = ppsubwin->axes.u_nygrads;
+  }
+  else{
+    grads =  ppsubwin->axes.ygrads;
+    nbtics = ppsubwin->axes.nygrads;
+  }
+  
+  /* Grid style */
+  C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F (dr) ("xset", "line style",&trois,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  style = ppsubwin->grid[1];
+  
+  /* Grid based on tics */
+  for(i=0;i<nbtics;i++)
+    {
+      double xtmp = grads[i];
+      vy[0] = vy[1] = YScale(xtmp);
+      
+      if(xtmp<yminval || xtmp>ymaxval) continue;	   
+      
+      vx[0]= xm[0];vx[1]=  xm[1];
+      
+      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+  /* Grid based on subtics : ONLY for log. case */
+  if(logflag =='l')
+    {
+      double tmp[2];
+      double pas=0;
+      double * tmp_log_grads = (double *) NULL;
+      
+      for(i=0;i<nbtics-1;i++)
+	{
+	  int k;
+	  tmp[0] = exp10(grads[i]);
+	  tmp[1] = exp10(grads[i+1]);
+	  pas = (exp10(grads[i+1]) - exp10(grads[i])) / (nbsubtics );
+	  
+	  if((tmp_log_grads = (double *)MALLOC(nbsubtics*sizeof(double)))==NULL){
+	    sciprint("Error allocating tmp_log_grads\n");
+	    return -1;
+	  }
+	  
+	  for(k=0;k<nbsubtics;k++) tmp_log_grads[k] = log10(tmp[0]+(k)*pas);
+	  
+	  for(j=0;j<nbsubtics;j++)
+	    {
+	      double val = tmp_log_grads[j];
+	      vy[0] = vy[1] = YScale(val);
+	      
+	      if(val<yminval || val>ymaxval) continue;	  
+	      
+	      vx[0]= xm[0];vx[1]=  xm[1];
+	      
+	      C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  
+	  FREE(tmp_log_grads); tmp_log_grads = NULL;
+	}
+    }
+ 
+
+  /* return to solid mode (in default mode) */
+  C2F(dr)("xset","line style",dash,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+  return 0;
+}
+
+
+
+
+
+static void DrawYTics(char pos, sciPointObj * psubwin, double xy, char * c_format, int * fontid, int textcolor,int ticscolor,int color_kp, int *logrect, int smallersize)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval,yminval,xmaxval,ymaxval;
+  int  flag=0,xx=0,yy=0,rect[4];
+  
+  int vx[2],vy[2],xm[2],ym[2];
+  int barlength = 0;
+  int posi[2];
+  double angle=0.0;
+  int ns=2,style=0,iflag=0;
+  
+  int nbtics = 0,i;
+  char logflag = ppsubwin->logflags[1];
+  
+  xm[0] = XScale(xy); /* F.Leray modified le 28.09.04 */
+  /*  xm[0] = (ppsubwin->logflags[0]=='n')?XScale(xy):XLogScale(xy);*/
+  
+  barlength =  (integer) (Cscale.WIRect1[2]/75.0);
+  
+  /* test EN DUR */
+/*   ppsubwin->axes.u_ygrads=(double *)MALLOC(5*sizeof(double)); */
+/*   ppsubwin->axes.u_ygrads[0]=2.5; */
+/*   ppsubwin->axes.u_ygrads[1]=3.89; */
+/*   ppsubwin->axes.u_ygrads[2]=5; */
+/*   ppsubwin->axes.u_ygrads[3]=5.9; */
+/*   ppsubwin->axes.u_ygrads[4]=6.5; */
+
+/*   ppsubwin->axes.u_ylabels=(char**)MALLOC(5*sizeof(char*)); */
+/*   for(i=0;i<5;i++)  ppsubwin->axes.u_ylabels[i]=(char*)MALLOC(256*sizeof(char)); */
+  
+/*   strcpy(ppsubwin->axes.u_ylabels[0],"deux virgule 5"); */
+/*   strcpy(ppsubwin->axes.u_ylabels[1],"3 virg 89"); */
+/*   strcpy(ppsubwin->axes.u_ylabels[2],"CINQ"); */
+/*   strcpy(ppsubwin->axes.u_ylabels[3],"5.9"); */
+/*   strcpy(ppsubwin->axes.u_ylabels[4],"six et demi invisible la"); */
+
+/*   ppsubwin->axes.u_nygrads=5; */
+  /* FIN de test EN DUR */
+
+  if(ppsubwin->axes.auto_ticks[1] == FALSE)
+    {
+      /* we display the x tics specified by the user*/
+      FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need y data (xmin xmax are computed but not used after) */
+      nbtics = ppsubwin->axes.u_nygrads;
+      
+      for(i=0;i<nbtics;i++)
+	{
+	  double ytmp = ppsubwin->axes.u_ygrads[i];
+	  char *foo = ppsubwin->axes.u_ylabels[i];
+	  
+	  if(ytmp<yminval || ytmp>ymaxval) continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+	                                             /* donc autant ne pas aller plus loin dans l'algo... */
+
+	  /* Rajout 24.09.04 */
+/* 	  if(logflag == 'l') */
+/* 	    ytmp = log10(ytmp); */
+	  /* fin Rajout 24.09.04 */
+
+	  /***************************************************************/
+	  /************************* COMMON PART *************************/
+	  /***************************************************************/
+	  
+	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
+	  
+	  vy[0]= vy[1] = ym[0] = YScale(ytmp);
+	  posi[1]=inint( ym[0] +rect[3]/2.0);
+	  if ( pos == 'r' ) 
+	    {
+	      posi[0]=inint( xm[0] + 1.2*barlength);
+	      vx[0]= xm[0];vx[1]= xm[0]+barlength;
+	    }
+	  else 
+	    { 
+	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]);
+	      vx[0]= xm[0];vx[1]= xm[0] - barlength;
+	    }
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+	  C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	/*   if ( logflag == 'l' ) */
+/* 	    { */
+/* 	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]), */
+/* 		      (posi[1] += logrect[3],&posi[1]), */
+/* 		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L); */
+/* 	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); */
+/* 	    } */
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+	  
+	  /***************************************************************/
+	  /************************* END COMMON PART *********************/
+	  /***************************************************************/
+	  
+	}
+    }
+  else
+    {
+      FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval); /* here i only need y data (xmin xmax are computed but not used after) */
+      nbtics = ppsubwin->axes.nygrads;
+      
+      for(i=0;i<nbtics;i++)
+	{
+	  char foo[256]; 
+	  double ytmp = ppsubwin->axes.ygrads[i];
+	  
+	  if(ytmp<yminval || ytmp>ymaxval) 
+	    {
+	      /*   sciprint("je rejete la valeur: %lf\n\n",xtmp); */
+	      continue; /* cas ou TL est ON et on a des graduations qui ne seront pas affichées de tte facon */
+	      /* donc autant ne pas aller plus loin dans l'algo... */
+	    }
+
+	  sprintf(foo,c_format,ytmp);
+	  
+	  
+	  /***************************************************************/
+	  /************************* COMMON PART *************************/
+	  /***************************************************************/
+	  
+	  C2F(dr)("xstringl",foo,&xx,&yy,rect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  /* tick is computed in vx,vy and string is displayed at posi[0],posi[1] position */
+	  
+	  vy[0]= vy[1] = ym[0] = YScale(ytmp);
+	  posi[1]=inint( ym[0] +rect[3]/2.0);
+	  if ( pos == 'r' ) 
+	    {
+	      posi[0]=inint( xm[0] + 1.2*barlength);
+	      vx[0]= xm[0];vx[1]= xm[0]+barlength;
+	    }
+	  else 
+	    { 
+	      posi[0]=inint(xm[0] - 1.2*barlength - rect[2]);
+	      vx[0]= xm[0];vx[1]= xm[0] - barlength;
+	    }
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&textcolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xstring",foo,&(posi[0]),&(posi[1]),PI0,&flag,PI0,PI0,&angle, PD0,PD0,PD0,0L,0L);
+	  if ( logflag == 'l' )
+	    {
+	      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xstring","10",(posi[0] -= logrect[2],&posi[0]),
+		      (posi[1] += logrect[3],&posi[1]),
+		      PI0,&flag,PI0,PI0,&angle,PD0,PD0,PD0,0L,0L);
+	      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	    }
+	  if ( textcolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+	  
+	  
+	  /***************************************************************/
+	  /************************* END COMMON PART *********************/
+	  /***************************************************************/
+	  
+	}
+    }
+  
+  
+  
+  
+  
+  
+  
+}
+
+static int XDrawAxisLine(double xminval,double xmaxval,double xy, int ticscolor, int color_kp)
+{
+  int vx[2], vy[2];
+  int ns=2,style=0, iflag=0;
+  
+  vx[0] =  XScale(xminval); /* C EST LA que se calcule les positions initiales et finales (en x et y) de la barre support de l'axe des abscisses */
+  vx[1] =  XScale(xmaxval);
+  vy[0]= vy[1] = YScale(xy);
+  
+  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+
+  return 0;
+}
+
+static int YDrawAxisLine(double yminval,double ymaxval,double xy, int ticscolor, int color_kp)
+{
+  int vx[2], vy[2];
+  int ns=2,style=0, iflag=0;
+
+  vy[0] =  YScale(yminval); /* C EST LA que se calcule les positions initiales et finales (en x et y) de la barre support de l'axe des abscisses */
+  vy[1] =  YScale(ymaxval);
+  vx[0]= vx[1] = XScale(xy);
+  
+  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&ticscolor,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  C2F(dr)("xsegs","v", vx, vy, &ns,&style,&iflag,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  if ( ticscolor != -1 ) C2F(dr)("xset","pattern",&color_kp,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+
+
+  return 0;
+}
+
+
+void FindXYMinMaxAccordingTL(sciPointObj * psubwin, double *xminval,double *yminval,double *xmaxval,double *ymaxval)
+{
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  
+  *xminval = ppsubwin->axes.xlim[0];
+  *yminval = ppsubwin->axes.ylim[0];
+  
+  *xmaxval = ppsubwin->axes.xlim[1];
+  *ymaxval = ppsubwin->axes.ylim[1];
+}
+
+
+
+
+static int SciAxisNew(char pos,sciPointObj *psubwin, double xy, int fontsize,int fontstyle,int textcolor,int ticscolor,int seg)
+{
+  int switchXY = -1;
+  
+  char c_format[5];
+  integer xx=0,yy=0;
+  integer barlength;
+  integer fontid[2],fontsize_kp, narg,verbose=0,logrect[4],smallersize,color_kp; 
+  sciSubWindow * ppsubwin = pSUBWIN_FEATURE(psubwin);
+  double xminval, yminval, xmaxval, ymaxval;
+  
+  char logflag ;
+  int lastxindex, lastyindex;
+  BOOL auto_ticks;
+
+
+  if(pos=='u' || pos=='d'){
+    switchXY = 0;
+    logflag = ppsubwin->logflags[0];
+    auto_ticks = ppsubwin->axes.auto_ticks[0];
+  } else if(pos=='l' || pos=='r'){
+    switchXY = 1;
+    logflag = ppsubwin->logflags[1];
+    auto_ticks = ppsubwin->axes.auto_ticks[1];
+  }
+
+
+
+
+  fontid[0]= fontstyle;
+  
+  C2F(dr)("xget","font",&verbose,fontid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+  fontsize_kp = fontid[1] ;
+  if (fontsize == -1 )
+    { fontid[0]= 0; fontid[1]= 1;  fontsize_kp = fontid[1] ;
+    fontid[0]= fontstyle;
+    C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);}
+  
+  if ( fontsize != -1 ) 
+    {
+      fontid[1] = fontsize ;
+      fontid[0]= fontstyle;
+      C2F(dr)("xset","font",fontid,fontid+1,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  if ( textcolor != -1 || ticscolor != -1 ) 
+    {
+      C2F(dr)("xget","pattern",&verbose,&color_kp,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+  if (logflag == 'l' && auto_ticks == TRUE)
+    {
+      C2F(dr)("xstringl","10",&xx,&yy,logrect,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);	
+      smallersize=fontid[1]-2;
+      C2F(dr)("xset","font",fontid,&smallersize,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    }
+  
+
+
+  FindXYMinMaxAccordingTL(psubwin,&xminval,&yminval,&xmaxval,&ymaxval);
+
+
+  switch (switchXY) {
+  case 0: /* x horizontal axis */
+
+    /** Horizontal axes **/
+    if(ppsubwin->axes.axes_visible[0] == TRUE){
+      
+      barlength =  (integer) (Cscale.WIRect1[3]/50.0);
+      
+      lastxindex = ppsubwin->axes.nxgrads - 1;
+      
+      ChoixFormatE(c_format,
+		   ppsubwin->axes.xgrads[0],
+		   ppsubwin->axes.xgrads[lastxindex],
+		   ((ppsubwin->axes.xgrads[lastxindex])-(ppsubwin->axes.xgrads[0]))/(lastxindex)); /* Adding F.Leray 06.05.04 */
+      
+      /* le "loop on the ticks" */
+      DrawXTics(pos, psubwin, xy, c_format, fontid, textcolor, ticscolor, color_kp, logrect, smallersize);
+      
+      /* subtics display*/
+      DrawXSubTics(pos, psubwin, xy, ticscolor, color_kp);
+    }      
+    
+    /* grids if specified (val > -1) */
+    if(ppsubwin->grid[0] > -1)
+      DrawXGrid(psubwin);
+    
+    break;
+  case 1: /* y vertical axis */
+
+    /** Vertical axes **/
+    if(ppsubwin->axes.axes_visible[1] == TRUE){
+    
+      barlength =  (integer) (Cscale.WIRect1[2]/75.0);
+      
+      lastyindex = ppsubwin->axes.nygrads - 1;
+      ChoixFormatE(c_format,
+		   ppsubwin->axes.ygrads[0],
+		   ppsubwin->axes.ygrads[lastyindex],
+		   ((ppsubwin->axes.ygrads[lastyindex])-(ppsubwin->axes.ygrads[0]))/(lastyindex)); /* Adding F.Leray 06.05.04 */
+      
+      /* le "loop on the ticks" */
+      DrawYTics(pos, psubwin, xy, c_format, fontid, textcolor, ticscolor, color_kp, logrect, smallersize);
+      
+      /* subtics display*/
+      DrawYSubTics(pos, psubwin, xy, ticscolor, color_kp);
+    }
+    
+    /* grids if specified (val > -1) */
+    if(ppsubwin->grid[1] > -1)
+      DrawYGrid(psubwin);
+    
+    break;
+  default:
+    sciprint("Impossible case");
+    return -1;
+  }
+  
+  return 0;
 }
