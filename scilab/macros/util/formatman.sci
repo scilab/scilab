@@ -261,6 +261,7 @@ txt=mgetl(path);
 if txt==[] then return,end
 txt=strsubst(txt,code2str(-40)," ")
 txt($+1)='.LP '
+
 //
 debugflag=%f
 com=find(part(txt,1)=='.');//les index des commandes
@@ -285,7 +286,7 @@ while k<size(com,'*')
   case '.nf '
     if com(k)-1>=k1 then
       k2=com(k)-1
-      man($+1)=list('fill',replacefonts(txt(k1:k2)),tp),
+      filledregion(txt(k1:k2))
     end
     fill=%f
     k1=com(k)+1
@@ -305,6 +306,8 @@ while k<size(com,'*')
       man($+1)=list('verbatim',strsubst(txt(k1:k2),'\\','\')),
     end
     output=%f
+  case '   ' then
+    output=%t
   else
     output=%t
   end
@@ -315,7 +318,7 @@ while k<size(com,'*')
       table=%f
     elseif fill then
       if k2>=k1 then 
-	man($+1)=list('fill',replacefonts(txt(k1:k2)),tp),
+	filledregion(txt(k1:k2))
       end
     else //.nf  .fi
       if k2>=k1 then 
@@ -370,6 +373,22 @@ while k<size(com,'*')
   end
 end
 if tp>0 then man($+1)=list('end_indent'),tp=tp-1,end
+
+
+function filledregion(txt)
+man
+k=find(part(txt(2:$),1)==' ')
+i0=1
+for i=1:size(k,'*')
+  man($+1)=list('fill',stripblanks(replacefonts(txt(i0:k(i)))),tp),
+  i0=k(i)+1
+end
+if txt(i0:$)<>[] then
+  man($+1)=list('fill',stripblanks(replacefonts(txt(i0:$))),tp),
+end
+
+man=resume(man)
+
 
 function tab=gettable(txt)
 //given troff instruction defining a table this function returns a 
@@ -468,16 +487,21 @@ ind=strindex(txt,' ')
 
 k0=1
 shift=0
-while %t
-  k=find(ind<k0+ll-shift);
-  if k==[] then break,end
-  k=k($)
-  t=[t;part(txt,k0:ind(k)-1)]
-  k0=ind(k)+1
-  ind(1:k)=[]
-  shift=curind
+
+if length(txt)<ll then
+  t=[t;txt]
+else
+  while %t
+    k=find(ind<k0+ll-shift);
+    if k==[] then break,end
+    k=k($)
+    t=[t;part(txt,k0:ind(k)-1)]
+    k0=ind(k)+1
+    ind(1:k)=[]
+    shift=curind
+  end
+  t=[t;part(txt,k0:length(txt))]
 end
-t=[t;part(txt,k0:length(txt))]
 if tp then k1=2,else k1=1,end
 t(k1:$)=part(' ',ones(1,curind+1))+t(k1:$)
 
