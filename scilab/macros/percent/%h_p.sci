@@ -238,33 +238,105 @@ function %h_p(h)
 	 "font_size= "+string(h.font_size)
 	 "font_angle= "+string(h.font_angle)]
       case "Plot3d"
-      t=[t;
+      d=sci2exp(h.data,0)
+      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
+
+      Data = h.data
+      dx=sci2exp(Data.x,0)
+      if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
+
+      dy=sci2exp(Data.y,0)
+      if length(dy)>70 then dy="matrix '+strcat(string(size(Data.y)),'x'), end
+
+      dz=sci2exp(Data.z,0)
+      if length(dz)>70 then dz="matrix '+strcat(string(size(Data.z)),'x'), end
+
+      if size(Data) == 5 then // There is a color
+	 dcolor=sci2exp(Data.color,0)
+	 if length(dcolor)>70 then dcolor="matrix '+strcat(string(size(Data.color)),'x'), end
+
+	t=[t;
 	 "parent= "+h.parent.type
 	 "children= "+fmtchildren(h.children)
 	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+string(h.visible) 
+	 "data_x= "+dx
+	 "data_y= "+dy
+	 "data_z= "+dz  
+	 "data_color= "+dcolor
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	 "color_mode= "+string(h.color_mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
 	]
-      case "Fac3d" 
-      c=sci2exp(h.surface_color,0)
-      if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
-
-      t=[t;
+        else
+	  t=[t;
 	 "parent= "+h.parent.type
 	 "children= "+fmtchildren(h.children)
 	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+string(h.visible) 
+	 "data_x= "+dx
+	 "data_y= "+dy
+	 "data_z= "+dz
 	 "clip_state= "+string(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	 "color_mode= "+string(h.color_mode)
 	 "color_flag= "+sci2exp(h.color_flag,0)
-	 "surface_color= "+c
-	 ]
+	]
+      end
+
+      case "Fac3d" 
+      c=sci2exp(h.surface_color,0)
+      if length(c)>70 then c="matrix '+strcat(string(size(h.surface_color)),'x'),end
+
+      Data = h.data
+      dx=sci2exp(Data.x,0)
+      if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
+
+      dy=sci2exp(Data.y,0)
+      if length(dy)>70 then dy="matrix '+strcat(string(size(Data.y)),'x'), end
+
+      dz=sci2exp(Data.z,0)
+      if length(dz)>70 then dz="matrix '+strcat(string(size(Data.z)),'x'), end
+
+      if size(Data) == 5 then // There is a color
+	 dcolor=sci2exp(Data.color,0)
+	 if length(dcolor)>70 then dcolor="matrix '+strcat(string(size(Data.color)),'x'), end
+
+	t=[t;
+	 "parent= "+h.parent.type
+	 "children= "+fmtchildren(h.children)
+	 "foreground= "+string(h.foreground)
+	 "thickness= "+string(h.thickness)
+	 "visible= "+string(h.visible) 
+	 "data_x= "+dx
+	 "data_y= "+dy
+	 "data_z= "+dz  
+	 "data_color= "+dcolor
+	 "clip_state= "+string(h.clip_state)
+	 "clip_box= "+sci2exp(h.clip_box,0)
+	 "color_mode= "+string(h.color_mode)
+	 "color_flag= "+sci2exp(h.color_flag,0)
+	]
+        else
+	  t=[t;
+	 "parent= "+h.parent.type
+	 "children= "+fmtchildren(h.children)
+	 "foreground= "+string(h.foreground)
+	 "thickness= "+string(h.thickness)
+	 "visible= "+string(h.visible) 
+	 "data_x= "+dx
+	 "data_y= "+dy
+	 "data_z= "+dz
+	 "clip_state= "+string(h.clip_state)
+	 "clip_box= "+sci2exp(h.clip_box,0)
+	 "color_mode= "+string(h.color_mode)
+	 "color_flag= "+sci2exp(h.color_flag,0)
+	]
+      end
+
       case "Param3d" 
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
