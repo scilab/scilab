@@ -15,26 +15,28 @@ double *inptr[],*outptr[],*t;
     double *u;
     int nev,ic;
     ic=z[0];
-    if ((*nevprt)>0) {
+    if ((*flag)<3) {
+      if ((*nevprt)>0) {
 	ic=-1;
 	nev=*nevprt;
 	while (nev>=1) {
-	    ic=ic+1;
-	    nev=nev/2;
+	  ic=ic+1;
+	  nev=nev/2;
 	}
-    }
-    if ((*flag)==2) {z[0]=ic;}
-    if (*nin>1) {
-      y=(double *)outptr[0];
-      u=(double *)inptr[ic];
-      for (k=0;k<outsz[0];k++)
-	*(y++)=*(u++);  
-    }
-    else {
-      y=(double *)outptr[ic];
-      u=(double *)inptr[0];
-      for (k=0;k<outsz[0];k++)
-	*(y++)=*(u++);  
+      }
+      if ((*flag)==2) {z[0]=ic;return 0;}
+      if (*nin>1) {
+	y=(double *)outptr[0];
+	u=(double *)inptr[ic];
+	for (k=0;k<outsz[0];k++)
+	  *(y++)=*(u++);  
+      }
+      else {
+	y=(double *)outptr[ic];
+	u=(double *)inptr[0];
+	for (k=0;k<outsz[0];k++)
+	  *(y++)=*(u++);  
+      }
     }
 }
 
