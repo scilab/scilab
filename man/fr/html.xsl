@@ -58,6 +58,12 @@
 	</ul></p>
 </xsl:if>
 
+<xsl:if test="./AUTHORS">
+  <H3>AUTEURS</H3>
+  <xsl:apply-templates select="AUTHORS"/>
+</xsl:if>
+
+
 <xsl:if test="./USED_FUNCTION">
 	<H3>FONCTION UTILISEE</H3>
 	<p><xsl:value-of select="./USED_FUNCTION"/></p>
@@ -167,14 +173,14 @@
 
 <xsl:template match="DESCRIPTION">
 	<ul>
-		<xsl:apply-templates select="DESCRIPTION_ITEM|P|VERBATIM|TABLE|A|text()"/>
+		<xsl:apply-templates select="DESCRIPTION_ITEM|DESCRIPTION_INDENT|P|VERBATIM|TABLE|A|text()"/>
 	</ul>
 </xsl:template>
 
 <xsl:template match="DESCRIPTION_ITEM">
 	<li>
 		<xsl:value-of select="@label"/>  
-		<xsl:apply-templates select="P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
+		<xsl:apply-templates select="DESCRIPTION_INDENT|DESCRIPTION_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
 	</li>
 </xsl:template>
 
@@ -187,5 +193,20 @@
 		<xsl:value-of select="self::node()"/>
 	</pre>
 </xsl:template>
+
+<xsl:template match="AUTHORS">
+<ul>
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|TABLE|A|text()"/>
+</ul>
+</xsl:template>
+
+<xsl:template match="AUTHORS_ITEM">
+<li>
+<xsl:value-of select="@label"/>  
+<xsl:apply-templates select="AUTHORS_ITEM|P|VERBATIM|TABLE|ITEMIZE|A|text()"/>
+</li>
+</xsl:template>
+
+
 
 </xsl:stylesheet>
