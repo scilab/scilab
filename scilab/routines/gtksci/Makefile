@@ -10,12 +10,11 @@ OBJSC =	click.o command.o help.o io.o \
 	menus.o x_VTPrsTbl.o x_main.o \
 	zzledt.o about.o
 
-
 OBJSF  = 
 
 include ../../Makefile.incl
 
-CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH)
+CFLAGS = $(CC_OPTIONS) $(TK_INC_PATH) $(TCL_INC_PATH)
 
 FFLAGS = $(FC_OPTIONS)
 

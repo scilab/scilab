@@ -19,13 +19,17 @@
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
+#include "../graphics/Math.h"
+#include "../sun/Sun.h"
+#include "All-extern.h"
+
+/* WITH_TK is eventually define in ../machine.h 
+   include by ../graphics/Math.h */ 
+
 #ifdef WITH_TK
 #include "../tksci/tksci.h"
 #endif
 
-#include "../graphics/Math.h"
-#include "../sun/Sun.h"
-#include "All-extern.h"
 
 extern void C2F(diary) _PARAMS((char *str, int *n, int nn));
 extern void C2F(zzledt)( char *buffer,int *  buf_size, int * len_line,int * eof, long int dummy1);
@@ -139,14 +143,12 @@ int  sciprint2(int iv,char *fmt,...)
 }
 
 /************************************************************************ 
- *  This routine is called by the Scilab interpreter in the course of 
+ * This routine is called by the Scilab interpreter in the course of 
  * computation to checks for all events except typed text (but testing 
  * Ctrl )
  * and to deal with them 
- * 
+ * (This function is useless in the gtk version)  
  ************************************************************************/
-
-extern int ctrl_action();
 
 void xevents1()
 {
@@ -154,6 +156,8 @@ void xevents1()
   flushTKEvents();
 #endif
   /* XXXXXX */
+  while ( gtk_events_pending())
+    gtk_main_iteration(); 
 }
 
 /****************************************
@@ -221,8 +225,7 @@ void write_scilab(s)
   sci_input_char_buffer[sci_input_char_buffer_count++]='\n';
 }
 
-/* XXXXX A terminer */
-/* XXXXX remetre aussi ce qu'il faut pour tcl/tk */
+/* wait for a character and check for pending events */
 
 int Xorgetchar()
 {
@@ -241,7 +244,12 @@ int Xorgetchar()
       fd_err = fileno(stderr);
       max_plus1 = Max(fd_in,GtkXsocket);      
       max_plus1 = Max(fd_out,max_plus1);
-      max_plus1 = Max(fd_err,max_plus1) + 1;
+      max_plus1 = Max(fd_err,max_plus1);
+#ifdef WITH_TK 
+      max_plus1 = Max(XTKsocket,max_plus1);
+#endif 
+      max_plus1++;
+      
     }
   
   for( ; ; ) {
@@ -255,6 +263,9 @@ int Xorgetchar()
     FD_ZERO(&select_mask);
     FD_SET(fd_in , &select_mask);
     FD_SET(GtkXsocket, &select_mask);
+#ifdef WITH_TK 
+    FD_SET(XTKsocket, &select_mask);
+#endif 
     FD_ZERO(&write_mask);
     /* XXXX : the two next FD_SET causes select not to wait 
      * and since they do not seam necessary they are commented out  
@@ -304,6 +315,11 @@ int Xorgetchar()
       return getchar();
       break;
     } 
+#ifdef WITH_TK 
+    if ( FD_ISSET(XTKsocket,&select_mask )) { 
+      flushTKEvents();
+    }
+#endif 
     if ( FD_ISSET(GtkXsocket,&select_mask)) { 
       /* if there are X events in our queue, it
        * counts as being readable 
@@ -326,7 +342,10 @@ int Xorgetchar()
 
 int C2F(sxevents)()
 {
-  /* XXXX check the TK case */ 
+  /* check the TK case */ 
+#ifdef WITH_TK
+  flushTKEvents();
+#endif
   while ( gtk_events_pending())
     gtk_main_iteration(); 
   return(0);
