@@ -14,7 +14,7 @@ function %h_p(h)
     select h.type
       case "Polyline"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -34,7 +34,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box)]
       case "Patch"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -52,21 +52,21 @@ function %h_p(h)
 
       T=h.x_ticks
       locx=sci2exp(T.locations,0)
-      if length(locx)>70 then locx="matrix '+strcat(string(size(T.locations)),'x'), end
+      if length(locx)>70 then locx="matrix "+strcat(string(size(T.locations)),'x'), end
       labx=sci2exp(T.labels,0)
-      if length(labx)>70 then labx="matrix '+strcat(string(size(T.labels)),'x'), end
+      if length(labx)>70 then labx="matrix "+strcat(string(size(T.labels)),'x'), end
 
       T=h.y_ticks
       locy=sci2exp(T.locations,0)
-      if length(locy)>70 then locy="matrix '+strcat(string(size(T.locations)),'x'), end
+      if length(locy)>70 then locy="matrix "+strcat(string(size(T.locations)),'x'), end
       laby=sci2exp(T.labels,0)
-      if length(laby)>70 then laby="matrix '+strcat(string(size(T.labels)),'x'), end
+      if length(laby)>70 then laby="matrix "+strcat(string(size(T.labels)),'x'), end
 
       T=h.z_ticks
       locz=sci2exp(T.locations,0)
-      if length(locz)>70 then locz="matrix '+strcat(string(size(T.locations)),'x'), end
+      if length(locz)>70 then locz="matrix "+strcat(string(size(T.locations)),'x'), end
       labz=sci2exp(T.labels,0)
-      if length(labz)>70 then labz="matrix '+strcat(string(size(T.labels)),'x'), end
+      if length(labz)>70 then labz="matrix "+strcat(string(size(T.labels)),'x'), end
    
       t=[t;
 	 "parent: "+h.parent.type
@@ -129,6 +129,10 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
+	 "line_mode = "+sci2exp(h.line_mode)
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "foreground = "+string(h.foreground)
 	 "visible = "+sci2exp(h.visible)
 	 "text = "+sci2exp(h.text)
@@ -188,7 +192,7 @@ function %h_p(h)
 	 ]
       case "Grayplot"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -198,7 +202,7 @@ function %h_p(h)
 	]
       case "Matplot"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -208,9 +212,9 @@ function %h_p(h)
      
       case "Fec"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
       f=sci2exp(h.triangles,0)
-      if length(f)>70 then f="matrix '+strcat(string(size(h.triangles)),'x'),end
+      if length(f)>70 then f="matrix "+strcat(string(size(h.triangles)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -222,9 +226,9 @@ function %h_p(h)
       
       case "Segs"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       c=sci2exp(h.segs_color,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.segs_color)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.segs_color)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -244,7 +248,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)]
       case "Champ"
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -258,7 +262,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)]
       case "Text"
       T=sci2exp(h.text,0)
-      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
+      if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -275,7 +279,7 @@ function %h_p(h)
 	 "clip_box = "+sci2exp(h.clip_box,0)]
       case "Title"
       T=sci2exp(h.text,0)
-      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
+      if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -287,7 +291,7 @@ function %h_p(h)
 	 "font_angle = "+string(h.font_angle)]
       case "Label"
       T=sci2exp(h.text,0)
-      if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
+      if length(T)>70 then T="string array "+strcat(string(size(h.text)),'x'),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "visible = "+sci2exp(h.visible) 
@@ -298,17 +302,17 @@ function %h_p(h)
       case "Plot3d"
       Data = h.data
       dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
+      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
 
       dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix '+strcat(string(size(Data.y)),'x'), end
+      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
 
       dz=sci2exp(Data.z,0)
-      if length(dz)>70 then dz="matrix '+strcat(string(size(Data.z)),'x'), end
+      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
 
       if size(Data) == 5 then // There is a color
 	 dcolor=sci2exp(Data.color,0)
-	 if length(dcolor)>70 then dcolor="matrix '+strcat(string(size(Data.color)),'x'), end
+	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
 
 	t=[t;
 	 "parent: "+h.parent.type
@@ -355,17 +359,17 @@ function %h_p(h)
       case "Fac3d" 
       Data = h.data
       dx=sci2exp(Data.x,0)
-      if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
+      if length(dx)>70 then dx="matrix "+strcat(string(size(Data.x)),'x'), end
 
       dy=sci2exp(Data.y,0)
-      if length(dy)>70 then dy="matrix '+strcat(string(size(Data.y)),'x'), end
+      if length(dy)>70 then dy="matrix "+strcat(string(size(Data.y)),'x'), end
 
       dz=sci2exp(Data.z,0)
-      if length(dz)>70 then dz="matrix '+strcat(string(size(Data.z)),'x'), end
+      if length(dz)>70 then dz="matrix "+strcat(string(size(Data.z)),'x'), end
 
       if size(Data) == 5 then // There is a color
 	 dcolor=sci2exp(Data.color,0)
-	 if length(dcolor)>70 then dcolor="matrix '+strcat(string(size(Data.color)),'x'), end
+	 if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),'x'), end
 
 	t=[t;
 	 "parent: "+h.parent.type
@@ -411,7 +415,7 @@ function %h_p(h)
 
       case "Param3d" 
       d=sci2exp(h.data,0)
-      if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
+      if length(d)>70 then d="matrix "+strcat(string(size(h.data)),'x'), end
 	
       c=sci2exp(h.surface_color,0)
       if length(c)>70 then c="matrix "+ strcat(string(size(h.surface_color)),'x'),end
@@ -435,7 +439,7 @@ function %h_p(h)
 	 ]
       case "Axis"
       T=sci2exp(h.tics_labels,0)
-      if length(T)>70 then T="string array 1x'+string(length(T)),end
+      if length(T)>70 then T="string array 1x"+string(length(T)),end
       t=[t;
 	 "parent: "+h.parent.type
 	 "visible = "+sci2exp(h.visible)
@@ -449,6 +453,9 @@ function %h_p(h)
 	 "tics_labels = "+T
 	 "labels_font_size = "+string(h.labels_font_size)
 	 "labels_font_color = "+string(h.labels_font_color)
+	 "mark_mode = "+sci2exp(h.mark_mode)
+	 "mark_foreground = "+string(h.mark_foreground)
+	 "mark_background = "+string(h.mark_background)
 	 "clip_state = "+sci2exp(h.clip_state)
 	 "clip_box = "+sci2exp(h.clip_box,0)
 	]
