@@ -16,7 +16,9 @@ ind=(0:p2:prod(dims)-1);
 I=ones(ind).*.I+ind.*.ones(I)
 
 x=sum(matrix(m.entries(I),dims(d),-1),1)
+
 dims(d)=1
+while  dims($)==1 then dims($)=[],end
 if d==N then
   dims=dims(1:$)
 else
