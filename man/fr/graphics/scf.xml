@@ -8,6 +8,7 @@
   <SHORT_DESCRIPTION name="scf">set the current graphic figure (window)</SHORT_DESCRIPTION>
 
   <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>f = scf()</CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>f = scf(h)</CALLING_SEQUENCE_ITEM>
   <CALLING_SEQUENCE_ITEM>f = scf(num)</CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
@@ -47,6 +48,9 @@
     <P></P>
     <P><VERB>scf(h)</VERB> set the figure pointed to by the handle <VERB>h</VERB>
       as the current figure. If it does not already exist it is created.</P>
+
+    <P><VERB>scf()</VERB> is equivalent to <VERB>scf(max(winsid())+1)
+      </VERB>. It may be used to create a new graphic window.</P>
     </DESCRIPTION>
 
   <EXAMPLE><![CDATA[
