@@ -850,7 +850,7 @@ void AddMenu (integer * win_num, char *button_name, char **entries,
 		if (*typ==0) 
 		  sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ, fname, i + 1);
 		else if (*typ==2) 
-		  sprintf ((char *) macroptr, "@0%s(%d,%d)",fname, i + 1,*win_num);
+		  sprintf ((char *) macroptr, "@0%s(%d)",fname, i + 1);
 		else
 		  sprintf ((char *) macroptr, "@%dexecstr(%s(%d))", *typ,fname, i + 1);
 	      else
