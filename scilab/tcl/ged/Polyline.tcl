@@ -94,12 +94,12 @@ pack $w.frame -anchor w -fill both
 frame $w.frame.vis -borderwidth 0
 pack $w.frame.vis  -in $w.frame  -side top -fill x
 
-label $w.frame.visiblelabel -height 0 -text "Visibility:   " -width 0 
+label $w.frame.visiblelabel -height 0 -text "       Visibility:    " -width 0 
 checkbutton $w.frame.visible  -textvariable curvis -indicatoron 1 \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVisibility" 
 pack $w.frame.visiblelabel  -in $w.frame.vis  -side left
-pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
+pack $w.frame.visible  -in $w.frame.vis  -side left  -fill x -pady 2m -padx 2m
 
 
 #Polyline Style
@@ -117,13 +117,13 @@ combobox $w.frame.polystyle \
     -command [list SelectPolylineStyle ]
 eval $w.frame.polystyle list insert end [list "interpolated" "staircase" "barplot" "arrowed" "filled"]
 pack $w.frame.polystylelabel -in $w.frame.curvst   -side left
-pack $w.frame.polystyle   -in $w.frame.curvst   -fill x
+pack $w.frame.polystyle   -in $w.frame.curvst   -expand 1 -fill x -pady 2m -padx 2m
 
 #Line Style
 frame $w.frame.linest  -borderwidth 0
 pack $w.frame.linest  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text "     Line style:    " -width 0 
+label $w.frame.stylelabel  -height 0 -text "     Line style:     " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -134,7 +134,7 @@ combobox $w.frame.style \
     -command [list SelectLineStyle ]
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.stylelabel -in $w.frame.linest   -side left
-pack $w.frame.style   -in $w.frame.linest   -fill x
+pack $w.frame.style   -in $w.frame.linest   -expand 1 -fill x -pady 2m -padx 2m
 
 #Mark style
 frame $w.frame.linemarkst  -borderwidth 0
@@ -153,7 +153,7 @@ eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamo
 
 
 pack $w.frame.markstylelabel  -in $w.frame.linemarkst   -side left
-pack $w.frame.markstyle   -in $w.frame.linemarkst   -fill x
+pack $w.frame.markstyle   -in $w.frame.linemarkst   -expand 1 -fill x -pady 2m -padx 2m
 
 #Mark mode
 frame $w.frame.linemarkmode  -borderwidth 0
@@ -164,15 +164,15 @@ checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
     -variable curmarkmode -onvalue "on" -offvalue "off" \
     -command "toggleMarkmode" 
 
-pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left
-pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left -fill x
+pack $w.frame.markmodelabel  -in $w.frame.linemarkmode  -side left 
+pack $w.frame.markmode   -in $w.frame.linemarkmode   -side left  -fill x -pady 2m -padx 2m
 
 
 #Color scale
 frame $w.frame.clrf  -borderwidth 0
 pack $w.frame.clrf  -in $w.frame -side top  -fill x
 
-label $w.frame.colorlabel -height 0 -text "Color:       " -width 0 
+label $w.frame.colorlabel -height 0 -text "             Color:   " -width 0 
 #         -foreground $color
 scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0 
@@ -186,11 +186,11 @@ $w.frame.color set $curcolor
 frame $w.frame.thk  -borderwidth 0
 pack $w.frame.thk  -side top -fill x
 
-label $w.frame.scalelabel -height 0 -text "Thickness: " -width 0 
+label $w.frame.scalelabel -height 0 -text "      Thickness:   " -width 0 
 scale $w.frame.thickness -orient horizontal -length 284 -from 1 -to 20 \
 	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
-pack $w.frame.thickness  -in $w.frame.thk -expand yes -fill x
+pack $w.frame.thickness  -in $w.frame.thk  -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.thickness set $curthick
 
 

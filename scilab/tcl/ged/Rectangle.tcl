@@ -70,19 +70,19 @@ pack $w.frame  -anchor w -fill both
 frame $w.frame.vis  -borderwidth 0
 pack $w.frame.vis  -in $w.frame -side top -fill x
 
-label $w.frame.visiblelabel -height 0 -text "   Visibility: " -width 0 
+label $w.frame.visiblelabel -height 0 -text "   Visibility:   " -width 0 
 checkbutton $w.frame.visible  -textvariable curvis -indicatoron 1 \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVisibility" 
 pack $w.frame.visiblelabel   -in $w.frame.vis  -side left
-pack $w.frame.visible  -in $w.frame.vis  -side left -fill x
+pack $w.frame.visible  -in $w.frame.vis  -side left -fill x -pady 2m -padx 2m
 
 
 #Line Style
 frame $w.frame.rectst  -borderwidth 0
 pack $w.frame.rectst  -in $w.frame  -side top  -fill x
 
-label $w.frame.stylelabel  -height 0 -text " Line style:   " -width 0 
+label $w.frame.stylelabel  -height 0 -text " Line style:    " -width 0 
 combobox $w.frame.style \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -93,14 +93,14 @@ combobox $w.frame.style \
     -command [list SelectLineStyle ]
 eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
 pack $w.frame.stylelabel -in $w.frame.rectst   -side left
-pack $w.frame.style   -in $w.frame.rectst   -fill x
+pack $w.frame.style   -in $w.frame.rectst   -expand 1 -fill x -pady 2m -padx 2m
 
 
 #Mark style
 frame $w.frame.rectmarkst  -borderwidth 0
 pack $w.frame.rectmarkst  -in $w.frame  -side top  -fill x
 
-label $w.frame.markstylelabel  -height 0 -text "Mark style: " -width 0 
+label $w.frame.markstylelabel  -height 0 -text "Mark style:   " -width 0 
 combobox $w.frame.markstyle \
     -borderwidth 1 \
     -highlightthickness 1 \
@@ -113,7 +113,7 @@ eval $w.frame.markstyle list insert end [list "dot" "plus" "cross" "star" "diamo
 
 
 pack $w.frame.markstylelabel  -in $w.frame.rectmarkst   -side left
-pack $w.frame.markstyle   -in $w.frame.rectmarkst   -fill x
+pack $w.frame.markstyle   -in $w.frame.rectmarkst  -expand 1 -fill x -pady 2m -padx 2m
 
 #Mark mode
 frame $w.frame.rectmarkmode  -borderwidth 0
@@ -125,7 +125,7 @@ checkbutton $w.frame.markmode  -textvariable curmarkmode -indicatoron 1 \
     -command "toggleMarkmode" 
 
 pack $w.frame.markmodelabel  -in $w.frame.rectmarkmode  -side left
-pack $w.frame.markmode   -in $w.frame.rectmarkmode   -side left -fill x
+pack $w.frame.markmode   -in $w.frame.rectmarkmode  -side left  -fill x -pady 2m -padx 2m
 
 
 #filled
@@ -137,7 +137,7 @@ checkbutton $w.frame.filled  -textvariable filToggle -indicatoron 1 \
     -variable filToggle  -onvalue "on" -offvalue "off" \
     -command "toggleFilled" 
 pack $w.frame.filledlabel  -in $w.frame.fil  -side left
-pack $w.frame.filled  -in $w.frame.fil   -side left -fill x
+pack $w.frame.filled  -in $w.frame.fil   -side left -fill x -pady 2m -padx 2m
 
 
 #Color scale
@@ -150,7 +150,7 @@ scale $w.frame.color -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setColor $w.frame.color" -tickinterval 0 
 
 pack $w.frame.colorlabel -in $w.frame.clrf -side left
-pack $w.frame.color -in  $w.frame.clrf -side left -expand 1 -fill x -pady 2m -padx 2m
+pack $w.frame.color -in  $w.frame.clrf -side left  -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.color set $curcolor
 
 
@@ -161,7 +161,7 @@ label $w.frame.scalelabel -height 0 -text "  Thickness: " -width 0
 scale $w.frame.thickness -orient horizontal -from 1 -to 20 \
 	 -resolution 1.0 -command "setThickness $w.frame.thickness" -tickinterval 0
 pack $w.frame.scalelabel -in $w.frame.thk -side left 
-pack $w.frame.thickness  -in $w.frame.thk -expand yes -fill x
+pack $w.frame.thickness  -in $w.frame.thk  -side left -expand 1 -fill x -pady 2m -padx 2m
 $w.frame.thickness set $curthick
 
 #exit button
@@ -184,6 +184,13 @@ pack $w.frame.labelul -in  $w.frame.lb1 -side left
 
 frame $w.frame.lb2 -borderwidth 0
 pack $w.frame.lb2  -in $w.frame -side top   -fill x
+
+frame $w.frame.lb21 -borderwidth 0
+pack $w.frame.lb21  -in $w.frame -side top   -fill x
+
+frame $w.frame.lb22 -borderwidth 0
+pack $w.frame.lb22  -in $w.frame -side top   -fill x
+
 label $w.frame.labelx -text "     X: "
 entry $w.frame.datax -relief sunken  -textvariable Xval 
 label $w.frame.labely -text "     Y: "
@@ -191,7 +198,9 @@ entry $w.frame.datay -relief sunken  -textvariable Yval
 label $w.frame.labelz -text "     Z: "
 entry $w.frame.dataz -relief sunken  -textvariable Zval 
 
-pack $w.frame.labelx  $w.frame.datax  $w.frame.labely  $w.frame.datay $w.frame.labelz  $w.frame.dataz -in  $w.frame.lb2 -side left  -fill x
+pack $w.frame.labelx  $w.frame.datax  -in  $w.frame.lb2 -side left  -fill x -pady 2m -padx 2m
+pack $w.frame.labely  $w.frame.datay  -in  $w.frame.lb21 -side left -fill x -pady 2m -padx 2m 
+pack $w.frame.labelz  $w.frame.dataz  -in  $w.frame.lb22 -side left -fill x -pady 2m -padx 2m 
 bind  $w.frame.datax <Return> {SelectXval} 
 bind  $w.frame.datay <Return> {SelectYval} 
 bind  $w.frame.dataz <Return> {SelectZval} 
@@ -204,12 +213,17 @@ pack $w.frame.labelwh -in  $w.frame.lb3 -side left
 
 frame $w.frame.lb4 -borderwidth 0
 pack $w.frame.lb4  -in $w.frame -side top   -fill x
+
+frame $w.frame.lb41 -borderwidth 0
+pack $w.frame.lb41  -in $w.frame -side top   -fill x
+
 label $w.frame.labelw -text "     W: "
 entry $w.frame.dataw -relief sunken  -textvariable Wval 
 label $w.frame.labelh -text "     H: "
 entry $w.frame.datah -relief sunken  -textvariable Hval 
 
-pack $w.frame.labelw  $w.frame.dataw $w.frame.labelh  $w.frame.datah -in  $w.frame.lb4 -side left -fill x
+pack $w.frame.labelw  $w.frame.dataw -in  $w.frame.lb4  -side left -fill x -pady 2m -padx 2m
+pack $w.frame.labelh  $w.frame.datah -in  $w.frame.lb41 -side left -fill x -pady 2m -padx 2m
 bind  $w.frame.dataw <Return> {SelectWval} 
 bind  $w.frame.datah <Return> {SelectHval} 
 

@@ -78,7 +78,7 @@ checkbutton $w.frame.visib  -textvariable curvis  \
     -variable curvis  -onvalue "on" -offvalue "off" \
     -command "toggleVis" 
 pack $w.frame.vislabel -in $w.frame.vis  -side left
-pack $w.frame.visib  -in $w.frame.vis    -side left -fill x
+pack $w.frame.visib  -in $w.frame.vis    -side left -fill x -pady 2m -padx 2m
 
 
 #figure label
@@ -88,7 +88,7 @@ pack $w.frame.lbfig  -in $w.frame -side top   -fill x
 label $w.frame.figlabel -text " Figure name: "
 entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name
 pack $w.frame.figlabel -in  $w.frame.lbfig -side left
-pack $w.frame.figlabel1  -in  $w.frame.lbfig -fill x
+pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.figlabel1 <Return> {setFiglabel} 
 
 #figure id
@@ -96,9 +96,9 @@ bind  $w.frame.figlabel1 <Return> {setFiglabel}
 frame $w.frame.lbfigid -borderwidth 0
 pack $w.frame.lbfigid  -in $w.frame -side top   -fill x
 
-label $w.frame.figidlabel -text "       Figure id: "
+label $w.frame.figidlabel -text "     Figure id:"
 label $w.frame.figidlabel1 -textvariable figure_id
-pack $w.frame.figidlabel $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left  -fill x
+pack $w.frame.figidlabel $w.frame.figidlabel1 -in  $w.frame.lbfigid -side left  -fill x -pady 2m -padx 2m
 
 
 #figure position x
@@ -108,7 +108,7 @@ pack $w.frame.xfigpos  -in $w.frame -side top   -fill x
 label $w.frame.xfigposlabel -text "   X position : "
 entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
-pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos -fill x
+pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xfigposlabel1 <Return> {setFigPos} 
 
 
@@ -119,7 +119,7 @@ pack $w.frame.yfigpos  -in $w.frame -side top   -fill x
 label $w.frame.yfigposlabel -text "   Y position : "
 entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
-pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos -fill x
+pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.yfigposlabel1 <Return> {setFigPos} 
 
 #figure size x
@@ -129,7 +129,7 @@ pack $w.frame.xfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.xfigsizlabel -text "         X size : "
 entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
-pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz -fill x
+pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz} 
 
 
@@ -140,7 +140,7 @@ pack $w.frame.yfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.yfigsizlabel -text "         Y size : "
 entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
-pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz -fill x
+pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz} 
 
 
@@ -151,7 +151,7 @@ pack $w.frame.xaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.xaxesizlabel -text "  X axis size : "
 entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
-pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz -fill x
+pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz} 
 
 
@@ -162,14 +162,14 @@ pack $w.frame.yaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.yaxesizlabel -text "  Y axis size : "
 entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
-pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz -fill x
+pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -expand 1 -fill x -pady 2m -padx 2m
 bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz} 
 
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
 pack $w.frame.clrb  -in $w.frame -side top  -fill x
-label $w.frame.bcolorlabel -height 0 -text "Background\n   color: " -width 0 
+label $w.frame.bcolorlabel -height 0 -text "Background\n   color:         " -width 0 
 
 scale $w.frame.bcolor -orient horizontal -from -2 -to $ncolors \
 	 -resolution 1.0 -command "setBackColor $w.frame.bcolor" -tickinterval 0
@@ -201,7 +201,7 @@ checkbutton $w.frame.autorszib  -textvariable curautoresize  \
     -variable curautoresize -onvalue "on" -offvalue "off" \
     -command "toggleResize" 
 pack $w.frame.autorszlabel -in $w.frame.autorsz  -side left
-pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x
+pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 2m -padx 2m
 
 
 #pixmap
@@ -212,7 +212,7 @@ checkbutton $w.frame.pixib  -textvariable curpix  \
     -variable curpix  -onvalue "on" -offvalue "off" \
     -command "togglePix" 
 pack $w.frame.pixlabel -in $w.frame.pix  -side left
-pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x
+pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 2m -padx 2m
 
 
 #pixel drawing mode
@@ -231,7 +231,7 @@ combobox $w.frame.pixdmode \
 eval $w.frame.pixdmode list insert end [list "clear" "and" "andReverse"  "copy" "andInverted"  "noop"  "xor"  "or"  "nor"  "equiv"  "invert"  "orReverse"  "copyInverted"  "orInverted"  "nand"  "set" ]
 
 pack $w.frame.pixdmodelbl -in $w.frame.pixel   -side left
-pack $w.frame.pixdmode -in $w.frame.pixel  -fill x
+pack $w.frame.pixdmode -in $w.frame.pixel  -expand 1 -fill x -pady 2m -padx 2m
 
 
 #rotation style
@@ -250,7 +250,7 @@ combobox $w.frame.rotstyl \
 eval $w.frame.rotstyl list insert end [list "unary" "multiple"]
 
 pack $w.frame.rotstylelbl -in $w.frame.rotstyle   -side left
-pack $w.frame.rotstyl -in $w.frame.rotstyle  -fill x
+pack $w.frame.rotstyl -in $w.frame.rotstyle  -expand 1 -fill x -pady 2m -padx 2m
 
 #exit button
 frame $w.buttons
