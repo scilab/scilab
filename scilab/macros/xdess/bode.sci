@@ -128,9 +128,9 @@ if comments==' ' then
    hx=0.43
 end;
 
-[ffr,bds]=xgetech();
+[wrect,frect]=xgetech();
 //magnitude
-xsetech([0,0,1.0,hx*0.95]);
+xsetech(wrect=[wrect(1)+0,wrect(2)+0,wrect(3)*1.0,wrect(4)*hx*0.95]);
 rect=[mini(frq),mini(d),maxi(frq),maxi(d)]
 // just to fix the scales for xgrid
 plot2d1("oln",mini(frq),mini(d),0,"051"," ",rect);
@@ -146,7 +146,7 @@ end
 xtitle('Magnitude ',' Hz','db');
 
 //phase
-xsetech([0,hx,1.0,hx*0.95]);
+xsetech(wrect=[wrect(1)+0,wrect(2)+wrect(4)*hx,wrect(3)*1.0,wrect(4)*hx*0.95]);
 rect=[mini(frq),mini(phi),maxi(frq),maxi(phi)]
 // just to fix the scales for xgrid
 plot2d1("oln",mini(frq),mini(phi),0,"051"," ",rect);
@@ -160,7 +160,7 @@ if type(dom)==1 then
 end
 xtitle('Phase ',' Hz','degrees');
 if mnc>0 then
-  xsetech([0,2*hx,1.0,0.1],[0 0 1 1]);
+  xsetech([wrect(1)+0,wrect(2)+wrect(4)*2*hx,wrect(3)*1.0,wrect(4)*0.1],[0 0 1 1]);
   dash=xget('dashes')
   y0=0.7;dy=-1/2
   x0=0;dx=1/2
@@ -177,5 +177,5 @@ if mnc>0 then
   end
   xset('dashes',dash(1))
 end
-xsetech(ffr,bds);
+xsetech(wrect,frect);
 endfunction
