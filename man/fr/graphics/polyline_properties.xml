@@ -60,6 +60,9 @@
         <DESCRIPTION_ITEM>
          <SP>If the value is 4 arrows are drawn between two consecutives points.</SP>
         </DESCRIPTION_ITEM>
+       <DESCRIPTION_ITEM>
+         <SP>If the value is 5 the polyline is filled.</SP>
+        </DESCRIPTION_ITEM>
      </DESCRIPTION_INDENT>
      </DESCRIPTION_ITEM>
 

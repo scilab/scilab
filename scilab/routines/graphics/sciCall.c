@@ -90,9 +90,11 @@ void Objfpoly (x,y,n,style,hdl)
     long *hdl;
 { 
   
-  sciSetCurrentObj (ConstructPatch
-		      ((sciPointObj *)
-		       sciGetSelectedSubWin (sciGetCurrentFigure ()), x, y, n));
+  sciSetCurrentObj (ConstructPolyline
+		    ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure ()),x,y,PD0,
+                     1,n,1,5)); 
+
+ 
   if (style < 0)
       sciSetForeground (sciGetCurrentObj(), -(style));
    else

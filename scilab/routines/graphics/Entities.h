@@ -61,7 +61,6 @@
 #define pTITLE_FEATURE(pointobj)       ((sciTitle         *)pointobj->pfeatures)/** */
 #define pLEGEND_FEATURE(pointobj)      ((sciLegend        *)pointobj->pfeatures)/** */
 #define pPOLYLINE_FEATURE(pointobj)    ((sciPolyline      *)pointobj->pfeatures)/** */
-#define pPATCH_FEATURE(pointobj)       ((sciPatch         *)pointobj->pfeatures)/** */
 #define pARC_FEATURE(pointobj)         ((sciArc           *)pointobj->pfeatures)/** */
 #define pRECTANGLE_FEATURE(pointobj)   ((sciRectangle     *)pointobj->pfeatures)/** */
 #define pMERGE_FEATURE(pointobj)       ((sciMerge         *)pointobj->pfeatures)/* DJ.A 30/12 */
@@ -114,7 +113,6 @@ POINT3D;
  * @memo SCI_ARC,
  * @memo SCI_POLYLINE,
  * @memo SCI_RECTANGLE,
- * @memo SCI_PATCH,
  * @memo SCI_SURFACE,
  * @memo SCI_LIGHT,
  * @memo SCI_AXIS, 
@@ -146,8 +144,6 @@ typedef enum
   SCI_POLYLINE,	    
   /**Entity type RECTANGLE*/
   SCI_RECTANGLE,    
-  /**Entity type PATCH*/
-  SCI_PATCH,		
   /**Entity type SURFACE*/
   SCI_SURFACE,
   /**Entity type MERGE*/  /* DJ.A 30/12 */
@@ -744,17 +740,17 @@ typedef struct
   POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
+  double *pvz; /**DJ.Abdemouche 2003**/
   int n1;                               /** number of point */
   int n2;                             /** numbre of curve if Plot **/ 
-  double *pvz; /**DJ.Abdemouche 2003**/
   int closed;                      /** is it a closed polyline */
   int plot;                        /** is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   double xmin;				/** xmin */
   double ymin;				/** ymin */
+  double zmin;				/** ymin */
   double xmax;				/** xmax Adding  F.Leray  02.04.04 */
   double ymax;	                        /** ymax Adding  F.Leray  02.04.04 */
-  double zmin;	                        /** zmin Adding  F.Leray  07.04.04 */
-  double zmax;                          /** zmax Adding  F.Leray  07.04.04 */
+  double zmax;	                        /** ymax Adding  F.Leray  02.04.04 */
   double width;			/** width */
   double height;		/** height */
   BOOL isselected;
@@ -766,35 +762,6 @@ typedef struct
   int isclip;
 }
 sciPolyline;  /** */
-
-
-/**@name Patch
- * Structure used to specify 
- */
-typedef struct
-{
-  sciRelationShip relationship;
-  sciGraphicContext graphiccontext;
-  /* listPoints     points; */
-  POINT2D *pvector;		/* vecteur de points redondant, for future developpement*/
-  double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
-  double *pvy;			/* vecteur des points y doublon avec pvector*/
-   int n;				/** number of point */
-  int closed;			/** is it a closed polyline */
-  double xmin;				/** xmin */
-  double ymin;				/** ymin */
-  double width;			/** width */
-  double height;		/** height */
-  BOOL isselected;
-  char *callback;		/** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen;		/** the length of the callback code */ 
-  int callbackevent;
-  /** specifies if this object is visble             */
-  BOOL visible; 
-  int isclip;
-  double *pvz;  /* vecteur des points z */ /**DJ.Abdemouche 2003**/
-}
-sciPatch;  /** */
 
 
 /**@name Rectangle
@@ -1398,12 +1365,10 @@ extern int DestroyLegend (sciPointObj * pthis);
 extern sciPointObj *ConstructPolyline (sciPointObj * pparentfigure,
 				       double *pvecx, double *pvecy, double *pvecz,int closed, int n1, int n2, int plot);/*3D constructor*/
 extern int DestroyPolyline (sciPointObj * pthis);
-extern sciPointObj *ConstructPatch (sciPointObj * pparentfigure,
-				    double *pvectx, double *pvecty, int n);
-extern int DestroyPatch (sciPointObj * pthis);
 extern sciPointObj *ConstructArc (sciPointObj * pparentfigure, double x,
 				  double y, double height, double width,
 				  double alphabegin, double alphaend, int color, int fill);
+
 extern int DestroyArc (sciPointObj * pthis);
 extern sciPointObj *ConstructRectangle (sciPointObj * pparentfigure, double x,
 					double y, double height, double width,

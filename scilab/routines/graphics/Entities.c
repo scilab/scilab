@@ -165,9 +165,6 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return (sciGrayplot *) pGRAYPLOT_FEATURE (pobj);
       break;
-    case SCI_PATCH:
-      return (sciPatch *) pPATCH_FEATURE (pobj);
-      break;
     case SCI_RECTANGLE:
       return (sciRectangle *) pRECTANGLE_FEATURE (pobj);
       break;
@@ -277,9 +274,6 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_GRAYPLOT:
       return (pGRAYPLOT_FEATURE (pobj)->type ==0) ? "Grayplot":"Matplot";
       break;
-    case SCI_PATCH:
-      return "Patch";
-      break;
     case SCI_RECTANGLE:
       return "Rectangle";
       break;
@@ -358,7 +352,6 @@ sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue)
       case SCI_FEC: 
       case SCI_GRAYPLOT: 
       case SCI_POLYLINE:
-      case SCI_PATCH:
       case SCI_RECTANGLE:
       case SCI_SURFACE:
       case SCI_LIGHT:
@@ -425,7 +418,6 @@ sciGetHandleTabPointer (sciPointObj * pobj)
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
-    case SCI_PATCH:
     case SCI_SURFACE:
     case SCI_LIGHT:
       /*   case SCI_AXIS  */
@@ -522,7 +514,6 @@ sciGetHandle (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -607,9 +598,6 @@ sciGetGraphicContext (sciPointObj * pobj)
       break;
     case SCI_ARC:
       return  &(pARC_FEATURE (pobj)->graphiccontext);
-      break;
-    case SCI_PATCH:
-      return  &(pPATCH_FEATURE (pobj)->graphiccontext);
       break;
     case SCI_SEGS: 
       return  &(pSEGS_FEATURE (pobj)->graphiccontext);
@@ -738,7 +726,6 @@ sciInitGraphicContext (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -787,7 +774,6 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
       return &(pSUBWIN_FEATURE (pobj)->gmode);
       break;
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -870,7 +856,6 @@ sciInitGraphicMode (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -1029,7 +1014,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_FEC: 
 	case SCI_GRAYPLOT: 
 	case SCI_POLYLINE:
-	case SCI_PATCH:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
 	case SCI_LIGHT:
@@ -1061,7 +1045,6 @@ sciUpdateBaW (sciPointObj * pobj, int flag, int value)
 	case SCI_FEC: 
 	case SCI_GRAYPLOT: 
 	case SCI_POLYLINE:
-	case SCI_PATCH:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
 	case SCI_LIGHT:
@@ -1278,9 +1261,6 @@ sciSetBackground (sciPointObj * pobj, int colorindex)
     case SCI_POLYLINE:
       (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
-    case SCI_PATCH:
-      (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
     case SCI_RECTANGLE:
       (sciGetGraphicContext(pobj))->backgroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1355,9 +1335,6 @@ sciGetBackground (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
-    case SCI_PATCH:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
     case SCI_RECTANGLE:
@@ -1453,9 +1430,6 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
     case SCI_POLYLINE:
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
-    case SCI_PATCH:
-      (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
-      break;
     case SCI_RECTANGLE:
       (sciGetGraphicContext(pobj))->foregroundcolor =	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
@@ -1528,9 +1502,6 @@ sciGetForeground (sciPointObj * pobj)
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_POLYLINE:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
-    case SCI_PATCH:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
     case SCI_RECTANGLE:
@@ -1612,9 +1583,6 @@ sciGetBackgroundToDisplay (sciPointObj * pobj)
     case SCI_POLYLINE:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
-    case SCI_PATCH:
-      colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
-      break;
     case SCI_RECTANGLE:
       colorindex =  (sciGetGraphicContext(pobj))->backgroundcolor + 1;
       break;
@@ -1692,9 +1660,6 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
     case SCI_POLYLINE:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
-    case SCI_PATCH:
-      colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
-      break;
     case SCI_RECTANGLE:
       colorindex =  (sciGetGraphicContext(pobj))->foregroundcolor + 1;
       break;
@@ -1759,7 +1724,6 @@ sciSetFillFlag (sciPointObj * pobj, int fillflag)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_SURFACE:
     case SCI_LIGHT:
       /*   case SCI_AXIS */
@@ -1798,7 +1762,6 @@ sciGetFillFlag (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_SURFACE:
     case SCI_LIGHT:
       /*   case SCI_AXIS*/
@@ -1844,9 +1807,6 @@ sciGetLineWidth (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linewidth;
       break;
     case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->linewidth;
-      break;
-    case SCI_PATCH:
       return (sciGetGraphicContext(pobj))->linewidth;
       break;
     case SCI_RECTANGLE:
@@ -1923,10 +1883,6 @@ sciSetLineWidth (sciPointObj * pobj, int linewidth)
 	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
 	  return 0;
 	  break;
-	case SCI_PATCH:
-	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
-	  return 0;
-	  break;
 	case SCI_RECTANGLE:
 	  (sciGetGraphicContext(pobj))->linewidth = linewidth;
 	  return 0;
@@ -1999,9 +1955,6 @@ sciGetLineStyle (sciPointObj * pobj)
       return (sciGetGraphicContext(pobj))->linestyle;
       break;
     case SCI_POLYLINE:
-      return (sciGetGraphicContext(pobj))->linestyle;
-      break;
-    case SCI_PATCH:
       return (sciGetGraphicContext(pobj))->linestyle;
       break;
     case SCI_RECTANGLE:
@@ -2081,10 +2034,6 @@ sciSetLineStyle (sciPointObj * pobj, int linestyle)
 	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
 	  return 0;
 	  break;
-	case SCI_PATCH:
-	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
-	  return 0;
-	  break;
 	case SCI_RECTANGLE:
 	  (sciGetGraphicContext(pobj))->linestyle = linestyle;
 	  return 0;
@@ -2158,9 +2107,6 @@ sciGetIsMark (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciGetGraphicContext(pobj))->ismark;
       break;
-    case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->ismark;
-      break;
     case SCI_RECTANGLE:
       return (sciGetGraphicContext(pobj))->ismark;
       break;
@@ -2221,10 +2167,6 @@ sciSetIsMark (sciPointObj * pobj, BOOL ismark)
       return 0;
       break;
     case SCI_POLYLINE:
-      (sciGetGraphicContext(pobj))->ismark = ismark;
-      return 0;
-      break;
-    case SCI_PATCH:
       (sciGetGraphicContext(pobj))->ismark = ismark;
       return 0;
       break;
@@ -2294,9 +2236,6 @@ sciGetMarkStyle (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciGetGraphicContext(pobj))->markstyle;
       break;
-    case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->markstyle;
-      break;
     case SCI_RECTANGLE:
       return (sciGetGraphicContext(pobj))->markstyle;
       break;
@@ -2364,10 +2303,6 @@ sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 	  return 0;
 	  break;
         case SCI_POLYLINE:
-	  (sciGetGraphicContext(pobj))->markstyle = markstyle;
-	  return 0;
-	  break;
-	case SCI_PATCH:
 	  (sciGetGraphicContext(pobj))->markstyle = markstyle;
 	  return 0;
 	  break;
@@ -2447,9 +2382,6 @@ sciGetFillStyle (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciGetGraphicContext(pobj))->fillstyle;
       break;
-    case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->fillstyle;
-      break;
     case SCI_RECTANGLE:
       return (sciGetGraphicContext(pobj))->fillstyle;
       break;
@@ -2511,10 +2443,6 @@ sciSetFillStyle (sciPointObj * pobj, int fillstyle)
 	  return 0;
 	  break;
         case SCI_POLYLINE:
-	  (sciGetGraphicContext(pobj))->fillstyle = fillstyle;
-	  return 0;
-	  break;
-	case SCI_PATCH:
 	  (sciGetGraphicContext(pobj))->fillstyle = fillstyle;
 	  return 0;
 	  break;
@@ -2586,9 +2514,6 @@ sciGetFillColor (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciGetGraphicContext(pobj))->fillcolor;
       break;
-    case SCI_PATCH:
-      return (sciGetGraphicContext(pobj))->fillcolor;
-      break;
     case SCI_RECTANGLE:
       return (sciGetGraphicContext(pobj))->fillcolor;
       break;
@@ -2652,10 +2577,6 @@ sciSetFillColor (sciPointObj * pobj, int fillcolor)
 	  return 0;
 	  break;
         case SCI_POLYLINE:
-	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
-	  return 0;
-	  break;
-	case SCI_PATCH:
 	  (sciGetGraphicContext(pobj))->fillcolor = fillcolor;
 	  return 0;
 	  break;
@@ -2738,9 +2659,6 @@ sciGetRelationship (sciPointObj * pobj)
     case SCI_POLYLINE:
       return  &(pPOLYLINE_FEATURE (pobj)->relationship);
       break;
-    case SCI_PATCH:
-      return  &(pPATCH_FEATURE (pobj)->relationship);
-      break;
     case SCI_RECTANGLE:
       return  &(pRECTANGLE_FEATURE (pobj)->relationship);
       break;
@@ -2817,9 +2735,6 @@ sciSetParent (sciPointObj * pson, sciPointObj * pparent)
       (sciGetRelationship (pson))->pparent = pparent;
       break;
     case SCI_ARC:
-      (sciGetRelationship (pson))->pparent = pparent;
-      break;
-    case SCI_PATCH:
       (sciGetRelationship (pson))->pparent = pparent;
       break;
     case SCI_SEGS:  
@@ -2921,9 +2836,6 @@ sciGetParent (sciPointObj * pobj)
     case SCI_POLYLINE:
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break;
-    case SCI_PATCH:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
-      break;
     case SCI_RECTANGLE:
       return (sciPointObj *) (sciGetRelationship (pobj))->pparent;
       break;
@@ -2985,7 +2897,6 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PATCH:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -3032,7 +2943,6 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PATCH:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -3080,7 +2990,6 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PATCH:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -3123,7 +3032,6 @@ sciGetScilabXgc (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
-    case SCI_PATCH:
     case SCI_ARC:
     case SCI_SEGS: 
     case SCI_FEC: 
@@ -3217,9 +3125,6 @@ sciSetCurrentSon (sciPointObj * pparent, sciPointObj * pson)
     case SCI_POLYLINE:
       (sciGetRelationship (pparent))->pcurrentson = pson;
       break;
-    case SCI_PATCH:
-      (sciGetRelationship (pparent))->pcurrentson = pson;
-      break;
     case SCI_RECTANGLE:
       (sciGetRelationship (pparent))->pcurrentson = pson;
       break;
@@ -3289,9 +3194,6 @@ sciGetCurrentSon (sciPointObj * pobj)
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
     case SCI_ARC:
-      return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
-      break;
-    case SCI_PATCH:
       return (sciPointObj *) (sciGetRelationship (pobj))->pcurrentson;
       break;
     case SCI_SEGS:  
@@ -3385,7 +3287,6 @@ sciAddThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_SURFACE:
     case SCI_LIGHT:
       /*   case SCI_AXIS*/
@@ -3462,7 +3363,6 @@ sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent)
       /*   case SCI_AXIS*/
     case SCI_AXES:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_AGREG:
     case SCI_MERGE:
       /* recherche de l'objet a effacer*/
@@ -3555,9 +3455,6 @@ sciGetSons (sciPointObj * pobj)
     case SCI_ARC:
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;
-    case SCI_PATCH:
-      return (sciSons *) (sciGetRelationship (pobj)->psons);
-      break;
     case SCI_SEGS: 
       return (sciSons *) (sciGetRelationship (pobj)->psons);
       break;  
@@ -3644,9 +3541,6 @@ sciGetLastSons (sciPointObj * pobj)
     case SCI_ARC:
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
-    case SCI_PATCH:
-      return (sciSons *)sciGetRelationship (pobj)->plastsons;
-      break;
     case SCI_SEGS: 
       return (sciSons *)sciGetRelationship (pobj)->plastsons;
       break;
@@ -3725,9 +3619,6 @@ sciSetIsClipping (sciPointObj * pobj, int value)
     case SCI_POLYLINE:
       pPOLYLINE_FEATURE (pobj)->isclip = value;
       break;
-    case SCI_PATCH:
-      pPATCH_FEATURE (pobj)->isclip = value;
-      break;
     case SCI_RECTANGLE:
       pRECTANGLE_FEATURE (pobj)->isclip = value;
       break;   
@@ -3779,9 +3670,6 @@ sciGetIsClipping (sciPointObj * pobj)
       break;
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pobj)->isclip;
-      break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pobj)->isclip;
       break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->isclip;
@@ -3913,7 +3801,6 @@ sciSetHighLight (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -3963,7 +3850,6 @@ sciGetHighLight (sciPointObj * pobj)
     case SCI_LIGHT:
       /*   case SCI_AXIS   */
     case SCI_AXES:
-    case SCI_PATCH:
     case SCI_MENU:
     case SCI_MENUCONTEXT:
     case SCI_AGREG:
@@ -3996,7 +3882,6 @@ sciSetAddPlot (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4038,7 +3923,6 @@ sciGetAddPlot (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4082,7 +3966,6 @@ sciSetAutoScale (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4123,7 +4006,6 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4168,7 +4050,6 @@ sciSetZooming (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4209,7 +4090,6 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4267,7 +4147,6 @@ sciSetGraphicsStyle (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4306,7 +4185,6 @@ sciGetGraphicsStyle (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4355,7 +4233,6 @@ sciSetXorMode (sciPointObj * pobj, int value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4398,7 +4275,6 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4474,7 +4350,6 @@ sciSetResize (sciPointObj * pobj, BOOL value)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4516,7 +4391,6 @@ sciGetResize (sciPointObj * pobj)
     case SCI_TITLE:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
@@ -4989,9 +4863,6 @@ sciGetIsSelected (sciPointObj * pobj)
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pobj)->isselected;
       break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pobj)->isselected;
-      break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->isselected;
       break;
@@ -5055,9 +4926,6 @@ sciSetVisibility (sciPointObj * pobj, BOOL value)
       break;
     case SCI_POLYLINE:
       pPOLYLINE_FEATURE (pobj)->visible = value;
-      break;
-    case SCI_PATCH:
-      pPATCH_FEATURE (pobj)->visible = value;
       break;
     case SCI_RECTANGLE:
       pRECTANGLE_FEATURE (pobj)->visible = value;
@@ -5128,9 +4996,6 @@ sciGetVisibility (sciPointObj * pobj)
       break;
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pobj)->visible;
-      break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pobj)->visible;
       break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE (pobj)->visible;
@@ -5418,9 +5283,6 @@ sciGetFontDeciWidth (sciPointObj * pobj)
     case SCI_POLYLINE:
       return -1;
       break;
-    case SCI_PATCH:
-      return -1;
-      break;
     case SCI_RECTANGLE:
       return -1;
       break;
@@ -5508,11 +5370,6 @@ sciSetFontDeciWidth (sciPointObj * pobj, int fontdeciwidth)
 	  return -1;
 	  break;
 	case SCI_POLYLINE:
-	  /* pas de context graphics */
-	  sciprint ("This object have no  Font width \n");
-	  return -1;
-	  break;
-	case SCI_PATCH:
 	  /* pas de context graphics */
 	  sciprint ("This object have no  Font width \n");
 	  return -1;
@@ -5618,7 +5475,6 @@ sciGetFontOrientation (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5687,7 +5543,6 @@ sciSetFontOrientation (sciPointObj * pobj, int textorientation)
 	case SCI_FEC: 
 	case SCI_GRAYPLOT: 
 	case SCI_POLYLINE:
-	case SCI_PATCH:
 	case SCI_RECTANGLE:
 	case SCI_SURFACE:
 	case SCI_LIGHT:
@@ -5750,7 +5605,6 @@ sciSetText (sciPointObj * pobj, char text[], int n)
     case SCI_FEC:
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5801,7 +5655,6 @@ sciGetText (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5849,7 +5702,6 @@ sciGetTextLength (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5895,7 +5747,6 @@ sciSetTextPosX (sciPointObj * pobj, double x)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5940,7 +5791,6 @@ sciGetTextPosX (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -5986,7 +5836,6 @@ sciGetTextPosWidth (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6032,7 +5881,6 @@ sciGetTextPosHeight (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6080,7 +5928,6 @@ sciSetTextPosY (sciPointObj * pobj, double y)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6125,7 +5972,6 @@ sciGetTextPosY (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE: 
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6178,7 +6024,6 @@ sciGetFontBackground (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6251,7 +6096,6 @@ sciSetFontBackground (sciPointObj * pobj, int colorindex)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6298,7 +6142,6 @@ sciGetFontForeground (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6369,7 +6212,6 @@ sciSetFontForeground (sciPointObj * pobj, int colorindex)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6438,7 +6280,6 @@ sciGetFontStyle (sciPointObj * pobj)
     case SCI_FEC:
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6507,7 +6348,6 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6574,7 +6414,6 @@ sciSetFontName (sciPointObj * pobj, char pfontname[], int n)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6623,7 +6462,6 @@ sciGetFontName (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6671,7 +6509,6 @@ sciGetFontNameLength (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6716,7 +6553,6 @@ sciSetLegendPos (sciPointObj * pobj, int x, int y)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6822,7 +6658,6 @@ sciSetTitlePos (sciPointObj * pobj, int x, int y)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -6945,7 +6780,6 @@ sciGetFontContext (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -7172,7 +7006,6 @@ sciInitFontContext (sciPointObj * pobj)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -7216,7 +7049,6 @@ sciGethPopMenu (sciPointObj * pthis)
   case SCI_FEC: 
   case SCI_GRAYPLOT: 
   case SCI_POLYLINE:
-  case SCI_PATCH:
   case SCI_RECTANGLE:
   case SCI_SURFACE: 
   case SCI_LIGHT:
@@ -7344,7 +7176,6 @@ sciAttachPopMenu (sciPointObj *pthis, sciPointObj *pPopMenu)
       case SCI_FEC:
       case SCI_GRAYPLOT: 
       case SCI_POLYLINE:
-      case SCI_PATCH:
       case SCI_RECTANGLE:
       case SCI_SURFACE: 
       case SCI_LIGHT:
@@ -7471,10 +7302,6 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
       DestroyPolyline (pthis);
       return 0;
       break;
-    case SCI_PATCH:
-      DestroyPatch (pthis);
-      return 0;
-      break;
     case SCI_RECTANGLE:
       DestroyRectangle (pthis);
       return 0;
@@ -7535,7 +7362,7 @@ DestroyAllGraphicsSons (sciPointObj * pthis)
 
 
 /**sciDelGraphicObj
- * This function delete only users graphics object and its dependency limited to SCI_TITLE SCI_LEGEND SCI_ARC case SCI_POLYLINE SCI_RECTANGLE SCI_PATCH SCI_SURFACE SCI_AXIS SCI_MENU SCI_MENUCONTEXT SCI_SUBWIN
+ * This function delete only users graphics object and its dependency limited to SCI_TITLE SCI_LEGEND SCI_ARC case SCI_POLYLINE SCI_RECTANGLE SCI_SURFACE SCI_AXIS SCI_MENU SCI_MENUCONTEXT SCI_SUBWIN
  * @param sciPointObj * pthis: the pointer to the entity
  */
 int
@@ -7551,7 +7378,6 @@ sciDelGraphicObj (sciPointObj * pthis)
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
-    case SCI_PATCH:
     case SCI_SURFACE:
       /*   case SCI_AXIS    */
     case SCI_AXES:
@@ -9528,187 +9354,6 @@ DestroySegs (sciPointObj * pthis)
 }
 
 
-/**ConstructPatch
- * This function creates
- */
-sciPointObj *
-ConstructPatch (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
-		int n)
-{
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciPolyline *ppoly = (sciPolyline *) NULL;
-  double xmax, ymax;
-
-  
-  int i = 0;
-  
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_PATCH);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciPatch)))) == NULL)
-	return (sciPointObj *) NULL;
-      if (sciAddNewHandle (pobj) == -1)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /*sciSetParent (pobj, pparentsubwin);*/
-      if (!(sciAddThisToItsParent (pobj, pparentsubwin)))
-	{
-	  sciDelHandle (pobj);
-	  FREE(pPATCH_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      sciSetCurrentSon (pobj, (sciPointObj *) NULL);
-      pPATCH_FEATURE (pobj)->relationship.psons = (sciSons *) NULL;
-      pPATCH_FEATURE (pobj)->relationship.plastsons = (sciSons *) NULL;
-
-      pPATCH_FEATURE (pobj)->callback = (char *)NULL;
-      pPATCH_FEATURE (pobj)->callbacklen = 0;
-      pPATCH_FEATURE (pobj)->callbackevent = 100;
-
-
-      pPATCH_FEATURE (pobj)->isselected = TRUE;    
-      pPATCH_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj)); 
-      pPATCH_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); 
-      ppoly = (sciPolyline *) pPATCH_FEATURE (pobj);
-      if ((ppoly->pvector = MALLOC (n * sizeof (POINT2D))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPATCH_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /* pour le moment je garde les vecteurs separes, et non en POINT2D */
-      if ((ppoly->pvx = MALLOC (n * sizeof (double))) == NULL)
-	{
-	  FREE(pPATCH_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPATCH_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((ppoly->pvy = MALLOC (n * sizeof (double))) == NULL)
-	{
-	  FREE(pPATCH_FEATURE (pobj)->pvx);
-	  FREE(pPATCH_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPATCH_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-
-      ppoly->xmin   = pvecx[0];
-      ppoly->ymin   = pvecy[0];
-      xmax          = 0;
-      ymax          = 0;
-      ppoly->width  = 0;
-      ppoly->height = 0;
-
-
-      for (i = 0; i < n; i++)
-	{
-	  ppoly->pvector[i].x = pvecx[i];
-	  ppoly->pvector[i].y = pvecy[i];
-	  ppoly->pvx[i]       = pvecx[i];
-	  ppoly->pvy[i]       = pvecy[i];
-	 
-	  ppoly->xmin   = Min(ppoly->pvx[i], ppoly->xmin);
-	  xmax          = Max(ppoly->pvx[i] ,xmax);
-
-	  ppoly->ymin   = Min(ppoly->pvy[i], ppoly->ymin);
-	  ymax          = Max(ppoly->pvy[i], ymax);
-	}
-      ppoly->width  = fabs(xmax - ppoly->xmin);
-      ppoly->height = fabs(ymax - ppoly->ymin);
-
-      ppoly->n1 = n;		/* memorisation du nombre de points */
-      ppoly->closed = 1;
-      pPATCH_FEATURE (pobj)->pvz = (double *) NULL;/**DJ.Abdemouche 2003**/
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(pPATCH_FEATURE (pobj)->pvy);
-	  FREE(pPATCH_FEATURE (pobj)->pvx);
-	  FREE(pPATCH_FEATURE (pobj)->pvector);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pPATCH_FEATURE (pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
-    }
-  else
-    {
-      sciprint ("The parent has to be a SUBWIN \n");
-      return (sciPointObj *) NULL;
-    }
-}
-
-
-/**ClonePatch
- * @memo This function destroies Text structure and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-sciPointObj *
-ClonePatch (sciPointObj * pthis)
-{
-  sciPointObj * pobj, *subwinparent;
-  subwinparent = pthis;
-
-  while ((sciGetEntityType(subwinparent = sciGetParent(subwinparent)) != SCI_SUBWIN)
-	 && (sciGetEntityType(subwinparent) != -1));
-  if (sciGetEntityType(subwinparent) == -1)
-    return (sciPointObj *)NULL;
-  if (!(pobj = ConstructPatch (subwinparent, pPATCH_FEATURE(pthis)->pvx, 
-			       pPATCH_FEATURE(pthis)->pvy, pPATCH_FEATURE(pthis)->n))){
-    return (sciPointObj *)NULL;
-  }
-  else {
-    sciSetCurrentObj(pobj);}; /* F.Leray Adding 26.03.04*/
-  if (sciSetBackground(pobj, sciGetBackground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetForeground(pobj, sciGetForeground (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineStyle(pobj, sciGetLineStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetFillStyle(pobj, sciGetFillStyle (pthis)) == -1)
-    return (sciPointObj *)NULL;
-  if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
-    return (sciPointObj *)NULL;
-
-  return (sciPointObj *)pobj;
-}
-
-
-/**DestroyPatch
- * @memo This function destroies Patch and the elementaries structures and only this to destroy all sons use DelGraphicsSon
- * @param sciPointObj * pthis: the pointer to the entity
- */
-int
-DestroyPatch (sciPointObj * pthis)
-{
-  FREE (pPATCH_FEATURE (pthis)->pvector);
-  FREE (pPATCH_FEATURE (pthis)->pvx);
-  FREE (pPATCH_FEATURE (pthis)->pvy); 
-  if (pPATCH_FEATURE (pthis)->pvz != NULL)
-    FREE (pPATCH_FEATURE (pthis)->pvz);
-  sciDelThisToItsParent (pthis, sciGetParent (pthis));
-  if (sciDelHandle (pthis) == -1)
-    return -1;
-  FREE (sciGetPointerToFeature (pthis));
-  FREE (pthis);
-  /* on peut alors destroyer le parent */
-  return 0;
-}
-
-
 
 /**ConstructArc
  * @memo This function creates an Arc structure
@@ -10647,8 +10292,8 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
       pAXES_FEATURE (pobj)->callbacklen = 0;
       pAXES_FEATURE (pobj)->callbackevent = 100;
       pAXES_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentFigure(pobj));
-      /*  pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
-      pAXES_FEATURE (pobj)->isclip = -1; /* F.Leray Change here: by default Axis are not clipped. 10.03.04 */
+      /*pAXES_FEATURE (pobj)->isclip = sciGetIsClipping((sciPointObj *) sciGetParentSubwin(pobj)); */
+       pAXES_FEATURE (pobj)->isclip = -1;  /*F.Leray Change here: by default Axis are not clipped. 10.03.04 */
 
      
       pAXES_FEATURE (pobj)->dir =dir;
@@ -11023,9 +10668,6 @@ sciCloneObj (sciPointObj * pobj)
       break;
     case SCI_POLYLINE:
       return ClonePolyline(pobj);
-      break;
-    case SCI_PATCH:
-      return ClonePatch(pobj);
       break;
     case SCI_ARC:
       return CloneArc(pobj);
@@ -11736,7 +11378,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
       
       if ((xm = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
       if ((ym = MALLOC ((2*n1*n2)*sizeof (integer))) == NULL)	return -1;
-      /**DJ.Abdemouche 2003**/
       if ((xzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
       if ((yzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
       if ((zzz = MALLOC ((2*n1*n2)*sizeof (double))) == NULL)	return -1;
@@ -11811,6 +11452,17 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 	      C2F(dr)("xarrow","v",&xm[2*n1*j],&ym[2*n1*j],&nn2,&arsize,&lstyle,&iflag,PD0,PD0,PD0,PD0,0L,0L); 
 	    } 
 	  break;
+	case 5:
+	  if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
+	    trans3d(sciGetParentSubwin(pobj),n1,xm,ym,pPOLYLINE_FEATURE (pobj)->pvx,
+		    pPOLYLINE_FEATURE (pobj)->pvy,pPOLYLINE_FEATURE (pobj)->pvz);
+	  else
+	    C2F (echelle2d) (pPOLYLINE_FEATURE (pobj)->pvx,
+			     pPOLYLINE_FEATURE (pobj)->pvy, xm, ym, &n1, &n2, "f2i",3L);
+	  sciClip(sciGetIsClipping(pobj));
+	  C2F (dr) ("xarea", str, &n1, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
+
+	  break;
 	default:
 	  sciprint ("This Polyline cannot be drawn !\n");
 #ifdef WIN32 
@@ -11830,65 +11482,6 @@ extern void Champ2DRealToPixel(xm,ym,zm,na,arsize,colored,x,y,fx,fy,n1,n2,arfact
 #endif  
       sciUnClip(sciGetIsClipping(pobj));
       FREE (xm); xm = (integer *) NULL;
-      FREE (ym); ym = (integer *) NULL;
-      break;
-    case SCI_PATCH: 
-     
-      if (!sciGetVisibility(pobj)) break;
-      /*sciSetCurrentObj (pobj);	     F.Leray 25.03.04 */
-
-      itmp[0] = 0;		/* verbose*/
-      itmp[1] = 0;		/* thickness value*/
-      itmp[2] = 1;	       /* narg*/
-      C2F (dr) ("xget", "thickness", &itmp[0], &itmp[1], &itmp[2], PI0, PI0,
-		PI0, PD0, PD0, PD0, PD0, 0L, 0L);
-
-      /* load the object foreground and dashes color */
-      x[0] = sciGetForeground (pobj);	
-      x[2] = sciGetLineWidth (pobj);
-      x[3] = sciGetLineStyle (pobj);
-      x[4] = 0;
-      v = 0;
-      dv = 0;
-#ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
-#endif
-      C2F (dr) ("xset", "dashes", x, x, x+4, x+4, x+4, &v, &dv,
-		&dv, &dv, &dv, 5L, 6L);
-      C2F (dr) ("xset", "foreground", x, x, x+4, x+4, x+4, &v,
-		&dv, &dv, &dv, &dv, 5L, 10L);
-      C2F (dr) ("xset", "thickness", x+2, PI0, PI0, PI0, PI0, PI0, PD0,
-		PD0, PD0, PD0, 4L, 9L);
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-
-      n = pPATCH_FEATURE (pobj)->n;
-      closeflag = pPATCH_FEATURE (pobj)->closed;
-
-      if ((xm = MALLOC (n * sizeof (int))) == NULL)
-      	return -1;
-      if ((ym = MALLOC (n * sizeof (int))) == NULL) {
-	FREE(xm); xm = (int *) NULL;/* SS 02/04 */ /* F.Leray 20.02.04*/
-      	return -1; }
-      /**DJ.Abdemouche 2003**/
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pobj))->is3d)
-	trans3d(sciGetParentSubwin(pobj),n,xm,ym,pPATCH_FEATURE (pobj)->pvx,
-		pPATCH_FEATURE (pobj)->pvy,pPATCH_FEATURE (pobj)->pvz);
-      else
-	C2F (echelle2d) (pPATCH_FEATURE (pobj)->pvx,
-			 pPATCH_FEATURE (pobj)->pvy, xm, ym, &n, &n2, "f2i",3L);
-#ifdef WIN32 
-      flag_DO = MaybeSetWinhdc ();
-#endif
-      sciClip(sciGetIsClipping(pobj));
-      C2F (dr) ("xarea", str, &n, xm, ym, &closeflag, PI0, PI0, PD0, PD0, PD0, PD0, 5L,strlen(str));
-#ifdef WIN32 
-      if ( flag_DO == 1) ReleaseWinHdc ();
-#endif
-      sciUnClip(sciGetIsClipping(pobj));
-
-      FREE (xm); xm = (integer *) NULL; /* F.Leray 20.02.04*/
       FREE (ym); ym = (integer *) NULL;
       break;
     case SCI_ARC: 
@@ -12592,7 +12185,6 @@ sciSetPosX (sciPointObj * pthis, double x)
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:    
@@ -12640,7 +12232,6 @@ sciSetPosY (sciPointObj * pthis, double y)
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
-    case SCI_PATCH:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
     case SCI_LIGHT:
@@ -12691,9 +12282,6 @@ sciGetPosX (sciPointObj * pthis)
       break;
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->xmin;
-      break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->xmin;
       break;
     case SCI_AGREG:
       return pAGREG_FEATURE (pthis)->xmin;
@@ -12753,9 +12341,6 @@ sciGetPosWidth (sciPointObj * pthis)
       break;
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->width;
-      break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->width;
       break;
     case SCI_AGREG:
       xtmp1 = pAGREG_FEATURE(pthis)->xmax;
@@ -12822,9 +12407,6 @@ sciGetPosY (sciPointObj * pthis)
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->ymin;
       break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->ymin;
-      break;
     case SCI_AGREG:
       return pAGREG_FEATURE (pthis)->ymin;
       break;   
@@ -12887,9 +12469,6 @@ sciGetPosHeight (sciPointObj * pthis)
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->height;
       break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->height;
-      break;
     case SCI_AGREG:
       return fabs(pAGREG_FEATURE (pthis)->ymax - pAGREG_FEATURE (pthis)->ymin);
       break;  
@@ -12938,7 +12517,6 @@ sciGetPosZ (sciPointObj * pthis)
     case SCI_SUBWIN:
     case SCI_ARC:		
     case SCI_POLYLINE:
-    case SCI_PATCH:
     case SCI_AGREG:
     case SCI_LEGEND:
       /*   case SCI_AXIS*/
@@ -12995,21 +12573,6 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
       tab[3] = (double)sciGetHeight (pthis);
       tab[4] = (double)sciGetScilabXgc(pthis)->CWindowWidthView; 
       tab[5] = (double)sciGetScilabXgc(pthis)->CWindowHeightView; 
-      return (double*)tab;
-      break;
-    case SCI_PATCH:
-      *numrow = pPATCH_FEATURE (pthis)->n;
-      *numcol= ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) 
-		&& (pPATCH_FEATURE (pthis)->pvz != NULL))? 3:2;
-      if ((tab = calloc((*numrow)*(*numcol),sizeof(double))) == NULL)
-	return (double*)NULL;
-      for (i=0;i < *numrow;i++)
-	{
-	  tab[i] = pPATCH_FEATURE (pthis)->pvx[i];	
-	  tab[*numrow+i]= pPATCH_FEATURE (pthis)->pvy[i];
-	  if (*numcol== 3)
-	    tab[2*(*numrow)+i]= pPATCH_FEATURE (pthis)->pvz[i];
-	}
       return (double*)tab;
       break;
     case SCI_POLYLINE:
@@ -13358,76 +12921,6 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       if (pvz != (double *) NULL)
 	pSUBWIN_FEATURE (psubwin)->value_max[2] = Max( pSUBWIN_FEATURE (psubwin)->value_max[2],zmax);
       
-      return 0;
-      break;
-    case SCI_PATCH:
-      n1=pPATCH_FEATURE (pthis)->n;
-      if ((*numcol != 3)&&(*numcol != 2))
-	{
-	  sciprint("The number of columns must be 2 (3 if three-dimensional axes) \n");
-	  return -1;
-	}
-      if (*numrow != n1) /* SS 30/1/02 */
-	{
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  } 
-	  if ((pvector = MALLOC (n1 * sizeof (POINT2D))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    FREE(pvy); pvy = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-	    if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	      if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) {
-		FREE(pvx); pvx = (double *) NULL;
-		FREE(pvy); pvy = (double *) NULL;
-		FREE(pvector); pvector = (POINT2D *) NULL;
-		return -1;
-	      }
-	  FREE(pPATCH_FEATURE (pthis)->pvx); pPATCH_FEATURE (pthis)->pvx = NULL;
-	  FREE(pPATCH_FEATURE (pthis)->pvy); pPATCH_FEATURE (pthis)->pvy = NULL;
-	  FREE(pPATCH_FEATURE (pthis)->pvector); pPATCH_FEATURE (pthis)->pvector = NULL;
-	  if ((pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	      && (pPOLYLINE_FEATURE (pthis)->pvz != NULL))
-	    {
-	      FREE(pPATCH_FEATURE (pthis)->pvz);
-	      pPATCH_FEATURE (pthis)->pvz = NULL;
-	    }
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)]; 
-	      pvector[i].x = tab[i];
-	      pvector[i].y = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	    }
-	  pPATCH_FEATURE (pthis)->pvx=pvx;
-	  pPATCH_FEATURE (pthis)->pvy=pvy;
-	  pPATCH_FEATURE (pthis)->pvector=pvector;
-	  pPATCH_FEATURE (pthis)->n=n1;
-	  if (*numcol == 3)
-	    pPATCH_FEATURE (pthis)->pvz=pvz;
-	}
-      else
-	{
-	  if (*numcol == 3)
-	    if ((pvz = MALLOC (*numrow * sizeof (double))) == NULL) 
-	      return -1; 
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pPATCH_FEATURE (pthis)->pvx[i] = tab[i];
-	      pPATCH_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvy[i] = tab[i+ 2*(*numrow)];
-	    }
-	  if (*numcol == 3)
-	    pPATCH_FEATURE (pthis)->pvz = pvz;
-	}
       return 0;
       break;
     case SCI_RECTANGLE:
@@ -13927,28 +13420,6 @@ sciIsClicked(sciPointObj *pthis,int x, int y)
       FREE(tab);
       return FALSE;
       break;
-    case SCI_PATCH:
-      /*set_scale ("tttfff", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-	pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);*/
-      set_scale ("tttftf", pSUBWIN_FEATURE (sciGetParent(pthis))->WRect, 
-		 pSUBWIN_FEATURE (sciGetParent(pthis))->FRect, NULL, "nn", NULL);
-      DELTAX = fabs(0.01 * sciGetWidth (sciGetParent(pthis)));/* dimension in pixel */
-      DELTAY = fabs(0.01 * sciGetHeight (sciGetParent(pthis)));/* dimension in pixel */
-      tab = sciGetPoint(pthis, &numrow, &numcol);
-      i   = 0;
-      while((i < numrow) && 
-	    ((abs(XDouble2Pixel(tab[2*i]) - x) > DELTAX) || 
-	     (abs(YDouble2Pixel(tab[2*i+1]) - y) > DELTAY)))
-	i++;
-      if ((i < numrow)   && (abs(XDouble2Pixel(tab[2*i]) - x) < DELTAX) && 
-	  (abs(YDouble2Pixel(tab[2*i+1]) - y) < DELTAY))
-	{
-	  FREE(tab);
-	  return TRUE;
-	}
-      FREE(tab);
-      return FALSE;
-      break;
     case SCI_SEGS: 
     case SCI_FEC: 
     case SCI_GRAYPLOT:
@@ -14082,20 +13553,6 @@ sciAddCallback (sciPointObj * pthis,char *code, int len, int mevent )
                         
 	}
       break;
-    case SCI_PATCH:
-      if ((pPATCH_FEATURE (pthis)->callback = calloc (len+1, sizeof (char))) == NULL)
-	{
-	  sciprint("No more Memory allocation !\n");
-	  return -1;
-	}
-      else 
-	{
-	  strncpy(pPATCH_FEATURE (pthis)->callback, code, len);
-	  pPATCH_FEATURE (pthis)->callbacklen = len;
-	  pPATCH_FEATURE (pthis)->callbackevent = mevent;
-                       
-	}
-      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -14146,9 +13603,6 @@ char *sciGetCallback(sciPointObj * pthis)
       break;
     case SCI_POLYLINE:
       return (char *)(pPOLYLINE_FEATURE(pthis)->callback);
-      break;
-    case SCI_PATCH:
-      return (char *)(pPATCH_FEATURE (pthis)->callback);
       break;
     case SCI_RECTANGLE:
       return (char *)(pRECTANGLE_FEATURE(pthis)->callback);
@@ -14210,9 +13664,6 @@ int sciGetCallbackMouseEvent(sciPointObj * pthis)
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE(pthis)->callbackevent;
       break;
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->callbackevent;
-      break;
     case SCI_RECTANGLE:
       return pRECTANGLE_FEATURE(pthis)->callbackevent;
       break;
@@ -14269,9 +13720,6 @@ int sciSetCallbackMouseEvent(sciPointObj * pthis, int mevent)
       break;
     case SCI_POLYLINE:
       pPOLYLINE_FEATURE(pthis)->callbackevent = mevent;
-      break;
-    case SCI_PATCH:
-      pPATCH_FEATURE (pthis)->callbackevent = mevent;
       break;
     case SCI_RECTANGLE:
       pRECTANGLE_FEATURE(pthis)->callbackevent = mevent;
@@ -14338,9 +13786,6 @@ sciGetCallbackLen (sciPointObj * pthis)
       break;     
     case SCI_POLYLINE:
       return pPOLYLINE_FEATURE (pthis)->callbacklen;
-      break;    
-    case SCI_PATCH:
-      return pPATCH_FEATURE (pthis)->callbacklen;
       break;    
     case SCI_TEXT:
     case SCI_TITLE:
@@ -14417,12 +13862,6 @@ sciDelCallback (sciPointObj * pthis)
       FREE(pPOLYLINE_FEATURE (pthis)->callback);
       pPOLYLINE_FEATURE (pthis)->callback = NULL;
       break;
-    case SCI_PATCH:
-      pPATCH_FEATURE (pthis)->callbacklen = 0;
-      pPATCH_FEATURE (pthis)->callbackevent = 100;
-      FREE(pPATCH_FEATURE (pthis)->callback);
-      pPATCH_FEATURE (pthis)->callback = NULL;
-      break;
     case SCI_TEXT:
     case SCI_TITLE:
     case SCI_LEGEND:
@@ -14465,7 +13904,6 @@ sciExecCallback (sciPointObj * pthis)
     case SCI_FEC: 
     case SCI_GRAYPLOT: 
     case SCI_POLYLINE:
-    case SCI_PATCH:
       if (sciGetCallback(pthis))
 	{
 	  CreateVar(1, "c", &m1, &n1, &l1);
@@ -14536,7 +13974,6 @@ ConstructAgregation (long *handelsvalue, int number) /* Conflicting types with d
 	case SCI_FEC: 
 	case SCI_GRAYPLOT: 
 	case SCI_POLYLINE:
-	case SCI_PATCH:
 	case SCI_TEXT:
 	case SCI_TITLE:
 	case SCI_LEGEND:
@@ -14955,12 +14392,6 @@ int Objmove (hdl,x,y,opt)
       for (i=0;i<pPOLYLINE_FEATURE(pobj)->n1;i++) {
 	pPOLYLINE_FEATURE(pobj)->pvx[i] += x; 
 	pPOLYLINE_FEATURE(pobj)->pvy[i] += y;
-      }
-      break;
-    case SCI_PATCH:
-      for (i=0;i<pPATCH_FEATURE(pobj)->n;i++) {
-	pPATCH_FEATURE(pobj)->pvx[i] += x; 
-	pPATCH_FEATURE(pobj)->pvy[i] += y;
       }
       break;
     case SCI_FEC: 
