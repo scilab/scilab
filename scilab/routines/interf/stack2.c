@@ -452,6 +452,7 @@ int C2F(createvar)(lw, typex, m, n, lr, type_len)
       break;
     case 'z' : 
       IT = 1;
+      if (!(*lstk(lw1) % 2) ) *lstk(lw1) = *lstk(lw1)+1;
       if (! C2F(cremat)(fname, &lw1, &IT, m, n, lr, &lcs, nlgh))    return FALSE_;
       Type1 = Type ; M =  *m ; N = *n; LR = *lr ;
       C2F(intersci).ladc[*lw - 1] = *lr + M*N;
