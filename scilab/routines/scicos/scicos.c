@@ -367,8 +367,12 @@ int C2F(scicos)
       }
       Blocks[kf].scsptr=-i; /* set scilab function adress for sciblk */
     }
-    else if (i<=ntabsim)
+    else if (i<=ntabsim){
       Blocks[kf].funpt=*(tabsim[i-1].fonc);
+      Blocks[kf].scsptr=0;     /* this is done for being able to test if a block
+				is a scilab block in the debugging phase when 
+				sciblk4 is called */
+    }
     else {
       i -= (ntabsim+1);
       GetDynFunc(i,&Blocks[kf].funpt);
@@ -378,6 +382,9 @@ int C2F(scicos)
 	free_blocks();
 	return 0;
       }
+      Blocks[kf].scsptr=0;   /* this is done for being able to test if a block
+				is a scilab block in the debugging phase when 
+				sciblk4 is called */
     }
     Blocks[kf].ztyp=ztyp[kf+1];
     Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
@@ -1637,14 +1644,14 @@ int C2F(scicos)
 
 {
   /* System generated locals */
-  integer i2;
+  integer i2,j;
 
   /* Local variables */
   static integer flag__, kiwa;
 
-  static integer i;
+  static integer i,i3,ierr1;
   static integer  ii, keve;
-
+  double d__1;
 
   /* Function Body */
   kiwa = 0;
@@ -1666,6 +1673,37 @@ int C2F(scicos)
     for (ii = ordptr[keve]; ii <= i2; ++ii) {
       C2F(curblk).kfun = ordclk[ii];
       nclock=ordclk[ii + nordclk];
+
+      if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
+	if (funtyp[C2F(curblk).kfun] >= 0) {
+	  d__1 =  - 1.;
+	  C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, 
+		    &d__1, Blocks[C2F(curblk).kfun-1].evout, &c__1);
+	  
+	  flag__ = 3;
+
+	  if(nclock>0){ /* if event has continuous origin don't call*/
+	    callf(told, xd, x, x ,x,&flag__);
+	    if (flag__ < 0) {
+	      *ierr = 5 - flag__;
+	      return;
+	    }
+	  }
+	  
+	  for (j = 0; j < Blocks[C2F(curblk).kfun - 1].nevout; ++j) {
+	    if (Blocks[C2F(curblk).kfun-1].evout[j] >= 0.) {
+	      i3 = j + clkptr[C2F(curblk).kfun] ;
+	      addevs(Blocks[C2F(curblk).kfun-1].evout[j]+(*told), &i3, &ierr1);
+	      if (ierr1 != 0) {
+		/*     !                 event conflict */
+		*ierr = 3;
+		return;
+	      }
+	    }
+	  }
+	}
+      }
+      
       if(nclock> 0) {
 	if (Blocks[C2F(curblk).kfun-1].nx+Blocks[C2F(curblk).kfun-1].nz > 0||
 	    *Blocks[C2F(curblk).kfun-1].work !=NULL) {
@@ -1698,8 +1736,7 @@ int C2F(scicos)
      integer *kiwa;
 {
   /* System generated locals */
-  integer i2, i3;
-  double d__1;
+  integer i2;
 
   /* Local variables */
   static integer flag__;
@@ -1735,35 +1772,7 @@ int C2F(scicos)
  
     /*     .     Initialize tvec */
     if (Blocks[C2F(curblk).kfun - 1].nevout > 0) {
-      if (funtyp[C2F(curblk).kfun] >= 0) {
-	d__1 =  - 1.;
-	C2F(dset)(&Blocks[C2F(curblk).kfun - 1].nevout, 
-		  &d__1, Blocks[C2F(curblk).kfun-1].evout, &c__1);
-
-	flag__ = 3;
-	nclock=ordclk[ii + nordclk];
-	if(nclock>0){ /* if event has continuous origin don't call*/
-	  callf(told, xd, x, x ,x,&flag__);
-	  if (flag__ < 0) {
-	    *ierr = 5 - flag__;
-	    return;
-	  }
-	}
-
-	if (Blocks[C2F(curblk).kfun - 1].nevout >= 1) {
-	  for (i = 0; i < Blocks[C2F(curblk).kfun - 1].nevout; ++i) {
-	    if (Blocks[C2F(curblk).kfun-1].evout[i] >= 0.) {
-	      i3 = i + clkptr[C2F(curblk).kfun] ;
-	      addevs(Blocks[C2F(curblk).kfun-1].evout[i]+(*told), &i3, &ierr1);
-	      if (ierr1 != 0) {
-		/*     !                 event conflict */
-		*ierr = 3;
-		return;
-	      }
-	    }
-	  }
-	}
-      } else {
+      if (funtyp[C2F(curblk).kfun] < 0) {
 	if (funtyp[C2F(curblk).kfun] == -1) {
 	  if (outtb[-1+lnkptr[inplnk[inpptr[C2F(curblk).kfun]]]] <= 0.) {
 	    i = 2;
@@ -2291,11 +2300,8 @@ callf(t,xtd,xt,residual,g,flag)
       }
     }
     if ( cosd > 1){
-      sciprint("block %d is called ",kf);
-      sciprint("with flag %d ",*flag);
-      sciprint("at time %f \r\n",*t);
       if(debug_block>-1){
-	sciprint("Leaving the block \r\n");
+	sciprint("Leaving block %d \r\n",kf);
 	call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
       }
     }
@@ -2580,11 +2586,8 @@ callf(t,xtd,xt,residual,g,flag)
     Blocks[kf-1].evout[in]=Blocks[kf-1].evout[in]-*t;
   }
   if ( cosd > 1){
-    sciprint("block %d is called ",kf);
-    sciprint("with flag %d ",*flag);
-    sciprint("at time %f \r\n",*t);
     if(debug_block>-1){
-      sciprint("Leaving the block \r\n");
+      sciprint("Leaving block %d \r\n",kf);
       call_debug_scicos(t,xtd,xt,residual,g,flag,kf,flagi,debug_block);
     }
   }
