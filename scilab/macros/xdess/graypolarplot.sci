@@ -50,7 +50,7 @@ for k=0:11
   xset("dashes",3)
   xsegs([0;R*cos(k*(%pi/6))],[0;R*sin(k*(%pi/6))])
   xset("dashes",1)
-  xstringb(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
+  xstring(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
 end
 xset("dashes",1)
 endfunction
