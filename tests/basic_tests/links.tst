@@ -1,17 +1,10 @@
 // Copyright INRIA
 
-files=G_make(['externals.o'],'externals.dll');
 pref='ext';
 suf='f';
 routines=[pref(ones(1,14))+string(1:14)+suf(ones(1,14))];
-lktest=link('show');
-if lktest==1 then
-	link(files,routines);
-else
-	for s=routines; link(files,s);end
-end
-
-
+ilib_for_link(routines,'externals.o',[],"f");
+exec loader.sce ;
 //(very) simple example 1
 a=[1,2,3];b=[4,5,6];n=3;
 c=call('ext1f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d');

@@ -2,32 +2,23 @@
 // Copyright INRIA
  
  
-files=G_make(['externals.o'],'externals.dll');
- 
 pref='ext';
  
 suf='f';
  
 routines=[pref(ones(1,14))+string(1:14)+suf(ones(1,14))];
  
-lktest=link('show');
-Number of entry points 0
-
-Shared libs : [
-] : 0 libs
-
+ilib_for_link(routines,'externals.o',[],"f");
+   generate a loader file
+   generate a Makefile: Makelib
+   running the makefile
+   compilation of externals
  
-if lktest==1 then
-	link(files,routines);
+exec loader.sce ;
 shared archive loaded
 
 Link done
 
-else
-	for s=routines; link(files,s);end
-end
- 
- 
  
 //(very) simple example 1
  
