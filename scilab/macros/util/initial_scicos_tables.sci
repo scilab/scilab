@@ -1,4 +1,8 @@
-function [scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
+function [scicos_pal,%scicos_menu,%scicos_short,%scicos_help,%scicos_display_mode]=...
+    initial_scicos_tables()
+  
+%scicos_display_mode=0  // =1 if pixmap to be used for display
+
 // Define scicos palettes of blocks
 scicos_pal=['Sources','SCI/macros/scicos/Sources.cosf'
       'Sinks','SCI/macros/scicos/Sinks.cosf';

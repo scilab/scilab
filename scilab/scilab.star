@@ -147,8 +147,8 @@ end
 
 
 // Define scicos palettes of blocks, scicos_menus and shortcuts
-[scicos_pal,%scicos_menu,%scicos_short,%scicos_help]=initial_scicos_tables()
-%scicos_display_mode=0  // =1 if pixmap to be used for display
+[scicos_pal,%scicos_menu,%scicos_short,%scicos_help,%scicos_display_mode]=initial_scicos_tables()
+
 clear initial_scicos_tables
 
 //Start TCL interpretor if required

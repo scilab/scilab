@@ -16,10 +16,35 @@ slevel=prod(size(find(%mac=='scicos')))
 super_block=slevel>1
 if ~super_block then
   // define scicos libraries
-  if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 then 
-    x_message(['scicos_pal,%scicos_menu or %scicos_short not defined';
-    'using default values'])
-    [scicos_pal,%scicos_menu,%scicos_short]=initial_scicos_tables()
+  if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 |..
+	exists('%scicos_display_mode')==0 then 
+    [scicos_pal_0,%scicos_menu_0,%scicos_short_0,%scicos_help_0,%scicos_display_mode_0]= ...
+	initial_scicos_tables()
+    if exists('scicos_pal')==0 then
+      x_message(['scicos_pal not defined';
+		 'using default values'])
+      scicos_pal=scicos_pal_0
+    end
+    if exists('%scicos_menu')==0 then
+      x_message(['%scicos_menu not defined';
+		 'using default values'])
+      %scicos_menu=%scicos_menu_0
+    end
+    if exists('%scicos_short')==0 then
+      x_message(['%scicos_short not defined';
+		 'using default values'])
+      %scicos_short=%scicos_short_0
+    end
+    if exists('%scicos_help')==0 then
+      x_message(['%scicos_help not defined';
+		 'using default values'])
+      %scicos_help=%scicos_help_0
+    end
+    if exists('%scicos_display_mode')==0 then
+      x_message(['%scicos_display_mode not defined';
+		 'using default values'])
+      %scicos_display_mode=%scicos_display_mode_0
+    end
   end
   if exists('scicoslib')==0 then load('SCI/macros/scicos/lib'),end
   if exists('blockslib')==0 then load('SCI/macros/scicos_blocks/lib'),end
