@@ -28,7 +28,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   // update parameters or compilation results
   [%cpr,%state0_n,needcompile,ok]=do_update(%cpr,%state0,needcompile)
   if ~ok then %tcur=[],alreadyran=%f,return,end
-  if ~is_equal(%state0_n,%state0) then //initial state has been changed
+  if ~isequal(%state0_n,%state0) then //initial state has been changed
     //or(%state0_n<>%state0) then //initial state has been changed
     %state0=%state0_n
     //  %cpr.state=%state0
