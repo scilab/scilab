@@ -858,7 +858,7 @@ if Err(As-Q'*A*Z) >100*%eps then pause,end
 if Err(Es-Q'*E*Z) >100*%eps then pause,end
 
 //ordered sel
-function t=sel(R),t=R(3)<2 ,endfunction
+function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
 
 dim=schur(A,E,sel);
 if dim<>2 then pause,end
@@ -924,7 +924,7 @@ if Err(As-Q'*A*Z) >100*%eps then pause,end
 if Err(Es-Q'*E*Z) >100*%eps then pause,end
 
 //ordered sel
-function t=sel(R),t=imag(R(1))>0 ,endfunction
+function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 
 dim=schur(A,E,sel);
 if dim<>3 then pause,end
@@ -993,7 +993,7 @@ if Err(As-Q'*A*Z) >100*%eps then pause,end
 if Err(Es-Q'*E*Z) >100*%eps then pause,end
 
 //ordered sel
-function t=sel(R),t=R(3)<2 ,endfunction
+function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
 
 dim=schur(A,E,sel);
 if dim<>24 then pause,end
@@ -1059,7 +1059,7 @@ if Err(As-Q'*A*Z) >1000*%eps then pause,end
 if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 
 //ordered sel
-function t=sel(R),t=imag(R(1))>0 ,endfunction
+function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 
 dim=schur(A,E,sel);
 if dim<>32 then pause,end
@@ -1754,7 +1754,7 @@ if Err(A'*A*x-A'*b)>1000*%eps then pause,end
 
 //LArge dimension real
 
-n=50;m=30;
+n=40;m=20;
 b=rand(m,2);A=rand(m,n);
 x=ldiv(A,b);
 if Err(A'*A*x-A'*b)>10000*%eps then pause,end

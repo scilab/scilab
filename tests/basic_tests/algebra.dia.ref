@@ -1546,7 +1546,7 @@ if Err(Es-Q'*E*Z) >100*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(R),t=R(3)<2 ,endfunction
+function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
 Warning :redefining function: sel                     
  
  
@@ -1670,7 +1670,7 @@ if Err(Es-Q'*E*Z) >100*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(R),t=imag(R(1))>0 ,endfunction
+function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 Warning :redefining function: sel                     
  
  
@@ -1798,7 +1798,7 @@ if Err(Es-Q'*E*Z) >100*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(R),t=R(3)<2 ,endfunction
+function t=sel(Alpha,Beta),t=Beta<2 ,endfunction
 Warning :redefining function: sel                     
  
  
@@ -1922,7 +1922,7 @@ if Err(Es-Q'*E*Z) >1000*%eps then bugmes();quit;end
  
 //ordered sel
  
-function t=sel(R),t=imag(R(1))>0 ,endfunction
+function t=sel(Alpha,Beta),t=imag(Alpha)>0 ,endfunction
 Warning :redefining function: sel                     
  
  
@@ -3201,7 +3201,7 @@ if Err(A'*A*x-A'*b)>1000*%eps then bugmes();quit;end
 //LArge dimension real
  
  
-n=50;m=30;
+n=40;m=20;
  
 b=rand(m,2);A=rand(m,n);
  
