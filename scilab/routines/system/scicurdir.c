@@ -34,9 +34,7 @@ extern char	   *getwd();
  * Changes scilab current directory 
  *******************************/
 
-int C2F(scichdir)(path,err)
-     char *path;
-     int *err;
+int C2F(scichdir)(char *path,int *err)
 {
   *err=0;
   if (path == (char*) 0) {
@@ -63,10 +61,7 @@ int C2F(scichdir)(path,err)
  * Get scilab current directory 
  *******************************/
 
-int C2F(scigetcwd)(path,lpath,err)
-     char **path;
-     int *lpath;
-     int *err;
+int C2F(scigetcwd)(char **path,int *lpath,int *err)
 {
 #ifndef __ABSC__
     if (GETCWD(cur_dir, 1024) == (char*) 0)
