@@ -1431,8 +1431,9 @@ void I3dRotation(void)
 		        inside the field brect[6] in sciSubWindow Object*/
 
 		      if( ((pSUBWIN_FEATURE (psubwin)->brect[0] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[2] != 0.)) &&
-			  ((pSUBWIN_FEATURE (psubwin)->brect[1] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[3] != 0.)) &&
-			  ((pSUBWIN_FEATURE (psubwin)->brect[4] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[5] != 0.)))
+			  ((pSUBWIN_FEATURE (psubwin)->brect[1] != 0.) || (pSUBWIN_FEATURE (psubwin)->brect[3] != 0.)))
+			/* &&
+			   ((pSUBWIN_FEATURE (psubwin)->brect[4] != -1.) || (pSUBWIN_FEATURE (psubwin)->brect[5] != 1.)))*/
 			{
 			  Cscale.bbox1[0] = pSUBWIN_FEATURE (psubwin)->brect[0]; 
 			  Cscale.bbox1[1] = pSUBWIN_FEATURE (psubwin)->brect[2]; 
@@ -1459,8 +1460,8 @@ void I3dRotation(void)
 		      Cscale.bbox1[1] =  1.;
 		      Cscale.bbox1[2] =  0.;
 		      Cscale.bbox1[3] =  1.;
-		      /*  dbox[4] =  -1.;
-			  dbox[5] =  1.;*/
+		      Cscale.bbox1[4] =  0.;
+		      Cscale.bbox1[5] =  1.;
 		    }
 		  
 		  /*  if (pSUBWIN_FEATURE (psubwin)->isoview) */
