@@ -67,7 +67,6 @@ int newRank()
      /*           the operation is impossible */
 {
   int rank;
-  int i;
   int res;
 
   rank = curFreeElt;
@@ -87,7 +86,6 @@ int newRank()
       return(rank);
     }
   else return(-1);
-
 }
 
 /********** updateElt **********/
@@ -97,7 +95,7 @@ void updateElt(rank, Mname, objPtr)
      Matrix *Mname;
      double *objPtr;
 #else /* __STDC__ */
-void updateElt( int rank, Matrix *Mname, double *objPtr )
+     void updateElt( int rank, Matrix *Mname, double *objPtr )
 #endif /* __STDC__ */
      /* update the fields of a gvar list element */
      /* INPUT  : -rank, element to update in the list */
@@ -120,7 +118,7 @@ int newGvar(Mname, sciObj)
      Matrix *Mname;
      double *sciObj;
 #else /* __STDC__ */
-int newGvar( Matrix *Mname, double *sciObj)
+     int newGvar( Matrix *Mname, double *sciObj)
 #endif /* __STDC__ */
      /* add a scilab object to the list */
      /* INPUT  : -name, name of the sci var */
@@ -159,23 +157,23 @@ int Mstrcmp(Ms1, Ms2)
      Matrix *Ms1;
      Matrix *Ms2;
 #else /* __STDC__ */
-int Mstrcmp( Matrix *Ms1, Matrix *Ms2)
+     int Mstrcmp( Matrix *Ms1, Matrix *Ms2)
 #endif /* __STDC__ */
 {
- int sz1;
- int sz2;
- int *m1;
- int *m2;
+  int sz1;
+  int sz2;
+  int *m1;
+  int *m2;
  
- if ((Ms1==NULL) || (Ms2==NULL) ) return(-1);
- m1 = (int *)Ms1;
- m2 = (int *)Ms2;
+  if ((Ms1==NULL) || (Ms2==NULL) ) return(-1);
+  m1 = (int *)Ms1;
+  m2 = (int *)Ms2;
  
- sz1 = m1[5] -1;
- sz2 = m2[5] -1;
+  sz1 = m1[5] -1;
+  sz2 = m2[5] -1;
 
- if (sz1 != sz2) return(-1);
- return(memcmp(m1+6, m2+6, sz1 * sizeof(int)));
+  if (sz1 != sz2) return(-1);
+  return(memcmp(m1+6, m2+6, sz1 * sizeof(int)));
 
 }
 
@@ -184,7 +182,7 @@ int Mstrcmp( Matrix *Ms1, Matrix *Ms2)
 int findGvar(Mname)
      Matrix *Mname;
 #else /* __STDC__ */
-int findGvar( Matrix *Mname )
+     int findGvar( Matrix *Mname )
 #endif /* __STDC__ */
      /* find the rank of a global variable in the list */
      /* INPUT  : name, name of the scilab variable to find */
@@ -209,7 +207,7 @@ int setGvar(Mname, sciObj)
      Matrix *Mname;
      double *sciObj;
 #else /* __STDC__ */
-int setGvar( Matrix *Mname, double *sciObj)
+     int setGvar( Matrix *Mname, double *sciObj)
 #endif /* __STDC__ */
      /* set a global variable */
      /* if it doesn't exist, its created */
@@ -274,7 +272,7 @@ int getGvar(Mname, ptrObj)
      Matrix *Mname;
      double **ptrObj;
 #else /* __STDC__ */
-int getGvar( Matrix *Mname, double **ptrObj)
+     int getGvar( Matrix *Mname, double **ptrObj)
 #endif /* __STDC__ */
      /* get a global variable */
      /* INPUT  : -name, scilab var name */
@@ -283,14 +281,8 @@ int getGvar( Matrix *Mname, double **ptrObj)
      /*         -1  -> the variable didn't exist */
      /*              in this case, NULL is returned in ptrObj */
      /*          0  -> the variable has been read */
-     
-     
-
-	
 {
-  int objSz; /* size in bytes of the scilab object */
   int rank; /* rank of the object in the gvar list */
-  double *objPtr; /* ptr on the actual global object */
 #ifdef GVAR_TRACE
   printf("In getGvar\n");
 #endif
@@ -323,7 +315,7 @@ int getGvar( Matrix *Mname, double **ptrObj)
 int delGvar(Mname)
      Matrix *Mname;
 #else /* __STDC__ */
-int delGvar( Matrix* Mname )
+     int delGvar( Matrix* Mname )
 #endif /* __STDC__ */
      /* delete a global var */
      /* the variable memory is freed and its entry */

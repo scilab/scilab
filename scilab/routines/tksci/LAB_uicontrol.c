@@ -20,10 +20,8 @@ void LAB_uicontrol()
 {
 
 
-  Matrix **MVars;
   
   int NbParam;
-  int NbChamps;
   
   int found=0;
   int i;
@@ -49,7 +47,7 @@ void LAB_uicontrol()
   NbParam = Interf.NbParamIn;
 
 
- if ( (NbParam >0) && MatrixIsScalar(Interf.Param[0]) && MatrixIsReal(Interf.Param[0]) )
+  if ( (NbParam >0) && MatrixIsScalar(Interf.Param[0]) && MatrixIsReal(Interf.Param[0]) )
     /* the first parameter is a figure handle */
     {
       FigureHandle = (int)(floor( MatrixGetScalar(Interf.Param[0]) ) );
@@ -95,58 +93,58 @@ void LAB_uicontrol()
     }
 
 
-if (StyleStr) 
-{
-  Style=GetStyle(StyleStr);
-  free(StyleStr);
-}
-else Style=0;
+  if (StyleStr) 
+    {
+      Style=GetStyle(StyleStr);
+      free(StyleStr);
+    }
+  else Style=0;
 
-if (Style==-1) 
-  {
-    InterfError("uicontrol : the specified style does not exist\n");
-    return;
-  } 
+  if (Style==-1) 
+    {
+      InterfError("uicontrol : the specified style does not exist\n");
+      return;
+    } 
 
 
 
-sprintf(MyCommand, "set MyTmpBertrand [CreateUIControl %d %s];", FigureHandle, UiStyleName[Style]); 
+  sprintf(MyCommand, "set MyTmpBertrand [CreateUIControl %d %s];", FigureHandle, UiStyleName[Style]); 
 
-Tcl_Eval(TKinterp,MyCommand);
-StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
-Handle = (int)atoi(StrHandle);
+  Tcl_Eval(TKinterp,MyCommand);
+  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  Handle = (int)atoi(StrHandle);
 
-/* Now let's set all propoerties for the uicontrol */
-for (i=FirstField; i<NbParam; i++)
-  {
-    Mfield = Interf.Param[i];
-    if (MatrixIsString(Interf.Param[i]))
-      {
-	if (++i==NbParam)
-	  {
-	    InterfError("uicontrol :The last value is missing \n");
-	    return;
-	  } 
+  /* Now let's set all propoerties for the uicontrol */
+  for (i=FirstField; i<NbParam; i++)
+    {
+      Mfield = Interf.Param[i];
+      if (MatrixIsString(Interf.Param[i]))
+	{
+	  if (++i==NbParam)
+	    {
+	      InterfError("uicontrol :The last value is missing \n");
+	      return;
+	    } 
 	
-	else Mvalue = Interf.Param[i];
-      }
-    else
-      {
-	InterfError("uicontrol : incorrect syntax.\n");
-	return;
-      }
+	  else Mvalue = Interf.Param[i];
+	}
+      else
+	{
+	  InterfError("uicontrol : incorrect syntax.\n");
+	  return;
+	}
 
-    /* (*UiSet[Style])(Mfield, Mvalue); */
-    TK_UiSet(Handle, Mfield, Mvalue);
+      /* (*UiSet[Style])(Mfield, Mvalue); */
+      TK_UiSet(Handle, Mfield, Mvalue);
   
-  }
+    }
 
 
-MOutputHandle = MatrixCreate(1,1,"real");
-OutputHandle = (double *)MatrixGetPr(MOutputHandle);
-*OutputHandle = Handle;
+  MOutputHandle = MatrixCreate(1,1,"real");
+  OutputHandle = (double *)MatrixGetPr(MOutputHandle);
+  *OutputHandle = Handle;
 
-ReturnParam(MOutputHandle);
+  ReturnParam(MOutputHandle);
 
 
 

@@ -7,21 +7,9 @@
 
 
 void LAB_get()
-
-
 {
-
-
-  Matrix *MHandle;
+  Matrix *MHandle, *Mfield, *Mvalue;
   int Handle;
-
-  Matrix *Mfield;
-  char *field;
-
-  Matrix *Mvalue;
-  char *value;
-
- 
   
   MHandle = (Matrix *)Interf.Param[0];
   if (!MatrixIsReal(MHandle) )
@@ -37,8 +25,6 @@ void LAB_get()
       InterfError("Field parameter must be a string");
       return;
     }
-
-  
   
   if (TK_UiGet(Handle, Mfield, &Mvalue)==-1)
     {

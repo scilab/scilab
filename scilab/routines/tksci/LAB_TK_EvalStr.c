@@ -5,9 +5,13 @@
 #include "tksci.h"
 #include "../stack-c.h"
 
-int LAB_TK_EvalStr()
+static int LAB_TK_EvalStr1();
 
+void LAB_TK_EvalStr() {
+  LAB_TK_EvalStr1();
+}
 
+static int LAB_TK_EvalStr1()
 {
   char **Str;
   int m1,n1,i,RET;

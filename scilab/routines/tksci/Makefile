@@ -8,7 +8,6 @@ OBJSF =
 
 OBJSC  = tksci.o tksci_SciInterf.o \
 	TK_ScilabCallback.o \
-	tksci_SciInterf.o \
 	LAB_TK_DoOneEvent.o \
 	LAB_TK_EvalFile.o \
 	LAB_TK_EvalStr.o \

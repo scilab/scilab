@@ -11,7 +11,6 @@ OBJSF =
 
 OBJSC  = tksci.obj tksci_SciInterf.obj \
 	TK_ScilabCallback.obj \
-	tksci_SciInterf.obj \
 	LAB_TK_DoOneEvent.obj \
 	LAB_TK_EvalFile.obj \
 	LAB_TK_EvalStr.obj \

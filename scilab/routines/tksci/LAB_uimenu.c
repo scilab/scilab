@@ -18,18 +18,9 @@ void LAB_uimenu()
 
 
 {
-
-
-  Matrix **MVars;
-  
   int NbParam;
-  int NbChamps;
-  
   int i;
-  
   char *tmpstr;
-
-
   char MyCommand[2000];
   char *StrHandle;
   int Handle;
@@ -49,7 +40,7 @@ void LAB_uimenu()
   NbParam = Interf.NbParamIn;
 
 
- if ( (NbParam >0) && MatrixIsNumeric(Interf.Param[0]) )
+  if ( (NbParam >0) && MatrixIsNumeric(Interf.Param[0]) )
     /* the first parameter is a figure handle */
     {
       FigureHandle = (int)(floor( MatrixGetScalar(Interf.Param[0]) ) );
@@ -68,7 +59,7 @@ void LAB_uimenu()
 	}
     }
 
- if (found)
+  if (found)
     {
       if ( !(i<NbParam) )
 	{
@@ -91,35 +82,35 @@ void LAB_uimenu()
 	}
     }
 
-sprintf(MyCommand, "set MyTmpBertrand [CreateUIMenu %d ];", FigureHandle); 
+  sprintf(MyCommand, "set MyTmpBertrand [CreateUIMenu %d ];", FigureHandle); 
 
-Tcl_Eval(TKinterp,MyCommand);
-StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
-Handle = (int)atoi(StrHandle);
+  Tcl_Eval(TKinterp,MyCommand);
+  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  Handle = (int)atoi(StrHandle);
 
-/* Now let's set all propoerties for the uicontrol */
-for (i=FirstField; i<NbParam; i++)
-  {
-    Mfield = Interf.Param[i];
-    if (++i==NbParam)
-      {
-	InterfError("uimenu :The last value is missing \n");
-	return;
-      } 
+  /* Now let's set all propoerties for the uicontrol */
+  for (i=FirstField; i<NbParam; i++)
+    {
+      Mfield = Interf.Param[i];
+      if (++i==NbParam)
+	{
+	  InterfError("uimenu :The last value is missing \n");
+	  return;
+	} 
 
-    else Mvalue = Interf.Param[i];
-
-
-    /* (*UiSet[Style])(Mfield, Mvalue); */
-    TK_UiSet(Handle, Mfield, Mvalue);
-  }
+      else Mvalue = Interf.Param[i];
 
 
-MOutputHandle = MatrixCreate(1,1,"real");
-OutputHandle = (double *)MatrixGetPr(MOutputHandle);
-*OutputHandle = Handle;
+      /* (*UiSet[Style])(Mfield, Mvalue); */
+      TK_UiSet(Handle, Mfield, Mvalue);
+    }
 
-ReturnParam(MOutputHandle);
+
+  MOutputHandle = MatrixCreate(1,1,"real");
+  OutputHandle = (double *)MatrixGetPr(MOutputHandle);
+  *OutputHandle = Handle;
+
+  ReturnParam(MOutputHandle);
 
 
 

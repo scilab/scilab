@@ -30,19 +30,19 @@ char *UiStyleName[] = {"button", "checkbutton", "checkbutton", "entry", "label",
 int GetStyle(StyleStr)
      char *StyleStr;
 
-  {
-    if (! strcmp(StyleStr,"pushbutton"           )) return 0;
-    else if (! strcmp(StyleStr,"radiobutton"     )) return 1;
-    else if (! strcmp(StyleStr,"checkbox"        )) return 2;
-    else if (! strcmp(StyleStr,"edit"            )) return 3;
-    else if (! strcmp(StyleStr,"text"            )) return 4;
-    else if (! strcmp(StyleStr,"slider"          )) return 5;
-    else if (! strcmp(StyleStr,"frame"           )) return 6;
-    else if (! strcmp(StyleStr,"listbox"         )) return 7;
-    else if (! strcmp(StyleStr,"popupmenu"       )) return 8;
-    else return(-1);
+{
+  if (! strcmp(StyleStr,"pushbutton"           )) return 0;
+  else if (! strcmp(StyleStr,"radiobutton"     )) return 1;
+  else if (! strcmp(StyleStr,"checkbox"        )) return 2;
+  else if (! strcmp(StyleStr,"edit"            )) return 3;
+  else if (! strcmp(StyleStr,"text"            )) return 4;
+  else if (! strcmp(StyleStr,"slider"          )) return 5;
+  else if (! strcmp(StyleStr,"frame"           )) return 6;
+  else if (! strcmp(StyleStr,"listbox"         )) return 7;
+  else if (! strcmp(StyleStr,"popupmenu"       )) return 8;
+  else return(-1);
 
-  }
+}
 
 
 
@@ -51,47 +51,47 @@ int TK_UiSet(Handle, Mfield, Mvalue)
      int Handle;
      Matrix *Mfield;
      Matrix *Mvalue;
-  {
-    char 
-      *StrField, 
-      *StrValue;
-    char MyCommand[2000];
-    int mem_siz;
+{
+  char 
+    *StrField, 
+    *StrValue;
+  char MyCommand[2000];
+  int mem_siz;
 
     
-    StrField = MatrixReadString(Mfield);
-    nocase(StrField);
-    if (MatrixIsString(Mvalue))
-     {
-       StrValue = MatrixReadString(Mvalue);
-       /* nocase(StrValue);  (modif Bruno 14/1/2001) */
-     }
-    else if (MatrixIsReal(Mvalue))
-      StrValue = Mat2Str(Mvalue);
-    else if (MatrixIsList(Mvalue))
-      StrValue = ListStr2Str(Mvalue);
-    else 
-      {
-	return(-1);
-      }
+  StrField = MatrixReadString(Mfield);
+  nocase(StrField);
+  if (MatrixIsString(Mvalue))
+    {
+      StrValue = MatrixReadString(Mvalue);
+      /* nocase(StrValue);  (modif Bruno 14/1/2001) */
+    }
+  else if (MatrixIsReal(Mvalue))
+    StrValue = Mat2Str(Mvalue);
+  else if (MatrixIsList(Mvalue))
+    StrValue = ListStr2Str(Mvalue);
+  else 
+    {
+      return(-1);
+    }
     
 
-    if (!strcmp(StrField,"userdata")) 
-      {
-	mem_siz = MatrixMemSize(Mvalue);
-	UserData[Handle]=(Matrix *)malloc(mem_siz);
-	MatrixCopy(Mvalue,UserData[Handle]);
+  if (!strcmp(StrField,"userdata")) 
+    {
+      mem_siz = MatrixMemSize(Mvalue);
+      UserData[Handle]=(Matrix *)malloc(mem_siz);
+      MatrixCopy(Mvalue,UserData[Handle]);
 	
-      }
-    else
-      {
-	sprintf(MyCommand,"SetField %d \"%s\" \"%s\"", Handle, StrField, StrValue);    
+    }
+  else
+    {
+      sprintf(MyCommand,"SetField %d \"%s\" \"%s\"", Handle, StrField, StrValue);    
 	
-	Tcl_Eval(TKinterp,MyCommand);
-      }
-    return(0);
+      Tcl_Eval(TKinterp,MyCommand);
+    }
+  return(0);
 
-  }
+}
     
  
 
@@ -101,49 +101,47 @@ int TK_UiGet(Handle, Mfield, Mvalue)
      int Handle;
      Matrix *Mfield;
      Matrix **Mvalue;
-  {
-    char 
-      *StrField, 
-      *StrValue;
-    char MyCommand[2000];
-    char *MyAnswer;
-    Matrix * TmpMat;
-    int mem_siz;
+{
+  char *StrField;
+  
+  char MyCommand[2000];
+  char *MyAnswer;
+  Matrix * TmpMat;
+  int mem_siz;
 
     
-    StrField = MatrixReadString(Mfield);
-    nocase(StrField);
+  StrField = MatrixReadString(Mfield);
+  nocase(StrField);
     
 
-    sprintf(MyCommand,"set MyTmpBertrand [GetField %d \"%s\"]", Handle, StrField);
+  sprintf(MyCommand,"set MyTmpBertrand [GetField %d \"%s\"]", Handle, StrField);
    
-    Tcl_Eval(TKinterp,MyCommand);
-    MyAnswer = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  Tcl_Eval(TKinterp,MyCommand);
+  MyAnswer = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
     
     
-    if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); return(0); }
-    if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); return(0); }
-    if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
-    if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
-    if (!strcmp(StrField,"userdata")) 
-      {
-	if (UserData[Handle]!=NULL) 
-	  {
-	    mem_siz = MatrixMemSize(UserData[Handle]);
-	    TmpMat=(Matrix *)malloc(mem_siz);
-	    MatrixCopy(UserData[Handle],TmpMat);
-	    *Mvalue = TmpMat;
-	  }
-	else
-	  *Mvalue = MatrixCreate(0,0,"real");
-	return(0);
-      }
+  if (!strcmp(StrField,"position")) {Str2MatReal(MyAnswer, Mvalue); return(0); }
+  if (!strcmp(StrField,"value"))    {Str2MatReal(MyAnswer, Mvalue); return(0); }
+  if (!strcmp(StrField,"min"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
+  if (!strcmp(StrField,"max"))      {Str2MatReal(MyAnswer, Mvalue); return(0); }
+  if (!strcmp(StrField,"userdata")) 
+    {
+      if (UserData[Handle]!=NULL) 
+	{
+	  mem_siz = MatrixMemSize(UserData[Handle]);
+	  TmpMat=(Matrix *)malloc(mem_siz);
+	  MatrixCopy(UserData[Handle],TmpMat);
+	  *Mvalue = TmpMat;
+	}
+      else
+	*Mvalue = MatrixCreate(0,0,"real");
+      return(0);
+    }
     
-    Str2ListStr(MyAnswer, Mvalue);
-    return(0);
-
-  }
+  Str2ListStr(MyAnswer, Mvalue);
+  return(0);
     
+}
  
 
 
@@ -208,8 +206,8 @@ char *Mat2Str(Min)
 int Str2MatReal(str, Mat)
      char *str;
      Matrix **Mat;
-/* Split a string (str) which contains float numbers  separated by '|' */
-/* and return a vector formed with those numbers.                      */
+     /* Split a string (str) which contains float numbers  separated by '|' */
+     /* and return a vector formed with those numbers.                      */
 
 {
   int 
@@ -261,6 +259,9 @@ int Str2MatReal(str, Mat)
   /* string was empty */
   else *Mat = MatrixCreate(0,0,"real");
 
+  return 1;
+
+
 
 }
 	  
@@ -270,8 +271,8 @@ int Str2MatReal(str, Mat)
 int Str2ListStr(str, Mat)
      char *str;
      Matrix **Mat;
-/* Split a string (str) which contains substrings separated by '|' */
-/* and return a scilab list  formed with those substrings          */
+     /* Split a string (str) which contains substrings separated by '|' */
+     /* and return a scilab list  formed with those substrings          */
 
 {
   int 
@@ -282,7 +283,7 @@ int Str2ListStr(str, Mat)
     end_elem,
     elem;
   char *tmpstr;
-  double *MatPr;
+
   Matrix *MTmpStr;
   
 
@@ -336,7 +337,7 @@ int Str2ListStr(str, Mat)
   else *Mat = MatrixCreateString("");
       
       
-    
+  return 1;
 }
   
 	      
@@ -389,12 +390,12 @@ char *ListStr2Str(l)
     {
       /* now set all the other */
       *(begin++)='|';
-       Mtmp = ListGetCell(i , l);
-       tmpstr = MatrixReadString(Mtmp);
-       sz=strlen(tmpstr);
-       strncpy(begin, tmpstr, sz);
-       free(tmpstr);
-       begin += sz;
+      Mtmp = ListGetCell(i , l);
+      tmpstr = MatrixReadString(Mtmp);
+      sz=strlen(tmpstr);
+      strncpy(begin, tmpstr, sz);
+      free(tmpstr);
+      begin += sz;
   
     }
   /* add EOL mark */

@@ -18,24 +18,16 @@ void LAB_figure()
 
 
 {
-
-
-  Matrix **MVars;
-  
   int NbParam;
-  int NbChamps;
-  
-  
   int i;
-  
   char MyCommand[2000];
   char *StrHandle;
   int Handle=0;
 
   Matrix *Mfield;
   Matrix *Mvalue;
-  
   Matrix *MOutputHandle;
+
   double *OutputHandle;
 
   int FigureHandle=0;
@@ -62,29 +54,29 @@ void LAB_figure()
     }
 
 
-/* Now let's set all properties for the uicontrol */
-for (i=FirstField; i<NbParam; i++)
-  {
-    Mfield = Interf.Param[i];
-    if (++i==NbParam)
-      {
-	InterfError("figure :The last value is missing \n");
-	return;
-      } 
+  /* Now let's set all properties for the uicontrol */
+  for (i=FirstField; i<NbParam; i++)
+    {
+      Mfield = Interf.Param[i];
+      if (++i==NbParam)
+	{
+	  InterfError("figure :The last value is missing \n");
+	  return;
+	} 
 
-    else Mvalue = Interf.Param[i];
+      else Mvalue = Interf.Param[i];
     
 
     
-    TK_UiSet(Handle, Mfield, Mvalue);
-  }
+      TK_UiSet(Handle, Mfield, Mvalue);
+    }
 
 
-MOutputHandle = MatrixCreate(1,1,"real");
-OutputHandle = (double *)MatrixGetPr(MOutputHandle);
-*OutputHandle = Handle;
+  MOutputHandle = MatrixCreate(1,1,"real");
+  OutputHandle = (double *)MatrixGetPr(MOutputHandle);
+  *OutputHandle = Handle;
 
-ReturnParam(MOutputHandle);
+  ReturnParam(MOutputHandle);
 
 
 

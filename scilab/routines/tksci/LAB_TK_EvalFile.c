@@ -6,7 +6,14 @@
 #include <stdio.h>
 #include "tksci.h"
 
-int LAB_TK_EvalFile()
+static int LAB_TK_EvalFile1(void);
+
+void LAB_TK_EvalFile(void) { 
+  LAB_TK_EvalFile1();
+}
+
+
+static int LAB_TK_EvalFile1(void)
 {
   int m1,n1,l1;
   int RET;

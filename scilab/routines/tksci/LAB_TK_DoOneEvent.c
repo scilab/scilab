@@ -10,7 +10,7 @@ void LAB_TK_DoOneEvent()
 
 {
 
-Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
+  Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
 }
 
 

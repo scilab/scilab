@@ -6,20 +6,12 @@
 #include "tksci.h"
 
 
-void LAB_set()
-
-
+void LAB_set(void)
 {
-
-
   Matrix *MHandle;
   int Handle;
-
   Matrix *Mfield;
-  char *field;
-
   Matrix *Mvalue;
-  char *value;
 
   if (Interf.NbParamIn < 3)
     {

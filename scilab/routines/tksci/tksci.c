@@ -82,10 +82,10 @@ int OpenTksci()
 
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 
-  {
-    Cout("Unable to find TK initialisation scripts \n. Check your SCI environment variable.\nTK initialisation failed !\n");
-    return(1);
-  }
+    {
+      Cout("Unable to find TK initialisation scripts \n. Check your SCI environment variable.\nTK initialisation failed !\n");
+      return(1);
+    }
   else fclose(tmpfile);
    
 #else
@@ -102,10 +102,10 @@ int OpenTksci()
 
   tmpfile = fopen(TkScriptpath,"r");
   if (tmpfile==NULL) 
-  {
-    Cout("Unable to find TK initialisation scripts \n. Check your SCI environment variable.\nTK initialisation failed !\n");
-    return(1);
-  }
+    {
+      Cout("Unable to find TK initialisation scripts \n. Check your SCI environment variable.\nTK initialisation failed !\n");
+      return(1);
+    }
   else fclose(tmpfile);
   
 #endif /* WIN32 */ 
@@ -155,13 +155,8 @@ void inittk()
 {
   if (0==1)
     {tkpipo();}
-  if ( OpenTksci()==0 ) TK_Started==1;
-
+  if ( OpenTksci()==0 ) TK_Started=1;
 }
-
-
-
-
 
 void nocase (s)
      char *s;

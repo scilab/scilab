@@ -33,15 +33,15 @@ void LAB_gcf()
      
 
 
-Tcl_Eval(TKinterp,MyCommand);
-StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
-Handle = (int)atoi(StrHandle);
+  Tcl_Eval(TKinterp,MyCommand);
+  StrHandle = Tcl_GetVar(TKinterp, "MyTmpBertrand", 0);
+  Handle = (int)atoi(StrHandle);
 
-MOutputHandle = MatrixCreate(1,1,"real");
-OutputHandle = (double *)MatrixGetPr(MOutputHandle);
-*OutputHandle = Handle;
+  MOutputHandle = MatrixCreate(1,1,"real");
+  OutputHandle = (double *)MatrixGetPr(MOutputHandle);
+  *OutputHandle = Handle;
 
-ReturnParam(MOutputHandle);
+  ReturnParam(MOutputHandle);
 
 
 

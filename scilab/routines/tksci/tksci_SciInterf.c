@@ -9,10 +9,10 @@ typedef void (*voidf)();
 
 extern void LAB_uicontrol();
 extern void LAB_TK_DoOneEvent();
-extern int LAB_TK_EvalStr();
-extern int LAB_TK_EvalFile();
+extern void LAB_TK_EvalStr();
+extern void LAB_TK_EvalFile();
 extern void LAB_TK_GetVar();
-extern int LAB_TK_SetVar();
+extern void LAB_TK_SetVar();
 extern void LAB_opentk();
 extern void LAB_findobj();
 extern void LAB_set();
@@ -45,11 +45,11 @@ voidf FuncI[] ={
      
 void C2F(tksciInterf)()
 {
-    InterfInit();
-    if (TK_Started==1)
-      (*FuncI[Interf.FuncIndex -1])();
-    else 
-      Cout("Sorry, TK has not been enabled this the session.\n");
+  InterfInit();
+  if (TK_Started==1)
+    (*FuncI[Interf.FuncIndex -1])();
+  else 
+    Cout("Sorry, TK has not been enabled this the session.\n");
 
-    InterfDone();
+  InterfDone();
 }

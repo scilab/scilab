@@ -15,12 +15,12 @@
 /* ----------------------------------------------------------- */
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
 
-/* 	$Id: C-LAB_Interf.c,v 1.4 2002/07/12 12:22:09 steer Exp $	 */
+/* 	$Id: C-LAB_Interf.c,v 1.5 2002/10/14 09:26:42 chanceli Exp $	 */
 
 /*
-#ifndef lint
-static char vcid[] = "$Id: C-LAB_Interf.c,v 1.4 2002/07/12 12:22:09 steer Exp $";
-#endif 
+  #ifndef lint
+  static char vcid[] = "$Id: C-LAB_Interf.c,v 1.5 2002/10/14 09:26:42 chanceli Exp $";
+  #endif 
 */
 
 #include "C-LAB_Interf.h"
@@ -53,72 +53,72 @@ int MatrixMemSize( m )
      Matrix *m;
 {
   Matrix *base;
-    integer *prefix;
-    int error=0;
-    int mem_siz=0;
-    int type;
-    int w,h; 
-    int n,i;
-    Matrix *cur;
+  integer *prefix;
+  int error=0;
+  int mem_siz=0;
+  int type;
+  int w,h; 
+  int n,i;
+  Matrix *cur;
 
-    prefix = (integer *)m; /* virtual variable to read the matrix properties */
+  prefix = (integer *)m; /* virtual variable to read the matrix properties */
 
-    error=0; /* is there in error in the source matrix? for the moment, no */
+  error=0; /* is there in error in the source matrix? for the moment, no */
 
-    type = prefix[0]; /* matrix type */
-    h = prefix[1];    /* matrix height */
-    w = prefix[2];    /* matrix width */
+  type = prefix[0]; /* matrix type */
+  h = prefix[1];    /* matrix height */
+  w = prefix[2];    /* matrix width */
 
-    switch (type) 
+  switch (type) 
+    {
+    case 1 :/* it is a numeric matrix */
       {
-      case 1 :/* it is a numeric matrix */
-	{
-	  if ( prefix[3]==0 ) /* and it's real */
-	    mem_siz = 4 * sizeof(integer) +w*h * sizeof(Matrix);
-	  else
-	    mem_siz = 4 * sizeof(integer) + 2*w*h * sizeof(Matrix);
-	}
+	if ( prefix[3]==0 ) /* and it's real */
+	  mem_siz = 4 * sizeof(integer) +w*h * sizeof(Matrix);
+	else
+	  mem_siz = 4 * sizeof(integer) + 2*w*h * sizeof(Matrix);
+      }
       break;
       
-      case 10 :/* it is a string matrix */ 	
-	{
-	  mem_siz = (4 + w*h + prefix[4 + w*h]);
-	  mem_siz = ((mem_siz % 2) + mem_siz) * sizeof(integer);
-	}
+    case 10 :/* it is a string matrix */ 	
+      {
+	mem_siz = (4 + w*h + prefix[4 + w*h]);
+	mem_siz = ((mem_siz % 2) + mem_siz) * sizeof(integer);
+      }
       break;
-      case 15 :/* it is a list */  
+    case 15 :/* it is a list */  
 
-	{
-	  n=h;
-	  mem_siz= (3 + n +1)/2 * sizeof(Matrix); /* the prefix and the pointers */
-	  /* now we have to count the size of the matrix contained in */
-	  /* the list */
+      {
+	n=h;
+	mem_siz= (3 + n +1)/2 * sizeof(Matrix); /* the prefix and the pointers */
+	/* now we have to count the size of the matrix contained in */
+	/* the list */
 	  
-	  base = m + (3+n +1)/2 -1;
-	  for (i=0; i<n; i++)
-	    {
-	      cur = base + prefix[2+i]; 
-	      mem_siz += MatrixMemSize( cur );
-	    }
-	}
+	base = m + (3+n +1)/2 -1;
+	for (i=0; i<n; i++)
+	  {
+	    cur = base + prefix[2+i]; 
+	    mem_siz += MatrixMemSize( cur );
+	  }
+      }
       break;
-      default :
-	{ error=1; }
+    default :
+      { error=1; }
 
-      }
+    }
 
 
 
-    if (error==1) 
-      {
-	InterfError("MatrixMemSize: matrix tupe is not valid\n" ) ;
-	return(-1);
-      }
-    else
-      {
+  if (error==1) 
+    {
+      InterfError("MatrixMemSize: matrix tupe is not valid\n" ) ;
+      return(-1);
+    }
+  else
+    {
 	
-	return(mem_siz);
-      }
+      return(mem_siz);
+    }
 
 
 }
@@ -175,21 +175,21 @@ Matrix *MatrixCreate( h,w,type )
 	  if (!strcmp("sys-string",type))
 	    {
 	      /* if ( ( (MIN(w,h)) == 1) ) */
-		{
-		  mat_size = (4 + 2  + w*h);
-		  mat_size = (mat_size + (mat_size %2))* sizeof(integer);
-		  output = (Matrix *)malloc((unsigned)mat_size); /* the final matrix */
-		  prefix = (integer *)output; /* to access the matrix properties */
+	      {
+		mat_size = (4 + 2  + w*h);
+		mat_size = (mat_size + (mat_size %2))* sizeof(integer);
+		output = (Matrix *)malloc((unsigned)mat_size); /* the final matrix */
+		prefix = (integer *)output; /* to access the matrix properties */
 	  
-		  prefix[0] = 10; /* it's a string matrix */
-		  prefix[1] = 1;  /* dimensions */
-		  prefix[2] = 1;  /* multiple strings matrices are not allowed for the moment */
-		  prefix[3] = 0;  /* see Guide for Developpers in the SCILAB doc */
+		prefix[0] = 10; /* it's a string matrix */
+		prefix[1] = 1;  /* dimensions */
+		prefix[2] = 1;  /* multiple strings matrices are not allowed for the moment */
+		prefix[3] = 0;  /* see Guide for Developpers in the SCILAB doc */
 
-		  prefix[4] = 1;  /* pointer on the string */
-		  prefix[5] = 1+w*h; /* pointer on the first char after the string */
+		prefix[4] = 1;  /* pointer on the string */
+		prefix[5] = 1+w*h; /* pointer on the first char after the string */
 
-		}
+	      }
 	      
 	    }
 	  else 
@@ -322,7 +322,7 @@ int MatrixIsList( m )
 /* The returned pointer will need to be freed by the user !!!!!! */
 
 char *MatrixReadString( m )
-      Matrix *m; /* the matrix in which the string is stored */
+     Matrix *m; /* the matrix in which the string is stored */
 {
   char *outstr;
   integer *prefix;    /* virtual variable to read the matrix properties */
@@ -345,7 +345,7 @@ char *MatrixReadString( m )
 /* into a (1x1) Scilab string Matrix                         */
 
 Matrix *MatrixCreateString( s )
-      char *s;   /* the string to write */
+     char *s;   /* the string to write */
 {
   Matrix *m; /* the matrix where we want to put the string */
   integer *prefix;    /* virtual variable to read the matrix properties */

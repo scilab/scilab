@@ -20,16 +20,12 @@ void LAB_opentk()
 
 {
 
-char argc;
-char *argv[10];
-
-
-TKinterp = Tcl_CreateInterp();
-Tcl_Init(TKinterp);
-Tk_Init(TKinterp);
-TKmainWindow = Tk_MainWindow(TKinterp);
-Tk_GeometryRequest(TKmainWindow,200,200);
-Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
+  TKinterp = Tcl_CreateInterp();
+  Tcl_Init(TKinterp);
+  Tk_Init(TKinterp);
+  TKmainWindow = Tk_MainWindow(TKinterp);
+  Tk_GeometryRequest(TKmainWindow,200,200);
+  Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
 
 
 
@@ -39,16 +35,16 @@ Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow))
 
 int Tcl_AppInit(interp)
      Tcl_Interp *interp;
- {
+{
 
 
-if (Tcl_Init(interp) == TCL_ERROR)
-  { return TCL_ERROR; }
+  if (Tcl_Init(interp) == TCL_ERROR)
+    { return TCL_ERROR; }
 
-if (Tk_Init(interp) == TCL_ERROR)
-  { return TCL_ERROR; }
+  if (Tk_Init(interp) == TCL_ERROR)
+    { return TCL_ERROR; }
 
-return TCL_OK;
+  return TCL_OK;
 
 }
 
