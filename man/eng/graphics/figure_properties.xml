@@ -39,8 +39,8 @@
 
           <DESCRIPTION_ITEM label="figure_size: ">
             <SP>This property controls the size in pixel of the screen's
-            graphics window. The size is the vector <VERB>[width,height]
-            </VERB>.</SP>
+            graphics window. The size is the vector <VERB>[width,height]</VERB>.
+            </SP>
           </DESCRIPTION_ITEM>
 
           <DESCRIPTION_ITEM label="axes_size: ">
