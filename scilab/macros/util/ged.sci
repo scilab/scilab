@@ -1363,7 +1363,7 @@ function setZval(val)
      case "3d"
       tmp=h.data;
       tmp(3)=val;
-      tst=execstr('h.data=tmp','errcatch',n');
+      tst=execstr('h.data=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: Z data must contain double'
       end
@@ -1387,7 +1387,7 @@ function setWval(val)
      case "3d"
       tmp=h.data;
       tmp(4)=val;
-      tst=execstr('h.data=tmp','errcatch',n');
+      tst=execstr('h.data=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: Width data must contain double'
       end
@@ -1411,7 +1411,7 @@ function setHval(val)
      case "3d"
       tmp=h.data;
       tmp(5)=val;
-      tst=execstr('h.data=tmp','errcatch',n');
+      tst=execstr('h.data=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: Height data must contain double'
       end
@@ -1436,7 +1436,7 @@ function setA1val(val)
      case "3d"
       tmp=h.data;
       tmp(6)=val;
-      tst=execstr('h.data=tmp','errcatch',n');
+      tst=execstr('h.data=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: a1 data must contain double'
       end
@@ -1459,7 +1459,7 @@ function setA2val(val)
      case "3d"
       tmp=h.data;
       tmp(7)=val;
-      tst=execstr('h.data=tmp','errcatch',n');
+      tst=execstr('h.data=tmp','errcatch','n');
       if tst<>0 then
         disp 'Warning: a2 data must contain double'
       end
