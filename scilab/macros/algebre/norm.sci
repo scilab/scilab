@@ -4,6 +4,7 @@ function y=norm(A,flag)
 if argn(2)==1 then flag=2,end
 
 if type(A)==1 then
+  if A==[] then y=0,return,end
   if or(size(A)==1) then // vector norm
     if type(flag)==10 then //'inf' or 'fro'
       select convstr(part(flag,1))
@@ -17,17 +18,21 @@ if type(A)==1 then
       end
     elseif type(flag)==1 then //p_norm
       p=flag;
-      if ~isreal(p)|int(p)<>p then
+      if ~isreal(p) then
 	error('flag must be real')
       end
       if p==%inf then
 	y=max(abs(A))
+      elseif p==1 then
+	y=sum(abs(A))
       elseif p==-%inf then
 	y=min(abs(A))
       elseif isnan(p) then
 	y=%nan
+      elseif p==0 then
+	y=%inf
       else
-	y=sum(v.^p)^(1/p)
+	y=sum(abs(A).^p)^(1/p)
       end
     else
       error("invalid value for flag")
