@@ -1,7 +1,8 @@
 function OpenSet_()
-xinfo('Click to open block or make a link')
+
 %kk=[]
 while %t 
+  xinfo('Click to open block or make a link')
   if %pt==[] then
     [btn,%pt,%win,Cmenu]=cosclick()
     if Cmenu<>[] then
@@ -99,6 +100,7 @@ while %t
     end
   end
   enablemenus()
+  xinfo(' ')
 end
-xinfo(' ')
+
 endfunction
