@@ -75,14 +75,15 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
   int with_leg;
 
  
-  if (!(sciGetGraphicMode (sciGetSelectedSubWin (sciGetCurrentFigure ())))->addplot) { 
+  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  if (!(sciGetGraphicMode (psubwin)->addplot)) { 
     sciXbasc(); 
     initsubwin();
     sciRedrawFigure();
   } 
   
   /*---- Boundaries of the frame ----*/
-  psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+  
   pSUBWIN_FEATURE (psubwin)->logflags[0]=logflags[1];
   pSUBWIN_FEATURE (psubwin)->logflags[1]=logflags[2];
 
@@ -121,10 +122,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
         return 0;
       }
     }
-    for (jj = 0;jj < *n1; jj++) {
+    for (jj = 0;jj < *n1; jj++) {/*A.Djalel 3D axes*/
       sciSetCurrentObj (ConstructPolyline
                         ((sciPointObj *)sciGetSelectedSubWin (sciGetCurrentFigure()),&(x[jj*(*n2)]),
-                        &(y[jj*(*n2)]),closeflag,*n2,1,ptype)); 
+                        &(y[jj*(*n2)]),PD0,closeflag,*n2,1,ptype)); 
       if (style[jj] > 0) { 
         sciSetIsMark(sciGetCurrentObj(), FALSE);   
         sciSetForeground (sciGetCurrentObj(), style[jj]);
@@ -157,8 +158,10 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
     /*---- construct agregation ----*/
     sciSetCurrentObj(ConstructAgregation (hdltab, cmpt)); 
     FREE(hdltab);
+    sciDrawObj(sciGetCurrentFigure ()); /*A.Djalel 3D axes*/
     return(0);
   }
+  sciDrawObj(sciGetCurrentFigure ());
   return(0);
 }
 

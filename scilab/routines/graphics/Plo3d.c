@@ -114,6 +114,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
   static integer cache;
   static double zmin,zmax;
   integer i,j;
+ 
   /** If Record is on **/
   if (GetDriver()=='R' && version_flag() != 0) 
     StorePlot3D(name,x,y,z,p,q,teta,alpha,legend,flag,bbox);
@@ -132,8 +133,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
       zmin=bbox[4];
       zmax=bbox[5];
     }
-
-
+ 
   if ( flag[1] ==0)
     SetEch3d1(xbox,ybox,zbox,bbox,teta,alpha,0L);
   else
@@ -154,6 +154,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
       cache=InsideU[0]-4;
       if (flag[2] >=2 )DrawAxis(xbox,ybox,InsideU,fg1);
     }
+ 
   polyx = graphic_alloc(0,5*(*q),sizeof(int));
   polyy = graphic_alloc(1,5*(*q),sizeof(int));
   fill  = graphic_alloc(2,(*q),sizeof(int));
@@ -162,7 +163,7 @@ static void C2F(plot3dg)(char *name, int (*func) (/* ??? */), double *x, double 
       Scistring("plot3dg_ : malloc No more Place\n");
       return;
     }
-
+ 
   /** The 3d plot **/
 
   C2F(dr)("xget","lastpattern",&verbose,&whiteid,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -464,10 +465,11 @@ int DPoints1(integer *polyx, integer *polyy, integer *fill, integer whiteid, dou
     fill[jj1]= (dc < 0 ) ? -fg : fg ;
   else
     {
-    fill[jj1]=inint((whiteid-1)*((1/4.0*( z[i+(*p)*j]+ z[i+1+(*p)*j]+
-				     z[i+(*p)*(j+1)]+ z[i+1+(*p)*(j+1)])-zmin)
-			     /(zmax-zmin)))+1;
-      if ( dc < 0 ) fill[jj1]= -fill[jj1];
+      fill[jj1]=inint((whiteid-1)*((1/4.0*( z[i+(*p)*j]+ z[i+1+(*p)*j]+
+					    z[i+(*p)*(j+1)]+ z[i+1+(*p)*(j+1)])-zmin)
+				   /(zmax-zmin)))+1;
+      if ( dc < 0 ) fill[jj1]= -fill[jj1];  
+     
     }
   return(1);
   
@@ -606,6 +608,7 @@ int C2F(param3d1)(double *x, double *y, double *z, integer *m, integer *n, integ
   static integer init;
   static integer *xm,*ym;
   integer verbose=0,xz[10],narg,fg1,cur;
+
   /** If Record is on **/
   if (GetDriver()=='R' && version_flag() != 0) 
     StoreParam3D1("param3d1",x,y,z,m,n,iflag,colors,teta,alpha,legend,flag,bbox);
@@ -701,7 +704,7 @@ int C2F(box3d)(double *xbox, double *ybox, double *zbox)
   /** ainsi que les triedres caches ou non **/
        
   Convex_Box(xbox,ybox,InsideU,InsideD,"X@Y@Z",flag,Cscale.bbox1);
-  /**DJ.Abdemouche 2003**/
+  /**DJ.Abdmouche 2003**/
    if (version_flag() != 0) {
      /** le triedre vu **/
      C2F(dr)("xget","foreground",&verbose,&fg,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -908,6 +911,7 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
 {
   integer ixbox[6],iybox[6],npoly=6,lstyle[6],verbose=0,narg,hiddencolor;
   integer i, iflag=0, j=1;
+  sciPointObj *psubwin;
   for ( i = 0 ; i <= 4 ; i=i+2)
     {
       ixbox[i]=XScale(xbox[Indices[0]]);iybox[i]=YScale(ybox[Indices[0]]);
@@ -916,9 +920,10 @@ void DrawAxis(double *xbox, double *ybox, integer *Indices, integer style)
   ixbox[3]=XScale(xbox[Indices[2]]);iybox[3]=YScale(ybox[Indices[2]]);
   ixbox[5]=XScale(xbox[Indices[3]]);iybox[5]=YScale(ybox[Indices[3]]);
   C2F(dr)("xget","line style",&verbose,lstyle,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L); 
-  /**DJ.Abdemouche 2003**/
+  /**DJ.Abdmouche 2003**/
   if (version_flag() == 0) { 
-    C2F(dr)("xget","hidden3d",&verbose,&hiddencolor,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    psubwin = sciGetSelectedSubWin (sciGetCurrentFigure ()); 
+    hiddencolor = pSUBWIN_FEATURE (psubwin)->hiddencolor;    
     if (hiddencolor == style ) j= 2;
   }	
     /***/  
@@ -1008,7 +1013,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
    }
   ixbox[6]=ixbox[0];iybox[6]=iybox[0];
   p=7,n=1;
-  /**DJ.Abdemouche 2003**/
+  /**DJ.Abdmouche 2003**/
   if (version_flag() != 0) 
     C2F(dr)("xget","foreground",&verbose,dvect,&narg, PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   else
@@ -1016,7 +1021,7 @@ void Convex_Box(double *xbox, double *ybox, integer *InsideU, integer *InsideD, 
      /** On trace l'enveloppe cvxe **/
   C2F(dr)("xget","line style",&verbose,dash,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","line style",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdemouche 2003**/	   
+  C2F (dr) ("xset","thickness",(j=1,&j),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);     /**DJ.Abdmouche 2003**/	   
   if (flag[2]>=3){
     C2F(dr)("xpolys","v",ixbox,iybox,dvect,&n,&p
         ,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1324,6 +1329,7 @@ void I3dRotation(void)
   sciPointObj *psubwin, *tmpsubwin, *psurface; 
   integer xr, yr;
 
+
   C2F(dr1)("xget","window",&verbose,&ww,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if (version_flag() != 0) {
     if ( Check3DPlots("v",&ww) == 0) 
@@ -1332,7 +1338,7 @@ void I3dRotation(void)
 	return;
       }
   }
-  /**DJ.Abdemouche 2003**/
+  /**DJ.Abdmouche 2003**/
   xx=1.0/Abs(Cscale.frect[0]-Cscale.frect[2]);
   yy=1.0/Abs(Cscale.frect[1]-Cscale.frect[3]);
   C2F(dr)("xget","pixmap",&verbose,&pixmode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
@@ -1388,7 +1394,7 @@ void I3dRotation(void)
           if (pFIGURE_FEATURE((sciPointObj *)sciGetCurrentFigure())->rotstyle == 0)    
 	    {
 	      psubwin = (sciPointObj *)CheckClickedSubwin(xr,yr);
-	      /**DJ.Abdemouche 2003**/
+	      /**DJ.Abdmouche 2003**/
 	      if((sciPointObj *) psubwin != NULL)
 		{
 		  sciSetSelectedSubWin (psubwin);
@@ -1396,7 +1402,7 @@ void I3dRotation(void)
 		  alpha0 =  pSUBWIN_FEATURE (psubwin)-> alpha;
 		  pSUBWIN_FEATURE (psubwin)-> is3d = TRUE;
 		  Cscale.metric3d = (long)(pSUBWIN_FEATURE (psubwin)->axes.flag[1]+1)/2; 
-		  if (pSUBWIN_FEATURE (psubwin)->isreal)
+		  if (pSUBWIN_FEATURE (psubwin)->isoview)
 		    {
 		      Cscale.bbox1[0] =  pSUBWIN_FEATURE (psubwin)->FRect[0]; 
 		      Cscale.bbox1[1] =  pSUBWIN_FEATURE (psubwin)->FRect[2];
@@ -1414,10 +1420,10 @@ void I3dRotation(void)
 		      Cscale.bbox1[5] =  1.0;}
 		}
 	      else
-		{
-		  wininfo("No 3d object selected");
-		  return;
-		}
+              {
+		wininfo("No 3d object selected");
+		return;
+	      }
 	    }
           else
 	    {                  
@@ -1438,6 +1444,7 @@ void I3dRotation(void)
       if (version_flag() != 0)
 	C2F(dr1)("xclear","v",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
       if ( pixmode == 0 ) C2F(dr1)("xset","alufunction",(in=6,&in),PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+    
       while ( ibutton == -1 ) 
 	{
 	  /* dessin d'un rectangle */
@@ -1502,7 +1509,7 @@ static void dbox(void)
   C2F(dr)("xget","pattern",&verbose,&pat,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F(dr)("xset","pattern",&pat1,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   C2F (dr) ("xset", "line style",&un,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-#endif/**DJ.Abdemouche 2003**/
+#endif/**DJ.Abdmouche 2003**/
 SetEch3d1(xbox,ybox,zbox,Cscale.bbox1,&theta,&alpha,Cscale.metric3d);
   C2F(box3d)(xbox,ybox,zbox);
 #ifdef WIN32
@@ -1662,12 +1669,6 @@ int shade(integer *polyx, integer *polyy, integer *fill, integer polysize, integ
    }
    return 0;
 }     
-
-
-
-
-
-
 
 
 
