@@ -15,7 +15,7 @@ OBJS= javasci_Matrix.o fix.o
 all	:: .init  
 	make -f config/Makefile.all  FC="g77 -Wl,-shared" PROG=$(PROG) OBJS="$(OBJS)" SCIDIR=$(SCIDIR) \
 		JAVAINC="$(JAVAINC)"
-	cd classes; make all SCIDIR=$(SCIDIR)
+	cd classes; make all SCIDIR=../$(SCIDIR)
 
 
 .init 	: Makefile 
