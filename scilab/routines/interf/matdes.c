@@ -2694,6 +2694,7 @@ int scixpoly(fname,fname_len)
   }
   else {
     strcpy(C2F(cha1).buf,"xlines");
+	mark=1; /* NG */
   }
     
   if (Rhs >= 4) { GetRhsVar(4,"d",&m4,&n4,&l4); CheckScalar(4,m4,n4); close = (integer) *stk(l4);} 
@@ -5628,7 +5629,8 @@ int sciSet(sciPointObj *pobj, char *marker, int *value, int *numrow, int *numcol
 	    pSUBWIN_FEATURE (pobj)->alpha_kp=pSUBWIN_FEATURE (pobj)->alpha;  
 	    pSUBWIN_FEATURE (pobj)->alpha  = 0.0;
 	    pSUBWIN_FEATURE (pobj)->theta  = 270.0;
-	    sciRedrawFigure(); /* F.Leray 10.06.04 Adding 2 lines here... */
+		if(sciGetCurrentScilabXgc () != (struct BCG *) NULL)
+            sciRedrawFigure(); /* F.Leray 10.06.04 Adding 2 lines here... */
 	    pSUBWIN_FEATURE (pobj)->is3d = FALSE; /*...and here */
 	  } 
 	else if ((strncmp(cstk(*value),"3d", 2) == 0)){
