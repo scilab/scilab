@@ -13,9 +13,6 @@ function %h_p(h)
     t=[t;part('=',ones(1,length(t)))]
     select h.type
       case "Polyline"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
@@ -29,13 +26,10 @@ function %h_p(h)
 	 "mark_mode= "+sci2exp(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style)
 	 "mark_size= "+string(h.mark_size)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box)]
       case "Patch"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'),end
       t=[t;
@@ -43,7 +37,7 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible= "+sci2exp(h.visible)
 	 "data= "+d
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box)]
       case "Agregation"
@@ -52,11 +46,6 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible= "+sci2exp(h.visible)]
       case "Axes"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      hbackground = h.background;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
-      if (a - hbackground) < 0 then hbackground = a - hbackground ,end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -88,27 +77,21 @@ function %h_p(h)
 	 "mark_mode= "+sci2exp(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style,0)
 	 "mark_size= "+sci2exp(h.mark_size,0)
-	 "background= "+string(hbackground)
-	 "foreground= "+string(hforeground)
+	 "background= "+string(h.background)
+	 "foreground= "+string(h.foreground)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	]
       case "Legend"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "visible= "+sci2exp(h.visible)
 	 "text= "+sci2exp(h.text)
 	 "font_style= "+string(h.font_style)
 	 "font_size= "+string(h.font_size)]
       case "Rectangle"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
@@ -118,32 +101,24 @@ function %h_p(h)
 	 "mark_size= "+string(h.mark_size)
 	 "line_style= "+string(h.line_style)
 	 "fill_mode= "+string(h.fill_mode)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "data= "+sci2exp(h.data,0)
 	 "visible= "+sci2exp(h.visible)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)]
       case "Arc"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
 	 "thickness= "+string(h.thickness)
 	 "line_style= "+string(h.line_style)
 	 "fill_mode= "+string(h.fill_mode)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "data= "+sci2exp(h.data,0)
 	 "visible= "+sci2exp(h.visible)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)]
       case "Figure"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      hbackground = h.background;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
-      if (a - hbackground) < 0 then hbackground = a - hbackground ,end
       c=sci2exp(h.children.type,0)
       if length(c)>70 then c="matrix "+strcat(string(size(h.children)),'x'),end
       t=[t;
@@ -168,8 +143,8 @@ function %h_p(h)
 	 "mark_mode= "+sci2exp(h.mark_mode)
 	 "mark_style= "+sci2exp(h.mark_style,0)
 	 "mark_size= "+sci2exp(h.mark_size,0)
-	 "background= "+string(hbackground)
-	 "foreground= "+sci2exp(hforeground,0)
+	 "background= "+string(h.background)
+	 "foreground= "+sci2exp(h.foreground,0)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)
 	 "rotation_style= "+sci2exp(h.rotation_style)
@@ -239,9 +214,6 @@ function %h_p(h)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)]
       case "Text"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       T=sci2exp(h.text,0)
       if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
       t=[t;
@@ -250,16 +222,13 @@ function %h_p(h)
 	 "visible= "+sci2exp(h.visible) 
 	 "text= "+T
 	 "data= "+sci2exp(h.data,0)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "font_style= "+string(h.font_style)
 	 "font_size= "+string(h.font_size)
 	 "font_angle= "+string(h.font_angle)
 	 "clip_state= "+sci2exp(h.clip_state)
 	 "clip_box= "+sci2exp(h.clip_box,0)]
       case "Title"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
       T=sci2exp(h.text,0)
       if length(T)>70 then T="string array '+strcat(string(size(h.text)),'x'),end
       t=[t;
@@ -267,15 +236,11 @@ function %h_p(h)
 	 "children: "+fmtchildren(h.children)
 	 "visible= "+sci2exp(h.visible) 
 	 "text= "+T
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "font_style= "+string(h.font_style)
 	 "font_size= "+string(h.font_size)
 	 "font_angle= "+string(h.font_angle)]
       case "Plot3d"
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
-
       Data = h.data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
@@ -293,7 +258,7 @@ function %h_p(h)
 	t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+sci2exp(h.visible) 
 	 "data.x= "+dx
@@ -309,7 +274,7 @@ function %h_p(h)
 	  t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+sci2exp(h.visible) 
 	 "data.x= "+dx
@@ -323,10 +288,6 @@ function %h_p(h)
       end
 
       case "Fac3d" 
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
-
       Data = h.data
       dx=sci2exp(Data.x,0)
       if length(dx)>70 then dx="matrix '+strcat(string(size(Data.x)),'x'), end
@@ -344,7 +305,7 @@ function %h_p(h)
 	t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+sci2exp(h.visible) 
 	 "data.x= "+dx
@@ -360,7 +321,7 @@ function %h_p(h)
 	  t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+sci2exp(h.visible) 
 	 "data.x= "+dx
@@ -374,10 +335,6 @@ function %h_p(h)
       end
 
       case "Param3d" 
-      a=size(h.color_map); a=a(1);
-      hforeground = h.foreground;
-      if (a - hforeground) < 0 then hforeground = a - hforeground ,end
-
       d=sci2exp(h.data,0)
       if length(d)>70 then d="matrix '+strcat(string(size(h.data)),'x'), end
 	
@@ -386,7 +343,7 @@ function %h_p(h)
       t=[t;
 	 "parent: "+h.parent.type
 	 "children: "+fmtchildren(h.children)
-	 "foreground= "+string(hforeground)
+	 "foreground= "+string(h.foreground)
 	 "thickness= "+string(h.thickness)
 	 "visible= "+sci2exp(h.visible) 
 	 "data= "+d
