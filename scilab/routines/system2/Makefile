@@ -5,7 +5,7 @@ SCIDIR1=..\..
 
 LIBRARY = $(SCIDIR)/libs/system2.a
 
-OBJSC = 
+OBJSC = intmacr2tree.o 
 
 OBJSF = fmttyp.o getfun.o chkvar.o\
 	btof.o btofm.o ftob.o \
@@ -71,4 +71,4 @@ namstr.o: ../stack.h
 rwstack.o: ../stack.h
 tradsl.o: ../stack.h
 
-
+intmacr2tree.o: ../stack-c.h
