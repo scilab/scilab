@@ -8,11 +8,11 @@ c     Copyright INRIA
 c     
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       logical eqid,eptover
-      integer semi,eol,blank,r,excnt,lparen,rparen,num,name,percen
+      integer semi,eol,blank,r,excnt,lparen,rparen,num,name,percen,psym
       integer id(nsiz),eye(nsiz),rand(nsiz),ones(nsiz),op,fun1
       integer star,dstar,comma,quote,cconc,extrac,rconc
       integer left,right,hat,dot,equal,colon
-      logical recurs,compil,first,dotsep,nullarg
+      logical recurs,compil,first,dotsep,nullarg,ok
       integer setgetmode
       
       data star/47/,dstar/62/,semi/43/,eol/99/,blank/40/,percen/56/
@@ -78,6 +78,7 @@ c     --- single number, getsym stored it in stk(vsiz)
 c     
  10   call getnum
       if(err.gt.0) return
+      psym=num
       call getsym
       go to 60
 c     
@@ -578,6 +579,7 @@ c     check for ', .'  **,  ^ and .^
 c     *call* allops(quote) or allops(dot+quote)
       return
  62   pt=pt-1
+      psym=sym
       call getsym
 
  63   continue
@@ -593,12 +595,22 @@ c     *call* allops(quote) or allops(dot+quote)
          call getsym
          fin=dot+quote
          goto 61
-      elseif(sym.eq.name) then
+      elseif(sym.eq.name.and.psym.eq.num) then
          i = lpt(3) - 2
          if (abs(lin(i)) .ne. blank) then
-            lpt(2)=lpt(3)+1
-            call error(276)
-            if (err.gt.0) return
+            ok=.true.
+c     .     next line to restrict to mfile2sci compilation only
+c     .     ok=(comp(1).ne.0.and.comp(3).eq.2) 
+            if (ok) then
+c     .        make 2m be evaluated as 2*m
+               op=star
+               goto 64
+            else
+c     .        issue an error
+               lpt(2)=lpt(3)+1
+               call error(276)
+               if (err.gt.0) return
+            endif
          endif
          goto 90
       else
