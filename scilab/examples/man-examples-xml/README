@@ -1,0 +1,24 @@
+In this directory we show how to customize Scilab help by 
+adding two new sections. This should work on windows 
+and unix 
+
+Directories "helpdir1" and "helpdir2" contain 
+Scilab xml files for each new section.
+
+By running the builder.sce script a set of html files are generated. 
+You need to have sabcmd command 
+installed on your machine and present in your path. 
+(see http://www.gingerall.com/charlie/ga/xml/p_sab.xml)
+
+Running the scilab script loader.sce will add the two directories 
+helpdir1 and helpdir2 in your help Scilab help browser 
+
+The generated files sciman.hh* can be used by 
+HTML Help Workshop (HHW.exe) to produce a compressed html 
+file sciman.chm 
+The runtime (HH.exe) can be used to run the generated sciman.chm 
+(http://www.microsoft.com/workshop/author/htmlhelp/) 
+
+jpc 
+july 2002 
+
