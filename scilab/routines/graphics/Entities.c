@@ -3980,8 +3980,6 @@ sciGetXorMode (sciPointObj * pobj)
 void
 sciSetResize (sciPointObj * pobj, BOOL value)
 {
-  integer xtmp = 0;
-  integer x[2];
   integer num1 = (value ? 1 : 0);
   if ( (pobj != pfiguremdl) && (pobj != paxesmdl))
     { 
