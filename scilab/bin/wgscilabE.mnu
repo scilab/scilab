@@ -60,9 +60,10 @@
 
 [Menu]
 &Tools
-	&Objects properties
-		???
-	--	
+; modify CreateGraphToolBar 
+;	&Objects properties
+;		???
+;	--	
 	&ToolBar	F3
 		[TOOLBARGRAPH]
 	--	

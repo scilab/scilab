@@ -55,9 +55,10 @@
 
 [Menu]
 &Outils
-	&Propriétes des objets
-		???
-	--
+; modifier CreateGraphToolBar en consequence
+;	&Propriétes des objets
+;		???
+;	--
 	&Barre d'outils	F3
 		[TOOLBARGRAPH]
 	--

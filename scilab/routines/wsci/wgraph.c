@@ -1528,9 +1528,16 @@ void ShowGraphToolBar(struct BCG * ScilabGC)
 /*-----------------------------------------------------------------------------------*/
 void CreateGraphToolBar(struct BCG * ScilabGC) 
 {
+	/* Avec Proprietes des objets
 #define HMENUIndiceZOOM 15
 #define HMENUIndiceUNZOOM 16
 #define HMENUIndice3DROT 17
+	*/
+
+	/* sans proprietes des objets */
+#define HMENUIndiceZOOM 14
+#define HMENUIndiceUNZOOM 15
+#define HMENUIndice3DROT 16
 
   HICON IconButton;
   ScilabGC->lpmw.nButton=0;
