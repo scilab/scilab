@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>fr</LANGUAGE>
+  <TITLE>dragrect  </TITLE>
+  <TYPE>Scilab Function  </TYPE>
+  <DATE>April 2000  </DATE>
+  <SHORT_DESCRIPTION name="rubberbox"> selection d'un rectangle avec la souris  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox(initial_rect)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[final_rect,btn]=rubberbox()  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+ <PARAM_INDENT>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>initial_rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : Vecteur a deux ou quatre éléments. Avec quatres éléménts il fixe
+  le rectangle initial [x_gauche; y_haut; largeur; hauteur], avec deux
+  éléménts, largeur et hauteur sont supposés nuls. 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>final_rect  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : un rectangle défini par [x_gauche, y_haut, largeur, hauteur] 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+  <PARAM_ITEM>
+  <PARAM_NAME>btn  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :un entier, le numero du bouton de la souris actionné.
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    <VERB>rubberbox(initial_rect)</VERB> permet selectionner un
+    rectangle de la fenêtre graphique courante. Quand un bouton de la
+    souris est pressé <VERB>rubberbox</VERB> retourne la définition du
+    rectangle sélectionné dans <VERB>final_Rect</VERB>. Si l'argument
+    <VERB>initial_rect</VERB>est omis, un premier clic sur un bouton
+    de la souris fixera la position initiale.
+
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+xsetech(frect=[0,0,100,100])
+[x,y]=xclick();rubberbox([x;y;30;10])
+xrect(r)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>xrect</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>xrects</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>xclick</LINK> </SEE_ALSO_ITEM>     
+    <SEE_ALSO_ITEM> <LINK>xgetmouse</LINK> </SEE_ALSO_ITEM>
+     <SEE_ALSO_ITEM> <LINK>dragrect</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>
+
+ 
