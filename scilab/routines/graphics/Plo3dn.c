@@ -16,6 +16,8 @@
 #include "BuildObjects.h"
 
 extern double C2F(dsort)();
+extern int facet_facing_rear(integer facteur,integer *x,integer *y,integer *c,integer *size,integer *xr,integer *yr,integer *cr,integer *rsize);
+
 /*-------------------------------------------------------------------------
  *   plo3dn function  ( 3D Plotting of surfaces given by z=f(x,y)  )
  *-------------------------------------------------------------------------*/
@@ -635,7 +637,7 @@ void C2F(fac3dn)(sciPointObj *pobj, double *x, double *y, double *z, integer *cv
 		if (rear_size == *p) continue; 
       }
       
-	  if (color_flag == 1 | color_flag == 2) {
+	  if (color_flag == 1 || color_flag == 2) {
 	  
         /* Flat shading. This is the case where the color index is constant for a facet */
 	  	  		
