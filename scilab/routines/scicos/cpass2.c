@@ -149,7 +149,7 @@ int cpass2(bllst111,bllst112,bllst2,bllst3,bllst4,bllst5,bllst9,bllst10,
 	    {
 	      (*bllst11)[l]=-1;
 	    }
-	  if (((char*) (*bllst13)[i]=(char*) malloc(sizeof(char)*(2))) ==NULL )  return 0;
+ if (( (*bllst13)[i] = (char*) malloc(sizeof(char)*(2))) ==NULL )  return 0;
 	  ((char*) (*bllst13)[i])[1]='\0';
 	  *((*bllst13)[i])=' ';
 	}      
