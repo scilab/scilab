@@ -4959,7 +4959,7 @@ int gset(fname,fname_len)
 {
   integer m1,n1,l1,m2,n2,l2,numrow3,numcol3,l3,num,cur,na,verb=0;
   unsigned long hdl; 
-  int lw;
+  int lw,t2;
   BOOL vis_save;
   sciPointObj *pobj;
 
@@ -5029,8 +5029,11 @@ int gset(fname,fname_len)
 	if ((strncmp(cstk(l2),"old_style",9) !=0) 
 	    &&(strncmp(cstk(l2),"default_figure",14) !=0) 
 	    && (strncmp(cstk(l2),"default_axes",12) !=0) ) SciWin();
-      
-      if (VarType(3) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
+      t2=sciType(cstk(l2),pobj);
+      if (t2<0) {
+	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
+	return 0;} 
+      if (VarType(3) != t2) { /* F.Leray MODIFICATION ICI*/
 	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
 	return 0;} 
       if (VarType(3) == 1)  GetRhsVar(3,"d",&numrow3,&numcol3,&l3);
@@ -5077,12 +5080,14 @@ int gset(fname,fname_len)
 	  hdl = (unsigned long)0;
 	  pobj = (sciPointObj *) NULL;
 	}
-      if (VarType(2) != sciType(cstk(l2),pobj)) { /* F.Leray MODIFICATION ICI*/
-	if (VarType(2)!=1 || strncmp(cstk(l2),"current_figure",14) !=0) {
-	  Scierror(999,"%s: uncompatible values of property type  '%s' \r\n",fname,cstk(l2));
+      t2=sciType(cstk(l2),pobj);
+      if (t2<0) {
+	Scierror(999,"%s: unknown property name '%s' \r\n",fname,cstk(l2));
+	return 0;} 
+      if (VarType(2) != t2) { /* F.Leray MODIFICATION ICI*/
+	Scierror(999,"%s: uncompatible values for property type  '%s' \r\n",fname,cstk(l2));
+	return 0;} 
 
-	  return 0;} 
-      }
       if ( (VarType(2) == 1) )   {GetRhsVar(2,"d",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 9) )   {GetRhsVar(2,"h",&numrow3,&numcol3,&l3); }
       if ( (VarType(2) == 10) ) {
