@@ -3648,7 +3648,7 @@ int C2F(sciwin)()
   double dv;
   C2F(dr)("xget","window",&verb,&win,&na,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
   C2F(dr)("xset","window",&win,&v,PI0,PI0,PI0,PI0,&dv,&dv,&dv,&dv,5L,7L);
-  if (versionflag == 0) { 
+  if (version_flag() == 0) { 
     return sciSwitchWindow(&win); 
   }
   return 0;
@@ -4049,22 +4049,22 @@ int sciwinsid(fname,fname_len)
   integer iflag =0,ids,num,un=1,l1;
 
   CheckRhs(-1,0) ;  /* NG beg */
- if (version_flag() == 0)
-   {
-    sciGetIdFigure (&ids,&num,&iflag);
-    CreateVar(1,"i",&un,&num,&l1);
-    iflag = 1; 
-    sciGetIdFigure (istk(l1),&num,&iflag);
-    LhsVar(1) = 1; 
-   }/* NG end*/
- else
-   {
-    C2F(getwins)(&num,&ids ,&iflag);
-    CreateVar(1,"i",&un,&num,&l1);
-    iflag = 1; 
-    C2F(getwins)(&num,istk(l1),&iflag);
-    LhsVar(1)=1;
-    } 
+  /*  if (version_flag() == 0) */
+  /*    { */
+  /*     sciGetIdFigure (&ids,&num,&iflag); */
+  /*     CreateVar(1,"i",&un,&num,&l1); */
+  /*     iflag = 1;  */
+  /*     sciGetIdFigure (istk(l1),&num,&iflag); */
+  /*     LhsVar(1) = 1;  */
+  /*    }/\* NG end*\/ */
+  /*  else */
+  /*    { */
+  C2F(getwins)(&num,&ids ,&iflag);
+  CreateVar(1,"i",&un,&num,&l1);
+  iflag = 1; 
+  C2F(getwins)(&num,istk(l1),&iflag);
+  LhsVar(1)=1;
+  /*     }  */
   
   return 0;
 }
