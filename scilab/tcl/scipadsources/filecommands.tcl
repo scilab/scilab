@@ -12,6 +12,7 @@ proc filesetasnewmat {} {
     set listoffile("$pad.new$winopened",thetime) 0
 #ES 27/5/04
     set listoffile("$pad.new$winopened",language) "scilab"
+    set listoffile("$pad.new$winopened",readonly) 0
     lappend listoftextarea $pad.new$winopened
     $pad.filemenu.wind add radiobutton -label "[pwd]/Untitled$winopened.sce" \
         -value $winopened -variable radiobuttonvalue \
@@ -74,6 +75,7 @@ proc byebye {textarea} {
         unset listoffile("$textarea",thetime) 
       #ES 27/5/04
         unset listoffile("$textarea",language) 
+        unset listoffile("$textarea",readonly) 
       # delete the textarea entry in Undoerr
 ##ES: the text widget was opened for $pad.textarea. If that is destroyed, the 
 ## next change font, new file or open file command causes the window to shrink.
@@ -217,6 +219,12 @@ proc notopenedfile {file} {
 #ES 27/5/04
    set listoffile("$pad.new$winopened",language) [extenstolang $file]
    set listoffile("$pad.new$winopened",new) 0
+   if [ file exists $file ] {
+       set listoffile("$pad.new$winopened",readonly) \
+             [expr [file writable $file] == 0]
+   } else {
+       set listoffile("$pad.new$winopened",readonly) 0
+   }
 #ES: the following line has to be brought here for modifiedtitle to work
    $pad.filemenu.wind add radiobutton -label "$file" \
          -value $winopened -variable radiobuttonvalue \
@@ -261,18 +269,37 @@ proc filetoopen {textarea} {
 # generic save function
 proc writesave {textarea nametosave} {
     global lang listoffile
-    set FileNameToSave [open $nametosave w+]
-    puts -nonewline $FileNameToSave [$textarea get 0.0 end]
-    close $FileNameToSave
-    outccount $textarea
-    set listoffile("$textarea",thetime) [file mtime $nametosave] 
-    if {$lang == "eng"} {
-        set msgWait "File $nametosave saved"
+# if the file exists, check once more if the file is writable 
+# if it doesn't, check if the directory is writable
+#(case of Save as...) (non existant files return 0 to writable)
+    if {[file exists $nametosave]} {
+      set listoffile("$textarea",readonly) \
+          [expr [file writable $nametosave] == 0]
     } else {
-        set msgWait \
-         "Fichier $nametosave sauvegardé"
+      set listoffile("$textarea",readonly) \
+          [expr [file writable [file dirname $nametosave]] == 0]
     }
-    showinfo $msgWait
+    if {$listoffile("$textarea",readonly)==0} {
+	set FileNameToSave [open $nametosave w+]
+	puts -nonewline $FileNameToSave [$textarea get 0.0 end]
+	close $FileNameToSave
+	outccount $textarea
+	set listoffile("$textarea",thetime) [file mtime $nametosave] 
+	if {$lang == "eng"} {
+	    set msgWait "File $nametosave saved"
+	} else {
+	    set msgWait "Fichier $nametosave sauvegardé"
+	}
+        showinfo $msgWait
+    } else {
+	if {$lang == "eng"} {
+	    set msgWait "$nametosave cannot be written!"
+	} else {
+	    set msgWait "$nametosave est en lecture seule!"
+	}
+        tk_messageBox -message $msgWait
+        filesaveas $textarea
+    }
 }
 
 
@@ -301,7 +328,7 @@ proc filetosave {textarea} {
     # save the opened file from disk, if not, user has to get a file name.
     # we would verify if the file has not been modify by another application
     set myfile $listoffile("$textarea",filename)
-    if { [file exists $myfile] && $listoffile("$textarea",new) == 0  } {
+    if { [file exists $myfile] && $listoffile("$textarea",new) == 0 } {
         if { $listoffile("$textarea",thetime) != [file mtime $myfile]} {
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
                             -type yesnocancel -icon question]
@@ -327,11 +354,7 @@ proc filesaveascur {} {
 }
 
 proc filesaveas {textarea} {
-    global listoffile
-    global pad
-    global radiobuttonvalue
-    global winopened
-    global lang
+    global listoffile pad radiobuttonvalue winopened lang
 
     if {$lang == "eng"} {showinfo "Save As"} else {showinfo "Enregistrer sous"}
 # FV 14/06/04, added proposedname for new functions
@@ -463,7 +486,8 @@ proc openoninit {textarea thefile} {
                $textarea insert end [read -nonewline $newnamefile ] 
         }
         close $newnamefile
-        settitle $thefile
+#        settitle $thefile
+        modifiedtitle $textarea
     }
     #colorize $textarea 1.0 end
 }

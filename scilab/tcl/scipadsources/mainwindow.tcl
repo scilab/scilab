@@ -15,6 +15,7 @@ set listoffile("$pad.textarea",new) 1; # is not an opened file from disk
 set listoffile("$pad.textarea",thetime) 0; # set the time of the last modify
 # set the scheme for colorization and allowed operations
 set listoffile("$pad.textarea",language) "scilab"; 
+set listoffile("$pad.textarea",readonly) 0; 
 set listoftextarea $pad.textarea
 set winopened 0
 set radiobuttonvalue 0

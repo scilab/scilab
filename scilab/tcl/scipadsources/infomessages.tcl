@@ -66,11 +66,19 @@ proc modifiedtitle {textarea} {
     global pad listoffile lang 
     set fname $listoffile("$textarea",filename)
     set ind [extractindexfromlabel $pad.filemenu.wind $fname]
+    set mod1 ""; set mod2 ""
+    if {$listoffile("$textarea",readonly) == 1} { 
+       if {$lang == "eng"} {
+	   set mod1 " \[ReadOnly\]"
+       } else {
+	   set mod1 " \[LectureSeule\]"
+       }
+    }
     if {$listoffile("$textarea",save) ==1} { 
        if {$lang == "eng"} {
-          settitle "$fname - (modified)"
+          set mod2 " (modified)"
        } else {
-          settitle "$fname - (modifié)"
+          set mod2 " (modifié)"
        }
        if {$ind !=-1} {
            $pad.filemenu.wind entryconfigure $ind -background Salmon \
@@ -78,11 +86,11 @@ proc modifiedtitle {textarea} {
        }
        $pad.statusind configure -background Salmon
     } else {  
-       settitle "$fname"
        if {$ind !=-1} {
            $pad.filemenu.wind entryconfigure $ind -background "" \
               -activebackground ""
        }
        $pad.statusind configure -background [$pad.filemenu cget -background]
      }
+     settitle "$fname$mod1$mod2"
 } 

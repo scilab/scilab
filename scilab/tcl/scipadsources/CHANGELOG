@@ -555,3 +555,10 @@ Francois VOGEL, 01/11/04
    into one single command.
  * Improved proc scilaberror following ES' suggestions
  * version --> 3.9
+
+ES 3/11/04:
+ * the writable status of files which are opened is checked. [ReadOnly] is tagged 
+   on the title bar. If a file is not writable (either because of an invalid path
+   or because the file is readonly), a warning pops up, and Save translates to
+   "Save as..."
+ * version --> 3.10

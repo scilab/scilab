@@ -85,7 +85,8 @@ Note: this is continuously changing and platform dependent. scilab 3.0RC1 has
 ~4000 chars for linux and ~500 for windows. This has to do with the mechanics
 of ScilabEval and the command queue space.
 A workaround could be to via execstr(TK_GetVar), but then scipad has to be launched
-inside the master tk interpreted (perhaps in a namespace) and not in a slave interpreter.
+inside the master tk interpreted (perhaps in a namespace) and not in a slave
+interpreter.
 
 -after a succesful find the match is highlighted in green. This remains the 
  selection color until one switches to another buffer. Hacked - now the text 
@@ -162,9 +163,9 @@ Wishes:
  allowing for selection of any function found in all the currently opened buffers.
  Could also be displayed in a combobox (but tk does not support combos natively -
  Note however that BWidgets-1.7.0 is now part of the CVS distribution, and that it
- includes combos!) which would be part of the tool bar. Or a spinbox plus a 'Go' button.
- The buffer search could be launched only on invocation of the spinbox arrows or
- on menu selection.
+ includes combos!) which would be part of the tool bar. Or a spinbox plus a 'Go'
+ button. The buffer search could be launched only on invocation of the spinbox 
+ arrows or on menu selection.
 
 -add a "Go to line N in function..." and "Go to logical line", which take into 
  account continued lines, procedures and menu entries.
@@ -172,37 +173,35 @@ Wishes:
 -subwindows (e.g Find.., file choosers, debugger, tk_messageBoxes...)
  should inherit the current font size
 
--Outside of scipad: add and bulletproof a function which finds the source of a
- library function and loads it into scipad showfunctionpath(), and propose it to
- scilab core
- Note: the existing get_function_path does the same but searches only in SCI.
+-Outside of scipad: bulletproof a function for opening the script which produced 
+ the lasterror(): editoffendingline()
 
--same with a function for opening the script which produced the lasterro(): 
- editoffendingline()
-
--"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it has now been
- implemented by Scilab Team
+-"compile xml as help page" command - Note: Use xmlfiletohtml.sci since it has now
+ been implemented by Scilab Team
 
 -"Create help skeleton" command (invokes help_skeleton in Scilab and retrieves the
- generated text for modification in Scipad). Before using this, check that the file created
- by help_skeleton is still consistent with the latest changes in the help
+ generated text for modification in Scipad). Before using this, check that the file
+ created by help_skeleton is still consistent with the latest changes in the help
 
 -In the file menu, add the list of the n more recently opened files for quick access
 
 -Conditional breakpoints
 
--Allow to watch an element of a variable, and not only the variable array (i.e. to watch
- d(1) and not only d if d is a matrix). Problem: if d exists in Scilab, exists(d) is true
+-Allow to watch an element of a variable, and not only the variable array 
+(i.e. to watch d(1) and not only d if d is a matrix). 
+ Problem: if d exists in Scilab, exists(d) is true
  but exists(d(1)) is false!
+ Allow to watch a generic expression (bonus: the expression could be e.g. a graphical
+ command, so that an array is *plotted* at each breakpoint)
 
 -Improve the aesthetics of Scipad (see sciGUI)
 
--A preferences menu (sub-menu of the options menu?) that would allow to select the background
- color of the Scipad from a palette (this has been asked for in the ng). Could also be done
- through the config() macro from sciGUI.
+-A preferences menu (sub-menu of the options menu?) that would allow to select the
+ background color of the Scipad from a palette (this has been asked for in the ng).
+ Could also be done through the config() macro from sciGUI.
 
--Allow the user to select whether the tab key inserts tabs or spaces, and in the latter, how
- many. Could be part of the Options menu or Preferences submenu.
+-Allow the user to select whether the tab key inserts tabs or spaces, and in the
+ latter, how many. Could be part of the Options menu or Preferences submenu.
 
 -Blink (single or double) quotes. Must find a way to distinguish between opening and
  closing quotes in proc blinkbrace. This is not that easy since these are the same
@@ -222,6 +221,3 @@ Wishes:
  absolutely sure that the variable names instantiated by Scipad in not used in Scilab,
  so that conflicts would always be avoided. For instance, browsing the existing known
  variables and checking for existence, etc. could be used.
-
--a visual tag somewhere in the editor window, when the file opened is
-read-only: e.g. in the title bar, a special color in the message bar...
