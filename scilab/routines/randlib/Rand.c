@@ -33,7 +33,7 @@ unsigned long int clcg4_with_gen(void)
 #define NbGenInScilab 6
 
 /*  pointers onto the generators func */
-unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urand , fsultra};
+unsigned long int (*gen[NbGenInScilab])() = { randmt, kiss,  clcg4_with_gen, clcg2 , urandc , fsultra};
 
 /*  names at the scilab level */
 static char *names_gen[NbGenInScilab] = { "mt",  "kiss","clcg4", "clcg2", "urand", "fsultra" };

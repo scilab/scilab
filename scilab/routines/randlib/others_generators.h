@@ -18,7 +18,7 @@ int set_state_clcg2(double g1, double g2);
 void get_state_clcg2(double g[]);
 
 /* header for scilab urand */
-unsigned long urand();
+unsigned long urandc();
 int set_state_urand(double g);
 void get_state_urand(double g[]);
 

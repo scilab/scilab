@@ -22,7 +22,7 @@
 
 static unsigned long s = 0;
 
-unsigned long urand()
+unsigned long urandc()
 {
   s = 843314861ul * s + 453816693ul;  /* => on obtient ici un resultat modulo 2^32 */
 
