@@ -7205,6 +7205,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	} 
+      /* strflag is not allocated !!!! jpc 2003  
       if ((pSUBWIN_FEATURE (pobj)->strflag = calloc (3,sizeof (char))) == NULL)
 	{
 	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
@@ -7213,7 +7214,7 @@ ConstructSubWin (sciPointObj * pparentfigure, int pwinnum)
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
-
+      */
 
        pSUBWIN_FEATURE (pobj)->logflags[0] = 'n';
        pSUBWIN_FEATURE (pobj)->logflags[1] = 'n';
@@ -9262,6 +9263,7 @@ ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double min
 
 
       pAXIS_FEATURE (pobj)->strflaglen = strlen (strflag);
+      /* strflag is not allocated jpc 2003
       if ((pAXIS_FEATURE (pobj)->strflag = calloc (pAXIS_FEATURE (pobj)->strflaglen+1, 
 						   sizeof (char))) == NULL)
 	{
@@ -9272,6 +9274,7 @@ ConstructAxis (sciPointObj * pparentsubwin, char *strflag, int style, double min
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+      */
       strncpy(pAXIS_FEATURE (pobj)->strflag, strflag, pAXIS_FEATURE (pobj)->strflaglen);
 
 
