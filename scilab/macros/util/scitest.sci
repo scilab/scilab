@@ -6,7 +6,11 @@ function scitest(tstfile,force)
   if ind==[] then 
     diafile = tstfile+'.tst'
   else
-     suf = part(tstfile,ind($):length(tstfile)); 
+     suf = part(tstfile,ind($):length(tstfile));
+     if suf == '.dia' then 
+       error('scitest: first argument should not be a file with .dia suffix" );
+       return 
+     end
      diafile=strsubst(tstfile,suf,'.dia')
   end
   if newest(tstfile,diafile)==2 & force == %f  then return,end
