@@ -4,11 +4,14 @@ include ../Path.incl
 include ../Version.incl
 include ../Makefile.incl
 
-IP = $(SCIDIR)/Path.incl
-IV = $(SCIDIR)/Version.incl
+# it is important here to keep relative pathnames 
+# for make install to work with package builders 
 
-SBIN = $(SCIDIR)/bin
-UTIL = $(SCIDIR)/util
+IP = ../Path.incl
+IV = ../Version.incl
+
+SBIN = ../bin
+UTIL = ../util
 
 BPROGRAMS = $(SBIN)/Blatexpr $(SBIN)/Blatexpr2 \
 	$(SBIN)/Blatexprs $(SBIN)/Blpr $(SBIN)/BEpsf \
