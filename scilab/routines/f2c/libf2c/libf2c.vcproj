@@ -490,6 +490,64 @@ cd .. &gt;nul
 			<Tool
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
+		<Configuration
+			Name="Debug with Atlas without Java|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="4"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="FALSE"
+			CharacterSet="2">
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="../../../routines/f2c,../../../tcl/include/X11,../../routines/f2c,../../tcl/include/X11,../../tcl/include"
+				PreprocessorDefinitions="_LIB;__MSC__;STRICT;Skip_f2c_Undefs;_POSIX_SOURCE;MSDOS;_DEBUG;WIN32;WITH_TK;WITH_PVM"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="5"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderFile="$(IntDir)/libf2c.pch"
+				AssemblerListingLocation="$(IntDir)/"
+				ObjectFile="$(IntDir)/"
+				ProgramDataBaseFileName="$(IntDir)/"
+				WarningLevel="3"
+				SuppressStartupBanner="TRUE"
+				DebugInformationFormat="4"
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="../../../libs/libf2c.lib"
+				SuppressStartupBanner="TRUE"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine="cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\bin\dumpexts -o %%~nf.def -n scilex.dll %%f &gt;nul
+copy *.def libf2c.def &gt;nul
+copy libf2c.def ..\..\..\..\libs\libf2c.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul
+"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="1036"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -559,6 +617,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -636,6 +703,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_abs.c">
@@ -699,6 +775,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -776,6 +861,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_div.c">
@@ -839,6 +933,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -916,6 +1019,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_log.c">
@@ -979,6 +1091,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1056,6 +1177,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="c_sqrt.c">
@@ -1119,6 +1249,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1196,6 +1335,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="close.c">
@@ -1259,6 +1407,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1336,6 +1493,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_acos.c">
@@ -1399,6 +1565,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1476,6 +1651,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_atan.c">
@@ -1539,6 +1723,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1616,6 +1809,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_cnjg.c">
@@ -1679,6 +1881,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1756,6 +1967,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_cosh.c">
@@ -1819,6 +2039,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -1896,6 +2125,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_exp.c">
@@ -1959,6 +2197,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2036,6 +2283,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_int.c">
@@ -2099,6 +2355,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2176,6 +2441,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_log.c">
@@ -2239,6 +2513,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2316,6 +2599,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_nint.c">
@@ -2379,6 +2671,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2456,6 +2757,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_sign.c">
@@ -2519,6 +2829,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2596,6 +2915,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_sinh.c">
@@ -2659,6 +2987,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2736,6 +3073,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="d_tan.c">
@@ -2799,6 +3145,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -2876,6 +3231,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="derf_.c">
@@ -2939,6 +3303,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3016,6 +3389,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="dfe.c">
@@ -3079,6 +3461,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3156,6 +3547,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="due.c">
@@ -3219,6 +3619,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3296,6 +3705,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ef1cmc_.c">
@@ -3359,6 +3777,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3436,6 +3863,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="erf_.c">
@@ -3499,6 +3935,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3576,6 +4021,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="err.c">
@@ -3639,6 +4093,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3716,6 +4179,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="F77_aloc.c">
@@ -3779,6 +4251,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3856,6 +4337,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="fmtlib.c">
@@ -3919,6 +4409,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -3996,6 +4495,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="getarg_.c">
@@ -4059,6 +4567,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4136,6 +4653,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_abs.c">
@@ -4199,6 +4725,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4276,6 +4811,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_dnnt.c">
@@ -4339,6 +4883,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4416,6 +4969,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_len.c">
@@ -4479,6 +5041,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4556,6 +5127,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="h_nint.c">
@@ -4619,6 +5199,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4696,6 +5285,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="hl_ge.c">
@@ -4759,6 +5357,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4836,6 +5443,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="hl_le.c">
@@ -4899,6 +5515,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -4976,6 +5601,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_abs.c">
@@ -5039,6 +5673,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5116,6 +5759,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_dnnt.c">
@@ -5179,6 +5831,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5256,6 +5917,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_len.c">
@@ -5319,6 +5989,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5396,6 +6075,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="i_nint.c">
@@ -5459,6 +6147,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5536,6 +6233,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="iargc_.c">
@@ -5599,6 +6305,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5676,6 +6391,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="ilnw.c">
@@ -5739,6 +6463,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5816,6 +6549,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="l_ge.c">
@@ -5879,6 +6621,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -5956,6 +6707,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="l_le.c">
@@ -6019,6 +6779,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6096,6 +6865,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="lbitbits.c">
@@ -6159,6 +6937,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6236,6 +7023,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="lread.c">
@@ -6299,6 +7095,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6376,6 +7181,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="open.c">
@@ -6439,6 +7253,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6516,6 +7339,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_dd.c">
@@ -6579,6 +7411,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6656,6 +7497,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_hh.c">
@@ -6719,6 +7569,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6796,6 +7655,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_ri.c">
@@ -6859,6 +7727,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -6936,6 +7813,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="pow_zz.c">
@@ -6999,6 +7885,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7076,6 +7971,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_acos.c">
@@ -7139,6 +8043,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7216,6 +8129,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_atan.c">
@@ -7279,6 +8201,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7356,6 +8287,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_cnjg.c">
@@ -7419,6 +8359,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7496,6 +8445,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_cosh.c">
@@ -7559,6 +8517,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7636,6 +8603,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_exp.c">
@@ -7699,6 +8675,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7776,6 +8761,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_int.c">
@@ -7839,6 +8833,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -7916,6 +8919,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_log.c">
@@ -7979,6 +8991,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8056,6 +9077,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_nint.c">
@@ -8119,6 +9149,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8196,6 +9235,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_sin.c">
@@ -8259,6 +9307,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8336,6 +9393,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_sqrt.c">
@@ -8399,6 +9465,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8476,6 +9551,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="r_tanh.c">
@@ -8539,6 +9623,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8616,6 +9709,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="rewind.c">
@@ -8679,6 +9781,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8756,6 +9867,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="rsli.c">
@@ -8819,6 +9939,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -8896,6 +10025,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_cat.c">
@@ -8959,6 +10097,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9036,6 +10183,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_copy.c">
@@ -9099,6 +10255,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9176,6 +10341,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="s_rnge.c">
@@ -9239,6 +10413,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9316,6 +10499,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="sfe.c">
@@ -9379,6 +10571,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9456,6 +10657,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="signal_.c">
@@ -9519,6 +10729,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9596,6 +10815,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="system_.c">
@@ -9659,6 +10887,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9736,6 +10973,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="uio.c">
@@ -9799,6 +11045,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -9876,6 +11131,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="Version.c">
@@ -9939,6 +11203,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10016,6 +11289,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="wrtfmt.c">
@@ -10079,6 +11361,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10156,6 +11447,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="wsle.c">
@@ -10219,6 +11519,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10296,6 +11605,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="xwsne.c">
@@ -10359,6 +11677,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10436,6 +11763,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_cos.c">
@@ -10499,6 +11835,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10576,6 +11921,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_exp.c">
@@ -10639,6 +11993,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
@@ -10716,6 +12079,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_sin.c">
@@ -10786,6 +12158,15 @@ cd .. &gt;nul
 						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="z_sqrt.c">
@@ -10849,6 +12230,15 @@ cd .. &gt;nul
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug without Java|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BasicRuntimeChecks="3"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug with Atlas without Java|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"

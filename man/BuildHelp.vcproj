@@ -79,6 +79,17 @@
 				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
 				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
 		</Configuration>
+		<Configuration
+			Name="Debug with Atlas without Java|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
+				ReBuildCommandLine="nmake /f &quot;makehelp.mak&quot; all /a"
+				CleanCommandLine="nmake /f &quot;makehelp.mak&quot; clean /a"/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
