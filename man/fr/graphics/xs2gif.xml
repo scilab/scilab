@@ -33,20 +33,22 @@
   </PARAM>
   <DESCRIPTION>
     <P><VERB>xs2gif</VERB> sends the recorded graphics of the
-    window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in GIF syntax.
+    window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in GIF format.
     This function works only if the selected 
     driver is <VERB>&quot;Rec&quot;</VERB> in the window
     <VERB>win_num</VERB>  or if the window is in &quot;new style&quot;.</P>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[ 
+    scf(0)
+    plot2d()
+    xs2gif(0,'foo.gif')
+  ]]></EXAMPLE>
   <SEE_ALSO>
-    <SEE_ALSO_ITEM>
-      <LINK>printing</LINK>
-    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xs2fig</LINK>
     </SEE_ALSO_ITEM>
-    <SEE_ALSO_ITEM>
-      <LINK>xbasimp</LINK>
+   <SEE_ALSO_ITEM>
+      <LINK>xs2ps</LINK>
     </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>xs2ppm</LINK>

@@ -37,10 +37,20 @@
     This function works only if the selected 
     driver is <VERB>&quot;Rec&quot;</VERB>  or if the window is in &quot;new style&quot;.</P>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[ 
+    scf(0)
+    plot2d()
+    xs2fig(0,'foo.fig')
+  ]]></EXAMPLE>
   <SEE_ALSO>
     <SEE_ALSO_ITEM>
-      <LINK>xbasimp</LINK>
+      <LINK>xs2ps</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
       <LINK>xs2gif</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>xs2ppm</LINK>
     </SEE_ALSO_ITEM>
   </SEE_ALSO>
 </MAN>

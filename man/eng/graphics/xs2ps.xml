@@ -32,16 +32,35 @@
     </PARAM_INDENT>
   </PARAM>
   <DESCRIPTION>
-    <P><VERB>xs2ps</VERB> sends the recorded graphics of the
-    window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in PS syntax.
+    <P>
+      <VERB>xs2ps</VERB> sends the recorded graphics of the
+    window <VERB>win_num</VERB> in the file <VERB>filen</VERB> in PS
+      syntax. Warning: <VERB>filen</VERB> must not have extension.
+    </P>
+    <P>
     This function works only if the selected 
     driver is <VERB>&quot;Rec&quot;</VERB> in the window
-    <VERB>win_num</VERB>  or if the window is in &quot;new style&quot;.</P>
-    <P>
-    The generated ps file does not contrains the header part which has
-    to be added from SCIDIR/imp/NperiPos.ps</P>
+    <VERB>win_num</VERB>  or if the window is in &quot;new style&quot;.
+    The generated postscript file does not contrains the header part
+    </P>
   </DESCRIPTION>
+  <EXAMPLE><![CDATA[ 
+    scf(0)
+    plot2d()
+    // Postcript export
+    filename='foo'; // ! no extension
+    xs2ps(0,filename)
+    //add the Postscript file header and create <filename>.eps file
+    unix_s(pathconvert('SCI/bin/BEpsf',%f)+' -p ' +filename)
+    // Gif export
+    xs2gif(0,'foo.gif')
+    // ppm export
+    xs2ppm(0,'foo.ppm')
+  ]]></EXAMPLE>
   <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>set_posfig_dim</LINK>
+    </SEE_ALSO_ITEM>
     <SEE_ALSO_ITEM>
       <LINK>printing</LINK>
     </SEE_ALSO_ITEM>
