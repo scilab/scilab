@@ -119,9 +119,17 @@ if rhs==1 then
     for k=1:lstsize(ind)
       if type(ind(k))<>15 then
 	if ind(k).vtype==String then
-	  indexisstr=%T
+	  if typeof(ind(k))=="cste" & ind(k).value=="entries" then
+	    iscell=%T
+	  else
+	    indexisstr=%T
+	  end
 	end
       end
+    end
+    if iscell then
+      tree=%i_ce2sci(tree)
+       return
     end
     if indexisstr then
       tree=%i_st2sci(tree)
