@@ -86,7 +86,7 @@ int C2F(xgray)(double *x, double *y, double *z, integer *n1, integer *n2, char *
 	/* Force psubwin->Srect=brect */
 	re_index_brect(brect, drect);
 	break;
-      case '2' : case '4' : case '6' : case '8':
+      case '2' : case '4' : case '6' : case '8': case '9':
 	/* Force psubwin->Srect to the x and y bounds */
 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
 	break;
@@ -229,12 +229,13 @@ int C2F(xgray1)(double *z, integer *n1, integer *n2, char *strflag, double *brec
 	/* Force psubwin->Srect=brect */
 	re_index_brect(brect, drect);
 	break;
-      case '2' : case '4' : case '6' : case '8':
+      case '2' : case '4' : case '6' : case '8': case '9':
 	/* Force psubwin->Srect to the x and y bounds */
 	compute_data_bounds(0,'g',xx,yy,nn1,nn2,drect);
 	break;
       }
-      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+      if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
+	  (strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
 	drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
 	drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
 	drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/

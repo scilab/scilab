@@ -113,13 +113,14 @@ int plot2dn(integer ptype,char *logflags,double *x,double *y,integer *n1,integer
       /* Force psubwin->Srect=brect */
       re_index_brect(brect, drect);
       break;
-    case '2' : case '4' : case '6' : case '8':
+    case '2' : case '4' : case '6' : case '8': case '9':
       /* Force psubwin->Srect to the x and y bounds */
       if ( (int)strlen(logflags) < 1) dataflag='g' ; else dataflag=logflags[0];
       compute_data_bounds(0,dataflag,x,y,*n1,*n2,drect);
       break;
     }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&(strflag[1] == '7' || strflag[1] == '8')) { /* merge psubwin->Srect and drect */
+    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot && 
+	(strflag[1] == '7' || strflag[1] == '8' || strflag[1] == '9')) { /* merge psubwin->Srect and drect */
       drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
       drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
       drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
@@ -287,7 +288,7 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
   /* F.Leray 07.05.04 */
   /* strflag[1] Isoview & tight_limits flags management*/
   switch (strflag[1])  {
-  case '0': 
+  case '0': case '9':
     /* no changes */
     break;
   case '1' : case '2' : case '7' : case '8' :
@@ -334,5 +335,7 @@ void strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     pSUBWIN_FEATURE (psubwin)->axes.xdir ='c';
     pSUBWIN_FEATURE (psubwin)->axes.ydir ='c';
     break;
+  case '9' :
+    pSUBWIN_FEATURE (psubwin)->isaxes = TRUE;
   }
 }

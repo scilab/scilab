@@ -239,6 +239,8 @@ static int get_rect(fname,pos,opts)
 #define GetStrf(pos,opts) if ( get_strf(fname,pos,opts) == 0) return 0;
 
 #define DEFSTRF "081" 
+#define DEFSTRFN "099" 
+
 static char def_strf[]  = DEFSTRF;
 static char *Strf ; 
 
@@ -276,7 +278,13 @@ static int get_strf(fname,pos,opts)
   else
     {
       /* def value can be changed */
-      strcpy(def_strf,DEFSTRF);  Strf = def_strf ;
+      
+      if (version_flag() == 0){
+	strcpy(def_strf,DEFSTRFN);  Strf = def_strf ;
+      }
+      else {
+	strcpy(def_strf,DEFSTRF);  Strf = def_strf ;
+      }
     }
   return 1;
 }
@@ -596,7 +604,10 @@ int scichamp_G(fname, func, fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != &(def_rect[0])) {Strf[1]='5';} 
   }
@@ -755,7 +766,10 @@ int scicontour2d_G(fname, func, fname_len)
   GetNax(9,opts);
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1] = '7';
@@ -1206,7 +1220,7 @@ int sciplot2d(fname, fname_len)
       sci_demo(fname,str,&one);
       return 0;
     }
-  
+
   CheckRhs(1,9);
 
   iskip=0;
@@ -1301,7 +1315,10 @@ int sciplot2d(fname, fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1] = '7';
@@ -1448,7 +1465,10 @@ int sciplot2d1_G(fname, ptype, func, fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+  if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
@@ -1525,7 +1545,10 @@ int scigrayplot(fname, fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
@@ -1592,7 +1615,10 @@ int scimatplot(fname, fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
@@ -3472,7 +3498,10 @@ int scifec(fname,fname_len)
 
   if (Strf == def_strf) {
     char strfl[4];
-    strcpy(strfl,DEFSTRF);
+    if (version_flag() == 0)
+      strcpy(strfl,DEFSTRFN);
+    else
+      strcpy(strfl,DEFSTRF);
     Strf = strfl;
     if (Rect != def_rect)
       strfl[1]='7';
